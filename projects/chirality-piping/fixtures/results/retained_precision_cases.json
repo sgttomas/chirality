@@ -34519,7 +34519,8 @@
                   }
                 },
                 "diagnostic_ref": "diagnostic:retained:unavailable-row",
-                "run": null
+                "run": null,
+                "source_ref": null
               }
             ],
             "combinations": [],
@@ -36927,7 +36928,7 @@
               }
             ]
           },
-          "receipt_sha256": "2af7e010b0531d4dbedf2e32bba31e08b42f2e145ce6f535f9dd33a88a1e2f25"
+          "receipt_sha256": "c487fd9cb2e663d2f8d5663edad4440f0dfea274a0bd4e18a6961d995a50b35c"
         }
       },
       "invocation": {
@@ -38063,7 +38064,7 @@
         "numerical_eligible": false,
         "standing": "needs_recompute"
       },
-      "qualification": "DRAFT: synthetic two-case unavailable template (C1a; rebased 06d). Case 1: preparation refused before the first annulus helper by an allocator refusal at the first prepared reservation (PP prepared_reserve, Storage(\"prepared vector\")); no proof, no source, no native run. Synthetic allocator refusal; not producer execution; public API intentionally rejects."
+      "qualification": "DRAFT: synthetic two-case unavailable template (C1a; rebased 06d). Case 1: preparation refused before the first annulus helper by an allocator refusal at the first prepared reservation (PP prepared_reserve, Storage(\"prepared vector\")); no proof, no source, no native run. Synthetic allocator refusal; not producer execution; public API intentionally rejects. (07: explicit source_ref null, D9b.)"
     },
     {
       "id": "two_body_synthetic",
@@ -121012,156 +121013,8 @@
     },
     {
       "id": "prefix_attached_old_input_unbound",
-      "base": "two_case_preparation_failure_synthetic",
+      "base": "two_case_facade_after_certificate_synthetic",
       "edits": [
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "preparation",
-            "members"
-          ],
-          "op": "set",
-          "value": [
-            {
-              "member": 0,
-              "old_source": [
-                "42474876e8000000",
-                "4231ed8ec2000000",
-                "3f6c4f3caf32fd23",
-                "3ed61aa4872838bf",
-                "3ed61aa4872838bf",
-                "3ee61aa4872838c0"
-              ],
-              "old_facts": [
-                "3fbeb851eb851eb8",
-                "3f847ae147ae147b",
-                "3f6c4f3caf32fd23",
-                "3ed61aa4872838bf",
-                "3ee61aa4872838c0",
-                "3f17066b621f3b1c",
-                "3faeb851eb851eb8"
-              ],
-              "result": {
-                "kind": "refused",
-                "error": {
-                  "kind": "accounting"
-                }
-              },
-              "work": {
-                "numeric": {
-                  "wide_lme": {
-                    "kind": "exact",
-                    "value": 0
-                  },
-                  "exact_sum_lme": {
-                    "kind": "exact",
-                    "value": 0
-                  },
-                  "entries": [
-                    {
-                      "kind": "exact",
-                      "value": 2
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 4
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 11
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 2
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 0
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 0
-                    },
-                    {
-                      "kind": "exact",
-                      "value": 0
-                    }
-                  ],
-                  "f64_arithmetic": {
-                    "kind": "exact",
-                    "value": 0
-                  },
-                  "sticky_status": "exact"
-                },
-                "initialized_endpoints": {
-                  "kind": "exact",
-                  "value": 27
-                },
-                "conversions": {
-                  "kind": "exact",
-                  "value": 0
-                },
-                "checks": {
-                  "kind": "exact",
-                  "value": 0
-                },
-                "endpoint_assignments": {
-                  "kind": "exact",
-                  "value": 0
-                },
-                "layout_bytes": [
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  0
-                ]
-              },
-              "conversions": []
-            }
-          ]
-        },
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "result"
-          ],
-          "op": "set",
-          "value": {
-            "kind": "unavailable",
-            "error": {
-              "kind": "preparation",
-              "capture": {
-                "kind": "association",
-                "detail": "annulus preparation refused"
-              },
-              "section": {
-                "kind": "accounting"
-              }
-            }
-          }
-        },
-        {
-          "path": [
-            "retained_precision",
-            "body",
-            "product_attempts",
-            1,
-            "adapter",
-            "fault"
-          ],
-          "op": "set",
-          "value": null
-        },
         {
           "path": [
             "retained_precision",
@@ -122478,6 +122331,4272 @@
           ],
           "op": "set",
           "value": []
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "execution_order_swapped",
+      "base": "two_case_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "work",
+            "execution_order"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "kind": "case",
+              "index": 1
+            },
+            {
+              "kind": "case",
+              "index": 0
+            }
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G3",
+        "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+      }
+    },
+    {
+      "id": "run_id_not_execution_position",
+      "base": "two_case_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "run",
+            "id"
+          ],
+          "op": "set",
+          "value": 5
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "calls",
+            0,
+            "run_refs"
+          ],
+          "op": "set",
+          "value": [
+            0,
+            5
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G3",
+        "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+      }
+    },
+    {
+      "id": "old_members_reordered",
+      "base": "two_body_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            0,
+            "operational",
+            "old"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "member": 1,
+              "inputs": [
+                "0000000000000000",
+                "4014000000000000",
+                "0000000000000000",
+                "3ff0000000000000",
+                "4014000000000000",
+                "0000000000000000",
+                "42474876e8000000",
+                "4231ed8ec2000000",
+                "3f6c4f3caf32fd23",
+                "3ee61aa4872838c0"
+              ],
+              "result": {
+                "kind": "ready",
+                "length": "3ff0000000000000",
+                "axial_stiffness": "41c4990f17e516ad",
+                "torsional_stiffness": "4128c47ead23fa80",
+                "normalization": [
+                  "3ff0000000000000",
+                  "0000000000000000",
+                  "0000000000000000"
+                ]
+              },
+              "work": {
+                "entered": 0,
+                "checks": 0,
+                "lost": false
+              }
+            },
+            {
+              "member": 0,
+              "inputs": [
+                "0000000000000000",
+                "0000000000000000",
+                "0000000000000000",
+                "3ff0000000000000",
+                "0000000000000000",
+                "0000000000000000",
+                "42474876e8000000",
+                "4231ed8ec2000000",
+                "3f6c4f3caf32fd23",
+                "3ee61aa4872838c0"
+              ],
+              "result": {
+                "kind": "ready",
+                "length": "3ff0000000000000",
+                "axial_stiffness": "41c4990f17e516ad",
+                "torsional_stiffness": "4128c47ead23fa80",
+                "normalization": [
+                  "3ff0000000000000",
+                  "0000000000000000",
+                  "0000000000000000"
+                ]
+              },
+              "work": {
+                "entered": 0,
+                "checks": 0,
+                "lost": false
+              }
+            }
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G3",
+        "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+      }
+    },
+    {
+      "id": "complete_old_short_of_source",
+      "base": "two_body_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            0,
+            "operational",
+            "old"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "member": 0,
+              "inputs": [
+                "0000000000000000",
+                "0000000000000000",
+                "0000000000000000",
+                "3ff0000000000000",
+                "0000000000000000",
+                "0000000000000000",
+                "42474876e8000000",
+                "4231ed8ec2000000",
+                "3f6c4f3caf32fd23",
+                "3ee61aa4872838c0"
+              ],
+              "result": {
+                "kind": "ready",
+                "length": "3ff0000000000000",
+                "axial_stiffness": "41c4990f17e516ad",
+                "torsional_stiffness": "4128c47ead23fa80",
+                "normalization": [
+                  "3ff0000000000000",
+                  "0000000000000000",
+                  "0000000000000000"
+                ]
+              },
+              "work": {
+                "entered": 0,
+                "checks": 0,
+                "lost": false
+              }
+            }
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G3",
+        "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+      }
+    },
+    {
+      "id": "unsourced_old_member_noncontiguous",
+      "base": "two_case_preparation_failure_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "operational",
+            "old",
+            0
+          ],
+          "op": "set",
+          "value": {
+            "member": 1,
+            "inputs": [
+              "0000000000000000",
+              "0000000000000000",
+              "0000000000000000",
+              "3ff0000000000000",
+              "0000000000000000",
+              "0000000000000000",
+              "42474876e8000000",
+              "4231ed8ec2000000",
+              "3f6c4f3caf32fd23",
+              "3ee61aa4872838c0"
+            ],
+            "result": {
+              "kind": "ready",
+              "length": "3ff0000000000000",
+              "axial_stiffness": "41c4990f17e516ad",
+              "torsional_stiffness": "4128c47ead23fa80",
+              "normalization": [
+                "3ff0000000000000",
+                "0000000000000000",
+                "0000000000000000"
+              ]
+            },
+            "work": {
+              "entered": 0,
+              "checks": 0,
+              "lost": false
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G3",
+        "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+      }
+    },
+    {
+      "id": "complete_old_longer_than_source",
+      "base": "two_body_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            0,
+            "operational",
+            "old"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "member": 0,
+              "inputs": [
+                "0000000000000000",
+                "0000000000000000",
+                "0000000000000000",
+                "3ff0000000000000",
+                "0000000000000000",
+                "0000000000000000",
+                "42474876e8000000",
+                "4231ed8ec2000000",
+                "3f6c4f3caf32fd23",
+                "3ee61aa4872838c0"
+              ],
+              "result": {
+                "kind": "ready",
+                "length": "3ff0000000000000",
+                "axial_stiffness": "41c4990f17e516ad",
+                "torsional_stiffness": "4128c47ead23fa80",
+                "normalization": [
+                  "3ff0000000000000",
+                  "0000000000000000",
+                  "0000000000000000"
+                ]
+              },
+              "work": {
+                "entered": 0,
+                "checks": 0,
+                "lost": false
+              }
+            },
+            {
+              "member": 1,
+              "inputs": [
+                "0000000000000000",
+                "4014000000000000",
+                "0000000000000000",
+                "3ff0000000000000",
+                "4014000000000000",
+                "0000000000000000",
+                "42474876e8000000",
+                "4231ed8ec2000000",
+                "3f6c4f3caf32fd23",
+                "3ee61aa4872838c0"
+              ],
+              "result": {
+                "kind": "ready",
+                "length": "3ff0000000000000",
+                "axial_stiffness": "41c4990f17e516ad",
+                "torsional_stiffness": "4128c47ead23fa80",
+                "normalization": [
+                  "3ff0000000000000",
+                  "0000000000000000",
+                  "0000000000000000"
+                ]
+              },
+              "work": {
+                "entered": 0,
+                "checks": 0,
+                "lost": false
+              }
+            },
+            {
+              "member": 2,
+              "inputs": [
+                "0000000000000000",
+                "4014000000000000",
+                "0000000000000000",
+                "3ff0000000000000",
+                "4014000000000000",
+                "0000000000000000",
+                "42474876e8000000",
+                "4231ed8ec2000000",
+                "3f6c4f3caf32fd23",
+                "3ee61aa4872838c0"
+              ],
+              "result": {
+                "kind": "ready",
+                "length": "3ff0000000000000",
+                "axial_stiffness": "41c4990f17e516ad",
+                "torsional_stiffness": "4128c47ead23fa80",
+                "normalization": [
+                  "3ff0000000000000",
+                  "0000000000000000",
+                  "0000000000000000"
+                ]
+              },
+              "work": {
+                "entered": 0,
+                "checks": 0,
+                "lost": false
+              }
+            }
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G3",
+        "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+      }
+    },
+    {
+      "id": "unavailable_source_backref_foreign",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "sources",
+            1,
+            "preparation",
+            "attempt_ref"
+          ],
+          "op": "set",
+          "value": 0
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "attempt_basis_not_ordinary",
+      "base": "two_case_two_groups_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "material_basis_ref"
+          ],
+          "op": "set",
+          "value": 0
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "sources",
+            1,
+            "material_basis_ref"
+          ],
+          "op": "set",
+          "value": 0
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "native_error_with_selected_run",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "result",
+            "error"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "native",
+            "run_ref": 1
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "group_call_out_of_range",
+      "base": "two_case_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "groups",
+            0,
+            "call"
+          ],
+          "op": "set",
+          "value": 3
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "escalating_failed_verification_pass_entered",
+      "base": "verification_failure_skip_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            1
+          ],
+          "op": "set",
+          "value": {
+            "index": 1,
+            "precision": 256,
+            "role": "verification",
+            "outcome": {
+              "kind": "failed",
+              "reason": {
+                "space": "attempt",
+                "tag": "stop",
+                "stop": {
+                  "space": "stop",
+                  "tag": "condition"
+                }
+              }
+            },
+            "residual_basis": 320,
+            "corrections": 0,
+            "pivot_margin_min": null,
+            "rcond": null,
+            "residual_worst": null,
+            "gate": null,
+            "work": {
+              "wide_lme": 1,
+              "exact_sum_lme": 0,
+              "own_lme": 1,
+              "shared_lme": 4,
+              "stop_rule_lme": 0,
+              "verification_lme": 1,
+              "verification_shared_lme": 0,
+              "own_stages": {
+                "formation": 0,
+                "assembly": 0,
+                "residual_formation": 0,
+                "factor": 0,
+                "condition": 0,
+                "rhs": 0,
+                "solve": 0,
+                "refinement": 0,
+                "recovery": 0,
+                "stop_rule": 0,
+                "bounded_gate": 0,
+                "scale": 0,
+                "estimate": 0,
+                "charge": 0,
+                "bound": 1,
+                "shift": 0,
+                "bounded_formation": 0,
+                "wide_formation": 0,
+                "uc": 0
+              },
+              "shared_stages": {
+                "formation": 4,
+                "assembly": 0,
+                "residual_formation": 0,
+                "factor": 0,
+                "condition": 0,
+                "rhs": 0,
+                "solve": 0,
+                "refinement": 0,
+                "recovery": 0,
+                "stop_rule": 0,
+                "bounded_gate": 0,
+                "scale": 0,
+                "estimate": 0,
+                "charge": 0,
+                "bound": 0,
+                "shift": 0,
+                "bounded_formation": 0,
+                "wide_formation": 0,
+                "uc": 0
+              },
+              "shared_built_here": true,
+              "verification_shared_built_here": false
+            },
+            "storage": {
+              "pattern_entries": 144,
+              "profile_entries": 21,
+              "limbs_per_entry": 4
+            },
+            "verification": null,
+            "bound_refusals": [],
+            "shared_build_ref": 1,
+            "verification_shared_build_ref": null
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "attempts",
+            0
+          ],
+          "op": "set",
+          "value": {
+            "precision": 128,
+            "candidate_record": 0,
+            "origin": {
+              "kind": "fresh"
+            },
+            "verification": {
+              "record": 1,
+              "precision": 256,
+              "phase": "failed",
+              "reason": {
+                "space": "attempt",
+                "tag": "stop",
+                "stop": {
+                  "space": "stop",
+                  "tag": "condition"
+                }
+              }
+            },
+            "outcome": {
+              "kind": "rejected",
+              "reason": {
+                "space": "attempt",
+                "tag": "verification_failed"
+              }
+            },
+            "charges": [
+              {
+                "record": 0,
+                "part": "solve_and_verification"
+              },
+              {
+                "record": 0,
+                "part": "candidate_stop"
+              },
+              {
+                "record": 1,
+                "part": "solve_and_verification"
+              }
+            ],
+            "case_charge": 9,
+            "invocation_increment": 9
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "case_charge"
+          ],
+          "op": "set",
+          "value": 37
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "invocation_increment"
+          ],
+          "op": "set",
+          "value": 37
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "invocation_after"
+          ],
+          "op": "set",
+          "value": 37
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "calls",
+            0,
+            "invocation_after"
+          ],
+          "op": "set",
+          "value": 37
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "work",
+            "charged"
+          ],
+          "op": "set",
+          "value": 37
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "stop_rule_quantity_other_body",
+      "base": "p512_ladder_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            0,
+            "outcome",
+            "reason",
+            "quantity"
+          ],
+          "op": "set",
+          "value": {
+            "tag": "displacement",
+            "dof": {
+              "node": 3,
+              "component": "UX"
+            }
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "attempts",
+            0,
+            "outcome",
+            "reason",
+            "quantity"
+          ],
+          "op": "set",
+          "value": {
+            "tag": "displacement",
+            "dof": {
+              "node": 3,
+              "component": "UX"
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "candidate_record_with_verification",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            0,
+            "verification"
+          ],
+          "op": "set",
+          "value": {
+            "resolution": [
+              {
+                "body": 0,
+                "force": "426d1a94a2000000",
+                "moment": "426d1a94a2000000"
+              }
+            ],
+            "theta": [
+              {
+                "body": 0,
+                "value": "0000000000000000"
+              }
+            ],
+            "bound": [
+              {
+                "body": 0,
+                "value": "3ff0000000000000"
+              }
+            ],
+            "data_blocks": 1,
+            "shift_factorizations": 0,
+            "g_max": 0,
+            "uc_missing": null,
+            "g_violation": null
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "ordinary_diagnostic_ref_duplicate",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            0,
+            "diagnostic_refs"
+          ],
+          "op": "set",
+          "value": [
+            "diagnostic:numerical-integrity:case:six-component-load",
+            "diagnostic:numerical-integrity:case:six-component-load"
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "ordinary_diagnostic_ref_dangling",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            0,
+            "diagnostic_refs"
+          ],
+          "op": "set",
+          "value": [
+            "diagnostic:numerical-integrity:case:six-component-load",
+            "diagnostic:rv78:absent"
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "ordinary_dangling_plus_adapter_fault",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            1,
+            "diagnostic_refs"
+          ],
+          "op": "set",
+          "value": [
+            "diagnostic:numerical-integrity:case:unavailable-row",
+            "diagnostic:rv78:absent"
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "adapter",
+            "fault"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "overflow",
+            "event": "map_write"
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "selected_case_ordinary_checks_passed",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "numerical_quality",
+            "cases",
+            0,
+            "solve_quality"
+          ],
+          "op": "set",
+          "value": "checks_passed"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            0,
+            "initial",
+            "outcome"
+          ],
+          "op": "set",
+          "value": "checks_passed"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "section_accounting_exact_status",
+      "base": "two_case_preparation_failure_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "preparation",
+            "members"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "member": 0,
+              "old_source": [
+                "42474876e8000000",
+                "4231ed8ec2000000",
+                "3f6c4f3caf32fd23",
+                "3ed61aa4872838bf",
+                "3ed61aa4872838bf",
+                "3ee61aa4872838c0"
+              ],
+              "old_facts": [
+                "3fbeb851eb851eb8",
+                "3f847ae147ae147b",
+                "3f6c4f3caf32fd23",
+                "3ed61aa4872838bf",
+                "3ee61aa4872838c0",
+                "3f17066b621f3b1c",
+                "3faeb851eb851eb8"
+              ],
+              "result": {
+                "kind": "refused",
+                "error": {
+                  "kind": "accounting"
+                }
+              },
+              "work": {
+                "numeric": {
+                  "wide_lme": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "exact_sum_lme": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "entries": [
+                    {
+                      "kind": "exact",
+                      "value": 2
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 4
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 11
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 2
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    }
+                  ],
+                  "f64_arithmetic": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "sticky_status": "exact"
+                },
+                "initialized_endpoints": {
+                  "kind": "exact",
+                  "value": 27
+                },
+                "conversions": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "checks": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "endpoint_assignments": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "layout_bytes": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "conversions": []
+            }
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "result"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "unavailable",
+            "error": {
+              "kind": "preparation",
+              "capture": {
+                "kind": "association",
+                "detail": "annulus preparation refused"
+              },
+              "section": {
+                "kind": "accounting"
+              }
+            }
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "adapter",
+            "fault"
+          ],
+          "op": "set",
+          "value": null
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_WORK_MISMATCH"
+      }
+    },
+    {
+      "id": "nested_stop_work_accounting_exact_status",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "result"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "unavailable",
+            "error": {
+              "kind": "proof",
+              "cause": {
+                "kind": "numeric",
+                "cause": {
+                  "kind": "arithmetic",
+                  "cause": {
+                    "space": "stop",
+                    "tag": "work_accounting",
+                    "fault": "overflow"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "adapter",
+            "fault"
+          ],
+          "op": "set",
+          "value": null
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "proof",
+            "summary_coverage"
+          ],
+          "op": "set",
+          "value": null
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "stages"
+          ],
+          "op": "set",
+          "value": {
+            "preparation": "completed",
+            "native": "completed",
+            "proof_start": "completed",
+            "projection": "completed",
+            "maxima": "completed",
+            "values": "completed",
+            "aliases": "completed",
+            "certificate": "failed",
+            "observables": "not_entered",
+            "g5a": "not_entered"
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "proof",
+            "checks"
+          ],
+          "op": "set",
+          "value": {
+            "certificate": {
+              "kind": "failed",
+              "error": {
+                "kind": "proof",
+                "cause": {
+                  "kind": "numeric",
+                  "cause": {
+                    "kind": "arithmetic",
+                    "cause": {
+                      "space": "stop",
+                      "tag": "work_accounting",
+                      "fault": "overflow"
+                    }
+                  }
+                }
+              }
+            },
+            "observables": {
+              "kind": "not_entered"
+            },
+            "g5a": {
+              "kind": "not_entered"
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_WORK_MISMATCH"
+      }
+    },
+    {
+      "id": "view_work_fault_exact_status",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "result"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "unavailable",
+            "error": {
+              "kind": "proof",
+              "cause": {
+                "kind": "native_source",
+                "cause": {
+                  "kind": "view",
+                  "issue": {
+                    "kind": "work",
+                    "fault": "overflow"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "adapter",
+            "fault"
+          ],
+          "op": "set",
+          "value": null
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "proof",
+            "summary_coverage"
+          ],
+          "op": "set",
+          "value": null
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "proof",
+            "lanes"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "law": "admitted_k",
+              "state": "completed",
+              "error": null,
+              "work": {
+                "numeric": {
+                  "wide_lme": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "exact_sum_lme": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "entries": [
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    }
+                  ],
+                  "f64_arithmetic": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "sticky_status": "exact"
+                },
+                "point_lme": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "view": {
+                  "visits": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "f64_operations": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "prescribed_capacity": 0,
+                  "data_capacity": 0
+                },
+                "correction": {
+                  "cast_lme": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "factor_lme": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "visits": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "calls": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "rhs_capacity": 0,
+                  "output_capacity": 0,
+                  "converted_capacity": 0
+                },
+                "visits": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "member_builds": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "frame_builds": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "b_products": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "d_products": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "h_products": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "capacities": [],
+                "data_capacity": 0
+              }
+            },
+            {
+              "law": "annular_source",
+              "state": "failed",
+              "error": {
+                "kind": "view",
+                "issue": {
+                  "kind": "work",
+                  "fault": "overflow"
+                }
+              },
+              "work": {
+                "numeric": {
+                  "wide_lme": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "exact_sum_lme": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "entries": [
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    }
+                  ],
+                  "f64_arithmetic": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "sticky_status": "exact"
+                },
+                "point_lme": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "view": {
+                  "visits": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "f64_operations": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "prescribed_capacity": 0,
+                  "data_capacity": 0
+                },
+                "correction": {
+                  "cast_lme": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "factor_lme": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "visits": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "calls": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "rhs_capacity": 0,
+                  "output_capacity": 0,
+                  "converted_capacity": 0
+                },
+                "visits": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "member_builds": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "frame_builds": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "b_products": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "d_products": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "h_products": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "capacities": [],
+                "data_capacity": 0
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "proof",
+            "projection_outcomes"
+          ],
+          "op": "set",
+          "value": []
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "proof",
+            "projection_conversions"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "exact",
+            "value": 0
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "proof",
+            "completion"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "not_entered"
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "stages"
+          ],
+          "op": "set",
+          "value": {
+            "preparation": "completed",
+            "native": "completed",
+            "proof_start": "failed",
+            "projection": "not_entered",
+            "maxima": "not_entered",
+            "values": "not_entered",
+            "aliases": "not_entered",
+            "certificate": "not_entered",
+            "observables": "not_entered",
+            "g5a": "not_entered"
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "proof",
+            "checks"
+          ],
+          "op": "set",
+          "value": {
+            "certificate": {
+              "kind": "not_entered"
+            },
+            "observables": {
+              "kind": "not_entered"
+            },
+            "g5a": {
+              "kind": "not_entered"
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_WORK_MISMATCH"
+      }
+    },
+    {
+      "id": "old_operational_accounting_not_lost",
+      "base": "two_case_preparation_failure_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "operational",
+            "old",
+            0,
+            "result"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "refused",
+            "error": {
+              "kind": "accounting"
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_WORK_MISMATCH"
+      }
+    },
+    {
+      "id": "interpolation_target_at_lower_point_equal_e",
+      "base": "ordinary_prepared_interpolated_material_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "material_bases",
+            0,
+            "selector",
+            "kelvin"
+          ],
+          "op": "set",
+          "value": "4072c00000000000"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "material_bases",
+            0,
+            "materials",
+            0,
+            "selection",
+            "target_kelvin"
+          ],
+          "op": "set",
+          "value": "4072c00000000000"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G8",
+        "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+      },
+      "invocation_edits": [
+        {
+          "path": [
+            "request",
+            "model",
+            "materials",
+            0,
+            "temperature_points",
+            0,
+            "elastic_modulus"
+          ],
+          "op": "set",
+          "value": {
+            "value": 200000000000.0,
+            "unit": "Pa"
+          }
+        },
+        {
+          "path": [
+            "request",
+            "model",
+            "materials",
+            0,
+            "temperature_points",
+            1,
+            "elastic_modulus"
+          ],
+          "op": "set",
+          "value": {
+            "value": 200000000000.0,
+            "unit": "Pa"
+          }
+        },
+        {
+          "path": [
+            "request",
+            "model",
+            "load_cases",
+            0,
+            "modulus_basis_temperature"
+          ],
+          "op": "set",
+          "value": {
+            "value": 300,
+            "unit": "K"
+          }
+        }
+      ]
+    },
+    {
+      "id": "interpolation_target_below_range_equal_e",
+      "base": "ordinary_prepared_interpolated_material_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "material_bases",
+            0,
+            "selector",
+            "kelvin"
+          ],
+          "op": "set",
+          "value": "4072b00000000000"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "material_bases",
+            0,
+            "materials",
+            0,
+            "selection",
+            "target_kelvin"
+          ],
+          "op": "set",
+          "value": "4072b00000000000"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G8",
+        "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+      },
+      "invocation_edits": [
+        {
+          "path": [
+            "request",
+            "model",
+            "materials",
+            0,
+            "temperature_points",
+            0,
+            "elastic_modulus"
+          ],
+          "op": "set",
+          "value": {
+            "value": 200000000000.0,
+            "unit": "Pa"
+          }
+        },
+        {
+          "path": [
+            "request",
+            "model",
+            "materials",
+            0,
+            "temperature_points",
+            1,
+            "elastic_modulus"
+          ],
+          "op": "set",
+          "value": {
+            "value": 200000000000.0,
+            "unit": "Pa"
+          }
+        },
+        {
+          "path": [
+            "request",
+            "model",
+            "load_cases",
+            0,
+            "modulus_basis_temperature"
+          ],
+          "op": "set",
+          "value": {
+            "value": 299,
+            "unit": "K"
+          }
+        }
+      ]
+    },
+    {
+      "id": "interpolation_target_at_upper_point_equal_e",
+      "base": "ordinary_prepared_interpolated_material_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "material_bases",
+            0,
+            "selector",
+            "kelvin"
+          ],
+          "op": "set",
+          "value": "4073600000000000"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "material_bases",
+            0,
+            "materials",
+            0,
+            "selection",
+            "target_kelvin"
+          ],
+          "op": "set",
+          "value": "4073600000000000"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G8",
+        "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+      },
+      "invocation_edits": [
+        {
+          "path": [
+            "request",
+            "model",
+            "materials",
+            0,
+            "temperature_points",
+            0,
+            "elastic_modulus"
+          ],
+          "op": "set",
+          "value": {
+            "value": 200000000000.0,
+            "unit": "Pa"
+          }
+        },
+        {
+          "path": [
+            "request",
+            "model",
+            "materials",
+            0,
+            "temperature_points",
+            1,
+            "elastic_modulus"
+          ],
+          "op": "set",
+          "value": {
+            "value": 200000000000.0,
+            "unit": "Pa"
+          }
+        },
+        {
+          "path": [
+            "request",
+            "model",
+            "load_cases",
+            0,
+            "modulus_basis_temperature"
+          ],
+          "op": "set",
+          "value": {
+            "value": 310,
+            "unit": "K"
+          }
+        }
+      ]
+    },
+    {
+      "id": "interpolation_target_above_range_equal_e",
+      "base": "ordinary_prepared_interpolated_material_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "material_bases",
+            0,
+            "selector",
+            "kelvin"
+          ],
+          "op": "set",
+          "value": "4073700000000000"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "material_bases",
+            0,
+            "materials",
+            0,
+            "selection",
+            "target_kelvin"
+          ],
+          "op": "set",
+          "value": "4073700000000000"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G8",
+        "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+      },
+      "invocation_edits": [
+        {
+          "path": [
+            "request",
+            "model",
+            "materials",
+            0,
+            "temperature_points",
+            0,
+            "elastic_modulus"
+          ],
+          "op": "set",
+          "value": {
+            "value": 200000000000.0,
+            "unit": "Pa"
+          }
+        },
+        {
+          "path": [
+            "request",
+            "model",
+            "materials",
+            0,
+            "temperature_points",
+            1,
+            "elastic_modulus"
+          ],
+          "op": "set",
+          "value": {
+            "value": 200000000000.0,
+            "unit": "Pa"
+          }
+        },
+        {
+          "path": [
+            "request",
+            "model",
+            "load_cases",
+            0,
+            "modulus_basis_temperature"
+          ],
+          "op": "set",
+          "value": {
+            "value": 311,
+            "unit": "K"
+          }
+        }
+      ]
+    },
+    {
+      "id": "source_preparation_null",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "sources",
+            1,
+            "preparation"
+          ],
+          "op": "set",
+          "value": null
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "run_ref_null_with_case_run",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "run_ref"
+          ],
+          "op": "set",
+          "value": null
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "stages",
+            "native"
+          ],
+          "op": "set",
+          "value": "not_entered"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "preparation_error_with_selected_run",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "result"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "unavailable",
+            "error": {
+              "kind": "preparation",
+              "capture": {
+                "kind": "storage",
+                "detail": "prepared vector"
+              },
+              "section": null
+            }
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "reason",
+            "code"
+          ],
+          "op": "set",
+          "value": "source_unavailable"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "reason",
+            "phase"
+          ],
+          "op": "set",
+          "value": "preparation"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "prepared_failure_cause_without_own_attempt",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "id": 0,
+              "definition_id": "RP-PREPARED-ORDINARY-DUAL-v1",
+              "owner_ref": {
+                "kind": "case",
+                "index": 0
+              },
+              "ordinary_attempt_ref": 0,
+              "material_basis_ref": 0,
+              "source_ref": 0,
+              "run_ref": 0,
+              "result": {
+                "kind": "ready"
+              },
+              "preparation": {
+                "members": [
+                  {
+                    "member": 0,
+                    "old_source": [
+                      "42474876e8000000",
+                      "4231ed8ec2000000",
+                      "3f6c4f3caf32fd23",
+                      "3ed61aa4872838bf",
+                      "3ed61aa4872838bf",
+                      "3ee61aa4872838c0"
+                    ],
+                    "old_facts": [
+                      "3fbeb851eb851eb8",
+                      "3f847ae147ae147b",
+                      "3f6c4f3caf32fd23",
+                      "3ed61aa4872838bf",
+                      "3ee61aa4872838c0",
+                      "3f17066b621f3b1c",
+                      "3faeb851eb851eb8"
+                    ],
+                    "result": {
+                      "kind": "prepared",
+                      "section": [
+                        "3f6c4f3caf32fd23",
+                        "3ed61aa4872838bf",
+                        "3ee61aa4872838bf",
+                        "3f17066b621f3b1c",
+                        "3faeb851eb851eb8"
+                      ]
+                    },
+                    "work": {
+                      "numeric": {
+                        "wide_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "exact_sum_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "entries": [
+                          {
+                            "kind": "exact",
+                            "value": 2
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 4
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 11
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 2
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          }
+                        ],
+                        "f64_arithmetic": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "sticky_status": "exact"
+                      },
+                      "initialized_endpoints": {
+                        "kind": "exact",
+                        "value": 27
+                      },
+                      "conversions": {
+                        "kind": "exact",
+                        "value": 9
+                      },
+                      "checks": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "endpoint_assignments": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "layout_bytes": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    "conversions": [
+                      {
+                        "property": "area",
+                        "endpoint": "lo",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3f6c4f3caf32fd23"
+                        }
+                      },
+                      {
+                        "property": "area",
+                        "endpoint": "hi",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3f6c4f3caf32fd23"
+                        }
+                      },
+                      {
+                        "property": "second_moment",
+                        "endpoint": "lo",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3ed61aa4872838bf"
+                        }
+                      },
+                      {
+                        "property": "second_moment",
+                        "endpoint": "hi",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3ed61aa4872838bf"
+                        }
+                      },
+                      {
+                        "property": "polar_moment",
+                        "endpoint": "lo",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3ee61aa4872838bf"
+                        }
+                      },
+                      {
+                        "property": "polar_moment",
+                        "endpoint": "hi",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3ee61aa4872838bf"
+                        }
+                      },
+                      {
+                        "property": "section_modulus",
+                        "endpoint": "lo",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3f17066b621f3b1c"
+                        }
+                      },
+                      {
+                        "property": "section_modulus",
+                        "endpoint": "hi",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3f17066b621f3b1c"
+                        }
+                      },
+                      {
+                        "property": "radius",
+                        "endpoint": "exact",
+                        "outcome": {
+                          "kind": "normal",
+                          "value": "3faeb851eb851eb8"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "stages": {
+                "preparation": "completed",
+                "native": "completed",
+                "proof_start": "completed",
+                "projection": "completed",
+                "maxima": "completed",
+                "values": "completed",
+                "aliases": "completed",
+                "certificate": "completed",
+                "observables": "completed",
+                "g5a": "completed"
+              },
+              "proof": {
+                "lanes": [
+                  {
+                    "law": "admitted_k",
+                    "state": "completed",
+                    "error": null,
+                    "work": {
+                      "numeric": {
+                        "wide_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "exact_sum_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "entries": [
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          }
+                        ],
+                        "f64_arithmetic": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "sticky_status": "exact"
+                      },
+                      "point_lme": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "view": {
+                        "visits": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "f64_operations": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "prescribed_capacity": 0,
+                        "data_capacity": 0
+                      },
+                      "correction": {
+                        "cast_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "factor_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "visits": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "calls": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "rhs_capacity": 0,
+                        "output_capacity": 0,
+                        "converted_capacity": 0
+                      },
+                      "visits": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "member_builds": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "frame_builds": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "b_products": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "d_products": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "h_products": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "capacities": [],
+                      "data_capacity": 0
+                    }
+                  },
+                  {
+                    "law": "annular_source",
+                    "state": "completed",
+                    "error": null,
+                    "work": {
+                      "numeric": {
+                        "wide_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "exact_sum_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "entries": [
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          },
+                          {
+                            "kind": "exact",
+                            "value": 0
+                          }
+                        ],
+                        "f64_arithmetic": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "sticky_status": "exact"
+                      },
+                      "point_lme": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "view": {
+                        "visits": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "f64_operations": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "prescribed_capacity": 0,
+                        "data_capacity": 0
+                      },
+                      "correction": {
+                        "cast_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "factor_lme": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "visits": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "calls": {
+                          "kind": "exact",
+                          "value": 0
+                        },
+                        "rhs_capacity": 0,
+                        "output_capacity": 0,
+                        "converted_capacity": 0
+                      },
+                      "visits": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "member_builds": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "frame_builds": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "b_products": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "d_products": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "h_products": {
+                        "kind": "exact",
+                        "value": 0
+                      },
+                      "capacities": [],
+                      "data_capacity": 0
+                    }
+                  }
+                ],
+                "numeric": {
+                  "wide_lme": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "exact_sum_lme": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "entries": [
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    },
+                    {
+                      "kind": "exact",
+                      "value": 0
+                    }
+                  ],
+                  "f64_arithmetic": {
+                    "kind": "exact",
+                    "value": 0
+                  },
+                  "sticky_status": "exact"
+                },
+                "comparisons_lme": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "visits": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "scalar_operations": {
+                  "kind": "exact",
+                  "value": 0
+                },
+                "projection_conversions": {
+                  "kind": "exact",
+                  "value": 70
+                },
+                "projection_outcomes": [
+                  {
+                    "row_index": 1,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 2,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "3ff292ac7ff879bc"
+                    }
+                  },
+                  {
+                    "row_index": 3,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 4,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 5,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 6,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 7,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 8,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "0000000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 9,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "3f57b49571ca3872"
+                    }
+                  },
+                  {
+                    "row_index": 10,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "3fed593046ab6853"
+                    }
+                  },
+                  {
+                    "row_index": 11,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "bfe6c532b26a817f"
+                    }
+                  },
+                  {
+                    "row_index": 12,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "3f402670d2f24e75"
+                    }
+                  },
+                  {
+                    "row_index": 13,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "3f4f16cc62df3d6e"
+                    }
+                  },
+                  {
+                    "row_index": 14,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "3f58df09e8b2978b"
+                    }
+                  },
+                  {
+                    "row_index": 15,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "c08f400000000000"
+                    }
+                  },
+                  {
+                    "row_index": 16,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "c09f400000000000"
+                    }
+                  },
+                  {
+                    "row_index": 17,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "40a7700000000000"
+                    }
+                  },
+                  {
+                    "row_index": 18,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "c078ffffffffffff"
+                    }
+                  },
+                  {
+                    "row_index": 19,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "c0a3880000000000"
+                    }
+                  },
+                  {
+                    "row_index": 20,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "c0a4500000000000"
+                    }
+                  },
+                  {
+                    "row_index": 23,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "c08f400000000000"
+                    }
+                  },
+                  {
+                    "row_index": 24,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "408f400000000000"
+                    }
+                  },
+                  {
+                    "row_index": 25,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "c09f400000000000"
+                    }
+                  },
+                  {
+                    "row_index": 26,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "409f400000000000"
+                    }
+                  },
+                  {
+                    "row_index": 27,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "40a7700000000000"
+                    }
+                  },
+                  {
+                    "row_index": 28,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "c0a7700000000000"
+                    }
+                  },
+                  {
+                    "row_index": 29,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "c078ffffffffffff"
+                    }
+                  },
+                  {
+                    "row_index": 30,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "4078ffffffffffff"
+                    }
+                  },
+                  {
+                    "row_index": 31,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "c0a3880000000000"
+                    }
+                  },
+                  {
+                    "row_index": 32,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "c07f400000000000"
+                    }
+                  },
+                  {
+                    "row_index": 33,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "c0a4500000000000"
+                    }
+                  },
+                  {
+                    "row_index": 34,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "4082c00000000000"
+                    }
+                  },
+                  {
+                    "row_index": 35,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "408f400000000000"
+                    }
+                  },
+                  {
+                    "row_index": 36,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "409f400000000000"
+                    }
+                  },
+                  {
+                    "row_index": 37,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "c0a7700000000000"
+                    }
+                  },
+                  {
+                    "row_index": 38,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "4078ffffffffffff"
+                    }
+                  },
+                  {
+                    "row_index": 39,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "409b580000000000"
+                    }
+                  },
+                  {
+                    "row_index": 40,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "40a0680000000000"
+                    }
+                  },
+                  {
+                    "row_index": 41,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "408f400000000000"
+                    }
+                  },
+                  {
+                    "row_index": 42,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "409f400000000000"
+                    }
+                  },
+                  {
+                    "row_index": 43,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "c0a7700000000000"
+                    }
+                  },
+                  {
+                    "row_index": 44,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "4078ffffffffffff"
+                    }
+                  },
+                  {
+                    "row_index": 45,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "408f400000000000"
+                    }
+                  },
+                  {
+                    "row_index": 46,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "4099000000000000"
+                    }
+                  },
+                  {
+                    "row_index": 47,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "408f400000000000"
+                    }
+                  },
+                  {
+                    "row_index": 48,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "409f400000000000"
+                    }
+                  },
+                  {
+                    "row_index": 49,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "c0a7700000000000"
+                    }
+                  },
+                  {
+                    "row_index": 50,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "4078ffffffffffff"
+                    }
+                  },
+                  {
+                    "row_index": 51,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "406f400000000000"
+                    }
+                  },
+                  {
+                    "row_index": 52,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "4091300000000000"
+                    }
+                  },
+                  {
+                    "row_index": 53,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "3fd28514c0e5fc19"
+                    }
+                  },
+                  {
+                    "row_index": 54,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "403c767f5f0521de"
+                    }
+                  },
+                  {
+                    "row_index": 55,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "403d99f51b240ebd"
+                    }
+                  },
+                  {
+                    "row_index": 56,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "4002375bc1eecdfe"
+                    }
+                  },
+                  {
+                    "row_index": 57,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "3fd28514c0e5fc19"
+                    }
+                  },
+                  {
+                    "row_index": 58,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "c016c532b26a817e"
+                    }
+                  },
+                  {
+                    "row_index": 59,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "401b5309a2e634fd"
+                    }
+                  },
+                  {
+                    "row_index": 60,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "4002375bc1eecdfe"
+                    }
+                  },
+                  {
+                    "row_index": 61,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "3fd28514c0e5fc19"
+                    }
+                  },
+                  {
+                    "row_index": 62,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "4033ec8c5c1d314e"
+                    }
+                  },
+                  {
+                    "row_index": 63,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "4037e8a86e896e5e"
+                    }
+                  },
+                  {
+                    "row_index": 64,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "4002375bc1eecdfe"
+                    }
+                  },
+                  {
+                    "row_index": 65,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "3fd28514c0e5fc19"
+                    }
+                  },
+                  {
+                    "row_index": 66,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "4026c532b26a817e"
+                    }
+                  },
+                  {
+                    "row_index": 67,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "4032375bc1eecdfe"
+                    }
+                  },
+                  {
+                    "row_index": 68,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "4002375bc1eecdfe"
+                    }
+                  },
+                  {
+                    "row_index": 69,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "3fd28514c0e5fc19"
+                    }
+                  },
+                  {
+                    "row_index": 70,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "4006c532b26a817e"
+                    }
+                  },
+                  {
+                    "row_index": 71,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "40290c1e2aa85b3d"
+                    }
+                  },
+                  {
+                    "row_index": 72,
+                    "outcome": {
+                      "kind": "normal",
+                      "value": "4002375bc1eecdfe"
+                    }
+                  }
+                ],
+                "capacities": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "prepared_capacity_bytes": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "completion": {
+                  "kind": "merged"
+                },
+                "checks": {
+                  "certificate": {
+                    "kind": "passed"
+                  },
+                  "observables": {
+                    "kind": "passed"
+                  },
+                  "g5a": {
+                    "kind": "passed"
+                  }
+                },
+                "summary_coverage": [
+                  {
+                    "body": 0,
+                    "stop": [
+                      true,
+                      true,
+                      true,
+                      true
+                    ],
+                    "has_data": true
+                  }
+                ]
+              },
+              "adapter": {
+                "counts": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "fault": null,
+                "prepared_capacity_bytes": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "observation_capacity_bytes": [
+                  0,
+                  0,
+                  0
+                ],
+                "support_capacity_bytes": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "operational": {
+                "old_coverage": "complete",
+                "old": [
+                  {
+                    "member": 0,
+                    "inputs": [
+                      "0000000000000000",
+                      "0000000000000000",
+                      "0000000000000000",
+                      "3ff0000000000000",
+                      "0000000000000000",
+                      "0000000000000000",
+                      "42474876e8000000",
+                      "4231ed8ec2000000",
+                      "3f6c4f3caf32fd23",
+                      "3ee61aa4872838c0"
+                    ],
+                    "result": {
+                      "kind": "ready",
+                      "length": "3ff0000000000000",
+                      "axial_stiffness": "41c4990f17e516ad",
+                      "torsional_stiffness": "4128c47ead23fa80",
+                      "normalization": [
+                        "3ff0000000000000",
+                        "0000000000000000",
+                        "0000000000000000"
+                      ]
+                    },
+                    "work": {
+                      "entered": 0,
+                      "checks": 0,
+                      "lost": false
+                    }
+                  }
+                ],
+                "new": [
+                  {
+                    "member": 0,
+                    "inputs": [
+                      "0000000000000000",
+                      "0000000000000000",
+                      "0000000000000000",
+                      "3ff0000000000000",
+                      "0000000000000000",
+                      "0000000000000000",
+                      "42474876e8000000",
+                      "4231ed8ec2000000",
+                      "3f6c4f3caf32fd23",
+                      "3ee61aa4872838bf"
+                    ],
+                    "result": {
+                      "kind": "ready",
+                      "length": "3ff0000000000000",
+                      "axial_stiffness": "41c4990f17e516ad",
+                      "torsional_stiffness": "4128c47ead23fa7f",
+                      "normalization": [
+                        "3ff0000000000000",
+                        "0000000000000000",
+                        "0000000000000000"
+                      ]
+                    },
+                    "work": {
+                      "entered": 0,
+                      "checks": 0,
+                      "lost": false
+                    }
+                  }
+                ]
+              },
+              "overlay_work": {
+                "entered": 0,
+                "checks": 0,
+                "lost": false
+              },
+              "g5a_work": {
+                "entered": 0,
+                "checks": 0,
+                "lost": false
+              }
+            }
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "product_attempt_ref"
+          ],
+          "op": "set",
+          "value": null
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "sources",
+            1,
+            "preparation"
+          ],
+          "op": "set",
+          "value": null
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "prepared_failure_cause_foreign_attempt",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "reason",
+            "cause",
+            "product_attempt_ref"
+          ],
+          "op": "set",
+          "value": 0
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "reason_code_phase_mismatch_on_facade",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "reason",
+            "code"
+          ],
+          "op": "set",
+          "value": "source_unavailable"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "reason",
+            "phase"
+          ],
+          "op": "set",
+          "value": "preparation"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "reason_code_phase_mismatch_on_preparation",
+      "base": "two_case_preparation_failure_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "reason",
+            "code"
+          ],
+          "op": "set",
+          "value": "facade_certificate"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "reason",
+            "phase"
+          ],
+          "op": "set",
+          "value": "facade"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "rejected_verification_failed_with_completed_verification",
+      "base": "p512_ladder_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            0,
+            "outcome"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "rejected",
+            "reason": {
+              "space": "attempt",
+              "tag": "verification_failed"
+            }
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "attempts",
+            0,
+            "outcome"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "rejected",
+            "reason": {
+              "space": "attempt",
+              "tag": "verification_failed"
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "rejected_attempt_with_verified_record",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            0,
+            "outcome"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "rejected",
+            "reason": {
+              "space": "attempt",
+              "tag": "stop_rule",
+              "quantity": {
+                "tag": "displacement",
+                "dof": {
+                  "node": 1,
+                  "component": "UX"
+                }
+              },
+              "body": 0,
+              "kind": "translation"
+            }
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "attempts",
+            0,
+            "outcome"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "rejected",
+            "reason": {
+              "space": "attempt",
+              "tag": "stop_rule",
+              "quantity": {
+                "tag": "displacement",
+                "dof": {
+                  "node": 1,
+                  "component": "UX"
+                }
+              },
+              "body": 0,
+              "kind": "translation"
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "ordinary_attempt_order_swapped",
+      "base": "two_case_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "case_index": 1,
+              "case_id": "case:zero-load",
+              "material_basis_ref": 0,
+              "requested_mode": "sparse_interactive",
+              "initial": {
+                "kind": "report",
+                "report_diagnostic_ref": "diagnostic:numerical-integrity:case:zero-load",
+                "outcome": "sensitive"
+              },
+              "w2": {
+                "kind": "not_triggered"
+              },
+              "formation": {
+                "load_row_finding": null,
+                "d5_diagnostic_ref": null
+              },
+              "legacy_source": {
+                "disposition": "not_eligible",
+                "diagnostic_ref": null,
+                "work_ref": null
+              },
+              "diagnostic_refs": [
+                "diagnostic:numerical-integrity:case:zero-load"
+              ]
+            },
+            {
+              "case_index": 0,
+              "case_id": "case:six-component-load",
+              "material_basis_ref": 0,
+              "requested_mode": "sparse_interactive",
+              "initial": {
+                "kind": "report",
+                "report_diagnostic_ref": "diagnostic:numerical-integrity:case:six-component-load",
+                "outcome": "sensitive"
+              },
+              "w2": {
+                "kind": "not_triggered"
+              },
+              "formation": {
+                "load_row_finding": null,
+                "d5_diagnostic_ref": null
+              },
+              "legacy_source": {
+                "disposition": "not_eligible",
+                "diagnostic_ref": null,
+                "work_ref": null
+              },
+              "diagnostic_refs": [
+                "diagnostic:numerical-integrity:case:six-component-load"
+              ]
+            }
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G3",
+        "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+      }
+    },
+    {
+      "id": "record_index_not_contiguous",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            1,
+            "index"
+          ],
+          "op": "set",
+          "value": 2
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "selected_verification_record_not_verified",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            1,
+            "outcome"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "solved"
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "projection_conversions_count_mismatch",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            0,
+            "proof",
+            "projection_conversions"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "exact",
+            "value": 71
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_WORK_MISMATCH"
+      }
+    },
+    {
+      "id": "preparation_conversion_count_mismatch",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            0,
+            "preparation",
+            "members",
+            0,
+            "work",
+            "conversions"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "exact",
+            "value": 8
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_WORK_MISMATCH"
+      }
+    },
+    {
+      "id": "retained_diagnostic_names_unrequested_case",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "diagnostics"
+          ],
+          "op": "set",
+          "value": [
+            {
+              "id": "diagnostic:load:load-fixture-global_x:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_force is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-global_x",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-global_y:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_force is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-global_y",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-global_z:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_force is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-global_z",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-rotation_x:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_moment is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-rotation_x",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-rotation_y:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_moment is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-rotation_y",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:load:load-fixture-rotation_z:category-mapping",
+              "code": "LOAD_CATEGORY_PREVIEW_MAPPED",
+              "severity": "warning",
+              "message": "authored load category concentrated_moment is applied under the equivalent-static preview category occasional; the preview classification is not a user-selected engineering classification",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "load:fixture-rotation_z",
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:numerical-integrity:case:six-component-load",
+              "code": "NUMERICAL_INTEGRITY_SENSITIVE",
+              "severity": "warning",
+              "message": "Synthetic ordinary-sensitive reader control. Native records below are constructed statements, not execution evidence.",
+              "source": "core/product_physics",
+              "affected_refs": [
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:physics:rule-inputs-missing",
+              "code": "RULE_CHECK_INPUTS_MISSING",
+              "severity": "warning",
+              "message": "rule-check inputs and protected criteria are absent; no compliance result is produced",
+              "source": "core/product_physics"
+            },
+            {
+              "id": "diagnostic:retained:synthetic",
+              "code": "RETAINED_PRECISION_SELECTED",
+              "severity": "info",
+              "message": "Synthetic reader control; no producer or native Current evidence.",
+              "source": "synthetic_reader_control",
+              "affected_refs": [
+                "case:six-component-load"
+              ]
+            },
+            {
+              "id": "diagnostic:retained:orphan",
+              "code": "RETAINED_PRECISION_SELECTED",
+              "severity": "info",
+              "message": "Synthetic reader control; no producer or native Current evidence.",
+              "source": "synthetic_reader_control",
+              "affected_refs": [
+                "case:not-requested"
+              ]
+            }
+          ]
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G4",
+        "code": "RETAINED_PRECISION_DIAGNOSTIC_MISMATCH"
+      }
+    },
+    {
+      "id": "g0_case_limit_threshold",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "work",
+            "case_limit"
+          ],
+          "op": "set",
+          "value": 20000000001
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G0",
+        "code": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+      }
+    },
+    {
+      "id": "g0_invocation_limit_threshold",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "work",
+            "invocation_limit"
+          ],
+          "op": "set",
+          "value": 59999999999
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G0",
+        "code": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+      }
+    },
+    {
+      "id": "g0_receipt_version_not_1",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "receipt_version"
+          ],
+          "op": "set",
+          "value": 2
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G0",
+        "code": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+      }
+    },
+    {
+      "id": "g0_canonicalization_profile",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "canonicalization"
+          ],
+          "op": "set",
+          "value": "rfc8785_jcs"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G0",
+        "code": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+      }
+    },
+    {
+      "id": "g0_retained_precision_absent",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision"
+          ],
+          "op": "remove"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G0",
+        "code": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+      }
+    },
+    {
+      "id": "g0_receipt_body_absent",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body"
+          ],
+          "op": "remove"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G0",
+        "code": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+      }
+    },
+    {
+      "id": "refusal_work_accounting_variant",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "groups",
+            0,
+            "preparation"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "refused",
+            "reason": {
+              "space": "refusal",
+              "tag": "work_accounting",
+              "fault": "overflow"
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G1",
+        "code": "RETAINED_PRECISION_RECEIPT_MISMATCH"
+      }
+    },
+    {
+      "id": "refusal_count_range_variant",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "groups",
+            0,
+            "preparation"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "refused",
+            "reason": {
+              "space": "refusal",
+              "tag": "count_range",
+              "name": "members"
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G1",
+        "code": "RETAINED_PRECISION_RECEIPT_MISMATCH"
+      }
+    },
+    {
+      "id": "unavailable_source_ref_absent",
+      "base": "two_case_preparation_failure_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "source_ref"
+          ],
+          "op": "remove"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G1",
+        "code": "RETAINED_PRECISION_RECEIPT_MISMATCH"
+      }
+    },
+    {
+      "id": "source_decline_with_source_ref",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            1,
+            "source_decline"
+          ],
+          "op": "set",
+          "value": {
+            "input_owner": {
+              "case_index": 1,
+              "case_id": "case:unavailable-row",
+              "material_basis_ref": 0
+            },
+            "constructor_counts": {
+              "nodes": 2,
+              "members": 1,
+              "springs": 0,
+              "constraints": 6,
+              "nodal_terms": 6,
+              "stations": 3,
+              "supports": 1,
+              "id_utf8_bytes": 0,
+              "directional_springs": 0
+            },
+            "error": {
+              "tag": "no_nodes"
+            }
+          }
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G1",
+        "code": "RETAINED_PRECISION_RECEIPT_MISMATCH"
+      }
+    },
+    {
+      "id": "rcond_label_plus_adapter_fault",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            1,
+            "adapter",
+            "fault"
+          ],
+          "op": "set",
+          "value": {
+            "kind": "overflow",
+            "event": "map_write"
+          }
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "selection",
+            "rcond_label"
+          ],
+          "op": "set",
+          "value": "matrix condition"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "native_attempt_defect_after_native_work_defect",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "calls",
+            0,
+            "invocation_before"
+          ],
+          "op": "set",
+          "value": 1
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            0,
+            "corrections"
+          ],
+          "op": "set",
+          "value": 4
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "dangling_candidate_record",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "attempts",
+            0,
+            "candidate_record"
+          ],
+          "op": "set",
+          "value": 9
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "dangling_build_ref",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "run",
+            "records",
+            0,
+            "shared_build_ref"
+          ],
+          "op": "set",
+          "value": 99
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_WORK_MISMATCH"
+      }
+    },
+    {
+      "id": "dangling_ordinary_attempt_ref",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "product_attempts",
+            0,
+            "ordinary_attempt_ref"
+          ],
+          "op": "set",
+          "value": 7
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5",
+        "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+      }
+    },
+    {
+      "id": "g5b_zero_section_area",
+      "base": "ordinary_prepared_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "sources",
+            0,
+            "section_terms",
+            0,
+            "area"
+          ],
+          "op": "set",
+          "value": "0000000000000000"
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "cases",
+            0,
+            "selection",
+            "section_terms",
+            0,
+            "area"
+          ],
+          "op": "set",
+          "value": "0000000000000000"
+        }
+      ],
+      "rehash": "all",
+      "expected": {
+        "gate": "G5b",
+        "code": "RETAINED_PRECISION_SCALE_MISMATCH"
+      }
+    },
+    {
+      "id": "ordinary_dangling_ref_plus_source_preparation_null",
+      "base": "two_case_facade_after_certificate_synthetic",
+      "edits": [
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "ordinary_attempts",
+            1,
+            "diagnostic_refs"
+          ],
+          "op": "set",
+          "value": [
+            "diagnostic:missing"
+          ]
+        },
+        {
+          "path": [
+            "retained_precision",
+            "body",
+            "sources",
+            1,
+            "preparation"
+          ],
+          "op": "set",
+          "value": null
         }
       ],
       "rehash": "all",
@@ -124349,6 +128468,47 @@
         }
       ],
       "rehash": "all",
+      "expected": "pass"
+    },
+    {
+      "id": "interpolation_equal_e_bracketed_control",
+      "base": "ordinary_prepared_interpolated_material_synthetic",
+      "edits": [],
+      "rehash": "all",
+      "invocation_edits": [
+        {
+          "path": [
+            "request",
+            "model",
+            "materials",
+            0,
+            "temperature_points",
+            0,
+            "elastic_modulus"
+          ],
+          "op": "set",
+          "value": {
+            "value": 200000000000.0,
+            "unit": "Pa"
+          }
+        },
+        {
+          "path": [
+            "request",
+            "model",
+            "materials",
+            0,
+            "temperature_points",
+            1,
+            "elastic_modulus"
+          ],
+          "op": "set",
+          "value": {
+            "value": 200000000000.0,
+            "unit": "Pa"
+          }
+        }
+      ],
       "expected": "pass"
     }
   ]

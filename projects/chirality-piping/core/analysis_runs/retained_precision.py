@@ -170,7 +170,7 @@ def _encoding(value, spec):
         return _encoding(value, next(s for s in spec["oneOf"] if _shape(value, s)))
     tag = spec.get("x-rp-encoding")
     if tag in ("uint", "i32"):
-        _need(type(value) in (int, float) and math.isfinite(value) and int(value) == value and spec["minimum"] <= value <= spec["maximum"] and not (value == 0 and math.copysign(1, value) < 0), "G2", "ENCODING_MISMATCH")
+        _need(type(value) is int and math.isfinite(value) and int(value) == value and spec["minimum"] <= value <= spec["maximum"] and not (value == 0 and math.copysign(1, value) < 0), "G2", "ENCODING_MISMATCH")
     if tag in ("bits", "nonnegative_bits"):
         try: number = from_bits(value)
         except (ValueError, OverflowError): _need(False, "G2", "ENCODING_MISMATCH")
@@ -208,8 +208,52 @@ def _objects(value):
         for v in value: yield from _objects(v)
 
 
+def _fault_owner(a, path):
+    """R3' owner scopes (checkpoint A, D8): a member's PreparationWork, a lane's LaneWork, the values
+    completion, else the whole ProofTrace."""
+    proof = a["proof"]
+    if path[:2] == ("preparation", "members"):
+        return a["preparation"]["members"][path[2]]["work"]
+    if path[:3] == ("result", "error", "section"):
+        members = a["preparation"]["members"]
+        return members[-1]["work"] if members else None
+    if path[:2] == ("proof", "lanes"):
+        return proof["lanes"][path[2]]["work"]
+    if path[:3] == ("result", "error", "cause") and a["result"]["error"]["kind"] == "values":
+        return None if proof is None else proof["completion"]
+    return proof
+
+
+def _located(value, path=()):
+    if isinstance(value, dict):
+        yield path, value
+        for k, v in value.items(): yield from _located(v, path + (k,))
+    elif isinstance(value, list):
+        for i, v in enumerate(value): yield from _located(v, path + (i,))
+
+
+def _statuses(value):
+    seen = set()
+    for o in _objects(value):
+        if o.get("kind") == "unavailable" and o.get("fault") in STATUS_FAULTS: seen |= STATUS_FAULTS[o["fault"]]
+        if o.get("sticky_status") in STATUS_FAULTS: seen |= STATUS_FAULTS[o["sticky_status"]]
+    return seen
+
+
+OPERATIONAL_ERROR_PATHS = (("operational", "old"), ("operational", "new"))
+
+
 def _accounting_rules(a):
-    """Ruling 06d (I62 ACCOUNTING_CAUSES R1-R3), G5 work class (C3:304), for every product attempt.
+    """Checkpoint A rulings (D8: R1', R2', R3', R4), G5 WORK class 4 (C3:304), every product attempt.
+
+    R2' adds OperationalError accounting, which PP returns only for a lost ScalarWork
+    (PP:2311-2347), located as a MemberOperational error, a CaptureError prepared_arithmetic cause
+    or a G5aError operational/arithmetic cause. R3' covers every fault-bearing spelling
+    (work_accounting{fault}, a nested stop/work_accounting, a view work{fault}) against its owner.
+    R4: a SectionError accounting needs a non-exact status in that member's PreparationWork
+    (FK product_certificate.rs:676-679).
+
+    Ruling 06d (I62 ACCOUNTING_CAUSES R1-R3) for the base classes:
 
     R1: an adapter overflow is never emittable. AdapterWork::enter (PP:2896-2907) faults only when
     counts[event] + amount overflows and keeps counts[event]; every amount is < 2^63 + 2^61, so the
@@ -220,16 +264,33 @@ def _accounting_rules(a):
     R3: a work_accounting{fault} cause is raised from the owning trace's status (FC:358-379, 1580;
     FK product_certificate.rs:186-206), so the attempt's emitted Count faults and sticky statuses
     must contain that fault."""
-    objs = list(_objects(a))
-    r1 = a["adapter"]["fault"] is None and not any(o.get("kind") == "accounting" and "event" in o for o in objs)
-    r2 = not any(o.get("lost") is True for o in objs)
-    seen = set()
-    for o in objs:
-        if o.get("kind") == "unavailable" and o.get("fault") in STATUS_FAULTS: seen |= STATUS_FAULTS[o["fault"]]
-        if o.get("sticky_status") in STATUS_FAULTS: seen |= STATUS_FAULTS[o["sticky_status"]]
-    r3 = all(o.get("fault") in STATUS_FAULTS and STATUS_FAULTS[o["fault"]] <= seen
-             for o in objs if o.get("kind") == "work_accounting" and "fault" in o)
-    return r1, r2, r3
+    located = list(_located(a))
+    r1 = a["adapter"]["fault"] is None and not any(o.get("kind") == "accounting" and "event" in o for _, o in located)
+    r2 = not any(o.get("lost") is True for _, o in located)
+    error = a["result"].get("error") if a["result"]["kind"] == "unavailable" else None
+    operational_errors = [m["result"].get("error") for side in ("old", "new") for m in a["operational"][side] if m["result"]["kind"] != "ready"]
+    for path, o in _located(error):
+        if o.get("kind") == "prepared_arithmetic": operational_errors.append(o.get("cause"))
+        if o.get("kind") == "g5a": operational_errors.extend(x["cause"] for _, x in _located(o.get("cause")) if x.get("kind") in ("operational", "arithmetic") and isinstance(x.get("cause"), dict))
+    for check in ((a["proof"] or {}).get("checks") or {}).values():
+        if check.get("kind") == "failed" and (check.get("error") or {}).get("kind") == "g5a":
+            operational_errors.extend(x["cause"] for _, x in _located(check["error"].get("cause")) if x.get("kind") in ("operational", "arithmetic") and isinstance(x.get("cause"), dict))
+    r2 = r2 and not any(isinstance(e, dict) and e.get("kind") == "accounting" and "event" not in e for e in operational_errors)
+    r3 = True
+    for path, o in located:
+        spelled = (o.get("kind") == "work_accounting" or o.get("tag") == "work_accounting" or o.get("kind") == "work") and "fault" in o
+        if spelled:
+            owner = _fault_owner(a, path)
+            r3 = r3 and owner is not None and o["fault"] in STATUS_FAULTS and STATUS_FAULTS[o["fault"]] <= _statuses(owner)
+    r4 = True
+    for m in a["preparation"]["members"]:
+        e = m["result"].get("error") if m["result"]["kind"] != "prepared" else None
+        if isinstance(e, dict) and e.get("kind") == "accounting": r4 = r4 and bool(_statuses(m["work"]))
+    section = (error or {}).get("section") if (error or {}).get("kind") == "preparation" else None
+    if isinstance(section, dict) and section.get("kind") == "accounting":
+        members = a["preparation"]["members"]
+        r4 = r4 and bool(members) and bool(_statuses(members[-1]["work"]))
+    return r1, r2, r3, r4
 
 
 def _exact_work(value):
@@ -414,6 +475,9 @@ def _g5_schedule(run, records, attempts, fail, body=None):
                     fail(vr["role"] == "verification_then_candidate" and kind == "rejected")
         else:
             fail(kind == "failed" and _stop_of(out.get("reason")) is not None)
+        if out.get("reason") == {"space": "attempt", "tag": "verification_failed"}:
+            # D5c (adaptive.rs:4576-4590; C1:27): set only on a failed verification solve.
+            fail(v is not None and v["phase"] == "failed")
         last = ai == len(attempts) - 1
         escalated = False
         if kind == "accepted":
@@ -457,12 +521,11 @@ def _g5_schedule(run, records, attempts, fail, body=None):
         fail(terminal == ceiling)  # rejected p512 candidate leaves the loop (4762-4766)
 
 
-def _g5_cache(body, run, records, fail):
+def _g5_cache(body, run, records, fail, wf):
     """Checklist C1-C3 (FK/adaptive.rs:3984-4026 obtain): a cached slot is reused, never
     rebuilt; a non-budget failure is cached and reused with the same build id; a budget
     failure is not cached; cache_after = cache_before plus this run's cacheable builds; a
     failed build fails the requesting record with the same stop."""
-    wf = lambda ok: _need(ok, "G5", "WORK_MISMATCH")
     cache = {e["slot"]: int(e["build"]) for e in run["cache_before"]}
     fail_ok = True
     for r in records:
@@ -470,7 +533,10 @@ def _g5_cache(body, run, records, fail):
             bi = r[field]
             if bi is None:
                 continue
-            b = _at(body["builds"], bi, code="WORK_MISMATCH")
+            b = _ref(body["builds"], bi)
+            if b is None:
+                wf(False)  # D16: a dangling build reference is a C1 build-provenance (WORK) defect
+                continue
             if r["work"][flag]:
                 wf(b["slot"] not in cache)
                 if b["state"] != "budget_failure":
@@ -484,12 +550,31 @@ def _g5_cache(body, run, records, fail):
     wf(run["cache_after"] == sorted([{"slot": k, "build": v} for k, v in cache.items()], key=lambda e: SLOT_ORDER.index(e["slot"])))
 
 
+def _ref(items, index):
+    """A reference that resolves, else None (D16: the caller reports its own check's code)."""
+    return items[int(index)] if type(index) in (int, float) and int(index) == index and 0 <= index < len(items) else None
+
+
 def _g5_native(body):
+    """G5 class 1 (C3:304; D3): native schedule/origin. Run ids and the execution-order bijection
+    are G3 (D1). Class-1 ATTEMPT defects win; native WORK predicates (including computation faults
+    inside a WORK equation) are collected and reported only at the end of class 1 (D3, settled
+    reading 3)."""
     runs = [c["run"] for c in body["cases"] if c.get("run") is not None]
     runs.sort(key=lambda r: r["id"])
-    fail = lambda ok, code="ATTEMPT_MISMATCH": _need(ok, "G5", code)
-    fail([r["id"] for r in runs] == list(range(len(runs))))
-    fail(body["work"]["execution_order"] == [r["origin"]["owner_ref"] for r in runs])
+    native_work = []
+    fail = lambda ok, code="ATTEMPT_MISMATCH": native_work.append(ok) if code == "WORK_MISMATCH" else _need(ok, "G5", code)
+    wf = native_work.append
+    _g5_native_checks(body, runs, fail, wf)
+    for ok in native_work:
+        _need(ok, "G5", "WORK_MISMATCH")
+
+
+def _g5_native_checks(body, runs, fail, wf):
+    # Kernel scope (checkpoint A, D8; C1:66-68): a work_accounting stop or reason anywhere in a
+    # Run, a build or a group refusal is outside the emitted domain (adaptive.rs:4545, 4777, 4996).
+    for item in runs + body["builds"] + [g["preparation"] for g in body["groups"]]:
+        fail(not any(o.get("tag") == "work_accounting" for o in _objects(item)))
     current = 0
     for call_id, call in enumerate(body["calls"]):
         fail(call["id"] == call_id and call["invocation_before"] == current, "WORK_MISMATCH")
@@ -511,10 +596,24 @@ def _g5_native(body):
             if attempts: fail(attempts[0]["precision"] == 128 and attempts[0]["candidate_record"] == 0 and attempts[0]["origin"] == {"kind": "fresh"})
             fail([r["precision"] for r in records] == sorted(set(r["precision"] for r in records)))
             _g5_schedule(run, records, attempts, fail, body)
-            _g5_cache(body, run, records, fail)
+            _g5_cache(body, run, records, fail, wf)
+            layout = source["layout"]
+            for item in records + attempts:
+                reason = item["outcome"].get("reason") or {}
+                if reason.get("tag") == "stop_rule":
+                    # D5d (C2:22, :54; C1:114): the quantity resolves to a layout row, same body and kind.
+                    fail(any(row["quantity"] == reason["quantity"] and row["body"] == reason["body"] and row["kind"] == reason["kind"] for row in layout))
             amounts = []
             for r in records:
                 w = r["work"]
+                if r["role"] == "candidate":
+                    # D5a (C1:105; adaptive.rs:4076-4079, 4333): only verification passes write these.
+                    fail(r["verification"] is None and r["verification_shared_build_ref"] is None and w["verification_lme"] == 0)
+                stop = _stop_of(r["outcome"].get("reason")) if r["outcome"]["kind"] == "failed" else None
+                if r["role"] == "verification" and stop is not None and stop.get("tag") in ESCALATING_STOPS:
+                    # D5b (adaptive.rs:4593-4611, 4377): an escalating stop is a verification *solve*
+                    # failure; the verification pass never ran.
+                    fail(w["verification_lme"] == 0)
                 fail(r["residual_basis"] == (1024 if r["precision"] == 1024 else r["precision"] + 64))
                 fail(r["storage"]["limbs_per_entry"] == (4 if r["precision"] <= 256 else 8 if r["precision"] == 512 else 16))
                 own = int(w["wide_lme"]) + int(w["exact_sum_lme"])
@@ -528,7 +627,10 @@ def _g5_native(body):
                 for field, part, built, cost in [("shared_build_ref", "shared", w["shared_built_here"], w["shared_lme"]), ("verification_shared_build_ref", "verification_shared", w["verification_shared_built_here"], w["verification_shared_lme"])]:
                     bi = r[field]
                     if bi is None: fail(not built and cost == 0, "WORK_MISMATCH"); continue
-                    build = _at(body["builds"], bi, code="WORK_MISMATCH")
+                    build = _ref(body["builds"], bi)
+                    if build is None:
+                        wf(False)  # D16: dangling build reference (WORK, C1 build provenance)
+                        continue
                     fail(build["work"] == cost and build["group"] == run["origin"]["group"], "WORK_MISMATCH")
                     fail(build["slot"] == ("s" if part == "shared" else "v") + str(r["precision"]), "WORK_MISMATCH")
                     for key, count in build["stages"].items(): shared_stages[key] += count
@@ -597,6 +699,10 @@ def _g5_native(body):
                     fail(s["certified_bound"] == [v for v in vr["verification"]["bound"] if v["value"] is not None])
         fail(call["invocation_after"] == current, "WORK_MISMATCH")
     fail([r for call in body["calls"] for r in call["run_refs"]] == list(range(len(runs))))
+    for group in body["groups"]:
+        # D5e (C2:119, :135): a group's call exists; its sources are unique and listed in that call.
+        call = _ref(body["calls"], group["call"])
+        fail(call is not None and len(set(group["source_refs"])) == len(group["source_refs"]) and all(si in call["source_refs"] for si in group["source_refs"]))
     fail(body["work"]["charged"] == current, "WORK_MISMATCH")
     for call_id, call in enumerate(body["calls"]):
         # C2:143 call-local groups at first equality of full stiffness bytes, first-seen order;
@@ -628,7 +734,10 @@ def _g5_native(body):
             order = ["s128", "s256", "s512", "s1024", "v256", "v512", "v1024"]
             fail(slots == sorted(set(slots), key=order.index), "WORK_MISMATCH")
             for entry in snapshot:
-                b = _at(body["builds"], entry["build"], code="WORK_MISMATCH")
+                b = _ref(body["builds"], entry["build"])
+                if b is None:
+                    wf(False)
+                    continue
                 fail(b["slot"] == entry["slot"] and b["state"] != "budget_failure" and b["group"] == run["origin"]["group"] and b["origin"]["run"] <= run["id"], "WORK_MISMATCH")
 
 
@@ -729,14 +838,31 @@ def _g5_typed(a, fail):
         fail(error in expected[first_failed])
 
 
-def _g5_ordinary(body, cases, diags):
-    """Checklist O2-O5 (C2:149-161; S06:51): typed ordinary evidence and source_decline."""
+RCOND_LABEL = "sensitivity to matrix-entry perturbation, not to authored parameters"
+
+
+def _g5_ordinary(body, cases, diags, quality):
+    """G5 class 2 ordinary pass (C3:304; D3, D6): checklist O2-O5 (C2:149-161; S06:51), plus the
+    ordinary-list, not_attempted, report, not_required, selected-quality and rcond checks that
+    previously ran after the product WORK list (RV79-S2)."""
     fail = lambda ok: _need(ok, "G5", "ATTEMPT_MISMATCH")
     by_id = {d["id"]: d for d in diags}
     ids = set(by_id)
     for i, c in enumerate(cases):
         o = body["ordinary_attempts"][i]
-        listed = set(o["diagnostic_refs"])
+        refs = o["diagnostic_refs"]
+        # D6a (C1:100, C1:148, C2:166): untyped refs are unique and resolve; they need not name the case.
+        fail(len(set(refs)) == len(refs) and all(x in by_id for x in refs))
+        fail(o["initial"]["kind"] != "not_attempted" if c["status"] in ("selected", "not_required") else True)
+        if o["initial"]["kind"] == "report":
+            fail(o["initial"]["report_diagnostic_ref"] in by_id and o["initial"]["outcome"] == quality[i]["solve_quality"])
+        if c["status"] == "not_required":
+            fail(c["product_attempt_ref"] is None and quality[i]["solve_quality"] == "checks_passed")
+        if c["status"] == "selected":
+            # D6b (C1:101; C2:153, :164; source_receipt.rs:546-550): only an attempted trigger selects.
+            fail(c["product_attempt_ref"] is not None and quality[i]["solve_quality"] in ("sensitive", "unresolved", "failed"))
+            fail(c["selection"]["rcond_label"] == RCOND_LABEL)
+        listed = set(refs)
         cid = c["basis_ref"]["ref_id"]
         resolves = lambda ref: ref is None or (ref in listed and ref in by_id and cid in (by_id[ref].get("affected_refs") or []))
         if o["initial"]["kind"] == "report":
@@ -746,13 +872,20 @@ def _g5_ordinary(body, cases, diags):
             fail(resolves(initial["diagnostic_ref"]))
         # W2 runs only after an actual Formation/Structural failure and never erases it.
         fail((w2["kind"] == "not_triggered") or initial["kind"] in ("structural_failure", "formation_failure"))
+        if w2["kind"] != "not_triggered":
+            # D6c (C2:157-158): the trigger is the preserved initial failure's kind and error.
+            fail(w2["trigger"]["tag"] == ("formation" if initial["kind"] == "formation_failure" else "evaluation") and w2["trigger"]["error"] == initial.get("error"))
         if w2["kind"] == "published":
-            fail(w2["report_diagnostic_ref"] is not None and resolves(w2["report_diagnostic_ref"]))
+            fail(w2["report_diagnostic_ref"] is not None and resolves(w2["report_diagnostic_ref"]) and int(w2["force_scale_exponent"]) != 0)
         if w2["kind"] == "failed":
             fail(w2["diagnostic_ref"] is not None and resolves(w2["diagnostic_ref"]))
         finding = o["formation"]["load_row_finding"]
         fail(resolves(o["formation"]["d5_diagnostic_ref"]) and (finding is None or resolves(finding["diagnostic_ref"])))
         fail(resolves(o["legacy_source"]["diagnostic_ref"]))
+        if o["legacy_source"]["work_ref"] is not None:
+            # D6d (C2:166): a reference check, so ATTEMPT.
+            w = _at(body.get("legacy_source_work") or [], o["legacy_source"]["work_ref"], code="ATTEMPT_MISMATCH")
+            fail(w["case_index"] == i)
         decline = c.get("source_decline")
         if decline is not None:
             owner = decline["input_owner"]
@@ -765,19 +898,28 @@ def _g5_products(body, rows_by_case):
     fail = lambda ok: _need(ok, "G5", "PRODUCT_ATTEMPT_MISMATCH")
     work_checks = []
     wf = work_checks.append
+    for case in body["cases"]:
+        cause = (case.get("reason") or {}).get("cause") or {}
+        if case["status"] == "unavailable" and cause.get("kind") == "prepared_product_failure":
+            # D4c (S06 s1; C3:165): the case's own attempt, resolved once.
+            fail(case["product_attempt_ref"] is not None and case["product_attempt_ref"] == cause["product_attempt_ref"])
     for ai, a in enumerate(body["product_attempts"]):
         case = _at(body["cases"], a["owner_ref"]["index"])
         fail(a["id"] == ai and case["product_attempt_ref"] == ai and a["ordinary_attempt_ref"] == case["ordinary"]["attempt_ref"])
+        ordinary = _at(body["ordinary_attempts"], a["ordinary_attempt_ref"])
+        fail(a["material_basis_ref"] == ordinary["material_basis_ref"])  # D4b (C3:165)
         if a["run_ref"] is not None: fail(case.get("run") is not None and case["run"]["id"] == a["run_ref"] and a["source_ref"] == case["source_ref"])
+        else: fail(case.get("run") is None)  # D4e (C3:167): run_ref null iff no native call
         source = None if a["source_ref"] is None else _at(body["sources"], a["source_ref"])
-        if source is not None: fail(source["owner"]["case_index"] == a["owner_ref"]["index"] and source["material_basis_ref"] == a["material_basis_ref"])
+        if source is not None:
+            fail(source["owner"]["case_index"] == a["owner_ref"]["index"] and source["material_basis_ref"] == a["material_basis_ref"])
+            fail(source["preparation"] is not None and source["preparation"]["attempt_ref"] == ai)  # D4a (C3:146-148)
         pm = a["preparation"]["members"]
         old, new = a["operational"]["old"], a["operational"]["new"]
         fail(len(new) <= len(pm) <= len(old))
         fail([x["member"] for x in pm] == [x["member"] for x in old[:len(pm)]])
         fail([x["member"] for x in new] == [x["member"] for x in pm[:len(new)]])
         if a["operational"]["old_coverage"] == "captured_prefix": fail(not pm and not new and a["source_ref"] is None and a["run_ref"] is None and a["result"]["kind"] == "unavailable")
-        if source is not None and a["operational"]["old_coverage"] == "complete": fail(len(old) == len(source["id_maps"]["members"]))
         props = [(p, side) for p in ("area", "second_moment", "polar_moment", "section_modulus") for side in ("lo", "hi")] + [("radius", "exact")]
         for j, m in enumerate(pm):
             ready = m["result"]["kind"] == "prepared"
@@ -836,6 +978,12 @@ def _g5_products(body, rows_by_case):
             fail(case["reason"]["cause"]["product_attempt_ref"] == ai and a["result"]["kind"] == "unavailable")
             error = a["result"]["error"]["kind"]
             run = case.get("run")
+            if error == "preparation":
+                # D4d (S06:37): no native Run was entered, and the preparation stage failed.
+                fail(run is None and a["stages"]["preparation"] == "failed")
+            if error == "native":
+                # D4d (S06:38): a nonselected Run, and the same Run.
+                fail(run is not None and run["kernel_terminal"]["kind"] != "selected" and a["result"]["error"]["run_ref"] == run["id"] == a["run_ref"])
             if error == "preparation" or error == "capture" and run is None: expected = ("source_unavailable", "preparation")
             elif error == "native" or error == "capture" and run["kernel_terminal"]["kind"] != "selected":
                 fail(run is not None and run["kernel_terminal"]["kind"] in ("unresolved", "refused"))
@@ -1058,7 +1206,7 @@ def _g5a_coverage(body, case, source, s, need):
             need(has_data[b["body"]])
 
 
-def _g5_numeric(body, rows_by_case):
+def _g5_numeric(body, rows_by_case, phase=None):
     """G5a, then G5b, then G5c, each across all cases in case order.
 
     C3_DELTA s4 keeps C1's gate order G0..G8 ("within a gate ... ascending attempt
@@ -1142,6 +1290,7 @@ def _g5_numeric(body, rows_by_case):
                     lower = 0. if total <= threshold else from_bits(section["axial_stiffness" if k == 0 else "torsional_stiffness"]) * (total - (2.0 ** -60) * scale[k])
                     need(upper[k] >= lower)
         states.append((source, s, rows, bodies, names, values, extents, raw_scales, deferred_class_checks))
+    if phase is not None: phase[0] = "G5b"
     for source, s, rows, bodies, names, values, extents, raw_scales, deferred_class_checks in states:
         final_scales = {}
         for bi, scale in raw_scales.items():
@@ -1186,6 +1335,7 @@ def _g5_numeric(body, rows_by_case):
                     absolute.append({"result_id":row["id"],"bound":bits(bound)})
             classes.append({"result_id":row["id"],"basis_ref":row["basis_ref"],"normalized_bits":bits(n),"scale_bits":None if scale is None else bits(scale),"class":classification,"bound_bits":None if bound is None else bits(bound)})
         deferred_class_checks.append((s["absolute_verified"] == absolute and s["not_covered"] == uncovered, "CLASSIFICATION_MISMATCH"))
+    if phase is not None: phase[0] = "G5c"
     for *_, deferred_class_checks in states:
         for ok, code in deferred_class_checks:
             _need(ok, "G5c", code)
@@ -1221,7 +1371,9 @@ def _g8(body, source, invocation):
         t = unit(temperature, "temperature")
         ordered = sorted([(unit(p["temperature"], "temperature"), p) for p in points if p.get("temperature") is not None], key=lambda p:p[0])
         need(len({p[0] for p in ordered}) == len(ordered))
-        lo, hi = next((a,b) for a,b in zip(ordered,ordered[1:]) if a[0] < t < b[0])
+        bracket = next(((a,b) for a,b in zip(ordered,ordered[1:]) if a[0] < t < b[0]), None)
+        need(bracket is not None)  # strict adjacent bracket (PP/lib.rs:9237-9250); D16: an explicit G8 check
+        lo, hi = bracket
         ratio = (t - lo[0]) / (hi[0] - lo[0])
         # lib.rs:9258-9333 requires all three source quantities even for the
         # nonthermal ordinary route, then evaluates lo + f * (hi - lo).
@@ -1348,6 +1500,9 @@ def _g8(body, source, invocation):
     # are unattached producer attestations and are not bound.
     for a in body["product_attempts"]:
         case = model["load_cases"][int(a["owner_ref"]["index"])]
+        if a["operational"]["old_coverage"] == "complete":
+            # D1 (checkpoint A correction): a complete old list equals the invocation's member count.
+            need(len(a["operational"]["old"]) == len(pipes))
         for j, member in enumerate(a["preparation"]["members"]):
             op_old = a["operational"]["old"][j]
             old, facts = member["old_source"], member["old_facts"]
@@ -1371,7 +1526,8 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
     """Unqualified development checks; eligibility remains disabled with the API."""
     gate="G0"
     try:
-        _need(type(source) is dict and source.get("producer",{}).get("semantic_contract_id")==CONTRACT_ID and source.get("formulation_basis",{}).get("profile_id")==PROFILE,"G0","SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+        producer=source.get("producer") if type(source) is dict else None;basis=source.get("formulation_basis") if type(source) is dict else None
+        _need(type(producer) is dict and type(basis) is dict and producer.get("semantic_contract_id")==CONTRACT_ID and basis.get("profile_id")==PROFILE,"G0","SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
         snapshot=deepcopy(source);invocation=deepcopy(invocation);receipt=snapshot.get("retained_precision");schema=_schema()
         _need(snapshot.get("schema_version")=="0.2.0" and snapshot["producer"].get("component_name")=="open_pipe_stress_product_physics" and snapshot["producer"].get("component_version")=="0.2.0",gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
         definition=json.loads((ROOT/"fixtures/results/retained_precision_prepared_ordinary_v1.json").read_text())
@@ -1380,10 +1536,15 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
         table=json.loads(table_bytes)
         inherited_bytes=(ROOT/"fixtures/results/semantic_contract_v0_3_preview_physics_1.json").read_bytes()
         _need(hashlib.sha256(table_bytes).hexdigest()==TABLE_HASH and hashlib.sha256(inherited_bytes).hexdigest()==table["inherited_semantic_contract_sha256"],gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
-        if type(receipt) is dict and type(receipt.get("body")) is dict:
+        # D2 + settled readings 1-2: an absent retained_precision or body is an absent G0 field;
+        # receipt_version is exactly 1 (C1 s4); thresholds and canonicalization are G0 fields.
+        _need(type(receipt) is dict and type(receipt.get("body")) is dict,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+        if True:
             b=receipt["body"]
-            for key,value in {"policy":"M03-INTEGRITY-MP-v2","projection_policy":"RP-LOGICAL-ATTEMPTS-v1","work_policy":"W1-LME-20B-60B-v1","facade_policy":"RP-FACADE-SI-v2"}.items():
-                _need(b.get(key)==value,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+            for key,value in {"receipt_version":1,"policy":"M03-INTEGRITY-MP-v2","projection_policy":"RP-LOGICAL-ATTEMPTS-v1","work_policy":"W1-LME-20B-60B-v1","facade_policy":"RP-FACADE-SI-v2","canonicalization":"openpipestress_jcs_ijson_v1"}.items():
+                _need(type(b.get(key)) is type(value) and b.get(key)==value,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+            w=b.get("work")
+            _need(type(w) is dict and type(w.get("case_limit")) is int and w["case_limit"]==20_000_000_000 and type(w.get("invocation_limit")) is int and w["invocation_limit"]==60_000_000_000,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
             for attempt in b.get("product_attempts",[]) if type(b.get("product_attempts")) is list else []:
                 if type(attempt) is dict:_need(attempt.get("definition_id")==DEFINITION_ID,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
         gate="G1";_need(_shape(receipt,schema) and type(snapshot.get("results")) is list and all(_shape(r,schema["$defs"]["RawRow"]) for r in snapshot["results"]),gate,"RECEIPT_MISMATCH")
@@ -1423,6 +1584,14 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
             old,new=a["operational"]["old"],a["operational"]["new"];pm=a["preparation"]["members"]
             _need([x["member"] for x in old]==list(range(len(old))) and [x["member"] for x in pm]==list(range(len(pm))) and [x["member"] for x in new]==list(range(len(new))) and len(new)<=len(pm)<=len(old),gate,"COVERAGE_MISMATCH")
             if a["operational"]["old_coverage"]=="captured_prefix":_need(not pm and not new,gate,"COVERAGE_MISMATCH")
+            if a["operational"]["old_coverage"]=="complete":
+                # D1 (F1:101, 130; C3:302): complete old ids equal the member inventory: the source's
+                # map when sourced, else every CaseSource's (one model); without one, G8 binds it.
+                si=a["source_ref"]
+                if type(si) is int and 0<=si<len(body["sources"]):_need(len(old)==len(body["sources"][si]["id_maps"]["members"]),gate,"COVERAGE_MISMATCH")
+                elif si is None:
+                    for s in body["sources"]:
+                        if s["owner"]["kind"]=="case":_need(len(old)==len(s["id_maps"]["members"]),gate,"COVERAGE_MISMATCH")
             if a["proof"] is not None:
                 indices=[x["row_index"] for x in a["proof"]["projection_outcomes"]];case_rows=rows[c["basis_ref"]["ref_id"]]
                 _need(indices==sorted(set(indices)) and all(x<len(case_rows) and case_rows[int(x)]["kind"] not in HULL_EXCLUDED for x in indices),gate,"COVERAGE_MISMATCH")
@@ -1433,6 +1602,9 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
                 if coverage is not None and type(si) is int and 0<=si<len(body["sources"]):
                     inventory=[b["body"] for b in body["sources"][si]["body_membership"]]
                     _need([x["body"] for x in coverage]==inventory==list(range(len(inventory))),gate,"COVERAGE_MISMATCH")
+        # D1 (C2:117; C1:146): each run id is its execution-order position; the order is a bijection.
+        order=body["work"]["execution_order"];with_run=[i for i,c in enumerate(cases) if c.get("run") is not None]
+        _need(all(e["kind"]=="case" for e in order) and sorted(e["index"] for e in order)==with_run and all(cases[e["index"]]["run"]["id"]==k for k,e in enumerate(order)),gate,"COVERAGE_MISMATCH")
         for i,c in enumerate(cases):
             _need(c["ordinary"]["attempt_ref"]==i and c["ordinary"]["quality_binding"]=={"kind":"present","index":i} and body["ordinary_attempts"][i]["case_index"]==i and body["ordinary_attempts"][i]["case_id"]==ids[i],gate,"COVERAGE_MISMATCH")
         gate="G4";diags=snapshot["diagnostics"]
@@ -1442,17 +1614,11 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
             _need(len(selected)==int(c["status"]=="selected") and len(unavailable)==int(c["status"]=="unavailable") and all(d["affected_refs"]==[cid] for d in selected+unavailable),gate,"DIAGNOSTIC_MISMATCH")
             if c["status"]=="unavailable":_need(unavailable[0]["id"]==c["diagnostic_ref"],gate,"DIAGNOSTIC_MISMATCH")
             if c["status"]=="selected":_need(not any(d["code"]=="SOURCE_BLOCK_RECOVERY_UNAVAILABLE" and cid in d.get("affected_refs",[]) for d in diags),gate,"DIAGNOSTIC_MISMATCH")
-        gate="G5";_g5_native(body);_g5_ordinary(body,cases,diags);_g5_products(body,rows)
-        for i,c in enumerate(cases):
-            ordinary=body["ordinary_attempts"][i];diagids={d["id"] for d in diags}
-            _need(all(x in diagids for x in ordinary["diagnostic_refs"]),gate,"ATTEMPT_MISMATCH")
-            _need(ordinary["initial"]["kind"]!="not_attempted" if c["status"] in ("selected","not_required") else True,gate,"ATTEMPT_MISMATCH")
-            if ordinary["initial"]["kind"]=="report":_need(ordinary["initial"]["report_diagnostic_ref"] in diagids and ordinary["initial"]["outcome"]==quality[i]["solve_quality"],gate,"ATTEMPT_MISMATCH")
-            if c["status"]=="not_required":_need(c["product_attempt_ref"] is None and quality[i]["solve_quality"]=="checks_passed",gate,"ATTEMPT_MISMATCH")
-            if c["status"]=="selected":
-                _need(c["product_attempt_ref"] is not None and c["source_identity_sha256"]==_source_hash(body["sources"][int(c["source_ref"])]),gate,"PRODUCT_ATTEMPT_MISMATCH")
-                _need(c["selection"]["rcond_label"]=="sensitivity to matrix-entry perturbation, not to authored parameters",gate,"ATTEMPT_MISMATCH")
-        gate="G5a";classes=_g5_numeric(body,rows)
+        for d in diags:
+            # D7 (C1 G4 row; C1:147): every retained diagnostic names exactly one requested case.
+            if d["code"] in ("RETAINED_PRECISION_SELECTED","RETAINED_PRECISION_UNAVAILABLE"):_need(type(d.get("affected_refs")) is list and len(d["affected_refs"])==1 and d["affected_refs"][0] in ids,gate,"DIAGNOSTIC_MISMATCH")
+        gate="G5";_g5_native(body);_g5_ordinary(body,cases,diags,quality);_g5_products(body,rows)
+        gate="G5a";phase=["G5a"];classes=_g5_numeric(body,rows,phase)
         gate="G6"
         for c in cases:
             for row in rows[c["basis_ref"]["ref_id"]]:_need(row.get("recovery_method")==METHOD if c["status"]=="selected" else "recovery_method" not in row,gate,"ROW_METHOD_MISMATCH")
@@ -1470,6 +1636,8 @@ def _validate_draft(source: Any, invocation: Any = None) -> dict[str, Any]:
         eligible=_IMPLEMENTATION_COMPLETE and invocation is not None and snapshot["status"]["mechanics"]=="MECHANICS_SOLVED" and all(c["status"] in ("selected","not_required") for c in cases)
         return {"invocation_bound":invocation is not None,"numerical_eligible":eligible,"standing":"eligible" if eligible else "needs_recompute","publication_sha256":body["publication_sha256"],"classifications":classes}
     except RetainedPrecisionError:raise
-    except (KeyError,IndexError,TypeError,ValueError,OverflowError,ZeroDivisionError,StopIteration) as exc:
-        code={"G0":"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED","G1":"RETAINED_PRECISION_RECEIPT_MISMATCH","G2":"RETAINED_PRECISION_ENCODING_MISMATCH","G3":"RETAINED_PRECISION_COVERAGE_MISMATCH","G4":"RETAINED_PRECISION_DIAGNOSTIC_MISMATCH","G5":"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH","G5a":"RETAINED_PRECISION_SCALE_MISMATCH","G6":"RETAINED_PRECISION_ROW_METHOD_MISMATCH","G8":"RETAINED_PRECISION_PREPARATION_MISMATCH"}.get(gate,"SOURCE_PREVIEW_PHYSICS_INVALID")
+    except (KeyError,IndexError,TypeError,ValueError,OverflowError,ZeroDivisionError,StopIteration,AttributeError) as exc:
+        # Fail-closed fallback only (D16): checks report their own codes; G5a/G5b/G5c follow the phase (D10).
+        if gate=="G5a":gate=phase[0]
+        code={"G0":"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED","G1":"RETAINED_PRECISION_RECEIPT_MISMATCH","G2":"RETAINED_PRECISION_ENCODING_MISMATCH","G3":"RETAINED_PRECISION_COVERAGE_MISMATCH","G4":"RETAINED_PRECISION_DIAGNOSTIC_MISMATCH","G5":"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH","G5a":"RETAINED_PRECISION_SCALE_MISMATCH","G5b":"RETAINED_PRECISION_SCALE_MISMATCH","G5c":"RETAINED_PRECISION_CLASSIFICATION_MISMATCH","G6":"RETAINED_PRECISION_ROW_METHOD_MISMATCH","G8":"RETAINED_PRECISION_PREPARATION_MISMATCH"}.get(gate,"SOURCE_PREVIEW_PHYSICS_INVALID")
         raise RetainedPrecisionError(gate,code) from exc
