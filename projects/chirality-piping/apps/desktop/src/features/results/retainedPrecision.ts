@@ -130,8 +130,10 @@ function sum(a: number[]): bigint { return a.reduce((n, v) => n + uint(v), 0n); 
 function shape(v: any, spec: Obj): boolean {
   if (spec.$ref) return shape(v, SCHEMA.$defs[spec.$ref.split('/').at(-1)]);
   if (spec.oneOf) return spec.oneOf.filter((s: Obj) => shape(v, s)).length === 1;
-  if (Object.hasOwn(spec, 'const') && !same(v, spec.const)) return false;
-  if (spec.enum && !spec.enum.some((x: any) => same(v, x))) return false;
+  // D34: G1 compares const and enum members as JSON values, so -0 matches 0 here; G2 (negativeZeroFree) rejects it.
+  const value = Object.is(v, -0) ? 0 : v;
+  if (Object.hasOwn(spec, 'const') && !same(value, spec.const)) return false;
+  if (spec.enum && !spec.enum.some((x: any) => same(value, x))) return false;
   switch (spec.type) {
     case 'object': return v !== null && typeof v === 'object' && !Array.isArray(v) && (spec.required ?? []).every((k: string) => Object.hasOwn(v, k)) && Object.keys(v).every(k => Object.hasOwn(spec.properties, k) && shape(v[k], spec.properties[k]));
     case 'array': return Array.isArray(v) && v.length >= (spec.minItems ?? 0) && v.length <= (spec.maxItems ?? Number.MAX_SAFE_INTEGER) && v.every(x => shape(x, spec.items));
@@ -154,6 +156,12 @@ function encoding(v: any, spec: Obj): void {
   if (tag === 'hash') need(/^[0-9a-f]{64}$/.test(v), 'G2', 'ENCODING_MISMATCH');
   if (spec.type === 'object') for (const k of Object.keys(v)) encoding(v[k], spec.properties[k]);
   if (spec.type === 'array') for (const item of v) encoding(item, spec.items);
+}
+/** D34 (C1 §4 canonical +0; C1 G2 row "no -0 counter"): a JSON number equal to -0 anywhere in the receipt fails G2,
+ * whatever its schema position (counters, indexes, enum and const members, untyped items). `x === 0` holds for -0. */
+function negativeZeroFree(v: unknown): void {
+  if (typeof v === 'number') need(!Object.is(v, -0), 'G2', 'ENCODING_MISMATCH');
+  else if (v !== null && typeof v === 'object') for (const x of Object.values(v)) negativeZeroFree(x);
 }
 function freeze<T>(v: T): T { if (v && typeof v === 'object') { for (const x of Object.values(v)) freeze(x); Object.freeze(v); } return v; }
 /** Validate descriptors before cloning; JSON serialization alone would erase -0 counters. */
@@ -211,7 +219,7 @@ async function integrity(source: Obj, transport: boolean): Promise<Obj> {
     const a = b.product_attempts[s.preparation.attempt_ref];
     if (a.preparation.members.every((m: Obj) => m.result.kind === 'prepared')) need(await hash('retained_precision_preparation_v1', prepPayload(a)) === s.preparation.sha256, 'G1', 'RECEIPT_MISMATCH');
   }
-  encoding(r, SCHEMA); return b;
+  negativeZeroFree(r); encoding(r, SCHEMA); return b;
 }
 function coverage(b: Obj, source: Obj, invocation?: Obj): Map<string, Obj[]> {
   const fail = (ok: unknown) => need(ok, 'G3', 'COVERAGE_MISMATCH');

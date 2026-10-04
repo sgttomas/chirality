@@ -102,25 +102,37 @@ describe('synthetic prepared receipt arithmetic controls, not execution evidence
 
 import { validateRetainedPrecision, validateRetainedPrecisionTransport, RetainedPrecisionError, phi512, eHat, stopFeasible, nativeSchedule, ordinaryAttempts, accountingRules, nativeRuns, productAttempts } from './retainedPrecision';
 import { canonicalSha256HexCheckedV1 } from '../../services/hashService';
+/** Snapshot 07e format rule (RV78-N1): a rehash index is a strict integral value, a JSON number that is never a
+ * boolean, finite, integral, >= 0 and not -0 (0.0 is index 0; 0.5, true and -0 are not). A reference that is not
+ * an index, or does not resolve, is skipped and left for the reader to report. */
+function rehashRef(items: any[], ref: unknown): any {
+  return typeof ref === 'number' && Number.isInteger(ref) && ref >= 0 && !Object.is(ref, -0) && ref < items.length ? items[ref] : undefined;
+}
 async function rehash(source: any) {
   // Snapshot 07 format: an entry that removes retained_precision or its body (a G0 pin) has nothing to rehash.
   const body = source.retained_precision?.body;
   if (!body || typeof body !== 'object') return;
   for (const s of body.sources) if (s.preparation) {
-    const a = body.product_attempts[s.preparation.attempt_ref];
+    const a = rehashRef(body.product_attempts, s.preparation.attempt_ref);
+    if (!a || !a.preparation.members.every((m: any) => m.result.kind === 'prepared')) continue;
     s.preparation.sha256 = await canonicalSha256HexCheckedV1({ domain: 'retained_precision_preparation_v1', payload: {
       definition_id: a.definition_id, definition_sha256: 'a7ed7ca0bf0bba6e8b821ca4befa00a0fa9541a83694be8b28ac63e39b1d0349', owner_ref: a.owner_ref, ordinary_attempt_ref: a.ordinary_attempt_ref, material_basis_ref: a.material_basis_ref,
       members: a.preparation.members.map((m: any) => ({ member: m.member, old_source: m.old_source, old_facts: m.old_facts, section: m.result.section })) } });
   }
-  for (const c of body.cases) if (c.status === 'selected') { const { index: _, ...s } = body.sources[c.source_ref]; c.source_identity_sha256 = await canonicalSha256HexCheckedV1({ domain: 'retained_precision_source_mp_v2', payload: s }); }
+  for (const c of body.cases) {
+    const source = c.status === 'selected' ? rehashRef(body.sources, c.source_ref) : undefined;
+    if (source) { const { index: _, ...s } = source; c.source_identity_sha256 = await canonicalSha256HexCheckedV1({ domain: 'retained_precision_source_mp_v2', payload: s }); }
+  }
   const { retained_precision: _, ...publication } = source;
   body.publication_sha256 = await canonicalSha256HexCheckedV1({ domain: 'retained_precision_publication_mp_v2', payload: publication });
   source.retained_precision.receipt_sha256 = await canonicalSha256HexCheckedV1({ domain: 'retained_precision_receipt_mp_v2', payload: body });
 }
 function applyEdits(root: any, edits: any[] | undefined): void {
+  // 07e format rule (edit_paths): an array index in an edit path is a strict index; anything else refuses the entry.
+  const step = (value: any, key: unknown) => { if (Array.isArray(value) && !(typeof key === 'number' && Number.isInteger(key) && key >= 0 && !Object.is(key, -0))) throw new Error('edit path index ' + String(key)); return key as any; };
   for (const edit of edits ?? []) {
-    let value = root; for (const key of edit.path.slice(0, -1)) value = value[key];
-    const key = edit.path.at(-1);
+    let value = root; for (const key of edit.path.slice(0, -1)) value = value[step(value, key)];
+    const key = step(value, edit.path.at(-1));
     // RV78-N5: an array removal splices (no hole); unknown operations are refused.
     if (edit.op === 'remove') { if (Array.isArray(value)) value.splice(key, 1); else delete value[key]; }
     else if (edit.op === 'set') value[key] = structuredClone(edit.value);
@@ -609,6 +621,69 @@ describe('07d round (D31-D33): reader-local relations', () => {
     expect(await run('stop_rule')).toBe('pass');
     expect(await run('charge')).toBe('pass');
     expect(await run('verification_estimate')).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+  });
+});
+
+describe('07e round (D34): -0 anywhere in the receipt fails G2 ENCODING', () => {
+  const ENCODING = G('G2', 'ENCODING_MISMATCH');
+  it('D34: the enum member G5aError.quantity_kind written as -0 fails G2; written as 0 it passes G2', async () => {
+    const m = corpus.must_pass.find((x: any) => x.id === 'cert_failed_after_summary_storage');
+    const run = async (cause: any) => {
+      const entry = { ...structuredClone(m), id: 'i64_d34_quantity_kind', edits: [...structuredClone(m.edits), { path: ['retained_precision', 'body', 'product_attempts', 1, 'result', 'error'], op: 'set', value: { kind: 'g5a', cause } }] };
+      const { source, invocation } = await applyEntry(entry);
+      return { kind: source.retained_precision.body.product_attempts[1].result.error.cause.quantity_kind, failure: await firstFailure(source, invocation) };
+    };
+    for (const cause of [{ kind: 'sanity', body: 0 }, { kind: 'lower', member: 0 }]) {
+      const negative = await run({ ...cause, quantity_kind: -0 });
+      expect(Object.is(negative.kind, -0)).toBe(true);
+      expect(negative.failure).toEqual(ENCODING);
+      const positive = await run({ ...cause, quantity_kind: 0 });
+      expect(positive.failure === 'pass' || !['G0', 'G1', 'G2'].includes(positive.failure.gate), JSON.stringify(positive.failure)).toBe(true);
+    }
+  });
+  it('D34: the const member source_decline.constructor_counts.directional_springs written as -0 fails G2; written as 0 it keeps its entry outcome', async () => {
+    const m = corpus.mutations.find((x: any) => x.id === 'unavailable_attempt_under_source_error_cause');
+    const run = async (zero: number) => {
+      const entry = { ...structuredClone(m), id: 'i64_d34_directional_springs', edits: [...structuredClone(m.edits), { path: ['retained_precision', 'body', 'cases', 1, 'source_decline', 'constructor_counts', 'directional_springs'], op: 'set', value: zero }] };
+      const { source, invocation } = await applyEntry(entry);
+      return firstFailure(source, invocation);
+    };
+    expect(await run(-0)).toEqual(ENCODING);
+    expect(await run(0)).toEqual(m.expected);
+  });
+  it('D34: every numeric 0 in a base receipt, rewritten as -0, fails G2 (hashes are unchanged: canonical JSON writes 0)', async () => {
+    const c = corpus.cases.find((x: any) => x.id === 'ordinary_prepared_synthetic');
+    const zeros: (string | number)[][] = [];
+    const walk = (v: any, path: (string | number)[]) => {
+      if (typeof v === 'number') { if (v === 0) zeros.push(path); }
+      else if (v !== null && typeof v === 'object') for (const [k, x] of Object.entries(v)) walk(x, [...path, Array.isArray(v) ? Number(k) : k]);
+    };
+    walk(c.source.retained_precision, []);
+    expect(zeros.length).toBeGreaterThan(100);
+    const outcomes = new Map<string, number>();
+    for (const path of zeros) {
+      const source = structuredClone(c.source); let v = source.retained_precision;
+      for (const k of path.slice(0, -1)) v = v[k];
+      v[path.at(-1)!] = -0;
+      const failure = await firstFailure(source, c.invocation), key = JSON.stringify(failure);
+      outcomes.set(key, (outcomes.get(key) ?? 0) + 1);
+    }
+    expect([...outcomes]).toEqual([[JSON.stringify(ENCODING), zeros.length]]);
+  });
+  it('RV78-N1: the harness rehash indexes only strict integral values and skips everything else', async () => {
+    const items = ['a', 'b'];
+    expect([0, 1, 1.0, 0.0].map(r => rehashRef(items, r))).toEqual(['a', 'b', 'b', 'a']);
+    expect([true, false, 0.5, -0, -1, 2, NaN, Infinity, null, undefined, '0'].map(r => rehashRef(items, r))).toEqual(Array(11).fill(undefined));
+    // A selected case whose source_ref is not an index keeps its recorded identity hash; the reader reports the reference.
+    for (const [ref, gate] of [[true, 'G1'], [0.5, 'G2'], ['0', 'G1']] as const) {
+      const { source, invocation } = await applyEntry({ id: 'i64_rv78_n1', base: 'ordinary_prepared_synthetic', edits: [{ path: ['retained_precision', 'body', 'cases', 0, 'source_ref'], op: 'set', value: ref }], rehash: 'all' });
+      expect(source.retained_precision.body.cases[0].source_identity_sha256).toBe(corpus.cases[0].source.retained_precision.body.cases[0].source_identity_sha256);
+      expect((await firstFailure(source, invocation) as any).gate, String(ref)).toBe(gate);
+    }
+    // The format's edit_paths rule: an array index in an edit path is a strict index too; anything else refuses the entry.
+    for (const index of [true, 0.5, -0, '0'])
+      await expect(applyEntry({ id: 'i64_rv78_n1_path', base: 'ordinary_prepared_synthetic', edits: [{ path: ['retained_precision', 'body', 'cases', index, 'source_ref'], op: 'set', value: 0 }], rehash: 'all' })).rejects.toThrow('edit path index');
+    expect((await applyEntry({ id: 'i64_rv78_n1_path_ok', base: 'ordinary_prepared_synthetic', edits: [{ path: ['retained_precision', 'body', 'cases', 0.0, 'source_ref'], op: 'set', value: 0 }], rehash: 'all' })).source.retained_precision.body.cases[0].source_ref).toBe(0);
   });
 });
 
