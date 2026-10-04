@@ -9523,3 +9523,45 @@ The next unused IDs are I67 and RV87.
 **It is held on the facade branch,** not merged. RV85 confirms T1 and U2 as their originator in grant 2's review, and 1d merges with grant 2. Nothing in NUM depends on it.
 
 **I61 is idle until U4 G5,** or until a U6 fan-out unit is assigned.
+
+## U4 G4: the margin rule trips; l ≤ 128 adopted; D-6 lock record extended (ROOT, 2026-10-04 UTC)
+
+**I65's G4 return** is `R/I65/u4_g4_01/` (77 files, SHA256SUMS OK; no machine paths; 15 MB, mostly reproducible JSON outputs, committed as G3's were). Records only. It covers:
+- T16 publication: 1.39 GB at the caps;
+- T17 precommit reader: 1.28 GB, plus 5.4 MB of statics;
+- T18: the staged copy at 106 MB, the N1 reserve at 0.76 MB, and a move-only transfer;
+- T19: 10 KB;
+- the text work and the T24 composition per caller and mode, under the restated admission law (phases X1–W5);
+- all routed repairs: RV83 R-1–R-3 and RV84 S-1–S-7, N-2, N-3, N-7, N-11 and N-13.
+
+**The call graph is repaired.** It reaches RV83's evidence (64 of 64; 33 of 36, with the remaining 3 explained). "Never under-counts" is replaced by a stated method with its limits. **No mutual recursion** on the repaired graph: RV84's 17 candidate cycles were name collisions.
+
+**The margin rule trips** (ε = 2, illustrative strides, D1 caps):
+- the maximum is **0.9115 M (sparse) and 0.9164 M (dense)**, at W3 (branch W publication), with W4 (the precommit reader) within 10 MB of it;
+- branch X is at 0.855–0.860 M;
+- at the milestone's own facts the maximum is 0.084 M.
+
+**Ruled: tighter caps, `l ≤ 128`** (primitive loads in the one case, down from 192). I65's sensitivity table (COMPOSITION_G4.md §4) gives 0.8510 M sparse and 0.8559 M dense, with D falling from 17,574 to 14,694.
+- **Why this lever.** ROOT's margin ruling prefers caps as the smallest intervention: a cap edit plus a mechanical re-run. Of the two caps that give a comfortable margin, `l` costs the least coverage. The milestone has l = 3, and holding m, n and g at 32 keeps the members and nodes that the U8 Ceiling witness's numerics need (D-9).
+- **Declined for now:**
+  - **I65's phase-aware ordinary span (§5):** a records refinement whose per-family "dead after G-C" argument would need its own review. It is not needed to pass the rule, and stays available at G5 if in-build strides trip it.
+  - **The lifetime-aware text model:** worth scheduling later, for headroom beyond D1.
+  - **The per-invocation evaluator.**
+- **D1's cap table** (DOMAIN.md §2) now reads `l ≤ 128`. G5's census constant follows.
+
+**D-6, the reviewed-lock record, is extended as I65 proposed.** It also binds the hashes of the precommit reader's 13 `include_str!` static inputs, and G5 adds compile-time layout witnesses for the reader types T17 prices. A change to any of them then requires re-qualification. The PP lock sha256 at this basis is `4f494db6…475b` (37 packages, 22 from the registry); U3 did not change it.
+
+**Also recorded:**
+- D1.10 and D1.11 refuse as `source_family` and `resource_admission`, both already in the schema enum.
+- RV82-N5: build flags and execution order are checked at precommit by the reader, which falls back with N1.
+- U3 budgets B-1 to B-10 are met at grants 1, 1b and 1c.
+- The G5 carry list is in NOTES_G4.md §5.
+- The S-6 hook edits are I61's under D-5.
+
+**Next:**
+- **I65** re-runs the chain at `l ≤ 128` as a G4 addendum (`ADDENDUM_L128.md`, its outputs, and a SHA256SUMS update) and amends DOMAIN's cap row.
+- **RV83** confirms R-1–R-3, which closes B-2.
+- **RV84** confirms S-1–S-7 and N-3.
+- **RV87 (fresh)** reviews G4 as a whole once the addendum lands.
+
+The next unused IDs are I67 and RV87.
