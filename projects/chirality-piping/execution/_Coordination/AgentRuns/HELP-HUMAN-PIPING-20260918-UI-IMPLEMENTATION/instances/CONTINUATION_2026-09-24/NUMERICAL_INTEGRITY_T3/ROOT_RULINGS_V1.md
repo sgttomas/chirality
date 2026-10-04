@@ -9142,3 +9142,33 @@ The next unused IDs are I66 and RV84; RV82 is reserved for U1.
 - **RV82** reviews grant 2 and confirms its S1, S2 and N1 on `b54caba7ab`.
 - **U1 merges into NUM** after RV82 passes.
 - **U3** is prepared: the brief and I61's design checkpoint on D-a to D-d.
+
+## RV82 on U1 grant 2: PASS; U1 and U2 merged into NUM (ROOT, 2026-10-04 UTC)
+
+**RV82's report** is `R/REVIEW_RV82/u1_serializer_02/REVIEW.md` (sha256 `edabda27…e57`; SHA256SUMS 32/32 OK; no machine paths). Verdict: **PASS**, with 0 BLOCKING, 0 SHOULD-FIX and 9 NOTE findings, on `b54caba7ab`.
+
+**Confirmed by RV82:**
+- **S2 is complete.** Six one-change foreign invocations are refused, and an identical or canonically equal invocation is emitted.
+- **S1 is fixed,** and N3, N6 and N7 are done.
+- **N1:** five of six checks are killed at their sites.
+- **G-i:** RV82's hand derivation agrees on 62 of 62 entries across 20 tables. All 260 encodable values are schema-valid.
+- **U2's failure path is sound.**
+- **The pre-anchor proof-start case is rightly `WorkAssociation`.** The only reachable pre-anchor failure is the owner-stamp refusal, whose own cause is association, so no genuine D1 failure is misreported.
+- **`serialize_unavailable`** cannot reach production; all three readers refuse its output at G3, as RR:8436 requires.
+- **No other behaviour changed:** PP 648/1/1; runner/headless and result_export identical; the milestone successor bytes identical; reader parity 98/98 and 99/99.
+
+**Rulings on the notes:**
+- **N1′:** pin R08 at its call site in `run_conservation`. This is a small item for I61, in the U3 stream.
+- **N2 and N3′:** go to wider F2a. PP cannot produce a non-selected native run or anchorless proof work; an FK unit test is optional there.
+- **N7: a citation correction to ROOT's grant-2 ruling.** The `prior` omission rests on RR:7784 and C3:261–263, not on "C2 §2's own wire form"; C2 §2 has no `work_accounting` row. The outcome is unchanged.
+- **N8:** the two-case Scope branch is unreachable in grant 2. It is kept as a defensive check, and wider F2a revisits it.
+- **N9: added to U3.** Keep a single parse per invocation, so that the typed request and the captured invocation come from one `CapturedInvocation::parse`.
+- **N4, N5 and N6:** equivalent or unconstructible; no action.
+
+**The merge.** ROOT merged `codex/piping-f2a-serializer-20261004` (`b54caba7ab`) into NUM with `--no-ff`. NUM's core had not changed since `43a6368c21`, so the merge is clean, and NUM's core now equals `b54caba7ab` byte for byte.
+- **What it covers:** U1 (the private serializer, production-unreachable) and U2 (the structural owner binding).
+- **What it does not do:** enable eligibility, a permit or any public activation.
+
+**Open items:**
+- **U3** is running (I61, `WT/f2a-facade`, from `b54caba7ab`), and **U4 G3** is running (I65).
+- **The next reader round** gathers the D36-tracked items: RV79-N1, RV80-N2, RV78's N1 and N2, and F5. D38's pin moves to wider F2a (RR "U1 grant 2: I61's stop resolved").
