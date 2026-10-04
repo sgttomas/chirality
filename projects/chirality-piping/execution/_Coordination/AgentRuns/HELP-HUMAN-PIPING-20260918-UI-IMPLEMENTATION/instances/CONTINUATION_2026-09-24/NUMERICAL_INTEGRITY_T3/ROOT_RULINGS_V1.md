@@ -8914,3 +8914,21 @@ The owner answered ROOT's two structured questions. The selections, verbatim:
 - Compile-time layout witnesses and the reviewed consumer locks are added alongside, as I65's plan proposes.
 
 U4 proceeds: G2 records the build identity facts for D-6, and stack moves into the G3 and G5 sequence under S1.
+
+## Checked work custody in U1 (ROOT, 2026-10-04 UTC)
+
+**The finding crosses owners.** It comes from I65's D-4 draft, which is still in progress (`R/I65/u4_g2_01/D4_RECONCILIATION.md` §3, item 1), and it affects I61's U1 grant 1, also in progress. Workflow §5 calls for one disposition before any return relies on it.
+
+**ROOT checked the finding itself** against I61's working file `PP/src/retained_wire.rs` (read-only) and FK at base `43a6368c21`:
+- the projection emits `AttemptRecord::{shared_work, stop_rule_work, verification_work, verification_shared_work}` and the `StageWork` slots raw;
+- it compares against `InvocationMeter::charged()`.
+
+These fields are written through `WorkTotal::legacy_saturated()` (FK/structural/retained/work.rs; `StageWork::set`). They also bypass the record's `work_status` latch, which the `checked_*` accessors join (FK adaptive.rs :2774–2815). A record with a latched fault could therefore be projected as if exact. The milestone receipt is unaffected, because every value there is exact; this is a defect on a faulted path.
+
+**The disposition, independent of how D-4 is ruled:**
+- U1 reads every work amount through its checked view, and each is exact or abandons with a typed `receipt_failure`, with no panic.
+- A stage slot is emitted only under an exact `StageWork` status.
+- The G-l `rejected` value is projected only when it is ≤ 2^53−1.
+- Mutants pin the legacy-field substitutions and the stage-status check.
+
+The detail-token vocabulary is D-4b, ruled at G2's return. I61 was messaged during the grant. RV82's brief (`BRIEFS/RV82_U1_SERIALIZER_REVIEW.md`, item 6) checks adoption in the returned code.
