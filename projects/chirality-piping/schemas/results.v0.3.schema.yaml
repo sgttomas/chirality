@@ -1198,6 +1198,24 @@
                   "retained_precision"
                 ]
               }
+            },
+            {
+              "properties": {
+                "row_disclosures": {
+                  "items": {
+                    "properties": {
+                      "reason_code": {
+                        "not": {
+                          "enum": [
+                            "retained_precision_absolute_verified",
+                            "retained_precision_not_covered"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           ]
         },
@@ -1252,6 +1270,24 @@
                   "retained_precision"
                 ]
               }
+            },
+            {
+              "properties": {
+                "row_disclosures": {
+                  "items": {
+                    "properties": {
+                      "reason_code": {
+                        "not": {
+                          "enum": [
+                            "retained_precision_absolute_verified",
+                            "retained_precision_not_covered"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           ]
         },
@@ -1302,6 +1338,24 @@
                   "retained_precision"
                 ]
               }
+            },
+            {
+              "properties": {
+                "row_disclosures": {
+                  "items": {
+                    "properties": {
+                      "reason_code": {
+                        "not": {
+                          "enum": [
+                            "retained_precision_absolute_verified",
+                            "retained_precision_not_covered"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           ]
         },
@@ -1350,6 +1404,24 @@
                 "required": [
                   "retained_precision"
                 ]
+              }
+            },
+            {
+              "properties": {
+                "row_disclosures": {
+                  "items": {
+                    "properties": {
+                      "reason_code": {
+                        "not": {
+                          "enum": [
+                            "retained_precision_absolute_verified",
+                            "retained_precision_not_covered"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           ]
@@ -1416,6 +1488,24 @@
                   "retained_precision"
                 ]
               }
+            },
+            {
+              "properties": {
+                "row_disclosures": {
+                  "items": {
+                    "properties": {
+                      "reason_code": {
+                        "not": {
+                          "enum": [
+                            "retained_precision_absolute_verified",
+                            "retained_precision_not_covered"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           ]
         },
@@ -1470,6 +1560,24 @@
                   "retained_precision"
                 ]
               }
+            },
+            {
+              "properties": {
+                "row_disclosures": {
+                  "items": {
+                    "properties": {
+                      "reason_code": {
+                        "not": {
+                          "enum": [
+                            "retained_precision_absolute_verified",
+                            "retained_precision_not_covered"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           ]
         },
@@ -1518,6 +1626,24 @@
                 "required": [
                   "retained_precision"
                 ]
+              }
+            },
+            {
+              "properties": {
+                "row_disclosures": {
+                  "items": {
+                    "properties": {
+                      "reason_code": {
+                        "not": {
+                          "enum": [
+                            "retained_precision_absolute_verified",
+                            "retained_precision_not_covered"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           ]
@@ -2028,7 +2154,9 @@
             "physical_metadata_incomplete",
             "unsupported_source_kind",
             "basis_annotation_not_quantity",
-            "diagnostic_relative_ratio_non_governing"
+            "diagnostic_relative_ratio_non_governing",
+            "retained_precision_absolute_verified",
+            "retained_precision_not_covered"
           ]
         },
         "object_ref": {
