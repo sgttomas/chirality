@@ -246,12 +246,12 @@ fn shared_rehashed_first_failure_mutations() {
 
 /// Observe one slice of the shared mutations against this reader's own
 /// expectation, print one outcome per mutation (visible with --nocapture) and
-/// check the slice tally. Snapshot 07 holds 235 mutations in all.
+/// check the slice tally. Snapshot 07a holds 236 mutations in all.
 fn slice_outcomes(tag: &str, range: std::ops::Range<usize>, want: &[(&str, usize)]) {
     use std::collections::BTreeMap;
     let shared = corpus();
     let mutations = shared["mutations"].as_array().unwrap();
-    assert_eq!(mutations.len(), 235);
+    assert_eq!(mutations.len(), 236);
     let mut tally = BTreeMap::new();
     let mut matched = 0;
     for mutation in &mutations[range.clone()] {
@@ -415,12 +415,12 @@ fn snapshot_06d_mutation_outcomes() {
     );
 }
 
-/// Snapshot-07 review-repair pins (I62 B2), mutations 178..235.
+/// Snapshot-07/07a review-repair pins (I62 B2; D18 in 07a), mutations 178..236.
 #[test]
 fn snapshot_07_mutation_outcomes() {
     slice_outcomes(
         "I63_OUTCOME_07",
-        178..235,
+        178..236,
         &[
             ("G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED", 6),
             ("G1 RETAINED_PRECISION_RECEIPT_MISMATCH", 4),
@@ -429,7 +429,7 @@ fn snapshot_07_mutation_outcomes() {
             ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 16),
             ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 11),
             ("G5 RETAINED_PRECISION_WORK_MISMATCH", 7),
-            ("G5b RETAINED_PRECISION_SCALE_MISMATCH", 1),
+            ("G5b RETAINED_PRECISION_SECTION_MISMATCH", 2),
             ("G8 RETAINED_PRECISION_PREPARATION_MISMATCH", 4),
         ],
     );
