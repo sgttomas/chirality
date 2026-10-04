@@ -8749,3 +8749,11 @@ The NOTEs are tracked under D36:
 - RV79: D37 in Python.
 
 New findings are triaged under D36.
+
+**RV78 D37-scoped check (confirm 06): PASS** (0 BLOCKING, 0 SHOULD-FIX, 0 NOTE).
+- **Parity:** all 305 entries on 07f agree across the three readers.
+- **D37 probes:** all 17 gated probes give their D37 outcome in all three readers. Every error kind has a rejected inconsistent record, and every kind except `native` has an accepted consistent record (no base has a nonselected Run; D30).
+- **Weakening:** none; the Python and Rust tables are strictly stronger.
+- **`capture` (a):** all three readers reject it at G5 PRODUCT_ATTEMPT. It stays tracked under D36. All three readers agree, so no parity gap remains on it.
+
+RV79's D37 check is pending.
