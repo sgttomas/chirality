@@ -303,6 +303,8 @@ export function nativeSchedule(run: Obj, source: Obj): void {
   for (const record of records) {
     const reason = record.outcome.reason;
     if (reason?.quantity) fail(source.layout.some((row: Obj) => same(row.quantity, reason.quantity) && row.body === reason.body && row.kind === reason.kind));
+    // D33: the native verification estimate exists only for force and moment rows (FK/retained/verify.rs:880).
+    if (reason?.space === 'attempt' && reason.tag === 'verification_estimate') fail(['force', 'moment'].includes(reason.kind));
     if (record.role === 'candidate') fail(record.verification === null && record.verification_shared_build_ref === null && record.work.verification_lme === 0);
   }
   for (let ai = 0; ai < attempts.length; ai++) {
@@ -1074,7 +1076,9 @@ async function invocationBinding(b: Obj, source: Obj, invocation: Obj): Promise<
   fail(same(Object.keys(invocation).sort(), ['request', 'solver_mode']) && ['dense_scrutiny', 'sparse_interactive'].includes(invocation.solver_mode), 'INVOCATION_MISMATCH');
   fail(await hash('source_blocks_invocation_v1', invocation) === b.invocation.value, 'INVOCATION_MISMATCH');
   const request = invocation.request, model = request.model;
-  fail(model?.project?.id === source.model_ref && ['0.2.0', '0.3.0'].includes(model.schema_version), 'INVOCATION_MISMATCH');
+  // D31: the model schema_version is 0.1.0, 0.2.0 or 0.3.0 (PP pressure_runtime.rs:113-118 treats 0.1.0 and
+  // 0.2.0 on one branch); 0.4.0 stays excluded (C1 G8 row, "no 0.4 extension").
+  fail(model?.project?.id === source.model_ref && ['0.1.0', '0.2.0', '0.3.0'].includes(model.schema_version), 'INVOCATION_MISMATCH');
   fail(!model.pressure_contract && !model.combinations?.length && !model.components?.length, 'INVOCATION_MISMATCH');
   const nodes: Obj[] = model.nodes, pipes: Obj[] = model.pipe_segments, supports: Obj[] = model.supports, cases: Obj[] = model.load_cases;
   fail([nodes, pipes, supports, cases].every(xs => Array.isArray(xs) && unique(xs.map(x => x.id))));

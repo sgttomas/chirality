@@ -581,6 +581,37 @@ describe('confirmation repair round (D19-D30, RV81-N1/N2): reader-local relation
   });
 });
 
+describe('07d round (D31-D33): reader-local relations', () => {
+  it('D31: G8 admits model schema_version 0.1.0, 0.2.0 and 0.3.0, and refuses 0.4.0', async () => {
+    const run = async (version: string) => { const { source, invocation } = await applyEntry({ id: 'i64_d31_' + version, base: 'ordinary_prepared_synthetic', edits: [], invocation_edits: [{ path: ['request', 'model', 'schema_version'], op: 'set', value: version }], rehash: 'all' }); return firstFailure(source, invocation); };
+    for (const version of ['0.1.0', '0.2.0', '0.3.0']) expect(await run(version), version).toBe('pass');
+    expect(await run('0.4.0')).toEqual(G('G8', 'INVOCATION_MISMATCH'));
+  });
+  it('D32: integers and references written as integral floats are the same values (parse boundary)', async () => {
+    const base = structuredClone(corpus.cases[0]);
+    const receiptText = JSON.stringify(base.source.retained_precision);
+    // Rewrite every bare integer literal in the receipt as an integral float, e.g. "source_ref":0 -> "source_ref":0.0.
+    const floated = receiptText.replace(/([:\[,])(-?\d+)(?=[,\]}])/g, '$1$2.0');
+    expect(floated).not.toBe(receiptText);
+    expect(floated).toContain('"source_ref":0.0');
+    const source = { ...base.source, retained_precision: JSON.parse(floated) };
+    expect(source.retained_precision.body.cases[0].source_ref).toBe(0);
+    const result = await validateRetainedPrecision(source, base.invocation);
+    expect(result.classifications).toEqual(base.expected_classifications);
+    // A float-written reference resolves: a forged source identity is still caught at G1 through source_ref 0.0.
+    const forged = JSON.parse(floated); forged.body.cases[0].source_identity_sha256 = '0'.repeat(64);
+    expect(await firstFailure({ ...base.source, retained_precision: forged }, base.invocation)).toEqual(G('G1', 'RECEIPT_MISMATCH'));
+  });
+  it('D33: a verification_estimate reason names a force or moment row', async () => {
+    const edit = (tag: string) => ['records', 'attempts'].map(list => ({ path: ['retained_precision', 'body', 'cases', 0, 'run', list, 0, 'outcome', 'reason', 'tag'], op: 'set', value: tag }));
+    const run = async (tag: string) => { const { source, invocation } = await applyEntry({ id: 'i64_d33_' + tag, base: 'p512_ladder_synthetic', edits: edit(tag), rehash: 'all' }); return firstFailure(source, invocation); };
+    // The base reason names a translation row: legal for stop_rule and charge, never for verification_estimate.
+    expect(await run('stop_rule')).toBe('pass');
+    expect(await run('charge')).toBe('pass');
+    expect(await run('verification_estimate')).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+  });
+});
+
 describe('native p512 floor rounding, independent of any corpus case', () => {
   // Literal transcription of verify.rs phi_512 and adaptive.rs next_up, for comparison only.
   const fromWord = (word: bigint) => { const v = new DataView(new ArrayBuffer(8)); v.setBigUint64(0, word); return v.getFloat64(0); };
