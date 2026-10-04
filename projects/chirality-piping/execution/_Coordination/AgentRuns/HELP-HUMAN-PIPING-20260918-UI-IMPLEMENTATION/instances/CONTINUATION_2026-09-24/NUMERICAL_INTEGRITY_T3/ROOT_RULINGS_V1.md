@@ -11445,3 +11445,20 @@ The checklist is kept in the work graph's T3 row once U9 merges.
 - Any non-identical output is a stop.
 
 Records go in `R/I61/u9_g5g6_01/`.
+
+## PR #1082's first hosted run: one CI policy defect, fixed (ROOT, 2026-10-04 UTC)
+
+**The first hosted run on `6b9bb19a5f`** (Piping Desktop E2E, run 37239539032): 5 checks passed, 6 were skipped and 2 failed.
+- **"Select source coverage"** failed on `test_ci_numerical.test_real_rust_literal_includes_require_numerical`. PP's `tests/retained_precision_admission.rs:230` (the caller-separation guard, from `24af17c470`) `include_str!`s `apps/desktop/src-tauri/src/lib.rs`, and the numerical selection policy treated all of `apps/` as UI-only. A change to that file would therefore not have run the crate suite that depends on it.
+- **"Desktop E2E (source mode)"** failed downstream, because the plan artifact was missing.
+- This is the F2a code's first hosted run; the defect predates U9.
+
+**The fix (ROOT-authored, reviewed by RV95 in the complete diff):**
+- `tools/ci/e2e_plan.py` gains `NUMERICAL_APP_INPUTS` = {`apps/desktop/src-tauri/src/lib.rs`}, accepted by `numerical_input`. The rest of `apps/` stays UI-only.
+- It is a separate set, because `test_numerical_policy_is_independent_and_whole_pr` probes an arbitrary member of `NUMERICAL_EVIDENCE_INPUTS` as a JSON evidence file.
+- It is pinned in `tests/test_ci_e2e_plan.py`.
+- `unittest discover -s P/tests -p 'test_ci_*.py'`: **57 OK.**
+- **Committed** on NUM as **`c7bc3fd54e`**, and carried to the PR as **`fd3cbebb42`**.
+- `source_equality` on `fd3cbebb42` against INT `c7bc3fd54e`: **5/5 PASS**, |S| = 138.
+- **No Pass B rerun:** these are CI tooling and Python tests, not a D1 crate, a reviewed input or production `.rs`.
+- The package's counts (136 → 138) are updated at the freeze.
