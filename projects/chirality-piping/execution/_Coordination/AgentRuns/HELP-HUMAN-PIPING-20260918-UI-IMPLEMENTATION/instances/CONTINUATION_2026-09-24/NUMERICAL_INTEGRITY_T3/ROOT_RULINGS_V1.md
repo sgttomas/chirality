@@ -11020,3 +11020,30 @@ Slice F's order is RETURN §3.
 4. **For RV94:** the summary takes its cases from the invocation's model, not from the caller's requested refs. So with other requested refs, the standing reads `needs_recompute` while the summary shows the Current withheld count. This has been so since U6 and matches the oracle. RV94 assesses whether any consumer displays this inconsistently.
 
 **Next:** I67 does part 2 (TS). Then ROOT commits parts 1 and 2 as one commit, then slices L and Q, then RV94.
+
+## U7 slice F committed: the eligibility switch in all three readers (ROOT, 2026-10-04 UTC)
+
+**I67's part 2** is `R/I67/u7_slice_f_01/` (RETURN.md `f5a9eb24…`; SHA256SUMS 52/52 OK; no machine paths).
+- **The TS flag is on,** line-neutral, with the D-U7-6 tail sentence. TS asserts the scope and tail sentences.
+- **Every TS pin** carries its 07i or oracle value.
+- **A test-only `u7.held` knob** keeps the not-eligible branches tested.
+- **The v4 consumer** checks closed field sets and reads `capture` and `current_model_edits` explicitly. D-U7-4's TS side is written out literally.
+- **The blocked-envelope G7 code:** TS uses `SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID`, as Python does, while Rust uses `…_BLOCKED_ENVELOPE`. A separate scope sentence declares this, and all three languages pin it, each with its own code.
+- **Tests:** vitest 3,537/3,537 and tsc clean. Against base, no outcome changes. Against part 1, exactly the 21 failures resolve.
+- **The TS oracle diff** over I66's same 380 inputs changes exactly on the oracle's set. Through the mocked-IPC delivery, only the 2 carrier `:invocation` cases and the 2 milestones change token.
+- **Python** retained suites 459; **Rust** `result_export` 169.
+- **TS mutants:** 22/24 killed. The survivors are C02, equivalent (G7 refuses non-solved successors), and C04 (below).
+
+**Committed:** ROOT verified all 18 files' hashes against both returns and committed parts 1 and 2 as one commit, **`cfda60403f`** on `codex/piping-f2a-u7-20261004` (pushed). The three flags land together (D-U7-5).
+
+**Rulings on part 2:**
+1. **The blocked-envelope clause** is accepted as a separate scope sentence.
+2. **C04, a coverage gap** on the eligible path: no corpus or test statement has a `not_required` case that passes the gates, in any language. Narrowing to `selected` fails closed, so it is not blocking. **Slice L (I61)** adds a shared 07j entry with a `not_required` case that passes the gates, if one can be constructed, or declares why it cannot.
+3. **Slice A's missed pin** (`retainedPrecisionOutputRefusal.test.tsx:200`) and consumer (session Current) are accepted as updated. RV94 checks the inventory's completeness.
+4. **TS `classificationSummary(…).withheld` ignores the live-capture check:** on both D-U7-4 forms it reports 69, as if Current. No product caller passes a model today. **I67's fail-closed fix is accepted** and runs as a follow-on (`R/I67/u7_slice_f_02/`): requested refs only when the standing is eligible, with a test and a mutant.
+
+**Slice Q (I65)** runs Pass B on `cfda60403f` (extract `b8296c5b…`). The RS flag hunk is entered as D1-live and reviewed on I66's evidence; the doc and comment hunks classify as such. RV89 confirms.
+
+**Slice L (I61)** follows I67's fix: the live reruns in all three languages, the PP sweeps in both builds, U5, tokens, 07j and N-5 (RV93, optional).
+
+**RV94** reviews after L and Q.
