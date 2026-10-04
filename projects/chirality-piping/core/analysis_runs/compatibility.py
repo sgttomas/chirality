@@ -6,7 +6,7 @@ from pathlib import Path
 import json
 from typing import Any, Callable, Mapping
 
-from core.serialization.canonical_json.adapter import canonical_sha256_checked_v1
+from core.serialization.canonical_json.adapter import canonical_json_checked_v1, canonical_sha256_checked_v1
 from .source_blocks import (CONTRACT_ID as SOURCE_BLOCKS_CONTRACT_ID,
     CONTRACT_SHA256 as SOURCE_BLOCKS_CONTRACT_SHA256, CONTRACT_PATH as _SOURCE_BLOCKS_CONTRACT_PATH,
     validate_source_blocks, validate_receipt_shape, domain_hash, ordinary_case_legacy_semantics)
@@ -249,6 +249,16 @@ def _has_retained_rows(source: Any) -> bool:
     successor may; every other identity, legacy 0.1.0 included, is refused."""
     rows = source.get("results") if isinstance(source, Mapping) else None
     return isinstance(rows, list) and any(isinstance(row, Mapping) and row.get("recovery_method") == RETAINED_METHOD for row in rows)
+
+
+def _same_canonical(a: Any, b: Any) -> bool:
+    """RV92 S-1: equal as checked canonical JSON bytes, as TS's same() compares, so
+    false is not 0 and true is not 1, while 0.0 and 0 are one JSON value. A value
+    outside the checked profile equals nothing."""
+    try:
+        return canonical_json_checked_v1(a) == canonical_json_checked_v1(b)
+    except ValueError:
+        return False
 
 
 def _is_retained(source: Any) -> bool:
@@ -691,7 +701,7 @@ def validate_analysis_run_v0_3(envelope: Mapping[str, Any], source: Mapping[str,
     elif "contract_evidence" in run:
         raise ValueError("ANALYSIS_PHYSICS_SOURCE_DOWNGRADE_FORBIDDEN")
     if contract_id == PREVIEW_PHYSICS_RETAINED_CONTRACT_ID:
-        if run.get("retained_precision") != source["retained_precision"]:
+        if "retained_precision" not in run or not _same_canonical(run["retained_precision"], source["retained_precision"]):
             raise ValueError(ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH)
     elif "retained_precision" in run:
         raise ValueError(ANALYSIS_RETAINED_PRECISION_DOWNGRADE_FORBIDDEN)

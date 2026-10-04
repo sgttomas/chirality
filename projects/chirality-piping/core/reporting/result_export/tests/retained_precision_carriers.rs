@@ -613,14 +613,18 @@ fn u6a_each_class_maps_to_its_refusal_and_disclosure() {
 }
 
 const PREVIEW_SPARSE: &str = include_str!("../../../../fixtures/results/preview_physics_invented_sparse.json");
+const BLOCKS_N05: &str = include_str!("../../../../fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json");
 const CASES: &str = include_str!("../../../../fixtures/results/retained_precision_carrier_cases.json");
 /// RR "RV88 on U6a, U6c, U6b (and U6d)": the only ruled differences between the
-/// languages' carriers (and F5's shared semantics); any other is a defect.
-const DECLARED: [&str; 4] = [
+/// languages' carriers (and F5's shared semantics); any other is a defect. RR
+/// "RV92 (U6f) on the whole of U6" adds the fifth (N-2, with N-5) and widens
+/// I67-F2 (N-3).
+const DECLARED: [&str; 5] = [
     "I67-F1:unregistered_invalid_statement",
     "I67-F2:display_only_binding_precheck",
     "F-U6b-2:python_refuses_transport",
     "F5:refused_statement_binding",
+    "RV92-N2-N5:ts_refuses_token_rows_at_the_header",
 ];
 
 /// The shared file's fixtures, by id, as (source, invocation or Null).
@@ -635,6 +639,7 @@ fn shared_fixtures(cases: &Value) -> Vec<(String, Value, Value)> {
                 "fixtures/results/retained_precision_milestone_successor_dense_scrutiny.json" => DENSE,
                 "fixtures/product_preview/invented_mechanics_result.json" => LEGACY,
                 "fixtures/results/preview_physics_invented_sparse.json" => PREVIEW_SPARSE,
+                "fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json" => BLOCKS_N05,
                 p => panic!("{p}"),
             };
             assert_eq!(format!("{:x}", Sha256::digest(text.as_bytes())), f["sha256"].as_str().unwrap());
@@ -665,6 +670,9 @@ fn apply_shared(c: &Value, fixture: &(String, Value, Value)) -> (Value, Option<V
         *at = edit["value"].clone();
     }
     let requested = if c["requested"] == "invocation" { requested(&fixture.2) } else { c["requested"].as_array().unwrap().clone() };
+    if c["invocation"].is_object() {
+        return (source, Some(c["invocation"].clone()), requested);
+    }
     (source, (!c["invocation"].is_null()).then_some(invocation), requested)
 }
 
@@ -674,7 +682,7 @@ fn apply_shared(c: &Value, fixture: &(String, Value, Value)) -> (Value, Option<V
 #[test]
 fn u6a_shared_carrier_cases_rust() {
     let cases: Value = serde_json::from_str(CASES).unwrap();
-    assert_eq!(cases["format"], "I66-U6-CARRIER-CASES-v2");
+    assert_eq!(cases["format"], "I66-U6-CARRIER-CASES-v3");
     let fixtures = shared_fixtures(&cases);
     let mut n = 0;
     for c in cases["cases"].as_array().unwrap() {
@@ -687,17 +695,67 @@ fn u6a_shared_carrier_cases_rust() {
     }
     assert_eq!(n, 20);
     // The raw fixtures' guard cases are refused only through their edit.
+    let raw: Vec<&str> = fixtures.iter().filter(|f| f.2.is_null()).map(|f| f.0.as_str()).collect();
+    assert_eq!(raw, ["legacy_preview_0_1", "preview_physics_1_invented_sparse", "source_blocks_n05_sparse"]);
     for fixture in fixtures.iter().filter(|f| f.2.is_null()) {
         assert!(s::for_source(&fixture.1).is_ok(), "{}", fixture.0);
         assert_eq!(s::numerical_use_standing(&fixture.1, &[]), "needs_recompute", "{}", fixture.0);
     }
 }
 
-/// Each ruled difference, with Rust's own expectation; Python asserts its own
-/// from the same entries, and TS (I67) its own.
+/// 'by_validated_class' for the summary subject: per receipt case, the reader's
+/// class counts, interval binding 0, and the held withheld count.
+fn expected_summary(source: &Value) -> Value {
+    let v = rp::validate(source, None).unwrap();
+    let cases = source["retained_precision"]["body"]["cases"].as_array().unwrap();
+    Value::Array(cases.iter().map(|case| {
+        let mut n = [0u64; 5];
+        for c in v.classifications.iter().filter(|c| c.basis_ref == case["basis_ref"]) {
+            n[match c.class {
+                rp::AccuracyClass::RelativeVerified => 0,
+                rp::AccuracyClass::AbsoluteVerified { .. } => 1,
+                rp::AccuracyClass::NotCovered => 2,
+                rp::AccuracyClass::InputDerived => 3,
+                rp::AccuracyClass::NonQuantity => 4,
+            }] += 1;
+        }
+        json!({"case_id":case["basis_ref"]["ref_id"],"relative_verified":n[0],"absolute_verified":n[1],"interval_bindable":0,
+            "not_covered":n[2],"input_derived":n[3],"non_quantity":n[4],"withheld":n[0] + n[1] + n[2] + n[3]})
+    }).collect())
+}
+/// The expected binding of every row, from the entry's vocabulary.
+fn expected_binding(source: &Value, expected: &str) -> Vec<Option<String>> {
+    let rows = source["results"].as_array().unwrap();
+    if expected == "by_validated_class" {
+        let v = rp::validate(source, None).unwrap();
+        let want: Vec<Option<String>> = rows.iter().map(|row| v.classifications.iter().find(|c| row["id"] == c.result_id.as_str()).and_then(|c| match c.class {
+            rp::AccuracyClass::AbsoluteVerified { .. } => Some(s::RULE_QUANTITY_BELOW_VERIFIED_FLOOR.to_string()),
+            rp::AccuracyClass::NotCovered => Some(s::RULE_QUANTITY_NOT_COVERED.to_string()),
+            _ => None,
+        })).collect();
+        assert!(want.contains(&None) && want.contains(&Some(s::RULE_QUANTITY_BELOW_VERIFIED_FLOOR.to_string())));
+        return want;
+    }
+    let (rule, code) = expected.split_once(':').unwrap();
+    let code = (code != "none").then(|| code.to_string());
+    match rule {
+        "every_row" => vec![code; rows.len()],
+        "source_blocks_summary" => {
+            let headline = &source["summary"]["max_open_formula_stress"]["result_ref"];
+            let want: Vec<Option<String>> = rows.iter().map(|row| (row["kind"] == "open_formula_stress_summary" || (headline.is_string() && row["id"] == *headline)).then(|| code.clone()).flatten()).collect();
+            assert!(want.contains(&None) && want.contains(&code));
+            want
+        }
+        other => panic!("{other}"),
+    }
+}
+
+/// Each ruled difference, form by form, with Rust's own expectation; Python
+/// asserts its own from the same entries, and TS (I67) its own.
 #[test]
 fn u6_declared_differences_rust() {
     let cases: Value = serde_json::from_str(CASES).unwrap();
+    assert!(cases["scope"].as_str().unwrap().contains("G7 parity compares the reader's (gate, code)"));
     let fixtures = shared_fixtures(&cases);
     let entries = cases["declared_differences"].as_array().unwrap();
     let mut ids: Vec<&str> = entries.iter().map(|e| e["id"].as_str().unwrap()).collect();
@@ -705,51 +763,194 @@ fn u6_declared_differences_rust() {
     let mut declared = DECLARED.to_vec();
     declared.sort();
     assert_eq!(ids, declared);
+    let mut subjects = std::collections::BTreeSet::new();
     for entry in entries {
         let id = entry["id"].as_str().unwrap();
         assert!(entry["ruling"].as_str().is_some_and(|r| !r.is_empty()), "{id}");
-        let languages: Vec<&String> = entry["expected"].as_object().unwrap().keys().collect();
-        assert_eq!(languages, ["python", "rust", "typescript"], "{id}");
-        let expected = &entry["expected"]["rust"];
-        for fid in entry["fixtures"].as_array().unwrap() {
-            let fixture = fixtures.iter().find(|f| fid == f.0.as_str()).unwrap();
-            let (source, invocation, requested) = apply_shared(entry, fixture);
-            match entry["subject"].as_str().unwrap() {
-                "standing" => assert_eq!(s::numerical_use_standing_with_context(&source, &requested, invocation.as_ref()), expected["standing"], "{id}"),
-                "transport" => {
-                    let got = match s::for_source_metadata(&source) { Ok(_) => "ok".to_string(), Err(e) => e };
-                    assert_eq!(got, expected["transport"].as_str().unwrap(), "{id}");
+        assert!(matches!(entry["kind"].as_str(), Some("language" | "semantics")), "{id}");
+        for form in entry["forms"].as_array().unwrap() {
+            let label = form["label"].as_str().unwrap();
+            let languages: Vec<&String> = form["expected"].as_object().unwrap().keys().collect();
+            assert_eq!(languages, ["python", "rust", "typescript"], "{id} {label}");
+            let expected = &form["expected"]["rust"];
+            let subject = form["subject"].as_str().unwrap();
+            subjects.insert(subject.to_string());
+            for fid in form["fixtures"].as_array().unwrap() {
+                let fixture = fixtures.iter().find(|f| fid == f.0.as_str()).unwrap();
+                let (source, invocation, requested) = apply_shared(form, fixture);
+                match subject {
+                    "standing" => assert_eq!(s::numerical_use_standing_with_context(&source, &requested, invocation.as_ref()), expected["standing"], "{id} {label}"),
+                    "transport" => {
+                        let got = match s::for_source_metadata(&source) { Ok(_) => "ok".to_string(), Err(e) => e };
+                        assert_eq!(got, expected["transport"].as_str().unwrap(), "{id} {label}");
+                    }
+                    "summary" => {
+                        let got = json!(s::classification_summary(&source, invocation.as_ref()));
+                        let want = match expected["summary"].as_str().unwrap() { "by_validated_class" => expected_summary(&source), _ => json!([]) };
+                        assert!(want.as_array().is_some_and(|w| !w.is_empty()), "{id} {label}");
+                        assert_eq!(got, want, "{id} {label}");
+                    }
+                    "binding" => {
+                        let got: Vec<Option<String>> = source["results"].as_array().unwrap().iter().map(|row| s::rule_binding_refusal(&source, row).map(str::to_string)).collect();
+                        assert_eq!(got, expected_binding(&source, expected["binding"].as_str().unwrap()), "{id} {label}");
+                    }
+                    other => panic!("{other}"),
                 }
-                "binding" => {
-                    let rows = source["results"].as_array().unwrap();
-                    let got: Vec<Option<&str>> = rows.iter().map(|row| s::rule_binding_refusal(&source, row)).collect();
-                    let want: Vec<Option<&str>> = match expected["binding"].as_str().unwrap() {
-                        "by_validated_class" => {
-                            let v = rp::validate(&source, None).unwrap();
-                            rows.iter().map(|row| v.classifications.iter().find(|c| row["id"] == c.result_id.as_str()).and_then(|c| match c.class {
-                                rp::AccuracyClass::AbsoluteVerified { .. } => Some(s::RULE_QUANTITY_BELOW_VERIFIED_FLOOR),
-                                rp::AccuracyClass::NotCovered => Some(s::RULE_QUANTITY_NOT_COVERED),
-                                _ => None,
-                            })).collect()
-                        }
-                        every => {
-                            let code = every.strip_prefix("every_row:").unwrap();
-                            assert_eq!(code, s::RULE_QUANTITY_NOT_COVERED);
-                            vec![Some(s::RULE_QUANTITY_NOT_COVERED); rows.len()]
-                        }
-                    };
-                    assert!(want.contains(&None) || expected["binding"] != "by_validated_class", "{id}");
-                    assert_eq!(got, want, "{id}");
-                }
-                other => panic!("{other}"),
             }
         }
     }
+    assert_eq!(subjects.into_iter().collect::<Vec<_>>(), ["binding", "standing", "summary", "transport"]);
+}
+
+fn is_ident(c: u8) -> bool {
+    c.is_ascii_alphanumeric() || c == b'_'
+}
+/// The end of a comment or literal starting at `i`, or None when `i` starts
+/// neither (a lifetime or a label is not a literal).
+fn skip_literal(src: &str, i: usize) -> Option<usize> {
+    let b = src.as_bytes();
+    let at = |p: &[u8]| b[i..].starts_with(p);
+    let after_ident = i > 0 && is_ident(b[i - 1]);
+    if at(b"//") {
+        return Some(b[i..].iter().position(|&c| c == b'\n').map_or(b.len(), |p| i + p));
+    }
+    if at(b"/*") {
+        let (mut j, mut depth) = (i + 2, 1);
+        while j < b.len() && depth > 0 {
+            if b[j..].starts_with(b"/*") {
+                depth += 1;
+                j += 2;
+            } else if b[j..].starts_with(b"*/") {
+                depth -= 1;
+                j += 2;
+            } else {
+                j += 1;
+            }
+        }
+        return Some(j);
+    }
+    if !after_ident && (b[i] == b'r' || at(b"br")) {
+        let start = i + if b[i] == b'r' { 1 } else { 2 };
+        let mut j = start;
+        while j < b.len() && b[j] == b'#' {
+            j += 1;
+        }
+        if j < b.len() && b[j] == b'"' {
+            let hashes = j - start;
+            for k in j + 1..b.len() {
+                if b[k] == b'"' && b.get(k + 1..k + 1 + hashes).is_some_and(|h| h.iter().all(|&c| c == b'#')) {
+                    return Some(k + 1 + hashes);
+                }
+            }
+            return Some(b.len());
+        }
+    }
+    if b[i] == b'"' || (!after_ident && at(b"b\"")) {
+        let mut j = i + if b[i] == b'"' { 1 } else { 2 };
+        while j < b.len() {
+            match b[j] {
+                b'\\' => j += 2,
+                b'"' => return Some(j + 1),
+                _ => j += 1,
+            }
+        }
+        return Some(b.len());
+    }
+    let quote = if b[i] == b'\'' { Some(i) } else if !after_ident && at(b"b'") { Some(i + 1) } else { None };
+    let q = quote?;
+    if b.get(q + 1) == Some(&b'\\') {
+        let j = match b.get(q + 2) {
+            Some(b'u') => b[q..].iter().position(|&c| c == b'}').map_or(b.len(), |p| q + p + 1),
+            Some(b'x') => q + 5,
+            _ => q + 3,
+        };
+        return Some(if b.get(j) == Some(&b'\'') { j + 1 } else { j });
+    }
+    let end = q + 1 + src[q + 1..].chars().next()?.len_utf8();
+    (b.get(end) == Some(&b'\'')).then_some(end + 1)
+}
+/// The end of the item gated by a `#[cfg(test)]` that ends at `i`: any further
+/// attributes, then the item through its `;` or `,` at depth 0, or through the
+/// brace that closes its first `{`. Comments and literals are skipped. None when
+/// the item runs to the end of the file (the scan would then hide the rest).
+fn gated_item_end(src: &str, mut i: usize) -> Option<usize> {
+    let b = src.as_bytes();
+    let mut depth = 0usize;
+    while i < b.len() {
+        if let Some(end) = skip_literal(src, i) {
+            i = end;
+            continue;
+        }
+        match b[i] {
+            b'(' | b'[' | b'{' => depth += 1,
+            b')' | b']' => depth = depth.saturating_sub(1),
+            b'}' if depth == 0 => return Some(i),
+            b'}' => {
+                depth -= 1;
+                if depth == 0 {
+                    return Some(i + 1);
+                }
+            }
+            b';' | b',' if depth == 0 => return Some(i + 1),
+            _ => {}
+        }
+        i += 1;
+    }
+    None
+}
+/// RV88 U6a N-3 (as ruled after RV92): the product text of a Rust source is the
+/// whole file without its `#[cfg(test)]`-gated items. Only an attribute in
+/// code counts, not one in a comment or a literal. Err(offset) when a gated
+/// item does not close.
+fn product_text(src: &str) -> Result<String, usize> {
+    const GATE: &[u8] = b"#[cfg(test)]";
+    let b = src.as_bytes();
+    let (mut out, mut kept, mut i) = (String::new(), 0, 0);
+    while i < b.len() {
+        if let Some(end) = skip_literal(src, i) {
+            i = end;
+            continue;
+        }
+        if b[i..].starts_with(GATE) {
+            out.push_str(&src[kept..i]);
+            i = gated_item_end(src, i + GATE.len()).ok_or(i)?;
+            kept = i;
+            continue;
+        }
+        i += 1;
+    }
+    out.push_str(&src[kept..]);
+    Ok(out)
+}
+/// Occurrences of `name` as a whole identifier (so an `as` alias, a path or a
+/// comment naming it all count).
+fn bare_count(text: &str, name: &str) -> usize {
+    let b = text.as_bytes();
+    text.match_indices(name)
+        .filter(|(p, _)| (*p == 0 || !is_ident(b[p - 1])) && b.get(p + name.len()).is_none_or(|&c| !is_ident(c)))
+        .count()
+}
+
+#[test]
+fn u6_product_text_drops_only_test_gated_items() {
+    let src = "use a;\n#[cfg(test)]\nuse b::seam_x;\nfn keep_one() { let s = \"}{\"; let c = '{'; }\n#[cfg(test)]\n#[allow(dead_code)]\nmod tests {\n    fn t<'a>(x: &'a str) { seam_x(\"#[cfg(test)] }\"); /* } */ }\n    // }\n}\nfn keep_two() { seam_x(); }\nstruct S { #[cfg(test)] f: u8, g: u8 }\nconst R: &str = r#\"#[cfg(test)] { \"#;\nfn keep_three() {}\n";
+    let text = product_text(src).unwrap();
+    assert_eq!(product_text("fn a() {}\n#[cfg(test)]\nmod t { fn b() {\n"), Err(10));
+    for kept in ["use a;", "fn keep_one() { let s = \"}{\"; let c = '{'; }", "fn keep_two() { seam_x(); }", "g: u8 }", "fn keep_three() {}", "r#\"#[cfg(test)] { \"#"] {
+        assert!(text.contains(kept), "{kept}: {text}");
+    }
+    for dropped in ["use b::seam_x", "mod tests", "fn t<'a>", "f: u8"] {
+        assert!(!text.contains(dropped), "{dropped}: {text}");
+    }
+    assert_eq!(bare_count(&text, "seam_x"), 1);
+    assert_eq!(bare_count("x seam_x as y; seam_xy; my_seam_x; seam_x(", "seam_x"), 2);
 }
 
 /// RV88 U6a N-3: the `#[doc(hidden)]` public seams are test seams. No product
-/// source file outside their defining module names them, and the defining
-/// modules use them exactly as pinned here (definition plus internal calls).
+/// source file outside their defining module names them, as a whole identifier
+/// anywhere in its product text (the file without its `#[cfg(test)]`-gated
+/// items), and the defining modules name them exactly as pinned here
+/// (definition plus internal calls).
 #[test]
 fn u6_doc_hidden_seams_have_no_product_callers() {
     const SEAMS: [(&str, &str, usize); 4] = [
@@ -775,17 +976,37 @@ fn u6_doc_hidden_seams_have_no_product_callers() {
         }
     }
     assert!(files.len() > 50, "{}", files.len());
-    for (seam, home, uses) in SEAMS {
-        for file in &files {
-            let text = std::fs::read_to_string(file).unwrap();
-            // Product code only: an inline test module is not product code.
-            let product = text.split("#[cfg(test)]").next().unwrap();
-            let count = product.matches(&format!("{seam}(")).count();
-            let relative = file.strip_prefix(&root).unwrap().to_string_lossy().replace('\\', "/");
+    let (mut lines, mut product_lines) = (0usize, 0usize);
+    let mut deep = Vec::new();
+    for file in &files {
+        let text = std::fs::read_to_string(file).unwrap();
+        let relative = file.strip_prefix(&root).unwrap().to_string_lossy().replace('\\', "/");
+        let product = product_text(&text).unwrap_or_else(|at| panic!("{relative}: unterminated #[cfg(test)] item at byte {at}"));
+        lines += text.lines().count();
+        product_lines += product.lines().count();
+        // Product code after a file's first #[cfg(test)] is scanned (RV92/RV88 G1).
+        for (path, function) in [
+            ("apps/desktop/src-tauri/src/lib.rs", "fn solver_result_row_value("),
+            ("apps/desktop/src-tauri/src/lib.rs", "pub fn run()"),
+            ("core/runner/headless/src/lib.rs", "fn invented_provenance()"),
+            ("core/product_physics/src/lib.rs", "pub fn nonlinear_assembled_loop_context()"),
+        ] {
+            if relative == path {
+                assert!(text.split("#[cfg(test)]").next().unwrap().len() < text.find(function).unwrap(), "{path}");
+                assert!(product.contains(function), "{path}: {function}");
+                deep.push(function);
+            }
+        }
+        if relative == "apps/desktop/src-tauri/src/lib.rs" {
+            assert!(!product.contains("mod legacy_store_carry_forward_tests") && !product.contains("\nmod tests {"));
+        }
+        for (seam, home, uses) in SEAMS {
             let expected = if relative == home { uses } else { 0 };
-            assert_eq!(count, expected, "{seam} in {relative}");
+            assert_eq!(bare_count(&product, seam), expected, "{seam} in {relative}");
         }
     }
+    assert_eq!(deep.len(), 4, "{deep:?}");
+    eprintln!("seam guard: {} files, {product_lines} of {lines} lines scanned as product text", files.len());
 }
 
 /// The relative count of a one-case expected summary.

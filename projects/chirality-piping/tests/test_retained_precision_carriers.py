@@ -182,13 +182,15 @@ def test_standing_rule_conjuncts_with_eligibility_set():
 CASES = ROOT / "fixtures/results/retained_precision_carrier_cases.json"
 # RR "RV88 on U6a, U6c, U6b (and U6d)": the only ruled differences between the
 # languages' carriers; any other difference is a defect.
+# RR "RV92 (U6f) on the whole of U6" adds the fifth (N-2, with N-5) and widens I67-F2 (N-3).
 DECLARED = {"I67-F1:unregistered_invalid_statement", "I67-F2:display_only_binding_precheck",
-            "F-U6b-2:python_refuses_transport", "F5:refused_statement_binding"}
+            "F-U6b-2:python_refuses_transport", "F5:refused_statement_binding",
+            "RV92-N2-N5:ts_refuses_token_rows_at_the_header"}
 
 
 def shared_cases():
     cases = json.loads(CASES.read_text())
-    assert cases["format"] == "I66-U6-CARRIER-CASES-v2"
+    assert cases["format"] == "I66-U6-CARRIER-CASES-v3"
     docs = {}
     for fid, spec in cases["fixtures"].items():
         raw = (ROOT / spec["path"]).read_bytes()
@@ -208,6 +210,8 @@ def apply_case(case, doc):
             target = target[key]
         target[edit["path"][-1]] = edit["value"]
     refs = requested(doc["invocation"]) if case["requested"] == "invocation" else case["requested"]
+    if isinstance(case["invocation"], dict):
+        return source, deepcopy(case["invocation"]), refs
     return source, (invocation if case["invocation"] is not None else None), refs
 
 
@@ -221,34 +225,72 @@ def test_shared_carrier_cases_python():
         assert dispatch(source) == case["expected_dispatch"], case["id"]
     assert len(cases["cases"]) == 20
     # The raw fixtures' guard cases are refused only through their edit.
-    for fid in ("legacy_preview_0_1", "preview_physics_1_invented_sparse"):
+    raw = [fid for fid, spec in cases["fixtures"].items() if spec["shape"] == "raw"]
+    assert raw == ["legacy_preview_0_1", "preview_physics_1_invented_sparse", "source_blocks_n05_sparse"]
+    for fid in raw:
         assert dispatch(docs[fid]["source"]) == "ok" and c.numerical_use_standing(docs[fid]["source"], []) == "needs_recompute", fid
 
 
+def expected_summary(source):
+    """'by_validated_class': per receipt case, the reader's class counts, interval
+    binding 0, and the held withheld count (eligibility is held until U7)."""
+    classes = rp.validate_retained_precision(source)["classifications"]
+    out = []
+    for case in source["retained_precision"]["body"]["cases"]:
+        mine = [item["class"] for item in classes if item["basis_ref"] == case["basis_ref"]]
+        n = {name: mine.count(name) for name in ("relative_verified", "absolute_verified", "not_covered", "input_derived", "non_quantity")}
+        out.append({"case_id": case["basis_ref"]["ref_id"], **n, "interval_bindable": 0,
+                    "withheld": n["relative_verified"] + n["absolute_verified"] + n["not_covered"] + n["input_derived"]})
+    return out
+
+
+def expected_binding(source, expected):
+    rows = source["results"]
+    if expected == "by_validated_class":
+        classes = {item["result_id"]: item["class"] for item in rp.validate_retained_precision(source)["classifications"]}
+        want = [{"absolute_verified": c.RULE_QUANTITY_BELOW_VERIFIED_FLOOR, "not_covered": c.RULE_QUANTITY_NOT_COVERED}.get(classes[row["id"]]) for row in rows]
+        assert c.RULE_QUANTITY_BELOW_VERIFIED_FLOOR in want and None in want
+        return want
+    rule, code = expected.split(":", 1)
+    code = None if code == "none" else code
+    if rule == "every_row":
+        return [code] * len(rows)
+    assert rule == "source_blocks_summary"
+    headline = ((source.get("summary") or {}).get("max_open_formula_stress") or {}).get("result_ref")
+    want = [code if row["kind"] == "open_formula_stress_summary" or row["id"] == headline else None for row in rows]
+    assert code in want and None in want
+    return want
+
+
 def test_declared_differences_python():
-    """Each ruled difference, with Python's own expectation; Rust asserts its own
-    from the same entries, and TS (I67) its own."""
+    """Each ruled difference, form by form, with Python's own expectation; Rust
+    asserts its own from the same entries, and TS (I67) its own."""
     cases, docs = shared_cases()
+    assert "G7 parity compares the reader's (gate, code)" in cases["scope"]
     entries = cases["declared_differences"]
     assert {entry["id"] for entry in entries} == DECLARED and len(entries) == len(DECLARED)
+    seen = set()
     for entry in entries:
-        assert entry["ruling"] and set(entry["expected"]) == {"rust", "python", "typescript"}, entry["id"]
-        expected = entry["expected"]["python"]
-        for fid in entry["fixtures"]:
-            source, context, refs = apply_case(entry, docs[fid])
-            if entry["subject"] == "standing":
-                assert c.numerical_use_standing(source, refs, context) == expected["standing"], entry["id"]
-            elif entry["subject"] == "transport":
-                assert dispatch_transport(source) == expected["transport"], entry["id"]
-            else:
-                got = [c.rule_binding_refusal(source, row) for row in source["results"]]
-                if expected["binding"] == "by_validated_class":
-                    classes = {item["result_id"]: item["class"] for item in rp.validate_retained_precision(source)["classifications"]}
-                    want = [{"absolute_verified": c.RULE_QUANTITY_BELOW_VERIFIED_FLOOR, "not_covered": c.RULE_QUANTITY_NOT_COVERED}.get(classes[row["id"]]) for row in source["results"]]
-                    assert c.RULE_QUANTITY_BELOW_VERIFIED_FLOOR in want and None in want, entry["id"]
+        assert entry["ruling"] and entry["kind"] in {"language", "semantics"} and entry["forms"], entry["id"]
+        for form in entry["forms"]:
+            assert set(form["expected"]) == {"rust", "python", "typescript"}, (entry["id"], form["label"])
+            expected = form["expected"]["python"]
+            for fid in form["fixtures"]:
+                source, context, refs = apply_case(form, docs[fid])
+                label = (entry["id"], form["label"], fid)
+                seen.add((form["subject"], expected.get(form["subject"])))
+                if form["subject"] == "standing":
+                    assert c.numerical_use_standing(source, refs, context) == expected["standing"], label
+                elif form["subject"] == "transport":
+                    assert dispatch_transport(source) == expected["transport"], label
+                elif form["subject"] == "summary":
+                    want = expected_summary(source) if expected["summary"] == "by_validated_class" else []
+                    assert want and c.classification_summary(source, context) == want, label
                 else:
-                    want = [expected["binding"].split(":", 1)[1]] * len(source["results"])
-                assert got == want, entry["id"]
+                    assert form["subject"] == "binding", label
+                    assert [c.rule_binding_refusal(source, row) for row in source["results"]] == expected_binding(source, expected["binding"]), label
+    # Every subject and vocabulary that Python consumes is exercised.
+    assert {subject for subject, _ in seen} == {"standing", "transport", "binding", "summary"}
 
 
 def dispatch_transport(source):
@@ -288,6 +330,28 @@ def test_analysis_run_carries_the_complete_receipt_and_it_comes_back_out(mode):
     resealed = deepcopy(record)
     resealed["analysis_run"]["retained_precision"]["receipt_sha256"] = "0" * 64
     raises(c.ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH, c.validate_analysis_run_v0_3, resealed, source)
+    # RV92 S-1: the copy is compared as canonical bytes, with the record's own
+    # checksum resealed, so only the receipt check can refuse. false is not 0 and
+    # true is not 1; an integral float is the same JSON value (D25).
+    def reseal(index, value):
+        rec = deepcopy(record)
+        rec["analysis_run"]["retained_precision"]["body"]["builds"][index]["id"] = value
+        rec["analysis_run"]["hashes"][0]["value"] = c.canonical_sha256_checked_v1(c.analysis_record_projection(rec))
+        assert c.verify_analysis_run_record(rec) == "match"
+        return rec
+    builds = source["retained_precision"]["body"]["builds"]
+    assert [(type(b["id"]), b["id"]) for b in builds[:2]] == [(int, 0), (int, 1)]
+    for index, value in ((0, False), (1, True)):
+        raises(c.ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH, c.validate_analysis_run_v0_3, reseal(index, value), source)
+    for index, value in ((0, 0.0), (1, 1.0)):
+        rec = reseal(index, value)
+        c.validate_analysis_run_v0_3(rec, source)
+        back = dict(source, retained_precision=rec["analysis_run"]["retained_precision"])
+        assert rp.validate_retained_precision(back, invocation) == rp.validate_retained_precision(source, invocation)
+    # A copy outside the checked JSON profile equals nothing (it cannot be resealed).
+    unsafe = deepcopy(record)
+    unsafe["analysis_run"]["retained_precision"]["body"]["builds"][0]["id"] = 2 ** 60
+    raises(c.ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH, c.validate_analysis_run_v0_3, unsafe, source)
     # A record checked against an edited statement fails at the reader first.
     edited = deepcopy(source)
     edited["retained_precision"]["receipt_sha256"] = "1" * 64
