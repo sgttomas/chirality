@@ -518,3 +518,279 @@ fn u3_r2_base_readers_accept_the_unavailable_notice() {
     }
     println!("I61_R2_RUST standings={standings:?}");
 }
+
+// ---- U3 grant 2: the permitted path on the actual Direct entry --------------------
+//
+// Decision 7 holds: no test permit exists. `admit` grants a permit here only because this
+// build matches the registered profile (0c7827b6ad, M = 4,026,531,840 B). In any other
+// build (Stale) each test below asserts the unchanged ordinary route instead, so the same
+// suite is the control in both. The permitted work runs on the reserved-stack thread; the
+// armed faults and the run tally travel there with it (`carry_test_hooks`).
+
+use super::retained_tests_hooks::{self as hooks, Counts};
+
+/// The registered dev/test identity (R/I65/u4_g6_01/QUALIFICATION.md; the admission test's).
+const REGISTERED_IDENTITY: &str = "v1;rustc.release=1.97.1;rustc.commit=8bab26f4f68e0e26f0bb7960be334d5b520ea452;rustc.host=aarch64-apple-darwin;rustc.llvm=22.1.6;target=aarch64-apple-darwin;target.arch=aarch64;target.pointer_width=64;target.endian=little;target.os=macos;target.env=;panic=unwind;profile=debug;opt_level=0;debug_assertions=true;rustflags=;pkg=open_pipe_stress_product_physics@0.2.0";
+fn registered() -> bool {
+    option_env!("OPS_RETAINED_BUILD_IDENTITY") == Some(REGISTERED_IDENTITY)
+}
+/// One actual Direct invocation, counted: its output and the runs and G-C consultations.
+fn direct(raw: &Value, mode: PreviewSolverMode) -> (RetainedPreviewOutput, Counts) {
+    let raw = raw.clone();
+    let (output, counts) = hooks::counted(move || run_linear_static_preview_value_with_retained_direct(raw, mode).unwrap());
+    let profile = output.admission().expect("G-A ran").profile;
+    assert_eq!(profile, if registered() { ProfileStatus::Registered } else { ProfileStatus::Stale }, "the build's status");
+    (output, counts)
+}
+/// The one publication's bytes (R-1).
+fn published(output: RetainedPreviewOutput) -> Vec<u8> {
+    match output.into_publication() {
+        RetainedPublication::Successor(value) => serde_json::to_vec(&value).unwrap(),
+        RetainedPublication::Ordinary(envelope) => serde_json::to_vec(&envelope).unwrap(),
+    }
+}
+const ONE_RUN: Counts = Counts { runs: 1, complete_gates: 0 };
+const ONE_RUN_THROUGH_G_C: Counts = Counts { runs: 1, complete_gates: 1 };
+fn notices(bytes: &[u8]) -> usize {
+    let value: Value = serde_json::from_slice(bytes).unwrap();
+    value["diagnostics"].as_array().unwrap().iter().filter(|d| d["code"] == "RETAINED_PRECISION_UNAVAILABLE").count()
+}
+
+/// Deliverables 1 and 2 (B′, RV82 N3) and B-1/S-7: in the registered build the milestone's
+/// actual Direct entry publishes U1's pinned successor in both modes, from exactly one
+/// ordinary run; the ordinary envelope beside it is the plain run's bytes. In any other
+/// build it publishes exactly the plain bytes, also from one run.
+#[test]
+fn u3g2_direct_entry_publishes_the_pinned_successor() {
+    let out = std::env::var("I61_U3G2_OUT").ok().map(std::path::PathBuf::from);
+    for (mode, (name, file_sha, receipt_sha)) in MODES.into_iter().zip(PINNED) {
+        let raw = raw();
+        let plain = plain(mode, &raw);
+        let (output, counts) = direct(&raw, mode);
+        assert_eq!(serde_json::to_vec(output.envelope()).unwrap(), plain, "{name}: B′, the ordinary envelope is the plain run");
+        if !registered() {
+            assert!(output.retained().is_none() && output.successor().is_none(), "{name}: no permit, no W1");
+            assert_eq!(counts, ONE_RUN, "{name}");
+            assert_eq!(published(output), plain, "{name}: the ordinary route");
+            continue;
+        }
+        assert_eq!(output.admission().unwrap().law().refusal, None, "{name}: admitted");
+        assert_eq!(counts, ONE_RUN_THROUGH_G_C, "{name}: B-1, one ordinary run, then G-C once");
+        let successor = match output.retained() {
+            Some(Ok(successor)) => successor.value().clone(),
+            other => panic!("{name}: {other:?}"),
+        };
+        assert_eq!(output.successor(), Some(&successor));
+        let text = serde_json::to_string_pretty(&json!({"id":format!("u1_milestone_{name}"),"source":successor,
+            "invocation":{"request":raw,"solver_mode":mode.as_str()}})).unwrap();
+        assert_eq!((sha(text.as_bytes()).as_str(), successor["retained_precision"]["receipt_sha256"].as_str()), (file_sha, Some(receipt_sha)),
+            "{name}: U1's pinned successor bytes");
+        assert_eq!(published(output), serde_json::to_vec(&successor).unwrap(), "{name}: the one publication is the successor");
+        if let Some(dir) = &out {
+            std::fs::write(dir.join(format!("u3g2_successor_{name}.json")), &text).unwrap();
+        }
+    }
+}
+
+/// Deliverable 1: every W1 fallback on the actual Direct entry (preparation, native,
+/// candidate, staging, serializer, precommit) publishes the ordinary bytes plus exactly
+/// one N1 notice, from one ordinary run that reached G-C once. Without a permit no fault
+/// fires (it stays armed on the caller) and the bytes are the plain ones.
+#[test]
+fn u3g2_direct_entry_w1_fallbacks_append_one_notice() {
+    use super::retained_receipt::TraceFault as F;
+    use super::retained_wire::{ReceiptCheck as C, ReceiptFailure};
+    let serializer = |check| W1Fallback::Serializer(ReceiptFailure { check, field_path: "cases[].run.invocation_after" });
+    let faults: Vec<(&str, &str, fn(), W1Fallback, Option<&str>)> = vec![
+        ("preparation", "preparation", hooks::fail_next_preparation, W1Fallback::Preparation, None),
+        ("native", "native", hooks::withdraw_next_native_source, W1Fallback::Native, None),
+        ("candidate maxima", "candidate", || hooks::fault_next_candidate(F::Maxima), W1Fallback::Candidate, None),
+        ("candidate values", "candidate", || hooks::fault_next_candidate(F::ValuesCompletion), W1Fallback::Candidate, None),
+        ("staging", "staging", hooks::break_next_staging, W1Fallback::Staging(rp::StagingFault("pipe_stress_extrema[]")), None),
+        ("serializer receipt encoding", "serializer", || hooks::fail_next_serializer(C::WorkCounterInconsistent),
+            serializer(C::WorkCounterInconsistent), Some("work_counter_inconsistent")),
+        ("serializer association", "serializer", || hooks::fail_next_serializer(C::Association), serializer(C::Association), None),
+        ("precommit", "precommit", hooks::corrupt_next_precommit,
+            W1Fallback::Precommit { gate: "G1", code: "RETAINED_PRECISION_RECEIPT_MISMATCH".into() }, None),
+        ("precommit binding", "rebind", hooks::rebind_next_precommit_invocation,
+            W1Fallback::Precommit { gate: "G8", code: "RETAINED_PRECISION_INVOCATION_MISMATCH".into() }, None),
+    ];
+    for mode in MODES {
+        let raw = raw();
+        let plain = plain(mode, &raw);
+        for (label, armed, arm, cause, detail) in &faults {
+            arm();
+            let (output, counts) = direct(&raw, mode);
+            if !registered() {
+                assert!(output.retained().is_none(), "{label}: no W1");
+                assert_eq!(counts, ONE_RUN, "{label}");
+                assert_eq!(published(output), plain, "{label} {mode:?}");
+                assert_eq!(hooks::armed_names(), [*armed], "{label}: never fired");
+                hooks::disarm();
+                continue;
+            }
+            assert_eq!(output.retained().and_then(|r| r.as_ref().err()), Some(cause), "{label} {mode:?}");
+            assert!(output.successor().is_none(), "{label}");
+            assert_eq!(counts, ONE_RUN_THROUGH_G_C, "{label} {mode:?}: B-1");
+            let bytes = published(output);
+            assert_eq!(notices(&bytes), 1, "{label} {mode:?}: exactly one N1 notice");
+            assert_eq!(String::from_utf8(bytes).unwrap(), String::from_utf8(with_notice(&plain, "case", *detail)).unwrap(),
+                "{label} {mode:?}: the ordinary bytes, then the notice");
+            assert!(hooks::armed_names().is_empty(), "{label}: fired on the reserved-stack thread, not handed back");
+        }
+    }
+}
+
+/// Deliverable 1: every refusal before W1 work (G-A, G-C including OrdinarySolveNotAttempted,
+/// the reserved stack, coexistence; G-B in the next test) publishes exactly the ordinary
+/// bytes, with no notice, from one ordinary run.
+#[test]
+fn u3g2_direct_entry_no_w1_refusals_keep_exact_bytes() {
+    use super::retained_memory::{D1Clause, PhaseFact, PhaseGate};
+    for mode in MODES {
+        let milestone = raw();
+        let plain_milestone = plain(mode, &milestone);
+        // G-A: outside D1 (D1.4: a second load case; a combination; D1.3: another namespace).
+        let mut two = milestone.clone();
+        let mut second = two["model"]["load_cases"][0].clone();
+        second["id"] = json!("case-2");
+        two["model"]["load_cases"].as_array_mut().unwrap().push(second);
+        let mut combined = milestone.clone();
+        combined["model"]["combinations"] = json!([{"id":"combo","basis":"mechanics","terms":[{"load_case":"case","factor":1.0}]}]);
+        let mut namespace = milestone.clone();
+        namespace["model"]["schema_version"] = json!("0.3.0");
+        for (label, raw, clause) in [("two cases", &two, D1Clause::Invocation), ("combination", &combined, D1Clause::Invocation),
+            ("namespace", &namespace, D1Clause::Namespace)] {
+            let plain = plain(mode, raw);
+            let (output, counts) = direct(raw, mode);
+            let refusal = output.admission().unwrap().law().refusal.expect("G-A refuses");
+            assert_eq!(refusal.clause(), Some(if registered() { clause } else { D1Clause::Build }), "{label} {mode:?}");
+            assert!(output.retained().is_none(), "{label}");
+            assert_eq!(counts, ONE_RUN, "{label} {mode:?}");
+            assert_eq!(published(output), plain, "{label} {mode:?}");
+        }
+        // G-A: Headless is refused at D1.0 (D-2).
+        let invocation = json!({"request": milestone.clone(), "solver_mode": mode.as_str()});
+        let request_id = String::from("i61-u3g2");
+        let headless = hooks::counted(|| run_linear_static_preview_value_with_retained_headless(milestone.clone(), mode,
+            RetainedHeadlessContext::from_borrowed_roots(&milestone, &invocation, &request_id)).unwrap());
+        assert_eq!(headless.0.admission().unwrap().law().refusal.and_then(|r| r.clause()), Some(D1Clause::Caller));
+        assert!(headless.0.retained().is_none());
+        assert_eq!(headless.1, ONE_RUN);
+        assert_eq!(published(headless.0), plain_milestone, "Headless");
+        // G-C: a D1 request whose ordinary route returned before attempting the solve
+        // (ROOT's G6 ruling 2(a)): declined, no notice.
+        let mut unattempted = milestone.clone();
+        unattempted["model"]["document_kind"] = json!("invalid-kind");
+        let plain_unattempted = plain(mode, &unattempted);
+        let (output, counts) = direct(&unattempted, mode);
+        if registered() {
+            match output.retained() {
+                Some(Err(W1Fallback::CompleteGate(r))) => assert_eq!((r.gate, r.fact, r.observed, r.cap), (PhaseGate::Complete, PhaseFact::OrdinarySolveNotAttempted, 1, 0)),
+                other => panic!("{mode:?}: {other:?}"),
+            }
+            assert_eq!(counts, ONE_RUN_THROUGH_G_C);
+        } else {
+            assert_eq!(counts, ONE_RUN);
+        }
+        assert_eq!(published(output), plain_unattempted, "unattempted solve {mode:?}");
+        // G-C refuses an admitted milestone run (its observation record above the bound).
+        hooks::fail_next_complete_gate();
+        let (output, counts) = direct(&milestone, mode);
+        if registered() {
+            match output.retained() {
+                Some(Err(W1Fallback::CompleteGate(r))) => assert_eq!((r.gate, r.fact), (PhaseGate::Complete, PhaseFact::ObservationBytes)),
+                other => panic!("{mode:?}: {other:?}"),
+            }
+            assert_eq!(counts, ONE_RUN_THROUGH_G_C);
+        } else {
+            assert_eq!(counts, ONE_RUN);
+            assert_eq!(hooks::armed_names(), ["complete_gate"]);
+            hooks::disarm();
+        }
+        assert_eq!(published(output), plain_milestone, "G-C {mode:?}");
+        // The reserved stack cannot be spawned: the ordinary route on the caller's thread,
+        // with the report and the private cause (STACK_PLAN §1); faults come back (RV85 U2).
+        super::retained_memory::RESERVED_STACK_OVERRIDE.with(|c| c.set(Some(1usize << 62)));
+        hooks::corrupt_next_precommit();
+        let (output, counts) = direct(&milestone, mode);
+        super::retained_memory::RESERVED_STACK_OVERRIDE.with(|c| c.set(None));
+        assert_eq!(hooks::armed_names(), ["precommit"], "the unrun work's fault is back on the caller");
+        hooks::disarm();
+        if registered() {
+            assert_eq!(output.retained().and_then(|r| r.as_ref().err()), Some(&W1Fallback::StackReservation), "{mode:?}");
+        } else {
+            assert!(output.retained().is_none());
+        }
+        assert_eq!(counts, ONE_RUN, "stack {mode:?}");
+        assert_eq!(published(output), plain_milestone, "stack {mode:?}");
+        // Coexistence (D-15): an admitted source-block request whose ordinary run settled by
+        // exact selection is published as it is, before G-B's outcome and G-C are consulted
+        // (RV85 N1).
+        let exact: Value = serde_json::from_str(include_str!("../../../fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json")).unwrap();
+        let plain_exact = plain(mode, &exact);
+        assert!(serde_json::from_slice::<Value>(&plain_exact).unwrap()["source_block_recovery"].is_object(), "exact blocks selected");
+        let (output, counts) = direct(&exact, mode);
+        if registered() {
+            assert_eq!(output.admission().unwrap().law().refusal, None, "admitted");
+            assert_eq!(output.retained().and_then(|r| r.as_ref().err()), Some(&W1Fallback::Coexistence), "{mode:?}");
+        }
+        assert_eq!(counts, ONE_RUN, "coexistence {mode:?}: G-C not consulted");
+        assert_eq!(published(output), plain_exact, "coexistence {mode:?}");
+    }
+}
+
+/// RV85 U4 and N2 (SV18): on the actual Direct entry, a G-B refusal is final. Its cause is
+/// recorded (LateGate, the actual `check_late`'s fact), the exact ordinary bytes are
+/// published, and G-C is never consulted, although G-C would also refuse this run.
+#[test]
+fn u3g2_late_gate_refusal_is_final_and_g_c_is_not_consulted() {
+    use super::retained_memory::{PhaseFact, PhaseGate};
+    for mode in MODES {
+        let raw = raw();
+        let plain = plain(mode, &raw);
+        hooks::fail_next_late_gate();
+        let (output, counts) = direct(&raw, mode);
+        if registered() {
+            match output.retained() {
+                Some(Err(W1Fallback::LateGate(r))) => assert_eq!((r.gate, r.fact), (PhaseGate::Late, PhaseFact::LateObservationBytes), "{mode:?}"),
+                other => panic!("{mode:?}: {other:?}"),
+            }
+            assert_eq!(counts, ONE_RUN, "{mode:?}: G-C is not consulted after G-B refused");
+            assert!(hooks::armed_names().is_empty());
+        } else {
+            assert_eq!(counts, ONE_RUN);
+            assert_eq!(hooks::armed_names(), ["late_gate"], "no permit, no G-B");
+            hooks::disarm();
+        }
+        assert_eq!(published(output), plain, "{mode:?}: exact ordinary bytes, no notice");
+    }
+}
+
+/// B′ and B-1/S-7 on the no-permit path: the shared value route and every refused retained
+/// entry run the ordinary route exactly once and never reach G-C, and the no-permit
+/// dispatch makes no copy of the request or its custody (the parse's halves are moved
+/// or borrowed).
+#[test]
+fn u3g2_no_permit_path_runs_once_without_a_copy() {
+    let mut two = raw();
+    let case = two["model"]["load_cases"][0].clone();
+    two["model"]["load_cases"].as_array_mut().unwrap().push(case);
+    for mode in MODES {
+        let shared = hooks::counted(|| run_linear_static_preview_value_with_mode(two.clone(), mode).unwrap());
+        assert_eq!(shared.1, ONE_RUN, "{mode:?}: the shared value route");
+        let (output, counts) = direct(&two, mode);
+        assert!(output.retained().is_none() && output.admission().unwrap().law().refusal.is_some());
+        assert_eq!(counts, ONE_RUN, "{mode:?}: the refused Direct entry");
+        assert_eq!(serde_json::to_vec(output.envelope()).unwrap(), serde_json::to_vec(&shared.0).unwrap());
+    }
+    let lib = include_str!("lib.rs");
+    let section = |start: &str, end: &str| {
+        let suffix = &lib[lib.find(start).unwrap()..];
+        &suffix[..suffix.find(end).unwrap()]
+    };
+    let dispatch = section("fn run_linear_static_preview_value_dispatch(", "fn source_finalization_failed(");
+    assert!(!dispatch.contains(".clone()") && !dispatch.contains("to_owned()") && !dispatch.contains("to_vec()"), "no copy on the dispatch");
+    assert_eq!(dispatch.matches("run_linear_static_preview_captured(").count(), 1, "one ordinary run call");
+    assert!(dispatch.contains("retained_memory::admit(&capture, &request, entry)"), "G-A borrows the parse's halves");
+}

@@ -2376,7 +2376,7 @@ fn run_linear_static_preview_observed(
     source_budget: &mut SourceRecoveryBudget,
     mut product: Option<&mut retained_product::ProductCapture>,
 ) -> MechanicsEnvelope {
-    if let Some(observer)=product.as_deref_mut(){observer.invocation(capture,solver_mode);}
+    #[cfg(test)] retained_tests_hooks::ordinary_run_entered(); if let Some(observer)=product.as_deref_mut(){observer.invocation(capture,solver_mode);}
     let mut model = request.model;
     let request_materials_supplied = !request.materials.is_empty();
     let mut materials = if request.materials.is_empty() {
@@ -3002,7 +3002,7 @@ fn permitted_run(
     } else if let Some(refusal) = observer.late_refusal().cloned() {
         (ordinary, Err(W1Fallback::LateGate(refusal)))
     } else {
-        // G-C, with the observer's own permit.
+        #[cfg(test)] retained_tests_hooks::at_complete_gate(&mut observer); // G-C, with the observer's own permit.
         match observer.permit().map(|permit| permit.check_complete(&retained_memory::CompleteFacts { ordinary: &ordinary, capture: &observer })) {
             Some(Ok(())) => retained_w1(observer, ordinary, capture),
             Some(Err(refusal)) => (ordinary, Err(W1Fallback::CompleteGate(refusal))),
@@ -3181,7 +3181,7 @@ pub(crate) mod retained_tests_hooks {
         withdraw: bool,
         rebind: bool,
         serializer: Option<ReceiptCheck>,
-        staging: bool,
+        staging: bool, late_gate: bool, complete_gate: bool, preparation: bool, candidate: Option<super::retained_receipt::TraceFault>,
         /// lib.rs's dense-scrutiny ceiling override (F1b), read by the ordinary run.
         ceiling: Option<u128>,
     }
@@ -3211,12 +3211,12 @@ pub(crate) mod retained_tests_hooks {
     }
     /// The caller's faults in transit: installed on the worker, or handed back as
     /// they drop unrun (a spawn failure drops the work on the caller's thread).
-    pub(crate) struct Carried { armed: Option<Armed>, caller: std::thread::ThreadId }
+    pub(crate) struct Carried { armed: Option<Armed>, caller: std::thread::ThreadId, tally: grant2::TallyCarry }
     impl Carried {
-        pub(crate) fn take() -> Self { Self { armed: Some(take_armed()), caller: std::thread::current().id() } }
+        pub(crate) fn take() -> Self { Self { armed: Some(take_armed()), caller: std::thread::current().id(), tally: grant2::TallyCarry::take() } }
         /// On the worker: install the carried faults; returns the caller to hand back to.
         pub(crate) fn install(mut self) -> std::thread::ThreadId {
-            install_armed(self.armed.take().unwrap_or_default());
+            install_armed(self.armed.take().unwrap_or_default()); self.tally.install();
             self.caller
         }
     }
@@ -3229,7 +3229,7 @@ pub(crate) mod retained_tests_hooks {
     }
     /// On the worker, after the work: this thread's unfired faults go back to the caller.
     pub(crate) fn hand_back(caller: std::thread::ThreadId) {
-        record(caller, ARMED.with(|a| a.take()));
+        record(caller, ARMED.with(|a| a.take())); grant2::TallyCarry::hand_back();
     }
     /// On the caller, after the hop: re-arm every fault handed back to this thread.
     pub(crate) fn reclaim_handed_back() {
@@ -3244,7 +3244,7 @@ pub(crate) mod retained_tests_hooks {
                 a.withdraw |= faults.withdraw;
                 a.rebind |= faults.rebind;
                 a.serializer = a.serializer.or(faults.serializer);
-                a.staging |= faults.staging;
+                a.staging |= faults.staging; grant2::merge(a, &faults);
             });
         }
     }
@@ -3252,7 +3252,7 @@ pub(crate) mod retained_tests_hooks {
     pub(crate) fn armed_names() -> Vec<&'static str> {
         let a = armed();
         [(a.corrupt, "precommit"), (a.withdraw, "native"), (a.rebind, "rebind"), (a.serializer.is_some(), "serializer"), (a.staging, "staging")]
-            .into_iter().filter(|(on, _)| *on).map(|(_, name)| name).collect()
+            .into_iter().chain(grant2::names(&a)).filter(|(on, _)| *on).map(|(_, name)| name).collect()
     }
     /// Disarm every fault on this thread (test cleanup).
     pub(crate) fn disarm() { ARMED.with(|a| a.set(Armed { ceiling: None, ..Armed::default() })); }
@@ -3293,7 +3293,7 @@ pub(crate) mod retained_tests_hooks {
         }
     }
     /// The faults still armed on this thread (tests assert none is left behind).
-    pub(crate) fn armed() -> Armed { ARMED.with(|a| a.get()) }
+    pub(crate) fn armed() -> Armed { ARMED.with(|a| a.get()) } mod grant2; pub(crate) use grant2::*;
 }
 
 /// Resolved thermal+fit eigenstrain with each member's own E and the exact
