@@ -659,6 +659,11 @@ fn g3(source: &Value, inv: Option<&Value>) -> VResult {
                 && ids.contains(text(&r["basis_ref"]["ref_id"])),
         )?;
     }
+    // D29 (FK/retained/source.rs:498 NoNodes; I57 s1): every CaseSource has a
+    // non-empty body inventory.
+    for s in list(&b["sources"]) {
+        fail(!list(&s["body_membership"]).is_empty())?;
+    }
     for (i, a) in list(&b["product_attempts"]).iter().enumerate() {
         fail(u(&a["id"]) == i as u64)?;
         let old = list(&a["operational"]["old"]);
@@ -690,8 +695,10 @@ fn g3(source: &Value, inv: Option<&Value>) -> VResult {
                     .all(|s| list(&s["id_maps"]["members"]).len() == old.len()),
             )?;
         }
-        if !a["source_ref"].is_null() {
-            let s = at(&b["sources"], &a["source_ref"], "G3", "COVERAGE_MISMATCH")?;
+        // D22 (D16; C3:146-148): a dangling attempt source_ref is a C3
+        // reference defect (G5 PRODUCT_ATTEMPT); the source-dependent G3
+        // checks run only when the reference resolves.
+        if let Ok(s) = at(&b["sources"], &a["source_ref"], "G3", "COVERAGE_MISMATCH") {
             fail(
                 old.iter()
                     .map(|m| &m["member"])
@@ -726,8 +733,8 @@ fn g3(source: &Value, inv: Option<&Value>) -> VResult {
         // left to the G5 same-source binding; an out-of-range one already fails
         // the existing G3 member association above.
         let coverage = &a["proof"]["summary_coverage"];
-        if !coverage.is_null() && !a["source_ref"].is_null() {
-            let s = at(&b["sources"], &a["source_ref"], "G3", "COVERAGE_MISMATCH")?;
+        let resolved = at(&b["sources"], &a["source_ref"], "G3", "COVERAGE_MISMATCH");
+        if let (false, Ok(s)) = (coverage.is_null(), resolved) {
             let inventory = list(&s["body_membership"]);
             fail(
                 !inventory.is_empty()
@@ -910,8 +917,10 @@ fn g5_native(b: &Value) -> VResult {
                     .cloned()
                     .ok_or_else(|| error("G5", "ATTEMPT_MISMATCH"))?
             } else {
+                // D27: a class-1 ATTEMPT check reads the recorded
+                // invocation_before, never the WORK-derived running meter.
                 af(records.is_empty()
-                    && current >= u(&b["work"]["invocation_limit"])
+                    && u(&r["invocation_before"]) >= u(&b["work"]["invocation_limit"])
                     && r["kernel_terminal"]["reason"]["tag"] == "budget"
                     && r["kernel_terminal"]["reason"]["scope"] == "invocation")?;
                 BTreeMap::new()
@@ -952,15 +961,25 @@ fn g5_native(b: &Value) -> VResult {
                     // D5b (adaptive.rs:4576-4611, 4377): an escalating stop on a failed
                     // verification is a solve failure, so the verification pass never
                     // ran: no report and no verification-pass work.
+                    // D21: a verification shared build is also pass evidence; natively
+                    // it is obtained only inside verify_precision (adaptive.rs:4286).
                     if record["outcome"]["kind"] == "failed" && escalating(&record["outcome"]["reason"]) {
                         af(record["verification"].is_null()
-                            && u(&record["work"]["verification_lme"]) == 0)?;
+                            && u(&record["work"]["verification_lme"]) == 0
+                            && record["verification_shared_build_ref"].is_null())?;
                     }
                 }
-                // D5d (C2:22, :54; C1:114): a stop-rule reason names a layout row of
-                // the Run's source with the same body and kind.
+                // D5d/D28 (C2:22-24, :54; C1:114; adaptive.rs:4169-4197,
+                // 4714-4720): every quantity-bearing reason (stop_rule,
+                // verification_estimate, charge, publication_enclosure) names a
+                // layout row of the Run's source with the same body and kind.
                 let reason = &record["outcome"]["reason"];
-                if reason["tag"] == "stop_rule" {
+                if reason["space"] == "attempt"
+                    && matches!(
+                        text(&reason["tag"]),
+                        "stop_rule" | "verification_estimate" | "charge" | "publication_enclosure"
+                    )
+                {
                     let layout = list(&at(&b["sources"], si, "G5", "ATTEMPT_MISMATCH")?["layout"]);
                     af(layout.iter().any(|row| {
                         row["quantity"] == reason["quantity"]
@@ -1591,6 +1610,10 @@ pub mod reader_logic {
     pub fn accounting(attempt: &Value) -> [bool; 4] {
         accounting_rules(attempt)
     }
+    /// The D4d reason table for one unavailable case and its attempt.
+    pub fn reason_table(case: &Value, attempt: &Value) -> Result<(), ValidationError> {
+        super::reason_table(case, attempt)
+    }
     /// The G7 bare-code/detail split of a base failure text.
     pub fn g7_error(text: &str) -> ValidationError {
         base_error(text.to_string())
@@ -1852,6 +1875,59 @@ fn g5_coverage(a: &Value, c: &Value, s: Option<&Value>) -> VResult {
     pf(matches!(text(&st["certificate"]), "completed" | "failed")
         && matches!(text(&checks["certificate"]["kind"]), "passed" | "failed"))
 }
+/// D4d (S06 section 1): the exhaustive reason table for an unavailable case
+/// whose prepared_product_failure cause names this attempt, applied by the
+/// attempt's own error (D19).
+fn reason_table(c: &Value, a: &Value) -> VResult {
+    let pf = |ok| need(ok, "G5", "PRODUCT_ATTEMPT_MISMATCH");
+    let st = &a["stages"];
+    let proof = &a["proof"];
+    let e = &a["result"]["error"];
+    let run = &c["run"];
+    let expected = match text(&e["kind"]) {
+        "preparation" => {
+            pf(run.is_null() && st["preparation"] == "failed")?;
+            ("source_unavailable", "preparation")
+        }
+        // D4d (S06 section 1): native requires the case's own nonselected
+        // Run, and its run_ref is that Run; native with a selected Run is
+        // invalid.
+        "native" => {
+            pf(!run.is_null()
+                && run["kernel_terminal"]["kind"] != "selected"
+                && e["run_ref"] == run["id"])?;
+            if run["kernel_terminal"]["kind"] == "unresolved" {
+                ("kernel_unresolved", "kernel")
+            } else {
+                pf(run["kernel_terminal"]["kind"] == "refused")?;
+                ("kernel_refused", "kernel")
+            }
+        }
+        "capture" if run.is_null() => ("source_unavailable", "preparation"),
+        "capture" if run["kernel_terminal"]["kind"] != "selected" => {
+            if run["kernel_terminal"]["kind"] == "unresolved" {
+                ("kernel_unresolved", "kernel")
+            } else {
+                pf(run["kernel_terminal"]["kind"] == "refused")?;
+                ("kernel_refused", "kernel")
+            }
+        }
+        _ => {
+            pf(run["kernel_terminal"]["kind"] == "selected")?;
+            ("facade_certificate", "facade")
+        }
+    };
+    pf(c["reason"]["code"] == expected.0 && c["reason"]["phase"] == expected.1)?;
+    if matches!(text(&e["kind"]), "observable" | "g5a") {
+        let key = if e["kind"] == "observable" {
+            "observables"
+        } else {
+            "g5a"
+        };
+        pf(proof["checks"][key]["kind"] == "failed" && proof["checks"][key]["error"] == *e)?;
+    }
+    Ok(())
+}
 fn g5_products(source: &Value) -> VResult {
     let b = &source["retained_precision"]["body"];
     let pf = |ok| need(ok, "G5", "PRODUCT_ATTEMPT_MISMATCH");
@@ -1864,10 +1940,14 @@ fn g5_products(source: &Value) -> VResult {
     };
     // D4c (S06 section 1; C3:165): a case claiming a prepared_product_failure
     // cause has its own product attempt, the one the cause names.
+    // D20 (C3:165; D17 order): a selected case has a C3 product attempt.
     for c in list(&b["cases"]) {
         if c["reason"]["cause"]["kind"] == "prepared_product_failure" {
             pf(!c["product_attempt_ref"].is_null()
                 && c["product_attempt_ref"] == c["reason"]["cause"]["product_attempt_ref"])?;
+        }
+        if c["status"] == "selected" {
+            pf(!c["product_attempt_ref"].is_null())?;
         }
     }
     for (ai, a) in list(&b["product_attempts"]).iter().enumerate() {
@@ -2124,6 +2204,21 @@ fn g5_products(source: &Value) -> VResult {
         if c["status"] == "selected" {
             pf(a["result"]["kind"] == "ready")?;
         }
+        // D19 (S06 section 1: C2 causes apply only to outcomes without an
+        // actual C3 product attempt). An unavailable attempt's case is
+        // unavailable with prepared_product_failure naming this attempt, so the
+        // D4d reason table applies by the attempt's own error; a Ready
+        // attempt's case is selected, or unavailable with receipt_failure.
+        if a["result"]["kind"] == "unavailable" {
+            pf(c["status"] == "unavailable"
+                && c["reason"]["cause"]["kind"] == "prepared_product_failure"
+                && u(&c["reason"]["cause"]["product_attempt_ref"]) == ai as u64)?;
+        }
+        if a["result"]["kind"] == "ready" {
+            pf(c["status"] == "selected"
+                || (c["status"] == "unavailable"
+                    && c["reason"]["cause"]["kind"] == "receipt_failure"))?;
+        }
         g5_coverage(a, c, s)?;
         g5_stages(a, &pf)?;
         // R1'-R4 (checkpoint A, D8; C3:232-236): work-class rules, deferred with
@@ -2136,50 +2231,7 @@ fn g5_products(source: &Value) -> VResult {
         {
             pf(u(&c["reason"]["cause"]["product_attempt_ref"]) == ai as u64
                 && a["result"]["kind"] == "unavailable")?;
-            let e = &a["result"]["error"];
-            let run = &c["run"];
-            let expected = match text(&e["kind"]) {
-                "preparation" => {
-                    pf(run.is_null() && st["preparation"] == "failed")?;
-                    ("source_unavailable", "preparation")
-                }
-                // D4d (S06 section 1): native requires the case's own nonselected
-                // Run, and its run_ref is that Run; native with a selected Run is
-                // invalid.
-                "native" => {
-                    pf(!run.is_null()
-                        && run["kernel_terminal"]["kind"] != "selected"
-                        && e["run_ref"] == run["id"])?;
-                    if run["kernel_terminal"]["kind"] == "unresolved" {
-                        ("kernel_unresolved", "kernel")
-                    } else {
-                        pf(run["kernel_terminal"]["kind"] == "refused")?;
-                        ("kernel_refused", "kernel")
-                    }
-                }
-                "capture" if run.is_null() => ("source_unavailable", "preparation"),
-                "capture" if run["kernel_terminal"]["kind"] != "selected" => {
-                    if run["kernel_terminal"]["kind"] == "unresolved" {
-                        ("kernel_unresolved", "kernel")
-                    } else {
-                        pf(run["kernel_terminal"]["kind"] == "refused")?;
-                        ("kernel_refused", "kernel")
-                    }
-                }
-                _ => {
-                    pf(run["kernel_terminal"]["kind"] == "selected")?;
-                    ("facade_certificate", "facade")
-                }
-            };
-            pf(c["reason"]["code"] == expected.0 && c["reason"]["phase"] == expected.1)?;
-            if matches!(text(&e["kind"]), "observable" | "g5a") {
-                let key = if e["kind"] == "observable" {
-                    "observables"
-                } else {
-                    "g5a"
-                };
-                pf(proof["checks"][key]["kind"] == "failed" && proof["checks"][key]["error"] == *e)?;
-            }
+            reason_table(c, a)?;
         }
     }
     // P9 (C3:279-287): an unavailable result's error matches the first failed
@@ -4056,8 +4108,7 @@ fn g5_ordinary(source: &Value) -> VResult {
         if c["status"] == "selected" {
             fail(
                 c["selection"]["rcond_label"]
-                    == "sensitivity to matrix-entry perturbation, not to authored parameters"
-                    && !c["product_attempt_ref"].is_null(),
+                    == "sensitivity to matrix-entry perturbation, not to authored parameters",
             )?;
         }
     }

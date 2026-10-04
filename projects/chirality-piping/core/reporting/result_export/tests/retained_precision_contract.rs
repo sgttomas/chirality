@@ -170,6 +170,10 @@ fn apply_entry(shared: &Value, entry: &Value) -> (Value, Value) {
     // The shared format admits only rehash:"all" (D11).
     assert_eq!(entry["rehash"], "all", "{}", entry["id"]);
     rehash(&mut source);
+    // D24: the optional `after_rehash` edit list is applied after the rehash.
+    for e in entry["after_rehash"].as_array().cloned().unwrap_or_default() {
+        edit(&mut source, &e);
+    }
     (source, invocation)
 }
 #[test]
@@ -246,12 +250,12 @@ fn shared_rehashed_first_failure_mutations() {
 
 /// Observe one slice of the shared mutations against this reader's own
 /// expectation, print one outcome per mutation (visible with --nocapture) and
-/// check the slice tally. Snapshot 07a holds 236 mutations in all.
+/// check the slice tally. Snapshot 07b holds 253 mutations in all.
 fn slice_outcomes(tag: &str, range: std::ops::Range<usize>, want: &[(&str, usize)]) {
     use std::collections::BTreeMap;
     let shared = corpus();
     let mutations = shared["mutations"].as_array().unwrap();
-    assert_eq!(mutations.len(), 236);
+    assert_eq!(mutations.len(), 253);
     let mut tally = BTreeMap::new();
     let mut matched = 0;
     for mutation in &mutations[range.clone()] {
@@ -431,6 +435,23 @@ fn snapshot_07_mutation_outcomes() {
             ("G5 RETAINED_PRECISION_WORK_MISMATCH", 7),
             ("G5b RETAINED_PRECISION_SECTION_MISMATCH", 2),
             ("G8 RETAINED_PRECISION_PREPARATION_MISMATCH", 4),
+        ],
+    );
+}
+
+/// Snapshot-07b confirmation-repair pins (I62; D19-D30), mutations 236..253.
+#[test]
+fn snapshot_07b_mutation_outcomes() {
+    slice_outcomes(
+        "I63_OUTCOME_07B",
+        236..253,
+        &[
+            ("G1 RETAINED_PRECISION_RECEIPT_MISMATCH", 4),
+            ("G3 RETAINED_PRECISION_COVERAGE_MISMATCH", 2),
+            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 4),
+            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 5),
+            ("G5 RETAINED_PRECISION_WORK_MISMATCH", 1),
+            ("G5a RETAINED_PRECISION_SCALE_MISMATCH", 1),
         ],
     );
 }
@@ -2491,4 +2512,220 @@ fn d8_accounting_rules_on_shared_bases() {
         gate("G5", "RETAINED_PRECISION_WORK_MISMATCH"),
         "R2' old operational accounting without a lost trace"
     );
+}
+
+// ---------------------------------------------------------------------------
+// Confirmation repair round (ROOT rulings D19-D30): reader-local tests.
+
+/// D19: the converse of D4c. An unavailable C3 attempt needs a
+/// prepared_product_failure cause naming it (RV79-C1); a Ready attempt's case is
+/// selected or unavailable with receipt_failure.
+#[test]
+fn d19_converse_cause_binding() {
+    use serde_json::json;
+    let shared = corpus();
+    let preparation_error = base_source(&shared, P_BASE)["retained_precision"]["body"]["product_attempts"][1]["result"]["error"].clone();
+    let receipt_failure = json!({"kind":"receipt_failure","check":"association","field_path":"retained_precision.body"});
+    let precondition = json!({"kind":"unavailable_precondition","precondition":"capture","affected_refs":[]});
+    for (name, base, edits) in [
+        ("unavailable attempt under receipt_failure", F_BASE, vec![set(rb(json!(["cases", 1, "reason", "cause"])), receipt_failure.clone())]),
+        ("unavailable attempt under unavailable_precondition", F_BASE, vec![set(rb(json!(["cases", 1, "reason", "cause"])), precondition.clone())]),
+        ("preparation error with a selected Run under receipt_failure (RV79-B1c)", F_BASE, vec![
+            set(rb(json!(["cases", 1, "reason", "cause"])), receipt_failure.clone()),
+            set(rb(json!(["product_attempts", 1, "result", "error"])), preparation_error.clone()),
+        ]),
+        ("P' preparation failure under unavailable_precondition", P_BASE, vec![set(rb(json!(["cases", 1, "reason", "cause"])), precondition.clone())]),
+    ] {
+        assert_eq!(probe(&shared, base, edits), gate("G5", PRODUCT), "{name}");
+    }
+    // A Ready attempt in an unavailable case: receipt_failure only.
+    let unavailable_case = |cause: Value| {
+        vec![
+            remove(rb(json!(["cases", 1, "method"]))),
+            remove(rb(json!(["cases", 1, "selection"]))),
+            remove(rb(json!(["cases", 1, "source_identity_sha256"]))),
+            set(rb(json!(["cases", 1, "status"])), json!("unavailable")),
+            set(rb(json!(["cases", 1, "reason"])), json!({"code":"facade_certificate","phase":"facade","cause":cause})),
+            set(rb(json!(["cases", 1, "diagnostic_ref"])), json!("diagnostic:retained:synthetic-zero-load")),
+            set(json!(["diagnostics", base_source(&shared, "two_case_synthetic")["diagnostics"].as_array().unwrap().iter().position(|d| d["id"] == "diagnostic:retained:synthetic-zero-load").unwrap(), "code"]), json!("RETAINED_PRECISION_UNAVAILABLE")),
+        ]
+    };
+    assert_eq!(probe(&shared, "two_case_synthetic", unavailable_case(precondition)), gate("G5", PRODUCT), "Ready attempt under a C2 cause");
+    // With receipt_failure the D19 relation holds; the next defect is the
+    // unavailable case's rows still carrying a recovery method (G6).
+    assert_eq!(probe(&shared, "two_case_synthetic", unavailable_case(receipt_failure)), gate("G6", "RETAINED_PRECISION_ROW_METHOD_MISMATCH"), "Ready attempt under receipt_failure");
+}
+
+/// D20: a selected case without a C3 attempt is a C3 association defect
+/// (PRODUCT_ATTEMPT), split out of the ordinary check.
+#[test]
+fn d20_selected_without_c3_attempt() {
+    use serde_json::json;
+    let shared = corpus();
+    assert_eq!(
+        probe(&shared, ORD, vec![
+            set(rb(json!(["product_attempts"])), json!([])),
+            set(rb(json!(["cases", 0, "product_attempt_ref"])), json!(null)),
+        ]),
+        gate("G5", PRODUCT)
+    );
+}
+
+/// D21: a verification shared build on an escalating failed verification is
+/// evidence that the verification pass ran (RV79-C2).
+#[test]
+fn d21_verification_shared_build_is_pass_evidence() {
+    use serde_json::json;
+    let shared = corpus();
+    assert_eq!(
+        probe(&shared, "verification_failure_skip_synthetic", vec![set(rb(json!(["cases", 0, "run", "records", 1, "verification_shared_build_ref"])), json!(0))]),
+        gate("G5", ATTEMPT)
+    );
+}
+
+/// D22: a dangling attempt source_ref is G5 PRODUCT_ATTEMPT; the dependent G3
+/// checks are skipped.
+#[test]
+fn d22_dangling_attempt_source_ref() {
+    use serde_json::json;
+    let shared = corpus();
+    assert_eq!(
+        probe(&shared, F_BASE, vec![set(rb(json!(["product_attempts", 1, "source_ref"])), json!(9))]),
+        gate("G5", PRODUCT)
+    );
+}
+
+/// D24: the harness applies `after_rehash` edits after the rehash; forged
+/// receipt and publication hashes give G1.
+#[test]
+fn d24_after_rehash_edits() {
+    use serde_json::json;
+    let shared = corpus();
+    for (name, path) in [
+        ("receipt hash", json!(["retained_precision", "receipt_sha256"])),
+        ("publication hash", rb(json!(["publication_sha256"]))),
+    ] {
+        let entry = json!({"id":"i63_after_rehash","base":ORD,"edits":[],"rehash":"all",
+            "after_rehash":[{"path":path,"op":"set","value":"0".repeat(64)}]});
+        assert_eq!(observe(&shared, &entry), gate("G1", "RETAINED_PRECISION_RECEIPT_MISMATCH"), "{name}");
+    }
+    let entry = json!({"id":"i63_after_rehash_none","base":ORD,"edits":[],"rehash":"all","after_rehash":[]});
+    assert_eq!(observe(&shared, &entry), Value::Null);
+}
+
+/// D25: readers validate parsed values; an integral float counter is the same
+/// number as the integer (I-JSON/JCS), so the receipt still validates.
+#[test]
+fn d25_integral_float_is_the_same_number() {
+    use serde_json::json;
+    let shared = corpus();
+    assert_eq!(
+        probe(&shared, ORD, vec![
+            set(rb(json!(["cases", 0, "run", "case_charge"])), json!(17.0)),
+            set(rb(json!(["work", "charged"])), json!(17.0)),
+        ]),
+        Value::Null
+    );
+}
+
+/// D27: the idle (group-null) Run rule reads the recorded invocation_before;
+/// a broken meter chain is native WORK (RV80 PR14).
+#[test]
+fn d27_idle_rule_reads_recorded_invocation_before() {
+    use serde_json::json;
+    let shared = corpus();
+    let run = |k: &str| rb(json!(["cases", 1, "run", k]));
+    assert_eq!(
+        probe(&shared, F_BASE, vec![
+            set(run("records"), json!([])),
+            set(run("attempts"), json!([])),
+            set(run("case_charge"), json!(0)),
+            set(run("invocation_increment"), json!(0)),
+            set(run("invocation_before"), json!(60000000000u64)),
+            set(run("invocation_after"), json!(60000000000u64)),
+            set(run("cache_before"), json!([])),
+            set(run("cache_after"), json!([])),
+            set(rb(json!(["cases", 1, "run", "origin", "group"])), json!(null)),
+            set(rb(json!(["cases", 1, "run", "kernel_terminal"])), json!({"kind":"unresolved","reason":{"space":"unresolved","tag":"budget","scope":"invocation"}})),
+            set(rb(json!(["groups", 0, "source_refs"])), json!([0])),
+        ]),
+        gate("G5", "RETAINED_PRECISION_WORK_MISMATCH")
+    );
+}
+
+/// D28: every quantity-bearing attempt reason resolves to a layout row with the
+/// same body and kind (RV80 PR12).
+#[test]
+fn d28_quantity_reasons_resolve_to_layout() {
+    use serde_json::json;
+    let shared = corpus();
+    let mut misses = Vec::new();
+    for (tag, extra) in [
+        ("verification_estimate", json!({})),
+        ("charge", json!({})),
+        ("publication_enclosure", json!({"predicate":"absolute_bound"})),
+    ] {
+        let mut reason = json!({"space":"attempt","tag":tag,"quantity":{"tag":"displacement","dof":{"node":99,"component":"UX"}},"body":0,"kind":"translation"});
+        for (k, v) in extra.as_object().unwrap() {
+            reason[k] = v.clone();
+        }
+        let got = probe(&shared, "p512_ladder_synthetic", vec![
+            set(rb(json!(["cases", 0, "run", "records", 0, "outcome", "reason"])), reason.clone()),
+            set(rb(json!(["cases", 0, "run", "attempts", 0, "outcome", "reason"])), reason),
+        ]);
+        if got != gate("G5", ATTEMPT) {
+            misses.push(format!("{tag}: got {got}"));
+        }
+    }
+    assert!(misses.is_empty(), "{}", misses.join("\n"));
+}
+
+/// D29: an empty body inventory under a coverage roster fails G3 (RV80 PR11).
+#[test]
+fn d29_empty_body_inventory() {
+    use serde_json::json;
+    let shared = corpus();
+    assert_eq!(
+        probe(&shared, ORD, vec![
+            set(rb(json!(["sources", 0, "body_membership"])), json!([])),
+            set(rb(json!(["product_attempts", 0, "proof", "summary_coverage"])), json!([])),
+        ]),
+        gate("G3", COVERAGE)
+    );
+}
+
+/// D29: any CaseSource with an empty body inventory fails G3, with or without
+/// a coverage roster (here on cert_failed_before_summary, coverage null).
+#[test]
+fn d29_empty_body_inventory_without_roster() {
+    use serde_json::json;
+    let shared = corpus();
+    let mut entry = shared["must_pass"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|m| m["id"] == "cert_failed_before_summary")
+        .unwrap()
+        .clone();
+    assert_eq!(observe(&shared, &entry), Value::Null);
+    entry["edits"]
+        .as_array_mut()
+        .unwrap()
+        .push(set(rb(json!(["sources", 1, "body_membership"])), json!([])));
+    assert_eq!(observe(&shared, &entry), gate("G3", COVERAGE));
+}
+
+/// D30: the native run_ref on a nonselected Run (kills M13; no shared base has
+/// a nonselected native Run).
+#[test]
+fn d30_native_run_ref_on_nonselected_run() {
+    use serde_json::json;
+    let case = |run_id: u64| {
+        json!({"status":"unavailable","reason":{"code":"kernel_unresolved","phase":"kernel","cause":{"kind":"prepared_product_failure","product_attempt_ref":0}},
+               "run":{"id":run_id,"kernel_terminal":{"kind":"unresolved","reason":{"space":"unresolved","tag":"ceiling"}}}})
+    };
+    let attempt = json!({"result":{"kind":"unavailable","error":{"kind":"native","run_ref":3}},"stages":{"native":"failed"},"proof":null});
+    assert!(rp::reader_logic::reason_table(&case(3), &attempt).is_ok());
+    let got = rp::reader_logic::reason_table(&case(2), &attempt).unwrap_err();
+    assert_eq!((got.gate, got.code.as_str()), ("G5", PRODUCT));
 }
