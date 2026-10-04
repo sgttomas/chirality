@@ -11065,3 +11065,31 @@ Slice F's order is RETURN §3.
 - **07j:** a shared `not_required` must-pass entry closing C04, or a contract-cited reason why none can be valid.
 
 **RV93 N-5** (a real-input Candidate test) is **deferred to U8,** so that no PP change follows slice Q.
+
+## U7 slice Q: Pass B on the U7 head holds the registered entry (ROOT, 2026-10-04 UTC)
+
+**I65's run** is `R/I65/u4_g7_04/` (RETURN.md `7b439fc1…`; SHA256SUMS 86/86 OK; no machine paths). It ran Pass B on `cfda60403f` with the u4_g7_03 tools.
+- **Exit 6.** The only delta is the same six added PP tests as at the final basis.
+- **Every other gate is 0:**
+  - tree;
+  - entry, byte-identical to `0c7827b6ad`'s, M included;
+  - law (42/0);
+  - statics;
+  - line map;
+  - the premise pins (`:4252`, `:4253`, `:4305`);
+  - TEXT (D 14,734, identical to Pass A);
+  - delta, forms and §11 (410);
+  - controls (12/12);
+  - runner, witnesses (9/9) and the challenge.
+- **The maxima are unchanged** (0.8881 / 0.8929 M). `u1_milestone_successor_both_modes` passes with its eligibility assertion flipped.
+- **The first run exited 5,** as designed, on three `item` hunks, entered per ROOT's direction:
+  - the RS flag, as D1-live on I66's evidence;
+  - `lib.rs:2235` and `:2254`, as doc only.
+- **No other entry was needed;** the comment-only and test hunks classify on their own.
+
+**A ROOT correction:** the code delta from `7f07a2f7b4` to `cfda60403f` is **22** files, not the 24 in ROOT's message to I65. ROOT's listing was miscounted; I65's count is right.
+
+**RV89 confirms:**
+- the three new reviewed entries, with its own allocator measurement of the eligible branch on the milestone with its invocation;
+- the run;
+- whether the TS-only commit (`e5e1693ceb`) and slice L's fixture and test commits need a Pass B rerun, or whether a mechanical rerun at U9's gate suffices.
