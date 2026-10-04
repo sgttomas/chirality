@@ -11290,3 +11290,35 @@ The checklist is kept in the work graph's T3 row once U9 merges.
 - N-3's scope clause.
 
 **Then RV94 confirms the whole round.**
+
+## The RV94 repair round, part 2: D-U7-4's summary declared; N-2 and N-3 (ROOT, 2026-10-04 UTC)
+
+**I67's return** is `R/I67/u7_repair_01/` (RETURN.md `43c94eb6…`; SHA256SUMS 51/51 OK; no machine paths).
+- **S-1:**
+  - D-U7-4's description names the summary.
+  - Two `summary` forms with the invocation use the same inputs as their standing twins. The new value `by_validated_class_current` is defined in the note: Python and Rust are Current (69); TS is not-Current (97) without the live capture.
+  - Each language asserts its own side.
+- **N-2:** TS's reader docstring takes the Python/Rust wording. It stays line-neutral.
+- **N-3:**
+  - A scope clause declares the G7 class "an invalid enum value in a not_required case's quality", with each language's code and the three enum fields.
+  - It comes with a new shared probe, `g7_not_required_quality_enum_invalid`, appended as mutation 278 so no existing slice moves. It carries `expected_by_reader`, per the 06b precedent.
+  - It is pinned in all three languages.
+- **The controls:**
+
+  | Check | Result |
+  |---|---|
+  | vitest | 3,552 (10 new, 0 changed outcomes) |
+  | tsc | clean |
+  | Python retained | 463 |
+  | result_export | 171 |
+  | the TS oracle diff | changes on no input |
+  | mutants | each killed by the language whose side it changes |
+
+**Rulings:**
+1. **The corpus is "07k": 07j plus the N-3 probe,** 278 mutations, `482449bf…`. The tests' docstring ("Snapshot 07j plus RV94 N-3's G7 probe") is accurate, so no text change is needed.
+2. **I67's 4-line edits per Python and Rust test file are accepted** beyond the one-line allowance. They are the scope fence, the vocabulary mapping, a coverage check, and widening I66's D-U7-4 side tests to accept each form's own side. The first candidate run, which failed those tests (`py_cand`/`re_cand`), is recorded.
+3. **The case file stays at v4:** no field changes, and unknown summary values fail loudly.
+
+**Committed:** ROOT verified the 9 files' hashes and committed them as **`e543c3d8f3`**, the U7 head (pushed).
+
+**RV94 confirms the whole round** (`ffe65ef203..e543c3d8f3`). **Then U9's cut.**
