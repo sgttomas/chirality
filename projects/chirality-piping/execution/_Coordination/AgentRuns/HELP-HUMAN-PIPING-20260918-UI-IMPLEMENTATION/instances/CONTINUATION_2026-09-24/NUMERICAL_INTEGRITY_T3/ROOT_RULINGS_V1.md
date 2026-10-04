@@ -11361,3 +11361,41 @@ The checklist is kept in the work graph's T3 row once U9 merges.
 - They are comment-only and line-neutral, with no Pass B rule key on an edited line.
 - The citation check is extended to fail on stale or bare code line citations.
 - I61 does this in WT/f2a-u7 (`R/I61/u9_citations_01/`), and RV95 covers it.
+
+## RV94 confirms the U7 repair round: PASS (ROOT, 2026-10-04 UTC)
+
+**RV94's addendum** is `R/REVIEW_RV94/u7_01/ADDENDUM_01.md` (sha256 `58941dba…`; SHA256SUMS 116/116 OK). It confirms `ffe65ef203..e543c3d8f3`. Verdict: **PASS**, with 0 BLOCKING, 0 SHOULD-FIX and 2 new NOTE findings.
+
+**S-1 is closed.**
+- RV94's oracle on 421 inputs gives 0 mismatches in Python and Rust.
+- The summary changes on exactly the 14 inputs whose requested refs differ from the receipt's cases.
+- Python and Rust agree on token and summary on all 421 inputs. TS with a live capture agrees on all 419 it can express.
+- **In every language, the summary is Current exactly when that language's standing is eligible.**
+- The only remaining difference is D-U7-4's, which is declared and pinned per language.
+
+**N-4 is resolved, and N-2 and N-3 are closed.** Probe 278 reproduces in each reader, and 07k is 07j plus the probe.
+
+**The fence extension widens.** Each form's whole expectation is now checked by exact equality.
+
+**The comment repairs** are true against the code, comment-only and line-neutral.
+
+**Nothing else changed:**
+
+| Check | Result |
+|---|---|
+| sweeps | registered `9a74ff16…`, Stale `0e2db8b8…` |
+| the live successor | unchanged |
+| gates, codes, classes | unchanged |
+| suites | only additions |
+| PP, registered and Stale | 705/1/10, identical |
+| runner | 85/2 |
+| RV94's 17 new mutants | all killed by the language whose side they change, except R34 (N-5) |
+
+**N-5:** Python reads `expected` and never `expected_by_reader.python`, so a wrong value there survives. The two fields are equal today (the 06b pattern). **Routed to wider F2a,** as optional.
+
+**N-6, ruled.** The repair round literally meets RV89's Pass B condition (d): production `.rs` changes in the D1 crates.
+- They are PP comments only, plus `semantic_contract.rs`'s line-neutral summary edit, which PP never calls.
+- **They are covered by the full Pass B on the U9 PR head,** already required by main's PR1080 (U9 decision 4). That Pass B classifies every such hunk, and RV89 confirms it.
+- **The cut proceeds** after I61's citation rewording.
+
+**U7 is accepted** at `e543c3d8f3`, pending I61's comment-only citation rewording, which RV95 covers. **The reader eligibility switch-on is complete.**
