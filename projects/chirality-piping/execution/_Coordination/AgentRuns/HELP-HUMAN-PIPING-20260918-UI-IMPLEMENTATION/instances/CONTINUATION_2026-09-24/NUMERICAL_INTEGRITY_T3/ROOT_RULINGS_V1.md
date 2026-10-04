@@ -9576,3 +9576,30 @@ The next unused IDs are I67 and RV87.
 - **Errata for RV87** (ADDENDUM §5): four prose counts in the sealed G4 records predate the last two rule edits. No total is affected, and the corrected values are in §5.
 
 **RV87 is dispatched** under `BRIEFS/RV87_U4_G4_REVIEW.md`.
+
+## RV83 on the G4 repairs: R-2 and R-3 fixed; R-1 and B-2 closed, with R-4 carried (ROOT, 2026-10-04 UTC)
+
+**RV83's report** is `R/REVIEW_RV83/u4_g2_03/REVIEW.md` (sha256 `f7ad7afe…`; SHA256SUMS OK; no machine paths). Its earlier packets re-verify.
+
+**Fixed:**
+- **R-2:** `validate_profile` is priced at 25.6 MB of text volume, a loose but sound upper bound.
+- **R-3:** the O-N provenance parse is priced at 48,000 B, and RV83 checked that it bounds any ≤ 128-byte non-object parse.
+- **R-1's two reported classes:**
+  - generic receivers: 24 calls hiding 64 functions before, 0 now;
+  - dropped reachable edges: 15 before, 0 now.
+  
+  formation_check.rs is now reached and priced.
+
+**B-2's criterion is met:** every text site on the D1 call graph is covered by a stated bound or a correct exclusion.
+
+**R-4 (SHOULD-FIX, new):** the extractor's stated limits are still inaccurate.
+- 24 calls to the enclosing impl's own methods produce no edge: locals or parameters typed `Self`, and a self-call inside index brackets.
+- The audit mislabels them "std/external".
+- **The effect is nil:** the true targets hold no text, no cycle closes, and only two non-recursive functions (structural_adapter.rs:1204 and :1217) stay unreached.
+
+**Ruled:** R-4 is a carry-over to I65, as a records item delivered with G5's return.
+- Resolve `Self`-typed receivers to the enclosing impl, and stop the receiver pattern at `[`.
+- Correct limit 5 and the audit labels.
+- Re-run TEXT and the recursion inventory, and confirm both are unchanged apart from the two functions.
+
+It moves no figure and does not gate G5's code. **R-1 and B-2 are closed as confirmed.** RV83 checks R-4 at G5's return.
