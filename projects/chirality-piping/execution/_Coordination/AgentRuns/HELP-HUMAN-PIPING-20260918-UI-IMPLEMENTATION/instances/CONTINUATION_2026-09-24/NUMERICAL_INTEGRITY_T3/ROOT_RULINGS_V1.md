@@ -11215,3 +11215,48 @@ Slice F's order is RETURN §3.
 4. Repairs and confirmation.
 5. The freeze, with the exact-final-head gates.
 6. The owner's hold question, then the merge, with records, ruling and graph in the same pass.
+
+## RV94 on U7: PASS; the summary aligned across languages; the stale-comment repair; a public-activation checklist (ROOT, 2026-10-04 UTC)
+
+**RV94's report** is `R/REVIEW_RV94/u7_01/REVIEW.md` (sha256 `f621439e…`; SHA256SUMS 81/81 OK; no machine paths). It reviewed `ffe65ef203` against `3f5fca3010`. Verdict: **PASS**, with 0 BLOCKING, 1 SHOULD-FIX and 4 NOTE findings.
+
+**Independently established:**
+- **RV94's own stdlib oracle,** from C1:160/:162, D2 §4.9.4/§4.9.9, D-U6-1 and D-U7-4, over 420 inputs (27 of them hostile). It finds 0 mismatches in Python, Rust and TS, on base and candidate.
+  - 52 inputs change, and only in eligibility fields; the token becomes eligible on exactly 36.
+  - Gates, codes, publication hashes and classes are identical.
+- **The published bytes:**
+  - RV94's own four PP builds give byte-identical sweeps, registered `9a74ff16…` and Stale `0e2db8b8…`.
+  - The live successor is `ac6986b0…` / `6cd1d249…`.
+  - PP and the runner are identical test by test.
+- **The TS hostile variants fail closed.** The panels close only by the N-5 gate.
+- **Mutants:** 29 of RV94's 30 are killed; M09 is equivalent. The implementers' sets reproduce.
+- **ROOT's notes:**
+  - I66's equivalent mutant is confirmed;
+  - 07j's G8 refusal through IPC is a harness limit (`materials: []`);
+  - the pin inventory is complete;
+  - U5 is confirmed;
+  - the `liveStressBinding` seam is acceptable.
+
+**S-1, ruled: align, then declare the remainder.** After U7, the summary's `withheld` differs across languages where the requested refs differ from the invocation's cases, on inputs no declared entry covers. Nothing displays it, but the case file calls any undeclared difference a defect.
+- **I66: Python and Rust count the summary as Current only when the standing is eligible,** as TS does since `e5e1693ceb`. They pass the caller's requested refs only then, and otherwise give the not-Current count. That also resolves **N-4** before public activation.
+- **I67: D-U7-4's description names the summary.** Add `summary` forms with an invocation, using a new vocabulary value for a Current summary, so that the only remaining cross-language summary difference, the live capture, is declared and pinned in all three languages.
+
+**N-2: I67 rewords TS's reader docstring** (`retainedPrecision.ts:1307`, "eligibility as in C1:160") to the Python/Rust wording. That docstring overstates what the reader checks; the carriers correctly give `needs_recompute` on the two variants.
+
+**N-3:** an invalid enum in a not_required case's quality is refused at G7 with different codes: Python/Rust `SOURCE_NUMERICAL_CASE_INVALID`, TS `SOURCE_PRODUCER_CONTRACT_UNSUPPORTED`. This is pre-existing. **I67 adds a truthful scope clause** declaring this class, as with the blocked-envelope clause, pinned in all three languages. Any alignment of the codes is routed to wider F2a.
+
+**U9 decision 6 is folded in: the six stale "no permit" comments, line-neutral and comment-only:**
+- **I61:** PP `lib.rs:2185`, `:2286`, `:2919` and `retained_facade_tests.rs:2`;
+- **I65:** `retained_memory.rs:5–8` and `:2847`.
+
+**The order:** I66, I61 and I65 work concurrently on disjoint files in WT/f2a-u7 at `ffe65ef203`. I67 follows I66, because the case file is shared. **RV94 confirms the repair round** (same-reviewer confirmation). Then U9's cut.
+
+**The public-activation checklist (opened by this ruling).** Public activation, meaning a product caller publishing successors to users (D-U7-1), requires at least:
+1. **RV94 N-1:** the Tauri rule-check backend (`src-tauri/src/lib.rs:2739–2836`, `qualify_rule_mechanics_with_context`) accepts a successor that comes with its invocation after U7. It needs its own review and tests.
+2. **RV92 N-7:** memoize the binding before native activation.
+3. **Native Current for successors** (U9 decision 7).
+4. **T6's successor outputs** replacing the explicit N-5 panel refusal deliberately (the T6 notice).
+5. **RV94 N-4,** to be resolved by the S-1 alignment above, and confirmed.
+6. **A fresh review** of the activation itself.
+
+The checklist is kept in the work graph's T3 row once U9 merges.
