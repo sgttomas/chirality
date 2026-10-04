@@ -9565,3 +9565,14 @@ The next unused IDs are I67 and RV87.
 - **RV87 (fresh)** reviews G4 as a whole once the addendum lands.
 
 The next unused IDs are I67 and RV87.
+
+## U4 G4 addendum at l ≤ 128: the margin rule holds (ROOT, 2026-10-04 UTC)
+
+**I65's `ADDENDUM_L128.md`** is in `R/I65/u4_g4_01/`. SHA256SUMS now covers 92 files and verifies OK, with no machine paths. No existing file changed; only 15 lines were appended.
+- **At l = 128,** with everything else at the D1 caps and ε = 2, the admission maximum is **0.8510 M (sparse) and 0.8559 M (dense)**, at W3. That is 197 MB and 178 MB under the 0.9 M rule. The figure equals the sensitivity grid's l = 128 row.
+- **Per phase:** W4 is 0.849 / 0.854 M, and X1 is 0.795 / 0.800 M. D is 14,694 and D_env is 9,360.
+- **The G2 amendment:** DOMAIN.md §2's `l` row now reads ≤ 128. The primitive_loads capacity cap is ≤ 128, and the derived source_count is 4,768.
+- **The N1 reserve** is priced conservatively, as push-growth headroom (about 1.07 MB). Grant 1b reserves exactly one slot, so G5 may tighten it to about 152 B.
+- **Errata for RV87** (ADDENDUM §5): four prose counts in the sealed G4 records predate the last two rule edits. No total is affected, and the corrected values are in §5.
+
+**RV87 is dispatched** under `BRIEFS/RV87_U4_G4_REVIEW.md`.
