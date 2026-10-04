@@ -8757,3 +8757,37 @@ New findings are triaged under D36.
 - **`capture` (a):** all three readers reject it at G5 PRODUCT_ATTEMPT. It stays tracked under D36. All three readers agree, so no parity gap remains on it.
 
 RV79's D37 check is pending.
+
+## The F2a readers accepted and fanned in (ROOT, 2026-10-03 UTC)
+
+**RV79 D37-scoped check (confirm 06): PASS** (0 BLOCKING, 0 SHOULD-FIX, 2 NOTE). RV79 encoded the native sequence independently and compared it with Python on 250 error-kind × stage-record pairs: 0 mismatches. Nothing is weakened. NOTE N1, tracked under D36, is that the D37 test takes its expected values from the reader's own table, so M35 and M37 survive. The next reader round writes the expected table into the test independently.
+
+**Both acceptance conditions are met:**
+- (a) every confirmation finding is repaired and confirmed (rounds 01–06; D1–D37);
+- (b) the real milestone receipts pass all three readers in both modes (I61's experiment 02, with ROOT's independent Python check).
+
+**Accepted:** the three retained-precision readers at READER `85905e95e9`, with their tests, the retained-precision schema and the shared corpus (snapshot 07f):
+- Python `P/core/analysis_runs/retained_precision.py`;
+- Rust `P/core/reporting/result_export/src/retained_precision.rs`;
+- TypeScript `P/apps/desktop/src/features/results/retainedPrecision.ts`.
+
+**Not accepted by this:**
+- reader eligibility and public activation. The completeness holds stay false until the producer path qualifies (the handoff constraint);
+- **two artefacts the reader branch carries that no reviewer covered:**
+  - the semantic-contract table fixture `semantic_contract_v0_3_preview_physics_retained_1.json`, bound by hash at G0;
+  - the `results.v0.3.schema.yaml` successor branch (149 lines).
+  
+  Both came with the reader drafts frozen at the handoff (`ae97b7d5c2`). RV78's first review said it did not review the YAML branch. A scoped review of both is dispatched to RV78, and findings are repaired on NUM.
+
+**Fan-in:** the reader branch was merged into NUM as `c15e64b756`, with no rebase and no conflicting file.
+- All 13 merged files are byte-identical to READER `85905e95e9`.
+- ROOT's runs on NUM: Python 371, Rust 58 (default toolchain). TypeScript is byte-identical to its verified head (436/436, tsc 0); NUM has no node_modules or WASM assets to rerun it in place.
+
+**Tracked for the next reader round (D36):**
+- `capture` (a)'s Run representation, decided together with the serializer;
+- RV79-N1 (an independent expected table in the D37 test);
+- RV80-N2 (`integral_receipt`'s scope pin);
+- RV81 R35 (done);
+- the deferred-base survivors.
+
+**This closes handoff step 3.** Next is step 4: memory/profile/M and the producer receipt transaction. Its serializer brief carries the producer gaps G-a to G-l, the assumptions A1, A2 and A4, T1's emission, D6a's exact ordinary list, D9b's explicit null, RV77-N4's owner binding and the deferred producer-solved witnesses.
