@@ -189,8 +189,17 @@ import json as _json, os as _os
 _PP = "product_physics/src/"
 for _c in _json.load(open(_os.path.join(_os.path.dirname(__file__), "repair_candidates.json"))):
     _s = _c["site"].split("core/")[-1].replace(_PP, "")
-    _k = (_s, re.sub(r"\s", "", _c["arg"]))
+    _k = (_s, re.sub(r"\s", "", re.sub(r"(^|\s)//[^\n]*", r"\1", _c["arg"])))
     if (_s, "*") in MANUAL and _k not in MANUAL:
         MANUAL[_k] = MANUAL[(_s, "*")]
 for _s in ("lib.rs:8795", "lib.rs:8799", "retained_product.rs:2383", "retained_product.rs:2421", "source_receipt/rows.rs:29", "pressure_runtime.rs:92"):
     MANUAL.pop((_s, "*"), None)
+
+# ---- G6 repair, records-only (RV87 G6r N-2): at retained_product.rs:2332/:2351 the `suffix` is
+# stable_suffix(&row.entity_ref) (:2223), an input-derived id, and station_id_location(loc) is a
+# location label (the composite class). Same bounds, same bytes; only the labels change. ----
+MANUAL.update({
+    ("retained_product.rs:2332", "suffix"): ("IN128", "suffix = stable_suffix(&row.entity_ref) (retained_product.rs:2223): an input-derived id of the same length"),
+    ("retained_product.rs:2351", "suffix"): ("IN128", "suffix = stable_suffix(&row.entity_ref) (retained_product.rs:2223): an input-derived id of the same length"),
+    ("retained_product.rs:2351", "station_id_location(loc)"): ("COMP", "station_id_location(loc): a location label (the composite class, 600 B, as priced)"),
+})

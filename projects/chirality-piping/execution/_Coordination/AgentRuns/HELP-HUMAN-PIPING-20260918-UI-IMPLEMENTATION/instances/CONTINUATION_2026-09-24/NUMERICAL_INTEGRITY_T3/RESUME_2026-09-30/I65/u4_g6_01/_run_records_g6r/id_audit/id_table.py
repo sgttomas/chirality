@@ -48,7 +48,7 @@ CLASSV = {"ident": 128, "ident_debug": 770, "result_id": 1024, "composite_id": 6
 table, md = collections.defaultdict(dict), []
 tot = collections.Counter()
 for c in C:
-    c = dict(c); c["short"] = c["site"].split("core/")[-1].replace(PP, ""); c["a"] = re.sub(r"\s", "", c["arg"]); c["b"] = c["binding"] or ""
+    c = dict(c); c["short"] = c["site"].split("core/")[-1].replace(PP, ""); c["a"] = re.sub(r"\s", "", re.sub(r"(^|\s)//[^\n]*", r"\1", c["arg"])); c["b"] = c["binding"] or ""
     m = id_rules.MANUAL.get((c["short"], c["a"])) or id_rules.MANUAL.get((c["short"], "*"))
     if m: src, why = m
     else:

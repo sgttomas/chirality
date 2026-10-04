@@ -934,7 +934,7 @@
    }
   },
   "core/product_physics/src/lib.rs:1149": {
-   "//`none`isunreachable(F1aN1):K-D5sets`global_dof`onevery//`Estimate`record;thefallbackkeepstheformattertotal.check.global_dof.map_or_else(||\"none\".to_string(),|dof|integrity_dof_label(model,dof))": {
+   "check.global_dof.map_or_else(||\"none\".to_string(),|dof|integrity_dof_label(model,dof))": {
     "bytes": 131,
     "source": "TPLLABEL"
    }
@@ -3684,7 +3684,7 @@
    },
    "suffix": {
     "bytes": 128,
-    "source": "STATIC"
+    "source": "IN128"
    }
   },
   "core/product_physics/src/retained_product.rs:2351": {
@@ -3694,11 +3694,11 @@
    },
    "station_id_location(loc)": {
     "bytes": 600,
-    "source": "STATIC"
+    "source": "COMP"
    },
    "suffix": {
     "bytes": 128,
-    "source": "STATIC"
+    "source": "IN128"
    }
   },
   "core/product_physics/src/retained_product.rs:2383": {

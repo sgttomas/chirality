@@ -10518,3 +10518,49 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
 - **I66 updates the scope assertions** in the Rust, Python and TS consumers, one line each. This is a fence extension to the TS test line, so the change stays atomic.
 - RV92's optional alignment of 24 of the 28 codes in TS is **not** required.
 - **RV92 confirms. Then U6 merges into NUM.**
+
+## Registration applied; M = 4,026,531,840 B selected under D-7; U3 grant 2 dispatched (ROOT, 2026-10-04 UTC)
+
+**I65's runner-test change (RV89 G6r N-1)** is in `R/I65/u4_g6_01` RETURN.md Addendum 3 (SHA256SUMS 122/122 OK; no machine paths).
+- **`registration.diff`:** sha256 `9ae2c889daeb8ec59c159c49b2f5eddf99472eaff7cd8d63bbd8263f909ce40b`; 5 files, +183/−23.
+- **ROOT compared it with `registration.g6r.diff`.** Only the runner/headless hunk differs. `explicit_headless_refusal_…` now reads the profile from the Direct entry on the two-case variant, which D1.4 refuses after the build clause. It asserts:
+  - that the Direct bytes equal the value route's;
+  - that there is no successor;
+  - that the census sees two load cases.
+- **I65's scratch-only permit probe** granted 2 permits with the previous test (the positive control) and 0 with the new one across the whole runner suite. **N-1 is discharged:** no runner test reaches W1 outside PP's reviewed lock.
+- **Records-only items:**
+  - RV87 G6r N-2: three identifier rows are relabelled; bounds and bytes are unchanged.
+  - RV87 G6r N-3: `//` comments are stripped from audit keys.
+  - RV87 G6r N-1: the re-qualification obligation is recorded in QUALIFICATION.md §11.
+  - RV89 G6r N-3.
+  - I65 re-ran the TEXT chain; its outputs are byte-identical.
+
+**Applied:** ROOT applied `registration.diff` to `b43378d90a` in WT/f2a-memory and committed it as **`0c7827b6ad`** on `codex/piping-f2a-memory-20261004` (pushed).
+- **The commit equals the reviewed diff:** applying the diff to `b43378d90a` in a scratch index writes tree `e78dff392b99…`, the commit's own tree.
+
+**ROOT's registered runs in WT/f2a-memory** (`--locked --offline`, CARGO_BUILD_JOBS=4, RUST_TEST_THREADS=2, memguard 5387 running):
+- **This build is the registered one.** The build script's `OPS_RETAINED_BUILD_IDENTITY` and `OPS_RETAINED_REVIEWED_INPUTS` equal the registered entry's strings byte for byte. PP's `retained_precision_admission`, which expects `Registered` exactly when the identity matches, passes 5/5.
+- **PP (all targets, `--no-fail-fast`):** 699 passed, 1 failed (the Mac t13), 10 ignored. Witnesses: 9/9.
+- **runner/headless:** 85 passed, 2 failed (base's own two `load_reference` failures).
+- **Outcome-identical to I65's registered run.** I65's eleventh ignored test is its scratch-only `zz_i65_g5_fixture_sweep`, which is not in the tree.
+
+**Selected: M = 4,026,531,840 B (3.75 GiB) under D-7,** for the one registered build. That build is the dev/test identity: aarch64-apple-darwin, rustc 1.97.1 `8bab26f4f68e`, debug, opt-level 0, debug assertions on, panic=unwind, no RUSTFLAGS.
+- **The admission law priced in that build:** E_mov,max + R ≤ 0.8881 M sparse and 0.8929 M dense (R = 64 MiB, S1), within the 0.9 M margin rule.
+- Pricing is complete (ESTIMATES = 0), so **no permit rests on symbolic or partially priced terms.**
+
+**What this establishes, and what it does not.**
+- A permit is now constructible only for in-domain (D1) Direct invocations in this one build identity, within PP's reviewed lock. Every other identity is `Stale` and keeps the ordinary route.
+- It does **not** open reader eligibility, standing (receipts stay `needs_recompute` until U7) or public activation.
+- **Re-qualification obligations stand:**
+  - any future Direct caller from another workspace;
+  - any change to the D1 call graph (re-run TEXT and repeat RV87's non-candidate review);
+  - QUALIFICATION.md §11.
+
+**Next: I61, U3 grant 2** (`BRIEFS/I61_U3_GRANT2.md`), in WT/f2a-memory on top of `0c7827b6ad`, uncommitted, with records in `R/I61/u3_grant2_01/`. It covers:
+- the permit-path tests on the actual Direct entry;
+- B′ and B-1;
+- SV18;
+- D-U6-5;
+- U5 rerun on the live successor bytes in both modes.
+
+An independent review (RV93) of grant 2 follows. Then the memory branch (U3 1d, G5, G6, the registration and grant 2) merges into NUM.

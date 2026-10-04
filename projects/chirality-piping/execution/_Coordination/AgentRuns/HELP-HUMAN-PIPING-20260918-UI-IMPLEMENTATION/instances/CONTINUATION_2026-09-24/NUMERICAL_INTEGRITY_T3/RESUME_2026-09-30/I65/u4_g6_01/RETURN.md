@@ -144,7 +144,7 @@
 - RR "U4 G6 committed unregistered as `2bb81ec1ea`; RV87 did not confirm the identifier audit; repair before registration" (`R/REVIEW_RV87/u4_g6_01/REVIEW.md`).
 - RR "RV89 on U4 G6 with registration.diff: PASS; three items join the pre-registration delta" (`R/REVIEW_RV89/u4_g6_01/REVIEW.md`).
 
-**Status.** The repair is done and **uncommitted** in WT/f2a-memory on top of `2bb81ec1ea`: 3 files inside the fence, +142 / −14 (`_run_records_g6r/candidate_g6r.diff`). `REGISTERED_PROFILES` is still `&[]`. `registration.diff` is updated, and the reviewed G6 version is kept as `registration.g6.diff`.
+**Status.** The repair is done (at return, uncommitted in WT/f2a-memory on top of `2bb81ec1ea`; ROOT has since committed it as `b43378d90a`, which equals `candidate_g6r.diff`, RV89 G6r N-3): 3 files inside the fence, +142 / −14 (`_run_records_g6r/candidate_g6r.diff`). `REGISTERED_PROFILES` is still `&[]`. `registration.diff` is updated, and the reviewed G6 version is kept as `registration.g6.diff`.
 
 **The numbers after the repair** (the in-build record, `_run_records_g6r/per_identity/`):
 
@@ -282,3 +282,28 @@
   - WT/targets/i65-g5/ and i65-g6/.
 - **Not run:** no Git writes (reads used `GIT_OPTIONAL_LOCKS=0`; the sealed G6 inputs were restored from `git show HEAD:` into the working files), no installs, no new tooling, and no native, solver-at-scale or DEC-025 jobs.
 - **Records:** placeholder paths only.
+
+## Addendum 3: the runner-test change before registration (RV89 G6r N-1), and records-only items
+
+**Basis.** RR "RV87 confirms the identifier class closed…" and RR "RV89 passes the pre-registration delta; one runner-test change before registration". The code basis is `b43378d90a` (ROOT's commit of the repair, equal to `_run_records_g6r/candidate_g6r.diff`). WT/f2a-memory is unchanged, and `REGISTERED_PROFILES` is still `&[]`.
+
+**RV89 G6r N-1 (gating): no runner test reaches W1.**
+- **The change.** In `registration.diff`, runner/headless `explicit_headless_refusal_…` now reads the profile from the Direct entry on the **two-case variant** of `rf_skew_t_cant_off_122` (a second load case). D1.4 refuses it after the build clause, so the report still carries `Registered` or `Stale`, but no permit is granted, and the runner workspace (serde_json 1.0.151, not PP's reviewed 1.0.149) never runs W1. The test also asserts that the Direct bytes equal the value route's, that there is no successor, and that the census sees two load cases.
+- **`registration.diff`:** 5 files, 337 lines, sha256 **`9ae2c889daeb8ec59c159c49b2f5eddf99472eaff7cd8d63bbd8263f909ce40b`**. Only the runner hunk changed. The previous version is kept as `registration.g6r.diff` (`976b722d…bcbf`), and G6's as `registration.g6.diff`. It applies cleanly (`patch -p1 --dry-run`) to WT/f2a-memory at `b43378d90a`.
+- **The W1 check: a scratch-only permit probe** (`_run_records_g6r/registration/permit_probe/permit_probe.txt`). In the registered copy only, PP's `admit → permitted_dispatch` branch appended one line per permit granted to a file named by `I65_PERMIT_PROBE`. The whole runner/headless suite ran twice with it:
+  - **with the previous S-1 test** (positive control): **2 permits**, sparse and dense, both for the one-case milestone. So the probe fires, and the build is `Registered`;
+  - **with the new test: 0 permits** across the whole suite. No runner test is granted a permit, so none reaches W1.
+  
+  The probe was then removed (the copy's `lib.rs` equals the worktree's), and both suites were re-run clean.
+- **Registered copy, clean** (`_run_records_g6r/registration/r2_reg_*.outcomes`):
+  - **runner/headless: 85 passed, 2 failed, identical to base** (base's own two `load_reference` failures); `explicit_headless_refusal_…` passes;
+  - **PP: 699 passed, 1 failed (t13), 11 ignored**, outcome-identical to the previous registered run.
+
+**Records-only items** (optional, non-gating; no byte of TEXT or the profile moved):
+- **RV87 G6r N-2:** `retained_product.rs:2332` and `:2351`'s `suffix` rows (`stable_suffix(&row.entity_ref)`, `:2223`) are relabelled IN128, and `:2351`'s `station_id_location(loc)` COMP. The bounds and bytes are unchanged.
+- **RV87 G6r N-3:** `audit_key` and `id_table.py` strip `//` line comments from a placeholder's text, so editing a comment no longer fails the run. Only `lib.rs:1149`'s key changed.
+- **RV87 G6r N-1:** the syntactic-predicate residual is recorded as a re-qualification obligation (QUALIFICATION.md §11).
+- **RV89 G6r N-3:** Addendum 2's status line now notes the commit `b43378d90a`.
+- **Re-run after these:** the whole TEXT chain (`run_text_part2.sh`) gives outputs **byte-identical** to `_run_records_g6r/text_g6r/` (all 13 files), so the profile and the pinned record are unchanged. All 8 enforcement controls still pass (`controls/audit_controls_g6r.out.json`, re-run). `_run_records_g6r/{text_budget.py,text_args.g4.json}` and `id_audit/` are the final versions.
+
+**Execution.** I65, TASK (Type 2) under ROOT, no descendants; 2026-10-04. Memguard PID 5387 was running for every job, with one cargo job at a time, `--locked --offline`, `CARGO_BUILD_JOBS=4` and `RUST_TEST_THREADS=2`. No Git writes. The probe existed only in WT/scratch/i65_u4_g6_01/reg/.

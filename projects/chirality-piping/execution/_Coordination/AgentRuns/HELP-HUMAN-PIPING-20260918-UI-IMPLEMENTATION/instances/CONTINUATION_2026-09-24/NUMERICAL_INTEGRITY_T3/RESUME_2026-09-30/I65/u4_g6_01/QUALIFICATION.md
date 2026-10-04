@@ -240,7 +240,7 @@ See `ID_CLASS_AUDIT.md`. In short:
 
 ## 8. The registration change (prepared, not applied): `registration.diff`
 
-**What it changes** (5 files, 323 lines; G6's reviewed 287-line version is kept as `registration.g6.diff`). The last three files are outside U4's fence; ROOT ruled that such flips are applied with the entry, as part of the same reviewed change (ruling 3; RV89 G6 S-1 adds the runner's):
+**What it changes** (5 files, 337 lines; G6's reviewed 287-line version is kept as `registration.g6.diff`, and the repair's 323-line version as `registration.g6r.diff`). The last three files are outside U4's fence; ROOT ruled that such flips are applied with the entry, as part of the same reviewed change (ruling 3; RV89 G6 S-1 adds the runner's):
 - **`retained_memory.rs`:** `REGISTERED_PROFILES` gets one entry: the identity, the reviewed inputs, the reader layouts and `threshold_bytes: 4_026_531_840`. Decision 7 holds: this is the production profile, registered by reviewed change. There is no test permit and no constructor.
 - **`retained_memory_law_tests.rs`:**
   - `the_registered_profile_is_the_only_permit_source` replaces `no_profile_or_permit_is_constructible`. It checks: exactly one entry, the pinned identity, M; a forged index past the list or a refused report mints nothing; and this build is Registered or Stale, never Missing.
@@ -257,7 +257,7 @@ See `ID_CLASS_AUDIT.md`. In short:
 - **`tests/retained_precision_admission.rs`** (outside U4's fence):
   - the expected profile is `Registered` in the registered build and `Stale` otherwise;
   - the invalid-document request's Direct bytes equal the value route's exactly in every build: its ordinary route never attempts the solve, so G-C declines.
-- **`runner/headless/tests/retained_precision_admission.rs`** (outside U4's fence; RV89 G6 S-1): `explicit_headless_refusal_…` expects the Headless report's profile to be this PP build's own status, the one the Direct entry reports for the same input (`Registered` in the qualified build, `Stale` otherwise, never `Missing`). The runner's workspace builds PP with the registered identity, so under registration the report reads `Registered`. Headless itself stays refused at D1.0, and the output still equals the ordinary run's.
+- **`runner/headless/tests/retained_precision_admission.rs`** (outside U4's fence; RV89 G6 S-1): `explicit_headless_refusal_…` expects the Headless report's profile to be this PP build's own status (`Registered` in the qualified build, `Stale` otherwise, never `Missing`). The runner's workspace builds PP with the registered identity, so under registration the report reads `Registered`. Headless itself stays refused at D1.0, and the output still equals the ordinary run's. **The oracle is the Direct entry on the two-case variant,** which D1.4 refuses after the build clause (RV89 G6r N-1). The report still carries the build's profile, but the runner workspace, whose lock is not PP's reviewed one, is never granted a permit and never runs W1. The test also asserts the ordinary bytes, no successor and two load cases. A scratch permit probe confirms that no runner test is granted a permit (RETURN.md, Addendum 3).
 
 **Tested in a scratch copy** (`_run_records/registration/`):
 - **The repair's re-run** (`_run_records_g6r/registration/`, the updated diff): PP 699 passed, 1 failed (t13), 11 ignored; runner/headless identical to base, with S-1's test passing; the sweep sha256 unchanged at `3b22de97…0f60`; the challenge peaks 3,541,898 / 2,252,863 B against E_mov,max 3,508,669,422 / 3,528,379,870 B. G6's figures follow.
@@ -348,3 +348,4 @@ See `ID_CLASS_AUDIT.md`. In short:
 - **RV85 U1** and **carry 8 as partial:** accepted as stated by ROOT; restated in §4 and §8.
 - **ROOT's ruling on decision 1:** the pinned record is identity-gated (§1).
 - **ROOT's ruling on decision 2:** N-6 stays a part-2 erratum, unchanged.
+- **Re-qualification obligation (RV87 G6r N-1).** The identifier audit's candidate predicate is syntactic (ID_CLASS_AUDIT.md §1, Residual). At this basis RV87's by-type sweep of all 410 non-candidates finds no identifier alias, so the residual is accepted for registration. At the next re-qualification, re-run that sweep, or close the residual with an explicit-row rule, before the profile is re-registered.

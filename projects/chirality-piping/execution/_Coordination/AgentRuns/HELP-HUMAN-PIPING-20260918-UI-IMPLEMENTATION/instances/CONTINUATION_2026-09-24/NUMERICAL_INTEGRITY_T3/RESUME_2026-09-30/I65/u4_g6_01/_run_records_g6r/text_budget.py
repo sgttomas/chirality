@@ -310,7 +310,9 @@ def audit_key(expr, spec="", lex=False):
     """G6: the audit table's key for an expression: whitespace removed; a lexicon receiver is
     first cut to its last 100 characters (as the audit's candidate scan read it); `|?` marks a
     Debug placeholder."""
-    e = " ".join(expr.split())
+    # G6 repair (RV87 G6r N-3): a `//` line comment inside a placeholder's text is not part of
+    # the expression, so it is not part of its key (editing a comment never fails the run).
+    e = " ".join(re.sub(r"(^|\s)//[^\n]*", r"\1", expr).split())
     if lex:
         e = e[-100:]
     return re.sub(r"\s", "", e) + ("|?" if "?" in spec else "")

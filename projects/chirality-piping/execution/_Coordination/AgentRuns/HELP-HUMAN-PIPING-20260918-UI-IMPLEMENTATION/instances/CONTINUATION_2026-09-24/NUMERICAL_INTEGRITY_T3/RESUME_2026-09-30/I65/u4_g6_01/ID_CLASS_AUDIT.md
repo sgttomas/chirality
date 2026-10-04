@@ -6,7 +6,7 @@
 
 **Outside TAV, priced by other families (RV87 N-1).** The lexicon's `TEXT_NAMES` name filter classes some identifier copies as data clones or non-literal `.into()`, so they are not TAV sites and not in this table: for example `qualified.clone()`, `ids[&row.id].clone()`, `pipe.from`/`pipe.to.clone()`, `input.behavior.clone()`, `entity.into()` and `case.into()` (`PP/lib.rs:2779`, `:5561`, `:5564`, `:7050`, `:7117`, `:7127`; `source_receipt/rows.rs:318`; `source_receipt.rs:815`). Their bytes land in owners that other families price: row text in O (Text(row), with 4 × 1,024-B refs) or T25, and diagnostic refs in Text(diag), at 152 B per ref.
 
-**G6 repair (RV87 SF-1 to SF-3; RETURN.md, Addendum 2).** The table now covers every identifier-bearing candidate **whatever rule would price it**, and TEXT fails on a stale site key. That added 48 entries (§2a), including the node-DOF label (SF-1) and the adapter's `copy(s)` (SF-2). The 25 `suffix = stable_suffix(<id>)` rows are relabelled IN128 (RV87 N-2).
+**G6 repair (RV87 SF-1 to SF-3; RETURN.md, Addendum 2).** The table now covers every identifier-bearing candidate **whatever rule would price it**, and TEXT fails on a stale site key. That added 48 entries (§2a), including the node-DOF label (SF-1) and the adapter's `copy(s)` (SF-2). The 25 `suffix = stable_suffix(<id>)` rows are relabelled IN128 (RV87 N-2), and after RV87's confirmation the last two at `retained_product.rs:2332`/`:2351`, with `:2351`'s `station_id_location(loc)` as COMP (RV87 G6r N-2; labels only, the bytes are unchanged; RETURN.md, Addendum 3).
 
 **Result.** 795 (site, expression) entries over 641 sites (G6: 747 over 599). Each is priced by its **source**, never by its spelling. No run row is lowered, and TEXT is complete. The in-build maximum stays under 0.9 M: 0.8929 M dense after the repair (QUALIFICATION.md §3).
 
@@ -31,12 +31,12 @@
 
 | Class | Source | Bound (B) | Entries | Raised |
 |---|---|---|---|---|
-| IN128 | A D1 input string (request/model id, provenance, unit, family, category, direction, dimension, basis ref, temperature-point id), a same-length transform of one (`stable_suffix` replaces `:` by `-`, so `suffix = stable_suffix(<id>)` is IN128; RV87 N-2), or a solver struct's owned copy of one | 128 (D1.9 TypedTextBytes) | 539 (G6: 504; +25 relabelled, +10 new) | 0 |
+| IN128 | A D1 input string (request/model id, provenance, unit, family, category, direction, dimension, basis ref, temperature-point id), a same-length transform of one (`stable_suffix` replaces `:` by `-`, so `suffix = stable_suffix(<id>)` is IN128; RV87 N-2), or a solver struct's owned copy of one | 128 (D1.9 TypedTextBytes) | 541 (G6: 504; +27 relabelled, +10 new) | 0 |
 | TPLLABEL (repair) | The node-DOF label `integrity_dof_label(model, dof)` = `"{node.id}:{UX..RZ}"` (lib.rs:1067–1072) | 131 | 6 | 6 |
-| STATIC | A string literal, an entry of a literal table or match in the same fn, or a `&'static str` | 128 (each table read; entries are far shorter) | 102 (G6: 103; −25 relabelled, +24 new) | 0 |
+| STATIC | A string literal, an entry of a literal table or match in the same fn, or a `&'static str` | 128 (each table read; entries are far shorter) | 99 (G6: 103; −28 relabelled, +24 new) | 0 |
 | FMTSTATIC | A field of an error enum's `Display` (multiplicity 1): a `&'static str` literal or an input id | 512 (the static class) | 40 | 40 |
 | NUM | An integer (DOF index, length, dimension) | 20 | 21 | 0 (priced higher already, kept) |
-| COMP | A length-prefixed identity or location of at most 3 input ids or static parts | 600 (composite class) | 15 | 0 |
+| COMP | A length-prefixed identity or location of at most 3 input ids or static parts | 600 (composite class) | 16 (G6: 15; +1 relabelled) | 0 |
 | RES | A `ResultItem` id, or a copy of one (`FunctionalRowBinding.result_id`, `RowTreatment.result_id`, `LocatedQuantity.result_ref`, a results-JSON `id`), and the adapter's `copy(s)` (G4's class for all 199 copies; repair) | 1,024 (result-id class) | 36 | 10 |
 | DIAG | A `Diagnostic` id, or a copy of one (the D5 seed's `diagnostic_ref`) | 2,330 (L_DIAGID, RV87 N-3) | 8 | 8 |
 | TPL | A local or parameter built by a `format!` template: its own template's evaluated bound (the defining sites' arguments are themselves audited) | per site, 142 to 8,352 (`lib.rs:1763`'s entries, raised from 8,241 by SF-1) | 15 | 15 |
@@ -65,7 +65,8 @@
 | c7 | add an entry naming no expression at `lib.rs:5592` | `stale-audit-entry` |
 | c8 | remove the STATIC entry `lib.rs:8795` `label` | `id-unaudited` |
 
-   - **Residual.** The candidate predicate is syntactic. A local alias bound from an identifier under a name with no token above, outside a text parameter, is not a candidate (for example `let x = &row.id; format!("{x}")`); the G6 binding scan and RV87's by-type probe found no such copy at this basis. A site key that has drifted onto another row on the same line is not detected (the check is presence per line).
+   - **Residual.** The candidate predicate is syntactic. A local alias bound from an identifier under a name with no token above, outside a text parameter, is not a candidate (for example `let x = &row.id; format!("{x}")`); the G6 binding scan and RV87's by-type probe found no such copy at this basis. A site key that has drifted onto another row on the same line is not detected (the check is presence per line). **Carried as a re-qualification obligation** (RV87 G6r N-1; QUALIFICATION.md §11).
+   - **Keys ignore comments** (RV87 G6r N-3). A `//` line comment inside a placeholder's text is stripped from its audit key (`audit_key`, `id_table.py`), so editing a comment no longer fails the run. It changed one key, `lib.rs:1149`'s; no byte moved.
 
 ## 2. RV87's 18 sites, and what the audit adds
 
@@ -713,10 +714,10 @@ Columns:
 | 564 | `product_physics/src/retained_product.rs:2280` | format | `suffix` | IN128 | 128 | 128 | 128 | 8,460 | a ResultItem.entity_ref: every assignment copies an input element/node/support/case id; binding `2223: let suffix = stable_suffix(&row.entity_ref);` |
 | 565 | `product_physics/src/retained_product.rs:2305` | format | `suffix` | IN128 | 128 | 128 | 128 | 8,460 | a ResultItem.entity_ref: every assignment copies an input element/node/support/case id; binding `2223: let suffix = stable_suffix(&row.entity_ref);` |
 | 566 | `product_physics/src/retained_product.rs:2332` | format | `axial", "shear-y", "shear-z", "torsion", "bending-y", "bending-z" ][i]` | STATIC | 128 | 128 | 128 | 8,460 | an entry of a literal component array; binding `` |
-| 567 | `product_physics/src/retained_product.rs:2332` | format | `suffix` | STATIC | 128 | 128 | 128 | 8,460 | an entry of a literal component array; binding `2223: let suffix = stable_suffix(&row.entity_ref);` |
+| 567 | `product_physics/src/retained_product.rs:2332` | format | `suffix` | IN128 | 128 | 128 | 128 | 8,460 | suffix = stable_suffix(&row.entity_ref) (retained_product.rs:2223): an input-derived id of the same length; binding `2223: let suffix = stable_suffix(&row.entity_ref);` |
 | 568 | `product_physics/src/retained_product.rs:2351` | format | `axial", "shear-y", "shear-z", "torsion", "bending-y", "bending-z" ][i]` | STATIC | 128 | 128 | 128 | 8,460 | an entry of a literal component array; binding `` |
-| 569 | `product_physics/src/retained_product.rs:2351` | format | `station_id_location(loc)` | STATIC | 128 | 600 | 600 | 8,460 | an entry of a literal component array; binding `` |
-| 570 | `product_physics/src/retained_product.rs:2351` | format | `suffix` | STATIC | 128 | 128 | 128 | 8,460 | an entry of a literal component array; binding `2223: let suffix = stable_suffix(&row.entity_ref);` |
+| 569 | `product_physics/src/retained_product.rs:2351` | format | `station_id_location(loc)` | COMP | 600 | 600 | 600 | 8,460 | station_id_location(loc): a location label (the composite class, 600 B, as priced); binding `` |
+| 570 | `product_physics/src/retained_product.rs:2351` | format | `suffix` | IN128 | 128 | 128 | 128 | 8,460 | suffix = stable_suffix(&row.entity_ref) (retained_product.rs:2223): an input-derived id of the same length; binding `2223: let suffix = stable_suffix(&row.entity_ref);` |
 | 571 | `product_physics/src/retained_product.rs:2383` | format | `case` | IN128 | 128 | 2173 | 2173 | 8,460 | case: the captured input load case id; binding `G6 repair candidate (RV87 SF-3 by-type enforcement)` |
 | 572 | `product_physics/src/retained_product.rs:2383` | format | `component` | STATIC | 128 | 128 | 128 | 8,460 | a string literal or an entry of a literal table/match in the same function (each entry < 128 B), or a &'static str parameter; binding `2369: let component = match recipe {` |
 | 573 | `product_physics/src/retained_product.rs:2383` | format | `row.entity_ref` | IN128 | 128 | 128 | 128 | 8,460 | a ResultItem.entity_ref: every assignment copies an input element/node/support/case id; binding `2254: \|\| !(row.value == 1.0 \|\| row.value == 2.0)` |
