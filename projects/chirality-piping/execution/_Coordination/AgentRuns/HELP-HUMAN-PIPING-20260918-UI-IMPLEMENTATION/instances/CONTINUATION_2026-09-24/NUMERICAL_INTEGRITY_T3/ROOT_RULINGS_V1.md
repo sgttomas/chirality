@@ -8898,3 +8898,19 @@ Every term except stack has a closing route inside a bounded first domain.
   - (b) gate-bound qualification only.
 
 **Dispatch:** U4 G2 (the domain, build binding and residual closure; records only) goes ahead now. G2–G4 do not depend on D-3. G5 cannot enable a permit until D-3 is resolved.
+
+## The owner decides D-3 and D-6 (ROOT, 2026-10-04 UTC)
+
+The owner answered ROOT's two structured questions. The selections, verbatim:
+- **D-3, stack:** "S1: reserved stack + witness (Recommended)".
+- **D-6, build identity:** "(a) Fail-closed build check (Recommended)".
+
+**D-3 = S1.** The retained entry runs on a thread with an explicitly reserved stack. Stack is qualified by three things together: a structural recursion bound from source; the reserved size, which is the priced figure; and a witness test at a stated fraction of the reservation, with margin. No new host tooling.
+- The reserved stack is a priced term of the profile. The witness is recorded as measured evidence, not a proof.
+- The qualification record states that standard explicitly.
+
+**D-6 = (a).** A PP build script records the compiler identity. Any mismatch with the qualified build marks the profile `Stale`, so the permit is refused and the code falls back to the unchanged ordinary path.
+- The owner chose this in-product guard explicitly; it fails closed.
+- Compile-time layout witnesses and the reviewed consumer locks are added alongside, as I65's plan proposes.
+
+U4 proceeds: G2 records the build identity facts for D-6, and stack moves into the G3 and G5 sequence under S1.
