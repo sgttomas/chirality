@@ -10979,3 +10979,44 @@ Slice F's order is RETURN §3.
 - **The T6 notice** for N-5 is posted in the work graph's T6 row: T6's successor outputs must replace the explicit refusal deliberately, under their own review.
 
 **Next: slice F part 1 (I66),** under `BRIEFS/U7_SLICE_F_SWITCH.md`, in WT/f2a-u7 at `12a849a7bd`.
+
+## U7 slice F part 1 returned: Python and Rust switched, exactly on the oracle's set (ROOT, 2026-10-04 UTC)
+
+**I66's return** is `R/I66/u7_slice_f_01/` (RETURN.md `e90f7b89…`; SHA256SUMS 47/47 OK; no machine paths). The work is uncommitted in WT/f2a-u7 on `12a849a7bd`. ROOT verified the 12 files' hashes and read the flag hunks.
+
+**The changes:**
+- **The flags:** Python's `_IMPLEMENTATION_COMPLETE = True`; Rust's `IMPLEMENTATION_COMPLETE: bool = true`. The Rust hunk is line-neutral (`-4267,3 +4267,3`; the file stays 4,402 lines).
+- **Comment text only:** `semantic_contract.rs:581–582` and PP `lib.rs:3156`, both line-neutral.
+- **07i:** applied (the staged `1e53ea9c…`), then 9 corpus `qualification` strings were corrected per RR "U7 slice A returned…". The final corpus is `07f6f95c…`.
+- **The case file is v4,** with I67's D-U7-4 entry verbatim. The Python and Rust consumers read `capture` and `current_model_edits` explicitly, and an unknown field fails.
+- **Every Python, Rust and PP eligibility pin** moved to its 07i or oracle value. None was deleted.
+- **D-U7-6:** the scope assertions require "no carrier authenticates producer origin".
+
+**The controls hold:**
+- **The oracle diff** (380 inputs, Python and Rust) changes exactly on the oracle's set: 34 token changes, plus 6 eligibility or summary changes where other refs are requested. Every value equals the oracle's, and gate codes, classifications, transports, binding, derivative bytes, AnalysisRun records, the packager refusal and D-U6-9 are unchanged.
+- **The 324-output sweep** is byte-identical, registered (`9a74ff16…`) and Stale (`0e2db8b8…`).
+- **The suites:**
+
+  | Suite | Result |
+  |---|---|
+  | Python | 1,843 passed, 30 skipped (one test renamed) |
+  | result_export | 169 (one new test) |
+  | PP | 705/1, registered and Stale, identical |
+  | runner | 85/2 |
+
+- **The mutants are killed,** except one equivalent per language: dropping `MECHANICS_SOLVED` survives because G7 already refuses any non-solved successor. New tests pin that G7 refusal.
+- **TS is left to part 2.** Vitest now shows 21 expected failures from the new data while TS's flag is still off.
+
+**Rulings:**
+1. **Slice Q's two reviewed entries** are the RS flag hunk (D1-live) and the comment-only `lib.rs:3156` hunk. ROOT will enter them on I66's evidence:
+   - the change is the single token `false`→`true`;
+   - the constant is read only at `:4309`, and every operation it newly enables only borrows;
+   - a counting allocator gives identical counts and bytes, base against candidate, in 12 pairs;
+   - no rule key falls on an edited line, and the pins `:4252`, `:4253` and `:4305` are untouched.
+   
+   RV89 confirms both entries at slice Q.
+2. **The corpus hash `07f6f95c…` is accepted.** The correction of the stale `qualification` strings was asked for, and nothing pins the hash.
+3. **The blocked-envelope G7 code differs by language** (Python `SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID`, Rust `SOURCE_PREVIEW_PHYSICS_BLOCKED_ENVELOPE`; 06b). The scope sentence "G7 parity compares the reader's (gate, code)" overstates parity for that class. **In part 2, I67 appends a truthful scope clause** naming the class and each language's code, pinned in TS, with a one-line extension in each of the Python and Rust scope assertions.
+4. **For RV94:** the summary takes its cases from the invocation's model, not from the caller's requested refs. So with other requested refs, the standing reads `needs_recompute` while the summary shows the Current withheld count. This has been so since U6 and matches the oracle. RV94 assesses whether any consumer displays this inconsistently.
+
+**Next:** I67 does part 2 (TS). Then ROOT commits parts 1 and 2 as one commit, then slices L and Q, then RV94.
