@@ -10385,3 +10385,31 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
 - **I67 next:** N-1 (TS transport validation); TS consumption of the new declared entries.
 
 **RV92 confirms. Then U6 merges into NUM.**
+
+## RV89 on U4 G6 with registration.diff: PASS; three items join the pre-registration delta (ROOT, 2026-10-04 UTC)
+
+**RV89's report** is `R/REVIEW_RV89/u4_g6_01/REVIEW.md` (sha256 `25f1105a…`; SHA256SUMS 23/23 OK; no machine paths). Verdict: **PASS** on `2bb81ec1ea`, with `registration.diff` (sha256 `35c72703…`) applied in RV89's own copy only. 0 BLOCKING, 3 SHOULD-FIX and 6 NOTE findings. RV89 sees **no reason not to register once S-1 is fixed.**
+
+**What RV89 established:**
+- **The registered entry matches this build exactly:** identity, reviewed inputs and layouts. Three other builds (`RUSTFLAGS`, opt-level 1, release) each report `Stale` and keep the ordinary bytes.
+- **`admit` grants a permit for the milestone in both modes,** and refuses Headless, the two-case variant and 21 further D1 violations, each at its own clause.
+- **The milestone publishes U1's pinned successor bytes** through the facade.
+- **Registered suites:** PP 698/1/11 (t13). The sweep differs only by `Registered` and the successors for 6 in-D1 inputs.
+- **The G-C solve fact** agrees with an independent counter on all 182 runs. 38 unattempted in-D1 runs decline with exact bytes, and `rejected_stress_range` keeping its notice fits ROUTING:98.
+- **The maximum reproduces** (0.887840 / 0.892735 M), and all 9 witnesses plus the deep-input witness pass in debug and release.
+
+**Routed into I65's pre-registration delta,** together with RV87's SF-1 to SF-3:
+- **S-1 (the registration package):** runner/headless `tests/retained_precision_admission.rs:82` asserts the Headless report's profile is `Missing`. Under registration it reads `Registered`, because the runner builds PP with the registered identity. **The flip joins `registration.diff`** (ruling 3), and runner/headless is re-run registered.
+- **S-2 (a test):** add one of K2a's four deferred-formation range shapes to `attempted_examples()`. It kills R8.
+- **S-3 (a test):** pin that `admit` adds R (64 MiB) before comparing with M. Expose the bound as a named pure function, or record `required` in the private law record, and test it at the edges. It kills R6.
+
+**Noted:**
+- **N-1, the lock residual is now live.** PP's lock record hashes PP's own lock, so workspaces with another serde_json (runner and self_weight_wasm 1.0.151, operation_applier 1.0.150) also report `Registered`. None calls the Direct entry, and Headless is refused at D1.0, so **no permit is reachable there.** This is the accepted D-6 residual. **Any future Direct caller from another workspace requires re-qualification**, and that is recorded as a U9 and wider-F2a condition.
+- **N-2, the bytes registration changes:**
+  - successors for the milestone and 5 in-D1 variants;
+  - the N1 notice wherever a solve was attempted and W1 fell back: a 1e-300 spring, W6, both `rejected_stress_range` fixtures, and K2a's four range shapes.
+  
+  Everything else keeps exact bytes.
+- **N-3 to N-6:** noted.
+
+**RV89 reviews I65's delta as a follow-on** (it kept its copies and caches), and RV87 confirms its SF items. **Registration follows both.**
