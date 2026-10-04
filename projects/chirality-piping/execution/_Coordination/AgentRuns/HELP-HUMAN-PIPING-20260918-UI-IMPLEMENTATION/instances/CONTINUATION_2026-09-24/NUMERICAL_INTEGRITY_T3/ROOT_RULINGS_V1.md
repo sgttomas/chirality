@@ -8591,3 +8591,9 @@ I61's second experiment (`R/I61/receipt_experiment_02/`, SHA256SUMS OK, no machi
 - TypeScript indexes directly.
 
 By §6 this is not an acceptance condition. It is recorded for the next format change: the snapshot format will state the rehash indexing rule (strict integral value), and all harnesses will align to it.
+
+**RV81 confirmation 04: PASS** (0 BLOCKING, 0 SHOULD-FIX, 3 NOTE). D31, D32 and D33 are implemented as ruled, and nothing is weakened.
+- **D32:** checked across all 15 cases with every integer rewritten as `7.0` and as `7e0`. −0 and booleans are still rejected, and float-written references resolve.
+- **Mutants:** 39 of 47 killed.
+- **Optional (NOTE 1):** D33 is pinned only with a translation row, so the mutants admitting a rotation estimate or refusing a moment estimate survive. The reader is correct on both by probe. A rotation pin and a moment control are added in the next corpus change.
+- **NOTE 2:** −0 rejection is backed up twice, in `uint` and in the G2 encoding check, and the pair is pinned.
