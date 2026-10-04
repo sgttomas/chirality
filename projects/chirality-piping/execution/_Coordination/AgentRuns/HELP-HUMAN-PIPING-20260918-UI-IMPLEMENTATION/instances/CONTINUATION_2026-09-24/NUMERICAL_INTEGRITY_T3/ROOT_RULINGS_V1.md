@@ -10097,3 +10097,29 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
 - **U6a N-5,** pre-existing: `validate_document` fails a canonical round trip because `0.0` ≠ `0`. Tracked to the result_export owner; it does not gate U6.
 
 **Confirmation:** RV88 confirms I66's repairs, and RV91 confirms I67's. Then U6f.
+
+## U6d repair round verified and committed (ROOT, 2026-10-04 UTC)
+
+**I67's repair round** is `R/I67/u6d_typescript_02/` (SHA256SUMS 27/27 OK; no machine paths). ROOT committed it as `968adb44fe` on `codex/piping-f2a-carriers-ts-20261004`, on top of `9555b6ffc2`, and pushed it. It changes four files, all U6d's own.
+
+**What it does:**
+- **SF-1:** `buildAnalysisRunV02` refuses `retained_precision`, whether an object or null, and W1 token rows (`ANALYSIS_LEGACY_SOURCE_DOWNGRADE_FORBIDDEN`).
+- **N-3:** RV08, RV09, RV03 and RV04 are killed.
+- **N-4 and RV88's N-3:**
+  - "Selected cases" appears only for a validated registration;
+  - a delivery refused this session reads "unsupported, values shown for inspection only".
+- **The F1 pin** is TS-local for now.
+
+**ROOT's verification:**
+- **The removed lines** are the old standing text and its test expectations, replaced by the new text and tests.
+- **ROOT's runs:** Vitest **3,431/3,431**, and `tsc` clean.
+- **I67's evidence:**
+  - all 3,417 existing tests keep their outcome;
+  - the sweep of 63 existing-identity and 17 successor envelopes is identical to `9555b6ffc2`;
+  - 113 of 113 mutants killed.
+
+**Still pending:**
+- **I66's `declared_differences` section** in the shared parity file. TS switches its F1 pin to read from it in a small follow-up once it lands.
+- **I66's SI-unit wording** (U6a S-2). TS's `N_RP_ABSOLUTE` already names the unit ("±b m", "±b Pa"); it is aligned when I66's text lands.
+
+**RV91 confirms** SF-1, N-3 and N-4.
