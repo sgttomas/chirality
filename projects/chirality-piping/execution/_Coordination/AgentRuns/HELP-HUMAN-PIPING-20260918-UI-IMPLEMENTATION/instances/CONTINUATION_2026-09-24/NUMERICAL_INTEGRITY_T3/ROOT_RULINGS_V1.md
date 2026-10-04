@@ -8495,3 +8495,25 @@ The three readers therefore treat integral floats three different ways.
   - the forged-source-identity case with `source_ref: 0.0`, expected G1.
 
 RV79's other notes are carried: N-a (the harness rehashes with the reader's own functions; RV78's independent rehash covers this) and N-b (deferred bases).
+
+**RV80 confirmation 03: PASS** (0 BLOCKING, 0 SHOULD-FIX, 3 NOTE). All four confirm_02 findings are fixed as D27–D30 state. RV80 compared the factored `reason_table` with the inline block it replaced and found them identical. 38 of 44 mutants are killed.
+
+## Round 03 closed; the 07d repair round (ROOT, 2026-10-03 UTC)
+
+**Round 03:** RV78, RV80 and RV81 PASS; RV79 FAIL, on E1 only, which comes from D25 and is ruled as D32.
+
+**D33 (RV80-N1).** A `verification_estimate` reason must name a Force or Moment layout row. The native verification estimate is computed only for those kinds (FK/retained/verify.rs:880), so an estimate rejection naming a translation or rotation row cannot be emitted. G5 ATTEMPT; shared pin from RV80's PR16. `charge` is not restricted, since it may natively name displacement rows.
+
+**The 07d round, under the same standing assignments:**
+- **The shared corpus (I62):**
+  - D31 pins: a 0.1.0 invocation passes G8, a 0.4.0 one fails it;
+  - D32 pins: a must-pass entry written with integral-float integers and references, and the forged source identity with `source_ref: 0.0`, expected G1;
+  - D33's pin;
+  - RV78-N1: D19's Ready direction as two shared negatives, under `facade_failure` and under a `prepared_product_failure` that names a Ready attempt;
+  - RV78-N2: a self-consistent `source_decline` in `unavailable_attempt_under_source_error_cause`;
+  - the D32 harness change: indexing by integral value.
+- **Python (I62):** D31, D32 and D33.
+- **Rust (I63):** D31; D32 (replace `is_u64`/`as_u64`, RS:478, 492 and any others); D33; a reader-local test for D21's last-slot case (RV80-N2); then adopt 07d.
+- **TypeScript (I64):** D31; D32 (confirm value tests at every integer site); D33; then adopt 07d.
+
+**After this round:** a scoped check of the 07d delta by the round-03 reviewers (workflow §3). Then I61 reruns the real receipts on the accepted head. T1 still awaits the owner; it binds the producer serializer, not the readers.
