@@ -8727,3 +8727,11 @@ The NOTEs are tracked under D36:
 - I63 also adds RV80-N1's transport-path D34 test.
 
 **The check of this round is scoped to D37:** RV78 for parity and probes in all three readers, RV79 for Python. New findings from it are triaged under D36.
+
+**Snapshot 07f with Python, committed as `fd76145542`.**
+- **ROOT's diff against 07e:** 5 mutations added (RV79's X1 probes); nothing changed or removed. Totals: 15 cases, 268 mutations, 22 must-pass entries.
+- **ROOT's Python run:** 371 passed.
+- **The removed Python lines:** the old one-direction mapping, replaced by the full stage-record table (RETURN_07F).
+- **RV78's Y1, Y2 and Y4** are byte-identical to three of the X1 pins, so they are pinned once.
+
+**I63 handed back early** (a forced hand-off) with D37 and the transport test done in its working tree but not reconciled with I62's published table, and not run on 07f. It is resumed to finish; a successor takes over from its written state if needed. I64's round continues.
