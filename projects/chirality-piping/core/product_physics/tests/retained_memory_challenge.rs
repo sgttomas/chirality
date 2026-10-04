@@ -17,10 +17,10 @@ use std::sync::atomic::{AtomicUsize, Ordering};
 
 /// The profile's in-build W1 phase (requested + moving, without R), sparse and dense, in the
 /// pinned record's build (the lib test `challenge_bounds_are_the_profile` checks it there).
-const W1_PHASE_BYTES: [u64; 2] = [1_855_295_186, 1_875_005_634];
+const W1_PHASE_BYTES: [u64; 2] = [1_856_156_348, 1_875_866_796];
 /// The profile's in-build maximum over every phase (E_mov,max, without R; W3 in both modes),
 /// the bound once a permit admits the W1 phases (a registered build, G6).
-const MAX_PHASE_BYTES: [u64; 2] = [3_507_808_260, 3_527_518_708];
+const MAX_PHASE_BYTES: [u64; 2] = [3_508_669_422, 3_528_379_870];
 const CAP_BYTES: usize = 6 << 30;
 
 static CURRENT: AtomicUsize = AtomicUsize::new(0);

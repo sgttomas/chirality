@@ -1072,8 +1072,8 @@ pub(super) mod profile {
     /// longest-string atoms of the hash route (RV84 C-N1; RV87 N-3).
     pub(crate) const TEXT_D: u64 = 14734; // D
     pub(crate) const TEXT_D_ENV: u64 = 9361; // D_env
-    pub(crate) const TEXT_TAV_TEXT_MOVING: u64 = 2152502008; // TAV_text_moving
-    pub(crate) const TEXT_TAV_TEXT_REQUESTED: u64 = 2149902046; // TAV_text_requested
+    pub(crate) const TEXT_TAV_TEXT_MOVING: u64 = 2153400792; // TAV_text_moving
+    pub(crate) const TEXT_TAV_TEXT_REQUESTED: u64 = 2150800830; // TAV_text_requested
     pub(crate) const TEXT_TEXT_AUDIT_ERROR: u64 = 16384; // Text(audit_error)
     pub(crate) const TEXT_TEXT_DIAG_ENV: u64 = 68720236; // Text(diag_env)
     pub(crate) const TEXT_TEXT_DIAG_TOTAL: u64 = 94906464; // Text(diag_total)
@@ -2124,8 +2124,8 @@ pub(super) mod profile {
         Form { name: "T25_S5", constant: 70217356, terms: &[(8, 13718), (100, 1), (159, 2048), (182, 2115), (222, 9036)] },
         Form { name: "T25_carried_case", constant: 45678294, terms: &[(8, 7369), (159, 2048), (182, 2115), (222, 4806)] },
         Form { name: "T25_moving", constant: 189079500, terms: &[] },
-        Form { name: "TAV_W", constant: 1569180716, terms: &[] },
-        Form { name: "TAV_X", constant: 1439555190, terms: &[] },
+        Form { name: "TAV_W", constant: 1570041862, terms: &[] },
+        Form { name: "TAV_X", constant: 1440401002, terms: &[] },
         Form { name: "TXT_moving", constant: 2599962, terms: &[] },
     ];
     pub(crate) const F_BODY: usize = 0;
@@ -2280,7 +2280,7 @@ pub(super) mod profile {
     pub(crate) const DENSE: Option<(u64, usize)> = maximum(&phases_dense(&ATOM_VALUES));
     /// The Python chain's own evaluation (ASSUMED strides), for the transcription check.
     #[cfg(test)]
-    pub(crate) const PYTHON_CHECK: [(u64, &str); 2] = [(3437013739, "W3 publication (T16) with the staged copy"), (3456724187, "W3 publication (T16) with the staged copy")];
+    pub(crate) const PYTHON_CHECK: [(u64, &str); 2] = [(3437874885, "W3 publication (T16) with the staged copy"), (3457585333, "W3 publication (T16) with the staged copy")];
 }
 // ---- END GENERATED PROFILE ----
 
@@ -2291,6 +2291,21 @@ pub(super) fn bound_admits(maximum: u64, reserved_stack: u64, threshold: u64) ->
         Ok(required)
     } else {
         Err(BoundRefusal::Exceeds { required, threshold })
+    }
+}
+/// S-1 at admission (RV89 G6 S-3): the registered profile's bound for the invocation's
+/// mode, `E_mov,max(mode) + R ≤ threshold`, with R always the constant reserved stack
+/// (never the `cfg(test)` override, which only sizes the witness thread). `admit` prices
+/// its bound through this function alone. Pure.
+pub(super) fn admission_bound(maximum: Result<u64, BoundRefusal>, threshold: u64) -> Result<u64, BoundRefusal> {
+    bound_admits(maximum?, RESERVED_STACK_BYTES as u64, threshold)
+}
+/// The required bytes a bound verdict states, admitted or exceeded (`None` when it was
+/// not computed: Unpriced or Overflow). Pure.
+pub(super) fn bound_required(verdict: &Result<u64, BoundRefusal>) -> Option<u64> {
+    match *verdict {
+        Ok(required) | Err(BoundRefusal::Exceeds { required, .. }) => Some(required),
+        Err(_) => None,
     }
 }
 
@@ -2307,6 +2322,9 @@ pub(super) struct AdmissionLaw {
     pub(super) domain: Option<AdmissionRefusal>,
     /// The registered profile admission selected; `None` on every refusal.
     registered: Option<usize>,
+    /// The bound's required bytes, `E_mov,max(mode) + R`, when admission evaluated it
+    /// (RV89 G6 S-3); `None` when an earlier clause refused or the maximum was unpriced.
+    pub(super) required: Option<u64>,
 }
 
 // ---- G-B and G-C (API_G4.md §1–§2) -----------------------------------------
@@ -2887,6 +2905,7 @@ pub(super) fn admit(
             refusal: None,
             domain: None,
             registered: None,
+            required: None,
         },
     };
     let domain = domain_clauses(
@@ -2901,10 +2920,13 @@ pub(super) fn admit(
         request,
     );
     let mode = capture.mode();
+    let mut required = None;
     let verdict = law_order(caller, build, domain, |index| {
-        let maximum = cap_priced_maximum(mode)?;
-        bound_admits(maximum, RESERVED_STACK_BYTES as u64, REGISTERED_PROFILES[index].threshold_bytes)
+        let bound = admission_bound(cap_priced_maximum(mode), REGISTERED_PROFILES[index].threshold_bytes);
+        required = bound_required(&bound);
+        bound
     });
+    report.law.required = required;
     report.law.domain = domain.err();
     match verdict {
         Ok(index) => report.law.registered = Some(index),

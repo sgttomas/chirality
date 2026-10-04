@@ -650,6 +650,49 @@ fn bound_admits_at_m_and_refuses_above() {
     assert_eq!(bound_admits(u64::MAX - r, r, u64::MAX), Ok(u64::MAX));
 }
 
+/// RV89 G6 S-3: admission adds R (the constant 64 MiB, never the `cfg(test)` stack override)
+/// to the mode's maximum before comparing with the threshold. Tested at the edges M − R − 1,
+/// M − R and M − R + 1, on this build's own maxima, and in `admit`'s source: its bound is
+/// priced through `admission_bound` alone, and `law.required` records what it computed.
+#[test]
+fn admission_bound_adds_r_before_comparing_with_m() {
+    let r = RESERVED_STACK_BYTES as u64;
+    assert_eq!(r, 64 << 20);
+    assert_eq!(admission_bound(Ok(M - r - 1), M), Ok(M - 1));
+    assert_eq!(admission_bound(Ok(M - r), M), Ok(M), "at M");
+    assert_eq!(admission_bound(Ok(M - r + 1), M), Err(BoundRefusal::Exceeds { required: M + 1, threshold: M }), "one byte over M once R is added");
+    assert_eq!(admission_bound(Ok(M), M), Err(BoundRefusal::Exceeds { required: M + r, threshold: M }), "the maximum alone at M is refused");
+    assert_eq!(admission_bound(Err(BoundRefusal::Unpriced), M), Err(BoundRefusal::Unpriced));
+    assert_eq!(admission_bound(Ok(u64::MAX - r + 1), u64::MAX), Err(BoundRefusal::Overflow));
+    assert_eq!(bound_required(&admission_bound(Ok(M - r), M)), Some(M));
+    assert_eq!(bound_required(&admission_bound(Ok(M - r + 1), M)), Some(M + 1));
+    assert_eq!(bound_required(&Err(BoundRefusal::Unpriced)), None);
+    assert_eq!(bound_required(&Err(BoundRefusal::Overflow)), None);
+    for mode in MODES {
+        let maximum = cap_priced_maximum(mode).unwrap();
+        assert_eq!(admission_bound(Ok(maximum), M), Ok(maximum + r), "{mode:?}");
+        assert!(maximum + r <= 3_623_878_656, "{mode:?}: the 0.9 M margin holds at admission");
+    }
+    // The R override sizes only the witness thread; the bound ignores it.
+    RESERVED_STACK_OVERRIDE.with(|c| c.set(Some(1 << 20)));
+    assert_eq!(admission_bound(Ok(M - r), M), Ok(M));
+    RESERVED_STACK_OVERRIDE.with(|c| c.set(None));
+    let source = include_str!("retained_memory.rs");
+    let admit_src = &source[source.find("pub(super) fn admit(").unwrap()..];
+    let admit_src = &admit_src[..admit_src.find("\n}\n").unwrap()];
+    assert_eq!(admit_src.matches("admission_bound(cap_priced_maximum(mode), REGISTERED_PROFILES[index].threshold_bytes)").count(), 1);
+    assert_eq!(admit_src.matches("required = bound_required(&bound);").count(), 1);
+    assert_eq!(admit_src.matches("report.law.required = required;").count(), 1);
+    assert!(!admit_src.contains("bound_admits("), "admit prices its bound only through admission_bound");
+    // In a build that refuses before the bound, nothing is recorded.
+    if build_status().is_err() {
+        for mode in MODES {
+            let (request, capture) = CapturedInvocation::parse(milestone(), mode).unwrap();
+            assert_eq!(assess(&capture, &request, Entry::Direct).law().required, None, "{mode:?}");
+        }
+    }
+}
+
 #[test]
 fn refusal_kinds_are_the_schema_preconditions() {
     let schema = include_str!("../../../schemas/retained_precision_mp_v2.schema.json");
@@ -913,8 +956,8 @@ fn profile_in_build_record() {
 pub(super) const PINNED_RECORD_IDENTITY: &str = "v1;rustc.release=1.97.1;rustc.commit=8bab26f4f68e0e26f0bb7960be334d5b520ea452;rustc.host=aarch64-apple-darwin;rustc.llvm=22.1.6;target=aarch64-apple-darwin;target.arch=aarch64;target.pointer_width=64;target.endian=little;target.os=macos;target.env=;panic=unwind;profile=debug;opt_level=0;debug_assertions=true;rustflags=;pkg=open_pipe_stress_product_physics@0.2.0";
 /// The pinned record (W1, W2, W3, W4, W5, X1, X2), sparse then dense, in that build.
 pub(super) const PINNED_RECORD: [[u64; 7]; 2] = [
-    [1_855_295_186, 1_963_105_592, 3_507_808_260, 3_481_450_425, 2_135_361_674, 3_255_462_986, 1_776_200_900],
-    [1_875_005_634, 1_982_816_040, 3_527_518_708, 3_501_160_873, 2_155_072_122, 3_275_173_434, 1_795_911_348],
+    [1_856_156_348, 1_963_966_754, 3_508_669_422, 3_482_311_587, 2_136_222_836, 3_256_308_814, 1_777_046_728],
+    [1_875_866_796, 1_983_677_202, 3_528_379_870, 3_502_022_035, 2_155_933_284, 3_276_019_262, 1_796_757_176],
 ];
 
 #[test]
@@ -1151,20 +1194,77 @@ pub(super) fn not_attempted_examples() -> Vec<(&'static str, Value)> {
     vec![("document kind", doc), ("load category", category), ("no supports", unsupported), ("lone spring", mechanism)]
 }
 /// D1 inputs whose ordinary solve ran: the milestone (Sensitive), a 1e-300 spring whose
-/// attempt fails NumericallyUnresolved (a blocked envelope after the attempt), and the
-/// rejected_stress_range pair (solved Sensitive, then blocked by the legacy source-block
-/// finalization).
+/// attempt fails NumericallyUnresolved (a blocked envelope after the attempt), K2a's
+/// partial-underflow product reach (F1b's deferred formation: the attempt's seed is
+/// `FormationFailure`; RV89 G6 S-2), and the rejected_stress_range pair (solved Sensitive,
+/// then blocked by the legacy source-block finalization).
 pub(super) fn attempted_examples() -> Vec<(&'static str, Value)> {
     let mut failed = milestone();
     failed["model"]["supports"][1]["stiffness"]["value"]["value"] = json!(1e-300);
     vec![
         ("milestone", milestone()),
         ("failed attempt", failed),
+        (DEFERRED_FORMATION, k2a_partial_underflow()),
         ("rejected_stress_range sparse", serde_json::from_str(include_str!(
             "../../../fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.request.json")).unwrap()),
         ("rejected_stress_range dense", serde_json::from_str(include_str!(
             "../../../fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.request.json")).unwrap()),
     ]
+}
+/// The attempted example whose seed is F1b's deferred formation (`FormationFailure`).
+pub(super) const DEFERRED_FORMATION: &str = "deferred formation (K2a partial underflow)";
+/// K2a's `product-reach-partial-underflow` shape (tests/k2a_formation_range_runtime.rs,
+/// `PARTIAL_UNDERFLOW`): one 2^-20 m member N0 -> N1, OD 3e-8 m, wall 3e-9 m,
+/// E = 1.3e-292 Pa, G = 1e-200 Pa, N1 free in UY only, a 1e-307 N load. Its formation is
+/// deferred (F1b `RangeDeferred`); it is inside D1 (RV89 G6 S-2).
+pub(super) fn k2a_partial_underflow() -> Value {
+    const PROV: &str = "invented_t3_k2a_product_reach_input_no_library_data";
+    let all = ["UX", "UY", "UZ", "RX", "RY", "RZ"];
+    let anchored: Vec<&str> = all.iter().copied().filter(|d| *d != "UY").collect();
+    json!({
+        "model": {
+            "schema_version": "0.1.0",
+            "document_kind": "openpipestress.product_preview.model",
+            "analysis_status": {
+                "mechanics": "ready_for_preview_diagnostics",
+                "rule_check": "not_performed_user_rule_inputs_missing",
+                "professional_acceptance": "not_provided"
+            },
+            "project": {
+                "id": "invented:t3-k2a:product-reach-partial-underflow",
+                "units": {"length": "m", "force": "N", "angle": "rad", "pressure": "Pa", "temperature": "degC", "stress": "Pa"}
+            },
+            "nodes": [
+                {"id": "N0", "position": {"x": 0.0, "y": 0.0, "z": 0.0}, "provenance": PROV},
+                {"id": "N1", "position": {"x": 9.5367431640625e-07, "y": 0.0, "z": 0.0}, "provenance": PROV}
+            ],
+            "pipe_segments": [{
+                "id": "M1", "from": "N0", "to": "N1", "material": "mat:K2A",
+                "y_reference": {"x": 0, "y": 1, "z": 0},
+                "section": {"outside_diameter": {"value": 3.0e-8, "unit": "m"}, "wall_thickness": {"value": 3.0e-9, "unit": "m"}},
+                "provenance": PROV
+            }],
+            "materials": [{
+                "id": "mat:K2A",
+                "elastic_modulus": {"value": 1.3e-292, "unit": "Pa"},
+                "shear_modulus": {"value": 1.0e-200, "unit": "Pa"},
+                "provenance": PROV
+            }],
+            "supports": [
+                {"id": "rigid:N0", "node": "N0", "restraints": all, "family": "anchor", "provenance": PROV},
+                {"id": "rigid:N1", "node": "N1", "restraints": anchored, "family": "anchor", "provenance": PROV}
+            ],
+            "load_cases": [{
+                "id": "case", "label": "product-reach-partial-underflow", "kind": "primitive_user_load",
+                "primitive_loads": [{"id": "load:0", "category": "concentrated_force", "target": {"type": "node", "node": "N1"},
+                    "direction": "global_y", "magnitude": {"value": 1.0e-307, "unit": "N"}, "dimension": "force",
+                    "provenance": PROV}],
+                "provenance": PROV
+            }],
+            "combinations": []
+        },
+        "materials": []
+    })
 }
 #[test]
 fn g_c_declines_w1_when_the_ordinary_solve_was_not_attempted() {
@@ -1178,6 +1278,12 @@ fn g_c_declines_w1_when_the_ordinary_solve_was_not_attempted() {
                 let mut observer = crate::retained_product::ProductCapture::prepared_probe();
                 let ordinary = crate::run_linear_static_preview_observed(request, mode, Some(&capture), &mut crate::SourceRecoveryBudget::default(), Some(&mut observer));
                 assert_eq!(ordinary_solve_attempted(&observer), attempted, "{label} {mode:?}");
+                if label == DEFERRED_FORMATION {
+                    // RV89 G6 S-2: the deferred-formation arm is the one this example reaches.
+                    assert_eq!(observer.ordinary.len(), 1, "{label} {mode:?}");
+                    assert!(matches!(observer.ordinary[0].initial, Some(crate::retained_product::InitialSeed::FormationFailure { .. })),
+                        "{label} {mode:?}: the seed is F1b's FormationFailure, got {:?}", observer.ordinary[0].initial);
+                }
                 let o = complete_observations(&CompleteFacts { ordinary: &ordinary, capture: &observer });
                 let fact = o.iter().find(|x| x.fact == PhaseFact::OrdinarySolveNotAttempted).unwrap();
                 assert_eq!(fact.observed, u64::from(!attempted), "{label} {mode:?}");
