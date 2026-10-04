@@ -8698,3 +8698,12 @@ Both NOTEs fall under D36's "tracked, not gating":
 - N2: `integral_receipt`'s receipt-only scope is unpinned (M50).
 
 I63 may add the N1 test in the D35 round, at no extra cost.
+
+**RV81 final check (confirm 05): PASS** (0 BLOCKING, 0 SHOULD-FIX, 3 NOTE).
+- **D34:** across all 15 bases, every one of 9,114 zero positions written as −0 fails G2.
+- **The G1 change admits nothing new:** a before/after table over the 27 numeric const/enum members shows only the two −0 cases moving, from G1 to G2.
+- **D33's kind-set pins:** they kill R26 and R27.
+
+The NOTEs are tracked under D36:
+- R35, the −0 mapping widened to tiny values, is unpinned. The reader is correct.
+- −0 at an enum position where 0 is invalid, such as `precision`, fails at G1 by value semantics.
