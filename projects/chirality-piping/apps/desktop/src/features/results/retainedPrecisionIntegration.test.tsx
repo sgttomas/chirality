@@ -712,6 +712,18 @@ describe("the declared differences, with TypeScript's expectations", () => {
     }
     expect(numericalResultStanding(received, model).eligible).toBe(false);
   });
+  // D-U7-4 (I67 u7_slice_f_02): the summary follows TS's standing, live capture included,
+  // so neither form's summary reads Current although D2 4.9.4 alone would.
+  it.each<[string, string, Json]>(declaredForms.filter(([id]) => id.startsWith("D-U7-4:")))("%s on %s: the summary's withheld is the not-Current count", async (_id, fixtureId, form) => {
+    const { received, model } = await applyShared(form, fixtureId);
+    expect(retainedPrecisionStanding(received, model).findings).toStrictEqual([RETAINED_PRECISION_NATIVE_CAPTURE_REQUIRED]);
+    const validation = retainedPrecisionRegistration(received)!.validation!;
+    const requested = model.load_cases.map(c => ({ ref_type: "load_case", ref_id: c.id }));
+    expect(classificationSummaryFrom(validation, received, requested)[0].withheld).toBe(69);
+    const notCurrent = classificationSummaryFrom(validation, received, []);
+    expect(notCurrent[0].withheld).toBe(97);
+    expect(classificationSummary(received, model)).toStrictEqual(notCurrent);
+  });
   // An additional TypeScript input for the same declared difference (I67-F1): a
   // rewritten ordinary quality claim, unregistered, also reads needs_recompute.
   it.each(MODES)("%s: I67-F1 also holds for numerical_quality rewritten to checks_passed", async (mode) => {

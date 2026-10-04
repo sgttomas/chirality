@@ -197,10 +197,12 @@ export function classificationSummaryFrom(validation: RetainedPrecisionValidatio
   });
 }
 /** The per-case summary over the registered validation; empty when nothing
- * valid is registered for these bytes. */
+ * valid is registered for these bytes. `withheld` counts as Current only when
+ * the standing is eligible, the live native capture included (D-U7-4);
+ * otherwise no requested refs are passed, which gives the not-Current count. */
 export function classificationSummary(source: MechanicsResult | null | undefined, model?: Pick<PreviewModel, "load_cases"> | null): RetainedClassificationSummary[] {
   const validation = registered(source)?.outcome.validation;
-  return validation ? classificationSummaryFrom(validation, source!, requestedRefs(model)) : [];
+  return validation ? classificationSummaryFrom(validation, source!, retainedPrecisionStanding(source!, model).eligible ? requestedRefs(model) : []) : [];
 }
 /** Results-panel standing text from the registered receipt only, never from the
  * ordinary `numerical_quality` (D2 4.9.2). The receipt's case count is shown only
