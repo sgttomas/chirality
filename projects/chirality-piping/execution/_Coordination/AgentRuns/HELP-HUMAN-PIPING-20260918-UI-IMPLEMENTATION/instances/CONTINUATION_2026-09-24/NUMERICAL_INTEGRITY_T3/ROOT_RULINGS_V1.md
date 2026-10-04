@@ -9603,3 +9603,22 @@ The next unused IDs are I67 and RV87.
 - Re-run TEXT and the recursion inventory, and confirm both are unchanged apart from the two functions.
 
 It moves no figure and does not gate G5's code. **R-1 and B-2 are closed as confirmed.** RV83 checks R-4 at G5's return.
+
+## RV84 confirms its G3 findings in G4 (ROOT, 2026-10-04 UTC)
+
+**RV84's confirmation** is `R/REVIEW_RV84/u4_g3_02/REVIEW.md` (sha256 `46f3c334…`; SHA256SUMS 13/13 OK; no machine paths). Verdict: **CONFIRMED**, with 0 BLOCKING, 0 SHOULD-FIX and 5 NOTE findings.
+- **S-1 to S-7 and N-3 are fixed,** each checked with RV84's own probes against source at G4's basis.
+- **N-3:** all 17 of RV84's candidate cycles were checked, not a sample. Each resolves to std or to a distinct method. All 22 self-loops are genuine (19 reachable) and bounded.
+- **S-5:** the maximum covers X1, X2 and W1–W5, traced through caller completion. Failure exits are prefixes.
+
+**NOTEs, routed:**
+- **To G5 (I65):**
+  - C-N1: two longest-string figures in the hash route, about 0.3 MB;
+  - C-N2: the per-term `dof` numbers, about 1.6 MB, absorbed;
+  - C-N3(a): T19's thread-spawn heap belongs in X1 and W1–W4;
+  - C-N3(c): the unused `RECEIPT_X`;
+  - C-N4: the `retained_error_text_bytes` owners;
+  - C-N5: the wording.
+- **C-N3(b),** whether the reader's process-lifetime statics (5.4 MB) count against M in every phase after the first permitted invocation: **ruled conservatively.** They are counted in every phase from G5 onward, and the G6 record states it. That is about 0.13% of M.
+
+**The G3 review cycle is closed.** RV87's review of G4's new terms is still running.
