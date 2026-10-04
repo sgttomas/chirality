@@ -10497,3 +10497,24 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
 **N-2** (R9 is equivalent) and **N-3** (Addendum 2's "uncommitted" wording) are noted.
 
 **Then ROOT applies the registration.**
+
+## RV92 on the post-U6f round: one transport residue, declared by a scope sentence (ROOT, 2026-10-04 UTC)
+
+**RV92's confirmation** is `R/REVIEW_RV92/u6f_02/REVIEW.md` (sha256 `21ea4817…`; SHA256SUMS 45/45 OK). On `b10ee5cf08`, items 1, 2, 4 and 5 are **CONFIRMED**, and item 3 is not confirmed on one part. 0 BLOCKING, 0 SHOULD-FIX and 1 new NOTE (N-9).
+- **S-1:** the 12 probes agree between Python and TS, and 18/18 receipts survive.
+- **N-1:** the 10 tampered transports are refused with Rust's codes, and 6 untampered ones pass.
+- **The five declared entries and the N-4 sentence** reproduce in all three languages.
+- **RV88's seam guard:** 8 of 8 mutants killed, including G1.
+- **No other change:** the 546-input sweep is identical; result_export 168; the Python sweep 1,843; Vitest 3,494.
+
+**N-9: two Rust/TS transport differences outside the five entries and the scope sentence.**
+- **(a):** a successor's `contract_evidence` gaining an extra key, with hashes consistent, is accepted by Rust's header dispatch (which checks only that it is an object). It is refused by TS's new transport route at the reader's G7, as Python's check would refuse it. The same gap exists at base for preview-physics-1.
+- **(b):** 28 successor-id sources whose header TS refuses are refused by both, with different codes.
+
+**Neither direction admits what another refuses.**
+
+**Ruled: declared by the scope sentence, as RV92 prefers; no code change.**
+- **I66 adds a sentence** to the case file's `scope`, in substance: "Rust's header dispatch checks only that preview `contract_evidence` is an object, so TS's transport route, like Python's check, refuses evidence content that Rust accepts; a transport refused before the reader runs carries each language's own code, so parity there compares only accept against refuse."
+- **I66 updates the scope assertions** in the Rust, Python and TS consumers, one line each. This is a fence extension to the TS test line, so the change stays atomic.
+- RV92's optional alignment of 24 of the 28 codes in TS is **not** required.
+- **RV92 confirms. Then U6 merges into NUM.**
