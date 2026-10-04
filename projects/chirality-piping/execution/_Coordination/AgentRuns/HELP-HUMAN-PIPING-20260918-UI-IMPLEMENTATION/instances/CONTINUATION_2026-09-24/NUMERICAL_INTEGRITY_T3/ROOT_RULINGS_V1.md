@@ -8175,3 +8175,18 @@ The Python change is not committed alone, because its suite only passes with 07 
 **Unreachable differences, accepted:** the fail-closed fallback codes differ (Python PRODUCT_ATTEMPT, TypeScript ATTEMPT). Every reader resolves its references explicitly under D16, and none knows an input that reaches its fallback.
 
 **B2 granted:** install 07 in READER, add the D17 pin, update the Python counts, and write SHARED_SNAPSHOT_07.
+
+## Snapshot 07 installed; Python repaired; phase 2 granted (ROOT, 2026-10-03 UTC)
+
+**Snapshot 07 and the Python repairs are committed on READER as `04ea067b5c`.** ROOT verified:
+- **file hashes:** corpus `90f6e4ed9b`, schema `07951edacf`, Python reader `dddac2fa96`, Python tests `a0ead06840`; the schema test is unchanged;
+- **the evidence:** I62's SHA256SUMS, including SHARED_SNAPSHOT_07;
+- **ROOT's own Python run:** 327 passed.
+
+**ROOT's own diff of corpus 07 against 06d:**
+- **cases:** 15, of which one changed: P′ (`two_case_preparation_failure_synthetic`). The change is `source_ref: null` on case 1, the receipt hash it forces and a qualification note. The publication hash is unchanged, correctly, because it excludes the receipt.
+- **mutations:** 178 carried, of which one changed: `prefix_attached_old_input_unbound`, rebased onto F′ with the single ruled edit. 57 are new.
+- **must-pass entries:** 18 carried unchanged and 1 new.
+- Nothing was removed, and every carried entry keeps its order. This matches I62's declaration exactly.
+
+**Phase 2 granted** to I63 (Rust) and I64 (TypeScript): adopt 07, D8, D9 and D17, plus TypeScript's absent-body G0 change. The bar is every 07 entry at its expectation, with per-reader G7.
