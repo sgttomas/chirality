@@ -11729,3 +11729,39 @@ ROOT asked the owner two questions in the session.
 - **RV95 and RV89** are asked not to build during the window.
 
 **Hosted CI and the full-SHA dispatch** (`target_base` = M, run 37244157642) are running on F.
+
+## RV89 and RV95 confirm the frozen head (ROOT, 2026-10-04 UTC)
+
+**RV89's addendum** is `R/REVIEW_RV89/u4_g7_03/ADDENDUM_01.md` (sha256 `676e9f99…`; SHA256SUMS 19/19 OK). Verdict: **PASS**, with 0 BLOCKING, 0 SHOULD-FIX and 0 NOTE findings, on the frozen-head Pass B at F `20dd3d929d`. **No registered build was needed,** and RV89 ran no cargo during ROOT's quiet window.
+- **The inventory:** RV89's own run of `ba1faa1c..F` (35 files, 86 rows) equals I65's row for row. It stops on exactly the 11 reviewed hunks with an empty table, and matches 11 of 11 with I65's table.
+- **The new hunks** are doc and comment only, or test, or not-D1.
+- **`result_export`** is unchanged between `92a5a9da1c` and F.
+- **All checks are 0.**
+- **The delta** is exactly the six tests, identical to RV89's registered `6b9bb19a5f` run.
+- **The entry** is byte-identical to `0c7827b6ad`'s.
+
+**RV95's same-reviewer confirmation** is `R/REVIEW_RV95/u9_01/ADDENDUM_01.md` (sha256 `92ff6e27…`; SHA256SUMS 71/71 OK). Verdict: **CONFIRMED**, with 0 BLOCKING, 0 SHOULD-FIX and 4 NOTE findings.
+- **S-1:** the six texts are true against F; comment-only; line counts unchanged; the generated block reproduces.
+- **RV95's registered PP run on F** gives 705/1/9, identical test by test, apart from RV95's scratch harness. The live successors are `ac6986b0…` / `6cd1d249…`.
+- **N-3:** mutant C2 is now killed.
+- **F's non-execution tree equals `35d8ae59a7`'s.**
+- **S-2:** the package is true.
+  - source_equality 5/5, and RV95's four negative controls fail as designed;
+  - citations 368/0/0;
+  - the counts verified;
+  - the PR body equals `PR_BODY.md`.
+- **Gate evidence confirmed:** G5 and G6 (the carry-over premise holds), G7, G8, G9a, and the frozen-head Pass B record.
+
+**RV95's notes, ruled:**
+- **A-1:** the records not brought number **6,103 files, 213.3 MB** at `bb3d766379`, not the plan-basis 5,677 / 191.4 MB. The post-merge record gives the count at merge.
+- **A-2:** the post-merge record says the successor pins are **identical on the two targets observed** (this Mac, and hosted Linux run 37240946900), not "platform-stable".
+- **A-3, ROOT's own disclosure.** ROOT reused its G7 scratch tree (`WT/scratch/u9_g7/C`) for the wasm32 reproduction, and patched `source_blocks.rs` there at 22:35Z, after the G7 run ended at 22:21:59Z. **The G7 logs predate the edit and stand for C.**
+  - **Ruled:** G7 (the src-tauri suite) carries over from C to F. Between them, production source changed only by comment-only edits and the `source_blocks::integer` reorder, which is identical on 64-bit by construction; everything else is test and CI files.
+  - The scratch tree is not reused as evidence again.
+- **A-4:** RV95's review jobs overlapped I61's G6 part 2 execution 1. That is already disclosed, and the clean execution 3 stands.
+
+**Still pending on F:**
+- hosted CI and the full-SHA dispatch;
+- the Mac baseline, then DEC-025 (the baseline is running; PP on M shows its known t13);
+- RV95's final read-only confirmation of those;
+- GEN-8 on F (ROOT, recorded at the freeze: 1 passed).
