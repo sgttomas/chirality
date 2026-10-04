@@ -8392,3 +8392,9 @@ At the G0–G2 point, I61 writes a progress note in its records but does not ret
 - **D19's native check passed.** `project_candidate` has a single Ready exit (PP/retained_product.rs:3556), which ROOT read. So D19's second half stands as ruled.
 
 I63 and I64 adopt 07b in their standing rounds.
+
+**TypeScript, committed as `2d82351ccf`** (I64's single return, with no stop condition).
+- ROOT verified the file hashes and the evidence, and that the corpus adopted is 07b's `729c12574a`.
+- ROOT's own run: vitest 407/407, tsc 0.
+- ROOT read each removed line: every one is replaced by an equal or stricter check (D20, D22, D27, D29). Nothing is weakened.
+- I63 (Rust) is still in its round.
