@@ -9964,3 +9964,41 @@ All three readers must pass 07h. No 07g outcome may change except through the ne
 **The merge.** ROOT merged `codex/piping-f2a-readers-round-20261004` (`cc4dd61d67`) into `codex/piping-f2a-carriers-20261004` with `--no-ff` and pushed it. The merge is clean: the U6e and U6a–U6c files are disjoint, and the three readers and the corpus equal `cc4dd61d67` byte for byte. **The carriers branch now holds U6a, U6b, U6c and U6e,** and U6d is on its own branch. It merges into NUM after RV88's and RV91's reviews and the U6f complete review.
 
 **Next:** RV88 (U6a, U6c, U6b) and RV91 (U6d), then U6f, a fresh complete-diff review with the three-language parity table.
+
+## U4 G5 part 2 verified and committed; in-build maximum 0.889 M; G6 granted (ROOT, 2026-10-04 UTC)
+
+**I65's part 2** is `R/I65/u4_g5_01/part2/` (SHA256SUMS 63/63 OK; part 1's seal still verifies; no machine paths). ROOT committed it as `cba3e9fda7` on `codex/piping-f2a-memory-20261004`, on top of `1e323058f3`, and pushed it. All seven changed-file hashes match I65's record, and no job of I65's was running at commit.
+
+**The in-build maximum** (debug test build, rustc 1.97.1, aarch64-apple-darwin; at W3):
+- **0.8843 M sparse** (3,560,829,770 B), 63.0 MB under 0.9 M;
+- **0.8892 M dense** (3,580,540,218 B), 43.3 MB under 0.9 M.
+
+The margin rule holds. The dense margin is narrower than G4's estimate, mainly because RV87's S-2 matched 16 result-id sites (+71.9 MB), not 6. The 42 remaining Estimate atoms weigh 6.05 MB in total.
+
+**ROOT's verification:**
+- **The removed production lines, read by ROOT:** they are `Unpriced` and `UNPRICED` placeholders, replaced by the generated profile.
+  - `bindings_hold` is **stricter**: any `=unavailable` input refuses (RV89 N-4).
+  - `cap_priced_maximum` returns `Unpriced` while `profile::ESTIMATES != 0`.
+  - `REGISTERED_PROFILES` is still `&[]`.
+  - **So no permit is constructible, in two independent ways.**
+- **ROOT's runs** (default toolchain):
+  - PP `--lib` gave 531 passed, 1 failed (t13), 9 ignored;
+  - the isolated allocation challenge passes;
+  - **all eight stack witnesses pass at R/16** (W1, W2, W2b, W3, W4, W6, W7 and the 1 MiB headroom witness);
+  - FK and SR build.
+- **I65's evidence:** the sweep is byte-identical to base; runner, FK and SR outcomes are unchanged; lib warnings are 8, as at base; 146 of 148 mutants are killed, and both survivors are recorded.
+
+**I65's decisions, ruled:**
+1. **The pinned profile-record test is kept, gated on build identity.** It asserts the printed table only when `COMPILED_IDENTITY` equals the pinned identity, and otherwise reports that it skipped. That keeps the 4 profile mutants killed on the qualification host without failing on other hosts. I65 makes the gate in G6.
+2. **N-6 is recorded as an erratum in part 2,** not as an edit to part 1's sealed R4_CALLGRAPH.md. Records are append-only.
+
+**Accepted as stated:**
+- **RV85 U1** (binding the permit to its invocation) is not done. The permit is linear by type, and a structural invocation binding needs `lib.rs`. I61 may add it in U3 grant 2 if it is cheap; otherwise it goes to wider F2a.
+- **Carry 8 is partial.** The 1 MiB headroom witness passes on the milestone, which is 4 times the R/16 witness margin. Confirming the deepest `$ref` chain (36) needs reader instrumentation outside the fence. It is a stated limit of the S1 evidence for D1, recorded in G6's record.
+
+**Reviews:**
+- **RV89** reviews part 2.
+- **RV87** confirms its S-2 (16 sites against 6; `text_p2/`).
+- **RV83** confirms R-4's text run.
+
+**G6 is granted to I65** under `BRIEFS/I65_U4_G6_QUALIFICATION.md`. The registration step waits for RV89's part-2 PASS.
