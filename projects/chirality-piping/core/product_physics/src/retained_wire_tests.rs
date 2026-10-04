@@ -675,6 +675,21 @@ fn u1g2_foreign_invocation_refused() {
     assert_eq!(wire::serialize_unavailable(wire::Refused::Candidate(&refusal), &other).err(), refused);
 }
 
+/// RV82 N1′ (R08 at its call site): `run_conservation`'s own checks over explicit
+/// amounts. Each violated amount is refused at its own path, and only there.
+#[test]
+fn u1g2_run_conservation_pins_each_check_at_its_call_site() {
+    let inconsistent = |path: &'static str| vec![wire::ReceiptFailure { check: wire::ReceiptCheck::WorkCounterInconsistent, field_path: path }];
+    let attempts = [json!({"case_charge": 3, "invocation_increment": 4}), json!({"case_charge": 2, "invocation_increment": 1})];
+    assert!(wire::test_run_conservation_amounts(&attempts, 5, 10, 5, 15).is_empty(), "conserved");
+    assert_eq!(wire::test_run_conservation_amounts(&attempts, 5, 10, 5, 16), inconsistent("cases[].run.invocation_after"), "R08");
+    assert_eq!(wire::test_run_conservation_amounts(&attempts, 5, 10, 5, 14), inconsistent("cases[].run.invocation_after"), "R08");
+    assert_eq!(wire::test_run_conservation_amounts(&attempts, 6, 10, 5, 15), inconsistent("cases[].run.case_charge"));
+    let mut both = inconsistent("cases[].run.invocation_increment");
+    both.extend(inconsistent("cases[].run.invocation_after"));
+    assert_eq!(wire::test_run_conservation_amounts(&attempts, 5, 10, 6, 15), both, "increment, then the after it implies");
+}
+
 /// RV82-N1 (R08, R09): run after = before + increment, and body charged = the
 /// final after, each refused as `work_counter_inconsistent` when violated.
 #[test]

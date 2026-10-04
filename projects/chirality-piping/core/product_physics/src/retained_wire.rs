@@ -1091,14 +1091,22 @@ fn logical(e: &Enc, records: &[k::AttemptRecord]) -> Vec<Value> {
 /// C1 §1: the logical partition conserves the run's case charge and
 /// invocation increment, and after = before + increment.
 fn run_conservation(e: &Enc, attempts: &[Value], run: &k::RunOrigins) {
-    let total = |key: &str, path| {
-        let parts: Vec<u64> = attempts.iter().map(|a| a[key].as_u64().unwrap_or(u64::MAX)).collect();
-        e.sum(&parts, path)
-    };
     let case = e.exact(run.work.case(), "cases[].run.case_charge");
     let before = e.exact(run.work.invocation_before(), "cases[].run.invocation_before");
     let increment = e.exact(run.work.invocation_increment(), "cases[].run.invocation_increment");
     let after = e.exact(run.work.invocation_after(), "cases[].run.invocation_after");
+    run_conservation_amounts(e, attempts, case, before, increment, after);
+}
+
+/// The run-level conservation checks over the run's four exact amounts. Split
+/// from `run_conservation` (RV82 N1′) so that each check, including R08's
+/// `invocation_after` at its call site, is pinned by a test: `RunWork` cannot be
+/// constructed from PP, and native runs are self-consistent.
+fn run_conservation_amounts(e: &Enc, attempts: &[Value], case: u64, before: u64, increment: u64, after: u64) {
+    let total = |key: &str, path| {
+        let parts: Vec<u64> = attempts.iter().map(|a| a[key].as_u64().unwrap_or(u64::MAX)).collect();
+        e.sum(&parts, path)
+    };
     for (ok, path) in [
         (total("case_charge", "cases[].run.case_charge") == case, "cases[].run.case_charge"),
         (total("invocation_increment", "cases[].run.invocation_increment") == increment, "cases[].run.invocation_increment"),
@@ -1458,6 +1466,39 @@ fn bind_preparation(source: &mut Value, attempt: &Value) -> Result<(), ReceiptFa
 /// every hash is canonical, so the position is immaterial).
 pub(super) fn serialize_selected(candidate: &rp::PrivatePreparedCandidate, invocation: &source_receipt::CapturedInvocation)
     -> Result<Value, ReceiptFailure> {
+    serialize_selected_from(candidate, candidate.envelope(), invocation)
+}
+
+/// U3: the same serialization over the facade's frozen candidate, whose overlay
+/// lives in the staging copy `staged` while the ordinary owner stays intact.
+pub(super) fn serialize_frozen(candidate: &rp::FrozenCandidate, staged: &MechanicsEnvelope, invocation: &source_receipt::CapturedInvocation)
+    -> Result<Value, ReceiptFailure> {
+    serialize_selected_from(candidate, staged, invocation)
+}
+
+/// What the selected serialization reads from a certified candidate.
+pub(super) trait SelectedCandidate {
+    fn capture(&self) -> &rp::ProductCapture;
+    fn certificate(&self) -> &k::CertifiedProductProof;
+    fn typed_trace<'a>(&'a self, costs: &mut rr::ProjectionWork) -> Result<rr::PreparedAttemptView<'a>, rr::TraceProjectionError>;
+}
+impl SelectedCandidate for rp::PrivatePreparedCandidate {
+    fn capture(&self) -> &rp::ProductCapture { rp::PrivatePreparedCandidate::capture(self) }
+    fn certificate(&self) -> &k::CertifiedProductProof { rp::PrivatePreparedCandidate::certificate(self) }
+    fn typed_trace<'a>(&'a self, costs: &mut rr::ProjectionWork) -> Result<rr::PreparedAttemptView<'a>, rr::TraceProjectionError> {
+        rp::PrivatePreparedCandidate::typed_trace(self, costs)
+    }
+}
+impl SelectedCandidate for rp::FrozenCandidate {
+    fn capture(&self) -> &rp::ProductCapture { rp::FrozenCandidate::capture(self) }
+    fn certificate(&self) -> &k::CertifiedProductProof { rp::FrozenCandidate::certificate(self) }
+    fn typed_trace<'a>(&'a self, costs: &mut rr::ProjectionWork) -> Result<rr::PreparedAttemptView<'a>, rr::TraceProjectionError> {
+        rp::FrozenCandidate::typed_trace(self, costs)
+    }
+}
+
+fn serialize_selected_from(candidate: &impl SelectedCandidate, overlaid: &MechanicsEnvelope, invocation: &source_receipt::CapturedInvocation)
+    -> Result<Value, ReceiptFailure> {
     let assoc = |p| fail(ReceiptCheck::Association, p);
     let scope = |p| fail(ReceiptCheck::Scope, p);
     let e = Enc::default();
@@ -1480,13 +1521,13 @@ pub(super) fn serialize_selected(candidate: &rp::PrivatePreparedCandidate, invoc
     let view = candidate.typed_trace(&mut costs).map_err(|_| assoc("product_attempts[]"))?;
 
     // The successor envelope (G-a; T1 (a)).
-    let mut env = serde_json::to_value(candidate.envelope()).map_err(|_| fail(ReceiptCheck::Encoding, "envelope"))?;
+    let mut env = serde_json::to_value(overlaid).map_err(|_| fail(ReceiptCheck::Encoding, "envelope"))?;
     let mut legacy_source_work = Vec::new();
     let (legacy, omit) = legacy_source(&e, seed.legacy.as_ref(), case_index, &mut legacy_source_work, true)?;
     successor_envelope(&mut env, &case_id, omit.as_deref())?;
 
     // Row bindings: the producer's own QuantityId/recipe binding in envelope row order.
-    let rows = pc.bind_rows(candidate.envelope(), owner).map_err(|_| assoc("cases[].selection.absolute_verified"))?;
+    let rows = pc.bind_rows(overlaid, owner).map_err(|_| assoc("cases[].selection.absolute_verified"))?;
     let row_ids: Vec<String> = env["results"].as_array().ok_or(assoc("results"))?.iter()
         .map(|r| r["id"].as_str().map(str::to_owned)).collect::<Option<_>>().ok_or(assoc("results[].id"))?;
     if rows.len() != row_ids.len() || rows.iter().zip(&row_ids).any(|(r, id)| r.id != id.as_str()) {
@@ -1685,6 +1726,13 @@ pub(super) fn test_physical(r: &k::AttemptRecord, links: k::RecordBuildLinks) ->
 pub(super) fn test_run_conservation(attempts: &[Value], run: &k::RunOrigins) -> Vec<ReceiptFailure> {
     let e = Enc::default();
     run_conservation(&e, attempts, run);
+    e.failures.into_inner()
+}
+/// Test access to the run-level conservation checks over explicit amounts (RV82 N1′).
+#[cfg(test)]
+pub(super) fn test_run_conservation_amounts(attempts: &[Value], case: u64, before: u64, increment: u64, after: u64) -> Vec<ReceiptFailure> {
+    let e = Enc::default();
+    run_conservation_amounts(&e, attempts, case, before, increment, after);
     e.failures.into_inner()
 }
 
