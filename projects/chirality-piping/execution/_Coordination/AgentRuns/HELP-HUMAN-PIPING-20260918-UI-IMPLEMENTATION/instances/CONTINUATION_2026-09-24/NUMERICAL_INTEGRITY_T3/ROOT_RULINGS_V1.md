@@ -11399,3 +11399,29 @@ The checklist is kept in the work graph's T3 row once U9 merges.
 - **The cut proceeds** after I61's citation rewording.
 
 **U7 is accepted** at `e543c3d8f3`, pending I61's comment-only citation rewording, which RV95 covers. **The reader eligibility switch-on is complete.**
+
+## U9 cut: the F2a D1 milestone PR #1082 opened as a draft (ROOT, 2026-10-04 UTC)
+
+**The integration merge.** U7's final head **U = `2e03d7cc25`** (after the citation rewording) is merged into NUM as **`4c876ac7e8`**, with identical maintained source. I61's citation work is recorded: `R/I61/u9_citations_01/`, 93 citations reworded to symbols, comment- and docstring-only, line-neutral. ROOT checked that every changed line is a comment or docstring, and that line counts are unchanged.
+
+**The cut**, from `origin/main` **M = `5fdc5ab601`**, which had not moved since the plan:
+- **S** = `git diff --name-only B U` outside execution, with **B = `381be775ae`**. That gives **136 files** (59 added, 77 modified), all under P.
+  - The only overlap with main since B is `compatibility.py`.
+  - Main touched none of PP's reviewed inputs.
+- **Commit 1, `5a0461661f`:** S taken from U.
+  - `compatibility.py` was merged three ways (U, B, M), giving exactly one add/add conflict: main's `_same_canonical` is byte-identical to U's.
+  - **Resolved to U's side,** which differs from U only at main's two call sites (`:698`, `:703`). The blob is **`767da34027c5`**, as predicted.
+- **Commit 2, `6b9bb19a5f`:** the evidence package at `T3/IMPLEMENTATION/F2A_D1/`. It holds 10 files, **184,282 B**, including SHA256SUMS. The cut-time placeholders are filled: the reviewed head, RV94's confirmation and the exact size. Gate results are filled at the freeze.
+- **Checks on the PR head:**
+  - `source_equality.py`: **5/5 PASS** (135 paths identical in blob and mode; `compatibility.py` the known resolution; execution files equal the package);
+  - `check_citations.py`: **368 resolved, 0 ambiguous, 0 unresolved, PASS**;
+  - **GEN-8: 1 passed** on the placement.
+
+**The PR:** https://github.com/sgttomas/chirality/pull/1082, a **draft**, from `codex/piping-f2a-d1-20261004` into `main`. It is bound to this session's PR monitor, with auto-merge off.
+
+**Phase 3, dispatched in parallel:**
+- **RV95** (fresh; `BRIEFS/RV95_U9_PR_REVIEW.md`): the complete PR diff, with the ledger;
+- **I65:** the full Pass B on the PR head (`R/I65/u4_g7_05/`). It covers main's PR1080 (`source_blocks.rs`) and the law-test comment hunk. RV89 confirms;
+- **I61:** G8, the pressure and coexistence controls through the Direct entry, the 324-output sweep on the PR head (the first check of PR1080 against the F2a routes), and the Direct-caller scan (`R/I61/u9_g8_01/`).
+
+**ROOT's gates come in host slots:** T9, both-entry and the src-tauri suite during phase 3, then the Mac baseline, DEC-025 and the native witness on the frozen head.
