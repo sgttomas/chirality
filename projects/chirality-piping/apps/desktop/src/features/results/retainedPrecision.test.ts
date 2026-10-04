@@ -382,6 +382,15 @@ describe('review repair 07: decisions without a probe (reader-local)', () => {
     let e: any; try { nativeRuns(body); } catch (x) { e = x; }
     expect({ gate: e?.gate, code: e?.code }).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
   });
+  it('D18: each echoed G5b section term equals the source term and is positive, else G5b SECTION', async () => {
+    for (const key of ['area', 'section_modulus', 'length', 'axial_stiffness', 'torsional_stiffness']) {
+      const c = await edited('ordinary_prepared_synthetic', s => { const b = s.retained_precision.body; b.sources[0].section_terms[0][key] = '0000000000000000'; b.cases[0].selection.section_terms[0][key] = '0000000000000000'; });
+      expect(await firstFailure(c.source, c.invocation), key).toEqual(G('G5b', 'SECTION_MISMATCH'));
+    }
+    // A positive term that differs from the source is an echo defect (base length is 1.0, so use 2.0).
+    const echo = await edited('ordinary_prepared_synthetic', s => { s.retained_precision.body.cases[0].selection.section_terms[0].length = '4000000000000000'; });
+    expect(await firstFailure(echo.source, echo.invocation)).toEqual(G('G5b', 'SECTION_MISMATCH'));
+  });
   it('native class: each dangling reference reports the code of the check that follows it', async () => {
     const build = await edited('two_case_synthetic', s => { s.retained_precision.body.cases[0].run.records[0].shared_build_ref = 99; });
     expect(await firstFailure(build.source, build.invocation)).toEqual(G('G5', 'WORK_MISMATCH'));

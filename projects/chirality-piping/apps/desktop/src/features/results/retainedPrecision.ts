@@ -947,10 +947,10 @@ function numericalScales(cases: NumericCase[], source: Obj): void {
     fail(sel.section_terms.length === x.s.section_terms.length, 'SECTION_MISMATCH');
     x.s.section_terms.forEach((section: Obj, i: number) => {
       const m = x.s.id_maps.members.find((v: Obj) => v.kernel_member === section.member), actual = sel.section_terms[i];
-      // G5b echo (C1 G5b row): the selection repeats the source's section terms. A zero or non-finite term
-      // is not an echo defect; it fails the stress-scale arithmetic below as SCALE (D10 reading, snapshot 07
-      // g5b_zero_section_area). The term-versus-member-map identity is G8's binding.
-      fail(m && actual.member_id === m.id && ['area', 'section_modulus', 'length', 'axial_stiffness', 'torsional_stiffness'].every(k => actual[k] === section[k]), 'SECTION_MISMATCH');
+      // D18 (G5b section truth; C1 G5b row): each echoed term equals the source's term and is positive, else
+      // SECTION. Native rejects nonpositive inputs (PP:2442, 2462), range-checks EA/L and GJ/L (PP:2360) and
+      // needs area, Z > 0 (endpoint_maximum.rs:128). The term-versus-member-map identity is G8's binding.
+      fail(m && actual.member_id === m.id && ['area', 'section_modulus', 'length', 'axial_stiffness', 'torsional_stiffness'].every(k => actual[k] === section[k] && decodeBinary64(section[k]) > 0), 'SECTION_MISMATCH');
     });
     // Ensure every prospective stress scale is finite before any G5c list checks.
     for (let i = 0; i < x.rows.length; i++) if (x.values[i].kind === 'stress' && x.values[i].member && x.values[i].body !== null) stressScale(x, i, source);
