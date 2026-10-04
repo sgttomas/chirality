@@ -10258,3 +10258,24 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
 **Next:**
 - RV91 confirms round 03, and RV88 confirms I66's repair round (in flight).
 - **Then U6f:** a fresh complete-diff review of U6 against NUM, with the three-language parity table and the R-1 carrier-interface items C-1 to C-3.
+
+## RV88 confirms I66's U6 repairs (one gap); U6f dispatched; the post-U6f repair round (ROOT, 2026-10-04 UTC)
+
+**RV88's confirmation** is `R/REVIEW_RV88/u6_repairs_01/REVIEW.md` (sha256 `96355b91…`; SHA256SUMS 22/22 OK). Verdict: **NOT CONFIRMED on one item (U6a N-3); every other item is CONFIRMED;** nothing blocking.
+
+**Fixed:**
+- **U6b S-1:** first, middle and last-row tokens are refused on every Python path.
+- **U6a S-2:** all 138 milestone disclosures match byte for byte, and 15 units × 9 bounds match; a unit swap is refused 8/8.
+- **U6a S-1:** R01, R02, R05 and R06 are killed.
+- **U6b N-3:** Q02 and Q06 are killed.
+- **U6c N-1 and N-4** are fixed.
+- **`declared_differences`:** the structure and all 8 Rust and Python values reproduce.
+
+**Routed to the post-U6f repair round:**
+- **U6a N-3 (NOTE), the guard scope.** The doc(hidden)-seam guard test scans each Rust file only up to its first `#[cfg(test)]`, which leaves 38% of the lines unscanned (src-tauri, runner, and most of PP lib.rs). RV88's mutant G1 survives. No product caller exists today.
+  - **Remedy (I66):** drop only the `#[cfg(test)]`-gated item, matching braces; count the bare seam name; re-run a G1-style mutant.
+- **N-1 (new), an undeclared TS difference.** F-U6b-2's entry says TS runs transport checks, but TS's carrier transport route checks shape only; no TS carrier calls `validateRetainedPrecisionTransport`. A tampered transported statement is refused by Rust and Python but passes TS's header route.
+  - That is a difference **outside** the four declared entries.
+  - **Remedy (I67):** TS's carrier transport route calls the reader's `validateRetainedPrecisionTransport`, as Rust's does, and the entry's text is corrected. Only if TS cannot do that is it declared, by a further ruling.
+
+**U6f is dispatched now** on the carriers head, as RV92 under `BRIEFS/RV92_U6F_COMPLETE_REVIEW.md`. Its parity table must show N-1. The post-U6f repair round takes N-3, N-1 and whatever U6f finds, and RV92 confirms. **RV91's round-03 confirmation is in flight;** any finding joins the same round.
