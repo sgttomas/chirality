@@ -4,7 +4,300 @@ Owner O-A: Type 2 TASK, Claude Opus 5.5, high effort, standing assignment
 from HELP_HUMAN (run `APP-V4-DESIGN-PASS-4-20261003`). Read-only git; no
 network. Paths are relative to `projects/chirality-app-v4/execution`.
 
-## CURRENT — E-1 READY (RV confirmed); E-2 refrozen after RV-E2 (2026-10-03)
+## CURRENT — GUIDE ACT re-pin (tranche-2 closeout item), done (2026-10-04)
+
+DEL-03-04 `HOST_INTEGRATION_GUIDE.md`.
+
+- **Reliance unaffected.** v0.10 (`1bf0ce8e…`, git `09ca67d094`) → v0.11
+  (`597f13bd…`, git `0bd6e4b4e9`) changes exactly three lines, by
+  `git diff -U0`:
+  - L2: the label;
+  - L4: the change note;
+  - L1749: the §10.3 DEL-10-03 receiver row.
+
+  The A16 rows the GUIDE adopted at v0.7 (§2.1, §2.4, §2.5, §4.1, §9, §10.1)
+  are byte-identical. A correction to the coordinator's summary: v0.11 does
+  not contain the claim-connector check. That was DEL-06-01's
+  `fleet_store.py`, a separate change in the same commit.
+- **Edit.**
+  - L26: the ACT row now reads ACT-POLICY-v0.11 with sha256 `597f13bd…`,
+    and its version cell names the v0.10→v0.11 step.
+  - L75: a new one-paragraph re-pin note after the last one (closeout G),
+    in the GUIDE's own re-pin-note style.
+
+  No GUIDE version step. Nothing else changed (`git diff -U0`: `@@ -26
+  +26`, `@@ -74,0 +75,2`).
+- **Pin check.** B8's `pins.py` (sha256 `b943319d…5423`, unchanged;
+  `$TMPDIR/c1/pins.py`), check mode: 24/25 before (ACT differed),
+  **25/25 after**.
+- **Other GUIDE rows pinning a file changed in tranche 2: none.** Every other
+  row's pin equals its file's current bytes (24/25 before the edit).
+- **GUIDE sha256:** `a656682e…fdae59` before, **`5050658818c24a8600e53686d16a7f6ca6aba9724ee558ecc17d3d9a184b113b`** after.
+
+## ACT-POLICY-v0.11 (O-E's request, R23-31.10) and the FV10-R9 case, frozen (2026-10-04)
+
+Two independent changes. Commit them by path.
+
+### ACT-POLICY-v0.11 (DEL-04-01)
+
+- **§10.3, DEL-10-03 row.** It now maps what DEL-10-03 RA-v0.1 (`caed56b8ea`,
+  entry S-6) reads:
+  - §2.1: the acts, with decision actor, subject and evidence;
+  - §3: S1–S12;
+  - §8: DECISION-1's reserved acts (§8.2) and the values still open (§8.4).
+
+  It also notes that ACT shapes nothing for DEL-10-03, and that the missing
+  ScopeOfWork receiver and mirror row are RA F-RA1, for the next amendment.
+  Not fixed here.
+- **Version label (R23-21).** v0.10 → **v0.11**, with a one-line change note.
+  No rule, act or value changed, so v0.10 pins keep their reliance (R23-21
+  item 3).
+- **Changed lines:** L2 (label), L4 (change note), L1749 (the row).
+- **Check.** `validate_policy.py`: 6 PASS, all expectations held. ACT's
+  schema is unchanged.
+- **sha256:** `ACT_AND_POLICY_CONTRACT.md`
+  597f13bda1fe1c1fa97b9db8ebc92483c2b43ebcbdc784d91be1f57fa93df5f2
+  (v0.10 was `1bf0ce8e…`).
+- **Files that pin v0.10's hash `1bf0ce8e…`.** Found by a script search of
+  prefixes 64/16/12/10 over the project. Not edited; for the closeout:
+  - DEL-03-04 `HOST_INTEGRATION_GUIDE.md`;
+  - DEL-09-05 `DECISION_ATTRIBUTION_CASE.md`;
+  - DEL-09-11 `READER_METHOD.md`;
+  - run records `SURVEY/S2-D.md`, `S2-E.md`, `S2-F.md` (historical);
+  - this file.
+
+  ACT's own line 2 names it as the superseded version.
+
+### FV10-R9 claim-connector case (DEL-06-01, offered for the closeout; separate case)
+
+- RF-5a now counts a claim tagged with a connector other than the declared
+  one as not relied ("c1 tagged domains, not the declared pec").
+- New case P8x: PR-P8 without c3, with `route.needed` false, and with c1
+  tagged `domains`/`admitted`. The need is *unknown*.
+- FR records the other FV10-R9 limit (a claim missing from the record), which
+  stays with the record's producer (PRC PR-6).
+- **Checks.** `run_fleet.py` 46/46 (45 before); `run_views.py` 36/36,
+  unchanged. No vendored file changed. No `__pycache__`.
+
+| File | sha256 |
+|---|---|
+| DEL-06-01 `Design/FLEET_RECORDS.md` | dbfcaf9a53c8e3913967eaf0809977cc42ee2bcd2e551834644cf50e8455f4a1 |
+| DEL-06-01 `Design/prototype/fleet_store.py` | 68032697fd25b583259bd97a14efe247b54892630326fa0296c4f85da087bda9 |
+| DEL-06-01 `Design/prototype/run_fleet.py` | caa28faea23bf6a2240a2483048654da080e9c4b7bfaf3bb35f1281735663cac |
+
+`git status --short --ignored` on PKG-04 and PKG-06 lists exactly these four
+files: ACT plus the three above.
+
+## FV10-R7/R8 round frozen (2026-10-04); FV-10 + RF-5a READY at 289248709f before it
+
+Commit by path:
+- the eight changed files below;
+- the new `vendored/EU-D1/PR-P8.json`;
+- the changed `VENDOR.json`.
+
+`git status --short --ignored` on PKG-06 lists exactly these, with no ignored
+file.
+
+- **FV10-R7 (MINOR).** RF-5a now reads each claim's own standing when the
+  record supports reliance:
+  - a record- or admitted-tier claim that does not support reliance is
+    listed in the fact (`unreliedClaims`, e.g. "c3 unknown: …");
+  - if the record's `route.needed` is false, the need is **unknown**, not
+    satisfied, so record-level reliance never hides a claim-level gap;
+  - presence-advisory claims are listed as advisory, not as gaps.
+
+  Cases on vendored PR-P8:
+  - `route.needed` true → satisfied, naming c3 and the route (run_fleet P8a;
+    FV C13);
+  - `route.needed` false, nothing else changed → unknown (run_fleet P8b;
+    FV C14).
+- **FV10-R8 (notes).**
+  - `VENDOR.json` is pinned in `fleet_store.py` (`VENDOR_SHA256`). A case
+    edits a vendored file and its entry together, and it is refused.
+  - The schema's connector label now says CFB-v0.2.
+  - FR RF-5b states that the declaration is the contract: a torn record used
+    as a plain input reads by presence, as any plain input does.
+- **PR-P8 vendored** from O-D's `D/evidence/records/` (`174e1291…`), after
+  the R23-48.1 move. It was not yet in git when I copied it, so if O-D's
+  committed bytes differ I re-pin (VENDOR.json says so).
+- **Checks.** `run_fleet.py` 45/45 (42 before); `run_views.py` 36/36 (34
+  before). FX-FL1 is unchanged. No `__pycache__`.
+
+| File | sha256 |
+|---|---|
+| DEL-06-01 `Design/FLEET_RECORDS.md` | 0af6a1893801936dd51cbbfa8ca215cc904afc1da12a202e354a5cd5cc65e66f |
+| DEL-06-01 `Design/fleet.record.schema.json` | 191ca7b16912a095ee2650d975d60b1ab65d0e3f585d2391d6b8e6db288b0918 |
+| DEL-06-01 `Design/prototype/fleet_store.py` | eb391dbbd61c34b5d7b16aa20662188865f077b25a6b6b939f5bd7767d010016 |
+| DEL-06-01 `Design/prototype/run_fleet.py` | efffb67b19bdc559b6dacf52c09f89b6c5c92d5f54919abac8b1ccabe21063ad |
+| … `vendored/EU-D1/VENDOR.json` (pinned as `VENDOR_SHA256`) | d02ffe5d90c2a96292f085194860313cbeb33e3fe26fa0a4355b8846d1ebe811 |
+| … `vendored/EU-D1/PR-P8.json` (new) | 174e129146ad13932211a5c1407eb5089969c62fca5f53f5fb299ef44bbe4fec |
+| … `vendored/EU-D1/` schema, PR-P1, PR-P3, PR-P6 | unchanged (`bf4cef4d…`, `b9cd7cce…`, `fcacb91a…`, `98aa1d8e…`) |
+| DEL-06-02 `Design/FLEET_VIEWS.md` | 8c4e83781262d1212c5e462c5b9b2ce65c8b8c5c03fc3aaa5191b18e35a54645 |
+| DEL-06-02 `Design/prototype/fleet_views.py` | 6be29240168e2fff3305277e41dbb3a319c0df4fc1a2b16f727b4fd2fb30a8ec (unchanged) |
+| DEL-06-02 `Design/prototype/run_views.py` | a831199c6c9dc8bda020f5b4023e74602c52174ce318246e4ee9e5342ed999da |
+
+## FV-10 + RF-5a refrozen after RV2-FV10 (READY at 289248709f) (2026-10-04), with vendored inputs
+
+This section supersedes the FV-10 and RF-5a sections below. Commit the unit
+**with** `DEL-06-01 Design/prototype/fixtures/vendored/EU-D1/` (5 files).
+
+- **FV10-R1 (MAJOR): declared connector needs.**
+  - New need kind `connector` with `connector: pec|domains` in
+    `fleet.record.schema.json`. INV-FL-8 refuses one with no connector;
+    INV-FL-9 refuses `connector` on a plain input.
+  - RF-5a reads a declared need from the record's standing, never by
+    presence:
+    - missing → *outstanding*, with the connector named;
+    - unreadable, standing-less, nonconformant or from another connector →
+      *unknown*, consistent with RF-10 and RF-11.
+  - RF-5b: a connector record named as a plain input is *unknown* ("declare
+    it as a connector need").
+  - RV2's probes are now cases in both checks: a half-truncated record
+    (*unknown*), a renamed standing key (*unknown*) and a missing record
+    (*outstanding*).
+- **FV10-R2 (MAJOR, R23-44): vendored inputs.**
+  - Copied into DEL-06-01 `prototype/fixtures/vendored/EU-D1/`, with
+    `VENDOR.json` recording each file's sha256 and source.
+  - `fleet_store.vendored()` checks each hash before use and refuses changed
+    bytes (`VendoredInputChanged`). A case in `run_fleet.py` tests the
+    refusal.
+  - **Re-pin, noted:** the frozen v0.1 bytes (schema `589f2c5d…`, records
+    `8d0cb89a…`, `4e759148…`, `03dd7244…`) were never committed. They had
+    already been replaced in the working tree when I copied. The vendored
+    bytes are **EU-D1 v0.2 (CFB-v0.2)**:
+    - schema `bf4cef4d…0719`, equal to git `25054b04df`;
+    - PR-P1 `b9cd7cce…`, PR-P3 `fcacb91a…` and PR-P6 `98aa1d8e…`, equal to
+      O-D's frozen reader-input manifest `e68154c6…`.
+
+    C1…C8 behave the same against v0.2. CS-R1 per connector now refuses
+    cross-tier standings (FV10-R4, by O-D's schema).
+- **FV10-R3 (MINOR):** a satisfied need whose record has `route.needed`
+  names the route ("reliance covers only the record's covered parts: the
+  source-file route ra:EUD1-Q1 is still needed for the rest"), and sets
+  `routeNeeded`. Checked on W13 (FV C9) and C8b (`run_fleet.py`).
+- **FV10-R5:** FV-10's "done" pointer now names CFB-v0.2 §3, where O-D's
+  refreeze put the list.
+- **Checks.**
+  - `run_fleet.py` gives 42/42 (37 before: +FV10-R3, the probes,
+    vendored-hash refusal, INV-FL-8 and INV-FL-9).
+  - `run_views.py` gives 34/34 (31 before: +C9…C12).
+  - FX-FL1 is unchanged (`0489bc61…`).
+  - No `__pycache__` left.
+
+| File | sha256 |
+|---|---|
+| DEL-06-01 `Design/FLEET_RECORDS.md` (FR-v0.1, repaired in place) | 823989cd23dc715a8327f993c2d5abfdfc7e27dab7c4b8650136ed0721cc43fb |
+| DEL-06-01 `Design/fleet.record.schema.json` (need kind `connector`) | d3897bbddc99c1a856390e63627153186fd2525118399faa38262d6f2ee9c8e8 |
+| DEL-06-01 `Design/prototype/fleet_store.py` | 42e72011519784b6e984ca16f1fa869e3d8b25c8e5c82bee6538d7f805940bae |
+| DEL-06-01 `Design/prototype/run_fleet.py` | 8df857a9457d2bb3323e4b6326472139fe469677dbf88d170b8d91efee8d6c62 |
+| DEL-06-01 `Design/prototype/fixtures/vendored/EU-D1/VENDOR.json` | 0cba60f44d43ccaa8fa703841127ffe706e1dddd7190c3a59bb82ec463d380e3 |
+| … `vendored/EU-D1/connector.standing.schema.json` | bf4cef4df1ef16bc4a2a8e8fbb341798a90a48abbbe3689d68d5ce9019650719 |
+| … `vendored/EU-D1/PR-P1.json` | b9cd7cce7fbf459d06a26e29ad3f2d6bc94384d3c8f4f4b3dcf359b91ab24689 |
+| … `vendored/EU-D1/PR-P3.json` | fcacb91a8a4e4e981cbe602cefd8283334d89f2d2394ad295ba470eac413acce |
+| … `vendored/EU-D1/PR-P6.json` | 98aa1d8e14dbaff525d9a0462583157fe90aedf7d7a516012ca9deb50bac95e8 |
+| DEL-06-02 `Design/FLEET_VIEWS.md` (FV-v0.1, repaired in place) | ece59b9a997c8d3b9405fa7d4e569ad156167a90634080d47e43810b23727a7f |
+| DEL-06-02 `Design/prototype/fleet_views.py` | 6be29240168e2fff3305277e41dbb3a319c0df4fc1a2b16f727b4fd2fb30a8ec |
+| DEL-06-02 `Design/prototype/run_views.py` | aee27d721b8a2974036e0af42aea8cc245218b2fe708c74c6013108def43ea0c |
+
+## FV-10 with RF-5a (R23-39), first freeze (superseded above)
+
+This section supersedes the FV-10 section below. The two units are reviewed
+together.
+
+- **RF-5a (DEL-06-01 FR-v0.1, repaired in place with a change note).**
+  - The connector reading (`connector_need`) moved from DEL-06-02's prototype
+    into DEL-06-01's reader. A connector need is *satisfied* only when its
+    standing supports reliance (CS-R1). It is *unknown* when the condition is
+    unknown (CS-R5) or the standing is nonconformant. It is otherwise
+    *outstanding*, with the facets, reasons and the route account.
+  - Other input needs keep the presence reading.
+  - FR §5 gains the need row and §6 gains RF-5a.
+- **FV-10 (FV-v0.1).** It now words DEL-06-01's facts and does no reading of
+  its own. C8 was adjusted:
+  - before: DEL-06-01 says "satisfied" and FV overrides it;
+  - now: DEL-06-01's facts give the same states FV shows (absent and stale
+    outstanding, adopted and current satisfied, nonconformant and unknown
+    *unknown*), with no override.
+- **Cases in `run_fleet.py`, on a scratch FX-FL1 with revision r3 and O-D's
+  records, read as they are:**
+  - C2: adopted but stale → outstanding, with `ra:EUD1-Q1`;
+  - C5: a stale standing altered to claim reliance → nonconformant,
+    *unknown*;
+  - C8: absent → outstanding; adopted and current → satisfied; a plain input
+    still reads by presence.
+- **Checks.** `run_fleet.py` gives 37/37 (34 before). `run_views.py` gives
+  31/31. FX-FL1 is unchanged (`0489bc61…`), as is the schema.
+- **R23-40 (wording only).** FV-10's CS-R2 bullet is restated:
+  - FV's categories derive from project files only;
+  - a connector need is satisfied only under CS-R1 / RF-5a;
+  - satisfying a need is not readiness (evidence: C3 and C4);
+  - absence or limitation never implies empty work, readiness, completion
+    or permission;
+  - a relied record-tier claim reports only what its record states;
+  - "done" points to CFB §3, with CS-R5.
+
+  The change note says so. Behaviour is unchanged: `run_views.py` gives
+  31/31, and only C7's label changed.
+- **Write fence.** Only the six files below and this note.
+
+| File | sha256 |
+|---|---|
+| DEL-06-01 `Design/FLEET_RECORDS.md` (FR-v0.1 + RF-5a) | c328ebfc3bbb1bd5c2efa789691be8fdc1e8f1b8f1f744448a3c0daae7d10e97 |
+| DEL-06-01 `Design/prototype/fleet_store.py` | 75c07f4489a02c39aa8b8f06b6d55ce607e409b06759485343fc9cdf9f5c04d4 |
+| DEL-06-01 `Design/prototype/run_fleet.py` | efb37ed4629d93f005f797032872263eca30a58e937688feaf1c29919a4f7190 |
+| DEL-06-02 `Design/FLEET_VIEWS.md` (FV-v0.1 + FV-10, CS-R2 wording per R23-40) | eb0c6734bae5c108530215972bb1a91fd22fe1bbe876751d8c2998d8ed65d788 |
+| DEL-06-02 `Design/prototype/fleet_views.py` | a187fd4f7c3ea4718b04e069c4742f789bdbc95fe0e4ab7184ab0f023da7c427 |
+| DEL-06-02 `Design/prototype/run_views.py` (C7 label only) | 9c39d9bba42d2a5c666d4a0a7e5efdc970f4296f0f7dfb562dc61b8ad4fa27dc |
+
+## Tranche-2 item: FV's connector waiting cause (FV-10), frozen for review (2026-10-04)
+
+E-1 and E-2 are READY (RV). This unit changes only DEL-06-02's FV files.
+
+- **What.** FV-10, the connector waiting cause (S-3; R23-34.10, R23-37.4),
+  added as a row. FV keeps the label FV-v0.1, repaired in place with a
+  change note.
+- **Inputs, read as they are.** DEL-07-02 CFB-v0.1 §2 and
+  `connector.standing.schema.json` `589f2c5da8a9b4bc…` (frozen at EU-D1).
+  Each receiving record's `response_standing` and `route.account_ref`.
+- **Rules applied:**
+  - satisfied only if the standing supports reliance (CS-R1);
+  - *unknown* if the condition is unknown (CS-R5) or the standing is
+    nonconformant;
+  - otherwise outstanding, with every reason and the route account;
+  - a connector, or its absence, never makes anything *ready*, *done* or
+    permitted (CS-R2), and connector rows change no other row.
+- **Cases** (`run_views.py`, scratch copy of FX-FL1 with revision r3 and O-D's
+  `RUN/D/build/records/PR-P6.json`, `PR-P3.json`, `PR-P1.json`):
+  - C1: absent → waits, with the route ra:EUD1-Q1;
+  - C2: adopted but stale → waits;
+  - **C3: adopted and current, yet still waiting for W2** (another cause);
+  - C4: adopted and current alone → ready (qualified by thr-cx);
+  - C5: a stale standing altered to claim reliance → nonconformant, *unknown*;
+  - C6: condition unknown → *unknown*;
+  - C7: no other row changes;
+  - C8: DEL-06-01's presence reading is not used.
+- **Checks.**
+  - `run_views.py` gives 31/31 (23 before).
+  - `run_fleet.py` still gives 34/34; DEL-06-01 is unchanged.
+  - The standing check uses the installed `jsonschema`, because DEL-07-02's
+    schema uses `if`/`then`, which DEL-04-03's subset validator does not
+    read. This is noted in `fleet_views.py`.
+- **Raised, not changed** (DEL-06-01, READY; outside this instruction).
+  DEL-06-01's RF-5 reads every input need by presence, so its facts call a
+  connector record "satisfied". FV-10 overrides that, but another consumer
+  of DEL-06-01's facts would not. I propose RF-5a in DEL-06-01's next
+  revision: read connector needs by CS-R1, as FV-10 does. It is recorded in
+  FV §8.
+- **Write fence.** Only the three FV files and this note. O-D's records and
+  DEL-07-02's files were read, not written.
+
+| File | sha256 |
+|---|---|
+| DEL-06-02 `Design/FLEET_VIEWS.md` (FV-v0.1 + FV-10) | 095b1fc1e9034eef0328ababd1ed113cc9efd67788e9c0d48258d48e5450cf8a |
+| DEL-06-02 `Design/prototype/fleet_views.py` | 581ed6c50ccb13765b52be517f430a0b5cab9ceaa17b40e8b5ba5c183f17b0f2 |
+| DEL-06-02 `Design/prototype/run_views.py` | 7b207a22c515def08e322fe90ee1f405f1be2b680731cb91db441434ee6bf523 |
+
+## E-1 READY; E-2 refrozen after RV-E2 (2026-10-03; RV confirmed READY with E2-R4). FV hashes there are superseded by the section above
 
 This section is authoritative. Hash tables in the sections below it are
 history. The E-1 table in the next section stands as RV confirmed it, except

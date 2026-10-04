@@ -36,6 +36,24 @@
   - E2-N1: §3.1 marks `enforced-by-host` as FR's own value.
   - E2-N2: FR-D1 gives the HOSTING line.
   - R23-25: the latest decision holds (RF-6).
+- **Change note (2026-10-04; R23-39; in place, same label FR-v0.1).** RF-5a:
+  a connector need is read from its standing under DEL-07-02's CS-R1, not by
+  presence. Unknown and nonconformant standings stay *unknown*, as in
+  DEL-06-02 FV-10. Adds the §5 need row and cases C2, C5 and C8 in §9.
+- **Change note (2026-10-04; RV2 FV10-R1…R3, R23-44).** Connector needs are
+  declared (need kind `connector`). RF-5b covers undeclared connector
+  records. Damaged records give *unknown* and missing ones *outstanding*,
+  never presence. A satisfied need names a route still needed. The inputs
+  are vendored and hash-checked, re-pinned to EU-D1 v0.2 (CFB-v0.2).
+- **Change note (2026-10-04; RV2 FV10-R7, FV10-R8).**
+  - RF-5a reads each claim's standing: an unrelied record-tier claim is
+    listed, and with no route it makes the need *unknown*.
+  - PR-P8 is vendored.
+  - `VENDOR.json` is pinned in code.
+  - The schema's connector label now says CFB-v0.2.
+  - RF-5b states that the declaration is the contract.
+  - Later the same day (FV10-R9, offered for closeout): a claim tagged with
+    another connector counts as not relied, with case P8x.
 
 ## 1. What these records are
 
@@ -136,7 +154,8 @@ the person's configuration and is **never** recorded as enforcing L-TASK-1
   `projectDagRef`, items}. Revisions are never edited. Each item has {itemId,
   outcome, owner, brief, writeScope, `needs`, `selected`, results, next,
   check}.
-- A `needs` entry is {kind `item` · `decision` · `input`, ref, condition}.
+- A `needs` entry is {kind `item` · `decision` · `input` · `connector`,
+  ref, condition, and `connector` for kind `connector` only (RF-5a)}.
   The graph holds **selected work only**; an executing state cannot be
   written into it (INV-FL-4).
 - `current_graph` is the **one selector** (REQ-002), a log entry {graph
@@ -203,7 +222,7 @@ travels in the spawn:
 | return | returned (by, recorded by) · none | `return_recorded` | a child's `completed`; an agent's message |
 | review | ‹verdict› (by) · none | `review_recorded` on that return | a return |
 | integration | integrated (by, evidence) · none | `integration_recorded` on that return | a review; reconnection |
-| need | satisfied · outstanding · unknown, each with its reason | item: the needed item's integration or external result; decision: an RS `human_act` of the kind the package names, citing it (for A16, a named alternative); input: the file | readiness from a missing feed (V4-HI-62); a decision from a chat message |
+| need | satisfied · outstanding · unknown, each with its reason | item: the needed item's integration or external result; decision: an RS `human_act` of the kind the package names, citing it (for A16, a named alternative); input: the file (not a connector record, RF-5b); connector (declared): its standing supports reliance (RF-5a) | readiness from a missing feed (V4-HI-62); a decision from a chat message; a connector record's presence |
 
 DEL-06-02 derives queues and waiting causes from these facts. This file
 derives the facts only.
@@ -225,6 +244,61 @@ derives the facts only.
   record and attach to one return.
 - **RF-5** An item need is satisfied by the needed item's integration or
   external result.
+- **RF-5a Connector needs (R23-39; RV2 FV10-R1, FV10-R3; DEL-07-02 CFB-v0.2
+  §2, CS-R1 per connector, CS-R5).** A connector need is **declared**: need
+  kind `connector`, with `connector` (`pec` · `domains`) and the receiving
+  record's path as `ref`. The schema requires both and refuses `connector`
+  on any other kind (INV-FL-8, INV-FL-9). The reader validates the record's
+  standing against DEL-07-02's `connector.standing.schema.json`, using the
+  vendored copy, hash-checked before use (R23-44). It reads the need from the
+  standing, **never from the file's presence**:
+
+  | Record | Need |
+  |---|---|
+  | missing | *outstanding*, with the connector named |
+  | unreadable (torn, not JSON), without a standing, or with a nonconformant standing (consistent with RF-10, RF-11) | *unknown* |
+  | from another connector than declared | *unknown* |
+  | standing supports reliance, every relied claim's own standing supporting it | *satisfied*. Where the record's `route.needed` is true, the fact says that reliance covers only the record's covered parts and names the source-file route still needed for the rest (FV10-R3; `routeNeeded`) |
+  | standing supports reliance, but a record- or admitted-tier claim's own standing does not (e.g. PR-P8's c3, `unknown` under PR-7), and `route.needed` is true | *satisfied*, and the fact lists each such claim with its condition ("claim(s) not relied: c3 unknown: …") and the route that covers it (FV10-R7; `unreliedClaims`) |
+  | the same, but `route.needed` is false | *unknown*: record-level reliance never hides a claim-level gap that no route covers (FV10-R7; CS-R5) |
+  | condition *unknown* | *unknown* (CS-R5) |
+  | otherwise | *outstanding*, with the facets, each reason and the route account (`ra:…`) |
+
+  Presence-advisory claims (PEC `presence_advisory`) are listed as advisory
+  (`advisoryClaims`); they are not reliance gaps. A claim whose standing does
+  not read or conform counts as not relied. So does a claim tagged with a
+  connector other than the declared one (FV10-R9; closes RV2's
+  "claim tagged with the other connector" limit). The other FV10-R9 limit
+  stays recorded: a claim missing from the record cannot be detected by the
+  consumer. That account is the record's own (PRC PR-6). The fact carries `connectorNeed`,
+  `connector`, the record id and the route reference. DEL-06-02's FV-10
+  words these facts and does not re-read them.
+- **RF-5b (FV10-R1).** A plain input need whose file is a connector receiving
+  record (a JSON record with `response_standing`) is *unknown*, with "declare
+  it as a connector need".
+  - **The contract is the declaration** (RV2 FV10-R8). Only a declared
+    connector need is guaranteed the RF-5a reading.
+  - RF-5b is a guard for the readable case. A torn connector record named as
+    a *plain input* cannot be recognised, so it reads by presence, as any
+    plain input does.
+  - Connector material must therefore be declared (INV-FL-9 refuses
+    `connector` on a plain input).
+- **Vendored inputs (R23-44).** RF-5a reads O-D's EU-D1 v0.2 refreeze from
+  `prototype/fixtures/vendored/EU-D1/`:
+  - the standing schema `bf4cef4d…0719` (committed at `25054b04df`);
+  - the records PR-P1, PR-P3 and PR-P6, as O-D's frozen reader-input
+    manifest `e68154c6…` lists them.
+
+  - PR-P8 (FV10-R7), taken from O-D's `D/evidence/records/` after the
+    R23-48.1 move, before it reached git, so it is re-pinned if O-D's
+    committed bytes differ.
+
+  Their hashes and sources are in `VENDOR.json`. **`VENDOR.json` is itself
+  pinned** in `fleet_store.py` (`VENDOR_SHA256`; FV10-R8), so a file edited
+  together with its entry is refused. A copy whose bytes differ is refused
+  (`VendoredInputChanged`). Re-pinned deliberately from EU-D1 v0.1
+  (`589f2c5d…`), whose bytes were never committed. Re-pin again at O-D's next
+  refreeze.
 - **RF-6** A decision need is satisfied only by an RS `human_act` of the
   named kind citing the request (for A16, with a named alternative). Without
   the RS records it is *unknown*. Where several such acts exist, the latest
@@ -316,8 +390,28 @@ reads FX-DP1's RS records for decisions.
 | VER-008 | §10 (artifact and owner comparison) |
 | Writer, reader | W-1 refusal, W-2 no overwrite, RF-1 changed graph not used, torn line a limit; RF-10/RF-12 a truncated dispatch line reported unread with its child orphaned; RF-11 a torn RS line a limit with decisions unknown; INV-FL-1…7 |
 
-Result on 2026-10-03, after the RV-E2 repairs: 34/34, including the
-committed-fixture check.
+Result on 2026-10-04, after FV10-R7/R8 and the FV10-R9 claim-connector case: 46/46 (42 before), including the
+committed-fixture check. RF-5a's cases run on a scratch copy of FX-FL1 with
+revision r3 and the vendored EU-D1 v0.2 records (hash-checked):
+- C2: an adopted but stale record is outstanding, with its route account;
+- C5: a stale standing altered to claim reliance is nonconformant, so
+  *unknown*;
+- C8: an absent connector is outstanding, an adopted and current one is
+  satisfied, and a plain input still reads by presence.
+- FV10-R3: the satisfied PR-P1 need names route `ra:EUD1-Q1`, still needed
+  for the rest of the question.
+- FV10-R1 (RV2's probes): a half-truncated record and a renamed standing key
+  give *unknown*, a missing record *outstanding*, and an undeclared
+  connector record used as a plain input *unknown* (RF-5b).
+- R23-44: a vendored copy with changed bytes is refused. FV10-R8: so is a
+  file edited together with its `VENDOR.json` entry.
+- FV10-R7: PR-P8 with `route.needed` true is satisfied and names c3
+  *unknown* and the route. With `route.needed` false (nothing else changed)
+  it is *unknown*.
+- FV10-R9 (P8x): PR-P8 without c3, with `route.needed` false, and with c1
+  tagged `domains`/`admitted` is *unknown*, because c1 is never counted as
+  relied.
+- INV-FL-8 and INV-FL-9: the need kind's schema rules.
 
 ## 10. Owner boundary (REQ-006)
 

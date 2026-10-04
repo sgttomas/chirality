@@ -17,7 +17,7 @@
         {
           "case": "LHQ-20",
           "exam_result_refs": [
-            "EXP-LHQ-20-not-run-example"
+            "EXP-LHQ-20-inconclusive-example"
           ]
         },
         {
@@ -98,12 +98,12 @@
       ],
       "limitations": [
         {
-          "label": "illustrative example; no case has run",
+          "label": "illustrative example; only LHQ-20 has run (outcome inconclusive)",
           "vocabulary": "DOS-v0.1"
         }
       ],
       "handoff_del_11_03": {
-        "p20a_result_ref": "EXP-LHQ-20-not-run-example",
+        "p20a_result_ref": "EXP-LHQ-20-inconclusive-example",
         "counts_as_completed_witness": true,
         "acceptance_acts": [
           {
@@ -146,19 +146,14 @@
             "standing": "not_authority"
           }
         ],
-        "receipt_refs": [
-          {
-            "ref": "RC-1 (invented)",
-            "resolution_at_write": "unresolvable"
-          }
-        ],
+        "receipt_refs": [],
         "withheld": [
           {
             "identity": "K-7 (invented)",
             "kind": "host_agent_conversation"
           },
           {
-            "identity": "EXP case results of DOS-EXAMPLE-INVENTED",
+            "identity": "EXP case results of INVALID-counts-without-review",
             "kind": "derived_view"
           },
           {
@@ -187,7 +182,7 @@
         {
           "case": "LHQ-20",
           "exam_result_refs": [
-            "EXP-LHQ-20-not-run-example"
+            "EXP-LHQ-20-inconclusive-example"
           ]
         },
         {
@@ -268,12 +263,12 @@
       ],
       "limitations": [
         {
-          "label": "illustrative example; no case has run",
+          "label": "illustrative example; only LHQ-20 has run (outcome inconclusive)",
           "vocabulary": "DOS-v0.1"
         }
       ],
       "handoff_del_11_03": {
-        "p20a_result_ref": "EXP-LHQ-20-not-run-example",
+        "p20a_result_ref": "EXP-LHQ-20-inconclusive-example",
         "counts_as_completed_witness": false,
         "acceptance_acts": [],
         "receipts": [],
@@ -310,19 +305,14 @@
             "standing": "not_authority"
           }
         ],
-        "receipt_refs": [
-          {
-            "ref": "RC-1 (invented)",
-            "resolution_at_write": "unresolvable"
-          }
-        ],
+        "receipt_refs": [],
         "withheld": [
           {
             "identity": "K-7 (invented)",
             "kind": "host_agent_conversation"
           },
           {
-            "identity": "EXP case results of DOS-EXAMPLE-INVENTED",
+            "identity": "EXP case results of INVALID-discharged",
             "kind": "derived_view"
           },
           {
@@ -351,7 +341,7 @@
         {
           "case": "LHQ-20",
           "exam_result_refs": [
-            "EXP-LHQ-20-not-run-example"
+            "EXP-LHQ-20-inconclusive-example"
           ]
         },
         {
@@ -432,12 +422,12 @@
       ],
       "limitations": [
         {
-          "label": "illustrative example; no case has run",
+          "label": "illustrative example; only LHQ-20 has run (outcome inconclusive)",
           "vocabulary": "DOS-v0.1"
         }
       ],
       "handoff_del_11_03": {
-        "p20a_result_ref": "EXP-LHQ-20-not-run-example",
+        "p20a_result_ref": "EXP-LHQ-20-inconclusive-example",
         "counts_as_completed_witness": false,
         "acceptance_acts": [],
         "receipts": [],
@@ -474,19 +464,14 @@
             "standing": "not_authority"
           }
         ],
-        "receipt_refs": [
-          {
-            "ref": "RC-1 (invented)",
-            "resolution_at_write": "unresolvable"
-          }
-        ],
+        "receipt_refs": [],
         "withheld": [
           {
             "identity": "K-7 (invented)",
             "kind": "host_agent_conversation"
           },
           {
-            "identity": "EXP case results of DOS-EXAMPLE-INVENTED",
+            "identity": "EXP case results of INVALID-present-without-evidence",
             "kind": "derived_view"
           },
           {
@@ -515,7 +500,7 @@
         {
           "case": "LHQ-20",
           "exam_result_refs": [
-            "EXP-LHQ-20-not-run-example"
+            "EXP-LHQ-20-inconclusive-example"
           ]
         },
         {
@@ -596,12 +581,12 @@
       ],
       "limitations": [
         {
-          "label": "illustrative example; no case has run",
+          "label": "illustrative example; only LHQ-20 has run (outcome inconclusive)",
           "vocabulary": "DOS-v0.1"
         }
       ],
       "handoff_del_11_03": {
-        "p20a_result_ref": "EXP-LHQ-20-not-run-example",
+        "p20a_result_ref": "EXP-LHQ-20-inconclusive-example",
         "counts_as_completed_witness": false,
         "acceptance_acts": [],
         "receipts": [],
@@ -638,12 +623,7 @@
             "standing": "not_authority"
           }
         ],
-        "receipt_refs": [
-          {
-            "ref": "RC-1 (invented)",
-            "resolution_at_write": "unresolvable"
-          }
-        ],
+        "receipt_refs": [],
         "withheld": [
           {
             "identity": "K-7 (invented)",
@@ -651,7 +631,7 @@
             "content": "transcript text"
           },
           {
-            "identity": "EXP case results of DOS-EXAMPLE-INVENTED",
+            "identity": "EXP case results of INVALID-session-content",
             "kind": "derived_view"
           },
           {
@@ -680,7 +660,7 @@
         {
           "case": "LHQ-20",
           "exam_result_refs": [
-            "EXP-LHQ-20-not-run-example"
+            "EXP-LHQ-20-inconclusive-example"
           ]
         },
         {
@@ -761,12 +741,12 @@
       ],
       "limitations": [
         {
-          "label": "illustrative example; no case has run",
+          "label": "illustrative example; only LHQ-20 has run (outcome inconclusive)",
           "vocabulary": "DOS-v0.1"
         }
       ],
       "handoff_del_11_03": {
-        "p20a_result_ref": "EXP-LHQ-20-not-run-example",
+        "p20a_result_ref": "EXP-LHQ-20-inconclusive-example",
         "counts_as_completed_witness": true,
         "acceptance_acts": [],
         "receipts": [],
@@ -803,19 +783,14 @@
             "standing": "not_authority"
           }
         ],
-        "receipt_refs": [
-          {
-            "ref": "RC-1 (invented)",
-            "resolution_at_write": "unresolvable"
-          }
-        ],
+        "receipt_refs": [],
         "withheld": [
           {
             "identity": "K-7 (invented)",
             "kind": "host_agent_conversation"
           },
           {
-            "identity": "EXP case results of DOS-EXAMPLE-INVENTED",
+            "identity": "EXP case results of INVALID-counts-without-acts",
             "kind": "derived_view"
           },
           {
@@ -845,7 +820,7 @@
         {
           "case": "LHQ-20",
           "exam_result_refs": [
-            "EXP-LHQ-20-not-run-example"
+            "EXP-LHQ-20-inconclusive-example"
           ]
         },
         {
@@ -926,12 +901,12 @@
       ],
       "limitations": [
         {
-          "label": "illustrative example; no case has run",
+          "label": "illustrative example; only LHQ-20 has run (outcome inconclusive)",
           "vocabulary": "DOS-v0.1"
         }
       ],
       "handoff_del_11_03": {
-        "p20a_result_ref": "EXP-LHQ-20-not-run-example",
+        "p20a_result_ref": "EXP-LHQ-20-inconclusive-example",
         "counts_as_completed_witness": false,
         "acceptance_acts": [],
         "receipts": [],
@@ -967,19 +942,14 @@
             "standing": "not_authority"
           }
         ],
-        "receipt_refs": [
-          {
-            "ref": "RC-1 (invented)",
-            "resolution_at_write": "unresolvable"
-          }
-        ],
+        "receipt_refs": [],
         "withheld": [
           {
             "identity": "K-7 (invented)",
             "kind": "host_agent_conversation"
           },
           {
-            "identity": "EXP case results of DOS-EXAMPLE-INVENTED",
+            "identity": "EXP case results of INVALID-record-without-standing",
             "kind": "derived_view"
           },
           {
@@ -1008,7 +978,7 @@
         {
           "case": "LHQ-20",
           "exam_result_refs": [
-            "EXP-LHQ-20-not-run-example"
+            "EXP-LHQ-20-inconclusive-example"
           ]
         },
         {
@@ -1089,12 +1059,12 @@
       ],
       "limitations": [
         {
-          "label": "illustrative example; no case has run",
+          "label": "illustrative example; only LHQ-20 has run (outcome inconclusive)",
           "vocabulary": "DOS-v0.1"
         }
       ],
       "handoff_del_11_03": {
-        "p20a_result_ref": "EXP-LHQ-20-not-run-example",
+        "p20a_result_ref": "EXP-LHQ-20-inconclusive-example",
         "counts_as_completed_witness": false,
         "acceptance_acts": [],
         "receipts": [],
@@ -1136,19 +1106,14 @@
             "standing": "derived_view"
           }
         ],
-        "receipt_refs": [
-          {
-            "ref": "RC-1 (invented)",
-            "resolution_at_write": "unresolvable"
-          }
-        ],
+        "receipt_refs": [],
         "withheld": [
           {
             "identity": "K-7 (invented)",
             "kind": "host_agent_conversation"
           },
           {
-            "identity": "EXP case results of DOS-EXAMPLE-INVENTED",
+            "identity": "EXP case results of INVALID-derived-view-supplied",
             "kind": "derived_view"
           },
           {

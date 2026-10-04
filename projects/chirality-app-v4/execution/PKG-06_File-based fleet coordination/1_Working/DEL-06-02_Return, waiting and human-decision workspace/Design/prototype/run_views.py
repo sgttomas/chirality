@@ -14,12 +14,14 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from fleet_views import build  # noqa: E402
+from fleet_store import Writer, file_identity, vendored  # noqa: E402
 
 EXECUTION = os.path.normpath(os.path.join(HERE, "..", "..", "..", "..", ".."))
 FX_FL1 = os.path.normpath(os.path.join(HERE, "..", "..", "..", "DEL-06-01_Bounded delegation and current work-graph records",
                                        "Design", "prototype", "fixtures", "FX-FL1"))
 RS_LOG = os.path.join(EXECUTION, "_Coordination", "AgentRuns", "APP-V4-DESIGN-PASS-4-20261003", "E", "fixtures", "FX-DP1",
                       "records", "coordination.rs.jsonl")
+# Connector inputs: DEL-06-01 prototype/fixtures/vendored/EU-D1 (R23-44), hash-checked by fleet_store.vendored().
 RESULTS = []
 
 
@@ -161,6 +163,105 @@ def main():
     check(any("RS records line 3" in l for l in p3["limits"]) and P3["W4"]["category"] == "unknown"
           and any("were not read" in c for c in P3["W4"]["causes"]),
           "VER-006 P3 (E2-R2) the A16's RS line truncated: no crash; a limit; W4's decision need is unknown, not outstanding or ready")
+
+    print("\n== VER-002/VER-006 connector waiting cause (FV-10; S-3; R23-34.10, R23-37.4) ==")
+    croot = os.path.join(scratch, "FX-FL1-connectors")
+    if os.path.exists(croot):
+        shutil.rmtree(croot)
+    shutil.copytree(FX_FL1, croot)
+    os.makedirs(os.path.join(croot, "connectors"))
+    for name in ("PR-P6", "PR-P3", "PR-P1", "PR-P8"):
+        shutil.copyfile(vendored(name + ".json"), os.path.join(croot, "connectors", name + ".json"))
+    with open(vendored("PR-P8.json"), encoding="utf-8") as fh:
+        p8 = json.load(fh)
+    p8["route"]["needed"] = False
+    with open(os.path.join(croot, "connectors", "PR-P8-noroute.json"), "w", encoding="utf-8") as fh:
+        json.dump(p8, fh)
+    with open(vendored("PR-P3.json"), encoding="utf-8") as fh:
+        p3 = json.load(fh)
+    forged = json.loads(json.dumps(p3)); forged["response_standing"]["supports_reliance"] = True
+    with open(os.path.join(croot, "connectors", "PR-P3-forged.json"), "w", encoding="utf-8") as fh:
+        json.dump(forged, fh)
+    unk = json.loads(json.dumps(p3)); unk["response_standing"]["condition"] = "unknown"
+    unk["response_standing"]["reasons"] = [{"facet": "condition", "value": "unknown", "basis": "constructed variant of PR-P3 for FV-10's CS-R5 case"}]
+    with open(os.path.join(croot, "connectors", "PR-P3-unknown.json"), "w", encoding="utf-8") as fh:
+        json.dump(unk, fh)
+    with open(os.path.join(croot, "graphs", "FX-U1", "r2.json"), encoding="utf-8") as fh:
+        r2 = json.load(fh)
+    mgr = {"kind": "agent", "identity": "thread:fx-u1-manager", "role": "WORKING_ITEMS"}
+
+    def need_c(name, connector="pec"):
+        return {"kind": "connector", "connector": connector, "ref": f"connectors/{name}.json", "condition": "the PEC answer to Q1"}
+    with open(vendored("PR-P6.json"), "rb") as fh:
+        p6 = fh.read()
+    with open(os.path.join(croot, "connectors", "PR-P6-half.json"), "wb") as fh:
+        fh.write(p6[: len(p6) // 2])                                  # RV2 probe: half-truncated
+    with open(os.path.join(croot, "connectors", "PR-P6-renamed.json"), "wb") as fh:
+        fh.write(p6.replace(b'"response_standing"', b'"standing_v2"'))  # RV2 probe: renamed key (format drift)
+    extra = [
+        {"itemId": "W10", "outcome": "Q1 answered (PEC absent)", "owner": mgr, "needs": [need_c("PR-P6")], "selected": True},
+        {"itemId": "W11", "outcome": "Q1 answered (PEC stale)", "owner": mgr, "needs": [need_c("PR-P3")], "selected": True},
+        {"itemId": "W12", "outcome": "Stage plan using Q1", "owner": mgr,
+         "needs": [need_c("PR-P1"), {"kind": "item", "ref": "W2"}], "selected": True},
+        {"itemId": "W13", "outcome": "Q1 answered (PEC adopted, current)", "owner": mgr, "needs": [need_c("PR-P1")], "selected": True},
+        {"itemId": "W14", "outcome": "Q1 answered (forged standing)", "owner": mgr, "needs": [need_c("PR-P3-forged")], "selected": True},
+        {"itemId": "W15", "outcome": "Q1 answered (condition unknown)", "owner": mgr, "needs": [need_c("PR-P3-unknown")], "selected": True},
+        {"itemId": "W16", "outcome": "Q1 (half-truncated record)", "owner": mgr, "needs": [need_c("PR-P6-half")], "selected": True},
+        {"itemId": "W17", "outcome": "Q1 (renamed standing key)", "owner": mgr, "needs": [need_c("PR-P6-renamed")], "selected": True},
+        {"itemId": "W18", "outcome": "Q1 (record missing)", "owner": mgr, "needs": [need_c("PR-P9-missing")], "selected": True},
+        {"itemId": "W19", "outcome": "Q1 (connector record as plain input)", "owner": mgr,
+         "needs": [{"kind": "input", "ref": "connectors/PR-P1.json"}], "selected": True},
+        {"itemId": "W20", "outcome": "Q1 (declared domains, record is pec)", "owner": mgr, "needs": [need_c("PR-P1", "domains")], "selected": True},
+        {"itemId": "W21", "outcome": "Q1 (P8: claim c3 unknown, route needed)", "owner": mgr, "needs": [need_c("PR-P8")], "selected": True},
+        {"itemId": "W22", "outcome": "Q1 (P8: claim c3 unknown, no route)", "owner": mgr, "needs": [need_c("PR-P8-noroute")], "selected": True}]
+    r3 = {"format": "chirality.fleet.record", "formatVersion": "0.1", "recordId": "fl:graph:FX-U1:r3", "kind": "work_graph",
+          "undertaking": "FX-U1", "recorder": mgr, "writtenAt": "g3",
+          "body": {"revision": 3, "supersedes": "fl:graph:FX-U1:r2", "projectDagRef": r2["body"]["projectDagRef"],
+                   "items": r2["body"]["items"] + extra}}
+    w = Writer(croot)
+    p3path = w.graph(r3)
+    w.log({"format": "chirality.fleet.record", "formatVersion": "0.1", "recordId": "fl:log:0019", "kind": "current_graph",
+           "undertaking": "FX-U1", "recorder": mgr, "writtenAt": "s3",
+           "body": {"graph": "fl:graph:FX-U1:r3", "graphContent": file_identity(p3path)}})
+    cv = build(croot, RS_LOG)
+    C = {r["item"]: r for r in cv["waiting"]}
+    check(C["W10"]["category"] == "waiting" and any("condition absent" in c and "envelope unknown" in c and "ra:EUD1-Q1" in c for c in C["W10"]["causes"])
+          and "pr:EUD1-P6" in C["W10"]["sources"],
+          "FV-10 W10 (PR-P6, PEC absent): waiting on the connector, with its standing and the route account ra:EUD1-Q1; never ready")
+    check(C["W11"]["category"] == "waiting" and any("envelope adopted, condition stale" in c and "does not support reliance" in c for c in C["W11"]["causes"]),
+          "FV-10 W11 (PR-P3, adopted but stale): waiting; reliance not supported (CS-R1)")
+    check(C["W12"]["category"] == "waiting" and any(c.startswith("waits for W2") for c in C["W12"]["causes"])
+          and any(c.startswith("connector reliance supported") and "pr:EUD1-P1" in c for c in C["W12"]["causes"]),
+          "FV-10 W12 (PR-P1, adopted and current): reliance supported, yet W12 still waits for W2; the connector makes nothing ready")
+    check(C["W13"]["category"] == "ready (qualified)" and any("connector reliance supported" in c and "ra:EUD1-Q1 is still needed" in c for c in C["W13"]["causes"]),
+          "FV-10 W13 (PR-P1 only): ready, its one need met by connector material that supports reliance (CS-R1), naming the route still needed for Q1(b) (FV10-R3); still qualified by thr-cx (FV-4a)")
+    check(C["W14"]["category"] == "unknown" and any("does not conform" in c for c in C["W14"]["causes"]),
+          "FV-10 W14 (PR-P3 altered to claim reliance while stale): nonconformant to DEL-07-02's schema, so unknown, never ready")
+    check(C["W15"]["category"] == "unknown" and any("condition unknown" in c for c in C["W15"]["causes"]),
+          "FV-10 W15 (condition unknown): unknown stays unknown (CS-R5)")
+    base = {r["item"]: (r["category"], r["causes"]) for r in v["waiting"]}
+    check(all(base[i] == (C[i]["category"], C[i]["causes"]) for i in base),
+          "FV-10 C7 (CS-R2 as restated by R23-40) adding connector items and records changes no other item's category or causes")
+    check(C["W16"]["category"] == "unknown" and C["W17"]["category"] == "unknown"
+          and any("unreadable" in c for c in C["W16"]["causes"]) and any("has no standing" in c for c in C["W17"]["causes"]),
+          "FV10-R1 RV2's probes: a half-truncated record and a renamed standing key make the need unknown, never satisfied by presence")
+    check(C["W18"]["category"] == "waiting" and any("not present" in c and "connector pec" in c for c in C["W18"]["causes"]),
+          "FV10-R1 a missing record for a declared connector need is outstanding, with the connector named")
+    check(C["W19"]["category"] == "unknown" and any("named as a plain input" in c for c in C["W19"]["causes"])
+          and C["W20"]["category"] == "unknown" and any("not the declared domains" in c for c in C["W20"]["causes"]),
+          "FV10-R1 a connector record named as a plain input, or declared under the wrong connector, is unknown; presence never applies")
+    check(C["W21"]["category"] == "ready (qualified)" and any("claim(s) not relied: c3 unknown" in c and "ra:EUD1-Q1 is still needed" in c
+                                                              for c in C["W21"]["causes"]),
+          "FV10-R7 C13 PR-P8 with route.needed true: the row names claim c3 unknown and the route covering it")
+    check(C["W22"]["category"] == "unknown" and any("c3 unknown" in c and "names no source-file route" in c for c in C["W22"]["causes"]),
+          "FV10-R7 C14 PR-P8 with route.needed false: unknown, never a bare 'reliance supported'")
+    from fleet_store import Reader as _R
+    raw = {f["itemId"]: f for f in _R(croot, RS_LOG).item_facts("FX-U1")["items"]}
+    expect = {"W10": "outstanding", "W11": "outstanding", "W13": "satisfied", "W14": "unknown", "W15": "unknown",
+              "W16": "unknown", "W17": "unknown", "W18": "outstanding", "W20": "unknown", "W21": "satisfied", "W22": "unknown"}
+    agree = all(raw[i]["needs"][0]["state"] == s and raw[i]["needs"][0].get("connectorNeed") for i, s in expect.items())
+    check(agree and C["W10"]["category"] == "waiting",
+          "FV-10 C8 (R23-39) DEL-06-01's facts (RF-5a) now read connector needs by CS-R1; FV-10 words them, no override")
 
     ok = all(RESULTS)
     print(f"\nscratch: {scratch}\nRESULT: {'all expectations held' if ok else 'SOME EXPECTATIONS FAILED'} ({sum(RESULTS)}/{len(RESULTS)})")

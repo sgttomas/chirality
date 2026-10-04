@@ -389,3 +389,313 @@ The earlier freeze came before HELP_HUMAN's ordering note. Since then:
 | `lhq.traffic-observation.schema.json` | `b7401e1f1e0e1b010bba2c2ac3c3c32a0f281db0e10a40ea19ef8a9bea4eab95` |
 | invalid examples | `0a651f0f5e97a8d1f5fbb629b15b108dbc72054d211b435e27f9812e681e0fe0` |
 | `TRAFFIC_OBSERVATION_PLAN.md` | `5d147be4c0b441b34017933c84a195b905c24f01d2764e4fc669e36aef6d0324` |
+
+## Tranche 2: RQ-LHQ-1 under R23-36 (2026-10-04), for RV3
+
+**Change.**
+- LHQ is now **LHQ-v0.2**. It supersedes LHQ-v0.1 at `20361a0be76904d4b8ac745f055755cd27455d13d7625a559de1b44ff386e8f8`, the version committed at `d150856784`.
+- §3 gains rule **CI-5** and a pointer from the App candidate row. The CIR may carry an optional `app_candidate_subject` with `revision`, `build_identity`, `packaged`, and `package_record` when packaged. This is exactly EXP-v0.2's `candidate_subject.app_candidate` (`exam.result-record.schema.json` `f7871c96…1f9`); the CIR maps to EXP's identity and does not define it (R23-33).
+- It is present only while the App candidate element is supplied; the schema refuses it when the element is *not supplied*.
+- Nothing else changed. The record format label stays `LHQ-v0.1`: the change is additive (R23-21, AAC/RS precedent).
+
+**Additivity.**
+- The original valid example is unchanged and still validates.
+- All three earlier invalid examples are still rejected, each with one error.
+- New examples: one valid example with the mapping (packaged, with its package record), and two invalid examples — a mapping while the candidate is *not supplied*, and packaged without a package record. Each invalid example is rejected with one error under both `jsonschema` and DEL-01-01's subset validator.
+
+**Checks.**
+- All three DEL-09-07 schemas pass `check_schema`, and every valid and invalid example behaves as expected under both validators.
+- The schema's `$defs/app_candidate_subject` equals EXP-v0.2's definition (compared by script).
+- The new example's mapping validates as an EXP `candidate_subject` against EXP's own schema.
+- `top_check.py` rerun, unchanged at `cf128073…5139`: the valid example passes (4 of 5 contacts compared), and both CB-1 violation examples are reported mis-tagged.
+
+**Dependents.** TOP and DOS pin LHQ-v0.1 at `20361a0b…`, the committed bytes. Neither relies on CI-5, so under R23-21 item 3 their pins stay and are not edited. They are listed for the closeout's stale-pin script (R23-21 item 4).
+
+| File (DEL-09-07 `Design/`) | Before | After |
+|---|---|---|
+| `LOCAL_HOST_QUALIFICATION.md` | `20361a0be76904d4b8ac745f055755cd27455d13d7625a559de1b44ff386e8f8` | `5cd31e097a8faae46298202d854b9bb9cba27e8355c31fef997310b49c15f07b` |
+| `lhq.candidate-identification.schema.json` | `194f8419ab5e72d070ac5b0cef44338a53b5547230f9d1ea73a6214de57c50dd` | `3fb8f586b0bc1ca32c2ba4e82008e384109d3adc1189a0bf5091d598c46b5fc5` |
+| `lhq.candidate-identification.valid.examples.json` | `dcb9f4a047d279588ec9aab9df125a506443b205e11bb4935867807b4c8f474a` | `c7684ee595bcb1e91a6a3b86bb4a37022a0c4c57dfcacc3ffad8326b41b2d9d4` |
+| `lhq.candidate-identification.invalid.examples.json` | `c501cab667524bdbb322a9e411349f78da28f45b09bd70e8e9c6119992348a79` | `b823d54b4627f25e543b88d7d5c06d0560124274005c0072ac3cbc694749ceed` |
+| `prototype/top_check.py` | `cf128073437772b3f14f2d7f5c42b2043087f19a1f4a9b82ba487a839b135139` | unchanged |
+
+## Tranche 2: EUF1-S1 (DOS example consistency) and LHQ2-R1 (RV3; R23-42 item 3)
+
+### EUF1-S1
+
+**Finding.** DOS's example dossier named receipt RC-1 in its DEL-09-11 hand-over, while its host-evidence index and its DEL-11-03 hand-over were empty.
+
+**Rule.** DOS §1 already required the index to list every receipt the results cite, with its resolution at write. The prose rule allowed the inconsistency only because nothing checked it.
+
+**Example fix.** `DOS-EXAMPLE-INVENTED` ran no case, so it now names no receipt anywhere. A second example, `DOS-EXAMPLE-INVENTED-POPULATED`, shows the consistent form:
+- RC-1 is listed *unresolvable* in the index and in both hand-overs;
+- LHQ-20's result is `inconclusive`;
+- a limitation states why RC-1 cannot be resolved.
+
+**Check added.** DOS §1 now states DX-1 and DX-2:
+- **DX-1:** every hand-over receipt is in the index, with the same resolution.
+- **DX-2:** both hand-overs carry the same receipt set.
+
+`prototype/dos_check.py` (new) enforces both. `lhq.dossier-manifest.dx-violations.examples.json` (new) holds three schema-valid violations:
+- the old example;
+- a resolution that differs from the index;
+- a receipt missing from the DEL-11-03 hand-over.
+
+The schema-invalid examples, which were derived from the old example, no longer carry the inconsistency, so each fails only for its stated rule. The DOS changes table has an EUF1-S1 row. The dossier schema is unchanged.
+
+### LHQ2-R1
+
+**Rule.** CI-5 now states three things:
+- `app_candidate_subject` and the element's `value` describe the same build where both are given;
+- a disagreement is a CIR defect for the examiner;
+- consumers reconcile on the mapping.
+
+**Check added.** A schema cannot express this rule. `prototype/cir_check.py` (new) checks the mechanical part: the mapping's `revision` and `build_identity` must each occur in `value`. It ignores the example marker " (invented)". Passing it is necessary, not sufficient.
+
+**Invalid example.** `lhq.candidate-identification.ci5-violations.examples.json` (new) holds two schema-valid records that `cir_check` rejects:
+- RV3's tested case, a different `revision`;
+- a different `build_identity`.
+
+They sit in their own file, not in the schema-invalid file, because the schema accepts them.
+
+**Scope.** The change is a repair in place under LHQ-v0.2, with a changes row. The CIR schema and its valid and invalid example files are unchanged. LHQ2-R2, DOS's pinned CIR schema, is held for the closeout as directed and was not touched.
+
+### Checks rerun
+
+All three DEL-09-07 schemas were checked with `jsonschema` 4.26 (Draft 2020-12) and with DEL-01-01's subset validator.
+
+| Schema | Valid examples (errors) | Invalid examples (rejected) | Violation examples (schema-valid) |
+|---|---|---|---|
+| dossier | 2 (0) | 7 (all) | 3 DX (all) |
+| CIR | 2 (0) | 5 (all) | 2 CI-5 (all) |
+| traffic | 1 (0) | 12 (all) | 2 CB-1 (all) |
+
+The prototype checks give the expected exit codes:
+
+| Check | Exit 0 (passes) | Exit 1 (reports a violation) |
+|---|---|---|
+| `dos_check` | valid examples | DX violations |
+| `cir_check` | valid examples; the schema-invalid file does not trip it | CI-5 violations |
+| `top_check` | valid examples | CB-1 violations |
+
+CIR `$defs/app_candidate_subject` still equals EXP-v0.2's definition (compared by script). EXP is still at `f7871c96…2081`. Each prototype hash embedded in the DOS and LHQ texts was grepped and matches the file.
+
+### Hashes
+
+| File (DEL-09-07 `Design/`) | Before | After |
+|---|---|---|
+| `QUALIFICATION_DOSSIER.md` | `b2ffba7135652c9e5d2ebaece3d1b002a4aef6f394f9f876dc2b3600cdde0ccd` | `687032c0036cc83ef4d82170112f209ad5d6e99a161267a8b82e3cb8ef1e8465` |
+| `lhq.dossier-manifest.valid.examples.json` | `4d659926675a5c7e4bad32a627a7aef738fd0c9fb5aa606abe9314271784f9bd` | `9873df65c9b481728d0043b0db8ea109ada5f4fdec0d8e2dc9cf2ef292068a6f` |
+| `lhq.dossier-manifest.invalid.examples.json` | `8dce976dab589b46f10045aaa3f8672fe291a16658f0b43500dcc8a558721294` | `d0d28015b59f2f0d3dfdfec910a43017c7724408fe5c90630b7880e392543bd9` |
+| `lhq.dossier-manifest.dx-violations.examples.json` | new | `de54af74203bc763230be2f00b9c33ced8159c7873f5cae9749417dfdd1652a3` |
+| `prototype/dos_check.py` | new | `07bc7791d517ade2f56c3d8c97548025e15fcdb47e8dd6cd323027549e6f2903` |
+| `lhq.dossier-manifest.schema.json` | `88cd994821c25422507ca45a901e4cd8ed5c31d847ecdbbd8475ad1ebd7d7e88` | unchanged |
+| `LOCAL_HOST_QUALIFICATION.md` | `5cd31e097a8faae46298202d854b9bb9cba27e8355c31fef997310b49c15f07b` | `90f461cbbe98de20cdd19e13be6adb82818fa23ea55166cab04833108df8523e` |
+| `lhq.candidate-identification.ci5-violations.examples.json` | new | `e8102cb7b8386bb3eab7e2f73702057bc2043fac99c00887e567299c70200aa4` |
+| `prototype/cir_check.py` | new | `6f32a9511acc505b074cc6983589c790900832f36dfc5fa8669850bbffbd2bad` |
+| `lhq.candidate-identification.schema.json` | `3fb8f586b0bc1ca32c2ba4e82008e384109d3adc1189a0bf5091d598c46b5fc5` | unchanged |
+| `lhq.candidate-identification.valid.examples.json` | `c7684ee595bcb1e91a6a3b86bb4a37022a0c4c57dfcacc3ffad8326b41b2d9d4` | unchanged |
+| `lhq.candidate-identification.invalid.examples.json` | `b823d54b4627f25e543b88d7d5c06d0560124274005c0072ac3cbc694749ceed` | unchanged |
+| `lhq.traffic-observation.schema.json` | `b7401e1f1e0e1b010bba2c2ac3c3c32a0f281db0e10a40ea19ef8a9bea4eab95` | unchanged |
+| `prototype/top_check.py` | `cf128073437772b3f14f2d7f5c42b2043087f19a1f4a9b82ba487a839b135139` | unchanged |
+
+**Pin note.** RV3 confirmed LHQ-v0.2 READY at `5cd31e09…`. The LHQ2-R1 repair moves the file to `90f461cb…`, so RV3's confirmation of LHQ2-R1 should be made against the new hash.
+
+**Not done.** No other file was written. No git writes and no network.
+
+## Tranche 2: RR-EUF3 item (R23-49): a not-run case names no run
+
+**Finding.** RR-EUF3 found that `DOS-EXAMPLE-INVENTED` records LHQ-20 as not run (`EXP-LHQ-20-not-run-example`), yet its DEL-09-11 hand-over named a journey run (`LHQ-20-EXAMPLE-RUN`), a record set with placeholder hashes, and run authors. DX-1 and DX-2 did not cover this, because they only compare receipts.
+
+**Example repair.**
+- `DOS-EXAMPLE-INVENTED` no longer has a DEL-09-11 hand-over. The hand-over is optional in the schema, and its required fields would name a run. A limitation now states why. Its DEL-11-03 hand-over already named no run: no acts, no receipts, not the witness.
+- `DOS-EXAMPLE-INVENTED-POPULATED` has LHQ-20 run (inconclusive). Two of its labels still said otherwise and are fixed:
+  - its limitation said "no case has run" and now says only LHQ-20 has run;
+  - its withheld item named the other dossier's case results and now names its own.
+- The schema-invalid examples carry a DEL-09-11 hand-over, and two count as the witness. They now cite the run (inconclusive) LHQ-20 result, with the same label fixes. Each still fails `jsonschema` with exactly one error, for its stated rule.
+- The two derived DX violation examples get the same label fixes.
+
+**Check added.** DX-3 is a new rule in `prototype/dos_check.py`, stated in DOS §1, with a changes row. When every EXP result cited for LHQ-20 is `not-run`:
+- there is no DEL-09-11 hand-over;
+- the DEL-11-03 hand-over has no acceptance act and no receipt, and does not count as the completed witness.
+
+The script reads outcomes from EXP result records passed with `--outcomes`. When an outcome is not supplied, it says "DX-3 not checked"; it never passes the rule silently.
+
+**New and updated example files.**
+- `lhq.dossier-manifest.exp-outcomes.examples.json` (new) holds invented outcome stubs for the example refs. Each carries only `record_id` and `outcome`; the stubs are not EXP records.
+- `dx-violations` gains two violations:
+  - `DX-VIOL-not-run-names-run`: the example as it stood before this repair;
+  - `DX-VIOL-not-run-11-03-names-acts`: a not-run LHQ-20 whose DEL-11-03 hand-over names an act and a receipt. That receipt is indexed, so DX-3 is the only rule it breaks.
+- The first violation example (EUF1-S1) is now noted as breaking DX-3 as well.
+- The dossier schema is unchanged.
+
+### Checks rerun
+
+Schemas were checked with `jsonschema` 4.26 and DEL-01-01's subset validator.
+
+| Schema | Valid examples (errors) | Invalid examples (rejected) | Violation examples (schema-valid) |
+|---|---|---|---|
+| dossier | 2 (0) | 7 (all) | 5 DX (all) |
+| CIR | 2 (0) | 5 (all) | 2 CI-5 (all) |
+| traffic | 1 (0) | 12 (all) | 2 CB-1 (all) |
+
+Prototype checks, run with the outcome stubs where they apply:
+
+| Check | Exit 0 (passes) | Exit 1 (reports a violation) |
+|---|---|---|
+| `dos_check --outcomes` | valid examples; schema-invalid examples (no DX finding) | all 5 DX violations |
+| `cir_check` | valid examples | CI-5 violations |
+| `top_check` | valid examples | CB-1 violations |
+
+The `dos_check` and outcome-file hashes quoted in DOS were checked by grep.
+
+### Hashes
+
+| File (DEL-09-07 `Design/`) | Before (after EUF1-S1) | After |
+|---|---|---|
+| `QUALIFICATION_DOSSIER.md` | `687032c0036cc83ef4d82170112f209ad5d6e99a161267a8b82e3cb8ef1e8465` | `8c4f4fa1593a22bdce93ff59c647785b0e81c72627a5aa4b07d253c4f13f6d7d` |
+| `lhq.dossier-manifest.valid.examples.json` | `9873df65c9b481728d0043b0db8ea109ada5f4fdec0d8e2dc9cf2ef292068a6f` | `dbf8463f45dc2b9cad657fbe81a614d761f7cc8002a21e6e65bf58139730b666` |
+| `lhq.dossier-manifest.invalid.examples.json` | `d0d28015b59f2f0d3dfdfec910a43017c7724408fe5c90630b7880e392543bd9` | `571e7ddb9db6a303efe4646e1d3462d5bd127f3370f9e13b6612bcc23f809d73` |
+| `lhq.dossier-manifest.dx-violations.examples.json` | `de54af74203bc763230be2f00b9c33ced8159c7873f5cae9749417dfdd1652a3` | `8a183339a8880359f2f7f3ccb1dac4a03ecab51865fafe02fedba2b11e16e0f9` |
+| `lhq.dossier-manifest.exp-outcomes.examples.json` | new | `15d9ae2d1a1698a13a75d18c7fbc1c614d84f4b9969c1bf99a5cf26abd2880b8` |
+| `prototype/dos_check.py` | `07bc7791d517ade2f56c3d8c97548025e15fcdb47e8dd6cd323027549e6f2903` | `bf20d8fca2623c6fb1d4036ba4b59074dd32ed8dbb8345e298ce6a98ecfe84b1` |
+| `lhq.dossier-manifest.schema.json` | `88cd994821c25422507ca45a901e4cd8ed5c31d847ecdbbd8475ad1ebd7d7e88` | unchanged |
+
+These files are unchanged since LHQ2-R1:
+
+| File | sha256 |
+|---|---|
+| `LOCAL_HOST_QUALIFICATION.md` | `90f461cb…523e` |
+| `prototype/cir_check.py` | `6f32a951…2bad` |
+| CIR schema | `3fb8f586…` |
+| CIR valid examples | `c7684ee5…` |
+| CIR invalid examples | `b823d54b…` |
+| `…ci5-violations` | `e8102cb7…` |
+| traffic schema | `b7401e1f…` |
+| `top_check.py` | `cf128073…` |
+
+**For O-F, not edited (their files are data to me).** O-F's packet holds copies of the old `DOS-EXAMPLE-INVENTED`, which still has the DEL-09-11 hand-over and RC-1:
+- `F/fixtures/FX-RP1/supplied/`, `FX-RP1-2/supplied/` and `FX-RP1-3/supplied/`, each with `lhq-dossier-manifest.DOS-EXAMPLE-INVENTED.json`;
+- `F/vendor/lhq.dossier-manifest.valid.examples.json`.
+
+Any fixture that relies on that example's hand-over to DEL-09-11 should take `DOS-EXAMPLE-INVENTED-POPULATED` instead.
+
+**Frozen.** All DEL-09-07 files listed above are frozen at these hashes for the coordinator to commit and for RV3 to confirm. No git writes and no network.
+
+## Tranche 2: RV3 N8 (Addendum 5): an unchecked DX-3 no longer exits 0
+
+**Change.** Run without `--outcomes`, `prototype/dos_check.py` printed "DX-3 not checked" but exited 0. Its exit status is now:
+
+| Exit | Meaning |
+|---|---|
+| 1 | Any manifest breaks DX-1, DX-2 or DX-3 |
+| 2 | No rule is broken, but DX-3 could not be checked for some manifest (an LHQ-20 outcome was not supplied) |
+| 0 | Every rule was checked and none is broken |
+
+The docstring states this. In DOS §1, the quoted `dos_check` hash and the exit-status sentence are updated, and a changes row is added.
+
+**Rerun.**
+
+| Run | Exit |
+|---|---|
+| Valid examples with `--outcomes` | 0 |
+| Valid examples without `--outcomes` | 2 |
+| Schema-invalid examples with `--outcomes` | 0 |
+| DX violations, with or without `--outcomes` | 1 |
+
+All three DEL-09-07 schemas pass under both validators. Valid examples have 0 errors, invalid examples are rejected, and all violation examples are schema-valid. A grep confirms DOS quotes the new `dos_check` hash and not the old one.
+
+| File (DEL-09-07 `Design/`) | Before | After |
+|---|---|---|
+| `prototype/dos_check.py` | `bf20d8fca2623c6fb1d4036ba4b59074dd32ed8dbb8345e298ce6a98ecfe84b1` | `c845bed87d155ab5f1a047c456d923c48c33e8495f38c0c3f6bfca47f60cdb6e` |
+| `QUALIFICATION_DOSSIER.md` | `8c4f4fa1593a22bdce93ff59c647785b0e81c72627a5aa4b07d253c4f13f6d7d` | `72f7324cf1013b6bf42969ffa6c5c43d5c57c69b05c865f374c648b58ebd9bec` |
+
+**Unchanged.**
+
+| File | Hash |
+|---|---|
+| dossier schema | `88cd9948…` |
+| dossier valid examples | `dbf8463f…` |
+| dossier invalid examples | `571e7ddb…` |
+| `dx-violations` examples | `8a183339…` |
+| `exp-outcomes` examples | `15d9ae2d…` |
+
+All other DEL-09-07 files are as recorded at RR-EUF3.
+
+**Frozen.** No git writes and no network.
+
+## Tranche 2 closeout: own pins (R23-21 item 4; LHQ2-R2, R23-42 item 4)
+
+**Basis.** Base `origin/main` 75604b3c49; HEAD 0d23f45985. For each pin, I read the supplier's diff myself and re-pinned by hand, not by script.
+
+### Items 1 and 2: ACT-POLICY, FLEET_VIEWS and DOS pins
+
+**ACT-POLICY v0.10 → v0.11**, pinned at DAC line 12 and RRM line 19.
+- Read with `git diff 09ca67d094 0bd6e4b4e9` on `ACT_AND_POLICY_CONTRACT.md`. Three lines change: the version label, the v0.11 change note, and the §10.3 DEL-10-03 receiver row. The A16 rows, §2.1, §2.4, §2.5 and §9 are byte-identical. This agrees with the coordinator's correction relaying O-A's check: the claim-connector check is in DEL-06-01's `fleet_store.py`, not in ACT.
+- Re-pinned to `597f13bda1fe1c1fa97b9db8ebc92483c2b43ebcbdc784d91be1f57fa93df5f2`, with a note naming the version step.
+
+**FLEET_VIEWS**, pinned at DAC line 141 (§6.1).
+- Read `git diff d150856784 HEAD`. The label is still FV-v0.1, changed in place on 2026-10-04. It adds FV-10 (the connector waiting cause) and reads DEL-06-01's RF-5a/5b.
+- Unchanged: the *ready* / *ready (qualified)* row, FV-4a and `readinessQualified`. These are what RW-1 relies on. FV-10's "satisfying a need is not readiness" does not contradict RW-1.
+- Re-pinned to `8c4e83781262d1212c5e462c5b9b2ce65c8b8c5c03fc3aaa5191b18e35a54645`.
+
+**DOS**, pinned at RRM line 15.
+- Read `git diff d150856784 HEAD`. Since `b2ffba71…`, DOS has gained DX-1…DX-3, the LHQ-v0.2 pin and the CIR-schema pin (item 3 below). §5 and DJ-1…DJ-3, which RRM relies on, are unchanged.
+- DX-3 (no DEL-09-11 hand-over when LHQ-20 is not run) agrees with RRM's RF-2, which records EXP *not-run* with the missing input. The pin note says so.
+- Re-pinned to DOS's final bytes, `b4de982f…`, given in the hash table below.
+
+Each re-pinned file has a changes row.
+
+### Items 3 and 4: LHQ and CIR-schema pins
+
+**LHQ2-R2.** The line RV3 asked for is added to CI-5 in place, with a changes row: a CIR carrying `app_candidate_subject` validates only under LHQ-v0.2's CIR schema (`3fb8f586…`), not v0.1's (`194f8419…`); a CIR without the mapping validates under both; `format` stays `LHQ-v0.1` (R23-23 item 3). I verified this:
+- `194f8419…` is the schema at `09ca67d094`, recomputed from git.
+- Under that schema the mapped valid example fails with "Additional properties are not allowed ('app_candidate_subject' was unexpected)", and the unmapped example passes.
+- The CIR schema itself is unchanged.
+
+The coordinator also pointed to R23-53. That ruling concerns P-H1d (situation 2) and does not bear on LHQ2-R2. The governing text is R23-42 item 4, at R23_RESOLUTIONS.md line 613.
+
+**LHQ-v0.1 → v0.2**, pinned at DOS line 9 and TOP line 7.
+- Read `git diff d150856784 HEAD`. Only §3 changes (the App candidate row's pointer and CI-5), plus the header and the changes section. §2.1, CI-4, §5 (with §5.4 and LHQ-23) and §7 are unchanged.
+- Re-pinned to LHQ's final bytes, `d59a1ea0…`, which include the LHQ2-R2 line.
+- TOP's "Serves" line now cites "LHQ §5.4 (unchanged from v0.1 to v0.2)".
+
+**DOS's CIR-schema pin.** On its merits, DOS now pins the v0.2 CIR schema `3fb8f586…` explicitly at line 7. Dossier CIRs may carry the mapping, and a mapped CIR fails the v0.1 schema.
+
+### Checks rerun
+
+| Check | Result |
+|---|---|
+| `fw04_check.py` (`e57359d3…`), on FX-DP1 (`MANIFEST.sha256` `9501ef81…`; all files OK under `shasum -c`) | 22 expectations, 0 failed |
+| RRM `run_standing_check.py` (`8eb1bd19…`; `rrm_compare.py` `48630745…`) | 19 cases, 0 unexpected |
+| RRM schemas | Both pass `check_schema` |
+| RRM input sets IS-FX-DP1, -2 and -3 | 0 errors each |
+| DEL-09-07 schemas, under `jsonschema` 4.26 and the DEL-01-01 subset validator | Dossier, CIR and traffic: valid examples give 0 errors, invalid examples are rejected, and the 5 DX, 2 CI-5 and 2 CB-1 violation examples are schema-valid |
+| `dos_check --outcomes`: valid examples | exit 0 |
+| `dos_check`: valid examples, without `--outcomes` | exit 2 |
+| `dos_check --outcomes`: schema-invalid examples | exit 0 |
+| `dos_check --outcomes`: DX violations | exit 1 |
+| `cir_check` | valid exit 0; CI-5 violations exit 1 |
+| `top_check` | valid exit 0; CB-1 violations exit 1 |
+
+### Hashes
+
+| File | Before | After |
+|---|---|---|
+| DEL-09-05 `DECISION_ATTRIBUTION_CASE.md` | `1fc4fd272c4f155c04f6367fb2e2562071536c78dea579dd1cfedbb889d5756c` | `8810b9570bc653bf75e591fa22ab0a6a1f24b30d84e6e3d646390ba18f52db57` |
+| DEL-09-11 `READER_METHOD.md` | `fcaa654437127306c1560fb5fba8dd5edfae3853af9de47a66ffb4c10963ff32` | `3e24df2764bf881d40dda3c7e31588a5fccc16a68a4886b9aab449ce47316d33` |
+| DEL-09-07 `LOCAL_HOST_QUALIFICATION.md` | `90f461cbbe98de20cdd19e13be6adb82818fa23ea55166cab04833108df8523e` | `d59a1ea011fd860139603fb78c20a3f66b04984f1bc2501ac0af74083876b8f1` |
+| DEL-09-07 `QUALIFICATION_DOSSIER.md` | `72f7324cf1013b6bf42969ffa6c5c43d5c57c69b05c865f374c648b58ebd9bec` | `b4de982f84e8f77aea1678084d40fae23e3a40bbb5614ab111fd2f5482cfd1fe` |
+| DEL-09-07 `TRAFFIC_OBSERVATION_PLAN.md` | `f82a58f6f0681f20bc5dd93af7a9fb456c2fa6cfa642689b675db97e82c000e4` | `dcfcddf0fcdcf56e54b84d1ebd30c0f728aac7082c59462fa4ea12393481f9c8` |
+
+Unchanged: every schema, example file and prototype in the three Design folders. The CIR schema is still `3fb8f586…` and `dos_check` is still `c845bed8…`.
+
+### For other owners (not edited)
+
+- **DEL-11-03 (O-F).** `REPLACEMENT_PACKET.md` line 26 pins LHQ at `90f461cb…`. The LHQ2-R2 line moves LHQ to `d59a1ea0…`. Only CI-5's text changed; the CIR schema and examples it vendors are unchanged. This goes to O-F for their own pin pass.
+- **Older pins in LHQ line 10, not listed by HELP_HUMAN's scan.**
+  - ACT-POLICY-v0.9, RS-v0.9 and EXEC-v0.7 are stated keeps: the line pins "the versions relied on, their committed bytes at commit `cec590c5c3`" (R23-21 item 3).
+  - GUIDE-v0.7 at `a656682e…` is **not** a stated keep. O-A changed GUIDE in place at `48df7404c7` (2026-10-04), today's closeout, re-pinning only GUIDE's own ACT row from v0.10 to v0.11; GUIDE is now `5050658818c2…`. HC-7.3 and HC-7.9, which LHQ relies on, are untouched by that diff.
+  - I left the GUIDE pin unchanged because it was outside the listed items. Re-pinning it would move LHQ again, and with it the LHQ pins in DOS and TOP and the DOS pin in RRM. The coordinator decides.
+
+**Frozen.** No git writes and no network.

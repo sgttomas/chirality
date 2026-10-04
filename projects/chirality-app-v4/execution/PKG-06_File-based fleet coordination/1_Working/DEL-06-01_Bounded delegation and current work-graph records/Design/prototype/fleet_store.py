@@ -1,6 +1,8 @@
 """DEL-06-01 fleet records: writer and reader (FLEET_RECORDS.md FR-v0.1 §6, §7). Prototype, not product code.
 
-Python 3 standard library. Validates with DEL-04-03's subset validator (minischema.py, read-only).
+Python 3 standard library, plus the installed `jsonschema` for RF-5a only (DEL-07-02's standing schema uses
+`if`/`then`, which the subset validator does not read). Validates records with DEL-04-03's subset validator
+(minischema.py, read-only).
 Layout of a fleet folder (PROPOSED for the prototype only; no placement is selected, FR §2 FR-D3):
   briefs/<briefId>.json          one brief per file, never edited (a changed brief is a new brief that supersedes)
   graphs/<undertaking>/r<n>.json  one work-graph revision per file, never edited
@@ -22,6 +24,121 @@ RS_PROTO = os.path.join(EXECUTION, "PKG-04_Human acts, autonomy and run evidence
                         "DEL-04-03_Content-bound decisions and compact run records", "Design", "prototype")
 sys.path.insert(0, RS_PROTO)
 from minischema import Registry, validate  # noqa: E402
+
+VENDORED = os.path.join(HERE, "fixtures", "vendored", "EU-D1")
+
+
+class VendoredInputChanged(Exception):
+    pass
+
+
+# FV10-R8: VENDOR.json is itself pinned, so a vendored file and its entry cannot be edited together unnoticed.
+# Changing a vendored input is a deliberate re-pin: update VENDOR.json and this constant together.
+VENDOR_SHA256 = "d02ffe5d90c2a96292f085194860313cbeb33e3fe26fa0a4355b8846d1ebe811"
+
+
+def vendored(name):
+    """R23-44: a vendored input's path, after checking VENDOR.json against VENDOR_SHA256 and the input's bytes against
+    VENDOR.json (raises VendoredInputChanged if either differs)."""
+    vpath = os.path.join(VENDORED, "VENDOR.json")
+    with open(vpath, "rb") as fh:
+        raw = fh.read()
+    if hashlib.sha256(raw).hexdigest() != VENDOR_SHA256:
+        raise VendoredInputChanged(f"VENDOR.json: sha256 {hashlib.sha256(raw).hexdigest()} differs from the pinned {VENDOR_SHA256}")
+    pins = {f["file"]: f["sha256"] for f in json.loads(raw.decode("utf-8"))["files"]}
+    path = os.path.join(VENDORED, name)
+    with open(path, "rb") as fh:
+        got = hashlib.sha256(fh.read()).hexdigest()
+    if got != pins[name]:
+        raise VendoredInputChanged(f"{name}: sha256 {got} differs from the pinned {pins[name]}")
+    return path
+
+
+def _standing_validator():
+    import jsonschema
+    with open(vendored("connector.standing.schema.json"), encoding="utf-8") as fh:
+        s = json.load(fh)
+    return jsonschema.Draft202012Validator({"$ref": "#/$defs/standing", "$defs": s["$defs"]})
+
+
+def looks_like_connector_record(path):
+    try:
+        with open(path, encoding="utf-8") as fh:
+            rec = json.load(fh)
+        return isinstance(rec, dict) and "response_standing" in rec
+    except (json.JSONDecodeError, OSError, UnicodeDecodeError):
+        return False
+
+
+def connector_need(root, need):
+    """RF-5a (R23-39; RV2 FV10-R1, FV10-R3): a DECLARED connector need (kind 'connector', with its connector) is read
+    from its receiving record's standing under DEL-07-02's vocabulary (vendored, R23-44), never by presence:
+    missing record -> outstanding; unreadable, standing-less, nonconformant or other-connector record -> unknown;
+    reliance supported -> satisfied (naming the source-file route where the record says one is still needed);
+    condition unknown -> unknown (CS-R5); otherwise outstanding, with the route account."""
+    ref, declared = need["ref"], need["connector"]
+    base = {"connectorNeed": True, "connector": declared, "record": ref, "route": None}
+    path = os.path.join(root, ref)
+    if not os.path.isfile(path):
+        return dict(base, state="outstanding", why=f"connector {declared}: receiving record {ref} not present")
+    try:
+        with open(path, encoding="utf-8") as fh:
+            rec = json.load(fh)
+    except (json.JSONDecodeError, OSError, UnicodeDecodeError):
+        return dict(base, state="unknown", why=f"connector {declared}: receiving record {ref} unreadable (torn or not JSON)")
+    if not isinstance(rec, dict) or not isinstance(rec.get("response_standing"), dict):
+        return dict(base, state="unknown", why=f"connector {declared}: receiving record {ref} has no standing")
+    st, rid = rec["response_standing"], rec.get("record_id", ref)
+    route = rec.get("route") if isinstance(rec.get("route"), dict) else {}
+    base.update(record=rid, route=route.get("account_ref"))
+    errs = sorted(_standing_validator().iter_errors(st), key=str)
+    if errs:
+        return dict(base, state="unknown", why=f"connector record {rid}: standing does not conform to DEL-07-02's "
+                                                  f"vocabulary ({errs[0].message[:80]}); not used")
+    if st["connector"] != declared:
+        return dict(base, state="unknown", why=f"connector record {rid} is from {st['connector']}, not the declared {declared}")
+    facets = f"envelope {st['envelope']}, condition {st['condition']}" + \
+        (f", claim tier {st['claim_tier']}" if "claim_tier" in st else "")
+    reasons = "; ".join(f"{r['facet']} {r['value']}: {r['basis']}" for r in st["reasons"])
+    if st["supports_reliance"]:
+        # FV10-R7 (EUD1-R12): record-level reliance must not hide an unrelied claim. Each claim's own standing is read;
+        # a record- or admitted-tier claim (or one whose tier is unknown) that does not support reliance is listed.
+        # Without a route covering it, the need is unknown, not satisfied; presence-advisory claims are listed as advisory.
+        validator = _standing_validator()
+        unrelied, advisory = [], []
+        for c in rec.get("claims") or []:
+            cs = c.get("standing") if isinstance(c, dict) else None
+            cid = c.get("claim_id", "?") if isinstance(c, dict) else "?"
+            if not isinstance(cs, dict) or list(validator.iter_errors(cs)):
+                unrelied.append(f"{cid} standing not readable or nonconformant")
+            elif cs["connector"] != declared:
+                # FV10-R9 (offered for closeout): a claim tagged with another connector is never counted as relied.
+                unrelied.append(f"{cid} tagged {cs['connector']}, not the declared {declared}")
+            elif not cs["supports_reliance"]:
+                why = next((r["basis"] for r in cs["reasons"] if r["facet"] == "condition" and cs["condition"] != "current"), None) \
+                    or next((r["basis"] for r in cs["reasons"] if r["facet"] == "claim_tier"), "")
+                if cs.get("claim_tier") == "presence_advisory":
+                    advisory.append(f"{cid} presence advisory")
+                else:
+                    unrelied.append(f"{cid} {cs['condition']}" + (f": {why}" if why else ""))
+        notes = ""
+        if unrelied and not route.get("needed"):
+            return dict(base, state="unknown", unreliedClaims=unrelied, advisoryClaims=advisory,
+                        why=f"connector record {rid} supports reliance at record level ({facets}), but claim(s) "
+                            f"{'; '.join(unrelied)} do not, and the record names no source-file route for them")
+        if unrelied:
+            notes += f"; claim(s) not relied: {'; '.join(unrelied)}"
+        if advisory:
+            notes += f"; advisory only: {'; '.join(advisory)}"
+        part = (f"; reliance covers only the record's covered parts: the source-file route {route.get('account_ref')} "
+                f"is still needed for the rest" if route.get("needed") else "")
+        return dict(base, state="satisfied", why=f"connector reliance supported ({st['connector']}: {facets}; {rid}){notes}{part}",
+                    routeNeeded=bool(route.get("needed")), unreliedClaims=unrelied, advisoryClaims=advisory)
+    state = "unknown" if st["condition"] == "unknown" else "outstanding"
+    return dict(base, state=state,
+                why=f"connector {st['connector']} does not support reliance ({facets}; {rid}): {reasons}"
+                    + (f"; the source-file route is {route.get('account_ref')}" if route.get("account_ref") else "; no route account named"))
+
 
 METHOD = "file content identity (method unselected; TEST VALUE: sha-256 of the file bytes)"
 
@@ -245,9 +362,18 @@ class Reader:
                         ("outstanding", "not integrated") if other else ("unknown", "item not in the current graph")
                 elif n["kind"] == "decision":
                     state = self._decision_state(n["ref"])
+                elif n["kind"] == "connector":
+                    # RF-5a (R23-39; FV10-R1): a declared connector need, read from its standing, never by presence.
+                    f["needs"].append(dict({"need": n}, **connector_need(self.root, n)))
+                    continue
                 else:
                     p = os.path.join(self.root, n["ref"])
-                    state = ("satisfied", "input present") if os.path.exists(p) else ("outstanding", "input not present")
+                    if os.path.exists(p) and looks_like_connector_record(p):
+                        # RF-5b (FV10-R1): a connector record named as a plain input is not read by presence.
+                        state = ("unknown", f"{n['ref']} is a connector receiving record named as a plain input; "
+                                            f"declare it as a connector need")
+                    else:
+                        state = ("satisfied", "input present") if os.path.exists(p) else ("outstanding", "input not present")
                 f["needs"].append({"need": n, "state": state[0], "why": state[1]})
             # RF-7 basis changes naming this item.
             f["basisChanged"] = [e["recordId"] for e in self.log if e["kind"] == "basis_changed" and iid in e["body"]["affectedItems"]]
