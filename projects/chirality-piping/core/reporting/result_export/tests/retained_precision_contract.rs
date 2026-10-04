@@ -197,15 +197,18 @@ fn apply_entry(shared: &Value, entry: &Value) -> (Value, Value) {
     (source, invocation)
 }
 #[test]
-fn complete_synthetic_controls_keep_eligibility_held() {
+fn complete_synthetic_controls_carry_their_shared_eligibility() {
     let shared = corpus();
     for case in shared["cases"].as_array().unwrap() {
         let got = rp::validate(&case["source"], Some(&case["invocation"]))
             .unwrap_or_else(|e| panic!("{}: {e:?}", case["id"]));
         assert!(got.invocation_bound);
-        assert!(
-            !got.numerical_eligible,
-            "native summary coverage remains held"
+        // U7 (07i, D-U7-2): 13 bases are eligible; the two with an unavailable case are not.
+        assert_eq!(
+            got.numerical_eligible,
+            case["expected"]["numerical_eligible"].as_bool().unwrap(),
+            "{}: the shared eligibility",
+            case["id"]
         );
         assert_eq!(
             got.publication_sha256,
@@ -270,12 +273,12 @@ fn shared_rehashed_first_failure_mutations() {
 
 /// Observe one slice of the shared mutations against this reader's own
 /// expectation, print one outcome per mutation (visible with --nocapture) and
-/// check the slice tally. Snapshot 07h holds 277 mutations in all.
+/// check the slice tally. 07h held 277 mutations; RV94 N-3's G7 probe makes 278.
 fn slice_outcomes(tag: &str, range: std::ops::Range<usize>, want: &[(&str, usize)]) {
     use std::collections::BTreeMap;
     let shared = corpus();
     let mutations = shared["mutations"].as_array().unwrap();
-    assert_eq!(mutations.len(), 277);
+    assert_eq!(mutations.len(), 278);
     let mut tally = BTreeMap::new();
     let mut matched = 0;
     for mutation in &mutations[range.clone()] {
@@ -822,14 +825,14 @@ fn g5_audit_local_controls() {
 
 /// Snapshot-05a shared must-pass entries: each rehashed rewrite keeps every
 /// public relation, so the reader admits it with the base case's
-/// classifications; eligibility stays held.
+/// classifications and the eligibility the entry states (07i, U7).
 #[test]
 fn shared_must_pass_entries_validate() {
     let shared = corpus();
     let entries = shared["must_pass"].as_array().unwrap();
     // Snapshot 07: 06d's 18 plus the equal-E bracket control; 07h adds F5's
-    // reordered-envelope exact-list control (RV90 N2).
-    assert_eq!(entries.len(), 23);
+    // reordered-envelope exact-list control (RV90 N2); 07j adds C04's not_required case.
+    assert_eq!(entries.len(), 24);
     let mut failures = Vec::new();
     for entry in entries {
         assert_eq!(entry["expected"], "pass");
@@ -849,7 +852,9 @@ fn shared_must_pass_entries_validate() {
             }
         };
         let expected = case["expected_classifications"].as_array().unwrap();
-        let same = !got.numerical_eligible
+        // U7 (07i): each must-pass entry states its eligibility.
+        let same = got.numerical_eligible
+            == entry["expected_eligibility"]["numerical_eligible"].as_bool().unwrap()
             && got.invocation_bound
             && got.classifications.len() == expected.len()
             && got.classifications.iter().zip(expected).all(|(g, w)| {
@@ -880,7 +885,7 @@ fn shared_must_pass_entries_validate() {
     assert!(failures.is_empty(), "{}", failures.join("\n"));
 }
 
-/// C1 G5b "same E/ê/Φ at p512" (FK/verify.rs:321-376). No p512 corpus base
+/// C1 G5b "same E/ê/Φ at p512" (verify.rs `e_hat` through `phi_512`). No p512 corpus base
 /// exists until C1b, so the rounding is pinned directly. Expected bits were
 /// derived independently as the least binary64 >= e·2^-438 with an exact
 /// rational oracle (hand-checked for the subnormal ties).
@@ -960,7 +965,7 @@ fn coverage_layout_controls_fail_at_g5a() {
 /// rewrites keep every public relation (feasibility, rederived estimate and
 /// charge, exact rosters, record binding, direct data facts), so the reader must
 /// admit them with the base classifications; only producer custody or replay
-/// can catch such attested private flags. Eligibility stays held.
+/// can catch such attested private flags. Since U7 they keep the base's eligibility.
 #[test]
 fn publicly_consistent_coverage_attestations_are_not_rejected() {
     use serde_json::json;
@@ -1036,7 +1041,8 @@ fn publicly_consistent_coverage_attestations_are_not_rejected() {
         rehash(&mut source);
         let got = rp::validate(&source, Some(&case["invocation"]))
             .unwrap_or_else(|e| panic!("{name}: {e:?}"));
-        assert!(!got.numerical_eligible, "{name}");
+        assert!(case["expected"]["numerical_eligible"].as_bool().unwrap(), "{name}: an eligible base");
+        assert!(got.numerical_eligible, "{name}");
         let expected = case["expected_classifications"].as_array().unwrap();
         assert_eq!(got.classifications.len(), expected.len(), "{name}");
         for (got, want) in got.classifications.iter().zip(expected) {
@@ -3280,4 +3286,31 @@ fn d37_error_kind_agrees_with_stage_record() {
         run(name, P_BASE, vec![set(p_error.clone(), e)], true);
     }
     assert!(misses.is_empty(), "{}", misses.join("\n"));
+}
+
+/// RV94 S-1 on 07j's two-case statement whose second case is not_required: with
+/// the receipt's case order the standing is eligible and the summary Current;
+/// with the not_required case omitted, or the two reordered, the standing is
+/// `needs_recompute` and the summary not-Current ([73, 0]).
+#[test]
+fn u7_07j_not_required_case_omitted_or_reordered_is_not_current() {
+    use open_pipe_stress_result_export::semantic_contract as s;
+    let shared = corpus();
+    let entry = shared["must_pass"].as_array().unwrap().iter().find(|e| e["id"] == "not_required_second_case_checks_passed").unwrap();
+    let (source, invocation) = apply_entry(&shared, entry);
+    let cases = source["retained_precision"]["body"]["cases"].as_array().unwrap();
+    assert_eq!(cases.iter().map(|c| c["status"].as_str().unwrap()).collect::<Vec<_>>(), ["selected", "not_required"]);
+    let order: Vec<Value> = cases.iter().map(|c| c["basis_ref"].clone()).collect();
+    assert_eq!(s::numerical_use_standing_with_context(&source, &order, Some(&invocation)), "numerically_eligible");
+    let withheld = |refs: &[Value]| -> Vec<u64> {
+        s::classification_summary(&source, Some(&invocation), refs).iter().map(|c| c["withheld"].as_u64().unwrap()).collect()
+    };
+    let current = withheld(&order);
+    assert_eq!(withheld(&[]), [73, 0]);
+    assert_ne!(current, [73, 0]);
+    let reversed: Vec<Value> = order.iter().rev().cloned().collect();
+    for refs in [order[..1].to_vec(), reversed] {
+        assert_eq!(s::numerical_use_standing_with_context(&source, &refs, Some(&invocation)), "needs_recompute", "{refs:?}");
+        assert_eq!(withheld(&refs), [73, 0], "{refs:?}");
+    }
 }

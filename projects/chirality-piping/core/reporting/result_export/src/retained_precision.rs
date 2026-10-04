@@ -725,7 +725,7 @@ fn g3(source: &Value, inv: Option<&Value>) -> VResult {
                 && ids.contains(text(&r["basis_ref"]["ref_id"])),
         )?;
     }
-    // D29 (FK/retained/source.rs:498 NoNodes; I57 s1): every CaseSource has a
+    // D29 (source.rs `PrimitiveSource::new` NoNodes; I57 s1): every CaseSource has a
     // non-empty body inventory.
     for s in list(&b["sources"]) {
         fail(!list(&s["body_membership"]).is_empty())?;
@@ -735,7 +735,7 @@ fn g3(source: &Value, inv: Option<&Value>) -> VResult {
         let old = list(&a["operational"]["old"]);
         let pm = list(&a["preparation"]["members"]);
         let new = list(&a["operational"]["new"]);
-        // D1 (C2:98; F1:78-84, 101, 130; PP:1238, 1296): old, prepared and new
+        // D1 (C2:98; F1:78-84, 101, 130; retained_product.rs `ProductCapture::capture_case_source`): old, prepared and new
         // member ids are exactly 0..len-1 in native order, so prepared and new
         // are prefixes of old.
         fail(
@@ -903,7 +903,7 @@ fn g5_native(b: &Value) -> VResult {
     runs.sort_by_key(|(_, _, r)| u(&r["id"]));
     // D8 kernel scope (checkpoint A; C1:66-68): a work_accounting stop or reason
     // anywhere in a Run, a build or a group preparation is outside the emitted
-    // domain (adaptive.rs:4545, 4777, 4996).
+    // domain (adaptive.rs `run_schedule_inner`, `finish_terminal`, `solve_cases_projected`).
     for item in runs
         .iter()
         .map(|(_, _, r)| *r)
@@ -1009,7 +1009,7 @@ fn g5_native(b: &Value) -> VResult {
                 prior_precision = p;
                 af(u(&record["corrections"]) <= 3)?;
                 if record["role"] == "candidate" {
-                    // D5a (C1:105; adaptive.rs:4076-4079, 4333): a candidate record
+                    // D5a (C1:105; adaptive.rs `solve_precision`, `verify_precision`): a candidate record
                     // has no verification, no verification shared build and no
                     // verification-pass work.
                     af(record["verification"].is_null()
@@ -1024,18 +1024,18 @@ fn g5_native(b: &Value) -> VResult {
                         text(&record["outcome"]["kind"]),
                         "verified" | "solved" | "failed"
                     ))?;
-                    // D5b (adaptive.rs:4576-4611, 4377): an escalating stop on a failed
+                    // D5b (adaptive.rs `run_schedule_inner`, `terminal`): an escalating stop on a failed
                     // verification is a solve failure, so the verification pass never
                     // ran: no report and no verification-pass work.
                     // D21: a verification shared build is also pass evidence; natively
-                    // it is obtained only inside verify_precision (adaptive.rs:4286).
+                    // it is obtained only inside verify_precision (adaptive.rs `verify_precision`).
                     if record["outcome"]["kind"] == "failed" && escalating(&record["outcome"]["reason"]) {
                         af(record["verification"].is_null()
                             && u(&record["work"]["verification_lme"]) == 0
                             && record["verification_shared_build_ref"].is_null())?;
                     }
                 }
-                // D5d/D28 (C2:22-24, :54; C1:114; adaptive.rs:4169-4197,
+                // D5d/D28 (C2:22-24, :54; C1:114; adaptive.rs `rejection_reason`,
                 // 4714-4720): every quantity-bearing reason (stop_rule,
                 // verification_estimate, charge, publication_enclosure) names a
                 // layout row of the Run's source with the same body and kind.
@@ -1052,7 +1052,7 @@ fn g5_native(b: &Value) -> VResult {
                             && row["body"] == reason["body"]
                             && row["kind"] == reason["kind"]
                     }))?;
-                    // D33 (RV80-N1; verify.rs:880): the native verification
+                    // D33 (RV80-N1; verify.rs `verify_state`): the native verification
                     // estimate exists only for Force and Moment rows. `charge`
                     // may name displacement rows and stays unrestricted.
                     af(reason["tag"] != "verification_estimate"
@@ -1071,7 +1071,7 @@ fn g5_native(b: &Value) -> VResult {
                 wf(own == u(&w["own_lme"]) && own == tw(stages_sum(&w["own_stages"])))?;
                 wf(u(&w["stop_rule_lme"]) == u(&w["own_stages"]["stop_rule"]))?;
                 // verify_state owns these five disjoint stage slots; solve and
-                // candidate comparison use the other slots (verify.rs:745–1222).
+                // candidate comparison use the other slots (verify.rs `verify_state`).
                 wf(u(&w["verification_lme"])
                     == tw(sum(["scale", "estimate", "charge", "bound", "shift"]
                         .iter()
@@ -1486,13 +1486,13 @@ fn g5_schedule(r: &Value, body: Option<&Value>) -> VResult {
     af(records.iter().all(|x| u(&x["corrections"]) <= 3))?;
     let terminal = &r["kernel_terminal"];
     // A WorkAccounting terminal exists natively only when a work status is not
-    // exact (adaptive.rs:4545, 4777, 4996); C1:66-68 forbids emitting such a
+    // exact (adaptive.rs `run_schedule_inner`, `finish_terminal`, `solve_cases_projected`); C1:66-68 forbids emitting such a
     // run, so it lies outside the emitted terminal domain (C1:148), idle or not.
     af(!(terminal["kind"] == "unresolved"
         && terminal["reason"]["space"] == "unresolved"
         && terminal["reason"]["tag"] == "work_accounting"))?;
     if attempts.is_empty() {
-        // Pre-schedule returns (adaptive.rs:4994-5075): invocation exhaustion
+        // Pre-schedule returns (adaptive.rs `solve_cases_projected`): invocation exhaustion
         // (group null, Budget(invocation)); a refused group (checked with C5);
         // a CasePrep failure in a ready group (refused LedgerUnavailable).
         af(records.is_empty()
@@ -1618,18 +1618,18 @@ fn g5_schedule(r: &Value, body: Option<&Value>) -> VResult {
         af(terminal["kind"] == "selected" && terminal["reason"].is_null())
     } else if ended {
         // N5: a terminal stop ends on its exact terminal() translation
-        // (adaptive.rs:4349-4378).
+        // (adaptive.rs `terminal`).
         af(terminal_of(&end_stop).is_some_and(|t| *terminal == t))
     } else if escalated && c < 3 {
         // N9: an escalating last stop with slots left ends only through a work
-        // fault (adaptive.rs:4545-4546, 4581-4582), which is never emitted.
+        // fault (adaptive.rs `run_schedule_inner`), which is never emitted.
         af(false)
     } else {
         // N8: leaving the loop past the last slot is the Ceiling (4762-4766).
         af(*terminal == ceiling)
     }
 }
-/// FK/adaptive.rs:4349-4378 terminal(): the exact kernel terminal of a
+/// adaptive.rs `terminal` terminal(): the exact kernel terminal of a
 /// terminal stop, or None for an escalating stop. The wire carries
 /// WorkAccounting as {fault} only (C3:261-263).
 fn terminal_of(stop: &Value) -> Option<Value> {
@@ -1832,15 +1832,15 @@ fn operational_errors(a: &Value) -> Vec<&Value> {
 }
 /// Checkpoint A, D8 (C3:232-236; G5 WORK, class 4), for one product attempt:
 /// R1': no adapter fault and no CaptureError/G5aError `accounting{event}`
-/// (an adapter overflow leaves a count of at least 2^62, PP:2896-2907).
+/// (an adapter overflow leaves a count of at least 2^62, retained_product.rs `AdapterWork::enter`).
 /// R2': no ScalarTrace is `lost`, and no OperationalError `accounting`
-/// (returned only for a lost ScalarWork, PP:2311-2347).
+/// (returned only for a lost ScalarWork, retained_product.rs `ScalarWork::check` through `ScalarWork::operation`).
 /// R3': every fault-bearing cause, in any spelling (`work_accounting{fault}`,
 /// a nested `stop/work_accounting`, a view `work{fault}`), has its fault in
 /// its owner's emitted statuses (`fault_owner`).
 /// R4: a SectionError `accounting` (on a PreparedMember, or as the preparation
 /// error's section, owned by the last member) needs a non-exact status in that
-/// member's PreparationWork (FK product_certificate.rs:676-679).
+/// member's PreparationWork (FK product_certificate.rs `SectionPreparationWork::check`).
 fn accounting_rules(a: &Value) -> [bool; 4] {
     let mut objs = Vec::new();
     located(a, &mut Vec::new(), &mut objs);
@@ -2320,8 +2320,8 @@ fn g5_products(source: &Value) -> VResult {
     Ok(())
 }
 /// D37 (D35 widened; RV78-S1/S2, RV79-X1): the native transition sequence
-/// (PP/retained_product.rs:3140-3290 preparation and native, 3460-3555 the
-/// prepared candidate; retained_receipt.rs:45-54 trace states) fixes, for each
+/// (retained_product.rs `ProductCapture::prepare_owned_case` through `PreparedCase::solve_native` preparation and native, `PreparedCase::project_candidate` the
+/// prepared candidate; retained_receipt.rs `PreparedTrace::enter` through `PreparedTrace::checked` trace states) fixes, for each
 /// public error kind, the stage record it leaves:
 /// - `preparation`: preparation failed; `native`: native failed (a nonselected
 ///   native outcome); `values`: values failed;
@@ -2384,7 +2384,7 @@ const STAGE8: [&str; 8] = [
     "aliases",
     "certificate",
 ];
-/// P2/P6 (C3:196-201, 253-257; retained_receipt.rs:45-54): stages advance
+/// P2/P6 (C3:196-201, 253-257; retained_receipt.rs `PreparedTrace::enter` through `PreparedTrace::checked`): stages advance
 /// only through returned transitions, so after the first stage that did not
 /// complete every later pipeline stage is not_entered; observables and G5a are
 /// entered together; a source exists iff preparation completed; and the
@@ -2767,7 +2767,7 @@ fn canonical_layout(s: &Value) -> VResult<Value> {
 /// the record bound/theta/data_blocks relations and the direct data facts.
 /// Without a Selection, p comes from the selected Run's last attempt, E and
 /// theta from its verification record, and at p512 floor positivity is
-/// Φ = phi_512(ê) > 0 from that record (adaptive.rs:2285-2307). No Selection
+/// Φ = phi_512(ê) > 0 from that record (adaptive.rs `rule`). No Selection
 /// roster or selected pass condition is applied to an unavailable attempt.
 fn coverage_g5a(
     case: &Value,
@@ -3445,7 +3445,7 @@ fn g8(source: &Value, inv: &Value) -> VResult {
     )?;
     need(
         // D31: the producer treats model 0.1.0 and 0.2.0 on one branch
-        // (pressure_runtime.rs:113-118); 0.4.0 stays excluded.
+        // (pressure_runtime.rs `validate_profile`); 0.4.0 stays excluded.
         matches!(text(&model["schema_version"]), "0.1.0" | "0.2.0" | "0.3.0")
             && model["pressure_contract"].is_null()
             && list(&model["combinations"]).is_empty()
@@ -4264,9 +4264,9 @@ fn project(source: &Value, raw: bool) -> VResult<Value> {
     }
     Ok(projected)
 }
-// Eligibility stays held: the reader is unaccepted until the snapshot-07 repair
-// wave (review RV78-RV81) is confirmed by the reviewers and ROOT accepts it.
-const IMPLEMENTATION_COMPLETE: bool = false;
+// Eligibility is on (U7, D-U7-5): an invocation-bound statement of a solved
+// model whose cases are selected or not_required is eligible; every gate runs.
+const IMPLEMENTATION_COMPLETE: bool = true;
 /// Validate a raw successor statement against the original request/mode.
 /// Hashes bind the supplied statements; they do not establish producer origin.
 pub fn validate(source: &Value, actual_invocation: Option<&Value>) -> VResult<Validation> {

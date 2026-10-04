@@ -2,8 +2,9 @@
 //! (dispatch, standing, binding refusal, classification summary and the
 //! canonical derivative) and back out. The inputs are byte-identical copies of
 //! PP's pinned milestone successor files (D-U6-5), checked by sha256 here. They
-//! are producer test outputs, not native Current evidence. Eligibility stays
-//! held, so standing is `needs_recompute` (D-U6-6); U7 owns the switch.
+//! are producer test outputs, not native Current evidence. Since U7 (D-U7-5) the
+//! reader's eligibility is on: with its actual invocation and requested cases the
+//! milestone stands `numerically_eligible`, and without them `needs_recompute`.
 use open_pipe_stress_result_export::{
     derivative as d, retained_precision as rp, semantic_contract as s, source_blocks,
 };
@@ -180,18 +181,18 @@ fn u6a_dispatch_admits_the_successor_through_the_accepted_reader_only() {
 }
 
 #[test]
-fn u6a_standing_is_needs_recompute_and_comes_only_from_the_receipt() {
+fn u6a_standing_is_eligible_only_with_the_invocation_and_comes_only_from_the_receipt() {
     for m in milestones() {
         let refs = requested(&m.invocation);
         assert_eq!(s::numerical_use_standing(&m.source, &refs), "needs_recompute");
         assert_eq!(
             s::numerical_use_standing_with_context(&m.source, &refs, Some(&m.invocation)),
-            "needs_recompute",
-            "{}: eligibility held",
+            "numerically_eligible",
+            "{}: eligible with the actual invocation (U7)",
             m.mode
         );
         let validation = rp::validate(&m.source, Some(&m.invocation)).unwrap();
-        assert!(validation.invocation_bound && !validation.numerical_eligible);
+        assert!(validation.invocation_bound && validation.numerical_eligible);
         // An edited covered row or a foreign invocation is unsupported.
         let mut row = m.source.clone();
         row["results"][0]["value"] = json!(row["results"][0]["value"].as_f64().unwrap() * 2.0 + 1.0);
@@ -215,8 +216,28 @@ fn u6a_standing_is_needs_recompute_and_comes_only_from_the_receipt() {
     }
 }
 
-/// The post-U7 rule, exercised now through the test seam with a validation
-/// whose eligibility is set; the flags themselves are untouched.
+/// U7: a hash-consistent successor whose mechanics status is not
+/// `MECHANICS_SOLVED` is refused at G7 by the base preview validator (a blocked
+/// envelope carries no preview evidence), so the reader's own MECHANICS_SOLVED
+/// conjunct is never the deciding one (I66 U7 slice F, mutant C5).
+#[test]
+fn u7_a_solved_status_is_required_before_the_eligibility_conjunct() {
+    for m in milestones() {
+        for status in ["MODEL_INCOMPLETE", "MECHANICS_FAILED", "NOT_RUN"] {
+            let mut unsolved = m.source.clone();
+            unsolved["status"]["mechanics"] = json!(status);
+            let unsolved = rehash(unsolved);
+            let error = rp::validate(&unsolved, Some(&m.invocation)).unwrap_err();
+            // C1 G7 (06b settlement): each language reports its own base code; Rust's
+            // preview validator names the blocked envelope.
+            assert_eq!((error.gate, error.code.as_str()), ("G7", "SOURCE_PREVIEW_PHYSICS_BLOCKED_ENVELOPE"), "{status}");
+            assert_eq!(s::numerical_use_standing_with_context(&unsolved, &requested(&m.invocation), Some(&m.invocation)), "unsupported");
+        }
+    }
+}
+
+/// The standing rule's conjuncts, through the test seam with a validation whose
+/// eligibility is set (the reader's own eligibility is on since U7).
 #[test]
 fn u6a_standing_rule_conjuncts_with_eligibility_set() {
     let m = &milestones()[0];
@@ -311,7 +332,7 @@ fn u6a_derivative_carries_the_receipt_and_it_comes_back_out() {
         back["retained_precision"] = e["retained_precision"].clone();
         let after = rp::validate(&back, Some(&m.invocation)).unwrap();
         assert_eq!(after, before);
-        assert!(!after.numerical_eligible);
+        assert!(after.numerical_eligible);
         // Transport: the derivative's metadata view is G0-G2 valid, never eligible.
         let view = json!({"schema_version":"0.2.0","producer":e["producer"],"numerical_quality":e["numerical_quality"],"formulation_basis":e["formulation_basis"],"contract_evidence":e["contract_evidence"],"retained_precision":e["retained_precision"]});
         let transport = rp::validate_transport_metadata(&view).unwrap();
@@ -545,24 +566,31 @@ fn u6a_classification_summary_counts_validated_classes() {
         let expected = json!([{"case_id":case_id,"relative_verified":relative,"absolute_verified":absolute,
             "interval_bindable":0,"not_covered":0,"input_derived":input,"non_quantity":non_quantity,
             "withheld":relative + absolute + input}]);
-        // Not Current (eligibility held): every quantity row is withheld.
-        assert_eq!(json!(s::classification_summary(&m.source, Some(&m.invocation))), expected);
-        assert_eq!(json!(s::classification_summary(&m.source, None)), expected);
-        let mut broken = m.source.clone();
-        broken["results"][0]["value"] = json!(12345.0);
-        assert!(s::classification_summary(&broken, Some(&m.invocation)).is_empty());
-        assert!(s::classification_summary(&projected_base(&m.source), None).is_empty());
-        // After U7 (exercised through the seam): only absolute and not-covered
-        // rows stay withheld, and only for the invocation's requested cases.
-        let mut validation = rp::validate(&m.source, Some(&m.invocation)).unwrap();
-        validation.numerical_eligible = true;
+        // U7, aligned (RV94 S-1): Current only when the standing with the caller's
+        // requested refs is eligible, so only absolute and not-covered rows stay
+        // withheld; with no refs or other refs every quantity row is.
+        let refs = requested(&m.invocation);
+        let other = vec![json!({"ref_type":"load_case","ref_id":"other"})];
         let mut current = expected.clone();
         current[0]["withheld"] = json!(absolute);
-        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, Some(&m.invocation))), current);
-        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, None)), expected);
-        let mut other = m.invocation.clone();
-        other["request"]["model"]["load_cases"][0]["id"] = json!("other");
-        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, Some(&other))), expected);
+        assert_eq!(s::numerical_use_standing_with_context(&m.source, &refs, Some(&m.invocation)), "numerically_eligible");
+        assert_eq!(json!(s::classification_summary(&m.source, Some(&m.invocation), &refs)), current);
+        assert_eq!(json!(s::classification_summary(&m.source, Some(&m.invocation), &[])), expected);
+        assert_eq!(s::numerical_use_standing_with_context(&m.source, &other, Some(&m.invocation)), "needs_recompute");
+        assert_eq!(json!(s::classification_summary(&m.source, Some(&m.invocation), &other)), expected);
+        assert_eq!(json!(s::classification_summary(&m.source, None, &refs)), expected);
+        assert_eq!(json!(s::classification_summary(&m.source, None, &[])), expected);
+        let mut broken = m.source.clone();
+        broken["results"][0]["value"] = json!(12345.0);
+        assert!(s::classification_summary(&broken, Some(&m.invocation), &refs).is_empty());
+        assert!(s::classification_summary(&projected_base(&m.source), None, &[]).is_empty());
+        // Through the seam: only absolute and not-covered rows stay withheld, and
+        // only for the invocation's requested cases.
+        let mut validation = rp::validate(&m.source, Some(&m.invocation)).unwrap();
+        validation.numerical_eligible = true;
+        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, &refs)), current);
+        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, &[])), expected);
+        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, &other)), expected);
         // A not_covered row (none exists in any validated statement here) is
         // withheld whether or not the envelope is Current.
         let relative = validation.classifications.iter().position(|c| c.class == rp::AccuracyClass::RelativeVerified).unwrap();
@@ -571,10 +599,10 @@ fn u6a_classification_summary_counts_validated_classes() {
         uncovered[0]["relative_verified"] = json!(25 - 1);
         uncovered[0]["not_covered"] = json!(1);
         uncovered[0]["withheld"] = json!(absolute + 1);
-        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, Some(&m.invocation))), uncovered);
+        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, &refs)), uncovered);
         validation.numerical_eligible = false;
         uncovered[0]["withheld"] = json!(relative_count(&expected) + absolute + input);
-        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, Some(&m.invocation))), uncovered);
+        assert_eq!(json!(s::classification_summary_from(&validation, &m.source, &refs)), uncovered);
     }
 }
 
@@ -618,14 +646,18 @@ const CASES: &str = include_str!("../../../../fixtures/results/retained_precisio
 /// RR "RV88 on U6a, U6c, U6b (and U6d)": the only ruled differences between the
 /// languages' carriers (and F5's shared semantics); any other is a defect. RR
 /// "RV92 (U6f) on the whole of U6" adds the fifth (N-2, with N-5) and widens
-/// I67-F2 (N-3).
-const DECLARED: [&str; 5] = [
+/// I67-F2 (N-3). RR "The memory branch merged into NUM; U7 slices T and P
+/// committed" adds D-U7-4 (format v4).
+const DECLARED: [&str; 6] = [
     "I67-F1:unregistered_invalid_statement",
     "I67-F2:display_only_binding_precheck",
     "F-U6b-2:python_refuses_transport",
     "F5:refused_statement_binding",
     "RV92-N2-N5:ts_refuses_token_rows_at_the_header",
+    "D-U7-4:ts_requires_live_native_capture",
 ];
+/// Every field a v4 form may carry; any other field is a defect, never silently ignored.
+const FORM_FIELDS: [&str; 9] = ["label", "fixtures", "invocation", "capture", "requested", "edits", "current_model_edits", "subject", "expected"];
 
 /// The shared file's fixtures, by id, as (source, invocation or Null).
 fn shared_fixtures(cases: &Value) -> Vec<(String, Value, Value)> {
@@ -682,7 +714,7 @@ fn apply_shared(c: &Value, fixture: &(String, Value, Value)) -> (Value, Option<V
 #[test]
 fn u6a_shared_carrier_cases_rust() {
     let cases: Value = serde_json::from_str(CASES).unwrap();
-    assert_eq!(cases["format"], "I66-U6-CARRIER-CASES-v3");
+    assert_eq!(cases["format"], "I66-U6-CARRIER-CASES-v4");
     let fixtures = shared_fixtures(&cases);
     let mut n = 0;
     for c in cases["cases"].as_array().unwrap() {
@@ -704,8 +736,10 @@ fn u6a_shared_carrier_cases_rust() {
 }
 
 /// 'by_validated_class' for the summary subject: per receipt case, the reader's
-/// class counts, interval binding 0, and the held withheld count.
-fn expected_summary(source: &Value) -> Value {
+/// class counts, interval binding 0, and the not-Current withheld count (these
+/// forms carry no invocation). With `current`, the Current count: only absolute
+/// and not-covered rows.
+fn expected_summary_with(source: &Value, current: bool) -> Value {
     let v = rp::validate(source, None).unwrap();
     let cases = source["retained_precision"]["body"]["cases"].as_array().unwrap();
     Value::Array(cases.iter().map(|case| {
@@ -720,8 +754,38 @@ fn expected_summary(source: &Value) -> Value {
             }] += 1;
         }
         json!({"case_id":case["basis_ref"]["ref_id"],"relative_verified":n[0],"absolute_verified":n[1],"interval_bindable":0,
-            "not_covered":n[2],"input_derived":n[3],"non_quantity":n[4],"withheld":n[0] + n[1] + n[2] + n[3]})
+            "not_covered":n[2],"input_derived":n[3],"non_quantity":n[4],"withheld":if current { n[1] + n[2] } else { n[0] + n[1] + n[2] + n[3] }})
     }).collect())
+}
+fn expected_summary(source: &Value) -> Value {
+    expected_summary_with(source, false)
+}
+
+/// RV94 S-1: on both D-U7-4 forms Rust, given the invocation and the requested
+/// refs, stands `numerically_eligible` and its summary is Current (69 withheld);
+/// TS's side (needs_recompute, the not-Current 97) is pinned in TS. With other
+/// requested refs Rust reads `needs_recompute` and the not-Current summary.
+#[test]
+fn u7_d_u7_4_forms_rust_side_standing_and_summary() {
+    let cases: Value = serde_json::from_str(CASES).unwrap();
+    let fixtures = shared_fixtures(&cases);
+    let entry = cases["declared_differences"].as_array().unwrap().iter().find(|e| e["id"] == "D-U7-4:ts_requires_live_native_capture").unwrap();
+    let other = vec![json!({"ref_type":"load_case","ref_id":"other"})];
+    for form in entry["forms"].as_array().unwrap() {
+        assert_eq!(form["expected"]["rust"], if form["subject"] == "standing" { json!({"standing": "numerically_eligible"}) } else { json!({"summary": "by_validated_class_current"}) });
+        for fid in form["fixtures"].as_array().unwrap() {
+            let fixture = fixtures.iter().find(|f| fid == f.0.as_str()).unwrap();
+            let (source, invocation, requested) = apply_shared(form, fixture);
+            let label = form["label"].as_str().unwrap();
+            assert_eq!(s::numerical_use_standing_with_context(&source, &requested, invocation.as_ref()), "numerically_eligible", "{label}");
+            let summary = json!(s::classification_summary(&source, invocation.as_ref(), &requested));
+            assert_eq!(summary, expected_summary_with(&source, true), "{label}");
+            assert!(summary[0]["withheld"] == 69 && summary[0]["absolute_verified"] == 69, "{label}");
+            assert_eq!(s::numerical_use_standing_with_context(&source, &other, invocation.as_ref()), "needs_recompute");
+            let not_current = json!(s::classification_summary(&source, invocation.as_ref(), &other));
+            assert!(not_current == expected_summary(&source) && not_current != summary, "{label}");
+        }
+    }
 }
 /// The expected binding of every row, from the entry's vocabulary.
 fn expected_binding(source: &Value, expected: &str) -> Vec<Option<String>> {
@@ -755,7 +819,7 @@ fn expected_binding(source: &Value, expected: &str) -> Vec<Option<String>> {
 #[test]
 fn u6_declared_differences_rust() {
     let cases: Value = serde_json::from_str(CASES).unwrap();
-    assert!(["G7 parity compares the reader's (gate, code)", "parity there compares only accept against refuse"].iter().all(|p| cases["scope"].as_str().unwrap().contains(p)));
+    assert!(["G7 parity compares the reader's (gate, code)", "parity there compares only accept against refuse", "no carrier authenticates producer origin", "a blocked envelope is refused at G7 with each language's own base code", "Rust SOURCE_PREVIEW_PHYSICS_BLOCKED_ENVELOPE", "An invalid enum value in a not_required case's quality is refused at G7 with each language's own code", "Rust SOURCE_NUMERICAL_CASE_INVALID"].iter().all(|p| cases["scope"].as_str().unwrap().contains(p)));
     let fixtures = shared_fixtures(&cases);
     let entries = cases["declared_differences"].as_array().unwrap();
     let mut ids: Vec<&str> = entries.iter().map(|e| e["id"].as_str().unwrap()).collect();
@@ -775,18 +839,51 @@ fn u6_declared_differences_rust() {
             let expected = &form["expected"]["rust"];
             let subject = form["subject"].as_str().unwrap();
             subjects.insert(subject.to_string());
+            let unknown: Vec<&String> = form.as_object().unwrap().keys().filter(|k| !FORM_FIELDS.contains(&k.as_str())).collect();
+            assert!(unknown.is_empty(), "{id} {label}: {unknown:?}");
+            // v4 'capture': 'none' is TS's (no IPC capture); Rust reads the invocation
+            // argument exactly as for 'invocation': 'fixture'.
+            if let Some(capture) = form.get("capture") {
+                assert!(capture == "none" && form["invocation"] == "fixture", "{id} {label}");
+                subjects.insert("capture".to_string());
+            }
             for fid in form["fixtures"].as_array().unwrap() {
                 let fixture = fixtures.iter().find(|f| fid == f.0.as_str()).unwrap();
                 let (source, invocation, requested) = apply_shared(form, fixture);
+                // v4 'current_model_edits' change only TS's current model: applied here to a
+                // copy of the invocation's model, they must change it, while Rust's inputs
+                // (the source, the invocation and the requested refs) stay as they are.
+                if let Some(edits) = form.get("current_model_edits") {
+                    let mut model = fixture.2["request"]["model"].clone();
+                    for edit in edits.as_array().unwrap() {
+                        assert!(edit["op"] == "set" && edit.as_object().unwrap().len() == 3, "{id} {label}");
+                        let mut at = &mut model;
+                        for key in edit["path"].as_array().unwrap() {
+                            at = match key {
+                                Value::String(k) => at.get_mut(k.as_str()).unwrap_or_else(|| panic!("{id} {label}: {k}")),
+                                Value::Number(i) => at.get_mut(i.as_u64().unwrap() as usize).unwrap_or_else(|| panic!("{id} {label}: {i}")),
+                                _ => panic!("path"),
+                            };
+                        }
+                        *at = edit["value"].clone();
+                    }
+                    assert!(model != fixture.2["request"]["model"] && invocation.as_ref() == Some(&fixture.2), "{id} {label}");
+                    subjects.insert("current_model_edits".to_string());
+                }
                 match subject {
-                    "standing" => assert_eq!(s::numerical_use_standing_with_context(&source, &requested, invocation.as_ref()), expected["standing"], "{id} {label}"),
+                    "standing" => {
+                        assert_eq!(s::numerical_use_standing_with_context(&source, &requested, invocation.as_ref()), expected["standing"], "{id} {label}");
+                        if expected["standing"] == "numerically_eligible" {
+                            subjects.insert("standing:numerically_eligible".to_string());
+                        }
+                    }
                     "transport" => {
                         let got = match s::for_source_metadata(&source) { Ok(_) => "ok".to_string(), Err(e) => e };
                         assert_eq!(got, expected["transport"].as_str().unwrap(), "{id} {label}");
                     }
                     "summary" => {
-                        let got = json!(s::classification_summary(&source, invocation.as_ref()));
-                        let want = match expected["summary"].as_str().unwrap() { "by_validated_class" => expected_summary(&source), _ => json!([]) };
+                        let got = json!(s::classification_summary(&source, invocation.as_ref(), &requested));
+                        let want = match expected["summary"].as_str().unwrap() { "by_validated_class" => expected_summary(&source), "by_validated_class_current" => { subjects.insert("summary:current".to_string()); expected_summary_with(&source, true) } _ => json!([]) };
                         assert!(want.as_array().is_some_and(|w| !w.is_empty()), "{id} {label}");
                         assert_eq!(got, want, "{id} {label}");
                     }
@@ -799,7 +896,11 @@ fn u6_declared_differences_rust() {
             }
         }
     }
-    assert_eq!(subjects.into_iter().collect::<Vec<_>>(), ["binding", "standing", "summary", "transport"]);
+    // Every subject, the v4 fields and D-U7-4's side (eligible with the actual invocation) are exercised.
+    assert_eq!(
+        subjects.into_iter().collect::<Vec<_>>(),
+        ["binding", "capture", "current_model_edits", "standing", "standing:numerically_eligible", "summary", "summary:current", "transport"]
+    );
 }
 
 fn is_ident(c: u8) -> bool {

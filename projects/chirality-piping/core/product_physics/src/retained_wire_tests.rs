@@ -106,7 +106,7 @@ fn u1_typed_ordinary_capture_milestone() {
 }
 
 /// The deliverable: the serializer's milestone receipts, both modes, validated
-/// in-process by the accepted Rust reader with eligibility off, with exact
+/// in-process by the accepted Rust reader, eligible with the invocation (U7), with exact
 /// class parity against the certificate's own verdicts, byte-stable.
 #[test]
 fn u1_milestone_successor_both_modes() {
@@ -119,7 +119,7 @@ fn u1_milestone_successor_both_modes() {
         assert_eq!(pretty(&successor), pretty(&again), "{name}: deterministic");
         let invocation = invocation(mode);
         let validation = reader::validate(&successor, Some(&invocation)).unwrap_or_else(|e| panic!("{name}: reader {e:?}"));
-        assert!(validation.invocation_bound && !validation.numerical_eligible, "{name}: eligibility off");
+        assert!(validation.invocation_bound && validation.numerical_eligible, "{name}: eligible with the actual invocation (U7)");
         // Parity: every reader class equals the certificate's verdict class.
         let rows: Vec<&str> = successor["results"].as_array().unwrap().iter().map(|r| r["id"].as_str().unwrap()).collect();
         let verdicts = candidate.certificate().verdicts();

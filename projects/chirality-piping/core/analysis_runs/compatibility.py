@@ -319,7 +319,7 @@ def _retained_standing_from(validation: Mapping[str, Any], source: Mapping[str, 
     """D2 4.9.4: numerically_eligible needs an invocation-bound validation with
     eligibility set, requested refs equal to the receipt's case order,
     MECHANICS_SOLVED and the not_required conjunct. numerical_quality never
-    contributes. While the reader's eligibility is held, needs_recompute."""
+    contributes."""
     cases = source["retained_precision"]["body"]["cases"]
     expected = [case["basis_ref"] for case in cases]
     if (not validation["invocation_bound"] or not validation["numerical_eligible"] or list(requested_basis_refs) != expected
@@ -345,20 +345,24 @@ def _retained_binding_refusal(envelope: Mapping[str, Any], row: Mapping[str, Any
     return _class_binding_refusal(match["class"]) if match is not None else None
 
 
-def classification_summary(source: Mapping[str, Any], invocation: Any = None) -> list[dict[str, Any]]:
+def classification_summary(source: Mapping[str, Any], invocation: Any = None,
+                           requested_basis_refs: list[Mapping[str, str]] | None = None) -> list[dict[str, Any]]:
     """D2 4.9.9: per-case counts over a successor's validated G5c classes (rows of
-    selected cases). Any other identity, or a refused statement, returns nothing."""
+    selected cases). `withheld` counts as Current only when the standing with the
+    caller's requested refs is numerically_eligible (RV94 S-1, as TS's summary);
+    otherwise, with no refs or other refs, it is the not-Current count. Any other
+    identity, or a refused statement, returns nothing."""
     try:
         validation = _retained_validation(source, invocation)
     except (ValueError, KeyError, TypeError, AttributeError):
         return []
-    return _classification_summary_from(validation, source, invocation)
+    return _classification_summary_from(validation, source, requested_basis_refs or [])
 
 
-def _classification_summary_from(validation: Mapping[str, Any], source: Mapping[str, Any], invocation: Any = None) -> list[dict[str, Any]]:
-    cases = invocation.get("request", {}).get("model", {}).get("load_cases") if isinstance(invocation, Mapping) else None
-    requested = [{"ref_type": "load_case", "ref_id": case.get("id")} for case in cases] if isinstance(cases, list) else []
-    current = _retained_standing_from(validation, source, requested) == "numerically_eligible"
+def _classification_summary_from(validation: Mapping[str, Any], source: Mapping[str, Any], requested_basis_refs: list[Mapping[str, str]]) -> list[dict[str, Any]]:
+    # The invocation only binds the validation; its own cases are never substituted
+    # for the caller's requested refs (RV94 N-4).
+    current = _retained_standing_from(validation, source, requested_basis_refs) == "numerically_eligible"
     out = []
     for case in source["retained_precision"]["body"]["cases"]:
         case_id = case["basis_ref"]["ref_id"]
