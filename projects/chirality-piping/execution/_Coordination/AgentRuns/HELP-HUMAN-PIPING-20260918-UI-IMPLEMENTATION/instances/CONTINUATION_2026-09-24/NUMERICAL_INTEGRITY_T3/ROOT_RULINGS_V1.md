@@ -9402,3 +9402,36 @@ The margin rule (≤ 0.9 M at illustrative strides) applies to this maximum.
 - **U3 grant 2 waits for U4 G5.** It carries S3's implementation, N1, N2, N6, N7, RV84's S-6 hook change and S-7's one-run test, and reruns U5's script unchanged on the committed facade output.
 
 The next unused IDs are I67 and RV87.
+
+## RV86 on U5: PASS, with stated limits; the milestone's reference claim scoped (ROOT, 2026-10-04 UTC)
+
+**RV86's report** is `R/REVIEW_RV86/u5_reference_01/REVIEW.md` (sha256 `f0f39cfe…`; SHA256SUMS OK; no machine paths). Verdict: **PASS**, with 0 BLOCKING, 2 SHOULD-FIX and 5 NOTE findings.
+
+**What RV86 established:**
+- **Agreement:** in both modes, all 97 published class claims agree with the reference:
+  - 25 `relative_verified` rows within 1e-9;
+  - 69 `absolute_verified` rows within their receipt bounds;
+  - 3 `input_derived` rows exact.
+- **Against what:** both of I50's oracle readouts, and an independent closed-form reference RV86 wrote without the oracle's code. The worst relative error is 8.1e-17.
+- **Reproduction:** the unchanged script reproduces I61's report and log byte for byte.
+- **Counts and mapping:** RV86's own recount from the successor bytes matches the receipt's lists, scales, bounds and classes bit for bit. The oracle slices are exact, and the hash pins bind the right files.
+- **The 7 represented-readout misses** on the stop-rule-sharp bound are a faithful consequence of the representation, not a defect. That bound is not a published claim.
+
+**The milestone claim "matches its independent reference" is ruled to mean, for U7:**
+- every **published class claim** of the facade-published successor agrees with I50's named oracle and with an independent closed-form reference, in both modes;
+- the classes and bounds are those the accepted reader's G5c confirms.
+
+**Stated limits:**
+- it does **not** claim the sharper stop-rule bound against I50's represented section;
+- it does **not** claim that the extrema intervals enclose the truth, which their declared scope excludes (N-4; the cheap within-bound check passes);
+- it rests today on PP's committed-test and stub-dispatch bytes. **U3 grant 2 re-confirms it** by rerunning the unchanged script on the committed facade output.
+
+**Routed:**
+- **S-1, to I61 as a RETURN addendum before U7.** It corrects a wording error only; no rerun.
+  - The 7 misses depend on J through the receipt's k_t, not on A and Z. I50's represented J is about 4.3 ulps above the exact annulus J.
+  - The affected set also includes N1 rx, whose J share is 1e-4.
+- **N-2, in the same addendum:** the oracle does have value checks for the mode and parity rows, and RV86 applied them; they pass.
+- **S-2, the local-only dependency: removed.**
+  - RV86's 7,240-byte extract of I50's log is committed with its derivation script. It is all U5 reads, and it reproduces the report and log byte for byte.
+  - At grant 2's rerun, I61 switches the script to the committed extract (the two-line pin change), keeping the hash assertion against I50's BULK_MANIFEST entry for the full log.
+- **N-1, N-3 and N-5:** noted. The reader's G1 and G5c, not the comparison alone, refuse inflated bounds.
