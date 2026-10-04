@@ -150,10 +150,74 @@ def test_complete_synthetic_draft_control_is_not_qualification():
         assert result["standing"] == "needs_recompute"
         assert source == fixture["source"] and invocation == fixture["invocation"]
         assert rp._validate_draft(source)["numerical_eligible"] is False
-        with pytest.raises(rp.RetainedPrecisionError) as error:
-            rp.validate_retained_precision(source, invocation)
-        assert error.value.gate == "G0"
-        assert error.value.code == "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+        # D-U6-1: the public entry runs every gate; the flag holds eligibility only.
+        assert rp.validate_retained_precision(source, invocation) == result
+        assert rp.validate_retained_precision(source)["numerical_eligible"] is False
+
+
+def _outcome(entry, source, invocation):
+    try:
+        return ("pass", entry(source, invocation))
+    except rp.RetainedPrecisionError as error:
+        return ("refuse", error.gate, error.code, error.detail)
+
+
+def _corpus_entries():
+    data = corpus()
+    for fixture in data["cases"]:
+        yield fixture["id"], deepcopy(fixture["source"]), deepcopy(fixture["invocation"])
+        yield fixture["id"] + ":no-invocation", deepcopy(fixture["source"]), None
+    for kind in ("mutations", "must_pass"):
+        for entry in data.get(kind, []):
+            fixture = next(f for f in data["cases"] if f["id"] == entry["base"])
+            source, invocation = apply_entry(fixture, entry)
+            yield entry["id"], source, invocation
+
+
+MILESTONE_PINS = {
+    "sparse_interactive": ("ac6986b0680e0df9d88c33a5bf4635372fc3b83cbb9080da44e6d32dbdca59dc", [25, 69, 3, 1]),
+    "dense_scrutiny": ("6cd1d249e5352aaffbd2b7d7349c74a1d0e0572df35500f66be49c3cad95c9b5", [25, 69, 3, 2]),
+}
+
+
+def _milestone(mode):
+    """D-U6-5: byte-identical copies of PP's pinned successor files."""
+    import hashlib
+    raw = (ROOT / f"fixtures/results/retained_precision_milestone_successor_{mode}.json").read_bytes()
+    assert hashlib.sha256(raw).hexdigest() == MILESTONE_PINS[mode][0]
+    return json.loads(raw)
+
+
+def test_public_entry_equals_the_draft_on_every_corpus_entry():
+    """D-U6-1: no input changes its accept/refuse outcome except by reaching the
+    gates the public entry previously short-circuited at G0; eligibility stays off."""
+    count = 0
+    for label, source, invocation in _corpus_entries():
+        public = _outcome(rp.validate_retained_precision, deepcopy(source), deepcopy(invocation))
+        draft = _outcome(rp._validate_draft, deepcopy(source), deepcopy(invocation))
+        assert public == draft, label
+        if public[0] == "pass":
+            assert public[1]["numerical_eligible"] is False and public[1]["standing"] == "needs_recompute", label
+        count += 1
+    assert count == 2 * len(corpus()["cases"]) + len(corpus()["mutations"]) + len(corpus().get("must_pass", []))
+
+
+@pytest.mark.parametrize("mode", sorted(MILESTONE_PINS))
+def test_public_entry_on_the_real_milestone_receipts(mode):
+    doc = _milestone(mode)
+    for invocation in (doc["invocation"], None):
+        public = rp.validate_retained_precision(deepcopy(doc["source"]), deepcopy(invocation))
+        assert public == rp._validate_draft(deepcopy(doc["source"]), deepcopy(invocation))
+        assert public["numerical_eligible"] is False and public["standing"] == "needs_recompute"
+        assert public["invocation_bound"] is (invocation is not None)
+        counts = [sum(1 for c in public["classifications"] if c["class"] == k) for k in ("relative_verified", "absolute_verified", "input_derived", "non_quantity")]
+        assert counts == MILESTONE_PINS[mode][1], (mode, counts)
+    edited = deepcopy(doc["source"])
+    edited["results"][0]["value"] = 12345.0
+    with pytest.raises(rp.RetainedPrecisionError) as error:
+        rp.validate_retained_precision(edited, doc["invocation"])
+    assert (error.value.gate, error.value.code) == ("G1", "RETAINED_PRECISION_RECEIPT_MISMATCH")
+
 
 
 @pytest.mark.parametrize("mutation", corpus()["mutations"], ids=lambda x:x["id"])

@@ -24,8 +24,9 @@ TABLE_HASH = "c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8"
 METHOD = "contribution_preserving_multiprecision_v1"
 SAFE = (1 << 53) - 1
 MAX_BITS = 0x7FEFFFFFFFFFFFFF
-# This remains false until the entire standalone gate chain and shared corpus
-# have passed. Draft subchecks are not an eligibility API.
+# D-U6-1 (I66 U6a): this flag gates eligibility only, as Rust's
+# IMPLEMENTATION_COMPLETE and TypeScript's SUMMARY_COVERAGE_COMPLETE do. It stays
+# false until U7; every gate runs regardless.
 _IMPLEMENTATION_COMPLETE = False
 
 
@@ -1580,8 +1581,9 @@ def _g8(body, source, invocation):
 
 
 def validate_retained_precision(source: Any, invocation: Any = None) -> dict[str, Any]:
-    """Ordered reader under implementation; incomplete work cannot admit use."""
-    _need(_IMPLEMENTATION_COMPLETE, "G0", "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+    """The accepted ordered reader (G0-G8). D-U6-1: every gate runs, and
+    `_IMPLEMENTATION_COMPLETE` gates only `numerical_eligible`, so a valid
+    statement reads needs_recompute while it is false."""
     return _validate_draft(source, invocation)
 
 

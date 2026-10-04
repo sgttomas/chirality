@@ -1,0 +1,230 @@
+{
+  "format": "I66-U6-CARRIER-CASES-v1",
+  "note": "Shared carrier standing-parity scenarios for the Rust, Python and TypeScript carriers (I66 U6; D2 4.7 parity). Fixtures are byte-identical copies of PP's pinned milestone successor files (D-U6-5), producer test outputs, not native Current evidence. Edits apply literally, with no rehash. 'requested' is 'invocation' (the invocation model's load cases, in order) or an explicit list. 'expected_dispatch' is 'ok' or the raw dispatch's first error code. Eligibility is held until U7, so no case expects numerically_eligible.",
+  "fixtures": {
+    "milestone_sparse_interactive": {
+      "path": "fixtures/results/retained_precision_milestone_successor_sparse_interactive.json",
+      "sha256": "ac6986b0680e0df9d88c33a5bf4635372fc3b83cbb9080da44e6d32dbdca59dc"
+    },
+    "milestone_dense_scrutiny": {
+      "path": "fixtures/results/retained_precision_milestone_successor_dense_scrutiny.json",
+      "sha256": "6cd1d249e5352aaffbd2b7d7349c74a1d0e0572df35500f66be49c3cad95c9b5"
+    }
+  },
+  "cases": [
+    {
+      "id": "sparse_interactive:invocation",
+      "fixture": "milestone_sparse_interactive",
+      "invocation": "fixture",
+      "requested": "invocation",
+      "edits": [],
+      "expected_standing": "needs_recompute",
+      "expected_dispatch": "ok"
+    },
+    {
+      "id": "sparse_interactive:no_invocation",
+      "fixture": "milestone_sparse_interactive",
+      "invocation": null,
+      "requested": "invocation",
+      "edits": [],
+      "expected_standing": "needs_recompute",
+      "expected_dispatch": "ok"
+    },
+    {
+      "id": "sparse_interactive:no_requested",
+      "fixture": "milestone_sparse_interactive",
+      "invocation": "fixture",
+      "requested": [],
+      "edits": [],
+      "expected_standing": "needs_recompute",
+      "expected_dispatch": "ok"
+    },
+    {
+      "id": "sparse_interactive:other_requested",
+      "fixture": "milestone_sparse_interactive",
+      "invocation": "fixture",
+      "requested": [
+        {
+          "ref_type": "load_case",
+          "ref_id": "other"
+        }
+      ],
+      "edits": [],
+      "expected_standing": "needs_recompute",
+      "expected_dispatch": "ok"
+    },
+    {
+      "id": "sparse_interactive:edited_row",
+      "fixture": "milestone_sparse_interactive",
+      "invocation": "fixture",
+      "requested": "invocation",
+      "edits": [
+        {
+          "target": "source",
+          "path": [
+            "results",
+            0,
+            "value"
+          ],
+          "op": "set",
+          "value": 12345.0
+        }
+      ],
+      "expected_standing": "unsupported",
+      "expected_dispatch": "RETAINED_PRECISION_RECEIPT_MISMATCH"
+    },
+    {
+      "id": "sparse_interactive:foreign_mode",
+      "fixture": "milestone_sparse_interactive",
+      "invocation": "fixture",
+      "requested": "invocation",
+      "edits": [
+        {
+          "target": "invocation",
+          "path": [
+            "solver_mode"
+          ],
+          "op": "set",
+          "value": "dense_scrutiny"
+        }
+      ],
+      "expected_standing": "unsupported",
+      "expected_dispatch": "ok"
+    },
+    {
+      "id": "sparse_interactive:relabelled_base_with_receipt",
+      "fixture": "milestone_sparse_interactive",
+      "invocation": "fixture",
+      "requested": "invocation",
+      "edits": [
+        {
+          "target": "source",
+          "path": [
+            "producer",
+            "semantic_contract_id"
+          ],
+          "op": "set",
+          "value": "openpipestress.result_semantics/0.3.0/preview-physics-1"
+        },
+        {
+          "target": "source",
+          "path": [
+            "formulation_basis",
+            "profile_id"
+          ],
+          "op": "set",
+          "value": "product_preview_mechanics_v1"
+        }
+      ],
+      "expected_standing": "unsupported",
+      "expected_dispatch": "RETAINED_PRECISION_DOWNGRADE_FORBIDDEN"
+    },
+    {
+      "id": "dense_scrutiny:invocation",
+      "fixture": "milestone_dense_scrutiny",
+      "invocation": "fixture",
+      "requested": "invocation",
+      "edits": [],
+      "expected_standing": "needs_recompute",
+      "expected_dispatch": "ok"
+    },
+    {
+      "id": "dense_scrutiny:no_invocation",
+      "fixture": "milestone_dense_scrutiny",
+      "invocation": null,
+      "requested": "invocation",
+      "edits": [],
+      "expected_standing": "needs_recompute",
+      "expected_dispatch": "ok"
+    },
+    {
+      "id": "dense_scrutiny:no_requested",
+      "fixture": "milestone_dense_scrutiny",
+      "invocation": "fixture",
+      "requested": [],
+      "edits": [],
+      "expected_standing": "needs_recompute",
+      "expected_dispatch": "ok"
+    },
+    {
+      "id": "dense_scrutiny:other_requested",
+      "fixture": "milestone_dense_scrutiny",
+      "invocation": "fixture",
+      "requested": [
+        {
+          "ref_type": "load_case",
+          "ref_id": "other"
+        }
+      ],
+      "edits": [],
+      "expected_standing": "needs_recompute",
+      "expected_dispatch": "ok"
+    },
+    {
+      "id": "dense_scrutiny:edited_row",
+      "fixture": "milestone_dense_scrutiny",
+      "invocation": "fixture",
+      "requested": "invocation",
+      "edits": [
+        {
+          "target": "source",
+          "path": [
+            "results",
+            0,
+            "value"
+          ],
+          "op": "set",
+          "value": 12345.0
+        }
+      ],
+      "expected_standing": "unsupported",
+      "expected_dispatch": "RETAINED_PRECISION_RECEIPT_MISMATCH"
+    },
+    {
+      "id": "dense_scrutiny:foreign_mode",
+      "fixture": "milestone_dense_scrutiny",
+      "invocation": "fixture",
+      "requested": "invocation",
+      "edits": [
+        {
+          "target": "invocation",
+          "path": [
+            "solver_mode"
+          ],
+          "op": "set",
+          "value": "sparse_interactive"
+        }
+      ],
+      "expected_standing": "unsupported",
+      "expected_dispatch": "ok"
+    },
+    {
+      "id": "dense_scrutiny:relabelled_base_with_receipt",
+      "fixture": "milestone_dense_scrutiny",
+      "invocation": "fixture",
+      "requested": "invocation",
+      "edits": [
+        {
+          "target": "source",
+          "path": [
+            "producer",
+            "semantic_contract_id"
+          ],
+          "op": "set",
+          "value": "openpipestress.result_semantics/0.3.0/preview-physics-1"
+        },
+        {
+          "target": "source",
+          "path": [
+            "formulation_basis",
+            "profile_id"
+          ],
+          "op": "set",
+          "value": "product_preview_mechanics_v1"
+        }
+      ],
+      "expected_standing": "unsupported",
+      "expected_dispatch": "RETAINED_PRECISION_DOWNGRADE_FORBIDDEN"
+    }
+  ]
+}
