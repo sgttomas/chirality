@@ -11093,3 +11093,41 @@ Slice F's order is RETURN §3.
 - the three new reviewed entries, with its own allocator measurement of the eligible branch on the milestone with its invocation;
 - the run;
 - whether the TS-only commit (`e5e1693ceb`) and slice L's fixture and test commits need a Pass B rerun, or whether a mechanical rerun at U9's gate suffices.
+
+## RV89 confirms U4 Pass B on the U7 head: the switch allocates nothing on D1 (ROOT, 2026-10-04 UTC)
+
+**RV89's report** is `R/REVIEW_RV89/u4_g7_02/REVIEW.md` (sha256 `21014cb3…`; SHA256SUMS 9/9 OK). Verdict: **PASS**, with 0 BLOCKING, 0 SHOULD-FIX and 0 NOTE findings.
+
+**The three new reviewed entries are confirmed.**
+- **The flag.** It is read only at `:4309`; PP uses only the precommit's Ok/Err (`lib.rs:3161`); and `Validation`'s layout is unchanged.
+- **RV89's own measurement:** an allocator across all threads, including W1's reserved stack, on the milestone in both modes, as committed against the flag reverted. Allocation counts and bytes are **identical in all 12 pairs**, and the successor's length is unchanged:
+  - the reader with its invocation: 75,446 / 6,643,320 B sparse; 75,658 / 6,663,353 B dense;
+  - the whole Direct entry: 150,408 / 16,113,738 B and 151,077 / 16,169,786 B.
+- **The `#[doc]` lines** generate no code.
+- **The inventory,** with an empty table, stops on exactly the six expected hunks.
+
+**The run is confirmed.**
+- RV89's own registered build of `cfda60403f`:
+
+  | Check | Result |
+  |---|---|
+  | PP | 705/1/10, identical to the final basis, so the delta is exactly the six tests |
+  | runner | 85/2 |
+  | law | 42/0 |
+  | the record, the witnesses and the challenge | identical |
+  | the maxima | 0.8881 / 0.8929 M |
+  | the 71-input sweep | byte-identical to G6R's, **so the switch changes no published byte** |
+
+- The entry is byte-identical to `0c7827b6ad`'s.
+
+**The registered profile is qualified at the U7 head.**
+
+**Later commits:**
+- **`e5e1693ceb` (TS-only) needs no Pass B rerun.**
+- **Slice L needs none, and a mechanical rerun at U9's gate suffices,** provided:
+  - (a) the corpus stays test-only;
+  - (b) PP's `Cargo.toml` and `Cargo.lock` are unchanged;
+  - (c) nothing is added to the law, witness or challenge test files, and no `#[cfg(test)]` statement goes into production code;
+  - (d) no production `.rs` change lands in the D1 crates.
+  
+  **Otherwise, rerun Pass B on that head.** ROOT has relayed these conditions to I61 as a fence note.
