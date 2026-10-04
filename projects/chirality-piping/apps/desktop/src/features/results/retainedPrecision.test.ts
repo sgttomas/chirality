@@ -100,7 +100,7 @@ describe('synthetic prepared receipt arithmetic controls, not execution evidence
   });
 });
 
-import { validateRetainedPrecision, validateRetainedPrecisionTransport, RetainedPrecisionError, phi512, eHat, stopFeasible, nativeSchedule, ordinaryAttempts, accountingRules, nativeRuns } from './retainedPrecision';
+import { validateRetainedPrecision, validateRetainedPrecisionTransport, RetainedPrecisionError, phi512, eHat, stopFeasible, nativeSchedule, ordinaryAttempts, accountingRules, nativeRuns, productAttempts } from './retainedPrecision';
 import { canonicalSha256HexCheckedV1 } from '../../services/hashService';
 async function rehash(source: any) {
   // Snapshot 07 format: an entry that removes retained_precision or its body (a G0 pin) has nothing to rehash.
@@ -137,6 +137,8 @@ async function applyEntry(m: any): Promise<{ base: any; source: any; invocation:
   // D11/RV78-N5: the shared format admits only rehash "all"; any other value is refused.
   if (m.rehash !== 'all') throw new Error('unsupported rehash ' + m.rehash);
   await rehash(source);
+  // D24: the optional after_rehash edit list is applied after rehash "all" (forged-hash G1 pins).
+  applyEdits(source, m.after_rehash);
   return { base, source, invocation };
 }
 describe('shared synthetic prepared receipt controls, never solver execution evidence', () => {
@@ -375,7 +377,7 @@ describe('review repair 07: decisions without a probe (reader-local)', () => {
   });
   it('D8 kernel scope: a work_accounting stop or reason anywhere in a Run, build or group preparation fails G5 ATTEMPT', async () => {
     const stop = { space: 'stop', tag: 'work_accounting', fault: 'overflow' };
-    const inBuild = await edited('candidate_failure_skip_synthetic', s => { const b = s.retained_precision.body; const i = b.builds.findIndex((x: any) => x.state === 'failure'); b.builds[i >= 0 ? i : 0].reason = stop; });
+    const inBuild = await edited('candidate_failure_skip_synthetic', s => { const b = s.retained_precision.body; const i = b.builds.findIndex((x: any) => x.state === 'nonbudget_failure'); expect(i).toBeGreaterThanOrEqual(0); b.builds[i].reason = stop; });
     expect(await firstFailure(inBuild.source, inBuild.invocation)).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
     const body = structuredClone(corpus.cases[0]).source.retained_precision.body;
     body.groups[0].preparation = { kind: 'refused', reason: { space: 'unresolved', tag: 'work_accounting', fault: 'overflow' } };
@@ -488,6 +490,89 @@ describe('review repair 07: decisions without a probe (reader-local)', () => {
       for (const m of text.matchAll(/import\s*\{([^}]*)\}\s*from\s*['"][^'"]*retainedPrecision['"]/g)) if (internal.some(name => new RegExp('\\b' + name + '\\b').test(m[1]))) offenders.push(rel);
     }
     expect(offenders).toEqual([]);
+  });
+});
+
+describe('confirmation repair round (D19-D30, RV81-N1/N2): reader-local relations', () => {
+  const facadeCause = (index: number) => ({ kind: 'facade_failure', owner_ref: { kind: 'case', index }, row_id: null, recipe: 'identity', operand_index: null, check: 'identity', predicate: null });
+  const unavailableCase1 = (s: any, reason: any) => {
+    const b = s.retained_precision.body, c = b.cases[1], diag = s.diagnostics.find((d: any) => d.code === 'RETAINED_PRECISION_SELECTED' && d.affected_refs?.includes(c.basis_ref.ref_id));
+    delete c.method; delete c.selection; delete c.source_identity_sha256;
+    Object.assign(c, { status: 'unavailable', reason, diagnostic_ref: diag.id }); diag.code = 'RETAINED_PRECISION_UNAVAILABLE';
+  };
+  it('D19: an unavailable C3 attempt must be reported through prepared_product_failure naming it', async () => {
+    const c = await edited('two_case_facade_after_certificate_synthetic', s => { const r = s.retained_precision.body.cases[1].reason; r.cause = facadeCause(1); });
+    expect(await firstFailure(c.source, c.invocation)).toEqual(G('G5', 'PRODUCT_ATTEMPT_MISMATCH'));
+  });
+  it('D19: a Ready attempt belongs to a selected case, or to an unavailable case with a receipt_failure cause', async () => {
+    const facade = await edited('two_case_synthetic', s => unavailableCase1(s, { code: 'facade_certificate', phase: 'facade', cause: facadeCause(1) }));
+    expect(await firstFailure(facade.source, facade.invocation)).toEqual(G('G5', 'PRODUCT_ATTEMPT_MISMATCH'));
+    const receipt = await edited('two_case_synthetic', s => unavailableCase1(s, { code: 'receipt_encoding', phase: 'receipt', cause: { kind: 'receipt_failure', check: 'encoding', field_path: 'retained_precision.body' } }));
+    expect(await firstFailure(receipt.source, receipt.invocation)).not.toEqual(G('G5', 'PRODUCT_ATTEMPT_MISMATCH'));
+  });
+  it('D20: a selected case without a C3 attempt is a G5 PRODUCT_ATTEMPT association defect', async () => {
+    const c = await edited('ordinary_prepared_synthetic', s => { const b = s.retained_precision.body; b.cases[0].product_attempt_ref = null; b.product_attempts = []; b.sources[0].preparation = null; });
+    expect(await firstFailure(c.source, c.invocation)).toEqual(G('G5', 'PRODUCT_ATTEMPT_MISMATCH'));
+  });
+  it('D22/RV81-S1: a dangling attempt source_ref is a G5 PRODUCT_ATTEMPT defect, not G3', async () => {
+    for (const [baseId, ai] of [['ordinary_prepared_synthetic', 0], ['two_case_facade_after_certificate_synthetic', 1]] as const) {
+      const c = await edited(baseId, s => { s.retained_precision.body.product_attempts[ai].source_ref = 9; });
+      expect(await firstFailure(c.source, c.invocation), baseId).toEqual(G('G5', 'PRODUCT_ATTEMPT_MISMATCH'));
+    }
+  });
+  it('D24: after_rehash edits apply after rehash "all", so a forged receipt hash fails G1', async () => {
+    const m = { id: 'i64_forged_receipt', base: 'ordinary_prepared_synthetic', edits: [], rehash: 'all', after_rehash: [{ path: ['retained_precision', 'receipt_sha256'], op: 'set', value: '0'.repeat(64) }] };
+    const { source, invocation } = await applyEntry(m);
+    expect(source.retained_precision.receipt_sha256).toBe('0'.repeat(64));
+    expect(await firstFailure(source, invocation)).toEqual(G('G1', 'RECEIPT_MISMATCH'));
+  });
+  it('D27: the idle-Run rule reads the recorded invocation_before; a broken meter chain reports WORK', () => {
+    const body = structuredClone(corpus.cases.find((c: any) => c.id === 'two_case_synthetic')).source.retained_precision.body;
+    const run1 = body.cases[1].run; body.work.invocation_limit = 10; run1.invocation_before = 5;
+    let e: any; try { nativeRuns(body); } catch (x) { e = x; }
+    expect({ gate: e?.gate, code: e?.code }).toEqual(G('G5', 'WORK_MISMATCH'));
+  });
+  it('D28: every quantity-bearing reason resolves to a layout row with the same body and kind', async () => {
+    const p = RV78_PROBES.find(x => x.id === 'T2_stop_rule_quantity_other_body');
+    for (const tag of ['stop_rule', 'verification_estimate', 'charge', 'publication_enclosure']) {
+      const m = structuredClone(p);
+      for (const e of m.edits) e.path = e.path.slice(0, -1).concat(['tag']), e.value = tag;
+      m.edits.push(...structuredClone(p.edits));
+      if (tag === 'publication_enclosure') for (const e of structuredClone(m.edits.slice(0, 2))) m.edits.push({ ...e, path: e.path.slice(0, -1).concat(['predicate']), value: 'absolute_bound' });
+      const { source, invocation } = await applyEntry(m);
+      expect(await firstFailure(source, invocation), tag).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+    }
+  });
+  it('D29: a CaseSource with an empty body inventory fails G3', async () => {
+    const c = await edited('ordinary_prepared_no_data_synthetic', s => { const b = s.retained_precision.body; b.sources[0].body_membership = []; b.product_attempts[0].proof.summary_coverage = null; });
+    expect(await firstFailure(c.source, c.invocation)).toEqual(G('G3', 'COVERAGE_MISMATCH'));
+  });
+  it('D30: a native error names its own nonselected Run', () => {
+    const fixture = structuredClone(corpus.cases.find((c: any) => c.id === 'two_case_facade_after_certificate_synthetic')), b = fixture.source.retained_precision.body;
+    const c1 = b.cases[1], a = b.product_attempts[1];
+    c1.run.kernel_terminal = { kind: 'unresolved', reason: { space: 'unresolved', tag: 'ceiling' } };
+    c1.reason = { code: 'kernel_unresolved', phase: 'kernel', cause: { kind: 'prepared_product_failure', product_attempt_ref: 1 } };
+    Object.assign(a, { proof: null, result: { kind: 'unavailable', error: { kind: 'native', run_ref: c1.run.id } } });
+    a.adapter.fault = null;
+    a.stages = { preparation: 'completed', native: 'failed', proof_start: 'not_entered', projection: 'not_entered', maxima: 'not_entered', values: 'not_entered', aliases: 'not_entered', certificate: 'not_entered', observables: 'not_entered', g5a: 'not_entered' };
+    const ids = b.cases.map((c: any) => c.basis_ref.ref_id), rows = new Map<string, any[]>(ids.map((id: string) => [id, fixture.source.results.filter((r: any) => r.basis_ref.ref_id === id)]));
+    const run = (runRef: number) => { const x = structuredClone(b); x.product_attempts[1].result.error.run_ref = runRef; let e: any; try { productAttempts(x, rows); } catch (y) { e = y; } return e ? { gate: e.gate, code: e.code } : 'pass'; };
+    expect(run(c1.run.id)).toBe('pass');
+    expect(run(c1.run.id === 0 ? 1 : 0)).toEqual(G('G5', 'PRODUCT_ATTEMPT_MISMATCH'));
+  });
+  it('D21/RV81-N1: a failed verification showing its pass ran (a verification build, zero verification_lme) cannot carry an escalating stop', async () => {
+    const p = structuredClone(RV78_PROBES.find(x => x.id === 'T1_escalating_failed_verification_pass_entered'));
+    const record = p.edits.find((e: any) => e.path.at(-1) === 1 && e.path.at(-2) === 'records').value;
+    record.work.verification_lme = 0; record.verification_shared_build_ref = 0;
+    const { source, invocation } = await applyEntry(p);
+    expect(await firstFailure(source, invocation)).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
+  });
+  it('RV81-N2: the kernel scope alone decides for an unreferenced build carrying a work_accounting stop', () => {
+    const body = structuredClone(corpus.cases[0]).source.retained_precision.body;
+    const extra = (reason: any) => { const b = structuredClone(body); b.builds.push({ ...structuredClone(b.builds[0]), id: b.builds.length, state: 'nonbudget_failure', reason }); let e: any; try { nativeRuns(b); } catch (x) { e = x; } return { gate: e?.gate, code: e?.code }; };
+    // Without the work_accounting tag, the unreferenced build is only a WORK defect (every build is seen once).
+    expect(extra({ space: 'stop', tag: 'condition' })).toEqual(G('G5', 'WORK_MISMATCH'));
+    expect(extra({ space: 'stop', tag: 'work_accounting', fault: 'overflow' })).toEqual(G('G5', 'ATTEMPT_MISMATCH'));
   });
 });
 

@@ -234,7 +234,10 @@ function coverage(b: Obj, source: Obj, invocation?: Obj): Map<string, Obj[]> {
       // D1: a captured prefix owns no prepared or new member here; its null source/run and
       // unavailable result are the G5 association (F1:97, 130-131; C3:304).
       if (a.operational.old_coverage === 'captured_prefix') fail(!pm.length && !fresh.length);
-      if (a.source_ref !== null) { const s = b.sources[a.source_ref]; fail(s && same(old.map((m: Obj) => m.member), s.id_maps.members.map((m: Obj) => m.kernel_member))); }
+      // D22 (D16; C3:146-148): a source_ref that does not resolve is a G5 association defect, so the
+      // source-dependent G3 comparisons below run only when it resolves.
+      const sourced = a.source_ref !== null ? (Number.isSafeInteger(a.source_ref) && a.source_ref >= 0 && a.source_ref < b.sources.length ? b.sources[a.source_ref] : undefined) : null;
+      if (a.source_ref !== null) { if (sourced) fail(same(old.map((m: Obj) => m.member), sourced.id_maps.members.map((m: Obj) => m.kernel_member))); }
       // D1 (checkpoint A correction): unsourced complete old coverage matches every CaseSource's member
       // count (one model). No emptiness rule: no native rejection of an empty inventory is cited. With no
       // CaseSource, G8 compares the list with the invocation's members.
@@ -245,10 +248,11 @@ function coverage(b: Obj, source: Obj, invocation?: Obj): Map<string, Obj[]> {
       // I57 §4 G3: a non-null roster has exactly one entry per native body of the
       // associated source, ascending 0..body_count-1. No source: G5 owns the null rule.
       const cov = a.proof?.summary_coverage;
-      if (Array.isArray(cov) && a.source_ref !== null) fail(cov.length >= 1 && cov.length === b.sources[a.source_ref].body_membership.length && same(cov.map((e: Obj) => e.body), sequence(cov.length)));
+      if (Array.isArray(cov) && sourced) fail(cov.length >= 1 && cov.length === sourced.body_membership.length && same(cov.map((e: Obj) => e.body), sequence(cov.length)));
     }
   });
-  b.sources.forEach((s: Obj, i: number) => fail(s.index === i && s.owner.kind === 'case' && ids[s.owner.case_index] === s.owner.case_id));
+  // D29: a CaseSource with an empty body inventory cannot be emitted (source.rs:498 NoNodes; I57 §1).
+  b.sources.forEach((s: Obj, i: number) => fail(s.body_membership.length >= 1 && s.index === i && s.owner.kind === 'case' && ids[s.owner.case_index] === s.owner.case_id));
   b.material_bases.forEach((m: Obj, i: number) => fail(m.index === i && unique(m.case_indices) && m.case_indices.every((c: number) => c < ids.length)));
   const runs = b.cases.filter((c: Obj) => c.run).map((c: Obj) => c.run).sort((a: Obj, z: Obj) => a.id - z.id);
   fail(same(runs.map((r: Obj) => r.id), sequence(runs.length)) && same(b.work.execution_order, runs.map((r: Obj) => r.origin.owner_ref)));
@@ -396,7 +400,9 @@ function nativeClass(b: Obj, work: (ok: unknown) => void): void {
       work(uint(run.invocation_before) === current);
       // N10 (adaptive.rs:4994-5015): an invocation-entry return is idle with group null. Its only
       // emitted form is Budget(invocation) once invocation_before >= Li (a meter fault is never emitted).
-      const exhausted = current >= uint(b.work.invocation_limit);
+      // D27: an ATTEMPT check reads the Run's recorded invocation_before, never the WORK-derived running sum
+      // (a broken meter chain is reported by the deferred WORK predicate above).
+      const exhausted = uint(run.invocation_before) >= uint(b.work.invocation_limit);
       if (exhausted) fail(run.origin.group === null);
       if (run.origin.group === null) {
         fail(exhausted && !run.records.length && !run.attempts.length && !run.cache_before.length && !run.cache_after.length && run.kernel_terminal.kind === 'unresolved'
@@ -610,7 +616,8 @@ function conversionKind(v: Obj): boolean {
   if (v.kind === 'subnormal') { const n = decodeBinary64(v.value); return Math.abs(n) > 0 && Math.abs(n) < MIN_NORMAL; }
   return true;
 }
-function productAttempts(b: Obj, rows: Map<string, Obj[]>): void {
+/** @internal Exported only for the reader-logic D30 test (no faithful nonselected-Run base); not a public entry point. */
+export function productAttempts(b: Obj, rows: Map<string, Obj[]>): void {
   // A later product association/check defect precedes product work consistency.
   // This preserves C3's prescribed within-gate order across every attempt.
   const workChecks: unknown[] = [];
@@ -618,6 +625,17 @@ function productAttempts(b: Obj, rows: Map<string, Obj[]>): void {
   const props = ['area', 'second_moment', 'polar_moment', 'section_modulus'].flatMap(p => [[p, 'lo'], [p, 'hi']]).concat([['radius', 'exact']]);
   // D4c (S06 §1; C3:165 "resolves once"): a prepared_product_failure cause names the case's own attempt.
   for (const c of b.cases) if (c.status === 'unavailable' && c.reason?.cause?.kind === 'prepared_product_failure') fail(c.product_attempt_ref !== null && c.product_attempt_ref === c.reason.cause.product_attempt_ref);
+  for (const c of b.cases) {
+    // D20 (C3:165): a selected case has its own C3 product attempt.
+    if (c.status === 'selected') fail(c.product_attempt_ref !== null);
+    if (c.product_attempt_ref === null) continue;
+    const own = at(b.product_attempts, c.product_attempt_ref);
+    // D19 (S06 §1, converse of D4c): an unavailable attempt is reported through prepared_product_failure
+    // naming it; C2 cause branches apply only to outcomes without an actual C3 attempt.
+    if (own.result.kind === 'unavailable') fail(c.status === 'unavailable' && c.reason?.cause?.kind === 'prepared_product_failure' && c.reason.cause.product_attempt_ref === own.id);
+    // D19: a Ready attempt belongs to a selected case, or to an unavailable case with a receipt_failure cause.
+    if (own.result.kind === 'ready') fail(c.status === 'selected' || (c.status === 'unavailable' && c.reason?.cause?.kind === 'receipt_failure'));
+  }
   for (const a of b.product_attempts) {
     const c = at(b.cases, a.owner_ref.index), s = a.source_ref === null ? null : at(b.sources, a.source_ref), pm: Obj[] = a.preparation.members, old: Obj[] = a.operational.old, fresh: Obj[] = a.operational.new;
     const stage = a.stages, p = a.proof, ready = a.result.kind === 'ready';
@@ -1213,7 +1231,8 @@ export function ordinaryAttempts(b: Obj, source: Obj): void {
     // D6d (C2:166): legacy_source.work_ref resolves into legacy_source_work for this case; a reference check.
     if (a.legacy_source.work_ref !== null) { const w = at(b.legacy_source_work ?? [], a.legacy_source.work_ref, 'G5', 'ATTEMPT_MISMATCH'); fail(w.case_index === ci); }
     if (c.status === 'not_required') fail(c.product_attempt_ref === null && a.initial.kind !== 'not_attempted' && q.solve_quality === 'checks_passed');
-    if (c.status === 'selected') fail(c.product_attempt_ref !== null && a.initial.kind !== 'not_attempted' && ['sensitive', 'unresolved', 'failed'].includes(q.solve_quality));
+    // D20: the selected case's C3 attempt is checked in the C3 association pass (PRODUCT_ATTEMPT), not here.
+    if (c.status === 'selected') fail(a.initial.kind !== 'not_attempted' && ['sensitive', 'unresolved', 'failed'].includes(q.solve_quality));
     if (c.status === 'unavailable' && c.reason.cause.kind !== 'prepared_product_failure') {
       const cause = c.reason.cause;
       if (cause.kind === 'source_error') fail(c.reason.phase === 'preparation' && c.reason.code === 'source_unavailable' && !c.run && c.source_decline && same(c.source_decline.error, cause.error));
