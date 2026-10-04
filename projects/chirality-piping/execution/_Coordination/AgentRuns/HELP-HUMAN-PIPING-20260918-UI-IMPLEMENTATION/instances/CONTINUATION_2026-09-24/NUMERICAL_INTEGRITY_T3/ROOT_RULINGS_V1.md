@@ -10785,3 +10785,50 @@ The memory branch merges into NUM after these.
 **N-1** (refs ≤ D_env rests on the producer's construction; at most 8 B) and RV87 N-2 are written into QUALIFICATION_G7. **N-3** is cosmetic.
 
 RV89's copy under WT/rv89_g7 is kept for its confirmation of Pass B.
+
+## G7 Pass B on the final basis: the registered entry holds; the only delta is the six added tests (ROOT, 2026-10-04 UTC)
+
+**I65's return** is `R/I65/u4_g7_02/` (RETURN.md `637331ec…`; SHA256SUMS 139/139 OK; no machine paths). QUALIFICATION_G7.md in `u4_g7_01` is amended (that folder's SHA256SUMS re-verifies). No source changed.
+
+**The hardened Pass B** gives a single verdict, with these stop codes:
+
+| Exit | Stops on |
+|---|---|
+| 2 | tree |
+| 3 | entry or law |
+| 4 | line map or premise |
+| 5 | an unreviewed production delta |
+| 6 | any other delta |
+
+- **RV89 S-1 (a)–(e)** are implemented:
+  - every hunk is classified;
+  - the entry is compared byte for byte with `0c7827b6ad`'s, threshold included;
+  - the law tests gate the run;
+  - FORMS must equal regeneration;
+  - D is read from the run;
+  - the premise is pinned at `retained_precision.rs:4252`, `:4253` and `:4305`.
+- **RV87 SF-1 and N-1** are implemented: the §11 set, incomplete TEXT and `scc` findings stop the run, and so does a self-recursive text ancestor outside the reviewed 11.
+- **Controls:** 33/33 on mutated copies.
+
+**The final basis `7f07a2f7b4`:**
+- **Exit 6.** The only delta is PP gaining 6 tests, all passing: grant 2's five `u3g2_*` and D-U6-5's.
+- **The integrity gates hold:**
+  - the tree, 2,950/2,950;
+  - the entry, byte-identical to `0c7827b6ad`'s, M = 4,026,531,840 included;
+  - the law tests, 42/42 with the registered tests;
+  - no added statics;
+  - the three premise pins.
+- **TEXT is complete and identical to Pass A.** FORMS equals regeneration, §11 gives the same 410, and the controls pass 12/12.
+- **The test gates hold:** witnesses 9/9, the challenge (peaks 3,541,898 / 2,252,863 B) and the runner are identical.
+- **The maxima are unchanged:** 0.8881 / 0.8929 M.
+
+The first final run stopped with exit 5, as designed, on grant 2's three `#[cfg(test)]` statements. I65 entered reviewed entries for them with evidence: absent from every non-test build, and allocation-free in the lib test binary whether armed or not. **Those entries are I65's own reading, so RV89 confirms them.**
+
+`price_delta.py` double-counts F5 on the final tree. That only overstates, and is noted.
+
+**Ruled: the six added tests are the expected delta.** They are ROOT-verified committed tests from grant 2 (`664f8df7b7`) and D-U6-5 (`f71478696b`). **The final basis is re-qualified** once RV89 confirms:
+- the hardened script;
+- the three reviewed entries;
+- the final run.
+
+The memory branch then merges into NUM, after RV93's review of grant 2 and the follow-on.

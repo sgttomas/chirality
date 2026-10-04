@@ -11,6 +11,8 @@
 
 **G7 changes no source.** Every source file was read-only. Only Pass A's analysis scripts and rule files changed, and they are records (§4).
 
+**Revised after review** (RV87 and RV89 on G7 Pass A, both PASS): the sentences marked "(review)" below are added. The repaired Pass B script and its run on the final basis are in `R/I65/u4_g7_02/`. That script supersedes §6's.
+
 ## Verdict
 
 **The registered entry stays byte-identical.** No `registration.diff` is needed.
@@ -45,6 +47,7 @@
 - PP calls nothing else in `result_export`.
 - `validate`'s G7 calls `semantic_contract::for_source` on `project(source)`. `project` sets `producer.semantic_contract_id` to the literal `…/preview-physics-1` id (retained_precision.rs:4252–4253).
 - So **`is_retained` is false on every D1 call** of `for_source` and `for_source_metadata`. This is the same fact G4's `edge_zero` rules 53–58 already use for `for_source`'s other arms.
+- **(review, RV89 N-2) The warrant is load-bearing.** If `is_retained` were ever true on D1, `for_source` would run a second full `validate(source, None)` inside the first, while the outer V5 working set is live. Dense W4 would then reach at least 3,749,527,510 B with R, above 0.9 M. The warrant lives in `project`'s literal assignment (retained_precision.rs:4252–4253) and `validate`'s one call at :4305. Pass B makes those lines rule keys and checks their text, and stops (exit 4) on any edit (`u4_g7_02/_run_records/premise_pins.json`).
 
 | # | Hunk (new lines at `ba1faa1c`) | Item | Reached / live | Class |
 |---|---|---|---|---|
@@ -97,7 +100,9 @@ The `LAYOUT_WITNESSES` compile, and the threshold is 4,026,531,840. These tests 
 
 **The counting rule for F5** (`g5_ordinary`, retained_precision.rs:4136–4145, once per receipt case):
 - `exact` collects a `filter` over the envelope diagnostics, so its capacity follows the push law: ≤ `pushcap(D_env)` = 16,384 slots of `s(&Value)`.
-- `list(&o["diagnostic_refs"]).iter().collect::<Vec<_>>()` is exact-size. It has ≤ D_env slots, because the loop just before it requires the refs to be unique and to resolve to the envelope's diagnostics.
+- `list(&o["diagnostic_refs"]).iter().collect::<Vec<_>>()` is exact-size, with ≤ D_env slots.
+  - **(review, RV89 N-1) The warrant is the producer, not uniqueness.** The bound D_env rests on the producer's construction: `retained_wire.rs:1426–1429` builds the refs with F5's own filter, which excludes `RETAINED_PRECISION_*`. So on a passing check the refs equal `exact`, which has at most D_env entries.
+  - Uniqueness and resolution alone would allow D_env + 1, because the successor adds `RETAINED_PRECISION_SELECTED`. That is at most 8 B more.
 - Both are live together for the comparison and drop at the end of the case's iteration. So they are counted in full in T17's V4 stage (G3–G6 working sets): **+s(&Value) × (16,384 + 9,361) = +205,960 B** at the in-build stride of 8.
 - The moving extra of `exact`'s last growth is 8 × 8,192 = 65,536 B, below W4's moving maximum (189,303,281 B).
 
@@ -160,6 +165,8 @@ The `LAYOUT_WITNESSES` compile, and the threshold is 4,026,531,840. These tests 
   - (c) it outputs the self-recursive ancestors (11, as at G6: the tree walkers, all single-function recursions, whose text G4 and RV87 priced);
   - (d) it dumps the non-candidates (§4.2).
 - **No cycle at G6.** G6's reached graph has no multi-member cycle (`scc_probe_g6.out.json`).
+- **(review, RV87 N-2) The check is only as complete as the call graph.** A cycle closed through dispatch the lexical graph does not see (a `dyn` call, an `Fn` value, a fn pointer) cannot be detected. The U6 delta adds none (RV87 G7).
+- **(review, RV87 N-1) Self-recursion is now a stop too.** Pass B's chain makes a self-recursive text ancestor outside the reviewed list of 11 (loop_bounds `recursion_reviewed`, each with the reason its text is priced) fail the run (`self-recursion`, control c11).
 - **Regression control** (`controls/text_regression.txt`): the G7 tool on G6's final inputs reproduces all four of G6's TEXT outputs exactly.
 
 ### 4.2 The §11 discharge: the by-type sweep, re-run
@@ -172,7 +179,8 @@ The `LAYOUT_WITNESSES` compile, and the threshold is 4,026,531,840. These tests 
 **Why not the explicit-row rule now.**
 - It would invert the default for the k5 shape by giving each bare-local non-candidate its own table row. That is 240 of the 410, each to be classified by its binding.
 - It is the durable closure, and remains the recommendation for a grant of its own.
-- At this basis, the sweep closes the residual exactly at no reading cost. Pass B repeats the comparison mechanically and stops on any new non-candidate.
+- At this basis, the sweep closes the residual exactly at no reading cost. Pass B repeats the comparison mechanically.
+- **(review, RV87 SF-1)** Pass A's script only reported that comparison. The repaired Pass B (`u4_g7_02`) exits non-zero (6) when the set differs from the reviewed 410.
 
 ## 5. Witnesses and behaviour (`pass_a/witnesses_challenge.txt`, `pass_a/outcomes/`)
 
@@ -204,7 +212,7 @@ The `LAYOUT_WITNESSES` compile, and the threshold is 4,026,531,840. These tests 
 - `tests/retained_memory_challenge.rs`;
 - `retained_facade_tests::u3_unfired_hooks_come_back_across_the_hop`, from U3 grant 1d (`8abb5274a9`).
 
-## 6. Pass B (`_run_records/g7_pass.sh`)
+## 6. Pass B (`_run_records/g7_pass.sh`; superseded by `R/I65/u4_g7_02/_run_records/g7_pass.sh`, review)
 
 **Usage:** `I65_T=<WT> g7_pass.sh <basis dir> <basis rev> <tag>`. It repeats items 2–5 mechanically on a fresh copy:
 1. checks the tree blob for blob;
