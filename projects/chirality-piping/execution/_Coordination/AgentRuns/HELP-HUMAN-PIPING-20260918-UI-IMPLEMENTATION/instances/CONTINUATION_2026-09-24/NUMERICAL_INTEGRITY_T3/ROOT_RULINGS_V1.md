@@ -8649,3 +8649,5 @@ Its notes are optional and recorded: N1, the receipt-only scope of `integral_rec
 
 **Snapshot 07e with Python, committed as `b890ce6c30`.** ROOT's diff against 07d shows only additions (4 mutations, 1 must-pass entry), with nothing changed or removed. Totals: 15 cases, 263 mutations, 22 must-pass entries. ROOT's Python run gives 365 passed. The removed Python lines are the harness's `int()` indexing, replaced by the strict rule. I63 and I64 adopt 07e.
 [Correction, 2026-10-03: the one removed line in the Python **reader** is its G2 call (`_encoding` then `_normalize_integrals`). It is replaced by the same call with D34's −0 check between the two; ROOT checked the replacement. The harness's `int()` indexing was replaced separately, in the test file.]
+
+**Rust 07e, committed as `2bef5062f7`.** ROOT verified the hashes and the evidence, and ran 56 passed on the default toolchain. D34 had to be applied, not just confirmed: −0 in the enum/const fields previously reached G5. Rust now has a single `g2()` that rejects −0 anywhere before D32's normalization. TypeScript's 07e round is pending.
