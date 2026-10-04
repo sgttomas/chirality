@@ -629,6 +629,24 @@ function conversionKind(v: Obj): boolean {
   if (v.kind === 'subnormal') { const n = decodeBinary64(v.value); return Math.abs(n) > 0 && Math.abs(n) < MIN_NORMAL; }
   return true;
 }
+/** D37 (D35 widened; S06 §1; D4d): the stage records the native sequence can leave behind each unavailable error kind
+ * (PP retained_product.rs prepare_owned_case 3136-3260, solve_native 3272-3291, project_candidate 3456-3550; I62's table).
+ * One mark per stage in STAGE_ORDER: '-' not entered, 'C' completed, 'F' failed; '?' is completed or failed (Observables
+ * and G5a are both entered and checked after a failed certificate whenever the verdicts were copied, 3501-3508). */
+const STAGE_ORDER = ['preparation', 'native', 'proof_start', 'projection', 'maxima', 'values', 'aliases', 'certificate', 'observables', 'g5a'];
+const STAGE_MARK: Record<string, string> = { not_entered: '-', completed: 'C', failed: 'F' };
+const NATIVE_STAGE_RECORDS: Record<string, string[]> = {
+  preparation: ['F---------'],                                      // prepare_owned_case fails
+  native: ['CF--------'],                                           // solve_native, nonselected Run
+  capture: ['CF--------', 'CC--------', 'CCCCCCCC--', 'CCCCCCCCCC'], // solve_native before a Run; before ProofStart; after a passed certificate; the commit
+  proof: ['CCF-------', 'CCCF------', 'CCCCCCCF--', 'CCCCCCCF??'],   // begin_prepared_product; project; certify_final
+  values: ['CCCCCF----'],                                           // complete_maxima
+  abandoned: ['CCCCF-----', 'CCCCCCF---', 'CCCCCCC---'],             // maxima; aliases; bind_rows_view
+  numeric: ['CCCCCCCCCC'],                                          // both checks passed, the case did not pass
+  observable: ['CCCCCCCCF?'],                                       // Observables failed (it takes precedence over G5a)
+  g5a: ['CCCCCCCCCF'],                                              // Observables passed, G5a failed
+};
+const stageRecordMatches = (pattern: string, record: string): boolean => [...pattern].every((m, i) => m === '?' ? 'CF'.includes(record[i]) : m === record[i]);
 /** @internal Exported only for the reader-logic D30 test (no faithful nonselected-Run base); not a public entry point. */
 export function productAttempts(b: Obj, rows: Map<string, Obj[]>): void {
   // A later product association/check defect precedes product work consistency.
@@ -757,6 +775,9 @@ export function productAttempts(b: Obj, rows: Map<string, Obj[]>): void {
     if (a.result.kind !== 'unavailable') continue;
     const first = pipeline.find(k => a.stages[k] === 'failed');
     if (first) fail(allowed[first].includes(a.result.error.kind));
+    // D37 (D35 widened; RV79-X1): the error kind and the stage record agree in both directions.
+    const record = STAGE_ORDER.map(k => STAGE_MARK[a.stages[k]]).join('');
+    fail(NATIVE_STAGE_RECORDS[a.result.error.kind]?.some(pattern => stageRecordMatches(pattern, record)) === true);
   }
   // C3 work equations, deferred until every attempt's association and typed checks.
   for (const ok of workChecks) need(ok, 'G5', 'WORK_MISMATCH');

@@ -687,6 +687,72 @@ describe('07e round (D34): -0 anywhere in the receipt fails G2 ENCODING', () => 
   });
 });
 
+describe('07f round (D37): an unavailable attempt error kind and its stage record agree in both directions', () => {
+  const PA = G('G5', 'PRODUCT_ATTEMPT_MISMATCH'), A = ['retained_precision', 'body', 'product_attempts', 1];
+  const KEYS = ['preparation', 'native', 'proof_start', 'projection', 'maxima', 'values', 'aliases', 'certificate', 'observables', 'g5a'];
+  const NAMES: Record<string, string> = { '-': 'not_entered', C: 'completed', F: 'failed' };
+  const OBS = { kind: 'observable', cause: { kind: 'storage', detail: 'observable view' } }, G5A = { kind: 'g5a', cause: { kind: 'sanity', body: 0, quantity_kind: 0 } };
+  const check = (mark: string, error?: any) => (mark === 'P' ? { kind: 'passed' } : mark === 'F' ? { kind: 'failed', error } : { kind: 'not_entered' });
+  // The facade base's attempt 1 (Capture after a passed certificate) with its error, stage record and three checks replaced.
+  const run = async (error: any, record: string, checks: string) => {
+    const edits = [
+      { path: [...A, 'result'], op: 'set', value: { kind: 'unavailable', error } },
+      { path: [...A, 'stages'], op: 'set', value: Object.fromEntries(KEYS.map((k, i) => [k, NAMES[record[i]]])) },
+      { path: [...A, 'proof', 'checks'], op: 'set', value: { certificate: check(checks[0]), observables: check(checks[1], OBS), g5a: check(checks[2], G5A) } },
+    ];
+    const { source, invocation } = await applyEntry({ id: 'i64_d37', base: 'two_case_facade_after_certificate_synthetic', edits, rehash: 'all' });
+    return firstFailure(source, invocation);
+  };
+  it('D37: each native-consistent post-certificate shape stays clear of G5 PRODUCT_ATTEMPT (Y6)', async () => {
+    for (const [error, record, checks] of [
+      [{ kind: 'capture', cause: { kind: 'storage', detail: 'adapter vector' } }, 'CCCCCCCC--', 'P--'],
+      [{ kind: 'capture', cause: { kind: 'storage', detail: 'adapter vector' } }, 'CCCCCCCCCC', 'PPP'],
+      [{ kind: 'numeric', cause: null }, 'CCCCCCCCCC', 'PPP'],
+      [OBS, 'CCCCCCCCFC', 'PFP'], [OBS, 'CCCCCCCCFF', 'PFF'], [G5A, 'CCCCCCCCCF', 'PPF'],
+    ] as const) expect(await run(error, record, checks), `${error.kind} ${record}`).not.toEqual(PA);
+  });
+  it('D37: a kind the stage record cannot produce, or a presupposed stage not recorded so, is G5 PRODUCT_ATTEMPT', async () => {
+    const capture = { kind: 'capture', cause: { kind: 'storage', detail: 'adapter vector' } }, abandoned = { kind: 'abandoned', cause: { kind: 'storage', detail: 'x' }, proof: { kind: 'storage' } };
+    const shapes = [
+      [{ kind: 'numeric', cause: null }, 'CCCCCCCC--', 'P--'],   // X1: numeric with Observables and G5a not entered
+      [{ kind: 'numeric', cause: null }, 'CCCCCCCCCF', 'PPF'],   // numeric needs both checks passed (native: G5a)
+      [{ kind: 'numeric', cause: null }, 'CCCCCCCCFC', 'PFP'],   // native: Observable
+      [G5A, 'CCCCCCCCFF', 'PFF'],                                 // g5a needs Observables passed (native: Observable)
+      [G5A, 'CCCCCCCC--', 'P--'],                                 // X1: g5a with G5a not entered
+      [OBS, 'CCCCCCCC--', 'P--'],                                 // X1: observable with Observables not entered
+      [{ kind: 'proof', cause: { kind: 'storage' } }, 'CCCCCCCC--', 'P--'], // X1: proof with the certificate passed
+      [{ kind: 'values', cause: { kind: 'storage' }, proof: { kind: 'storage' } }, 'CCCCCCCC--', 'P--'], // X1: values with Values completed
+      [capture, 'CCCCCCCCCF', 'PPF'], [capture, 'CCCCCCCCFC', 'PFP'], // a failed check after the certificate is reported as its own kind
+      [abandoned, 'CCCCCCCC--', 'P--'],                           // abandonment never follows a completed certificate
+    ] as const;
+    const outcomes: [string, unknown][] = [];
+    for (const [error, record, checks] of shapes) outcomes.push([`${error.kind} ${record}`, await run(error, record, checks)]);
+    expect(outcomes).toEqual(shapes.map(([error, record]) => [`${error.kind} ${record}`, PA]));
+    // A failed preparation is reported as `preparation`, never `capture` (the old one-direction rule admitted both).
+    const prepared = async (error: any) => { const { source, invocation } = await applyEntry({ id: 'i64_d37_preparation', base: 'two_case_preparation_failure_synthetic', edits: [{ path: [...A, 'result'], op: 'set', value: { kind: 'unavailable', error } }], rehash: 'all' }); return firstFailure(source, invocation); };
+    expect(await prepared({ kind: 'capture', cause: { kind: 'storage', detail: 'adapter vector' } })).toEqual(PA);
+    expect(await prepared(corpus.cases.find((c: any) => c.id === 'two_case_preparation_failure_synthetic').source.retained_precision.body.product_attempts[1].result.error)).toBe('pass');
+  });
+});
+
+describe('07f round (RV81-N1 R35): only -0 maps to 0 in the G1 const/enum comparison', () => {
+  it('RV81-N1: a tiny non-zero value at a const-0 or enum position fails G1, not G2', async () => {
+    const decline = corpus.mutations.find((x: any) => x.id === 'unavailable_attempt_under_source_error_cause');
+    const storage = corpus.must_pass.find((x: any) => x.id === 'cert_failed_after_summary_storage');
+    const springs = async (v: number) => { const { source, invocation } = await applyEntry({ ...structuredClone(decline), id: 'i64_r35_springs', edits: [...structuredClone(decline.edits), { path: ['retained_precision', 'body', 'cases', 1, 'source_decline', 'constructor_counts', 'directional_springs'], op: 'set', value: v }] }); return firstFailure(source, invocation); };
+    const kind = async (v: number) => { const { source, invocation } = await applyEntry({ ...structuredClone(storage), id: 'i64_r35_kind', edits: [...structuredClone(storage.edits), { path: ['retained_precision', 'body', 'product_attempts', 1, 'result', 'error'], op: 'set', value: { kind: 'g5a', cause: { kind: 'sanity', body: 0, quantity_kind: v } } }] }); return firstFailure(source, invocation); };
+    for (const tiny of [Number.MIN_VALUE, -Number.MIN_VALUE, 2 ** -1022, Number.EPSILON]) {
+      expect(await springs(tiny), String(tiny)).toEqual(G('G1', 'RECEIPT_MISMATCH'));
+      expect(await kind(tiny), String(tiny)).toEqual(G('G1', 'RECEIPT_MISMATCH'));
+    }
+    // Next to the enum member 1 (1 + tiny rounds to 1 for the subnormal and 2^-1022, so use the neighbours of 1).
+    for (const near of [1 + Number.EPSILON, 1 - Number.EPSILON / 2]) expect(await kind(near), String(near)).toEqual(G('G1', 'RECEIPT_MISMATCH'));
+    // Controls: the exact members pass G1 and G2; -0 is G2 (D34).
+    expect(await springs(-0)).toEqual(G('G2', 'ENCODING_MISMATCH'));
+    expect(['G0', 'G1', 'G2'].includes((await kind(1) as any).gate ?? 'pass')).toBe(false);
+  });
+});
+
 describe('native p512 floor rounding, independent of any corpus case', () => {
   // Literal transcription of verify.rs phi_512 and adaptive.rs next_up, for comparison only.
   const fromWord = (word: bigint) => { const v = new DataView(new ArrayBuffer(8)); v.setBigUint64(0, word); return v.getFloat64(0); };
