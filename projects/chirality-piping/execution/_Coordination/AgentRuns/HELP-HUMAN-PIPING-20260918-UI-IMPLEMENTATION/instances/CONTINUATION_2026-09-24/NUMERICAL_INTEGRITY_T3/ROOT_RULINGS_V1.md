@@ -9351,3 +9351,54 @@ The margin rule (≤ 0.9 M at illustrative strides) applies to this maximum.
 **S-7, a U3 budget:** "exactly one ordinary run per invocation." I51's single observed run and U3's dispatch already intend this. G4 records it as a budget, and U3 grant 2 pins it with a test on the permitted path; `ordinary_dispatch_entered` exists for this.
 
 **NOTEs:** N-7 (the `checked_mul` scope wording), N-11 (the undocumented 2 MiB moving candidate) and N-13 (the top-ten counts are over-counts) go to G4 as wording corrections.
+
+## RV85 on U3 grant 1: PASS, merged; U3 grant 1b and U5 verified; reviews dispatched (ROOT, 2026-10-04 UTC)
+
+**RV85's report** is `R/REVIEW_RV85/u3_facade_01/REVIEW.md` (sha256 `8caa9ef7…`; SHA256SUMS 33/33 OK; no machine paths). Verdict: **PASS**, with 0 BLOCKING, 3 SHOULD-FIX and 7 NOTE findings, on `bee3dc07ca`.
+
+**RV85 established independently:**
+- **No published byte changes while no permit exists.** Its own sweep covered 55 inputs × 5 routes × 2 modes (550 rows, including the admission reports), byte-identical to base.
+- **Suites:** the failure sets equal base. PP gave 654/1/1 (base plus 6 tests); runner/headless and result_export are unchanged.
+- **The R-3 lock deltas** are exactly as ruled.
+- **Mutants:** I61's 25 are killed, R08b is killed, and RV85's own 12 kill 9.
+- **Its own disposable stub** publishes U1's pinned successor bytes through the actual Direct entry, with G-B, G-C and stack fallbacks as designed.
+
+**The merge.** ROOT merged `bee3dc07ca` into NUM as `b1f80234dc` with `--no-ff`. NUM's maintained source equals `bee3dc07ca` byte for byte.
+
+**RV85's findings:**
+- **S1 (the copyable permit) and S2 (thread-local hooks):** already addressed in grant 1b (below). RV85 confirms them.
+- **S3:** permitted invocations lose their G-A report, so `admission()` returns None, contrary to its public doc and to DOMAIN §3.
+  - **Ruled:** on success, `admit` returns the permit **together with** the admission report, and `admission()` is `Some` for permitted calls.
+  - I65 records the signature in API.md (G4), and I61 implements it in grant 2.
+- **N1:** G-C must not run after a G-B refusal or an exact-block selection; record the correct cause. This goes to grant 2.
+- **N2:** a committed test that kills V07 (the G-B refusal check) on the permitted path. Grant 2.
+- **N5:** price staging (the ordinary envelope, the staged clone and the `to_value` tree coexisting). G4.
+- **N6:** replace the staging overlay's `unwrap` and `expect` on the production path with a typed fallback. Grant 2.
+- **N7:** strengthen the single-parse guard (`from_str(`, `deserialize(`, and the `permitted_dispatch(` call-site count). Grant 2.
+- **N3 and N4:** no action.
+
+**U3 grant 1b** is `R/I61/u3_facade_02/` (26 files OK; no machine paths). ROOT committed it as `4b31bbf23a` on the facade branch and pushed it.
+- **R-1:** public `RetainedPublication { Ordinary, Successor }`, `successor()` and `into_publication()`, all yielding `Ordinary` while no permit exists.
+- **R-2's condition is established:**
+  - result_export's base `for_source`, the desktop admission (`sourceContract`, `validatePreviewPhysicsEvidence`, `numericalResultStanding`), runner/headless (status, diagnostics, export) and the Python base reader each accept a base publication carrying the notice, with standing unchanged;
+  - each refuses a malformed notice.
+  
+  **N1 is implemented** as ruled, with its space reserved before W1 (`ReservedNotice`).
+- **The permit is linear;** the fault hooks are carried onto the reserved-stack thread.
+- **ROOT's run:** PP `--lib` gave 497 passed, 1 failed (t13), 1 ignored, with all 10 facade tests passing. **I61's controls:** the 324-output sweep is unchanged, runner/headless is identical, and 38 of 39 mutants are killed. The survivor is the unreachable `PermitUnbound` arm.
+- **F-1, accepted:** only C1:68's named details make a receipt-encoding notice (the three work-counter tokens and `publication_hash_range`). An `association` or `encoding` serializer refusal gets the plain text.
+- **F-3:** the notice slot (about 196 B) is priced in G4. **F-4:** noted.
+
+**U5, the reference comparison, PASS on I61's evidence** (`R/I61/u5_reference_01/`; SHA256SUMS OK).
+- In both modes, all 97 class claims of the pinned milestone successor (25 relative, 69 absolute, 3 input-derived) agree with I50's named oracle, against both readouts.
+- The maxima, overlay and support rows pass the oracle's own observable checks. No mapping needed a reading, and the negative controls are refused.
+- **Informational:** the stop-rule-sharp bound misses on 7 J-dependent rows against the represented readout, attributed to 2-ulp section-term differences.
+- **A local-only recovery dependency:** U5 reads I50's captured log from `WT/scratch/i50_first_publishing/runtime02/`, which is hash-bound to I50's BULK_MANIFEST.
+- **Review:** RV86 independently reviews U5 (`BRIEFS/RV86_U5_REFERENCE_REVIEW.md`), including whether "matches its independent reference" holds and with what stated limit.
+
+**Next:**
+- **RV85** reviews grant 1b and confirms S1 and S2.
+- **RV86** reviews U5.
+- **U3 grant 2 waits for U4 G5.** It carries S3's implementation, N1, N2, N6, N7, RV84's S-6 hook change and S-7's one-run test, and reruns U5's script unchanged on the committed facade output.
+
+The next unused IDs are I67 and RV87.
