@@ -10279,3 +10279,13 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
   - **Remedy (I67):** TS's carrier transport route calls the reader's `validateRetainedPrecisionTransport`, as Rust's does, and the entry's text is corrected. Only if TS cannot do that is it declared, by a further ruling.
 
 **U6f is dispatched now** on the carriers head, as RV92 under `BRIEFS/RV92_U6F_COMPLETE_REVIEW.md`. Its parity table must show N-1. The post-U6f repair round takes N-3, N-1 and whatever U6f finds, and RV92 confirms. **RV91's round-03 confirmation is in flight;** any finding joins the same round.
+
+## RV91 confirms U6d round 03 (ROOT, 2026-10-04 UTC)
+
+**RV91's confirmation** is `R/REVIEW_RV91/u6d_03/REVIEW.md` (sha256 `083d5e55…`; SHA256SUMS 16/16 OK). Verdict: **CONFIRMED**, with 0 BLOCKING, 0 SHOULD-FIX and 0 NOTE findings.
+- **N-1:** the 0.1.0 and 0.2.0 legacy shapes are covered, and so are later-row tokens. RVb1 and RVb2 are killed, and so is the new RVc1.
+- **Case format v2 and `declared_differences`:** RV91's own consumer agrees on all 20 cases and all 8 entry-and-fixture pairs. Each TS expectation equals RV91's independent observations, and the retired local pin's coverage survives in the shared `edited_row` cases.
+- **The nine-entry unit table** equals Rust's `si_unit`. 11 unknown units, including `toString`, `constructor` and `__proto__`, claim no bound.
+- **No regressions:** Vitest 3,466 and `tsc` clean; an 86-envelope sweep identical.
+
+**U6d's review cycle is closed.** All U6 units are now reviewed and confirmed, apart from RV88's U6a N-3 and N-1, which are routed to the post-U6f round. RV92 (U6f) is running.
