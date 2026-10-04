@@ -11425,3 +11425,23 @@ The checklist is kept in the work graph's T3 row once U9 merges.
 - **I61:** G8, the pressure and coexistence controls through the Direct entry, the 324-output sweep on the PR head (the first check of PR1080 against the F2a routes), and the Direct-caller scan (`R/I61/u9_g8_01/`).
 
 **ROOT's gates come in host slots:** T9, both-entry and the src-tauri suite during phase 3, then the Mac baseline, DEC-025 and the native witness on the frozen head.
+
+## U9 gates G7 and G8 pass; G5 and G6 granted to I61 (ROOT, 2026-10-04 UTC)
+
+**G7, the src-tauri suite (ROOT).** On `git archive` copies of M `5fdc5ab601` and C `6b9bb19a5f`, run with `cargo test --offline --locked --no-fail-fast`: **M 116 passed, C 116 passed, with per-test outcomes identical.** The logs and hashes are under WT/scratch/u9_g7 and WT/scratch/u9_gates.
+
+**G8, the controls, and G9b, the Direct-caller scan (I61).** The record is `R/I61/u9_g8_01/` (RETURN.md `90103096…`; SHA256SUMS 14/14 OK). It ran on an archive of C, with each row's registered or Stale status asserted. **PASS on all four items:**
+- **Pressure.** The milestone with a pressure region is refused at D1.5 `Family(Case, PressureRegions)`, with exact ordinary bytes and no notice. The no-pressure milestone publishes its successor (registered) or exact ordinary bytes (Stale). The PHYS-R4 pair gets exact ordinary bytes (D1.3).
+- **Coexistence.** The 16 n05/n06 rows give exact ordinary bytes, admitted as `Coexistence`. The grant-2 set gives 2 successors, 4 Preparation notices and 64 exact.
+- **The 324-output sweep is byte-identical:** registered `9a74ff16…`, Stale `0e2db8b8…`, with 0 rows different. **Main's PR1080 changes no published byte on the F2a routes.**
+- **No product caller** of the Direct entry exists. Outside PP, the only caller is the reviewed runner test.
+
+**G5 (T9) and G6 (both-entry) are granted explicitly to I61,** under the I20 precedent at KF2, for these two gates only.
+- T9 runs now.
+- Both-entry part 1 runs after I65's Pass B.
+- Part 2's timing runs go only on a quiet host.
+- One job at a time, with the 6 GiB heap cap as recorded.
+- No lock change lands.
+- Any non-identical output is a stop.
+
+Records go in `R/I61/u9_g5g6_01/`.
