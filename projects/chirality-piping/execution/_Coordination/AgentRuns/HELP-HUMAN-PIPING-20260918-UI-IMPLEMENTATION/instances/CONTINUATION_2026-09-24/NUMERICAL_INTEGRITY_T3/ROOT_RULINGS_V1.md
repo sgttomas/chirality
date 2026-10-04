@@ -10644,3 +10644,57 @@ Vitest is not re-run, since its inputs are byte-identical to the reviewed tip. R
 - the Pass B script.
 
 The memory branch still merges into NUM only after grant 2, RV93, the D-U6-5 follow-on, Pass B, and these reviews.
+
+## U3 grant 2 committed; RV93 dispatched; NUM merged into the memory branch; the D-U6-5 follow-on (ROOT, 2026-10-04 UTC)
+
+**I61's return** is `R/I61/u3_grant2_01/` (SHA256SUMS 30/30 OK, no machine paths), with no stop.
+
+**The milestone.** In the registered build, RF-SKEW-T-CANT-OFF-122-r1e-04 publishes U1's pinned successor through the actual Direct entry in both modes (sparse `ac6986b0…`, dense `6cd1d249…`), from exactly one ordinary run.
+
+**The committed tests:**
+- every W1 fallback gives the ordinary bytes plus exactly one N1 notice;
+- every refusal before W1 work (G-A, G-C including `OrdinarySolveNotAttempted`, the stack, coexistence on n05) gives exact ordinary bytes;
+- a G-B refusal is final and G-C is not consulted, which kills SV18;
+- B′ holds, and so does B-1/S-7: one run, and no copy on the no-permit path;
+- 11 of 11 mutants are killed.
+
+**The controls:**
+- **Unregistered or Stale:** all 324 outputs equal base.
+- **Registered:**
+  - every non-Direct route equals base;
+  - Direct gives 2 successors, 4 Preparation notices (the `rejected_stress_range` fixtures, as in RV89 N-2) and 64 exact outputs.
+
+**U5, rerun on the live successor bytes:**
+- the report is byte-identical to U5's (97/97 class claims per mode);
+- `u5_compare.py` now pins RV86's committed 7,240-byte extract (`a66a8a49…`, ROOT-checked);
+- **RV86's limit 4 is discharged.**
+
+**Not done:** optional item 7 (binding the permit to its invocation). It needs a `CapturePermit` change in U4's file. RV93 assesses the residual risk.
+
+**ROOT's verification:**
+- **The full diff:**
+  - `lib.rs` gains two `#[cfg(test)]` statements on existing production lines, plus changes in the test-only `retained_tests_hooks` module;
+  - `retained_product.rs` gains one `#[cfg(test)]` G-B hook;
+  - `retained_tests_hooks/grant2.rs` is new and test-only;
+  - five tests are new, and one comment changed.
+- **Line-neutrality is deliberate,** so that U4's line-keyed TEXT inputs do not move.
+- **ROOT's registered run:** PP 704 passed, 1 failed (t13), 10 ignored, with all five `u3g2_*` tests passing.
+
+**Committed** as `664f8df7b7` on the memory branch (pushed).
+
+**RV93** (fresh, `BRIEFS/RV93_U3_GRANT2_REVIEW.md`) is dispatched on `664f8df7b7`.
+
+**NUM is merged into the memory branch** at `f8ce1eb32b` (clean). Its code delta is exactly U6's 40 files, and its code equals G7's Pass A basis `ba1faa1c…` plus grant 2, which ROOT checked by diff.
+
+**I61's follow-on** (uncommitted in WT/f2a-memory at `f8ce1eb32b`; records in `R/I61/u3_grant2_02/`):
+- **D-U6-5:** U6's two carrier fixtures equal the live successor bytes;
+- reruns of the `u3g2_*` tests, PP, the 324-output sweep, U5 and the runner on the merged base, where the 07h reader runs at precommit. **Stop if the milestone no longer publishes its successor.**
+
+**Then:**
+1. ROOT commits the follow-on.
+2. ROOT applies the T17_V4 line once RV89 confirms it.
+3. G7 Pass B runs on the final basis.
+4. RV93 extends its review to the follow-on delta.
+5. RV89 confirms Pass B.
+
+The memory branch merges into NUM after these.
