@@ -11485,3 +11485,26 @@ Records go in `R/I61/u9_g5g6_01/`.
 **RV89 confirms** (`R/REVIEW_RV89/u4_g7_03/`), including whether `fd3cbebb42`'s CI-only commit needs no rerun.
 
 **I61's both-entry part 1 is cleared** to follow T9. Part 2 still needs a quiet host.
+
+## PR #1082's second hosted run: a wasm32 build defect, fixed (ROOT, 2026-10-04 UTC)
+
+**The second hosted run on `fd3cbebb42`** (run 37240279970):
+- "Select source coverage" now passes;
+- **all four "Source remainder" shards failed** in `build:wasm`: `result_export/src/source_blocks.rs:57`, `literal out of range for usize` on wasm32 (`deny(overflowing_literals)`).
+
+**The cause:**
+- The line dates from `22452ecd148` on main.
+- It surfaced because PP's runtime dependency on `result_export` (U3 decision 5, R-3) now compiles `result_export` into the desktop wasm engines (`self_weight_wasm`, `operation_applier`).
+- **No F2a run built wasm before this.** The TS runs used prebuilt WASM, and DEC-025's surface 3 (`build:wasm:desktop`) runs only at U9's freeze. **Hosted CI caught it first.**
+- A local wasm32 build of both crates showed this one error. Every other wasm32 diagnostic is a pre-existing warning that native builds also emit.
+
+**The fix (ROOT-authored, reviewed by RV95):** `source_blocks::integer` applies the `9_007_199_254_740_991` bound to the u64 before `usize::try_from`.
+- The result is identical on 64-bit. On 32-bit, a value beyond usize gets the same `SOURCE_BLOCKS_INTEGER` refusal.
+- **Committed** on NUM as **`7ff569a55c`**: `result_export` 171/0.
+- **On the PR as `92a5a9da1c`:** a **clean three-way merge** of (NUM, B, M) onto main's PR1080 version of the file. Both wasm crates build `--locked --offline`.
+
+**The consequences:**
+- **`source_blocks.rs` joins S** as a second file that main also changed. It merges cleanly, where `compatibility.py` resolves a conflict. I61 generalizes `source_equality.py`'s check 3 to "every S file main also changed equals the recorded three-way merge" when the package is regenerated at the freeze.
+- **Pass B:** the hunk is in a D1 crate, but in `source_blocks` (behind `for_source`/`edge_zero`, like PR1080). RV89 classifies it in its G9a confirmation, and ROOT reruns Pass B mechanically on the frozen head.
+- **G5, G6 and G8** are unaffected on 64-bit by construction. Both-entry uses C = `92a5a9da1c` if not yet built.
+- **RV95** reviews the fix, and also checks for other 32-bit hazards in code wasm now compiles.
