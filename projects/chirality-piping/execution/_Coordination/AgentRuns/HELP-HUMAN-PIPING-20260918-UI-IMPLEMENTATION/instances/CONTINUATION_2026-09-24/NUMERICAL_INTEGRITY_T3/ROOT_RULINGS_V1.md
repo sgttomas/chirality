@@ -9449,22 +9449,22 @@ The next unused IDs are I67 and RV87.
   So the first publication reaches library consumers (Rust and Python). A desktop or native witness needs native activation, which is later work.
 
 **All nine decisions are accepted as proposed.** Each puts an accepted design into effect (D1, D2, C1 or RR) without a new numerical meaning or criterion; none is owner-reserved.
-- **D-U6-1:** the Python reader's public entry runs every gate, and  gates eligibility only, as in Rust and TS. It is reviewed as a reader change.
-- **D-U6-2, option (A):**  and  rows are  in the derivative, with the reason codes  and , admitted only in the successor branch. This follows D2 §4.9.9 and C1:162.
+- **D-U6-1:** the Python reader's public entry runs every gate, and `_IMPLEMENTATION_COMPLETE` gates eligibility only, as in Rust and TS. It is reviewed as a reader change.
+- **D-U6-2, option (A):** `absolute_verified` and `not_covered` rows are `disclosed` in the derivative, with the reason codes `retained_precision_absolute_verified` and `retained_precision_not_covered`, admitted only in the successor branch. This follows D2 §4.9.9 and C1:162.
 - **D-U6-3:** the full TypeScript carrier set in U6, tested with mocked IPC. The native witness is a stated qualification limit (F-1).
-- **D-U6-4:** the 25 names and 9 paths in  (COLLISIONS) are reserved for U6, and rechecked at each grant.
+- **D-U6-4:** the 25 names and 9 paths in `R/I66/u6_scoping_01/` (COLLISIONS) are reserved for U6, and rechecked at each grant.
 - **D-U6-5:** fixtures are byte-identical copies of PP's pinned successor files, checked by sha256. U3 grant 2 adds the one PP assertion that compares them with the live serializer output.
-- **D-U6-6:** the successor joins the Current-admission sets. Standing, not freshness, gates every reliance, and it stays  until U7.
+- **D-U6-6:** the successor joins the Current-admission sets. Standing, not freshness, gates every reliance, and it stays `needs_recompute` until U7.
 - **D-U6-7:** the reader round (U6e) takes F5, RV79-N1, RV80-N2 and D-U6-1.
   - F5 amends checkpoint A's D6a: the readers enforce A2's exact per-case list.
   - RV78-N2 goes into U6c.
   - RV78-N1 is deferred to wider F2a, because of its re-pin cascade. It is D36-tracked and non-gating.
   - F-7, on the reader side, goes to wider F2a.
-- **D-U6-8:** the stress-neutral schema and  are reserved for U6. ROOT posts a notice on T6's work-graph row (T6 is PLANNED, not active).
-- **D-U6-9:** the legacy 0.1.0 AnalysisRun wrapper refuses sources carrying .
+- **D-U6-8:** the stress-neutral schema and `loadReferenceOutputAvailability.ts` are reserved for U6. ROOT posts a notice on T6's work-graph row (T6 is PLANNED, not active).
+- **D-U6-9:** the legacy 0.1.0 AnalysisRun wrapper refuses sources carrying `retained_precision`.
 
 **Order (workflow §1):**
-- **U6a first:** the end-to-end slice, with D-U6-1 and the fixtures. It is granted to I66 now under , in , branch .
+- **U6a first:** the end-to-end slice, with D-U6-1 and the fixtures. It is granted to I66 now under `BRIEFS/I66_U6A_SLICE.md`, in `WT/f2a-carriers`, branch `codex/piping-f2a-carriers-20261004`.
 - **U6b–U6e fan out after the slice is verified,** under I66's ownership. Authors are assigned at that point.
 - **U6f, the complete-diff review,** comes before U7.
 
@@ -9480,3 +9480,5 @@ The next unused IDs are I67 and RV87.
 - **RV85** reviews 1c together with 1b.
 
 The next unused IDs are I67 and RV87.
+
+*Text repair (ROOT, 2026-10-04): this entry was first committed in `6e796235c8` with seven code names dropped by a shell-quoting error. They are restored above, and nothing else is changed.*
