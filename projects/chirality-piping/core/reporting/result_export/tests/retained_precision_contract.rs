@@ -48,6 +48,13 @@ fn finite_product_vectors_and_ranges() {
     }
 }
 
+/// D32 (RV79-N-e): the harness indexes by integral value, as the readers
+/// do: a finite, integral, non-negative number that is not -0.
+fn index(v: &Value) -> Option<usize> {
+    let n = v.as_f64()?;
+    (n.is_finite() && n >= 0.0 && n.fract() == 0.0 && !(n == 0.0 && n.is_sign_negative()))
+        .then_some(n as usize)
+}
 fn rehash(source: &mut Value) {
     use open_pipe_stress_result_export::source_blocks::domain_hash;
     // Snapshot 07 format: an entry that removes retained_precision or its body
@@ -62,8 +69,8 @@ fn rehash(source: &mut Value) {
     let b = &mut source["retained_precision"]["body"];
     let attempts = b["product_attempts"].clone();
     for s in b["sources"].as_array_mut().unwrap() {
-        if let Some(ai) = s["preparation"]["attempt_ref"].as_u64() {
-            let a = &attempts[ai as usize];
+        if let Some(ai) = index(&s["preparation"]["attempt_ref"]) {
+            let a = &attempts[ai];
             // As G1: only an addressable attempt has a preparation digest.
             if !a.is_object() {
                 continue;
@@ -86,7 +93,14 @@ fn rehash(source: &mut Value) {
     let sources = b["sources"].clone();
     for c in b["cases"].as_array_mut().unwrap() {
         if c.get("source_identity_sha256").is_some() {
-            let mut s = sources[c["source_ref"].as_u64().unwrap() as usize].clone();
+            // As G1: only an addressable source has an identity digest.
+            let Some(mut s) = index(&c["source_ref"])
+                .and_then(|i| sources.get(i))
+                .filter(|s| s.is_object())
+                .cloned()
+            else {
+                continue;
+            };
             s.as_object_mut().unwrap().remove("index");
             c["source_identity_sha256"] = domain_hash("retained_precision_source_mp_v2", &s)
                 .unwrap()
@@ -110,24 +124,24 @@ fn edit(source: &mut Value, e: &Value) {
     let path = e["path"].as_array().unwrap();
     let mut parent = source;
     for p in &path[..path.len() - 1] {
-        parent = if let Some(i) = p.as_u64() {
-            &mut parent[i as usize]
+        parent = if let Some(i) = index(p) {
+            &mut parent[i]
         } else {
             &mut parent[p.as_str().unwrap()]
         };
     }
     let last = path.last().unwrap();
     if e["op"] == "remove" {
-        if let Some(i) = last.as_u64() {
-            parent.as_array_mut().unwrap().remove(i as usize);
+        if let Some(i) = index(last) {
+            parent.as_array_mut().unwrap().remove(i);
         } else {
             parent
                 .as_object_mut()
                 .unwrap()
                 .remove(last.as_str().unwrap());
         }
-    } else if let Some(i) = last.as_u64() {
-        parent[i as usize] = e["value"].clone();
+    } else if let Some(i) = index(last) {
+        parent[i] = e["value"].clone();
     } else {
         parent[last.as_str().unwrap()] = e["value"].clone();
     }
@@ -250,12 +264,12 @@ fn shared_rehashed_first_failure_mutations() {
 
 /// Observe one slice of the shared mutations against this reader's own
 /// expectation, print one outcome per mutation (visible with --nocapture) and
-/// check the slice tally. Snapshot 07c holds 254 mutations in all.
+/// check the slice tally. Snapshot 07d holds 259 mutations in all.
 fn slice_outcomes(tag: &str, range: std::ops::Range<usize>, want: &[(&str, usize)]) {
     use std::collections::BTreeMap;
     let shared = corpus();
     let mutations = shared["mutations"].as_array().unwrap();
-    assert_eq!(mutations.len(), 254);
+    assert_eq!(mutations.len(), 259);
     let mut tally = BTreeMap::new();
     let mut matched = 0;
     for mutation in &mutations[range.clone()] {
@@ -453,6 +467,22 @@ fn snapshot_07b_mutation_outcomes() {
             ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 5),
             ("G5 RETAINED_PRECISION_WORK_MISMATCH", 1),
             ("G5a RETAINED_PRECISION_SCALE_MISMATCH", 1),
+        ],
+    );
+}
+
+/// Snapshot-07d repair pins (I62; D31, D32, D33 and RV78-N1's two D19 Ready
+/// negatives), mutations 254..259.
+#[test]
+fn snapshot_07d_mutation_outcomes() {
+    slice_outcomes(
+        "I63_OUTCOME_07D",
+        254..259,
+        &[
+            ("G1 RETAINED_PRECISION_RECEIPT_MISMATCH", 1),
+            ("G5 RETAINED_PRECISION_ATTEMPT_MISMATCH", 1),
+            ("G5 RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH", 2),
+            ("G8 RETAINED_PRECISION_INVOCATION_MISMATCH", 1),
         ],
     );
 }
@@ -703,7 +733,7 @@ fn shared_must_pass_entries_validate() {
     let shared = corpus();
     let entries = shared["must_pass"].as_array().unwrap();
     // Snapshot 07: 06d's 18 plus the equal-E bracket control.
-    assert_eq!(entries.len(), 19);
+    assert_eq!(entries.len(), 21);
     let mut failures = Vec::new();
     for entry in entries {
         assert_eq!(entry["expected"], "pass");
@@ -2729,4 +2759,228 @@ fn d30_native_run_ref_on_nonselected_run() {
     assert!(rp::reader_logic::reason_table(&case(3), &attempt).is_ok());
     let got = rp::reader_logic::reason_table(&case(2), &attempt).unwrap_err();
     assert_eq!((got.gate, got.code.as_str()), ("G5", PRODUCT));
+}
+
+/// D31: G8 admits model schema_version 0.1.0, 0.2.0 or 0.3.0; 0.4.0 stays
+/// excluded. The invocation edit rebinds the receipt's invocation digest.
+#[test]
+fn d31_model_schema_versions_at_g8() {
+    use serde_json::json;
+    let shared = corpus();
+    let entry = |version: &str| {
+        json!({"id":"i63_d31","base":ORD,"edits":[],"rehash":"all",
+            "invocation_edits":[{"path":["request","model","schema_version"],"op":"set","value":version}]})
+    };
+    let mut misses = Vec::new();
+    for (version, want) in [
+        ("0.1.0", Value::Null),
+        ("0.2.0", Value::Null),
+        ("0.3.0", Value::Null),
+        ("0.4.0", gate("G8", "RETAINED_PRECISION_INVOCATION_MISMATCH")),
+        ("0.0.9", gate("G8", "RETAINED_PRECISION_INVOCATION_MISMATCH")),
+    ] {
+        let got = observe(&shared, &entry(version));
+        if got != want {
+            misses.push(format!("{version}: got {got}, want {want}"));
+        }
+    }
+    assert!(misses.is_empty(), "{}", misses.join("\n"));
+}
+
+/// Every integer in `v` rewritten as the integral float of the same value.
+fn as_integral_floats(v: &mut Value) {
+    match v {
+        Value::Number(n) if !n.is_f64() => *v = Value::from(n.as_f64().unwrap()),
+        Value::Array(a) => a.iter_mut().for_each(as_integral_floats),
+        Value::Object(o) => o.values_mut().for_each(as_integral_floats),
+        _ => {}
+    }
+}
+
+/// D32: integers by value everywhere. G0's receipt_version and work limits,
+/// references and every other receipt integer written as integral floats
+/// validate; a non-integral, -0 or wrong value still fails where it did.
+#[test]
+fn d32_integers_by_value() {
+    use serde_json::json;
+    let shared = corpus();
+    let g0 = gate("G0", UNSUPPORTED);
+    let mut misses = Vec::new();
+    for (name, edits, want) in [
+        ("receipt_version 1.0", vec![set(rb(json!(["receipt_version"])), json!(1.0))], Value::Null),
+        ("float limits", vec![
+            set(rb(json!(["work", "case_limit"])), json!(20000000000.0)),
+            set(rb(json!(["work", "invocation_limit"])), json!(60000000000.0)),
+        ], Value::Null),
+        ("float source_ref", vec![set(rb(json!(["cases", 0, "source_ref"])), json!(0.0))], Value::Null),
+        ("float attempt refs", vec![
+            set(rb(json!(["cases", 0, "product_attempt_ref"])), json!(0.0)),
+            set(rb(json!(["sources", 0, "preparation", "attempt_ref"])), json!(0.0)),
+        ], Value::Null),
+        ("float quality binding", vec![set(rb(json!(["cases", 0, "ordinary", "quality_binding", "index"])), json!(0.0))], Value::Null),
+        ("receipt_version 1.5", vec![set(rb(json!(["receipt_version"])), json!(1.5))], g0.clone()),
+        ("receipt_version -0", vec![set(rb(json!(["receipt_version"])), json!(-0.0))], g0.clone()),
+        ("receipt_version 2.0", vec![set(rb(json!(["receipt_version"])), json!(2.0))], g0.clone()),
+        ("case_limit 20000000000.5", vec![set(rb(json!(["work", "case_limit"])), json!(20000000000.5))], g0.clone()),
+        ("invocation_limit 6e10+1", vec![set(rb(json!(["work", "invocation_limit"])), json!(60000000001.0))], g0.clone()),
+        ("source_ref -0", vec![set(rb(json!(["cases", 0, "source_ref"])), json!(-0.0))], gate("G2", "RETAINED_PRECISION_ENCODING_MISMATCH")),
+        ("source_ref 0.5", vec![set(rb(json!(["cases", 0, "source_ref"])), json!(0.5))], gate("G2", "RETAINED_PRECISION_ENCODING_MISMATCH")),
+    ] {
+        let got = probe(&shared, ORD, edits);
+        if got != want {
+            misses.push(format!("{name}: got {got}, want {want}"));
+        }
+    }
+    assert!(misses.is_empty(), "{}", misses.join("\n"));
+    // Every receipt integer at once, on every complete base.
+    for case in shared["cases"].as_array().unwrap() {
+        let mut source = case["source"].clone();
+        as_integral_floats(&mut source["retained_precision"]["body"]);
+        rehash(&mut source);
+        assert!(
+            rp::validate(&source, Some(&case["invocation"])).is_ok(),
+            "{}: {:?}",
+            case["id"],
+            rp::validate(&source, Some(&case["invocation"])).err()
+        );
+    }
+}
+
+/// D32 shared pin shape: a forged source identity under `source_ref: 0.0`
+/// fails G1, exactly as under `source_ref: 0`.
+#[test]
+fn d32_forged_source_identity_under_float_ref() {
+    use open_pipe_stress_result_export::source_blocks::domain_hash;
+    use serde_json::json;
+    let shared = corpus();
+    for (name, forge) in [("control", false), ("forged", true)] {
+        for source_ref in [json!(0), json!(0.0)] {
+            let entry = json!({"id":"i63_d32_identity","base":ORD,"rehash":"all",
+                "edits":[{"path":["retained_precision","body","cases",0,"source_ref"],"op":"set","value":source_ref}]});
+            let (mut source, invocation) = apply_entry(&shared, &entry);
+            if forge {
+                // The digest of a different source statement, receipt rehashed.
+                let mut other = source["retained_precision"]["body"]["sources"][0].clone();
+                other.as_object_mut().unwrap().remove("index");
+                other["stiffness_sha256"] = json!("0".repeat(64));
+                source["retained_precision"]["body"]["cases"][0]["source_identity_sha256"] =
+                    domain_hash("retained_precision_source_mp_v2", &other).unwrap().into();
+                source["retained_precision"]["receipt_sha256"] = domain_hash(
+                    "retained_precision_receipt_mp_v2",
+                    &source["retained_precision"]["body"],
+                )
+                .unwrap()
+                .into();
+            }
+            let got = match rp::validate(&source, Some(&invocation)) {
+                Err(e) => json!({"gate":e.gate,"code":e.code}),
+                Ok(_) => Value::Null,
+            };
+            let want = if forge { gate("G1", "RETAINED_PRECISION_RECEIPT_MISMATCH") } else { Value::Null };
+            assert_eq!(got, want, "{name} source_ref {source_ref}");
+        }
+    }
+}
+
+/// D33 (RV80-N1, PR16): a verification_estimate reason names a Force or Moment
+/// layout row; on an existing translation or rotation row it is G5 ATTEMPT.
+/// `charge` is unrestricted.
+#[test]
+fn d33_verification_estimate_names_force_or_moment() {
+    use serde_json::json;
+    let shared = corpus();
+    let mut misses = Vec::new();
+    for (tag, quantity, kind, want) in [
+        ("verification_estimate", json!({"tag":"displacement","dof":{"node":1,"component":"UX"}}), "translation", gate("G5", ATTEMPT)),
+        ("verification_estimate", json!({"tag":"displacement","dof":{"node":1,"component":"RX"}}), "rotation", gate("G5", ATTEMPT)),
+        ("verification_estimate", json!({"tag":"end_action","member":0,"end":"i","component":"UX"}), "force", Value::Null),
+        ("verification_estimate", json!({"tag":"end_action","member":0,"end":"i","component":"RX"}), "moment", Value::Null),
+        ("charge", json!({"tag":"displacement","dof":{"node":1,"component":"UX"}}), "translation", Value::Null),
+    ] {
+        let reason = json!({"space":"attempt","tag":tag,"quantity":quantity,"body":0,"kind":kind});
+        let got = probe(&shared, "p512_ladder_synthetic", vec![
+            set(rb(json!(["cases", 0, "run", "records", 0, "outcome", "reason"])), reason.clone()),
+            set(rb(json!(["cases", 0, "run", "attempts", 0, "outcome", "reason"])), reason),
+        ]);
+        if got != want {
+            misses.push(format!("{tag} on {kind}: got {got}, want {want}"));
+        }
+    }
+    assert!(misses.is_empty(), "{}", misses.join("\n"));
+}
+
+/// RV80-N2 (kills M39): D21's last-slot case. A Ceiling-shaped Run whose last
+/// attempt is a p256 candidate whose escalating v512 verification solve fails:
+/// no fresh attempt follows, so the replay's own shared-build check never
+/// runs and only the D21 record check catches a verification shared build.
+/// The control's class-1 checks (ATTEMPT and WORK) all pass; it fails later,
+/// because no Ceiling base with a native-faithful case exists (deferred).
+#[test]
+fn d21_last_slot_verification_shared_build() {
+    use serde_json::json;
+    let shared = corpus();
+    let run = |tail: Value| {
+        let mut p = json!(["cases", 0, "run"]);
+        p.as_array_mut().unwrap().extend(tail.as_array().unwrap().iter().cloned());
+        rb(p)
+    };
+    let stop = json!({"space":"attempt","tag":"stop","stop":{"space":"stop","tag":"condition"}});
+    let rejected = json!({"kind":"rejected","reason":{"space":"attempt","tag":"verification_failed"}});
+    let zero = |w: &mut Value| {
+        for (_, v) in w.as_object_mut().unwrap() {
+            *v = json!(0);
+        }
+    };
+    let base = base_source(&shared, "p512_ladder_synthetic");
+    let r = &base["retained_precision"]["body"]["cases"][0]["run"];
+    let mut rec2 = r["records"][2].clone();
+    rec2["role"] = json!("verification");
+    rec2["outcome"] = json!({"kind":"failed","reason":stop});
+    rec2["verification"] = Value::Null;
+    rec2["verification_shared_build_ref"] = Value::Null;
+    let w = &mut rec2["work"];
+    zero(&mut w["own_stages"]);
+    w["own_stages"]["solve"] = json!(3);
+    w["wide_lme"] = json!(3);
+    w["own_lme"] = json!(3);
+    w["stop_rule_lme"] = json!(0);
+    w["verification_lme"] = json!(0);
+    w["verification_shared_lme"] = json!(0);
+    w["verification_shared_built_here"] = json!(false);
+    zero(&mut w["shared_stages"]);
+    w["shared_stages"]["formation"] = json!(6);
+    let mut att1 = r["attempts"][1].clone();
+    att1["verification"] = json!({"record":2,"precision":512,"phase":"failed","reason":stop});
+    att1["outcome"] = rejected.clone();
+    att1["case_charge"] = json!(10);
+    att1["invocation_increment"] = json!(10);
+    let mut edits = vec![
+        remove(run(json!(["records", 3]))),
+        remove(run(json!(["attempts", 2]))),
+        set(run(json!(["records", 2])), rec2),
+        set(run(json!(["records", 1, "outcome"])), rejected),
+        set(run(json!(["attempts", 1])), att1),
+        set(run(json!(["kernel_terminal"])), json!({"kind":"unresolved","reason":{"space":"unresolved","tag":"ceiling"}})),
+        set(run(json!(["cache_after"])), json!([{"slot":"s128","build":0},{"slot":"s256","build":1},{"slot":"s512","build":3},{"slot":"v256","build":2}])),
+        set(run(json!(["case_charge"])), json!(27)),
+        set(run(json!(["invocation_increment"])), json!(27)),
+        set(run(json!(["invocation_after"])), json!(27)),
+        set(rb(json!(["calls", 0, "invocation_after"])), json!(27)),
+        set(rb(json!(["work", "charged"])), json!(27)),
+        remove(rb(json!(["builds", 6]))),
+        remove(rb(json!(["builds", 5]))),
+        remove(rb(json!(["builds", 4]))),
+    ];
+    let control = probe(&shared, "p512_ladder_synthetic", edits.clone());
+    assert!(
+        control != gate("G5", ATTEMPT) && control != gate("G5", "RETAINED_PRECISION_WORK_MISMATCH"),
+        "control must clear G5 class 1: {control}"
+    );
+    // The schedule replay alone accepts the Ceiling run with or without the build.
+    edits.push(set(run(json!(["records", 2, "verification_shared_build_ref"])), json!(2)));
+    let entry = json!({"id":"i63_d21_last_slot","base":"p512_ladder_synthetic","edits":edits,"rehash":"all"});
+    let (mutated, _) = apply_entry(&shared, &entry);
+    let replay = &mutated["retained_precision"]["body"]["cases"][0]["run"];
+    assert!(rp::reader_logic::schedule(replay).is_ok());
+    assert_eq!(observe(&shared, &entry), gate("G5", ATTEMPT));
 }

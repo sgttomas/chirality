@@ -243,6 +243,51 @@ fn uint(v: &Value) -> Option<u64> {
 fn u(v: &Value) -> u64 {
     uint(v).unwrap_or(u64::MAX)
 }
+/// D32: after G2 every receipt number is a U or I32 by value, so a number
+/// written as an integral float (`17.0`) is rewritten once as the integer it
+/// denotes. Later equality and reference checks then see one encoding per
+/// value. Canonical hashing renders both forms identically, and `-0` or a
+/// non-integral value is left as written.
+fn integral_receipt(source: &Value) -> std::borrow::Cow<'_, Value> {
+    fn floats(v: &Value) -> bool {
+        match v {
+            Value::Number(n) => n.is_f64(),
+            Value::Array(a) => a.iter().any(floats),
+            Value::Object(o) => o.values().any(floats),
+            _ => false,
+        }
+    }
+    fn normalize(v: &mut Value) {
+        let integer = match v {
+            Value::Number(n) if n.is_f64() => n.as_f64().filter(|x| {
+                x.is_finite()
+                    && x.fract() == 0.0
+                    && x.abs() <= SAFE as f64
+                    && !(*x == 0.0 && x.is_sign_negative())
+            }),
+            Value::Array(a) => {
+                a.iter_mut().for_each(normalize);
+                None
+            }
+            Value::Object(o) => {
+                o.values_mut().for_each(normalize);
+                None
+            }
+            _ => None,
+        };
+        if let Some(x) = integer {
+            *v = if x < 0.0 { json!(x as i64) } else { json!(x as u64) };
+        }
+    }
+    if !floats(&source["retained_precision"]) {
+        return std::borrow::Cow::Borrowed(source);
+    }
+    let mut owned = source.clone();
+    if let Some(r) = owned.get_mut("retained_precision") {
+        normalize(r);
+    }
+    std::borrow::Cow::Owned(owned)
+}
 fn at<'a>(a: &'a Value, i: &Value, gate: &'static str, code: &str) -> VResult<&'a Value> {
     uint(i)
         .and_then(|i| usize::try_from(i).ok())
@@ -475,7 +520,9 @@ fn g0(source: &Value) -> VResult {
             && table()["inherited_semantic_contract_sha256"] == sha256_hex(INHERITED_TABLE_BYTES),
     )?;
     let b = &source["retained_precision"]["body"];
-    unsupported(b["receipt_version"].as_u64() == Some(1) && b["receipt_version"].is_u64())?;
+    // D32: integers by value (finite, integral, in range, not -0), never by
+    // the JSON number's host type: `1.0` is the receipt version 1.
+    unsupported(uint(&b["receipt_version"]) == Some(1))?;
     for (key, value) in [
         ("policy", "M03-INTEGRITY-MP-v2"),
         ("projection_policy", "RP-LOGICAL-ATTEMPTS-v1"),
@@ -489,7 +536,7 @@ fn g0(source: &Value) -> VResult {
         ("case_limit", 20_000_000_000u64),
         ("invocation_limit", 60_000_000_000),
     ] {
-        unsupported(b["work"][key].as_u64() == Some(want))?;
+        unsupported(uint(&b["work"][key]) == Some(want))?;
     }
     for a in list(&b["product_attempts"]) {
         if a.is_object() {
@@ -986,6 +1033,11 @@ fn g5_native(b: &Value) -> VResult {
                             && row["body"] == reason["body"]
                             && row["kind"] == reason["kind"]
                     }))?;
+                    // D33 (RV80-N1; verify.rs:880): the native verification
+                    // estimate exists only for Force and Moment rows. `charge`
+                    // may name displacement rows and stays unrestricted.
+                    af(reason["tag"] != "verification_estimate"
+                        || matches!(text(&reason["kind"]), "force" | "moment"))?;
                 }
                 af(record["storage"]["limbs_per_entry"]
                     == json!(if p <= 256 {
@@ -3327,7 +3379,9 @@ fn g8(source: &Value, inv: &Value) -> VResult {
         "INVOCATION_MISMATCH",
     )?;
     need(
-        matches!(text(&model["schema_version"]), "0.2.0" | "0.3.0")
+        // D31: the producer treats model 0.1.0 and 0.2.0 on one branch
+        // (pressure_runtime.rs:113-118); 0.4.0 stays excluded.
+        matches!(text(&model["schema_version"]), "0.1.0" | "0.2.0" | "0.3.0")
             && model["pressure_contract"].is_null()
             && list(&model["combinations"]).is_empty()
             && list(&model["components"]).is_empty()
@@ -4145,6 +4199,8 @@ pub fn validate(source: &Value, actual_invocation: Option<&Value>) -> VResult<Va
     g0(source)?;
     g1(source, true)?;
     encoding(&source["retained_precision"], schema())?;
+    let normalized = integral_receipt(source);
+    let source: &Value = &normalized;
     g3(source, actual_invocation)?;
     g4(source)?;
     let body = &source["retained_precision"]["body"];
@@ -4195,6 +4251,8 @@ pub fn validate_transport_metadata(source: &Value) -> VResult<Validation> {
     g0(source)?;
     g1(source, false)?;
     encoding(&source["retained_precision"], schema())?;
+    let normalized = integral_receipt(source);
+    let source: &Value = &normalized;
     let projected = project(source, false)?;
     crate::semantic_contract::for_source_metadata(&projected)
         .map_err(|code| ValidationError {
