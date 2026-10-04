@@ -5,7 +5,7 @@ Read-only, standard library only. The Git reads are `diff`, `cat-file` and `rev-
 GIT_OPTIONAL_LOCKS=0. The script writes only --out.
 
 Usage:
-  python3 check_citations.py --repo <checkout> --base <main SHA> --head <PR head> \
+  python3 check_citations.py --repo <checkout> --base <main SHA> --head <PR head | WORKTREE> \
       [--index citations.json] [--package <local package dir>] [--out resolved.md] [--list]
 
 The source set S is `git diff --name-only <base> <head>`, minus execution paths. The script scans
@@ -39,10 +39,15 @@ citing file's path prefix). Otherwise it is ambiguous, listed with its candidate
 Anchors are verified in the pinned version: each line number of `:n`, `:a-b` and `:a, b` must lie
 within the document, and each section of `§x.y` must head a Markdown section.
 
+Code line citations (class "code_line"). A bare FILE:line citation of code is forbidden: PP:2896,
+FC:358, FK/adaptive.rs:4349, verify.rs:880 and the like. Code moves, and a stale line misleads; name
+the symbol instead. The only exceptions are listed in the index's `code_anchors`. Each pins its
+revision and records the anchor text of every cited line; the check verifies that text at that
+revision. They are the 11 generated citations in retained_memory.rs's GENERATED PROFILE block (owned
+by g5_profile.py) and the 3 in the hash-pinned JSON corpus, which is data, not comments.
+
 Counts reported: resolved, ambiguous, unresolved. Exit 1 only on unresolved citations or failed
-verifications (an ambiguous citation is listed for ROOT's ruling and does not fail). Code
-line citations (PP:2896, FC:358, FK/adaptive.rs:...) cite maintained code itself, at revisions that
-moved since. They are counted and listed (source_line) and are outside this check.
+verifications. An ambiguous citation is listed for ROOT's ruling and does not fail.
 """
 import argparse, hashlib, json, os, re, subprocess, sys
 
@@ -76,7 +81,9 @@ DOCS = idx.get("documents", {})
 ALIAS = {al: name for name, d in DOCS.items() for al in d["aliases"]}
 ANCH = r"(?::\d+(?:\s*[–\-/]\s*\d+)*(?:,\s*\d+(?:\s*[–\-]\s*\d+)*)*|\s§\s?\d[\d.]*(?:\s*[–\-/]\s*§?\s?\d[\d.]*)*)"
 DOC_RX = re.compile(r"(?<![\w/.])(" + "|".join(re.escape(x) for x in sorted(ALIAS, key=len, reverse=True)) + r")(" + ANCH + r")?") if ALIAS else None
-SOURCE_LINE = re.compile(r"\b(?:PP|FC|FK|SR|PY|RS|TS)(?:/[\w./]+)?:\d+")
+NUMS = r"\d+(?:\s*[–-]\s*\d+)?(?:(?:,\s*|/)\d+(?:\s*[–-]\s*\d+)?(?![\w.]))*"
+CODE_LINE = re.compile(r"(?<![\w/])(?:(?:PP|FC|FK|SR)(?:/(?:[\w.]+/)*[\w.]+\.(?:rs|py|ts))?|(?:[\w-]+/)*[\w-]+\.(?:rs|py|ts|tsx)):" + NUMS)
+ANCHORS = {(x["citing_file"], x["token"]): x for x in idx.get("code_anchors", [])}
 def norm_title(t): return t.rstrip("…").rstrip(".").strip()
 
 def tokens(line):
@@ -87,9 +94,10 @@ def tokens(line):
             else:
                 yield cls, m.group(0).rstrip(".")
 
-S = [n for n in git("diff", "--name-only", a.base, a.head, "--", ".", ":!" + P + "execution", ":!execution").stdout.decode().split("\n") if n]
-diff = git("diff", "-U0", a.base, a.head, "--", *S).stdout.decode("utf-8", errors="replace") if S else ""
-occ, report_only, f, ln, docs = [], 0, None, 0, []
+REVS = [a.base] if a.head == "WORKTREE" else [a.base, a.head]   # WORKTREE: compare base with the checkout's working tree
+S = [n for n in git("diff", "--name-only", *REVS, "--", ".", ":!" + P + "execution", ":!execution").stdout.decode().split("\n") if n]
+diff = git("diff", "-U0", *REVS, "--", *S).stdout.decode("utf-8", errors="replace") if S else ""
+occ, report_only, f, ln, docs, code = [], 0, None, 0, [], []
 for line in diff.split("\n"):
     if line.startswith("+++ "): f = line[6:] if line.startswith("+++ b/") else None; continue
     m = re.match(r"@@ -\S+ \+(\d+)(?:,\d+)? @@", line)
@@ -100,7 +108,8 @@ for line in diff.split("\n"):
             for m in DOC_RX.finditer(line[1:]):
                 name, anchor = ALIAS[m.group(1)], (m.group(2) or "").strip().rstrip(".,;")
                 if anchor or m.group(1).endswith(".md"): docs.append((f, ln, name, m.group(1), anchor))
-        report_only += len(SOURCE_LINE.findall(line)); ln += 1
+        for m in CODE_LINE.finditer(line[1:]): code.append((f, ln, m.group(0)))
+        ln += 1
 
 entries = {(e["class"], e["token"]): e for e in idx["citations"]}
 unresolved = [o for o in occ if (o[2], o[3]) not in entries]
@@ -170,7 +179,15 @@ for f_, l_, name, alias, anchor in docs:
     if text is None or (anchor and not anchor_ok(text, anchor)):
         doc_res["unresolved"].append((f_, l_, label(alias, anchor), path)); continue
     doc_res["resolved"].append((f_, l_, label(alias, anchor), where(path, d)))
+code_res = {"pinned": [], "unresolved": []}
+for f_, l_, tok in code:
+    an = ANCHORS.get((f_, tok))
+    if not an: code_res["unresolved"].append((f_, l_, tok, "bare code line citation: name the symbol")); continue
+    body = git("cat-file", "blob", f"{an['rev']}:{an['file']}", ok=(0, 128)).stdout.decode("utf-8", errors="replace").split("\n")
+    bad = [x["n"] for x in an["lines"] if not (0 < x["n"] <= len(body)) or body[x["n"] - 1] != x["text"]]
+    (code_res["unresolved"] if bad else code_res["pinned"]).append((f_, l_, tok, f"anchor text differs at {an['rev'][:10]} lines {bad}" if bad else an["rev"][:10]))
 for o in unresolved: print(f"UNRESOLVED {o[0]}:{o[1]} [{o[2]}] {o[3]}")
+for o in code_res["unresolved"]: print(f"UNRESOLVED {o[0]}:{o[1]} [code_line] {o[2]} ({o[3]})")
 for o in doc_res["unresolved"]: print(f"UNRESOLVED {o[0]}:{o[1]} [document] {o[2]} (anchor not found in {o[3]})")
 for o in doc_res["ambiguous"]: print(f"AMBIGUOUS {o[0]}:{o[1]} [document] {o[2]} candidates {o[3]}")
 if a.suggest:
@@ -196,12 +213,12 @@ if a.suggest:
     print(f"suggested {len(sug)} entries, {sum('TODO' in e for e in sug)} TODO -> {a.suggest}")
 for k, why in failed: print(f"FAILED {k[0]} {k[1]!r}: {why}")
 unused = sorted(set(entries) - used)
-n_res = len(occ) - len(unresolved) + len(doc_res["resolved"])
-print(f"COUNTS resolved {n_res}; ambiguous {len(doc_res['ambiguous'])}; unresolved {len(unresolved) + len(doc_res['unresolved'])}")
+n_res = len(occ) - len(unresolved) + len(doc_res["resolved"]) + len(code_res["pinned"])
+print(f"COUNTS resolved {n_res}; ambiguous {len(doc_res['ambiguous'])}; unresolved {len(unresolved) + len(doc_res['unresolved']) + len(code_res['unresolved'])}")
 print(f"  records/RR: occurrences {len(occ)}, distinct {len({(o[2], o[3]) for o in occ})}, unresolved {len(unresolved)}; "
       f"documents: {len(docs)} citations ({len(doc_res['resolved'])} resolved, {len(doc_res['ambiguous'])} ambiguous, "
       f"{len(doc_res['unresolved'])} unresolved); verification failures {len(failed)}; unused index entries {len(unused)}; "
-      f"source_line (outside the check) {report_only}")
+      f"code lines: {len(code)} ({len(code_res['pinned'])} pinned in code_anchors, {len(code_res['unresolved'])} unresolved)")
 for k in unused: print(f"  unused: {k[0]} {k[1]!r}")
 if a.list:
     for o in occ: print(f"  {o[0]}:{o[1]}\t{o[2]}\t{o[3]}")
@@ -214,6 +231,6 @@ if a.out:
         for f_, l_, tok, loc in doc_res["resolved"]: seen.setdefault((tok, loc), f"{f_}:{l_}")
         for (tok, loc), first in sorted(seen.items()): w.write(f"| document | `{tok}` | {loc} |\n")
         for f_, l_, tok, cands in doc_res["ambiguous"]: w.write(f"| document (AMBIGUOUS) | `{tok}` at {f_}:{l_} | {' / '.join(cands)} |\n")
-bad = unresolved or failed or doc_res["unresolved"]
+bad = unresolved or failed or doc_res["unresolved"] or code_res["unresolved"]
 print("RESULT", "FAIL" if bad else ("PASS (ambiguous citations listed for ROOT)" if doc_res["ambiguous"] else "PASS"))
 sys.exit(1 if bad else 0)
