@@ -10028,3 +10028,18 @@ The margin rule holds. The dense margin is narrower than G4's estimate, mainly b
 - **N-5, for U7 and T6:** after U7, the result-export and stress-neutral panels must refuse a successor by an explicit gate, not by a builder throwing. It is added to T6's notice at U7.
 
 **I67's repair round** is in `WT/f2a-carriers-ts` on top of `9555b6ffc2`, covering SF-1, N-3, N-4 and the F1 pin. RV91 confirms it.
+
+## RV83 confirms R-4 (ROOT, 2026-10-04 UTC)
+
+**RV83's confirmation** is `R/REVIEW_RV83/u4_g2_04/REVIEW.md` (sha256 `c099ce59…`; SHA256SUMS 13/13 OK). Verdict: **CONFIRMED**, with 0 BLOCKING, 0 SHOULD-FIX and 3 NOTE findings.
+- **The dropped calls:** all 26 of RV83's tokens now produce edges. No `Self`-typed call is left without an edge, and the 29 remaining bracketed calls are std.
+- **The reachable set** is exactly 2,698 + 7.
+- **Limit 5 is accurate as a class.**
+- **TEXT is unchanged** (2,044,161,940 B), and so are the admission summary and the recursion inventory (22 explicit and 40 implicit cycles). The only differing row is N-6's erratum.
+
+**NOTEs:**
+- **N-1:** `as_deref_mut()` unwraps (adaptive.rs:4087, :4288) are not handled, so one true call is dropped. It reaches no text, closes no cycle, and falls inside the stated rebinding class. Optional.
+- **N-2:** a wording point about which typed binding is used. Optional.
+- **N-3:** the deepest call chain from the Direct root is now **40 frames**, not 39; about 1.47 MiB by G3's arithmetic, so R and k are unchanged. **G6's record carries 40.**
+
+**R-4 is closed,** and with it RV83's G2 review cycle.
