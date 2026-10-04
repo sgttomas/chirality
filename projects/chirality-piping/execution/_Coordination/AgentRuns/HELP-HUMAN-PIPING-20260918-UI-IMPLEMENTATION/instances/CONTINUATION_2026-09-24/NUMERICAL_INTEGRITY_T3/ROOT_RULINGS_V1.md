@@ -10123,3 +10123,22 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
 - **I66's SI-unit wording** (U6a S-2). TS's `N_RP_ABSOLUTE` already names the unit ("±b m", "±b Pa"); it is aligned when I66's text lands.
 
 **RV91 confirms** SF-1, N-3 and N-4.
+
+## RV91 confirms the U6d repair round (ROOT, 2026-10-04 UTC)
+
+**RV91's confirmation** is `R/REVIEW_RV91/u6d_02/REVIEW.md` (sha256 `f5272209…`; SHA256SUMS 15/15 OK). Verdict: **CONFIRMED** on `968adb44fe`, with 0 BLOCKING, 0 SHOULD-FIX and 1 NOTE.
+- **SF-1** is refused on both legacy schema versions, for the object, null and `{}` member forms and for tokens on the first or last row. The three controls are unchanged.
+- **N-3:** RV08, RV09, RV03 and RV04 are killed by committed tests alone.
+- **N-4 and RV88's N-3** are fixed, in both the function and the rendered panel.
+- **F1** is pinned TS-locally.
+- **Nothing else changed:**
+  - Vitest 3,431 and `tsc` clean;
+  - RV91's 69-envelope sweep is identical;
+  - the 17 successors differ only by the intended text change;
+  - a merge preview with the carriers tip passes 3,443/3,443.
+
+**N-1 (test only, optional):** add a 0.2.0 legacy shape, and a token on a later row, to the SF-1 tests. It goes into I67's small follow-up, together with:
+- the switch to the shared `declared_differences` section;
+- aligning to I66's SI-unit wording.
+
+**U6d is accepted on review.** ROOT merges it into the carriers branch once I66's repair round is committed there, so that I66's uncommitted work is not disturbed.
