@@ -8347,3 +8347,34 @@ Per workflow §5, the confirmed shared blocker (RV79-C1) is disposed of now.
 - C6: class 1 continues on saturated values; D27 removes the one ATTEMPT reader of such a value that RV80 found.
 
 **Routing:** D27–D30 join the standing repair round of D19–D26, unchanged in form. I62 adds the pins and repairs Python (D28, D29). I63 covers D27, D28 and D30. I64 covers D28 and D30, and confirms D29.
+
+## The first real receipt: a disposable projection experiment (ROOT, 2026-10-03 UTC)
+
+I61's scoping (`R/I61/receipt_path_scoping_01/RETURN.md`) is verified: SHA256SUMS OK, no machine paths. ROOT checked two facts in the source: `PP/retained_memory.rs:2` ("no registered production profile or constructible capture permit"), and the facade path at `PP/lib.rs:2201–2229`, which installs no `ProductCapture`.
+
+**The decisions:**
+1. **The unit.** The disposable projection experiment is chosen over starting the real serializer (workflow §1: "A bounded disposable experiment is appropriate when it resolves consequential uncertainty more cheaply"). The real serializer needs the facade wiring, a permit and M, and RV77-N4's binding, and it would reach the readers last. The experiment tests the premise first.
+2. **Jobs.** I61 may run the milestone case's prepared producer path in both modes (a small solve under the memory guard), plus the three readers' draft validators, through disposable harnesses in `git archive` copies under WT/scratch. Peak RSS is captured. No live worktree is touched and nothing becomes public.
+3. **The route.** The test-only prepared driver (`prepare_observed → solve_native → project_candidate → typed_trace`) is accepted for the experiment. It tests the **wire contract only**, not facade custody, admission or M. **The experiment does not satisfy the first public milestone,** which still requires the actual captured facade.
+4. **Provisional readings,** each an assumption recorded in the ledger, not a ruling:
+   - `retained_state_sha256` = raw SHA256 of `retained_state_encoding`, by analogy with C2:91's `ledger_sha256`;
+   - invocation-level diagnostics are placed where the emitter can attribute them, and the D6a tension is logged;
+   - the Ordinary members are read back from the envelope, and the missing typed capture is logged as a producer gap;
+   - READER's definition and semantic-table fixtures are used.
+   
+   Any assumption a reader result depends on becomes a ROOT ruling, with its basis, before the real serializer is built.
+5. **A third receipt is included:** an actual preparation-refusal case. It exercises D9b's explicit null, the unavailable branch and D19, which the selected milestone case cannot. This is about 20% more cost.
+
+**The standing assignment (workflow §2).** I61 owns the experiment until one of these holds:
+- every receipt passes G0–G8 in all three draft readers with standing `needs_recompute`;
+- only escalated tensions remain.
+
+At the G0–G2 point, I61 writes a progress note in its records but does not return. It returns once, at completion or on a stop. The budget is 5 hours, and reaching it triggers judgment, not abandonment.
+
+**Its basis:** READER at the committed head `b36739112a`. The repair round (D19–D30) is changing the readers at the same time. The ledger marks any mismatch already addressed by a decision in that round. The experiment is rerun on the accepted reader head before the readers are accepted.
+
+**Stop conditions:**
+- any change outside the write fence;
+- a reader result that needs a contract reading to proceed (stop and report);
+- removing or weakening a check in any harness;
+- unexpected host load.
