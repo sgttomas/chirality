@@ -367,16 +367,17 @@ pub(super) fn assess(
 ) -> RetainedAdmissionReport {
     match admit(capture, request, entry) {
         Err(report) => report,
-        Ok(permit) => match *permit._profile {},
+        Ok((permit, _)) => match *permit._profile {},
     }
 }
 /// G-A (API.md §2): the census, then the admission decision. U4 G5 adds the D1
-/// predicate and the registered profile; until then every call refuses.
+/// predicate and the registered profile; until then every call refuses. A permit
+/// comes with the same report (RV85 S3), so a permitted output keeps every fact.
 pub(super) fn admit(
     capture: &CapturedInvocation,
     request: &LinearStaticPreviewRequest,
     entry: Entry<'_>,
-) -> Result<CapturePermit, RetainedAdmissionReport> {
+) -> Result<(CapturePermit, RetainedAdmissionReport), RetainedAdmissionReport> {
     let (caller, headless) = match entry {
         Entry::Direct => (RetainedCaller::Direct, None),
         Entry::Headless(c) => (
@@ -399,7 +400,7 @@ pub(super) fn admit(
         profile: ProfileStatus::Missing,
         allowance: AllowanceStatus::Unselected,
     };
-    admission(report)
+    admission(report).map(|permit| (permit, report))
 }
 
 #[cfg(test)]

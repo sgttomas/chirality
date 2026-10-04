@@ -113,6 +113,12 @@ fn u3_each_stage_fault_falls_back_to_the_ordinary_bytes() {
         assert_eq!(retained.err(), Some(W1Fallback::Candidate), "{fault:?}");
         check(&envelope, &noticed(None), "candidate");
     }
+    // Staging (RV85 N6): a broken overlay invariant falls back typed, with the notice.
+    let (capture, observer, ordinary) = observed(mode, &raw);
+    retained_tests_hooks::break_next_staging();
+    let (envelope, retained) = retained_w1(observer, ordinary, &capture);
+    assert_eq!(retained.err(), Some(W1Fallback::Staging(rp::StagingFault("pipe_stress_extrema[]"))));
+    check(&envelope, &noticed(None), "staging");
     // Serializer: an invocation other than the observed one (RV82-S2) refuses typed.
     // An association refusal is not a receipt-encoding fallback: the plain notice.
     let (_, observer, ordinary) = observed(mode, &raw);
@@ -313,16 +319,29 @@ fn u3_n9_single_parse_custody() {
     assert_eq!(lib.matches(PARSE).count(), 1, "lib.rs has one parse site");
     let dispatch = section("fn run_linear_static_preview_value_dispatch(", "fn ordinary_dispatch(");
     assert!(dispatch.contains("let (request, capture) = source_receipt::CapturedInvocation::parse(actual_request, solver_mode)"));
-    assert!(dispatch.contains("Some(Ok(permit)) => return permitted_dispatch(permit, request, capture, solver_mode),"));
+    assert!(dispatch.contains("Some(Ok((permit, report))) => return permitted_dispatch(permit, report, request, capture, solver_mode),"));
     assert!(dispatch.contains("ordinary_dispatch(request, &capture, solver_mode, admission, None)"));
+    // RV85 N7: exactly one call each of the permitted path's functions in lib.rs (the
+    // definition plus one call; `carry_test_hooks`' generic definitions do not match),
+    // and the dispatch's call sits in the permit arm.
+    for (function, calls) in [("permitted_dispatch(", 2), ("permitted_run(", 2), ("retained_w1(", 2), ("carry_test_hooks(", 1)] {
+        assert_eq!(lib.matches(function).count(), calls, "{function}");
+    }
+    assert_eq!(dispatch.matches("permitted_dispatch(").count(), 1, "the dispatch's one call");
     // The permitted path: the parse's two halves, moved or borrowed, never re-derived.
     let permitted = section("fn permitted_dispatch(", "pub(crate) mod retained_tests_hooks");
-    for forbidden in ["parse(", "CapturedInvocation {", "capture.clone()", "request.clone()", "from_value("] {
+    for forbidden in ["parse(", "CapturedInvocation {", "capture.clone()", "request.clone()", "from_value(", "from_str(", "from_slice(",
+        "from_reader(", "deserialize(", "Deserialize", "LinearStaticPreviewRequest {"] {
         assert!(!permitted.contains(forbidden), "{forbidden}");
     }
+    // The raw custody is read in exactly two places: the attempted case's id and the
+    // precommit invocation.
+    assert_eq!(permitted.matches("borrowed_raw()").count(), 2, "borrowed_raw() reads");
+    assert!(permitted.contains("let model = &capture.borrowed_raw()[\"model\"];"));
+    assert!(permitted.contains("serde_json::json!({\"request\": capture.borrowed_raw(), \"solver_mode\": capture.mode().as_str()})"));
     for required in [
-        "pending.take().map(|request| permitted_run(permit, request, captured, solver_mode))",
-        "(None, Some(request)) => ordinary_dispatch(request, &capture, solver_mode, None, Some(Err(W1Fallback::StackReservation))),",
+        "pending.take().map(|request| permitted_run(permit, report, request, captured, solver_mode))",
+        "(None, Some(request)) => ordinary_dispatch(request, &capture, solver_mode, Some(report), Some(Err(W1Fallback::StackReservation))),",
         "run_linear_static_preview_observed(request, solver_mode, Some(capture), &mut budget, Some(&mut observer))",
         "Some(Ok(())) => retained_w1(observer, ordinary, capture),",
         "retained_wire::serialize_frozen(&frozen, &staged, capture)",
@@ -350,6 +369,25 @@ fn u3_n9_single_parse_custody() {
     assert_eq!(block.matches("Self {").count(), 1, "parse's literal is the only constructor");
     assert_eq!(block.matches("-> Result<(LinearStaticPreviewRequest, Self), ReceiptError>").count(), 1);
     assert!(!block.contains("-> Self"));
+}
+
+/// RV85 S3 and N1 (structural; the permitted path needs a permit, so its behaviour
+/// is in the stub evidence). S3: `admit` yields the report with the permit and every
+/// permitted output carries it. N1: G-C is consulted only after coexistence and G-B's
+/// outcome, in I51 COMPOSITION §2's order, each recorded as its own cause.
+#[test]
+fn u3_permitted_outputs_keep_the_report_and_gate_order() {
+    let lib = include_str!("lib.rs");
+    let permitted = &lib[lib.find("fn permitted_dispatch(").unwrap()..lib.find("pub(crate) const RETAINED_UNAVAILABLE_NOTICE").unwrap()];
+    assert!(!permitted.contains("admission: None"), "S3: no permitted output drops the report");
+    assert_eq!(permitted.matches("Some(report)").count(), 3, "S3: StackReservation, Domain and the W1 output");
+    assert!(include_str!("retained_memory.rs").contains(") -> Result<(CapturePermit, RetainedAdmissionReport), RetainedAdmissionReport> {"));
+    assert!(include_str!("retained_memory.rs").contains("admission(report).map(|permit| (permit, report))"));
+    let run = &permitted[permitted.find("fn permitted_run(").unwrap()..];
+    let at = |text: &str| run.find(text).unwrap_or_else(|| panic!("{text}"));
+    let (exact, late, complete) = (at("if ordinary.source_block_recovery.is_some() {"), at("observer.late_refusal().cloned()"), at("permit.check_complete("));
+    assert!(exact < late && late < complete, "N1: exact selection, then G-B's outcome, then G-C");
+    assert!(run[exact..late].contains("Err(W1Fallback::Coexistence)") && run[late..complete].contains("Err(W1Fallback::LateGate(refusal))"));
 }
 
 /// U3 grant 1b (ROOT's flag): the capture permit is linear. It derives neither

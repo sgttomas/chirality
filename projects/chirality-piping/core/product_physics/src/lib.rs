@@ -2215,6 +2215,8 @@ pub(crate) enum W1Fallback {
     Preparation,
     Native,
     Candidate,
+    /// The staging overlay's invariant did not hold (RV85 N6): the site.
+    Staging(retained_product::StagingFault),
     /// The serializer refused typed.
     Serializer(retained_wire::ReceiptFailure),
     /// Precommit validation (decision 5): the accepted Rust reader's first failure.
@@ -2283,7 +2285,7 @@ fn run_linear_static_preview_value_dispatch(
     // installed. A refusal is private evidence only; the once-only ordinary route
     // below is unchanged. No permit exists until U4 G5 (decision 7).
     let admission = match retained_entry.map(|entry| retained_memory::admit(&capture, &request, entry)) {
-        Some(Ok(permit)) => return permitted_dispatch(permit, request, capture, solver_mode),
+        Some(Ok((permit, report))) => return permitted_dispatch(permit, report, request, capture, solver_mode),
         Some(Err(report)) => Some(report),
         None => None,
     };
@@ -2917,6 +2919,7 @@ fn run_linear_static_preview_observed(
 /// Unreachable until U4 G5 adds a registered profile.
 fn permitted_dispatch(
     permit: retained_memory::CapturePermit,
+    report: RetainedAdmissionReport,
     request: LinearStaticPreviewRequest,
     capture: source_receipt::CapturedInvocation,
     solver_mode: PreviewSolverMode,
@@ -2925,11 +2928,11 @@ fn permitted_dispatch(
     let mut slot = Some(request);
     let (pending, captured) = (&mut slot, &capture);
     let ran = on_reserved_stack(bytes, carry_test_hooks(move || {
-        pending.take().map(|request| permitted_run(permit, request, captured, solver_mode))
+        pending.take().map(|request| permitted_run(permit, report, request, captured, solver_mode))
     }));
     match (ran.flatten(), slot) {
         (Some(result), _) => result,
-        (None, Some(request)) => ordinary_dispatch(request, &capture, solver_mode, None, Some(Err(W1Fallback::StackReservation))),
+        (None, Some(request)) => ordinary_dispatch(request, &capture, solver_mode, Some(report), Some(Err(W1Fallback::StackReservation))),
         (None, None) => Err("retained dispatch lost its request".into()),
     }
 }
@@ -2967,6 +2970,7 @@ fn carry_test_hooks<T, F: FnOnce() -> T + Send>(work: F) -> impl FnOnce() -> T +
 /// run with capture installed, G-C, then the W1 phases.
 fn permitted_run(
     permit: retained_memory::CapturePermit,
+    report: RetainedAdmissionReport,
     request: LinearStaticPreviewRequest,
     capture: &source_receipt::CapturedInvocation,
     solver_mode: PreviewSolverMode,
@@ -2974,7 +2978,7 @@ fn permitted_run(
     // D1.3: load-state and exact-pressure models never reach W1; defensively, a
     // permit for one takes the unchanged ordinary route (with its SF-1 logic).
     if case_state::is_load_state(&request.model) || pressure_runtime::is_exact(&request.model) {
-        return ordinary_dispatch(request, capture, solver_mode, None, Some(Err(W1Fallback::Domain)));
+        return ordinary_dispatch(request, capture, solver_mode, Some(report), Some(Err(W1Fallback::Domain)));
     }
     let mut budget = SourceRecoveryBudget::default();
     // The permit moves into the observer, which checks G-B with it.
@@ -2983,14 +2987,22 @@ fn permitted_run(
     if source_finalization_failed(&ordinary) {
         return Err("SOURCE_BLOCKS_FINALIZATION_FAILED".into());
     }
-    // G-C, with the observer's own permit.
-    let complete = observer.permit().map(|permit| permit.check_complete(&retained_memory::CompleteFacts { ordinary: &ordinary }));
-    let (envelope, retained) = match complete {
-        Some(Ok(())) => retained_w1(observer, ordinary, capture),
-        Some(Err(refusal)) => (ordinary, Err(W1Fallback::CompleteGate(refusal))),
-        None => (ordinary, Err(W1Fallback::PermitUnbound)),
+    // RV85 N1 (I51 COMPOSITION §2): G-C follows only a settled ordinary run whose
+    // exact-block arbitration left W1 open and whose late capture G-B authorized;
+    // otherwise its true cause is recorded and G-C is never consulted.
+    let (envelope, retained) = if ordinary.source_block_recovery.is_some() {
+        (ordinary, Err(W1Fallback::Coexistence))
+    } else if let Some(refusal) = observer.late_refusal().cloned() {
+        (ordinary, Err(W1Fallback::LateGate(refusal)))
+    } else {
+        // G-C, with the observer's own permit.
+        match observer.permit().map(|permit| permit.check_complete(&retained_memory::CompleteFacts { ordinary: &ordinary })) {
+            Some(Ok(())) => retained_w1(observer, ordinary, capture),
+            Some(Err(refusal)) => (ordinary, Err(W1Fallback::CompleteGate(refusal))),
+            None => (ordinary, Err(W1Fallback::PermitUnbound)),
+        }
     };
-    Ok(RetainedPreviewOutput { envelope, admission: None, retained: Some(retained) })
+    Ok(RetainedPreviewOutput { envelope, admission: Some(report), retained: Some(retained) })
 }
 
 /// R-2 (ROOT, NUM efde9ca2d1, N1): the fixed product text of the base publication's
@@ -3104,8 +3116,16 @@ fn retained_w1(
         Ok(frozen) => frozen,
         Err(refusal) => return notice.publish(refusal.ordinary, W1Fallback::Candidate),
     };
-    // Staging: the overlay applies to a copy; the ordinary owner stays intact.
-    let staged = frozen.staged_envelope();
+    // Staging: the overlay applies to a copy; the ordinary owner stays intact. A
+    // broken overlay invariant falls back typed (RV85 N6).
+    #[cfg(test)]
+    let mut frozen = frozen;
+    #[cfg(test)]
+    retained_tests_hooks::before_staging(&mut frozen);
+    let staged = match frozen.staged_envelope() {
+        Ok(staged) => staged,
+        Err(fault) => return notice.publish(frozen.into_ordinary(), W1Fallback::Staging(fault)),
+    };
     let serialized = retained_wire::serialize_frozen(&frozen, &staged, capture);
     drop(staged);
     #[cfg(test)]
@@ -3146,6 +3166,7 @@ pub(crate) mod retained_tests_hooks {
         withdraw: bool,
         rebind: bool,
         serializer: Option<ReceiptCheck>,
+        staging: bool,
         /// lib.rs's dense-scrutiny ceiling override (F1b), read by the ordinary run.
         ceiling: Option<u128>,
     }
@@ -3178,6 +3199,13 @@ pub(crate) mod retained_tests_hooks {
     pub(crate) fn withdraw_next_native_source() { arm(|a| a.withdraw = true); }
     /// Serializer-stage fault: the next serialization refuses with this check.
     pub(crate) fn fail_next_serializer(check: ReceiptCheck) { arm(|a| a.serializer = Some(check)); }
+    /// Staging fault: the next frozen overlay names a maxima patch past the evidence.
+    pub(crate) fn break_next_staging() { arm(|a| a.staging = true); }
+    pub(crate) fn before_staging(frozen: &mut super::retained_product::FrozenCandidate) {
+        if consume(|a| std::mem::take(&mut a.staging)) {
+            frozen.test_break_overlay();
+        }
+    }
     pub(crate) fn before_native(prepared: &mut super::retained_product::PreparedCase) {
         if consume(|a| std::mem::take(&mut a.withdraw)) {
             prepared.test_capture_mut().source = None;

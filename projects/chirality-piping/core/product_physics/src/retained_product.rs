@@ -3764,17 +3764,26 @@ impl PreparedCase {
 
 /// The frozen overlay (values, maxima patches and summary aliases) applied to one
 /// envelope. Shared by the private commit and the facade's staging copy, so both
-/// produce the same rows.
-fn apply_prepared_overlay(envelope:&mut MechanicsEnvelope,payload:&PreparedPayload) {
-    for (i,row) in envelope.results.iter_mut().enumerate(){row.value=*payload.values.value(i).expect("checked frozen index");}
-    let cases=envelope.contract_evidence.as_mut().unwrap().as_object_mut().unwrap().get_mut("preview_cases").unwrap().as_array_mut().unwrap();
-    let extrema=cases[0].as_object_mut().unwrap().get_mut("pipe_stress_extrema").unwrap().as_array_mut().unwrap();
+/// produce the same rows. Typed (RV85 N6): a broken invariant names its site and the
+/// facade falls back with the untouched ordinary owner; nothing here panics.
+fn apply_prepared_overlay(envelope:&mut MechanicsEnvelope,payload:&PreparedPayload)->Result<(),StagingFault> {
+    for (i,row) in envelope.results.iter_mut().enumerate(){row.value=*payload.values.value(i).ok_or(StagingFault("values"))?;}
+    let cases=envelope.contract_evidence.as_mut().and_then(|e|e.as_object_mut()).and_then(|e|e.get_mut("preview_cases"))
+        .and_then(|c|c.as_array_mut()).ok_or(StagingFault("preview_cases"))?;
+    let extrema=cases.get_mut(0).and_then(|c|c.as_object_mut()).and_then(|c|c.get_mut("pipe_stress_extrema"))
+        .and_then(|x|x.as_array_mut()).ok_or(StagingFault("pipe_stress_extrema"))?;
     for patch in &payload.maxima {
-        let object=extrema[patch.evidence_index].as_object_mut().unwrap();
-        for (key,number) in PREPARED_MAX_KEYS.into_iter().zip(patch.numbers.iter()){*object.get_mut(key).unwrap()=serde_json::Value::Number(number.clone());}
+        let object=extrema.get_mut(patch.evidence_index).and_then(|x|x.as_object_mut()).ok_or(StagingFault("pipe_stress_extrema[]"))?;
+        for (key,number) in PREPARED_MAX_KEYS.into_iter().zip(patch.numbers.iter()){
+            *object.get_mut(key).ok_or(StagingFault("pipe_stress_extrema[].key"))?=serde_json::Value::Number(number.clone());
+        }
     }
     envelope.summary.max_displacement=Some(payload.displacement.clone());envelope.summary.max_open_formula_stress=Some(payload.stress.clone());
+    Ok(())
 }
+/// RV85 N6: the overlay site whose invariant did not hold.
+#[derive(Debug,Clone,Copy,PartialEq,Eq)]
+pub(super) struct StagingFault(pub(super) &'static str);
 
 /// U3 (I51 frozen-candidate split): a certified, private-gate-passed candidate whose
 /// ordinary envelope is still intact. The facade stages its successor from a copy
@@ -3786,11 +3795,11 @@ impl FrozenCandidate {
     pub(super) fn capture(&self)->&ProductCapture{&self.prepared.capture}
     pub(super) fn certificate(&self)->&k::CertifiedProductProof{&self.certificate}
     /// The staging copy: the ordinary envelope cloned, with the frozen overlay
-    /// applied. The ordinary owner is not touched.
-    pub(super) fn staged_envelope(&self)->MechanicsEnvelope {
+    /// applied. The ordinary owner is not touched; on a fault the copy drops.
+    pub(super) fn staged_envelope(&self)->Result<MechanicsEnvelope,StagingFault> {
         let mut staged=self.ordinary.clone();
-        apply_prepared_overlay(&mut staged,&self.payload);
-        staged
+        apply_prepared_overlay(&mut staged,&self.payload)?;
+        Ok(staged)
     }
     /// The fallback: the untouched ordinary envelope; every W1 owner drops here.
     pub(super) fn into_ordinary(self)->MechanicsEnvelope {self.ordinary}
@@ -3798,7 +3807,9 @@ impl FrozenCandidate {
     /// owned ordinary envelope.
     fn commit_private(mut self)->PrivatePreparedCandidate {
         let mut envelope=self.ordinary;
-        apply_prepared_overlay(&mut envelope,&self.payload);
+        // The private driver only (tests): its bytes are unchanged and a broken
+        // invariant still stops it here, as before the facade existed.
+        apply_prepared_overlay(&mut envelope,&self.payload).expect("frozen overlay invariant");
         self.prepared.trace.costs.record::<bool>();self.prepared.trace.private_committed=true;self.prepared.trace.freeze(&self.prepared.capture);
         PrivatePreparedCandidate{envelope,prepared:self.prepared,certificate:self.certificate}
     }
@@ -3806,6 +3817,12 @@ impl FrozenCandidate {
         let p=&self.prepared;
         trace::project(&p.trace,&p.capture,&p.preparation_work,&p.old_operational,&p.overlay_work,
             trace::ResultRef::Ready,Some(self.certificate.work()),None,None,costs)
+    }
+    /// Test-only staging fault (RV85 N6): the first maxima patch names an evidence
+    /// index past the envelope's extrema.
+    #[cfg(test)]
+    pub(super) fn test_break_overlay(&mut self) {
+        self.payload.maxima.first_mut().expect("the milestone has maxima patches").evidence_index=usize::MAX;
     }
 }
 
