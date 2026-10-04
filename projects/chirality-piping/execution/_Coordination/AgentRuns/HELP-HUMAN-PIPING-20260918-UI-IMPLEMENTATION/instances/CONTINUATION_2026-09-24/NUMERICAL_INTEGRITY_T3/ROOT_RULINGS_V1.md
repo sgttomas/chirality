@@ -10342,3 +10342,46 @@ Then I65 reruns TEXT, regenerates the profile and the pinned record, and re-conf
   - re-confirm the maximum is ≤ 0.9 M.
 - **N-1 and N-2** are wording: the audit's scope states which name-filtered copies other families price; the `suffix` rows are labelled as input ids.
 - **The review:** RV87 confirms the repair. RV89 reviews the code delta (the constants and the pinned record) as part of its G6 review, together with `registration.diff`. **Registration waits for both.**
+
+## RV92 (U6f) on the whole of U6: PASS; the post-U6f repair round; U7 preconditions (ROOT, 2026-10-04 UTC)
+
+**RV92's report** is `R/REVIEW_RV92/u6f_01/REVIEW.md` (sha256 `ac462bf9…`; SHA256SUMS 64/64 OK; no machine paths). Verdict: **PASS** on `76477534f6` (merge base `7e4f5a51dd`), with 0 BLOCKING, 1 SHOULD-FIX and 7 new NOTE findings.
+
+**What RV92 established for the assembled whole:**
+- **Existing behaviour unchanged:** a sweep of 546 inputs through all three languages, base against candidate.
+- **Suites:**
+  - result_export 149 → 167;
+  - the Python sweep 1,843, with only the 3 ruled pins changed;
+  - Vitest 3,258 → 3,466, with 0 base outcomes changed;
+  - `tsc` clean;
+  - runner/headless identical;
+  - PP's U1 and U3 pins 41/41 in a merge preview.
+- **The receipt survives end to end** in 18/18 cases, byte-equal, revalidated and `needs_recompute`.
+- **Parity:** 192 probes. All 20 shared cases and all 4 declared entries reproduce, and Rust and Python agree in 192 of 192.
+- **The flags are false, and nothing is weakened.**
+
+**Rulings:**
+- **S-1 → I66:** Python's AnalysisRun receipt-copy check (compatibility.py:694) compares with `!=`, so `False == 0` and `True == 1`, and it accepts what TS refuses. Compare canonical bytes, as TS does, and add tests. The same pattern at :684 and :689 (source-block receipt, contract evidence) **predates U6**, so it is flagged as a separate task, to keep U6's "existing identities unchanged" claim exact.
+- **N-1 → I67** (RV88's, now confirmed with 10 probes): TS's carrier transport route must call `validateRetainedPrecisionTransport`.
+- **N-2: declared,** as a fifth `declared_differences` entry. TS's header route reads raw rows, so it refuses a non-successor source with a W1 token row that Rust and Python admit header-only. It is stricter and fails closed.
+- **N-3: I67-F2 widened** to "no valid registration (none, or refused)", with a `summary` subject (TS's summary is empty while Rust and Python give counts). It fails closed.
+- **N-4 and N-5:** the case file gains a scope sentence. **Differences inherited from the base carriers** (G7 dispatch text, Rust's header ignoring `carrier_evidence`, the AnalysisRun builders' refusal codes) **are not U6 differences, and G7 parity compares the reader's gate and code.** N-5 (TS no longer refuses a source-blocks envelope's summary row when it carries a receipt or token, because the envelope is refused first) is declared with the downgrade entry.
+- **N-6 → U3 grant 2:**
+  - document that `into_parts()` drops a successor (C-1);
+  - document `successor()` as a borrowing second path beside `into_publication()` (C-3);
+  - C-2 holds.
+- **N-7:** binding cost is quadratic (0.38 s release for 98 rows). **Memoize before native activation**; it is not a U7 precondition.
+- **N-8, U7 preconditions:** the list gains:
+  - S-1 fixed;
+  - N-1 repaired, and N-2 to N-5 declared;
+  - a rerun of all three languages' carrier tests and the survival chain on **live** output;
+  - N-6 resolved;
+  - standing compared by token, not TS's status string.
+
+  These join RV91's N-2 and N-5 and RV88's U6d S-1.
+
+**The post-U6f repair round**, in `WT/f2a-carriers` on top of `76477534f6`, sequenced so the two authors don't share the worktree concurrently:
+- **I66 first:** S-1; the case-file additions (N-2, the widened F2, the N-4/N-5 scope sentence); and RV88's U6a N-3 guard scope.
+- **I67 next:** N-1 (TS transport validation); TS consumption of the new declared entries.
+
+**RV92 confirms. Then U6 merges into NUM.**
