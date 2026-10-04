@@ -9656,3 +9656,37 @@ It moves no figure and does not gate G5's code. **R-1 and B-2 are closed as conf
 - **RV88 (new):** the standing U6 reviewer, under `BRIEFS/RV88_U6_STANDING_REVIEW.md`, starting with U6a.
 
 Branches merge into the carriers branch after review. U6f, a fresh complete-diff review, precedes U7. The next unused IDs are I68 and RV89.
+
+## RV87 on U4 G4: PASS; the margin holds; routing to G5 (ROOT, 2026-10-04 UTC)
+
+**RV87's report** is `R/REVIEW_RV87/u4_g4_01/REVIEW.md` (sha256 `8af30f77…`; SHA256SUMS 9/9 OK; no machine paths). Verdict: **PASS**, with 0 BLOCKING, 5 SHOULD-FIX and 8 NOTE findings.
+
+**What RV87 established independently:**
+- **Its stdlib model reproduces the packet byte for byte** under the packet's counting rules: every phase X1, X2 and W1–W5, in both modes, at l = 128 and l = 192.
+- **With its corrections, the maximum at `l ≤ 128` is W3:**
+  - 0.8544 M sparse and 0.8593 M dense;
+  - 0.8568 / 0.8617 M with S-2's text added;
+  - that is **about 164–184 MB under 0.9 M,** and 567–586 MB under M.
+- **Sensitivity:** strides carry about 9% of the maximum, and a ±10% stride error moves it by about ±31 MB. With +10% strides and S-2, the dense maximum is 0.8695 M, still 123 MB under the rule.
+- **At l = 192 the corrected figure is 0.9200 M,** so the trip, and the `l ≤ 128` ruling, stand.
+- **Also confirmed:**
+  - T16's hash route and growth;
+  - T17's peak;
+  - the 13 reader statics, whose hashes match ORIGINS, and which are the only `include_str!` inputs `validate` reaches;
+  - the fallback, transfer and completion terms, and B-1;
+  - 27 text sites, and the four errata;
+  - the lock re-pin;
+  - that API_G4's hook additions compile as specified.
+
+**Routed to I65, inside G5,** for the constants, the expressions and the records:
+- **S-1:** T16 misses a third copy of `run_v` and `selection_v`, which stay alive through `finish()` (PP/retained_wire.rs:1540, :1549, :1551–1555): 13.25 MB at the publication peak.
+- **S-2:** six result-id copies are priced in the 128-B identifier class, but result ids can reach 1,024 B: PP/lib.rs:2728, :2730, :2738 and :5292 (twice), and preview_physics.rs:194. Up to 9.75 MB per branch. I65 owns the T08 text classes; RV83 and RV84 confirm it at G5's review.
+- **S-3:** API_G4 §1's `admit` signature is corrected to `(CapturePermit, RetainedAdmissionReport)` (already in G5's brief).
+- **S-4:** `LateFacts` passes slices, but the `restrained_capacity` and `springs_capacity` facts need capacities. Either pass the owning `Vec`s by reference at the D-5-excepted site, or bound them from census facts. Separately, G-C's `capture.P1_old_source` is a row label; name the field.
+- **S-5:** the G5 carry list gains three items:
+  - RV85's U1, optionally binding the permit to its invocation and checking linearity structurally;
+  - the `l = 128` census constant;
+  - RV83's B-3/S-5 test that the compiled identity carries every key in order.
+- **NOTEs N-1 to N-8:** I65's discretion within G5. N-3 suggests G-C check the longest-string atoms; N-4 notes a 0.22 GB over-count lever, available but not needed.
+
+**The G4 review cycle is closed.** G5 is running.
