@@ -11683,3 +11683,21 @@ ROOT applied the diff to NUM and checked mechanically that every changed line is
 - RV95's final read-only confirmation.
 
 **ROOT asks the owner** about the merge hold, and about the native witness, which the precedent at T0R and T1 left outstanding on the owner's Mac.
+
+## Owner decisions at the freeze (ROOT, 2026-10-04 UTC)
+
+ROOT asked the owner two questions in the session.
+
+**First:** whether to hold other merges to main until #1082 merges, while the gates on F (about 2–3 h) run. The owner chose: **"Yes, hold main (Recommended)".**
+
+**Second:** how to handle the native-app witness (G10), which ROOT cannot drive from this session. The owner chose: **"Merge; leave it outstanding (Recommended)"**, following the T0R and T1 precedent.
+
+**Applied:**
+- **Main is held by the owner.** Immediately before the merge, ROOT still checks that `origin/main` is `5fdc5ab601`.
+- **G10, the native witness, is recorded as outstanding on the owner's Mac** in the merge record and the work graph. It covers:
+  - the milestone model on the ordinary route, with unchanged standing and Current display;
+  - the result-export and stress-neutral panels refusing a successor.
+- **What covers it meanwhile:**
+  - the desktop calls only the ordinary wrapper (RR:9261), and no product caller of the Direct entry exists (G9b);
+  - the panel gates are covered by vitest and the hosted browser E2E shards;
+  - the src-tauri suite passed 116/116 (G7).
