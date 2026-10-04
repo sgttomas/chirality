@@ -1,0 +1,38 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-COORDINATED-KNOWLEDGE-WORK-20261003
+title: Publish reviewed coordinated knowledge work method
+date: '2026-10-03'
+basis: 381be775ae9b8d94e7d650713a0c97cba304950b
+instruction_surface_paths:
+  - workflows/coordinated-knowledge-work/WORKFLOW.md
+  - workflows/coordinated-knowledge-work/REVIEW-NOTES.md
+  - workflows/catalog.yaml
+  - workflows/index.json
+  - docs/governance_harness/tranche_manifests/ROOT-COORDINATED-KNOWLEDGE-WORK-20261003.yaml
+m2_gate:
+  authorization: >-
+    Ryan Tufts reviewed successive drafts and external feedback, directed the
+    five targeted corrections, and then explicitly instructed "commit and merge
+    this" in the active chat on 2026-10-03. The published WORKFLOW.md preserves
+    the reviewed draft byte-for-byte (SHA256 44049bcd38b88378cd757ea34516f01edb0b0e93d8e9e3ac2b47ac61c9271b18).
+    Notes change only the authorized publication-status paragraphs from the
+    reviewed draft (SHA256 f4d3cae00b4e4a4b6cc6025586c69c1d8b7af7d6a609ba92ced8b705a5348b74).
+  authorized_by: Ryan Tufts
+  authorization_date: '2026-10-03'
+  integration_owner: HELP_HUMAN /root
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-10-03_COORDINATED_KNOWLEDGE_WORK.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-10-03_COORDINATED_KNOWLEDGE_WORK.md
+  rationale: >-
+    App and Runtime consume or package the bundled method catalog. These notices
+    describe the new optional method; each loop retains its adoption decision.
+    No current domain or project authority is repinned and no release is made.
+scope_limits:
+  - Add the two-file reviewed workflow package without changing its operating method.
+  - Register in existing Plan and organize navigation and regenerate the derived index.
+  - Preserve the personal draft and unrelated repository work.
+  - No role instruction change, product implementation, automatic workflow execution, or release.
