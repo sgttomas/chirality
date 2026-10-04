@@ -171,6 +171,13 @@ pub(super) fn project<'a>(trace:&'a PreparedTrace,capture:&'a p::ProductCapture,
     if trace.stages[Stage::ProofStart as usize]!=StageState::NotEntered && proof.is_none() {
         return Err(TraceProjectionError::MissingFailure);
     }
+    // RV77-N4 (I61 U2, failure path): proof work, certified or refused, binds
+    // structurally to this capture's selected owner through the proof anchor.
+    if let Some(work)=proof {
+        let owner=match capture.native.as_ref().map(|(_,case)|&case.outcome) {
+            Some(k::ExecutionOutcome::Selected(owner))=>owner,_=>return Err(TraceProjectionError::WorkAssociation)};
+        if !work.owner_matches(owner) {return Err(TraceProjectionError::WorkAssociation);}
+    }
     let proof=proof.map(|p|p.typed_trace(&mut costs.kernel));
     let completion=if let Some(f)=values_failure {CompletionRef::SeparateFailure{visits:f.visits,capacity_bytes:f.capacity}}
         else if proof.as_ref().is_some_and(|p|p.completion_merged){CompletionRef::Merged}else{CompletionRef::NotEntered};
