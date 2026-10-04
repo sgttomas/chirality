@@ -8517,3 +8517,20 @@ RV79's other notes are carried: N-a (the harness rehashes with the reader's own 
 - **TypeScript (I64):** D31; D32 (confirm value tests at every integer site); D33; then adopt 07d.
 
 **After this round:** a scoped check of the 07d delta by the round-03 reviewers (workflow §3). Then I61 reruns the real receipts on the accepted head. T1 still awaits the owner; it binds the producer serializer, not the readers.
+
+## T1 confirmed by the owner (ROOT, 2026-10-03 UTC)
+
+**The owner's message, verbatim:** "I confirm option (a) for T1".
+
+**T1 is decided as option (a):**
+- On a retained-selected case, the successor publication omits the legacy `SOURCE_BLOCK_RECOVERY_UNAVAILABLE` diagnostic naming that case.
+- The case's ordinary `legacy_source` becomes `{disposition: "unavailable", diagnostic_ref: null, work_ref: k}`. `legacy_source_work[k]` carries the actual WorkReport (stage, helper_stage, charged, rejected, limit, settlement `booked`).
+- `diagnostic_refs` no longer lists the omitted diagnostic.
+- Unselected cases and the fallback publication keep today's bytes.
+
+This implements the selected design (DESIGN_NUMERICS/DESIGN.md:1004, D1 §5 item 11).
+
+**Effects:**
+- **The producer serializer** is bound by this; it is an input to the serializer brief.
+- **The readers** need no change. G4 and the existing `legacy_source` reference checks (O4, D6d) already enforce it.
+- **The user:** on a successor result, the diagnostics panel shows "retained precision selected" without the legacy "did not produce a selected response" row.
