@@ -12050,3 +12050,21 @@ Their bytes are records, and many are bound by SHA256SUMS, so they cannot be rel
 - **N-6 is adopted for future GEN-8 placement checks:** run with `GIT_CEILING_DIRECTORIES=<WT>` on a `git archive` copy.
 
 **The re-cut:** the records PR branch gains a commit taking NUM's execution tree and `P/validation/portability_policy.json` at the new NUM head. RV96 re-reviews B-1 and S-1 on the new head. GEN-8, hosted CI with the full-SHA dispatch, and DEC-025 run again on it.
+
+## RV96 addendum 01 at R2: the merge method and one more redaction (ROOT, 2026-10-05 UTC)
+
+**RV96's addendum** is `R/REVIEW_RV96/records_01/ADDENDUM_01.md` (sha256 `cd067377…`; SHA256SUMS 25/25 OK). Verdict: **FAIL**, with 1 BLOCKING, 1 SHOULD-FIX and 1 NOTE.
+- **Confirmed at R2 `3798d5eca7`:**
+  - scope: only POL outside `P/execution`, append-only;
+  - the policy entries;
+  - GEN-8, locally and in hosted `governance-harness`;
+  - the 12 redactions;
+  - integrity.
+- **B-2, ruled: #1084 merges by squash.** R2's branch history contains the first head `dfa5e2dc44`, whose tree holds the unredacted listings. A merge commit would put them permanently into main's history, against the owner's "Redact before merging".
+  - **A squash merge** puts only the final tree on main, with no force-push and no new branch. `gh pr merge --squash --match-head-commit` runs at the gated head, after main is checked unmoved.
+  - **This is an exception** to T3's usual `--merge`, for this records PR only.
+  - **The originals remain** in the integration branch's and the PR branch's history on origin, as already recorded.
+- **S-2, redacted.** `R/REVIEW_RV62/selected_material_01/_run_records/whole_diff_whitespace.log` quoted six lines of I47's listings (Microsoft Teams, with a session id, and Parallels Desktop). Lines 2, 4, 7, 9, 45 and 47 are replaced in place with a redaction marker, and the file is added to `REDACTIONS.json`, with original and redacted hashes. Its INVENTORY.json entry is superseded by the manifest.
+- **N-7, corrected:** the registration is **255** new entries, 210 `historical_role_override` and 45 `control_path_exception`. The previous ruling said 256: RR's accidental override was counted, then removed.
+
+**Next:** the PR branch gains R3, with NUM's execution tree and POL at this ruling's commit. GEN-8, hosted CI with the full-SHA dispatch, and DEC-025 run on R3. DEC-025 on R2 was stopped at 28 of 40 manifests, superseded by R3, and is not counted. RV96 confirms R3.
