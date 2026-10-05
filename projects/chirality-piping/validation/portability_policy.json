@@ -5921,14 +5921,6 @@
       "role": "EVIDENCE",
       "reason": "T3 TASK or review run record; it preserves the machine-local paths of its run as exact provenance and is cited by the T3 rulings, so it cannot be relativized.",
       "authority": "Owner approval in the T3 ROOT session of 2026-10-05 (\"Approve and merge\"); T3 ROOT_RULINGS_V1, \"Records PR #1084: GEN-8 flags historical records; the owner approves their portability registration\"."
-    },
-    {
-      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/ROOT_RULINGS_V1.md",
-      "sha256": "44c8aaf9493006a073e26abdba2086d6fe199a06cc051c0eb78c35c0c95e5507",
-      "entry_type": "historical_role_override",
-      "role": "EVIDENCE",
-      "reason": "T3 TASK or review run record; it preserves the machine-local paths of its run as exact provenance and is cited by the T3 rulings, so it cannot be relativized.",
-      "authority": "Owner approval in the T3 ROOT session of 2026-10-05 (\"Approve and merge\"); T3 ROOT_RULINGS_V1, \"Records PR #1084: GEN-8 flags historical records; the owner approves their portability registration\"."
     }
   ],
   "control_path_exceptions": [
@@ -6650,6 +6642,22 @@
       "entry_type": "control_path_exception",
       "role": "CONTROL",
       "reason": "Immutable as-issued copy of a T3 TASK dispatch brief; it is the historical instruction its work ran under, so the machine paths it recorded at issue cannot be relativized.",
+      "authority": "Owner approval in the T3 ROOT session of 2026-10-05 (\"Approve and merge\"); T3 ROOT_RULINGS_V1, \"Records PR #1084: GEN-8 flags historical records; the owner approves their portability registration\"."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/BRIEFS/RV67_I51_C2_AMENDMENT_REVIEW.md",
+      "sha256": "926869d0ddcf49bc354a3f877e40839ccc2f5860d0763cc4ebbe18e5f3e34aa8",
+      "entry_type": "control_path_exception",
+      "role": "CONTROL",
+      "reason": "Immutable as-issued copy of a T3 TASK dispatch brief; it is the historical instruction its work ran under, so the machine paths it recorded at issue cannot be relativized.",
+      "authority": "Owner approval in the T3 ROOT session of 2026-10-05 (\"Approve and merge\"); T3 ROOT_RULINGS_V1, \"Records PR #1084: GEN-8 flags historical records; the owner approves their portability registration\"."
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I42/source_bridge_rv56_repair_02/PLAN.md",
+      "sha256": "ceddf500cb9389eed312ea7facc98bb5801a18d3e1c5ce8666ab0ed263980305",
+      "entry_type": "control_path_exception",
+      "role": "CONTROL",
+      "reason": "Immutable as-issued plan of a T3 TASK (I42), retained verbatim as the plan its work ran under, so the machine paths it recorded cannot be relativized.",
       "authority": "Owner approval in the T3 ROOT session of 2026-10-05 (\"Approve and merge\"); T3 ROOT_RULINGS_V1, \"Records PR #1084: GEN-8 flags historical records; the owner approves their portability registration\"."
     }
   ]

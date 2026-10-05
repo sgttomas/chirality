@@ -10929,7 +10929,7 @@ Slice F's order is RETURN §3.
 **Rulings:**
 - **The TS notice** (`knownSemanticLimitations.ts:168` summarizing without the model) goes to slice T. I67 decides whether to pass the model.
 - **The corpus bases' `qualification` strings** ("DRAFT: … public API intentionally rejects"): **slice F updates any fixture or comment text that the switch makes false,** these strings included, if it does so. Otherwise they stay. RV94 checks that no stale claim remains.
-- **I61's disclosure.** One snapshot command briefly wrote a copy of a committed repository test file to `/tmp/x`, which was deleted at once; ROOT confirms it is absent. This breached the host rule (nothing in the system temp directory). It is recorded, with no consequence: the file was a copy of committed content.
+- **I61's disclosure.** One snapshot command briefly wrote a copy of a committed repository test file to `<system-temp>/x` [path placeholder-repaired: see erratum E-2], which was deleted at once; ROOT confirms it is absent. This breached the host rule (nothing in the system temp directory). It is recorded, with no consequence: the file was a copy of committed content.
 
 ## The memory branch merged into NUM; U7 slices T and P committed (ROOT, 2026-10-04 UTC)
 
@@ -12018,3 +12018,35 @@ Their bytes are records, and many are bound by SHA256SUMS, so they cannot be rel
 - **The 43 as-issued documents** become hash-bound `control_path_exception` entries (role CONTROL).
 
 **Each entry is hash-bound,** so a later edit of the file fails GEN-8 again. The records PR now also carries `P/validation/portability_policy.json`; its only non-execution change is these appended entries. RV96 reviews them with the records.
+
+## Records PR #1084: redactions, GEN-8 repair and re-cut (ROOT, 2026-10-05 UTC)
+
+**RV96's review of the first records head** `dfa5e2dc44` (`R/REVIEW_RV96/records_01/REVIEW.md`, sha256 `f19e30b6…`; SHA256SUMS 16/16 OK) returned **FAIL**: 1 BLOCKING, 1 SHOULD-FIX, 6 NOTE.
+- **Item 1, scope: PASS.**
+  - 6,585 paths; the execution tree equals NUM's at `29160bbc1c`;
+  - 3 deliberate modifications (ROOT_CURRENT, RR, WORK_GRAPH);
+  - no deletions.
+- **Item 2, credentials and size: PASS.**
+- **Item 5, integrity: PASS.** Main's RR is a byte prefix of the PR's.
+- **The hosted `governance-harness` run** failed GEN-8 as the local run did.
+
+**B-1 (BLOCKING), GEN-8: repaired.**
+- **254 historical records** are registered under the owner's approval (previous ruling), plus 2 CONTROL-role as-issued documents GEN-8 also flagged: RV67's brief, and I42's plan (`R/I42/source_bridge_rv56_repair_02/PLAN.md`). That is 256 hash-bound entries in all.
+- **RV96's caution on living documents is adopted.** A hash-bound living document would drift at its next append, so `ROOT_RULINGS_V1.md`'s accidental entry is removed.
+- **Erratum E-2:** the rulings' one machine path, I61's system-temp disclosure at RR:10932, is placeholder-repaired in place (`/tmp/x` becomes `<system-temp>/x`), with a bracketed label. That line is past main's prefix, and its meaning is unchanged.
+- **The rule for later ROOTs:** living documents (RR, ROOT_CURRENT, the work graph, the handoffs, the briefs) carry no machine-absolute paths. Write `<repo>/…` or `WT/…`.
+
+**S-1 (SHOULD-FIX):** 12 whole-host process listings exposed the owner's running apps and local agent session IDs.
+- **The owner decided:** "Redact before merging (Recommended)".
+- **Each listing is filtered** to its header and the build and test processes it was captured to check. Agent and app lines are removed, and a top note gives the original's line count and sha256. In all, 12 files keep 0–2 process lines each.
+- **The manifest** is `IMPLEMENTATION/HANDOFF_2026-10-05/_run_records/REDACTIONS.json`, with original and redacted hashes. It supersedes those files' entries in their folders' sealed SHA256SUMS, which are left as sealed.
+- **The originals remain in the integration branch's public Git history.** Only a history rewrite, which is the owner's decision, would remove them.
+
+**The notes:**
+- **N-1 (host paths in 938 new files) and N-3 (the host's mDNS name in 11 files)** are accepted as recorded. They are the same class main already carries, and they sit in sealed or hash-bound run records.
+- **N-2 (104 dangling symlinks in RV58's sealed fixture)** is accepted. They are documented and counted in its SEAL.json.
+- **N-4** needs no action.
+- **N-5:** the forward reference resolves when the merge record is written.
+- **N-6 is adopted for future GEN-8 placement checks:** run with `GIT_CEILING_DIRECTORIES=<WT>` on a `git archive` copy.
+
+**The re-cut:** the records PR branch gains a commit taking NUM's execution tree and `P/validation/portability_policy.json` at the new NUM head. RV96 re-reviews B-1 and S-1 on the new head. GEN-8, hosted CI with the full-SHA dispatch, and DEC-025 run again on it.
