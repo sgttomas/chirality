@@ -29,12 +29,12 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
 | | |
 |---|---|
 | **Machine** | The M5 Max, 128 GiB. All heavy work runs here |
-| **WT** | `/Users/ryan/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3` |
+| **WT** | `<repo>/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3`, where `<repo>` is the owner's main Chirality checkout on this host (the folder that holds `.claude/worktrees/`) |
 | **NUM** | `WT/numerics`, branch `codex/piping-numerical-integrity-20260926`, the T3 integration branch. Its maintained source equals main's; only records differ |
 | **The DEC-025 tree** | `WT/sweep-skewpin`, detached. Check out the candidate head and keep it clean. After each run, move the sweep's summary JSON out to the run's scratch folder |
 | **Worktrees** | Only these two remain under WT. Create others per unit (e.g. `WT/f2a-u8`, `WT/s-i1`) and remove them when merged |
 | **The memory guard** | `WT/guard/memguard.sh`, PID 5387 at handoff; check with `pgrep -f memguard.sh`. It must run during any build |
-| **VENV** | `/Users/ryan/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/projects/chirality-piping/.venv` |
+| **VENV** | `<repo>/.claude/worktrees/swbpipe-control-layer-8a41be/projects/chirality-piping/.venv` |
 | **node_modules** | The parent checkout's `projects/chirality-piping/node_modules`, linked into a worktree by an untracked symlink, which you remove before removing the worktree |
 | **DEC-025 tooling** | `WT/scratch/u9_dec025/dec025_mac.sh` (sha `9e34865b…`, unchanged from `M03_SKEW_PIN_MERGE`); the quiet-host wrapper `run_all.sh`; the suite runner `WT/scratch/calib/run_suites_nff.sh`. Copies are in `IMPLEMENTATION/HANDOFF_2026-10-05/host_tools/`. The per-test comparator is `IMPLEMENTATION/F2A_D1_MERGE/dec025/compare_suites.py` |
 | **Cleanup** | `WT/tools/t3_cleanup.py`; procedure in `IMPLEMENTATION/HANDOFF_2026-10-05/CLEANUP.md` |

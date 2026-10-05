@@ -48,7 +48,7 @@ This supersedes, for regenerable material only, the earlier no-prune practice (H
 
 **Afterwards, five more worktrees went, by hand:**
 - **Three with `git worktree remove`:** `f2a-carriers`, `f2a-carriers-ts` and `f2a-u7`. Each was clean once its untracked `node_modules` symlink was unlinked.
-- **Two with `git worktree remove --force`,** after their unique untracked files were copied into `preserved_untracked/` (SHA256SUMS there):
+- **Two with `git worktree remove --force`,** after their unique untracked files were copied into `_run_records/preserved_untracked/` (SHA256SUMS there):
   - **`f2a-readers`:** 38 untracked files. 33 were byte-identical in NUM; 4 reader records were preserved. The 38th was the `node_modules` symlink, unlinked.
   - **`sweep-k1`:** one sweep JSON that differs from `K1_MERGE`'s committed copy, preserved.
 
