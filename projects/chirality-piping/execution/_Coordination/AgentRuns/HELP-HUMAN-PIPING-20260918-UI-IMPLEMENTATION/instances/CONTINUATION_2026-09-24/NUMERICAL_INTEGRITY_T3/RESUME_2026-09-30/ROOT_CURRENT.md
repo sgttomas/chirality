@@ -1,53 +1,43 @@
-# T3 current state — handoff pause, 2026-10-03
+# T3 current state — handoff, 2026-10-05
 
-**Paused for the owner-requested handoff. No TASK, compiler, solver or test is
-running. The existing memory guard remains active.**
-[Handoff](../HANDOFF_2026-10-03_TO_NEXT_ROOT.md) · [Terms](GLOSSARY.md) ·
-[Decision history](../ROOT_RULINGS_V1.md)
+**Handed off at the owner's request. Nothing is running. The memory guard stays active.**
+
+[Handoff](../HANDOFF_2026-10-05_TO_NEXT_ROOT.md) · [Terms](GLOSSARY.md) · [Decision history](../ROOT_RULINGS_V1.md) · [Previous handoff](../HANDOFF_2026-10-03_TO_NEXT_ROOT.md)
 
 ## Closed or accepted
 
-- A1 publication repair: PR1070, main merge `3a0251874d`.
-- K6c accounting/finite measurements: PR1071, main merge `49034a940f`, with
-  recorded qualifications; historical value equality remains unclaimed.
-- The private prepared candidate passes the named case in both modes (RV68;
-  local merge `458603880a`). Caller/census and typed evidence are accepted
-  locally at `a9c2256076` and `b56b905251` after RV72/RV74 review and repairs.
-- Corrected C3/F1 and wire completions are selected. The compact summary-coverage
-  design is also selected after RV76; it is **not implemented**.
-- Corrected ordinary-memory source formulas are accepted after fresh RV75
-  combined review, with all full-profile gaps retained.
+- **A1:** PR1070. **K6c:** PR1071, with its recorded limits.
+- **The F2a D1 milestone: PR #1082,** merge `0b00b8e8b6`, at F′ `5488136a19`.
+  - RF-SKEW-T-CANT-OFF-122-r1e-04 publishes its M03-INTEGRITY-MP-v2 successor through the Direct entry in both modes, in the registered dev/test build only. It matches its independent reference, and the refusal and coexistence controls are preserved.
+  - The Python, Rust and TS readers treat it as eligible with its invocation, and the carriers transport it.
+  - No product caller exists.
+  - The records are `../IMPLEMENTATION/F2A_D1/` and `../IMPLEMENTATION/F2A_D1_MERGE/` (with ERRATA E-1).
+- **U8,** the F2a-breadth roadmap and S-I1's readiness are planned (`I61/u8_plan_01/PLAN.md`) and ruled. The owner pulled T6's successor-output slice forward.
 
 ## Open
 
-No public F2a publishing case exists. The target remains
-RF-SKEW-T-CANT-OFF-122-r1e-04 through the actual captured facade in both modes,
-under M03-INTEGRITY-MP-v2, with independent reference agreement and preserved
-refusal/coexistence controls. Typed entry stays ordinary; both-entry gates remain.
-
-Reader code is frozen, uncommitted and unaccepted in READER. Its shared snapshot,
-source hashes, full recoverable archive and partial author returns are linked in
-[READER_STATE](HANDOFF_2026-10-03/READER_STATE.json). Coverage implementation,
-complete gate/failure controls, independent full review and joint parity remain.
-Production permits and M remain absent. Complete memory/caller qualification,
-actual receipt transaction, wider invocation/combination/exact routes, carriers,
-native Current and full PR gates remain; then S-I, per-domain F2b and F3.
+- **G10:** the native witness, on the owner's Mac.
+- **U8,** whose briefs are ready.
+- **The rest of F2a:**
+  - **B0–B6 (numerical breadth):**
+    - B0, contract and identities;
+    - B1, multi-case, with W-C2 and D38;
+    - B2, combinations, preparation-only and mixed invocations;
+    - B3, the exact routes;
+    - B4, cap growth, if ruled;
+    - B6, the reader items;
+  - **B7,** the release identity;
+  - **B8,** activation with native Current.
+- **S-I1,** in parallel.
+- **The T6 successor-output slice,** in parallel.
+- **Then** S-I2, F2b per family, and F3.
 
 ## Next
 
-The successor should verify the preserved state and implement the selected
-coverage contract under a bounded grant, then finish/review the readers and
-admission/producer work. The handoff names precise gaps and evidence. No next
-assignment or PR is active. No new host-tool work is needed.
+Follow the handoff's "The next work, in order": verify the state, absorb main if needed, then dispatch U8 (I68 Part 1), with S-I1 (I73) and the T6 slice plan (I74) alongside.
 
-## Branches and owner decisions
+## Branches
 
-NUM is the F2a code integration branch. CODE is the accepted producer component;
-READER is the unaccepted reader component. Records-only and final product PRs
-must be cut separately from current main under the recorded packaging rule.
-No F2a PR exists; latest verified main is `381be775ae`.
-
-No new owner-held decision arose from the completed reviews. Existing decisions
-remain dense/lane ceilings, PHYS-R4 refusal/availability, observation framing,
-KF3 lambda split and KF2 dense screen. Any actual public meaning change returns
-with independently reviewed concrete options.
+- **NUM** (`codex/piping-numerical-integrity-20260926`) is the integration branch. Its maintained source equals main's.
+- **Product PRs** are cut compactly from main. **Records** reach main only through records-only PRs.
+- **All T3 component branches** are pushed, and contained in main or NUM.

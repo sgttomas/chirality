@@ -11962,3 +11962,37 @@ ROOT asked the owner two questions in the session.
 | `BRIEFS/I74_T6_SUCCESSOR_SLICE_PLAN.md` | Planning the T6 slice |
 
 **Next unused IDs** after these: I75 and RV100.
+
+## Handoff prepared; main absorbed; host cleanup; a records-only PR next (ROOT, 2026-10-05 UTC)
+
+**The owner's direction:**
+- hand the work to a new session, with the rulings made and the dispatches prepared;
+- write a handoff prompt that steers the next agent's development loop;
+- "merge what you can and give access to what you can't or what doesn't make sense to merge";
+- "remove what you can safely remove from built targets and scratch, etc. … we need to do periodic cleanup".
+
+**Merged:**
+- **Main into NUM, twice:** `697b402779` (after #1082) and `d18bf6ed90` (#1083, App v4 only). NUM's maintained source equals main's; only execution records differ.
+- **Every T3 branch is pushed.** The one unpushed branch, the old reader WIP `codex/piping-f2a-readers-20261003` (contained in NUM), is now on origin.
+- **The F2a component branches** are contained in NUM, and their content reached main through #1082's compact snapshot. **The K, A1, F1b, VK, KF and skew-pin branches** are in main.
+
+**The host cleanup** is recorded in `IMPLEMENTATION/HANDOFF_2026-10-05/CLEANUP.md`, with the action log and SUMMARY.
+- **It removed only regenerable material:** Cargo targets, source-tree copies, and clean worktrees that are merged and pushed. Used space fell from 1.2 TiB to 695 GiB.
+- **Kept:** logs and evidence (about 44 GB in `WT/scratch`, plus `WT/preserved-evidence`), NUM and the DEC-025 tree.
+- **Five worktrees** were removed after their unique untracked files were preserved in `IMPLEMENTATION/HANDOFF_2026-10-05/preserved_untracked/` (4 reader records, and the K1 sweep's original JSON).
+- **The tool** `WT/tools/t3_cleanup.py` (copy in `host_tools/`) is the periodic procedure. Its first plan included tracked record folders inside worktrees; the tracked-file guard was added before any application.
+- **This supersedes the earlier no-prune practice** for regenerable material only. Removing evidence stays the owner's call.
+
+**For access:**
+- **Host-only tools are copied** into `IMPLEMENTATION/HANDOFF_2026-10-05/host_tools/`: the DEC-025 driver, the quiet-host wrapper, the suite runner, the guard and the cleanup tool.
+- **The handoff** is `HANDOFF_2026-10-05_TO_NEXT_ROOT.md`, with its steering prompt `HANDOFF_2026-10-05_PROMPT.md`. `RESUME_2026-09-30/ROOT_CURRENT.md` is rewritten.
+
+**Next, the outgoing ROOT's last act:** a records-only PR from main carrying NUM's `projects/chirality-piping/execution/` tree, under PR1068's precedent:
+- RV96's independent review;
+- hosted CI with the full-SHA dispatch;
+- GEN-8;
+- an exact-head Mac DEC-025 compared with F′'s run (the same piping tree).
+
+It is recorded in `IMPLEMENTATION/RECORDS_MERGE_2026-10-05/` on NUM.
+
+**Host paths:** main already carries `/Users/<user>` paths in 4,688 piping record files, and NUM is public on origin, so the PR adds no new kind of exposure. RV96 counts them as a NOTE.
