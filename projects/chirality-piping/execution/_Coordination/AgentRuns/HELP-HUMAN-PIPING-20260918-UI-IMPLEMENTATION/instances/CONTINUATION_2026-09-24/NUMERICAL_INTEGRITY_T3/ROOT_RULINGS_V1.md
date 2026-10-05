@@ -11894,3 +11894,71 @@ ROOT asked the owner two questions in the session.
 - The correction is `IMPLEMENTATION/F2A_D1_MERGE/ERRATA.md`, with one SHA256SUMS line appended. No sealed file is edited.
 
 **Next:** I61 plans U8, together with the F2a-breadth roadmap and S-I1's readiness, in `R/I61/u8_plan_01/`.
+
+## I61's U8 plan ruled; the owner pulls T6's successor-output slice forward; dispatches prepared for the handoff (ROOT, 2026-10-05 UTC)
+
+**I61's plan:** `R/I61/u8_plan_01/PLAN.md` (sha256 `f274a614…`; SHA256SUMS 1/1 OK; no machine paths). It was planning only, with no runs and no Git writes.
+
+**ROOT read it in full.** Its central fact: inside D1, any W1 failure in a one-case invocation publishes only the ordinary bytes plus one N1 notice (`PP/src/lib.rs` `retained_w1`; RR:8437). So a receipt that carries a native Ceiling row needs a second load case that selects, which D1.4 forbids. Only the L = 0 base can produce a receipt inside D1.
+
+**Decisions (I61's numbering):**
+1. **U8's runs are granted** with U8's dispatch:
+   - U8-0's probe on a disposable `git archive`, and U8-1's tests;
+   - in the registered dev/test build, in their own target directories;
+   - memguard, one cargo job.
+   
+   There are no DEC-025, native or solver-at-scale jobs inside the slices.
+2. **The Ceiling witness splits:**
+   - **W-C1 (U8):** a real-input Native fallback inside D1;
+   - **W-C2 (B1):** the receipt's Ceiling row, as B1's acceptance witness together with D38's pin.
+   
+   A two-case widening inside U8 would be a full widening re-qualification that B1 repeats. The owner's order is unchanged; only the row moves. The owner is informed.
+3. **W-C1's reason** is recorded by the U8-0 probe. No `cfg(test)` hook is added to PP production files. The wire-level assertion comes with W-C2.
+4. **RV93's real-input Preparation variant** (`tiny_spring`) joins N-5's test.
+5. **The L = 0 stop rule:** if the producer refuses the memberless node, or W1 falls back, L = 0 stays deferred with its recorded cause and moves to B1. U8 makes no producer change.
+6. **Snapshot 07l:**
+   - producer-solved bases with case-level provenance, as D-U6-5 byte-identical copies of the PP-pinned live successors;
+   - the top-level claim amended to "synthetic controls plus listed producer-solved bases; no native Current evidence".
+7. **U8 goes to main as its own small, test-only PR:**
+   - G5–G8 carried by ruling;
+   - a fresh fail-closed Pass B, confirmed independently;
+   - the full 40-manifest suite before the freeze, then DEC-025;
+   - hosted CI with the dispatch, and GEN-8;
+   - one complete-diff review.
+8. **Breadth reaches main in two PRs:** PR-B1 (B0, B1, B6) and PR-B2 (B2, B3, and B4 if ruled). Re-qualification runs once per PR candidate, on the registered dev/test identity.
+9. **A 3–4 h read-only cap-growth study** runs early in B1, by the Pass B role. If M must exceed the provisional 3.75 GiB, or needs a supported-machine statement, that goes to the owner (owner-held).
+10. **`openpipestress.result_semantics/0.3.0/physics-retained-1` is reserved at B0** (DESIGN_NUMERICS §4.4).
+11. **N-3's G7 codes:** TS aligns to Python and Rust's `SOURCE_NUMERICAL_CASE_INVALID`. The Rust base validators on the precommit graph do not change.
+12. **The owner decided the T6 conflict:** "Pull T6 slice forward (Recommended)".
+    - A narrow T6 successor-output slice runs in parallel with F2a's breadth:
+      - result export and stress-neutral export of a successor, replacing the explicit N-5 panel refusal deliberately;
+      - the `results.schema.yaml` v0.3 dispatcher;
+      - RV95 N-5's 2^53−1 bound test.
+    - It writes the export paths, the panels and their tests, not PP.
+    - It is planned first (`BRIEFS/I74_T6_SUCCESSOR_SLICE_PLAN.md`), and it closes checklist item 4 before B8.
+    - The work graph's T6 row records the pull-forward.
+13. **S-I1 runs alongside U8:**
+    - its own branch from main, with records on NUM;
+    - its own PR and a fresh reviewer;
+    - the host's one-job rule shared with U8.
+14. **The owner's order stays.** S-I2's Rust edits must stay off the precommit call graph, as verified by Pass B's classification. If that proves impossible, the next ROOT asks the owner whether S-I2 moves before B7.
+
+**Flagged for B8's planning:** the desktop workspace is a new Direct caller with its own lock (RR:10407), and native Current needs the owner's Mac and a caller qualification that does not exist yet (I53's open premise).
+
+**The breadth order:** U8 → B0 → B1 and B6 → PR-B1 → B2 and B3 → B4 (if ruled) → PR-B2 → B7 (the release identity) → B8 (activation). S-I1 and the T6 slice run alongside. I61's estimates are the planning basis: breadth B0–B3 plus B6 is about 91–143 h agent and 31–45 h review.
+
+**Dispatches prepared, not launched.** The owner asked that this work be handed to a new session. ROOT prepares the briefs, and the next ROOT dispatches them, at fresh instances, with the next unused IDs. **An ID here names a records folder and a role. It carries no conversational memory.** Each instance reads its brief and the cited records.
+
+| Brief | Work |
+|---|---|
+| `BRIEFS/U8_COMMON.md` | The shared basis and host rules |
+| `BRIEFS/I68_U8_PROBE_AND_WITNESSES.md` | U8-0 and U8-1 |
+| `BRIEFS/I69_I70_I71_U8_CORPUS_AND_READERS.md` | U8-2 and U8-3 |
+| `BRIEFS/I72_U8_PASS_B.md` | U8-4 |
+| `BRIEFS/RV97_U8_REVIEW.md` | RV93's role in U8-5, plus 07l parity |
+| `BRIEFS/RV98_U8_PASS_B_CONFIRM.md` | RV89's role |
+| `BRIEFS/I73_S_I1.md` | S-I1 |
+| `BRIEFS/RV99_S_I1_REVIEW.md` | S-I1's review |
+| `BRIEFS/I74_T6_SUCCESSOR_SLICE_PLAN.md` | Planning the T6 slice |
+
+**Next unused IDs** after these: I75 and RV100.
