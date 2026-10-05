@@ -12,6 +12,8 @@ instruction_surface_paths:
   - projects/chirality-piping/docs/README.md
   - projects/chirality-piping/docs/contributor_guide/index.md
   - projects/chirality-piping/execution/_Coordination/_COORDINATION.md
+  - exports/chirality-app/export-manifest.csv
+  - exports/chirality-app/export-report.md
   - docs/governance_harness/tranche_manifests/ROOT-LOOPINIT-AUM-ALIGNMENT-20261005.yaml
 m2_gate:
   authorization: |-
@@ -50,6 +52,6 @@ m6_notice:
 review:
   - execution/_Coordination/AgentRuns/ROOT-LOOPINIT-AUM-ALIGNMENT-20261005/reviews/
 scope_limits:
-  - the paths above, this run's records and the App v4 notice only
+  - the paths above (including the public export regenerated at the final tree, with the default staging path), this run's records, the Piping LOOP_INIT run's final records and the App v4 notice only
   - no Root AGENTS.md, SPEC, workflow, Consolidated v8, Field Book or other loop instruction change
   - no rebase, force-push or history rewrite

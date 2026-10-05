@@ -61,3 +61,19 @@ No product code changes.
 - **NOTE-3, applied.** Row 8 now says "these sources do not expand scope or lift holds", since LOOP_INIT no longer holds a graph pointer.
 - **NOTE-4, applied.** The public export is regenerated at this PR's final tree, as earlier manual tranches did (`exports/chirality-app/export-manifest.csv` and `export-report.md`). It is staged outside the repository, and it also brings the export up to date with #1093.
 - **NOTE-5** confirms ruling 5; no change.
+
+## Addendum B: AR's Addendum A at H2 (2026-10-05)
+
+**AR's Addendum A** is appended to `reviews/AR-AUM.md` (file sha256 `17ef5b9a…`; the original is a byte prefix). At H2 `6049100caa`: 0 BLOCKING, 1 MAJOR, 1 MINOR and 1 NOTE.
+- **AR confirms MAJOR-1's repair:** all seven pins were checked against the resources and main's bytes.
+- **AR confirms NOTE-1 to NOTE-3.**
+- **The export:** the manifest is byte-identical to the exporter's output for H2's tree.
+
+**The findings:**
+- **A-MAJOR-1, repaired. Erratum to Addendum A's NOTE-4.**
+  - Staging the export outside the repository made `export-report.md` line 5 record a machine-absolute staging path. The same defect had been repaired once before, in `d2929fd62b`.
+  - The export is re-run with the default stage, `exports/chirality-app/staging`, which `.gitignore` excludes. The staging folder is then removed.
+  - Line 5 again reads `exports/chirality-app/staging`, and the manifest is unchanged.
+  - NOTE-4's "staged outside the repository" was the error.
+- **A-MINOR-1, repaired.** The tranche manifest now declares `exports/chirality-app/export-manifest.csv` and `export-report.md`, as earlier manual tranches did. Its `scope_limits` names the regenerated export and the Piping run's final records.
+- **A-NOTE-1, noted.** Before this PR, main was behind only on construct's `WORKFLOW.md` row. It was not behind on `workflows/index.json`.

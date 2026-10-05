@@ -154,3 +154,85 @@ This confirms ruling 5 and adds nothing new. PEC's loop adopted `construct-local
 - **Outside the brief's list.** I also ran `tools/validation/validate_piping_loop_receipts.py --repo-root .` once, read-only, to confirm that the validator AUM line 678 names exists and runs. It printed VALID, wrote nothing, and supports no finding.
 - **Network.** `gh pr view` reads and one `git ls-remote origin refs/heads/main`.
 - **Writes.** Only this report and `SHA256SUMS` in the worktree; `git status` shows only these and the untracked `BRIEF_AR.md`. No Git writes, cargo, installs or system-temp use.
+
+---
+
+## Addendum A: confirmation at H2 (2026-10-05)
+
+**Reviewer.** The same AR instance. I made no Git writes. The original review is bytes 1–17,712 of this file (sha256 `2437c0bf…`, the first line of `SHA256SUMS`). H2's commit of it is byte-identical. ROOT's request permitted these runs: GEN-8, the two validators, `test_public_export_profile.py`, the renderer's `--check`, and the exporter with `--stage-dir` under `WT/scratch/ar_aum_01/`.
+
+**Candidate.** H2 = `6049100caa427dc8ba9a03f1f16240c912b540f7`. Its parent is `09fd599bbc`, whose parent is H (`4c286de23f`). Main is still `87661be164`. The PR is open, a draft and MERGEABLE. When I looked, hosted `harness` and "App Runtime integration" were still in progress on H2. Every finished check had passed or been skipped by coverage selection.
+
+### Verdict at H2: REPAIR
+
+| Severity | Count (this addendum) |
+|---|---|
+| BLOCKING | 0 |
+| MAJOR | 1 |
+| MINOR | 1 |
+| NOTE | 1 |
+
+MAJOR-1 is repaired correctly. NOTE-1, NOTE-2 and NOTE-3 are applied correctly. The export manifest is exactly the exporter's output for H2's tree. One new MAJOR remains, introduced by the regeneration: the export report records a machine-absolute path.
+
+### The original findings
+- **MAJOR-1: repaired.** I checked all seven pins against the resources and against main's file bytes (`A_pins.log`). Each resource entry exists exactly once and records exactly the hash the notice states. Each stated hash equals main's bytes and differs from H2's.
+
+  | Resource | Pinned file | Notice hash = resource = main | H2 hash |
+  |---|---|---|---|
+  | `SOURCE_MAP.json`, `loop` | `V4/loop/LOOP_INIT.md` | `45c23cf4…` | `c2e88f81…` |
+  | `policy_standing/basis.json` | `V4/loop/LOOP_INIT.md` | `45c23cf4…` | `c2e88f81…` |
+  | `policy_standing/a16/basis.json` | `V4/loop/LOOP_INIT.md` | `45c23cf4…` | `c2e88f81…` |
+  | `SOURCE_MAP.json`, `manual_index` | `docs/alignment-manual/README.md` | `31217d30…` | `e5d23a6e…` |
+  | `policy_standing/basis.json` | `docs/alignment-manual/README.md` | `31217d30…` | `e5d23a6e…` |
+  | `SOURCE_MAP.json`, `user_manual` | AUM | `08ca0e40…` | `1ba63acd…` |
+  | `policy_standing/basis.json` | AUM | `08ca0e40…` | `1ba63acd…` |
+
+  The three resources pin no other file that the PR changes. The manifest rationale ("seven hashes … three pins of that LOOP_INIT, and four pins of the alignment-manual README and the Agent User Manual Markdown") is true. RULINGS Addendum A's erratum to ruling 8 is true. Nothing new is false.
+- **NOTE-1: applied.** RULINGS Addendum A says "the 'stale at this basis' Node note was false at every basis it was rendered with". That is true: none of the build guide versions at the AUM HTML's seven render bases, `b3e2ce4` to `1cb9fd536e`, contains `>=20`, and `a89b5ddecf` precedes the first of them.
+- **NOTE-2: applied.** B1 and B2 now read "`AGENTS.md` holds the project constraints and fences", which is true. The change from the piping run's §B text is recorded in RULINGS Addendum A.
+- **NOTE-3: applied.** Row 8 now reads "these sources do not expand scope or lift holds", which is true.
+- **NOTE-4: applied,** but see A-MAJOR-1 and A-NOTE-1.
+- **NOTE-5:** no change, as ruled.
+
+### New findings
+
+#### A-MAJOR-1: the regenerated export report records a machine-absolute path
+
+**Evidence.** In H2's `exports/chirality-app/export-report.md`, line 5 reads "- Staging path: `` `<absolute path under the owner's home directory, ending …/.claude/t3/scratch/aum_pr/export_stage>` ``". At H and at every earlier report it read "- Staging path: `exports/chirality-app/staging`".
+- **The cause.** `write_report` prints the stage path relative to `REPO_ROOT` when it can, and otherwise prints the absolute path. This happened because the stage was outside the repository.
+- **The scope.** It is the only machine-absolute path among H→H2's added lines, and no credential pattern appears in them.
+- **The checks.** GEN-8 passes on H2, so it does not catch this file.
+- **The precedent.** The same defect appeared once before, in `7bd2283dbc`, and was repaired under a review HOLD in `d2929fd62b`: "the report records the default staging path".
+
+**Fix.** Re-run `python3 exports/chirality-app/export_public.py` with the default stage. `exports/chirality-app/staging` is gitignored (`.gitignore`, `exports/*/staging/`). Commit the report, then remove the staging folder. The manifest will not change: the stage location does not affect it, since my stage path differs from ROOT's and the manifests are byte-identical. The report should then differ from H2's only in line 5. Adjust RULINGS Addendum A's "It is staged outside the repository" accordingly.
+
+#### A-MINOR-1: the manifest's scope limit excludes the export files that H2 now changes
+
+The manifest's `scope_limits` says "the paths above, this run's records and the App v4 notice only". H2 also changes `exports/chirality-app/export-manifest.csv` and `exports/chirality-app/export-report.md`, which are not listed. Earlier manual tranches that regenerated the export listed both paths (`ROOT-MANUAL-60PCT-20261004.yaml` lines 19–20 and its scope limit; `ROOT-DGOV52-APPLICATION-20261004.yaml` lines 52–53). G4 passes either way, because it does not check `scope_limits`.
+
+**Fix.** Add both paths to `instruction_surface_paths`, or name them in `scope_limits`.
+
+#### A-NOTE-1: erratum to my NOTE-4
+
+I wrote that main was behind on `workflows/index.json`. It was not. The exporter rewrites `workflows/index.json` into the stage (it filters out the project-only skill), so the export row legitimately differs from the repository file. Only construct's `WORKFLOW.md` row was behind on main. H2's manifest is consistent with this: it changes construct's row and not the index row.
+
+### Checks at H2
+- **The export.** I ran `exports/chirality-app/export_public.py` from H2's clean tree, with the stage at `WT/scratch/ar_aum_01/export_stage`. I ran the exporter's `main()` steps (`build_stage`, `write_manifest`, `boundary_findings`, `write_report`) unchanged, with only the two metadata output paths redirected to `WT/scratch/ar_aum_01/export_out/` and their location check disabled, so that no tracked file was written. The script is `run_export_redirected.py`.
+  - The result was 1,878 rows, 0 sanitized and 0 boundary findings.
+  - **`export-manifest.csv`** is byte-identical to H2's.
+  - **`export-report.md`** differs from H2's only at line 5, the staging path (A-MAJOR-1).
+  - **H→H2 manifest rows.** The changes are exactly the three AUM files, construct's `WORKFLOW.md` and the three new tranche manifests (`PIPING-LOOP-INIT-20261005`, `ROOT-CONSTRUCT-LOOPINIT-WORDING-20261005`, `ROOT-LOOPINIT-AUM-ALIGNMENT-20261005`).
+- **The AUM.** The Markdown, the HTML and `docs/alignment-manual/README.md` are unchanged from H to H2. The renderer's `--check` with the README's arguments gives "Verified".
+- **G4.**
+  - CI mode: PASS, 155 manifests.
+  - Diff mode against `origin/main` with `--tranche ROOT-LOOPINIT-AUM-ALIGNMENT-20261005`: PASS, 22 changed paths, 4 on the instruction surface, no BLOCK or WARN.
+  - With `--added-manifests-only`: PASS.
+- **The entrypoint validator.** "PASS: root instruction entrypoints are canonical."
+- **GEN-8.** `CHIRALITY_REQUIRE_LIVE_TESTS=1 … test_live_baseline.py -k gen8` at H2: 1 passed.
+- **`tools/validation/test_public_export_profile.py`.** 5 passed, with pytest's base temp under `WT/scratch/ar_aum_01/pytest_tmp/`.
+- **Committed records.** `reviews/AR-AUM.md` and `reviews/SHA256SUMS` at H2 match what I wrote. `BRIEF_AR.md` is committed.
+
+Logs are `A_*.log`, `export_run.log` and `export_out/` in `WT/scratch/ar_aum_01/`. After every run, `git status` in `WT/aum-pr` was clean apart from this append.
+
+### Remaining condition
+Repair A-MAJOR-1, and A-MINOR-1 or a ruling on it. Then `harness` and the other hosted checks must pass on the final head, and main must not have moved. A re-run with the default stage changes only `export-report.md` line 5 and records, so a confirmation by me can be limited to that delta.
