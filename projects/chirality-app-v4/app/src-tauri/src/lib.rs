@@ -7,12 +7,16 @@
 
 pub mod access;
 pub mod act_control;
+pub mod act_policy;
+pub mod attachments;
 pub mod canonical;
 pub mod catalog;
 pub mod decision_view;
 pub mod external_observation;
 pub mod hosting;
 pub mod native_items;
+pub mod native_history;
+pub mod role_lifecycle;
 pub mod native_requests;
 pub mod receiving;
 pub mod recorder;
@@ -21,6 +25,7 @@ pub mod recovery;
 pub mod role_supply;
 pub mod runtime_session;
 pub mod schema_validation;
+pub mod standing;
 pub mod storage;
 pub mod util;
 
@@ -37,8 +42,10 @@ pub struct AppState {
     host_config: Result<HostConfig, String>,
     workspace: Option<PathBuf>,
     act: Mutex<Option<ActControl>>,
+    decision_writer_status: Mutex<Value>,
     person_name: Mutex<Option<String>>,
     runtime: Mutex<runtime_session::RuntimeSession>,
+    history: Mutex<runtime_session::HistorySession>,
     access_selection: Mutex<Option<access::ConversationSelection>>,
     instructions_root: Mutex<Result<PathBuf, String>>,
     app_user_data_root: Mutex<Result<PathBuf, String>>,
@@ -97,6 +104,18 @@ fn host_status(state: State<'_, AppState>) -> Value {
         s["configurationProblem"] = json!(e);
     }
     s["roleSupply"] = state.role_supply_status.lock().unwrap().clone();
+    let mut history = state.history.lock().unwrap();
+    history.reconcile(&state.host);
+    let root = state.instructions_root.lock().unwrap().clone();
+    s["nativeHistory"] = history.snapshot(root.as_deref().ok());
+    s["roleSupply"]["originalStartReceipts"] = s["nativeHistory"]["startReceipts"].clone();
+    for thread in s["threads"].as_array_mut().into_iter().flatten() {
+        if let (Some(home), Some(id)) = (thread["generation"]["home"].as_str(), thread["threadId"].as_str()) {
+            let role = history.role_details(home, id, root.as_deref().ok());
+            thread["appRole"] = role["appRole"].clone();
+            thread["futureGuidanceNotices"] = role["futureGuidanceNotices"].clone();
+        }
+    }
     s["externalObservation"] = state.external_observation.lock().unwrap().snapshot();
     if let Err(e) = &*state.instructions_root.lock().unwrap() {
         s["instructionsProblem"] = json!(e);
@@ -142,43 +161,80 @@ fn thread_start(
     let composition = runtime_session::compose_role(&root, role)?;
     composition.verify()?;
     let generation = state.host.snapshot()["generation"].clone();
-    let mut selection =
-        access::ConversationSelection::new(&util::opaque_id("conversation:")?, &cwd)?;
+    let attempt_id = util::opaque_id("conversation:")?;
+    let mut selection = access::ConversationSelection::new(&attempt_id, &cwd)?;
     selection.choose(&entry_id, &model_provider, &model, false)?;
     selection.start_params(&generation, "account", false)?;
-    // Serialize starts while leaving observer/status reads independent of transport wait.
-    {
+    // Serialize the claim; fallible no-effect preparation completes before
+    // either shared state publishes Starting. Transport waits hold no slot lock.
+    let supply_ref = {
         let mut slot = state.access_selection.lock().unwrap();
-        if slot
-            .as_ref()
-            .map(|s| s.snapshot()["state"] == "starting")
-            .unwrap_or(false)
-        {
-            return Err("thread start in progress".into());
+        let supply_ref = runtime_session::claim_start(&mut slot, selection, || util::opaque_id("sup:"))?;
+        *state.role_supply_status.lock().unwrap() = json!({"state":"starting","attemptId":attempt_id,"selection":role,"generation":generation,"carried":composition.carried,"adoption":"unknown","nativeChildRoles":composition.child_status(None,false)});
+        supply_ref
+    };
+    // Freeze the verified original composition before native dispatch. Actual
+    // Host receipt IDs, exact sent bytes and correlated results bind its role.
+    let dispatch = state.host.thread_start_with_guidance_dispatch(&generation, &cwd, &model, &model_provider, &composition.text);
+    // All post-claim failures flow through finalization; ? cannot strand Starting.
+    let result = (|| -> Result<Value, String> { match dispatch {
+        Ok(receipt) => {
+            state.history.lock().unwrap().start_dispatched(receipt.clone(), &composition, &supply_ref)
+                .map_err(|error| format!("Native start dispatched; original role preparation failed: {error}. Native effect remains as observed in the retained receipt; no automatic resend"))?;
+            let waited = state.host.source_request_wait(&receipt, std::time::Duration::from_secs(20));
+            state.history.lock().unwrap().reconcile(&state.host);
+            match waited {
+                Ok(evidence) if state.history.lock().unwrap().start_admitted(&receipt) => Ok(evidence["response"].clone()),
+                Ok(evidence) => Err(format!("Native start remains {} (write {}); no automatic retry", evidence["outcome"], evidence["writeResult"])),
+                Err(error) => Err(error),
+            }
+        },
+        Err(error) => Err(error),
+    } })();
+    let result = {
+        let mut slot = state.access_selection.lock().unwrap();
+        let result = match slot.as_mut() {
+            Some(selection) => runtime_session::finalize_start_attempt(selection, &attempt_id, &generation, &state.host.snapshot()["generation"], result),
+            None => Err("Start selection unavailable; native effect remains as observed in retained receipts".into()),
+        };
+        let mut status = state.role_supply_status.lock().unwrap();
+        if status["attemptId"] == attempt_id && status["generation"] == generation {
+            *status = json!({"state":if result.is_ok(){"response-observed"}else{"start-failed-or-unknown"},"attemptId":attempt_id,"selection":role,"generation":generation,"carried":composition.carried,"adoption":"unknown","nativeChildRoles":composition.child_status(None,false)});
         }
-        *slot = Some(selection);
-    }
-    *state.role_supply_status.lock().unwrap() = json!({"state":"starting","selection":role,"generation":generation,"carried":composition.carried,"adoption":"unknown","nativeChildRoles":composition.child_status(None,false)});
-    let result =
-        state
-            .host
-            .thread_start_with_guidance(&cwd, &model, &model_provider, &composition.text);
-    *state.role_supply_status.lock().unwrap() = json!({"state":if result.is_ok(){"response-observed"}else{"start-failed-or-unknown"},"selection":role,"generation":generation,"carried":composition.carried,"adoption":"unknown","nativeChildRoles":composition.child_status(None,false)});
-    let mut slot = state.access_selection.lock().unwrap();
-    let selection = slot.as_mut().ok_or("selection unavailable")?;
-    match &result {
-        Ok(response) if state.host.snapshot()["generation"] == generation => {
-            selection.started(&generation, &response["result"])?;
-        }
-        Ok(_) => {
-            selection.start_failed("unknown: owning generation changed during thread start")?;
-            return Err("owning generation changed during thread start".into());
-        }
-        Err(e) => {
-            selection.start_failed(e)?;
-        }
-    }
+        result
+    };
     result
+}
+
+/// Stored history is a native read view. Only explicit Continue asks for resume;
+/// the private Host receipt and current history revision govern active admission.
+#[tauri::command(async)]
+fn history_action(
+    state: State<'_, AppState>, generation: Value, selection_epoch: u64,
+    action: String, cursor: Option<String>, direction: String,
+    reference: Option<String>,
+) -> Result<Value, String> {
+    let query = {
+        let mut history = state.history.lock().unwrap();
+        history.reconcile(&state.host);
+        history.prepare(&state.host.snapshot(), &generation, selection_epoch, &action, cursor.as_deref(), match direction.as_str() { "asc" => native_history::Direction::Asc, "desc" => native_history::Direction::Desc, _ => return Err("Invalid history paging direction".into()) }, reference.as_deref())?
+    };
+    let receipt = state.host.history_dispatch(&query)?;
+    state.history.lock().unwrap().dispatched(receipt.clone());
+    let waited = state.host.history_wait(&receipt, std::time::Duration::from_secs(20));
+    let mut history = state.history.lock().unwrap();
+    history.reconcile(&state.host);
+    waited?;
+    let root = state.instructions_root.lock().unwrap().clone();
+    Ok(history.snapshot(root.as_deref().ok()))
+}
+#[tauri::command]
+fn history_select(state: State<'_, AppState>, generation: Value, selection_epoch: u64, thread_id: String) -> Result<Value, String> {
+    let mut history = state.history.lock().unwrap();
+    history.reconcile(&state.host);
+    history.select(&state.host.snapshot(), &generation, selection_epoch, &thread_id)?;
+    let root = state.instructions_root.lock().unwrap().clone();
+    Ok(history.snapshot(root.as_deref().ok()))
 }
 
 #[tauri::command(async)]
@@ -323,36 +379,20 @@ fn set_person_name(state: State<'_, AppState>, name: String) {
 
 #[tauri::command]
 fn decision_view(state: State<'_, AppState>) -> Result<Value, String> {
-    let ws = state
-        .workspace
-        .as_ref()
-        .ok_or("CHIRALITY_WORKSPACE is not set")?;
-    // Writer continuation flushes admitted native pending work before ordinary recorder appends.
-    let mut g = state.act.lock().unwrap();
-    let (recovery, written) = if let Some(ac) = g.as_mut() {
-        let (recovery, written) = ac.refresh_recording();
-        (Some(recovery), written)
-    } else {
-        (
-            None,
-            Err("native writer state unavailable; recorder continuation held".into()),
-        )
-    };
-    let mut v = decision_view::derive(ws, &[]);
-    match written {
-        Ok(written) => v["requestsRecordedNow"] = json!(written.len()),
-        Err(e) => v["limits"].as_array_mut().unwrap().push(json!(e)),
-    }
-    if let Some(recovery) = recovery {
-        match recovery {
-            Ok(results) => v["captureRecovery"] = json!(results),
-            Err(e) => {
-                v["captureRecovery"] = json!([{"state":"AC-8 record pending","writeFailure":e}])
-            }
-        }
-    }
-    v["workspace"] = json!(ws.display().to_string());
-    Ok(v)
+    let ws = state.workspace.as_ref().ok_or("CHIRALITY_WORKSPACE is not set")?;
+    let mut view = runtime_session::read_decision_packages(ws);
+    view["writerStatus"] = state.decision_writer_status.lock().unwrap().clone();
+    Ok(view)
+}
+
+/// Explicit writer continuation; it is separate from every public read.
+#[tauri::command]
+fn continue_decision_recording(state: State<'_, AppState>) -> Result<Value, String> {
+    let ws = state.workspace.as_ref().ok_or("CHIRALITY_WORKSPACE is not set")?;
+    let mut control = state.act.lock().unwrap();
+    let status = runtime_session::continue_decision_writer(ws, control.as_mut(), "explicit-command");
+    *state.decision_writer_status.lock().unwrap() = status.clone();
+    Ok(status)
 }
 
 /// AI-9: the person opens the control from a pending row; the host composes the offer.
@@ -419,9 +459,11 @@ pub fn run() {
         host: Arc::new(Host::new()),
         host_config: host_config.clone(),
         act: Mutex::new(workspace.as_ref().map(|w| ActControl::new(w))),
+        decision_writer_status: Mutex::new(json!({"state":"not-run","responsibility":"decision record writer continuation"})),
         workspace,
         person_name: Mutex::new(None),
         runtime: Mutex::new(runtime_session::RuntimeSession::default()),
+        history: Mutex::new(runtime_session::HistorySession::default()),
         access_selection: Mutex::new(None),
         instructions_root: Mutex::new(Err("App instruction root not initialized".into())),
         app_user_data_root: Mutex::new(Err("App user-data root not initialized".into())),
@@ -436,6 +478,12 @@ pub fn run() {
         .setup(move |app| {
             let data = app.path().app_data_dir().map_err(|e| e.to_string());
             let state = app.state::<AppState>();
+            // Startup owns this separate writer continuation. Neither decision
+            // view reads nor host/status polling invokes the writer.
+            if let Some(ws) = state.workspace.as_ref() {
+                let mut control = state.act.lock().unwrap();
+                *state.decision_writer_status.lock().unwrap() = runtime_session::continue_decision_writer(ws, control.as_mut(), "app-startup-writer");
+            }
             *state.app_user_data_root.lock().unwrap() = data.clone();
             state.recovery_startup.lock().unwrap().initialize(
                 &host,
@@ -477,10 +525,13 @@ pub fn run() {
             host_start,
             host_stop,
             thread_start,
+            history_action,
+            history_select,
             conversation_send_text,
             conversation_interrupt,
             set_person_name,
             decision_view,
+            continue_decision_recording,
             compose_offer,
             decide
         ])
