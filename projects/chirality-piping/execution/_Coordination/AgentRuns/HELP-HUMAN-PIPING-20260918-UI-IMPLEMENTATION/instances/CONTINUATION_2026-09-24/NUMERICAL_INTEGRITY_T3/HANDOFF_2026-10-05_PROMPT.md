@@ -1,6 +1,6 @@
 # Steering prompt for the next T3 ROOT session (2026-10-05)
 
-Paste the block below as the first message of the new session. Start the session in the T3 integration worktree, `/Users/ryan/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/numerics`, or add that directory to the session.
+Paste the block below as the first message of the new session. Start the session in the T3 integration worktree, `<repo>/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/numerics`, where `<repo>` is the owner's main Chirality checkout on this host, or add that directory to the session.
 
 ---
 
