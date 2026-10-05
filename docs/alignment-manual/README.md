@@ -22,7 +22,7 @@ The visible source date and repository revision describe the edition’s basis. 
 
 ## Maintain the management-manual formats
 
-The Word and PDF editions follow the retained technical-reference book layout. The retained layout's preparation is recorded in the [v7 preparation and review evidence](../../plans/evidence/2026-09-22_manual_v7/). The v8 text revisions are recorded in the [App v4 manual change summary](../../projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GRAPH-CLOSURE-20261004/MANUAL_CHANGES.md). For a later revision, carry the authorized Markdown changes into the retained layout, preserve its typography and page setup, then regenerate and visually inspect the Word/PDF output. The renderer below generates the agent guide and field book HTML editions.
+The Word and PDF editions follow the retained technical-reference book layout. The retained layout's preparation is recorded in the [v7 preparation and review evidence](../../plans/evidence/2026-09-22_manual_v7/). The v8 text revisions are recorded in the [App v4 manual change summary](../../projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GRAPH-CLOSURE-20261004/MANUAL_CHANGES.md), and the 2026-10-05 revision of three §4.2 sentences in its [production note](../../plans/evidence/2026-10-05_manual_v8_loopinit/production-note.md). For a later revision, carry the authorized Markdown changes into the retained layout, preserve its typography and page setup, then regenerate and visually inspect the Word/PDF output. The renderer below generates the agent guide and field book HTML editions.
 
 ## Maintain the HTML edition
 
@@ -41,8 +41,8 @@ Render this edition with its explicit source basis:
 /tmp/chirality-manual-renderer/bin/python docs/alignment-manual/render_manual.py \
   --source docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md \
   --output docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html \
-  --basis-date 2026-10-04 \
-  --basis-revision 1cb9fd536e0bd21dc1ae949cc0533434c23258e1
+  --basis-date 2026-10-05 \
+  --basis-revision 7ba1181d43d063a0b11365697412df9bdbe2b2e6
 ```
 
 Render the field book with its reading label and source metadata at the end:

@@ -153,9 +153,9 @@ Steer (this run): <none>
 Entry is typed: the launcher selects `HELP_HUMAN` under the owner's
 instruction-separation direction (recorded verbatim in
 `projects/chirality-piping/execution/_Coordination/AgentRuns/INSTRUCTION-SEPARATION-20260717/RUN_RECORD.md`).
-The recurrent procedure, fences, and pointer index live in
-`projects/chirality-piping/loop/LOOP_INIT.md`; follow its live discovery
-pointers and receipt references. This supersedes the older
+`projects/chirality-piping/loop/LOOP_INIT.md` binds the loop to the shared
+workflows and manuals and holds its entry reading and record pointers; the
+project `AGENTS.md` holds its fences. This supersedes the older
 status-laden entry (`execution/_Coordination/NEXT_INSTANCE_PROMPT.md`), which
 remains as a historical map.
 
