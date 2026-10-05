@@ -11808,3 +11808,49 @@ ROOT asked the owner two questions in the session.
 - **G1:** RV95's same-reviewer confirmation of the repair, the package and the DEC-025 comparison goes in `R/REVIEW_RV95/u9_01/ADDENDUM_02.md`.
 - **The ROOT-authored repair:** ROOT wrote it, and RV95 is the independent check.
 - **Housekeeping:** the sweep's untracked summary JSON in the sweep tree was byte-equal to the copy in `WT/scratch/u9_dec025/F/` and was moved out of the tree before the checkout of F′.
+
+## #1082 merged at F′: the F2a D1 milestone is on main (ROOT, 2026-10-05 UTC)
+
+**The returns on F′, accepted:**
+- **I65's no-build Pass B on F′:** `R/I65/u9_refreeze_01/` (RETURN.md `6e1c143e…`; SHA256SUMS 26/26 OK). Every no-build gate is 0. The delta has 87 rows against 86, and the only added row is `s11k_tests.rs`, class `test`. All 11 reviewed entries match.
+- **RV89:** `R/REVIEW_RV89/u4_g7_03/ADDENDUM_02.md` (`89403fc2…`; SHA256SUMS 25/25 OK). **PASS, 0/0/1.**
+  - RV89's own inventory of `ba1faa1c..F′` equals I65's row for row, and 86 shared outputs are byte-identical.
+  - The build-gate argument holds, so no registered build of F′ is needed.
+  - **N-1, ruled:** I65's `g7_pass_nobuild.sh` is a one-off record, not a reusable gate tool. Any reuse first restores the fail-closed verdict, the exit code, the early stops, the `text_summary` gate and the delta-tool failure handling, and corrects the header.
+- **RV95:** `R/REVIEW_RV95/u9_01/ADDENDUM_02.md` (`51464018…`, 0/0/3) and `ADDENDUM_03.md` (`3e6438b8…`, 0/0/2); SHA256SUMS 127/127 OK. **CONFIRMED; nothing blocks the merge at F′.**
+  - **The walker** matches rustc on a 14-file synthetic tree, by dep-info, with and without `--cfg test`.
+  - **nonlinear_integration on F′:** 134.
+  - **Mutants:** W1, W2, W4 and W5 are killed. W3, the inline-`#[path]` base, survives the crate's own tests and is killed by RV95's probe.
+  - **DEC-025 on F′:** RV95's per-test reading equals ROOT's.
+  - **The notes, ruled:** B-1, C-1 and C-2 are optional hardening of the walker, routed. B-2 is closed by the full-suite-before-freeze rule. B-3 is a disclosed write to the system temp directory, removed.
+- **ROOT disclosure:** ROOT's records commit `104ebc183e` swept in I65's then in-progress `g7_pass_nobuild.sh`. It is byte-identical to the version I65 returned.
+
+**The gates on F′:**
+- **Hosted CI:** run 37247819786 succeeded, as did the full-SHA dispatch 37247819679 (`target_base` M); all 19 checks are green.
+- **DEC-025:** 34 of 40 manifests are identical to M; the other six differ only by added tests; the failing set is M's. pytest, vitest and both builds pass.
+- **GEN-8:** 1 passed.
+- **source_equality** 5/5, and **citations** 368/0/0.
+
+**The merge.** Immediately before it, `origin/main` was M `5fdc5ab601` and the PR head was F′; the PR read `CLEAN`.
+- ROOT marked #1082 ready and ran `gh pr merge --merge --match-head-commit` F′.
+- **Merge commit `0b00b8e8b6`** at 01:09:29Z, with parents M and F′. Auto-merge stayed off.
+- **The owner was notified, and the hold on main ends.** The merge is agent review, not personal owner review.
+
+**The post-merge record** is `IMPLEMENTATION/F2A_D1_MERGE/`: RECORD.md, `dec025/` (README, SUMMARY.json, `compare_suites.py`, `suites_vs_baseline.txt`, F′ and M and the first freeze's evidence), `_run_records/`, and SHA256SUMS (118 files).
+- **Host paths** are replaced by placeholders, and the originals' hashes are in `_run_records/ORIGINALS.json`. The DEC-025 driver copy is untouched (`9e34865b…`).
+- **A-1, the records not brought:** 6,346 files, 218.8 MB at NUM `104ebc183e`, by the same method that reproduces RV95's 6,103 files at `bb3d766379`.
+- **A-2:** the successor pins are identical on the two targets observed.
+- **A-3:** G7 carries to F′.
+- **G10, the native witness, is outstanding on the owner's Mac.**
+
+**Open:**
+- G10, the native witness;
+- U8, the deferred witnesses (RV93 N-5 included);
+- wider F2a, with RV95 N-6 re-qualification on any further identity;
+- S-I, F2b and F3;
+- the public-activation checklist;
+- the owner-held items;
+- T6 (RV95 N-5);
+- the routed notes (RV94 N-5, RV95 N-2, Pass B's deletion-only attribution, RV95 B-1/C-1/C-2, RV89 N-1).
+
+**Next:** U8.
