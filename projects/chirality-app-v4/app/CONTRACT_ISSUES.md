@@ -1,8 +1,28 @@
-# Contract issues found while building the skeleton
+# App v4 contract issues
 
-Run `APP-V4-GRAPH-CLOSURE-20261004`. Each entry gives the place, what was
-found, what the skeleton does for now, and a proposed change for change
-control. No Design file was edited.
+The CI-1…CI-9 reports below retain the original walking-skeleton findings from
+`APP-V4-GRAPH-CLOSURE-20261004`. Run `APP-V4-GROUP-A-20261004` resolves their
+current path through named reviewed Design changes and tested code. Native
+qualification and later Group A consumers remain separate obligations.
+
+| Issue | Current disposition and evidence |
+|---|---|
+| CI-1 | CC-R declared-ID references adopted; Rust embedded registry and Node canonical-schema checks pass without rewriting refs. |
+| CI-2 | CC-H/SUP1 full hosting generation adopted; NIR and NPTD definitions/prototypes reviewed. Current host records and cross-generation negatives pass. Standalone NPTD cross-home consumers remain named next-slice work. |
+| CI-3 | Package snapshot has no invented requester identity; the source-route kind and separately referenced missing-identity limit are recorded and tested. |
+| CI-4 | Owner chose exact absence label; omitted/empty/nonempty cases preserve request source and offer/capture/act wording. |
+| CI-5 | CC-A/P selected host-native frozen alternative mechanism is implemented and tested with explicit confirmation stand-ins; actual native authenticity witness remains open. |
+| CI-6 | Atomic durable capture, writer-owned IDs, ordered trusted late writes, add-once backlink and AC-7 link-pending semantics repaired/backchecked. CI-10 governs unverified cold replay. |
+| CI-7 | CC-H LT-24 unverified development route implemented. Hash alone never qualifies; known version/content contradictions refuse, preserving frames and metadata. |
+| CI-8 | Expected thread-start model contact is disclosed with its observation limits; explicit model/provider selection preserves Codex configuration. No new product network default selected. |
+| CI-9 | Approved jsonschema 0.58.5 runtime gate validates complete entries before append, with offline declared-ID resolution and refusal/no-mutation tests. |
+| CI-10 | Fail-closed native-origin repair is reviewed; trustworthy persistent replay still requires the retained SEAL-2 custody choice and evidence. |
+| CI-11 | Native userVerification positive acceptance remains unsupplied; published proof mapping is known, but truthful-client supplier route and exact backend binding are prerequisites. |
+| CI-12 | Bounded current reader/control repair addressed through reviewed RS/DV change; incomparable claims remain explicit, public reads are pure, and request binding is rechecked. Downstream adoption remains open. |
+
+Canonical review and command evidence lives in this run's `changes/`,
+`reviews/` and `validation/`. The Group A work graph carries incomplete
+consumer/native/qualification work. CI-10 custody and CI-11 native supplier receiving remain open below.
 
 ## CI-1 RS schema: relative `$ref` under a URN `$id`
 
@@ -173,3 +193,26 @@ control. No Design file was edited.
     EVIDENCE "Blocked"); or
   - have W-1 allow validation by a checker other than the writer, with the
     writer refusing what the checker rejects.
+
+## CI-10 Cold pending recovery lacks native-origin proof
+
+- **Run:** APP-V4-GROUP-A-20261004; independent review [V1-ACT](../execution/_Coordination/AgentRuns/APP-V4-GROUP-A-20261004/reviews/V1-ACT.md), ACT1. This new issue does not replace CI-1…CI-9 history.
+- **Where:** app act_control.rs `recover_pending`/`write_pending`, AAC §5.2a no-matching-record replay against NA-1/HA-10, AAC §6.3 SEAL-1/SEAL-2 and §6.4 writable-file limits.
+- **Found:** schema-valid matching pending and capture files in the writable project store can trigger `decision_view` to append a new `human_act`; inputSource text alone does not establish a native event. A file-drop/watch-folder route cannot create a person's act.
+- **Disposition:** required fail-closed repair and named AAC/RS prerequisite clarification CC-CUST-A/CC-CUST-R: trusted hot-process original capture may retry; an existing valid matching RS entry may repair its backlink without upgrading provenance; cold unverified files retain facts and a visible limit, with no new human_act. Fail-closed repair and source/code backchecks passed (V0-CUST, V1-ACT-R2).
+- **Unfinished required work:** trustworthy persistent replay and protected capture-origin proof remain in Group A I3. SEAL-2 selection requires the human App implementation owner's concrete decision; CAPTURE_CUSTODY_DECISION.md is preparation, not acceptance. Packaging/signing qualification stays with Group B at its actual point of need; moving the obligation does not complete it.
+
+## CI-11 Native userVerification receiving route is not supplied
+
+- **Observed source assessment:** 2026-10-05, stock Codex 0.160.0; [availability and NIR consequence packet](../execution/_Coordination/AgentRuns/APP-V4-GROUP-A-20261004/NATIVE_USER_VERIFICATION_AVAILABILITY.md). This is a separate discovery; CI-1…CI-10 history remains unchanged.
+- **Where:** NIR §4.1 known-answerable/person-input mode and FO-6 positive acceptance; pinned supplier initialization capability advertisement and documented proof handoff.
+- **Found:** published documentation supplies direct native proof in elicitation content, but the inspected advertisement predicate requires experimental API, supported hardware and codex-tui or exact local `Codex Desktop`. The App truthfully identifies as `chirality-app-v4`. This is source-derived capability advertisement evidence, not an observed or global claim that every verification primitive is unavailable. The inspected pages describe backend enrollment sequence but do not supply the exact backend endpoint contract.
+- **Pinned-source follow-up:** [stock route investigation and Parent corroboration](../execution/_Coordination/AgentRuns/APP-V4-GROUP-A-20261004/investigations/UV_STOCK_ROUTE_FOLLOWUP.md) distinguish direct experimental local RPC admission from hosted elicitation delivery. The inspected dispatcher permits truthful initialized local clients subject to platform/account/connection guards; no successful primitive call was witnessed. Enrollment creates local credential metadata and leaves backend registration to the caller. Hosted verification requests separately require an eligible connection; direct RPC access does not establish that Chirality delivery route or backend binding. No status/device/key/enrollment operation was performed.
+- **Current handling:** native acceptance without proof is explicitly unsupported; decline/cancel remain available. Truthful negotiated handling can conform while unavailable, but it does not complete the promised positive acceptance path. No spoofed client name, patched supplier, gated invocation or scope narrowing is adopted.
+- **Unfinished required work:** a documented stock-supplier receiving route for Chirality's truthful identity, exact enrollment/verifier binding and appropriate native success/rejection witnesses. Group A I1-UV retains the obligation. Continuing a disclosed increment does not close it; removing it needs an owning scope disposition. Native verification is separate from P3 per-act presence and SEAL-2 capture provenance.
+
+## CI-12 Reader order across independent record logs needs a basis
+
+- **Found:** 2026-10-05 during the next actual decision-view reader assessment, [I3-READER-NEXT](../execution/_Coordination/AgentRuns/APP-V4-GROUP-A-20261004/changes/I3-READER-NEXT.md). RS R-1 gathers independent writer and cited act logs; R-6 builds corrections and R-8 uses latest dispositions. The recovered contracts do not supply a total order for competing branches across independent logs. Existing reader work must not silently select by opaque record ID, filesystem path or discovery order.
+- **Adoption:** named `CC-RS-READER-ORDER` has independent RS and DV source concurrence. Current reader removes filename/UUID/time precedence, resolves duplicate/conflicting identities conservatively, preserves each contender and lapse history, and distinguishes recorded admission-order claims from human chronology/native verification. Explicit relations and the bounded source-reported P0 queue warrant remain usable. Core R2 and shared integration reviews are READY; original failures and intermediate findings remain in their records.
+- **Current checks and limits:** Core 54 and shared 42 focused author checks passed; independent original-reader controls and request-binding/hot-pending controls passed. Public decision-view reads write nothing; startup/explicit writer continuation is separate. Confirmation rechecks the immutable bound request without vetoing unrelated partial-tail recovery or ambiguous prior act history. Downstream DV adoption notice remains for its loop; native UI, full reader journeys and CI-10 trusted cold provenance remain unfinished. This disposition is bounded code receiving, not whole Group A or gate acceptance.

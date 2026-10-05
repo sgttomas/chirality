@@ -14,6 +14,8 @@ the App's error code for unfamiliar requests).
 """
 import datetime
 import hashlib
+import uuid
+import copy
 import json
 import os
 import queue
@@ -65,6 +67,7 @@ TRANSITIONS = {
     "LT-21": ("restart-waiting", "stop-requested", "stopped"),
     "LT-22": ("halted-after-repeated-failure", "stop-requested", "stopped"),
     "LT-23": ("stopping", "tree-ended", "stopped"),
+    "LT-24": ("verifying", "development-start-authorized", "spawning"),
 }
 
 # ---- §6.2.1 register transition table (RT-nn) -------------------------
@@ -82,6 +85,8 @@ REGISTER_TRANSITIONS = {
     "RT-11": ("outstanding", "generation-closed", "ended-unanswered"),
     "RT-12": ("answered", "supplier-reported-resolution", "answered"),
     "RT-13": ("declined", "supplier-reported-resolution", "declined"),
+    "RT-14": ("settling", "reply-written-protocol-error", "errored"),
+    "RT-15": ("errored", "supplier-reported-resolution", "errored"),
 }
 
 STABLE_KINDS = [
@@ -192,6 +197,9 @@ class Boundary:
         self.log_dir = log_dir
         self.spawn_argv = spawn_argv
         self.root = json.load(open(BUNDLE, encoding="utf-8"))
+        self.app_session, self.home = str(uuid.uuid4()), "prototype-account"
+        self.allow_unverified_dev = False
+        self.supplier_standing = "verified-pin"
         self.state, self.generation, self.child = "absent", 0, None
         self.seq, self.events, self.failures, self.fail_times = 0, [], 0, []
         self.transitions_used = set()
@@ -206,18 +214,23 @@ class Boundary:
         self.version_identity = None
         self.restart_at = None
 
+    def generation_identity(self, counter):
+        return None if not counter else {"appSession": self.app_session, "home": self.home, "spawnCounter": counter}
+
     # ---- lifecycle -----------------------------------------------------
     def _transition(self, tid, event, **extra):
         frm, ev, to = TRANSITIONS[tid]
         assert frm == self.state and ev == event, "illegal %s: %s --%s-->" % (tid, self.state, event)
         self.seq += 1
-        pre_spawn = ev in ("start-requested", "verification-passed", "verification-failed",
+        pre_spawn = ev in ("start-requested", "verification-passed", "verification-failed", "development-start-authorized",
                            "restart-delay-elapsed", "explicit-restart-requested") or \
             (ev == "stop-requested" and to == "stopped")
         rec = {"recordKind": "lifecycle-event", "sequence": self.seq, "transitionId": tid,
                "generation": None if pre_spawn else (self.generation or None),
                "fromState": frm, "event": ev,
                "toState": to, "at": now_text()}
+        if self.supplier_standing == "unverified-development":
+            rec["supplierStanding"] = self.supplier_standing
         rec.update(extra)
         self.events.append(rec)
         self.transitions_used.add(tid)
@@ -252,7 +265,9 @@ class Boundary:
         if self._injected_stop():
             return False
         d, e = self.distribution, self.expected
-        if d["label"] != e["label"]:
+        if not e.get("content") and d.get("label") == e.get("label") and d.get("outputPin") == DECLARED_PIN:
+            vr = {"result": "unverifiable", "reason": "no expected distribution identity"}
+        elif d["label"] != e["label"]:
             vr = {"result": "mismatch", "element": "observed version label"}
         elif d["content"] != e["content"]:
             vr = {"result": "mismatch", "element": "distribution content identity"}
@@ -260,10 +275,17 @@ class Boundary:
             vr = {"result": "mismatch", "element": "generated-output identity"}
         else:
             vr = {"result": "verified"}
-        if vr["result"] != "verified":
+        dev = self.allow_unverified_dev and vr["result"] == "unverifiable" and bool(d.get("label"))
+        if vr["result"] != "verified" and not dev:
             self._transition("LT-05", "verification-failed", verificationResult=vr)
             return False
-        self._transition("LT-04", "verification-passed", verificationResult=vr)
+        self.supplier_standing = "unverified-development" if dev else "verified-pin"
+        if dev:
+            self._transition("LT-24", "development-start-authorized", verificationResult=vr,
+                             supplierStanding=self.supplier_standing,
+                             reason="U-06 development run: unverified distribution, not the pinned supplier")
+        else:
+            self._transition("LT-04", "verification-passed", verificationResult=vr)
         if self._injected_stop():
             return False
         self.generation += 1
@@ -344,8 +366,8 @@ class Boundary:
         self.child.write({"jsonrpc": "2.0", "method": "initialized"})
         self._transition("LT-09", "handshake-completed", versionIdentity=self.version_identity,
                          declaredCapabilities=dict(self.declared))
-        self.delivered.append({"generation": g, "position": None, "class": "announcement",
-                               "announcement": "ready", "versionIdentity": self.version_identity})
+        self.delivered.append({"generation": self.generation_identity(g), "position": None, "class": "announcement",
+                               "announcement": "ready", "supplierStanding": self.supplier_standing, "versionIdentity": self.version_identity})
         for f in self.held:
             self._deliver(f)
         self.held = []
@@ -467,6 +489,7 @@ class Boundary:
     def _deliver(self, f):
         """H6: native frame unchanged; metadata beside it, never merged."""
         meta = {k: f[k] for k in ("generation", "position", "class", "reason", "neverReady") if k in f}
+        meta["generation"] = self.generation_identity(f["generation"])
         if f["class"] == "notification":
             meta["familiar"] = f["obj"]["method"] in self._familiar_notifications()
             self._observe_notification(f)
@@ -535,7 +558,7 @@ class Boundary:
         self.next_id += 1
         return self.next_id
 
-    def send(self, method, params, initiator):
+    def send(self, method, params, initiator, submission_association=None, persist_prepared=None, cancel_before_write=None):
         rec = {"recordKind": "client-request", "generation": self.generation or None,
                "requestIdentity": None, "method": method, "initiator": initiator,
                "sendPosition": None, "writeResult": "not-attempted", "outcome": "refused-not-sent"}
@@ -549,9 +572,47 @@ class Boundary:
             rec["refusalReason"] = "run-holding"  # HP-4, governance phase only
             self.client[("refused", len(self.client))] = rec
             return rec
+        g, pipe = self.generation, self.child
+        namespace = self.generation_identity(g)
+        if submission_association is not None:
+            params = copy.deepcopy(params)  # associated transient composition only; no generic credential-path change
+            assoc = copy.deepcopy(submission_association)
+            allowed = {"submissionRef", "threadId", "supplyRefs"} | ({"expectedTurnId"} if method == "turn/steer" else set())
+            refs = assoc.get("supplyRefs") if isinstance(assoc, dict) else None
+            valid = (isinstance(assoc, dict) and set(assoc) == allowed and method in ("turn/start", "turn/steer")
+                     and isinstance(assoc.get("submissionRef"), str) and assoc["submissionRef"].startswith("submission:")
+                     and len(assoc["submissionRef"]) > len("submission:") and g > 0
+                     and isinstance(assoc.get("threadId"), str) and bool(assoc["threadId"])
+                     and assoc["threadId"] == params.get("threadId") and isinstance(refs, list) and bool(refs)
+                     and all(isinstance(r, str) and r for r in refs) and len(set(refs)) == len(refs))
+            if method == "turn/steer":
+                valid = valid and isinstance(assoc.get("expectedTurnId"), str) and bool(assoc["expectedTurnId"]) and assoc["expectedTurnId"] == params.get("expectedTurnId")
+            if not valid or not callable(persist_prepared):
+                raise ValueError("invalid or unresolved submission association")
+            if any(r.get("submissionAssociation", {}).get("submissionRef") == assoc["submissionRef"] for r in self.client.values()):
+                raise ValueError("submission reference already reserved; no resend")
         rid = self._new_id()
+        rec["requestIdentity"] = rid
+        if submission_association is not None:
+            rec.update({"outcome": "prepared-not-sent", "submissionAssociation": assoc, "_generationIdentity": namespace})
+            self.client[(g, rid)] = rec
+            snapshot = {k: copy.deepcopy(v) for k, v in rec.items() if not k.startswith("_")}
+            snapshot["generation"] = namespace
+            try:
+                preserved = persist_prepared(snapshot)  # owner resolves full ordered NIR list and confirms durable custody
+            except (OSError, ValueError):
+                preserved = False
+            if preserved is not True:
+                rec["_preparationCause"] = "association-not-preserved"
+                return rec
+            if cancel_before_write and cancel_before_write():
+                rec["_preparationCause"] = "cancelled-before-write"
+                return rec
+            if self.state != "ready" or self.generation_identity(self.generation) != namespace or self.child is not pipe:
+                rec["_preparationCause"] = "generation-or-pipe-changed-before-write"
+                return rec
         self.out_pos += 1
-        rec.update({"requestIdentity": rid, "sendPosition": self.out_pos, "outcome": "pending"})
+        rec.update({"sendPosition": self.out_pos, "outcome": "pending"})
         guidance = []
         for el in ("baseInstructions", "developerInstructions"):
             if isinstance(params.get(el), str):
@@ -566,8 +627,38 @@ class Boundary:
                                                "params": params})
         if rec["writeResult"] == "write-failed":
             rec["outcome"] = "unknown-no-response"
-        self.client[(self.generation, rid)] = rec
+        self.client[(g, rid)] = rec
         return rec
+
+    def resolve_submission(self, submission_ref):
+        """Pointer-only observation over existing records; native reply remains the original source."""
+        matches = [r for r in self.client.values() if r.get("submissionAssociation", {}).get("submissionRef") == submission_ref]
+        if len(matches) != 1:
+            return {"submissionRef": submission_ref, "dispatchStatus": "unknown", "observationLimit": "association unavailable or conflicting"}
+        rec = matches[0]
+        assoc = rec["submissionAssociation"]
+        record_generation = rec.get("_generationIdentity")
+        if record_generation is None:
+            record_generation = rec["generation"] if isinstance(rec["generation"], dict) else self.generation_identity(rec["generation"])
+        view = {"submissionRef": submission_ref, "threadId": assoc["threadId"], "supplyRefs": copy.deepcopy(assoc["supplyRefs"]),
+                "generation": copy.deepcopy(record_generation), "requestIdentity": rec["requestIdentity"], "method": rec["method"],
+                "dispatchStatus": "written" if rec["writeResult"] == "written" else "unknown"}
+        if rec["outcome"] == "prepared-not-sent":
+            view["dispatchStatus"] = "not-sent" if rec.get("_preparationCause") else "prepared"
+            view["observationLimit"] = rec.get("_preparationCause", "prepared-only evidence; later dispatch not established")
+        elif rec["outcome"] != "response-observed-result":
+            view["observationLimit"] = rec["outcome"]
+        else:
+            result = rec.get("_result")
+            if not isinstance(result, dict) or (result.get("threadId", assoc["threadId"]) != assoc["threadId"]):
+                view["observationLimit"] = "native result unavailable or conflicting thread"
+                return view
+            native_turn = (result["turn"].get("id") if isinstance(result.get("turn"), dict) else None) if rec["method"] == "turn/start" else result.get("turnId")
+            if not isinstance(native_turn, str) or not native_turn or (rec["method"] == "turn/steer" and native_turn != assoc["expectedTurnId"]):
+                view["observationLimit"] = "native turn missing or conflicting target"
+            else:
+                view["nativeTurnRef"] = native_turn
+        return view
 
     def wait_for(self, rec, seconds):
         end = time.monotonic() + seconds
@@ -581,6 +672,9 @@ class Boundary:
         rec = self.client.get((f["generation"], f["obj"].get("id")))
         if rec is None or rec["outcome"] != "pending":
             return False
+        record_namespace = rec.get("_generationIdentity") or (rec["generation"] if isinstance(rec["generation"], dict) else None)
+        if record_namespace is not None and record_namespace != self.generation_identity(f["generation"]):
+            return False
         rec["responseReceiptPosition"] = f["position"]
         if "error" in f["obj"]:
             rec["outcome"] = "response-observed-error"
@@ -588,7 +682,9 @@ class Boundary:
         else:
             rec["outcome"] = "response-observed-result"
             rec["_result"] = f["obj"]["result"]
-            self._observe_response(rec)
+            association = rec.get("submissionAssociation")
+            if association is None or self.resolve_submission(association["submissionRef"]).get("nativeTurnRef"):
+                self._observe_response(rec)
         return True
 
     # ---- register (§6) --------------------------------------------------
@@ -642,7 +738,9 @@ class Boundary:
 
     def answer(self, request_identity, native, origin, generation=None):
         """§6.4 answer operation. Returns 'accepted-for-write' or 'refused(<reason>)'."""
-        g = generation or self.generation
+        if generation is not None and generation != self.generation_identity(self.generation):
+            return "refused(generation-closed)"
+        g = self.generation  # internal cache is scoped to this session/home only
         e = self.register.get((g, json.dumps(request_identity)))
         if e is None:
             return "refused(no-such-request)"
@@ -676,6 +774,40 @@ class Boundary:
             self._reg(e, "RT-07", "reply-written-affirmative-or-content", "answered")
         return "accepted-for-write"
 
+    def protocol_error(self, request_identity, native, origin, generation=None):
+        """CC-H-RT-LATE: later R9 error only; receipt RT-02/03 stays _write_error()."""
+        if generation is not None and generation != self.generation_identity(self.generation):
+            return "refused(generation-closed)"
+        e = self.register.get((self.generation, json.dumps(request_identity)))
+        if e is None:
+            return "refused(no-such-request)"
+        if e["generation"] != self.generation or self.state != "ready":
+            return "refused(generation-closed)"
+        if e["state"] == "resolved-by-supplier":
+            return "refused(already-resolved)"
+        if e["state"] != "outstanding":
+            return "refused(already-settled)"
+        permitted = isinstance(origin, dict) and (
+            origin.get("class") == "app-explicit-error" or
+            (origin.get("class") == "app-rule" and isinstance(origin.get("ruleName"), str)
+             and bool(origin["ruleName"].strip())))
+        if e["classification"] != "known-answerable" or not permitted:
+            return "refused(origin-not-permitted)"
+        if not isinstance(native, dict) or type(native.get("code")) is not int or not isinstance(native.get("message"), str):
+            return "refused(invalid-answer)"
+        try:
+            json.dumps(native, allow_nan=False)
+        except (TypeError, ValueError):
+            return "refused(invalid-answer)"
+        e["settlement"] = {"kind": "error", "nativeContent": native, "origin": origin}
+        self._reg(e, "RT-06", "answer-accepted-for-write", "settling")
+        e["replyWriteResult"] = self.child.write({"jsonrpc": "2.0", "id": request_identity, "error": native})
+        if e["replyWriteResult"] == "written":
+            self._reg(e, "RT-14", "reply-written-protocol-error", "errored")
+        else:
+            self._reg(e, "RT-09", "reply-write-failed", "settle-write-failed")
+        return "accepted-for-write"
+
     # ---- notifications and §8.3 destination facts -------------------------
     def _observe_notification(self, f):
         obj = f["obj"]
@@ -690,6 +822,13 @@ class Boundary:
             elif e["state"] in ("answered", "declined"):
                 tid = "RT-12" if e["state"] == "answered" else "RT-13"
                 self._reg(e, tid, "supplier-reported-resolution", e["state"])
+                e["acknowledgmentObservation"] = {"status": "observed",
+                                                  "what": "serverRequest/resolved after the written reply"}
+            elif (e["state"] == "errored" and e["classification"] == "known-answerable"
+                  and e.get("settlement", {}).get("kind") == "error"
+                  and e["replyWriteResult"] == "written"
+                  and f["generation"] == self.generation and self.state in ("ready", "stopping")):
+                self._reg(e, "RT-15", "supplier-reported-resolution", "errored")
                 e["acknowledgmentObservation"] = {"status": "observed",
                                                   "what": "serverRequest/resolved after the written reply"}
         elif m == "model/rerouted":
@@ -726,9 +865,16 @@ class Boundary:
 
     # ---- records for S-7 --------------------------------------------------
     def records(self):
-        out = list(self.events)
+        out = [dict(event) for event in self.events]
         for rec in self.client.values():
-            out.append({k: v for k, v in rec.items() if not k.startswith("_")})
+            exported = {k: v for k, v in rec.items() if not k.startswith("_")}
+            if rec.get("_generationIdentity") is not None:
+                exported["generation"] = copy.deepcopy(rec["_generationIdentity"])
+            out.append(exported)
         for e in self.register.values():
             out.append(dict(e))
+        for rec in out:
+            counter = rec.get("generation")
+            rec["generation"] = copy.deepcopy(counter) if isinstance(counter, dict) else None if counter is None else {"appSession": self.app_session,
+                "home": self.home, "spawnCounter": counter}
         return out
