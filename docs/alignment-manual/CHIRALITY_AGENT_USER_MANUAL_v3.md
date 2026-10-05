@@ -2,7 +2,9 @@
 
 Version 3 · 22 September 2026 · repository source basis `b3e2ce4ec74e01d6f393fc0bc069699bb079df91`
 
-An operational companion to version 7 of [*Project Management for Human–Agent Teams*](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md), for agents developing projects in the Chirality repository.
+*Revised 4 October 2026: 60% gate guidance in §5 ([Discern and pass the 60% gate](#gate-60)) and §8; receipt content and decision recording in §13; [App v4 entry](#app-v4) in §14; links now point to the book's current edition. Other content and its source basis are unchanged.*
+
+An operational companion to the current edition of [*Project Management for Human–Agent Teams*](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md), for agents developing projects in the Chirality repository.
 
 **Status:** explanatory documentation. This manual supplies navigation, working explanations, and illustrative examples. It does not amend instructions, adopt a workflow, activate project work, change a lifecycle state, accept a product, or authorize release. Follow the actual human direction, applicable adopted instructions, selected method, brief, and host permissions. Recheck the linked live sources when using a later checkout. The project entry sections lead to maintained instructions and pointers. Recover their current targets and later owner directions before selecting work; dated evidence does not supply a standing work queue. [Root entry][root-entry] · [Runtime contract][runtime-contract]
 
@@ -63,7 +65,7 @@ The common route in this guide applies across project types. The exact product, 
 
 ### Read the published route with its adoption boundary
 
-Version 7 develops an undertaking around substantive implementation and evidence integration, one planned documentation/governance closeout before its final PR, terse deliverable run entries, and final review and merge. Documentation and reconciliation needed for a substantive slice travel with that slice. A completed node or PR does not itself require another formal reconciliation pass or Task Management intake. The published development-loop amendment now aligns the shared methods and revised App/Piping instruction sources with that arrangement. [Human manual §§4.2, 4.11, 5.6, 5.8][human-manual] · [Accepted instruction amendment][development-amendment]
+The management manual, since version 7, develops an undertaking around substantive implementation and evidence integration, one planned documentation/governance closeout before its final PR, terse deliverable run entries, and final review and merge. Documentation and reconciliation needed for a substantive slice travel with that slice. A completed node or PR does not itself require another formal reconciliation pass or Task Management intake. The published development-loop amendment now aligns the shared methods and revised App/Piping instruction sources with that arrangement. [Human manual §§4.2, 4.11, 5.6, 5.8][human-manual] · [Accepted instruction amendment][development-amendment]
 
 The amendment records owner acceptance of the identified third-draft instruction package and takes effect for the shared instructions on publication. It supersedes only the named earlier provisions. Its publication is distinct from a receiving loop's authority-corpus adoption or repinning. Establish that loop's actual accepted basis before relying on changed project instructions. [Accepted instruction amendment][development-amendment] · [App notice][app-development-notice] · [Piping notice][piping-development-notice]
 
@@ -184,7 +186,7 @@ The human manual describes a six-part route: conceptual work, FEED, 30%, 60%, 90
 | Conceptual | Align intent, understand the product, identify constraints, develop the PRD or appropriate basis document. | Identified accepted direction, clear unresolved questions, and a usable basis for division. |
 | FEED | Decompose accepted scope and prepare the project workspace and production contracts. | Stable identities, scope coverage, usable deliverable definitions, and declared coordination. |
 | Work toward 30% | Establish the means of execution, declare dependencies, examine coupling, resolve ordering, and construct the first usable objective-relative DAG. | The accepted graph basis, resolved or explicitly held coupling, and an executable route. |
-| Work toward 60% | Develop technical details and interfaces through local undertakings; revise the project graph when warranted by scope/decomposition change. | A clearer route to completion with sufficiently developed relationships and recorded design decisions. |
+| Work toward 60% | Develop technical details and interfaces through local undertakings; revise the project graph when warranted by scope/decomposition change. | A clearer route to completion with sufficiently developed relationships and recorded design decisions; structure settled at DAG level, with each SCC given an accepted treatment under which its work can proceed ([below](#gate-60)). |
 | Work toward 90% | Carry the details into produced deliverables over longer horizons, integrate, reconcile, verify, and account for residual work. | An identified candidate and evidence for concentrated product examination. |
 | After 90%, toward 100% and delivery | Move from produced deliverables into concentrated product examination and debugging, then into the organization's 100% publication/delivery pipeline. Testing has also occurred throughout earlier development. | Delivered identity, continuing obligations, recipient information, and the applicable human acts. |
 
@@ -197,6 +199,51 @@ Where the revised concordance lifecycle is adopted, `IN_PROGRESS` remains the ho
 The practical distinction matters in reports. “Implementation and focused regression checks complete; native recovery witness remains” is a useful assignment result. It is not a declaration that the deliverable is ready for checking. “The PR merged” identifies source integration. It is not professional acceptance or publication. “The graph is complete” concerns the graph's stated undertaking and conditions. Its scope may be much smaller than a project milestone. [Chirality change conventions][chirality-change] · [Construct a local work graph][construct-graph]
 
 Delivery likewise follows an actual arrangement, not a universal invented final workflow. Identify the recipient, delivered version, accepted scope, required packaging or transmittal, verification, operational responsibilities, and remaining obligations from the project. Prepare the package before seeking the reserved release or acceptance act. Preserve a prior authorized release as history without inferring authority for another. [Human manual, chapter 6][human-manual] · [App development boundaries][app-agents] · [Root entry][root-entry]
+
+<a id="gate-60"></a>
+
+### Discern and pass the 60% gate
+
+The 60% gate is the human's judgment that the project DAG will not change at the level that directs work, and that every SCC has an accepted treatment under which its work can proceed, so that development can continue in parallel with few or no conflicting outcomes. The DAG directs work by establishing which deliverables exist and the order in which groups of them can be completed. Finer relationships, such as the order of parts within a coupled group, the wording of an interface, or a newly found cross-reference, keep changing. Local work graphs order them; step 4 below says where relationships found later are recorded. Do not treat the gate as requiring a deliverable-level DAG with every cycle-closing reference reworded away. The project loop states who assesses the position; the App v4 loop, for example, reserves each stage-gate assessment to the human. [Human manual §4.12][human-manual] · [Cycle-driven resolution §§2, 4][cycles] · [App v4 loop][app-v4-loop]
+
+**Assemble the assessment.** The coordinating agent assembles it: HELP_HUMAN for the project position, with WORKING_ITEMS supplying the technical position of the undertakings it manages. TASK can run a bounded part, such as a design inventory, a grouping check, or a reach check on proposed rows, and returns findings without deciding. Work from the accepted DAG through `_DAG/_LATEST.md`, its held candidate layer, the live registers, and the reviewed Design files.
+
+| Part | What to establish |
+|---|---|
+| Design inventory | Every deliverable has reviewed Design files with interfaces. Name each thin design (partial scope or outline) with its owner as loop-level completion work, unless its development could change the deliverable set or the group order. |
+| Grouping test | (1) Form working groups from the SCCs, adding the deliverables most closely bound to them. (2) Check that every held row lies inside one group, including known design-level dependencies not yet registered. (3) Check that dependencies between groups run one way; a counter-order dependency that closes no deliverable-level cycle is left to a work graph. (4) Check that each residual risk is contained. |
+| Residual-risk containment | List each residual risk, such as an unresolved interface or external join, a pending placement question, a design's open reach into its consumers, or a body of unregistered dependencies. Give the group or identified join that contains it and its owner. |
+| Open matters | Sort them by who closes them: design agents, the human, or outside parties. Only matters that could add or remove a deliverable, or reverse the group order, bear on the gate. |
+| Evidence standing | State what is built, prototyped, or only specified. Fixtures and prototypes are consistent with 60% when reported as such. |
+| Proposed continuation | The groups, their members and their order, the loops that will take them, the core for the walking skeleton, and the change-control arrangement. |
+
+If a held row crosses groups, or two groups depend on each other through a cycle, the structure is not settled at DAG level. Report the crossing and the structural options: regroup, decompose, invert, or an owner-gated cut or merge. Grouping co-defined members into one development undertaking (grouping for development) is a planning arrangement that the human accepts, typically with the gate. It is not a merge ruling under the doctrine's §2 rule 3 or `project-dag` selection: the SCCs remain unresolved, their rows stay held as `SCC_UNRESOLVED`, and their cases stay open. The held rows remain non-gating, and the group's local work graph orders the parts by the specific inputs each needs. If the human wants a recorded merge, cut or other move, it follows the doctrine and `project-dag` and produces a successor. [Cycle-driven resolution §2][cycles] · [SCC resolution case][scc-case]
+
+**Know when to stop analyzing.** Bring the position to the human, with the grouping test, when any of these signs appear:
+
+- each analysis round finds more coupling than it removes;
+- proposed moves leave runtime or verification residuals, each needing a further cut;
+- design authors narrow their own Designs so that a cycle closes on paper;
+- supporting work, such as surveys, inventories, cases, or tooling, grows while no usable product advances;
+- a recommendation to coordinate the coupled work under its existing owners is being dismissed as no resolution.
+
+Keep the analysis findings as records for the register updates and work graphs that follow. [Coordinated knowledge work §4][ckw] · [Human manual §4.12][human-manual]
+
+**The gate is the human's act.** Present the assessment briefly, with a recommendation and its grounds. If the human asks for your reading of the overall position, give it plainly, but do not record it as the decision. Record the human's exact words with their source and custody, for example in the run's `OWNER_DECISIONS.md`, transcribed verbatim with the session transcript named as custody. Keep your interpretation separate. Record the effect: which accepted DAG directs work; the groups, their members, the order between them and the grouping-test result; how the groups will be taken up; and that deliverable completion, acceptance, and release remain separate. A strict audit, a closed graph-closure undertaking, a merged PR, or agent review does not pass the gate. [Human manual §4.12][human-manual] · [App v4 loop][app-v4-loop]
+
+**Set up the 90% development loops.**
+
+1. Assign one development loop per group, or per several groups. Each constructs its local work graph with `construct-local-work-graph` from the group order accepted at the gate. [Construct a local work graph][construct-graph]
+2. Start with a walking skeleton: one thin path of real code across the most coupled core, which tests the frozen contracts before work fans out. [Coordinated knowledge work §1][ckw]
+3. Freeze the core's contracts under change control. Log each contract issue that implementation finds, with file and section. Review it, decide it within authority or bring it to the human, and propagate it through the consumers' owners; use `scope-change` where decomposition changes. Do not absorb it quietly into one implementation or reopen the whole design. [Scope change][scope-change]
+4. Record each relationship found later where those who depend on it will see it: within a group, the group's work graph; across groups, the work graph of each affected loop, so that each sees it at entry. Where the other group has no work graph yet, record it in the finding loop's graph and carry it over when that graph is constructed: the loop constructing or resuming a group's graph reads the other groups' graphs for relationships recorded against its group. Create no new standing list for this (App v4 ruling GC-8; see its [groups record][app-v4-groups]). The register is not the only place, so a ready or blocked verdict read from the project DAG does not cover relationships recorded only in work graphs; read those before declaring work ready. Update Scope of Work and register rows when their wording would otherwise mislead about what a deliverable must deliver or receive, and bring those updates to the human in batches at natural boundaries: the project's scope-amendment route, then `dependency-extract` with its validators and a currency audit. SPEC §5.4 still governs the registers: a row that adds or removes an edge, or creates a cycle, is a departure, and the affected deliverables are DAG pending until the human accepts a candidate version or rejects the change. Several departures can be decided in one successor, as App v4's DAG-002 to DAG-004 were. Ask the human at once, not by threshold, when a relationship seems to run against the accepted group order, forms a cycle across groups, changes the deliverable set, would make another group's finished work wrong, or suggests that the grouping is wrong. In doubt, ask. This comes from one project's experience (App v4 rulings GC-7 and GC-8); it sets no thresholds or fixed tiers and leaves judgment to the moment. [SPEC §5.4][spec] · [Dependency extraction][dependency-extract] · [Project DAG][project-dag] · [Cycle-driven resolution §4][cycles]
+5. Measure effectiveness on delivery: steps running as tested code, time to the first end-to-end path, contract issues found and their disposition, and the share of output that is code and tests rather than records. Report supporting work separately. [Coordinated knowledge work §4][ckw]
+
+**Rulings worth carrying.** App v4 recorded the following as run rulings during its graph closure. They are offered here as general practice; a project applies them only through its own records and decisions. [App v4 graph-closure rulings][app-v4-gc-rulings]
+
+- **Opaque references.** An inversion that leaves a consumer carrying a supplier's values "by reference" removes the dependency only when two conditions hold. The reference is opaque: the consumer's Design uses no field, state value, or identity scheme that the supplier defines. Conformance is checked outside the consumer's definition: by the supplier, by a third party, or as a recorded verification row. An identifier is opaque when the consumer types it as an uninterpreted string, neither constructs, parses, nor validates it against the supplier's scheme (whole-string equality is allowed), and names the supplier or a third party as its resolver. A rewording that relies on this says so in its own text. If the consumer needs any part of the identifier's structure, the dependency remains, and a move must come from elsewhere.
+- **Design uses as dependencies.** Under part-level edge semantics such as App v4's (the consumer requires the supplier's contribution before the stated part of its work), a consumer's Design use of another deliverable's content is a dependency when the consumer needs that content to define or produce its own part: rules, vocabularies, states, identity schemes, or artifacts that its own rules or outputs depend on. This holds whether or not any Scope of Work states it. An attribution, cross-reference, example, uninterpreted identifier, or citation of a ruling whose own text carries the content is not a dependency. App v4 first required each such dependency to be removed by an accepted move or carried into the consumer's Scope of Work and register; its later ruling GC-7 relaxed that to recording it where those who depend on it will see it, as step 4 above describes.
+- **No narrowing to close a cycle.** A move that removes or narrows an obligation, an input the Design needs, or a check is not an inversion or a rewording. Label it as narrowing and bring it to the human only within a scope change the human can accept. Where the input is genuinely needed, record the residual and name the human act (cut, merge, or decomposition) that would close it. When rewordings are applied, each author states that the change narrows nothing, and the reviewer checks that statement. [Coordinated knowledge work §2][ckw]
 
 <a id="formation"></a>
 
@@ -285,7 +332,7 @@ Readiness follows the project's actual rule. Revised App selection verifies requ
 
 A strongly connected component, or SCC, identifies a set with circular ordering under the selected semantics. Its condensation is acyclic, but collapsing the picture does not settle the underlying production decision. Unresolved cycle-participating edges stay non-gating: they cannot drive dispatch readiness, blocker queues, wave placement, schedules, or implementation-readiness claims. Keep independent work available from a verified basis. [Cycle-driven resolution §2][cycles]
 
-The doctrine names four moves. **Decompose** separates an overly broad node, often an interface from implementation. **Invert** places dependence behind a contract. **Merge** treats the coupled work as one indivisible unit. **Cut** reclassifies an edge as outside the graph's objective. Record the rationale for every remedy. Decompose and invert are design refinements agents may propose; cut and merge encode interpretive authority and are human-gated. Use a short note for an obvious bounded refinement and a decision packet for contested or objective-dependent choices. [Cycle-driven resolution §§2–3][cycles]
+The doctrine names four moves. **Decompose** separates an overly broad node, often an interface from implementation. **Invert** places dependence behind a contract. **Merge** treats the coupled work as one indivisible unit. **Cut** reclassifies an edge as outside the graph's objective. Record the rationale for every remedy. Decompose and invert are design refinements agents may propose; cut and merge encode interpretive authority and are human-gated. Use a short note for an obvious bounded refinement and a decision packet for contested or objective-dependent choices. Near the 60% gate, components whose members were designed together are often better grouped for development, which leaves the SCC held and is not a merge ruling, than inverted relationship by relationship; see [Discern and pass the 60% gate](#gate-60). [Cycle-driven resolution §§2–3][cycles]
 
 An acyclic graph is not proof of a complete or useful graph. Verify inventory coverage, missing targets, edge meanings, and relevant external inputs before drawing a readiness conclusion. An omitted dependency can make the topology look cleaner while making execution less reliable. A large SCC should direct attention to decomposition and meaning; it is not a reason for a tool to auto-cut relationships until the drawing passes. [Cycle-driven resolution][cycles] · [Dependency extraction][dependency-extract]
 
@@ -448,7 +495,7 @@ Formal R6 backcheck creates a new derivative bound to the repaired source state 
 
 First identify what changed. A local implementation choice, an observed defect, a stale description, an unresolved design question, a changed accepted commitment, and a new human priority require different responses. Record the affected statement or interface, candidate, observation, consequence, and proposed next step. Exercise ordinary discretion inside the brief. An explicit adopted choice, protected criterion, owner-held act, or material scope change needs its owning decision before reversal. [WORKING_ITEMS][working-items] · [App selection and decisions][app-agents] · [Piping decisions][piping-agents]
 
-Prepare human decisions as concrete reviewable packages. Explain the current basis, finding, alternatives, recommendation, affected scope, risks, reversibility, and what each choice enables. Include the proposed text or artifact when feasible. Name the actual act requested: choosing an interface, accepting an amendment, opening a fence, freezing a candidate, or authorizing release. Do not smuggle several different acts into a generic “approve.” Preserve the human's words and distinguish them from the agent's interpretation; silence is no ruling. [Root entry][root-entry] · [CONTRACT K-AUTH-1, K-BIND-1][contract]
+Prepare human decisions as concrete reviewable packages. Explain the current basis, finding, alternatives, recommendation, affected scope, risks, reversibility, and what each choice enables. Include the proposed text or artifact when feasible. Name the actual act requested: choosing an interface, accepting an amendment, opening a fence, freezing a candidate, or authorizing release. Do not smuggle several different acts into a generic “approve.” Preserve the human's words and distinguish them from the agent's interpretation; silence is no ruling. Record each decision with the human's exact words, their source and their custody (for example, the session transcript), apart from your interpretation, and imply no review the human did not perform. [Root entry][root-entry] · [CONTRACT K-AUTH-1, K-BIND-1][contract]
 
 For accepted decomposition change, use the selected applicable `scope-change` method. Its current package groups preparation around the requested change and impact, the exact amendment and propagation plan, and the independently examined poststate. Preserve stable identity and lineage. Apply only accepted changes, route remediation to the owners of affected surfaces, regenerate or explicitly account for derivatives, and return unresolved obligations. Use the project's adopted checkpoint edition rather than imposing a new one from this guide. [Scope change][scope-change] · [Decomposition standard][decomp-standard]
 
@@ -467,6 +514,8 @@ Task Management makes concerns visible for human disposition and routes resultin
 ### Index the run without duplicating its decisions
 
 Under the revised arrangement, add a terse entry near final PR preparation in each affected deliverable's `MEMORY.md` Runs table. Use a stable run ID and date, state the work performed in that deliverable, and link the PR, central evidence, applicable rulings, scope changes, and Task Management transfers. Include only applicable references. Decision substance and detailed rationale stay at their central sources; label a pending proposal or intake as pending. The table has no future-work queue. [Human manual §§4.11, 5.6, 5.8][human-manual]
+
+Where the loop's method calls for one, write the undertaking's single central receipt near final PR preparation, at the location the method names (for `construct-local-work-graph`, `execution/_Coordination/AgentRuns/<RunID>/RECEIPT.md`, under the graph's stable run ID). It is a concise, derivative account of what landed: the affected deliverables, the actual PRs, the checks and evidence, any decisions or Task Management transfers, and material limits. Its result, checks and limits supply the final PR description. It is not a second execution graph, a future-work list or a decision record. Link the graph and the detailed sources rather than copying them. A graph node or a Task Management invocation creates no further receipt.
 
 | Run / date | Work performed here | Central references |
 |---|---|---|
@@ -538,6 +587,12 @@ Source principally lives under `frontend/src`, `frontend/electron`, `frontend/pa
 The registered App checks include `frontend-test`, `frontend-typecheck`, `frontend-build`, `frontend-premerge`, `harness-self-check`, `harness-pytest`, and `app-hold-integrity`. Project instructions additionally specify their applicable closeout, product-source, UI, native-host, packaging, and corpus-reconciliation obligations. Stop the ordinary dev server before build/package/premerge operations. The registered premerge check owns a stub service and `HARNESS_BASE_URL`; calling its npm script alone does not supply that setup. [App profile][app-profile] · [App checks][app-agents]
 
 `npm test`, `npm run typecheck`, and `npm run build` are declared in the frontend manifest; use them only as selected authorized checks. Packaging is separate: `desktop:prepare` prepares/builds inputs, while `desktop:pack` and `desktop:dist` consume prepared inputs and perform their declared verifiers. Their existence grants no signing, notarization, distribution, or release authority. Retained compatibility scripts do not establish another qualified MVP engine. Codex remains the App target, with application-owned Runtime hosting the stock Codex App Server under the current accepted boundaries. [App package manifest][app-package] · [App development boundaries][app-agents] · [Runtime PRD revision][runtime-revision]
+
+<a id="app-v4"></a>
+
+### Enter App v4 development
+
+App v4 (`projects/chirality-app-v4`) is a separate project from the App development described above. Enter through its `init/dev-loop-init-prompt.md`, which leads to `loop/LOOP_INIT.md`. Read a project `AGENTS.md` if one is established. Its `LOOP_INIT.md` binds it to this manual, the Field Book and the bundled workflows, and holds its project pointers, conventions and standing constraints. Nothing earlier in this section applies to App v4: the APP-HOLD-1 preflight, the `frontend/` layout, the App software profile and its registered checks belong to App development. [App v4 loop][app-v4-loop]
 
 <a id="piping"></a>
 
@@ -725,7 +780,7 @@ The version and repository revision identify this guide's documentation basis. T
 | Paths, lifecycle, dependency representation | [SPEC][spec], [TYPES][types], [cycle doctrine][cycles] |
 | Formation and setup | [software PRD][software-prd], [decomposition standard][decomp-standard], [workflow index][workflow-index], [project setup][project-setup] |
 | Production and examination | [Scope-of-Work standard][sow-standard], [software profile][software-profile], [concordance method][concordance] |
-| Repeated development | [v7 route and adoption boundary](#v7-adoption), [construct local graph][construct-graph], [bounded reconciliation][bounded-reconciliation], each project's live loop |
+| Repeated development | [route and adoption boundary](#v7-adoption), [construct local graph][construct-graph], [bounded reconciliation][bounded-reconciliation], each project's live loop |
 | Run indexing and conditional intake | [Runs entry](#memory-runs), [Task Management](#task-management), [human manual §5.6][human-manual] |
 | Change, integration, residual concerns | [scope change][scope-change], [Task Management][task-management], [Chirality change][chirality-change] |
 | Professional and domain limits | [DIRECTIVE][directive], the actual project rules, accepted domain sources and responsible human's decisions |
@@ -745,7 +800,7 @@ The human-facing manual uses **reckoning** for agent interpretation, comparison,
 [spec]: ../SPEC.md
 [types]: ../TYPES.md
 [directive]: ../DIRECTIVE.md
-[human-manual]: Project_Management_for_Human_Agent_Teams_Consolidated_v7.md
+[human-manual]: Project_Management_for_Human_Agent_Teams_Consolidated_v8.md
 [chirality-change]: ../../.agents/skills/chirality-change/SKILL.md
 [root-merge]: ../PRD_ROOT.md#531-merge-gate-policy--the-d-8-successor
 [dgov16]: ../governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md
@@ -767,6 +822,7 @@ The human-facing manual uses **reckoning** for agent interpretation, comparison,
 [dependency-extract]: ../../workflows/dependency-extract/WORKFLOW.md
 [concordance]: ../DELIVERABLE_CONCORDANCE_METHOD.md
 [construct-graph]: ../../workflows/construct-local-work-graph/WORKFLOW.md
+[ckw]: ../../workflows/coordinated-knowledge-work/WORKFLOW.md
 [graph-template]: ../../workflows/construct-local-work-graph/resources/work-graph-template.md
 [bounded-reconciliation]: ../../workflows/bounded-reconciliation/WORKFLOW.md
 [software-profile]: ../SOFTWARE_WORKFLOW_PROFILE.md
@@ -784,6 +840,9 @@ The human-facing manual uses **reckoning** for agent interpretation, comparison,
 [app-package]: ../../projects/chirality-app-dev/frontend/package.json
 [app-build]: ../../projects/chirality-app-dev/docs/BUILD_AND_RELEASE.md
 [app-hold]: ../../projects/chirality-app-dev/execution/_Scripts/app_hold.py
+[app-v4-loop]: ../../projects/chirality-app-v4/loop/LOOP_INIT.md
+[app-v4-groups]: ../../projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GRAPH-CLOSURE-20261004/GROUPS.md
+[app-v4-gc-rulings]: ../../projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GRAPH-CLOSURE-20261004/GC_RULINGS.md
 [app-local-notice]: ../../projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md
 [dapp130]: ../../projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-130_RULING_R4_GATE_RUN_D128_2026-09-22.md
 [piping-agents]: ../../projects/chirality-piping/AGENTS.md

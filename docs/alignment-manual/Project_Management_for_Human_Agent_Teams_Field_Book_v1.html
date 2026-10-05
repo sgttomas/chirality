@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
-<meta name="source-sha256" content="cf4bd6c237f614ab34234f02694f7ef10b6cc0c77c2cc482d4a9ccb992ea2a55">
-<meta name="source-basis-date" content="2026-09-23">
-<meta name="source-basis-revision" content="23a33eb1d970f8a4f1b4bfa9aa54ffe1c84da17f">
+<meta name="source-sha256" content="02d53a3966220001318aacf3f46e1b63b8695a098c81b20f4e3e1531b93024d3">
+<meta name="source-basis-date" content="2026-10-04">
+<meta name="source-basis-revision" content="1cb9fd536e0bd21dc1ae949cc0533434c23258e1">
 <title>Project Management for Human–Agent Teams · Chirality</title>
 <style>
 :root {
@@ -232,8 +232,9 @@ h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-co
 <!-- BEGIN MARKDOWN CONTENT -->
 <h1 id="project-management-for-humanagent-teams">Project Management for Human–Agent Teams</h1>
 <p>Field Book</p>
+<p><em>Revised 4 October 2026: 60% gate guidance added in §§1, 4 and 5.</em></p>
 <p>Follow the route from intended result to delivery. Enter an existing project at its verified position. Apply the method within the project's accepted instructions, decision rights, and working conditions.</p>
-<p>The <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md">full manual</a> supplies the explanations and examples. The <a href="CHIRALITY_AGENT_USER_MANUAL_v3.md">Chirality Agent User Manual</a> supplies repository application and source links.</p>
+<p>The <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md">full manual</a> supplies the explanations and examples. The <a href="CHIRALITY_AGENT_USER_MANUAL_v3.md">Chirality Agent User Manual</a> supplies repository application and source links.</p>
 <h2 id="1-the-project-route">1. The project route</h2>
 <pre><code class="language-text">Intended result and constraints
               |
@@ -278,7 +279,7 @@ Authorise delivery and transfer responsibility
 </tr>
 <tr>
 <td>60% — detailed development</td>
-<td>Developed design and interfaces; an execution route for which further structural changes are no longer anticipated.</td>
+<td>Developed design and interfaces; an execution route for which further structural changes (the Deliverable set, the order between groups) are no longer anticipated; each SCC with an accepted treatment under which its work can proceed.</td>
 </tr>
 <tr>
 <td>90% — produced deliverables</td>
@@ -293,7 +294,53 @@ Authorise delivery and transfer responsibility
 </div>
 <p>Percentage labels describe development positions. They do not measure effort, code, or tasks completed. Testing accompanies development throughout. Parts of a project may occupy different positions.</p>
 <p>At a stage gate, present what has been established, what remains unresolved, what the next work would rely on, and the proposed continuation. The human decides whether to advance, qualify, redirect, or require further work.</p>
-<p>Reference: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_1_7">Manual §1.7</a>.</p>
+<h3 id="the-60-gate">The 60% gate</h3>
+<p>The project DAG directs work: which Deliverables exist and the order in which groups of them can be completed. The gate expects no change at that level. Finer relationships keep changing; record each where those who depend on it will see it. The gate does not require a DAG with every cross-reference or cycle removed.</p>
+<pre><code class="language-text">DISCERN
+[ ] Every Deliverable has a reviewed design with its interfaces.
+[ ] Grouping test holds:
+    - each SCC's members, with closely bound Deliverables, in one group;
+    - every held relationship inside one group;
+    - dependencies between groups run one way;
+    - each residual risk contained in a group or at an identified
+      join that follows the group order, with an owner.
+[ ] Groups and members recorded; grouping for development proposed for
+    the human's decision, which may be given with the gate. Grouping is
+    not a merge ruling: SCC rows stay held and their cases stay open.
+[ ] Thin designs named with owners as completion work.
+[ ] Open matters sorted by who closes them; any that could add or
+    remove a Deliverable or reverse the group order is settled,
+    contained as a residual risk with an owner, or accepted by the
+    human as a stated qualification.
+[ ] Evidence standing stated as it is.
+
+STOP ANALYSING AND BRING THE GATE WHEN
+    each round finds more coupling than it removes; moves leave runtime
+    residuals; authors narrow designs to close cycles; supporting work
+    grows while no product advances.
+
+HAND OFF TO 90%
+    One development loop per group or several groups, each with a local
+    work graph from the group order accepted at the gate. A walking
+    skeleton through the most coupled core first. Agreed contracts frozen
+    under change control. Found relationships recorded where those who
+    depend on them will see them: the group's work graph within a group,
+    the work graph of each affected loop across groups. A loop
+    constructing or resuming its graph reads the other groups' graphs
+    for relationships recorded against its group; read them before
+    declaring work ready. Register and Scope of
+    Work updates where wording would otherwise mislead, decided by the
+    human in batches under the departure rules. Effectiveness measured
+    on delivery.
+
+ASK THE HUMAN AT ONCE
+    about anything that seems to run against the group order, forms a
+    cycle across groups, changes the Deliverable set, would make another
+    group's finished work wrong, or suggests the grouping is wrong.
+    In doubt, ask. (From one project's experience; no thresholds.)
+</code></pre>
+<p>The gate is the human's act. Present a short assessment; record the human's exact words with their source and custody. Agent checking does not pass the gate.</p>
+<p>References: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_1_7">Manual §1.7</a>, <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_4_12">§4.12</a>.</p>
 <h2 id="2-responsibilities-and-information">2. Responsibilities and information</h2>
 <div class="table-scroll" role="region" tabindex="0" aria-label="Table 2; scroll horizontally if needed">
 <table>
@@ -377,7 +424,7 @@ Authorise delivery and transfer responsibility
 </div>
 <p>Read the project through four views as needed: <strong>tree</strong> for composition, <strong>production graph</strong> for sequence, <strong>source and decision network</strong> for relevant relationships, and <strong>attention</strong> for the material needed to resolve the present question.</p>
 <p>Keep project stage, deliverable lifecycle, task completion, and acceptance distinguishable. Each describes a different condition.</p>
-<p>References: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_1_6">Manual §§1.6–1.9</a>, <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_4_3">§4.3</a>.</p>
+<p>References: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_1_6">Manual §§1.6–1.9</a>, <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_4_3">§4.3</a>.</p>
 <h2 id="3-establish-the-basis">3. Establish the basis</h2>
 <ol>
 <li>State the result sought, its users, and the activity it must support.</li>
@@ -390,7 +437,7 @@ Authorise delivery and transfer responsibility
 <p>A requirement states a needed result or constraint. An assumption remains an assumption after permission to proceed on it. A proposal becomes an accepted commitment only through the applicable decision. Missing information stays visible as an unresolved matter.</p>
 <p>For each open matter, record its consequence, owner, required resolution, and the work it limits. Decide which matters prevent the next phase and which can remain open under stated conditions.</p>
 <p><strong>Result:</strong> a usable accepted basis, with a definite scope and an accountable treatment of unresolved matters.</p>
-<p>References: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_2_1">Manual §§2.1–2.7</a>, <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_2_9">§§2.9–2.11</a>.</p>
+<p>References: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_2_1">Manual §§2.1–2.7</a>, <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_2_9">§§2.9–2.11</a>.</p>
 <h2 id="4-define-the-work-and-its-order">4. Define the work and its order</h2>
 <h3 id="allocate-the-scope">Allocate the scope</h3>
 <p>Give each scope item one accountable package home. Define deliverables with stable identities, complete responsibilities, and usable boundaries. Several deliverables may contribute to one objective. A bounded assignment can contribute to a deliverable without becoming another deliverable.</p>
@@ -437,10 +484,10 @@ Authorise delivery and transfer responsibility
 </tbody>
 </table>
 </div>
-<p>A grouped cycle still contains work whose order needs resolution. Excluding an unresolved relationship from a graph does not supply its missing input. Hold the dependent work; continue separately authorised investigation and independent work.</p>
+<p>A grouped cycle still contains work whose order needs resolution. Excluding an unresolved relationship from a graph does not supply its missing input. Hold the dependent work; continue separately authorised investigation and independent work. Grouping co-designed members for development is not a merge: their held relationships stay non-gating, their cases stay open, and the group's work graph orders the parts.</p>
 <p>Establish the initial project DAG before the 30% gate. Preserve its objective, node inventory, relationship meaning, source revisions, exclusions, examination, and decisions. Dependencies may remain pending within an accepted DAG.</p>
 <p><strong>Result:</strong> identified production commitments and a defensible order for developing them.</p>
-<p>References: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_3_1">Manual §§3.1–3.8</a>, <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_3_9">§§3.9–3.12</a>, <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_5_5">§5.5</a>.</p>
+<p>References: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_3_1">Manual §§3.1–3.8</a>, <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_3_9">§§3.9–3.12</a>, <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_5_5">§5.5</a>.</p>
 <h2 id="5-carry-an-undertaking-through-to-completion">5. Carry an undertaking through to completion</h2>
 <p>Use one current work graph to carry the selected undertaking across assignments and sessions. Link it to the affected deliverables and project dependencies. The project DAG describes production relationships; the work graph organises the work now selected.</p>
 <h3 id="1-orient-and-recover">1. Orient and recover</h3>
@@ -448,7 +495,7 @@ Authorise delivery and transfer responsibility
 <h3 id="2-construct-or-revise-the-route">2. Construct or revise the route</h3>
 <p>State the intended result and completion conditions. Give each work node an output, prerequisites, owner, write boundary, examination, and place in integration. Include needed investigations and decisions.</p>
 <p>Prepare one planned final documentation and governance closeout after the intended implementation and evidence have been integrated. Documents and reconciliations needed to perform or constitute an earlier contribution travel with that contribution.</p>
-<p>Renew the project DAG when its governing relationships change. A new conversation or rearranged assignment alone does not require a successor DAG.</p>
+<p>Renew the project DAG as the adopted departure rules require when the dependency records change; the human can decide several departures in one successor. A change to the Deliverable set or the order between groups also reopens the route. Finer relationships belong in the work graph; one that crosses groups goes in the work graph of each affected loop. A new conversation or rearranged assignment alone does not require a successor DAG.</p>
 <h3 id="3-commission-ready-work">3. Commission ready work</h3>
 <p>Supply each executor with a bounded brief:</p>
 <div class="table-scroll" role="region" tabindex="0" aria-label="Table 5; scroll horizontally if needed">
@@ -505,7 +552,7 @@ Authorise delivery and transfer responsibility
 <h3 id="6-complete-the-undertaking">6. Complete the undertaking</h3>
 <p>Confirm that the result meets the stated completion conditions. Record what was achieved and the actual disposition of remaining obligations. In a software undertaking using pull requests, close the records before the final PR; perform required checking and review, then merge under the applicable authority. The PR and Git record establish the merge when it occurs.</p>
 <p>Preserve the completed graph and its relationship to the result. Report completion at the undertaking's scope. A new objective requires new steering; completing this undertaking does not by itself accept or release the product.</p>
-<p>References: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_1_10">Manual §1.10</a>, <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_4_1">§§4.1–4.11</a>, <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_5_2">§§5.2–5.8</a>.</p>
+<p>References: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_1_10">Manual §1.10</a>, <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_4_1">§§4.1–4.11</a>, <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_5_2">§§5.2–5.8</a>.</p>
 <h2 id="6-examine-the-produced-result">6. Examine the produced result</h2>
 <h3 id="establish-the-candidates-position">Establish the candidate's position</h3>
 <p>Account for three forms of coverage:</p>
@@ -540,7 +587,7 @@ Authorise delivery and transfer responsibility
 <p>An agent may operate suitable scenarios under human direction. Arrange practitioner examination where the question or governing criterion requires it. A substitute environment or automated scenario supports only the behavior it actually exercises.</p>
 <p>For a defect: preserve the observation, reproduce it, identify the cause, apply a bounded repair, review it, and repeat affected examination. Reopen dependent evidence when its basis changes.</p>
 <p>Present the exact candidate, supported conclusions, unresolved limitations, and requested decision. Keep production completion, formal checking, human acceptance, and publication distinct.</p>
-<p>References: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_5_9">Manual §§5.9–5.14</a>.</p>
+<p>References: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_5_9">Manual §§5.9–5.14</a>.</p>
 <h2 id="7-treat-exceptions-at-their-source">7. Treat exceptions at their source</h2>
 <div class="table-scroll" role="region" tabindex="0" aria-label="Table 7; scroll horizontally if needed">
 <table>
@@ -595,7 +642,7 @@ Authorise delivery and transfer responsibility
 </table>
 </div>
 <p>Reopen only the decisions and checks whose basis or consequences are affected. Preserve valid work and historical evidence. A changed instruction or shared source takes effect in another undertaking through its applicable adoption arrangements.</p>
-<p>References: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_1_9">Manual §1.9</a>, <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_4_7">§§4.7, 4.11</a>, <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_5_6">§§5.6, 5.10, 5.13</a>.</p>
+<p>References: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_1_9">Manual §1.9</a>, <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_4_7">§§4.7, 4.11</a>, <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_5_6">§§5.6, 5.10, 5.13</a>.</p>
 <h2 id="8-deliver-and-hand-over">8. Deliver and hand over</h2>
 <ol>
 <li>Join the organisation's established delivery procedure and identify the person authorised to accept and release the result.</li>
@@ -606,15 +653,15 @@ Authorise delivery and transfer responsibility
 <li>Record what was actually delivered and how it relates to the original or amended objectives.</li>
 </ol>
 <p>A useful handover identifies <strong>the result, its basis, its permitted use, its limitations, its next responsible owner, and the means of recovery</strong>.</p>
-<p>Reference: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_6">Manual chapter 6</a>.</p>
+<p>Reference: <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_6">Manual chapter 6</a>.</p>
 <!-- END MARKDOWN CONTENT -->
     </article>
   </div>
   <footer class="document-footer">
   <dl class="document-meta">
-    <div><dt>Source basis dated</dt><dd>23 September 2026</dd></div>
-    <div><dt>Repository basis</dt><dd><code>23a33eb1d970f8a4f1b4bfa9aa54ffe1c84da17f</code></dd></div>
-    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="Project_Management_for_Human_Agent_Teams_Field_Book_v1.md">Project_Management_for_Human_Agent_Teams_Field_Book_v1.md</a><br><code>cf4bd6c237f614ab34234f02694f7ef10b6cc0c77c2cc482d4a9ccb992ea2a55</code></dd></div>
+    <div><dt>Source basis dated</dt><dd>4 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>1cb9fd536e0bd21dc1ae949cc0533434c23258e1</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="Project_Management_for_Human_Agent_Teams_Field_Book_v1.md">Project_Management_for_Human_Agent_Teams_Field_Book_v1.md</a><br><code>02d53a3966220001318aacf3f46e1b63b8695a098c81b20f4e3e1531b93024d3</code></dd></div>
   </dl>
     <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
     <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
