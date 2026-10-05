@@ -57,3 +57,27 @@ The export is regenerated at the final tree with the default staging path, as in
 - the PR's automatic CI.
 
 No product code changes.
+
+## Addendum A: FR's review and the repairs (2026-10-05)
+
+**FR's review** is `reviews/FR-PEC.md` (sha256 `efb8f7e1…`). Verdict: **REPAIR**, with 0 BLOCKING, 1 MAJOR, 2 MINOR and 4 NOTE.
+
+**Confirmed by FR:**
+- every edited PEC statement, against PEC's own records;
+- the 26 pairs, which reproduce `16fb79f5…`, plus the adopted Q1 lines;
+- the AUM's headings are unchanged, and its links resolve;
+- the renderer check;
+- v8: exactly three sentences; Word parts `document.xml` and `app.xml` only; PDF text differs only on pages 83 and 87; the content check equals the committed one; the evidence scripts differ only in `EXPECTED_MD`;
+- the App v4 ruling;
+- G4, GEN-8 and the entrypoint validator.
+
+**The repairs:**
+- **MAJOR-1, repaired. Erratum to §4.** The export was run before the manifest's final edit, so it lacked this tranche's own manifest row; #1094 did the same, and this PR's export corrects that row. The export is now regenerated last, after every other edit, with the default staging path. Both `export-manifest.csv` and `export-report.md` are committed, and the manifest declares both.
+- **MINOR-1, repaired.** The App v4 follow-up notice now says this tranche changes the AUM and the README again, in parts App v4's maps did not read, so two pins trail by two revisions. The recommendation stands.
+- **MINOR-2, adopted.** The README's management-manual paragraph now points to the v8 revision's production note.
+- **NOTE-2, repaired. Erratum to §3.** `policy_standing/a16/basis.json` records only a consultation and its sources, not role, model and base. The notice now says so, and adds the stronger grounds FR found:
+  - each `candidate.json` pins its `basis.json` by hash;
+  - no App v4 code or test reads these maps.
+- **NOTE-3: erratum to `OWNER_DECISIONS.md`'s list of downloads.** LibreOffice 26.8.1 was downloaded and checked against its published SHA-256, but it was **not used**. The rebuild used the bundled LibreOfficeDev 26.8.0.0.alpha0, as the production note says. The download was deleted from scratch.
+- **NOTE-4, ruled.** App v4 is not added to the §1, §2 and §18 lists. None of those lists claims completeness, and the owner's direction was PEC-scoped. E10(a) stays.
+- **NOTE-1** needs no change.

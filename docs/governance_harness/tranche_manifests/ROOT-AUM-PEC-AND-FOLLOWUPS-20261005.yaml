@@ -11,6 +11,7 @@ instruction_surface_paths:
   - docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v8.docx
   - docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v8.pdf
   - exports/chirality-app/export-manifest.csv
+  - exports/chirality-app/export-report.md
   - docs/governance_harness/tranche_manifests/ROOT-AUM-PEC-AND-FOLLOWUPS-20261005.yaml
 m2_gate:
   authorization: |-
