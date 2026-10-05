@@ -579,12 +579,14 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **2026-10-05:** the T6 slice is pulled forward.
 - **2026-10-05:** proportionate CI.
 - **2026-10-05:** cleanup of regenerable output only; evidence stays on disk.
+- **2026-10-05:** all T3 scratch lives in `WT/scratch`, gathered by the cleanup tool's first step.
 - **2026-10-04:** G10 stays outstanding on the owner's Mac.
 - **Earlier:** T1 option (a); D-3 = S1; D-6 = (a); M selected under D-7.
 
 **Assignment IDs.** I68–I74 and RV97–RV99 are prepared for fresh instances. The next unused are **I75 and RV101**.
 
 **T3 rulings in force** (section headings in `ROOT_RULINGS_V1.md`):
+- **T3's gate set and Git rules for product and records PRs, and verifying returns:** "T3's gate set and Git rules, consolidated after the handoff was made ephemeral";
 - **the full 40-manifest suite before any freeze:** "DEC-025 on F finds a test-walker defect; repaired and refrozen as F′ = 5488136a19";
 - **U8 and the T6 pull-forward:** "I61's U8 plan ruled; the owner pulls T6's successor-output slice forward; dispatches prepared for the handoff";
 - **records-only PRs and their gates:** "Owner direction: proportionate CI; records-only PRs drop DEC-025 and the dispatch", and A-1 in "#1088 squash-merged; RV100's addendum notes; erratum E-5";

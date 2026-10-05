@@ -52,9 +52,9 @@ Load each workflow when it is needed, as
 
 - **Basis.** `docs/PRD.md`.
 - **Decomposition.** `execution/_Decomposition/SOFTWARE_DECOMP.md`, at the
-  revision named by `execution/_Decomposition/_LATEST.md`. It records each
-  adopted amendment, and `execution/_ScopeChange/_LATEST.md` selects the
-  accepted scope change.
+  revision named by `execution/_Decomposition/_LATEST.md`. Its revision notes
+  record each amendment that changed it; `execution/_ScopeChange/` holds every
+  amendment, and its `_LATEST.md` selects the latest accepted one.
 - **DAG.** `execution/_DAG/_LATEST.md` names the accepted version and how its
   currency is decided.
 - **Deliverables.** `execution/PKG-*/1_Working/DEL-*/`: the production
@@ -81,7 +81,7 @@ Load each workflow when it is needed, as
 
 ## Standing constraints
 
-- Piping's stage gates are the exit criteria of the release milestones in
-  `docs/PRD.md` §24. `execution/_Coordination/_COORDINATION.md`, under
-  "Current Target Stage", records the target stage; only the owner's
-  approved update advances it.
+- Piping's stage gate is the target stage and the exit criteria recorded in
+  `execution/_Coordination/_COORDINATION.md` under "Current Target Stage".
+  Assess against those criteria, not against a `docs/PRD.md` §24 milestone
+  read by its label; only the owner's approved update advances the target.

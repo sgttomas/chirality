@@ -23,11 +23,11 @@ T3's current account is the piping work graph's **T3 current route** section, `e
 
 | | |
 |---|---|
-| **Machine** | The M5 Max, 128 GiB, with no swap. All heavy work runs here |
+| **Machine** | The M5 Max, 128 GiB, with little swap (about 1 GiB, dynamic). All heavy work runs here |
 | **WT** | `<repo>/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3` |
 | **NUM** | `WT/numerics`, the integration branch's worktree |
 | **The DEC-025 tree** | `WT/sweep-skewpin`, detached. Check out the candidate head, keep the tree clean, and move each sweep's summary JSON out to the run's scratch folder |
-| **Worktrees** | Only those two. Create one per unit (for example `WT/f2a-u8`, `WT/s-i1`), and remove it once merged |
+| **Worktrees** | `numerics` and `sweep-skewpin` are the standing ones. Create one per unit or PR (for example `WT/f2a-u8`, `WT/s-i1`), and remove it once merged |
 | **The memory guard** | `WT/guard/memguard.sh`, PID 5387 at handoff. Check it with `pgrep -f memguard.sh`. It must run during any build |
 | **VENV** | `<repo>/.claude/worktrees/swbpipe-control-layer-8a41be/projects/chirality-piping/.venv` |
 | **node_modules** | The parent checkout's `projects/chirality-piping/node_modules`. Link it into a worktree with an untracked symlink, and remove the link before removing the worktree |

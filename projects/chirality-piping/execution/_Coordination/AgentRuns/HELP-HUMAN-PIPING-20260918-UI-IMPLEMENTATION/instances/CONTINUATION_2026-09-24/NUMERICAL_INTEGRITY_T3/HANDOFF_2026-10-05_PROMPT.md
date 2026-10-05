@@ -34,6 +34,7 @@ Steer (this run): Continue T3, numerical integrity, precision and scale, of the 
    - **Heavy builds and tests** run on this Mac only while the memory guard runs, one cargo job at a time across all T3 work.
    - **DEC-025, native and solver-at-scale jobs:** TASKs run none of them. ROOT runs DEC-025 with `run_dec025.sh`, and a run counts only when its `meta.txt` ends with `ALL-DONE`.
    - **Before any freeze,** run the full 40-manifest suite.
+   - **Product PRs, which come first for S-I1 and the T6 slice,** take T3's full gate set. The ruling "T3's gate set and Git rules, consolidated after the handoff was made ephemeral" lists it: independent complete-diff review, hosted CI with the full-SHA dispatch, GEN-8, an exact-head Mac DEC-025 against a fresh main baseline, and Pass B where the D1 call graph is touched. Merge with `--merge --match-head-commit`.
    - **Product PRs** are cut compactly from main, with maintained-source equality to the NUM head.
    - **Never merge NUM itself into main,** because its history holds redacted originals.
    - **Records reach main through records-only PRs,** after each main merge and before any handoff:

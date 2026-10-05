@@ -45,3 +45,32 @@ It checked 194 destination quotes with `grep -F`, every draft path with `test -e
   - the PR's automatic CI, which includes G4.
   
   No product code changes, so DEC-025 does not apply (project `AGENTS.md`, "Software checks").
+
+## Addendum A: LR's review and the repairs (2026-10-05)
+
+**LR's review** is `reviews/LR-LOOPINIT.md` (sha256 `4de888bc…`). Verdict: **REPAIR**, with 0 BLOCKING, 1 MAJOR, 3 MINOR and 9 NOTE.
+
+**The mapping and edits LR confirmed:**
+- 123 class (a) quotes, verbatim;
+- every class (b) and (d) row;
+- the paths and workflow names;
+- A1–A7 as minimal and true. DEL-11-05 is not frozen: RECON_2026-09-21 closed on 2026-09-22.
+- the validators.
+
+**The repairs:**
+- **MAJOR-1, adopted as LR proposed. Erratum to mapping row N13 and to this file's "checked the stage-gate source".** The standing constraint now points to the target stage and exit criteria recorded under `_COORDINATION.md` "Current Target Stage". It no longer points to `docs/PRD.md` §24 by milestone label, because the recorded target "PRD R5" uses the old v0.1 numbering, and its criteria are §24 R6's reproduction criterion plus §20.1.
+- **MINOR-1, adopted as LR proposed.** "Its revision notes record each amendment that changed it; `execution/_ScopeChange/` holds every amendment, and its `_LATEST.md` selects the latest accepted one."
+- **MINOR-2, repaired.**
+  - A notice to Piping's loops, `execution/_Coordination/NOTICE_2026-10-05_PIPING_LOOP_INIT_BINDING.md`, is written and routed.
+  - The rationale now records the two consequences handled elsewhere: construct's introduction (tranche ROOT-CONSTRUCT-LOOPINIT-WORDING-20261005, PR #1093, approved by the owner) and the manual citations (tranche ROOT-LOOPINIT-AUM-ALIGNMENT-20261005).
+  - **Erratum to ruling 5:** its claim that the rationale already recorded construct's sentence was not true at the first head.
+- **MINOR-3, repaired.** T3's rulings gain "T3's gate set and Git rules, consolidated after the handoff was made ephemeral". The work graph's T3 section lists it, and the steer names the product-PR gates.
+
+**The notes:**
+- **NOTE-1 and NOTE-2.** NUM absorbed main (`01809013ae`), and the PR is re-cut from that main, so its tree equals NUM's again. Main's move was App v4 only.
+- **NOTE-3.** App v4's sentence is changed in tranche ROOT-LOOPINIT-AUM-ALIGNMENT-20261005, by the owner's direction.
+- **NOTE-4, NOTE-5 and NOTE-9** are accepted as recorded.
+- **NOTE-6.** Section B, and the contributor guide's row 8, are routed to tranche ROOT-LOOPINIT-AUM-ALIGNMENT-20261005, under the owner's "any other minimal consistency edits".
+- **NOTE-7.** The handoff now says "little swap (about 1 GiB, dynamic)", and names the two standing worktrees.
+- **NOTE-8.** The graph's owner decisions now include "all T3 scratch lives in `WT/scratch`". The steer's claim of "basis in the T3 rulings" holds, now that the consolidated ruling exists.
+- **LR's `test_ci_e2e_plan.py` run** left about 79 MB of ignored `target/` folders in the PR worktree. They are removed with that worktree after the merge.

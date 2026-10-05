@@ -34,19 +34,20 @@ m2_gate:
 m6_notice:
   disposition: routed
   routed_to:
-    - projects/chirality-piping/loop/LOOP_INIT.md
-    - init/dev-loop-init-prompt.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-10-05_PIPING_LOOP_INIT_BINDING.md
   rationale: >-
-    Piping is the only loop whose instructions bind through this LOOP_INIT.
-    It adopts the change in this tranche (the first routed path), and the Root
-    launcher's Piping paragraph (the second) is corrected in the same tranche. A search found no other loop's live
+    Piping is the only loop whose instructions bind through this LOOP_INIT,
+    and the notice informs its loops. The Root launcher's Piping paragraph is
+    corrected in this tranche. A search found no other loop's live
     instructions, authority corpus or contract mirror that cites or pins
     Piping's LOOP_INIT. Older manual editions and earlier tranche manifests
-    cite it as history. The current Agent User Manual v3 cites Piping loop
-    sections that no longer exist (for example §15's "Piping loop §§3–6").
-    It is a dated edition, and manual revisions are outside this tranche,
-    so the next manual revision should update those citations
-    (CONSISTENCY_EDITS.md, section C).
+    cite it as history. Two further consequences are handled in their own
+    tranches. The bundled construct-local-work-graph introduction said
+    LOOP_INIT "supplies the evergreen procedure"; its create-workflow
+    revision, approved by the owner, is ROOT-CONSTRUCT-LOOPINIT-WORDING-20261005
+    (PR #1093). The Agent User Manual v3 cites Piping loop sections that no
+    longer exist; its update is ROOT-LOOPINIT-AUM-ALIGNMENT-20261005, by the
+    owner's direction.
 review:
   - projects/chirality-piping/execution/_Coordination/AgentRuns/PIPING-LOOP-INIT-20261005/reviews/LR-LOOPINIT.md
 scope_limits:
