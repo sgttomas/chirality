@@ -11996,3 +11996,25 @@ ROOT asked the owner two questions in the session.
 It is recorded in `IMPLEMENTATION/RECORDS_MERGE_2026-10-05/` on NUM.
 
 **Host paths:** main already carries `/Users/<user>` paths in 4,688 piping record files, and NUM is public on origin, so the PR adds no new kind of exposure. RV96 counts them as a NOTE.
+
+## Records PR #1084: GEN-8 flags historical records; the owner approves their portability registration (ROOT, 2026-10-05 UTC)
+
+**GEN-8 on the records head** (`dfa5e2dc44`) failed with `ABS_PATH_IN_UNCLASSIFIED_SURFACE`. Piping's portability policy (`P/validation/portability_policy.json`) fails closed on machine-absolute paths in AgentRuns artifacts whose role is structurally unclassified.
+
+**ROOT's own new documents are corrected,** not registered (`8047bfe83f`):
+- the handoff and its prompt now write paths as `<repo>/…`;
+- the five preserved files move under `IMPLEMENTATION/HANDOFF_2026-10-05/_run_records/preserved_untracked/`, a structural evidence directory, with their SHA256SUMS verified after the move.
+
+This supersedes the `preserved_untracked/` path named in the ruling above.
+
+**254 files remain,** all written by earlier ROOTs and TASKs:
+- **211 TASK and review records** (`EXECUTION.json`, `MANIFEST.json`, `ORIGINS.json`, `SEAL.json`, `CHECKS.json` and similar). Each preserves the machine-local paths of its run.
+- **43 as-issued documents:** dispatch briefs under `RESUME_2026-09-30/BRIEFS/`, and the 2026-10-03 handoff.
+
+Their bytes are records, and many are bound by SHA256SUMS, so they cannot be relativized.
+
+**The owner approved** registering them, in session: "Approve and merge (Recommended)". This follows the precedent of the earlier owner-approved portability repair and of `f9ff31f163` (as-issued T1 briefs).
+- **The 211 records** become hash-bound `historical_role_override` entries (role EVIDENCE).
+- **The 43 as-issued documents** become hash-bound `control_path_exception` entries (role CONTROL).
+
+**Each entry is hash-bound,** so a later edit of the file fails GEN-8 again. The records PR now also carries `P/validation/portability_policy.json`; its only non-execution change is these appended entries. RV96 reviews them with the records.
