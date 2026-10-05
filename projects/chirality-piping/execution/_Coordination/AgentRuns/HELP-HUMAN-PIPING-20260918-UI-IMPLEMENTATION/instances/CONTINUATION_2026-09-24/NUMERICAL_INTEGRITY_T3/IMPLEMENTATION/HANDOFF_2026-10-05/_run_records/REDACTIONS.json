@@ -87,6 +87,21 @@
    "original_lines": 1039,
    "redacted_sha256": "46317ec35024cfa9c942b1b6e075b62047ede4aec2d47df961c84c4bd24b9447",
    "kept_process_lines": 1
+  },
+  {
+   "path": "T3/RESUME_2026-09-30/REVIEW_RV62/selected_material_01/_run_records/whole_diff_whitespace.log",
+   "original_sha256": "103536c842260d18614912c6283fdbbf152b463458aa6ce8407e61642880ce11",
+   "original_lines": 165,
+   "redacted_sha256": "e62fae3fe2c73c57ad2b73b4bb88654e1a1503c39c3fe91d71b97a61c8097188",
+   "redacted_line_numbers": [
+    2,
+    4,
+    7,
+    9,
+    45,
+    47
+   ],
+   "note": "RV96 S-2: a diff log quoting six lines of I47's whole-host listings (Microsoft Teams and Parallels Desktop processes, one with a session id); those lines are replaced in place, the rest is unchanged."
   }
  ]
 }
