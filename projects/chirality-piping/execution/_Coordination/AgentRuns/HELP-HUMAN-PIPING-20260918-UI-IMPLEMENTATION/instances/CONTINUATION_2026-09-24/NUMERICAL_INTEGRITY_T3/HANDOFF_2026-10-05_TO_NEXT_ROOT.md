@@ -3,6 +3,7 @@
 **Handed off at the owner's request.**
 - **Nothing is running:** no TASK, compiler, solver or test. The memory guard stays running.
 - **The F2a D1 milestone is on main** (PR #1082).
+- **T3's records through this handoff are on main:** #1084 (squash `f506f3e2de`), then a follow-up records-only PR carrying this version of the handoff.
 - **U8 is planned and ruled, and its briefs are ready.** Nothing is dispatched.
 - **The host was cleaned** (about 0.5 TiB freed), and every T3 branch is pushed.
 
@@ -20,7 +21,11 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
 4. **The plan:** [`R/I61/u8_plan_01/PLAN.md`](RESUME_2026-09-30/I61/u8_plan_01/PLAN.md), covering U8, the F2a-breadth roadmap (B0–B8), S-I1's readiness, and absorbing main.
 5. **The briefs** in `RESUME_2026-09-30/BRIEFS/`: `U8_COMMON.md`, I68–I74 and RV97–RV99.
 6. **The merged milestone's package:** `IMPLEMENTATION/F2A_D1/CHANGE_RECORD.md` (scope §4, obligations §5) and the merge record `IMPLEMENTATION/F2A_D1_MERGE/` (RECORD, ERRATA).
-7. **The records merge:** `IMPLEMENTATION/RECORDS_MERGE_2026-10-05/` on NUM. The outgoing ROOT's last act was a records-only PR bringing NUM's execution records to main, and this record says whether it merged. **Check it first.**
+7. **The records merges:**
+   - `IMPLEMENTATION/RECORDS_MERGE_2026-10-05/` covers #1084.
+   - `IMPLEMENTATION/RECORDS_MERGE_2026-10-05B/` covers the follow-up records PR, the outgoing ROOT's last act. It is on NUM only, and says whether that PR merged. **Check it first.**
+   
+   A records PR's post-merge record is necessarily written after the merge, so it stays on NUM until the next records PR. NUM is therefore normally ahead of main by that record and the rulings after it.
 
 **Notation:** P = `projects/chirality-piping`; T3 = this directory; R = `T3/RESUME_2026-09-30`; RR = the rulings file.
 
@@ -49,7 +54,11 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
   **No product caller exists.**
 - **The first freeze failed, and was repaired.** DEC-025 on F caught a test-walker defect in nonlinear_integration, repaired test-only, and the head was refrozen as F′. **Rule since then: the full 40-manifest suite runs before any freeze.**
 - **Erratum E-1:** the 9 ignored PP `witness_*` tests are U4's stack witnesses, not U8's.
-- **NUM has absorbed main** through `e916ad1789` (#1083). Every T3 branch is on origin.
+- **NUM has absorbed main** through the follow-up records PR's merge (see its record). Every T3 branch is on origin.
+- **T3's records reached main** in two records-only PRs:
+  - **#1084,** squash `f506f3e2de`. It passed RV96's three passes, GEN-8, hosted CI, the full-SHA dispatch and DEC-025, with 255 historical records registered in the portability policy and 13 files redacted.
+  - **The follow-up,** reviewed by RV100, carrying everything since: #1084's merge record, the stray-scratch gathering and this handoff's final form.
+- **Stray scratch was gathered** into `WT/scratch`, and the cleanup tool gained its `gather` step.
 - **I61 planned U8 and the rest of F2a.** ROOT ruled all 13 ROOT decisions as recommended. The owner decided the 14th.
 
 ## Owner decisions in force
@@ -67,6 +76,9 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
   S-I1 runs alongside.
 - **2026-10-05: the T6 successor-output slice is pulled forward,** to run in parallel. It closes activation checklist item 4.
 - **2026-10-05: cleanup.** Remove what is regenerable, periodically. Removing evidence is the owner's call.
+- **2026-10-05: #1084's records.** 255 historical run records are registered in the portability policy; 13 files with whole-host process data were redacted before merging.
+- **2026-10-05: all T3 scratch lives in `WT/scratch`.** Each cleanup starts with `gather`.
+- **2026-10-05: "merge what's ready"; then the follow-up records PR is merged.**
 
 **Earlier:**
 - T1 option (a);
@@ -90,7 +102,7 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
    - the guard is running;
    - `git -C WT/numerics worktree list`;
    - NUM's and main's heads;
-   - the records-merge record;
+   - the records-merge records;
    - free disk space.
 2. **Absorb main into NUM** if main moved, using PLAN §4's dry run. Flag:
    - any of the 140 S files;
@@ -111,16 +123,25 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
    - **Re-qualify once per PR candidate** on the registered identity: TEXT, the identifier audit, Pass B and an independent confirmation, plus the G5/G6 work for a widening.
    - **B8 needs** caller qualification for the desktop workspace (RR:10407), I53's open native-window premise, and the owner's Mac.
 
-**Assignment IDs.** Use the prepared IDs I68–I74 and RV97–RV99 as fresh instances; an ID is a records folder and a role, not a memory. The next unused are **I75 and RV100**. RV96 is the outgoing ROOT's records-PR reviewer.
+**Assignment IDs.** Use the prepared IDs I68–I74 and RV97–RV99 as fresh instances; an ID is a records folder and a role, not a memory. The next unused are **I75 and RV101**. RV96 reviewed #1084, and RV100 the follow-up records PR.
 
 ## Rules that continue
 
 - **Git:**
   - TASKs make no Git writes; ROOT commits, merges and pushes;
-  - never rebase or force-push; merge with `gh pr merge --merge --match-head-commit`, after checking `origin/main` has not moved;
+  - never rebase or force-push;
+  - **how to merge:**
+    - a product PR with `gh pr merge --merge --match-head-commit`;
+    - a records-only PR with `--squash` and an explicit subject and body;
+    - either one only after checking `origin/main` has not moved, or that any move is disjoint from the PR's paths and from piping, recorded in the merge record;
+  - **never merge NUM itself, or any branch that carries its history, into main.** NUM's history holds the 13 unredacted originals listed in #1084's `REDACTIONS.json`;
   - no auto-merge;
   - merges use the owner's standing authorization (AGENTS.md): required CI passes, and independent review has no unresolved blocking finding on the actual candidate.
 - **PR packaging.** A product PR is cut compactly from main, with maintained-source equality to the integration head (`source_equality.py` in `IMPLEMENTATION/F2A_D1/`), a concise evidence package, and checked citations. Records reach main only through a separate records-only PR.
+- **Send records to main** after each main merge, and at a handoff, with a records-only PR:
+  - cut it from main, taking `projects/chirality-piping/execution/` from NUM;
+  - run GEN-8 on the candidate before opening it;
+  - its gates are an independent review, hosted CI with the full-SHA dispatch, and DEC-025.
 - **Gates before a main merge:**
   - a fresh independent complete-diff review, with same-reviewer repair confirmation;
   - hosted CI and the full-SHA dispatch;
@@ -136,6 +157,8 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
   - the rulings stay append-only;
   - corrections are errata, not edits;
   - add records with explicit paths. A `git add -A` over records swept in a TASK's in-progress file once.
+- **Living documents carry no machine-absolute paths.** The rulings, ROOT_CURRENT, the work graph, handoffs and briefs write `WT/…` or `<repo>/…`. Never hash-bind a living document in the portability policy.
+- **Screen run records for whole-host data** before publishing: process listings, app names, session IDs. Capture only the processes a check needs.
 - **Never:** solver-at-scale or native jobs by TASKs; installs; writes to the system temp directory.
 - **All T3 scratch lives in `WT/scratch`,** never the parent checkout's `scratch/` or a worktree's own folder. Each periodic cleanup starts with `gather`, which moves strays into `WT/scratch` with hash verification and never deletes.
 
@@ -145,6 +168,12 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
 - **Label tests from their source, not from memory.** That caused erratum E-1.
 - **The cleanup tool's first plan would have deleted tracked record folders inside worktrees.** Always plan, read the plan, then apply. The tool now refuses tracked paths.
 - **Ask the owner early** when a decision blocks a far-off step but affects parallel scheduling. The T6 pull-forward was decided as soon as the plan showed it.
+- **#1084 needed three heads.**
+  - GEN-8 flagged 263 machine paths that nobody had run it to find.
+  - Whole-host process listings had to be redacted.
+  - A merge commit would have carried the unredacted originals into main.
+  
+  Run GEN-8 and the host-data screen before opening a records PR, and squash it.
 
 ## Open items not yet in a brief
 
@@ -157,3 +186,6 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
   - RV89 N-1 (handled in I72's brief).
 - **RV95 N-6:** re-establish the milestone's bytes and verdicts on any further registered identity (B7).
 - **The public-activation checklist,** in CHANGE_RECORD §4.
+- **The PR branch `codex/piping-t3-records-20261005`** on origin still holds #1084's first head, with the unredacted listings.
+  - Deleting the branch is the owner's call.
+  - It would not remove them, since NUM's history and `refs/pull/1084/head` keep them.

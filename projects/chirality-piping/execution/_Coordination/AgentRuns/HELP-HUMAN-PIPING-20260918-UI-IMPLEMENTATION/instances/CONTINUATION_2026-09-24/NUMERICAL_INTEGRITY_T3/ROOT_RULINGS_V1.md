@@ -12107,3 +12107,26 @@ Their bytes are records, and many are bound by SHA256SUMS, so they cannot be rel
 **On the owner's question:** the cleanup is a documented procedure with a host tool, not a registered workflow. A reusable workflow would be made with `create-workflow` and registered by the owner.
 
 **The periodic cleanup after #1084** freed about 11.9 GB (17 caches, 3 tree copies). The record is in `IMPLEMENTATION/HANDOFF_2026-10-05/CLEANUP.md`.
+
+## A follow-up records-only PR before the handoff (ROOT, 2026-10-05 UTC)
+
+**The owner said:** "you can merge that records PR now and update the handoff prompt (and anything else) as necessary."
+
+**ROOT opens a follow-up records-only PR.** It carries NUM's 39 execution files added since #1084, plus this ruling and the updated handoff, so main holds the handoff's final form.
+- **How it is cut:** from main `f506f3e2de`, as one commit, with `projects/chirality-piping/execution/` from NUM. It has no deletions and no non-execution change. The portability policy is unchanged.
+- **Its gates follow #1084's:**
+  - **RV100,** a fresh independent review (`BRIEFS/RV100_RECORDS_PR2_REVIEW.md`);
+  - GEN-8 on the candidate before the PR opens;
+  - hosted CI with the full-SHA dispatch;
+  - DEC-025 on the exact head.
+- **It is squash-merged** with an explicit subject and body, after checking main.
+- **Its post-merge record** is `IMPLEMENTATION/RECORDS_MERGE_2026-10-05B/`, on NUM.
+
+**Handoff corrections made with it:**
+- **Next unused IDs** become I75 and RV101.
+- **The records-PR procedure becomes step 8 of the steering prompt's loop.** Records PRs squash; product PRs merge with `--merge`.
+- **The prompt's hard limits gain three rules from #1084:**
+  - no machine-absolute paths in living documents, and none hash-bound;
+  - screen run records for whole-host data;
+  - never merge NUM itself into main, because its history holds the 13 redacted originals.
+- **The handoff gains a lesson and an open item:** #1084's three heads; and the owner's option to delete #1084's PR branch, which would not remove those originals from origin.
