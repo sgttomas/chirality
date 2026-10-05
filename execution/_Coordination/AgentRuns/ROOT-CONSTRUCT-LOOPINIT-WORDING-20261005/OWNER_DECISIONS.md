@@ -23,3 +23,13 @@ HELP_HUMAN reported that `construct-local-work-graph`'s introduction says LOOP_I
 - its description, so `workflows/index.json` is unchanged.
 
 The prior revision is preserved in Git history, which is the Root bundled library's revision mechanism.
+
+## The owner's approval (owner, exact, 2026-10-05)
+
+The owner reviewed draft PR #1093 at head `c0fa3aa197e3ef919cb5d4923524b331f405b42b`, which contains the two-sentence diff above, and replied:
+
+> you are approved to merge.
+
+**Effect.**
+- **The manifest's hold ends.** HELP_HUMAN merges the PR under the standing Git authorization once required CI passes on the head that carries this record. That head adds only this record to the reviewed diff.
+- **The owner's review is the review of record.** No separate agent review was made of this two-sentence workflow revision.
