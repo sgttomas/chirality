@@ -141,9 +141,9 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
 - **Send records to main** after each main merge, and at a handoff, with a records-only PR:
   - cut it from main, taking `projects/chirality-piping/execution/` from NUM;
   - run GEN-8 on the candidate before opening it;
-  - its gates are an independent review, hosted CI with the full-SHA dispatch, and DEC-025;
+  - **its gates are GEN-8, the PR's automatic CI checks, and an independent review.** DEC-025 and the full-SHA dispatch are not run, because they test source, which a records-only PR leaves identical to main. If a changed record is read by a test, run the suites that read it. T3's `REFERENCES/` and `DESIGN_NUMERICS/` are read by `gen_k4_vectors.py`;
   - it is squash-merged with `--match-head-commit`.
-- **Gates before a main merge:**
+- **Gates before a main merge,** for a PR that changes source, tests, CI, tools or the portability policy. A records-only PR has its own smaller gate set, above:
   - a fresh independent complete-diff review, with same-reviewer repair confirmation;
   - hosted CI and the full-SHA dispatch;
   - the full 40-manifest suite before the freeze;
@@ -151,9 +151,9 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
   - GEN-8, run in a Git checkout of the exact head, with its output saved alongside the head SHA and the command;
   - for D1-call-graph changes, Pass B with an independent confirmation, plus T9 and the both-entry gates where product behaviour can change.
   
-  **A carry-over by ruling** needs a stated premise and the independent reviewer's confirmation, both recorded in the merge record. Two kinds are established:
+  **A carry-over by ruling** needs a stated premise and the independent reviewer's confirmation, both recorded in the merge record. One kind is established:
   - **Main moved after the gates (#1084).** Every path main's move changes lies under another project's own directory (`projects/<name>/`, never `projects/chirality-piping/`), with nothing in `tools/`, `.github/`, the portability policy or root build files. GEN-8 also passes on a local combination of the head with the moved main.
-  - **A records-only re-cut (#1088).** The new head differs from a fully gated head only in execution-record text that no DEC-025 suite reads. Hosted CI, the dispatch and GEN-8 are rerun on the new head, and DEC-025 carries over.
+
 - **DEC-025 runs on a quiet host:** the wrapper waits for six quiet samples, with a fresh target, and nothing else builds meanwhile. Tell reviewers not to build during the window.
   - **The wrapper** is `WT/scratch/u9_dec025/run_dec025.sh <label> [<baseline worktree>]`, which replaced `run_all.sh`.
   - **A run is complete only when its `meta.txt` ends with `ALL-DONE`.** The wrapper logs `dec025-complete`, or `dec025-INCOMPLETE` and exit 3. The old `run_all.sh` logged `dec025-done` even when nothing ran.
@@ -179,6 +179,7 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
   - A merge commit would have carried the unredacted originals into main.
   
   Run GEN-8 and the host-data screen before opening a records PR, and squash it.
+- **Keep gates proportionate.** Records PRs ran the full Mac DEC-025 and the CI dispatch for documentation-only changes until the owner asked about it. Match the gates to what the change can affect.
 - **A wrapper reported done when nothing had run.** #1088's first DEC-025 attempt failed on a missing output folder, yet the old wrapper still logged `dec025-done`. Check for `ALL-DONE`.
 
 ## Open items not yet in a brief
