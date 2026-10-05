@@ -236,3 +236,31 @@ Logs are `A_*.log`, `export_run.log` and `export_out/` in `WT/scratch/ar_aum_01/
 
 ### Remaining condition
 Repair A-MAJOR-1, and A-MINOR-1 or a ruling on it. Then `harness` and the other hosted checks must pass on the final head, and main must not have moved. A re-run with the default stage changes only `export-report.md` line 5 and records, so a confirmation by me can be limited to that delta.
+
+---
+
+## Addendum B: confirmation at H3 (2026-10-05)
+
+**Reviewer.** The same AR instance. I made no Git writes. The file through Addendum A is bytes 1–25,753 (sha256 `17ef5b9a…`, the second line of `SHA256SUMS`). H3's commit of it is byte-identical. As ROOT asked, I confirmed the delta only.
+
+**Candidate.** H3 = `6245dc6f9b9b93a84760ea93dbf082b67e75f372`, whose parent is H2 `6049100caa`. Main is still `87661be164`. The PR is open, a draft and MERGEABLE.
+
+### Verdict at H3: READY
+
+No BLOCKING, MAJOR or MINOR finding remains open. There is one new NOTE (B-NOTE-1).
+
+### The delta
+- **A-MAJOR-1: repaired.** Line 5 of `exports/chirality-app/export-report.md` again reads "- Staging path: `exports/chirality-app/staging`". H3's report is byte-identical to the exporter output from my Addendum A run, with only line 5 normalized to the default stage. `export-manifest.csv` is unchanged from H2 and still byte-identical to that output. No `exports/chirality-app/staging` folder remains in `WT/aum-pr`. The H2→H3 added lines contain no machine-absolute path.
+- **A-MINOR-1: repaired.** The manifest now declares `exports/chirality-app/export-manifest.csv` and `exports/chirality-app/export-report.md`. Its `scope_limits` names the regenerated export (with the default staging path), this run's records, the Piping LOOP_INIT run's final records and the App v4 notice. All 22 paths changed against main are now covered: 11 declared paths, plus this run's records, the piping run's records and the notice. This also covers the piping run records, which the earlier scope limit had omitted. G4 diff mode with `--tranche` passes: 22 paths, 4 on the instruction surface, no BLOCK or WARN, and the two export paths reported as non-blocking over-declarations. The entrypoint validator passes.
+- **RULINGS Addendum B.** Its wording accurately reports Addendum A's counts and confirmations, the A-MAJOR-1 repair, the erratum to Addendum A's NOTE-4 and the A-MINOR-1 repair. B-NOTE-1 below concerns its last bullet.
+
+### B-NOTE-1: correction to my A-NOTE-1, and so to RULINGS Addendum B's last bullet
+
+A-NOTE-1 said that only construct's `WORKFLOW.md` row was behind on main. That is incomplete. Main's export manifest also lacked rows for two tranche manifests already on main: `PIPING-LOOP-INIT-20261005.yaml` (#1092) and `ROOT-CONSTRUCT-LOOPINIT-WORDING-20261005.yaml` (#1093). My earlier drift check compared existing rows only.
+
+No exported bytes are affected: H3's manifest contains both rows, and the docs count went from 338 to 341. RULINGS Addendum B's "Before this PR, main was behind only on construct's `WORKFLOW.md` row" repeats my wording. ROOT may correct it in a later addendum or rely on this one; no repair is required.
+
+### Remaining conditions
+When I looked, `harness`, "PEC workspace tests" and "App Runtime integration" were still in progress on H3. Every finished check had passed or been skipped by coverage selection. Merge needs every required check to pass on H3, or on whatever final head is merged, and main must still be `87661be164`. If main moves, the gates need refreshing or carrying over by ruling.
+
+Logs are `B_*.log` and `B_*.txt` in `WT/scratch/ar_aum_01/`.

@@ -77,3 +77,16 @@ No product code changes.
   - NOTE-4's "staged outside the repository" was the error.
 - **A-MINOR-1, repaired.** The tranche manifest now declares `exports/chirality-app/export-manifest.csv` and `export-report.md`, as earlier manual tranches did. Its `scope_limits` names the regenerated export and the Piping run's final records.
 - **A-NOTE-1, noted.** Before this PR, main was behind only on construct's `WORKFLOW.md` row. It was not behind on `workflows/index.json`.
+
+## Addendum C: AR's Addendum B at H3; READY (2026-10-05)
+
+**AR's Addendum B** is appended to `reviews/AR-AUM.md` (file sha256 `74e027e5…`, the newest line of `reviews/SHA256SUMS`). It confirms at H3 `6245dc6f9b`:
+- A-MAJOR-1 and A-MINOR-1 are repaired;
+- G4 covers all 22 changed paths;
+- the entrypoint validator passes.
+
+**Verdict: READY.**
+
+**B-NOTE-1, accepted. Erratum to Addendum B's last bullet.** Before this PR, main's export manifest was behind on construct's `WORKFLOW.md` row, and was also missing the rows for two tranche manifests already on main: `PIPING-LOOP-INIT-20261005.yaml` and `ROOT-CONSTRUCT-LOOPINIT-WORDING-20261005.yaml`. This PR's regenerated manifest carries all three.
+
+**The final head** adds only AR's Addendum B and this addendum to H3. The merge waits for the PR's automatic CI on that head, and for main to be unmoved.
