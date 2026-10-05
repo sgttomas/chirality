@@ -47,7 +47,12 @@ You are **HELP_HUMAN (Type 0, Agent 0), ROOT for T3**, the numerical integrity, 
    
    **Merge** with `gh pr merge --merge --match-head-commit` only after confirming main has not moved, and never with auto-merge. Write the post-merge record on NUM.
 6. **Absorb main into NUM** after each merge, or whenever main moves. Use PLAN §4's dry run, and flag S files, PP's dependency closure, `Cargo.lock` and the reviewed statics.
-7. **Clean up.** After each merge, or when free space is below about 400 GiB, run `WT/tools/t3_cleanup.py plan`, read the plan, then `apply`, and record the result. Never delete logs or evidence without the owner.
+7. **Clean up.** After each merge, or when free space is below about 400 GiB:
+   - first `WT/tools/t3_cleanup.py gather` (then `gather --apply --log …`), which moves stray scratch into `WT/scratch`;
+   - then `plan`; read the plan; then `apply`;
+   - record the result.
+
+   All T3 scratch belongs in `WT/scratch`. Never delete logs or evidence without the owner.
 
 **The order of work** (owner decision, 2026-10-05):
 1. **U8,** starting with I68 Part 1, the probe. Rule on its outcomes before Part 2.

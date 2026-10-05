@@ -37,7 +37,7 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
 | **VENV** | `<repo>/.claude/worktrees/swbpipe-control-layer-8a41be/projects/chirality-piping/.venv` |
 | **node_modules** | The parent checkout's `projects/chirality-piping/node_modules`, linked into a worktree by an untracked symlink, which you remove before removing the worktree |
 | **DEC-025 tooling** | `WT/scratch/u9_dec025/dec025_mac.sh` (sha `9e34865b…`, unchanged from `M03_SKEW_PIN_MERGE`); the quiet-host wrapper `run_all.sh`; the suite runner `WT/scratch/calib/run_suites_nff.sh`. Copies are in `IMPLEMENTATION/HANDOFF_2026-10-05/host_tools/`. The per-test comparator is `IMPLEMENTATION/F2A_D1_MERGE/dec025/compare_suites.py` |
-| **Cleanup** | `WT/tools/t3_cleanup.py`; procedure in `IMPLEMENTATION/HANDOFF_2026-10-05/CLEANUP.md` |
+| **Cleanup** | `WT/tools/t3_cleanup.py`, which has `gather`, then `plan`, then `apply`. Procedure in `IMPLEMENTATION/HANDOFF_2026-10-05/CLEANUP.md`. It is a documented procedure, not a registered workflow |
 | **Evidence that exists only on disk** | `WT/scratch` (about 44 GB) and `WT/preserved-evidence`. Never pruned without the owner |
 
 ## What is done
@@ -137,6 +137,7 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
   - corrections are errata, not edits;
   - add records with explicit paths. A `git add -A` over records swept in a TASK's in-progress file once.
 - **Never:** solver-at-scale or native jobs by TASKs; installs; writes to the system temp directory.
+- **All T3 scratch lives in `WT/scratch`,** never the parent checkout's `scratch/` or a worktree's own folder. Each periodic cleanup starts with `gather`, which moves strays into `WT/scratch` with hash verification and never deletes.
 
 ## Lessons from the last session
 

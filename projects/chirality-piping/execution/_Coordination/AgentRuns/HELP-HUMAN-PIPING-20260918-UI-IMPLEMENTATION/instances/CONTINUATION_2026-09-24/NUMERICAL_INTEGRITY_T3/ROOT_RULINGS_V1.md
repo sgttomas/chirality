@@ -12092,3 +12092,18 @@ Their bytes are records, and many are bound by SHA256SUMS, so they cannot be rel
 **Next on the integration branch:**
 - **ROOT absorbs main into NUM.** The record files on both sides come from NUM; where NUM has appended since `cc44bce7f3`, NUM's version is kept.
 - **The handoff is complete.** The next ROOT starts from `HANDOFF_2026-10-05_TO_NEXT_ROOT.md` with the owner's steering prompt.
+
+## Stray scratch gathered; the cleanup procedure gains step 0 (ROOT, 2026-10-05 UTC)
+
+**The owner directed:** "move the scratch records to the common folder and ensure the cleanup work instructions … indicate to do so also."
+
+**Done:** the parent checkout's untracked `scratch/` (77 MB, 1,347 files; I54's and RV84's working folders from before this session) moved into `WT/scratch`. I54's folder went to `i54_direct_container_profile_from_parent_checkout`, because of a name collision. Every file's sha256 was verified after the move, and the parent checkout is clean.
+
+**The instructions now carry it:**
+- **The tool** (`WT/tools/t3_cleanup.py`) gains `gather`. It moves stray scratch into `WT/scratch` with hash verification and never deletes, and `plan` flags any stray left.
+- **`CLEANUP.md`** gains step 0 and an addendum.
+- **The handoff's rules, the steering prompt's step 7, and `U8_COMMON.md`'s host rules** say that all T3 scratch lives in `WT/scratch`.
+
+**On the owner's question:** the cleanup is a documented procedure with a host tool, not a registered workflow. A reusable workflow would be made with `create-workflow` and registered by the owner.
+
+**The periodic cleanup after #1084** freed about 11.9 GB (17 caches, 3 tree copies). The record is in `IMPLEMENTATION/HANDOFF_2026-10-05/CLEANUP.md`.
