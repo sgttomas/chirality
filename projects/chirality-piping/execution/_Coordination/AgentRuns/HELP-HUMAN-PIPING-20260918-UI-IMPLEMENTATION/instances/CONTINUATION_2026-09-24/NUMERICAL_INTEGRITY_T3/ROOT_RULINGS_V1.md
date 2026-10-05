@@ -12194,3 +12194,36 @@ Their bytes are records, and many are bound by SHA256SUMS, so they cannot be rel
 - **DEC-025 on H** (`run_dec025.sh`'s predecessor; ALL-DONE 14:48:51Z) is recorded as **informational**: 40 of 40 manifests identical to R3's; pytest 3,540; vitest 3,552; builds exit 0.
 - **H's dispatch 37322486897** succeeded, and is not rerun on the re-cut.
 - **The re-cut's gates:** GEN-8 on its exact head (saved with the SHA and the command), the PR's automatic CI, and RV100's confirmation.
+
+## #1088 squash-merged; RV100's addendum notes; erratum E-5 (ROOT, 2026-10-05 UTC)
+
+**RV100 confirms H2** `020d25a3d6`: `ADDENDUM_01.md`, sha256 `b3ac02b3…`, SHA256SUMS 28/28. Verdict **PASS**, 0/0/5.
+- **The H→H2 delta** is 26 execution paths with no deletions, and RR is append-only.
+- **S-1 and N-1 to N-6** are resolved.
+- **The proportionate-CI rule** reads consistently.
+- **Main's move to `a5ecca3b59`** is app-v4 only, and GEN-8 passes on the combination.
+- **The publication screen** is clean.
+- **All four automatic runs** succeeded.
+
+**The owner reported:** "ci is green".
+- ROOT confirmed main was still `a5ecca3b59`, updated the PR description (A-5), and ran `gh pr merge 1088 --squash --match-head-commit` H2 with an explicit subject and body.
+- **The result is `efca0cf6b6`,** a single parent on `a5ecca3b59`. Main's execution tree equals H2's.
+- **The record** is `IMPLEMENTATION/RECORDS_MERGE_2026-10-05B/`.
+
+**The addendum's notes:**
+- **A-1(a), ruled: a records-only PR keeps the records-only gates even when it also appends portability-policy entries.** The policy's readers are GEN-8 and the governance harness, and the PR's automatic CI selects its own coverage. The full gate set is for PRs changing source, tests, CI or tools. This corrects the ruling "Owner direction: proportionate CI…", whose full-gate list named the policy. The handoff and prompt now agree.
+- **A-1(b), adopted:** the records-PR texts in the handoff and prompt now carry E-4's GEN-8 method.
+- **A-2, adopted:** T3's `REFERENCES/` and `DESIGN_NUMERICS/` are read by three scripts:
+  - `gen_k4_vectors.py`;
+  - `validation/benchmarks/numerical_robustness/cases/gen_vk_cases.py`;
+  - `…/runner/run_harness_mutants.py`.
+  
+  The handoff now names all three. The conclusion for #1088 is unchanged, because it touched neither folder.
+- **A-3:** the three past-tense phrases (handoff "reached main" and "is merged", and the work-graph row) are true now that #1088 has merged. No edit is needed.
+- **A-4: erratum E-5.** The ruling "RV100 passes #1088 at H…" says the re-cut "gains one commit". It gained two, `af7510c3a3` and `020d25a3d6`. The squash made one commit on main.
+- **A-5:** the PR description was updated before the merge.
+
+**Next:**
+- ROOT absorbs main into NUM, removes the records worktree, and runs the periodic cleanup.
+- **NUM is ahead of main** by #1088's merge record, RV100's addendum and this ruling. The next records PR carries them.
+- **The handoff is complete.**

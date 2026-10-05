@@ -140,10 +140,10 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
 - **PR packaging.** A product PR is cut compactly from main, with maintained-source equality to the integration head (`source_equality.py` in `IMPLEMENTATION/F2A_D1/`), a concise evidence package, and checked citations. Records reach main only through a separate records-only PR.
 - **Send records to main** after each main merge, and at a handoff, with a records-only PR:
   - cut it from main, taking `projects/chirality-piping/execution/` from NUM;
-  - run GEN-8 on the candidate before opening it;
-  - **its gates are GEN-8, the PR's automatic CI checks, and an independent review.** DEC-025 and the full-SHA dispatch are not run, because they test source, which a records-only PR leaves identical to main. If a changed record is read by a test, run the suites that read it. T3's `REFERENCES/` and `DESIGN_NUMERICS/` are read by `gen_k4_vectors.py`;
+  - run GEN-8 on the candidate before opening it, in a Git checkout of the exact head, with its output saved alongside the head SHA and the command;
+  - **its gates are GEN-8, the PR's automatic CI checks, and an independent review.** DEC-025 and the full-SHA dispatch are not run, because they test source, which a records-only PR leaves identical to main. If a changed record is read by a test, run the suites that read it. T3's `REFERENCES/` and `DESIGN_NUMERICS/` are read by `gen_k4_vectors.py`, `gen_vk_cases.py` and `run_harness_mutants.py`;
   - it is squash-merged with `--match-head-commit`.
-- **Gates before a main merge,** for a PR that changes source, tests, CI, tools or the portability policy. A records-only PR has its own smaller gate set, above:
+- **Gates before a main merge,** for a PR that changes source, tests, CI or tools. A records-only PR has its own smaller gate set, above, even when it also appends portability-policy entries:
   - a fresh independent complete-diff review, with same-reviewer repair confirmation;
   - hosted CI and the full-SHA dispatch;
   - the full 40-manifest suite before the freeze;

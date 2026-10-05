@@ -36,7 +36,7 @@ You are **HELP_HUMAN (Type 0, Agent 0), ROOT for T3**, the numerical integrity, 
    
    No implementer's or reviewer's report is accepted unchecked.
 4. **Integrate.** Commit on the unit branch, then merge into NUM. Record the ruling, and update the T3 row of the work graph in the same pass.
-5. **Gate and merge to main,** for each main-bound candidate that changes source, tests, CI, tools or the portability policy:
+5. **Gate and merge to main,** for each main-bound candidate that changes source, tests, CI or tools:
    - a fresh independent complete-diff review, with the same reviewer confirming repairs;
    - **the full 40-manifest suite before the freeze;**
    - a compact PR from main with source equality and a small evidence package;
@@ -59,7 +59,7 @@ You are **HELP_HUMAN (Type 0, Agent 0), ROOT for T3**, the numerical integrity, 
    All T3 scratch belongs in `WT/scratch`. Never delete logs or evidence without the owner.
 8. **Send records to main.** After each main merge, and before any handoff, open a records-only PR:
    - cut it from main, taking `projects/chirality-piping/execution/` from NUM;
-   - run GEN-8 and screen for whole-host data first;
+   - run GEN-8 first, in a Git checkout of the exact head, with its output saved alongside the SHA and the command; and screen for whole-host data;
    - gate it with GEN-8, the PR's automatic CI and an independent review. No DEC-025 or full-SHA dispatch, since no source changes; if a changed record is read by a test, run the suites that read it;
    - squash-merge it with `--match-head-commit` and an explicit subject and body.
    
