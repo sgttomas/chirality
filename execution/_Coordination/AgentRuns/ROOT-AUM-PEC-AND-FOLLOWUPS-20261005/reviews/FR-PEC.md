@@ -199,3 +199,110 @@ It fails. See MAJOR-1. The staging path is the default.
 1. **MAJOR-1.** Regenerate the export as the last content step, extend the manifest's scope to `export-report.md`, and correct RULINGS §4.
 2. **MINOR-2.** Accept the README pointer, or decline it as outside the authorized correction.
 3. **NOTE-4.** Leave App v4 out of the §1, §2 and §18 lists, as now, or extend them. Either is true. Extending them would widen the revision beyond the owner's PEC-scoped direction.
+
+---
+
+## Addendum A: confirmation at the repaired head (2026-10-05)
+
+**Reviewer.** The same FR instance. I made no Git writes.
+- **The original review** is bytes 1–18,008 of this file. Its sha256 is `efb8f7e16ef736f5f7286c6a683f6d457d193d8c24ebf6763861b5d2f531369a`, the first line of `SHA256SUMS`.
+- **Committed copies.** The committed copies of the review, of `SHA256SUMS` and of `RUN3/BRIEF_FR.md` are byte-identical to the files I reviewed with and wrote. `BRIEF_FR.md` is `70efb4a7…`.
+- **What ROOT permitted me to run:** GEN-8, the two validators, `test_public_export_profile.py` and the stage comparison I used before.
+
+**Candidate.**
+- **Head:** `d71593559583f26d1c92eab88d598b4362a73e33`.
+- **Commits since the reviewed head `bd9bbc8536`:** `85a13bba69` (FR repairs) and `d715935595` (the export). Main is still `7ba1181d43`.
+- **PR state:** `gh` shows the PR open, a draft and MERGEABLE.
+- **CI at the time of my check:** `harness` and "App Runtime integration" were still pending. Every finished check had passed or been skipped by coverage selection.
+
+### Verdict at `d715935595`: READY
+
+| Severity | Open |
+|---|---:|
+| BLOCKING | 0 |
+| MAJOR | 0 |
+| MINOR | 0 |
+| NOTE | 1 (A-NOTE-1, optional) |
+
+### What changed since `bd9bbc8536`
+
+Nine paths changed, and nothing else:
+- `docs/alignment-manual/README.md`, the MINOR-2 pointer;
+- the tranche manifest, which adds `exports/chirality-app/export-report.md` to its paths;
+- the four run records: `BRIEF_FR.md`, `RULINGS.md` Addendum A, `reviews/FR-PEC.md` and `reviews/SHA256SUMS`;
+- the two export files;
+- the App v4 follow-up notice.
+
+The AUM Markdown and HTML, the three v8 editions and the v8 evidence are unchanged. So are all PEC and App v4 product paths.
+
+### The repairs
+
+- **MAJOR-1: closed.**
+  - **The fresh stage.** I re-ran `tools/validation/test_public_export_profile.py` on the head, with its base temp under `WT/scratch/fr_pec_01/addA/`. It reported 5 passed, which includes `boundary_findings == []`. The tree was clean.
+  - **The manifest.** I listed its fresh stage as `write_manifest` does: 1,879 rows. Rewritten with the exporter's CSV format, they are byte-identical to the committed `exports/chirality-app/export-manifest.csv`. The new row for this tranche's manifest is 2,998 bytes, `6faa5ae2…`, which matches the file at the head. The README row is 8,858 bytes, `5eee30d9…`.
+  - **The report.** I rebuilt it with `write_report`'s format (0 sanitized, 0 findings). It is byte-identical to the committed `export-report.md`:
+    - line 5 is "- Staging path: `exports/chirality-app/staging`";
+    - it has 1,879 rows;
+    - `docs` is 342.
+  - **The manifest's coverage.** The manifest declares both export files.
+  - **The erratum.** RULINGS Addendum A corrects §4.
+- **MINOR-1: closed.**
+  - **The notice's new bullet is true.** This tranche changes:
+    - the AUM's PEC statements, with headings unchanged;
+    - the README's render basis and management-manual paragraph.
+    
+    Neither change touches what App v4's maps record as read: headings to level three, and "Current editions". So `user_manual`, `manual_index` and the matching `policy_standing/basis.json` entries now trail by two tranches.
+  - **The NOTE-2 wording is also true.**
+    - `a16/basis.json` holds only `consultation` and `sources`.
+    - `policy_standing/candidate.json` and `a16/candidate.json` each pin their `basis.json`.
+    - No App v4 code or test reads these maps.
+- **MINOR-2: closed.** The README's new clause is true.
+  - The three sentences are in v8 §4.2 ("Construct and traverse a local work graph", lines 1674–1792), at lines 1678, 1782 and 1786.
+  - The link to `plans/evidence/2026-10-05_manual_v8_loopinit/production-note.md` resolves.
+  - The README paragraph changed is "Maintain the management-manual formats", not "Current editions".
+- **NOTE-3 and NOTE-4.** These are recorded in RULINGS Addendum A as errata or rulings. I accept them. NOTE-3's new statement that the download's SHA-256 was checked, and that the file was deleted, is outside what I can verify.
+- **RULINGS Addendum A.** It reports my counts, confirmations and findings accurately. "#1094 did the same" is right in substance: #1094's export predates its manifest's last edit. Main's row for that manifest was stale (3,060 bytes against 3,282), not missing.
+
+### Checks at the head
+
+- **G4.**
+  - CI mode: PASS, exit 0.
+  - Diff mode against `7ba1181d43` with `--tranche ROOT-AUM-PEC-AND-FOLLOWUPS-20261005`: PASS, exit 0.
+  - Diff mode with `--added-manifests-only`: PASS, exit 0.
+  - No BLOCK. The diff has 24 changed paths, 7 of them on the instruction surface.
+- **The manifest covers every changed path.** The 24 paths are:
+  - the 9 declared paths;
+  - the 7 run records, including the review files and the brief;
+  - the 7 v8 evidence files;
+  - the App v4 notice.
+  
+  The scope and rationale stay true.
+- **Entrypoint validator:** "PASS: root instruction entrypoints are canonical."
+- **GEN-8:** `CHIRALITY_REQUIRE_LIVE_TESTS=1 … -m pytest -q -p no:cacheprovider tools/practitioner_harness/test_live_baseline.py -k gen8`: 1 passed.
+
+### A-NOTE-1: the notice's lead sentence says "one App v4 TASK"; the maps record two
+
+**Evidence.**
+- The notice says: "The seven hashes are point-in-time records of what one App v4 TASK consulted". My original review missed this.
+- `SOURCE_MAP.json`, with three of the pins, was written by `/root/group_a_execution/v4_guidance_tranche` (`changes/INSTRUCTION_TRANCHE.md`).
+- `policy_standing/basis.json` and `a16/basis.json`, with the other four pins, belong to `/root/group_a_execution/policy_standing_production` (`changes/I3-POLICY.md`, `changes/I3-A16-STANDING.md`).
+- The notice's bullets and RULINGS §3 already describe the maps separately. The recommendation does not depend on this.
+
+**Fix (optional).** Change "one App v4 TASK" to "two App v4 TASKs".
+- The notice lies under `projects/`, which the exporter skips, so this edit needs no new export.
+- An edit to the tranche manifest, however, would require the export to be regenerated again.
+
+### Remaining condition
+
+The PR's hosted `harness` and "App Runtime integration" checks must finish green on `d715935595`. Merge on a later head only if that head's review and checks cover it.
+
+### Host and method disclosures
+
+- **Commands I ran:**
+  - the export profile tests and a read-only stage listing and report rebuild;
+  - G4 in three modes;
+  - the entrypoint validator;
+  - GEN-8;
+  - read-only `git` and `gh` queries, and reads of the changed files and App v4 run records.
+- **Settings.** pytest ran with `TMPDIR` and `--basetemp` under `WT/scratch/fr_pec_01/` and `-p no:cacheprovider`. Git reads used `GIT_OPTIONAL_LOCKS=0`.
+- **Writes.** This addendum, the new line in `SHA256SUMS`, and scratch logs only. `git status` showed a clean tree before these two appends.

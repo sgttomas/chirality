@@ -4,7 +4,7 @@
 
 **What this follows.** `NOTICE_2026-10-05_ROOT_LOOP_INIT_READING_SENTENCE.md` listed seven hashes in App v4's product resources that tranche ROOT-LOOPINIT-AUM-ALIGNMENT-20261005 (#1094) made stale. It left the receiving loop to decide whether to re-pin them.
 
-**What the follow-up found.** The seven hashes are point-in-time records of what one App v4 TASK consulted, and nothing App v4 derived from those files is affected.
+**What the follow-up found.** The seven hashes are point-in-time records of what two App v4 TASKs consulted, and nothing App v4 derived from those files is affected.
 - **`policy_standing/basis.json`** records one TASK's consultation basis: its role, parent, mechanism, model and base `38bb2bc87a`. **`policy_standing/a16/basis.json`** records a consultation and its sources. **`instructions/SOURCE_MAP.json`** records the sources its author read for App v4's bundled `AGENTS.md` and `agents/*.md`.
 - **Each entry states what was read at that time.** Several other entries in the same files already differ from current files after App v4's own later changes. Updating a hash without re-reading would misstate what was consulted.
 - **The candidates depend on these exact bytes.** Each `policy_standing/**/candidate.json` pins its `basis.json` by hash, so editing a basis would also break that candidate's provenance.

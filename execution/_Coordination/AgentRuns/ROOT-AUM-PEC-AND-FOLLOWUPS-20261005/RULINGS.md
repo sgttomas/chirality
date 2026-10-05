@@ -81,3 +81,15 @@ No product code changes.
 - **NOTE-3: erratum to `OWNER_DECISIONS.md`'s list of downloads.** LibreOffice 26.8.1 was downloaded and checked against its published SHA-256, but it was **not used**. The rebuild used the bundled LibreOfficeDev 26.8.0.0.alpha0, as the production note says. The download was deleted from scratch.
 - **NOTE-4, ruled.** App v4 is not added to the §1, §2 and §18 lists. None of those lists claims completeness, and the owner's direction was PEC-scoped. E10(a) stays.
 - **NOTE-1** needs no change.
+
+## Addendum B: FR's Addendum A at `d715935595`; READY (2026-10-05)
+
+**FR's Addendum A** is appended to `reviews/FR-PEC.md` (file sha256 `d290679f…`, the newest line of `reviews/SHA256SUMS`).
+- **Verdict: READY.**
+- **Confirmed:** MAJOR-1 (the export is byte-identical to a fresh stage of the head, 1,879 rows, default staging path), MINOR-1, MINOR-2 and NOTE-2. G4 covers all 24 changed paths.
+
+**A-NOTE-1, applied as FR proposed.** The App v4 follow-up notice's opening now says the seven hashes record what *two* App v4 TASKs consulted:
+- `SOURCE_MAP.json` comes from `/root/group_a_execution/v4_guidance_tranche`;
+- both `basis.json` files come from `/root/group_a_execution/policy_standing_production`.
+
+The notice's bullets and §3 already describe the maps separately. The exporter skips `projects/`, so the export is unaffected.
