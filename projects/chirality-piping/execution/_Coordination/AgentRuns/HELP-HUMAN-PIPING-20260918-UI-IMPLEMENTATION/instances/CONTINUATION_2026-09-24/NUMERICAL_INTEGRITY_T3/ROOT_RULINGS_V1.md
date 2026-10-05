@@ -11854,3 +11854,43 @@ ROOT asked the owner two questions in the session.
 - the routed notes (RV94 N-5, RV95 N-2, Pass B's deletion-only attribution, RV95 B-1/C-1/C-2, RV89 N-1).
 
 **Next:** U8.
+
+## Owner decision: F2a's delivery steps move to the end of F2a; erratum E-1 (ROOT, 2026-10-05 UTC)
+
+**The owner asked** why three items sit in F2a: registering a release build, native Current for successors, and public activation. The owner then asked whether doing them now has benefits, and what activating something only to retire it would gain.
+
+**ROOT's answers:**
+- **F2a was the activation.** In the T3 numerics design (§1, §6), F2a wires W1 into the product's case loop, running automatically on every uncertified case. The three items stand apart only because the D1 milestone was narrowed:
+  - U4's rule: no permit on unqualified terms, so M was qualified for one build and one domain;
+  - D-U7-1, which moved activation out of U7.
+- **Activation precedes F2b.** F2b retires the old exact-block selection one family at a time, and only through §4.4.1's gate, which runs on the live candidate.
+- **W1 is never retired.** Before F2b, the coexistence rule keeps exact-block's invocations byte-identical, and W1 covers what exact-block cannot: skewed geometry, more than 256 DOFs, and blocks above order 2.
+- **Doing the three now** would buy little user value at D1 scope. It would double qualification cost, because registration is tied to the D1 call graph (QUALIFICATION §11) and every F2a widening would re-qualify every registered identity. Activation also depends on T6's outputs.
+
+**The owner approved ROOT's recommendation:** "Very good then. Proceed as recommended."
+
+**Ruled order:**
+1. **U8.**
+2. **F2a's numerical breadth, on the registered dev/test build:**
+   - the receipt and freeze transaction beyond D1;
+   - multi-case invocations and combinations;
+   - preparation-only and mixed invocations;
+   - the promised exact routes;
+   - the complete invocation's exact-block no-attempt rule;
+   - D38's pin, RV78-N1 and the N-3 G7 codes;
+   - re-qualification of the dev/test identity as each widening needs it.
+3. **The release identity, registered once,** with the milestone's bytes and verdicts re-established on it (RV95 N-6).
+4. **Public activation** under the checklist (RR "RV94 on U7…"), with native Current for successors.
+5. **Then** S-I2, F2b per family, and F3.
+
+**Also in the order:**
+- **S-I1** (D2: the evaluator, runner and Python reference, rules crates only) may run alongside at any time, per design §6.
+- **The T6 conflict:** checklist item 4 needs T6's successor outputs, and T6 comes later in the work graph. ROOT brings this conflict to the owner when F2a's numerical breadth is nearly done.
+- **Nothing is dropped.** The design's order F2a → S-I → F2b → F3 is unchanged.
+
+**Erratum E-1.** The 9 ignored PP tests `retained_memory::witness_tests::witness_*` are U4's S1 stack witnesses W1–W7, which Pass B runs explicitly. They are **not** U8's witnesses.
+- ROOT mislabelled them at RR:11777, in the merge record's `dec025/README.md` and `SUMMARY.json`, and in its report to the owner. RV95's ADDENDUM_02 and ADDENDUM_03 repeated the label.
+- The counts and conclusions are unaffected.
+- The correction is `IMPLEMENTATION/F2A_D1_MERGE/ERRATA.md`, with one SHA256SUMS line appended. No sealed file is edited.
+
+**Next:** I61 plans U8, together with the F2a-breadth roadmap and S-I1's readiness, in `R/I61/u8_plan_01/`.
