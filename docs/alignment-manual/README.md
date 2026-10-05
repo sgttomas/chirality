@@ -41,8 +41,8 @@ Render this edition with its explicit source basis:
 /tmp/chirality-manual-renderer/bin/python docs/alignment-manual/render_manual.py \
   --source docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md \
   --output docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html \
-  --basis-date 2026-10-04 \
-  --basis-revision 1cb9fd536e0bd21dc1ae949cc0533434c23258e1
+  --basis-date 2026-10-05 \
+  --basis-revision 87661be164179046710f0fd60002c9ce752f029d
 ```
 
 Render the field book with its reading label and source metadata at the end:
