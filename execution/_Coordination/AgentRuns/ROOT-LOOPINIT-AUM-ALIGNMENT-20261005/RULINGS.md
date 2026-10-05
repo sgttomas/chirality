@@ -39,3 +39,25 @@ AM, a Type 2 TASK, was dispatched under [BRIEF_AM.md](BRIEF_AM.md) as a Claude C
 - the PR's automatic CI.
 
 No product code changes.
+
+## Addendum A: AR's review and the repairs (2026-10-05)
+
+**AR's review** is `reviews/AR-AUM.md` (sha256 `2437c0bf…`). Verdict: **REPAIR**, with 0 BLOCKING, 1 MAJOR, 0 MINOR and 5 NOTE.
+
+**Confirmed by AR:**
+- E1–E17 reproduce the head AUM byte for byte;
+- all 32 cited quotes appear verbatim;
+- no `[Piping loop §…]` citation remains, and every link resolves;
+- every edited statement is true at `87661be164`;
+- exactly one App v4 sentence changed;
+- the renderer `--check` verifies the HTML;
+- B1–B3 and row 8;
+- G4, the entrypoint validator and GEN-8.
+
+**The repairs:**
+- **MAJOR-1, repaired.** App v4's product resources pin seven hashes this tranche changes, not three. Besides LOOP_INIT's three pins, `SOURCE_MAP.json` (entries `manual_index` and `user_manual`) and `policy_standing/basis.json` pin the alignment-manual README and the AUM Markdown. The App v4 notice and the manifest's rationale now list all seven. **Erratum to ruling 8,** which said three.
+- **NOTE-1, accepted. Erratum to ruling 4's reason.** The App build guide has recorded `>=22.19.0` since 2026-09-22 (`a89b5ddecf`), so §14's "stale at this basis" Node note was false at every basis it was rendered with. E17 corrects it, and the decision to keep E17 stands.
+- **NOTE-2, applied.** B1 and B2 now say "`AGENTS.md` holds the project constraints and fences", so they do not conflict with LOOP_INIT's own "Standing constraints" section.
+- **NOTE-3, applied.** Row 8 now says "these sources do not expand scope or lift holds", since LOOP_INIT no longer holds a graph pointer.
+- **NOTE-4, applied.** The public export is regenerated at this PR's final tree, as earlier manual tranches did (`exports/chirality-app/export-manifest.csv` and `export-report.md`). It is staged outside the repository, and it also brings the export up to date with #1093.
+- **NOTE-5** confirms ruling 5; no change.

@@ -35,9 +35,11 @@ m6_notice:
   routed_to:
     - projects/chirality-app-v4/execution/_Coordination/NOTICE_2026-10-05_ROOT_LOOP_INIT_READING_SENTENCE.md
   rationale: >-
-    App v4's LOOP_INIT changes one sentence. Three App v4 product resources
-    record that file's previous sha256, and they belong to App v4's loop, so
-    the notice leaves re-pinning to it. Piping's pointer corrections complete
+    App v4's LOOP_INIT changes one sentence. App v4's product resources pin
+    seven hashes this tranche changes: three pins of that LOOP_INIT, and four
+    pins of the alignment-manual README and the Agent User Manual Markdown,
+    in SOURCE_MAP.json and policy_standing/basis.json. They belong to App v4's
+    loop, so the notice lists all seven and leaves re-pinning to it. Piping's pointer corrections complete
     the Piping LOOP_INIT tranche (PIPING-LOOP-INIT-20261005, whose notice to
     Piping's loops is already routed); they change no rule. The Agent User
     Manual is shared guidance; it amends no loop's instructions, so no other
