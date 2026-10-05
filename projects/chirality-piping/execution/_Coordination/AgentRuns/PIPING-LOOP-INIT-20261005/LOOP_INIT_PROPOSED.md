@@ -1,3 +1,34 @@
+# Proposed LOOP_INIT.md (draft for HELP_HUMAN)
+
+Drafted by LM, a Type 2 TASK, for HELP_HUMAN (ROOT), run
+`PIPING-LOOP-INIT-20261005`. It is a proposal: the live `P/loop/LOOP_INIT.md`
+is unchanged. The basis is `RUN/OWNER_DECISIONS.md` and the two sections of
+`V4RUN/OWNER_DECISIONS.md` on LOOP_INIT. `LOOP_INIT_MAPPING.md` accounts for
+every sentence of the current file, and `CONSISTENCY_EDITS.md` gives the edits
+needed elsewhere.
+
+Drafting notes. They are not part of the proposed text.
+- Shape and voice follow `NUM/projects/chirality-app-v4/loop/LOOP_INIT.md`.
+  The facts are Piping's. The opening names project `AGENTS.md`, and entry
+  step 2 reads it (mapping N3).
+- Every path was checked with `test -e` relative to `P`, or `NUM` for the
+  alignment-manual README. Every workflow name was checked in
+  `NUM/workflows/index.json` (bundled, `chirality-root`).
+- No host path, undertaking name, current ID or date of current work appears.
+  "Receipt 162" names where a closed historical ledger ends, as the brief
+  asks; "PKG-00" names where a bespoke production form lives.
+- Open choices for ROOT: the MEMORY creation clause (mapping Q1),
+  `coordinated-knowledge-work` (Q2), and the last sentence of "When to read
+  further" (Q3).
+- `_structural_duplication_findings` from
+  `NUM/tools/validation/validate_instruction_entrypoints.py`, applied to this
+  text in a scratch copy, returned no findings.
+- The proposed text runs from the next heading to the end of the file. It is
+  87 lines and 3,875 characters, about 1,020 tokens (characters / 3.8). The
+  current file is 146 lines and 8,475 characters, about 2,230 tokens.
+
+---
+
 # Piping development loop
 
 Resolve `REPO_ROOT` from the active checkout and set `WORKING_ROOT` to
@@ -29,8 +60,8 @@ Go to a section:
 
 Read the section, not the chapter. Instructions and the human's decisions
 govern; the manuals explain. Record what you read in the run evidence, as
-Root `AGENTS.md` requires. If you are unsure whether a section
-matters, read it.
+Root `AGENTS.md` requires. If you are unsure whether something matters, ask
+the human.
 
 ## Methods
 

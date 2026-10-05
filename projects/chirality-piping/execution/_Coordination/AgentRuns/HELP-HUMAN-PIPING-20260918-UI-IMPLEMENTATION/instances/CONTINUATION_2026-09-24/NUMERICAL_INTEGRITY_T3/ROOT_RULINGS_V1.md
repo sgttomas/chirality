@@ -12227,3 +12227,34 @@ Their bytes are records, and many are bound by SHA256SUMS, so they cannot be rel
 - ROOT absorbs main into NUM, removes the records worktree, and runs the periodic cleanup.
 - **NUM is ahead of main** by #1088's merge record, RV100's addendum and this ruling. The next records PR carries them.
 - **The handoff is complete.**
+
+## Owner direction: piping LOOP_INIT in the binding form; T3's handoff becomes an init steer; ROOT_CURRENT retired (ROOT, 2026-10-05 UTC)
+
+**The owner compared** App v4's LOOP_INIT with piping's and App v3's, and directed: "Make appropriate changes to the LOOP_INIT and your own handoff steering instruction (that will just be copied and pasted into the next init-prompt to begin the session)." The owner also said "The steering instructions can be more extensive that one or two sentences. In fact, they can be quite elaborate if justified." The exact text and the piping-level rulings are in run `PIPING-LOOP-INIT-20261005` (`OWNER_DECISIONS.md`, `RULINGS.md`).
+
+**Piping's LOOP_INIT** becomes a binding pointer, in App v4's form, under tranche `PIPING-LOOP-INIT-20261005`. That tranche also makes minimal consistency edits in project `AGENTS.md`, the Root launcher, `_COORDINATION.md`, a DEL-11-05 banner and the newest WORKPLAN.
+
+**T3's records change accordingly.** Under the owner's App v4 decision, no record type should have to be kept up to date to carry current state, and the handoff is ephemeral.
+- **The current account moves to the work graph.** The piping work graph gains the section "T3 current route (numerical integrity)", which carries:
+  - the route as nodes;
+  - the owner-held choices;
+  - the owner decisions and the T3 rulings in force;
+  - the next IDs (I75, RV101);
+  - the routed notes;
+  - the next safe action.
+  
+  The T3 row's status points to it.
+- **`RESUME_2026-09-30/ROOT_CURRENT.md` is retired** to a pointer. Sealed records cite it, so the path stays.
+- **`HANDOFF_2026-10-05_TO_NEXT_ROOT.md` is now an ephemeral note:** where things are, the machine-local host details, and open owner items. It no longer restates the loop, the gates or the rules, which live in the workflows, project `AGENTS.md`, LOOP_INIT and these rulings.
+- **`HANDOFF_2026-10-05_PROMPT.md` is now piping's init prompt with the steer filled in.** The steer is elaborate where justified. It names the undertaking and where its state lives, the first actions and the order of work, and the T3 practices that neither LOOP_INIT nor project `AGENTS.md` states:
+  - the memory guard and one cargo job at a time;
+  - DEC-025 through `run_dec025.sh`, counting only at `ALL-DONE`;
+  - the full suite before a freeze;
+  - compact product PRs;
+  - never merging NUM itself into main;
+  - records-only PRs;
+  - fresh IDs;
+  - owner-held choices;
+  - cleanup.
+
+**Delivery:** one PR carries the tranche and these T3 records. Its gates are LR's independent review, GEN-8 and the PR's automatic CI.
