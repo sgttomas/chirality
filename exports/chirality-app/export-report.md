@@ -2,8 +2,8 @@
 
 Generated from the public `chirality` source profile `exports/chirality-app`.
 
-- Staging path: `exports/chirality-app/staging`
-- Manifest rows: 1875
+- Staging path: `/Users/ryan/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/scratch/aum_pr/export_stage`
+- Manifest rows: 1878
 - Text files sanitized for machine-absolute paths: 0
 - Boundary findings: 0
 
@@ -20,7 +20,7 @@ Generated from the public `chirality` source profile `exports/chirality-app`.
 | `README.md` | 1 |
 | `agents` | 5 |
 | `desktop` | 641 |
-| `docs` | 338 |
+| `docs` | 341 |
 | `init` | 1 |
 | `runtime` | 152 |
 | `tools` | 413 |
