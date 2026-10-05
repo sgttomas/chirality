@@ -2,9 +2,11 @@
 
 Field Book
 
+*Revised 4 October 2026: 60% gate guidance added in §§1, 4 and 5.*
+
 Follow the route from intended result to delivery. Enter an existing project at its verified position. Apply the method within the project's accepted instructions, decision rights, and working conditions.
 
-The [full manual](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md) supplies the explanations and examples. The [Chirality Agent User Manual](CHIRALITY_AGENT_USER_MANUAL_v3.md) supplies repository application and source links.
+The [full manual](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md) supplies the explanations and examples. The [Chirality Agent User Manual](CHIRALITY_AGENT_USER_MANUAL_v3.md) supplies repository application and source links.
 
 ## 1. The project route
 
@@ -35,7 +37,7 @@ Authorise delivery and transfer responsibility
 | Conceptual | Intended outcome, users, scope, constraints, and an accepted project basis. |
 | FEED — front-end engineering design | Accepted division into packages and deliverables; workspace and coordination arrangements. |
 | 30% — execution definition | Local production contracts, evaluation arrangements, dependencies, and an initial project directed acyclic graph (DAG). |
-| 60% — detailed development | Developed design and interfaces; an execution route for which further structural changes are no longer anticipated. |
+| 60% — detailed development | Developed design and interfaces; an execution route for which further structural changes (the Deliverable set, the order between groups) are no longer anticipated; each SCC with an accepted treatment under which its work can proceed. |
 | 90% — produced deliverables | Intended contributions integrated, records reconciled, and an identified product ready for concentrated examination in use and debugging. |
 | 100% — delivery | Applicable acceptance and delivery decisions completed; identified product delivered with its limitations and continuing responsibilities. |
 
@@ -43,7 +45,58 @@ Percentage labels describe development positions. They do not measure effort, co
 
 At a stage gate, present what has been established, what remains unresolved, what the next work would rely on, and the proposed continuation. The human decides whether to advance, qualify, redirect, or require further work.
 
-Reference: [Manual §1.7](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_1_7).
+### The 60% gate
+
+The project DAG directs work: which Deliverables exist and the order in which groups of them can be completed. The gate expects no change at that level. Finer relationships keep changing; record each where those who depend on it will see it. The gate does not require a DAG with every cross-reference or cycle removed.
+
+```text
+DISCERN
+[ ] Every Deliverable has a reviewed design with its interfaces.
+[ ] Grouping test holds:
+    - each SCC's members, with closely bound Deliverables, in one group;
+    - every held relationship inside one group;
+    - dependencies between groups run one way;
+    - each residual risk contained in a group or at an identified
+      join that follows the group order, with an owner.
+[ ] Groups and members recorded; grouping for development proposed for
+    the human's decision, which may be given with the gate. Grouping is
+    not a merge ruling: SCC rows stay held and their cases stay open.
+[ ] Thin designs named with owners as completion work.
+[ ] Open matters sorted by who closes them; any that could add or
+    remove a Deliverable or reverse the group order is settled,
+    contained as a residual risk with an owner, or accepted by the
+    human as a stated qualification.
+[ ] Evidence standing stated as it is.
+
+STOP ANALYSING AND BRING THE GATE WHEN
+    each round finds more coupling than it removes; moves leave runtime
+    residuals; authors narrow designs to close cycles; supporting work
+    grows while no product advances.
+
+HAND OFF TO 90%
+    One development loop per group or several groups, each with a local
+    work graph from the group order accepted at the gate. A walking
+    skeleton through the most coupled core first. Agreed contracts frozen
+    under change control. Found relationships recorded where those who
+    depend on them will see them: the group's work graph within a group,
+    the work graph of each affected loop across groups. A loop
+    constructing or resuming its graph reads the other groups' graphs
+    for relationships recorded against its group; read them before
+    declaring work ready. Register and Scope of
+    Work updates where wording would otherwise mislead, decided by the
+    human in batches under the departure rules. Effectiveness measured
+    on delivery.
+
+ASK THE HUMAN AT ONCE
+    about anything that seems to run against the group order, forms a
+    cycle across groups, changes the Deliverable set, would make another
+    group's finished work wrong, or suggests the grouping is wrong.
+    In doubt, ask. (From one project's experience; no thresholds.)
+```
+
+The gate is the human's act. Present a short assessment; record the human's exact words with their source and custody. Agent checking does not pass the gate.
+
+References: [Manual §1.7](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_1_7), [§4.12](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_4_12).
 
 ## 2. Responsibilities and information
 
@@ -78,7 +131,7 @@ Read the project through four views as needed: **tree** for composition, **produ
 
 Keep project stage, deliverable lifecycle, task completion, and acceptance distinguishable. Each describes a different condition.
 
-References: [Manual §§1.6–1.9](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_1_6), [§4.3](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_4_3).
+References: [Manual §§1.6–1.9](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_1_6), [§4.3](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_4_3).
 
 ## 3. Establish the basis
 
@@ -95,7 +148,7 @@ For each open matter, record its consequence, owner, required resolution, and th
 
 **Result:** a usable accepted basis, with a definite scope and an accountable treatment of unresolved matters.
 
-References: [Manual §§2.1–2.7](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_2_1), [§§2.9–2.11](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_2_9).
+References: [Manual §§2.1–2.7](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_2_1), [§§2.9–2.11](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_2_9).
 
 ## 4. Define the work and its order
 
@@ -132,13 +185,13 @@ Resolve cycles according to their actual meaning:
 | Merge | Make the coupled work one accepted unit, with combined inputs, responsibility, and examination. Human decision required. |
 | Cut | Establish that the relationship falls outside the graph's stated objective; retain its other consequences. Human decision required. |
 
-A grouped cycle still contains work whose order needs resolution. Excluding an unresolved relationship from a graph does not supply its missing input. Hold the dependent work; continue separately authorised investigation and independent work.
+A grouped cycle still contains work whose order needs resolution. Excluding an unresolved relationship from a graph does not supply its missing input. Hold the dependent work; continue separately authorised investigation and independent work. Grouping co-designed members for development is not a merge: their held relationships stay non-gating, their cases stay open, and the group's work graph orders the parts.
 
 Establish the initial project DAG before the 30% gate. Preserve its objective, node inventory, relationship meaning, source revisions, exclusions, examination, and decisions. Dependencies may remain pending within an accepted DAG.
 
 **Result:** identified production commitments and a defensible order for developing them.
 
-References: [Manual §§3.1–3.8](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_3_1), [§§3.9–3.12](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_3_9), [§5.5](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_5_5).
+References: [Manual §§3.1–3.8](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_3_1), [§§3.9–3.12](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_3_9), [§5.5](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_5_5).
 
 ## 5. Carry an undertaking through to completion
 
@@ -154,7 +207,7 @@ State the intended result and completion conditions. Give each work node an outp
 
 Prepare one planned final documentation and governance closeout after the intended implementation and evidence have been integrated. Documents and reconciliations needed to perform or constitute an earlier contribution travel with that contribution.
 
-Renew the project DAG when its governing relationships change. A new conversation or rearranged assignment alone does not require a successor DAG.
+Renew the project DAG as the adopted departure rules require when the dependency records change; the human can decide several departures in one successor. A change to the Deliverable set or the order between groups also reopens the route. Finer relationships belong in the work graph; one that crosses groups goes in the work graph of each affected loop. A new conversation or rearranged assignment alone does not require a successor DAG.
 
 ### 3. Commission ready work
 
@@ -200,7 +253,7 @@ Confirm that the result meets the stated completion conditions. Record what was 
 
 Preserve the completed graph and its relationship to the result. Report completion at the undertaking's scope. A new objective requires new steering; completing this undertaking does not by itself accept or release the product.
 
-References: [Manual §1.10](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_1_10), [§§4.1–4.11](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_4_1), [§§5.2–5.8](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_5_2).
+References: [Manual §1.10](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_1_10), [§§4.1–4.11](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_4_1), [§§5.2–5.8](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_5_2).
 
 ## 6. Examine the produced result
 
@@ -228,7 +281,7 @@ For a defect: preserve the observation, reproduce it, identify the cause, apply 
 
 Present the exact candidate, supported conclusions, unresolved limitations, and requested decision. Keep production completion, formal checking, human acceptance, and publication distinct.
 
-References: [Manual §§5.9–5.14](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_5_9).
+References: [Manual §§5.9–5.14](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_5_9).
 
 ## 7. Treat exceptions at their source
 
@@ -247,7 +300,7 @@ References: [Manual §§5.9–5.14](Project_Management_for_Human_Agent_Teams_Con
 
 Reopen only the decisions and checks whose basis or consequences are affected. Preserve valid work and historical evidence. A changed instruction or shared source takes effect in another undertaking through its applicable adoption arrangements.
 
-References: [Manual §1.9](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_1_9), [§§4.7, 4.11](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_4_7), [§§5.6, 5.10, 5.13](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_5_6).
+References: [Manual §1.9](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_1_9), [§§4.7, 4.11](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_4_7), [§§5.6, 5.10, 5.13](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_5_6).
 
 ## 8. Deliver and hand over
 
@@ -260,4 +313,4 @@ References: [Manual §1.9](Project_Management_for_Human_Agent_Teams_Consolidated
 
 A useful handover identifies **the result, its basis, its permitted use, its limitations, its next responsible owner, and the means of recovery**.
 
-Reference: [Manual chapter 6](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md#ch_6).
+Reference: [Manual chapter 6](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md#ch_6).
