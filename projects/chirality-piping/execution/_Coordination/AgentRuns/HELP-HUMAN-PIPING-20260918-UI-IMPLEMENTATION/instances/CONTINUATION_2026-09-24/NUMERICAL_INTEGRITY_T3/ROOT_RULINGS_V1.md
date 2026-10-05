@@ -12258,3 +12258,45 @@ Their bytes are records, and many are bound by SHA256SUMS, so they cannot be rel
   - cleanup.
 
 **Delivery:** one PR carries the tranche and these T3 records. Its gates are LR's independent review, GEN-8 and the PR's automatic CI.
+
+## T3's gate set and Git rules, consolidated after the handoff was made ephemeral (ROOT, 2026-10-05 UTC)
+
+**Why this ruling exists.** LR's review of #1092 (MINOR-3) found that making the handoff ephemeral dropped its "Rules that continue". Those rules gathered T3 practice from many rulings. The ruling "Owner direction: proportionate CI…" says "the full gate set stays", but after the change that set was stated only in Git history. This ruling states the set once. It changes no rule; each item cites its source.
+
+**Product PRs:** S-I1, the T6 slice, U8, PR-B1, PR-B2 and later. These are PRs that change source, tests, CI or tools.
+1. **Cut compactly from main,** with maintained-source equality to the NUM head (`IMPLEMENTATION/F2A_D1/source_equality.py`), a concise evidence package, and checked citations. The precedent is #1082 ("#1082 merged at F′…").
+2. **A fresh independent complete-diff review,** with the same reviewer confirming each repair (project `AGENTS.md`, "Software checks").
+3. **The full 40-manifest suite before the freeze** ("DEC-025 on F finds a test-walker defect…").
+4. **Hosted CI on the PR, and the full-SHA dispatch** (`target_base` = main).
+5. **GEN-8 on the exact head,** by E-4's method ("RV100 passes #1088 at H…").
+6. **An exact-final-head Mac DEC-025,** compared per manifest and per test (`compare_suites.py`) against a fresh baseline of current main. Use `run_dec025.sh`; a run counts only at `ALL-DONE` (project `AGENTS.md`, for product code; same ruling for the wrapper).
+7. **Where the D1 call graph or a registered identity is touched:** Pass B with an independent confirmation, plus T9 and the both-entry gates where product behaviour can change (the F2a D1 rulings).
+
+**Records-only PRs:**
+- **Gates:** GEN-8, the PR's automatic CI and an independent review.
+- **Not run:** DEC-025 and the dispatch.
+- **Merge:** squash with `--match-head-commit` and an explicit subject and body.
+
+Sources: "Owner direction: proportionate CI…" and A-1 in "#1088 squash-merged…".
+
+**Git:**
+- **Who writes:** TASKs make no Git writes; ROOT commits, merges and pushes.
+- **Never** rebase or force-push.
+- **Merging:** product PRs merge with `gh pr merge --merge --match-head-commit`; records-only PRs squash. Either one merges only after confirming main has not moved. If it has, refresh the gates, or carry them over by a ruling under "RV100 passes #1088 at H…".
+- **No auto-merge.**
+- **Never merge NUM itself into main** ("A follow-up records-only PR before the handoff").
+- **Add records with explicit paths,** never `git add -A`.
+
+**Returns and IDs:**
+- **Verify every return:** SHA256SUMS, the fence, and cheap reproduction of claims. No report is accepted unchecked.
+- **Fresh IDs:** implementers and independent reviewers get separate, fresh IDs. An ID is a records folder and a role, not a memory.
+
+This consolidates long-standing T3 practice: the 2026-10-03 and 2026-10-05 handoffs, as committed in Git history.
+
+**Host:**
+- **Heavy work** runs only with the memory guard running, and one cargo job at a time.
+- **TASKs** run no DEC-025, native or solver-at-scale jobs.
+- **Scratch** lives in `WT/scratch`.
+- **Cleanup** is gather, then plan, then apply ("Stray scratch gathered…").
+
+The work graph's T3 section lists this ruling among the rulings in force, and the T3 steer refers to it.
