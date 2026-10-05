@@ -3,7 +3,7 @@
 **Handed off at the owner's request.**
 - **Nothing is running:** no TASK, compiler, solver or test. The memory guard stays running.
 - **The F2a D1 milestone is on main** (PR #1082).
-- **T3's records through this handoff are on main:** #1084 (squash `f506f3e2de`), then a follow-up records-only PR carrying this version of the handoff.
+- **T3's records through this handoff go to main in two records-only PRs:** #1084 (merged, squash `f506f3e2de`) and #1088, which carries this version of the handoff. #1088's merge record, `IMPLEMENTATION/RECORDS_MERGE_2026-10-05B/` on NUM, confirms whether it merged.
 - **U8 is planned and ruled, and its briefs are ready.** Nothing is dispatched.
 - **The host was cleaned** (about 0.5 TiB freed), and every T3 branch is pushed.
 
@@ -23,7 +23,7 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
 6. **The merged milestone's package:** `IMPLEMENTATION/F2A_D1/CHANGE_RECORD.md` (scope §4, obligations §5) and the merge record `IMPLEMENTATION/F2A_D1_MERGE/` (RECORD, ERRATA).
 7. **The records merges:**
    - `IMPLEMENTATION/RECORDS_MERGE_2026-10-05/` covers #1084.
-   - `IMPLEMENTATION/RECORDS_MERGE_2026-10-05B/` covers the follow-up records PR, the outgoing ROOT's last act. It is on NUM only, and says whether that PR merged. **Check it first.**
+   - `IMPLEMENTATION/RECORDS_MERGE_2026-10-05B/` covers #1088, the follow-up records PR and the outgoing ROOT's last act. It is on NUM only, and says whether that PR merged. **Check it first.**
    
    A records PR's post-merge record is necessarily written after the merge, so it stays on NUM until the next records PR. NUM is therefore normally ahead of main by that record and the rulings after it.
 
@@ -41,7 +41,7 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
 | **The memory guard** | `WT/guard/memguard.sh`, PID 5387 at handoff; check with `pgrep -f memguard.sh`. It must run during any build |
 | **VENV** | `<repo>/.claude/worktrees/swbpipe-control-layer-8a41be/projects/chirality-piping/.venv` |
 | **node_modules** | The parent checkout's `projects/chirality-piping/node_modules`, linked into a worktree by an untracked symlink, which you remove before removing the worktree |
-| **DEC-025 tooling** | `WT/scratch/u9_dec025/dec025_mac.sh` (sha `9e34865b…`, unchanged from `M03_SKEW_PIN_MERGE`); the quiet-host wrapper `run_all.sh`; the suite runner `WT/scratch/calib/run_suites_nff.sh`. Copies are in `IMPLEMENTATION/HANDOFF_2026-10-05/host_tools/`. The per-test comparator is `IMPLEMENTATION/F2A_D1_MERGE/dec025/compare_suites.py` |
+| **DEC-025 tooling** | `WT/scratch/u9_dec025/dec025_mac.sh` (sha `9e34865b…`, unchanged from `M03_SKEW_PIN_MERGE`); the quiet-host wrapper `run_dec025.sh` (which replaced `run_all.sh`); the suite runner `WT/scratch/calib/run_suites_nff.sh`. Copies are in `IMPLEMENTATION/HANDOFF_2026-10-05/host_tools/`. The per-test comparator is `IMPLEMENTATION/F2A_D1_MERGE/dec025/compare_suites.py` |
 | **Cleanup** | `WT/tools/t3_cleanup.py`, which has `gather`, then `plan`, then `apply`. Procedure in `IMPLEMENTATION/HANDOFF_2026-10-05/CLEANUP.md`. It is a documented procedure, not a registered workflow |
 | **Evidence that exists only on disk** | `WT/scratch` (about 44 GB) and `WT/preserved-evidence`. Never pruned without the owner |
 
@@ -54,10 +54,10 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
   **No product caller exists.**
 - **The first freeze failed, and was repaired.** DEC-025 on F caught a test-walker defect in nonlinear_integration, repaired test-only, and the head was refrozen as F′. **Rule since then: the full 40-manifest suite runs before any freeze.**
 - **Erratum E-1:** the 9 ignored PP `witness_*` tests are U4's stack witnesses, not U8's.
-- **NUM has absorbed main** through the follow-up records PR's merge (see its record). Every T3 branch is on origin.
+- **NUM absorbs main after #1088 merges,** and `RECORDS_MERGE_2026-10-05B/` confirms both. Before that, NUM had absorbed main through #1084 (`f506f3e2de`). Every T3 branch is on origin.
 - **T3's records reached main** in two records-only PRs:
-  - **#1084,** squash `f506f3e2de`. It passed RV96's three passes, GEN-8, hosted CI, the full-SHA dispatch and DEC-025, with 255 historical records registered in the portability policy and 13 files redacted.
-  - **The follow-up,** reviewed by RV100, carrying everything since: #1084's merge record, the stray-scratch gathering and this handoff's final form.
+  - **#1084,** squash `f506f3e2de`. It passed RV96's review at its third head (FAIL, FAIL, then PASS), GEN-8, hosted CI, the full-SHA dispatch and DEC-025, with 255 historical records registered in the portability policy and 13 files redacted.
+  - **#1088, the follow-up,** reviewed by RV100 (PASS; its SHOULD-FIX was repaired by a re-cut), carrying everything since: #1084's merge record, the stray-scratch gathering and this handoff's final form.
 - **Stray scratch was gathered** into `WT/scratch`, and the cleanup tool gained its `gather` step.
 - **I61 planned U8 and the rest of F2a.** ROOT ruled all 13 ROOT decisions as recommended. The owner decided the 14th.
 
@@ -116,7 +116,7 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
    5. Then **I72** (Pass B) and **RV97** (the review). RV98 confirms Pass B. Each repair is confirmed by the same reviewer.
    6. Then the full 40-manifest suite, and the freeze.
    7. **U8's own compact PR** from main: source equality and a small evidence package, as #1082 did. Its gates are hosted CI with the full-SHA dispatch (`target_base` = main), GEN-8, and DEC-025 against a fresh Mac baseline of main.
-   8. Merge with `--match-head-commit` after checking main has not moved, and write the post-merge record on NUM.
+   8. Merge with `--match-head-commit` after checking main has not moved, or carry the gates over by ruling under "Gates before a main merge" below. Write the post-merge record on NUM.
 4. **In parallel, S-I1** (`BRIEFS/I73_S_I1.md`, `RV99_S_I1_REVIEW.md`): branch `codex/piping-s-i1-<date>` from main into `WT/s-i1`, with its own PR. It needs no D1 gates, but does need DEC-025 and hosted CI. **One cargo job at a time across U8 and S-I1: you order them.**
 5. **In parallel, the T6 slice plan** (`BRIEFS/I74_T6_SUCCESSOR_SLICE_PLAN.md`). Rule on it, then dispatch its implementation with its own reviewer and PR.
 6. **Then breadth:** B0 (reserve `openpipestress.result_semantics/0.3.0/physics-retained-1`) → B1 and B6 (W-C2, D38's pin, and early in B1 the cap-growth study) → PR-B1 → B2 and B3 → B4 if ruled → PR-B2 → B7 → B8 → S-I2 → F2b per family → F3.
@@ -132,8 +132,8 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
   - never rebase or force-push;
   - **how to merge:**
     - a product PR with `gh pr merge --merge --match-head-commit`;
-    - a records-only PR with `--squash` and an explicit subject and body;
-    - either one only after checking `origin/main` has not moved, or that any move is disjoint from the PR's paths and from piping, recorded in the merge record;
+    - a records-only PR with `gh pr merge --squash --match-head-commit` and an explicit subject and body;
+    - either one only after checking `origin/main` has not moved. If it has, refresh the gates on the new combination, or carry them over by ruling (see "Gates before a main merge");
   - **never merge NUM itself, or any branch that carries its history, into main.** NUM's history holds the 13 unredacted originals listed in #1084's `REDACTIONS.json`;
   - no auto-merge;
   - merges use the owner's standing authorization (AGENTS.md): required CI passes, and independent review has no unresolved blocking finding on the actual candidate.
@@ -141,17 +141,22 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
 - **Send records to main** after each main merge, and at a handoff, with a records-only PR:
   - cut it from main, taking `projects/chirality-piping/execution/` from NUM;
   - run GEN-8 on the candidate before opening it;
-  - its gates are an independent review, hosted CI with the full-SHA dispatch, and DEC-025.
+  - its gates are an independent review, hosted CI with the full-SHA dispatch, and DEC-025;
+  - it is squash-merged with `--match-head-commit`.
 - **Gates before a main merge:**
   - a fresh independent complete-diff review, with same-reviewer repair confirmation;
   - hosted CI and the full-SHA dispatch;
   - the full 40-manifest suite before the freeze;
   - an exact-final-head Mac DEC-025, compared per manifest and per test (`compare_suites.py`) against a fresh baseline of current main;
-  - GEN-8;
+  - GEN-8, run in a Git checkout of the exact head, with its output saved alongside the head SHA and the command;
   - for D1-call-graph changes, Pass B with an independent confirmation, plus T9 and the both-entry gates where product behaviour can change.
   
-  A carry-over by ruling needs a stated premise and the reviewer's confirmation.
+  **A carry-over by ruling** needs a stated premise and the independent reviewer's confirmation, both recorded in the merge record. Two kinds are established:
+  - **Main moved after the gates (#1084).** Every path main's move changes lies under another project's own directory (`projects/<name>/`, never `projects/chirality-piping/`), with nothing in `tools/`, `.github/`, the portability policy or root build files. GEN-8 also passes on a local combination of the head with the moved main.
+  - **A records-only re-cut (#1088).** The new head differs from a fully gated head only in execution-record text that no DEC-025 suite reads. Hosted CI, the dispatch and GEN-8 are rerun on the new head, and DEC-025 carries over.
 - **DEC-025 runs on a quiet host:** the wrapper waits for six quiet samples, with a fresh target, and nothing else builds meanwhile. Tell reviewers not to build during the window.
+  - **The wrapper** is `WT/scratch/u9_dec025/run_dec025.sh <label> [<baseline worktree>]`, which replaced `run_all.sh`.
+  - **A run is complete only when its `meta.txt` ends with `ALL-DONE`.** The wrapper logs `dec025-complete`, or `dec025-INCOMPLETE` and exit 3. The old `run_all.sh` logged `dec025-done` even when nothing ran.
 - **Records:**
   - placeholder paths, and SHA256SUMS per folder;
   - the rulings stay append-only;
@@ -174,6 +179,7 @@ You continue as **HELP_HUMAN, Type 0, Agent 0 (ROOT)** for T3, under the owner's
   - A merge commit would have carried the unredacted originals into main.
   
   Run GEN-8 and the host-data screen before opening a records PR, and squash it.
+- **A wrapper reported done when nothing had run.** #1088's first DEC-025 attempt failed on a missing output folder, yet the old wrapper still logged `dec025-done`. Check for `ALL-DONE`.
 
 ## Open items not yet in a brief
 
