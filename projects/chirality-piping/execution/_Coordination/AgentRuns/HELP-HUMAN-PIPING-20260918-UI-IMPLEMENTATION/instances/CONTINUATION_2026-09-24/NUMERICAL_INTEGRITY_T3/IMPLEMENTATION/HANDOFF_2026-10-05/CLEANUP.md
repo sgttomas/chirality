@@ -114,3 +114,11 @@ The largest items:
 **The tool gained `gather`,** which was tested on a throwaway probe. The committed copy is updated in `host_tools/`.
 
 **The periodic cleanup then ran after #1084's merge:** 17 caches (the last DEC-025 runs) and 3 tree copies, about 11.9 GB (`cleanup/manifest_20261005c.jsonl`).
+
+## Addendum 2, 2026-10-05: RV100's N-5
+
+**RV84's two tree copies were removed.** Of the 1,347 gathered files, 1,193 belonged to `rv84_u4_g3_01/srcb1f/projects` and `rv84_u4_g3_01/src5ae/projects`. The periodic cleanup removed them about a minute after the move, as regenerable `treecopy` entries; both source commits are on origin.
+
+**The hash list's paths are relative to the stray root,** which is the parent checkout's `scratch/`. Lines under `i54_direct_container_profile/` map to `WT/scratch/i54_direct_container_profile_from_parent_checkout/`.
+
+**The move was made by hand,** before `gather` existed, so there is no gather log. The hash list and the first addendum record it.

@@ -12,7 +12,7 @@ You are **HELP_HUMAN (Type 0, Agent 0), ROOT for T3**, the numerical integrity, 
 3. From the same folder:
    - `RESUME_2026-09-30/ROOT_CURRENT.md`;
    - the end of `ROOT_RULINGS_V1.md`, from "U9 planned and ruled" on;
-   - the records merges: `IMPLEMENTATION/RECORDS_MERGE_2026-10-05/` (#1084) and `IMPLEMENTATION/RECORDS_MERGE_2026-10-05B/` (the follow-up records PR; check that it merged);
+   - the records merges: `IMPLEMENTATION/RECORDS_MERGE_2026-10-05/` (#1084) and `IMPLEMENTATION/RECORDS_MERGE_2026-10-05B/` (#1088, the follow-up records PR; check that it merged);
    - `RESUME_2026-09-30/I61/u8_plan_01/PLAN.md`;
    - `RESUME_2026-09-30/BRIEFS/` (`U8_COMMON.md`, I68–I74, RV97–RV99).
 4. The work graph: `projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md`, rows T3 and T6.
@@ -41,11 +41,15 @@ You are **HELP_HUMAN (Type 0, Agent 0), ROOT for T3**, the numerical integrity, 
    - **the full 40-manifest suite before the freeze;**
    - a compact PR from main with source equality and a small evidence package;
    - hosted CI with the full-SHA dispatch;
-   - GEN-8, run on the candidate before opening the PR;
-   - an exact-head Mac DEC-025 against a fresh baseline of main, compared per test;
+   - GEN-8, run on the candidate before opening the PR, with its output saved alongside the head SHA and the command;
+   - an exact-head Mac DEC-025 against a fresh baseline of main, compared per test. Use `WT/scratch/u9_dec025/run_dec025.sh`; a run is complete only at `ALL-DONE`;
    - Pass B with an independent confirmation whenever the D1 call graph or a registered identity is touched.
    
-   **Merge** with `gh pr merge --merge --match-head-commit` only after confirming main has not moved, or that any move is disjoint from the PR's paths and from piping, and recorded. Never use auto-merge. Write the post-merge record on NUM.
+   **Merge** with `gh pr merge --merge --match-head-commit` only after confirming main has not moved. If it has moved, either:
+   - refresh the gates; or
+   - carry them over by a ruling under the handoff's "Gates before a main merge": main's move confined to other projects' directories, GEN-8 on the combination, and the reviewer's confirmation.
+   
+   Never use auto-merge. Write the post-merge record on NUM.
 6. **Absorb main into NUM** after each merge, or whenever main moves. Use PLAN §4's dry run, and flag S files, PP's dependency closure, `Cargo.lock` and the reviewed statics.
 7. **Clean up.** After each merge, or when free space is below about 400 GiB:
    - first `WT/tools/t3_cleanup.py gather` (then `gather --apply --log …`), which moves stray scratch into `WT/scratch`;
@@ -57,7 +61,7 @@ You are **HELP_HUMAN (Type 0, Agent 0), ROOT for T3**, the numerical integrity, 
    - cut it from main, taking `projects/chirality-piping/execution/` from NUM;
    - run GEN-8 and screen for whole-host data first;
    - gate it with an independent review, hosted CI with the dispatch, and DEC-025;
-   - squash-merge it with an explicit subject and body.
+   - squash-merge it with `--match-head-commit` and an explicit subject and body.
    
    Its post-merge record stays on NUM until the next records PR.
 
