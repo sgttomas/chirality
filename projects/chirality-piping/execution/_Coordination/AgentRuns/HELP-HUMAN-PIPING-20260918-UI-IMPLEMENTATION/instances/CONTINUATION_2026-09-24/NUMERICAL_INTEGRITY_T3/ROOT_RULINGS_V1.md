@@ -12068,3 +12068,27 @@ Their bytes are records, and many are bound by SHA256SUMS, so they cannot be rel
 - **N-7, corrected:** the registration is **255** new entries, 210 `historical_role_override` and 45 `control_path_exception`. The previous ruling said 256: RR's accidental override was counted, then removed.
 
 **Next:** the PR branch gains R3, with NUM's execution tree and POL at this ruling's commit. GEN-8, hosted CI with the full-SHA dispatch, and DEC-025 run on R3. DEC-025 on R2 was stopped at 28 of 40 manifests, superseded by R3, and is not counted. RV96 confirms R3.
+
+## #1084 squash-merged: T3's records are on main; the handoff is complete (ROOT, 2026-10-05 UTC)
+
+**RV96 PASSES R3** `5758e1c3df` (ADDENDUM_02, `089188ac…`, 0/0/1). N-8, the explicit squash message, is applied.
+
+**The gates on R3:**
+- GEN-8: 1 passed;
+- hosted CI: all four pull_request runs succeeded;
+- the full-SHA dispatch 37258656686 succeeded (`target_base` = main);
+- DEC-025, 03:18–03:51Z: 40 of 40 manifests identical to F′'s run; pytest 3,540; vitest 3,552; both builds exit 0.
+
+**Main moved after the gates,** to `09574ed9a5` (#1086 and #1087, `projects/chirality-app-v4` only). That is disjoint from the PR's paths and from all of piping.
+- **GEN-8 passed** on a local, unpushed combination of R3 with that main.
+- **The owner said "merge what's ready".** The carry-over is ruled on that basis.
+
+**The merge:**
+- ROOT confirmed main was still `09574ed9a5`, then ran `gh pr merge 1084 --squash --match-head-commit` R3 with an explicit subject and body.
+- **The result is `f506f3e2de`,** a single parent on `09574ed9a5`. Main's `projects/chirality-piping/execution/` and portability policy equal R3's.
+- **The PR's earlier heads** (`dfa5e2dc44`, which held the unredacted listings, and `59b72619fe`) are not in main's history.
+- **The record** is `IMPLEMENTATION/RECORDS_MERGE_2026-10-05/`.
+
+**Next on the integration branch:**
+- **ROOT absorbs main into NUM.** The record files on both sides come from NUM; where NUM has appended since `cc44bce7f3`, NUM's version is kept.
+- **The handoff is complete.** The next ROOT starts from `HANDOFF_2026-10-05_TO_NEXT_ROOT.md` with the owner's steering prompt.
