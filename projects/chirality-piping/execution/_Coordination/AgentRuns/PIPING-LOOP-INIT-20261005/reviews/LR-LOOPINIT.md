@@ -244,3 +244,113 @@ Repairs should be confirmed by this reviewer: MAJOR-1, and preferably MINOR-1 to
 - the entry validator;
 - GEN-8 on the exact head;
 - RR's prefix property, if a ruling is appended.
+
+---
+
+## Addendum A: confirmation of repairs at H3 (2026-10-05)
+
+**Reviewer:** the same LR instance, Claude Opus 5.5 (`claude-opus-5-5`). The PR worktree and NUM were both at H3, and I made no Git writes. My network use was `gh` reads plus one read-only `git ls-remote` to see the two branch heads; the latter falls outside the brief's "gh reads" and is disclosed here. I ran the two validators and GEN-8. I did not rerun `test_ci_e2e_plan.py`, which NUM passed at `1c00d217fc` (41 passed), so it built nothing new. The original review above is bytes 1–27,265 of this file (sha256 `4de888bc…`, the first line of `SHA256SUMS`).
+
+**Candidate.** H3 = `32b78024032354d22530265dc85d4fa2b2edc14c`. Its parents are H2 = `1762cc4489` and main `a2addb20d2` (#1093). Main is `a2addb20d2` (read with `gh` after the checks). The PR is draft, open and MERGEABLE.
+
+| | |
+|---|---|
+| H3 tree | `770ed63d70…`, equal to NUM `ecfba8bd0f`'s tree |
+| `P/loop/LOOP_INIT.md` at H3 | sha256 `959cd15adc41…` |
+| History from main to H3 | `605adf726d`, `8a1bf06e43` (merges `01809013ae`), `1762cc4489`, `32b7802403` (merges `a2addb20d2`). None of NUM's own commits is in it (`8225f8f2a2` is not an ancestor), so a `--merge` carries no NUM history into main |
+
+### Verdict at H3
+
+**REPAIR, for one clause.** Every repair ROOT made is correct, except that one clause of MINOR-1's wording, which I proposed, is false (MINOR-A1). Once that clause is fixed, H3 is READY. On the fixed head I will confirm:
+- the LOOP_INIT diff;
+- G4 in diff mode;
+- the entry validator;
+- GEN-8.
+
+| Severity | Count (this addendum) |
+|---|---|
+| BLOCKING | 0 |
+| MAJOR | 0 |
+| MINOR | 1 |
+| NOTE | 4 |
+
+### The delta
+
+- **H→H3 outside App v4 and #1093** changes these 11 paths:
+  - the manifest;
+  - `LOOP_INIT.md`;
+  - the work graph;
+  - the T3 handoff, prompt and RR;
+  - this run's `RULINGS.md`;
+  - `BRIEF_LR.md`, this review and `SHA256SUMS`;
+  - the new notice.
+  
+  Nothing else changes.
+- **App v4.** The 35 App v4 paths equal main's #1091 delta, and H3's `projects/chirality-app-v4/` equals main's.
+- **H2→H3** is exactly #1093's 8 paths: the workflow, its manifest, its run record and five notices. All 8 are byte-equal to main `a2addb20d2`, and none is one of #1092's paths.
+- **H3 against main.** The delta is the six instruction paths plus 45 paths under `P/execution/`.
+
+### The repairs
+
+| Item | Status | Evidence |
+|---|---|---|
+| MAJOR-1 | Repaired | LOOP_INIT's standing constraint now reads "Piping's stage gate is the target stage and the exit criteria recorded in `execution/_Coordination/_COORDINATION.md` under "Current Target Stage". Assess against those criteria, not against a `docs/PRD.md` §24 milestone read by its label; only the owner's approved update advances the target." This is true against COORD's ruled record and §24. RULINGS Addendum A records the erratum to N13 and to the "checked" claim. |
+| MINOR-1 | Repaired, but with a false clause (MINOR-A1) | "Its revision notes record each amendment that changed it" is true: v0.4–v0.14 cover SCA-001 to SCA-009, SCA-011 and D-77, and SCA-010 changed nothing. "`_LATEST.md` selects the latest accepted one" is true. "`execution/_ScopeChange/` holds every amendment" is not. |
+| MINOR-2 | Repaired | The routed notice `P/execution/_Coordination/NOTICE_2026-10-05_PIPING_LOOP_INIT_BINDING.md` exists and is accurate. G4 checks that the routed path exists. The rationale is true at H3: #1093 is **merged** (main `a2addb20d2`, 16:26:53Z), with its `OWNER_DECISIONS.md`, and main's construct sentence now reads "supplies, or points to". The AUM tranche's owner direction exists (NOTE-A2). RULINGS records the erratum to ruling 5. |
+| MINOR-3 | Repaired | RR's new ruling "T3's gate set and Git rules, consolidated after the handoff was made ephemeral" sits first in the work graph's list. The steer gains a product-PR bullet. |
+| NOTE-1/2 | Resolved | NUM absorbed main (`44bbbf9bdd`, then `ecfba8bd0f`), and H3's tree equals NUM's. The work graph's and steer's "maintained source equals main's" is true again. The wording in RULINGS is NOTE-A1. |
+| NOTE-3, NOTE-6 | Routed | Routed to ROOT-LOOPINIT-AUM-ALIGNMENT-20261005; see NOTE-A2. |
+| NOTE-4, -5, -9 | Accepted as recorded | — |
+| NOTE-7 | Repaired | "with little swap (about 1 GiB, dynamic)" matches T3's operating notes and `sysctl`. The worktrees row now names the standing pair. |
+| NOTE-8 | Repaired | The work graph's owner decisions include "all T3 scratch lives in `WT/scratch`". The steer's basis claim holds, now that the graph lists the consolidated ruling. |
+
+**The consolidated ruling makes no new rule.** I checked each item against the old handoff and prompt (main `6479bf110a`) and the rulings it cites:
+- **Product-PR items 1–7** match "Gates before a main merge" and "PR packaging", with "or a registered identity" from the old prompt's step 5. `source_equality.py` exists in `IMPLEMENTATION/F2A_D1/`. The cited headings ("#1082 merged at F′…", "DEC-025 on F…", "RV100 passes #1088 at H…") exist.
+- **Records-only items** match "Owner direction: proportionate CI…", A-1 and N-1.
+- **Git rules** match the old handoff's Git rules, and "explicit paths, never `git add -A`" its Records rule.
+- **Returns and IDs** match the old prompt's step 3 and the I61 "Dispatches prepared…" text.
+- **Host items** match I61 decisions 1 and 13, and "Stray scratch gathered…".
+- Citation details are NOTE-A3.
+
+**Unchanged checks at H3:**
+- **RR is append-only.** Main's copy (1,042,052 B) and H's (1,047,134 B) are both byte prefixes of H3's (1,050,478 B).
+- **The init block** of the prompt is still byte-identical to `P/init/dev-loop-init-prompt.md` except for the steer.
+
+### Checks at H3
+
+Logs are in `WT/scratch/lr_loopinit_01/A_*`.
+- **G4,** run in `WT/loop-init-pr` at H3:
+  - CI mode: PASS, 154 manifests.
+  - Diff mode, `--base a2addb20d2… --head 32b7802403… --tranche PIPING-LOOP-INIT-20261005`: PASS. 51 changed paths, 2 on the instruction surface, covered.
+  - `--added-manifests-only`: PASS.
+  - No BLOCK lines in any mode.
+- **The entry validator:** "PASS: root instruction entrypoints are canonical".
+- **GEN-8,** `python -m pytest -q -p no:cacheprovider tools/practitioner_harness/test_live_baseline.py -k gen8` with `CHIRALITY_REQUIRE_LIVE_TESTS=1`, in `WT/loop-init-pr` at H3: 1 passed. This agrees with ROOT's `gen8_H3.txt`.
+- **Machine paths and credentials:** none in the 430 lines that H→H2 adds outside App v4 and #1093, and no home-directory path in H3's whole delta against main.
+- **Hosted CI on H3:** every check that had finished passed or was skipped by coverage. `harness` was still pending when I looked.
+
+### Findings
+
+**MINOR-A1: "`execution/_ScopeChange/` holds every amendment" is false. The wording was mine, and I did not check it.**
+- **Evidence.**
+  - `P/execution/_ScopeChange/` has folders for SCA-001 to SCA-005 and SCA-007 to SCA-011, but none for SCA-006.
+  - SCA-006 (the D-43 PKG-00 architecture-basis consolidation) is recorded in the decomposition's v0.9 revision note ("Revision v0.9 records `SCA-006`…") and in `_DECISIONS/D-43_pkg00_architecture_basis_consolidation.md`.
+  - Within `_ScopeChange/`, only SCA-007, SCA-009 and SCA-011 files mention it.
+- **Fix.** Drop the clause: "Its revision notes record each amendment that changed it, and `execution/_ScopeChange/_LATEST.md` selects the latest accepted one." Note it in RULINGS.
+
+**NOTE-A1: RULINGS Addendum A says "the PR is re-cut from that main".** It was not re-cut: the branch merged main twice (`8a1bf06e43` and `32b7802403`) and took NUM's paths. The facts that matter hold: H3's tree equals NUM's, and no NUM-only commit is in its history. Correct the wording when RULINGS is next touched. ROOT's message named NUM's absorb as `cb9ff41d98`. The commit on NUM's branch is `44bbbf9bdd`, with the same tree; `cb9ff41d98` is an unreferenced merge object. No record names either, so nothing needs changing.
+
+**NOTE-A2: the routing to ROOT-LOOPINIT-AUM-ALIGNMENT-20261005 points to records that are not yet in Git.**
+- The tranche's `OWNER_DECISIONS.md` exists only as untracked files in NUM. It does record the owner's direction: App v4's sentence, "any other minimal consistency edits along the lines of what you did here", and the AUM updates.
+- Its current drafts (`AUM_EDITS.md`, `BRIEF_AM.md`) do not yet include Section B (B1–B3) or the contributor guide's row 8, which RULINGS Addendum A routes there.
+- **Fix.** Carry them into that tranche, or the routing statement becomes untrue.
+
+**NOTE-A3: the consolidated ruling's citations, and the steer's summary of it.**
+- **Item 2's citation.** The ruling cites project `AGENTS.md` for "with the same reviewer confirming each repair". Project `AGENTS.md` says "backcheck the correction". The same-reviewer part comes from the old handoff and prompt, which the ruling's closing line names as its source.
+- **The steer's summary.** The new steer bullet introduces the set with "lists it:", but omits "or a registered identity" and the T9/both-entry gates. Saying "including" instead, or adding them, would make the summary exact.
+- Neither is a new or changed rule.
+
+**NOTE-A4: merge conditions.**
+- **Main.** Main is `a2addb20d2`, which H3 contains, so no carry-over ruling is needed unless main moves again.
+- **Hosted CI.** The hosted `harness` check on H3 was pending when I looked.
+- **Host cleanup.** The two gitignored `target/` folders from my original run remain in `WT/loop-init-pr`, and this addendum added no build output. They go when that worktree is removed after the merge.
