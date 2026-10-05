@@ -8,8 +8,9 @@ Build the route from the human's intended result to examined, integrated work.
 HELP_HUMAN develops that understanding and coordinates construction; a manager
 can develop a selected portion, and TASK can inspect or draft a bounded part
 without delegating. One graph carries the undertaking across sessions.
-The human's steering selects the undertaking; `LOOP_INIT.md` supplies the
-evergreen procedure for recovering, constructing and following its graph.
+The human's steering selects the undertaking; `LOOP_INIT.md` supplies, or
+points to, the evergreen procedure for recovering, constructing and following
+its graph.
 
 ## 1. Establish the intended result
 
@@ -80,7 +81,7 @@ After the intended implementation/evidence PRs, plan one final bounded
 closeout stage. It includes documentation/governance reconciliation through
 `chirality-root:bundled:workflow:bounded-reconciliation`, conditional Task
 Management, the invoking loop's central receipt, terse MEMORY run entries, and
-the final PR. For a loop that adopts this method (currently App, Piping and PEC),
+the final PR. For a loop that adopts this method (currently App, App v4, Piping and PEC),
 use the graph's stable run ID for one receipt at
 `execution/_Coordination/AgentRuns/<RunID>/RECEIPT.md`; affected MEMORY entries
 point to it. Other loops retain their adopted recording rules. MEMORY and
