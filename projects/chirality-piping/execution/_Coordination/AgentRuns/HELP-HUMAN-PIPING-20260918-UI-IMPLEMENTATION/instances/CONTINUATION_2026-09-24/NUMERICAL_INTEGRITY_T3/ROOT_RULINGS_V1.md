@@ -12033,7 +12033,7 @@ Their bytes are records, and many are bound by SHA256SUMS, so they cannot be rel
 **B-1 (BLOCKING), GEN-8: repaired.**
 - **254 historical records** are registered under the owner's approval (previous ruling), plus 2 CONTROL-role as-issued documents GEN-8 also flagged: RV67's brief, and I42's plan (`R/I42/source_bridge_rv56_repair_02/PLAN.md`). That is 256 hash-bound entries in all.
 - **RV96's caution on living documents is adopted.** A hash-bound living document would drift at its next append, so `ROOT_RULINGS_V1.md`'s accidental entry is removed.
-- **Erratum E-2:** the rulings' one machine path, I61's system-temp disclosure at RR:10932, is placeholder-repaired in place (`/tmp/x` becomes `<system-temp>/x`), with a bracketed label. That line is past main's prefix, and its meaning is unchanged.
+- **Erratum E-2:** the rulings' one machine path, I61's system-temp disclosure at RR:10932, is placeholder-repaired in place: the system-temp location becomes `<system-temp>/x`, with a bracketed label. That line is past main's prefix, and its meaning is unchanged.
 - **The rule for later ROOTs:** living documents (RR, ROOT_CURRENT, the work graph, the handoffs, the briefs) carry no machine-absolute paths. Write `<repo>/…` or `WT/…`.
 
 **S-1 (SHOULD-FIX):** 12 whole-host process listings exposed the owner's running apps and local agent session IDs.
