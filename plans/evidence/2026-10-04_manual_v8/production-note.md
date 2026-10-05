@@ -33,7 +33,8 @@ items added.
 
 The production agent inspected pages by eye, but image loading repeatedly
 failed and it re-viewed pages. The owner directed on 2026-10-04: "stop the
-checking and get this merged." The inspection was stopped before it covered
+checking and get this merged." (recorded in
+`projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GRAPH-CLOSURE-20261004/OWNER_DECISIONS.md`) The inspection was stopped before it covered
 all of §4.12 (pages 107–117 were not all confirmed) and before a full
 front-to-back pass. No defect was reported from the pages it did view.
 Unlike v7, there is no page-by-page visual coverage record for v8.
