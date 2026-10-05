@@ -11765,3 +11765,46 @@ ROOT asked the owner two questions in the session.
 - the Mac baseline, then DEC-025 (the baseline is running; PP on M shows its known t13);
 - RV95's final read-only confirmation of those;
 - GEN-8 on F (ROOT, recorded at the freeze: 1 passed).
+
+## DEC-025 on F finds a test-walker defect; repaired and refrozen as F′ = 5488136a19 (ROOT, 2026-10-05 UTC)
+
+**The Mac baseline on main** (U9 decision 11): `run_suites_nff.sh` on a clean worktree of M `5fdc5ab601`, with a fresh target, ran 23:37:36–23:47:40Z (40 manifests).
+
+**DEC-025 on F** `20dd3d929d` ran 23:47:41Z–00:21:20Z, with the recorded driver unchanged (sha256 `9e34865b…`) and a fresh target.
+- **The evidence sweep** stopped, as at earlier Mac DEC-025s, at PP's known `t13`. The per-manifest suites are the comparison.
+- **Suites, per manifest and per test name, against M:**
+  - **33 manifests are identical.**
+  - **PP:** 705/1/10 against 569/1/1. The failing set is `t13` on both. The 136 extra passes are added tests. The 9 extra ignored tests are U8's `witness_*` tests.
+  - **runner/headless:** 85/2 against 82/2. The two known `load_reference` tests fail on both. The 3 extra passes are added tests.
+  - **result_export** +80, **performance_harness** +1 and **numerical_robustness** +1: all added tests, all ok.
+  - **frame_kernel:** +90. There are 93 added tests. Three doc-tests are renamed by a 22-line shift in `structural.rs` and pass.
+  - **nonlinear_integration: 132 passed, 2 failed, against M's 134 passed. This is the defect.**
+- **Other suites:** pytest 3,540 passed and 32 skipped; vitest 138 files and 3,552 tests; `build:wasm:desktop` and `build:desktop` exit 0.
+
+**Hosted CI on F** (run 37243941694 and the full-SHA dispatch, run 37244157642): the Numerical cargo suite exits 101 at the same crate, and the runner stops there. Desktop E2E (source mode) fails only as "Required CI failed".
+
+**The cause.** nonlinear_integration's K-D5 walker `non_test_modules` follows every `mod name;` from PP's `lib.rs`.
+- **The panic:** U3 grant 2 declares `mod grant2;` inside PP's test-only inline `retained_tests_hooks` module. rustc resolves it under `src/retained_tests_hooks/`, but the walker looked for `src/grant2/mod.rs` and panicked. Both K-D5 and K2b failed that way.
+- **The masked failure:** with the walker repaired, K2b's exact-site pin fails on its own. The F2a capture split (`52842022cc`) moved PP's one `ForceScale::UNSCALED` from `fn solve_load_case` into `fn solve_load_case_observed`.
+- **The process gap:** the integration branch's suites ran PP, runner, result_export, Python and TS, but not nonlinear_integration, whose tests pin PP's source. DEC-025 was the first full run.
+- **Ruled for T3's later freezes:** the full 40-manifest suite runs on the candidate before a freeze, not only at DEC-025.
+
+**The repair (ROOT-authored, test-only):** NUM `42009dba72`, carried byte-identical to the PR as `6cfe50d368`. It touches only `core/solver/nonlinear_integration/src/s11k_tests.rs`.
+- **The walker** follows enclosing inline modules for plain and `#[path]` declarations.
+- **The F1B_PRODUCT_SITES row** names `fn solve_load_case_observed`, with the same token and count. Exact equality now also proves the `solve_load_case` wrapper names no `ForceScale`.
+- **No assertion is removed or loosened.**
+- **Results:** nonlinear_integration on NUM gives 130 + 4 doc-tests = 134, equal to M. The walker-only state fails K2b on the site (shown before the pin rename), and F fails both tests on the walker.
+
+**The refreeze.** The package commit makes **F′ = `5488136a19`**: CHANGE_RECORD, PR_BODY and SHA256SUMS. The package is 10 files and 194,107 B. F′'s non-execution tree equals `6cfe50d368`'s.
+- **source_equality: 5/5 PASS** against NUM `42009dba72`. |S| = 140; 138 files are identical; there are 2 recorded merges, unchanged; the execution files are exactly the package.
+- **citations:** 368/0/0.
+- **GEN-8 on F′:** 1 passed.
+- Main is unmoved at `5fdc5ab601`. Both branches are pushed, and the PR body equals `PR_BODY.md`.
+
+**Carry-over ruling.** Between F and F′, the only change is one `#[cfg(test)]` module of a dependency crate. `mod s11k_tests;` is `#[cfg(test)]`, so PP's build never compiles it, and PP's sources and `REVIEWED_INPUTS` are unchanged. **G5, G6, G7, G8, G9b and T9 therefore carry over to F′.** RV95 confirms the premise.
+- **G9a:** the frozen-head Pass B on F stands. I65 reruns Pass B's no-build gates on F′, expecting one added test-class row, and RV89 confirms.
+- **G3:** DEC-025 is rerun in full on F′ with a fresh target. F's target is preserved as `sweep-skewpin-target-f-20dd3d929d-preserved`. The M baseline stands, because main is unmoved.
+- **G2:** hosted CI and the full-SHA dispatch (run 37247819679, `target_base` M) run on F′.
+- **G1:** RV95's same-reviewer confirmation of the repair, the package and the DEC-025 comparison goes in `R/REVIEW_RV95/u9_01/ADDENDUM_02.md`.
+- **The ROOT-authored repair:** ROOT wrote it, and RV95 is the independent check.
+- **Housekeeping:** the sweep's untracked summary JSON in the sweep tree was byte-equal to the copy in `WT/scratch/u9_dec025/F/` and was moved out of the tree before the checkout of F′.
