@@ -12175,3 +12175,22 @@ Their bytes are records, and many are bound by SHA256SUMS, so they cannot be rel
   - H2 differs from H only in execution-record text, and its tree outside `projects/chirality-piping/execution/` equals H's.
   - No DEC-025 suite reads the changed paths. The only piping code that names T3 paths, `gen_k4_vectors.py`, reads `REFERENCES/` and `DESIGN_NUMERICS/`; `nativeMechanicsReplay.ts` and `reference_cases.json` name other instances.
 - **RV100 confirms** the H→H2 delta, the premise, and the fixes for S-1 and N-1 to N-6, in an addendum.
+
+## Owner direction: proportionate CI; records-only PRs drop DEC-025 and the dispatch (ROOT, 2026-10-05 UTC)
+
+**The owner asked:** "Are you running a full test suite for documentation updates?" Then: "Well yes I only want an appropriate level of CI done."
+
+**What had happened:** since PR1068's precedent, records-only PRs (#1084, #1088) ran the full Mac DEC-025, about 35 minutes of cargo, Python and desktop suites, and the manual full-SHA dispatch. Those test source, which a records-only PR leaves byte-identical to main. ROOT carried the precedent forward and wrote it into the handoff without questioning it.
+
+**Ruled, as a standing rule:**
+- **A records-only PR's gates are GEN-8, the PR's automatic CI checks, and an independent review.** A records-only PR changes only `projects/chirality-piping/execution/`, plus at most the portability policy, which GEN-8 reads.
+- **DEC-025 and the full-SHA dispatch are not run for it.**
+- **If a changed record is read by a test,** run the suites that read it. T3's `REFERENCES/` and `DESIGN_NUMERICS/` are read by `gen_k4_vectors.py`.
+- **The full gate set stays** for PRs that change source, tests, CI, tools or the portability policy.
+- **This supersedes PR1068's precedent** for records-only PRs, and the "records-only re-cut" carry-over in the ruling "RV100 passes #1088 at H". That carry-over is no longer needed, because DEC-025 is not a records-PR gate.
+- **The handoff and prompt now say this.**
+
+**For #1088:**
+- **DEC-025 on H** (`run_dec025.sh`'s predecessor; ALL-DONE 14:48:51Z) is recorded as **informational**: 40 of 40 manifests identical to R3's; pytest 3,540; vitest 3,552; builds exit 0.
+- **H's dispatch 37322486897** succeeded, and is not rerun on the re-cut.
+- **The re-cut's gates:** GEN-8 on its exact head (saved with the SHA and the command), the PR's automatic CI, and RV100's confirmation.
