@@ -306,3 +306,27 @@ The PR's hosted `harness` and "App Runtime integration" checks must finish green
   - read-only `git` and `gh` queries, and reads of the changed files and App v4 run records.
 - **Settings.** pytest ran with `TMPDIR` and `--basetemp` under `WT/scratch/fr_pec_01/` and `-p no:cacheprovider`. Git reads used `GIT_OPTIONAL_LOCKS=0`.
 - **Writes.** This addendum, the new line in `SHA256SUMS`, and scratch logs only. `git status` showed a clean tree before these two appends.
+
+---
+
+## Addendum B: delta confirmation at `13c3c13796` (2026-10-05)
+
+**Reviewer.** The same FR instance. I made no Git writes and ran only `git` diff checks.
+
+**Candidate.**
+- **Head:** `13c3c13796ac0bce9854f130738804237551b887`.
+- **Parent:** `d715935595`, the head I confirmed in Addendum A.
+- **Main:** still `7ba1181d43`.
+
+**Delta.** The diff `d715935595..13c3c13796` changes four paths and nothing else:
+- **The App v4 follow-up notice.** Only its opening sentence changes: "one App v4 TASK" becomes "two App v4 TASKs". This applies A-NOTE-1 as proposed, and the sentence is now true.
+- **`RULINGS.md` Addendum B.** It is accurate. It reports my Addendum A (READY, `d290679f…`) and A-NOTE-1's application correctly.
+- **`reviews/FR-PEC.md` and `reviews/SHA256SUMS`.** They are committed exactly as I wrote them:
+  - the file's sha256 is `d290679f…`;
+  - `SHA256SUMS` holds both lines.
+
+No exported, manifest-declared product or manual path changed. The exporter skips `projects/` and `execution/`, so the export confirmed in Addendum A still holds. The four paths remain within the manifest's declared scope.
+
+**Verdict at `13c3c13796`: READY.** No findings are open.
+
+**Remaining condition:** the PR's required hosted checks must pass on this head before merge.
