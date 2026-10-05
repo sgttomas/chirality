@@ -46,9 +46,9 @@ m2_gate:
   merge_gate: owner-authorized-pr
   self_merge: true
   hold: >-
-    The owner's merge hold of 2026-10-04 applies: "you MUST NOT MERGE PRs
-    until I say you can resume". This tranche is not merged until the owner
-    lifts it.
+    The owner's merge hold of 2026-10-04 ("you MUST NOT MERGE PRs until I
+    say you can resume") was lifted the same day: "You are allowed to merge
+    your PRs again." The ordinary merge gate applies.
 m6_notice:
   disposition: routed
   routed_to:
