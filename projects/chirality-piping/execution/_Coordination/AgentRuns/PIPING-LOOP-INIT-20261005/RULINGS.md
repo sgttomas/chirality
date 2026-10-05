@@ -74,3 +74,19 @@ It checked 194 destination quotes with `grep -F`, every draft path with `test -e
 - **NOTE-7.** The handoff now says "little swap (about 1 GiB, dynamic)", and names the two standing worktrees.
 - **NOTE-8.** The graph's owner decisions now include "all T3 scratch lives in `WT/scratch`". The steer's claim of "basis in the T3 rulings" holds, now that the consolidated ruling exists.
 - **LR's `test_ci_e2e_plan.py` run** left about 79 MB of ignored `target/` folders in the PR worktree. They are removed with that worktree after the merge.
+
+## Addendum B: LR's Addendum A at H3 (2026-10-05)
+
+**LR's Addendum A** is appended to `reviews/LR-LOOPINIT.md` (full file sha256 `787b8443…`; the original review is a byte prefix). At H3 `32b7802403`: 0 BLOCKING, 0 MAJOR, 1 MINOR, 4 NOTE.
+- **The repairs confirmed:** MAJOR-1, MINOR-2 and MINOR-3, and NOTE-1/2/7/8.
+- **The consolidated T3 ruling** makes no new rule.
+- **RR** is append-only.
+- **G4, the entry validator and GEN-8** pass on H3.
+
+`reviews/SHA256SUMS` keeps the original line for `LR-LOOPINIT.md` and appends the new one. Verify the newest line; the original line records the first review's bytes, which are the file's prefix.
+
+**The findings:**
+- **MINOR-A1, adopted as LR proposed.** The clause "`execution/_ScopeChange/` holds every amendment" was false: SCA-006 has no folder there, and is recorded in the decomposition's v0.9 note and D-43. The sentence now reads: "Its revision notes record each amendment that changed it, and `execution/_ScopeChange/_LATEST.md` selects the latest accepted one." **Erratum to Addendum A's MINOR-1 wording.**
+- **NOTE-A1.** Addendum A's "re-cut from that main" means that main was merged into the PR branch, twice: after #1090/#1091, then after #1093.
+- **NOTE-A2.** Section B (B1–B3) and the contributor guide's row 8 are carried into tranche ROOT-LOOPINIT-AUM-ALIGNMENT-20261005, as routed.
+- **NOTE-A3 and NOTE-A4** are accepted. The merge waits for `harness` on the final head, and `WT/loop-init-pr` is removed after the merge.

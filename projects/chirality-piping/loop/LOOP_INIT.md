@@ -53,8 +53,8 @@ Load each workflow when it is needed, as
 - **Basis.** `docs/PRD.md`.
 - **Decomposition.** `execution/_Decomposition/SOFTWARE_DECOMP.md`, at the
   revision named by `execution/_Decomposition/_LATEST.md`. Its revision notes
-  record each amendment that changed it; `execution/_ScopeChange/` holds every
-  amendment, and its `_LATEST.md` selects the latest accepted one.
+  record each amendment that changed it, and `execution/_ScopeChange/_LATEST.md`
+  selects the latest accepted one.
 - **DAG.** `execution/_DAG/_LATEST.md` names the accepted version and how its
   currency is decided.
 - **Deliverables.** `execution/PKG-*/1_Working/DEL-*/`: the production
