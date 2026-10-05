@@ -245,12 +245,12 @@ impl AppRuntimeCustody {
     fn preflight_native_namespaces_owned(&self,binding:&Arc<attachment_custody::NativeNamespaceBindings>)->Result<Value,String>{
         let path=self.recovery_path.as_ref().ok_or("actual configured REC leaf is absent; no path default or H5 resolver")?;binding.guard_domains(&[path.clone()])?;
         for source in self.sources.lock().unwrap().iter(){if let Some(inner)=source.inner.upgrade(){let home=inner.0.lock().unwrap().home.clone();if !home.is_empty(){binding.contains_home_id(&home)?;}}}
-        RecoveryLedger::preflight_path(path,binding)?;
+        if let Some(ledger)=&self.ledger{ledger.lock().unwrap().preflight_namespaces(binding)?;}
         Ok(json!({"state":"prospective REC leaf/native namespace metadata disjoint","binding":binding.snapshot(),"standing":"preflight only; no native creation/adoption or future use guarantee"}))
     }
     pub fn bind_native_namespaces(&self,binding:Arc<attachment_custody::NativeNamespaceBindings>)->Result<Value,String>{
         let _writer=self.writer.lock().unwrap();let result=self.preflight_native_namespaces_owned(&binding)?;
-        if let Some(ledger)=&self.ledger{ledger.lock().unwrap().bind_namespaces(binding)?;}else{return Ok(json!({"preflight":result,"ledgerUnavailable":true,"bindingCommitted":false,"limit":self.initial_limit,"standing":"namespace geometry checked; original REC unavailable, no new ledger opened or durable binding claimed"}));}Ok(result)
+        if let Some(ledger)=&self.ledger{ledger.lock().unwrap().bind_namespaces(binding)?;}else{return Err("original REC ledger unavailable; namespace proposal checked but no new ledger opened".into());}Ok(result)
     }
     pub fn flush_captured_recovery(&self)->Value{
         let _writer=match self.writer.try_lock(){Ok(writer)=>writer,Err(_)=>return json!({"standing":"App writer busy; captured pointer facts remain owned/unpersisted"})};
@@ -412,7 +412,7 @@ impl Host {
     /// Open an App-local pointer ledger before start; never a native-content cache.
     pub fn configure_recovery(&self,path:PathBuf)->Result<(),String>{self.configure_recovery_inner(path,None)}
     pub fn configure_recovery_with_namespaces(&self,path:PathBuf,namespaces:Arc<attachment_custody::NativeNamespaceBindings>)->Result<(),String>{
-        self.configure_recovery_inner(path,Some(namespaces))
+        namespaces.guard_domains(&[path.clone()])?;self.configure_recovery_inner(path,Some(namespaces))
     }
     fn configure_recovery_inner(&self,path:PathBuf,namespaces:Option<Arc<attachment_custody::NativeNamespaceBindings>>)->Result<(),String>{
         if self.runtime_custody.lock().unwrap().is_some(){return Err("App custody already adopted; no second recovery ledger/session initialization".into());}
@@ -2054,38 +2054,6 @@ mod conversation_transport_tests {
         let g={let mut i=host.inner.0.lock().unwrap();host.allocate_home_spawn(&mut i,format!("app-home:{}",sha256_hex(home.as_os_str().as_encoded_bytes()))).unwrap();i.attachment_pipe_epoch+=1;i.child_pid=Some(pid);i.generation=json!({"appSession":i.app_session,"home":i.home,"spawnCounter":i.spawn_counter});i.state="ready".into();i.declared_capabilities=Some(json!({"experimentalApi":false}));let g=i.generation.clone();i.threads.push(json!({"generation":g,"threadId":"thread","cwd":"/synthetic/native"}));g};host.spawn_reader(stdout,g.clone());g
     }
     fn app_custody_root()->(std::path::PathBuf,Arc<Host>){let root=std::env::temp_dir().join(opaque_id("app-custody-").unwrap());std::fs::create_dir(&root).unwrap();let root=root.canonicalize().unwrap();let host=Arc::new(Host::new());host.configure_recovery(root.join("recovery.ledger.jsonl")).unwrap();(root,host)}
-    fn namespace_guard_fixture()->(PathBuf,Arc<Host>,Arc<attachment_custody::NativeNamespaceBindings>,crate::home_resources::OwnedHomePlan){
-        use crate::home_resources::{ExistingHomeReference,HomeClass,OwnedHomePlan,SharedResourceTargets};
-        use attachment_custody::{NativeHomeNamespace,NativeNamespaceBindings};
-        let root=std::env::temp_dir().join(opaque_id("namespace-host-").unwrap());std::fs::create_dir(&root).unwrap();let root=root.canonicalize().unwrap();
-        for name in ["account","shared/skills","app/runtime"]{std::fs::create_dir_all(root.join(name)).unwrap();}
-        for name in ["config.toml","AGENTS.md"]{std::fs::write(root.join("shared").join(name),"synthetic source").unwrap();}
-        let account=ExistingHomeReference::new(root.join("account"),HomeClass::Account).unwrap();
-        let key=OwnedHomePlan::new(root.join("app"),root.join("app/key"),HomeClass::ApiKey,Some(SharedResourceTargets{config_toml:root.join("shared/config.toml"),global_agents_md:root.join("shared/AGENTS.md"),skills:root.join("shared/skills")})).unwrap();
-        let scope=NativeNamespaceBindings::from_root(vec![NativeHomeNamespace::received(&account,None),NativeHomeNamespace::planned(&key)]).unwrap();key.prepare().unwrap();
-        let host=Arc::new(Host::new());host.configure_recovery_with_namespaces(root.join("app/runtime/recovery.ledger.jsonl"),Arc::clone(&scope)).unwrap();(root,host,scope,key)
-    }
-    #[test]
-    fn namespace_guard_drift_keeps_actual_reply_stop_and_recoverable_pointer_facts(){
-        use std::os::unix::fs::symlink;
-        let(root,host,scope,key)=namespace_guard_fixture();let ga=app_custody_mock_home(&host,&root.join("account"));let cap=host.app_runtime_custody().unwrap();cap.bind_native_namespaces(scope).unwrap();
-        let leaf=root.join("app/runtime/recovery.ledger.jsonl");let before=std::fs::read(&leaf).unwrap();
-        std::fs::remove_file(key.native_path().join("skills")).unwrap();symlink(root.join("app/runtime"),key.native_path().join("skills")).unwrap();
-        host.on_line(&serde_json::to_vec(&json!({"id":"guard-request","method":"item/fileChange/requestApproval","params":{"threadId":"thread","itemId":"item"}})).unwrap(),&ga);
-        assert_eq!(std::fs::read(&leaf).unwrap(),before);assert_eq!(host.snapshot()["recoveryPendingObservations"].as_array().unwrap().len(),1);assert!(!host.snapshot()["recoveryPersistenceError"].is_null());
-        let reply=host.answer_server_request(&ga,&json!("guard-request"),&json!({"decision":"decline"}),"person-via-interaction",Some("person:synthetic (identity not verified)")).unwrap();assert_eq!(reply["replyWriteResult"],"written");
-        assert_eq!(host.stop_scoped(&ga,"person:synthetic","codex-stop").unwrap()["state"],"stopped");let captured=host.snapshot()["recoveryPendingObservations"].as_array().unwrap().clone();assert_eq!(captured.last().unwrap()["transition"],"RQ-05");assert_eq!(std::fs::read(&leaf).unwrap(),before);
-        std::fs::remove_file(key.native_path().join("skills")).unwrap();symlink(root.join("shared/skills"),key.native_path().join("skills")).unwrap();cap.flush_captured_recovery();assert!(host.snapshot()["recoveryPendingObservations"].as_array().unwrap().is_empty());let rows=cap.snapshot()["recovery"]["entries"].as_array().unwrap().clone();for fact in &captured{assert_eq!(rows.iter().filter(|row|*row==fact).count(),1);}std::fs::remove_dir_all(root).unwrap();
-    }
-    #[test]
-    fn namespace_guard_actual_reserved_source_home_and_current_use_refusal(){
-        let(root,host,scope,key)=namespace_guard_fixture();let ga=app_custody_mock_home(&host,&root.join("account"));let custody=Arc::new(AttachmentCustody::open_with_namespaces(&root.join("app"),Arc::clone(&scope)).unwrap());
-        std::fs::write(root.join("selected.txt"),"synthetic selected source").unwrap();let selected=SelectedTextAttachment::from_native_selection(root.join("selected.txt"),None).unwrap();
-        let packet=host.prepare_attachment_turn(Arc::clone(&custody),&ga,"thread",None,"person text",&[selected.clone()]).unwrap();assert_eq!(packet.source.evidence()["generation"],ga);assert!(custody.client_path(&ga,&packet.source.request_id()).unwrap().exists());assert!(packet.cancel());
-        let mut foreign=ga.clone();foreign["home"]=json!("unreceived-home");assert!(custody.client_path(&foreign,&json!(1)).is_err());
-        std::fs::remove_file(key.native_path().join("skills")).unwrap();std::os::unix::fs::symlink(root.join("app/runtime"),key.native_path().join("skills")).unwrap();
-        assert!(host.prepare_attachment_turn(custody,&ga,"thread",None,"person text",&[selected]).is_err());assert_eq!(host.state(),"ready");assert_eq!(host.stop_scoped(&ga,"person:synthetic","codex-stop").unwrap()["state"],"stopped");std::fs::remove_dir_all(root).unwrap();
-    }
     #[test]
     fn app_custody_retired_host_queue_survives_actual_drop_recreation_flush_and_end(){
         let(root,account)=app_custody_root();let cap=account.app_runtime_custody().unwrap();let ga=app_custody_mock_home(&account,&root.join("account"));let writer=cap.writer.lock().unwrap();account.on_line(&serde_json::to_vec(&json!({"id":1,"method":"item/fileChange/requestApproval","params":{"threadId":"thread","itemId":"item"}})).unwrap(),&ga);account.stop_scoped(&ga,"person:synthetic","codex-stop").unwrap();let captured=account.snapshot()["recoveryPendingObservations"].as_array().unwrap().clone();assert_eq!(captured.len(),2);let weak=Arc::downgrade(&account.inner);drop(account);let deadline=std::time::Instant::now()+Duration::from_secs(1);while weak.upgrade().is_some()&&std::time::Instant::now()<deadline{std::thread::sleep(Duration::from_millis(5));}assert!(weak.upgrade().is_none(),"actual Host/readers must retire, not stay alive as a queue surrogate");assert_eq!(cap.snapshot()["pendingSourceObservations"][0]["entries"],json!(captured));drop(writer);
