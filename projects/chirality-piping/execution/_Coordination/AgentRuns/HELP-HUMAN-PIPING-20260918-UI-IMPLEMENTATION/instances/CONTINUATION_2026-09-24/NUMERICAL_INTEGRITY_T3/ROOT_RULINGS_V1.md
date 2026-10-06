@@ -12390,3 +12390,69 @@ Body 0's bit identity with the milestone is asserted as observed, and the unchan
 **Since L = 0 publishes,** U8-2 (corpus 07l) and U8-3 (Rust and TS alignment) proceed after Part 2, then U8-4 (Pass B), with RV97 and RV98.
 
 **Host.** This session's file-edit tool was blocked outside its own worktree. The session has since been granted folder access to `WT`, so TASKs may use their file tools inside their fences there. I68's Bash writes stayed within its assigned locations.
+
+## I73's checkpoint 1 and I74's plan ruled; D2 5b.3; the T6 slice dispatched (ROOT, 2026-10-06 UTC)
+
+**I73's checkpoint 1** is `R/I73/s_i1_01/CHECKPOINT_1.md` (sha256 `b992efcf…`). ROOT checked:
+- `SHA256SUMS`: 12 of 12 OK, every file covered, no machine paths;
+- `WT/s-i1` has one modified file, `P/core/rules/expression_evaluator/src/lib.rs` (`9b529e7f…`): 2,082 lines added, 0 removed;
+- I73's interpolation counterexample, re-run by ROOT (`_run_records/checkpoint1/interp_probe.py`): D2's literal hull is [7999.99…, 5000003584.000001], while the point path returns 0.0 at x = next_down(1).
+
+**I73's state:** the interval evaluator, 17 new tests and the soundness property test. Point mode is byte-identical to the base over 36,069 inputs, and 11 of 11 mutants are killed.
+
+**Rulings on I73's readings:**
+1. **D2's interpolation rule was unsound; I73's evaluation is adopted.**
+   - D2's lemma listed linear interpolation as one monotone piece. In the point path it is a chain of rounded operations, and the rounded formula is not monotone on a segment.
+   - Evaluating that chain in interval mode, stepping each operation outward, per segment, then joining, satisfies the lemma by its own argument: round-to-nearest is monotone for each single operation.
+   - **D2 becomes revision 5b.3:** an in-place, ROOT-made amendment of §4.11.3 and §4.11.4, recorded in §0.5's table. S-I is not yet built, so nothing built relied on the old text.
+2. **Eager U is adopted.** A U that marks a possible block or non-finite value makes the whole predicate U: a divisor range containing 0, an out-of-range table argument, an exact lookup over a range, a non-finite end, or an input with no finite enclosure. The point path is eager. Kleene logic stays for U from straddling comparisons. This is D2 5b.3's "Eager U" note.
+3. **The point-path panics are routed to a new node, T3-SI1b.** The ordinary `evaluate` panics on an overflowing same-dimension quotient and on a NaN interpolation or step-lookup argument, at extreme magnitudes only, identically on the base.
+   - S-I1 must not change point mode, so the repair (a blocking finding instead of a panic) is a small separate rules-crate unit after S-I1 merges, with its own review.
+   - Interval mode must not panic on the same inputs; RV99 checks that.
+4. **The smaller readings stand:**
+   - step lookup out of range reads U;
+   - an exactly-zero point divisor in interval mode reads U (non-pass either way);
+   - no new wire codes beyond D2's.
+5. **The runner interface:** the additive `run_rule_checks_with_bounds(&input, &[SolverResultBound])`, with `run_rule_checks` and the existing structs unchanged, because src-tauri is outside S-I1's fence. `SolverResultBinding.absolute_bound` stays S-I2's (D2 §4.11.6). The planned runner behaviour is accepted as I73 listed it.
+
+**I74's plan** is `R/I74/t6_slice_plan_01/PLAN.md` (sha256 `0350c918…`; SHA256SUMS 1/1 OK; no machine paths).
+- **Where it was written:** the host's edit guard refused I74's writes to NUM, before this session's folder grant to `WT`. I74 wrote both files at the same relative path in the session's own worktree and did not work around the guard. ROOT copied them byte for byte into NUM, verified the sums, and removed the copies.
+- **ROOT spot-checked findings 1, 6, 7 and 8 against the code:**
+  - the shared gate pins 18 surfaces (`retainedPrecisionOutputRefusal.test.tsx`);
+  - `results.v0.3.schema.yaml` is embedded by `include_str!` (`RE/src/physics_evidence.rs:1005`);
+  - `source_blocks::integer` sits behind the receipt shape's 2^53−1 maximums and the checked profile (`canonical_json/src/lib.rs:96–108`);
+  - the manifest builder requires desktop load-case fields (`inputManifestService.ts:193–207`).
+
+**I74's decisions, ruled:**
+
+| # | Ruling |
+|---|---|
+| 1 | Scope as §1: desktop result export and stress-neutral export, the dispatcher, RV95 N-5. The rest of T6 keeps its slot |
+| 2 | Split the gate, with an exhaustive, `tsc`-checked per-route output policy. Only the two panels admit `retained_preview_physics`, at eligible standing with the live capture. The other 18 surfaces and the report keep refusing; unknown routes fail closed |
+| 3 | No activation switch. TS standing requires the live native capture (D-U7-4), and no product caller exists, so the panels are dormant until B8. RV101 verifies that unreachability |
+| 4 | Result JSON follows Rust `derive_document`'s successor form, with byte parity proved against Rust goldens and b formatted as Rust's `{:e}` |
+| 5 | Stress-neutral classified rows: **S-d.** It applies D2 §4.9.9 through the export's existing withheld-witness convention, with no schema change. Not owner-facing |
+| 6 | Whole-envelope standing only; no producer-origin claim; no invocation in exports (a disclosed limit); out-of-profile values keep refusing |
+| 7 | The dispatcher's v0.3 branch becomes a `$ref` to the version file (CQ-7 B), with registry-based tests and an equivalence test |
+| 8 | Python keeps refusing successor packages, as a declared difference. F-U6b-2's Python transport validator goes to **B6** |
+| 9 | RV95 N-5: in the slice, the public-API test of the two masking layers, with S1 recorded as equivalent at the public API. The direct `#[cfg(test)]` unit test in `RE/src/source_blocks.rs` goes with **PR-B1**, which runs Pass B anyway. The owner is informed, since decision 12 listed N-5 in the slice; the obligation still closes before B8 |
+| 10 | **Owner-facing, prepared, not decided:** G10's "panels refusing a successor" half goes stale when the slice merges. The recommendation keeps G10's ordinary-route half and moves the successor-panel witness into B8's native Current witness. The slice proceeds, because the answer changes only G10's definition and B8's witness list |
+| 11 | The positive witness uses test-built, hash-consistent manifest evidence, labelled as such, plus golden parity. The product-flow export of a desktop-shaped successor is B8's |
+| 12 | The refusal text on the remaining surfaces is reworded. Display only |
+| 13 | **Delivery:** I75 (TS: T6S-3, -5, then -4) and I76 (schema, Python and Rust tests: T6S-1, -2), with RV101 fresh. Its own branch from main, its own product PR, gate items 1–6 |
+| 14 | The consistency notes go into the B1, B2, B3 and S-I2 briefs when they are written, and the Rule-check panel's policy entry into checklist item 1's brief |
+
+**The T6 slice is dispatched:**
+- **The worktree:** `WT/t6-outputs`, branch `codex/piping-t6-successor-outputs-20261005`, at main `c1bfc460fc`.
+- **The briefs** are new in `BRIEFS/`: `T6S_COMMON.md`, `I75_T6S_TS.md`, `I76_T6S_SCHEMA_TESTS.md` and `RV101_T6S_REVIEW.md`.
+- **I76 runs T6S-1 and T6S-2 first.** I75 runs T6S-3 and T6S-5, returns at a checkpoint, and runs T6S-4 once ROOT relays I76's golden hashes.
+- **The mechanism and enforcement** are as in this session's first dispatch ruling.
+
+**IDs:** I75, I76 and RV101 are used. The next unused are **I77 and RV102**.
+
+**Two host notes with this ruling:**
+- **The lock wrapper was split before any TASK used it,** to avoid a deadlock with DEC-025. `run_dec025.sh`'s quiet-host check counts any process whose command line contains `cargo `, and the first wrapper's waiting processes carried that text. Now:
+  - `WT/tools/t3_cargo.sh` checks the guard, logs WAIT and `exec`s `lockf` on `WT/tools/t3_cargo_run.sh`, which logs START and END around cargo;
+  - a waiting job's command line no longer matches `cargo `;
+  - both copies are in `IMPLEMENTATION/SESSION_2026-10-06/host_tools/`.
+- **Main moved to `0329f8fe6b`** (#1098: 111 files, all under `projects/chirality-app-v4/`). The bases of U8 (`b1e2d7741e`), S-I1 and T6S (`c1bfc460fc`) stay valid, because piping is untouched. NUM absorbs it with its next records commit, by PLAN §4's dry run.
