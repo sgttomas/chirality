@@ -34,13 +34,23 @@ export function retainedSiUnit(unit: string): string | null {
 
 /** An f64 as Rust's `{:e}` prints it (CQ-1): the shortest round-trip digits,
  * closest to the value, one digit before the point, and an exponent with no `+`.
- * JavaScript's `toExponential()` without an argument gives the same digits and an
- * `e+` exponent for exponents of zero or more, which is normalized to `e`. Rust also
- * prints the sign of a negative zero, which `toExponential` drops. */
+ * JavaScript's `toExponential()` without an argument gives the same shortest digits,
+ * except when the value lies exactly halfway between two shortest candidates: V8
+ * then takes the even one and Rust the larger magnitude (RV101 SF-1; REPAIR_01).
+ * So, with n the shortest form's digit count, `toExponential(n - 1)` gives the n-digit
+ * decimal nearest the value, which ECMAScript resolves on a tie to the larger
+ * candidate, as Rust does. Printed when it round-trips, it differs from the shortest
+ * form only on such a tie, which binary64 admits only at 16 or 17 digits. When it
+ * does not round-trip (at a power of two, whose round-trip interval is narrower
+ * below), the shortest form stands. The `e+` exponent is normalized to `e`,
+ * and the sign of a negative zero, which `toExponential` drops, is kept. */
 export function rustLowerExp(value: number): string {
   if (typeof value !== "number" || !Number.isFinite(value)) throw new Error("RETAINED_PRECISION_BOUND_NOT_FINITE");
   const sign = value < 0 || Object.is(value, -0) ? "-" : "";
-  return `${sign}${Math.abs(value).toExponential().replace("e+", "e")}`;
+  const magnitude = Math.abs(value);
+  const shortest = magnitude.toExponential();
+  const nearest = magnitude.toExponential(shortest.split("e")[0].replace(".", "").length - 1);
+  return `${sign}${(Number(nearest) === magnitude ? nearest : shortest).replace("e+", "e")}`;
 }
 
 /** Rust `not_covered_message`. */
