@@ -575,12 +575,13 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - observation framing;
 - the KF3 lambda split;
 - the KF2 dense screen;
-- any supported-machine statement of M, or M above the provisional 3.75 GiB;
+- any supported-machine statement of M, or M above 6.0 GiB (ROOT may select M up to 6.0 GiB: owner, 2026-10-06);
 - any change to public meaning;
 - the native-app witnesses;
 - **prepared for B8:** whether a successor's stress-neutral package may read ready while its D-U6-2 class rows carry withheld unit witnesses (today's convention blocks it; I75's R-2).
 
 **Owner decisions in force** (dated in the rulings):
+- **2026-10-06: M up to 6.0 GiB** ("You can raise the memory ceiling to 6.0 GiB without asking"): ROOT may select M ≤ 6.0 GiB; above that, and any supported-machine statement, stay owner-held.
 - **2026-10-06: G10 redefined** ("Go with your recommendation on G10"): G10 keeps its ordinary-route half; the successor-panel witness (the two panels export an eligible successor, every other surface refuses) moves into B8's native Current witness.
 - **2026-10-05: the F2a order:** U8 → breadth → B7 → B8 → S-I2, F2b, F3, with S-I1 alongside.
 - **2026-10-05:** the T6 slice is pulled forward.

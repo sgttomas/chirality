@@ -13405,3 +13405,23 @@ RV101's §3.1 found the same at `2033260c57`, and RV101 re-reads the scope at th
 - In the registered dev/test build only, a load case whose ordinary verdict is `checks_passed` will no longer attempt W1 or append a notice.
 - That includes W6's PHYS-R4-geometry input. PHYS-R4's publication and availability are unchanged.
 - Separately, B1 may need the owner's decision on M (decision 17) if multi-case does not fit within today's dense margin.
+
+## Owner decision: ROOT may raise M up to 6.0 GiB without asking (ROOT, 2026-10-06 UTC)
+
+**The owner, in chat:** "You can raise the memory ceiling to 6.0 GiB without asking."
+
+**What it means:**
+- **The memory ceiling M** is the per-invocation W1 admission threshold on requested and moving heap bytes (D-7; RR:8887). Today it is 4,026,531,840 B (3.75 GiB), selected under D-7.
+- **ROOT may select any M up to 6.0 GiB (6,442,450,944 B)** for the registered build, without asking. That covers B1's re-pricing for multi-case and later units. This resolves B0's decision 17 and RV105's N-10 for M ≤ 6.0 GiB.
+- **The host:** this Mac has 128 GiB of physical memory, and the memory guard stays in force.
+
+**What stays owner-held:**
+- M above 6.0 GiB;
+- any supported-machine statement of M, since D-7 makes no RSS, stack, concurrency or machine claim.
+
+**Any new M is selected the way D-7 selects:**
+- by measurement and the 0.9 M margin rule;
+- recorded as a ruling;
+- with the re-qualification its unit requires.
+
+Raising M is not a claim that every machine has that much memory.
