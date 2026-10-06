@@ -13168,3 +13168,15 @@ The record is `IMPLEMENTATION/S_I1_MERGE/RECORD.md`, with `_run_records/` and `d
 - **RV101's one direct `cargo --version`,** run to record the toolchain, is disclosed and has no effect.
 
 **The T6 slice's PR** follows U8's merge, by the merge order, on the proven gate path.
+
+## RV97 confirms #1102 at `f7a7572e35` and the DEC-025 carry-over (ROOT, 2026-10-06 UTC)
+
+**The confirmation.** RV97's ADDENDUM_02 (sha256 `8d301e00…`; 7/7 OK) **passes, 0/0/1.**
+- The delta `61c35f56a8 → f7a7572e35` is exactly the package text plus #1101's records: a clean union with the same patch-id.
+- A1-N-1 and A1-N-2 are applied truthfully.
+- The carry-over premise holds for both moves: no maintained code names `IMPLEMENTATION/U8` or the work graph, and #1101 has no path under `REFERENCES/` or `DESIGN_NUMERICS/`.
+- Both tools reproduce `se3` and `citations3` byte for byte.
+
+**A2-N-1 is noted:** one of #1100's 8 files is a fixture. The claim that matters, "none of U8's 7", holds.
+
+**#1102 waits only for** DEC-025 `ALL-DONE` with a clean comparison, green CI, and an unmoved main.
