@@ -586,7 +586,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **2026-10-04:** G10 stays outstanding on the owner's Mac.
 - **Earlier:** T1 option (a); D-3 = S1; D-6 = (a); M selected under D-7.
 
-**Assignment IDs.** I68–I74 and RV97–RV99 are prepared for fresh instances. I68, I73, I74, I75, I76 and RV101 are dispatched (2026-10-06). The next unused are **I77 and RV102**.
+**Assignment IDs.** I68–I74 and RV97–RV99 are prepared for fresh instances. I68, I73, I74, I75, I76 and RV101 are dispatched (2026-10-06). I77 (U8's PR package) is dispatched too. The next unused are **I78 and RV102**.
 
 **T3 rulings in force** (section headings in `ROOT_RULINGS_V1.md`):
 - **T3's gate set and Git rules for product and records PRs, and verifying returns:** "T3's gate set and Git rules, consolidated after the handoff was made ephemeral";

@@ -12837,3 +12837,22 @@ I75 re-verified its state after the interruption. It restored the mutation copy 
 - `run_suites_nff.sh` on a `git archive` copy, with a fresh target;
 - one job under the T3 lock;
 - outputs in `WT/scratch/u8_full_suite/`.
+
+## I77 dispatched: U8's compact PR evidence package (ROOT, 2026-10-06 UTC)
+
+**I77** (fresh; records only) drafts U8's PR package in `T/IMPLEMENTATION/U8/`, in #1082's form scaled down:
+- `CHANGE_RECORD.md` and `PR_BODY.md`;
+- a `citations.json` index for main's `check_citations.py`, pinned to NUM `fd3990a710`;
+- `SHA256SUMS`.
+
+The package reuses main's copies of `source_equality.py` and `check_citations.py`. It runs in parallel with the full suite and RV98, so the PR can be cut when they return. The mechanism and enforcement are those of this session's first dispatch ruling.
+
+**U8's PR, after the gates:**
+- ROOT merges the U8 branch into NUM, so that NUM carries U8's source.
+- ROOT cuts `codex/piping-t3-u8-pr-<date>` from main, with the 7 maintained files from `bd6b4be2c3` and the package.
+- **The gates:** `source_equality.py` against the NUM head; the citations check; GEN-8 on the exact head; hosted CI with the full-SHA dispatch (`piping-desktop-e2e.yml`, `target_base` = main); the exact-head Mac DEC-025 against a fresh main baseline.
+- **Pass B** (I72 and RV98) carries over by equality of maintained source.
+- **RV97** confirms the PR head's package and equality.
+- **The merge** is `--merge --match-head-commit`, after checking that main has not moved.
+
+**IDs:** I77 is used. The next unused are **I78 and RV102**.
