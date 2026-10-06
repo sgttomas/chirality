@@ -13106,3 +13106,20 @@ The record is `IMPLEMENTATION/S_I1_MERGE/RECORD.md`, with `_run_records/` and `d
 - **N-5:** no action.
 
 **#1101 is re-cut to H3:** NUM's execution tree at this ruling's commit, minus `IMPLEMENTATION/U8/`. RV102 confirms the delta from H2 before the squash.
+
+## #1101 squash-merged; RV102's addendum notes (ROOT, 2026-10-06 UTC)
+
+**RV102's ADDENDUM_01** (sha256 `32261a96…`; 12/12 OK) passes H3 `93d15f1bd3`, 0/0/4.
+- The H2→H3 delta is as listed.
+- RV98 verifies 47/47 from H3's Git blobs.
+- The S-2 rewrite is truthful.
+- The screen is clean, and RR is append-only.
+- GEN-8 passes, and 4/4 CI runs succeeded.
+
+**The merge.** Main was checked unmoved at `75a8c3291f`, then `gh pr merge 1101 --squash --match-head-commit 93d15f1bd3` ran with an explicit subject and body. **The result is `d069e7130c`.** The record is `IMPLEMENTATION/RECORDS_MERGE_2026-10-06/RECORD.md`.
+
+**The notes:**
+- **A-2 and A-3 are applied now in the work graph.** RV100 was dispatched on 2026-10-05, and RV97's ADDENDUM_01 confirms `61c35f56a8`, with the `b18dd4f369` delta still to confirm.
+- **A-1 and A-4** need no action.
+
+**Next:** NUM absorbs main; #1102 absorbs main; RV97 confirms #1102's head delta and the DEC-025 carry-over.

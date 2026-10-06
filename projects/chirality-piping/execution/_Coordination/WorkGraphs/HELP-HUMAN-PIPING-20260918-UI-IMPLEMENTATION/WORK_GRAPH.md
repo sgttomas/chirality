@@ -548,14 +548,14 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 **Position (2026-10-06 UTC):**
 - The F2a D1 milestone is on main (#1082), in the registered dev/test build only. No product caller exists.
 - **S-I1 is on main** ([#1100](https://github.com/sgttomas/chirality/pull/1100), `75a8c3291f`, 2026-10-06), the first product PR of the session, which proved the full product gate path.
-- **T3's records** through the handoff are on main (#1084, #1088, #1092). This session's records through S-I1's merge are in the records-only PR [#1101](https://github.com/sgttomas/chirality/pull/1101), reviewed by RV102. It leaves U8's package to #1102.
+- **T3's records** through the handoff are on main (#1084, #1088, #1092), and this session's through RV102's review in [#1101](https://github.com/sgttomas/chirality/pull/1101) (`d069e7130c`, squash), which left U8's package to #1102.
 - **U8** is complete and in its PR [#1102](https://github.com/sgttomas/chirality/pull/1102). **The T6 slice** is complete on its branch, under RV101's review.
 - **The integration branch** is `codex/piping-numerical-integrity-20260926` (NUM). It carries main plus U8's 7 files (merged for #1102's source equality) and this session's records.
 - **The host:** all heavy T3 jobs (cargo, DEC-025, heavy vitest and pytest) share one lock, `WT/guard/cargo_job.lock` (`WT/tools/t3_cargo.sh`, or `lockf`).
 
 | Node | Result | Needs | Assignment | State |
 |---|---|---|---|---|
-| T3-U8 | The deferred producer-solved witnesses: RV93 N-5's real-input fallbacks; W-C1, a real-input Native fallback; and the L = 0 base, published if the producer admits it, otherwise deferred to B1 with its cause. Test-only | NUM has absorbed main; a U8 branch from NUM | `BRIEFS/U8_COMMON.md`. I68 Part 1 (the probe), ruled before Part 2; I69–I71 only if L = 0 publishes; I72 Pass B; RV97 reviews; RV98 confirms Pass B. Then the full 40-manifest suite, the freeze, and U8's compact PR from main. Branch `codex/piping-f2a-u8-20261005` at `b1e2d7741e`, worktree `WT/f2a-u8` | ACTIVE: U8 complete at `bd6b4be2c3` (U8-1 to U8-3). RV97 PASS (both rounds); Pass B (I72) confirmed by RV98; the full 40-manifest suite PASS. PR [#1102](https://github.com/sgttomas/chirality/pull/1102) (draft), head `b18dd4f369`, cut from main; RV97 confirmed the head (ADDENDUM_01). Source equality, citations and GEN-8 PASS; CI running; DEC-025 queued under the lock (carried to the head by ruling) |
+| T3-U8 | The deferred producer-solved witnesses: RV93 N-5's real-input fallbacks; W-C1, a real-input Native fallback; and the L = 0 base, published if the producer admits it, otherwise deferred to B1 with its cause. Test-only | NUM has absorbed main; a U8 branch from NUM | `BRIEFS/U8_COMMON.md`. I68 Part 1 (the probe), ruled before Part 2; I69–I71 only if L = 0 publishes; I72 Pass B; RV97 reviews; RV98 confirms Pass B. Then the full 40-manifest suite, the freeze, and U8's compact PR from main. Branch `codex/piping-f2a-u8-20261005` at `b1e2d7741e`, worktree `WT/f2a-u8` | ACTIVE: U8 complete at `bd6b4be2c3` (U8-1 to U8-3). RV97 PASS (both rounds); Pass B (I72) confirmed by RV98; the full 40-manifest suite PASS. PR [#1102](https://github.com/sgttomas/chirality/pull/1102) (draft), head `b18dd4f369`, cut from main; RV97 confirmed `61c35f56a8` (ADDENDUM_01); its confirmation of the `b18dd4f369` delta and of the absorption of main is pending. Source equality, citations and GEN-8 PASS; CI running; DEC-025 queued under the lock (carried to the head by ruling) |
 | T3-SI1 | S-I1 (PLAN §3) | main | I73, reviewed by RV99; its own branch from main and its own PR. Branch `codex/piping-s-i1-20261005` at `c1bfc460fc`, worktree `WT/s-i1` | **MERGED** to main as [#1100](https://github.com/sgttomas/chirality/pull/1100) (`75a8c3291f`, 2026-10-06). Record: `IMPLEMENTATION/S_I1_MERGE/` |
 | T3-SI1b | The point-path panic repair in `expression_evaluator` (an overflowing same-dimension quotient, a NaN interpolation or step argument): a blocking finding instead of a panic. Found by I73 | T3-SI1 merged (done) | A later I-ID, its own review and PR | READY |
 | T3-T6S | The T6 successor-output slice plan, which closes activation-checklist item 4 | — | I74; then its implementation, with its own reviewer and PR | ACTIVE: I74's plan ruled (14 decisions). T6S complete on its branch: `055ee0c0bc` (I76) and `2033260c57` (I75). RV101 reviewing `c1bfc460fc..2033260c57`; then gate items 1–6 in `WT/t6-outputs`, branch `codex/piping-t6-successor-outputs-20261005` at `c1bfc460fc`; RV101 reviews. The owner pulled it forward |
@@ -588,7 +588,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **2026-10-04:** G10 stays outstanding on the owner's Mac.
 - **Earlier:** T1 option (a); D-3 = S1; D-6 = (a); M selected under D-7.
 
-**Assignment IDs.** Dispatched on 2026-10-06: I68–I77 and RV97–RV102. RV101 (the T6 slice) is still reviewing. The next unused are **I78 and RV103**.
+**Assignment IDs.** Dispatched on 2026-10-06: I68–I77, RV97–RV99, RV101 and RV102 (RV100 was 2026-10-05's, for #1088). RV101 (the T6 slice) is still reviewing. The next unused are **I78 and RV103**.
 
 **T3 rulings in force** (section headings in `ROOT_RULINGS_V1.md`):
 - **T3's gate set and Git rules for product and records PRs, and verifying returns:** "T3's gate set and Git rules, consolidated after the handoff was made ephemeral";
@@ -619,7 +619,6 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - RV95 N-6 (at B7).
 
 **Next safe action:**
-1. #1101: RV102 confirms the S-1/S-2 delta, then squash-merge with `--match-head-commit` after checking that main has not moved.
-2. #1102: absorb main after #1101; RV97 confirms the head delta and the carry-over; DEC-025 `ALL-DONE` and clean; CI green; then merge.
-3. RV101's verdict on the T6 slice; repairs and confirmation; then its PR, after U8's merge.
-4. Post-merge cleanup `apply` when the host is idle; then dispatch T3-SI1b and, after U8's merge, B0.
+1. #1102: absorb main after #1101 (merged); RV97 confirms the head delta and the carry-over; DEC-025 `ALL-DONE` and clean; CI green; then merge.
+2. RV101's verdict on the T6 slice; repairs and confirmation; then its PR, after U8's merge.
+3. Post-merge cleanup `apply` when the host is idle; then dispatch T3-SI1b and, after U8's merge, B0.
