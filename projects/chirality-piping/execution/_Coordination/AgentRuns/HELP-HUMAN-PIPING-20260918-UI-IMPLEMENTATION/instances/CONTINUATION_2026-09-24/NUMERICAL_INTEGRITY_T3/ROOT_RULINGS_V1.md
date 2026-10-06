@@ -12596,3 +12596,36 @@ I73's scratch (`WT/scratch/i73_s_i1/`) and targets stay until the post-merge cle
 - **N-5, accepted.** The W-C1 control ("pair case A alone publishes") is met by the probe, in sparse mode. B1's W-C2 commits it.
 
 **RV97 is continued** for round 2, onto 07l and the Rust and TS alignment, once those are committed.
+
+## I75's checkpoint: S-1 granted; readings R-1 to R-7; a B8 choice prepared for the owner (ROOT, 2026-10-06 UTC)
+
+**I75's checkpoint** is `R/I75/t6s_01/CHECKPOINT_1.md` (sha256 `62b00b23…`). ROOT checked:
+- `SHA256SUMS`: 34 of 34 OK, every file covered, no machine paths;
+- `WT/t6-outputs` holds only I75's seven fenced desktop files besides I76's commit;
+- the copied wasm assets lie in Git-ignored folders (`apps/desktop/public/wasm-engine/` and `self-weight-engine/`).
+
+**Done:** T6S-3 (the policy, `Record<SourceContract, …>` over 21 surfaces, checked by `tsc`) and T6S-5 (stress-neutral, S-d).
+- **Suites:** vitest 3,552 → 3,572, with 20 added tests; 4 fail, all S-1's. `tsc` is clean.
+- **Unchanged routes:** 182 non-successor builder inputs are byte-identical to the base.
+- **34 of 34 mutants** are killed.
+
+**S-1, granted: the fence extends to `DT/features/results/retainedPrecisionIntegration.test.tsx`,** for its U7 slice T block only.
+- That block pins the N-5 panel refusal, which decision 2 replaces deliberately.
+- I75's patch (`_run_records/proposed_integration_n5.diff`) keeps a negative check: a moved model is refused with the standing's code. It inverts only the admission of the captured model, and drops the now-unneeded `throwless` and `noRefusal` seams from that block.
+- It is applied as proposed, or an equivalent of it, with no other edit in the file. RV101 checks it.
+
+**The readings:**
+- **R-1, accepted.** A blocking disposition takes precedence over a class, and a class over diagnostic work. A unit test pins it.
+- **R-2: the existing convention is followed.** The stress-neutral builder's aggregate `SN-DECLARED-DIMENSION-WITNESS-UNAVAILABLE` is blocking whenever any unit-preservation witness is withheld, as it already is for diagnostic-work rows (base `StressNeutralExportPanel.tsx`, the aggregate and `validation_ready: blockingCount === 0`). So every successor package reads `validation_status: blocked`, `validation_ready: false`, while carrying its rows, receipt and disclosures.
+  - Excluding the D-U6-2 class withholdings from the aggregate would be a new readiness rule for one route, and a change to what a public package means.
+  - **So this is prepared as an owner choice for B8,** not decided: whether a successor's stress-neutral package may read ready while its `absolute_verified` and `not_covered` rows carry withheld witnesses. Until the owner decides, the fail-safe convention stands. Successors are not public before B8.
+- **R-3, accepted.** A 0.2.0 package carrying `retained_precision` is refused, which only tightens validation. RV101 confirms that no committed package is affected.
+- **R-4, accepted.** Without a source, the validator checks transport and severity. Class findings are bound only when a source is supplied.
+- **R-5, accepted.** The corpus two-case bases use a live-capture stand-in labelled test-only, as CQ-11 labels them.
+- **R-6: a comment-only edit is granted.** The one stale comment in `DT/features/results/knownSemanticLimitations.ts` says TS never emits the derivative's disclosure message. No code in that file changes, and RV101 confirms the edit is comment-only.
+- **R-7: the policy tests move** to a new `DT/features/results/outputPolicy.test.ts`, which is granted.
+
+**Relayed to I75 for T6S-4:** I76's goldens `958df02e…` (sparse) and `3f9905ad…` (dense), committed at `055ee0c0bc`, with:
+- the base and origin files in `R/I76/t6s_01/inputs/`;
+- the regeneration command;
+- I76's parity facts: canonical JSON with no trailing newline; 98/99 rows; 69 absolute disclosures; b in Rust's `{:e}`; no `request` or `solver_mode` member.

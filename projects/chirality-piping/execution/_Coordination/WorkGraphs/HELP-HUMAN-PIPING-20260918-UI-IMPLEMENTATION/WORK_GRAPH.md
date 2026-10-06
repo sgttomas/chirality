@@ -556,7 +556,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 | T3-U8 | The deferred producer-solved witnesses: RV93 N-5's real-input fallbacks; W-C1, a real-input Native fallback; and the L = 0 base, published if the producer admits it, otherwise deferred to B1 with its cause. Test-only | NUM has absorbed main; a U8 branch from NUM | `BRIEFS/U8_COMMON.md`. I68 Part 1 (the probe), ruled before Part 2; I69–I71 only if L = 0 publishes; I72 Pass B; RV97 reviews; RV98 confirms Pass B. Then the full 40-manifest suite, the freeze, and U8's compact PR from main. Branch `codex/piping-f2a-u8-20261005` at `b1e2d7741e`, worktree `WT/f2a-u8` | ACTIVE: U8-1 committed as `d449097085` (I68). RV97 round 1 PASS (0/0/5). I69 (corpus 07l) running; then I70/I71 and RV97 round 2 |
 | T3-SI1 | S-I1 (PLAN §3) | main | I73, reviewed by RV99; its own branch from main and its own PR. Branch `codex/piping-s-i1-20261005` at `c1bfc460fc`, worktree `WT/s-i1` | ACTIVE: S-I1 committed on its branch (`4920e4b1b0`, I73; `8f956d399a`, ROOT's schema-description edit). RV99 reviewing; then the PR's gates |
 | T3-SI1b | The point-path panic repair in `expression_evaluator` (an overflowing same-dimension quotient, a NaN interpolation or step argument): a blocking finding instead of a panic. Found by I73 | T3-SI1 merged | A later I-ID, its own review and PR | PLANNED |
-| T3-T6S | The T6 successor-output slice plan, which closes activation-checklist item 4 | — | I74; then its implementation, with its own reviewer and PR | ACTIVE: I74's plan ruled (14 decisions). I76's T6S-1/-2 committed as `055ee0c0bc`; I75 (TS) running in `WT/t6-outputs`, branch `codex/piping-t6-successor-outputs-20261005` at `c1bfc460fc`; RV101 reviews. The owner pulled it forward |
+| T3-T6S | The T6 successor-output slice plan, which closes activation-checklist item 4 | — | I74; then its implementation, with its own reviewer and PR | ACTIVE: I74's plan ruled (14 decisions). I76's T6S-1/-2 committed as `055ee0c0bc`; I75's checkpoint ruled (S-1 granted; R-2 prepared for the owner); I75 on T6S-4 in `WT/t6-outputs`, branch `codex/piping-t6-successor-outputs-20261005` at `c1bfc460fc`; RV101 reviews. The owner pulled it forward |
 | T3-B0 | F2a breadth: contract and identities, reserving `openpipestress.result_semantics/0.3.0/physics-retained-1` | T3-U8 | PLAN §2 | PLANNED |
 | T3-B1/B6 | Multi-case breadth with W-C2 (the two-body model) and D38's pin (cap-growth study early in B1); the reader items; F-1's parity-row repair in all three readers. Then PR-B1 | T3-B0 | PLAN §2 | PLANNED |
 | T3-B2/B3/B4 | Combinations, preparation-only and mixed invocations; the exact routes; cap growth (B4) only if ruled. Then PR-B2 | PR-B1 | PLAN §2 | PLANNED |
@@ -573,7 +573,8 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - the KF2 dense screen;
 - any supported-machine statement of M, or M above the provisional 3.75 GiB;
 - any change to public meaning;
-- the native-app witnesses.
+- the native-app witnesses;
+- **prepared for B8:** whether a successor's stress-neutral package may read ready while its D-U6-2 class rows carry withheld unit witnesses (today's convention blocks it; I75's R-2).
 
 **Owner decisions in force** (dated in the rulings):
 - **2026-10-06: G10 redefined** ("Go with your recommendation on G10"): G10 keeps its ordinary-route half; the successor-panel witness (the two panels export an eligible successor, every other surface refuses) moves into B8's native Current witness.
