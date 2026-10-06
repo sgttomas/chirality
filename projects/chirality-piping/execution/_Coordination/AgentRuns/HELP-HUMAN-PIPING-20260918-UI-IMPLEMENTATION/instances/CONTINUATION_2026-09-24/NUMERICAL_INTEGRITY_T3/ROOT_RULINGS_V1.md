@@ -12507,3 +12507,44 @@ The next unused IDs stay **I77 and RV102**. I69, I70, I71, I72, RV97 and RV98 we
 - **The successor-panel witness moves into B8's native Current witness.** On the owner's Mac, the result-export and stress-neutral panels export an eligible successor, and every other surface refuses it.
 - **Until B8,** the T6 slice's vitest suites and the hosted browser shards cover these gates, as the G10 ruling allowed. They are not native evidence.
 - **Native-app witnesses stay owner-held.** B8's witness is the owner's action.
+
+## S-I1 committed; RV99 dispatched (ROOT, 2026-10-06 UTC)
+
+**I73's final return** is `R/I73/s_i1_01/RETURN.md` (sha256 `ab36c3d3…`). ROOT checked:
+- `SHA256SUMS`: 56 of 56 OK, every file covered, no machine paths. `CHECKPOINT_1.md` is unchanged (`b992efcf…`).
+- **`WT/s-i1` holds only the fenced files:**
+  - `expression_evaluator/src/lib.rs`: +2,197 / −0;
+  - `rule_check_runner/src/lib.rs`: +550 / −3;
+  - five new files: two runner tests, `rule_interval.py`, the case file and `test_rule_interval.py`.
+  - No lock, `Cargo.toml` or schema changed.
+- **The runner's three removed lines** are an import rewrap and one match arm. The arm still pushes the same binding, and only records an interval when one exists.
+- **ROOT re-ran `tests/test_rule_interval.py`: 170 passed,** matching I73's +170. The CLI authority variables were stubbed, because this module does not use them, so the run started no cargo outside the lock.
+
+**I73's results:**
+- **The deliverables:** `run_rule_checks_with_bounds` and `SolverResultBound`, with `run_rule_checks` unchanged; the Python reference; 83 shared cases (23 negative), with Rust and Python agreeing bit for bit; an exact-rational soundness oracle.
+- **Point mode is byte-identical to the base:** 36,069 evaluator inputs, and 32,820 runner runs over the committed packs and fixtures.
+- **21 of 21 mutants** are killed.
+- **Suites,** with every count change an added test: `expression_evaluator` 49+1, `rule_check_runner` 31, `rule_pack_document` 10, src-tauri 116, Python 3,635.
+- **Ruling 3 is met:** interval mode and the bounded runner path do not panic on the point path's panic inputs.
+
+**I73's note 1, acted on.** `rule_check_run_result.schema.json` described `RunFinding.severity` as emitting only "blocking". The slice now also emits "info" and "warning", so the description would mislead once S-I1 merges.
+- Project `AGENTS.md` puts a slice's documentary consequences in its own PR, so ROOT edited the description text only.
+- The schema's shape and validation are unchanged, no D1 code embeds the file, and its only reader, `tests/test_operation_result_schemas.py`, passes 5 of 5.
+- It is a separate commit, so RV99 reviews it.
+
+**S-I1 is committed** on `codex/piping-s-i1-20261005` and pushed:
+- `4920e4b1b0`: I73's work;
+- `8f956d399a`: ROOT's description edit.
+
+**RV99 is dispatched** on `c1bfc460fc..8f956d399a` by `BRIEFS/RV99_S_I1_REVIEW.md` (`2a63fae8…`), with D2 5b.3 and ruling 3's no-panic check added. The mechanism and enforcement are as in this session's first dispatch ruling.
+
+**After RV99 passes, S-I1's PR gates:**
+- the PR, compact from main, with maintained-source equality to NUM once NUM carries it;
+- the full 40-manifest suite before the freeze;
+- hosted CI with the full-SHA dispatch;
+- GEN-8 on the exact head;
+- the exact-head Mac DEC-025 against a fresh main baseline.
+
+No Pass B: the rules crates are outside PP's closure (I61 PLAN §3).
+
+I73's scratch (`WT/scratch/i73_s_i1/`) and targets stay until the post-merge cleanup.
