@@ -13065,3 +13065,23 @@ The record is `IMPLEMENTATION/S_I1_MERGE/RECORD.md`, with `_run_records/` and `d
 - **If #1101 squash-merges first,** #1102 absorbs main. That delta is T3 execution records only, read by no DEC-025 suite beyond the three readers of `REFERENCES/` and `DESIGN_NUMERICS/` (N-12's wording), so DEC-025 carries over by ruling, with RV97 confirming.
 
 **IDs:** RV102 is used. The next unused are **I78 and RV103**.
+
+## RV97 confirms #1102's head; A1-S-1 ruled: U8's package reaches main only with #1102 (ROOT, 2026-10-06 UTC)
+
+**RV97's ADDENDUM_01** (sha256 `4ffc366d…`; 10/10 OK; the sealed SHA256SUMS unchanged) **confirms #1102's head `61c35f56a8`,** 0/1/3.
+- The 7 blobs equal `bd6b4be2c3`'s, and there is no U8 or NUM history.
+- The package is truthful.
+- Both tools reproduce ROOT's records byte for byte.
+- The carry-over premise holds. DEC-025 collects manifests from `core/` and `validation/benchmarks/`, pytest from `tests/` and vitest from `apps/desktop/src/**`, and #1101 touches neither T3 folder that code reads.
+
+**A1-S-1, ruled: U8's package reaches main only with #1102.** #1101 carried I77's draft of `IMPLEMENTATION/U8/`, while #1102 adds the completed version at the same paths.
+- **#1101 gains a commit** removing `IMPLEMENTATION/U8/`. Its new head is `e41566921d`: NUM's tree at `4e6c2fcbfe` minus that folder, 708 added and 3 modified. GEN-8 passes, and RV102 was told of the deliberate exclusion.
+- **The rule for later records PRs:** a product PR's package, while its PR is open, is left out of records-only PRs.
+
+**The notes:**
+- **A1-N-1 and A1-N-2 are applied** in U8's CHANGE_RECORD: main is `75a8c3291f`, including #1100, and the suite runs are credited to I69 and I71. They are on NUM (`57aed58945`) and on #1102, whose **new head is `b18dd4f369`**.
+  - At that head, `source_equality.py` passes 5/5 against NUM `57aed58945`, `check_citations.py` passes, and GEN-8 has 1 passed.
+  - The full-SHA dispatch is run 37486478419.
+- **A1-N-3 is noted:** #1101 also modifies the undertaking's `WORK_GRAPH.md`, outside the T3 folder. No code reads it.
+
+**DEC-025 carries over to `b18dd4f369`.** It is queued on `61c35f56a8`. The heads differ only in two package files (CHANGE_RECORD.md and SHA256SUMS), which no DEC-025 suite reads (N-12's wording). RV97 confirms that delta, together with any main-move carry-over, before the merge.
