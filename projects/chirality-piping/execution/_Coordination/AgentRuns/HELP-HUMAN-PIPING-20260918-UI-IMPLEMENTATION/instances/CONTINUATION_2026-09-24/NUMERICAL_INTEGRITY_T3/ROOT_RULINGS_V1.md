@@ -12792,3 +12792,24 @@ I75 re-verified its state after the interruption. It restored the mutation copy 
 **I75's work is committed** on the T6 branch as `2033260c57` and pushed. The slice is `c1bfc460fc..2033260c57`: `055ee0c0bc` (I76) and `2033260c57` (I75).
 
 **RV101 is dispatched,** fresh, on that range, by `BRIEFS/RV101_T6S_REVIEW.md`, with the mechanism and enforcement of this session's first dispatch ruling. After RV101 passes, the slice takes gate items 1–6 of "T3's gate set…".
+
+## RV97 passes U8's round 2; U8-5's review is complete; E-6 extended (ROOT, 2026-10-06 UTC)
+
+**RV97's round 2** is `R/REVIEW_RV97/u8_01/REVIEW_ROUND2.md` (sha256 `2fa32658…`). Round 1's `REVIEW.md` is unchanged (`bf57269e…`). ROOT checked:
+- the folder's regenerated `SHA256SUMS` (`a6d923fb…`): 69 of 69 OK over both rounds;
+- no machine paths.
+
+**Verdict on `d449097085..bd6b4be2c3`: PASS,** 0 BLOCKING, 0 SHOULD-FIX, 2 NOTE.
+- **07l parity on identical bytes:** all 348 documents (17 cases, with and without the invocation; 286 mutations; 28 must-pass entries) went through the three readers' public entries, with 0 discrepancies.
+- **The committed tests pass:** Python 480, `result_export` 173, TS 474, and `tsc` clean.
+- **D-U6-5 holds as ruled,** and the U5 variant on the embedded bases gives STOPS `[]`.
+- **The provenance claims are true,** case by case.
+- **Only the fenced files changed,** with no reader `src`, schema or PP change.
+- **Scope:** no Ceiling or native Current claim, and F-1 is still not pinned.
+- **I71's wasm reasoning is corroborated independently:** the `.wasm` files embed panic paths under `WT/sweep-skewpin` and the registered toolchain's commit `8bab26f4f68e`, and the engine closure differs only in test files.
+
+**The notes:**
+- **R2-N-1: E-6 is extended.** `R/I69/u8_corpus_07l_01/RETURN.md` §4 repeats the statement that the TS reader does not use the wasm assets. That record is sealed, so its bytes stay, and E-6's correction applies to that sentence too.
+- **R2-N-2: noted, with no change in U8.** The Rust contract test's module doc says "These do not establish execution" beside "listed producer-solved bases". It understates rather than over-claims. It is reworded at the file's next touch, which is B1's alignment (B1's brief).
+
+**U8-5's review is complete for both rounds.** U8 now waits only for I72's Pass B and RV98's confirmation, then the full 40-manifest suite and the freeze.
