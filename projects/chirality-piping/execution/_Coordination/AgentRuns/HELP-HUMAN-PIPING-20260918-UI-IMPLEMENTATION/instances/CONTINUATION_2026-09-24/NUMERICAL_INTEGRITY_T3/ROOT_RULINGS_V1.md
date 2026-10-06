@@ -12813,3 +12813,27 @@ I75 re-verified its state after the interruption. It restored the mutation copy 
 - **R2-N-2: noted, with no change in U8.** The Rust contract test's module doc says "These do not establish execution" beside "listed producer-solved bases". It understates rather than over-claims. It is reworded at the file's next touch, which is B1's alignment (B1's brief).
 
 **U8-5's review is complete for both rounds.** U8 now waits only for I72's Pass B and RV98's confirmation, then the full 40-manifest suite and the freeze.
+
+## U8 Pass B returned; RV98 dispatched; U8's pre-freeze full suite started (ROOT, 2026-10-06 UTC)
+
+**I72's return** is `R/I72/u8_passb_01/RETURN.md` (sha256 `18017da1…`). ROOT checked:
+- `SHA256SUMS`: 47 of 47 OK, every file covered, no machine paths;
+- the cargo log: the whole tool ran as one job under the T3 lock (13:04:49Z–13:12:35Z, rc 6).
+
+**The verdict line** (`_run_records/runs/u8/VERDICT.txt`): `VERDICT DELTAS TO READ exit=6 basis=bd6b4be2c3… tag=u8`, with every gate 0 except `pp_outcomes:6`. That is the same gate vector as `u4_g7_06` on F (`…/runs/frozen/VERDICT.txt`).
+- **`pp_outcomes`:** U8's three added tests, all `ok`.
+- **Unchanged from F:** the entry is byte-identical to `0c7827b6ad`'s, with M = 4,026,531,840. TEXT D is 14,734, all 11 reviewed entries match, and the maxima are unchanged (0.8881 / 0.8929 M).
+- **The witness and challenge lines** equal F's.
+- **The delta:** 97 rows, 10 added over F′'s 87, none removed or changed. Eight are main's documentation files (#1084, #1092, #1094), `not-d1`. Two are U8's L = 0 fixtures.
+
+**I72's item 1 is provisional, pending RV98.** The tool labels the two L = 0 fixtures `unreachable`, not `test`. Their only embedder, `retained_facade_tests.rs`, is test-only through its declaration (`#[cfg(test)] mod retained_facade_tests;`, `PP/src/lib.rs:128–129`), which the tool does not see.
+- I72 found the fixtures' text only in PP's lib test binary.
+- ROOT reads them as test rows, not a production-class stop. RV98 confirms or refutes.
+- A later tool change could teach the tool this case.
+
+**RV98 is dispatched** by `BRIEFS/RV98_U8_PASS_B_CONFIRM.md` (`3f830a98…`), read-only, with the mechanism and enforcement of this session's first dispatch ruling.
+
+**U8's pre-freeze full 40-manifest suite starts now** on `bd6b4be2c3` (the rule from "DEC-025 on F finds a test-walker defect…"):
+- `run_suites_nff.sh` on a `git archive` copy, with a fresh target;
+- one job under the T3 lock;
+- outputs in `WT/scratch/u8_full_suite/`.
