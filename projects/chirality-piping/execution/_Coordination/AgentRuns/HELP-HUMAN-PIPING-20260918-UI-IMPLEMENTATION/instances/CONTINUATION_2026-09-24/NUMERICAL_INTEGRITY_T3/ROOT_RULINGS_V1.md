@@ -13331,3 +13331,35 @@ The record is `IMPLEMENTATION/S_I1_MERGE/RECORD.md`, with `_run_records/` and `d
 ROOT then selects, and puts anything owner-held to the owner.
 
 **IDs:** RV105 is used. The next unused are **I81 and RV106**.
+
+## I80's package accepted; the full-suite and Pass B rulings for T6S; T6S's PR cut (ROOT, 2026-10-06 UTC)
+
+**I80's package is verified and accepted:** `IMPLEMENTATION/T6S/` (CHANGE_RECORD.md, PR_BODY.md, citations.json, SHA256SUMS), with its draft run records in `_draft_run_records/` (17/17 OK, placeholder paths only). Those stay on NUM and are not in the PR.
+- It was pinned at NUM `2b1f244faf`.
+- **Its pre-check** against main `d8c88774d0` finds |S| = 19, every blob equal to `fdcdb5e024`'s, and nothing changed on main.
+- **Citations:** three dry runs PASS (2 resolved), and the negative controls fail.
+- **ROOT's edits before the cut:**
+  - the PR body's malformed link to the change record is now a plain path;
+  - the gate rows record the two rulings below;
+  - the package is resealed.
+
+**Ruled, I80's item 1:** for T6S, the full 40-manifest suite before the freeze is satisfied by the exact-head DEC-025's 40 manifests against a fresh main baseline, in fresh targets. That is how S-I1 was treated.
+- The slice moves no registered identity, so there is no separate D1 freeze to precede.
+- U8 needed a full suite before its freeze because it re-qualified the D1 build.
+
+**Ruled, item 2: Pass B does not apply.** CHANGE_RECORD §5.1 shows:
+- no D1 crate `src`, embedded static, reviewed input, reader source, manifest, lock or build script changes;
+- RE changes only in two `tests/` files;
+- the dispatcher's `$defs`, the only part D1 code names, is value-identical.
+
+RV101's §3.1 found the same at `2033260c57`, and RV101 re-reads the scope at the PR head.
+
+**Items 3 and 4** are noted:
+- Citations are checked on the PR head against main, which scans exactly the 19 files.
+- The slice's citation style is for information only.
+
+**Expected DEC-025 deltas against current main.** Main already carries U8, so these are offset from the slice's own base:
+- desktop vitest 3,574 → 3,612 (+44 added, −6 renamed);
+- `result_export` 173 → 177;
+- pytest +23 (the dispatcher test);
+- every other manifest identical.
