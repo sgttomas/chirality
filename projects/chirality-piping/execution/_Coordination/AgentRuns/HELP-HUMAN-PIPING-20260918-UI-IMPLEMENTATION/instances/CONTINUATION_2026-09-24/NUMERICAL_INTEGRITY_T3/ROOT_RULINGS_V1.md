@@ -12880,3 +12880,32 @@ The package reuses main's copies of `source_equality.py` and `check_citations.py
 4. **Host concurrency:** at most two or three implementers at once, plus reviewers. Heavy vitest and pytest suites run under the same T3 lock as cargo (through `t3_cargo.sh`'s lock, or `lockf` on the lock file).
 5. **B0's brief is prepared now,** to dispatch when U8 merges, carrying the routed notes.
 6. **Shorter rulings and owner messages:** outcomes, decisions and the next step. The detail stays in the records.
+
+## U8's full suite passes; I77's package accepted; NUM sequencing for the product PRs (ROOT, 2026-10-06 UTC)
+
+**The full 40-manifest suite on `bd6b4be2c3` passes** (`IMPLEMENTATION/U8_GATES/full_suite/`).
+- It ran 13:20–13:43Z under the lock, rc 0.
+- **Against F′'s DEC-025 suites:** 38 of 40 manifests are identical. PP is 708/1/10 against 705/1/10: +3 added, all ok, with the known `t13` failing on both sides. `result_export` is 173 against 172: +1 added, ok.
+
+**I77's package** is `IMPLEMENTATION/U8/`:
+- `CHANGE_RECORD.md` `fd5e4d49…`, `PR_BODY.md` `143ee2fa…`, `citations.json` `ffa40481…`;
+- `SHA256SUMS` OK;
+- I77's records are `R/I77/u8_package_01/` (RETURN `59dbbba7…`; 23/23 OK);
+- no machine paths.
+
+Main's `check_citations.py` with the index passes on the U8 head: 10 resolved, 0 ambiguous, 0 unresolved, and six negative controls behave as expected.
+
+**I77's points, ruled:**
+1. **The pinned code anchor `zz_rv93.rs:292–315` is accepted.** It cites a record file at a pinned commit, which cannot move, and the index records the anchored lines' text. At B1's touch the citation is renamed to its symbol.
+2. **PLAN's context rule is accepted,** as #1082's COMP rule was.
+3. **`named_references` stays in the index** as a reader's aid. The tool ignores it, and I77's `verify_named.py` checks it.
+4. **The bare citation of `retained_memory_witness_tests.rs` `:181–199` is accurate today** (the same blob holds `fn w6_input()`). It is renamed to `w6_input()` at B1's touch. B0's brief carries both renames.
+5. **The `u8_head` commit `d449097085`** stays reachable from the pushed U8 branch and from NUM once U8 merges into it, as #1082's commit-pinned citations are.
+6. **Main is at `c1571f7feb`** (#1098, #1099; App v4 only). The cuts and fresh baselines use the current main at cut time.
+
+**NUM sequencing for the product PRs.** `source_equality.py` takes S as NUM's maintained changes beyond main, so NUM may carry only one unmerged product slice when a PR's equality runs.
+- **S-I1 first:** merge S-I1's branch into NUM, cut S-I1's PR, run its gates, and merge it.
+- **Then NUM absorbs main.** U8's branch merges into NUM, and U8's PR is cut.
+- **Then T6S,** the same way.
+
+The U8 and T6S branches stay unmerged into NUM until their turn.

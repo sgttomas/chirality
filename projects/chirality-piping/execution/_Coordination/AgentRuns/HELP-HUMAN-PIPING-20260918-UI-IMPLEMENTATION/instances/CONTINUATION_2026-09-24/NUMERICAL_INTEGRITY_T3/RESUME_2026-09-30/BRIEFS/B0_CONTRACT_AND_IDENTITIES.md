@@ -29,7 +29,7 @@ Contract text, ready for ROOT's selection, with an independent review to follow:
 7. **Carried notes, each placed in the B-unit that owns it:**
    - W-C2 (B1): the two-body model (`retained_facade_tests.rs` `u8_two_body_case_a/_b`), case A selected, case B unavailable with `{space: unresolved, tag: ceiling}`;
    - I76's item b (PR-B1): receipt integers with tighter maxima than 2^53−1 (`work.limit` 4,000,000; `invocation_work.*` 64,000,000), with RV95 N-5's direct `#[cfg(test)]` test in `RE/src/source_blocks.rs`;
-   - RV97 R2-N-2 (B1): the Rust contract test's module doc;
+   - RV97 R2-N-2 (B1): the Rust contract test's module doc; and, at the same touch of `retained_facade_tests.rs`, I77's two code-line citations reworded to symbols (`zz_rv93_input_fallbacks`, `w6_input()`);
    - mutation 277's slice and F-U6b-2's Python transport validator (B6);
    - the T6S consistency notes (I74 PLAN §4.3) for B1, B2, B3 and S-I2;
    - R-2 (B8, owner-held): stress-neutral readiness of a successor package.

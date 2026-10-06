@@ -553,7 +553,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 
 | Node | Result | Needs | Assignment | State |
 |---|---|---|---|---|
-| T3-U8 | The deferred producer-solved witnesses: RV93 N-5's real-input fallbacks; W-C1, a real-input Native fallback; and the L = 0 base, published if the producer admits it, otherwise deferred to B1 with its cause. Test-only | NUM has absorbed main; a U8 branch from NUM | `BRIEFS/U8_COMMON.md`. I68 Part 1 (the probe), ruled before Part 2; I69–I71 only if L = 0 publishes; I72 Pass B; RV97 reviews; RV98 confirms Pass B. Then the full 40-manifest suite, the freeze, and U8's compact PR from main. Branch `codex/piping-f2a-u8-20261005` at `b1e2d7741e`, worktree `WT/f2a-u8` | ACTIVE: U8 complete at `bd6b4be2c3` (U8-1 to U8-3). RV97 PASS (both rounds); Pass B (I72) confirmed by RV98. The full 40-manifest suite running; I77 drafting the PR package; the PR follows S-I1's (merge order S-I1, U8, T6S) |
+| T3-U8 | The deferred producer-solved witnesses: RV93 N-5's real-input fallbacks; W-C1, a real-input Native fallback; and the L = 0 base, published if the producer admits it, otherwise deferred to B1 with its cause. Test-only | NUM has absorbed main; a U8 branch from NUM | `BRIEFS/U8_COMMON.md`. I68 Part 1 (the probe), ruled before Part 2; I69–I71 only if L = 0 publishes; I72 Pass B; RV97 reviews; RV98 confirms Pass B. Then the full 40-manifest suite, the freeze, and U8's compact PR from main. Branch `codex/piping-f2a-u8-20261005` at `b1e2d7741e`, worktree `WT/f2a-u8` | ACTIVE: U8 complete at `bd6b4be2c3` (U8-1 to U8-3). RV97 PASS (both rounds); Pass B (I72) confirmed by RV98. The full 40-manifest suite PASS (38/40 identical to F′; only added tests). PR package ready (`IMPLEMENTATION/U8/`, I77). The PR follows S-I1's merge (merge order S-I1, U8, T6S) |
 | T3-SI1 | S-I1 (PLAN §3) | main | I73, reviewed by RV99; its own branch from main and its own PR. Branch `codex/piping-s-i1-20261005` at `c1bfc460fc`, worktree `WT/s-i1` | ACTIVE: S-I1 on its branch: `4920e4b1b0` (I73), description edits `8f956d399a` and `ea7c0881f4` (ROOT), repair round `c26ecabbc1` (I73). RV99 PASS (0/3/6); RV99 confirming the repairs; then the PR's gates |
 | T3-SI1b | The point-path panic repair in `expression_evaluator` (an overflowing same-dimension quotient, a NaN interpolation or step argument): a blocking finding instead of a panic. Found by I73 | T3-SI1 merged | A later I-ID, its own review and PR | PLANNED |
 | T3-T6S | The T6 successor-output slice plan, which closes activation-checklist item 4 | — | I74; then its implementation, with its own reviewer and PR | ACTIVE: I74's plan ruled (14 decisions). T6S complete on its branch: `055ee0c0bc` (I76) and `2033260c57` (I75). RV101 reviewing `c1bfc460fc..2033260c57`; then gate items 1–6 in `WT/t6-outputs`, branch `codex/piping-t6-successor-outputs-20261005` at `c1bfc460fc`; RV101 reviews. The owner pulled it forward |
@@ -610,7 +610,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - RV95 N-6 (at B7).
 
 **Next safe action:**
-1. Verify each return (RV99's confirmation; RV101; I77) and the U8 full suite against their records.
+1. Verify each return (RV99's confirmation; RV101) against its records.
 2. U8: on the full suite and I77's package, merge U8 into NUM and cut its PR after S-I1's merges.
 3. On RV101's verdict: repairs and confirmation, then T6S's PR and its gates.
 4. S-I1 first (the walking skeleton): on RV99's confirmation, cut its PR and run the full gate path.
