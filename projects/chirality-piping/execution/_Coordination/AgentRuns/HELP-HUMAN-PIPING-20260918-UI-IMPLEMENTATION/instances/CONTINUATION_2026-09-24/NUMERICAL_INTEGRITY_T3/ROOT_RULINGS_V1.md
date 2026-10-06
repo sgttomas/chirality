@@ -12764,3 +12764,31 @@ I73's scratch (`WT/scratch/i73_s_i1/`) and targets stay until the post-merge cle
 **I73's reading on S-3, accepted.** Python mirrors Rust's evaluator: an invalid bound gives no enclosure and reads U. Rust's runner blocks it with `RULE_EVALUATOR_ERROR`, and Python has no runner.
 
 **Committed** on the S-I1 branch as `c26ecabbc1` and pushed. **RV99 confirms** `8f956d399a..c26ecabbc1`, including ROOT's N-3 description edit `ea7c0881f4`, in `ADDENDUM_01.md`.
+
+## T6S complete; RV101 dispatched (ROOT, 2026-10-06 UTC)
+
+**I75's final return** is `R/I75/t6s_01/RETURN.md` (sha256 `2ccafccb…`). ROOT checked:
+- `SHA256SUMS` (`4118a5dd…`): 56 of 56 OK, every file covered, no machine paths. `CHECKPOINT_1.md` is unchanged (`62b00b23…`).
+- The twelve desktop files' hashes equal RETURN's.
+- `knownSemanticLimitations.ts` is changed in its comment only (+2 / −1; R-6).
+- `apps/desktop/public/`, which I75 created and removed, held no tracked file.
+
+I75 re-verified its state after the interruption. It restored the mutation copy left mid-M24 from the worktree, file by file, and re-ran the control and M24–R20.
+
+**I75's results:**
+- **Parity:** the TS successor derivative's canonical JSON equals I76's Rust goldens byte for byte (`958df02e…`, `3f9905ad…`), with base and origin built by the product's own functions. The TS validator accepts both goldens.
+- **Controls:** each refuses with its expected code. `two_case_synthetic` is admitted, and `two_case_facade_after_certificate_synthetic` is refused.
+- **Mutants:** 53 of 54 killed. R20 (the panel's own policy term removed) is equivalent: standing, the live capture and the builder's policy gate still refuse.
+- **Suites:** vitest 3,552 → 3,590, with 44 added, 6 renamed (S-1's four and two re-expected tests), and no status changes. `tsc` is clean.
+- **Unchanged routes:** 186 non-successor builder inputs are byte-identical to the base.
+
+**I75's final items, accepted:**
+- **(a)** The base and origin literals move verbatim into the exported `currentResultDocumentBase` and `currentReceivedOrigin`, so the goldens pin the product's own code. The output is byte-identical. RV101 may weigh the export.
+- **(b)** `validateResultDocument` refuses a receipt on any non-successor document, as Rust's does. This refuses only more.
+- **(c)** The pure projection reads no standing, as in Rust. Its only product caller, `buildCurrentResultExport`, requires eligible standing with the live capture. RV101's closure item checks it.
+- **(d)** The two now-unused test seams (`t6.throwless`, `t6.noRefusal`) lie outside S-1's granted block. They go to T6's later slot as cleanup.
+- **(e) Carried:** R-2's owner choice for B8; Python's declared refusal of successor packages; the native panel witness, at B8.
+
+**I75's work is committed** on the T6 branch as `2033260c57` and pushed. The slice is `c1bfc460fc..2033260c57`: `055ee0c0bc` (I76) and `2033260c57` (I75).
+
+**RV101 is dispatched,** fresh, on that range, by `BRIEFS/RV101_T6S_REVIEW.md`, with the mechanism and enforcement of this session's first dispatch ruling. After RV101 passes, the slice takes gate items 1–6 of "T3's gate set…".
