@@ -12679,3 +12679,29 @@ I73's scratch (`WT/scratch/i73_s_i1/`) and targets stay until the post-merge cle
 **07l is committed** on the U8 branch as `69a925bd68`.
 
 **I70 (Rust) and I71 (TS) are dispatched** on `69a925bd68`, with the mechanism and enforcement of this session's first dispatch ruling. I71 also records the wasm assets' hashes and their revision (E-6).
+
+## I70's Rust alignment committed; an interruption, and three TASKs resumed (ROOT, 2026-10-06 UTC)
+
+**I70's return** is `R/I70/u8_rust_07l_01/RETURN.md` (sha256 `7d02c060…`). ROOT checked:
+- `SHA256SUMS`: 41 of 41 OK, every file covered, no machine paths;
+- one file changed: `RE/tests/retained_precision_contract.rs` (`c74c8c85…` → `7832a602…`; +23 / −6);
+- the diff: counts and comments only, plus a new test, `snapshot_07l_mutation_outcomes`, which observes mutations 278–285 at G5a `RETAINED_PRECISION_SCALE_MISMATCH`. Nothing is deleted or loosened, and the reader's `src/` is unchanged.
+
+**I70's results:**
+- The full 07l is as expected: 17 cases, 286 mutations at their first gates, and 28 must-pass entries.
+- `result_export` goes from 172 to 173 passed; the only difference is the added test.
+- I69's four reader mutants, as Rust analogs, are each killed only by 07l entries. A self-consistent corpus mutant is caught only by the new slice.
+
+**I70's items:**
+1. **The module doc comment on `:1`** is accepted as a comment 07l made stale.
+2. **Mutation 277** (`g7_not_required_quality_enum_invalid`, from 07k) is in no slice, a gap that predates 07l. It is routed to **B6** (reader items), as a one-entry slice.
+3. **Left as is:** the must-pass comment's partial history, and the test name `complete_synthetic_controls_carry_their_shared_eligibility`. Renaming it would change a test id.
+
+**U8-3's Rust half is committed** on the U8 branch.
+
+**An interruption.**
+- After verifying I70's return, ROOT ended its turn without recording this ruling or committing the file, and the host's Claude process then ended.
+- Three running TASKs were stopped mid-work: I71 (U8-3, TS), I73 (S-I1's repair round) and I75 (T6S-4, its RETURN written but its SHA256SUMS not regenerated).
+- **ROOT checked the host:** the guard is running (PID 5387), no T3 job is running, and the cargo log's last job ended cleanly.
+- **ROOT checked each TASK's partial state** on disk, and resumed each from its saved transcript, instructed to re-verify its files and logs against the current trees before relying on them, and to re-run anything incomplete.
+- No partial work was committed.
