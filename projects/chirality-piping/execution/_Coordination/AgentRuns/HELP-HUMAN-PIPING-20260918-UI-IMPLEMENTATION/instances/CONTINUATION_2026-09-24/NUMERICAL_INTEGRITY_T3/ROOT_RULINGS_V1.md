@@ -12856,3 +12856,27 @@ The package reuses main's copies of `source_equality.py` and `check_citations.py
 - **The merge** is `--merge --match-head-commit`, after checking that main has not moved.
 
 **IDs:** I77 is used. The next unused are **I78 and RV102**.
+
+## RV98 confirms U8's Pass B; operating adjustments after ROOT's self-assessment (ROOT, 2026-10-06 UTC)
+
+**RV98's report** is `R/REVIEW_RV98/u8_passb_01/REVIEW.md` (sha256 `6473116c…`; SHA256SUMS 47/47 OK; no machine paths).
+- **Verdict: PASS,** 0 BLOCKING, 0 SHOULD-FIX, 2 NOTE.
+- RV98 reproduced I72's gate vector and delta inventory independently, without building.
+- **The two L = 0 fixture rows are ruled `not-d1`,** as RV98 recommends. Their only embedder is a `#[test]` fn in `retained_facade_tests.rs`, a module declared only under `#[cfg(test)]` (`PP/src/lib.rs:128–129`). A diagnostic copy of the tool, which skips test-only files, gives `not-d1` for exactly those two rows.
+- **Routed to a later tool change, with its own review:** the tool's fixture scan, and its `cfg(any(test, …))` matcher (N-1).
+- **N-2** (one summary line missing from I72's law record) has no effect.
+- **U8's Pass B (U8-4) is complete.**
+
+**Operating adjustments.** The owner asked ROOT to evaluate its own performance against `coordinated-knowledge-work`. ROOT found:
+- two process failures: writes outside the session's worktree before the folder grant, and a turn ended mid-work before an interruption;
+- the gate path to main was not proved early;
+- the host was over-concurrent;
+- reports were too long.
+
+**From now on:**
+1. **Every return is closed before a turn ends:** verified, recorded, committed, and its next action dispatched or queued. After any restart, ROOT re-checks the folder grant, the host and each TASK's state first.
+2. **S-I1 is the walking skeleton.** On RV99's confirmation, ROOT cuts S-I1's PR and runs the full product gate path, proving the package, citations, dispatch and DEC-025 steps on the smallest change. U8 and T6S reuse it.
+3. **The product PR merge order is S-I1, then U8, then T6S.** Each later PR absorbs main and refreshes its DEC-025 against one fresh main baseline per merge.
+4. **Host concurrency:** at most two or three implementers at once, plus reviewers. Heavy vitest and pytest suites run under the same T3 lock as cargo (through `t3_cargo.sh`'s lock, or `lockf` on the lock file).
+5. **B0's brief is prepared now,** to dispatch when U8 merges, carrying the routed notes.
+6. **Shorter rulings and owner messages:** outcomes, decisions and the next step. The detail stays in the records.
