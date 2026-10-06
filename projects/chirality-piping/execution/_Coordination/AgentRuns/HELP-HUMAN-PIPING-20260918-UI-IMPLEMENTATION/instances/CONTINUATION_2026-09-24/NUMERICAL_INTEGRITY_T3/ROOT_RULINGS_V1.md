@@ -12548,3 +12548,51 @@ The next unused IDs stay **I77 and RV102**. I69, I70, I71, I72, RV97 and RV98 we
 No Pass B: the rules crates are outside PP's closure (I61 PLAN §3).
 
 I73's scratch (`WT/scratch/i73_s_i1/`) and targets stay until the post-merge cleanup.
+
+## I76's return verified; RV97 passes U8's round 1; erratum E-6 (ROOT, 2026-10-06 UTC)
+
+### I76's return
+
+**The record** is `R/I76/t6s_01/RETURN.md` (sha256 `d1d73597…`). ROOT checked:
+- `SHA256SUMS`: 51 of 51 OK, every file covered, no machine paths;
+- the seven files' hashes in `WT/t6-outputs`;
+- the dispatcher's diff (+2 / −1,808): `oneOf[2]` is `{"$ref": "results.v0.3.schema.yaml"}`, with the description updated.
+
+**I76's results:**
+- **The dispatcher and the version file agree** on all 16 committed v0.3 documents and on 18 refusal variants;
+- **116 Rust-captured derivatives** are byte-identical between base and candidate;
+- **N-5's masking layers are pinned,** and S1 is equivalent at the public API: with the bound removed, `result_export` passes 176 of 176;
+- **14 of 14 mutants** behaved as expected (12 killed; both S1 runs survive, as expected);
+- **Suites, base against candidate:** `result_export` 172 → 176, and Python 3,424 → 3,447 passed. Every change is an added test. The 116 environment failures are the same set on both sides: archive copies without Git, and the cargo shim.
+
+**I76's work is committed** on `codex/piping-t6-successor-outputs-20261005` as `055ee0c0bc`. I75's files stay uncommitted until I75 returns.
+
+**I76's items:**
+- **(a) The registry construction is duplicated** in `test_result_export_v0_2.py`'s `validator()`, because the helper lies outside I76's fence. It stays for now; RV101 may weigh it.
+- **(b) Recorded:** four receipt integers have tighter maxima than 2^53−1 (`work.limit` 4,000,000; `invocation_work.*` 64,000,000). This goes to PR-B1's brief, with N-5's direct unit test.
+- **(c) The historical `*_fixture_generation.json` records** name the old dispatcher hash. They are true of their generation and stay unchanged; RV101 notes them.
+- **(d) A synthetic 0.2.0 instance** stands in, because none is committed.
+
+### RV97, round 1
+
+**The report** is `R/REVIEW_RV97/u8_01/REVIEW.md` (sha256 `bf57269e…`; SHA256SUMS 39/39 OK; no machine paths).
+
+**Verdict on `b1e2d7741e..d449097085` and the probe: PASS,** 0 BLOCKING, 0 SHOULD-FIX, 5 NOTE.
+- Every probe fact was re-derived two independent ways.
+- 29 of RV97's own mutants were killed.
+- The scope is clean, and the milestone's pins are unchanged.
+- The L = 0 documents are `cmp`-identical to the fixtures.
+- Body 0 passes U5's oracle under the unchanged criterion.
+- Nothing claims a Ceiling row or native Current evidence, and nothing pins F-1.
+
+**ROOT's rulings on the notes:**
+- **N-1, erratum E-6.** `R/I68/u8_probe_01/PROBE.md` §7 step 9 and §8 say the TS reader does not use the wasm assets copied from `WT/sweep-skewpin`. It does: `retainedPrecision.ts:1120` converts the request's quantities through the wasm engine in G8, and `hashService.ts` hashes through it.
+  - PROBE.md is sealed, so its bytes stay. This erratum corrects those two sentences.
+  - The TS verdicts stand: the engine's sources at `e2b83da584` equal `b1e2d7741e`'s, and TS agrees with Rust and Python.
+  - **I71 records** the wasm assets' hashes and the revision they were built from, or builds them.
+- **N-2, accepted as planned.** Hosted CI (the Stale build) checks the plain bytes only. The registered-build witnesses run on the Mac, at the full suite and at DEC-025.
+- **N-3, recorded.** U5's pinned script differs from U5's report only in `numerical_eligible` and `standing`, because U7 enabled eligibility. The criterion is unchanged.
+- **N-4, accepted.** RV97's declared variant of `u5_compare.py` is the records-level U5 replay, for body 0 and for 07l's producer-solved base in round 2. Its three changes are declared, and its output on the milestone documents is byte-identical to the pinned script's. The oracle is not extended to N2: body 1's rows are input-derived or exact zeros, which the U8 test pins directly.
+- **N-5, accepted.** The W-C1 control ("pair case A alone publishes") is met by the probe, in sparse mode. B1's W-C2 commits it.
+
+**RV97 is continued** for round 2, onto 07l and the Rust and TS alignment, once those are committed.
