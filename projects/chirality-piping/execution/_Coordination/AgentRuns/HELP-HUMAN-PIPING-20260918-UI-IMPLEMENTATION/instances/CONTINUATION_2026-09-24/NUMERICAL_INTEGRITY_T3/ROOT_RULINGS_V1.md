@@ -12652,3 +12652,30 @@ I73's scratch (`WT/scratch/i73_s_i1/`) and targets stay until the post-merge cle
 - **N-2, confirmed.** "The bounded runner path" in ruling 3 means checks with at least one input whose b > 0. With b = 0 a check is the exact point (D2 §4.11.2) and runs the point path, so its panic belongs to T3-SI1b.
 - **N-3, acted on.** The description now states the full vocabulary, `ea7c0881f4` on the S-I1 branch, description text only. RV99 confirms it in the round.
 - **N-6, accepted.** The message forms extend D2's fixed form: `; causes=`, `enclosure=none`, b as `{:e}`, and an interval note on unused inputs. They go to the S-I2 brief: UI text keys on codes and statuses, not message text.
+
+## I69's corpus 07l committed; I70 and I71 dispatched (ROOT, 2026-10-06 UTC)
+
+**I69's return** is `R/I69/u8_corpus_07l_01/RETURN.md` (sha256 `9685da1a…`). ROOT checked:
+- `SHA256SUMS`: 29 of 29 OK, every file covered, no machine paths;
+- `WT/f2a-u8` holds only the two fenced files;
+- **the corpus:** `retained_precision_cases.json` 07k `482449bf…` → 07l `5ac13296…`, with +16,139 / −1 lines. The one deleted line is the old claim;
+- **the test:** `test_retained_precision_contract.py` `729405c6…`;
+- **the counts:** cases 17, mutations 286, must_pass 28;
+- **both new bases** carry `provenance.kind: producer_solved`, and their `source` and `invocation` equal the pinned L = 0 fixtures as parsed JSON.
+
+**I69's results:**
+- Python passes the full 07l. The retained suites go from 463 to 480 passed, and the sweep from 1,856 to 1,873 passed, with 0 failed.
+- Four in-memory reader mutants are killed only by the new entries.
+- The pre-checks in scratch: Rust passes 172 of 172 with the counts raised, and TS passes 470 of 470.
+
+**I69's readings:**
+1. **D-U6-5 for an embedded base, accepted.** Byte identity holds at the fixture level, and the file sha256 is pinned. Each embedded base equals its fixture value for value, under a strict comparison. Only the decimal spelling of 11 or 12 floats differs (`9.6e-09` against `9.6e-9`), and the binary64 values and the canonical (JCS) bytes are the same. Making the corpus text byte-identical would change the corpus format in three harnesses, for no change in meaning.
+2. **The added stop pair is accepted:** `isolated_translation_rotation_stop` (a mutation) and `isolated_translation_stop` (must-pass). It is the corpus's only test of the feasibility rule's L = 0 branch, which PLAN §1.2 names.
+3. **Every entry in both modes is accepted.**
+4. **I70's fence widens** to the Rust test's other stale counts and comments (`:206`, `:276–283`, `:835`). I70 also makes sure the 8 new mutations are observed with their expected first gates. I71 adds a count pin and coverage assertions to the TS test, which has none, as strengthening only.
+5. **`provenance.kind` stays `synthetic_control` at the top level.** Decision 6 amends only the claim, which now names the producer-solved bases, and each of those carries case-level `producer_solved` provenance. RV97's round 2 checks that the claim is truthful.
+6. **Noted for I72's Pass B:** a `cfg(test)` module in the reader's `src` `include_str!`s the corpus, and reads only `d37` and `cases[0]`, both unchanged. The corpus is not a reviewed input, so it classes as test.
+
+**07l is committed** on the U8 branch as `69a925bd68`.
+
+**I70 (Rust) and I71 (TS) are dispatched** on `69a925bd68`, with the mechanism and enforcement of this session's first dispatch ruling. I71 also records the wasm assets' hashes and their revision (E-6).
