@@ -12936,3 +12936,28 @@ The U8 and T6S branches stay unmerged into NUM until their turn.
   - the exact-head Mac DEC-025 against a fresh main baseline, under the T3 lock;
   - RV99 confirms the package and the equality.
 - **No Pass B,** because the rules crates are outside PP's closure.
+
+## S-I1's PR #1100 opened; the PR-head gates pass; DEC-025 started (ROOT, 2026-10-06 UTC)
+
+**The PR head is `20e7e3e5a2`.** It is S-I1's branch (8 maintained files) plus the package `IMPLEMENTATION/S_I1/` (CHANGE_RECORD, PR_BODY, citations.json, SHA256SUMS; ROOT-authored). Its base is main `c1571f7feb`.
+
+**The PR-head gates** (`IMPLEMENTATION/S_I1_MERGE/_run_records/`):
+- **`source_equality.py`:** 5 of 5 PASS against NUM `b9030f501c`. |S| is 8, all 8 identical, and the 4 execution files lie inside the package with their sums verified.
+- **`check_citations.py`:** PASS. There are 34 D2 §4.11 citations, resolved at NUM `377d1d5cfb`, which carries D2 5b.3; main's D2 is 5b.2.
+- **GEN-8,** in the S-I1 checkout at the exact head: 1 passed.
+
+**PR [#1100](https://github.com/sgttomas/chirality/pull/1100)** is opened as a draft. The app has it bound for CI monitoring.
+- The automatic runs started, and the full-SHA dispatch of `piping-desktop-e2e.yml` (run 37475441330, `target_base` = `c1571f7feb`) was triggered.
+
+**DEC-025 started** on `20e7e3e5a2`:
+- **The candidate** is in `WT/sweep-skewpin`, detached.
+- **The fresh main baseline** is a new clean worktree, `WT/main-baseline`, at `c1571f7feb`.
+- **The run:** `run_dec025.sh SI1_20e7e3e5a2 WT/main-baseline` as one job under the T3 lock. It counts only at `ALL-DONE`.
+
+**The host rule's extension is applied.** RV101 was told to run its heavy vitest and pytest jobs under the same lock.
+
+**Still to come before the merge:**
+- the CI results;
+- DEC-025's per-test comparison;
+- RV99's confirmation of the package and equality;
+- a check that main has not moved.
