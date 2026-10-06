@@ -12909,3 +12909,30 @@ Main's `check_citations.py` with the index passes on the U8 head: 10 resolved, 0
 - **Then T6S,** the same way.
 
 The U8 and T6S branches stay unmerged into NUM until their turn.
+
+## RV99 confirms S-I1's repairs; S-I1's PR is cut as the walking skeleton (ROOT, 2026-10-06 UTC)
+
+**RV99's confirmation** is `R/REVIEW_RV99/s_i1_01/ADDENDUM_01.md` (sha256 `397e6767…`). ROOT checked:
+- `SHA256SUMS.addendum_01`: 35 of 35 OK;
+- `REVIEW.md` and its sums are unaltered (45 of 45 OK).
+
+**CONFIRMED.** S-1, S-2, S-3, N-4 and N-5 are resolved, and N-1 is closed.
+- **Mutants:** all 46 are killed, including 9 new ones aimed at the repairs.
+- **Point mode** is byte-identical: runner `a2bbfa3c…`, evaluator `e8db0906…`.
+- **Parity:** 94 shared cases plus 30,515 of RV99's own.
+- **Soundness:** no violation.
+- **N-4 and N-5** are confined to the interval path. N-3's edit is description-only and accurate.
+- **N-7 (NOTE):** a duplicated b = 0 for one input also blocks. It goes to the S-I2 brief, beside N-6: S-I2 emits exactly one bound per input.
+
+**S-I1's independent review is complete,** so S-I1 becomes the first product PR, the walking skeleton:
+- **NUM absorbed main `c1571f7feb`** (#1099; App v4 only, by the §4 dry run) as `56196df010`.
+- **NUM merged S-I1's branch `c26ecabbc1`** as `66adc78f84`. NUM's maintained diff from main is now exactly S-I1's 8 files.
+- **S-I1's branch absorbed main** as `eddeab1e37`. Its maintained diff from main is the same 8 files, and it is the PR branch, being already compact from main.
+- **The package** goes in `IMPLEMENTATION/S_I1/`: `CHANGE_RECORD.md`, `PR_BODY.md`, and a `citations.json` for D2 §4.11. Main holds D2 at 5b.2, so the citations resolve at the NUM pin, which carries 5b.3. It is committed on NUM and then on the PR branch.
+- **The gates:**
+  - `source_equality.py` and `check_citations.py` (main's copies);
+  - GEN-8 on the exact head;
+  - the PR's automatic CI, and the full-SHA dispatch of `piping-desktop-e2e.yml` with `target_base` = main;
+  - the exact-head Mac DEC-025 against a fresh main baseline, under the T3 lock;
+  - RV99 confirms the package and the equality.
+- **No Pass B,** because the rules crates are outside PP's closure.
