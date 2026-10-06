@@ -13206,3 +13206,25 @@ The record is `IMPLEMENTATION/S_I1_MERGE/RECORD.md`, with `_run_records/` and `d
 - **B0** (F2a breadth: contract and identities; documents only) to **I78**, by `BRIEFS/B0_CONTRACT_AND_IDENTITIES.md`.
 - **T3-SI1b** (the point-path panic repair) to **I79**, by `BRIEFS/SI1B_POINT_PATH_PANICS.md`. It is on its own branch from main `f8ed4f0551` and gets its own reviewer and PR. By the merge order, it reaches NUM after the T6 slice merges.
 - **The next unused IDs** are I80 and RV103.
+
+## #1103 opened; I75's SF-1 repair verified and committed; RV101 confirms; I80 drafts T6S's package (ROOT, 2026-10-06 UTC)
+
+**The records-only PR [#1103](https://github.com/sgttomas/chirality/pull/1103)** is cut from main `f8ed4f0551`, taking NUM's `execution/` at `ea0e288e8a`, with head `3f8a405c33`.
+- It has 104 added and 2 modified files (ROOT_RULINGS_V1.md and the work graph), with no deletions and nothing outside `execution/`.
+- GEN-8 passes on the exact head (`IMPLEMENTATION/RECORDS_MERGE_2026-10-06B/_run_records/gen8.txt`).
+- **ROOT's screen** found only scan vocabulary, the `/Users/<user>` placeholder that main already carries (RR:11998), and one `sk-` pattern false positive ("task-management").
+- **RV103** (fresh) reviews it, by `BRIEFS/RV103_RECORDS_PR4_REVIEW.md` (`7a22129f…`).
+
+**I75's REPAIR_01 is verified** (`R/I75/t6s_01/REPAIR_01.md`, `143ada4e…`):
+- `REPAIR_01.SHA256SUMS` is 54/54 OK, and the sealed `SHA256SUMS` is still 56/56.
+- The worktree changed exactly the two files named, with the reported hashes.
+- **The repair is broader than ROOT's prescription, and ROOT accepts it.** RV101's 17-digit rule still differs from Rust on 16-digit ties, for example `4308628432e3716a` = 857964921253421.25, which Rust prints as `…213e14`.
+- **The general form:** with n the shortest form's digit count, `toExponential(n−1)` gives the n-digit nearest decimal, which ECMAScript resolves on a tie to the larger candidate, as Rust does. It is printed when it round-trips; otherwise the shortest form stands.
+- I75 reports 0 of 123,607 seeded words differ from its Rust oracle (6,395 differed before), 69 Rust-computed vectors, desktop 3,590/3,590, `tsc` clean and 9/9 mutants. Its heavy runs were under the lock.
+- **Committed by ROOT** on the T6 branch as `fdcdb5e024` (I75 made no Git writes), and pushed.
+- **RV101 confirms** with its own oracle, including 16-digit ties (`ADDENDUM_01`).
+
+**I80** (fresh; records only) drafts T6S's PR package in `T/IMPLEMENTATION/T6S/`, by `BRIEFS/I80_T6S_PR_PACKAGE.md`, while RV101 confirms. That is U8's method (I77).
+- **T6S's 19 maintained files** do not overlap anything main changed after `c1bfc460fc`, so merging T6S into NUM needs no three-way merge.
+
+**IDs:** RV103 and I80 are used. The next unused are **I81 and RV104**.
