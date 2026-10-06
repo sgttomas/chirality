@@ -13228,3 +13228,24 @@ The record is `IMPLEMENTATION/S_I1_MERGE/RECORD.md`, with `_run_records/` and `d
 - **T6S's 19 maintained files** do not overlap anything main changed after `c1bfc460fc`, so merging T6S into NUM needs no three-way merge.
 
 **IDs:** RV103 and I80 are used. The next unused are **I81 and RV104**.
+
+## RV101 confirms SF-1's repair; T6S merged into NUM (ROOT, 2026-10-06 UTC)
+
+**RV101's ADDENDUM_01 is CONFIRMED,** with no new findings (`R/REVIEW_RV101/t6s_01/ADDENDUM_01.md`, `461507ab…`). Its own sum file is 17/17 OK, and the review's `SHA256SUMS` is still 54/54.
+- **The general form and its round-trip guard are correct.** RV101 derived the 16-or-17-digit tie bound independently. Without the guard, 90 power-of-two words misprint.
+- **RV101's own Rust oracle,** a new crate run through the wrapper, matches the product function at `fdcdb5e024` on all 185,401 words. Among them are 21,997 16-digit and 10,788 17-digit ties, and none shorter.
+- The test's 69 vectors are Rust's output. The diff is exactly the two files. The ten T6S test files pass 430/430 and `tsc` is clean, under the lock.
+- **E-1** (an erratum to RV101's review): its SF-1 remedy wrongly said ties occur only at 17 digits. The diagnosis and the 2^-25 reach bound stand.
+
+**The T6 slice is complete and reviewed** at `fdcdb5e024`.
+
+**T6S is merged into NUM** (`--no-ff`), so NUM carries its 19 maintained files for the PR's source equality. NUM now carries one unmerged product slice, T6S. T3-SI1b reaches NUM only after T6S merges to main (NUM sequencing).
+
+**The PR follows I80's package.** ROOT cuts `codex/piping-t3-t6s-pr-<date>` from main, with the 19 files from `fdcdb5e024` and the package. The gate set is:
+- source equality against NUM;
+- the citations check;
+- GEN-8 on the exact head;
+- hosted CI with the full-SHA dispatch;
+- the exact-head Mac DEC-025 against a fresh main baseline, in fresh targets;
+- Pass B as ROOT rules on I80's evidence;
+- RV101's confirmation of the PR head's package and equality.
