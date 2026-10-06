@@ -12961,3 +12961,32 @@ The U8 and T6S branches stay unmerged into NUM until their turn.
 - DEC-025's per-test comparison;
 - RV99's confirmation of the package and equality;
 - a check that main has not moved.
+
+## RV99 confirms #1100's head; package wording amended; DEC-025 carried by ruling to the new head (ROOT, 2026-10-06 UTC)
+
+**RV99's ADDENDUM_02** (sha256 `fc08166e…`; 7/7 OK) **confirms head `20e7e3e5a2`,** 0/0/4.
+- The 8 slice blobs equal `c26ecabbc1`'s, and the merge of main touched no piping path.
+- The package is truthful in substance.
+- RV99 reproduced `source_equality.py` and `check_citations.py` exactly.
+
+**N-8 to N-11 are applied,** in package text only: CHANGE_RECORD.md and PR_BODY.md, with the sums regenerated.
+- N-8 says the gates run before the merge.
+- N-9 states each oracle's scope and the differential's inputs.
+- N-10 notes the 15 blocked overlay boxes, and names the panic's lookup kinds.
+- N-11 credits src-tauri's count to I73, and states D2 §4.11.2's limit: soundness is relative to the supplied b.
+- They are committed on NUM (`f9657c51c5`) and on the PR branch. **The new head is `ef266247de`.**
+- The GitHub PR description was updated to match.
+
+**At `ef266247de`:**
+- `source_equality.py` 5/5 PASS against NUM `f9657c51c5`;
+- `check_citations.py` PASS;
+- GEN-8 1 passed;
+- a new full-SHA dispatch (run 37476322784), with the automatic runs re-triggering.
+
+Records are `S_I1_MERGE/_run_records/*2*`.
+
+**DEC-025 is carried over by ruling** from `20e7e3e5a2` (running now) to `ef266247de`. This is the H→H2 kind of #1088's precedent.
+- **The premise:**
+  - the two heads differ only in the 3 package files under `IMPLEMENTATION/S_I1/`, and their trees outside `projects/chirality-piping/execution/` are equal;
+  - no DEC-025 suite reads the package paths. The only piping code that reads T3 records is `gen_k4_vectors.py`, `gen_vk_cases.py` and `run_harness_mutants.py`, and they read `REFERENCES/` and `DESIGN_NUMERICS/` only.
+- **RV99 confirms the delta and the premise** before the merge.
