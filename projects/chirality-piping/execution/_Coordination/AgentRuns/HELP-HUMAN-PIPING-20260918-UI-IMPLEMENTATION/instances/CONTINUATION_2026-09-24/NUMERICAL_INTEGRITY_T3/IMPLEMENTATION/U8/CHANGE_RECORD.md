@@ -8,7 +8,7 @@
 
 U8 is an intermediate F2a PR. It goes to main on its own, as I61's plan decision 7 rules (RR "I61's U8 plan ruled…"). The reviews are agent reviews, not personal review by the owner.
 
-**Status of this file.** I77 drafted it, records only, while the full suite and RV98 ran. ROOT completes the rows marked **PENDING** at the freeze.
+**Status of this file.** I77 drafted it, records only, while the full suite and RV98 ran. ROOT completed it at the cut: the full suite and RV98 are in. The PR-head gates run before the merge, and are recorded in the merge record `IMPLEMENTATION/U8_MERGE/` on the integration branch.
 - **The U8 head** is `bd6b4be2c3` on `codex/piping-f2a-u8-20261005`. It sits on NUM `b1e2d7741e`, whose maintained source equals main `c1bfc460fc`.
 - **The PR branch** is cut by ROOT from main. It carries the 7 files from `bd6b4be2c3` and this package.
 - **Main has moved since.** The local `origin/main` is `c1571f7feb` (#1098 and #1099). Its 209 changed files are all under `projects/chirality-app-v4/`: no piping path, and none of the 7 files. NUM absorbed #1098 at `10df4a37ea`.
@@ -86,8 +86,8 @@ It reuses main's `IMPLEMENTATION/F2A_D1/source_equality.py` and `check_citations
   - The provenance claims are true.
   - R2-N-1 extends E-6. R2-N-2 is routed to B1.
 - **The two rounds together cover the complete diff** `b1e2d7741e..bd6b4be2c3`.
-- **RV98,** confirming I72's Pass B: **PENDING.**
-- **RV97's confirmation** of the PR head's package and equality: **PENDING.**
+- **RV98** confirms I72's Pass B: **PASS** (0/0/2). It confirms the two L = 0 fixture rows as `not-d1`: test-only, embedded only by a `#[cfg(test)]` module.
+- **RV97's confirmation** of the PR head's package and equality comes before the merge (the merge record).
 
 ## 5. Gates (RR "T3's gate set and Git rules, consolidated…"; decision 7)
 
@@ -95,14 +95,14 @@ It reuses main's `IMPLEMENTATION/F2A_D1/source_equality.py` and `check_citations
 |---|---|---|
 | **Complete-diff review** | RV97 PASS in both rounds (§4) | `R/REVIEW_RV97/u8_01/` |
 | **Pass B,** fresh and fail-closed (I72, on `bd6b4be2c3`) | `DELTAS TO READ`, exit 6: the same gate vector as F's. Every gate is 0 except `pp_outcomes`; against F, its only new outcomes are U8's three tests, all `ok`.<br>• **Unchanged:** the entry; maxima 0.8881 / 0.8929 M; TEXT D 14,734; the 11 reviewed entries; every witness and challenge line.<br>• **The delta:** 10 rows added over F′. 8 are main's documentation (`not-d1`). 2 are the L = 0 fixtures, which the tool labels `unreachable`; I72 reads them as test rows, since their embedder is a `#[cfg(test)]` module file | `R/I72/u8_passb_01/` |
-| **Pass B's confirmation (RV98)** | **PENDING,** including the fixture-class reading | `R/REVIEW_RV98/…` |
+| **Pass B's confirmation (RV98)** | **PASS** (0/0/2). The fixture rows are `not-d1` (ROOT's ruling, on RV98's recommendation) | `R/REVIEW_RV98/u8_passb_01/` |
 | **G5–G8** (T9, both-entry, src-tauri, the controls) | Carried by ruling (decision 7). U8 changes no production byte | RR "I61's U8 plan ruled…" |
-| **The full 40-manifest suite** before the freeze | **PENDING.** Started on `bd6b4be2c3`, one job under the T3 lock | RR "U8 Pass B returned…" |
-| **`source_equality.py`** (the PR head against NUM with U8 merged) | **PENDING.** I77's pre-check at the U8 head (PR = int = `bd6b4be2c3`, main `c1bfc460fc`): \|S\| = 7; checks 1–3 and 5 PASS; check 4 needs the package. #1082's `compatibility.py` rule is reported as not needed | `R/I77/u8_package_01/` |
-| **`check_citations.py`** | **PASS** at `bd6b4be2c3` against `b1e2d7741e`, and against main `c1bfc460fc`: 10 resolved, 0 ambiguous, 0 unresolved (§6). Rerun on the PR head: **PENDING** | `R/I77/u8_package_01/` |
-| **GEN-8** on the exact head (E-4's method) | **PENDING** | |
-| **Hosted CI** on the PR, and the full-SHA dispatch (`piping-desktop-e2e.yml`, `target_base` = main) | **PENDING** | |
-| **The exact-head Mac DEC-025** against a fresh baseline of current main (`run_dec025.sh`, `compare_suites.py`, counted at `ALL-DONE`) | **PENDING** | |
+| **The full 40-manifest suite** before the freeze | **PASS** on `bd6b4be2c3`. 38 of 40 manifests are identical to F′'s. PP +3 and result_export +1 are the added tests, all ok; the known `t13` fails on both sides | `IMPLEMENTATION/U8_GATES/full_suite/` |
+| **`source_equality.py`** (the PR head against NUM with U8 merged) | Run on the PR head before the merge (the merge record). I77's pre-check at the U8 head (PR = int = `bd6b4be2c3`, main `c1bfc460fc`): \|S\| = 7; checks 1–3 and 5 PASS; check 4 needs the package. #1082's `compatibility.py` rule is reported as not needed | `R/I77/u8_package_01/` |
+| **`check_citations.py`** | **PASS** at `bd6b4be2c3` against `b1e2d7741e`, and against main `c1bfc460fc`: 10 resolved, 0 ambiguous, 0 unresolved (§6). Rerun on the PR head before the merge (the merge record) | `R/I77/u8_package_01/` |
+| **GEN-8** on the exact head (E-4's method) | Before the merge | `IMPLEMENTATION/U8_MERGE/` |
+| **Hosted CI** on the PR, and the full-SHA dispatch (`piping-desktop-e2e.yml`, `target_base` = main) | Before the merge | `IMPLEMENTATION/U8_MERGE/` |
+| **The exact-head Mac DEC-025** against a fresh baseline of current main (`run_dec025.sh`, `compare_suites.py`, counted at `ALL-DONE`) | Before the merge | `IMPLEMENTATION/U8_MERGE/` |
 | **Native witness** | Not applicable: U8 adds no product behaviour. G10 stays outstanding by the owner's decision | RR "Owner decision: G10 is redefined…" |
 
 **Acceptance runs on the U8 head,** by the implementers and RV97. The Mac failures are the known ones.

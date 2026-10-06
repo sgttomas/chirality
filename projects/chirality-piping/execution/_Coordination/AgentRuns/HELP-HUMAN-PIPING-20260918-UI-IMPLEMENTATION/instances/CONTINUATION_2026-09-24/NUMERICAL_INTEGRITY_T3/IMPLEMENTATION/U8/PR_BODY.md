@@ -21,7 +21,7 @@ This PR brings U8, the witnesses deferred from the F2a D1 milestone (#1082), to 
 
 ## Source and packaging
 
-- **7 files under `projects/chirality-piping`** (2 added, 5 modified; +29,026 / −14). They are byte-identical to the U8 head `bd6b4be2c3` and to NUM with U8 merged: `source_equality.py` **PENDING**.
+- **7 files under `projects/chirality-piping`** (2 added, 5 modified; +29,026 / −14). They are byte-identical to the U8 head `bd6b4be2c3` and to NUM with U8 merged; `source_equality.py` checks this before the merge.
   - `core/product_physics/src/retained_facade_tests.rs`: three tests.
   - `fixtures/results/retained_precision_l0_successor_{sparse_interactive,dense_scrutiny}.json`: the L = 0 fixtures.
   - `fixtures/results/retained_precision_cases.json`: corpus 07k → 07l.
@@ -36,8 +36,8 @@ This PR brings U8, the witnesses deferred from the F2a D1 milestone (#1082), to 
 - **RV97 reviewed the complete diff in two rounds:**
   - round 1, the PP tests and the probe: **PASS** (0 blocking, 0 should-fix, 5 notes);
   - round 2, 07l and the reader tests: **PASS** (0 / 0 / 2), with 0 discrepancies across 348 documents in the three readers.
-- **RV98's confirmation of Pass B:** **PENDING.**
-- **RV97's confirmation of this head's package and equality:** **PENDING.**
+- **RV98 confirms Pass B:** **PASS** (0 / 0 / 2). The L = 0 fixture rows are test-only (`not-d1`).
+- **RV97 confirms this head's package and equality** before the merge.
 
 These are agent reviews, not personal review by the owner. Details: [CHANGE_RECORD.md](`…/NUMERICAL_INTEGRITY_T3/IMPLEMENTATION/U8/CHANGE_RECORD.md`).
 
@@ -47,12 +47,9 @@ These are agent reviews, not personal review by the owner. Details: [CHANGE_RECO
 |---|---|
 | Pass B, fresh and fail-closed | The same verdict as on #1082's frozen head F. The only new outcomes are U8's three tests, all `ok`; entry, M and maxima are unchanged |
 | G5–G8 | Carried by ruling: no production byte changes |
-| Full 40-manifest suite | **PENDING** |
-| `check_citations.py` | 10 resolved, 0 ambiguous, 0 unresolved at the U8 head. On this head: **PENDING** |
-| `source_equality.py` | **PENDING** |
-| GEN-8 on this head | **PENDING** |
-| Hosted CI and the full-SHA dispatch | **PENDING** |
-| Mac DEC-025 on this head against a fresh main baseline | **PENDING** |
+| Full 40-manifest suite | **PASS:** 38 of 40 manifests are identical to #1082's; the other two differ only by the added tests |
+| `check_citations.py` | 10 resolved, 0 ambiguous, 0 unresolved at the U8 head; rerun on this head before the merge |
+| `source_equality.py`, GEN-8, hosted CI with the full-SHA dispatch, and the Mac DEC-025 against a fresh main baseline | Run on this head before the merge, and recorded on the integration branch |
 
 **Acceptance runs on the U8 head:**
 - PP 708 passed, with the known Mac `t13` failure and 10 ignored;
