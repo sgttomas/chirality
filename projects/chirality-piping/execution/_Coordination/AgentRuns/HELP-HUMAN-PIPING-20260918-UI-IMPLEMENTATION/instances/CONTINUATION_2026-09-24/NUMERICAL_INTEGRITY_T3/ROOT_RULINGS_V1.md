@@ -12629,3 +12629,26 @@ I73's scratch (`WT/scratch/i73_s_i1/`) and targets stay until the post-merge cle
 - the base and origin files in `R/I76/t6s_01/inputs/`;
 - the regeneration command;
 - I76's parity facts: canonical JSON with no trailing newline; 98/99 rows; 69 absolute disclosures; b in Rust's `{:e}`; no `request` or `solver_mode` member.
+
+## RV99 passes S-I1 with three SHOULD-FIX; the repair round (ROOT, 2026-10-06 UTC)
+
+**RV99's report** is `R/REVIEW_RV99/s_i1_01/REVIEW.md` (sha256 `48cfdbc0…`; SHA256SUMS 45/45 OK; no machine paths). **Verdict on `c1bfc460fc..8f956d399a`: PASS,** 0 BLOCKING, 3 SHOULD-FIX, 6 NOTE.
+- **Soundness:** no violation, over 30,358 evaluator and 6,615 runner cases. Every box on which the point path both passes and fails reads U.
+- **Point mode** is byte-identical over 63,086 runs.
+- **Parity:** I73's 83 cases plus 30,275 of RV99's own, apart from S-3.
+- **Mutants:** I73's 21 are killed; 13 of RV99's 16 are killed (V3, V9 and V11 survive).
+- **The fence holds,** and ROOT's schema edit is description text only.
+- **Ruling 3 holds** for b > 0.
+
+**Repaired before the PR, by I73 (the slice's owner); RV99 confirms:**
+- **S-1:** shared cases for `=` and `≠` between inputs with identical non-point ranges, expecting U. This kills V3.
+- **S-2:** a shared case for a divisor range ending at zero (`0/(−abs(x)) ≤ 1`). This kills V9.
+- **S-3:** the Python reference refuses invalid inputs as Rust does: a NaN or negative bound, an inverted or non-finite enclosure. Parity cases are added.
+- **N-4,** brought into the round, because the code path is new in S-I1. A check that `enforce_declared` downgrades must not keep `RULE_INTERVAL_ALL_PASS` or `RULE_INTERVAL_ALL_FAIL`, since D2 §4.11.5 pairs those codes with their own statuses. It follows what the point path emits for a downgraded check.
+- **N-5,** brought into the round, because the API is new. Duplicate bounds for one input id become a blocking completeness finding, not a silent last-wins.
+
+**ROOT's rulings on the other notes:**
+- **N-1, accepted.** The lower end of the unit conversion stays within the remaining outward margin; I73's R3 is the same reading.
+- **N-2, confirmed.** "The bounded runner path" in ruling 3 means checks with at least one input whose b > 0. With b = 0 a check is the exact point (D2 §4.11.2) and runs the point path, so its panic belongs to T3-SI1b.
+- **N-3, acted on.** The description now states the full vocabulary, `ea7c0881f4` on the S-I1 branch, description text only. RV99 confirms it in the round.
+- **N-6, accepted.** The message forms extend D2's fixed form: `; causes=`, `enclosure=none`, b as `{:e}`, and an interval note on unused inputs. They go to the S-I2 brief: UI text keys on codes and statuses, not message text.
