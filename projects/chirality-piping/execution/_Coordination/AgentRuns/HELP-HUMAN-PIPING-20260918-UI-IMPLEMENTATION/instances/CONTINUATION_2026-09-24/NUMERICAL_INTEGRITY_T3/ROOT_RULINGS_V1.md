@@ -13140,3 +13140,31 @@ The record is `IMPLEMENTATION/S_I1_MERGE/RECORD.md`, with `_run_records/` and `d
   - between the two heads, and between the two mains, only `projects/chirality-piping/execution/` differs: U8's package text, and #1101's T3 records and work graph;
   - no DEC-025 suite reads those paths beyond the three readers of `REFERENCES/` and `DESIGN_NUMERICS/`, whose contents #1101 did not change.
 - **RV97 confirms** the delta and the premise (ADDENDUM_02) before the merge.
+
+## RV101 passes the T6 slice; SF-1 repaired by I75; no DEC-025 rerun (ROOT, 2026-10-06 UTC)
+
+**RV101's report** is `R/REVIEW_RV101/t6s_01/REVIEW.md` (sha256 `510fbdb5…`; SHA256SUMS 54/54 OK; no machine paths).
+
+**Verdict on `c1bfc460fc..2033260c57`: PASS,** 0 BLOCKING, 1 SHOULD-FIX, 10 NOTE.
+- **Closure:** only the two panels admit a successor, and only at eligible standing with the live capture.
+- **Goldens:** RV101 re-derived them byte for byte. TS and Rust agree on 63 statements.
+- **Stress-neutral S-d** is faithful.
+- **The fence** is exactly the fence plus the granted S-1, R-6 and R-7.
+- **Non-successor outputs** are identical to the base: 891 steps over 69 fixtures.
+- **The dispatcher** refuses all 651 of RV101's mutations.
+- **Mutants:** all of the implementers' mutants reproduce, and 10 of RV101's 13 are killed.
+
+**SF-1 is repaired before the PR, by I75 (the owner); RV101 confirms.**
+- **The defect:** `rustLowerExp` differs from Rust's `{:e}` on exact 17-digit decimal ties. V8 rounds a tie to even, where Rust rounds it up. No bound below 2^-25 can tie, so no receipt is affected, but decision 4 promises Rust's form.
+- **The repair:** when the shortest form has 17 digits, use `toExponential(16)`. Add Rust-computed tie vectors from RV101's oracle evidence, which are not Python `repr`, and correct the doc comment.
+
+**The lock overlap needs no rerun.** RV101's question was whether its unlocked jobs disturbed SI1's DEC-025. `run_dec025.sh`'s quiet-host wait held until 14:09:48Z: activity until 14:07:48, then two quiet minutes before the baseline began. RV101's unlocked jobs had ended by about 14:05, so no job overlapped the sweep's work, and the sweep ended `ALL-DONE` with clean comparisons.
+
+**The notes:**
+- **NT-1** (`failure.block_order` in N-5's direct test) goes to PR-B1's brief, with I76's item b.
+- **NT-9** (the disclosure prints b round-trip, not upward) goes to S-I2's planning of D-U6-2's text.
+- **NT-7 and NT-10** (test gaps: no committed `not_covered` statement; the fail-closed `catch` in `surfaceOutputRefusal`) go to T6's later slot, with I75's item d.
+- **NT-2 to NT-6 and NT-8** are confirmations; no action.
+- **RV101's one direct `cargo --version`,** run to record the toolchain, is disclosed and has no effect.
+
+**The T6 slice's PR** follows U8's merge, by the merge order, on the proven gate path.
