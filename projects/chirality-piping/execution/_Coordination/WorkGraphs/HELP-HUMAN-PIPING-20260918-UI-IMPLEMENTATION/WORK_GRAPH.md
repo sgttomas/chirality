@@ -553,7 +553,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 
 | Node | Result | Needs | Assignment | State |
 |---|---|---|---|---|
-| T3-U8 | The deferred producer-solved witnesses: RV93 N-5's real-input fallbacks; W-C1, a real-input Native fallback; and the L = 0 base, published if the producer admits it, otherwise deferred to B1 with its cause. Test-only | NUM has absorbed main; a U8 branch from NUM | `BRIEFS/U8_COMMON.md`. I68 Part 1 (the probe), ruled before Part 2; I69–I71 only if L = 0 publishes; I72 Pass B; RV97 reviews; RV98 confirms Pass B. Then the full 40-manifest suite, the freeze, and U8's compact PR from main. Branch `codex/piping-f2a-u8-20261005` at `b1e2d7741e`, worktree `WT/f2a-u8` | ACTIVE: I68 Part 1 verified (L = 0 publishes; W-C1 Ceiling); Part 2 granted and running (rulings: "I68's probe verified: …") |
+| T3-U8 | The deferred producer-solved witnesses: RV93 N-5's real-input fallbacks; W-C1, a real-input Native fallback; and the L = 0 base, published if the producer admits it, otherwise deferred to B1 with its cause. Test-only | NUM has absorbed main; a U8 branch from NUM | `BRIEFS/U8_COMMON.md`. I68 Part 1 (the probe), ruled before Part 2; I69–I71 only if L = 0 publishes; I72 Pass B; RV97 reviews; RV98 confirms Pass B. Then the full 40-manifest suite, the freeze, and U8's compact PR from main. Branch `codex/piping-f2a-u8-20261005` at `b1e2d7741e`, worktree `WT/f2a-u8` | ACTIVE: U8-1 committed as `d449097085` (I68; three tests, 6/6 mutants; L = 0 publishes). I69 (corpus 07l) and RV97 (review) running; I70/I71 follow I69 |
 | T3-SI1 | S-I1 (PLAN §3) | main | I73, reviewed by RV99; its own branch from main and its own PR. Branch `codex/piping-s-i1-20261005` at `c1bfc460fc`, worktree `WT/s-i1` | ACTIVE: I73's checkpoint 1 ruled (D2 amended to 5b.3); I73 continuing to its final return. One cargo job at a time, by the host lock |
 | T3-SI1b | The point-path panic repair in `expression_evaluator` (an overflowing same-dimension quotient, a NaN interpolation or step argument): a blocking finding instead of a panic. Found by I73 | T3-SI1 merged | A later I-ID, its own review and PR | PLANNED |
 | T3-T6S | The T6 successor-output slice plan, which closes activation-checklist item 4 | — | I74; then its implementation, with its own reviewer and PR | ACTIVE: I74's plan ruled (14 decisions). I75 (TS) and I76 (schema, Python, Rust tests) running in `WT/t6-outputs`, branch `codex/piping-t6-successor-outputs-20261005` at `c1bfc460fc`; RV101 reviews. The owner pulled it forward |
@@ -610,8 +610,8 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - RV95 N-6 (at B7).
 
 **Next safe action:**
-1. Verify each return (I68 Part 2; I75's and I76's checkpoints; I73's final return) against its records.
-2. After I68 Part 2: commit U8-1 on the U8 branch, then dispatch U8-2 (I69, corpus 07l) and U8-3 (I70 Rust, I71 TS).
+1. Verify each return (I69; RV97; I75's and I76's checkpoints; I73's final return) against its records.
+2. On I69's return: commit 07l, dispatch I70 (Rust) and I71 (TS); continue RV97 onto 07l and the readers; then I72 (Pass B) and RV98.
 3. Relay I76's golden hashes to I75 at their checkpoints; dispatch RV101 when the slice is complete.
 4. On I73's final return, verify it and dispatch RV99.
 5. Absorb main (#1098) into NUM at the next records commit.

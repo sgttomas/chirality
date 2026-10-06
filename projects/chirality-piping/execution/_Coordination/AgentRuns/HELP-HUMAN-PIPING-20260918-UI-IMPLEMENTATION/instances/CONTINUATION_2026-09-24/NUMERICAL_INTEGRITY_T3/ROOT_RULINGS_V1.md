@@ -12456,3 +12456,28 @@ Body 0's bit identity with the milestone is asserted as observed, and the unchan
   - a waiting job's command line no longer matches `cargo `;
   - both copies are in `IMPLEMENTATION/SESSION_2026-10-06/host_tools/`.
 - **Main moved to `0329f8fe6b`** (#1098: 111 files, all under `projects/chirality-app-v4/`). The bases of U8 (`b1e2d7741e`), S-I1 and T6S (`c1bfc460fc`) stay valid, because piping is untouched. NUM absorbs it with its next records commit, by PLAN §4's dry run.
+
+## U8-1 committed; I68's readings accepted; I69 and RV97 dispatched (ROOT, 2026-10-06 UTC)
+
+**I68's return** is `R/I68/u8_witnesses_01/RETURN.md` (sha256 `23340db9…`). ROOT checked:
+- `SHA256SUMS`: 38 of 38 OK, every file covered, no machine paths;
+- `WT/f2a-u8`: exactly the three fenced files changed. `retained_facade_tests.rs` (`2a1229b5…`) has 244 lines added and 0 removed. The fixtures are `93c6c865…` (sparse) and `dbb3d477…` (dense), with ids `u8_l0_isolated_node_<mode>`;
+- the fallback test's body: real inputs, hooks empty before and after, the byte assertion before the notice count. No test pins F-1.
+
+**Outcomes:**
+- the three tests pass in the registered and the Stale builds;
+- **6 of 6 mutants** are killed by assertions;
+- **suites against base `b1e2d7741e`,** differing only by the three added tests: PP 708/1/10 (the known Mac t13), result_export 172, and runner/headless 85/2 (the known `load_reference` pair);
+- the Python reader passes both fixtures.
+
+**I68's readings, accepted:**
+1. **The U5 criterion check.** Body 0 is checked with U5's per-class criterion (`u5_compare.py:104–113`), with the pinned, U5-verified milestone rows as the reference, plus the milestone's class claims. Body 0 is bit-identical to them. RV97's item 4 adds the records-level U5 replay.
+2. **The output variable** is `I68_U8_OUT`.
+
+**U8-1 is committed** on `codex/piping-f2a-u8-20261005` as `d449097085` and pushed. It is test-only.
+
+**Dispatched,** with the same mechanism and enforcement as this session's first dispatch ruling:
+- **I69** (U8-2, corpus 07l): on `d449097085`, in `WT/f2a-u8`, by `BRIEFS/I69_I70_I71_U8_CORPUS_AND_READERS.md` (`acb04c25…`). I70 and I71 follow its return.
+- **RV97** (U8-5): starts now on U8-1 (`b1e2d7741e..d449097085`) and the probe, per PLAN §1.4's order, by `BRIEFS/RV97_U8_REVIEW.md` (`80c8f6ac…`). ROOT continues it onto 07l and the reader alignment when they are committed.
+
+The next unused IDs stay **I77 and RV102**. I69, I70, I71, I72, RV97 and RV98 were prepared IDs.
