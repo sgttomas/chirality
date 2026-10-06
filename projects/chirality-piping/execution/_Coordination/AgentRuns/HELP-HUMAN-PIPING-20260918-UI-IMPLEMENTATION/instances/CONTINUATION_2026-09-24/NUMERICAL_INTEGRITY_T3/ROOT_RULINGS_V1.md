@@ -13085,3 +13085,24 @@ The record is `IMPLEMENTATION/S_I1_MERGE/RECORD.md`, with `_run_records/` and `d
 - **A1-N-3 is noted:** #1101 also modifies the undertaking's `WORK_GRAPH.md`, outside the T3 folder. No code reads it.
 
 **DEC-025 carries over to `b18dd4f369`.** It is queued on `61c35f56a8`. The heads differ only in two package files (CHANGE_RECORD.md and SHA256SUMS), which no DEC-025 suite reads (N-12's wording). RV97 confirms that delta, together with any main-move carry-over, before the merge.
+
+## RV102 passes #1101; S-1 and S-2 fixed before the merge (ROOT, 2026-10-06 UTC)
+
+**RV102's report** is `R/REVIEW_RV102/records_01/REVIEW.md` (sha256 `4c9b6aef…`; 23/23 OK). **PASS at H2 `e41566921d`** (and at H), 0 BLOCKING, 2 SHOULD-FIX, 6 NOTE.
+- ROOT's screen is confirmed independently.
+- The exclusion of `IMPLEMENTATION/U8/` is confirmed.
+- None of the 13 redacted originals is in the tree.
+- GEN-8 passes, and all four automatic runs on H2 succeeded.
+
+**S-1, fixed: four evidence files were never committed.** `R/REVIEW_RV98/u8_passb_01/evidence/build/{build_inputs,gate_checks_on_i72_outputs,law_outcomes_vs_F,witness_compare}.txt` were ignored by `P/.gitignore`'s `build/` rule. On disk they matched RV98's sums, so ROOT's "47/47" held only on the host.
+- **The repair:** `git add -f` of the four explicit paths. ROOT scanned every record folder of this session for untracked files, and these four were the only ones.
+- **Adopted as a rule:** return verification checks sums against the committed tree (`git ls-files`) as well as the folder on disk.
+
+**S-2, fixed: the work graph's T3 section was stale.** Its Position and Next safe action are rewritten. The Assignment IDs line is corrected (N-1). The rulings in force gain this session's standing rules (N-2). The T3 route row notes S-I1's merge and U8's PR (N-6).
+
+**The notes:**
+- **N-3:** RR records A1-S-1 (U8's package reaches main only with #1102), and the next records PR brings that ruling. The draft's package hashes are in I77's records, and #1102's in `IMPLEMENTATION/U8/` on #1102.
+- **N-4:** the squash body says the PR carries `S_I1_MERGE/` and S-I1's records; `IMPLEMENTATION/S_I1/` is on main through #1100.
+- **N-5:** no action.
+
+**#1101 is re-cut to H3:** NUM's execution tree at this ruling's commit, minus `IMPLEMENTATION/U8/`. RV102 confirms the delta from H2 before the squash.
