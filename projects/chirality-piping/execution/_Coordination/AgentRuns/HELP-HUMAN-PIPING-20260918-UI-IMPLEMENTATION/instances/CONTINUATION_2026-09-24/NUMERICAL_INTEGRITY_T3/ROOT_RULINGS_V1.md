@@ -12990,3 +12990,17 @@ Records are `S_I1_MERGE/_run_records/*2*`.
   - the two heads differ only in the 3 package files under `IMPLEMENTATION/S_I1/`, and their trees outside `projects/chirality-piping/execution/` are equal;
   - no DEC-025 suite reads the package paths. The only piping code that reads T3 records is `gen_k4_vectors.py`, `gen_vk_cases.py` and `run_harness_mutants.py`, and they read `REFERENCES/` and `DESIGN_NUMERICS/` only.
 - **RV99 confirms the delta and the premise** before the merge.
+
+## RV99 confirms #1100's amended head and the DEC-025 carry-over (ROOT, 2026-10-06 UTC)
+
+**The confirmation.** RV99's ADDENDUM_02 confirmed `20e7e3e5a2`. ADDENDUM_03 (sha256 `9582919f…`; 11/11 OK) confirms `ef266247de`, 0/0/2:
+- the delta is the package text only;
+- N-8 to N-11 are fixed truthfully;
+- the carry-over premise holds, since no DEC-025 suite reads `IMPLEMENTATION/S_I1/`;
+- both gate tools reproduce ROOT's records exactly.
+
+**Network error.** RV99 and RV101 were stopped mid-work by an API outage. Both were resumed from their transcripts, re-checking their partial state.
+
+**N-12 is adopted** as the wording for future carry-overs: "no DEC-025 suite reads the T3 records, beyond the three readers of `REFERENCES/` and `DESIGN_NUMERICS/`". Other piping tests do read other `execution/` paths, and none of them differs between the two heads.
+
+**N-13 is noted for the owner and App v4.** `tools/validation/validate_path_anchors.py` exits 1 on one literal home path in main's `projects/chirality-app-v4/execution/_Coordination/_COORDINATION.md:18`. That file is App v4's, outside T3's scope, and is not changed by #1100.
