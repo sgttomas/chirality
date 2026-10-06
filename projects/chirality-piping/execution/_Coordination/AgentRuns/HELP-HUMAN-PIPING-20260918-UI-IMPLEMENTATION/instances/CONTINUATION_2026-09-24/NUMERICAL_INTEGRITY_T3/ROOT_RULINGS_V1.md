@@ -13180,3 +13180,29 @@ The record is `IMPLEMENTATION/S_I1_MERGE/RECORD.md`, with `_run_records/` and `d
 **A2-N-1 is noted:** one of #1100's 8 files is a fixture. The claim that matters, "none of U8's 7", holds.
 
 **#1102 waits only for** DEC-025 `ALL-DONE` with a clean comparison, green CI, and an unmoved main.
+
+## #1102 merged; DEC-025's suites rerun in a fresh target; B0 and T3-SI1b dispatched (ROOT, 2026-10-06 UTC)
+
+**DEC-025 `U8_61c35f56a8` ended `ALL-DONE`** (16:25:56Z), on `61c35f56a8` against main `75a8c3291f`.
+- The sweep stopped at PP's known `t13`.
+- pytest: 3,750 passed, 32 skipped (+17, U8's retained suites). vitest: 138 files, 3,574 tests (+22, all in `retainedPrecision.test.ts`). Both builds exit 0.
+
+**The first suites comparison was not clean, and the cause was the host.**
+- 37 of 40 manifests were identical. `operation_applier`'s tests did not compile: 279 errors, with rustc naming two versions of `serde_json` (1.0.150 and 1.0.151) and of `serde_core` in one build.
+- `dec025_mac.sh` built every candidate's suites in one persistent target. `operation_applier` is built there under its own lockfile (1.0.150) and under `self_weight_wasm`'s (1.0.151, which depends on it), and the persistent target mixed the two resolutions.
+- The baseline runs in a fresh target per label and passed 194/0. U8 changes no manifest, lockfile or `operation_applier` source, and the hosted Numerical cargo suite passed on `f7a7572e35`.
+
+**Ruled: the suites part is rerun on the same tree in a fresh target, under the lock, and that comparison is the one that counts.**
+- The rerun (16:27:57Z–16:40:24Z): **38 of 40 identical.** PP 705 → 708 and result_export 172 → 173 are U8's added tests, all ok, and `t13` fails on both sides. `operation_applier` passes 194/0.
+- The sweep, pytest, vitest and the builds do not use that target, so the `ALL-DONE` run's results stand for them.
+- **Repaired:** `dec025_mac.sh` now gives each candidate a fresh per-label target, `targets/<label>_cand`, as the baseline already had (`IMPLEMENTATION/SESSION_2026-10-06/host_tools/dec025_mac.sh.txt`). Each DEC-025 now builds from scratch; this costs a few minutes and removes cross-run state.
+- **No earlier result is reopened.** Here the mixed resolution failed at compile time, and cargo's fingerprints still rebuild changed sources, so the hazard did not make a stale test pass. S-I1's comparison (38/40, only added tests) shows no such failure.
+
+**#1102 merged** at 16:41:07Z as `f8ed4f0551` (`--merge --match-head-commit f7a7572e35`), with every gate met on that head: RV97 (ADDENDUM_02), source equality, citations, GEN-8, CI with dispatch 37489501933, Pass B (I72, confirmed by RV98), the full suite, and DEC-025 carried by ruling. Record: `IMPLEMENTATION/U8_MERGE/`.
+
+**NUM absorbed main** as `02b96aa3cc`. NUM's tree did not change, and its non-execution tree equals main's.
+
+**Now ready, and dispatched:**
+- **B0** (F2a breadth: contract and identities; documents only) to **I78**, by `BRIEFS/B0_CONTRACT_AND_IDENTITIES.md`.
+- **T3-SI1b** (the point-path panic repair) to **I79**, by `BRIEFS/SI1B_POINT_PATH_PANICS.md`. It is on its own branch from main `f8ed4f0551` and gets its own reviewer and PR. By the merge order, it reaches NUM after the T6 slice merges.
+- **The next unused IDs** are I80 and RV103.
