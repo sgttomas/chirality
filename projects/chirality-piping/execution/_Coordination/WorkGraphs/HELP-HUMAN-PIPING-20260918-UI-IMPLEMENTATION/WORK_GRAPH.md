@@ -561,9 +561,9 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 | T3-B1/B6 | Multi-case breadth with W-C2 (the two-body model) and D38's pin (cap-growth study early in B1); the reader items; F-1's parity-row repair in all three readers. Then PR-B1 | T3-B0 | PLAN §2 | PLANNED |
 | T3-B2/B3/B4 | Combinations, preparation-only and mixed invocations; the exact routes; cap growth (B4) only if ruled. Then PR-B2 | PR-B1 | PLAN §2 | PLANNED |
 | T3-B7 | The release identity, registered once. The milestone's bytes and verdicts are re-established on it (RV95 N-6) | PR-B2 | PLAN §2.2 | PLANNED |
-| T3-B8 | Public activation with native Current, after the checklist (`F2A_D1/CHANGE_RECORD.md` §4) and its review | T3-B7; T3-T6S's slice; caller qualification for the desktop workspace (rulings, near line 10407); I53's open native-window premise; the owner's Mac | PLAN §2.2 | PLANNED |
+| T3-B8 | Public activation with native Current, after the checklist (`F2A_D1/CHANGE_RECORD.md` §4) and its review. Its native witness includes the two export panels exporting an eligible successor while every other surface refuses (G10's moved half) | T3-B7; T3-T6S's slice; caller qualification for the desktop workspace (rulings, near line 10407); I53's open native-window premise; the owner's Mac | PLAN §2.2 | PLANNED |
 | T3-SI2, T3-F2b, T3-F3 | S-I2; F2b per family; F3 | T3-B8 | — | PLANNED |
-| T3-G10 | The native witness: the milestone on the ordinary route, and the export panels refusing a successor | The owner's Mac | The owner | OUTSTANDING, by owner decision (2026-10-04) |
+| T3-G10 | The native witness: the milestone on the ordinary route. The successor-panel half moved to B8's native Current witness (owner, 2026-10-06) | The owner's Mac | The owner | OUTSTANDING, by owner decision (2026-10-04) |
 
 **Owner-held choices.** ROOT prepares these and never decides them:
 - dense and lane ceilings;
@@ -575,9 +575,8 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - any change to public meaning;
 - the native-app witnesses.
 
-**Awaiting the owner:** I74's decision 10. G10's "panels refusing a successor" half goes stale when the T6 slice merges. The recommendation keeps G10's ordinary-route half and moves the successor-panel witness into B8's native Current witness. It does not block the slice.
-
 **Owner decisions in force** (dated in the rulings):
+- **2026-10-06: G10 redefined** ("Go with your recommendation on G10"): G10 keeps its ordinary-route half; the successor-panel witness (the two panels export an eligible successor, every other surface refuses) moves into B8's native Current witness.
 - **2026-10-05: the F2a order:** U8 → breadth → B7 → B8 → S-I2, F2b, F3, with S-I1 alongside.
 - **2026-10-05:** the T6 slice is pulled forward.
 - **2026-10-05:** proportionate CI.

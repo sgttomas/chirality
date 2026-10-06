@@ -12495,3 +12495,15 @@ The next unused IDs stay **I77 and RV102**. I69, I70, I71, I72, RV97 and RV98 we
 3. **The diagnostics are mapped per source.** "One fixed base" is one rule, with the exact canonical base and origin files in `R/I76/t6s_01/inputs/`.
 
 **I76 continues** with T6S-1, N-5, the mutants and the suites. ROOT relays the hashes, the inputs and the parity facts to I75 at I75's checkpoint.
+
+## Owner decision: G10 is redefined; the successor-panel witness moves to B8 (ROOT, 2026-10-06 UTC)
+
+**The question** was I74's decision 10, put to the owner in session. G10's definition includes "the result-export and stress-neutral panels refusing a successor" (RR:11697–11699). That half goes stale when the T6 slice merges, because those two panels then admit an eligible successor deliberately (ruling "I73's checkpoint 1 and I74's plan ruled; …", decisions 2 and 3).
+
+**The owner said, in session:** "Go with your recommendation on G10".
+
+**So, as recommended:**
+- **G10 keeps its ordinary-route half:** the milestone on the ordinary route, in the native app, on the owner's Mac. It stays OUTSTANDING, by the owner's decision of 2026-10-04.
+- **The successor-panel witness moves into B8's native Current witness.** On the owner's Mac, the result-export and stress-neutral panels export an eligible successor, and every other surface refuses it.
+- **Until B8,** the T6 slice's vitest suites and the hosted browser shards cover these gates, as the G10 ruling allowed. They are not native evidence.
+- **Native-app witnesses stay owner-held.** B8's witness is the owner's action.
