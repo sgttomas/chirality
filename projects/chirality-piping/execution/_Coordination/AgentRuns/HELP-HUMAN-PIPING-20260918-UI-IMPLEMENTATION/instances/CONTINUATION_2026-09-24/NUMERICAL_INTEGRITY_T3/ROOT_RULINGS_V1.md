@@ -13004,3 +13004,32 @@ Records are `S_I1_MERGE/_run_records/*2*`.
 **N-12 is adopted** as the wording for future carry-overs: "no DEC-025 suite reads the T3 records, beyond the three readers of `REFERENCES/` and `DESIGN_NUMERICS/`". Other piping tests do read other `execution/` paths, and none of them differs between the two heads.
 
 **N-13 is noted for the owner and App v4.** `tools/validation/validate_path_anchors.py` exits 1 on one literal home path in main's `projects/chirality-app-v4/execution/_Coordination/_COORDINATION.md:18`. That file is App v4's, outside T3's scope, and is not changed by #1100.
+
+## #1100 merged: S-I1 is on main (ROOT, 2026-10-06 UTC)
+
+**DEC-025 on `20e7e3e5a2`: `ALL-DONE`** (14:22–14:58Z), with a fresh main baseline on `c1571f7feb`.
+- **Suites:** 38 of 40 manifests are identical. The other two differ only by added tests: `expression_evaluator` +18 and `rule_check_runner` +12, all ok.
+- **pytest:** 3,733, which is F′'s 3,540 plus S-I1's 193.
+- **vitest:** 3,552.
+- **Builds:** both exit 0.
+
+**Hosted CI on `ef266247de`:** all four automatic runs and the full-SHA dispatch 37476322784 succeeded. GitHub reported 16 checks success or skipped, MERGEABLE/CLEAN.
+
+**The merge.** Main was confirmed unmoved at `c1571f7feb`, then:
+- `gh pr ready 1100` and `gh pr merge 1100 --merge --match-head-commit ef266247de`;
+- **the result is `75a8c3291f`** (parents `c1571f7feb`, `ef266247de`), at 14:59:35Z.
+
+The record is `IMPLEMENTATION/S_I1_MERGE/RECORD.md`, with `_run_records/` and `dec025/`.
+
+**The walking skeleton held.** The product gate path is proved on main, and U8 and T6S reuse it:
+- package and citations, source equality, GEN-8;
+- CI with the dispatch;
+- DEC-025 with a fresh baseline, under the lock;
+- a carry-over by ruling, with review;
+- the merge.
+
+**Next:**
+1. NUM absorbs main.
+2. A records-only PR carries this session's records.
+3. U8's PR is next: merge U8 into NUM, then cut.
+4. T3-SI1b becomes ready.
