@@ -12,6 +12,8 @@ pub mod attachments;
 pub mod canonical;
 pub mod catalog;
 pub mod decision_view;
+mod file_act_root;
+mod file_act_view;
 pub mod external_observation;
 pub mod external_trace;
 pub mod trace_receiving;
@@ -27,6 +29,10 @@ pub mod records;
 pub mod recovery;
 pub mod role_supply;
 pub mod runtime_session;
+pub(crate) mod workflow_declaration;
+pub(crate) mod workflow_workspace;
+pub(crate) mod execution_compatibility;
+pub(crate) mod a15_native;
 pub mod schema_validation;
 pub mod standing;
 pub mod storage;
@@ -42,7 +48,9 @@ use tauri_plugin_dialog::{DialogExt, MessageDialogButtons, MessageDialogKind};
 
 pub struct AppState {
     workspace: Option<PathBuf>,
-    act: Mutex<Option<ActControl>>,
+    act: Arc<Mutex<Option<ActControl>>>,
+    workflows: Mutex<runtime_session::WorkflowRootSession>,
+    file_acts: Mutex<file_act_root::FileActRoot>,
     decision_writer_status: Mutex<Value>,
     person_name: Mutex<Option<String>>,
     instructions_root: Mutex<Result<PathBuf, String>>,
@@ -149,6 +157,7 @@ fn host_status(state: State<'_, AppState>) -> Value {
     s["homeResources"]["sourceInputs"] = state.root_home_inputs.clone();
     s["homeRouting"] = state.homes.lock().unwrap().snapshot();
     s["homeAccess"] = home.account_view();
+    s["workflowRoot"] = state.workflows.lock().unwrap().snapshot();
     s["homeOAuth"] = runtime_session::native_oauth_observation(&home);
     s["currentAppProjectContext"] = state.project_context.view();
     s["currentAppProjectContextLimit"] = json!(state.project_context_limit);
@@ -588,6 +597,90 @@ fn answer_native_request(
     )
 }
 
+fn workflow_native_folder(app:&tauri::AppHandle,title:&str)->Result<Option<PathBuf>,String>{
+    app.dialog().file().set_title(title).blocking_pick_folder().map(|path|path.into_path().map_err(|_|"Native folder has no local filesystem path".to_string())).transpose()
+}
+#[tauri::command(async)]
+fn workflow_select_development(app:tauri::AppHandle,state:State<'_,AppState>)->Result<Value,String>{
+    let Some(path)=workflow_native_folder(&app,"Select exact coordinated-knowledge-work development holding copy")? else{return Ok(json!({"state":"native selection dismissed"}));};
+    state.workflows.lock().unwrap().select_development_copy(path)
+}
+#[tauri::command(async)]
+fn workflow_open_library(app:tauri::AppHandle,state:State<'_,AppState>,origin:String)->Result<Value,String>{
+    if !matches!(origin.as_str(),"project"|"user"){return Err("Choose project or user library; no default".into());}
+    let Some(path)=workflow_native_folder(&app,"Open existing physical workflow library root")? else{return Ok(json!({"state":"native library selection dismissed"}));};
+    let mut root=state.workflows.lock().unwrap();root.open_library(path,&origin,state.workspace.as_deref(),state.act.clone())?;Ok(root.snapshot())
+}
+#[tauri::command(async)]
+fn workflow_select_registered(app:tauri::AppHandle,state:State<'_,AppState>,review_ref:String,revision:String)->Result<Value,String>{
+    let Some(path)=workflow_native_folder(&app,"Select actual holding copy of this hot registered revision")? else{return Ok(json!({"state":"native selection dismissed"}));};
+    state.workflows.lock().unwrap().select_hot_registered_copy(&review_ref,&revision,path)
+}
+#[tauri::command]
+fn workflow_create_draft(state:State<'_,AppState>,name:String)->Result<Value,String>{state.workflows.lock().unwrap().create_selected_draft(&name)}
+#[tauri::command]
+fn workflow_review(state:State<'_,AppState>,names:Vec<String>,in_place:bool)->Result<Value,String>{
+    let home=state.homes.lock().unwrap().active();state.validate_home_source(&home)?;
+    let (_,context)=current_actor_context_for(&state,&home);
+    state.workflows.lock().unwrap().begin_review(home,context,names,in_place)
+}
+fn workflow_review_observe(state:&AppState,home:&Arc<runtime_session::HomeSession>,library:&Arc<runtime_session::WorkflowLibraryContext>,review_ref:&str,original:&Value)->Result<(Value,Value),String>{
+    let active=state.homes.lock().unwrap().active();if !Arc::ptr_eq(&active,home){return Err("Original review home selection changed; nothing captured, review again".into());}
+    state.validate_home_source(home)?;storage::check_path(&library.root)?;
+    {let root=state.workflows.lock().unwrap();if root.active_library.as_deref()!=Some(library.reference.as_str())||root.active_review.as_deref()!=Some(review_ref){return Err("Original library/review selection changed; no retarget".into());}}
+    let (_,observed)=current_actor_context_for(state,home);
+    if observed!=*original{return Err("Original observed actor/home context changed since review; review again".into());}
+    let mut actor=act_control::person(observed["displayName"].as_str(),observed["osAccount"].as_str());
+    if let Some(account)=observed["codexAccount"].as_str(){actor["codexAccount"]=json!(account);}
+    let context=json!({"observedHome":observed,"modeHomeClass":home.class().as_str(),"libraryRef":library.reference,"libraryRoot":attachments::native_path_identity(&library.root),"origin":library.origin,"sourceRoot":library.source_root,"reviewRef":review_ref});
+    Ok((actor,context))
+}
+#[tauri::command(async)]
+fn workflow_register_native(app:tauri::AppHandle,state:State<'_,AppState>,review_ref:String)->Result<Value,String>{
+    let original=state.workflows.lock().unwrap().reviews.get(&review_ref).cloned().ok_or("Actual original owner review unavailable")?;
+    let mut original=original.try_lock().map_err(|_|"Original review native interaction already pending")?;
+    if original.attempted_native{return Err("Original native attempt retained; continue it or review again, no duplicate capture".into());}
+    let home=original.home.clone();let library=original.library.clone();let context=original.home_context.clone();
+    workflow_review_observe(&state,&home,&library,&review_ref,&context)?;
+    original.attempted_native=true;
+    let result={
+        let mut control=library.control.lock().unwrap();let control=control.as_mut().ok_or("Actual original library act owner unavailable")?;
+        a15_native::confirm_native(&app,control,original.review.as_ref().ok_or("Original review already transferred")?,original.offer.as_ref().ok_or("Original opaque offer unavailable")?,||workflow_review_observe(&state,&home,&library,&review_ref,&context))
+    };
+    match result {
+        Ok(Some(result))=>original.accept_result(result)?,
+        Ok(None)=>{if let Some(review)=original.review.as_ref(){review.withdraw();}original.status=json!({"state":"native confirmation dismissed; no capture/registration"});},
+        Err(error)=>{original.status=json!({"state":"native review/capture unavailable; original owner state retained","limit":error,"registration":"not completed; no fabricated receipt or retry"});return Ok(original.status.clone());}
+    }
+    Ok(original.status.clone())
+}
+#[tauri::command]
+fn workflow_continue_registration(state:State<'_,AppState>,review_ref:String)->Result<Value,String>{
+    let original=state.workflows.lock().unwrap().reviews.get(&review_ref).cloned().ok_or("Actual original registration owner unavailable")?;
+    let mut original=original.try_lock().map_err(|_|"Original owner interaction pending")?;
+    if original.transaction.is_some(){original.advance();return Ok(original.status.clone());}
+    if !original.attempted_native{return Err("No original native attempt; no capture/receipt reconstruction".into());}
+    let library=original.library.clone();
+    let result=library.control.lock().unwrap().as_mut().ok_or("Original library act owner unavailable")?.continue_a15(original.offer.as_ref().ok_or("Original opaque offer not retained")?)?;
+    original.accept_result(result)?;Ok(original.status.clone())
+}
+#[tauri::command]
+fn workflow_prepare_run(state:State<'_,AppState>,generation:Value,thread_id:String,person_text:String)->Result<Value,String>{
+    let home=state.homes.lock().unwrap().for_generation(&generation)?;state.validate_home_source(&home)?;
+    let mut root=state.workflows.lock().unwrap();let reference=root.prepare_run(home,&generation,&thread_id,person_text)?;Ok(json!({"reference":reference,"state":"original closed selection prepared; not sent"}))
+}
+#[tauri::command(async)]
+fn workflow_send_run(state:State<'_,AppState>,run_ref:String)->Result<Value,String>{
+    let run=state.workflows.lock().unwrap().runs.get(&run_ref).cloned().ok_or("Actual prepared original run unavailable")?;
+    let mut run=run.try_lock().map_err(|_|"Original run operation pending")?;state.validate_home_source(&run.home)?;run.send()
+}
+#[tauri::command(async)]
+fn workflow_check_supply(state:State<'_,AppState>,run_ref:String)->Result<Value,String>{
+    let run=state.workflows.lock().unwrap().runs.get(&run_ref).cloned().ok_or("Actual prepared original run unavailable")?;
+    let mut run=run.try_lock().map_err(|_|"Original source-bound supply check pending")?;state.validate_home_source(&run.home)?;
+    match run.check_native_supply(){Ok(v)=>Ok(v),Err(error)=>{run.supply=json!({"state":"native coverage/source unavailable; no supplied claim","limit":error,"adoption":"unknown"});Ok(run.supply.clone())}}
+}
+
 #[tauri::command]
 fn set_person_name(state: State<'_, AppState>, name: String) {
     *state.person_name.lock().unwrap() = if name.trim().is_empty() {
@@ -671,6 +764,86 @@ fn decide(
     )
 }
 
+// Observer takes no file Root/offer/control lock. Every outer lock is fail-fast,
+// so a competing Root-held operation cannot invert native control ownership.
+fn file_act_observe(state:&AppState, home:&Arc<runtime_session::HomeSession>) -> Result<(Value,Value),String> {
+    let active=state.homes.try_lock().map_err(|_|"Home selection busy; review again")?.active();
+    if !Arc::ptr_eq(&active,home){return Err("Original file-act home changed; review again".into());}
+    let binding=state.home_bootstrap.try_lock().map_err(|_|"Home binding busy; review again")?;
+    match &*binding { Ok(set)=>set.validate_binding(home.class(),home.host_config.as_ref().map_err(Clone::clone)?)?, Err(_) if home.class()==home_resources::HomeClass::Account=>{}, Err(e)=>return Err(e.clone()) }
+    drop(binding);
+    let name=state.person_name.try_lock().map_err(|_|"Actor setting busy; review again")?.clone();
+    let os=util::os_account();
+    let mut runtime=home.runtime.try_lock().map_err(|_|"Actor observation busy; review again")?;
+    let (generation,position)=runtime.cursor();
+    let observed=home.host.observe(generation,position);
+    let current=runtime.actor_context(&observed,name.as_deref(),os.as_deref());
+    let mut actor=act_control::person(current["displayName"].as_str(),current["osAccount"].as_str());
+    if let Some(account)=current["codexAccount"].as_str(){actor["codexAccount"]=json!(account);}
+    let workspace=state.workspace.as_ref().ok_or("No App workspace")?;
+    storage::check_path(workspace)?;
+    let context=json!({"observedHome":current,"modeHomeClass":home.class().as_str(),"workspace":attachments::native_path_identity(workspace)});
+    Ok((actor,context))
+}
+#[tauri::command(async)]
+fn file_act_select(app:tauri::AppHandle,state:State<'_,AppState>,kind:String,scope:String,purpose:String)->Result<Value,String>{
+    let kind=match kind.as_str(){"A4"=>act_control::FileActKind::Check,"A6"=>act_control::FileActKind::Approve,"A7"=>act_control::FileActKind::Rely,_=>return Err("Choose A4, A6 or A7".into())};
+    let home=state.homes.try_lock().map_err(|_|"Home selection busy")?.active();
+    let (_,context)=file_act_observe(&state,&home)?;
+    let selected=app.dialog().file().set_title("Select one App workspace file or saved output").blocking_pick_file();
+    let Some(selected)=selected else{return Ok(json!({"state":"selection dismissed; nothing captured"}));};
+    let path=selected.into_path().map_err(|_|"Native selection has no filesystem path")?;
+    if file_act_observe(&state,&home)?.1!=context{return Err("Actor or context changed during selection; select again".into());}
+    let mut control=state.act.try_lock().map_err(|_|"Act owner busy; select again")?;
+    state.file_acts.try_lock().map_err(|_|"File offer state busy; select again")?.compose(control.as_mut().ok_or("No App workspace")?,&path,kind,&scope,&purpose,home,context)
+}
+#[tauri::command(async)]
+fn file_act_confirm(app:tauri::AppHandle,state:State<'_,AppState>,reference:String)->Result<Value,String>{
+    file_act_confirm_original(&state,&reference,|control,offer,observe|act_control::confirm_file_native(&app,control,offer,observe))
+}
+fn file_act_confirm_original(state:&AppState,reference:&str,
+    confirm:impl FnOnce(&mut ActControl,&act_control::FileActOfferRef,&mut dyn FnMut()->Result<(Value,Value),String>)->Result<Option<Value>,String>
+)->Result<Value,String>{
+    let owner=state.file_acts.try_lock().map_err(|_|"File offer state busy")?.get(&reference)?;
+    let mut owner=owner.try_lock().map_err(|_|"Original file operation pending")?;
+    if owner.attempted{return Err("Original attempt retained; continue its recording or review a new offer".into());}
+    let home=owner.home.clone();let original=owner.context.clone();
+    let mut control=state.act.try_lock().map_err(|_|"Act owner busy; no native attempt")?;
+    let control=control.as_mut().ok_or("Original act owner absent")?;
+    owner.attempted=true;
+    let result=confirm(control,&owner.offer,&mut ||{
+        let observed=file_act_observe(&state,&home)?;
+        if observed.1!=original{return Err("Actor or owning context changed since preview; review again".into());}
+        Ok(observed)
+    });
+    owner.status=match result{Ok(Some(value))=>value,Ok(None)=>json!({"state":"dismissed; nothing captured","recorded":false}),Err(error)=>json!({"state":"native attempt returned an error; capture/record standing not established by this result","error":error})};
+    Ok(owner.status.clone())
+}
+#[tauri::command(async)]
+fn file_act_continue(state:State<'_,AppState>,reference:String)->Result<Value,String>{
+    let owner=state.file_acts.try_lock().map_err(|_|"File offer state busy")?.get(&reference)?;
+    let mut owner=owner.try_lock().map_err(|_|"Original file operation pending")?;
+    let mut control=state.act.try_lock().map_err(|_|"Act owner busy; original status retained")?;
+    // Recording the original capture must not replace its historical actor with today's.
+    let result=control.as_mut().ok_or("Original act owner absent")?.continue_file_act(&owner.offer)?;
+    owner.status=result.clone();Ok(result)
+}
+#[tauri::command]
+fn file_act_dismiss(state:State<'_,AppState>,reference:String)->Result<Value,String>{
+    let owner=state.file_acts.try_lock().map_err(|_|"File offer state busy")?.get(&reference)?;
+    let mut owner=owner.try_lock().map_err(|_|"Original file operation pending")?;
+    if owner.attempted{return Err("Original native attempt retained; dismissal cannot erase it".into());}
+    state.act.try_lock().map_err(|_|"Act owner busy")?.as_mut().ok_or("Original act owner absent")?.dismiss_file_act(&owner.offer);
+    owner.attempted=true;owner.status=json!({"state":"dismissed; nothing captured","recorded":false});Ok(owner.status.clone())
+}
+#[tauri::command(async)]
+fn file_act_read(state:State<'_,AppState>)->Result<Value,String>{
+    let root=state.workspace.as_ref().ok_or("No App workspace")?;
+    let mut view=file_act_view::read(root);
+    view["hotOffers"]=state.file_acts.try_lock().map_err(|_|"File offer state busy")?.snapshot();
+    Ok(view)
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     let workspace = std::env::var_os("CHIRALITY_WORKSPACE").map(PathBuf::from);
@@ -682,7 +855,9 @@ pub fn run() {
     let key_path = std::env::var_os("CHIRALITY_KEY_HOME").map(PathBuf::from);
     let shared_paths = ["CHIRALITY_SHARED_CONFIG","CHIRALITY_SHARED_AGENTS","CHIRALITY_SHARED_SKILLS"].map(|key|std::env::var_os(key).map(PathBuf::from));
     let state = AppState {
-        act: Mutex::new(workspace.as_ref().map(|w| ActControl::new(w))),
+        act: Arc::new(Mutex::new(workspace.as_ref().map(|w| ActControl::new(w)))),
+        workflows: Mutex::new(runtime_session::WorkflowRootSession::default()),
+        file_acts: Mutex::new(file_act_root::FileActRoot::default()),
         decision_writer_status: Mutex::new(json!({"state":"not-run","responsibility":"decision record writer continuation"})),
         workspace: workspace.clone(),
         person_name: Mutex::new(None),
@@ -761,6 +936,7 @@ pub fn run() {
         // DEF-1: closing or reloading a window is not a stop (HOSTING §4.5); no window
         // event touches the child.
         .invoke_handler(tauri::generate_handler![
+            file_act_select, file_act_confirm, file_act_continue, file_act_dismiss, file_act_read,
             host_status,
             select_home,
             read_home_access,
@@ -785,6 +961,7 @@ pub fn run() {
             conversation_steer_text,
             conversation_interrupt,
             set_person_name,
+            workflow_select_development,workflow_open_library,workflow_select_registered,workflow_create_draft,workflow_review,workflow_register_native,workflow_continue_registration,workflow_prepare_run,workflow_send_run,workflow_check_supply,
             decision_view,
             continue_decision_recording,
             compose_offer,
@@ -806,3 +983,46 @@ pub fn run() {
             }
         });
 }
+
+#[cfg(all(test,unix))]
+mod workflow_root_context_tests {
+    use super::*;
+    pub(super) fn fixture()->(PathBuf,AppState,Arc<runtime_session::HomeSession>,Arc<runtime_session::WorkflowLibraryContext>,String,Value){
+        let root=std::fs::canonicalize(std::env::temp_dir()).unwrap().join(util::opaque_id("workflow-context-").unwrap());std::fs::create_dir(&root).unwrap();
+        let home=Arc::new(runtime_session::HomeSession::new(home_resources::HomeClass::Account,Arc::new(Host::new()),Err("no supplier; offline registration allowed".into())).unwrap());
+        let control=Arc::new(Mutex::new(Some(ActControl::new(&root))));
+        let mut workflows=runtime_session::WorkflowRootSession::default();workflows.open_library(root.clone(),"project",Some(&root),control.clone()).unwrap();
+        let library=workflows.active_library().unwrap();
+        let state=AppState{workspace:Some(root.clone()),act:control,file_acts:Mutex::new(file_act_root::FileActRoot::default()),workflows:Mutex::new(workflows),decision_writer_status:Mutex::new(Value::Null),person_name:Mutex::new(None),instructions_root:Mutex::new(Err("unavailable".into())),app_user_data_root:Mutex::new(Err("unavailable".into())),external_observation:Mutex::new(Default::default()),trace_selection:Mutex::new(Default::default()),attachment_selection:Mutex::new(runtime_session::AttachmentSelectionSession::new(Some(root.clone()))),project_context:recovery::ExplicitAppProjectContext::unknown(),project_context_limit:Some("unknown".into()),homes:Mutex::new(runtime_session::HomeRouter::new(home.clone()).unwrap()),home_bootstrap:Mutex::new(Err("descriptor unavailable; no inferred home".into())),native_namespaces:Mutex::new(Err("unavailable".into())),key_namespace_admission:Mutex::new(Value::Null),key_setup:Mutex::new(()),root_home_inputs:Value::Null};
+        let (_,context)=current_actor_context_for(&state,&home);
+        let package=root.join(workflow_workspace::development_catalog::NAME);std::fs::create_dir(&package).unwrap();
+        let catalog=workflow_workspace::development_catalog::DevelopmentCatalog::load().unwrap();for(name,bytes)in catalog.select_embedded().snapshot().files(){std::fs::write(package.join(name),bytes).unwrap();}
+        let reference={let mut workflows=state.workflows.lock().unwrap();workflows.select_development_copy(package).unwrap();workflows.create_selected_draft("coordinated-knowledge-work").unwrap();workflows.begin_review(home.clone(),context.clone(),vec!["coordinated-knowledge-work".into()],false).unwrap();workflows.active_review.clone().unwrap()};
+        (root,state,home,library,reference,context)
+    }
+    #[test]
+    fn file_act_actual_observer_checks_original_context_and_fails_fast_under_contention(){
+        let(root,state,home,_,_,_)=fixture();
+        let(actor,context)=file_act_observe(&state,&home).unwrap();
+        assert_eq!(actor["identityVerified"],false);assert_eq!(context["observedHome"]["hostState"],"absent");
+        // The actual confirmation owns act and original review, neither is taken by its observer.
+        let held=state.act.lock().unwrap();assert!(file_act_observe(&state,&home).is_ok());drop(held);
+        let held=state.homes.lock().unwrap();assert!(file_act_observe(&state,&home).is_err());drop(held);
+        let held=home.runtime.lock().unwrap();assert!(file_act_observe(&state,&home).is_err());drop(held);
+        let held=state.person_name.lock().unwrap();assert!(file_act_observe(&state,&home).is_err());drop(held);
+        *state.person_name.lock().unwrap()=Some("changed person".into());assert_ne!(file_act_observe(&state,&home).unwrap().1,context);
+        std::fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
+    fn workflow_root_actual_observe_preserves_offline_context_and_refuses_retarget(){
+        let(root,state,home,library,reference,context)=fixture();
+        let(actor,observed)=workflow_review_observe(&state,&home,&library,&reference,&context).unwrap();assert_eq!(actor["identityVerified"],false);assert_eq!(observed["observedHome"]["hostState"],"absent");
+        *state.person_name.lock().unwrap()=Some("changed actor during native interaction".into());assert!(workflow_review_observe(&state,&home,&library,&reference,&context).is_err());
+        *state.person_name.lock().unwrap()=None;state.workflows.lock().unwrap().active_review=Some("different-original-operation".into());assert!(workflow_review_observe(&state,&home,&library,&reference,&context).is_err());
+        state.workflows.lock().unwrap().active_review=Some(reference.clone());state.workflows.lock().unwrap().active_library=None;assert!(workflow_review_observe(&state,&home,&library,&reference,&context).is_err());
+        std::fs::remove_dir_all(root).unwrap();
+    }
+}
+
+#[cfg(all(test,unix))]
+mod file_act_consumer_tests;
