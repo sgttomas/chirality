@@ -12737,3 +12737,30 @@ I73's scratch (`WT/scratch/i73_s_i1/`) and targets stay until the post-merge cle
 - **RV97's round 2** (07l parity in three readers, and the new commits' scope), on `d449097085..bd6b4be2c3`.
 
 **RV98 confirms** I72's Pass B on its return.
+
+## S-I1's repair round committed; RV99 confirms next (ROOT, 2026-10-06 UTC)
+
+**I73's repair record** is `R/I73/s_i1_01/REPAIR_01.md` (sha256 `2d481f8b…`). ROOT checked:
+- the new file list `SHA256SUMS.repair_01` (`73644b97…`): 29 of 29 OK;
+- the sealed `SHA256SUMS` is untouched: 56 of 56 OK;
+- no machine paths;
+- `WT/s-i1` holds only fenced files, with no schema, manifest or lock change;
+- the runner's removed lines (+74 / −39) all lie in S-I1's own interval code (bound handling and `finish_interval_check`), not in point mode.
+
+**The repairs:**
+- **S-1:** identical-range `=` and `≠` cases. V3 is killed.
+- **S-2:** a divisor range ending at zero. V9 is killed by the evaluator suite itself.
+- **S-3:** the Python reference refuses invalid bounds and enclosures. There are 9 parity cases, and the shared cases go from 83 to 94; the earlier 83 are byte-identical.
+- **N-4:** a downgraded check equals the point path's status, codes and findings.
+- **N-5:** duplicate bounds are a blocking `RULE_EVALUATOR_ERROR`.
+- **N-1:** both unit-conversion ends are pinned, which kills V11.
+
+**The results:**
+- **Point mode** is byte-identical: evaluator `e74a69c4…`, runner `697b31fd…`.
+- **Mutants:** 41 of 41 killed.
+- **Suites:** `rule_check_runner` 33, `expression_evaluator` 49+1, `rule_pack_document` 10, src-tauri 116, Python 3,658. Every count change is an added test.
+- **One false failure** came from a cargo target shared with mutant copies. I73 re-ran it in a fresh target and recorded it.
+
+**I73's reading on S-3, accepted.** Python mirrors Rust's evaluator: an invalid bound gives no enclosure and reads U. Rust's runner blocks it with `RULE_EVALUATOR_ERROR`, and Python has no runner.
+
+**Committed** on the S-I1 branch as `c26ecabbc1` and pushed. **RV99 confirms** `8f956d399a..c26ecabbc1`, including ROOT's N-3 description edit `ea7c0881f4`, in `ADDENDUM_01.md`.
