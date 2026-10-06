@@ -12705,3 +12705,35 @@ I73's scratch (`WT/scratch/i73_s_i1/`) and targets stay until the post-merge cle
 - **ROOT checked the host:** the guard is running (PID 5387), no T3 job is running, and the cargo log's last job ended cleanly.
 - **ROOT checked each TASK's partial state** on disk, and resumed each from its saved transcript, instructed to re-verify its files and logs against the current trees before relying on them, and to re-run anything incomplete.
 - No partial work was committed.
+
+## I71's TS alignment committed; U8-3 complete; the folder grant restored; I72 and RV97 round 2 dispatched (ROOT, 2026-10-06 UTC)
+
+**The folder grant.** After the process restart, the session no longer held its folder grant for `WT`, and the host's write guard refused I71's writes into NUM. I71 did not work around it: it wrote `RETURN.md` and `SHA256SUMS` to the session's scratchpad. ROOT requested and obtained the grant again, then copied both files byte for byte into `R/I71/u8_ts_07l_01/`.
+
+**I71's return** is `R/I71/u8_ts_07l_01/RETURN.md` (sha256 `42bd3866…`). ROOT checked:
+- `SHA256SUMS` (`adcabb06…`): 54 of 54 OK, every file covered, no machine paths;
+- one file changed: `DT/features/results/retainedPrecision.test.ts` (`385a626a…` → `59531ed1…`; +45 / −0);
+- the `public/` folder I71 removed from `WT/f2a-u8` held no tracked file.
+
+**I71's results:**
+- **The full 07l** passes 474 of 474 in two runs.
+- **Mutants:** three TS reader mutants are caught only by 07l entries, and four corpus mutants only by the new tests.
+- **The desktop suite,** base `d449097085` against the candidate: +22 passing tests, all in the changed file.
+  - Run 2's one base failure, an `App.test.tsx` timeout, came at a load average of about 19. It passed in run 1 and when re-run alone.
+- **`tsc`** is clean on both sides.
+
+**E-6's wasm provenance.** The eight assets were copied from `WT/sweep-skewpin`, and their hashes equal I68's, RV97's and I69's records. The revision is `e2b83da584`, inferred from the checkout and file times; there is no build record. The 17 crates the engines build from differ between `e2b83da584` and the U8 heads only in test code. No manifest, lock, `build.rs` or reviewed input changed.
+
+**Rulings:**
+1. **Placing the files:** done by ROOT, as above.
+2. **The asset provenance stands as inferred** for U8's TS verdicts, which agree with Rust and Python. A built-from-source proof is not required for U8, which is test-only. **B7** (the release identity) builds its own assets.
+3. **Test 2 is kept.** It pins `provenance.kind` and I68's class counts for the bases, as Python does, which is strengthening within counts and pins.
+4. **Python's fixture-identity check is not mirrored in TS,** which is accepted.
+
+**U8-3 is complete:** `de01e43bc4` (Rust) and `bd6b4be2c3` (TS), on the U8 branch, pushed.
+
+**Dispatched,** with the mechanism and enforcement of this session's first dispatch ruling:
+- **I72 (U8-4, Pass B),** on `bd6b4be2c3`, by `BRIEFS/I72_U8_PASS_B.md` (`adfc130d…`). It runs the fail-closed `g7_pass.sh` as one job under the T3 cargo lock (`lockf` around the tool).
+- **RV97's round 2** (07l parity in three readers, and the new commits' scope), on `d449097085..bd6b4be2c3`.
+
+**RV98 confirms** I72's Pass B on its return.
