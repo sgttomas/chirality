@@ -13123,3 +13123,20 @@ The record is `IMPLEMENTATION/S_I1_MERGE/RECORD.md`, with `_run_records/` and `d
 - **A-1 and A-4** need no action.
 
 **Next:** NUM absorbs main; #1102 absorbs main; RV97 confirms #1102's head delta and the DEC-025 carry-over.
+
+## #1102 absorbs main; DEC-025 carried to its head by ruling (ROOT, 2026-10-06 UTC)
+
+**NUM absorbed main `d069e7130c`** (#1101) as `55f5b7ecf1`.
+- `ROOT_RULINGS_V1.md` and the work graph conflicted, as expected after a squash. Main's copies equal NUM's at `1720a5c06b`, and RR's is a byte prefix of NUM's. Per #1084's precedent, NUM's versions are kept.
+- NUM's maintained diff from main is exactly U8's 7 files.
+
+**#1102 absorbed main** as head `f7a7572e35`.
+- Nothing outside `execution/` changed since `b18dd4f369`.
+- **The checks at that head** (`IMPLEMENTATION/U8_MERGE/_run_records/*3*`): `source_equality.py` 5/5 against NUM `55f5b7ecf1`; `check_citations.py` PASS; GEN-8 1 passed.
+- **The full-SHA dispatch** is run 37489501933 (`target_base` `d069e7130c`).
+
+**DEC-025 is carried to `f7a7572e35` by ruling.** It runs on `61c35f56a8`, against a baseline of `75a8c3291f`.
+- **The premise:**
+  - between the two heads, and between the two mains, only `projects/chirality-piping/execution/` differs: U8's package text, and #1101's T3 records and work graph;
+  - no DEC-025 suite reads those paths beyond the three readers of `REFERENCES/` and `DESIGN_NUMERICS/`, whose contents #1101 did not change.
+- **RV97 confirms** the delta and the premise (ADDENDUM_02) before the merge.
