@@ -13249,3 +13249,63 @@ The record is `IMPLEMENTATION/S_I1_MERGE/RECORD.md`, with `_run_records/` and `d
 - the exact-head Mac DEC-025 against a fresh main baseline, in fresh targets;
 - Pass B as ROOT rules on I80's evidence;
 - RV101's confirmation of the PR head's package and equality.
+
+## RV103 passes #1103; #1103 squash-merged; I79's return verified and ruled; RV104 dispatched (ROOT, 2026-10-06 UTC)
+
+**Two network interruptions** (ECONNREFUSED, then ENOTFOUND) stopped I78, I79, RV101, RV103 and I80 mid-turn. Each time ROOT checked the host before resuming them by SendMessage, from their own partial state:
+- no job was left running;
+- the lock was free;
+- the guard was up;
+- the push had landed.
+
+**RV103 passes #1103** (`R/REVIEW_RV103/records_01/REVIEW.md`, `976d39f6…`; 29/29 OK): 0 BLOCKING, 1 SHOULD-FIX, 6 NOTE.
+
+**#1103 squash-merged** at 23:19:13Z as `d8c88774d0`, from `3f8a405c33`, with an explicit subject and body; main had not moved. Record: `IMPLEMENTATION/RECORDS_MERGE_2026-10-06B/`.
+- **NUM absorbed main** as `8afdf47153`. Main's whole tree equalled NUM's at `ea0e288e8a`, so the rulings-file conflict resolved to ours, and the merged tree equals NUM's pre-merge tree.
+
+**RV103's items:**
+- **S-1 is fixed.** U8_MERGE's RECORD.md and this file's ruling "#1102 merged; …" cited the excerpt for counts that it lacks. The counts are now sealed in `IMPLEMENTATION/U8_MERGE/dec025/operation_applier_shared_target_counts.txt` (`SHA256SUMS.addendum_01`), extracted from the host log (sha256 `c2ec8ce9…`) with registry paths redacted:
+  - 279 errors: 244 E0308, 26 E0277 and 9 E0631;
+  - 355 notes naming two versions of `serde_json` (1.0.150 and 1.0.151), and 8 naming two of `serde_core` (1.0.228 and 1.0.229);
+  - 8 test targets that did not compile.
+
+  Read the two citations as pointing to this file. Their text is unchanged (append-only).
+- **N-1 is recorded, and a rule follows.** The mechanism has three parts:
+  - **The enabler:** `operation_applier` is `crate-type = ["cdylib", "rlib"]`. A cdylib's output has no hash suffix, so every workspace building it writes the same file in a shared target.
+  - **The writers:** its own workspace (1.0.150), `self_weight_wasm` (manifest 004) and `physics_audit_regression` (manifest 038), both 1.0.151.
+  - **Unexplained:** why earlier shared-target runs passed. The cure doesn't depend on knowing it.
+
+  **Rule:** every DEC-025 suite run, including a partial rerun, uses a fresh target.
+- **N-3 is fixed.** `SESSION_2026-10-06/SHA256SUMS.dec025_mac` seals the host-tool copy.
+- **N-4:** `WT/records-pr` was kept until #1103 merged. It may now be cleaned.
+- **N-5, three errata to this file's wording:**
+  - The heading "RV101 passes the T6 slice; SF-1 repaired by I75; …" was written when the repair was dispatched. It was done in REPAIR_01 and confirmed in RV101's ADDENDUM_01.
+  - "I75 (the owner)" there means the slice's owner among the TASKs, not the human owner.
+  - "all 651 of RV101's mutations": RV101 made 693, of which the version file refuses the 651 it targets.
+- **N-2:** the two host-only claims are verified by RV103. No action.
+- **N-6:** the squash body corrects "RV97's addenda" to ADDENDUM_02.
+
+**I79's return is verified** (`R/I79/si1b_01/RETURN.md`, `44d82fc8…`; 31/31 OK, placeholder paths only).
+- **The branch:** `codex/piping-t3-si1b-20261006` at `966113396e`, clean, three commits over main `f8ed4f0551`. It changes 3 files: `expression_evaluator/src/lib.rs` (+353/−3, including 6 tests), a new runner test file (2 tests) and comments in `tests/test_rule_interval.py`.
+- **The repair** reads as reported:
+  - a non-finite same-dimension ratio blocks;
+  - a NaN step or interpolation argument blocks before the range check;
+  - an infinite argument stays `TableOutOfRange`;
+  - an exact lookup stays `TableKeyNotFound`.
+- **The differential:** across I73's 36,069 inputs, a 36,000-input extreme set and a 12,000-input table set, only the 503 base panics change. Each is now blocked, and interval-mode dumps are identical. I73's base dump hash reproduces (`e74a69c4…`).
+- **The runner:** a check that panicked before now blocks without aborting the run. Every bounded line is identical.
+- **Suites:** added tests only (EE 49 → 55, runner 33 → 35). Mutants: 10/10 killed.
+
+**Ruled on I79's five items:**
+1. **`NonFiniteInput` is accepted for both causes.** It is the crate's own error that the `.expect` unwrapped. The runner already uses it for a computed non-finite quantity, and so does `stress_recovery`. Each finding's message names its cause. No new code means no new public vocabulary, so this is ROOT's to rule.
+2. **The doc comment on `FindingCode::NonFiniteInput` is kept.**
+3. **Routed to a new node, T3-SI1c.** On the point path, a boolean formula over a NaN or infinite intermediate is still decided and can pass (`NaN ≠ 100`, `inf ≥ 100`, `not((1e300·x − 1e300·x) > 100)`), where interval mode reads U.
+   - It changes outcomes for inputs that do not panic today, so it is not SI1b's. It needs a plan.
+   - **Whether turning such a pass into a block changes public meaning** is decided when the plan is in. If it does, it goes to the owner.
+   - S-I2's planning must account for it, because S-I2 binds bounds where the two modes differ.
+4. **The comment-only Python commit is kept.** The comments it replaced were stale.
+5. **`rule_check_runner/src/lib.rs`'s pre-existing `cargo fmt --check` failure** on main is left alone. It is not SI1b's.
+
+**RV104** (fresh) reviews SI1b's complete diff, by `BRIEFS/RV104_SI1B_REVIEW.md`. The branch is pushed by ROOT. **SI1b's PR** follows T6S's merge to main (NUM sequencing). It takes the full product gate set; Pass B does not apply, since the rules crates are outside PP's closure (I61 PLAN §3).
+
+**IDs:** RV104 is used. The next unused are **I81 and RV105**.
