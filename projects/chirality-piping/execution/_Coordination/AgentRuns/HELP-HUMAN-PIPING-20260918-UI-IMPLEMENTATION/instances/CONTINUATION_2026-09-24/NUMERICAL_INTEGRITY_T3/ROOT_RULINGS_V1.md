@@ -13363,3 +13363,45 @@ RV101's §3.1 found the same at `2033260c57`, and RV101 re-reads the scope at th
 - `result_export` 173 → 177;
 - pytest +23 (the dispatcher test);
 - every other manifest identical.
+
+## RV105 fails B0 as drafted on one local finding; I78 revises; RV101 confirms #1104's head (ROOT, 2026-10-06 UTC)
+
+**RV101's ADDENDUM_02 CONFIRMS #1104's head `d953e12187`** (`f3567235…`; 13/13 OK): 0 BLOCKING, 0 SHOULD-FIX, 4 NOTE.
+- Scope, package truth, Pass B's premise at the head, and both tools all reproduce.
+- **A2-N1:** CHANGE_RECORD §7's items 1–2 still read as open questions. The merge record states that they were ruled.
+- **A2-N2:** two RR headings the package cites reach main with the next records PR.
+- **A2-N3:** "12 receipt fields" should be 13. That is NT-1, already routed to PR-B1.
+- **A2-N4:** the slice's tests have run only on the pre-U8 tree. U8 changed inputs they read (corpus 07l and the L = 0 fixtures). **ROOT examines every T6S-file result in DEC-025 and CI against the expected deltas before merging #1104.**
+
+**RV105's review of B0** (`R/REVIEW_RV105/b0_01/REVIEW.md`, `d4807e9f…`; 9/9 OK) is **FAIL as drafted: 1 BLOCKING, 3 SHOULD-FIX, 11 NOTE.** The repair is local. F0-1 and F0-3 to F0-7 are TRUE, and F0-2 holds under the corrected keying. RV105 agrees with 19 of the 20 decisions, and with decision 1's principle and decider.
+
+**Ruled, B-1 (accepted): T-4 is keyed on the published verdict.**
+- `not_required` ⇔ `numerical_quality.cases[i].solve_quality == checks_passed`.
+- The seed-shape text is struck. It kept W2-published Passed cases (W6, W-C1 / two-body B, one-body A and B) in A, which is F0-1's defect, and contradicts DN §4.3 and RR:2190.
+- B1's three-reader alignment adds RS's `not_required` rule, aligned to PY and TS, with a producer-solved W2-published `not_required` must-pass (W-C2 case B) and a mutation.
+- §1.3, §1.4, F0-2 and decision 1's rationale are restated on this keying.
+
+**Ruled, S-1 to S-3 (accepted):**
+- **S-1:** B1's probe records the ordinary quality of every QUAL §4 witness input (W2 and W2b included) and every `attempted_examples` input before T-4 lands, and re-bases any that become `not_required`.
+- **S-2:** a preparation-stage failure publishes `source_ref: null` and emits no CaseSource (T-7).
+- **S-3:** T-11 defines the record point (the attempt's terminal stage) and drops the claim of monotonicity in start order.
+
+**The notes go into the revision as wording or B1/B3 scope:**
+- **N-1:** count requested cases.
+- **N-2:** state the DN §4.3 exclusion choice for Mechanism, Asymmetric and InvalidInput. I78 recommends; ROOT rules.
+- **N-3:** complete the outcome table.
+- **N-4:** the scope and placement of the receipt-encoding detail, and a base-reader test for several notices.
+- **N-5:** R-b′'s whole-invocation abandonment is recorded as a known B1 limit.
+- **N-6:** state `case.source_ref`, the refused test-hook shape, and keeping shared builds.
+- **N-7:** add milestone corpus bases, or use the L = 0 bases.
+- **N-8:** B3's three-reader G8 widening, and the `reserved_inactive_successors` precedent.
+- **N-9:** a distinct fallback name, not `NotRequired`; reservation rechecks use the full form.
+- **N-10:** owner decision 17 on M is a probable path for B1. §9 carries it as a contingency, and B1's estimate adds B-1 and S-1.
+- **N-11:** the citations are corrected.
+
+**I78 revises** (`R/I78/b0_contract_01/REVISION_01.md`, or a DESIGN v2 beside v1 with v1 kept), and **RV105 confirms**. ROOT then selects the decisions.
+
+**For the owner's information (decision 1), no decision needed:**
+- In the registered dev/test build only, a load case whose ordinary verdict is `checks_passed` will no longer attempt W1 or append a notice.
+- That includes W6's PHYS-R4-geometry input. PHYS-R4's publication and availability are unchanged.
+- Separately, B1 may need the owner's decision on M (decision 17) if multi-case does not fit within today's dense margin.
