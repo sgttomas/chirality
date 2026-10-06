@@ -13033,3 +13033,76 @@ The record is `IMPLEMENTATION/S_I1_MERGE/RECORD.md`, with `_run_records/` and `d
 2. A records-only PR carries this session's records.
 3. U8's PR is next: merge U8 into NUM, then cut.
 4. T3-SI1b becomes ready.
+
+## The records-only PR #1101 and U8's PR #1102 opened; RV102 dispatched (ROOT, 2026-10-06 UTC)
+
+**Records PR [#1101](https://github.com/sgttomas/chirality/pull/1101).** Branch `codex/piping-t3-records-20261006`, one commit `11b2d04f13` on main `75a8c3291f`.
+- It carries NUM's `projects/chirality-piping/execution/` at `4e6c2fcbfe`: 712 added, 3 modified (RR append-only, the work graph, D2 5b.3), 0 deleted, nothing outside `execution/`.
+- **ROOT's screen:** no new machine path or whole-host data. The two RR hits are old lines already on main.
+- **GEN-8 on the exact head:** 1 passed.
+- **Its gates are the records-only set:** GEN-8, the automatic CI, and RV102's review (fresh, `BRIEFS/RV102_RECORDS_PR3_REVIEW.md`).
+- **The merge:** squash with `--match-head-commit`.
+
+**The cleanup after #1100.** `t3_cleanup.py gather` found no stray scratch. `plan` lists 29 caches, 13 tree copies and 2 worktrees (`s-i1`, `main-baseline`), about 50 GB (`WT/tools/cleanup_logs/plan_20261006_si1.json`).
+- **`apply` waits** for an idle host, because the tool refuses while tests run.
+- **RV101's copies and targets are filtered out** while RV101 still reviews.
+- **`main-baseline` is reused** for U8's DEC-025, so it is kept until then.
+
+**U8's PR [#1102](https://github.com/sgttomas/chirality/pull/1102)** (draft) is cut compactly from main, not from the U8 branch, whose history includes NUM's.
+- **The cut:** branch `codex/piping-t3-u8-pr-20261006`, head `61c35f56a8`, one commit on main `75a8c3291f`, carrying the 7 maintained files from `bd6b4be2c3` and the package `IMPLEMENTATION/U8/`. ROOT completed the package's pending rows at the cut.
+- **NUM merged the U8 branch** as `b4140b7645`, so NUM's maintained diff from main is exactly U8's 7 files.
+- **PR-head gates** (`IMPLEMENTATION/U8_MERGE/_run_records/`):
+  - `source_equality.py` 5/5 PASS (|S| = 7);
+  - `check_citations.py` PASS (10 resolved, the `zz_rv93.rs` anchor pinned);
+  - GEN-8 1 passed.
+- **The full-SHA dispatch** is run 37484733643 (`target_base` = `75a8c3291f`).
+- **DEC-025 started** on `61c35f56a8`: the sweep tree checked out at that head, after the S-I1 run's summary JSON was moved out to its run folder; the baseline is `WT/main-baseline`, moved to `75a8c3291f`; one job under the lock.
+- **Before the merge:**
+  - RV97 confirms the head's package and equality;
+  - CI is green;
+  - DEC-025 ends `ALL-DONE` and is clean;
+  - main has not moved.
+- **If #1101 squash-merges first,** #1102 absorbs main. That delta is T3 execution records only, read by no DEC-025 suite beyond the three readers of `REFERENCES/` and `DESIGN_NUMERICS/` (N-12's wording), so DEC-025 carries over by ruling, with RV97 confirming.
+
+**IDs:** RV102 is used. The next unused are **I78 and RV103**.
+
+## RV97 confirms #1102's head; A1-S-1 ruled: U8's package reaches main only with #1102 (ROOT, 2026-10-06 UTC)
+
+**RV97's ADDENDUM_01** (sha256 `4ffc366d…`; 10/10 OK; the sealed SHA256SUMS unchanged) **confirms #1102's head `61c35f56a8`,** 0/1/3.
+- The 7 blobs equal `bd6b4be2c3`'s, and there is no U8 or NUM history.
+- The package is truthful.
+- Both tools reproduce ROOT's records byte for byte.
+- The carry-over premise holds. DEC-025 collects manifests from `core/` and `validation/benchmarks/`, pytest from `tests/` and vitest from `apps/desktop/src/**`, and #1101 touches neither T3 folder that code reads.
+
+**A1-S-1, ruled: U8's package reaches main only with #1102.** #1101 carried I77's draft of `IMPLEMENTATION/U8/`, while #1102 adds the completed version at the same paths.
+- **#1101 gains a commit** removing `IMPLEMENTATION/U8/`. Its new head is `e41566921d`: NUM's tree at `4e6c2fcbfe` minus that folder, 708 added and 3 modified. GEN-8 passes, and RV102 was told of the deliberate exclusion.
+- **The rule for later records PRs:** a product PR's package, while its PR is open, is left out of records-only PRs.
+
+**The notes:**
+- **A1-N-1 and A1-N-2 are applied** in U8's CHANGE_RECORD: main is `75a8c3291f`, including #1100, and the suite runs are credited to I69 and I71. They are on NUM (`57aed58945`) and on #1102, whose **new head is `b18dd4f369`**.
+  - At that head, `source_equality.py` passes 5/5 against NUM `57aed58945`, `check_citations.py` passes, and GEN-8 has 1 passed.
+  - The full-SHA dispatch is run 37486478419.
+- **A1-N-3 is noted:** #1101 also modifies the undertaking's `WORK_GRAPH.md`, outside the T3 folder. No code reads it.
+
+**DEC-025 carries over to `b18dd4f369`.** It is queued on `61c35f56a8`. The heads differ only in two package files (CHANGE_RECORD.md and SHA256SUMS), which no DEC-025 suite reads (N-12's wording). RV97 confirms that delta, together with any main-move carry-over, before the merge.
+
+## RV102 passes #1101; S-1 and S-2 fixed before the merge (ROOT, 2026-10-06 UTC)
+
+**RV102's report** is `R/REVIEW_RV102/records_01/REVIEW.md` (sha256 `4c9b6aef…`; 23/23 OK). **PASS at H2 `e41566921d`** (and at H), 0 BLOCKING, 2 SHOULD-FIX, 6 NOTE.
+- ROOT's screen is confirmed independently.
+- The exclusion of `IMPLEMENTATION/U8/` is confirmed.
+- None of the 13 redacted originals is in the tree.
+- GEN-8 passes, and all four automatic runs on H2 succeeded.
+
+**S-1, fixed: four evidence files were never committed.** `R/REVIEW_RV98/u8_passb_01/evidence/build/{build_inputs,gate_checks_on_i72_outputs,law_outcomes_vs_F,witness_compare}.txt` were ignored by `P/.gitignore`'s `build/` rule. On disk they matched RV98's sums, so ROOT's "47/47" held only on the host.
+- **The repair:** `git add -f` of the four explicit paths. ROOT scanned every record folder of this session for untracked files, and these four were the only ones.
+- **Adopted as a rule:** return verification checks sums against the committed tree (`git ls-files`) as well as the folder on disk.
+
+**S-2, fixed: the work graph's T3 section was stale.** Its Position and Next safe action are rewritten. The Assignment IDs line is corrected (N-1). The rulings in force gain this session's standing rules (N-2). The T3 route row notes S-I1's merge and U8's PR (N-6).
+
+**The notes:**
+- **N-3:** RR records A1-S-1 (U8's package reaches main only with #1102), and the next records PR brings that ruling. The draft's package hashes are in I77's records, and #1102's in `IMPLEMENTATION/U8/` on #1102.
+- **N-4:** the squash body says the PR carries `S_I1_MERGE/` and S-I1's records; `IMPLEMENTATION/S_I1/` is on main through #1100.
+- **N-5:** no action.
+
+**#1101 is re-cut to H3:** NUM's execution tree at this ruling's commit, minus `IMPLEMENTATION/U8/`. RV102 confirms the delta from H2 before the squash.
