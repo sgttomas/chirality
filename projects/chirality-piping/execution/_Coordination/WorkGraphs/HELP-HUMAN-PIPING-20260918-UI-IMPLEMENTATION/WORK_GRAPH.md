@@ -545,17 +545,17 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - the briefs, `RESUME_2026-09-30/BRIEFS/`;
 - the merged milestone, `IMPLEMENTATION/F2A_D1/` and `IMPLEMENTATION/F2A_D1_MERGE/`.
 
-**Position (2026-10-05 UTC):**
+**Position (2026-10-06 UTC):**
 - The F2a D1 milestone is on main (#1082), in the registered dev/test build only. No product caller exists.
-- T3's records through the handoff are on main (#1084, #1088).
-- Nothing is dispatched or running.
-- The integration branch is `codex/piping-numerical-integrity-20260926` (NUM). Its maintained source equals main's, and it carries T3 records not yet on main.
+- T3's records through the handoff are on main (#1084, #1088, #1092).
+- The integration branch is `codex/piping-numerical-integrity-20260926` (NUM). It absorbed main `c1bfc460fc` as `b1e2d7741e`. Its maintained source equals main's; it carries this session's records, which are not yet on main.
+- **Running:** I68 Part 1 (U8's probe), I73 (S-I1) and I74 (the T6 slice plan), dispatched 2026-10-06 (rulings: "Session resumed; main absorbed; U8 and S-I1 cut; …"). All T3 cargo jobs share one host lock, `WT/tools/t3_cargo.sh`.
 
 | Node | Result | Needs | Assignment | State |
 |---|---|---|---|---|
-| T3-U8 | The deferred producer-solved witnesses: RV93 N-5's real-input fallbacks; W-C1, a real-input Native fallback; and the L = 0 base, published if the producer admits it, otherwise deferred to B1 with its cause. Test-only | NUM has absorbed main; a U8 branch from NUM | `BRIEFS/U8_COMMON.md`. I68 Part 1 (the probe), ruled before Part 2; I69–I71 only if L = 0 publishes; I72 Pass B; RV97 reviews; RV98 confirms Pass B. Then the full 40-manifest suite, the freeze, and U8's compact PR from main | READY, not dispatched |
-| T3-SI1 | S-I1 (PLAN §3) | main | I73, reviewed by RV99; its own branch from main and its own PR | READY, runs alongside U8. One cargo job at a time across both |
-| T3-T6S | The T6 successor-output slice plan, which closes activation-checklist item 4 | — | I74; then its implementation, with its own reviewer and PR | READY, runs alongside. The owner pulled it forward |
+| T3-U8 | The deferred producer-solved witnesses: RV93 N-5's real-input fallbacks; W-C1, a real-input Native fallback; and the L = 0 base, published if the producer admits it, otherwise deferred to B1 with its cause. Test-only | NUM has absorbed main; a U8 branch from NUM | `BRIEFS/U8_COMMON.md`. I68 Part 1 (the probe), ruled before Part 2; I69–I71 only if L = 0 publishes; I72 Pass B; RV97 reviews; RV98 confirms Pass B. Then the full 40-manifest suite, the freeze, and U8's compact PR from main. Branch `codex/piping-f2a-u8-20261005` at `b1e2d7741e`, worktree `WT/f2a-u8` | ACTIVE: I68 Part 1 running |
+| T3-SI1 | S-I1 (PLAN §3) | main | I73, reviewed by RV99; its own branch from main and its own PR. Branch `codex/piping-s-i1-20261005` at `c1bfc460fc`, worktree `WT/s-i1` | ACTIVE: I73 running, returns at checkpoint 1. One cargo job at a time across both, by the host lock |
+| T3-T6S | The T6 successor-output slice plan, which closes activation-checklist item 4 | — | I74; then its implementation, with its own reviewer and PR | ACTIVE: I74 planning (read-only). The owner pulled it forward |
 | T3-B0 | F2a breadth: contract and identities, reserving `openpipestress.result_semantics/0.3.0/physics-retained-1` | T3-U8 | PLAN §2 | PLANNED |
 | T3-B1/B6 | Multi-case breadth with W-C2 and D38's pin (cap-growth study early in B1); the reader items. Then PR-B1 | T3-B0 | PLAN §2 | PLANNED |
 | T3-B2/B3/B4 | Combinations, preparation-only and mixed invocations; the exact routes; cap growth (B4) only if ruled. Then PR-B2 | PR-B1 | PLAN §2 | PLANNED |
@@ -603,7 +603,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - RV95 N-6 (at B7).
 
 **Next safe action:**
-1. Verify the host and the heads.
-2. Absorb main into NUM if it moved.
-3. Cut the U8 branch from NUM.
-4. Dispatch I68 Part 1.
+1. Verify each return (I68 Part 1, I73 checkpoint 1, I74's plan) against its records.
+2. Rule on I68 Part 1's outcomes, then continue I68 into Part 2 at the ruled scope.
+3. Rule on I74's decisions; bring owner-facing ones to the owner.
+4. Continue I73 past checkpoint 1; dispatch RV99 on its final return.

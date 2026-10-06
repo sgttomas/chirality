@@ -12300,3 +12300,43 @@ This consolidates long-standing T3 practice: the 2026-10-03 and 2026-10-05 hando
 - **Cleanup** is gather, then plan, then apply ("Stray scratch gathered…").
 
 The work graph's T3 section lists this ruling among the rulings in force, and the T3 steer refers to it.
+
+## Session resumed; main absorbed; U8 and S-I1 cut; I68 Part 1, I73 and I74 dispatched (ROOT, 2026-10-06 UTC)
+
+**The owner's steer** for this session is piping's init prompt with the T3 steer (the form of `HANDOFF_2026-10-05_PROMPT.md`). It continues T3 under the owner's standing delegation ("carry on with T3 in the manner you see fit"): verify the host and heads, absorb main if it moved, start U8 with I68 Part 1 and rule before Part 2, and run S-I1 (I73, reviewed by RV99) and the T6 slice plan (I74) alongside.
+
+**A session fact.** The app opened this session in a separate worktree cut from main, not in NUM. ROOT works on NUM and the T3 worktrees by their paths. Nothing in the records depends on it.
+
+**The host, verified at about 01:05Z:**
+- the memory guard runs (PID 5387, since 2026-09-27);
+- the standing worktrees are `numerics` and `sweep-skewpin` (clean, detached at `e2b83da584`);
+- about 1.1 TiB free; swap 91 MB of 1 GiB used.
+
+**Main had moved,** from NUM's base `0d151c6469` (#1095) to `c1bfc460fc` (#1096, #1097). PLAN §4's dry run:
+- **NUM's side:** 0 files changed since the merge-base. NUM carried no T3 records beyond main (#1092 had carried them).
+- **Main's side:** 201 files, all under `projects/chirality-app-v4/`. They include App v4's own src-tauri `Cargo.toml` and `Cargo.lock`, a separate crate that no piping manifest names.
+- **Flags:** no S file, no crate in PP's closure, neither PP's lock nor a reviewed static. With no piping path changed, the D1 call graph cannot have moved, so G9b's scan and a re-qualification note are not needed.
+- **Merged** as `b1e2d7741e` and pushed. NUM's tree equals main's.
+
+**Worktrees for this round:**
+- **U8:** `WT/f2a-u8`, branch `codex/piping-f2a-u8-20261005`, at `b1e2d7741e` (NUM).
+- **S-I1:** `WT/s-i1`, branch `codex/piping-s-i1-20261005`, at `c1bfc460fc` (main).
+
+**One cargo job at a time is now enforced by a lock,** not coordinated by hand. `WT/tools/t3_cargo.sh <cargo args>` refuses when the guard is not running. Otherwise it holds `WT/guard/cargo_job.lock` through `/usr/bin/lockf` while cargo runs, and logs WAIT, START and END to `WT/guard/cargo_jobs.log`. A copy with the root as a variable is in `IMPLEMENTATION/SESSION_2026-10-06/host_tools/`. Every T3 cargo job, ROOT's included, goes through it. ROOT runs DEC-025 under the same lock, as `/usr/bin/lockf -k WT/guard/cargo_job.lock run_dec025.sh …`, so that no TASK build overlaps a sweep.
+
+**Dispatched,** as fresh instances:
+- **The mechanism:** the session harness's own subagents (D-GOV-35 harness-native descendants): general-purpose, fresh context with no fork, in the background.
+- **Parent:** this ROOT.
+- **Model:** inherited, with no model-diversity claim.
+- **Enforcement:** prompt scopes on a shared host, not a per-agent sandbox.
+
+| ID | Brief (sha256) | Scope this dispatch | Records |
+|---|---|---|---|
+| I68 | `U8_COMMON.md` (`3146c3e6…`), `I68_U8_PROBE_AND_WITNESSES.md` (`5ef6f76a…`) | Part 1 only, the probe, on a `git archive` of `b1e2d7741e`. Part 2 waits for ROOT's ruling | `R/I68/u8_probe_01/` |
+| I73 | `I73_S_I1.md` (`9e40b13a…`) | S-I1 in `WT/s-i1`. Returns at checkpoint 1 (the evaluator and its point-mode differential), then at the end | `R/I73/s_i1_01/` |
+| I74 | `I74_T6_SUCCESSOR_SLICE_PLAN.md` (`79602972…`) | Planning only, read-only at NUM `b1e2d7741e` | `R/I74/t6_slice_plan_01/` |
+
+**Next:**
+- RV99 (`2a63fae8…`) is dispatched once I73's final return is verified.
+- I69–I72, RV97 and RV98 follow ROOT's ruling on I68 Part 1.
+- The next unused IDs are still **I75 and RV101**.
