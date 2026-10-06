@@ -12340,3 +12340,53 @@ The work graph's T3 section lists this ruling among the rulings in force, and th
 - RV99 (`2a63fae8…`) is dispatched once I73's final return is verified.
 - I69–I72, RV97 and RV98 follow ROOT's ruling on I68 Part 1.
 - The next unused IDs are still **I75 and RV101**.
+
+## I68's probe verified: L = 0 publishes; W-C1 is Ceiling; F-1 routed to B0 and B1; Part 2 granted (ROOT, 2026-10-06 UTC)
+
+**The return:** `R/I68/u8_probe_01/PROBE.md` (sha256 `ba5f7df6…`). ROOT checked:
+- `SHA256SUMS` (`7a8751f7…`): 22 of 22 OK, covering every file in the folder;
+- no machine paths and no whole-host data;
+- `WT/f2a-u8` clean; the cargo log shows I68's jobs serialized with I73's under the lock; the guard killed nothing.
+
+ROOT also checked F-1 against the code: `result_export/src/retained_precision.rs:3532` and `PP/src/lib.rs:4435–4463` at `b1e2d7741e`.
+
+**The build was Registered.** The milestone control reproduced U1's pinned receipts (`efc1a39b…`, `3e26499f…`) and RV93's dense bytes, and two probe runs were identical.
+
+**Outcomes** (both modes; each admitted, `ONE_RUN_THROUGH_G_C`, no hooks armed):
+
+| Input | Outcome |
+|---|---|
+| `first_load_only` | Candidate: the certificate refuses five torsional-shear rows, `SharperExact`. One notice; bytes = `with_notice` |
+| `tiny_spring` | Preparation: the ordinary run blocks (`MODEL_INCOMPLETE`), so preparation's `MECHANICS_SOLVED` requirement fails. One notice; bytes = `with_notice` |
+| W6 | Native, **`UnresolvedReason::Ceiling`** (p128 and p256 stop rule, p512 charge, p1024 verification solved). This establishes W-C1's reason |
+| L = 0 | **A successor in both modes.** All three readers PASS with the invocation. Body 1's 15 rows are 6 input-derived plus 9 exact zeros; coverage `stop [F,F,F,F]`, `has_data` false. Body 0 is bit-identical to the milestone |
+| Two-body pair | Case A: a successor in sparse; **in dense, a Precommit G8 fallback (F-1).** Case B: Native, Ceiling |
+| One-body pair | Case A: Candidate (`Native(Alpha)` at the proof's start). Not viable for W-C2. Case B: Native, Ceiling |
+
+**F-1, ruled: a Rust reader defect against OQ5, routed to B0 and B1.**
+- **The contract:** OQ5 (RR:1285) approved that "the DEC-050/053 observation lanes do not run at b ≠ 0, and the mode row's observation fields are published as not observed, disclosed". F1b implements that (`PP/src/lib.rs:4435–4463`). So a dense, range-scaled case legitimately has no parity row. The parity row is `non_quantity` in D2's table, which places no count on it.
+- **The Rust precommit reader** (`retained_precision.rs:3532`) requires exactly one parity row for every selected dense case. That is stricter than the contract. TS checks only the mode row, and Python checks neither, so the three G8s diverge on a faithful base, and the corpus does not pin the case.
+- **The effect today is fail-safe.** A dense, range-scaled D1 input whose W1 work selects falls back at Precommit, publishing the plain bytes plus one notice, so its successor is lost. The milestone is in the registered dev/test build only, with no product caller.
+- **The route:**
+  - **B0** states the parity-row rule in contract text, aligned to OQ5 and the mode row's observation fields;
+  - **B1** implements it in all three readers, with a shared corpus case (the dense two-body base) and a mutation. It is re-qualified once, together with B1's D38 reader change (RR:10474).
+  - **U8 is not changed.** It stays test-only, and none of its witnesses reaches a dense, range-scaled precommit.
+- **Not owner-held.** It changes no public meaning, because successors are not public before B8. B8's activation follows B1, so the repair precedes any public successor. The owner is informed.
+
+**W-C2 keeps the two-body model.** Case A publishes in sparse, and the dense dump passes Python and TS. Dense case A is expected to publish once F-1's repair lands; B1 establishes that. The one-body pair is retired.
+
+**W-C1 uses two-body case B,** written inline, as PLAN §1.2 prefers, so that U8 commits the input B1 needs. F-1 affects only case A in dense. Case B ends Native with Ceiling in both modes and never reaches precommit. W6's input stays I65's.
+
+**`tiny_spring`'s cause is recorded** as an unsolved ordinary run, not a section-preparation refusal. Its committed cause assertion (Preparation) is unchanged.
+
+**I68 Part 2 is granted in full,** within the brief's fence:
+- `u8_real_input_fallbacks_append_one_notice`, over `first_load_only`, `tiny_spring` and two-body case B;
+- `u8_l0_isolated_node_publishes_pinned_successor`, with the probe's L = 0 derivation (N2 at (3, 0, 0); `rigid:N2` restraining six DOFs; no family);
+- the D-U6-5 equality test;
+- the two new fixtures, `P/fixtures/results/retained_precision_l0_successor_{sparse_interactive,dense_scrutiny}.json`. Their document ids are `u8_l0_isolated_node_<mode>`, following U1's `u1_milestone_<mode>`.
+
+Body 0's bit identity with the milestone is asserted as observed, and the unchanged U5 criterion check stays.
+
+**Since L = 0 publishes,** U8-2 (corpus 07l) and U8-3 (Rust and TS alignment) proceed after Part 2, then U8-4 (Pass B), with RV97 and RV98.
+
+**Host.** This session's file-edit tool was blocked outside its own worktree. The session has since been granted folder access to `WT`, so TASKs may use their file tools inside their fences there. I68's Bash writes stayed within its assigned locations.
