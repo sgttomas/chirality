@@ -13309,3 +13309,25 @@ The record is `IMPLEMENTATION/S_I1_MERGE/RECORD.md`, with `_run_records/` and `d
 **RV104** (fresh) reviews SI1b's complete diff, by `BRIEFS/RV104_SI1B_REVIEW.md`. The branch is pushed by ROOT. **SI1b's PR** follows T6S's merge to main (NUM sequencing). It takes the full product gate set; Pass B does not apply, since the rules crates are outside PP's closure (I61 PLAN §3).
 
 **IDs:** RV104 is used. The next unused are **I81 and RV105**.
+
+## I78's B0 design returned and verified; RV105 reviews it before any selection (ROOT, 2026-10-06 UTC)
+
+**I78's return is verified:** `R/I78/b0_contract_01/DESIGN.md` (`25a07a66…`; SHA256SUMS 1/1 OK; no machine paths). It was written as documents only, at NUM `ecb541d63f`.
+
+**Its findings that change B1's work:**
+- **T-4, a per-case trigger.** A `CHECKS_PASSED` case is `not_required` and is not attempted. Without it, one passed case that selects would make precommit refuse a whole multi-case successor. At c = 1 it changes D1's behaviour for `CHECKS_PASSED` inputs, including U8's W-C1 and QUAL §4's W6 stack witness.
+- **W-C2 needs three cases.** Case B is `CHECKS_PASSED`, so a case C must be established by a B1 probe, with a stop rule.
+- **F-1's briefed biconditional can refuse a valid dense successor.** The parity row comes from a separate `solve_dense` lane that fails silently. Text B keys on `w2` instead.
+- **Further G8 divergences among the three readers.**
+
+**I78's twenty decisions:** sixteen for ROOT, and four owner-held items carried (M above 3.75 GiB, R-2, native-app witnesses, observation framing unchanged). B0 changes neither the breadth order nor the owner's F2a order.
+
+**Nothing is selected yet.** The brief requires an independent review first, and T-4 changes an accepted witness's behaviour. **RV105** (fresh; documents only) reviews it by `BRIEFS/RV105_B0_REVIEW.md`. That covers:
+- each finding against the code and records;
+- whether T-4 is the accepted design (DN §4.3, C1:101, C2:164, D2 §4.9.2) or a change to public meaning;
+- the completeness of T-1 to T-13;
+- the deciders of all twenty decisions.
+
+ROOT then selects, and puts anything owner-held to the owner.
+
+**IDs:** RV105 is used. The next unused are **I81 and RV106**.
