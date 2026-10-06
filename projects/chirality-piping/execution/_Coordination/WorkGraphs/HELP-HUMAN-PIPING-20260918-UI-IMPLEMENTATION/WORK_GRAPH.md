@@ -553,7 +553,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 
 | Node | Result | Needs | Assignment | State |
 |---|---|---|---|---|
-| T3-U8 | The deferred producer-solved witnesses: RV93 N-5's real-input fallbacks; W-C1, a real-input Native fallback; and the L = 0 base, published if the producer admits it, otherwise deferred to B1 with its cause. Test-only | NUM has absorbed main; a U8 branch from NUM | `BRIEFS/U8_COMMON.md`. I68 Part 1 (the probe), ruled before Part 2; I69–I71 only if L = 0 publishes; I72 Pass B; RV97 reviews; RV98 confirms Pass B. Then the full 40-manifest suite, the freeze, and U8's compact PR from main. Branch `codex/piping-f2a-u8-20261005` at `b1e2d7741e`, worktree `WT/f2a-u8` | ACTIVE: U8 complete at `bd6b4be2c3` (U8-1 to U8-3). RV97 PASS (both rounds); Pass B (I72) confirmed by RV98. The full 40-manifest suite PASS (38/40 identical to F′; only added tests). PR package ready (`IMPLEMENTATION/U8/`, I77). The PR follows S-I1's merge (merge order S-I1, U8, T6S) |
+| T3-U8 | The deferred producer-solved witnesses: RV93 N-5's real-input fallbacks; W-C1, a real-input Native fallback; and the L = 0 base, published if the producer admits it, otherwise deferred to B1 with its cause. Test-only | NUM has absorbed main; a U8 branch from NUM | `BRIEFS/U8_COMMON.md`. I68 Part 1 (the probe), ruled before Part 2; I69–I71 only if L = 0 publishes; I72 Pass B; RV97 reviews; RV98 confirms Pass B. Then the full 40-manifest suite, the freeze, and U8's compact PR from main. Branch `codex/piping-f2a-u8-20261005` at `b1e2d7741e`, worktree `WT/f2a-u8` | ACTIVE: U8 complete at `bd6b4be2c3` (U8-1 to U8-3). RV97 PASS (both rounds); Pass B (I72) confirmed by RV98. The full 40-manifest suite PASS. PR [#1102](https://github.com/sgttomas/chirality/pull/1102) (draft) cut from main at `61c35f56a8`; source equality, citations and GEN-8 PASS; CI and DEC-025 running; RV97 confirming the head |
 | T3-SI1 | S-I1 (PLAN §3) | main | I73, reviewed by RV99; its own branch from main and its own PR. Branch `codex/piping-s-i1-20261005` at `c1bfc460fc`, worktree `WT/s-i1` | **MERGED** to main as [#1100](https://github.com/sgttomas/chirality/pull/1100) (`75a8c3291f`, 2026-10-06). Record: `IMPLEMENTATION/S_I1_MERGE/` |
 | T3-SI1b | The point-path panic repair in `expression_evaluator` (an overflowing same-dimension quotient, a NaN interpolation or step argument): a blocking finding instead of a panic. Found by I73 | T3-SI1 merged (done) | A later I-ID, its own review and PR | READY |
 | T3-T6S | The T6 successor-output slice plan, which closes activation-checklist item 4 | — | I74; then its implementation, with its own reviewer and PR | ACTIVE: I74's plan ruled (14 decisions). T6S complete on its branch: `055ee0c0bc` (I76) and `2033260c57` (I75). RV101 reviewing `c1bfc460fc..2033260c57`; then gate items 1–6 in `WT/t6-outputs`, branch `codex/piping-t6-successor-outputs-20261005` at `c1bfc460fc`; RV101 reviews. The owner pulled it forward |
@@ -586,7 +586,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **2026-10-04:** G10 stays outstanding on the owner's Mac.
 - **Earlier:** T1 option (a); D-3 = S1; D-6 = (a); M selected under D-7.
 
-**Assignment IDs.** I68–I74 and RV97–RV99 are prepared for fresh instances. I68, I73, I74, I75, I76 and RV101 are dispatched (2026-10-06). I77 (U8's PR package) is dispatched too. The next unused are **I78 and RV102**.
+**Assignment IDs.** I68–I74 and RV97–RV99 are prepared for fresh instances. I68, I73, I74, I75, I76 and RV101 are dispatched (2026-10-06). I77 (U8's PR package) and RV102 (records PR #1101) are dispatched too. The next unused are **I78 and RV103**.
 
 **T3 rulings in force** (section headings in `ROOT_RULINGS_V1.md`):
 - **T3's gate set and Git rules for product and records PRs, and verifying returns:** "T3's gate set and Git rules, consolidated after the handoff was made ephemeral";
@@ -613,5 +613,5 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 1. Verify each return (RV99's confirmation; RV101) against its records.
 2. U8: on the full suite and I77's package, merge U8 into NUM and cut its PR after S-I1's merges.
 3. On RV101's verdict: repairs and confirmation, then T6S's PR and its gates.
-4. S-I1 merged (#1100). Records-only PR next; then U8's PR on the same gate path; T3-SI1b ready.
+4. S-I1 merged (#1100). Records-only PR #1101 under RV102's review; U8's PR #1102 under its gates; T3-SI1b ready; post-merge cleanup `apply` when the host is idle.
 5. Absorb main (#1098) into NUM at the next records commit.

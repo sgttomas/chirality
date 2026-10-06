@@ -13033,3 +13033,35 @@ The record is `IMPLEMENTATION/S_I1_MERGE/RECORD.md`, with `_run_records/` and `d
 2. A records-only PR carries this session's records.
 3. U8's PR is next: merge U8 into NUM, then cut.
 4. T3-SI1b becomes ready.
+
+## The records-only PR #1101 and U8's PR #1102 opened; RV102 dispatched (ROOT, 2026-10-06 UTC)
+
+**Records PR [#1101](https://github.com/sgttomas/chirality/pull/1101).** Branch `codex/piping-t3-records-20261006`, one commit `11b2d04f13` on main `75a8c3291f`.
+- It carries NUM's `projects/chirality-piping/execution/` at `4e6c2fcbfe`: 712 added, 3 modified (RR append-only, the work graph, D2 5b.3), 0 deleted, nothing outside `execution/`.
+- **ROOT's screen:** no new machine path or whole-host data. The two RR hits are old lines already on main.
+- **GEN-8 on the exact head:** 1 passed.
+- **Its gates are the records-only set:** GEN-8, the automatic CI, and RV102's review (fresh, `BRIEFS/RV102_RECORDS_PR3_REVIEW.md`).
+- **The merge:** squash with `--match-head-commit`.
+
+**The cleanup after #1100.** `t3_cleanup.py gather` found no stray scratch. `plan` lists 29 caches, 13 tree copies and 2 worktrees (`s-i1`, `main-baseline`), about 50 GB (`WT/tools/cleanup_logs/plan_20261006_si1.json`).
+- **`apply` waits** for an idle host, because the tool refuses while tests run.
+- **RV101's copies and targets are filtered out** while RV101 still reviews.
+- **`main-baseline` is reused** for U8's DEC-025, so it is kept until then.
+
+**U8's PR [#1102](https://github.com/sgttomas/chirality/pull/1102)** (draft) is cut compactly from main, not from the U8 branch, whose history includes NUM's.
+- **The cut:** branch `codex/piping-t3-u8-pr-20261006`, head `61c35f56a8`, one commit on main `75a8c3291f`, carrying the 7 maintained files from `bd6b4be2c3` and the package `IMPLEMENTATION/U8/`. ROOT completed the package's pending rows at the cut.
+- **NUM merged the U8 branch** as `b4140b7645`, so NUM's maintained diff from main is exactly U8's 7 files.
+- **PR-head gates** (`IMPLEMENTATION/U8_MERGE/_run_records/`):
+  - `source_equality.py` 5/5 PASS (|S| = 7);
+  - `check_citations.py` PASS (10 resolved, the `zz_rv93.rs` anchor pinned);
+  - GEN-8 1 passed.
+- **The full-SHA dispatch** is run 37484733643 (`target_base` = `75a8c3291f`).
+- **DEC-025 started** on `61c35f56a8`: the sweep tree checked out at that head, after the S-I1 run's summary JSON was moved out to its run folder; the baseline is `WT/main-baseline`, moved to `75a8c3291f`; one job under the lock.
+- **Before the merge:**
+  - RV97 confirms the head's package and equality;
+  - CI is green;
+  - DEC-025 ends `ALL-DONE` and is clean;
+  - main has not moved.
+- **If #1101 squash-merges first,** #1102 absorbs main. That delta is T3 execution records only, read by no DEC-025 suite beyond the three readers of `REFERENCES/` and `DESIGN_NUMERICS/` (N-12's wording), so DEC-025 carries over by ruling, with RV97 confirming.
+
+**IDs:** RV102 is used. The next unused are **I78 and RV103**.
