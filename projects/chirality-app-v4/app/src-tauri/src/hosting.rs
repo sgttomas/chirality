@@ -25,6 +25,40 @@
 #[path = "attachment_custody.rs"]
 pub mod attachment_custody;
 use attachment_custody::AttachmentCustody;
+#[path = "auth_rpc.rs"]
+pub(crate) mod auth_rpc;
+#[path = "oauth_control.rs"]
+mod oauth_control;
+// Host owns these pins; no Serde/Debug/Clone or JSON constructor.
+struct LoginSourcePin {
+    generation: Value,
+    rpc_id: Value,
+    request_ref: String,
+    mode: oauth_control::OAuthMode,
+}
+struct EventPin { generation: Value, receipt_position: u64 }
+struct OAuthState {
+    pin: LoginSourcePin,
+    controller: oauth_control::Controller,
+    cancel_request: Option<Value>,
+    cancel_finish: Option<oauth_control::CancelFinish>,
+    last_event: Option<oauth_control::Observation>,
+    start_rejected: bool,
+}
+pub(crate) enum NativeLoginMode { Browser, DeviceCode }
+pub(crate) struct OAuthLogin { source: SourceRequest }
+impl OAuthLogin { pub(crate) fn source(&self)->&SourceRequest { &self.source } }
+pub(crate) enum NativeLoginView<'a> {
+    Browser { auth_url: &'a str },
+    Device { verification_url: &'a str, user_code: &'a str },
+}
+pub(crate) enum NativeLoginPresentation { Presented, Dismissed, Unavailable }
+pub(crate) struct NativeLoginLease(oauth_control::RevocationLease);
+impl NativeLoginLease {
+    pub(crate) fn is_active(&self)->bool {self.0.is_active()}
+    pub(crate) fn revoked(&self,wait:Duration)->bool {self.0.wait(wait).is_some()||!self.0.is_active()}
+}
+
 use crate::attachments::{self, PreparedAttachmentList, SelectedTextAttachment};
 use crate::native_requests::RequestRegister;
 use crate::native_history::{HistoryQuery, NativeHistory};
@@ -51,6 +85,7 @@ pub const GENERATED_OUTPUT_IDENTITY: &str =
 const CREDENTIAL_VARS: &[&str] = &[
     "OPENAI_API_KEY",
     "CODEX_API_KEY",
+    "CODEX_ACCESS_TOKEN",
     "OPENAI_ORG_ID",
     "OPENAI_PROJECT_ID",
     "AZURE_OPENAI_API_KEY",
@@ -117,10 +152,13 @@ struct Inner {
     server_requests: RequestRegister,
     recovery: Option<Arc<Mutex<RecoveryLedger>>>,
     recovery_snapshot: Option<Value>,
-    pending_recovery: VecDeque<Value>,
+    pending_recovery: Arc<CapturedRecoveryQueue>,
     recovery_projection_errors: Vec<Value>,
-    submission_contexts: Vec<Value>,
+    account_channels: Vec<Value>,
+    oauth: HashMap<String,OAuthState>,
     recovery_error: Option<String>,
+    recovery_initialization_error:Option<String>,
+    recovery_path:Option<PathBuf>,
     next_id: u64,
     send_position: u64,
     version_identity: Option<Value>,
@@ -158,6 +196,9 @@ struct SourceEvidence {
     response_position: Option<u64>,
     observation_base: Value,
     source_limit: Option<String>,
+    auth_projection: bool,
+    auth_policy_standing: Option<String>,
+    auth_response_shape: Option<bool>,
 }
 impl SourceRequest {
     pub fn generation(&self) -> &Value { &self.generation }
@@ -170,7 +211,7 @@ impl SourceRequest {
         let Some(e) = i.source_requests.get(&self.frame["id"].to_string()) else { return json!({"outcome":"source-record-unavailable"}); };
         let record = &i.client_requests[e.index];
         json!({"generation":self.generation,"home":self.generation["home"],"requestIdentity":self.frame["id"],"requestRef":self.request_ref,
-            "attemptedFrame":self.frame,"sentFrame":if e.written {Some(&self.frame)}else{None},"writeAttemptInProgress":e.write_attempt_in_progress,"effectiveWriteOutcome":if e.write_attempt_in_progress {"unknown while actual write is in progress"}else if e.written{"complete source write observed"}else{"no complete source write observed"},"lastClientObservation":record,"writeResult":if e.write_attempt_in_progress {"write-in-progress"}else if e.written {"written"}else if e.write_error.is_some(){"write-failed"}else if record["writeResult"]=="not-attempted"{"last-prewrite-observation"}else{"reserved/no complete write observation"},"actualWriteAttemptObserved":e.attempt_position.is_some(),"noAttemptCause":if e.attempt_position.is_none(){e.source_limit.as_ref()}else{None},"canonicalProjectionAvailable":record.is_object()&&e.source_limit.is_none()&&!(e.write_error.is_some()&&e.response.is_some()),"sourceLimit":e.source_limit,
+            "frameEvidence":if e.auth_projection{"explicit redacted account projection; not original wire bytes"}else{"original source frame"},"sensitiveFieldsRedacted":e.auth_projection,"authPolicyStanding":e.auth_policy_standing,"authResponseShapeValid":e.auth_response_shape,"attemptedFrame":self.frame,"sentFrame":if e.written {Some(&self.frame)}else{None},"writeAttemptInProgress":e.write_attempt_in_progress,"effectiveWriteOutcome":if e.write_attempt_in_progress {"unknown while actual write is in progress"}else if e.written{"complete source write observed"}else{"no complete source write observed"},"lastClientObservation":record,"writeResult":if e.write_attempt_in_progress {"write-in-progress"}else if e.written {"written"}else if e.write_error.is_some(){"write-failed"}else if record["writeResult"]=="not-attempted"{"last-prewrite-observation"}else{"reserved/no complete write observation"},"actualWriteAttemptObserved":e.attempt_position.is_some(),"noAttemptCause":if e.attempt_position.is_none(){e.source_limit.as_ref()}else{None},"canonicalProjectionAvailable":record.is_object()&&e.source_limit.is_none()&&!(e.write_error.is_some()&&e.response.is_some()),"sourceLimit":e.source_limit,
             "outcome":if e.write_attempt_in_progress{json!("unknown/in-progress")}else if e.write_error.is_some()&&e.response.is_some(){json!("native response and failed write both observed; canonical projection unavailable")}else if e.written&&e.response.is_some()&&e.source_limit.is_some(){json!(if e.response.as_ref().unwrap().get("result").is_some(){"response-observed-result"}else{"response-observed-error"})}else if record.is_object(){record["outcome"].clone()}else if e.written&&e.response.is_some(){json!(if e.response.as_ref().unwrap().get("result").is_some(){"response-observed-result"}else{"response-observed-error"})}else{json!("reserved/canonical projection unavailable; outcome unknown")},
             "waitingEnded":record.get("waitingEnded").and_then(Value::as_bool).or_else(||e.observation_base.get("waitingEnded").and_then(Value::as_bool)).unwrap_or(false),"response":e.response,"writeError":e.write_error,
             "sourceCurrent":i.generation==self.generation&&i.state=="ready"&&!i.server_requests.is_closed(&self.generation)})
@@ -206,8 +247,69 @@ impl PreparedAttachmentDispatch {
 
 struct BoundPipe { file: std::fs::File, generation: Value, epoch: u64, identity: (u64,u64) }
 
+/// Genuine App-lifetime authority adopted from an actual Host, never JSON.
+/// The ledger and append lock are shared; serialization is not human chronology.
+#[derive(Default)]
+struct CapturedRecoveryQueue { facts:Mutex<VecDeque<Value>>, limit:Mutex<Option<String>> }
+
+struct AppRecoverySource { inner:Weak<(Mutex<Inner>,Condvar)>, queue:Arc<CapturedRecoveryQueue> }
+
+pub struct AppRuntimeCustody {
+    session:String,
+    ledger:Option<Arc<Mutex<RecoveryLedger>>>,
+    writer:Arc<Mutex<()>>,
+    counters:Arc<Mutex<HashMap<String,u64>>>,
+    contexts:Arc<Mutex<Vec<Value>>>,
+    sources:Mutex<Vec<AppRecoverySource>>,
+    initial_limit:Option<String>,
+    recovery_path:Option<PathBuf>,
+    end_observation:Mutex<Option<Value>>,
+}
+impl AppRuntimeCustody {
+    pub fn snapshot(&self)->Value {
+        let recovery=self.ledger.as_ref().map(|ledger|ledger.lock().unwrap().snapshot());
+        json!({"appSession":self.session,"recovery":recovery,"limit":self.initial_limit,"sessionEndObservation":*self.end_observation.lock().unwrap(),"pendingSourceObservations":self.sources.lock().unwrap().iter().map(|s|json!({"entries":s.queue.facts.lock().unwrap().iter().cloned().collect::<Vec<_>>(),"limit":*s.queue.limit.lock().unwrap()})).collect::<Vec<_>>(),"standing":"actual App custody; pointer-only metadata, not native live proof or capture chronology"})
+    }
+    /// Validate a prospective complete Root binding without replacing the
+    /// healthy current ledger/binding or creating any native home/resource.
+    pub fn preflight_native_namespaces(&self,binding:&Arc<attachment_custody::NativeNamespaceBindings>)->Result<Value,String>{
+        let _writer=self.writer.lock().unwrap();self.preflight_native_namespaces_owned(binding)
+    }
+    fn preflight_native_namespaces_owned(&self,binding:&Arc<attachment_custody::NativeNamespaceBindings>)->Result<Value,String>{
+        let path=self.recovery_path.as_ref().ok_or("actual configured REC leaf is absent; no path default or H5 resolver")?;binding.guard_domains(&[path.clone()])?;
+        for source in self.sources.lock().unwrap().iter(){if let Some(inner)=source.inner.upgrade(){let home=inner.0.lock().unwrap().home.clone();if !home.is_empty(){binding.contains_home_id(&home)?;}}}
+        RecoveryLedger::preflight_path(path,binding)?;
+        Ok(json!({"state":"prospective REC leaf/native namespace metadata disjoint","binding":binding.snapshot(),"standing":"preflight only; no native creation/adoption or future use guarantee"}))
+    }
+    pub fn bind_native_namespaces(&self,binding:Arc<attachment_custody::NativeNamespaceBindings>)->Result<Value,String>{
+        let _writer=self.writer.lock().unwrap();let result=self.preflight_native_namespaces_owned(&binding)?;
+        if let Some(ledger)=&self.ledger{ledger.lock().unwrap().bind_namespaces(binding)?;}else{return Ok(json!({"preflight":result,"ledgerUnavailable":true,"bindingCommitted":false,"limit":self.initial_limit,"standing":"namespace geometry checked; original REC unavailable, no new ledger opened or durable binding claimed"}));}Ok(result)
+    }
+    pub fn flush_captured_recovery(&self)->Value{
+        let _writer=match self.writer.try_lock(){Ok(writer)=>writer,Err(_)=>return json!({"standing":"App writer busy; captured pointer facts remain owned/unpersisted"})};
+        let sources=self.sources.lock().unwrap().iter().map(|s|(s.inner.clone(),Arc::clone(&s.queue))).collect::<Vec<_>>();
+        json!({"sources":sources.iter().map(|(source,queue)|Host::drain_recovery_queue(source,queue,self.ledger.as_ref())).collect::<Vec<_>>(),"standing":"per-source order preserved; append interleaving is not global capture chronology"})
+    }
+    /// Called by Root only on actual App termination after owned-home accounting.
+    /// This records metadata; it does not stop native sources or prove a human act.
+    pub fn record_app_session_end(&self,stop_requests:&[Value])->Result<Value,String>{
+        let _writer=self.writer.lock().unwrap();let mut ended=self.end_observation.lock().unwrap();if let Some(observed)=ended.as_ref(){return Ok(observed.clone());}
+        let entry=RecoveryLedger::session_end_entry(&self.session,stop_requests)?;
+        // Keep each source's captured order; this chosen append interleaving is
+        // deliberately not asserted to be a cross-home capture chronology.
+        let sources=self.sources.lock().unwrap().iter().map(|s|(s.inner.clone(),Arc::clone(&s.queue))).collect::<Vec<_>>();
+        for (source,queue) in sources{Host::drain_recovery_queue(&source,&queue,self.ledger.as_ref());}
+        let result=self.ledger.as_ref().map(|ledger|ledger.lock().unwrap().append(entry.clone()));
+        let observation=match result{Some(Ok(()))=>json!({"entry":entry,"write":"confirmed","pendingPointerFacts":self.sources.lock().unwrap().iter().map(|s|s.queue.facts.lock().unwrap().len()).sum::<usize>(),"standing":"App end metadata only; pending pointer facts/errors remain App-owned; no native process/child termination inferred"}),Some(Err(error))=>json!({"entry":entry,"write":"unknown","limit":error,"standing":"one append attempt; not retried, no confirmed end record"}),None=>json!({"entry":entry,"write":"not-attempted","limit":"ledger unavailable; App end observed in memory only"})};
+        *ended=Some(observation.clone());Ok(observation)
+    }
+}
+
 pub struct Host {
-    recovery_writer: Mutex<()>,
+    recovery_writer: Arc<Mutex<()>>,
+    runtime_custody:Mutex<Option<Arc<AppRuntimeCustody>>>,
+    spawn_counters:Arc<Mutex<HashMap<String,u64>>>,
+    submission_contexts:Arc<Mutex<Vec<Value>>>,
     frame_write: Mutex<()>,
     attachment_gate: Mutex<()>,
     inner: Arc<(Mutex<Inner>, Condvar)>,
@@ -236,7 +338,10 @@ impl Host {
             ..Default::default()
         };
         Host {
-            recovery_writer: Mutex::new(()),
+            recovery_writer: Arc::new(Mutex::new(())),
+            runtime_custody:Mutex::new(None),
+            spawn_counters:Arc::new(Mutex::new(HashMap::new())),
+            submission_contexts:Arc::new(Mutex::new(Vec::new())),
             frame_write: Mutex::new(()),
             attachment_gate: Mutex::new(()),
             inner: Arc::new((Mutex::new(inner), Condvar::new())),
@@ -299,8 +404,8 @@ impl Host {
             "reservedNativeRequests": i.source_requests.values().filter(|e|!i.client_requests[e.index].is_object()).map(|e|json!({"generation":e.request.generation,"requestIdentity":e.request.request_id(),"method":e.request.frame["method"],"effectiveOutcome":"unknown/reserved; no complete write proof","writeAttemptInProgress":e.write_attempt_in_progress,"waitingEnded":e.observation_base.get("waitingEnded").and_then(Value::as_bool).unwrap_or(false)})).collect::<Vec<_>>(),
             "inFlightNativeWrites": i.source_requests.values().filter(|e|e.write_attempt_in_progress).map(|e|json!({"generation":e.request.generation,"requestIdentity":e.request.request_id(),"attemptPosition":e.attempt_position,"effectiveOutcome":"unknown/in-progress","lastClientObservationOnly":true})).collect::<Vec<_>>(),
             "serverRequests": i.server_requests.records(),
-            "recovery": i.recovery_snapshot,"recoveryPendingObservations":i.pending_recovery,"recoveryProjectionLimits":i.recovery_projection_errors,
-            "recoveryPersistenceError": i.recovery_error,
+            "recovery": i.recovery_snapshot,"recoveryPendingObservations":i.pending_recovery.facts.lock().unwrap().iter().cloned().collect::<Vec<_>>(),"recoveryProjectionLimits":i.recovery_projection_errors,
+            "recoveryPersistenceError": i.recovery_error,"recoveryInitializationError":i.recovery_initialization_error,
             "journal": i.journal,
             "malformedFrames": i.malformed,
             "threads": i.threads,
@@ -314,10 +419,38 @@ impl Host {
         })
     }
 
+    /// Adopt actual original App session/ledger authority, including unavailable
+    /// ledger standing. No second ledger/session is opened for another home.
+    pub fn app_runtime_custody(&self)->Result<Arc<AppRuntimeCustody>,String>{
+        if let Some(custody)=self.runtime_custody.lock().unwrap().as_ref(){return Ok(Arc::clone(custody));}
+        let _writer=self.recovery_writer.lock().unwrap();let mut cached=self.runtime_custody.lock().unwrap();if let Some(custody)=cached.as_ref(){return Ok(Arc::clone(custody));}
+        let(session,ledger,limit,recovery_path)={let mut i=self.inner.0.lock().unwrap();if !i.generation.is_null()&&(i.app_session.is_empty()||i.generation["appSession"]!=i.app_session||i.generation["home"]!=i.home||i.generation["spawnCounter"]!=i.spawn_counter){return Err("actual App session/home/counter fields disagree with generation; no JSON custody reconstruction".into());}if i.app_session.is_empty(){i.app_session=opaque_id("app-session:")?;}
+            if !i.home.is_empty()&&i.spawn_counter>0{let mut counters=self.spawn_counters.lock().unwrap();let current=counters.entry(i.home.clone()).or_default();*current=(*current).max(i.spawn_counter);}
+            (i.app_session.clone(),i.recovery.clone(),i.recovery_initialization_error.clone().or_else(||i.recovery_error.clone()).or_else(||if i.recovery.is_none(){Some("original App ledger unavailable; pointer history memory-only/unverified".into())}else{None}),i.recovery_path.clone())};
+        let custody=Arc::new(AppRuntimeCustody{session,ledger,writer:Arc::clone(&self.recovery_writer),counters:Arc::clone(&self.spawn_counters),contexts:Arc::clone(&self.submission_contexts),sources:Mutex::new(vec![AppRecoverySource{inner:Arc::downgrade(&self.inner),queue:Arc::clone(&self.inner.0.lock().unwrap().pending_recovery)}]),initial_limit:limit,recovery_path,end_observation:Mutex::new(None)});*cached=Some(Arc::clone(&custody));Ok(custody)
+    }
+    pub fn new_with_app_custody(custody:Arc<AppRuntimeCustody>)->Result<Self,String>{
+        let writer=Arc::clone(&custody.writer);let _writer=writer.lock().unwrap();if custody.end_observation.lock().unwrap().is_some(){return Err("App session end already observed; no new home source in this App session".into());}
+        let recovery=custody.ledger.as_ref().map(|ledger|ledger.lock().unwrap().snapshot());let mut host=Self::new();host.recovery_writer=Arc::clone(&custody.writer);host.spawn_counters=Arc::clone(&custody.counters);host.submission_contexts=Arc::clone(&custody.contexts);
+        {let mut i=host.inner.0.lock().unwrap();i.app_session=custody.session.clone();i.recovery=custody.ledger.clone();i.recovery_snapshot=recovery;i.recovery_initialization_error=custody.initial_limit.clone();i.recovery_path=custody.recovery_path.clone();}
+        custody.sources.lock().unwrap().push(AppRecoverySource{inner:Arc::downgrade(&host.inner),queue:Arc::clone(&host.inner.0.lock().unwrap().pending_recovery)});*host.runtime_custody.lock().unwrap()=Some(Arc::clone(&custody));Ok(host)
+    }
+    /// Safely retained source observation; no ledger lock/IO under Inner.
+    pub fn shared_recovery_observation(&self)->Value{
+        let i=self.inner.0.lock().unwrap();json!({"appSession":i.app_session,"recovery":i.recovery_snapshot,"limit":i.recovery_initialization_error.as_ref().or(i.recovery_error.as_ref()),"configured":i.recovery.is_some(),"standing":"actual App custody; last observed pointer ledger metadata, not live native reconstruction"})
+    }
+    fn allocate_home_spawn(&self,i:&mut Inner,home:String)->Result<(),String>{
+        let mut counters=self.spawn_counters.lock().unwrap();let prior=counters.entry(home.clone()).or_default();*prior=prior.checked_add(1).ok_or("home spawn counter exhausted; no generation reuse")?;i.home=home;i.spawn_counter=*prior;Ok(())
+    }
     /// Open an App-local pointer ledger before start; never a native-content cache.
-    pub fn configure_recovery(&self,path:PathBuf)->Result<(),String>{
-        let _writer=self.recovery_writer.lock().unwrap();let session={let mut i=self.inner.0.lock().unwrap();if i.state!="absent"{return Err("recovery must be configured before supplier start".into());}if i.app_session.is_empty(){i.app_session=opaque_id("app-session:")?;}i.app_session.clone()};
-        let mut ledger=RecoveryLedger::open(path)?;ledger.start_session(&session,"chirality-app-v4-unqualified")?;let snapshot=ledger.snapshot();let mut i=self.inner.0.lock().unwrap();if i.state!="absent"||i.app_session!=session{return Err("recovery configuration source changed during IO; not attached".into());}i.recovery=Some(Arc::new(Mutex::new(ledger)));i.recovery_snapshot=Some(snapshot);Ok(())
+    pub fn configure_recovery(&self,path:PathBuf)->Result<(),String>{self.configure_recovery_inner(path,None)}
+    pub fn configure_recovery_with_namespaces(&self,path:PathBuf,namespaces:Arc<attachment_custody::NativeNamespaceBindings>)->Result<(),String>{
+        self.configure_recovery_inner(path,Some(namespaces))
+    }
+    fn configure_recovery_inner(&self,path:PathBuf,namespaces:Option<Arc<attachment_custody::NativeNamespaceBindings>>)->Result<(),String>{
+        if self.runtime_custody.lock().unwrap().is_some(){return Err("App custody already adopted; no second recovery ledger/session initialization".into());}
+        let _writer=self.recovery_writer.lock().unwrap();if self.runtime_custody.lock().unwrap().is_some(){return Err("App custody adopted while waiting; no second recovery initialization".into());}let session={let mut i=self.inner.0.lock().unwrap();if i.state!="absent"{return Err("recovery must be configured before supplier start".into());}if i.app_session.is_empty(){i.app_session=opaque_id("app-session:")?;}i.recovery_path=Some(path.clone());i.app_session.clone()};
+        let opened=(||{let mut ledger=match namespaces{Some(binding)=>RecoveryLedger::open_with_namespaces(path,binding)?,None=>RecoveryLedger::open(path)?};ledger.start_session(&session,"chirality-app-v4-unqualified")?;Ok::<_,String>(ledger)})();let ledger=match opened{Ok(ledger)=>ledger,Err(error)=>{self.inner.0.lock().unwrap().recovery_initialization_error=Some(error.clone());return Err(error);}};let snapshot=ledger.snapshot();let mut i=self.inner.0.lock().unwrap();if i.state!="absent"||i.app_session!=session{return Err("recovery configuration source changed during IO; not attached".into());}i.recovery=Some(Arc::new(Mutex::new(ledger)));i.recovery_snapshot=Some(snapshot);i.recovery_initialization_error=None;Ok(())
     }
 
     /// Snapshot then all later frames in receipt order. Detach is simply ceasing
@@ -333,23 +466,34 @@ impl Host {
     }
     fn persist_requests(i:&mut Inner){
         if i.recovery.is_none(){return;}
-        for request in i.server_requests.entries(){let mut history=i.recovery_snapshot.as_ref().and_then(|s|s["entries"].as_array()).cloned().unwrap_or_default();history.extend(i.pending_recovery.iter().cloned());match RecoveryLedger::request_summary_entry(&request,&history){Ok(Some(entry))=>i.pending_recovery.push_back(entry),Ok(None)=>{},Err(error)=>{i.recovery_error=Some(error.clone());i.recovery_projection_errors.push(json!({"generation":request["generation"],"requestIdentity":request["requestId"],"method":request["method"],"limit":error,"standing":"pointer projection unavailable; original request source retained"}));}}}
+        for request in i.server_requests.entries(){let mut history=i.recovery_snapshot.as_ref().and_then(|s|s["entries"].as_array()).cloned().unwrap_or_default();history.extend(i.pending_recovery.facts.lock().unwrap().iter().cloned());match RecoveryLedger::request_summary_entry(&request,&history){Ok(Some(entry))=>i.pending_recovery.facts.lock().unwrap().push_back(entry),Ok(None)=>{},Err(error)=>{i.recovery_error=Some(error.clone());i.recovery_projection_errors.push(json!({"generation":request["generation"],"requestIdentity":request["requestId"],"method":request["method"],"limit":error,"standing":"pointer projection unavailable; original request source retained"}));}}}
     }
     /// Nonblocking writer admission: captured facts stay queued when another
     /// actual writer owns IO. No service/store or silent drop is introduced.
     pub fn flush_recovery_observations(&self)->Value{
-        let _writer=match self.recovery_writer.try_lock(){Ok(writer)=>writer,Err(_)=>{let mut i=self.inner.0.lock().unwrap();if !i.pending_recovery.is_empty(){i.recovery_error=Some("REC writer busy; captured pointer observations remain queued/unpersisted".into());}return json!({"pending":i.pending_recovery.len(),"standing":"writer busy; captured facts retained"});}};
+        let _writer=match self.recovery_writer.try_lock(){Ok(writer)=>writer,Err(_)=>{let mut i=self.inner.0.lock().unwrap();if !i.pending_recovery.facts.lock().unwrap().is_empty(){i.recovery_error=Some("REC writer busy; captured pointer observations remain queued/unpersisted".into());}return json!({"pending":i.pending_recovery.facts.lock().unwrap().len(),"standing":"writer busy; captured facts retained"});}};
         self.drain_recovery_owned()
     }
     /// Caller owns recovery_writer, with no Inner guard held.
     fn drain_recovery_owned(&self)->Value {
-        let(ledger,entries)={let i=self.inner.0.lock().unwrap();(i.recovery.clone(),i.pending_recovery.iter().cloned().collect::<Vec<_>>())};let Some(ledger)=ledger else{return json!({"standing":"ledger unavailable","pending":entries.len()});};
+        let ledger=self.inner.0.lock().unwrap().recovery.clone();Self::drain_recovery_source(&self.inner,ledger.as_ref())
+    }
+    fn drain_recovery_source(source:&Arc<(Mutex<Inner>,Condvar)>,ledger:Option<&Arc<Mutex<RecoveryLedger>>>)->Value {
+        let queue=Arc::clone(&source.0.lock().unwrap().pending_recovery);Self::drain_recovery_queue(&Arc::downgrade(source),&queue,ledger)
+    }
+    fn drain_recovery_queue(source:&Weak<(Mutex<Inner>,Condvar)>,queue:&Arc<CapturedRecoveryQueue>,ledger:Option<&Arc<Mutex<RecoveryLedger>>>)->Value {
+        let entries=queue.facts.lock().unwrap().iter().cloned().collect::<Vec<_>>();let Some(ledger)=ledger else{return json!({"standing":"ledger unavailable; captured pointer queue remains App-owned","pending":entries.len()});};
         let mut stored=0;let mut error=None;let snapshot={let mut ledger=ledger.lock().unwrap();for entry in &entries{if let Err(reason)=ledger.append(entry.clone()){error=Some(reason);break;}stored+=1;}ledger.snapshot()};
-        let mut i=self.inner.0.lock().unwrap();for entry in entries.iter().take(stored){if i.pending_recovery.front()==Some(entry){i.pending_recovery.pop_front();}else{i.recovery_error=Some("REC captured observation order conflict; facts retained".into());break;}}
-        i.recovery_snapshot=Some(snapshot);if let Some(error)=error{i.recovery_error=Some(error);}else if i.pending_recovery.is_empty(){i.recovery_error=None;}json!({"appended":stored,"pending":i.pending_recovery.len(),"limit":i.recovery_error})
+        let pending={let mut facts=queue.facts.lock().unwrap();for entry in entries.iter().take(stored){if facts.front()==Some(entry){facts.pop_front();}else{error=Some("REC captured observation order conflict; facts retained".into());break;}}facts.len()};
+        *queue.limit.lock().unwrap()=error.clone();
+        // No queue/ledger guard held while touching the still-live source.
+        if let Some(source)=source.upgrade(){let mut i=source.0.lock().unwrap();i.recovery_snapshot=Some(snapshot);if let Some(reason)=&error{i.recovery_error=Some(reason.clone());}else if pending==0{i.recovery_error=None;}}
+        json!({"appended":stored,"pending":pending,"limit":error,"standing":"App-owned immutable pointer facts survive retired Host; no raw transcript retained"})
     }
 
 
+
+    fn refresh_recovery_observation(&self){let ledger=self.inner.0.lock().unwrap().recovery.clone();if let Some(ledger)=ledger{let snapshot=ledger.lock().unwrap().snapshot();self.inner.0.lock().unwrap().recovery_snapshot=Some(snapshot);}}
     fn context_scope(i:&Inner,generation:&Value,thread:&str,home:Option<&str>)->Result<(),String>{
         crate::recovery::generation_ref(generation)?;if i.generation!=*generation||i.state!="ready"||i.server_requests.is_closed(generation)||thread.is_empty()||!i.threads.iter().any(|t|t["generation"]==*generation&&t["threadId"]==thread){return Err("context source is not current operational home/thread/full generation".into());}
         if home.is_some_and(|h|!matches!(h,"H-acct"|"H-key")){return Err("REC home class must come actual configured ACCESS home kind or absence".into());}Ok(())
@@ -358,7 +502,7 @@ impl Host {
     /// New CURRENT known admission only; historical P is never overwritten by Q.
     pub fn observe_conversation_project(&self,generation:&Value,thread:&str,home:Option<&str>,context:&crate::recovery::ExplicitAppProjectContext)->Result<Value,String>{
         {let i=self.inner.0.lock().unwrap();Self::context_scope(&i,generation,thread,home)?;}
-        let _writer=self.recovery_writer.lock().unwrap();self.drain_recovery_owned();
+        let _writer=self.recovery_writer.lock().unwrap();self.drain_recovery_owned();self.refresh_recovery_observation();
         let(ledger,rows)={let i=self.inner.0.lock().unwrap();Self::context_scope(&i,generation,thread,home)?;(i.recovery.clone(),Self::context_rows(i.recovery_snapshot.as_ref()))};
         let existing=home.and_then(|h|rows.iter().rev().find(|e|e["home"]==h&&e["threadId"]==thread)).cloned();
         if let Some(index)=existing{return Ok(json!({"indexSnapshot":index,"projectContext":context.view(),"standing":"historical App index retained; current reference does not transfer/backfill it"}));}
@@ -373,17 +517,18 @@ impl Host {
     pub fn bind_attachment_context(&self,prepared:&PreparedAttachmentDispatch,context:&crate::recovery::ExplicitAppProjectContext,home:Option<&str>)->Result<Value,String>{
         self.check_source(prepared.source())?;let generation=prepared.source().generation();let thread=prepared.source().attempted_frame()["params"]["threadId"].as_str().ok_or("prepared native thread absent")?;
         {let i=self.inner.0.lock().unwrap();Self::context_scope(&i,generation,thread,home)?;}
-        let _writer=self.recovery_writer.lock().unwrap();self.drain_recovery_owned();
-        let(ledger,rows,hot)={let i=self.inner.0.lock().unwrap();Self::context_scope(&i,generation,thread,home)?;(i.recovery.clone(),Self::context_rows(i.recovery_snapshot.as_ref()),i.submission_contexts.clone())};
+        let _writer=self.recovery_writer.lock().unwrap();self.drain_recovery_owned();self.refresh_recovery_observation();
+        let(ledger,rows)={let i=self.inner.0.lock().unwrap();Self::context_scope(&i,generation,thread,home)?;(i.recovery.clone(),Self::context_rows(i.recovery_snapshot.as_ref()))};
         // All durable/hot claims constrain immutable token; index provenance
         // and current Root reference remain independent, never inferred by cwd.
         let index=home.and_then(|h|rows.iter().rev().find(|e|e["home"]==h&&e["threadId"]==thread)).cloned();
         let durable:Vec<Value>=rows.iter().flat_map(|e|e["tags"].as_array().into_iter().flatten().cloned()).collect();
+        let hot=self.submission_contexts.lock().unwrap().clone();
         let hot_tags:Vec<Value>=hot.iter().map(|h|h["tag"].clone()).collect();
         let mut result=crate::recovery::submission_context_plan(index.as_ref(),&durable,&hot_tags,prepared.submission_ref(),context.reference())?;
         if hot.iter().any(|h|h["submissionRef"]==prepared.submission_ref()&&(h["nativeHome"]!=generation["home"]||h["threadId"]!=thread)){return Err("same submission token has conflicting native home/thread source; no rebinding".into());}
         let hot_entry=json!({"submissionRef":prepared.submission_ref(),"nativeHome":generation["home"],"generation":generation,"threadId":thread,"recoveryHome":home,"tag":result["tag"],"projectContext":context.view()});
-        {let mut i=self.inner.0.lock().unwrap();Self::context_scope(&i,generation,thread,home)?;if !i.submission_contexts.iter().any(|h|h["submissionRef"]==prepared.submission_ref()){i.submission_contexts.push(hot_entry);}}
+        {let mut hot=self.submission_contexts.lock().unwrap();let i=self.inner.0.lock().unwrap();Self::context_scope(&i,generation,thread,home)?;if !hot.iter().any(|h|h["submissionRef"]==prepared.submission_ref()){hot.push(hot_entry);}}
         result["projectContext"]=context.view();result["nativeScope"]=json!({"generation":generation,"threadId":thread,"standing":"source binding only; context tag is not native receipt/actor/run proof"});result["indexSnapshot"]=json!(index);
         let Some(index)=index else{result["persistence"]=json!("memory-only");result["limit"]=json!("project-bearing index/home class absent: no row, owning tag hot-only; cold lookup unavailable");return Ok(result);};
         if result["idempotent"]==true{result["persistence"]=json!(if result["durableBindingObserved"]==true{"recorded metadata observed"}else{"memory-only"});return Ok(result);}
@@ -535,6 +680,10 @@ impl Host {
         for v in CREDENTIAL_VARS {
             cmd.env_remove(v);
         }
+        let app_writer=Arc::clone(&self.recovery_writer);let app_spawn_guard=app_writer.lock().unwrap();
+        if self.runtime_custody.lock().unwrap().as_ref().is_some_and(|c|c.end_observation.lock().unwrap().is_some()){return Err("App session end observed; native source not spawned".into());}
+        let home_identity=format!("app-home:{}",sha256_hex(cfg.codex_home.as_os_str().as_encoded_bytes()));
+        if self.spawn_counters.lock().unwrap().get(&home_identity)==Some(&u64::MAX){return Err("home spawn counter exhausted; native source not spawned, no reuse".into());}
         let mut child = match cmd.spawn() {
             Ok(c) => c,
             Err(e) => {
@@ -553,10 +702,10 @@ impl Host {
         *self.child.lock().unwrap() = Some(child);
         {
             let mut i = self.inner.0.lock().unwrap();
-            i.spawn_counter += 1;
+            // Allocate only after actual spawn, preserving home counter across
+            // recreated Hosts within this same genuine App custody.
+            self.allocate_home_spawn(&mut i,home_identity)?;
             i.attachment_pipe_epoch += 1;
-            // Opaque stable home identity: never expose the filesystem path as identity.
-            i.home = format!("app-home:{}", sha256_hex(cfg.codex_home.as_os_str().as_encoded_bytes()));
             i.generation = json!({"appSession": i.app_session, "home": i.home, "spawnCounter": i.spawn_counter});
             i.receipt_position = 0;
             i.held.clear();
@@ -575,7 +724,7 @@ impl Host {
             }
             self.lt(&mut i, "LT-06", "spawned", "handshaking", json!({}));
         }
-        drop(source_gate);
+        drop(source_gate);drop(app_spawn_guard);
         let generation = self.inner.0.lock().unwrap().generation.clone();
         self.spawn_reader(stdout, generation.clone());
         self.spawn_stderr(stderr, generation);
@@ -661,6 +810,7 @@ impl Host {
             }
         }
         let generation = i.generation.clone();
+        Self::oauth_lost(i,&generation);
         let ended = i.server_requests.close(&generation);
         Self::persist_requests(i);
         for turn in &mut i.conversation_turns {
@@ -732,6 +882,11 @@ impl Host {
 
     fn request_begin_scoped(&self, method: &str, params: Value, initiator: Value,
         handshake: bool, expected_generation: Option<&Value>) -> Result<SourceRequest, String> {
+        auth_rpc::generic_guard(method,&params)?;
+        self.request_begin_scoped_private(method,params,initiator,handshake,expected_generation,false,None)
+    }
+    fn request_begin_scoped_private(&self, method: &str, params: Value, initiator: Value,
+        handshake: bool, expected_generation: Option<&Value>, private_credential: bool, oauth_cancel:Option<&SourceRequest>) -> Result<SourceRequest, String> {
         let (tx, rx) = channel();
         let mut i = self.inner.0.lock().unwrap();
         let ok_state = if handshake {i.state=="handshaking"} else {i.state=="ready"};
@@ -741,23 +896,51 @@ impl Host {
         }
         if expected_generation.map(|g|g!=&i.generation||i.server_requests.is_closed(g)).unwrap_or(false) {return Err(format!("refused-not-sent: {method} generation changed before request registration"));}
         if expected_generation.is_some()&&matches!(method,"turn/start"|"turn/interrupt"|"turn/steer") {Self::check_conversation_request(&i,method,&params)?;}
+        let oauth_mode=if method=="account/login/start" {match params["type"].as_str(){Some("chatgpt")=>Some(oauth_control::OAuthMode::Chatgpt),Some("chatgptDeviceCode")=>Some(oauth_control::OAuthMode::DeviceCode),_=>None}}else{None};
+        if oauth_mode.is_some(){
+            Self::validate_native_result("LoginAccountParams",&params).map_err(|_|"OAuth start shape invalid; sensitive diagnostic withheld")?;
+            if i.oauth.values().any(|s|s.pin.generation["home"]==i.generation["home"]&&!Self::oauth_terminal(s)){return Err("prior sign-in pending/unavailable; explicit source reconciliation required; no replacement sent".into());}
+        }
+        if let Some(original)=oauth_cancel{
+            let state=Self::oauth_scope(&i,original)?;
+            if state.controller.observation().phase!=oauth_control::Phase::Cancelling||state.cancel_request.is_some(){return Err("original cancel already attempted/unavailable".into());}
+        }
         i.next_id+=1;let id=i.next_id;
-        let frame=json!({"jsonrpc":"2.0","id":id,"method":method,"params":params});
+        let raw_frame=json!({"jsonrpc":"2.0","id":id,"method":method,"params":params});
+        let(frame,auth_projection)=auth_rpc::project_frame(&raw_frame,Some(method));
+        let bytes=Self::frame_bytes(&raw_frame)?;drop(raw_frame);drop(params);
+        if auth_rpc::account_method(method)&&!i.account_channels.contains(&i.generation){let g=i.generation.clone();i.account_channels.push(g);}
         let request=SourceRequest {source:Arc::downgrade(&self.inner),generation:i.generation.clone(),frame:frame.clone(),request_ref:format!("{}:client:{id}",opaque_id("host-request")?),receiver:Arc::new(Mutex::new(rx))};
         // This private receipt account is separate from the published client
         // record schema; only completion of the actual write sets sentFrame.
         let rec=json!({"recordKind":"client-request","generation":i.generation,"requestIdentity":id,"method":method,"initiator":initiator});
         i.client_requests.push(Value::Null);let idx=i.client_requests.len()-1;i.pending.insert(id.to_string(),(idx,tx));
-        i.source_requests.insert(id.to_string(),SourceEvidence {request:request.clone(),index:idx,written:false,write_error:None,response:None,attachment:None,reserved_sender:None,write_attempt_in_progress:false,attempt_position:None,response_position:None,observation_base:rec,source_limit:None});
-        if expected_generation.is_some()&&method=="turn/start" {let gen=i.generation.clone();let pos=i.receipt_position;i.turn_request_threads.insert(id.to_string(),(gen,params["threadId"].as_str().unwrap().into(),pos));}
-        if expected_generation.is_some()&&method=="turn/interrupt" {let gen=i.generation.clone();i.interrupt_requests.push(json!({"generation":gen,"threadId":params["threadId"],"turnId":params["turnId"],"requestIdentity":id,"initiator":"person-directed"}));}
+        i.source_requests.insert(id.to_string(),SourceEvidence {request:request.clone(),index:idx,written:false,write_error:None,response:None,attachment:None,reserved_sender:None,write_attempt_in_progress:false,attempt_position:None,response_position:None,observation_base:rec,source_limit:None,auth_projection,auth_policy_standing:None,auth_response_shape:None});
+        if let Some(mode)=oauth_mode{
+            let pin=LoginSourcePin{generation:request.generation.clone(),rpc_id:json!(id),request_ref:request.request_ref.clone(),mode};
+            let controller=oauth_control::Controller::begin(&pin);
+            i.oauth.insert(request.request_ref.clone(),OAuthState{pin,controller,cancel_request:None,cancel_finish:None,last_event:None,start_rejected:false});
+        }
+        if let Some(original)=oauth_cancel{
+            let state=i.oauth.get_mut(original.request_ref()).unwrap();
+            state.cancel_request=Some(json!(id));
+        }
+        if expected_generation.is_some()&&method=="turn/start" {let gen=i.generation.clone();let pos=i.receipt_position;i.turn_request_threads.insert(id.to_string(),(gen,frame["params"]["threadId"].as_str().unwrap().into(),pos));}
+        if expected_generation.is_some()&&method=="turn/interrupt" {let gen=i.generation.clone();i.interrupt_requests.push(json!({"generation":gen,"threadId":frame["params"]["threadId"],"turnId":frame["params"]["turnId"],"requestIdentity":id,"initiator":"person-directed"}));}
         let captured=self.capture_pipe(&i);drop(i);
-        let write_result=(||->Result<(),String>{let mut bound=captured?;let bytes=Self::frame_bytes(&frame)?;let serial=self.frame_write.lock().unwrap();
+        let write_result=(||->Result<(),String>{let mut bound=captured?;let serial=if private_credential{
+            let deadline=std::time::Instant::now()+Duration::from_secs(20);loop{match self.frame_write.try_lock(){Ok(serial)=>break serial,Err(std::sync::TryLockError::Poisoned(_))=>return Err("frame writer unavailable; transient input released".into()),Err(std::sync::TryLockError::WouldBlock)=>{let i=self.inner.0.lock().unwrap();if i.generation!=request.generation||i.server_requests.is_closed(&request.generation)||i.state!="ready"||std::time::Instant::now()>=deadline{return Err("credential source lost/cancelled/queue limit; transient input released, no retry".into());}drop(i);std::thread::sleep(Duration::from_millis(2));}}}
+        }else{self.frame_write.lock().unwrap()};
             {let _gate=self.attachment_gate.lock().unwrap();let mut i=self.inner.0.lock().unwrap();self.check_bound(&i,&bound)?;
                 if !i.pending.contains_key(&id.to_string()){return Err("request no longer pending before actual source write".into());}
-                if expected_generation.is_some()&&matches!(method,"turn/start"|"turn/interrupt"|"turn/steer"){Self::check_conversation_request_excluding(&i,method,&params,Some(&json!(id)))?;}
+                if expected_generation.is_some()&&matches!(method,"turn/start"|"turn/interrupt"|"turn/steer"){Self::check_conversation_request_excluding(&i,method,&frame["params"],Some(&json!(id)))?;}
+                if let Some(original)=oauth_cancel{
+                    let state=Self::oauth_scope(&i,original)?;
+                    if state.controller.observation().phase!=oauth_control::Phase::Cancelling||state.cancel_request.as_ref()!=Some(&json!(id)){return Err("original OAuth cancel control ended before final dispatch; no replacement write".into());}
+                }
                 i.send_position+=1;let position=i.send_position;let e=i.source_requests.get_mut(&id.to_string()).unwrap();e.write_attempt_in_progress=true;e.attempt_position=Some(position);}
             let result=Self::write_complete(&mut bound.file,&bytes);drop(serial);result})();
+        drop(bytes);
         let mut i=self.inner.0.lock().unwrap();let key=id.to_string();let closed=i.generation!=request.generation||i.server_requests.is_closed(&request.generation)||!matches!(i.state.as_str(),"ready"|"handshaking");
         let e=i.source_requests.get_mut(&key).unwrap();e.write_attempt_in_progress=false;let mut record=e.observation_base.clone();let response=e.response.clone();let response_position=e.response_position;if let Some(position)=e.attempt_position{record["sendPosition"]=json!(position);}
         match write_result {
@@ -771,6 +954,13 @@ impl Host {
                     else{record["writeResult"]=json!("write-failed");record["outcome"]=json!("unknown-no-response");i.client_requests[idx]=record;}}
             }
         }
+        let write=if closed{oauth_control::WriteFinish::SourceUnavailable}else if i.source_requests[&key].written{oauth_control::WriteFinish::Written}else{oauth_control::WriteFinish::Failed};
+        let start_rejected=method=="account/login/start"&&write==oauth_control::WriteFinish::Written&&i.source_requests[&key].auth_response_shape==Some(true)&&response.as_ref().is_some_and(|r|r.get("error").is_some());
+        if let Some(state)=i.oauth.get_mut(request.request_ref()) {state.controller.write_completed(&state.pin,write);state.start_rejected=start_rejected;}
+        for state in i.oauth.values_mut().filter(|s|s.cancel_request.as_ref()==Some(&json!(id))&&s.pin.generation==request.generation){
+            if write!=oauth_control::WriteFinish::Written{state.controller.cancel_completed(&state.pin,oauth_control::CancelFinish::Unknown);}
+            else if let Some(finish)=state.cancel_finish.take(){state.controller.cancel_completed(&state.pin,finish);}
+        }
         Ok(request)
     }
 
@@ -782,6 +972,160 @@ impl Host {
         else{return Err("Native reply result missing; canonical settlement projection unavailable".into());}
         record["responseReceiptPosition"]=json!(position);Ok(())
     }
+    /// Internal one-attempt transport consumed by the trusted native callback
+    /// or synthetic tests; no native-origin or H-key routing qualification.
+    pub(crate) fn account_login_api_key(&self,generation:&Value,input:auth_rpc::TransientApiKey,policy:Option<&SourceRequest>)->Result<SourceRequest,String>{
+        let policy_standing=self.account_key_policy_standing(generation,policy)?;
+        let params=input.into_params();Self::validate_native_result("LoginAccountParams",&params).map_err(|_|"native API-key input shape invalid; sensitive diagnostic withheld".to_string())?;
+        let source=self.request_begin_scoped_private("account/login/start",params,json!({"kind":"person-directed"}),false,Some(generation),true,None)?;
+        let mut i=self.inner.0.lock().unwrap();if let Some(e)=i.source_requests.get_mut(&source.request_id().to_string()){e.auth_policy_standing=Some(format!("{policy_standing}; Unit A transport only, native secure-entry/H-key owner not qualified; validity unknown until actual use"));}Ok(source)
+    }
+    fn account_key_policy_standing(&self,generation:&Value,policy:Option<&SourceRequest>)->Result<&'static str,String>{
+        crate::recovery::generation_ref(generation)?;
+        let policy_frame=if let Some(source)=policy{self.check_source(source)?;if source.generation()!=generation||source.attempted_frame()["method"]!="configRequirements/read"{return Err("native login policy source/full generation differs".into());}source.evidence().get("response").filter(|v|!v.is_null()).cloned()}else{None};
+        if policy_frame.is_some()&&policy.is_some_and(|s|s.evidence()["authResponseShapeValid"]!=true){return Err("native policy shape malformed/unavailable; no key frame written".into());}
+        auth_rpc::login_policy(policy_frame.as_ref())
+    }
+    fn check_account_entry_scope(&self,generation:&Value)->Result<(),String>{
+        crate::recovery::generation_ref(generation)?;let i=self.inner.0.lock().unwrap();
+        if i.generation!=*generation||i.state!="ready"||i.server_requests.is_closed(generation){return Err("native account entry scope is stale/closed/not-ready; no key frame written".into());}Ok(())
+    }
+    /// Trusted Rust native callback only; no key renderer DTO/origin proof.
+    /// Root must validate actual key-home descriptor/class before invoking.
+    pub(crate) fn account_login_api_key_from_native_entry<F:FnOnce()->Result<Option<String>,()>>(&self,generation:&Value,policy:Option<&SourceRequest>,entry:F)->Result<Option<SourceRequest>,String>{
+        self.check_account_entry_scope(generation)?;self.account_key_policy_standing(generation,policy)?;
+        let input=auth_rpc::TransientApiKey::from_native_entry(entry).map_err(|()|"native secure entry unavailable/failed; sensitive callback diagnostic withheld; no key frame written".to_string())?;
+        let Some(input)=input else{return Ok(None);};
+        self.check_account_entry_scope(generation)?;self.account_key_policy_standing(generation,policy)?;
+        self.account_login_api_key(generation,input,policy).map(Some)
+    }
+    pub(crate) fn account_requirements_read_scoped(&self,generation:&Value)->Result<SourceRequest,String>{self.request_begin_scoped("configRequirements/read",json!({}),json!({"kind":"person-directed"}),false,Some(generation))}
+    pub(crate) fn account_read_scoped(&self,generation:&Value)->Result<SourceRequest,String>{self.request_begin_scoped("account/read",json!({}),json!({"kind":"person-directed"}),false,Some(generation))}
+    /// Caller owns explicit removal/live-work assessment; ack is not removal proof.
+    pub(crate) fn account_logout_scoped(&self,generation:&Value)->Result<SourceRequest,String>{self.request_begin_scoped("account/logout",json!({}),json!({"kind":"person-directed"}),false,Some(generation))}
+    pub(crate) fn account_rpc_observation(&self,source:&SourceRequest)->Result<Value,String>{self.check_source(source)?;let e=source.evidence();let frame=e.get("response").filter(|f|!f.is_null());Ok(json!({"source":e,"accountObservation":frame.map(|frame|auth_rpc::typed_observation(source.attempted_frame()["method"].as_str().unwrap_or(""),frame,e["authResponseShapeValid"]==true,source.attempted_frame()["params"]["type"].as_str())),"standing":"redacted source facts only; no credential validity/home/actor qualification"}))}
+    fn oauth_terminal(state:&OAuthState)->bool {
+        state.start_rejected||matches!(state.controller.observation().phase,oauth_control::Phase::CompletedSuccess|oauth_control::Phase::CompletedFailure|oauth_control::Phase::Cancelled)
+    }
+    fn oauth_scope<'a>(i:&'a Inner,source:&SourceRequest)->Result<&'a OAuthState,String>{
+        let state=i.oauth.get(source.request_ref()).ok_or("original OAuth control unavailable; public pointer is not control")?;
+        let e=i.source_requests.get(&source.request_id().to_string()).ok_or("original OAuth source unavailable")?;
+        if e.request.generation!=source.generation||e.request.request_ref!=source.request_ref||e.request.frame!=source.frame||state.pin.generation!=source.generation||state.pin.rpc_id!=*source.request_id()||state.pin.request_ref!=source.request_ref||source.frame["method"]!="account/login/start" {
+            return Err("original OAuth source/pin differs".into());
+        }
+        if i.generation!=source.generation||i.state!="ready"||i.server_requests.is_closed(&source.generation){return Err("original OAuth source closed/replaced/unavailable; no retarget".into());}
+        Ok(state)
+    }
+    fn check_oauth_source(&self,source:&SourceRequest)->Result<(),String>{
+        self.check_source(source)?;let i=self.inner.0.lock().unwrap();Self::oauth_scope(&i,source)?;Ok(())
+    }
+    fn oauth_lost(i:&mut Inner,generation:&Value){
+        for state in i.oauth.values_mut().filter(|s|s.pin.generation==*generation){state.controller.source_lost(generation);}
+    }
+    /// Native adapter supplies the person's act/home class. This Rust type proves neither.
+    pub(crate) fn account_oauth_start(&self,generation:&Value,mode:NativeLoginMode,policy:Option<&SourceRequest>)->Result<OAuthLogin,String>{
+        self.check_account_entry_scope(generation)?;
+        if let Some(policy)=policy{
+            self.check_source(policy)?;
+            if policy.generation()!=generation||policy.frame["method"]!="configRequirements/read"{return Err("OAuth policy original source differs".into());}
+            let e=policy.evidence();
+            if !e["response"].is_null(){
+                if e["authResponseShapeValid"]!=true{return Err("OAuth policy shape unavailable; no sign-in sent".into());}
+                if let Some(methods)=e["response"]["result"]["requirements"]["allowedLoginMethods"].as_array(){
+                    if !methods.iter().any(|m|m=="chatgpt"){return Err("native policy excludes ChatGPT sign-in".into());}
+                }
+            }
+        }
+        let kind=match mode{NativeLoginMode::Browser=>"chatgpt",NativeLoginMode::DeviceCode=>"chatgptDeviceCode"};
+        let source=self.request_begin_scoped("account/login/start",json!({"type":kind}),json!({"kind":"person-directed"}),false,Some(generation))?;
+        Ok(OAuthLogin{source})
+    }
+    /// Safe scope/phase only. It cannot reconstruct original ID, payload or a control.
+    pub(crate) fn account_oauth_observation(&self,login:&OAuthLogin)->Result<Value,String>{
+        self.check_source(&login.source)?;let i=self.inner.0.lock().unwrap();
+        let state=i.oauth.get(login.source.request_ref()).ok_or("OAuth observation unavailable")?;
+        let o=state.controller.observation();
+        Ok(json!({"generation":o.generation,"requestIdentity":o.rpc_id,"observationRef":o.pointer,
+            "mode":format!("{:?}",o.mode),"phase":if state.start_rejected{"StartRejected".to_owned()}else{format!("{:?}",o.phase)},"write":format!("{:?}",o.write),"limit":format!("{:?}",o.limit),
+            "lastEventLimit":state.last_event.as_ref().map(|e|format!("{:?}",e.limit)),
+            "cancelStatus":state.cancel_request.as_ref().and_then(|id|i.source_requests.get(&id.to_string())).filter(|e|e.written&&e.auth_response_shape==Some(true)).and_then(|e|e.response.as_ref()).and_then(|r|r["result"]["status"].as_str()).filter(|s|matches!(*s,"canceled"|"notFound")),
+            "presentationAvailable":o.presentation_available,"cancelAvailable":o.cancel_available,
+            "actualWriteObserved":i.source_requests.get(&login.source.request_id().to_string()).map(|e|e.written),
+            "originalControlMaterial":o.original_control_material,"standing":"source observation; no account/actor/policy authenticity or native adapter qualification"}))
+    }
+    /// No Host/controller/pipe lock through native presentation. Adapter monitors lease
+    /// and clears/closes the field while active, then releases borrowed buffers on return.
+    pub(crate) fn account_oauth_present<F>(&self,login:&OAuthLogin,callback:F)->Result<Value,String>
+    where F:FnOnce(NativeLoginView<'_>,NativeLoginLease)->NativeLoginPresentation {
+        self.check_oauth_source(&login.source)?;
+        let permit={let mut i=self.inner.0.lock().unwrap();Self::oauth_scope(&i,&login.source)?;
+            let state=i.oauth.get_mut(login.source.request_ref()).unwrap();
+            state.controller.take_presentation(&state.pin).map_err(|e|format!("OAuth presentation unavailable: {e:?}"))?};
+        let result=permit.deliver(||self.check_oauth_source(&login.source).map_err(|_|()),|view,lease|{
+            let view=match view{oauth_control::PresentationView::Browser{auth_url}=>NativeLoginView::Browser{auth_url},oauth_control::PresentationView::Device{verification_url,user_code}=>NativeLoginView::Device{verification_url,user_code}};
+            match callback(view,NativeLoginLease(lease)){NativeLoginPresentation::Presented=>oauth_control::NativePresentationResult::Presented,NativeLoginPresentation::Dismissed=>oauth_control::NativePresentationResult::Dismissed,NativeLoginPresentation::Unavailable=>oauth_control::NativePresentationResult::Unavailable}
+        });
+        // Callback end releases its private view; dismissal preserves native Cancel.
+        if let Some(state)=self.inner.0.lock().unwrap().oauth.get_mut(login.source.request_ref()){
+            state.controller.dismiss_presentation(&state.pin);
+        }
+        Ok(json!({"presentation":format!("{result:?}"),"standing":"native adapter-reported delivery only; no sign-in success"}))
+    }
+    pub(crate) fn account_oauth_dismiss(&self,login:&OAuthLogin)->Result<Value,String>{
+        self.check_source(&login.source)?;
+        {let mut i=self.inner.0.lock().unwrap();let state=i.oauth.get_mut(login.source.request_ref()).ok_or("original OAuth control unavailable")?;state.controller.dismiss_presentation(&state.pin);}
+        self.account_oauth_observation(login)
+    }
+    /// Confirmation uses this original handle, never a lookup of the current replacement.
+    pub(crate) fn account_oauth_cancel(&self,login:&OAuthLogin)->Result<SourceRequest,String>{
+        self.check_oauth_source(&login.source)?;
+        let permit={let mut i=self.inner.0.lock().unwrap();Self::oauth_scope(&i,&login.source)?;let state=i.oauth.get_mut(login.source.request_ref()).unwrap();
+            state.controller.cancel_intent(&state.pin).map_err(|e|format!("OAuth cancel unavailable: {e:?}"))?};
+        let mut params=None;
+        permit.with_login_id(||self.check_oauth_source(&login.source).map_err(|_|()),|id|params=Some(json!({"loginId":id}))).map_err(|e|format!("OAuth cancel source unavailable: {e:?}"))?;
+        let params=params.ok_or("OAuth cancel serialization unavailable")?;
+        let result=self.request_begin_scoped_private("account/login/cancel",params,json!({"kind":"person-directed"}),false,Some(&login.source.generation),true,Some(&login.source));
+        if result.is_err(){if let Some(state)=self.inner.0.lock().unwrap().oauth.get_mut(login.source.request_ref()){state.controller.cancel_completed(&state.pin,oauth_control::CancelFinish::Unknown);}}
+        result
+    }
+    /// Admit originals before reflection. Notification has no RPC/mode fields: do not invent them.
+    fn oauth_admit(i:&mut Inner,generation:&Value,position:u64,raw:&Value,shape:Option<bool>){
+        if i.generation!=*generation||i.state!="ready"||i.server_requests.is_closed(generation){return;}
+        if raw.get("method").is_none()&&shape==Some(false){
+            if let Some(e)=raw.get("id").and_then(|id|i.source_requests.get(&id.to_string())){
+                if e.request.generation==*generation&&i.pending.contains_key(&e.request.request_id().to_string()){
+                    let reference=e.request.request_ref.clone();let rpc_id=e.request.request_id().clone();
+                    if let Some(state)=i.oauth.get_mut(&reference){state.controller.source_lost(generation);}
+                    for state in i.oauth.values_mut().filter(|s|s.pin.generation==*generation&&s.cancel_request.as_ref()==Some(&rpc_id)){
+                        state.cancel_finish=Some(oauth_control::CancelFinish::Unknown);
+                        state.controller.cancel_completed(&state.pin,oauth_control::CancelFinish::Unknown);
+                    }
+                }
+            }
+        }else if raw.get("method").is_none()&&shape==Some(true){
+            if let Some(e)=raw.get("id").and_then(|id|i.source_requests.get(&id.to_string())){
+                if e.request.generation!=*generation||!i.pending.contains_key(&e.request.request_id().to_string()){return;}
+                let reference=e.request.request_ref.clone();let rpc_id=e.request.request_id().clone();let written=e.written;
+                if e.request.frame["method"]=="account/login/start"{
+                    if let Some(state)=i.oauth.get_mut(&reference){
+                        if let Some(result)=raw.get("result"){state.last_event=Some(state.controller.start_response(&state.pin,result));}else{state.controller.source_lost(generation);state.start_rejected=written;}
+                    }
+                }else if e.request.frame["method"]=="account/login/cancel"{
+                    let finish=match raw["result"]["status"].as_str(){Some("canceled")=>oauth_control::CancelFinish::Cancelled,Some("notFound")=>oauth_control::CancelFinish::NotFound,_=>oauth_control::CancelFinish::Unknown};
+                    for state in i.oauth.values_mut().filter(|s|s.pin.generation==*generation&&s.cancel_request.as_ref()==Some(&rpc_id)){
+                        if written{state.controller.cancel_completed(&state.pin,finish);}else{state.cancel_finish=Some(finish);}
+                    }
+                }
+            }
+        }else if raw.get("id").is_none()&&raw["method"]=="account/login/completed" {
+            let event=EventPin{generation:generation.clone(),receipt_position:position};
+            let valid=Self::validate_native_result("AccountLoginCompletedNotification",&raw["params"]).is_ok();
+            for state in i.oauth.values_mut().filter(|s|s.pin.generation==*generation&&!Self::oauth_terminal(s)){
+                state.last_event=Some(if valid{state.controller.complete(&event,&raw["params"])}else{let mut o=state.controller.observation();o.limit=Some(oauth_control::Limit::InvalidShape);o});
+            }
+        }
+    }
+
     fn check_source(&self, request: &SourceRequest) -> Result<(), String> {
         let source=request.source.upgrade().ok_or("receipt source Host unavailable")?;
         if !Arc::ptr_eq(&self.inner,&source) {return Err("receipt belongs to another Host".into());}
@@ -875,7 +1219,7 @@ impl Host {
             let mut association=json!({"submissionRef":submission,"threadId":thread,"supplyRefs":list.supply_refs()});if let Some(turn)=expected_turn{association["expectedTurnId"]=json!(turn);}
             let client=json!({"recordKind":"client-request","generation":generation,"requestIdentity":id,"method":method,"initiator":{"kind":"person-directed"},"writeResult":"not-attempted","outcome":"prepared-not-sent","submissionAssociation":association});
             i.client_requests.push(client.clone());let index=i.client_requests.len()-1;
-            i.source_requests.insert(id.to_string(),SourceEvidence{request:source.clone(),index,written:false,write_error:None,response:None,reserved_sender:Some(tx),write_attempt_in_progress:false,attempt_position:None,response_position:None,observation_base:client.clone(),source_limit:None,attachment:Some(AttachmentLink{custody:Arc::clone(&custody),records:list.supply_records(),original:client.clone(),limit:None})});(source,client,identity,i.attachment_pipe_epoch)
+            i.source_requests.insert(id.to_string(),SourceEvidence{request:source.clone(),index,written:false,write_error:None,response:None,reserved_sender:Some(tx),write_attempt_in_progress:false,attempt_position:None,response_position:None,observation_base:client.clone(),source_limit:None,auth_projection:false,auth_policy_standing:None,auth_response_shape:None,attachment:Some(AttachmentLink{custody:Arc::clone(&custody),records:list.supply_records(),original:client.clone(),limit:None})});(source,client,identity,i.attachment_pipe_epoch)
         };
         // Never hold Inner across file operations. Failure consumes its reserved
         // RPC; partial/uncertain publication cannot authorize native write.
@@ -1143,34 +1487,33 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
             return;
         }
         let mut i = self.inner.0.lock().unwrap();
+        let parsed:Option<Value>=serde_json::from_str(text).ok();
+        let correlated_method=parsed.as_ref().and_then(|f|f.get("id")).and_then(|id|i.source_requests.get(&id.to_string())).filter(|e|e.request.generation==*generation).and_then(|e|e.request.frame["method"].as_str()).map(str::to_owned);
+        let safe_reply_id=parsed.as_ref().filter(|f|f.get("method").is_none()).and_then(|f|f.get("id")).and_then(|id|i.source_requests.get(&id.to_string())).filter(|e|e.request.generation==*generation).map(|e|e.request.request_id().clone());
+        let possible_original_account=parsed.as_ref().filter(|f|f.get("method").is_none()).and_then(|f|f.get("id")).and_then(Value::as_str).is_some_and(|id|i.source_requests.values().any(|e|e.request.generation==*generation&&auth_rpc::account_method(e.request.frame["method"].as_str().unwrap_or(""))&&e.request.request_id().to_string()==id));
+        // Unsupported auth request framing can echo private control material in its ID.
+        // Keep that original only for the immediate mandatory wire error, never the register.
+        let private_auth_id=parsed.as_ref().filter(|f|f.get("method").and_then(Value::as_str).is_some_and(auth_rpc::account_method)&&auth_rpc::protocol_envelope(f)).and_then(|f|f.get("id").map(|id|(id.clone(),f["method"]=="account/chatgptAuthTokens/refresh")));
+        let auth_shape=correlated_method.as_deref().filter(|m|auth_rpc::account_method(m)).map(|method|{
+            let raw=parsed.as_ref().unwrap();if raw.get("method").is_some()||raw.get("result").is_some()&&raw.get("error").is_some(){return false;}
+            if let Some(error)=raw.get("error"){return error.is_object()&&error["code"].as_i64().is_some()&&error["message"].is_string();}
+            let definition=match method{"account/login/start"=>"LoginAccountResponse","account/read"=>"GetAccountResponse","account/logout"=>"LogoutAccountResponse","account/login/cancel"=>"CancelLoginAccountResponse","configRequirements/read"=>"ConfigRequirementsReadResponse",_=>return false};
+            raw.get("result").is_some_and(|r|Self::validate_native_result(definition,r).is_ok())
+        });
+        let next_receipt=i.receipt_position+1;
+        if let Some(raw)=parsed.as_ref(){Self::oauth_admit(&mut i,generation,next_receipt,raw,auth_shape);}
+        let known_account_channel=i.account_channels.contains(generation);
+        let (frame,projected)=match parsed{Some(frame)if frame.is_object()&&(!known_account_channel||auth_rpc::protocol_envelope(&frame))=>{
+            auth_rpc::project_received_frame(&frame,correlated_method.as_deref(),safe_reply_id.as_ref(),possible_original_account,known_account_channel)
+        },_ if known_account_channel=>(json!({"observation":"nonprotocol or unparseable diagnostic from known original account source withheld; unattributed, no RPC/method invented"}),true),_ =>(json!(text),false)};
         if &i.generation != generation || i.server_requests.is_closed(generation) {
-            let frame = serde_json::from_str::<Value>(text).unwrap_or_else(|_| json!(text));
-            i.journal.push(json!({"generation": generation, "class": "closed-generation-frame", "frame": frame}));
-            return;
+            i.journal.push(json!({"generation":generation,"class":"closed-generation-frame","frame":frame,"sourceProjection":if projected{Some("sensitive account projection; not original bytes")}else{None}}));return;
         }
-        i.receipt_position += 1;
-        let pos = i.receipt_position;
-        let gen = i.generation.clone();
-        let parsed: Option<Value> = serde_json::from_str(text).ok();
-        let (class, frame) = match parsed {
-            Some(f) if f.is_object() => {
-                let has_id = f.get("id").is_some();
-                let has_method = f.get("method").is_some();
-                let class = if has_method && has_id {
-                    "server-request"
-                } else if has_method {
-                    "notification"
-                } else if has_id && (f.get("result").is_some() || f.get("error").is_some()) {
-                    "response"
-                } else {
-                    "malformed"
-                };
-                (class, f)
-            }
-            _ => ("malformed", json!(text)),
-        };
+        i.receipt_position+=1;let pos=i.receipt_position;let gen=i.generation.clone();
+        let class=if frame.is_object()&&frame.get("observation").is_none(){let has_id=frame.get("id").is_some();let has_method=frame.get("method").is_some();if has_method&&has_id{"server-request"}else if has_method{"notification"}else if has_id&&(frame.get("result").is_some()||frame.get("error").is_some()){"response"}else{"malformed"}}else{"malformed"};
         let mut automatic_reply=None;
-        if class == "server-request" {
+        let private_auth_reply=if let Some((id,token_refresh))=private_auth_id{Some((self.capture_pipe(&i),id,token_refresh))}else{None};
+        if class == "server-request" && private_auth_reply.is_none() {
             let capabilities = i.declared_capabilities.clone().unwrap_or(Value::Null);
             match i.server_requests.receive(&gen, pos, &frame, &capabilities) {
                 Ok(Some(reply)) => {
@@ -1192,7 +1535,7 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
         } else if class == "notification" && frame["method"] == "serverRequest/resolved" {
             i.server_requests.resolved(&gen, &frame["params"]);
         }
-        if class == "server-request" || (class == "notification" && frame["method"] == "serverRequest/resolved") {
+        if (class == "server-request"&&private_auth_reply.is_none()) || (class == "notification" && frame["method"] == "serverRequest/resolved") {
             Self::persist_requests(&mut i);
         }
         if class == "notification" && matches!(frame["method"].as_str(), Some("turn/started" | "turn/completed")) {
@@ -1221,10 +1564,10 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
                         }
                     }
                 }
-                if let Some(e) = i.source_requests.get_mut(&key) { e.response = Some(frame.clone()); e.response_position=Some(pos); }
+                if let Some(e) = i.source_requests.get_mut(&key) { e.response = Some(frame.clone()); e.response_position=Some(pos); e.auth_response_shape=auth_shape; }
                 let _ = tx.send(frame.clone());
                 // Responses are also journaled, with their metadata beside the native frame (H6).
-                let entry = json!({"generation": gen, "position": pos, "class": class, "frame": frame});
+                let entry = json!({"generation": gen, "position": pos, "class": class, "frame": frame,"sourceProjection":if projected{Some("sensitive account projection; not original bytes")}else{None}});
                 if i.state == "handshaking" { i.held.push(entry); } else { i.journal.push(entry); }
                 let attachment_source = i.source_requests.get(&key).filter(|e|e.attachment.is_some()).map(|e|e.request.clone());
                 drop(i);
@@ -1232,23 +1575,38 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
                 return;
             }
             // Uncorrelated response: surfaced, never dropped (§5).
-            let entry = json!({"generation": gen, "position": pos, "class": "uncorrelated-response", "frame": frame});
+            let entry = json!({"generation": gen, "position": pos, "class": "uncorrelated-response", "frame": frame,"sourceProjection":if projected{Some("sensitive account projection; not original bytes")}else{None}});
             if i.state == "handshaking" { i.held.push(entry); } else { i.journal.push(entry); }
             return;
         }
-        let entry = json!({"generation": gen, "position": pos, "class": class, "frame": frame});
+        let entry = json!({"generation": gen, "position": pos, "class": class, "frame": frame,"sourceProjection":if projected{Some("sensitive account projection; not original bytes")}else{None}});
         if i.state == "handshaking" {
             i.held.push(entry); // H4
         } else {
             i.journal.push(entry);
         }
         drop(i);
+        if let Some((bound,id,token_refresh))=private_auth_reply{
+            let result=bound.and_then(|bound|self.write_private_auth_rejection(bound,id,token_refresh));
+            let mut i=self.inner.0.lock().unwrap();
+            i.journal.push(json!({"generation":gen,"position":pos,"class":"private-auth-request-reply","requestIdentity":"redacted/unavailable; no public replay authority","replyWriteResult":if result.is_ok(){"written"}else{"unknown/write-failed"},"acknowledgment":"not-observed","standing":"original private framing ID used only for immediate unsupported-method reply; not sign-in completion"}));
+        }
         self.flush_recovery_observations();
         if let Some((bound,reply))=automatic_reply{let generation=bound.generation.clone();let id=reply["id"].clone();if self.write_reply(bound,&reply).is_err(){let mut i=self.inner.0.lock().unwrap();if i.generation==generation&&!i.server_requests.is_closed(&generation){i.server_requests.written(&generation,&id,false);Self::persist_requests(&mut i);}}}
     }
 
+    /// One immediate unsupported-auth-request duty, captured under the original source.
+    /// Raw ID/bytes are transient and never copied into general request custody/evidence.
+    fn write_private_auth_rejection(&self,mut bound:BoundPipe,id:Value,token_refresh:bool)->Result<(),String>{
+        let message=if token_refresh{"External-token login is not adopted"}else{"Unrecognized supplier request"};
+        let bytes=Self::frame_bytes(&json!({"id":id,"error":{"code":-32601,"message":message}}))?;
+        let serial=self.frame_write.lock().unwrap();
+        {let _gate=self.attachment_gate.lock().unwrap();let i=self.inner.0.lock().unwrap();self.check_bound(&i,&bound)?;}
+        let result=Self::write_complete(&mut bound.file,&bytes);drop(serial);result
+    }
+
     fn on_eof(&self, generation: &Value) {
-        let source_pid={let i=self.inner.0.lock().unwrap();if i.generation!=*generation{return;}i.child_pid};
+        let source_pid={let mut i=self.inner.0.lock().unwrap();i.account_channels.retain(|g|g!=generation);if i.generation!=*generation{return;}i.child_pid};
         // Reap only the captured owning child, never a successor installed
         // between the first scope check and the final source gate.
         let status=self.child.lock().unwrap().as_mut().filter(|c|Some(c.id() as i32)==source_pid).and_then(|c|c.wait().ok());
@@ -1299,11 +1657,16 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
 
     /// HOSTING §4.5 deliberate stop (DEF-5a): stop record first, then close input,
     /// then end the whole process group after a grace period (H11).
-    pub fn stop(&self, actor: &str, reason: &str) -> Result<Value, String> {
+    pub fn stop(&self, actor: &str, reason: &str) -> Result<Value, String> {self.stop_inner(None,actor,reason)}
+    pub fn stop_scoped(&self,expected_generation:&Value,actor:&str,reason:&str)->Result<Value,String>{
+        crate::recovery::generation_ref(expected_generation)?;self.stop_inner(Some(expected_generation),actor,reason)
+    }
+    fn stop_inner(&self,expected_generation:Option<&Value>, actor: &str, reason: &str) -> Result<Value, String> {
         let source_gate = self.attachment_gate.lock().unwrap();
         let pid;let target_generation;
         {
             let mut i = self.inner.0.lock().unwrap();
+            if expected_generation.is_some_and(|g|g!=&i.generation){return Err("Stop target full generation changed; no successor stop or fallback".into());}
             if matches!(i.state.as_str(), "absent" | "stopped" | "refused") {
                 return Err(format!("stop not accepted in state {}", i.state));
             }
@@ -1317,6 +1680,7 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
                 "handshaking" => "LT-18",
                 _ => "LT-19",
             };
+            Self::oauth_lost(&mut i,&target_generation);
             self.lt(&mut i, id, "stop-requested", "stopping", json!({"actor": actor, "stopRecord": stop_record}));
             pid = i.child_pid;
             i.attachment_pipe_epoch += 1;
@@ -1881,4 +2245,346 @@ mod conversation_transport_tests {
         use crate::recovery::ExplicitAppProjectContext as Context;for stale in [false,true]{let(host,g,root,custody,_)=context_fixture();let(state,owner,revision,order)=shared_attachment_selected(&root);if stale{host.inner.0.lock().unwrap().generation["spawnCounter"]=json!(2);}else{std::fs::write(root.join("first.txt"),"changed since native selection").unwrap();}no_attachment_write(&host,||{assert!(crate::runtime_session::submit_selected_attachments(&state,&host,Arc::clone(&custody),&owner,revision,&order,&g,"thread",None,"person text",Context::unknown(),None).is_err());});assert_eq!(host.inner.0.lock().unwrap().send_position,0);assert_eq!(state.lock().unwrap().as_ref().unwrap().snapshot()["selections"].as_array().unwrap().len(),1);std::fs::remove_dir_all(root).unwrap();}
         let(host,g,root,custody,_)=context_fixture();let(state,owner,revision,order)=shared_attachment_selected(&root);let result=shared_attachment_exchange(&host,&g,json!({"error":{"code":-32600,"message":"synthetic refusal"}}),||crate::runtime_session::submit_selected_attachments(&state,&host,Arc::clone(&custody),&owner,revision,&order,&g,"thread",None,"person text",Context::unknown(),None));assert!(result.is_err());let count=host.client_requests().len();state.lock().unwrap().as_mut().unwrap().refresh_submissions(&host,&custody);let view=state.lock().unwrap().as_ref().unwrap().snapshot();assert_eq!(view["submissions"].as_array().unwrap().len(),1);assert!(view["submissions"][0]["outcome"]["resolution"]["nativeTurnRef"].is_null());assert_eq!(host.client_requests().len(),count);assert_eq!(view["selections"].as_array().unwrap().len(),1);std::fs::remove_dir_all(root).unwrap();
     }
+
+    const AUTH_CANARY:&str="SYNTHETIC_UNIT_A_KEY_CANARY_9b71_not_a_real_credential";
+    fn assert_auth_retained_safe(host:&Host,source:Option<&SourceRequest>){let mut all=json!({"snapshot":host.snapshot(),"clients":host.client_requests(),"journal":host.journal()});if let Some(source)=source{all["source"]=source.evidence();all["attempted"]=source.attempted_frame().clone();all["observation"]=host.account_rpc_observation(source).unwrap();}let text=serde_json::to_string(&all).unwrap();assert!(!text.contains(AUTH_CANARY),"synthetic canary leaked into retained output");assert!(!format!("{all:?}").contains(AUTH_CANARY));}
+    #[test]
+    fn credential_rpc_private_wire_once_and_redacted_receipt_typed_presence(){let host=host();let mut source=None;let(result,outbound)=exchange(&host,Some(json!({"result":{"type":"apiKey","apiKey":AUTH_CANARY,"extraEcho":AUTH_CANARY}})),vec![],||{let r=host.account_login_api_key(&g(),auth_rpc::TransientApiKey::synthetic(AUTH_CANARY),None)?;let e=host.source_request_wait(&r,Duration::from_millis(20))?;source=Some(r);Ok(e)});let e=result.unwrap();let source=source.unwrap();assert_eq!(outbound["params"],json!({"type":"apiKey","apiKey":AUTH_CANARY}));assert_eq!(serde_json::to_string(&outbound).unwrap().matches(AUTH_CANARY).count(),1);assert_eq!(e["writeResult"],"written");assert_eq!(e["outcome"],"response-observed-result");assert_eq!(e["sensitiveFieldsRedacted"],true);assert!(e["frameEvidence"].as_str().unwrap().contains("not original"));assert_eq!(e["response"]["result"],json!({"type":"apiKey"}));assert_eq!(host.account_rpc_observation(&source).unwrap()["accountObservation"]["credentialValidity"],"unknown");assert_auth_retained_safe(&host,Some(&source));let count=host.client_requests().len();host.source_request_status(&source).unwrap();assert_eq!(host.client_requests().len(),count);}
+    #[test]
+    fn credential_rpc_delayed_released_key_error_closed_channel_and_unrelated_notification(){let host=host();let mut source=None;let(result,outbound)=exchange(&host,None,vec![],||{let r=host.account_login_api_key(&g(),auth_rpc::TransientApiKey::synthetic(AUTH_CANARY),None)?;let e=host.source_request_wait(&r,Duration::from_millis(10))?;source=Some(r);Ok(e)});assert_eq!(result.unwrap()["waitingEnded"],true);let source=source.unwrap();assert_auth_retained_safe(&host,Some(&source));let error=json!({"id":outbound["id"],"error":{"code":-32000,"message":format!("native auth echoed {AUTH_CANARY}"),"data":{"secret":AUTH_CANARY}}});host.on_line(&serde_json::to_vec(&error).unwrap(),&g());assert_eq!(source.evidence()["outcome"],"response-observed-error");assert_eq!(source.evidence()["response"]["error"]["code"],-32000);assert_auth_retained_safe(&host,Some(&source));let ordinary=json!({"method":"unrelated/native-notification","params":{"text":"ordinary source bytes","extra":7}});host.on_line(&serde_json::to_vec(&ordinary).unwrap(),&g());assert_eq!(host.journal().last().unwrap()["frame"],ordinary);
+        host.on_line(&serde_json::to_vec(&json!({"method":"account/login/completed","params":{"loginId":AUTH_CANARY,"success":AUTH_CANARY,"error":null}})).unwrap(),&g());assert_eq!(host.journal().last().unwrap()["frame"]["params"]["success"],auth_rpc::REDACTED);assert_auth_retained_safe(&host,Some(&source));
+        Host::close_generation(&mut host.inner.0.lock().unwrap());host.on_line(&serde_json::to_vec(&json!({"method":"account/login/completed","params":{"loginId":"observed-login","success":false,"error":AUTH_CANARY,"authUrl":AUTH_CANARY,"verificationUrl":AUTH_CANARY,"userCode":AUTH_CANARY}})).unwrap(),&g());host.on_line(format!("unparseable original auth diagnostic {AUTH_CANARY}").as_bytes(),&g());assert_eq!(host.journal().last().unwrap()["class"],"closed-generation-frame");assert!(host.journal().last().unwrap()["frame"]["observation"].as_str().unwrap().contains("unattributed"));assert_auth_retained_safe(&host,Some(&source));assert_eq!(host.client_requests().len(),1);}
+    #[test]
+    fn credential_rpc_generic_bypass_and_known_native_policy_exclusion_send_no_key(){let host=host();no_attachment_write(&host,||{for params in [json!({"type":"apiKey","apiKey":AUTH_CANARY}),json!({"type":"chatgpt","apiKey":AUTH_CANARY}),json!({"type":"chatgptAuthTokens","accessToken":AUTH_CANARY}),json!({"type":"amazonBedrockAccessKeys","secretAccessKey":AUTH_CANARY,"sessionToken":AUTH_CANARY})]{let error=host.request("account/login/start",params,json!({"kind":"person-directed"})).unwrap_err();assert!(!error.contains(AUTH_CANARY));}assert!(host.request("account/read",json!({"refreshToken":true}),json!({"kind":"app-rule","name":"read"})).is_err());assert!(host.client_requests().is_empty());});assert_auth_retained_safe(&host,None);
+        for methods in [json!([]),json!(["chatgpt"])]{let mut policy=None;let(result,_)=exchange(&host,Some(json!({"result":{"requirements":{"allowedLoginMethods":methods,"cliAuthCredentialsStore":"auto"}}})),vec![],||{let source=host.request_begin_scoped("configRequirements/read",json!({}),json!({"kind":"person-directed"}),false,Some(&g()))?;let e=host.source_request_wait(&source,Duration::from_millis(20))?;policy=Some(source);Ok(e)});assert_eq!(result.unwrap()["outcome"],"response-observed-result");let count=host.client_requests().len();no_attachment_write(&host,||{let error=host.account_login_api_key(&g(),auth_rpc::TransientApiKey::synthetic(AUTH_CANARY),policy.as_ref()).err().unwrap();assert!(error.contains("excludes"));assert!(!error.contains(AUTH_CANARY));});assert_eq!(host.client_requests().len(),count);assert_auth_retained_safe(&host,None);}}
+    // Owned pipe fixture: actual App custody and actual after-spawn counter
+    // allocator; ready/native thread setup is synthetic, not supplier proof.
+    fn app_custody_mock_home(host:&Arc<Host>,home:&std::path::Path)->Value {
+        let mut child=Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).process_group(0).spawn().unwrap();let pid=child.id() as i32;
+        *host.stdin.lock().unwrap()=child.stdin.take();let stdout=child.stdout.take().unwrap();*host.child.lock().unwrap()=Some(child);
+        let g={let mut i=host.inner.0.lock().unwrap();host.allocate_home_spawn(&mut i,format!("app-home:{}",sha256_hex(home.as_os_str().as_encoded_bytes()))).unwrap();i.attachment_pipe_epoch+=1;i.child_pid=Some(pid);i.generation=json!({"appSession":i.app_session,"home":i.home,"spawnCounter":i.spawn_counter});i.state="ready".into();i.declared_capabilities=Some(json!({"experimentalApi":false}));let g=i.generation.clone();i.threads.push(json!({"generation":g,"threadId":"thread","cwd":"/synthetic/native"}));g};host.spawn_reader(stdout,g.clone());g
+    }
+    fn app_custody_root()->(std::path::PathBuf,Arc<Host>){let root=std::env::temp_dir().join(opaque_id("app-custody-").unwrap());std::fs::create_dir(&root).unwrap();let root=root.canonicalize().unwrap();let host=Arc::new(Host::new());host.configure_recovery(root.join("recovery.ledger.jsonl")).unwrap();(root,host)}
+    fn namespace_guard_fixture()->(PathBuf,Arc<Host>,Arc<attachment_custody::NativeNamespaceBindings>,crate::home_resources::OwnedHomePlan){
+        use crate::home_resources::{ExistingHomeReference,HomeClass,OwnedHomePlan,SharedResourceTargets};
+        use attachment_custody::{NativeHomeNamespace,NativeNamespaceBindings};
+        let root=std::env::temp_dir().join(opaque_id("namespace-host-").unwrap());std::fs::create_dir(&root).unwrap();let root=root.canonicalize().unwrap();
+        for name in ["account","shared/skills","app/runtime"]{std::fs::create_dir_all(root.join(name)).unwrap();}
+        for name in ["config.toml","AGENTS.md"]{std::fs::write(root.join("shared").join(name),"synthetic source").unwrap();}
+        let account=ExistingHomeReference::new(root.join("account"),HomeClass::Account).unwrap();
+        let key=OwnedHomePlan::new(root.join("app"),root.join("app/key"),HomeClass::ApiKey,Some(SharedResourceTargets{config_toml:root.join("shared/config.toml"),global_agents_md:root.join("shared/AGENTS.md"),skills:root.join("shared/skills")})).unwrap();
+        let scope=NativeNamespaceBindings::from_root(vec![NativeHomeNamespace::received(&account,None),NativeHomeNamespace::planned(&key)]).unwrap();key.prepare().unwrap();
+        let host=Arc::new(Host::new());host.configure_recovery_with_namespaces(root.join("app/runtime/recovery.ledger.jsonl"),Arc::clone(&scope)).unwrap();(root,host,scope,key)
+    }
+    #[test]
+    fn namespace_guard_drift_keeps_actual_reply_stop_and_recoverable_pointer_facts(){
+        use std::os::unix::fs::symlink;
+        let(root,host,scope,key)=namespace_guard_fixture();let ga=app_custody_mock_home(&host,&root.join("account"));let cap=host.app_runtime_custody().unwrap();cap.bind_native_namespaces(scope).unwrap();
+        let leaf=root.join("app/runtime/recovery.ledger.jsonl");let before=std::fs::read(&leaf).unwrap();
+        std::fs::remove_file(key.native_path().join("skills")).unwrap();symlink(root.join("app/runtime"),key.native_path().join("skills")).unwrap();
+        host.on_line(&serde_json::to_vec(&json!({"id":"guard-request","method":"item/fileChange/requestApproval","params":{"threadId":"thread","itemId":"item"}})).unwrap(),&ga);
+        assert_eq!(std::fs::read(&leaf).unwrap(),before);assert_eq!(host.snapshot()["recoveryPendingObservations"].as_array().unwrap().len(),1);assert!(!host.snapshot()["recoveryPersistenceError"].is_null());
+        let reply=host.answer_server_request(&ga,&json!("guard-request"),&json!({"decision":"decline"}),"person-via-interaction",Some("person:synthetic (identity not verified)")).unwrap();assert_eq!(reply["replyWriteResult"],"written");
+        assert_eq!(host.stop_scoped(&ga,"person:synthetic","codex-stop").unwrap()["state"],"stopped");let captured=host.snapshot()["recoveryPendingObservations"].as_array().unwrap().clone();assert_eq!(captured.last().unwrap()["transition"],"RQ-05");assert_eq!(std::fs::read(&leaf).unwrap(),before);
+        std::fs::remove_file(key.native_path().join("skills")).unwrap();symlink(root.join("shared/skills"),key.native_path().join("skills")).unwrap();cap.flush_captured_recovery();assert!(host.snapshot()["recoveryPendingObservations"].as_array().unwrap().is_empty());let rows=cap.snapshot()["recovery"]["entries"].as_array().unwrap().clone();for fact in &captured{assert_eq!(rows.iter().filter(|row|*row==fact).count(),1);}std::fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
+    fn namespace_guard_actual_reserved_source_home_and_current_use_refusal(){
+        let(root,host,scope,key)=namespace_guard_fixture();let ga=app_custody_mock_home(&host,&root.join("account"));let custody=Arc::new(AttachmentCustody::open_with_namespaces(&root.join("app"),Arc::clone(&scope)).unwrap());
+        std::fs::write(root.join("selected.txt"),"synthetic selected source").unwrap();let selected=SelectedTextAttachment::from_native_selection(root.join("selected.txt"),None).unwrap();
+        let packet=host.prepare_attachment_turn(Arc::clone(&custody),&ga,"thread",None,"person text",&[selected.clone()]).unwrap();assert_eq!(packet.source.evidence()["generation"],ga);assert!(custody.client_path(&ga,&packet.source.request_id()).unwrap().exists());assert!(packet.cancel());
+        let mut foreign=ga.clone();foreign["home"]=json!("unreceived-home");assert!(custody.client_path(&foreign,&json!(1)).is_err());
+        std::fs::remove_file(key.native_path().join("skills")).unwrap();std::os::unix::fs::symlink(root.join("app/runtime"),key.native_path().join("skills")).unwrap();
+        assert!(host.prepare_attachment_turn(custody,&ga,"thread",None,"person text",&[selected]).is_err());assert_eq!(host.state(),"ready");assert_eq!(host.stop_scoped(&ga,"person:synthetic","codex-stop").unwrap()["state"],"stopped");std::fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
+    fn app_custody_retired_host_queue_survives_actual_drop_recreation_flush_and_end(){
+        let(root,account)=app_custody_root();let cap=account.app_runtime_custody().unwrap();let ga=app_custody_mock_home(&account,&root.join("account"));let writer=cap.writer.lock().unwrap();account.on_line(&serde_json::to_vec(&json!({"id":1,"method":"item/fileChange/requestApproval","params":{"threadId":"thread","itemId":"item"}})).unwrap(),&ga);account.stop_scoped(&ga,"person:synthetic","codex-stop").unwrap();let captured=account.snapshot()["recoveryPendingObservations"].as_array().unwrap().clone();assert_eq!(captured.len(),2);let weak=Arc::downgrade(&account.inner);drop(account);let deadline=std::time::Instant::now()+Duration::from_secs(1);while weak.upgrade().is_some()&&std::time::Instant::now()<deadline{std::thread::sleep(Duration::from_millis(5));}assert!(weak.upgrade().is_none(),"actual Host/readers must retire, not stay alive as a queue surrogate");assert_eq!(cap.snapshot()["pendingSourceObservations"][0]["entries"],json!(captured));drop(writer);
+        let next=Arc::new(Host::new_with_app_custody(Arc::clone(&cap)).unwrap());let ga2=app_custody_mock_home(&next,&root.join("account"));assert_eq!(ga2["spawnCounter"],2);cap.flush_captured_recovery();let rows=cap.snapshot()["recovery"]["entries"].as_array().unwrap().clone();for entry in &captured{assert_eq!(rows.iter().filter(|e|*e==entry).count(),1);}assert!(cap.snapshot()["pendingSourceObservations"][0]["entries"].as_array().unwrap().is_empty());next.stop_scoped(&ga2,"person:synthetic","codex-stop").unwrap();let end=cap.record_app_session_end(&[]).unwrap();assert_eq!(end["write"],"confirmed");assert_eq!(end["pendingPointerFacts"],0);std::fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
+    fn app_custody_retired_queue_io_failure_keeps_actual_facts_and_error_without_end_replay(){
+        let(root,account)=app_custody_root();let cap=account.app_runtime_custody().unwrap();let ga=app_custody_mock_home(&account,&root.join("account"));let writer=cap.writer.lock().unwrap();account.on_line(&serde_json::to_vec(&json!({"id":"retired","method":"item/fileChange/requestApproval","params":{"threadId":"thread","itemId":"item"}})).unwrap(),&ga);account.stop_scoped(&ga,"person:synthetic","codex-stop").unwrap();let captured=account.snapshot()["recoveryPendingObservations"].as_array().unwrap().clone();let weak=Arc::downgrade(&account.inner);drop(account);let deadline=std::time::Instant::now()+Duration::from_secs(1);while weak.upgrade().is_some()&&std::time::Instant::now()<deadline{std::thread::sleep(Duration::from_millis(5));}assert!(weak.upgrade().is_none());drop(writer);
+        let ledger=root.join("recovery.ledger.jsonl");let saved=root.join("saved-original");std::fs::rename(&ledger,&saved).unwrap();std::fs::create_dir(&ledger).unwrap();let failure=cap.flush_captured_recovery();assert!(!failure["sources"][0]["limit"].is_null());let pending=&cap.snapshot()["pendingSourceObservations"][0];assert_eq!(pending["entries"],json!(captured));assert!(!pending["limit"].is_null());let end=cap.record_app_session_end(&[]).unwrap();assert_eq!(end["write"],"unknown");assert_eq!(cap.record_app_session_end(&[]).unwrap(),end);std::fs::remove_dir(&ledger).unwrap();std::fs::rename(&saved,&ledger).unwrap();cap.flush_captured_recovery();let rows=cap.snapshot()["recovery"]["entries"].as_array().unwrap().clone();for entry in &captured{assert_eq!(rows.iter().filter(|e|*e==entry).count(),1);}assert!(cap.snapshot()["pendingSourceObservations"][0]["entries"].as_array().unwrap().is_empty());assert_eq!(cap.record_app_session_end(&[]).unwrap(),end);assert!(!rows.iter().any(|e|e["kind"]=="session_ended"));std::fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
+    fn app_custody_named_cr7_environment_removal_uses_only_explicit_canaries(){
+        // No inherited environment/value read: an owned env utility receives
+        // only these known synthetic variables, then actual production list.
+        let mut cmd=Command::new("/usr/bin/env");cmd.env_clear();for name in ["OPENAI_API_KEY","CODEX_API_KEY","CODEX_ACCESS_TOKEN"]{cmd.env(name,AUTH_CANARY);}cmd.env("CHIRALITY_SYNTHETIC_VISIBLE","ordinary");for name in CREDENTIAL_VARS{cmd.env_remove(name);}let output=cmd.output().unwrap();assert!(output.status.success());let text=String::from_utf8(output.stdout).unwrap();assert!(!text.contains(AUTH_CANARY));assert!(!text.contains("CODEX_ACCESS_TOKEN="));assert_eq!(text.trim(),"CHIRALITY_SYNTHETIC_VISIBLE=ordinary");assert!(CREDENTIAL_VARS.contains(&"CODEX_ACCESS_TOKEN"));
+    }
+    #[test]
+    fn app_custody_one_session_shared_actual_ledger_equal_request_ids_and_recreated_counter(){
+        let(root,account)=app_custody_root();let ga=app_custody_mock_home(&account,&root.join("account"));let cap=account.app_runtime_custody().unwrap();assert!(Arc::ptr_eq(&cap,&account.app_runtime_custody().unwrap()));let key=Arc::new(Host::new_with_app_custody(Arc::clone(&cap)).unwrap());let gb=app_custody_mock_home(&key,&root.join("key"));assert_eq!(ga["appSession"],gb["appSession"]);assert_ne!(ga["home"],gb["home"]);assert_eq!(ga["spawnCounter"],1);assert_eq!(gb["spawnCounter"],1);assert!(Arc::ptr_eq(&account.recovery_writer,&key.recovery_writer));assert!(key.configure_recovery(root.join("recovery.ledger.jsonl")).is_err());
+        let request=json!({"id":1,"method":"item/fileChange/requestApproval","params":{"threadId":"thread","itemId":"item"}});account.on_line(&serde_json::to_vec(&request).unwrap(),&ga);key.on_line(&serde_json::to_vec(&request).unwrap(),&gb);let entries=cap.snapshot()["recovery"]["entries"].as_array().unwrap().clone();assert_eq!(entries.iter().filter(|e|e["kind"]=="session_started").count(),1);let listed=entries.iter().filter(|e|e["kind"]=="register_entry_summary").collect::<Vec<_>>();assert_eq!(listed.len(),2);assert_ne!(listed[0]["generation"],listed[1]["generation"]);assert!(listed.iter().all(|e|e["requestIdentity"]=="1"));
+        account.stop_scoped(&ga,"person:synthetic","codex-stop").unwrap();let reopened=Arc::new(Host::new_with_app_custody(Arc::clone(&cap)).unwrap());let ga2=app_custody_mock_home(&reopened,&root.join("account"));assert_eq!(ga2["appSession"],ga["appSession"]);assert_eq!(ga2["home"],ga["home"]);assert_eq!(ga2["spawnCounter"],2);reopened.stop_scoped(&ga2,"person:synthetic","codex-stop").unwrap();key.stop_scoped(&gb,"person:synthetic","codex-stop").unwrap();
+        let end=cap.record_app_session_end(&[]).unwrap();assert_eq!(end["write"],"confirmed");assert_eq!(cap.record_app_session_end(&[]).unwrap(),end);let rows=cap.snapshot()["recovery"]["entries"].as_array().unwrap().clone();assert_eq!(rows.iter().filter(|e|e["kind"]=="session_started").count(),1);assert_eq!(rows.iter().filter(|e|e["kind"]=="session_ended").count(),1);assert!(Host::new_with_app_custody(Arc::clone(&cap)).is_err());let disk=std::fs::read_to_string(root.join("recovery.ledger.jsonl")).unwrap();let actual=disk.lines().map(|l|serde_json::from_str::<Value>(l).unwrap()).collect::<Vec<_>>();assert_eq!(actual,rows);std::fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
+    fn app_custody_shared_paused_writer_retains_source_order_and_actual_stop(){
+        let(root,account)=app_custody_root();let cap=account.app_runtime_custody().unwrap();let key=Arc::new(Host::new_with_app_custody(Arc::clone(&cap)).unwrap());let ga=app_custody_mock_home(&account,&root.join("account"));let gb=app_custody_mock_home(&key,&root.join("key"));let writer=cap.writer.lock().unwrap();let request=json!({"id":"same","method":"item/fileChange/requestApproval","params":{"threadId":"thread","itemId":"item"}});for(host,g)in [(&account,&ga),(&key,&gb)]{host.on_line(&serde_json::to_vec(&request).unwrap(),g);assert_eq!(host.snapshot()["recoveryPendingObservations"].as_array().unwrap().len(),1);}
+        let start=std::time::Instant::now();assert_eq!(key.stop_scoped(&gb,"person:synthetic","codex-stop").unwrap()["state"],"stopped");assert!(start.elapsed()<Duration::from_secs(2));let pending=key.snapshot()["recoveryPendingObservations"].as_array().unwrap().clone();assert!(pending.len()>=2);assert_eq!(pending[0]["transition"],"RQ-01");assert_eq!(pending.last().unwrap()["transition"],"RQ-04");
+        assert_eq!(account.answer_server_request(&ga,&json!("same"),&json!({"decision":"decline"}),"person-via-interaction",Some("person:synthetic (identity not verified)")).unwrap()["replyWriteResult"],"written");account.stop_scoped(&ga,"person:synthetic","codex-stop").unwrap();let account_pending=account.snapshot()["recoveryPendingObservations"].as_array().unwrap().clone();assert_eq!(account_pending.last().unwrap()["transition"],"RQ-05");drop(writer);account.flush_recovery_observations();key.flush_recovery_observations();assert!(key.snapshot()["recoveryPendingObservations"].as_array().unwrap().is_empty());let all=cap.snapshot()["recovery"]["entries"].as_array().unwrap().clone();let key_rows=all.iter().filter(|e|e["generation"]==crate::recovery::generation_ref(&gb).unwrap()).cloned().collect::<Vec<_>>();assert_eq!(key_rows,pending);let account_rows=all.iter().filter(|e|e["generation"]==crate::recovery::generation_ref(&ga).unwrap()).cloned().collect::<Vec<_>>();assert_eq!(account_rows,account_pending);std::fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
+    fn app_custody_unavailable_original_ledger_no_relocation_and_no_json_session_adoption(){
+        let root=std::env::temp_dir().join(opaque_id("app-custody-unavailable-").unwrap());std::fs::create_dir(&root).unwrap();let account=Arc::new(Host::new());assert!(account.configure_recovery(root.clone()).is_err());let cap=account.app_runtime_custody().unwrap();let key=Arc::new(Host::new_with_app_custody(Arc::clone(&cap)).unwrap());let ga=app_custody_mock_home(&account,&root.join("account"));let gb=app_custody_mock_home(&key,&root.join("key"));assert_eq!(ga["appSession"],gb["appSession"]);assert_eq!(key.shared_recovery_observation()["configured"],false);assert!(!key.shared_recovery_observation()["limit"].is_null());assert!(std::fs::read_dir(&root).unwrap().next().is_none());key.stop_scoped(&gb,"person:synthetic","codex-stop").unwrap();account.stop_scoped(&ga,"person:synthetic","codex-stop").unwrap();assert_eq!(cap.record_app_session_end(&[]).unwrap()["write"],"not-attempted");let imported=super::conversation_transport_tests::host();assert!(imported.app_runtime_custody().err().unwrap().contains("no JSON"));std::fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
+    fn app_custody_context_refresh_preserves_both_home_indexes_and_shared_hot_claims(){
+        use crate::recovery::ExplicitAppProjectContext as Context;let(root,owner,selections)=attachment_fixture();let account=Arc::new(Host::new());account.configure_recovery(owner.root().join("runtime/recovery.ledger.jsonl")).unwrap();let ga=app_custody_mock_home(&account,&root.join("codex"));let cap=account.app_runtime_custody().unwrap();let key=Arc::new(Host::new_with_app_custody(Arc::clone(&cap)).unwrap());let gb=app_custody_mock_home(&key,&root.join("key"));let p=Context::known("project:P",crate::recovery::AppProjectSource::ConfiguredDirectory).unwrap();let q=Context::known("project:Q",crate::recovery::AppProjectSource::ConfiguredDirectory).unwrap();account.observe_conversation_project(&ga,"thread",Some("H-acct"),&p).unwrap();key.observe_conversation_project(&gb,"thread",Some("H-key"),&q).unwrap();assert_eq!(account.observe_conversation_project(&ga,"thread",Some("H-acct"),&q).unwrap()["indexSnapshot"]["project"],"project:P");assert_eq!(key.observe_conversation_project(&gb,"thread",Some("H-key"),&p).unwrap()["indexSnapshot"]["project"],"project:Q");
+        // Exact real prepared capability; no key-home custody guard relaxation.
+        let packet=account.prepare_attachment_turn(Arc::clone(&owner),&ga,"thread",None,"synthetic person text",&selections).unwrap();let binding=account.bind_attachment_context(&packet,&q,None).unwrap();assert_eq!(binding["persistence"],"memory-only");assert!(Arc::ptr_eq(&account.submission_contexts,&key.submission_contexts));let hot=key.submission_contexts.lock().unwrap().clone();assert!(crate::recovery::submission_context_plan(None,&[],&hot.iter().map(|h|h["tag"].clone()).collect::<Vec<_>>(),packet.submission_ref(),Some("project:R")).is_err());assert!(packet.cancel());account.stop_scoped(&ga,"person:synthetic","codex-stop").unwrap();key.stop_scoped(&gb,"person:synthetic","codex-stop").unwrap();std::fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
+    fn scoped_stop_full_tuple_guard_has_zero_effect_then_valid_pipe_and_late_source_control(){
+        let host=host();let before=host.snapshot();let epoch=host.inner.0.lock().unwrap().attachment_pipe_epoch;
+        for (field,value) in [("appSession",json!("other-session")),("home",json!("other-home")),("spawnCounter",json!(2))]{let mut foreign=g();foreign[field]=value;assert!(host.stop_scoped(&foreign,"person:test","codex-stop").unwrap_err().contains("no successor stop"));assert_eq!(host.snapshot(),before);assert_eq!(host.inner.0.lock().unwrap().attachment_pipe_epoch,epoch);}
+        let gate=host.attachment_gate.lock().unwrap();let caller=Arc::clone(&host);let(tx,rx)=channel();let worker=std::thread::spawn(move||tx.send(caller.stop_scoped(&g(),"person:test","codex-stop")).unwrap());{let mut i=host.inner.0.lock().unwrap();i.generation["home"]=json!("same-counter-successor-home");i.attachment_pipe_epoch+=1;}drop(gate);assert!(rx.recv_timeout(Duration::from_secs(1)).unwrap().unwrap_err().contains("no successor stop"));worker.join().unwrap();assert_eq!(host.state(),"ready");assert!(host.inner.0.lock().unwrap().stop_record.is_none());
+        let host=super::conversation_transport_tests::host();let mut child=Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).process_group(0).spawn().unwrap();let pid=child.id() as i32;*host.stdin.lock().unwrap()=child.stdin.take();let stdout=child.stdout.take().unwrap();*host.child.lock().unwrap()=Some(child);host.inner.0.lock().unwrap().child_pid=Some(pid);host.spawn_reader(stdout,g());
+        assert_eq!(host.stop_scoped(&g(),"person:test","codex-stop").unwrap()["state"],"stopped");let ended=host.lifecycle_events().into_iter().find(|e|e["transitionId"]=="LT-23").unwrap();assert!(ended.to_string().contains("exitFacts"));
+        {let mut i=host.inner.0.lock().unwrap();i.generation["spawnCounter"]=json!(2);i.state="ready".into();}host.on_eof(&g());assert_eq!(host.state(),"ready");assert_eq!(host.snapshot()["generation"]["spawnCounter"],2);assert!(host.stop_scoped(&g(),"person:test","codex-stop").unwrap_err().contains("no successor stop"));
+    }
+    #[test]
+    fn native_entry_callback_once_actual_wire_cancel_error_and_scope_drift_are_truthful(){
+        let host=host();let calls=std::cell::Cell::new(0);let mut source=None;let(result,outbound)=exchange(&host,Some(json!({"result":{"type":"apiKey"}})),vec![],||{let r=host.account_login_api_key_from_native_entry(&g(),None,||{calls.set(calls.get()+1);Ok(Some(AUTH_CANARY.into()))})?.unwrap();let e=host.source_request_wait(&r,Duration::from_millis(20))?;source=Some(r);Ok(e)});assert_eq!(calls.get(),1);assert_eq!(outbound["params"],json!({"type":"apiKey","apiKey":AUTH_CANARY}));assert_eq!(result.unwrap()["writeResult"],"written");assert_auth_retained_safe(&host,source.as_ref());let count=host.client_requests().len();
+        no_attachment_write(&host,||{assert!(host.account_login_api_key_from_native_entry(&g(),None,||Ok(None)).unwrap().is_none());let error=host.account_login_api_key_from_native_entry(&g(),None,||Err(())).err().unwrap();assert!(error.contains("diagnostic withheld"));assert!(!error.contains(AUTH_CANARY));});assert_eq!(host.client_requests().len(),count);
+        no_attachment_write(&host,||{let mut foreign=g();foreign["home"]=json!("other-home");assert!(host.account_login_api_key_from_native_entry(&foreign,None,||{panic!("stale source must not invoke native entry")}).is_err());});
+        no_attachment_write(&host,||{let error=host.account_login_api_key_from_native_entry(&g(),None,||{let mut i=host.inner.0.lock().unwrap();Host::close_generation(&mut i);i.generation["spawnCounter"]=json!(2);i.state="ready".into();Ok(Some(AUTH_CANARY.into()))}).err().unwrap();assert!(error.contains("stale/closed"));});assert_eq!(host.client_requests().len(),count);assert_auth_retained_safe(&host,source.as_ref());
+    }
+    #[test]
+    fn native_entry_callback_actual_exclusion_and_foreign_policy_never_invoke_entry(){
+        let host=host();let mut policy=None;let(result,_)=exchange(&host,Some(json!({"result":{"requirements":{"allowedLoginMethods":["chatgpt"]}}})),vec![],||{let r=host.account_requirements_read_scoped(&g())?;let e=host.source_request_wait(&r,Duration::from_millis(20))?;policy=Some(r);Ok(e)});assert_eq!(result.unwrap()["outcome"],"response-observed-result");let policy=policy.unwrap();
+        no_attachment_write(&host,||{assert!(host.account_login_api_key_from_native_entry(&g(),Some(&policy),||panic!("excluded policy must not invoke entry")).err().unwrap().contains("excludes"));});assert_auth_retained_safe(&host,Some(&policy));
+        let other=super::conversation_transport_tests::host();no_attachment_write(&other,||{assert!(other.account_login_api_key_from_native_entry(&g(),Some(&policy),||panic!("foreign policy must not invoke entry")).err().unwrap().contains("another Host"));});
+
+    }
+    #[test]
+    fn native_requirement_store_mode_enum_presence_and_invalid_value_are_not_effective_config(){
+        for mode in [None,Some(Value::Null),Some(json!("file")),Some(json!("keyring")),Some(json!("auto")),Some(json!("ephemeral")),Some(json!(AUTH_CANARY))]{let host=host();let mut requirements=json!({});if let Some(mode)=mode.clone(){requirements["cliAuthCredentialsStore"]=mode;}let mut source=None;let(result,outbound)=exchange(&host,Some(json!({"result":{"requirements":requirements}})),vec![],||{let r=host.account_requirements_read_scoped(&g())?;let e=host.source_request_wait(&r,Duration::from_millis(20))?;source=Some(r);Ok(e)});assert_eq!(outbound["params"],json!({}));assert_eq!(result.unwrap()["outcome"],"response-observed-result");let source=source.unwrap();let view=host.account_rpc_observation(&source).unwrap();if mode==Some(json!(AUTH_CANARY)){assert_eq!(source.evidence()["authResponseShapeValid"],false);assert!(view["accountObservation"]["state"].as_str().unwrap().contains("unknown"));}else{assert_eq!(view["accountObservation"]["credentialStoreRequirementPresent"],mode.is_some());assert_eq!(view["accountObservation"]["nativeRequirementCredentialStore"],mode.unwrap_or(Value::Null));assert!(view["accountObservation"]["scope"].as_str().unwrap().contains("not effective"));}assert_auth_retained_safe(&host,Some(&source));}
+    }
+    #[test]
+    fn credential_rpc_known_source_nonprotocol_diagnostics_fresh_and_closed_are_unattributed(){
+        let host=host();let mut source=None;let(result,_)=exchange(&host,None,vec![],||{let r=host.account_login_api_key(&g(),auth_rpc::TransientApiKey::synthetic(AUTH_CANARY),None)?;let e=host.source_request_wait(&r,Duration::from_millis(5))?;source=Some(r);Ok(e)});assert_eq!(result.unwrap()["waitingEnded"],true);let source=source.unwrap();
+        for closed in [false,true]{if closed{Host::close_generation(&mut host.inner.0.lock().unwrap());}
+            for raw in [serde_json::to_vec(&json!({"message":AUTH_CANARY})).unwrap(),serde_json::to_vec(&json!([AUTH_CANARY])).unwrap(),serde_json::to_vec(&json!(AUTH_CANARY)).unwrap(),format!("non JSON {AUTH_CANARY}").into_bytes()]{
+                host.on_line(&raw,&g());let entry=host.journal().last().unwrap().clone();assert_eq!(entry["class"],if closed{"closed-generation-frame"}else{"malformed"});assert!(entry["frame"]["observation"].as_str().unwrap().contains("unattributed"));assert!(entry["frame"].get("id").is_none());assert!(entry["frame"].get("method").is_none());assert_auth_retained_safe(&host,Some(&source));
+            }
+            for frame in [json!({"method":"turn/unknown-notification","params":{"text":"ordinary source bytes"}}),json!({"method":"supplier/future-notification","params":{"text":"opaque native value","field":7}})]{host.on_line(&serde_json::to_vec(&frame).unwrap(),&g());assert_eq!(host.journal().last().unwrap()["frame"],frame);}
+        }
+        assert!(source.evidence()["response"].is_null());assert_eq!(host.client_requests().len(),1);
+        // Deliberate inverse: no released-key matcher/global DLP on an unrelated
+        // valid notification, even when its test text equals the synthetic canary.
+        let unrelated=json!({"method":"supplier/future-notification","params":{"text":AUTH_CANARY}});host.on_line(&serde_json::to_vec(&unrelated).unwrap(),&g());assert_eq!(host.journal().last().unwrap()["frame"],unrelated);assert!(!serde_json::to_string(&source.evidence()).unwrap().contains(AUTH_CANARY));
+        // Outside a known account source there is no diagnostic attribution/filter.
+        let ordinary=super::conversation_transport_tests::host();let raw=json!({"message":"ordinary unrelated diagnostic"});ordinary.on_line(&serde_json::to_vec(&raw).unwrap(),&g());assert_eq!(ordinary.journal().last().unwrap()["frame"],raw);
+    }
+    #[test]
+    fn credential_rpc_nominal_fields_and_mismatched_modes_never_become_safe_identity(){
+        for result in [json!({"type":AUTH_CANARY}),json!({"type":"apiKey","loginId":AUTH_CANARY}),json!({"type":"chatgpt","loginId":AUTH_CANARY,"authUrl":AUTH_CANARY}),json!({"type":"chatgptDeviceCode","loginId":AUTH_CANARY,"userCode":AUTH_CANARY,"verificationUrl":AUTH_CANARY}),json!({"type":"chatgpt"}),json!(AUTH_CANARY)]{
+            let host=host();let mut source=None;let(outcome,_)=exchange(&host,Some(json!({"result":result})),vec![],||{let r=host.account_login_api_key(&g(),auth_rpc::TransientApiKey::synthetic(AUTH_CANARY),None)?;let e=host.source_request_wait(&r,Duration::from_millis(20))?;source=Some(r);Ok(e)});
+            assert_eq!(outcome.unwrap()["outcome"],"response-observed-result");let source=source.unwrap();let view=host.account_rpc_observation(&source).unwrap();let state=view["accountObservation"]["state"].as_str().unwrap();
+            if result["type"]=="apiKey"{assert!(state.contains("presence reported"));assert!(source.evidence()["response"]["result"].get("loginId").is_none());}else{assert!(state.contains("unknown"));}
+            assert_auth_retained_safe(&host,Some(&source));
+            // Actual attempt buffer is now dropped. Duplicate is unadmitted;
+            // closed original source still gets nominal-field projection.
+            let late=json!({"id":source.request_id(),"result":result});host.on_line(&serde_json::to_vec(&late).unwrap(),&g());assert_eq!(host.journal().last().unwrap()["class"],"uncorrelated-response");assert_auth_retained_safe(&host,Some(&source));
+            Host::close_generation(&mut host.inner.0.lock().unwrap());host.on_line(&serde_json::to_vec(&late).unwrap(),&g());assert_eq!(host.journal().last().unwrap()["class"],"closed-generation-frame");assert_auth_retained_safe(&host,Some(&source));
+        }
+    }
+    #[test]
+    fn credential_rpc_policy_valid_api_omitted_null_and_malformed_are_distinct(){
+        for requirements in [None,Some(Value::Null),Some(json!({"allowedLoginMethods":["api"]})),Some(json!({"allowedLoginMethods":[AUTH_CANARY]}))]{
+            let host=host();let mut result=json!({});if let Some(req)=requirements.clone(){result["requirements"]=req;}let mut policy=None;
+            let(outcome,_)=exchange(&host,Some(json!({"result":result})),vec![],||{let r=host.request_begin_scoped("configRequirements/read",json!({}),json!({"kind":"person-directed"}),false,Some(&g()))?;let e=host.source_request_wait(&r,Duration::from_millis(20))?;policy=Some(r);Ok(e)});assert_eq!(outcome.unwrap()["outcome"],"response-observed-result");let policy=policy.unwrap();assert_auth_retained_safe(&host,Some(&policy));
+            if requirements.as_ref().is_some_and(|r|r["allowedLoginMethods"][0]==AUTH_CANARY){no_attachment_write(&host,||{assert!(host.account_login_api_key(&g(),auth_rpc::TransientApiKey::synthetic(AUTH_CANARY),Some(&policy)).err().unwrap().contains("malformed"));});}else{let(outcome,_)=exchange(&host,Some(json!({"result":{"type":"apiKey"}})),vec![],||{let r=host.account_login_api_key(&g(),auth_rpc::TransientApiKey::synthetic(AUTH_CANARY),Some(&policy))?;host.source_request_wait(&r,Duration::from_millis(20))});assert_eq!(outcome.unwrap()["outcome"],"response-observed-result");assert_auth_retained_safe(&host,None);}
+        }
+    }
+    #[test]
+    fn credential_rpc_typed_read_logout_policy_require_actual_native_shape(){
+        for (method,result) in [("account/read",json!({"account":{"type":AUTH_CANARY},"requiresOpenaiAuth":AUTH_CANARY})),("account/read",json!({"account":{"type":"chatgpt"},"requiresOpenaiAuth":true})),("account/read",json!({})),("account/logout",json!(AUTH_CANARY)),("configRequirements/read",json!({"requirements":{"allowedLoginMethods":[AUTH_CANARY]}}))]{
+            let host=host();let mut source=None;let(outcome,_)=exchange(&host,Some(json!({"result":result})),vec![],||{let r=host.request_begin_scoped(method,json!({}),json!({"kind":"person-directed"}),false,Some(&g()))?;let e=host.source_request_wait(&r,Duration::from_millis(20))?;source=Some(r);Ok(e)});
+            assert_eq!(outcome.unwrap()["outcome"],"response-observed-result");let source=source.unwrap();assert_eq!(source.evidence()["authResponseShapeValid"],false);assert!(host.account_rpc_observation(&source).unwrap()["accountObservation"]["state"].as_str().unwrap().contains("unknown"));assert_auth_retained_safe(&host,Some(&source));
+        }
+    }
+    #[test]
+    fn credential_rpc_actual_failed_write_and_logout_do_not_claim_validity_or_turn_end(){
+        let host=host();install_broken_test_input(&host);
+        let source=host.account_login_api_key(&g(),auth_rpc::TransientApiKey::synthetic(AUTH_CANARY),None).unwrap();
+        let e=source.evidence();assert_eq!(e["actualWriteAttemptObserved"],true);assert_eq!(e["writeResult"],"write-failed");assert!(e["sentFrame"].is_null());assert_eq!(e["outcome"],"unknown-no-response");assert_auth_retained_safe(&host,Some(&source));
+        let n=host.client_requests().len();host.source_request_wait(&source,Duration::from_millis(1)).unwrap();assert_eq!(host.client_requests().len(),n);
+        // Failure removes pending admission; a later native error remains redacted, uncorrelated journal evidence.
+        host.on_line(&serde_json::to_vec(&json!({"id":source.request_id(),"error":{"code":-32001,"message":AUTH_CANARY}})).unwrap(),&g());
+        assert!(source.evidence()["response"].is_null());assert_eq!(host.journal().last().unwrap()["class"],"uncorrelated-response");assert_eq!(host.journal().last().unwrap()["frame"]["error"]["code"],-32001);assert_auth_retained_safe(&host,Some(&source));
+        event(&host,"inProgress");let before=host.snapshot()["conversationTurns"].clone();let mut logout=None;
+        let(result,outbound)=exchange(&host,Some(json!({"result":{}})),vec![],||{let r=host.request_begin_scoped("account/logout",json!({}),json!({"kind":"person-directed"}),false,Some(&g()))?;let e=host.source_request_wait(&r,Duration::from_millis(20))?;logout=Some(r);Ok(e)});
+        assert_eq!(outbound["params"],json!({}));assert_eq!(result.unwrap()["outcome"],"response-observed-result");assert_eq!(host.snapshot()["conversationTurns"],before);
+        let logout=logout.unwrap();assert!(host.account_rpc_observation(&logout).unwrap()["accountObservation"]["state"].as_str().unwrap().contains("no filesystem removal"));assert_auth_retained_safe(&host,Some(&logout));
+        assert_eq!(auth_rpc::login_policy(Some(&json!({"result":{"requirements":null}}))).unwrap(),"restriction absent/null; policy permission unknown");
+    }
+    #[test]
+    fn credential_rpc_queued_loss_foreign_home_and_account_read_omission_keep_unknown(){let host=host();no_attachment_write(&host,||{let serial=host.frame_write.lock().unwrap();let caller=Arc::clone(&host);let worker=std::thread::spawn(move||caller.account_login_api_key(&g(),auth_rpc::TransientApiKey::synthetic(AUTH_CANARY),None));let deadline=std::time::Instant::now()+Duration::from_secs(1);while host.inner.0.lock().unwrap().source_requests.is_empty()&&std::time::Instant::now()<deadline{std::thread::sleep(Duration::from_millis(5));}let source=host.source_request(&g(),&json!(1)).unwrap();assert_auth_retained_safe(&host,Some(&source));let foreign=json!({"appSession":"conversation-session","home":"other-home","spawnCounter":1});host.on_line(&serde_json::to_vec(&json!({"id":1,"error":{"code":-32000,"message":"foreign harmless"}})).unwrap(),&foreign);assert!(source.evidence()["response"].is_null());{let mut i=host.inner.0.lock().unwrap();Host::close_generation(&mut i);i.generation=foreign;i.state="ready".into();}let returned=worker.join().unwrap().unwrap();drop(serial);assert_eq!(returned.evidence()["actualWriteAttemptObserved"],false);assert!(returned.evidence()["noAttemptCause"].as_str().unwrap().contains("transient input released"));assert_auth_retained_safe(&host,Some(&returned));});
+        let host=super::conversation_transport_tests::host();for account in [None,Some(Value::Null),Some(json!({"type":"apiKey","apiKey":AUTH_CANARY,"email":AUTH_CANARY}))]{let mut result=json!({"requiresOpenaiAuth":true});if let Some(account)=account.clone(){result["account"]=account;}let mut source=None;let(outcome,outbound)=exchange(&host,Some(json!({"result":result})),vec![],||{let r=host.request_begin_scoped("account/read",json!({}),json!({"kind":"person-directed"}),false,Some(&g()))?;let e=host.source_request_wait(&r,Duration::from_millis(20))?;source=Some(r);Ok(e)});assert_eq!(outbound["params"],json!({}));assert_eq!(outcome.unwrap()["outcome"],"response-observed-result");let source=source.unwrap();let view=host.account_rpc_observation(&source).unwrap();assert_eq!(view["accountObservation"]["identityVerified"],false);if account.is_none(){assert!(view["accountObservation"]["state"].as_str().unwrap().contains("omitted"));}assert_auth_retained_safe(&host,Some(&source));}}    // Proposed actual Host receiving controls; synthetic owned cat wire only.
+    fn oauth_fixture_login(host:&Arc<Host>,device:bool)->OAuthLogin{
+        let mut login=None;let kind=if device{"chatgptDeviceCode"}else{"chatgpt"};
+        let native=if device{json!({"type":kind,"loginId":AUTH_CANARY,"verificationUrl":AUTH_CANARY,"userCode":AUTH_CANARY,(AUTH_CANARY):AUTH_CANARY})}else{json!({"type":kind,"loginId":AUTH_CANARY,"authUrl":AUTH_CANARY,(AUTH_CANARY):AUTH_CANARY})};
+        let (result,outbound)=exchange(host,Some(json!({"result":native,(AUTH_CANARY):AUTH_CANARY})),vec![],||{
+            let r=host.account_oauth_start(&g(),if device{NativeLoginMode::DeviceCode}else{NativeLoginMode::Browser},None)?;
+            let observed=host.source_request_wait(r.source(),Duration::from_millis(50))?;login=Some(r);Ok(observed)
+        });assert_eq!(outbound["params"],json!({"type":kind}));assert_eq!(result.unwrap()["authResponseShapeValid"],true);
+        let login=login.unwrap();assert_auth_retained_safe(host,Some(login.source()));login
+    }
+    #[test]
+    fn oauth_host_actual_start_private_presentation_once_public_reflection_safe(){
+        let host=host();let login=oauth_fixture_login(&host,false);
+        assert_eq!(host.account_oauth_observation(&login).unwrap()["phase"],"Pending");
+        let delivered=host.account_oauth_present(&login,|view,lease|{assert!(lease.is_active());match view{NativeLoginView::Browser{auth_url}=>assert_eq!(auth_url,AUTH_CANARY),_=>panic!("wrong private native view")};NativeLoginPresentation::Presented}).unwrap();
+        assert_eq!(delivered["presentation"],"Presented");assert!(host.account_oauth_present(&login,|_,_|panic!("second presentation")).is_err());
+        no_attachment_write(&host,||{assert!(host.account_oauth_start(&g(),NativeLoginMode::Browser,None).is_err());assert!(host.request("account/login/cancel",json!({"loginId":AUTH_CANARY}),json!({"kind":"person-directed"})).is_err());});
+        host.on_line(&serde_json::to_vec(&json!({"method":"account/login/completed","params":{"loginId":AUTH_CANARY,"success":true,(AUTH_CANARY):AUTH_CANARY},(AUTH_CANARY):AUTH_CANARY})).unwrap(),&g());
+        assert_eq!(host.account_oauth_observation(&login).unwrap()["phase"],"CompletedSuccess");assert_auth_retained_safe(&host,Some(login.source()));
+    }
+    #[test]
+    fn oauth_host_device_dismiss_preserves_one_original_cancel_and_actual_status(){
+        for status in ["canceled","notFound"]{
+            let host=host();let login=oauth_fixture_login(&host,true);
+            host.account_oauth_present(&login,|view,lease|{assert!(lease.is_active());match view{NativeLoginView::Device{verification_url,user_code}=>{assert_eq!(verification_url,AUTH_CANARY);assert_eq!(user_code,AUTH_CANARY)},_=>panic!("wrong private native view")};NativeLoginPresentation::Dismissed}).unwrap();
+            assert_eq!(host.account_oauth_observation(&login).unwrap()["cancelAvailable"],true);
+            let mut cancel=None;
+            let(result,outbound)=exchange(&host,Some(json!({"result":{"status":status,(AUTH_CANARY):AUTH_CANARY}})),vec![],||{let r=host.account_oauth_cancel(&login)?;let observed=host.source_request_wait(&r,Duration::from_millis(50))?;cancel=Some(r);Ok(observed)});
+            assert_eq!(outbound["method"],"account/login/cancel");assert_eq!(outbound["params"],json!({"loginId":AUTH_CANARY}));assert_eq!(result.unwrap()["authResponseShapeValid"],true);
+            assert_eq!(host.account_oauth_observation(&login).unwrap()["cancelStatus"],status);assert_eq!(host.account_oauth_observation(&login).unwrap()["phase"],"Cancelled");
+            no_attachment_write(&host,||{assert!(host.account_oauth_cancel(&login).is_err());});
+            assert_auth_retained_safe(&host,Some(login.source()));assert_auth_retained_safe(&host,cancel.as_ref());
+        }
+    }
+    #[test]
+    fn oauth_host_fast_terminal_before_actual_write_prevents_stale_presentation(){
+        let host=host();let mut child=Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).spawn().unwrap();
+        *host.stdin.lock().unwrap()=child.stdin.take();let stdout=child.stdout.take().unwrap();let serial=host.frame_write.lock().unwrap();
+        let caller=Arc::clone(&host);let worker=std::thread::spawn(move||caller.account_oauth_start(&g(),NativeLoginMode::Browser,None));
+        let deadline=std::time::Instant::now()+Duration::from_secs(1);while host.inner.0.lock().unwrap().oauth.is_empty()&&std::time::Instant::now()<deadline{std::thread::sleep(Duration::from_millis(2));}
+        let source=host.source_request(&g(),&json!(1)).unwrap();
+        host.on_line(&serde_json::to_vec(&json!({"method":"account/login/completed","params":{"loginId":AUTH_CANARY,"success":true}})).unwrap(),&g());
+        assert_eq!(source.evidence()["actualWriteAttemptObserved"],false);assert!(!host.inner.0.lock().unwrap().oauth[source.request_ref()].controller.observation().presentation_available);
+        drop(serial);let mut wire=String::new();BufReader::new(stdout).read_line(&mut wire).unwrap();assert_eq!(serde_json::from_str::<Value>(&wire).unwrap()["method"],"account/login/start");
+        let login=worker.join().unwrap().unwrap();
+        host.on_line(&serde_json::to_vec(&json!({"id":1,"result":{"type":"chatgpt","loginId":AUTH_CANARY,"authUrl":AUTH_CANARY}})).unwrap(),&g());
+        assert_eq!(host.account_oauth_observation(&login).unwrap()["phase"],"CompletedSuccess");
+        assert!(host.account_oauth_present(&login,|_,_|panic!("stale presentation")).is_err());assert_auth_retained_safe(&host,Some(&source));*host.stdin.lock().unwrap()=None;assert!(child.wait().unwrap().success());
+    }
+    #[test]
+    fn oauth_host_missing_null_other_foreign_and_typed_id_remain_unmatched(){
+        let host=host();let login=oauth_fixture_login(&host,false);
+        for id in [None,Some(Value::Null),Some(json!("other-native-id"))]{
+            let mut params=json!({"success":true});if let Some(id)=id{params["loginId"]=id;}
+            host.on_line(&serde_json::to_vec(&json!({"method":"account/login/completed","params":params})).unwrap(),&g());
+            assert_eq!(host.account_oauth_observation(&login).unwrap()["phase"],"Pending");
+        }
+        for field in ["home","appSession","spawnCounter"]{let mut foreign=g();foreign[field]=if field=="spawnCounter"{json!(2)}else{json!("other-source")};host.on_line(&serde_json::to_vec(&json!({"method":"account/login/completed","params":{"loginId":AUTH_CANARY,"success":true}})).unwrap(),&foreign);}
+        host.on_line(&serde_json::to_vec(&json!({"id":"1","result":{"type":"chatgpt","loginId":AUTH_CANARY,"authUrl":AUTH_CANARY,(AUTH_CANARY):AUTH_CANARY}})).unwrap(),&g());
+        assert_eq!(host.account_oauth_observation(&login).unwrap()["phase"],"Pending");
+        let ordinary=json!({"method":"unrelated/native-notification","params":{"text":"ordinary","extra":7}});host.on_line(&serde_json::to_vec(&ordinary).unwrap(),&g());assert_eq!(host.journal().last().unwrap()["frame"],ordinary);
+        assert_auth_retained_safe(&host,Some(login.source()));
+    }
+    #[test]
+    fn oauth_host_original_cancel_queue_loss_never_targets_replacement(){
+        let host=host();let login=Arc::new(oauth_fixture_login(&host,false));
+        no_attachment_write(&host,||{
+            let serial=host.frame_write.lock().unwrap();let caller=Arc::clone(&host);let original=Arc::clone(&login);
+            let worker=std::thread::spawn(move||caller.account_oauth_cancel(&original));
+            let deadline=std::time::Instant::now()+Duration::from_secs(1);while host.inner.0.lock().unwrap().source_requests.len()<2&&std::time::Instant::now()<deadline{std::thread::sleep(Duration::from_millis(2));}
+            {let mut i=host.inner.0.lock().unwrap();Host::close_generation(&mut i);i.generation["spawnCounter"]=json!(2);i.state="ready".into();}
+            let result=worker.join().unwrap().unwrap();drop(serial);
+            assert_eq!(result.evidence()["actualWriteAttemptObserved"],false);assert_ne!(result.evidence()["writeResult"],"written");assert_auth_retained_safe(&host,Some(&result));
+        });
+        assert!(host.account_oauth_cancel(&login).is_err());assert_eq!(host.account_oauth_observation(&login).unwrap()["phase"],"Unknown");
+        no_attachment_write(&host,||{let current=host.snapshot()["generation"].clone();assert!(host.account_oauth_start(&current,NativeLoginMode::Browser,None).is_err());});
+    }
+    #[test]
+    fn oauth_host_actual_cancel_error_keeps_unknown_no_retry_later_match_resolves(){
+        let host=host();let login=oauth_fixture_login(&host,false);
+        let(result,outbound)=exchange(&host,Some(json!({"error":{"code":-32000,"message":AUTH_CANARY,"data":{(AUTH_CANARY):AUTH_CANARY}}})),vec![],||{let r=host.account_oauth_cancel(&login)?;host.source_request_wait(&r,Duration::from_millis(50))});
+        assert_eq!(outbound["params"],json!({"loginId":AUTH_CANARY}));assert_eq!(result.unwrap()["outcome"],"response-observed-error");
+        assert_eq!(host.account_oauth_observation(&login).unwrap()["phase"],"CancellationUnknown");assert!(host.account_oauth_observation(&login).unwrap()["cancelStatus"].is_null());
+        no_attachment_write(&host,||{assert!(host.account_oauth_cancel(&login).is_err());});
+        host.on_line(&serde_json::to_vec(&json!({"method":"account/login/completed","params":{"loginId":AUTH_CANARY,"success":false,"error":AUTH_CANARY}})).unwrap(),&g());
+        assert_eq!(host.account_oauth_observation(&login).unwrap()["phase"],"CompletedFailure");assert_auth_retained_safe(&host,Some(login.source()));
+    }
+
+    #[test]
+    fn oauth_host_live_native_callback_revokes_without_host_lock_and_retains_terminal(){
+        let host=host();let login=oauth_fixture_login(&host,true);let(ready,wait)=channel();let caller=Arc::clone(&host);
+        let completion=std::thread::spawn(move||{wait.recv_timeout(Duration::from_secs(1)).unwrap();caller.on_line(&serde_json::to_vec(&json!({"method":"account/login/completed","params":{"loginId":AUTH_CANARY,"success":true}})).unwrap(),&g());});
+        host.account_oauth_present(&login,|view,lease|{match view{NativeLoginView::Device{user_code,..}=>assert_eq!(user_code,AUTH_CANARY),_=>panic!("wrong native view")};ready.send(()).unwrap();assert!(lease.revoked(Duration::from_secs(1)));assert!(!lease.is_active());NativeLoginPresentation::Dismissed}).unwrap();
+        completion.join().unwrap();assert_eq!(host.account_oauth_observation(&login).unwrap()["phase"],"CompletedSuccess");assert_auth_retained_safe(&host,Some(login.source()));
+    }
+
+    #[test]
+    fn oauth_host_wrong_mode_malformed_start_and_account_null_never_establish_terminal(){
+        for native in [json!({"type":"chatgptDeviceCode","loginId":AUTH_CANARY,"verificationUrl":AUTH_CANARY,"userCode":AUTH_CANARY}),json!({"type":"chatgpt","loginId":null,"authUrl":AUTH_CANARY})]{
+            let host=host();let mut login=None;
+            exchange(&host,Some(json!({"result":native})),vec![],||{let r=host.account_oauth_start(&g(),NativeLoginMode::Browser,None)?;let o=host.source_request_wait(r.source(),Duration::from_millis(50))?;login=Some(r);Ok(o)}).0.unwrap();
+            let login=login.unwrap();let o=host.account_oauth_observation(&login).unwrap();
+            assert_ne!(o["phase"],"CompletedSuccess");assert_eq!(o["presentationAvailable"],false);assert_eq!(o["cancelAvailable"],false);
+            assert!(host.account_oauth_present(&login,|_,_|panic!("invalid private presentation")).is_err());assert_auth_retained_safe(&host,Some(login.source()));
+        }
+        let host=host();let login=oauth_fixture_login(&host,false);
+        exchange(&host,Some(json!({"result":{"account":null,"requiresOpenaiAuth":true}})),vec![],||{let r=host.account_read_scoped(&g())?;host.source_request_wait(&r,Duration::from_millis(50))}).0.unwrap();
+        assert_eq!(host.account_oauth_observation(&login).unwrap()["phase"],"Pending");assert_eq!(host.account_oauth_observation(&login).unwrap()["cancelAvailable"],true);assert_auth_retained_safe(&host,Some(login.source()));
+    }
+
+    #[test]
+    fn oauth_host_written_native_start_error_is_rejected_not_source_loss_or_retry(){
+        let host=host();let mut login=None;
+        let(result,outbound)=exchange(&host,Some(json!({"error":{"code":-32000,"message":AUTH_CANARY}})),vec![],||{let r=host.account_oauth_start(&g(),NativeLoginMode::Browser,None)?;let o=host.source_request_wait(r.source(),Duration::from_millis(50))?;login=Some(r);Ok(o)});
+        assert_eq!(outbound["method"],"account/login/start");assert_eq!(result.unwrap()["writeResult"],"written");let login=login.unwrap();
+        assert_eq!(host.account_oauth_observation(&login).unwrap()["phase"],"StartRejected");assert_eq!(host.account_oauth_observation(&login).unwrap()["presentationAvailable"],false);assert_auth_retained_safe(&host,Some(login.source()));
+        // A new explicit act may follow definitive rejection. No automatic resend.
+        let next=oauth_fixture_login(&host,false);assert_ne!(next.source().request_ref(),login.source().request_ref());
+        assert_eq!(host.account_oauth_observation(&next).unwrap()["phase"],"Pending");
+    }
+
+    #[test]
+    fn oauth_review_oh1_completion_unexpected_framing_id_is_not_public() {
+        let host=host();let login=oauth_fixture_login(&host,false);
+        host.on_line(&serde_json::to_vec(&json!({"method":"account/login/completed","id":AUTH_CANARY,"params":{"loginId":AUTH_CANARY,"success":true}})).unwrap(),&g());
+        assert_eq!(host.account_oauth_observation(&login).unwrap()["phase"],"Pending");
+        assert_auth_retained_safe(&host,Some(login.source()));
+    }
+    #[test]
+    fn oauth_review_oh1_wrong_typed_reply_unexpected_echo_is_not_public() {
+        let host=host();let login=oauth_fixture_login(&host,false);
+        host.on_line(&serde_json::to_vec(&json!({"id":"1","result":{(AUTH_CANARY):AUTH_CANARY}})).unwrap(),&g());
+        assert_eq!(host.account_oauth_observation(&login).unwrap()["phase"],"Pending");
+        assert_auth_retained_safe(&host,Some(login.source()));
+    }
+
+    #[test]
+    fn oauth_review_oh1_unmatched_sensitive_framing_id_and_payload_are_not_public(){
+        let host=host();let login=oauth_fixture_login(&host,false);
+        host.on_line(&serde_json::to_vec(&json!({"id":AUTH_CANARY,"result":{"loginId":AUTH_CANARY,"authUrl":AUTH_CANARY,(AUTH_CANARY):AUTH_CANARY}})).unwrap(),&g());
+        assert_eq!(host.account_oauth_observation(&login).unwrap()["phase"],"Pending");assert_auth_retained_safe(&host,Some(login.source()));
+        assert!(host.journal().last().unwrap()["frame"]["id"].is_null());
+    }
+    #[test]
+    fn oauth_review_oh1_private_original_id_mandatory_reply_and_public_custody_are_separate(){
+        for method in ["account/login/completed","account/chatgptAuthTokens/refresh"]{
+            let host=host();let login=oauth_fixture_login(&host,false);
+            let mut child=Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).spawn().unwrap();*host.stdin.lock().unwrap()=child.stdin.take();let stdout=child.stdout.take().unwrap();
+            host.on_line(&serde_json::to_vec(&json!({"method":method,"id":AUTH_CANARY,"params":{"loginId":AUTH_CANARY,"success":true,(AUTH_CANARY):AUTH_CANARY}})).unwrap(),&g());
+            let mut line=String::new();BufReader::new(stdout).read_line(&mut line).unwrap();let reply:Value=serde_json::from_str(&line).unwrap();
+            assert_eq!(reply["id"],AUTH_CANARY);assert_eq!(reply["error"]["code"],-32601);assert!(reply.get("result").is_none());
+            assert_eq!(host.account_oauth_observation(&login).unwrap()["phase"],"Pending");assert!(host.snapshot()["serverRequests"].as_array().unwrap().is_empty());
+            assert_auth_retained_safe(&host,Some(login.source()));*host.stdin.lock().unwrap()=None;assert!(child.wait().unwrap().success());
+        }
+    }
+    #[test]
+    fn oauth_review_oh1_correlated_typed_rpc_and_valid_unrelated_frame_remain_original(){
+        let host=host();let login=oauth_fixture_login(&host,false);assert_eq!(login.source().evidence()["response"]["id"],*login.source().request_id());
+        let plain=json!({"id":"ordinary-unrelated-reply","result":{"ordinary":"preserved"}});host.on_line(&serde_json::to_vec(&plain).unwrap(),&g());assert_eq!(host.journal().last().unwrap()["frame"],plain);
+        let notice=json!({"method":"unrelated/native-notification","params":{"ordinary":"preserved"}});host.on_line(&serde_json::to_vec(&notice).unwrap(),&g());assert_eq!(host.journal().last().unwrap()["frame"],notice);
+        assert_eq!(host.account_oauth_observation(&login).unwrap()["phase"],"Pending");assert_auth_retained_safe(&host,Some(login.source()));
+    }
+
 }

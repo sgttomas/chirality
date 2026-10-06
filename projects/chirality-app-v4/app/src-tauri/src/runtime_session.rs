@@ -453,6 +453,16 @@ pub struct RecoveryStartup {
     status: Value,
 }
 impl RecoveryStartup {
+    /// Adopt the genuine shared App source, never reopen another writer/path or
+    /// infer restored native state from pointer metadata.
+    pub fn adopt_shared_source(&mut self, host: &crate::hosting::Host) -> Value {
+        if !self.attempted {
+            self.attempted = true;
+            let observed = host.shared_recovery_observation();
+            self.status = json!({"state":if observed["configured"]==true{"shared-source-configured"}else{"shared-source-unavailable"},"sourceObservation":observed,"blocksSupplierStart":false,"standing":"same actual App custody; no new ledger/session or cold live reconstruction"});
+        }
+        self.snapshot()
+    }
     pub fn snapshot(&self) -> Value {
         if self.status.is_null() {
             json!({"state":"not-initialized","blocksSupplierStart":false})
@@ -466,6 +476,30 @@ impl RecoveryStartup {
         app_data: Result<&std::path::Path, &str>,
         codex_home: Option<&std::path::Path>,
     ) -> Value {
+        self.initialize_inner(host, app_data, codex_home, Ok(None))
+    }
+    pub fn initialize_with_namespaces(
+        &mut self,
+        host: &crate::hosting::Host,
+        app_data: Result<&std::path::Path, &str>,
+        codex_home: Option<&std::path::Path>,
+        namespaces: Result<
+            std::sync::Arc<crate::hosting::attachment_custody::NativeNamespaceBindings>,
+            String,
+        >,
+    ) -> Value {
+        self.initialize_inner(host, app_data, codex_home, namespaces.map(Some))
+    }
+    fn initialize_inner(
+        &mut self,
+        host: &crate::hosting::Host,
+        app_data: Result<&std::path::Path, &str>,
+        codex_home: Option<&std::path::Path>,
+        namespaces: Result<
+            Option<std::sync::Arc<crate::hosting::attachment_custody::NativeNamespaceBindings>>,
+            String,
+        >,
+    ) -> Value {
         if self.attempted {
             return self.snapshot();
         }
@@ -475,8 +509,28 @@ impl RecoveryStartup {
         let mut existing = false;
         let result = (|| -> Result<(), String> {
             let root = app_data.map_err(str::to_string)?;
+            let binding = namespaces.as_ref().map_err(Clone::clone)?;
             let path = reviewed_ledger_path(root);
             selected_path = Some(path.clone());
+            if let Some(binding) = binding {
+                // On an initial physical refusal, use the genuine guarded Core
+                // receiving API once. It retains the actual declared REC leaf
+                // and original error before returning; no legacy open/retry or
+                // replacement ledger follows from restoring metadata later.
+                if binding
+                    .guard_domains(&[path.clone()])
+                    .and_then(|_| crate::recovery::RecoveryLedger::preflight_path(&path, binding))
+                    .is_err()
+                {
+                    host.configure_recovery_with_namespaces(
+                        path.clone(),
+                        std::sync::Arc::clone(binding),
+                    )?;
+                    // A concurrent restoration may let Core's repeated current
+                    // guard succeed. Its actual result owns that observation.
+                    configured = true;
+                }
+            }
             if !root.is_absolute() {
                 return Err(
                     "App user-data root is not absolute; ledger location not established".into(),
@@ -520,7 +574,13 @@ impl RecoveryStartup {
                     .ok_or("Ledger directory has no existing ancestor")?;
             }
             std::fs::create_dir_all(&directory).map_err(|e| e.to_string())?;
-            host.configure_recovery(path)?;
+            if !configured {
+                match binding {
+                    Some(binding) => host
+                        .configure_recovery_with_namespaces(path, std::sync::Arc::clone(binding))?,
+                    None => host.configure_recovery(path)?,
+                };
+            }
             configured = true;
             // Core syncs appended file data. Publish the file and any new directory
             // entries before reporting initialization configured. No crash proof inferred.
@@ -673,7 +733,6 @@ pub fn interrupt_conversation_turn(
     // A returned acknowledgment changes no turn/item state and implies no rollback.
     interrupt(generation, thread_id, turn_id)
 }
-
 
 /// Disposable observed steering projection. Native receipt order/fresh response
 /// boundaries avoid selecting an older active-looking memo. The actual scoped
@@ -1228,7 +1287,6 @@ pub fn claim_start(
     Ok(supply_ref)
 }
 
-
 /// Public decision-view command's receiving path. No writer/control is available
 /// to this function: reading cannot append, replay captures or repair backlinks.
 pub fn read_decision_packages(workspace: &std::path::Path) -> Value {
@@ -1254,18 +1312,16 @@ pub fn continue_decision_writer(
     let (recovery, requests) = control.refresh_recording();
     match recovery {
         Ok(results) => status["captureRecovery"] = json!(results),
-        Err(error) => {
-            status["captureRecovery"] =
-                json!([{"state":"AC-8 record pending","writeFailure":error}])
-        }
+        Err(error) => status["limits"].as_array_mut().unwrap().push(json!(format!(
+            "Capture recovery unavailable: {error}; pending capture status not established by this attempt"
+        ))),
     }
     match requests {
         Ok(requests) => status["requestsRecordedNow"] = json!(requests.len()),
-        Err(error) => status["limits"] = json!([error]),
+        Err(error) => status["limits"].as_array_mut().unwrap().push(json!(error)),
     }
     status
 }
-
 
 /// Independent selected-source trace imports. No App/current supplier context
 /// enters the receiver or becomes a candidate/date/build default.
@@ -1340,7 +1396,6 @@ pub fn select_trace_source(
     Ok(session.finish("source-received", None))
 }
 
-
 /// Native-picked private handles, ordered independently of conversation/home/cwd.
 /// Launch workspace is a source observation, not a fabricated REC project/index.
 pub struct AttachmentSelectionSession {
@@ -1378,6 +1433,11 @@ impl AttachmentSelectionSession {
         custody: &std::sync::Arc<crate::hosting::attachment_custody::AttachmentCustody>,
     ) {
         for submission in &mut self.submissions {
+            let source = submission.prepared.source().generation();
+            let current = host.snapshot()["generation"].clone();
+            if source["home"] != current["home"] || source["appSession"] != current["appSession"] {
+                continue;
+            }
             submission.outcome["resolution"] =
                 host.resolve_attachment_submission(custody, submission.prepared.submission_ref());
         }
@@ -1760,4 +1820,1953 @@ pub fn submit_selected_attachments(
         return Err("Attachment submission not currently acknowledged by a matching native source; outcome retained, no automatic resend".into());
     }
     Ok(resolved)
+}
+
+/// Explicit Root-supplied receiving set. Paths retain native bytes; this object
+/// is not a registry, credential authority or native discovery witness.
+pub struct HomeBootstrapSet {
+    account: crate::home_resources::ExistingHomeReference,
+    key: Option<crate::home_resources::OwnedHomePlan>,
+    probe: crate::home_resources::ExistingHomeReference,
+    shared_root_targets: Option<crate::home_resources::SharedResourceTargets>,
+}
+impl HomeBootstrapSet {
+    pub fn new(
+        account: crate::home_resources::ExistingHomeReference,
+        key: Option<crate::home_resources::OwnedHomePlan>,
+        probe: crate::home_resources::ExistingHomeReference,
+    ) -> Result<Self, String> {
+        use crate::home_resources::HomeClass;
+        if account.class() != HomeClass::Account
+            || key
+                .as_ref()
+                .is_some_and(|key| key.class() != HomeClass::ApiKey)
+            || probe.class() != HomeClass::Probe
+        {
+            return Err("Incorrect explicit home mode classes".into());
+        }
+        let set = Self {
+            account,
+            key,
+            probe,
+            shared_root_targets: None,
+        };
+        set.revalidate()?;
+        Ok(set)
+    }
+    pub fn revalidate(&self) -> Result<(), String> {
+        use crate::home_resources::HomeBinding;
+        let mut bindings = vec![
+            HomeBinding::Existing(&self.account),
+            HomeBinding::Existing(&self.probe),
+        ];
+        if let Some(key) = &self.key {
+            bindings.push(HomeBinding::Owned(key));
+        }
+        crate::home_resources::validate_home_bindings(&bindings)
+    }
+    pub fn native_namespaces(
+        &self,
+        include_key: bool,
+    ) -> Result<std::sync::Arc<crate::hosting::attachment_custody::NativeNamespaceBindings>, String>
+    {
+        use crate::hosting::attachment_custody::{NativeHomeNamespace, NativeNamespaceBindings};
+        // Received direct/absent slots can close themselves without asserting
+        // M-A setup. Only a foreign-link closure needs the supplied references.
+        let build = |targets: Option<&crate::home_resources::SharedResourceTargets>| {
+            let mut homes = vec![
+                NativeHomeNamespace::received(&self.account, targets),
+                NativeHomeNamespace::received(&self.probe, None),
+            ];
+            if include_key {
+                homes.push(NativeHomeNamespace::planned(self.key_plan()?));
+            }
+            NativeNamespaceBindings::from_root(homes)
+        };
+        match build(None) {
+            Ok(binding) => Ok(binding),
+            Err(original) => match self.shared_root_targets.as_ref() {
+                Some(targets) => build(Some(targets)),
+                None => Err(original),
+            },
+        }
+    }
+    pub fn key_plan(&self) -> Result<&crate::home_resources::OwnedHomePlan, String> {
+        self.key.as_ref().ok_or_else(|| {
+            "Key home/resource descriptors not explicitly configured; no account fallback".into()
+        })
+    }
+    pub fn prepare_key(&self) -> Result<Value, String> {
+        self.revalidate()?;
+        let prepared = self.key_plan()?.prepare();
+        self.revalidate()?;
+        prepared.map(|observation| home_resource_view(&observation))
+    }
+    pub fn inspect(&self) -> Value {
+        let mut rows = vec![];
+        for reference in [&self.account, &self.probe] {
+            rows.push(match reference.inspect() {
+                Ok(observation) => home_resource_view(&observation),
+                Err(error) => json!({"modeHomeClass":reference.class().as_str(),"limit":error}),
+            });
+        }
+        rows.push(match self.key_plan().and_then(|key| key.inspect()) {
+            Ok(observation) => home_resource_view(&observation),
+            Err(error) => json!({"modeHomeClass":"api-key","limit":error}),
+        });
+        json!({"homes":rows,"keyConfigured":self.key.is_some(),"wholeSetLimit":self.revalidate().err(),"existingAccountResources":"setup/link ownership not established by existing reference; no legacy startup veto","standing":"current physical source/resource observations only; no credential or native discovery qualification"})
+    }
+    pub fn validate_binding(
+        &self,
+        class: crate::home_resources::HomeClass,
+        config: &crate::hosting::HostConfig,
+    ) -> Result<(), String> {
+        // A prospective key is not an authority over the existing account.
+        // Current account/probe source checks remain required; key admission
+        // validates the complete set before and after its own setup.
+        if class == crate::home_resources::HomeClass::Account {
+            crate::home_resources::validate_home_bindings(&[
+                crate::home_resources::HomeBinding::Existing(&self.account),
+                crate::home_resources::HomeBinding::Existing(&self.probe),
+            ])?;
+        } else {
+            self.revalidate()?;
+        }
+        let path = match class {
+            crate::home_resources::HomeClass::Account => self.account.native_path(),
+            crate::home_resources::HomeClass::ApiKey => self.key_plan()?.native_path(),
+            crate::home_resources::HomeClass::Probe => {
+                return Err("Probe is not an active Host entry".into())
+            }
+        };
+        if config.codex_home != path || config.probe_home != self.probe.native_path() {
+            return Err(
+                "Actual Host home/probe differs from explicit source descriptors; no fallback"
+                    .into(),
+            );
+        }
+        Ok(())
+    }
+}
+/// Actual Root key setup receiving operation. All storage preflights precede
+/// home creation; failed candidates never install a replacement REC binding.
+/// The caller retains current bindings until this operation returns successfully.
+pub struct NativeKeyAdmission {
+    pub namespaces: std::sync::Arc<crate::hosting::attachment_custody::NativeNamespaceBindings>,
+    pub attachment: std::sync::Arc<crate::hosting::attachment_custody::AttachmentCustody>,
+    pub observation: Value,
+}
+pub fn prepare_native_key_namespace(
+    bootstrap: &HomeBootstrapSet,
+    app_data: &std::path::Path,
+    app_custody: &std::sync::Arc<crate::hosting::AppRuntimeCustody>,
+) -> Result<NativeKeyAdmission, String> {
+    use crate::hosting::attachment_custody::AttachmentCustody;
+    let proposed = bootstrap.native_namespaces(true)?;
+    let preflight = app_custody.preflight_native_namespaces(&proposed)?;
+    // Check actual S/C/lock geometry before materializing the key home.
+    AttachmentCustody::open_with_namespaces(app_data, proposed)?;
+    bootstrap.prepare_key()?;
+    let namespaces = bootstrap.native_namespaces(true)?;
+    app_custody.preflight_native_namespaces(&namespaces)?;
+    let attachment = std::sync::Arc::new(AttachmentCustody::open_with_namespaces(
+        app_data,
+        namespaces.clone(),
+    )?);
+    let committed = app_custody.bind_native_namespaces(namespaces.clone())?;
+    Ok(NativeKeyAdmission {
+        namespaces,
+        attachment,
+        observation: json!({"state":"actual namespace candidate received","preflight":preflight,"rec":committed,"qualification":"metadata geometry only; no native/auth/discovery claim"}),
+    })
+}
+fn home_resource_view(observation: &crate::home_resources::HomeObservation) -> Value {
+    json!({"modeHomeClass":observation.class.as_str(),"homeIdentity":observation.opaque_home_id,"nativePath":crate::attachments::native_path_identity(&observation.native_path),"displayPath":observation.display_path(),"resources":observation.resources.iter().map(|resource| json!({"name":resource.name,"destination":crate::attachments::native_path_identity(&resource.destination),"intendedTarget":resource.intended_target.as_ref().map(|path|crate::attachments::native_path_identity(path)),"state":format!("{:?}",resource.state),"limit":resource.limit})).collect::<Vec<_>>(),"limit":"resource relationship is a current observation; resolved config target is not future write authority"})
+}
+
+/// Disposable state for one actual native home. A mode label selects a source;
+/// it never substitutes for the Host's opaque full generation or transfers threads.
+pub struct HomeSession {
+    pub(crate) class: crate::home_resources::HomeClass,
+    pub(crate) host: std::sync::Arc<crate::hosting::Host>,
+    pub(crate) host_config: Result<crate::hosting::HostConfig, String>,
+    pub(crate) runtime: std::sync::Mutex<RuntimeSession>,
+    pub(crate) history: std::sync::Mutex<HistorySession>,
+    pub(crate) access_selection: std::sync::Mutex<Option<crate::access::ConversationSelection>>,
+    pub(crate) recovery_startup: std::sync::Arc<std::sync::Mutex<RecoveryStartup>>,
+    pub(crate) role_supply_status: std::sync::Mutex<Value>,
+    pub(crate) attachment_custody: std::sync::Mutex<
+        Result<std::sync::Arc<crate::hosting::attachment_custody::AttachmentCustody>, String>,
+    >,
+    pub(crate) thread_home_kinds: std::sync::Mutex<std::collections::HashMap<String, &'static str>>,
+    pub(crate) account_sources: std::sync::Mutex<Vec<crate::hosting::SourceRequest>>,
+    // Actual Host-issued capability stays private. No renderer pointer can mint it.
+    oauth_login: std::sync::Mutex<Option<std::sync::Arc<crate::hosting::OAuthLogin>>>,
+    oauth_start_gate: std::sync::Mutex<()>,
+}
+impl HomeSession {
+    pub fn new(
+        class: crate::home_resources::HomeClass,
+        host: std::sync::Arc<crate::hosting::Host>,
+        config: Result<crate::hosting::HostConfig, String>,
+    ) -> Result<Self, String> {
+        if class == crate::home_resources::HomeClass::Probe {
+            return Err("Probe is not an active conversation/account entry".into());
+        }
+        Ok(Self {
+            class,
+            host,
+            host_config: config,
+            runtime: std::sync::Mutex::new(RuntimeSession::default()),
+            history: std::sync::Mutex::new(HistorySession::default()),
+            access_selection: std::sync::Mutex::new(None),
+            recovery_startup: std::sync::Arc::new(
+                std::sync::Mutex::new(RecoveryStartup::default()),
+            ),
+            role_supply_status: std::sync::Mutex::new(
+                json!({"state":"not-supplied","adoption":"unknown"}),
+            ),
+            attachment_custody: std::sync::Mutex::new(Err(
+                "Attachment custody not initialized for this home".into(),
+            )),
+            thread_home_kinds: std::sync::Mutex::new(std::collections::HashMap::new()),
+            account_sources: std::sync::Mutex::new(vec![]),
+            oauth_login: std::sync::Mutex::new(None),
+            oauth_start_gate: std::sync::Mutex::new(()),
+        })
+    }
+    pub fn source(&self) -> &std::sync::Arc<crate::hosting::Host> {
+        &self.host
+    }
+    pub fn class(&self) -> crate::home_resources::HomeClass {
+        self.class
+    }
+    pub fn account_view(&self) -> Value {
+        let sources = self.account_sources.lock().unwrap();
+        json!({"modeHomeClass":self.class.as_str(),"observations":sources.iter().map(|source|self.host.account_rpc_observation(source).unwrap_or_else(|error|json!({"limit":error,"source":source.evidence()}))).collect::<Vec<_>>(),"limit":"native source facts; credential validity and actor identity are not inferred"})
+    }
+}
+pub struct HomeRouter {
+    account: std::sync::Arc<HomeSession>,
+    key: Option<std::sync::Arc<HomeSession>>,
+    active: crate::home_resources::HomeClass,
+}
+impl HomeRouter {
+    pub fn new(account: std::sync::Arc<HomeSession>) -> Result<Self, String> {
+        if account.class != crate::home_resources::HomeClass::Account {
+            return Err("Primary entry must be the explicit account source".into());
+        }
+        Ok(Self {
+            account,
+            key: None,
+            active: crate::home_resources::HomeClass::Account,
+        })
+    }
+    pub fn active(&self) -> std::sync::Arc<HomeSession> {
+        self.entry(self.active).expect("active entry is retained")
+    }
+    pub fn entry(
+        &self,
+        class: crate::home_resources::HomeClass,
+    ) -> Result<std::sync::Arc<HomeSession>, String> {
+        match class {
+            crate::home_resources::HomeClass::Account => Ok(self.account.clone()),
+            crate::home_resources::HomeClass::ApiKey => self
+                .key
+                .clone()
+                .ok_or_else(|| "Separate key entry is not configured; no account fallback".into()),
+            crate::home_resources::HomeClass::Probe => {
+                Err("Probe is not a conversation entry".into())
+            }
+        }
+    }
+    pub fn activate(&mut self, class: crate::home_resources::HomeClass) -> Result<(), String> {
+        self.entry(class)?;
+        self.active = class;
+        Ok(())
+    }
+    pub fn bind_key(&mut self, key: std::sync::Arc<HomeSession>) -> Result<(), String> {
+        if self.key.is_some() || key.class != crate::home_resources::HomeClass::ApiKey {
+            return Err("Key entry already bound or wrong mode; no source replacement".into());
+        }
+        let account = self.account.host_config.as_ref().map_err(Clone::clone)?;
+        let config = key.host_config.as_ref().map_err(Clone::clone)?;
+        if account.codex_home == config.codex_home {
+            return Err("Account/key native source paths are identical".into());
+        }
+        let original = self.account.host.app_runtime_custody()?;
+        let receiving = key.host.app_runtime_custody()?;
+        if !std::sync::Arc::ptr_eq(&original, &receiving) {
+            return Err("Key source does not share the actual App session/sole writer custody; no source substitution".into());
+        }
+        self.key = Some(key);
+        Ok(())
+    }
+    /// Resolve an actual full tuple, including retained closed generations in its
+    /// owning App session. Stale/closed operational admission remains Host-owned.
+    pub fn for_generation(
+        &self,
+        generation: &Value,
+    ) -> Result<std::sync::Arc<HomeSession>, String> {
+        crate::recovery::generation_ref(generation)?;
+        let matches = self
+            .entries()
+            .into_iter()
+            .filter(|entry| {
+                let current = entry.host.snapshot()["generation"].clone();
+                current["home"] == generation["home"]
+                    && current["appSession"] == generation["appSession"]
+            })
+            .collect::<Vec<_>>();
+        if matches.len() != 1 {
+            return Err(
+                "Full native home/session has no unique owning App source; no active-home fallback"
+                    .into(),
+            );
+        }
+        Ok(matches[0].clone())
+    }
+    pub fn entries(&self) -> Vec<std::sync::Arc<HomeSession>> {
+        let mut entries = vec![self.account.clone()];
+        if let Some(key) = &self.key {
+            entries.push(key.clone());
+        }
+        entries
+    }
+    pub fn snapshot(&self) -> Value {
+        json!({"activeModeHomeClass":self.active.as_str(),"entries":self.entries().iter().map(|entry|json!({"modeHomeClass":entry.class.as_str(),"generation":entry.host.snapshot()["generation"],"state":entry.host.snapshot()["state"],"configurationLimit":entry.host_config.as_ref().err()})).collect::<Vec<_>>(),"limit":"mode selection does not transfer native threads; each source retains its full generation/home"})
+    }
+}
+
+/// Native secure-field delivery only. No renderer argument or replayable value.
+/// Tests do not invoke this platform control; source is not a UI witness.
+pub(crate) fn native_api_key_entry(app: &tauri::AppHandle) -> Result<Option<String>, ()> {
+    #[cfg(target_os = "macos")]
+    {
+        let (sender, receiver) = std::sync::mpsc::sync_channel(1);
+        app.run_on_main_thread(move || {
+            let value = unsafe { mac_secure_entry::show() };
+            let _ = sender.send(value);
+        })
+        .map_err(|_| ())?;
+        receiver.recv().map_err(|_| ())?
+    }
+    #[cfg(not(target_os = "macos"))]
+    {
+        let _ = app;
+        Err(())
+    }
+}
+#[cfg(target_os = "macos")]
+mod mac_secure_entry {
+    use std::ffi::{c_char, c_void};
+    type Id = *mut c_void;
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    struct Point {
+        x: f64,
+        y: f64,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    struct Size {
+        width: f64,
+        height: f64,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    struct Rect {
+        origin: Point,
+        size: Size,
+    }
+    #[link(name = "AppKit", kind = "framework")]
+    extern "C" {}
+    #[link(name = "objc")]
+    extern "C" {
+        fn objc_getClass(name: *const c_char) -> Id;
+        fn sel_registerName(name: *const c_char) -> Id;
+        fn objc_msgSend();
+    }
+    unsafe fn selector(name: &'static [u8]) -> Id {
+        sel_registerName(name.as_ptr().cast())
+    }
+    unsafe fn class(name: &'static [u8]) -> Id {
+        objc_getClass(name.as_ptr().cast())
+    }
+    unsafe fn id(receiver: Id, name: &'static [u8]) -> Id {
+        let f: unsafe extern "C" fn(Id, Id) -> Id = std::mem::transmute(objc_msgSend as *const ());
+        f(receiver, selector(name))
+    }
+    unsafe fn object(receiver: Id, name: &'static [u8], value: Id) {
+        let f: unsafe extern "C" fn(Id, Id, Id) = std::mem::transmute(objc_msgSend as *const ());
+        f(receiver, selector(name), value);
+    }
+    unsafe fn string(text: &'static [u8]) -> Id {
+        let f: unsafe extern "C" fn(Id, Id, *const c_char) -> Id =
+            std::mem::transmute(objc_msgSend as *const ());
+        f(
+            class(b"NSString\0"),
+            selector(b"stringWithUTF8String:\0"),
+            text.as_ptr().cast(),
+        )
+    }
+    unsafe fn release(value: Id) {
+        let f: unsafe extern "C" fn(Id, Id) = std::mem::transmute(objc_msgSend as *const ());
+        f(value, selector(b"release\0"));
+    }
+    pub(super) unsafe fn show() -> Result<Option<String>, ()> {
+        let pool = id(class(b"NSAutoreleasePool\0"), b"new\0");
+        let alert = id(class(b"NSAlert\0"), b"new\0");
+        let allocated = id(class(b"NSSecureTextField\0"), b"alloc\0");
+        let initialize: unsafe extern "C" fn(Id, Id, Rect) -> Id =
+            std::mem::transmute(objc_msgSend as *const ());
+        let field = initialize(
+            allocated,
+            selector(b"initWithFrame:\0"),
+            Rect {
+                origin: Point { x: 0., y: 0. },
+                size: Size {
+                    width: 360.,
+                    height: 26.,
+                },
+            },
+        );
+        if pool.is_null() || alert.is_null() || field.is_null() {
+            if !field.is_null() {
+                release(field);
+            }
+            if !alert.is_null() {
+                release(alert);
+            }
+            if !pool.is_null() {
+                release(pool);
+            }
+            return Err(());
+        }
+        object(
+            alert,
+            b"setMessageText:\0",
+            string(b"Add or replace API key through Codex\0"),
+        );
+        object(alert,b"setInformativeText:\0",string(b"The key is delivered once to this separate App key home. Native acknowledgment does not establish validity until actual use.\0"));
+        object(alert, b"setAccessoryView:\0", field);
+        let add: unsafe extern "C" fn(Id, Id, Id) -> Id =
+            std::mem::transmute(objc_msgSend as *const ());
+        add(
+            alert,
+            selector(b"addButtonWithTitle:\0"),
+            string(b"Submit key\0"),
+        );
+        add(
+            alert,
+            selector(b"addButtonWithTitle:\0"),
+            string(b"Cancel\0"),
+        );
+        let modal: unsafe extern "C" fn(Id, Id) -> isize =
+            std::mem::transmute(objc_msgSend as *const ());
+        let accepted = modal(alert, selector(b"runModal\0")) == 1000;
+        let result = if accepted {
+            let value = id(field, b"stringValue\0");
+            let length: unsafe extern "C" fn(Id, Id, usize) -> usize =
+                std::mem::transmute(objc_msgSend as *const ());
+            let n = length(value, selector(b"lengthOfBytesUsingEncoding:\0"), 4);
+            let pointer: unsafe extern "C" fn(Id, Id) -> *const u8 =
+                std::mem::transmute(objc_msgSend as *const ());
+            let bytes = pointer(value, selector(b"UTF8String\0"));
+            if bytes.is_null() || n == 0 {
+                Err(())
+            } else {
+                std::str::from_utf8(std::slice::from_raw_parts(bytes, n))
+                    .map(|text| Some(text.to_owned()))
+                    .map_err(|_| ())
+            }
+        } else {
+            Ok(None)
+        };
+        // Release the secure field before the caller receives its one transient
+        // buffer. Ordinary drop/release is not allocator/OS physical erasure.
+        object(field, b"setStringValue:\0", string(b"\0"));
+        release(field);
+        release(alert);
+        release(pool);
+        result
+    }
+}
+
+/// Explicit native source read; no credential/config filesystem access or automatic refresh.
+pub fn read_native_home_access(home: &HomeSession, generation: &Value) -> Result<Value, String> {
+    for method in ["configRequirements/read", "account/read"] {
+        let source = match method {
+            "configRequirements/read" => home.host.account_requirements_read_scoped(generation)?,
+            _ => home.host.account_read_scoped(generation)?,
+        };
+        home.account_sources.lock().unwrap().push(source.clone());
+        home.host
+            .source_request_wait(&source, std::time::Duration::from_secs(20))?;
+    }
+    Ok(home.account_view())
+}
+
+/// Consumes explicit Root OS paths. Existing account/probe are observations,
+/// never relocated or claimed as newly App-owned plans to fit this constructor.
+pub fn freeze_root_home_descriptors(
+    app_data: &std::path::Path,
+    config: &crate::hosting::HostConfig,
+    key_path: Option<std::path::PathBuf>,
+    targets: [Option<std::path::PathBuf>; 3],
+) -> Result<HomeBootstrapSet, String> {
+    use crate::home_resources::{
+        ExistingHomeReference, HomeClass, OwnedHomePlan, SharedResourceTargets,
+    };
+    let account = ExistingHomeReference::new(config.codex_home.clone(), HomeClass::Account)?;
+    let probe = ExistingHomeReference::new(config.probe_home.clone(), HomeClass::Probe)?;
+    let shared_root_targets = match &targets {
+        [Some(config), Some(agents), Some(skills)] => Some(SharedResourceTargets {
+            config_toml: config.clone(),
+            global_agents_md: agents.clone(),
+            skills: skills.clone(),
+        }),
+        _ => None,
+    };
+    let key = match key_path {
+        None => None,
+        Some(path) => {
+            let [config_toml, global_agents_md, skills] = targets;
+            let shared = SharedResourceTargets {
+                config_toml: config_toml.ok_or("Explicit shared config source not supplied")?,
+                global_agents_md: global_agents_md
+                    .ok_or("Explicit shared global AGENTS source not supplied")?,
+                skills: skills.ok_or("Explicit shared skills source not supplied")?,
+            };
+            Some(OwnedHomePlan::new(
+                app_data.to_path_buf(),
+                path,
+                HomeClass::ApiKey,
+                Some(shared),
+            )?)
+        }
+    };
+    let mut set = HomeBootstrapSet::new(account, key, probe)?;
+    set.shared_root_targets = shared_root_targets;
+    Ok(set)
+}
+
+/// Genuine private native-entry submission; source binding is checked before
+/// opening the field and again before giving its transient buffer to Host.
+pub fn submit_native_home_key<F: FnOnce() -> Result<Option<String>, ()>>(
+    home: &HomeSession,
+    bootstrap: &HomeBootstrapSet,
+    generation: &Value,
+    entry: F,
+) -> Result<Value, String> {
+    if home.class() != crate::home_resources::HomeClass::ApiKey {
+        return Err("Native key entry requires the separate configured key source".into());
+    }
+    let config = home.host_config.as_ref().map_err(Clone::clone)?;
+    bootstrap.validate_binding(home.class(), config)?;
+    let policy = home.host.account_requirements_read_scoped(generation)?;
+    home.account_sources.lock().unwrap().push(policy.clone());
+    home.host
+        .source_request_wait(&policy, std::time::Duration::from_secs(20))?;
+    let source =
+        home.host
+            .account_login_api_key_from_native_entry(generation, Some(&policy), || {
+                let input = entry()?;
+                if bootstrap.validate_binding(home.class(), config).is_err() {
+                    return Err(());
+                }
+                Ok(input)
+            })?;
+    match source {
+        None => Ok(
+            json!({"state":"native secure entry cancelled; no key RPC or resend","home":home.class().as_str()}),
+        ),
+        Some(source) => {
+            home.account_sources.lock().unwrap().push(source.clone());
+            home.host
+                .source_request_wait(&source, std::time::Duration::from_secs(20))?;
+            Ok(home.account_view())
+        }
+    }
+}
+
+/// Source-created immutable runtime assessment, not a durable record or a
+/// deserializable native authorization. Its comparison excludes clock passage.
+pub struct HomeLogoutAssessment {
+    generation: Value,
+    material: Value,
+    view: Value,
+}
+impl HomeLogoutAssessment {
+    pub fn snapshot(&self) -> Value {
+        self.view.clone()
+    }
+}
+pub fn assess_native_home_work(
+    home: &HomeSession,
+    generation: &Value,
+) -> Result<HomeLogoutAssessment, String> {
+    crate::recovery::generation_ref(generation)?;
+    let mut runtime = home.runtime.lock().unwrap();
+    let (cursor, position) = runtime.cursor();
+    let observation = home.host.observe(cursor, position);
+    let snapshot = &observation["snapshot"];
+    if snapshot["generation"] != *generation || snapshot["state"] != "ready" {
+        return Err("Selected native home/full generation is unavailable for assessment; no window/home fallback".into());
+    }
+    let received = runtime.receive(&observation);
+    drop(runtime);
+    let mut live = vec![];
+    let mut unresolved_turns = vec![];
+    for thread in snapshot["threads"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .filter(|thread| thread["generation"] == *generation)
+    {
+        let Some(id) = thread["threadId"].as_str() else {
+            continue;
+        };
+        match observed_steering_target(snapshot,generation,id){
+            Ok(target)=>live.push(json!({"generation":generation,"threadId":id,"turnId":target["turnId"],"status":"inProgress","source":target["source"]})),
+            Err(error)=>if snapshot["conversationTurns"].as_array().into_iter().flatten().any(|turn|turn["generation"]==*generation&&turn["threadId"]==id&&turn["nativeTurn"]["status"]=="inProgress") {unresolved_turns.push(json!({"threadId":id,"limit":error}));},
+        }
+    }
+    for turn in snapshot["conversationTurns"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .filter(|turn| {
+            turn["generation"] == *generation && turn["nativeTurn"]["status"] == "inProgress"
+        })
+    {
+        if !live
+            .iter()
+            .any(|row| row["threadId"] == turn["threadId"] && row["turnId"] == turn["turnId"])
+        {
+            unresolved_turns.push(json!({"threadId":turn["threadId"],"turnId":turn["turnId"],"reportedStatus":turn["nativeTurn"]["status"],"terminalEventObserved":turn["terminalEventObserved"],"observationEnded":turn["observationEnded"],"limit":"progress memo lacks current target warrant or is contradictory; activity not established, no ended inference"}));
+        }
+    }
+    let requests=snapshot["serverRequests"].as_array().into_iter().flatten().filter(|request|request["generation"]==*generation&&request["state"]=="outstanding").map(|request|json!({"generation":request["generation"],"requestIdentity":request["requestIdentity"],"method":request["method"],"state":request["state"],"threadId":request["nativeParameters"]["threadId"],"turnId":request["nativeParameters"]["turnId"]})).collect::<Vec<_>>();
+    let native = &received["nativeView"];
+    let valid_view =
+        native["generation"] == *generation && received["nativeViewObservationEnded"] != true;
+    let mut children = vec![];
+    let mut unknown = vec![];
+    if valid_view {
+        for child in native["descendants"].as_array().into_iter().flatten() {
+            let state = child["lastObservedStatus"]["status"].as_str();
+            let row = json!({"generation":native["generation"],"threadId":child["threadId"],"parentThreadId":child["parentThreadId"],"reportedStatus":state,"source":child["statusSource"],"limit":"last native reported activity; no complete process/child census"});
+            if child["observationEnded"] != true && matches!(state, Some("running" | "pendingInit"))
+            {
+                children.push(row);
+            } else {
+                unknown.push(row);
+            }
+        }
+    }
+    let history = home.history.lock().unwrap().snapshot(None);
+    if history["generation"] == *generation {
+        for child in history["selected"]["knownChildren"]
+            .as_array()
+            .into_iter()
+            .flatten()
+        {
+            if !children
+                .iter()
+                .chain(unknown.iter())
+                .any(|row| row["threadId"] == child["threadId"])
+            {
+                unknown.push(json!({"generation":history["generation"],"threadId":child["threadId"],"parentThreadId":child["parentThreadId"],"source":"selected native stored-history edge","reportedStatus":null,"limit":"history-only relation; current activity unknown"}));
+            }
+        }
+    }
+    // Set ordering only makes material comparison stable; it assigns no
+    // chronology, precedence, winner or authority to an identity.
+    for rows in [
+        &mut live,
+        &mut unresolved_turns,
+        &mut children,
+        &mut unknown,
+    ] {
+        rows.sort_by_key(Value::to_string);
+    }
+    let mut requests = requests;
+    requests.sort_by_key(Value::to_string);
+    let coverage = json!({"turns":{"scope":"current selected-home source","available":snapshot["conversationTurns"].is_array(),"complete":false,"unresolved":unresolved_turns},"requests":{"scope":"current received register","available":snapshot["serverRequests"].is_array(),"complete":false},"children":{"receivingViewAvailable":valid_view,"complete":false,"limit":"child visibility/completeness not established; additional work may exist"},"receivingLimits":received["nativeViewLimits"]});
+    let namespace_events=snapshot["journal"].as_array().into_iter().flatten().filter(|event|event["generation"]==*generation&&event["frame"]["method"]=="account/updated").map(|event|json!({"generation":event["generation"],"receiptPosition":event["position"],"method":event["frame"]["method"]})).collect::<Vec<_>>();
+    let operations=snapshot["clientRequests"].as_array().into_iter().flatten().filter(|request|request["generation"]==*generation&&matches!(request["method"].as_str(),Some("account/login/start"|"account/login/cancel"|"account/logout"))).map(|request|json!({"requestIdentity":request["requestIdentity"],"method":request["method"],"writeResult":request["writeResult"],"outcome":request["outcome"]})).collect::<Vec<_>>();
+    let latest_read = snapshot["clientRequests"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .rev()
+        .find(|request| request["generation"] == *generation && request["method"] == "account/read")
+        .and_then(|request| {
+            home.host
+                .source_request(generation, &request["requestIdentity"])
+                .ok()
+        })
+        .map(|source| source.evidence());
+    let read_availability = match latest_read.as_ref() {
+        Some(evidence)
+            if evidence["outcome"] == "response-observed-result"
+                && evidence["authResponseShapeValid"] == true =>
+        {
+            "typed native account read observed"
+        }
+        Some(evidence) if evidence["outcome"] == "response-observed-error" => {
+            "native account read error; current account unknown"
+        }
+        Some(_) => "native account read pending/shape unavailable; prior report only",
+        None => "no source-bound account read available",
+    };
+    let current_account=latest_read.as_ref().filter(|evidence|evidence["outcome"]=="response-observed-result"&&evidence["authResponseShapeValid"]==true).map(|evidence|match evidence["response"]["result"].get("account"){
+        None=>json!({"state":"account omitted; unknown/unavailable","nativeType":null}),
+        Some(Value::Null)=>json!({"state":"native null account reported; not pending-login cancellation","nativeType":null}),
+        Some(account) if matches!(account["type"].as_str(),Some("chatgpt"|"apiKey"|"chatgptAuthTokens"))=>json!({"state":"native type reported; identity not established","nativeType":account["type"]}),
+        Some(_)=>json!({"state":"redacted/unavailable account; unknown","nativeType":null}),
+    }).unwrap_or_else(||json!({"state":"current native report unavailable; previous read is only last observed","nativeType":null}));
+    let account = json!({"state":received["accountObservation"]["state"],"nativeType":received["accountObservation"]["nativeAccount"]["type"],"readAvailability":read_availability,"currentReport":current_account,"namespaceEvents":namespace_events,"operations":operations,"identityVerified":false,"unchangedIdentityProven":false,"limit":"redacted/unavailable equality does not prove unchanged identity; another identical read/clock tick alone is not a namespace change"});
+    let material = json!({"modeHomeClass":home.class.as_str(),"generation":generation,"account":account,"observedLiveTurns":live,"observedOutstandingRequests":requests,"observedActiveChildren":children,"knownChildActivityUnknown":unknown,"coverage":coverage});
+    let view = json!({"modeHomeClass":home.class.as_str(),"generation":generation,"observedAt":crate::util::now_rfc3339(),"sourceCursor":received["observerCursor"],"account":account,"observedLiveTurns":live,"observedOutstandingRequests":requests,"observedActiveChildren":children,"knownChildActivityUnknown":unknown,"coverage":coverage,"warning":"None observed is not none. Child visibility/completeness is not established; additional work may exist. Logout acknowledgment does not end turns/children, delete history or prove credential-store removal."});
+    Ok(HomeLogoutAssessment {
+        generation: generation.clone(),
+        material,
+        view,
+    })
+}
+pub fn logout_native_home<F: FnOnce(&Value) -> bool>(
+    home: &HomeSession,
+    bootstrap: Option<&HomeBootstrapSet>,
+    generation: &Value,
+    confirm: F,
+) -> Result<Value, String> {
+    let config = home.host_config.as_ref().map_err(Clone::clone)?;
+    if let Some(bootstrap) = bootstrap {
+        bootstrap.validate_binding(home.class(), config)?;
+    } else if home.class != crate::home_resources::HomeClass::Account {
+        return Err("Key source physical binding unavailable; no fallback".into());
+    }
+    let frozen = assess_native_home_work(home, generation)?;
+    if !confirm(&frozen.view) {
+        return Ok(
+            json!({"state":"native confirmation cancelled; no logout request","assessment":frozen.view}),
+        );
+    }
+    if let Some(bootstrap) = bootstrap {
+        bootstrap.validate_binding(home.class(), config)?;
+    }
+    let current = assess_native_home_work(home, &frozen.generation)?;
+    if current.material != frozen.material {
+        return Err("Selected source/account or observed work/coverage changed during native confirmation; refresh and confirm again, no logout sent".into());
+    }
+    let source = home.host.account_logout_scoped(&frozen.generation)?;
+    home.account_sources.lock().unwrap().push(source.clone());
+    let waited = home
+        .host
+        .source_request_wait(&source, std::time::Duration::from_secs(20));
+    let evidence = source.evidence();
+    if evidence["authResponseShapeValid"] == true
+        && evidence["outcome"] == "response-observed-result"
+        && evidence["sourceCurrent"] == true
+    {
+        if let Some(selection) = home.access_selection.lock().unwrap().as_mut() {
+            let entry = selection.snapshot()["selection"]["entryId"].clone();
+            let affected = (home.class == crate::home_resources::HomeClass::Account
+                && entry == "chatgpt-account")
+                || (home.class == crate::home_resources::HomeClass::ApiKey && entry == "api-key");
+            if affected && selection.owning_generation() == Some(&frozen.generation) {
+                let _=selection.unavailable("Codex reported logout for this entry; no home transfer or credential-file inspection");
+            }
+        }
+    }
+    // Allowed native read reconciles the report; it is not a retry/removal or a
+    // token-refresh/credential-store inspection, and never uses another home.
+    let after_read = match home.host.account_read_scoped(&frozen.generation) {
+        Ok(read) => {
+            home.account_sources.lock().unwrap().push(read.clone());
+            let wait = home
+                .host
+                .source_request_wait(&read, std::time::Duration::from_secs(20));
+            json!({"observation":home.host.account_rpc_observation(&read).ok(),"waitError":wait.err()})
+        }
+        Err(error) => json!({"state":"same-source account reread unavailable","limit":error}),
+    };
+    Ok(
+        json!({"assessment":frozen.view,"source":home.host.account_rpc_observation(&source)?,"waitError":waited.err(),"accountReadAfterLogout":after_read,"limit":"Native send/acknowledgment/account observation are separate; no credential inspection, turn/child ending, history deletion or automatic resend"}),
+    )
+}
+
+/// Allocate a new probe using the physical OS temp parent and mktemp -d. This
+/// resolves an allocation source, never relocates an existing received home.
+pub fn allocate_fresh_probe(temp_parent: &std::path::Path) -> Result<std::path::PathBuf, String> {
+    let parent = std::fs::canonicalize(temp_parent)
+        .map_err(|_| "OS scratch parent unavailable; no probe default")?;
+    crate::storage::check_path(&parent)?;
+    let before =
+        std::fs::metadata(&parent).map_err(|_| "OS scratch parent metadata unavailable")?;
+    if !before.is_dir() {
+        return Err("OS scratch parent is not a directory".into());
+    }
+    let output = std::process::Command::new("mktemp")
+        .arg("-d")
+        .arg(parent.join("chirality-codex-probe.XXXXXX"))
+        .output()
+        .map_err(|_| "Fresh mktemp probe allocation unavailable")?;
+    if !output.status.success() {
+        return Err("Fresh mktemp probe allocation failed; no fallback".into());
+    }
+    let bytes = output
+        .stdout
+        .strip_suffix(b"\n")
+        .ok_or("mktemp probe result is not newline closed")?;
+    #[cfg(unix)]
+    let path = {
+        use std::os::unix::ffi::OsStringExt;
+        std::path::PathBuf::from(std::ffi::OsString::from_vec(bytes.to_vec()))
+    };
+    #[cfg(not(unix))]
+    let path = std::path::PathBuf::from(
+        std::str::from_utf8(bytes)
+            .map_err(|_| "Probe path cannot be represented losslessly on this platform")?,
+    );
+    if path.parent() != Some(parent.as_path()) {
+        return Err("mktemp result is outside the actual supplied scratch parent".into());
+    }
+    crate::storage::check_path(&path)?;
+    let after =
+        std::fs::metadata(&parent).map_err(|_| "OS scratch parent changed during allocation")?;
+    #[cfg(unix)]
+    {
+        use std::os::unix::fs::MetadataExt;
+        if before.dev() != after.dev() || before.ino() != after.ino() {
+            return Err(
+                "Actual OS scratch parent changed during allocation; probe binding unavailable"
+                    .into(),
+            );
+        }
+    }
+    if !after.is_dir()
+        || std::fs::canonicalize(&parent)
+            .map_err(|_| "Scratch parent unavailable after allocation")?
+            != parent
+        || !path.is_dir()
+    {
+        return Err("Probe/parent physical binding unavailable after allocation".into());
+    }
+    Ok(path)
+}
+
+/// Safe reader only. Public observation references cannot reconstruct this handle.
+pub(crate) fn native_oauth_observation(home: &HomeSession) -> Value {
+    let original = home.oauth_login.lock().unwrap().clone();
+    match original {
+        None => {
+            json!({"state":"unavailable","limit":"no original private sign-in control received"})
+        }
+        Some(login) => native_oauth_observation_for(home, &login),
+    }
+}
+fn native_oauth_observation_for(home: &HomeSession, login: &crate::hosting::OAuthLogin) -> Value {
+    match home.host.account_oauth_observation(login) {
+        Ok(view) => {
+            json!({"state":"source-observed","source":view,"accountConfirmation":"matched success still requires native account/read; no signed-in identity inferred"})
+        }
+        Err(_) => {
+            json!({"state":"unknown/source-unavailable","generation":login.source().generation(),"requestIdentity":login.source().request_id(),"limit":"original sign-in source unavailable; no retarget, cancel success or signed-out inference"})
+        }
+    }
+}
+fn check_native_oauth_home(
+    home: &HomeSession,
+    bootstrap: Option<&HomeBootstrapSet>,
+    expected: &Value,
+) -> Result<(), String> {
+    if home.class() != crate::home_resources::HomeClass::Account {
+        return Err("ChatGPT sign-in requires the original account home".into());
+    }
+    if let Some(bootstrap) = bootstrap {
+        bootstrap.validate_binding(
+            home.class(),
+            home.host_config.as_ref().map_err(Clone::clone)?,
+        )?;
+    }
+    let snapshot = home.host.snapshot();
+    if snapshot["generation"] != *expected || snapshot["state"] != "ready" {
+        return Err(
+            "Requested original account generation unavailable; no sign-in/control retarget".into(),
+        );
+    }
+    Ok(())
+}
+fn capture_native_oauth(
+    home: &HomeSession,
+    bootstrap: Option<&HomeBootstrapSet>,
+    requested: &Value,
+) -> Result<std::sync::Arc<crate::hosting::OAuthLogin>, String> {
+    check_native_oauth_home(home, bootstrap, requested)?;
+    let original = home
+        .oauth_login
+        .lock()
+        .unwrap()
+        .clone()
+        .ok_or("Original private sign-in control unavailable")?;
+    if original.source().generation() != requested {
+        return Err(
+            "Requested full generation differs from original sign-in wrapper; no successor control"
+                .into(),
+        );
+    }
+    check_native_oauth_home(home, bootstrap, requested)?;
+    Ok(original)
+}
+fn check_native_oauth_original(
+    home: &HomeSession,
+    bootstrap: Option<&HomeBootstrapSet>,
+    requested: &Value,
+    original: &std::sync::Arc<crate::hosting::OAuthLogin>,
+) -> Result<(), String> {
+    if original.source().generation() != requested {
+        return Err("Original sign-in wrapper differs from requested generation".into());
+    }
+    check_native_oauth_home(home, bootstrap, requested)?;
+    if !home
+        .oauth_login
+        .lock()
+        .unwrap()
+        .as_ref()
+        .is_some_and(|received| std::sync::Arc::ptr_eq(received, original))
+    {
+        return Err(
+            "Original issued sign-in operation superseded; no replacement interaction".into(),
+        );
+    }
+    Ok(())
+}
+// Private start return carries the actual issued wrapper through wait and automatic
+// presentation. No Serde/Debug/public constructor or DTO authority.
+pub(crate) struct NativeOAuthStart {
+    original: Option<std::sync::Arc<crate::hosting::OAuthLogin>>,
+    observed: Value,
+}
+pub(crate) fn start_native_oauth<F: FnOnce() -> bool>(
+    home: &HomeSession,
+    generation: &Value,
+    mode: crate::hosting::NativeLoginMode,
+    bootstrap: Option<&HomeBootstrapSet>,
+    confirm: F,
+) -> Result<NativeOAuthStart, String> {
+    let gate = home
+        .oauth_start_gate
+        .try_lock()
+        .map_err(|_| "Another native sign-in start is pending; no replacement/retry")?;
+    check_native_oauth_home(home, bootstrap, generation)?;
+    if !confirm() {
+        return Ok(NativeOAuthStart {
+            original: None,
+            observed: json!({"state":"native start confirmation dismissed; no sign-in RPC"}),
+        });
+    }
+    check_native_oauth_home(home, bootstrap, generation)?;
+    let policy = home.host.account_requirements_read_scoped(generation)?;
+    home.account_sources.lock().unwrap().push(policy.clone());
+    home.host
+        .source_request_wait(&policy, std::time::Duration::from_secs(20))?;
+    check_native_oauth_home(home, bootstrap, generation)?;
+    let login = std::sync::Arc::new(home.host.account_oauth_start(
+        generation,
+        mode,
+        Some(&policy),
+    )?);
+    *home.oauth_login.lock().unwrap() = Some(login.clone());
+    home.account_sources
+        .lock()
+        .unwrap()
+        .push(login.source().clone());
+    drop(gate);
+    home.host
+        .source_request_wait(login.source(), std::time::Duration::from_secs(20))?;
+    let observed = native_oauth_observation_for(home, &login);
+    Ok(NativeOAuthStart {
+        original: Some(login),
+        observed,
+    })
+}
+pub(crate) fn present_native_oauth(
+    home: &HomeSession,
+    requested: &Value,
+    bootstrap: Option<&HomeBootstrapSet>,
+) -> Result<Value, String> {
+    present_requested_native_oauth(home, requested, bootstrap, |view, lease, current| {
+        native_oauth_display::present(view, lease, current)
+    })
+}
+fn present_requested_native_oauth<F>(
+    home: &HomeSession,
+    requested: &Value,
+    bootstrap: Option<&HomeBootstrapSet>,
+    callback: F,
+) -> Result<Value, String>
+where
+    F: FnOnce(
+        crate::hosting::NativeLoginView<'_>,
+        crate::hosting::NativeLoginLease,
+        &(dyn Fn() -> bool + Sync),
+    ) -> crate::hosting::NativeLoginPresentation,
+{
+    let original = capture_native_oauth(home, bootstrap, requested)?;
+    present_bound_native_oauth(home, requested, bootstrap, &original, callback)
+}
+fn present_bound_native_oauth<F>(
+    home: &HomeSession,
+    requested: &Value,
+    bootstrap: Option<&HomeBootstrapSet>,
+    original: &std::sync::Arc<crate::hosting::OAuthLogin>,
+    callback: F,
+) -> Result<Value, String>
+where
+    F: FnOnce(
+        crate::hosting::NativeLoginView<'_>,
+        crate::hosting::NativeLoginLease,
+        &(dyn Fn() -> bool + Sync),
+    ) -> crate::hosting::NativeLoginPresentation,
+{
+    check_native_oauth_original(home, bootstrap, requested, original)?;
+    let current = || check_native_oauth_original(home, bootstrap, requested, original).is_ok();
+    let result = present_original_native_oauth(home, original, |view, lease| {
+        if !current() {
+            return crate::hosting::NativeLoginPresentation::Unavailable;
+        }
+        callback(view, lease, &current)
+    })?;
+    check_native_oauth_home(home, bootstrap, requested)?;
+    Ok(result)
+}
+pub(crate) fn automatic_native_oauth_presentation(
+    home: &HomeSession,
+    started: NativeOAuthStart,
+    bootstrap: Option<&HomeBootstrapSet>,
+) -> Result<Value, String> {
+    automatic_native_oauth_presentation_with(home, started, bootstrap, |view, lease, current| {
+        native_oauth_display::present(view, lease, current)
+    })
+}
+fn automatic_native_oauth_presentation_with<F>(
+    home: &HomeSession,
+    started: NativeOAuthStart,
+    bootstrap: Option<&HomeBootstrapSet>,
+    callback: F,
+) -> Result<Value, String>
+where
+    F: FnOnce(
+        crate::hosting::NativeLoginView<'_>,
+        crate::hosting::NativeLoginLease,
+        &(dyn Fn() -> bool + Sync),
+    ) -> crate::hosting::NativeLoginPresentation,
+{
+    let Some(original) = started.original else {
+        return Ok(started.observed);
+    };
+    let requested = original.source().generation();
+    check_native_oauth_original(home, bootstrap, requested, &original)?;
+    let observed = native_oauth_observation_for(home, &original);
+    if observed["source"]["presentationAvailable"] == true {
+        present_bound_native_oauth(home, requested, bootstrap, &original, callback)
+    } else {
+        Ok(observed)
+    }
+}
+// The production wrapper and cfg(test) callbacks consume the same genuinely
+// issued one-use view/lease. This seam creates no native/source proof DTO.
+fn present_original_native_oauth<F>(
+    home: &HomeSession,
+    login: &crate::hosting::OAuthLogin,
+    callback: F,
+) -> Result<Value, String>
+where
+    F: FnOnce(
+        crate::hosting::NativeLoginView<'_>,
+        crate::hosting::NativeLoginLease,
+    ) -> crate::hosting::NativeLoginPresentation,
+{
+    let delivered = home.host.account_oauth_present(login, callback)?;
+    Ok(json!({"delivery":delivered,"observation":native_oauth_observation_for(home,login)}))
+}
+pub(crate) fn cancel_native_oauth<F: FnOnce(&Value) -> bool>(
+    home: &HomeSession,
+    requested: &Value,
+    bootstrap: Option<&HomeBootstrapSet>,
+    confirm: F,
+) -> Result<Value, String> {
+    let original = capture_native_oauth(home, bootstrap, requested)?;
+    check_native_oauth_original(home, bootstrap, requested, &original)?;
+    let before = home.host.account_oauth_observation(&original)?;
+    if before["cancelAvailable"] != true {
+        return Err("Original sign-in cancel unavailable/unknown; no request or retry".into());
+    }
+    if !confirm(&before) {
+        return Ok(
+            json!({"state":"native cancellation confirmation dismissed; original pending control retained"}),
+        );
+    }
+    check_native_oauth_original(home, bootstrap, requested, &original)?;
+    let cancel = home.host.account_oauth_cancel(&original)?;
+    home.account_sources.lock().unwrap().push(cancel.clone());
+    home.host
+        .source_request_wait(&cancel, std::time::Duration::from_secs(20))?;
+    let observed = home.host.account_oauth_observation(&original)?;
+    let state = match observed["cancelStatus"].as_str() {
+        Some("canceled") => "signed-out; original pending sign-in canceled by Codex",
+        Some("notFound") => "signed-out; Codex had no pending sign-in",
+        _ => "unknown/error; no cancellation or signed-out inference, no retry",
+    };
+    Ok(
+        json!({"state":state,"source":observed,"standing":"sign-in lifecycle only; no credential-file removal, history deletion or turn/child/run end"}),
+    )
+}
+
+#[cfg(not(target_os = "macos"))]
+mod native_oauth_display {
+    pub(super) fn present(
+        _: crate::hosting::NativeLoginView<'_>,
+        _: crate::hosting::NativeLoginLease,
+        _: &(dyn Fn() -> bool + Sync),
+    ) -> crate::hosting::NativeLoginPresentation {
+        crate::hosting::NativeLoginPresentation::Unavailable
+    }
+}
+#[cfg(target_os = "macos")]
+mod native_oauth_display {
+    use crate::hosting::{NativeLoginLease, NativeLoginPresentation, NativeLoginView};
+    use std::ffi::{c_char, c_void};
+    type Id = *mut c_void;
+    #[link(name = "objc")]
+    extern "C" {
+        fn objc_getClass(name: *const c_char) -> Id;
+        fn sel_registerName(name: *const c_char) -> Id;
+        fn objc_msgSend();
+    }
+    #[link(name = "AppKit", kind = "framework")]
+    extern "C" {}
+    extern "C" {
+        static _dispatch_main_q: u8;
+        fn dispatch_sync_f(
+            queue: Id,
+            context: *mut c_void,
+            work: unsafe extern "C" fn(*mut c_void),
+        );
+    }
+    unsafe fn class(n: &'static [u8]) -> Id {
+        objc_getClass(n.as_ptr().cast())
+    }
+    unsafe fn sel(n: &'static [u8]) -> Id {
+        sel_registerName(n.as_ptr().cast())
+    }
+    unsafe fn id(o: Id, n: &'static [u8]) -> Id {
+        let f: unsafe extern "C" fn(Id, Id) -> Id = std::mem::transmute(objc_msgSend as *const ());
+        f(o, sel(n))
+    }
+    unsafe fn object(o: Id, n: &'static [u8], arg: Id) {
+        let f: unsafe extern "C" fn(Id, Id, Id) = std::mem::transmute(objc_msgSend as *const ());
+        f(o, sel(n), arg)
+    }
+    unsafe fn release(o: Id) {
+        if !o.is_null() {
+            let f: unsafe extern "C" fn(Id, Id) = std::mem::transmute(objc_msgSend as *const ());
+            f(o, sel(b"release\0"))
+        }
+    }
+    unsafe fn string(s: &str) -> Id {
+        let allocated = id(class(b"NSString\0"), b"alloc\0");
+        let f: unsafe extern "C" fn(Id, Id, *const u8, usize, usize) -> Id =
+            std::mem::transmute(objc_msgSend as *const ());
+        f(
+            allocated,
+            sel(b"initWithBytes:length:encoding:\0"),
+            s.as_ptr(),
+            s.len(),
+            4,
+        )
+    }
+    struct Context<'a> {
+        view: Option<NativeLoginView<'a>>,
+        lease: NativeLoginLease,
+        current: &'a (dyn Fn() -> bool + Sync),
+        result: NativeLoginPresentation,
+    }
+    pub(super) fn present(
+        view: NativeLoginView<'_>,
+        lease: NativeLoginLease,
+        current: &(dyn Fn() -> bool + Sync),
+    ) -> NativeLoginPresentation {
+        let mut context = Context {
+            view: Some(view),
+            lease,
+            current,
+            result: NativeLoginPresentation::Unavailable,
+        };
+        // Synchronous dispatch keeps the one-use borrowed view alive until the
+        // native callback returns. No 'static payload clone or detached worker.
+        unsafe {
+            let f: unsafe extern "C" fn(Id, Id) -> bool =
+                std::mem::transmute(objc_msgSend as *const ());
+            if f(class(b"NSThread\0"), sel(b"isMainThread\0")) {
+                show((&mut context as *mut Context<'_>).cast())
+            } else {
+                dispatch_sync_f(
+                    std::ptr::addr_of!(_dispatch_main_q).cast_mut().cast(),
+                    (&mut context as *mut Context<'_>).cast(),
+                    show,
+                )
+            }
+        }
+        context.result
+    }
+    unsafe extern "C" fn show(raw: *mut c_void) {
+        let c = &mut *(raw as *mut Context<'_>);
+        let pool = id(class(b"NSAutoreleasePool\0"), b"new\0");
+        if pool.is_null() {
+            return;
+        }
+        if c.lease.is_active() && (c.current)() {
+            match c.view.take().unwrap() {
+                NativeLoginView::Browser { auth_url } => {
+                    let text = string(auth_url);
+                    let f: unsafe extern "C" fn(Id, Id, Id) -> Id =
+                        std::mem::transmute(objc_msgSend as *const ());
+                    let url = f(class(b"NSURL\0"), sel(b"URLWithString:\0"), text);
+                    let open: unsafe extern "C" fn(Id, Id, Id) -> bool =
+                        std::mem::transmute(objc_msgSend as *const ());
+                    if !url.is_null()
+                        && c.lease.is_active()
+                        && (c.current)()
+                        && open(
+                            id(class(b"NSWorkspace\0"), b"sharedWorkspace\0"),
+                            sel(b"openURL:\0"),
+                            url,
+                        )
+                    {
+                        c.result = NativeLoginPresentation::Presented;
+                    }
+                    release(text); // OS/browser custody cannot be reclaimed/erased by App.
+                }
+                NativeLoginView::Device {
+                    verification_url,
+                    user_code,
+                } => {
+                    let alert = id(class(b"NSAlert\0"), b"new\0");
+                    if !alert.is_null() {
+                        let title = string("Sign in with your ChatGPT account (through Codex)");
+                        object(alert, b"setMessageText:\0", title);
+                        release(title);
+                        // Native-only bounded display copies; never JSON, a Rust
+                        // diagnostic, clipboard, external cache or retained matcher.
+                        let text = id(class(b"NSMutableString\0"), b"new\0");
+                        for part in ["Open this verification page:\n",verification_url,"\n\nEnter this code:\n",user_code,"\n\nDismiss clears this display; pending sign-in may still be canceled."]{
+                            let piece=string(part);object(text,b"appendString:\0",piece);release(piece);
+                        }
+                        object(alert, b"setInformativeText:\0", text);
+                        release(text);
+                        let button = string("Dismiss");
+                        let add: unsafe extern "C" fn(Id, Id, Id) -> Id =
+                            std::mem::transmute(objc_msgSend as *const ());
+                        add(alert, sel(b"addButtonWithTitle:\0"), button);
+                        release(button);
+                        let app = id(class(b"NSApplication\0"), b"sharedApplication\0");
+                        let window = id(alert, b"window\0");
+                        let begin: unsafe extern "C" fn(Id, Id, Id) -> Id =
+                            std::mem::transmute(objc_msgSend as *const ());
+                        let poll: unsafe extern "C" fn(Id, Id, Id) -> isize =
+                            std::mem::transmute(objc_msgSend as *const ());
+                        let session = if c.lease.is_active() && (c.current)() {
+                            begin(app, sel(b"beginModalSessionForWindow:\0"), window)
+                        } else {
+                            std::ptr::null_mut()
+                        };
+                        if !session.is_null() {
+                            loop {
+                                if c.lease.revoked(std::time::Duration::from_millis(5))
+                                    || !(c.current)()
+                                {
+                                    break;
+                                }
+                                if poll(app, sel(b"runModalSession:\0"), session) != -1002 {
+                                    break;
+                                }
+                            }
+                            object(app, b"endModalSession:\0", session);
+                            c.result = NativeLoginPresentation::Dismissed;
+                        }
+                        let empty = string("");
+                        object(alert, b"setInformativeText:\0", empty);
+                        object(alert, b"setMessageText:\0", empty);
+                        release(empty);
+                        object(window, b"orderOut:\0", std::ptr::null_mut());
+                        release(alert);
+                    }
+                }
+            }
+        }
+        release(pool);
+    }
+}
+
+#[cfg(all(test, unix))]
+mod oauth_root_tests {
+    use super::*;
+    use crate::hosting::{
+        Host, HostConfig, NativeLoginMode, NativeLoginPresentation, NativeLoginView,
+    };
+    use std::{
+        path::PathBuf,
+        sync::Arc,
+        time::{Duration, Instant},
+    };
+    const PRIVATE: &str = "OWNED_ROOT_OAUTH_PRIVATE_CANARY";
+    struct Fixture {
+        root: PathBuf,
+        home: Arc<HomeSession>,
+        generation: Value,
+    }
+    impl Fixture {
+        fn new() -> Self {
+            use std::os::unix::fs::PermissionsExt;
+            let root = std::fs::canonicalize(std::env::temp_dir())
+                .unwrap()
+                .join(crate::util::opaque_id("oauth-root-fixture-").unwrap());
+            for name in ["account", "probe"] {
+                std::fs::create_dir_all(root.join(name)).unwrap();
+            }
+            let peer = root.join("owned-peer.py");
+            std::fs::write(&peer,r#"#!/usr/bin/python3
+import sys,json,threading,time,os
+if '--version' in sys.argv:
+ print('codex-cli 0.160.0');sys.exit(0)
+lock=threading.Lock()
+private='OWNED_ROOT_OAUTH_PRIVATE_CANARY'
+def emit(value):
+ with lock: print(json.dumps(value),flush=True)
+def events():
+ while True:
+  try:
+   os.rename('queued-event.json','reading-event.json')
+   with open('reading-event.json') as f: value=json.load(f)
+   os.unlink('reading-event.json');emit(value)
+  except FileNotFoundError: pass
+  time.sleep(0.002)
+threading.Thread(target=events,daemon=True).start()
+for line in sys.stdin:
+ frame=json.loads(line)
+ with open('wire.jsonl','a') as f: f.write(json.dumps(frame)+'\n')
+ try:
+  with open('behavior.json') as f: behavior=json.load(f)
+ except FileNotFoundError: behavior={}
+ method=frame.get('method')
+ if method=='initialize': result={'userAgent':'unqualified-root-owned-fixture'}
+ elif method=='configRequirements/read': result={'requirements':{'allowedLoginMethods':behavior.get('allowed',['chatgpt']),'cliAuthCredentialsStore':'auto'}}
+ elif method=='account/read': result={'account':None,'requiresOpenaiAuth':True}
+ elif method=='account/login/start':
+  if frame['params']['type']=='chatgpt': result={'type':'chatgpt','loginId':private,'authUrl':'https://fixture.invalid/'+private}
+  else: result={'type':'chatgptDeviceCode','loginId':private,'verificationUrl':'https://fixture.invalid/'+private,'userCode':private}
+ elif method=='account/login/cancel':
+  if behavior.get('cancel')=='error':
+   emit({'id':frame['id'],'error':{'code':-32000,'message':private}});continue
+  result={'status':behavior.get('cancel','canceled')}
+ else: continue
+ emit({'id':frame['id'],'result':result})
+"#).unwrap();
+            std::fs::set_permissions(&peer, std::fs::Permissions::from_mode(0o700)).unwrap();
+            let mut cfg =
+                HostConfig::new(peer, root.join("account"), root.join("probe"), root.clone());
+            cfg.allow_unverified_dev = true;
+            cfg.wait_limit = Duration::from_secs(2);
+            let host = Arc::new(Host::new());
+            host.start(&cfg, "owned unqualified Root fixture").unwrap();
+            assert_eq!(
+                host.snapshot()["supplierStanding"],
+                "unverified-development"
+            );
+            let generation = host.snapshot()["generation"].clone();
+            let home = Arc::new(
+                HomeSession::new(crate::home_resources::HomeClass::Account, host, Ok(cfg)).unwrap(),
+            );
+            Self {
+                root,
+                home,
+                generation,
+            }
+        }
+        fn behavior(&self, value: Value) {
+            std::fs::write(
+                self.root.join("behavior.json"),
+                serde_json::to_vec(&value).unwrap(),
+            )
+            .unwrap();
+        }
+        fn wire(&self) -> Vec<Value> {
+            std::fs::read_to_string(self.root.join("wire.jsonl"))
+                .unwrap()
+                .lines()
+                .map(|line| serde_json::from_str(line).unwrap())
+                .collect()
+        }
+        fn count(&self, method: &str) -> usize {
+            self.wire().iter().filter(|f| f["method"] == method).count()
+        }
+        fn emit(&self, event: Value) {
+            let tmp = self.root.join("new-event.json");
+            std::fs::write(&tmp, serde_json::to_vec(&event).unwrap()).unwrap();
+            std::fs::rename(tmp, self.root.join("queued-event.json")).unwrap();
+        }
+        fn wait_phase(&self, phase: &str) {
+            let deadline = Instant::now() + Duration::from_secs(2);
+            while native_oauth_observation(&self.home)["source"]["phase"] != phase {
+                assert!(
+                    Instant::now() < deadline,
+                    "expected phase {phase}: {}",
+                    native_oauth_observation(&self.home)
+                );
+                std::thread::sleep(Duration::from_millis(2));
+            }
+        }
+        fn start(&self, mode: NativeLoginMode) {
+            start_native_oauth(&self.home, &self.generation, mode, None, || true).unwrap();
+            self.wait_phase("Pending");
+        }
+        fn safe(&self) {
+            for value in [
+                self.home.host.snapshot(),
+                native_oauth_observation(&self.home),
+                self.home.account_view(),
+            ] {
+                assert!(
+                    !serde_json::to_string(&value).unwrap().contains(PRIVATE),
+                    "private fixture material leaked into public Root/Host view"
+                );
+            }
+        }
+        fn login(&self) -> Arc<crate::hosting::OAuthLogin> {
+            self.home.oauth_login.lock().unwrap().clone().unwrap()
+        }
+    }
+    impl Drop for Fixture {
+        fn drop(&mut self) {
+            let _ = self.home.host.stop("owned Root fixture", "bounded cleanup");
+            let _ = std::fs::remove_dir_all(&self.root);
+        }
+    }
+    #[test]
+    fn oauth_root_browser_once_original_cancel_and_safe_observations() {
+        let f = Fixture::new();
+        f.start(NativeLoginMode::Browser);
+        let login = f.login();
+        let seen = std::cell::Cell::new(0);
+        let delivered = present_original_native_oauth(&f.home, &login, |view, lease| {
+            assert!(lease.is_active());
+            match view {
+                NativeLoginView::Browser { auth_url } => {
+                    assert_eq!(auth_url, format!("https://fixture.invalid/{PRIVATE}"))
+                }
+                _ => panic!("wrong native mode"),
+            };
+            seen.set(seen.get() + 1);
+            NativeLoginPresentation::Presented
+        })
+        .unwrap();
+        assert_eq!(delivered["delivery"]["presentation"], "Presented");
+        assert_eq!(seen.get(), 1);
+        assert!(
+            present_original_native_oauth(&f.home, &login, |_, _| panic!(
+                "one-use view must not be repeated"
+            ))
+            .is_err()
+        );
+        assert_eq!(
+            native_oauth_observation(&f.home)["source"]["cancelAvailable"],
+            true
+        );
+        let result = cancel_native_oauth(&f.home, &f.generation, None, |safe| {
+            assert_eq!(safe["generation"], f.generation);
+            assert!(!safe.to_string().contains(PRIVATE));
+            true
+        })
+        .unwrap();
+        assert_eq!(result["source"]["cancelStatus"], "canceled");
+        assert!(result["state"].as_str().unwrap().contains("signed-out"));
+        assert_eq!(f.count("account/login/start"), 1);
+        assert_eq!(f.count("account/login/cancel"), 1);
+        assert_eq!(
+            f.wire()
+                .iter()
+                .find(|r| r["method"] == "account/login/cancel")
+                .unwrap()["params"],
+            json!({"loginId":PRIVATE})
+        );
+        f.safe();
+    }
+    #[test]
+    fn oauth_root_device_dismiss_and_null_account_preserve_notfound_cancel() {
+        let f = Fixture::new();
+        f.behavior(json!({"cancel":"notFound"}));
+        f.start(NativeLoginMode::DeviceCode);
+        present_original_native_oauth(&f.home, &f.login(), |view, lease| {
+            assert!(lease.is_active());
+            match view {
+                NativeLoginView::Device {
+                    verification_url,
+                    user_code,
+                } => {
+                    assert!(verification_url.contains(PRIVATE));
+                    assert_eq!(user_code, PRIVATE)
+                }
+                _ => panic!("device required"),
+            };
+            NativeLoginPresentation::Dismissed
+        })
+        .unwrap();
+        read_native_home_access(&f.home, &f.generation).unwrap();
+        assert_eq!(
+            native_oauth_observation(&f.home)["source"]["phase"],
+            "Pending"
+        );
+        assert_eq!(
+            native_oauth_observation(&f.home)["source"]["cancelAvailable"],
+            true
+        );
+        let result = cancel_native_oauth(&f.home, &f.generation, None, |_| true).unwrap();
+        assert_eq!(result["source"]["cancelStatus"], "notFound");
+        assert!(result["state"]
+            .as_str()
+            .unwrap()
+            .contains("Codex had no pending sign-in"));
+        assert!(
+            cancel_native_oauth(&f.home, &f.generation, None, |_| panic!(
+                "terminal cannot confirm again"
+            ))
+            .is_err()
+        );
+        assert_eq!(f.count("account/login/cancel"), 1);
+        f.safe();
+    }
+    #[test]
+    fn oauth_root_device_live_view_is_revoked_by_matched_completion_without_host_lock() {
+        let f = Fixture::new();
+        f.start(NativeLoginMode::DeviceCode);
+        present_original_native_oauth(&f.home,&f.login(),|view,lease|{
+            assert!(matches!(view,NativeLoginView::Device{..}));assert!(lease.is_active());
+            f.emit(json!({"method":"account/login/completed","params":{"loginId":PRIVATE,"success":true,"error":null}}));
+            assert!(lease.revoked(Duration::from_secs(2)),"actual source must revoke active native lease");
+            assert!(!lease.is_active());NativeLoginPresentation::Dismissed
+        }).unwrap();
+        f.wait_phase("CompletedSuccess");
+        assert_eq!(
+            native_oauth_observation(&f.home)["source"]["cancelAvailable"],
+            false
+        );
+        assert_eq!(f.count("account/login/cancel"), 0);
+        f.safe();
+    }
+    #[test]
+    fn oauth_root_terminal_before_delivery_and_missing_identity_do_not_create_authority() {
+        let f = Fixture::new();
+        f.start(NativeLoginMode::Browser);
+        let position = f.home.host.observe(&f.generation, 0)["position"].as_u64();
+        f.emit(json!({"method":"account/login/completed","params":{"loginId":null,"success":true,"error":null}}));
+        let deadline = Instant::now() + Duration::from_secs(2);
+        while f.home.host.observe(&f.generation, 0)["position"].as_u64() == position {
+            assert!(Instant::now() < deadline);
+            std::thread::sleep(Duration::from_millis(2));
+        }
+        assert_eq!(
+            native_oauth_observation(&f.home)["source"]["phase"],
+            "Pending"
+        );
+        f.emit(json!({"method":"account/login/completed","params":{"loginId":PRIVATE,"success":false,"error":PRIVATE}}));
+        f.wait_phase("CompletedFailure");
+        assert!(
+            present_original_native_oauth(&f.home, &f.login(), |_, _| panic!(
+                "terminal private payload must not be presented"
+            ))
+            .is_err()
+        );
+        assert!(
+            cancel_native_oauth(&f.home, &f.generation, None, |_| panic!(
+                "terminal cannot cancel"
+            ))
+            .is_err()
+        );
+        f.safe();
+    }
+    #[test]
+    fn oauth_root_native_cancel_confirmation_preserves_original_dismissal_and_source_loss() {
+        let f = Fixture::new();
+        f.start(NativeLoginMode::Browser);
+        assert!(
+            cancel_native_oauth(&f.home, &f.generation, None, |_| false).unwrap()["state"]
+                .as_str()
+                .unwrap()
+                .contains("dismissed")
+        );
+        assert_eq!(
+            native_oauth_observation(&f.home)["source"]["cancelAvailable"],
+            true
+        );
+        assert_eq!(f.count("account/login/cancel"), 0);
+        assert!(cancel_native_oauth(&f.home, &f.generation, None, |_| {
+            f.home
+                .host
+                .stop_scoped(
+                    &f.generation,
+                    "fixture",
+                    "source changed during original native confirmation",
+                )
+                .unwrap();
+            true
+        })
+        .is_err());
+        assert_eq!(f.count("account/login/cancel"), 0);
+        f.safe();
+    }
+    #[test]
+    fn oauth_root_original_wrapper_cannot_be_retargeted_by_home_switch() {
+        let f = Fixture::new();
+        f.start(NativeLoginMode::Browser);
+        let captured = f.login();
+        let mut config = f.home.host_config.clone().unwrap();
+        config.codex_home = f.root.join("key");
+        std::fs::create_dir(&config.codex_home).unwrap();
+        config.cwd = config.codex_home.clone();
+        let other = Arc::new(
+            Host::new_with_app_custody(f.home.host.app_runtime_custody().unwrap()).unwrap(),
+        );
+        struct Guard(Arc<Host>);
+        impl Drop for Guard {
+            fn drop(&mut self) {
+                let _ = self.0.stop("owned fixture", "bounded cleanup");
+            }
+        }
+        let _guard = Guard(other.clone());
+        other.start(&config, "owned separate key fixture").unwrap();
+        let key = Arc::new(
+            HomeSession::new(
+                crate::home_resources::HomeClass::ApiKey,
+                other.clone(),
+                Ok(config.clone()),
+            )
+            .unwrap(),
+        );
+        let mut router = HomeRouter::new(f.home.clone()).unwrap();
+        router.bind_key(key).unwrap();
+        assert!(other.account_oauth_observation(&captured).is_err());
+        assert!(other.account_oauth_cancel(&captured).is_err());
+        let result = cancel_native_oauth(&f.home, &f.generation, None, |safe| {
+            router
+                .activate(crate::home_resources::HomeClass::ApiKey)
+                .unwrap();
+            assert!(Arc::ptr_eq(router.active().source(), &other));
+            assert!(Arc::ptr_eq(
+                router.for_generation(&f.generation).unwrap().source(),
+                &f.home.host
+            ));
+            assert_eq!(safe["generation"], f.generation);
+            assert_ne!(
+                safe["generation"]["home"],
+                other.snapshot()["generation"]["home"]
+            );
+            true
+        })
+        .unwrap();
+        assert_eq!(result["source"]["cancelStatus"], "canceled");
+        let key_wire = std::fs::read_to_string(config.cwd.join("wire.jsonl")).unwrap();
+        assert!(!key_wire.contains("account/login/cancel"));
+        assert_eq!(f.count("account/login/cancel"), 1);
+        f.safe();
+    }
+    #[test]
+    fn oauth_root_policy_exclusion_native_dismissal_and_cancel_error_stay_unknown_without_retry() {
+        let f = Fixture::new();
+        assert!(start_native_oauth(
+            &f.home,
+            &f.generation,
+            NativeLoginMode::Browser,
+            None,
+            || false
+        )
+        .unwrap()
+        .observed["state"]
+            .as_str()
+            .unwrap()
+            .contains("dismissed"));
+        assert_eq!(f.count("configRequirements/read"), 0);
+        assert_eq!(f.count("account/login/start"), 0);
+        f.behavior(json!({"allowed":[]}));
+        assert!(start_native_oauth(
+            &f.home,
+            &f.generation,
+            NativeLoginMode::Browser,
+            None,
+            || true
+        )
+        .is_err());
+        assert_eq!(f.count("account/login/start"), 0);
+        f.behavior(json!({"cancel":"error"}));
+        f.start(NativeLoginMode::Browser);
+        let canceled = cancel_native_oauth(&f.home, &f.generation, None, |_| true);
+        assert!(
+            canceled.is_err()
+                || canceled.as_ref().unwrap()["state"]
+                    .as_str()
+                    .unwrap()
+                    .contains("unknown/error")
+        );
+        assert!(cancel_native_oauth(&f.home, &f.generation, None, |_| true).is_err());
+        assert_eq!(f.count("account/login/cancel"), 1);
+        f.safe();
+    }
+    fn restart_pending(f: &Fixture) -> Value {
+        f.start(NativeLoginMode::Browser);
+        f.emit(json!({"method":"account/login/completed","params":{"loginId":PRIVATE,"success":true,"error":null}}));
+        f.wait_phase("CompletedSuccess");
+        f.home
+            .host
+            .stop_scoped(&f.generation, "fixture", "genuine same-home restart")
+            .unwrap();
+        f.home
+            .host
+            .start(
+                f.home.host_config.as_ref().unwrap(),
+                "owned fixture successor",
+            )
+            .unwrap();
+        let successor = f.home.host.snapshot()["generation"].clone();
+        assert_eq!(successor["appSession"], f.generation["appSession"]);
+        assert_eq!(successor["home"], f.generation["home"]);
+        assert_ne!(successor["spawnCounter"], f.generation["spawnCounter"]);
+        start_native_oauth(
+            &f.home,
+            &successor,
+            NativeLoginMode::DeviceCode,
+            None,
+            || true,
+        )
+        .unwrap();
+        f.wait_phase("Pending");
+        successor
+    }
+    #[test]
+    fn oauth_root_or1_stale_same_home_present_does_not_consume_successor() {
+        let f = Fixture::new();
+        let successor = restart_pending(&f);
+        let router = HomeRouter::new(f.home.clone()).unwrap();
+        let selected = router.for_generation(&f.generation).unwrap();
+        let presented = std::cell::Cell::new(0);
+        let result = present_requested_native_oauth(&selected, &f.generation, None, |_, _, _| {
+            presented.set(presented.get() + 1);
+            NativeLoginPresentation::Presented
+        });
+        assert_eq!(
+            presented.get(),
+            0,
+            "stale same-home request presented replacement sign-in"
+        );
+        assert!(result.is_err());
+        assert_eq!(
+            native_oauth_observation(&f.home)["source"]["generation"],
+            successor
+        );
+        assert_eq!(
+            native_oauth_observation(&f.home)["source"]["presentationAvailable"],
+            true
+        );
+        present_requested_native_oauth(&selected, &successor, None, |view, lease, current| {
+            assert!(current());
+            assert!(lease.is_active());
+            assert!(matches!(view, NativeLoginView::Device { .. }));
+            NativeLoginPresentation::Dismissed
+        })
+        .unwrap();
+        assert_eq!(
+            native_oauth_observation(&f.home)["source"]["cancelAvailable"],
+            true
+        );
+        f.safe();
+    }
+    #[test]
+    fn oauth_root_or1_stale_same_home_cancel_does_not_confirm_or_dispatch_successor() {
+        let f = Fixture::new();
+        let successor = restart_pending(&f);
+        let router = HomeRouter::new(f.home.clone()).unwrap();
+        let selected = router.for_generation(&f.generation).unwrap();
+        let confirmed = std::cell::Cell::new(0);
+        let result = cancel_native_oauth(&selected, &f.generation, None, |_| {
+            confirmed.set(confirmed.get() + 1);
+            true
+        });
+        assert_eq!(
+            confirmed.get(),
+            0,
+            "stale same-home request confirmed replacement sign-in cancel"
+        );
+        assert!(result.is_err());
+        assert_eq!(f.count("account/login/cancel"), 0);
+        assert_eq!(
+            native_oauth_observation(&f.home)["source"]["generation"],
+            successor
+        );
+        assert_eq!(
+            native_oauth_observation(&f.home)["source"]["cancelAvailable"],
+            true
+        );
+        let inverse = cancel_native_oauth(&selected, &successor, None, |safe| {
+            assert_eq!(safe["generation"], successor);
+            true
+        })
+        .unwrap();
+        assert_eq!(inverse["source"]["cancelStatus"], "canceled");
+        assert_eq!(f.count("account/login/cancel"), 1);
+        f.safe();
+    }
+    #[test]
+    fn oauth_root_or1_old_start_auto_continuation_does_not_present_same_g_replacement() {
+        let f = Fixture::new();
+        let first = start_native_oauth(
+            &f.home,
+            &f.generation,
+            NativeLoginMode::Browser,
+            None,
+            || true,
+        )
+        .unwrap();
+        f.emit(json!({"method":"account/login/completed","params":{"loginId":PRIVATE,"success":true,"error":null}}));
+        f.wait_phase("CompletedSuccess");
+        let second = start_native_oauth(
+            &f.home,
+            &f.generation,
+            NativeLoginMode::DeviceCode,
+            None,
+            || true,
+        )
+        .unwrap();
+        assert_ne!(
+            first.observed["source"]["requestIdentity"],
+            second.observed["source"]["requestIdentity"]
+        );
+        let presented = std::cell::Cell::new(0);
+        let _result = automatic_native_oauth_presentation_with(&f.home, first, None, |_, _, _| {
+            presented.set(presented.get() + 1);
+            NativeLoginPresentation::Presented
+        });
+        assert_eq!(
+            presented.get(),
+            0,
+            "old start act presented replacement sign-in under same full generation"
+        );
+        assert_eq!(
+            native_oauth_observation(&f.home)["source"]["presentationAvailable"],
+            true
+        );
+        assert_eq!(f.count("account/login/cancel"), 0);
+        automatic_native_oauth_presentation_with(&f.home, second, None, |view, lease, current| {
+            assert!(current());
+            assert!(lease.is_active());
+            assert!(matches!(view, NativeLoginView::Device { .. }));
+            NativeLoginPresentation::Dismissed
+        })
+        .unwrap();
+        assert_eq!(
+            native_oauth_observation(&f.home)["source"]["cancelAvailable"],
+            true
+        );
+        f.safe();
+    }
+    fn physical_set(f: &Fixture) -> HomeBootstrapSet {
+        let data = f.root.join("app-data");
+        std::fs::create_dir(&data).unwrap();
+        freeze_root_home_descriptors(
+            &data,
+            f.home.host_config.as_ref().unwrap(),
+            None,
+            [None, None, None],
+        )
+        .unwrap()
+    }
+    fn redirect_account(f: &Fixture) {
+        let cfg = f.home.host_config.as_ref().unwrap();
+        std::fs::rename(&cfg.codex_home, f.root.join("saved-account")).unwrap();
+        std::os::unix::fs::symlink(&cfg.probe_home, &cfg.codex_home).unwrap();
+    }
+    fn restore_account(f: &Fixture) {
+        let path = &f.home.host_config.as_ref().unwrap().codex_home;
+        std::fs::remove_file(path).unwrap();
+        std::fs::rename(f.root.join("saved-account"), path).unwrap();
+    }
+    #[test]
+    fn oauth_root_physical_start_rechecks_after_native_confirmation() {
+        let f = Fixture::new();
+        let basis = physical_set(&f);
+        assert!(start_native_oauth(
+            &f.home,
+            &f.generation,
+            NativeLoginMode::Browser,
+            Some(&basis),
+            || {
+                redirect_account(&f);
+                true
+            }
+        )
+        .is_err());
+        assert_eq!(f.count("account/login/start"), 0);
+        assert_eq!(f.count("configRequirements/read"), 0);
+        restore_account(&f);
+        f.safe();
+    }
+    #[test]
+    fn oauth_root_physical_cancel_rechecks_without_ending_original_pending_control() {
+        let f = Fixture::new();
+        let basis = physical_set(&f);
+        f.start(NativeLoginMode::Browser);
+        assert!(
+            cancel_native_oauth(&f.home, &f.generation, Some(&basis), |_| {
+                redirect_account(&f);
+                true
+            })
+            .is_err()
+        );
+        assert_eq!(f.count("account/login/cancel"), 0);
+        assert_eq!(
+            native_oauth_observation(&f.home)["source"]["cancelAvailable"],
+            true
+        );
+        restore_account(&f);
+        let result = cancel_native_oauth(&f.home, &f.generation, Some(&basis), |_| true).unwrap();
+        assert_eq!(result["source"]["cancelStatus"], "canceled");
+        assert_eq!(f.count("account/login/cancel"), 1);
+        f.safe();
+    }
+    #[test]
+    fn oauth_root_physical_display_current_callback_refuses_changed_metadata() {
+        let f = Fixture::new();
+        let basis = physical_set(&f);
+        f.start(NativeLoginMode::DeviceCode);
+        let delivered = present_requested_native_oauth(
+            &f.home,
+            &f.generation,
+            Some(&basis),
+            |_, lease, current| {
+                assert!(current());
+                redirect_account(&f);
+                assert!(!current());
+                assert!(lease.is_active());
+                NativeLoginPresentation::Dismissed
+            },
+        );
+        assert!(delivered.is_err());
+        assert_eq!(
+            native_oauth_observation(&f.home)["source"]["cancelAvailable"],
+            true
+        );
+        restore_account(&f);
+        f.safe();
+    }
 }
