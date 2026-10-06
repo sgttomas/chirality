@@ -545,24 +545,25 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - the briefs, `RESUME_2026-09-30/BRIEFS/`;
 - the merged milestone, `IMPLEMENTATION/F2A_D1/` and `IMPLEMENTATION/F2A_D1_MERGE/`.
 
-**Position (2026-10-05 UTC):**
+**Position (2026-10-06 UTC):**
 - The F2a D1 milestone is on main (#1082), in the registered dev/test build only. No product caller exists.
-- T3's records through the handoff are on main (#1084, #1088).
-- Nothing is dispatched or running.
-- The integration branch is `codex/piping-numerical-integrity-20260926` (NUM). Its maintained source equals main's, and it carries T3 records not yet on main.
+- T3's records through the handoff are on main (#1084, #1088, #1092).
+- The integration branch is `codex/piping-numerical-integrity-20260926` (NUM). It absorbed main `c1bfc460fc` as `b1e2d7741e`. Its maintained source equals main's; it carries this session's records, which are not yet on main.
+- **Running:** I68 Part 1 (U8's probe), I73 (S-I1) and I74 (the T6 slice plan), dispatched 2026-10-06 (rulings: "Session resumed; main absorbed; U8 and S-I1 cut; …"). All T3 cargo jobs share one host lock, `WT/tools/t3_cargo.sh`.
 
 | Node | Result | Needs | Assignment | State |
 |---|---|---|---|---|
-| T3-U8 | The deferred producer-solved witnesses: RV93 N-5's real-input fallbacks; W-C1, a real-input Native fallback; and the L = 0 base, published if the producer admits it, otherwise deferred to B1 with its cause. Test-only | NUM has absorbed main; a U8 branch from NUM | `BRIEFS/U8_COMMON.md`. I68 Part 1 (the probe), ruled before Part 2; I69–I71 only if L = 0 publishes; I72 Pass B; RV97 reviews; RV98 confirms Pass B. Then the full 40-manifest suite, the freeze, and U8's compact PR from main | READY, not dispatched |
-| T3-SI1 | S-I1 (PLAN §3) | main | I73, reviewed by RV99; its own branch from main and its own PR | READY, runs alongside U8. One cargo job at a time across both |
-| T3-T6S | The T6 successor-output slice plan, which closes activation-checklist item 4 | — | I74; then its implementation, with its own reviewer and PR | READY, runs alongside. The owner pulled it forward |
-| T3-B0 | F2a breadth: contract and identities, reserving `openpipestress.result_semantics/0.3.0/physics-retained-1` | T3-U8 | PLAN §2 | PLANNED |
-| T3-B1/B6 | Multi-case breadth with W-C2 and D38's pin (cap-growth study early in B1); the reader items. Then PR-B1 | T3-B0 | PLAN §2 | PLANNED |
+| T3-U8 | The deferred producer-solved witnesses: RV93 N-5's real-input fallbacks; W-C1, a real-input Native fallback; and the L = 0 base, published if the producer admits it, otherwise deferred to B1 with its cause. Test-only | NUM has absorbed main; a U8 branch from NUM | `BRIEFS/U8_COMMON.md`. I68 Part 1 (the probe), ruled before Part 2; I69–I71 only if L = 0 publishes; I72 Pass B; RV97 reviews; RV98 confirms Pass B. Then the full 40-manifest suite, the freeze, and U8's compact PR from main. Branch `codex/piping-f2a-u8-20261005` at `b1e2d7741e`, worktree `WT/f2a-u8` | ACTIVE: U8 complete at `bd6b4be2c3` (U8-1 to U8-3). RV97 PASS (both rounds); Pass B (I72) confirmed by RV98. The full 40-manifest suite PASS (38/40 identical to F′; only added tests). PR package ready (`IMPLEMENTATION/U8/`, I77). The PR follows S-I1's merge (merge order S-I1, U8, T6S) |
+| T3-SI1 | S-I1 (PLAN §3) | main | I73, reviewed by RV99; its own branch from main and its own PR. Branch `codex/piping-s-i1-20261005` at `c1bfc460fc`, worktree `WT/s-i1` | **MERGED** to main as [#1100](https://github.com/sgttomas/chirality/pull/1100) (`75a8c3291f`, 2026-10-06). Record: `IMPLEMENTATION/S_I1_MERGE/` |
+| T3-SI1b | The point-path panic repair in `expression_evaluator` (an overflowing same-dimension quotient, a NaN interpolation or step argument): a blocking finding instead of a panic. Found by I73 | T3-SI1 merged (done) | A later I-ID, its own review and PR | READY |
+| T3-T6S | The T6 successor-output slice plan, which closes activation-checklist item 4 | — | I74; then its implementation, with its own reviewer and PR | ACTIVE: I74's plan ruled (14 decisions). T6S complete on its branch: `055ee0c0bc` (I76) and `2033260c57` (I75). RV101 reviewing `c1bfc460fc..2033260c57`; then gate items 1–6 in `WT/t6-outputs`, branch `codex/piping-t6-successor-outputs-20261005` at `c1bfc460fc`; RV101 reviews. The owner pulled it forward |
+| T3-B0 | F2a breadth: contract and identities, reserving `openpipestress.result_semantics/0.3.0/physics-retained-1`; F-1's parity-row rule; the carried notes | T3-U8 | `BRIEFS/B0_CONTRACT_AND_IDENTITIES.md` (prepared; dispatched when U8 merges) | READY at U8's merge |
+| T3-B1/B6 | Multi-case breadth with W-C2 (the two-body model) and D38's pin (cap-growth study early in B1); the reader items; F-1's parity-row repair in all three readers. Then PR-B1 | T3-B0 | PLAN §2 | PLANNED |
 | T3-B2/B3/B4 | Combinations, preparation-only and mixed invocations; the exact routes; cap growth (B4) only if ruled. Then PR-B2 | PR-B1 | PLAN §2 | PLANNED |
 | T3-B7 | The release identity, registered once. The milestone's bytes and verdicts are re-established on it (RV95 N-6) | PR-B2 | PLAN §2.2 | PLANNED |
-| T3-B8 | Public activation with native Current, after the checklist (`F2A_D1/CHANGE_RECORD.md` §4) and its review | T3-B7; T3-T6S's slice; caller qualification for the desktop workspace (rulings, near line 10407); I53's open native-window premise; the owner's Mac | PLAN §2.2 | PLANNED |
+| T3-B8 | Public activation with native Current, after the checklist (`F2A_D1/CHANGE_RECORD.md` §4) and its review. Its native witness includes the two export panels exporting an eligible successor while every other surface refuses (G10's moved half) | T3-B7; T3-T6S's slice; caller qualification for the desktop workspace (rulings, near line 10407); I53's open native-window premise; the owner's Mac | PLAN §2.2 | PLANNED |
 | T3-SI2, T3-F2b, T3-F3 | S-I2; F2b per family; F3 | T3-B8 | — | PLANNED |
-| T3-G10 | The native witness: the milestone on the ordinary route, and the export panels refusing a successor | The owner's Mac | The owner | OUTSTANDING, by owner decision (2026-10-04) |
+| T3-G10 | The native witness: the milestone on the ordinary route. The successor-panel half moved to B8's native Current witness (owner, 2026-10-06) | The owner's Mac | The owner | OUTSTANDING, by owner decision (2026-10-04) |
 
 **Owner-held choices.** ROOT prepares these and never decides them:
 - dense and lane ceilings;
@@ -572,9 +573,11 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - the KF2 dense screen;
 - any supported-machine statement of M, or M above the provisional 3.75 GiB;
 - any change to public meaning;
-- the native-app witnesses.
+- the native-app witnesses;
+- **prepared for B8:** whether a successor's stress-neutral package may read ready while its D-U6-2 class rows carry withheld unit witnesses (today's convention blocks it; I75's R-2).
 
 **Owner decisions in force** (dated in the rulings):
+- **2026-10-06: G10 redefined** ("Go with your recommendation on G10"): G10 keeps its ordinary-route half; the successor-panel witness (the two panels export an eligible successor, every other surface refuses) moves into B8's native Current witness.
 - **2026-10-05: the F2a order:** U8 → breadth → B7 → B8 → S-I2, F2b, F3, with S-I1 alongside.
 - **2026-10-05:** the T6 slice is pulled forward.
 - **2026-10-05:** proportionate CI.
@@ -583,7 +586,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **2026-10-04:** G10 stays outstanding on the owner's Mac.
 - **Earlier:** T1 option (a); D-3 = S1; D-6 = (a); M selected under D-7.
 
-**Assignment IDs.** I68–I74 and RV97–RV99 are prepared for fresh instances. The next unused are **I75 and RV101**.
+**Assignment IDs.** I68–I74 and RV97–RV99 are prepared for fresh instances. I68, I73, I74, I75, I76 and RV101 are dispatched (2026-10-06). I77 (U8's PR package) is dispatched too. The next unused are **I78 and RV102**.
 
 **T3 rulings in force** (section headings in `ROOT_RULINGS_V1.md`):
 - **T3's gate set and Git rules for product and records PRs, and verifying returns:** "T3's gate set and Git rules, consolidated after the handoff was made ephemeral";
@@ -595,6 +598,10 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **host cleanup:** "Stray scratch gathered; the cleanup procedure gains step 0", with `IMPLEMENTATION/HANDOFF_2026-10-05/CLEANUP.md`.
 
 **Notes routed to later units:**
+- **F-U6b-2** (the Python transport validator) → B6 (I74 decision 8);
+- **RV95 N-5's direct unit test** in `RE/src/source_blocks.rs` → PR-B1 (I74 decision 9; the slice carries the public-API masking test);
+- **The T6S consistency notes** (I74 PLAN §4.3) → the B1, B2, B3 and S-I2 briefs; the Rule-check panel's policy entry → checklist item 1's brief;
+- **F-1** (I68's probe): the Rust precommit reader requires a dense parity row that OQ5 omits at b ≠ 0. It goes to B0 (contract text) and B1 (three readers, a shared corpus case, re-qualified with D38). Fail-safe today;
 - RV94 N-5 (Python ignores `expected_by_reader`);
 - RV95 N-2 (citation forms);
 - Pass B's attribution of deletion-only hunks;
@@ -603,7 +610,8 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - RV95 N-6 (at B7).
 
 **Next safe action:**
-1. Verify the host and the heads.
-2. Absorb main into NUM if it moved.
-3. Cut the U8 branch from NUM.
-4. Dispatch I68 Part 1.
+1. Verify each return (RV99's confirmation; RV101) against its records.
+2. U8: on the full suite and I77's package, merge U8 into NUM and cut its PR after S-I1's merges.
+3. On RV101's verdict: repairs and confirmation, then T6S's PR and its gates.
+4. S-I1 merged (#1100). Records-only PR next; then U8's PR on the same gate path; T3-SI1b ready.
+5. Absorb main (#1098) into NUM at the next records commit.
