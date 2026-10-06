@@ -12481,3 +12481,17 @@ Body 0's bit identity with the milestone is asserted as observed, and the unchan
 - **RV97** (U8-5): starts now on U8-1 (`b1e2d7741e..d449097085`) and the probe, per PLAN §1.4's order, by `BRIEFS/RV97_U8_REVIEW.md` (`80c8f6ac…`). ROOT continues it onto 07l and the reader alignment when they are committed.
 
 The next unused IDs stay **I77 and RV102**. I69, I70, I71, I72, RV97 and RV98 were prepared IDs.
+
+## I76's checkpoint: the Rust goldens; three choices accepted (ROOT, 2026-10-06 UTC)
+
+**I76's checkpoint** is `R/I76/t6s_01/CHECKPOINT_1.md` (sha256 `a260fc5c…`). ROOT checked:
+- `SHA256SUMS`: 7 of 7 OK, every file covered, no machine paths;
+- in `WT/t6-outputs`, I76's three new files: `RE/tests/retained_precision_derivative_golden.rs` (`2706d06b…`) and the goldens `retained_precision_successor_derivative_sparse_interactive.json` (`958df02e…`) and `…_dense_scrutiny.json` (`3f9905ad…`);
+- in both goldens, no `request` or `solver_mode` member at any depth. The receipt and `contract_evidence` are present, and there are 69 `retained_precision_absolute_verified` disclosures plus the non-quantity row's.
+
+**I76's choices, accepted:**
+1. **A test-labelled `origin_limit` replaces the builder's text.** A test-built golden must not claim a qualified Current carrier (D-U7-6; I74 decision 11).
+2. **`run_hashes` is `[]`,** because no AnalysisRun record exists to hash.
+3. **The diagnostics are mapped per source.** "One fixed base" is one rule, with the exact canonical base and origin files in `R/I76/t6s_01/inputs/`.
+
+**I76 continues** with T6S-1, N-5, the mutants and the suites. ROOT relays the hashes, the inputs and the parity facts to I75 at I75's checkpoint.
