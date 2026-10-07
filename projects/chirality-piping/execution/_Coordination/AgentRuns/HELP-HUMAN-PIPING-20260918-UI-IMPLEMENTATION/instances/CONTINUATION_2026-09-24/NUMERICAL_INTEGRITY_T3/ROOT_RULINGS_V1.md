@@ -15000,3 +15000,27 @@ The suites: EE lib 64 → 65; the runner's `point_path_non_finite_run` 8 → 11;
 - **Waiting:** I85's I3 step, for RV113's confirmation of SR-RS's repair.
 
 **IDs:** the next unused are I98 and RV118.
+
+## #1112's package corrected twice; RV111 confirms the final head (ROOT, 2026-10-07 UTC)
+
+**PR #1112 (SI1c), cut at `b8bc059e35`.** ROOT's gates passed at the cut: `source_equality.py` 5/5, `check_citations.py`, `validate_run_record_leaks.py` and GEN-8. The full-SHA dispatch was 37696852261. The exact-head DEC-025 (`SI1c_b8bc059e35`) started under the lock.
+
+**RV111 confirmed the scope, the package and equality** in `ADDENDUM_02` (`5f08916a…`), with SF-1: three sentences overstated byte identity by leaving out N-4. Its N-1 and N-2 were wording notes. ROOT corrected the package, giving head `2881cb1969` (package-only).
+
+**RV111 confirmed that re-cut** in `ADDENDUM_03` (`23264979…`), with R-1: in a bounded run, a check that binds no bound follows the point path, so D applies to it. I88 counted 1,513 such lines (RETURN §4.2, condition 4). ROOT corrected the package again, giving head **`13d02273f4`** (package-only).
+
+**RV111 confirmed the final head** in `ADDENDUM_04` (`58e6af64…`, 7 of 7 OK).
+- The delta is only the three package files.
+- CHANGE_RECORD's sentence is exact.
+- **R-2 (NOTE):** PR_BODY's "a check that binds a solver bound reads in interval mode" holds for a nonzero bound only. A bound of exactly zero binds the exact point, so that check reads on the point path. **Ruled:** no re-cut for one word. CHANGE_RECORD §3, the authoritative record, says "with b > 0" and is exact. SI1C_MERGE's record states the correction.
+
+**The gates at `13d02273f4`:**
+- `se_3`, `citations_3`, `leaks_3` and `gen8_3` all PASS;
+- the full-SHA dispatch was re-run as 37697773464.
+
+**DEC-025 `SI1c_b8bc059e35` carries over to `13d02273f4`.** Both deltas change only `IMPLEMENTATION/SI1C/`, which no DEC-025 suite reads (RR "RV99 confirms #1100's amended head and the DEC-025 carry-over").
+
+**What remains before the merge:**
+- DEC-025's ALL-DONE;
+- the automatic CI and the dispatch green on `13d02273f4`;
+- then ready, and `gh pr merge 1112 --merge --match-head-commit 13d02273f4…`.
