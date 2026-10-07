@@ -14056,3 +14056,45 @@ New briefs carry the rule.
 - **15:** the implementer works from main in `WT/s-i1c`. SI1c's merge into NUM and its PR follow B6's.
 
 **Next:** the owner's answer to decisions 2 and 3; then SI1c's implementer, or SI1c-1 alone if the answer is still open when B6 merges.
+
+## Owner decision: SI1c is option D, a repair within grammar 1.0.0; RV108 passes B6; RV109 passes ST with SF-1 (ROOT, 2026-10-07 UTC)
+
+**Owner decision (2026-10-07), answering I87 PLAN §4.4:**
+- **The remedy is option D:** "D: block at overflow". The ordinary point path blocks at the arithmetic or interpolation step whose result is not finite, with `NonFiniteInput`, and the check reads `RULE_INPUTS_INCOMPLETE`.
+- **DEC-022's reading:** "Repair within 1.0.0". No grammar version bump and no conformance-corpus extension.
+
+ROOT's decisions 4–15 (previous section) stand. **I88 implements SI1c** (D, with N4-1 and N-5) from main in `WT/s-i1c`, by `BRIEFS/SI1C_IMPLEMENT.md`.
+
+**RV108 passes B6:** `R/REVIEW_RV108/b6_01/REVIEW.md` sha256 `d5ea4a1b…`; SHA256SUMS 78 of 78 OK; PASS, 0 BLOCKING, 0 SHOULD-FIX, 7 NOTE. Its copies and targets are deleted, and no process of RV108's remains. **Rulings on the notes** (none blocks the PR; all predate B6 except the wording in N6):
+- **N1 and N2 are Python defects, not per-language codes.**
+  - In N1, a list or dict enum value raises `TypeError`, and Python's G7 fallback catches it.
+  - In N2, a missing `solve_quality` reaches a `KeyError` caught at G5.
+  - N1's `TypeError` also escapes callers that catch only `ValueError`.
+  - **They go to B1's SR-PY as repairs:** type and key guards so that Python gives the base header code. SC adds their corpus entries.
+- **N4 is a TS defect:** a `null` raw row on transport raises `TypeError` in `projection`. It goes to B1's SR-TS as a repair, and SC adds its entry.
+- **N3** (the 06b-kind split is wider than I83 §7 item 6) → SC declares it with I83's item 6.
+- **N5** (seven TS sub-condition mutants survive) → SC adds 07n entries pinning each header branch's sub-conditions, including a per-reader `carrier_evidence` entry.
+- **N6** (two claims worded too broadly) → SR-TS tightens TS's doc comment, and SC the transport scope sentence.
+- **N7** → noted. RV78-N1's identification is correct, and ruling (b) stands.
+- **RV107 A1-N-10 closes:** B6's hunks are disjoint from T6S's panel block.
+
+**B6's PR proceeds** at slice head `a7de2a918f`:
+- B6 merges into NUM with `--no-ff`;
+- the compact PR is cut from main;
+- the product gate set runs (no Pass B);
+- RV108 confirms the PR head's scope, package and equality by an addendum.
+
+**RV109 (RV-P) passes ST in round 1:** `R/REVIEW_RV109/rvp_round1_01/REVIEW.md` sha256 `707045b9…`; SHA256SUMS 96 of 96 OK; PASS, 0 BLOCKING, 1 SHOULD-FIX, 5 NOTE. RV109 accepts R3 ruling 1, and no stop fired. **Rulings:**
+- **SF-1 is repaired in ST before I1** (I85, by `BRIEFS/B1_ST_REPAIR_01.md`; RV109 confirms). No test pinned T-4 ahead of R-2's reservation, and mutant R10 survived. The two-body B pin's private-driver half asserts capacity equal to length after `NoTriggeredCase`, and a collision variant (the base already carrying the notice id) asserts `NoTriggeredCase` with the exact bytes.
+- **N-1 and N-4 ride in the same round, because they are cheap:**
+  - N-1: a classifier row, "Passed with no seed is `NotRequired`";
+  - N-4: default-suite `NoTriggeredCase` pins for W2b's input and W6's PHYS-R4 input, which do no W1 work.
+- **N-2** (R17, `.all` for `.any`) → SP's mutant list. W-C2 tells the two apart.
+- **N-3** (the seam's overflow path) → SA.
+- **N-5** → SQ pins `b2_k1e3`; it is tracked until then.
+
+**Running next:**
+- implementers: I85 (ST repair) and I88 (SI1c);
+- ROOT: B6's PR.
+
+**IDs:** I88 is used. The next unused are **I89 and RV110**.
