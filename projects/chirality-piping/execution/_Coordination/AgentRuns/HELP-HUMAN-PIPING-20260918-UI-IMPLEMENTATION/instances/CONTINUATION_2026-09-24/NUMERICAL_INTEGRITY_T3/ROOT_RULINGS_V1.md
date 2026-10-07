@@ -13921,3 +13921,112 @@ Record: `IMPLEMENTATION/SI1B_MERGE/`. RV104 A2-N1 (the I61 PLAN reference) is cl
 - B6's PR when I83 returns;
 - T3-SI1c is ready for a plan, not dispatched yet;
 - a records-only PR after B6's merge.
+
+## I86's SW probe accepted; I83's B6 return verified and ruled; RV108 and I87 dispatched (ROOT, 2026-10-07 UTC)
+
+**I86 (B1-SW) is verified.** `R/I86/b1_w_probe_01/PROBE.md` sha256 `7470a726…`; SHA256SUMS 83 of 83 OK; placeholder paths only. ROOT's own checks:
+- **The inputs.** The seven input files' sha256s equal the return's. ROOT read them directly:
+  - `b2_k1e3` has exactly the two support edits stated: S0 an anchor restraining UX, UY, UZ, RY, RZ; S31 an RX spring of 1000 N·m/rad at N0;
+  - `c1` and the A, B and C files have 32 nodes, 32 members, 32 supports, 128 loads per case, 4 materials with 16 temperature points each, and 128-byte strings;
+  - every case's per-target load nets sum exactly in binary64;
+  - A, B and C carry a quote and a backslash in all 128 load provenances, at raw depth 16, and C's nets are 2^(k−3)·M per copy.
+- **The logs.**
+  - `b2_k1e3` is Sensitive by the solve report itself in both modes (rcond 2.20e-9), reaches native Selected and then `Err(Candidate)`, and its twin reads `Fallback(Candidate)`.
+  - `c1`, A, B and C each publish a successor that the Rust reader PASSes; their twins reach the successor.
+  - The assembled three-case request's only over-cap row is `LoadCasesCapacity=3/1`.
+  - The controls hold: two runs identical (270/270, 77/77), and 0 differences from I81's records over 6 pairs × 11 fields.
+- **The host.** The archive and target are deleted. No maintained file or Git change.
+
+**R4 did not fire. Rulings:**
+1. **`b2_k1e3` (file `89b05619…`) is W2b's replacement.** It is the S1 cap-count native witness SQ pins (PLAN_v2 §3.4), asserting `Fallback("Candidate")`. Construction (a)'s variants qualify by the letter but are not chosen: their Sensitive verdict comes from member recovery after a `checks_passed` solve (R-b′), and such an input can never publish.
+2. **`c1` (`719acbb0…`) is SQ's c = 1 publishing cap-maximal input.** A, B and C (`39c44bc3…`, `544330c8…`, `b6e8138f…`; assembled `d05b5996…`) are the three-case components, with |A| = 3.
+3. **PLAN_v2 §3.6's stop line ("W3–W5 unmeasured at the caps") does not apply.** Instead, SQ's `RSS_TIME.md` states what the published inputs leave below their caps (restraints 66/192, springs at most 31/192, raw values 6,249/16,384 at C = 3). It also states that W3–W5 run at the count caps through the milestone's own K-D5 row.
+4. **Item 4's readings are informational.** SQ measures.
+5. **I86's host note is accepted.** Its first item-4 script was starved by per-run locking; it stopped only its own waiting script.
+
+**I83 (B6) is verified.** `R/I83/b6_01/RETURN.md` sha256 `4e856c31…`; SHA256SUMS 34 of 34 OK. ROOT's own checks:
+- **The branch.** `codex/piping-t3-b6-20261007` at `a7de2a918f` is clean: three commits over main `bfb26596bf`, 11 files, +535/−71.
+  - No file is in PP, a D1 crate's `src` or the schemas.
+  - No file is among main's later changes (#1105, #1106), so the slice applies to main `025c1cf326` unchanged.
+- **The corpus, by ROOT's own comparison.**
+  - 07m's sha256 is `c21112fd…`: 286 → 294 mutations, 17 cases.
+  - Entries 0–285 are unchanged except 277's `expected_by_reader.typescript`; 286–293 are appended.
+- **The carrier case file** (`98a7213a…`) changes only `scope` and `declared_differences`: F-U6b-2 is removed and five remain.
+
+**Rulings on I83's three points:**
+1. **RV78-N1: option (b).**
+   - **The open item** is `carried_artefacts_01`'s N1 (RR:9461). The preview table does not bind the projection and work policies, the 20B/60B limits, the method token or the canonicalization profile. The readers enforce all of them as G0 constants. D-U6-7 deferred it to wider F2a.
+   - **It goes to B3.** The reserved `physics-retained-1` table binds them from its first version. That table has a new hash anyway, so this adds no cascade. The preview table is not revised for it. It stays D36-tracked and non-gating.
+   - **Not (a):** binding the preview table changes the schemas, RE's `TABLE_HASH` and PP's `reviewed_inputs`. Each is an R8 stop in PLAN_v2, on B1's critical path, for no change in behaviour.
+   - **Not (c):** binding them at B3 costs almost nothing.
+   - **A label correction.** I61 PLAN §2.1's B6 row and DESIGN_v2 §7's B6 row read "RV78-N1's rehash-index rule (RR:9461)". That joins two findings. The rehash-index rule is `reader_confirm_04`'s N1, fixed in 07e and confirmed by `reader_confirm_05`. Read those rows this way; the sealed records stay unchanged.
+2. **Item 2's widening is confirmed.**
+   - The four sibling classes were undeclared differences, which the case file calls defects.
+   - They share the N-3 class's root cause (TS's single G7 header code) and its site, and they align in decision 11's direction.
+   - Python is unchanged on all 32 probes, and each branch has its own entry and a killing mutant.
+   - Narrowing would add four declarations in order to keep a known defect.
+   - Public meaning does not change: reader eligibility stays closed, and every affected input is refused both before and after; only the code aligns.
+3. **The fixtures reading is confirmed.**
+   - The ban meant fixtures other than the corpus and the carrier case file, which items 1–3 require.
+   - The edit to `retainedPrecisionIntegration.test.tsx` is in the declared-difference pins, which items 2 and 3 required, not in T6S's panel block.
+   - RV107 A1-N-10 closes on this, subject to RV108.
+
+**Routed from I83's notes:**
+- **To B1's SC, as per-reader entries in 07n with scope sentences, and no reader code change:** two pre-existing undeclared differences.
+  - §7 item 6: a hash-consistent change of `formulation_basis.limitations` reads `SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID` in Python and TS, and `SOURCE_PREVIEW_PHYSICS_FORMULATION_BASIS` in Rust.
+  - Mutant T9's two-defect order: `contract_evidence` with `source_block_recovery`, in Python's order against Rust's.
+- **§7 item 8** (Rust's `slice_outcomes` checks no ids) → SC, which touches the file.
+- **§7 item 7** (the transport gate's label, G7 against G2) → noted only; no carrier compares the gate.
+
+**Dispatched:**
+- **RV108:** B6's independent complete-diff review, by `BRIEFS/RV108_B6_REVIEW.md`.
+- **I87:** T3-SI1c's plan (documents only), by `BRIEFS/SI1C_PLAN.md`.
+- **Implementers running:** I87 only. I85 returned at R3 while these were written (next section).
+
+**A host rule for waits,** after three dead wait loops were found (the owner's question, 2026-10-07):
+- one wait per job;
+- every wait loop also ends when the job's process has gone;
+- an agent stops its own waits before it returns.
+
+New briefs carry the rule.
+
+**IDs:** I86 and I83 have returned. I87 and RV108 are used.
+
+## R3: I85's ST verified at checkpoint R3; RV-P round 1 dispatched as RV109 (ROOT, 2026-10-07 UTC)
+
+**I85 (I-P, ST) is verified.** `R/I85/b1_st_01/RETURN.md` sha256 `f4c1cadc…`; SHA256SUMS 60 of 60 OK; placeholder paths only. ROOT's checks:
+- **The branch.** `codex/piping-t3-b1-20261007` at `a8e719f5b4`, two commits over main `47a3bdfcf5`, is clean:
+  - `4a51783e65`: ST;
+  - `a8e719f5b4`: test-only, moving one block in the classifier test.
+- **The fence.** 6 files, +402/−53, all in PP `src` and inside ST's fence (PLAN_v2 §2.1).
+- **ROOT read the product hunks.**
+  - `case_triggers` looks each verdict up by `basis_ref.ref_id` and each seed by case id. `checks_passed` is tested first, then decision 21's exclusion, and A takes the rest.
+  - `retained_w1` returns `NoTriggeredCase` with the exact bytes before the notice reservation when A is empty.
+  - `late_loads_total` is a checked add immediately before `check_late`, inside the permit branch.
+  - `requested_cases` is read before the request moves. Neither field is read.
+- **No process of I85's remains.**
+
+**R3 rulings** (I85's RETURN §9):
+1. **Uniqueness:** an entry or seed that is not unique is absent. That is fail-safe, since the case is attempted unless its verdict is `checks_passed`, and it is consistent with `ordinary_value`. Kept; RV109 may contest it.
+2. **The seam's overflow** (`CountRange`, then a Preparation fallback with a notice) is unreachable at D1's caps. SA, which first reads the total, decides whether it becomes a typed refusal; RV109 notes it.
+3. **The test-only `pub(super)`** items inside the `#[cfg(test)]` facade module are accepted. No `src` item's visibility changed.
+4. **SQ's brief carries the renames:** W2b's test is now `witness_w2b_cap_maximal_passed_report_no_triggered_case`, and W6 uses case C's input. They apply to QUAL §4, the G6 witness logs and Pass B's lists.
+5. **The additions beyond the plan's list** are pins inside ST's fence, and are accepted:
+   - decision 21 through `retained_w1`;
+   - the W6 PHYS-R4 witness;
+   - two-body B on the private driver;
+   - the no-W1-stage sentinel;
+   - `force_scaled`;
+   - the PROBE shas.
+6. **I85's scratch and targets stay** for RV109 and SP until I1. Cleanup follows I1.
+
+**Next:**
+- **RV109 is RV-P,** and fresh. Round 1 reviews ST, by `BRIEFS/RV109_RVP_ROUND1.md`. RV109 also confirms ST's repairs, reviews SP in round 2, and keeps the PR-head ledger (PLAN_v2 §5).
+- **I1** follows RV109's round 1, its repairs and its confirmation.
+- I85 owns SP after I1.
+
+**Running now:**
+- implementers: I87 (SI1c's plan);
+- reviewers: RV108 (B6) and RV109 (ST).
+
+**IDs:** I87, RV108 and RV109 are used. The next unused are **I88 and RV110**.
