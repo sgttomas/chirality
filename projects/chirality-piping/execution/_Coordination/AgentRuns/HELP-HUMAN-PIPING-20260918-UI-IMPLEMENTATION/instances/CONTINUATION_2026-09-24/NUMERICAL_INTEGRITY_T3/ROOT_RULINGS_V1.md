@@ -13688,3 +13688,26 @@ It confirms that ROOT took no owner-held decision, and quotes the owner's words 
 ROOT rules on the plan before dispatching implementers.
 
 **IDs:** I84 is used. The next unused are **I85 and RV107**.
+
+## Owner decision: memory up to 64 GiB is ROOT's; B1's target reopened (ROOT, 2026-10-07 UTC)
+
+**The owner, in chat:** "you will be working on this macbook pro with 128 GB of ram, so if you need to allocated 32 GiB it will be available. If you need more than 64 GiB we should negotiate."
+
+**ROOT's reading:**
+- **ROOT may select M up to 64 GiB (68,719,476,736 B) without asking,** with 32 GiB described as readily available. It may likewise size T3's own host jobs within that, with the memory guard in force.
+- **Above 64 GiB goes to the owner.**
+- This widens "Owner decision: ROOT may raise M up to 6.0 GiB without asking". The 6.0 GiB bound is superseded by 64 GiB.
+
+**What stays owner-held:**
+- **A supported-machine statement.** M is the registered build's per-invocation W1 admission threshold, not only a budget on this host. A large M means a W1 invocation at the caps may need that much heap on whatever machine runs it. D-7 makes no machine claim, so the supported-machine statement stays owner-held and becomes relevant at B7 and B8.
+- **The dense and lane ceilings,** including the provisional dense-scrutiny and observation-lane ceilings. The owner's words concern memory available to ROOT's work, and ROOT does not read them as deciding those design ceilings. ROOT has told the owner this reading.
+
+**B1's target is reopened.** P1 (two tiers at 5.25 GiB) was chosen under the 6.0 GiB bound. With 64 GiB, I82's own table shows D1's full model caps fit multi-case:
+- c ≤ 4 at about 13.52 GiB minimum;
+- c ≤ 8 at about 34.10 GiB minimum.
+
+That allows a single tier with no reduced model caps. **I82 extends its study** (an addendum) to price the single-tier options against P1:
+- c ≤ 4, 6 and 8 at D1's model caps;
+- their text-error budgets.
+
+Its report states the product-reach trade-off for each M. ROOT selects after it returns. **I84's plan** is told to keep the tier structure and M as parameters until then.
