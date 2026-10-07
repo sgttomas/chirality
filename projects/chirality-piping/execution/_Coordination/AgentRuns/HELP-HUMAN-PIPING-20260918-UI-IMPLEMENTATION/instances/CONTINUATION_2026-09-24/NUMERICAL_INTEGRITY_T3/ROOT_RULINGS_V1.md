@@ -14598,3 +14598,45 @@ RV-P round 2 covers all of these at SP's end.
 **ROOT does not rule yet.** The plan is large and moves FK into scope, so **RV114 reviews it first, as RV107 reviewed B1's**, by `BRIEFS/RV114_B2B3_PLAN_REVIEW.md`. Phase 0 (designs and probes) waits for ROOT's ruling.
 
 **IDs:** RV114 is used. The next unused are **I94 and RV115**.
+
+## B2/B3 R1: I93's plan accepted with RV114's amendments; I93 writes REVISION_01; the owner informed (ROOT, 2026-10-07 UTC)
+
+**RV114's review:** `R/REVIEW_RV114/b2b3_plan_01/REVIEW.md` sha256 `bc6918ce…`; SHA256SUMS 5 of 5 OK; the strict screen is clean. Verdict: ACCEPT WITH AMENDMENTS, 0 BLOCKING, 4 SHOULD-FIX, 12 NOTE. RV114 confirmed both load-bearing claims independently:
+- **the kernel finding,** in FK's code: `solve_combination` takes only selected operands, `product_case_owner` requires `NativeOwner::Case`, and the source bridge view refuses combinations;
+- **the memory answer:** I93's pricing reruns byte-identical, and RV114's own pricing reproduces LOW and HIGH. Three cases plus one combination at D1's caps need 12.25, 13.25 and 14.0 GiB. c + z ≤ 3 prices within 6 MB of S3.
+
+RV114 agrees with all 27 decisions, several subject to its findings.
+
+**Ruled (B2/B3's R1): the plan is accepted, with these amendments.** **I93 writes `REVISION_01.md`**, short, because S-4 changes the phases:
+1. **S-1:** B2-C's contract covers the combination's own formation definition and product attempt: the reviewed definition's owners, C3's "no prepared-combination proof route", and the receipt schema's `ProductAttempt` admitting combination owners. This is folded into decisions 9 and 13.
+2. **S-2:** B2-K's change list gains three kernel facts:
+   - unresolved or refused outcomes keep no `CasePrep`;
+   - a `not_required` operand's source cannot be registered (`OriginCapacity`);
+   - the combination runs on `operands[0]`'s group, where SC1 needs a selected operand's.
+
+   This is folded into decisions 6 and 16 and B2-KD's brief.
+3. **S-3:** each static file gets one owner. In particular, the two carrier schemas and the receipt schema's installer.
+4. **S-4: the Stale window.** Any change to the schema, the preview table or a definition makes every PP build on `b2` Stale until SQ2's registration. **Ruled: an interim `reviewed_inputs` re-pin on `b2` only, at the point the static files land (J1).** ROOT applies it as a recorded interim registration, superseded by SQ2's, so that Direct-entry tests and the c = 1 and B1 pins keep running registered. REVISION_01 places J1 and lists what the re-pin re-pins. Landing the statics late is rejected, because it leaves the producer and readers untested against their contract.
+5. **R-COMB-1's representation** (derived by the readers, or a new receipt member) is B2-C's design question. ROOT selects it at B2-C's review.
+6. **Decision 9 re-rules RR "…RV78-N1 … not revised for it"** for the preview table. B2 must revise it anyway, for the combination scope. **So the preview table is revised once at B2, binding RV78-N1's policies at the same revision,** and B3b's `physics-retained-1` binds them from its first version. **N-12:** the readers' G0 reads the newly bound policies, and keeps its constants as a cross-check; REVISION_01 says which.
+7. **RV114's notes go into REVISION_01 or the phase-0 briefs:**
+   - **N-1:** RV-K gets an independent combination oracle (extend `product_certificate_vectors.py`).
+   - **N-2 and N-3:** the owner is told "about 13.25 GiB".
+   - **N-4:** C_eq ≤ 3 keeps C1's 60B work limit from binding.
+   - **N-5:** the corrected sums are 198–314 h agent and 59–92 h review, about 12–17 sessions.
+   - **N-6:** R-COMB-1 names DN §4.2.
+   - **N-7:** W-CB1's proxy is within D1.9, and the step labels are fixed.
+   - **N-8:** T6S needs tests only.
+   - **N-9:** phase 0 counts against the cap, and B2-C waits on B1's transaction settling.
+   - **N-10:** risk 1's coverage-only outcome joins §7 and the owner note.
+   - **N-11:** the DN §4.3 reading is recorded.
+
+**Phase 0 order** (N-9; within three implementers, after REVISION_01):
+- first the work independent of B1's moving transaction: B2-KD (kernel design), B3-S (exact-route pricing), then B3-D;
+- B2-C after SP's RV-P round 2 settles the transaction;
+- the probes B2-W and B3-W under the lock when the host is free.
+
+**The owner is told now** (RV114's recommendation; no owner decision is needed before phase 0):
+- **reach:** a combination beside three D1-cap cases does not fit within 12 GiB (about 13.25 GiB), so each combination counts as a case (c + z ≤ 3); 3 + 1 at D1's caps would be decision 17 (M above 12 GiB);
+- **size:** about 200–315 h agent and 60–90 h review, roughly four times the roadmap, with planned solver-kernel changes;
+- **R-COMB-1:** in F2a, subtraction and range combinations over a Sensitive case, and unavailable combinations, are withheld from binding; DN §4.2 had listed subtraction and range under W1a.
