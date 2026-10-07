@@ -14256,3 +14256,33 @@ I85's REPAIR_01 (`8d2d714e…`; 34 of 34 OK) is verified by ROOT: one test-only 
 - **A1-N-3, the stray file:** the empty untracked `ee_code_nontest.diff` at `WT/records-pr-b`'s root was in no commit, and nothing had it open. ROOT removed it.
   - **The cause, and a host note:** a subagent's relative path resolves against ROOT's working directory. ROOT now keeps its shell in its scratch folder (`WT/scratch/root_b6_pr/`), never in a worktree or in NUM's records.
   - **New briefs carry the rule:** use absolute paths, or `cd` into your own scratch first.
+
+## R3′: SP's first part verified; c = 1 through the n-case path; no serializer split; RV109 reads early (ROOT, 2026-10-07 UTC)
+
+**I85's checkpoint R3′ is verified.** `R/I85/b1_sp_01/CHECKPOINT_R3P.md` sha256 `3e349d7a…`; SHA256SUMS 44 of 44 OK; placeholder paths only.
+- **The branch.** `b1` at `56c5579f07`: one commit over I1, clean, 6 files, +796/−156. The files are `lib.rs`, `retained_product.rs`, `retained_wire.rs` (one argument), the facade and product tests, and `grant2.rs`, all inside SP's fence.
+- **What is done:**
+  - T-2 (per-case `CaseSlot`s in one owner);
+  - T-5 (`ReservedNotices`, fixed arrays);
+  - T-6 (custody once; `bind_observations_by_case` in one pass, decision 19);
+  - T-7 (`prepare_cases` in request order; the case-targeted hook `fail_preparation_of_case`, A1-N-6);
+  - the domain re-check.
+- **Evidence (as returned):**
+  - c = 1 successor pins byte-identical, with the written successors equal to the committed fixtures;
+  - PP registered 712 → 717 (the 5 new `b1_sp_*` tests);
+  - Stale equals registered;
+  - witnesses and the runner unchanged;
+  - the guards pass with no expected-text change and no new rule-8 site.
+- **Erratum E-7 again.** CHECKPOINT_R3P's `_run_records/build/` (5 sealed files) was hidden by `build/`. ROOT force-added it under E-7's rule.
+- **A new brief rule:** no record folder is named `build/`.
+
+**Rulings:**
+1. **c = 1 runs through the n-case T-8 to T-11, as T-4 to T-7 already do, and the one-case path is retired at the end.** c = 1 byte identity then tests the n-case serializer, and there is one transaction to review. A c = 1 byte change remains an R8 stop.
+2. **No serializer split.** It would need a fourth implementer, and it is tightly coupled to T-8 and T-9's structures. ROOT revisits this after T-9 if a slot is free.
+3. **The re-estimate is accepted.** The rest of SP is 18–28 h (20–30 h in all, against the plan's 16–25 h), mostly T-9 and the serializer's per-case owners. The critical path moves by about 4–5 h.
+4. **The interim fallback for several attempts** (the ordinary bytes plus each case's notice, until T-8) is reachable only after I2 and pinned nowhere. T-8 replaces it.
+5. **For SA (I89):** at c ≥ 2, RetainedErrorTextBytes must also sum the parked slots' `error` and `observable_error`, which `retained_error_text` does not read today. The capture exposes `cases_seen()`, `parked_cases()` and `with_case()`, and the adapter counts the parked-slot reservation. This is passed to I89 now. SA's check against SP's producer stays in phase 4.
+
+**Next:**
+- **RV109 reads SP's first part early,** by R3′ (PLAN_v2 §2.2) and RV-P's scope. That gives interim notes, not a verdict, so that T-8 onwards builds on reviewed structures.
+- **I85 continues SP** (T-8 to T-13, the tests and the mutants) without waiting for those notes. Notes that land on T-2 to T-7 are folded into the rest of SP.
