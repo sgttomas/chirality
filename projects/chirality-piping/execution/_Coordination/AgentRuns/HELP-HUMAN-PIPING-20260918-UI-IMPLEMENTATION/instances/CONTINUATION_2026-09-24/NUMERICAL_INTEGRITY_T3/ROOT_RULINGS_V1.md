@@ -13856,3 +13856,44 @@ For each, it gives the priced worst-case heap against 32 GB and 16 GB machines. 
 - DEC-025 `SI1b_b4f22e6ce7` was restarted under the lock, with the same trees: candidate `b4f22e6ce7`, baseline main `47a3bdfcf5`.
 
 **No result is affected.** The stopped run had produced nothing. Earlier DEC-025s reached quiet normally, because no lockf waiter was queued during their waits.
+
+## B1's PLAN_v2 accepted; RV107's A1 amendments; phase 1 dispatched (ROOT, 2026-10-07 UTC)
+
+**I84's PLAN_v2 is verified:** `R/I84/b1_plan_01/PLAN_v2.md` (`c85786b7…`; R1_AMENDMENTS.md `5b366039…`; `SHA256SUMS.v2` 10/10 OK).
+
+**RV107's ADDENDUM_01** (`f3310d04…`; 1/1 OK) does not confirm PLAN_v2 as written: 0 BLOCKING, 2 SHOULD-FIX, 11 NOTE.
+- SF-1 to SF-4, SF-6 and SF-7 are resolved as ruled, and so is SF-5, apart from A1-S-1.
+- **Decisions:** 22, 23, 25 and 26 AGREE, with notes. 24 DISAGREE as written: the 16 GiB `CAP_BYTES` is right, but the per-phase bound is not.
+- **On the estimates:** RV107 calls them honest as reading estimates, and probably conservative given U8's and T6S's actuals.
+
+**Ruled: PLAN_v2 is accepted, with these amendments carried into the slice briefs** (`BRIEFS/B1_COMMON.md`; no PLAN_v3):
+- **A1-S-1 (SQ; decision 24 as amended):**
+  - `CAP_BYTES` is 16 GiB.
+  - Every run that did W1 work is bounded by the overall maximum.
+  - Each run's furthest phase comes from the witness-driver run of the same input, mode and build, recorded in `RSS_TIME.md`.
+  - No D1 visibility change is made for this.
+- **A1-S-2 (SP and SA):**
+  - SP's multi-case tests depend on I2, SA's `LOAD_CASES` and D1.4 change.
+  - I2 comes before SP's R3′ evidence of multi-case custody. Until I2, those tests return `Domain`.
+  - SP keeps writing them, and pins them after I2.
+- **The notes go into the briefs of the slices they concern:**
+  - A1-N-1: a test-only successor capture, in SP;
+  - A1-N-2: the seam records no adapter event, in ST;
+  - A1-N-3: three more law tests to re-pin, in SQ;
+  - A1-N-4: ROOT merges into `b1` only at an I-P commit, and G5-early runs on an archive;
+  - A1-N-5: in SW;
+  - A1-N-6: the hook's request index and fault plumbing, in SP;
+  - A1-N-7: n05's two-case pin, in SP, after I2;
+  - A1-N-8: SW counts as an implementer;
+  - A1-N-9: the challenge's entry points and the allocator's slowdown, in SQ;
+  - A1-N-10: B6's carrier fixture goes to B6's reviewer;
+  - A1-N-11: `LOAD_CASES` and `TOTAL_LOADS` change at I2 (SA), not at the registration, and SQ's registration re-pins the profile and `threshold_bytes`.
+  - RV107's optional suggestion is taken: risk 14's integration-conflict stop joins R8.
+- **Decisions 22–26 are selected** as amended.
+
+**Phase 1 is dispatched.** I83, still on B6, is the third implementer.
+- **I85 (I-P): ST,** by `BRIEFS/B1_ST.md`. Branch `codex/piping-t3-b1-20261007` from main `47a3bdfcf5`, worktree `WT/b1`. It returns at checkpoint R3, before RV-P round 1.
+- **I86 (I-W): SW,** by `BRIEFS/B1_SW.md`, in a disposable archive.
+- **Phase 0 continues alongside:** B6's PR is cut when I83 returns. SI1b's PR #1106 merges when DEC-025 is clean.
+
+**IDs:** I85 and I86 are used. The next unused are **I87 and RV108**.
