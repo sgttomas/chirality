@@ -14179,3 +14179,28 @@ I85's REPAIR_01 (`8d2d714e…`; 34 of 34 OK) is verified by ROOT: one test-only 
   - SR-RS (`WT/b1-r`, from I1) starts when the first of I88 or I89 returns.
 
 **IDs:** I89 is used. The next unused are **I90 and RV110**.
+
+## I88's SI1c verified and ruled; RV111 reviews it; SR-RS dispatched as I90 (ROOT, 2026-10-07 UTC)
+
+**I88 (SI1c) is verified.** `R/I88/si1c_01/RETURN.md` sha256 `7459391d…`; SHA256SUMS 51 of 51 OK; placeholder paths only. ROOT's checks:
+- **The branch.** `codex/piping-t3-si1c-20261007` at `7f233b2e01` is clean: four commits over main `025c1cf326`. Exactly the 5 files of I87 §6.2, +1,271/−140.
+- **The core of D.** `finite_result` is a plain guard that pushes `NonFiniteInput` and returns `None` when a result is not finite. It is called at add/subtract, multiply (three arms) and divide (two arms), and `interpolate_point` checks each step.
+- **The host.** Targets are deleted. The dumps (42 MB) are kept in `WT/scratch/i88_si1c/`.
+- **The differential (as returned).** All six of I87 §6.4's pass conditions hold, with 0 violations, over 226,336 point, 906,300 interval and 300,594 runner lines. On RV104's point lines, 244 checks move from CHECKED and 216 from FAILED to INCOMPLETE, the owner's decision in effect. I87 §2.7's bounds are now exact: 682 decided booleans and 2,492 decided finite quantities.
+
+**Rulings on I88's points:**
+1. **Accepted:** a raw non-finite value in a different entered unit stays `supplied: false`. Marking it supplied would change its diagnostic, and would let an unreferenced input pass where today it blocks. That is a status change, and I87 §5.1 forbids one. Its cause is named (`NonFiniteInput` replaces `UnitMismatch`). The route is Rust-API only.
+2. **The N-4 note is appended to an existing note, not substituted for it.** A library provenance note says where a value came from, which is what a reader needs to find why it is non-finite. Use the existing note, then "; ", then the N-4 note. This goes in the repair round with RV111's findings, and RV111 confirms it.
+3. **Accepted:** the second rename. `same_dimension_quotients_that_did_not_panic_are_unchanged` no longer says what it pins, because one of its four cases now blocks. It is split or renamed in the same repair round.
+4. **Accepted:** the comment edits beyond I87's list (the `nan_table_argument` doc, the ratio-arm comment and two `interval_tests` comments). They are N-5's and D's wording.
+5. **Noted for S-I2's texts:** an interpolation over finite rows can overflow at the binary64 sum step. D blocks it, and "overflowed" describes the step, not the interpolated value.
+6. **Accepted:** the equivalent mutants are recorded, not repaired (decision 11). Four of the six interpolation step checks are not load-bearing, and RV111 confirms that by argument.
+7. **Accepted:** the limit's finiteness check sits in `resolve_limit`, which both limit blocks call. Pass condition 4 is read per check (point-path checks inside bounded runs).
+8. **Accepted:** "±" (UTF-8) in the messages. The existing note text uses it.
+
+**Dispatched:**
+- **RV111:** SI1c's independent complete-diff review, by `BRIEFS/RV111_SI1C_REVIEW.md`. Its findings and rulings 2 and 3 make one repair round (I88), which RV111 confirms.
+- **I90 (I-RS): SR-RS,** by `BRIEFS/B1_SR_RS.md`, in `WT/b1-r` (branch `codex/piping-t3-b1-r-20261007` from I1 `262bd687f0`). I88's slot is free.
+- **Implementers running:** I85 (SP), I89 (SA) and I90 (SR-RS).
+
+**IDs:** RV111 and I90 are used. The next unused are **I91 and RV112**.
