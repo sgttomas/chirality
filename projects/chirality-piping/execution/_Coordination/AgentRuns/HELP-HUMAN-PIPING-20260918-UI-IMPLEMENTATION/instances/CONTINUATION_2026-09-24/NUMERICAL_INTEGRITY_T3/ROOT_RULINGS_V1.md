@@ -13625,3 +13625,28 @@ It confirms that ROOT took no owner-held decision, and quotes the owner's words 
 - **RV104 confirms it** in ADDENDUM_01.
 
 **SI1b's package is drafted** in `IMPLEMENTATION/SI1B/` (CHANGE_RECORD.md, PR_BODY.md, citations.json; the dry run PASSES with 1 resolved). It is sealed at the cut.
+
+## RV104 confirms SI1b's repair round; SI1b merged into NUM; PR #1106 cut (ROOT, 2026-10-07 UTC)
+
+**RV104's ADDENDUM_01 is CONFIRMED** (`cd6ee1b0…`; 22/22 OK), with no new findings:
+- no executable change;
+- all 11 of its mutants are killed at `0730c87aef`, with R2, R3 and R6 killed only by the new tests;
+- its 626,721-line evaluator and 216,478-line runner dumps are byte-identical across the round;
+- the doc comment lists all five emitters.
+
+**SI1b is merged into NUM** (`--no-ff`) as `9e09bc2a35`. Its 3 files equal `0730c87aef`'s blobs. The package in `IMPLEMENTATION/SI1B/` is sealed (3/3), with its mutant line and review row brought up to date.
+
+**PR [#1106](https://github.com/sgttomas/chirality/pull/1106)** is cut from main `47a3bdfcf5` with the 3 files and the 4 package files, at head `b4f22e6ce7`.
+- **Passed on the head:**
+  - `source_equality.py`: 5/5, |S| = 3, against NUM `9e09bc2a35`;
+  - `check_citations.py`: PASS, 1 resolved;
+  - GEN-8: 1 passed.
+- **Running:** the full-SHA dispatch 37555520168, and DEC-025 `SI1b_b4f22e6ce7` against a fresh baseline of main `47a3bdfcf5`, in fresh targets.
+- **Pass B** does not apply: the rules crates are outside PP's closure.
+- **The full suite before the freeze** is the exact-head DEC-025's, as for S-I1 and T6S.
+- **RV104 confirms** the PR head's scope, package and equality.
+- **Expected DEC-025 deltas:**
+  - `expression_evaluator` 49 → 57;
+  - `rule_check_runner` 33 → 35;
+  - every other manifest identical;
+  - pytest, vitest and the builds unchanged in count. `test_rule_interval.py` is unchanged at 193.
