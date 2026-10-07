@@ -14325,3 +14325,12 @@ I85's REPAIR_01 (`8d2d714e…`; 34 of 34 OK) is verified by ROOT: one test-only 
 - **SR-PY (I91, I-PY)** follows when I89's follow-up returns, keeping three implementers.
 
 **IDs:** RV112 is used. The next unused are **I91 and RV113**.
+
+## SR-PY prepared; the N1 guard in `_source_contract` ruled in (ROOT, 2026-10-07 UTC)
+
+**RV108 N1's repair lands in a base reader.** `P/core/analysis_runs/compatibility.py`'s `_source_contract` raises `TypeError` on a list- or dict-valued enum, and PLAN_v2 §1 holds the base readers behind a stop. **ROOT rules it in for SR-PY.**
+- **Only** the enum membership tests (`numerical_quality.status`, and each case's `solve_quality`, `structural_status`, `model_matrix_fidelity` and `accuracy_evidence`) gain a type guard, so that Python gives its base header code, as Rust and TS do.
+- Every input that did not raise there must read exactly as before, shown by a differential.
+- **The reason:** a `TypeError` escaping a `ValueError`-only caller (the v0.3 packager's validator) is a defect on malformed input. The repair changes no accepted input and no public meaning, because the input is refused before and after.
+
+**SR-PY's brief** is `BRIEFS/B1_SR_PY.md`. It carries RV108 N1, N2 and N6(a), with PLAN_v2 §2.4's census and D38 obligations. Worktree `WT/b1-p`, from I1. It is dispatched as I91 when I89's follow-up returns.
