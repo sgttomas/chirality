@@ -13569,3 +13569,26 @@ Case B is confirmed `not_required`, and case A's dense half needs Text B (F-1). 
 4. **`NoTriggeredCase` pins are adopted.** W6's PHYS-R4 input, two-body B and W2b's current input become witnesses of T-4's new behaviour on real inputs: exact bytes, no notice and no W1. They cover the one-body and two-body W2-published Passed shapes, and an ordinary Passed report.
 
 **B1's implementation plan follows I82's study.**
+
+## RV104 passes SI1b; a small test repair round; notes routed (ROOT, 2026-10-07 UTC)
+
+**RV104's review is PASS, 0/0/6** (`R/REVIEW_RV104/si1b_01/REVIEW.md`, `689c5e1c…`; 54/54 OK), on `966113396e` against main `f8ed4f0551`. It built its own generators:
+- **No panic reachable on the candidate** across 125,133 point and 501,588 interval evaluations and 216,478 runner lines in 7 modes. On main the same inputs panicked 5,877 and 2,609 times, all at the three known sites, with overflow checks on.
+- **No unexpected byte difference** in either differential. Every base panic now ends with its site's `NonFiniteInput`.
+- Interval mode is unchanged. A blocked check doesn't stop a run (17,125 comparisons).
+- Scope is exactly 3 files, and the new tests fail on main as they should.
+
+**Ruled:**
+- **N-1: repair now, before SI1b's PR** (I79, as the slice's owner). Three of RV104's mutants survive the committed tests:
+  - **R2 and R3:** over-blocking a non-finite quotient in the dimensionless-divisor and derived-quotient arms;
+  - **R6:** the ratio block continuing with 0, which appends a spurious `DivisionByZero`.
+
+  Add assertions that kill all three: the other arms still carry non-finite values through, and the ratio block returns `None` with exactly its one finding. The tests are cheap, the PR is next, and T3-SI1c is unplanned. RV104 confirms.
+- **N-2: fixed in the same round.** The `NonFiniteInput` doc comment names interval mode's "interval binding ends must be finite" too, or is reworded so it does not read as a complete list.
+- **N-3:** noted. The Python commit changes a docstring as well as comments, with no behaviour effect.
+- **N-4 and N-5: routed to T3-SI1c's plan.** They predate SI1b and are identical on main. Changing N-4 (the cause named for non-finite caller values and limits) changes outputs for inputs that do not panic today. Both block, and never pass.
+- **N-6, a host-rule clarification.** Running `P/tests` with pytest triggers a `cargo build --locked --release` from `P/tests/conftest.py` unless `OPENPIPESTRESS_CHECKED_JSON_BIN` and `OPENPIPESTRESS_UNITS_BIN` are set. So any TASK's pytest under `P/tests` either:
+  - sets both variables to existing binaries; or
+  - runs under `lockf -k WT/guard/cargo_job.lock`.
+
+  I79's base pytest built 25 crates that way, with no overlapping lock job, so nothing is reopened. ROOT's DEC-025 pytest already runs under the lock.
