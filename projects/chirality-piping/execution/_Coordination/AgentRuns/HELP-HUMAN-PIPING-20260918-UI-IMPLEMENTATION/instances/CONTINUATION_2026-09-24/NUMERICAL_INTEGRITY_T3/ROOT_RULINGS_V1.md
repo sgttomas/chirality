@@ -15124,3 +15124,19 @@ The record is `IMPLEMENTATION/SI1C_MERGE/` (RECORD.md, `_run_records/`, `dec025/
 **RV113:** no activity has been seen since about 21:18Z: no process, no write, and no lock job since 20:13Z. Its SR-TS REVIEW.md is written (20:27Z, uncommitted). ROOT asked it for its position, with the instruction to return the SR-TS verdict and the SR-RS repair confirmation first, if blocked, because I3 waits on the latter.
 
 **IDs:** I98 and I99 are used. The next unused are **I100 and RV119**.
+
+## RV115 (RV-K) accepts DEF-C's numerical content (ROOT, 2026-10-07 UTC)
+
+**RV115's addendum:** `R/REVIEW_RV115/b2_kd_01/ADDENDUM_02.md` sha256 `7cd7a1b4…`. `SHA256SUMS.addendum_02` 4 of 4 OK, and the earlier sums still verify. The strict screen is clean, with no host name and no links. **ACCEPT, 0 BLOCKING, 0 SHOULD-FIX, 5 NOTE.**
+- **R-8 is sufficient.** The K law is fixed by K4STF, layout, stations and supports. The G law and the K-lane stress facts are fixed by DEF-C's bindings (material basis, D, t_eff, and the prepared A, I, J, Z and c). Every operand's certificate and the combination's bound the same law pair. The cross-operand facts the kernel cannot check sit at G8.
+- **R-7:** recounted independently, 129 = 7·3 + 50·2 + 8·1, with unique row ids and no maximum, intensified or record rows.
+- **R-10:** RV115 rebuilt H with its own canonicaliser. DEF-O gives `a7ed7ca0…` (the control), and DEF-C gives `9adf5178…`. DEF-C's `operand_definition.sha256` equals H(DEF-O).
+- **The proof statement** is as RV115's B2-KD review found sound. Every member the proof relies on is byte-identical to DEF-O's, leaf by leaf. There is no preparation stage, and C-12 holds.
+
+**The notes are routed:**
+- **NB-1 and NB-3:** wording, for B2-C's revision if RV118 asks for one. Otherwise they go to J1's text check. NB-1 is "the selected material operands of every member, bit for bit". NB-3 is that data flags stay per individual product, never per net.
+- **NB-2 to I98 (B2-W):** a W1a confirmation of R-7's row count on an in-domain W-CB1 or W-CB2 input. I97's fixture lies outside W1a.
+- **NB-4 to B2-K's brief:** RV115's N-3 is adopted. The kernel compares the prescription bits with +0.0, so DEF-C's "exact positive zero" and the predicate agree literally.
+- **NB-5:** no action.
+
+**DEF-C stands for ROOT's B2-C ruling,** which waits for RV118 (RV-C).
