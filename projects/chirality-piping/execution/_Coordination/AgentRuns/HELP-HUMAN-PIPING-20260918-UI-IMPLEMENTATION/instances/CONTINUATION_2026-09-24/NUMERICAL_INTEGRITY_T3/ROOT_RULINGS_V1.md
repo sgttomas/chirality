@@ -13524,3 +13524,48 @@ Record: `IMPLEMENTATION/T6S_MERGE/`.
 - PR-B1's packaging, with B1 or separately, is ruled when B6 returns.
 
 **IDs:** RV106 and I83 are used. The next unused are **I84 and RV107**.
+
+## I81's B1-0 probe verified; W-C2's case C established; the re-basing ruled (ROOT, 2026-10-07 UTC)
+
+**I81's return is verified:** `R/I81/b1_probe_01/PROBE.md` (`3e32726d…`; SHA256SUMS 16/16 OK; no machine paths).
+- It used main `d8c88774d0`'s registered dev/test build, in both modes, with five cargo jobs through the wrapper.
+- **Controls:**
+  - 14 input-and-mode pairs shared with I68's U8-0 reproduce byte for byte;
+  - the F-1 dump is identical;
+  - two runs gave identical probe lines.
+- PP and RE `src` are unchanged since then, so the findings hold at NUM's head.
+
+**The audit (S-1) under the selected T-4:**
+- **Unchanged:** the milestone witnesses (W1, W4, W5, W7, headroom), W2-deep, W3 (coexistence comes first), the attempted examples (the milestone, `tiny_spring`, K2a's deferred formation and the `rejected_stress_range` pair), `registered_g_c_declines_only_unattempted_solves`, and U8's `first_load_only`, L = 0 and two-body A.
+- **Changed (`not_required`):**
+  - **W2b:** an ordinary Passed report; today a Candidate fallback, whose assertion would fail;
+  - **W6:** W2-published Passed, b = 536; today Native at Ceiling, with no assertion;
+  - **W-C1 / two-body B:** W2-published Passed, b = 518; its U8 test would fail.
+- **W2 is `not_assessed`.** The ordinary route blocks it at validation, so it has no seed. On Direct, G-C declines it. It reaches W1 only through its private driver, which skips G-C.
+
+**Decision 21 moves no audited input.** No attempted failure among them carries `mechanism`, `asymmetric` or `invalid_input`; `tiny_spring`'s tag is `numerically_unresolved`. The owner-information line for decision 21 is accordingly limited: it moves no audited witness.
+
+**W-C2's case C is established in both modes,** as DESIGN_v2 §1.4 predicted, so the stop rule did not fire. Case C is A's loads plus B's, input sha `3649b4dc…`:
+- verdict `sensitive`;
+- the seed is a range failure, then W2 publishes b = 518;
+- W1 runs;
+- native `Unresolved(Ceiling)` on W6's ladder;
+- `Fallback(Native)`, one notice, bytes equal to `with_notice(plain, …)`.
+
+Case B is confirmed `not_required`, and case A's dense half needs Text B (F-1). Multi-case is untested, because D1.4 admits one case.
+
+**Ruled:**
+1. **W2b: B1 establishes its replacement at B1's selected caps, under a stop rule** (I81's option b).
+   - W2b is the cap-maximal stack witness, and B1 re-prices the caps (I82's study). A replacement probed now at D1's caps might not survive the new caps.
+   - B1 tries PROBE §5's constructions (a) and (b) at the selected caps.
+   - If neither gives a Sensitive, solved input that reaches native, B1 returns. ROOT then rules on resting the cap-count stack evidence on QUAL's argument, with W2b's input as a `NoTriggeredCase` pin (option c).
+2. **W2 stays in A.**
+   - Its published verdict is `not_assessed`, not `checks_passed`, so it stays in A under T-4.
+   - Decision 21's exclusion needs a seed's structural tag, so a missing seed is never excluded.
+   - B1 implements T-4 and decision 21 so that a case without a seed on the witness driver's path is in A. W2 then stays unchanged.
+3. **Re-basing:**
+   - W-C1 is re-based on case C alone through Direct, in both modes, with the kernel reason recorded and not asserted, as U8 did.
+   - The W6 stack witness is re-based on case C alone on its private driver at 4 MiB. B1's uninstrumented re-qualification build carries the S1 measurement.
+4. **`NoTriggeredCase` pins are adopted.** W6's PHYS-R4 input, two-body B and W2b's current input become witnesses of T-4's new behaviour on real inputs: exact bytes, no notice and no W1. They cover the one-body and two-body W2-published Passed shapes, and an ordinary Passed report.
+
+**B1's implementation plan follows I82's study.**
