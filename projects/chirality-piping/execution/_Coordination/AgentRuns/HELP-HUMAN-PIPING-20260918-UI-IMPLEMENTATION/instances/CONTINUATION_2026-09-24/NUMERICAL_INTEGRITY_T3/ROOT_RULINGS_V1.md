@@ -14461,3 +14461,28 @@ RV-P round 2 covers all of these at SP's end.
 5. **SR-RS's repair round starts now in I92's slot** (I90; RV113 S-1, N-1 and, if cheap, N-3), by RR "RV113 passes SR-RS; …" rulings 1, 2 and 4. RV113 confirms it.
 
 **Implementers running:** I85 (SP), I91 (SR-PY) and I90 (SR-RS repair).
+
+## I91's SR-PY verified; the Build check accepted; PY's four false accepts repaired before RV-R (ROOT, 2026-10-07 UTC)
+
+**I91 (I-PY, SR-PY) is verified.** `R/I91/b1_sr_py_01/RETURN.md` sha256 `bc7fa865…`; SHA256SUMS 56 of 56 OK; the strict screen is clean, including the gzipped files; nothing Git-ignored.
+- **The branch.** `codex/piping-t3-b1-p-20261007` at `75132d2673`: six commits over I1, 4 files, +415/−11. `compatibility.py`'s change is exactly the string guard on `_source_contract`'s enum membership tests, plus comments, as ruled.
+- **Evidence (as returned):**
+  - the census: 0 of 1,017 outcomes differ over 07m, read three ways (with and without the invocation, and in transport);
+  - D38: one check relaxed to (4b), the other 23 tabulated;
+  - `_source_contract`'s differential over 10,307 inputs: 2,196 differ, all explained (960 `TypeError`s become the header code, 1,188 reader outcomes move from the G7 fallback, 48 are N2), and every input that did not raise reads exactly as before;
+  - Python 1,922 → 1,934 (+12);
+  - 30 of 30 mutants killed.
+
+**Rulings:**
+1. **The Build check is accepted.** (4b) requires that no Build names the case, and PY admitted an orphan Build that Rust and TS refuse at G5 `WORK`. I91 added TS's form inside the alignment, and the census is unchanged. **SC adds m9, "case C's Builds kept",** to pin it in all three readers.
+2. **PY's four false accepts are repaired in an SR-PY repair round (I91) before RV-R reviews SR-PY,** so that RV113 reviews the reader once. Each aligns PY with Rust and TS, inside PY's fence:
+   - **(b)** DESIGN §3.3's G8 step 2 (`o.material_basis_ref`) is absent in PY, so a `not_required` case with `material_basis_ref` = 7 is admitted as eligible;
+   - **(c)** the exactness of `material_bases[].case_indices`;
+   - **(d1)** an extra invocation member, refused at G8 `INVOCATION`;
+   - **(d2)** an invalid `solver_mode`, at G8 `INVOCATION` rather than `PREPARATION`.
+
+   The census must still show 0 changes over 07m; any change is an R5 stop. **SC adds a 07n entry for each,** expected the same in all three readers.
+3. **No 07m re-expectation is needed for N1 or N2.**
+4. **RV108 N6(b)** (the case file's transport scope sentence) and N3–N5 stay SC's. SP's several-notice bytes (T-12) are checked at SC.
+
+**Implementers running:** I85 (SP), I90 (SR-RS repair) and I91 (SR-PY repair).
