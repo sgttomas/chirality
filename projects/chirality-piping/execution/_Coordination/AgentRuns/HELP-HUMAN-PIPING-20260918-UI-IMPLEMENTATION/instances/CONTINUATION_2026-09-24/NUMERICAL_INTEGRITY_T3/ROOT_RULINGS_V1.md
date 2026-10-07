@@ -14238,3 +14238,21 @@ I85's REPAIR_01 (`8d2d714e…`; 34 of 34 OK) is verified by ROOT: one test-only 
 - **N-4:** the squash body corrects the PR description's content list.
 
 **#1108 takes the delta as a second commit,** NUM's `execution/` at the commit that records this section. RV110 confirms the delta, GEN-8 reruns on the new head, and the squash uses `--match-head-commit` once main is confirmed unmoved. `WT/records-pr-b` stays out of cleanup until then.
+
+## RV110 confirms #1108's delta; #1108 squash-merged (ROOT, 2026-10-07 UTC)
+
+**RV110's ADDENDUM_01 confirms the delta:** `R/REVIEW_RV110/records_01/ADDENDUM_01.md` sha256 `2d2bee50…`; SHA256SUMS.addendum_01 20 of 20 OK; CONFIRMED, 0/0/3.
+- H2 `ea3b1443ea`'s tree equals NUM `6f983f12f3`'s, and the delta's raw diff is byte-identical to NUM's.
+- S-1 is fixed: I85's sums verify 60/60 and 34/34 from the committed tree.
+- Every sum file added since #1105 verifies in H2's committed tree: 28 files, 832 entries.
+- The screen holds, GEN-8 and CI 4/4 pass on H2, and main was unmoved.
+
+**#1108 squash-merged** at 14:42:26Z as `4f37590bfb` (`--squash --match-head-commit ea3b1443ea`). The squash tree equals H2's. Record: `IMPLEMENTATION/RECORDS_MERGE_2026-10-07B/`.
+
+**The addendum's notes:**
+- **A1-N-1:** the squash body names RV110's review (not its addendum, which is not in H2) and gives the counts 869/2/0.
+- **A1-N-2:** the work graph's next safe action is updated after #1108. The pytest-under-lock rule (RV104 N-6) is added to the rulings in force, and the duplicated wait-rule entry is merged.
+- **A1-N-3, an erratum to E-7's count:** E-7's "26 files and 790 entries" was counted before the commit that added two more sum files. At H2 the count is 28 files and 832 entries, all OK.
+- **A1-N-3, the stray file:** the empty untracked `ee_code_nontest.diff` at `WT/records-pr-b`'s root was in no commit, and nothing had it open. ROOT removed it.
+  - **The cause, and a host note:** a subagent's relative path resolves against ROOT's working directory. ROOT now keeps its shell in its scratch folder (`WT/scratch/root_b6_pr/`), never in a worktree or in NUM's records.
+  - **New briefs carry the rule:** use absolute paths, or `cd` into your own scratch first.
