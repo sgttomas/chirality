@@ -14810,3 +14810,31 @@ RV114 agrees with all 27 decisions, several subject to its findings.
 5. **No kernel check of Ĝ against RN64(E/(2·RN64(1+ν)))** (NA-3): G8 binds Ĝ, and the certificate refuses if α ≥ 1.
 
 **B3-K's estimate stands at 3–6 h, plus 1–2 h for RV-K.** RV115 holds RV-K for B3-K's code too.
+
+## RV116 (RV-D) accepts B3-D with amendments; B3-D ruled; I96 revises the draft statics (ROOT, 2026-10-07 UTC)
+
+**RV116's review:** `R/REVIEW_RV116/b3_d_01/REVIEW.md` sha256 `001b7a32…`; SHA256SUMS 8 of 8 OK; the strict screen is clean. ACCEPT WITH AMENDMENTS, 0 BLOCKING, 2 SHOULD-FIX, 12 NOTE. Independently:
+- `b3d_statics.py` rebuilds DEF-E (`6edae5ff…`), the table (`5bf0d0dc…`) and the PTABLE control (`c74742ce…`) byte for byte;
+- DEF-E's H is `9b66492e…`, with DEF-O's pin as the control;
+- SourceAnnulus's sections reproduce, and the correctly rounded I, J and Z differ by one ulp (74 % of 3,000 random sections);
+- Ĝ equals binary64 `e/(2*(1+nu))` for every normal Ĝ (a proof, N-1);
+- I95's zero rules C-1 and C-2 hold by code reading, and P-4 holds on main and on `b1`;
+- every proposed name has 0 hits.
+
+**Rulings:**
+1. **S-1:** the preparation payload's `definition_sha256` is the route's definition hash (C3: "the table-bound H(definition)"), not DEF-O's. The four hard-coded sites are named in P-9 and G1: PP `retained_wire.rs:1306`, RS `retained_precision.rs:487`, PY `:364` and TS `:170`. 07o adds one mutation: a preparation hash made with DEF-O's H, expected at G1 `RECEIPT_MISMATCH`.
+2. **S-2:** DEF-E's `evidence` member and `rows.maximum` limit the regeneration to the selected (owner) case. The text is hashed, so **I96 rewords it now, and regenerates DEF-E's H and the table's hash with `b3d_statics.py`.** RV116 confirms. J1 then lands the final bytes. RV116's illustrative hashes are not adopted until regenerated.
+3. **B3D-1 to B3D-18 are accepted** (B3D-6 and B3D-16 were ruled on RV115's addendum).
+   - **B3D-8:** `receipt_bindings` (its name and shape) goes into B2-C's brief, spelled identically for both tables.
+   - **B3D-10's tightenings** are adopted if 07n's census is clean, with N-4's falsy-value mutation. The reader difference is wider than PY's `{}`: PY also admits `[]`, `""`, `0` and `false`, and TS admits `""`, `0` and `false`.
+   - **B3D-12: S-C's minimal exposure** in the base `physics_source` readers is accepted. It changes no RS or PY outcome, and TS's extraction carries the setup at :320–328 and the thermal check at :358 (N-9).
+   - **B3D-17: B3b's admission lands at J2 under the interim registration,** with the disclosure that it is about 152 MB under-priced, still 246,708,348 B inside 0.9 M. RV-Q2 confirms G5's use of I95's zero rules at SQ2.
+4. **To B3b-P's brief:** P-2 (exact-block budget parity, 8M on the Direct entry), with the n05 and n06 byte pins (N-3); P-4; and N-11 (a pin for an exact invocation where W1 ran and was abandoned: physics-1 plus the N1 notice).
+5. **Into I96's revision, so that J1 lands them:**
+   - **N-7:** the `formulation_basis.profile_id` enums in the results and stress-neutral schemas gain the exact profile;
+   - **N-8:** SCHEMA gets one coherent `$comment` and `title`, and `OperandPreparation` must not admit the exact id;
+   - **N-5:** 07o's first failures are stated precisely. "Regions with one region" reaches G8 because no reader implements D2's G5c pressure condition, and the revision says so. An S-C-only mutation is added.
+   - **N-6:** binding the published `G_pa` exactly to the receipt's Ĝ is optional; I96 recommends.
+6. **N-10:** the B2-K and B3-K briefs cite RR "RV115's addendum accepts B3-K …", which resolves PLAN risks 4 and 9. **N-12** needs no action.
+
+**Dispatched: I96's B3-D revision 01** (S-2's rewording and regeneration, S-1's sites, N-4 to N-8 and N-11 in the design), then RV116's confirmation. **Implementers running:** I88 (SI1c repair) and I96 (B3-D revision).
