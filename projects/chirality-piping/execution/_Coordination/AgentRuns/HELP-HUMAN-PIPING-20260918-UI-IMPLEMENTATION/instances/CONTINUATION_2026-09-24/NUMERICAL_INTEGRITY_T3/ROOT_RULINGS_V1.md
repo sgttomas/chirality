@@ -14204,3 +14204,37 @@ I85's REPAIR_01 (`8d2d714e…`; 34 of 34 OK) is verified by ROOT: one test-only 
 - **Implementers running:** I85 (SP), I89 (SA) and I90 (SR-RS).
 
 **IDs:** RV111 and I90 are used. The next unused are **I91 and RV112**.
+
+## RV110 passes #1108 with S-1; I85's ignored evidence committed; errata E-7 to E-9; #1108 takes the delta (ROOT, 2026-10-07 UTC)
+
+**RV110 passes records PR #1108** (head `145443e9e4`, NUM `25c745f905`): `R/REVIEW_RV110/records_01/REVIEW.md` sha256 `5b302199…`; SHA256SUMS 41 of 41 OK; PASS, 0 BLOCKING, 1 SHOULD-FIX, 4 NOTE.
+- Scope: 766 added and 2 modified, all under `execution/`. The head's tree equals NUM's.
+- The publication screen is clean, including the 28 gzipped files.
+- GEN-8 and CI pass.
+- The merges #1105–#1107 match their records.
+- The owner's words are quoted exactly, and no owner-held decision was taken by ROOT.
+
+**Erratum E-7 (S-1): four of I85's sealed evidence files were never committed.**
+- **The files:** `R/I85/b1_st_01/_run_records/build/{build01_norun.log, build_identities.txt, lib01.log}` and `_run_records/repair_01/build/r1_lib01.log`.
+- **The cause:** `P/.gitignore`'s `build/` hid them. ROOT's verification ("60 of 60 OK", "34 of 34 OK") checked the host folder only, against the committed-tree rule adopted in "RV102 passes #1101; S-1 and S-2 fixed before the merge".
+- **Repaired.** The four files were screened (no host paths) and force-added (`git add -f`), and their sums match.
+- **ROOT's own check:** every sum file added since #1105, read from the index with each path resolved against its folder and its ancestors, gives 26 files and 790 entries, with 0 bad and 0 missing.
+- **The ignored paths under T3** are now only I85's two `build/` folders (committed with `-f`), older `__pycache__` folders and RV56's `imported/` folders, all of which predate this session.
+- **The rule is sharpened.** Before committing a return, ROOT runs `git status --ignored` on the new record folders and force-adds any sealed file that an ignore rule hides.
+
+**Erratum E-8 (N-3):** SI1B_MERGE's `PR_CUT.txt` records the dispatch as `target_base=47a3bdfcf5`. Run 37555520168's plan shows the full SHA `47a3bdfcf5a37e856465c45cf904383f10181498`. The abbreviation is the record's, not the run's. It probably seeded #1107's refused short-SHA dispatch. The full-SHA rule is restated in "B6's PR #1107 cut; …".
+
+**Erratum E-9 (N-3):** RR "RV104 confirms SI1b's repair round; …" expects `expression_evaluator` 49 → 57, and "#1106 merged: …" reports 50 → 58. Both are right. The first counts the lib tests; DEC-025's manifest total adds one conformance test.
+
+**RV110's other notes:**
+- **N-1, agreed:** B6's item-2 widening changes no public meaning. Its grounds are those of RR "…F-1…" ("successors are not public before B8") and PLAN decision 11, whose class it is. The TS refusal code appears verbatim on `HistoricalRunPanel`, but only for a retained-precision source. Successors are not public before B8, so none reaches a user.
+- **N-2: the work graph's T3 section is corrected.**
+  - The superseded memory decisions are marked.
+  - The rulings in force gain the 12 GiB, S3, R1/PLAN_v2, quiet-check and wait-rule entries.
+  - The IDs line is consistent.
+  - ST's commits are given.
+  - The notes routed gain RV108's and RV109's.
+- **N-3:** B6_MERGE's `gen8.txt` lacked E-4's head and command. They are added by `_run_records/gen8_addendum_01.txt`, sealed by `SHA256SUMS.addendum_01`.
+- **N-4:** the squash body corrects the PR description's content list.
+
+**#1108 takes the delta as a second commit,** NUM's `execution/` at the commit that records this section. RV110 confirms the delta, GEN-8 reruns on the new head, and the squash uses `--match-head-commit` once main is confirmed unmoved. `WT/records-pr-b` stays out of cleanup until then.
