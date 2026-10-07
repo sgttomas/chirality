@@ -14558,3 +14558,28 @@ RV-P round 2 covers all of these at SP's end.
 - **Implementers running:** I85 (SP) and I93 (planner).
 
 **IDs:** I93 is used. The next unused are **I94 and RV114**.
+
+## RV111 passes SI1c; I88's repair round dispatched (ROOT, 2026-10-07 UTC)
+
+**RV111 passes SI1c:** `R/REVIEW_RV111/si1c_01/REVIEW.md` sha256 `db9677e8…`; SHA256SUMS 111 of 111 OK; the strict screen is clean; PASS, 0 BLOCKING, 1 SHOULD-FIX, 3 NOTE. With its own oracles:
+- 88,155 evaluator lines with a non-finite intermediate on main (46,902 decided booleans and 21,868 absorbed quantities) now all block at their producer, as RV111's instrumented base predicts;
+- an independent Python transcription agrees on all 144,338 generated cases, and a static induction shows D misses no producer;
+- everything else is byte-identical: 56,252 evaluator lines and 60,174 runner lines;
+- all 433,221 interval lines are identical;
+- N-4 holds on 35,304 lines, with no status, diagnostic or relation change;
+- the schema holds on all 106,884 candidate runner lines;
+- N-5 is comment-only;
+- the scope is exactly 5 files;
+- of the 39 mutants run, 28 are killed, 9 equivalent (I88's 17 equivalences confirmed), and 2 not equivalent (SF-1). RV111's eight unrun mutants each repeat a kind already run and killed; ROOT accepts not running them.
+
+**Rulings: I88's repair round 1** (with ROOT's rulings 2 and 3 on I88's return):
+1. **SF-1:** two runner tests pin N-4's properties.
+   - One finding per non-finite input, even when a formula lists it twice (RV111's N06).
+   - The raw-unit test trims the unit, so a NaN entered as `" Pa "` for a declared `Pa` is named, not made unsupplied (N09). The candidate is right on both; only the pins are missing.
+2. **N-1 with ROOT's ruling 2:** the N-4 note is appended to an existing note in both cases, "interval ±b from receipt" (7,560 bounded solver inputs) and a library provenance note (2,520), with an assertion for each.
+3. **Ruling 3:** split or rename `same_dimension_quotients_that_did_not_panic_are_unchanged`. **N-2:** rename the four test names that still name SI1b's now-unreachable sites only where I88 judges it clearer. None is false.
+4. **N-3 is noted for S-I2's planning, not routed now:** the desktop parses a library magnitude string ("NaN", "inf", "1e400") into a non-finite value, and the whole command then fails closed before the runner. It confirms ruling 1's "Rust-API only".
+
+**RV111's host slips** are recorded in its §7: a stray empty file, a system-temp file deleted within a minute, and four no-op `cargo` calls. Python analysis ran outside the lock before the restatement. None touched the candidate.
+
+**Implementers running:** I85 (SP), I93 (B2/B3 plan) and I88 (SI1c repair).
