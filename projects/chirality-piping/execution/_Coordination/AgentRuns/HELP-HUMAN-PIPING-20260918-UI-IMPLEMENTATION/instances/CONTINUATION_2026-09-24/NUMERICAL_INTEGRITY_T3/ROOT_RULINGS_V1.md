@@ -14657,3 +14657,28 @@ RV114 agrees with all 27 decisions, several subject to its findings.
 **Implementers running:** I85 (SP), I88 (SI1c repair) and I94 (B2-KD).
 
 **IDs:** I94 is used. The next unused are **I95 and RV115**.
+
+## SP returned before I3; the headline rule accepted; RV-P round 2 dispatched (ROOT, 2026-10-07 UTC)
+
+**I85's SP return is verified.** `R/I85/b1_sp_01/RETURN.md` sha256 `f5c4797a…`; SHA256SUMS.return 86 of 86 OK; CHECKPOINT_R3P's 44 of 44; the strict screen is clean; nothing Git-ignored. `b1` is clean at `603e238517`: 11 files against I1, SP's 8 and SA's 3 through I2.
+- **The evidence (as returned):**
+  - T-8 to T-13;
+  - c = 1 identity;
+  - W-C2 before I3 (precommit G5, A selected, B `not_required`, C unavailable);
+  - the ordinal mapping {0, 2};
+  - N-16 equal to the one-case runs;
+  - n05's coexistence;
+  - the fault tests with notice counts;
+  - T-12's bytes for SR-PY and SR-TS (`final/t12_bytes`);
+  - every R3P note and RV112 N-3 and N-4 closed;
+  - PP registered 735 (+15 SP, +8 SA);
+  - 29 mutants killed (S8a equivalent, replaced by S8a2).
+- **The I3 front-run:** with SR-RS at `b5cb7faaeb`, W-C2 passes precommit in both modes. The pins and the one expected change (the T-7-on-C fault test ends at G8 `PREPARATION_MISMATCH`) are recorded.
+- **SC note:** 07n uses no tampered-preparation successor as a must-pass base.
+
+**The headline rule is accepted** (I85 RETURN §8). At c ≥ 2, T-11 staging recomputes each summary headline as the governing row over the staged rows: greatest value, then smaller case id, then location. Only headlines the ordinary envelope has are recomputed.
+- **Why it is forced:** DESIGN_v2 T-11 and C1 are silent on the choice. But the accepted base preview-physics readers (RS, PY and TS) already require the headline to be the governing row over all case rows, and the retained readers run that check on every successor's projection (G7). Keeping the ordinary headlines fails G7's HEADLINE_BINDING, and null headlines fail HEADLINE_PRESENCE.
+- **No public meaning changes:** successors are not public before B8.
+- **The record:** B1's change record states it as T-11's headline staging, a clarification of DESIGN_v2. RV-P round 2 checks it, including W-C2's stress headline moving from case A's row to case C's.
+
+**Dispatched: RV-P round 2 (RV109) reviews SP at `603e238517`** by `BRIEFS/RV109_RVP_ROUND2.md`, before I3. I85 is resumed at I3 for the W-C2 pins.
