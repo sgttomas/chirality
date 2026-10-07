@@ -14861,3 +14861,24 @@ It was committed to NUM at `173f8778c9`.
 - **The estimates:** B3b moves to 53–83 h agent; B3a stays at 7–12 h.
 
 **Sent to RV116:** confirm S-2's wording, the regenerated hashes (reproduced independently), N-9's export, S-1, N-4 to N-8, N-11, the B3-K section, and the r1 layout. It writes `R/REVIEW_RV116/b3_d_01/ADDENDUM_01.md`. On CONFIRMED, `statics/r1/` is the set J1 lands. I96 is idle.
+
+## I88's SI1c repair round 1 verified; RV111 confirms it (ROOT, 2026-10-07 UTC)
+
+**I88's repair:** `R/I88/si1c_01/REPAIR_01.md` sha256 `78429963…`. `codex/piping-t3-si1c-20261007` is at `f5665f8862`, two commits over `7f233b2e01`, and pushed. ROOT verified:
+- `SHA256SUMS.repair_01` 29 of 29, and RETURN's `SHA256SUMS` still 51 of 51;
+- the strict screen is clean, including the gzipped files, and nothing is hidden;
+- the worktree is clean;
+- the fence is still the same five files against main `025c1cf326`;
+- the runner's only non-test change is the note's `match`: (false, note) → note; (true, None) → N-4's note; (true, Some) → "existing; N-4's note";
+- every removed test line is a rename, the split's move, or the one note expectation becoming the appended form. No assertion is weakened.
+
+**I88's claims, for RV111 to confirm:**
+- the differential at the new head has 0 violations, with only appended notes differing;
+- the six pass conditions hold with round 0's counts;
+- mutants: 57 run, 40 killed, and the 17 survivors are round 0's equivalents. N06 and N09 (RV111's) and N11 and N12 (ruling 2's) are killed.
+
+The suites: EE lib 64 → 65; the runner's `point_path_non_finite_run` 8 → 11; `rule_pack_document` 10; `test_rule_interval.py` 193.
+
+**I88's host correction is recorded:** round 0's Python analysis ran outside the lock, before the rule was restated. In this round, I88 killed its own waiting `lockf` once, which produced one false "killed" (T1). I88 discarded it and re-ran T1. No other job was touched.
+
+**Sent to RV111:** confirm SF-1 (N06 and N09 re-applied), ruling 2 (N11 and N12), ruling 3's split, N-2's renames, the four suites, and interval byte identity. It writes `R/REVIEW_RV111/si1c_01/ADDENDUM_01.md`. **On CONFIRMED:** SI1c merges into NUM when no other unmerged product slice is there, and its compact PR follows with the product gate set (no Pass B). I88 is idle.
