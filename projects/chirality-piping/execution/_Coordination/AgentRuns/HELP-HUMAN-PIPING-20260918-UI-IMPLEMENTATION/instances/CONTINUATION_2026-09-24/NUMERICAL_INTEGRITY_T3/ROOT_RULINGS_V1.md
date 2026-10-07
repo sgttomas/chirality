@@ -15113,3 +15113,14 @@ The record is `IMPLEMENTATION/SI1C_MERGE/` (RECORD.md, `_run_records/`, `dec025/
 **What follows:**
 - **S-I2's planning** accounts for SI1c and RV111's N-3.
 - **The post-merge cleanup** gains `s-i1c`, `si1c-pr` and `records-pr-c`, at the next idle host.
+
+## B2-W and B3-W dispatched as I98 and I99; RV113 asked for status (ROOT, 2026-10-07 UTC)
+
+**The probes are released.** RV109's round 2 is done, and RV113 has had no lock job since 20:13Z. The lock has been idle since SI1c's DEC-025 ended at 23:21Z, and no implementer is running.
+- **I98 runs B2-W and I99 runs B3-W,** by `BRIEFS/B2W_B3W_PROBES.md`, on archives of main `0b6c5d7362`.
+- **B1 keeps its priority:** before each heavy job, a probe waits while more than one `lockf` process is running, so that an already-queued job, such as I85's at I3 or RV113's, goes first.
+- **The cap:** I98 and I99, with I85 at I3, make three implementers.
+
+**RV113:** no activity has been seen since about 21:18Z: no process, no write, and no lock job since 20:13Z. Its SR-TS REVIEW.md is written (20:27Z, uncommitted). ROOT asked it for its position, with the instruction to return the SR-TS verdict and the SR-RS repair confirmation first, if blocked, because I3 waits on the latter.
+
+**IDs:** I98 and I99 are used. The next unused are **I100 and RV119**.
