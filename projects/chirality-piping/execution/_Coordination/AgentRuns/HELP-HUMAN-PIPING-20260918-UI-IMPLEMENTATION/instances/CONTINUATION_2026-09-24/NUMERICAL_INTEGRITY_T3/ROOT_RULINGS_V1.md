@@ -14916,3 +14916,22 @@ The suites: EE lib 64 → 65; the runner's `point_path_non_finite_run` 8 → 11;
 3. **To B2-C's brief (B3D-8):** `receipt_bindings` is spelled and shaped exactly as XTABLE's: `canonicalization`, `method`, `projection_policy`, `work` {`case_limit`, `invocation_limit`} and `work_policy`, keyed by the receipt body's own paths. PTABLE's revision uses the same member.
 
 **B3-D's phase-0 work is closed.** I96 and RV116 are idle. Phase 0 still has B2-C (after RV-P round 2) and the probes B2-W and B3-W.
+
+## NUM absorbs main with #1109's RV58 fixture repair; run records carry no machine-local symlinks (ROOT, 2026-10-07 UTC)
+
+**What main carried.** Another session's [#1109](https://github.com/sgttomas/chirality/pull/1109) (`4a58bf2a7d`, records only) corrected a T3 record defect.
+- `f506f3e2de` (#1084) had committed 104 symlinks under `R/REVIEW_RV58/source_residual_01/_run_records/` (the reviewer fixture). They pointed at absolute paths in the reviewer's worktree, so they dangled off this machine, and checkout of `fixture/.gitignore` failed with "Too many levels of symbolic links".
+- #1109 replaced each link with the bytes at the same path in the recorded SOURCE candidate `6ba653451f`. It reproduced every recorded hash, left the sealed packet files unchanged, and recorded the correction in `FIXTURE_MATERIALIZATION.md`.
+- Main's `tools/validation/validate_run_record_leaks.py` now **blocks** any changed run-record symlink whose target is absolute or leaves the repository.
+
+**NUM absorbed main** (`e33f3e2f1b`, with #1109 and #1110) at `e34419d94e`. The merge was clean:
+- NUM's tracked symlinks under `P/execution` went from 104 to 0;
+- RV58's folder equals main's.
+
+**This mattered for T3:** a records PR built from NUM's `execution/` before this absorb would have put the 104 links back.
+
+**Rules, from now on:**
+1. **No symlink in a T3 record.** Before ROOT commits a record folder, it runs `find <folder> -type l` (expecting none) alongside the strict screen and `git status --ignored`. The rule goes into every brief's host rules.
+2. **Every records-only PR and every product PR's package** also passes main's `validate_run_record_leaks.py --base <main> --head <PR head>` before review, and its output is recorded.
+
+**Erratum E-11:** #1084's RV58 fixture carried machine-local symlinks, which ROOT's screen at the time did not check for (it read file contents, not link targets). #1109 corrected it on main, and NUM now carries the correction.
