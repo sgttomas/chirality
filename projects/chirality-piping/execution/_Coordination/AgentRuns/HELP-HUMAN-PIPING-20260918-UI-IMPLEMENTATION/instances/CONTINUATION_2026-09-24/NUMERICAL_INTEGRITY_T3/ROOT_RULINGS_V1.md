@@ -14418,3 +14418,22 @@ ROOT checked independently: across the 46 rewritten files, 328 changed lines, wi
 5. **The repair round is queued.** Implementers I85, I91 and I92 hold the three slots, so SR-RS's repair runs when I91 or I92 returns (repairs ahead of new starts). I3 is needed only for SP's W-C2 pin, which is many hours away.
 
 **A host rule, restated.** RV113 ran its mutant and probe test binaries directly, outside the lock, at nice 10. The tests were light, but the rule is that **every heavy job, including direct runs of built test binaries, goes under `WT/guard/cargo_job.lock`**, as I86 did. New briefs and the next messages carry it.
+
+## RV109's early read of SP: R3P-1 must land before I2; the notes folded into SP (ROOT, 2026-10-07 UTC)
+
+**RV109's interim notes on SP's first part** (`56c5579f07`): `R/REVIEW_RV109/rvp_r3p_read_01/NOTES.md` sha256 `7d312cf0…`; SHA256SUMS 76 of 76 OK; the strict screen is clean; 0 BLOCKING, 2 SHOULD-FIX, 7 NOTE.
+- **c = 1 is confirmed unchanged:** all 112 rows give identical bytes, adapter counts are identical at every W1 stage boundary on 104 c = 1 rows, and there is no parking event.
+- Custody runs once, apart from R3P-2. Decision 19's binding keeps its envelope checks. Preparation failures are isolated. The domain re-check is correct.
+- Of 20 mutants, 14 are killed; the 6 survivors are R3P-7 and R3P-8's.
+
+**Dispositions** (to I85, folded into SP):
+1. **R3P-1 must land before I2.** `PreparedCases::into_single` checks only that there is one attempt, so a multi-case invocation with one case in A takes the one-case path on the last requested case's fields. With `LOAD_CASES = 3`, which I2 brings, RV109 shows (A, B) ending `Native`/`Candidate` with plain bytes plus one notice and no successor. That is fail-safe only because later checks happen to refuse.
+   - **The fix:** `into_single` returns `Err(self)` unless `cases_seen() == 1`, pinned by a two-case test.
+   - **ROOT merges SA (I2) only at an I85 commit that carries it.**
+2. **R3P-2:** custody validates `attempted` (in range, strictly increasing) before any attempt, with tests, so that T-6's "every refusal before any attempt" holds by construction.
+3. **R3P-3 and R3P-6 (wording or order):** custody's prior-error cause is checked in request order, as stated, or the statement is corrected. `fail_next_preparation`'s doc says which case it fails at c ≥ 2.
+4. **R3P-4 → T-8:** select the batch by `CaseAttempt::prepared`, not by a slot's `source`. **R3P-5 → T-12:** the receipt-encoding detail goes only on cases selected when the successor was abandoned (decision 6).
+5. **R3P-7 → SP's custody fault tests:** per-case final presence, the parked slots' late captures in `finish`, and native work in a parked slot. **R3P-8:** S13, S14 and S20 are re-run after I2 and after T-11 respectively.
+6. **R3P-9:** the old custody prelude is retired with the one-case path (R3′ ruling 1).
+
+RV-P round 2 covers all of these at SP's end.
