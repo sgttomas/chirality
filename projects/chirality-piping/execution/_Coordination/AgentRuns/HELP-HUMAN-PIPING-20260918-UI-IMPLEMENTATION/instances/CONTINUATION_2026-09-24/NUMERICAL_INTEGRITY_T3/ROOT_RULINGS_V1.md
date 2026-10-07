@@ -14882,3 +14882,37 @@ The suites: EE lib 64 → 65; the runner's `point_path_non_finite_run` 8 → 11;
 **I88's host correction is recorded:** round 0's Python analysis ran outside the lock, before the rule was restated. In this round, I88 killed its own waiting `lockf` once, which produced one false "killed" (T1). I88 discarded it and re-ran T1. No other job was touched.
 
 **Sent to RV111:** confirm SF-1 (N06 and N09 re-applied), ruling 2 (N11 and N12), ruling 3's split, N-2's renames, the four suites, and interval byte identity. It writes `R/REVIEW_RV111/si1c_01/ADDENDUM_01.md`. **On CONFIRMED:** SI1c merges into NUM when no other unmerged product slice is there, and its compact PR follows with the product gate set (no Pass B). I88 is idle.
+
+## RV116 confirms B3-D's revision 01; B3-D is final for J1 (ROOT, 2026-10-07 UTC)
+
+**RV116's addendum:** `R/REVIEW_RV116/b3_d_01/ADDENDUM_01.md` sha256 `e10ddc52…`, with `SHA256SUMS.addendum_01` 5 of 5. Its sealed REVIEW.md still verifies 8 of 8. The strict screen is clean. **CONFIRMED.**
+- **S-2:** exactly five paths changed between v0 and r1:
+  - `evidence.pipe_sections`, `evidence.pipe_stress_extrema` and `evidence.unchanged`;
+  - `rows.maximum`;
+  - `scope.excludes` (`nonempty_pressure_regions`).
+
+  The wording differs from RV116's illustration, but means what was required.
+- **The hashes:** RV116 re-ran both generators twice from its own copies. All four `statics/r1/` files reproduce byte for byte, and its own canonicalizer agrees:
+  - DEF-E raw `71f63d39…`, H `5a3bac43…`, with DEF-O's `a7ed7ca0…` as the control;
+  - XTABLE `c4987e87…`, which differs from v0 only in the bound definition hash.
+
+  The new names and prefixes have 0 hits outside `P/execution`.
+- **N-9:** TS's export of `validateAuthoredCaseFacts` unchanged is accepted. It adds no code, so it cannot change any physics-source-1 outcome. PY's `_canonical_inputs` import is a correct addition.
+- **S-1, N-4 to N-8, N-11 and B3-K** match the rulings, with no new public meaning.
+- **The layout:**
+  - `CARRIER_PROFILE_ENUMS.diff` changes exactly the two `profile_id` enums;
+  - `SCHEMA_ENUM.diff` changes the `definition_id` enum plus N-8's title and `$comment` (`0d5bb812…`).
+- **Disclosed:** one JSON-parsing line in `regeneration_r1.txt` ran with the host's `python3` instead of VENV. It changes no static, and the result is accepted.
+
+**Rulings:**
+1. **B3-D is final for J1.** `R/I96/b3_d_01/statics/r1/` (sums `SHA256SUMS.revision_01`) is the B3b set that J1's package lands:
+   - DEF-E;
+   - `semantic_contract_v0_3_physics_retained_1.json`;
+   - `SCHEMA_ENUM.diff`;
+   - `CARRIER_PROFILE_ENUMS.diff`.
+
+   DESIGN.md as amended by REVISION_01 is B3b's design basis.
+2. **NA-1 (NOTE), to I-A's J1 brief:** `SCHEMA_ENUM.diff` is B3b's whole SCHEMA change, including N-8's title and `$comment`, not just the enum. I-A merges it with B2-C's SCHEMA diff into one coherent text at J1.
+3. **To B2-C's brief (B3D-8):** `receipt_bindings` is spelled and shaped exactly as XTABLE's: `canonicalization`, `method`, `projection_policy`, `work` {`case_limit`, `invocation_limit`} and `work_policy`, keyed by the receipt body's own paths. PTABLE's revision uses the same member.
+
+**B3-D's phase-0 work is closed.** I96 and RV116 are idle. Phase 0 still has B2-C (after RV-P round 2) and the probes B2-W and B3-W.
