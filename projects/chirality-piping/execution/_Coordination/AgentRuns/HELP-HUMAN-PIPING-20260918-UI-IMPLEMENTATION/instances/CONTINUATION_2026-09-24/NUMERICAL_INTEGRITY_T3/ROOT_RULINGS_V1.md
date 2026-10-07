@@ -14684,3 +14684,23 @@ RV114 agrees with all 27 decisions, several subject to its findings.
 **Dispatched: RV-P round 2 (RV109) reviews SP at `603e238517`** by `BRIEFS/RV109_RVP_ROUND2.md`, before I3. I85 is resumed at I3 for the W-C2 pins.
 
 **B3-S dispatched as I95** (exact-route pricing, Python only) by `BRIEFS/B3S_EXACT_PRICING.md`, in the slot I85 left while parked until I3. **Implementers running:** I88 (SI1c repair), I94 (B2-KD) and I95 (B3-S); I85 resumes at I3, and then ROOT schedules within the cap. **IDs:** I95 is used. The next unused are **I96 and RV115**.
+
+## I94's B2-KD design returned; RV115 (RV-K) reviews it before ROOT rules (ROOT, 2026-10-07 UTC)
+
+**I94's design is verified as a record.** `R/I94/b2_kd_01/DESIGN.md` sha256 `4e8c33a4…`; SHA256SUMS 4 of 4 OK; the strict screen is clean. As returned:
+- **Two code constraints shape it:**
+  - FK's struct sizes are pinned in PP's registered profile (`retained_resource.rs`);
+  - PP matches several FK enums exhaustively.
+
+  So the API is purely additive: `PreparedCaseSource`, `CombinationOperand`, `solve_sources` and its recorded variant, `register_prepared_source`, `OriginCapacity::for_invocation`, and `product_owner` accepting `NativeOwner::Combination`. There is one new variant, `CombinationReason::NoSelectedOperand`.
+- **S-2's decisions:** (a) rebuild with a K4SRC identity check, not retain; (b) register through the existing `cases` count; (c) the first selected operand's group.
+- **The certificate:** DEF-O's dual readout on the combination's own exact problem. All of DEF-O's terms are kept, with two new ones: E5 (the outward width of each net) and E6 (zero under P2). It uses no operand quantity.
+- **B3b** needs no exact annulus version. One FK gap is passed on: `ProductMaterial` has no E/ν route.
+- **Stops and estimate:** stop list S-1 to S-14; B2-K at 18–28 h.
+- **I94's points R-1 to R-11** are for ROOT.
+
+**ROOT rules on R-1 to R-11 after RV115 (RV-K, fresh)** reviews the design, by `BRIEFS/RV115_RVK_DESIGN_REVIEW.md`. RV115 re-derives the certificate, checks the code constraints, and judges the oracle's independence.
+
+**Implementers running:** I88 (SI1c repair) and I95 (B3-S). I94 has returned. **B3-D is next in the free slot** (it uses I94's B3b answer and the E/ν gap).
+
+**IDs:** RV115 is used. The next unused are **I96 and RV116**.
