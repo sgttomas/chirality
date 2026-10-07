@@ -14486,3 +14486,25 @@ RV-P round 2 covers all of these at SP's end.
 4. **RV108 N6(b)** (the case file's transport scope sentence) and N3–N5 stay SC's. SP's several-notice bytes (T-12) are checked at SC.
 
 **Implementers running:** I85 (SP), I90 (SR-RS repair) and I91 (SR-PY repair).
+
+## RV112 passes SA; G-B's byte bound corrected at SQ; I2 opens (ROOT, 2026-10-07 UTC)
+
+**RV112 (RV-Q) passes SA round 1,** covering SA's commit `6b62606778` and the follow-up (`77f4391a85`, `9812c83ded`): `R/REVIEW_RV112/rvq_round1_01/REVIEW.md` sha256 `3ac684d2…`; SHA256SUMS 170 of 170 OK; the strict screen is clean; PASS, 0 BLOCKING, 1 SHOULD-FIX, 8 NOTE.
+- **Expressions:** every bound was evaluated independently with I82's `b1_eval.py` on I82's c = 1 and S3 trees. All match, except SF-1. B-6 = 886 × 3 = 2,658, I82's S3 `NOTICE` form.
+- **The profile is unchanged:** the GENERATED PROFILE block, `REGISTERED_PROFILES`, `text_atoms`, and the printed in-build profile are byte-identical at I1, SA and the head (so the `u32` for Σ l_i is safe).
+- The registered identity holds, and c = 1 pins pass.
+- The suites differ only by the listed tests.
+- Of 39 mutants, 38 are killed by the candidate and 1 (G04) only by RV112's probe.
+
+**Rulings:**
+1. **SF-1: G-B's byte bound is corrected to T11 minus one case's late capture,** implemented with SQ's regeneration.
+   - **Why:** `T11 − T11_late_capture` is a running tally's bound, and at case k it already holds cases 0…k−1's late captures. On S3's forms that is 326,320 B against a priced maximum of 402,352 B at case 2, short by two cases' late captures. It fails safe (a G-B refusal), and the real 3-case input reaches 82,258 B. The error is the specification's: STUDY §4.3, carried into PLAN_v2 §2.3.
+   - **How:** SQ's generator emits a per-case late form, or G-B uses `F_T11_LATE_CAPTURE / C` with G5 asserting the form is exactly C × one case's. Both equal today's bound at c = 1, so **I2 is not blocked.**
+   - **SQ's brief carries it,** with the expression test's change and its re-pin.
+2. **N-1 and N-2 ride with SF-1 at SQ (I-A):** the runner literal tied both ways, and the parked-slot law test at C = 3, so that mutant G04 dies.
+3. **To I85:** N-3 (the stale comment in `permitted_run`), and N-4 (at c ≥ 2, a later case's G-B refusal overwrites an earlier one's, and later captures still run after a refusal; published output is unchanged). N-4 is also on RV-P round 2's list.
+4. **To SQ's brief:** N-5. `capture_bytes` now includes SP's parked-slot reservation (2 × 1,560 B at C = 3), which I82 did not price.
+5. **N-7 is already done:** the seam's saturating add is in SP's `7458527ff7`; RV112 read `56c5579f07`. **N-8 is explained by E-10:** FOLLOWUP_01's hash moved with I89's redaction.
+6. **The phase-4 check** of RetainedErrorTextBytes against SP's producer stays open, for I-A.
+
+**I2 opens.** ROOT merges `b1-a` (`9812c83ded`) into `b1` with `--no-ff` at an I85 commit that carries R3P-1, once I85 replies with a clean commit.
