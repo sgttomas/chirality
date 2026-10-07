@@ -14526,3 +14526,22 @@ RV-P round 2 covers all of these at SP's end.
 - the seam saturation's pin;
 - R3P-8's S13 and S14 re-run, and S20 after T-11;
 - RV112 N-3 and N-4.
+
+## I91's SR-PY repair verified; (e) kept; (f) and (g) to RV-R; SR-PY goes to RV113 (ROOT, 2026-10-07 UTC)
+
+**I91's SR-PY repair 01 is verified.** `R/I91/b1_sr_py_01/REPAIR_01.md` sha256 `f97b46ba…`; SHA256SUMS.repair_01 29 of 29 OK and the original 56 of 56; the strict screen is clean; nothing Git-ignored.
+- **The branch.** `b1-p` at `11cc14e3e6`: three commits over `75132d2673`, 2 files (PY and the contract test), +148/−18.
+- **Evidence (as returned):**
+  - (b), (c), (d1) and (d2) now give Rust's and TS's gate and code, with sites cited;
+  - the census is 0 of 1,017 changed over 07m;
+  - Python 1,934 → 1,937 (the three repair tests);
+  - 40 of 40 mutants killed.
+
+**Rulings:**
+1. **(e) is kept.** PY checked a material basis's materials only through a source that uses it, so a basis used only by a sourceless (`not_required`) case was admitted with any materials. Rust and TS check every basis at G8 `PREPARATION`, and PY now does too. **SC adds 07n entries for (b), (c), (d1), (d2) and (e),** each expected the same in all three readers.
+2. **(f) and (g) are three-way disagreements, and they go to RV-R:**
+   - (f): a `material_bases[].index` not at its position. Rust refuses at G8 `PREPARATION`, TS at G3 `COVERAGE`, and PY admits it as eligible.
+   - (g): an invocation model carrying `reference_configurations`. Rust refuses at G8 `INVOCATION`, and TS and PY admit it.
+
+   RV113 recommends a gate for each in its SR-PY review. Aligning them may touch RS and TS, in those lanes' repair rounds. **Until ruled,** SC gives per-reader expectations for them, or omits them.
+3. **SR-PY goes to RV113** after its SR-TS review and its SR-RS repair confirmation. I4 then merges SR-PY and SR-TS, after RV-R.
