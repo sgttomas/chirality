@@ -248,18 +248,22 @@ pub enum Expression {
         left: Box<Expression>,
         right: Box<Expression>,
     },
-    /// Boolean conjunction/disjunction. Evaluation is eager: both operands
-    /// are always evaluated, so diagnostics in either operand always surface.
+    /// Boolean conjunction/disjunction. Evaluation never short-circuits on a
+    /// value: the right operand is evaluated even when the left one decides
+    /// the result, so a blocking diagnostic in it still blocks. Operands are
+    /// evaluated left to right, and evaluation stops at the first operand
+    /// that blocks, so a later operand's diagnostics are not reported.
     Logical {
         operator: LogicalOperator,
         left: Box<Expression>,
         right: Box<Expression>,
     },
-    /// Eager conditional: condition, then-branch, and else-branch are all
-    /// evaluated (in that fixed order) regardless of the condition value, so
-    /// diagnostics in the unselected branch still block. Branches must both
-    /// be booleans or both be quantities of the same dimension with matching
-    /// unit references.
+    /// Eager conditional: the condition, then-branch and else-branch are
+    /// evaluated in that fixed order whatever the condition's value, so a
+    /// blocking diagnostic in the unselected branch still blocks. Evaluation
+    /// stops at the first of them that blocks, so a later one's diagnostics
+    /// are not reported. Branches must both be booleans or both be quantities
+    /// of the same dimension with matching unit references.
     Select {
         condition: Box<Expression>,
         then_branch: Box<Expression>,
@@ -555,7 +559,8 @@ fn eval_expression(
             left,
             right,
         } => {
-            // Eager: both operands always evaluated; no value short-circuit.
+            // No value short-circuit: the right operand is evaluated even
+            // when the left decides; evaluation stops at the first that blocks.
             let left = eval_expression(left, bindings, source_variable_ids, findings)?;
             let right = eval_expression(right, bindings, source_variable_ids, findings)?;
             eval_logical(*operator, left, right, findings)
@@ -565,8 +570,9 @@ fn eval_expression(
             then_branch,
             else_branch,
         } => {
-            // Eager: condition, then-branch, else-branch all evaluated in
-            // this fixed order regardless of the condition value.
+            // Eager: condition, then-branch, else-branch evaluated in this
+            // fixed order whatever the condition's value; evaluation stops at
+            // the first that blocks.
             let condition = eval_expression(condition, bindings, source_variable_ids, findings)?;
             let then_value = eval_expression(then_branch, bindings, source_variable_ids, findings)?;
             let else_value = eval_expression(else_branch, bindings, source_variable_ids, findings)?;
@@ -2237,7 +2243,9 @@ fn eval_interval_expression(
             then_branch,
             else_branch,
         } => {
-            // Eager, as in the point path: all three are always evaluated.
+            // Eager, as in the point path: all three are evaluated in this
+            // fixed order whatever the condition; evaluation stops at the
+            // first that blocks.
             let condition = eval_interval_expression(condition, env, state)?;
             let then_value = eval_interval_expression(then_branch, env, state)?;
             let else_value = eval_interval_expression(else_branch, env, state)?;
