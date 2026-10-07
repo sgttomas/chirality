@@ -15056,3 +15056,33 @@ The suites: EE lib 64 → 65; the runner's `point_path_non_finite_run` 8 → 11;
 5. **For information** (no finding): #1109's `FIXTURE_MATERIALIZATION.md` quotes the old absolute link target. It is one of the many historical T3 files on main with such paths. This is noted only.
 
 **IDs:** RV117 is used. The next unused are **I98 and RV118** (I97 is B2-C, running).
+
+## I97's B2-C returned and verified; RV118 (RV-C) reviews it; RV115 checks DEF-C (ROOT, 2026-10-07 UTC)
+
+**I97's contract:** `R/I97/b2_c_01/CONTRACT.md` sha256 `165cd4b1…`. SHA256SUMS `d8f032d1…` 13 of 13 OK. The strict screen is clean, with no links, no host name and nothing ignored.
+- **The three `\.local\b` hits are main's SCHEMA `$id`** (`https://openpipestress.local/schemas/…`). That is a product identifier, not a machine name, and it is accepted. **The host-name screen (RR "RV117 passes #1111; …", ruling 4) applies to the machine's name.** A `.local` hit is judged by what it names.
+- **ROOT rebuilt all five statics byte for byte** with I97's `b2c_statics.py` (VENV, scratch output; nothing written into I96's records):
+  - DEF-C `03d40598…`;
+  - PTABLE revised `863738f1…`;
+  - `SCHEMA_B2.diff` `ff3b8895…`;
+  - the merged J1 SCHEMA `abf3225c…`;
+  - `SCHEMA_J1.diff` `f674370d…`.
+- **In brief:**
+  - **T-10a and T-10b** sit after T-10 and before T-11, and every z = 0 byte is unchanged. B1's code needs z ≥ 1 extensions at T-6′, T-8′, T-9′ and T-11′.
+  - **DEF-C** `RP-PREPARED-COMBINATION-DUAL-v1` has H(`retained_precision_formation_v1`) `9adf5178…` (R-10, the domain reused).
+  - **`CombinationAttempt`** is a separate closed `$def` in a union (C-3).
+  - **R-COMB-1** is recommended as reader-derived (R).
+  - **PTABLE:** `receipt_bindings` is identical to XTABLE's, and `formation_warrant` becomes a list (C-8).
+  - **D1.4:** C_eq ≤ 3 and ids disjoint (C-9). CAP_ROWS goes 47 → 53.
+  - **07o:** 14 bases and must-pass entries, and 64 mutations.
+  - **J1 needs three edits beyond REVISION §1.4's constants:** RS `g0`, TS `header`, and PP's `u1_constants_bound_to_in_tree_fixtures`. REVIEWED_INPUTS goes 14 → 17.
+  - **The estimates** add about 12–19 h agent: B2-A 5–8, B2-P 26–38, B2 readers 39–55, SC2's B2 part 7–10, J1 1.5–2.5.
+- **Disclosed:** one text substitution in I97's scratch copy of `b2c_checks.py` used the host's `python3`. No output came from it.
+
+**Decisions C-1 to C-16 are ROOT's** (none is owner-held). ROOT rules on them after RV-C's review. B2's public meaning is not exposed before B8. R-COMB-1 stays as the owner was informed (DN §4.2).
+
+**Dispatched:**
+- **RV118, a fresh RV-C,** by `BRIEFS/RV118_RVC_CONTRACT_REVIEW.md`. It holds RV-C for B2's statics at J1.
+- **RV115 (RV-K),** resumed to check DEF-C's numerical content: CONTRACT §3, R-7, R-8 and R-10, and the certificate's applicability to the combined ledger.
+
+**Implementers running:** none. I85 waits for I3. **IDs:** RV118 is used. The next unused are **I98 and RV119**.
