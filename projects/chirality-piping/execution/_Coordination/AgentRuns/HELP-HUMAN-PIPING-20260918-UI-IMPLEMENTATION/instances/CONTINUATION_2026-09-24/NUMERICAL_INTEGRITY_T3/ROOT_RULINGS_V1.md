@@ -13711,3 +13711,30 @@ That allows a single tier with no reduced model caps. **I82 extends its study** 
 - their text-error budgets.
 
 Its report states the product-reach trade-off for each M. ROOT selects after it returns. **I84's plan** is told to keep the tier structure and M as parameters until then.
+
+## Owner decision: M's practical limit is 12 GiB; target machines (ROOT, 2026-10-07 UTC)
+
+**The exchange.**
+- ROOT noted that M is built into the product, so a large M means a W1 invocation at the caps may need that much memory on a user's machine.
+- The owner first wrote "oh then use 12 GiB as a practical limit", then asked for ROOT's recommendation.
+- ROOT recommended 8 GiB for a 16 GB-laptop floor, or 12 GiB for a 32 GB-workstation floor.
+- **The owner decided:** "use 12 GiB, target is 32 GB workstations but 16 GB workstations still solving within practical timeframes."
+
+**Ruled from it:**
+- **M ≤ 12 GiB (12,884,901,888 B) is ROOT's to select. Above 12 GiB goes to the owner.**
+  - This supersedes the M part of "Owner decision: memory up to 64 GiB is ROOT's; B1's target reopened".
+  - That decision still covers T3's own host jobs on this Mac (32 GiB readily; up to 64 GiB).
+- **The owner's target-machine direction:**
+  - target: 32 GB workstations;
+  - floor: 16 GB workstations must still solve within practical timeframes.
+
+  This guides M's selection, B1's caps and later cap growth (B4). **The formal supported-machine statement stays owner-held,** drafted at B7 and B8 from measurement.
+- **New evidence obligation, for B1's re-qualification and B7's release identity:** measure the actual peak resident memory and the run time of cap-maximal W1 invocations in both modes, so the 16 GB floor can be judged against "practical timeframes". The priced bound is a conservative worst case, not a measured peak.
+- **Unchanged:** the dense and lane ceilings stay owner-held. The owner did not answer ROOT's question about them, so ROOT's reading stands.
+
+**B1's target.** I82's addendum prices the options within 12 GiB:
+- a single tier at D1's full model caps with C = 3 (about 10.09 GiB minimum);
+- C = 4 with the least costly trim that fits;
+- P1 at 5.25 GiB.
+
+For each, it gives the priced worst-case heap against 32 GB and 16 GB machines. ROOT selects when it returns, preferring one tier if it fits with the 5 % text-error budget.

@@ -576,12 +576,13 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - observation framing;
 - the KF3 lambda split;
 - the KF2 dense screen;
-- any supported-machine statement of M, or M above 64 GiB (ROOT may select M, and size T3's host jobs, up to 64 GiB: owner, 2026-10-07);
+- the formal supported-machine statement (drafted at B7/B8 from measurement), or M above 12 GiB (ROOT may select M up to 12 GiB: owner, 2026-10-07; T3's host jobs may use up to 64 GiB on this Mac);
 - any change to public meaning;
 - the native-app witnesses;
 - **prepared for B8:** whether a successor's stress-neutral package may read ready while its D-U6-2 class rows carry withheld unit witnesses (today's convention blocks it; I75's R-2).
 
 **Owner decisions in force** (dated in the rulings):
+- **2026-10-07: M ≤ 12 GiB; target machines** ("use 12 GiB, target is 32 GB workstations but 16 GB workstations still solving within practical timeframes"): ROOT may select M ≤ 12 GiB; the target-machine direction guides M, B1's caps and B4; the formal supported-machine statement stays owner-held. Supersedes the M part of the 64 GiB decision the same day, which still covers T3's host jobs.
 - **2026-10-07: memory up to 64 GiB** ("if you need to allocated 32 GiB it will be available. If you need more than 64 GiB we should negotiate"): ROOT may select M ≤ 64 GiB; above that, and any supported-machine statement, stay owner-held. Supersedes the 6.0 GiB bound of 2026-10-06.
 - **2026-10-06: M up to 6.0 GiB** ("You can raise the memory ceiling to 6.0 GiB without asking"): ROOT may select M ≤ 6.0 GiB; above that, and any supported-machine statement, stay owner-held.
 - **2026-10-06: G10 redefined** ("Go with your recommendation on G10"): G10 keeps its ordinary-route half; the successor-panel witness (the two panels export an eligible successor, every other surface refuses) moves into B8's native Current witness.
