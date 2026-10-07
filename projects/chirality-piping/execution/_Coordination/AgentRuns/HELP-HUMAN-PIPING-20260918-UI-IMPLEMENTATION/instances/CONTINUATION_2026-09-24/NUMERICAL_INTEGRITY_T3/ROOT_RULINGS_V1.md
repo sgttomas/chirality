@@ -14724,3 +14724,37 @@ RV114 agrees with all 27 decisions, several subject to its findings.
 5. **SQ2's G5 identifier audit covers the 32 newly reached identifier placeholders** listed in `b3s_open_items.out.json`.
 
 **Nothing needs the owner.** Both outcomes are within 12 GiB, and B1's M stays the expected 10.5 GiB step.
+
+## RV115 (RV-K) accepts B2-KD with amendments; R-1 to R-11 ruled (ROOT, 2026-10-07 UTC)
+
+**RV115's review:** `R/REVIEW_RV115/b2_kd_01/REVIEW.md` sha256 `0f7ab77d…`; SHA256SUMS 4 of 4 OK; the strict screen is clean. ACCEPT WITH AMENDMENTS, 0 BLOCKING, 4 SHOULD-FIX, 10 NOTE.
+- **The combination certificate is sound.** RV115 re-derived it, including R7's transfer (its 2^(7−p) constant taken from R7) and RV56's fixed-anchor uniqueness. Every premise holds for a combination owner, and nothing published for a combination can lie outside its enclosure.
+- **E5 holds,** with 0 violations in 4,010 random nets; C6's width is exactly 2^-423.
+- **No operand quantity enters the proof.**
+- **The row set is right:** 7n + 50m + 8g, slots 0–19, the maximum at 20.
+- **S-2's (a)–(c) and the code constraints hold,** and the API is additive. PP does not match `CombinationReason` at all.
+- **B3b needs no exact annulus version.** The E/ν gap is confirmed.
+
+**Rulings:**
+1. **B2-KD's design is accepted, without a second design round.** SF-1 to SF-4 are folded into B2-K's brief:
+   - **SF-1:** the exact Run-capacity check, `runs.len() + n + (combinations − used_combinations) ≤ capacity.runs`, dormant under `for_calls`. Add the adversarial orders to K-02, and the invariant to the stop list. Otherwise a batch could spend a prepared ordinal and reach `RunTrace::requested`'s capacity `assert!`.
+   - **SF-2:** an operand with a load at the restrained root that the representative lacks, with root-reaction truths and a K-10 mutation, so the reaction-offset site is discriminated.
+   - **SF-3:** a product needing more than 53 bits (for example 0.1 · 3).
+   - **SF-4:** C6's nearest-rounding mutation is asserted at the net enclosure (K-08), not at a row.
+2. **R-1 to R-11 are accepted as I94 recommended,** with RV115's conditions:
+   - **R-1:** reuse `MissingSelectedOrigin`, on N-5's condition that B2-C states a combination's origin refusal never becomes a capture error;
+   - **R-3 and R-4:** at J3, compile and test every FK dependent, not just PP (N-2), and include PP's `profile_in_build_record` in the registered build.
+3. **To B2-C:**
+   - N-4: map `no_selected_operand` under operand validation, which now has four reasons;
+   - N-5;
+   - R-7 (the combination coverage rule);
+   - R-8 (DEF-C binds equal prepared section facts);
+   - R-10 (DEF-C reuses `retained_precision_formation_v1` as its hash domain).
+4. **To B2-K's brief:**
+   - N-3 (optionally compare the prescription bits with +0.0);
+   - N-6 (the `for_calls` equivalence keeps the `CountRange` detail strings);
+   - N-7 (the oracle recomputes S*, and adds exact stress truths);
+   - N-8 (book the zero-prescription branch's visits before refusing, and test it in K-07);
+   - N-9, optionally.
+5. **The E/ν gap goes to B3-D (I96) and B3-K,** as R-9.
+6. **B2-K's estimate is 19–30 h,** and RV115 holds RV-K for B2-K's code round. B2-K starts when `b2` is cut (J0, after PR-B1).
