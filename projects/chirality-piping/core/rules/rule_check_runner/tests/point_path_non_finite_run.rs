@@ -20,8 +20,9 @@ use std::path::PathBuf;
 
 use open_pipe_stress_expression_evaluator::AnalysisStatus;
 use open_pipe_stress_rule_check_runner::{
-    run_rule_checks, run_rule_checks_with_bounds, RuleCheckRunInput, RuleCheckRunResult,
-    RuleCheckStatus, SolverResultBinding, SolverResultBound, SuppliedValueBinding,
+    run_rule_checks, run_rule_checks_with_bounds, LibraryValueBinding, RuleCheckRunInput,
+    RuleCheckRunResult, RuleCheckStatus, SolverResultBinding, SolverResultBound,
+    SuppliedValueBinding,
 };
 use serde_json::{json, Value};
 
@@ -198,7 +199,7 @@ fn an_overflowing_ratio_check_blocks_and_the_run_carries_on() {
 }
 
 #[test]
-fn a_nan_table_argument_check_blocks() {
+fn a_table_check_over_an_overflowing_argument_blocks_at_the_multiply() {
     // Since T3-SI1c the NaN argument is never formed: `actual*1e300`
     // overflows and blocks at the multiply, for every lookup mode (an exact
     // lookup used to read `TableKeyNotFound`).
@@ -484,7 +485,12 @@ fn a_non_finite_input_is_named_and_never_bound() {
             assert!(bound_input.supplied);
             assert_eq!(bound_input.value, None);
             assert_eq!(bound_input.unit.as_deref(), Some("Pa"));
-            assert_eq!(bound_input.note.as_deref(), Some(NOT_BOUND_NOTE));
+            // A bounded solver input keeps its interval note, then N-4's.
+            let note = match (input_id, bound) {
+                ("x", Some(_)) => format!("interval ±5e-1 from receipt; {NOT_BOUND_NOTE}"),
+                _ => NOT_BOUND_NOTE.to_string(),
+            };
+            assert_eq!(bound_input.note.as_deref(), Some(note.as_str()));
         }
     }
 }
@@ -580,4 +586,171 @@ fn a_non_finite_limit_is_named_in_both_limit_blocks() {
             assert!(check.limit_value.is_none());
         }
     }
+}
+
+/// `document` with its formula's `input_refs` replaced by `ids`.
+fn with_formula_inputs(mut document: Value, ids: &[&str]) -> Value {
+    document["formula_declarations"][0]["input_refs"] = Value::Array(
+        ids.iter()
+            .map(|id| json!({ "ref_id": id, "ref_type": "required_input" }))
+            .collect(),
+    );
+    document
+}
+
+#[test]
+fn a_non_finite_input_listed_twice_is_named_once() {
+    // RV111 SF-1 (a), its probe `x_listed_twice_nan`: the formula's
+    // input_refs list `x` twice. One finding names it, once.
+    let formula = node(
+        "compare",
+        "less_than_or_equal",
+        variable("x"),
+        variable("s"),
+    );
+    let document = with_formula_inputs(si1c_document(formula, false, false), &["x", "x", "s"]);
+    let values = Values {
+        x: (f64::NAN, "Pa"),
+        ..Values::default()
+    };
+    for bound in [None, Some(0.5)] {
+        let result = si1c_run(&document, &values, bound);
+        let check = &result.checks[0];
+        assert_eq!(check.status, RuleCheckStatus::RuleInputsIncomplete);
+        assert_eq!(
+            findings(&result),
+            vec![record("NonFiniteInput", "x", INPUT_NOT_FINITE)],
+            "{bound:?}"
+        );
+        assert_eq!(check.diagnostic_codes, vec!["RULE_EVALUATOR_ERROR"]);
+    }
+}
+
+#[test]
+fn a_non_finite_value_in_a_padded_copy_of_the_declared_unit_is_named_not_unsupplied() {
+    // RV111 SF-1 (b), its probes `x_nan_padded_unit_referenced` and
+    // `u_nan_padded_unit_unreferenced`: " Pa " is the declared "Pa" once
+    // trimmed, as normalization reads it, so the NaN is not a value in
+    // another unit. It is supplied, with the note.
+    let formula = node(
+        "compare",
+        "less_than_or_equal",
+        variable("x"),
+        variable("s"),
+    );
+
+    // Referenced: one finding and the evaluator-error diagnostic.
+    let referenced = Values {
+        x: (f64::NAN, " Pa "),
+        ..Values::default()
+    };
+    let result = si1c_run(
+        &si1c_document(formula.clone(), false, false),
+        &referenced,
+        None,
+    );
+    let check = &result.checks[0];
+    assert_eq!(check.status, RuleCheckStatus::RuleInputsIncomplete);
+    assert_eq!(
+        findings(&result),
+        vec![record("NonFiniteInput", "x", INPUT_NOT_FINITE)]
+    );
+    assert!(check.completeness_findings.is_empty());
+    assert_eq!(check.diagnostic_codes, vec!["RULE_EVALUATOR_ERROR"]);
+    let x = &check.bound_inputs[0];
+    assert!(x.supplied);
+    assert_eq!(x.value, None);
+    assert_eq!(x.unit.as_deref(), Some("Pa"));
+    assert_eq!(x.note.as_deref(), Some(NOT_BOUND_NOTE));
+
+    // Unreferenced: it blocks nothing, and the check is decided on x and s.
+    let unreferenced = Values {
+        x: (1.0, "Pa"),
+        u: (f64::NAN, " Pa "),
+        ..Values::default()
+    };
+    let result = si1c_run(&si1c_document(formula, false, true), &unreferenced, None);
+    let check = &result.checks[0];
+    assert_eq!(check.status, RuleCheckStatus::UserRuleChecked);
+    assert!(check.evaluator_findings.is_empty());
+    assert!(check.completeness_findings.is_empty());
+    let u = check
+        .bound_inputs
+        .iter()
+        .find(|b| b.input_id == "u")
+        .unwrap();
+    assert!(u.supplied);
+    assert_eq!(u.value, None);
+    assert_eq!(u.note.as_deref(), Some(NOT_BOUND_NOTE));
+}
+
+#[test]
+fn the_n4_note_follows_an_existing_note() {
+    // Ruling 2 (RV111 N-1): N-4's note is appended, after "; ", to a note the
+    // input already carries, which says where the value came from.
+    let formula = node(
+        "compare",
+        "less_than_or_equal",
+        variable("x"),
+        variable("s"),
+    );
+
+    // A bounded solver input carries its interval note.
+    let document = si1c_document(formula.clone(), false, false);
+    let values = Values {
+        x: (f64::INFINITY, "Pa"),
+        ..Values::default()
+    };
+    let result = si1c_run(&document, &values, Some(2.0));
+    let x = &result.checks[0].bound_inputs[0];
+    assert_eq!(
+        x.note.as_deref(),
+        Some(format!("interval ±2e0 from receipt; {NOT_BOUND_NOTE}").as_str())
+    );
+    assert_eq!(
+        findings(&result),
+        vec![record("NonFiniteInput", "x", INPUT_NOT_FINITE)]
+    );
+
+    // A private library input carries its provenance.
+    let mut document = si1c_document(formula, false, false);
+    document["required_inputs"][1]["source_kind"] = json!("private_library_value");
+    let input = RuleCheckRunInput {
+        rule_pack_document: &document,
+        solver_results: vec![solver("x", 1.0, "Pa")],
+        refused_solver_results: Vec::new(),
+        supplied_values: Vec::new(),
+        library_values: vec![LibraryValueBinding {
+            input_id: "s".to_string(),
+            value: f64::NAN,
+            unit: "Pa".to_string(),
+            library_kind: "invented_kind".to_string(),
+            library_id: "invented_library".to_string(),
+            record_id: "invented_record".to_string(),
+            slot_id: "invented_slot".to_string(),
+        }],
+        current_statuses: vec![AnalysisStatus::MechanicsSolved],
+    };
+    let result = run_point_and_zero_bound(&input, "x");
+    assert_no_null(&serde_json::to_value(&result).unwrap());
+    let check = &result.checks[0];
+    assert_eq!(check.status, RuleCheckStatus::RuleInputsIncomplete);
+    assert_eq!(
+        findings(&result),
+        vec![record("NonFiniteInput", "s", INPUT_NOT_FINITE)]
+    );
+    let s = &check.bound_inputs[1];
+    assert!(s.supplied);
+    assert_eq!(s.value, None);
+    assert_eq!(
+        s.note.as_deref(),
+        Some(
+            format!(
+                "resolved from private library invented_kind:invented_library record \
+                 invented_record slot invented_slot (value stays in the private library; never \
+                 embedded in the rule pack); {NOT_BOUND_NOTE}"
+            )
+            .as_str()
+        )
+    );
 }
