@@ -15086,3 +15086,30 @@ The suites: EE lib 64 → 65; the runner's `point_path_non_finite_run` 8 → 11;
 - **RV115 (RV-K),** resumed to check DEF-C's numerical content: CONTRACT §3, R-7, R-8 and R-10, and the certificate's applicability to the combined ledger.
 
 **Implementers running:** none. I85 waits for I3. **IDs:** RV118 is used. The next unused are **I98 and RV119**.
+
+## #1112 merged: T3-SI1c is on main (ROOT, 2026-10-07 UTC)
+
+**The merge.** [#1112](https://github.com/sgttomas/chirality/pull/1112) merged at 2026-10-07T23:27:14Z as **`0b6c5d7362`**, with `gh pr merge 1112 --merge --match-head-commit 13d02273f4…`.
+- **Parents:** main `54f1ba1f6d` (#1111's squash, records only, sharing no path) and the PR head `13d02273f4`.
+- **Main's diff** is the 5 slice files plus the 4 package files: 9 files, +1,788 / −161.
+
+The record is `IMPLEMENTATION/SI1C_MERGE/` (RECORD.md, `_run_records/`, `dec025/`; SHA256SUMS, 28 entries).
+
+**The gates, all on the candidate:**
+- **RV111's review:** PASS (0/1/3), with ADDENDUM_01 to ADDENDUM_04.
+- **ROOT's checks at each of the three heads:** `source_equality.py` 5/5, `check_citations.py`, `validate_run_record_leaks.py` and GEN-8.
+- **Hosted CI on `13d02273f4`:** 4/4 automatic runs, and the full-SHA dispatch 37697773464 succeeded. The first dispatch succeeded on `b8bc059e35`; the second was cancelled when the third superseded it.
+- **The exact-head DEC-025 `SI1c_b8bc059e35`:** ALL-DONE against main `e33f3e2f1b`.
+  - 38 of 40 manifests are identical. EE goes 58 → 66 and the runner 35 → 44, by added, renamed and split tests only.
+  - pytest: 3,799 passed, 32 skipped. vitest: 141 files, 3,620 tests. Both builds exit 0.
+  - The sweep stopped at the known Mac `t13`.
+  - **It carries over to `13d02273f4`:** the two later commits changed only `IMPLEMENTATION/SI1C/`, and main's move after the cut changed only `P/execution/`.
+- **Pass B:** not applicable.
+
+**RV111's R-2 is corrected in the merge record:** PR_BODY's interval sentence holds for a nonzero bound.
+
+**NUM absorbed main** at `46d3f6f937` with no tree change. NUM already carried SI1c (`083e1a06e9`) and the final package. **No product slice is now unmerged in NUM.** B1 stays on `b1` until PR-B1.
+
+**What follows:**
+- **S-I2's planning** accounts for SI1c and RV111's N-3.
+- **The post-merge cleanup** gains `s-i1c`, `si1c-pr` and `records-pr-c`, at the next idle host.
