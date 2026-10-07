@@ -597,7 +597,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **2026-10-04:** G10 stays outstanding on the owner's Mac.
 - **Earlier:** T1 option (a); D-3 = S1; D-6 = (a); M selected under D-7.
 
-**Assignment IDs.** Dispatched 2026-10-06/07: I68–I87, RV97–RV99 and RV101–RV109 (RV100 was 2026-10-05's). Running: I85 (SP), I88 (SI1c), I89 (SA). Dispatched I68–I89, RV97–RV99 and RV101–RV109. The next unused are **I90 and RV110**.
+**Assignment IDs.** Dispatched 2026-10-06/07: I68–I87, RV97–RV99 and RV101–RV109 (RV100 was 2026-10-05's). Running: I85 (SP), I88 (SI1c), I89 (SA), RV110 (records PR #1108). Dispatched I68–I89, RV97–RV99 and RV101–RV110. The next unused are **I90 and RV111**.
 
 **T3 rulings in force** (section headings in `ROOT_RULINGS_V1.md`):
 - **T3's gate set and Git rules for product and records PRs, and verifying returns:** "T3's gate set and Git rules, consolidated after the handoff was made ephemeral";
@@ -644,6 +644,6 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 
 **Next safe action:**
 1. B1 phase 2: I89 returns SA → RV-Q round 1 (a fresh reviewer) → **I2** (ROOT merges into `b1` at an I85 commit). I85 returns at R3′. SR-RS (I90, `WT/b1-r` from I1) starts when the first of I88 or I89 returns → RV-R → **I3**.
-2. T3-SI1c: I88 returns; a fresh reviewer (RV110); then its PR (NUM carries no other unmerged slice).
-3. A records-only PR with this session's records (a fresh reviewer).
+2. T3-SI1c: I88 returns; a fresh reviewer (RV111 or the next unused); then its PR (NUM carries no other unmerged slice).
+3. Records-only PR [#1108](https://github.com/sgttomas/chirality/pull/1108) (head `145443e9e4`, NUM's `execution/` at `25c745f905`; GEN-8 passed): RV110 reviews it (`BRIEFS/RV110_RECORDS_PR6_REVIEW.md`); squash with `--match-head-commit` when the automatic CI and RV110 pass.
 4. Post-merge cleanup `apply` when the host is idle (merged worktrees `s-i1`, `u8-pr`, `f2a-u8`, `t6-outputs`, `t6s-pr`, `records-pr`, `s-i1b`, `si1b-pr`, `b6`, `b6-pr`; stale targets including `sweep-skewpin-target`; I85's kept scratch and targets after I1).
