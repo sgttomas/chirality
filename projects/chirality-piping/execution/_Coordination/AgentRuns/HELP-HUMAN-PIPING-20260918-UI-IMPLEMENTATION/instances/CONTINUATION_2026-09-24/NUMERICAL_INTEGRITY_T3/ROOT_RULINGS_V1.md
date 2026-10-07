@@ -14437,3 +14437,27 @@ ROOT checked independently: across the 46 rewritten files, 328 changed lines, wi
 6. **R3P-9:** the old custody prelude is retired with the one-case path (R3′ ruling 1).
 
 RV-P round 2 covers all of these at SP's end.
+
+## I92's SR-TS verified; RV113 reviews it; SR-RS's repair round starts in I92's slot (ROOT, 2026-10-07 UTC)
+
+**I92 (I-TS, SR-TS) is verified.** `R/I92/b1_sr_ts_01/RETURN.md` sha256 `cb50e471…`; SHA256SUMS 29 of 29 OK; the strict screen is clean; nothing Git-ignored.
+- **The branch.** `codex/piping-t3-b1-t-20261007` at `7e47e51b5d`: four commits over I1, 2 files (TS and its test, +262/−9). The test file's diff only adds lines.
+- **Cleanup.** No `node_modules` link or wasm asset is left in `WT/b1-t`.
+- **Evidence (as returned):**
+  - the census over 07m gives 0 changes (R5 does not fire);
+  - D38's list has 24 checks, one relaxed;
+  - G8 per case, with `PREPARATION_MISMATCH`, mode code 3 dropped, P2–P4, and the material-basis check before P1;
+  - RV108 N4: TS admits a non-object row on transport, as Rust and Python do, with the full reader still refusing at G1;
+  - RV108 N6: the doc states what holds before and after SR-PY's guard;
+  - vitest 3,620 → 3,626 (+6), `tsc` clean;
+  - 21 mutants killed and 12 equivalent;
+  - RV113's S-1 gap and N-3 closed in TS too.
+
+**Rulings:**
+1. **R5 does not fire.** SR-TS goes to RV-R (RV113) now, ahead of I4, since SR-PY (I91) is still running.
+2. **I92's first-failure difference** is pre-existing and outside m1–m8. TS checks C2's cause branches, for example `receipt_failure` needs phase `receipt`, and RS and PY do not. So a compound variant reads G5 `ATTEMPT` in TS against `PRODUCT_ATTEMPT` in RS. **RV113 weighs it in its SR-TS review:** align by adding C2's branch rules to RS and PY, or declare the difference. Until then, SC builds any 07n entry of that form in its branch-satisfying shape, or gives per-reader expectations.
+3. **The redundant (4b) predicate in TS** stays, for the three-reader shape (as ruled for I90).
+4. **I92's ten light runs before ROOT's restatement**, of 1–10 s each outside the lock, are noted. Every run since has been under the lock.
+5. **SR-RS's repair round starts now in I92's slot** (I90; RV113 S-1, N-1 and, if cheap, N-3), by RR "RV113 passes SR-RS; …" rulings 1, 2 and 4. RV113 confirms it.
+
+**Implementers running:** I85 (SP), I91 (SR-PY) and I90 (SR-RS repair).
