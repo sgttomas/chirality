@@ -14838,3 +14838,26 @@ RV114 agrees with all 27 decisions, several subject to its findings.
 6. **N-10:** the B2-K and B3-K briefs cite RR "RV115's addendum accepts B3-K …", which resolves PLAN risks 4 and 9. **N-12** needs no action.
 
 **Dispatched: I96's B3-D revision 01** (S-2's rewording and regeneration, S-1's sites, N-4 to N-8 and N-11 in the design), then RV116's confirmation. **Implementers running:** I88 (SI1c repair) and I96 (B3-D revision).
+
+## I96's B3-D revision 01 verified; RV116 confirms it (ROOT, 2026-10-07 UTC)
+
+**I96's revision:** `R/I96/b3_d_01/REVISION_01.md` sha256 `6f5b1a6d…`. ROOT verified:
+- `SHA256SUMS.revision_01` 20 of 20;
+- the original `SHA256SUMS` 11 of 11;
+- the strict screen is clean;
+- no ignored file is hidden.
+
+It was committed to NUM at `173f8778c9`.
+- **The layout:** v0 stays at its original `statics/` paths, and the revised drafts are in `statics/r1/`. An earlier hand-back had replaced the sealed v0 statics in place. I96 restored them. The rule stands: sealed files are never replaced; a revision goes in a new folder.
+- **The regenerated statics** (`b3d_statics_r1.py`, run twice, byte-identical):
+  - DEF-E raw `71f63d39…` (9,733 B);
+  - DEF-E's H `5a3bac43…`;
+  - XTABLE `c4987e87…` (51,163 B);
+  - SCHEMA's B3b diff `0d5bb812…`.
+
+  RV116's illustrative hashes are not these, because I96's S-2 wording differs from RV116's illustration.
+- **N-9 changes DESIGN.md §6.2:** TS exports `validateAuthoredCaseFacts` unchanged rather than extracting the loop, and PY also imports `_canonical_inputs`. This is accepted subject to RV116's confirmation. B3D-12's "TS's extraction" is read as this export.
+- **N-6 is recommended by I96** (G8 binds each evidence `G_pa` to the receipt's Ĝ bits). ROOT adopts it, conditional on RV116's confirmation, as optional ruling 5's preferred branch.
+- **The estimates:** B3b moves to 53–83 h agent; B3a stays at 7–12 h.
+
+**Sent to RV116:** confirm S-2's wording, the regenerated hashes (reproduced independently), N-9's export, S-1, N-4 to N-8, N-11, the B3-K section, and the r1 layout. It writes `R/REVIEW_RV116/b3_d_01/ADDENDUM_01.md`. On CONFIRMED, `statics/r1/` is the set J1 lands. I96 is idle.
