@@ -14157,3 +14157,25 @@ Record: `IMPLEMENTATION/B6_MERGE/`, which carries ADDENDUM_01's corrections to t
 - **B1:** ST's repair round (I85) and RV109's confirmation, then **I1, which coincides with I1′:** `b1` absorbs main at `2007709549`. Then phase 2: SP (I85), SA and SR-RS.
 - **T3-SI1c** (I88): its review, then its PR.
 - **A records-only PR** with this session's records, with a fresh reviewer.
+
+## RV109 confirms ST's repair; I1 (= I1′) at `262bd687f0`; phase 2 opens with SP and SA (ROOT, 2026-10-07 UTC)
+
+**RV109 confirms ST's repair round 1:** `R/REVIEW_RV109/rvp_round1_01/ADDENDUM_01.md` sha256 `6c7a9f87…`; SHA256SUMS.addendum_01 76 of 76 OK; CONFIRMED, 0/0/1.
+- SF-1 is fixed. RV109's own R10b (R10 with the slot handed back) is killed by the collision variant alone.
+- N-1 and N-4 are fixed.
+- Scope: two test files; PP `lib.rs` unchanged.
+- Suites: +1 test.
+- Every hunk of `47a3bdfcf5..98a77c716e` is in RV109's ledger.
+- Its note (REPAIR_01's wording about the libtest filter) needs no change.
+
+I85's REPAIR_01 (`8d2d714e…`; 34 of 34 OK) is verified by ROOT: one test-only commit `98a77c716e`, PP `lib.rs` still `84fba5ca…`, and the mutant archive and target deleted.
+
+**I1, which coincides with I1′:** `b1` absorbed main `2007709549` (#1106 SI1b, #1107 B6) with `--no-ff` at **`262bd687f0`**. The merge is clean: main's changes are disjoint from ST's. `b1`'s maintained diff from main is ST's 6 PP files.
+
+**Phase 2 opens,** within at most three implementers (I88 holds one, for SI1c):
+- **I85 (I-P): SP** in `WT/b1`, by `BRIEFS/B1_SP.md`, with checkpoint R3′.
+- **I89 (I-A): SA** in `WT/b1-a`, branch `codex/piping-t3-b1-a-20261007` from I1, by `BRIEFS/B1_SA.md`.
+  - **SA goes ahead of SR-RS.** A1-S-2 makes I2 a precondition of SP's multi-case evidence, and SA is the shorter slice, so its slot frees sooner.
+  - SR-RS (`WT/b1-r`, from I1) starts when the first of I88 or I89 returns.
+
+**IDs:** I89 is used. The next unused are **I90 and RV110**.

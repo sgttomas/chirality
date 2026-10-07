@@ -553,7 +553,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **SI1b is on main** ([#1106](https://github.com/sgttomas/chirality/pull/1106), `025c1cf326`, 2026-10-07). Record: `IMPLEMENTATION/SI1B_MERGE/`.
 - **B6 is on main** ([#1107](https://github.com/sgttomas/chirality/pull/1107), `2007709549`, 2026-10-07). Record: `IMPLEMENTATION/B6_MERGE/`.
 - **T3's records** through the handoff are on main (#1084, #1088, #1092), and this session's through [#1101](https://github.com/sgttomas/chirality/pull/1101), [#1103](https://github.com/sgttomas/chirality/pull/1103) and [#1105](https://github.com/sgttomas/chirality/pull/1105) (`47a3bdfcf5`, squash, through the #1104 ruling).
-- **B0 is selected; B1's plan (PLAN_v2) is accepted.** Phase 1 has returned: SW's probe is accepted (W2b's replacement and SQ's cap-maximal inputs); ST passed RV-P round 1 and is in its repair round. **B6 is merged.**
+- **B0 is selected; B1's plan (PLAN_v2) is accepted.** Phase 1 is done: SW's probe is accepted (W2b's replacement and SQ's cap-maximal inputs), and ST is confirmed by RV-P and integrated at I1. **Phase 2 is running (SP, SA). B6 is merged.**
 - **The integration branch** is `codex/piping-numerical-integrity-20260926` (NUM). It carries main `2007709549` and this session's records, with no unmerged product slice.
 - **The host:** all heavy T3 jobs (cargo, DEC-025, heavy vitest and pytest) share one lock, `WT/guard/cargo_job.lock` (`WT/tools/t3_cargo.sh`, or `lockf`). Every DEC-025 suite run, partial reruns included, builds in a fresh target (since 2026-10-06).
 
@@ -565,7 +565,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 | T3-SI1c | Point-path boolean formulas over a NaN or infinite intermediate are decided and can pass (`NaN ≠ 100`, `inf ≥ 100`), where interval mode reads U (found by I79); with RV104 N-4 (the cause named for non-finite caller values and limits) and N-5 (the Logical/Select doc) | T3-SI1b | I87's plan (`R/I87/si1c_plan_01/PLAN.md`); the owner chose D, a repair within grammar 1.0.0 (2026-10-07). I88 implements (`BRIEFS/SI1C_IMPLEMENT.md`; branch `codex/piping-t3-si1c-20261007`, `WT/s-i1c`). S-I2's planning accounts for it | ACTIVE: implementing (I88) |
 | T3-T6S | The T6 successor-output slice, which closes activation-checklist item 4 | — | I74 (plan), I76, I75 (implementation), RV101 (review and two addenda), I80 (package) | **MERGED** to main as [#1104](https://github.com/sgttomas/chirality/pull/1104) (`bfb26596bf`, 2026-10-07). Record: `IMPLEMENTATION/T6S_MERGE/`. NT-7, NT-10 and I75's item d wait for T6's later slot; activation is B8's |
 | T3-B0 | F2a breadth: contract and identities | T3-U8 (done) | I78 (`R/I78/b0_contract_01/DESIGN_v2.md`); RV105 (FAIL as drafted on B-1, then CONFIRMED) | **DONE:** decisions 1–16, 20, 21 selected; 17–19 owner-held, prepared. C3a's names and `NoTriggeredCase` reserved (RR "B0 selected on DESIGN_v2; …") |
-| T3-B1/B6 | Multi-case breadth at S3 (one tier, D1 caps, C = 3, M ≤ 12 GiB selected at G6), per `R/I84/b1_plan_01/PLAN_v2.md` (accepted with RV107's A1 amendments); B6's reader items as their own PR first | T3-B0 (done) | **B6:** I83 (returned; branch `codex/piping-t3-b6-20261007` at `a7de2a918f`, corpus 07m), reviewed by RV108. **B1 phase 1:** I85 ST (returned at R3; branch `codex/piping-t3-b1-20261007` at `a8e719f5b4`, `WT/b1`), reviewed by RV109 as RV-P; I86 SW (accepted: W2b's replacement `b2_k1e3`, SQ's inputs `c1` and A, B, C). Common: `BRIEFS/B1_COMMON.md` | ACTIVE: **B6 MERGED** to main as [#1107](https://github.com/sgttomas/chirality/pull/1107) (`2007709549`; record `IMPLEMENTATION/B6_MERGE/`). ST passed RV-P round 1 (RV109, 0/1/5); I85's repair round (SF-1), then RV109's confirmation and I1 (= I1′); then phase 2 |
+| T3-B1/B6 | Multi-case breadth at S3 (one tier, D1 caps, C = 3, M ≤ 12 GiB selected at G6), per `R/I84/b1_plan_01/PLAN_v2.md` (accepted with RV107's A1 amendments); B6's reader items as their own PR first | T3-B0 (done) | **B6:** I83 (returned; branch `codex/piping-t3-b6-20261007` at `a7de2a918f`, corpus 07m), reviewed by RV108. **B1 phase 1:** I85 ST (returned at R3; branch `codex/piping-t3-b1-20261007` at `a8e719f5b4`, `WT/b1`), reviewed by RV109 as RV-P; I86 SW (accepted: W2b's replacement `b2_k1e3`, SQ's inputs `c1` and A, B, C). Common: `BRIEFS/B1_COMMON.md` | ACTIVE: **B6 MERGED** to main as [#1107](https://github.com/sgttomas/chirality/pull/1107) (`2007709549`; record `IMPLEMENTATION/B6_MERGE/`). ST passed RV-P round 1 (RV109) and its repair round (confirmed); **I1 (= I1′) at `262bd687f0`**. **Phase 2:** I85 SP in `WT/b1` (`BRIEFS/B1_SP.md`); I89 SA in `WT/b1-a` (`BRIEFS/B1_SA.md`); SR-RS (`WT/b1-r`) when a slot frees |
 | T3-B2/B3/B4 | Combinations, preparation-only and mixed invocations; the exact routes; cap growth (B4) only if ruled. Then PR-B2. B3's `physics-retained-1` table binds RV78-N1's policies from its first version | PR-B1 | PLAN §2 | PLANNED |
 | T3-B7 | The release identity, registered once. The milestone's bytes and verdicts are re-established on it (RV95 N-6) | PR-B2 | PLAN §2.2 | PLANNED |
 | T3-B8 | Public activation with native Current, after the checklist (`F2A_D1/CHANGE_RECORD.md` §4) and its review. Its native witness includes the two export panels exporting an eligible successor while every other surface refuses (G10's moved half) | T3-B7; T3-T6S's slice; caller qualification for the desktop workspace (rulings, near line 10407); I53's open native-window premise; the owner's Mac | PLAN §2.2 | PLANNED |
@@ -597,7 +597,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **2026-10-04:** G10 stays outstanding on the owner's Mac.
 - **Earlier:** T1 option (a); D-3 = S1; D-6 = (a); M selected under D-7.
 
-**Assignment IDs.** Dispatched 2026-10-06/07: I68–I87, RV97–RV99 and RV101–RV109 (RV100 was 2026-10-05's). Running: I85 (ST repair round), I88 (SI1c). RV108, RV109 and I87 have returned. Dispatched I68–I88, RV97–RV99 and RV101–RV109. The next unused are **I89 and RV110**.
+**Assignment IDs.** Dispatched 2026-10-06/07: I68–I87, RV97–RV99 and RV101–RV109 (RV100 was 2026-10-05's). Running: I85 (SP), I88 (SI1c), I89 (SA). Dispatched I68–I89, RV97–RV99 and RV101–RV109. The next unused are **I90 and RV110**.
 
 **T3 rulings in force** (section headings in `ROOT_RULINGS_V1.md`):
 - **T3's gate set and Git rules for product and records PRs, and verifying returns:** "T3's gate set and Git rules, consolidated after the handoff was made ephemeral";
@@ -622,6 +622,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **R3 on ST:** "R3: I85's ST verified at checkpoint R3; RV-P round 1 dispatched as RV109";
 - **the dispatch's `target_base` is always the full 40-character SHA; RV108's addendum notes:** "B6's PR #1107 cut; RV108 confirms its head; a dispatch with a short SHA, repeated with the full one";
 - **B6 on main; I1 = I1′:** "#1107 merged: T3-B6 is on main; B1's I1 and I1′ coincide";
+- **I1 at `262bd687f0`; phase 2's order (SA before SR-RS):** "RV109 confirms ST's repair; I1 (= I1′) at `262bd687f0`; phase 2 opens with SP and SA";
 - **SI1c changes public meaning; ROOT's decisions 4–15:** "I87's SI1c plan verified; SI1c changes public meaning, so the remedy goes to the owner";
 - **the owner's SI1c decision, RV108's notes routed to B1 (N1, N2 → SR-PY; N4 → SR-TS; N3, N5, N6 → SC), and ST's repair round:** "Owner decision: SI1c is option D, a repair within grammar 1.0.0; RV108 passes B6; RV109 passes ST with SF-1".
 
@@ -642,7 +643,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - RV95 N-6 (at B7).
 
 **Next safe action:**
-1. B1: I85's ST repair round (`BRIEFS/B1_ST_REPAIR_01.md`), confirmed by RV109; **I1, which coincides with I1′** (`b1` absorbs main `2007709549`). Then phase 2 per PLAN_v2 §4 (SP by I85, SA, SR-RS; at most three implementers).
+1. B1 phase 2: I89 returns SA → RV-Q round 1 (a fresh reviewer) → **I2** (ROOT merges into `b1` at an I85 commit). I85 returns at R3′. SR-RS (I90, `WT/b1-r` from I1) starts when the first of I88 or I89 returns → RV-R → **I3**.
 2. T3-SI1c: I88 returns; a fresh reviewer (RV110); then its PR (NUM carries no other unmerged slice).
 3. A records-only PR with this session's records (a fresh reviewer).
 4. Post-merge cleanup `apply` when the host is idle (merged worktrees `s-i1`, `u8-pr`, `f2a-u8`, `t6-outputs`, `t6s-pr`, `records-pr`, `s-i1b`, `si1b-pr`, `b6`, `b6-pr`; stale targets including `sweep-skewpin-target`; I85's kept scratch and targets after I1).
