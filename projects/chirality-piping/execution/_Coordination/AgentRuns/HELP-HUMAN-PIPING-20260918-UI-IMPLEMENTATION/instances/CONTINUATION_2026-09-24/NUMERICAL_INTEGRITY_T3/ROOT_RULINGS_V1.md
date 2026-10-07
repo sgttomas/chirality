@@ -14286,3 +14286,42 @@ I85's REPAIR_01 (`8d2d714e…`; 34 of 34 OK) is verified by ROOT: one test-only 
 **Next:**
 - **RV109 reads SP's first part early,** by R3′ (PLAN_v2 §2.2) and RV-P's scope. That gives interim notes, not a verdict, so that T-8 onwards builds on reviewed structures.
 - **I85 continues SP** (T-8 to T-13, the tests and the mutants) without waiting for those notes. Notes that land on T-2 to T-7 are folded into the rest of SP.
+
+## I89's SA verified and ruled; the parked-slot patch goes on `b1-a`; the seam saturates; RV-Q round 1 dispatched as RV112 (ROOT, 2026-10-07 UTC)
+
+**I89 (I-A, SA) is verified.** `R/I89/b1_sa_01/RETURN.md` sha256 `05c2687d…`; SHA256SUMS 75 of 75 OK; placeholder paths only; nothing Git-ignored.
+- **The branch.** `codex/piping-t3-b1-a-20261007` at `6b62606778` is clean: one commit over I1. 3 files, +569/−85, all inside SA's fence: `PP/retained_memory.rs` outside the GENERATED PROFILE block, the law tests, and the runner's admission test.
+- **Evidence (as returned):**
+  - `LOAD_CASES` = 3 and `TOTAL_LOADS` = 384;
+  - D1.4, D1.5 and D1.7 per case, pinned at c = 0 to 4;
+  - `CAP_ROWS` 46 → 47 and `LATE_FACTS` 9 → 10;
+  - G-C at C = 3: three real cap-maximal cases give 6,339 and 6,342 rows against the bound of 6,345;
+  - T-3 (e), with two real early-blocking three-case runs declined at G-C with exact bytes;
+  - SF-4's expressions test;
+  - c = 1 successors byte-identical;
+  - the guards pass, with no expected-text change;
+  - PP registered 712 → 719 (the 7 new tests);
+  - 12 of 12 listed mutants and 9 extra killed.
+- **A layout note, accepted.** Σ l_i is a checked `u32`, so that the report fits existing padding. A `usize` would have moved every in-build profile phase by 8 B, and forced an edit to SQ's challenge file.
+- **Recorded:** `BRIEFS/B1_COMMON.md`'s full sha256 is `2d170307516b98c40e8aa2dcf352cf11a13dbdd29aeddd78a4c39f3f15eb2c75`. I89 found it was not in RR, and it matches the committed blob.
+
+**Rulings:**
+1. **The parked-slot patch goes on `b1-a`, committed by I-A.** It makes RetainedErrorTextBytes read every case's slot (R3′ ruling 5), and it needs SP's `CaseSlot`, which I1 lacks.
+   - I89 merges `b1` at SP's commit `56c5579f07` into `b1-a` (`--no-ff`; the files are disjoint). It then commits `_run_records/i2_preview/parked_slots.diff` with its law test `b1_sa_retained_error_text_reads_every_case_slot`.
+   - RV-Q round 1 reviews SA's commit and the patch (`b1..b1-a`).
+   - **I2** then merges `b1-a` into `b1` at an I85 commit. If SP renames the slot fields before I2, the merge's build shows it, and I-P adapts.
+2. **The seam saturates (R3 ruling 2, RV109 N-3).** `late_loads_total` uses `saturating_add`, so an overflow becomes G-B's typed refusal `(CaseLoadsTotal, u64::MAX, 384)` with exact bytes and no notice, as for any G-B refusal. It is not a capture error.
+   - The edit is in SP's file, so it is I85's.
+   - I89's reading side already handles the saturated value.
+   - The pin: a registered permitted probe presets the total to `usize::MAX` and expects a late refusal on `CaseLoadsTotal` with no capture error.
+3. **The interim admission after I2 is noted.** The registered dev/test build will admit 2–3-case Direct requests priced on the c = 1 profile until SQ (decision 17). It is not public, and the interim W1 outcomes are SP's.
+4. **For SQ's brief:**
+   - re-pin the registered atom values I89 kept as value pins: `TEXT_TEXT_DIAG_ENV`, L_PUB, L_DIAGID, Text(err), PushCap(D_env), D_env and Text(row);
+   - `law_tests::cap_maximal` does not solve (it is W2's input).
+5. **For SP and SQ:** the ordinary route rejects duplicate primitive-load ids across cases, so `beyond_load_cases` builds blocked ordinary runs. They stay valid D1.4 oracles.
+
+**Dispatched:**
+- **RV112 (RV-Q), fresh:** round 1 on SA's expressions and the parked-slot patch, by `BRIEFS/RV112_RVQ_ROUND1.md`.
+- **SR-PY (I91, I-PY)** follows when I89's follow-up returns, keeping three implementers.
+
+**IDs:** RV112 is used. The next unused are **I91 and RV113**.
