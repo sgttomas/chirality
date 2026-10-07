@@ -15140,3 +15140,35 @@ The record is `IMPLEMENTATION/SI1C_MERGE/` (RECORD.md, `_run_records/`, `dec025/
 - **NB-5:** no action.
 
 **DEF-C stands for ROOT's B2-C ruling,** which waits for RV118 (RV-C).
+
+## I99's B3-W verified; B3's witnesses selected; P-2 is required; B3a's exceptions restated (ROOT, 2026-10-07 UTC)
+
+**I99's probe:** `R/I99/b3_w_probe_01/PROBE.md` sha256 `1628a8e3…`. SHA256SUMS 38 of 38 OK. The strict screen and the host-name screen are clean, with no `.gz`, no links and no `build` folder; nothing is ignored. The archive and target are deleted. ROOT checked the input hashes against the record and the committed fixtures: n05 `332319ee…`, n06 `5551f164…` and `fields` `7f8ff9d5…` are the committed `physics_source` requests. No stop rule fired.
+
+**What it found** (both modes unless a mode is named; ordinary route, 8M exact-block budget per case; on main, Direct refuses every 0.3.0 input at D1.3):
+- **n05 and n06 select** under physics-source-1 (`retained_source_blocks_exact_v1`).
+- **`m3x` does not select.** It is the milestone authored as 0.3.0 exact, with E and ν and `pressure_regions: []`. Its exact-block attempt is refused at source closure, and it is `sensitive` by K-D5 at `N1:RX`, as the 0.1.0 milestone is.
+- **With empty regions, `m3x` publishes 98 rows (sparse) and 99 (dense).** That is I96 §3's formula, and its `pipe_sections` carry SourceAnnulus's bits, as I96 §1.3 states.
+- **No exact input reaches native on main** (the capture refuses exact models). The native terminal is a proxy from the 0.1.0 milestone.
+- **A mixed exact base:** `m3x_mix_anchor`, whose second case is a 1 N load on N0's rigid UX. In both modes, `case` is `sensitive` and `case:b` is `checks_passed`, and neither selects. `case:b` has zero response. The `axial` and `lateral` variants mix only in dense.
+- **B3a (`m3l`):** the ordinary bytes differ from the 0.1.0 milestone's in exactly one JSON path, the `SOURCE_BLOCK_RECOVERY_UNAVAILABLE` message (a namespace refusal, 38,336 units charged instead of 46,628). There is no model echo in the envelope. On the private driver, W1 reaches precommit and is refused at G8 `RETAINED_PRECISION_INVOCATION_MISMATCH`, because the reader requires `pressure_contract` null.
+- **P-2:** `fields` selects at 8M. At 4M its finalization replay exceeds the budget, giving `SOURCE_BLOCK_RECOVERY_FINALIZATION_FAILED` and 0 results. n05 and n06 differ in 4 paths between the budgets.
+- **Controls:** runs 2 and 3 are identical. I81's and I86's lines reproduce with 0 differences. The n05, n06 and `fields` outputs equal the committed raw fixtures.
+
+**Rulings:**
+1. **B3b's witnesses:**
+   - **the exact successor** is `m3x` (`0ffbea35…`; Value `c920a96d…`);
+   - **the coexistence pins** are n05 and n06, which must keep the exact ordinary bytes;
+   - **the mixed exact base** is `m3x_mix_anchor` (`3c9a6fdb…`). Its second case's zero response is a legitimate `not_required` case, and the base is labelled so. ROOT does not ask for the fourth variant.
+
+   These go into B3b-P's brief and 07o. B3b-P establishes the exact native, candidate and two-case results, which this probe could reach only by proxy.
+2. **P-2 is required for correctness, not only parity.** Without it, `fields` on the Direct entry would lose T-3 (c) and publish a blocked envelope. **To B3b-P's brief:**
+   - `fields` (`7f8ff9d5…`) joins P-2's pins, alongside n05 and n06;
+   - the receipt's `legacy_source_work[].limit` follows the same budget.
+3. **B3a's expected exceptions are restated exactly** (this corrects PLAN §1.3's and B3-W's "except the model echo"). **To B3a-A's and the readers' briefs:**
+   - **B3a's ordinary bytes** equal the 0.1.0 milestone's except the one `SOURCE_BLOCK_RECOVERY_UNAVAILABLE` message;
+   - **its successor** differs from the milestone's in exactly `invocation.value` (the model echo), `legacy_source_work[0].charged` and `receipt_sha256`;
+   - the producer needs no further change. On main only D1.3 and the readers' G8 `pressure_contract` predicate stand in the way, which is B3a's planned scope.
+4. **B3a's base** is `m3l` (`c32170b3…`; Value `2f5ff465…`).
+
+**I99 is idle.** The probe's unsanitised outputs stay in its scratch, by the cleanup rule.
