@@ -14583,3 +14583,18 @@ RV-P round 2 covers all of these at SP's end.
 **RV111's host slips** are recorded in its §7: a stray empty file, a system-temp file deleted within a minute, and four no-op `cargo` calls. Python analysis ran outside the lock before the restatement. None touched the candidate.
 
 **Implementers running:** I85 (SP), I93 (B2/B3 plan) and I88 (SI1c repair).
+
+## I93's B2/B3 plan returned; RV114 reviews it before ROOT rules (ROOT, 2026-10-07 UTC)
+
+**I93's plan is verified as a record.** `R/I93/b2b3_plan_01/PLAN.md` sha256 `e1147dbd…`; SHA256SUMS 9 of 9 OK; the strict screen is clean. Its main findings, as returned:
+- **B2 needs kernel (FK) work.** `solve_combination` takes selected operands only, and the product certificate refuses combination owners. So B2 needs SC1's prepared-operand API and a combination certificate, with a fresh numerical reviewer.
+- **The preview table needs revising for B2.** Its hash is pinned in 12 maintained files, and RV78-N1's policies can ride the same revision.
+- **The units:** B2 is one unit in two stages; B3 splits into B3a (`legacy_pressure_v1`, small) and B3b (exact under `physics-retained-1`, large, unpriced).
+- **The size:** about 195–300 h agent and 60–90 h review, about 3× the parent roadmap's figure, as B1's was.
+- **Memory:** a D1-cap combination beside three D1-cap cases does not fit within 12 GiB under any estimate. The proposed cap shape is **c + z ≤ 3**, which keeps M at about B1's 10.5 GiB.
+- **B4 is not needed.** Its product-reach question goes to the owner with B1's R9 report.
+- **27 decisions** are numbered. Decisions 17–19 stay owner-held, and R-COMB-1 (a combination's uncertified rows are `not_covered`) is to be told to the owner.
+
+**ROOT does not rule yet.** The plan is large and moves FK into scope, so **RV114 reviews it first, as RV107 reviewed B1's**, by `BRIEFS/RV114_B2B3_PLAN_REVIEW.md`. Phase 0 (designs and probes) waits for ROOT's ruling.
+
+**IDs:** RV114 is used. The next unused are **I94 and RV115**.
