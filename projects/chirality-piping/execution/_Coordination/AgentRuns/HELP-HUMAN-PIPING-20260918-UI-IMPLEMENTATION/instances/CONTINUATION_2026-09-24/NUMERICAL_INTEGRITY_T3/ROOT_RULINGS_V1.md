@@ -13475,3 +13475,30 @@ PHYS-R4's publication and availability are unchanged.
 **B6** starts after T6S merges. It is the corpus's single writer, before B1's snapshot.
 
 **IDs:** I81 and I82 are used. The next unused are **I83 and RV106**.
+
+## #1104 merged: T6S is on main (ROOT, 2026-10-07 UTC)
+
+**DEC-025 `T6S_d953e12187` ended `ALL-DONE`** (00:16:58Z), on the PR head against main `d8c88774d0`, in fresh targets. Every count equals the expected delta:
+- suites: 39 of 40 identical, and `result_export` 173 → 177 (+4 added, all ok);
+- pytest: 3,773 passed (+23);
+- vitest: 141 files and 3,612 tests (+38);
+- both builds exit 0;
+- the sweep stopped at the known `t13`.
+
+**RV101 A2-N4 is answered.** Every T6S test file passes on the combined tree with U8.
+
+**#1104 merged** at 00:17:29Z as `bfb26596bf` (`--merge --match-head-commit d953e12187`). Main had not moved, and every gate was met on that head:
+- RV101 (PASS; ADDENDUM_01 and ADDENDUM_02 CONFIRMED);
+- source equality, citations and GEN-8;
+- CI with dispatch 37546714187;
+- DEC-025 standing in for the full suite;
+- Pass B not applicable.
+
+Record: `IMPLEMENTATION/T6S_MERGE/`.
+
+**NUM absorbed main** as `25c4fa3e6a`. NUM's tree did not change, and its non-execution tree equals main's. **NUM carries no unmerged product slice.**
+
+**Next, by the merge order:**
+- T3-SI1b into NUM and its own PR, after RV104;
+- B6 may start;
+- a records-only PR now, while no product PR is open.
