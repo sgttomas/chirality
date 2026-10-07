@@ -14132,3 +14132,28 @@ ROOT's decisions 4–15 (previous section) stand. **I88 implements SI1c** (D, wi
 - **A-N3:** two comment lines cite `R/REVIEW_RV92/u6f_01`, a form `check_citations.py` does not parse. The path resolves to the same record as the indexed `RV92 u6f_01`. This is a later tooling item and is noted only.
 
 **DEC-025 `B6_1199726f69`** started under the lock (baseline: `WT/main-baseline` at `025c1cf326`; candidate: `WT/sweep-skewpin` at `1199726f69`; fresh targets). SI1b's leftover sweep file in `WT/sweep-skewpin` was removed only after a byte-identical copy was confirmed in its label folder.
+
+## #1107 merged: T3-B6 is on main; B1's I1 and I1′ coincide (ROOT, 2026-10-07 UTC)
+
+**DEC-025 `B6_1199726f69` ended `ALL-DONE`** (13:14:22Z), with every count as expected:
+- suites: 39 of 40 identical; `result_export` 177 → 180 (+3 added);
+- pytest: 3,773 → 3,799 (+26, B6's);
+- vitest: 3,612 → 3,620;
+- both builds exit 0;
+- the sweep stopped at `t13`.
+
+**#1107 merged** at 13:15:15Z as `2007709549` (`--merge --match-head-commit 1199726f69`). Main had not moved, and every gate was met on that head:
+- RV108 (PASS 0/0/7; ADDENDUM_01 CONFIRMED 0/0/3);
+- source equality, citations and GEN-8;
+- CI with the full-SHA dispatch 37621653258;
+- DEC-025 standing in for the full suite;
+- Pass B not applicable.
+
+Record: `IMPLEMENTATION/B6_MERGE/`, which carries ADDENDUM_01's corrections to the package (A-N1 to A-N3). One extract of the DEC-025 records had a host path, which was replaced by `VENV`.
+
+**NUM absorbs main.** NUM then carries no unmerged product slice.
+
+**Next:**
+- **B1:** ST's repair round (I85) and RV109's confirmation, then **I1, which coincides with I1′:** `b1` absorbs main at `2007709549`. Then phase 2: SP (I85), SA and SR-RS.
+- **T3-SI1c** (I88): its review, then its PR.
+- **A records-only PR** with this session's records, with a fresh reviewer.
