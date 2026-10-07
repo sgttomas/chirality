@@ -14030,3 +14030,29 @@ New briefs carry the rule.
 - reviewers: RV108 (B6) and RV109 (ST).
 
 **IDs:** I87, RV108 and RV109 are used. The next unused are **I88 and RV110**.
+
+## I87's SI1c plan verified; SI1c changes public meaning, so the remedy goes to the owner (ROOT, 2026-10-07 UTC)
+
+**I87's plan is verified.** `R/I87/si1c_plan_01/PLAN.md` sha256 `0eb2459d…`; SHA256SUMS 5 of 5 OK; placeholder paths only; no maintained change. ROOT checked its load-bearing claims at main `025c1cf326`:
+- the aggregate `min` and `max` use `f64::min` and `f64::max`, which return the other operand when one is NaN (`EE:816–819`);
+- `ComputedQuantity.value` is `"type": "number"` in `rule_check_run_result.schema.json`, so today's `null` is schema-invalid;
+- the desktop calls `run_rule_checks` only (`TAURI:2911`), so users see the point path;
+- DEC-022's versioning text is as quoted: the evaluator's header ("Minor versions are additive-only; any breaking change…") and the conformance corpus README ("any semantic change requires a `grammar_version` bump").
+
+**Ruling 1: public meaning.** Options A, B and D turn some published `USER_RULE_CHECKED` and `USER_RULE_FAILED` outcomes into `RULE_INPUTS_INCOMPLETE`. Rule-check outcomes are public today, on the panel, the status bar, the saved analysis-run record and the result export. So **the remedy changes public meaning, and decisions 2 (the remedy) and 3 (DEC-022's reading) are the owner's.** They are put with I87's §4.4 package. ROOT's recommendation is I87's: D, as a repair within grammar 1.0.0.
+
+**ROOT's decisions** (I87 §8), each as recommended:
+- **4:** `NonFiniteInput`, with the producers' existing subjects and §3's messages.
+- **5:** no conformance-corpus extension, unless the owner rules a breaking change.
+- **6:** N-4 is N4-1, with no status change. The limit takes `NonFiniteInput`, with the slot as its subject.
+- **7:** N-4 and N-5 ride with the remedy. If the owner's answer is not in when B6 merges into NUM, they go alone as SI1c-1.
+- **8:** N-5's wording as in §5.2, checked with comment lines removed.
+- **9:** the Python oracle's `point_value` is aligned to the chosen remedy.
+- **10:** the `computed_value` guard is added only under A, B or C.
+- **11:** SI1b's checks that become unreachable under D are kept, and their mutants recorded as equivalent.
+- **12:** D's reversal of the six evaluator tests and one runner test that pinned SI1b's scope is accepted, with the renames listed.
+- **13:** the reviewer is a fresh RV.
+- **14:** the panel's "(blocked on missing inputs)" parenthetical and the cause-specific indeterminate texts go to S-I2's UI work, with RV99 N-6.
+- **15:** the implementer works from main in `WT/s-i1c`. SI1c's merge into NUM and its PR follow B6's.
+
+**Next:** the owner's answer to decisions 2 and 3; then SI1c's implementer, or SI1c-1 alone if the answer is still open when B6 merges.
