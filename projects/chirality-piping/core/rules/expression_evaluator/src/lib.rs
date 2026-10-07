@@ -307,8 +307,8 @@ pub enum FindingCode {
     InvalidReference,
     MissingRequiredValue,
     /// A value that must be finite is not: a variable binding, a literal, a
-    /// same-dimension quotient (ratio), or a NaN interpolation or step-lookup
-    /// argument. Always blocking.
+    /// same-dimension quotient (ratio), a NaN interpolation or step-lookup
+    /// argument, or an interval binding end (interval mode). Always blocking.
     NonFiniteInput,
     DivisionByZero,
     UnitMetadataMissing,
@@ -3605,6 +3605,83 @@ mod tests {
         ));
         assert_eq!(by_zero.findings.len(), 1);
         assert_eq!(by_zero.findings[0].code, FindingCode::DivisionByZero);
+    }
+
+    #[test]
+    fn non_finite_quotients_outside_the_ratio_arm_still_carry_their_value() {
+        // Only the same-dimension (ratio) arm panicked on main, so only it
+        // blocks. A dimensionless divisor and a derived quotient still carry
+        // an overflow through, with no finding, exactly as before.
+        let over_ratio = evaluate(&input(
+            binary(
+                BinaryOperator::Divide,
+                variable("actual"),
+                ratio_literal(1.0e-308),
+            ),
+            vec![binding("actual", 1.0e308, Dimension::Stress)],
+        ));
+        assert!(over_ratio.findings.is_empty());
+        assert_eq!(
+            over_ratio.value,
+            Some(EvaluationValue::Quantity(Quantity {
+                value: f64::INFINITY,
+                dimension: Dimension::Stress,
+                unit_ref: "stress_unit".to_string(),
+                unit_required: true,
+                dimension_check_required: true,
+            }))
+        );
+
+        let derived = evaluate(&input(
+            binary(
+                BinaryOperator::Divide,
+                variable("moment"),
+                variable("length"),
+            ),
+            vec![
+                binding("moment", 1.0e308, Dimension::Moment),
+                binding("length", 1.0e-308, Dimension::Length),
+            ],
+        ));
+        assert!(derived.findings.is_empty());
+        assert_eq!(
+            derived.value,
+            Some(EvaluationValue::Quantity(Quantity {
+                value: f64::INFINITY,
+                dimension: Dimension::Force,
+                unit_ref: "moment_unit/length_unit".to_string(),
+                unit_required: true,
+                dimension_check_required: true,
+            }))
+        );
+    }
+
+    #[test]
+    fn a_blocked_ratio_stops_the_enclosing_expression() {
+        // `a/b` overflows. The ratio block returns no value, so evaluation
+        // stops there: nothing after it runs or reports, neither the zero
+        // divisor in `c/d` nor the unbound `missing`.
+        let overflowing = || binary(BinaryOperator::Divide, variable("a"), variable("b"));
+        let bindings = || {
+            vec![
+                binding("a", 1.0e308, Dimension::Stress),
+                binding("b", 1.0e-308, Dimension::Stress),
+                binding("c", 1.0, Dimension::Stress),
+                binding("d", 0.0, Dimension::Stress),
+            ]
+        };
+        let over_zero_divisor = binary(
+            BinaryOperator::Divide,
+            overflowing(),
+            binary(BinaryOperator::Divide, variable("c"), variable("d")),
+        );
+        let plus_missing = binary(BinaryOperator::Add, overflowing(), variable("missing"));
+        for expression in [over_zero_divisor, plus_missing] {
+            let result = evaluate(&input(expression, bindings()));
+            assert_eq!(finding_records(&result), vec![NON_FINITE_RATIO]);
+            assert_eq!(result.value, None);
+            assert_eq!(result.source_variable_ids, vec!["a", "b"]);
+        }
     }
 
     /// A temperature argument for `invented_table`: `1e300 * 1e300` is +inf,
