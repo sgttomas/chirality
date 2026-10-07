@@ -14704,3 +14704,5 @@ RV114 agrees with all 27 decisions, several subject to its findings.
 **Implementers running:** I88 (SI1c repair) and I95 (B3-S). I94 has returned. **B3-D is next in the free slot** (it uses I94's B3b answer and the E/ν gap).
 
 **IDs:** RV115 is used. The next unused are **I96 and RV116**.
+
+**B3-D dispatched as I96** (the B3 design, documents only) by `BRIEFS/B3D_DESIGN.md`, in the slot I94 freed. **Implementers running:** I88 (SI1c repair), I95 (B3-S) and I96 (B3-D). **IDs:** I96 is used. The next unused are **I97 and RV116**.
