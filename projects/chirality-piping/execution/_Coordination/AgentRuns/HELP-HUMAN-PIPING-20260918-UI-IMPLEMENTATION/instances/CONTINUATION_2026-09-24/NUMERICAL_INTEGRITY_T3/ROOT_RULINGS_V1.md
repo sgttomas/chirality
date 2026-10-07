@@ -13840,3 +13840,19 @@ For each, it gives the priced worst-case heap against 32 GB and 16 GB machines. 
 **Decision 15 is ruled now: B6 goes first, as its own compact PR.** It touches no D1 crate `src`, so it needs no Pass B, T9, both-entry gate or re-qualification. B1 picks it up through one merge of main, with one unmerged product slice in NUM at a time.
 
 **The rest of I84's decisions** (1–14 and 17–21) are selected as amended above.
+
+## A deadlock in DEC-025's quiet check, fixed; SI1b's DEC-025 restarted (ROOT, 2026-10-07 UTC)
+
+**What happened.**
+- DEC-025 `SI1b_b4f22e6ce7` took the T3 lock at 01:24:12Z and began `run_dec025.sh`'s quiet-host wait.
+- I83's B6 mutant runner then queued `/usr/bin/lockf -k …/cargo_job.lock … python -m pytest …`, as the host rule requires. That waiter's command line contains "pytest", so the quiet check counted it as busy.
+- DEC-025 held the lock waiting for quiet, while the waiter waited for the lock. Neither moved for about 48 minutes (`busy=1` throughout).
+- `t3_cargo.sh` was designed to avoid this for cargo (its waiter carries no "cargo " text). A direct `lockf` for pytest or vitest was not covered.
+
+**What was done.**
+- ROOT stopped its own run before any baseline work, logged it as CANCELLED, and set its record aside as `SI1b_b4f22e6ce7_aborted1`. A copy of its quiet log is in `IMPLEMENTATION/SESSION_2026-10-07/`.
+- I83's job was not touched.
+- **The fix:** `run_dec025.sh`'s `busy()` now excludes `/usr/bin/lockf` processes. A process waiting for the lock is not work, and the lock holder's child process still counts. The new copy is `IMPLEMENTATION/SESSION_2026-10-07/host_tools/run_dec025.sh.txt` (SHA256SUMS).
+- DEC-025 `SI1b_b4f22e6ce7` was restarted under the lock, with the same trees: candidate `b4f22e6ce7`, baseline main `47a3bdfcf5`.
+
+**No result is affected.** The stopped run had produced nothing. Earlier DEC-025s reached quiet normally, because no lockf waiter was queued during their waits.
