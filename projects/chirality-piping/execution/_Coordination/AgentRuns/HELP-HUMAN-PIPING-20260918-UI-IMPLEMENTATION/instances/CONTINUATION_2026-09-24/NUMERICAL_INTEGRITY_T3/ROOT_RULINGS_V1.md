@@ -14508,3 +14508,21 @@ RV-P round 2 covers all of these at SP's end.
 6. **The phase-4 check** of RetainedErrorTextBytes against SP's producer stays open, for I-A.
 
 **I2 opens.** ROOT merges `b1-a` (`9812c83ded`) into `b1` with `--no-ff` at an I85 commit that carries R3P-1, once I85 replies with a clean commit.
+
+## I2: SA merged into `b1` at `eca6c00a72` (ROOT, 2026-10-07 UTC)
+
+**I2 is made.** I85 committed at a clean point, `c17340d50b`, after R3P-1 and R3P-9, and stopped editing. ROOT merged `b1-a` (`9812c83ded`) into `b1` with `--no-ff` as **`eca6c00a72`**.
+- The two sides are disjoint since `56c5579f07`: SP's 8 files, and SA's 3 (`retained_memory.rs`, the law tests, the runner's admission test). There was no conflict.
+- `b1`'s maintained diff from main is now 11 files.
+- I85 confirmed SA's parked-slot patch still matches `CaseSlot`'s `error`, `observable_error` and `parked_cases()`.
+
+**ROOT's build check at I2** (`WT/targets/root-i2`, registered, under the lock): PP `--lib` builds, with 569 passed, 2 failed and 11 ignored.
+- The failures are the known Mac `t13`, and SP's `b1_sp_w_c2_direct_entry_counts_one_run_through_g_c`.
+- The latter is the expected post-I2 pin (A1-S-2). Its first assertion compares the ordinary envelope with the plain bytes on every path. Once I2 lets the transaction run at C = 3, the envelope carries the cases' notices, as the test's own doc says.
+- **I85 adapts the pin.** This is not a product defect: at I2 the precommit refuses before SR-RS, as designed.
+
+**Next for SP (I85):**
+- the post-I2 multi-case pins (A1-S-2), including n05's two-case coexistence (A1-N-7);
+- the seam saturation's pin;
+- R3P-8's S13 and S14 re-run, and S20 after T-11;
+- RV112 N-3 and N-4.
