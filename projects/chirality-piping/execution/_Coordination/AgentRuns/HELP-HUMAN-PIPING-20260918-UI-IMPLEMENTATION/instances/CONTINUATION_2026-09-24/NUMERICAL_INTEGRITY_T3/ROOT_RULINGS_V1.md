@@ -14758,3 +14758,21 @@ RV114 agrees with all 27 decisions, several subject to its findings.
    - N-9, optionally.
 5. **The E/ν gap goes to B3-D (I96) and B3-K,** as R-9.
 6. **B2-K's estimate is 19–30 h,** and RV115 holds RV-K for B2-K's code round. B2-K starts when `b2` is cut (J0, after PR-B1).
+
+## I96's B3-D design returned; RV116 (RV-D) reviews it; RV115 checks K3-2 (ROOT, 2026-10-07 UTC)
+
+**I96's design is verified as a record.** `R/I96/b3_d_01/DESIGN.md` sha256 `ad7942f6…`; SHA256SUMS 11 of 11 OK; the strict screen is clean. Draft statics: the definition JSON, the table JSON (`5bf0d0dc…`) and `SCHEMA_ENUM.diff`. As returned:
+- **`RP-PREPARED-EXACT-DUAL-v1`** prepares on the exact route, because SourceAnnulus's published sections are not correctly rounded. Its new `evidence` member regenerates the selected case's `pipe_sections`, and G8 binds G = E/(2(1+ν)) bit for bit.
+- **The `physics-retained-1` table** binds RV78-N1's policies in `receipt_bindings` from version 1.
+- **The D1 texts:** B3a's D1.3 and N-11's reading, and B3b's D1.3 to D1.5, with no combinations (I95's ruling 4).
+- **The readers' branch** adds no new failure code.
+- **B3-K is needed:** K3-1 (`ProductMaterial::BaseENu`) and K3-2, new. `build_member` lacks the represented-Z enclosure for `ExactENu`, so without it every exact stress row fails its certificate. K3-2 changes a frozen oracle outcome (a declared exception), at 3–6 h, with its own merge point J2k.
+- **Two producer requirements:** P-2 (exact-block budget parity, 4M against 8M) and P-4 (W1 never calls the pressure-runtime builders).
+- **Estimates:** B3a 7–12 h; B3b 50–79 h agent and 17–27 h review.
+- **I96's decisions B3D-1 to B3D-18** are for ROOT.
+
+**ROOT rules after two reviews:**
+- **RV116 (RV-D), fresh:** the whole design, by `BRIEFS/RV116_RVD_DESIGN_REVIEW.md`;
+- **RV115 (RV-K):** K3-1 and K3-2's kernel content, as an addendum to its B2-KD review, since it holds RV-K.
+
+**IDs:** RV116 is used. The next unused are **I97 and RV117**.
