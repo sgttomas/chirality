@@ -49,13 +49,13 @@ Three maintained files under `projects/chirality-piping/`. Their maintained diff
   - There were no unexpected byte differences.
   - **Verdict:** PASS, 0/0/6.
 - **The repair round** added assertions that kill RV104's three surviving mutants, and completed the doc comment (I79 REPAIR_01; RV104 confirms in ADDENDUM_01).
-- **Mutants:** I79's 13 are all killed at the head. Of RV104's 11, the original tests killed 8, and the repair round's tests target the other 3 (RV104's confirmation is in the merge record).
+- **Mutants:** I79's 13 and RV104's 11 are all killed at the head. RV104's R2, R3 and R6 are killed only by the repair round's two tests (RV104 ADDENDUM_01: CONFIRMED; no executable change; its 626,721-line evaluator and 216,478-line runner dumps byte-identical across the round).
 
 ## 5. Gates
 
 | Gate | Result |
 |---|---|
-| Independent complete-diff review (RV104) | PASS; the repair round's confirmation is in the merge record |
+| Independent complete-diff review (RV104) | PASS (0/0/6); repair round CONFIRMED (ADDENDUM_01) |
 | Suites against main | `expression_evaluator` 49 → 57; `rule_check_runner` 33 → 35; `rule_pack_document` 10; Python `test_rule_interval.py` 193. Every count change is an added test |
 | `source_equality.py`, `check_citations.py`, GEN-8 on the exact head, hosted CI with the full-SHA dispatch, and the exact-head Mac DEC-025 against a fresh main baseline | See the merge record |
 | Pass B | Not applicable: the rules crates are outside PP's closure |
