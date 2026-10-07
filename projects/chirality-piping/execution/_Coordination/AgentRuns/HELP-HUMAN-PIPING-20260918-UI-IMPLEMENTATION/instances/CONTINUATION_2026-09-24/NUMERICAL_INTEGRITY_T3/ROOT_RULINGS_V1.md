@@ -13738,3 +13738,35 @@ Its report states the product-reach trade-off for each M. ROOT selects after it 
 - P1 at 5.25 GiB.
 
 For each, it gives the priced worst-case heap against 32 GB and 16 GB machines. ROOT selects when it returns, preferring one tier if it fits with the 5 % text-error budget.
+
+## I82's addendum: B1's target is S3, one tier at D1's caps with C = 3 (ROOT, 2026-10-07 UTC)
+
+**I82's ADDENDUM_01 is verified** (`R/I82/b1_cap_study_01/ADDENDUM_01.md`, `7c155ceb…`; `SHA256SUMS.addendum_01` 18/18 OK; STUDY.md's sums still OK; no machine paths). It was priced in Python with the same chain, which is byte-identical at c = 1. ROOT reproduced S3's margin arithmetic.
+
+**It compares four options within M ≤ 12 GiB:**
+
+| Option | Shape | Proposed M | Note |
+|---|---|---|---|
+| **S3** | One tier, D1 caps, C = 3 | 10.5 GiB | Recommended |
+| **S4** | One tier, C = 4, l ≤ 32 | 12 GiB | No headroom |
+| **S4′** | One tier, C = 4, m ≤ 24 | 12 GiB | No headroom |
+| **P1** | Two tiers | 5.25 GiB | — |
+
+**Selected as B1's target (superseding P1): S3.**
+- **One tier at D1's full model caps:** n = m = g = 32, Σr = 192, l = 128.
+- **C = 3, with L = 3 × 128 = 384** stated but not binding.
+- **Priced at 10.5 GiB:** dense E_mov,max + R is 9,747,725,678 B, which is 0.8646 M and 399,134,558 B under 0.9 M, with a 9.53 % text-error budget. Sparse is 0.8594 M, with 10.94 %. W3 binds in both modes.
+- **Why S3:**
+  - It is one tier, so there is one cap table, one profile, and one set of G-B and G-C bounds.
+  - Nothing is trimmed. D1's single-case domain and every committed witness (W2, W2b, W-C2) stay in it.
+  - It leaves 1.5 GiB under the owner's 12 GiB, absorbing deviations of G5 on B1's real code up to about 44 % of TAV_W.
+  - Its priced worst-case heap per W1 invocation, 9.02 GiB, is under a third of the 32 GB target.
+- **Rejected:**
+  - S4 and S4′ have no headroom, and they push W2 and W2b out of the domain.
+  - P1's two tiers cost more code and witnesses than S3, and the 12 GiB decision removes their reason.
+
+**M's final selection, at B1's G6 by measurement (D-7):** the smallest 256 MiB step that holds at least a 5 % text-error budget in both modes, with 12 GiB as the ceiling. The pricing expects 10.5 GiB.
+- **If G5 on the real code exceeds 12 GiB at C = 3,** ROOT returns to I82's options (S4's trims do not help there) or to P1, and tells the owner.
+- **B1's evidence obligation stands:** measured peak resident memory and run times at the caps, for the 16 GB floor.
+
+**I84's plan** takes S3 as the shape.
