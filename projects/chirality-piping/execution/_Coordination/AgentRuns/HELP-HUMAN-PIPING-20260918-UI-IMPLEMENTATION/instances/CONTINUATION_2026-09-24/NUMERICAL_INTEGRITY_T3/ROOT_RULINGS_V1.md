@@ -13897,3 +13897,27 @@ For each, it gives the priced worst-case heap against 32 GB and 16 GB machines. 
 - **Phase 0 continues alongside:** B6's PR is cut when I83 returns. SI1b's PR #1106 merges when DEC-025 is clean.
 
 **IDs:** I85 and I86 are used. The next unused are **I87 and RV108**.
+
+## #1106 merged: T3-SI1b is on main (ROOT, 2026-10-07 UTC)
+
+**DEC-025 `SI1b_b4f22e6ce7` ended `ALL-DONE`** (02:59:56Z), after its restart, with every count as expected:
+- suites: 38 of 40 identical; `expression_evaluator` 50 → 58 (+8 added) and `rule_check_runner` 33 → 35 (+2 added);
+- pytest: 3,773 and vitest: 3,612, both unchanged;
+- both builds exit 0;
+- the sweep stopped at `t13`.
+
+**#1106 merged** at 03:00:18Z as `025c1cf326` (`--merge --match-head-commit b4f22e6ce7`). Main had not moved, and every gate was met on that head:
+- RV104 (PASS, ADDENDUM_01 and ADDENDUM_02 CONFIRMED);
+- source equality, citations and GEN-8;
+- CI with dispatch 37555520168;
+- DEC-025 standing in for the full suite;
+- Pass B not applicable.
+
+Record: `IMPLEMENTATION/SI1B_MERGE/`. RV104 A2-N1 (the I61 PLAN reference) is clarified there.
+
+**NUM absorbed main.** Its tree is unchanged and its non-execution tree equals main's, so **NUM carries no unmerged product slice.**
+
+**Next:**
+- B6's PR when I83 returns;
+- T3-SI1c is ready for a plan, not dispatched yet;
+- a records-only PR after B6's merge.
