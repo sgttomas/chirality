@@ -3676,7 +3676,8 @@ mod tests {
     }
 
     #[test]
-    fn same_dimension_quotients_that_did_not_panic_are_unchanged() {
+    fn same_dimension_quotients_of_finite_operands_are_unchanged() {
+        // SI1b's ratio block leaves these as they were on main.
         let quotient = |left: Expression| binary(BinaryOperator::Divide, left, variable("limit"));
         // The largest finite ratio still evaluates.
         let largest = evaluate(&input(
@@ -3691,26 +3692,6 @@ mod tests {
             largest.value,
             Some(EvaluationValue::Quantity(ratio_quantity(f64::MAX)))
         );
-        // A finite numerator over an overflowing divisor used to be the ratio
-        // 0 (the infinity absorbed). Since T3-SI1c the divisor blocks at the
-        // multiply that overflows, and the quotient is never formed.
-        let over_infinity = evaluate(&input(
-            binary(
-                BinaryOperator::Divide,
-                variable("limit"),
-                binary(
-                    BinaryOperator::Multiply,
-                    ratio_literal(1.0e300),
-                    variable("actual"),
-                ),
-            ),
-            vec![
-                binding("actual", 1.0e300, Dimension::Stress),
-                binding("limit", 2.0, Dimension::Stress),
-            ],
-        ));
-        assert_eq!(finding_records(&over_infinity), vec![OVERFLOWED_PRODUCT]);
-        assert_eq!(over_infinity.value, None);
         // A unit mismatch is still reported first, and alone.
         let mismatch = evaluate(&input(
             quotient(variable("actual")),
@@ -3731,6 +3712,31 @@ mod tests {
         ));
         assert_eq!(by_zero.findings.len(), 1);
         assert_eq!(by_zero.findings[0].code, FindingCode::DivisionByZero);
+    }
+
+    #[test]
+    fn a_same_dimension_quotient_over_an_overflowing_divisor_blocks_at_the_multiply() {
+        // A finite numerator over an overflowing divisor used to be the ratio
+        // 0 (the infinity absorbed; SI1b kept it). Since T3-SI1c the divisor
+        // blocks at the multiply that overflows, and the quotient is never
+        // formed.
+        let over_infinity = evaluate(&input(
+            binary(
+                BinaryOperator::Divide,
+                variable("limit"),
+                binary(
+                    BinaryOperator::Multiply,
+                    ratio_literal(1.0e300),
+                    variable("actual"),
+                ),
+            ),
+            vec![
+                binding("actual", 1.0e300, Dimension::Stress),
+                binding("limit", 2.0, Dimension::Stress),
+            ],
+        ));
+        assert_eq!(finding_records(&over_infinity), vec![OVERFLOWED_PRODUCT]);
+        assert_eq!(over_infinity.value, None);
     }
 
     #[test]
@@ -3833,7 +3839,8 @@ mod tests {
     }
 
     #[test]
-    fn blocks_nan_interpolation_and_step_lookup_arguments_instead_of_panicking() {
+    fn nan_forming_interpolation_and_step_arguments_block_at_the_multiply() {
+        // SI1b: these used to panic, then blocked at the NaN argument.
         // The NaN argument (inf - inf) is never formed: since T3-SI1c its
         // first `1e300 * 1e300` blocks at the multiply.
         for mode in [None, Some(LookupMode::Step)] {
@@ -3873,7 +3880,7 @@ mod tests {
     }
 
     #[test]
-    fn blocks_generated_nan_table_arguments() {
+    fn generated_nan_forming_table_arguments_block_at_their_producer() {
         // Differential inputs t_259_1 and t_2856_3 (I79's table-rooted set):
         // with z = 1e308, `z*z - (z+z) - z` and `|z|/|z| + ((z+z) - z*z)` are NaN.
         let table = UserTable {
