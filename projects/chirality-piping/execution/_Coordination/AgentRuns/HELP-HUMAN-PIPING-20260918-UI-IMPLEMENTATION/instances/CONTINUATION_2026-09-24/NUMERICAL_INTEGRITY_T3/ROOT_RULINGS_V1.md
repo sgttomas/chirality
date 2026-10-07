@@ -14179,3 +14179,62 @@ I85's REPAIR_01 (`8d2d714e…`; 34 of 34 OK) is verified by ROOT: one test-only 
   - SR-RS (`WT/b1-r`, from I1) starts when the first of I88 or I89 returns.
 
 **IDs:** I89 is used. The next unused are **I90 and RV110**.
+
+## I88's SI1c verified and ruled; RV111 reviews it; SR-RS dispatched as I90 (ROOT, 2026-10-07 UTC)
+
+**I88 (SI1c) is verified.** `R/I88/si1c_01/RETURN.md` sha256 `7459391d…`; SHA256SUMS 51 of 51 OK; placeholder paths only. ROOT's checks:
+- **The branch.** `codex/piping-t3-si1c-20261007` at `7f233b2e01` is clean: four commits over main `025c1cf326`. Exactly the 5 files of I87 §6.2, +1,271/−140.
+- **The core of D.** `finite_result` is a plain guard that pushes `NonFiniteInput` and returns `None` when a result is not finite. It is called at add/subtract, multiply (three arms) and divide (two arms), and `interpolate_point` checks each step.
+- **The host.** Targets are deleted. The dumps (42 MB) are kept in `WT/scratch/i88_si1c/`.
+- **The differential (as returned).** All six of I87 §6.4's pass conditions hold, with 0 violations, over 226,336 point, 906,300 interval and 300,594 runner lines. On RV104's point lines, 244 checks move from CHECKED and 216 from FAILED to INCOMPLETE, the owner's decision in effect. I87 §2.7's bounds are now exact: 682 decided booleans and 2,492 decided finite quantities.
+
+**Rulings on I88's points:**
+1. **Accepted:** a raw non-finite value in a different entered unit stays `supplied: false`. Marking it supplied would change its diagnostic, and would let an unreferenced input pass where today it blocks. That is a status change, and I87 §5.1 forbids one. Its cause is named (`NonFiniteInput` replaces `UnitMismatch`). The route is Rust-API only.
+2. **The N-4 note is appended to an existing note, not substituted for it.** A library provenance note says where a value came from, which is what a reader needs to find why it is non-finite. Use the existing note, then "; ", then the N-4 note. This goes in the repair round with RV111's findings, and RV111 confirms it.
+3. **Accepted:** the second rename. `same_dimension_quotients_that_did_not_panic_are_unchanged` no longer says what it pins, because one of its four cases now blocks. It is split or renamed in the same repair round.
+4. **Accepted:** the comment edits beyond I87's list (the `nan_table_argument` doc, the ratio-arm comment and two `interval_tests` comments). They are N-5's and D's wording.
+5. **Noted for S-I2's texts:** an interpolation over finite rows can overflow at the binary64 sum step. D blocks it, and "overflowed" describes the step, not the interpolated value.
+6. **Accepted:** the equivalent mutants are recorded, not repaired (decision 11). Four of the six interpolation step checks are not load-bearing, and RV111 confirms that by argument.
+7. **Accepted:** the limit's finiteness check sits in `resolve_limit`, which both limit blocks call. Pass condition 4 is read per check (point-path checks inside bounded runs).
+8. **Accepted:** "±" (UTF-8) in the messages. The existing note text uses it.
+
+**Dispatched:**
+- **RV111:** SI1c's independent complete-diff review, by `BRIEFS/RV111_SI1C_REVIEW.md`. Its findings and rulings 2 and 3 make one repair round (I88), which RV111 confirms.
+- **I90 (I-RS): SR-RS,** by `BRIEFS/B1_SR_RS.md`, in `WT/b1-r` (branch `codex/piping-t3-b1-r-20261007` from I1 `262bd687f0`). I88's slot is free.
+- **Implementers running:** I85 (SP), I89 (SA) and I90 (SR-RS).
+
+**IDs:** RV111 and I90 are used. The next unused are **I91 and RV112**.
+
+## RV110 passes #1108 with S-1; I85's ignored evidence committed; errata E-7 to E-9; #1108 takes the delta (ROOT, 2026-10-07 UTC)
+
+**RV110 passes records PR #1108** (head `145443e9e4`, NUM `25c745f905`): `R/REVIEW_RV110/records_01/REVIEW.md` sha256 `5b302199…`; SHA256SUMS 41 of 41 OK; PASS, 0 BLOCKING, 1 SHOULD-FIX, 4 NOTE.
+- Scope: 766 added and 2 modified, all under `execution/`. The head's tree equals NUM's.
+- The publication screen is clean, including the 28 gzipped files.
+- GEN-8 and CI pass.
+- The merges #1105–#1107 match their records.
+- The owner's words are quoted exactly, and no owner-held decision was taken by ROOT.
+
+**Erratum E-7 (S-1): four of I85's sealed evidence files were never committed.**
+- **The files:** `R/I85/b1_st_01/_run_records/build/{build01_norun.log, build_identities.txt, lib01.log}` and `_run_records/repair_01/build/r1_lib01.log`.
+- **The cause:** `P/.gitignore`'s `build/` hid them. ROOT's verification ("60 of 60 OK", "34 of 34 OK") checked the host folder only, against the committed-tree rule adopted in "RV102 passes #1101; S-1 and S-2 fixed before the merge".
+- **Repaired.** The four files were screened (no host paths) and force-added (`git add -f`), and their sums match.
+- **ROOT's own check:** every sum file added since #1105, read from the index with each path resolved against its folder and its ancestors, gives 26 files and 790 entries, with 0 bad and 0 missing.
+- **The ignored paths under T3** are now only I85's two `build/` folders (committed with `-f`), older `__pycache__` folders and RV56's `imported/` folders, all of which predate this session.
+- **The rule is sharpened.** Before committing a return, ROOT runs `git status --ignored` on the new record folders and force-adds any sealed file that an ignore rule hides.
+
+**Erratum E-8 (N-3):** SI1B_MERGE's `PR_CUT.txt` records the dispatch as `target_base=47a3bdfcf5`. Run 37555520168's plan shows the full SHA `47a3bdfcf5a37e856465c45cf904383f10181498`. The abbreviation is the record's, not the run's. It probably seeded #1107's refused short-SHA dispatch. The full-SHA rule is restated in "B6's PR #1107 cut; …".
+
+**Erratum E-9 (N-3):** RR "RV104 confirms SI1b's repair round; …" expects `expression_evaluator` 49 → 57, and "#1106 merged: …" reports 50 → 58. Both are right. The first counts the lib tests; DEC-025's manifest total adds one conformance test.
+
+**RV110's other notes:**
+- **N-1, agreed:** B6's item-2 widening changes no public meaning. Its grounds are those of RR "…F-1…" ("successors are not public before B8") and PLAN decision 11, whose class it is. The TS refusal code appears verbatim on `HistoricalRunPanel`, but only for a retained-precision source. Successors are not public before B8, so none reaches a user.
+- **N-2: the work graph's T3 section is corrected.**
+  - The superseded memory decisions are marked.
+  - The rulings in force gain the 12 GiB, S3, R1/PLAN_v2, quiet-check and wait-rule entries.
+  - The IDs line is consistent.
+  - ST's commits are given.
+  - The notes routed gain RV108's and RV109's.
+- **N-3:** B6_MERGE's `gen8.txt` lacked E-4's head and command. They are added by `_run_records/gen8_addendum_01.txt`, sealed by `SHA256SUMS.addendum_01`.
+- **N-4:** the squash body corrects the PR description's content list.
+
+**#1108 takes the delta as a second commit,** NUM's `execution/` at the commit that records this section. RV110 confirms the delta, GEN-8 reruns on the new head, and the squash uses `--match-head-commit` once main is confirmed unmoved. `WT/records-pr-b` stays out of cleanup until then.
