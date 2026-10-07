@@ -13770,3 +13770,23 @@ For each, it gives the priced worst-case heap against 32 GB and 16 GB machines. 
 - **B1's evidence obligation stands:** measured peak resident memory and run times at the caps, for the 16 GB floor.
 
 **I84's plan** takes S3 as the shape.
+
+## I84's B1 plan returned; RV107 reviews it before ROOT's ruling R1 (ROOT, 2026-10-07 UTC)
+
+**I84's plan is verified:** `R/I84/b1_plan_01/PLAN.md` (`7f9699f3…`; SHA256SUMS 7/7 OK; no machine paths). It is written for S3 and applies all three basis changes.
+
+**Its scope:**
+- **Twelve slices:** SW (probe), ST, SP, SA, SR-RS, SR-PY, SR-TS, SC, SQ (B1's Pass A with the RSS and time measurement), SG, SB and SK.
+- **Estimate:** 67–102 h agent and 26–41 h review. That is well above DESIGN_v2's 37–59 h, because the producer is single-case throughout and SP's refactor alone is 14–22 h.
+- **Twenty-one decisions,** none of them owner-held.
+- **Recommendation:** B6 goes first as its own compact PR.
+
+**Findings to weigh:**
+- W-C2 can be pinned only after SR-RS.
+- The 07m re-pin cascade looks empty.
+- The milestone is now in the domain, so six out-of-domain oracles are re-based.
+- **For B2:** a retained combination at D1's caps does not fit beside three cases within 12 GiB. B2 will need a reduced tier, a lower C for combinations, or the owner, and B4 faces the same ceiling. This is recorded for B2's planning; nothing is decided now.
+
+**ROOT rules only after an independent review,** because of the plan's size. **RV107** (fresh; documents only) reviews it by `BRIEFS/RV107_B1_PLAN_REVIEW.md`.
+
+**IDs:** RV107 is used. The next unused are **I85 and RV108**.
