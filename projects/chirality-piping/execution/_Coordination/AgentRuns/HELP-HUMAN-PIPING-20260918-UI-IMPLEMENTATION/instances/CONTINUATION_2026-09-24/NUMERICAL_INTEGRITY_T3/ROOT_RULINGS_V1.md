@@ -14545,3 +14545,16 @@ RV-P round 2 covers all of these at SP's end.
 
    RV113 recommends a gate for each in its SR-PY review. Aligning them may touch RS and TS, in those lanes' repair rounds. **Until ruled,** SC gives per-reader expectations for them, or omits them.
 3. **SR-PY goes to RV113** after its SR-TS review and its SR-RS repair confirmation. I4 then merges SR-PY and SR-TS, after RV-R.
+
+## B2/B3's plan dispatched as I93 while B1 implements (ROOT, 2026-10-07 UTC)
+
+**Two implementer slots are idle.** The next B1 work (SC, SQ) waits on SP, and SI1c's repair waits on RV111. So **I93 plans B2/B3 (documents only)**, by `BRIEFS/B2B3_PLAN.md`, so that ROOT can dispatch the moment PR-B1 merges (I61 PLAN §2.1: B2 and B3 in either order after B1; B4 only if ruled).
+- **It carries:**
+  - B3's new table binding RV78-N1's policies;
+  - the explicit-row rule (PLAN_v2 §3.7);
+  - C3a's reserved names;
+  - the T6S consistency notes;
+  - the open memory question of a combination beside three cases at M ≤ 12 GiB, priced with I82's evaluator.
+- **Implementers running:** I85 (SP) and I93 (planner).
+
+**IDs:** I93 is used. The next unused are **I94 and RV114**.
