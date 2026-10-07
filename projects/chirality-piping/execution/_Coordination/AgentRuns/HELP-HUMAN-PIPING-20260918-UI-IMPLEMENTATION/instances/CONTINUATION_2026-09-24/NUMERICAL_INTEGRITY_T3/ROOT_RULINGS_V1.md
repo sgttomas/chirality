@@ -15024,3 +15024,35 @@ The suites: EE lib 64 → 65; the runner's `point_path_non_finite_run` 8 → 11;
 - DEC-025's ALL-DONE;
 - the automatic CI and the dispatch green on `13d02273f4`;
 - then ready, and `gh pr merge 1112 --merge --match-head-commit 13d02273f4…`.
+
+## RV117 passes #1111; #1111 squash-merged; errata E-13 and E-14; the host's name joins the screen (ROOT, 2026-10-07 UTC)
+
+**RV117's review:** `R/REVIEW_RV117/records_01/REVIEW.md` sha256 `fb368f74…`; SHA256SUMS `e3d47596…` 45 of 45 OK; the strict screen is clean, with no links. **PASS, 0 BLOCKING, 0 SHOULD-FIX, 5 NOTE.** Independently:
+- **Scope:** H's tree equals N's (1,043 A / 2 M / 0 D, all under `P/execution`). It shares no path with #1112.
+- **No mode-120000 entry.** `R/REVIEW_RV58/` is byte-equal to main's.
+- **The leak validator** gives PASS on M..H.
+- **The 8 `.gz` files** decompress and screen clean, apart from N-4.
+- **GEN-8:** 1 passed.
+- **The sum files:** 29 added sum files (1,012 entries) verify, and 35 files (1,370 entries) with main's.
+- No redacted original and no pre-redaction blob of E-10 is in H.
+- **CI:** 4/4.
+- All 26 cited hashes match.
+- **No owner-held decision was taken by ROOT,** and no owner decision was made in the span.
+
+**#1111 was squash-merged** as `54f1ba1f6d` (2026-10-07T23:00:19Z), with main unmoved and the corrected squash body (N-3). The record is `IMPLEMENTATION/RECORDS_MERGE_2026-10-07C/`. NUM absorbed main at `039b17727f`; the RR conflict resolved to NUM's tree, with no tree change.
+
+**Rulings on RV117's notes:**
+1. **N-1: the work graph is brought current in this commit.** From now on, ROOT updates the work graph's T3 section in the same commit as any RR section that changes a position, the next IDs or the next safe action. RV117 found it lagging three times.
+2. **N-2, erratum E-13:** `RECORDS_MERGE_2026-10-07B/_run_records/CI_RUNS.txt` lists H1's (`145443e9e4`) runs, while its RECORD.md cites it as CI on H2. The fact stated is true: H2 `ea3b1443ea`'s four automatic runs succeeded (37637875013 Piping Desktop E2E, 37637874699 Harness Pre-merge Validation, 37637874697 pec-tests, 37637874737 governance-harness). The sealed file is not changed.
+3. **N-5, erratum E-14** (four slips in this file):
+   - "I2: SA merged into `b1` at `eca6c00a72`": `b1`'s maintained diff from **main** at I2 is 12 files. The 11 stated is the count against I1 `262bd687f0`. ROOT verified both counts.
+   - "I93's B2/B3 plan returned; …": "Decisions 17–19 stay owner-held" means **I93's decisions 22–24** (B0's 17–19, as I93 renumbered them).
+   - "I96's B3-D revision 01 verified; …": `0d5bb812…` is the **patched SCHEMA's** hash. `SCHEMA_ENUM.diff` itself is `b1597c7b…`.
+   - "NUM absorbs main with #1109's …": #1109's first commit is `4a58bf2a7d`, its head `b928a20f98`, and it merged as `cccc41a293`. It also changed `tools/validation/`, not only records.
+4. **N-4: the host's name joins ROOT's commit-time screen.** I91's five pytest junit `.gz` files carry the machine's name in their `hostname` attribute. The strict screen had no hostname form, and the leak validator skips `.gz`. The name is already on main in 11 T3 records since #1084, so #1111 adds no new kind of exposure.
+   - **From now on:** ROOT's screen also checks for the machine's full host name and `\.local\b`, in text and in decompressed `.gz`. A record that carries it is redacted (`<host>`) before its first commit, or its run output is re-recorded without the attribute. Sealed files are not changed in place.
+   - Briefs say: pytest junit output goes into records only after the `hostname` attribute is removed.
+   - **No repository-wide redaction:** whether historical records on main are rewritten is the owner's call, and ROOT does not propose it for this exposure.
+5. **For information** (no finding): #1109's `FIXTURE_MATERIALIZATION.md` quotes the old absolute link target. It is one of the many historical T3 files on main with such paths. This is noted only.
+
+**IDs:** RV117 is used. The next unused are **I98 and RV118** (I97 is B2-C, running).
