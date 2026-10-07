@@ -13592,3 +13592,36 @@ Case B is confirmed `not_required`, and case A's dense half needs Text B (F-1). 
   - runs under `lockf -k WT/guard/cargo_job.lock`.
 
   I79's base pytest built 25 crates that way, with no overlapping lock job, so nothing is reopened. ROOT's DEC-025 pytest already runs under the lock.
+
+## RV106 passes #1105; #1105 squash-merged; RV106's notes; I79's SI1b repair round (ROOT, 2026-10-07 UTC)
+
+**RV106 passes #1105** (`R/REVIEW_RV106/records_01/REVIEW.md`, `e0b95180…`; 34/34 OK): 0 BLOCKING, 0 SHOULD-FIX, 5 NOTE. Its checks:
+- scope and the publication screen;
+- GEN-8 and the 342 sum entries;
+- RR append-only, and no redacted original;
+- CI and the living documents against Git and GitHub.
+
+It confirms that ROOT took no owner-held decision, and quotes the owner's words exactly.
+
+**#1105 squash-merged** at 00:42:00Z as `47a3bdfcf5`, from `736f3fb7b2`; main had not moved. Record: `IMPLEMENTATION/RECORDS_MERGE_2026-10-07/`.
+- **NUM absorbed main** as `1527594642`. Main's whole tree equalled NUM's at `030020aca3`, so the rulings-file conflict resolved to ours, and the merged tree equals NUM's pre-merge tree.
+
+**RV106's notes:**
+- **N-1: the question the owner answered.** ROOT's message before the owner's decision said B1 "may later need your decision on raising M, the memory ceiling, above 3.75 GiB". The owner answered, "You can raise the memory ceiling to 6.0 GiB without asking."
+  - The decision concerns M only.
+  - **The dense and lane ceilings are unchanged and stay owner-held,** including the provisional 6 GiB dense-scrutiny and observation-lane ceilings.
+- **N-2: superseded.** `WT/records-pr` was #1105's checkout; #1105 has merged, so it may now be cleaned with the others.
+- **N-3, errata:**
+  - "B0 selected on DESIGN_v2; …" counts I78's v1 decisions as "sixteen for ROOT, four owner-held". In v1 they were 17 for ROOT and 3 owner-held, and in v2 18 for ROOT and 3 owner-held, with decision 21 added.
+  - "Owner decision: ROOT may raise M up to 6.0 GiB without asking" calls the M question "B0's decision 17" in v1's numbering. In v2, the ROOT-held M lever is decision 16, and decision 17 is M above 6.0 GiB.
+  - The selection text itself is correct.
+- **N-4:** the work graph's position date and the SI1b row are updated in this touch.
+- **N-5:** the squash body names the `SHA256SUMS.dec025_mac` seal.
+
+**I79's SI1b repair round is verified** (`R/I79/si1b_01/REPAIR_01.md`, `a44a274d…`; `SHA256SUMS.repair_01` 13/13 OK). Head `0730c87aef`, pushed; one file changed, a doc comment plus two tests.
+- Mutants: 13/13 killed, including RV104's R2, R3 and R6, killed only by the new tests.
+- The differential dumps are byte-identical against `966113396e`.
+- Evaluator 55 → 57.
+- **RV104 confirms it** in ADDENDUM_01.
+
+**SI1b's package is drafted** in `IMPLEMENTATION/SI1B/` (CHANGE_RECORD.md, PR_BODY.md, citations.json; the dry run PASSES with 1 resolved). It is sealed at the cut.
