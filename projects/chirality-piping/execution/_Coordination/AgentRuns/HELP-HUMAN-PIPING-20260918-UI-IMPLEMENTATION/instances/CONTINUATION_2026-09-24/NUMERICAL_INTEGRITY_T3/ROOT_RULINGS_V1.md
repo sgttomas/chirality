@@ -14960,3 +14960,43 @@ The suites: EE lib 64 → 65; the runner's `point_path_non_finite_run` 8 → 11;
 
    There is no Pass B: the rules crates are outside PP's closure.
 4. **The records-only PR** (`codex/piping-t3-records-20261007c`, cut at NUM `00658c76c1`) is re-staged at this commit, so it carries RV111's addendum. It leaves out SI1c's package, which goes to main with SI1c's own PR.
+
+## RV109 passes SP in RV-P round 2; SF-1 and SF-2 go to I3's pinning step; B2-C dispatched as I97 (ROOT, 2026-10-07 UTC)
+
+**RV109's round 2 on SP at `603e238517`:** `R/REVIEW_RV109/rvp_round2_01/REVIEW.md` sha256 `206fd360…`. SHA256SUMS `1863f506…` 125 of 125 OK. The strict screen is clean, including gzipped files, with no links and no `build` folder. **PASS, 0 BLOCKING, 2 SHOULD-FIX, 4 NOTE.** Independently:
+- **T-1 to T-13** hold against DESIGN_v2.
+- **c = 1** is byte-identical to I1: 106 probe rows, adapter counts at every W1 stage boundary on 100 rows, and the committed pins.
+- **W-C2 was re-derived:**
+  - ordinals {0, 2};
+  - charged work 13,429,678 equals the call's `invocation_after`;
+  - one group, with C's records reusing A's builds;
+  - the snapshot points and the staging order are as specified;
+  - before I3, precommit stops at G5 `ATTEMPT_MISMATCH`, as planned.
+- **The headline rule** is the governing row: RS's G7 and PY accept it and refuse each alternative.
+- **On RV109's scratch I3 merge** (SR-RS `b5cb7faaeb`), all six of I85's expected pins reproduce exactly, and T-7-on-C ends at G8 `PREPARATION_MISMATCH`.
+- **Mutants:** 55 run, 44 killed.
+- **The suites against I1:** only +15 SP and +8 SA tests.
+- **The ledger** is extended by 115 hunks, all SP's.
+- R3P-1 to R3P-9 and RV112 N-4 are closed.
+
+**Rulings:**
+1. **SF-1: yes, the two build-provenance flags are N-16 outcomes.** In a two-Run batch, the second Run's records differ from its one-case run in `shared_built_here` (p128, p256) and `verification_shared_built_here` (p256). This is C2 §4 group-build sharing: one stiffness gives one group, and the second Run reuses s128, s256 and v256, built by the first.
+   - **At I3's pinning step, I85 does two things:**
+     - records the difference and its cause in its records;
+     - strengthens the test to compare the whole record set. The only exception is those flags on the second Run, asserted exactly.
+   - No product change.
+2. **SF-2: add the (C, B, A) and (A, A2) pins at I3,** in both modes. I85 shows that RV109's six survivors, M15, M16, M17, M19, M28 and M32, are then killed by assertions. M15 matters most: the reader accepts it, and it violates T-11's request order.
+3. **N-4: the plan's sentence is wrong, and the guard is not extended now.** PLAN_v2 §1 says s11f's rule 8 scans `retained_product.rs`, but `RULE8_FILES` does not list it.
+   - **Erratum E-12:** PLAN_v2 §1's sentence is corrected by this ruling.
+   - **To SQ's brief:** either add `retained_product.rs` to `RULE8_FILES` with its site table, or record why its arithmetic lies outside rule 8's scope. A reviewer must be able to check either.
+4. **N-1:** no producer-side origin check for an unavailable case's CaseSource. The head is correct, and the reader refuses the mutant at G8 after I3. This is noted for RV-X1.
+5. **N-2:** M46 and M26 are equivalent, M31 is unreachable in D1's domain, and M43 has no input. Accepted.
+6. **N-3, to SQ:** since I2, `b1`'s registered Direct entry publishes c ≥ 2 successors, for example I86's cap-maximal three-case input (6.65 MB, both modes) and (A, C) in sparse. They are candidate qualification inputs. This is on `b1` only; nothing c ≥ 2 is on main.
+
+**The transaction is settled for B2-C** (N-9's condition). T-1 to T-13 as RV109 confirmed them at `603e238517` are B2's basis. The I3 pins add tests, not transaction changes.
+
+**Dispatched: I97, B2-C (the B2 contract),** by `BRIEFS/B2C_CONTRACT.md`. Documents and code reading only.
+- **Implementers running:** I97.
+- **Waiting:** I85's I3 step, for RV113's confirmation of SR-RS's repair.
+
+**IDs:** the next unused are I98 and RV118.
