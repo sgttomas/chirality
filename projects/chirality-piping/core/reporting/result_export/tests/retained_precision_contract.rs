@@ -276,12 +276,13 @@ fn shared_rehashed_first_failure_mutations() {
 /// Observe one slice of the shared mutations against this reader's own
 /// expectation, print one outcome per mutation (visible with --nocapture) and
 /// check the slice tally. 07h held 277 mutations; RV94 N-3's G7 probe makes 278;
-/// 07l (U8-2) appends the 8 L = 0 mutations, making 286.
+/// 07l (U8-2) appends the 8 L = 0 mutations, making 286; 07m (B6) appends 8 G7
+/// mutations, making 294.
 fn slice_outcomes(tag: &str, range: std::ops::Range<usize>, want: &[(&str, usize)]) {
     use std::collections::BTreeMap;
     let shared = corpus();
     let mutations = shared["mutations"].as_array().unwrap();
-    assert_eq!(mutations.len(), 286);
+    assert_eq!(mutations.len(), 294);
     let mut tally = BTreeMap::new();
     let mut matched = 0;
     for mutation in &mutations[range.clone()] {
@@ -558,6 +559,38 @@ fn snapshot_07l_mutation_outcomes() {
         "I70_OUTCOME_07L",
         278..286,
         &[("G5a RETAINED_PRECISION_SCALE_MISMATCH", 8)],
+    );
+}
+
+/// Mutation 277, RV94 N-3's G7 probe (07k), as its own one-entry slice (B6;
+/// I70's item 2): an invalid enum in a not_required case's quality, at G7
+/// with the base code, which TS now shares (PLAN decision 11).
+#[test]
+fn snapshot_07k_mutation_outcomes() {
+    slice_outcomes(
+        "I83_OUTCOME_07K",
+        277..278,
+        &[("G7 SOURCE_NUMERICAL_CASE_INVALID", 1)],
+    );
+}
+
+/// Snapshot-07m pins (B6): the N-3 class at its full width (a selected and an
+/// unavailable case's quality enum, an empty evidence ref, an extra case
+/// member), then the sibling base header classes (quality status, empty
+/// limitations, null contract_evidence, a source_block_recovery member),
+/// mutations 286..294, each at G7 with this reader's base header code.
+#[test]
+fn snapshot_07m_mutation_outcomes() {
+    slice_outcomes(
+        "I83_OUTCOME_07M",
+        286..294,
+        &[
+            ("G7 SOURCE_NUMERICAL_CASE_INVALID", 4),
+            ("G7 SOURCE_NUMERICAL_QUALITY_INVALID", 1),
+            ("G7 SOURCE_FORMULATION_BASIS_UNSUPPORTED", 1),
+            ("G7 SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED", 1),
+            ("G7 SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN", 1),
+        ],
     );
 }
 

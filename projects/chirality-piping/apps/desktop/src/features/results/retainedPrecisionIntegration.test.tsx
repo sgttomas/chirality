@@ -682,8 +682,9 @@ describe("the declared differences, with TypeScript's expectations", () => {
     expect(caseFile.scope).toMatch(/no carrier authenticates producer origin/);
     // I66 U7 slice F observation 3: a blocked envelope is refused at G7 with each language's own base code.
     expect(caseFile.scope).toMatch(/a blocked envelope is refused at G7 with each language's own base code[^.]*TS SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID/);
-    // RV94 N-3 (U7 repair): an invalid enum value in a not_required case's quality, TS's G7 contract check first.
-    expect(caseFile.scope).toMatch(/An invalid enum value in a not_required case's quality is refused at G7 with each language's own code[^.]*TS SOURCE_PRODUCER_CONTRACT_UNSUPPORTED/);
+    // RV94 N-3 (B6; PLAN decision 11): TS's G7 refusal now carries the base readers' header code, so no
+    // language-specific code is declared for an invalid numerical_quality case.
+    expect(caseFile.scope).not.toMatch(/An invalid enum value in a not_required case's quality|SOURCE_NUMERICAL_CASE_INVALID/);
   });
   it.each<[string, string, Json]>(declaredForms)("%s on %s", async (_id, fixtureId, form) => {
     const expected = form.expected.typescript;

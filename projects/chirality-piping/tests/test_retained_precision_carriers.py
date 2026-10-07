@@ -288,7 +288,10 @@ def test_declared_differences_python():
     asserts its own from the same entries, and TS (I67) its own."""
     cases, docs = shared_cases()
     assert all(p in cases["scope"] for p in ("G7 parity compares the reader's (gate, code)", "parity there compares only accept against refuse",
-                                              "no carrier authenticates producer origin", "a blocked envelope is refused at G7 with each language's own base code", "Python SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID", "An invalid enum value in a not_required case's quality is refused at G7 with each language's own code", "Python SOURCE_NUMERICAL_CASE_INVALID"))
+                                              "no carrier authenticates producer origin", "a blocked envelope is refused at G7 with each language's own base code", "Python SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"))
+    # RV94 N-3 (B6; PLAN decision 11): TS aligned, so no language-specific G7 code is declared for an
+    # invalid numerical_quality case.
+    assert not any(p in cases["scope"] for p in ("An invalid enum value in a not_required case's quality", "SOURCE_NUMERICAL_CASE_INVALID"))
     entries = cases["declared_differences"]
     assert {entry["id"] for entry in entries} == DECLARED and len(entries) == len(DECLARED)
     seen = set()
