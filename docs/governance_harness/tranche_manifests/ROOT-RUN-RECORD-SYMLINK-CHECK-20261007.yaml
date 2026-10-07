@@ -1,0 +1,51 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-RUN-RECORD-SYMLINK-CHECK-20261007
+title: Run-record check blocks machine-local symlinks; RV58 reviewer fixture links replaced by their source bytes
+date: '2026-10-07'
+basis: 2007709549e9701b302e0eb62a1474d82acc1c40
+instruction_surface_paths:
+  - "tools/validation/validate_run_record_leaks.py"
+  - "tools/validation/test_validate_run_record_leaks.py"
+  - "docs/governance_harness/tranche_manifests/ROOT-RUN-RECORD-SYMLINK-CHECK-20261007.yaml"
+  - "exports/chirality-app/export-manifest.csv"
+m2_gate:
+  authorization: >-
+    The repository owner (sgttomas) directed in a Claude Code conversation on
+    2026-10-07 that the 104 machine-local symlinks committed by f506f3e2de
+    under the Piping RV58 source_residual_01 reviewer fixture be replaced by
+    their recorded source bytes or removed and recorded, and to "consider
+    adding a CI/pre-commit check that rejects absolute or out-of-repo
+    symlinks under execution/_Coordination/AgentRuns/". This authorizes the
+    symlink rule in validate_run_record_leaks.py, its maintained tests, and
+    the regenerated export-manifest rows for those two files. This manifest
+    records the gate and grants no authority (K-AUTH-1).
+  authorized_by: repository owner sgttomas (Claude Code conversation)
+  authorization_date: '2026-10-07'
+  integration_owner: >-
+    The Claude Code session on branch claude/gracious-pasteur-du4ffp,
+    integrating this candidate under the standing Git authorization of
+    2026-09-12.
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: none-required
+  routed_to: []
+  rationale: >-
+    The check runs only on run records a change adds, modifies or retypes,
+    so no existing record can newly fail. On f506f3e2de^..f506f3e2de it
+    reports the 104 links that this change replaces, and no other changed
+    run-record symlink. Links that resolve inside the repository still pass.
+    No loop's instructions, accepted basis or contract mirror changes. The
+    Piping run-record correction is recorded in that packet's
+    _run_records/FIXTURE_MATERIALIZATION.md.
+scope_limits:
+  - >-
+    D-GOV-45 item 5 lists the run-record check's rules as a credential BLOCK
+    and a 5 MB WARN. This adds a third BLOCK at the owner's direction. Whether
+    to record it in D-GOV-45 is left to the owner; the ratified decision
+    record is not edited.
+  - >-
+    Existing symlinks are not rescanned. Two absolute symlinks outside
+    AgentRuns, under execution/_Evaluation/SOW-STAGE2-EXEC-20260712-01/C2F-R2/reproduction/pytest-temp/,
+    are outside this check's paths and are left unchanged.
+  - No workflow file, decision record, SPEC text or loop instruction is changed. No release.

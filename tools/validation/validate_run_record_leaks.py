@@ -9,6 +9,10 @@ new run record is published the moment it merges.
 - BLOCK (exit 1): a credential pattern in a changed text run record. Values
   that are self-evidently fake (containing EXAMPLE, DUMMY, FAKE, PLACEHOLDER,
   TEST) are ignored.
+- BLOCK (exit 1): a changed run-record symlink whose target is absolute or
+  resolves outside the repository. Such a link points into one machine's
+  filesystem: it dangles everywhere else and carries no evidence bytes.
+  Commit the bytes themselves. Links that stay inside the repository pass.
 - WARN (exit 0): a changed run-record file larger than 5 MB. Keep traces,
   screenshots and archives as CI artifacts rather than committing them.
 
@@ -18,6 +22,7 @@ operational errors (refs unresolvable).
 from __future__ import annotations
 
 import argparse
+import posixpath
 import re
 import subprocess
 import sys
@@ -25,6 +30,7 @@ import sys
 RUN_RECORD_RE = re.compile(r'(^|/)(_Coordination/AgentRuns|_run_records)/')
 BINARY_EXTENSIONS = ('.zip', '.png', '.jpg', '.jpeg', '.gif', '.webp', '.webm', '.gz', '.sqlite3', '.bin', '.pdf')
 LARGE_BYTES = 5_000_000
+SYMLINK_MODE = '120000'
 FAKE_RE = re.compile(r'(?i)example|dummy|fake|placeholder|test')
 PATTERNS = {
     'aws-access-key': r'\b(?:AKIA|ASIA)[0-9A-Z]{16}\b',
@@ -50,13 +56,29 @@ def git(*args: str) -> bytes:
     return subprocess.check_output(['git', *args])
 
 
-def changed_run_records(base: str, head: str) -> list[str]:
-    out = git('diff', '--name-only', '--no-renames', '--diff-filter=AM', '-z', base, head, '--').decode()
-    return [p for p in out.split('\0') if p and RUN_RECORD_RE.search(p)]
+def changed_run_records(base: str, head: str) -> list[tuple[str, str]]:
+    """(path, head mode) for each run record added, modified or retyped."""
+    fields = git('diff', '--raw', '--no-renames', '--diff-filter=AMT', '-z', base, head, '--').decode().split('\0')
+    # --raw -z alternates ':<old mode> <new mode> <old oid> <new oid> <status>' and the path.
+    return [(path, meta.split()[1]) for meta, path in zip(fields[0::2], fields[1::2])
+            if RUN_RECORD_RE.search(path)]
 
 
-def findings(path: str, data: bytes) -> list[tuple[str, str]]:
+def escapes_repository(path: str, target: str) -> bool:
+    if target.startswith(('/', '\\', '~')) or re.match(r'^[A-Za-z]:[\\/]', target):
+        return True
+    resolved = posixpath.normpath(posixpath.join(posixpath.dirname(path), target))
+    return resolved == '..' or resolved.startswith('../')
+
+
+def findings(path: str, data: bytes, mode: str = '100644') -> list[tuple[str, str]]:
     results = []
+    if mode == SYMLINK_MODE:
+        target = data.decode('utf-8', errors='replace')
+        if escapes_repository(path, target):
+            results.append(('BLOCK', f'{path}: symlink to a machine-local path ({target}); '
+                                     'commit the evidence bytes, not a link'))
+        return results
     if len(data) > LARGE_BYTES:
         results.append(('WARN', f'{path}: {len(data) / 1e6:.1f} MB run-record file; keep large evidence as CI artifacts'))
     if path.lower().endswith(BINARY_EXTENSIONS):
@@ -78,15 +100,16 @@ def main() -> int:
     args = parser.parse_args()
     try:
         paths = changed_run_records(args.base, args.head)
-        results = [f for p in paths for f in findings(p, git('show', f'{args.head}:{p}'))]
+        results = [f for p, mode in paths for f in findings(p, git('show', f'{args.head}:{p}'), mode)]
     except subprocess.CalledProcessError as exc:
         print(f'ERROR: cannot read {args.base}..{args.head}: {exc}', file=sys.stderr)
         return 2
     for severity, message in results:
         print(f'{severity}: {message}')
     blocks = sum(severity == 'BLOCK' for severity, _ in results)
+    links = sum(severity == 'BLOCK' and 'symlink to' in message for severity, message in results)
     print(f'{"BLOCK" if blocks else "PASS"}: {len(paths)} changed run-record file(s) scanned; '
-          f'{blocks} possible credential(s).')
+          f'{blocks - links} possible credential(s); {links} machine-local symlink(s).')
     return 1 if blocks else 0
 
 
