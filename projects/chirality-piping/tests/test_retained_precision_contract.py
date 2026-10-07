@@ -1,4 +1,4 @@
-"""Synthetic reader controls, not produced receipts or native Current evidence."""
+"""Synthetic reader controls plus listed producer-solved bases (07l); no native Current evidence."""
 import json
 import math
 import struct
@@ -146,7 +146,8 @@ def test_complete_synthetic_draft_control_is_not_qualification():
         result = rp._validate_draft(source, invocation)
         assert result["classifications"] == fixture["expected_classifications"]
         assert result["invocation_bound"]
-        # U7 (07i, D-U7-2): the shared expectation; 13 bases are eligible, the two with an unavailable case are not.
+        # U7 (07i, D-U7-2): the shared expectation; 15 bases are eligible (07l: 13 synthetic plus the two
+        # producer-solved L = 0 bases), the two with an unavailable case are not.
         assert result["numerical_eligible"] is fixture["expected"]["numerical_eligible"]
         assert result["standing"] == fixture["expected"]["standing"]
         assert source == fixture["source"] and invocation == fixture["invocation"]
@@ -231,13 +232,19 @@ def test_public_entry_on_the_real_milestone_receipts(mode):
 
 
 
+def _expected(mutation):
+    """This reader's own expectation: `expected_by_reader.python` when present, else the shared
+    `expected` (the 06b format, as Rust and TS read theirs; RV94 N-5, B6)."""
+    return mutation.get("expected_by_reader", {}).get("python", mutation["expected"])
+
+
 @pytest.mark.parametrize("mutation", corpus()["mutations"], ids=lambda x:x["id"])
 def test_shared_draft_first_failure_controls(mutation):
     fixture = next(f for f in corpus()["cases"] if f["id"] == mutation["base"])
     source, invocation = apply_entry(fixture, mutation)
     with pytest.raises(rp.RetainedPrecisionError) as error:
         rp._validate_draft(source, invocation)
-    assert {"gate":error.value.gate,"code":error.value.code} == mutation["expected"]
+    assert {"gate":error.value.gate,"code":error.value.code} == _expected(mutation)
 
 
 def test_old_operational_error_is_retained_independently_of_new_ready():
@@ -290,7 +297,7 @@ def test_shared_publicly_consistent_attestations_must_pass(entry):
     source, invocation = apply_entry(fixture, entry)
     result = rp._validate_draft(source, invocation)
     assert result["classifications"] == fixture["expected_classifications"]
-    # U7 (07i): 13 entries are eligible; the 10 with an unavailable case are not.
+    # U7 (07i): 18 entries are eligible (07l: 14 plus the four L = 0 entries); the 10 with an unavailable case are not.
     got = {key: result[key] for key in ("invocation_bound", "numerical_eligible", "standing")}
     assert got == entry["expected_eligibility"]
 
@@ -636,23 +643,84 @@ def test_rv79_surviving_mutants_m06_m09_m14():
 
 
 def test_snapshot_07_counts_and_entry_format():
-    """Snapshot 07j plus RV94 N-3's G7 probe (U7 repair; 07j: U7 slice L, C04; 07i: D-U7-2; 07h: RV90 S1, N1, N2, N4):
-    15 cases, 278 mutations, 24 must-pass and the D37 table; only rehash "all" (D11); one expectation
+    """Snapshot 07m: 07l plus B6's eight G7 mutations, appended so no existing slice moves, with the N-3
+    probe's TS expectation aligned (B6; PLAN decision 11). 07l: 07k (07j plus RV94 N-3's G7 probe) plus
+    U8's two producer-solved L = 0 bases and their 8 mutations and 4 must-pass entries (U8-2; 07k: U7
+    repair; 07j: U7 slice L, C04; 07i: D-U7-2; 07h: RV90 S1, N1, N2, N4):
+    17 cases, 294 mutations, 28 must-pass and the D37 table; only rehash "all" (D11); one expectation
     per entry except the two per-reader G7 entries; each must-pass entry also states its eligibility."""
     c = corpus()
-    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (15, 278, 24)
+    assert (len(c["cases"]), len(c["mutations"]), len(c["must_pass"])) == (17, 294, 28)
     assert set(c) == {"version", "provenance", "arithmetic", "cases", "mutations", "must_pass", "d37"}
     entries = c["mutations"] + c["must_pass"]
     assert all(e["rehash"] == "all" for e in entries)
     assert all(set(e) <= {"id", "base", "edits", "invocation_edits", "after_rehash", "rehash", "expected", "expected_by_reader", "expected_eligibility"} for e in entries)
     assert all(("expected_eligibility" in e) == (e in c["must_pass"]) for e in entries)
     eligible = lambda items, key: sum(item[key]["numerical_eligible"] for item in items)
-    assert (eligible(c["cases"], "expected"), eligible(c["must_pass"], "expected_eligibility")) == (13, 14)
+    assert (eligible(c["cases"], "expected"), eligible(c["must_pass"], "expected_eligibility")) == (15, 18)
+    # 07l (U8-2): the appended slices, on the two producer-solved L = 0 bases, each mode in turn.
+    l0 = lambda names: [f"{name}_{mode}" for mode in L0_PINS for name in names]
+    assert [e["id"] for e in c["mutations"][278:286]] == l0(["isolated_rotation_stop", "isolated_has_data", "isolated_estimate_coupled"]) + l0(["isolated_translation_rotation_stop"])
+    assert [e["id"] for e in c["must_pass"][24:]] == l0(["isolated_estimate_uncoupled"]) + l0(["isolated_translation_stop"])
+    assert {e["base"] for e in c["mutations"][278:286] + c["must_pass"][24:]} == {f"u8_l0_isolated_node_{mode}" for mode in L0_PINS}
+    # 07m (B6): the appended G7 slice, on two synthetic bases.
+    assert [e["id"] for e in c["mutations"][286:]] == B6_07M_IDS
+    assert {e["base"] for e in c["mutations"][286:]} == {O_BASE, P_BASE}
     # 07j (C04): one must-pass entry has a not_required case that passes every gate, eligible.
     statuses = lambda e: [x["status"] for x in apply_entry(next(f for f in c["cases"] if f["id"] == e["base"]), e)[0]["retained_precision"]["body"]["cases"]]
     assert [e["id"] for e in c["must_pass"] if "not_required" in statuses(e)] == ["not_required_second_case_checks_passed"]
     assert [e["id"] for e in entries if "expected_by_reader" in e] == ["g7_maximum_off_enclosure", "g7_not_required_quality_enum_invalid"]
+    # RV94 N-5 (B6): the per-reader entries' whole expectation, pinned literally, so a changed shared or
+    # per-language value fails here as well as in the reader that reads it (R34, R35).
+    g7 = lambda code: {"gate": "G7", "code": code}
+    assert {e["id"]: (e["expected"], e["expected_by_reader"]) for e in entries if "expected_by_reader" in e} == {
+        "g7_maximum_off_enclosure": (g7("SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"), {"python": g7("SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"),
+                                     "typescript": g7("SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"), "rust": g7("SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS")}),
+        # PLAN decision 11 (B6): TS aligned, so the three readers share the base readers' code.
+        "g7_not_required_quality_enum_invalid": (g7("SOURCE_NUMERICAL_CASE_INVALID"), {"python": g7("SOURCE_NUMERICAL_CASE_INVALID"),
+                                                 "typescript": g7("SOURCE_NUMERICAL_CASE_INVALID"), "rust": g7("SOURCE_NUMERICAL_CASE_INVALID")}),
+    }
     assert len({e["id"] for e in entries}) == len(entries)
+
+
+# 07m (B6): the N-3 class at its full width (any case status, any part of the base case rule), then
+# the sibling base header classes, each refused at G7 with the base readers' own code (PLAN decision 11).
+B6_07M_IDS = ["g7_selected_quality_enum_invalid", "g7_unavailable_quality_enum_invalid", "g7_quality_case_evidence_ref_empty",
+              "g7_quality_case_extra_member", "g7_quality_status_invalid", "g7_formulation_limitations_empty",
+              "g7_contract_evidence_null", "g7_source_block_recovery_present"]
+
+
+def _slice_outcomes(start, stop, want):
+    """One slice of the shared mutations against this reader's own first failure: each observed
+    (gate, code) equals the entry's expectation for Python, and the slice's tally of expectations
+    equals the literal `want`, so a dropped, moved or re-expected entry fails here even though the
+    per-entry test follows the corpus's own expectation (as Rust's slice tallies)."""
+    from collections import Counter
+    c = corpus()
+    tally = Counter()
+    for mutation in c["mutations"][start:stop]:
+        fixture = next(f for f in c["cases"] if f["id"] == mutation["base"])
+        source, invocation = apply_entry(fixture, mutation)
+        with pytest.raises(rp.RetainedPrecisionError) as error:
+            rp._validate_draft(source, invocation)
+        observed = {"gate": error.value.gate, "code": error.value.code}
+        assert observed == _expected(mutation), mutation["id"]
+        tally[f'{observed["gate"]} {observed["code"]}'] += 1
+    assert dict(tally) == want
+
+
+def test_snapshot_07k_g7_probe_slice():
+    """Mutation 277, RV94 N-3's G7 probe (07k), as its own one-entry slice (B6; I70's item 2)."""
+    assert [m["id"] for m in corpus()["mutations"][277:278]] == ["g7_not_required_quality_enum_invalid"]
+    _slice_outcomes(277, 278, {"G7 SOURCE_NUMERICAL_CASE_INVALID": 1})
+
+
+def test_snapshot_07m_g7_header_slice():
+    """07m (B6): the eight appended G7 mutations, by this reader's own first failure."""
+    assert [m["id"] for m in corpus()["mutations"][286:294]] == B6_07M_IDS
+    _slice_outcomes(286, 294, {"G7 SOURCE_NUMERICAL_CASE_INVALID": 4, "G7 SOURCE_NUMERICAL_QUALITY_INVALID": 1,
+                               "G7 SOURCE_FORMULATION_BASIS_UNSUPPORTED": 1, "G7 SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED": 1,
+                               "G7 SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN": 1})
 
 
 def test_class2_ordinary_before_association_d17():
@@ -870,3 +938,56 @@ def test_rv80_n2_integral_normalization_touches_only_the_receipt(monkeypatch):
     rp._validate_draft(source, deepcopy(fixture["invocation"]))
     assert calls and set(calls[0]) == {"body", "receipt_sha256"}, "the outermost call is the receipt"
     assert not any(isinstance(v, dict) and "results" in v for v in calls), "the statement is never normalized"
+
+
+# ---------------------------------------------------------------------------------------------
+# Snapshot 07l (U8-2): the listed producer-solved bases (RR "I61's U8 plan ruled ...", decision 6).
+# ---------------------------------------------------------------------------------------------
+# PP's pinned L = 0 successor files (U8-1, `u8_l0_isolated_node_publishes_pinned_successor` at the U8
+# head): (file sha256, receipt sha256, class counts), the counts as all three readers observed them (I68).
+L0_PINS = {
+    "sparse_interactive": ("93c6c86548b9d263cba9d9869010043d23ed1c9f2f304dd9f82eb705eb350876",
+                           "c00cbe76954e5188c63b0ef69738cd40a8db15d303b1113a86524e6c3119dd72", [25, 78, 9, 1]),
+    "dense_scrutiny": ("dbb3d477364248fb9ae15f7b9cff44410c2bffe45f783dd02d96eca663b0ac88",
+                       "0b4250c8139ba25ab9d35fc2d443a01d85de943a8e3d0eb9193f5dd5061ce994", [25, 78, 9, 2]),
+}
+# The registered dev/test build that published them (PP `REGISTERED_PROFILES` at the U8 head).
+L0_BUILD_IDENTITY = ("v1;rustc.release=1.97.1;rustc.commit=8bab26f4f68e0e26f0bb7960be334d5b520ea452;rustc.host=aarch64-apple-darwin;"
+                     "rustc.llvm=22.1.6;target=aarch64-apple-darwin;target.arch=aarch64;target.pointer_width=64;target.endian=little;"
+                     "target.os=macos;target.env=;panic=unwind;profile=debug;opt_level=0;debug_assertions=true;rustflags=;"
+                     "pkg=open_pipe_stress_product_physics@0.2.0")
+SYNTHETIC_PROVENANCE = "synthetic_reader_control_not_producer_execution_or_native_current"
+
+
+def test_producer_solved_bases_are_the_pinned_live_successors_d_u6_5():
+    """Decision 6 and D-U6-5: the corpus lists exactly the two producer-solved L = 0 bases. Each base's
+    source and invocation are exactly the JSON values of PP's sha256-pinned live successor file (key
+    order, types, signs and float bits), and its case-level provenance names the producer, the Direct
+    entry, the registered build identity and the U8 head. With its invocation each is eligible, with
+    the class counts all three readers observed; without, it is not."""
+    import hashlib
+    c = corpus()
+    assert c["provenance"] == {"kind": "synthetic_control", "claim": "synthetic controls plus listed producer-solved bases; no native Current evidence"}
+    assert [f["id"] for f in c["cases"] if f["provenance"] != SYNTHETIC_PROVENANCE] == [f"u8_l0_isolated_node_{mode}" for mode in L0_PINS]
+    for mode, (file_sha, receipt_sha, counts) in L0_PINS.items():
+        base = _cases()[f"u8_l0_isolated_node_{mode}"]
+        p = base["provenance"]
+        assert p["fixture"] == f"fixtures/results/retained_precision_l0_successor_{mode}.json"
+        raw = (ROOT / p["fixture"]).read_bytes()
+        assert hashlib.sha256(raw).hexdigest() == p["fixture_sha256"] == file_sha
+        doc = json.loads(raw)
+        assert set(doc) == {"id", "source", "invocation"} and doc["id"] == base["id"]
+        for key in ("source", "invocation"):
+            assert json.dumps(base[key]) == json.dumps(doc[key]), (mode, key)
+        assert base["source"]["retained_precision"]["receipt_sha256"] == p["receipt_sha256"] == receipt_sha
+        assert p["kind"] == "producer_solved" and p["producer"] == base["source"]["producer"]
+        assert p["entry"] == "run_linear_static_preview_value_with_retained_direct"
+        assert p["build_identity"] == L0_BUILD_IDENTITY
+        assert p["u8_head"] == "d44909708529c6277fc1fd3b22997218296c8dd3"
+        assert p["solver_mode"] == base["invocation"]["solver_mode"] == mode
+        eligibility = lambda result: {key: result[key] for key in ("invocation_bound", "numerical_eligible", "standing")}
+        assert eligibility(rp.validate_retained_precision(deepcopy(base["source"]))) == NOT_ELIGIBLE
+        public = rp.validate_retained_precision(deepcopy(base["source"]), deepcopy(base["invocation"]))
+        assert eligibility(public) == base["expected"] == {"invocation_bound": True, "numerical_eligible": True, "standing": "eligible"}
+        assert public["classifications"] == base["expected_classifications"]
+        assert [sum(1 for x in public["classifications"] if x["class"] == k) for k in ("relative_verified", "absolute_verified", "input_derived", "non_quantity")] == counts
