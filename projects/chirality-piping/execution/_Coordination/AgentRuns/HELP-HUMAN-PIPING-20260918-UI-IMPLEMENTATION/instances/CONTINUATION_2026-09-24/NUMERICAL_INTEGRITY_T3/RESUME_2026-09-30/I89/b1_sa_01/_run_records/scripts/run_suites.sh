@@ -5,7 +5,7 @@
 # (Stale); TMPDIR in scratch; each job under a 7200 s alarm (which also covers the lock wait).
 # After I85's b1_st_01 run_suites.sh (itself after I68's).
 set -u
-WT=~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3
+WT=WT
 S=$WT/scratch/i89_b1_sa; L=$S/logs; T=$WT/targets/i89-b1-sa
 BASE=$S/base/projects/chirality-piping/core; CAND=$WT/b1-a/projects/chirality-piping/core
 outcomes() { awk '/^ *Running /{t=($2=="unittests")?$3:$2} /^ *Doc-tests /{t="doctests:"$2} /^test .* \.\.\. (ok|FAILED|ignored)/{sub(/ - should panic/,""); sub(/ \(line [0-9]+\)/,""); print t" :: "$0}' $L/$1.log | sed -E 's#\(?[^ ]*/deps/##; s#-[0-9a-f]{16}\)?##' | sort > $L/$1.outcomes; }

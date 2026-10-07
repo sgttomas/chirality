@@ -1,7 +1,7 @@
 warning: `open_pipe_stress_mechanics_benchmarks` (lib) generated 1 warning (run `cargo fix --lib -p open_pipe_stress_mechanics_benchmarks` to apply 1 suggestion)
 warning: `open_pipe_stress_result_export` (lib) generated 1 warning
 warning: `open_pipe_stress_product_physics` (lib) generated 10 warnings (run `cargo fix --lib -p open_pipe_stress_product_physics` to apply 2 suggestions)
-     Running unittests src/lib.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/base/debug/deps/open_pipe_stress_headless_runner-19da793dd4fea469)
+     Running unittests src/lib.rs (WT/targets/i89-b1-sa/base/debug/deps/open_pipe_stress_headless_runner-19da793dd4fea469)
 test benchmark_binding::tests::duplicate_suite_observation_names_fail_closed_at_runner_seam ... ok
 test benchmark_binding::tests::expected_observed_name_mismatch_fails_closed_at_runner_seam ... ok
 test benchmark_binding::tests::incomplete_suite_observations_fail_closed_at_runner_seam ... ok
@@ -59,10 +59,10 @@ thread 'load_reference_route_tests::load_reference_one_actual_solve_mints_bound_
 failures:
 test result: FAILED. 50 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 26.04s
 error: test failed, to rerun pass `--lib`
-     Running unittests src/bin/headless_preview_runner.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/base/debug/deps/headless_preview_runner-1723d87e8d3e875e)
+     Running unittests src/bin/headless_preview_runner.rs (WT/targets/i89-b1-sa/base/debug/deps/headless_preview_runner-1723d87e8d3e875e)
 test tests::provisional_request_is_schema_complete ... ok
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-     Running unittests src/bin/openpipestress-runner.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/base/debug/deps/openpipestress_runner-57b86d3c1dcd99ad)
+     Running unittests src/bin/openpipestress-runner.rs (WT/targets/i89-b1-sa/base/debug/deps/openpipestress_runner-57b86d3c1dcd99ad)
 test tests::export_results_blocks_when_its_payload_is_missing ... ok
 test tests::original_legacy_nonzero_pressure_fixture_is_not_a_current_cli_solve ... ok
 test tests::run_benchmark_blocks_missing_payload_without_executing_cases ... ok
@@ -82,7 +82,7 @@ test tests::stable_verbs_map_to_runner_operations ... ok
 test tests::validate_input_accepts_d33_policy_request ... ok
 test tests::explicit_cli_modes_execute_and_bind_actual_source_invocations ... ok
 test result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.84s
-     Running tests/load_reference_cli.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/base/debug/deps/load_reference_cli-491ddead8991bef9)
+     Running tests/load_reference_cli.rs (WT/targets/i89-b1-sa/base/debug/deps/load_reference_cli-491ddead8991bef9)
 test cli_blocked_0_4_0_documents_stay_on_load_reference_one ... ok
 test cli_explicit_output_path_receives_the_controlled_stdout ... ok
 test cli_load_reference_one_both_modes_is_controlled_and_equals_the_library_route ... FAILED
@@ -96,22 +96,22 @@ thread 'cli_load_reference_one_both_modes_is_controlled_and_equals_the_library_r
 failures:
 test result: FAILED. 6 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 6.49s
 error: test failed, to rerun pass `--test load_reference_cli`
-     Running tests/physics_source_connected.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/base/debug/deps/physics_source_connected-6a7a31d5c58c68cd)
+     Running tests/physics_source_connected.rs (WT/targets/i89-b1-sa/base/debug/deps/physics_source_connected-6a7a31d5c58c68cd)
 test actual_composite_invocations_preserve_canonical_evidence_and_maximum_methods ... ok
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 9.50s
-     Running tests/preview_physics_admission.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/base/debug/deps/preview_physics_admission-9a019c6ed4d8a0b9)
+     Running tests/preview_physics_admission.rs (WT/targets/i89-b1-sa/base/debug/deps/preview_physics_admission-9a019c6ed4d8a0b9)
 test fresh_non_exact_solve_is_preview_physics_admitted_and_exportable ... ok
 test no_headless_path_binds_solver_rows_to_rules ... ok
 test realized_joint_is_refused_as_a_sanitized_blocked_envelope ... ok
 test selected_plus_failed_source_blocks_stays_not_eligible ... ok
 test all_selected_source_blocks_keeps_its_standing ... ok
 test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.46s
-     Running tests/retained_precision_admission.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/base/debug/deps/retained_precision_admission-6796c3d90e89d7f4)
+     Running tests/retained_precision_admission.rs (WT/targets/i89-b1-sa/base/debug/deps/retained_precision_admission-6796c3d90e89d7f4)
 test old_headless_and_typed_wrappers_stay_explicitly_ordinary ... ok
 test runner_validation_refusal_never_enters_producer_admission ... ok
 test explicit_headless_refusal_preserves_output_and_completion_fields_both_modes ... ok
 test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.11s
-     Running tests/s11g_zero_work_receipt.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/base/debug/deps/s11g_zero_work_receipt-9e9237cfa6d32389)
+     Running tests/s11g_zero_work_receipt.rs (WT/targets/i89-b1-sa/base/debug/deps/s11g_zero_work_receipt-9e9237cfa6d32389)
 test t23_source_blocks_reader_accepts_the_zero_work_formation_decline ... ok
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.22s
    Doc-tests open_pipe_stress_headless_runner

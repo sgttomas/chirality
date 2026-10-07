@@ -3,7 +3,7 @@
 # variables (I61_U3_OUT, I61_U3G2_OUT, I68_U8_OUT), in base (I1 archive) and candidate,
 # registered build, one cargo job each through WT/tools/t3_cargo.sh. After I85's run_pins.sh.
 set -u
-WT=~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3
+WT=WT
 S=$WT/scratch/i89_b1_sa; L=$S/logs; T=$WT/targets/i89-b1-sa
 for side in cand base; do
   if [ $side = cand ]; then dir=$WT/b1-a/projects/chirality-piping/core/product_physics; target=$T; else dir=$S/base/projects/chirality-piping/core/product_physics; target=$T/base; fi

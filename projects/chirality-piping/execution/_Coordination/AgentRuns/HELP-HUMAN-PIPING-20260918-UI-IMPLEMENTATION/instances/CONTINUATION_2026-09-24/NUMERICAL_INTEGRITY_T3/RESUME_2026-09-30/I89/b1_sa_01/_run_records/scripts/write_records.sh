@@ -2,9 +2,9 @@
 # I89 B1-SA: copy the run records into R/I89/b1_sa_01/_run_records with placeholder paths only
 # (sanitize.py), then write SHA256SUMS over RETURN.md and every file under _run_records/.
 set -eu
-WT=~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3
+WT=WT
 S=$WT/scratch/i89_b1_sa; L=$S/logs
-VENV=~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/projects/chirality-piping/.venv
+VENV=VENV
 R=$WT/numerics/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I89/b1_sa_01
 O=$R/_run_records
 SAN="$VENV/bin/python $S/scripts/sanitize.py"

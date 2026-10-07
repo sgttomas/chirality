@@ -1,6 +1,6 @@
 warning: `open_pipe_stress_result_export` (lib) generated 1 warning
 warning: `open_pipe_stress_product_physics` (lib test) generated 7 warnings (run `cargo fix --lib -p open_pipe_stress_product_physics --tests` to apply 2 suggestions)
-     Running unittests src/lib.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/mut/debug/deps/open_pipe_stress_product_physics-89871957811c6f78)
+     Running unittests src/lib.rs (WT/targets/i89-b1-sa/mut/debug/deps/open_pipe_stress_product_physics-89871957811c6f78)
 test annulus_geometry::tests::invalid_and_positive_unrepresentable_areas_fail_closed ... ok
 test annulus_geometry::tests::area_does_not_require_distinct_rounded_radii ... ok
 test annulus_geometry::tests::ordinary_source_areas_and_solid_core_are_explicit ... ok

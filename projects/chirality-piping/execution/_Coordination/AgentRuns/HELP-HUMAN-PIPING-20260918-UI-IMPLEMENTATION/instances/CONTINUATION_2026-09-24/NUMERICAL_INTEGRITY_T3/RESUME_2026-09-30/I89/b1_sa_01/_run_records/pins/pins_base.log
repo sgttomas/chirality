@@ -1,5 +1,5 @@
 warning: function `derived` is never used
-   --> WT/i89_b1_sa/base/projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs:433:4
+   --> WT/scratch/i89_b1_sa/base/projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs:433:4
     |
 433 | fn derived(recipe: &Value, row: &Value, inputs: &[&Value]) -> Result<(), String> {
     |    ^^^^^^^
@@ -115,7 +115,7 @@ warning: method `spring_actions` is never used
 
 warning: `open_pipe_stress_product_physics` (lib test) generated 7 warnings (run `cargo fix --lib -p open_pipe_stress_product_physics --tests` to apply 2 suggestions)
     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.04s
-     Running unittests src/lib.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/base/debug/deps/open_pipe_stress_product_physics-bb66d6964906ba29)
+     Running unittests src/lib.rs (WT/targets/i89-b1-sa/base/debug/deps/open_pipe_stress_product_physics-bb66d6964906ba29)
 
 running 3 tests
 test retained_facade_tests::u3_permitted_path_publishes_the_pinned_successor ... ok

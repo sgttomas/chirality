@@ -1,5 +1,5 @@
 warning: function `derived` is never used
-   --> ~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/b1-a/projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs:433:4
+   --> WT/b1-a/projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs:433:4
     |
 433 | fn derived(recipe: &Value, row: &Value, inputs: &[&Value]) -> Result<(), String> {
     |    ^^^^^^^
@@ -7,7 +7,7 @@ warning: function `derived` is never used
     = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
 
 warning: `open_pipe_stress_result_export` (lib) generated 1 warning
-   Compiling open_pipe_stress_product_physics v0.2.0 (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/b1-a/projects/chirality-piping/core/product_physics)
+   Compiling open_pipe_stress_product_physics v0.2.0 (WT/b1-a/projects/chirality-piping/core/product_physics)
 warning: unnecessary parentheses around function argument
     --> src/retained_memory.rs:1631:27
      |
@@ -143,7 +143,7 @@ warning: function `derived` is never used
 
 warning: `open_pipe_stress_product_physics` (lib) generated 10 warnings (6 duplicates)
     Finished `test` profile [unoptimized + debuginfo] target(s) in 3.90s
-     Running unittests src/lib.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/open_pipe_stress_product_physics-3ec460b388b580d3)
+     Running unittests src/lib.rs (WT/targets/i89-b1-sa/debug/deps/open_pipe_stress_product_physics-3ec460b388b580d3)
 
 running 568 tests
 test annulus_geometry::tests::area_does_not_require_distinct_rounded_radii ... ok
@@ -729,7 +729,7 @@ failures:
 test result: FAILED. 556 passed; 1 failed; 11 ignored; 0 measured; 0 filtered out; finished in 50.57s
 
 error: test failed, to rerun pass `--lib`
-     Running tests/elastic_extrema_runtime.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/elastic_extrema_runtime-b72e3fbe16a4e342)
+     Running tests/elastic_extrema_runtime.rs (WT/targets/i89-b1-sa/debug/deps/elastic_extrema_runtime-b72e3fbe16a4e342)
 
 running 2 tests
 test pure_torque_has_zero_normal_maximum_and_signed_torsion ... ok
@@ -737,21 +737,21 @@ test actual_x1_loads_find_peak_missed_by_old_signed_sum_candidates ... ok
 
 test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
 
-     Running tests/f1b_guard_ceiling.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/f1b_guard_ceiling-6338d46d1b8f7f18)
+     Running tests/f1b_guard_ceiling.rs (WT/targets/i89-b1-sa/debug/deps/f1b_guard_ceiling-6338d46d1b8f7f18)
 
 running 1 test
 test f1b_dense_scrutiny_is_refused_just_above_the_real_ceiling_before_any_dense_allocation ... ok
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.36s
 
-     Running tests/f1b_sparse_pattern_memory.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/f1b_sparse_pattern_memory-1a776486962ebb70)
+     Running tests/f1b_sparse_pattern_memory.rs (WT/targets/i89-b1-sa/debug/deps/f1b_sparse_pattern_memory-1a776486962ebb70)
 
 running 1 test
 test f1b_sparse_mode_is_pattern_only_at_four_thousand_members ... ok
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 16.40s
 
-     Running tests/f1b_w2_runtime.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/f1b_w2_runtime-508f830cc871da47)
+     Running tests/f1b_w2_runtime.rs (WT/targets/i89-b1-sa/debug/deps/f1b_w2_runtime-508f830cc871da47)
 
 running 15 tests
 test f1b_w2_admission_refuses_a_zero_legacy_pressure_as_pressure_thrust ... ok
@@ -772,7 +772,7 @@ test f1b_w2_mixed_captured_invocation_finalizes_with_a_consistent_receipt ... ok
 
 test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.30s
 
-     Running tests/formation_check_runtime.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/formation_check_runtime-f31a0f541c5b6fbb)
+     Running tests/formation_check_runtime.rs (WT/targets/i89-b1-sa/debug/deps/formation_check_runtime-f31a0f541c5b6fbb)
 
 running 5 tests
 test kd5_large_coordinate_pp_route_elbow_is_published_accurately_and_not_demoted ... ok
@@ -783,7 +783,7 @@ test kd5_skew_345_and_chain_continuity_controls_do_not_demote ... ok
 
 test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.36s
 
-     Running tests/k2a_formation_range_runtime.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/k2a_formation_range_runtime-119bfac0b2725ca0)
+     Running tests/k2a_formation_range_runtime.rs (WT/targets/i89-b1-sa/debug/deps/k2a_formation_range_runtime-119bfac0b2725ca0)
 
 running 3 tests
 test k2a_product_reach_spring_carried_torsion_underflow_is_refused_on_both_entries ... ok
@@ -792,7 +792,7 @@ test k2a_product_reach_wrong_12ei_accepted_by_m03_and_flagged_only_downstream_is
 
 test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
 
-     Running tests/k5_curved_mechanism_runtime.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/k5_curved_mechanism_runtime-df984ca8f60aa64b)
+     Running tests/k5_curved_mechanism_runtime.rs (WT/targets/i89-b1-sa/debug/deps/k5_curved_mechanism_runtime-df984ca8f60aa64b)
 
 running 4 tests
 test k5_curved_mechanism_is_refused_as_a_physical_mechanism_with_its_witness ... ok
@@ -802,7 +802,7 @@ test k5_curved_mechanism_without_a_representable_witness_is_unresolved ... ok
 
 test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.37s
 
-     Running tests/load_reference_state_runtime.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/load_reference_state_runtime-9e2928bed56b62eb)
+     Running tests/load_reference_state_runtime.rs (WT/targets/i89-b1-sa/debug/deps/load_reference_state_runtime-9e2928bed56b62eb)
 
 running 20 tests
 test duplicate_source_ref_blocks_and_distinct_equal_sources_both_apply ... ok
@@ -828,7 +828,7 @@ test thermal_datum_ratio_secant_table_fixed_and_free ... ok
 
 test result: ok. 20 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.38s
 
-     Running tests/load_reference_state_runtime_extension.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/load_reference_state_runtime_extension-770b6244ca1ead5d)
+     Running tests/load_reference_state_runtime_extension.rs (WT/targets/i89-b1-sa/debug/deps/load_reference_state_runtime_extension-770b6244ca1ead5d)
 
 running 9 tests
 test duplicate_class_material_points_are_refused ... ok
@@ -843,7 +843,7 @@ test temperature_identity_groups_select_same_point_across_units ... ok
 
 test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.40s
 
-     Running tests/physics_source_runtime.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/physics_source_runtime-fa67961178fb2dd2)
+     Running tests/physics_source_runtime.rs (WT/targets/i89-b1-sa/debug/deps/physics_source_runtime-fa67961178fb2dd2)
 
 running 5 tests
 test actual_source_fields_six_signed_actions_and_circular_maximum_match_independent_equilibrium ... ok
@@ -854,14 +854,14 @@ test source_selected_and_ordinary_physics_cases_keep_distinct_actual_warrants ..
 
 test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.41s
 
-     Running tests/pressure_grouping_limits.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/pressure_grouping_limits-3d63a71f312dc496)
+     Running tests/pressure_grouping_limits.rs (WT/targets/i89-b1-sa/debug/deps/pressure_grouping_limits-3d63a71f312dc496)
 
 running 1 test
 test strongly_cancelling_distinct_pressure_factors_are_explicitly_unqualified ... ok
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
-     Running tests/pressure_membrane_range.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/pressure_membrane_range-95822e88f4337eb9)
+     Running tests/pressure_membrane_range.rs (WT/targets/i89-b1-sa/debug/deps/pressure_membrane_range-95822e88f4337eb9)
 
 running 2 tests
 test original_subnormal_membrane_fixture_is_publicly_out_of_range_sparse ... ok
@@ -869,7 +869,7 @@ test original_subnormal_membrane_fixture_is_publicly_out_of_range_dense ... ok
 
 test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
-     Running tests/pressure_runtime.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/pressure_runtime-dc7f56eb2d1bbc92)
+     Running tests/pressure_runtime.rs (WT/targets/i89-b1-sa/debug/deps/pressure_runtime-dc7f56eb2d1bbc92)
 
 running 14 tests
 test distributed_axial_load_is_subtracted_separately_from_pressure_eigenload ... ok
@@ -889,7 +889,7 @@ test six_si_pressure_states_through_both_public_solver_modes ... ok
 
 test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
 
-     Running tests/pressure_section_geometry.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/pressure_section_geometry-563872f6596a6716)
+     Running tests/pressure_section_geometry.rs (WT/targets/i89-b1-sa/debug/deps/pressure_section_geometry-563872f6596a6716)
 
 running 9 tests
 test fixed_near_limit_effective_force_and_reactions_keep_small_source_difference ... ok
@@ -904,7 +904,7 @@ test distinct_near_limit_nu_two_span_source_extensions_survive_all_reversals ...
 
 test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
 
-     Running tests/preview_physics_runtime.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/preview_physics_runtime-0e79860063065629)
+     Running tests/preview_physics_runtime.rs (WT/targets/i89-b1-sa/debug/deps/preview_physics_runtime-0e79860063065629)
 
 running 26 tests
 test b2_indeterminate_arc_resultants_depend_on_k ... ok
@@ -936,7 +936,7 @@ test m08_marker_intensified_measure_matches_references_and_never_combines ... ok
 
 test result: ok. 26 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.32s
 
-     Running tests/represented_gap_publication.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/represented_gap_publication-c656d25bca134d03)
+     Running tests/represented_gap_publication.rs (WT/targets/i89-b1-sa/debug/deps/represented_gap_publication-c656d25bca134d03)
 
 running 17 tests
 test dense_negative_active_contact ... ok
@@ -959,14 +959,14 @@ test sparse_positive_inactive_open ... ok
 
 test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
 
-     Running tests/retained_memory_challenge.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/retained_memory_challenge-50cc422e198d46bf)
+     Running tests/retained_memory_challenge.rs (WT/targets/i89-b1-sa/debug/deps/retained_memory_challenge-50cc422e198d46bf)
 
 running 1 test
 test retained_direct_peak_is_within_the_profiles_ordinary_span ... ok
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.63s
 
-     Running tests/retained_precision_admission.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/retained_precision_admission-d25c205680f0df22)
+     Running tests/retained_precision_admission.rs (WT/targets/i89-b1-sa/debug/deps/retained_precision_admission-d25c205680f0df22)
 
 running 5 tests
 test borrowed_census_allocates_nothing_and_retains_spare_capacity_facts ... ok
@@ -977,7 +977,7 @@ test retained_direct_preserves_actual_ordinary_both_modes_and_generic_identity .
 
 test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.72s
 
-     Running tests/s11f_site_test.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/s11f_site_test-d20efd05a62c6f91)
+     Running tests/s11f_site_test.rs (WT/targets/i89-b1-sa/debug/deps/s11f_site_test-d20efd05a62c6f91)
 
 running 11 tests
 test rule_2_values_are_copied_only_in_allow_listed_functions ... ok
@@ -994,7 +994,7 @@ test rule_8_every_accumulation_in_the_listed_files_is_in_the_table ... ok
 
 test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.00s
 
-     Running tests/source_block_recovery.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/source_block_recovery-c7ce6cad5e66fc40)
+     Running tests/source_block_recovery.rs (WT/targets/i89-b1-sa/debug/deps/source_block_recovery-c7ce6cad5e66fc40)
 
 running 4 tests
 test actual_source_recovery_scaled_norms_admit_tiny_actions_and_keep_large_json_boundary ... ok
@@ -1004,7 +1004,7 @@ test retained_source_rotation_member_torque_and_device_action_reach_public_rows 
 
 test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.93s
 
-     Running tests/stress_maximum_coverage.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/stress_maximum_coverage-5a122f508817d1ad)
+     Running tests/stress_maximum_coverage.rs (WT/targets/i89-b1-sa/debug/deps/stress_maximum_coverage-5a122f508817d1ad)
 
 running 4 tests
 test exact_zero_displacement_ties_use_location_identity_not_node_order ... ok
@@ -1014,7 +1014,7 @@ test incomplete_member_domain_withholds_case_maximum_in_both_member_orders ... o
 
 test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
 
-     Running tests/support_reactions_runtime.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/support_reactions_runtime-6b89f35fa8cd1b52)
+     Running tests/support_reactions_runtime.rs (WT/targets/i89-b1-sa/debug/deps/support_reactions_runtime-6b89f35fa8cd1b52)
 
 running 4 tests
 test same_record_spring_cannot_silently_replace_an_extra_rigid_guide ... ok

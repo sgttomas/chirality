@@ -1,5 +1,5 @@
 warning: function `derived` is never used
-   --> ~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/b1-a/projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs:433:4
+   --> WT/b1-a/projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs:433:4
     |
 433 | fn derived(recipe: &Value, row: &Value, inputs: &[&Value]) -> Result<(), String> {
     |    ^^^^^^^
@@ -115,7 +115,7 @@ warning: method `spring_actions` is never used
 
 warning: `open_pipe_stress_product_physics` (lib test) generated 7 warnings (run `cargo fix --lib -p open_pipe_stress_product_physics --tests` to apply 2 suggestions)
     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.02s
-     Running unittests src/lib.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/open_pipe_stress_product_physics-3ec460b388b580d3)
+     Running unittests src/lib.rs (WT/targets/i89-b1-sa/debug/deps/open_pipe_stress_product_physics-3ec460b388b580d3)
 
 running 10 tests
 test retained_memory::witness_tests::witness_headroom_w1_at_one_mebibyte ... I51_DUAL_LANES (LaneReadouts { anchor: ProofAnchor { owner: ProductOwnerStamp { run: 0, .. } }, law: AdmittedK, rows: [Enclosure { lo: Z+, hi: Z+ }, Enclosure { lo: Z+, hi: Z+ }, Enclosure { lo: Z+, hi: Z+ }, Enclosure { lo: +8bcf64e5ec10eaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa960c49ca6366513da9bec544c691a3b0279d0dd3c0ca4587e6b74f0329161f9add3c0ca4587e6b74f0329161f9add3c0ca4587e6b74f0329161f9add3c0ca4587e6b74f0329161f9add3c0ca4587e6b74f0329161f9add3c0c86ac1e74p-15, hi: +8bcf64e5ec10eaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabf4dca3d9c99aec256413abb396e5c4fd862f22c3f35ba781948b0fcd6e9e06522c3f35ba781948b0fcd6e9e06522c3f35ba781948b0fcd6e9e06522c3f35ba781948b0fcd6e9e06522c3f35ba781948b0fcd6e9e06522c3f37953e18cp-15 }, Enclosure { lo: +a4ed3f1b0e725c3dee78183f91e646f156191148fd9fd36f7e3d1cc100e6afcce1c43849dc784a6513da9bec544c691a3b0279d0dd3c0ca4587e6b74f0329161f9add3c0ca4587e6b74f0 [... cut: 55950 bytes, sha256 f5285ccd91c958682502659ed3ad549c4104075a6f3f86826cb482945369387e]

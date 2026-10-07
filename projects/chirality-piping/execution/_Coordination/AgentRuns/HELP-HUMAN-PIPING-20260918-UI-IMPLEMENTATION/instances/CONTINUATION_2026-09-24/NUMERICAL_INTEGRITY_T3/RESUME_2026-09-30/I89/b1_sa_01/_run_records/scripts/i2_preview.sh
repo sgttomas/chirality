@@ -6,7 +6,7 @@
 # against the unpatched retained_error_text (SA's head), which must fail; then the patch is put
 # back and checked by sha256. Each job through WT/tools/t3_cargo.sh.
 set -u
-WT=~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3
+WT=WT
 S=$WT/scratch/i89_b1_sa; L=$S/logs; T=$WT/targets/i89-b1-sa/i2
 PP=$S/i2/projects/chirality-piping/core/product_physics
 RM=$PP/src/retained_memory.rs

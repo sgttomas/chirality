@@ -14363,3 +14363,10 @@ RV112 reviews the follow-up as part of round 1.
 - **Reviewers running:** RV109 (SP early read), RV111 (SI1c) and RV112 (SA).
 
 **IDs:** I91 is used. The next unused are **I92 and RV113**.
+
+**Addendum (E-10's redaction done).** I89's REDACTION_01 is verified:
+- `REDACTION_01.md` sha256 `924532ef…`;
+- SHA256SUMS 75 of 75, followup_01 17 of 17 and redaction_01 4 of 4 OK on disk;
+- RETURN.md byte-identical (`05c2687d…`).
+
+ROOT checked independently: across the 46 rewritten files, 328 changed lines, with equal line counts in every file and every differing segment a path token. No `~/`, `/Users/`, `/private/`, `.claude/worktrees` or worktree-name string remains under `R/I89/`. The originals survive only in NUM's history at `bc37d43a0a`.

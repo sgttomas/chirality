@@ -1,5 +1,5 @@
 warning: function `derived` is never used
-   --> ~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/b1-a/projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs:433:4
+   --> WT/b1-a/projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs:433:4
     |
 433 | fn derived(recipe: &Value, row: &Value, inputs: &[&Value]) -> Result<(), String> {
     |    ^^^^^^^
@@ -133,7 +133,7 @@ warning: function `derived` is never used
 
 warning: `open_pipe_stress_product_physics` (lib) generated 10 warnings (run `cargo fix --lib -p open_pipe_stress_product_physics` to apply 2 suggestions)
     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.04s
-     Running tests/retained_precision_admission.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/retained_precision_admission-d25c205680f0df22)
+     Running tests/retained_precision_admission.rs (WT/targets/i89-b1-sa/debug/deps/retained_precision_admission-d25c205680f0df22)
 
 running 5 tests
 test borrowed_census_allocates_nothing_and_retains_spare_capacity_facts ... ok
@@ -144,7 +144,7 @@ test retained_direct_preserves_actual_ordinary_both_modes_and_generic_identity .
 
 test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.72s
 
-     Running tests/s11f_site_test.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/s11f_site_test-d20efd05a62c6f91)
+     Running tests/s11f_site_test.rs (WT/targets/i89-b1-sa/debug/deps/s11f_site_test-d20efd05a62c6f91)
 
 running 11 tests
 test rule_2_values_are_copied_only_in_allow_listed_functions ... ok

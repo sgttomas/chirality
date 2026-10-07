@@ -1,4 +1,4 @@
-   Compiling open_pipe_stress_result_export v0.1.0 (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/b1-a/projects/chirality-piping/core/reporting/result_export)
+   Compiling open_pipe_stress_result_export v0.1.0 (WT/b1-a/projects/chirality-piping/core/reporting/result_export)
 warning: function `derived` is never used
    --> src/source_blocks.rs:433:4
     |
@@ -9,7 +9,7 @@ warning: function `derived` is never used
 
 warning: `open_pipe_stress_result_export` (lib) generated 1 warning
     Finished `test` profile [unoptimized + debuginfo] target(s) in 2.33s
-     Running tests/retained_precision_carriers.rs (~/dev/chirality/.claude/worktrees/swbpipe-control-layer-8a41be/.claude/t3/targets/i89-b1-sa/debug/deps/retained_precision_carriers-522c8076f61b2c07)
+     Running tests/retained_precision_carriers.rs (WT/targets/i89-b1-sa/debug/deps/retained_precision_carriers-522c8076f61b2c07)
 
 running 17 tests
 test b6_transport_refuses_rv92_tampered_successors ... ok
