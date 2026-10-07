@@ -567,6 +567,9 @@ fn snapshot_07l_mutation_outcomes() {
 /// with the base code, which TS now shares (PLAN decision 11).
 #[test]
 fn snapshot_07k_mutation_outcomes() {
+    // The slice's entry, by id, as Python's and TS's slices check (a reorder
+    // of same-code entries leaves the tally unchanged).
+    assert_eq!(corpus()["mutations"][277]["id"], "g7_not_required_quality_enum_invalid");
     slice_outcomes(
         "I83_OUTCOME_07K",
         277..278,
@@ -581,6 +584,24 @@ fn snapshot_07k_mutation_outcomes() {
 /// mutations 286..294, each at G7 with this reader's base header code.
 #[test]
 fn snapshot_07m_mutation_outcomes() {
+    let shared = corpus();
+    let ids: Vec<&str> = shared["mutations"].as_array().unwrap()[286..]
+        .iter()
+        .map(|m| m["id"].as_str().unwrap())
+        .collect();
+    assert_eq!(
+        ids,
+        [
+            "g7_selected_quality_enum_invalid",
+            "g7_unavailable_quality_enum_invalid",
+            "g7_quality_case_evidence_ref_empty",
+            "g7_quality_case_extra_member",
+            "g7_quality_status_invalid",
+            "g7_formulation_limitations_empty",
+            "g7_contract_evidence_null",
+            "g7_source_block_recovery_present",
+        ]
+    );
     slice_outcomes(
         "I83_OUTCOME_07M",
         286..294,
