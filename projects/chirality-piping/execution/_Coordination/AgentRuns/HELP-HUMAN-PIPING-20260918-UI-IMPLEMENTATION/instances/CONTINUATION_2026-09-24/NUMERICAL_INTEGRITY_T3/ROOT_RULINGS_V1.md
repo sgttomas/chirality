@@ -14935,3 +14935,28 @@ The suites: EE lib 64 → 65; the runner's `point_path_non_finite_run` 8 → 11;
 2. **Every records-only PR and every product PR's package** also passes main's `validate_run_record_leaks.py --base <main> --head <PR head>` before review, and its output is recorded.
 
 **Erratum E-11:** #1084's RV58 fixture carried machine-local symlinks, which ROOT's screen at the time did not check for (it read file contents, not link targets). #1109 corrected it on main, and NUM now carries the correction.
+
+## RV111 confirms SI1c's repair round; SI1c merges into NUM; its PR is prepared (ROOT, 2026-10-07 UTC)
+
+**RV111's addendum:** `R/REVIEW_RV111/si1c_01/ADDENDUM_01.md` sha256 `d8891640…`, with `SHA256SUMS.addendum_01` 24 of 24. REVIEW's `SHA256SUMS` still verifies 111 of 111. The strict screen is clean, including the gzipped files, and there are no links. **CONFIRMED, with no residual finding.** With its own copies, mutants and harness:
+- **SF-1:** N06 and N09, re-applied unchanged, are each killed by an assertion in the new tests.
+- **Ruling 2:** four note mutants die on exact-string assertions: replace, prepend, a space separator, and existing-only. Across RV111's runner set, every changed line differs only by an appended note: 10,128 lines (7,608 interval and 2,520 library).
+- **Ruling 3:** all 32 removed lines were read. The moved case reappears verbatim, the one replaced assertion is stricter, and the evaluator's non-test code is byte-identical to `7f233b2e01`.
+- **The suites at the head:** EE lib 65; the runner 14/4/11/3/11/1; `rule_pack_document` 10; `test_rule_interval.py` 193.
+- **Interval mode:** all 433,221 lines are identical to round 0 and to main. All 144,407 evaluator point lines are identical to round 0. All 106,884 runner lines are schema-valid.
+- **Observation, no action:** `blocks_overflowing_same_dimension_quotient_instead_of_panicking` keeps its name (N-2 was optional), and it is true of its first half.
+
+**Rulings:**
+1. **T3-SI1c is accepted at `f5665f8862`** for its PR.
+2. **SI1c merges into NUM now** (`--no-ff`). NUM has no other unmerged product slice; B1 stays on `b1` until PR-B1.
+3. **SI1c's PR** is cut from main `e33f3e2f1b`, as SI1b's was. It carries the 5 slice files from `f5665f8862`, which main has not changed since `025c1cf326`, and the 4 package files in `IMPLEMENTATION/SI1C/` from NUM. **Its gates:**
+   - `source_equality.py` and `check_citations.py` (0 parsed citations; the package states "I87 §2.4" by hand);
+   - main's `validate_run_record_leaks.py`;
+   - GEN-8;
+   - hosted CI and the full-SHA dispatch;
+   - RV111's addendum confirming the PR head;
+   - an exact-head DEC-025 against a fresh main baseline;
+   - the merge with `--merge --match-head-commit`.
+
+   There is no Pass B: the rules crates are outside PP's closure.
+4. **The records-only PR** (`codex/piping-t3-records-20261007c`, cut at NUM `00658c76c1`) is re-staged at this commit, so it carries RV111's addendum. It leaves out SI1c's package, which goes to main with SI1c's own PR.
