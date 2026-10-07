@@ -14372,3 +14372,30 @@ RV112 reviews the follow-up as part of round 1.
 ROOT checked independently: across the 46 rewritten files, 328 changed lines, with equal line counts in every file and every differing segment a path token. No `~/`, `/Users/`, `/private/`, `.claude/worktrees` or worktree-name string remains under `R/I89/`. The originals survive only in NUM's history at `bc37d43a0a`.
 
 **A staging slip, corrected.** Commit `a6801b8a29` staged NUM's whole `execution/` and swept in 63 files of I90's SR-RS records, which were still being written. The next commit removes them from the tree (the files stay on disk), and they are committed when I90 returns and ROOT verifies them. Nothing partial reached main: #1108 carried I88's complete return only. **Practice from now on:** ROOT stages only the record folders it has verified, plus RR and the work graph, never the whole `execution/`.
+
+## I90's SR-RS verified; RV-R round 1 dispatched as RV113; SR-TS dispatched as I92 (ROOT, 2026-10-07 UTC)
+
+**I90 (I-RS, SR-RS) is verified.** `R/I90/b1_sr_rs_01/RETURN.md` sha256 `29eb10a3…`; SHA256SUMS 64 of 64 OK; placeholder paths only (the strict screen is clean); nothing Git-ignored.
+- **The branch.** `codex/piping-t3-b1-r-20261007` at `cc81e78801` is clean: three commits over I1, 3 files, +483/−26.
+- **The fence.** `RE/src/source_blocks.rs`'s change is one appended `#[cfg(test)] mod rv95_n5_integer_tests`, with no removed line.
+- **Evidence (as returned):**
+  - the census over 07m gives 0 changes (R5 does not fire);
+  - D38's list has 18 checks: one relaxed, one extended with the (4b) source equality, the rest not applicable;
+  - RE 180 → 186 (the 6 new tests); PP, the runner and the pins identical;
+  - c = 1 successors byte-identical through precommit;
+  - the guards pass;
+  - mutants: 15 killed, 10 equivalent (redundant (4b) conjuncts).
+
+**Rulings:**
+1. **R5 does not fire.** SR-RS goes to RV-R.
+2. **The ten redundant (4b) conjuncts** stand unless RV-R finds a reason for the minimal form.
+3. **I90's first-failure notes** (m4 at G3 `COVERAGE`, m7 at G5 `ATTEMPT`, m1's whole error value, a non-null `product_attempt_ref` at G3, and a copied parity row's `recovery_method`) go to SC's 07n expectations and to SR-PY's and SR-TS's agreement checks.
+4. **For SQ's TEXT loop rules:** G8 counts parity rows for every case, and `d38_capture_before_run` scans 8 constant stage names, only for attempts whose native stage failed with no Run. One re-qualification at SQ's G5 covers RS's production change.
+5. **`B1_COMMON.md`'s full sha256** was recorded in "I89's SA verified and ruled; …". I90's note is answered.
+
+**Dispatched:**
+- **RV113 (RV-R), fresh,** by `BRIEFS/RV113_RVR_ROUND1.md`. It reviews SR-RS now, and SR-PY, SR-TS and SC later.
+- **I92 (I-TS): SR-TS,** by `BRIEFS/B1_SR_TS.md`, in `WT/b1-t` (branch `codex/piping-t3-b1-t-20261007` from I1). It takes I90's slot and carries RV108 N4 and N6.
+- **Implementers running:** I85 (SP), I91 (SR-PY) and I92 (SR-TS).
+
+**IDs:** I92 and RV113 are used. The next unused are **I93 and RV114**.
