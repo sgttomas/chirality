@@ -14682,3 +14682,5 @@ RV114 agrees with all 27 decisions, several subject to its findings.
 - **The record:** B1's change record states it as T-11's headline staging, a clarification of DESIGN_v2. RV-P round 2 checks it, including W-C2's stress headline moving from case A's row to case C's.
 
 **Dispatched: RV-P round 2 (RV109) reviews SP at `603e238517`** by `BRIEFS/RV109_RVP_ROUND2.md`, before I3. I85 is resumed at I3 for the W-C2 pins.
+
+**B3-S dispatched as I95** (exact-route pricing, Python only) by `BRIEFS/B3S_EXACT_PRICING.md`, in the slot I85 left while parked until I3. **Implementers running:** I88 (SI1c repair), I94 (B2-KD) and I95 (B3-S); I85 resumes at I3, and then ROOT schedules within the cap. **IDs:** I95 is used. The next unused are **I96 and RV115**.
