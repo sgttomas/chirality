@@ -14334,3 +14334,32 @@ I85's REPAIR_01 (`8d2d714e…`; 34 of 34 OK) is verified by ROOT: one test-only 
 - **The reason:** a `TypeError` escaping a `ValueError`-only caller (the v0.3 packager's validator) is a defect on malformed input. The repair changes no accepted input and no public meaning, because the input is refused before and after.
 
 **SR-PY's brief** is `BRIEFS/B1_SR_PY.md`. It carries RV108 N1, N2 and N6(a), with PLAN_v2 §2.4's census and D38 obligations. Worktree `WT/b1-p`, from I1. It is dispatched as I91 when I89's follow-up returns.
+
+## I89's follow-up verified; SA's records redacted in place; SR-PY dispatched as I91 (ROOT, 2026-10-07 UTC)
+
+**I89's follow-up 01 is verified.** `b1-a` is at `9812c83ded`:
+- `77f4391a85` is the `--no-ff` merge of `b1` at SP's `56c5579f07`, with no conflict;
+- `9812c83ded` is the parked-slot patch alone, in 2 files, +29/−2.
+
+`FOLLOWUP_01.md` sha256 `401d40b4…`; SHA256SUMS.followup_01 17 of 17 OK. Evidence (as returned):
+- PP `--lib` 562 passed (only `t13` failing), +13 against I1 (SA's 8 and SP's 5);
+- the new test fails against the unpatched reader (10 against 59);
+- c = 1 identity holds.
+
+RV112 reviews the follow-up as part of round 1.
+
+**Erratum E-10: SA's committed records carry a home-relative path form.**
+- **What:** 46 files under `R/I89/b1_sa_01/_run_records/` (committed at `bc37d43a0a`) contain `~/`-rooted paths of the T3 worktree, because I89's copy of the sanitizer sat one level deeper and mapped `WT/scratch` as `WT`. `FOLLOWUP_01.md` quoted the form literally.
+- **Why it matters:** home-relative paths fail the publication screen.
+- **Not yet on main:** #1108 carried NUM at `6f983f12f3`, before SA's records. Main has 3 such strings, all reviewers' quotations of the scan's own patterns.
+- **Ruled: redact in place on NUM,** as the earlier redacted originals were. The original bytes stay only in NUM's history, which is never merged into main.
+  - I89 rewrites the 46 files with correct placeholders, keeping RETURN.md byte-identical.
+  - I89 regenerates SHA256SUMS and SHA256SUMS.followup_01, rewords FOLLOWUP_01 §3, and writes `REDACTION_01.md` with each file's old and new sha256.
+- **The redacted originals' list gains these 46 files at `bc37d43a0a`.** The next records PR's reviewer checks that none is present.
+- **The screen gains a rule:** ROOT's commit-time screen includes `~/` and `.claude/worktrees/…` forms in new record folders, beside `/Users/` and `/private/`.
+
+**SR-PY is dispatched as I91 (I-PY),** by `BRIEFS/B1_SR_PY.md` (sha256 `2a902874…`), in `WT/b1-p`. I89's redaction is records-only, with no host load, and takes no implementer slot.
+- **Implementers running:** I85 (SP), I90 (SR-RS) and I91 (SR-PY).
+- **Reviewers running:** RV109 (SP early read), RV111 (SI1c) and RV112 (SA).
+
+**IDs:** I91 is used. The next unused are **I92 and RV113**.
