@@ -14706,3 +14706,21 @@ RV114 agrees with all 27 decisions, several subject to its findings.
 **IDs:** RV115 is used. The next unused are **I96 and RV116**.
 
 **B3-D dispatched as I96** (the B3 design, documents only) by `BRIEFS/B3D_DESIGN.md`, in the slot I94 freed. **Implementers running:** I88 (SI1c repair), I95 (B3-S) and I96 (B3-D). **IDs:** I96 is used. The next unused are **I97 and RV116**.
+
+## I95's B3-S: the exact route fits at 10.5 GiB; per-route pricing ruled; decision 26 answered (ROOT, 2026-10-07 UTC)
+
+**I95's study is verified.** `R/I95/b3_s_01/STUDY.md` sha256 `8975948a…`; SHA256SUMS 44 of 44 OK; the strict screen is clean.
+- **Reproduced first:** I82's chain reproduces exactly on main `2007709549` (Pass A at c = 1; `d1_c1` to `d1_c3` byte for byte; S3 = 9,747,725,678 / 9,688,594,334 B).
+- **The answer (erc):** the exact route alone, with the D1.3 rules rebound and two D1.5-exact zero rules. At C = 3 it prices 9,900,151,888 / 9,841,020,544 B (dense / sparse), W3 binding. **That is a 5 % M of 10.5 GiB,** S3's step, with a 5.95 % text budget dense.
+  - It adds +152.4 MB over S3: +133.2 MB of text and diagnostics, +19.3 MB of census.
+  - The worst-case heap is 9.16 GiB, 57 % of a 16 GiB machine.
+- **C_eq = 3 equals c = 3 here,** because the exact route blocks every combination (z = 0).
+
+**Rulings:**
+1. **B3b's G5 prices each route with its own TEXT graph,** using I95's nine mirror rules that zero the legacy-only branches on the exact route, and the registered profile takes the maximum over routes (PLAN_v2 §3.2 item 1 allows it). One graph over both routes would sum both routes' finalizations and replays: 14.75–16 GiB at C = 3, above the owner's 12 GiB. This goes into SQ2's brief.
+2. **The two new zero rules** (in `build_pressure_case_with_members` and `finish_source_groups`: with no pressure region every term list is empty, so the per-DOF sites cannot run) are **adopted provisionally.** They decide 10.5 against 11.25 GiB, both within 12 GiB and within ROOT's authority. Like G4's rules (RV83, RV84), they are **reviewed before G5 relies on them,** by RV-Q2 at SQ2, or earlier by RV-D if B3-D's review reaches them.
+3. **Decision 26: no route caps are needed.** If one is ever wanted as a fallback, c ≤ 2 on the exact route prices at 7.25–7.5 GiB.
+4. **B3b's admission refuses any combination on the exact route,** so the exact forms never price combination text. This goes to B3-D (I96, running) and B3b-A.
+5. **SQ2's G5 identifier audit covers the 32 newly reached identifier placeholders** listed in `b3s_open_items.out.json`.
+
+**Nothing needs the owner.** Both outcomes are within 12 GiB, and B1's M stays the expected 10.5 GiB step.
