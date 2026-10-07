@@ -13502,3 +13502,25 @@ Record: `IMPLEMENTATION/T6S_MERGE/`.
 - T3-SI1b into NUM and its own PR, after RV104;
 - B6 may start;
 - a records-only PR now, while no product PR is open.
+
+## #1105 opened; RV106 reviews it; B6 dispatched to I83 (ROOT, 2026-10-07 UTC)
+
+**The records-only PR [#1105](https://github.com/sgttomas/chirality/pull/1105)** is cut from main `bfb26596bf`, taking NUM's `execution/` at `030020aca3`, with head `736f3fb7b2`.
+- It has 218 added and 2 modified files (ROOT_RULINGS_V1.md and the work graph), with no deletions and nothing outside `execution/`.
+- **ROOT's screen** found no file over 2 MB, no token-shaped string and no machine-absolute path. Host-data pattern hits appear only as scan vocabulary in RV103's records.
+- GEN-8 passes on the exact head (`IMPLEMENTATION/RECORDS_MERGE_2026-10-07/_run_records/gen8.txt`).
+- **RV106** (fresh) reviews it, by `BRIEFS/RV106_RECORDS_PR5_REVIEW.md` (RV103's method, with substitutions).
+
+**B6 is dispatched to I83,** by `BRIEFS/B6_READER_ITEMS.md`, on branch `codex/piping-t3-b6-20261007` from main `bfb26596bf` (worktree `WT/b6`). Its items:
+- mutation 277's slice;
+- N-3's G7 code alignment (TS to `SOURCE_NUMERICAL_CASE_INVALID`; decision 11);
+- F-U6b-2's Python transport validator;
+- RV94 N-5;
+- RV78-N1. I83 first establishes what remains open, and returns a checkpoint if it would re-pin existing entries or overlap B1's re-pin.
+
+**B6's limits:**
+- The corpus is append-only, and B6 is its single writer before B1's snapshot.
+- PP, every D1 crate `src` (RS included), the schema, the fixtures and the T6S files are unchanged. So no Pass B is expected.
+- PR-B1's packaging, with B1 or separately, is ruled when B6 returns.
+
+**IDs:** RV106 and I83 are used. The next unused are **I84 and RV107**.
