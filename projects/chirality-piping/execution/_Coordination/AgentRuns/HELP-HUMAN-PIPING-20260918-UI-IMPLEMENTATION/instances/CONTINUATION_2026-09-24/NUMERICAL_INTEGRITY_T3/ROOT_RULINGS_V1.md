@@ -13650,3 +13650,41 @@ It confirms that ROOT took no owner-held decision, and quotes the owner's words 
   - `rule_check_runner` 33 → 35;
   - every other manifest identical;
   - pytest, vitest and the builds unchanged in count. `test_rule_interval.py` is unchanged at 193.
+
+## I82's study: P1 adopted as B1's target; B1's plan dispatched (ROOT, 2026-10-07 UTC)
+
+**I82's return is verified:** `R/I82/b1_cap_study_01/STUDY.md` (`d8b18220…`; SHA256SUMS 34/34 OK; no machine paths). It was pricing only, in Python. No stray process remains.
+- **It reproduces I65's chain on main:**
+  - `profile_tree.json` is byte-identical to G7 Pass A;
+  - all 2,814 TEXT rows match;
+  - all 14 phase rows of I72's law record are exact: sparse 3,575,778,286 B, dense 3,595,488,734 B.
+- **The multi-case variant** reduces to the same tree at c = 1, and the 62 cap points converge.
+
+**The finding.** At D1's model caps, c ≥ 2 does not fit under 0.9 M even at 6.0 GiB. Dense E_mov,max + R at c = 2 is 6,592,539,324 B, which would need M ≈ 6.82 GiB. W3 (publication with the staged copy) binds at every multi-case point.
+
+**Adopted as B1's design target: I82's P1.**
+- **Two tiers:**
+  - **tier 1 (c = 1):** D1, unchanged;
+  - **tier 2 (2 ≤ c ≤ 3):** n, m and g ≤ 16; springs ≤ 96; Σr ≤ 96; l ≤ 64 per case; L ≤ 192.
+- **M = 5.25 GiB** (5,637,144,576 B), within the owner's 6.0 GiB.
+- **The priced margins:** tier 2 dense is 0.8703 M, 167,147,176 B under 0.9 M; sparse is 0.8682 M. The text-error budget is 8.78 % (dense) and 9.42 % (sparse).
+- W-C2 (n 4, m 2, g 5) fits tier 2. Tier 1 keeps W2 and W2b in the domain, which P3's single tier would not.
+
+**Final selection at B1's G6, by measurement (D-7).** These numbers price B1's design, not its code.
+- B1's G5 re-derives TEXT and the profile per tier on the real code.
+- G6 confirms `admission_bound`, the pure maximum and the registration diff.
+- **ROOT requires at least a 5 % text-error budget at G6,** because the study emulates the per-case multiplicities.
+- **If the measurement does not fit,** ROOT walks I82's ladder without the owner: P1 up to 6.0 GiB, then a 12/12/12 tier 2, then P0.
+- **The owner is asked only if none fits within 6.0 GiB.** That is decision 17; I82 does not expect it.
+
+**B1-P, B1's implementation plan, is dispatched to I84** (fresh; documents only), by `BRIEFS/B1_PLAN.md`. It covers:
+- slices with write sets;
+- re-qualification (G5, G6, S1 witnesses, challenge peaks, RV87's sweep, the full suite, Pass B);
+- order and the points where ROOT rules;
+- reviewers;
+- PR-B1's packaging, with or without B6;
+- decisions, risks and stop rules.
+
+ROOT rules on the plan before dispatching implementers.
+
+**IDs:** I84 is used. The next unused are **I85 and RV107**.
