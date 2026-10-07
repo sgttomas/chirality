@@ -13425,3 +13425,53 @@ RV101's §3.1 found the same at `2033260c57`, and RV101 re-reads the scope at th
 - with the re-qualification its unit requires.
 
 Raising M is not a claim that every machine has that much memory.
+
+## B0 selected on DESIGN_v2; C3a's names reserved; B1 opens with a probe and the cap/M study (ROOT, 2026-10-06 UTC)
+
+**I78's revision 01** (`R/I78/b0_contract_01/DESIGN_v2.md`, `5933b90b…`; `REVISION_01.md`, `79520623…`; 2/2 OK) **is CONFIRMED by RV105** (ADDENDUM_01, `9071403f…`; 2/2 OK): 0 BLOCKING, 0 SHOULD-FIX, 3 new NOTE.
+- B-1, S-1 to S-3 and N-1 to N-11 are resolved as ruled.
+- RV105 AGREES with decisions 1, 2, 4, 5, 6, 9, 11, 14, 15, 16 and 21. It agreed earlier with 3, 7, 8, 10, 12, 13 and 20.
+- **Its three notes:**
+  - **A1-N1:** DESIGN_v2's citation of the R-b′ wire-representation ruling should read RR:9013, not RR:9019. Corrected here.
+  - **A1-N2:** decision 21's "no W2 publication" clause can never fail. It is kept as harmless.
+  - **A1-N3:** decision 21 is a second change at c = 1. A one-case Mechanism, Asymmetric or InvalidInput failure publishes exact bytes without the notice. B1's probe records the error tags, so its effect on committed tests is known before T-4 lands.
+
+**Selected, as DESIGN_v2 §8 recommends: decisions 1–16, 20 and 21.**
+- T-1 to T-13 are B1's contract text. In particular:
+  - T-4 is keyed on the published verdict;
+  - the empty-A fallback is `NoTriggeredCase`;
+  - DN §4.3's exclusion applies for Mechanism, Asymmetric and InvalidInput.
+- W-C2 has three cases (A selected; B W2-published `not_required`; C Ceiling unavailable), established by B1's probe with the stop rule.
+- F-1's text B, the G8 and G5 alignment, R-D38 with its synthetic pin, and C3a's P1 representation are adopted.
+- The caps' scopes and method follow §6. ROOT may select M ≤ 6.0 GiB (decision 16; owner, 2026-10-06).
+- Decisions **17–19 stay owner-held, prepared and not decided:**
+  - 17: M above 6.0 GiB, or a supported-machine statement;
+  - 18: R-2;
+  - 19: the native-app witnesses.
+
+**Reserved by ROOT (decisions 12 and 14),** after RV105's collision recheck at `77bac7532f`:
+- **C3a's spellings,** for B2: `operand_preparations`, `OperandPreparation`, `operand_preparation_failure`, `retained_precision_operand_preparation_v1` and `combination_operand`. Of these, 0 hits outside `P/execution`, except that `combination_operand` appears as a substring of two unrelated identifiers, neither a wire value.
+- **`NoTriggeredCase`,** the W1 fallback name (0 hits).
+- **Confirmed again:** `openpipestress.result_semantics/0.3.0/physics-retained-1` and `exact_straight_retained_w1a_v2` (2026-10-03; 0 hits for the full form). B3's exact formation definition is named and reserved at B3's design.
+
+**For the owner's information, with no decision needed.** In the registered dev/test build only, and with no public change:
+- **decision 1:** a load case whose ordinary verdict is `checks_passed` no longer attempts W1 or appends a notice, including W6's PHYS-R4-geometry input;
+- **decision 21:** a case whose ordinary solve failed with Mechanism, Asymmetric or InvalidInput no longer gets a notice.
+
+PHYS-R4's publication and availability are unchanged.
+
+**B1 opens with two parallel units, before any maintained edit:**
+- **B1-0, the probe** (I81, by `BRIEFS/B1_0_PROBE.md`). It covers:
+  - the verdict audit of every QUAL §4 witness input and every `attempted_examples` input;
+  - decision 21's error tags;
+  - W-C2's case C in both modes, with the stop rule and fallbacks (i) and (ii);
+  - whether case C alone reproduces W-C1's and W6's outcomes, for re-basing.
+
+  Records only, in a disposable archive, U8-0's method.
+- **B1-S, the cap and M study** (I82, by `BRIEFS/B1_S_CAP_STUDY.md`): PLAN decision 9's read-only study, extended by DESIGN_v2 §6 steps 1–5. It proposes C, l, L, any model-cap trades, and an M ≤ 6.0 GiB if needed, with the 0.9 M arithmetic per mode. ROOT selects; nothing is installed.
+
+**After both return,** ROOT rules on B1's scope. B1's implementation plan then follows.
+
+**B6** starts after T6S merges. It is the corpus's single writer, before B1's snapshot.
+
+**IDs:** I81 and I82 are used. The next unused are **I83 and RV106**.

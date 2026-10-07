@@ -561,8 +561,8 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 | T3-SI1b | The point-path panic repair in `expression_evaluator` (an overflowing same-dimension quotient, a NaN interpolation or step argument): a blocking finding instead of a panic. Found by I73 | T3-SI1 merged (done) | I79 (done, `R/I79/si1b_01/`); RV104 reviews by `BRIEFS/RV104_SI1B_REVIEW.md`; then its own PR after T6S merges to main (NUM sequencing). Branch `codex/piping-t3-si1b-20261006` at `966113396e`, worktree `WT/s-i1b` | ACTIVE: complete (`NonFiniteInput` for both causes, ruled); under review |
 | T3-SI1c | Point-path boolean formulas over a NaN or infinite intermediate are decided and can pass (`NaN ≠ 100`, `inf ≥ 100`), where interval mode reads U. Found by I79 | T3-SI1b | A plan first; whether a pass-to-block change alters public meaning is decided with the plan (owner-held if it does). S-I2's planning accounts for it | READY for a plan |
 | T3-T6S | The T6 successor-output slice plan, which closes activation-checklist item 4 | — | I74's plan (14 decisions ruled); I76 and I75 implemented; RV101 reviews; I80 drafts the PR package. Branch `codex/piping-t6-successor-outputs-20261005` at `fdcdb5e024`, worktree `WT/t6-outputs` | ACTIVE: complete and reviewed (RV101 PASS 0/1/10; SF-1 repaired by I75 for 16- and 17-digit ties and CONFIRMED). Merged into NUM (`8eaa4403a6`). Next: its PR from main with I80's package and the full gate set. The owner pulled it forward |
-| T3-B0 | F2a breadth: contract and identities, reserving `openpipestress.result_semantics/0.3.0/physics-retained-1`; F-1's parity-row rule; the carried notes | T3-U8 (done) | I78, by `BRIEFS/B0_CONTRACT_AND_IDENTITIES.md` (documents only); an independent review follows | ACTIVE |
-| T3-B1/B6 | Multi-case breadth with W-C2 (the two-body model) and D38's pin (cap-growth study early in B1); the reader items; F-1's parity-row repair in all three readers. Then PR-B1 | T3-B0 | PLAN §2 | PLANNED |
+| T3-B0 | F2a breadth: contract and identities | T3-U8 (done) | I78 (`R/I78/b0_contract_01/DESIGN_v2.md`); RV105 (FAIL as drafted on B-1, then CONFIRMED) | **DONE:** decisions 1–16, 20, 21 selected; 17–19 owner-held, prepared. C3a's names and `NoTriggeredCase` reserved (RR "B0 selected on DESIGN_v2; …") |
+| T3-B1/B6 | Multi-case breadth (T-1 to T-13; T-4 keyed on the verdict; DN §4.3's exclusion), W-C2 (three cases), D38's pin, F-1 text B and the G8/G5 alignment in three readers, caps and M re-priced (M ≤ 6.0 GiB is ROOT's). Then PR-B1 | T3-B0 (done) | **B1-0 probe:** I81 (`BRIEFS/B1_0_PROBE.md`); **B1-S cap/M study:** I82 (`BRIEFS/B1_S_CAP_STUDY.md`); then B1's implementation plan. B6 after T6S merges (corpus single writer before B1's snapshot) | ACTIVE: probe and study running |
 | T3-B2/B3/B4 | Combinations, preparation-only and mixed invocations; the exact routes; cap growth (B4) only if ruled. Then PR-B2 | PR-B1 | PLAN §2 | PLANNED |
 | T3-B7 | The release identity, registered once. The milestone's bytes and verdicts are re-established on it (RV95 N-6) | PR-B2 | PLAN §2.2 | PLANNED |
 | T3-B8 | Public activation with native Current, after the checklist (`F2A_D1/CHANGE_RECORD.md` §4) and its review. Its native witness includes the two export panels exporting an eligible successor while every other surface refuses (G10's moved half) | T3-B7; T3-T6S's slice; caller qualification for the desktop workspace (rulings, near line 10407); I53's open native-window premise; the owner's Mac | PLAN §2.2 | PLANNED |
@@ -591,7 +591,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **2026-10-04:** G10 stays outstanding on the owner's Mac.
 - **Earlier:** T1 option (a); D-3 = S1; D-6 = (a); M selected under D-7.
 
-**Assignment IDs.** Dispatched on 2026-10-06: I68–I80, RV97–RV99 and RV101–RV104 (RV100 was 2026-10-05's, for #1088). Running: I78 (B0), I80 (T6S's package), RV104 (SI1b). The next unused are **I81 and RV105**.
+**Assignment IDs.** Dispatched on 2026-10-06: I68–I82, RV97–RV99 and RV101–RV105 (RV100 was 2026-10-05's, for #1088). Running: I81 (B1-0), I82 (B1-S), RV104 (SI1b). The next unused are **I83 and RV106**.
 
 **T3 rulings in force** (section headings in `ROOT_RULINGS_V1.md`):
 - **T3's gate set and Git rules for product and records PRs, and verifying returns:** "T3's gate set and Git rules, consolidated after the handoff was made ephemeral";
@@ -609,6 +609,8 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **return verification checks sums against the committed tree:** "RV102 passes #1101; S-1 and S-2 fixed before the merge";
 - **the T6 slice's scope and D2 5b.3:** "I73's checkpoint 1 and I74's plan ruled; D2 5b.3; the T6 slice dispatched" (I74's decisions 1–14);
 - **DEC-025's fresh candidate target, and suites rerun in a fresh target after a host artefact:** "#1102 merged; DEC-025's suites rerun in a fresh target; B0 and T3-SI1b dispatched", with the mechanism (a cdylib's unhashed output) and the fresh-target rule for every suite run in "RV103 passes #1103; …";
+- **B0's selection, the reserved names, and B1's opening:** "B0 selected on DESIGN_v2; C3a's names reserved; B1 opens with a probe and the cap/M study";
+- **M up to 6.0 GiB is ROOT's:** "Owner decision: ROOT may raise M up to 6.0 GiB without asking";
 - **SI1b's finding code and the routing to T3-SI1c:** "RV103 passes #1103; #1103 squash-merged; I79's return verified and ruled; RV104 dispatched".
 
 **Notes routed to later units:**
@@ -625,8 +627,8 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - RV95 N-6 (at B7).
 
 **Next safe action:**
-1. T6S: when I80 returns, verify its package; cut `codex/piping-t3-t6s-pr-<date>` from main with the 19 files from `fdcdb5e024` and the package; run the gates (source equality against NUM, citations, GEN-8, CI with the full-SHA dispatch, DEC-025 against a fresh main baseline); RV101 confirms the PR head; merge.
-2. SI1b: RV104 reviews; after T6S merges and NUM absorbs main, SI1b merges into NUM and takes its own PR.
-3. B0 (I78) returns; ROOT verifies; a fresh reviewer follows.
+1. #1104 (T6S): DEC-025 `ALL-DONE` with a clean comparison (the T6S suites checked against the expected deltas, RV101 A2-N4); CI and dispatch 37546714187 green; main unmoved; then merge, record, and NUM absorbs main.
+2. SI1b: RV104 returns; after T6S merges, SI1b merges into NUM and takes its own PR.
+3. B1: I81 (probe) and I82 (cap/M study) return; ROOT rules on B1's scope and M; B1's implementation plan. B6 after T6S merges.
 4. The next records-only PR after T6S's merge (a fresh reviewer).
-5. Post-merge cleanup `apply` when the host is idle (the merged worktrees `s-i1`, `u8-pr`, `f2a-u8` and `records-pr`; stale targets including `sweep-skewpin-target`).
+5. Post-merge cleanup `apply` when the host is idle (merged worktrees `s-i1`, `u8-pr`, `f2a-u8`, `records-pr`; stale targets including `sweep-skewpin-target`).
