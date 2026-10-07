@@ -14098,3 +14098,37 @@ ROOT's decisions 4–15 (previous section) stand. **I88 implements SI1c** (D, wi
 - ROOT: B6's PR.
 
 **IDs:** I88 is used. The next unused are **I89 and RV110**.
+
+## B6's PR #1107 cut; RV108 confirms its head; a dispatch with a short SHA, repeated with the full one (ROOT, 2026-10-07 UTC)
+
+**The cut.**
+- B6 merged into NUM at `1732ba108e` (`--no-ff`), with no other unmerged product slice there.
+- The package is `IMPLEMENTATION/B6/` (NUM `c698a0b9a5`).
+- **PR [#1107](https://github.com/sgttomas/chirality/pull/1107)** is a draft: branch `codex/piping-t3-b6-pr-20261007`, head `1199726f69`, one commit over main `025c1cf326`, worktree `WT/b6-pr`. It holds the 11 slice files from `a7de2a918f` and the 4 package files from NUM.
+
+**Gates so far:**
+- source equality 5 of 5 PASS (|S| = 11; NUM `c698a0b9a5`);
+- citations PASS (7 resolved, all on the carrier file's `scope` line, all there before B6);
+- GEN-8: 1 passed at the head;
+- the automatic CI runs.
+
+**The first full-SHA dispatch failed on ROOT's input.** Run 37620732340 was given `target_base=025c1cf326`, a short SHA. `e2e_plan.py` requires a manual target to be a 40-hex commit SHA ("Manual target must be an immutable commit SHA"), and reports that as "Update the PR base: …".
+- It was **not a defect in the PR.** It was re-dispatched with `target_base=025c1cf326f1b9ef827626f27d0e2b9cf5b415fe` as run 37621653258.
+- **The rule, restated:** the dispatch's `target_base` is always the full 40-character SHA.
+
+**RV108 confirms the head:** `R/REVIEW_RV108/b6_01/ADDENDUM_01.md` sha256 `ad9caae0…`; SHA256SUMS.addendum_01 12 of 12 OK; CONFIRMED, 0/0/3.
+- Scope is exactly 11 + 4.
+- The 11 blobs are equal at the head, `a7de2a918f` and NUM. RV108 reproduced source equality twice.
+- The package is true, apart from A-N1 and A-N2. The citations resolve.
+
+**Rulings on the addendum's notes.** The package is not changed (it would move the head). The merge record carries the corrections:
+- **A-N1:** "the twin of Rust's and TypeScript's" is exact on G0–G2 only. At the base step, Python runs both Rust's check and TS's (REVIEW N6(a)).
+- **A-N2: B1's carried obligations gain:**
+  - SC's corpus entries for RV108 N1, N2 and N4;
+  - SC's transport scope sentence (N6);
+  - SR-PY's "twin" wording in Python's transport docstring (N6(a)).
+
+  RR's earlier "TS's doc comment" item (N6) becomes true once SR-PY repairs N1, and SR-TS rechecks it then. N5 (test strength) is SC's, as ruled. N7 needs no action.
+- **A-N3:** two comment lines cite `R/REVIEW_RV92/u6f_01`, a form `check_citations.py` does not parse. The path resolves to the same record as the indexed `RV92 u6f_01`. This is a later tooling item and is noted only.
+
+**DEC-025 `B6_1199726f69`** started under the lock (baseline: `WT/main-baseline` at `025c1cf326`; candidate: `WT/sweep-skewpin` at `1199726f69`; fresh targets). SI1b's leftover sweep file in `WT/sweep-skewpin` was removed only after a byte-identical copy was confirmed in its label folder.
