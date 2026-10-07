@@ -14399,3 +14399,22 @@ ROOT checked independently: across the 46 rewritten files, 328 changed lines, wi
 - **Implementers running:** I85 (SP), I91 (SR-PY) and I92 (SR-TS).
 
 **IDs:** I92 and RV113 are used. The next unused are **I93 and RV114**.
+
+## RV113 passes SR-RS with S-1; an SR-RS repair round queued; test binaries run under the lock (ROOT, 2026-10-07 UTC)
+
+**RV113 (RV-R) passes SR-RS:** `R/REVIEW_RV113/rvr_sr_rs_01/REVIEW.md` sha256 `09140cb9…`; SHA256SUMS 34 of 34 OK; the strict screen is clean; PASS, 0 BLOCKING, 1 SHOULD-FIX, 5 NOTE.
+- RV113's own census: 0 changes over 07m's 339 entries.
+- (4b): 82 probes, 0 mismatches. I90's D38 list is complete, and the ten redundant conjuncts are accepted.
+- G8 and G5 are right, and c = 1 identity holds (14 pin outputs).
+- There is no layout change, and N-5's test is sound.
+- Of RV113's 22 mutants, 16 are killed by the candidate, 3 are equivalent, 1 is equivalent on emittable receipts, and 2 are killed only by its probes (S-1, N-1).
+
+**Rulings:**
+1. **S-1 is repaired in an SR-RS repair round (I90; RV113 confirms).** G5's `not_required` conjunct `product_attempt_ref == null` is pinned by no test, and mutant M20 survives. The fix is a reader-local RS test: a `not_required` case whose own attempt names it passes G3, and RS refuses it at G5 `ATTEMPT`.
+   - **SC's 07n entry** for "`product_attempt_ref` set non-null on case B" is built with W-C2 case B's own product attempt, so that it reaches G5 rather than stopping at G3 (amending the routing in "I90's SR-RS verified; …", ruling 3).
+2. **N-1 rides in the same round:** a reader-local (4a) positive witness at `validate`, so that mutant M02 dies now. 07n's W-C2 must-pass entries pin it again at SC.
+3. **N-2: DESIGN's `not_required` rule is kept, for three-reader parity.** It admits two ordinary shapes the producer cannot emit (an initial failure beside W2 `not_triggered` or `failed`, with `checks_passed`). Tightening would be a contract change across all three readers, for shapes no producer emits.
+4. **N-3** (P4's predicate) rides in the repair round if it is cheap: a synthetic receipt telling "published" from "triggered". **N-4** (the disclosed limit's wording) goes to PR-B1's package text. **N-5** needs no action.
+5. **The repair round is queued.** Implementers I85, I91 and I92 hold the three slots, so SR-RS's repair runs when I91 or I92 returns (repairs ahead of new starts). I3 is needed only for SP's W-C2 pin, which is many hours away.
+
+**A host rule, restated.** RV113 ran its mutant and probe test binaries directly, outside the lock, at nice 10. The tests were light, but the rule is that **every heavy job, including direct runs of built test binaries, goes under `WT/guard/cargo_job.lock`**, as I86 did. New briefs and the next messages carry it.
