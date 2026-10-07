@@ -14776,3 +14776,37 @@ RV114 agrees with all 27 decisions, several subject to its findings.
 - **RV115 (RV-K):** K3-1 and K3-2's kernel content, as an addendum to its B2-KD review, since it holds RV-K.
 
 **IDs:** RV116 is used. The next unused are **I97 and RV117**.
+
+## RV115's addendum accepts B3-K (K3-1, K3-2); the kernel items of B3-D ruled (ROOT, 2026-10-07 UTC)
+
+**RV115 (RV-K) ADDENDUM_01:** `R/REVIEW_RV115/b2_kd_01/ADDENDUM_01.md` sha256 `50124607…`; SHA256SUMS.addendum_01 5 of 5 OK and the original 4 of 4; the strict screen is clean. It accepts B3-K with amendments: 0 BLOCKING, 2 SHOULD-FIX, 6 NOTE.
+- **K3-1** (`ProductMaterial::BaseENu { e, nu }` → `ExactENu`) is additive:
+  - `ProductMaterial` stays 96 bytes (`Interpolated`'s payload governs, and there is no niche);
+  - PP only constructs it, and its test matches end in wildcards;
+  - FK's `operands()` simply gains an arm.
+- **K3-2 is true and its fix is sound.** `build_member` computes `represented_z` only for the ordinary and interpolated materials, and the certificate's K lane requires it. So with K3-1 alone, every exact stress and maximum row would fail. Represented Z is a section quantity: the hull (I_K/c, Ẑ) encloses both forms for any material.
+- **Nothing else is missing in FK for the exact route.**
+
+**Rulings** (B3-D's kernel items; the rest of B3-D waits for RV116):
+1. **B3D-6: K3-2 by option (a), with a declared exception stated exactly.** The frozen product-certificate oracle changes in three lines only:
+   - the generator's line 68 drops `if mode else (F(),F())`;
+   - the fixture's line 22 becomes `("+ep2", "+fp2")` and its line 122 `("+8p-1", "+8p0")`.
+
+   The fixture's sha256 moves from `8cbe5d32…` to `467f881181efb35ca11e8303dc212e3f90e00dd394571cb26f67b8504745f72c`, and the generator's from `88fc0765…` to `d9618a32…`. **Any other byte change in the oracle is a stop.** Option (b), a K-lane special case, is rejected.
+2. **SA-1:** B2-K's brief re-bases its stop S-11 and its byte-identity test K-13 on J2k's oracle, so that B2-K rebasing onto the changed fixture does not fire S-11.
+3. **SA-2: K3-3's tests add controls:**
+   - `ExactENu` with Iy ≠ Iz refuses with `AxisBits`;
+   - a `BaseENu` stress row and maximum row fail with `bad("represented Z")` under a test-only mutation restoring the material gate, and certify without it;
+   - an E-bit mismatch gives `MaterialBits`;
+   - ν outside (−1, ½) gives `InvalidMaterial`;
+   - the six non-`ExactENu` oracle vectors are unchanged;
+   - K3-3 adds its own ν = 0.3125 control (NA-6).
+4. **B3D-16: J2k is its own merge point,** so that B3b-P's certificate stage does not wait for B2-K at J3. **Its acceptance (NA-5):**
+   - K3-3;
+   - FK's suite with only the declared oracle lines changed;
+   - PP's compile and suite;
+   - every FK dependent compiled;
+   - `profile_in_build_record` in the registered build.
+5. **No kernel check of Ĝ against RN64(E/(2·RN64(1+ν)))** (NA-3): G8 binds Ĝ, and the certificate refuses if α ≥ 1.
+
+**B3-K's estimate stands at 3–6 h, plus 1–2 h for RV-K.** RV115 holds RV-K for B3-K's code too.
