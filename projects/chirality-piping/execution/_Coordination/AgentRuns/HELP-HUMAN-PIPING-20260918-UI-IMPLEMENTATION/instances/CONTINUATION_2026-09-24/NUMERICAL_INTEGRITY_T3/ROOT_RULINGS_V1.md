@@ -14640,3 +14640,20 @@ RV114 agrees with all 27 decisions, several subject to its findings.
 - **reach:** a combination beside three D1-cap cases does not fit within 12 GiB (about 13.25 GiB), so each combination counts as a case (c + z ≤ 3); 3 + 1 at D1's caps would be decision 17 (M above 12 GiB);
 - **size:** about 200–315 h agent and 60–90 h review, roughly four times the roadmap, with planned solver-kernel changes;
 - **R-COMB-1:** in F2a, subtraction and range combinations over a Sensitive case, and unavailable combinations, are withheld from binding; DN §4.2 had listed subtraction and range under W1a.
+
+## I93's REVISION_01 accepted; phase 0 opens with B2-KD (I94) (ROOT, 2026-10-07 UTC)
+
+**REVISION_01 is verified and accepted.** `R/I93/b2b3_plan_01/REVISION_01.md` sha256 `63abb73f…`; SHA256SUMS.revision_01 1 of 1 OK; PLAN.md byte-identical (`e1147dbd…`, 9 of 9); the strict screen is clean. It folds in S-1 to S-4, decision 9's re-ruling and N-12, and RV114's N-1 to N-11, as ruled.
+- **New decisions:** 28 (the combination formation is a new definition, `RP-PREPARED-COMBINATION-DUAL-v1`, reserved at B2-C), 29 (one owner per file), 30 (the J1 interim registration, as ruled) and 31 (G0 reads the table's bound policies, with the constants as a cross-check). **All four are ROOT's, and are selected.**
+- Decisions 3, 6, 9, 13, 16, 17, 21, 22 and 25 are amended as REVISION §6 states. 22–24 stay owner-held and undecided.
+- **Estimates:** 206–329 h agent and 61–95 h review, including phase 0's 37–60 h.
+
+**Phase 0 opens** within three implementers, with B1's work first:
+- **I94: B2-KD** (the kernel design, documents only), by `BRIEFS/B2KD_KERNEL_DESIGN.md`. A fresh numerical reviewer (RV-K) follows.
+- **B3-S** (exact-route pricing) follows in the next free slot, then B3-D.
+- **B2-C** follows after SP's RV-P round 2.
+- **B2-W and B3-W** run under the lock when the host is free.
+
+**Implementers running:** I85 (SP), I88 (SI1c repair) and I94 (B2-KD).
+
+**IDs:** I94 is used. The next unused are **I95 and RV115**.
