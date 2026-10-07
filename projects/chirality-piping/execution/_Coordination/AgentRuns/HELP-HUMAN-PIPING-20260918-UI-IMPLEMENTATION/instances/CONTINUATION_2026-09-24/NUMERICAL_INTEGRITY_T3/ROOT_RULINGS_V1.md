@@ -14370,3 +14370,5 @@ RV112 reviews the follow-up as part of round 1.
 - RETURN.md byte-identical (`05c2687d…`).
 
 ROOT checked independently: across the 46 rewritten files, 328 changed lines, with equal line counts in every file and every differing segment a path token. No `~/`, `/Users/`, `/private/`, `.claude/worktrees` or worktree-name string remains under `R/I89/`. The originals survive only in NUM's history at `bc37d43a0a`.
+
+**A staging slip, corrected.** Commit `a6801b8a29` staged NUM's whole `execution/` and swept in 63 files of I90's SR-RS records, which were still being written. The next commit removes them from the tree (the files stay on disk), and they are committed when I90 returns and ROOT verifies them. Nothing partial reached main: #1108 carried I88's complete return only. **Practice from now on:** ROOT stages only the record folders it has verified, plus RR and the work graph, never the whole `execution/`.
