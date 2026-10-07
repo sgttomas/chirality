@@ -13790,3 +13790,53 @@ For each, it gives the priced worst-case heap against 32 GB and 16 GB machines. 
 **ROOT rules only after an independent review,** because of the plan's size. **RV107** (fresh; documents only) reviews it by `BRIEFS/RV107_B1_PLAN_REVIEW.md`.
 
 **IDs:** RV107 is used. The next unused are **I85 and RV108**.
+
+## R1: B1's plan ruled with seven amendments; I84 writes PLAN_v2; B6 first as its own PR (ROOT, 2026-10-07 UTC)
+
+**RV107's review is PASS with findings** (`R/REVIEW_RV107/b1_plan_01/REVIEW.md`, `03c3111d…`; 4/4 OK): 0 BLOCKING, 7 SHOULD-FIX, 16 NOTE.
+- It AGREES with 20 of I84's 21 decisions, several subject to a finding. It DISAGREES with decision 16.
+- None is owner-held.
+- Its verdicts on the findings:
+  - W-C2 can be pinned only after SR-RS: TRUE.
+  - The 07m cascade is empty: TRUE, statically.
+  - The out-of-domain oracles: TRUE in substance, but the count is seven.
+  - The B2 consequence: likely, with one premise unpriced.
+
+**Ruled at R1: the plan is accepted, subject to these amendments.** I84 writes them into a complete PLAN_v2, and RV107 confirms it.
+- **SF-1, concurrency:**
+  - At most three implementers run at once.
+  - Every concurrent lane that builds PP or RE works in its own worktree and branch from a common base. ROOT integrates at the points the plan names.
+  - ST and SA, which both edit PP's admission and transaction code, are serialized or split by file. SP and SR-RS each get their own worktree.
+  - I84 re-sequences the phases accordingly.
+- **SF-2, the oracles:**
+  - Seven out-of-domain oracles are re-based, adding `u3g2_no_permit_path_runs_once_without_a_copy`, together with the D1.4 line of `every_family_clause_refuses_with_its_fact`.
+  - The runner crate cannot read `pub(crate) caps::LOAD_CASES`. Its oracle uses a literal C + 1, with a comment naming the constant and a test that ties the literal to the producer's observable refusal. **No visibility change to D1 `src` is made for a test.**
+  - SP states that `retained_w1` keeps its refusal of c > C and of combinations.
+- **SF-3, the fence:**
+  - It adds `tests/s11f_site_test.rs` and PP's `tests/retained_precision_admission.rs`, the two tests that read PP's source text, and every guard inside the fence (for example, the `.charged()` ban in `retained_wire.rs`).
+  - It also adds `retained_tests_hooks/grant2.rs` for the per-case fault hooks (N-4).
+  - New accumulation sites go into `s11f`'s table.
+- **SF-4, the interface between SA and SP** is stated:
+  - the running G-B total lives in SP's capture;
+  - `CompleteFacts` carries the requested case count for T-3 (e);
+  - SA's three-case gate tests are re-pinned at SQ, when the profile is regenerated.
+- **SF-5, the measurement:**
+  - **Each run records the furthest phase it reaches.**
+  - **SW looks for a cap-maximal input that publishes a successor,** so that W3–W5 are measured. Otherwise the plan states that they are unmeasured.
+  - **The challenge's counting-allocator peak** is recorded beside RSS. Its 6 GiB abort cap may be raised, within T3's host allowance of up to 64 GiB.
+  - **One mode per process.**
+  - **The record states** that this 128 GB host shows no 16 GB memory pressure, so the 16 GB judgement rests on the measured peak and run time, not on observed pressure.
+  - **New ROOT ruling point (N-15):** ROOT reads `RSS_TIME.md` against the owner's target-machine direction and reports it to the owner.
+- **SF-6: the src-tauri suite gate is added** to the full suite before the freeze and to PR-B1's gate set. src-tauri is outside the 40 manifests, and B1 changes PP.
+- **SF-7: PR-B1 gets a fresh, independent complete-diff reviewer** of the whole PR, as #1082 had RV95. This is in addition to the slice reviews. **Decision 16 is overruled.**
+
+**The notes go into PLAN_v2 where they apply:**
+- N-1 to N-3, N-5 to N-9, N-13 and N-16: each as a sentence or obligation in its slice;
+- N-10: the estimates include repair rounds for RV-P and RV-Q, calibrated against U4's G5–G7;
+- N-11: the B2 consequence is marked "likely; the combination's price is not yet computed";
+- N-12: the citation is corrected;
+- N-14: B6's actual file set is stated.
+
+**Decision 15 is ruled now: B6 goes first, as its own compact PR.** It touches no D1 crate `src`, so it needs no Pass B, T9, both-entry gate or re-qualification. B1 picks it up through one merge of main, with one unmerged product slice in NUM at a time.
+
+**The rest of I84's decisions** (1–14 and 17–21) are selected as amended above.
