@@ -1,5 +1,22 @@
 # Staged S4 file receiving
 
+Current source: [Stop-admission renewal](STOP_ADMISSION_SOURCE_ADOPTION.md) at127d.
+Existing LT09 and LT09/LT23 contracts remain fixed; earlier cohort descriptions
+below are historical.
+
+Current source: [combined-source renewal](LT12_COMBINED_SOURCE_ADOPTION.md) at2377.
+It preserves existing LT09 and LT09/LT23 contracts; preceding cohort descriptions
+below remain historical.
+
+Current two-cohort source selection: [LT12-source adoption](LT12_SOURCE_ADOPTION.md)
+at938d20ef4b. It preserves standalone LT09 and terminal LT09/LT23 restrictions.
+Earlier active-source descriptions below are historical.
+
+Current standalone source selection: [B-S4-TERMINAL-SOURCE-LT09-v1](TERMINAL_SOURCE_LT09_ADOPTION.md),
+with pins.terminal-source-lt09-v1.json and fresh9af LT09 fixtures. Earlier active-cohort
+descriptions below are historical. The separate [terminal receiver](TERMINAL_RECEIVING.md)
+checks completed LT09/LT23 exported pairs under its own fixed contract.
+
 `receive.py` joins a specifically selected synthetic Host export to the existing
 canonical EXP/PKG six-record cohort. A successful report means exact exported
 file correspondence. It does not mean native S1 semantics were rerun, that a

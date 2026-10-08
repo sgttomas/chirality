@@ -142,11 +142,13 @@ impl HostConfig {
 struct Inner {
     state: String,
     start_attempt: u64,
+    start_admission: Option<StartAdmission>,
     successor_status: Option<Value>,
     successor_artifact_error: Option<String>,
     successor_reference: Option<crate::distribution_store::S1Reference>,
     successor_publication_sequence: u64,
     successor_lt09_installed: bool,
+    successor_lt09_reference: Option<crate::distribution_store::S1Reference>,
     successor_terminal_pending: bool,
     generation: Value,
     app_session: String,
@@ -359,12 +361,21 @@ struct TerminalPermit(Arc<TerminalPublicationController>);
 impl Drop for TerminalPermit {
     fn drop(&mut self) { self.0.lock_state().active=false; }
 }
+// Admission of this start attempt only; never process/group ownership.
+#[derive(Clone, PartialEq)]
+enum StartAdmission { NotSpawned(u64), Installed { attempt:u64, generation:Value } }
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum TerminalKind { UnexpectedExit, Stopped }
+impl TerminalKind {
+    fn row(self)->&'static str {match self {Self::UnexpectedExit=>"LT-12",Self::Stopped=>"LT-23"}}
+    fn state(self)->&'static str {match self {Self::UnexpectedExit=>"exited-unexpectedly",Self::Stopped=>"stopped"}}
+}
 #[derive(Clone)]
-struct TerminalToken { attempt: u64, generation: Value, sequence: u64 }
+struct TerminalToken { attempt: u64, generation: Value, sequence: u64, kind: TerminalKind }
 impl TerminalToken {
     fn matches(&self, i:&Inner)->bool {
         i.start_attempt==self.attempt && i.generation==self.generation
-            && i.successor_publication_sequence==self.sequence && i.state=="stopped"
+            && i.successor_publication_sequence==self.sequence && i.state==self.kind.state()
     }
     fn unavailable(&self, inner:&Arc<(Mutex<Inner>,Condvar)>, reason:String) {
         let mut i=inner.0.lock().unwrap();
@@ -384,7 +395,7 @@ impl TerminalPublicationController {
             let mut i=inner.0.lock().unwrap();
             if !token.matches(&i)||!i.successor_terminal_pending { return; }
             i.successor_terminal_pending=false;
-            match result { Ok(reference)=>{i.successor_reference=Some(reference);i.successor_artifact_error=None;}, Err(e)=>i.successor_artifact_error=Some(format!("LT-23 evidence unavailable: {e}")) }
+            match result { Ok(reference)=>{i.successor_reference=Some(reference);i.successor_artifact_error=None;}, Err(e)=>i.successor_artifact_error=Some(format!("{} evidence unavailable: {e}",token.kind.row())) }
         }
     }
 }
@@ -480,6 +491,8 @@ pub struct Host {
     #[cfg(test)]
     before_eof_gate: Mutex<Option<Box<dyn FnOnce() + Send>>>,
     #[cfg(test)]
+    before_stop_cleanup: Mutex<Option<Box<dyn FnOnce() + Send>>>,
+    #[cfg(test)]
     before_successor_gate: Mutex<Option<Box<dyn FnOnce() + Send>>>,
     #[cfg(test)]
     after_successor_check: Mutex<Option<Box<dyn FnOnce() + Send>>>,
@@ -526,6 +539,8 @@ impl Host {
             before_turn_result: Mutex::new(None),
             #[cfg(test)]
             before_eof_gate: Mutex::new(None),
+            #[cfg(test)]
+            before_stop_cleanup: Mutex::new(None),
             #[cfg(test)]
             before_successor_gate: Mutex::new(None),
             #[cfg(test)]
@@ -581,7 +596,7 @@ impl Host {
         let (attempt, sequence, reference) = {
             let i = self.inner.0.lock().unwrap();
             if &i.generation != generation { return json!({"state":"unavailable","reason":"foreign generation"}); }
-            if i.successor_terminal_pending { return json!({"state":if closing {"unavailable"} else {"pending"},"generation":generation,"reason":if closing {"App closing; terminal installation disabled"} else {"LT-23 publication pending; not durable evidence"}}); }
+            if i.successor_terminal_pending { return json!({"state":if closing {"unavailable"} else {"pending"},"generation":generation,"reason":if closing {"App closing; terminal installation disabled"} else {if i.state=="exited-unexpectedly" {"LT-12 publication pending; not durable evidence"} else {"LT-23 publication pending; not durable evidence"}}}); }
             if let Some(error)=&i.successor_artifact_error{return json!({"state":"unavailable","generation":generation,"reason":error});}
             (i.start_attempt, i.successor_publication_sequence, i.successor_reference.clone())
         };
@@ -809,7 +824,7 @@ impl Host {
     }
     fn refuse_successor(&self, attempt: u64, reason: String) -> Result<Value, String> {
         let mut i = self.inner.0.lock().unwrap();
-        if i.start_attempt != attempt || i.state != "verifying" { return Err(format!("stale start attempt; {reason}")); }
+        if Self::check_start_admission(&i,attempt).is_err() { return Err(format!("stale start attempt; {reason}")); }
         let result = json!({"result":if reason.starts_with("mismatch:") { "mismatch" } else { "unverifiable" },"reason":reason});
         i.verification = Some(result.clone());
         i.supplier_standing = None;
@@ -879,16 +894,19 @@ impl Host {
     /// HOSTING §4.2 start sequence. Returns the `ready` snapshot or the reason it did not get there.
     pub fn start(self: &Arc<Self>, cfg: &HostConfig, actor: &str) -> Result<Value, String> {
         let attempt = {
+            let _gate=self.attachment_gate.lock().unwrap();
             let mut i = self.inner.0.lock().unwrap();
             if !(i.state == "absent" || i.state == "stopped" || i.state == "refused") {
                 return Err(format!("start not accepted in state {}", i.state));
             }
+            let next_attempt=i.start_attempt.checked_add(1).ok_or("start attempt exhausted")?;
             if i.app_session.is_empty() { i.app_session = opaque_id("app-session:")?; }
-            i.start_attempt = i.start_attempt.checked_add(1).ok_or("start attempt exhausted")?;
+            i.start_attempt = next_attempt;
+            i.start_admission=Some(StartAdmission::NotSpawned(i.start_attempt));
             i.successor_status = None;
             i.successor_reference = None;
             i.successor_artifact_error = None;
-            i.successor_lt09_installed=false;
+            i.successor_lt09_installed=false;i.successor_lt09_reference=None;
             i.successor_terminal_pending=false;
             i.successor_publication_sequence=0;
             i.supplier_standing = None;
@@ -933,7 +951,7 @@ impl Host {
             if let Err(e) = p.revalidate() { return self.refuse_successor(attempt, e); }
         }
         #[cfg(test)]
-        if prepared.is_some() { if let Some(hook) = self.before_successor_gate.lock().unwrap().take() { hook(); } }
+        {let hook=self.before_successor_gate.lock().unwrap().take();if let Some(hook)=hook{hook();}}
         let app_writer=Arc::clone(&self.recovery_writer);
         // Never wait behind unrelated ledger IO after the final tree audit.
         // Refusal preserves the next counter for a fresh explicit attempt.
@@ -951,17 +969,21 @@ impl Host {
                 Ok(guard) => Some(guard),
                 Err(_) => return self.refuse_successor(attempt, "source gate busy after revalidation; no spawn".into()),
             }
-        } else { None };
+        } else { Some(self.attachment_gate.lock().unwrap()) };
+        {
+            let i=self.inner.0.lock().unwrap();
+            Self::check_start_admission(&i,attempt)?;
+        }
         if let Some(expected) = &prospective {
             let i = self.inner.0.lock().unwrap();
             let current = self.successor_prospective(&i, cfg);
             if i.start_attempt != attempt || i.state != "verifying" || current.as_ref().ok() != Some(expected) {
-                drop(i); drop(app_spawn_guard);
+                drop(i); drop(successor_gate); drop(app_spawn_guard);
                 return self.refuse_successor(attempt, "prospective generation or start attempt changed; no spawn".into());
             }
         }
         #[cfg(test)]
-        if prepared.is_some() { if let Some(hook) = self.after_successor_check.lock().unwrap().take() { hook(); } }
+        if let Some(hook) = self.after_successor_check.lock().unwrap().take() { hook(); }
         let verified = result["result"] == "verified";
         let dev_ok = !verified && cfg.allow_unverified_dev && result["result"] == "unverifiable" && label.is_some();
         {
@@ -1056,6 +1078,7 @@ impl Host {
             if prospective.is_none() { self.allocate_home_spawn(&mut i,home_identity)?; }
             i.attachment_pipe_epoch += 1;
             i.generation = json!({"appSession": i.app_session, "home": i.home, "spawnCounter": i.spawn_counter});
+            i.start_admission=Some(StartAdmission::Installed{attempt,generation:i.generation.clone()});
             i.receipt_position = 0;
             i.held.clear();
             i.child_pid = Some(pid);
@@ -1079,7 +1102,7 @@ impl Host {
         self.spawn_reader(stdout, generation.clone());
         self.spawn_stderr(stderr, generation.clone());
         #[cfg(test)]
-        if prepared.is_some() { if let Some(hook) = self.after_successor_publish.lock().unwrap().take() { hook(); } }
+        {let hook=self.after_successor_publish.lock().unwrap().take();if let Some(hook)=hook{hook();}}
 
         // Step 4: handshake.
         let caps = json!({"experimentalApi": true, "requestAttestation": false, "explicitGatewayOauth": true});
@@ -1087,77 +1110,27 @@ impl Host {
             "clientInfo": {"name": "chirality-app-v4", "title": "Chirality App v4 (walking skeleton)", "version": env!("CARGO_PKG_VERSION")},
             "capabilities": caps,
         });
-        if prepared.is_some() {
-            {
-                let _gate = self.attachment_gate.lock().unwrap();
-                let mut i = self.inner.0.lock().unwrap();
-                Self::check_successor_handshake(&i, &generation, attempt)?;
-                i.declared_capabilities = Some(caps.clone());
-            }
-            let response = self.request_inner_scoped("initialize", params, json!({"kind":"app-rule","name":"handshake"}), cfg.wait_limit, true, Some(&generation));
-            #[cfg(test)]
-            if let Some(hook) = self.before_successor_settlement.lock().unwrap().take() { hook(); }
-            return self.finish_successor_handshake(&generation, attempt, caps, response);
+        {
+            let _gate=self.attachment_gate.lock().unwrap();
+            let mut i=self.inner.0.lock().unwrap();
+            Self::check_successor_handshake(&i,&generation,attempt)?;
+            i.declared_capabilities=Some(caps.clone());
         }
-        self.inner.0.lock().unwrap().declared_capabilities = Some(caps.clone());
-        let resp = self.request_inner("initialize", params, json!({"kind": "app-rule", "name": "handshake"}), cfg.wait_limit, true);
-        match resp {
-            Ok(r) if r.get("result").is_some() => {
-                let result = r["result"].clone();
-                let reported = result.get("userAgent").and_then(Value::as_str).unwrap_or("");
-                let consistency = match reported.split('/').nth(1).and_then(|v| v.split_whitespace().next()) {
-                    Some(v) if v == DECLARED_PIN => "consistent",
-                    Some(_) => "contradicts-declared-pin",
-                    None => "no-version-found",
-                };
-                {
-                    let mut i = self.inner.0.lock().unwrap();
-                    if let Some(vi) = i.version_identity.as_mut() {
-                        vi["handshakeReportedIdentity"] = result.clone();
-                        vi["handshakeConsistency"] = json!(consistency);
-                    }
-                }
-                if reported.split('/').nth(1).and_then(|v| v.split_whitespace().next())
-                    .is_some_and(|version| version != DECLARED_PIN) {
-                    self.kill_group();
-                    let mut i = self.inner.0.lock().unwrap();
-                    Self::deliver_never_ready(&mut i);
-                    let counts = Self::close_generation(&mut i);
-                    let failure = "handshake reported version contradicts declared pin";
-                    self.lt(&mut i, "LT-11", "handshake-failed", "halted-after-repeated-failure",
-                        json!({"failure": failure, "failureCount": 1, "closedGeneration": counts}));
-                    return Err(failure.into());
-                }
-                // initialized notice (whether it is required is U-19; it is sent).
-                let _ = self.write_frame(&json!({"jsonrpc": "2.0", "method": "initialized"}));
-                let mut i = self.inner.0.lock().unwrap();
-                let vi = i.version_identity.clone().unwrap();
-                self.lt(&mut i, "LT-09", "handshake-completed", "ready",
-                        json!({"versionIdentity": vi, "declaredCapabilities": caps}));
-                // Step 5: deliver held frames in received order (H4).
-                let held: Vec<Value> = std::mem::take(&mut i.held);
-                i.journal.extend(held);
-                drop(i);
-                Ok(self.snapshot())
-            }
-            other => {
-                let failure = match other {
-                    Ok(r) => format!("initialize error: {}", r.get("error").cloned().unwrap_or(Value::Null)),
-                    Err(e) => e,
-                };
-                self.kill_group();
-                let mut i = self.inner.0.lock().unwrap();
-                Self::deliver_never_ready(&mut i);
-                let counts = Self::close_generation(&mut i);
-                self.lt(&mut i, "LT-11", "handshake-failed", "halted-after-repeated-failure",
-                        json!({"failure": failure.clone(), "failureCount": 1, "closedGeneration": counts}));
-                Err(failure)
-            }
-        }
+        let response=self.request_inner_scoped("initialize",params,json!({"kind":"app-rule","name":"handshake"}),cfg.wait_limit,true,Some(&generation));
+        #[cfg(test)]
+        if let Some(hook)=self.before_successor_settlement.lock().unwrap().take(){hook();}
+        self.finish_start_handshake(&generation,attempt,caps,response,prepared.is_some())
     }
 
+    fn check_start_admission(i:&Inner,attempt:u64)->Result<(),String>{
+        if i.start_attempt!=attempt || i.state!="verifying" || i.start_admission!=Some(StartAdmission::NotSpawned(attempt)) {
+            return Err("stale or cancelled start admission; no state mutation or spawn".into());
+        }
+        Ok(())
+    }
     fn check_successor_handshake(i: &Inner, generation: &Value, attempt: u64) -> Result<(), String> {
-        if i.start_attempt != attempt || i.generation != *generation || i.state != "handshaking" || i.server_requests.is_closed(generation) {
+        if i.start_attempt != attempt || i.generation != *generation || i.state != "handshaking" || i.server_requests.is_closed(generation)
+            || i.start_admission!=Some(StartAdmission::Installed{attempt,generation:generation.clone()}) {
             return Err("successor handshake source stopped or superseded; no state mutation".into());
         }
         Ok(())
@@ -1176,6 +1149,9 @@ impl Host {
         Err(failure)
     }
     fn finish_successor_handshake(&self, generation: &Value, attempt: u64, caps: Value, response: Result<Value,String>) -> Result<Value,String> {
+        self.finish_start_handshake(generation,attempt,caps,response,true)
+    }
+    fn finish_start_handshake(&self,generation:&Value,attempt:u64,caps:Value,response:Result<Value,String>,successor:bool)->Result<Value,String>{
         let result = match response {
             Ok(r) if r.get("result").is_some() => r["result"].clone(),
             Ok(r) => return self.successor_handshake_failed(generation,attempt,format!("initialize error: {}",r.get("error").cloned().unwrap_or(Value::Null))),
@@ -1198,7 +1174,9 @@ impl Host {
         // Capture the intended pipe before waiting; never send an old initialized
         // notification on a later generation's pipe. Native IO stays outside gate.
         if let Err(e) = self.write_frame_scoped(&json!({"jsonrpc":"2.0","method":"initialized"}),Some(generation)) {
-            return self.successor_handshake_failed(generation,attempt,e);
+            if successor {return self.successor_handshake_failed(generation,attempt,e);}
+            // Legacy ignored initialized-write errors; final scoped settlement
+            // still refuses any stopped/replaced source.
         }
         let _gate = self.attachment_gate.lock().unwrap();
         let mut i = self.inner.0.lock().unwrap();
@@ -1207,6 +1185,7 @@ impl Host {
         self.lt(&mut i,"LT-09","handshake-completed","ready",json!({"versionIdentity":vi,"declaredCapabilities":caps}));
         let held: Vec<Value> = std::mem::take(&mut i.held);
         i.journal.extend(held);
+        if !successor {drop(i);drop(_gate);return Ok(self.snapshot());}
         let event=i.lifecycle.last().cloned().ok_or("actual LT-09 absent")?;
         let sequence=event["sequence"].as_u64().ok_or("actual LT-09 sequence absent")?;
         i.successor_publication_sequence=sequence;
@@ -1223,7 +1202,7 @@ impl Host {
             if publication_state.as_ref().is_some_and(|s|s.closing){return Err("App closing; LT-09 installation disabled".into());}
             if i.start_attempt!=attempt||i.generation!=*generation{return Err("source changed during LT-09 publication; no newer-source mutation".into());}
             if i.successor_publication_sequence==sequence {
-                match publication {Ok(reference)=>{i.successor_reference=Some(reference);i.successor_lt09_installed=true;},Err(error)=>i.successor_artifact_error=Some(format!("LT-09 evidence unavailable: {error}"))}
+                match publication {Ok(reference)=>{i.successor_lt09_reference=Some(reference.clone());i.successor_reference=Some(reference);i.successor_lt09_installed=true;},Err(error)=>i.successor_artifact_error=Some(format!("LT-09 evidence unavailable: {error}"))}
             }
         }
         Ok(self.snapshot())
@@ -2241,12 +2220,15 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
             self.inner.1.notify_all();drop(i);drop(_source_gate);self.flush_recovery_observations();
             return;
         }
-        if i.state == "ready" {
+        let terminal=if i.state == "ready" {
             // LT-12: ended with no App stop record, whatever the exit status (S-F-07).
             self.lt(&mut i, "LT-12", "child-ended-without-stop-record", "exited-unexpectedly",
                     json!({"exitFacts": exit, "closedGeneration": counts}));
-        }
-        drop(i);drop(_source_gate);self.flush_recovery_observations();
+            Self::capture_terminal(&mut i,TerminalKind::UnexpectedExit)
+        }else{None};
+        drop(i);drop(_source_gate);
+        if let Some((token,event,prior))=terminal {self.schedule_terminal_publication(token,event,prior);}
+        self.flush_recovery_observations();
     }
 
     fn kill_group(&self) {
@@ -2269,16 +2251,26 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
     pub fn stop_scoped(&self,expected_generation:&Value,actor:&str,reason:&str)->Result<Value,String>{
         crate::recovery::generation_ref(expected_generation)?;self.stop_inner(Some(expected_generation),actor,reason)
     }
+    fn capture_terminal(i:&mut Inner,kind:TerminalKind)->Option<(TerminalToken,Value,Option<crate::distribution_store::S1Reference>)> {
+        if i.successor_status.is_none(){return None;}
+        let event=i.lifecycle.last().unwrap().clone();let sequence=event["sequence"].as_u64().unwrap();
+        i.successor_publication_sequence=sequence;
+        i.successor_terminal_pending=false;
+        let token=TerminalToken{attempt:i.start_attempt,generation:i.generation.clone(),sequence,kind};
+        let prior=if i.successor_lt09_installed {i.successor_lt09_reference.clone()} else {None};
+        i.successor_artifact_error=Some(format!("{} evidence unavailable: publication not admitted",kind.row()));
+        Some((token,event,prior))
+    }
     fn schedule_terminal_publication(&self, token:TerminalToken, event:Value, prior:Option<crate::distribution_store::S1Reference>) {
-        let Some(prior)=prior else { token.unavailable(&self.inner,"LT-23 evidence unavailable: installed same-source LT-09 absent".into());return; };
-        // Do not manufacture App custody or acquire its REC writer from Stop.
+        let Some(prior)=prior else { token.unavailable(&self.inner,format!("{} evidence unavailable: installed same-source LT-09 absent",token.kind.row()));return; };
+        // Do not manufacture App custody or acquire its REC writer from EOF/Stop.
         let controller=self.runtime_custody.lock().unwrap().as_ref().map(|c|c.terminal_publication.clone());
-        let Some(controller)=controller else {token.unavailable(&self.inner,"LT-23 evidence unavailable: App custody absent".into());return;};
+        let Some(controller)=controller else {token.unavailable(&self.inner,format!("{} evidence unavailable: App custody absent",token.kind.row()));return;};
         let store=self.distribution_store.lock().unwrap().clone();
-        let store=match store {Some(Ok(store))=>store,Some(Err(e))=>{token.unavailable(&self.inner,e);return;},None=>{token.unavailable(&self.inner,"LT-23 store absent".into());return;}};
+        let store=match store {Some(Ok(store))=>store,Some(Err(e))=>{token.unavailable(&self.inner,e);return;},None=>{token.unavailable(&self.inner,format!("{} store absent",token.kind.row()));return;}};
         {
-            let mut state=match controller.state.try_lock() {Ok(state)=>state,Err(_)=>{token.unavailable(&self.inner,"LT-23 publisher busy; no queued retry".into());return;}};
-            if state.closing||state.active {token.unavailable(&self.inner,"LT-23 publisher closing or busy; no queued retry".into());return;}
+            let mut state=match controller.state.try_lock() {Ok(state)=>state,Err(_)=>{token.unavailable(&self.inner,format!("{} publisher busy; no queued retry",token.kind.row()));return;}};
+            if state.closing||state.active {token.unavailable(&self.inner,format!("{} publisher closing or busy; no queued retry",token.kind.row()));return;}
             let mut i=self.inner.0.lock().unwrap();
             if !token.matches(&i) {return;}
             i.successor_terminal_pending=true;i.successor_artifact_error=None;
@@ -2291,12 +2283,12 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
         if controller.fail_spawn.swap(false,std::sync::atomic::Ordering::SeqCst) {
             controller.complete(&weak,&token,Err("injected thread spawn failure".into()));drop(permit);return;
         }
-        let spawn=std::thread::Builder::new().name("distribution-lt23".into()).spawn(move||{
+        let spawn=std::thread::Builder::new().name("distribution-terminal".into()).spawn(move||{
             let _permit=permit;
             let result=std::panic::catch_unwind(std::panic::AssertUnwindSafe(||{
                 #[cfg(test)]
                 {let hook=worker_controller.before_work.lock().unwrap().take();if let Some(hook)=hook{hook();}}
-                store.publish_lt23(&worker_token.generation,&prior,&event)
+                match worker_token.kind {TerminalKind::UnexpectedExit=>store.publish_lt12(&worker_token.generation,&prior,&event),TerminalKind::Stopped=>store.publish_lt23(&worker_token.generation,&prior,&event)}
             })).unwrap_or_else(|_|Err("terminal publication panicked".into()));
             // All Store/namespace guards have unwound before installation.
             worker_controller.complete(&worker_weak,&worker_token,result);
@@ -2304,7 +2296,7 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
         if let Err(e)=spawn {controller.complete(&weak,&token,Err(format!("thread spawn failed: {e}")));}
         #[cfg(test)]
         {let hook=controller.after_spawn.lock().unwrap().take();if let Some(hook)=hook{hook();}}
-        // Detached: Stop, restart and shutdown never join or wait for this job.
+        // Detached: EOF, Stop, restart and shutdown never join or wait for this job.
     }
     fn stop_inner(&self,expected_generation:Option<&Value>, actor: &str, reason: &str) -> Result<Value, String> {
         let source_gate = self.attachment_gate.lock().unwrap();
@@ -2316,6 +2308,19 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
                 return Err(format!("stop not accepted in state {}", i.state));
             }
             if i.state=="stopping" {return Err("stop already requested for this source generation".into());}
+            if i.state=="verifying" {
+                Self::check_start_admission(&i,i.start_attempt)?;
+                let revoked=i.start_attempt.checked_add(1).ok_or("start attempt exhausted; cancellation not recorded")?;
+                let record=json!({"actor":actor,"reason":reason,"outstandingEntryHandling":"left-to-end-with-process","endingMeans":"close-input"});
+                i.start_attempt=revoked;i.start_admission=None;
+                i.successor_terminal_pending=false;i.successor_publication_sequence=0;
+                i.successor_reference=None;i.successor_lt09_reference=None;i.successor_lt09_installed=false;
+                i.successor_artifact_error=Some("start attempt cancelled before child installation; no terminal artifact".into());
+                // Event-local Stop record: do not overwrite a historical source's
+                // REC cause or touch its child/PID/pipe/closure.
+                self.lt(&mut i,"LT-20","stop-requested","stopped",json!({"actor":actor,"stopRecord":record}));
+                return Ok(json!({"state":"stopped"}));
+            }
             target_generation=i.generation.clone();
             let stop_record = json!({"actor": actor, "reason": reason,
                 "outstandingEntryHandling": "left-to-end-with-process", "endingMeans": "close-input"});
@@ -2325,11 +2330,19 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
                 "handshaking" => "LT-18",
                 _ => "LT-19",
             };
+            let invalidate_lt12=i.state=="exited-unexpectedly" && i.successor_publication_sequence!=0;
             Self::oauth_lost(&mut i,&target_generation);
             self.lt(&mut i, id, "stop-requested", "stopping", json!({"actor": actor, "stopRecord": stop_record}));
+            if invalidate_lt12 {
+                i.successor_publication_sequence=i.lifecycle.last().unwrap()["sequence"].as_u64().unwrap();
+                i.successor_terminal_pending=false;
+                i.successor_artifact_error=Some("LT-12 evidence unavailable: later Stop transition in progress".into());
+            }
             pid = i.child_pid;
             i.attachment_pipe_epoch += 1;
         }
+        #[cfg(test)]
+        {let hook=self.before_stop_cleanup.lock().unwrap().take();if let Some(hook)=hook{hook();}}
         *self.stdin.lock().unwrap() = None; // close input: polite end
         drop(source_gate);
         let mut forced = false;
@@ -2367,14 +2380,7 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
             "exitFacts": exit,
             "descendants": {"checked": true, "surviving": surviving, "handling": if surviving > 0 { "recorded; not ended" } else { "none surviving" }},
             "closedGeneration": counts}));
-        let terminal=if i.successor_status.is_some() {
-            let event=i.lifecycle.last().unwrap().clone();let sequence=event["sequence"].as_u64().unwrap();
-            i.successor_publication_sequence=sequence;
-            let token=TerminalToken{attempt:i.start_attempt,generation:i.generation.clone(),sequence};
-            let prior=if i.successor_lt09_installed {i.successor_reference.clone()} else {None};
-            i.successor_artifact_error=Some("LT-23 evidence unavailable: publication not admitted".into());
-            Some((token,event,prior))
-        }else{None};
+        let terminal=Self::capture_terminal(&mut i,TerminalKind::Stopped);
         let response=json!({"state":i.state});drop(i);
         if let Some((token,event,prior))=terminal {self.schedule_terminal_publication(token,event,prior);}
         self.flush_recovery_observations();Ok(response)
