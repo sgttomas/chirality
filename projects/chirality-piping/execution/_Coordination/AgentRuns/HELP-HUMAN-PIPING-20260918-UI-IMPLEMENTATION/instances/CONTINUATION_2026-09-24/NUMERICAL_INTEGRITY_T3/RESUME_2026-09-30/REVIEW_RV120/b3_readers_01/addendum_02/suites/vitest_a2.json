@@ -1,0 +1,45 @@
+{
+ "i1": {
+  "files": 521,
+  "tests": {
+   "passed": 3680
+  }
+ },
+ "head": {
+  "tests": {
+   "passed": 3684
+  }
+ },
+ "differences": [
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3b (I101): the exact successor <physics-retained> on reader-local synthetic receipts and lane P's m3x successors (B3-D \u00a76; REVISION_01 \u00a74.3) RV120 N2: an extra exact_cases entry reads one transport code, run after run (array order), on RV120's inputs #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3b (I101): the exact successor <physics-retained> on reader-local synthetic receipts and lane P's m3x successors (B3-D \u00a76; REVISION_01 \u00a74.3) pins the Rust test's 169 shapes (57 synthetic, 54 on each m3x successor, RV120's 4 forgeries), their first failures, and their three readings #1",
+   "i1": "passed",
+   "head": null
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3b (I101): the exact successor <physics-retained> on reader-local synthetic receipts and lane P's m3x successors (B3-D \u00a76; REVISION_01 \u00a74.3) pins the Rust test's 175 shapes (57 synthetic, 54 on each m3x successor, RV120's 4 forgeries and 6 probes), their first failures, and their three readings #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/rv120B3Raw.test.ts :: rv120 b3 raw #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/rv120CensusEnv.test.ts :: rv120 census env #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/rv120CensusEnv.test.ts :: rv120 probes env #1",
+   "i1": null,
+   "head": "passed"
+  }
+ ]
+}

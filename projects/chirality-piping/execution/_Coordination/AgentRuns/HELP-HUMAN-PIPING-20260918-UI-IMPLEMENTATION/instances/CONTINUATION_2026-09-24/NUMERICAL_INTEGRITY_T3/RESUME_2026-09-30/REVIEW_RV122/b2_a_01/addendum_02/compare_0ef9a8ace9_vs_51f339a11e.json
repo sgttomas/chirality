@@ -1,0 +1,45 @@
+{
+ "pp": {
+  "base": {
+   "FAILED": 2,
+   "ignored": 11,
+   "ok": 789
+  },
+  "candidate": {
+   "FAILED": 1,
+   "ignored": 11,
+   "ok": 790
+  },
+  "changed": {},
+  "only_base": {
+   "unittests::retained_facade_tests::b3a_m3l_needs_no_producer_change": "ok",
+   "unittests::retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0": "ok",
+   "unittests::retained_memory::law_tests::b3a_direct_entry_oracles": "FAILED"
+  },
+  "only_candidate": {
+   "unittests::retained_facade_tests::b3a_dropped_m3l_takes_the_ordinary_route": "ok",
+   "unittests::retained_memory::law_tests::b3a_dropped_d1_3_refuses_the_legacy_pressure_contract_on_0_3_0": "ok",
+   "unittests::retained_memory::law_tests::b3a_dropped_direct_entry_refuses_m3l": "ok"
+  },
+  "failed_both": [
+   "unittests::s11g_tests::t13_committed_fallback_uz_is_byte_identical"
+  ]
+ },
+ "runner": {
+  "base": {
+   "FAILED": 2,
+   "ok": 85
+  },
+  "candidate": {
+   "FAILED": 2,
+   "ok": 85
+  },
+  "changed": {},
+  "only_base": {},
+  "only_candidate": {},
+  "failed_both": [
+   "tests/load_reference_cli.rs::cli_load_reference_one_both_modes_is_controlled_and_equals_the_library_route",
+   "unittests::load_reference_route_tests::load_reference_one_actual_solve_mints_bound_evidence_and_canonical_document_both_modes"
+  ]
+ }
+}

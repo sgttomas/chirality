@@ -1,0 +1,12 @@
+wait-start 2026-10-08T20:23:21Z head 0c7490e1be723fd72c762403e282e2d789f3af38
+20:23:21 busy=0 quiet=1
+20:23:41 busy=0 quiet=2
+20:24:01 busy=0 quiet=3
+20:24:21 busy=0 quiet=4
+20:24:41 busy=0 quiet=5
+20:25:02 busy=0 quiet=6
+quiet 2026-10-08T20:25:02Z
+baseline-start 2026-10-08T20:25:02Z head 7eae707bb77722a69b61678c149aa816976bc162
+baseline-done 2026-10-08T20:37:52Z
+dec025-start 2026-10-08T20:37:52Z
+dec025-complete 2026-10-08T21:51:56Z

@@ -1,0 +1,38 @@
+# RV122 addendum 02: checks on the B3a drop (b2 51f339a11e -> 0ef9a8ace9)
+## PP production lines changed outside comments (retained_memory.rs, lib.rs)
+-        Ok(B::Legacy | B::LegacyPressure) => Some(retained_product::W1Route::Preview),
++        Ok(B::Legacy) => Some(retained_product::W1Route::Preview),
+-    LegacyPressure,
+-        ("0.3.0", Some(c)) if contract_is(c, "1.0.0", "legacy_pressure_v1") => Ok(NamespaceBranch::LegacyPressure),
+## lane A production files, lane A confirmed head ea5625ad04 -> 0ef9a8ace9, outside comments
+-    LegacyPressure,
+-        ("0.3.0", Some(c)) if contract_is(c, "1.0.0", "legacy_pressure_v1") => Ok(NamespaceBranch::LegacyPressure),
+## files changed by the drop
+P/apps/desktop/src/features/results/retainedPrecision.test.ts
+P/apps/desktop/src/features/results/retainedPrecision.ts
+P/core/analysis_runs/retained_precision.py
+P/core/product_physics/src/lib.rs
+P/core/product_physics/src/retained_facade_tests.rs
+P/core/product_physics/src/retained_memory.rs
+P/core/product_physics/src/retained_memory_law_tests.rs
+P/core/reporting/result_export/src/retained_precision.rs
+P/core/reporting/result_export/tests/retained_precision_contract.rs
+P/tests/test_retained_precision_b3.py
+P/tests/test_retained_precision_contract.py
+## generated profile block
+a2base a3c627216102bdfc
+a2cand a3c627216102bdfc
+## suite totals (summary lines)
+a2base PP 790 passed, 2 failed, 11 ignored; runner 85 passed, 2 failed
+a2cand PP 791 passed, 1 failed, 11 ignored; runner 85 passed, 2 failed
+## registered build at the candidate
+test retained_memory::law_tests::reviewed_inputs_bind_the_lock_and_the_reader_statics ... ok
+test retained_memory::law_tests::the_registered_profile_is_the_only_permit_source ... ok
+## mutant A2-M1: the label mapped to branch L again (cp -R copy of the candidate, fresh target)
+test retained_memory::law_tests::b3a_dropped_d1_3_refuses_the_legacy_pressure_contract_on_0_3_0 ... FAILED
+test retained_facade_tests::b3b_witness_inputs_and_routes ... FAILED
+test retained_memory::law_tests::the_registered_profile_is_the_only_permit_source ... ok
+test retained_memory::law_tests::every_family_clause_refuses_with_its_fact ... ok
+test retained_memory::law_tests::b3a_dropped_direct_entry_refuses_m3l ... FAILED
+test retained_facade_tests::b3a_dropped_m3l_takes_the_ordinary_route ... FAILED
+test result: FAILED. 2 passed; 4 failed; 0 ignored; 0 measured; 634 filtered out; finished in 0.71s

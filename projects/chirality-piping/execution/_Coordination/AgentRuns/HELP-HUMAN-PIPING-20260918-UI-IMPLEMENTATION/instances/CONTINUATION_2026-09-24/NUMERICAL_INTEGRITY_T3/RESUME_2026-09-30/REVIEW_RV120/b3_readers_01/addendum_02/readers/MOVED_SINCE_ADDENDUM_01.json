@@ -1,0 +1,274 @@
+[
+ {
+  "set": "a2probes",
+  "reader": "rs",
+  "name": "P namespace: 0.3.0 with the legacy contract [ordinary_prepared_synthetic]",
+  "reading": "bound",
+  "before": "ok",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2probes",
+  "reader": "rs",
+  "name": "P namespace: 0.3.0 with the legacy contract, keys reordered [ordinary_prepared_synthetic]",
+  "reading": "bound",
+  "before": "ok",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2probes",
+  "reader": "rs",
+  "name": "P sourced case: 0.3.0 legacy, pressure_regions [] [ordinary_prepared_synthetic]",
+  "reading": "bound",
+  "before": "ok",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2probes",
+  "reader": "rs",
+  "name": "X G8: an exact_cases entry for a case not in the invocation [ordinary_prepared_synthetic]",
+  "reading": "transport",
+  "before": "G7 SOURCE_PHYSICS_RHS_METHOD",
+  "after": "G7 SOURCE_PHYSICS_TRANSPORT_MAXIMUM_RESULT"
+ },
+ {
+  "set": "a2probes",
+  "reader": "ts",
+  "name": "P namespace: 0.3.0 with the legacy contract [ordinary_prepared_synthetic]",
+  "reading": "bound",
+  "before": "ok",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2probes",
+  "reader": "ts",
+  "name": "P namespace: 0.3.0 with the legacy contract, keys reordered [ordinary_prepared_synthetic]",
+  "reading": "bound",
+  "before": "ok",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2probes",
+  "reader": "ts",
+  "name": "P sourced case: 0.3.0 legacy, pressure_regions [] [ordinary_prepared_synthetic]",
+  "reading": "bound",
+  "before": "ok",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2probes",
+  "reader": "py",
+  "name": "P namespace: 0.3.0 with the legacy contract [ordinary_prepared_synthetic]",
+  "reading": "bound",
+  "before": "ok",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2probes",
+  "reader": "py",
+  "name": "P namespace: 0.3.0 with the legacy contract, keys reordered [ordinary_prepared_synthetic]",
+  "reading": "bound",
+  "before": "ok",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2probes",
+  "reader": "py",
+  "name": "P sourced case: 0.3.0 legacy, pressure_regions [] [ordinary_prepared_synthetic]",
+  "reading": "bound",
+  "before": "ok",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "rs",
+  "name": "b3a 00 m3l base must-pass [dense] [m3l_dense]",
+  "reading": "bound",
+  "before": "ok",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "rs",
+  "name": "b3a a non-zero element pressure load [dense] [m3l_dense]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "rs",
+  "name": "b3a a non-zero node force with category pressure [dense] [m3l_dense]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "rs",
+  "name": "b3a a zero-magnitude element pressure load [dense] [m3l_dense]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "rs",
+  "name": "b3a 00 m3l base must-pass [sparse] [m3l_sparse]",
+  "reading": "bound",
+  "before": "ok",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "rs",
+  "name": "b3a a non-zero element pressure load [sparse] [m3l_sparse]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "rs",
+  "name": "b3a a non-zero node force with category pressure [sparse] [m3l_sparse]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "rs",
+  "name": "b3a a zero-magnitude element pressure load [sparse] [m3l_sparse]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "ts",
+  "name": "b3a 00 m3l base must-pass [dense] [m3l_dense]",
+  "reading": "bound",
+  "before": "ok",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "ts",
+  "name": "b3a a non-zero element pressure load [dense] [m3l_dense]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "ts",
+  "name": "b3a a non-zero node force with category pressure [dense] [m3l_dense]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "ts",
+  "name": "b3a a zero-magnitude element pressure load [dense] [m3l_dense]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "ts",
+  "name": "b3a 00 m3l base must-pass [sparse] [m3l_sparse]",
+  "reading": "bound",
+  "before": "ok",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "ts",
+  "name": "b3a a non-zero element pressure load [sparse] [m3l_sparse]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "ts",
+  "name": "b3a a non-zero node force with category pressure [sparse] [m3l_sparse]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "ts",
+  "name": "b3a a zero-magnitude element pressure load [sparse] [m3l_sparse]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "py",
+  "name": "b3a 00 m3l base must-pass [dense] [m3l_dense]",
+  "reading": "bound",
+  "before": "ok",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "py",
+  "name": "b3a a non-zero element pressure load [dense] [m3l_dense]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "py",
+  "name": "b3a a non-zero node force with category pressure [dense] [m3l_dense]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "py",
+  "name": "b3a a zero-magnitude element pressure load [dense] [m3l_dense]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "py",
+  "name": "b3a 00 m3l base must-pass [sparse] [m3l_sparse]",
+  "reading": "bound",
+  "before": "ok",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "py",
+  "name": "b3a a non-zero element pressure load [sparse] [m3l_sparse]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "py",
+  "name": "b3a a non-zero node force with category pressure [sparse] [m3l_sparse]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ },
+ {
+  "set": "a2s318",
+  "reader": "py",
+  "name": "b3a a zero-magnitude element pressure load [sparse] [m3l_sparse]",
+  "reading": "bound",
+  "before": "G8 RETAINED_PRECISION_PREPARATION_MISMATCH",
+  "after": "G8 RETAINED_PRECISION_INVOCATION_MISMATCH"
+ }
+]

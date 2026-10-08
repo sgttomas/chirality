@@ -1,0 +1,30 @@
+{
+ "i4": {
+  "ok": 208
+ },
+ "head": {
+  "ok": 212
+ },
+ "differences": [
+  {
+   "test": "retained_precision_contract :: b3b_rv120_n2_transport_code_is_array_ordered_and_stable",
+   "i4": null,
+   "head": "ok"
+  },
+  {
+   "test": "rv120_b3_raw :: rv120_b3_raw",
+   "i4": null,
+   "head": "ok"
+  },
+  {
+   "test": "rv120_census_env :: rv120_census_env",
+   "i4": null,
+   "head": "ok"
+  },
+  {
+   "test": "rv120_census_env :: rv120_probes_env",
+   "i4": null,
+   "head": "ok"
+  }
+ ]
+}

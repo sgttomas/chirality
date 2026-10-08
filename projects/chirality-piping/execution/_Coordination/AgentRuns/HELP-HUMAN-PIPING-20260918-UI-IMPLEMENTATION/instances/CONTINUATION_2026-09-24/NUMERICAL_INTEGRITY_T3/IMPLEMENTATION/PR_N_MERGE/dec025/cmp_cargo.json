@@ -1,0 +1,105 @@
+{
+ "added": [
+  [
+   "005_core_loads_stress_recovery_Cargo.toml.log",
+   "open_pipe_stress_stress_recovery",
+   "correct_norm::tests::annex_f_special_values"
+  ],
+  [
+   "005_core_loads_stress_recovery_Cargo.toml.log",
+   "open_pipe_stress_stress_recovery",
+   "correct_norm::tests::exact_cases_order_and_overflow"
+  ],
+  [
+   "005_core_loads_stress_recovery_Cargo.toml.log",
+   "open_pipe_stress_stress_recovery",
+   "correct_norm::tests::exact_midpoint_ties_and_third_components"
+  ],
+  [
+   "026_core_solver_frame_kernel_Cargo.toml.log",
+   "correct_norm_oracle",
+   "correct_norm_oracle_dump"
+  ],
+  [
+   "026_core_solver_frame_kernel_Cargo.toml.log",
+   "correct_norm_oracle",
+   "correct_norm_vectors"
+  ],
+  [
+   "026_core_solver_frame_kernel_Cargo.toml.log",
+   "doc:open_pipe_stress_frame_kernel",
+   "src/lib.rs - reduce_assembled_system (line 1411)"
+  ],
+  [
+   "026_core_solver_frame_kernel_Cargo.toml.log",
+   "doc:open_pipe_stress_frame_kernel",
+   "src/lib.rs - reduce_assembled_system (line 1421) - compile fail"
+  ],
+  [
+   "026_core_solver_frame_kernel_Cargo.toml.log",
+   "doc:open_pipe_stress_frame_kernel",
+   "src/lib.rs - reduce_assembled_system_with_prescribed_displacements (line 1450) - compile fail"
+  ],
+  [
+   "026_core_solver_frame_kernel_Cargo.toml.log",
+   "open_pipe_stress_frame_kernel",
+   "correct_norm::tests::annex_f_special_values"
+  ],
+  [
+   "026_core_solver_frame_kernel_Cargo.toml.log",
+   "open_pipe_stress_frame_kernel",
+   "correct_norm::tests::exact_cases_order_and_overflow"
+  ],
+  [
+   "026_core_solver_frame_kernel_Cargo.toml.log",
+   "open_pipe_stress_frame_kernel",
+   "correct_norm::tests::exact_midpoint_ties_and_third_components"
+  ]
+ ],
+ "removed": [
+  [
+   "026_core_solver_frame_kernel_Cargo.toml.log",
+   "doc:open_pipe_stress_frame_kernel",
+   "src/lib.rs - reduce_assembled_system (line 1410)"
+  ],
+  [
+   "026_core_solver_frame_kernel_Cargo.toml.log",
+   "doc:open_pipe_stress_frame_kernel",
+   "src/lib.rs - reduce_assembled_system (line 1420) - compile fail"
+  ],
+  [
+   "026_core_solver_frame_kernel_Cargo.toml.log",
+   "doc:open_pipe_stress_frame_kernel",
+   "src/lib.rs - reduce_assembled_system_with_prescribed_displacements (line 1449) - compile fail"
+  ]
+ ],
+ "changed": [
+  [
+   [
+    "008_core_product_physics_Cargo.toml.log",
+    "open_pipe_stress_product_physics",
+    "s11g_tests::t13_committed_fallback_uz_is_byte_identical"
+   ],
+   "FAILED",
+   "ok"
+  ],
+  [
+   [
+    "022_core_runner_headless_Cargo.toml.log",
+    "load_reference_cli",
+    "cli_load_reference_one_both_modes_is_controlled_and_equals_the_library_route"
+   ],
+   "FAILED",
+   "ok"
+  ],
+  [
+   [
+    "022_core_runner_headless_Cargo.toml.log",
+    "open_pipe_stress_headless_runner",
+    "load_reference_route_tests::load_reference_one_actual_solve_mints_bound_evidence_and_canonical_document_both_modes"
+   ],
+   "FAILED",
+   "ok"
+  ]
+ ]
+}

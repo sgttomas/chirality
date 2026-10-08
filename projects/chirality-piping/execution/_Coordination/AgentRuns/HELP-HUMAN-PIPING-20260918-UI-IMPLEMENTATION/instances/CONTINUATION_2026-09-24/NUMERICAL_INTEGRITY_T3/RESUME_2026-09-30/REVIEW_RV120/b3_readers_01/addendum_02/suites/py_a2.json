@@ -1,0 +1,192 @@
+{
+ "i4": {
+  "passed": 1704,
+  "skipped": 11
+ },
+ "head": {
+  "passed": 1736,
+  "skipped": 11
+ },
+ "differences": [
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_m3l_successor_is_refused[dense_scrutiny]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_m3l_successor_is_refused[sparse_interactive]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[0.1.0 keeping the L3 contract]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[0.2.0 keeping the L3 contract]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[0.3.0, contract absent]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[0.3.0, contract null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[0.3.0, contract {}]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[0.4.0 with the L3 contract]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[L3 on ordinary_prepared_dense_synthetic]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[L3 on ordinary_prepared_synthetic]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[L3 on two_case_synthetic]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[L3 on u8_l0_isolated_node_dense_scrutiny]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[L3 on u8_l0_isolated_node_sparse_interactive]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[L3: an extra key valued null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[L3: an extra key]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[L3: mode exact_straight_pressure_v2, version 1.0.0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[L3: mode null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[L3: mode only]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[L3: the exact contract 2.0.0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[L3: version 1.0.1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[L3: version a number]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[L3: version only]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[L: 0.1.0, contract absent]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[L: 0.2.0, contract null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[N-11: L3 dense with a zero-magnitude element pressure load]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[N-11: L3 with a zero-magnitude element pressure load]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[N-4: 0.2.0, contract \"\"]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[N-4: 0.2.0, contract 0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[N-4: 0.2.0, contract []]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[N-4: 0.2.0, contract false]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table[N-4: 0.2.0, contract {}]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_dropped_namespace_table_has_the_rust_tests_29_entries",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_successor_is_admitted_like_the_milestone[dense_scrutiny]",
+   "i4": "passed",
+   "head": null
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_successor_is_admitted_like_the_milestone[sparse_interactive]",
+   "i4": "passed",
+   "head": null
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_repair02_rv120_n2_reads_the_cases_in_array_order[X G8: an exact_cases entry for a case not in the invocation [m3x_sparse_interactive]]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_repair02_rv120_n2_reads_the_cases_in_array_order[X G8: an exact_cases entry for a case not in the invocation [ordinary_prepared_synthetic]]",
+   "i4": null,
+   "head": "passed"
+  }
+ ]
+}

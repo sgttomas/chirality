@@ -1,0 +1,228 @@
+diff --git a/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts b/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts
+index e44edf31ae..567944b3a2 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts
+@@ -1693,6 +1693,30 @@ describe('B3b (I101): the exact successor <physics-retained> on reader-local syn
+       set(['retained_precision', 'body', 'sources', 0, 'stiffness_sha256'], 'd7aa429e5be25210f15a34f7138f7178efbbc443d6a016cc35f857268d9ec194'),
+     ]],
+   ];
++  /** RV120's probes for repair 02, as the Rust reader's `rv120_probes`: N2, an exact_cases entry for a case not in the
++   * invocation (entry 0 copied, renamed), on the synthetic exact base and the sparse m3x; F1's four G5b probes on the exact
++   * two_case_synthetic. TS's own G7 codes for N2 (C1 G7 settlement). */
++  const N2_BOUND = { gate: 'G7', code: 'PHYSICS_EVIDENCE_CASE_COVERAGE' }, N2_TRANSPORT = { gate: 'G7', code: 'PHYSICS_EVIDENCE_TRANSPORT_MAXIMUM_ID' };
++  const RV120_N2_INPUTS = ['b73004449c1894a0b562032d7352d18cae0ad351f7e58d91a1572e76963530a0', 'a6bb4fdf601064c2946e440b15a6bb7cb320839c9c3097fff11b2f632c6a09fe'];
++  const rv120Probes = async (): Promise<[Shape, any][]> => {
++    const out: [Shape, any][] = [];
++    for (const base of [ORD, 'm3x_sparse_interactive']) {
++      const { source } = await exactBase(base);
++      const entry = structuredClone(source.contract_evidence.exact_cases[0]), other = structuredClone(entry);
++      other.load_case_id = 'case:rv120-other';
++      out.push([{ name: 'RV120 N2: an exact_cases entry for a case not in the invocation', base, edits: [set(['contract_evidence', 'exact_cases'], [entry, other])] }, N2_BOUND]);
++    }
++    const base = 'two_case_synthetic', { source } = await exactBase(base);
++    const evidence = set(['contract_evidence', 'exact_cases', 0, 'pipe_sections', 0, 'As_m2'], ulps(source.contract_evidence.exact_cases[0].pipe_sections[0].As_m2, 1));
++    const force = set(rb('cases', 1, 'selection', 'body_scales', 0, 'force'), '0000000000000001');
++    const area = set(rb('cases', 1, 'selection', 'section_terms', 0, 'area'), '3f00000000000000');
++    const SCALE = G('G5b', 'SCALE_MISMATCH');
++    out.push([{ name: "RV120 F1 control: case 0's evidence As_m2 one ulp", base, edits: [evidence] }, SEC]);
++    out.push([{ name: "RV120 F1 control: case 1's body_scales force one ulp", base, edits: [force] }, SCALE]);
++    out.push([{ name: "RV120 F1 order: case 0's evidence As_m2 and case 1's body_scales force", base, edits: [evidence, force] }, SCALE]);
++    out.push([{ name: "RV120 F1 order: case 0's evidence As_m2 and case 1's section term area", base, edits: [evidence, area] }, SEC]);
++    return out;
++  };
+   /** sha256 of the canonical JSON of each forgery's `[source, invocation]`: RV120's input bytes (the Rust test's pins). */
+   const RV120_FORGERY_DIGESTS = ['97566866cef65597109de17d34c69508ef3889a1d526321c8feedf5dc88b1f4a', '6e67243c49548db2cbcd10be6156c30182c1e884addbf95a264e33965431ef13', '3828c07c73d41e33324ec6be349ab4d265e57b439222962d1df1a91c974eb1ff', 'c17c8283efeb034afe82c4e9fdb4f46aad54ffef676c181733fbc6eec43226e6'];
+   const shapes = async (): Promise<[Shape, any][]> => [
+@@ -1705,6 +1729,7 @@ describe('B3b (I101): the exact successor <physics-retained> on reader-local syn
+       [{ name: "11 S-1: the preparation hashed with DEF-O's H", base: `<s1:${name}>` }, G('G1', 'RECEIPT_MISMATCH')],
+     ]),
+     ...RV120_FORGERIES.map(([name, base, edits]): [Shape, any] => [{ name, base, edits }, PREP]),
++    ...await rv120Probes(),
+     ...(process.env.B3B_EXACT_BASE ? [
+       [{ name: 'base', base: FILE_BASE }, 'pass'] as [Shape, any], ...rows(FILE_BASE, await exactBase(FILE_BASE)),
+       [{ name: "11 S-1: the preparation hashed with DEF-O's H", base: '<s1:file>' }, G('G1', 'RECEIPT_MISMATCH')] as [Shape, any],
+@@ -1726,9 +1751,9 @@ describe('B3b (I101): the exact successor <physics-retained> on reader-local syn
+     return x;
+   }
+   const reading = async (run: () => Promise<any>) => { try { const r = await run(); return { ok: { eligible: r.numerical_eligible } }; } catch (e) { expect(e).toBeInstanceOf(RetainedPrecisionError); return { gate: (e as any).gate, code: (e as any).code }; } };
+-  it('pins the Rust test\'s 169 shapes (57 synthetic, 54 on each m3x successor, RV120\'s 4 forgeries), their first failures, and their three readings', async () => {
++  it('pins the Rust test\'s 175 shapes (57 synthetic, 54 on each m3x successor, RV120\'s 4 forgeries and 6 probes), their first failures, and their three readings', async () => {
+     const list = await shapes(), misses: string[] = [], lines: any[] = [];
+-    expect(list.filter(([x]) => x.base !== FILE_BASE && x.base !== '<s1:file>').length).toBe(3 + 52 + 2 + 2 * (1 + 52 + 1) + 4);
++    expect(list.filter(([x]) => x.base !== FILE_BASE && x.base !== '<s1:file>').length).toBe(3 + 52 + 2 + 2 * (1 + 52 + 1) + 4 + 2 + 4);
+     for (const [shape, want] of list) {
+       const { source, invocation } = await input(shape);
+       const got = await firstFailure(source, invocation);
+@@ -1820,6 +1845,20 @@ describe('B3b (I101): the exact successor <physics-retained> on reader-local syn
+     }
+     expect(digests).toEqual(RV120_FORGERY_DIGESTS);
+   });
++  it("RV120 N2: an extra exact_cases entry reads one transport code, run after run (array order), on RV120's inputs", async () => {
++    const probes = (await rv120Probes()).filter(([x]) => x.name.startsWith('RV120 N2: '));
++    expect(probes.length).toBe(2);
++    const digests: string[] = [];
++    for (const [shape] of probes) {
++      const { source, invocation } = await input(shape);
++      digests.push(await canonicalSha256Hex([source, invocation]));
++      for (let run = 0; run < 8; run++) {
++        expect({ bound: await reading(() => validateRetainedPrecision(source, invocation)), unbound: await reading(() => validateRetainedPrecision(source)), transport: await reading(() => validateRetainedPrecisionTransport(source)) }, `${shape.name} [${shape.base}] run ${run}`)
++          .toEqual({ bound: N2_BOUND, unbound: N2_BOUND, transport: N2_TRANSPORT });
++      }
++    }
++    expect(digests).toEqual(RV120_N2_INPUTS);
++  }, 60_000);
+   it("ROOT's ruling on I100's B3 addendum 01: G8's sourced-case check on the preview and exact routes", async () => {
+     // A sourced case passes only with pressure_regions absent, null or [] (type-strict; [] only on the exact route),
+     // equivalent_static absent or null, and no analysis_state member (null included); a case-level `pressure`, a key PP's
+diff --git a/projects/chirality-piping/core/reporting/result_export/src/physics_evidence.rs b/projects/chirality-piping/core/reporting/result_export/src/physics_evidence.rs
+index 981acbf0e6..9fc20e3b3e 100644
+--- a/projects/chirality-piping/core/reporting/result_export/src/physics_evidence.rs
++++ b/projects/chirality-piping/core/reporting/result_export/src/physics_evidence.rs
+@@ -1016,7 +1016,11 @@ pub fn validate_transport_metadata(source: &Value) -> Check {
+     finite_tree(evidence)?;
+     let cases = indexed(&evidence["exact_cases"], "load_case_id")?;
+     let mut ids = HashSet::new();
+-    for (cid, case) in &cases {
++    // N2 (RV120): this check's loops run in array order, as TS's and PY's do, so its first
++    // failure (the code) does not depend on a hash map's per-process order. Its maps and
++    // sets only detect duplicates and answer lookups.
++    for case in array(&evidence["exact_cases"])? {
++        let cid = text(&case["load_case_id"])?;
+         let materials = indexed(&case["pipe_materials"], "pipe_id")?;
+         let sections = indexed(&case["pipe_sections"], "pipe_id")?;
+         require(
+@@ -1025,10 +1029,10 @@ pub fn validate_transport_metadata(source: &Value) -> Check {
+                     == sections.keys().copied().collect(),
+             "TRANSPORT_MEMBERS",
+         )?;
+-        for value in materials.values() {
++        for value in array(&case["pipe_materials"])? {
+             material(value)?;
+         }
+-        for value in sections.values() {
++        for value in array(&case["pipe_sections"])? {
+             geometry(value)?;
+         }
+         let missing = strings(&case["stress_maximum_coverage"]["unavailable_pipe_ids"])?;
+@@ -1045,7 +1049,7 @@ pub fn validate_transport_metadata(source: &Value) -> Check {
+                 == members.difference(&missing).copied().collect(),
+             "TRANSPORT_MAXIMUM_MEMBERS",
+         )?;
+-        for ex in maxima.values() {
++        for ex in array(&case["pipe_stress_extrema"])? {
+             require(
+                 ids.insert(text(&ex["result_id"])?),
+                 "TRANSPORT_MAXIMUM_RESULT",
+@@ -1066,7 +1070,7 @@ pub fn validate_transport_metadata(source: &Value) -> Check {
+         }
+         let regions = array(&evidence["pressure"])?
+             .iter()
+-            .filter(|p| p["load_case_id"] == *cid)
++            .filter(|p| p["load_case_id"] == cid)
+             .map(|p| Ok(((text(&p["load_case_id"])?, text(&p["region_id"])?), p)))
+             .collect::<Result<HashMap<_, _>, String>>()?;
+         assembly(&case["pressure_rhs_assembly"], cid, &regions)?;
+@@ -1093,7 +1097,8 @@ pub fn validate_transport_metadata(source: &Value) -> Check {
+                 && members == mm.keys().copied().collect(),
+             "TRANSPORT_REGION_MEMBERS",
+         )?;
+-        for pid in members {
++        for pid in array(&region["member_pipe_ids"])? {
++            let pid = text(pid)?;
+             require(
+                 sections
+                     .get(pid)
+diff --git a/projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs b/projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs
+index 1bc23b27df..5b9bafbafd 100644
+--- a/projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs
++++ b/projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs
+@@ -5390,6 +5390,7 @@ fn b3b_shapes(shared: &Value) -> Vec<(ExactShape, Value)> {
+     for (name, base, edits) in rv120_forgeries() {
+         out.push((ExactShape { name, base, edits, invocation_edits: vec![], after: vec![] }, gate("G8", PREPARATION)));
+     }
++    out.extend(rv120_probes(shared));
+     if std::env::var("B3B_EXACT_BASE").is_ok() {
+         out.push((ExactShape { name: "base", base: FILE_BASE, edits: vec![], invocation_edits: vec![], after: vec![] }, Value::Null));
+         out.extend(b3b_rows(shared, FILE_BASE));
+@@ -5469,6 +5470,72 @@ fn rv120_forgeries() -> Vec<(&'static str, &'static str, Vec<Value>)> {
+         ]),
+     ]
+ }
++/// RV120's probes for repair 02 (REVIEW_RV120 b3_readers_01, `gen_b3_probes.py`): N2, an
++/// `exact_cases` entry for a case not in the invocation (entry 0 copied, renamed), on the
++/// synthetic exact base and lane P's sparse m3x successor; and F1's G5b order probes on the
++/// exact `two_case_synthetic` (case 0's evidence `As_m2` one ulp, with or without case 1's
++/// body-scale force or section-term area changed). Bound: G7 (physics-1's base code) for N2;
++/// the shared G5b's SCALE or SECTION code, then the exact evidence, for F1.
++fn rv120_probes(shared: &Value) -> Vec<(ExactShape, Value)> {
++    use serde_json::json;
++    let mut out = Vec::new();
++    for base in [ORD, "m3x_sparse_interactive"] {
++        let (source, _) = exact_base(shared, base);
++        let entry = source["contract_evidence"]["exact_cases"][0].clone();
++        let mut other = entry.clone();
++        other["load_case_id"] = json!("case:rv120-other");
++        out.push((
++            ExactShape { name: "RV120 N2: an exact_cases entry for a case not in the invocation", base, edits: vec![set(json!(["contract_evidence", "exact_cases"]), json!([entry, other]))], invocation_edits: vec![], after: vec![] },
++            gate("G7", "SOURCE_PHYSICS_NUMERICAL_CASE_COVERAGE"),
++        ));
++    }
++    let base = "two_case_synthetic";
++    let (source, _) = exact_base(shared, base);
++    let as_m2 = json!(ulps(source["contract_evidence"]["exact_cases"][0]["pipe_sections"][0]["As_m2"].as_f64().unwrap(), 1));
++    let evidence = set(json!(["contract_evidence", "exact_cases", 0, "pipe_sections", 0, "As_m2"]), as_m2);
++    let force = set(rb(json!(["cases", 1, "selection", "body_scales", 0, "force"])), json!("0000000000000001"));
++    let area = set(rb(json!(["cases", 1, "selection", "section_terms", 0, "area"])), json!("3f00000000000000"));
++    for (name, edits, want) in [
++        ("RV120 F1 control: case 0's evidence As_m2 one ulp", vec![evidence.clone()], gate("G5b", SECTION)),
++        ("RV120 F1 control: case 1's body_scales force one ulp", vec![force.clone()], gate("G5b", "RETAINED_PRECISION_SCALE_MISMATCH")),
++        ("RV120 F1 order: case 0's evidence As_m2 and case 1's body_scales force", vec![evidence.clone(), force], gate("G5b", "RETAINED_PRECISION_SCALE_MISMATCH")),
++        ("RV120 F1 order: case 0's evidence As_m2 and case 1's section term area", vec![evidence, area], gate("G5b", SECTION)),
++    ] {
++        out.push((ExactShape { name, base, edits, invocation_edits: vec![], after: vec![] }, want));
++    }
++    out
++}
++/// RV120 N2: RS's physics-1 transport check reads RV120's probe with one code, run after
++/// run (it iterates its cases in array order, as TS and PY do): entry 0 passes, and the
++/// copy's maximum result ids repeat entry 0's. Bound and unbound stay at G7's case coverage.
++#[test]
++fn b3b_rv120_n2_transport_code_is_array_ordered_and_stable() {
++    use serde_json::json;
++    let shared = corpus();
++    let probes: Vec<_> = rv120_probes(&shared).into_iter().filter(|(s, _)| s.name.starts_with("RV120 N2: ")).collect();
++    assert_eq!(probes.len(), 2);
++    let mut digests = Vec::new();
++    for (shape, _) in &probes {
++        let (source, invocation) = b3b_input(&shared, shape);
++        digests.push(sha256_canonical(&json!([source, invocation])));
++        let want = json!({"bound": {"gate": "G7", "code": "SOURCE_PHYSICS_NUMERICAL_CASE_COVERAGE"},
++            "unbound": {"gate": "G7", "code": "SOURCE_PHYSICS_NUMERICAL_CASE_COVERAGE"},
++            "transport": {"gate": "G7", "code": "SOURCE_PHYSICS_TRANSPORT_MAXIMUM_RESULT"}});
++        // Each call builds fresh hash maps (a fresh random order), so a hash-ordered loop
++        // would show both of the probe's first failures well within these runs.
++        for run in 0..64 {
++            assert_eq!(readings(&source, &invocation), want, "{} [{}], run {run}", shape.name, shape.base);
++        }
++    }
++    assert_eq!(digests, RV120_N2_INPUTS, "RV120's N2 inputs");
++}
++/// RV120's N2 probe inputs (sha256 of the canonical `[source, invocation]`), as in its index.
++const RV120_N2_INPUTS: [&str; 2] = ["b73004449c1894a0b562032d7352d18cae0ad351f7e58d91a1572e76963530a0", "a6bb4fdf601064c2946e440b15a6bb7cb320839c9c3097fff11b2f632c6a09fe"];
++fn sha256_canonical(v: &Value) -> String {
++    use open_pipe_stress_canonical_json::canonical_json;
++    use sha2::{Digest, Sha256};
++    format!("{:x}", Sha256::digest(canonical_json(v).as_bytes()))
++}
+ /// The forgeries' materialized inputs: sha256 of the canonical JSON of `[source, invocation]`
+ /// (`canonical_json`), the same bytes as RV120's input lines (checked against its index).
+ const RV120_FORGERY_INPUTS: [(&str, &str, &str); 4] = [
+@@ -5651,7 +5718,7 @@ fn b3b_exact_successor_shapes_first_failures() {
+         }
+     }
+     assert!(misses.is_empty(), "{}", misses.join("\n"));
+-    assert_eq!(shapes.iter().filter(|(s, _)| s.base != FILE_BASE && s.base != "<s1:file>").count(), 3 + 52 + 2 + 2 * (1 + 52 + 1) + 4);
++    assert_eq!(shapes.iter().filter(|(s, _)| s.base != FILE_BASE && s.base != "<s1:file>").count(), 3 + 52 + 2 + 2 * (1 + 52 + 1) + 4 + 2 + 4);
+ }
+ fn observe_validation(r: Result<rp::Validation, rp::ValidationError>) -> Value {
+     match r {

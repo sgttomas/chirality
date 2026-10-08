@@ -1,0 +1,2415 @@
+{
+ "inputs": 318,
+ "differences_outside_g7": [],
+ "want_misses": [],
+ "g7": [
+  {
+   "reading": "bound",
+   "rs": "G7 SOURCE_PHYSICS_CASE_SHAPE",
+   "ts": "G7 PHYSICS_EVIDENCE_CASE_SHAPE",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 4
+  },
+  {
+   "reading": "bound",
+   "rs": "G7 SOURCE_PHYSICS_CONNECTOR_UNSUPPORTED",
+   "ts": "G7 PHYSICS_EVIDENCE_UNSUPPORTED_COMPOSITION",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 4
+  },
+  {
+   "reading": "bound",
+   "rs": "G7 SOURCE_PHYSICS_HEADLINE_RESULT_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_MAXIMUM_HEADLINE_BINDING",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 4
+  },
+  {
+   "reading": "bound",
+   "rs": "G7 SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_MATERIAL_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 4
+  },
+  {
+   "reading": "transport",
+   "rs": "G7 SOURCE_PHYSICS_DUPLICATE_ID",
+   "ts": "G7 PHYSICS_EVIDENCE_TRANSPORT_CASES",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 4
+  },
+  {
+   "reading": "transport",
+   "rs": "G7 SOURCE_PHYSICS_DUPLICATE_ID",
+   "ts": "G7 PHYSICS_EVIDENCE_TRANSPORT_MEMBER_COVERAGE",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 4
+  },
+  {
+   "reading": "transport",
+   "rs": "G7 SOURCE_PHYSICS_GEOMETRY_SOURCE_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_SECTION_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 12
+  },
+  {
+   "reading": "transport",
+   "rs": "G7 SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_MATERIAL_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 4
+  },
+  {
+   "reading": "transport",
+   "rs": "G7 SOURCE_PHYSICS_RHS_METHOD",
+   "ts": "G7 PHYSICS_EVIDENCE_RHS_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 4
+  },
+  {
+   "reading": "transport",
+   "rs": "G7 SOURCE_PHYSICS_TRANSPORT_SHAPE",
+   "ts": "G7 PHYSICS_EVIDENCE_TRANSPORT_SHAPE",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 16
+  },
+  {
+   "reading": "unbound",
+   "rs": "G7 SOURCE_PHYSICS_CASE_SHAPE",
+   "ts": "G7 PHYSICS_EVIDENCE_CASE_SHAPE",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 4
+  },
+  {
+   "reading": "unbound",
+   "rs": "G7 SOURCE_PHYSICS_CONNECTOR_UNSUPPORTED",
+   "ts": "G7 PHYSICS_EVIDENCE_UNSUPPORTED_COMPOSITION",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 4
+  },
+  {
+   "reading": "unbound",
+   "rs": "G7 SOURCE_PHYSICS_HEADLINE_RESULT_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_MAXIMUM_HEADLINE_BINDING",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 4
+  },
+  {
+   "reading": "unbound",
+   "rs": "G7 SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_MATERIAL_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 4
+  }
+ ],
+ "tally": [
+  {
+   "reading": "bound",
+   "verdict": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "n": 54
+  },
+  {
+   "reading": "bound",
+   "verdict": "G1 RECEIPT_MISMATCH",
+   "n": 4
+  },
+  {
+   "reading": "bound",
+   "verdict": "G5b SECTION_MISMATCH",
+   "n": 52
+  },
+  {
+   "reading": "bound",
+   "verdict": "G7",
+   "n": 16
+  },
+  {
+   "reading": "bound",
+   "verdict": "G8 INVOCATION_MISMATCH",
+   "n": 96
+  },
+  {
+   "reading": "bound",
+   "verdict": "G8 PREPARATION_MISMATCH",
+   "n": 84
+  },
+  {
+   "reading": "bound",
+   "verdict": "eligible",
+   "n": 12
+  },
+  {
+   "reading": "transport",
+   "verdict": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "n": 54
+  },
+  {
+   "reading": "transport",
+   "verdict": "G1 RECEIPT_MISMATCH",
+   "n": 4
+  },
+  {
+   "reading": "transport",
+   "verdict": "G7",
+   "n": 44
+  },
+  {
+   "reading": "transport",
+   "verdict": "ok",
+   "n": 216
+  },
+  {
+   "reading": "unbound",
+   "verdict": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "n": 54
+  },
+  {
+   "reading": "unbound",
+   "verdict": "G1 RECEIPT_MISMATCH",
+   "n": 4
+  },
+  {
+   "reading": "unbound",
+   "verdict": "G5b SECTION_MISMATCH",
+   "n": 52
+  },
+  {
+   "reading": "unbound",
+   "verdict": "G7",
+   "n": 16
+  },
+  {
+   "reading": "unbound",
+   "verdict": "ok",
+   "n": 192
+  }
+ ],
+ "unwanted_bound": [
+  {
+   "i": 0,
+   "name": "b3a 00 m3l base must-pass [dense] [m3l_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 1,
+   "name": "b3a a non-zero element pressure load [dense] [m3l_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 2,
+   "name": "b3a a non-zero node force with category pressure [dense] [m3l_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 3,
+   "name": "b3a a zero-magnitude element pressure load [dense] [m3l_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 4,
+   "name": "b3a contract mode changed [dense] [m3l_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 5,
+   "name": "b3a contract null [dense] [m3l_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 6,
+   "name": "b3a contract removed [dense] [m3l_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 7,
+   "name": "b3a contract the exact one [dense] [m3l_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 8,
+   "name": "b3a contract version as a number [dense] [m3l_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 9,
+   "name": "b3a contract version changed [dense] [m3l_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 10,
+   "name": "b3a contract with an extra key [dense] [m3l_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 11,
+   "name": "b3a schema 0.2.0 keeping the contract [dense] [m3l_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 12,
+   "name": "b3a schema 0.4.0 keeping the contract [dense] [m3l_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 13,
+   "name": "b3a L 0.1.0 pressure_contract {} [dense] [milestone_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 14,
+   "name": "b3a L 0.1.0 pressure_contract false [dense] [milestone_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 15,
+   "name": "b3a L 0.1.0 pressure_contract [] [dense] [milestone_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 16,
+   "name": "b3a L 0.1.0 pressure_contract \"\" [dense] [milestone_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 17,
+   "name": "b3a L 0.1.0 pressure_contract 0 [dense] [milestone_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 18,
+   "name": "b3a L 0.1.0 pressure_contract legacy [dense] [milestone_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 19,
+   "name": "b3a L 0.1.0 pressure_contract null must-pass [dense] [milestone_dense]",
+   "rs": "eligible",
+   "ts": "eligible",
+   "py": "eligible"
+  },
+  {
+   "i": 20,
+   "name": "b3a L 0.2.0 pressure_contract {} [dense] [milestone_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 21,
+   "name": "b3a L 0.2.0 pressure_contract false [dense] [milestone_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 22,
+   "name": "b3a L 0.2.0 pressure_contract [] [dense] [milestone_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 23,
+   "name": "b3a L 0.2.0 pressure_contract \"\" [dense] [milestone_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 24,
+   "name": "b3a L 0.2.0 pressure_contract 0 [dense] [milestone_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 25,
+   "name": "b3a L 0.2.0 pressure_contract legacy [dense] [milestone_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 26,
+   "name": "b3a L 0.2.0 pressure_contract null must-pass [dense] [milestone_dense]",
+   "rs": "eligible",
+   "ts": "eligible",
+   "py": "eligible"
+  },
+  {
+   "i": 27,
+   "name": "b3a 0.3.0 without a contract [dense] [milestone_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 28,
+   "name": "b3b 00 m3x base must-pass [dense] [m3x_dense]",
+   "rs": "eligible",
+   "ts": "eligible",
+   "py": "eligible"
+  },
+  {
+   "i": 29,
+   "name": "b3b 01 identity relabelled preview (profile kept) [dense] [m3x_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 30,
+   "name": "b3b 02 profile relabelled preview [dense] [m3x_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 31,
+   "name": "b3b 03 an attempt's definition_id ordinary [dense] [m3x_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 32,
+   "name": "b3b 04 projection_policy changed [dense] [m3x_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 33,
+   "name": "b3b 05 work_policy changed [dense] [m3x_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 34,
+   "name": "b3b 06 canonicalization changed [dense] [m3x_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 35,
+   "name": "b3b 07 work.case_limit changed [dense] [m3x_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 36,
+   "name": "b3b 08 work.invocation_limit changed [dense] [m3x_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 37,
+   "name": "b3b 12 owner pipe_sections As_m2 one ulp [dense] [m3x_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 38,
+   "name": "b3b 13 owner pipe_sections Z_m3 one ulp [dense] [m3x_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 39,
+   "name": "b3b 14 owner pipe_sections I_m4 one ulp [dense] [m3x_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 40,
+   "name": "b3b 15 owner pipe_sections ro_m one ulp [dense] [m3x_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 41,
+   "name": "b3b 16 connector non-empty [dense] [m3x_dense]",
+   "rs": "G7 SOURCE_PHYSICS_CONNECTOR_UNSUPPORTED",
+   "ts": "G7 PHYSICS_EVIDENCE_UNSUPPORTED_COMPOSITION",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 42,
+   "name": "b3b 17 pipe_materials G_pa three ulps [dense] [m3x_dense]",
+   "rs": "G7 SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_MATERIAL_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 43,
+   "name": "b3b 18 recovery_method added to an exact_cases entry [dense] [m3x_dense]",
+   "rs": "G7 SOURCE_PHYSICS_CASE_SHAPE",
+   "ts": "G7 PHYSICS_EVIDENCE_CASE_SHAPE",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 44,
+   "name": "b3b 19 invocation contract legacy [dense] [m3x_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 45,
+   "name": "b3b 20 invocation schema 0.4.0 [dense] [m3x_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 46,
+   "name": "b3b 21 invocation pressure_contract false [dense] [m3x_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 47,
+   "name": "b3b 22 a combination added to the invocation [dense] [m3x_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 48,
+   "name": "b3b 23 a case naming modulus_basis_ref [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 49,
+   "name": "b3b 24 shear_origin explicit_g [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 50,
+   "name": "b3b 25 receipt shear_modulus one ulp [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 51,
+   "name": "b3b 26 shear_origin.poisson_ratio bits changed [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 52,
+   "name": "b3b 27 authored nu changed in the invocation [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 53,
+   "name": "b3b 28 S-C only: an entry's pipe_materials nu one ulp [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 54,
+   "name": "b3b 29 N-6: an entry's pipe_materials G_pa one ulp [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 55,
+   "name": "b3b 30 a case's pressure_regions null [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 56,
+   "name": "b3b 31 a case's pressure_regions with one region [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 57,
+   "name": "b3b 32 a member's geometry.route preview [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 58,
+   "name": "b3b x01 owner pipe_sections J_m4 one ulp [dense] [m3x_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 59,
+   "name": "b3b x02 owner pipe_sections outside_diameter_m one ulp [dense] [m3x_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 60,
+   "name": "b3b x03 owner pipe_sections effective_wall_thickness_m one ulp [dense] [m3x_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 61,
+   "name": "b3b x04 the owner entry's load_case_id renamed [dense] [m3x_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 62,
+   "name": "b3b x05 exact_cases empty [dense] [m3x_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 63,
+   "name": "b3b x06 contract_evidence removed [dense] [m3x_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 64,
+   "name": "b3b x07 a case's pressure_regions removed [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 65,
+   "name": "b3b x08 a case with analysis_state [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 66,
+   "name": "b3b x09 authored E one ulp [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 67,
+   "name": "b3b x10 authored nu unit not 1 [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 68,
+   "name": "b3b x11 authored nu 0.5 [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 69,
+   "name": "b3b x12 authored constitutive_basis changed [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 70,
+   "name": "b3b x13 invocation contract mode only [dense] [m3x_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 71,
+   "name": "b3b x14 invocation contract extra key [dense] [m3x_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 72,
+   "name": "b3b x15 invocation contract removed [dense] [m3x_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 73,
+   "name": "b3b x16 invocation schema 0.2.0 [dense] [m3x_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 74,
+   "name": "b3b x17 physics-1 headline altered [dense] [m3x_dense]",
+   "rs": "G7 SOURCE_PHYSICS_HEADLINE_RESULT_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_MAXIMUM_HEADLINE_BINDING",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 75,
+   "name": "b3b x18 a named point basis equal to the base, named in the receipt [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 76,
+   "name": "b3b x19 the owner entry's pipe section listed twice [dense] [m3x_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 77,
+   "name": "b3b x20 the owner entry's As_m2 a string [dense] [m3x_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 78,
+   "name": "b3b x21 invocation contract version 2.0.1 [dense] [m3x_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 79,
+   "name": "b3b x22 invocation contract with an extra null key [dense] [m3x_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 80,
+   "name": "b3b x23 a component added to the invocation [dense] [m3x_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 81,
+   "name": "b3b x24 authored nu unit empty [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 82,
+   "name": "b3b x25 authored constitutive_basis removed [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 83,
+   "name": "b3b x26 G_hat one ulp high, every copy consistent [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 84,
+   "name": "b3b x27 policy changed [dense] [m3x_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 85,
+   "name": "b3b x28 facade_policy changed [dense] [m3x_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 86,
+   "name": "b3b x29 receipt_version 2 [dense] [m3x_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 87,
+   "name": "b3b x30 the owner's exact_cases entry listed twice [dense] [m3x_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 88,
+   "name": "b3b x31 producer component_version 0.2.1 [dense] [m3x_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 89,
+   "name": "b3b x32 a material's selection named_point [dense] [m3x_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 90,
+   "name": "b3b 09 the preview milestone successor relabelled physics-retained-1 [dense] [milestone_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 91,
+   "name": "b3b 10 the exact successor relabelled preview-physics-retained-1 [dense] [m3x_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 92,
+   "name": "b3b 11 S-1: the preparation hash over a payload with DEF-O's H [dense] [m3x_dense]",
+   "rs": "G1 RECEIPT_MISMATCH",
+   "ts": "G1 RECEIPT_MISMATCH",
+   "py": "G1 RECEIPT_MISMATCH"
+  },
+  {
+   "i": 93,
+   "name": "b3b p01 an authored redundant G in the invocation (ignored by the producer) [dense] [m3x_dense]",
+   "rs": "eligible",
+   "ts": "eligible",
+   "py": "eligible"
+  },
+  {
+   "i": 94,
+   "name": "b3b 00 m3xp base must-pass [dense] [m3xp_dense]",
+   "rs": "eligible",
+   "ts": "eligible",
+   "py": "eligible"
+  },
+  {
+   "i": 95,
+   "name": "b3b 01 identity relabelled preview (profile kept) (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 96,
+   "name": "b3b 02 profile relabelled preview (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 97,
+   "name": "b3b 03 an attempt's definition_id ordinary (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 98,
+   "name": "b3b 04 projection_policy changed (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 99,
+   "name": "b3b 05 work_policy changed (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 100,
+   "name": "b3b 06 canonicalization changed (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 101,
+   "name": "b3b 07 work.case_limit changed (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 102,
+   "name": "b3b 08 work.invocation_limit changed (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 103,
+   "name": "b3b 12 owner pipe_sections As_m2 one ulp (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 104,
+   "name": "b3b 13 owner pipe_sections Z_m3 one ulp (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 105,
+   "name": "b3b 14 owner pipe_sections I_m4 one ulp (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 106,
+   "name": "b3b 15 owner pipe_sections ro_m one ulp (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 107,
+   "name": "b3b 16 connector non-empty (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G7 SOURCE_PHYSICS_CONNECTOR_UNSUPPORTED",
+   "ts": "G7 PHYSICS_EVIDENCE_UNSUPPORTED_COMPOSITION",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 108,
+   "name": "b3b 17 pipe_materials G_pa three ulps (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G7 SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_MATERIAL_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 109,
+   "name": "b3b 18 recovery_method added to an exact_cases entry (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G7 SOURCE_PHYSICS_CASE_SHAPE",
+   "ts": "G7 PHYSICS_EVIDENCE_CASE_SHAPE",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 110,
+   "name": "b3b 19 invocation contract legacy (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 111,
+   "name": "b3b 20 invocation schema 0.4.0 (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 112,
+   "name": "b3b 21 invocation pressure_contract false (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 113,
+   "name": "b3b 22 a combination added to the invocation (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 114,
+   "name": "b3b 23 a case naming modulus_basis_ref (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 115,
+   "name": "b3b 24 shear_origin explicit_g (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 116,
+   "name": "b3b 25 receipt shear_modulus one ulp (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 117,
+   "name": "b3b 26 shear_origin.poisson_ratio bits changed (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 118,
+   "name": "b3b 27 authored nu changed in the invocation (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 119,
+   "name": "b3b 28 S-C only: an entry's pipe_materials nu one ulp (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 120,
+   "name": "b3b 29 N-6: an entry's pipe_materials G_pa one ulp (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 121,
+   "name": "b3b 30 a case's pressure_regions null (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 122,
+   "name": "b3b 31 a case's pressure_regions with one region (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 123,
+   "name": "b3b 32 a member's geometry.route preview (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 124,
+   "name": "b3b x01 owner pipe_sections J_m4 one ulp (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 125,
+   "name": "b3b x02 owner pipe_sections outside_diameter_m one ulp (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 126,
+   "name": "b3b x03 owner pipe_sections effective_wall_thickness_m one ulp (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 127,
+   "name": "b3b x04 the owner entry's load_case_id renamed (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 128,
+   "name": "b3b x05 exact_cases empty (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 129,
+   "name": "b3b x06 contract_evidence removed (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 130,
+   "name": "b3b x07 a case's pressure_regions removed (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 131,
+   "name": "b3b x08 a case with analysis_state (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 132,
+   "name": "b3b x09 authored E one ulp (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 133,
+   "name": "b3b x10 authored nu unit not 1 (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 134,
+   "name": "b3b x11 authored nu 0.5 (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 135,
+   "name": "b3b x12 authored constitutive_basis changed (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 136,
+   "name": "b3b x13 invocation contract mode only (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 137,
+   "name": "b3b x14 invocation contract extra key (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 138,
+   "name": "b3b x15 invocation contract removed (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 139,
+   "name": "b3b x16 invocation schema 0.2.0 (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 140,
+   "name": "b3b x17 physics-1 headline altered (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G7 SOURCE_PHYSICS_HEADLINE_RESULT_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_MAXIMUM_HEADLINE_BINDING",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 141,
+   "name": "b3b x18 a named point basis equal to the base, named in the receipt (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 142,
+   "name": "b3b x19 the owner entry's pipe section listed twice (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 143,
+   "name": "b3b x20 the owner entry's As_m2 a string (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 144,
+   "name": "b3b x21 invocation contract version 2.0.1 (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 145,
+   "name": "b3b x22 invocation contract with an extra null key (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 146,
+   "name": "b3b x23 a component added to the invocation (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 147,
+   "name": "b3b x24 authored nu unit empty (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 148,
+   "name": "b3b x25 authored constitutive_basis removed (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 149,
+   "name": "b3b x26 G_hat one ulp high, every copy consistent (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 150,
+   "name": "b3b x27 policy changed (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 151,
+   "name": "b3b x28 facade_policy changed (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 152,
+   "name": "b3b x29 receipt_version 2 (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 153,
+   "name": "b3b x30 the owner's exact_cases entry listed twice (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 154,
+   "name": "b3b x31 producer component_version 0.2.1 (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 155,
+   "name": "b3b x32 a material's selection named_point (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 156,
+   "name": "b3b 10 the exact successor relabelled preview-physics-retained-1 (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 157,
+   "name": "b3b 11 S-1: the preparation hash over a payload with DEF-O's H (on m3xp) [dense] [m3xp_dense]",
+   "rs": "G1 RECEIPT_MISMATCH",
+   "ts": "G1 RECEIPT_MISMATCH",
+   "py": "G1 RECEIPT_MISMATCH"
+  },
+  {
+   "i": 158,
+   "name": "b3b p01 an authored redundant G in the invocation (ignored by the producer) (on m3xp) [dense] [m3xp_dense]",
+   "rs": "eligible",
+   "ts": "eligible",
+   "py": "eligible"
+  },
+  {
+   "i": 159,
+   "name": "b3a 00 m3l base must-pass [sparse] [m3l_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 160,
+   "name": "b3a a non-zero element pressure load [sparse] [m3l_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 161,
+   "name": "b3a a non-zero node force with category pressure [sparse] [m3l_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 162,
+   "name": "b3a a zero-magnitude element pressure load [sparse] [m3l_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 163,
+   "name": "b3a contract mode changed [sparse] [m3l_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 164,
+   "name": "b3a contract null [sparse] [m3l_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 165,
+   "name": "b3a contract removed [sparse] [m3l_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 166,
+   "name": "b3a contract the exact one [sparse] [m3l_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 167,
+   "name": "b3a contract version as a number [sparse] [m3l_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 168,
+   "name": "b3a contract version changed [sparse] [m3l_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 169,
+   "name": "b3a contract with an extra key [sparse] [m3l_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 170,
+   "name": "b3a schema 0.2.0 keeping the contract [sparse] [m3l_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 171,
+   "name": "b3a schema 0.4.0 keeping the contract [sparse] [m3l_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 172,
+   "name": "b3a L 0.1.0 pressure_contract {} [sparse] [milestone_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 173,
+   "name": "b3a L 0.1.0 pressure_contract false [sparse] [milestone_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 174,
+   "name": "b3a L 0.1.0 pressure_contract [] [sparse] [milestone_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 175,
+   "name": "b3a L 0.1.0 pressure_contract \"\" [sparse] [milestone_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 176,
+   "name": "b3a L 0.1.0 pressure_contract 0 [sparse] [milestone_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 177,
+   "name": "b3a L 0.1.0 pressure_contract legacy [sparse] [milestone_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 178,
+   "name": "b3a L 0.1.0 pressure_contract null must-pass [sparse] [milestone_sparse]",
+   "rs": "eligible",
+   "ts": "eligible",
+   "py": "eligible"
+  },
+  {
+   "i": 179,
+   "name": "b3a L 0.2.0 pressure_contract {} [sparse] [milestone_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 180,
+   "name": "b3a L 0.2.0 pressure_contract false [sparse] [milestone_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 181,
+   "name": "b3a L 0.2.0 pressure_contract [] [sparse] [milestone_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 182,
+   "name": "b3a L 0.2.0 pressure_contract \"\" [sparse] [milestone_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 183,
+   "name": "b3a L 0.2.0 pressure_contract 0 [sparse] [milestone_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 184,
+   "name": "b3a L 0.2.0 pressure_contract legacy [sparse] [milestone_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 185,
+   "name": "b3a L 0.2.0 pressure_contract null must-pass [sparse] [milestone_sparse]",
+   "rs": "eligible",
+   "ts": "eligible",
+   "py": "eligible"
+  },
+  {
+   "i": 186,
+   "name": "b3a 0.3.0 without a contract [sparse] [milestone_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 187,
+   "name": "b3b 00 m3x base must-pass [sparse] [m3x_sparse]",
+   "rs": "eligible",
+   "ts": "eligible",
+   "py": "eligible"
+  },
+  {
+   "i": 188,
+   "name": "b3b 01 identity relabelled preview (profile kept) [sparse] [m3x_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 189,
+   "name": "b3b 02 profile relabelled preview [sparse] [m3x_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 190,
+   "name": "b3b 03 an attempt's definition_id ordinary [sparse] [m3x_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 191,
+   "name": "b3b 04 projection_policy changed [sparse] [m3x_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 192,
+   "name": "b3b 05 work_policy changed [sparse] [m3x_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 193,
+   "name": "b3b 06 canonicalization changed [sparse] [m3x_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 194,
+   "name": "b3b 07 work.case_limit changed [sparse] [m3x_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 195,
+   "name": "b3b 08 work.invocation_limit changed [sparse] [m3x_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 196,
+   "name": "b3b 12 owner pipe_sections As_m2 one ulp [sparse] [m3x_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 197,
+   "name": "b3b 13 owner pipe_sections Z_m3 one ulp [sparse] [m3x_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 198,
+   "name": "b3b 14 owner pipe_sections I_m4 one ulp [sparse] [m3x_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 199,
+   "name": "b3b 15 owner pipe_sections ro_m one ulp [sparse] [m3x_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 200,
+   "name": "b3b 16 connector non-empty [sparse] [m3x_sparse]",
+   "rs": "G7 SOURCE_PHYSICS_CONNECTOR_UNSUPPORTED",
+   "ts": "G7 PHYSICS_EVIDENCE_UNSUPPORTED_COMPOSITION",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 201,
+   "name": "b3b 17 pipe_materials G_pa three ulps [sparse] [m3x_sparse]",
+   "rs": "G7 SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_MATERIAL_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 202,
+   "name": "b3b 18 recovery_method added to an exact_cases entry [sparse] [m3x_sparse]",
+   "rs": "G7 SOURCE_PHYSICS_CASE_SHAPE",
+   "ts": "G7 PHYSICS_EVIDENCE_CASE_SHAPE",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 203,
+   "name": "b3b 19 invocation contract legacy [sparse] [m3x_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 204,
+   "name": "b3b 20 invocation schema 0.4.0 [sparse] [m3x_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 205,
+   "name": "b3b 21 invocation pressure_contract false [sparse] [m3x_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 206,
+   "name": "b3b 22 a combination added to the invocation [sparse] [m3x_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 207,
+   "name": "b3b 23 a case naming modulus_basis_ref [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 208,
+   "name": "b3b 24 shear_origin explicit_g [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 209,
+   "name": "b3b 25 receipt shear_modulus one ulp [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 210,
+   "name": "b3b 26 shear_origin.poisson_ratio bits changed [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 211,
+   "name": "b3b 27 authored nu changed in the invocation [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 212,
+   "name": "b3b 28 S-C only: an entry's pipe_materials nu one ulp [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 213,
+   "name": "b3b 29 N-6: an entry's pipe_materials G_pa one ulp [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 214,
+   "name": "b3b 30 a case's pressure_regions null [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 215,
+   "name": "b3b 31 a case's pressure_regions with one region [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 216,
+   "name": "b3b 32 a member's geometry.route preview [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 217,
+   "name": "b3b x01 owner pipe_sections J_m4 one ulp [sparse] [m3x_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 218,
+   "name": "b3b x02 owner pipe_sections outside_diameter_m one ulp [sparse] [m3x_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 219,
+   "name": "b3b x03 owner pipe_sections effective_wall_thickness_m one ulp [sparse] [m3x_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 220,
+   "name": "b3b x04 the owner entry's load_case_id renamed [sparse] [m3x_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 221,
+   "name": "b3b x05 exact_cases empty [sparse] [m3x_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 222,
+   "name": "b3b x06 contract_evidence removed [sparse] [m3x_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 223,
+   "name": "b3b x07 a case's pressure_regions removed [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 224,
+   "name": "b3b x08 a case with analysis_state [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 225,
+   "name": "b3b x09 authored E one ulp [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 226,
+   "name": "b3b x10 authored nu unit not 1 [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 227,
+   "name": "b3b x11 authored nu 0.5 [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 228,
+   "name": "b3b x12 authored constitutive_basis changed [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 229,
+   "name": "b3b x13 invocation contract mode only [sparse] [m3x_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 230,
+   "name": "b3b x14 invocation contract extra key [sparse] [m3x_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 231,
+   "name": "b3b x15 invocation contract removed [sparse] [m3x_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 232,
+   "name": "b3b x16 invocation schema 0.2.0 [sparse] [m3x_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 233,
+   "name": "b3b x17 physics-1 headline altered [sparse] [m3x_sparse]",
+   "rs": "G7 SOURCE_PHYSICS_HEADLINE_RESULT_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_MAXIMUM_HEADLINE_BINDING",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 234,
+   "name": "b3b x18 a named point basis equal to the base, named in the receipt [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 235,
+   "name": "b3b x19 the owner entry's pipe section listed twice [sparse] [m3x_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 236,
+   "name": "b3b x20 the owner entry's As_m2 a string [sparse] [m3x_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 237,
+   "name": "b3b x21 invocation contract version 2.0.1 [sparse] [m3x_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 238,
+   "name": "b3b x22 invocation contract with an extra null key [sparse] [m3x_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 239,
+   "name": "b3b x23 a component added to the invocation [sparse] [m3x_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 240,
+   "name": "b3b x24 authored nu unit empty [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 241,
+   "name": "b3b x25 authored constitutive_basis removed [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 242,
+   "name": "b3b x26 G_hat one ulp high, every copy consistent [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 243,
+   "name": "b3b x27 policy changed [sparse] [m3x_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 244,
+   "name": "b3b x28 facade_policy changed [sparse] [m3x_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 245,
+   "name": "b3b x29 receipt_version 2 [sparse] [m3x_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 246,
+   "name": "b3b x30 the owner's exact_cases entry listed twice [sparse] [m3x_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 247,
+   "name": "b3b x31 producer component_version 0.2.1 [sparse] [m3x_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 248,
+   "name": "b3b x32 a material's selection named_point [sparse] [m3x_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 249,
+   "name": "b3b 09 the preview milestone successor relabelled physics-retained-1 [sparse] [milestone_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 250,
+   "name": "b3b 10 the exact successor relabelled preview-physics-retained-1 [sparse] [m3x_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 251,
+   "name": "b3b 11 S-1: the preparation hash over a payload with DEF-O's H [sparse] [m3x_sparse]",
+   "rs": "G1 RECEIPT_MISMATCH",
+   "ts": "G1 RECEIPT_MISMATCH",
+   "py": "G1 RECEIPT_MISMATCH"
+  },
+  {
+   "i": 252,
+   "name": "b3b p01 an authored redundant G in the invocation (ignored by the producer) [sparse] [m3x_sparse]",
+   "rs": "eligible",
+   "ts": "eligible",
+   "py": "eligible"
+  },
+  {
+   "i": 253,
+   "name": "b3b 00 m3xp base must-pass [sparse] [m3xp_sparse]",
+   "rs": "eligible",
+   "ts": "eligible",
+   "py": "eligible"
+  },
+  {
+   "i": 254,
+   "name": "b3b 01 identity relabelled preview (profile kept) (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 255,
+   "name": "b3b 02 profile relabelled preview (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 256,
+   "name": "b3b 03 an attempt's definition_id ordinary (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 257,
+   "name": "b3b 04 projection_policy changed (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 258,
+   "name": "b3b 05 work_policy changed (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 259,
+   "name": "b3b 06 canonicalization changed (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 260,
+   "name": "b3b 07 work.case_limit changed (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 261,
+   "name": "b3b 08 work.invocation_limit changed (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 262,
+   "name": "b3b 12 owner pipe_sections As_m2 one ulp (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 263,
+   "name": "b3b 13 owner pipe_sections Z_m3 one ulp (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 264,
+   "name": "b3b 14 owner pipe_sections I_m4 one ulp (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 265,
+   "name": "b3b 15 owner pipe_sections ro_m one ulp (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 266,
+   "name": "b3b 16 connector non-empty (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G7 SOURCE_PHYSICS_CONNECTOR_UNSUPPORTED",
+   "ts": "G7 PHYSICS_EVIDENCE_UNSUPPORTED_COMPOSITION",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 267,
+   "name": "b3b 17 pipe_materials G_pa three ulps (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G7 SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_MATERIAL_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 268,
+   "name": "b3b 18 recovery_method added to an exact_cases entry (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G7 SOURCE_PHYSICS_CASE_SHAPE",
+   "ts": "G7 PHYSICS_EVIDENCE_CASE_SHAPE",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 269,
+   "name": "b3b 19 invocation contract legacy (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 270,
+   "name": "b3b 20 invocation schema 0.4.0 (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 271,
+   "name": "b3b 21 invocation pressure_contract false (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 272,
+   "name": "b3b 22 a combination added to the invocation (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 273,
+   "name": "b3b 23 a case naming modulus_basis_ref (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 274,
+   "name": "b3b 24 shear_origin explicit_g (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 275,
+   "name": "b3b 25 receipt shear_modulus one ulp (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 276,
+   "name": "b3b 26 shear_origin.poisson_ratio bits changed (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 277,
+   "name": "b3b 27 authored nu changed in the invocation (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 278,
+   "name": "b3b 28 S-C only: an entry's pipe_materials nu one ulp (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 279,
+   "name": "b3b 29 N-6: an entry's pipe_materials G_pa one ulp (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 280,
+   "name": "b3b 30 a case's pressure_regions null (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 281,
+   "name": "b3b 31 a case's pressure_regions with one region (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 282,
+   "name": "b3b 32 a member's geometry.route preview (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 283,
+   "name": "b3b x01 owner pipe_sections J_m4 one ulp (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 284,
+   "name": "b3b x02 owner pipe_sections outside_diameter_m one ulp (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 285,
+   "name": "b3b x03 owner pipe_sections effective_wall_thickness_m one ulp (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 286,
+   "name": "b3b x04 the owner entry's load_case_id renamed (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 287,
+   "name": "b3b x05 exact_cases empty (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 288,
+   "name": "b3b x06 contract_evidence removed (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 289,
+   "name": "b3b x07 a case's pressure_regions removed (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 290,
+   "name": "b3b x08 a case with analysis_state (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 291,
+   "name": "b3b x09 authored E one ulp (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 292,
+   "name": "b3b x10 authored nu unit not 1 (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 293,
+   "name": "b3b x11 authored nu 0.5 (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 294,
+   "name": "b3b x12 authored constitutive_basis changed (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 295,
+   "name": "b3b x13 invocation contract mode only (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 296,
+   "name": "b3b x14 invocation contract extra key (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 297,
+   "name": "b3b x15 invocation contract removed (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 298,
+   "name": "b3b x16 invocation schema 0.2.0 (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 299,
+   "name": "b3b x17 physics-1 headline altered (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G7 SOURCE_PHYSICS_HEADLINE_RESULT_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_MAXIMUM_HEADLINE_BINDING",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 300,
+   "name": "b3b x18 a named point basis equal to the base, named in the receipt (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 301,
+   "name": "b3b x19 the owner entry's pipe section listed twice (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 302,
+   "name": "b3b x20 the owner entry's As_m2 a string (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 303,
+   "name": "b3b x21 invocation contract version 2.0.1 (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 304,
+   "name": "b3b x22 invocation contract with an extra null key (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 305,
+   "name": "b3b x23 a component added to the invocation (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 INVOCATION_MISMATCH",
+   "ts": "G8 INVOCATION_MISMATCH",
+   "py": "G8 INVOCATION_MISMATCH"
+  },
+  {
+   "i": 306,
+   "name": "b3b x24 authored nu unit empty (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 307,
+   "name": "b3b x25 authored constitutive_basis removed (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 308,
+   "name": "b3b x26 G_hat one ulp high, every copy consistent (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 309,
+   "name": "b3b x27 policy changed (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 310,
+   "name": "b3b x28 facade_policy changed (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 311,
+   "name": "b3b x29 receipt_version 2 (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 312,
+   "name": "b3b x30 the owner's exact_cases entry listed twice (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G5b SECTION_MISMATCH",
+   "ts": "G5b SECTION_MISMATCH",
+   "py": "G5b SECTION_MISMATCH"
+  },
+  {
+   "i": 313,
+   "name": "b3b x31 producer component_version 0.2.1 (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 314,
+   "name": "b3b x32 a material's selection named_point (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 315,
+   "name": "b3b 10 the exact successor relabelled preview-physics-retained-1 (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "ts": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "py": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
+  },
+  {
+   "i": 316,
+   "name": "b3b 11 S-1: the preparation hash over a payload with DEF-O's H (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "G1 RECEIPT_MISMATCH",
+   "ts": "G1 RECEIPT_MISMATCH",
+   "py": "G1 RECEIPT_MISMATCH"
+  },
+  {
+   "i": 317,
+   "name": "b3b p01 an authored redundant G in the invocation (ignored by the producer) (on m3xp) [sparse] [m3xp_sparse]",
+   "rs": "eligible",
+   "ts": "eligible",
+   "py": "eligible"
+  }
+ ]
+}
