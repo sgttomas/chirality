@@ -1,0 +1,23 @@
+A1-SF1-a: lib.rs the G8 precommit fallback publishes without its notice
+  test retained_facade_tests::u3_each_stage_fault_falls_back_to_the_ordinary_bytes ... FAILED
+  test retained_facade_tests::u3g2_direct_entry_w1_fallbacks_append_one_notice ... FAILED
+  test retained_memory::law_tests::b3a_direct_entry_oracles ... FAILED
+  test result: FAILED. 583 passed; 4 failed; 11 ignored; 0 measured; 0 filtered out; finished in 42.16s
+A1-SF2-a: retained_memory.rs exact regions capacity check removed
+  test retained_memory::law_tests::b3b_exact_regions_capacity_is_read ... FAILED
+  test result: FAILED. 585 passed; 2 failed; 11 ignored; 0 measured; 0 filtered out; finished in 43.15s
+A1-SF2-b: retained_memory.rs exact regions capacity: only above 1 refuses
+  test retained_memory::law_tests::b3b_exact_regions_capacity_is_read ... FAILED
+  test result: FAILED. 585 passed; 2 failed; 11 ignored; 0 measured; 0 filtered out; finished in 43.43s
+A1-SF2-c: retained_memory.rs exact regions capacity read on the first case only
+  test retained_memory::law_tests::b3b_exact_regions_capacity_is_read ... FAILED
+  test result: FAILED. 585 passed; 2 failed; 11 ignored; 0 measured; 0 filtered out; finished in 45.53s
+
+registered build in each mutant run (the_registered_profile_is_the_only_permit_source ok):
+  A1-SF1-a 1
+  A1-SF2-a 1
+  A1-SF2-b 1
+  A1-SF2-c 1
+
+generated profile block at ea5625ad04: a3c627216102bdfc (e96355ef8f: a3c627216102bdfc)
+r1 PP registered: test retained_memory::law_tests::b3b_exact_regions_capacity_is_read ... ok;test retained_memory::law_tests::reviewed_inputs_bind_the_lock_and_the_reader_statics ... ok;test retained_memory::law_tests::the_registered_profile_is_the_only_permit_source ... ok;test retained_memory::law_tests::b3a_direct_entry_oracles ... ok;

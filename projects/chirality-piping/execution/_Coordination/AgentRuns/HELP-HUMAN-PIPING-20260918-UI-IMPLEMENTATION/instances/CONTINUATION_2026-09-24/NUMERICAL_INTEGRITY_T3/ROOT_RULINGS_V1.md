@@ -16076,3 +16076,17 @@ RV124 confirms SB.
 **I103's REPAIR_01** (lane A: SF-1, SF-2, N-1; `ea5625ad04`) is committed with this section. RV122's confirmation is running.
 
 **IDs:** I107, I108 and RV125 are used. The next unused are **I109 and RV126**.
+
+## RV122 confirms lane A's repair round 01 (`ea5625ad04`); the merge into `b2` goes to I105 (ROOT, 2026-10-08 UTC)
+
+**RV122 CONFIRMED** I103's REPAIR_01 (`R/REVIEW_RV122/b2_a_01/ADDENDUM_01.md`, `d95b1019…`; 7 of 7 sums OK).
+- **SF-1:** m3l's interim Direct outcome is pinned exactly.
+- **SF-2:** the exact D1.5 clause refuses a spare capacity as `Cap{PressureRegionsCapacity, observed, cap: 0}`.
+- **N-1:** repaired.
+- **Unchanged:** the generated profile block and `CAP_ROWS` = 53.
+- **Tests:** PP has 0 tests changed and 1 added; the runner is identical.
+- **Still open:** N-2 goes to the readers' lanes and N-3 to lane P, as ruled.
+
+**Lane A is accepted.** Its repairs (`c2c725347d`, `70cb600519`, `ea5625ad04`) touch only `build.rs`, `build_identity.rs`, `retained_memory.rs` and its law tests. `merge-tree` against `b2` `794cb36e85` shows no conflicts.
+
+So that `b2` is not moved under a running lane, I105 makes the merge commit at its next clean point. It then reruns the law and admission tests, and reports the commit. ROOT pushes.

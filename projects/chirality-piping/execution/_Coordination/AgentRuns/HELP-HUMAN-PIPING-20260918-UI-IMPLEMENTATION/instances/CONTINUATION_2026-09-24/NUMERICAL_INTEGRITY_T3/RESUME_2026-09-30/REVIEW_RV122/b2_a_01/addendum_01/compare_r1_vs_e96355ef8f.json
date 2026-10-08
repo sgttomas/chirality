@@ -1,0 +1,39 @@
+{
+ "pp": {
+  "base": {
+   "FAILED": 1,
+   "ignored": 11,
+   "ok": 748
+  },
+  "candidate": {
+   "FAILED": 1,
+   "ignored": 11,
+   "ok": 749
+  },
+  "changed": {},
+  "only_base": {},
+  "only_candidate": {
+   "unittests::retained_memory::law_tests::b3b_exact_regions_capacity_is_read": "ok"
+  },
+  "failed_both": [
+   "unittests::s11g_tests::t13_committed_fallback_uz_is_byte_identical"
+  ]
+ },
+ "runner": {
+  "base": {
+   "FAILED": 2,
+   "ok": 85
+  },
+  "candidate": {
+   "FAILED": 2,
+   "ok": 85
+  },
+  "changed": {},
+  "only_base": {},
+  "only_candidate": {},
+  "failed_both": [
+   "tests/load_reference_cli.rs::cli_load_reference_one_both_modes_is_controlled_and_equals_the_library_route",
+   "unittests::load_reference_route_tests::load_reference_one_actual_solve_mints_bound_evidence_and_canonical_document_both_modes"
+  ]
+ }
+}
