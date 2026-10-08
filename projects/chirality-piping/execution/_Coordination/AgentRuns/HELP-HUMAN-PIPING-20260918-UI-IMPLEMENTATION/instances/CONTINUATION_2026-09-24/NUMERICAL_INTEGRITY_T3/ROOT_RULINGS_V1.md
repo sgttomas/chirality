@@ -15804,3 +15804,64 @@ The next ROOT verifies all of them from disk. ROOT has verified and committed no
 - **The rule from now on:** nothing T3 keeps on disk lives inside an App-managed worktree.
 
 **Unchanged:** the next IDs are I100 and RV120, and the next step is I4.
+
+## I4 made at `30f3d1b24a`; RV113's items for ROOT ruled; a reader follow-up round toward I4′ (I100, I101); RV120 succeeds RV113 as RV-R (ROOT, 2026-10-08 UTC)
+
+**NUM absorbed main** at `64ff7e7999`: #1125, #1126 and #1128, 105 files, all under `projects/chirality-app-v4`. NUM equals main outside `execution/`.
+
+**I4 is made.** ROOT merged the three readers' branches into `b1` (`03f55e7178`, I3 with SP complete), each with `--no-ff`:
+- `b1-r` at `6e3e4fe219`, SR-RS round 2, as `b6327a5155`;
+- `b1-p` at `2843a59a16`, SR-PY repair 02 with item 4, as `abff6d1ee5`;
+- `b1-t` at `6fa6a64658`, SR-TS repair 01, as **`30f3d1b24a`**.
+
+The basis is RV113's three confirmations (RR "#1114 merged; …").
+- **The sides were file-disjoint:** SR-RS's 2 RE files, SR-PY's 4 PY files and SR-TS's 2 TS files, against `b1`'s producer and fixture files. There was no conflict.
+- I4 changes 8 files over I3 (+2,711/−86).
+
+**ROOT's check at I4** (`WT/scratch/root_i4/`, fresh target `WT/targets/root-i4`; each job in a lock slot, one at a time):
+- RE, all tests: 193 passed, 0 failed (`retained_precision_contract` 76);
+- PY's three reader test files: 528 passed, 0 failed;
+- TS's `retainedPrecision` and `previewPhysicsEvidence` tests: 543 passed, 0 failed. They ran as I92 ran them: in a scratch archive of `P` without `execution/`, with `node_modules` linked and the eight wasm assets copied from `WT/sweep-skewpin`. A first attempt inside `WT/b1` stopped at setup with `WASM-ENGINE-ASSET-ABSENT` and ran no test; it is disclosed and counts for nothing;
+- PP `--lib`: 575 passed, 1 failed, 11 ignored. The failure is the known Mac `t13`, as at I2.
+
+The record is `IMPLEMENTATION/B1_I4/` (RECORD.md, SHA256SUMS, sanitized logs). `b1`, `b1-r`, `b1-p` and `b1-t` are pushed at I4.
+
+**RV113's items for ROOT, ruled.** As at I3, these are reader refusals of forged or mislabelled receipts. B1's producer emits none of these shapes, they have no public meaning before B8, and no 07m verdict moves.
+1. **The transport header follows Rust's order and codes in all three readers** (SR-PY addendum S-1): option (a).
+   - I3's item 4 ("as RS has it") is read as including the order, as TS's repair took it.
+   - **On transport, PY:**
+     - drops its carrier branch, so a `carrier_evidence` member alone is a metadata defect at G7 `SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID`, as in RS and TS;
+     - checks `source_block_recovery` before `contract_evidence`.
+   - RV113's six transport probes pin it as PY test rows.
+   - I91's REPAIR_02_ITEM4 §2 "declared" holds for raw reads only; this ruling supersedes it on transport.
+   - SC's `carrier_evidence` entry (B1_SC item 7) is now the same in all three readers.
+   - **Why (a), not a per-reader declaration:** RS and TS already agree on all 392 of RV113's probes. One reference removes six declared differences for a small PY change.
+2. **The transport metadata check's shared form is RS's and TS's check plus PY's extrema-number demand** (N-1 in all three of RV113's addenda). On transport, each of these is refused at G7 `SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID` in all three readers:
+   - a withheld record whose multiplicity differs between cases: PY compares the records as multisets, not sets;
+   - a non-number `global_upper_bound_pa`, and a null `certified_gap_pa`: RS and TS add the demand.
+
+   **Why:** the producer cannot emit these shapes, and refusing them is fail-safe. On the raw path, RS and PY already refuse all three, and TS will after ruling 3. PY's schema typing otherwise stays. Any further shape it refuses that RS and TS admit comes back to ROOT.
+3. **TS's raw extrema false accept is repaired now** (SR-TS addendum S-1), in the follow-up round rather than after PR-B1.
+   - TS's raw reader requires both members to be finite numbers, refused at G7 with TS's raw base code.
+   - **TS's fence widens** to `previewPhysicsEvidence.ts` and its test.
+   - The raw codes stay a declared per-reader class (B1_SC item 13): RS `…NUMBER_INVALID`; PY and TS `…EVIDENCE_INVALID`.
+   - SC adds both shapes bound and unbound, refused at G7 in all three readers.
+4. **RS's twelve unpinned checks** (SR-RS addendum 02 S-1): RS adds RV113's twelve rows, one per check. Test-only. RS's doc comment (its N-1) says the metadata check is TS's, check for check, and shares PY's extrema demand after ruling 2.
+5. **PY's C2 kernel-branch conjunct** (SR-PY addendum N-2): PY adds a whole-reader row, a kernel reason on a case with no Run, at G5 `ATTEMPT` with no cause. SC's C2 entries carry it to all three readers.
+
+**The route to SC: a reader follow-up round toward I4′.** RV113's agreement-first rule for SC ("a disagreement is declared per reader only by ROOT's ruling") needs the readers to agree before 07n pins them. So the ruled changes land first, and SC pins them.
+- **`b1-p`, `b1-r` and `b1-t` are fast-forwarded to I4.**
+- **I100, PY's lane:** rulings 1, 2 (PY's side) and 5 (`BRIEFS/B1_I4P_PY.md`). I100 then owns SC as I-PY, the one corpus writer.
+- **I101, RS's and TS's lanes:** rulings 2 (RS's and TS's sides), 3 and 4 (`BRIEFS/B1_I4P_RS_TS.md`). I101 then owns I-RS's and I-TS's harness pins after 07n.
+- **RV120, a fresh reviewer, succeeds RV113 as RV-R.** RV113 is not resumable from this session, which is a concrete reason for a new reviewer. RV120 confirms both returns against RV113's addenda and this ruling, then reviews SC.
+- **I4′:** once RV120 confirms, ROOT merges the three lanes into `b1`.
+- **SC** follows on `b1` at I4′, by `BRIEFS/B1_SC.md`, updated with I4′, the owners, item 7's change and a new item 14 for rulings 1, 2, 3 and 5. I100 may prepare 07n in its scratch while RV120 confirms.
+- **Concurrency:** two implementers and one reviewer, within the cap of three implementers.
+
+**Dispatched:**
+- **The mechanism:** the session harness's own subagents (D-GOV-35 harness-native descendants): general-purpose, fresh context with no fork, in the background.
+- **Parent:** this ROOT.
+- **Model:** inherited, with no model-diversity claim.
+- **Basis:** the briefs above, the host's four-slot rule, and WT's new location (RR "The App's worktree pool emptied WT's host files; …").
+
+**IDs:** I100 and I101 are used, and RV120 is reserved for the confirmation. The next unused are **I102 and RV121**.

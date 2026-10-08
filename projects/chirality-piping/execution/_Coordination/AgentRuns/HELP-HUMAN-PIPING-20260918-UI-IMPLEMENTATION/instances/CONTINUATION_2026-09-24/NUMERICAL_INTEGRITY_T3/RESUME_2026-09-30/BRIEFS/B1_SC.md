@@ -1,10 +1,10 @@
 # B1-SC: corpus 07n (one writer), then the harness pins
 
-Read `R/BRIEFS/B1_COMMON.md` first. **The specification is PLAN_v2 §2.5** (`R/I84/b1_plan_01/PLAN_v2.md`), with the items RR has routed to SC since (below). You are I-PY, the one corpus writer. When 07n is written, I-RS and I-TS update their harness pins and counts, by ROOT's message.
+Read `R/BRIEFS/B1_COMMON.md` first. **The specification is PLAN_v2 §2.5** (`R/I84/b1_plan_01/PLAN_v2.md`), with the items RR has routed to SC since (below). You are I100 (I-PY), the one corpus writer, continuing from your reader follow-up (`R/BRIEFS/B1_I4P_PY.md`). When 07n is written, I101 (I-RS and I-TS) updates their harness pins and counts, by ROOT's message.
 
 ## Where
 
-- **`WT/b1` after I4,** at `{I4 commit}`, where SP, SA and the three readers' rounds are merged.
+- **`WT/b1` at I4′,** `{I4′ commit}`, where SP, SA, the three readers' rounds (I4, `30f3d1b24a`) and the reader follow-up round (I100 and I101, confirmed by RV120) are merged. ROOT gives I4′'s commit in its message.
 - **CORPUS** (`P/fixtures/results/retained_precision_cases.json`) is append-only after B6's 07m. **Its 07m entries do not change.**
 
 ## 07n's content
@@ -29,7 +29,7 @@ Read `R/BRIEFS/B1_COMMON.md` first. **The specification is PLAN_v2 §2.5** (`R/I
    - (f)'s family, bound and unbound, at G3 COVERAGE, and the ordinary basis reference at G5 ATTEMPT. 07m's `integral_float_integers_and_references` stays a must-pass.
    - (g)'s model-scope members at G8 INVOCATION: `reference_configurations` null and `[]`; `pressure_contract` `{}` and `false`; `combinations` `{"x":1}`, `[{}]` and `"x"`; and `components` `"x"`.
    - **Each C2 cause branch, satisfied and broken,** including every `precondition` key with a wrong code and a wrong phase. No 07m entry or probe carries a precondition cause.
-   - **The transport header at G2,** with the metadata at G7. Use RV108 N5's header branch sub-conditions, each pinned, including a per-reader `carrier_evidence` entry.
+   - **The transport header at G2,** with the metadata at G7. Use RV108 N5's header branch sub-conditions, each pinned, including a `carrier_evidence` entry. After ruling 1 of RR "I4 made at `30f3d1b24a`; RV113's items for ROOT ruled; …", that entry is the same in all three readers (G7 on transport), not per reader.
 8. **S-2's (b) and (c) entries:** use inputs whose first failure is the same in all three readers after the alignment set. Use I91's REPAIR_02 §6 for the three that differed.
 9. **I91's false-accept repairs** (RR "I91's SR-PY verified; …"): an entry for each of (a), (b), (c), (d1) and (d2), expected the same in all three readers.
 10. **I90's first-failure notes** (RR "I90's SR-RS verified; …", ruling 3): m4 at G3 COVERAGE, m7 at G5 ATTEMPT, m1's whole error value, and a copied parity row's `recovery_method`.
@@ -45,15 +45,21 @@ Read `R/BRIEFS/B1_COMMON.md` first. **The specification is PLAN_v2 §2.5** (`R/I
     - entry 139 `g7_maximum_off_enclosure`'s G7 code;
     - the compound N6 probes' raw G7 codes.
 
-**Expectations.** Each first failure is fixed from the three readers' agreement on the I4 head. A disagreement is declared per reader only by ROOT's ruling. Return to ROOT with any that are new.
+14. **The shapes ruled at I4** (RR "I4 made at `30f3d1b24a`; RV113's items for ROOT ruled; …"), each expected the same in all three readers unless stated:
+    - ruling 1: RV113's six transport header probes (`h_carrier_present`, `h_carrier_and_quality_defect`, `h_carrier_and_recovery`, `n6_carrier_evidence_with_case_defect`, `h_recovery_and_evidence_null`, `n6_contract_evidence_null_and_source_block_recovery`), with Rust's gate and code;
+    - ruling 2: on transport, a duplicate withheld record, a non-number `global_upper_bound_pa` and a null `certified_gap_pa`, each refused at G7 `SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID`;
+    - ruling 3: the same two extrema shapes bound and unbound, refused at G7 in all three, with the raw codes declared per reader under item 13 (RS `…NUMBER_INVALID`; PY and TS `…EVIDENCE_INVALID`);
+    - ruling 5: a kernel reason on a case with no Run, at G5 `ATTEMPT` with no cause.
+
+**Expectations.** Each first failure is fixed from the three readers' agreement on the I4′ head, and item 14's from its rulings. A disagreement is declared per reader only by ROOT's ruling. Return to ROOT with any that are new.
 
 ## Acceptance
 
-- All three readers pass 07n: RS, PY and TS, run on the I4 head.
+- All three readers pass 07n: RS, PY and TS, run on the I4′ head.
 - **Counts move only by added entries.** The 07m census is unchanged on every verdict.
 - 07n's sha256 is recorded, and the D38 base's records script and its reseal are kept.
 - **PY and TS check SP's several-notice bytes** (T-12: `final/t12_bytes`).
-- **Then:** I-RS and I-TS update their harness pins and counts. ROOT sends them the 07n hash. RV113 (RV-R) reviews SC.
+- **Then:** I-RS and I-TS update their harness pins and counts. ROOT sends them the 07n hash. RV120 (RV-R, succeeding RV113, who is not resumable from this session) reviews SC.
 
 ## Host
 
@@ -72,7 +78,7 @@ Read `R/BRIEFS/B1_COMMON.md` first. **The specification is PLAN_v2 §2.5** (`R/I
 ## Output
 
 - **Commit** on `codex/piping-t3-b1-20261007` in `WT/b1`. ROOT pushes.
-- **The record:** `R/<id>/b1_sc_01/RETURN.md`, with `_run_records/` and SHA256SUMS. It lists:
+- **The record:** `R/I100/b1_sc_01/RETURN.md`, with `_run_records/` and SHA256SUMS. It lists:
   - every 07n entry, with its kind, base, mutation and first failure per reader;
   - the declared differences;
   - the census;

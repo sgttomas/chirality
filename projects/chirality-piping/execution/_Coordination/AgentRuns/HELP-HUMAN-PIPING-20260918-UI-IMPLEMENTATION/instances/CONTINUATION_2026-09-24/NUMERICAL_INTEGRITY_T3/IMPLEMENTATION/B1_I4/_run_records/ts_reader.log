@@ -1,0 +1,28 @@
+
+ RUN  v4.1.10 WT/b1/projects/chirality-piping/apps/desktop
+
+ ❯ src/features/results/retainedPrecision.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/results/retainedPrecision.test.ts [ src/features/results/retainedPrecision.test.ts ]
+Error: WASM-ENGINE-ASSET-ABSENT: wasm artifact not found on disk: probed: WT/b1/projects/chirality-piping/apps/desktop/public/wasm-engine, WT/b1/projects/chirality-piping/apps/desktop/public/wasm-engine, WT/b1/projects/chirality-piping/apps/desktop/apps/desktop/public/wasm-engine — the wasm operation engine is required in browser mode (DEC-020 / ADR-0001) and no fallback engine exists. Build it with `npm run build:wasm --workspace apps/desktop`.
+ ❯ absenceError src/services/wasmEngine/loadWasmEngine.ts:66:10
+     64|
+     65| function absenceError(stage: string, detail: string): Error {
+     66|   return new Error(
+       |          ^
+     67|     `${WASM_ENGINE_ABSENT_DIAGNOSTIC}: ${stage}: ${detail} — the wasm …
+     68|       `browser mode (DEC-020 / ADR-0001) and no fallback engine exists…
+ ❯ locateAssetsUnderNode src/services/wasmEngine/loadWasmEngine.ts:109:9
+ ❯ instantiate src/services/wasmEngine/loadWasmEngine.ts:117:36
+ ❯ src/test/setup.ts:10:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  00:56:32
+   Duration  446ms (transform 43ms, setup 0ms, import 0ms, tests 0ms, environment 269ms)
+

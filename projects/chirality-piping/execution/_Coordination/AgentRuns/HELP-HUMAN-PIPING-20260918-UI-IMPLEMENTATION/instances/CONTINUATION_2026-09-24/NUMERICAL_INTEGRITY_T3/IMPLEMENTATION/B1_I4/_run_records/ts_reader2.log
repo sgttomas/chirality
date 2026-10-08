@@ -1,0 +1,9 @@
+
+ RUN  v4.1.10 WT/scratch/root_i4/arch_ts/projects/chirality-piping/apps/desktop
+
+
+ Test Files  2 passed (2)
+      Tests  543 passed (543)
+   Start at  00:57:47
+   Duration  9.40s (transform 1.15s, setup 160ms, import 1.46s, tests 8.23s, environment 592ms)
+
