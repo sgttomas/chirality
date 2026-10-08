@@ -622,7 +622,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 **Assignment IDs.** Dispatched 2026-10-06/08: I68–I101, RV97–RV99 and RV101–RV119 (RV100 was 2026-10-05's). I100 and I101 are this session's (2026-10-08); RV120 is reserved for their confirmation and SC's review.
 - **At the 2026-10-08 handoff:** RV113's three confirmations are verified (RR "#1114 merged; …"); its SR-PY addendum is held while RV113 redacts its own sanitizer before first commit (in the previous session). PR #1118 (the private-term check) is under an independent review in the previous session. #1114 is merged.
 - **Agents of earlier sessions are not resumable from a new session.** Their IDs stay used; dispatch fresh agents with the next IDs.
-- **The next unused** are **I106 and RV123**.
+- **The next unused** are **I107 and RV125**.
 
 **T3 rulings in force** (section headings in `ROOT_RULINGS_V1.md`):
 - **T3's gate set and Git rules for product and records PRs, and verifying returns:** "T3's gate set and Git rules, consolidated after the handoff was made ephemeral";
@@ -713,7 +713,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
    - **I4 is made** at `30f3d1b24a` (RR "I4 made at `30f3d1b24a`; …"), and RV113's items for ROOT are ruled.
    - **The follow-up round is done:** RV120 confirmed all three → **I4′ is made at `8d46b045e2`** (RR "I4′ made at `8d46b045e2`; …").
    - **SC is landed** (07n `ea113e7b…`, `b1` `09fe4cc69b`), with RS's and TS's pins and N6(b) at `57c92a7b33`; RV120 reviews them.
-   - **SQ is running** (I104, `WT/b1-q` from `57c92a7b33`, by `BRIEFS/B1_SQ.md`; it returns at R6a for M). Then SG, SB and SK → PR-B1.
+   - **SQ is complete** (I104; `b1` `0d19f995b5`; M = 10.5 GiB provisional at R6a; R9: worst case 9.18 GiB, measured RSS 206.5 MiB). RV124 (RV-Q) reviews it → R6b applies `registration.diff`. **SG** (I106) runs alongside. Then `b1` into NUM, the full suite and src-tauri, SB, SK, RV-X → PR-B1.
 2. **Lane K is running** (I102: B3-K, then B2-K, from main). **B2/B3 phase 0:** B2-C is ruled → I97's revision 01 (verified) → RV115 confirmed S-4 (a) (SA3-1: option (ii) ruled) → RV118 confirmed revision 01 (A-1: (ii) in B2-K) → I97's revision 02 → RV115 and RV118 confirmed → **B2-C final for J1** (done), with names reserved → J1's package (I-A) after J0. B2's and B3's witnesses are selected (RR "I98's B2-W verified; …", "I99's B3-W verified; …"). **J0** follows PR-B1.
 3. **Records:** **#1114 is merged** (`19280fb1ce`; `IMPLEMENTATION/RECORDS_MERGE_2026-10-08/`). **E-19 is on main** (#1120, #1123), and NUM absorbed main at `fb329f31e7`. The next records PR carries RV113's three addenda, RV119's records, the handoff note and steer, #1114's merge record and the rulings after `dc4ffdc7c8`. Screen it with `tools/validation/validate_private_terms.py --from-host --terms-file WT/tools/t3_host_names.private.txt` and `WT/tools/t3_host_screen.py`. With #1124 merged, it runs only the governance harness, and needs no main merge to pass.
 4. **Post-merge cleanup `apply`** when the host is idle:

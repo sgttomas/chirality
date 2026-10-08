@@ -15976,3 +15976,28 @@ The record is `IMPLEMENTATION/B1_I4/` (RECORD.md, SHA256SUMS, sanitized logs). `
 **For SQ2 (B2/B3), noted:** B1's +112 MB uses part of B3-S's headroom. The exact route priced +152.4 MB over S3, which at 10.5 GiB leaves dense under a 5 % text budget. SQ2 prices it on B1's real profile and may select 10.75 GiB, still within ROOT's 12 GiB. **B3b-A stays provisional.**
 
 **Next:** I104 resumes for G6 with the registration at M, the S1 witnesses, the challenge, RSS_TIME through `t3_exclusive.sh`, DEF-O's fallback shares and QUAL §11's carry.
+
+## SQ complete; R9 read; `b1` carries SQ; RV-Q (RV124) and SG (I106) dispatched; B3b-P under RV-P2 (RV123) (ROOT, 2026-10-08 UTC)
+
+**SQ (I104)** finished at `b1-q` `69002bc862`, with no stop. `b1` merges it as `0d19f995b5`. The record is `R/I104/b1_sq_01/` (RETURN_ADDENDUM_01, QUAL_B1, RSS_TIME, `registration.diff`).
+- **G6:** E_mov,max + R is 9,800,676,166 B sparse and 9,859,807,510 B dense, 0.8693 and 0.8745 M. `admission_bound`, the pure-maximum test and the 0.9 M rule all pass.
+- **SF-1:** G-B's bound is now 405,120 B.
+- **N-1, N-2 (G04 killed), N-5 (parked slots priced), E-12** and the re-pins are done.
+- **With `registration.diff` applied in a copy,** PP passes 741 with 1 failure (Mac `t13`), and the law tests pass 47 of 47.
+- **Witnesses:** 40 of 40 entry points pass in both builds. The three-case input publishes, so W3–W5 are measured at the caps.
+- **The challenge:** every peak is within its phase bound. The largest is 113.3 MiB against E_mov,max.
+- **DEF-O (item 9):** neither property is the sole cause of `b2_k1e3`'s fallbacks.
+
+**R9, ROOT's reading for the owner** (target 32 GB; 16 GB "solving within practical timeframes"):
+- the largest measured RSS at the caps is 206.5 MiB (release, three cases, dense);
+- the priced worst case is 9.18 GiB, which is 57 % of 16 GiB and 29 % of 32 GiB;
+- release wall time is at most 1.77 s per invocation.
+
+B1 fits the 12 GiB product cap with room. Behaviour under memory pressure on a 16 GB machine is not observed. The supported-machine statement stays owner-held.
+
+**Dispatched:**
+- **RV124 (RV-Q), fresh,** reviews SQ (RV112 is not resumable). R6b and the registration follow its review.
+- **I106 (SG)** runs the Direct-entry gates on `0d19f995b5` with the registration applied in a copy, ahead of R6b.
+- **RV123 (RV-P2 round 1)** reviews B3b-P at `22e9d00062`. Its interim found no blocking issue, and ROOT asked I105 to tighten lane A's oracle test.
+
+**IDs:** I106, RV123 and RV124 are used. The next unused are **I107 and RV125**.
