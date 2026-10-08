@@ -15758,3 +15758,49 @@ The next ROOT verifies all of them from disk. ROOT has verified and committed no
 - **CI on that head:** the required `harness` check passed. At the owner's direction, its 28-minute Piping cargo run was cancelled as unnecessary for a routing change. Branch protection requires only `harness`, and the selector-policy tests, including the new ones, had passed in CI on `8dbffa23bc`.
 - **The independent review was stopped once the PR had merged.** Its last report: `harness` passed.
 - **From now on,** records-only PRs run only the governance harness and need no main merge to pass.
+
+## The App's worktree pool emptied WT's host files; the tools rebuilt from the transcripts; WT moved beside the main checkout (owner) (ROOT, 2026-10-08 UTC)
+
+**The steer.** The owner started this session with piping's init prompt and the T3 steer, in the form of `HANDOFF_2026-10-08_PROMPT.md`. It continues T3 under the owner's standing delegation.
+
+**A session fact.** The App opened this session in one of its own worktrees, cut from main, not in NUM. ROOT works on NUM and the T3 worktrees by their paths.
+
+**What happened (06:24:39 to 06:25:39Z).** To open this session, the App's worktree pool reused the parked App worktree that held WT. It checked out a new branch from main there and emptied that worktree's gitignored `.claude/` folder, which contained WT.
+- **The evidence:** the App's log records the reuse ("untouched since parked") and a worktree step of 63.6 s. The folders' modification times fall inside that step.
+- **The effect:** files were deleted and directories left in place. Nested Git worktrees were not entered.
+- **Untouched:**
+  - all 26 T3 worktrees, including NUM, `b1`, `b1-r`, `b1-p`, `b1-t`, `main-baseline` and `sweep-skewpin`. Every branch with an upstream equals its origin;
+  - the piping venv, which lived outside `.claude/`;
+  - the running memory guard, which kept its script open.
+- **Lost:**
+  - `WT/tools` and `WT/guard`: the wrappers, the cleanup tool, the host screen, the private name list, and the job and guard logs;
+  - `WT/scratch`, except 460 files: agents' and ROOT's working files, earlier DEC-025 run folders, and the host-only logs that some records cite;
+  - `WT/targets` and the other build-output folders, which are regenerable;
+  - `WT/preserved-evidence`: AUD-T3-04's raw evidence, 168 MB. Its decisive summaries are committed (`IMPLEMENTATION/HANDOFF_2026-10-05/CLEANUP.md`), and its removal was to be the owner's call. The owner has been told.
+- **No recovery from disk:** there is no Time Machine destination and no local snapshot.
+- **For the records:** committed records and their sums stand. Paths they cite as host-only under `WT/scratch` or `WT/targets` no longer resolve. Such a citation now says where the evidence was kept, not where it is.
+
+**The host tools, rebuilt exactly.** The previous ROOT sessions' transcripts hold every write and edit made to the tools. ROOT replayed them in order into a staging folder, then checked each result:
+- **The four-slot wrappers** (`t3_slot.sh`, `t3_slot_run.sh`, `t3_exclusive.sh`, `t3_exclusive_stage2.sh`, `t3_exclusive_run.sh`, `t3_cargo.sh`) **and the guard's 22% floor:** they match the previous session's own check output, line for line.
+- **`t3_cleanup.py`, `t3_cargo_run.sh`, `dec025_mac.sh` and `run_suites_nff.sh`:** the committed `host_tools/` copies, each taken after its last edit.
+- **`run_dec025.sh`:** the 2026-10-07 copy plus the 2026-10-08 edit, whose anchor assertion held.
+- **`t3_host_screen.py`:** its first version and two later edits. One drops generic labels; the other reads earlier names from the private list.
+- **The private name list:** its first write and two later edits, replayed without display. `validate_private_terms.py --from-host` now counts 6 terms, as E-19 recorded ("ROOT's local 6").
+- **ROOT's first pass missed four edits,** made through a shell variable: the screen's two and the list's two. A broader scan found them before anything relied on the tools.
+- **Checks:**
+  - the wrappers ran a slot job and a cargo job under the guard;
+  - on NUM's range against main, `validate_private_terms.py` passed with 0 findings;
+  - the screen found 9 hits, all in existing records' text, to be read at the next records PR.
+
+**The owner's decision (2026-10-08): WT moves out of the App's worktree folder, beside the main checkout, as T3's permanent machine-local home.**
+- **How it was decided:** the owner first asked "this is a permanent home? I don't understand why you're proposing a location outside the repo?". ROOT explained that the worktrees stay worktrees of the same repository, and the owner chose the sibling folder.
+- **Done:**
+  - `git worktree move` for all 26 worktrees, and a rename for the other 31 entries (the same disk, so nothing was copied);
+  - the tools repointed;
+  - the piping venv copied to `WT/venv` with its scripts repointed. It has the same package set; the original stays where it was, unused by T3;
+  - the memory guard restarted at the new path with its 22% floor, and the old one stopped;
+  - a slot job and a cargo job ran.
+- **Starting sessions:** the owner starts T3 sessions in `WT/numerics`, with the App's worktree option off. This session's own directory cannot move, so it works on WT by path.
+- **The rule from now on:** nothing T3 keeps on disk lives inside an App-managed worktree.
+
+**Unchanged:** the next IDs are I100 and RV120, and the next step is I4.
