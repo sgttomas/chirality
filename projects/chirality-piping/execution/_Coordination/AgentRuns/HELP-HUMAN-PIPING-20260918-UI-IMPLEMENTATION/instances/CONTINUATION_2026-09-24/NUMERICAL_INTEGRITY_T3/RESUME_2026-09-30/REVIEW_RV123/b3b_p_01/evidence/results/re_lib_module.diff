@@ -1,0 +1,7 @@
+--- cand/projects/chirality-piping/core/reporting/result_export/src/lib.rs	2026-10-08 05:55:08
++++ chk/projects/chirality-piping/core/reporting/result_export/src/lib.rs	2026-10-08 06:28:52
+@@ -1662,3 +1662,4 @@
+ pub mod physics_source;
+ pub mod source_blocks;
+ pub mod retained_precision;
++pub mod rv123_exact_reader;

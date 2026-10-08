@@ -1,0 +1,86 @@
+[
+ {
+  "id": "R-00",
+  "file": "lib.rs",
+  "what": "P1-02 recheck: drop w1_route's load-state guard (expected equivalent)",
+  "old": "    if case_state::is_load_state(model) {\n        return None;\n    }\n    match retained_memory::namespace_branch(model) {",
+  "new": "    match retained_memory::namespace_branch(model) {"
+ },
+ {
+  "id": "R-01",
+  "file": "retained_wire.rs",
+  "what": "n-case serializer: an unavailable exact attempt's preparation hash uses DEF-O's H (S-1, unavailable branch)",
+  "old": "                bind_preparation(&mut source_v, &attempt_v, attempt.attempt, pc.route())?;",
+  "new": "                bind_preparation(&mut source_v, &attempt_v, attempt.attempt, rp::W1Route::Preview)?;"
+ },
+ {
+  "id": "R-02",
+  "file": "retained_wire.rs",
+  "what": "c = 1 serializer: an unavailable exact attempt's preparation hash uses DEF-O's H",
+  "old": "                bind_preparation(&mut source_v, &attempt, 0, pc.route())?;",
+  "new": "                bind_preparation(&mut source_v, &attempt, 0, rp::W1Route::Preview)?;"
+ },
+ {
+  "id": "R-03",
+  "file": "retained_wire.rs",
+  "what": "c = 1 serializer: an unavailable exact successor takes the preview identity",
+  "old": "    let diagnostic_ref = unavailable_envelope(&mut env, pc.route(), &case_id)?;",
+  "new": "    let diagnostic_ref = unavailable_envelope(&mut env, rp::W1Route::Preview, &case_id)?;"
+ },
+ {
+  "id": "R-04",
+  "file": "retained_product.rs",
+  "what": "P-8: the regenerated I and J swapped",
+  "old": "            let numbers=[n(f.area)?,n(f.second_moment)?,n(f.torsion_constant)?,n(f.section_modulus)?];",
+  "new": "            let numbers=[n(f.area)?,n(f.torsion_constant)?,n(f.second_moment)?,n(f.section_modulus)?];"
+ },
+ {
+  "id": "R-05",
+  "file": "retained_product.rs",
+  "what": "P-8: the regenerated Z is the prepared radius",
+  "old": "            let numbers=[n(f.area)?,n(f.second_moment)?,n(f.torsion_constant)?,n(f.section_modulus)?];",
+  "new": "            let numbers=[n(f.area)?,n(f.second_moment)?,n(f.torsion_constant)?,n(f.radius)?];"
+ },
+ {
+  "id": "R-06",
+  "file": "retained_product.rs",
+  "what": "P-3: every material counts as used (an unused material is checked)",
+  "old": "                if self.checked_same(&pipe.material, &m.id)? {",
+  "new": "                if { self.checked_same(&pipe.material, &m.id)?; true } {"
+ },
+ {
+  "id": "R-07",
+  "file": "retained_product.rs",
+  "what": "P-3: the derived G expression wrong (E/(2+nu))",
+  "old": "        let derived = m.elastic_modulus.value / (2.0 * (1.0 + nu));",
+  "new": "        let derived = m.elastic_modulus.value / (2.0 + nu);"
+ },
+ {
+  "id": "R-08",
+  "file": "retained_wire.rs",
+  "what": "P-9: the derived origin's constitutive basis literal",
+  "old": "        \"constitutive_basis\":rp::EXACT_CONSTITUTIVE_BASIS}))",
+  "new": "        \"constitutive_basis\":\"homogeneous_isotropic_E_G_v1\"}))"
+ },
+ {
+  "id": "R-09",
+  "file": "retained_product.rs",
+  "what": "P-1/P-6 at c >= 2: a case scope loses the route (Preview)",
+  "old": "        CaseScope { rows: Some(rows), evidence: index, cases, qualified: index > 0, route: self.route }",
+  "new": "        CaseScope { rows: Some(rows), evidence: index, cases, qualified: index > 0, route: W1Route::Preview }"
+ },
+ {
+  "id": "R-10",
+  "file": "retained_product.rs",
+  "what": "P-6 at c >= 2: the exact evidence entry is always entry 0",
+  "old": "        let c = cases.get(view.scope.evidence).ok_or(\"evidence case\")?;\n        self.adapter.closed_keys(c, &[\"load_case_id\", \"profile_mode\"",
+  "new": "        let c = cases.get(0).ok_or(\"evidence case\")?;\n        self.adapter.closed_keys(c, &[\"load_case_id\", \"profile_mode\""
+ },
+ {
+  "id": "R-11",
+  "file": "retained_product.rs",
+  "what": "P-8: only the first section patch is applied (multi-member)",
+  "old": "    for patch in &payload.sections {",
+  "new": "    for patch in payload.sections.iter().take(1) {"
+ }
+]

@@ -1,0 +1,9 @@
+definition_id enum: {'enum': ['RP-PREPARED-ORDINARY-DUAL-v1', 'RP-PREPARED-EXACT-DUAL-v1']}
+exact_successor_sparse_interactive receipt errors 0 row errors 0
+  control (unknown definition id) errors: 1
+exact_successor_dense_scrutiny receipt errors 0 row errors 0
+  control (unknown definition id) errors: 1
+milestone_successor_sparse_interactive receipt errors 0 row errors 0
+  control (unknown definition id) errors: 1
+milestone_successor_dense_scrutiny receipt errors 0 row errors 0
+  control (unknown definition id) errors: 1

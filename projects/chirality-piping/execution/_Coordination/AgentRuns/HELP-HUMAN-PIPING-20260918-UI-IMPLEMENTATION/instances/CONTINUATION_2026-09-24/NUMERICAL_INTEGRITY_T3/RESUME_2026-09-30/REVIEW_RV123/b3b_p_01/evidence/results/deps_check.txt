@@ -1,0 +1,5 @@
+dep_operation_applier rc=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 8.88s
+dep_self_weight_wasm rc=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 8.86s
+dep_physics_audit rc=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 8.11s
+dep_numerical_integrity rc=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 9.25s
+dep_tauri rc=0     Finished `dev` profile [unoptimized + debuginfo] target(s) in 44.39s

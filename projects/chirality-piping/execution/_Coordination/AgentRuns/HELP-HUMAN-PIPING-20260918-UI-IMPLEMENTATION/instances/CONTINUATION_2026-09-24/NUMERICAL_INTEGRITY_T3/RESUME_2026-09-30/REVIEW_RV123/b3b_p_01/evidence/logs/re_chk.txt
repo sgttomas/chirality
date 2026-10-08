@@ -1,0 +1,13 @@
+RV123_JOB name=re_chk dir=S/chk/projects/chirality-piping/core/reporting/result_export target=rv123-re-chk stale=0 args=test --locked --offline --no-fail-fast --test rv123_exact_check -- --nocapture start=2026-10-08T12:41:43Z
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.17s
+     Running tests/rv123_exact_check.rs (WT/targets/rv123-re-chk/debug/deps/rv123_exact_check-1976a0c6f6c62155)
+RV123_H DEF-E 5a3bac430df9bbc77484d5419c75880ad40ae209b439e5f928374458025281af DEF-O a7ed7ca0bf0bba6e8b821ca4befa00a0fa9541a83694be8b28ac63e39b1d0349
+RV123_EXACT sparse_interactive receipt=b1b4a6682260ca6bc499950b30f0f7179a77c038e266cc4b42045ed86ed3896f publication=246154b7fcf21249c7270c39e5740ef931da905af16f6d8a0ae813cf191e7af1 preparations=1 identities=1 rs_today=Some(("G0", "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")) physics1_base=Ok("0.3.0") standing=needs_recompute
+RV123_PATCHED_RS sparse_interactive without_invocation=Ok((false, 98)) with_invocation=Err(("G8", "RETAINED_PRECISION_INVOCATION_MISMATCH", None))
+RV123_EXACT dense_scrutiny receipt=eabd2fc57b42158ad415ae664e7c712c1c4db21258b667251758172f3a5b776d publication=4d166b39837d5d2bd38bc1432bc8b85a14204cb32cec3aabb689037ee6d097c3 preparations=1 identities=1 rs_today=Some(("G0", "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")) physics1_base=Ok("0.3.0") standing=needs_recompute
+RV123_PATCHED_RS dense_scrutiny without_invocation=Ok((false, 99)) with_invocation=Err(("G8", "RETAINED_PRECISION_INVOCATION_MISMATCH", None))
+RV123_MILESTONE sparse_interactive rs=Ok(true)
+RV123_MILESTONE dense_scrutiny rs=Ok(true)
+test rv123_exact_fixture_checks ... ok
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.31s
+RV123_JOB_END name=re_chk rc=0 end=2026-10-08T12:41:50Z

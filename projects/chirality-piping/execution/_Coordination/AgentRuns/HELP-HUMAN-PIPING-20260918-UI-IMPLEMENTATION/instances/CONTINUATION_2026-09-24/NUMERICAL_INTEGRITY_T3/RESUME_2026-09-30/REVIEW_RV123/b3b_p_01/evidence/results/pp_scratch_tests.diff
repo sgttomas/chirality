@@ -1,0 +1,244 @@
+--- cand/projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs	2026-10-08 05:55:08
++++ chk/projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs	2026-10-08 06:43:40
+@@ -3072,5 +3072,241 @@
+         assert_eq!(entries.iter().map(|e| e["load_case_id"].as_str().unwrap()).collect::<Vec<_>>(), ["case", "case-2"], "{label}");
+         assert_eq!(entries[0]["pipe_sections"], entries[1]["pipe_sections"], "{label}: the same prepared section in both entries");
+         assert!(successor["results"].as_array().unwrap().iter().any(|r| r["id"].as_str().unwrap().starts_with("result:loadcase:case-2:")), "{label}: qualified ids");
++    }
++}
++
++// ---- RV123 (RV-P2 round 1), scratch only: exploratory exact-route variants ----
++/// The preview twin of an exact raw: 0.1.0, no contract, G authored as the exact route's Ĝ bits,
++/// no ν or basis, no pressure regions.
++fn rv123_preview_twin(exact: &Value) -> Value {
++    let mut raw = exact.clone();
++    let m = &mut raw["model"];
++    m["schema_version"] = json!("0.1.0");
++    m.as_object_mut().unwrap().remove("pressure_contract");
++    for material in m["materials"].as_array_mut().unwrap() {
++        let e = material["elastic_modulus"]["value"].as_f64().unwrap();
++        if let Some(nu) = material["poisson_ratio"]["value"].as_f64() {
++            material["shear_modulus"] = json!({"value": derived_g(e, nu), "unit": "Pa"});
++        }
++        let o = material.as_object_mut().unwrap();
++        o.remove("poisson_ratio");
++        o.remove("constitutive_basis");
++    }
++    for case in m["load_cases"].as_array_mut().unwrap() {
++        case.as_object_mut().unwrap().remove("pressure_regions");
++    }
++    raw
++}
++fn rv123_variants() -> Vec<(&'static str, Value)> {
++    let mut v = Vec::new();
++    // V1: ν = 0.3, so Ĝ = RN64(2e11/2.6) is inexact and the source lane's G differs from Ĝ.
++    let mut x = m3x();
++    x["model"]["materials"][0]["poisson_ratio"] = json!({"value": 0.3, "unit": "1"});
++    v.push(("nu_0.3", x));
++    // V2: a second, collinear member with another section (two members, two sections).
++    let mut x = m3x();
++    let p = "invented_t3_p1_detection_input_no_library_data";
++    x["model"]["nodes"].as_array_mut().unwrap().push(json!({"id": "N2", "position": {"x": 2.0, "y": 4.0, "z": 4.0}, "provenance": p}));
++    x["model"]["pipe_segments"].as_array_mut().unwrap().push(json!({"id": "M2", "from": "N1", "to": "N2", "material": "mat:N",
++        "y_reference": {"x": 1, "y": 0, "z": 0}, "section": {"outside_diameter": {"value": 0.15, "unit": "m"}, "wall_thickness": {"value": 0.008, "unit": "m"}}, "provenance": p}));
++    v.push(("two_members", x.clone()));
++    // V2b: the same with its members authored in the other order.
++    let mut y = x.clone();
++    y["model"]["pipe_segments"].as_array_mut().unwrap().reverse();
++    v.push(("two_members_reversed", y));
++    // V3: an authored (redundant, wrong) G that the exact route ignores.
++    let mut x = m3x();
++    x["model"]["materials"][0]["shear_modulus"] = json!({"value": 8.1e10, "unit": "Pa"});
++    v.push(("redundant_g", x));
++    // V4: an unused second material without ν or basis.
++    let mut x = m3x();
++    x["model"]["materials"].as_array_mut().unwrap().push(json!({"id": "mat:unused", "elastic_modulus": {"value": 1.0e11, "unit": "Pa"}, "provenance": p}));
++    v.push(("unused_material", x));
++    // V5: ν = 0.3 with E in another unit (GPa).
++    let mut x = m3x();
++    x["model"]["materials"][0]["poisson_ratio"] = json!({"value": 0.3, "unit": "1"});
++    x["model"]["materials"][0]["elastic_modulus"] = json!({"value": 200.0, "unit": "GPa"});
++    v.push(("nu_0.3_gpa", x));
++    v
++}
++#[test]
++fn rv123_exact_variants_explore() {
++    for (name, raw) in rv123_variants() {
++        for mode in MODES {
++            let label = format!("{name} {}", mode.as_str());
++            let plain_bytes = plain(mode, &raw);
++            let plain_value: Value = serde_json::from_slice(&plain_bytes).unwrap();
++            let quality: Vec<String> = plain_value["numerical_quality"]["cases"].as_array().map(|c| c.iter().map(|c| c["solve_quality"].as_str().unwrap_or("?").to_owned()).collect()).unwrap_or_default();
++            let (_, retained, captured) = exact_w1(&raw, mode);
++            let fallback = retained.as_ref().err().map(|e| format!("{e:?}"));
++            let Some(successor) = captured else {
++                println!("RV123_VARIANT {label} contract={} mechanics={} quality={quality:?} successor=none w1={fallback:?}",
++                    plain_value["producer"]["semantic_contract_id"], plain_value["status"]["mechanics"]);
++                continue;
++            };
++            let statuses: Vec<String> = successor["retained_precision"]["body"]["cases"].as_array().unwrap().iter().map(|c| c["status"].as_str().unwrap().to_owned()).collect();
++            let st: Vec<&str> = statuses.iter().map(String::as_str).collect();
++            let checks = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| assert_exact_successor(&label, &successor, &plain_value, &st))).is_ok();
++            // The preview twin (G authored as Ĝ): the shared rows, and their spread against the exact route.
++            let twin = rv123_preview_twin(&raw);
++            let (_, twin_retained, twin_captured) = exact_w1(&twin, mode);
++            let mut summary = String::from("twin=none");
++            if let Some(t) = twin_captured {
++                let tr: std::collections::HashMap<String, f64> = t["results"].as_array().unwrap().iter().map(|r| (r["id"].as_str().unwrap().to_owned(), r["value"].as_f64().unwrap_or(f64::NAN))).collect();
++                let (mut shared, mut equal, mut worst) = (0, 0, (0.0f64, String::new()));
++                for r in successor["results"].as_array().unwrap() {
++                    let id = r["id"].as_str().unwrap();
++                    if let (Some(a), Some(b)) = (r["value"].as_f64(), tr.get(id)) {
++                        shared += 1;
++                        if a.to_bits() == b.to_bits() { equal += 1; continue; }
++                        let rel = (a - b).abs() / a.abs().max(b.abs()).max(f64::MIN_POSITIVE);
++                        if rel > worst.0 { worst = (rel, id.to_owned()); }
++                    }
++                }
++                let tstat: Vec<String> = t["retained_precision"]["body"]["cases"].as_array().unwrap().iter().map(|c| c["status"].as_str().unwrap().to_owned()).collect();
++                summary = format!("twin={tstat:?} twin_w1={:?} shared={shared} bit_equal={equal} worst_rel={:e} at {}", twin_retained.as_ref().err(), worst.0, worst.1);
++            }
++            let sections: Vec<String> = successor["contract_evidence"]["exact_cases"][0]["pipe_sections"].as_array().unwrap().iter()
++                .map(|s| format!("{}:[{:016x},{:016x},{:016x},{:016x}]", s["pipe_id"].as_str().unwrap(), num_bits(&s["As_m2"]), num_bits(&s["I_m4"]), num_bits(&s["J_m4"]), num_bits(&s["Z_m3"]))).collect();
++            let mats = successor["retained_precision"]["body"]["material_bases"][0]["materials"].clone();
++            let patched = open_pipe_stress_result_export::rv123_exact_reader::validate(&successor, None).map(|v| v.numerical_eligible).map_err(|e| (e.gate, e.code, e.detail));
++            println!("RV123_VARIANT {label} quality={quality:?} statuses={statuses:?} w1={fallback:?} b3d_checks={checks} patched_rs_g0_g7={patched:?} sections={sections:?} materials={mats} {summary}");
++        }
++    }
++}
++
++/// RV123 scratch: an exact successor with an `unavailable` case whose members were prepared
++/// (the n-case serializer's unavailable branch): S-1's route H on its preparation, DEF-E's id.
++#[test]
++fn rv123_exact_unavailable_case_branch_explore() {
++    use super::retained_wire as wire;
++    use super::retained_receipt::TraceFault as F;
++    let mut raw = raw();
++    let mut second = raw["model"]["load_cases"][0].clone();
++    second["id"] = json!("case-2");
++    for load in second["primitive_loads"].as_array_mut().unwrap() {
++        load["id"] = json!(format!("{}:2", load["id"].as_str().unwrap()));
++    }
++    raw["model"]["load_cases"].as_array_mut().unwrap().push(second);
++    let raw = exact3(raw);
++    for (fname, fault) in [("maxima", F::Maxima), ("values", F::ValuesCompletion)] {
++        for mode in MODES {
++            hooks::fault_next_candidate(fault);
++            let (_, retained, captured) = exact_w1(&raw, mode);
++            let left = hooks::armed_names();
++            hooks::disarm();
++            let Some(successor) = captured else {
++                println!("RV123_UNAVAILABLE {fname} {} successor=none w1={:?} armed_left={left:?}", mode.as_str(), retained.as_ref().err());
++                continue;
++            };
++            let body = &successor["retained_precision"]["body"];
++            let statuses: Vec<&str> = body["cases"].as_array().unwrap().iter().map(|c| c["status"].as_str().unwrap()).collect();
++            let mut prep = Vec::new();
++            for source in body["sources"].as_array().unwrap() {
++                if source["preparation"].is_null() { prep.push("none".to_owned()); continue; }
++                let attempt = &body["product_attempts"][source["preparation"]["attempt_ref"].as_u64().unwrap() as usize];
++                let e = source["preparation"]["sha256"] == json!(preparation_hash(attempt, wire::EXACT_DEFINITION_SHA256));
++                let o = source["preparation"]["sha256"] == json!(preparation_hash(attempt, wire::DEFINITION_SHA256));
++                prep.push(format!("{}:{}:defE={e}:defO={o}", attempt["result"]["kind"].as_str().unwrap_or("?"), attempt["definition_id"].as_str().unwrap_or("?")));
++            }
++            let entries_equal_plain: Vec<bool> = {
++                let plain: Value = serde_json::from_slice(&plain(mode, &raw)).unwrap();
++                (0..2).map(|i| successor["contract_evidence"]["exact_cases"][i] == plain["contract_evidence"]["exact_cases"][i]).collect()
++            };
++            println!("RV123_UNAVAILABLE {fname} {} statuses={statuses:?} w1={:?} preparations={prep:?} evidence_entry_unchanged={entries_equal_plain:?} identity={} armed_left={left:?}",
++                mode.as_str(), retained.as_ref().err(), successor["producer"]["semantic_contract_id"]);
++        }
+     }
+ }
++
++/// RV123 scratch: the patched RS (G0-G7, exact identity) over the mixed base and two selected cases.
++#[test]
++fn rv123_patched_reader_over_multi_case_exact_successors() {
++    let mut two = raw();
++    let mut second = two["model"]["load_cases"][0].clone();
++    second["id"] = json!("case-2");
++    for load in second["primitive_loads"].as_array_mut().unwrap() {
++        load["id"] = json!(format!("{}:2", load["id"].as_str().unwrap()));
++    }
++    two["model"]["load_cases"].as_array_mut().unwrap().push(second);
++    for (name, raw) in [("m3x", m3x()), ("m3x_mix_anchor", m3x_mix_anchor()), ("two_selected", exact3(two))] {
++        for mode in MODES {
++            let (_, _, captured) = exact_w1(&raw, mode);
++            let successor = captured.unwrap();
++            let patched = open_pipe_stress_result_export::rv123_exact_reader::validate(&successor, None).map(|v| v.numerical_eligible).map_err(|e| (e.gate, e.code, e.detail));
++            println!("RV123_PATCHED_MULTI {name} {} {patched:?}", mode.as_str());
++        }
++    }
++}
++
++/// RV123 scratch follow-up (1): the unavailable branch through the actual Direct entry (the
++/// candidate fault is applied at G-C to the case in the capture's own fields).
++#[test]
++fn rv123_followup_unavailable_branch_direct() {
++    use super::retained_wire as wire;
++    use super::retained_receipt::TraceFault as F;
++    let mut two = raw();
++    let mut second = two["model"]["load_cases"][0].clone();
++    second["id"] = json!("case-2");
++    for load in second["primitive_loads"].as_array_mut().unwrap() {
++        load["id"] = json!(format!("{}:2", load["id"].as_str().unwrap()));
++    }
++    two["model"]["load_cases"].as_array_mut().unwrap().push(second);
++    let two = exact3(two);
++    for (fname, fault) in [("maxima", F::Maxima), ("values", F::ValuesCompletion), ("after_helper", F::AfterHelper)] {
++        for mode in MODES {
++            hooks::fault_next_candidate(fault);
++            let raw = two.clone();
++            let (output, counts, captured) = hooks::counted_with_successor(move || run_linear_static_preview_value_with_retained_direct(raw, mode).unwrap());
++            let left = hooks::armed_names();
++            hooks::disarm();
++            let w1 = output.retained().map(|r| r.as_ref().err().cloned());
++            let Some(successor) = captured else {
++                println!("RV123_FOLLOW_UNAV {fname} {} successor=none w1={w1:?} counts={counts:?} armed_left={left:?}", mode.as_str());
++                continue;
++            };
++            let body = &successor["retained_precision"]["body"];
++            let statuses: Vec<&str> = body["cases"].as_array().unwrap().iter().map(|c| c["status"].as_str().unwrap()).collect();
++            let mut prep = Vec::new();
++            for source in body["sources"].as_array().unwrap() {
++                if source["preparation"].is_null() { prep.push("none".to_owned()); continue; }
++                let attempt = &body["product_attempts"][source["preparation"]["attempt_ref"].as_u64().unwrap() as usize];
++                let e = source["preparation"]["sha256"] == json!(preparation_hash(attempt, wire::EXACT_DEFINITION_SHA256));
++                prep.push(format!("{}:{}:defE={e}", attempt["result"]["kind"].as_str().unwrap_or("?"), attempt["definition_id"].as_str().unwrap_or("?")));
++            }
++            let plain: Value = serde_json::from_slice(&plain(mode, &two)).unwrap();
++            let unchanged: Vec<bool> = (0..2).map(|i| successor["contract_evidence"]["exact_cases"][i] == plain["contract_evidence"]["exact_cases"][i]).collect();
++            let patched = open_pipe_stress_result_export::rv123_exact_reader::validate(&successor, None).map(|v| v.numerical_eligible).map_err(|e| (e.gate, e.code, e.detail));
++            println!("RV123_FOLLOW_UNAV {fname} {} statuses={statuses:?} preparations={prep:?} entry_unchanged={unchanged:?} identity={} patched_rs_g0_g7={patched:?} w1={w1:?} armed_left={left:?}",
++                mode.as_str(), successor["producer"]["semantic_contract_id"]);
++        }
++    }
++}
++
++/// RV123 scratch follow-up (2): ν = 0.3 against its preview twin (G authored as Ĝ), row by row
++/// with absolute differences and each kind's largest magnitude.
++#[test]
++fn rv123_followup_nu_03_rows() {
++    let mut x = m3x();
++    x["model"]["materials"][0]["poisson_ratio"] = json!({"value": 0.3, "unit": "1"});
++    let twin = rv123_preview_twin(&x);
++    for mode in MODES {
++        let (_, _, a) = exact_w1(&x, mode);
++        let (_, _, b) = exact_w1(&twin, mode);
++        let (a, b) = (a.unwrap(), b.unwrap());
++        let rows = |s: &Value| s["results"].as_array().unwrap().iter().map(|r| (r["id"].as_str().unwrap().to_owned(), (r["kind"].as_str().unwrap().to_owned(), r["value"].as_f64().unwrap_or(f64::NAN)))).collect::<std::collections::BTreeMap<_, _>>();
++        let (ra, rb) = (rows(&a), rows(&b));
++        let mut kind_max: std::collections::BTreeMap<String, f64> = Default::default();
++        for (k, v) in ra.values() { let m = kind_max.entry(k.clone()).or_insert(0.0); *m = m.max(v.abs()); }
++        let mut worst_scaled = (0.0f64, String::new());
++        for (id, (k, va)) in &ra {
++            let vb = rb[id].1;
++            if va.to_bits() == vb.to_bits() { continue; }
++            let scale = kind_max[k].max(f64::MIN_POSITIVE);
++            let scaled = (va - vb).abs() / scale;
++            if scaled > worst_scaled.0 { worst_scaled = (scaled, id.clone()); }
++            println!("RV123_FOLLOW_NU {} {id} {k} exact={va:e} twin={vb:e} absdiff={:e} kind_max={scale:e} scaled={scaled:e}", mode.as_str(), (va - vb).abs());
++        }
++        println!("RV123_FOLLOW_NU_WORST {} {worst_scaled:?}", mode.as_str());
++    }
++}

@@ -1,0 +1,8 @@
+H(DEF-E) 5a3bac430df9bbc77484d5419c75880ad40ae209b439e5f928374458025281af
+H(DEF-O) a7ed7ca0bf0bba6e8b821ca4befa00a0fa9541a83694be8b28ac63e39b1d0349
+sparse_interactive receipt True
+sparse_interactive preparation DEF-E True DEF-O False
+sparse_interactive source identity True
+dense_scrutiny receipt True
+dense_scrutiny preparation DEF-E True DEF-O False
+dense_scrutiny source identity True

@@ -1,0 +1,74 @@
+RV123_JOB name=mut_R-07 dir=S/mut/projects/chirality-piping/core/product_physics target=rv123-mut stale=0 args=test --locked --offline --no-fail-fast --lib -- b3b_ b3a_ b1_sp_ u3_permitted_path u3g2_ u1_constants --skip b3b_direct_entry_keeps_the_exact_ordinary_bytes --skip t13_committed_fallback_uz_is_byte_identical --test-threads=2 start=2026-10-08T12:56:54Z
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.07s
+     Running unittests src/lib.rs (WT/targets/rv123-mut/debug/deps/open_pipe_stress_product_physics-267027a04eca4e80)
+test retained_facade_tests::b1_sp_domain_recheck_names_the_requested_cases ... ok
+test retained_facade_tests::b1_sp_first_g_b_refusal_stands_and_stops_later_late_hooks ... ok
+test retained_facade_tests::b1_sp_multi_case_coexistence_pin ... ok
+test retained_facade_tests::b1_sp_constructor_ordinal_is_the_authored_index ... ok
+test retained_facade_tests::b1_sp_r3p_2_3_custody_validates_a_and_orders_prior_errors ... ok
+test retained_facade_tests::b1_sp_r3p_7_custody_per_case_presence_parked_capture_and_native ... ok
+test retained_facade_tests::b1_sp_seam_overflow_is_a_typed_g_b_refusal ... ok
+test retained_facade_tests::b1_sp_r3p_1_one_case_in_a_runs_on_its_own_slot ... ok
+test retained_facade_tests::b1_sp_t2_the_capture_holds_each_requested_case ... ok
+test retained_facade_tests::b1_sp_t5_one_reserved_notice_per_case_in_a ... ok
+test retained_facade_tests::b1_sp_t6_custody_refuses_the_whole_invocation ... ok
+test retained_facade_tests::b1_sp_t6_t7_custody_once_then_one_attempt_per_case_in_a ... ok
+test retained_facade_tests::b1_sp_sf2_selected_not_first_and_two_selected_pins ... ok
+test retained_facade_tests::b1_sp_w_c2_direct_entry_publishes_the_pinned_successor ... ok
+test retained_facade_tests::b1_sp_w_c2_fixtures_are_the_live_successors ... ok
+test retained_facade_tests::b1_sp_w_c2_through_retained_w1_publishes_t12 ... ok
+test retained_facade_tests::b1_sp_w_c2_transaction_outcomes_and_ordinal_mapping ... ok
+test retained_facade_tests::b3a_m3l_needs_no_producer_change ... ok
+test retained_facade_tests::b3b_coexistence_publishes_the_exact_ordinary_bytes_under_p2 ... ok
+test retained_facade_tests::b3b_direct_entry_runs_the_exact_route ... FAILED
+test retained_facade_tests::b3b_exact_capture_refuses_a_selected_basis ... FAILED
+test retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect ... FAILED
+test retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice ... FAILED
+test retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors ... FAILED
+test retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes ... FAILED
+test retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required ... FAILED
+test retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice ... FAILED
+test retained_facade_tests::b3b_p4_w1_calls_no_pressure_runtime_builder ... ok
+test retained_facade_tests::b3b_refused_exact_requests_take_the_ordinary_route ... ok
+test retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry ... FAILED
+test retained_facade_tests::b3b_witness_inputs_and_routes ... ok
+test retained_facade_tests::b1_sp_w_c2_transaction_faults_and_abandonment ... ok
+test retained_facade_tests::u3_permitted_path_publishes_the_pinned_successor ... ok
+test retained_facade_tests::u3g2_direct_entry_no_w1_refusals_keep_exact_bytes ... ok
+test retained_facade_tests::u3g2_d_u6_5_carrier_fixtures_are_the_live_successors ... ok
+test retained_facade_tests::u3g2_direct_entry_publishes_the_pinned_successor ... ok
+test retained_facade_tests::u3g2_late_gate_refusal_is_final_and_g_c_is_not_consulted ... ok
+test retained_facade_tests::u3g2_no_permit_path_runs_once_without_a_copy ... ok
+test retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0 ... ok
+test retained_memory::law_tests::b3a_direct_entry_oracles ... ok
+test retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions ... ok
+test retained_product_tests::b3b_exact_material_check_refuses_each_defect ... FAILED
+test retained_wire_tests::b3b_exact_constants_bound_to_in_tree_fixtures ... ok
+test retained_wire_tests::u1_constants_bound_to_in_tree_fixtures ... ok
+test retained_facade_tests::u3g2_direct_entry_w1_fallbacks_append_one_notice ... ok
+failures:
+thread 'retained_facade_tests::b3b_direct_entry_runs_the_exact_route' (115618693) panicked at src/retained_facade_tests.rs:2685:33:
+thread 'retained_facade_tests::b3b_exact_capture_refuses_a_selected_basis' (115618715) panicked at src/retained_facade_tests.rs:3028:9:
+thread 'retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect' (115618728) panicked at src/retained_facade_tests.rs:2896:5:
+thread 'retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice' (115618736) panicked at src/retained_facade_tests.rs:2858:13:
+thread 'retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors' (115618759) panicked at src/retained_facade_tests.rs:2657:61:
+thread 'retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes' (115618764) panicked at src/retained_facade_tests.rs:2629:52:
+thread 'retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required' (115618773) panicked at src/retained_facade_tests.rs:2816:52:
+thread 'retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice' (115618793) panicked at src/retained_facade_tests.rs:2751:13:
+thread 'retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry' (115618843) panicked at src/retained_facade_tests.rs:3068:52:
+thread 'retained_product_tests::b3b_exact_material_check_refuses_each_defect' (115623116) panicked at src/retained_product_tests.rs:3225:86:
+failures:
+    retained_facade_tests::b3b_direct_entry_runs_the_exact_route
+    retained_facade_tests::b3b_exact_capture_refuses_a_selected_basis
+    retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect
+    retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice
+    retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors
+    retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes
+    retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required
+    retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice
+    retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry
+    retained_product_tests::b3b_exact_material_check_refuses_each_defect
+test result: FAILED. 35 passed; 10 failed; 0 ignored; 0 measured; 568 filtered out; finished in 38.17s
+error: test failed, to rerun pass `--lib`
+error: 1 target failed:
+RV123_JOB_END name=mut_R-07 rc=101 end=2026-10-08T12:57:35Z

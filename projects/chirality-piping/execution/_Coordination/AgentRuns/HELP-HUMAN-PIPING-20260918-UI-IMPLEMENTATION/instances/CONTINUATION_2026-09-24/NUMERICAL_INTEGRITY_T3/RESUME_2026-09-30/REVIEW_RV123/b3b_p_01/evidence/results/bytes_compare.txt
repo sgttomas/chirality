@@ -1,0 +1,38 @@
+i99_fields             sparse_interactive plain base==cand True  direct base==cand True  cand direct==plain True
+i99_fields             dense_scrutiny     plain base==cand True  direct base==cand True  cand direct==plain True
+i99_m1_twin_anchor     sparse_interactive plain base==cand True  direct base==cand True  cand direct==plain True
+i99_m1_twin_anchor     dense_scrutiny     plain base==cand True  direct base==cand True  cand direct==plain True
+i99_m1_twin_axial      sparse_interactive plain base==cand True  direct base==cand True  cand direct==plain False  cand direct == plain+notices['case'] True
+i99_m1_twin_axial      dense_scrutiny     plain base==cand True  direct base==cand True  cand direct==plain True
+i99_m1_twin_lateral    sparse_interactive plain base==cand True  direct base==cand True  cand direct==plain False  cand direct == plain+notices['case'] True
+i99_m1_twin_lateral    dense_scrutiny     plain base==cand True  direct base==cand True  cand direct==plain True
+i99_m3l                sparse_interactive plain base==cand True  direct base==cand True  cand direct==plain False  cand direct == plain+notices['case'] True
+i99_m3l                dense_scrutiny     plain base==cand True  direct base==cand True  cand direct==plain False  cand direct == plain+notices['case'] True
+i99_m3x                sparse_interactive plain base==cand True  direct base==cand False  cand direct==plain False  cand direct == plain+notices['case'] True  [base direct==base plain True]
+i99_m3x                dense_scrutiny     plain base==cand True  direct base==cand False  cand direct==plain False  cand direct == plain+notices['case'] True  [base direct==base plain True]
+i99_m3x_mix_anchor     sparse_interactive plain base==cand True  direct base==cand False  cand direct==plain False  cand direct == plain+notices['case'] True  [base direct==base plain True]
+i99_m3x_mix_anchor     dense_scrutiny     plain base==cand True  direct base==cand False  cand direct==plain False  cand direct == plain+notices['case'] True  [base direct==base plain True]
+i99_m3x_mix_axial      sparse_interactive plain base==cand True  direct base==cand False  cand direct==plain False  cand direct == plain+notices['case', 'case:b'] True  [base direct==base plain True]
+i99_m3x_mix_axial      dense_scrutiny     plain base==cand True  direct base==cand False  cand direct==plain False  cand direct == plain+notices['case'] True  [base direct==base plain True]
+i99_m3x_mix_lateral    sparse_interactive plain base==cand True  direct base==cand False  cand direct==plain False  cand direct == plain+notices['case', 'case:b'] True  [base direct==base plain True]
+i99_m3x_mix_lateral    dense_scrutiny     plain base==cand True  direct base==cand False  cand direct==plain False  cand direct == plain+notices['case'] True  [base direct==base plain True]
+i99_n05                sparse_interactive plain base==cand True  direct base==cand True  cand direct==plain True
+i99_n05                dense_scrutiny     plain base==cand True  direct base==cand True  cand direct==plain True
+i99_n06                sparse_interactive plain base==cand True  direct base==cand True  cand direct==plain True
+i99_n06                dense_scrutiny     plain base==cand True  direct base==cand True  cand direct==plain True
+milestone              sparse_interactive plain base==cand True  direct base==cand True  cand direct==plain False  cand direct == plain+notices[] False  (successor)
+milestone              dense_scrutiny     plain base==cand True  direct base==cand True  cand direct==plain False  cand direct == plain+notices[] False  (successor)
+ps_fields              sparse_interactive plain base==cand True  direct base==cand True  cand direct==plain True  committed raw==cand plain True (bytes False)
+ps_fields              dense_scrutiny     plain base==cand True  direct base==cand True  cand direct==plain True  committed raw==cand plain True (bytes False)
+ps_mixed               sparse_interactive plain base==cand True  direct base==cand True  cand direct==plain True  committed raw==cand plain True (bytes False)
+ps_mixed               dense_scrutiny     plain base==cand True  direct base==cand True  cand direct==plain True  committed raw==cand plain True (bytes False)
+ps_mixed_units         sparse_interactive plain base==cand True  direct base==cand True  cand direct==plain True  committed raw==cand plain True (bytes False)
+ps_mixed_units         dense_scrutiny     plain base==cand True  direct base==cand True  cand direct==plain True  committed raw==cand plain True (bytes False)
+ps_n05                 sparse_interactive plain base==cand True  direct base==cand True  cand direct==plain True  committed raw==cand plain True (bytes False)
+ps_n05                 dense_scrutiny     plain base==cand True  direct base==cand True  cand direct==plain True  committed raw==cand plain True (bytes False)
+ps_n05_unicode         sparse_interactive plain base==cand True  direct base==cand True  cand direct==plain True  committed raw==cand plain True (bytes False)
+ps_n05_unicode         dense_scrutiny     plain base==cand True  direct base==cand True  cand direct==plain True  committed raw==cand plain True (bytes False)
+ps_n05_units           sparse_interactive plain base==cand True  direct base==cand True  cand direct==plain True  committed raw==cand plain True (bytes False)
+ps_n05_units           dense_scrutiny     plain base==cand True  direct base==cand True  cand direct==plain True  committed raw==cand plain True (bytes False)
+ps_n06                 sparse_interactive plain base==cand True  direct base==cand True  cand direct==plain True  committed raw==cand plain True (bytes False)
+ps_n06                 dense_scrutiny     plain base==cand True  direct base==cand True  cand direct==plain True  committed raw==cand plain True (bytes False)

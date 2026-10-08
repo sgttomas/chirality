@@ -1,0 +1,9 @@
+PY_G7 sparse_interactive contract=('openpipestress.result_semantics/0.3.0/physics-1', '9a2cf6268b57bd5265a1a115497c07450819dd4d03cd5ab618097bd9d19da8cc') ok=True standing=needs_recompute
+PY_RETAINED sparse_interactive refused RetainedPrecisionError: SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+PY_G7 dense_scrutiny contract=('openpipestress.result_semantics/0.3.0/physics-1', '9a2cf6268b57bd5265a1a115497c07450819dd4d03cd5ab618097bd9d19da8cc') ok=True standing=needs_recompute
+PY_RETAINED dense_scrutiny refused RetainedPrecisionError: SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+PY_N11 i99_m3x sparse_interactive notices=1 standing=needs_recompute ok=True
+PY_N11 i99_m3x dense_scrutiny notices=1 standing=needs_recompute ok=True
+PY_N11 i99_m3x_mix_anchor sparse_interactive notices=1 standing=needs_recompute ok=True
+PY_N11 i99_m3x_mix_anchor dense_scrutiny notices=1 standing=needs_recompute ok=True
+PY_FAILS 0

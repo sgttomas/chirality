@@ -1,0 +1,71 @@
+--- cand/projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs	2026-10-08 05:55:08
++++ chk/projects/chirality-piping/core/reporting/result_export/src/rv123_exact_reader.rs	2026-10-08 06:28:46
+@@ -4,11 +4,11 @@
+ use std::collections::{BTreeMap, BTreeSet};
+ use std::sync::OnceLock;
+ 
+-pub const CONTRACT_ID: &str = "openpipestress.result_semantics/0.3.0/preview-physics-retained-1";
+-pub const PROFILE: &str = "product_preview_retained_w1a_v2";
+-pub const DEFINITION_ID: &str = "RP-PREPARED-ORDINARY-DUAL-v1";
++pub const CONTRACT_ID: &str = "openpipestress.result_semantics/0.3.0/physics-retained-1";
++pub const PROFILE: &str = "exact_straight_retained_w1a_v2";
++pub const DEFINITION_ID: &str = "RP-PREPARED-EXACT-DUAL-v1";
+ pub const DEFINITION_HASH: &str =
+-    "a7ed7ca0bf0bba6e8b821ca4befa00a0fa9541a83694be8b28ac63e39b1d0349";
++    "5a3bac430df9bbc77484d5419c75880ad40ae209b439e5f928374458025281af";
+ pub const METHOD: &str = "contribution_preserving_multiprecision_v1";
+ const MAX_BITS: u64 = 0x7fef_ffff_ffff_ffff;
+ 
+@@ -335,7 +335,7 @@
+     static S: OnceLock<Value> = OnceLock::new();
+     S.get_or_init(|| {
+         serde_json::from_str(include_str!(
+-            "../../../../fixtures/results/retained_precision_prepared_ordinary_v1.json"
++            "../../../../fixtures/results/retained_precision_prepared_exact_v1.json"
+         ))
+         .expect("packaged retained definition")
+     })
+@@ -344,7 +344,7 @@
+     static S: OnceLock<Value> = OnceLock::new();
+     S.get_or_init(|| {
+         serde_json::from_str(include_str!(
+-            "../../../../fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json"
++            "../../../../fixtures/results/semantic_contract_v0_3_physics_retained_1.json"
+         ))
+         .expect("packaged retained table")
+     })
+@@ -489,11 +489,11 @@
+ }
+ /// The bound inherited preview table and this successor table, as bytes.
+ const TABLE_BYTES: &[u8] = include_bytes!(
+-    "../../../../fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json"
++    "../../../../fixtures/results/semantic_contract_v0_3_physics_retained_1.json"
+ );
+ const INHERITED_TABLE_BYTES: &[u8] =
+-    include_bytes!("../../../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json");
+-const TABLE_HASH: &str = "b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c";
++    include_bytes!("../../../../fixtures/results/semantic_contract_v0_3_physics_1.json");
++const TABLE_HASH: &str = "c4987e874889645ac315b5f55f58690082ad5e7745527f20e3e316efa3e70a3d";
+ fn sha256_hex(bytes: &[u8]) -> String {
+     use sha2::{Digest, Sha256};
+     Sha256::digest(bytes)
+@@ -530,7 +530,7 @@
+             "FORMATION_MISMATCH",
+         )? == DEFINITION_HASH
+             && table()["product_formation_definitions"]
+-                == json!([{"id":DEFINITION_ID,"sha256":DEFINITION_HASH},{"id":"RP-PREPARED-COMBINATION-DUAL-v1","sha256":"d3fde142aff9c05d709b2fc2a04add42e14c66be3e2b2ba82012da57edf3d957"}]),
++                == json!([{"id":DEFINITION_ID,"sha256":DEFINITION_HASH}]),
+         "G0",
+         "FORMATION_MISMATCH",
+     )?;
+@@ -4399,8 +4399,8 @@
+         .ok_or_else(|| error("G7", "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"))?
+         .remove("retained_precision");
+     projected["producer"]["semantic_contract_id"] =
+-        json!("openpipestress.result_semantics/0.3.0/preview-physics-1");
+-    projected["formulation_basis"]["profile_id"] = json!("product_preview_mechanics_v1");
++        json!("openpipestress.result_semantics/0.3.0/physics-1");
++    projected["formulation_basis"]["profile_id"] = json!("exact_straight_pressure_v2");
+     if raw {
+         for r in projected["results"]
+             .as_array_mut()

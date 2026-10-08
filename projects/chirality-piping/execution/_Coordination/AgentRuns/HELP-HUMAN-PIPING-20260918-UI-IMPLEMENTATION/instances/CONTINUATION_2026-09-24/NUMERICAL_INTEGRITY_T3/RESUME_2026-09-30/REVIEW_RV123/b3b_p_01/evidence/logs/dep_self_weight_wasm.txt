@@ -1,0 +1,3 @@
+RV123_JOB name=dep_self_weight_wasm dir=S/cand/projects/chirality-piping/core/loads/self_weight_wasm target=rv123-dep-self_weight_wasm stale=0 args=check --locked --offline --all-targets start=2026-10-08T12:43:33Z
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 8.86s
+RV123_JOB_END name=dep_self_weight_wasm rc=0 end=2026-10-08T12:43:42Z

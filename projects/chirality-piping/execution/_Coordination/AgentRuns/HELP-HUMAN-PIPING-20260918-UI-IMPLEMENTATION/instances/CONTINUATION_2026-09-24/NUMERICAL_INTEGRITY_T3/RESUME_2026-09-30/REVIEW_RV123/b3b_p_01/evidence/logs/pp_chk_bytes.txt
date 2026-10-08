@@ -1,0 +1,44 @@
+RV123_JOB name=pp_chk_bytes dir=S/chk/projects/chirality-piping/core/product_physics target=rv123-pp-chk stale=0 args=test --locked --offline --no-fail-fast --test rv123_bytes -- --nocapture start=2026-10-08T12:42:43Z
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.17s
+     Running tests/rv123_bytes.rs (WT/targets/rv123-pp-chk/debug/deps/rv123_bytes-381396456dc82d52)
+RV123_BYTES i99_fields sparse_interactive kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_fields dense_scrutiny kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_m3l sparse_interactive kind=ordinary same_as_plain=false admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_m3l dense_scrutiny kind=ordinary same_as_plain=false admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_m3x sparse_interactive kind=ordinary same_as_plain=false admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_m3x dense_scrutiny kind=ordinary same_as_plain=false admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_m3x_mix_anchor sparse_interactive kind=ordinary same_as_plain=false admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_m3x_mix_anchor dense_scrutiny kind=ordinary same_as_plain=false admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_m3x_mix_axial sparse_interactive kind=ordinary same_as_plain=false admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_m3x_mix_axial dense_scrutiny kind=ordinary same_as_plain=false admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_m3x_mix_lateral sparse_interactive kind=ordinary same_as_plain=false admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_m3x_mix_lateral dense_scrutiny kind=ordinary same_as_plain=false admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_n05 sparse_interactive kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_n05 dense_scrutiny kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_n06 sparse_interactive kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_n06 dense_scrutiny kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_m1_twin_anchor sparse_interactive kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_m1_twin_anchor dense_scrutiny kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_m1_twin_axial sparse_interactive kind=ordinary same_as_plain=false admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_m1_twin_axial dense_scrutiny kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_m1_twin_lateral sparse_interactive kind=ordinary same_as_plain=false admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES i99_m1_twin_lateral dense_scrutiny kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES ps_n05 sparse_interactive kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES ps_n05 dense_scrutiny kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES ps_n05_units sparse_interactive kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES ps_n05_units dense_scrutiny kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES ps_n05_unicode sparse_interactive kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES ps_n05_unicode dense_scrutiny kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES ps_n06 sparse_interactive kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES ps_n06 dense_scrutiny kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES ps_fields sparse_interactive kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES ps_fields dense_scrutiny kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES ps_mixed sparse_interactive kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES ps_mixed dense_scrutiny kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES ps_mixed_units sparse_interactive kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES ps_mixed_units dense_scrutiny kind=ordinary same_as_plain=true admission=Some((Registered, Unselected)) w1=successor=false
+RV123_BYTES milestone sparse_interactive kind=successor same_as_plain=false admission=Some((Registered, Unselected)) w1=successor=true
+RV123_BYTES milestone dense_scrutiny kind=successor same_as_plain=false admission=Some((Registered, Unselected)) w1=successor=true
+test rv123_bytes ... ok
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 13.18s
+RV123_JOB_END name=pp_chk_bytes rc=0 end=2026-10-08T12:43:04Z

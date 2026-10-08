@@ -1,0 +1,153 @@
+[
+ {
+  "id": "R-00",
+  "what": "P1-02 recheck: drop w1_route's load-state guard (expected equivalent)",
+  "status": "survived",
+  "rc": "0",
+  "failed": [],
+  "summary": [
+   "test result: ok. 45 passed; 0 failed; 0 ignored; 0 measured; 568 filtered out; finished in 58.40s"
+  ]
+ },
+ {
+  "id": "R-01",
+  "what": "n-case serializer: an unavailable exact attempt's preparation hash uses DEF-O's H (S-1, unavailable branch)",
+  "status": "survived",
+  "rc": "0",
+  "failed": [],
+  "summary": [
+   "test result: ok. 45 passed; 0 failed; 0 ignored; 0 measured; 568 filtered out; finished in 60.03s"
+  ]
+ },
+ {
+  "id": "R-02",
+  "what": "c = 1 serializer: an unavailable exact attempt's preparation hash uses DEF-O's H",
+  "status": "survived",
+  "rc": "0",
+  "failed": [],
+  "summary": [
+   "test result: ok. 45 passed; 0 failed; 0 ignored; 0 measured; 568 filtered out; finished in 57.63s"
+  ]
+ },
+ {
+  "id": "R-03",
+  "what": "c = 1 serializer: an unavailable exact successor takes the preview identity",
+  "status": "survived",
+  "rc": "0",
+  "failed": [],
+  "summary": [
+   "test result: ok. 45 passed; 0 failed; 0 ignored; 0 measured; 568 filtered out; finished in 58.39s"
+  ]
+ },
+ {
+  "id": "R-04",
+  "what": "P-8: the regenerated I and J swapped",
+  "status": "killed",
+  "rc": "101",
+  "failed": [
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "summary": [
+   "test result: FAILED. 41 passed; 4 failed; 0 ignored; 0 measured; 568 filtered out; finished in 54.95s"
+  ]
+ },
+ {
+  "id": "R-05",
+  "what": "P-8: the regenerated Z is the prepared radius",
+  "status": "killed",
+  "rc": "101",
+  "failed": [
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "summary": [
+   "test result: FAILED. 41 passed; 4 failed; 0 ignored; 0 measured; 568 filtered out; finished in 54.45s"
+  ]
+ },
+ {
+  "id": "R-06",
+  "what": "P-3: every material counts as used (an unused material is checked)",
+  "status": "survived",
+  "rc": "0",
+  "failed": [],
+  "summary": [
+   "test result: ok. 45 passed; 0 failed; 0 ignored; 0 measured; 568 filtered out; finished in 54.06s"
+  ]
+ },
+ {
+  "id": "R-07",
+  "what": "P-3: the derived G expression wrong (E/(2+nu))",
+  "status": "killed",
+  "rc": "101",
+  "failed": [
+   "retained_facade_tests::b3b_direct_entry_runs_the_exact_route",
+   "retained_facade_tests::b3b_exact_capture_refuses_a_selected_basis",
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry",
+   "retained_product_tests::b3b_exact_material_check_refuses_each_defect"
+  ],
+  "summary": [
+   "test result: FAILED. 35 passed; 10 failed; 0 ignored; 0 measured; 568 filtered out; finished in 38.17s"
+  ]
+ },
+ {
+  "id": "R-08",
+  "what": "P-9: the derived origin's constitutive basis literal",
+  "status": "killed",
+  "rc": "101",
+  "failed": [
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "summary": [
+   "test result: FAILED. 41 passed; 4 failed; 0 ignored; 0 measured; 568 filtered out; finished in 50.79s"
+  ]
+ },
+ {
+  "id": "R-09",
+  "what": "P-1/P-6 at c >= 2: a case scope loses the route (Preview)",
+  "status": "killed",
+  "rc": "101",
+  "failed": [
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "summary": [
+   "test result: FAILED. 43 passed; 2 failed; 0 ignored; 0 measured; 568 filtered out; finished in 51.56s"
+  ]
+ },
+ {
+  "id": "R-10",
+  "what": "P-6 at c >= 2: the exact evidence entry is always entry 0",
+  "status": "killed",
+  "rc": "101",
+  "failed": [
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "summary": [
+   "test result: FAILED. 44 passed; 1 failed; 0 ignored; 0 measured; 568 filtered out; finished in 52.53s"
+  ]
+ },
+ {
+  "id": "R-11",
+  "what": "P-8: only the first section patch is applied (multi-member)",
+  "status": "survived",
+  "rc": "0",
+  "failed": [],
+  "summary": [
+   "test result: ok. 45 passed; 0 failed; 0 ignored; 0 measured; 568 filtered out; finished in 57.53s"
+  ]
+ }
+]

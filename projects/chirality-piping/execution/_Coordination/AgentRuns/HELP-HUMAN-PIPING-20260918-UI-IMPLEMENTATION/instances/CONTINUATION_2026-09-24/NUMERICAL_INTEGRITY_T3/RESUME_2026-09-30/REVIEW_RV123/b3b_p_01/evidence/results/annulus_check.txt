@@ -1,0 +1,3 @@
+correctly rounded {'A': '3f7872fa3a37ac13', 'I': '3efc52664442210a', 'J': '3f0c52664442210a', 'Z': '3f31b37feaa954a6'}
+published prepared {'A': '3f7872fa3a37ac13', 'I': '3efc52664442210a', 'J': '3f0c52664442210a', 'Z': '3f31b37feaa954a6'}
+ordinary SourceAnnulus {'A': '3f7872fa3a37ac13', 'I': '3efc52664442210b', 'J': '3f0c52664442210b', 'Z': '3f31b37feaa954a7'}

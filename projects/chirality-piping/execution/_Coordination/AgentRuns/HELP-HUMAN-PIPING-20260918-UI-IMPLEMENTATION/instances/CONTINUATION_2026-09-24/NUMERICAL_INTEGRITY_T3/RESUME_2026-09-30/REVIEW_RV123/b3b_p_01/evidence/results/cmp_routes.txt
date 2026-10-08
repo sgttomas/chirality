@@ -1,0 +1,19 @@
+sparse_interactive exact rows 98 preview rows 98 shared 98 value/kind differs 0
+  only exact: []
+  only preview: []
+  bounds: exact 69 preview 69 shared differing 0 []
+  extrema M1 equal on the eight fields
+  summary exact {'location_ref': 'M1', 'result_ref': 'result:elastic-maximum:4:case:2:M1', 'unit': 'Pa', 'value': 8.170865639376687e-92} 
+  summary prev  {'location_ref': 'M1', 'result_ref': 'result:elastic-maximum:4:case:2:M1', 'unit': 'Pa', 'value': 8.170865639376687e-92}
+  disp exact {'location_ref': 'N1', 'result_ref': 'result:disp:N1', 'unit': 'mm', 'value': 0.09426732770800755} 
+  disp prev  {'location_ref': 'N1', 'result_ref': 'result:disp:N1', 'unit': 'mm', 'value': 0.09426732770800755}
+dense_scrutiny exact rows 99 preview rows 99 shared 99 value/kind differs 1
+  only exact: []
+  only preview: []
+  DIFF result:sparse-live:dense-parity-relative-delta sparse_live_path_dense_parity_relative_delta 3.664157919266994e-09 3.31336034355847e-09
+  bounds: exact 69 preview 69 shared differing 0 []
+  extrema M1 equal on the eight fields
+  summary exact {'location_ref': 'M1', 'result_ref': 'result:elastic-maximum:4:case:2:M1', 'unit': 'Pa', 'value': 8.170865639376687e-92} 
+  summary prev  {'location_ref': 'M1', 'result_ref': 'result:elastic-maximum:4:case:2:M1', 'unit': 'Pa', 'value': 8.170865639376687e-92}
+  disp exact {'location_ref': 'N1', 'result_ref': 'result:disp:N1', 'unit': 'mm', 'value': 0.09426732770800755} 
+  disp prev  {'location_ref': 'N1', 'result_ref': 'result:disp:N1', 'unit': 'mm', 'value': 0.09426732770800755}
