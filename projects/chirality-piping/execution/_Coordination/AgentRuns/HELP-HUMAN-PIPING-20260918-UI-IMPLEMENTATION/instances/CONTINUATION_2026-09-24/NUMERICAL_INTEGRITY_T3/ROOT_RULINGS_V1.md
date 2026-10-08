@@ -16202,3 +16202,11 @@ A case-level `pressure` key is not refused. PP's `PreviewLoadCase` has no such f
 **On Linux:** a second diagnostic (run 37792750591) carries the fix with the pins reporting rather than asserting, so that every later manifest runs too. Then the fix lands on NUM and PR-B1 is recut.
 
 **Routed (T3 product work, after PR-B1):** published magnitudes that do not depend on the platform's libm. That means a correctly rounded `hypot` (and its siblings in the ordinary route) built from IEEE operations and `fma`. It would retire `t13`'s Mac failure and these platform pins. It changes ordinary bytes wherever a libm was not correctly rounded, so it needs its own study of which committed values move.
+
+**Dispatched:** I109 (fresh), on platform-independent published values (`BRIEFS/PLATFORM_DETERMINISM_01.md`, `f4b45068…`). The scope:
+- the libm inventory;
+- a correctly rounded norm in place of `hypot`, against an exact-rational oracle with zero misrounded results;
+- the moved-bytes measurement on `codex/piping-t3-platform-norm-20261008`;
+- Linux by a CI dispatch.
+
+**IDs:** I109 is used. The next unused are **I110 and RV126**.
