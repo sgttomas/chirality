@@ -1,0 +1,4 @@
+head: 8568fb2053f6750e4d09aa00d1791f9f3757f7e1
+command: python -m pytest -q -p no:cacheprovider tools/practitioner_harness/test_live_baseline.py -k gen8 (cwd: WT/records-pr-d; PYTHONDONTWRITEBYTECODE=1; VENV's python; run through WT/tools/t3_slot.sh)
+1 passed, 10 deselected in 32.90s
+(the first head 57f078b4c8: 1 passed after E-17's registration; RV119 independently at both heads: 1 passed, 10 deselected)

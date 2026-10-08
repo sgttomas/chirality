@@ -1,0 +1,3 @@
+squash 19280fb1ce parents: 7b0170ed4d3f0a1a0b4b9cdb2128a60526d74af9
+main at merge time: 7b0170ed4d (#1116's merge); the PR was cut on f4358eb0be; main's changes since then are all under projects/chirality-app-v4 (#1115, #1116)
+the squash's execution/ and policy file equal the PR head 8568fb2053's

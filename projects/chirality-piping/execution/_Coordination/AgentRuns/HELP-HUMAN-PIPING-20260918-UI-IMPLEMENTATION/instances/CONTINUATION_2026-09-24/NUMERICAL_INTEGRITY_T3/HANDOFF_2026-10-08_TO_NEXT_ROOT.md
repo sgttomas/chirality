@@ -17,25 +17,24 @@ T3's current account is the piping work graph's **T3 current route** section, `e
 
 ## In flight at handoff
 
-**The previous session stays open, idle, only so its two running reviewers can finish writing their records. It takes no further action.** Verify their records from disk. If a record is missing or unsealed once that session has closed, dispatch a fresh reviewer (the next ID) with the same brief.
+**Updated just before handoff:** #1114 is merged, NUM has absorbed main, and RV113's and RV119's returns are verified. The rulings section is "#1114 merged; RV113's three confirmations; RV119's addendum; the owner's choices on the open items; a private-term check".
 
-1. **Records PR [#1114](https://github.com/sgttomas/chirality/pull/1114),** branch `codex/piping-t3-records-20261008`, head `8568fb2053`, in `WT/records-pr-d`.
-   - **Its content:** NUM's `execution/` at `dc4ffdc7c8`, plus E-17's two entries in `P/validation/portability_policy.json`.
-   - **RV119 passed it** (0/1/3; `R/REVIEW_RV119/records_01/REVIEW.md`, `ef2c9538…`). **Its ADDENDUM_01** confirms the S-1 delta, and was being written at handoff. It is complete when `SHA256SUMS.addendum_01` exists and verifies.
-   - **Hosted CI** on `8568fb2053` was still running its numerical cargo suite.
-   - **Then:**
-     1. check that main touched nothing under piping's `execution/` or the policy file (main moved to `0e62b8e36b`, app-v4 only);
-     2. `gh pr merge 1114 --squash --match-head-commit <full 8568fb2053 sha>`, with an explicit subject and a body that answers RV119's N-3. The screen sentence names "the owner's own words", and RV109's round 2 reviewed SP before I3. Its I3 confirmation is in the PR's second commit;
-     3. the merge record `IMPLEMENTATION/RECORDS_MERGE_2026-10-08/`, in `RECORDS_MERGE_2026-10-07C/`'s form;
-     4. NUM absorbs main.
-2. **RV113's confirmations of the three readers' rounds,** all in `R/REVIEW_RV113/`:
-   - **SR-RS round 2:** CONFIRMED and sealed (`rvr_sr_rs_01/ADDENDUM_02.md`, `c43317f8…`, 252 sums).
-   - **SR-TS repair 01:** CONFIRMED and sealed (`rvr_sr_ts_01/ADDENDUM_01.md`, `5f86b3e7…`, 84 sums).
-   - **SR-PY repair 02 with item 4:** its mutant runs were in progress (`rvr_sr_py_01/ADDENDUM_01.md`).
-   - ROOT has verified and committed none of the three.
-   - **When all three are verified, make I4:** merge `b1-r` (`6e3e4fe219`), `b1-p` (`2843a59a16`) and `b1-t` (`6fa6a64658`) into `b1` (`03f55e7178`).
-   - Then fill `{I4 commit}` in `BRIEFS/B1_SC.md` and dispatch SC.
-3. **Uncommitted on NUM at handoff:** RV119's records and RV113's addenda. Commit them after verifying, with the run-time host screen (below).
+**The previous session stays open, idle, only so its last two agents can finish writing.** It takes no further action. Verify their work from disk. If anything is missing or unsealed once that session has closed, dispatch a fresh agent (the next ID) with the same instructions.
+
+1. **RV113's SR-PY addendum** (`R/REVIEW_RV113/rvr_sr_py_01/ADDENDUM_01.md` with `SHA256SUMS.addendum_01` and `addendum_01/`) is **uncommitted on purpose**. Its harness `sanitize_py.py` spelled the machine's names in split pieces.
+   - RV113 is rewriting it to read the names at run time, without changing its outputs. It records the change, with the old and new sha256s, before first commit (ruling 4 of "RV117 passes #1111; …").
+   - **Before committing it,** run both screens and see no hit:
+     - `WT/tools/t3_host_screen.py <NUM> --staged`;
+     - `validate_private_terms.py --staged --from-host --terms-file WT/tools/t3_host_names.private.txt`.
+   - RV113's SR-RS and SR-TS addenda are committed.
+2. **I4 is unblocked.** RV113 CONFIRMED all three readers' rounds. Merge `b1-r` (`6e3e4fe219`), `b1-p` (`2843a59a16`) and `b1-t` (`6fa6a64658`) into `b1` (`03f55e7178`). Then fill `{I4 commit}` in `BRIEFS/B1_SC.md` and dispatch SC.
+   - **RV113's three items for ROOT** are in the rulings section named above. None blocks I4:
+     1. PY's transport header order;
+     2. the transport metadata check's three shapes;
+     3. TS's raw extrema false accept, which goes to a TS repair after I4 and SC entries.
+3. **PR [#1118](https://github.com/sgttomas/chirality/pull/1118)** (the private-term check; branch `claude/private-terms-check-20261008`, worktree `WT/private-terms`) was under an independent review.
+   - **It merges** when that review and CI pass, under the standing Git authorization, with `--match-head-commit`.
+   - **The owner then sets the `PRIVATE_TERMS` secret.** Until then, CI runs only the junit rule.
 
 ## Where things are, in this folder
 
@@ -71,7 +70,9 @@ T3's current account is the piping work graph's **T3 current route** section, `e
 ## Open items for the owner
 
 - **G10,** the native witness, needs the owner's Mac.
+- **The `PRIVATE_TERMS` repository secret,** for #1118's check: set by the owner, one name per line.
 - **Owner-held, prepared:**
-  - B2/B3's decisions 22–24;
-  - M above 12 GiB;
-  - whether main's earlier host-name exposure is cleaned from main's tree (RR "Erratum E-16: …" with its addendum, and the RV119 section's N-2).
+  - B2/B3's decision 23 (R-2, for B8) and 24 (the native witnesses);
+  - **decision 22, reframed** as a machine-adaptive memory budget. Prepare a design study after PR-B1 (RR "#1114 merged; …").
+- **Main's earlier host-name records:** the owner chose to clean main's current files. Confirm the scope beyond T3 with the owner first: 31 files, 15 of them outside T3. Redacting sealed records takes the owner's hand (E-16's method).
+- **A-S1:** the earlier host-name form, E-16's originals and E-10's originals stay publicly retrievable from NUM's pushed branch and from #1114's first commit. The owner has been told; anything further is the owner's call.

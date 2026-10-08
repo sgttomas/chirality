@@ -553,7 +553,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **SI1b is on main** ([#1106](https://github.com/sgttomas/chirality/pull/1106), `025c1cf326`, 2026-10-07). Record: `IMPLEMENTATION/SI1B_MERGE/`.
 - **B6 is on main** ([#1107](https://github.com/sgttomas/chirality/pull/1107), `2007709549`, 2026-10-07). Record: `IMPLEMENTATION/B6_MERGE/`.
 - **SI1c is on main** ([#1112](https://github.com/sgttomas/chirality/pull/1112), `0b6c5d7362`, 2026-10-07): the owner's option D, with N-4 and N-5. Record: `IMPLEMENTATION/SI1C_MERGE/`.
-- **T3's records** through the handoff are on main (#1084, #1088, #1092), and this session's through [#1101](https://github.com/sgttomas/chirality/pull/1101), [#1103](https://github.com/sgttomas/chirality/pull/1103), [#1105](https://github.com/sgttomas/chirality/pull/1105) and [#1108](https://github.com/sgttomas/chirality/pull/1108) (`4f37590bfb`, squash, NUM's records through `6f983f12f3`), and [#1111](https://github.com/sgttomas/chirality/pull/1111) (`54f1ba1f6d`, squash, NUM's records through `0b8299e496`; record `IMPLEMENTATION/RECORDS_MERGE_2026-10-07C/`).
+- **T3's records** through the handoff are on main (#1084, #1088, #1092), and this session's through [#1101](https://github.com/sgttomas/chirality/pull/1101), [#1103](https://github.com/sgttomas/chirality/pull/1103), [#1105](https://github.com/sgttomas/chirality/pull/1105) and [#1108](https://github.com/sgttomas/chirality/pull/1108) (`4f37590bfb`, squash, NUM's records through `6f983f12f3`), and [#1111](https://github.com/sgttomas/chirality/pull/1111) (`54f1ba1f6d`, squash, NUM's records through `0b8299e496`; record `IMPLEMENTATION/RECORDS_MERGE_2026-10-07C/`), and [#1114](https://github.com/sgttomas/chirality/pull/1114) (`19280fb1ce`, squash, NUM's records through `dc4ffdc7c8`; record `IMPLEMENTATION/RECORDS_MERGE_2026-10-08/`). NUM absorbed main at `e382f25ff9`.
 - **B0 is selected; B1's plan (PLAN_v2) is accepted.** Phase 1 is done: SW's probe is accepted (W2b's replacement and SQ's cap-maximal inputs), and ST is confirmed by RV-P and integrated at I1. **Phase 2:**
   - SA is merged into `b1` at I2 (`eca6c00a72`).
   - SP is returned before I3. **RV109 passed it in RV-P round 2** (0/2/4); SF-1 and SF-2 go to I3's pinning step (`BRIEFS/B1_SP_I3.md`).
@@ -595,11 +595,13 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - the formal supported-machine statement (drafted at B7/B8 from measurement), or M above 12 GiB (ROOT may select M up to 12 GiB: owner, 2026-10-07; T3's host jobs may use up to 64 GiB on this Mac);
 - any change to public meaning;
 - the native-app witnesses;
-- whether main's historical host-name exposure (RR "Erratum E-16: …", with its addendum) is cleaned from main's tree;
+- **the cleanup of main's earlier host-name records** (chosen: "Clean main's current files"): the owner confirms the scope beyond T3 (31 files: T3's 11 text and 5 `.gz`, 5 of other projects, 10 `.gz` of a root `execution/PKG-02` folder) before it starts (RR "#1114 merged; …");
+- **decision 22, reframed by the owner as a machine-adaptive memory budget** (user-set M with warnings above 12 GiB on 16 GiB machines, thresholds for other sizes, parallel work on large machines): the next ROOT prepares a design study after PR-B1; no B1 cap changes;
 - **prepared for B8:** whether a successor's stress-neutral package may read ready while its D-U6-2 class rows carry withheld unit witnesses (today's convention blocks it; I75's R-2).
 
 **Owner decisions in force** (dated in the rulings):
 - **2026-10-08: host-name redactions:** E-16's 42 junit files are redacted in place on NUM ("I choose 1"); for #1114's S-1, ROOT's two lines are reworded and I90's sealed script is kept as executed ("Redact my two lines").
+- **2026-10-08: the open items:** #1084's old PR branch deleted ("Delete it"); main's earlier host-name records to be cleaned ("Clean main's current files"), scope to confirm; a private-term check in CI ("set up a test or CI to catch future instances of my Mac's network name"): PR #1118, enabled by the owner's `PRIVATE_TERMS` secret.
 - **2026-10-08: development up to 64 GiB, the product at 12 GiB** ("you can go up to the agreed 64 GB for your tasks (this is desirable when it reduces the development time), but for the sake of the product and what will be shipped for use the 12 GB cap ought to remain (unless a compelling argument can convince me otherwise)"): T3's development and test jobs on this Mac may use up to 64 GiB to save time. The product's M stays ≤ 12 GiB unless a compelling argument is put to the owner. The host now runs up to three heavy jobs at once, under a 48 GiB start gate; DEC-025 and product measurements run exclusive.
   - **Clarified the same day:** 64 GiB is T3's own allocation; the machine may be loaded to 100 GiB in total, with jobs starting under 90 GiB. The guard's floor is now 22% free (about 100 GiB). The start gate is at least 30% free and T3 under 52 GiB, with **four slots**.
 - **2026-10-07: SI1c is option D, a repair within grammar 1.0.0** ("D: block at overflow"; "Repair within 1.0.0"): the ordinary point path blocks with `NonFiniteInput` at an arithmetic or interpolation step whose result is not finite; no grammar version bump or corpus extension.
@@ -616,9 +618,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **Earlier:** T1 option (a); D-3 = S1; D-6 = (a); M selected under D-7.
 
 **Assignment IDs.** Dispatched 2026-10-06/08: I68–I99, RV97–RV99 and RV101–RV119 (RV100 was 2026-10-05's).
-- **At the 2026-10-08 handoff, still running in the previous session** (their records land on disk; the new ROOT verifies them there):
-  - RV113: SR-RS round 2 and SR-TS repair 01 are CONFIRMED and sealed (`REVIEW_RV113/rvr_sr_rs_01/ADDENDUM_02.md`, `rvr_sr_ts_01/ADDENDUM_01.md`); SR-PY repair 02's confirmation (`rvr_sr_py_01/ADDENDUM_01.md`) was running;
-  - RV119: its ADDENDUM_01 on #1114's head `8568fb2053`.
+- **At the 2026-10-08 handoff:** RV113's three confirmations are verified (RR "#1114 merged; …"); its SR-PY addendum is held while RV113 redacts its own sanitizer before first commit (in the previous session). PR #1118 (the private-term check) is under an independent review in the previous session. #1114 is merged.
 - **Agents of earlier sessions are not resumable from a new session.** Their IDs stay used; dispatch fresh agents with the next IDs.
 - **The next unused** are **I100 and RV120**.
 
@@ -706,10 +706,10 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 **Next safe action:**
 1. **B1 phases 2–3:**
    - I85's I3 step is done (`03f55e7178`) → RV109 confirmed: **SP is complete.**
-   - The alignment repairs are done (RS `6e3e4fe219`, PY `2843a59a16`, TS `6fa6a64658`) → RV113 confirmed RS and TS (sealed, not yet verified or committed by ROOT); PY's confirmation was running at handoff → **I4** (ROOT merges `b1-r` again, `b1-p` and `b1-t` into `b1`).
+   - The alignment repairs are done (RS `6e3e4fe219`, PY `2843a59a16`, TS `6fa6a64658`) → RV113 confirmed all three (verified; SR-PY's addendum held for RV113's pre-commit redaction; its three items for ROOT do not block I4) → **I4** (ROOT merges `b1-r` again, `b1-p` and `b1-t` into `b1`).
    - Then SC (07n, I-PY; `BRIEFS/B1_SC.md`, its `{I4 commit}` filled in), SQ (I-A; with E-12's guard item and N-3's inputs), and SG, SB and SK → PR-B1.
 2. **B2/B3 phase 0:** B2-C is ruled → I97's revision 01 (verified) → RV115 confirmed S-4 (a) (SA3-1: option (ii) ruled) → RV118 confirmed revision 01 (A-1: (ii) in B2-K) → I97's revision 02 → RV115 and RV118 confirmed → **B2-C final for J1** (done), with names reserved → J1's package (I-A) after J0. B2's and B3's witnesses are selected (RR "I98's B2-W verified; …", "I99's B3-W verified; …"). **J0** follows PR-B1.
-3. **Records:** #1111 is merged (`54f1ba1f6d`; `IMPLEMENTATION/RECORDS_MERGE_2026-10-07C/`). **[#1114](https://github.com/sgttomas/chirality/pull/1114)**, head `8568fb2053`, carries NUM's records through `dc4ffdc7c8` (E-16's redaction, E-17's two portability entries, S-1's rewordings). RV119 passed it (0/1/3) and confirms the S-1 delta; then hosted CI on the head, a squash-merge with `--match-head-commit` and the N-3 body, the merge record `IMPLEMENTATION/RECORDS_MERGE_2026-10-08/`, and NUM absorbs main. The next records PR carries RV119's and RV113's records and the handoff note.
+3. **Records:** **#1114 is merged** (`19280fb1ce`; `IMPLEMENTATION/RECORDS_MERGE_2026-10-08/`), and NUM absorbed main (`e382f25ff9`). The next records PR carries RV113's addenda (SR-PY's after its redaction), RV119's records, the handoff note and steer, the merge record and the later rulings, screened with `WT/tools/t3_host_screen.py` and, once #1118 merges, `validate_private_terms.py`.
 4. **Post-merge cleanup `apply`** when the host is idle:
    - the merged worktrees `s-i1`, `u8-pr`, `f2a-u8`, `t6-outputs`, `t6s-pr`, `records-pr`, `s-i1b`, `si1b-pr`, `b6`, `b6-pr`, `records-pr-b`, `records-pr-c`, `s-i1c` and `si1c-pr`, and `records-pr-d` after #1114 merges; `b1-a` (SA, merged at I2) and `b1-r`, `b1-p`, `b1-t` after I4;
    - stale targets, including `sweep-skewpin-target`;

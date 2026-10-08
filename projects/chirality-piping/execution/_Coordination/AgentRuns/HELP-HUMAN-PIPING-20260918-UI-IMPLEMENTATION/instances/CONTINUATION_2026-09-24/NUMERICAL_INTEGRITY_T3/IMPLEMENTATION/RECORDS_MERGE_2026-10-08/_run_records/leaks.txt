@@ -1,0 +1,4 @@
+command: python tools/validation/validate_run_record_leaks.py --base origin/main --head HEAD (cwd: WT/records-pr-d; HEAD = 8568fb2053; origin/main = 0e62b8e36b at the time; VENV's python)
+WARN: an 8.1 MB run-record file (REVIEW_RV113/rvr_sr_py_01/evidence/probes/probes_v5.json); keep large evidence as CI artifacts
+PASS: 1111 changed run-record file(s) scanned; 0 possible credential(s); 0 machine-local symlink(s).
+(RV119, against the PR's base f4358eb0be: PASS on 1,109 files)

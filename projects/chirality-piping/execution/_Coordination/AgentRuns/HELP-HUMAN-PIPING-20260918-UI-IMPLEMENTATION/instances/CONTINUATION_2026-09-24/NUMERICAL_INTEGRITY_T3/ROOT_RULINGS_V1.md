@@ -15673,3 +15673,41 @@ What the owner was told named the path correctly.
 The next ROOT verifies all of them from disk. ROOT has verified and committed none of RV113's addenda, or RV119's records.
 
 **Agents of this session are not resumable from the next.** Their IDs stay used, and the next unused are I100 and RV120.
+
+## #1114 merged; RV113's three confirmations; RV119's addendum; the owner's choices on the open items; a private-term check (ROOT, 2026-10-08 UTC)
+
+**#1114 is merged:** squash `19280fb1ce` on main `7b0170ed4d`, 2026-10-08 04:26Z.
+- **The gates:** RV119 CONFIRMED the head `8568fb2053` (ADDENDUM_01 `baf07b97…`, 50 sums: 0/1/2), CI 4/4, GEN-8 passed, and the leak check passed.
+- **Records:** the merge record is `IMPLEMENTATION/RECORDS_MERGE_2026-10-08/`. NUM absorbed main at `e382f25ff9`, its records resolving to NUM's later appends, and NUM equals main outside `execution/`.
+
+**RV119's ADDENDUM_01 findings:**
+- **A-S1, told to the owner:** the "only in NUM's history" statements (E-10, E-16, E-18) hold of main only. NUM's branch is pushed to the public repository after every commit, and #1114's first commit stays reachable from the PR. So the earlier host-name form, E-16's 42 originals and E-10's originals remain publicly retrievable there. The exposure is low; anything further is the owner's call.
+- **A-N1:** the owner's E-16 choice, quoted from the session: "I choose 1".
+- **A-N2:**
+  - the reworded B2C_REVISION_02 brief says the earlier form is "named in RR", which E-18 made untrue; read it as "named in RR before E-18";
+  - RV118's ADDENDUM_02 and its checks file also cite the brief's old hash (`d82dba65…`);
+  - RV109's 52 files had no `.gz` files to decompress;
+  - the leak check's count is 1,109 against the PR's base and 1,111 against main at the time.
+
+**RV113's three confirmations, verified:**
+- **SR-RS round 2:** `rvr_sr_rs_01/ADDENDUM_02.md` `c43317f8…`, 252 sums. CONFIRMED with S-1: 12 new checks are pinned only by RV113's probes.
+- **SR-TS repair 01:** `rvr_sr_ts_01/ADDENDUM_01.md` `5f86b3e7…`, 84 sums. CONFIRMED with S-1: TS's raw evidence reader admits a non-number `global_upper_bound_pa` or a null `certified_gap_pa`. This predates the round.
+- **SR-PY repair 02 with item 4:** `rvr_sr_py_01/ADDENDUM_01.md` `a61bbe1b…`, 183 sums. CONFIRMED with S-1: PY's transport header keeps Python's check order, so six probes outside the corpus read differently, and one by gate.
+- **The SR-PY addendum is held, not committed.** Its harness `sanitize_py.py` spells the machine's names in split pieces. Under ruling 4 of "RV117 passes #1111; …", RV113 redacts its own record before first commit, reading the names at run time; the next ROOT verifies and commits it.
+- **RV113's three items for ROOT,** none of which blocks I4, are left to the next ROOT:
+  1. PY's transport header order: align it with RS and TS, or declare it per reader;
+  2. one shared form for the transport metadata check's three shapes;
+  3. TS's raw extrema false accept: a TS repair after I4, plus SC entries that expect refusal in all three readers.
+
+**The owner's choices on the open items (2026-10-08):**
+- **#1084's old PR branch is deleted,** at the owner's choice ("Delete it").
+- **Main's earlier host-name records: "Clean main's current files".** The scope is larger than ROOT first stated: 31 files on main carry the network name. They are 11 T3 text records and 5 T3 junit `.gz` files, 5 text records of other projects (app-v4, runtime, PEC), and 10 `.gz` files of a root `execution/PKG-02` evidence folder. RV76's home path is separate. The owner confirms the scope beyond T3 before that work starts; redacting another project's records is that project's change.
+- **Decision 22: the owner asks,** instead of closing it, whether M can be set by the user with warnings above 12 GiB on a 16 GiB machine, with similar thresholds for other memory sizes, or something cleverer that respects safe limits while letting more powerful machines work in parallel.
+  - It stays owner-held, reframed as **a machine-adaptive memory budget**.
+  - The next ROOT prepares a short design study. It covers: options; their effect on reproducibility (whether a retained successor publishes would vary by machine, fail-safe to the ordinary route); the qualification each tier needs; the supported-machine statement; B7's release identity; the UI warnings; and parallel invocations on large machines.
+  - It is placed after PR-B1, and it changes no B1 cap.
+
+**The private-term check (owner direction, 2026-10-08: "set up a test or CI to catch future instances of my Mac's network name"):**
+- **PR [#1118](https://github.com/sgttomas/chirality/pull/1118)** adds `tools/validation/validate_private_terms.py`, its tests, and a `governance-harness` step. The terms come from the `PRIVATE_TERMS` repository secret; the owner sets it. They are never printed, and are matched in any split or escaped form. A junit `hostname` attribute in a run record blocks without terms.
+- An independent reviewer reviews it.
+- **ROOT's slip, disclosed:** its first commit went through with three unread screen hits. On reading, they were the junit rule's text and a docstring example: the laptop-model word in split form, and an invented dotted name close to the earlier form. The commit was amended before the PR opened. The rule "a screen hit stops the commit until read" stands, and ROOT's commit commands now stop on a hit.

@@ -27,12 +27,12 @@ Steer (this run): Continue T3, numerical integrity, precision and scale, of the 
    - the worktrees the note lists;
    - whether main moved;
    - the free disk space;
-   - **the two reviews that were running at handoff:** RV119's ADDENDUM_01 on records PR #1114, and RV113's three confirmations of the readers' rounds. Verify each from disk.
+   - **the work in flight at handoff:** RV113's held SR-PY addendum (being redacted by its author before first commit) and PR #1118 (the private-term check) under review. Verify each from disk and GitHub.
 
    Then give the owner a short status that references the graph.
 5. **Then follow the graph's next safe action:**
-   1. merge #1114 when RV119's addendum and hosted CI are in, then write its merge record and absorb main into NUM;
-   2. make I4 when RV113 has confirmed all three readers;
+   1. commit RV113's SR-PY addendum once both screens show no hit; merge #1118 when its review and CI pass;
+   2. make I4 (RV113 has confirmed all three readers), and rule RV113's three items;
    3. B1's SC (`BRIEFS/B1_SC.md`), then SQ, SG, SB and SK, then PR-B1;
    4. J0, and B2/B3 (B2-C is final for J1);
    5. B7, B8, then S-I2, F2b and F3, with S-I1 alongside.
@@ -56,7 +56,7 @@ Steer (this run): Continue T3, numerical integrity, precision and scale, of the 
    - **Never merge NUM itself into main,** because its history holds redacted originals.
    - **Records reach main through records-only PRs,** after each main merge and before any handoff:
      - cut the PR from main, taking NUM's execution files;
-     - screen with `WT/tools/t3_host_screen.py`; a hit stops the commit until ROOT has read it;
+     - screen with `WT/tools/t3_host_screen.py` and, once #1118 merges, `tools/validation/validate_private_terms.py --from-host --terms-file WT/tools/t3_host_names.private.txt`; a hit stops the commit until ROOT has read it;
      - run main's leak validator, and GEN-8 on the exact head;
      - gate it with the automatic CI and an independent review;
      - squash-merge it with `--match-head-commit`.
