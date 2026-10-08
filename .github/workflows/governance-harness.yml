@@ -147,18 +147,23 @@ jobs:
           python3 tools/validation/validate_run_record_leaks.py --base "${LEAK_BASE_REF}" --head HEAD
       # Owner direction 2026-10-08: the owner's machine names never reach this
       # public repository. The terms live only in the PRIVATE_TERMS repository
-      # secret and are never printed; files this change adds or modifies are
-      # matched in any split or escaped form, and a junit hostname attribute in
-      # a run record blocks even without the secret (fork PRs receive none).
+      # secret and are never printed. What a change adds (contents, paths,
+      # commit identities and messages) is matched in any split or escaped
+      # form, and a junit hostname attribute blocks even without the secret.
+      # Pushes and same-repository PRs require the secret; fork PRs receive
+      # no secrets and run the junit rule only.
       - name: Private-term check (owner direction 2026-10-08; BLOCK fails the run)
         env:
           PRIVATE_TERMS: ${{ secrets.PRIVATE_TERMS }}
           TERMS_BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
+          TERMS_REQUIRED: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
         run: |
           if ! git rev-parse --verify --quiet "${TERMS_BASE_REF}^{commit}" >/dev/null; then
             TERMS_BASE_REF=HEAD^
           fi
-          python3 tools/validation/validate_private_terms.py --base "${TERMS_BASE_REF}" --head HEAD
+          REQUIRE=()
+          if [ "${TERMS_REQUIRED}" = "true" ]; then REQUIRE=(--require-terms); fi
+          python3 tools/validation/validate_private_terms.py --base "${TERMS_BASE_REF}" --head HEAD "${REQUIRE[@]}"
       # The tools/ test estate. PRs run only the suites the change set
       # touches, selected deterministically by tools/run_affected_tests.py
       # from tools/tools-test-routing.json (live-tree gate suites —
