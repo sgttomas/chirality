@@ -1,0 +1,52 @@
+rs_label	py_label	gate_code_bound
+01 identity -> the preview id	01 identity relabelled preview (profile kept)	G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+02 profile -> the preview profile	02 profile relabelled preview	G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+02b producer component_version 0.2.1	x31 producer component_version 0.2.1	G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+03 an attempt's definition_id -> the ordinary id	03 an attempt's definition_id ordinary	G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+04 projection_policy changed	04 projection_policy changed	G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+04b policy changed	x27 policy changed	G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+04c facade_policy changed	x28 facade_policy changed	G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+05 work_policy changed	05 work_policy changed	G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+06 canonicalization changed	06 canonicalization changed	G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+07 work.case_limit changed	07 work.case_limit changed	G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+08 work.invocation_limit changed	08 work.invocation_limit changed	G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+08b receipt_version 2	x29 receipt_version 2	G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+10 the exact successor relabelled preview (identity and profile)	10 the exact successor relabelled preview-physics-retained-1	G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+11 S-1: the preparation hashed with DEF-O's H	11 S-1: the preparation hash over a payload with DEF-O's H	G1 RETAINED_PRECISION_RECEIPT_MISMATCH
+12 owner entry's As_m2 one ulp	12 owner pipe_sections As_m2 one ulp	G5b RETAINED_PRECISION_SECTION_MISMATCH
+13 owner entry's Z_m3 one ulp	13 owner pipe_sections Z_m3 one ulp	G5b RETAINED_PRECISION_SECTION_MISMATCH
+14 owner entry's I_m4 one ulp	14 owner pipe_sections I_m4 one ulp	G5b RETAINED_PRECISION_SECTION_MISMATCH
+15 owner entry's ro_m one ulp	15 owner pipe_sections ro_m one ulp	G5b RETAINED_PRECISION_SECTION_MISMATCH
+15b owner entry's J_m4 one ulp	x01 owner pipe_sections J_m4 one ulp	G5b RETAINED_PRECISION_SECTION_MISMATCH
+15c owner entry's outside_diameter_m one ulp	x02 owner pipe_sections outside_diameter_m one ulp	G5b RETAINED_PRECISION_SECTION_MISMATCH
+15d owner entry's effective_wall_thickness_m one ulp	x03 owner pipe_sections effective_wall_thickness_m one ulp	G5b RETAINED_PRECISION_SECTION_MISMATCH
+15e the owner entry's load_case_id renamed	x04 the owner entry's load_case_id renamed	G5b RETAINED_PRECISION_SECTION_MISMATCH
+15f the owner entry's pipe section listed twice	x19 the owner entry's pipe section listed twice	G5b RETAINED_PRECISION_SECTION_MISMATCH
+15g the owner entry's As_m2 a string	x20 the owner entry's As_m2 a string	G5b RETAINED_PRECISION_SECTION_MISMATCH
+15h the owner entry listed twice	x30 the owner's exact_cases entry listed twice	G5b RETAINED_PRECISION_SECTION_MISMATCH
+16 connector non-empty	16 connector non-empty	G7 (base code per language)
+16b contract_evidence removed	x06 contract_evidence removed	G5b RETAINED_PRECISION_SECTION_MISMATCH
+17 an entry's G_pa three ulps	17 pipe_materials G_pa three ulps	G7 (base code per language)
+18 recovery_method added to an exact_cases entry	18 recovery_method added to an exact_cases entry	G7 (base code per language)
+19 invocation contract -> legacy 1.0.0	19 invocation contract legacy	G8 RETAINED_PRECISION_INVOCATION_MISMATCH
+20 invocation schema -> 0.4.0	20 invocation schema 0.4.0	G8 RETAINED_PRECISION_INVOCATION_MISMATCH
+21 invocation pressure_contract false	21 invocation pressure_contract false	G8 RETAINED_PRECISION_INVOCATION_MISMATCH
+21b invocation contract with an extra key	x22 invocation contract with an extra null key	G8 RETAINED_PRECISION_INVOCATION_MISMATCH
+21c invocation contract version 2.0.1	x21 invocation contract version 2.0.1	G8 RETAINED_PRECISION_INVOCATION_MISMATCH
+21d invocation contract removed (0.3.0, absent)	x15 invocation contract removed	G8 RETAINED_PRECISION_INVOCATION_MISMATCH
+22 a combination added to the invocation	22 a combination added to the invocation	G8 RETAINED_PRECISION_INVOCATION_MISMATCH
+22b a component added to the invocation	x23 a component added to the invocation	G8 RETAINED_PRECISION_INVOCATION_MISMATCH
+23 a case naming modulus_basis_ref	23 a case naming modulus_basis_ref	G8 RETAINED_PRECISION_PREPARATION_MISMATCH
+24 a material's shear_origin -> explicit_g	24 shear_origin explicit_g	G8 RETAINED_PRECISION_PREPARATION_MISMATCH
+24b a material's selection -> named_point	x32 a material's selection named_point	G8 RETAINED_PRECISION_PREPARATION_MISMATCH
+25 a material's shear_modulus one ulp	25 receipt shear_modulus one ulp	G8 RETAINED_PRECISION_PREPARATION_MISMATCH
+26 shear_origin.poisson_ratio bits changed	26 shear_origin.poisson_ratio bits changed	G8 RETAINED_PRECISION_PREPARATION_MISMATCH
+27 authored nu changed in the invocation	27 authored nu changed in the invocation	G8 RETAINED_PRECISION_PREPARATION_MISMATCH
+28 S-C only: an entry's pipe_materials nu one ulp	28 S-C only: an entry's pipe_materials nu one ulp	G8 RETAINED_PRECISION_PREPARATION_MISMATCH
+29 N-6: an entry's G_pa one ulp	29 N-6: an entry's pipe_materials G_pa one ulp	G8 RETAINED_PRECISION_PREPARATION_MISMATCH
+30 a case's pressure_regions -> null	30 a case's pressure_regions null	G8 RETAINED_PRECISION_PREPARATION_MISMATCH
+30b a case's pressure_regions absent	x07 a case's pressure_regions removed	G8 RETAINED_PRECISION_PREPARATION_MISMATCH
+31 a case's pressure_regions -> one region	31 a case's pressure_regions with one region	G8 RETAINED_PRECISION_PREPARATION_MISMATCH
+32 a member's geometry.route -> preview	32 a member's geometry.route preview	G8 RETAINED_PRECISION_PREPARATION_MISMATCH
+32b the authored poisson_ratio unit -> ""	x24 authored nu unit empty	G8 RETAINED_PRECISION_PREPARATION_MISMATCH
+32c the authored constitutive_basis removed (S-C)	x25 authored constitutive_basis removed	G8 RETAINED_PRECISION_PREPARATION_MISMATCH

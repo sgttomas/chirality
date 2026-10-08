@@ -1,0 +1,118 @@
+# i100 job mut_B39 (slot) queued 2026-10-08T13:02:37Z dir=scratch/i100_b3r/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=B39 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/mut_B39/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/mutants/runs/B39/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+# start 2026-10-08T13:02:37Z
+........................................................................ [ 39%]
+........................................................................ [ 79%]
+.................................FFFF.                                   [100%]
+=================================== FAILURES ===================================
+______________________ test_b3b_carriers[dense_scrutiny] _______________________
+
+mode = 'dense_scrutiny'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_carriers(mode):
+        source, invocation = m3x(mode)
+>       assert dispatch(source) == (c.PHYSICS_RETAINED_CONTRACT_ID, c.PHYSICS_RETAINED_CONTRACT_SHA256, c._PHYSICS_RETAINED_CONTRACT_PATH)
+E       AssertionError: assert 'RETAINED_PRECISION_DOWNGRADE_FORBIDDEN' == ('openpipestress.result_semantics/0.3.0/physics-retained-1', 'c4987e874889645ac315b5f55f58690082ad5e7745527f20e3e316ef...ty-t3/scratch/i100_b3r/mut/projects/chirality-piping/fixtures/results/semantic_contract_v0_3_physics_retained_1.json'))
+E        +  where 'RETAINED_PRECISION_DOWNGRADE_FORBIDDEN' = dispatch({'accepted_model_state_mutated': False, 'contract_evidence': {'pressure': [], 'connector': [], 'exact_cases': [{'load_...k, and the ordinary-attempt evidence.', ...}], 'document_kind': 'openpipestress.product_preview.mechanics_result', ...})
+
+tests/test_retained_precision_b3.py:601: AssertionError
+____________________ test_b3b_carriers[sparse_interactive] _____________________
+
+mode = 'sparse_interactive'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_carriers(mode):
+        source, invocation = m3x(mode)
+>       assert dispatch(source) == (c.PHYSICS_RETAINED_CONTRACT_ID, c.PHYSICS_RETAINED_CONTRACT_SHA256, c._PHYSICS_RETAINED_CONTRACT_PATH)
+E       AssertionError: assert 'RETAINED_PRECISION_DOWNGRADE_FORBIDDEN' == ('openpipestress.result_semantics/0.3.0/physics-retained-1', 'c4987e874889645ac315b5f55f58690082ad5e7745527f20e3e316ef...ty-t3/scratch/i100_b3r/mut/projects/chirality-piping/fixtures/results/semantic_contract_v0_3_physics_retained_1.json'))
+E        +  where 'RETAINED_PRECISION_DOWNGRADE_FORBIDDEN' = dispatch({'accepted_model_state_mutated': False, 'contract_evidence': {'pressure': [], 'connector': [], 'exact_cases': [{'load_...k, and the ordinary-attempt evidence.', ...}], 'document_kind': 'openpipestress.product_preview.mechanics_result', ...})
+
+tests/test_retained_precision_b3.py:601: AssertionError
+_ test_b3b_stress_neutral_packager_refuses_the_exact_successor[dense_scrutiny] _
+
+mode = 'dense_scrutiny'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_stress_neutral_packager_refuses_the_exact_successor(mode):
+        """As the preview successor (T6's refusal stands in the Python packager; lane T's carriers are TS and schemas)."""
+        from core.handoff.stress_neutral import package_v0_3 as sn
+        from tests.test_stress_neutral_physics_source import arguments
+        source, _ = m3x(mode)
+>       record = c.build_analysis_run(source, input_manifest_ref={"object_type": "InputManifest", "ref": "manifest:b3b"}, input_manifest_hash="1" * 64)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_retained_precision_b3.py:639: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+core/analysis_runs/compatibility.py:720: in build_analysis_run
+    contract, _, _ = _source_contract(mechanics_result)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = {'accepted_model_state_mutated': False, 'contract_evidence': {'pressure': [], 'connector': [], 'exact_cases': [{'load_...k, and the ordinary-attempt evidence.', ...}], 'document_kind': 'openpipestress.product_preview.mechanics_result', ...}
+check_receipt = True, rust_header_order = False
+
+    def _source_contract(source: Mapping[str, Any], *, check_receipt: bool = True, rust_header_order: bool = False) -> tuple[str, str, Path]:
+        """Interpretation dispatch does not authenticate a producer or qualify Current.
+    
+        `rust_header_order` is passed only by the retained reader's transport step, on its projection
+        (RR "I4 made at `30f3d1b24a`; RV113's items for ROOT ruled; …", ruling 1). The header then takes
+        Rust's `for_source_metadata` order and codes, as TS's does: it has no carrier branch, so a
+        `carrier_evidence` member is left to the preview-physics transport metadata check (G7
+        SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID), and `source_block_recovery` is checked before
+        `contract_evidence`. Every other caller passes nothing and reads exactly as before."""
+        if _is_retained(source):
+            return _retained_contract(source, check_receipt=check_receipt)
+        # F-5: no other identity may carry a receipt member.
+        if isinstance(source, Mapping) and "retained_precision" in source:
+>           raise ValueError(RETAINED_PRECISION_DOWNGRADE_FORBIDDEN)
+E           ValueError: RETAINED_PRECISION_DOWNGRADE_FORBIDDEN
+
+core/analysis_runs/compatibility.py:415: ValueError
+_ test_b3b_stress_neutral_packager_refuses_the_exact_successor[sparse_interactive] _
+
+mode = 'sparse_interactive'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_stress_neutral_packager_refuses_the_exact_successor(mode):
+        """As the preview successor (T6's refusal stands in the Python packager; lane T's carriers are TS and schemas)."""
+        from core.handoff.stress_neutral import package_v0_3 as sn
+        from tests.test_stress_neutral_physics_source import arguments
+        source, _ = m3x(mode)
+>       record = c.build_analysis_run(source, input_manifest_ref={"object_type": "InputManifest", "ref": "manifest:b3b"}, input_manifest_hash="1" * 64)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_retained_precision_b3.py:639: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+core/analysis_runs/compatibility.py:720: in build_analysis_run
+    contract, _, _ = _source_contract(mechanics_result)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = {'accepted_model_state_mutated': False, 'contract_evidence': {'pressure': [], 'connector': [], 'exact_cases': [{'load_...k, and the ordinary-attempt evidence.', ...}], 'document_kind': 'openpipestress.product_preview.mechanics_result', ...}
+check_receipt = True, rust_header_order = False
+
+    def _source_contract(source: Mapping[str, Any], *, check_receipt: bool = True, rust_header_order: bool = False) -> tuple[str, str, Path]:
+        """Interpretation dispatch does not authenticate a producer or qualify Current.
+    
+        `rust_header_order` is passed only by the retained reader's transport step, on its projection
+        (RR "I4 made at `30f3d1b24a`; RV113's items for ROOT ruled; …", ruling 1). The header then takes
+        Rust's `for_source_metadata` order and codes, as TS's does: it has no carrier branch, so a
+        `carrier_evidence` member is left to the preview-physics transport metadata check (G7
+        SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID), and `source_block_recovery` is checked before
+        `contract_evidence`. Every other caller passes nothing and reads exactly as before."""
+        if _is_retained(source):
+            return _retained_contract(source, check_receipt=check_receipt)
+        # F-5: no other identity may carry a receipt member.
+        if isinstance(source, Mapping) and "retained_precision" in source:
+>           raise ValueError(RETAINED_PRECISION_DOWNGRADE_FORBIDDEN)
+E           ValueError: RETAINED_PRECISION_DOWNGRADE_FORBIDDEN
+
+core/analysis_runs/compatibility.py:415: ValueError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3b_carriers[dense_scrutiny]
+FAILED tests/test_retained_precision_b3.py::test_b3b_carriers[sparse_interactive]
+FAILED tests/test_retained_precision_b3.py::test_b3b_stress_neutral_packager_refuses_the_exact_successor[dense_scrutiny]
+FAILED tests/test_retained_precision_b3.py::test_b3b_stress_neutral_packager_refuses_the_exact_successor[sparse_interactive]
+4 failed, 178 passed in 23.38s
+# end 2026-10-08T13:03:01Z rc=1

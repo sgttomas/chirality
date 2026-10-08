@@ -1,0 +1,82 @@
+# i100 job mut_B14 (slot) queued 2026-10-08T12:47:13Z dir=scratch/i100_b3r/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=B14 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/mut_B14/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/mutants/runs/B14/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+# start 2026-10-08T12:47:14Z
+.....................................F.................................. [ 39%]
+..................F....F................................................ [ 79%]
+....F.................................                                   [100%]
+=================================== FAILURES ===================================
+_ test_b3b_m3x_mutations[dense_scrutiny-03 an attempt's definition_id ordinary] _
+
+mode = 'dense_scrutiny', label = "03 an attempt's definition_id ordinary"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G0', 'SOURC..._UNSUPPORTED')
+E         
+E         At index 0 diff: 'pass' != 'G0'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-09 the preview milestone successor relabelled physics-retained-1] _
+
+mode = 'dense_scrutiny'
+label = '09 the preview milestone successor relabelled physics-retained-1'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G1', 'RETAI...IPT_MISMATCH') == ('G0', 'SOURC..._UNSUPPORTED')
+E         
+E         At index 0 diff: 'G1' != 'G0'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-03 an attempt's definition_id ordinary] _
+
+mode = 'sparse_interactive', label = "03 an attempt's definition_id ordinary"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G0', 'SOURC..._UNSUPPORTED')
+E         
+E         At index 0 diff: 'pass' != 'G0'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-09 the preview milestone successor relabelled physics-retained-1] _
+
+mode = 'sparse_interactive'
+label = '09 the preview milestone successor relabelled physics-retained-1'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G1', 'RETAI...IPT_MISMATCH') == ('G0', 'SOURC..._UNSUPPORTED')
+E         
+E         At index 0 diff: 'G1' != 'G0'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-03 an attempt's definition_id ordinary]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-09 the preview milestone successor relabelled physics-retained-1]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-03 an attempt's definition_id ordinary]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-09 the preview milestone successor relabelled physics-retained-1]
+4 failed, 178 passed in 41.43s
+# end 2026-10-08T12:47:55Z rc=1

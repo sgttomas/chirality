@@ -1,0 +1,2172 @@
+# i100 job mut_B26 (slot) queued 2026-10-08T12:54:39Z dir=scratch/i100_b3r/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=B26 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/mut_B26/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/mutants/runs/B26/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+# start 2026-10-08T12:54:39Z
+.................................FF............FFFFFFFFFFFFFFFFF......FF [ 39%]
+FFFFFFFFFF..FFFFFF...............FFFFFFFFFFFFFFFFF......FFFFFFFFFFFF..FF [ 79%]
+FFFF...FFFFFFFFF..FF.............FFFF.                                   [100%]
+=================================== FAILURES ===================================
+_ test_b3b_m3x_synthetic_base_is_eligible_and_classified_as_the_milestone[dense_scrutiny] _
+
+mode = 'dense_scrutiny'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_synthetic_base_is_eligible_and_classified_as_the_milestone(mode):
+        source, invocation = m3x(mode)
+>       assert outcome(source, invocation) == ("pass", True, "eligible")
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('pass', True, 'eligible')
+E         
+E         At index 0 diff: 'G7' != 'pass'
+E         Right contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:427: AssertionError
+_ test_b3b_m3x_synthetic_base_is_eligible_and_classified_as_the_milestone[sparse_interactive] _
+
+mode = 'sparse_interactive'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_synthetic_base_is_eligible_and_classified_as_the_milestone(mode):
+        source, invocation = m3x(mode)
+>       assert outcome(source, invocation) == ("pass", True, "eligible")
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('pass', True, 'eligible')
+E         
+E         At index 0 diff: 'G7' != 'pass'
+E         Right contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:427: AssertionError
+________ test_b3b_m3x_mutations[dense_scrutiny-16 connector non-empty] _________
+
+mode = 'dense_scrutiny', label = '16 connector non-empty'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G7', 'SOURC...ENCE_INVALID')
+E         
+E         At index 1 diff: 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID' != 'SOURCE_PHYSICS_EVIDENCE_INVALID'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+___ test_b3b_m3x_mutations[dense_scrutiny-17 pipe_materials G_pa three ulps] ___
+
+mode = 'dense_scrutiny', label = '17 pipe_materials G_pa three ulps'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G7', 'SOURC...ENCE_INVALID')
+E         
+E         At index 1 diff: 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID' != 'SOURCE_PHYSICS_EVIDENCE_INVALID'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-18 recovery_method added to an exact_cases entry] _
+
+mode = 'dense_scrutiny'
+label = '18 recovery_method added to an exact_cases entry'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G7', 'SOURC...ENCE_INVALID')
+E         
+E         At index 1 diff: 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID' != 'SOURCE_PHYSICS_EVIDENCE_INVALID'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_____ test_b3b_m3x_mutations[dense_scrutiny-19 invocation contract legacy] _____
+
+mode = 'dense_scrutiny', label = '19 invocation contract legacy'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+______ test_b3b_m3x_mutations[dense_scrutiny-20 invocation schema 0.4.0] _______
+
+mode = 'dense_scrutiny', label = '20 invocation schema 0.4.0'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-21 invocation pressure_contract false] _
+
+mode = 'dense_scrutiny', label = '21 invocation pressure_contract false'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-22 a combination added to the invocation] _
+
+mode = 'dense_scrutiny', label = '22 a combination added to the invocation'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+__ test_b3b_m3x_mutations[dense_scrutiny-23 a case naming modulus_basis_ref] ___
+
+mode = 'dense_scrutiny', label = '23 a case naming modulus_basis_ref'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+______ test_b3b_m3x_mutations[dense_scrutiny-24 shear_origin explicit_g] _______
+
+mode = 'dense_scrutiny', label = '24 shear_origin explicit_g'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+___ test_b3b_m3x_mutations[dense_scrutiny-25 receipt shear_modulus one ulp] ____
+
+mode = 'dense_scrutiny', label = '25 receipt shear_modulus one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-26 shear_origin.poisson_ratio bits changed] _
+
+mode = 'dense_scrutiny', label = '26 shear_origin.poisson_ratio bits changed'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-27 authored nu changed in the invocation] _
+
+mode = 'dense_scrutiny', label = '27 authored nu changed in the invocation'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-28 S-C only: an entry's pipe_materials nu one ulp] _
+
+mode = 'dense_scrutiny'
+label = "28 S-C only: an entry's pipe_materials nu one ulp"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-29 N-6: an entry's pipe_materials G_pa one ulp] _
+
+mode = 'dense_scrutiny'
+label = "29 N-6: an entry's pipe_materials G_pa one ulp"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+___ test_b3b_m3x_mutations[dense_scrutiny-30 a case's pressure_regions null] ___
+
+mode = 'dense_scrutiny', label = "30 a case's pressure_regions null"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-31 a case's pressure_regions with one region] _
+
+mode = 'dense_scrutiny', label = "31 a case's pressure_regions with one region"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-32 a member's geometry.route preview] __
+
+mode = 'dense_scrutiny', label = "32 a member's geometry.route preview"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-x07 a case's pressure_regions removed] _
+
+mode = 'dense_scrutiny', label = "x07 a case's pressure_regions removed"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+____ test_b3b_m3x_mutations[dense_scrutiny-x08 a case with analysis_state] _____
+
+mode = 'dense_scrutiny', label = 'x08 a case with analysis_state'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+________ test_b3b_m3x_mutations[dense_scrutiny-x09 authored E one ulp] _________
+
+mode = 'dense_scrutiny', label = 'x09 authored E one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+______ test_b3b_m3x_mutations[dense_scrutiny-x10 authored nu unit not 1] _______
+
+mode = 'dense_scrutiny', label = 'x10 authored nu unit not 1'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+__________ test_b3b_m3x_mutations[dense_scrutiny-x11 authored nu 0.5] __________
+
+mode = 'dense_scrutiny', label = 'x11 authored nu 0.5'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-x12 authored constitutive_basis changed] _
+
+mode = 'dense_scrutiny', label = 'x12 authored constitutive_basis changed'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+___ test_b3b_m3x_mutations[dense_scrutiny-x13 invocation contract mode only] ___
+
+mode = 'dense_scrutiny', label = 'x13 invocation contract mode only'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+___ test_b3b_m3x_mutations[dense_scrutiny-x14 invocation contract extra key] ___
+
+mode = 'dense_scrutiny', label = 'x14 invocation contract extra key'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+____ test_b3b_m3x_mutations[dense_scrutiny-x15 invocation contract removed] ____
+
+mode = 'dense_scrutiny', label = 'x15 invocation contract removed'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+______ test_b3b_m3x_mutations[dense_scrutiny-x16 invocation schema 0.2.0] ______
+
+mode = 'dense_scrutiny', label = 'x16 invocation schema 0.2.0'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+____ test_b3b_m3x_mutations[dense_scrutiny-x17 physics-1 headline altered] _____
+
+mode = 'dense_scrutiny', label = 'x17 physics-1 headline altered'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G7', 'SOURC...ENCE_INVALID')
+E         
+E         At index 1 diff: 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID' != 'SOURCE_PHYSICS_EVIDENCE_INVALID'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-x18 a named point basis equal to the base, named in the receipt] _
+
+mode = 'dense_scrutiny'
+label = 'x18 a named point basis equal to the base, named in the receipt'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-x21 invocation contract version 2.0.1] _
+
+mode = 'dense_scrutiny', label = 'x21 invocation contract version 2.0.1'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-x22 invocation contract with an extra null key] _
+
+mode = 'dense_scrutiny'
+label = 'x22 invocation contract with an extra null key'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-x23 a component added to the invocation] _
+
+mode = 'dense_scrutiny', label = 'x23 a component added to the invocation'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+______ test_b3b_m3x_mutations[dense_scrutiny-x24 authored nu unit empty] _______
+
+mode = 'dense_scrutiny', label = 'x24 authored nu unit empty'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-x25 authored constitutive_basis removed] _
+
+mode = 'dense_scrutiny', label = 'x25 authored constitutive_basis removed'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-x26 G_hat one ulp high, every copy consistent] _
+
+mode = 'dense_scrutiny', label = 'x26 G_hat one ulp high, every copy consistent'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+______ test_b3b_m3x_mutations[sparse_interactive-16 connector non-empty] _______
+
+mode = 'sparse_interactive', label = '16 connector non-empty'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G7', 'SOURC...ENCE_INVALID')
+E         
+E         At index 1 diff: 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID' != 'SOURCE_PHYSICS_EVIDENCE_INVALID'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-17 pipe_materials G_pa three ulps] _
+
+mode = 'sparse_interactive', label = '17 pipe_materials G_pa three ulps'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G7', 'SOURC...ENCE_INVALID')
+E         
+E         At index 1 diff: 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID' != 'SOURCE_PHYSICS_EVIDENCE_INVALID'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-18 recovery_method added to an exact_cases entry] _
+
+mode = 'sparse_interactive'
+label = '18 recovery_method added to an exact_cases entry'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G7', 'SOURC...ENCE_INVALID')
+E         
+E         At index 1 diff: 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID' != 'SOURCE_PHYSICS_EVIDENCE_INVALID'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+___ test_b3b_m3x_mutations[sparse_interactive-19 invocation contract legacy] ___
+
+mode = 'sparse_interactive', label = '19 invocation contract legacy'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+____ test_b3b_m3x_mutations[sparse_interactive-20 invocation schema 0.4.0] _____
+
+mode = 'sparse_interactive', label = '20 invocation schema 0.4.0'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-21 invocation pressure_contract false] _
+
+mode = 'sparse_interactive', label = '21 invocation pressure_contract false'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-22 a combination added to the invocation] _
+
+mode = 'sparse_interactive', label = '22 a combination added to the invocation'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-23 a case naming modulus_basis_ref] _
+
+mode = 'sparse_interactive', label = '23 a case naming modulus_basis_ref'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+____ test_b3b_m3x_mutations[sparse_interactive-24 shear_origin explicit_g] _____
+
+mode = 'sparse_interactive', label = '24 shear_origin explicit_g'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-25 receipt shear_modulus one ulp] __
+
+mode = 'sparse_interactive', label = '25 receipt shear_modulus one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-26 shear_origin.poisson_ratio bits changed] _
+
+mode = 'sparse_interactive'
+label = '26 shear_origin.poisson_ratio bits changed'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-27 authored nu changed in the invocation] _
+
+mode = 'sparse_interactive', label = '27 authored nu changed in the invocation'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-28 S-C only: an entry's pipe_materials nu one ulp] _
+
+mode = 'sparse_interactive'
+label = "28 S-C only: an entry's pipe_materials nu one ulp"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-29 N-6: an entry's pipe_materials G_pa one ulp] _
+
+mode = 'sparse_interactive'
+label = "29 N-6: an entry's pipe_materials G_pa one ulp"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-30 a case's pressure_regions null] _
+
+mode = 'sparse_interactive', label = "30 a case's pressure_regions null"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-31 a case's pressure_regions with one region] _
+
+mode = 'sparse_interactive'
+label = "31 a case's pressure_regions with one region"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-32 a member's geometry.route preview] _
+
+mode = 'sparse_interactive', label = "32 a member's geometry.route preview"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x07 a case's pressure_regions removed] _
+
+mode = 'sparse_interactive', label = "x07 a case's pressure_regions removed"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+__ test_b3b_m3x_mutations[sparse_interactive-x08 a case with analysis_state] ___
+
+mode = 'sparse_interactive', label = 'x08 a case with analysis_state'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+______ test_b3b_m3x_mutations[sparse_interactive-x09 authored E one ulp] _______
+
+mode = 'sparse_interactive', label = 'x09 authored E one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+____ test_b3b_m3x_mutations[sparse_interactive-x10 authored nu unit not 1] _____
+
+mode = 'sparse_interactive', label = 'x10 authored nu unit not 1'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+________ test_b3b_m3x_mutations[sparse_interactive-x11 authored nu 0.5] ________
+
+mode = 'sparse_interactive', label = 'x11 authored nu 0.5'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x12 authored constitutive_basis changed] _
+
+mode = 'sparse_interactive', label = 'x12 authored constitutive_basis changed'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x13 invocation contract mode only] _
+
+mode = 'sparse_interactive', label = 'x13 invocation contract mode only'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x14 invocation contract extra key] _
+
+mode = 'sparse_interactive', label = 'x14 invocation contract extra key'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+__ test_b3b_m3x_mutations[sparse_interactive-x15 invocation contract removed] __
+
+mode = 'sparse_interactive', label = 'x15 invocation contract removed'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+____ test_b3b_m3x_mutations[sparse_interactive-x16 invocation schema 0.2.0] ____
+
+mode = 'sparse_interactive', label = 'x16 invocation schema 0.2.0'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+__ test_b3b_m3x_mutations[sparse_interactive-x17 physics-1 headline altered] ___
+
+mode = 'sparse_interactive', label = 'x17 physics-1 headline altered'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G7', 'SOURC...ENCE_INVALID')
+E         
+E         At index 1 diff: 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID' != 'SOURCE_PHYSICS_EVIDENCE_INVALID'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x18 a named point basis equal to the base, named in the receipt] _
+
+mode = 'sparse_interactive'
+label = 'x18 a named point basis equal to the base, named in the receipt'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x21 invocation contract version 2.0.1] _
+
+mode = 'sparse_interactive', label = 'x21 invocation contract version 2.0.1'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x22 invocation contract with an extra null key] _
+
+mode = 'sparse_interactive'
+label = 'x22 invocation contract with an extra null key'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x23 a component added to the invocation] _
+
+mode = 'sparse_interactive', label = 'x23 a component added to the invocation'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+____ test_b3b_m3x_mutations[sparse_interactive-x24 authored nu unit empty] _____
+
+mode = 'sparse_interactive', label = 'x24 authored nu unit empty'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x25 authored constitutive_basis removed] _
+
+mode = 'sparse_interactive', label = 'x25 authored constitutive_basis removed'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x26 G_hat one ulp high, every copy consistent] _
+
+mode = 'sparse_interactive'
+label = 'x26 G_hat one ulp high, every copy consistent'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_must_pass[dense_scrutiny-p01 an authored redundant G in the invocation (ignored by the producer)] _
+
+mode = 'dense_scrutiny'
+label = 'p01 an authored redundant G in the invocation (ignored by the producer)'
+
+    @pytest.mark.parametrize("label", sorted(B3B_PASSES))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_must_pass(mode, label):
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == ("pass", True, "eligible")
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('pass', True, 'eligible')
+E         
+E         At index 0 diff: 'G7' != 'pass'
+E         Right contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:457: AssertionError
+_ test_b3b_m3x_must_pass[sparse_interactive-p01 an authored redundant G in the invocation (ignored by the producer)] _
+
+mode = 'sparse_interactive'
+label = 'p01 an authored redundant G in the invocation (ignored by the producer)'
+
+    @pytest.mark.parametrize("label", sorted(B3B_PASSES))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_must_pass(mode, label):
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == ("pass", True, "eligible")
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('pass', True, 'eligible')
+E         
+E         At index 0 diff: 'G7' != 'pass'
+E         Right contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:457: AssertionError
+_ test_b3b_g8_material_binding_precedes_s_c[x10 authored nu unit not 1-False] __
+
+label = 'x10 authored nu unit not 1', s_c = False
+
+    @pytest.mark.parametrize("label, s_c", [("x10 authored nu unit not 1", False), ("x24 authored nu unit empty", False), ("x11 authored nu 0.5", False),
+                                            ("26 shear_origin.poisson_ratio bits changed", False), ("x26 G_hat one ulp high, every copy consistent", False),
+                                            ("28 S-C only: an entry's pipe_materials nu one ulp", True), ("x12 authored constitutive_basis changed", True)])
+    def test_b3b_g8_material_binding_precedes_s_c(label, s_c):
+        """REVISION_01 §4.2's G8 order on the exact branch: step 4 (the receipt's E, G_hat and nu against the authored
+        material) before step 5 (S-C), whose own code is the detail of G8's PREPARATION_MISMATCH (B3D-13)."""
+        source, invocation = exact_shape("sparse_interactive", label)
+        with pytest.raises(rp.RetainedPrecisionError) as error:
+            rp.validate_retained_precision(source, invocation)
+>       assert (error.value.gate, error.value.code) == PREPARATION
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:469: AssertionError
+_ test_b3b_g8_material_binding_precedes_s_c[x24 authored nu unit empty-False] __
+
+label = 'x24 authored nu unit empty', s_c = False
+
+    @pytest.mark.parametrize("label, s_c", [("x10 authored nu unit not 1", False), ("x24 authored nu unit empty", False), ("x11 authored nu 0.5", False),
+                                            ("26 shear_origin.poisson_ratio bits changed", False), ("x26 G_hat one ulp high, every copy consistent", False),
+                                            ("28 S-C only: an entry's pipe_materials nu one ulp", True), ("x12 authored constitutive_basis changed", True)])
+    def test_b3b_g8_material_binding_precedes_s_c(label, s_c):
+        """REVISION_01 §4.2's G8 order on the exact branch: step 4 (the receipt's E, G_hat and nu against the authored
+        material) before step 5 (S-C), whose own code is the detail of G8's PREPARATION_MISMATCH (B3D-13)."""
+        source, invocation = exact_shape("sparse_interactive", label)
+        with pytest.raises(rp.RetainedPrecisionError) as error:
+            rp.validate_retained_precision(source, invocation)
+>       assert (error.value.gate, error.value.code) == PREPARATION
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:469: AssertionError
+_____ test_b3b_g8_material_binding_precedes_s_c[x11 authored nu 0.5-False] _____
+
+label = 'x11 authored nu 0.5', s_c = False
+
+    @pytest.mark.parametrize("label, s_c", [("x10 authored nu unit not 1", False), ("x24 authored nu unit empty", False), ("x11 authored nu 0.5", False),
+                                            ("26 shear_origin.poisson_ratio bits changed", False), ("x26 G_hat one ulp high, every copy consistent", False),
+                                            ("28 S-C only: an entry's pipe_materials nu one ulp", True), ("x12 authored constitutive_basis changed", True)])
+    def test_b3b_g8_material_binding_precedes_s_c(label, s_c):
+        """REVISION_01 §4.2's G8 order on the exact branch: step 4 (the receipt's E, G_hat and nu against the authored
+        material) before step 5 (S-C), whose own code is the detail of G8's PREPARATION_MISMATCH (B3D-13)."""
+        source, invocation = exact_shape("sparse_interactive", label)
+        with pytest.raises(rp.RetainedPrecisionError) as error:
+            rp.validate_retained_precision(source, invocation)
+>       assert (error.value.gate, error.value.code) == PREPARATION
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:469: AssertionError
+_ test_b3b_g8_material_binding_precedes_s_c[26 shear_origin.poisson_ratio bits changed-False] _
+
+label = '26 shear_origin.poisson_ratio bits changed', s_c = False
+
+    @pytest.mark.parametrize("label, s_c", [("x10 authored nu unit not 1", False), ("x24 authored nu unit empty", False), ("x11 authored nu 0.5", False),
+                                            ("26 shear_origin.poisson_ratio bits changed", False), ("x26 G_hat one ulp high, every copy consistent", False),
+                                            ("28 S-C only: an entry's pipe_materials nu one ulp", True), ("x12 authored constitutive_basis changed", True)])
+    def test_b3b_g8_material_binding_precedes_s_c(label, s_c):
+        """REVISION_01 §4.2's G8 order on the exact branch: step 4 (the receipt's E, G_hat and nu against the authored
+        material) before step 5 (S-C), whose own code is the detail of G8's PREPARATION_MISMATCH (B3D-13)."""
+        source, invocation = exact_shape("sparse_interactive", label)
+        with pytest.raises(rp.RetainedPrecisionError) as error:
+            rp.validate_retained_precision(source, invocation)
+>       assert (error.value.gate, error.value.code) == PREPARATION
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:469: AssertionError
+_ test_b3b_g8_material_binding_precedes_s_c[x26 G_hat one ulp high, every copy consistent-False] _
+
+label = 'x26 G_hat one ulp high, every copy consistent', s_c = False
+
+    @pytest.mark.parametrize("label, s_c", [("x10 authored nu unit not 1", False), ("x24 authored nu unit empty", False), ("x11 authored nu 0.5", False),
+                                            ("26 shear_origin.poisson_ratio bits changed", False), ("x26 G_hat one ulp high, every copy consistent", False),
+                                            ("28 S-C only: an entry's pipe_materials nu one ulp", True), ("x12 authored constitutive_basis changed", True)])
+    def test_b3b_g8_material_binding_precedes_s_c(label, s_c):
+        """REVISION_01 §4.2's G8 order on the exact branch: step 4 (the receipt's E, G_hat and nu against the authored
+        material) before step 5 (S-C), whose own code is the detail of G8's PREPARATION_MISMATCH (B3D-13)."""
+        source, invocation = exact_shape("sparse_interactive", label)
+        with pytest.raises(rp.RetainedPrecisionError) as error:
+            rp.validate_retained_precision(source, invocation)
+>       assert (error.value.gate, error.value.code) == PREPARATION
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:469: AssertionError
+_ test_b3b_g8_material_binding_precedes_s_c[28 S-C only: an entry's pipe_materials nu one ulp-True] _
+
+label = "28 S-C only: an entry's pipe_materials nu one ulp", s_c = True
+
+    @pytest.mark.parametrize("label, s_c", [("x10 authored nu unit not 1", False), ("x24 authored nu unit empty", False), ("x11 authored nu 0.5", False),
+                                            ("26 shear_origin.poisson_ratio bits changed", False), ("x26 G_hat one ulp high, every copy consistent", False),
+                                            ("28 S-C only: an entry's pipe_materials nu one ulp", True), ("x12 authored constitutive_basis changed", True)])
+    def test_b3b_g8_material_binding_precedes_s_c(label, s_c):
+        """REVISION_01 §4.2's G8 order on the exact branch: step 4 (the receipt's E, G_hat and nu against the authored
+        material) before step 5 (S-C), whose own code is the detail of G8's PREPARATION_MISMATCH (B3D-13)."""
+        source, invocation = exact_shape("sparse_interactive", label)
+        with pytest.raises(rp.RetainedPrecisionError) as error:
+            rp.validate_retained_precision(source, invocation)
+>       assert (error.value.gate, error.value.code) == PREPARATION
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:469: AssertionError
+_ test_b3b_g8_material_binding_precedes_s_c[x12 authored constitutive_basis changed-True] _
+
+label = 'x12 authored constitutive_basis changed', s_c = True
+
+    @pytest.mark.parametrize("label, s_c", [("x10 authored nu unit not 1", False), ("x24 authored nu unit empty", False), ("x11 authored nu 0.5", False),
+                                            ("26 shear_origin.poisson_ratio bits changed", False), ("x26 G_hat one ulp high, every copy consistent", False),
+                                            ("28 S-C only: an entry's pipe_materials nu one ulp", True), ("x12 authored constitutive_basis changed", True)])
+    def test_b3b_g8_material_binding_precedes_s_c(label, s_c):
+        """REVISION_01 §4.2's G8 order on the exact branch: step 4 (the receipt's E, G_hat and nu against the authored
+        material) before step 5 (S-C), whose own code is the detail of G8's PREPARATION_MISMATCH (B3D-13)."""
+        source, invocation = exact_shape("sparse_interactive", label)
+        with pytest.raises(rp.RetainedPrecisionError) as error:
+            rp.validate_retained_precision(source, invocation)
+>       assert (error.value.gate, error.value.code) == PREPARATION
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:469: AssertionError
+______________________ test_b3b_transport[dense_scrutiny] ______________________
+
+mode = 'dense_scrutiny'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_transport(mode):
+        source, _ = m3x(mode)
+>       assert outcome(source, None, transport=True) == ("pass", False, "needs_recompute")
+E       AssertionError: assert ('G2', 'SOURC...ENCE_INVALID') == ('pass', Fals...ds_recompute')
+E         
+E         At index 0 diff: 'G2' != 'pass'
+E         Right contains one more item: 'needs_recompute'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:494: AssertionError
+____________________ test_b3b_transport[sparse_interactive] ____________________
+
+mode = 'sparse_interactive'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_transport(mode):
+        source, _ = m3x(mode)
+>       assert outcome(source, None, transport=True) == ("pass", False, "needs_recompute")
+E       AssertionError: assert ('G2', 'SOURC...ENCE_INVALID') == ('pass', Fals...ds_recompute')
+E         
+E         At index 0 diff: 'G2' != 'pass'
+E         Right contains one more item: 'needs_recompute'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:494: AssertionError
+______________________ test_b3b_carriers[dense_scrutiny] _______________________
+
+mode = 'dense_scrutiny'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_carriers(mode):
+        source, invocation = m3x(mode)
+>       assert dispatch(source) == (c.PHYSICS_RETAINED_CONTRACT_ID, c.PHYSICS_RETAINED_CONTRACT_SHA256, c._PHYSICS_RETAINED_CONTRACT_PATH)
+E       AssertionError: assert 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: formulation profile or limitations' == ('openpipestress.result_semantics/0.3.0/physics-retained-1', 'c4987e874889645ac315b5f55f58690082ad5e7745527f20e3e316ef...ty-t3/scratch/i100_b3r/mut/projects/chirality-piping/fixtures/results/semantic_contract_v0_3_physics_retained_1.json'))
+E        +  where 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: formulation profile or limitations' = dispatch({'accepted_model_state_mutated': False, 'contract_evidence': {'pressure': [], 'connector': [], 'exact_cases': [{'load_...k, and the ordinary-attempt evidence.', ...}], 'document_kind': 'openpipestress.product_preview.mechanics_result', ...})
+
+tests/test_retained_precision_b3.py:601: AssertionError
+____________________ test_b3b_carriers[sparse_interactive] _____________________
+
+mode = 'sparse_interactive'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_carriers(mode):
+        source, invocation = m3x(mode)
+>       assert dispatch(source) == (c.PHYSICS_RETAINED_CONTRACT_ID, c.PHYSICS_RETAINED_CONTRACT_SHA256, c._PHYSICS_RETAINED_CONTRACT_PATH)
+E       AssertionError: assert 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: formulation profile or limitations' == ('openpipestress.result_semantics/0.3.0/physics-retained-1', 'c4987e874889645ac315b5f55f58690082ad5e7745527f20e3e316ef...ty-t3/scratch/i100_b3r/mut/projects/chirality-piping/fixtures/results/semantic_contract_v0_3_physics_retained_1.json'))
+E        +  where 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: formulation profile or limitations' = dispatch({'accepted_model_state_mutated': False, 'contract_evidence': {'pressure': [], 'connector': [], 'exact_cases': [{'load_...k, and the ordinary-attempt evidence.', ...}], 'document_kind': 'openpipestress.product_preview.mechanics_result', ...})
+
+tests/test_retained_precision_b3.py:601: AssertionError
+_ test_b3b_stress_neutral_packager_refuses_the_exact_successor[dense_scrutiny] _
+
+source = {'accepted_model_state_mutated': False, 'contract_evidence': {'pressure': [], 'connector': [], 'exact_cases': [{'load_...k, and the ordinary-attempt evidence.', ...}], 'document_kind': 'openpipestress.product_preview.mechanics_result', ...}
+invocation = None, raw = True
+
+    def _validate_draft(source: Any, invocation: Any = None, *, raw: bool = True) -> dict[str, Any]:
+        """The ordered checks behind the public entry (D-U6-1). With raw=False, the transport checks
+        (F-U6b-2): G1 skips the raw rows and the publication digest, as Rust's g1(source, false).
+        B3b: one dispatch on the identity at G0 selects the route (B3-D §6.1); the other gates are shared."""
+        gate="G0";route=None
+        try:
+            producer=source.get("producer") if type(source) is dict else None;basis=source.get("formulation_basis") if type(source) is dict else None
+            contract=producer.get("semantic_contract_id") if type(producer) is dict else None
+            route=ROUTES.get(contract) if type(contract) is str and not (__import__("os").environ.get("I100_MUT") == "B1" and contract == EXACT_CONTRACT_ID) else None
+            _need(type(producer) is dict and type(basis) is dict and route is not None and (basis.get("profile_id")==route.profile or __import__("os").environ.get("I100_MUT") == "B2"),"G0","SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+            snapshot=deepcopy(source);invocation=deepcopy(invocation);receipt=snapshot.get("retained_precision");schema=_schema()
+            _need(snapshot.get("schema_version")=="0.2.0" and snapshot["producer"].get("component_name")=="open_pipe_stress_product_physics" and snapshot["producer"].get("component_version")=="0.2.0",gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+            if route.exact:_g0_exact(receipt)
+            else:
+                definition=json.loads((ROOT/"fixtures/results/retained_precision_prepared_ordinary_v1.json").read_text())
+                _need(_hash("retained_precision_formation_v1",definition)==DEFINITION_HASH,gate,"FORMATION_MISMATCH")
+                table_bytes=(ROOT/"fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json").read_bytes()
+                table=json.loads(table_bytes)
+                inherited_bytes=(ROOT/"fixtures/results/semantic_contract_v0_3_preview_physics_1.json").read_bytes()
+                _need(hashlib.sha256(table_bytes).hexdigest()==TABLE_HASH and hashlib.sha256(inherited_bytes).hexdigest()==table["inherited_semantic_contract_sha256"],gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+                # D2 + settled readings 1-2: an absent retained_precision or body is an absent G0 field;
+                # receipt_version is exactly 1 (C1 s4); thresholds and canonicalization are G0 fields.
+                _need(type(receipt) is dict and type(receipt.get("body")) is dict,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+                b=receipt["body"]
+                for key,value in {"receipt_version":1,"policy":"M03-INTEGRITY-MP-v2","projection_policy":"RP-LOGICAL-ATTEMPTS-v1","work_policy":"W1-LME-20B-60B-v1","facade_policy":"RP-FACADE-SI-v2","canonicalization":"openpipestress_jcs_ijson_v1"}.items():
+                    _need((_integral(b.get(key))==value) if type(value) is int else (type(b.get(key)) is str and b.get(key)==value),gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+                w=b.get("work")
+                _need(type(w) is dict and _integral(w.get("case_limit"))==20_000_000_000 and _integral(w.get("invocation_limit"))==60_000_000_000,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+                for attempt in b.get("product_attempts",[]) if type(b.get("product_attempts")) is list else []:
+                    if type(attempt) is dict:_need(attempt.get("definition_id")==DEFINITION_ID,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+            gate="G1";_need(_shape(receipt,schema) and (not raw or (type(snapshot.get("results")) is list and all(_shape(r,schema["$defs"]["RawRow"]) for r in snapshot["results"]))),gate,"RECEIPT_MISMATCH")
+            body=receipt["body"]
+            _need(_hash("retained_precision_receipt_mp_v2",body)==receipt["receipt_sha256"],gate,"RECEIPT_MISMATCH")
+            if raw:_need(_hash("retained_precision_publication_mp_v2",{k:v for k,v in snapshot.items() if k!="retained_precision"})==body["publication_sha256"],gate,"RECEIPT_MISMATCH")
+            # Integrity is G1. Invalid reference representation/coverage is left for
+            # G2/G3; only already-addressable records have an integrity comparison.
+            for c in body["cases"]:
+                si=_integral(c.get("source_ref"))
+                if c["status"]=="selected" and si is not None and 0<=si<len(body["sources"]):
+                    _need(c["source_identity_sha256"]==_source_hash(body["sources"][si]),gate,"RECEIPT_MISMATCH")
+            for s in body["sources"]:
+                prep=s["preparation"]
+                if prep is not None:
+                    ai=_integral(prep["attempt_ref"])
+                    if ai is not None and 0<=ai<len(body["product_attempts"]):
+                        a=body["product_attempts"][ai]
+                        if all(m["result"]["kind"]=="prepared" for m in a["preparation"]["members"]):
+                            # S-1 (B3-D REVISION_01 §2): the payload carries the route's definition hash, not DEF-O's.
+                            _need(prep["sha256"]==_hash("retained_precision_preparation_v1",_preparation_payload(a,DEFINITION_HASH if __import__("os").environ.get("I100_MUT") == "B15" else route.definition_hash)),gate,"RECEIPT_MISMATCH")
+            gate="G2";_encoding(receipt,schema);_need(not _negative_zero(receipt),gate,"ENCODING_MISMATCH");_normalize_integrals(receipt)  # D34, then D32
+            if not raw:
+                gate="G7";_transport_base(snapshot,route)  # a header failure is raised at G2 (item 4); an escape still falls back at G7
+                return {"invocation_bound":False,"numerical_eligible":False,"standing":"needs_recompute","publication_sha256":body["publication_sha256"],"classifications":[]}
+            gate="G3";cases=body["cases"];quality=snapshot["numerical_quality"]["cases"]
+            ids=[c["basis_ref"]["ref_id"] for c in cases]
+            _need(len(set(ids))==len(ids) and [c["basis_ref"] for c in cases]==[q["basis_ref"] for q in quality] and any(c["status"]=="selected" for c in cases),gate,"COVERAGE_MISMATCH")
+            if invocation is not None:_need(ids==[c["id"] for c in invocation["request"]["model"]["load_cases"]],gate,"COVERAGE_MISMATCH")
+            rows={cid:[] for cid in ids};seen=set()
+            for row in snapshot["results"]:
+                _need(row["id"] not in seen and row.get("basis_ref",{}).get("ref_type")=="load_case" and row["basis_ref"]["ref_id"] in rows,gate,"COVERAGE_MISMATCH")
+                seen.add(row["id"]);rows[row["basis_ref"]["ref_id"]].append(row)
+            _need(len(body["ordinary_attempts"])==len(cases),gate,"COVERAGE_MISMATCH")
+            for s in body["sources"]:_need(len(s["body_membership"])>0,gate,"COVERAGE_MISMATCH")  # D29
+            # The receipt's own references, bound and unbound (RR "RV113's three returns verified; ...; the three-reader
+            # alignment set ruled", item 1; TS `coverage`): each source and each material basis sits at its index, a
+            # source's owner is its own case, and a basis's case list is unique and in range.
+            for si,s in enumerate(body["sources"]):
+                ci=_integral(s["owner"]["case_index"])
+                _need(s["index"]==si and s["owner"]["kind"]=="case" and ci is not None and 0<=ci<len(cases) and ids[ci]==s["owner"]["case_id"],gate,"COVERAGE_MISMATCH")
+            for mi,mb in enumerate(body["material_bases"]):
+                _need(mb["index"]==mi and len(set(mb["case_indices"]))==len(mb["case_indices"]) and all(x<len(cases) for x in mb["case_indices"]),gate,"COVERAGE_MISMATCH")
+            refs=[c["product_attempt_ref"] for c in cases if c["product_attempt_ref"] is not None]
+            _need(sorted(refs)==list(range(len(body["product_attempts"]))),gate,"COVERAGE_MISMATCH")
+            for ai,a in enumerate(body["product_attempts"]):
+                _need(a["id"]==ai and a["owner_ref"]["kind"]=="case" and a["owner_ref"]["index"]<len(cases),gate,"COVERAGE_MISMATCH")
+                c=cases[int(a["owner_ref"]["index"])]
+                _need(c["product_attempt_ref"]==ai,gate,"COVERAGE_MISMATCH")
+                old,new=a["operational"]["old"],a["operational"]["new"];pm=a["preparation"]["members"]
+                _need([x["member"] for x in old]==list(range(len(old))) and [x["member"] for x in pm]==list(range(len(pm))) and [x["member"] for x in new]==list(range(len(new))) and len(new)<=len(pm)<=len(old),gate,"COVERAGE_MISMATCH")
+                if a["operational"]["old_coverage"]=="captured_prefix":_need(not pm and not new,gate,"COVERAGE_MISMATCH")
+                if a["operational"]["old_coverage"]=="complete":
+                    # D1 (F1:101, 130; C3:302): complete old ids equal the member inventory: the source's
+                    # map when sourced, else every CaseSource's (one model); without one, G8 binds it.
+                    si=_integral(a["source_ref"])
+                    if si is not None and 0<=si<len(body["sources"]):_need([x["member"] for x in old]==[m["kernel_member"] for m in body["sources"][si]["id_maps"]["members"]],gate,"COVERAGE_MISMATCH")  # D23
+                    elif si is None:
+                        for s in body["sources"]:
+                            if s["owner"]["kind"]=="case":_need(len(old)==len(s["id_maps"]["members"]),gate,"COVERAGE_MISMATCH")
+                if a["proof"] is not None:
+                    indices=[x["row_index"] for x in a["proof"]["projection_outcomes"]];case_rows=rows[c["basis_ref"]["ref_id"]]
+                    _need(indices==sorted(set(indices)) and all(x<len(case_rows) and case_rows[int(x)]["kind"] not in HULL_EXCLUDED for x in indices),gate,"COVERAGE_MISMATCH")
+                    # I57 s4 G3: a complete proof-owned roster lists the attempt's source bodies
+                    # exactly once, ascending 0..body_count-1. A null/invalid source reference is
+                    # left to the G5 association pass.
+                    coverage=a["proof"]["summary_coverage"];si=_integral(a["source_ref"])
+                    if coverage is not None and si is not None and 0<=si<len(body["sources"]):
+                        inventory=[b["body"] for b in body["sources"][si]["body_membership"]]
+                        _need(bool(inventory) and [x["body"] for x in coverage]==inventory==list(range(len(inventory))),gate,"COVERAGE_MISMATCH")
+            # D1 (C2:117; C1:146): each run id is its execution-order position; the order is a bijection.
+            order=body["work"]["execution_order"];with_run=[i for i,c in enumerate(cases) if c.get("run") is not None]
+            _need(all(e["kind"]=="case" for e in order) and sorted(e["index"] for e in order)==with_run and all(cases[e["index"]]["run"]["id"]==k for k,e in enumerate(order)),gate,"COVERAGE_MISMATCH")
+            for i,c in enumerate(cases):
+                _need(c["ordinary"]["attempt_ref"]==i and c["ordinary"]["quality_binding"]=={"kind":"present","index":i} and body["ordinary_attempts"][i]["case_index"]==i and body["ordinary_attempts"][i]["case_id"]==ids[i],gate,"COVERAGE_MISMATCH")
+            gate="G4";diags=snapshot["diagnostics"]
+            _need(len({d["id"] for d in diags})==len(diags) and not any(d["code"]=="SOURCE_BLOCK_RECOVERY_SELECTED" for d in diags),gate,"DIAGNOSTIC_MISMATCH")
+            for i,c in enumerate(cases):
+                cid=ids[i];selected=[d for d in diags if d["code"]=="RETAINED_PRECISION_SELECTED" and cid in d.get("affected_refs",[])];unavailable=[d for d in diags if d["code"]=="RETAINED_PRECISION_UNAVAILABLE" and cid in d.get("affected_refs",[])]
+                _need(len(selected)==int(c["status"]=="selected") and len(unavailable)==int(c["status"]=="unavailable") and all(d["affected_refs"]==[cid] for d in selected+unavailable),gate,"DIAGNOSTIC_MISMATCH")
+                if c["status"]=="unavailable":_need(unavailable[0]["id"]==c["diagnostic_ref"],gate,"DIAGNOSTIC_MISMATCH")
+                if c["status"]=="selected":_need(not any(d["code"]=="SOURCE_BLOCK_RECOVERY_UNAVAILABLE" and cid in d.get("affected_refs",[]) for d in diags),gate,"DIAGNOSTIC_MISMATCH")
+            for d in diags:
+                # D7 (C1 G4 row; C1:147): every retained diagnostic names exactly one requested case.
+                if d["code"] in ("RETAINED_PRECISION_SELECTED","RETAINED_PRECISION_UNAVAILABLE"):_need(type(d.get("affected_refs")) is list and len(d["affected_refs"])==1 and d["affected_refs"][0] in ids,gate,"DIAGNOSTIC_MISMATCH")
+            gate="G5";_g5_native(body);_g5_ordinary(body,cases,diags,quality);_g5_products(body,rows)
+            # B3-D §6.2: on the exact branch G5b also binds each selected case's own physics-1 section evidence.
+            gate="G5a";phase=["G5a"];classes=_g5_numeric(body,rows,phase,(snapshot.get("contract_evidence"),) if route.exact else None)
+            gate="G6"
+            for c in cases:
+                for row in rows[c["basis_ref"]["ref_id"]]:_need(row.get("recovery_method")==METHOD if c["status"]=="selected" else "recovery_method" not in row,gate,"ROW_METHOD_MISMATCH")
+            gate="G7";projected=_project(snapshot,route)
+            from .compatibility import _source_contract
+>           try:_source_contract(projected)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+core/analysis_runs/retained_precision.py:2063: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+core/analysis_runs/compatibility.py:507: in _source_contract
+    (validate_preview_physics_evidence if check_receipt else validate_preview_transport_metadata)(source)
+core/analysis_runs/preview_physics_evidence.py:213: in validate_preview_physics_evidence
+    _validate(source)
+core/analysis_runs/preview_physics_evidence.py:220: in _validate
+    _header(source)
+core/analysis_runs/preview_physics_evidence.py:147: in _header
+    _require(formulation["profile_id"] == PROFILE and formulation["limitations"] == LIMITATIONS, "formulation profile or limitations")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+condition = False, detail = 'formulation profile or limitations'
+
+    def _require(condition: Any, detail: str) -> None:
+        if not condition:
+>           raise ValueError(f"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: {detail}")
+E           ValueError: SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: formulation profile or limitations
+
+core/analysis_runs/preview_physics_evidence.py:66: ValueError
+
+The above exception was the direct cause of the following exception:
+
+source = {'accepted_model_state_mutated': False, 'contract_evidence': {'pressure': [], 'connector': [], 'exact_cases': [{'load_...k, and the ordinary-attempt evidence.', ...}], 'document_kind': 'openpipestress.product_preview.mechanics_result', ...}
+invocation = None
+
+    def _retained_validation(source: Mapping[str, Any], invocation: Any = None) -> dict[str, Any]:
+        """The accepted reader's G0-G8 on a successor; a G7 failure keeps the base
+        validator's own text, every other gate its code."""
+        from .retained_precision import RetainedPrecisionError, validate_retained_precision
+        try:
+>           return validate_retained_precision(source, invocation)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+core/analysis_runs/compatibility.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+core/analysis_runs/retained_precision.py:1857: in validate_retained_precision
+    return _validate_draft(source, invocation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = {'accepted_model_state_mutated': False, 'contract_evidence': {'pressure': [], 'connector': [], 'exact_cases': [{'load_...k, and the ordinary-attempt evidence.', ...}], 'document_kind': 'openpipestress.product_preview.mechanics_result', ...}
+invocation = None, raw = True
+
+    def _validate_draft(source: Any, invocation: Any = None, *, raw: bool = True) -> dict[str, Any]:
+        """The ordered checks behind the public entry (D-U6-1). With raw=False, the transport checks
+        (F-U6b-2): G1 skips the raw rows and the publication digest, as Rust's g1(source, false).
+        B3b: one dispatch on the identity at G0 selects the route (B3-D §6.1); the other gates are shared."""
+        gate="G0";route=None
+        try:
+            producer=source.get("producer") if type(source) is dict else None;basis=source.get("formulation_basis") if type(source) is dict else None
+            contract=producer.get("semantic_contract_id") if type(producer) is dict else None
+            route=ROUTES.get(contract) if type(contract) is str and not (__import__("os").environ.get("I100_MUT") == "B1" and contract == EXACT_CONTRACT_ID) else None
+            _need(type(producer) is dict and type(basis) is dict and route is not None and (basis.get("profile_id")==route.profile or __import__("os").environ.get("I100_MUT") == "B2"),"G0","SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+            snapshot=deepcopy(source);invocation=deepcopy(invocation);receipt=snapshot.get("retained_precision");schema=_schema()
+            _need(snapshot.get("schema_version")=="0.2.0" and snapshot["producer"].get("component_name")=="open_pipe_stress_product_physics" and snapshot["producer"].get("component_version")=="0.2.0",gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+            if route.exact:_g0_exact(receipt)
+            else:
+                definition=json.loads((ROOT/"fixtures/results/retained_precision_prepared_ordinary_v1.json").read_text())
+                _need(_hash("retained_precision_formation_v1",definition)==DEFINITION_HASH,gate,"FORMATION_MISMATCH")
+                table_bytes=(ROOT/"fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json").read_bytes()
+                table=json.loads(table_bytes)
+                inherited_bytes=(ROOT/"fixtures/results/semantic_contract_v0_3_preview_physics_1.json").read_bytes()
+                _need(hashlib.sha256(table_bytes).hexdigest()==TABLE_HASH and hashlib.sha256(inherited_bytes).hexdigest()==table["inherited_semantic_contract_sha256"],gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+                # D2 + settled readings 1-2: an absent retained_precision or body is an absent G0 field;
+                # receipt_version is exactly 1 (C1 s4); thresholds and canonicalization are G0 fields.
+                _need(type(receipt) is dict and type(receipt.get("body")) is dict,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+                b=receipt["body"]
+                for key,value in {"receipt_version":1,"policy":"M03-INTEGRITY-MP-v2","projection_policy":"RP-LOGICAL-ATTEMPTS-v1","work_policy":"W1-LME-20B-60B-v1","facade_policy":"RP-FACADE-SI-v2","canonicalization":"openpipestress_jcs_ijson_v1"}.items():
+                    _need((_integral(b.get(key))==value) if type(value) is int else (type(b.get(key)) is str and b.get(key)==value),gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+                w=b.get("work")
+                _need(type(w) is dict and _integral(w.get("case_limit"))==20_000_000_000 and _integral(w.get("invocation_limit"))==60_000_000_000,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+                for attempt in b.get("product_attempts",[]) if type(b.get("product_attempts")) is list else []:
+                    if type(attempt) is dict:_need(attempt.get("definition_id")==DEFINITION_ID,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+            gate="G1";_need(_shape(receipt,schema) and (not raw or (type(snapshot.get("results")) is list and all(_shape(r,schema["$defs"]["RawRow"]) for r in snapshot["results"]))),gate,"RECEIPT_MISMATCH")
+            body=receipt["body"]
+            _need(_hash("retained_precision_receipt_mp_v2",body)==receipt["receipt_sha256"],gate,"RECEIPT_MISMATCH")
+            if raw:_need(_hash("retained_precision_publication_mp_v2",{k:v for k,v in snapshot.items() if k!="retained_precision"})==body["publication_sha256"],gate,"RECEIPT_MISMATCH")
+            # Integrity is G1. Invalid reference representation/coverage is left for
+            # G2/G3; only already-addressable records have an integrity comparison.
+            for c in body["cases"]:
+                si=_integral(c.get("source_ref"))
+                if c["status"]=="selected" and si is not None and 0<=si<len(body["sources"]):
+                    _need(c["source_identity_sha256"]==_source_hash(body["sources"][si]),gate,"RECEIPT_MISMATCH")
+            for s in body["sources"]:
+                prep=s["preparation"]
+                if prep is not None:
+                    ai=_integral(prep["attempt_ref"])
+                    if ai is not None and 0<=ai<len(body["product_attempts"]):
+                        a=body["product_attempts"][ai]
+                        if all(m["result"]["kind"]=="prepared" for m in a["preparation"]["members"]):
+                            # S-1 (B3-D REVISION_01 §2): the payload carries the route's definition hash, not DEF-O's.
+                            _need(prep["sha256"]==_hash("retained_precision_preparation_v1",_preparation_payload(a,DEFINITION_HASH if __import__("os").environ.get("I100_MUT") == "B15" else route.definition_hash)),gate,"RECEIPT_MISMATCH")
+            gate="G2";_encoding(receipt,schema);_need(not _negative_zero(receipt),gate,"ENCODING_MISMATCH");_normalize_integrals(receipt)  # D34, then D32
+            if not raw:
+                gate="G7";_transport_base(snapshot,route)  # a header failure is raised at G2 (item 4); an escape still falls back at G7
+                return {"invocation_bound":False,"numerical_eligible":False,"standing":"needs_recompute","publication_sha256":body["publication_sha256"],"classifications":[]}
+            gate="G3";cases=body["cases"];quality=snapshot["numerical_quality"]["cases"]
+            ids=[c["basis_ref"]["ref_id"] for c in cases]
+            _need(len(set(ids))==len(ids) and [c["basis_ref"] for c in cases]==[q["basis_ref"] for q in quality] and any(c["status"]=="selected" for c in cases),gate,"COVERAGE_MISMATCH")
+            if invocation is not None:_need(ids==[c["id"] for c in invocation["request"]["model"]["load_cases"]],gate,"COVERAGE_MISMATCH")
+            rows={cid:[] for cid in ids};seen=set()
+            for row in snapshot["results"]:
+                _need(row["id"] not in seen and row.get("basis_ref",{}).get("ref_type")=="load_case" and row["basis_ref"]["ref_id"] in rows,gate,"COVERAGE_MISMATCH")
+                seen.add(row["id"]);rows[row["basis_ref"]["ref_id"]].append(row)
+            _need(len(body["ordinary_attempts"])==len(cases),gate,"COVERAGE_MISMATCH")
+            for s in body["sources"]:_need(len(s["body_membership"])>0,gate,"COVERAGE_MISMATCH")  # D29
+            # The receipt's own references, bound and unbound (RR "RV113's three returns verified; ...; the three-reader
+            # alignment set ruled", item 1; TS `coverage`): each source and each material basis sits at its index, a
+            # source's owner is its own case, and a basis's case list is unique and in range.
+            for si,s in enumerate(body["sources"]):
+                ci=_integral(s["owner"]["case_index"])
+                _need(s["index"]==si and s["owner"]["kind"]=="case" and ci is not None and 0<=ci<len(cases) and ids[ci]==s["owner"]["case_id"],gate,"COVERAGE_MISMATCH")
+            for mi,mb in enumerate(body["material_bases"]):
+                _need(mb["index"]==mi and len(set(mb["case_indices"]))==len(mb["case_indices"]) and all(x<len(cases) for x in mb["case_indices"]),gate,"COVERAGE_MISMATCH")
+            refs=[c["product_attempt_ref"] for c in cases if c["product_attempt_ref"] is not None]
+            _need(sorted(refs)==list(range(len(body["product_attempts"]))),gate,"COVERAGE_MISMATCH")
+            for ai,a in enumerate(body["product_attempts"]):
+                _need(a["id"]==ai and a["owner_ref"]["kind"]=="case" and a["owner_ref"]["index"]<len(cases),gate,"COVERAGE_MISMATCH")
+                c=cases[int(a["owner_ref"]["index"])]
+                _need(c["product_attempt_ref"]==ai,gate,"COVERAGE_MISMATCH")
+                old,new=a["operational"]["old"],a["operational"]["new"];pm=a["preparation"]["members"]
+                _need([x["member"] for x in old]==list(range(len(old))) and [x["member"] for x in pm]==list(range(len(pm))) and [x["member"] for x in new]==list(range(len(new))) and len(new)<=len(pm)<=len(old),gate,"COVERAGE_MISMATCH")
+                if a["operational"]["old_coverage"]=="captured_prefix":_need(not pm and not new,gate,"COVERAGE_MISMATCH")
+                if a["operational"]["old_coverage"]=="complete":
+                    # D1 (F1:101, 130; C3:302): complete old ids equal the member inventory: the source's
+                    # map when sourced, else every CaseSource's (one model); without one, G8 binds it.
+                    si=_integral(a["source_ref"])
+                    if si is not None and 0<=si<len(body["sources"]):_need([x["member"] for x in old]==[m["kernel_member"] for m in body["sources"][si]["id_maps"]["members"]],gate,"COVERAGE_MISMATCH")  # D23
+                    elif si is None:
+                        for s in body["sources"]:
+                            if s["owner"]["kind"]=="case":_need(len(old)==len(s["id_maps"]["members"]),gate,"COVERAGE_MISMATCH")
+                if a["proof"] is not None:
+                    indices=[x["row_index"] for x in a["proof"]["projection_outcomes"]];case_rows=rows[c["basis_ref"]["ref_id"]]
+                    _need(indices==sorted(set(indices)) and all(x<len(case_rows) and case_rows[int(x)]["kind"] not in HULL_EXCLUDED for x in indices),gate,"COVERAGE_MISMATCH")
+                    # I57 s4 G3: a complete proof-owned roster lists the attempt's source bodies
+                    # exactly once, ascending 0..body_count-1. A null/invalid source reference is
+                    # left to the G5 association pass.
+                    coverage=a["proof"]["summary_coverage"];si=_integral(a["source_ref"])
+                    if coverage is not None and si is not None and 0<=si<len(body["sources"]):
+                        inventory=[b["body"] for b in body["sources"][si]["body_membership"]]
+                        _need(bool(inventory) and [x["body"] for x in coverage]==inventory==list(range(len(inventory))),gate,"COVERAGE_MISMATCH")
+            # D1 (C2:117; C1:146): each run id is its execution-order position; the order is a bijection.
+            order=body["work"]["execution_order"];with_run=[i for i,c in enumerate(cases) if c.get("run") is not None]
+            _need(all(e["kind"]=="case" for e in order) and sorted(e["index"] for e in order)==with_run and all(cases[e["index"]]["run"]["id"]==k for k,e in enumerate(order)),gate,"COVERAGE_MISMATCH")
+            for i,c in enumerate(cases):
+                _need(c["ordinary"]["attempt_ref"]==i and c["ordinary"]["quality_binding"]=={"kind":"present","index":i} and body["ordinary_attempts"][i]["case_index"]==i and body["ordinary_attempts"][i]["case_id"]==ids[i],gate,"COVERAGE_MISMATCH")
+            gate="G4";diags=snapshot["diagnostics"]
+            _need(len({d["id"] for d in diags})==len(diags) and not any(d["code"]=="SOURCE_BLOCK_RECOVERY_SELECTED" for d in diags),gate,"DIAGNOSTIC_MISMATCH")
+            for i,c in enumerate(cases):
+                cid=ids[i];selected=[d for d in diags if d["code"]=="RETAINED_PRECISION_SELECTED" and cid in d.get("affected_refs",[])];unavailable=[d for d in diags if d["code"]=="RETAINED_PRECISION_UNAVAILABLE" and cid in d.get("affected_refs",[])]
+                _need(len(selected)==int(c["status"]=="selected") and len(unavailable)==int(c["status"]=="unavailable") and all(d["affected_refs"]==[cid] for d in selected+unavailable),gate,"DIAGNOSTIC_MISMATCH")
+                if c["status"]=="unavailable":_need(unavailable[0]["id"]==c["diagnostic_ref"],gate,"DIAGNOSTIC_MISMATCH")
+                if c["status"]=="selected":_need(not any(d["code"]=="SOURCE_BLOCK_RECOVERY_UNAVAILABLE" and cid in d.get("affected_refs",[]) for d in diags),gate,"DIAGNOSTIC_MISMATCH")
+            for d in diags:
+                # D7 (C1 G4 row; C1:147): every retained diagnostic names exactly one requested case.
+                if d["code"] in ("RETAINED_PRECISION_SELECTED","RETAINED_PRECISION_UNAVAILABLE"):_need(type(d.get("affected_refs")) is list and len(d["affected_refs"])==1 and d["affected_refs"][0] in ids,gate,"DIAGNOSTIC_MISMATCH")
+            gate="G5";_g5_native(body);_g5_ordinary(body,cases,diags,quality);_g5_products(body,rows)
+            # B3-D §6.2: on the exact branch G5b also binds each selected case's own physics-1 section evidence.
+            gate="G5a";phase=["G5a"];classes=_g5_numeric(body,rows,phase,(snapshot.get("contract_evidence"),) if route.exact else None)
+            gate="G6"
+            for c in cases:
+                for row in rows[c["basis_ref"]["ref_id"]]:_need(row.get("recovery_method")==METHOD if c["status"]=="selected" else "recovery_method" not in row,gate,"ROW_METHOD_MISMATCH")
+            gate="G7";projected=_project(snapshot,route)
+            from .compatibility import _source_contract
+            try:_source_contract(projected)
+            except ValueError as exc:
+                text=str(exc);match=re.match(r"[A-Z][A-Z0-9_]*",text)
+                error=RetainedPrecisionError("G7",match.group(0) if match else route.base_invalid);error.detail=text
+>               raise error from exc
+E               core.analysis_runs.retained_precision.RetainedPrecisionError: SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID
+
+core/analysis_runs/retained_precision.py:2067: RetainedPrecisionError
+
+The above exception was the direct cause of the following exception:
+
+mode = 'dense_scrutiny'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_stress_neutral_packager_refuses_the_exact_successor(mode):
+        """As the preview successor (T6's refusal stands in the Python packager; lane T's carriers are TS and schemas)."""
+        from core.handoff.stress_neutral import package_v0_3 as sn
+        from tests.test_stress_neutral_physics_source import arguments
+        source, _ = m3x(mode)
+>       record = c.build_analysis_run(source, input_manifest_ref={"object_type": "InputManifest", "ref": "manifest:b3b"}, input_manifest_hash="1" * 64)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_retained_precision_b3.py:639: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+core/analysis_runs/compatibility.py:720: in build_analysis_run
+    contract, _, _ = _source_contract(mechanics_result)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+core/analysis_runs/compatibility.py:412: in _source_contract
+    return _retained_contract(source, check_receipt=check_receipt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+core/analysis_runs/compatibility.py:306: in _retained_contract
+    _retained_validation(source)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = {'accepted_model_state_mutated': False, 'contract_evidence': {'pressure': [], 'connector': [], 'exact_cases': [{'load_...k, and the ordinary-attempt evidence.', ...}], 'document_kind': 'openpipestress.product_preview.mechanics_result', ...}
+invocation = None
+
+    def _retained_validation(source: Mapping[str, Any], invocation: Any = None) -> dict[str, Any]:
+        """The accepted reader's G0-G8 on a successor; a G7 failure keeps the base
+        validator's own text, every other gate its code."""
+        from .retained_precision import RetainedPrecisionError, validate_retained_precision
+        try:
+            return validate_retained_precision(source, invocation)
+        except RetainedPrecisionError as error:
+>           raise ValueError(error.detail or error.code) from error
+E           ValueError: SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: formulation profile or limitations
+
+core/analysis_runs/compatibility.py:284: ValueError
+_ test_b3b_stress_neutral_packager_refuses_the_exact_successor[sparse_interactive] _
+
+source = {'accepted_model_state_mutated': False, 'contract_evidence': {'pressure': [], 'connector': [], 'exact_cases': [{'load_...k, and the ordinary-attempt evidence.', ...}], 'document_kind': 'openpipestress.product_preview.mechanics_result', ...}
+invocation = None, raw = True
+
+    def _validate_draft(source: Any, invocation: Any = None, *, raw: bool = True) -> dict[str, Any]:
+        """The ordered checks behind the public entry (D-U6-1). With raw=False, the transport checks
+        (F-U6b-2): G1 skips the raw rows and the publication digest, as Rust's g1(source, false).
+        B3b: one dispatch on the identity at G0 selects the route (B3-D §6.1); the other gates are shared."""
+        gate="G0";route=None
+        try:
+            producer=source.get("producer") if type(source) is dict else None;basis=source.get("formulation_basis") if type(source) is dict else None
+            contract=producer.get("semantic_contract_id") if type(producer) is dict else None
+            route=ROUTES.get(contract) if type(contract) is str and not (__import__("os").environ.get("I100_MUT") == "B1" and contract == EXACT_CONTRACT_ID) else None
+            _need(type(producer) is dict and type(basis) is dict and route is not None and (basis.get("profile_id")==route.profile or __import__("os").environ.get("I100_MUT") == "B2"),"G0","SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+            snapshot=deepcopy(source);invocation=deepcopy(invocation);receipt=snapshot.get("retained_precision");schema=_schema()
+            _need(snapshot.get("schema_version")=="0.2.0" and snapshot["producer"].get("component_name")=="open_pipe_stress_product_physics" and snapshot["producer"].get("component_version")=="0.2.0",gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+            if route.exact:_g0_exact(receipt)
+            else:
+                definition=json.loads((ROOT/"fixtures/results/retained_precision_prepared_ordinary_v1.json").read_text())
+                _need(_hash("retained_precision_formation_v1",definition)==DEFINITION_HASH,gate,"FORMATION_MISMATCH")
+                table_bytes=(ROOT/"fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json").read_bytes()
+                table=json.loads(table_bytes)
+                inherited_bytes=(ROOT/"fixtures/results/semantic_contract_v0_3_preview_physics_1.json").read_bytes()
+                _need(hashlib.sha256(table_bytes).hexdigest()==TABLE_HASH and hashlib.sha256(inherited_bytes).hexdigest()==table["inherited_semantic_contract_sha256"],gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+                # D2 + settled readings 1-2: an absent retained_precision or body is an absent G0 field;
+                # receipt_version is exactly 1 (C1 s4); thresholds and canonicalization are G0 fields.
+                _need(type(receipt) is dict and type(receipt.get("body")) is dict,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+                b=receipt["body"]
+                for key,value in {"receipt_version":1,"policy":"M03-INTEGRITY-MP-v2","projection_policy":"RP-LOGICAL-ATTEMPTS-v1","work_policy":"W1-LME-20B-60B-v1","facade_policy":"RP-FACADE-SI-v2","canonicalization":"openpipestress_jcs_ijson_v1"}.items():
+                    _need((_integral(b.get(key))==value) if type(value) is int else (type(b.get(key)) is str and b.get(key)==value),gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+                w=b.get("work")
+                _need(type(w) is dict and _integral(w.get("case_limit"))==20_000_000_000 and _integral(w.get("invocation_limit"))==60_000_000_000,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+                for attempt in b.get("product_attempts",[]) if type(b.get("product_attempts")) is list else []:
+                    if type(attempt) is dict:_need(attempt.get("definition_id")==DEFINITION_ID,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+            gate="G1";_need(_shape(receipt,schema) and (not raw or (type(snapshot.get("results")) is list and all(_shape(r,schema["$defs"]["RawRow"]) for r in snapshot["results"]))),gate,"RECEIPT_MISMATCH")
+            body=receipt["body"]
+            _need(_hash("retained_precision_receipt_mp_v2",body)==receipt["receipt_sha256"],gate,"RECEIPT_MISMATCH")
+            if raw:_need(_hash("retained_precision_publication_mp_v2",{k:v for k,v in snapshot.items() if k!="retained_precision"})==body["publication_sha256"],gate,"RECEIPT_MISMATCH")
+            # Integrity is G1. Invalid reference representation/coverage is left for
+            # G2/G3; only already-addressable records have an integrity comparison.
+            for c in body["cases"]:
+                si=_integral(c.get("source_ref"))
+                if c["status"]=="selected" and si is not None and 0<=si<len(body["sources"]):
+                    _need(c["source_identity_sha256"]==_source_hash(body["sources"][si]),gate,"RECEIPT_MISMATCH")
+            for s in body["sources"]:
+                prep=s["preparation"]
+                if prep is not None:
+                    ai=_integral(prep["attempt_ref"])
+                    if ai is not None and 0<=ai<len(body["product_attempts"]):
+                        a=body["product_attempts"][ai]
+                        if all(m["result"]["kind"]=="prepared" for m in a["preparation"]["members"]):
+                            # S-1 (B3-D REVISION_01 §2): the payload carries the route's definition hash, not DEF-O's.
+                            _need(prep["sha256"]==_hash("retained_precision_preparation_v1",_preparation_payload(a,DEFINITION_HASH if __import__("os").environ.get("I100_MUT") == "B15" else route.definition_hash)),gate,"RECEIPT_MISMATCH")
+            gate="G2";_encoding(receipt,schema);_need(not _negative_zero(receipt),gate,"ENCODING_MISMATCH");_normalize_integrals(receipt)  # D34, then D32
+            if not raw:
+                gate="G7";_transport_base(snapshot,route)  # a header failure is raised at G2 (item 4); an escape still falls back at G7
+                return {"invocation_bound":False,"numerical_eligible":False,"standing":"needs_recompute","publication_sha256":body["publication_sha256"],"classifications":[]}
+            gate="G3";cases=body["cases"];quality=snapshot["numerical_quality"]["cases"]
+            ids=[c["basis_ref"]["ref_id"] for c in cases]
+            _need(len(set(ids))==len(ids) and [c["basis_ref"] for c in cases]==[q["basis_ref"] for q in quality] and any(c["status"]=="selected" for c in cases),gate,"COVERAGE_MISMATCH")
+            if invocation is not None:_need(ids==[c["id"] for c in invocation["request"]["model"]["load_cases"]],gate,"COVERAGE_MISMATCH")
+            rows={cid:[] for cid in ids};seen=set()
+            for row in snapshot["results"]:
+                _need(row["id"] not in seen and row.get("basis_ref",{}).get("ref_type")=="load_case" and row["basis_ref"]["ref_id"] in rows,gate,"COVERAGE_MISMATCH")
+                seen.add(row["id"]);rows[row["basis_ref"]["ref_id"]].append(row)
+            _need(len(body["ordinary_attempts"])==len(cases),gate,"COVERAGE_MISMATCH")
+            for s in body["sources"]:_need(len(s["body_membership"])>0,gate,"COVERAGE_MISMATCH")  # D29
+            # The receipt's own references, bound and unbound (RR "RV113's three returns verified; ...; the three-reader
+            # alignment set ruled", item 1; TS `coverage`): each source and each material basis sits at its index, a
+            # source's owner is its own case, and a basis's case list is unique and in range.
+            for si,s in enumerate(body["sources"]):
+                ci=_integral(s["owner"]["case_index"])
+                _need(s["index"]==si and s["owner"]["kind"]=="case" and ci is not None and 0<=ci<len(cases) and ids[ci]==s["owner"]["case_id"],gate,"COVERAGE_MISMATCH")
+            for mi,mb in enumerate(body["material_bases"]):
+                _need(mb["index"]==mi and len(set(mb["case_indices"]))==len(mb["case_indices"]) and all(x<len(cases) for x in mb["case_indices"]),gate,"COVERAGE_MISMATCH")
+            refs=[c["product_attempt_ref"] for c in cases if c["product_attempt_ref"] is not None]
+            _need(sorted(refs)==list(range(len(body["product_attempts"]))),gate,"COVERAGE_MISMATCH")
+            for ai,a in enumerate(body["product_attempts"]):
+                _need(a["id"]==ai and a["owner_ref"]["kind"]=="case" and a["owner_ref"]["index"]<len(cases),gate,"COVERAGE_MISMATCH")
+                c=cases[int(a["owner_ref"]["index"])]
+                _need(c["product_attempt_ref"]==ai,gate,"COVERAGE_MISMATCH")
+                old,new=a["operational"]["old"],a["operational"]["new"];pm=a["preparation"]["members"]
+                _need([x["member"] for x in old]==list(range(len(old))) and [x["member"] for x in pm]==list(range(len(pm))) and [x["member"] for x in new]==list(range(len(new))) and len(new)<=len(pm)<=len(old),gate,"COVERAGE_MISMATCH")
+                if a["operational"]["old_coverage"]=="captured_prefix":_need(not pm and not new,gate,"COVERAGE_MISMATCH")
+                if a["operational"]["old_coverage"]=="complete":
+                    # D1 (F1:101, 130; C3:302): complete old ids equal the member inventory: the source's
+                    # map when sourced, else every CaseSource's (one model); without one, G8 binds it.
+                    si=_integral(a["source_ref"])
+                    if si is not None and 0<=si<len(body["sources"]):_need([x["member"] for x in old]==[m["kernel_member"] for m in body["sources"][si]["id_maps"]["members"]],gate,"COVERAGE_MISMATCH")  # D23
+                    elif si is None:
+                        for s in body["sources"]:
+                            if s["owner"]["kind"]=="case":_need(len(old)==len(s["id_maps"]["members"]),gate,"COVERAGE_MISMATCH")
+                if a["proof"] is not None:
+                    indices=[x["row_index"] for x in a["proof"]["projection_outcomes"]];case_rows=rows[c["basis_ref"]["ref_id"]]
+                    _need(indices==sorted(set(indices)) and all(x<len(case_rows) and case_rows[int(x)]["kind"] not in HULL_EXCLUDED for x in indices),gate,"COVERAGE_MISMATCH")
+                    # I57 s4 G3: a complete proof-owned roster lists the attempt's source bodies
+                    # exactly once, ascending 0..body_count-1. A null/invalid source reference is
+                    # left to the G5 association pass.
+                    coverage=a["proof"]["summary_coverage"];si=_integral(a["source_ref"])
+                    if coverage is not None and si is not None and 0<=si<len(body["sources"]):
+                        inventory=[b["body"] for b in body["sources"][si]["body_membership"]]
+                        _need(bool(inventory) and [x["body"] for x in coverage]==inventory==list(range(len(inventory))),gate,"COVERAGE_MISMATCH")
+            # D1 (C2:117; C1:146): each run id is its execution-order position; the order is a bijection.
+            order=body["work"]["execution_order"];with_run=[i for i,c in enumerate(cases) if c.get("run") is not None]
+            _need(all(e["kind"]=="case" for e in order) and sorted(e["index"] for e in order)==with_run and all(cases[e["index"]]["run"]["id"]==k for k,e in enumerate(order)),gate,"COVERAGE_MISMATCH")
+            for i,c in enumerate(cases):
+                _need(c["ordinary"]["attempt_ref"]==i and c["ordinary"]["quality_binding"]=={"kind":"present","index":i} and body["ordinary_attempts"][i]["case_index"]==i and body["ordinary_attempts"][i]["case_id"]==ids[i],gate,"COVERAGE_MISMATCH")
+            gate="G4";diags=snapshot["diagnostics"]
+            _need(len({d["id"] for d in diags})==len(diags) and not any(d["code"]=="SOURCE_BLOCK_RECOVERY_SELECTED" for d in diags),gate,"DIAGNOSTIC_MISMATCH")
+            for i,c in enumerate(cases):
+                cid=ids[i];selected=[d for d in diags if d["code"]=="RETAINED_PRECISION_SELECTED" and cid in d.get("affected_refs",[])];unavailable=[d for d in diags if d["code"]=="RETAINED_PRECISION_UNAVAILABLE" and cid in d.get("affected_refs",[])]
+                _need(len(selected)==int(c["status"]=="selected") and len(unavailable)==int(c["status"]=="unavailable") and all(d["affected_refs"]==[cid] for d in selected+unavailable),gate,"DIAGNOSTIC_MISMATCH")
+                if c["status"]=="unavailable":_need(unavailable[0]["id"]==c["diagnostic_ref"],gate,"DIAGNOSTIC_MISMATCH")
+                if c["status"]=="selected":_need(not any(d["code"]=="SOURCE_BLOCK_RECOVERY_UNAVAILABLE" and cid in d.get("affected_refs",[]) for d in diags),gate,"DIAGNOSTIC_MISMATCH")
+            for d in diags:
+                # D7 (C1 G4 row; C1:147): every retained diagnostic names exactly one requested case.
+                if d["code"] in ("RETAINED_PRECISION_SELECTED","RETAINED_PRECISION_UNAVAILABLE"):_need(type(d.get("affected_refs")) is list and len(d["affected_refs"])==1 and d["affected_refs"][0] in ids,gate,"DIAGNOSTIC_MISMATCH")
+            gate="G5";_g5_native(body);_g5_ordinary(body,cases,diags,quality);_g5_products(body,rows)
+            # B3-D §6.2: on the exact branch G5b also binds each selected case's own physics-1 section evidence.
+            gate="G5a";phase=["G5a"];classes=_g5_numeric(body,rows,phase,(snapshot.get("contract_evidence"),) if route.exact else None)
+            gate="G6"
+            for c in cases:
+                for row in rows[c["basis_ref"]["ref_id"]]:_need(row.get("recovery_method")==METHOD if c["status"]=="selected" else "recovery_method" not in row,gate,"ROW_METHOD_MISMATCH")
+            gate="G7";projected=_project(snapshot,route)
+            from .compatibility import _source_contract
+>           try:_source_contract(projected)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+core/analysis_runs/retained_precision.py:2063: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+core/analysis_runs/compatibility.py:507: in _source_contract
+    (validate_preview_physics_evidence if check_receipt else validate_preview_transport_metadata)(source)
+core/analysis_runs/preview_physics_evidence.py:213: in validate_preview_physics_evidence
+    _validate(source)
+core/analysis_runs/preview_physics_evidence.py:220: in _validate
+    _header(source)
+core/analysis_runs/preview_physics_evidence.py:147: in _header
+    _require(formulation["profile_id"] == PROFILE and formulation["limitations"] == LIMITATIONS, "formulation profile or limitations")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+condition = False, detail = 'formulation profile or limitations'
+
+    def _require(condition: Any, detail: str) -> None:
+        if not condition:
+>           raise ValueError(f"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: {detail}")
+E           ValueError: SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: formulation profile or limitations
+
+core/analysis_runs/preview_physics_evidence.py:66: ValueError
+
+The above exception was the direct cause of the following exception:
+
+source = {'accepted_model_state_mutated': False, 'contract_evidence': {'pressure': [], 'connector': [], 'exact_cases': [{'load_...k, and the ordinary-attempt evidence.', ...}], 'document_kind': 'openpipestress.product_preview.mechanics_result', ...}
+invocation = None
+
+    def _retained_validation(source: Mapping[str, Any], invocation: Any = None) -> dict[str, Any]:
+        """The accepted reader's G0-G8 on a successor; a G7 failure keeps the base
+        validator's own text, every other gate its code."""
+        from .retained_precision import RetainedPrecisionError, validate_retained_precision
+        try:
+>           return validate_retained_precision(source, invocation)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+core/analysis_runs/compatibility.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+core/analysis_runs/retained_precision.py:1857: in validate_retained_precision
+    return _validate_draft(source, invocation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = {'accepted_model_state_mutated': False, 'contract_evidence': {'pressure': [], 'connector': [], 'exact_cases': [{'load_...k, and the ordinary-attempt evidence.', ...}], 'document_kind': 'openpipestress.product_preview.mechanics_result', ...}
+invocation = None, raw = True
+
+    def _validate_draft(source: Any, invocation: Any = None, *, raw: bool = True) -> dict[str, Any]:
+        """The ordered checks behind the public entry (D-U6-1). With raw=False, the transport checks
+        (F-U6b-2): G1 skips the raw rows and the publication digest, as Rust's g1(source, false).
+        B3b: one dispatch on the identity at G0 selects the route (B3-D §6.1); the other gates are shared."""
+        gate="G0";route=None
+        try:
+            producer=source.get("producer") if type(source) is dict else None;basis=source.get("formulation_basis") if type(source) is dict else None
+            contract=producer.get("semantic_contract_id") if type(producer) is dict else None
+            route=ROUTES.get(contract) if type(contract) is str and not (__import__("os").environ.get("I100_MUT") == "B1" and contract == EXACT_CONTRACT_ID) else None
+            _need(type(producer) is dict and type(basis) is dict and route is not None and (basis.get("profile_id")==route.profile or __import__("os").environ.get("I100_MUT") == "B2"),"G0","SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+            snapshot=deepcopy(source);invocation=deepcopy(invocation);receipt=snapshot.get("retained_precision");schema=_schema()
+            _need(snapshot.get("schema_version")=="0.2.0" and snapshot["producer"].get("component_name")=="open_pipe_stress_product_physics" and snapshot["producer"].get("component_version")=="0.2.0",gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+            if route.exact:_g0_exact(receipt)
+            else:
+                definition=json.loads((ROOT/"fixtures/results/retained_precision_prepared_ordinary_v1.json").read_text())
+                _need(_hash("retained_precision_formation_v1",definition)==DEFINITION_HASH,gate,"FORMATION_MISMATCH")
+                table_bytes=(ROOT/"fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json").read_bytes()
+                table=json.loads(table_bytes)
+                inherited_bytes=(ROOT/"fixtures/results/semantic_contract_v0_3_preview_physics_1.json").read_bytes()
+                _need(hashlib.sha256(table_bytes).hexdigest()==TABLE_HASH and hashlib.sha256(inherited_bytes).hexdigest()==table["inherited_semantic_contract_sha256"],gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+                # D2 + settled readings 1-2: an absent retained_precision or body is an absent G0 field;
+                # receipt_version is exactly 1 (C1 s4); thresholds and canonicalization are G0 fields.
+                _need(type(receipt) is dict and type(receipt.get("body")) is dict,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+                b=receipt["body"]
+                for key,value in {"receipt_version":1,"policy":"M03-INTEGRITY-MP-v2","projection_policy":"RP-LOGICAL-ATTEMPTS-v1","work_policy":"W1-LME-20B-60B-v1","facade_policy":"RP-FACADE-SI-v2","canonicalization":"openpipestress_jcs_ijson_v1"}.items():
+                    _need((_integral(b.get(key))==value) if type(value) is int else (type(b.get(key)) is str and b.get(key)==value),gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+                w=b.get("work")
+                _need(type(w) is dict and _integral(w.get("case_limit"))==20_000_000_000 and _integral(w.get("invocation_limit"))==60_000_000_000,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+                for attempt in b.get("product_attempts",[]) if type(b.get("product_attempts")) is list else []:
+                    if type(attempt) is dict:_need(attempt.get("definition_id")==DEFINITION_ID,gate,"SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+            gate="G1";_need(_shape(receipt,schema) and (not raw or (type(snapshot.get("results")) is list and all(_shape(r,schema["$defs"]["RawRow"]) for r in snapshot["results"]))),gate,"RECEIPT_MISMATCH")
+            body=receipt["body"]
+            _need(_hash("retained_precision_receipt_mp_v2",body)==receipt["receipt_sha256"],gate,"RECEIPT_MISMATCH")
+            if raw:_need(_hash("retained_precision_publication_mp_v2",{k:v for k,v in snapshot.items() if k!="retained_precision"})==body["publication_sha256"],gate,"RECEIPT_MISMATCH")
+            # Integrity is G1. Invalid reference representation/coverage is left for
+            # G2/G3; only already-addressable records have an integrity comparison.
+            for c in body["cases"]:
+                si=_integral(c.get("source_ref"))
+                if c["status"]=="selected" and si is not None and 0<=si<len(body["sources"]):
+                    _need(c["source_identity_sha256"]==_source_hash(body["sources"][si]),gate,"RECEIPT_MISMATCH")
+            for s in body["sources"]:
+                prep=s["preparation"]
+                if prep is not None:
+                    ai=_integral(prep["attempt_ref"])
+                    if ai is not None and 0<=ai<len(body["product_attempts"]):
+                        a=body["product_attempts"][ai]
+                        if all(m["result"]["kind"]=="prepared" for m in a["preparation"]["members"]):
+                            # S-1 (B3-D REVISION_01 §2): the payload carries the route's definition hash, not DEF-O's.
+                            _need(prep["sha256"]==_hash("retained_precision_preparation_v1",_preparation_payload(a,DEFINITION_HASH if __import__("os").environ.get("I100_MUT") == "B15" else route.definition_hash)),gate,"RECEIPT_MISMATCH")
+            gate="G2";_encoding(receipt,schema);_need(not _negative_zero(receipt),gate,"ENCODING_MISMATCH");_normalize_integrals(receipt)  # D34, then D32
+            if not raw:
+                gate="G7";_transport_base(snapshot,route)  # a header failure is raised at G2 (item 4); an escape still falls back at G7
+                return {"invocation_bound":False,"numerical_eligible":False,"standing":"needs_recompute","publication_sha256":body["publication_sha256"],"classifications":[]}
+            gate="G3";cases=body["cases"];quality=snapshot["numerical_quality"]["cases"]
+            ids=[c["basis_ref"]["ref_id"] for c in cases]
+            _need(len(set(ids))==len(ids) and [c["basis_ref"] for c in cases]==[q["basis_ref"] for q in quality] and any(c["status"]=="selected" for c in cases),gate,"COVERAGE_MISMATCH")
+            if invocation is not None:_need(ids==[c["id"] for c in invocation["request"]["model"]["load_cases"]],gate,"COVERAGE_MISMATCH")
+            rows={cid:[] for cid in ids};seen=set()
+            for row in snapshot["results"]:
+                _need(row["id"] not in seen and row.get("basis_ref",{}).get("ref_type")=="load_case" and row["basis_ref"]["ref_id"] in rows,gate,"COVERAGE_MISMATCH")
+                seen.add(row["id"]);rows[row["basis_ref"]["ref_id"]].append(row)
+            _need(len(body["ordinary_attempts"])==len(cases),gate,"COVERAGE_MISMATCH")
+            for s in body["sources"]:_need(len(s["body_membership"])>0,gate,"COVERAGE_MISMATCH")  # D29
+            # The receipt's own references, bound and unbound (RR "RV113's three returns verified; ...; the three-reader
+            # alignment set ruled", item 1; TS `coverage`): each source and each material basis sits at its index, a
+            # source's owner is its own case, and a basis's case list is unique and in range.
+            for si,s in enumerate(body["sources"]):
+                ci=_integral(s["owner"]["case_index"])
+                _need(s["index"]==si and s["owner"]["kind"]=="case" and ci is not None and 0<=ci<len(cases) and ids[ci]==s["owner"]["case_id"],gate,"COVERAGE_MISMATCH")
+            for mi,mb in enumerate(body["material_bases"]):
+                _need(mb["index"]==mi and len(set(mb["case_indices"]))==len(mb["case_indices"]) and all(x<len(cases) for x in mb["case_indices"]),gate,"COVERAGE_MISMATCH")
+            refs=[c["product_attempt_ref"] for c in cases if c["product_attempt_ref"] is not None]
+            _need(sorted(refs)==list(range(len(body["product_attempts"]))),gate,"COVERAGE_MISMATCH")
+            for ai,a in enumerate(body["product_attempts"]):
+                _need(a["id"]==ai and a["owner_ref"]["kind"]=="case" and a["owner_ref"]["index"]<len(cases),gate,"COVERAGE_MISMATCH")
+                c=cases[int(a["owner_ref"]["index"])]
+                _need(c["product_attempt_ref"]==ai,gate,"COVERAGE_MISMATCH")
+                old,new=a["operational"]["old"],a["operational"]["new"];pm=a["preparation"]["members"]
+                _need([x["member"] for x in old]==list(range(len(old))) and [x["member"] for x in pm]==list(range(len(pm))) and [x["member"] for x in new]==list(range(len(new))) and len(new)<=len(pm)<=len(old),gate,"COVERAGE_MISMATCH")
+                if a["operational"]["old_coverage"]=="captured_prefix":_need(not pm and not new,gate,"COVERAGE_MISMATCH")
+                if a["operational"]["old_coverage"]=="complete":
+                    # D1 (F1:101, 130; C3:302): complete old ids equal the member inventory: the source's
+                    # map when sourced, else every CaseSource's (one model); without one, G8 binds it.
+                    si=_integral(a["source_ref"])
+                    if si is not None and 0<=si<len(body["sources"]):_need([x["member"] for x in old]==[m["kernel_member"] for m in body["sources"][si]["id_maps"]["members"]],gate,"COVERAGE_MISMATCH")  # D23
+                    elif si is None:
+                        for s in body["sources"]:
+                            if s["owner"]["kind"]=="case":_need(len(old)==len(s["id_maps"]["members"]),gate,"COVERAGE_MISMATCH")
+                if a["proof"] is not None:
+                    indices=[x["row_index"] for x in a["proof"]["projection_outcomes"]];case_rows=rows[c["basis_ref"]["ref_id"]]
+                    _need(indices==sorted(set(indices)) and all(x<len(case_rows) and case_rows[int(x)]["kind"] not in HULL_EXCLUDED for x in indices),gate,"COVERAGE_MISMATCH")
+                    # I57 s4 G3: a complete proof-owned roster lists the attempt's source bodies
+                    # exactly once, ascending 0..body_count-1. A null/invalid source reference is
+                    # left to the G5 association pass.
+                    coverage=a["proof"]["summary_coverage"];si=_integral(a["source_ref"])
+                    if coverage is not None and si is not None and 0<=si<len(body["sources"]):
+                        inventory=[b["body"] for b in body["sources"][si]["body_membership"]]
+                        _need(bool(inventory) and [x["body"] for x in coverage]==inventory==list(range(len(inventory))),gate,"COVERAGE_MISMATCH")
+            # D1 (C2:117; C1:146): each run id is its execution-order position; the order is a bijection.
+            order=body["work"]["execution_order"];with_run=[i for i,c in enumerate(cases) if c.get("run") is not None]
+            _need(all(e["kind"]=="case" for e in order) and sorted(e["index"] for e in order)==with_run and all(cases[e["index"]]["run"]["id"]==k for k,e in enumerate(order)),gate,"COVERAGE_MISMATCH")
+            for i,c in enumerate(cases):
+                _need(c["ordinary"]["attempt_ref"]==i and c["ordinary"]["quality_binding"]=={"kind":"present","index":i} and body["ordinary_attempts"][i]["case_index"]==i and body["ordinary_attempts"][i]["case_id"]==ids[i],gate,"COVERAGE_MISMATCH")
+            gate="G4";diags=snapshot["diagnostics"]
+            _need(len({d["id"] for d in diags})==len(diags) and not any(d["code"]=="SOURCE_BLOCK_RECOVERY_SELECTED" for d in diags),gate,"DIAGNOSTIC_MISMATCH")
+            for i,c in enumerate(cases):
+                cid=ids[i];selected=[d for d in diags if d["code"]=="RETAINED_PRECISION_SELECTED" and cid in d.get("affected_refs",[])];unavailable=[d for d in diags if d["code"]=="RETAINED_PRECISION_UNAVAILABLE" and cid in d.get("affected_refs",[])]
+                _need(len(selected)==int(c["status"]=="selected") and len(unavailable)==int(c["status"]=="unavailable") and all(d["affected_refs"]==[cid] for d in selected+unavailable),gate,"DIAGNOSTIC_MISMATCH")
+                if c["status"]=="unavailable":_need(unavailable[0]["id"]==c["diagnostic_ref"],gate,"DIAGNOSTIC_MISMATCH")
+                if c["status"]=="selected":_need(not any(d["code"]=="SOURCE_BLOCK_RECOVERY_UNAVAILABLE" and cid in d.get("affected_refs",[]) for d in diags),gate,"DIAGNOSTIC_MISMATCH")
+            for d in diags:
+                # D7 (C1 G4 row; C1:147): every retained diagnostic names exactly one requested case.
+                if d["code"] in ("RETAINED_PRECISION_SELECTED","RETAINED_PRECISION_UNAVAILABLE"):_need(type(d.get("affected_refs")) is list and len(d["affected_refs"])==1 and d["affected_refs"][0] in ids,gate,"DIAGNOSTIC_MISMATCH")
+            gate="G5";_g5_native(body);_g5_ordinary(body,cases,diags,quality);_g5_products(body,rows)
+            # B3-D §6.2: on the exact branch G5b also binds each selected case's own physics-1 section evidence.
+            gate="G5a";phase=["G5a"];classes=_g5_numeric(body,rows,phase,(snapshot.get("contract_evidence"),) if route.exact else None)
+            gate="G6"
+            for c in cases:
+                for row in rows[c["basis_ref"]["ref_id"]]:_need(row.get("recovery_method")==METHOD if c["status"]=="selected" else "recovery_method" not in row,gate,"ROW_METHOD_MISMATCH")
+            gate="G7";projected=_project(snapshot,route)
+            from .compatibility import _source_contract
+            try:_source_contract(projected)
+            except ValueError as exc:
+                text=str(exc);match=re.match(r"[A-Z][A-Z0-9_]*",text)
+                error=RetainedPrecisionError("G7",match.group(0) if match else route.base_invalid);error.detail=text
+>               raise error from exc
+E               core.analysis_runs.retained_precision.RetainedPrecisionError: SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID
+
+core/analysis_runs/retained_precision.py:2067: RetainedPrecisionError
+
+The above exception was the direct cause of the following exception:
+
+mode = 'sparse_interactive'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_stress_neutral_packager_refuses_the_exact_successor(mode):
+        """As the preview successor (T6's refusal stands in the Python packager; lane T's carriers are TS and schemas)."""
+        from core.handoff.stress_neutral import package_v0_3 as sn
+        from tests.test_stress_neutral_physics_source import arguments
+        source, _ = m3x(mode)
+>       record = c.build_analysis_run(source, input_manifest_ref={"object_type": "InputManifest", "ref": "manifest:b3b"}, input_manifest_hash="1" * 64)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_retained_precision_b3.py:639: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+core/analysis_runs/compatibility.py:720: in build_analysis_run
+    contract, _, _ = _source_contract(mechanics_result)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+core/analysis_runs/compatibility.py:412: in _source_contract
+    return _retained_contract(source, check_receipt=check_receipt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+core/analysis_runs/compatibility.py:306: in _retained_contract
+    _retained_validation(source)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = {'accepted_model_state_mutated': False, 'contract_evidence': {'pressure': [], 'connector': [], 'exact_cases': [{'load_...k, and the ordinary-attempt evidence.', ...}], 'document_kind': 'openpipestress.product_preview.mechanics_result', ...}
+invocation = None
+
+    def _retained_validation(source: Mapping[str, Any], invocation: Any = None) -> dict[str, Any]:
+        """The accepted reader's G0-G8 on a successor; a G7 failure keeps the base
+        validator's own text, every other gate its code."""
+        from .retained_precision import RetainedPrecisionError, validate_retained_precision
+        try:
+            return validate_retained_precision(source, invocation)
+        except RetainedPrecisionError as error:
+>           raise ValueError(error.detail or error.code) from error
+E           ValueError: SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: formulation profile or limitations
+
+core/analysis_runs/compatibility.py:284: ValueError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_synthetic_base_is_eligible_and_classified_as_the_milestone[dense_scrutiny]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_synthetic_base_is_eligible_and_classified_as_the_milestone[sparse_interactive]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-16 connector non-empty]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-17 pipe_materials G_pa three ulps]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-18 recovery_method added to an exact_cases entry]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-19 invocation contract legacy]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-20 invocation schema 0.4.0]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-21 invocation pressure_contract false]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-22 a combination added to the invocation]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-23 a case naming modulus_basis_ref]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-24 shear_origin explicit_g]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-25 receipt shear_modulus one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-26 shear_origin.poisson_ratio bits changed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-27 authored nu changed in the invocation]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-28 S-C only: an entry's pipe_materials nu one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-29 N-6: an entry's pipe_materials G_pa one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-30 a case's pressure_regions null]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-31 a case's pressure_regions with one region]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-32 a member's geometry.route preview]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x07 a case's pressure_regions removed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x08 a case with analysis_state]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x09 authored E one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x10 authored nu unit not 1]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x11 authored nu 0.5]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x12 authored constitutive_basis changed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x13 invocation contract mode only]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x14 invocation contract extra key]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x15 invocation contract removed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x16 invocation schema 0.2.0]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x17 physics-1 headline altered]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x18 a named point basis equal to the base, named in the receipt]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x21 invocation contract version 2.0.1]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x22 invocation contract with an extra null key]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x23 a component added to the invocation]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x24 authored nu unit empty]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x25 authored constitutive_basis removed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x26 G_hat one ulp high, every copy consistent]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-16 connector non-empty]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-17 pipe_materials G_pa three ulps]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-18 recovery_method added to an exact_cases entry]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-19 invocation contract legacy]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-20 invocation schema 0.4.0]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-21 invocation pressure_contract false]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-22 a combination added to the invocation]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-23 a case naming modulus_basis_ref]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-24 shear_origin explicit_g]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-25 receipt shear_modulus one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-26 shear_origin.poisson_ratio bits changed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-27 authored nu changed in the invocation]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-28 S-C only: an entry's pipe_materials nu one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-29 N-6: an entry's pipe_materials G_pa one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-30 a case's pressure_regions null]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-31 a case's pressure_regions with one region]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-32 a member's geometry.route preview]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x07 a case's pressure_regions removed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x08 a case with analysis_state]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x09 authored E one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x10 authored nu unit not 1]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x11 authored nu 0.5]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x12 authored constitutive_basis changed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x13 invocation contract mode only]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x14 invocation contract extra key]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x15 invocation contract removed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x16 invocation schema 0.2.0]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x17 physics-1 headline altered]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x18 a named point basis equal to the base, named in the receipt]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x21 invocation contract version 2.0.1]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x22 invocation contract with an extra null key]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x23 a component added to the invocation]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x24 authored nu unit empty]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x25 authored constitutive_basis removed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x26 G_hat one ulp high, every copy consistent]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_must_pass[dense_scrutiny-p01 an authored redundant G in the invocation (ignored by the producer)]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_must_pass[sparse_interactive-p01 an authored redundant G in the invocation (ignored by the producer)]
+FAILED tests/test_retained_precision_b3.py::test_b3b_g8_material_binding_precedes_s_c[x10 authored nu unit not 1-False]
+FAILED tests/test_retained_precision_b3.py::test_b3b_g8_material_binding_precedes_s_c[x24 authored nu unit empty-False]
+FAILED tests/test_retained_precision_b3.py::test_b3b_g8_material_binding_precedes_s_c[x11 authored nu 0.5-False]
+FAILED tests/test_retained_precision_b3.py::test_b3b_g8_material_binding_precedes_s_c[26 shear_origin.poisson_ratio bits changed-False]
+FAILED tests/test_retained_precision_b3.py::test_b3b_g8_material_binding_precedes_s_c[x26 G_hat one ulp high, every copy consistent-False]
+FAILED tests/test_retained_precision_b3.py::test_b3b_g8_material_binding_precedes_s_c[28 S-C only: an entry's pipe_materials nu one ulp-True]
+FAILED tests/test_retained_precision_b3.py::test_b3b_g8_material_binding_precedes_s_c[x12 authored constitutive_basis changed-True]
+FAILED tests/test_retained_precision_b3.py::test_b3b_transport[dense_scrutiny]
+FAILED tests/test_retained_precision_b3.py::test_b3b_transport[sparse_interactive]
+FAILED tests/test_retained_precision_b3.py::test_b3b_carriers[dense_scrutiny]
+FAILED tests/test_retained_precision_b3.py::test_b3b_carriers[sparse_interactive]
+FAILED tests/test_retained_precision_b3.py::test_b3b_stress_neutral_packager_refuses_the_exact_successor[dense_scrutiny]
+FAILED tests/test_retained_precision_b3.py::test_b3b_stress_neutral_packager_refuses_the_exact_successor[sparse_interactive]
+87 failed, 95 passed in 26.14s
+# end 2026-10-08T12:55:05Z rc=1

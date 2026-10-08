@@ -1,0 +1,4 @@
+# i100 job pyt_b3a (slot) queued 2026-10-08T11:29:23Z dir=b2-p/projects/chirality-piping
+# args: /bin/bash -c VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/pyt_b3a/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/runs/b3a/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31 > WT/scratch/i100_b3r/runs/b3a/pytest.log 2>&1
+# start 2026-10-08T11:29:23Z
+# end 2026-10-08T11:29:31Z rc=0

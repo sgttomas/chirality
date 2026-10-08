@@ -1,0 +1,23 @@
+# i100 job mut_B4 (slot) queued 2026-10-08T12:40:22Z dir=scratch/i100_b3r/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=B4 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/mut_B4/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/mutants/runs/B4/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+# start 2026-10-08T12:40:22Z
+........................................................................ [ 39%]
+........................................................................ [ 79%]
+................................F.....                                   [100%]
+=================================== FAILURES ===================================
+_________________ test_b3b_g0_table_bytes_and_definition_hash __________________
+
+tmp_path = PosixPath('WT/scratch/i100_b3r/tmp/mut_B4/basetemp/test_b3b_g0_table_bytes_and_de0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10a39e150>
+
+    def test_b3b_g0_table_bytes_and_definition_hash(tmp_path, monkeypatch):
+        source, _ = m3x("sparse_interactive")
+        _packaged(tmp_path, monkeypatch, edit_definition=lambda d: d.update(version=2))
+>       assert _g0(source)[:2] == ("G0", "RETAINED_PRECISION_FORMATION_MISMATCH")
+E       AssertionError: assert 'pa' == ('G0', 'RETAINED_PRECISION_FORMATION_MISMATCH')
+
+tests/test_retained_precision_b3.py:576: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3b_g0_table_bytes_and_definition_hash
+1 failed, 181 passed in 36.77s
+# end 2026-10-08T12:40:59Z rc=1

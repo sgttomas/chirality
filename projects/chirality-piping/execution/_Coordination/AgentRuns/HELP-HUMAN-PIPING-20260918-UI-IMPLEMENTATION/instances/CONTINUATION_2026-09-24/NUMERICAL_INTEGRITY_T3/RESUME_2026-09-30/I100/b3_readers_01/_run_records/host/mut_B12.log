@@ -1,0 +1,156 @@
+# i100 job mut_B12 (slot) queued 2026-10-08T12:45:57Z dir=scratch/i100_b3r/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=B12 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/mut_B12/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/mutants/runs/B12/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+# start 2026-10-08T12:45:57Z
+......................................FFF............................... [ 39%]
+........................FFF............................................. [ 79%]
+..................FF..................                                   [100%]
+=================================== FAILURES ===================================
+_____ test_b3b_m3x_mutations[dense_scrutiny-04 projection_policy changed] ______
+
+mode = 'dense_scrutiny', label = '04 projection_policy changed'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G1', 'RETAI...IPT_MISMATCH') == ('G0', 'SOURC..._UNSUPPORTED')
+E         
+E         At index 0 diff: 'G1' != 'G0'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+________ test_b3b_m3x_mutations[dense_scrutiny-05 work_policy changed] _________
+
+mode = 'dense_scrutiny', label = '05 work_policy changed'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G1', 'RETAI...IPT_MISMATCH') == ('G0', 'SOURC..._UNSUPPORTED')
+E         
+E         At index 0 diff: 'G1' != 'G0'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+______ test_b3b_m3x_mutations[dense_scrutiny-06 canonicalization changed] ______
+
+mode = 'dense_scrutiny', label = '06 canonicalization changed'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G1', 'RETAI...IPT_MISMATCH') == ('G0', 'SOURC..._UNSUPPORTED')
+E         
+E         At index 0 diff: 'G1' != 'G0'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+___ test_b3b_m3x_mutations[sparse_interactive-04 projection_policy changed] ____
+
+mode = 'sparse_interactive', label = '04 projection_policy changed'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G1', 'RETAI...IPT_MISMATCH') == ('G0', 'SOURC..._UNSUPPORTED')
+E         
+E         At index 0 diff: 'G1' != 'G0'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+______ test_b3b_m3x_mutations[sparse_interactive-05 work_policy changed] _______
+
+mode = 'sparse_interactive', label = '05 work_policy changed'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G1', 'RETAI...IPT_MISMATCH') == ('G0', 'SOURC..._UNSUPPORTED')
+E         
+E         At index 0 diff: 'G1' != 'G0'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+____ test_b3b_m3x_mutations[sparse_interactive-06 canonicalization changed] ____
+
+mode = 'sparse_interactive', label = '06 canonicalization changed'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G1', 'RETAI...IPT_MISMATCH') == ('G0', 'SOURC..._UNSUPPORTED')
+E         
+E         At index 0 diff: 'G1' != 'G0'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+______________________ test_b3b_transport[dense_scrutiny] ______________________
+
+mode = 'dense_scrutiny'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_transport(mode):
+        source, _ = m3x(mode)
+        assert outcome(source, None, transport=True) == ("pass", False, "needs_recompute")
+        for label in ("16 connector non-empty", "18 recovery_method added to an exact_cases entry"):
+            broken, _ = exact_shape(mode, label)
+            assert outcome(broken, None, transport=True) == BASE_G7, label
+        for label in ("01 identity relabelled preview (profile kept)", "04 projection_policy changed"):
+            broken, _ = exact_shape(mode, label)
+>           assert outcome(broken, None, transport=True) == UNSUPPORTED, label
+E           AssertionError: 04 projection_policy changed
+E           assert ('G1', 'RETAI...IPT_MISMATCH') == ('G0', 'SOURC..._UNSUPPORTED')
+E             
+E             At index 0 diff: 'G1' != 'G0'
+E             Use -v to get more diff
+
+tests/test_retained_precision_b3.py:500: AssertionError
+____________________ test_b3b_transport[sparse_interactive] ____________________
+
+mode = 'sparse_interactive'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_transport(mode):
+        source, _ = m3x(mode)
+        assert outcome(source, None, transport=True) == ("pass", False, "needs_recompute")
+        for label in ("16 connector non-empty", "18 recovery_method added to an exact_cases entry"):
+            broken, _ = exact_shape(mode, label)
+            assert outcome(broken, None, transport=True) == BASE_G7, label
+        for label in ("01 identity relabelled preview (profile kept)", "04 projection_policy changed"):
+            broken, _ = exact_shape(mode, label)
+>           assert outcome(broken, None, transport=True) == UNSUPPORTED, label
+E           AssertionError: 04 projection_policy changed
+E           assert ('G1', 'RETAI...IPT_MISMATCH') == ('G0', 'SOURC..._UNSUPPORTED')
+E             
+E             At index 0 diff: 'G1' != 'G0'
+E             Use -v to get more diff
+
+tests/test_retained_precision_b3.py:500: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-04 projection_policy changed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-05 work_policy changed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-06 canonicalization changed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-04 projection_policy changed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-05 work_policy changed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-06 canonicalization changed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_transport[dense_scrutiny]
+FAILED tests/test_retained_precision_b3.py::test_b3b_transport[sparse_interactive]
+8 failed, 174 passed in 37.40s
+# end 2026-10-08T12:46:35Z rc=1

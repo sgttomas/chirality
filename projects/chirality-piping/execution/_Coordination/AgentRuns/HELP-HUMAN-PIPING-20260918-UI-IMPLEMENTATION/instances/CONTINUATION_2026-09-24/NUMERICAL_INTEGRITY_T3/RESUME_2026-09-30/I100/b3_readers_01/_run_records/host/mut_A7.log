@@ -1,0 +1,72 @@
+# i100 job mut_A7 (slot) queued 2026-10-08T12:38:10Z dir=scratch/i100_b3r/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=A7 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/mut_A7/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/mutants/runs/A7/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+# start 2026-10-08T12:38:10Z
+............F...........F......F........................................ [ 39%]
+........................................................................ [ 79%]
+......................................                                   [100%]
+=================================== FAILURES ===================================
+___ test_b3a_m3l_mutations[dense_scrutiny-schema 0.2.0 keeping the contract] ___
+
+mode = 'dense_scrutiny', label = 'schema 0.2.0 keeping the contract'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:121: AssertionError
+_ test_b3a_m3l_mutations[sparse_interactive-schema 0.2.0 keeping the contract] _
+
+mode = 'sparse_interactive', label = 'schema 0.2.0 keeping the contract'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:121: AssertionError
+_______ test_b3a_branch_l_admits_only_an_absent_or_null_contract[value5] _______
+
+value = {'version': '1.0.0', 'mode': 'legacy_pressure_v1'}
+
+    @pytest.mark.parametrize("value", [{}, False, [], "", 0, LEGACY])
+    def test_b3a_branch_l_admits_only_an_absent_or_null_contract(value):
+        """N-4: on 0.1.0 and 0.2.0 the contract is absent or JSON null, type-strictly; no falsy value stands for null,
+        and the legacy contract belongs to 0.3.0 only."""
+        source, invocation = milestone("sparse_interactive")
+        for version in ("0.1.0", "0.2.0"):
+            for contract in (None, "absent"):
+                fine = edited_invocation(invocation, lambda m: (m.update(schema_version=version), m.pop("pressure_contract", None) if contract == "absent" else m.update(pressure_contract=None)))
+                assert outcome(reseal(source, fine), fine)[0] == "pass"
+            bad = edited_invocation(invocation, lambda m: m.update(schema_version=version, pressure_contract=deepcopy(value)))
+>           assert outcome(reseal(source, bad), bad) == INVOCATION, (version, value)
+E           AssertionError: ('0.1.0', {'version': '1.0.0', 'mode': 'legacy_pressure_v1'})
+E           assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E             
+E             At index 0 diff: 'pass' != 'G8'
+E             Left contains one more item: 'eligible'
+E             Use -v to get more diff
+
+tests/test_retained_precision_b3.py:134: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[dense_scrutiny-schema 0.2.0 keeping the contract]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[sparse_interactive-schema 0.2.0 keeping the contract]
+FAILED tests/test_retained_precision_b3.py::test_b3a_branch_l_admits_only_an_absent_or_null_contract[value5]
+3 failed, 179 passed in 37.04s
+# end 2026-10-08T12:38:47Z rc=1

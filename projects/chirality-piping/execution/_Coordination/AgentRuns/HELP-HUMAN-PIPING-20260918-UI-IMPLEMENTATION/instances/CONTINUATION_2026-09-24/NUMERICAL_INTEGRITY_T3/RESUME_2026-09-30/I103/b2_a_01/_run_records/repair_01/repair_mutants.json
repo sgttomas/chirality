@@ -1,0 +1,68 @@
+[
+ {
+  "id": "R1-SF1-a",
+  "repair": "SF-1",
+  "mutant": "the precommit fallback publishes without its notice",
+  "tree": "e96355ef8f",
+  "filter": "b3a_direct_entry_oracles",
+  "rc": 0,
+  "killed": false,
+  "compile_error": false,
+  "passed": 1,
+  "killed_by": []
+ },
+ {
+  "id": "R1-SF1-a",
+  "repair": "SF-1",
+  "mutant": "the precommit fallback publishes without its notice",
+  "tree": "ea5625ad04",
+  "filter": "b3a_direct_entry_oracles",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 0,
+  "killed_by": [
+   "b3a_direct_entry_oracles"
+  ]
+ },
+ {
+  "id": "R1-SF1-b",
+  "repair": "SF-1",
+  "mutant": "RS's G8 admits the L3 contract (m3l's successor passes precommit)",
+  "tree": "e96355ef8f",
+  "filter": "b3a_direct_entry_oracles",
+  "rc": 0,
+  "killed": false,
+  "compile_error": false,
+  "passed": 1,
+  "killed_by": []
+ },
+ {
+  "id": "R1-SF1-b",
+  "repair": "SF-1",
+  "mutant": "RS's G8 admits the L3 contract (m3l's successor passes precommit)",
+  "tree": "ea5625ad04",
+  "filter": "b3a_direct_entry_oracles",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 0,
+  "killed_by": [
+   "b3a_direct_entry_oracles"
+  ]
+ },
+ {
+  "id": "R1-SF2",
+  "repair": "SF-2",
+  "mutant": "the exact D1.5 clause no longer reads the empty list's capacity",
+  "tree": "ea5625ad04",
+  "filter": "b3b_exact_regions_capacity_is_read",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 0,
+  "killed_by": [
+   "b3b_exact_regions_capacity_is_read"
+  ]
+ }
+]

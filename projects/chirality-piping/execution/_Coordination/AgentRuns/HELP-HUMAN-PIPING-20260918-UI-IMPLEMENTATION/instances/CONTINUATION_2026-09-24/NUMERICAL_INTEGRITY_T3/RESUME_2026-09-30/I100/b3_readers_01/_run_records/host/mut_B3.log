@@ -1,0 +1,56 @@
+# i100 job mut_B3 (slot) queued 2026-10-08T12:39:45Z dir=scratch/i100_b3r/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=B3 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/mut_B3/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/mutants/runs/B3/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+# start 2026-10-08T12:39:45Z
+........................................................................ [ 39%]
+........................................................................ [ 79%]
+...........................FF.........                                   [100%]
+=================================== FAILURES ===================================
+_ test_b3b_g0_table_steps_3_to_5[identity-<lambda>-SOURCE_PRODUCER_CONTRACT_UNSUPPORTED] _
+
+tmp_path = PosixPath('WT/scratch/i100_b3r/tmp/mut_B3/basetemp/test_b3b_g0_table_steps_3_to_50')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x107520410>
+label = 'identity', edit = <function <lambda> at 0x1079927a0>
+expected = 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED'
+
+    @pytest.mark.parametrize("label, edit, expected", [
+        ("identity", lambda t: t.update(semantic_contract_id="openpipestress.result_semantics/0.3.0/physics-retained-2"), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
+        ("profile", lambda t: t.update(formulation_profile_id="exact_straight_retained_w1a_v3"), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
+        ("bound definition", lambda t: t["product_formation_definitions"][0].update(sha256="0" * 64), "RETAINED_PRECISION_FORMATION_MISMATCH"),
+        ("a second definition", lambda t: t["product_formation_definitions"].append({"id": "RP-PREPARED-ORDINARY-DUAL-v1", "sha256": rp.DEFINITION_HASH}), "RETAINED_PRECISION_FORMATION_MISMATCH"),
+        ("inherited hash", lambda t: t.update(inherited_semantic_contract_sha256="0" * 64), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
+    ])
+    def test_b3b_g0_table_steps_3_to_5(tmp_path, monkeypatch, label, edit, expected):
+        source, _ = m3x("sparse_interactive")
+        _packaged(tmp_path, monkeypatch, edit_table=edit)
+>       assert _g0(source)[:2] == ("G0", expected), label
+E       AssertionError: identity
+E       assert 'pa' == ('G0', 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED')
+
+tests/test_retained_precision_b3.py:570: AssertionError
+_ test_b3b_g0_table_steps_3_to_5[profile-<lambda>-SOURCE_PRODUCER_CONTRACT_UNSUPPORTED] _
+
+tmp_path = PosixPath('WT/scratch/i100_b3r/tmp/mut_B3/basetemp/test_b3b_g0_table_steps_3_to_51')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1075206e0>
+label = 'profile', edit = <function <lambda> at 0x107992840>
+expected = 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED'
+
+    @pytest.mark.parametrize("label, edit, expected", [
+        ("identity", lambda t: t.update(semantic_contract_id="openpipestress.result_semantics/0.3.0/physics-retained-2"), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
+        ("profile", lambda t: t.update(formulation_profile_id="exact_straight_retained_w1a_v3"), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
+        ("bound definition", lambda t: t["product_formation_definitions"][0].update(sha256="0" * 64), "RETAINED_PRECISION_FORMATION_MISMATCH"),
+        ("a second definition", lambda t: t["product_formation_definitions"].append({"id": "RP-PREPARED-ORDINARY-DUAL-v1", "sha256": rp.DEFINITION_HASH}), "RETAINED_PRECISION_FORMATION_MISMATCH"),
+        ("inherited hash", lambda t: t.update(inherited_semantic_contract_sha256="0" * 64), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
+    ])
+    def test_b3b_g0_table_steps_3_to_5(tmp_path, monkeypatch, label, edit, expected):
+        source, _ = m3x("sparse_interactive")
+        _packaged(tmp_path, monkeypatch, edit_table=edit)
+>       assert _g0(source)[:2] == ("G0", expected), label
+E       AssertionError: profile
+E       assert 'pa' == ('G0', 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED')
+
+tests/test_retained_precision_b3.py:570: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3b_g0_table_steps_3_to_5[identity-<lambda>-SOURCE_PRODUCER_CONTRACT_UNSUPPORTED]
+FAILED tests/test_retained_precision_b3.py::test_b3b_g0_table_steps_3_to_5[profile-<lambda>-SOURCE_PRODUCER_CONTRACT_UNSUPPORTED]
+2 failed, 180 passed in 36.26s
+# end 2026-10-08T12:40:22Z rc=1

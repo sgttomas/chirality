@@ -16038,3 +16038,41 @@ B1 fits the 12 GiB product cap with room. Behaviour under memory pressure on a 1
 N-5 (the exact route's loops and allocations, and stack witnesses for its frames) goes to SQ2's brief.
 
 **Next for B1:** `b1` merges into NUM, then PR-B1 is cut compactly from main. Then SB (Pass B), SK (the package), RV-X (the complete-diff review), CI with the full-SHA dispatch, GEN-8, and an exact-head DEC-025 with the src-tauri suite.
+
+## PR-B1 cut (`8248921552`); SB, SK and RV-X dispatched; I100 returns B3's PY reader; a pre-B3 reader disagreement routed (ROOT, 2026-10-08 UTC)
+
+**PR-B1** is cut from main `6c821d9ccf` as one commit, `8248921552` on `codex/piping-t3-pr-b1-20261008`, and pushed.
+- It carries the 33 maintained files that NUM `a41eea7b5f` changes, and is equal to NUM outside the execution records.
+- `source_equality.py` passes checks 1–3 and 5. Check 4 waits for SK's package.
+- ROOT's pre-freeze run on NUM: the candidate's suites and the src-tauri suite exit 0. The base runs and the per-test comparison are still running.
+
+**Dispatched** (fresh agents):
+
+| Agent | Role | Brief | sha256 |
+|---|---|---|---|
+| I107 | SB, Pass B | `BRIEFS/B1_SB.md` | `6d2a4c67…` |
+| I108 | SK, the package | `BRIEFS/B1_SK.md` | `8846c99c…` |
+| RV125 | RV-X, the complete-diff review | `BRIEFS/RV125_RVX_B1.md` | `aaae7740…` |
+
+RV124 confirms SB.
+
+**I100 (PY, B3a and B3b) returned** at `9ec1a736eb` on `b2-p` (`R/I100/b3_readers_01/RETURN.md`, `e0956d64…`; SHA256SUMS 145 of 145).
+- **Census:** 0 changes over 07m and 07n.
+- **Suites:** 189 tests added, 0 outcomes changed apart from the ruled D31 test.
+- **Mutants:** 47 of 47 killed.
+- **Pins:** on lane P's m3x successors in both modes.
+- **Agreement:** PY on I101's 159 RS-materialized inputs agrees with RS and TS, except G7's per-language base codes (declared).
+
+**Ruled on I100's notes:**
+1. The exact successor stays out of the fresh-contract set in all three languages; one static set. Accepted.
+2. Entry 22 (a combination in an invocation, refused at G8 `INVOCATION_MISMATCH`) is provisional. B2's readers settle it where B2-C places its G3 check.
+3. **A three-reader disagreement on the existing preview route** (it predates B3). At G8's sourced-case check:
+   - RS refuses `analysis_state`;
+   - TS refuses `pressure`;
+   - PY checks neither.
+
+   Shared corpora have not exercised it. It is sent to I100: establish whether each shape survives G7 in each reader; cite the governing text; align PY; give RS and TS the exact change; and pin a shared shape. A reachable disagreement is repaired on `b2`. An unreachable one is pinned and noted. It does not touch PR-B1, whose readers equal main's on this check.
+
+**I103's REPAIR_01** (lane A: SF-1, SF-2, N-1; `ea5625ad04`) is committed with this section. RV122's confirmation is running.
+
+**IDs:** I107, I108 and RV125 are used. The next unused are **I109 and RV126**.

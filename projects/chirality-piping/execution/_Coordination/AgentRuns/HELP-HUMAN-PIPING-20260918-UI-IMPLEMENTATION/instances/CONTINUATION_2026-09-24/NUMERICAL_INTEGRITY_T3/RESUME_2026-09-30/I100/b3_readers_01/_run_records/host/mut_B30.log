@@ -1,0 +1,204 @@
+# i100 job mut_B30 (slot) queued 2026-10-08T12:56:54Z dir=scratch/i100_b3r/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=B30 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/mut_B30/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/mutants/runs/B30/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+# start 2026-10-08T12:56:55Z
+.................................FF....................F................ [ 39%]
+.........................................F.............................. [ 79%]
+.......FF.....FF.................FF...                                   [100%]
+=================================== FAILURES ===================================
+_ test_b3b_m3x_synthetic_base_is_eligible_and_classified_as_the_milestone[dense_scrutiny] _
+
+mode = 'dense_scrutiny'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_synthetic_base_is_eligible_and_classified_as_the_milestone(mode):
+        source, invocation = m3x(mode)
+>       assert outcome(source, invocation) == ("pass", True, "eligible")
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('pass', True, 'eligible')
+E         
+E         At index 0 diff: 'G8' != 'pass'
+E         Right contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:427: AssertionError
+_ test_b3b_m3x_synthetic_base_is_eligible_and_classified_as_the_milestone[sparse_interactive] _
+
+mode = 'sparse_interactive'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_synthetic_base_is_eligible_and_classified_as_the_milestone(mode):
+        source, invocation = m3x(mode)
+>       assert outcome(source, invocation) == ("pass", True, "eligible")
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('pass', True, 'eligible')
+E         
+E         At index 0 diff: 'G8' != 'pass'
+E         Right contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:427: AssertionError
+______ test_b3b_m3x_mutations[dense_scrutiny-24 shear_origin explicit_g] _______
+
+mode = 'dense_scrutiny', label = '24 shear_origin explicit_g'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+____ test_b3b_m3x_mutations[sparse_interactive-24 shear_origin explicit_g] _____
+
+mode = 'sparse_interactive', label = '24 shear_origin explicit_g'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_must_pass[dense_scrutiny-p01 an authored redundant G in the invocation (ignored by the producer)] _
+
+mode = 'dense_scrutiny'
+label = 'p01 an authored redundant G in the invocation (ignored by the producer)'
+
+    @pytest.mark.parametrize("label", sorted(B3B_PASSES))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_must_pass(mode, label):
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == ("pass", True, "eligible")
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('pass', True, 'eligible')
+E         
+E         At index 0 diff: 'G8' != 'pass'
+E         Right contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:457: AssertionError
+_ test_b3b_m3x_must_pass[sparse_interactive-p01 an authored redundant G in the invocation (ignored by the producer)] _
+
+mode = 'sparse_interactive'
+label = 'p01 an authored redundant G in the invocation (ignored by the producer)'
+
+    @pytest.mark.parametrize("label", sorted(B3B_PASSES))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_must_pass(mode, label):
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == ("pass", True, "eligible")
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('pass', True, 'eligible')
+E         
+E         At index 0 diff: 'G8' != 'pass'
+E         Right contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:457: AssertionError
+_ test_b3b_g8_material_binding_precedes_s_c[28 S-C only: an entry's pipe_materials nu one ulp-True] _
+
+label = "28 S-C only: an entry's pipe_materials nu one ulp", s_c = True
+
+    @pytest.mark.parametrize("label, s_c", [("x10 authored nu unit not 1", False), ("x24 authored nu unit empty", False), ("x11 authored nu 0.5", False),
+                                            ("26 shear_origin.poisson_ratio bits changed", False), ("x26 G_hat one ulp high, every copy consistent", False),
+                                            ("28 S-C only: an entry's pipe_materials nu one ulp", True), ("x12 authored constitutive_basis changed", True)])
+    def test_b3b_g8_material_binding_precedes_s_c(label, s_c):
+        """REVISION_01 §4.2's G8 order on the exact branch: step 4 (the receipt's E, G_hat and nu against the authored
+        material) before step 5 (S-C), whose own code is the detail of G8's PREPARATION_MISMATCH (B3D-13)."""
+        source, invocation = exact_shape("sparse_interactive", label)
+        with pytest.raises(rp.RetainedPrecisionError) as error:
+            rp.validate_retained_precision(source, invocation)
+        assert (error.value.gate, error.value.code) == PREPARATION
+>       assert (error.value.detail or "").startswith("PHYSICS_SOURCE_") is s_c, error.value.detail
+E       AssertionError: None
+E       assert False is True
+E        +  where False = <built-in method startswith of str object at 0x105be2c68>('PHYSICS_SOURCE_')
+E        +    where <built-in method startswith of str object at 0x105be2c68> = (None or '').startswith
+E        +      where None = RetainedPrecisionError('RETAINED_PRECISION_PREPARATION_MISMATCH').detail
+E        +        where RetainedPrecisionError('RETAINED_PRECISION_PREPARATION_MISMATCH') = <ExceptionInfo RetainedPrecisionError('RETAINED_PRECISION_PREPARATION_MISMATCH') tblen=6>.value
+
+tests/test_retained_precision_b3.py:470: AssertionError
+_ test_b3b_g8_material_binding_precedes_s_c[x12 authored constitutive_basis changed-True] _
+
+label = 'x12 authored constitutive_basis changed', s_c = True
+
+    @pytest.mark.parametrize("label, s_c", [("x10 authored nu unit not 1", False), ("x24 authored nu unit empty", False), ("x11 authored nu 0.5", False),
+                                            ("26 shear_origin.poisson_ratio bits changed", False), ("x26 G_hat one ulp high, every copy consistent", False),
+                                            ("28 S-C only: an entry's pipe_materials nu one ulp", True), ("x12 authored constitutive_basis changed", True)])
+    def test_b3b_g8_material_binding_precedes_s_c(label, s_c):
+        """REVISION_01 §4.2's G8 order on the exact branch: step 4 (the receipt's E, G_hat and nu against the authored
+        material) before step 5 (S-C), whose own code is the detail of G8's PREPARATION_MISMATCH (B3D-13)."""
+        source, invocation = exact_shape("sparse_interactive", label)
+        with pytest.raises(rp.RetainedPrecisionError) as error:
+            rp.validate_retained_precision(source, invocation)
+        assert (error.value.gate, error.value.code) == PREPARATION
+>       assert (error.value.detail or "").startswith("PHYSICS_SOURCE_") is s_c, error.value.detail
+E       AssertionError: None
+E       assert False is True
+E        +  where False = <built-in method startswith of str object at 0x105be2c68>('PHYSICS_SOURCE_')
+E        +    where <built-in method startswith of str object at 0x105be2c68> = (None or '').startswith
+E        +      where None = RetainedPrecisionError('RETAINED_PRECISION_PREPARATION_MISMATCH').detail
+E        +        where RetainedPrecisionError('RETAINED_PRECISION_PREPARATION_MISMATCH') = <ExceptionInfo RetainedPrecisionError('RETAINED_PRECISION_PREPARATION_MISMATCH') tblen=6>.value
+
+tests/test_retained_precision_b3.py:470: AssertionError
+______________________ test_b3b_carriers[dense_scrutiny] _______________________
+
+mode = 'dense_scrutiny'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_carriers(mode):
+        source, invocation = m3x(mode)
+        assert dispatch(source) == (c.PHYSICS_RETAINED_CONTRACT_ID, c.PHYSICS_RETAINED_CONTRACT_SHA256, c._PHYSICS_RETAINED_CONTRACT_PATH)
+        assert dispatch(source, check_receipt=False)[0] == c.PHYSICS_RETAINED_CONTRACT_ID
+        assert hashlib.sha256(c._PHYSICS_RETAINED_CONTRACT_PATH.read_bytes()).hexdigest() == c.PHYSICS_RETAINED_CONTRACT_SHA256 == rp.EXACT_TABLE_HASH
+        assert c.PHYSICS_RETAINED_CONTRACT_ID in c.CURRENT_RECORD_CONTRACT_IDS
+        refs = requested(invocation)
+        assert c.numerical_use_standing(source, refs) == "needs_recompute"
+>       assert c.numerical_use_standing(source, refs, invocation) == "numerically_eligible"
+E       AssertionError: assert 'unsupported' == 'numerically_eligible'
+E         
+E         - numerically_eligible
+E         + unsupported
+
+tests/test_retained_precision_b3.py:607: AssertionError
+____________________ test_b3b_carriers[sparse_interactive] _____________________
+
+mode = 'sparse_interactive'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_carriers(mode):
+        source, invocation = m3x(mode)
+        assert dispatch(source) == (c.PHYSICS_RETAINED_CONTRACT_ID, c.PHYSICS_RETAINED_CONTRACT_SHA256, c._PHYSICS_RETAINED_CONTRACT_PATH)
+        assert dispatch(source, check_receipt=False)[0] == c.PHYSICS_RETAINED_CONTRACT_ID
+        assert hashlib.sha256(c._PHYSICS_RETAINED_CONTRACT_PATH.read_bytes()).hexdigest() == c.PHYSICS_RETAINED_CONTRACT_SHA256 == rp.EXACT_TABLE_HASH
+        assert c.PHYSICS_RETAINED_CONTRACT_ID in c.CURRENT_RECORD_CONTRACT_IDS
+        refs = requested(invocation)
+        assert c.numerical_use_standing(source, refs) == "needs_recompute"
+>       assert c.numerical_use_standing(source, refs, invocation) == "numerically_eligible"
+E       AssertionError: assert 'unsupported' == 'numerically_eligible'
+E         
+E         - numerically_eligible
+E         + unsupported
+
+tests/test_retained_precision_b3.py:607: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_synthetic_base_is_eligible_and_classified_as_the_milestone[dense_scrutiny]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_synthetic_base_is_eligible_and_classified_as_the_milestone[sparse_interactive]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-24 shear_origin explicit_g]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-24 shear_origin explicit_g]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_must_pass[dense_scrutiny-p01 an authored redundant G in the invocation (ignored by the producer)]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_must_pass[sparse_interactive-p01 an authored redundant G in the invocation (ignored by the producer)]
+FAILED tests/test_retained_precision_b3.py::test_b3b_g8_material_binding_precedes_s_c[28 S-C only: an entry's pipe_materials nu one ulp-True]
+FAILED tests/test_retained_precision_b3.py::test_b3b_g8_material_binding_precedes_s_c[x12 authored constitutive_basis changed-True]
+FAILED tests/test_retained_precision_b3.py::test_b3b_carriers[dense_scrutiny]
+FAILED tests/test_retained_precision_b3.py::test_b3b_carriers[sparse_interactive]
+10 failed, 172 passed in 23.38s
+# end 2026-10-08T12:57:18Z rc=1

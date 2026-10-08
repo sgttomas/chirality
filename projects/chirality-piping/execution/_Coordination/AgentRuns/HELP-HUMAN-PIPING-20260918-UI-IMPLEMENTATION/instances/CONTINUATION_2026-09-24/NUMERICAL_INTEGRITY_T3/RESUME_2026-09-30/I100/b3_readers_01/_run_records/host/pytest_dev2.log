@@ -1,0 +1,62 @@
+........................................................................ [ 39%]
+.................F...................................................... [ 78%]
+...F.........F.........................                                  [100%]
+=================================== FAILURES ===================================
+_ test_b3b_m3x_mutations[dense_scrutiny-x26 G_hat one ulp high, every copy consistent] _
+
+mode = 'dense_scrutiny', label = 'x26 G_hat one ulp high, every copy consistent'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G5', 'RETAI...MPT_MISMATCH') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G5' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:438: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x26 G_hat one ulp high, every copy consistent] _
+
+mode = 'sparse_interactive'
+label = 'x26 G_hat one ulp high, every copy consistent'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G5', 'RETAI...MPT_MISMATCH') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G5' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:438: AssertionError
+_ test_b3b_g8_material_binding_precedes_s_c[x26 G_hat one ulp high, every copy consistent-False] _
+
+label = 'x26 G_hat one ulp high, every copy consistent', s_c = False
+
+    @pytest.mark.parametrize("label, s_c", [("x10 authored nu unit not 1", False), ("x24 authored nu unit empty", False), ("x11 authored nu 0.5", False),
+                                            ("26 shear_origin.poisson_ratio bits changed", False), ("x26 G_hat one ulp high, every copy consistent", False),
+                                            ("28 S-C only: an entry's pipe_materials nu one ulp", True), ("x12 authored constitutive_basis changed", True)])
+    def test_b3b_g8_material_binding_precedes_s_c(label, s_c):
+        """REVISION_01 §4.2's G8 order on the exact branch: step 4 (the receipt's E, G_hat and nu against the authored
+        material) before step 5 (S-C), whose own code is the detail of G8's PREPARATION_MISMATCH (B3D-13)."""
+        source, invocation = exact_shape("sparse_interactive", label)
+        with pytest.raises(rp.RetainedPrecisionError) as error:
+            rp.validate_retained_precision(source, invocation)
+>       assert (error.value.gate, error.value.code) == PREPARATION
+E       AssertionError: assert ('G5', 'RETAI...MPT_MISMATCH') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G5' != 'G8'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:457: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x26 G_hat one ulp high, every copy consistent]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x26 G_hat one ulp high, every copy consistent]
+FAILED tests/test_retained_precision_b3.py::test_b3b_g8_material_binding_precedes_s_c[x26 G_hat one ulp high, every copy consistent-False]
+3 failed, 180 passed in 32.68s

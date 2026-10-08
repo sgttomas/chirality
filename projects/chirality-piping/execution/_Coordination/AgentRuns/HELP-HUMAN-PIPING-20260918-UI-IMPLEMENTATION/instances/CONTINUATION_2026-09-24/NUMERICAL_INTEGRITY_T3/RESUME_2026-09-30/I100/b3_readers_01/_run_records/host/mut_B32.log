@@ -1,0 +1,58 @@
+# i100 job mut_B32 (slot) queued 2026-10-08T12:57:50Z dir=scratch/i100_b3r/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=B32 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/mut_B32/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/mutants/runs/B32/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+# start 2026-10-08T12:57:50Z
+........................................................................ [ 39%]
+........................................................................ [ 79%]
+.........FF...........................                                   [100%]
+=================================== FAILURES ===================================
+_ test_b3b_g8_material_binding_precedes_s_c[x10 authored nu unit not 1-False] __
+
+label = 'x10 authored nu unit not 1', s_c = False
+
+    @pytest.mark.parametrize("label, s_c", [("x10 authored nu unit not 1", False), ("x24 authored nu unit empty", False), ("x11 authored nu 0.5", False),
+                                            ("26 shear_origin.poisson_ratio bits changed", False), ("x26 G_hat one ulp high, every copy consistent", False),
+                                            ("28 S-C only: an entry's pipe_materials nu one ulp", True), ("x12 authored constitutive_basis changed", True)])
+    def test_b3b_g8_material_binding_precedes_s_c(label, s_c):
+        """REVISION_01 §4.2's G8 order on the exact branch: step 4 (the receipt's E, G_hat and nu against the authored
+        material) before step 5 (S-C), whose own code is the detail of G8's PREPARATION_MISMATCH (B3D-13)."""
+        source, invocation = exact_shape("sparse_interactive", label)
+        with pytest.raises(rp.RetainedPrecisionError) as error:
+            rp.validate_retained_precision(source, invocation)
+        assert (error.value.gate, error.value.code) == PREPARATION
+>       assert (error.value.detail or "").startswith("PHYSICS_SOURCE_") is s_c, error.value.detail
+E       AssertionError: PHYSICS_SOURCE_ACTUAL_POISSON_UNIT
+E       assert True is False
+E        +  where True = <built-in method startswith of str object at 0x10b9d1a20>('PHYSICS_SOURCE_')
+E        +    where <built-in method startswith of str object at 0x10b9d1a20> = ('PHYSICS_SOURCE_ACTUAL_POISSON_UNIT').startswith
+E        +      where 'PHYSICS_SOURCE_ACTUAL_POISSON_UNIT' = RetainedPrecisionError('RETAINED_PRECISION_PREPARATION_MISMATCH').detail
+E        +        where RetainedPrecisionError('RETAINED_PRECISION_PREPARATION_MISMATCH') = <ExceptionInfo RetainedPrecisionError('RETAINED_PRECISION_PREPARATION_MISMATCH') tblen=5>.value
+
+tests/test_retained_precision_b3.py:470: AssertionError
+_ test_b3b_g8_material_binding_precedes_s_c[x24 authored nu unit empty-False] __
+
+label = 'x24 authored nu unit empty', s_c = False
+
+    @pytest.mark.parametrize("label, s_c", [("x10 authored nu unit not 1", False), ("x24 authored nu unit empty", False), ("x11 authored nu 0.5", False),
+                                            ("26 shear_origin.poisson_ratio bits changed", False), ("x26 G_hat one ulp high, every copy consistent", False),
+                                            ("28 S-C only: an entry's pipe_materials nu one ulp", True), ("x12 authored constitutive_basis changed", True)])
+    def test_b3b_g8_material_binding_precedes_s_c(label, s_c):
+        """REVISION_01 §4.2's G8 order on the exact branch: step 4 (the receipt's E, G_hat and nu against the authored
+        material) before step 5 (S-C), whose own code is the detail of G8's PREPARATION_MISMATCH (B3D-13)."""
+        source, invocation = exact_shape("sparse_interactive", label)
+        with pytest.raises(rp.RetainedPrecisionError) as error:
+            rp.validate_retained_precision(source, invocation)
+        assert (error.value.gate, error.value.code) == PREPARATION
+>       assert (error.value.detail or "").startswith("PHYSICS_SOURCE_") is s_c, error.value.detail
+E       AssertionError: PHYSICS_SOURCE_ACTUAL_POISSON_UNIT
+E       assert True is False
+E        +  where True = <built-in method startswith of str object at 0x10b648a80>('PHYSICS_SOURCE_')
+E        +    where <built-in method startswith of str object at 0x10b648a80> = ('PHYSICS_SOURCE_ACTUAL_POISSON_UNIT').startswith
+E        +      where 'PHYSICS_SOURCE_ACTUAL_POISSON_UNIT' = RetainedPrecisionError('RETAINED_PRECISION_PREPARATION_MISMATCH').detail
+E        +        where RetainedPrecisionError('RETAINED_PRECISION_PREPARATION_MISMATCH') = <ExceptionInfo RetainedPrecisionError('RETAINED_PRECISION_PREPARATION_MISMATCH') tblen=5>.value
+
+tests/test_retained_precision_b3.py:470: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3b_g8_material_binding_precedes_s_c[x10 authored nu unit not 1-False]
+FAILED tests/test_retained_precision_b3.py::test_b3b_g8_material_binding_precedes_s_c[x24 authored nu unit empty-False]
+2 failed, 180 passed in 32.29s
+# end 2026-10-08T12:58:23Z rc=1

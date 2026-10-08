@@ -1,0 +1,237 @@
+[
+ {
+  "id": "A1",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "B3a: branch L3 removed (0.3.0 never admitted)"
+ },
+ {
+  "id": "A2",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "B3a: the contract's mode not compared"
+ },
+ {
+  "id": "A3",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "B3a: the contract's version not compared"
+ },
+ {
+  "id": "A4",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "B3a: extra contract keys admitted"
+ },
+ {
+  "id": "A5",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "B3a: 0.3.0 without a contract admitted (D31's old admission, B3D-10 undone)"
+ },
+ {
+  "id": "A6",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "B3a: branch L reads any falsy contract as null (N-4 undone)"
+ },
+ {
+  "id": "A7",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "B3a: branch L also admits the legacy contract"
+ },
+ {
+  "id": "B1",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G0: the exact identity not dispatched"
+ },
+ {
+  "id": "B2",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G0 step 1: the route's profile not checked"
+ },
+ {
+  "id": "B3",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G0 step 3: the table's identity and profile not checked"
+ },
+ {
+  "id": "B4",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G0 step 4: DEF-E's hash not checked"
+ },
+ {
+  "id": "B5",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G0 step 4: the table's bound definition not checked"
+ },
+ {
+  "id": "B6",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G0 step 5: the table's bytes not checked"
+ },
+ {
+  "id": "B7",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G0 step 5: the inherited hash not checked"
+ },
+ {
+  "id": "B8",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G0 step 6: the table/constant cross-check skipped"
+ },
+ {
+  "id": "B9",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G0 step 6: receipt_bindings not cross-checked"
+ },
+ {
+  "id": "B10",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G0 step 6: receipt_policy not cross-checked"
+ },
+ {
+  "id": "B11",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G0 step 6: the facade policy not cross-checked"
+ },
+ {
+  "id": "B12",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G0 step 8: the receipt's policies and canonicalization not read from the table"
+ },
+ {
+  "id": "B13",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G0 step 8: the work limits not read from the table"
+ },
+ {
+  "id": "B14",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G0 step 9: the attempts' definition id not read from the table"
+ },
+ {
+  "id": "B15",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "S-1 at G1: DEF-O's hash on every route"
+ },
+ {
+  "id": "B16",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "S-1 at G8: DEF-O's hash on every route"
+ },
+ {
+  "id": "B17",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G5b: the exact evidence check skipped"
+ },
+ {
+  "id": "B18",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G5b: As_m2 not compared"
+ },
+ {
+  "id": "B19",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G5b: Z_m3 not compared"
+ },
+ {
+  "id": "B20",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G5b: I_m4 not compared"
+ },
+ {
+  "id": "B21",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G5b: J_m4 not compared"
+ },
+ {
+  "id": "B22",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G5b: ro_m not compared"
+ },
+ {
+  "id": "B23",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G5b: outside_diameter_m not compared"
+ },
+ {
+  "id": "B24",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G5b: effective_wall_thickness_m not compared"
+ },
+ {
+  "id": "B25",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G5b: a missing owner entry or section passes"
+ },
+ {
+  "id": "B26",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G7: the exact branch projected to preview-physics-1"
+ },
+ {
+  "id": "B27",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "transport: physics-1's metadata code reported at G2"
+ },
+ {
+  "id": "B28",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G8: the exact namespace admits the legacy contract"
+ },
+ {
+  "id": "B29",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G8: the exact namespace's schema not checked"
+ },
+ {
+  "id": "B30",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G8: explicit_g admitted on the exact route"
+ },
+ {
+  "id": "B31",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G8: G_hat not bound (only E compared)"
+ },
+ {
+  "id": "B32",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G8: the authored nu's unit and range not checked (S-C repeats them)"
+ },
+ {
+  "id": "B33",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G8: the base-only selection not required (both guards)"
+ },
+ {
+  "id": "B34",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G8: S-C skipped"
+ },
+ {
+  "id": "B35",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G8: N-6 skipped"
+ },
+ {
+  "id": "B36",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G8: pressure_regions read as on the preview route (absent or null admitted)"
+ },
+ {
+  "id": "B37",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G8: analysis_state not refused"
+ },
+ {
+  "id": "B38",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "G8: the member route not checked on the exact branch"
+ },
+ {
+  "id": "B39",
+  "file": "core/analysis_runs/compatibility.py",
+  "edit": "carriers: the exact identity not dispatched to the reader"
+ },
+ {
+  "id": "B40",
+  "file": "core/analysis_runs/compatibility.py",
+  "edit": "carriers: the AnalysisRun record of the exact successor without its receipt"
+ }
+]

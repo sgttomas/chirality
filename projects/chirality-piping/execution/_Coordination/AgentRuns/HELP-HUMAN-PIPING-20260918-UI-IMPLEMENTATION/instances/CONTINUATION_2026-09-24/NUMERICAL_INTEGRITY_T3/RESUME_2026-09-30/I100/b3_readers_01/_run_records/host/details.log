@@ -1,0 +1,17 @@
+# i100 job details (slot) queued 2026-10-08T11:29:05Z dir=scratch/i100_b3r
+# args: /bin/bash -c source WT/scratch/i100_b3r/tools/env.sh; WT/scratch/i100_b3r/../../venv/bin/python WT/scratch/i100_b3r/work/details.py WT/b2-p/projects/chirality-piping
+# start 2026-10-08T11:29:05Z
+28 S-C only: an entry's pipe_materials nu one ulp | G8 RETAINED_PRECISION_PREPARATION_MISMATCH | PHYSICS_SOURCE_ACTUAL_SELECTED_MATERIAL
+29 N-6: an entry's pipe_materials G_pa one ulp | G8 RETAINED_PRECISION_PREPARATION_MISMATCH | 
+16 connector non-empty | G7 SOURCE_PHYSICS_EVIDENCE_INVALID | SOURCE_PHYSICS_EVIDENCE_INVALID: unsupported connector
+17 pipe_materials G_pa three ulps | G7 SOURCE_PHYSICS_EVIDENCE_INVALID | SOURCE_PHYSICS_EVIDENCE_INVALID: derived shear modulus
+18 recovery_method added to an exact_cases entry | G7 SOURCE_PHYSICS_EVIDENCE_INVALID | SOURCE_PHYSICS_EVIDENCE_INVALID: case shape
+x08 a case with analysis_state | G8 RETAINED_PRECISION_PREPARATION_MISMATCH | 
+x18 a named point basis equal to the base, named in the receipt | G8 RETAINED_PRECISION_PREPARATION_MISMATCH | 
+x12 authored constitutive_basis changed | G8 RETAINED_PRECISION_PREPARATION_MISMATCH | PHYSICS_SOURCE_ACTUAL_CONSTITUTIVE_BASIS
+x25 authored constitutive_basis removed | G8 RETAINED_PRECISION_PREPARATION_MISMATCH | PHYSICS_SOURCE_ACTUAL_CONSTITUTIVE_BASIS
+x10 authored nu unit not 1 | G8 RETAINED_PRECISION_PREPARATION_MISMATCH | 
+x17 physics-1 headline altered | G7 SOURCE_PHYSICS_EVIDENCE_INVALID | SOURCE_PHYSICS_EVIDENCE_INVALID: stress maximum headline binding
+22 a combination added to the invocation | G8 RETAINED_PRECISION_INVOCATION_MISMATCH | 
+31 a case's pressure_regions with one region | G8 RETAINED_PRECISION_PREPARATION_MISMATCH | 
+# end 2026-10-08T11:29:06Z rc=0

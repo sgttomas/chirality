@@ -1,0 +1,48 @@
+# i100 job mut_B27 (slot) queued 2026-10-08T12:55:05Z dir=scratch/i100_b3r/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=B27 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/mut_B27/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/mutants/runs/B27/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+# start 2026-10-08T12:55:05Z
+........................................................................ [ 39%]
+........................................................................ [ 79%]
+..................FF..................                                   [100%]
+=================================== FAILURES ===================================
+______________________ test_b3b_transport[dense_scrutiny] ______________________
+
+mode = 'dense_scrutiny'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_transport(mode):
+        source, _ = m3x(mode)
+        assert outcome(source, None, transport=True) == ("pass", False, "needs_recompute")
+        for label in ("16 connector non-empty", "18 recovery_method added to an exact_cases entry"):
+            broken, _ = exact_shape(mode, label)
+>           assert outcome(broken, None, transport=True) == BASE_G7, label
+E           AssertionError: 16 connector non-empty
+E           assert ('G2', 'SOURC...ENCE_INVALID') == ('G7', 'SOURC...ENCE_INVALID')
+E             
+E             At index 0 diff: 'G2' != 'G7'
+E             Use -v to get more diff
+
+tests/test_retained_precision_b3.py:497: AssertionError
+____________________ test_b3b_transport[sparse_interactive] ____________________
+
+mode = 'sparse_interactive'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_transport(mode):
+        source, _ = m3x(mode)
+        assert outcome(source, None, transport=True) == ("pass", False, "needs_recompute")
+        for label in ("16 connector non-empty", "18 recovery_method added to an exact_cases entry"):
+            broken, _ = exact_shape(mode, label)
+>           assert outcome(broken, None, transport=True) == BASE_G7, label
+E           AssertionError: 16 connector non-empty
+E           assert ('G2', 'SOURC...ENCE_INVALID') == ('G7', 'SOURC...ENCE_INVALID')
+E             
+E             At index 0 diff: 'G2' != 'G7'
+E             Use -v to get more diff
+
+tests/test_retained_precision_b3.py:497: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3b_transport[dense_scrutiny]
+FAILED tests/test_retained_precision_b3.py::test_b3b_transport[sparse_interactive]
+2 failed, 180 passed in 40.10s
+# end 2026-10-08T12:55:45Z rc=1

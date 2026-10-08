@@ -1,0 +1,5 @@
+# i100 job shapes (slot) queued 2026-10-08T13:33:49Z dir=scratch/i100_b3r
+# args: VENV/bin/python WT/scratch/i100_b3r/tools/b3_shapes.py WT/scratch/i100_b3r/head4/projects/chirality-piping WT/scratch/i100_b3r/shapes/b3_shapes.json WT/scratch/i100_b3r/shapes/py_b3_shapes.jsonl WT/scratch/i100_b3r/tmp/b3_inputs_i101_format.jsonl
+# start 2026-10-08T13:33:49Z
+8 bases; 318 shapes; 0 bound verdicts differ from the expectation
+# end 2026-10-08T13:34:49Z rc=0

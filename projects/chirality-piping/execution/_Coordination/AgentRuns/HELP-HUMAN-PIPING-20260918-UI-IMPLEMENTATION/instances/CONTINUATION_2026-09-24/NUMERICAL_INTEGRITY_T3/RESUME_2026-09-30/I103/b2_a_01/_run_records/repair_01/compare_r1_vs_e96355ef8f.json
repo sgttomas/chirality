@@ -1,0 +1,32 @@
+{
+ "pp": {
+  "base": {
+   "FAILED": 1,
+   "ignored": 11,
+   "ok": 601
+  },
+  "candidate": {
+   "FAILED": 1,
+   "ignored": 11,
+   "ok": 602
+  },
+  "changed": {},
+  "only_base": {},
+  "only_candidate": {
+   "src/lib.rs::retained_memory::law_tests::b3b_exact_regions_capacity_is_read": "ok"
+  }
+ },
+ "runner": {
+  "base": {
+   "FAILED": 2,
+   "ok": 85
+  },
+  "candidate": {
+   "FAILED": 2,
+   "ok": 85
+  },
+  "changed": {},
+  "only_base": {},
+  "only_candidate": {}
+ }
+}

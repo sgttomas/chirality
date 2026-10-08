@@ -1,0 +1,8 @@
+# i100 job dbg2 (slot) queued 2026-10-08T12:02:58Z dir=scratch/i100_b3r
+# args: /bin/bash -c source WT/scratch/i100_b3r/tools/env.sh; VENV/bin/python WT/scratch/i100_b3r/work/dbg_x26.py WT/b2-p/projects/chirality-piping
+# start 2026-10-08T12:02:58Z
+2067 _validate_draft if invocation is not None:_g8(body,snapshot,invocation,route)
+1716 _g8 need(m["id"] == raw["id"] and m["selection"] == selection and m["shear_origin"] == shear_origin(raw) and [m["elastic_modulus"],m["shear_modulus"]] == [bits(v) for v in pair])
+1605 <lambda> need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+164 _need raise RetainedPrecisionError(gate, suffix if suffix.startswith("SOURCE_") else "RETAINED_PRECISION_" + suffix)
+# end 2026-10-08T12:02:58Z rc=0

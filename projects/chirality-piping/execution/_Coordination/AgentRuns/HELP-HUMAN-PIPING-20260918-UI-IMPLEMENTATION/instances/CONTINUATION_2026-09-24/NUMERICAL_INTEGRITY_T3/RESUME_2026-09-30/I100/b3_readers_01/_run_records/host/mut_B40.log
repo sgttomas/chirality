@@ -1,0 +1,106 @@
+# i100 job mut_B40 (slot) queued 2026-10-08T13:33:02Z dir=scratch/i100_b3r/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=B40 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/mut_B40/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/mutants/runs/B40/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+# start 2026-10-08T13:33:02Z
+........................................................................ [ 21%]
+........................................................................ [ 43%]
+........................................................................ [ 65%]
+........................................................................ [ 87%]
+...................................FFFF.                                 [100%]
+=================================== FAILURES ===================================
+______________________ test_b3b_carriers[dense_scrutiny] _______________________
+
+mode = 'dense_scrutiny'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_carriers(mode):
+        source, invocation = m3x(mode)
+        assert dispatch(source) == (c.PHYSICS_RETAINED_CONTRACT_ID, c.PHYSICS_RETAINED_CONTRACT_SHA256, c._PHYSICS_RETAINED_CONTRACT_PATH)
+        assert dispatch(source, check_receipt=False)[0] == c.PHYSICS_RETAINED_CONTRACT_ID
+        assert hashlib.sha256(c._PHYSICS_RETAINED_CONTRACT_PATH.read_bytes()).hexdigest() == c.PHYSICS_RETAINED_CONTRACT_SHA256 == rp.EXACT_TABLE_HASH
+        assert c.PHYSICS_RETAINED_CONTRACT_ID in c.CURRENT_RECORD_CONTRACT_IDS
+        refs = requested(invocation)
+        assert c.numerical_use_standing(source, refs) == "needs_recompute"
+        assert c.numerical_use_standing(source, refs, invocation) == "numerically_eligible"
+        assert c.numerical_use_standing(source, refs, m3l(mode)[1]) == "unsupported"
+        classes = rp.validate_retained_precision(source, invocation)["classifications"]
+        summary = c.classification_summary(source, invocation, refs)
+        assert len(summary) == 1 and summary[0]["relative_verified"] == sum(1 for x in classes if x["class"] == "relative_verified")
+        rows = {row["id"]: row for row in source["results"]}
+        for item in classes:
+            assert c.rule_binding_refusal(source, rows[item["result_id"]]) == c._class_binding_refusal(item["class"])
+        record = built(source)
+>       assert isinstance(record, dict), record
+E       AssertionError: ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH
+E       assert False
+E        +  where False = isinstance('ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH', dict)
+
+tests/test_retained_precision_b3.py:674: AssertionError
+____________________ test_b3b_carriers[sparse_interactive] _____________________
+
+mode = 'sparse_interactive'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_carriers(mode):
+        source, invocation = m3x(mode)
+        assert dispatch(source) == (c.PHYSICS_RETAINED_CONTRACT_ID, c.PHYSICS_RETAINED_CONTRACT_SHA256, c._PHYSICS_RETAINED_CONTRACT_PATH)
+        assert dispatch(source, check_receipt=False)[0] == c.PHYSICS_RETAINED_CONTRACT_ID
+        assert hashlib.sha256(c._PHYSICS_RETAINED_CONTRACT_PATH.read_bytes()).hexdigest() == c.PHYSICS_RETAINED_CONTRACT_SHA256 == rp.EXACT_TABLE_HASH
+        assert c.PHYSICS_RETAINED_CONTRACT_ID in c.CURRENT_RECORD_CONTRACT_IDS
+        refs = requested(invocation)
+        assert c.numerical_use_standing(source, refs) == "needs_recompute"
+        assert c.numerical_use_standing(source, refs, invocation) == "numerically_eligible"
+        assert c.numerical_use_standing(source, refs, m3l(mode)[1]) == "unsupported"
+        classes = rp.validate_retained_precision(source, invocation)["classifications"]
+        summary = c.classification_summary(source, invocation, refs)
+        assert len(summary) == 1 and summary[0]["relative_verified"] == sum(1 for x in classes if x["class"] == "relative_verified")
+        rows = {row["id"]: row for row in source["results"]}
+        for item in classes:
+            assert c.rule_binding_refusal(source, rows[item["result_id"]]) == c._class_binding_refusal(item["class"])
+        record = built(source)
+>       assert isinstance(record, dict), record
+E       AssertionError: ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH
+E       assert False
+E        +  where False = isinstance('ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH', dict)
+
+tests/test_retained_precision_b3.py:674: AssertionError
+_ test_b3b_stress_neutral_packager_refuses_the_exact_successor[dense_scrutiny] _
+
+mode = 'dense_scrutiny'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_stress_neutral_packager_refuses_the_exact_successor(mode):
+        """As the preview successor (T6's refusal stands in the Python packager; lane T's carriers are TS and schemas)."""
+        from core.handoff.stress_neutral import package_v0_3 as sn
+        from tests.test_stress_neutral_physics_source import arguments
+        source, _ = m3x(mode)
+        record = built(source)
+>       assert isinstance(record, dict), record
+E       AssertionError: ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH
+E       assert False
+E        +  where False = isinstance('ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH', dict)
+
+tests/test_retained_precision_b3.py:699: AssertionError
+_ test_b3b_stress_neutral_packager_refuses_the_exact_successor[sparse_interactive] _
+
+mode = 'sparse_interactive'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_stress_neutral_packager_refuses_the_exact_successor(mode):
+        """As the preview successor (T6's refusal stands in the Python packager; lane T's carriers are TS and schemas)."""
+        from core.handoff.stress_neutral import package_v0_3 as sn
+        from tests.test_stress_neutral_physics_source import arguments
+        source, _ = m3x(mode)
+        record = built(source)
+>       assert isinstance(record, dict), record
+E       AssertionError: ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH
+E       assert False
+E        +  where False = isinstance('ANALYSIS_RETAINED_PRECISION_RECEIPT_MISMATCH', dict)
+
+tests/test_retained_precision_b3.py:699: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3b_carriers[dense_scrutiny]
+FAILED tests/test_retained_precision_b3.py::test_b3b_carriers[sparse_interactive]
+FAILED tests/test_retained_precision_b3.py::test_b3b_stress_neutral_packager_refuses_the_exact_successor[dense_scrutiny]
+FAILED tests/test_retained_precision_b3.py::test_b3b_stress_neutral_packager_refuses_the_exact_successor[sparse_interactive]
+4 failed, 324 passed in 46.86s
+# end 2026-10-08T13:33:49Z rc=1

@@ -1,0 +1,319 @@
+id	base	definition_sha256	bound	unbound	transport
+b3a 00 m3l base must-pass [dense]	m3l_dense	a7ed7ca0	pass:eligible	pass:needs_recompute	pass:needs_recompute
+b3a a non-zero element pressure load [dense]	m3l_dense	a7ed7ca0	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a a non-zero node force with category pressure [dense]	m3l_dense	a7ed7ca0	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a a zero-magnitude element pressure load [dense]	m3l_dense	a7ed7ca0	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a contract mode changed [dense]	m3l_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a contract null [dense]	m3l_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a contract removed [dense]	m3l_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a contract the exact one [dense]	m3l_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a contract version as a number [dense]	m3l_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a contract version changed [dense]	m3l_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a contract with an extra key [dense]	m3l_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a schema 0.2.0 keeping the contract [dense]	m3l_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a schema 0.4.0 keeping the contract [dense]	m3l_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.1.0 pressure_contract {} [dense]	milestone_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.1.0 pressure_contract false [dense]	milestone_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.1.0 pressure_contract [] [dense]	milestone_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.1.0 pressure_contract "" [dense]	milestone_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.1.0 pressure_contract 0 [dense]	milestone_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.1.0 pressure_contract legacy [dense]	milestone_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.1.0 pressure_contract null must-pass [dense]	milestone_dense	a7ed7ca0	pass:eligible	pass:needs_recompute	pass:needs_recompute
+b3a L 0.2.0 pressure_contract {} [dense]	milestone_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.2.0 pressure_contract false [dense]	milestone_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.2.0 pressure_contract [] [dense]	milestone_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.2.0 pressure_contract "" [dense]	milestone_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.2.0 pressure_contract 0 [dense]	milestone_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.2.0 pressure_contract legacy [dense]	milestone_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.2.0 pressure_contract null must-pass [dense]	milestone_dense	a7ed7ca0	pass:eligible	pass:needs_recompute	pass:needs_recompute
+b3a 0.3.0 without a contract [dense]	milestone_dense	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 00 m3x base must-pass [dense]	m3x_dense	5a3bac43	pass:eligible	pass:needs_recompute	pass:needs_recompute
+b3b 01 identity relabelled preview (profile kept) [dense]	m3x_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 02 profile relabelled preview [dense]	m3x_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 03 an attempt's definition_id ordinary [dense]	m3x_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 04 projection_policy changed [dense]	m3x_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 05 work_policy changed [dense]	m3x_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 06 canonicalization changed [dense]	m3x_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 07 work.case_limit changed [dense]	m3x_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 08 work.invocation_limit changed [dense]	m3x_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 12 owner pipe_sections As_m2 one ulp [dense]	m3x_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b 13 owner pipe_sections Z_m3 one ulp [dense]	m3x_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b 14 owner pipe_sections I_m4 one ulp [dense]	m3x_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b 15 owner pipe_sections ro_m one ulp [dense]	m3x_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b 16 connector non-empty [dense]	m3x_dense	5a3bac43	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b 17 pipe_materials G_pa three ulps [dense]	m3x_dense	5a3bac43	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b 18 recovery_method added to an exact_cases entry [dense]	m3x_dense	5a3bac43	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b 19 invocation contract legacy [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 20 invocation schema 0.4.0 [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 21 invocation pressure_contract false [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 22 a combination added to the invocation [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 23 a case naming modulus_basis_ref [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 24 shear_origin explicit_g [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 25 receipt shear_modulus one ulp [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 26 shear_origin.poisson_ratio bits changed [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 27 authored nu changed in the invocation [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 28 S-C only: an entry's pipe_materials nu one ulp [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 29 N-6: an entry's pipe_materials G_pa one ulp [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 30 a case's pressure_regions null [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 31 a case's pressure_regions with one region [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 32 a member's geometry.route preview [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x01 owner pipe_sections J_m4 one ulp [dense]	m3x_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b x02 owner pipe_sections outside_diameter_m one ulp [dense]	m3x_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x03 owner pipe_sections effective_wall_thickness_m one ulp [dense]	m3x_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x04 the owner entry's load_case_id renamed [dense]	m3x_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x05 exact_cases empty [dense]	m3x_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b x06 contract_evidence removed [dense]	m3x_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x07 a case's pressure_regions removed [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x08 a case with analysis_state [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x09 authored E one ulp [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x10 authored nu unit not 1 [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x11 authored nu 0.5 [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x12 authored constitutive_basis changed [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x13 invocation contract mode only [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x14 invocation contract extra key [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x15 invocation contract removed [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x16 invocation schema 0.2.0 [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x17 physics-1 headline altered [dense]	m3x_dense	5a3bac43	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	pass:needs_recompute
+b3b x18 a named point basis equal to the base, named in the receipt [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x19 the owner entry's pipe section listed twice [dense]	m3x_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x20 the owner entry's As_m2 a string [dense]	m3x_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x21 invocation contract version 2.0.1 [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x22 invocation contract with an extra null key [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x23 a component added to the invocation [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x24 authored nu unit empty [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x25 authored constitutive_basis removed [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x26 G_hat one ulp high, every copy consistent [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x27 policy changed [dense]	m3x_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b x28 facade_policy changed [dense]	m3x_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b x29 receipt_version 2 [dense]	m3x_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b x30 the owner's exact_cases entry listed twice [dense]	m3x_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x31 producer component_version 0.2.1 [dense]	m3x_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b x32 a material's selection named_point [dense]	m3x_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 09 the preview milestone successor relabelled physics-retained-1 [dense]	milestone_dense	a7ed7ca0	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 10 the exact successor relabelled preview-physics-retained-1 [dense]	m3x_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 11 S-1: the preparation hash over a payload with DEF-O's H [dense]	m3x_dense	a7ed7ca0	G1:RETAINED_PRECISION_RECEIPT_MISMATCH	G1:RETAINED_PRECISION_RECEIPT_MISMATCH	G1:RETAINED_PRECISION_RECEIPT_MISMATCH
+b3b p01 an authored redundant G in the invocation (ignored by the producer) [dense]	m3x_dense	5a3bac43	pass:eligible	pass:needs_recompute	pass:needs_recompute
+b3b 00 m3xp base must-pass [dense]	m3xp_dense	5a3bac43	pass:eligible	pass:needs_recompute	pass:needs_recompute
+b3b 01 identity relabelled preview (profile kept) (on m3xp) [dense]	m3xp_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 02 profile relabelled preview (on m3xp) [dense]	m3xp_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 03 an attempt's definition_id ordinary (on m3xp) [dense]	m3xp_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 04 projection_policy changed (on m3xp) [dense]	m3xp_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 05 work_policy changed (on m3xp) [dense]	m3xp_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 06 canonicalization changed (on m3xp) [dense]	m3xp_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 07 work.case_limit changed (on m3xp) [dense]	m3xp_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 08 work.invocation_limit changed (on m3xp) [dense]	m3xp_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 12 owner pipe_sections As_m2 one ulp (on m3xp) [dense]	m3xp_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b 13 owner pipe_sections Z_m3 one ulp (on m3xp) [dense]	m3xp_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b 14 owner pipe_sections I_m4 one ulp (on m3xp) [dense]	m3xp_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b 15 owner pipe_sections ro_m one ulp (on m3xp) [dense]	m3xp_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b 16 connector non-empty (on m3xp) [dense]	m3xp_dense	5a3bac43	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b 17 pipe_materials G_pa three ulps (on m3xp) [dense]	m3xp_dense	5a3bac43	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b 18 recovery_method added to an exact_cases entry (on m3xp) [dense]	m3xp_dense	5a3bac43	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b 19 invocation contract legacy (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 20 invocation schema 0.4.0 (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 21 invocation pressure_contract false (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 22 a combination added to the invocation (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 23 a case naming modulus_basis_ref (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 24 shear_origin explicit_g (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 25 receipt shear_modulus one ulp (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 26 shear_origin.poisson_ratio bits changed (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 27 authored nu changed in the invocation (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 28 S-C only: an entry's pipe_materials nu one ulp (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 29 N-6: an entry's pipe_materials G_pa one ulp (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 30 a case's pressure_regions null (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 31 a case's pressure_regions with one region (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 32 a member's geometry.route preview (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x01 owner pipe_sections J_m4 one ulp (on m3xp) [dense]	m3xp_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b x02 owner pipe_sections outside_diameter_m one ulp (on m3xp) [dense]	m3xp_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x03 owner pipe_sections effective_wall_thickness_m one ulp (on m3xp) [dense]	m3xp_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x04 the owner entry's load_case_id renamed (on m3xp) [dense]	m3xp_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x05 exact_cases empty (on m3xp) [dense]	m3xp_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b x06 contract_evidence removed (on m3xp) [dense]	m3xp_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x07 a case's pressure_regions removed (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x08 a case with analysis_state (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x09 authored E one ulp (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x10 authored nu unit not 1 (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x11 authored nu 0.5 (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x12 authored constitutive_basis changed (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x13 invocation contract mode only (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x14 invocation contract extra key (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x15 invocation contract removed (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x16 invocation schema 0.2.0 (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x17 physics-1 headline altered (on m3xp) [dense]	m3xp_dense	5a3bac43	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	pass:needs_recompute
+b3b x18 a named point basis equal to the base, named in the receipt (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x19 the owner entry's pipe section listed twice (on m3xp) [dense]	m3xp_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x20 the owner entry's As_m2 a string (on m3xp) [dense]	m3xp_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x21 invocation contract version 2.0.1 (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x22 invocation contract with an extra null key (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x23 a component added to the invocation (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x24 authored nu unit empty (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x25 authored constitutive_basis removed (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x26 G_hat one ulp high, every copy consistent (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x27 policy changed (on m3xp) [dense]	m3xp_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b x28 facade_policy changed (on m3xp) [dense]	m3xp_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b x29 receipt_version 2 (on m3xp) [dense]	m3xp_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b x30 the owner's exact_cases entry listed twice (on m3xp) [dense]	m3xp_dense	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x31 producer component_version 0.2.1 (on m3xp) [dense]	m3xp_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b x32 a material's selection named_point (on m3xp) [dense]	m3xp_dense	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 10 the exact successor relabelled preview-physics-retained-1 (on m3xp) [dense]	m3xp_dense	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 11 S-1: the preparation hash over a payload with DEF-O's H (on m3xp) [dense]	m3xp_dense	a7ed7ca0	G1:RETAINED_PRECISION_RECEIPT_MISMATCH	G1:RETAINED_PRECISION_RECEIPT_MISMATCH	G1:RETAINED_PRECISION_RECEIPT_MISMATCH
+b3b p01 an authored redundant G in the invocation (ignored by the producer) (on m3xp) [dense]	m3xp_dense	5a3bac43	pass:eligible	pass:needs_recompute	pass:needs_recompute
+b3a 00 m3l base must-pass [sparse]	m3l_sparse	a7ed7ca0	pass:eligible	pass:needs_recompute	pass:needs_recompute
+b3a a non-zero element pressure load [sparse]	m3l_sparse	a7ed7ca0	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a a non-zero node force with category pressure [sparse]	m3l_sparse	a7ed7ca0	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a a zero-magnitude element pressure load [sparse]	m3l_sparse	a7ed7ca0	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a contract mode changed [sparse]	m3l_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a contract null [sparse]	m3l_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a contract removed [sparse]	m3l_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a contract the exact one [sparse]	m3l_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a contract version as a number [sparse]	m3l_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a contract version changed [sparse]	m3l_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a contract with an extra key [sparse]	m3l_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a schema 0.2.0 keeping the contract [sparse]	m3l_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a schema 0.4.0 keeping the contract [sparse]	m3l_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.1.0 pressure_contract {} [sparse]	milestone_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.1.0 pressure_contract false [sparse]	milestone_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.1.0 pressure_contract [] [sparse]	milestone_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.1.0 pressure_contract "" [sparse]	milestone_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.1.0 pressure_contract 0 [sparse]	milestone_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.1.0 pressure_contract legacy [sparse]	milestone_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.1.0 pressure_contract null must-pass [sparse]	milestone_sparse	a7ed7ca0	pass:eligible	pass:needs_recompute	pass:needs_recompute
+b3a L 0.2.0 pressure_contract {} [sparse]	milestone_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.2.0 pressure_contract false [sparse]	milestone_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.2.0 pressure_contract [] [sparse]	milestone_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.2.0 pressure_contract "" [sparse]	milestone_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.2.0 pressure_contract 0 [sparse]	milestone_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.2.0 pressure_contract legacy [sparse]	milestone_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3a L 0.2.0 pressure_contract null must-pass [sparse]	milestone_sparse	a7ed7ca0	pass:eligible	pass:needs_recompute	pass:needs_recompute
+b3a 0.3.0 without a contract [sparse]	milestone_sparse	a7ed7ca0	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 00 m3x base must-pass [sparse]	m3x_sparse	5a3bac43	pass:eligible	pass:needs_recompute	pass:needs_recompute
+b3b 01 identity relabelled preview (profile kept) [sparse]	m3x_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 02 profile relabelled preview [sparse]	m3x_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 03 an attempt's definition_id ordinary [sparse]	m3x_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 04 projection_policy changed [sparse]	m3x_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 05 work_policy changed [sparse]	m3x_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 06 canonicalization changed [sparse]	m3x_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 07 work.case_limit changed [sparse]	m3x_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 08 work.invocation_limit changed [sparse]	m3x_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 12 owner pipe_sections As_m2 one ulp [sparse]	m3x_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b 13 owner pipe_sections Z_m3 one ulp [sparse]	m3x_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b 14 owner pipe_sections I_m4 one ulp [sparse]	m3x_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b 15 owner pipe_sections ro_m one ulp [sparse]	m3x_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b 16 connector non-empty [sparse]	m3x_sparse	5a3bac43	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b 17 pipe_materials G_pa three ulps [sparse]	m3x_sparse	5a3bac43	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b 18 recovery_method added to an exact_cases entry [sparse]	m3x_sparse	5a3bac43	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b 19 invocation contract legacy [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 20 invocation schema 0.4.0 [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 21 invocation pressure_contract false [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 22 a combination added to the invocation [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 23 a case naming modulus_basis_ref [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 24 shear_origin explicit_g [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 25 receipt shear_modulus one ulp [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 26 shear_origin.poisson_ratio bits changed [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 27 authored nu changed in the invocation [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 28 S-C only: an entry's pipe_materials nu one ulp [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 29 N-6: an entry's pipe_materials G_pa one ulp [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 30 a case's pressure_regions null [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 31 a case's pressure_regions with one region [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 32 a member's geometry.route preview [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x01 owner pipe_sections J_m4 one ulp [sparse]	m3x_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b x02 owner pipe_sections outside_diameter_m one ulp [sparse]	m3x_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x03 owner pipe_sections effective_wall_thickness_m one ulp [sparse]	m3x_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x04 the owner entry's load_case_id renamed [sparse]	m3x_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x05 exact_cases empty [sparse]	m3x_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b x06 contract_evidence removed [sparse]	m3x_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x07 a case's pressure_regions removed [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x08 a case with analysis_state [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x09 authored E one ulp [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x10 authored nu unit not 1 [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x11 authored nu 0.5 [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x12 authored constitutive_basis changed [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x13 invocation contract mode only [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x14 invocation contract extra key [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x15 invocation contract removed [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x16 invocation schema 0.2.0 [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x17 physics-1 headline altered [sparse]	m3x_sparse	5a3bac43	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	pass:needs_recompute
+b3b x18 a named point basis equal to the base, named in the receipt [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x19 the owner entry's pipe section listed twice [sparse]	m3x_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x20 the owner entry's As_m2 a string [sparse]	m3x_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x21 invocation contract version 2.0.1 [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x22 invocation contract with an extra null key [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x23 a component added to the invocation [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x24 authored nu unit empty [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x25 authored constitutive_basis removed [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x26 G_hat one ulp high, every copy consistent [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x27 policy changed [sparse]	m3x_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b x28 facade_policy changed [sparse]	m3x_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b x29 receipt_version 2 [sparse]	m3x_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b x30 the owner's exact_cases entry listed twice [sparse]	m3x_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x31 producer component_version 0.2.1 [sparse]	m3x_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b x32 a material's selection named_point [sparse]	m3x_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 09 the preview milestone successor relabelled physics-retained-1 [sparse]	milestone_sparse	a7ed7ca0	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 10 the exact successor relabelled preview-physics-retained-1 [sparse]	m3x_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 11 S-1: the preparation hash over a payload with DEF-O's H [sparse]	m3x_sparse	a7ed7ca0	G1:RETAINED_PRECISION_RECEIPT_MISMATCH	G1:RETAINED_PRECISION_RECEIPT_MISMATCH	G1:RETAINED_PRECISION_RECEIPT_MISMATCH
+b3b p01 an authored redundant G in the invocation (ignored by the producer) [sparse]	m3x_sparse	5a3bac43	pass:eligible	pass:needs_recompute	pass:needs_recompute
+b3b 00 m3xp base must-pass [sparse]	m3xp_sparse	5a3bac43	pass:eligible	pass:needs_recompute	pass:needs_recompute
+b3b 01 identity relabelled preview (profile kept) (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 02 profile relabelled preview (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 03 an attempt's definition_id ordinary (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 04 projection_policy changed (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 05 work_policy changed (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 06 canonicalization changed (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 07 work.case_limit changed (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 08 work.invocation_limit changed (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 12 owner pipe_sections As_m2 one ulp (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b 13 owner pipe_sections Z_m3 one ulp (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b 14 owner pipe_sections I_m4 one ulp (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b 15 owner pipe_sections ro_m one ulp (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b 16 connector non-empty (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b 17 pipe_materials G_pa three ulps (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b 18 recovery_method added to an exact_cases entry (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b 19 invocation contract legacy (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 20 invocation schema 0.4.0 (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 21 invocation pressure_contract false (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 22 a combination added to the invocation (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 23 a case naming modulus_basis_ref (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 24 shear_origin explicit_g (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 25 receipt shear_modulus one ulp (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 26 shear_origin.poisson_ratio bits changed (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 27 authored nu changed in the invocation (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 28 S-C only: an entry's pipe_materials nu one ulp (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 29 N-6: an entry's pipe_materials G_pa one ulp (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 30 a case's pressure_regions null (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 31 a case's pressure_regions with one region (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 32 a member's geometry.route preview (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x01 owner pipe_sections J_m4 one ulp (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b x02 owner pipe_sections outside_diameter_m one ulp (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x03 owner pipe_sections effective_wall_thickness_m one ulp (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x04 the owner entry's load_case_id renamed (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x05 exact_cases empty (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	pass:needs_recompute
+b3b x06 contract_evidence removed (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x07 a case's pressure_regions removed (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x08 a case with analysis_state (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x09 authored E one ulp (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x10 authored nu unit not 1 (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x11 authored nu 0.5 (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x12 authored constitutive_basis changed (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x13 invocation contract mode only (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x14 invocation contract extra key (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x15 invocation contract removed (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x16 invocation schema 0.2.0 (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x17 physics-1 headline altered (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	G7:SOURCE_PHYSICS_EVIDENCE_INVALID	pass:needs_recompute
+b3b x18 a named point basis equal to the base, named in the receipt (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x19 the owner entry's pipe section listed twice (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x20 the owner entry's As_m2 a string (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x21 invocation contract version 2.0.1 (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x22 invocation contract with an extra null key (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x23 a component added to the invocation (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_INVOCATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x24 authored nu unit empty (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x25 authored constitutive_basis removed (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x26 G_hat one ulp high, every copy consistent (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b x27 policy changed (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b x28 facade_policy changed (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b x29 receipt_version 2 (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b x30 the owner's exact_cases entry listed twice (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G5b:RETAINED_PRECISION_SECTION_MISMATCH	G7:SOURCE_PHYSICS_EVIDENCE_INVALID
+b3b x31 producer component_version 0.2.1 (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b x32 a material's selection named_point (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G8:RETAINED_PRECISION_PREPARATION_MISMATCH	pass:needs_recompute	pass:needs_recompute
+b3b 10 the exact successor relabelled preview-physics-retained-1 (on m3xp) [sparse]	m3xp_sparse	5a3bac43	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED	G0:SOURCE_PRODUCER_CONTRACT_UNSUPPORTED
+b3b 11 S-1: the preparation hash over a payload with DEF-O's H (on m3xp) [sparse]	m3xp_sparse	a7ed7ca0	G1:RETAINED_PRECISION_RECEIPT_MISMATCH	G1:RETAINED_PRECISION_RECEIPT_MISMATCH	G1:RETAINED_PRECISION_RECEIPT_MISMATCH
+b3b p01 an authored redundant G in the invocation (ignored by the producer) (on m3xp) [sparse]	m3xp_sparse	5a3bac43	pass:eligible	pass:needs_recompute	pass:needs_recompute

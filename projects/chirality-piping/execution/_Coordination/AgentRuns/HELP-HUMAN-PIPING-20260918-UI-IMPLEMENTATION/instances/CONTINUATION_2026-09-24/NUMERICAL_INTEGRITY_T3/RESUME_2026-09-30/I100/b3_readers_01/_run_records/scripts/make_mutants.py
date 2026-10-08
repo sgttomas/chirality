@@ -1,0 +1,157 @@
+"""I100 B3: the mutant copy. Each mutant is one guarded edit to the head's reader files, active only when the
+environment variable I100_MUT names it (unset: the head's behaviour, the control). Every replaced text is asserted
+unique in its file. One mutant per new check. Usage: make_mutants.py <mutant P root> <out MUTANTS.json>"""
+import json
+import sys
+from pathlib import Path
+
+P = Path(sys.argv[1])
+G = '__import__("os").environ.get("I100_MUT")'
+RP = "core/analysis_runs/retained_precision.py"
+CO = "core/analysis_runs/compatibility.py"
+MUTANTS = [
+    # B3a: G8's legacy namespace.
+    ("A1", RP, "B3a: branch L3 removed (0.3.0 never admitted)",
+     '    return version == "0.3.0" and _pressure_contract_is(model, LEGACY_PRESSURE_CONTRACT)',
+     f'    return {G} != "A1" and version == "0.3.0" and _pressure_contract_is(model, LEGACY_PRESSURE_CONTRACT)'),
+    ("A2", RP, "B3a: the contract's mode not compared",
+     "all(value[k] == expected[k] for k in expected)",
+     f'all(value[k] == expected[k] for k in expected if not ({G} == "A2" and k == "mode") and not ({G} == "A3" and k == "version"))'),
+    ("A3", RP, "B3a: the contract's version not compared", None, None),
+    ("A4", RP, "B3a: extra contract keys admitted",
+     "type(value) is dict and value.keys() == expected.keys()",
+     f'type(value) is dict and (value.keys() >= expected.keys() if {G} == "A4" else value.keys() == expected.keys())'),
+    ("A5", RP, "B3a: 0.3.0 without a contract admitted (D31's old admission, B3D-10 undone)",
+     '    if version in ("0.1.0", "0.2.0") and type(version) is str:',
+     f'    if version in (("0.1.0", "0.2.0", "0.3.0") if {G} == "A5" else ("0.1.0", "0.2.0")) and type(version) is str and ({G} != "A5" or version != "0.3.0" or model.get("pressure_contract") is None):'),
+    ("A6", RP, "B3a: branch L reads any falsy contract as null (N-4 undone)",
+     '        return model.get("pressure_contract") is None',
+     f'        return ({G} == "A7" and _pressure_contract_is(model, LEGACY_PRESSURE_CONTRACT)) or ((not model.get("pressure_contract")) if {G} == "A6" else model.get("pressure_contract") is None)'),
+    ("A7", RP, "B3a: branch L also admits the legacy contract", None, None),
+    # B3b: G0.
+    ("B1", RP, "G0: the exact identity not dispatched",
+     "route=ROUTES.get(contract) if type(contract) is str else None",
+     f'route=ROUTES.get(contract) if type(contract) is str and not ({G} == "B1" and contract == EXACT_CONTRACT_ID) else None'),
+    ("B2", RP, "G0 step 1: the route's profile not checked",
+     'route is not None and basis.get("profile_id")==route.profile,',
+     f'route is not None and (basis.get("profile_id")==route.profile or {G} == "B2"),'),
+    ("B3", RP, "G0 step 3: the table's identity and profile not checked",
+     '    need(type(table) is dict and table.get("semantic_contract_id") == EXACT_CONTRACT_ID and table.get("formulation_profile_id") == EXACT_PROFILE)',
+     f'    need({G} == "B3" or (type(table) is dict and table.get("semantic_contract_id") == EXACT_CONTRACT_ID and table.get("formulation_profile_id") == EXACT_PROFILE))'),
+    ("B4", RP, "G0 step 4: DEF-E's hash not checked",
+     '    need(_hash("retained_precision_formation_v1", definition) == EXACT_DEFINITION_HASH\n',
+     f'    need(({G} == "B4" or _hash("retained_precision_formation_v1", definition) == EXACT_DEFINITION_HASH)\n'),
+    ("B5", RP, "G0 step 4: the table's bound definition not checked",
+     '         and _same(table.get("product_formation_definitions"), [{"id": EXACT_DEFINITION_ID, "sha256": EXACT_DEFINITION_HASH}]), "FORMATION_MISMATCH")',
+     f'         and ({G} == "B5" or _same(table.get("product_formation_definitions"), [{{"id": EXACT_DEFINITION_ID, "sha256": EXACT_DEFINITION_HASH}}])), "FORMATION_MISMATCH")'),
+    ("B6", RP, "G0 step 5: the table's bytes not checked",
+     "    need(hashlib.sha256(table_bytes).hexdigest() == EXACT_TABLE_HASH and hashlib.sha256(inherited)",
+     f'    need(({G} == "B6" or hashlib.sha256(table_bytes).hexdigest() == EXACT_TABLE_HASH) and hashlib.sha256(inherited)'),
+    ("B7", RP, "G0 step 5: the inherited hash not checked",
+     '.hexdigest() == table.get("inherited_semantic_contract_sha256"))',
+     f'.hexdigest() == table.get("inherited_semantic_contract_sha256") or {G} == "B7")'),
+    ("B8", RP, "G0 step 6: the table/constant cross-check skipped",
+     '    if not (_same(table.get("receipt_bindings"), RECEIPT_BINDINGS) and',
+     f'    if {G} != "B8" and not (({G} == "B9" or _same(table.get("receipt_bindings"), RECEIPT_BINDINGS)) and'),
+    ("B9", RP, "G0 step 6: receipt_bindings not cross-checked", None, None),
+    ("B10", RP, "G0 step 6: receipt_policy not cross-checked",
+     ' and table.get("receipt_policy") == RECEIPT_POLICY\n',
+     f' and (table.get("receipt_policy") == RECEIPT_POLICY or {G} == "B10")\n'),
+    ("B11", RP, "G0 step 6: the facade policy not cross-checked",
+     '            and type(policy) is dict and policy.get("policy") == FACADE_POLICY):',
+     f'            and type(policy) is dict and (policy.get("policy") == FACADE_POLICY or {G} == "B11")):'),
+    ("B12", RP, "G0 step 8: the receipt's policies and canonicalization not read from the table",
+     '        need(type(b.get(key)) is str and b[key] == value)',
+     f'        need({G} == "B12" or (type(b.get(key)) is str and b[key] == value))'),
+    ("B13", RP, "G0 step 8: the work limits not read from the table",
+     '    need(type(w) is dict and _integral(w.get("case_limit")) == bound["work"]["case_limit"]',
+     f'    need({G} == "B13" or type(w) is dict and _integral(w.get("case_limit")) == bound["work"]["case_limit"]'),
+    ("B14", RP, "G0 step 9: the attempts' definition id not read from the table",
+     '        if type(attempt) is dict: need(attempt.get("definition_id") == table["product_formation_definitions"][0]["id"])',
+     f'        if type(attempt) is dict: need({G} == "B14" or attempt.get("definition_id") == table["product_formation_definitions"][0]["id"])'),
+    # S-1.
+    ("B15", RP, "S-1 at G1: DEF-O's hash on every route",
+     '_need(prep["sha256"]==_hash("retained_precision_preparation_v1",_preparation_payload(a,route.definition_hash)),gate,"RECEIPT_MISMATCH")',
+     f'_need(prep["sha256"]==_hash("retained_precision_preparation_v1",_preparation_payload(a,DEFINITION_HASH if {G} == "B15" else route.definition_hash)),gate,"RECEIPT_MISMATCH")'),
+    ("B16", RP, "S-1 at G8: DEF-O's hash on every route",
+     '_hash("retained_precision_preparation_v1",_preparation_payload(a,route.definition_hash)))',
+     f'_hash("retained_precision_preparation_v1",_preparation_payload(a,DEFINITION_HASH if {G} == "B16" else route.definition_hash)))'),
+    # G5b.
+    ("B17", RP, "G5b: the exact evidence check skipped",
+     "        if exact_evidence is not None: _g5b_exact_evidence(exact_evidence[0], case, source)",
+     f'        if exact_evidence is not None and {G} != "B17": _g5b_exact_evidence(exact_evidence[0], case, source)'),
+    ("B18", RP, "G5b: As_m2 not compared",
+     '            need(type(value) in (int, float) and math.isfinite(value) and bits(float(value)) == word)',
+     f'            need(key == {{"B18": "As_m2", "B19": "Z_m3", "B20": "I_m4", "B21": "J_m4", "B22": "ro_m", "B23": "outside_diameter_m", "B24": "effective_wall_thickness_m"}}.get({G}) or (type(value) in (int, float) and math.isfinite(value) and bits(float(value)) == word))'),
+    ("B19", RP, "G5b: Z_m3 not compared", None, None),
+    ("B20", RP, "G5b: I_m4 not compared", None, None),
+    ("B21", RP, "G5b: J_m4 not compared", None, None),
+    ("B22", RP, "G5b: ro_m not compared", None, None),
+    ("B23", RP, "G5b: outside_diameter_m not compared", None, None),
+    ("B24", RP, "G5b: effective_wall_thickness_m not compared", None, None),
+    ("B25", RP, "G5b: a missing owner entry or section passes",
+     '    need(len(owner) == 1 and type(owner[0].get("pipe_sections")) is list)',
+     f'    if {G} == "B25" and len(owner) != 1: return\n    need(len(owner) == 1 and type(owner[0].get("pipe_sections")) is list)'),
+    # G7 and transport.
+    ("B26", RP, "G7: the exact branch projected to preview-physics-1",
+     'projected["producer"]["semantic_contract_id"]=route.base_id;projected["formulation_basis"]["profile_id"]=route.base_profile',
+     f'route=PREVIEW_ROUTE if {G} == "B26" else route;projected["producer"]["semantic_contract_id"]=route.base_id;projected["formulation_basis"]["profile_id"]=route.base_profile'),
+    ("B27", RP, "transport: physics-1's metadata code reported at G2",
+     'error=RetainedPrecisionError("G7" if code in route.metadata_codes else "G2",code)',
+     f'error=RetainedPrecisionError("G7" if code in (PREVIEW_ROUTE if {G} == "B27" else route).metadata_codes else "G2",code)'),
+    # G8.
+    ("B28", RP, "G8: the exact namespace admits the legacy contract",
+     '    return type(version) is str and version == "0.3.0" and _pressure_contract_is(model, EXACT_PRESSURE_CONTRACT)',
+     f'    return type(version) is str and ({G} == "B29" or version == "0.3.0") and (_pressure_contract_is(model, EXACT_PRESSURE_CONTRACT) or ({G} == "B28" and _pressure_contract_is(model, LEGACY_PRESSURE_CONTRACT)))'),
+    ("B29", RP, "G8: the exact namespace's schema not checked", None, None),
+    ("B30", RP, "G8: explicit_g admitted on the exact route",
+     '        return {"kind":"derived_e_nu","poisson_ratio":bits(poisson(material)),"constitutive_basis":"homogeneous_isotropic_E_nu_v1"} if exact else {"kind":"explicit_g"}',
+     f'        return {{"kind":"derived_e_nu","poisson_ratio":bits(poisson(material)),"constitutive_basis":"homogeneous_isotropic_E_nu_v1"}} if exact and {G} != "B30" else {{"kind":"explicit_g"}}'),
+    ("B31", RP, "G8: G_hat not bound (only E compared)",
+     '            e = unit(material["elastic_modulus"], "stress"); g = e / (2.0 * (1.0 + poisson(material)))',
+     f'            e = unit(material["elastic_modulus"], "stress"); g = e / (2.0 * (1.0 + poisson(material)))\n            if {G} == "B31": g = from_bits(next(m for b in body["material_bases"] for m in b["materials"] if m["id"] == material["id"])["shear_modulus"])'),
+    ("B32", RP, "G8: the authored nu's unit and range not checked (S-C repeats them)",
+     '        need(type(q) is dict and q.get("unit") == "1" and type(q.get("value")) in (int, float) and math.isfinite(q["value"]) and -1 < q["value"] < .5)',
+     f'        need({G} == "B32" or (type(q) is dict and q.get("unit") == "1" and type(q.get("value")) in (int, float) and math.isfinite(q["value"]) and -1 < q["value"] < .5))'),
+    ("B33", RP, "G8: the base-only selection not required (both guards)",
+     '            need(case.get("modulus_basis_ref") is None and case.get("modulus_basis_temperature") is None)\n            e = unit(',
+     f'            need({G} == "B33" or (case.get("modulus_basis_ref") is None and case.get("modulus_basis_temperature") is None))\n            e = unit('),
+    ("B33b", RP, "(B33's second guard)",
+     '        need(not exact or selector == {"kind":"base"})',
+     f'        need(not exact or selector == {{"kind":"base"}} or {G} == "B33")'),
+    ("B34", RP, "G8: S-C skipped",
+     "    if exact: _g8_exact_materials(body, source, invocation, case_bases)",
+     f'    if exact and {G} != "B34": _g8_exact_materials(body, source, invocation, case_bases, {G} == "B35")'),
+    ("B35", RP, "G8: N-6 skipped",
+     "def _g8_exact_materials(body, source, invocation, case_bases):",
+     "def _g8_exact_materials(body, source, invocation, case_bases, skip_n6=False):"),
+    ("B35b", RP, "(B35's skip)",
+     "    for entry in entries:\n        basis = body[\"material_bases\"]",
+     "    for entry in entries if not skip_n6 else []:\n        basis = body[\"material_bases\"]"),
+    ("B36", RP, "G8: pressure_regions read as on the preview route (absent or null admitted)",
+     '            need(type(case.get("pressure_regions")) is list and case["pressure_regions"] == [] and',
+     f'            need((not case.get("pressure_regions") if {G} == "B36" else type(case.get("pressure_regions")) is list and case["pressure_regions"] == []) and'),
+    ("B37", RP, "G8: analysis_state not refused",
+     ' and "analysis_state" not in case)',
+     f' and ("analysis_state" not in case or {G} == "B37"))'),
+    ("B38", RP, "G8: the member route not checked on the exact branch",
+     'need(geo["route"] == ("exact" if exact else "preview") and',
+     f'need((geo["route"] == ("exact" if exact else "preview") or {G} == "B38") and'),
+    # compatibility.py.
+    ("B39", CO, "carriers: the exact identity not dispatched to the reader",
+     "    return isinstance(contract, str) and contract in RETAINED_CONTRACTS",
+     f'    return isinstance(contract, str) and contract in RETAINED_CONTRACTS and not ({G} == "B39" and contract == PHYSICS_RETAINED_CONTRACT_ID)'),
+    ("B40", CO, "carriers: the AnalysisRun record of the exact successor without its receipt",
+     "    # C1:162; D2 4.9.6: the successor's AnalysisRun carries its complete receipt (B3b: either successor).\n    if contract_id in RETAINED_CONTRACTS:",
+     f"    # C1:162; D2 4.9.6: the successor's AnalysisRun carries its complete receipt (B3b: either successor).\n    if contract_id in RETAINED_CONTRACTS and not ({G} == \"B40\" and contract_id == PHYSICS_RETAINED_CONTRACT_ID):"),
+]
+for mid, rel, what, old, new in MUTANTS:
+    if old is None:
+        continue
+    f = P / rel
+    text = f.read_text()
+    assert text.count(old) == 1, (mid, rel, text.count(old))
+    f.write_text(text.replace(old, new))
+ids = [m for m, _, _, _, _ in MUTANTS if not m.endswith("b")]
+json.dump([{"id": m, "file": r, "edit": w} for m, r, w, _, _ in MUTANTS if not m.endswith("b")], open(sys.argv[2], "w"), indent=1)
+print(len(ids), "mutants:", " ".join(ids))

@@ -1,0 +1,188 @@
+# i100 job mut_A1 (slot) queued 2026-10-08T12:34:13Z dir=scratch/i100_b3r/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=A1 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/mut_A1/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/mutants/runs/A1/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+# start 2026-10-08T12:34:14Z
+FFFFF.........FFF....................................................... [ 39%]
+........................................................................ [ 79%]
+.....................................F                                   [100%]
+=================================== FAILURES ===================================
+____ test_b3a_m3l_successor_is_admitted_like_the_milestone[dense_scrutiny] _____
+
+mode = 'dense_scrutiny'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_successor_is_admitted_like_the_milestone(mode):
+        source, invocation = m3l(mode)
+>       assert outcome(source, invocation) == ("pass", True, "eligible")
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('pass', True, 'eligible')
+E         
+E         At index 0 diff: 'G8' != 'pass'
+E         Right contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:82: AssertionError
+__ test_b3a_m3l_successor_is_admitted_like_the_milestone[sparse_interactive] ___
+
+mode = 'sparse_interactive'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_successor_is_admitted_like_the_milestone(mode):
+        source, invocation = m3l(mode)
+>       assert outcome(source, invocation) == ("pass", True, "eligible")
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('pass', True, 'eligible')
+E         
+E         At index 0 diff: 'G8' != 'pass'
+E         Right contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:82: AssertionError
+___ test_b3a_m3l_mutations[dense_scrutiny-a non-zero element pressure load] ____
+
+mode = 'dense_scrutiny', label = 'a non-zero element pressure load'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 1 diff: 'RETAINED_PRECISION_INVOCATION_MISMATCH' != 'RETAINED_PRECISION_PREPARATION_MISMATCH'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:121: AssertionError
+_ test_b3a_m3l_mutations[dense_scrutiny-a non-zero node force with category pressure] _
+
+mode = 'dense_scrutiny', label = 'a non-zero node force with category pressure'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 1 diff: 'RETAINED_PRECISION_INVOCATION_MISMATCH' != 'RETAINED_PRECISION_PREPARATION_MISMATCH'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:121: AssertionError
+_ test_b3a_m3l_mutations[dense_scrutiny-a zero-magnitude element pressure load] _
+
+mode = 'dense_scrutiny', label = 'a zero-magnitude element pressure load'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 1 diff: 'RETAINED_PRECISION_INVOCATION_MISMATCH' != 'RETAINED_PRECISION_PREPARATION_MISMATCH'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:121: AssertionError
+_ test_b3a_m3l_mutations[sparse_interactive-a non-zero element pressure load] __
+
+mode = 'sparse_interactive', label = 'a non-zero element pressure load'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 1 diff: 'RETAINED_PRECISION_INVOCATION_MISMATCH' != 'RETAINED_PRECISION_PREPARATION_MISMATCH'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:121: AssertionError
+_ test_b3a_m3l_mutations[sparse_interactive-a non-zero node force with category pressure] _
+
+mode = 'sparse_interactive'
+label = 'a non-zero node force with category pressure'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 1 diff: 'RETAINED_PRECISION_INVOCATION_MISMATCH' != 'RETAINED_PRECISION_PREPARATION_MISMATCH'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:121: AssertionError
+_ test_b3a_m3l_mutations[sparse_interactive-a zero-magnitude element pressure load] _
+
+mode = 'sparse_interactive', label = 'a zero-magnitude element pressure load'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 1 diff: 'RETAINED_PRECISION_INVOCATION_MISMATCH' != 'RETAINED_PRECISION_PREPARATION_MISMATCH'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:121: AssertionError
+________________________ test_model_schema_versions_d31 ________________________
+
+    def test_model_schema_versions_d31():
+        """D31: G8 admits model schema_version 0.1.0, 0.2.0 and 0.3.0; 0.4.0 stays excluded. B3a (B3D-10, as ruled):
+        0.3.0 is admitted only with the legacy_pressure_v1 contract, so 0.3.0 without a contract is refused."""
+        expected = _cases()[O_BASE]["expected_classifications"]
+        version_edit = lambda version: {"path": ["request", "model", "schema_version"], "op": "set", "value": version}
+        legacy = {"path": ["request", "model", "pressure_contract"], "op": "set", "value": {"version": "1.0.0", "mode": "legacy_pressure_v1"}}
+        for version in ("0.1.0", "0.2.0"):
+            assert _validate_entry(O_BASE, [], [version_edit(version)])["classifications"] == expected
+>       assert _validate_entry(O_BASE, [], [version_edit("0.3.0"), legacy])["classifications"] == expected
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_retained_precision_contract.py:807: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_retained_precision_contract.py:436: in _validate_entry
+    return rp._validate_draft(source, invocation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+core/analysis_runs/retained_precision.py:2069: in _validate_draft
+    if invocation is not None:_g8(body,snapshot,invocation,route)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+core/analysis_runs/retained_precision.py:1620: in _g8
+    need((_exact_namespace(model) if exact else _legacy_namespace(model)) and model.get("combinations", []) == [], "INVOCATION_MISMATCH")
+core/analysis_runs/retained_precision.py:1606: in <lambda>
+    need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+                                                   ^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+ok = False, gate = 'G8', suffix = 'INVOCATION_MISMATCH'
+
+    def _need(ok: bool, gate: str, suffix: str):
+        if not ok:
+>           raise RetainedPrecisionError(gate, suffix if suffix.startswith("SOURCE_") else "RETAINED_PRECISION_" + suffix)
+E           core.analysis_runs.retained_precision.RetainedPrecisionError: RETAINED_PRECISION_INVOCATION_MISMATCH
+
+core/analysis_runs/retained_precision.py:164: RetainedPrecisionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_successor_is_admitted_like_the_milestone[dense_scrutiny]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_successor_is_admitted_like_the_milestone[sparse_interactive]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[dense_scrutiny-a non-zero element pressure load]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[dense_scrutiny-a non-zero node force with category pressure]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[dense_scrutiny-a zero-magnitude element pressure load]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[sparse_interactive-a non-zero element pressure load]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[sparse_interactive-a non-zero node force with category pressure]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[sparse_interactive-a zero-magnitude element pressure load]
+FAILED tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+9 failed, 173 passed in 40.16s
+# end 2026-10-08T12:34:54Z rc=1

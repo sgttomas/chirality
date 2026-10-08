@@ -1,0 +1,46 @@
+# i100 job mut_B21 (slot) queued 2026-10-08T12:51:21Z dir=scratch/i100_b3r/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=B21 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/mut_B21/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/mutants/runs/B21/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+# start 2026-10-08T12:51:21Z
+................................................................F....... [ 39%]
+..................................................F..................... [ 79%]
+......................................                                   [100%]
+=================================== FAILURES ===================================
+_ test_b3b_m3x_mutations[dense_scrutiny-x01 owner pipe_sections J_m4 one ulp] __
+
+mode = 'dense_scrutiny', label = 'x01 owner pipe_sections J_m4 one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G5b'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x01 owner pipe_sections J_m4 one ulp] _
+
+mode = 'sparse_interactive', label = 'x01 owner pipe_sections J_m4 one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G5b'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x01 owner pipe_sections J_m4 one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x01 owner pipe_sections J_m4 one ulp]
+2 failed, 180 passed in 37.86s
+# end 2026-10-08T12:51:59Z rc=1

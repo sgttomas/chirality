@@ -1,0 +1,37 @@
+# i100 job mut_B10 (slot) queued 2026-10-08T12:44:29Z dir=scratch/i100_b3r/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=B10 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/mut_B10/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/mutants/runs/B10/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+# start 2026-10-08T12:44:29Z
+........................................................................ [ 39%]
+........................................................................ [ 79%]
+........................F.............                                   [100%]
+=================================== FAILURES ===================================
+_______ test_b3b_g0_table_constant_cross_check[receipt_policy-<lambda>] ________
+
+tmp_path = PosixPath('WT/scratch/i100_b3r/tmp/mut_B10/basetemp/test_b3b_g0_table_constant_cro3')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10b54dae0>
+label = 'receipt_policy', edit = <function <lambda> at 0x10ba0a520>
+
+    @pytest.mark.parametrize("label, edit", [
+        ("receipt_bindings.projection_policy", lambda t: t["receipt_bindings"].update(projection_policy="RP-LOGICAL-ATTEMPTS-v2")),
+        ("receipt_bindings.work.case_limit", lambda t: t["receipt_bindings"]["work"].update(case_limit=1)),
+        ("receipt_bindings.method", lambda t: t["receipt_bindings"].update(method="other_method")),
+        ("receipt_policy", lambda t: t.update(receipt_policy="M03-INTEGRITY-MP-v3")),
+        ("accuracy_classification.policy", lambda t: t["accuracy_classification"].update(policy="RP-FACADE-SI-v3")),
+    ])
+    def test_b3b_g0_table_constant_cross_check(tmp_path, monkeypatch, label, edit):
+        """§2.4 step 6 (decision 31, N-12), reader-local: a test-only table whose bound value differs from the reader's
+        constant is refused by the cross-check, even with the table's own hash pinned to it."""
+        source, _ = m3x("sparse_interactive")
+        _packaged(tmp_path, monkeypatch, edit_table=edit)
+>       assert _g0(source) == ("G0", "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED", "table/constant cross-check"), label
+E       AssertionError: receipt_policy
+E       assert ('G0', 'SOURC...PORTED', None) == ('G0', 'SOURC... cross-check')
+E         
+E         At index 2 diff: None != 'table/constant cross-check'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:551: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3b_g0_table_constant_cross_check[receipt_policy-<lambda>]
+1 failed, 181 passed in 47.69s
+# end 2026-10-08T12:45:17Z rc=1

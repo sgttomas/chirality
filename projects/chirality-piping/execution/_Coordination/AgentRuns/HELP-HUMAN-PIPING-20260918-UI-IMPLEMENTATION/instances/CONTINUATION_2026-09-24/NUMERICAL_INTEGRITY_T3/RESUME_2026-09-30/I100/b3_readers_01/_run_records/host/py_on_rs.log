@@ -1,0 +1,5 @@
+# i100 job py_on_rs (slot) queued 2026-10-08T13:34:49Z dir=scratch/i100_b3r
+# args: VENV/bin/python WT/scratch/i100_b3r/tools/py_on_inputs.py WT/scratch/i100_b3r/head4/projects/chirality-piping WT/scratch/i100_b3r/inputs/i101/rs_inputs.jsonl WT/scratch/i100_b3r/inputs/i101/rs_shapes.jsonl WT/scratch/i100_b3r/inputs/i101/ts_shapes.jsonl WT/scratch/i100_b3r/shapes/PY_ON_I101_INPUTS.json
+# start 2026-10-08T13:34:49Z
+159 shapes; 0 differences outside G7's per-language codes
+# end 2026-10-08T13:35:02Z rc=0

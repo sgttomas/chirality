@@ -1,0 +1,32 @@
+........................................................................ [ 21%]
+........................................................................ [ 43%]
+........................................................................ [ 65%]
+........................................................................ [ 87%]
+.......F.................................                                [100%]
+=================================== FAILURES ===================================
+_____________ test_b3b_producer_m3x_successor_pins[dense_scrutiny] _____________
+
+mode = 'dense_scrutiny'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_producer_m3x_successor_pins(mode):
+        """Lane P's m3x successors read eligible with their invocation (needs_recompute without it and on transport), in the
+        milestone's classes, through the reader's exact route and the carriers' dispatch."""
+        source, invocation = m3x_producer(mode)
+        assert outcome(source, invocation) == ("pass", True, "eligible")
+        assert outcome(source, None) == ("pass", False, "needs_recompute")
+        assert outcome(source, None, transport=True) == ("pass", False, "needs_recompute")
+        got = rp.validate_retained_precision(source, invocation)["classifications"]
+        counts = [sum(1 for c in got if c["class"] == k) for k in ("relative_verified", "absolute_verified", "input_derived", "non_quantity")]
+        assert counts == [25, 69, 3, 1 if mode == "sparse_interactive" else 2]
+        synthetic = rp.validate_retained_precision(*m3x(mode))["classifications"]
+>       assert [(c["class"], c["normalized_bits"], c["scale_bits"], c["bound_bits"]) for c in got] == [(c["class"], c["normalized_bits"], c["scale_bits"], c["bound_bits"]) for c in synthetic]
+E       AssertionError: assert [('non_quanti...e, None), ...] == [('non_quanti...e, None), ...]
+E         
+E         At index 1 diff: ('non_quantity', '3e2f799187acbfaa', None, None) != ('non_quantity', '3e2c76280d1333f1', None, None)
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:501: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3b_producer_m3x_successor_pins[dense_scrutiny]
+1 failed, 328 passed in 53.23s

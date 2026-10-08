@@ -1,0 +1,49 @@
+# i100 job mut_B7 (slot) queued 2026-10-08T12:42:14Z dir=scratch/i100_b3r/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=B7 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/mut_B7/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/mutants/runs/B7/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+# start 2026-10-08T12:42:14Z
+........................................................................ [ 39%]
+........................................................................ [ 79%]
+...............................FF.....                                   [100%]
+=================================== FAILURES ===================================
+_ test_b3b_g0_table_steps_3_to_5[inherited hash-<lambda>-SOURCE_PRODUCER_CONTRACT_UNSUPPORTED] _
+
+tmp_path = PosixPath('WT/scratch/i100_b3r/tmp/mut_B7/basetemp/test_b3b_g0_table_steps_3_to_54')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109198c80>
+label = 'inherited hash', edit = <function <lambda> at 0x1096baa20>
+expected = 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED'
+
+    @pytest.mark.parametrize("label, edit, expected", [
+        ("identity", lambda t: t.update(semantic_contract_id="openpipestress.result_semantics/0.3.0/physics-retained-2"), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
+        ("profile", lambda t: t.update(formulation_profile_id="exact_straight_retained_w1a_v3"), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
+        ("bound definition", lambda t: t["product_formation_definitions"][0].update(sha256="0" * 64), "RETAINED_PRECISION_FORMATION_MISMATCH"),
+        ("a second definition", lambda t: t["product_formation_definitions"].append({"id": "RP-PREPARED-ORDINARY-DUAL-v1", "sha256": rp.DEFINITION_HASH}), "RETAINED_PRECISION_FORMATION_MISMATCH"),
+        ("inherited hash", lambda t: t.update(inherited_semantic_contract_sha256="0" * 64), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
+    ])
+    def test_b3b_g0_table_steps_3_to_5(tmp_path, monkeypatch, label, edit, expected):
+        source, _ = m3x("sparse_interactive")
+        _packaged(tmp_path, monkeypatch, edit_table=edit)
+>       assert _g0(source)[:2] == ("G0", expected), label
+E       AssertionError: inherited hash
+E       assert 'pa' == ('G0', 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED')
+
+tests/test_retained_precision_b3.py:570: AssertionError
+_________________ test_b3b_g0_table_bytes_and_definition_hash __________________
+
+tmp_path = PosixPath('WT/scratch/i100_b3r/tmp/mut_B7/basetemp/test_b3b_g0_table_bytes_and_de0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10936d250>
+
+    def test_b3b_g0_table_bytes_and_definition_hash(tmp_path, monkeypatch):
+        source, _ = m3x("sparse_interactive")
+        _packaged(tmp_path, monkeypatch, edit_definition=lambda d: d.update(version=2))
+        assert _g0(source)[:2] == ("G0", "RETAINED_PRECISION_FORMATION_MISMATCH")
+        monkeypatch.setattr(rp, "ROOT", ROOT)
+        monkeypatch.setattr(rp, "EXACT_TABLE_HASH", "0" * 64)
+>       assert _g0(source)[:2] == UNSUPPORTED
+E       AssertionError: assert 'pa' == ('G0', 'SOURCE_PRODUCER_CONTRACT_UNSUPPORTED')
+
+tests/test_retained_precision_b3.py:579: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3b_g0_table_steps_3_to_5[inherited hash-<lambda>-SOURCE_PRODUCER_CONTRACT_UNSUPPORTED]
+FAILED tests/test_retained_precision_b3.py::test_b3b_g0_table_bytes_and_definition_hash
+2 failed, 180 passed in 38.76s
+# end 2026-10-08T12:42:53Z rc=1

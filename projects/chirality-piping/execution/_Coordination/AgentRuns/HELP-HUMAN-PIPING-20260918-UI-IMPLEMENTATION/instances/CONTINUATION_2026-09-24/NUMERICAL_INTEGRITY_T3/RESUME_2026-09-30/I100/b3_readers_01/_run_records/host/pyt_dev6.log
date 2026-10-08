@@ -1,0 +1,4 @@
+# i100 job pyt_dev6 (slot) queued 2026-10-08T13:30:56Z dir=b2-p/projects/chirality-piping
+# args: /bin/bash -c VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/pyt_dev6/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/runs/dev6/junit.xml tests/test_retained_precision_b3.py -k producer_m3x_successor_pins > WT/scratch/i100_b3r/runs/dev6/pytest.log 2>&1
+# start 2026-10-08T13:30:59Z
+# end 2026-10-08T13:31:01Z rc=0

@@ -1,0 +1,433 @@
+# i100 job mut_B17 (slot) queued 2026-10-08T12:48:45Z dir=scratch/i100_b3r/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=B17 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/mut_B17/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/mutants/runs/B17/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+# start 2026-10-08T12:48:45Z
+...........................................FFFF.................FFFFFF.. [ 39%]
+..........FF.................FFFF.................FFFFFF............FF.. [ 79%]
+......................................                                   [100%]
+=================================== FAILURES ===================================
+_ test_b3b_m3x_mutations[dense_scrutiny-12 owner pipe_sections As_m2 one ulp] __
+
+mode = 'dense_scrutiny', label = '12 owner pipe_sections As_m2 one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G5b'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+__ test_b3b_m3x_mutations[dense_scrutiny-13 owner pipe_sections Z_m3 one ulp] __
+
+mode = 'dense_scrutiny', label = '13 owner pipe_sections Z_m3 one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G5b'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+__ test_b3b_m3x_mutations[dense_scrutiny-14 owner pipe_sections I_m4 one ulp] __
+
+mode = 'dense_scrutiny', label = '14 owner pipe_sections I_m4 one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G5b'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+__ test_b3b_m3x_mutations[dense_scrutiny-15 owner pipe_sections ro_m one ulp] __
+
+mode = 'dense_scrutiny', label = '15 owner pipe_sections ro_m one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G5b'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-x01 owner pipe_sections J_m4 one ulp] __
+
+mode = 'dense_scrutiny', label = 'x01 owner pipe_sections J_m4 one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G5b'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-x02 owner pipe_sections outside_diameter_m one ulp] _
+
+mode = 'dense_scrutiny'
+label = 'x02 owner pipe_sections outside_diameter_m one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G5b'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-x03 owner pipe_sections effective_wall_thickness_m one ulp] _
+
+mode = 'dense_scrutiny'
+label = 'x03 owner pipe_sections effective_wall_thickness_m one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G5b'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-x04 the owner entry's load_case_id renamed] _
+
+mode = 'dense_scrutiny', label = "x04 the owner entry's load_case_id renamed"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G5b'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_________ test_b3b_m3x_mutations[dense_scrutiny-x05 exact_cases empty] _________
+
+mode = 'dense_scrutiny', label = 'x05 exact_cases empty'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G5b'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_____ test_b3b_m3x_mutations[dense_scrutiny-x06 contract_evidence removed] _____
+
+mode = 'dense_scrutiny', label = 'x06 contract_evidence removed'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G5b'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-x19 the owner entry's pipe section listed twice] _
+
+mode = 'dense_scrutiny'
+label = "x19 the owner entry's pipe section listed twice"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G5b'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[dense_scrutiny-x20 the owner entry's As_m2 a string] __
+
+mode = 'dense_scrutiny', label = "x20 the owner entry's As_m2 a string"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G5b'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-12 owner pipe_sections As_m2 one ulp] _
+
+mode = 'sparse_interactive', label = '12 owner pipe_sections As_m2 one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G5b'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-13 owner pipe_sections Z_m3 one ulp] _
+
+mode = 'sparse_interactive', label = '13 owner pipe_sections Z_m3 one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G5b'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-14 owner pipe_sections I_m4 one ulp] _
+
+mode = 'sparse_interactive', label = '14 owner pipe_sections I_m4 one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G5b'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-15 owner pipe_sections ro_m one ulp] _
+
+mode = 'sparse_interactive', label = '15 owner pipe_sections ro_m one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G5b'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x01 owner pipe_sections J_m4 one ulp] _
+
+mode = 'sparse_interactive', label = 'x01 owner pipe_sections J_m4 one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G5b'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x02 owner pipe_sections outside_diameter_m one ulp] _
+
+mode = 'sparse_interactive'
+label = 'x02 owner pipe_sections outside_diameter_m one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G5b'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x03 owner pipe_sections effective_wall_thickness_m one ulp] _
+
+mode = 'sparse_interactive'
+label = 'x03 owner pipe_sections effective_wall_thickness_m one ulp'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G5b'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x04 the owner entry's load_case_id renamed] _
+
+mode = 'sparse_interactive'
+label = "x04 the owner entry's load_case_id renamed"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G5b'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_______ test_b3b_m3x_mutations[sparse_interactive-x05 exact_cases empty] _______
+
+mode = 'sparse_interactive', label = 'x05 exact_cases empty'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G5b'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+___ test_b3b_m3x_mutations[sparse_interactive-x06 contract_evidence removed] ___
+
+mode = 'sparse_interactive', label = 'x06 contract_evidence removed'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G5b'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x19 the owner entry's pipe section listed twice] _
+
+mode = 'sparse_interactive'
+label = "x19 the owner entry's pipe section listed twice"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G5b'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+_ test_b3b_m3x_mutations[sparse_interactive-x20 the owner entry's As_m2 a string] _
+
+mode = 'sparse_interactive', label = "x20 the owner entry's As_m2 a string"
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3b_m3x_mutations(mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('G7', 'SOURC...ENCE_INVALID') == ('G5b', 'RETA...ION_MISMATCH')
+E         
+E         At index 0 diff: 'G7' != 'G5b'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:450: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-12 owner pipe_sections As_m2 one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-13 owner pipe_sections Z_m3 one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-14 owner pipe_sections I_m4 one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-15 owner pipe_sections ro_m one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x01 owner pipe_sections J_m4 one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x02 owner pipe_sections outside_diameter_m one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x03 owner pipe_sections effective_wall_thickness_m one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x04 the owner entry's load_case_id renamed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x05 exact_cases empty]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x06 contract_evidence removed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x19 the owner entry's pipe section listed twice]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[dense_scrutiny-x20 the owner entry's As_m2 a string]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-12 owner pipe_sections As_m2 one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-13 owner pipe_sections Z_m3 one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-14 owner pipe_sections I_m4 one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-15 owner pipe_sections ro_m one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x01 owner pipe_sections J_m4 one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x02 owner pipe_sections outside_diameter_m one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x03 owner pipe_sections effective_wall_thickness_m one ulp]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x04 the owner entry's load_case_id renamed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x05 exact_cases empty]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x06 contract_evidence removed]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x19 the owner entry's pipe section listed twice]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[sparse_interactive-x20 the owner entry's As_m2 a string]
+24 failed, 158 passed in 38.95s
+# end 2026-10-08T12:49:24Z rc=1

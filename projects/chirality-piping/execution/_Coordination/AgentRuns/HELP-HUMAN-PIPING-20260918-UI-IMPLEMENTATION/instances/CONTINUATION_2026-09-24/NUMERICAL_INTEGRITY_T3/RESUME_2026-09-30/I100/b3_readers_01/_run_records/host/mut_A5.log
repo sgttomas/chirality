@@ -1,0 +1,128 @@
+# i100 job mut_A5 (slot) queued 2026-10-08T12:36:50Z dir=scratch/i100_b3r/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=A5 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/mut_A5/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/mutants/runs/A5/junit.xml tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+# start 2026-10-08T12:36:50Z
+......FF..........FF............F....................................... [ 39%]
+........................................................................ [ 79%]
+.....................................F                                   [100%]
+=================================== FAILURES ===================================
+_____________ test_b3a_m3l_mutations[dense_scrutiny-contract null] _____________
+
+mode = 'dense_scrutiny', label = 'contract null'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:121: AssertionError
+___________ test_b3a_m3l_mutations[dense_scrutiny-contract removed] ____________
+
+mode = 'dense_scrutiny', label = 'contract removed'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:121: AssertionError
+___________ test_b3a_m3l_mutations[sparse_interactive-contract null] ___________
+
+mode = 'sparse_interactive', label = 'contract null'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:121: AssertionError
+_________ test_b3a_m3l_mutations[sparse_interactive-contract removed] __________
+
+mode = 'sparse_interactive', label = 'contract removed'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:121: AssertionError
+_____________ test_b3a_tightening_0_3_0_needs_the_legacy_contract ______________
+
+    def test_b3a_tightening_0_3_0_needs_the_legacy_contract():
+        """B3D-10, as ruled for all three readers: 0.3.0 without a contract (which the producer cannot emit) is refused."""
+        source, invocation = milestone("sparse_interactive")
+        bare = edited_invocation(invocation, lambda m: m.update(schema_version="0.3.0"))
+        assert "pressure_contract" not in bare["request"]["model"]
+>       assert outcome(reseal(source, bare), bare) == INVOCATION
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:142: AssertionError
+________________________ test_model_schema_versions_d31 ________________________
+
+    def test_model_schema_versions_d31():
+        """D31: G8 admits model schema_version 0.1.0, 0.2.0 and 0.3.0; 0.4.0 stays excluded. B3a (B3D-10, as ruled):
+        0.3.0 is admitted only with the legacy_pressure_v1 contract, so 0.3.0 without a contract is refused."""
+        expected = _cases()[O_BASE]["expected_classifications"]
+        version_edit = lambda version: {"path": ["request", "model", "schema_version"], "op": "set", "value": version}
+        legacy = {"path": ["request", "model", "pressure_contract"], "op": "set", "value": {"version": "1.0.0", "mode": "legacy_pressure_v1"}}
+        for version in ("0.1.0", "0.2.0"):
+            assert _validate_entry(O_BASE, [], [version_edit(version)])["classifications"] == expected
+        assert _validate_entry(O_BASE, [], [version_edit("0.3.0"), legacy])["classifications"] == expected
+>       _raises(lambda: _validate_entry(O_BASE, [], [version_edit("0.3.0")]), "G8", "INVOCATION_MISMATCH")
+
+tests/test_retained_precision_contract.py:808: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+fn = <function test_model_schema_versions_d31.<locals>.<lambda> at 0x1074a7f60>
+gate = 'G8', code = 'INVOCATION_MISMATCH'
+
+    def _raises(fn, gate, code):
+>       with pytest.raises(rp.RetainedPrecisionError) as error:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RetainedPrecisionError
+
+tests/test_retained_precision_contract.py:343: Failed
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[dense_scrutiny-contract null]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[dense_scrutiny-contract removed]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[sparse_interactive-contract null]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[sparse_interactive-contract removed]
+FAILED tests/test_retained_precision_b3.py::test_b3a_tightening_0_3_0_needs_the_legacy_contract
+FAILED tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+6 failed, 176 passed in 41.17s
+# end 2026-10-08T12:37:31Z rc=1

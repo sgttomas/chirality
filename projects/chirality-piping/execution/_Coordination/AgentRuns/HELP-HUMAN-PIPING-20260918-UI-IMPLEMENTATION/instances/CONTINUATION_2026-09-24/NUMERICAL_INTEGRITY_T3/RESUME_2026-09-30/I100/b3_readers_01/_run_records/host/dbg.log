@@ -1,0 +1,8 @@
+# i100 job dbg (slot) queued 2026-10-08T12:02:19Z dir=scratch/i100_b3r
+# args: /bin/bash -c source WT/scratch/i100_b3r/tools/env.sh; VENV/bin/python WT/scratch/i100_b3r/work/dbg_x26.py WT/b2-p/projects/chirality-piping
+# start 2026-10-08T12:02:37Z
+633 _g5_native _g5_native_checks(body, runs, fail, wf)
+798 _g5_native_checks fail([(g["stiffness_sha256"], g["source_refs"]) for g in call_groups] == [(k, members[k]) for k in order])
+631 <lambda> fail = lambda ok, code="ATTEMPT_MISMATCH": native_work.append(ok) if code == "WORK_MISMATCH" else _need(ok, "G5", code)
+164 _need raise RetainedPrecisionError(gate, suffix if suffix.startswith("SOURCE_") else "RETAINED_PRECISION_" + suffix)
+# end 2026-10-08T12:02:38Z rc=0
