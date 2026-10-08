@@ -11985,14 +11985,14 @@ fn append_expansion_joint_user_stiffness_results(
                     coordinate_system: "component_local_preview".to_string(),
                     location: pipe_ref.to_string(),
                     basis: format!(
-                        "component_family=expansion_joint;user_entered_axis={axis};source={source_reference};solver_consumption={solver_consumption};macro_element_solve=assembled_user_stiffness;pressure_thrust_generation=load_side_user_effective_area;pressure_thrust={}",
+                        "component_family=expansion_joint;user_entered_axis={axis};source={source_reference};solver_consumption={solver_consumption};macro_element_solve=assembled_user_stiffness;pressure_thrust_generation=none_pressure_refused_outside_the_exact_straight_contract;user_pressure_thrust_reference={}",
                         geometry
                             .pressure_thrust_reference
                             .as_deref()
                             .unwrap_or("load_side_pressure_thrust_reference_missing")
                     ),
                     sign_convention:
-                        "positive value is user-entered expansion-joint stiffness consumed by the assembled user-stiffness macro-element; pressure-thrust generation is load-side effective-area evidence and no compliance claim is made"
+                        "positive value is user-entered expansion-joint stiffness consumed by the assembled user-stiffness macro-element; no joint pressure thrust is generated and no compliance claim is made"
                             .to_string(),
                 }),
             });
@@ -12025,7 +12025,7 @@ fn append_curved_bend_macro_element_results(
                 coordinate_system: "component_local_preview".to_string(),
                 location: element.pipe_id.clone(),
                 basis: format!(
-                    "component_family=bend;user_entered_flexibility={};flexibility_axis_mapping=single_user_factor_applied_to_in_plane_and_out_of_plane_bending;bend_radius_m={};arc_included_angle_rad={};arc_length_m={};arc_plane=chord_and_pipe_y_reference;arc_side=bows_toward_positive_pipe_y_reference;source={};solver_consumption={};macro_element_solve=assembled_curved_bend_stiffness;thermal_load_treatment=exact_free_expansion_identity;distributed_load_treatment=arc_consistent_fixed_end_integration;pressure_thrust_treatment=arc_end_cap_tangent_pair_plus_consistent_radial_wall_load;recovery=end_forces_from_assembled_stiffness_in_chord_frame;interior_stations=arc_section_equilibrium_stations",
+                    "component_family=bend;user_entered_flexibility={};flexibility_axis_mapping=single_user_factor_applied_to_in_plane_and_out_of_plane_bending;bend_radius_m={};arc_included_angle_rad={};arc_length_m={};arc_plane=chord_and_pipe_y_reference;arc_side=bows_toward_positive_pipe_y_reference;source={};solver_consumption={};macro_element_solve=assembled_curved_bend_stiffness;thermal_load_treatment=exact_free_expansion_identity;distributed_load_treatment=arc_consistent_fixed_end_integration;pressure_thrust_treatment=none_pressure_refused_outside_the_exact_straight_contract;recovery=end_forces_from_assembled_stiffness_in_chord_frame;interior_stations=arc_section_equilibrium_stations",
                     scalar_string(element.flexibility_factor),
                     scalar_string(element.bend_radius),
                     scalar_string(element.included_angle),
@@ -22066,7 +22066,7 @@ mod tests {
             .basis
             .contains("distributed_load_treatment=arc_consistent_fixed_end_integration"));
         assert!(metadata.basis.contains(
-            "pressure_thrust_treatment=arc_end_cap_tangent_pair_plus_consistent_radial_wall_load"
+            "pressure_thrust_treatment=none_pressure_refused_outside_the_exact_straight_contract"
         ));
         assert!(!metadata
             .basis
