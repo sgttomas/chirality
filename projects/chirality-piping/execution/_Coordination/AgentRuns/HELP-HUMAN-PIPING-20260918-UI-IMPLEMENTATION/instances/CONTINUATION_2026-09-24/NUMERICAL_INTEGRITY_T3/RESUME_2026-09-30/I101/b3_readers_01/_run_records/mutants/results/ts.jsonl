@@ -1,0 +1,48 @@
+{"id": "control", "rc": 0, "failed": [], "build_error": false}
+{"id": "A1", "desc": "B3a L branch admits any contract", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "A2", "desc": "B3a L3 also admits 0.3.0 without a contract", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "A3", "desc": "contract: extra keys admitted", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "A4", "desc": "contract: version unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "A5", "desc": "contract: mode unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B01", "desc": "G0 step 1: profile unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B02", "desc": "G0 step 2: producer and envelope schema unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B03", "desc": "G0 step 3: table identity compared with the preview id", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B04", "desc": "G0 step 4: DEF-E's H compared with DEF-O's", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B05", "desc": "G0 step 5: inherited hash against preview-physics-1's bytes", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B06a", "desc": "G0 step 6: the cross-check always binds", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B06b", "desc": "G0 step 6: the call dropped", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 0, "killed": false, "failed": [], "build_error": false}
+{"id": "B07", "desc": "G0 step 7: receipt_version unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B08", "desc": "G0 step 8: policies unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B09", "desc": "G0 step 8: limits unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B10", "desc": "G0 step 9: definition ids unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B11", "desc": "G1 S-1: DEF-O's H on the exact route", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B12", "desc": "G5b evidence: the pass dropped", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B13", "desc": "G5b evidence: a repeated case entry admitted", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B14", "desc": "G5b evidence: a repeated pipe entry admitted", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B15", "desc": "G5b evidence: As unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B16", "desc": "G5b evidence: Z unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B17", "desc": "G5b evidence: OD unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B18", "desc": "G5b evidence: wall unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B19", "desc": "G5b evidence: ro unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B20", "desc": "G5b evidence: I unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B21", "desc": "G5b evidence: J unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B22", "desc": "G7: the exact route projected onto preview-physics-1", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B22b", "desc": "G7: the preview base validator on the exact route", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B22c", "desc": "G7 header: the preview evidence requirement on the exact route", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B23", "desc": "G8 step 1: the exact route read with the legacy namespace", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B24", "desc": "G8 step 1: the exact contract unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B25", "desc": "G8 step 3: base selection unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 0, "killed": false, "failed": [], "build_error": false}
+{"id": "B26", "desc": "G8 step 4: shear origin unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B27", "desc": "G8 step 4: selection unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B28", "desc": "G8 step 4: E bits unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 0, "killed": false, "failed": [], "build_error": false}
+{"id": "B29", "desc": "G8 step 4: G-hat bits unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 0, "killed": false, "failed": [], "build_error": false}
+{"id": "B30", "desc": "G8 step 4: poisson unit unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 0, "killed": false, "failed": [], "build_error": false}
+{"id": "B31", "desc": "G8 step 5: S-C dropped", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B32", "desc": "G8 step 6: N-6 dropped", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B33", "desc": "G8 step 8: regions read as on the preview route", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B34", "desc": "G8 step 9: geometry route unchecked", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "B35", "desc": "transport: preview metadata on the exact route", "file": "apps/desktop/src/features/results/retainedPrecision.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "N1", "desc": "route: isRetainedIdentity without the exact id", "file": "apps/desktop/src/features/results/numericalResultQuality.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "N2", "desc": "route: the exact header without its receipt", "file": "apps/desktop/src/features/results/numericalResultQuality.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "N3", "desc": "route: the exact binding names the preview table", "file": "apps/desktop/src/features/results/numericalResultQuality.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}
+{"id": "O1", "desc": "output policy: the exact entry with the preview reason", "file": "apps/desktop/src/features/results/outputPolicy.ts", "rc": 1, "killed": false, "failed": [], "build_error": false}

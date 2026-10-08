@@ -1,0 +1,5 @@
+{"id": "B06b", "desc": "G0 step 6: the call dropped", "file": "core/reporting/result_export/src/retained_precision.rs", "rc": 0, "killed": false, "failed": [], "build_error": false}
+{"id": "B25", "desc": "G8 step 3: base selection unchecked", "file": "core/reporting/result_export/src/retained_precision.rs", "rc": 101, "killed": true, "failed": ["b3b_exact_successor_shapes_first_failures"], "build_error": false}
+{"id": "B28", "desc": "G8 step 4: E bits unchecked", "file": "core/reporting/result_export/src/retained_precision.rs", "rc": 0, "killed": false, "failed": [], "build_error": false}
+{"id": "B29", "desc": "G8 step 4: G-hat bits unchecked", "file": "core/reporting/result_export/src/retained_precision.rs", "rc": 0, "killed": false, "failed": [], "build_error": false}
+{"id": "B30", "desc": "G8 step 4: poisson unit unchecked", "file": "core/reporting/result_export/src/retained_precision.rs", "rc": 0, "killed": false, "failed": [], "build_error": false}

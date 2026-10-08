@@ -1,0 +1,178 @@
+{
+ "shapes": 165,
+ "bases": {
+  "ordinary_prepared_synthetic": 53,
+  "ordinary_prepared_dense_synthetic": 1,
+  "two_case_synthetic": 1,
+  "<preview:ordinary_prepared_synthetic>": 1,
+  "<s1:ordinary_prepared_synthetic>": 1,
+  "m3x_sparse_interactive": 53,
+  "<s1:m3x_sparse_interactive>": 1,
+  "m3x_dense_scrutiny": 53,
+  "<s1:m3x_dense_scrutiny>": 1
+ },
+ "differences_outside_g7": [],
+ "g7_codes": [
+  {
+   "reading": "bound",
+   "rs": "SOURCE_PHYSICS_CASE_SHAPE",
+   "ts": "PHYSICS_EVIDENCE_CASE_SHAPE",
+   "py": "SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "shapes": 3
+  },
+  {
+   "reading": "bound",
+   "rs": "SOURCE_PHYSICS_CONNECTOR_UNSUPPORTED",
+   "ts": "PHYSICS_EVIDENCE_UNSUPPORTED_COMPOSITION",
+   "py": "SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "shapes": 3
+  },
+  {
+   "reading": "bound",
+   "rs": "SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "ts": "PHYSICS_EVIDENCE_MATERIAL_INVALID",
+   "py": "SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "shapes": 3
+  },
+  {
+   "reading": "transport",
+   "rs": "SOURCE_PHYSICS_DUPLICATE_ID",
+   "ts": "PHYSICS_EVIDENCE_TRANSPORT_CASES",
+   "py": "SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "shapes": 3
+  },
+  {
+   "reading": "transport",
+   "rs": "SOURCE_PHYSICS_DUPLICATE_ID",
+   "ts": "PHYSICS_EVIDENCE_TRANSPORT_MEMBER_COVERAGE",
+   "py": "SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "shapes": 3
+  },
+  {
+   "reading": "transport",
+   "rs": "SOURCE_PHYSICS_GEOMETRY_SOURCE_BINDING",
+   "ts": "PHYSICS_EVIDENCE_SECTION_INVALID",
+   "py": "SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "shapes": 8
+  },
+  {
+   "reading": "transport",
+   "rs": "SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "ts": "PHYSICS_EVIDENCE_MATERIAL_INVALID",
+   "py": "SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "shapes": 3
+  },
+  {
+   "reading": "transport",
+   "rs": "SOURCE_PHYSICS_RHS_METHOD",
+   "ts": "PHYSICS_EVIDENCE_RHS_INVALID",
+   "py": "SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "shapes": 3
+  },
+  {
+   "reading": "transport",
+   "rs": "SOURCE_PHYSICS_TRANSPORT_SHAPE",
+   "ts": "PHYSICS_EVIDENCE_TRANSPORT_SHAPE",
+   "py": "SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "shapes": 12
+  },
+  {
+   "reading": "unbound",
+   "rs": "SOURCE_PHYSICS_CASE_SHAPE",
+   "ts": "PHYSICS_EVIDENCE_CASE_SHAPE",
+   "py": "SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "shapes": 3
+  },
+  {
+   "reading": "unbound",
+   "rs": "SOURCE_PHYSICS_CONNECTOR_UNSUPPORTED",
+   "ts": "PHYSICS_EVIDENCE_UNSUPPORTED_COMPOSITION",
+   "py": "SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "shapes": 3
+  },
+  {
+   "reading": "unbound",
+   "rs": "SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "ts": "PHYSICS_EVIDENCE_MATERIAL_INVALID",
+   "py": "SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "shapes": 3
+  }
+ ],
+ "verdicts": [
+  {
+   "reading": "bound",
+   "verdict": "G0",
+   "shapes": 40
+  },
+  {
+   "reading": "bound",
+   "verdict": "G1",
+   "shapes": 3
+  },
+  {
+   "reading": "bound",
+   "verdict": "G5b",
+   "shapes": 36
+  },
+  {
+   "reading": "bound",
+   "verdict": "G7",
+   "shapes": 9
+  },
+  {
+   "reading": "bound",
+   "verdict": "G8",
+   "shapes": 72
+  },
+  {
+   "reading": "bound",
+   "verdict": "eligible",
+   "shapes": 5
+  },
+  {
+   "reading": "transport",
+   "verdict": "G0",
+   "shapes": 40
+  },
+  {
+   "reading": "transport",
+   "verdict": "G1",
+   "shapes": 3
+  },
+  {
+   "reading": "transport",
+   "verdict": "G7",
+   "shapes": 32
+  },
+  {
+   "reading": "transport",
+   "verdict": "ok, not eligible",
+   "shapes": 90
+  },
+  {
+   "reading": "unbound",
+   "verdict": "G0",
+   "shapes": 40
+  },
+  {
+   "reading": "unbound",
+   "verdict": "G1",
+   "shapes": 3
+  },
+  {
+   "reading": "unbound",
+   "verdict": "G5b",
+   "shapes": 36
+  },
+  {
+   "reading": "unbound",
+   "verdict": "G7",
+   "shapes": 9
+  },
+  {
+   "reading": "unbound",
+   "verdict": "ok, not eligible",
+   "shapes": 77
+  }
+ ]
+}

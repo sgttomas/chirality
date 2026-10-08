@@ -1,0 +1,28 @@
+{
+ "suite": "junit",
+ "base": {
+  "passed": 1202,
+  "skipped": 29
+ },
+ "head": {
+  "passed": 1205,
+  "skipped": 29
+ },
+ "differences": [
+  {
+   "test": "tests.test_retained_precision_schema :: test_exact_successor_analysis_run_branch",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_schema :: test_exact_successor_results_branch",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_schema :: test_exact_successor_stress_neutral_branch",
+   "base": null,
+   "head": "passed"
+  }
+ ]
+}

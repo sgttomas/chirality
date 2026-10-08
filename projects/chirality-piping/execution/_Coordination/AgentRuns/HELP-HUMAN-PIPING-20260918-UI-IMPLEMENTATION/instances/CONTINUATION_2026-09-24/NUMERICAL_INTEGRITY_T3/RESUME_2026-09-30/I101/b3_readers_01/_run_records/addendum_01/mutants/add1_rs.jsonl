@@ -1,0 +1,5 @@
+{"id": "control", "rc": 0, "failed": [], "build_error": false}
+{"id": "C1", "desc": "analysis_state admitted (both routes)", "file": "core/reporting/result_export/src/retained_precision.rs", "rc": 101, "killed": true, "failed": ["b3_add1_g8_sourced_case_on_the_preview_and_exact_routes"], "build_error": false}
+{"id": "C2", "desc": "preview pressure_regions read as falsy (the reading before the ruling)", "file": "core/reporting/result_export/src/retained_precision.rs", "rc": 101, "killed": true, "failed": ["b3_add1_g8_sourced_case_on_the_preview_and_exact_routes"], "build_error": false}
+{"id": "C3", "desc": "preview pressure_regions: any list admitted", "file": "core/reporting/result_export/src/retained_precision.rs", "rc": 101, "killed": true, "failed": ["b3_add1_g8_sourced_case_on_the_preview_and_exact_routes"], "build_error": false}
+{"id": "C4", "desc": "a case-level pressure refused", "file": "core/reporting/result_export/src/retained_precision.rs", "rc": 101, "killed": true, "failed": ["b3_add1_g8_sourced_case_on_the_preview_and_exact_routes"], "build_error": false}

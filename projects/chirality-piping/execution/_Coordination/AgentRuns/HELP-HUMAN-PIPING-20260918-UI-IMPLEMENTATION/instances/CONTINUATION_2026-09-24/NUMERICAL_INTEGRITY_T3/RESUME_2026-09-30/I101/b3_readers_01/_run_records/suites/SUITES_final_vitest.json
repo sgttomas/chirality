@@ -1,0 +1,216 @@
+{
+ "suite": "vitest",
+ "base": {
+  "passed": 3637
+ },
+ "head": {
+  "passed": 3676
+ },
+ "differences": [
+  {
+   "test": "src/features/result-export/retainedPrecisionResultExport.test.tsx :: dense_scrutiny: byte parity with the exact successor's Rust golden (B3b-T) derives the golden's exact canonical bytes; it validates and carries the receipt and physics-1's evidence #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/result-export/retainedPrecisionResultExport.test.tsx :: sparse_interactive: byte parity with the exact successor's Rust golden (B3b-T) derives the golden's exact canonical bytes; it validates and carries the receipt and physics-1's evidence #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/outputPolicy.test.ts :: the output policy (T6S-3) B3b: an exact successor reads its own reason on every refused surface, and the two panels need eligible standing #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07d round (D31-D33): reader-local relations D31: G8 admits model schema_version 0.1.0 and 0.2.0 without a contract, and refuses 0.3.0 without one and 0.4.0 #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07d round (D31-D33): reader-local relations D31: G8 admits model schema_version 0.1.0, 0.2.0 and 0.3.0, and refuses 0.4.0 #1",
+   "base": "passed",
+   "head": null
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) 0.1.0 keeping the L3 contract #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) 0.2.0 keeping the L3 contract #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) 0.3.0, contract absent #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) 0.3.0, contract null #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) 0.3.0, contract {} #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) 0.4.0 with the L3 contract #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) L3 on ordinary_prepared_dense_synthetic #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) L3 on ordinary_prepared_synthetic #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) L3 on two_case_synthetic #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) L3 on u8_l0_isolated_node_dense_scrutiny #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) L3 on u8_l0_isolated_node_sparse_interactive #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) L3: an extra key #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) L3: an extra key valued null #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) L3: mode exact_straight_pressure_v2, version 1.0.0 #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) L3: mode null #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) L3: mode only #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) L3: the exact contract 2.0.0 #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) L3: version 1.0.1 #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) L3: version a number #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) L3: version only #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) L: 0.1.0, contract absent #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) L: 0.2.0, contract null #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) N-11: L3 dense with a zero-magnitude element pressure load #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) N-11: L3 with a zero-magnitude element pressure load #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) N-4: 0.2.0, contract \"\" #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) N-4: 0.2.0, contract 0 #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) N-4: 0.2.0, contract [] #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) N-4: 0.2.0, contract false #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) N-4: 0.2.0, contract {} #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3a (I101): G8's namespace predicate, type-strict (B3-D \u00a76.3, \u00a76.4; REVISION_01 \u00a73, N-4; reader-local synthetic receipts) has the Rust test's 29 entries #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3b (I101): the exact successor <physics-retained> on reader-local synthetic receipts and lane P's m3x successors (B3-D \u00a76; REVISION_01 \u00a74.3) B3b integration: the exact route `retained_physics` (header dispatch, binding, downgrade guard, transport, standing, table, notices) #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3b (I101): the exact successor <physics-retained> on reader-local synthetic receipts and lane P's m3x successors (B3-D \u00a76; REVISION_01 \u00a74.3) carries S-C's own code as the G8 failure's detail (B3D-13) #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3b (I101): the exact successor <physics-retained> on reader-local synthetic receipts and lane P's m3x successors (B3-D \u00a76; REVISION_01 \u00a74.3) pins the Rust test's 159 shapes (55 synthetic, 52 on each m3x successor), their first failures, and their three readings #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3b (I101): the exact successor <physics-retained> on reader-local synthetic receipts and lane P's m3x successors (B3-D \u00a76; REVISION_01 \u00a74.3) reads the synthetic and m3x exact successors bound (eligible), unbound and on transport (never eligible) #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3b (I101): the exact successor <physics-retained> on reader-local synthetic receipts and lane P's m3x successors (B3-D \u00a76; REVISION_01 \u00a74.3) reads three shapes unbound and on transport as the Rust reader does (G7 with TS's own base code) #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3b (I101): the exact successor <physics-retained> on reader-local synthetic receipts and lane P's m3x successors (B3-D \u00a76; REVISION_01 \u00a74.3) step 6: the table against the reader's constants, on test-only tables (B3-D \u00a72.4) #1",
+   "base": null,
+   "head": "passed"
+  }
+ ]
+}

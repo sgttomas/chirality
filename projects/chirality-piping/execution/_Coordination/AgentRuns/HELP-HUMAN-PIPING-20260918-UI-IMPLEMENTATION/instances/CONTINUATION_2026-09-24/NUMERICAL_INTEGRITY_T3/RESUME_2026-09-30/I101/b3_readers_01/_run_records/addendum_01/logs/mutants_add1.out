@@ -1,0 +1,5 @@
+add1 rs rc=0
+survivors rs rc=0
+add1 ts rc=0
+survivors ts rc=0
+# done rc=0

@@ -1,0 +1,16 @@
+{
+ "suite": "re",
+ "base": {
+  "ok": 196
+ },
+ "head": {
+  "ok": 197
+ },
+ "differences": [
+  {
+   "test": "retained_precision_contract.rs :: b3a_legacy_pressure_contract_namespace_at_g8",
+   "base": null,
+   "head": "ok"
+  }
+ ]
+}

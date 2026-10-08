@@ -16272,3 +16272,30 @@ PR-B1 is recut once the Linux diagnostic (run 37792750591) is read.
 - **No pin is weakened.**
 - **Prediction:** the (A, A2) dense pin holds on glibc. Its cases match W-C2's case A row for row, and the differing value is absent from it.
 - **A1-N1 (NOTE):** the ring check's absolute 1e-14 escape admits more than one ulp for coordinates ≥ 1. Tighten it to the near-zero entries once glibc has run.
+
+## I101 returns B3's RS and TS readers and lane T's carriers; the three readers agree on every new shape; RV-R2 (RV120) dispatched (ROOT, 2026-10-08 UTC)
+
+**I101 returned** (`R/I101/b3_readers_01/RETURN.md`, `68db75d1…`; ADDENDUM_01 `8492fc4d…`; SHA256SUMS 277 of 277).
+- **The heads:** RS on `b2-r` `c845e899da`; TS and lane T on `b2-t` `77aaaa61d1`, which contains `b2-r`. Both are pushed. With PY on `b2-p` `b7721d27e9`, B3's readers are complete.
+- **Census:** 0 changes over 07m (339) and 07n (638), in RS and TS.
+- **Suites, against `e67c364680`:**
+  - RE: +6 tests at the RS head, +9 at the TS head;
+  - vitest: +41, with one declared rename (D31, B3D-10);
+  - `tsc`: rc 0;
+  - PY carrier schemas: +3.
+- **Mutants:**
+  - RS 39 of 43 and TS 43 of 47. The four argued equivalents (B06b, B28, B29, B30) are each covered by another binding.
+  - The addendum's clauses: 4 of 4 in each language.
+- **Lane T:**
+  - the carrier branches and `CARRIER_PROFILE_ENUMS`;
+  - `outputPolicy.ts`'s entry;
+  - the `SourceContract` union;
+  - the T6S golden for the exact successor's derivative, which TS reproduces byte for byte. The T6S-2 goldens are unchanged.
+- **Three-reader agreement:** 165 shapes on 5 bases (3 synthetic and lane P's two m3x successors). RS = TS = PY on bound, unbound and transport readings, at every gate and code except G7's per-language base codes. The m3x successors validate at precommit through the producer in both modes.
+- **The G8 alignment (addendum 01):** applied in RS and TS. Before it, 26 of 44 preview and 8 of 8 exact readings differed; after it, 0 of 44 and 0 of 8.
+
+**Ruled on I101's open points:**
+1. **The fresh-identity sets.** The exact successor stays out, as already ruled (RR "PR-B1 cut (`8248921552`); …", note 1), so the Current panels stay closed to it. Admitting it is B7/B8's, with public activation.
+2. **m3l has no committed fixture.** Accepted. B3a's reader tests use synthetic receipts, and the producer's m3l witness validates through RS.
+
+**Dispatched: RV120 (RV-R2)** reviews B3's three readers and lane T's carriers. After its review, the reader lanes merge into `b2`. `b2-t` brings `b2-r`; `b2-p` merges on its own.

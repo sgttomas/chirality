@@ -1,0 +1,1156 @@
+{
+ "shapes": 52,
+ "preview": 44,
+ "exact": 8,
+ "shapes_where_readers_differ": {
+  "preview": 0,
+  "exact": 0
+ },
+ "rs_or_ts_unlike_expected": [],
+ "rows": [
+  {
+   "name": "add1 analysis_state = object [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 analysis_state = null [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 analysis_state = empty object [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure = quantity [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure = null [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure = zero [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = string [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = empty object [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = object [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = zero [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = one [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = true [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = false [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = empty string [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = empty array (B3D-11) [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = null [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = one region [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 equivalent_static = empty object [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 equivalent_static = false [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 equivalent_static = zero [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 equivalent_static = null [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 notes = an unknown key (control) [sparse]",
+   "base": "milestone_sparse",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 analysis_state = object [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 analysis_state = null [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 analysis_state = empty object [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure = quantity [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure = null [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure = zero [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = string [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = empty object [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = object [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = zero [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = one [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = true [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = false [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = empty string [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = empty array (B3D-11) [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = null [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 pressure_regions = one region [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 equivalent_static = empty object [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 equivalent_static = false [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 equivalent_static = zero [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 equivalent_static = null [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 notes = an unknown key (control) [dense]",
+   "base": "milestone_dense",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 exact x08 on m3x [dense]",
+   "base": "m3x_dense",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 exact p02 on m3x [dense]",
+   "base": "m3x_dense",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 exact x08 on m3xp [dense]",
+   "base": "m3xp_dense",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 exact p02 on m3xp [dense]",
+   "base": "m3xp_dense",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 exact x08 on m3x [sparse]",
+   "base": "m3x_sparse",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 exact p02 on m3x [sparse]",
+   "base": "m3x_sparse",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 exact x08 on m3xp [sparse]",
+   "base": "m3xp_sparse",
+   "bound": {
+    "rs": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "ts": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "py": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH",
+    "expected": "G8:RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  },
+  {
+   "name": "add1 exact p02 on m3xp [sparse]",
+   "base": "m3xp_sparse",
+   "bound": {
+    "rs": "pass:eligible",
+    "ts": "pass:eligible",
+    "py": "pass:eligible",
+    "expected": "pass:eligible"
+   },
+   "unbound": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   },
+   "transport": {
+    "rs": "pass:not_eligible",
+    "ts": "pass:not_eligible",
+    "py": "pass:not_eligible",
+    "expected": "pass:not_eligible"
+   }
+  }
+ ]
+}

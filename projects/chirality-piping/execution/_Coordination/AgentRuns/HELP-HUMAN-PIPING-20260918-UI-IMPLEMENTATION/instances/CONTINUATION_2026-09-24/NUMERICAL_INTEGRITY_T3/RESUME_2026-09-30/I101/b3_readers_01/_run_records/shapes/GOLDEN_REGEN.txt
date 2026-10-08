@@ -1,0 +1,9 @@
+# I101: the four goldens regenerated from the b2-t working tree (I76_T6S2_OUT), before commit 36823f5b2d
+32b4182c8d524dc0f03c2237a80fc41ca2e72e1a895e46d6f38ddc66eba1a891  retained_precision_exact_successor_derivative_dense_scrutiny.json
+79d9930541303b003f215aee6503aa1cec73b45eeb351998a77856257c171ff8  retained_precision_exact_successor_derivative_sparse_interactive.json
+3f9905ad4c4bba688687714751abe965d18cea834701c32c379d81f573dcf682  retained_precision_successor_derivative_dense_scrutiny.json
+958df02e276538a96c4732302a46cb36a53c2298ca7e1f4deb88a3748c67c661  retained_precision_successor_derivative_sparse_interactive.json
+T6S-2 sparse_interactive: byte-identical to the committed golden
+exact sparse_interactive: committed as generated
+T6S-2 dense_scrutiny: byte-identical to the committed golden
+exact dense_scrutiny: committed as generated
