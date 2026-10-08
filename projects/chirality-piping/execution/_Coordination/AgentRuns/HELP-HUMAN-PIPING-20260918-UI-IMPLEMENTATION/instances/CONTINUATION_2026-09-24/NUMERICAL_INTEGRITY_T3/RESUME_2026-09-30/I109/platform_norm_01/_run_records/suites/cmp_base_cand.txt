@@ -1,0 +1,14 @@
+base {'ok': 2775, 'ignored': 80, 'FAILED': 3} cand {'ok': 2780, 'FAILED': 5, 'ignored': 81}
+added 11 removed 3 changed 8
+added by log/bin [(('005_core_loads_stress_recovery_Cargo.toml.log', 'open_pipe_stress_stress_recovery'), 3), (('026_core_solver_frame_kernel_Cargo.toml.log', 'doc:open_pipe_stress_frame_kernel'), 3), (('026_core_solver_frame_kernel_Cargo.toml.log', 'open_pipe_stress_frame_kernel'), 3), (('026_core_solver_frame_kernel_Cargo.toml.log', 'correct_norm_oracle'), 2)]
+REMOVED ('026_core_solver_frame_kernel_Cargo.toml.log', 'doc:open_pipe_stress_frame_kernel', 'src/lib.rs - reduce_assembled_system (line 1410)')
+REMOVED ('026_core_solver_frame_kernel_Cargo.toml.log', 'doc:open_pipe_stress_frame_kernel', 'src/lib.rs - reduce_assembled_system (line 1420) - compile fail')
+REMOVED ('026_core_solver_frame_kernel_Cargo.toml.log', 'doc:open_pipe_stress_frame_kernel', 'src/lib.rs - reduce_assembled_system_with_prescribed_displacements (line 1449) - compile fail')
+CHANGED (('008_core_product_physics_Cargo.toml.log', 'open_pipe_stress_product_physics', 'retained_facade_tests::b1_sp_sf2_selected_not_first_and_two_selected_pins'), 'ok', 'FAILED')
+CHANGED (('008_core_product_physics_Cargo.toml.log', 'open_pipe_stress_product_physics', 'retained_facade_tests::b1_sp_w_c2_direct_entry_publishes_the_pinned_successor'), 'ok', 'FAILED')
+CHANGED (('008_core_product_physics_Cargo.toml.log', 'open_pipe_stress_product_physics', 'retained_facade_tests::b1_sp_w_c2_fixtures_are_the_live_successors'), 'ok', 'FAILED')
+CHANGED (('008_core_product_physics_Cargo.toml.log', 'open_pipe_stress_product_physics', 'retained_wire_tests::u1_ordinary_bytes_unchanged_under_capture'), 'ok', 'FAILED')
+CHANGED (('008_core_product_physics_Cargo.toml.log', 'open_pipe_stress_product_physics', 's11g_tests::t13_committed_fallback_uz_is_byte_identical'), 'FAILED', 'ok')
+CHANGED (('008_core_product_physics_Cargo.toml.log', 'preview_physics_runtime', 'm08_marker_intensified_measure_matches_references_and_never_combines'), 'ok', 'FAILED')
+CHANGED (('022_core_runner_headless_Cargo.toml.log', 'load_reference_cli', 'cli_load_reference_one_both_modes_is_controlled_and_equals_the_library_route'), 'FAILED', 'ok')
+CHANGED (('022_core_runner_headless_Cargo.toml.log', 'open_pipe_stress_headless_runner', 'load_reference_route_tests::load_reference_one_actual_solve_mints_bound_evidence_and_canonical_document_both_modes'), 'FAILED', 'ok')

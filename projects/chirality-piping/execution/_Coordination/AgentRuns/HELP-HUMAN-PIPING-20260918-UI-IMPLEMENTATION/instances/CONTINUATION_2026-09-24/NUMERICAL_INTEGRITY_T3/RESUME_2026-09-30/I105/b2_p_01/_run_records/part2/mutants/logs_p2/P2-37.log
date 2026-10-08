@@ -1,0 +1,56 @@
+test retained_facade_tests::b1_sp_domain_recheck_names_the_requested_cases ... ok
+test retained_facade_tests::b1_sp_w_c2_transaction_faults_and_abandonment ... FAILED
+test retained_facade_tests::b1_sp_w_c2_fixtures_are_the_live_successors ... FAILED
+test retained_facade_tests::b2p_capture_refuses_combinations_outside_d14 ... ok
+test retained_facade_tests::b1_sp_w_c2_through_retained_w1_publishes_t12 ... FAILED
+test retained_facade_tests::b2p_combination_observables_stage ... ok
+test retained_facade_tests::b1_sp_w_c2_direct_entry_publishes_the_pinned_successor ... FAILED
+test retained_facade_tests::b2p_constants_bound_to_in_tree_fixtures ... ok
+test retained_facade_tests::b1_sp_w_c2_transaction_outcomes_and_ordinal_mapping ... FAILED
+test retained_facade_tests::b2p_custody_binds_the_combination_rows ... ok
+test retained_facade_tests::b2p_combination_expressions ... ok
+test retained_facade_tests::b2p_combination_successor_fixtures_are_the_live_successors ... ok
+test retained_facade_tests::b2p_repeated_case_combination_is_ordinary ... ok
+test retained_facade_tests::b2p_gate_entries_shape_and_consistency ... ok
+test retained_facade_tests::b2p_witness_inputs ... ok
+test retained_facade_tests::b2p_hooks_and_failure_set ... FAILED
+test retained_facade_tests::b3b_rv123_n2_unused_exact_material_is_not_checked ... ok
+test retained_facade_tests::b3b_rv123_s1_two_member_exact_overlays_each_member ... FAILED
+test retained_facade_tests::b3b_rv123_s2_one_case_unavailable_exact_serializer ... ok
+test retained_facade_tests::b3b_rv123_s2_unavailable_exact_case_binds_def_e ... FAILED
+test retained_product_tests::i51_c0_isolated_guard_accounting_boundaries ... ok
+test retained_product_tests::i51_c0_isolated_late_hook_custody_and_prefixes ... ok
+test retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes ... FAILED
+test retained_facade_tests::b2p_direct_entry_runs_the_combinations ... FAILED
+test retained_facade_tests::b2p_witness_dispositions_on_the_private_driver ... ok
+thread 'retained_facade_tests::b1_sp_w_c2_transaction_faults_and_abandonment' (117766285) panicked at src/retained_facade_tests.rs:1811:5:
+assertion `left == right` failed: T-7 on C
+  left: (Precommit { gate: "G1", code: "RETAINED_PRECISION_RECEIPT_MISMATCH" }, 1)
+ right: (Precommit { gate: "G8", code: "RETAINED_PRECISION_PREPARATION_MISMATCH" }, 1)
+thread 'retained_facade_tests::b1_sp_w_c2_fixtures_are_the_live_successors' (117766282) panicked at src/retained_facade_tests.rs:2204:53:
+thread 'retained_facade_tests::b1_sp_w_c2_through_retained_w1_publishes_t12' (117766283) panicked at src/retained_facade_tests.rs:1864:53:
+thread 'retained_facade_tests::b1_sp_w_c2_direct_entry_publishes_the_pinned_successor' (117766281) panicked at src/retained_facade_tests.rs:1904:9:
+assertion `left == right` failed: SparseInteractive: the ordinary envelope is the plain run
+  left: [123, 34, 99, 111, 110, 116, 114, 97, 99, 116, 95, 101, 118, 105, 100, 101, 110, 99, 101, 34, 58, 123, 34, 99, 111, 109, 98, 105, 110, 97, 116, 105, 111, 110, 95, 103, 97, 116, 101, 115, 34, 58, 91, 93, 44, 34, 112, 114, 101, 118, 105, 101, 119, 95, 99, 97, 115, 101, 115, 34, 58, 91, 123, 34, 105, 110, 116, 101, 110, 115, 105, 102, 105, 101, 100, 95, 109, 101, 97, 115, 117, 114, 101, 115, 34, 58, 91, 93, 44, 34, 108, 111, 97, 100, 95, 99, 97, 115, 101, 95, 105, 100, 34, 58, 34, 99, 97, 115, 101, 45, 97, 34, 44, 34, 112, 105, 112, 101, 95, 115, 116, 114, 101, 115, 115, 95, 101, 120, 116, 114, 101, 109, 97, 34, 58, 91, 123, 34, 97, 112, 112, 114, 111, 120, 105, 109, 97, 116, 105, 111, 110, 34, 58, 34, 112, 105, 101, 99, 101, 119, 105, 115, 101, 95, 113, 117, 97, 100, 114, 97, 116, 105, 99, 95, 115, 116, 114, 97, 105, 103, 104, 116, 95, 115, 101, 99, 116, 105, 111, 110, 95, 115, 116, 97, 116, 105, 99, 115, 34, 44, 34, 99, 101, 114, 116, 105, 102, 105, 101, 100, 95, 103, 97, 112, 9 …[cut: 1572015 bytes, sha256 6a0cf4d7f22a134424dc394a087d19c6857b01b5be3b37d203f40cf3561fb788]
+ right: [123, 34, 99, 111, 110, 116, 114, 97, 99, 116, 95, 101, 118, 105, 100, 101, 110, 99, 101, 34, 58, 123, 34, 99, 111, 109, 98, 105, 110, 97, 116, 105, 111, 110, 95, 103, 97, 116, 101, 115, 34, 58, 91, 93, 44, 34, 112, 114, 101, 118, 105, 101, 119, 95, 99, 97, 115, 101, 115, 34, 58, 91, 123, 34, 105, 110, 116, 101, 110, 115, 105, 102, 105, 101, 100, 95, 109, 101, 97, 115, 117, 114, 101, 115, 34, 58, 91, 93, 44, 34, 108, 111, 97, 100, 95, 99, 97, 115, 101, 95, 105, 100, 34, 58, 34, 99, 97, 115, 101, 45, 97, 34, 44, 34, 112, 105, 112, 101, 95, 115, 116, 114, 101, 115, 115, 95, 101, 120, 116, 114, 101, 109, 97, 34, 58, 91, 123, 34, 97, 112, 112, 114, 111, 120, 105, 109, 97, 116, 105, 111, 110, 34, 58, 34, 112, 105, 101, 99, 101, 119, 105, 115, 101, 95, 113, 117, 97, 100, 114, 97, 116, 105, 99, 95, 115, 116, 114, 97, 105, 103, 104, 116, 95, 115, 101, 99, 116, 105, 111, 110, 95, 115, 116, 97, 116, 105, 99, 115, 34, 44, 34, 99, 101, 114, 116, 105, 102, 105, 101, 100, 95, 103, 97, 112, 9 …[cut: 1569063 bytes, sha256 b18a868190794894bccdc347579e9d6f32090f799c42f4ea8a4c6e0e8bf810c4]
+thread 'retained_facade_tests::b1_sp_w_c2_transaction_outcomes_and_ordinal_mapping' (117766469) panicked at src/retained_facade_tests.rs:1704:52:
+thread 'retained_facade_tests::b2p_hooks_and_failure_set' (117766675) panicked at src/retained_facade_tests.rs:3434:9:
+thread 'retained_facade_tests::b3b_rv123_s1_two_member_exact_overlays_each_member' (117767320) panicked at src/retained_facade_tests.rs:3152:13:
+assertion `left == right` failed: two members reversed=false SparseInteractive: pinned
+  left: "3cee9aedd7fe83c71a834affd761c7995f049cd26b9c2ab5f5d48837c57efdee"
+ right: "94549ef80998798af7a7068007f4c2cd27bf1edac1b3e0efb80ef4022dd90f8b"
+thread 'retained_facade_tests::b3b_rv123_s2_unavailable_exact_case_binds_def_e' (117767743) panicked at src/retained_facade_tests.rs:3189:9:
+assertion `left == right` failed: unavailable case-2 SparseInteractive: pinned
+  left: "5c802433b9f4e5e97757bf93252c78378d8d272ff0d731346185f515f1c17266"
+ right: "a056ac91ce498ec79505e68bf63559d1cc7abba69428a84ece70c8bb293d070a"
+thread 'retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes' (117767080) panicked at src/retained_facade_tests.rs:4002:21:
+assertion `left == right` failed: w_cb4a SparseInteractive: today's reader
+  left: ("G1", "RETAINED_PRECISION_RECEIPT_MISMATCH")
+ right: ("G3", "RETAINED_PRECISION_COVERAGE_MISMATCH")
+thread 'retained_facade_tests::b2p_direct_entry_runs_the_combinations' (117766544) panicked at src/retained_facade_tests.rs:4076:21:
+assertion `left == right` failed: w_cb4a SparseInteractive
+  left: ("G1", "RETAINED_PRECISION_RECEIPT_MISMATCH")
+ right: ("G3", "RETAINED_PRECISION_COVERAGE_MISMATCH")
+test result: FAILED. 15 passed; 10 failed; 0 ignored; 0 measured; 608 filtered out; finished in 17.61s
+error: test failed, to rerun pass `--lib`
+error: 1 target failed:

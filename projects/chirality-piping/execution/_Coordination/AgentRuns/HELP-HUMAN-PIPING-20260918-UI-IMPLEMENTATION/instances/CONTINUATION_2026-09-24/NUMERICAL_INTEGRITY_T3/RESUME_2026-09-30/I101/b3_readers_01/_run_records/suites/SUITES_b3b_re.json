@@ -1,0 +1,31 @@
+{
+ "suite": "re",
+ "base": {
+  "ok": 196
+ },
+ "head": {
+  "ok": 200
+ },
+ "differences": [
+  {
+   "test": "lib.rs :: retained_precision::b3b_table_binding_tests::step_6_table_against_reader_constants",
+   "base": null,
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: b3a_legacy_pressure_contract_namespace_at_g8",
+   "base": null,
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: b3b_exact_successor_readings_standing_and_dispatch",
+   "base": null,
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: b3b_exact_successor_shapes_first_failures",
+   "base": null,
+   "head": "ok"
+  }
+ ]
+}

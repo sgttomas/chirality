@@ -16202,3 +16202,133 @@ A case-level `pressure` key is not refused. PP's `PreviewLoadCase` has no such f
 **On Linux:** a second diagnostic (run 37792750591) carries the fix with the pins reporting rather than asserting, so that every later manifest runs too. Then the fix lands on NUM and PR-B1 is recut.
 
 **Routed (T3 product work, after PR-B1):** published magnitudes that do not depend on the platform's libm. That means a correctly rounded `hypot` (and its siblings in the ordinary route) built from IEEE operations and `fma`. It would retire `t13`'s Mac failure and these platform pins. It changes ordinary bytes wherever a libm was not correctly rounded, so it needs its own study of which committed values move.
+
+**Dispatched:** I109 (fresh), on platform-independent published values (`BRIEFS/PLATFORM_DETERMINISM_01.md`, `f4b45068…`). The scope:
+- the libm inventory;
+- a correctly rounded norm in place of `hypot`, against an exact-rational oracle with zero misrounded results;
+- the moved-bytes measurement on `codex/piping-t3-platform-norm-20261008`;
+- Linux by a CI dispatch.
+
+**IDs:** I109 is used. The next unused are **I110 and RV126**.
+
+## RV124 confirms B1's Pass B; the platform test fix committed on NUM (ROOT, 2026-10-08 UTC)
+
+**RV124 (RV-Q) CONFIRMED** I107's Pass B (`R/REVIEW_RV124/b1_passb_01/CONFIRM.md`, `c88e7a82…`). Counts: 0 BLOCKING, 0 SHOULD-FIX, 2 NOTE (wording in `delta_reviewed_b1.json`).
+- **The production-class rows** are exactly the registration item and G6's SF-1 bound.
+- **The table:** 50 entries, confirmed.
+- **`process_floor`:** confirmed environmental (4,060 + len(argv[0]), at three independent path lengths).
+- **Item 10:** confirmed.
+- **Pass A's basis `57c92a7b33`:** right.
+
+**The platform test fix** is committed on NUM with this section: three PP test files, +110/−9, no production code. Its diff has sha256 `744c1633…`, which RV124 read.
+- On the Mac, the `CAP_MAXIMAL_RING` table equals libSystem's cos and sin bit for bit.
+- The glibc variants apply only on Linux glibc.
+- The affected tests pass 52 of 52 in RV124's registered copy.
+- **Pass B's gates are unchanged.** `law` and `pp_outcomes` each gain the one added test, and `delta` gains test-class rows only.
+
+PR-B1 is recut once the Linux diagnostic (run 37792750591) is read.
+
+## I105's B2-P complete (`b2` `72b3e5d9ea`); lane A's interim test re-pinned; NUM's merge into `b2` deferred to J0; RV-P2 round 2 (RV123) (ROOT, 2026-10-08 UTC)
+
+**I105 (lane P) returned B2-P** (`R/I105/b2_p_01/RETURN.md`, `cd33b9b9…`, with Part 2 appended).
+- **The commits:**
+  - `1032fc8357`: the producer;
+  - `384c9a1ed8`: witnesses, pins, fixtures and tests;
+  - `638214d8d8`: mutant kills, RV125 N-2's refusal pin, the `with_case` debug guard (N-3) and a meter-chain hook;
+  - `583fc758ee`: the merge of lane A's repairs, without conflict.
+- **The pins, in both modes:**
+  - W-CB1 (1·A + 0.5·B), W-CB1z (A + B), W-CB3 v1 and `b2_c1_range_mechanics` select;
+  - W-CB2 is retained-unavailable (kernel);
+  - W-CB4a/b and W-CB5 are ordinary.
+- **New fixtures:** W-CB3's two live documents.
+- **Mutants:** 45 of 47 killed. Two are argued equivalent and go to RV123.
+- **PP:** 42 tests added, every c = 1 and B1 pin unchanged.
+- **NA4-5:** stated. On these witnesses every retained magnitude equals RN64 of the exact 3-norm.
+- **RV125 N-2:** no B2-P or B3b-P path admits a material selector at c ≥ 2. D1.5 and P-5 refuse them, and a test pins it.
+
+**Ruled: lane A's interim `b2_a_…_until_b2_p`**, which failed by design once W1 runs, is applied on `b2` as I105 proposed (`72b3e5d9ea`, test-only).
+- It is renamed `…_run_w1_and_fall_back_at_precommit_today` and pins each fallback byte for byte.
+- Law tests pass 56 of 56; `retained_precision_admission` passes 5 of 5.
+
+**Withdrawn: the merge of NUM's platform fix into `b2`.** `b2` descends from I4′ (`8d46b045e2`). Merging NUM now would bring all of B1's qualification (SQ's G5/G6, R6b's M, B6 and SI1b/c) and conflicts in `retained_memory_law_tests.rs`. That is J0, which follows PR-B1's merge, and the platform fix travels with it.
+
+**Dispatched: RV123 (RV-P2 round 2).** It confirms S-1, S-2 and N-2, then reviews B2-P at `72b3e5d9ea` against B2-C final, including a platform note on libm-formed published values.
+
+`b2` is pushed at `72b3e5d9ea`.
+
+## RV125 confirms PR-B1's platform test repair; the package refreshed for `7f5f72912e` (ROOT, 2026-10-08 UTC)
+
+**PR-B1's code commit** is now `7f5f72912e`, cut from main `953d8c9446` (#1155, App v4 only). It carries NUM `31eed8497f`'s 33 files. **I108 refreshed the package** (NUM `38a01a27b6`):
+- CHANGE_RECORD `8ab7b648…`, with the platform fix in §1.1, RV125 and RV124's rows, and N-7's erratum;
+- PR_BODY `d6b55…`;
+- citations pinned at `31eed8497f`.
+
+**ROOT's checks on the prepared PR head `f4a0430412`:** source equality (checks 1–5), `check_citations.py` and GEN-8 all pass.
+
+**RV125 CONFIRMED the repair** (`R/REVIEW_RV125/b1_x_01/ADDENDUM_01.md`, `ff980c12…`; 8 of 8 sums). Counts: 0 BLOCKING, 0 SHOULD-FIX, 1 NOTE.
+- **Test-only:** the delta is the `744c1633…` diff.
+- **Exact glibc values.** RV125 re-derived both independently on the Mac: it bumped the one value by one ulp and recomputed the wire hashes.
+- **The macOS path is unchanged:** the 64 coordinates equal libSystem's bit for bit.
+- **No pin is weakened.**
+- **Prediction:** the (A, A2) dense pin holds on glibc. Its cases match W-C2's case A row for row, and the differing value is absent from it.
+- **A1-N1 (NOTE):** the ring check's absolute 1e-14 escape admits more than one ulp for coordinates ≥ 1. Tighten it to the near-zero entries once glibc has run.
+
+## I101 returns B3's RS and TS readers and lane T's carriers; the three readers agree on every new shape; RV-R2 (RV120) dispatched (ROOT, 2026-10-08 UTC)
+
+**I101 returned** (`R/I101/b3_readers_01/RETURN.md`, `68db75d1…`; ADDENDUM_01 `8492fc4d…`; SHA256SUMS 277 of 277).
+- **The heads:** RS on `b2-r` `c845e899da`; TS and lane T on `b2-t` `77aaaa61d1`, which contains `b2-r`. Both are pushed. With PY on `b2-p` `b7721d27e9`, B3's readers are complete.
+- **Census:** 0 changes over 07m (339) and 07n (638), in RS and TS.
+- **Suites, against `e67c364680`:**
+  - RE: +6 tests at the RS head, +9 at the TS head;
+  - vitest: +41, with one declared rename (D31, B3D-10);
+  - `tsc`: rc 0;
+  - PY carrier schemas: +3.
+- **Mutants:**
+  - RS 39 of 43 and TS 43 of 47. The four argued equivalents (B06b, B28, B29, B30) are each covered by another binding.
+  - The addendum's clauses: 4 of 4 in each language.
+- **Lane T:**
+  - the carrier branches and `CARRIER_PROFILE_ENUMS`;
+  - `outputPolicy.ts`'s entry;
+  - the `SourceContract` union;
+  - the T6S golden for the exact successor's derivative, which TS reproduces byte for byte. The T6S-2 goldens are unchanged.
+- **Three-reader agreement:** 165 shapes on 5 bases (3 synthetic and lane P's two m3x successors). RS = TS = PY on bound, unbound and transport readings, at every gate and code except G7's per-language base codes. The m3x successors validate at precommit through the producer in both modes.
+- **The G8 alignment (addendum 01):** applied in RS and TS. Before it, 26 of 44 preview and 8 of 8 exact readings differed; after it, 0 of 44 and 0 of 8.
+
+**Ruled on I101's open points:**
+1. **The fresh-identity sets.** The exact successor stays out, as already ruled (RR "PR-B1 cut (`8248921552`); …", note 1), so the Current panels stay closed to it. Admitting it is B7/B8's, with public activation.
+2. **m3l has no committed fixture.** Accepted. B3a's reader tests use synthetic receipts, and the producer's m3l witness validates through RS.
+
+**Dispatched: RV120 (RV-R2)** reviews B3's three readers and lane T's carriers. After its review, the reader lanes merge into `b2`. `b2-t` brings `b2-r`; `b2-p` merges on its own.
+
+## I109: a correctly rounded norm replaces libm `hypot` on published paths; glibc was the correctly rounded side; it goes as its own PR after B1 (ROOT, 2026-10-08 UTC)
+
+**I109 returned** (`R/I109/platform_norm_01/RETURN.md`, `7c213623…`; 44 files in its sums) on `codex/piping-t3-platform-norm-20261008` at `cd8e710039`, from NUM `af53e1447c`. The commits:
+- **`c613c68160`:** `norm2` and `norm3` in `P/core/solver/frame_kernel/src/correct_norm.rs`. They use IEEE operations and `fma` only, with 1,200 committed oracle vectors.
+- **`c8369cfda2`:** every product `hypot` reaching published bytes, a receipt or diagnostic text uses the norm (30 of 32 calls; the other 2 are in `performance_harness`). stress_recovery includes the module by `#[path]`, so no manifest, lock or reviewed input changes.
+- **`d538f469af`:** the rigid-body rank screen uses the norm (an admission decision).
+- **`cd8e710039`:** a comment.
+
+**The facts:**
+- **The oracle:** 0 misrounded in 22,000,000 results, against exact integer square roots. The sample includes the subnormal and overflow ranges and 1,000,000 adversarial near-midpoint triples.
+- **macOS arm64's `hypot`** is not correctly rounded on 16.7 % of random pairs.
+- **The published value is the correctly rounded 3-norm,** not a chain. It is one rounding and independent of component order; the chain differs from it on 16.6 % of triples.
+- **The readers** recompute norms only inside their 64ε guard and need no change.
+- **Moved bytes on the Mac** (40 manifests; nothing re-pinned): five tests move by one value of one ulp plus the hashes over it.
+  - These are W-C2 dense (fixture and pins), (C, B, A) dense, u1's macOS dense ordinary pin, m08's own libm expectation, and two reader-corpus cases.
+  - `t13` and the runner's two `load_reference` tests now pass on the Mac.
+  - The moved W-C2 and (C, B, A) values equal B1's glibc variants exactly. **glibc was the correctly rounded side.**
+- **The remaining libm calls on product paths:** sin 23, cos 25, atan2 2, asin 1, exp 3, exp_m1 1. These are recommended for correctly rounded implementations and are not implemented in this round.
+
+**Ruled:**
+1. **The correctly rounded norm is accepted as T3 product work and goes as its own PR after PR-B1** ("PR-N", T3-PN). PR-B1 keeps its exact platform pins. PR-N:
+   - re-pins the Mac fixtures to the correctly rounded bytes, which equal glibc's today;
+   - retires B1's glibc variants, `t13`'s and `load_reference`'s Mac failures, and u1's macOS-only assertion;
+   - keeps the bit-spelled ring.
+2. **`d538f469af` (the rank screen) stays,** because it closes a T3-close item. Its review takes the admission view.
+3. **Next for PR-N:**
+   - NUM's latest is merged into the branch (no conflict);
+   - a hosted-CI diagnostic dispatch on glibc;
+   - then I109 re-pins after PR-B1 merges, rebased on main;
+   - then RV-N (a fresh review) of the norm module and every call site.
+
+   The sin, cos, atan2 and exp items are a later round.

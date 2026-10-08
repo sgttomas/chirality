@@ -1,0 +1,579 @@
+path	line	function	context	lang	source
+core/product_physics/src/annulus_geometry.rs	91	powi	test	rs	let t = 2.0_f64.powi(-55);
+core/product_physics/src/annulus_geometry.rs	109	powi	test	rs	let od = 2.0_f64.powi(-537);
+core/product_physics/src/annulus_geometry.rs	110	powi	test	rs	let wall = 2.0_f64.powi(-539);
+core/product_physics/src/lib.rs	4926	hypot	prod	rs	force_vector[0].hypot(force_vector[1]).hypot(force_vector[2])
+core/product_physics/src/lib.rs	4926	hypot	prod	rs	force_vector[0].hypot(force_vector[1]).hypot(force_vector[2])
+core/product_physics/src/lib.rs	5122	hypot	prod	rs	corrected_local_forces[offset + RY].hypot(corrected_local_forces[offset + RZ]),
+core/product_physics/src/lib.rs	7870	asin	prod	rs	let implied_included_angle = 2.0 * (half_chord / bend_radius).asin();
+core/product_physics/src/lib.rs	9333	powi	prod	rs	let metal_area = PI / 4.0 * (od.powi(2) - id.powi(2));
+core/product_physics/src/lib.rs	9333	powi	prod	rs	let metal_area = PI / 4.0 * (od.powi(2) - id.powi(2));
+core/product_physics/src/lib.rs	9354	powi	prod	rs	mass_per_length += PI / 4.0 * id.powi(2) * contents_density;
+core/product_physics/src/lib.rs	9377	powi	prod	rs	mass_per_length += PI / 4.0 * (insulation_od.powi(2) - od.powi(2)) * density;
+core/product_physics/src/lib.rs	9377	powi	prod	rs	mass_per_length += PI / 4.0 * (insulation_od.powi(2) - od.powi(2)) * density;
+core/product_physics/src/lib.rs	10306	powi	prod	rs	let area = PI * (od.powi(2) - id.powi(2)) / 4.0;
+core/product_physics/src/lib.rs	10306	powi	prod	rs	let area = PI * (od.powi(2) - id.powi(2)) / 4.0;
+core/product_physics/src/lib.rs	10307	powi	prod	rs	let internal_area = PI * id.powi(2) / 4.0;
+core/product_physics/src/lib.rs	10308	powi	prod	rs	let second_moment = PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/product_physics/src/lib.rs	10308	powi	prod	rs	let second_moment = PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/product_physics/src/lib.rs	11874	hypot	prod	rs	action[0].hypot(action[1]).hypot(action[2]),
+core/product_physics/src/lib.rs	11874	hypot	prod	rs	action[0].hypot(action[1]).hypot(action[2]),
+core/product_physics/src/lib.rs	11880	hypot	prod	rs	action[3].hypot(action[4]).hypot(action[5]),
+core/product_physics/src/lib.rs	11880	hypot	prod	rs	action[3].hypot(action[4]).hypot(action[5]),
+core/product_physics/src/lib.rs	13509	hypot	prod	rs	combined.value = vector[0].hypot(vector[1]).hypot(vector[2]);
+core/product_physics/src/lib.rs	13509	hypot	prod	rs	combined.value = vector[0].hypot(vector[1]).hypot(vector[2]);
+core/product_physics/src/lib.rs	13916	powi	prod	rs	(displacements[base + UX].powi(2)
+core/product_physics/src/lib.rs	13917	powi	prod	rs	+ displacements[base + UY].powi(2)
+core/product_physics/src/lib.rs	13918	powi	prod	rs	+ displacements[base + UZ].powi(2))
+core/product_physics/src/lib.rs	14976	powi	test	rs	((j.x - i.x).powi(2) + (j.y - i.y).powi(2) + (j.z - i.z).powi(2))
+core/product_physics/src/lib.rs	14976	powi	test	rs	((j.x - i.x).powi(2) + (j.y - i.y).powi(2) + (j.z - i.z).powi(2))
+core/product_physics/src/lib.rs	14976	powi	test	rs	((j.x - i.x).powi(2) + (j.y - i.y).powi(2) + (j.z - i.z).powi(2))
+core/product_physics/src/lib.rs	16632	powi	test	rs	((j.x - i.x).powi(2) + (j.y - i.y).powi(2) + (j.z - i.z).powi(2)).sqrt();
+core/product_physics/src/lib.rs	16632	powi	test	rs	((j.x - i.x).powi(2) + (j.y - i.y).powi(2) + (j.z - i.z).powi(2)).sqrt();
+core/product_physics/src/lib.rs	16632	powi	test	rs	((j.x - i.x).powi(2) + (j.y - i.y).powi(2) + (j.z - i.z).powi(2)).sqrt();
+core/product_physics/src/lib.rs	17600	powi	test	rs	let area = std::f64::consts::PI / 4.0 * (0.168_f64.powi(2) - 0.154_f64.powi(2));
+core/product_physics/src/lib.rs	17600	powi	test	rs	let area = std::f64::consts::PI / 4.0 * (0.168_f64.powi(2) - 0.154_f64.powi(2));
+core/product_physics/src/lib.rs	18464	hypot	test	rs	let hypot = result_value(&result, &refs[0]).hypot(result_value(&result, &refs[1])) * 1e6;
+core/product_physics/src/lib.rs	18864	powi	test	rs	let second_moment = PI * (od.powi(4) - inner.powi(4)) / 64.0;
+core/product_physics/src/lib.rs	18864	powi	test	rs	let second_moment = PI * (od.powi(4) - inner.powi(4)) / 64.0;
+core/product_physics/src/lib.rs	18865	powi	test	rs	force_newtons * length.powi(3) / (3.0 * elastic_modulus * second_moment)
+core/product_physics/src/lib.rs	19458	powi	test	rs	let expected_modulus = PI * (od.powi(4) - id.powi(4)) / 64.0 / (od / 2.0);
+core/product_physics/src/lib.rs	19458	powi	test	rs	let expected_modulus = PI * (od.powi(4) - id.powi(4)) / 64.0 / (od / 2.0);
+core/product_physics/src/lib.rs	19608	powi	test	rs	PI / 4.0 * (od.powi(2) - id.powi(2)) * 7850.0
+core/product_physics/src/lib.rs	19608	powi	test	rs	PI / 4.0 * (od.powi(2) - id.powi(2)) * 7850.0
+core/product_physics/src/lib.rs	20304	powi	test	rs	PI / 32.0 * (outer_diameter.powi(4) - inner_diameter.powi(4))
+core/product_physics/src/lib.rs	20304	powi	test	rs	PI / 32.0 * (outer_diameter.powi(4) - inner_diameter.powi(4))
+core/product_physics/src/lib.rs	21409	powi	test	rs	let area = std::f64::consts::PI * (0.168_f64.powi(2) - 0.154_f64.powi(2)) / 4.0;
+core/product_physics/src/lib.rs	21409	powi	test	rs	let area = std::f64::consts::PI * (0.168_f64.powi(2) - 0.154_f64.powi(2)) / 4.0;
+core/product_physics/src/lib.rs	21547	powi	test	rs	let inertia = std::f64::consts::PI * (0.168_f64.powi(4) - 0.154_f64.powi(4)) / 64.0;
+core/product_physics/src/lib.rs	21547	powi	test	rs	let inertia = std::f64::consts::PI * (0.168_f64.powi(4) - 0.154_f64.powi(4)) / 64.0;
+core/product_physics/src/lib.rs	21610	powi	test	rs	1000.0 * 2.0_f64.powi(2) / (2.0 * 200e9 * inertia) * cross[global];
+core/product_physics/src/lib.rs	21714	powi	test	rs	let inertia = std::f64::consts::PI * (0.168_f64.powi(4) - 0.154_f64.powi(4)) / 64.0;
+core/product_physics/src/lib.rs	21714	powi	test	rs	let inertia = std::f64::consts::PI * (0.168_f64.powi(4) - 0.154_f64.powi(4)) / 64.0;
+core/product_physics/src/lib.rs	22537	powi	test	rs	let inertia = PI * (0.168_f64.powi(4) - 0.154_f64.powi(4)) / 64.0;
+core/product_physics/src/lib.rs	22537	powi	test	rs	let inertia = PI * (0.168_f64.powi(4) - 0.154_f64.powi(4)) / 64.0;
+core/product_physics/src/lib.rs	22619	powi	test	rs	let inertia = PI * (0.168_f64.powi(4) - 0.154_f64.powi(4)) / 64.0;
+core/product_physics/src/lib.rs	22619	powi	test	rs	let inertia = PI * (0.168_f64.powi(4) - 0.154_f64.powi(4)) / 64.0;
+core/product_physics/src/lib.rs	22697	powi	test	rs	let area = PI * (0.168_f64.powi(2) - 0.154_f64.powi(2)) / 4.0;
+core/product_physics/src/lib.rs	22697	powi	test	rs	let area = PI * (0.168_f64.powi(2) - 0.154_f64.powi(2)) / 4.0;
+core/product_physics/src/lib.rs	23258	powi	test	rs	let area = PI * (od.powi(2) - inner.powi(2)) / 4.0;
+core/product_physics/src/lib.rs	23258	powi	test	rs	let area = PI * (od.powi(2) - inner.powi(2)) / 4.0;
+core/product_physics/src/lib.rs	23259	powi	test	rs	let second_moment = PI * (od.powi(4) - inner.powi(4)) / 64.0;
+core/product_physics/src/lib.rs	23259	powi	test	rs	let second_moment = PI * (od.powi(4) - inner.powi(4)) / 64.0;
+core/product_physics/src/pressure_exact.rs	620	powi	test	rs	let tiny_inner = 2.0f64.powi(-537);
+core/product_physics/src/pressure_exact.rs	794	powi	test	rs	2.0f64.powi(-200),
+core/product_physics/src/pressure_exact.rs	795	powi	test	rs	2.0f64.powi(-199),
+core/product_physics/src/pressure_exact.rs	796	powi	test	rs	2.0f64.powi(200),
+core/product_physics/src/pressure_exact.rs	797	powi	test	rs	2.0f64.powi(100),
+core/product_physics/src/pressure_exact.rs	803	powi	test	rs	2.0f64.powi(200),
+core/product_physics/src/pressure_exact.rs	804	powi	test	rs	2.0f64.powi(201),
+core/product_physics/src/pressure_exact.rs	805	powi	test	rs	2.0f64.powi(-200),
+core/product_physics/src/pressure_exact.rs	806	powi	test	rs	2.0f64.powi(-100),
+core/product_physics/src/pressure_exact.rs	865	powi	test	rs	let ri = 2.0f64.powi(-537);
+core/product_physics/src/pressure_exact.rs	891	powi	test	rs	let ri = 2.0f64.powi(-400);
+core/product_physics/src/pressure_exact.rs	892	powi	test	rs	let ro = 2.0f64.powi(-399);
+core/product_physics/src/pressure_exact.rs	893	powi	test	rs	let pressure_value = 2.0f64.powi(-400);
+core/product_physics/src/pressure_exact.rs	923	powi	test	rs	let annulus = ExactAnnulus::from_radii(2.0f64.powi(-500), 2.0f64.powi(-499)).unwrap();
+core/product_physics/src/pressure_exact.rs	923	powi	test	rs	let annulus = ExactAnnulus::from_radii(2.0f64.powi(-500), 2.0f64.powi(-499)).unwrap();
+core/product_physics/src/pressure_exact.rs	924	powi	test	rs	let material = IsotropicENu::new(2.0f64.powi(600), 0.25).unwrap();
+core/product_physics/src/pressure_exact.rs	926	powi	test	rs	let state = axial_state(annulus, material, pressure, 0.0, 2.0f64.powi(-78)).unwrap();
+core/product_physics/src/pressure_exact.rs	927	powi	test	rs	let expected_force = 3.0 * PI * 2.0f64.powi(-478);
+core/product_physics/src/pressure_exact.rs	931	powi	test	rs	2.0f64.powi(522),
+core/product_physics/src/pressure_exact.rs	932	powi	test	rs	2.0f64.powi(522),
+core/product_physics/src/pressure_exact.rs	938	powi	test	rs	let annulus = ExactAnnulus::from_radii(2.0f64.powi(-500), 2.0f64.powi(-499)).unwrap();
+core/product_physics/src/pressure_exact.rs	938	powi	test	rs	let annulus = ExactAnnulus::from_radii(2.0f64.powi(-500), 2.0f64.powi(-499)).unwrap();
+core/product_physics/src/pressure_exact.rs	939	powi	test	rs	let material = IsotropicENu::new(2.0f64.powi(600), 0.25).unwrap();
+core/product_physics/src/pressure_exact.rs	941	powi	test	rs	let expected_force = 3.0 * PI * 2.0f64.powi(-478);
+core/product_physics/src/pressure_exact.rs	943	powi	test	rs	eigenload_pair(annulus, material, pressure, 2.0f64.powi(-78)).unwrap(),
+core/product_physics/src/pressure_exact.rs	957	powi	test	rs	IsotropicENu::new(2.0f64.powi(1022), -0.75).unwrap(),
+core/product_physics/src/pressure_exact.rs	958	powi	test	rs	InternalDifferentialPressure::new(2.0f64.powi(1022)).unwrap(),
+core/product_physics/src/pressure_exact.rs	959	powi	test	rs	-1.5 / (2.0f64.powi(20) - 1.0),
+core/product_physics/src/pressure_exact.rs	985	powi	test	rs	let material = IsotropicENu::new(2.0f64.powi(-1000), 0.25).unwrap();
+core/product_physics/src/pressure_exact.rs	987	powi	test	rs	let epsilon_z = 2.0f64.powi(1023);
+core/product_physics/src/pressure_exact.rs	989	powi	test	rs	let expected_wall_force = 3.0 * PI * 2.0f64.powi(24);
+core/product_physics/src/pressure_exact.rs	990	powi	test	rs	let expected_eigen_i = 3.0 * PI * 2.0f64.powi(23);
+core/product_physics/src/pressure_exact.rs	993	powi	test	rs	assert_scalar(state.axial_membrane_pa(), 2.0f64.powi(24), 2.0f64.powi(24));
+core/product_physics/src/pressure_exact.rs	993	powi	test	rs	assert_scalar(state.axial_membrane_pa(), 2.0f64.powi(24), 2.0f64.powi(24));
+core/product_physics/src/pressure_exact.rs	1013	powi	test	rs	let ri = 2.0f64.powi(-537);
+core/product_physics/src/pressure_exact.rs	1014	powi	test	rs	let ro = 2.0f64.powi(-536);
+core/product_physics/src/pressure_exact.rs	1020	powi	test	rs	let pressure_value = sign * 2.0f64.powi(pressure_exponent);
+core/product_physics/src/pressure_exact.rs	1022	powi	test	rs	let expected_fluid_force = sign * PI * 2.0f64.powi(pressure_exponent - 1074);
+core/product_physics/src/pressure_exact.rs	1057	powi	test	rs	let ri = 2.0f64.powi(-300);
+core/product_physics/src/pressure_exact.rs	1058	powi	test	rs	let ro = 2.0f64.powi(300);
+core/product_physics/src/pressure_exact.rs	1059	powi	test	rs	let radius = 2.0f64.powi(299);
+core/product_physics/src/pressure_exact.rs	1065	powi	test	rs	let exponent_scale = 2.0f64.powi(pressure_exponent - 900);
+core/product_physics/src/pressure_exact.rs	1068	powi	test	rs	InternalDifferentialPressure::new(sign * 2.0f64.powi(pressure_exponent))
+core/product_physics/src/pressure_runtime.rs	1081	hypot	prod	rs	let length = chord[0].hypot(chord[1]).hypot(chord[2]);
+core/product_physics/src/pressure_runtime.rs	1081	hypot	prod	rs	let length = chord[0].hypot(chord[1]).hypot(chord[2]);
+core/product_physics/src/pressure_runtime.rs	1099	hypot	prod	rs	let residual = normal[0].hypot(normal[1]).hypot(normal[2]);
+core/product_physics/src/pressure_runtime.rs	1099	hypot	prod	rs	let residual = normal[0].hypot(normal[1]).hypot(normal[2]);
+core/product_physics/src/pressure_sum.rs	28	powi	test	rs	let small = 2.0_f64.powi(-53);
+core/product_physics/src/pressure_sum.rs	37	powi	test	rs	let half = 2.0_f64.powi(-53);
+core/product_physics/src/preview_physics.rs	465	hypot	prod	rs	let angle = cross[0].hypot(cross[1]).hypot(cross[2]).atan2(dot);
+core/product_physics/src/preview_physics.rs	465	hypot	prod	rs	let angle = cross[0].hypot(cross[1]).hypot(cross[2]).atan2(dot);
+core/product_physics/src/preview_physics.rs	465	atan2	prod	rs	let angle = cross[0].hypot(cross[1]).hypot(cross[2]).atan2(dot);
+core/product_physics/src/preview_physics.rs	475	to_degrees	prod	rs	format!("curved-bend {} {end} tangent differs from the closest adjacent pipe {} by {} rad ({} degrees), above the 1e-6 rad geometric-consistency warning threshold; the arc is built as authored and this warning does not repair its geometry",
+core/product_physics/src/preview_physics.rs	634	hypot	prod	rs	let value = association.sif * (my.hypot(mz) / member.section_modulus);
+core/product_physics/src/preview_physics.rs	966	hypot	prod	rs	("force_magnitude", combined[0].hypot(combined[1]).hypot(combined[2])),
+core/product_physics/src/preview_physics.rs	966	hypot	prod	rs	("force_magnitude", combined[0].hypot(combined[1]).hypot(combined[2])),
+core/product_physics/src/preview_physics.rs	967	hypot	prod	rs	("moment_magnitude", combined[3].hypot(combined[4]).hypot(combined[5])),
+core/product_physics/src/preview_physics.rs	967	hypot	prod	rs	("moment_magnitude", combined[3].hypot(combined[4]).hypot(combined[5])),
+core/product_physics/src/retained_memory_law_tests.rs	69	cos	test	rs	json!({"id": format!("N{i}"), "position": {"x": 10.0 * t.cos(), "y": 10.0 * t.sin(), "z": 0.0}, "provenance": p})
+core/product_physics/src/retained_memory_law_tests.rs	69	sin	test	rs	json!({"id": format!("N{i}"), "position": {"x": 10.0 * t.cos(), "y": 10.0 * t.sin(), "z": 0.0}, "provenance": p})
+core/product_physics/src/retained_product.rs	2446	hypot	prod	rs	if (y - v[0].hypot(v[1]).hypot(v[2])).abs()
+core/product_physics/src/retained_product.rs	2446	hypot	prod	rs	if (y - v[0].hypot(v[1]).hypot(v[2])).abs()
+core/product_physics/src/s11f_tests.rs	728	powi	test	rs	tip_uy: w * l.powi(4) / (8.0 * ei),
+core/product_physics/src/s11f_tests.rs	729	powi	test	rs	tip_rz: w * l.powi(3) / (6.0 * ei),
+core/product_physics/src/s11f_tests.rs	758	hypot	test	rs	within(my.hypot(mz), e.moment_i, 0.0),
+core/product_physics/src/s11f_tests.rs	764	hypot	test	rs	within(vy.hypot(vz), e.shear_i, 0.0),
+core/product_physics/src/s11f_tests.rs	924	hypot	test	rs	within(my.hypot(mz), e.moment_i * rest * rest, 0.0),
+core/product_physics/src/s11f_tests.rs	932	hypot	test	rs	within(vy.hypot(vz), e.shear_i * rest, 0.0),
+core/product_physics/src/s11f_tests.rs	1006	hypot	test	rs	within(my.hypot(mz), 0.3 / 2.0, 0.0),
+core/product_physics/src/s11f_tests.rs	1012	hypot	test	rs	within(vy.hypot(vz), 0.3 / 2.0, 0.0),
+core/product_physics/src/s11f_tests.rs	1542	powi	test	rs	let i = std::f64::consts::PI / 4.0 * ((0.5 * HOT_OD).powi(4) - ri.powi(4));
+core/product_physics/src/s11f_tests.rs	1542	powi	test	rs	let i = std::f64::consts::PI / 4.0 * ((0.5 * HOT_OD).powi(4) - ri.powi(4));
+core/product_physics/src/s11g_tests.rs	389	hypot	test	rs	let q = y.hypot(z);
+core/product_physics/src/s11g_tests.rs	402	powi	test	rs	above_floor: q >= 2.0_f64.powi(-34) * s_star,
+core/product_physics/src/s11g_tests.rs	654	powi	test	rs	let floor_scale = 2f64.powi(34);
+core/product_physics/src/self_weight.rs	1319	powi	test	rs	for wall in [1e-9, 1e-12, 2.0_f64.powi(-55)] {
+core/product_physics/src/self_weight.rs	1327	powi	test	rs	let thickness = 2.0_f64.powi(-55);
+core/product_physics/src/self_weight.rs	1419	powi	test	rs	std::f64::consts::PI / 4.0 * (0.1_f64.powi(2) - 0.08_f64.powi(2)) * 1000.0 * g,
+core/product_physics/src/self_weight.rs	1419	powi	test	rs	std::f64::consts::PI / 4.0 * (0.1_f64.powi(2) - 0.08_f64.powi(2)) * 1000.0 * g,
+core/product_physics/src/self_weight.rs	1466	powi	test	rs	value: 1000.0 * 0.0254_f64.powi(3) / 0.45359237,
+core/product_physics/src/self_weight.rs	1488	powi	test	rs	* ((0.1_f64.powi(2) - 0.082_f64.powi(2)) * 1000.0
+core/product_physics/src/self_weight.rs	1488	powi	test	rs	* ((0.1_f64.powi(2) - 0.082_f64.powi(2)) * 1000.0
+core/product_physics/src/self_weight.rs	1489	powi	test	rs	+ 0.082_f64.powi(2) * 400.0
+core/product_physics/src/self_weight.rs	1490	powi	test	rs	+ (0.12_f64.powi(2) - 0.1_f64.powi(2)) * 50.0);
+core/product_physics/src/self_weight.rs	1490	powi	test	rs	+ (0.12_f64.powi(2) - 0.1_f64.powi(2)) * 50.0);
+core/product_physics/src/case_state/resolve.rs	899	hypot	prod	rs	.hypot(to[1] - from[1])
+core/product_physics/src/case_state/resolve.rs	900	hypot	prod	rs	.hypot(to[2] - from[2]);
+core/product_physics/src/case_state/thermal.rs	484	exp	prod	rs	let value = published(accumulated.exp(), "logarithmic path stretch")?;
+core/product_physics/src/case_state/thermal.rs	666	exp	prod	rs	let li = published(di.exp(), "installation logarithmic stretch")?;
+core/product_physics/src/case_state/thermal.rs	667	exp	prod	rs	let lo = published(d_o.exp(), "operating logarithmic stretch")?;
+core/product_physics/src/case_state/thermal.rs	674	exp_m1	prod	rs	let strain = published(delta.exp_m1(), "logarithmic thermal strain")?;
+core/product_physics/src/case_state/thermal.rs	991	exp_m1	test	rs	close(log.thermal_strain, 0.0015f64.exp_m1());
+core/product_physics/tests/elastic_extrema_runtime.rs	47	powi	test	rs	let inertia = PI * (0.06_f64.powi(4) - 0.05_f64.powi(4)) / 4.0;
+core/product_physics/tests/elastic_extrema_runtime.rs	47	powi	test	rs	let inertia = PI * (0.06_f64.powi(4) - 0.05_f64.powi(4)) / 4.0;
+core/product_physics/tests/elastic_extrema_runtime.rs	110	powi	test	rs	let inertia = PI * (0.06_f64.powi(4) - 0.05_f64.powi(4)) / 4.0;
+core/product_physics/tests/elastic_extrema_runtime.rs	110	powi	test	rs	let inertia = PI * (0.06_f64.powi(4) - 0.05_f64.powi(4)) / 4.0;
+core/product_physics/tests/k2a_formation_range_runtime.rs	123	powi	test	rs	let area = PI * (od.powi(2) - id.powi(2)) / 4.0;
+core/product_physics/tests/k2a_formation_range_runtime.rs	123	powi	test	rs	let area = PI * (od.powi(2) - id.powi(2)) / 4.0;
+core/product_physics/tests/k2a_formation_range_runtime.rs	124	powi	test	rs	let second_moment = PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/product_physics/tests/k2a_formation_range_runtime.rs	124	powi	test	rs	let second_moment = PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/product_physics/tests/k2a_formation_range_runtime.rs	386	powi	test	rs	let e_scaled = r.e * 2f64.powi(600);
+core/product_physics/tests/k2a_formation_range_runtime.rs	387	powi	test	rs	let reference = 12.0 * e_scaled * i / l3 * 2f64.powi(-600);
+core/product_physics/tests/k2a_formation_range_runtime.rs	495	powi	test	rs	let value = 12.0 * (r.e * 2f64.powi(600)) * i / l3 * 2f64.powi(-600);
+core/product_physics/tests/k2a_formation_range_runtime.rs	495	powi	test	rs	let value = 12.0 * (r.e * 2f64.powi(600)) * i / l3 * 2f64.powi(-600);
+core/product_physics/tests/k2a_formation_range_runtime.rs	549	powi	test	rs	assert_eq!(EXACT_ZERO.length, 2f64.powi(-39));
+core/product_physics/tests/k2a_formation_range_runtime.rs	569	powi	test	rs	let half_least = 2f64.powi(-475); // 2^-1075 scaled by 2^600
+core/product_physics/tests/k2a_formation_range_runtime.rs	570	powi	test	rs	let before_rounding = |k: f64| (k * (r.e * 2f64.powi(600))) * i;
+core/product_physics/tests/load_reference_state_runtime_extension.rs	1891	powi	test	rs	let polar = std::f64::consts::PI * (ro.powi(4) - ri.powi(4)) / 2.0;
+core/product_physics/tests/load_reference_state_runtime_extension.rs	1891	powi	test	rs	let polar = std::f64::consts::PI * (ro.powi(4) - ri.powi(4)) / 2.0;
+core/product_physics/tests/physics_source_runtime.rs	94	powi	test	rs	let j = std::f64::consts::PI * (0.1_f64.powi(4) - 0.09_f64.powi(4)) / 2.0;
+core/product_physics/tests/physics_source_runtime.rs	94	powi	test	rs	let j = std::f64::consts::PI * (0.1_f64.powi(4) - 0.09_f64.powi(4)) / 2.0;
+core/product_physics/tests/physics_source_runtime.rs	194	powi	test	rs	let area = std::f64::consts::PI * (0.1_f64.powi(2) - 0.09_f64.powi(2));
+core/product_physics/tests/physics_source_runtime.rs	194	powi	test	rs	let area = std::f64::consts::PI * (0.1_f64.powi(2) - 0.09_f64.powi(2));
+core/product_physics/tests/physics_source_runtime.rs	195	powi	test	rs	let inertia = std::f64::consts::PI * (0.1_f64.powi(4) - 0.09_f64.powi(4)) / 4.0;
+core/product_physics/tests/physics_source_runtime.rs	195	powi	test	rs	let inertia = std::f64::consts::PI * (0.1_f64.powi(4) - 0.09_f64.powi(4)) / 4.0;
+core/product_physics/tests/physics_source_runtime.rs	197	powi	test	rs	0.001 / area + (0.0055_f64.powi(2) + 0.0046_f64.powi(2)).sqrt() / (inertia / 0.1);
+core/product_physics/tests/physics_source_runtime.rs	197	powi	test	rs	0.001 / area + (0.0055_f64.powi(2) + 0.0046_f64.powi(2)).sqrt() / (inertia / 0.1);
+core/product_physics/tests/preview_physics_runtime.rs	270	hypot	test	rs	close(magnitude(v, s, "force", "load_case", case), a[0].hypot(a[1]).hypot(a[2]), 1e-300, "force magnitude");
+core/product_physics/tests/preview_physics_runtime.rs	270	hypot	test	rs	close(magnitude(v, s, "force", "load_case", case), a[0].hypot(a[1]).hypot(a[2]), 1e-300, "force magnitude");
+core/product_physics/tests/preview_physics_runtime.rs	271	hypot	test	rs	close(magnitude(v, s, "moment", "load_case", case), a[3].hypot(a[4]).hypot(a[5]), 1e-300, "moment magnitude");
+core/product_physics/tests/preview_physics_runtime.rs	271	hypot	test	rs	close(magnitude(v, s, "moment", "load_case", case), a[3].hypot(a[4]).hypot(a[5]), 1e-300, "moment magnitude");
+core/product_physics/tests/preview_physics_runtime.rs	279	hypot	test	rs	let expected = num(&m["sif"]) * (num(&m["bending_moment_y_n_m"]).hypot(num(&m["bending_moment_z_n_m"])) / num(&m["section_modulus_m3"]));
+core/product_physics/tests/preview_physics_runtime.rs	428	to_radians	test	rs	let (c30, s30) = (30f64.to_radians().cos(), 30f64.to_radians().sin());
+core/product_physics/tests/preview_physics_runtime.rs	428	cos	test	rs	let (c30, s30) = (30f64.to_radians().cos(), 30f64.to_radians().sin());
+core/product_physics/tests/preview_physics_runtime.rs	428	to_radians	test	rs	let (c30, s30) = (30f64.to_radians().cos(), 30f64.to_radians().sin());
+core/product_physics/tests/preview_physics_runtime.rs	428	sin	test	rs	let (c30, s30) = (30f64.to_radians().cos(), 30f64.to_radians().sin());
+core/product_physics/tests/stress_maximum_coverage.rs	33	powi	test	rs	let area = PI * (0.06_f64.powi(2) - 0.05_f64.powi(2));
+core/product_physics/tests/stress_maximum_coverage.rs	33	powi	test	rs	let area = PI * (0.06_f64.powi(2) - 0.05_f64.powi(2));
+core/product_physics/tests/stress_maximum_coverage.rs	34	powi	test	rs	let z = PI * (0.06_f64.powi(4) - 0.05_f64.powi(4)) / 4.0 / 0.06;
+core/product_physics/tests/stress_maximum_coverage.rs	34	powi	test	rs	let z = PI * (0.06_f64.powi(4) - 0.05_f64.powi(4)) / 4.0 / 0.06;
+core/product_physics/tests/support_reactions_runtime.rs	130	hypot	test	rs	1000.0_f64.hypot(2000.0).hypot(3000.0),
+core/product_physics/tests/support_reactions_runtime.rs	130	hypot	test	rs	1000.0_f64.hypot(2000.0).hypot(3000.0),
+core/product_physics/tests/support_reactions_runtime.rs	135	hypot	test	rs	400.0_f64.hypot(2500.0).hypot(2600.0),
+core/product_physics/tests/support_reactions_runtime.rs	135	hypot	test	rs	400.0_f64.hypot(2500.0).hypot(2600.0),
+core/product_physics/tests/support_reactions_runtime.rs	152	powi	test	rs	let ea = 200e9 * PI * (0.06_f64.powi(2) - 0.05_f64.powi(2));
+core/product_physics/tests/support_reactions_runtime.rs	152	powi	test	rs	let ea = 200e9 * PI * (0.06_f64.powi(2) - 0.05_f64.powi(2));
+core/product_physics/tests/common/b1_sq_inputs.rs	52	cos	test	rs	json!({"id": format!("N{i}"), "position": {"x": 10.0 * t.cos(), "y": 10.0 * t.sin(), "z": 0.0}, "provenance": p})
+core/product_physics/tests/common/b1_sq_inputs.rs	52	sin	test	rs	json!({"id": format!("N{i}"), "position": {"x": 10.0 * t.cos(), "y": 10.0 * t.sin(), "z": 0.0}, "provenance": p})
+core/product_physics/tests/common/b1_sq_inputs.rs	130	powi	test	rs	let scale = 2f64.powi(e);
+core/product_physics/tests/common/b1_sq_inputs.rs	292	powi	test	rs	("case:c", copies_loads(ms, "c:", 7, 128, |k| 2f64.powi(k as i32 - 3), |n| (0..n as u64).map(|i| n as u64 - i + 1).collect())),
+core/solver/curved_bend/src/lib.rs	166	atan2	prod	rs	let included_angle = norm(plane_normal).atan2(dot(radial_i, radial_j));
+core/solver/curved_bend/src/lib.rs	247	cos	prod	rs	geometry.radius * (geometry.included_angle.cos() - 1.0),
+core/solver/curved_bend/src/lib.rs	248	sin	prod	rs	geometry.radius * geometry.included_angle.sin(),
+core/solver/curved_bend/src/lib.rs	302	sin	prod	rs	radius * radius * (included_angle.sin() - included_angle),
+core/solver/curved_bend/src/lib.rs	303	cos	prod	rs	radius * radius * (1.0 - included_angle.cos()),
+core/solver/curved_bend/src/lib.rs	316	cos	prod	rs	radius * (included_angle.cos() - 1.0),
+core/solver/curved_bend/src/lib.rs	317	sin	prod	rs	radius * included_angle.sin(),
+core/solver/curved_bend/src/lib.rs	415	cos	prod	rs	radius * (included_angle.cos() - theta.cos()),
+core/solver/curved_bend/src/lib.rs	415	cos	prod	rs	radius * (included_angle.cos() - theta.cos()),
+core/solver/curved_bend/src/lib.rs	416	sin	prod	rs	radius * (included_angle.sin() - theta.sin()),
+core/solver/curved_bend/src/lib.rs	416	sin	prod	rs	radius * (included_angle.sin() - theta.sin()),
+core/solver/curved_bend/src/lib.rs	425	sin	prod	rs	* ((included_angle.sin() - theta.sin()) - remaining_angle * theta.cos()),
+core/solver/curved_bend/src/lib.rs	425	sin	prod	rs	* ((included_angle.sin() - theta.sin()) - remaining_angle * theta.cos()),
+core/solver/curved_bend/src/lib.rs	425	cos	prod	rs	* ((included_angle.sin() - theta.sin()) - remaining_angle * theta.cos()),
+core/solver/curved_bend/src/lib.rs	428	cos	prod	rs	* ((theta.cos() - included_angle.cos()) - remaining_angle * theta.sin()),
+core/solver/curved_bend/src/lib.rs	428	cos	prod	rs	* ((theta.cos() - included_angle.cos()) - remaining_angle * theta.sin()),
+core/solver/curved_bend/src/lib.rs	428	sin	prod	rs	* ((theta.cos() - included_angle.cos()) - remaining_angle * theta.sin()),
+core/solver/curved_bend/src/lib.rs	439	sin	prod	rs	let tangent = [-theta.sin(), theta.cos(), 0.0];
+core/solver/curved_bend/src/lib.rs	439	cos	prod	rs	let tangent = [-theta.sin(), theta.cos(), 0.0];
+core/solver/curved_bend/src/lib.rs	440	cos	prod	rs	let inward = [-theta.cos(), -theta.sin(), 0.0];
+core/solver/curved_bend/src/lib.rs	440	sin	prod	rs	let inward = [-theta.cos(), -theta.sin(), 0.0];
+core/solver/curved_bend/src/lib.rs	463	sin	prod	rs	-geometry.included_angle.sin(),
+core/solver/curved_bend/src/lib.rs	464	cos	prod	rs	geometry.included_angle.cos(),
+core/solver/curved_bend/src/lib.rs	521	sin	prod	rs	load_resultant_at_i[0] = thrust * included_angle.sin();
+core/solver/curved_bend/src/lib.rs	522	cos	prod	rs	load_resultant_at_i[1] = thrust * (1.0 - included_angle.cos());
+core/solver/curved_bend/src/lib.rs	523	cos	prod	rs	load_resultant_at_i[5] = thrust * radius * (included_angle.cos() - 1.0);
+core/solver/curved_bend/src/lib.rs	528	cos	prod	rs	radius * (included_angle.cos() - 1.0),
+core/solver/curved_bend/src/lib.rs	529	sin	prod	rs	radius * included_angle.sin(),
+core/solver/curved_bend/src/lib.rs	587	cos	prod	rs	resultants[0] += radial_pressure_thrust * (1.0 - remaining_angle.cos());
+core/solver/curved_bend/src/lib.rs	588	sin	prod	rs	resultants[1] -= radial_pressure_thrust * remaining_angle.sin();
+core/solver/curved_bend/src/lib.rs	589	cos	prod	rs	resultants[5] += radial_pressure_thrust * geometry.radius * (remaining_angle.cos() - 1.0);
+core/solver/curved_bend/src/lib.rs	624	cos	prod	rs	thrust * (1.0 - remaining_angle.cos()),
+core/solver/curved_bend/src/lib.rs	625	sin	prod	rs	-(thrust * remaining_angle.sin()),
+core/solver/curved_bend/src/lib.rs	629	cos	prod	rs	thrust * geometry.radius * (remaining_angle.cos() - 1.0),
+core/solver/curved_bend/src/lib.rs	737	sin	prod	rs	let sin_end = included_angle.sin();
+core/solver/curved_bend/src/lib.rs	738	cos	prod	rs	let cos_end = included_angle.cos();
+core/solver/curved_bend/src/lib.rs	814	sin	prod	rs	let sin_end = included_angle.sin();
+core/solver/curved_bend/src/lib.rs	815	cos	prod	rs	let cos_end = included_angle.cos();
+core/solver/curved_bend/src/lib.rs	877	sin	prod	rs	let sin_end = included_angle.sin();
+core/solver/curved_bend/src/lib.rs	878	cos	prod	rs	let cos_end = included_angle.cos();
+core/solver/curved_bend/src/lib.rs	894	sin	prod	rs	let sin_end = phi.sin();
+core/solver/curved_bend/src/lib.rs	895	cos	prod	rs	let cos_end = phi.cos();
+core/solver/curved_bend/src/lib.rs	896	sin	prod	rs	let sin_double = (2.0 * phi).sin();
+core/solver/curved_bend/src/lib.rs	897	cos	prod	rs	let cos_double = (2.0 * phi).cos();
+core/solver/curved_bend/src/lib.rs	968	sin	prod	rs	let sin_end = included_angle.sin();
+core/solver/curved_bend/src/lib.rs	969	cos	prod	rs	let cos_end = included_angle.cos();
+core/solver/curved_bend/src/lib.rs	970	sin	prod	rs	let sin_double = (2.0 * included_angle).sin();
+core/solver/curved_bend/src/lib.rs	1243	sin	test	rs	let radius = chord_length / (2.0 * (included_angle / 2.0).sin());
+core/solver/curved_bend/src/lib.rs	1528	cos	test	rs	[angle_a.cos(), -angle_a.sin(), 0.0],
+core/solver/curved_bend/src/lib.rs	1528	sin	test	rs	[angle_a.cos(), -angle_a.sin(), 0.0],
+core/solver/curved_bend/src/lib.rs	1529	sin	test	rs	[angle_a.sin(), angle_a.cos(), 0.0],
+core/solver/curved_bend/src/lib.rs	1529	cos	test	rs	[angle_a.sin(), angle_a.cos(), 0.0],
+core/solver/curved_bend/src/lib.rs	1533	cos	test	rs	[angle_b.cos(), 0.0, angle_b.sin()],
+core/solver/curved_bend/src/lib.rs	1533	sin	test	rs	[angle_b.cos(), 0.0, angle_b.sin()],
+core/solver/curved_bend/src/lib.rs	1535	sin	test	rs	[-angle_b.sin(), 0.0, angle_b.cos()],
+core/solver/curved_bend/src/lib.rs	1535	cos	test	rs	[-angle_b.sin(), 0.0, angle_b.cos()],
+core/solver/curved_bend/src/lib.rs	1539	cos	test	rs	[0.0, angle_c.cos(), -angle_c.sin()],
+core/solver/curved_bend/src/lib.rs	1539	sin	test	rs	[0.0, angle_c.cos(), -angle_c.sin()],
+core/solver/curved_bend/src/lib.rs	1540	sin	test	rs	[0.0, angle_c.sin(), angle_c.cos()],
+core/solver/curved_bend/src/lib.rs	1540	cos	test	rs	[0.0, angle_c.sin(), angle_c.cos()],
+core/solver/curved_bend/src/lib.rs	1683	sin	test	rs	let radius = chord_length / (2.0 * (included_angle / 2.0).sin());
+core/solver/curved_bend/src/lib.rs	1764	sin	test	rs	* (geometry.included_angle.sin() - geometry.included_angle),
+core/solver/curved_bend/src/lib.rs	1765	cos	test	rs	geometry.radius * geometry.radius * (1.0 - geometry.included_angle.cos()),
+core/solver/curved_bend/src/lib.rs	1821	powi	test	rs	* (k_in * r.powi(4) * (3.0 - 7.0 * PI / 8.0) / bending
+core/solver/curved_bend/src/lib.rs	1824	powi	test	rs	* (k_in * r.powi(4) * (1.25 - PI / 2.0 + PI * PI / 16.0) / bending
+core/solver/curved_bend/src/lib.rs	1827	powi	test	rs	* (k_in * r.powi(4) * (PI * PI / 16.0 - 0.25) / bending
+core/solver/curved_bend/src/lib.rs	1829	powi	test	rs	+ w_x * (k_in * r.powi(4) * (PI / 8.0) / bending - r * r * PI / (8.0 * axial));
+core/solver/curved_bend/src/lib.rs	1831	powi	test	rs	k_in * r.powi(3) * (w_y * (PI / 2.0 - 2.0) - w_x * (2.0 - PI / 2.0)) / bending;
+core/solver/curved_bend/src/lib.rs	1832	powi	test	rs	let expected_uz = r.powi(4)
+core/solver/curved_bend/src/lib.rs	1836	powi	test	rs	r.powi(3) * w_z * (k_out * 0.5 / bending - (PI / 2.0 - 1.5) / torsion);
+core/solver/curved_bend/src/lib.rs	1837	powi	test	rs	let expected_ry = r.powi(3)
+core/solver/curved_bend/src/lib.rs	1883	sin	test	rs	let tangent_j = [-phi.sin(), phi.cos(), 0.0];
+core/solver/curved_bend/src/lib.rs	1883	cos	test	rs	let tangent_j = [-phi.sin(), phi.cos(), 0.0];
+core/solver/curved_bend/src/lib.rs	1884	cos	test	rs	let inward_j = [-phi.cos(), -phi.sin(), 0.0];
+core/solver/curved_bend/src/lib.rs	1884	sin	test	rs	let inward_j = [-phi.cos(), -phi.sin(), 0.0];
+core/solver/curved_bend/src/lib.rs	1931	sin	test	rs	let a_x = (phi.sin() - theta.sin()) - remaining * theta.cos();
+core/solver/curved_bend/src/lib.rs	1931	sin	test	rs	let a_x = (phi.sin() - theta.sin()) - remaining * theta.cos();
+core/solver/curved_bend/src/lib.rs	1931	cos	test	rs	let a_x = (phi.sin() - theta.sin()) - remaining * theta.cos();
+core/solver/curved_bend/src/lib.rs	1932	cos	test	rs	let a_y = (theta.cos() - phi.cos()) - remaining * theta.sin();
+core/solver/curved_bend/src/lib.rs	1932	cos	test	rs	let a_y = (theta.cos() - phi.cos()) - remaining * theta.sin();
+core/solver/curved_bend/src/lib.rs	1932	sin	test	rs	let a_y = (theta.cos() - phi.cos()) - remaining * theta.sin();
+core/solver/curved_bend/src/lib.rs	1936	cos	test	rs	let expected_out_of_plane = -(r * r * w_z * (1.0 - (remaining).cos()));
+core/solver/curved_bend/src/lib.rs	1937	sin	test	rs	let expected_torsion = r * r * w_z * (remaining - remaining.sin());
+core/solver/curved_bend/src/lib.rs	1938	cos	test	rs	let expected_axial = r * remaining * (w_y * theta.cos() - w_x * theta.sin());
+core/solver/curved_bend/src/lib.rs	1938	sin	test	rs	let expected_axial = r * remaining * (w_y * theta.cos() - w_x * theta.sin());
+core/solver/curved_bend/src/lib.rs	2313	cos	test	rs	-stretch * RADIUS * (1.0 - phi.cos()),
+core/solver/curved_bend/src/lib.rs	2314	sin	test	rs	stretch * RADIUS * phi.sin(),
+core/solver/curved_bend/src/lib.rs	2386	sin	test	rs	let radius = chord_length / (2.0 * (included_angle / 2.0).sin());
+core/solver/diagnostics/src/lib.rs	813	powi	test	rs	let section = FrameSection::new(1.0, 2f64.powi(1000), 1.0, 1.0, 1.0, 2f64.powi(100))
+core/solver/diagnostics/src/lib.rs	813	powi	test	rs	let section = FrameSection::new(1.0, 2f64.powi(1000), 1.0, 1.0, 1.0, 2f64.powi(100))
+core/solver/frame_kernel/src/load_ledger.rs	779	powi	test	rs	let p = 2.0_f64.powi(-540);
+core/solver/frame_kernel/src/rigid_body.rs	52	hypot	prod	rs	length = length.max(r[0].hypot(r[1]).hypot(r[2]));
+core/solver/frame_kernel/src/rigid_body.rs	52	hypot	prod	rs	length = length.max(r[0].hypot(r[1]).hypot(r[2]));
+core/solver/frame_kernel/src/rigid_body.rs	108	hypot	prod	rs	let t = zeta.signum() / (zeta.abs() + zeta.hypot(1.0));
+core/solver/frame_kernel/src/structural.rs	592	powi	prod	rs	value *= 2.0_f64.powi(step);
+core/solver/frame_kernel/src/structural.rs	813	powi	prod	rs	let next = value * 2.0_f64.powi(step);
+core/solver/frame_kernel/src/structural.rs	814	powi	prod	rs	if !next.is_finite() || next == 0.0 || next * 2.0_f64.powi(-step) != value {
+core/solver/frame_kernel/src/structural.rs	1423	powi	prod	rs	value *= 2.0_f64.powi(step);
+core/solver/frame_kernel/src/exact_sum/tests.rs	49	powi	test	rs	let values = [2.0_f64.powi(-110), 2.0_f64.powi(-53), 1.0];
+core/solver/frame_kernel/src/exact_sum/tests.rs	49	powi	test	rs	let values = [2.0_f64.powi(-110), 2.0_f64.powi(-53), 1.0];
+core/solver/frame_kernel/src/exact_sum/tests.rs	74	powi	test	rs	let half = 2.0_f64.powi(-53);
+core/solver/frame_kernel/src/exact_sum/tests.rs	92	powi	test	rs	let ulp_max = 2.0_f64.powi(971);
+core/solver/frame_kernel/src/exact_sum/tests.rs	131	powi	test	rs	let p = 2.0_f64.powi(-538);
+core/solver/frame_kernel/src/exact_sum/tests.rs	138	powi	test	rs	let tie = exact_rounded_dot([(p, 2.0_f64.powi(-537))]).unwrap();
+core/solver/frame_kernel/src/exact_sum/tests.rs	148	powi	test	rs	let negative_underflow = exact_rounded_dot([(-p, 2.0_f64.powi(-542))]).unwrap();
+core/solver/frame_kernel/src/exact_sum/tests.rs	178	powi	test	rs	acc.add_product(3.0 * 2.0_f64.powi(-540), 2.0_f64.powi(-540))
+core/solver/frame_kernel/src/exact_sum/tests.rs	178	powi	test	rs	acc.add_product(3.0 * 2.0_f64.powi(-540), 2.0_f64.powi(-540))
+core/solver/frame_kernel/src/exact_sum/tests.rs	181	powi	test	rs	assert_eq!(acc.round_scaled(100).unwrap(), 3.0 * 2.0_f64.powi(-980));
+core/solver/frame_kernel/src/exact_sum/tests.rs	184	powi	test	rs	acc.add(3.0 * 2.0_f64.powi(-1000)).unwrap();
+core/solver/frame_kernel/src/structural/exact_boundary.rs	1733	powi	test	rs	-25.0 * 2.0_f64.powi(-54)
+core/solver/frame_kernel/src/structural/exact_boundary.rs	1740	powi	test	rs	Some(-25.0 * 2.0_f64.powi(-53))
+core/solver/frame_kernel/src/structural/exact_boundary.rs	1809	powi	test	rs	m.displacement[1].numerator.terms.push(2.0_f64.powi(-60));
+core/solver/frame_kernel/src/structural/exact_boundary.rs	1812	powi	test	rs	m.reactions[1].numerator.terms.push(2.0_f64.powi(-60));
+core/solver/frame_kernel/src/structural/exact_boundary.rs	1876	powi	test	rs	value: 2.0_f64.powi(-60),
+core/solver/frame_kernel/src/structural/exact_boundary.rs	1956	powi	test	rs	2.0_f64.powi(-60),
+core/solver/frame_kernel/src/structural/exact_boundary.rs	2088	powi	test	rs	assert_eq!(p.value(), -sense * 2.0_f64.powi(-49));
+core/solver/frame_kernel/src/structural/exact_boundary.rs	2101	powi	test	rs	assert_eq!(p.value(), -sense * 25.0 * 2.0_f64.powi(-54));
+core/solver/frame_kernel/src/structural/exact_boundary.rs	2236	powi	test	rs	let tail = 2.0_f64.powi(-60);
+core/solver/frame_kernel/src/structural/exact_boundary.rs	2432	powi	test	rs	let tiny = 2.0_f64.powi(-60);
+core/solver/frame_kernel/src/structural/exact_boundary.rs	2518	powi	test	rs	let tiny = 2.0_f64.powi(-60);
+core/solver/frame_kernel/src/structural/formation_check.rs	363	powi	prod	rs	value *= 2.0_f64.powi(step);
+core/solver/frame_kernel/src/structural/formation_check_tests.rs	298	atan2	test	rs	let angle = (5e-20_f64).atan2(-1.0);
+core/solver/frame_kernel/src/structural/kf2_witness_tests.rs	209	powi	test	rs	2.0_f64.powi(k)
+core/solver/frame_kernel/src/structural/kf2_witness_tests.rs	1156	powi	test	rs	let inertia = std::f64::consts::PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/frame_kernel/src/structural/kf2_witness_tests.rs	1156	powi	test	rs	let inertia = std::f64::consts::PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/frame_kernel/src/structural/s11f_tests.rs	110	powi	test	rs	q * L * ((b - b.powi(3) + 0.5 * b.powi(4)) - (a - a.powi(3) + 0.5 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11f_tests.rs	110	powi	test	rs	q * L * ((b - b.powi(3) + 0.5 * b.powi(4)) - (a - a.powi(3) + 0.5 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11f_tests.rs	110	powi	test	rs	q * L * ((b - b.powi(3) + 0.5 * b.powi(4)) - (a - a.powi(3) + 0.5 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11f_tests.rs	110	powi	test	rs	q * L * ((b - b.powi(3) + 0.5 * b.powi(4)) - (a - a.powi(3) + 0.5 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11f_tests.rs	116	powi	test	rs	* ((0.5 * b * b - (2.0 / 3.0) * b.powi(3) + 0.25 * b.powi(4))
+core/solver/frame_kernel/src/structural/s11f_tests.rs	116	powi	test	rs	* ((0.5 * b * b - (2.0 / 3.0) * b.powi(3) + 0.25 * b.powi(4))
+core/solver/frame_kernel/src/structural/s11f_tests.rs	117	powi	test	rs	- (0.5 * a * a - (2.0 / 3.0) * a.powi(3) + 0.25 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11f_tests.rs	117	powi	test	rs	- (0.5 * a * a - (2.0 / 3.0) * a.powi(3) + 0.25 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11f_tests.rs	121	powi	test	rs	q * L * ((b.powi(3) - 0.5 * b.powi(4)) - (a.powi(3) - 0.5 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11f_tests.rs	121	powi	test	rs	q * L * ((b.powi(3) - 0.5 * b.powi(4)) - (a.powi(3) - 0.5 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11f_tests.rs	121	powi	test	rs	q * L * ((b.powi(3) - 0.5 * b.powi(4)) - (a.powi(3) - 0.5 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11f_tests.rs	121	powi	test	rs	q * L * ((b.powi(3) - 0.5 * b.powi(4)) - (a.powi(3) - 0.5 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11f_tests.rs	127	powi	test	rs	* (((-b.powi(3) / 3.0) + 0.25 * b.powi(4))
+core/solver/frame_kernel/src/structural/s11f_tests.rs	127	powi	test	rs	* (((-b.powi(3) / 3.0) + 0.25 * b.powi(4))
+core/solver/frame_kernel/src/structural/s11f_tests.rs	128	powi	test	rs	- ((-a.powi(3) / 3.0) + 0.25 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11f_tests.rs	128	powi	test	rs	- ((-a.powi(3) / 3.0) + 0.25 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11k_tests.rs	38	powi	test	rs	q * L * ((b - b.powi(3) + 0.5 * b.powi(4)) - (a - a.powi(3) + 0.5 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11k_tests.rs	38	powi	test	rs	q * L * ((b - b.powi(3) + 0.5 * b.powi(4)) - (a - a.powi(3) + 0.5 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11k_tests.rs	38	powi	test	rs	q * L * ((b - b.powi(3) + 0.5 * b.powi(4)) - (a - a.powi(3) + 0.5 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11k_tests.rs	38	powi	test	rs	q * L * ((b - b.powi(3) + 0.5 * b.powi(4)) - (a - a.powi(3) + 0.5 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11k_tests.rs	44	powi	test	rs	* ((0.5 * b * b - (2.0 / 3.0) * b.powi(3) + 0.25 * b.powi(4))
+core/solver/frame_kernel/src/structural/s11k_tests.rs	44	powi	test	rs	* ((0.5 * b * b - (2.0 / 3.0) * b.powi(3) + 0.25 * b.powi(4))
+core/solver/frame_kernel/src/structural/s11k_tests.rs	45	powi	test	rs	- (0.5 * a * a - (2.0 / 3.0) * a.powi(3) + 0.25 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11k_tests.rs	45	powi	test	rs	- (0.5 * a * a - (2.0 / 3.0) * a.powi(3) + 0.25 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11k_tests.rs	49	powi	test	rs	q * L * ((b.powi(3) - 0.5 * b.powi(4)) - (a.powi(3) - 0.5 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11k_tests.rs	49	powi	test	rs	q * L * ((b.powi(3) - 0.5 * b.powi(4)) - (a.powi(3) - 0.5 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11k_tests.rs	49	powi	test	rs	q * L * ((b.powi(3) - 0.5 * b.powi(4)) - (a.powi(3) - 0.5 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11k_tests.rs	49	powi	test	rs	q * L * ((b.powi(3) - 0.5 * b.powi(4)) - (a.powi(3) - 0.5 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11k_tests.rs	55	powi	test	rs	* (((-b.powi(3) / 3.0) + 0.25 * b.powi(4))
+core/solver/frame_kernel/src/structural/s11k_tests.rs	55	powi	test	rs	* (((-b.powi(3) / 3.0) + 0.25 * b.powi(4))
+core/solver/frame_kernel/src/structural/s11k_tests.rs	56	powi	test	rs	- ((-a.powi(3) / 3.0) + 0.25 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11k_tests.rs	56	powi	test	rs	- ((-a.powi(3) / 3.0) + 0.25 * a.powi(4))),
+core/solver/frame_kernel/src/structural/s11k_tests.rs	310	powi	test	rs	2.0_f64.powi(38),
+core/solver/frame_kernel/src/structural/s11k_tests.rs	314	powi	test	rs	9.0 * 2.0_f64.powi(-19),
+core/solver/frame_kernel/src/structural/s11k_tests.rs	351	powi	test	rs	assert_eq!(p.k[7][1], -(2.0_f64.powi(21)));
+core/solver/frame_kernel/src/structural/s11k_tests.rs	352	powi	test	rs	assert_eq!(p.k[7][13], -(2.0_f64.powi(21)));
+core/solver/frame_kernel/src/structural/s11k_tests.rs	353	powi	test	rs	assert_eq!(p.k[7][7], 2.0_f64.powi(22));
+core/solver/frame_kernel/src/structural/s11k_tests.rs	354	powi	test	rs	assert_eq!(p.k[11][1], 3.0 * 2.0_f64.powi(20));
+core/solver/frame_kernel/src/structural/s11k_tests.rs	355	powi	test	rs	assert_eq!(p.k[11][13], -3.0 * 2.0_f64.powi(20));
+core/solver/frame_kernel/src/structural/s11k_tests.rs	357	powi	test	rs	assert_eq!(p.k[11][11], 3.0 * 2.0_f64.powi(22));
+core/solver/frame_kernel/src/structural/s11k_tests.rs	417	powi	test	rs	assert_eq!(reduced.force[1].to_bits(), (2.0_f64.powi(22) * g).to_bits());
+core/solver/frame_kernel/src/structural/exact_boundary/s11k_tests.rs	11	powi	test	rs	[1.0, 2.0_f64.powi(-53), 2.0_f64.powi(-110)]
+core/solver/frame_kernel/src/structural/exact_boundary/s11k_tests.rs	11	powi	test	rs	[1.0, 2.0_f64.powi(-53), 2.0_f64.powi(-110)]
+core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs	102	powi	test	rs	let a = 2.0_f64.powi(60);
+core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs	168	powi	test	rs	let e = 2.0_f64.powi(-52);
+core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs	178	powi	test	rs	expected(set.ratio(0).unwrap(), -2.0_f64.powi(-104), 1.0);
+core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs	181	powi	test	rs	-2.0_f64.powi(-104)
+core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs	1847	hypot	prod	rs	let xy=v[0].hypot(v[1]);
+core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs	1850	hypot	prod	rs	let value=xy.hypot(v[2]);
+core/solver/frame_kernel/src/structural/sparse/tests.rs	21	powi	test	rs	let inertia = std::f64::consts::PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/frame_kernel/src/structural/sparse/tests.rs	21	powi	test	rs	let inertia = std::f64::consts::PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/frame_kernel/src/structural/sparse/tests.rs	202	sin	test	rs	[1.1 * t, 0.37 * t + 0.05 * (t * 0.7).sin(), 0.21 * t]
+core/solver/frame_kernel/tests/k1_k2a_interaction.rs	40	powi	test	rs	let area = PI * (od.powi(2) - id.powi(2)) / 4.0;
+core/solver/frame_kernel/tests/k1_k2a_interaction.rs	40	powi	test	rs	let area = PI * (od.powi(2) - id.powi(2)) / 4.0;
+core/solver/frame_kernel/tests/k1_k2a_interaction.rs	41	powi	test	rs	let second_moment = PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/frame_kernel/tests/k1_k2a_interaction.rs	41	powi	test	rs	let second_moment = PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/frame_kernel/tests/k2a_checked_formation.rs	126	powi	test	rs	let area = PI * (od.powi(2) - id.powi(2)) / 4.0;
+core/solver/frame_kernel/tests/k2a_checked_formation.rs	126	powi	test	rs	let area = PI * (od.powi(2) - id.powi(2)) / 4.0;
+core/solver/frame_kernel/tests/k2a_checked_formation.rs	127	powi	test	rs	let second_moment = PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/frame_kernel/tests/k2a_checked_formation.rs	127	powi	test	rs	let second_moment = PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/frame_kernel/tests/k2a_checked_formation.rs	177	powi	test	rs	let e_scaled = sec.elastic_modulus * 2f64.powi(s);
+core/solver/frame_kernel/tests/k2a_checked_formation.rs	181	powi	test	rs	let value = intermediate / p.length.powi(denominator_power) * 2f64.powi(-s);
+core/solver/frame_kernel/tests/k2a_checked_formation.rs	181	powi	test	rs	let value = intermediate / p.length.powi(denominator_power) * 2f64.powi(-s);
+core/solver/frame_kernel/tests/k2a_checked_formation.rs	786	powi	test	rs	(2f64.powi(-600)).to_bits(),
+core/solver/frame_kernel/tests/k2a_checked_formation.rs	789	powi	test	rs	(2f64.powi(-500)).to_bits(),
+core/solver/frame_kernel/tests/k2b_force_scaling.rs	34	powi	test	rs	2f64.powi(half) * 2f64.powi(k - half)
+core/solver/frame_kernel/tests/k2b_force_scaling.rs	34	powi	test	rs	2f64.powi(half) * 2f64.powi(k - half)
+core/solver/frame_kernel/tests/k2b_force_scaling.rs	44	powi	test	rs	let area = PI * (od.powi(2) - id.powi(2)) / 4.0;
+core/solver/frame_kernel/tests/k2b_force_scaling.rs	44	powi	test	rs	let area = PI * (od.powi(2) - id.powi(2)) / 4.0;
+core/solver/frame_kernel/tests/k2b_force_scaling.rs	45	powi	test	rs	let second_moment = PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/frame_kernel/tests/k2b_force_scaling.rs	45	powi	test	rs	let second_moment = PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/frame_kernel/tests/k2b_force_scaling.rs	417	powi	test	rs	ledger.push("a2", 0, 2f64.powi(-60));
+core/solver/frame_kernel/tests/k2b_force_scaling.rs	418	powi	test	rs	ledger.push("a3", 0, 2f64.powi(-60));
+core/solver/frame_kernel/tests/k2b_force_scaling.rs	685	powi	test	rs	assert_eq!(sub.value, 2f64.powi(-530) * 2f64.powi(-530));
+core/solver/frame_kernel/tests/k2b_force_scaling.rs	685	powi	test	rs	assert_eq!(sub.value, 2f64.powi(-530) * 2f64.powi(-530));
+core/solver/frame_kernel/tests/m03_skew_scope.rs	65	powi	test	rs	2f64.powi(k)
+core/solver/frame_kernel/tests/m03_skew_scope.rs	77	powi	test	rs	let area = PI * (od.powi(2) - id.powi(2)) / 4.0;
+core/solver/frame_kernel/tests/m03_skew_scope.rs	77	powi	test	rs	let area = PI * (od.powi(2) - id.powi(2)) / 4.0;
+core/solver/frame_kernel/tests/m03_skew_scope.rs	78	powi	test	rs	let inertia = PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/frame_kernel/tests/m03_skew_scope.rs	78	powi	test	rs	let inertia = PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/frame_kernel/tests/m03_skew_scope.rs	381	log2	test	rs	(value.log2() - rv7).abs() <= 0.005,
+core/solver/frame_kernel/tests/m03_skew_scope.rs	383	log2	test	rs	value.log2()
+core/solver/frame_kernel/tests/m03_skew_scope.rs	437	log2	test	rs	assert!((f.log2() + 974.585).abs() < 1.0e-3, "{}", f.log2());
+core/solver/frame_kernel/tests/m03_skew_scope.rs	437	log2	test	rs	assert!((f.log2() + 974.585).abs() < 1.0e-3, "{}", f.log2());
+core/solver/frame_kernel/tests/m03_skew_scope.rs	476	log2	test	rs	c[AXIAL].log2(),
+core/solver/frame_kernel/tests/m03_skew_scope.rs	477	log2	test	rs	c[TORSION].log2(),
+core/solver/frame_kernel/tests/m03_skew_scope.rs	478	log2	test	rs	c[2].log2(),
+core/solver/frame_kernel/tests/m03_skew_scope.rs	479	log2	test	rs	c[BY6].log2(),
+core/solver/frame_kernel/tests/m03_skew_scope.rs	480	log2	test	rs	c[BY4].log2(),
+core/solver/frame_kernel/tests/m03_skew_scope.rs	481	log2	test	rs	c[BY2].log2()
+core/solver/frame_kernel/tests/m03_skew_scope.rs	508	powi	test	rs	let half_unit = 0.5 * 10f64.powi(stated.log10().floor() as i32 - digits + 1);
+core/solver/frame_kernel/tests/m03_skew_scope.rs	508	log10	test	rs	let half_unit = 0.5 * 10f64.powi(stated.log10().floor() as i32 - digits + 1);
+core/solver/frame_kernel/tests/m03_skew_scope.rs	542	log2	test	rs	least.log2(),
+core/solver/frame_kernel/tests/m03_skew_scope.rs	543	log2	test	rs	rotational.log2(),
+core/solver/frame_kernel/tests/m03_skew_scope.rs	544	log2	test	rs	rv7_coupling.log2()
+core/solver/frame_kernel/tests/retained_k4/kf1_tracker_tests.rs	216	powi	test	rs	(1.0 + (rng.below(1 << 20) as f64) / (1u64 << 20) as f64) * 2f64.powi(e);
+core/solver/frame_kernel/tests/retained_k4/product_certificate_tests.rs	179	powi	test	rs	e_hat: 2f64.powi(-50),
+core/solver/frame_kernel/tests/retained_k4/product_certificate_tests.rs	182	powi	test	rs	x.admitted.e = 2f64.powi(-50);
+core/solver/frame_kernel/tests/retained_k4/product_final_case_tests.rs	342	hypot	test	rs	let expected=input[0].hypot(input[1]).hypot(input[2]);
+core/solver/frame_kernel/tests/retained_k4/product_final_case_tests.rs	342	hypot	test	rs	let expected=input[0].hypot(input[1]).hypot(input[2]);
+core/solver/frame_kernel/tests/retained_k4/wide_sum_tests.rs	576	powi	test	rs	sum.add_binary64(2f64.powi(-60), false).unwrap();
+core/solver/frame_kernel/tests/retained_k4/wide_sum_tests.rs	581	powi	test	rs	Wide::<4>::from_f64(2f64.powi(-60)).unwrap()
+core/solver/nonlinear_integration/src/lib.rs	4744	powi	test	rs	let area = std::f64::consts::PI / 4.0 * (outer.powi(2) - inner.powi(2));
+core/solver/nonlinear_integration/src/lib.rs	4744	powi	test	rs	let area = std::f64::consts::PI / 4.0 * (outer.powi(2) - inner.powi(2));
+core/solver/nonlinear_integration/src/lib.rs	4745	powi	test	rs	let inertia = std::f64::consts::PI / 64.0 * (outer.powi(4) - inner.powi(4));
+core/solver/nonlinear_integration/src/lib.rs	4745	powi	test	rs	let inertia = std::f64::consts::PI / 64.0 * (outer.powi(4) - inner.powi(4));
+core/solver/nonlinear_integration/src/product_equilibrium.rs	40	powi	prod	rs	value *= 2f64.powi(step);
+core/solver/nonlinear_integration/src/s11k_tests.rs	620	powi	test	rs	2.0_f64.powi(38),
+core/solver/nonlinear_integration/src/s11k_tests.rs	624	powi	test	rs	9.0 * 2.0_f64.powi(-19),
+core/solver/nonlinear_integration/src/structural_adapter.rs	2040	cos	prod	rs	geometry.radius * (geometry.included_angle.cos() - 1.0),
+core/solver/nonlinear_integration/src/structural_adapter.rs	2041	sin	prod	rs	geometry.radius * geometry.included_angle.sin(),
+core/solver/nonlinear_integration/src/structural_adapter.rs	3149	powi	test	rs	assert_eq!(report.selected_reactions()[6], -25.0 * 2.0_f64.powi(-54));
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	456	powi	test	rs	let inertia = std::f64::consts::PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	456	powi	test	rs	let inertia = std::f64::consts::PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	679	powi	test	rs	let inertia = std::f64::consts::PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	679	powi	test	rs	let inertia = std::f64::consts::PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	729	to_radians	test	rs	let (c30, s30) = (30f64.to_radians().cos(), 30f64.to_radians().sin());
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	729	cos	test	rs	let (c30, s30) = (30f64.to_radians().cos(), 30f64.to_radians().sin());
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	729	to_radians	test	rs	let (c30, s30) = (30f64.to_radians().cos(), 30f64.to_radians().sin());
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	729	sin	test	rs	let (c30, s30) = (30f64.to_radians().cos(), 30f64.to_radians().sin());
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	1089	sin	test	rs	0 => 1e-3 * (d as f64 + 1.0).sin(),
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	1495	powi	test	rs	let l = 2f64.powi(-39);
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	1498	powi	test	rs	let area = PI * (od.powi(2) - id.powi(2)) / 4.0;
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	1498	powi	test	rs	let area = PI * (od.powi(2) - id.powi(2)) / 4.0;
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	1499	powi	test	rs	let inertia = PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	1499	powi	test	rs	let inertia = PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	1503	powi	test	rs	let e = (1.0 / (12.0 * inertia)) * 2f64.powi(-1000) * 2f64.powi(t + 1000);
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	1503	powi	test	rs	let e = (1.0 / (12.0 * inertia)) * 2f64.powi(-1000) * 2f64.powi(t + 1000);
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	1543	powi	test	rs	0.1 * (e * 2f64.powi(600) * inertia / l) * 2f64.powi(-600),
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	1543	powi	test	rs	0.1 * (e * 2f64.powi(600) * inertia / l) * 2f64.powi(-600),
+core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs	69	powi	test	rs	2f64.powi(half) * 2f64.powi(k - half)
+core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs	69	powi	test	rs	2f64.powi(half) * 2f64.powi(k - half)
+core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs	75	powi	test	rs	let area = PI * (od.powi(2) - id.powi(2)) / 4.0;
+core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs	75	powi	test	rs	let area = PI * (od.powi(2) - id.powi(2)) / 4.0;
+core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs	76	powi	test	rs	let second_moment = PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs	76	powi	test	rs	let second_moment = PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs	594	hypot	test	rs	"Mbi" => f[4].hypot(f[5]),
+core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs	595	hypot	test	rs	"Mbj" => f[10].hypot(f[11]),
+core/solver/performance_harness/src/lib.rs	1078	hypot	prod	rs	1.0 / (tau + tau.hypot(1.0))
+core/solver/performance_harness/src/lib.rs	1080	hypot	prod	rs	-1.0 / (-tau + tau.hypot(1.0))
+core/solver/performance_harness/src/lib.rs	1533	cos	test	rs	let expected = (2. + 2. * (std::f64::consts::PI / 33.).cos())
+core/solver/performance_harness/src/lib.rs	1534	cos	test	rs	/ (2. - 2. * (std::f64::consts::PI / 33.).cos());
+core/solver/sparse_direct/src/structural/k1_tests.rs	26	powi	test	rs	let inertia = std::f64::consts::PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/sparse_direct/src/structural/k1_tests.rs	26	powi	test	rs	let inertia = std::f64::consts::PI * (od.powi(4) - id.powi(4)) / 64.0;
+core/solver/sparse_direct/src/structural/k1_tests.rs	248	sin	test	rs	[1.1 * t, 0.37 * t + 0.05 * (t * 0.7).sin(), 0.21 * t]
+core/solver/straight_pipe/src/lib.rs	1404	powi	prod	rs	q * length * ((b - b.powi(3) + 0.5 * b.powi(4)) - (a - a.powi(3) + 0.5 * a.powi(4)));
+core/solver/straight_pipe/src/lib.rs	1404	powi	prod	rs	q * length * ((b - b.powi(3) + 0.5 * b.powi(4)) - (a - a.powi(3) + 0.5 * a.powi(4)));
+core/solver/straight_pipe/src/lib.rs	1404	powi	prod	rs	q * length * ((b - b.powi(3) + 0.5 * b.powi(4)) - (a - a.powi(3) + 0.5 * a.powi(4)));
+core/solver/straight_pipe/src/lib.rs	1404	powi	prod	rs	q * length * ((b - b.powi(3) + 0.5 * b.powi(4)) - (a - a.powi(3) + 0.5 * a.powi(4)));
+core/solver/straight_pipe/src/lib.rs	1408	powi	prod	rs	* ((0.5 * b * b - (2.0 / 3.0) * b.powi(3) + 0.25 * b.powi(4))
+core/solver/straight_pipe/src/lib.rs	1408	powi	prod	rs	* ((0.5 * b * b - (2.0 / 3.0) * b.powi(3) + 0.25 * b.powi(4))
+core/solver/straight_pipe/src/lib.rs	1409	powi	prod	rs	- (0.5 * a * a - (2.0 / 3.0) * a.powi(3) + 0.25 * a.powi(4)));
+core/solver/straight_pipe/src/lib.rs	1409	powi	prod	rs	- (0.5 * a * a - (2.0 / 3.0) * a.powi(3) + 0.25 * a.powi(4)));
+core/solver/straight_pipe/src/lib.rs	1410	powi	prod	rs	let transverse_j = q * length * ((b.powi(3) - 0.5 * b.powi(4)) - (a.powi(3) - 0.5 * a.powi(4)));
+core/solver/straight_pipe/src/lib.rs	1410	powi	prod	rs	let transverse_j = q * length * ((b.powi(3) - 0.5 * b.powi(4)) - (a.powi(3) - 0.5 * a.powi(4)));
+core/solver/straight_pipe/src/lib.rs	1410	powi	prod	rs	let transverse_j = q * length * ((b.powi(3) - 0.5 * b.powi(4)) - (a.powi(3) - 0.5 * a.powi(4)));
+core/solver/straight_pipe/src/lib.rs	1410	powi	prod	rs	let transverse_j = q * length * ((b.powi(3) - 0.5 * b.powi(4)) - (a.powi(3) - 0.5 * a.powi(4)));
+core/solver/straight_pipe/src/lib.rs	1414	powi	prod	rs	* (((-b.powi(3) / 3.0) + 0.25 * b.powi(4)) - ((-a.powi(3) / 3.0) + 0.25 * a.powi(4)));
+core/solver/straight_pipe/src/lib.rs	1414	powi	prod	rs	* (((-b.powi(3) / 3.0) + 0.25 * b.powi(4)) - ((-a.powi(3) / 3.0) + 0.25 * a.powi(4)));
+core/solver/straight_pipe/src/lib.rs	1414	powi	prod	rs	* (((-b.powi(3) / 3.0) + 0.25 * b.powi(4)) - ((-a.powi(3) / 3.0) + 0.25 * a.powi(4)));
+core/solver/straight_pipe/src/lib.rs	1414	powi	prod	rs	* (((-b.powi(3) / 3.0) + 0.25 * b.powi(4)) - ((-a.powi(3) / 3.0) + 0.25 * a.powi(4)));
+core/solver/straight_pipe/src/s11k_tests.rs	73	powi	test	rs	Some(d) => (d.unsigned_abs() as f64) * 2f64.powi(e),
+core/solver/straight_pipe/src/s11k_tests.rs	80	powi	test	rs	(self.m as f64) * 2f64.powi(self.e)
+core/solver/straight_pipe/src/s11k_tests.rs	131	powi	test	rs	q * length * ((b - b.powi(3) + 0.5 * b.powi(4)) - (a - a.powi(3) + 0.5 * a.powi(4)));
+core/solver/straight_pipe/src/s11k_tests.rs	131	powi	test	rs	q * length * ((b - b.powi(3) + 0.5 * b.powi(4)) - (a - a.powi(3) + 0.5 * a.powi(4)));
+core/solver/straight_pipe/src/s11k_tests.rs	131	powi	test	rs	q * length * ((b - b.powi(3) + 0.5 * b.powi(4)) - (a - a.powi(3) + 0.5 * a.powi(4)));
+core/solver/straight_pipe/src/s11k_tests.rs	131	powi	test	rs	q * length * ((b - b.powi(3) + 0.5 * b.powi(4)) - (a - a.powi(3) + 0.5 * a.powi(4)));
+core/solver/straight_pipe/src/s11k_tests.rs	135	powi	test	rs	* ((0.5 * b * b - (2.0 / 3.0) * b.powi(3) + 0.25 * b.powi(4))
+core/solver/straight_pipe/src/s11k_tests.rs	135	powi	test	rs	* ((0.5 * b * b - (2.0 / 3.0) * b.powi(3) + 0.25 * b.powi(4))
+core/solver/straight_pipe/src/s11k_tests.rs	136	powi	test	rs	- (0.5 * a * a - (2.0 / 3.0) * a.powi(3) + 0.25 * a.powi(4)));
+core/solver/straight_pipe/src/s11k_tests.rs	136	powi	test	rs	- (0.5 * a * a - (2.0 / 3.0) * a.powi(3) + 0.25 * a.powi(4)));
+core/solver/straight_pipe/src/s11k_tests.rs	138	powi	test	rs	q * length * ((b.powi(3) - 0.5 * b.powi(4)) - (a.powi(3) - 0.5 * a.powi(4)));
+core/solver/straight_pipe/src/s11k_tests.rs	138	powi	test	rs	q * length * ((b.powi(3) - 0.5 * b.powi(4)) - (a.powi(3) - 0.5 * a.powi(4)));
+core/solver/straight_pipe/src/s11k_tests.rs	138	powi	test	rs	q * length * ((b.powi(3) - 0.5 * b.powi(4)) - (a.powi(3) - 0.5 * a.powi(4)));
+core/solver/straight_pipe/src/s11k_tests.rs	138	powi	test	rs	q * length * ((b.powi(3) - 0.5 * b.powi(4)) - (a.powi(3) - 0.5 * a.powi(4)));
+core/solver/straight_pipe/src/s11k_tests.rs	142	powi	test	rs	* (((-b.powi(3) / 3.0) + 0.25 * b.powi(4)) - ((-a.powi(3) / 3.0) + 0.25 * a.powi(4)));
+core/solver/straight_pipe/src/s11k_tests.rs	142	powi	test	rs	* (((-b.powi(3) / 3.0) + 0.25 * b.powi(4)) - ((-a.powi(3) / 3.0) + 0.25 * a.powi(4)));
+core/solver/straight_pipe/src/s11k_tests.rs	142	powi	test	rs	* (((-b.powi(3) / 3.0) + 0.25 * b.powi(4)) - ((-a.powi(3) / 3.0) + 0.25 * a.powi(4)));
+core/solver/straight_pipe/src/s11k_tests.rs	142	powi	test	rs	* (((-b.powi(3) / 3.0) + 0.25 * b.powi(4)) - ((-a.powi(3) / 3.0) + 0.25 * a.powi(4)));
+core/loads/self_weight_wasm/tests/applied_self_weight.rs	13	powi	test	rs	std::f64::consts::PI / 4.0 * (0.1_f64.powi(2) - 0.08_f64.powi(2)) * density * GRAVITY
+core/loads/self_weight_wasm/tests/applied_self_weight.rs	13	powi	test	rs	std::f64::consts::PI / 4.0 * (0.1_f64.powi(2) - 0.08_f64.powi(2)) * density * GRAVITY
+core/loads/self_weight_wasm/tests/applied_self_weight.rs	240	powi	test	rs	let mass = std::f64::consts::PI * (0.009 * 0.091 * 2000.0 + 0.041_f64.powi(2) * 400.0 + 0.01 * 0.11 * 50.0);
+core/loads/stress_recovery/src/elastic_section.rs	105	hypot	prod	rs	let bending_amplitude = finite_output("bending_amplitude", by.hypot(bz))?;
+core/loads/stress_recovery/src/elastic_section.rs	272	sin_cos	test	rs	let (sin, cos) = angle.sin_cos();
+core/loads/stress_recovery/src/elastic_section.rs	390	powi	test	rs	let huge = 2_f64.powi(900);
+core/loads/stress_recovery/src/elastic_section.rs	391	powi	test	rs	let small = 2_f64.powi(-900);
+core/reporting/result_export/src/physics_source.rs	1265	powi	test	rs	let near_zero = -2.0_f64.powi(-54);
+core/reporting/result_export/src/preview_physics_evidence.rs	613	hypot	prod	rs	guarded(value, sif * (my.hypot(mz) / z)),
+core/reporting/result_export/src/preview_physics_evidence.rs	712	hypot	prod	rs	v("Fx")?.hypot(v("Fy")?).hypot(v("Fz")?),
+core/reporting/result_export/src/preview_physics_evidence.rs	712	hypot	prod	rs	v("Fx")?.hypot(v("Fy")?).hypot(v("Fz")?),
+core/reporting/result_export/src/preview_physics_evidence.rs	715	hypot	prod	rs	v("Mx")?.hypot(v("My")?).hypot(v("Mz")?),
+core/reporting/result_export/src/preview_physics_evidence.rs	715	hypot	prod	rs	v("Mx")?.hypot(v("My")?).hypot(v("Mz")?),
+core/reporting/result_export/src/preview_physics_evidence.rs	757	hypot	prod	rs	.hypot(find("global_nodal_displacement_y", entity, None)?)
+core/reporting/result_export/src/preview_physics_evidence.rs	758	hypot	prod	rs	.hypot(find("global_nodal_displacement_z", entity, None)?),
+core/reporting/result_export/src/preview_physics_evidence.rs	760	hypot	prod	rs	.hypot(find(SUPPORT_COMPONENT, entity, Some("Fy"))?)
+core/reporting/result_export/src/preview_physics_evidence.rs	761	hypot	prod	rs	.hypot(find(SUPPORT_COMPONENT, entity, Some("Fz"))?),
+core/reporting/result_export/src/preview_physics_evidence.rs	763	hypot	prod	rs	.hypot(find(SUPPORT_COMPONENT, entity, Some("My"))?)
+core/reporting/result_export/src/preview_physics_evidence.rs	764	hypot	prod	rs	.hypot(find(SUPPORT_COMPONENT, entity, Some("Mz"))?),
+core/reporting/result_export/src/retained_precision.rs	3081	powi	prod	rs	("stop_rule", 2f64.powi(-64)),
+core/reporting/result_export/src/retained_precision.rs	3179	powi	prod	rs	let threshold = 2f64.powi(-59) * scale[k];
+core/reporting/result_export/src/retained_precision.rs	3183	powi	prod	rs	let margin = 2f64.powi(-60) * scale[k];
+core/reporting/result_export/src/retained_precision.rs	3331	powi	prod	rs	if sc >= f64::from_bits(0x0230000000000000) && n.abs() >= 2f64.powi(-34) * sc {
+core/reporting/result_export/src/source_blocks.rs	1645	powi	test	rs	let small = 2.0_f64.powi(-600);
+core/reporting/result_export/tests/preview_physics_contract.rs	84	hypot	test	rs	json!({"id":format!("{prefix}:disp:node-N-140"),"kind":"displacement_magnitude","value":ux.hypot(uy).hypot(uz),"unit":"mm","entity_ref":"node:N-140","basis_ref":basis,"source_result_refs":[format!("{prefix}:disp:node-N-140:ux"),format!("{pr
+core/reporting/result_export/tests/preview_physics_contract.rs	84	hypot	test	rs	json!({"id":format!("{prefix}:disp:node-N-140"),"kind":"displacement_magnitude","value":ux.hypot(uy).hypot(uz),"unit":"mm","entity_ref":"node:N-140","basis_ref":basis,"source_result_refs":[format!("{prefix}:disp:node-N-140:ux"),format!("{pr
+core/analysis_runs/physics_source.py	117	**	prod	py	squares = [0.0 if v == 0 else 1.0 if v == scale else _out(_out(v / scale, upper) ** 2, upper) for v in values]
+core/analysis_runs/preview_physics_evidence.py	113	hypot	prod	py	expected = math.hypot(math.hypot(x, y), z)
+core/analysis_runs/preview_physics_evidence.py	113	hypot	prod	py	expected = math.hypot(math.hypot(x, y), z)
+core/analysis_runs/preview_physics_evidence.py	374	hypot	prod	py	expected = measure["sif"] * (math.hypot(measure["bending_moment_y_n_m"], measure["bending_moment_z_n_m"]) / measure["section_modulus_m3"])
+core/analysis_runs/retained_precision.py	124	**	prod	py	return upward_small_sum(b0, _scaled_component(abs(value), 53)) if 0 < scale < 2.0 ** -988 else b0
+core/analysis_runs/retained_precision.py	817	**	prod	py	return value == 0 or abs(value) >= 2.0 ** -1022
+core/analysis_runs/retained_precision.py	819	**	prod	py	return 0 < abs(from_bits(outcome["value"])) < 2.0 ** -1022
+core/analysis_runs/retained_precision.py	1081	**	prod	py	fail(outcome["kind"] == "normal" and outcome["value"] == m["result"]["section"][idx] and from_bits(outcome["value"]) >= 2.0 ** -1022)
+core/analysis_runs/retained_precision.py	1102	**	prod	py	if outcome["kind"] == "normal": fail(from_bits(outcome["value"]) == 0 or abs(from_bits(outcome["value"])) >= 2.0 ** -1022)
+core/analysis_runs/retained_precision.py	1103	**	prod	py	if outcome["kind"] == "subnormal": fail(0 < abs(from_bits(outcome["value"])) < 2.0 ** -1022)
+core/analysis_runs/retained_precision.py	1380	**	prod	py	for key, limit in [("stop_rule", 2.0 ** -64), ("verification_estimate", .25), ("verification_charge", 1.)]:
+core/analysis_runs/retained_precision.py	1433	**	prod	py	threshold = (2.0 ** -59) * scale[k]
+core/analysis_runs/retained_precision.py	1434	**	prod	py	lower = 0. if total <= threshold else from_bits(section["axial_stiffness" if k == 0 else "torsional_stiffness"]) * (total - (2.0 ** -60) * scale[k])
+core/analysis_runs/retained_precision.py	1477	**	prod	py	if scale >= 2.0 ** -988 and not abs(n) < ((2.0 ** -34) * scale): classification = "relative_verified"
+core/analysis_runs/retained_precision.py	1477	**	prod	py	if scale >= 2.0 ** -988 and not abs(n) < ((2.0 ** -34) * scale): classification = "relative_verified"
+core/analysis_runs/retained_precision.py	1540	**	prod	py	need(math.isfinite(axial) and math.isfinite(torsion) and abs(axial) >= 2.0**-1022 and abs(torsion) >= 2.0**-1022)
+core/analysis_runs/retained_precision.py	1540	**	prod	py	need(math.isfinite(axial) and math.isfinite(torsion) and abs(axial) >= 2.0**-1022 and abs(torsion) >= 2.0**-1022)
+core/analysis_runs/retained_precision.py	1618	**	prod	py	need(all(from_bits(m[k]) >= 2.0**-1022 for k in ["E","G","A_K","Iy_K","Iz_K","J_K"]) and from_bits(section["section_modulus"]) > 0)
+apps/desktop/src/features/results/loadReferenceSourceEvidence.ts	224	**	prod	ts	const EPSILON = Number.EPSILON, FLOAT_MIN = 2 ** -1022;
+apps/desktop/src/features/results/physicsSourceRecovery.test.ts	298	**	test	ts	expect(product).toBeGreaterThan(0); expect(product).toBeLessThan(2 ** -1022);
+apps/desktop/src/features/results/physicsSourceRecovery.test.ts	299	**	test	ts	expect(Math.abs(x.row.value)).toBeGreaterThan(2 ** -1022);
+apps/desktop/src/features/results/physicsSourceRecovery.ts	55	**	prod	ts	view.setFloat64(0, value * 2 ** 54, false); bits = view.getBigUint64(0, false);
+apps/desktop/src/features/results/physicsSourceRecovery.ts	64	**	prod	ts	const g = exponent === 1024 ? (mantissa * 2 ** 1023) * 2 : mantissa * 2 ** exponent;
+apps/desktop/src/features/results/physicsSourceRecovery.ts	64	**	prod	ts	const g = exponent === 1024 ? (mantissa * 2 ** 1023) * 2 : mantissa * 2 ** exponent;
+apps/desktop/src/features/results/physicsSourceRecovery.ts	150	**	prod	ts	need(Math.min(lo, value, hi) >= 2 ** -1022, 'PUBLICATION_RANGE');
+apps/desktop/src/features/results/physicsSourceRecovery.ts	251	**	prod	ts	need([product, pa, value].every(v => Number.isFinite(v) && (action === 0 ? v === 0 : Math.abs(v) >= 2 ** -1022)) && same(row.value, value), 'STRESS_RECIPE_VALUE');
+apps/desktop/src/features/results/previewPhysicsEvidence.ts	100	hypot	prod	ts	const expected = Math.hypot(Math.hypot(x, y), z);
+apps/desktop/src/features/results/previewPhysicsEvidence.ts	100	hypot	prod	ts	const expected = Math.hypot(Math.hypot(x, y), z);
+apps/desktop/src/features/results/previewPhysicsEvidence.ts	392	hypot	prod	ts	const expected = m.sif * (Math.hypot(m.bending_moment_y_n_m, m.bending_moment_z_n_m) / m.section_modulus_m3);
+apps/desktop/src/features/results/retainedPrecision.test.ts	80	**	test	ts	for (const [a, b] of [[1, Number.MIN_VALUE], [2 ** -1022, Number.MIN_VALUE], [0, -0]]) {
+apps/desktop/src/features/results/retainedPrecision.test.ts	467	**	test	ts	const at = 2 ** -988, below = decodeBinary64((BigInt('0x' + binary64Bits(at)) - 1n).toString(16).padStart(16, '0'));
+apps/desktop/src/features/results/retainedPrecision.test.ts	751	**	test	ts	for (const tiny of [Number.MIN_VALUE, -Number.MIN_VALUE, 2 ** -1022, Number.EPSILON]) {
+apps/desktop/src/features/results/retainedPrecision.ts	80	**	prod	ts	const d = 2 ** power, nearest = x / d, back = nearest * d;
+apps/desktop/src/features/results/retainedPrecision.ts	86	**	prod	ts	return scale > 0 && scale < 2 ** -988 ? upwardSmallSum(b0, scaledComponent(Math.abs(value), 53)) : b0;
+apps/desktop/src/features/results/retainedPrecision.ts	106	**	prod	ts	const MIN_NORMAL = 2 ** -1022;
+apps/desktop/src/features/results/retainedPrecision.ts	946	**	prod	ts	for (const [key, expected, limit] of [['stop_rule', stops, 2 ** -64], ['verification_estimate', estimates, .25], ['verification_charge', charges, 1]] as const) {
+apps/desktop/src/features/results/retainedPrecision.ts	982	**	prod	ts	for (const [key, kinds, limit] of [['stop_rule', KINDS, 2 ** -64], ['verification_estimate', ['force', 'moment'], .25], ['verification_charge', ['force', 'moment'], 1]] as const) {
+apps/desktop/src/features/results/retainedPrecision.ts	1007	**	prod	ts	const n = norms[0] + norms[1], threshold = (2 ** -59) * x.original[bi][kind];
+apps/desktop/src/features/results/retainedPrecision.ts	1008	**	prod	ts	const lower = n <= threshold ? 0 : decodeBinary64(section[kind === 0 ? 'axial_stiffness' : 'torsional_stiffness']) * (n - (2 ** -60) * x.original[bi][kind]);
+apps/desktop/src/features/results/retainedPrecision.ts	1064	**	prod	ts	if (scale >= 2 ** -988 && !(Math.abs(v.n) < (2 ** -34) * scale)) cls = 'relative_verified';
+apps/desktop/src/features/results/retainedPrecision.ts	1064	**	prod	ts	if (scale >= 2 ** -988 && !(Math.abs(v.n) < (2 ** -34) * scale)) cls = 'relative_verified';
+apps/desktop/src/features/results/retainedPrecision.ts	1083	**	prod	ts	for (let j = 0; j < 4; j++) bytes.push(Math.floor(v / (2 ** (8 * j))) % 256);
+apps/desktop/src/features/results/sourceBlockRecovery.test.ts	272	**	test	ts	const treatment=receipt.rows.find((t:any)=>t.recipe_id==='translation_norm_scaled_v1');const row=source.results.find(r=>r.id===treatment.input_result_ids[0])!;row.value=2**-1030;
+apps/desktop/src/features/results/sourceBlockRecovery.test.ts	352	**	test	ts	row.value=2**-520;p.value=row.value;p.value_bits=ieeeBits(row.value);p.interval=[row.value,row.value];p.basis='exact_identity';
+apps/desktop/src/features/results/sourceBlockRecovery.test.ts	359	**	test	ts	const {pair,source,row}=tinyNormControl();expect(row.value*row.value).toBeLessThan(2**-1022);await rehash(source);
+apps/desktop/src/features/results/sourceBlockRecovery.ts	406	**	prod	ts	fail([m,nx,ny,nz,sum,value].every(Number.isFinite) && (m === 0 || value >= 2 ** -1022) && Object.is(row.value,value), 'NORM_VALUE');
+apps/desktop/src/features/results/sourceBlockRecovery.ts	480	**	prod	ts	function normalFinite(value: number): boolean { return Number.isFinite(value) && Math.abs(value) >= 2 ** -1022; }

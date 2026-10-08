@@ -1,0 +1,14 @@
+== lib (registered build, copy of 7f5f72912e)
+test retained_facade_tests::b1_sp_w_c2_direct_entry_publishes_the_pinned_successor ... ok
+test retained_facade_tests::b1_sp_w_c2_fixtures_are_the_live_successors ... ok
+test retained_facade_tests::b1_sp_sf2_selected_not_first_and_two_selected_pins ... ok
+test retained_facade_tests::b1_sp_w_c2_through_retained_w1_publishes_t12 ... ok
+test retained_facade_tests::b1_sp_w_c2_transaction_outcomes_and_ordinal_mapping ... ok
+test retained_memory::law_tests::cap_maximal_ring_is_the_trigonometric_ring ... ok
+test retained_memory::witness_tests::b1_sq_inputs_are_i86s_and_the_committed_helpers ... ok
+test retained_memory::witness_tests::b1_t4_w2b_and_w6_phys_r4_inputs_are_no_triggered_case_pins ... ok
+test zz_rv125_glibc::zz_rv125_glibc ... ok
+test retained_facade_tests::b1_sp_w_c2_transaction_faults_and_abandonment ... ok
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 623 filtered out; finished in 23.20s
+== retained_memory_challenge --no-run (compile only; exit 0)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.88s

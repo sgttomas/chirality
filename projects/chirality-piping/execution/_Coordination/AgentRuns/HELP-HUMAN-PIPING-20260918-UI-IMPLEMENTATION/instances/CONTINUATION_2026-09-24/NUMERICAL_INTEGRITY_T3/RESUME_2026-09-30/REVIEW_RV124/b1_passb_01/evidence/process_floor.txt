@@ -1,0 +1,5 @@
+# RV124's own process_floor runs (registered build): argv[0] length and live bytes
+len(argv0) = 100 (WT/targets/rv124-reg/debug/deps/retained_memory_challenge-<16 hex>)
+test process_floor ... I104_SQ_CHALLENGE process_floor live_bytes=4160
+test process_floor ... I104_SQ_CHALLENGE process_floor live_bytes=4160
+4060 + 100 = 4160: matches I107's law (4060 + len(argv0)); I107 101 -> 4161; SQ 102 -> 4162

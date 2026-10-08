@@ -1,0 +1,7 @@
+NA4-5 on the selected combinations' successors (bin/na45_ulps.py): W-CB1 (both modes; the two out/b2p_gen documents named retained_precision_combination_successor_*) and W-CB3 (the committed fixtures).
+NA45 retained_precision_combination_successor_sparse_interactive.json combination:ab: nodes=32 retained==RN64(exact)=32 max_ulps_vs_nested_hypot=0
+NA45 retained_precision_combination_successor_dense_scrutiny.json combination:ab: nodes=32 retained==RN64(exact)=32 max_ulps_vs_nested_hypot=0
+NA45 retained_precision_combination_successor_dense_scrutiny.json combination:ab: nodes=3 retained==RN64(exact)=3 max_ulps_vs_nested_hypot=0
+NA45 retained_precision_combination_successor_sparse_interactive.json combination:ab: nodes=3 retained==RN64(exact)=3 max_ulps_vs_nested_hypot=0
+NA45 c1_range_mechanics_dense_scrutiny.json combination:2case: nodes=2 retained==RN64(exact)=2 max_ulps_vs_nested_hypot=0
+NA45 c1_range_mechanics_sparse_interactive.json combination:2case: nodes=2 retained==RN64(exact)=2 max_ulps_vs_nested_hypot=0

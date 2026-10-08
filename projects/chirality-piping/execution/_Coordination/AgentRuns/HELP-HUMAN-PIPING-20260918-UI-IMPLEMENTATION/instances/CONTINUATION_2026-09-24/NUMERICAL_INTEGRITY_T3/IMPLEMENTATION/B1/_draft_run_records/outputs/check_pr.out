@@ -29,16 +29,16 @@ COUNTS resolved 98; ambiguous 0; unresolved 0
   projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:1297	rr_title	I81's B1-0 probe verified
   projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:1344	record_path	R/I84/b1_plan_01/PLAN_v2.md
   projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:1600	rr_title	RV109 passes SP in RV-P round 2;
-  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2089	rr_title	I89's SA verified and ruled
-  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2186	rr_title	RV109 passes SP in RV-P round 2;
-  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2186	rr_title	I98's B2-W verified;
-  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2212	rr_title	RV109 passes SP in RV-P round 2;
-  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2295	record_path	R/I98/b2_w_probe_01/PROBE.md
-  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2308	rr_title	I98's B2-W verified;
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2120	rr_title	I89's SA verified and ruled
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2218	rr_title	RV109 passes SP in RV-P round 2;
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2218	rr_title	I98's B2-W verified;
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2248	rr_title	RV109 passes SP in RV-P round 2;
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2333	record_path	R/I98/b2_w_probe_01/PROBE.md
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2346	rr_title	I98's B2-W verified;
   projects/chirality-piping/core/product_physics/src/retained_memory.rs:474	rr_title	I82's addendum: B1's target is S3
   projects/chirality-piping/core/product_physics/src/retained_memory.rs:983	rr_title	R6b: RV124 passes SQ and confirms M
-  projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs:1132	record_path	R/I65/u4_g6_01/QUALIFICATION.md
-  projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs:1132	record_path	R/I104/b1_sq_01/QUAL_B1.md
+  projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs:1173	record_path	R/I65/u4_g6_01/QUALIFICATION.md
+  projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs:1173	record_path	R/I104/b1_sq_01/QUAL_B1.md
   projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs:118	rr_title	I81's B1-0 probe verified
   projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs:184	record_path	R/I81/b1_probe_01
   projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs:186	rr_title	I81's B1-0 probe verified

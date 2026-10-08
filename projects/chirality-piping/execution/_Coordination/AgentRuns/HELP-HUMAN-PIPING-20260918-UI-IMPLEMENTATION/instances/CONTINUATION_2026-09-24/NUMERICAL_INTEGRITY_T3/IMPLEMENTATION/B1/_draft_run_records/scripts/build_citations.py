@@ -4,7 +4,7 @@
 Usage (VENV python, from anywhere):
   build_citations.py <suggest.json> <list.txt> <out citations.json> <package dir> <T6S citations.json>
 
-- <suggest.json> is check_citations.py --suggest over 3d73db745e..d07006c2f0 with an empty index.
+- <suggest.json> is check_citations.py --suggest over 953d8c9446..7f5f72912e with an empty index.
 - <list.txt> is the same run's --list output, used for each token's cited_at sites.
 - The one TODO entry (the generator class) is resolved here by hand, with its reason.
 - The documents table is #1082's 23 names, read unchanged from T6S's index (equal to F2A_D1's).
@@ -14,7 +14,7 @@ import hashlib, json, os, sys
 
 sug_path, list_path, out_path, pkg, t6s_path = sys.argv[1:6]
 P = "projects/chirality-piping/"
-NUM = "75cd6be76bd6407fc24e0f1da834c2135407b69e"
+NUM = "31eed8497fef9770feace42fc83880b7c6bd01ac"
 
 sites = {}
 for line in open(list_path, encoding="utf-8"):
@@ -62,9 +62,9 @@ if missing:
 idx = {
     "schema": "u9-citation-index-v1",
     "about": ("Resolves every record and RR citation that PR-B1 adds to maintained source: the 33 files of "
-              "3d73db745e..d07006c2f0, equal to NUM 75cd6be76b outside the execution records. Records stay on the "
-              "integration branch, pinned at num_commit (NUM's head when written, pushed; it carries RR \"I108's package "
-              "returned; …\"). Verify with main's IMPLEMENTATION/F2A_D1/check_citations.py (#1082's tool, unchanged), "
+              "953d8c9446..7f5f72912e, equal to NUM 31eed8497f outside the execution records. Records stay on the "
+              "integration branch, pinned at num_commit (NUM's head when written, pushed; it carries RR \"RV124 confirms "
+              "B1's Pass B; the platform test fix committed on NUM\"). Verify with main's IMPLEMENTATION/F2A_D1/check_citations.py (#1082's tool, unchanged), "
               "--index this file. The documents table is #1082's 23 names, unchanged, as S-I1, U8 and T6S carry it. "
               "cited_at paths are relative to projects/chirality-piping/ at source_basis; num_path is relative to "
               "records_root at num_commit; heading_line is a line of rr_path at num_commit. No named_references are kept: "
@@ -74,8 +74,8 @@ idx = {
     "github": "https://github.com/sgttomas/chirality",
     "records_root": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30",
     "rr_path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/ROOT_RULINGS_V1.md",
-    "source_basis": "d07006c2f001be5565646d6f1cf046e6dc96006c",
-    "source_base": "3d73db745edd3378e0bb254a1b263215ef0861e9",
+    "source_basis": "7f5f72912ec53b306abaaa0aec4dbcc4281af6d6",
+    "source_base": "953d8c94466db5543426a2de7b26a591564e4dca",
     "copies": copies,
     "citations": cits,
     "documents": json.load(open(t6s_path, encoding="utf-8"))["documents"],

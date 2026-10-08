@@ -1,0 +1,51 @@
+{
+ "suite": "re",
+ "base": {
+  "ok": 196
+ },
+ "head": {
+  "ok": 204
+ },
+ "differences": [
+  {
+   "test": "lib.rs :: retained_precision::b3b_table_binding_tests::step_6_table_against_reader_constants",
+   "base": null,
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: b3a_legacy_pressure_contract_namespace_at_g8",
+   "base": null,
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: b3b_exact_successor_derivative_carries_the_receipt_and_evidence",
+   "base": null,
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: b3b_exact_successor_readings_standing_and_dispatch",
+   "base": null,
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: b3b_exact_successor_shapes_first_failures",
+   "base": null,
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_derivative_golden.rs :: b3b_a_mutated_pinned_exact_successor_changes_the_golden",
+   "base": null,
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_derivative_golden.rs :: b3b_exact_golden_carries_the_receipt_evidence_and_class_disclosures",
+   "base": null,
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_derivative_golden.rs :: b3b_exact_goldens_are_the_live_successor_derivative",
+   "base": null,
+   "head": "ok"
+  }
+ ]
+}

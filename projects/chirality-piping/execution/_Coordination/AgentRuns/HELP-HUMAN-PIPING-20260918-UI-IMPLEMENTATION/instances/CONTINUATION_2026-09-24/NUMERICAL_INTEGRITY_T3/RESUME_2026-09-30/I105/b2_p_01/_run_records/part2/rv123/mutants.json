@@ -1,0 +1,67 @@
+{
+ "filters": [
+  "b3b_",
+  "b3a_",
+  "u1_constants",
+  "u3_permitted_path",
+  "b1_sp_w_c2_transaction"
+ ],
+ "skip": [],
+ "mutants": [
+  {
+   "id": "R-01",
+   "check": "RV123 n-case serializer: an unavailable exact attempt's preparation hash uses DEF-O's H (S-1, unavailable branch)",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "                bind_preparation(&mut source_v, &attempt_v, attempt.attempt, pc.route())?;",
+     "new": "                bind_preparation(&mut source_v, &attempt_v, attempt.attempt, rp::W1Route::Preview)?;"
+    }
+   ]
+  },
+  {
+   "id": "R-02",
+   "check": "RV123 c = 1 serializer: an unavailable exact attempt's preparation hash uses DEF-O's H",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "                bind_preparation(&mut source_v, &attempt, 0, pc.route())?;",
+     "new": "                bind_preparation(&mut source_v, &attempt, 0, rp::W1Route::Preview)?;"
+    }
+   ]
+  },
+  {
+   "id": "R-03",
+   "check": "RV123 c = 1 serializer: an unavailable exact successor takes the preview identity",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "    let diagnostic_ref = unavailable_envelope(&mut env, pc.route(), &case_id)?;",
+     "new": "    let diagnostic_ref = unavailable_envelope(&mut env, rp::W1Route::Preview, &case_id)?;"
+    }
+   ]
+  },
+  {
+   "id": "R-06",
+   "check": "RV123 P-3: every material counts as used (an unused material is checked)",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "                if self.checked_same(&pipe.material, &m.id)? {",
+     "new": "                if { self.checked_same(&pipe.material, &m.id)?; true } {"
+    }
+   ]
+  },
+  {
+   "id": "R-11",
+   "check": "RV123 P-8: only the first section patch is applied (multi-member)",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "    for patch in &payload.sections {",
+     "new": "    for patch in payload.sections.iter().take(1) {"
+    }
+   ]
+  }
+ ]
+}
