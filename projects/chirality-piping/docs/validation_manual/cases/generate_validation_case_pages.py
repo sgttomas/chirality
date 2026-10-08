@@ -595,18 +595,13 @@ STRESS_CASES = [
         "STRESS-RANGE-MECHANICS-ORIGINAL",
         "stress",
         "stress_range.md",
-        [
-            "computes_mechanics_only_stress_range_fixture",
-            "stress_range_blocks_asymmetric_optional_pressure_components",
-        ],
+        ["computes_mechanics_only_stress_range_fixture"],
         "stress_numeric",
         purpose_fallback=(
             "Verify mechanics-only stress range computation between two "
             "solved states: the range is the component-by-component absolute "
             "difference of recovered mechanics components (not an equivalent "
-            "stress and not a code stress range), and asymmetric optional "
-            "pressure components must block with a diagnostic rather than "
-            "collapse into a silent success."
+            "stress and not a code stress range)."
         ),
     ),
     Case(
