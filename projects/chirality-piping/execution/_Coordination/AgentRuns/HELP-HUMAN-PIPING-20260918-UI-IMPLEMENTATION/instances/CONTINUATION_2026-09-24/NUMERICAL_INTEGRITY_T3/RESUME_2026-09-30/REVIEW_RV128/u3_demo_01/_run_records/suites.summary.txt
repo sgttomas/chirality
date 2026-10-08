@@ -1,0 +1,52 @@
+# RV128 suites on the head's bytes (WT/rv128/cand)
+## vitest, the 18 changed files (WT/tools/t3_slot.sh)
+src/App.test.tsx
+src/features/display-units/rendererIntegration.test.tsx
+src/features/handoff/HandoffPanel.test.tsx
+src/features/headless-runner/HeadlessRunnerPanel.test.tsx
+src/features/local-fea-handoff/LocalFeaHandoffPanel.test.tsx
+src/features/native-package/NativePackagePanel.test.ts
+src/features/report/renderedReport.test.tsx
+src/features/report/reportPackageRequest.test.ts
+src/features/result-export/ResultExportPanel.test.tsx
+src/features/result-export/physicsResultExport.test.ts
+src/features/result-export/resultExportAdapter.test.ts
+src/features/results/HistoricalRunContext.test.tsx
+src/features/results/KnownSemanticNotices.test.tsx
+src/features/results/retainedPrecisionIntegration.test.tsx
+src/features/results/sourceBlockRecovery.test.ts
+src/features/stress-neutral/StressNeutralExportPanel.test.tsx
+src/services/previewService.test.ts
+src/services/retainedPrecisionAnalysisRun.test.ts
+ Test Files  18 passed (18)
+      Tests  699 passed (699)
+rc=0
+## pytest, the 6 changed files (WT/tools/t3_slot.sh; OPENPIPESTRESS_CHECKED_JSON_BIN, _BINARY64_JSON_BIN, _UNITS_BIN built from the archive into WT/targets/rv128-pybins via WT/tools/t3_cargo.sh)
+tests/product_preview/test_product_preview_service.py tests/test_analysis_run_records.py tests/test_results_schema.py tests/test_retained_precision_carriers.py tests/test_analysis_run_compatibility.py tests/test_preview_physics_consumer_contract.py
+277 passed in 193.91s (0:03:13)
+rc=0
+## PP: WT/tools/t3_cargo.sh test --locked --offline --manifest-path PP/Cargo.toml --test pressure_runtime
+test legacy_missing_g_remains_an_input_error ... ok
+test namespaces_and_nonzero_legacy_pressure_cannot_silently_fallback ... ok
+test exact_material_and_region_contracts_are_required_without_inference ... ok
+test invalid_region_membership_geometry_and_overlap_block ... ok
+test retired_legacy_pressure_is_refused_and_pressure_free_documents_solve ... ok
+test distributed_axial_load_is_subtracted_separately_from_pressure_eigenload ... ok
+test exact_override_materials_replace_base_list_and_redundant_g_is_not_authoritative ... ok
+test thermal_alpha_is_required_on_the_selected_basis_not_unused_base ... ok
+test mixed_closures_use_the_actual_cap_load_path_for_support_reactions ... ok
+test selected_point_and_interpolated_pair_determine_g_after_selection ... ok
+test six_si_pressure_states_through_both_public_solver_modes ... ok
+test signed_pressure_zero_poisson_and_thermal_reversal_preserve_the_selected_equations ... ok
+test exact_pressure_rotates_as_vectors_and_normalizes_mm_mpa_inputs ... ok
+test same_region_id_in_distinct_cases_has_unique_binding_and_order_independent_maximum ... ok
+test equal_bore_unequal_wall_and_e_chain_is_orientation_independent ... ok
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.15s
+pp rc=0
+## RE: WT/tools/t3_cargo.sh test --locked --offline --manifest-path RE/Cargo.toml --test retained_precision_carriers
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 34.29s
+re rc=0
+## probe 2 (rv128_probe2.test.tsx.txt), run in the archive and deleted
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+rc=0

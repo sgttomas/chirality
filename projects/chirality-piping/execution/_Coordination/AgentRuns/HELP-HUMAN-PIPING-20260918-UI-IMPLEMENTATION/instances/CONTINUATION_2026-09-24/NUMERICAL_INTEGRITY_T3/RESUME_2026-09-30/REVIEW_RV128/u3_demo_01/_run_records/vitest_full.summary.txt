@@ -1,0 +1,6 @@
+# RV128 vitest full run on the head's bytes (WT/rv128/cand archive; node_modules CoW clone from WT/t3-pret, lockfile 0dd1616e...; wasm engines built from the archive), under WT/tools/t3_slot.sh
+ Test Files  141 passed (141)
+      Tests  4247 passed (4247)
+   Start at  16:57:23
+   Duration  110.85s (transform 28.27s, setup 10.17s, import 50.10s, tests 612.73s, environment 42.85s)
+rc=0

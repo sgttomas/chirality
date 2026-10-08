@@ -1,0 +1,36 @@
+# RV128 regeneration and direct-run comparison (fixture sha256: committed blob at 180bf9b26d | recipe regeneration in WT/rv128/regen | equal?)
+invented_demo_result_preview_physics_1_sparse.json | e577f491bde93316faa54163943a9c55e98b0340b82a7fc4f7a3115c5353d640 | e577f491bde93316faa54163943a9c55e98b0340b82a7fc4f7a3115c5353d640 | EQUAL
+invented_demo_result_preview_physics_1_dense.json | 1ca7993f05bd3f8f74901b49e3294c80b6ca120f306fd9d56b025fef04c5cf34 | 1ca7993f05bd3f8f74901b49e3294c80b6ca120f306fd9d56b025fef04c5cf34 | EQUAL
+invented_demo_result_legacy_0_1.json | ca3ecdb517401741de5d2c8ba098390402d2f8b451edb988d32ed48c9c0a97ae | ca3ecdb517401741de5d2c8ba098390402d2f8b451edb988d32ed48c9c0a97ae | EQUAL
+demo_fixture_generation.json | c1362d67bb43e28a9c86a5cbce8b2beee55ed5625479bd95732b6dd69c1a204c | 20d05028953abf27cccabed12378c88ba04817da528b68ddac151900141018b0 | DIFF
+invented_mechanics_result_preview_physics_1_sparse.json | 2cb2945391a0dc4ec5a24e56757c6b8b8e1b20a20646fabaf8cd9ccc34837b12 | 2cb2945391a0dc4ec5a24e56757c6b8b8e1b20a20646fabaf8cd9ccc34837b12 | EQUAL
+invented_mechanics_result_preview_physics_1_dense.json | 2cb2945391a0dc4ec5a24e56757c6b8b8e1b20a20646fabaf8cd9ccc34837b12 | 2cb2945391a0dc4ec5a24e56757c6b8b8e1b20a20646fabaf8cd9ccc34837b12 | EQUAL
+preview_physics_fixture_generation.json | 0557742adf34aa9389db82419ce11fb8b6ad9072682e1c8dfe73ad51e7911bdf | 47fbe764dea91be27e6d24c5fe6b6f0ac5616deb261acb9553e68d690125e66f | DIFF
+
+# record diffs (committed vs regenerated)
+## demo_fixture_generation.json
+1055c1055
+<       "stderr_sha256": "cc15cd559765ba249584d369709f8dbb629d91c406a212eab3c66daae9cd00e3",
+---
+>       "stderr_sha256": "6f6d37eacd9d8639ab6af6c17593ca43a08fcabf9039102ba9ea0a2fbfbac986",
+1084c1084
+<       "stderr_sha256": "cc15cd559765ba249584d369709f8dbb629d91c406a212eab3c66daae9cd00e3",
+---
+>       "stderr_sha256": "6f6d37eacd9d8639ab6af6c17593ca43a08fcabf9039102ba9ea0a2fbfbac986",
+## preview_physics_fixture_generation.json
+1055c1055
+<       "stderr_sha256": "cc15cd559765ba249584d369709f8dbb629d91c406a212eab3c66daae9cd00e3",
+---
+>       "stderr_sha256": "6f6d37eacd9d8639ab6af6c17593ca43a08fcabf9039102ba9ea0a2fbfbac986",
+1084c1084
+<       "stderr_sha256": "cc15cd559765ba249584d369709f8dbb629d91c406a212eab3c66daae9cd00e3",
+---
+>       "stderr_sha256": "6f6d37eacd9d8639ab6af6c17593ca43a08fcabf9039102ba9ea0a2fbfbac986",
+
+# direct cargo run of the example (WT/tools/t3_cargo.sh run --offline --locked --quiet ... --example preview_result -- <mode> <model>), stdout sha256
+sparse_interactive invented_demo_model e577f491bde93316faa54163943a9c55e98b0340b82a7fc4f7a3115c5353d640
+sparse_interactive invented_preview_model 2cb2945391a0dc4ec5a24e56757c6b8b8e1b20a20646fabaf8cd9ccc34837b12
+dense_scrutiny invented_demo_model 1ca7993f05bd3f8f74901b49e3294c80b6ca120f306fd9d56b025fef04c5cf34
+dense_scrutiny invented_preview_model 2cb2945391a0dc4ec5a24e56757c6b8b8e1b20a20646fabaf8cd9ccc34837b12
+no argument 2cb2945391a0dc4ec5a24e56757c6b8b8e1b20a20646fabaf8cd9ccc34837b12
+unknown model name: exit 2; extra argument: exit 2 (usage line on stderr)

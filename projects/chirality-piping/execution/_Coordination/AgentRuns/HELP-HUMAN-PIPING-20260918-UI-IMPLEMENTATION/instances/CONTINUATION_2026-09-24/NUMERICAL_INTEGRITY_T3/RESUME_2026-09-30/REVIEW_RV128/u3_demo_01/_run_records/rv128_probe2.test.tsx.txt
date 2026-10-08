@@ -1,0 +1,18 @@
+// RV128 probe 2 (reviewer scratch; not part of the candidate): the result-detail
+// panel's combined-result branch on an actual preview-physics-1 output.
+import { render, screen } from "@testing-library/react";
+import { expect, it } from "vitest";
+import unicodeSparse from "../../../fixtures/results/preview_physics_unicode_ids_sparse.json";
+import { ResultsPanel } from "./features/results/ResultsPanel";
+import type { MechanicsResult } from "./types";
+
+it("rv128 probe 2: combination row detail on actual preview-physics-1 output", () => {
+  const result = structuredClone(unicodeSparse) as unknown as MechanicsResult;
+  const row = result.results.find(r => r.kind === "element_local_axial_force" && r.basis_ref?.ref_type === "combination" && r.source_result_refs?.length)!;
+  render(<ResultsPanel result={result} knowledge={null} analysisRun={null} selectedResultId={row.id} onSelectResult={() => {}} />);
+  const basis = screen.getByTestId("selected-result-recovery-basis").textContent;
+  const sources = screen.getByTestId("selected-result-source-refs").textContent;
+  console.log("RV128_PROBE2 " + JSON.stringify({ id: row.id, basis, sources, expected_sources: row.source_result_refs }));
+  expect(basis).toContain("explicit_user_linear_combination");
+  for (const ref of row.source_result_refs!) expect(sources).toContain(ref);
+});

@@ -1,0 +1,46 @@
+import json, sys, hashlib
+P = sys.argv[1]
+demo_p = P + "/fixtures/product_preview/invented_demo_model.json"
+pp_p = P + "/core/product_physics/tests/fixtures/preview_physics_invented_model.json"
+old_p = P + "/fixtures/product_preview/invented_preview_model.json"
+demo, pp, old = (json.load(open(x)) for x in (demo_p, pp_p, old_p))
+def diff(a, b, path=""):
+    out = []
+    if type(a) != type(b):
+        return [(path, a, b)]
+    if isinstance(a, dict):
+        for k in sorted(set(a) | set(b)):
+            if k not in a or k not in b:
+                out.append((path + "/" + k, a.get(k, "<absent>"), b.get(k, "<absent>")))
+            else:
+                out += diff(a[k], b[k], path + "/" + k)
+        return out
+    if isinstance(a, list):
+        if len(a) != len(b):
+            return [(path + "[len]", len(a), len(b))]
+        for i, (x, y) in enumerate(zip(a, b)):
+            out += diff(x, y, f"{path}[{i}]")
+        return out
+    return [] if a == b else [(path, a, b)]
+print("== demo vs PP joint-free model")
+for d in diff(demo, pp): print(" ", d[0], "|", str(d[1])[:160], "|", str(d[2])[:160])
+print("== key order equal?", json.dumps(demo) .count("{") == json.dumps(pp).count("{"))
+# joint and pressure scan
+def walk(x, path=""):
+    if isinstance(x, dict):
+        for k, v in x.items():
+            yield path + "/" + k, k, v
+            yield from walk(v, path + "/" + k)
+    elif isinstance(x, list):
+        for i, v in enumerate(x):
+            yield from walk(v, f"{path}[{i}]")
+for name, m in (("demo", demo), ("pp", pp), ("old", old)):
+    hits = []
+    for p, k, v in walk(m):
+        if isinstance(v, str) and ("pressure" in v.lower() or "joint" in v.lower() or "C-150" in v):
+            hits.append((p, v[:120]))
+        if k in ("pressure_contract", "pressure_regions"):
+            hits.append((p, "KEY " + k))
+    comps = [ (c.get("id"), c.get("kind") or c.get("type") or c.get("component_type")) for c in m.get("model", m).get("components", [])] if isinstance(m.get("model", m).get("components", []), list) else None
+    print(f"== {name}: schema={m.get('schema_version')} components={comps}")
+    for h in hits: print("   ", h)

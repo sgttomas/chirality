@@ -1,0 +1,32 @@
+// RV128 probe (reviewer scratch; not part of the candidate). buildPreviewComparison
+// on actual preview-physics-1 combination rows.
+import { describe, expect, it } from "vitest";
+import unicodeSparse from "../../../fixtures/results/preview_physics_unicode_ids_sparse.json";
+import demoSparse from "../../../fixtures/product_preview/invented_demo_result_preview_physics_1_sparse.json";
+import { buildPreviewComparison } from "./services/previewService";
+import type { MechanicsResult } from "./types";
+
+const run = { analysis_run: { run_id: "run:probe", model_state_ref: { object_type: "ModelState", ref: "state:probe" } } } as any;
+const outcome = (f: () => unknown) => { try { const v: any = f(); return { ok: true, pairs: v.summary.comparable_result_pairs, left: v.summary.unmatched_left_results }; } catch (e) { return { ok: false, error: String((e as Error).message).slice(0, 200) }; } };
+
+describe("rv128 probe", () => {
+  it("records buildPreviewComparison outcomes", () => {
+    const unicode = structuredClone(unicodeSparse) as unknown as MechanicsResult;
+    const out: Record<string, unknown> = {};
+    out.unicode_defaults = outcome(() => buildPreviewComparison({ result: unicode, analysisRun: run }));
+    out.unicode_explicit = outcome(() => buildPreviewComparison({ result: unicode, analysisRun: run, leftBasisRef: "load:é", rightBasisRef: "combination:Σ" }));
+    // The same actual rows under the app's default ids (only basis/source ids renamed).
+    const renamed = JSON.parse(JSON.stringify(unicode).replaceAll("load:é", "load:L-100").replaceAll("combination:Σ", "combination:C-OPER-ALT")) as MechanicsResult;
+    out.renamed_defaults = outcome(() => buildPreviewComparison({ result: renamed, analysisRun: run }));
+    // Only the dimension-declared kinds: which kinds throw?
+    const kinds = [...new Set(unicode.results.filter(r => r.basis_ref?.ref_type === "combination" && r.source_result_refs?.length).map(r => r.kind))];
+    out.per_kind = Object.fromEntries(kinds.map(kind => {
+      const only = structuredClone(unicode);
+      only.results = only.results.filter(r => r.basis_ref?.ref_type !== "combination" || r.kind === kind);
+      return [kind, outcome(() => buildPreviewComparison({ result: only, analysisRun: run, leftBasisRef: "load:é", rightBasisRef: "combination:Σ" }))];
+    }));
+    out.demo_defaults = outcome(() => buildPreviewComparison({ result: structuredClone(demoSparse) as unknown as MechanicsResult, analysisRun: run }));
+    console.log("RV128_PROBE " + JSON.stringify(out));
+    expect(true).toBe(true);
+  });
+});

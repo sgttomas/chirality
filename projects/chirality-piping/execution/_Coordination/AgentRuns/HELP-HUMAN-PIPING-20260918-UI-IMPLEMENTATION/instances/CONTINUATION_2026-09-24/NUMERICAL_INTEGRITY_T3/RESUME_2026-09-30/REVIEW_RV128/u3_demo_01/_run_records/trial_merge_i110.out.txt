@@ -1,0 +1,36 @@
+# RV128 trial merge: archive of I110's local head 16ce82f573 (codex/piping-t3-pressure-retire-20261008) with the candidate's diff 4c0d5d7c00..180bf9b26d applied (patch -p1, --no-renames; clean, two hunks with offset); both recipe modes run in WT/rv128/merge
+invented_demo_result_preview_physics_1_sparse.json | candidate e577f491bde93316faa54163943a9c55e98b0340b82a7fc4f7a3115c5353d640 | merged e577f491bde93316faa54163943a9c55e98b0340b82a7fc4f7a3115c5353d640 | EQUAL
+invented_demo_result_preview_physics_1_dense.json | candidate 1ca7993f05bd3f8f74901b49e3294c80b6ca120f306fd9d56b025fef04c5cf34 | merged 1ca7993f05bd3f8f74901b49e3294c80b6ca120f306fd9d56b025fef04c5cf34 | EQUAL
+invented_demo_result_legacy_0_1.json | candidate ca3ecdb517401741de5d2c8ba098390402d2f8b451edb988d32ed48c9c0a97ae | merged ca3ecdb517401741de5d2c8ba098390402d2f8b451edb988d32ed48c9c0a97ae | EQUAL
+invented_mechanics_result_preview_physics_1_sparse.json | candidate 2cb2945391a0dc4ec5a24e56757c6b8b8e1b20a20646fabaf8cd9ccc34837b12 | merged 2cb2945391a0dc4ec5a24e56757c6b8b8e1b20a20646fabaf8cd9ccc34837b12 | EQUAL
+invented_mechanics_result_preview_physics_1_dense.json | candidate 2cb2945391a0dc4ec5a24e56757c6b8b8e1b20a20646fabaf8cd9ccc34837b12 | merged 2cb2945391a0dc4ec5a24e56757c6b8b8e1b20a20646fabaf8cd9ccc34837b12 | EQUAL
+demo_fixture_generation.json | candidate c1362d67bb43e28a9c86a5cbce8b2beee55ed5625479bd95732b6dd69c1a204c | merged 6bd8cb095ebb97c2f423b15966d672543a5bcf035e2a1e104f40864063e15a74 | DIFF
+preview_physics_fixture_generation.json | candidate 0557742adf34aa9389db82419ce11fb8b6ad9072682e1c8dfe73ad51e7911bdf | merged 9b9977d7f474694e382db326617cf1bcc9293ca3008e1653eaf522e0e6bb0ef5 | DIFF
+demo record: source inventory entries that differ: 25 (candidate 403 entries; merged 402 )
+   core/loads/stress_recovery/src/lib.rs changed
+   core/product_physics/src/f1a_tests.rs changed
+   core/product_physics/src/f1b_tests.rs changed
+   core/product_physics/src/historical_pressure_reference.rs removed
+   core/product_physics/src/lib.rs changed
+   core/product_physics/src/pressure_runtime.rs changed
+   core/product_physics/src/preview_physics.rs changed
+   core/product_physics/src/retained_memory_law_tests.rs changed
+   core/product_physics/src/retained_product.rs changed
+   core/product_physics/src/retained_product_tests.rs changed
+   core/product_physics/src/s11f_tests.rs changed
+   core/product_physics/src/s11g_tests.rs changed
+   core/product_physics/src/source_receipt.rs changed
+   core/product_physics/src/source_receipt/composite.rs changed
+   core/product_physics/src/source_receipt/load_state_join_tests.rs changed
+   core/product_physics/src/source_receipt/load_state_tests.rs changed
+   core/product_physics/src/source_receipt/rows.rs changed
+   core/product_physics/src/source_receipt/tests.rs changed
+   core/product_physics/src/source_recovery.rs changed
+   core/product_physics/tests/f1b_w2_runtime.rs changed
+   core/product_physics/tests/retained_memory_challenge.rs changed
+   core/product_physics/tests/s11f_site_test.rs changed
+   core/solver/curved_bend/src/lib.rs changed
+   core/solver/curved_bend/src/s11k_tests.rs changed
+   core/solver/frame_kernel/tests/s11_site_table.rs changed
+other record members differing (besides inventories, inventory hash, stderr hashes): []
+outputs differing beyond stderr_sha256: [{}, {}]

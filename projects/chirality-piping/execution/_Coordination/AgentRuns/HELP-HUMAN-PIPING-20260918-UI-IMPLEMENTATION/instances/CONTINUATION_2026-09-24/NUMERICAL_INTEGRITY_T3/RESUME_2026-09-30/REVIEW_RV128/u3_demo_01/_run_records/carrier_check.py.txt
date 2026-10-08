@@ -1,0 +1,36 @@
+import json, sys, difflib
+P = sys.argv[1]
+fx = P + "/fixtures/product_preview/"
+src_raw = open(fx + "invented_demo_result_preview_physics_1_sparse.json").read()
+car_raw = open(fx + "invented_demo_result_legacy_0_1.json").read()
+src = json.loads(src_raw); car = json.loads(car_raw)
+sem = json.load(open(P + "/fixtures/results/semantic_contract_v0_2.json"))
+kinds = {r["kind"] for r in sem["rows"]}
+print("top keys src:", list(src)); print("top keys car:", list(car))
+exp = {k: v for k, v in src.items() if k not in ("producer", "numerical_quality", "formulation_basis", "contract_evidence")}
+exp["schema_version"] = "0.1.0"
+exp["results"] = [r for r in src["results"] if r["kind"] in kinds]
+ids = {r["id"] for r in exp["results"]}
+nulled = []
+summ = dict(exp["summary"])
+for k, v in summ.items():
+    if isinstance(v, dict) and isinstance(v.get("result_ref"), str) and v["result_ref"] not in ids:
+        summ[k] = None; nulled.append(k)
+exp["summary"] = summ
+print("equal to independent derivation (incl. key order):", json.dumps(exp) == json.dumps(car))
+print("removed rows:", len(src["results"]) - len(exp["results"]), "kept:", len(exp["results"]), "nulled:", nulled)
+from collections import Counter
+print("removed kinds:", Counter(r["kind"] for r in src["results"] if r["kind"] not in kinds))
+# textual: every carrier line is a source line except the expected edits
+sl = src_raw.split("\n"); cl = car_raw.split("\n")
+sm = difflib.SequenceMatcher(a=sl, b=cl, autojunk=False)
+changed = []
+for tag, i1, i2, j1, j2 in sm.get_opcodes():
+    if tag in ("replace", "insert"):
+        changed += cl[j1:j2]
+print("carrier lines not verbatim from source:", len(changed))
+for c in changed[:20]: print("   ", c[:150])
+# summary of the rows kept: which kinds and statuses
+print("kept kinds:", Counter(r["kind"] for r in car["results"]))
+print("summary keys:", {k: (None if v is None else (v.get("result_ref") if isinstance(v, dict) else v)) for k, v in car["summary"].items()})
+print("status:", car.get("status"))
