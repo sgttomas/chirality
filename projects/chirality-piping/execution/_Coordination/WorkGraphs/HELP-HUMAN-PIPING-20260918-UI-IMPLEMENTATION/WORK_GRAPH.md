@@ -569,7 +569,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
   - **B2-C returned** (I97, `R/I97/b2_c_01/CONTRACT.md`; statics rebuilt by ROOT). **RV118 (RV-C): ACCEPT WITH AMENDMENTS (0/6/15). RV115 (RV-K) accepts DEF-C's numerics.** ROOT ruled: S-4 (a) and (b); C-1 to C-16 selected. I97's revision (`BRIEFS/B2C_REVISION_01.md`) is queued behind B1's repairs.
   - **The probes are done:** B2-W (I98) and B3-W (I99). B2's witnesses are selected (W-CB1 rebased on 1·A + 0.5·B; A + B is kept as a cancellation pin). B3's witnesses are selected: `m3x` for the exact successor, n05 and n06 for coexistence, `m3x_mix_anchor` for the mixed base and `m3l` for B3a. P-2 is required, with `fields` as a pin.
 - **The integration branch** is `codex/piping-numerical-integrity-20260926` (NUM). It carries main `0b6c5d7362` (with #1109's RV58 fixture repair, #1111 and #1112) and this session's records, with no unmerged product slice.
-- **The host:** all heavy T3 jobs (cargo, DEC-025, heavy vitest and pytest) share one lock, `WT/guard/cargo_job.lock` (`WT/tools/t3_cargo.sh`, or `lockf`). Every DEC-025 suite run, partial reruns included, builds in a fresh target (since 2026-10-06). Run records carry no symlink, and ROOT's commit-time screen includes the host's name and decompressed `.gz` files (RR E-11; RR "RV117 passes #1111; …", ruling 4).
+- **The host:** heavy T3 jobs run in up to three lock slots: `WT/tools/t3_cargo.sh` for cargo, `WT/tools/t3_slot.sh` for other commands, and slot 1 = `WT/guard/cargo_job.lock` for direct `lockf` users. They are gated at 48 GiB of T3 memory and 50% system free. DEC-025 and product RSS/timing measurements run through `WT/tools/t3_exclusive.sh` (owner, 2026-10-08). Every DEC-025 suite run, partial reruns included, builds in a fresh target (since 2026-10-06). Run records carry no symlink, and ROOT's commit-time screen includes the host's name and decompressed `.gz` files (RR E-11; RR "RV117 passes #1111; …", ruling 4).
 
 | Node | Result | Needs | Assignment | State |
 |---|---|---|---|---|
@@ -598,6 +598,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **prepared for B8:** whether a successor's stress-neutral package may read ready while its D-U6-2 class rows carry withheld unit witnesses (today's convention blocks it; I75's R-2).
 
 **Owner decisions in force** (dated in the rulings):
+- **2026-10-08: development up to 64 GiB, the product at 12 GiB** ("you can go up to the agreed 64 GB for your tasks (this is desirable when it reduces the development time), but for the sake of the product and what will be shipped for use the 12 GB cap ought to remain (unless a compelling argument can convince me otherwise)"): T3's development and test jobs on this Mac may use up to 64 GiB to save time. The product's M stays ≤ 12 GiB unless a compelling argument is put to the owner. The host now runs up to three heavy jobs at once, under a 48 GiB start gate; DEC-025 and product measurements run exclusive.
 - **2026-10-07: SI1c is option D, a repair within grammar 1.0.0** ("D: block at overflow"; "Repair within 1.0.0"): the ordinary point path blocks with `NonFiniteInput` at an arithmetic or interpolation step whose result is not finite; no grammar version bump or corpus extension.
 - **2026-10-07: M ≤ 12 GiB; target machines** ("use 12 GiB, target is 32 GB workstations but 16 GB workstations still solving within practical timeframes"): ROOT may select M ≤ 12 GiB; the target-machine direction guides M, B1's caps and B4; the formal supported-machine statement stays owner-held. Supersedes the M part of the 64 GiB decision the same day, which still covers T3's host jobs.
 - **2026-10-07: memory up to 64 GiB** (its M part superseded by the 12 GiB decision; it still covers T3's host jobs) ("if you need to allocated 32 GiB it will be available. If you need more than 64 GiB we should negotiate"): ROOT may select M ≤ 64 GiB; above that, and any supported-machine statement, stay owner-held. Supersedes the 6.0 GiB bound of 2026-10-06.
@@ -671,7 +672,8 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **B3's witnesses; P-2 required (with `fields`); B3a's exact exceptions:** "I99's B3-W verified; B3's witnesses selected; …";
 - **I3; the three-reader alignment set ((f) G3/G5, (g) G8, the C2 table at G5, the header G2 and the metadata G7):** "RV113's three returns verified; I3 made at `2ba2f81863`; …";
 - **B2's witnesses (W-CB1 rebased); D6b is case-only; the nodal-term ordinal is a producer defect fixed at I3:** "I98's B2-W verified; …";
-- **B2-C ruled (S-4 (a) and (b), S-3 non_quantity, N-7, N-12, C-1 to C-16 with C-4 amending C3a rule 4):** "RV118 (RV-C) accepts B2-C with amendments; …".
+- **B2-C ruled (S-4 (a) and (b), S-3 non_quantity, N-7, N-12, C-1 to C-16 with C-4 amending C3a rule 4):** "RV118 (RV-C) accepts B2-C with amendments; …";
+- **the host's three lock slots, the 48 GiB start gate, and exclusive mode for DEC-025 and product measurements (superseding the one-job rule):** "Owner decision: development jobs may use up to 64 GiB, the product stays at 12 GiB; …".
 
 **Notes routed to later units:**
 - **F-U6b-2** (the Python transport validator) → B6 (I74 decision 8), done there;

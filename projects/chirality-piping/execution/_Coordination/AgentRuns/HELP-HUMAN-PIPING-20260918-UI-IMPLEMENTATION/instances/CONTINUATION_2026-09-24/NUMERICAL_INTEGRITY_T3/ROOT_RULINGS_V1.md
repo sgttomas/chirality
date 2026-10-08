@@ -15280,3 +15280,35 @@ RV113 confirms each round. I4 follows them, with SR-PY and SR-TS and SR-RS's rou
    - **From RV115:** NB-1 ("the selected material operands of every member, bit for bit") and NB-3 (data flags stay per individual product, never per net).
 
 **Order:** I97's revision (`BRIEFS/B2C_REVISION_01.md`) is dispatched in the next free implementer slot after I92's SR-TS round, because B1's repairs come first. Then RV115 confirms (a), and RV118 confirms the revision. B2-C is then final for J1.
+
+## Owner decision: development jobs may use up to 64 GiB, the product stays at 12 GiB; the host runs three heavy jobs at once (ROOT, 2026-10-08 UTC)
+
+**The owner's direction, quoted:** "For the sake of testing and development on this Macbook Pro with 128 GB of ram you can go up to the agreed 64 GB for your tasks (this is desirable when it reduces the development time), but for the sake of the product and what will be shipped for use the 12 GB cap ought to remain (unless a compelling argument can convince me otherwise)."
+- **The product:** M ≤ 12 GiB stands, as do the target machines (32 GB workstations, 16 GB still practical). Raising it needs a compelling argument put to the owner. Decision 22 (three cases plus a combination at D1's caps, about 13.25 GiB) stays owner-held, and is not proposed.
+- **Development and test jobs on this Mac may use up to 64 GiB** when that saves development time.
+
+**Why the host rule changes.** On 2026-10-07 the single lock was busy 8.9 h of 24.2 h (37%). Yet agents waited 45.1 agent-hours for it in total: median 29 s, p90 210 s, max 376 min (`cargo_jobs.log`). The Mac has 18 cores and 128 GiB, and was 95% free. The cost was queueing, not memory.
+
+**The new host rule** (replaces "one cargo job at a time across all T3 work", with the owner's direction as its basis):
+1. **Up to three heavy T3 jobs run at once, one per lock slot.** `WT/tools/t3_slot.sh <command>` runs any heavy command (pytest, vitest, a test binary, a probe). `WT/tools/t3_cargo.sh <cargo args>` now runs in a slot too.
+   - Slot 1 is the original `guard/cargo_job.lock`, so `lockf -k cargo_job.lock <cmd>` still works, as a slot-1 job.
+   - Slots 2 and 3 are `cargo_job.slot2.lock` and `cargo_job.slot3.lock`. Slot jobs try 2 and 3 first.
+2. **A memory gate:** a slot job starts only while T3's resident memory is under 48 GiB and the system has at least 50% free. That keeps T3 within 64 GiB with one more job's headroom. The memory guard (SIGKILL below 35% free) stays as the backstop, and every wrapper refuses to start without it.
+3. **Exclusive jobs take all three slots,** through `WT/tools/t3_exclusive.sh <command>`: DEC-025, and every RSS, peak-memory or timing measurement of the product (SQ's and SQ2's RSS_TIME, the challenge, and the S1 witnesses' peaks). Those measure the product against its 12 GiB cap, on a quiet host.
+   - An exclusive job queues for slot 1. Only once it holds slot 1 does it mark itself pending, so new slot jobs wait, and it takes slots 2 and 3 as their running jobs end.
+   - DEC-025's quiet check now also ignores waiting slot wrappers (`run_dec025.sh`).
+4. **Unchanged:**
+   - one wait per job, ending when its process has gone;
+   - never kill another job;
+   - every cargo `--locked --offline`;
+   - fresh targets for DEC-025 suites;
+   - **each agent still runs one heavy job of its own at a time,** unless its brief says otherwise. The parallelism is across agents.
+
+**Tested:**
+- three `t3_slot.sh` jobs ran in slots 2 and 3 alongside an agent's slot-1 job, the third starting when a slot freed;
+- exit codes and stderr pass through;
+- a stale `exclusive.pending` with a dead owner is ignored.
+
+A first version marked the exclusive job pending while it still waited behind slot 1's queue, which held back new slot jobs. ROOT stopped its own test before any agent's job was affected, and reordered the stages as above. The old wrapper is kept in ROOT's scratch.
+
+**Briefs from now on** name `t3_slot.sh` for heavy non-cargo commands and `t3_exclusive.sh` for DEC-025 and measurements. Running agents may keep their present commands.
