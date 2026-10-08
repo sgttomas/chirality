@@ -1,0 +1,10 @@
+I101 repair 03: the N2b probe inputs, from the chain's RS materialized inputs (RS head d86c0805c6).
+- input_sha256 (RV120's formula: sha256 of json.dumps([source, invocation], sort_keys=True, separators=(',', ':'))): PY's fixture
+  values; PY's rv120_input re-materializes each shape from the corpus base and asserts it.
+- The canonical (JCS) digests ab2807e39c79015c5929dac4c4a4a86f82e9e6187c66511686c93f57de60759d and
+  9451b8272ac84a10984b6848fe44d5fcd3585903ce7ab1f3d8fd59f4a3675da6 are asserted by RS's
+  b3b_repair03_n2b_physics_code_is_array_ordered_and_stable and by TS's repair 03 N2b test (both passed at the heads).
+- TS's materialized inputs equal RS's as JSON values (CMP_RS_TS.json, inputs_equal 177 of 177); TS prints some binary64
+  integers without '.0', so its text (and RV120's formula over it) differs while the values and canonical digests agree.
+N2b: entry 0's profile_mode and entry 1's material_basis [two_case_synthetic]: input_sha256 4b0c7b62bc86bba8c267ee02213e3d4e4432ef3208a0185e860aecabb496a446
+N2b: entry 0's material_basis and entry 1's profile_mode [two_case_synthetic]: input_sha256 531279516823371aca26ea5a9952b10514b939bfae1284dbd48962f59f774ddd

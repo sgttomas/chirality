@@ -1,0 +1,12 @@
+{
+ "suite": "junit",
+ "base": {
+  "passed": 1205,
+  "skipped": 29
+ },
+ "head": {
+  "passed": 1205,
+  "skipped": 29
+ },
+ "differences": []
+}

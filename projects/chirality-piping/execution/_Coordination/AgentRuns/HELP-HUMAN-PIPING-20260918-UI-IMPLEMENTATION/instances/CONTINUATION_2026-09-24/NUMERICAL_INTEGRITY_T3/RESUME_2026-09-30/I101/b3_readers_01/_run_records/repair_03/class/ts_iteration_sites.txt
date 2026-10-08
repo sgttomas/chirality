@@ -1,0 +1,93 @@
+# TS readers at b2-t: Map/Set iteration and object-key iteration (grep; candidates for review)
+previewPhysicsEvidence.ts:66:  demand(isObject(v) && Object.keys(v).length === keys.length && keys.every(k => Object.hasOwn(v, k)), detail);
+previewPhysicsEvidence.ts:72:  for (const item of Object.values(v)) finiteTree(item, seen);
+previewPhysicsEvidence.ts:78:  const ka = Object.keys(a);
+previewPhysicsEvidence.ts:79:  return ka.length === Object.keys(b).length && ka.every(k => Object.hasOwn(b, k) && sameJson(a[k], b[k]));
+previewPhysicsEvidence.ts:92:  const x = Array.from(a), y = Array.from(b);
+previewPhysicsEvidence.ts:164:      demand(text(x.pipe_id) && text(x.result_id) && Object.entries(EXTREMA_CONSTANTS).every(([k, v]) => x[k] === v), "extrema identity or basis");
+previewPhysicsEvidence.ts:185:    [...c.support_attribution.attributed_support_ids].sort(),
+previewPhysicsEvidence.ts:249:  for (const [field, headline] of Object.entries(summary)) {
+previewPhysicsEvidence.ts:292:    demand(partition.size === members.size && [...members].every(m => partition.has(m)), "maximum coverage does not partition the case members");
+previewPhysicsEvidence.ts:364:      const names = Object.keys(SUPPORT_ROW_KINDS);
+previewPhysicsEvidence.ts:376:    demand(recordKeys.size === withheldDiagnostics.size && [...recordKeys].every(k => withheldDiagnostics.has(k)), "withheld records do not match withheld diagnostics");
+previewPhysicsEvidence.ts:412:  for (const members of combinationRows.values()) {
+physicsSourceRecovery.ts:30:  const keys = Object.keys(a);
+physicsSourceRecovery.ts:31:  return keys.length === Object.keys(b).length && keys.every(k => Object.hasOwn(b, k) && same(a[k], b[k]));
+physicsResultEvidence.ts:12:    && Object.keys(value).length === fields.length && fields.every(key => Object.hasOwn(value, key)), reason);
+physicsResultEvidence.ts:20:  seen.add(v); const valid = Object.values(v).every(x => finiteTree(x, seen)); seen.delete(v); return valid;
+physicsResultEvidence.ts:236:    for (const [kind, [components, , , , locations]] of Object.entries(physicalKinds)) {
+physicsResultEvidence.ts:243:    for (const [kind, [components, , , , locations]] of Object.entries(physicalKinds)) {
+retainedPrecision.ts:136:  const keys = Object.keys(a); return keys.length === Object.keys(b).length && keys.every(k => Object.hasOwn(b, k) && same(a[k], b[k]));
+retainedPrecision.ts:138:const sequence = (n: number) => Array.from({ length: n }, (_, i) => i);
+retainedPrecision.ts:153:    case 'object': return v !== null && typeof v === 'object' && !Array.isArray(v) && (spec.required ?? []).every((k: string) => Object.hasOwn(v, k)) && Object.keys(v).every(k => Object.hasOwn(sp
+retainedPrecision.ts:155:    case 'string': return typeof v === 'string' && [...v].length >= (spec.minLength ?? 0);
+retainedPrecision.ts:172:  if (spec.type === 'object') for (const k of Object.keys(v)) encoding(v[k], spec.properties[k]);
+retainedPrecision.ts:179:  else if (v !== null && typeof v === 'object') for (const x of Object.values(v)) negativeZeroFree(x);
+retainedPrecision.ts:181:function freeze<T>(v: T): T { if (v && typeof v === 'object') { for (const x of Object.values(v)) freeze(x); Object.freeze(v); } return v; }
+retainedPrecision.ts:230:    for (const [k, v] of Object.entries({ receipt_version: 1, policy: 'M03-INTEGRITY-MP-v2', projection_policy: 'RP-LOGICAL-ATTEMPTS-v1', work_policy: 'W1-LME-20B-60B-v1', facade_policy: 'RP-FACA
+retainedPrecision.ts:264:  return cov === null || (Array.isArray(cov) && cov.every(e => e !== null && typeof e === 'object' && !Array.isArray(e) && same(Object.keys(e).sort(), COVERAGE_KEYS)
+retainedPrecision.ts:295:  fail(same([...refs].sort((a, z) => a - z), sequence(b.product_attempts.length)));
+retainedPrecision.ts:501:        work(own === uint(w.own_lme) && own === sum(Object.values(w.own_stages)) && uint(w.stop_rule_lme) + uint(w.verification_lme) <= own);
+retainedPrecision.ts:504:        work(sum(Object.values(w.shared_stages)) === uint(w.shared_lme) + uint(w.verification_shared_lme));
+retainedPrecision.ts:525:        for (const stage of Object.keys(w.shared_stages)) {
+retainedPrecision.ts:604:  b.builds.forEach((build: Obj, i: number) => { work(build.id === i && uint(build.work) === sum(Object.values(build.stages))); fail((build.state === 'success') === (build.reason === null)); if (b
+retainedPrecision.ts:610:  return Object.values(v).every(exactWork);
+retainedPrecision.ts:615:  else if (v && typeof v === 'object') { out.push(v); for (const x of Object.values(v)) objects(x, out); }
+retainedPrecision.ts:638:  for (const check of Object.values(proof?.checks ?? {}) as Obj[]) if (check.kind === 'failed' && check.error?.kind === 'g5a') operational.push(...g5aCauses(check.error.cause));
+retainedPrecision.ts:656:  else if (isObj(v)) { out.push([path, v]); for (const [k, x] of Object.entries(v)) locate(x, [...path, k], out); }
+retainedPrecision.ts:711:const stageRecordMatches = (pattern: string, record: string): boolean => [...pattern].every((m, i) => m === '?' ? 'CF'.includes(record[i]) : m === record[i]);
+retainedPrecision.ts:829:      fail(s && c.run?.kernel_terminal.kind === 'selected' && Object.values(stage).every(v => v === 'completed') && p && Object.values(p.checks).every((v: any) => v.kind === 'passed'));
+retainedPrecision.ts:894:function couple(s: number[], length: number): number[] { const [tr, ro, fo, mo] = s; return length === 0 ? [...s] : [Math.max(tr, length * ro), Math.max(ro, tr / length), Math.max(fo, mo / length
+retainedPrecision.ts:916:    return { c, s, rows: rs, values, lengths, original, scales: original.map((x: number[]) => [...x]), hats };
+retainedPrecision.ts:962:      const positive = extentNonzero ? [A[0] || A[1], A[0] || A[1], A[2] || A[3], A[2] || A[3]] : [...A];
+retainedPrecision.ts:1204:    return Uint8Array.from(bytes);
+retainedPrecision.ts:1207:    const value = await crypto.subtle.digest('SHA-256', Uint8Array.from(bytes).buffer);
+retainedPrecision.ts:1216:  return !!contract && typeof contract === 'object' && !Array.isArray(contract) && same(Object.keys(contract).sort(), ['mode', 'version'])
+retainedPrecision.ts:1234:  fail(same(Object.keys(invocation).sort(), ['request', 'solver_mode']) && ['dense_scrutiny', 'sparse_interactive'].includes(invocation.solver_mode), 'INVOCATION_MISMATCH');
+retainedPrecision.ts:1525:  const exact = (v: unknown, keys: string[]): v is Obj => isObj(v) && Object.keys(v).length === keys.length && keys.every(k => Object.hasOwn(v, k));
+loadReferenceSourceEvidence.ts:93:    else if (item && typeof item === "object") for (const [key, child] of Object.entries(item)) visit(child, `${path}/${key}`);
+loadReferenceSourceEvidence.ts:177:    const publication = Object.fromEntries(Object.entries(source).filter(([key]) => key !== "source_block_recovery"));
+loadReferenceSourceEvidence.ts:210:  if (raw) body.publication_sha256 = await domainHash("source_blocks_publication_v1", Object.fromEntries(Object.entries(projected).filter(([key]) => key !== "source_block_recovery")));
+loadReferenceSourceEvidence.ts:259:  if (isObject(x) && isObject(y)) return Object.keys(x).length === Object.keys(y).length && Object.keys(x).every(key => Object.hasOwn(y, key) && pyEq(x[key], y[key]));
+loadReferenceSourceEvidence.ts:265:  return x.size === y.size && [...x].every(v => y.has(v));
+loadReferenceSourceEvidence.ts:315:  blocks(pyEq(partition, Array.from({ length: Math.max(0, Math.floor(n)) }, (_, i) => i)) && Number.isInteger(n), "SOURCE_PARTITION");
+loadReferenceSourceEvidence.ts:316:  const flattened = k(plan, "free_blocks").flatMap((block: Json[]) => [...block]).sort(numeric);
+loadReferenceSourceEvidence.ts:464:  blocks(setEq([...ideals], k(plan, "prescribed_dofs")), "IDEAL_SOURCE_COVERAGE");
+loadReferenceSourceEvidence.ts:479:    for (const location of locations) for (const kind of Object.keys(STRESS_ACTION_KINDS)) {
+loadReferenceSourceEvidence.ts:513:      blocks(isObject(headline) && setEq(Object.keys(headline), ["value", "unit", "location_ref", "result_ref"]) && Object.keys(headline).length === 4, "SUMMARY_HEADLINE");
+loadReferenceSourceEvidence.ts:525:  blocks(isObject(source) && setEq(Object.keys(source), RAW_FIELDS) && Object.keys(source).length === RAW_FIELDS.length, "RAW_FIELDS");
+loadReferenceSourceEvidence.ts:528:  blocks(isObject(formulation) && setEq(Object.keys(formulation), ["profile_id", "limitations"]) && Object.keys(formulation).length === 2 && formulation.profile_id === PHYSICS_SOURCE_PR
+loadReferenceSourceEvidence.ts:534:  const publication = Object.fromEntries(Object.entries(source).filter(([key]) => key !== "source_block_recovery"));
+loadReferenceSourceEvidence.ts:544:  for (const row of raw.values()) {
+loadReferenceSourceEvidence.ts:548:    if (md !== null) blocks(isObject(md) && setEq(Object.keys(md), ["component", "coordinate_system", "location", "basis", "sign_convention"]) && Object.keys(md).length === 5 && Object.
+loadReferenceSourceEvidence.ts:553:  blocks(isObject(q) && setEq(Object.keys(q), ["value_representation", "publication_quantization", "integrity_policy", "status", "cases"]) && Object.keys(q).length === 5
+loadReferenceSourceEvidence.ts:556:    blocks(isObject(quality) && setEq(Object.keys(quality), ["basis_ref", "structural_status", "solve_quality", "model_matrix_fidelity", "accuracy_evidence", "evidence_refs"]) && Object
+loadReferenceSourceEvidence.ts:567:  for (const [index, c] of cases.entries()) {
+loadReferenceSourceEvidence.ts:647:    blocks(setEq([...usedProjections], [...projections.keys()]), "PROJECTION_BIJECTION");
+loadReferenceSourceEvidence.ts:651:      const ready = [...pending].filter(id => k(treatment.get(id), "input_result_ids").every((i: unknown) => done.has(hashable(i))));
+sourceBlockRecovery.ts:28:  for (const descriptor of Object.values(Object.getOwnPropertyDescriptors(value))) {
+sourceBlockRecovery.ts:42:  const keys = Object.keys(a);
+sourceBlockRecovery.ts:43:  return keys.length === Object.keys(b).length && keys.every(key => Object.hasOwn(b, key) && schemaEqual(a[key], b[key]));
+sourceBlockRecovery.ts:73:    if (rule.additionalProperties === false && Object.keys(value).some(key => !Object.hasOwn(rule.properties ?? {}, key))) return false;
+sourceBlockRecovery.ts:74:    if (Object.entries(rule.properties ?? {}).some(([key, r]) => Object.hasOwn(value, key) && !shape(value[key], r as JsonObject, root, depth + 1))) return false;
+sourceBlockRecovery.ts:134:  fail(Object.keys(raw).every(k => allowed.includes(k)), 'ENVELOPE_FIELDS');
+sourceBlockRecovery.ts:137:    fail(Object.keys(captured).length === 2 && Object.hasOwn(captured, 'request') && Object.hasOwn(captured, 'solver_mode'), 'INVOCATION_SHAPE');
+sourceBlockRecovery.ts:138:    fail(raw.formulation_basis && Object.keys(raw.formulation_basis).length === 2 && raw.formulation_basis.profile_id === 'exact_straight_pressure_v2'
+sourceBlockRecovery.ts:141:    fail(raw.results.every(r => !r.metadata || Object.keys(r.metadata).length === 5 && ['component','coordinate_system','location','basis','sign_convention'].every(k => typeof (r.metadata as Js
+sourceBlockRecovery.ts:143:    fail(q && Object.keys(q).length === 5 && q.value_representation === 'finite_binary64' && q.publication_quantization === 'none' && q.integrity_policy === 'M03-INTEGRITY-v1' && Array.isArray(
+sourceBlockRecovery.ts:144:    fail(q!.cases.every(c => Object.keys(c).length === 6 && ['checks_passed','sensitive','not_assessed','unresolved','failed'].includes(c.solve_quality)
+sourceBlockRecovery.ts:157:  fail(raw.results.every(row => Object.keys(row).every(k => ['id','kind','value','unit','dimension','entity_ref','basis_ref','source_result_refs','metadata'].includes(k)) && Number.isFinite(row
+sourceBlockRecovery.ts:176:  for (const [index, c] of cases.entries()) {
+sourceBlockRecovery.ts:310:    return { eligible: token.eligible, findings: [...token.findings] };
+sourceBlockRecovery.ts:360:    fail(Object.values(result).every(v => Number.isFinite(v) && v > 0), 'DERIVED_GEOMETRY_RANGE');
+sourceBlockRecovery.ts:469:    else if (item && typeof item === 'object') for (const [key, child] of Object.entries(item)) visit(child,[...path,key]);
+sourceBlockRecovery.ts:477:  const keys=Object.keys(a);return keys.length===Object.keys(b).length && keys.every(k=>Object.hasOwn(b,k)&&sameModelData(a[k],b[k]));
+loadReferenceEvidence.ts:98:  return isObject(value) && Object.keys(value).length === required.length && required.every(key => Object.hasOwn(value, key));
+loadReferenceEvidence.ts:138:    const entries = Object.entries(a);
+loadReferenceEvidence.ts:139:    return entries.length === Object.keys(b).length && entries.every(([key, value]) => Object.hasOwn(b, key) && same(value, b[key]));
+loadReferenceEvidence.ts:152:  return Object.fromEntries(Object.entries(value).filter(([key]) => !removed.includes(key)));
+loadReferenceEvidence.ts:159:  if (isObject(value)) { Object.values(value).forEach(finiteTree); return; }
+loadReferenceEvidence.ts:169:  return x.size === y.size && [...x].every(v => y.has(v));
+loadReferenceEvidence.ts:182:  if (isObject(x) && isObject(y)) return Object.keys(x).length === Object.keys(y).length && Object.keys(x).every(k => Object.hasOwn(y, k) && pyEqual(x[k], y[k]));
+loadReferenceEvidence.ts:200:    if (schema.additionalProperties === false && !Object.keys(value).every(key => Object.hasOwn(properties, key))) return false;
+loadReferenceEvidence.ts:201:    return Object.entries(value).every(([key, item]) => !Object.hasOwn(properties, key) || schemaShape(item, properties[key], root));

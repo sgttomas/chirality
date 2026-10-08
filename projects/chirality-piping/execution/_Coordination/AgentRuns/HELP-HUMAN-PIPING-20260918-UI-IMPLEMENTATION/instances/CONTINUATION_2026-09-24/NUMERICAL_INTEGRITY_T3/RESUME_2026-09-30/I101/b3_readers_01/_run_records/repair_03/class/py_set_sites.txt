@@ -1,0 +1,29 @@
+# py_set_sites.py over PY core/analysis_runs/*.py at b2-p (reader modules as at 101ebcff76; candidates for review, not verdicts)
+__init__.py: set-bound names: []
+compatibility.py:758: iterates: statuses
+compatibility.py: set-bound names: ['CURRENT_RECORD_CONTRACT_IDS', 'FRESH_CONTRACT_IDS', 'RULE_STATUSES', 'evidence_ids', 'ids', 'seen_basis', 'statuses']
+legacy.py: set-bound names: []
+load_reference_evidence.py: set-bound names: ['expected_regions', 'quality', 'sections']
+load_reference_source.py: set-bound names: []
+physics_evidence.py:122: iterates: GEOMETRY - {'pipe_id', 'geometry_basis'}
+physics_evidence.py:326: iterates: GEOMETRY - {'pipe_id', 'geometry_basis'}
+physics_evidence.py: set-bound names: ['GEOMETRY', 'MATERIAL', 'PIPE_KINDS', 'bindings', 'expected', 'expected_locations', 'extrema_ids', 'groups', 'locations', 'missing', 'physical_slots', 'regions', 'result_ids']
+physics_source.py: set-bound names: ['expected', 'expected_stresses', 'ids']
+preview_physics_evidence.py:361: iterates: records
+preview_physics_evidence.py:363: iterates: records
+preview_physics_evidence.py:390: iterates: members
+preview_physics_evidence.py:394: iterates: members
+preview_physics_evidence.py:396: iterates: members
+preview_physics_evidence.py:401: iterates: members
+preview_physics_evidence.py: set-bound names: ['CASE_KEYS', 'EXTREMA_KEYS', 'INTENSIFIED_KEYS', 'RETIRED_CODES', 'RETIRED_KINDS', 'SUPPORT_KINDS', 'WITHHELD_REASONS', 'ambiguous', 'bases', 'bound', 'dispositions', 'listed', 'measured', 'members', 'records', 'withheld_diagnostics']
+records.py:295: iterates: values
+records.py:300: iterates: values
+records.py: set-bound names: ['reaction_force_kinds', 'values']
+retained_precision.py:1374: iterates: ids
+retained_precision.py:1378: iterates: ids
+retained_precision.py:1379: iterates: ids
+retained_precision.py:2008: iterates: ids
+retained_precision.py: set-bound names: ['ESCALATING_STOPS', 'FORCE', 'HULL_EXCLUDED', 'INPUT_KINDS', 'MOMENT', 'NONQUANTITY', 'NONQUANTITY_KINDS', 'STRESS', 'actual', 'built_refs', 'fixed', 'free', 'ids', 'listed', 'prescribed', 'seen', 'used']
+rule_interval.py: set-bound names: ['seen']
+source_blocks.py:364: iterates: pending
+source_blocks.py: set-bound names: ['covered', 'done', 'expected', 'ideals', 'pending', 'ready', 'spring_sources', 'used_projections']

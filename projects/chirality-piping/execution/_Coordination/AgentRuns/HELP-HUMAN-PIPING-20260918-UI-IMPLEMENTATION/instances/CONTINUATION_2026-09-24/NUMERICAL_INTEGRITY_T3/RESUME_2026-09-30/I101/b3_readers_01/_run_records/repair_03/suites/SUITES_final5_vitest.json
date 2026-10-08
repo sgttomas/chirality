@@ -1,0 +1,26 @@
+{
+ "suite": "vitest",
+ "base": {
+  "passed": 3679
+ },
+ "head": {
+  "passed": 3680
+ },
+ "differences": [
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3b (I101): the exact successor <physics-retained> on reader-local synthetic receipts and lane P's m3x successors (B3-D \u00a76; REVISION_01 \u00a74.3) pins the Rust test's 175 shapes (57 synthetic, 54 on each m3x successor, RV120's 4 forgeries and 6 probes), their first failures, and their three readings #1",
+   "base": "passed",
+   "head": null
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3b (I101): the exact successor <physics-retained> on reader-local synthetic receipts and lane P's m3x successors (B3-D \u00a76; REVISION_01 \u00a74.3) pins the Rust test's 177 shapes (57 synthetic, 54 on each m3x successor, RV120's 4 forgeries and 6 probes, repair 03's 2 N2b probes), their first failures, and their three readings #1",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3b (I101): the exact successor <physics-retained> on reader-local synthetic receipts and lane P's m3x successors (B3-D \u00a76; REVISION_01 \u00a74.3) repair 03 N2b: two faults in two exact_cases entries read one code, run after run (array order), on the Rust test's inputs #1",
+   "base": null,
+   "head": "passed"
+  }
+ ]
+}
