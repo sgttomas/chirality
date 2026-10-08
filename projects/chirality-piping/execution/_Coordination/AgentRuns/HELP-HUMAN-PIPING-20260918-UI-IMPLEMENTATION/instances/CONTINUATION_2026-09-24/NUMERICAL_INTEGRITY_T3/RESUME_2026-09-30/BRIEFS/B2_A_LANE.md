@@ -8,7 +8,7 @@ Read `R/BRIEFS/B1_COMMON.md` for records, Git and placeholders. Its host rules a
 
 ## Where
 
-- **`WT/b2-a`,** branch `codex/piping-t3-b2-a-20261008`, cut by ROOT from `b1` at I4′ (`{I4′ commit}`).
+- **`WT/b2-a`,** branch `codex/piping-t3-b2-a-20261008`, cut by ROOT from `b1` at I4′ (`8d46b045e2`).
 - **Your files** (PLAN §1.2.7's lane A and statics rows, and REVISION_01 §1.3's lane A rows):
   - SCHEMA;
   - PTABLE;

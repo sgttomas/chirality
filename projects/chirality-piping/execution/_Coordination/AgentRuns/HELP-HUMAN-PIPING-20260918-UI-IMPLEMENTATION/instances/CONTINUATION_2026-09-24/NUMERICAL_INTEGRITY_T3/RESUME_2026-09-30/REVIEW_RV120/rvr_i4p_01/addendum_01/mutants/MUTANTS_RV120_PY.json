@@ -1,0 +1,27 @@
+[
+ {
+  "id": "Q01",
+  "item": "rulings 1, 2 (PY)",
+  "description": "ruling 1: the carrier branch kept on the retained transport header"
+ },
+ {
+  "id": "Q02",
+  "item": "rulings 1, 2 (PY)",
+  "description": "ruling 1: source_block_recovery no longer checked before contract_evidence"
+ },
+ {
+  "id": "Q03",
+  "item": "rulings 1, 2 (PY)",
+  "description": "ruling 1's scope: the plain preview-physics-1 dispatch also takes Rust's order"
+ },
+ {
+  "id": "Q04",
+  "item": "rulings 1, 2 (PY)",
+  "description": "ruling 2: transport compares withheld records as sets again"
+ },
+ {
+  "id": "Q05",
+  "item": "rulings 1, 2 (PY)",
+  "description": "ruling 2: multiset by sorted(set(...)) (multiplicity lost)"
+ }
+]

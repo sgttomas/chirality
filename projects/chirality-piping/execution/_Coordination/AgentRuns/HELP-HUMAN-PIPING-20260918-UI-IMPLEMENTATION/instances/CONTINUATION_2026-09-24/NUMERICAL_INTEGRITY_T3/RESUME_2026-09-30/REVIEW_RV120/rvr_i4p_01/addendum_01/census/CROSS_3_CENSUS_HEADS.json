@@ -1,0 +1,27 @@
+{
+ "RS~TS": {
+  "common": 339,
+  "equal_verdicts": 1015,
+  "raw_g7_code_class": 2,
+  "raw_g7_code_class_probes": [
+   "mutation:139:g7_maximum_off_enclosure"
+  ],
+  "other_differences": []
+ },
+ "RS~PY": {
+  "common": 339,
+  "equal_verdicts": 1015,
+  "raw_g7_code_class": 2,
+  "raw_g7_code_class_probes": [
+   "mutation:139:g7_maximum_off_enclosure"
+  ],
+  "other_differences": []
+ },
+ "TS~PY": {
+  "common": 339,
+  "equal_verdicts": 1017,
+  "raw_g7_code_class": 0,
+  "raw_g7_code_class_probes": [],
+  "other_differences": []
+ }
+}

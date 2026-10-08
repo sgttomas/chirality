@@ -1,0 +1,179 @@
+{
+ "probes": 435,
+ "verdict_changes": [
+  {
+   "id": "n6_carrier_evidence_with_case_defect",
+   "verdict": "transport",
+   "i4": {
+    "err": {
+     "code": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+     "detail": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+     "gate": "G2"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_NUMERICAL_CASE_INVALID",
+     "detail": "SOURCE_NUMERICAL_CASE_INVALID",
+     "gate": "G2"
+    }
+   }
+  },
+  {
+   "id": "n6_contract_evidence_null_and_source_block_recovery",
+   "verdict": "transport",
+   "i4": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED",
+     "gate": "G2"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN",
+     "detail": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN",
+     "gate": "G2"
+    }
+   }
+  },
+  {
+   "id": "r2:t_withheld_duplicate_multiset",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "6ce965f4c57fc741d6e3491205ff0d6cf2738b75ea00d45f8652c05624cd42b4",
+     "standing": "needs_recompute"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: support attribution differs between cases",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "h:h_recovery_and_evidence_null",
+   "verdict": "transport",
+   "i4": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED",
+     "gate": "G2"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN",
+     "detail": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN",
+     "gate": "G2"
+    }
+   }
+  },
+  {
+   "id": "h:h_carrier_present",
+   "verdict": "transport",
+   "i4": {
+    "err": {
+     "code": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+     "detail": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+     "gate": "G2"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: unsupported source namespace",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "h:h_carrier_and_quality_defect",
+   "verdict": "transport",
+   "i4": {
+    "err": {
+     "code": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+     "detail": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+     "gate": "G2"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_NUMERICAL_QUALITY_INVALID",
+     "detail": "SOURCE_NUMERICAL_QUALITY_INVALID",
+     "gate": "G2"
+    }
+   }
+  },
+  {
+   "id": "h:h_carrier_and_recovery",
+   "verdict": "transport",
+   "i4": {
+    "err": {
+     "code": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+     "detail": "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+     "gate": "G2"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN",
+     "detail": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN",
+     "gate": "G2"
+    }
+   }
+  },
+  {
+   "id": "rv120:withheld_dup_case1_only",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "6d5ae2fd33bf01160c46cd84c83294cab2a278e2bfc0b9b7290126fd5320ab77",
+     "standing": "needs_recompute"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: support attribution differs between cases",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:withheld_dup_three_vs_two",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "b1ef2b67d9716e2bceaf9346b7c1da5408a978671f6f442d32afca644af87a67",
+     "standing": "needs_recompute"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: support attribution differs between cases",
+     "gate": "G7"
+    }
+   }
+  }
+ ],
+ "detail_only_changes": [],
+ "stated": 471,
+ "misses_head": []
+}

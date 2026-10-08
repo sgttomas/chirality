@@ -1,0 +1,74 @@
+# RV120 PY jobs: each job log's own stamp lines
+== py_head_census.log
+# rv120 job py_head_census (slot) queued 2026-10-08T09:10:55Z dir=scratch/rv120_rvr/copies/py-head/projects/chirality-piping
+# args: /usr/bin/env OPENPIPESTRESS_CHECKED_JSON_BIN=WT/targets/rv120-pybins/release/openpipestress_jcs_ijson OPENPIPESTRESS_BINARY64_JSON_BIN=WT/targets/rv120-pybins/release/openpipestress_jcs_binary64 OPENPIPESTRESS_UNITS_BIN=WT/targets/rv120-pybins/release/openpipestress_units PYTHONDONTWRITEBYTECODE=1 VENV/bin/python WT/scratch/rv120_rvr/tools/rv113_py_harness.py WT/scratch/rv120_rvr/copies/py-head/projects/chirality-piping census WT/scratch/rv120_rvr/census/py_head.jsonl
+# start 2026-10-08T09:10:55Z
+# end 2026-10-08T09:11:29Z rc=0
+== py_head_probes.log
+# rv120 job py_head_probes (slot) queued 2026-10-08T09:11:29Z dir=scratch/rv120_rvr/copies/py-head/projects/chirality-piping
+# args: /usr/bin/env OPENPIPESTRESS_CHECKED_JSON_BIN=WT/targets/rv120-pybins/release/openpipestress_jcs_ijson OPENPIPESTRESS_BINARY64_JSON_BIN=WT/targets/rv120-pybins/release/openpipestress_jcs_binary64 OPENPIPESTRESS_UNITS_BIN=WT/targets/rv120-pybins/release/openpipestress_units PYTHONDONTWRITEBYTECODE=1 VENV/bin/python WT/scratch/rv120_rvr/tools/rv113_py_harness.py WT/scratch/rv120_rvr/copies/py-head/projects/chirality-piping probes WT/scratch/rv120_rvr/probes/probes_rv120_all.json WT/scratch/rv120_rvr/probes/py_head.jsonl
+# start 2026-10-08T09:11:29Z
+# end 2026-10-08T09:12:18Z rc=0
+== py_head_tests.log
+# rv120 job py_head_tests (slot) queued 2026-10-08T09:16:14Z dir=scratch/rv120_rvr/copies/py-head/projects/chirality-piping
+# args: /usr/bin/env OPENPIPESTRESS_CHECKED_JSON_BIN=WT/targets/rv120-pybins/release/openpipestress_jcs_ijson OPENPIPESTRESS_BINARY64_JSON_BIN=WT/targets/rv120-pybins/release/openpipestress_jcs_binary64 OPENPIPESTRESS_UNITS_BIN=WT/targets/rv120-pybins/release/openpipestress_units PYTHONDONTWRITEBYTECODE=1 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/rv120_rvr/tmp/py_head/basetemp -q -rf --junitxml=WT/scratch/rv120_rvr/suites/py_head_retained.xml tests/test_retained_precision_contract.py tests/test_retained_precision_carriers.py tests/test_retained_precision_schema.py
+# start 2026-10-08T09:16:14Z
+# end 2026-10-08T09:20:39Z rc=0
+== py_i4_census.log
+# rv120 job py_i4_census (slot) queued 2026-10-08T09:09:33Z dir=scratch/rv120_rvr/copies/py-i4/projects/chirality-piping
+# args: /usr/bin/env OPENPIPESTRESS_CHECKED_JSON_BIN=WT/targets/rv120-pybins/release/openpipestress_jcs_ijson OPENPIPESTRESS_BINARY64_JSON_BIN=WT/targets/rv120-pybins/release/openpipestress_jcs_binary64 OPENPIPESTRESS_UNITS_BIN=WT/targets/rv120-pybins/release/openpipestress_units PYTHONDONTWRITEBYTECODE=1 VENV/bin/python WT/scratch/rv120_rvr/tools/rv113_py_harness.py WT/scratch/rv120_rvr/copies/py-i4/projects/chirality-piping census WT/scratch/rv120_rvr/census/py_i4.jsonl
+# start 2026-10-08T09:09:33Z
+# end 2026-10-08T09:10:07Z rc=0
+== py_i4_probes.log
+# rv120 job py_i4_probes (slot) queued 2026-10-08T09:10:07Z dir=scratch/rv120_rvr/copies/py-i4/projects/chirality-piping
+# args: /usr/bin/env OPENPIPESTRESS_CHECKED_JSON_BIN=WT/targets/rv120-pybins/release/openpipestress_jcs_ijson OPENPIPESTRESS_BINARY64_JSON_BIN=WT/targets/rv120-pybins/release/openpipestress_jcs_binary64 OPENPIPESTRESS_UNITS_BIN=WT/targets/rv120-pybins/release/openpipestress_units PYTHONDONTWRITEBYTECODE=1 VENV/bin/python WT/scratch/rv120_rvr/tools/rv113_py_harness.py WT/scratch/rv120_rvr/copies/py-i4/projects/chirality-piping probes WT/scratch/rv120_rvr/probes/probes_rv120_all.json WT/scratch/rv120_rvr/probes/py_i4.jsonl
+# start 2026-10-08T09:10:07Z
+# end 2026-10-08T09:10:54Z rc=0
+== py_i4_tests.log
+# rv120 job py_i4_tests (slot) queued 2026-10-08T09:12:18Z dir=scratch/rv120_rvr/copies/py-i4/projects/chirality-piping
+# args: /usr/bin/env OPENPIPESTRESS_CHECKED_JSON_BIN=WT/targets/rv120-pybins/release/openpipestress_jcs_ijson OPENPIPESTRESS_BINARY64_JSON_BIN=WT/targets/rv120-pybins/release/openpipestress_jcs_binary64 OPENPIPESTRESS_UNITS_BIN=WT/targets/rv120-pybins/release/openpipestress_units PYTHONDONTWRITEBYTECODE=1 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/rv120_rvr/tmp/py_i4/basetemp -q -rf --junitxml=WT/scratch/rv120_rvr/suites/py_i4_retained.xml tests/test_retained_precision_contract.py tests/test_retained_precision_carriers.py tests/test_retained_precision_schema.py
+# start 2026-10-08T09:12:18Z
+# end 2026-10-08T09:16:14Z rc=0
+== pybins_jcs.log
+# rv120 job pybins_jcs (cargo) queued 2026-10-08T09:09:28Z dir=scratch/rv120_rvr/copies/py-i4/projects/chirality-piping/core/serialization/canonical_json
+# target=targets/rv120-pybins args: build --locked --offline --release --features checked-cli --bin openpipestress_jcs_ijson --bin openpipestress_jcs_binary64
+# end 2026-10-08T09:09:32Z rc=0
+== pybins_units.log
+# rv120 job pybins_units (cargo) queued 2026-10-08T09:09:32Z dir=scratch/rv120_rvr/copies/py-i4/projects/chirality-piping/core/units
+# target=targets/rv120-pybins args: build --locked --offline --release --features cli --bin openpipestress_units
+# end 2026-10-08T09:09:33Z rc=0
+== pyx_all.log
+# rv120 job pyx_all (slot) queued 2026-10-08T09:20:44Z dir=scratch/rv120_rvr/copies/py-head/projects/chirality-piping
+# args: /usr/bin/env OPENPIPESTRESS_CHECKED_JSON_BIN=WT/targets/rv120-pybins/release/openpipestress_jcs_ijson OPENPIPESTRESS_BINARY64_JSON_BIN=WT/targets/rv120-pybins/release/openpipestress_jcs_binary64 OPENPIPESTRESS_UNITS_BIN=WT/targets/rv120-pybins/release/openpipestress_units PYTHONDONTWRITEBYTECODE=1 VENV/bin/python WT/scratch/rv120_rvr/tools/rv113_py_harness.py WT/scratch/rv120_rvr/copies/py-head/projects/chirality-piping probes WT/scratch/rv120_rvr/probes/x/probes_x_all.json WT/scratch/rv120_rvr/probes/x/py_head_all.jsonl
+# start 2026-10-08T09:20:45Z
+# end 2026-10-08T09:20:46Z rc=0
+== rsx_arrays.log
+# rv120 job rsx_arrays (slot) queued 2026-10-08T09:20:39Z dir=scratch/rv120_rvr/copies/rs-head/projects/chirality-piping/core/reporting/result_export
+# args: /usr/bin/env RV113_PROBES=WT/scratch/rv120_rvr/probes/x/probes_x_arrays.json RV113_PROBES_OUT=WT/scratch/rv120_rvr/probes/x/rs_head_arrays.jsonl RUST_TEST_THREADS=2 WT/targets/rv120-rs-head/debug/deps/rv113_census-b4b2fbf1bb352d01 rv113_probes --exact
+# start 2026-10-08T09:20:39Z
+# end 2026-10-08T09:20:41Z rc=0
+== rsx_span_2p53.log
+# rv120 job rsx_span_2p53 (slot) queued 2026-10-08T09:20:42Z dir=scratch/rv120_rvr/copies/rs-head/projects/chirality-piping/core/reporting/result_export
+# args: /usr/bin/env RV113_PROBES=WT/scratch/rv120_rvr/probes/x/probes_x_span_2p53.json RV113_PROBES_OUT=WT/scratch/rv120_rvr/probes/x/rs_head_span_2p53.jsonl RUST_TEST_THREADS=2 WT/targets/rv120-rs-head/debug/deps/rv113_census-b4b2fbf1bb352d01 rv113_probes --exact
+# start 2026-10-08T09:20:42Z
+# end 2026-10-08T09:20:42Z rc=0
+== rsx_span_2p60.log
+# rv120 job rsx_span_2p60 (slot) queued 2026-10-08T09:20:42Z dir=scratch/rv120_rvr/copies/rs-head/projects/chirality-piping/core/reporting/result_export
+# args: /usr/bin/env RV113_PROBES=WT/scratch/rv120_rvr/probes/x/probes_x_span_2p60.json RV113_PROBES_OUT=WT/scratch/rv120_rvr/probes/x/rs_head_span_2p60.jsonl RUST_TEST_THREADS=2 WT/targets/rv120-rs-head/debug/deps/rv113_census-b4b2fbf1bb352d01 rv113_probes --exact
+# start 2026-10-08T09:20:42Z
+# end 2026-10-08T09:20:42Z rc=0
+== rsx_span_safe.log
+# rv120 job rsx_span_safe (slot) queued 2026-10-08T09:20:41Z dir=scratch/rv120_rvr/copies/rs-head/projects/chirality-piping/core/reporting/result_export
+# args: /usr/bin/env RV113_PROBES=WT/scratch/rv120_rvr/probes/x/probes_x_span_safe.json RV113_PROBES_OUT=WT/scratch/rv120_rvr/probes/x/rs_head_span_safe.jsonl RUST_TEST_THREADS=2 WT/targets/rv120-rs-head/debug/deps/rv113_census-b4b2fbf1bb352d01 rv113_probes --exact
+# start 2026-10-08T09:20:42Z
+# end 2026-10-08T09:20:42Z rc=0
+== tsx_all.log
+# rv120 job tsx_all (slot) queued 2026-10-08T09:20:42Z dir=scratch/rv120_rvr/copies/ts-head/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV113_PROBES=WT/scratch/rv120_rvr/probes/x/probes_x_all.json RV113_PROBES_OUT=WT/scratch/rv120_rvr/probes/x/ts_head_all.jsonl WT/scratch/rv120_rvr/copies/ts-head/projects/chirality-piping/node_modules/.bin/vitest run src/features/results/rv113Census.test.ts
+# start 2026-10-08T09:20:42Z
+# end 2026-10-08T09:20:44Z rc=0
+== pyx_all.log
+# rv120 job pyx_all (slot) queued 2026-10-08T09:20:44Z dir=scratch/rv120_rvr/copies/py-head/projects/chirality-piping
+# args: /usr/bin/env OPENPIPESTRESS_CHECKED_JSON_BIN=WT/targets/rv120-pybins/release/openpipestress_jcs_ijson OPENPIPESTRESS_BINARY64_JSON_BIN=WT/targets/rv120-pybins/release/openpipestress_jcs_binary64 OPENPIPESTRESS_UNITS_BIN=WT/targets/rv120-pybins/release/openpipestress_units PYTHONDONTWRITEBYTECODE=1 VENV/bin/python WT/scratch/rv120_rvr/tools/rv113_py_harness.py WT/scratch/rv120_rvr/copies/py-head/projects/chirality-piping probes WT/scratch/rv120_rvr/probes/x/probes_x_all.json WT/scratch/rv120_rvr/probes/x/py_head_all.jsonl
+# start 2026-10-08T09:20:45Z
+# end 2026-10-08T09:20:46Z rc=0

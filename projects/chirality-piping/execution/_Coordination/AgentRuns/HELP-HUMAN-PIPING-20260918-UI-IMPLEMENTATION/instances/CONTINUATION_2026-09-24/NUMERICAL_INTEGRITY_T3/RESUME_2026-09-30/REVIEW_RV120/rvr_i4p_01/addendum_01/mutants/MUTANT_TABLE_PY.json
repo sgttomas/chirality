@@ -1,0 +1,181 @@
+[
+ {
+  "id": "NONE",
+  "item": "control",
+  "description": "RV113_MUT unset",
+  "tests_run": 473,
+  "failed": 0,
+  "failed_tests": [],
+  "result": "control"
+ },
+ {
+  "id": "P31",
+  "item": "3 C2",
+  "description": "kernel: a Run present dropped",
+  "tests_run": 473,
+  "failed": 2,
+  "failed_tests": [
+   {
+    "test": "tests.test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic",
+    "kind": "other",
+    "message": "TypeError: 'NoneType' object is not subscriptable"
+   },
+   {
+    "test": "tests.test_retained_precision_contract::test_i4p_ruling5_kernel_reason_without_a_run_is_g5_attempt_in_the_reader",
+    "kind": "assertion",
+    "message": "assert ('G5', 'RETAI...bscriptable\")) == ('G5', 'RETAI...SMATCH', None)\n  \n  At index 1 diff: 'RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH' "
+   }
+  ],
+  "result": "killed (assertion)"
+ },
+ {
+  "id": "P35",
+  "item": "4 header",
+  "description": "every transport base failure at G7 (the old label)",
+  "tests_run": 473,
+  "failed": 5,
+  "failed_tests": [
+   {
+    "test": "tests.test_retained_precision_contract::test_i4p_ruling1_transport_header_takes_rusts_order_and_codes",
+    "kind": "assertion",
+    "message": "AssertionError: assert {'h_carrier_p...VALID')), ...} == {'h_carrier_p...VALID')), ...}\n  \n  Omitting 1 identical items, use -vv to show\n  D"
+   },
+   {
+    "test": "tests.test_retained_precision_carriers::test_rv108_n1_retained_reader_reports_the_base_header_code_at_g7[dense_scrutiny]",
+    "kind": "assertion",
+    "message": "AssertionError: (['numerical_quality', 'status'], [])\nassert ('G7', 'SOURC...LITY_INVALID') == ('G2', 'SOURC...LITY_INVALID')\n  \n  At index "
+   },
+   {
+    "test": "tests.test_retained_precision_carriers::test_rv108_n1_retained_reader_reports_the_base_header_code_at_g7[sparse_interactive]",
+    "kind": "assertion",
+    "message": "AssertionError: (['numerical_quality', 'status'], [])\nassert ('G7', 'SOURC...LITY_INVALID') == ('G2', 'SOURC...LITY_INVALID')\n  \n  At index "
+   },
+   {
+    "test": "tests.test_retained_precision_carriers::test_repair02_transport_reports_the_header_at_g2_and_the_metadata_at_g7[dense_scrutiny]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('G7', 'SOURC...LITY_INVALID') == ('G2', 'SOURC...LITY_INVALID')\n  \n  At index 0 diff: 'G7' != 'G2'\n  Use -v to get m"
+   },
+   {
+    "test": "tests.test_retained_precision_carriers::test_repair02_transport_reports_the_header_at_g2_and_the_metadata_at_g7[sparse_interactive]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('G7', 'SOURC...LITY_INVALID') == ('G2', 'SOURC...LITY_INVALID')\n  \n  At index 0 diff: 'G7' != 'G2'\n  Use -v to get m"
+   }
+  ],
+  "result": "killed (assertion)"
+ },
+ {
+  "id": "P36",
+  "item": "4 header",
+  "description": "every transport base failure at G2 (the metadata check's too)",
+  "tests_run": 473,
+  "failed": 6,
+  "failed_tests": [
+   {
+    "test": "tests.test_retained_precision_contract::test_i4p_ruling1_transport_header_takes_rusts_order_and_codes",
+    "kind": "assertion",
+    "message": "AssertionError: assert {'h_carrier_p...VALID')), ...} == {'h_carrier_p...VALID')), ...}\n  \n  Omitting 5 identical items, use -vv to show\n  D"
+   },
+   {
+    "test": "tests.test_retained_precision_contract::test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets",
+    "kind": "assertion",
+    "message": "AssertionError: assert {'t_withheld_...ompute'), ...} == {'t_withheld_...ompute'), ...}\n  \n  Omitting 2 identical items, use -vv to show\n  D"
+   },
+   {
+    "test": "tests.test_retained_precision_carriers::test_transport_refuses_a_receipt_consistent_base_inconsistent_statement_at_g7[dense_scrutiny]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('G2' == 'G7'\n  \n  - G7\n  + G2)"
+   },
+   {
+    "test": "tests.test_retained_precision_carriers::test_transport_refuses_a_receipt_consistent_base_inconsistent_statement_at_g7[sparse_interactive]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('G2' == 'G7'\n  \n  - G7\n  + G2)"
+   },
+   {
+    "test": "tests.test_retained_precision_carriers::test_repair02_transport_reports_the_header_at_g2_and_the_metadata_at_g7[dense_scrutiny]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('G2', 'SOURC...ENCE_INVALID') == ('G7', 'SOURC...ENCE_INVALID')\n  \n  At index 0 diff: 'G2' != 'G7'\n  Use -v to get m"
+   },
+   {
+    "test": "tests.test_retained_precision_carriers::test_repair02_transport_reports_the_header_at_g2_and_the_metadata_at_g7[sparse_interactive]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('G2', 'SOURC...ENCE_INVALID') == ('G7', 'SOURC...ENCE_INVALID')\n  \n  At index 0 diff: 'G2' != 'G7'\n  Use -v to get m"
+   }
+  ],
+  "result": "killed (assertion)"
+ },
+ {
+  "id": "Q01",
+  "item": "rulings 1, 2 (PY)",
+  "description": "ruling 1: the carrier branch kept on the retained transport header",
+  "tests_run": 473,
+  "failed": 1,
+  "failed_tests": [
+   {
+    "test": "tests.test_retained_precision_contract::test_i4p_ruling1_transport_header_takes_rusts_order_and_codes",
+    "kind": "assertion",
+    "message": "AssertionError: assert {'h_carrier_p...ORTED')), ...} == {'h_carrier_p...VALID')), ...}\n  \n  Omitting 2 identical items, use -vv to show\n  D"
+   }
+  ],
+  "result": "killed (assertion)"
+ },
+ {
+  "id": "Q02",
+  "item": "rulings 1, 2 (PY)",
+  "description": "ruling 1: source_block_recovery no longer checked before contract_evidence",
+  "tests_run": 473,
+  "failed": 1,
+  "failed_tests": [
+   {
+    "test": "tests.test_retained_precision_contract::test_i4p_ruling1_transport_header_takes_rusts_order_and_codes",
+    "kind": "assertion",
+    "message": "AssertionError: assert {'h_carrier_p...VALID')), ...} == {'h_carrier_p...VALID')), ...}\n  \n  Omitting 4 identical items, use -vv to show\n  D"
+   }
+  ],
+  "result": "killed (assertion)"
+ },
+ {
+  "id": "Q03",
+  "item": "rulings 1, 2 (PY)",
+  "description": "ruling 1's scope: the plain preview-physics-1 dispatch also takes Rust's order",
+  "tests_run": 473,
+  "failed": 1,
+  "failed_tests": [
+   {
+    "test": "tests.test_retained_precision_contract::test_i4p_ruling1_transport_header_takes_rusts_order_and_codes",
+    "kind": "assertion",
+    "message": "AssertionError: assert {'h_carrier_p...VALID')), ...} == {'h_carrier_p...VALID')), ...}\n  \n  Differing items:\n  {'h_carrier_and_quality_defe"
+   }
+  ],
+  "result": "killed (assertion)"
+ },
+ {
+  "id": "Q04",
+  "item": "rulings 1, 2 (PY)",
+  "description": "ruling 2: transport compares withheld records as sets again",
+  "tests_run": 473,
+  "failed": 1,
+  "failed_tests": [
+   {
+    "test": "tests.test_retained_precision_contract::test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets",
+    "kind": "assertion",
+    "message": "AssertionError: assert {'t_withheld_...ompute'), ...} == {'t_withheld_...ompute'), ...}\n  \n  Omitting 3 identical items, use -vv to show\n  D"
+   }
+  ],
+  "result": "killed (assertion)"
+ },
+ {
+  "id": "Q05",
+  "item": "rulings 1, 2 (PY)",
+  "description": "ruling 2: multiset by sorted(set(...)) (multiplicity lost)",
+  "tests_run": 473,
+  "failed": 1,
+  "failed_tests": [
+   {
+    "test": "tests.test_retained_precision_contract::test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets",
+    "kind": "assertion",
+    "message": "AssertionError: assert {'t_withheld_...ompute'), ...} == {'t_withheld_...ompute'), ...}\n  \n  Omitting 3 identical items, use -vv to show\n  D"
+   }
+  ],
+  "result": "killed (assertion)"
+ }
+]

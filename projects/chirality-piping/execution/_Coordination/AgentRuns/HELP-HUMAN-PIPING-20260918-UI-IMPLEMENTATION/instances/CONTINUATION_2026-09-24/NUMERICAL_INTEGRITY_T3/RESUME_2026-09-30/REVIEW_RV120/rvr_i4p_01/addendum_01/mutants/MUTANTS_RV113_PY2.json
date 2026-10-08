@@ -1,0 +1,202 @@
+[
+ {
+  "id": "P01",
+  "item": "1 (f)",
+  "description": "G3: a source's index at its position dropped"
+ },
+ {
+  "id": "P02",
+  "item": "1 (f)",
+  "description": "G3: the source owner's kind dropped (I91's F-src-kind)"
+ },
+ {
+  "id": "P03",
+  "item": "1 (f)",
+  "description": "G3: the owner's case index range dropped (an IndexError then reaches the fallback)"
+ },
+ {
+  "id": "P04",
+  "item": "1 (f)",
+  "description": "G3: the owner's case id dropped"
+ },
+ {
+  "id": "P05",
+  "item": "1 (f)",
+  "description": "G3: a material basis's index dropped"
+ },
+ {
+  "id": "P06",
+  "item": "1 (f)",
+  "description": "G3: case_indices unique dropped"
+ },
+ {
+  "id": "P07",
+  "item": "1 (f)",
+  "description": "G3: case_indices in range dropped"
+ },
+ {
+  "id": "P08",
+  "item": "1 G5",
+  "description": "G5 ordinary: the ordinary attempt's basis reference dropped"
+ },
+ {
+  "id": "P09",
+  "item": "1 G5",
+  "description": "G5 ordinary: the basis need only resolve"
+ },
+ {
+  "id": "P10",
+  "item": "2 (g)",
+  "description": "G8: reference_configurations check dropped"
+ },
+ {
+  "id": "P11",
+  "item": "2 (g)",
+  "description": "G8: pressure_contract back to the falsiness test"
+ },
+ {
+  "id": "P12",
+  "item": "2 (g)",
+  "description": "G8: combinations back to `not model.get(...)`"
+ },
+ {
+  "id": "P13",
+  "item": "2 (g)",
+  "description": "G8: components back to `not model.get(...)`"
+ },
+ {
+  "id": "P14",
+  "item": "2 (g)",
+  "description": "G8: combinations and components may be null"
+ },
+ {
+  "id": "P15",
+  "item": "3 C2",
+  "description": "the whole C2 table dropped"
+ },
+ {
+  "id": "P16",
+  "item": "3 C2",
+  "description": "source_error: phase dropped"
+ },
+ {
+  "id": "P17",
+  "item": "3 C2",
+  "description": "source_error: code dropped"
+ },
+ {
+  "id": "P18",
+  "item": "3 C2",
+  "description": "source_error: no Run dropped"
+ },
+ {
+  "id": "P19",
+  "item": "3 C2",
+  "description": "source_error: the decline's error equality dropped"
+ },
+ {
+  "id": "P20",
+  "item": "3 C2",
+  "description": "receipt_failure: phase dropped"
+ },
+ {
+  "id": "P21",
+  "item": "3 C2",
+  "description": "receipt_failure: code set dropped"
+ },
+ {
+  "id": "P22",
+  "item": "3 C2",
+  "description": "receipt_failure: invocation_not_representable removed from the set"
+ },
+ {
+  "id": "P23",
+  "item": "3 C2",
+  "description": "facade_failure: phase dropped"
+ },
+ {
+  "id": "P24",
+  "item": "3 C2",
+  "description": "facade_failure: code dropped"
+ },
+ {
+  "id": "P25",
+  "item": "3 C2",
+  "description": "facade_failure: selected Run dropped"
+ },
+ {
+  "id": "P26",
+  "item": "3 C2",
+  "description": "facade_failure: owner_ref dropped"
+ },
+ {
+  "id": "P27",
+  "item": "3 C2",
+  "description": "unavailable_precondition: phase dropped"
+ },
+ {
+  "id": "P28",
+  "item": "3 C2",
+  "description": "unavailable_precondition: no Run dropped"
+ },
+ {
+  "id": "P29",
+  "item": "3 C2",
+  "description": "unavailable_precondition: keying replaced by the set of four codes"
+ },
+ {
+  "id": "P30",
+  "item": "3 C2",
+  "description": "kernel: phase dropped"
+ },
+ {
+  "id": "P31",
+  "item": "3 C2",
+  "description": "kernel: a Run present dropped"
+ },
+ {
+  "id": "P32",
+  "item": "3 C2",
+  "description": "kernel: code dropped"
+ },
+ {
+  "id": "P33",
+  "item": "3 C2",
+  "description": "kernel: cause equal to the terminal's reason dropped"
+ },
+ {
+  "id": "P34",
+  "item": "3 C2",
+  "description": "the table also applied to prepared_product_failure causes"
+ },
+ {
+  "id": "P35",
+  "item": "4 header",
+  "description": "every transport base failure at G7 (the old label)"
+ },
+ {
+  "id": "P36",
+  "item": "4 header",
+  "description": "every transport base failure at G2 (the metadata check's too)"
+ },
+ {
+  "id": "P37",
+  "item": "S-4",
+  "description": "Q17: not_required without its product_attempt_ref null conjunct"
+ },
+ {
+  "id": "P38",
+  "item": "N-2",
+  "description": "(4b): the case's Run absent dropped"
+ },
+ {
+  "id": "P39",
+  "item": "N-2",
+  "description": "(4b): the case's status unavailable dropped"
+ },
+ {
+  "id": "P40",
+  "item": "N-2",
+  "description": "(4b): the cause naming this attempt dropped"
+ }
+]

@@ -4,7 +4,7 @@ Read `R/BRIEFS/B1_COMMON.md` first. **The specification is PLAN_v2 §2.5** (`R/I
 
 ## Where
 
-- **`WT/b1` at I4′,** `{I4′ commit}`, where SP, SA, the three readers' rounds (I4, `30f3d1b24a`) and the reader follow-up round (I100 and I101, confirmed by RV120) are merged. ROOT gives I4′'s commit in its message.
+- **`WT/b1` at I4′,** `8d46b045e2`, where SP, SA, the three readers' rounds (I4, `30f3d1b24a`) and the reader follow-up round (I100 and I101, confirmed by RV120) are merged. ROOT gives I4′'s commit in its message.
 - **CORPUS** (`P/fixtures/results/retained_precision_cases.json`) is append-only after B6's 07m. **Its 07m entries do not change.**
 
 ## 07n's content

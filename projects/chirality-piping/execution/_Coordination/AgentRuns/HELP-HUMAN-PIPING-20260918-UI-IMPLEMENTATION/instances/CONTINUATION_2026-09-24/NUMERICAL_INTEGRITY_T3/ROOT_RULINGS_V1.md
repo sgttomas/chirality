@@ -15879,3 +15879,28 @@ The record is `IMPLEMENTATION/B1_I4/` (RECORD.md, SHA256SUMS, sanitized logs). `
 3. **ROOT's records stay short:** a ruling where a position changes, and returns kept brief. The merge gates for product code (independent review, CI, DEC-025, the full suite) are unchanged.
 
 **Implementers:** I100, I101 and I102, the cap of three. **The next unused** are **I103 and RV121** (RV120 is reserved).
+
+## I4′ made at `8d46b045e2`; RV120 confirms all three readers; lane K passed by RV121; lane A dispatched (ROOT, 2026-10-08 UTC)
+
+**I4′:** `b1-r` `e879118348`, `b1-p` `52d83da275` and `b1-t` `819e44f63e` are merged into `b1` with `--no-ff`, as **`8d46b045e2`** (9 files over I4). The lanes are file-disjoint.
+- **RV120 CONFIRMED all three** (`R/REVIEW_RV120/rvr_i4p_01/`: REVIEW `5397c4f3…`, ADDENDUM_01 `dec198e8…`).
+  - TS and PY agree on all 1,305 probe verdicts and all 1,017 07m verdicts.
+  - RS differs from them only by its declared raw G7 codes.
+  - Transport agrees everywhere.
+- SC's three-reader run on I4′ is the integration check.
+
+**Notes ruled:**
+- **A-N1 and N-1:** 07n pins gate and code on transport metadata refusals. Detail texts are declared per reader.
+- **A-N2:** the unsafe integral `span_index` on transport (RS G7, TS G1, PY admits) and PY's 16,384-item array bound stay declared and unpinned.
+- **N-2:** a negative or zero bound is admitted. It goes to PR-B1's complete-diff reviewer.
+
+**Lane K:** RV121 (RV-K) passed B3-K (0/0/0) and B2-K (0/2/2) at `ef51a2d295` (`R/REVIEW_RV121/b2_k_01/`, `7bc01d1c…`).
+- RK-1 to RK-4 are test-only, and go to I102.
+- KD's "C1–C5 certify every row" is not met on the specimen because of DEF-O's availability limit (SQ measures it).
+- The two "no reachable specimen" claims are accepted.
+
+**Lane A** forks from I4′ (`WT/b2-a`, `codex/piping-t3-b2-a-20261008`) as I103, by `BRIEFS/B2_A_LANE.md`: J1's statics package with the interim registration, then B3a-A, B2-A and B3b-A (provisional on R6b).
+
+**ROOT's slip, disclosed:** commit `9e8e41d95d` went through with one unread screen hit. On reading, it was RV121's screening script spelling the generic laptop-model word as a pattern; it names no machine, and the private-term check passed. ROOT's commit commands now chain on the screen's exit status.
+
+**IDs:** I103 is used. The next unused are **I104 and RV122**.
