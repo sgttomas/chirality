@@ -391,7 +391,6 @@ pub struct AxialEffectStationResultant {
 #[derive(Debug, Clone, PartialEq)]
 pub struct ThermalPressureAxialEffectsResult {
     pub thermal_axial_force: f64,
-    pub pressure_thrust_force: f64,
     pub total_axial_effect_force: f64,
     pub equivalent_node_i_axial_load: f64,
     pub equivalent_node_j_axial_load: f64,
@@ -406,7 +405,6 @@ pub struct ThermalPressureAxialEffectsResult {
 #[derive(Debug, Clone, PartialEq)]
 pub struct CombinedLoadAxialEffectsResult {
     pub thermal_axial_force: f64,
-    pub pressure_thrust_force: f64,
     pub total_axial_effect_force: f64,
     pub assembled_node_0_ux_force: f64,
     pub assembled_node_0_uy_force: f64,
@@ -1682,7 +1680,6 @@ pub fn solve_fixed_fixed_thermal_restraint_force() -> Result<f64, String> {
         Some(FIXED_FIXED_ELASTIC_MODULUS),
         Some(FIXED_FIXED_AREA),
         Some(FIXED_FIXED_ALPHA),
-        None,
     )];
     let prepared = prepare_straight_pipe_axial_effects(1, &loads, &properties);
     if prepared.is_blocked() {
@@ -1845,12 +1842,11 @@ pub fn tp_phys_008_thermal_pressure_axial_effects_fixture() -> MechanicsBenchmar
     MechanicsBenchmark {
         fixture_id: "MECH-TP-PHYS-008-THERMAL-PRESSURE-AXIAL-EFFECTS",
         family: BenchmarkFamily::ThermalGrowth,
-        description: "Invented fixed-fixed straight-pipe axial-effect fixture combining thermal restraint and closed-end pressure thrust.",
+        description: "Invented fixed-fixed straight-pipe axial-effect fixture with thermal restraint; its former closed-end pressure-thrust half was removed with the legacy pressure contract (U3).",
         assumptions: &[
             "single straight two-node pipe aligned to the global X axis",
             "both end translations are fixed for the axial-effect recovery check",
             "uniform thermal effect uses F = E A alpha DeltaT",
-            "closed-end pressure thrust uses F = p A_internal",
             "axial-effect station resultants are mechanics quantities only, with no rule checks or allowables",
         ],
         provenance: BenchmarkProvenance::public_original(
@@ -1861,13 +1857,6 @@ pub fn tp_phys_008_thermal_pressure_axial_effects_fixture() -> MechanicsBenchmar
             ExpectedValue {
                 name: "thermal_axial_force",
                 value: result.thermal_axial_force,
-                unit: "N",
-                dimension: "force",
-                tolerance_policy: None,
-            },
-            ExpectedValue {
-                name: "pressure_thrust_force",
-                value: result.pressure_thrust_force,
                 unit: "N",
                 dimension: "force",
                 tolerance_policy: None,
@@ -1925,10 +1914,10 @@ pub fn tp_phys_009_combined_load_axial_effects_fixture() -> MechanicsBenchmark {
     MechanicsBenchmark {
         fixture_id: "MECH-TP-PHYS-009-COMBINED-LOAD-AXIAL-EFFECTS",
         family: BenchmarkFamily::LoadToResultantIntegration,
-        description: "Invented straight-pipe fixture combining explicit distributed user-load assembly with prepared thermal and pressure axial effects.",
+        description: "Invented straight-pipe fixture combining explicit distributed user-load assembly with a prepared thermal axial effect; its former pressure-thrust half was removed with the legacy pressure contract (U3).",
         assumptions: &[
             "single straight two-node pipe aligned to the global X axis",
-            "primitive thermal and pressure loads are prepared as straight-pipe axial effects before user-load assembly",
+            "the primitive thermal load is prepared as a straight-pipe axial effect before user-load assembly",
             "one local/global Y distributed user load acts over span fractions 0.25 to 0.75",
             "node 0 is fixed and node 1 axial translation is restrained so axial effects remain visible in resultants",
             "combined resultants are mechanics quantities only, with no rule checks or allowables",
@@ -1941,13 +1930,6 @@ pub fn tp_phys_009_combined_load_axial_effects_fixture() -> MechanicsBenchmark {
             ExpectedValue {
                 name: "thermal_axial_force",
                 value: result.thermal_axial_force,
-                unit: "N",
-                dimension: "force",
-                tolerance_policy: None,
-            },
-            ExpectedValue {
-                name: "pressure_thrust_force",
-                value: result.pressure_thrust_force,
                 unit: "N",
                 dimension: "force",
                 tolerance_policy: None,
@@ -4706,9 +4688,7 @@ pub fn solve_tp_phys_008_thermal_pressure_axial_effects(
 
     let thermal_axial_force =
         axial_force_by_load_id(&prepared.axial_effects, "tp-phys-008-thermal-restraint")?;
-    let pressure_thrust_force =
-        axial_force_by_load_id(&prepared.axial_effects, "tp-phys-008-pressure-thrust")?;
-    let total_axial_effect_force = thermal_axial_force + pressure_thrust_force;
+    let total_axial_effect_force = thermal_axial_force;
     let axial_effects = prepared
         .axial_effects
         .iter()
@@ -4759,7 +4739,6 @@ pub fn solve_tp_phys_008_thermal_pressure_axial_effects(
 
     Ok(ThermalPressureAxialEffectsResult {
         thermal_axial_force,
-        pressure_thrust_force,
         total_axial_effect_force,
         equivalent_node_i_axial_load: equivalent_global[UX],
         equivalent_node_j_axial_load: equivalent_global[DOF_PER_NODE + UX],
@@ -4798,9 +4777,7 @@ pub fn solve_tp_phys_009_combined_load_axial_effects(
         &prepared_axial.axial_effects,
         "tp-phys-009-thermal-restraint",
     )?;
-    let pressure_thrust_force =
-        axial_force_by_load_id(&prepared_axial.axial_effects, "tp-phys-009-pressure-thrust")?;
-    let total_axial_effect_force = thermal_axial_force + pressure_thrust_force;
+    let total_axial_effect_force = thermal_axial_force;
     let axial_effects = prepared_axial
         .axial_effects
         .iter()
@@ -4925,7 +4902,6 @@ pub fn solve_tp_phys_009_combined_load_axial_effects(
 
     Ok(CombinedLoadAxialEffectsResult {
         thermal_axial_force,
-        pressure_thrust_force,
         total_axial_effect_force,
         assembled_node_0_ux_force: assembly.global_load_vector[UX],
         assembled_node_0_uy_force: assembly.global_load_vector[UY],
@@ -5483,7 +5459,6 @@ pub fn validate_tp_phys_008_thermal_pressure_axial_effects() -> bool {
     let expected_sweep = expected_tp_phys_008_axial_station_sweep();
     [
         result.thermal_axial_force,
-        result.pressure_thrust_force,
         result.total_axial_effect_force,
         result.equivalent_node_i_axial_load,
         result.equivalent_node_j_axial_load,
@@ -5496,15 +5471,14 @@ pub fn validate_tp_phys_008_thermal_pressure_axial_effects() -> bool {
     .into_iter()
     .all(f64::is_finite)
         && (result.thermal_axial_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
-        && (result.pressure_thrust_force - 9.0).abs() <= INTERNAL_ASSERTION_EPSILON
-        && (result.total_axial_effect_force - 12.0).abs() <= INTERNAL_ASSERTION_EPSILON
-        && (result.equivalent_node_i_axial_load + 12.0).abs() <= INTERNAL_ASSERTION_EPSILON
-        && (result.equivalent_node_j_axial_load - 12.0).abs() <= INTERNAL_ASSERTION_EPSILON
-        && (result.recovered_local_i_axial_force - 12.0).abs() <= INTERNAL_ASSERTION_EPSILON
-        && (result.recovered_local_j_axial_force + 12.0).abs() <= INTERNAL_ASSERTION_EPSILON
-        && (result.end_i_axial_force - 12.0).abs() <= INTERNAL_ASSERTION_EPSILON
-        && (result.end_j_axial_force + 12.0).abs() <= INTERNAL_ASSERTION_EPSILON
-        && (result.midspan_axial_force - 12.0).abs() <= INTERNAL_ASSERTION_EPSILON
+        && (result.total_axial_effect_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
+        && (result.equivalent_node_i_axial_load + 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
+        && (result.equivalent_node_j_axial_load - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
+        && (result.recovered_local_i_axial_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
+        && (result.recovered_local_j_axial_force + 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
+        && (result.end_i_axial_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
+        && (result.end_j_axial_force + 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
+        && (result.midspan_axial_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
         && result.station_sweep.len() == expected_sweep.len()
         && result
             .station_sweep
@@ -5532,7 +5506,6 @@ pub fn validate_tp_phys_009_combined_load_axial_effects() -> bool {
     let expected_sweep = expected_tp_phys_009_combined_station_sweep();
     [
         result.thermal_axial_force,
-        result.pressure_thrust_force,
         result.total_axial_effect_force,
         result.assembled_node_0_ux_force,
         result.assembled_node_0_uy_force,
@@ -5553,25 +5526,24 @@ pub fn validate_tp_phys_009_combined_load_axial_effects() -> bool {
     .into_iter()
     .all(f64::is_finite)
         && (result.thermal_axial_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
-        && (result.pressure_thrust_force - 9.0).abs() <= INTERNAL_ASSERTION_EPSILON
-        && (result.total_axial_effect_force - 12.0).abs() <= INTERNAL_ASSERTION_EPSILON
-        && (result.assembled_node_0_ux_force + 12.0).abs() <= INTERNAL_ASSERTION_EPSILON
+        && (result.total_axial_effect_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
+        && (result.assembled_node_0_ux_force + 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
         && (result.assembled_node_0_uy_force + 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
         && (result.assembled_node_0_rz_moment + 4.125).abs() <= INTERNAL_ASSERTION_EPSILON
-        && (result.assembled_node_1_ux_force - 12.0).abs() <= INTERNAL_ASSERTION_EPSILON
+        && (result.assembled_node_1_ux_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
         && (result.assembled_node_1_uy_force + 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
         && (result.assembled_node_1_rz_moment - 4.125).abs() <= INTERNAL_ASSERTION_EPSILON
         && result.node_1_ux_displacement.abs() <= INTERNAL_ASSERTION_EPSILON
         && (result.node_1_uy_displacement + 0.070875).abs() <= INTERNAL_ASSERTION_EPSILON
         && (result.node_1_rz_rotation + 0.014625).abs() <= INTERNAL_ASSERTION_EPSILON
-        && (result.end_i_axial_force - 12.0).abs() <= INTERNAL_ASSERTION_EPSILON
+        && (result.end_i_axial_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
         && (result.end_i_shear_y - 6.0).abs() <= INTERNAL_ASSERTION_EPSILON
         && (result.end_i_bending_z - 18.0).abs() <= INTERNAL_ASSERTION_EPSILON
-        && (result.midspan_axial_force - 12.0).abs() <= INTERNAL_ASSERTION_EPSILON
+        && (result.midspan_axial_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
         && (result.midspan_shear_y - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON
         && (result.midspan_bending_z - 2.25).abs() <= INTERNAL_ASSERTION_EPSILON
         && result.distributed_recovery_hook_count == 1
-        && result.axial_effect_recovery_hook_count == 2
+        && result.axial_effect_recovery_hook_count == 1
         && result.station_sweep.len() == expected_sweep.len()
         && result
             .station_sweep
@@ -5708,11 +5680,11 @@ fn tp_phys_009_pipe() -> Result<StraightPipeElement, String> {
 }
 
 fn tp_phys_008_axial_effect_properties() -> ElementAxialEffectProperties {
-    ElementAxialEffectProperties::new(0, Some(1000.0), Some(4.0), Some(1.0e-5), Some(0.1))
+    ElementAxialEffectProperties::new(0, Some(1000.0), Some(4.0), Some(1.0e-5))
 }
 
 fn tp_phys_009_axial_effect_properties() -> ElementAxialEffectProperties {
-    ElementAxialEffectProperties::new(0, Some(1000.0), Some(4.0), Some(1.0e-5), Some(0.1))
+    ElementAxialEffectProperties::new(0, Some(1000.0), Some(4.0), Some(1.0e-5))
 }
 
 fn tp_phys_008_axial_effect_loads() -> Vec<PrimitiveLoad> {
@@ -5724,13 +5696,6 @@ fn tp_phys_008_axial_effect_loads() -> Vec<PrimitiveLoad> {
             LoadDirection::GlobalX,
             LoadQuantity::new(75.0, LoadDimension::TemperatureChange)
                 .expect("fixture temperature change is finite"),
-        ),
-        PrimitiveLoad::uniform_element_load(
-            "tp-phys-008-pressure-thrust",
-            PrimitiveLoadCategory::Pressure,
-            0,
-            LoadDirection::GlobalX,
-            LoadQuantity::new(90.0, LoadDimension::Pressure).expect("fixture pressure is finite"),
         ),
     ]
 }
@@ -5744,13 +5709,6 @@ fn tp_phys_009_axial_effect_loads() -> Vec<PrimitiveLoad> {
             LoadDirection::GlobalX,
             LoadQuantity::new(75.0, LoadDimension::TemperatureChange)
                 .expect("fixture temperature change is finite"),
-        ),
-        PrimitiveLoad::uniform_element_load(
-            "tp-phys-009-pressure-thrust",
-            PrimitiveLoadCategory::Pressure,
-            0,
-            LoadDirection::GlobalX,
-            LoadQuantity::new(90.0, LoadDimension::Pressure).expect("fixture pressure is finite"),
         ),
     ]
 }
@@ -6480,19 +6438,19 @@ fn expected_tp_phys_008_axial_station_sweep() -> [AxialEffectStationResultant; 3
     [
         AxialEffectStationResultant {
             station_fraction: 1.0,
-            axial_force: 12.0,
+            axial_force: 3.0,
             shear_y: 0.0,
             bending_z: 0.0,
         },
         AxialEffectStationResultant {
             station_fraction: 0.0,
-            axial_force: 12.0,
+            axial_force: 3.0,
             shear_y: 0.0,
             bending_z: 0.0,
         },
         AxialEffectStationResultant {
             station_fraction: 0.5,
-            axial_force: 12.0,
+            axial_force: 3.0,
             shear_y: 0.0,
             bending_z: 0.0,
         },
@@ -6503,25 +6461,25 @@ fn expected_tp_phys_009_combined_station_sweep() -> [AxialEffectStationResultant
     [
         AxialEffectStationResultant {
             station_fraction: 0.25,
-            axial_force: 12.0,
+            axial_force: 3.0,
             shear_y: 6.0,
             bending_z: 9.0,
         },
         AxialEffectStationResultant {
             station_fraction: 0.5,
-            axial_force: 12.0,
+            axial_force: 3.0,
             shear_y: 3.0,
             bending_z: 2.25,
         },
         AxialEffectStationResultant {
             station_fraction: 0.75,
-            axial_force: 12.0,
+            axial_force: 3.0,
             shear_y: 0.0,
             bending_z: 0.0,
         },
         AxialEffectStationResultant {
             station_fraction: 1.0,
-            axial_force: 12.0,
+            axial_force: 3.0,
             shear_y: 0.0,
             bending_z: 0.0,
         },
