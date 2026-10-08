@@ -624,7 +624,8 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 **Assignment IDs.** Dispatched 2026-10-06/08: I68–I101, RV97–RV99 and RV101–RV119 (RV100 was 2026-10-05's). I100 and I101 are this session's (2026-10-08); RV120 is reserved for their confirmation and SC's review.
 - **At the 2026-10-08 handoff:** RV113's three confirmations are verified (RR "#1114 merged; …"); its SR-PY addendum is held while RV113 redacts its own sanitizer before first commit (in the previous session). PR #1118 (the private-term check) is under an independent review in the previous session. #1114 is merged.
 - **Agents of earlier sessions are not resumable from a new session.** Their IDs stay used; dispatch fresh agents with the next IDs.
-- **The next unused** are **I110 and RV126**.
+- **WORKING_ITEMS (Agent 1) allocates from I110 and RV126** (2026-10-08) and logs integration events in `T/WORKING_ITEMS_LOG.md`. Dispatched: I110 (U3's pressure inventory, `BRIEFS/U3_PRESSURE_RETIRE_01.md`), I111 (U3's M07 premise report for ROOT, `BRIEFS/U3_M07_PREMISE_01.md`); I109 continued for PR-N's re-pins (`BRIEFS/PR_N_REPIN_01.md`).
+- **The next unused** are **I112 and RV126**.
 
 **T3 rulings in force** (section headings in `ROOT_RULINGS_V1.md`):
 - **T3's gate set and Git rules for product and records PRs, and verifying returns:** "T3's gate set and Git rules, consolidated after the handoff was made ephemeral";
