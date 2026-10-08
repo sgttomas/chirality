@@ -15,7 +15,8 @@ m2_gate:
     2026-10-08: "set up a test or CI to catch future instances of my Mac's
     network name." The machine's names had reached Piping T3 run records in
     plain, split and character-class forms and in pytest junit hostname
-    attributes (T3 errata E-16, E-18 and E-19). This authorizes the new
+    attributes (Piping T3 errata E-16 and E-18 in that track's ROOT_RULINGS_V1.md, and E-19's
+    record IMPLEMENTATION/REDACTION_E19/ in PR #1120). This authorizes the new
     validator, its maintained tests, one governance-harness step that runs it
     with the PRIVATE_TERMS repository secret, and the regenerated
     export-manifest rows for those three files. This manifest records the gate
@@ -32,18 +33,23 @@ m6_notice:
   disposition: none-required
   routed_to: []
   rationale: >-
-    The check screens only what a change adds: added files, the added lines of
-    modified text files, modified .gz and .zip files whole (decompressed),
-    changed paths, and the new commits' identities and messages. An existing
-    file can newly fail only when a change modifies it. Five T3 junit .gz files
-    with a real hostname attribute are being redacted by the owner's cleanup
-    (PR #1120); one junit file outside run records
+    The check screens only what a change adds. That is every added file whole
+    (a renamed or moved file counts as added, since renames are not followed),
+    the added lines of modified text files, and modified binary, .gz and .zip
+    files whole (raw bytes, and .gz and .zip contents decompressed). It also
+    screens changed paths and the new commits' identities and messages. For
+    pull requests the commit range starts at the checked-out merge commit's
+    first parent, so commits already on main are not re-screened; for pushes it
+    is the pushed range. An existing file can newly fail only when a change
+    modifies, renames or moves it. Five T3 junit .gz files with a real hostname
+    attribute are being redacted by the owner's cleanup (PR #1120). One junit
+    file outside run records
     (execution/_Evaluation/SOW-STAGE2-EXEC-20260712-01/C2F-R2/reproduction/checklist-targeted.xml)
-    still carries a generic factory host name, and blocks only if modified. On
-    pushes and same-repository pull requests the step requires the
-    PRIVATE_TERMS secret and fails if it is missing; fork pull requests receive
-    no secrets and run the junit rule only. No loop's instructions, accepted
-    basis or contract mirror changes.
+    still carries a generic factory host name, and blocks only if a change
+    modifies or moves it. On pushes and same-repository pull requests the step
+    requires the PRIVATE_TERMS secret and fails if it is missing; fork pull
+    requests receive no secrets and run the junit rule only. No loop's
+    instructions, accepted basis or contract mirror changes.
 scope_limits:
   - >-
     D-GOV-45 item 5 lists the run-record check's rules. This is a separate

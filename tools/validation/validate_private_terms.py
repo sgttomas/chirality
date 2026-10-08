@@ -155,13 +155,23 @@ def units(status: str, path: str, args: argparse.Namespace) -> list[tuple[str, l
             result.append(('decompressed', numbered(gzip.decompress(data))))
         except (OSError, EOFError, zlib.error):
             result.append(('not decompressible', []))
+            try:  # screen whatever a truncated or damaged stream still yields
+                partial = zlib.decompressobj(31).decompress(data)
+                if partial:
+                    result.append(('partly decompressed', numbered(partial)))
+            except zlib.error:
+                pass
     if lower.endswith('.zip'):
         try:
             with zipfile.ZipFile(io.BytesIO(data)) as archive:
                 for info in archive.infolist():
-                    if info.file_size <= MAX_ZIP_MEMBER and not info.is_dir():
-                        result.append((f'zip member {len(result) + 1}', numbered(archive.read(info))))
-        except (zipfile.BadZipFile, OSError, EOFError, zlib.error, RuntimeError, NotImplementedError):
+                    if info.is_dir():
+                        continue
+                    if info.file_size > MAX_ZIP_MEMBER:
+                        result.append(('a zip member too large to expand', []))
+                        continue
+                    result.append((f'zip member {len(result) + 1}', numbered(archive.read(info))))
+        except (zipfile.BadZipFile, OSError, EOFError, zlib.error, RuntimeError, NotImplementedError, UnicodeDecodeError):
             result.append(('not a readable zip', []))
     if status == 'M' and not lower.endswith(('.gz', '.zip')) and b'\0' not in data[:8192]:
         result.append(('', added_lines(path, args)))
@@ -199,18 +209,17 @@ def metadata(args: argparse.Namespace, patterns: list[tuple[int, re.Pattern[byte
                 if pattern.search(ident):
                     results.append(f'the next commit\'s {var[4:-6].lower()} identity: private term {index} (any form)')
         return results
-    log = git('log', '--no-show-signature', '--format=%H%x00%an%x00%ae%x00%cn%x00%ce%x00%B%x1e',
-              f'{args.base}..{args.head}')
-    for record in log.split(b'\x1e'):
-        fields = record.strip(b'\n').split(b'\0')
-        if len(fields) < 6:
-            continue
-        sha = fields[0][:10].decode('ascii', 'replace')
-        for label, value in zip(('author name', 'author email', 'committer name', 'committer email', 'message'),
-                                fields[1:]):
-            for index, pattern in patterns:
-                if pattern.search(value):
-                    results.append(f'commit {sha} {label}: private term {index} (any form)')
+    for sha in git('rev-list', f'{args.base}..{args.head}').split():
+        record = git('log', '-1', '--no-show-signature', '--format=%an%x00%ae%x00%cn%x00%ce%x00%B', sha.decode())
+        fields = record.split(b'\0', 4)
+        short = sha[:10].decode('ascii', 'replace')
+        labelled = list(zip(('author name', 'author email', 'committer name', 'committer email', 'message'), fields))
+        for index, pattern in patterns:
+            hits = [label for label, value in labelled if pattern.search(value)]
+            if not hits and pattern.search(record):
+                hits = ['metadata']
+            for label in hits:
+                results.append(f'commit {short} {label}: private term {index} (any form)')
     return results
 
 
@@ -244,7 +253,7 @@ def main() -> int:
                 if pattern.search(path.encode('utf-8', 'surrogateescape')):
                     results.append(f'path {shown}: private term {index} (any form)')
             for label, lines in units(status, path, args):
-                if label in ('not decompressible', 'not a readable zip'):
+                if label in ('not decompressible', 'not a readable zip', 'a zip member too large to expand'):
                     print(f'NOTE: {shown}: {label}; its raw bytes are screened')
                     continue
                 results += scan(lines, patterns, f'{shown} ({label})' if label else shown)

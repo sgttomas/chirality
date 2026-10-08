@@ -230,3 +230,35 @@ def test_short_terms_are_not_screened(repo):
     result = run(repo, {'docs/notes.md': 'a mac and a pc\n'}, terms=('mac', 'pc'))
     assert result.returncode == 0
     assert '2 term(s) shorter than 6' in result.stdout
+
+
+def test_truncated_gz_is_screened_as_far_as_it_decompresses(repo):
+    whole = gzip.compress((f'{TERM}\n' + 'filler line\n' * 2000).encode())
+    result = run(repo, {RUN + 'cut.xml.gz': whole[: len(whole) // 2]})
+    assert result.returncode == 1
+    assert 'not decompressible' in result.stdout and '(partly decompressed):1: private term 1' in result.stdout
+
+
+def test_zip_with_an_undecodable_member_name_does_not_crash(repo):
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, 'w') as archive:
+        archive.writestr('member.txt', 'clean\n')
+    data = buffer.getvalue().replace(b'member.txt', b'membe\xff.txt')
+    # mark the names as UTF-8 (general-purpose flag bit 11) in both headers
+    data = data.replace(b'PK\x03\x04\x14\x00\x00\x00', b'PK\x03\x04\x14\x00\x00\x08')
+    data = data.replace(b'PK\x01\x02\x14\x03\x14\x00\x00\x00', b'PK\x01\x02\x14\x03\x14\x00\x00\x08')
+    result = run(repo, {RUN + 'odd.zip': data + TERM.encode()})
+    assert 'Traceback' not in result.stderr
+    assert result.returncode == 1 and 'odd.zip' in result.stdout
+
+
+def test_commit_message_after_a_record_separator_is_screened(repo):
+    root, git, base = repo
+    write(root, {'docs/notes.md': 'clean\n'})
+    git('add', '.')
+    git('commit', '-qm', 'subject\n\nbody \x1e then ' + TERM)
+    env = clean_env(PRIVATE_TERMS=TERM)
+    result = subprocess.run([sys.executable, str(SCRIPT), '--base', base, '--head', 'HEAD'], cwd=root, env=env,
+                            capture_output=True, text=True)
+    assert result.returncode == 1
+    assert 'message: private term 1' in result.stdout and no_term_in(result)
