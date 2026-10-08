@@ -557,7 +557,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **B0 is selected; B1's plan (PLAN_v2) is accepted.** Phase 1 is done: SW's probe is accepted (W2b's replacement and SQ's cap-maximal inputs), and ST is confirmed by RV-P and integrated at I1. **Phase 2:**
   - SA is merged into `b1` at I2 (`eca6c00a72`).
   - SP is returned before I3. **RV109 passed it in RV-P round 2** (0/2/4); SF-1 and SF-2 go to I3's pinning step (`BRIEFS/B1_SP_I3.md`).
-  - **I3 is made** at `2ba2f81863` (SR-RS merged; RV113 confirmed its repair). **I85's I3 step is done** at `03f55e7178`: W-C2's pins, SF-1, SF-2, and the nodal-term ordinal fix with its pin. RV109 confirms.
+  - **I3 is made** at `2ba2f81863` (SR-RS merged; RV113 confirmed its repair). **I85's I3 step is done** at `03f55e7178`: W-C2's pins, SF-1, SF-2, and the nodal-term ordinal fix with its pin. **RV109 confirmed it (ADDENDUM_01): SP is complete.**
   - **RV113 passed SR-TS (0/1/2) and SR-PY (0/4/2).** ROOT ruled the three-reader alignment set: (f) at G3/G5, (g) at G8, the C2 cause table at G5, the header at G2 and the metadata at G7. Repair rounds: **all three are done and committed** (RS `6e3e4fe219`; PY `2843a59a16`; TS `6fa6a64658`), with the header move's nine transport changes ruled in and TS's G3 combinations conjunct moved to G8. RV113 confirms each. Then **I4**.
   - **A latent producer defect (I98):** `retained_wire.rs` writes `constructor_ordinal` as the canonical position, while all three readers derive the authored ordinal (C2). Out-of-order-authored cases fall back at G8. It is fixed in I85's I3 step.
   - B6 is merged.
@@ -614,8 +614,8 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **Earlier:** T1 option (a); D-3 = S1; D-6 = (a); M selected under D-7.
 
 **Assignment IDs.** Dispatched 2026-10-06/08: I68–I99, RV97–RV99 and RV101–RV119 (RV100 was 2026-10-05's).
-- **Running:** RV109 (confirming SP's I3 step), RV113 (confirming SR-RS round 2, then SR-TS, then SR-PY) and RV119 (records PR #1114).
-- **Idle, resumable:** I85 (SP; done through I3), I88 (SI1c), I89 (SA), I90 (SR-RS), I91 (SR-PY; SC next), I92 (SR-TS), I93 (B2/B3 plan), I94 (B2-KD), I95 (B3-S), I96 (B3-D), I97 (B2-C), I98 (B2-W), I99 (B3-W), RV111 (SI1c), RV115 (RV-K), RV116 (RV-D), RV117 (records) and RV118 (RV-C).
+- **Running:** RV113 (confirming SR-RS round 2, then SR-TS, then SR-PY) and RV119 (records PR #1114).
+- **Idle, resumable:** I85 (SP; done through I3), I88 (SI1c), I89 (SA), I90 (SR-RS), I91 (SR-PY; SC next), I92 (SR-TS), I93 (B2/B3 plan), I94 (B2-KD), I95 (B3-S), I96 (B3-D), I97 (B2-C), I98 (B2-W), I99 (B3-W), RV109 (RV-P), RV111 (SI1c), RV115 (RV-K), RV116 (RV-D), RV117 (records) and RV118 (RV-C).
 - **The next unused** are **I100 and RV120**.
 
 **T3 rulings in force** (section headings in `ROOT_RULINGS_V1.md`):
@@ -696,7 +696,7 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 
 **Next safe action:**
 1. **B1 phases 2–3:**
-   - I85's I3 step is done (`03f55e7178`) → RV109 confirms.
+   - I85's I3 step is done (`03f55e7178`) → RV109 confirmed: **SP is complete.**
    - The alignment repairs are done (RS `6e3e4fe219`, PY `2843a59a16`, TS `6fa6a64658`) → RV113 confirms each → **I4** (ROOT merges `b1-r` again, `b1-p` and `b1-t` into `b1`).
    - Then SC (07n, I-PY), SQ (I-A; with E-12's guard item and N-3's inputs), and SG, SB and SK → PR-B1.
 2. **B2/B3 phase 0:** B2-C is ruled → I97's revision 01 (verified) → RV115 confirmed S-4 (a) (SA3-1: option (ii) ruled) → RV118 confirmed revision 01 (A-1: (ii) in B2-K) → I97's revision 02 → RV115 and RV118 confirmed → **B2-C final for J1** (done), with names reserved → J1's package (I-A) after J0. B2's and B3's witnesses are selected (RR "I98's B2-W verified; …", "I99's B3-W verified; …"). **J0** follows PR-B1.
@@ -704,4 +704,4 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 4. **Post-merge cleanup `apply`** when the host is idle:
    - the merged worktrees `s-i1`, `u8-pr`, `f2a-u8`, `t6-outputs`, `t6s-pr`, `records-pr`, `s-i1b`, `si1b-pr`, `b6`, `b6-pr`, `records-pr-b`, `records-pr-c`, `s-i1c` and `si1c-pr`;
    - stale targets, including `sweep-skewpin-target`;
-   - I85's kept scratch and targets after I1.
+   - (I85's scratch and targets are deleted, 2026-10-08.)

@@ -15592,3 +15592,26 @@ The record is `R/I97/b2_c_01/`: CONTRACT, REVISION_01 and REVISION_02. Its names
 - **The PR description was corrected once before review.** I96's B3-D revision 01 and RV116's addendum were already on main with #1111, and RV113's confirmation of SR-RS's repair was missing.
 
 **RV119** reviews it, by `BRIEFS/RV119_RECORDS_PR8_REVIEW.md` (sha256 `62078533…`). **The next unused IDs are I100 and RV120.**
+
+## RV109 confirms SP's I3 step: SP is complete (ROOT, 2026-10-08 UTC)
+
+**RV109 (RV-P) ADDENDUM_01 to round 2:** `R/REVIEW_RV109/rvp_round2_01/ADDENDUM_01.md` sha256 `f065a1f6…`, with SHA256SUMS.addendum_01 51 of 51 OK. Round 2's SHA256SUMS (125) still verifies, and so do I85's I3_01 (`5084603d…`, 120 sums). The screens are clean on all 52 new files, decompressed `.gz` and host names included.
+
+**CONFIRMED: 0 BLOCKING, 0 SHOULD-FIX, 2 NOTEs.** RV109 independently confirmed:
+- **W-C2:** its own document, built through the registered Direct entry, is byte-identical to each committed fixture in both modes, at I3 and at the head.
+- **SF-1:** the whole-record comparison has exactly the three flag exemptions, and two test mutants show it is live.
+- **SF-2:** the pins equal its own successors, and its six round-2 patches die at their named assertions.
+- **The ordinal fix:**
+  - c = 1 identity holds on 124 of 132 probe rows. The 8 others are its four out-of-order inputs, each moving from a G8 fallback to a published successor that the RS and PY readers accept.
+  - All 86 existing hex-literal pins remain.
+  - Reverting the fix is killed by the new test's own assertion.
+- **The suites:** PP registered 730/6 → 738/1 and Stale 568/5 → 575/1; only t13 still fails, as at I3.
+- **The ledger:** every ST and SP hunk through `03f55e7178` is now reviewed by RV-P.
+
+**SP is complete.** B1's position: SP done, and the three readers' rounds await RV113's confirmations; then I4.
+
+**The NOTEs, routed:**
+- **N-1:** the ordinal fix relies on one nodal term per primitive load, which holds in D1, and the RS and PY readers derive it the same way. A later domain admitting a load with several terms makes `constructor_ordinal` per-term in the producer and all three readers together. This is routed to F2b's planning; B2's combinations are unaffected.
+- **N-2:** nothing now pins the c ≥ 2 notice path through the Direct entry (T-12 at c ≥ 2 is pinned through `retained_w1` with injected faults; Direct calls the same function). A Direct variant with a fault armed is optional, and goes to SQ.
+
+**Cleanup done:** I85's scratch (3.3 GB) and its five targets (about 31 GB) are deleted, as RR planned once RV109 finished. RV109's own copies and targets are already deleted.
