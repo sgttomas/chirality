@@ -7,7 +7,7 @@ Read `R/BRIEFS/B1_COMMON.md` and `R/BRIEFS/B1_SP.md` again first; their rules st
 
 ## Where you start
 
-- **I3 is merged:** ROOT merged `b1-r` (SR-RS, `b5cb7faaeb`, confirmed by RV113) into `b1` at `{I3 commit}`. Your worktree `WT/b1` is at that commit.
+- **I3 is merged:** ROOT merged `b1-r` (SR-RS, `b5cb7faaeb`, confirmed by RV113) into `b1` at `2ba2f81863`. Your worktree `WT/b1` is at that commit.
 - **Your SP return** (`R/I85/b1_sp_01/RETURN.md`) recorded the I3 front-run:
   - W-C2's expected pins: sparse `7922e3e5`/`cccb9664`/`c7a18593`, dense `f2800bd4`/`612e23ca`/`a77c010b`;
   - the one expected change: T-7-on-C ends at G8 `PREPARATION_MISMATCH`.
@@ -38,7 +38,7 @@ Read `R/BRIEFS/B1_COMMON.md` and `R/BRIEFS/B1_SP.md` again first; their rules st
 ## Evidence
 
 - **The suites:**
-  - PP registered and Stale, the runner and the witnesses, against `{I3 commit}` before your commits;
+  - PP registered and Stale, the runner and the witnesses, against `2ba2f81863` before your commits;
   - the only differences are the listed tests and the T-7-on-C expectation.
 - The c = 1 successor pins pass.
 - The s11f and in-fence guards pass, with their expected text unchanged.

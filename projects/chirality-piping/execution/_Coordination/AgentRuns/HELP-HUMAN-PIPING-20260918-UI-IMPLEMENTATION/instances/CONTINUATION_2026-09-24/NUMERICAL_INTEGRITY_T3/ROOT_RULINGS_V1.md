@@ -15172,3 +15172,52 @@ The record is `IMPLEMENTATION/SI1C_MERGE/` (RECORD.md, `_run_records/`, `dec025/
 4. **B3a's base** is `m3l` (`c32170b3…`; Value `2f5ff465…`).
 
 **I99 is idle.** The probe's unsanitised outputs stay in its scratch, by the cleanup rule.
+
+## RV113's three returns verified; I3 made at `2ba2f81863`; the three-reader alignment set ruled (ROOT, 2026-10-07 UTC)
+
+**RV113's returns:** ROOT verified each report's sums. The strict and host-name screens are clean across all three, including 154 decompressed `.gz` files, with no links and no `build` folder.
+- **SR-TS at `7e47e51b5d`:** `R/REVIEW_RV113/rvr_sr_ts_01/REVIEW.md` `d44dec19…` (31 OK). **PASS, 0/1/2.**
+  - **S-1:** only TS enforces C2's code/phase/cause compatibility.
+  - **N-1:** the transport header readings differ.
+  - **N-2:** TS's C2 table is coarser than one-to-one.
+- **SR-RS repair round 1 at `b5cb7faaeb`:** `rvr_sr_rs_01/ADDENDUM_01.md` `10ca3fe4…` (SHA256SUMS.addendum_01 9 OK). **CONFIRMED:** M20, M02 and M11 now fail at assertions; there is no RS `src` change, and the suite's only change is the added test.
+- **SR-PY at `11cc14e3e6`:** `rvr_sr_py_01/REVIEW.md` `d8611e59…` (245 OK). **PASS, 0/4/2.**
+  - **The census over 07m:** 0 changes I1 → head and 0 misses. PY equals TS on all 339 entries' bound verdicts, and RS except the declared G7 split.
+  - **The 103 probes:** PY agrees with RS on every B1 shape.
+  - **The N1 differential holds** over 16,563 inputs.
+  - **The suites** go 1,922 → 1,937, all added.
+  - **Mutants:** 34 of 35 killed.
+  - **The findings:** S-1 is (f)'s family; S-2 is REPAIR_01's (b)/(c) claim, wrong for TS; S-3 is (g)'s family; S-4 is the `not_required` null-attempt conjunct unpinned in PY (Q17). N-1 and N-2 are notes.
+- **RV113's host slips are disclosed:** a timed-out wait followed by a second wait on the same job, both ending with the job; and one mutant chain stopped while it was still queued. Nothing of another job was touched.
+
+**I3 is made.** ROOT merged `b1-r` (`b5cb7faaeb`) into `b1` at I85's clean commit `603e238517`, with `--no-ff`, as **`2ba2f81863`**. The two sides are file-disjoint: SR-RS's 3 RE files against SP's and SA's. It is pushed. **I85 resumes** by `BRIEFS/B1_SP_I3.md`: W-C2's pins, SF-1 and SF-2.
+
+**The three-reader alignment set**, ruled together (SR-PY §10; SR-TS S-1, N-1 and N-2). None changes a 07m verdict, and B1's producer emits none of these shapes. These are reader refusals of forged or mislabelled receipts, with no public meaning before B8.
+1. **(f) and its family go to G3 COVERAGE** in all three readers: `material_bases[].index` and `sources[].index` equal their positions; `case_indices` has no duplicates and is in range; and a source's owner is its own case.
+   - **The ordinary attempt's basis reference goes to G5 ATTEMPT_MISMATCH.** These are TS's placements. RS and PY add or move the checks, and PY adds the `material_bases[].index` check.
+   - G8 keeps only the facts derived from the invocation.
+   - 07n pins the family bound and unbound. 07m's `integral_float_integers_and_references` stays a must-pass.
+2. **(g), the model-scope members, go to G8 INVOCATION_MISMATCH,** in the model-scope check before any PREPARATION check. PP's acceptance is the rule:
+   - no `reference_configurations` member, null included;
+   - `pressure_contract` absent or null;
+   - `combinations` and `components` absent or `[]`.
+
+   This is B1's rule. B2's contract (combinations) and B3a (`pressure_contract`) change it in their own scopes.
+3. **The C2 cause table** is applied at G5 ATTEMPT_MISMATCH, in the ordinary class, in all three readers, for every unavailable case whose cause is not `prepared_product_failure`. **The table is TS's present form, with N-2's keying where C2 states it:**
+   - `source_error`: phase `preparation`; code `source_unavailable`; no Run; and a `source_decline` whose error equals the cause's.
+   - `unavailable_precondition`: phase `routing` or `preparation`, with no Run. **The code is keyed one-to-one by `precondition`:** `caller` → `caller_not_qualified`; `resource_admission` → `resource_admission_not_available`; `upstream_no_wrap` → `upstream_no_wrap_not_established`; `capture` and `source_family` → `source_unavailable`.
+   - `receipt_failure`: phase `receipt`; code one of `receipt_encoding`, `publication_hash_range` and `invocation_not_representable`. C2 does not key these codes to `check`, so the set form stands, and a per-`check` keying is deferred until a check-to-code map is written.
+   - `facade_failure`: phase `facade`; code `facade_certificate`; the Run's terminal is `selected`; and `owner_ref` is the case itself.
+   - Kernel reasons: phase `kernel`; a Run is present; code `kernel_<terminal kind>`; and the cause equals the Run's terminal reason.
+
+   07n pins each branch, satisfied and broken.
+4. **The transport scope.** The **header check goes at G2** in all three readers, as RS has it: PY relabels it from G7, and TS adds it. The **preview-physics metadata check goes at G7** in all three: RS adds it, and PY and TS keep it. Both checks then run in every reader.
+5. **S-2:** REPAIR_01's claim that (b) and (c) give the same gate and code in all three readers is corrected by I91's next record. SC writes 07n's (b) and (c) entries only after this set lands, with inputs whose first failure is the same in all three readers.
+6. **S-4** (PY) is a test-only repair: one test row, as SR-RS's. **N-1 and N-2 (PY)** are folded into I91's round.
+
+**The repair rounds**, by file lane. Repairs come before new starts, and the cap is three implementers (I85 at I3, and I98 on B2-W, which is running):
+- **I91, SR-PY repair 02,** now: items 1–6.
+- **I90, SR-RS repair 02** (items 1–4, on `b1-r`; merged again before I4), when I98 returns.
+- **I92, SR-TS repair 01** (items 2–4), when I85 returns.
+
+RV113 confirms each round. I4 follows them, with SR-PY and SR-TS and SR-RS's round 2.
