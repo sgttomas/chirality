@@ -12,6 +12,14 @@ pub mod attachments;
 pub mod canonical;
 pub mod catalog;
 pub mod connector_standing;
+pub mod connector_route_store;
+mod connector_route_view;
+mod connector_source;
+mod connector_materialization;
+mod connector_reconstruction;
+mod connector_source_fs;
+#[cfg(unix)] mod connector_git;
+#[cfg(unix)] mod connector_git_process;
 pub mod decision_view;
 mod file_act_root;
 mod file_act_view;
@@ -21,6 +29,10 @@ pub mod trace_receiving;
 pub mod hosting;
 #[cfg(unix)]
 pub mod distribution_preflight;
+mod compiled_development_selection;
+pub mod distribution_semantics;
+mod distribution_store;
+mod distribution_s1;
 pub mod home_resources;
 pub mod native_items;
 pub mod native_history;
@@ -51,6 +63,9 @@ use tauri::{Manager, State};
 use tauri_plugin_dialog::{DialogExt, MessageDialogButtons, MessageDialogKind};
 
 pub struct AppState {
+    compiled_development_selection: Value,
+    connector_sources: Mutex<connector_source::Session>,
+    connector_drafts: Mutex<connector_materialization::Registry>,
     workspace: Option<PathBuf>,
     act: Arc<Mutex<Option<ActControl>>>,
     workflows: Mutex<runtime_session::WorkflowRootSession>,
@@ -140,6 +155,8 @@ fn host_status(state: State<'_, AppState>) -> Value {
         s["configurationProblem"] = json!(e);
     }
     s["roleSupply"] = home.role_supply_status.lock().unwrap().clone();
+    s["roleSet"] = role_set_metadata();
+    s["compiledDevelopmentSelection"] = state.compiled_development_selection.clone();
     let mut history = home.history.lock().unwrap();
     history.reconcile(&home.host);
     let root = state.instructions_root.lock().unwrap().clone();
@@ -177,12 +194,96 @@ fn host_status(state: State<'_, AppState>) -> Value {
     s["homeAccess"] = home.account_view();
     s["workflowRoot"] = state.workflows.lock().unwrap().snapshot();
     s["homeOAuth"] = runtime_session::native_oauth_observation(&home);
+    s["connectorRouteAvailability"] = connector_route_view::availability(state.workspace.as_deref(), &state.project_context, state.project_context_limit.as_deref());
     s["currentAppProjectContext"] = state.project_context.view();
     s["currentAppProjectContextLimit"] = json!(state.project_context_limit);
     if let Err(e) = &*state.instructions_root.lock().unwrap() {
         s["instructionsProblem"] = json!(e);
     }
     s
+}
+
+#[tauri::command(async)]
+fn read_connector_routes(state: State<'_ , AppState>) -> Value {
+    connector_route_view::read(state.workspace.as_deref(), &state.project_context, state.project_context_limit.as_deref())
+}
+
+
+fn source_project(state:&AppState)->Result<&std::path::Path,String>{
+    let access=connector_route_view::availability(state.workspace.as_deref(),&state.project_context,state.project_context_limit.as_deref());
+    if access["enabled"]!=true{return Err(access.to_string());} Ok(state.workspace.as_deref().unwrap())
+}
+#[tauri::command]
+fn prepare_connector_source(state:State<'_,AppState>,question:connector_source::Question,trigger:String,responsible:Option<String>)->Result<Value,String>{
+    state.connector_sources.lock().map_err(|_|"Source state unavailable")?.prepare(source_project(&state)?,question,trigger,responsible)
+}
+#[tauri::command(async)]
+fn select_connector_source(app:tauri::AppHandle,state:State<'_,AppState>,session_token:String,generation:String)->Result<Value,String>{
+    source_project(&state)?;
+    connector_source::select_native(&state.connector_sources,&session_token,&generation,||app.dialog().file().set_title("Observe one project text file (no send or save)").blocking_pick_file().map(|file|file.into_path().map_err(|e|format!("Selection is not a local file: {e}"))).transpose())
+}
+#[tauri::command]
+fn anchor_connector_source(state:State<'_,AppState>,session_token:String,generation:String,observation_reference:String,start:usize,end:usize,expected:Option<String>)->Result<Value,String>{
+    source_project(&state)?;state.connector_sources.lock().map_err(|_|"Source state unavailable")?.anchor(&session_token,&generation,&observation_reference,start,end,expected.as_deref())
+}
+#[tauri::command]
+fn revise_connector_source(state:State<'_,AppState>,session_token:String,generation:String,observation_reference:String,kind:String,label:String,anchor_reference:Option<String>)->Result<Value,String>{
+    source_project(&state)?;state.connector_sources.lock().map_err(|_|"Source state unavailable")?.revision(&session_token,&generation,&observation_reference,&kind,&label,anchor_reference.as_deref())
+}
+
+
+#[tauri::command(async)]
+fn read_connector_git(state:State<'_,AppState>,session_token:String,generation:String,observation_reference:String,at:String,since:Option<String>)->Result<Value,String>{source_project(&state)?;
+    #[cfg(unix)] {connector_source::git_read(&state.connector_sources,&session_token,&generation,&observation_reference,&at,since.as_deref())}
+    #[cfg(not(unix))] {Err("Git adapter unsupported on this platform".into())}
+}
+#[tauri::command]
+fn cancel_connector_git(state:State<'_,AppState>,session_token:String,generation:String)->Result<Value,String>{source_project(&state)?;
+    #[cfg(unix)] {connector_source::git_cancel(&state.connector_sources,&session_token,&generation)}
+    #[cfg(not(unix))] {Err("Git adapter unsupported on this platform".into())}
+}
+#[tauri::command]
+fn anchor_connector_git(state:State<'_,AppState>,session_token:String,generation:String,observation_reference:String,side:String,start:usize,end:usize,expected:Option<String>)->Result<Value,String>{source_project(&state)?;
+    #[cfg(unix)] {connector_source::git_anchor(&state.connector_sources,&session_token,&generation,&observation_reference,&side,start,end,expected.as_deref())}
+    #[cfg(not(unix))] {Err("Git adapter unsupported on this platform".into())}
+}
+
+#[tauri::command(async)]
+fn prepare_connector_reconstruction(state:State<'_,AppState>,input:connector_reconstruction::Input)->Result<Value,String>{
+ let project=source_project(&state)?;
+ #[cfg(any(target_os="macos",target_os="linux"))]
+ {connector_reconstruction::prepare(&state.connector_drafts,&state.connector_sources,input,project)}
+ #[cfg(not(any(target_os="macos",target_os="linux")))]
+ {let _=(state,input,project);Err("Reconstruction unavailable on this platform".into())}
+}
+#[tauri::command(async)]
+fn prepare_connector_draft(state:State<'_,AppState>,input:connector_materialization::PrepareInput)->Result<Value,String>{
+    let project=source_project(&state)?;
+    #[cfg(any(target_os="macos",target_os="linux"))] {connector_materialization::prepare(&state.connector_drafts,&state.connector_sources,input,project)}
+    #[cfg(not(any(target_os="macos",target_os="linux")))] {Err("Materialization unsupported on this platform".into())}
+}
+#[tauri::command(async)]
+fn publish_connector_draft(state:State<'_,AppState>,token:String,generation:String)->Result<Value,String>{
+    #[cfg(any(target_os="macos",target_os="linux"))]
+    if let Some(retained)=state.connector_drafts.lock().map_err(|_|"Draft registry unavailable")?.retained(&token,&generation)?{return Ok(retained);}
+    let project=source_project(&state)?;
+    #[cfg(any(target_os="macos",target_os="linux"))] {connector_materialization::publish(&state.connector_drafts,&state.connector_sources,&token,&generation,project)}
+    #[cfg(not(any(target_os="macos",target_os="linux")))] {Err("Materialization unsupported on this platform".into())}
+}
+#[tauri::command]
+fn cancel_connector_draft(state:State<'_,AppState>,token:String,generation:String)->Result<Value,String>{
+    #[cfg(any(target_os="macos",target_os="linux"))] {state.connector_drafts.lock().map_err(|_|"Draft registry unavailable")?.cancel(&token,&generation)}
+    #[cfg(not(any(target_os="macos",target_os="linux")))] {Err("Materialization unsupported on this platform".into())}
+}
+#[tauri::command(async)]
+fn reconcile_connector_draft(state:State<'_,AppState>,token:String,generation:String)->Result<Value,String>{
+    #[cfg(any(target_os="macos",target_os="linux"))] {state.connector_drafts.lock().map_err(|_|"Draft registry unavailable")?.reconcile(&token,&generation)}
+    #[cfg(not(any(target_os="macos",target_os="linux")))] {Err("Materialization unsupported on this platform".into())}
+}
+#[tauri::command]
+fn inspect_connector_drafts(state:State<'_,AppState>)->Result<Value,String>{
+    // Retained actual outcomes stay inspectable after source/project changes; no new file read.
+    Ok(state.connector_drafts.lock().map_err(|_|"Draft registry unavailable")?.view())
 }
 
 fn home_class(mode: &str) -> Result<home_resources::HomeClass,String> {
@@ -251,17 +352,22 @@ fn add_api_key(app:tauri::AppHandle,state:State<'_,AppState>)->Result<Value,Stri
     let data=state.app_user_data_root.lock().unwrap().clone()?;
     let account=state.homes.lock().unwrap().entry(home_resources::HomeClass::Account)?;
     let app_custody=account.host.app_runtime_custody()?;
-    let admitted=match runtime_session::prepare_native_key_namespace(&bootstrap,&data,&app_custody) {
+    let authority=account.attachment_custody.lock().unwrap().as_ref().map_err(Clone::clone)?.authority()?;
+    let entries=state.homes.lock().unwrap().entries();
+    let mut stores=Vec::new();for entry in &entries{let required=entry.host_config.as_ref().map_err(Clone::clone)?.distribution.is_some();if let Some(store)=entry.host.distribution_store_for_admission(required)?{if !stores.iter().any(|old|Arc::ptr_eq(old,&store)){stores.push(store);}}}
+    let account_store=account.host.distribution_store_for_admission(account.host_config.as_ref().map_err(Clone::clone)?.distribution.is_some())?;
+    let admitted=match runtime_session::prepare_native_key_namespace_coordinated(&bootstrap,&data,&app_custody,&authority,&stores,|admitted|{
+        *state.native_namespaces.lock().unwrap()=Ok(admitted.namespaces.clone());
+        *state.key_namespace_admission.lock().unwrap()=admitted.observation.clone();
+        for entry in &entries{*entry.attachment_custody.lock().unwrap()=Ok(admitted.attachment.clone());}
+    }) {
         Ok(admitted)=>admitted,
-        Err(error)=>{*state.key_namespace_admission.lock().unwrap()=json!({"state":"key namespace/setup refused; original bindings retained","limit":error,"existingAccount":"current ledger/custody bindings retained"});return Err(error);}
+        Err(error)=>{*state.key_namespace_admission.lock().unwrap()=json!({"state":"key namespace/setup refused before admission; original bindings retained","limit":error,"existingAccount":"current ledger/custody bindings retained; physical preparation may remain"});return Err(error);}
     };
-    *state.native_namespaces.lock().unwrap()=Ok(admitted.namespaces);
-    *state.key_namespace_admission.lock().unwrap()=admitted.observation;
     let attachment=admitted.attachment;
-    for entry in state.homes.lock().unwrap().entries(){*entry.attachment_custody.lock().unwrap()=Ok(attachment.clone());}
     let existing=state.homes.lock().unwrap().entry(home_resources::HomeClass::ApiKey);
-    let home={
-        match existing{
+    let home=runtime_session::admitted_key_setup(&state.key_namespace_admission,&admitted.observation,||->Result<Arc<runtime_session::HomeSession>,String>{
+        Ok(match existing{
             Ok(home)=>home,
             Err(_)=>{
                 let account=state.homes.lock().unwrap().entry(home_resources::HomeClass::Account)?;
@@ -270,6 +376,7 @@ fn add_api_key(app:tauri::AppHandle,state:State<'_,AppState>)->Result<Value,Stri
                 bootstrap.validate_binding(home_resources::HomeClass::ApiKey,&config)?;
                 let custody=account.host.app_runtime_custody()?;
                 let host=Arc::new(Host::new_with_app_custody(custody)?);
+                if let Some(store)=&account_store{host.configure_distribution_store(Ok(store.clone()));}
                 let home=Arc::new(runtime_session::HomeSession::new(home_resources::HomeClass::ApiKey,host,Ok(config.clone()))?);
                 *home.attachment_custody.lock().unwrap()=Ok(attachment.clone());
                 home.recovery_startup.lock().unwrap().adopt_shared_source(&home.host);
@@ -277,15 +384,17 @@ fn add_api_key(app:tauri::AppHandle,state:State<'_,AppState>)->Result<Value,Stri
                 state.homes.lock().unwrap().bind_key(home.clone())?;
                 home
             }
-        }
-    };
+        })
+    })?;
+    let config=runtime_session::admitted_key_setup(&state.key_namespace_admission,&admitted.observation,|| {
     let config=home.host_config.clone()?;
     bootstrap.validate_binding(home.class(),&config)?;
     if home.host.snapshot()["state"]!="ready" {
         let data=state.app_user_data_root.lock().unwrap().clone()?;
         runtime_session::start_with_recovery(&home.host,&home.recovery_startup,Ok(data.as_path()),Some(&config.codex_home),||home.host.start(&config,"the person: add-key"))?;
     }
-    bootstrap.validate_binding(home.class(),&config)?;
+    bootstrap.validate_binding(home.class(),&config)?;Ok(config)})?;
+    let _=config;
     let generation=home.host.snapshot()["generation"].clone();
     runtime_session::submit_native_home_key(&home,&bootstrap,&generation,||runtime_session::native_api_key_entry(&app))
 }
@@ -311,8 +420,36 @@ fn host_stop(state: State<'_, AppState>, generation:Value) -> Result<Value, Stri
     home.host.stop_scoped(&generation,"the person", "Stop Codex")
 }
 
+fn role_set_metadata() -> Value {
+    let identity = role_supply::content(role_supply::BUNDLED_ROLE_SET);
+    match role_supply::bundled_role_set() {
+        Ok(set) => json!({"available":true,"roles":set.roles,"defaultRole":set.default_role(),"identity":identity,"standing":"candidate; U-R6/U-R11 open"}),
+        Err(reason) => json!({"available":false,"reason":reason,"identity":identity}),
+    }
+}
+/// Native build mode chooses the source, never file existence or a failed package check.
+fn prepare_role_entry(
+    root: &std::path::Path,
+    role: Option<role_supply::Role>,
+    development: bool,
+    resource_root: impl FnOnce() -> Result<PathBuf, String>,
+) -> Result<(role_supply::Composition, Value), String> {
+    let package = if development {
+        role_supply::bundled_role_set()?;
+        json!({"standing":"development-embedded-candidate","roleSet":role_supply::content(role_supply::BUNDLED_ROLE_SET),"releaseQualified":false})
+    } else {
+        runtime_session::verify_production_instructions_root(&resource_root()?)?
+    };
+    let composition = runtime_session::compose_role(root, role)?;
+    Ok((composition, package))
+}
+fn refused_role_entry(role: Option<role_supply::Role>, reason: &str) -> Value {
+    json!({"state":"refused-before-send","selection":role,"roleSet":role_supply::content(role_supply::BUNDLED_ROLE_SET),"reason":reason,"adoption":"unknown"})
+}
+
 #[tauri::command(async)]
 fn thread_start(
+    app: tauri::AppHandle,
     state: State<'_, AppState>,
     model: String,
     model_provider: String,
@@ -329,8 +466,20 @@ fn thread_start(
     if !allowed { return Err("Access entry differs from the selected actual home class; no native transfer/fallback".into()); }
     if let Ok(set) = &*state.home_bootstrap.lock().unwrap() { set.validate_binding(home.class(),home.host_config.as_ref().map_err(Clone::clone)?)?; }
     else if home.class()==home_resources::HomeClass::ApiKey {return Err("Explicit key source binding is unavailable".into());}
-    let root = state.instructions_root.lock().unwrap().clone()?;
-    let composition = runtime_session::compose_role(&root, role)?;
+    let prepared = (|| {
+        let root = state.instructions_root.lock().unwrap().clone()?;
+        prepare_role_entry(&root, role, tauri::is_dev(), || {
+            app.path().resource_dir().map(|path| path.join("instructions"))
+                .map_err(|error| format!("Production instruction resource directory unavailable: {error}"))
+        })
+    })();
+    let (composition, package_correspondence) = match prepared {
+        Ok(prepared) => prepared,
+        Err(reason) => {
+            *home.role_supply_status.lock().unwrap() = refused_role_entry(role, &reason);
+            return Err(reason);
+        }
+    };
     composition.verify()?;
     let generation = home.host.snapshot()["generation"].clone();
     let attempt_id = util::opaque_id("conversation:")?;
@@ -344,7 +493,7 @@ fn thread_start(
     let supply_ref = {
         let mut slot = home.access_selection.lock().unwrap();
         let supply_ref = runtime_session::claim_start(&mut slot, selection, || util::opaque_id("sup:"))?;
-        *home.role_supply_status.lock().unwrap() = json!({"state":"starting","attemptId":attempt_id,"selection":role,"generation":generation,"carried":composition.carried,"adoption":"unknown","nativeChildRoles":composition.child_status(None,false)});
+        *home.role_supply_status.lock().unwrap() = json!({"state":"starting","attemptId":attempt_id,"selection":role,"roleSet":composition.role_set_identity(),"packageCorrespondence":package_correspondence,"generation":generation,"carried":composition.carried,"adoption":"unknown","nativeChildRoles":composition.child_status(None,false)});
         supply_ref
     };
     // Freeze the verified original composition before native dispatch. Actual
@@ -373,7 +522,7 @@ fn thread_start(
         };
         let mut status = home.role_supply_status.lock().unwrap();
         if status["attemptId"] == attempt_id && status["generation"] == generation {
-            *status = json!({"state":if result.is_ok(){"response-observed"}else{"start-failed-or-unknown"},"attemptId":attempt_id,"selection":role,"generation":generation,"carried":composition.carried,"adoption":"unknown","nativeChildRoles":composition.child_status(None,false)});
+            *status = json!({"state":if result.is_ok(){"response-observed"}else{"start-failed-or-unknown"},"attemptId":attempt_id,"selection":role,"roleSet":composition.role_set_identity(),"packageCorrespondence":package_correspondence,"generation":generation,"carried":composition.carried,"adoption":"unknown","nativeChildRoles":composition.child_status(None,false)});
         }
         result
     };
@@ -655,6 +804,15 @@ fn workflow_native_folder(app:&tauri::AppHandle,title:&str)->Result<Option<PathB
 fn workflow_select_development(app:tauri::AppHandle,state:State<'_,AppState>)->Result<Value,String>{
     let Some(path)=workflow_native_folder(&app,"Select exact coordinated-knowledge-work development holding copy")? else{return Ok(json!({"state":"native selection dismissed"}));};
     state.workflows.lock().unwrap().select_development_copy(path)
+}
+#[tauri::command(async)]
+fn workflow_select_production_bundle(app:tauri::AppHandle,state:State<'_,AppState>,name:String)->Result<Value,String>{
+    let root=app.path().resource_dir().map_err(|e|format!("App resources unavailable: {e}"))?.join("workflows");
+    state.workflows.lock().unwrap().select_production_bundle(root,&name)
+}
+#[tauri::command]
+fn workflow_select_production_copy(state:State<'_,AppState>,name:String)->Result<Value,String>{
+    state.workflows.lock().unwrap().select_production_copy(&name)
 }
 #[tauri::command(async)]
 fn workflow_open_library(app:tauri::AppHandle,state:State<'_,AppState>,origin:String)->Result<Value,String>{
@@ -968,7 +1126,25 @@ fn file_act_read(state:State<'_,AppState>)->Result<Value,String>{
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     let workspace = std::env::var_os("CHIRALITY_WORKSPACE").map(PathBuf::from);
-    let host_config = host_config_from_env(workspace.as_ref());
+    tauri::Builder::default()
+        .plugin(tauri_plugin_dialog::init())
+        .setup(move |app| {
+    let host_config = if tauri::is_dev() || !cfg!(feature = "distribution-successor") {
+        host_config_from_env(workspace.as_ref()).and_then(|mut cfg| {
+            if tauri::is_dev() && std::env::var("CHIRALITY_DISTRIBUTION_SUCCESSOR").as_deref() == Ok("1") {
+                cfg.distribution = Some(hosting::successor::Distribution::development_from_binary(&cfg.codex_bin)?);
+            }
+            Ok(cfg)
+        })
+    } else {
+        (|| {
+            let resources = app.path().resource_dir().map_err(|e|e.to_string())?;
+            let data = app.path().app_data_dir().map_err(|e|e.to_string())?;
+            let home = std::env::var_os("CHIRALITY_CODEX_HOME").map(PathBuf::from).ok_or("No explicit App-owned account home")?;
+            Ok(hosting::successor::production_config(resources, home, probe_home()?, workspace.clone().unwrap_or(data)))
+        })()
+    };
+    let host_config = host_config.map(|mut cfg| { cfg.require_distribution_artifacts = cfg.distribution.is_some(); cfg });
     let project = runtime_session::freeze_configured_project(workspace.as_deref());
     let project_context_limit = project.as_ref().err().cloned();
     let project_context = project.unwrap_or_else(|_|recovery::ExplicitAppProjectContext::unknown());
@@ -976,6 +1152,9 @@ pub fn run() {
     let key_path = std::env::var_os("CHIRALITY_KEY_HOME").map(PathBuf::from);
     let shared_paths = ["CHIRALITY_SHARED_CONFIG","CHIRALITY_SHARED_AGENTS","CHIRALITY_SHARED_SKILLS"].map(|key|std::env::var_os(key).map(PathBuf::from));
     let state = AppState {
+        compiled_development_selection: compiled_development_selection::observe_startup(|| app.path().resource_dir().map_err(|e| e.to_string())),
+        connector_sources: Mutex::new(connector_source::Session::default()),
+        connector_drafts: Mutex::new(connector_materialization::Registry::default()),
         act: Arc::new(Mutex::new(workspace.as_ref().map(|w| ActControl::new(w)))),
         workflows: Mutex::new(runtime_session::WorkflowRootSession::default()),
         file_acts: Mutex::new(file_act_root::FileActRoot::default()),
@@ -996,10 +1175,7 @@ pub fn run() {
         root_home_inputs: json!({"source":"explicit Root native environment path inputs","keyHome":key_path.as_ref().map(|path|attachments::native_path_identity(path)),"sharedConfig":shared_paths[0].as_ref().map(|path|attachments::native_path_identity(path)),"sharedGlobalAgents":shared_paths[1].as_ref().map(|path|attachments::native_path_identity(path)),"sharedSkills":shared_paths[2].as_ref().map(|path|attachments::native_path_identity(path)),"limit":"supplied references are not observed linked state, ownership or native discovery proof"}),
     };
     let host = Arc::clone(&home.host);
-    tauri::Builder::default()
-        .plugin(tauri_plugin_dialog::init())
-        .manage(state)
-        .setup(move |app| {
+            app.manage(state);
             let data = app.path().app_data_dir().map_err(|e| e.to_string());
             let state = app.state::<AppState>();
             *state.home_bootstrap.lock().unwrap() = (|| {
@@ -1024,7 +1200,25 @@ pub fn run() {
                 runtime_session::freeze_root_home_descriptors(data,cfg,None,shared_paths.clone())?.native_namespaces(false)
             })();
             *state.native_namespaces.lock().unwrap()=namespaces.clone();
-            *home.attachment_custody.lock().unwrap()=data.as_ref().map_err(Clone::clone).and_then(|data|hosting::attachment_custody::AttachmentCustody::open_with_namespaces(data,namespaces.clone()?).map(Arc::new));
+            let namespace_authority=namespaces.clone().map(hosting::attachment_custody::NamespaceAuthority::new);
+            if let Ok(cfg) = &home.host_config {
+                if cfg.distribution.is_some() {
+                    let store = (|| {
+                        let data = data.as_ref().map_err(Clone::clone)?;
+                        let vendor = cfg.distribution.as_ref().unwrap().vendor_root();
+                        let store=match cfg.distribution.as_ref().unwrap() {
+                            hosting::successor::Distribution::Production { resources } => {
+                                let selected=distribution_preflight::selection::Selected::production(&resources.join("distribution-reference"))?;
+                                crate::distribution_store::Store::open_selected(data,&vendor,namespaces.clone()?,selected)
+                            },
+                            hosting::successor::Distribution::Development { .. } => crate::distribution_store::Store::open(data,&vendor,namespaces.clone()?),
+                        }?;
+                        crate::distribution_store::Store::with_authority(store,namespace_authority.clone()?)
+                    })();
+                    host.configure_distribution_store(store);
+                }
+            }
+            *home.attachment_custody.lock().unwrap()=data.as_ref().map_err(Clone::clone).and_then(|data|hosting::attachment_custody::AttachmentCustody::open_shared(data,namespace_authority.clone()?).map(Arc::new));
             home.recovery_startup.lock().unwrap().initialize_with_namespaces(
                 &host,
                 data.as_deref().map_err(String::as_str),
@@ -1061,6 +1255,10 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             file_act_select, file_act_confirm, file_act_continue, file_act_dismiss, file_act_read,
             read_recovery_custody,
+            read_connector_routes,
+            prepare_connector_source, select_connector_source, anchor_connector_source, revise_connector_source,
+            read_connector_git, cancel_connector_git, anchor_connector_git,
+            prepare_connector_reconstruction, prepare_connector_draft, publish_connector_draft, cancel_connector_draft, reconcile_connector_draft, inspect_connector_drafts,
             host_status,
             select_home,
             read_home_access,
@@ -1085,7 +1283,7 @@ pub fn run() {
             conversation_steer_text,
             conversation_interrupt,
             set_person_name,
-            workflow_select_development,workflow_open_library,workflow_select_registered,workflow_create_draft,workflow_refine_registered,workflow_review,workflow_register_native,workflow_continue_registration,workflow_prepare_run,workflow_send_run,workflow_check_supply,workflow_retry_records,workflow_read_records,workflow_end_run,workflow_end_and_start,workflow_check_notice,workflow_skip_notice,workflow_reopen,workflow_end_recorded,workflow_review_digest,native_confirmation_content,
+            workflow_select_development,workflow_select_production_bundle,workflow_select_production_copy,workflow_open_library,workflow_select_registered,workflow_create_draft,workflow_refine_registered,workflow_review,workflow_register_native,workflow_continue_registration,workflow_prepare_run,workflow_send_run,workflow_check_supply,workflow_retry_records,workflow_read_records,workflow_end_run,workflow_end_and_start,workflow_check_notice,workflow_skip_notice,workflow_reopen,workflow_end_recorded,workflow_review_digest,native_confirmation_content,
             decision_view,
             continue_decision_recording,
             compose_offer,
@@ -1098,6 +1296,7 @@ pub fn run() {
             if let tauri::RunEvent::Exit = event {
                 let st: State<'_, AppState> = app.state();
                 let homes=st.homes.lock().unwrap().entries();
+                if let Some(account)=homes.iter().find(|home|home.class()==home_resources::HomeClass::Account){if let Ok(custody)=account.host.app_runtime_custody(){custody.close_distribution_publication();}}
                 for home in &homes { let _=home.host.stop("the person","App quit"); }
                 // DEF-5 native process-stop facts remain in each actual Host's
                 // lifecycle. They are not DEF-3 REC stopRequestId references.
@@ -1117,7 +1316,7 @@ mod workflow_root_context_tests {
         let control=Arc::new(Mutex::new(Some(ActControl::new(&root))));
         let mut workflows=runtime_session::WorkflowRootSession::default();workflows.open_library(root.clone(),"project",Some(&root),control.clone()).unwrap();
         let library=workflows.active_library().unwrap();
-        let state=AppState{workspace:Some(root.clone()),act:control,file_acts:Mutex::new(file_act_root::FileActRoot::default()),workflows:Mutex::new(workflows),decision_writer_status:Mutex::new(Value::Null),person_name:Mutex::new(None),instructions_root:Mutex::new(Err("unavailable".into())),app_user_data_root:Mutex::new(Err("unavailable".into())),external_observation:Mutex::new(Default::default()),trace_selection:Mutex::new(Default::default()),attachment_selection:Mutex::new(runtime_session::AttachmentSelectionSession::new(Some(root.clone()))),project_context:recovery::ExplicitAppProjectContext::unknown(),project_context_limit:Some("unknown".into()),homes:Mutex::new(runtime_session::HomeRouter::new(home.clone()).unwrap()),home_bootstrap:Mutex::new(Err("descriptor unavailable; no inferred home".into())),native_namespaces:Mutex::new(Err("unavailable".into())),key_namespace_admission:Mutex::new(Value::Null),key_setup:Mutex::new(()),root_home_inputs:Value::Null};
+        let state=AppState{compiled_development_selection:json!({"standing":"test-fixture-not-observed"}),connector_drafts:Mutex::new(connector_materialization::Registry::default()),connector_sources:Mutex::new(connector_source::Session::default()),workspace:Some(root.clone()),act:control,file_acts:Mutex::new(file_act_root::FileActRoot::default()),workflows:Mutex::new(workflows),decision_writer_status:Mutex::new(Value::Null),person_name:Mutex::new(None),instructions_root:Mutex::new(Err("unavailable".into())),app_user_data_root:Mutex::new(Err("unavailable".into())),external_observation:Mutex::new(Default::default()),trace_selection:Mutex::new(Default::default()),attachment_selection:Mutex::new(runtime_session::AttachmentSelectionSession::new(Some(root.clone()))),project_context:recovery::ExplicitAppProjectContext::unknown(),project_context_limit:Some("unknown".into()),homes:Mutex::new(runtime_session::HomeRouter::new(home.clone()).unwrap()),home_bootstrap:Mutex::new(Err("descriptor unavailable; no inferred home".into())),native_namespaces:Mutex::new(Err("unavailable".into())),key_namespace_admission:Mutex::new(Value::Null),key_setup:Mutex::new(()),root_home_inputs:Value::Null};
         let (_,context)=current_actor_context_for(&state,&home);
         let package=root.join(workflow_workspace::development_catalog::NAME);std::fs::create_dir(&package).unwrap();
         let catalog=workflow_workspace::development_catalog::DevelopmentCatalog::load().unwrap();for(name,bytes)in catalog.select_embedded().snapshot().files(){std::fs::write(package.join(name),bytes).unwrap();}
@@ -1161,3 +1360,24 @@ mod file_act_consumer_tests;
 #[cfg(test)]
 #[path = "../../tests/group_b_fixture_consumer.rs"]
 mod group_b_fixture_consumer;
+
+#[cfg(test)]
+#[path = "p3_role_entry_tests.rs"]
+mod p3_role_entry_tests;
+
+#[cfg(all(test,unix))]
+mod connector_git_guard_tests {
+    use super::*;
+    #[test]
+    fn connector_git_shared_command_guard_refuses_unknown_mismatch_and_absent_project() {
+        let(root,mut state,_,_,_,_)=workflow_root_context_tests::fixture();
+        assert!(source_project(&state).is_err());
+        state.project_context_limit=None;
+        assert!(source_project(&state).is_err());
+        state.project_context=recovery::ExplicitAppProjectContext::known(root.to_str().unwrap(),recovery::AppProjectSource::ConfiguredDirectory).unwrap();
+        assert_eq!(source_project(&state).unwrap(),root);
+        state.workspace=Some(root.join("different"));assert!(source_project(&state).is_err());
+        state.workspace=None;assert!(source_project(&state).is_err());
+        std::fs::remove_dir_all(root).unwrap();
+    }
+}

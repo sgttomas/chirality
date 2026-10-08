@@ -17,16 +17,14 @@ bounded implementation within C without declaring the SCC resolved.
 
 Selected methods: `chirality-root:bundled:workflow:construct-local-work-graph`
 and `chirality-root:bundled:workflow:coordinated-knowledge-work`.
-The first useful unit is the shared CFB standing-to-route computation,
-independently tested through its public programmatic consumer boundary.
-Provider adapters and persistent route placement require their actual inputs.
+C1 standing-to-route computation is integrated. The current bounded C3 continuation composes and persists source-evidence drafts under reviewed CAM-v0.1/CAM-R1 and CRP-v0.3. Native witnessing, full factual reconstruction, actor contributions and provider adapters remain separate obligations.
 
 ## Deliverable scope
 
 | Deliverable | Existing basis and evidence | Selected continuation |
 |---|---|---|
 | DEL-07-01 PEC receiving | ScopeOfWork; PRC-v0.4 Design, schemas and constructed EU-D1 rehearsal. Exact PEC wire/tool agreement, qualification/release and App adoption remain unestablished in this basis | C2: receive actual OI-022 inputs before adapter production; preserve stamp/envelope separation, source resolution and bounded reliance |
-| DEL-07-02 connector fallback | ScopeOfWork; CFB-v0.2 pinned bytes; standing and route-account schemas and constructed rehearsal. No connector production module found in app at entry | C1 shared standing/route core (receiving-owner coverage assertions, no coverage verification); C3 actual source recovery, responsibility and presentation after placement is resolved |
+| DEL-07-02 connector fallback | ScopeOfWork; CFB-v0.3 and CRP-v0.3 successors; historical schema/consumer pins preserved; C1 integrated | C1 shared standing/route core (receiving-owner coverage assertions, no coverage verification); C3 actual source recovery, responsibility and presentation after placement is resolved |
 | DEL-08-01 Domains receiving | ScopeOfWork; DRC-v0.1 definitions and invented sources/cases; no provider/query/admission/deployment established | C4: preserve decision/allocation account; agreed inputs precede provider-dependent receiving |
 | DEL-08-02 research to design | ScopeOfWork; RTD-v0.2 proposed method, context schema and rehearsal, expressly not live verification | C5: later activation and host/admission inputs precede method implementation and connected witness; no fifth role or knowledge-browser UI |
 
@@ -37,9 +35,9 @@ Provider adapters and persistent route placement require their actual inputs.
 | C0 recovered Group C route | Manager; this graph and run evidence | Accepted grouping, live contracts, other group graphs, actual code | GC-7/8 relations and owner-held points explicit | COMPLETE recovery for first slice; basis and reading limits recorded in the run |
 | C1 shared connector standing and per-part route projection | TASK connector_slice; new app/src-tauri/src/connector_standing.rs and minimal module registration | CFB §§2–3; exact connector tiers; simulated inputs explicitly marked | Condition precedence/reasons, non-vacuous per-part coverage, absence/unknown refusal, PEC/Domains independence, serialized output, no owner act; targeted offline tests | COMPLETE bounded code/tests: c3174f5846 integrated a99ae55; 7/7 targeted Rust tests; source and coverage verification remain outside slice |
 | C1-V independent review and repair | TASK group_c_review; read-only candidate and tests | Exact C1 plus manager graph/evidence candidate | Independent source, full diff and evidence review; no unresolved blocking findings | COMPLETE at 08fcd838d1; independent review READY with no defects; final evidence-only backcheck before merge |
-| C1-I first substantive integration | Manager, parent Git integration coordination | C1-V, affected offline checks and required CI at actual head | Reviewed PR merged; evidence describes partial scope truthfully | ACTIVE; [PR #1127](https://github.com/sgttomas/chirality/pull/1127), required CI and final backcheck pending |
+| C1-I first substantive integration | Manager, parent Git integration coordination | C1-V, affected offline checks and required CI at actual head | Reviewed PR merged; evidence describes partial scope truthfully | COMPLETE; [PR #1127](https://github.com/sgttomas/chirality/pull/1127) merged before successor base 236cbc3c69; Git/PR history retains CI and review |
 | C2 PEC provider receiving join | App receiving owner with PEC owner; DEL-07-01 adapter/tests/presentation | OI-022 actual tool/response agreement; qualified/released/adopted account before reliance; current-pin hosting observation at use | Source pin → actual response → receiving action and limited/absent cases; independent review | BLOCKED for dependent adapter behavior on actual provider terms; definition/preparation remains available |
-| C3 source-file recovery and visible route | App receiving owner; DEL-07-02 backend/view/tests | C1; named project placement treatment before persistence; actual source selection/custody | Same question reconstructed with source identities/gaps and agent/manager/person duties; no inferred authority; independent review and connected checks | PLANNED; first slice does not implement persistence or UI |
+| C3 source-file recovery and visible route | App receiving owner; DEL-07-02 backend/view/tests | C1; named project placement treatment before persistence; actual source selection/custody | Same question reconstructed with source identities/gaps and agent/manager/person duties; no inferred authority; independent review and connected checks | ACTIVE: CI-29 merged in PR #1130; CRP-v0.3 technically selected after source review and fleet concurrence; bounded backend merged in PR #1137 after exact-head review and CI; read-only account view and actual file-only walk are reviewed in PR #1140; App-native reconstruction remains unfinished |
 | C4 Domains contract and receiving | App receiving owner with external owners; DEL-08-01 | OI-023 terms and admission inputs; OI-026 allocation before provider production/integration | Identified contract/admitted-source cases, freshness and unsuitable/absent behavior, exact decision custody | BLOCKED at dependent implementation; no provider allocation inferred |
 | C5 later research-to-design contribution and witness | App method/receiving owner; DEL-08-02; host work remains SWBPIPE | Owner activation of later increment; C4; portable workflow, shared act row, actual host integration and human act | Source → context → candidate → actual decision witness, plus limitations; preparation/rehearsal separate | BLOCKED at activation/input points; no activation inferred from Group C resume |
 | C6 final bounded reconciliation and receipt | Manager; four deliverables and this run, no MEMORY writes | Intended production and required evidence integrated | Commitment↔result comparison under bounded-reconciliation; missing work returns to execution; conditional intake only without a home | PLANNED |
@@ -70,8 +68,9 @@ future entries will be routed through HELP_HUMAN at closeout, not written here.
   DEL-09-10 cases; D has no active group graph at entry, so carry these there
   when it is constructed. CFB reads ordinary project/fleet records as files;
   it does not require D fleet software (CFB §6, H-6).
-- **Placement question:** CFB §9 leaves route-account project placement open
-  with DEL-06-01 placement. Persistence is held outside C1. If resolving this
+- **Placement treatment:** CFB §9's open route-account placement is resolved
+  for bounded C3-P by reviewed CRP-v0.3 and DEL-06-01 concurrence. No fleet
+  implementation prerequisite is introduced. If later receiving work
   entails a C→D prerequisite, group-order reversal, cross-group cycle or
   invalidation of finished work, bring it immediately to HELP_HUMAN/owner
   under GC-7 rather than silently declaring readiness.
@@ -80,24 +79,87 @@ future entries will be routed through HELP_HUMAN at closeout, not written here.
 
 ## Current state and recovery
 
-Basis: `7311df06d8` (PR #1126 merge), isolated branch
-`codex/app-v4-group-c`; this branch is the designated graph ref while ahead of
-main. Manager owns graph/evidence/integration; children own isolated worktrees.
+Successor basis: `236cbc3c693423499120b4abeadfdcc5fb670477` (includes merged PRs #1127 and #1128), isolated branch
+`codex/group-c-reconstruction-manager`; this branch is the designated graph ref while ahead of
+main. WORKING_ITEMS `/root/group_c_successor` now owns C3 continuation under HELP_HUMAN `/root`. Manager owns graph/evidence/integration; children own isolated worktrees.
 Basis identities and reading limits: [BASIS.json](../../AgentRuns/APP-V4-GROUP-C-20261008/BASIS.json). Actual assignments: [DELEGATION.md](../../AgentRuns/APP-V4-GROUP-C-20261008/DELEGATION.md).
 Delegation uses harness-native descendants, with instruction fences, not a
 claim of per-file sandbox enforcement. Launch messages and source identity
 account are retained in the run.
 
-Next: finish required CI and evidence-only exact-head backcheck, then merge
-PR #1127. Continue C3 from its recorded source-owner design questions after
-this bounded integration; no dependent provider or research activation is inferred. No download, sign-in, credentials, native act, provider act,
-MEMORY write or human decision is authorized by this graph. SEAL-2 remains
-deferred. External SWBPIPE, PEC and Domains implementation stays in its own
-sessions and cross-project relay belongs to the owner. No 90% claim.
+[PR #1137](https://github.com/sgttomas/chirality/pull/1137) merged as `412cf7fa012f400043182e4c9e8ea0e1725c843f`, receiving main `d35b29f813`, after independent READY at final head `2ecde9055d232553fd79298ba27dcc49aef81aee` and all selected CI passed. [PR #1140](https://github.com/sgttomas/chirality/pull/1140) merged as `c3a0f50f032ae20e54c7d66b36d55cf40223e184` after exact-head review and all selected CI. It includes reviewed receipt `9485943216`. [PR #1144](https://github.com/sgttomas/chirality/pull/1144) merged as `2cbb90e07937a4944ba46dcde25c564d578773f6` after exact-head review and CI. [PR #1149](https://github.com/sgttomas/chirality/pull/1149) merged as `7fd670cc061a564d9a1c3a8cc3e85a4f870cf418` after independent exact-head READY at `71df861a44` and all required CI. [PR #1151](https://github.com/sgttomas/chirality/pull/1151) merged as `c9bfde526912b7da933c89f956ecc43489178a09` after independent exact-head READY at `1dae398f03` and all required CI. Actual native witness and full reconstruction remain unfinished. No download, sign-in, credentials, native act, provider act, MEMORY write or human decision is authorized by this graph. SEAL-2 remains deferred. External SWBPIPE, PEC and Domains implementation stays with its owners. No 90% claim.
 
-Independent source preparation found a future C3 question: the route-account
-schema requires at least one source while CFB §7 permits wholly missing sources.
-CI-29 records the mismatch. Resolve by named reviewed contract treatment before account writing; C1 emits
-no account and does not weaken that schema. This issue has a current C3 home.
+C1 production and limits: [C1_EVIDENCE.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C1_EVIDENCE.md). C1 and C3-P are programmatic library contributions. Later bounded views and producers are listed below; they do not complete actual source recovery.
 
-C1 production and limits: [C1_EVIDENCE.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C1_EVIDENCE.md). C1 is a programmatic library contribution; no App view or actual source recovery is complete.
+## C3 current route and evidence
+
+| Unit | Current disposition | Evidence and recovery |
+|---|---|---|
+| C3-D / CI-29 source treatment | COMPLETE bounded source correction; PR #1130 merged `44ade85d955e45e2c1fbba8a9ae1a9be675c18dd`. Empty-source accounts cannot fabricate a read; historical pins remain intact | C3_DESIGN_TREATMENT.md and C3_DESIGN_REVIEW.md preserve consumer analysis and checks |
+| C3-O / O-D placement | COMPLETE bounded technical selection. PR #1132 merged initial reviewed CRP-v0.2; CRP-R2 selects source `3d9a91a988` / CRP-v0.3 after review `0d1b8c62bb` and fleet concurrence `873f23b906` | C3_PLACEMENT_ADOPTION.md is the current exact selection; C3_PLACEMENT_REVIEW.md and C3_FLEET_PLACEMENT_CONCURRENCE.md retain superseded findings and custody |
+| C3-P caller-account persistence | COMPLETE bounded backend; PR #1137 merged `412cf7fa012f400043182e4c9e8ea0e1725c843f` after exact-head READY and CI | 31 maintained plus three independent checks passed under default and distribution-successor features at final combined review. Original failing temporary-name sequences and late same-byte inode substitution were backchecked; C3_PERSISTENCE_REVIEW.md preserves original NOT READY and repair evidence |
+| C3-S0 source-route basis and implementation assessment | COMPLETE bounded assessment; existing attachment supply does not establish route revision/anchor custody and is not reused as a local-read shortcut | Source owner found read-only account inspection plus an actual file-only walk implementable without a new schema/meaning decision; parent concurred |
+| C3-S1 actual file-only reconstruction walk | COMPLETE bounded source walk in PR #1140; source `e24bd8a5a2`, integrated unchanged `ae061bd`, independent review `b6dfaf7bc3`; C3_SOURCE_WALK.md, basis and fixture retained | Exact committed bytes/revisions/hashes/anchors; same question with explicitly simulated triggers; actual TASK comparison distinguished from separate manager and human duties; independent source backcheck |
+| C3-U1 saved-account presentation | COMPLETE bounded view in PR #1140; repaired code `e71ae8b9da`, review `b7b78c1905` preserves original numeric-fidelity finding | Existing explicit project association only; whole account and discovery issues/duplicates visible; no source-truth/duty promotion; independent code and consumer checks |
+| C3-S2-D source producer contract | READY exact source `938f026349`, independent backcheck `c8b71bcef0`; selected in C3_S2_TECHNICAL_SELECTION.md; original anchor/cancellation findings retained | Host-owned selection/custody, exact observed bytes, revision assertions versus evidence, literal anchors and failure gaps named before code. Any consequential owner decision returns through HELP_HUMAN |
+| C3-S2-P bounded App producer | COMPLETE bounded producer in PR #1144; repaired code `9ec8d09335`, independent review `677ba70691`. Initial read-gap failure and repair retained | Synthetic/offline tests, additive UI/lib integration coordinated with H3B-2; no attachment supply shortcut, source truth, actor promotion or provider readiness inferred |
+| C3-S2-W actual native source witness | HELD at point-specific native approval; concrete C3-NW-01 joined S2/S3/S4 proposal and provenance-bound offline artifact prepared; independent held-proposal READY at 9e19e7dd5f (review ecea69210e); no launch | Synthetic chooser and prior file-only walk do not establish actual native selection or complete C3/Group C |
+| C3-S3-D exact Git source treatment | READY source `b9de482eed`, independent repaired review `78c7648803`; selected in C3_S3_TECHNICAL_SELECTION.md | Side/request failure lifecycle and fixed nonwriting same-Git rehash mechanism selected; bounded implementation independently checked at `7c7536c84c`; host-private selected path, repository association and explicit limits bound the first adapter |
+| C3-S3-P transient Git object producer | COMPLETE bounded producer in PR #1149, merged `7fd670cc06`; independent code review `6a3feb7dc8`, final exact-head READY `71df861a44`, all required CI passed | 60 default and 61 distribution-feature checks; independent 82-object hash oracle, hostile/lifecycle/handler checks. Constructed repositories with real restricted Git; synthetic selection/session/handlers, no native user-project witness or account materialization |
+| C3-S4-D provenance-preserving account treatment | READY source `e57dec1c31`, independent review/backcheck `86ee7be1dc` / `bf9b497f7c`; HELP_HUMAN technical release recorded in C3_S4_TECHNICAL_SELECTION.md | Existing 0.1/0.2 meanings retained; no evidence hidden in old fields; no facts, supported conclusions, performed duties or native authority inferred |
+| C3-S4-P durable source-evidence draft | COMPLETE bounded implementation in merged PR #1151 (`c9bfde5269`), independent review `bae0f320a4` and final exact-head READY `1dae398f03`; required CI passed. CAM-R1 technical confirmation retained | Current private Git side/anchor → attributed composition → CRP publication → cold view; same opened project identity and uncertainty preserved. 64 lifetime identities/one payload is a development bound requiring later product capacity assessment, not 90% evidence; native witness remains separate |
+| C3-S4-R1 bounded record comparison source | READY source-only candidate `f0d0b6f41a22`, independent review `0298ebdd3a`; HELP_HUMAN technically selected for bounded implementation; external adoption remains held | CRR-v0.1 proposes additive format0.4: checked record excerpts/comparisons, attributed claims, unresolved contradictions and unverified contribution reports. Actual duty performance/authority remains unestablished; no typed RS consumption or capacity-policy change |
+| C3-S4-R1-P record comparison implementation | COMPLETE bounded implementation in PR #1155, merged `953d8c94466db5543426a2de7b26a591564e4dca`; exact final-head READY `fceaa0a4eb`, required CI passed | Constructed Git/injected selection through composition/publication/cold view; original UI remount collision retained and repaired. 77 default/78 distribution, cold matrix and actual handler tests; no native/actor-authority claim |
+| C3-S4-R2 contribution evidence source proposal | READY AS REVIEWABLE PROPOSAL `fcfdfee7eb5b`, review `d74468568d`; implementation held | CCE-v0.1 binds answer/review and observed authorized graph integration; scoped RS concurrence retained. Lifecycle A/PM-05 recovery, authorization bridge and new live Host join remain explicit holds; no actual duties or authority inferred |
+| C3-S4-R full question reconstruction and actor contributions | UNFINISHED | Source evidence alone supplies no factual interpretation, supported conclusion, manager integration or person coordination; actual native witness remains separately point-held |
+
+Current publication uses exclusive no-replace rename with no automatic pathname
+unlink. Exact postpublication inode, bytes, account and path checks precede a
+successful binding. A same-user source-name substitution can move foreign bytes;
+that outcome is preserved and reported as uncertain, without rollback or retry.
+Unsupported filesystem capability refuses. Opened-directory identity is not a
+promise of continuous membership under mutable pathnames. No C→D completion
+prerequisite or change to Group B's optional relation is introduced.
+
+Actual harness-native TASK descendants are `cfb_design_owner` (DEL-07-02 source),
+`fleet_placement_owner` (DEL-06-01 concurrence), `route_persistence` (backend), and
+`cfb_design_review` (independent source/code review), under this WORKING_ITEMS
+successor. Each used a separate managed worktree/branch, `gpt-6-astra` low, no
+child delegation, and bounded instruction fences rather than claimed host
+per-file enforcement. Manager origins/reading limits are in
+[C3_MANAGER_BASIS.json](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_MANAGER_BASIS.json).
+
+Code and actual verification limits: [C3_PERSISTENCE_EVIDENCE.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_PERSISTENCE_EVIDENCE.md),
+[C3_PERSISTENCE_BASIS.json](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_PERSISTENCE_BASIS.json),
+[C3_PERSISTENCE_REVIEW.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_PERSISTENCE_REVIEW.md).
+Tests used private copy-on-write targets and the approved offline cache with no
+download. macOS backend behavior was executed; Linux execution, physical
+power-loss durability and actual fsync-device failure were not established.
+C2, C4 and C5 remain held at the points above; C6/C7 whole-group closeout remains
+planned. Git integration is not governed acceptance or Group C completion.
+
+Current S1/U1 evidence: [C3_SOURCE_WALK.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_SOURCE_WALK.md), [C3_SOURCE_WALK_REVIEW.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_SOURCE_WALK_REVIEW.md), [C3_PRESENTATION_EVIDENCE.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_PRESENTATION_EVIDENCE.md), [C3_PRESENTATION_REVIEW.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_PRESENTATION_REVIEW.md), and [C3_SOURCE_ROUTE_INTEGRATION.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_SOURCE_ROUTE_INTEGRATION.md). The actual manual comparison and App discovery remain distinct; host-parsed values disclose numeric normalization. No native witness is inferred from component rendering.
+
+S2 current evidence: [C3_S2_TECHNICAL_SELECTION.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_S2_TECHNICAL_SELECTION.md), [C3_S2_IMPLEMENTATION_EVIDENCE.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_S2_IMPLEMENTATION_EVIDENCE.md), [C3_S2_IMPLEMENTATION_REVIEW.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_S2_IMPLEMENTATION_REVIEW.md), and [C3_S2_INTEGRATION.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_S2_INTEGRATION.md). Read-buffer/anchor evidence remains distinct from revision assertions, actor duties and connector authority.
+
+## Post-S4 bounded continuation
+
+C3_NATIVE_WITNESS_PROPOSAL.md and C3_NATIVE_ARTIFACT_RECEIPT.json retain the
+exact c9bfde5269 witness basis, constructed project and requested owner actions.
+Preparation is not permission to launch. C3-S4-R remains full reconstruction;
+the separate product-capacity residual (64 lifetime identities/one payload)
+requires assessment before whole-product 90% presentation. The two-identity
+proposed witness cannot establish final capacity sufficiency.
+
+C3_EXTERNAL_INPUT_CURRENCY.md records the bounded current-main check: no new
+inputs in the inspected PEC/receiving scopes; OI-022/023/026 remain open.
+C2/C4 input holds and C5 activation hold remain, without external-owner adoption.
+
+C3_S4_RECONSTRUCTION_INTEGRATION.md retains the source-only assignment, exact
+candidate/review, five repaired definition findings and consumer boundaries.
+Exact source now technically selected in C3_S4_R1_TECHNICAL_SELECTION.md; implementation/review is active, not format0.4 production or
+full C3-S4-R closure. The prepared c9bfde5269 native artifact remains frozen.
+
+C3_CONTRIBUTION_EVIDENCE_INTEGRATION.md retains the CCE source-only proposal,
+scoped RS concurrence, five repaired findings and exact open choices. Proposal
+review is not technical selection or implementation release. No new native act.

@@ -337,7 +337,9 @@ fn artifact(base: &Path, reference: &Artifact) -> Result<Vec<u8>, String> {
         return Err("artifact is not unique regular file".into());
     }
     let mut raw = Vec::new();
-    fd.read_to_end(&mut raw).map_err(|e| e.to_string())?;
+    if before.len()>32*1024*1024{return Err("selected artifact byte limit".into());}
+    (&mut fd).take(32*1024*1024+1).read_to_end(&mut raw).map_err(|e| e.to_string())?;
+    if raw.len()>32*1024*1024{return Err("selected artifact byte limit".into());}
     if stamp(&before) != stamp(&fd.metadata().map_err(|e| e.to_string())?)
         || digest(&raw) != reference.sha256
     {
@@ -371,12 +373,8 @@ fn resolve(base: &Path, anchor: &Artifact) -> Result<serde_json::Value, String> 
     )?;
     if a["expected_reference"] != serde_json::to_value(&selection.expected).unwrap()
         || a["author"] != e["author"]
-        || a["author"].as_str().unwrap().trim().to_lowercase()
-            == a["independent_reviewer"]
-                .as_str()
-                .unwrap()
-                .trim()
-                .to_lowercase()
+        || selection::reviewer_key(a["author"].as_str().unwrap())?
+            == selection::reviewer_key(a["independent_reviewer"].as_str().unwrap())?
         || e["pin"] != e["generated"]["pin"]
     {
         return Err("reference/attestation binding mismatch".into());
@@ -410,12 +408,12 @@ fn resolve(base: &Path, anchor: &Artifact) -> Result<serde_json::Value, String> 
     Ok(serde_json::json!({"expected":e,"selection":selection}))
 }
 #[derive(Debug)]
-struct LaunchPlan {
-    executable: std::path::PathBuf,
-    path: String,
-    removed: [&'static str; 2],
+pub(crate) struct LaunchPlan {
+    pub(crate) executable: std::path::PathBuf,
+    pub(crate) path: String,
+    pub(crate) removed: [&'static str; 2],
 }
-fn plan(root: &Path, inherited: Option<&str>) -> Result<LaunchPlan, String> {
+pub(crate) fn plan(root: &Path, inherited: Option<&str>) -> Result<LaunchPlan, String> {
     let prefix = root
         .join("codex-path")
         .to_str()
@@ -491,3 +489,13 @@ fn staged_start(
         serde_json::json!({"format":"staged-preflight.s2","outcome":"unverifiable","inventory":observed,"generation":generation,"verification_generation":verification_generation,"build_selection":anchor,"raw_version_label":raw,"expected_reference":selection.expected,"adoption_attestation":selection.attestation,"resolved_executable":plan.executable,"removed_environment_names":plan.removed,"limits":["Synthetic adapter only; S3 qualification, native custody, installed integrity and lifecycle successor publication absent","Residual check-to-exec race; no production verification claim"]}),
     )
 }
+
+/// Production trust can only originate in reviewed compiled source. No runtime
+/// parameter selects the anchor. Resolution alone never establishes custody.
+pub(crate) fn production_reference(base: &Path) -> Result<serde_json::Value, String> {
+    let (path, sha256) = PRODUCTION_SELECTION.ok_or("S3-qualified compiled selection absent")?;
+    resolve(base, &Artifact { path: path.into(), sha256: sha256.into() })
+}
+
+#[path = "distribution_selection.rs"]
+pub(crate) mod selection;
