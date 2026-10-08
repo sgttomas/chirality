@@ -16464,3 +16464,5 @@ RV126 (RV-N) reviewed PR-N (`R/REVIEW_RV126/pr_n_01/REVIEW.md`, `3ca41a9e…`).
 **Later:** the element's code (FK `user_stiffness_local_matrix` and its plumbing) is deleted in the PR that lands T4's corrected joint, not before. Until then every model containing it is refused, and after 1–3 nothing reaches it. No copy of the old element is kept for historical comparison, which supersedes JR J-A's "historical witnesses only".
 
 **U3 Stage 2 is released to WORKING_ITEMS:** items 1–3 plus the legacy pressure computation's deletion, with H-1's −0.0 check.
+
+**U3, RV127's N-2: accepted** (ROOT, 2026-10-08 UTC). The operation applier's new public code `OP-PRESSURE-PRIMITIVE-RETIRED` (`operation_applier/src/lib.rs:4961-4973`) refuses the authoring of a new pressure primitive. Authoring refusals use the applier's own `OP-*` namespace, and the refusal is the owner's retirement itself. D-4 still covers the solve refusal (`PRESSURE_MODEL_REAUTHOR_REQUIRED`).
