@@ -16210,3 +16210,20 @@ A case-level `pressure` key is not refused. PP's `PreviewLoadCase` has no such f
 - Linux by a CI dispatch.
 
 **IDs:** I109 is used. The next unused are **I110 and RV126**.
+
+## RV124 confirms B1's Pass B; the platform test fix committed on NUM (ROOT, 2026-10-08 UTC)
+
+**RV124 (RV-Q) CONFIRMED** I107's Pass B (`R/REVIEW_RV124/b1_passb_01/CONFIRM.md`, `c88e7a82…`). Counts: 0 BLOCKING, 0 SHOULD-FIX, 2 NOTE (wording in `delta_reviewed_b1.json`).
+- **The production-class rows** are exactly the registration item and G6's SF-1 bound.
+- **The table:** 50 entries, confirmed.
+- **`process_floor`:** confirmed environmental (4,060 + len(argv[0]), at three independent path lengths).
+- **Item 10:** confirmed.
+- **Pass A's basis `57c92a7b33`:** right.
+
+**The platform test fix** is committed on NUM with this section: three PP test files, +110/−9, no production code. Its diff has sha256 `744c1633…`, which RV124 read.
+- On the Mac, the `CAP_MAXIMAL_RING` table equals libSystem's cos and sin bit for bit.
+- The glibc variants apply only on Linux glibc.
+- The affected tests pass 52 of 52 in RV124's registered copy.
+- **Pass B's gates are unchanged.** `law` and `pp_outcomes` each gain the one added test, and `delta` gains test-class rows only.
+
+PR-B1 is recut once the Linux diagnostic (run 37792750591) is read.

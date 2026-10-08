@@ -1,0 +1,22 @@
+# RV124: String-bearing fields of the retained route's error types at d07006c2f0 (shallow: each type's own fields)
+CaptureError (product_physics/src/retained_product.rs): ['Association(String),']
+PreparedCandidateError (product_physics/src/retained_product.rs): NO String-bearing field
+G5aFailure (product_physics/src/retained_product.rs): NO String-bearing field
+OperationalError (product_physics/src/retained_product.rs): NO String-bearing field
+AdapterFault (product_physics/src/retained_product.rs): NO String-bearing field
+ProductFailure (solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs): NO String-bearing field
+SourceError (solver/frame_kernel/src/structural/retained/source.rs): NO String-bearing field
+OriginError (solver/frame_kernel/src/structural/retained/origins.rs): NO String-bearing field
+ProductProofFailure (solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs): NO String-bearing field
+SectionPreparationError (solver/frame_kernel/src/structural/retained/product_certificate.rs): NO String-bearing field
+ProductValuesFailure (solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs): NO String-bearing field
+
+# every Option<CaptureError> field in retained_product.rs:
+126:    pub error: Option<CaptureError>,
+130:    pub observable_error: Option<CaptureError>,
+198:    error: Option<CaptureError>,
+202:    observable_error: Option<CaptureError>,
+# other CaptureError owners:
+      pub error: PreparedCandidateError,
+      pub error: CaptureError,
+41:    pub native_error:Option<p::CaptureError>,pub proof_ready:bool,pub private_commit_precharged:bool,

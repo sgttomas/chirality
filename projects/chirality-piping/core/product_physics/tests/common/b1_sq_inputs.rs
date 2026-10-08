@@ -41,15 +41,37 @@ fn text(prefix: &str, len: usize) -> String {
     s
 }
 
+/// `law_tests::CAP_MAXIMAL_RING`, transcribed: the ring's (x, y) as binary64 bits, because `cos`
+/// and `sin` differ in the last bit between platform libms (see there).
+const CAP_MAXIMAL_RING: [(u64, u64); 32] = [
+    (0x4024000000000000, 0x0000000000000000), (0x40239d9ee1fa99ee, 0x3fff36e64b840f8c),
+    (0x40227a43617f984c, 0x400e9d5b505a53bc), (0x4020a11fd9a92506, 0x4016390a081a02fa),
+    (0x401c48c6001f0ac0, 0x401c48c6001f0abf), (0x4016390a081a02fb, 0x4020a11fd9a92506),
+    (0x400e9d5b505a53bd, 0x40227a43617f984c), (0x3fff36e64b840f90, 0x40239d9ee1fa99ee),
+    (0x3cc60fafbfd97309, 0x4024000000000000), (0xbfff36e64b840f8a, 0x40239d9ee1fa99ee),
+    (0xc00e9d5b505a53ba, 0x40227a43617f984c), (0xc016390a081a02f8, 0x4020a11fd9a92506),
+    (0xc01c48c6001f0abf, 0x401c48c6001f0ac0), (0xc020a11fd9a92506, 0x4016390a081a02fa),
+    (0xc0227a43617f984c, 0x400e9d5b505a53be), (0xc0239d9ee1fa99ee, 0x3fff36e64b840f9d),
+    (0xc024000000000000, 0x3cd60fafbfd97309), (0xc0239d9ee1fa99ee, 0xbfff36e64b840f92),
+    (0xc0227a43617f984c, 0xc00e9d5b505a53b9), (0xc020a11fd9a92507, 0xc016390a081a02f8),
+    (0xc01c48c6001f0ac2, 0xc01c48c6001f0abf), (0xc016390a081a02fa, 0xc020a11fd9a92506),
+    (0xc00e9d5b505a53c8, 0xc0227a43617f984a), (0xbfff36e64b840f9f, 0xc0239d9ee1fa99ed),
+    (0xbce08bc3cfe31646, 0xc024000000000000), (0x3fff36e64b840f8f, 0xc0239d9ee1fa99ee),
+    (0x400e9d5b505a53c1, 0xc0227a43617f984b), (0x4016390a081a02f6, 0xc020a11fd9a92507),
+    (0x401c48c6001f0abe, 0xc01c48c6001f0ac2), (0x4020a11fd9a92506, 0xc016390a081a02fa),
+    (0x40227a43617f984a, 0xc00e9d5b505a53ca), (0x40239d9ee1fa99ed, 0xbfff36e64b840fa2),
+];
+
 /// `law_tests::cap_maximal`, transcribed (a lib test asserts the two are equal): 32 nodes, a
 /// 32-member ring, 32 supports with 6 restraints and a scalar spring each, 128 nodal loads,
 /// 4 + 4 materials with 16 temperature points, a 128-byte project id.
 pub fn law_cap_maximal() -> Value {
     let p = "invented_t3_g5_cap_maximal_input_no_library_data";
-    let nodes: Vec<Value> = (0..32)
-        .map(|i| {
-            let t = 2.0 * std::f64::consts::PI * i as f64 / 32.0;
-            json!({"id": format!("N{i}"), "position": {"x": 10.0 * t.cos(), "y": 10.0 * t.sin(), "z": 0.0}, "provenance": p})
+    let nodes: Vec<Value> = CAP_MAXIMAL_RING
+        .iter()
+        .enumerate()
+        .map(|(i, &(x, y))| {
+            json!({"id": format!("N{i}"), "position": {"x": f64::from_bits(x), "y": f64::from_bits(y), "z": 0.0}, "provenance": p})
         })
         .collect();
     let pipes: Vec<Value> = (0..32)

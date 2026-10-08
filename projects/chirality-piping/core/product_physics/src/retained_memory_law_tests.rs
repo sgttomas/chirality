@@ -57,16 +57,42 @@ fn text(prefix: &str, len: usize) -> String {
     s
 }
 
+/// The cap-maximal ring's node positions as binary64 bits, (x, y) = (10·cos t, 10·sin t) at
+/// t = 2π·i/32, exactly as computed when the inputs were pinned (I81's PROBE and SQ). They are
+/// spelled as bits because `f64::cos` and `f64::sin` are not correctly rounded: the hosted CI's
+/// libm differs from the Mac's in the last bit for some `t`, which changed this input and its
+/// pinned hashes there. `cap_maximal_ring_is_the_trigonometric_ring` checks each entry against
+/// the platform's `cos` and `sin` to within one ulp.
+const CAP_MAXIMAL_RING: [(u64, u64); 32] = [
+    (0x4024000000000000, 0x0000000000000000), (0x40239d9ee1fa99ee, 0x3fff36e64b840f8c),
+    (0x40227a43617f984c, 0x400e9d5b505a53bc), (0x4020a11fd9a92506, 0x4016390a081a02fa),
+    (0x401c48c6001f0ac0, 0x401c48c6001f0abf), (0x4016390a081a02fb, 0x4020a11fd9a92506),
+    (0x400e9d5b505a53bd, 0x40227a43617f984c), (0x3fff36e64b840f90, 0x40239d9ee1fa99ee),
+    (0x3cc60fafbfd97309, 0x4024000000000000), (0xbfff36e64b840f8a, 0x40239d9ee1fa99ee),
+    (0xc00e9d5b505a53ba, 0x40227a43617f984c), (0xc016390a081a02f8, 0x4020a11fd9a92506),
+    (0xc01c48c6001f0abf, 0x401c48c6001f0ac0), (0xc020a11fd9a92506, 0x4016390a081a02fa),
+    (0xc0227a43617f984c, 0x400e9d5b505a53be), (0xc0239d9ee1fa99ee, 0x3fff36e64b840f9d),
+    (0xc024000000000000, 0x3cd60fafbfd97309), (0xc0239d9ee1fa99ee, 0xbfff36e64b840f92),
+    (0xc0227a43617f984c, 0xc00e9d5b505a53b9), (0xc020a11fd9a92507, 0xc016390a081a02f8),
+    (0xc01c48c6001f0ac2, 0xc01c48c6001f0abf), (0xc016390a081a02fa, 0xc020a11fd9a92506),
+    (0xc00e9d5b505a53c8, 0xc0227a43617f984a), (0xbfff36e64b840f9f, 0xc0239d9ee1fa99ed),
+    (0xbce08bc3cfe31646, 0xc024000000000000), (0x3fff36e64b840f8f, 0xc0239d9ee1fa99ee),
+    (0x400e9d5b505a53c1, 0xc0227a43617f984b), (0x4016390a081a02f6, 0xc020a11fd9a92507),
+    (0x401c48c6001f0abe, 0xc01c48c6001f0ac2), (0x4020a11fd9a92506, 0xc016390a081a02fa),
+    (0x40227a43617f984a, 0xc00e9d5b505a53ca), (0x40239d9ee1fa99ed, 0xbfff36e64b840fa2),
+];
+
 /// A cap-maximal D1 request (STACK_INVENTORY.md §3 W2's counts at `l ≤ 128`):
 /// 32 nodes, a 32-member ring, 32 supports with 6 restraints each (r = 192) and a
 /// scalar spring on each (s = 32), 128 nodal loads, 4 + 4 materials with 16
 /// temperature points each, and one 128-byte identifier.
 pub(super) fn cap_maximal() -> Value {
     let p = "invented_t3_g5_cap_maximal_input_no_library_data";
-    let nodes: Vec<Value> = (0..32)
-        .map(|i| {
-            let t = 2.0 * std::f64::consts::PI * i as f64 / 32.0;
-            json!({"id": format!("N{i}"), "position": {"x": 10.0 * t.cos(), "y": 10.0 * t.sin(), "z": 0.0}, "provenance": p})
+    let nodes: Vec<Value> = CAP_MAXIMAL_RING
+        .iter()
+        .enumerate()
+        .map(|(i, &(x, y))| {
+            json!({"id": format!("N{i}"), "position": {"x": f64::from_bits(x), "y": f64::from_bits(y), "z": 0.0}, "provenance": p})
         })
         .collect();
     let pipes: Vec<Value> = (0..32)
@@ -102,6 +128,21 @@ pub(super) fn cap_maximal() -> Value {
         },
         "materials": materials
     })
+}
+
+/// `CAP_MAXIMAL_RING` is the ring `cap_maximal` was pinned on: each coordinate is within one ulp of
+/// 10·cos t or 10·sin t as this platform's libm computes it.
+#[test]
+fn cap_maximal_ring_is_the_trigonometric_ring() {
+    let ulps = |a: f64, b: f64| (a.to_bits() as i64 - b.to_bits() as i64).unsigned_abs();
+    for (i, &(x, y)) in CAP_MAXIMAL_RING.iter().enumerate() {
+        let t = 2.0 * std::f64::consts::PI * i as f64 / 32.0;
+        let (cx, cy) = (10.0 * t.cos(), 10.0 * t.sin());
+        // Near zero (i = 8, 16, 24) the coordinate is a rounding residue of π; compare absolutely.
+        for (pinned, computed) in [(f64::from_bits(x), cx), (f64::from_bits(y), cy)] {
+            assert!(ulps(pinned, computed) <= 1 || (pinned - computed).abs() <= 1e-14, "N{i}: {pinned:e} against {computed:e}");
+        }
+    }
 }
 
 /// B1 SA: `raw` with `cases` load cases, each a copy of its first case, with the ids

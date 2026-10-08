@@ -1,0 +1,69 @@
+# RV124: PR-B1 head d07006c2f0's P (without execution/) against RV124's reviewed registered copy (69002bc862 + registration.diff)
+Files REVIEWED:projects/chirality-piping/core/product_physics/src/retained_memory.rs and HEAD:projects/chirality-piping/core/product_physics/src/retained_memory.rs differ
+Files REVIEWED:projects/chirality-piping/core/rules/expression_evaluator/README.md and HEAD:projects/chirality-piping/core/rules/expression_evaluator/README.md differ
+Files REVIEWED:projects/chirality-piping/core/rules/expression_evaluator/src/lib.rs and HEAD:projects/chirality-piping/core/rules/expression_evaluator/src/lib.rs differ
+Files REVIEWED:projects/chirality-piping/core/rules/rule_check_runner/src/lib.rs and HEAD:projects/chirality-piping/core/rules/rule_check_runner/src/lib.rs differ
+Files REVIEWED:projects/chirality-piping/core/rules/rule_check_runner/tests/point_path_non_finite_run.rs and HEAD:projects/chirality-piping/core/rules/rule_check_runner/tests/point_path_non_finite_run.rs differ
+Files REVIEWED:projects/chirality-piping/docs/CI_STRATEGY.md and HEAD:projects/chirality-piping/docs/CI_STRATEGY.md differ
+Files REVIEWED:projects/chirality-piping/tests/test_ci_e2e_plan.py and HEAD:projects/chirality-piping/tests/test_ci_e2e_plan.py differ
+Files REVIEWED:projects/chirality-piping/tests/test_rule_interval.py and HEAD:projects/chirality-piping/tests/test_rule_interval.py differ
+Files REVIEWED:projects/chirality-piping/tools/ci/e2e_plan.py and HEAD:projects/chirality-piping/tools/ci/e2e_plan.py differ
+Files REVIEWED:projects/chirality-piping/validation/portability_policy.json and HEAD:projects/chirality-piping/validation/portability_policy.json differ
+
+# the one D1 difference (ROOT's comment-only citation correction):
+983,984c983,984
+<     // M (D-7; RR "R6a: B1's G5 holds on B1's real code; M = 10.5 GiB, provisional"; B1 SQ
+<     // QUAL_B1.md): E_mov,max + R <= 0.8745 M in this build (dense W3; sparse 0.8693 M).
+---
+>     // M (D-7; RR "R6b: RV124 passes SQ and confirms M"; B1 SQ QUAL_B1.md):
+>     // E_mov,max + R <= 0.8745 M in this build (dense W3; sparse 0.8693 M).
+
+# the 9 other files equal main 3d73db745e's blobs:
+= main core/rules/expression_evaluator/README.md
+= main core/rules/expression_evaluator/src/lib.rs
+= main core/rules/rule_check_runner/src/lib.rs
+= main core/rules/rule_check_runner/tests/point_path_non_finite_run.rs
+= main docs/CI_STRATEGY.md
+= main tests/test_ci_e2e_plan.py
+= main tests/test_rule_interval.py
+= main tools/ci/e2e_plan.py
+= main validation/portability_policy.json
+PP's Cargo.toml names no rules crate: 0 matches of 'rule'
+
+retained_memory.rs blob at 69002bc862: 10b44513023ec7fcd48ddd71c703a22c50e5f4c5
+retained_memory.rs blob at ddc8eaaf54: 9841ff3f156458c2bee301f891abb55235af1e31
+retained_memory.rs blob at 75cd6be76b: 04f625c650bbff6806beb77d5c1a81e0c7006f85
+retained_memory.rs blob at d07006c2f0: 04f625c650bbff6806beb77d5c1a81e0c7006f85
+
+# 57c92a7b33 -> d07006c2f0 hunks in retained_memory.rs (block 1076-2337; outside: 983-985 item, 2688-2693 doc, 2706 SF-1):
+@@ -983,2 +983,3 @@ static REGISTERED_PROFILES: &[RegisteredProfile] = &[RegisteredProfile {
+@@ -1079 +1080 @@ pub(super) fn priced_maximum(estimates: usize, mode: crate::PreviewSolverMode) -
+@@ -1112,4 +1113,4 @@ pub(super) mod profile {
+@@ -1117,2 +1118,2 @@ pub(super) mod profile {
+@@ -1126 +1127 @@ pub(super) mod profile {
+@@ -1214,0 +1216 @@ pub(super) mod profile {
+@@ -1281,0 +1284 @@ pub(super) mod profile {
+@@ -1368,0 +1372 @@ pub(super) mod profile {
+@@ -1466,0 +1471 @@ pub(super) mod profile {
+@@ -1533,0 +1539 @@ pub(super) mod profile {
+@@ -1618,0 +1625 @@ pub(super) mod profile {
+@@ -1707,0 +1715 @@ pub(super) mod profile {
+@@ -1774,0 +1783 @@ pub(super) mod profile {
+@@ -1861,0 +1871 @@ pub(super) mod profile {
+@@ -1955,0 +1966 @@ pub(super) mod profile {
+@@ -2022,0 +2034 @@ pub(super) mod profile {
+@@ -2109,0 +2122 @@ pub(super) mod profile {
+@@ -2122 +2135 @@ pub(super) mod profile {
+@@ -2124,8 +2137,8 @@ pub(super) mod profile {
+@@ -2133,19 +2146,19 @@ pub(super) mod profile {
+@@ -2153,15 +2166,15 @@ pub(super) mod profile {
+@@ -2322 +2335 @@ pub(super) mod profile {
+@@ -2675 +2688,6 @@ pub(super) const P_FINAL: u64 = (7 * caps::NODES + 51 * caps::MEMBERS + 8 * caps
+@@ -2688 +2706 @@ pub(super) const fn phase_caps() -> PhaseCaps {
+
+# PP test files at the head equal 69002bc862's:
+= 69002bc862 src/retained_memory_law_tests.rs
+= 69002bc862 src/retained_memory_witness_tests.rs
+= 69002bc862 tests/retained_memory_challenge.rs
+= 69002bc862 tests/common/b1_sq_inputs.rs
+= 69002bc862 tests/s11f_site_test.rs
