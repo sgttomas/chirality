@@ -15423,3 +15423,26 @@ RV113 confirms it after SR-RS round 2.
 - **Then SC** (07n, I-PY), and **SQ** (I-A).
 
 **Implementers running:** I91 (item 4's commit) and I97 (B2-C revision). One slot is free. **SC is next:** it waits for I4, so ROOT prepares SC's brief now.
+
+## I91's item 4 verified and `b1-p` pushed; I97's B2-C revision 01 verified; RV113 queues SR-PY; RV115 and RV118 confirm the revision (ROOT, 2026-10-08 UTC)
+
+**I91's item 4:** `R/I91/b1_sr_py_01/REPAIR_02_ITEM4.md` sha256 `06a72494…`, with SHA256SUMS.repair_02_item4 41 of 41 OK. The sealed REPAIR_02 still verifies. The screens are clean, with the `.gz` file decompressed, and nothing is ignored.
+- `b1-p` is at `2843a59a16`, pushed: four commits over R01 `11cc14e3e6`.
+- **Item 4's diff is byte-identical to the held patch** (`357098ba…`, which ROOT read for the ruling). Its one changed assertion is the ruled expectation (the header at G2 on transport); everything else is added.
+- **The census over 07m against R01:** exactly the nine ruled transport changes (entries 277 and 286–293, G7 → G2, code and detail unchanged), each equal to RS's at `6e3e4fe219`. Input, bound and unbound: 0 changes. 0 misses. Transport now equals RS on 339 of 339.
+- **Python suites:** 1,937 → 1,944 passed, 30 skipped. +7 added; none removed or changed.
+- **Mutants:** item 4's three are killed by assertions; PRE fails exactly the four new or changed tests.
+- REPAIR_02.md still reads "item 4 held". REPAIR_02_ITEM4.md supersedes that part, as ruling 1 of "I91's and I92's rounds verified; …" ordered.
+
+**I97's B2-C revision 01:** `R/I97/b2_c_01/REVISION_01.md` sha256 `6f6a583f…`, with SHA256SUMS.revision_01 10 of 10 OK. The sealed CONTRACT.md, SHA256SUMS (13 of 13), `statics/` and `_run_records/` are untouched. The screens are clean; the only `.local` hits are SCHEMA's sealed `$id`, a schema identifier.
+- **ROOT reran `b2c_statics_r1.py`** in its own scratch and reproduced DEF-C r1, PTABLE r1 and the run's report byte for byte.
+- **The statics:** DEF-C r1 raw `6467c733…`, H `0c43cf42…`; PTABLE `791c0a0d…`. SCHEMA_B2.diff `ff3b8895…` and the J1 SCHEMA `abf3225c…` are unchanged. J1's reviewed inputs are SCHEMA `abf3225c…`, PTABLE `791c0a0d…` and DEF-C `6467c733…`.
+- **All twelve items are addressed.** S-4 (a) takes DEF-O's hypot pattern, so G7's 64ε guard holds by construction (a 16× margin, checked on 4,013 triples). The observables stage is defined. §10 has 19 bases and 69 mutations.
+- **I97's choices within the rulings** (REVISION §9.2) go to RV118. ROOT rules none of them before its review.
+
+**Confirmations:**
+- **RV113 (RV-R)** confirms SR-PY repair 02 with item 4 (REPAIR_02 and REPAIR_02_ITEM4, `b1-p` `2843a59a16`), after SR-RS round 2 and SR-TS repair 01.
+- **RV115 (RV-K)** confirms S-4 (a)'s numerical content (REVISION §1.1, DEF-C r1).
+- **RV118 (RV-C)** confirms the revision, including the §9.2 choices. B2-C is then final for J1, with its names reserved.
+
+**Implementers running:** none. I-PY (I91) takes SC after I4, by `BRIEFS/B1_SC.md`. No other B1 or B2/B3 unit can start before I4 or J0.
