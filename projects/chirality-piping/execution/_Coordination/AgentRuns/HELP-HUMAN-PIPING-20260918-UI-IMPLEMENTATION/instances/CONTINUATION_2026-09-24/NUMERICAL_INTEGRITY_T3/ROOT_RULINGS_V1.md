@@ -16433,3 +16433,23 @@ RV120 CONFIRMED F1, N1 and F2 (`R/REVIEW_RV120/b3_readers_01/ADDENDUM_01.md`, `9
 **N2 is fixed now, by I101 on `b2-r`.** RS's physics-1 transport check iterates a HashMap (`RE/src/physics_evidence.rs:67`, `:1019`), so one input gives a G7 code that varies from run to run. The fix iterates in array order, as TS and PY do, and pins RV120's probe in all three readers. It ships with PR-B2.
 
 **F1's order probe** is pinned in RS and TS as well, in the same round.
+
+## PR-N (#1163), RV126's B-1: the platform-independent rank screen is accepted, option (i) (ROOT, 2026-10-08 UTC)
+
+RV126 (RV-N) reviewed PR-N (`R/REVIEW_RV126/pr_n_01/REVIEW.md`, `3ca41a9e…`).
+- **The norm:** its own oracle gives 0 misrounded in 2,801,296 results, ties included. Debug equals release, and wasm32 equals aarch64.
+- **Its suites are green.**
+- **B-1** is blocking only under the brief's admission-view rule. It is not a code defect.
+
+**The facts:**
+- `d538f469af`'s rank screen (FK `rigid_body.rs:53`, `:109`) moves the Restrained decision in both directions on synthetic near-threshold bodies (59,600 and 66,967 of 1,045,305).
+- Every change lies within 1.5·10⁻³ relative of the threshold, where the libm decision was already non-monotone and platform-dependent.
+- In 1 of 300,000 bodies at 10²⁰⁰ scale, MechanismWitnessed becomes NumericallyUnresolved: a different refusal code.
+- No committed input changes, and no true mechanism is admitted in either version.
+
+**Ruled: (i) accept.**
+- One admission decision on every platform is the purpose of the change, and the moved decisions all sit where the old one was arbitrary.
+- The package states the band changes, the witness-class change, and N-5: a witnessed mechanism's published node motions move by an ulp where L did (22,966 of 246,587 synthetic mechanisms; no committed pin moves).
+- RV126 confirms the repair round.
+
+**WORKING_ITEMS' S-1 handling is noted.** No recut. A line-neutral rewording of `PP/src/lib.rs:38` goes in a repair commit; the package and PR body carry the correction, and the merge record notes the original commit message.
