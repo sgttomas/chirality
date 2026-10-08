@@ -1,7 +1,7 @@
 {
   "schema_version": "0.3.0",
-  "source_signature_count": 73,
-  "source_kind_count": 49,
+  "source_signature_count": 77,
+  "source_kind_count": 57,
   "canonical_metadata_vocabulary": {
     "component": {
       "type": "string",
@@ -45,7 +45,14 @@
         "force_magnitude",
         "moment_magnitude",
         "maximum_absolute_normal_stress",
-        "equal_factor_intensified_bending_stress"
+        "wall_axial_end_action",
+        "wall_axial_force",
+        "effective_axial_force",
+        "axial_membrane_stress",
+        "lame_inner_radial_stress",
+        "lame_outer_radial_stress",
+        "lame_inner_hoop_stress",
+        "lame_outer_hoop_stress"
       ]
     },
     "coordinate_system": {
@@ -54,8 +61,7 @@
         "global",
         "element_local",
         "pipe_section",
-        "TBD",
-        "arc_chord_frame"
+        "TBD"
       ]
     },
     "location": {
@@ -87,9 +93,7 @@
         "stress_recovery_summary",
         "rule_pack_evaluation",
         "TBD",
-        "recovered_from_assembled_support_law",
-        "nominal_straight_beam_formula_on_arc_resultants",
-        "user_sif_times_member_section_bending_stress_v1"
+        "recovered_from_assembled_support_law"
       ]
     },
     "sign_convention": {
@@ -211,6 +215,20 @@
       "governing_ratio_eligible": false
     },
     {
+      "signature_id": "supported-source-008",
+      "kind": "reaction_resultant",
+      "unit": "N",
+      "component": null,
+      "source_physical_semantic_dimension": "force",
+      "derivative_target_dimension": "force",
+      "category": "physical_quantity",
+      "family": "reaction",
+      "canonical_disposition": "exported_quantity",
+      "legacy_declared_dimension": "force",
+      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
+      "governing_ratio_eligible": false
+    },
+    {
       "signature_id": "supported-source-009",
       "kind": "element_local_axial_force",
       "unit": "N",
@@ -295,21 +313,6 @@
       "governing_ratio_eligible": false
     },
     {
-      "signature_id": "preview-physics-arc-015",
-      "kind": "element_local_axial_normal_stress",
-      "unit": "MPa",
-      "component": "axial_normal_stress",
-      "source_physical_semantic_dimension": "stress",
-      "derivative_target_dimension": "stress",
-      "category": "physical_quantity",
-      "family": "stress",
-      "canonical_disposition": "exported_quantity",
-      "legacy_declared_dimension": "stress",
-      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
-      "governing_ratio_eligible": false,
-      "source_basis": "nominal_straight_beam_formula_on_arc_resultants"
-    },
-    {
       "signature_id": "supported-source-015",
       "kind": "element_local_axial_normal_stress",
       "unit": "MPa",
@@ -322,21 +325,6 @@
       "legacy_declared_dimension": "stress",
       "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
       "governing_ratio_eligible": false
-    },
-    {
-      "signature_id": "preview-physics-arc-016",
-      "kind": "element_local_bending_normal_stress_y",
-      "unit": "MPa",
-      "component": "bending_normal_stress_y",
-      "source_physical_semantic_dimension": "stress",
-      "derivative_target_dimension": "stress",
-      "category": "physical_quantity",
-      "family": "stress",
-      "canonical_disposition": "exported_quantity",
-      "legacy_declared_dimension": "stress",
-      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
-      "governing_ratio_eligible": false,
-      "source_basis": "nominal_straight_beam_formula_on_arc_resultants"
     },
     {
       "signature_id": "supported-source-016",
@@ -353,21 +341,6 @@
       "governing_ratio_eligible": false
     },
     {
-      "signature_id": "preview-physics-arc-017",
-      "kind": "element_local_bending_normal_stress_z",
-      "unit": "MPa",
-      "component": "bending_normal_stress_z",
-      "source_physical_semantic_dimension": "stress",
-      "derivative_target_dimension": "stress",
-      "category": "physical_quantity",
-      "family": "stress",
-      "canonical_disposition": "exported_quantity",
-      "legacy_declared_dimension": "stress",
-      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
-      "governing_ratio_eligible": false,
-      "source_basis": "nominal_straight_beam_formula_on_arc_resultants"
-    },
-    {
       "signature_id": "supported-source-017",
       "kind": "element_local_bending_normal_stress_z",
       "unit": "MPa",
@@ -380,21 +353,6 @@
       "legacy_declared_dimension": "stress",
       "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
       "governing_ratio_eligible": false
-    },
-    {
-      "signature_id": "preview-physics-arc-018",
-      "kind": "element_local_torsional_shear_stress",
-      "unit": "MPa",
-      "component": "torsional_shear_stress",
-      "source_physical_semantic_dimension": "stress",
-      "derivative_target_dimension": "stress",
-      "category": "physical_quantity",
-      "family": "stress",
-      "canonical_disposition": "exported_quantity",
-      "legacy_declared_dimension": "stress",
-      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
-      "governing_ratio_eligible": false,
-      "source_basis": "nominal_straight_beam_formula_on_arc_resultants"
     },
     {
       "signature_id": "supported-source-018",
@@ -411,7 +369,7 @@
       "governing_ratio_eligible": false
     },
     {
-      "signature_id": "preview-physics-arc-019",
+      "signature_id": "supported-source-019",
       "kind": "pipe_section_pressure_hoop_stress",
       "unit": "MPa",
       "component": "pressure_hoop_stress",
@@ -422,19 +380,32 @@
       "canonical_disposition": "exported_quantity",
       "legacy_declared_dimension": "stress",
       "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
-      "governing_ratio_eligible": false,
-      "source_basis": "nominal_straight_beam_formula_on_arc_resultants"
+      "governing_ratio_eligible": false
     },
     {
-      "signature_id": "supported-source-019",
-      "kind": "pipe_section_pressure_hoop_stress",
+      "signature_id": "supported-source-020",
+      "kind": "open_formula_stress_summary",
       "unit": "MPa",
-      "component": "pressure_hoop_stress",
+      "component": null,
       "source_physical_semantic_dimension": "stress",
       "derivative_target_dimension": "stress",
       "category": "physical_quantity",
       "family": "stress",
       "canonical_disposition": "exported_quantity",
+      "legacy_declared_dimension": "stress",
+      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
+      "governing_ratio_eligible": false
+    },
+    {
+      "signature_id": "supported-source-021",
+      "kind": "component_user_stress_multiplier_review",
+      "unit": "MPa",
+      "component": "user_entered_component_stress_multiplier",
+      "source_physical_semantic_dimension": "stress",
+      "derivative_target_dimension": "stress",
+      "category": "review_evidence",
+      "family": null,
+      "canonical_disposition": "exported_review",
       "legacy_declared_dimension": "stress",
       "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
       "governing_ratio_eligible": false
@@ -958,21 +929,6 @@
       "governing_ratio_eligible": false
     },
     {
-      "signature_id": "preview-physics-arc-059",
-      "kind": "pipe_section_pressure_longitudinal_stress",
-      "unit": "MPa",
-      "component": "pressure_longitudinal_stress",
-      "source_physical_semantic_dimension": "stress",
-      "derivative_target_dimension": "stress",
-      "category": "physical_quantity",
-      "family": "stress",
-      "canonical_disposition": "exported_quantity",
-      "legacy_declared_dimension": null,
-      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
-      "governing_ratio_eligible": false,
-      "source_basis": "nominal_straight_beam_formula_on_arc_resultants"
-    },
-    {
       "signature_id": "supported-source-059",
       "kind": "pipe_section_pressure_longitudinal_stress",
       "unit": "MPa",
@@ -1113,10 +1069,108 @@
       "governing_ratio_eligible": false
     },
     {
-      "signature_id": "preview-physics-intensified-bending",
-      "kind": "component_equal_factor_intensified_bending_stress_v1",
+      "signature_id": "supported-source-069",
+      "kind": "pipe_wall_endpoint_action_v2",
+      "unit": "N",
+      "component": "wall_axial_end_action",
+      "source_physical_semantic_dimension": "force",
+      "derivative_target_dimension": "force",
+      "category": "physical_quantity",
+      "family": "force",
+      "canonical_disposition": "exported_quantity",
+      "legacy_declared_dimension": null,
+      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
+      "governing_ratio_eligible": false
+    },
+    {
+      "signature_id": "supported-source-070",
+      "kind": "pipe_wall_axial_force_v2",
+      "unit": "N",
+      "component": "wall_axial_force",
+      "source_physical_semantic_dimension": "force",
+      "derivative_target_dimension": "force",
+      "category": "physical_quantity",
+      "family": "force",
+      "canonical_disposition": "exported_quantity",
+      "legacy_declared_dimension": null,
+      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
+      "governing_ratio_eligible": false
+    },
+    {
+      "signature_id": "supported-source-071",
+      "kind": "pipe_effective_axial_force_v2",
+      "unit": "N",
+      "component": "effective_axial_force",
+      "source_physical_semantic_dimension": "force",
+      "derivative_target_dimension": "force",
+      "category": "physical_quantity",
+      "family": "force",
+      "canonical_disposition": "exported_quantity",
+      "legacy_declared_dimension": null,
+      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
+      "governing_ratio_eligible": false
+    },
+    {
+      "signature_id": "supported-source-072",
+      "kind": "pipe_axial_membrane_stress_v2",
       "unit": "Pa",
-      "component": "equal_factor_intensified_bending_stress",
+      "component": "axial_membrane_stress",
+      "source_physical_semantic_dimension": "stress",
+      "derivative_target_dimension": "stress",
+      "category": "physical_quantity",
+      "family": "stress",
+      "canonical_disposition": "exported_quantity",
+      "legacy_declared_dimension": null,
+      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
+      "governing_ratio_eligible": false
+    },
+    {
+      "signature_id": "supported-source-073",
+      "kind": "pipe_lame_radial_stress_v2",
+      "unit": "Pa",
+      "component": "lame_inner_radial_stress",
+      "source_physical_semantic_dimension": "stress",
+      "derivative_target_dimension": "stress",
+      "category": "physical_quantity",
+      "family": "stress",
+      "canonical_disposition": "exported_quantity",
+      "legacy_declared_dimension": null,
+      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
+      "governing_ratio_eligible": false
+    },
+    {
+      "signature_id": "supported-source-074",
+      "kind": "pipe_lame_radial_stress_v2",
+      "unit": "Pa",
+      "component": "lame_outer_radial_stress",
+      "source_physical_semantic_dimension": "stress",
+      "derivative_target_dimension": "stress",
+      "category": "physical_quantity",
+      "family": "stress",
+      "canonical_disposition": "exported_quantity",
+      "legacy_declared_dimension": null,
+      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
+      "governing_ratio_eligible": false
+    },
+    {
+      "signature_id": "supported-source-075",
+      "kind": "pipe_lame_hoop_stress_v2",
+      "unit": "Pa",
+      "component": "lame_inner_hoop_stress",
+      "source_physical_semantic_dimension": "stress",
+      "derivative_target_dimension": "stress",
+      "category": "physical_quantity",
+      "family": "stress",
+      "canonical_disposition": "exported_quantity",
+      "legacy_declared_dimension": null,
+      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
+      "governing_ratio_eligible": false
+    },
+    {
+      "signature_id": "supported-source-076",
+      "kind": "pipe_lame_hoop_stress_v2",
+      "unit": "Pa",
+      "component": "lame_outer_hoop_stress",
       "source_physical_semantic_dimension": "stress",
       "derivative_target_dimension": "stress",
       "category": "physical_quantity",
@@ -1167,7 +1221,7 @@
       "expected_sha256": "99b9faeb10cab02302cc0e6975e38ff4574b2ef02d5f485d2a05859bca1ccbe1"
     }
   ],
-  "semantic_contract_id": "openpipestress.result_semantics/0.3.0/preview-physics-retained-1",
+  "semantic_contract_id": "openpipestress.result_semantics/0.3.0/physics-retained-1",
   "source_schema_version": "0.2.0",
   "source_producer": {
     "component_name": "open_pipe_stress_product_physics",
@@ -1177,87 +1231,25 @@
   "reserved_inactive_successors": [
     "openpipestress.result_semantics/0.3.0/reactions-1",
     "openpipestress.result_semantics/0.3.0/pressure-1",
-    "openpipestress.result_semantics/0.3.0/stress-1"
+    "openpipestress.result_semantics/0.3.0/stress-1",
+    "openpipestress.result_semantics/0.3.0/precision-2",
+    "openpipestress.result_semantics/0.3.0/source-blocks-1"
   ],
-  "inherited_semantic_contract_sha256": "ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a",
-  "retired_source_kinds": [
-    "reaction_resultant",
-    "open_formula_stress_summary",
-    "component_user_stress_multiplier_review"
-  ],
-  "source_basis_signature_policy": "where_declared_require_exact_metadata_basis_first_match_in_table_order",
-  "formulation_profile_id": "product_preview_retained_w1a_v2",
-  "contract_evidence_policy": "closed_preview_case_extrema_coverage_attribution_intensification_and_combination_gate_binding_v1",
-  "combination_policy": {
-    "policy_id": "PREVIEW-PHYSICS-1-COMBINATION-v1",
-    "mechanics_gates": [
-      {
-        "code": "NONLINEAR_COMBINATION_REQUIRES_SOLVE",
-        "condition": "the model has any nonlinear support record, including one inactive in every case"
-      },
-      {
-        "code": "CONSTANT_EFFORT_COMBINATION_REQUIRES_SOLVE",
-        "condition": "the model has a consuming constant-effort support and |sum(factors) - 1| > 64*epsilon*max(1, sum(|factors|))"
-      },
-      {
-        "code": "COMBINATION_MODULUS_BASIS_MIXED",
-        "condition": "the mechanics operands have different modulus-basis keys"
-      }
-    ],
-    "gate_precedence": "first gate in list order supplies the single withheld reason",
-    "gated_forms": [
-      "mechanics"
-    ],
-    "linear_state_kinds": [
-      "global_nodal_displacement_x",
-      "global_nodal_displacement_y",
-      "global_nodal_displacement_z",
-      "global_nodal_rotation_x",
-      "global_nodal_rotation_y",
-      "global_nodal_rotation_z",
-      "element_local_axial_force",
-      "element_local_shear_force_y",
-      "element_local_shear_force_z",
-      "element_local_torsional_moment",
-      "element_local_bending_moment_y",
-      "element_local_bending_moment_z",
-      "element_local_axial_normal_stress",
-      "element_local_bending_normal_stress_y",
-      "element_local_bending_normal_stress_z",
-      "element_local_torsional_shear_stress",
-      "pipe_section_pressure_hoop_stress",
-      "pipe_section_pressure_longitudinal_stress",
-      "support_reaction_component_v2",
-      "constant_effort_support_applied_load"
-    ],
-    "recomputed_magnitude_kinds": [
-      "displacement_magnitude",
-      "support_reaction_force_magnitude_v2",
-      "support_reaction_moment_magnitude_v2"
-    ],
-    "result_state_subtraction": "signed difference of solved states over linear_state_kinds, with recomputed magnitudes; no equilibrium claim",
-    "range_envelope": "mode selection per row over linear_state_kinds and recomputed_magnitude_kinds; not a simultaneous state",
-    "never_combined": "every other kind, including pipe_elastic_normal_stress_maximum_v2, component_equal_factor_intensified_bending_stress_v1, nonlinear support kinds, reviews, records, counts, codes and residuals"
-  },
+  "inherited_semantic_contract_sha256": "9a2cf6268b57bd5265a1a115497c07450819dd4d03cd5ab618097bd9d19da8cc",
+  "formulation_profile_id": "exact_straight_retained_w1a_v2",
+  "contract_evidence_policy": "closed_finite_case_member_material_geometry_region_result_and_extrema_binding_v1",
   "supported_profile_limitations": [
-    "Small-displacement, linear-elastic Euler-Bernoulli frame preview; numerical integrity does not establish physical correctness.",
-    "Nonzero pressure is refused on this route, and so is legacy imposed_displacement.",
-    "On straight members the normal-stress maximum is |N/A| + hypot(My,Mz)/Z, bounded over all statics intervals. Torsional shear is separate. No transverse shear, equivalent stress or code stress.",
-    "On arcs: signed tangent-frame resultants and nominal stress components. Endpoint force rows are in the chord frame. No maximum, and no stress headline for a model containing an arc.",
-    "Intensified measures are i*hypot(My,Mz)/Z with the user's scalar SIF at member ends adjacent to markers and branches, using member Z. They are not code stresses and are never combined. A flexibility factor never multiplies stress.",
-    "Signed support actions for rigid restraints, springs, consuming constant effort and attributable nonlinear supports. Ambiguous attribution is withheld.",
-    "Headlines cover all load cases. Mechanics combinations are withheld for nonlinear supports, constant effort with sum of factors other than 1, or mixed moduli. Subtraction is a labelled difference. No combination maxima and no code compliance."
+    "Straight circular members and linear restraints or springs only.",
+    "Direct load cases only; derived combinations and state differences are unsupported.",
+    "Normal-stress maxima are bounded elastic normal stress, not code or equivalent stress.",
+    "Source evidence and numerical standing do not authenticate a producer or grant engineering acceptance."
   ],
   "receipt_policy": "M03-INTEGRITY-MP-v2",
   "receipt_schema": "retained_precision_mp_v2.schema.json",
   "product_formation_definitions": [
     {
-      "id": "RP-PREPARED-ORDINARY-DUAL-v1",
-      "sha256": "a7ed7ca0bf0bba6e8b821ca4befa00a0fa9541a83694be8b28ac63e39b1d0349"
-    },
-    {
-      "id": "RP-PREPARED-COMBINATION-DUAL-v1",
-      "sha256": "d3fde142aff9c05d709b2fc2a04add42e14c66be3e2b2ba82012da57edf3d957"
+      "id": "RP-PREPARED-EXACT-DUAL-v1",
+      "sha256": "5a3bac430df9bbc77484d5419c75880ad40ae209b439e5f928374458025281af"
     }
   ],
   "accuracy_classification": {
@@ -1274,32 +1266,19 @@
     "absolute_bound": "RU64(2^-64 S); for 0<S<2^-988, one RU64 of b0+r+minimum_subnormal; for S=0, canonical +0",
     "small_components": "b0 and r use selected RN64 divide, multiply-back and conditional next-up operations",
     "standing": "G0 through G8 and actual invocation required; before S-I, absolute_verified and not_covered quantity/headline binding stays refused",
-    "scope": "registered ordinary-prepared source, and registered prepared mechanics combinations (RP-PREPARED-COMBINATION-DUAL-v1: their own solve on the combined exact ledger, at least one operand selected); no exact-profile, subtraction or range extension; R-COMB-1: each quantity row of a retained_unavailable combination, and of an ordinary combination whose expression names a load case that is not not_required, is not_covered and withheld from binding with its value unchanged; record rows stay non_quantity"
+    "scope": "registered exact-prepared source only: model 0.3.0 with the 2.0.0/exact_straight_pressure_v2 contract, explicitly empty pressure regions and the base common E/nu selection; no pressure-region, prepared-combination, load-reference-state or ordinary-profile extension"
   },
-  "formation_warrant": [
-    {
-      "definition_id": "RP-PREPARED-ORDINARY-DUAL-v1",
-      "affected_historical_clauses": [
-        "D2 section4.9.10",
-        "D2 section4.11.2",
-        "D2 section5 I-9"
-      ],
-      "native": "p/P and stop records describe native operational convergence only",
-      "final": "actual final values use the direct certificate against both physical readouts with unchanged b and inequalities",
-      "standing": "no S-I activation or new interval-binding grant"
-    },
-    {
-      "definition_id": "RP-PREPARED-COMBINATION-DUAL-v1",
-      "affected_historical_clauses": [
-        "D2 section4.9.10",
-        "D2 section4.11.2",
-        "D2 section5 I-9"
-      ],
-      "native": "p/P and stop records describe native operational convergence only",
-      "final": "actual final values use the direct certificate against both physical readouts with unchanged b and inequalities",
-      "standing": "no S-I activation or new interval-binding grant"
-    }
-  ],
+  "formation_warrant": {
+    "definition_id": "RP-PREPARED-EXACT-DUAL-v1",
+    "affected_historical_clauses": [
+      "D2 section4.9.10",
+      "D2 section4.11.2",
+      "D2 section5 I-9"
+    ],
+    "native": "p/P and stop records describe native operational convergence only",
+    "final": "actual final values use the direct certificate against both physical readouts with unchanged b and inequalities",
+    "standing": "no S-I activation or new interval-binding grant"
+  },
   "receipt_bindings": {
     "canonicalization": "openpipestress_jcs_ijson_v1",
     "method": "contribution_preserving_multiprecision_v1",
