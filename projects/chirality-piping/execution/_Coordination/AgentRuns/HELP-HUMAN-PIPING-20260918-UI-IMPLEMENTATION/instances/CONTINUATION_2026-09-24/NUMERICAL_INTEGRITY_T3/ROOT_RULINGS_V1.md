@@ -16453,3 +16453,14 @@ RV126 (RV-N) reviewed PR-N (`R/REVIEW_RV126/pr_n_01/REVIEW.md`, `3ca41a9e…`).
 - RV126 confirms the repair round.
 
 **WORKING_ITEMS' S-1 handling is noted.** No recut. A line-neutral rewording of `PP/src/lib.rs:38` goes in a repair commit; the package and PR body carry the correction, and the merge record notes the original commit message.
+
+## Owner decision: M07's flawed joint element, option A; U3 Stage 2 released (ROOT, 2026-10-08 UTC)
+
+**The owner ruled "Option A"** on the recommendation built from I111's report (`R/I111/m07_premise_01/REPORT.md`). Now:
+1. Remove the test-only historical scope (`historical_pressure_reference.rs`), the joint bypass (`preview_physics.rs:111-115`), and the four C-150 tests that pin the flawed model's numbers. These are O1 and O3's second half; O2 and O4 go with pressure.
+2. **G11:** a joint with no lateral value is refused, instead of being silently skipped while its rows say "consumed".
+3. **G10 and D-3:** the browser's bundled demo results computed with the flawed joint and legacy pressure (`invented_mechanics_result.json` and the precision-1 pair) are replaced by results the current product computes from a valid demo model. If that proves impractical, they are removed; the change is reported either way.
+
+**Later:** the element's code (FK `user_stiffness_local_matrix` and its plumbing) is deleted in the PR that lands T4's corrected joint, not before. Until then every model containing it is refused, and after 1–3 nothing reaches it. No copy of the old element is kept for historical comparison, which supersedes JR J-A's "historical witnesses only".
+
+**U3 Stage 2 is released to WORKING_ITEMS:** items 1–3 plus the legacy pressure computation's deletion, with H-1's −0.0 check.
