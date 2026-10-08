@@ -1,0 +1,4 @@
+# rv120 job sc_ts_tsc (slot) queued 2026-10-08T11:00:37Z dir=scratch/rv120_rvr/copies/sc-head/projects/chirality-piping/apps/desktop
+# args: WT/scratch/rv120_rvr/copies/sc-head/projects/chirality-piping/node_modules/.bin/tsc --noEmit -p tsconfig.json
+# start 2026-10-08T11:00:37Z
+# end 2026-10-08T11:00:42Z rc=0

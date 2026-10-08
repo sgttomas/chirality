@@ -1,0 +1,164 @@
+{
+ "rows": [
+  {
+   "entry": "d38_m4_execution_order_lists_case",
+   "field": "expected",
+   "from": {
+    "gate": "G3",
+    "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+   },
+   "to": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   },
+   "should_fail_in": "RS, TS, PY (bound)",
+   "failed_in": {
+    "RS": true,
+    "TS": true,
+    "PY": true
+   }
+  },
+  {
+   "entry": "h_carrier_present",
+   "field": "expected_by_reader.rust and expected_unbound_by_reader.rust",
+   "from": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_FOREIGN_METHOD_EVIDENCE"
+   },
+   "to": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_NUMBER_INVALID"
+   },
+   "should_fail_in": "RS only (bound, unbound)",
+   "failed_in": {
+    "RS": true,
+    "TS": false,
+    "PY": false
+   }
+  },
+  {
+   "entry": "t_case_extra_member",
+   "field": "expected, expected_by_reader.python/.typescript and expected_unbound_by_reader.python/.typescript",
+   "from": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   },
+   "to": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"
+   },
+   "should_fail_in": "TS and PY only (bound, unbound)",
+   "failed_in": {
+    "RS": false,
+    "TS": true,
+    "PY": true
+   }
+  },
+  {
+   "entry": "f_mb_index_1",
+   "field": "expected_unbound",
+   "from": {
+    "gate": "G3",
+    "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+   },
+   "to": "pass",
+   "should_fail_in": "RS, TS, PY (unbound)",
+   "failed_in": {
+    "RS": true,
+    "TS": true,
+    "PY": true
+   }
+  },
+  {
+   "entry": "g_combinations_null",
+   "field": "expected_transport",
+   "from": "pass",
+   "to": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+   },
+   "should_fail_in": "RS, TS, PY (transport)",
+   "failed_in": {
+    "RS": true,
+    "TS": true,
+    "PY": true
+   }
+  },
+  {
+   "entry": "g_combinations_absent",
+   "field": "expected_eligibility.standing",
+   "from": "eligible",
+   "to": "needs_recompute",
+   "should_fail_in": "TS, PY (RS pins numerical_eligible, not standing)",
+   "failed_in": {
+    "RS": false,
+    "TS": true,
+    "PY": true
+   }
+  },
+  {
+   "entry": "ca_receipt_ok_receipt_encoding",
+   "field": "expected_classifications",
+   "from": "n=74",
+   "to": "last class dropped",
+   "should_fail_in": "RS, TS, PY (must-pass)",
+   "failed_in": {
+    "RS": true,
+    "TS": true,
+    "PY": true
+   }
+  },
+  {
+   "entry": "cb_source_error_ok",
+   "field": "expected_unbound (must-pass)",
+   "from": "pass",
+   "to": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   },
+   "should_fail_in": "RS, TS, PY (unbound)",
+   "failed_in": {
+    "RS": true,
+    "TS": true,
+    "PY": true
+   }
+  },
+  {
+   "entry": "d38_beside_selected",
+   "field": "base expected_classifications",
+   "from": "n=171",
+   "to": "first class dropped",
+   "should_fail_in": "RS, TS, PY (base)",
+   "failed_in": {
+    "RS": true,
+    "TS": true,
+    "PY": true
+   }
+  }
+ ],
+ "ts_failed": [
+  "shared synthetic prepared receipt controls, never solver execution evidence d38_beside_selected :: AssertionError: expected [ Array(171) ] to deeply equal [ Array(170) ]",
+  "shared synthetic prepared receipt controls, never solver execution evidence d38_beside_selected snapshots all inputs before awaiting :: AssertionError: expected [ Array(171) ] to deeply equal [ Array(170) ]",
+  "shared synthetic prepared receipt controls, never solver execution evidence d38_m4_execution_order_lists_case :: AssertionError: expected { gate: 'G3', \u2026(1) } to deeply equal { gate: 'G5', \u2026(1) }",
+  "shared synthetic prepared receipt controls, never solver execution evidence t_case_extra_member :: AssertionError: expected { gate: 'G7', \u2026(1) } to deeply equal { gate: 'G7', \u2026(1) }",
+  "shared synthetic prepared receipt controls, never solver execution evidence must pass: g_combinations_absent :: AssertionError: expected { invocation_bound: true, \u2026(2) } to deeply equal { invocation_bound: true, \u2026(2) }",
+  "shared synthetic prepared receipt controls, never solver execution evidence must pass: ca_receipt_ok_receipt_encoding :: AssertionError: expected [ { \u2026(6) }, { \u2026(6) }, { \u2026(6) }, \u2026(71) ] to deeply equal [ Array(73) ]",
+  "07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_mb_index_1 :: AssertionError: unbound: expected { gate: 'G3', \u2026(1) } to deeply equal 'pass'",
+  "07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_combinations_null :: AssertionError: transport: expected 'pass' to deeply equal { gate: 'G2', \u2026(1) }",
+  "07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_case_extra_member :: AssertionError: unbound: expected { gate: 'G7', \u2026(1) } to deeply equal { gate: 'G7', \u2026(1) }",
+  "07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_source_error_ok :: AssertionError: unbound: expected 'pass' to deeply equal { gate: 'G5', \u2026(1) }"
+ ],
+ "py_failed": [
+  "FAILED tests/test_retained_precision_contract.py::test_complete_synthetic_draft_control_is_not_qualification\n",
+  "FAILED tests/test_retained_precision_contract.py::test_public_entry_equals_the_draft_on_every_corpus_entry\n",
+  "FAILED tests/test_retained_precision_contract.py::test_shared_draft_first_failure_controls[d38_m4_execution_order_lists_case]\n",
+  "FAILED tests/test_retained_precision_contract.py::test_shared_draft_first_failure_controls[t_case_extra_member]\n",
+  "FAILED tests/test_retained_precision_contract.py::test_shared_publicly_consistent_attestations_must_pass[g_combinations_absent]\n",
+  "FAILED tests/test_retained_precision_contract.py::test_shared_publicly_consistent_attestations_must_pass[ca_receipt_ok_receipt_encoding]\n",
+  "FAILED tests/test_retained_precision_contract.py::test_snapshot_07n_unbound_and_transport_reads[f_mb_index_1]\n",
+  "FAILED tests/test_retained_precision_contract.py::test_snapshot_07n_unbound_and_transport_reads[g_combinations_null]\n",
+  "FAILED tests/test_retained_precision_contract.py::test_snapshot_07n_unbound_and_transport_reads[t_case_extra_member]\n",
+  "FAILED tests/test_retained_precision_contract.py::test_snapshot_07n_unbound_and_transport_reads[cb_source_error_ok]\n",
+  "FAILED tests/test_retained_precision_contract.py::test_snapshot_07n_bases_are_the_pinned_successors_and_the_d38_derivation\n"
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "i4": {
+  "ok": 198
+ },
+ "head": {
+  "ok": 201
+ },
+ "differences": [
+  {
+   "test": "retained_precision_contract :: snapshot_07n_counts_and_format",
+   "i4": null,
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract :: snapshot_07n_mutation_outcomes",
+   "i4": null,
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract :: snapshot_07n_unbound_and_transport_reads",
+   "i4": null,
+   "head": "ok"
+  }
+ ]
+}

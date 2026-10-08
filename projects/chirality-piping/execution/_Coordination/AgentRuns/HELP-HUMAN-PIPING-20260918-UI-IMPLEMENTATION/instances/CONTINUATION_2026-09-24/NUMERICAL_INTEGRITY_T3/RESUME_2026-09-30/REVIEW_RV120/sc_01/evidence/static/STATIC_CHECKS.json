@@ -1,0 +1,297 @@
+{
+ "prefix_equal": {
+  "cases": true,
+  "mutations": true,
+  "must_pass": true
+ },
+ "other_keys_equal": {
+  "version": true,
+  "provenance": true,
+  "arithmetic": true,
+  "d37": true
+ },
+ "counts": {
+  "cases": [
+   17,
+   26
+  ],
+  "mutations": [
+   294,
+   534
+  ],
+  "must_pass": [
+   28,
+   78
+  ]
+ },
+ "d38_vs_w_c2_sparse": {
+  "source": [
+   [
+    "/retained_precision/body/builds",
+    "length 7 -> 3"
+   ],
+   [
+    "/retained_precision/body/calls/0/invocation_after",
+    "13429678 -> 2899623"
+   ],
+   [
+    "/retained_precision/body/calls/0/owner_refs",
+    "length 2 -> 1"
+   ],
+   [
+    "/retained_precision/body/calls/0/run_refs",
+    "length 2 -> 1"
+   ],
+   [
+    "/retained_precision/body/calls/0/source_refs",
+    "length 2 -> 1"
+   ],
+   [
+    "/retained_precision/body/cases/2/reason/code",
+    "kernel_unresolved -> source_unavailable"
+   ],
+   [
+    "/retained_precision/body/cases/2/reason/phase",
+    "kernel -> preparation"
+   ],
+   [
+    "/retained_precision/body/cases/2/run",
+    "type"
+   ],
+   [
+    "/retained_precision/body/groups/0/source_refs",
+    "length 2 -> 1"
+   ],
+   [
+    "/retained_precision/body/product_attempts/1/result/error/cause",
+    "added"
+   ],
+   [
+    "/retained_precision/body/product_attempts/1/result/error/kind",
+    "native -> capture"
+   ],
+   [
+    "/retained_precision/body/product_attempts/1/result/error/run_ref",
+    "removed"
+   ],
+   [
+    "/retained_precision/body/product_attempts/1/run_ref",
+    "type"
+   ],
+   [
+    "/retained_precision/body/work/charged",
+    "13429678 -> 2899623"
+   ],
+   [
+    "/retained_precision/body/work/execution_order",
+    "length 2 -> 1"
+   ],
+   [
+    "/retained_precision/receipt_sha256",
+    "cccb9664e1c58f0582348df3348d8b6e0b0941bcb0294a5b351a4d092ed1 -> 2d372c569f5b2ac2e9d8c082a56aa0951b577a936ed75b347f1301970cb2"
+   ]
+  ],
+  "invocation_equal": true,
+  "qualification": "SYNTHETIC: not producer-emittable under T-8 (DESIGN_v2 \u00a72, R-D38 (4b)). Derived from w_c2_sparse_interactive by gen_07n.py: case C's Run, its execution_order entry and the Builds its Run originated removed; its source removed from the call's and the group's source_refs; the shared group and case A's builds kept; charged and the call's after-value set to case A's after-value; case C's attempt a capture failure with a typed CaptureError::Origin (capacity), native failed after a completed preparation, no proof; case C's reason (source_unavailable, preparation) naming its attempt; every hash resealed. G0-G8 pass with its invocation; not eligible (case C is unavailable)."
+ },
+ "bases_provenance": [
+  {
+   "id": "w_c2_sparse_interactive",
+   "kind": "producer_solved",
+   "receipt_equals_provenance": true,
+   "receipt_in_pp_tests": true,
+   "bytes_sha_in_pp_tests": null,
+   "solver_mode_equal": true,
+   "fixture_source_and_invocation_equal": true
+  },
+  {
+   "id": "w_c2_dense_scrutiny",
+   "kind": "producer_solved",
+   "receipt_equals_provenance": true,
+   "receipt_in_pp_tests": true,
+   "bytes_sha_in_pp_tests": null,
+   "solver_mode_equal": true,
+   "fixture_source_and_invocation_equal": true
+  },
+  {
+   "id": "d38_beside_selected",
+   "kind": "synthetic_reader_control_not_producer_execution_or_native_current"
+  },
+  {
+   "id": "cause_milestone_reversed_sparse_interactive",
+   "kind": "producer_solved",
+   "receipt_equals_provenance": true,
+   "receipt_in_pp_tests": true,
+   "bytes_sha_in_pp_tests": true,
+   "solver_mode_equal": true
+  },
+  {
+   "id": "cause_milestone_reversed_dense_scrutiny",
+   "kind": "producer_solved",
+   "receipt_equals_provenance": true,
+   "receipt_in_pp_tests": true,
+   "bytes_sha_in_pp_tests": true,
+   "solver_mode_equal": true
+  },
+  {
+   "id": "sf2_c_b_a_sparse_interactive",
+   "kind": "producer_solved",
+   "receipt_equals_provenance": true,
+   "receipt_in_pp_tests": true,
+   "bytes_sha_in_pp_tests": true,
+   "solver_mode_equal": true
+  },
+  {
+   "id": "sf2_c_b_a_dense_scrutiny",
+   "kind": "producer_solved",
+   "receipt_equals_provenance": true,
+   "receipt_in_pp_tests": true,
+   "bytes_sha_in_pp_tests": true,
+   "solver_mode_equal": true
+  },
+  {
+   "id": "sf2_a_a2_sparse_interactive",
+   "kind": "producer_solved",
+   "receipt_equals_provenance": true,
+   "receipt_in_pp_tests": true,
+   "bytes_sha_in_pp_tests": true,
+   "solver_mode_equal": true
+  },
+  {
+   "id": "sf2_a_a2_dense_scrutiny",
+   "kind": "producer_solved",
+   "receipt_equals_provenance": true,
+   "receipt_in_pp_tests": true,
+   "bytes_sha_in_pp_tests": true,
+   "solver_mode_equal": true
+  }
+ ],
+ "entry_origin": {
+  "counts": {
+   "new (PLAN_v2 \u00a72.5 / RR)": 18,
+   "probe, re-encoded (materializes identically)": 39,
+   "probe, same base and edits": 233
+  },
+  "new": [
+   "d38_m1_error_kind_native",
+   "d38_m2_native_completed",
+   "d38_m3_run_ref_without_run",
+   "d38_m4_execution_order_lists_case",
+   "d38_m5_proof_start_completed",
+   "d38_m6_attempt_source_null",
+   "d38_m7_call_lists_source",
+   "d38_m8_case_source_other",
+   "d38_m9_case_c_builds_kept",
+   "f1_p4_parity_on_w2_published_case_a_dense",
+   "f1_p2_parity_duplicated_l0_dense",
+   "f1_p3_parity_in_sparse_l0",
+   "f1_p1_mode_code_3_sparse_l0",
+   "f1_requested_mode_flipped_w_c2_case_b",
+   "nr_w_c2_case_b_verdict_sensitive",
+   "nr_w_c2_case_b_initial_not_attempted",
+   "nr_w_c2_case_b_product_attempt_ref_own_attempt",
+   "n2_w_c2_case_b_solve_quality_missing"
+  ],
+  "rv113_stated_wants": 292,
+  "agree": 292,
+  "disagree": []
+ },
+ "own_classes": [
+  {
+   "id": "ca_receipt_ok_receipt_encoding",
+   "base_classes": 148,
+   "entry_classes": 74,
+   "differs": true
+  },
+  {
+   "id": "ca_receipt_ok_publication_hash_range",
+   "base_classes": 148,
+   "entry_classes": 74,
+   "differs": true
+  },
+  {
+   "id": "ca_receipt_ok_invocation_not_representable",
+   "base_classes": 148,
+   "entry_classes": 74,
+   "differs": true
+  },
+  {
+   "id": "c2_receipt_ok",
+   "base_classes": 148,
+   "entry_classes": 74,
+   "differs": true
+  },
+  {
+   "id": "dz_no_parity_b0_admitted",
+   "base_classes": 148,
+   "entry_classes": 148,
+   "differs": true
+  },
+  {
+   "id": "dz_parity_case0_only",
+   "base_classes": 148,
+   "entry_classes": 149,
+   "differs": true
+  },
+  {
+   "id": "dz_parity_both",
+   "base_classes": 148,
+   "entry_classes": 150,
+   "differs": true
+  },
+  {
+   "id": "dz_no_parity_case1_w2_published",
+   "base_classes": 148,
+   "entry_classes": 149,
+   "differs": true
+  },
+  {
+   "id": "dz_parity_case1_w2_failed",
+   "base_classes": 148,
+   "entry_classes": 150,
+   "differs": true
+  },
+  {
+   "id": "fz_unavailable_one_parity_b0",
+   "base_classes": 74,
+   "entry_classes": 75,
+   "differs": true
+  },
+  {
+   "id": "fz_unavailable_no_parity",
+   "base_classes": 74,
+   "entry_classes": 75,
+   "differs": true
+  },
+  {
+   "id": "limit_l0_dense_parity_deleted",
+   "base_classes": 114,
+   "entry_classes": 113,
+   "differs": true
+  },
+  {
+   "id": "limit_dense_synthetic_parity_deleted",
+   "base_classes": 75,
+   "entry_classes": 74,
+   "differs": true
+  },
+  {
+   "id": "nz_w2_published_no_parity",
+   "base_classes": 74,
+   "entry_classes": 75,
+   "differs": true
+  },
+  {
+   "id": "nz_report_parity_b0",
+   "base_classes": 74,
+   "entry_classes": 75,
+   "differs": true
+  },
+  {
+   "id": "nz_report_no_parity_b0",
+   "base_classes": 74,
+   "entry_classes": 75,
+   "differs": true
+  }
+ ]
+}

@@ -1,0 +1,3055 @@
+{
+ "i1": {
+  "files": 517,
+  "tests": {
+   "passed": 3639
+  }
+ },
+ "head": {
+  "tests": {
+   "passed": 4247
+  }
+ },
+ "differences": [
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: a4_capture_with_refused_run #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: a4_native_failed_with_refused_run #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: a4_reason_as_4b #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: c2_facade_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: c2_facade_phase_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: c2_receipt_code_facade #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: c2_receipt_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: c2_receipt_phase_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: c2_receipt_phase_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_facade_code_receipt_encoding #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_facade_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_facade_owner_combination #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_facade_owner_other_case #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_facade_phase_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_facade_phase_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_facade_phase_receipt #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_facade_phase_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_kernel_beside_selected_run #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_precondition_beside_run #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_receipt_code_caller_not_qualified #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_receipt_code_facade_certificate #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_receipt_code_kernel_selected #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_receipt_code_source_unavailable #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_receipt_ok_invocation_not_representable #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_receipt_ok_publication_hash_range #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_receipt_ok_receipt_encoding #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_receipt_phase_facade #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_receipt_phase_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_receipt_phase_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: ca_receipt_phase_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_control_ppf_reason_missing_attempt #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_facade_no_run #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_kernel_no_run #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_caller_caller_not_qualified_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_caller_caller_not_qualified_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_caller_caller_not_qualified_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_caller_resource_admission_not_available_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_caller_source_unavailable_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_caller_upstream_no_wrap_not_established_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_capture_caller_not_qualified_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_capture_resource_admission_not_available_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_capture_source_unavailable_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_capture_source_unavailable_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_capture_source_unavailable_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_capture_upstream_no_wrap_not_established_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_resource_admission_caller_not_qualified_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_resource_admission_resource_admission_not_available_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_resource_admission_resource_admission_not_available_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_resource_admission_resource_admission_not_available_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_resource_admission_source_unavailable_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_resource_admission_upstream_no_wrap_not_established_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_source_family_caller_not_qualified_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_source_family_resource_admission_not_available_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_source_family_source_unavailable_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_source_family_source_unavailable_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_source_family_source_unavailable_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_source_family_upstream_no_wrap_not_established_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_upstream_no_wrap_caller_not_qualified_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_upstream_no_wrap_resource_admission_not_available_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_upstream_no_wrap_source_unavailable_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_upstream_no_wrap_upstream_no_wrap_not_established_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_upstream_no_wrap_upstream_no_wrap_not_established_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_pre_upstream_no_wrap_upstream_no_wrap_not_established_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_receipt_ok_invocation_not_representable #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_receipt_ok_publication_hash_range #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_receipt_ok_receipt_encoding #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_receipt_phase_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_source_error_code_caller #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_source_error_decline_error_differs #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_source_error_no_decline #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_source_error_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cb_source_error_phase_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cc_pre_caller_keyed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cc_pre_capture_cross #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cc_pre_capture_keyed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cc_pre_resource_admission_keyed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cc_pre_source_family_keyed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cc_pre_upstream_no_wrap_keyed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cd_kernel_cause_other #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cd_kernel_code_unresolved #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cd_kernel_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cd_kernel_phase_facade #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: cd_ppf_control #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: d38_m1_error_kind_native #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: d38_m2_native_completed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: d38_m3_run_ref_without_run #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: d38_m4_execution_order_lists_case #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: d38_m5_proof_start_completed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: d38_m6_attempt_source_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: d38_m7_call_lists_source #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: d38_m8_case_source_other #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: d38_m9_case_c_builds_kept #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: dz_no_parity_b0_admitted #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: dz_no_parity_case1_w2_published #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: dz_parity_both #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: dz_parity_case0_only #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: dz_parity_case0_w2_published_P4 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: dz_parity_case1_w2_failed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: dz_parity_case1_w2_published_P4 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: dz_parity_twice_case1_P2 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f1_p1_mode_code_3_sparse_l0 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f1_p2_parity_duplicated_l0_dense #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f1_p3_parity_in_sparse_l0 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f1_p4_parity_on_w2_published_case_a_dense #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f1_requested_mode_flipped_w_c2_case_b #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_b_basis_ref_7 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_c_basis_omits_case_1 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_c_basis_out_of_order #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_control_07j #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_mb_case_indices_duplicate #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_mb_case_indices_empty #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_mb_case_indices_out_of_range #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_mb_index_1 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_mb_index_swapped #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_ordinary_basis_ref_dangling #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_src_index_1 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_src_index_swapped #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_src_owner_case_id_other #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_src_owner_case_id_unknown #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_src_owner_case_index_out_of_range #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_src_owner_kind_combination #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: f_src_owner_other_case_consistent #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: fz_unavailable_no_parity #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: fz_unavailable_one_parity_b0 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: fz_unavailable_parity_w2_published_P4 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: fz_unavailable_two_parity_P2 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g8_selected_mode_code_2_in_sparse #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g8_unavailable_mode_code_2_in_sparse #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g8_unavailable_mode_code_3 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g8_unavailable_mode_row_duplicated #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g8_unavailable_mode_row_removed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g8_unavailable_parity_in_sparse_P3 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g8_unavailable_parity_with_method_G6_first #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g8_unavailable_requested_mode_flipped #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_combinations_absent #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_combinations_empty_array #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_combinations_empty_object #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_combinations_false #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_combinations_nonempty #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_combinations_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_combinations_object #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_combinations_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_combinations_zero #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_components_absent #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_components_empty_object #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_components_nonempty #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_components_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_components_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_order_before_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_order_control_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_pressure_contract_empty_array #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_pressure_contract_empty_object #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_pressure_contract_empty_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_pressure_contract_false #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_pressure_contract_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_pressure_contract_zero #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_reference_configurations_empty #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_reference_configurations_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: g_reference_configurations_object #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_carrier_and_quality_defect #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_carrier_and_recovery #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_carrier_present #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_case_accuracy_bogus #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_case_and_formulation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_case_basis_ref_extra #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_case_basis_ref_type_empty #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_case_evidence_refs_empty_list #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_case_evidence_refs_empty_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_case_evidence_refs_not_list #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_case_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_case_fidelity_bogus #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_case_solve_quality_bogus #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_case_structural_bogus #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_control #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_evidence_array #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_evidence_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_formulation_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_formulation_limitations_empty #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_formulation_limitations_empty_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_formulation_limitations_other #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_quality_and_formulation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_quality_cases_object #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_quality_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_quality_policy #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_quality_quantization #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_quality_representation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_quality_status_bogus #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_recovery_and_evidence_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_recovery_present #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: h_schema_version_010 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: limit_dense_synthetic_parity_deleted #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: limit_l0_dense_parity_deleted #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: limit_l0_dense_parity_deleted_indices_unshifted #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: limit_l0_sparse_mode_row_deleted_P1 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: n2_w_c2_case_b_solve_quality_missing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: n4_array_first #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: n4_null_appended #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: n4_null_first #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: n4_number_first #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: n4_string_first #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: n6_accuracy_evidence_dict #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: n6_accuracy_evidence_list #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: n6_carrier_evidence_with_case_defect #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: n6_contract_evidence_null_and_source_block_recovery #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: n6_model_matrix_fidelity_dict #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: n6_model_matrix_fidelity_list #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: n6_status_dict #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: n6_status_list #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: n6_structural_status_dict #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: n6_structural_status_list #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nr_initial_not_attempted #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nr_must_pass #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nr_product_attempt_ref_dangling #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nr_product_attempt_ref_with_attempt #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nr_report_outcome_sensitive #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nr_report_with_w2_published #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nr_structural_failure_not_triggered #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nr_verdict_not_assessed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nr_verdict_sensitive #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nr_w2_failed_checks_passed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nr_w2_published_evaluation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nr_w2_published_formation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nr_w2_published_verdict_sensitive #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nr_w_c2_case_b_initial_not_attempted #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nr_w_c2_case_b_product_attempt_ref_own_attempt #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nr_w_c2_case_b_verdict_sensitive #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nz_report_no_parity_b0 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nz_report_parity_b0 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nz_w2_published_no_parity #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: nz_w2_published_parity_P4 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: orphan_source_beside_t7 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: r_b_basis_ref_1_second_basis #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: r_b_basis_ref_7 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: r_c_basis_omits_case_1 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: r_c_cases_out_of_order #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: r_c_extra_empty_basis #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: r_c_missing_sourceless_basis #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: r_control_07j #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: r_d1_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: r_d2_mode_list #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: r_d2_mode_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: r_d2_mode_removed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: r_d2_mode_unknown #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: r_e_control_named_basis #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: r_e_elastic_modulus_wrong #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: r_e_material_id_other #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: r_e_no_material #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: r_e_selection_base #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_attributed_and_withheld #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_attribution_sets_differ #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_case_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_case_id_duplicate #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_case_id_empty #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_control #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_coverage_complete_false #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_coverage_duplicate_ids #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_coverage_overlap #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_evidence_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_extrema_approximation_other #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_extrema_bounds_inverted #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_extrema_certified_gap_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_extrema_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_extrema_global_upper_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_extrema_local_fraction_negative #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_extrema_lower_negative #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_extrema_pipe_duplicate #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_extrema_pipe_in_unavailable #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_extrema_span_index_fraction #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_extrema_span_index_negative #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_extrema_station_fraction_1_5 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_extrema_subdivisions_max #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_extrema_subdivisions_over #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_extrema_upper_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_gate_duplicate #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_gate_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_gate_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_gate_released_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_gate_released_with_reason #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_gate_withheld_reason_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_gate_withheld_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_measure_duplicate_result #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_measure_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_measure_location_mid #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_measure_moment_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_measure_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_measure_sif_zero #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_preview_cases_not_list #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_withheld_duplicate_multiset #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_withheld_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n reads: t_withheld_reason_unknown #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: 07n (B1 SC): counts, format, and each entry's unbound and transport reads 07n: 26 cases, 534 mutations and 78 must-pass entries, appended; the new keys on new entries only; 45 entries in the declared per-reader class #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence a4_reason_as_4b #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence c2_facade_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence c2_facade_phase_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence c2_receipt_code_facade #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence c2_receipt_phase_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence c2_receipt_phase_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_facade_code_receipt_encoding #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_facade_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_facade_owner_combination #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_facade_owner_other_case #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_facade_phase_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_facade_phase_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_facade_phase_receipt #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_facade_phase_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_kernel_beside_selected_run #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_precondition_beside_run #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_receipt_code_caller_not_qualified #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_receipt_code_facade_certificate #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_receipt_code_kernel_selected #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_receipt_code_source_unavailable #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_receipt_phase_facade #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_receipt_phase_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_receipt_phase_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence ca_receipt_phase_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cause_milestone_reversed_dense_scrutiny #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cause_milestone_reversed_dense_scrutiny missing invocation and metadata transport remain needs-recompute #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cause_milestone_reversed_dense_scrutiny snapshots all inputs before awaiting #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cause_milestone_reversed_sparse_interactive #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cause_milestone_reversed_sparse_interactive missing invocation and metadata transport remain needs-recompute #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cause_milestone_reversed_sparse_interactive snapshots all inputs before awaiting #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_control_ppf_reason_missing_attempt #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_facade_no_run #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_kernel_no_run #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_caller_caller_not_qualified_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_caller_resource_admission_not_available_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_caller_source_unavailable_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_caller_upstream_no_wrap_not_established_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_capture_caller_not_qualified_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_capture_resource_admission_not_available_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_capture_source_unavailable_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_capture_upstream_no_wrap_not_established_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_resource_admission_caller_not_qualified_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_resource_admission_resource_admission_not_available_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_resource_admission_source_unavailable_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_resource_admission_upstream_no_wrap_not_established_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_source_family_caller_not_qualified_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_source_family_resource_admission_not_available_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_source_family_source_unavailable_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_source_family_upstream_no_wrap_not_established_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_upstream_no_wrap_caller_not_qualified_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_upstream_no_wrap_resource_admission_not_available_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_upstream_no_wrap_source_unavailable_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_pre_upstream_no_wrap_upstream_no_wrap_not_established_kernel #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_receipt_phase_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_source_error_code_caller #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_source_error_decline_error_differs #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_source_error_no_decline #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cb_source_error_phase_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cc_pre_caller_keyed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cc_pre_capture_cross #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cc_pre_capture_keyed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cc_pre_resource_admission_keyed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cc_pre_source_family_keyed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cc_pre_upstream_no_wrap_keyed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cd_kernel_cause_other #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cd_kernel_code_unresolved #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cd_kernel_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cd_kernel_phase_facade #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence cd_ppf_control #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence d38_beside_selected #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence d38_beside_selected missing invocation and metadata transport remain needs-recompute #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence d38_beside_selected snapshots all inputs before awaiting #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence d38_m1_error_kind_native #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence d38_m2_native_completed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence d38_m3_run_ref_without_run #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence d38_m4_execution_order_lists_case #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence d38_m5_proof_start_completed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence d38_m6_attempt_source_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence d38_m7_call_lists_source #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence d38_m8_case_source_other #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence d38_m9_case_c_builds_kept #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence dz_parity_case0_w2_published_P4 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence dz_parity_case1_w2_published_P4 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence dz_parity_twice_case1_P2 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f1_p1_mode_code_3_sparse_l0 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f1_p2_parity_duplicated_l0_dense #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f1_p3_parity_in_sparse_l0 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f1_p4_parity_on_w2_published_case_a_dense #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f1_requested_mode_flipped_w_c2_case_b #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f_b_basis_ref_7 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f_c_basis_omits_case_1 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f_c_basis_out_of_order #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f_mb_case_indices_duplicate #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f_mb_case_indices_empty #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f_mb_case_indices_out_of_range #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f_mb_index_1 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f_mb_index_swapped #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f_ordinary_basis_ref_dangling #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f_src_index_1 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f_src_index_swapped #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f_src_owner_case_id_other #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f_src_owner_case_id_unknown #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f_src_owner_case_index_out_of_range #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f_src_owner_kind_combination #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence f_src_owner_other_case_consistent #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence fz_unavailable_parity_w2_published_P4 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence fz_unavailable_two_parity_P2 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g8_selected_mode_code_2_in_sparse #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g8_unavailable_mode_code_2_in_sparse #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g8_unavailable_mode_code_3 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g8_unavailable_mode_row_duplicated #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g8_unavailable_mode_row_removed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g8_unavailable_parity_in_sparse_P3 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g8_unavailable_parity_with_method_G6_first #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g8_unavailable_requested_mode_flipped #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_combinations_empty_object #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_combinations_false #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_combinations_nonempty #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_combinations_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_combinations_object #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_combinations_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_combinations_zero #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_components_empty_object #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_components_nonempty #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_components_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_components_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_order_before_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_order_control_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_pressure_contract_empty_array #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_pressure_contract_empty_object #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_pressure_contract_empty_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_pressure_contract_false #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_pressure_contract_zero #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_reference_configurations_empty #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_reference_configurations_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence g_reference_configurations_object #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_carrier_and_quality_defect #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_carrier_and_recovery #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_carrier_present #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_case_accuracy_bogus #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_case_and_formulation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_case_basis_ref_extra #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_case_basis_ref_type_empty #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_case_evidence_refs_empty_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_case_evidence_refs_not_list #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_case_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_case_fidelity_bogus #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_case_solve_quality_bogus #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_case_structural_bogus #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_evidence_array #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_evidence_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_formulation_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_formulation_limitations_empty #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_formulation_limitations_empty_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_formulation_limitations_other #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_quality_and_formulation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_quality_cases_object #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_quality_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_quality_policy #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_quality_quantization #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_quality_representation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_quality_status_bogus #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_recovery_and_evidence_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_recovery_present #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence h_schema_version_010 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence limit_l0_dense_parity_deleted_indices_unshifted #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence limit_l0_sparse_mode_row_deleted_P1 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: a4_capture_with_refused_run #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: a4_native_failed_with_refused_run #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: c2_receipt_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: ca_receipt_ok_invocation_not_representable #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: ca_receipt_ok_publication_hash_range #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: ca_receipt_ok_receipt_encoding #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: cb_pre_caller_caller_not_qualified_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: cb_pre_caller_caller_not_qualified_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: cb_pre_capture_source_unavailable_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: cb_pre_capture_source_unavailable_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: cb_pre_resource_admission_resource_admission_not_available_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: cb_pre_resource_admission_resource_admission_not_available_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: cb_pre_source_family_source_unavailable_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: cb_pre_source_family_source_unavailable_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: cb_pre_upstream_no_wrap_upstream_no_wrap_not_established_preparation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: cb_pre_upstream_no_wrap_upstream_no_wrap_not_established_routing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: cb_receipt_ok_invocation_not_representable #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: cb_receipt_ok_publication_hash_range #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: cb_receipt_ok_receipt_encoding #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: cb_source_error_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: dz_no_parity_b0_admitted #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: dz_no_parity_case1_w2_published #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: dz_parity_both #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: dz_parity_case0_only #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: dz_parity_case1_w2_failed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: f_control_07j #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: fz_unavailable_no_parity #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: fz_unavailable_one_parity_b0 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: g_combinations_absent #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: g_combinations_empty_array #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: g_components_absent #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: g_pressure_contract_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: h_case_evidence_refs_empty_list #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: h_control #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: limit_dense_synthetic_parity_deleted #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: limit_l0_dense_parity_deleted #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: nr_must_pass #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: nr_structural_failure_not_triggered #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: nr_w2_failed_checks_passed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: nr_w2_published_evaluation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: nr_w2_published_formation #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: nz_report_no_parity_b0 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: nz_report_parity_b0 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: nz_w2_published_no_parity #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: r_control_07j #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: r_e_control_named_basis #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: t_control #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: t_extrema_subdivisions_max #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: t_gate_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence must pass: t_gate_released_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence n2_w_c2_case_b_solve_quality_missing #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence n4_array_first #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence n4_null_appended #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence n4_null_first #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence n4_number_first #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence n4_string_first #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence n6_accuracy_evidence_dict #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence n6_accuracy_evidence_list #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence n6_carrier_evidence_with_case_defect #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence n6_contract_evidence_null_and_source_block_recovery #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence n6_model_matrix_fidelity_dict #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence n6_model_matrix_fidelity_list #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence n6_status_dict #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence n6_status_list #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence n6_structural_status_dict #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence n6_structural_status_list #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence nr_initial_not_attempted #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence nr_product_attempt_ref_dangling #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence nr_product_attempt_ref_with_attempt #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence nr_report_outcome_sensitive #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence nr_report_with_w2_published #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence nr_verdict_not_assessed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence nr_verdict_sensitive #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence nr_w2_published_verdict_sensitive #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence nr_w_c2_case_b_initial_not_attempted #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence nr_w_c2_case_b_product_attempt_ref_own_attempt #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence nr_w_c2_case_b_verdict_sensitive #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence nz_w2_published_parity_P4 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence orphan_source_beside_t7 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence r_b_basis_ref_1_second_basis #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence r_b_basis_ref_7 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence r_c_basis_omits_case_1 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence r_c_cases_out_of_order #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence r_c_extra_empty_basis #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence r_c_missing_sourceless_basis #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence r_d1_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence r_d2_mode_list #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence r_d2_mode_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence r_d2_mode_removed #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence r_d2_mode_unknown #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence r_e_elastic_modulus_wrong #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence r_e_material_id_other #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence r_e_no_material #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence r_e_selection_base #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence sf2_a_a2_dense_scrutiny #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence sf2_a_a2_dense_scrutiny missing invocation and metadata transport remain needs-recompute #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence sf2_a_a2_dense_scrutiny snapshots all inputs before awaiting #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence sf2_a_a2_sparse_interactive #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence sf2_a_a2_sparse_interactive missing invocation and metadata transport remain needs-recompute #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence sf2_a_a2_sparse_interactive snapshots all inputs before awaiting #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence sf2_c_b_a_dense_scrutiny #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence sf2_c_b_a_dense_scrutiny missing invocation and metadata transport remain needs-recompute #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence sf2_c_b_a_dense_scrutiny snapshots all inputs before awaiting #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence sf2_c_b_a_sparse_interactive #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence sf2_c_b_a_sparse_interactive missing invocation and metadata transport remain needs-recompute #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence sf2_c_b_a_sparse_interactive snapshots all inputs before awaiting #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_attributed_and_withheld #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_attribution_sets_differ #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_case_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_case_id_duplicate #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_case_id_empty #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_coverage_complete_false #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_coverage_duplicate_ids #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_coverage_overlap #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_evidence_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_extrema_approximation_other #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_extrema_bounds_inverted #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_extrema_certified_gap_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_extrema_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_extrema_global_upper_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_extrema_local_fraction_negative #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_extrema_lower_negative #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_extrema_pipe_duplicate #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_extrema_pipe_in_unavailable #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_extrema_span_index_fraction #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_extrema_span_index_negative #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_extrema_station_fraction_1_5 #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_extrema_subdivisions_over #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_extrema_upper_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_gate_duplicate #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_gate_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_gate_released_with_reason #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_gate_withheld_reason_null #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_gate_withheld_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_measure_duplicate_result #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_measure_extra_member #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_measure_location_mid #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_measure_moment_string #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_measure_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_measure_sif_zero #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_preview_cases_not_list #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_withheld_duplicate_multiset #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_withheld_ok #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence t_withheld_reason_unknown #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence w_c2_dense_scrutiny #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence w_c2_dense_scrutiny missing invocation and metadata transport remain needs-recompute #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence w_c2_dense_scrutiny snapshots all inputs before awaiting #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence w_c2_sparse_interactive #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence w_c2_sparse_interactive missing invocation and metadata transport remain needs-recompute #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: shared synthetic prepared receipt controls, never solver execution evidence w_c2_sparse_interactive snapshots all inputs before awaiting #1",
+   "i1": null,
+   "head": "passed"
+  }
+ ]
+}

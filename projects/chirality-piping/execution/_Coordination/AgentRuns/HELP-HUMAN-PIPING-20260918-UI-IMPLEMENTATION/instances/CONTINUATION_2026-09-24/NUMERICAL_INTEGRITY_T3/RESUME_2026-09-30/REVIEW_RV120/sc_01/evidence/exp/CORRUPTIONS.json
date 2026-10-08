@@ -1,0 +1,92 @@
+[
+ {
+  "entry": "d38_m4_execution_order_lists_case",
+  "field": "expected",
+  "from": {
+   "gate": "G3",
+   "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+  },
+  "to": {
+   "gate": "G5",
+   "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+  },
+  "should_fail_in": "RS, TS, PY (bound)"
+ },
+ {
+  "entry": "h_carrier_present",
+  "field": "expected_by_reader.rust and expected_unbound_by_reader.rust",
+  "from": {
+   "gate": "G7",
+   "code": "SOURCE_PREVIEW_PHYSICS_FOREIGN_METHOD_EVIDENCE"
+  },
+  "to": {
+   "gate": "G7",
+   "code": "SOURCE_PREVIEW_PHYSICS_NUMBER_INVALID"
+  },
+  "should_fail_in": "RS only (bound, unbound)"
+ },
+ {
+  "entry": "t_case_extra_member",
+  "field": "expected, expected_by_reader.python/.typescript and expected_unbound_by_reader.python/.typescript",
+  "from": {
+   "gate": "G7",
+   "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+  },
+  "to": {
+   "gate": "G7",
+   "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"
+  },
+  "should_fail_in": "TS and PY only (bound, unbound)"
+ },
+ {
+  "entry": "f_mb_index_1",
+  "field": "expected_unbound",
+  "from": {
+   "gate": "G3",
+   "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+  },
+  "to": "pass",
+  "should_fail_in": "RS, TS, PY (unbound)"
+ },
+ {
+  "entry": "g_combinations_null",
+  "field": "expected_transport",
+  "from": "pass",
+  "to": {
+   "gate": "G2",
+   "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+  },
+  "should_fail_in": "RS, TS, PY (transport)"
+ },
+ {
+  "entry": "g_combinations_absent",
+  "field": "expected_eligibility.standing",
+  "from": "eligible",
+  "to": "needs_recompute",
+  "should_fail_in": "TS, PY (RS pins numerical_eligible, not standing)"
+ },
+ {
+  "entry": "ca_receipt_ok_receipt_encoding",
+  "field": "expected_classifications",
+  "from": "n=74",
+  "to": "last class dropped",
+  "should_fail_in": "RS, TS, PY (must-pass)"
+ },
+ {
+  "entry": "cb_source_error_ok",
+  "field": "expected_unbound (must-pass)",
+  "from": "pass",
+  "to": {
+   "gate": "G5",
+   "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+  },
+  "should_fail_in": "RS, TS, PY (unbound)"
+ },
+ {
+  "entry": "d38_beside_selected",
+  "field": "base expected_classifications",
+  "from": "n=171",
+  "to": "first class dropped",
+  "should_fail_in": "RS, TS, PY (base)"
+ }
+]
