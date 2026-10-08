@@ -1,0 +1,1 @@
+{"sampled": 20000, "of_adversarial": 1000000, "closeness": {"<2^-40 ulp": 9259, "exact_midpoint": 1054, ">=2^-20 ulp": 7956, "zero_or_overflow": 871, "special": 860}}

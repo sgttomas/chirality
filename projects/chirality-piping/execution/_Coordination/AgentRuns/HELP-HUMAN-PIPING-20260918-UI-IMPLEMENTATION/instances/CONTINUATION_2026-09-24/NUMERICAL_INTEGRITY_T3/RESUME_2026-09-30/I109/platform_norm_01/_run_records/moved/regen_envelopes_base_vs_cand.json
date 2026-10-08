@@ -1,0 +1,250 @@
+{
+ "runs": 66,
+ "identical": 62,
+ "differ": [
+  {
+   "fixture": "fixtures/product_preview/load_reference/connected.request.json",
+   "mode": "sparse_interactive",
+   "numbers_changed": 2,
+   "ulps": {
+    "1": 2
+   },
+   "strings_changed": 0,
+   "string_paths": [],
+   "rows": {
+    "support_reaction_force_magnitude_v2": [
+     {
+      "id": "result:support-action:9:case:cold:12:support:root:force_magnitude",
+      "field": "/value",
+      "base": 298575.2677594065,
+      "cand": 298575.26775940653,
+      "ulps": 1
+     },
+     {
+      "id": "result:support-action:8:case:hot:12:support:root:force_magnitude",
+      "field": "/value",
+      "base": 1172235.122530021,
+      "cand": 1172235.1225300212,
+      "ulps": 1
+     }
+    ]
+   }
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference/connected.request.json",
+   "mode": "dense_scrutiny",
+   "numbers_changed": 1,
+   "ulps": {
+    "1": 1
+   },
+   "strings_changed": 0,
+   "string_paths": [],
+   "rows": {
+    "support_reaction_force_magnitude_v2": [
+     {
+      "id": "result:support-action:8:case:hot:12:support:root:force_magnitude",
+      "field": "/value",
+      "base": 1172235.122530021,
+      "cand": 1172235.1225300212,
+      "ulps": 1
+     }
+    ]
+   }
+  },
+  {
+   "fixture": "fixtures/product_preview/rf_skew_t_cant_off_122_r1e-04.request.json",
+   "mode": "dense_scrutiny",
+   "numbers_changed": 1,
+   "ulps": {
+    "1": 1
+   },
+   "strings_changed": 0,
+   "string_paths": [],
+   "rows": {
+    "support_reaction_force_magnitude_v2": [
+     {
+      "id": "result:support-action:4:case:8:rigid:N0:force_magnitude",
+      "field": "/value",
+      "base": 1.6258317075882521e-12,
+      "cand": 1.6258317075882523e-12,
+      "ulps": 1
+     }
+    ]
+   }
+  },
+  {
+   "fixture": "core/reporting/result_export/tests/fixtures/load_reference_fallback_uz.request.json",
+   "mode": "sparse_interactive",
+   "numbers_changed": 1,
+   "ulps": {
+    "1": 1
+   },
+   "strings_changed": 0,
+   "string_paths": [],
+   "rows": {
+    "support_reaction_moment_magnitude_v2": [
+     {
+      "id": "result:support-action:9:case:join:6:anchor:moment_magnitude",
+      "field": "/value",
+      "base": 2.000000000000002e-06,
+      "cand": 2.0000000000000025e-06,
+      "ulps": 1
+     }
+    ]
+   }
+  }
+ ],
+ "errors": [],
+ "committed": [
+  {
+   "fixture": "fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json",
+   "cand_equal": true,
+   "base_equal": false
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference/connected-dense_scrutiny.raw.json",
+   "cand_equal": true,
+   "base_equal": false
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference/pressure-sparse_interactive.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference/pressure-dense_scrutiny.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/eigen_motion-sparse_interactive.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/eigen_motion-dense_scrutiny.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/fields-sparse_interactive.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/fields-dense_scrutiny.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/mixed-sparse_interactive.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/mixed-dense_scrutiny.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/n05-sparse_interactive.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/n05-dense_scrutiny.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/n06-sparse_interactive.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/n06-dense_scrutiny.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/fields-sparse_interactive.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/fields-dense_scrutiny.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/mixed-sparse_interactive.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/mixed-dense_scrutiny.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/mixed_units-sparse_interactive.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/mixed_units-dense_scrutiny.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05-dense_scrutiny.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05_unicode-sparse_interactive.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05_unicode-dense_scrutiny.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05_units-sparse_interactive.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05_units-dense_scrutiny.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n06-sparse_interactive.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n06-dense_scrutiny.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  },
+  {
+   "fixture": "core/reporting/result_export/tests/fixtures/load_reference_fallback_uz-sparse_interactive.raw.json",
+   "cand_equal": true,
+   "base_equal": false
+  },
+  {
+   "fixture": "core/reporting/result_export/tests/fixtures/load_reference_fallback_uz-dense_scrutiny.raw.json",
+   "cand_equal": true,
+   "base_equal": true
+  }
+ ]
+}

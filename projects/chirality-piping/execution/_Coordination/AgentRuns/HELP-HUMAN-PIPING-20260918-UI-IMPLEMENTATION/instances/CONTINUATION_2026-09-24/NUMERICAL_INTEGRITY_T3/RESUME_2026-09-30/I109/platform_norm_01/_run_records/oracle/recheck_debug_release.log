@@ -1,0 +1,10 @@
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 481 filtered out; finished in 0.00s
+unit rc=0
+correct_norm_oracle_dump: 11000000 triples
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 15.73s
+debug rc=0
+correct_norm_oracle_dump: 11000000 triples
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.15s
+release rc=0
+CMP debug2 == verified
+CMP release == verified

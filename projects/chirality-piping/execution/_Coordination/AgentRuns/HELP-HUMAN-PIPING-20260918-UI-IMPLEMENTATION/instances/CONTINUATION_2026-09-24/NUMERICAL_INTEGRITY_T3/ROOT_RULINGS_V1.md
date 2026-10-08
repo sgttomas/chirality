@@ -16299,3 +16299,36 @@ PR-B1 is recut once the Linux diagnostic (run 37792750591) is read.
 2. **m3l has no committed fixture.** Accepted. B3a's reader tests use synthetic receipts, and the producer's m3l witness validates through RS.
 
 **Dispatched: RV120 (RV-R2)** reviews B3's three readers and lane T's carriers. After its review, the reader lanes merge into `b2`. `b2-t` brings `b2-r`; `b2-p` merges on its own.
+
+## I109: a correctly rounded norm replaces libm `hypot` on published paths; glibc was the correctly rounded side; it goes as its own PR after B1 (ROOT, 2026-10-08 UTC)
+
+**I109 returned** (`R/I109/platform_norm_01/RETURN.md`, `7c213623…`; 44 files in its sums) on `codex/piping-t3-platform-norm-20261008` at `cd8e710039`, from NUM `af53e1447c`. The commits:
+- **`c613c68160`:** `norm2` and `norm3` in `P/core/solver/frame_kernel/src/correct_norm.rs`. They use IEEE operations and `fma` only, with 1,200 committed oracle vectors.
+- **`c8369cfda2`:** every product `hypot` reaching published bytes, a receipt or diagnostic text uses the norm (30 of 32 calls; the other 2 are in `performance_harness`). stress_recovery includes the module by `#[path]`, so no manifest, lock or reviewed input changes.
+- **`d538f469af`:** the rigid-body rank screen uses the norm (an admission decision).
+- **`cd8e710039`:** a comment.
+
+**The facts:**
+- **The oracle:** 0 misrounded in 22,000,000 results, against exact integer square roots. The sample includes the subnormal and overflow ranges and 1,000,000 adversarial near-midpoint triples.
+- **macOS arm64's `hypot`** is not correctly rounded on 16.7 % of random pairs.
+- **The published value is the correctly rounded 3-norm,** not a chain. It is one rounding and independent of component order; the chain differs from it on 16.6 % of triples.
+- **The readers** recompute norms only inside their 64ε guard and need no change.
+- **Moved bytes on the Mac** (40 manifests; nothing re-pinned): five tests move by one value of one ulp plus the hashes over it.
+  - These are W-C2 dense (fixture and pins), (C, B, A) dense, u1's macOS dense ordinary pin, m08's own libm expectation, and two reader-corpus cases.
+  - `t13` and the runner's two `load_reference` tests now pass on the Mac.
+  - The moved W-C2 and (C, B, A) values equal B1's glibc variants exactly. **glibc was the correctly rounded side.**
+- **The remaining libm calls on product paths:** sin 23, cos 25, atan2 2, asin 1, exp 3, exp_m1 1. These are recommended for correctly rounded implementations and are not implemented in this round.
+
+**Ruled:**
+1. **The correctly rounded norm is accepted as T3 product work and goes as its own PR after PR-B1** ("PR-N", T3-PN). PR-B1 keeps its exact platform pins. PR-N:
+   - re-pins the Mac fixtures to the correctly rounded bytes, which equal glibc's today;
+   - retires B1's glibc variants, `t13`'s and `load_reference`'s Mac failures, and u1's macOS-only assertion;
+   - keeps the bit-spelled ring.
+2. **`d538f469af` (the rank screen) stays,** because it closes a T3-close item. Its review takes the admission view.
+3. **Next for PR-N:**
+   - NUM's latest is merged into the branch (no conflict);
+   - a hosted-CI diagnostic dispatch on glibc;
+   - then I109 re-pins after PR-B1 merges, rebased on main;
+   - then RV-N (a fresh review) of the norm module and every call site.
+
+   The sin, cos, atan2 and exp items are a later round.

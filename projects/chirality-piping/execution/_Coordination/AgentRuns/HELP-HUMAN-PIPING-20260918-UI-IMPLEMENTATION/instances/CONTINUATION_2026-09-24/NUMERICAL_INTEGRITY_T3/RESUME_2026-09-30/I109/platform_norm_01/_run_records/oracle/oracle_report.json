@@ -1,0 +1,11 @@
+{
+ "triples": 11000000,
+ "norm3_misrounded": 0,
+ "norm2_misrounded": 0,
+ "first_failures": [],
+ "classes": {
+  "norm3_main_path": 9611343,
+  "norm3_largest_only": 1344663,
+  "special": 43994
+ }
+}

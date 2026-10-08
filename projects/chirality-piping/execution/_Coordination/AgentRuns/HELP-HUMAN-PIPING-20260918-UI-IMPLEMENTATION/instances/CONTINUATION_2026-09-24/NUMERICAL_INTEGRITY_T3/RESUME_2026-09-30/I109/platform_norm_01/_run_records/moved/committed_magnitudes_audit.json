@@ -1,0 +1,265 @@
+{
+ "totals": {
+  "files": 379,
+  "documents": 73,
+  "magnitudes": 616,
+  "not_norm3": 28
+ },
+ "documents_with_non_cr_magnitudes": [
+  {
+   "file": "fixtures/results/preview_physics_connected_dense.json",
+   "path": "/",
+   "magnitudes": 2,
+   "not_norm3": 1,
+   "examples": [],
+   "eq_chain_not_norm3": 1
+  },
+  {
+   "file": "fixtures/results/physics_connected_ui_mechanics_sparse.json",
+   "path": "/",
+   "magnitudes": 4,
+   "not_norm3": 1,
+   "examples": [
+    {
+     "id": "result:support-action:23:case:six-component-load:20:support:fixture-root:force_magnitude",
+     "published": 3741.6573867739435,
+     "norm3": 3741.657386773944,
+     "chain": 3741.657386773944
+    }
+   ],
+   "eq_chain_not_norm3": 0
+  },
+  {
+   "file": "fixtures/results/physics_connected_mechanics_sparse.json",
+   "path": "/",
+   "magnitudes": 4,
+   "not_norm3": 1,
+   "examples": [
+    {
+     "id": "result:support-action:23:case:six-component-load:20:support:fixture-root:force_magnitude",
+     "published": 3741.6573867739435,
+     "norm3": 3741.657386773944,
+     "chain": 3741.657386773944
+    }
+   ],
+   "eq_chain_not_norm3": 0
+  },
+  {
+   "file": "fixtures/results/retained_precision_cases.json",
+   "path": "/cases[0]/source",
+   "magnitudes": 2,
+   "not_norm3": 1,
+   "examples": [],
+   "eq_chain_not_norm3": 1
+  },
+  {
+   "file": "fixtures/results/retained_precision_cases.json",
+   "path": "/cases[1]/source",
+   "magnitudes": 2,
+   "not_norm3": 1,
+   "examples": [],
+   "eq_chain_not_norm3": 1
+  },
+  {
+   "file": "fixtures/results/retained_precision_cases.json",
+   "path": "/cases[4]/source",
+   "magnitudes": 4,
+   "not_norm3": 2,
+   "examples": [],
+   "eq_chain_not_norm3": 2
+  },
+  {
+   "file": "fixtures/results/retained_precision_cases.json",
+   "path": "/cases[5]/source",
+   "magnitudes": 4,
+   "not_norm3": 2,
+   "examples": [],
+   "eq_chain_not_norm3": 2
+  },
+  {
+   "file": "fixtures/results/retained_precision_cases.json",
+   "path": "/cases[6]/source",
+   "magnitudes": 4,
+   "not_norm3": 1,
+   "examples": [],
+   "eq_chain_not_norm3": 1
+  },
+  {
+   "file": "fixtures/results/retained_precision_cases.json",
+   "path": "/cases[7]/source",
+   "magnitudes": 4,
+   "not_norm3": 1,
+   "examples": [],
+   "eq_chain_not_norm3": 1
+  },
+  {
+   "file": "fixtures/results/retained_precision_cases.json",
+   "path": "/cases[8]/source",
+   "magnitudes": 4,
+   "not_norm3": 1,
+   "examples": [],
+   "eq_chain_not_norm3": 1
+  },
+  {
+   "file": "fixtures/results/retained_precision_cases.json",
+   "path": "/cases[9]/source",
+   "magnitudes": 2,
+   "not_norm3": 1,
+   "examples": [],
+   "eq_chain_not_norm3": 1
+  },
+  {
+   "file": "fixtures/results/retained_precision_cases.json",
+   "path": "/cases[10]/source",
+   "magnitudes": 2,
+   "not_norm3": 1,
+   "examples": [],
+   "eq_chain_not_norm3": 1
+  },
+  {
+   "file": "fixtures/results/retained_precision_cases.json",
+   "path": "/cases[11]/source",
+   "magnitudes": 4,
+   "not_norm3": 2,
+   "examples": [],
+   "eq_chain_not_norm3": 2
+  },
+  {
+   "file": "fixtures/results/retained_precision_cases.json",
+   "path": "/cases[12]/source",
+   "magnitudes": 4,
+   "not_norm3": 2,
+   "examples": [],
+   "eq_chain_not_norm3": 2
+  },
+  {
+   "file": "fixtures/results/retained_precision_cases.json",
+   "path": "/cases[13]/source",
+   "magnitudes": 2,
+   "not_norm3": 1,
+   "examples": [],
+   "eq_chain_not_norm3": 1
+  },
+  {
+   "file": "fixtures/results/retained_precision_cases.json",
+   "path": "/cases[14]/source",
+   "magnitudes": 2,
+   "not_norm3": 1,
+   "examples": [],
+   "eq_chain_not_norm3": 1
+  },
+  {
+   "file": "fixtures/results/retained_precision_cases.json",
+   "path": "/cases[18]/source",
+   "magnitudes": 30,
+   "not_norm3": 1,
+   "examples": [
+    {
+     "id": "result:support-action:6:case-c:8:rigid:N0:force_magnitude",
+     "published": 1.6258317075882521e-12,
+     "norm3": 1.6258317075882523e-12,
+     "chain": 1.6258317075882523e-12
+    }
+   ],
+   "eq_chain_not_norm3": 0
+  },
+  {
+   "file": "fixtures/results/retained_precision_cases.json",
+   "path": "/cases[23]/source",
+   "magnitudes": 30,
+   "not_norm3": 1,
+   "examples": [
+    {
+     "id": "result:support-action:6:case-c:8:rigid:N0:force_magnitude",
+     "published": 1.6258317075882521e-12,
+     "norm3": 1.6258317075882523e-12,
+     "chain": 1.6258317075882523e-12
+    }
+   ],
+   "eq_chain_not_norm3": 0
+  },
+  {
+   "file": "fixtures/results/preview_physics_connected_sparse.json",
+   "path": "/",
+   "magnitudes": 2,
+   "not_norm3": 1,
+   "examples": [],
+   "eq_chain_not_norm3": 1
+  },
+  {
+   "file": "fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json",
+   "path": "/source",
+   "magnitudes": 30,
+   "not_norm3": 1,
+   "examples": [
+    {
+     "id": "result:support-action:6:case-c:8:rigid:N0:force_magnitude",
+     "published": 1.6258317075882521e-12,
+     "norm3": 1.6258317075882523e-12,
+     "chain": 1.6258317075882523e-12
+    }
+   ],
+   "eq_chain_not_norm3": 0
+  },
+  {
+   "file": "fixtures/product_preview/load_reference_source/fields-dense_scrutiny.raw.json",
+   "path": "/",
+   "magnitudes": 4,
+   "not_norm3": 1,
+   "examples": [
+    {
+     "id": "result:support-action:4:case:6:anchor:force_magnitude",
+     "published": 0.0037416573867739412,
+     "norm3": 0.0037416573867739417,
+     "chain": 0.0037416573867739417
+    }
+   ],
+   "eq_chain_not_norm3": 0
+  },
+  {
+   "file": "fixtures/product_preview/load_reference_source/fields-sparse_interactive.raw.json",
+   "path": "/",
+   "magnitudes": 4,
+   "not_norm3": 1,
+   "examples": [
+    {
+     "id": "result:support-action:4:case:6:anchor:force_magnitude",
+     "published": 0.0037416573867739412,
+     "norm3": 0.0037416573867739417,
+     "chain": 0.0037416573867739417
+    }
+   ],
+   "eq_chain_not_norm3": 0
+  },
+  {
+   "file": "fixtures/product_preview/physics_source/fields-dense_scrutiny.raw.json",
+   "path": "/",
+   "magnitudes": 4,
+   "not_norm3": 1,
+   "examples": [
+    {
+     "id": "result:support-action:4:case:6:anchor:force_magnitude",
+     "published": 0.0037416573867739412,
+     "norm3": 0.0037416573867739417,
+     "chain": 0.0037416573867739417
+    }
+   ],
+   "eq_chain_not_norm3": 0
+  },
+  {
+   "file": "fixtures/product_preview/physics_source/fields-sparse_interactive.raw.json",
+   "path": "/",
+   "magnitudes": 4,
+   "not_norm3": 1,
+   "examples": [
+    {
+     "id": "result:support-action:4:case:6:anchor:force_magnitude",
+     "published": 0.0037416573867739412,
+     "norm3": 0.0037416573867739417,
+     "chain": 0.0037416573867739417
+    }
+   ],
+   "eq_chain_not_norm3": 0
+  }
+ ]
+}

@@ -1,0 +1,54 @@
+{
+ "sites_lines": 431,
+ "calls": 578,
+ "calls_by_context": {
+  "test": 401,
+  "prod": 123,
+  "reader": 54
+ },
+ "unclassified": [],
+ "prod_libm_calls_by_function": {
+  "hypot": 32,
+  "asin": 1,
+  "atan2": 2,
+  "exp": 3,
+  "exp_m1": 1,
+  "cos": 25,
+  "sin": 23
+ },
+ "replaced_by_i109": 30,
+ "replaced_lines": 19,
+ "reader_calls": {
+  "hypot (libm)": 11,
+  "powi (exact (2^k))": 4,
+  "** (libm pow(x, 2))": 1,
+  "hypot (CPython/engine hypot)": 6,
+  "** (exact (2^k))": 32
+ },
+ "test_calls": {
+  "** | exact (2^k) | test-only": 8,
+  "atan2 | libm | test input": 1,
+  "cos | libm | pinned test value (W2b inputs and I81's PROBE pins; Linux differs)": 1,
+  "cos | libm | pinned test value (as above)": 1,
+  "cos | libm | test input": 1,
+  "cos | libm | test input (outputs toleranced)": 1,
+  "cos | libm | test-only (toleranced)": 17,
+  "exp_m1 | libm | pinned test value (close)": 1,
+  "hypot | libm | pinned test value (bitwise; the chain and the 3-norm agree on these inputs)": 2,
+  "hypot | libm | pinned test value (exact equality; moved: m08)": 1,
+  "hypot | libm | test input (reader guard)": 2,
+  "hypot | libm | test-only (comparison with B, not a pin)": 1,
+  "hypot | libm | test-only (toleranced)": 17,
+  "log10 | libm | test-only (toleranced)": 1,
+  "log2 | libm | test-only (toleranced)": 13,
+  "powi | exact (2^k) | test-only": 137,
+  "powi | fixed | test-only": 166,
+  "sin | libm | pinned test value (W2b inputs and I81's PROBE pins; Linux differs)": 1,
+  "sin | libm | pinned test value (as above)": 1,
+  "sin | libm | test input": 4,
+  "sin | libm | test input (outputs toleranced)": 1,
+  "sin | libm | test-only (toleranced)": 18,
+  "sin_cos | libm | test-only (toleranced)": 1,
+  "to_radians | fixed | test input": 4
+ }
+}

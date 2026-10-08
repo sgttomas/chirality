@@ -1,0 +1,432 @@
+path	line	function	calls	context	computes	reaches	readers_recompute	platform	action
+core/product_physics/src/annulus_geometry.rs	91	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/annulus_geometry.rs	109	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/annulus_geometry.rs	110	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/lib.rs	4926	hypot	2	prod	ordinary route: support force magnitude |F| (support_reaction_force_magnitude rows)	published bytes	RS, PY, TS recompute with libm/engine hypot under a 64-epsilon relative guard	libm	I109: norm3
+core/product_physics/src/lib.rs	5122	hypot	1	prod	formation guard: end q = |(My, Mz)| against the bending formation bound	admission decision	none	libm	I109: norm2
+core/product_physics/src/lib.rs	7870	asin	1	prod	curved bend: implied included angle 2*asin(c/2R), checked against the user angle and printed in its diagnostic	admission decision; published diagnostic text	none	libm	recommend: correctly rounded asin, or compare sin(theta/2) with c/2R instead of angles (no inverse trig)
+core/product_physics/src/lib.rs	9333	powi	2	prod	self-weight metal area pi/4 (od^2 - id^2)	published bytes	none	fixed (x*x by squaring)	recommend: spell as x*x / (x*x)*(x*x) (same bits; Rust leaves powi's precision unspecified)
+core/product_physics/src/lib.rs	9354	powi	1	prod	contents mass per length pi/4 id^2 rho	published bytes	none	fixed (x*x by squaring)	recommend: spell as x*x / (x*x)*(x*x) (same bits; Rust leaves powi's precision unspecified)
+core/product_physics/src/lib.rs	9377	powi	2	prod	insulation mass per length	published bytes	none	fixed (x*x by squaring)	recommend: spell as x*x / (x*x)*(x*x) (same bits; Rust leaves powi's precision unspecified)
+core/product_physics/src/lib.rs	10306	powi	2	prod	section area	published bytes	none	fixed (x*x by squaring)	recommend: spell as x*x / (x*x)*(x*x) (same bits; Rust leaves powi's precision unspecified)
+core/product_physics/src/lib.rs	10307	powi	1	prod	internal area	published bytes	none	fixed (x*x by squaring)	recommend: spell as x*x / (x*x)*(x*x) (same bits; Rust leaves powi's precision unspecified)
+core/product_physics/src/lib.rs	10308	powi	2	prod	second moment pi (od^4 - id^4)/64	published bytes	none	fixed (x*x by squaring)	recommend: spell as x*x / (x*x)*(x*x) (same bits; Rust leaves powi's precision unspecified)
+core/product_physics/src/lib.rs	11874	hypot	2	prod	support action v2: force magnitude row	published bytes	RS, PY, TS recompute with libm/engine hypot under a 64-epsilon relative guard	libm	I109: norm3
+core/product_physics/src/lib.rs	11880	hypot	2	prod	support action v2: moment magnitude row	published bytes	RS, PY, TS recompute with libm/engine hypot under a 64-epsilon relative guard	libm	I109: norm3
+core/product_physics/src/lib.rs	13509	hypot	2	prod	combination: combined displacement/support magnitude row	published bytes	RS, PY, TS recompute with libm/engine hypot under a 64-epsilon relative guard	libm	I109: norm3
+core/product_physics/src/lib.rs	13916	powi	1	prod	displacement magnitude sqrt(ux^2 + uy^2 + uz^2)	published bytes	displacement magnitude: readers recompute with hypot under the guard	fixed (x*x by squaring)	recommend: spell as x*x / (x*x)*(x*x) (same bits; Rust leaves powi's precision unspecified)
+core/product_physics/src/lib.rs	13917	powi	1	prod	(same)	published bytes	displacement magnitude: readers recompute with hypot under the guard	fixed (x*x by squaring)	recommend: spell as x*x / (x*x)*(x*x) (same bits; Rust leaves powi's precision unspecified)
+core/product_physics/src/lib.rs	13918	powi	1	prod	(same)	published bytes	displacement magnitude: readers recompute with hypot under the guard	fixed (x*x by squaring)	recommend: spell as x*x / (x*x)*(x*x) (same bits; Rust leaves powi's precision unspecified)
+core/product_physics/src/lib.rs	14976	powi	3	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/lib.rs	16632	powi	3	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/lib.rs	17600	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/lib.rs	18464	hypot	1	test	test expectation i*hypot(sigma_by, sigma_bz) under a 1e-9 relative tolerance	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/product_physics/src/lib.rs	18864	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/lib.rs	18865	powi	1	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/lib.rs	19458	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/lib.rs	19608	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/lib.rs	20304	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/lib.rs	21409	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/lib.rs	21547	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/lib.rs	21610	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/lib.rs	21714	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/lib.rs	22537	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/lib.rs	22619	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/lib.rs	22697	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/lib.rs	23258	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/lib.rs	23259	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/pressure_exact.rs	620	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	794	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	795	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	796	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	797	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	803	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	804	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	805	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	806	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	865	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	891	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	892	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	893	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	923	powi	2	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	924	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	926	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	927	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	931	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	932	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	938	powi	2	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	939	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	941	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	943	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	957	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	958	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	959	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	985	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	987	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	989	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	990	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	993	powi	2	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	1013	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	1014	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	1020	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	1022	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	1057	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	1058	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	1059	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	1065	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_exact.rs	1068	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_runtime.rs	1081	hypot	2	prod	exact-pressure region chord length (direction, guard, diagnostic text)	admission decision; published diagnostic text	none	libm	I109: norm3
+core/product_physics/src/pressure_runtime.rs	1099	hypot	2	prod	exact-pressure region collinearity residual (guard, diagnostic text)	admission decision; published diagnostic text	none	libm	I109: norm3
+core/product_physics/src/pressure_sum.rs	28	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/pressure_sum.rs	37	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/preview_physics.rs	465	hypot	2	prod	curved-bend tangent discontinuity angle atan2(|d x t|, d.t): warning threshold and printed angle	admission decision; published diagnostic text	none	libm	I109: |cross| by norm3; atan2 remains libm (recommend: correctly rounded atan2, or a threshold test on |cross| and dot without the angle)
+core/product_physics/src/preview_physics.rs	465	atan2	1	prod	curved-bend tangent discontinuity angle atan2(|cross|, dot)	admission decision; published diagnostic text	none	libm	recommend: correctly rounded atan2, or test |cross| > tan(tol)*dot without forming the angle (the printed angle still needs atan2)
+core/product_physics/src/preview_physics.rs	475	to_degrees	1	prod	the same angle in degrees for the warning text (x * 180/pi)	published diagnostic text	none	fixed	none (fixed: one multiplication); follows atan2
+core/product_physics/src/preview_physics.rs	634	hypot	1	prod	intensified bending i*|(My, Mz)|/Z	published bytes	RS, PY, TS recompute i*hypot(My,Mz)/Z under a 64-epsilon guard	libm	I109: norm2
+core/product_physics/src/preview_physics.rs	966	hypot	2	prod	preview-physics combination: force magnitude	published bytes	RS, PY, TS recompute with libm/engine hypot under a 64-epsilon relative guard	libm	I109: norm3
+core/product_physics/src/preview_physics.rs	967	hypot	2	prod	preview-physics combination: moment magnitude	published bytes	RS, PY, TS recompute with libm/engine hypot under a 64-epsilon relative guard	libm	I109: norm3
+core/product_physics/src/retained_memory_law_tests.rs	69	cos	1	test	cap_maximal ring input (10 cos t, 10 sin t)	pinned test value (W2b inputs and I81's PROBE pins; Linux differs)	n/a	libm	none (measured below where it moved)
+core/product_physics/src/retained_memory_law_tests.rs	69	sin	1	test	cap_maximal ring input (10 cos t, 10 sin t)	pinned test value (W2b inputs and I81's PROBE pins; Linux differs)	n/a	libm	none (measured below where it moved)
+core/product_physics/src/retained_product.rs	2446	hypot	2	prod	retained adapter: support magnitude guard (64-epsilon) against its components	admission decision	none	libm	I109: norm3
+core/product_physics/src/s11f_tests.rs	728	powi	1	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/s11f_tests.rs	729	powi	1	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/s11f_tests.rs	758	hypot	1	test	test expectation |(My,Mz)|, |(Vy,Vz)| against end values (1e-9 relative)	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/product_physics/src/s11f_tests.rs	764	hypot	1	test	test expectation |(My,Mz)|, |(Vy,Vz)| against end values (1e-9 relative)	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/product_physics/src/s11f_tests.rs	924	hypot	1	test	test expectation |(My,Mz)|, |(Vy,Vz)| against end values (1e-9 relative)	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/product_physics/src/s11f_tests.rs	932	hypot	1	test	test expectation |(My,Mz)|, |(Vy,Vz)| against end values (1e-9 relative)	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/product_physics/src/s11f_tests.rs	1006	hypot	1	test	test expectation |(My,Mz)|, |(Vy,Vz)| against end values (1e-9 relative)	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/product_physics/src/s11f_tests.rs	1012	hypot	1	test	test expectation |(My,Mz)|, |(Vy,Vz)| against end values (1e-9 relative)	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/product_physics/src/s11f_tests.rs	1542	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/s11g_tests.rs	389	hypot	1	test	test mirror of the formation guard's q = |(My,Mz)|	test-only (comparison with B, not a pin)	n/a	libm	none (measured below where it moved)
+core/product_physics/src/s11g_tests.rs	402	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/s11g_tests.rs	654	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/self_weight.rs	1319	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/self_weight.rs	1327	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/src/self_weight.rs	1419	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/self_weight.rs	1466	powi	1	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/self_weight.rs	1488	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/self_weight.rs	1489	powi	1	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/self_weight.rs	1490	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/src/case_state/resolve.rs	899	hypot	1	prod	load reference: member reference length (published reference_length_m; fit strain = change/length)	published bytes	RS, PY, TS recompute fit_strain = change/length exactly from the published length; none recomputes the length	libm	I109: norm3
+core/product_physics/src/case_state/resolve.rs	900	hypot	1	prod	(same expression)	published bytes	as above	libm	I109: norm3
+core/product_physics/src/case_state/thermal.rs	484	exp	1	prod	logarithmic path stretch exp(integral), checked > 0	admission decision	none	libm	recommend: correctly rounded exp (or exact reformulation not available)
+core/product_physics/src/case_state/thermal.rs	666	exp	1	prod	installation logarithmic stretch exp(d_i) (published)	published bytes	readers check the published composition, not exp	libm	recommend: correctly rounded exp
+core/product_physics/src/case_state/thermal.rs	667	exp	1	prod	operating logarithmic stretch exp(d_o) (published)	published bytes	as above	libm	recommend: correctly rounded exp
+core/product_physics/src/case_state/thermal.rs	674	exp_m1	1	prod	logarithmic thermal strain expm1(delta) (published, drives thermal loads)	published bytes	as above	libm	recommend: correctly rounded expm1
+core/product_physics/src/case_state/thermal.rs	991	exp_m1	1	test	test expectation expm1(0.0015) for the published strain	pinned test value (close)	n/a	libm	none (measured below where it moved)
+core/product_physics/tests/elastic_extrema_runtime.rs	47	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/tests/elastic_extrema_runtime.rs	110	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/tests/k2a_formation_range_runtime.rs	123	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/tests/k2a_formation_range_runtime.rs	124	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/tests/k2a_formation_range_runtime.rs	386	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/tests/k2a_formation_range_runtime.rs	387	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/tests/k2a_formation_range_runtime.rs	495	powi	2	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/tests/k2a_formation_range_runtime.rs	549	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/tests/k2a_formation_range_runtime.rs	569	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/tests/k2a_formation_range_runtime.rs	570	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/tests/load_reference_state_runtime_extension.rs	1891	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/tests/physics_source_runtime.rs	94	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/tests/physics_source_runtime.rs	194	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/tests/physics_source_runtime.rs	195	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/tests/physics_source_runtime.rs	197	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/tests/preview_physics_runtime.rs	270	hypot	2	test	test expectation: support force magnitude = hypot chain (1e-9 relative)	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/product_physics/tests/preview_physics_runtime.rs	271	hypot	2	test	test expectation: support moment magnitude = hypot chain (1e-9 relative)	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/product_physics/tests/preview_physics_runtime.rs	279	hypot	1	test	test expectation: intensified = i*hypot(My,Mz)/Z, asserted equal (m08)	pinned test value (exact equality; moved: m08)	n/a	libm	none (measured below where it moved)
+core/product_physics/tests/preview_physics_runtime.rs	428	to_radians	2	test	degree/radian conversion (one multiplication)	test input	n/a	fixed	none
+core/product_physics/tests/preview_physics_runtime.rs	428	cos	1	test	test input: 30-degree skew direction cos/sin	test input (outputs toleranced)	n/a	libm	none (measured below where it moved)
+core/product_physics/tests/preview_physics_runtime.rs	428	sin	1	test	test input: 30-degree skew direction cos/sin	test input (outputs toleranced)	n/a	libm	none (measured below where it moved)
+core/product_physics/tests/stress_maximum_coverage.rs	33	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/tests/stress_maximum_coverage.rs	34	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/tests/support_reactions_runtime.rs	130	hypot	2	test	test expectation: support magnitude of exact integers (hypot chain of 1000,2000,3000 and 400,2500,2600)	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/product_physics/tests/support_reactions_runtime.rs	135	hypot	2	test	test expectation: support magnitude of exact integers (hypot chain of 1000,2000,3000 and 400,2500,2600)	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/product_physics/tests/support_reactions_runtime.rs	152	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/product_physics/tests/common/b1_sq_inputs.rs	52	cos	1	test	cap_maximal ring input, transcribed	pinned test value (as above)	n/a	libm	none (measured below where it moved)
+core/product_physics/tests/common/b1_sq_inputs.rs	52	sin	1	test	cap_maximal ring input, transcribed	pinned test value (as above)	n/a	libm	none (measured below where it moved)
+core/product_physics/tests/common/b1_sq_inputs.rs	130	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/product_physics/tests/common/b1_sq_inputs.rs	292	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/curved_bend/src/lib.rs	166	atan2	1	prod	arc included angle phi = atan2(|n|, ri.rj)	published bytes	none	libm	recommend: correctly rounded atan2 (sin/cos of phi then exact from the vectors)
+core/solver/curved_bend/src/lib.rs	247	cos	1	prod	curved bend local stiffness: chord terms R(cos phi - 1), R sin phi	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	248	sin	1	prod	curved bend local stiffness: chord terms R(cos phi - 1), R sin phi	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	302	sin	1	prod	curved bend consistent uniform nodal loads: R^2(sin phi - phi), R^2(1 - cos phi)	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	303	cos	1	prod	curved bend consistent uniform nodal loads: R^2(sin phi - phi), R^2(1 - cos phi)	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	316	cos	1	prod	curved bend consistent uniform nodal loads: chord terms	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	317	sin	1	prod	curved bend consistent uniform nodal loads: chord terms	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	415	cos	2	prod	curved bend arc section resultants at theta: cos/sin of phi and theta	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	416	sin	2	prod	curved bend arc section resultants at theta: cos/sin of phi and theta	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	425	sin	2	prod	curved bend arc section resultants at theta: cos/sin of phi and theta	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	425	cos	1	prod	curved bend arc section resultants at theta: cos/sin of phi and theta	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	428	cos	2	prod	curved bend arc section resultants at theta: cos/sin of phi and theta	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	428	sin	1	prod	curved bend arc section resultants at theta: cos/sin of phi and theta	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	439	sin	1	prod	curved bend arc section resultants at theta: cos/sin of phi and theta	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	439	cos	1	prod	curved bend arc section resultants at theta: cos/sin of phi and theta	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	440	cos	1	prod	curved bend arc section resultants at theta: cos/sin of phi and theta	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	440	sin	1	prod	curved bend arc section resultants at theta: cos/sin of phi and theta	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	463	sin	1	prod	curved bend end tangents (-sin phi, cos phi)	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	464	cos	1	prod	curved bend end tangents (-sin phi, cos phi)	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	521	sin	1	prod	curved bend radial pressure nodal loads: thrust sin/cos terms	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	522	cos	1	prod	curved bend radial pressure nodal loads: thrust sin/cos terms	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	523	cos	1	prod	curved bend radial pressure nodal loads: thrust sin/cos terms	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	528	cos	1	prod	curved bend radial pressure nodal loads: thrust sin/cos terms	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	529	sin	1	prod	curved bend radial pressure nodal loads: thrust sin/cos terms	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	587	cos	1	prod	curved bend section resultants with radial pressure	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	588	sin	1	prod	curved bend section resultants with radial pressure	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	589	cos	1	prod	curved bend section resultants with radial pressure	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	624	cos	1	prod	curved bend section resultant terms	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	625	sin	1	prod	curved bend section resultant terms	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	629	cos	1	prod	curved bend section resultant terms	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	737	sin	1	prod	curved bend unit load actions: sin/cos of phi	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	738	cos	1	prod	curved bend unit load actions: sin/cos of phi	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	814	sin	1	prod	curved bend distributed load actions: sin/cos of phi	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	815	cos	1	prod	curved bend distributed load actions: sin/cos of phi	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	877	sin	1	prod	curved bend radial pressure load actions: sin/cos of phi	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	878	cos	1	prod	curved bend radial pressure load actions: sin/cos of phi	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	894	sin	1	prod	curved bend trig extended Gram: sin/cos of phi and 2 phi	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	895	cos	1	prod	curved bend trig extended Gram: sin/cos of phi and 2 phi	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	896	sin	1	prod	curved bend trig extended Gram: sin/cos of phi and 2 phi	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	897	cos	1	prod	curved bend trig extended Gram: sin/cos of phi and 2 phi	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	968	sin	1	prod	curved bend trig Gram: sin/cos of phi and 2 phi	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	969	cos	1	prod	curved bend trig Gram: sin/cos of phi and 2 phi	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	970	sin	1	prod	curved bend trig Gram: sin/cos of phi and 2 phi	published bytes (every model with a bend: stiffness, loads, resultants)	none	libm	recommend: correctly rounded sin/cos (sin_cos) of phi; phi itself from a correctly rounded atan2
+core/solver/curved_bend/src/lib.rs	1243	sin	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1528	cos	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1528	sin	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1529	sin	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1529	cos	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1533	cos	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1533	sin	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1535	sin	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1535	cos	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1539	cos	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1539	sin	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1540	sin	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1540	cos	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1683	sin	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1764	sin	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1765	cos	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1821	powi	1	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/curved_bend/src/lib.rs	1824	powi	1	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/curved_bend/src/lib.rs	1827	powi	1	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/curved_bend/src/lib.rs	1829	powi	1	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/curved_bend/src/lib.rs	1831	powi	1	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/curved_bend/src/lib.rs	1832	powi	1	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/curved_bend/src/lib.rs	1836	powi	1	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/curved_bend/src/lib.rs	1837	powi	1	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/curved_bend/src/lib.rs	1883	sin	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1883	cos	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1884	cos	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1884	sin	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1931	sin	2	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1931	cos	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1932	cos	2	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1932	sin	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1936	cos	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1937	sin	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1938	cos	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	1938	sin	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	2313	cos	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	2314	sin	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/curved_bend/src/lib.rs	2386	sin	1	test	curved-bend tests: geometry inputs and analytic expectations	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/diagnostics/src/lib.rs	813	powi	2	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/load_ledger.rs	779	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/rigid_body.rs	52	hypot	2	prod	rigid-body screen: characteristic length max |r|	admission decision	none	libm	I109: norm3
+core/solver/frame_kernel/src/rigid_body.rs	108	hypot	1	prod	rigid-body screen: Jacobi rotation sqrt(zeta^2 + 1)	admission decision	none	libm	I109: norm2
+core/solver/frame_kernel/src/structural.rs	592	powi	1	prod	power of two 2^k (10^k in two tests)	exact scaling (no rounding; round-trip checked where the exponent is computed)	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural.rs	813	powi	1	prod	power of two 2^k (10^k in two tests)	exact scaling (no rounding; round-trip checked where the exponent is computed)	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural.rs	814	powi	1	prod	power of two 2^k (10^k in two tests)	exact scaling (no rounding; round-trip checked where the exponent is computed)	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural.rs	1423	powi	1	prod	power of two 2^k (10^k in two tests)	exact scaling (no rounding; round-trip checked where the exponent is computed)	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/exact_sum/tests.rs	49	powi	2	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/exact_sum/tests.rs	74	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/exact_sum/tests.rs	92	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/exact_sum/tests.rs	131	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/exact_sum/tests.rs	138	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/exact_sum/tests.rs	148	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/exact_sum/tests.rs	178	powi	2	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/exact_sum/tests.rs	181	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/exact_sum/tests.rs	184	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/exact_boundary.rs	1733	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/exact_boundary.rs	1740	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/exact_boundary.rs	1809	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/exact_boundary.rs	1812	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/exact_boundary.rs	1876	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/exact_boundary.rs	1956	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/exact_boundary.rs	2088	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/exact_boundary.rs	2101	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/exact_boundary.rs	2236	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/exact_boundary.rs	2432	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/exact_boundary.rs	2518	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/formation_check.rs	363	powi	1	prod	power of two 2^k (10^k in two tests)	exact scaling (no rounding; round-trip checked where the exponent is computed)	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/formation_check_tests.rs	298	atan2	1	test	test input angle atan2(5e-20, -1)	test input	n/a	libm	none (measured below where it moved)
+core/solver/frame_kernel/src/structural/kf2_witness_tests.rs	209	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/kf2_witness_tests.rs	1156	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/src/structural/s11f_tests.rs	110	powi	4	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/src/structural/s11f_tests.rs	116	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/src/structural/s11f_tests.rs	117	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/src/structural/s11f_tests.rs	121	powi	4	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/src/structural/s11f_tests.rs	127	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/src/structural/s11f_tests.rs	128	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/src/structural/s11k_tests.rs	38	powi	4	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/src/structural/s11k_tests.rs	44	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/src/structural/s11k_tests.rs	45	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/src/structural/s11k_tests.rs	49	powi	4	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/src/structural/s11k_tests.rs	55	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/src/structural/s11k_tests.rs	56	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/src/structural/s11k_tests.rs	310	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/s11k_tests.rs	314	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/s11k_tests.rs	351	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/s11k_tests.rs	352	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/s11k_tests.rs	353	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/s11k_tests.rs	354	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/s11k_tests.rs	355	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/s11k_tests.rs	357	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/s11k_tests.rs	417	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/exact_boundary/s11k_tests.rs	11	powi	2	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs	102	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs	168	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs	178	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/exact_boundary/functionals/tests.rs	181	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs	1847	hypot	1	prod	retained certificate: support magnitude projection |(Fx, Fy)|	published bytes	RS, PY, TS recompute with libm/engine hypot under a 64-epsilon relative guard	libm	I109: norm3 (one rounding of the 3-norm)
+core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs	1850	hypot	1	prod	retained certificate: support magnitude projection |(xy, Fz)|	published bytes	RS, PY, TS recompute with libm/engine hypot under a 64-epsilon relative guard	libm	I109: norm3
+core/solver/frame_kernel/src/structural/sparse/tests.rs	21	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/src/structural/sparse/tests.rs	202	sin	1	test	test input geometry 0.05 sin(0.7 t)	test input	n/a	libm	none (measured below where it moved)
+core/solver/frame_kernel/tests/k1_k2a_interaction.rs	40	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/tests/k1_k2a_interaction.rs	41	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/tests/k2a_checked_formation.rs	126	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/tests/k2a_checked_formation.rs	127	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/tests/k2a_checked_formation.rs	177	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/tests/k2a_checked_formation.rs	181	powi	2	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/tests/k2a_checked_formation.rs	786	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/tests/k2a_checked_formation.rs	789	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/tests/k2b_force_scaling.rs	34	powi	2	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/tests/k2b_force_scaling.rs	44	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/tests/k2b_force_scaling.rs	45	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/tests/k2b_force_scaling.rs	417	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/tests/k2b_force_scaling.rs	418	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/tests/k2b_force_scaling.rs	685	powi	2	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/tests/m03_skew_scope.rs	65	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/tests/m03_skew_scope.rs	77	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/tests/m03_skew_scope.rs	78	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/frame_kernel/tests/m03_skew_scope.rs	381	log2	1	test	test diagnostics log2/log10 of measured scales, toleranced	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/frame_kernel/tests/m03_skew_scope.rs	383	log2	1	test	test diagnostics log2/log10 of measured scales, toleranced	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/frame_kernel/tests/m03_skew_scope.rs	437	log2	2	test	test diagnostics log2/log10 of measured scales, toleranced	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/frame_kernel/tests/m03_skew_scope.rs	476	log2	1	test	test diagnostics log2/log10 of measured scales, toleranced	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/frame_kernel/tests/m03_skew_scope.rs	477	log2	1	test	test diagnostics log2/log10 of measured scales, toleranced	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/frame_kernel/tests/m03_skew_scope.rs	478	log2	1	test	test diagnostics log2/log10 of measured scales, toleranced	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/frame_kernel/tests/m03_skew_scope.rs	479	log2	1	test	test diagnostics log2/log10 of measured scales, toleranced	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/frame_kernel/tests/m03_skew_scope.rs	480	log2	1	test	test diagnostics log2/log10 of measured scales, toleranced	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/frame_kernel/tests/m03_skew_scope.rs	481	log2	1	test	test diagnostics log2/log10 of measured scales, toleranced	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/frame_kernel/tests/m03_skew_scope.rs	508	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/tests/m03_skew_scope.rs	508	log10	1	test	test diagnostics log2/log10 of measured scales, toleranced	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/frame_kernel/tests/m03_skew_scope.rs	542	log2	1	test	test diagnostics log2/log10 of measured scales, toleranced	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/frame_kernel/tests/m03_skew_scope.rs	543	log2	1	test	test diagnostics log2/log10 of measured scales, toleranced	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/frame_kernel/tests/m03_skew_scope.rs	544	log2	1	test	test diagnostics log2/log10 of measured scales, toleranced	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/frame_kernel/tests/retained_k4/kf1_tracker_tests.rs	216	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/tests/retained_k4/product_certificate_tests.rs	179	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/tests/retained_k4/product_certificate_tests.rs	182	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/tests/retained_k4/product_final_case_tests.rs	342	hypot	2	test	test expectation: support projection = hypot chain, bitwise (3,4,12; zeros; subnormals 1,2,3)	pinned test value (bitwise; the chain and the 3-norm agree on these inputs)	n/a	libm	none (measured below where it moved)
+core/solver/frame_kernel/tests/retained_k4/wide_sum_tests.rs	576	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/frame_kernel/tests/retained_k4/wide_sum_tests.rs	581	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/nonlinear_integration/src/lib.rs	4744	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/nonlinear_integration/src/lib.rs	4745	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/nonlinear_integration/src/product_equilibrium.rs	40	powi	1	prod	power of two 2^k (10^k in two tests)	exact scaling (no rounding; round-trip checked where the exponent is computed)	n/a	exact (2^k)	none
+core/solver/nonlinear_integration/src/s11k_tests.rs	620	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/nonlinear_integration/src/s11k_tests.rs	624	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/nonlinear_integration/src/structural_adapter.rs	2040	cos	1	prod	curved symmetry formation: chord R(cos(phi) - 1)	published bytes	none	libm	recommend: as curved_bend
+core/solver/nonlinear_integration/src/structural_adapter.rs	2041	sin	1	prod	curved symmetry formation: chord R sin(phi)	published bytes	none	libm	recommend: as curved_bend
+core/solver/nonlinear_integration/src/structural_adapter.rs	3149	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	456	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	679	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	729	to_radians	2	test	degree/radian conversion (one multiplication)	test input	n/a	fixed	none
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	729	cos	1	test	test inputs (30-degree skew; sin perturbations)	test input	n/a	libm	none (measured below where it moved)
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	729	sin	1	test	test inputs (30-degree skew; sin perturbations)	test input	n/a	libm	none (measured below where it moved)
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	1089	sin	1	test	test inputs (30-degree skew; sin perturbations)	test input	n/a	libm	none (measured below where it moved)
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	1495	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	1498	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	1499	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	1503	powi	2	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs	1543	powi	2	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs	69	powi	2	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs	75	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs	76	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs	594	hypot	1	test	test expectation Mb = hypot(My, Mz) of published end forces	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs	595	hypot	1	test	test expectation Mb = hypot(My, Mz) of published end forces	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/performance_harness/src/lib.rs	1078	hypot	1	prod	performance harness Jacobi rotation (not a product dependency)	none (harness)	none	libm	none
+core/solver/performance_harness/src/lib.rs	1080	hypot	1	prod	performance harness Jacobi rotation (not a product dependency)	none (harness)	none	libm	none
+core/solver/performance_harness/src/lib.rs	1533	cos	1	test	harness test expectation cos(pi/33)	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/performance_harness/src/lib.rs	1534	cos	1	test	harness test expectation cos(pi/33)	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/solver/sparse_direct/src/structural/k1_tests.rs	26	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/sparse_direct/src/structural/k1_tests.rs	248	sin	1	test	test input geometry 0.05 sin(0.7 t)	test input	n/a	libm	none (measured below where it moved)
+core/solver/straight_pipe/src/lib.rs	1404	powi	4	prod	partial uniform load fixed-end terms b^3, b^4	published bytes	none	fixed (x*(x*x), (x*x)*(x*x))	recommend: spell the products (same bits)
+core/solver/straight_pipe/src/lib.rs	1408	powi	2	prod	partial uniform load fixed-end terms b^3, b^4	published bytes	none	fixed (x*(x*x), (x*x)*(x*x))	recommend: spell the products (same bits)
+core/solver/straight_pipe/src/lib.rs	1409	powi	2	prod	partial uniform load fixed-end terms b^3, b^4	published bytes	none	fixed (x*(x*x), (x*x)*(x*x))	recommend: spell the products (same bits)
+core/solver/straight_pipe/src/lib.rs	1410	powi	4	prod	partial uniform load fixed-end terms b^3, b^4	published bytes	none	fixed (x*(x*x), (x*x)*(x*x))	recommend: spell the products (same bits)
+core/solver/straight_pipe/src/lib.rs	1414	powi	4	prod	partial uniform load fixed-end terms b^3, b^4	published bytes	none	fixed (x*(x*x), (x*x)*(x*x))	recommend: spell the products (same bits)
+core/solver/straight_pipe/src/s11k_tests.rs	73	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/straight_pipe/src/s11k_tests.rs	80	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/solver/straight_pipe/src/s11k_tests.rs	131	powi	4	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/straight_pipe/src/s11k_tests.rs	135	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/straight_pipe/src/s11k_tests.rs	136	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/straight_pipe/src/s11k_tests.rs	138	powi	4	test	integer power in a test	test-only	n/a	fixed	none
+core/solver/straight_pipe/src/s11k_tests.rs	142	powi	4	test	integer power in a test	test-only	n/a	fixed	none
+core/loads/self_weight_wasm/tests/applied_self_weight.rs	13	powi	2	test	integer power in a test	test-only	n/a	fixed	none
+core/loads/self_weight_wasm/tests/applied_self_weight.rs	240	powi	1	test	integer power in a test	test-only	n/a	fixed	none
+core/loads/stress_recovery/src/elastic_section.rs	105	hypot	1	prod	bending amplitude |(sigma_by, sigma_bz)| (stress rows, maxima)	published bytes	readers check published stress composition, not the norm	libm	I109: norm2
+core/loads/stress_recovery/src/elastic_section.rs	272	sin_cos	1	test	test sweep angle sin_cos	test-only (toleranced)	n/a	libm	none (measured below where it moved)
+core/loads/stress_recovery/src/elastic_section.rs	390	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/loads/stress_recovery/src/elastic_section.rs	391	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/reporting/result_export/src/physics_source.rs	1265	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/reporting/result_export/src/preview_physics_evidence.rs	613	hypot	1	reader	reader recomputation of a published norm	reader check (64-epsilon guard)	n/a	libm	none needed (1 ulp is far inside 64 epsilon); optional: mirror norm3
+core/reporting/result_export/src/preview_physics_evidence.rs	712	hypot	2	reader	reader recomputation of a published norm	reader check (64-epsilon guard)	n/a	libm	none needed (1 ulp is far inside 64 epsilon); optional: mirror norm3
+core/reporting/result_export/src/preview_physics_evidence.rs	715	hypot	2	reader	reader recomputation of a published norm	reader check (64-epsilon guard)	n/a	libm	none needed (1 ulp is far inside 64 epsilon); optional: mirror norm3
+core/reporting/result_export/src/preview_physics_evidence.rs	757	hypot	1	reader	reader recomputation of a published norm	reader check (64-epsilon guard)	n/a	libm	none needed (1 ulp is far inside 64 epsilon); optional: mirror norm3
+core/reporting/result_export/src/preview_physics_evidence.rs	758	hypot	1	reader	reader recomputation of a published norm	reader check (64-epsilon guard)	n/a	libm	none needed (1 ulp is far inside 64 epsilon); optional: mirror norm3
+core/reporting/result_export/src/preview_physics_evidence.rs	760	hypot	1	reader	reader recomputation of a published norm	reader check (64-epsilon guard)	n/a	libm	none needed (1 ulp is far inside 64 epsilon); optional: mirror norm3
+core/reporting/result_export/src/preview_physics_evidence.rs	761	hypot	1	reader	reader recomputation of a published norm	reader check (64-epsilon guard)	n/a	libm	none needed (1 ulp is far inside 64 epsilon); optional: mirror norm3
+core/reporting/result_export/src/preview_physics_evidence.rs	763	hypot	1	reader	reader recomputation of a published norm	reader check (64-epsilon guard)	n/a	libm	none needed (1 ulp is far inside 64 epsilon); optional: mirror norm3
+core/reporting/result_export/src/preview_physics_evidence.rs	764	hypot	1	reader	reader recomputation of a published norm	reader check (64-epsilon guard)	n/a	libm	none needed (1 ulp is far inside 64 epsilon); optional: mirror norm3
+core/reporting/result_export/src/retained_precision.rs	3081	powi	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+core/reporting/result_export/src/retained_precision.rs	3179	powi	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+core/reporting/result_export/src/retained_precision.rs	3183	powi	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+core/reporting/result_export/src/retained_precision.rs	3331	powi	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+core/reporting/result_export/src/source_blocks.rs	1645	powi	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+core/reporting/result_export/tests/preview_physics_contract.rs	84	hypot	2	test	test fixture construction: displacement magnitude hypot chain	test input (reader guard)	n/a	libm	none (measured below where it moved)
+core/analysis_runs/physics_source.py	117	**	1	reader	outward-rounded norm bound: (v/scale)**2	reader decision (outward-rounded enclosure)	n/a	libm pow(x, 2)	recommend: v*v (exact RN of the square)
+core/analysis_runs/preview_physics_evidence.py	113	hypot	2	reader	reader recomputation of a published norm	reader check (64-epsilon guard)	n/a	CPython/engine hypot	none needed (1 ulp is far inside 64 epsilon); optional: mirror norm3
+core/analysis_runs/preview_physics_evidence.py	374	hypot	1	reader	reader recomputation of a published norm	reader check (64-epsilon guard)	n/a	CPython/engine hypot	none needed (1 ulp is far inside 64 epsilon); optional: mirror norm3
+core/analysis_runs/retained_precision.py	124	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+core/analysis_runs/retained_precision.py	817	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+core/analysis_runs/retained_precision.py	819	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+core/analysis_runs/retained_precision.py	1081	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+core/analysis_runs/retained_precision.py	1102	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+core/analysis_runs/retained_precision.py	1103	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+core/analysis_runs/retained_precision.py	1380	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+core/analysis_runs/retained_precision.py	1433	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+core/analysis_runs/retained_precision.py	1434	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+core/analysis_runs/retained_precision.py	1477	**	2	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+core/analysis_runs/retained_precision.py	1540	**	2	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+core/analysis_runs/retained_precision.py	1618	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+apps/desktop/src/features/results/loadReferenceSourceEvidence.ts	224	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+apps/desktop/src/features/results/physicsSourceRecovery.test.ts	298	**	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+apps/desktop/src/features/results/physicsSourceRecovery.test.ts	299	**	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+apps/desktop/src/features/results/physicsSourceRecovery.ts	55	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+apps/desktop/src/features/results/physicsSourceRecovery.ts	64	**	2	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+apps/desktop/src/features/results/physicsSourceRecovery.ts	150	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+apps/desktop/src/features/results/physicsSourceRecovery.ts	251	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+apps/desktop/src/features/results/previewPhysicsEvidence.ts	100	hypot	2	reader	reader recomputation of a published norm	reader check (64-epsilon guard)	n/a	CPython/engine hypot	none needed (1 ulp is far inside 64 epsilon); optional: mirror norm3
+apps/desktop/src/features/results/previewPhysicsEvidence.ts	392	hypot	1	reader	reader recomputation of a published norm	reader check (64-epsilon guard)	n/a	CPython/engine hypot	none needed (1 ulp is far inside 64 epsilon); optional: mirror norm3
+apps/desktop/src/features/results/retainedPrecision.test.ts	80	**	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+apps/desktop/src/features/results/retainedPrecision.test.ts	467	**	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+apps/desktop/src/features/results/retainedPrecision.test.ts	751	**	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+apps/desktop/src/features/results/retainedPrecision.ts	80	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+apps/desktop/src/features/results/retainedPrecision.ts	86	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+apps/desktop/src/features/results/retainedPrecision.ts	106	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+apps/desktop/src/features/results/retainedPrecision.ts	946	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+apps/desktop/src/features/results/retainedPrecision.ts	982	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+apps/desktop/src/features/results/retainedPrecision.ts	1007	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+apps/desktop/src/features/results/retainedPrecision.ts	1008	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+apps/desktop/src/features/results/retainedPrecision.ts	1064	**	2	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+apps/desktop/src/features/results/retainedPrecision.ts	1083	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+apps/desktop/src/features/results/sourceBlockRecovery.test.ts	272	**	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+apps/desktop/src/features/results/sourceBlockRecovery.test.ts	352	**	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+apps/desktop/src/features/results/sourceBlockRecovery.test.ts	359	**	1	test	power of two 2^k (10^k in two tests)	test-only	n/a	exact (2^k)	none
+apps/desktop/src/features/results/sourceBlockRecovery.ts	406	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
+apps/desktop/src/features/results/sourceBlockRecovery.ts	480	**	1	reader	power of two 2^k (10^k in two tests)	reader decision (exact scale)	n/a	exact (2^k)	none
