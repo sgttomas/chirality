@@ -1,0 +1,65 @@
+WT/scratch/i114_demo/logs/pp_lib.log:     Running unittests src/lib.rs (WT/targets/i114-demo/debug/deps/open_pipe_stress_product_physics-a7fcadbd7e8c99aa)
+WT/scratch/i114_demo/logs/pp_lib.log:test pressure_runtime::grouping_identity_tests::source_bore_identity_does_not_round_distinct_sources_to_match ... ok
+WT/scratch/i114_demo/logs/pp_lib.log:test pressure_runtime::tests::region_identity_and_pipe_ownership_are_scoped_to_the_case ... ok
+WT/scratch/i114_demo/logs/pp_lib.log:test pressure_runtime::grouping_identity_tests::either_derived_zero_direction_sign_contributes_no_force_group ... ok
+WT/scratch/i114_demo/logs/pp_lib.log:test pressure_runtime::tests::normalized_unit_path_and_nonrepresentable_output_are_explicit ... ok
+WT/scratch/i114_demo/logs/pp_lib.log:test pressure_runtime::tests::malformed_pressure_namespaces_and_competing_selectors_never_fall_back ... ok
+WT/scratch/i114_demo/logs/pp_lib.log:test pressure_runtime::tests::generic_node_and_support_row_suffix_collisions_block_exact_publication ... ok
+WT/scratch/i114_demo/logs/pp_lib.log:test pressure_runtime::tests::chain_geometry_and_region_ownership_reject_ambiguous_composition ... ok
+WT/scratch/i114_demo/logs/pp_lib.log:test pressure_runtime::tests::closure_ledger_excludes_remote_supports_and_does_not_invent_second_cap ... ok
+WT/scratch/i114_demo/logs/pp_lib.log:test pressure_runtime::tests::unequal_wall_and_material_preserve_bore_caps_and_local_poisson_loads ... ok
+WT/scratch/i114_demo/logs/pp_lib.log:test pressure_runtime::tests::signed_pressure_and_zero_poisson_limit_do_not_include_thermal_load ... ok
+WT/scratch/i114_demo/logs/pp_lib.log:test pressure_runtime::tests::profile_dispatch_requires_explicit_regions_and_refuses_legacy_pressure ... ok
+WT/scratch/i114_demo/logs/pp_lib.log:test pressure_runtime::tests::explicit_terminals_members_and_pressure_basis_are_required ... ok
+WT/scratch/i114_demo/logs/pp_lib.log:test pressure_runtime::tests::region_load_ledgers_are_separate_and_orientation_invariant ... ok
+WT/scratch/i114_demo/logs/pp_lib.log:test tests::endpoint_section_cut_mixed_hydrotest_pressure_blocks_entire_solve ... ok
+WT/scratch/i114_demo/logs/pp_lib.log:test source_receipt::tests::retired_legacy_pressure_label_is_refused_on_the_ordinary_route ... ok
+WT/scratch/i114_demo/logs/pp_lib.log:test source_receipt::tests::retired_legacy_pressure_label_is_refused_on_the_retained_entry ... ok
+WT/scratch/i114_demo/logs/pp_lib.log:test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 604 filtered out; finished in 0.02s
+WT/scratch/i114_demo/logs/pp_lib.log:exit=0
+WT/scratch/i114_demo/logs/pp_int.log:     Running tests/pressure_runtime.rs (WT/targets/i114-demo/debug/deps/pressure_runtime-99697f337142e785)
+WT/scratch/i114_demo/logs/pp_int.log:test legacy_missing_g_remains_an_input_error ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test namespaces_and_nonzero_legacy_pressure_cannot_silently_fallback ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test exact_material_and_region_contracts_are_required_without_inference ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test invalid_region_membership_geometry_and_overlap_block ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test retired_legacy_pressure_is_refused_and_pressure_free_documents_solve ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test exact_override_materials_replace_base_list_and_redundant_g_is_not_authoritative ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test distributed_axial_load_is_subtracted_separately_from_pressure_eigenload ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test thermal_alpha_is_required_on_the_selected_basis_not_unused_base ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test mixed_closures_use_the_actual_cap_load_path_for_support_reactions ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test selected_point_and_interpolated_pair_determine_g_after_selection ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test signed_pressure_zero_poisson_and_thermal_reversal_preserve_the_selected_equations ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test six_si_pressure_states_through_both_public_solver_modes ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test exact_pressure_rotates_as_vectors_and_normalizes_mm_mpa_inputs ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test same_region_id_in_distinct_cases_has_unique_binding_and_order_independent_maximum ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test equal_bore_unequal_wall_and_e_chain_is_orientation_independent ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s
+WT/scratch/i114_demo/logs/pp_int.log:     Running tests/preview_physics_runtime.rs (WT/targets/i114-demo/debug/deps/preview_physics_runtime-4d41dcde13ffbfa4)
+WT/scratch/i114_demo/logs/pp_int.log:test blocked_envelope_carries_empty_preview_evidence ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test imposed_displacement_on_a_support_is_refused_with_a_targeted_diagnostic ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test m05_ambiguous_attribution_is_withheld_not_zero_filled ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test m05_two_nonlinear_devices_on_one_dof_are_withheld_or_refused ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test joint_element_without_moment_coupling_is_refused ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test high_displacement_review_uses_the_all_case_headline ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test m14_thermal_axial_force_enters_the_maximum ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test m08_headline_tie_rule ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test m14_x1_enclosure_and_partial_restraint_rows ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test b2_indeterminate_arc_resultants_depend_on_k ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test reference_copy_is_the_frozen_bytes ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test m08_branch_intensified_sides_and_coverage ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test m05_pure_torque_publishes_the_moment ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test mixed_modulus_mechanics_combination_is_withheld ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test blocked_envelope_after_a_later_case_fails_keeps_its_reason_and_no_dangling_refs ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test m14_s1_rotated_and_pure_torque ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test m33_displacement_tie_rule ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test constant_effort_counted_once_and_gated_when_factors_do_not_sum_to_one ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test m05_springs_guides_and_gap_attribution ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test nonlinear_mechanics_combinations_are_withheld_subtraction_kept ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test m33_headline_is_all_case_maximum_with_first_case_control ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test m05_combinations_recompute_magnitudes_and_envelope_components ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test m05_r1_rotated_translated_and_unit_variants ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test b1_arc_signed_rows_frames_and_withheld_maximum ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test invented_demo_model_renders_completely ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test m08_marker_intensified_measure_matches_references_and_never_combines ... ok
+WT/scratch/i114_demo/logs/pp_int.log:test result: ok. 26 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+WT/scratch/i114_demo/logs/pp_int.log:exit=0

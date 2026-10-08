@@ -1,0 +1,42 @@
+"""I114: cross-checks of the demo fixtures, run from the Piping project root (P).
+
+1. Each demo output equals the S11-K product-pinned joint-free invented output
+   (fixtures/results/preview_physics_invented_<mode>.json) except its model_ref.
+2. The legacy carrier equals the sparse output minus the four 0.2.0 members and the
+   rows of kinds the historical 0.1.0 semantics do not define, with schema 0.1.0.
+3. The demo model equals PP's joint-free test model except its identity fields.
+4. The refused demo's envelopes carry one re-author text that names the exact contract.
+"""
+import json, hashlib, sys
+P = sys.argv[1] if len(sys.argv) > 1 else "."
+def load(p): return json.load(open(f"{P}/{p}", encoding="utf-8"))
+def raw(p): return open(f"{P}/{p}", "rb").read()
+out = {}
+for mode in ("sparse", "dense"):
+    demo = raw(f"fixtures/product_preview/invented_demo_result_preview_physics_1_{mode}.json")
+    pinned = raw(f"fixtures/results/preview_physics_invented_{mode}.json")
+    out[f"demo_{mode}_equals_pinned_after_model_ref"] = demo.replace(b"project:invented-demo-loop-01", b"project:invented-loop-01") == pinned
+    out[f"demo_{mode}_model_ref_occurrences"] = demo.count(b"project:invented-demo-loop-01")
+    out[f"demo_{mode}_sha256"] = hashlib.sha256(demo).hexdigest()
+rec = load("fixtures/product_preview/demo_fixture_generation.json")
+carrier = rec["derived_outputs"][0]
+expected = load(carrier["derived_from"]["path"])
+for key in carrier["removed_members"]:
+    del expected[key]
+expected["schema_version"] = "0.1.0"
+kinds = {r["kind"] for r in load("fixtures/results/semantic_contract_v0_2.json")["rows"]}
+expected["results"] = [r for r in expected["results"] if r["kind"] in kinds]
+for key in carrier["nulled_summary_members"]:
+    expected["summary"][key] = None
+out["carrier_structural_equal"] = load(carrier["path"]) == expected
+out["carrier_rows"] = len(expected["results"])
+a = load("core/product_physics/tests/fixtures/preview_physics_invented_model.json"); b = load("fixtures/product_preview/invented_demo_model.json")
+for m in (a, b):
+    for k in ("id", "name", "description"): m["project"].pop(k)
+    m["diagnostics"][0].pop("source")
+out["demo_model_equals_pp_model_except_identity"] = a == b
+for mode in ("sparse", "dense"):
+    env = load(f"fixtures/product_preview/invented_mechanics_result_preview_physics_1_{mode}.json")
+    texts = {d["message"] for d in env["diagnostics"] if d["code"] == "PRESSURE_MODEL_REAUTHOR_REQUIRED"}
+    out[f"refusal_{mode}_reauthor_texts"] = sorted(texts)
+print(json.dumps(out, indent=1))

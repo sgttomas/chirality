@@ -1,0 +1,17 @@
+{
+ "demo_sparse_equals_pinned_after_model_ref": true,
+ "demo_sparse_model_ref_occurrences": 1,
+ "demo_sparse_sha256": "e577f491bde93316faa54163943a9c55e98b0340b82a7fc4f7a3115c5353d640",
+ "demo_dense_equals_pinned_after_model_ref": true,
+ "demo_dense_model_ref_occurrences": 1,
+ "demo_dense_sha256": "1ca7993f05bd3f8f74901b49e3294c80b6ca120f306fd9d56b025fef04c5cf34",
+ "carrier_structural_equal": true,
+ "carrier_rows": 513,
+ "demo_model_equals_pp_model_except_identity": true,
+ "refusal_sparse_reauthor_texts": [
+  "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pressure_regions (an explicit [] for an unpressurized case) and E/nu materials"
+ ],
+ "refusal_dense_reauthor_texts": [
+  "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pressure_regions (an explicit [] for an unpressurized case) and E/nu materials"
+ ]
+}

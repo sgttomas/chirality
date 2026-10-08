@@ -1,0 +1,624 @@
+{
+ "rows": 625,
+ "unitPolicy": "Source result unitsMPa, N, N*m, mm, rad, boolean, count, m, mode_code, N/m, Pa, state_code · 625 rows · entered units preserved; displayed quantities follow the display preference where available",
+ "familyCounts": {
+  "all": "625",
+  "displacement": "44",
+  "rotation": "30",
+  "reaction": "102",
+  "force": "120",
+  "moment": "120",
+  "stress": "176",
+  "other": "33"
+ },
+ "filterSummary": "625 of 625 results match filter",
+ "pageSummary": "Showing 1 to 50 of 625 matching results; page 1 of 13",
+ "groups": [
+  [
+   "displacement",
+   true
+  ],
+  [
+   "reaction",
+   true
+  ],
+  [
+   "other",
+   true
+  ],
+  [
+   "force",
+   false
+  ],
+  [
+   "stress",
+   false
+  ]
+ ],
+ "family_reaction": [
+  "102 of 625 results match filter",
+  "Showing 1 to 50 of 102 matching results; page 1 of 3"
+ ],
+ "family_stress": [
+  "176 of 625 results match filter",
+  "Showing 1 to 50 of 176 matching results; page 1 of 4"
+ ],
+ "page2": [
+  "Showing 51 to 100 of 625 matching results; page 2 of 13",
+  false,
+  false
+ ],
+ "filter_torsional-shear": [
+  "40 of 625 results match filter",
+  "Showing 1 to 40 of 40 matching results; page 1 of 1"
+ ],
+ "filter_pipe-P-120": [
+  "102 of 625 results match filter",
+  "Showing 1 to 50 of 102 matching results; page 1 of 3"
+ ],
+ "filter_combination-C-OPER-ALT:force:pipe-P-120": [
+  "0 of 625 results match filter",
+  "Showing 0 to 0 of 0 matching results; page 1 of 1"
+ ],
+ "filter_stress:pipe-P-120:end-j:torsional-shear": [
+  "2 of 625 results match filter",
+  "Showing 1 to 2 of 2 matching results; page 1 of 1"
+ ],
+ "filter_C-OPER-ALT": [
+  "0 of 625 results match filter",
+  "Showing 0 to 0 of 0 matching results; page 1 of 1"
+ ],
+ "notices": [
+  [
+   "results-notice-headline-label",
+   "Stress headline: maximum elastic normal stress; nominal; no component intensification; not a code stress."
+  ],
+  [
+   "results-notice-intensified-label",
+   "Intensified measure: equal-factor intensified bending stress i·hypot(My,Mz)/Z; user SIF; member Z; not a code stress; never combined."
+  ],
+  [
+   "results-notice-combination-gate:combination:C-OPER-ALT",
+   "combination:C-OPER-ALT: Combination withheld: the model has nonlinear supports, so superposing case states is not a solved state."
+  ]
+ ],
+ "demoComparison": {
+  "summary": {
+   "comparable_result_pairs": 0,
+   "unmatched_left_results": 309,
+   "unmatched_right_results": 0,
+   "mapping_basis": "stable result IDs plus explicit source_result_refs from the preview mechanics result envelope",
+   "tolerance_status": "not_tolerance_checked",
+   "tolerance_profile_ref": "TBD"
+  },
+  "units": {
+   "evidence_id": "unit-policy-evidence:comparison-workspace-preview",
+   "unit_system_ref": {
+    "object_type": "UnitSystem",
+    "ref": "unit-system:dec-018-si-dual-display"
+   },
+   "storage_convention": "entered_units_preserved",
+   "comparison_unit_policy": "compare_only_rows_with_equal_explicit_result_units",
+   "matching_policy": "stable_result_refs_must_match_and_units_must_be_equal_before_delta",
+   "matched_result_units": [],
+   "unmatched_left_result_count": 309,
+   "unmatched_right_result_count": 0,
+   "conversion_policy": "comparison_workspace_preserves_result_units_without_conversion",
+   "conversion_performed": false,
+   "tolerance_profile_ref": "TBD",
+   "tolerance_status": "not_tolerance_checked",
+   "decision_basis_refs": [
+    {
+     "object_type": "Decision",
+     "ref": "DEC-018"
+    },
+    {
+     "object_type": "Decision",
+     "ref": "DEC-026"
+    },
+    {
+     "object_type": "Deliverable",
+     "ref": "DEL-14-05"
+    }
+   ],
+   "protected_content_included": false,
+   "private_payload_included": false
+  }
+ },
+ "unicodeComparison": {
+  "summary": {
+   "comparable_result_pairs": 0,
+   "unmatched_left_results": 0,
+   "unmatched_right_results": 0,
+   "mapping_basis": "stable result IDs plus explicit source_result_refs from the preview mechanics result envelope",
+   "tolerance_status": "not_tolerance_checked",
+   "tolerance_profile_ref": "TBD"
+  },
+  "units": {
+   "evidence_id": "unit-policy-evidence:comparison-workspace-preview",
+   "unit_system_ref": {
+    "object_type": "UnitSystem",
+    "ref": "unit-system:dec-018-si-dual-display"
+   },
+   "storage_convention": "entered_units_preserved",
+   "comparison_unit_policy": "compare_only_rows_with_equal_explicit_result_units",
+   "matching_policy": "stable_result_refs_must_match_and_units_must_be_equal_before_delta",
+   "matched_result_units": [],
+   "unmatched_left_result_count": 0,
+   "unmatched_right_result_count": 0,
+   "conversion_policy": "comparison_workspace_preserves_result_units_without_conversion",
+   "conversion_performed": false,
+   "tolerance_profile_ref": "TBD",
+   "tolerance_status": "not_tolerance_checked",
+   "decision_basis_refs": [
+    {
+     "object_type": "Decision",
+     "ref": "DEC-018"
+    },
+    {
+     "object_type": "Decision",
+     "ref": "DEC-026"
+    },
+    {
+     "object_type": "Deliverable",
+     "ref": "DEL-14-05"
+    }
+   ],
+   "protected_content_included": false,
+   "private_payload_included": false
+  }
+ },
+ "report": {
+  "component_stress_modifier_count": 0,
+  "component_provenance": [
+   {
+    "component_ref": "component:C-110",
+    "component_kind": "bend",
+    "node_ref": "node:N-110",
+    "provenance": "invented_example_user_entered_bend_values_no_code_table",
+    "geometry_source_ref": "invented_user_entered_preview_geometry",
+    "modifier_source_ref": "invented_user_entered_preview_no_code_table",
+    "solver_consumption": "mechanics_geometry_only",
+    "rule_check_consumption": "user_rule_pack_inputs_only",
+    "user_entered_sif": {
+     "value": 1.15,
+     "unit": "none"
+    },
+    "user_entered_header_sif": null,
+    "user_entered_branch_sif": null,
+    "user_entered_flexibility_factor": {
+     "value": 1.08,
+     "unit": "none"
+    },
+    "rigid_pipe_ref": null,
+    "rigid_body_length": null,
+    "weight": null,
+    "center_of_gravity": null,
+    "stiffness_behavior_ref": null,
+    "user_entered_stiffness_scale": null,
+    "user_entered_linear_stiffness": null,
+    "user_entered_rotational_stiffness": null,
+    "expansion_joint_pipe_ref": null,
+    "effective_area": null,
+    "movement_limit": null,
+    "hardware_reference": null,
+    "manufacturer_reference": null,
+    "pressure_thrust_reference": null,
+    "user_entered_axial_stiffness": null,
+    "user_entered_lateral_stiffness": null,
+    "user_entered_angular_stiffness": null,
+    "user_entered_torsional_stiffness": null,
+    "stress_modifier_result_refs": [],
+    "user_stiffness_result_refs": [],
+    "pressure_thrust_result_refs": [],
+    "private_payload_included": false,
+    "protected_content_included": false,
+    "release_or_professional_claim": false
+   },
+   {
+    "component_ref": "component:C-120",
+    "component_kind": "branch",
+    "node_ref": "node:N-120",
+    "provenance": "invented_example_user_entered_branch_values_no_code_table",
+    "geometry_source_ref": "invented_user_entered_branch_preview_geometry",
+    "modifier_source_ref": "invented_user_entered_branch_modifiers_no_code_table",
+    "solver_consumption": "mechanics_geometry_only",
+    "rule_check_consumption": "user_rule_pack_inputs_only",
+    "user_entered_sif": null,
+    "user_entered_header_sif": {
+     "value": 1.22,
+     "unit": "none"
+    },
+    "user_entered_branch_sif": {
+     "value": 1.31,
+     "unit": "none"
+    },
+    "user_entered_flexibility_factor": {
+     "value": 1.05,
+     "unit": "none"
+    },
+    "rigid_pipe_ref": null,
+    "rigid_body_length": null,
+    "weight": null,
+    "center_of_gravity": null,
+    "stiffness_behavior_ref": null,
+    "user_entered_stiffness_scale": null,
+    "user_entered_linear_stiffness": null,
+    "user_entered_rotational_stiffness": null,
+    "expansion_joint_pipe_ref": null,
+    "effective_area": null,
+    "movement_limit": null,
+    "hardware_reference": null,
+    "manufacturer_reference": null,
+    "pressure_thrust_reference": null,
+    "user_entered_axial_stiffness": null,
+    "user_entered_lateral_stiffness": null,
+    "user_entered_angular_stiffness": null,
+    "user_entered_torsional_stiffness": null,
+    "stress_modifier_result_refs": [],
+    "user_stiffness_result_refs": [],
+    "pressure_thrust_result_refs": [],
+    "private_payload_included": false,
+    "protected_content_included": false,
+    "release_or_professional_claim": false
+   },
+   {
+    "component_ref": "component:C-130",
+    "component_kind": "valve",
+    "node_ref": "node:N-130",
+    "provenance": "invented_example_user_entered_rigid_component_values_no_catalog",
+    "geometry_source_ref": "invented_user_entered_rigid_component_preview_geometry",
+    "modifier_source_ref": "invented_user_entered_rigid_stiffness_no_catalog_or_code_table",
+    "solver_consumption": "mechanics_geometry_only",
+    "rule_check_consumption": "user_rule_pack_inputs_only",
+    "user_entered_sif": null,
+    "user_entered_header_sif": null,
+    "user_entered_branch_sif": null,
+    "user_entered_flexibility_factor": null,
+    "rigid_pipe_ref": "pipe:P-130",
+    "rigid_body_length": {
+     "value": 0.72,
+     "unit": "m"
+    },
+    "weight": {
+     "value": 420,
+     "unit": "N"
+    },
+    "center_of_gravity": {
+     "x": 0.12,
+     "y": 0.02,
+     "z": 0,
+     "unit": "m"
+    },
+    "stiffness_behavior_ref": "invented_user_entered_semi_rigid_behavior_no_catalog",
+    "user_entered_stiffness_scale": {
+     "value": 15,
+     "unit": "none"
+    },
+    "user_entered_linear_stiffness": {
+     "value": 15000000,
+     "unit": "N/m"
+    },
+    "user_entered_rotational_stiffness": {
+     "value": 850000,
+     "unit": "N*m/rad"
+    },
+    "expansion_joint_pipe_ref": null,
+    "effective_area": null,
+    "movement_limit": null,
+    "hardware_reference": null,
+    "manufacturer_reference": null,
+    "pressure_thrust_reference": null,
+    "user_entered_axial_stiffness": null,
+    "user_entered_lateral_stiffness": null,
+    "user_entered_angular_stiffness": null,
+    "user_entered_torsional_stiffness": null,
+    "stress_modifier_result_refs": [],
+    "user_stiffness_result_refs": [],
+    "pressure_thrust_result_refs": [],
+    "private_payload_included": false,
+    "protected_content_included": false,
+    "release_or_professional_claim": false
+   },
+   {
+    "component_ref": "component:C-140",
+    "component_kind": "terminal",
+    "node_ref": "node:N-140",
+    "provenance": "invented_example",
+    "geometry_source_ref": "not provided",
+    "modifier_source_ref": "not provided",
+    "solver_consumption": "not provided",
+    "rule_check_consumption": "not provided",
+    "user_entered_sif": null,
+    "user_entered_header_sif": null,
+    "user_entered_branch_sif": null,
+    "user_entered_flexibility_factor": null,
+    "rigid_pipe_ref": null,
+    "rigid_body_length": null,
+    "weight": null,
+    "center_of_gravity": null,
+    "stiffness_behavior_ref": null,
+    "user_entered_stiffness_scale": null,
+    "user_entered_linear_stiffness": null,
+    "user_entered_rotational_stiffness": null,
+    "expansion_joint_pipe_ref": null,
+    "effective_area": null,
+    "movement_limit": null,
+    "hardware_reference": null,
+    "manufacturer_reference": null,
+    "pressure_thrust_reference": null,
+    "user_entered_axial_stiffness": null,
+    "user_entered_lateral_stiffness": null,
+    "user_entered_angular_stiffness": null,
+    "user_entered_torsional_stiffness": null,
+    "stress_modifier_result_refs": [],
+    "user_stiffness_result_refs": [],
+    "pressure_thrust_result_refs": [],
+    "private_payload_included": false,
+    "protected_content_included": false,
+    "release_or_professional_claim": false
+   }
+  ],
+  "component_user_stiffness_macro_element_count": 0,
+  "component_user_stiffness_macro_element_evidence": [],
+  "component_pressure_thrust_load_count": 0,
+  "component_pressure_thrust_evidence": [],
+  "component_stress_modifier_evidence": [],
+  "spring_hanger_evidence_count": 2
+ },
+ "redaction": "Raw report DOM suppressed by redaction controls; the sanitized JSON packet is available above (519 redacted values).",
+ "native": {
+  "members": 10,
+  "entity": 25,
+  "results": 625,
+  "units": 6,
+  "summary": {
+   "project_unit_declaration_count": 6,
+   "model_quantity_witness_count": 40,
+   "result_quantity_witness_count": 627,
+   "total_witness_count": 673
+  }
+ },
+ "local": {
+  "geometry": 2,
+  "loads": 3,
+  "witnesses": 3
+ },
+ "handoff": {
+  "entity": 25,
+  "results": 625,
+  "comparison": {
+   "comparable_result_pairs": 0,
+   "unmatched_left_results": 309,
+   "unmatched_right_results": 0,
+   "tolerance_status": "not_tolerance_checked",
+   "tolerance_profile_ref": "TBD",
+   "release_or_professional_claim": false
+  },
+  "witnesses": 0
+ },
+ "runner": {
+  "refs": 625,
+  "checksums": 2
+ },
+ "audit": [
+  "Hash evidence625 result rows; 625 result value hashes; scopes: analysis_run_record, received_result",
+  "Unit auditmodel=angle=rad,force=N,length=m,pressure=Pa,stress=MPa,temperature=degC; results=MPa,N,N*m,mm,rad,boolean,count,m,mode_code,N/m,Pa,state_code; rows=625; source=result_envelope; conversion=false"
+ ],
+ "knowledge": "Source computed unit contextcomputed_unit_refs=2; units=N,mm; source=computed_preview_result; conversion=false",
+ "stressNeutral": {
+  "rows": 625,
+  "ids": 625,
+  "contract": {
+   "id": "openpipestress.result_semantics/0.3.0/preview-physics-1",
+   "sha256": "ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a"
+  },
+  "units": [
+   "MPa",
+   "N",
+   "N*m",
+   "N/m",
+   "Pa",
+   "boolean",
+   "count",
+   "m",
+   "mm",
+   "mode_code",
+   "rad",
+   "state_code"
+  ],
+  "work": 2
+ },
+ "diag": {
+  "summary": "28 of 28 diagnostics visible",
+  "severities": [
+   "6 Warnings",
+   "22 Info",
+   "0 Errors",
+   "0 Blocking"
+  ]
+ },
+ "diagFiltered": {
+  "summary": "1 of 28 diagnostics visible",
+  "severities": [
+   "1 Warnings",
+   "0 Info",
+   "0 Errors",
+   "0 Blocking"
+  ],
+  "high": true
+ },
+ "diagDetail": [
+  [
+   "selected-diagnostic-id",
+   "Diagnosticdiagnostic:physics:high-displacement-review"
+  ],
+  [
+   "selected-diagnostic-affected-refs",
+   "Affected refsresult:disp:node-N-140, node:N-140"
+  ],
+  [
+   "selected-diagnostic-linked-results",
+   "Linked resultsresult:disp:node-N-140 (7.63538426164911 mm; node:N-140) result:disp:node-N-140:ux (3.7641529136091174 mm; node:N-140) result:disp:node-N-140:uy (0 mm; node:N-140) result:disp:node-N-140:uz (-6.6430599625479 mm; node:N-140) result:disp:node-N-140:rx (-0.000018378842421007385 rad; node:N-140) result:disp:node-N-140:ry (0.0014109785970950533 rad; node:N-140) result:disp:node-N-140:rz (0 rad; node:N-140) result:loadcase:load-L-200:disp:node-N-140 (3.666265503788388 mm; node:N-140) result:loadcase:load-L-200:disp:node-N-140:ux (1.5520764568045586 mm; node:N-140) result:loadcase:load-L-200:disp:node-N-140:uy (0 mm; node:N-140) result:loadcase:load-L-200:disp:node-N-140:uz (-3.32152998127395 mm; node:N-140) result:loadcase:load-L-200:disp:node-N-140:rx (-0.000009189421210503693 rad; node:N-140) result:loadcase:load-L-200:disp:node-N-140:ry (0.0007054892985475267 rad; node:N-140) result:loadcase:load-L-200:disp:node-N-140:rz (0 rad; node:N-140) "
+  ],
+  [
+   "diagnostic-unit-context",
+   "Unit contextlinked_results=14; units=mm,rad; source=result_envelope; conversion=false"
+  ],
+  [
+   "selected-diagnostic-explanation",
+   "Explanationcomputed preview displacement exceeds the invented review threshold; inspect support/load inputs before relying on trends It is linked to result:disp:node-N-140, node:N-140. 14 computed result references should be inspected with this diagnostic."
+  ]
+ ],
+ "overlay": [
+  "available; nodes=5; max=7.635384 mm",
+  "available; nodes=5; max=7.635384 mm"
+ ],
+ "r2Projection": {
+  "summary": {
+   "project_unit_declaration_count": 6,
+   "model_quantity_witness_count": 40,
+   "result_quantity_witness_count": 514,
+   "total_witness_count": 560
+  },
+  "conversion": false,
+  "comparison": {
+   "evidence_id": "unit-policy-evidence:comparison-workspace-preview",
+   "unit_system_ref": {
+    "object_type": "UnitSystem",
+    "ref": "unit-system:dec-018-si-dual-display"
+   },
+   "storage_convention": "entered_units_preserved",
+   "comparison_unit_policy": "compare_only_rows_with_equal_explicit_result_units",
+   "matching_policy": "stable_result_refs_must_match_and_units_must_be_equal_before_delta",
+   "matched_result_units": [],
+   "unmatched_left_result_count": 253,
+   "unmatched_right_result_count": 0,
+   "conversion_policy": "comparison_workspace_preserves_result_units_without_conversion",
+   "conversion_performed": false,
+   "tolerance_profile_ref": "TBD",
+   "tolerance_status": "not_tolerance_checked",
+   "decision_basis_refs": [
+    {
+     "object_type": "Decision",
+     "ref": "DEC-018"
+    },
+    {
+     "object_type": "Decision",
+     "ref": "DEC-026"
+    },
+    {
+     "object_type": "Deliverable",
+     "ref": "DEL-14-05"
+    }
+   ],
+   "protected_content_included": false,
+   "private_payload_included": false
+  }
+ },
+ "provenance": {
+  "schema_version": "1.0.0",
+  "present_component": {
+   "value": {
+    "value_id": "component-provenance:component:C-110",
+    "value_category": "component_provenance:bend",
+    "source": {
+     "ref_type": "component",
+     "ref_id": "component:C-110"
+    },
+    "quantity": null,
+    "provenance": {
+     "source_name": "Invented elbow marker component provenance",
+     "source_location": "component.provenance=invented_example_user_entered_bend_values_no_code_table; geometry.bend_geometry_source_reference=invented_user_entered_preview_geometry; modifiers.source_reference=invented_user_entered_preview_no_code_table",
+     "source_license": "user_supplied_or_private",
+     "contributor": "user_local_session",
+     "contributor_certification": "User-local component provenance metadata; redistribution remains private or pending until separately cleared.",
+     "redistribution_status": "private_only",
+     "review_status": "pending",
+     "privacy_classification": "private_project_data"
+    },
+    "privacy_classification": "private_project_data",
+    "required_for": [
+     "reporting",
+     "human_review"
+    ],
+    "review_status": "pending",
+    "missing_data_finding": false
+   },
+   "provenance_note": {
+    "source_name": "Invented elbow marker component provenance",
+    "source_location": "component.provenance=invented_example_user_entered_bend_values_no_code_table; geometry.bend_geometry_source_reference=invented_user_entered_preview_geometry; modifiers.source_reference=invented_user_entered_preview_no_code_table",
+    "source_license": "user_supplied_or_private",
+    "contributor": "user_local_session",
+    "contributor_certification": "User-local component provenance metadata; redistribution remains private or pending until separately cleared.",
+    "redistribution_status": "private_only",
+    "review_status": "pending",
+    "privacy_classification": "private_project_data"
+   }
+  },
+  "missing_component": {
+   "value": {
+    "value_id": "component-provenance:component:C-140",
+    "value_category": "component_provenance:terminal",
+    "source": {
+     "ref_type": "component",
+     "ref_id": "component:C-140"
+    },
+    "quantity": null,
+    "provenance": {
+     "source_name": "Invented tie-in marker component provenance",
+     "source_location": "component provenance missing",
+     "source_license": "user_supplied_or_private",
+     "contributor": "user_local_session",
+     "contributor_certification": "User-local component provenance metadata; redistribution remains private or pending until separately cleared.",
+     "redistribution_status": "private_only",
+     "review_status": "pending",
+     "privacy_classification": "private_project_data"
+    },
+    "privacy_classification": "private_project_data",
+    "required_for": [
+     "reporting",
+     "human_review"
+    ],
+    "review_status": "pending",
+    "missing_data_finding": true
+   },
+   "provenance_note": {
+    "source_name": "Invented tie-in marker component provenance",
+    "source_location": "component provenance missing",
+    "source_license": "user_supplied_or_private",
+    "contributor": "user_local_session",
+    "contributor_certification": "User-local component provenance metadata; redistribution remains private or pending until separately cleared.",
+    "redistribution_status": "private_only",
+    "review_status": "pending",
+    "privacy_classification": "private_project_data"
+   },
+   "diagnostic": {
+    "code": "COMPONENT_PROVENANCE_MISSING",
+    "class": "PROVENANCE_WARNING",
+    "severity": "warning",
+    "source": {
+     "ref_type": "component",
+     "ref_id": "component:C-140"
+    },
+    "affected_object": {
+     "ref_type": "component",
+     "ref_id": "component:C-140"
+    },
+    "message": "Component Invented tie-in marker has no component.provenance field; report provenance is incomplete for this component.",
+    "remediation": "Enter component source/provenance before relying on this report.",
+    "provenance": {
+     "source_name": "OpenPipeStress desktop session (Invented Utility Loop Demo)",
+     "source_location": "local desktop session",
+     "source_license": "user_supplied_or_private",
+     "contributor": "user_local_session",
+     "contributor_certification": "not_asserted",
+     "redistribution_status": "private_only",
+     "review_status": "pending",
+     "privacy_classification": "private_project_data"
+    }
+   }
+  }
+ },
+ "provenanceEqual": false
+}

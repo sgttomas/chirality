@@ -1,0 +1,22 @@
+// I114 temporary probe 2 (deleted before commit): visible rows per results-panel state.
+import { fireEvent, render, screen, within } from "@testing-library/react";
+import { it } from "vitest";
+import { ResultsPanel } from "./features/results/ResultsPanel";
+import { loadBundledMechanicsReference } from "./services/previewService";
+it("probe2", async () => {
+  const { source: result } = await loadBundledMechanicsReference();
+  render(<ResultsPanel result={result} knowledge={null} analysisRun={null} selectedResultId={null} onSelectResult={() => {}} />);
+  const results = screen.getByLabelText("Results");
+  const rows = () => Array.from(results.querySelectorAll("[data-testid^='result-row-']")).map(e => e.getAttribute("data-testid")).filter(id => !id!.startsWith("result-row-dual-"));
+  const out: Record<string, unknown> = { all1: rows() };
+  fireEvent.click(within(results).getByTestId("result-family-reaction")); out.reaction1 = rows();
+  fireEvent.click(within(results).getByTestId("result-family-stress")); out.stress1 = rows();
+  fireEvent.click(within(results).getByTestId("result-family-all"));
+  fireEvent.click(within(results).getByTestId("next-result-page")); out.all2 = rows();
+  fireEvent.click(within(results).getByTestId("previous-result-page"));
+  for (const f of ["torsional-shear", "pipe-P-120"]) {
+    fireEvent.change(within(results).getByTestId("result-filter-input"), { target: { value: f } });
+    out[f] = rows();
+  }
+  (await import("node:fs")).writeFileSync("WT/scratch/i114_demo/logs/probe2.json", JSON.stringify(out, null, 1));
+});

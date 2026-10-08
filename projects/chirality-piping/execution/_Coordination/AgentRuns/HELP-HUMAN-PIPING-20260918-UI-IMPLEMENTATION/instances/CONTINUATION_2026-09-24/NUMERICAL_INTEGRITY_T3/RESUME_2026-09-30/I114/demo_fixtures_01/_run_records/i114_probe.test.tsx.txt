@@ -1,0 +1,143 @@
+// I114 temporary probe (deleted before commit): reads the product's rendering of the new demo pair.
+import { fireEvent, render, screen, within, cleanup } from "@testing-library/react";
+import { it, vi } from "vitest";
+import { ResultsPanel } from "./features/results/ResultsPanel";
+import { DiagnosticsPanel } from "./features/diagnostics/DiagnosticsPanel";
+import { ReportPanel } from "./features/report/ReportPanel";
+import { RunAuditPanel } from "./features/run-audit/RunAuditPanel";
+import { KnowledgePanel } from "./features/knowledge/KnowledgePanel";
+import { buildNativePackageReview, buildUnitPreservationEvidence } from "./features/native-package/NativePackagePanel";
+import { buildCurrentSessionInputManifest } from "./services/inputManifestService";
+import { buildAnalysisRunV02 } from "./services/analysisRunCompatibility";
+import carrier from "../../../fixtures/product_preview/invented_demo_result_legacy_0_1.json";
+import { buildRenderableReportInput } from "./features/report/renderableReportInput";
+import componentProvenanceProjection from "../../../fixtures/reports/invented/component_provenance_cross_layer_projection.json";
+import { buildLocalFeaHandoffPacket } from "./features/local-fea-handoff/LocalFeaHandoffPanel";
+import { buildHandoffPackage } from "./features/handoff/HandoffPanel";
+import { buildHeadlessRunnerPacket } from "./features/headless-runner/HeadlessRunnerPanel";
+import { initialSolveJob } from "./features/workspace/solveJobAudit";
+import { buildStressNeutralExportPacket } from "./features/stress-neutral/StressNeutralExportPanel";
+import { buildAnalysisRunV03, modelLoadBasisRefs, analysisRowSemantics } from "./services/analysisRunCompatibility";
+import { canonicalSha256HexCheckedV1, computeModelHash } from "./services/hashService";
+import { buildPreviewComparison, loadBundledMechanicsReference, loadDesignKnowledge, loadPreviewModel } from "./services/previewService";
+import { buildDeformationOverlay as buildDeformationOverlayForProbe } from "./features/viewport/PipeViewport";
+import unicodeModel from "../../../core/product_physics/tests/fixtures/preview_physics_unicode_ids_model.json";
+import unicodeSource from "../../../fixtures/results/preview_physics_unicode_ids_sparse.json";
+import type { MechanicsResult, PreviewModel } from "./types";
+
+async function analysisFor(model: PreviewModel, result: MechanicsResult) {
+  const manifest = { model_basis: { model_ref: model.project.id, model_payload: model }, solver_basis: { solver_name: result.producer!.component_name, solver_version: result.producer!.component_version, solver_build_ref: "test:reference-inspection-not-native-invocation" } };
+  const basis = { manifest, manifest_ref: { object_type: "InputManifest", ref: "test:reference-analysis" }, manifest_sha256: await canonicalSha256HexCheckedV1(manifest) };
+  return buildAnalysisRunV03(result, basis as never, undefined, modelLoadBasisRefs(model));
+}
+const out: Record<string, unknown> = {};
+const text = (id: string, scope: HTMLElement) => within(scope).queryByTestId(id)?.textContent ?? null;
+
+it("probe", async () => {
+  const reference = await loadBundledMechanicsReference();
+  const model = reference.model, result = reference.source;
+  out.rows = result.results.length;
+  // A. Results panel (the reference context renders this component).
+  render(<ResultsPanel result={result} knowledge={null} analysisRun={null} selectedResultId={null} onSelectResult={() => {}} />);
+  const results = screen.getByLabelText("Results");
+  const families = ["all", "displacement", "rotation", "reaction", "force", "moment", "stress", "other"];
+  out.unitPolicy = text("result-unit-policy", results);
+  out.familyCounts = Object.fromEntries(families.map(f => [f, text(`result-family-count-${f}`, results)]));
+  out.filterSummary = text("result-filter-summary", results);
+  out.pageSummary = text("result-page-summary", results);
+  out.groups = ["displacement", "reaction", "other", "force", "stress"].map(g => [g, !!within(results).queryByTestId(`result-group-${g}`)]);
+  for (const f of ["reaction", "stress"]) {
+    fireEvent.click(within(results).getByTestId(`result-family-${f}`));
+    out[`family_${f}`] = [text("result-filter-summary", results), text("result-page-summary", results)];
+  }
+  fireEvent.click(within(results).getByTestId("result-family-all"));
+  fireEvent.click(within(results).getByTestId("next-result-page"));
+  out.page2 = [text("result-page-summary", results), !!within(results).queryByTestId("result-row-result:disp:node-N-140:uz"), !!within(results).queryByTestId("result-row-result:force:pipe-P-100:axial")];
+  fireEvent.click(within(results).getByTestId("previous-result-page"));
+  for (const f of ["torsional-shear", "pipe-P-120", "combination-C-OPER-ALT:force:pipe-P-120", "stress:pipe-P-120:end-j:torsional-shear", "C-OPER-ALT"]) {
+    fireEvent.change(within(results).getByTestId("result-filter-input"), { target: { value: f } });
+    out[`filter_${f}`] = [text("result-filter-summary", results), text("result-page-summary", results)];
+  }
+  fireEvent.click(within(results).getByTestId("clear-result-filter"));
+  out.notices = Array.from(results.querySelectorAll("[data-testid^='results-notice']")).map(e => [e.getAttribute("data-testid"), e.textContent]);
+  cleanup();
+  // B. Comparison: demo and unicode pair.
+  const analysisRun = await analysisFor(model, result);
+  const comparison = buildPreviewComparison({ result, analysisRun });
+  out.demoComparison = { summary: comparison.summary, units: comparison.unit_policy_evidence };
+  const uModel = structuredClone(unicodeModel) as unknown as PreviewModel, uSource = structuredClone(unicodeSource) as unknown as MechanicsResult;
+  const uRun = await analysisFor(uModel, uSource);
+  const uComparison = buildPreviewComparison({ result: uSource, analysisRun: uRun });
+  out.unicodeComparison = { summary: uComparison.summary, units: uComparison.unit_policy_evidence };
+  // C. Report panel export packet, native/local/handoff/runner/audit.
+  const knowledge = await loadDesignKnowledge();
+  const policy = await import("./features/report/reportRedactionProjector"), actual = policy.controlReportDomAndJson;
+  let observed: any;
+  vi.spyOn(policy, "controlReportDomAndJson").mockImplementation(input => { observed = input; return actual(input); });
+  render(<ReportPanel model={model} knowledge={knowledge} result={result} analysisRun={analysisRun} comparison={comparison} editorIntents={[]} projectOperation="reference_inspection" projectSummary={null} proposal={null} selectedReviewTarget={null} storageCapability={null} />);
+  out.report = observed ? {
+    component_stress_modifier_count: observed.component_stress_modifier_count,
+    component_provenance: observed.component_provenance,
+    component_user_stiffness_macro_element_count: observed.component_user_stiffness_macro_element_count,
+    component_user_stiffness_macro_element_evidence: observed.component_user_stiffness_macro_element_evidence,
+    component_pressure_thrust_load_count: observed.component_pressure_thrust_load_count,
+    component_pressure_thrust_evidence: observed.component_pressure_thrust_evidence,
+    component_stress_modifier_evidence: observed.component_stress_modifier_evidence,
+    spring_hanger_evidence_count: observed.spring_hanger_evidence_count,
+  } : null;
+  out.redaction = screen.queryByTestId("report-redaction-blocked")?.textContent ?? null;
+  cleanup();
+  const basis = { model, result, analysisRun };
+  const native = buildNativePackageReview({ ...basis, editorIntents: [], modelHash: await computeModelHash(model), projectSummary: null, proposal: null, selectedReviewTarget: null, storageCapability: null } as never);
+  out.native = { members: native.manifest.package_members.length, entity: native.stable_id_map.entity_refs.length, results: native.stable_id_map.result_refs.length, units: native.unit_preservation.project_unit_declarations.length, summary: native.unit_preservation.summary };
+  const local = buildLocalFeaHandoffPacket(basis as never);
+  out.local = { geometry: local.handoff_package.local_region.geometry_refs.length, loads: local.handoff_package.transfer_basis.load_case_refs.length, witnesses: local.handoff_package.unit_preservation_witnesses.length };
+  const handoff = buildHandoffPackage({ ...basis, knowledge, comparison, editorIntents: [], proposal: null, selectedReviewTarget: null } as never);
+  out.handoff = { entity: handoff.stable_id_map.entity_ref_count, results: handoff.stable_id_map.result_ref_count, comparison: handoff.comparison_summary, witnesses: handoff.unit_preservation_witnesses.length };
+  const runner = buildHeadlessRunnerPacket({ ...basis, solveJob: initialSolveJob() } as never);
+  out.runner = { refs: runner.result.result_refs.length, checksums: runner.result.checksums.length };
+  render(<RunAuditPanel model={model} result={result} analysisRun={analysisRun} />);
+  out.audit = [screen.getByTestId("run-audit-hashes").textContent, screen.getByTestId("run-audit-units").textContent];
+  cleanup();
+  render(<KnowledgePanel knowledge={knowledge} result={result} />);
+  out.knowledge = screen.getByTestId("knowledge-unit-context").textContent;
+  cleanup();
+  // D. Stress-neutral and derivative essentials.
+  const sn = await buildStressNeutralExportPacket(basis as never);
+  out.stressNeutral = { rows: sn.result_rows.length, ids: sn.stable_id_map.length, contract: sn.semantic_contract, units: sn.unit_system_disclosure.result_units, work: result.results.filter(row => analysisRowSemantics(row, result).semantic?.category === "diagnostic_work").length };
+  // E. Diagnostics panel over the session model and the reference source.
+  const session = await loadPreviewModel();
+  const view = render(<DiagnosticsPanel model={session} knowledge={knowledge} result={result} selectedDiagnosticId={null} onSelectDiagnostic={() => {}} />);
+  const diagnostics = screen.getByLabelText("Diagnostics");
+  const severities = () => ["warning", "info", "error", "blocking"].map(s => text(`diagnostic-severity-${s}`, diagnostics));
+  out.diag = { summary: text("diagnostic-filter-summary", diagnostics), severities: severities() };
+  fireEvent.change(within(diagnostics).getByTestId("diagnostic-filter-input"), { target: { value: "result:disp:node-N-140" } });
+  out.diagFiltered = { summary: text("diagnostic-filter-summary", diagnostics), severities: severities(), high: !!within(diagnostics).queryByTestId("diagnostic-HIGH_DISPLACEMENT_REVIEW") };
+  const selectedId = "diagnostic:physics:high-displacement-review";
+  view.rerender(<DiagnosticsPanel model={session} knowledge={knowledge} result={result} selectedDiagnosticId={selectedId} onSelectDiagnostic={() => {}} />);
+  const detail = within(diagnostics).queryByTestId("diagnostic-detail-panel");
+  out.diagDetail = detail ? ["selected-diagnostic-id", "selected-diagnostic-affected-refs", "selected-diagnostic-linked-results", "diagnostic-unit-context", "selected-diagnostic-explanation"].map(id => [id, text(id, detail)]) : null;
+  cleanup();
+  // F. Overlay over the reference model and the session model.
+  out.overlay = [buildDeformationOverlayForProbe(model, result).summary, buildDeformationOverlayForProbe(session, result).summary];
+  // G. The r2-smoke pure projection over the demo model and the historical-format carrier.
+  const legacy = structuredClone(carrier) as unknown as MechanicsResult;
+  const evidence = buildUnitPreservationEvidence({ model, result: legacy } as never);
+  const manifest = await buildCurrentSessionInputManifest({ model, solver: { solver_name: "reference-only-projection", solver_version: "unavailable", solver_build_ref: "unavailable-preserved-history", solver_mode: "recorded_reference", settings: {} }, active_rule_packs: [], external_assets: [] } as never);
+  const legacyRun = await buildAnalysisRunV02(legacy, manifest as never);
+  const legacyComparison = buildPreviewComparison({ result: legacy, analysisRun: legacyRun });
+  out.r2Projection = { summary: evidence.summary, conversion: evidence.conversion_performed, comparison: legacyComparison.unit_policy_evidence };
+  // H. The report-package component-provenance projection over the demo model.
+  const provModel = structuredClone(model);
+  provModel.components.find(c => c.id === "component:C-140")!.provenance = "";
+  const provManifest = await buildCurrentSessionInputManifest({ model: provModel, solver: { solver_name: "open_pipe_stress_product_physics", solver_version: "0.1.0", solver_build_ref: "open_pipe_stress_product_physics@0.1.0", solver_mode: "sparse_interactive", settings: {} }, active_rule_packs: [], external_assets: [] } as never);
+  const provRun = await buildAnalysisRunV02(structuredClone(legacy), provManifest as never);
+  const projected = await buildRenderableReportInput({ model: provModel, result: structuredClone(legacy), analysisRun: provRun, projectSummary: null } as never);
+  const sections = (projected as any).report_sections;
+  const presentId = componentProvenanceProjection.present_component.value.value_id, missingId = componentProvenanceProjection.missing_component.value.value_id;
+  out.provenance = { schema_version: "1.0.0",
+    present_component: { value: sections.user_supplied_values.find((v: any) => v.value_id === presentId), provenance_note: sections.provenance_notes.find((n: any) => n.source_name === componentProvenanceProjection.present_component.provenance_note.source_name) },
+    missing_component: { value: sections.user_supplied_values.find((v: any) => v.value_id === missingId), provenance_note: sections.provenance_notes.find((n: any) => n.source_name === componentProvenanceProjection.missing_component.provenance_note.source_name), diagnostic: sections.diagnostics.find((d: any) => d.code === "COMPONENT_PROVENANCE_MISSING" && d.affected_object.ref_id === "component:C-140") } };
+  out.provenanceEqual = JSON.stringify(out.provenance) === JSON.stringify(componentProvenanceProjection);
+  (await import("node:fs")).writeFileSync("WT/scratch/i114_demo/logs/probe.json", JSON.stringify(out, null, 1));
+});
