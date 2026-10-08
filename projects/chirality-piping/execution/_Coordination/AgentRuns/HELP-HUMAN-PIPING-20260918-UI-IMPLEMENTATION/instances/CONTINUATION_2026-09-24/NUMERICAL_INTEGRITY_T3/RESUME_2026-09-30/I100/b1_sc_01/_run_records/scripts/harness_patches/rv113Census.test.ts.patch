@@ -1,0 +1,11 @@
+--- WT/scratch/i100_b1_sc/work/rv113Census.test.ts.orig	2026-10-08 03:39:20
++++ WT/scratch/i100_b1_sc/m/projects/chirality-piping/apps/desktop/src/features/results/rv113Census.test.ts	2026-10-08 03:39:20
+@@ -80,7 +80,7 @@
+   try {
+     const v = await run();
+     return { ok: { invocation_bound: v.invocation_bound, numerical_eligible: v.numerical_eligible, standing: v.standing, publication_sha256: v.publication_sha256,
+-      classifications: v.classifications.length, classifications_sha256: sha(JSON.stringify(v.classifications)) } };
++      classifications: v.classifications.length, classifications_sha256: sha(JSON.stringify(v.classifications)), classifications_full: v.classifications } };
+   } catch (e) {
+     if (e instanceof RetainedPrecisionError) return { err: { gate: e.gate, code: e.code, detail: e.detail } };
+     return { throw: String(e) };

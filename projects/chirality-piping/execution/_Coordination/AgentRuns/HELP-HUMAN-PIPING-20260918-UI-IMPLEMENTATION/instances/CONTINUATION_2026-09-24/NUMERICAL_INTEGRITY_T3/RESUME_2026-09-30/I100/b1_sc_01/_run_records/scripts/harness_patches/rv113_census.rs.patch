@@ -1,0 +1,18 @@
+--- WT/scratch/i100_b1_sc/work/rv113_census.rs.orig	2026-10-08 03:39:20
++++ WT/scratch/i100_b1_sc/m/projects/chirality-piping/core/reporting/result_export/tests/rv113_census.rs	2026-10-08 03:39:20
+@@ -184,6 +184,15 @@
+             "publication_sha256": v.publication_sha256,
+             "classifications": v.classifications.len(),
+             "classifications_sha256": sha(format!("{:?}", v.classifications).as_bytes()),
++            // I100 (SC prep, scratch only): the full list in the corpus's shape, to compare readers.
++            "classifications_full": v.classifications.iter().map(|c| json!({
++                "result_id": c.result_id, "basis_ref": c.basis_ref,
++                "normalized_bits": format!("{:016x}", c.normalized_bits),
++                "scale_bits": c.scale_bits.map(|b| format!("{b:016x}")),
++                "class": match c.class { rp::AccuracyClass::RelativeVerified => "relative_verified", rp::AccuracyClass::AbsoluteVerified { .. } => "absolute_verified",
++                    rp::AccuracyClass::InputDerived => "input_derived", rp::AccuracyClass::NonQuantity => "non_quantity", rp::AccuracyClass::NotCovered => "not_covered" },
++                "bound_bits": match c.class { rp::AccuracyClass::AbsoluteVerified { bound_bits } => json!(format!("{bound_bits:016x}")), _ => Value::Null },
++            })).collect::<Vec<_>>(),
+         }}),
+         Ok(Err(e)) => json!({"err": {"gate": e.gate, "code": e.code, "detail": e.detail}}),
+     }

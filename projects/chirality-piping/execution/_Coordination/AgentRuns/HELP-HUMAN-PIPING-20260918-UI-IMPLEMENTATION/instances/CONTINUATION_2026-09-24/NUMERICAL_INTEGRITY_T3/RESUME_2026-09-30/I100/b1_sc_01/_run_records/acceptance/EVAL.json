@@ -1,0 +1,23 @@
+{
+ "python": {
+  "checks": 1374,
+  "misses": 0,
+  "misses_07m": 0,
+  "misses_07n": 0,
+  "rows": []
+ },
+ "rust": {
+  "checks": 1374,
+  "misses": 0,
+  "misses_07m": 0,
+  "misses_07n": 0,
+  "rows": []
+ },
+ "typescript": {
+  "checks": 1374,
+  "misses": 0,
+  "misses_07m": 0,
+  "misses_07n": 0,
+  "rows": []
+ }
+}

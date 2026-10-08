@@ -1,0 +1,11 @@
+--- WT/scratch/i100_b1_sc/tools/rv113_py_harness.py	2026-10-08 03:11:52
++++ WT/scratch/i100_b1_sc/tools/rv113_py_harness_cls.py	2026-10-08 03:39:20
+@@ -136,7 +136,7 @@
+         cls = json.dumps(v["classifications"], sort_keys=True, default=str)
+         return {"ok": {"invocation_bound": v["invocation_bound"], "numerical_eligible": v["numerical_eligible"], "standing": v["standing"],
+                        "publication_sha256": v["publication_sha256"], "classifications": len(v["classifications"]),
+-                       "classifications_sha256": hashlib.sha256(cls.encode()).hexdigest()}}
++                       "classifications_sha256": hashlib.sha256(cls.encode()).hexdigest(), "classifications_full": v["classifications"]}}
+     except RetainedPrecisionError as e:
+         return {"err": {"gate": e.gate, "code": e.code, "detail": getattr(e, "detail", None)}}
+     except Exception as e:  # noqa: BLE001 -- an escape from the reader is itself a verdict
