@@ -15865,3 +15865,17 @@ The record is `IMPLEMENTATION/B1_I4/` (RECORD.md, SHA256SUMS, sanitized logs). `
 - **Basis:** the briefs above, the host's four-slot rule, and WT's new location (RR "The App's worktree pool emptied WT's host files; …").
 
 **IDs:** I100 and I101 are used, and RV120 is reserved for the confirmation. The next unused are **I102 and RV121**.
+
+## Owner direction: production code first; lane K (B3-K, then B2-K) starts now from main; the records PR is held (ROOT, 2026-10-08 UTC)
+
+**The owner's direction, quoted:** "Focus on getting the production code going, don't get lost in perfecting the documentation and records. For the most part that isn't super important, but developing working code for this app is."
+
+**What changes:**
+1. **Lane K starts now, from main, not at J0.** I102 owns B3-K (J2k), then B2-K, in `WT/b2-k` on `codex/piping-t3-b2-k-20261008` from main `601ba408e4`, by `BRIEFS/B2_K_LANE.md`.
+   - Its files are in the frame kernel only. B1 changes nothing there (B2-KD's Basis), so the two cannot conflict. ROOT merges lane K into `b2` at J0.
+   - This replaces ruling 6 of "RV115 (RV-K) accepts B2-KD …" ("B2-K starts when `b2` is cut").
+   - RV-K for its code is a fresh reviewer, because RV115 is not resumable.
+2. **The records PR is held.** Its cut (`codex/piping-t3-records-20261008b`, local) is not opened. NUM carries the records on origin. They go to main later, with less ceremony, at a point where they cost little.
+3. **ROOT's records stay short:** a ruling where a position changes, and returns kept brief. The merge gates for product code (independent review, CI, DEC-025, the full suite) are unchanged.
+
+**Implementers:** I100, I101 and I102, the cap of three. **The next unused** are **I103 and RV121** (RV120 is reserved).
