@@ -1,0 +1,29 @@
+== gate tree: code 0 {"check": "tree", "code": 0, "result": "listed 2970, mismatched 0, extra 0"} (2026-10-08T13:58:06Z)
+== gate entry: code 0 {"check": "entry", "code": 0, "equal": true, "threshold": "11_274_289_152", "diff": []} (2026-10-08T13:58:06Z)
+== gate m: code 0 {"check": "m", "code": 0, "threshold": "11_274_289_152", "expected": "11_274_289_152", "registered_profiles": 1} (2026-10-08T13:58:06Z)
+== law: skipped (I107_SKIP_CARGO) (2026-10-08T13:58:06Z)
+== gate statics: code 0 {"check": "statics", "code": 0, "added": [], "removed": []} (2026-10-08T13:58:13Z)
+== gate premise57: code 0 {"check": "premise57", "code": 0, "mine": [["premise_pins.json/pins/key", "core/reporting/result_export/src/retained_precision.rs:4252", "core/reporting/result_export/src/retained_precision.rs:4401"], ["premise_pins.json/pins/key", "core/reporting/result_export/src/retained_precision.rs:4253", "core (2026-10-08T13:58:17Z)
+== linemap: exit 0 (2026-10-08T13:58:17Z)
+== gate premise: code 0 {"check": "premise", "code": 0, "pins": 3, "bad": []} (2026-10-08T13:58:17Z)
+== TEXT points exit g5=0 n5=0 (2026-10-08T13:59:08Z)
+== D from the run: 41769 (2026-10-08T13:59:08Z)
+== delta: exit 0 {"files": 15, "hunks_and_files": 83, "classes": {"item": 1, "generated": 17, "test": 4, "no-code": 1, "live": 1, "qualification-test": 48, "not-d1": 11}, "verdict": "PASS: every hunk classified; every live, item, cfg(test)-statement or qualification-test hunk has a reviewed entry"} (2026-10-08T13:59:10Z)
+== SQ's edges/looplog line map: exit 0 (2026-10-08T13:59:10Z)
+== gate text: code 6 {"check": "text_sq", "code": 6, "issues": [{"differs": "edges.json"}], "compared": [["composite_text.caps.json", "bytes", true], ["edges.json", "json-after-linemap", false], ["g4_caps.caps.eps2.out.json", "bytes", true], ["looplog.json", "json-after-linemap", true], ["ordinary_caps.caps.out.json", " (2026-10-08T13:59:10Z)
+== gate text_n5: code 0 {"check": "text_sq", "code": 0, "issues": [], "compared": [["cg.out.json", "bytes", true], ["producer_caps.caps.out.json", "bytes", true], ["profile_tree.json", "bytes", true], ["summary.json", "json", true]], "D": 41769, "D_env": 22911, "TAV": 6234394666, "complete": true, "E_mov_plus_R": [95884043 (2026-10-08T13:59:10Z)
+== gate forms: code 0 {"check": "forms", "code": 0, "equal": true, "diff": []} (2026-10-08T13:59:10Z)
+== gate forms_g5: code 0 {"check": "forms", "code": 0, "equal": true, "diff": []} (2026-10-08T13:59:11Z)
+== section 11 run exit 0 (2026-10-08T13:59:13Z)
+Traceback (most recent call last):
+  File "WT/numerics/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I107/b1_passb_01/_run_records/tools/b1_checks.py", line 81, in <module>
+    rows_equal = sorted(map(k, ra)) == sorted(map(k, rb))
+                 ~~~~~~^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'int' and 'str'
+== gate noncand: code 1  (2026-10-08T13:59:13Z)
+== controls run exit 0 (2026-10-08T13:59:47Z)
+== gate controls: code 0 {"check": "controls", "code": 0, "passed": 12, "of": 12, "failing": []} (2026-10-08T13:59:47Z)
+== gate controls_sq: code 0 {"check": "controls_sq", "code": 0, "controls": [12, 12], "differ": []} (2026-10-08T13:59:47Z)
+== item 5: skipped (I107_SKIP_CARGO) (2026-10-08T13:59:47Z)
+VERDICT DELTAS TO READ exit=6 basis=8248921552c2bc70f95a3a6ea60f92fb18aa0317 tag=prep2 passA=SQ(57c92a7b3310229406733a7134e271c29bcc6978..69002bc862+registration) gates=tree:0 entry:0 m:0 law:skipped statics:0 premise57:0 linemap:0 premise:0 text_run:0 delta:0 text:6 text_n5:0 forms:0 forms_g5:0 noncand_run:0 noncand:1 controls_run:0 controls:0 controls_sq:0 item5:skipped 
+CHAIN-DONE rc=6

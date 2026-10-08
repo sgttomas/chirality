@@ -1,0 +1,1 @@
+{"check": "challenge_sq", "code": 6, "entries": 28, "sq_entries": 27, "issues": [{"entry": "process_floor", "ok": true, "lines": ["I104_SQ_CHALLENGE process_floor live_bytes=4161"], "sq": ["I104_SQ_CHALLENGE process_floor live_bytes=4162"]}]}

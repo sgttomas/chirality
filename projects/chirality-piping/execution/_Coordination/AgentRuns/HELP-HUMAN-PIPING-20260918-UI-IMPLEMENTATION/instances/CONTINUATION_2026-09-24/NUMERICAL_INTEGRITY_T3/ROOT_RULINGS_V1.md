@@ -16180,3 +16180,25 @@ A case-level `pressure` key is not refused. PP's `PreviewLoadCase` has no such f
 - **Suites:** 0 removed, 0 changed.
 
 **RS and TS** get I100's diffs, which I101 applies with a test and a mutant per clause. The 52 shared shapes are I100's. With the diffs applied, 0 of 44 preview and 0 of 12 exact readings differ. The fix ships with B2/B3. PR-B1's readers equal main's on this check.
+
+## I107's Pass B (no stop); PR-B1's hosted CI fails on Linux: two platform defects in B1's tests, diagnosed and fixed (ROOT, 2026-10-08 UTC)
+
+**I107 (SB) returned** Pass B on `d07006c2f0` (`R/I107/b1_passb_01/RETURN.md`, `8449242f…`; 82 of 82 sums). The verdict is DELTAS TO READ (exit 6).
+- **Every gate is 0 except the challenge's `process_floor` control.** It counts 4,060 bytes plus the test binary's path length, measured at four path lengths: 4,161 here against SQ's 4,162. **Read: environmental, not B1's code.**
+- **Delta:** 15 files and 83 rows, all classified. The production class is SQ's two reviewed rows (the registration item and G6's SF-1 bound).
+- **Q-N1:** about 30 KB of unpriced heap against a 287 MB margin; no other unpriced owner.
+- **Item 10 (the phase-4 check):** discharged. The only text-holding error is `CaptureError::Association(String)`. That gives 3 owners per case (within 3m + 1) and 3c + 1 per invocation, each ≤ Text(err).
+- RV124 confirms Pass B.
+
+**#1154's hosted CI failed** in the numerical cargo suite on `product_physics`, with 4 tests. They pass on the Mac.
+1. **W2b's input pins** (`b1_sq_inputs_are_i86s_and_the_committed_helpers`, `b1_t4_w2b_and_w6_phys_r4_inputs_are_no_triggered_case_pins`). `cap_maximal`'s ring places its 32 nodes at `10·cos t`, `10·sin t`. `f64::cos` and `f64::sin` are not correctly rounded, and glibc differs from macOS in the last bit, so the input and I81's PROBE pins differ on Linux.
+   - **Fix:** the ring is spelled as binary64 bits (`CAP_MAXIMAL_RING`) in `law_tests` and in `tests/common/b1_sq_inputs.rs`, with a test that each entry is within one ulp of the platform's trigonometry. On the Mac every input and pin is unchanged.
+2. **W-C2's dense document and (C, B, A)'s dense pin** (`b1_sp_w_c2_fixtures_are_the_live_successors`, `b1_sp_sf2_selected_not_first_and_two_selected_pins`). A CI diagnostic (run 37791523135, branch `codex/piping-t3-pr-b1-diag-20261008`, not for merge) printed the Linux document. It differs from the macOS fixture in exactly one value and the two hashes over it: case C's `rigid:N0` support force magnitude, `1.6258317075882521e-12` against `…523e-12`. The ordinary route forms it with `f64::hypot`, which is not correctly rounded. This is the same class as the Mac-only `t13` failure, which is a Linux pin.
+   - **Fix:** exact glibc variants selected by `cfg(all(target_os = "linux", target_env = "gnu"))`. On glibc the dense document must equal the committed fixture with exactly those three replacements, and (C, B, A)'s dense pin is the glibc pair. Each platform must produce its own bytes exactly, with no tolerance.
+   - The registered Direct entry is macOS's build identity, so on Linux these tests take the private driver's path.
+
+**On the Mac:** PP's lib tests pass 579 with 1 failure (`t13`, known). All five affected tests pass.
+
+**On Linux:** a second diagnostic (run 37792750591) carries the fix with the pins reporting rather than asserting, so that every later manifest runs too. Then the fix lands on NUM and PR-B1 is recut.
+
+**Routed (T3 product work, after PR-B1):** published magnitudes that do not depend on the platform's libm. That means a correctly rounded `hypot` (and its siblings in the ordinary route) built from IEEE operations and `fma`. It would retire `t13`'s Mac failure and these platform pins. It changes ordinary bytes wherever a libm was not correctly rounded, so it needs its own study of which committed values move.

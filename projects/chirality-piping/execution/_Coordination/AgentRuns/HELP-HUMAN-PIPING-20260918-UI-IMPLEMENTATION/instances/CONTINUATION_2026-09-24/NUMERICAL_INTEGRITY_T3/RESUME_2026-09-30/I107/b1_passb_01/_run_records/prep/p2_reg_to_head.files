@@ -1,0 +1,10 @@
+projects/chirality-piping/core/product_physics/src/retained_memory.rs
+projects/chirality-piping/core/rules/expression_evaluator/README.md
+projects/chirality-piping/core/rules/expression_evaluator/src/lib.rs
+projects/chirality-piping/core/rules/rule_check_runner/src/lib.rs
+projects/chirality-piping/core/rules/rule_check_runner/tests/point_path_non_finite_run.rs
+projects/chirality-piping/docs/CI_STRATEGY.md
+projects/chirality-piping/tests/test_ci_e2e_plan.py
+projects/chirality-piping/tests/test_rule_interval.py
+projects/chirality-piping/tools/ci/e2e_plan.py
+projects/chirality-piping/validation/portability_policy.json

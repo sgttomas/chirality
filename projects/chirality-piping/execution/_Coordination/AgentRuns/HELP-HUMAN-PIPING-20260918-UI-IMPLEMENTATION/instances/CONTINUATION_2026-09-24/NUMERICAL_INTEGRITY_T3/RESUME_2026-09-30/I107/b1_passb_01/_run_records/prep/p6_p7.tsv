@@ -1,0 +1,15 @@
+core/product_physics/src/retained_memory.rs	yes	head=04f625c650	num=04f625c650	reg=9841ff3f15	main=843b7ec59f
+core/product_physics/src/retained_memory_law_tests.rs	yes	head=8d4664c528	num=8d4664c528	reg=8d4664c528	main=d914ad3738
+core/product_physics/src/retained_memory_witness_tests.rs	yes	head=39daf5b849	num=39daf5b849	reg=39daf5b849	main=9745e3fe38
+core/product_physics/tests/common/b1_sq_inputs.rs	yes	head=ec6fb51add	num=ec6fb51add	reg=ec6fb51add	main=none
+core/product_physics/tests/retained_memory_challenge.rs	yes	head=ccf49c9cce	num=ccf49c9cce	reg=ccf49c9cce	main=da0a0126e6
+core/product_physics/tests/s11f_site_test.rs	yes	head=feb953fb96	num=feb953fb96	reg=feb953fb96	main=8c4ec83e06
+core/rules/expression_evaluator/README.md	no	head=d31e63d06b	num=d31e63d06b	reg=cbe5367e33	main=d31e63d06b
+core/rules/expression_evaluator/src/lib.rs	no	head=55a1f42bc4	num=55a1f42bc4	reg=2c72a54e9f	main=55a1f42bc4
+core/rules/rule_check_runner/src/lib.rs	no	head=39e37d4d2a	num=39e37d4d2a	reg=5bccfb7726	main=39e37d4d2a
+core/rules/rule_check_runner/tests/point_path_non_finite_run.rs	no	head=204676ccf5	num=204676ccf5	reg=4bb26a94df	main=204676ccf5
+docs/CI_STRATEGY.md	no	head=5c0a0932cf	num=5c0a0932cf	reg=5971dd069a	main=5c0a0932cf
+tests/test_ci_e2e_plan.py	no	head=60b3d1fe7f	num=60b3d1fe7f	reg=4bcc45b78f	main=60b3d1fe7f
+tests/test_rule_interval.py	no	head=febe50351f	num=febe50351f	reg=3bc6693373	main=febe50351f
+tools/ci/e2e_plan.py	no	head=87b4ed75c2	num=87b4ed75c2	reg=d090edac7c	main=87b4ed75c2
+validation/portability_policy.json	no	head=142968b7f0	num=142968b7f0	reg=9fb269d2a0	main=142968b7f0

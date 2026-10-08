@@ -1,0 +1,232 @@
+{
+ "string_bearing_variants": {
+  "CaptureError": {
+   "at": "core/product_physics/src/retained_product.rs",
+   "string_fields": [
+    "Association(String),"
+   ]
+  },
+  "G5aFailure": {
+   "at": "core/product_physics/src/retained_product.rs",
+   "string_fields": []
+  },
+  "OperationalError": {
+   "at": "core/product_physics/src/retained_product.rs",
+   "string_fields": []
+  },
+  "PreparedCandidateError": {
+   "at": "core/product_physics/src/retained_product.rs",
+   "string_fields": []
+  },
+  "AdapterFault": {
+   "at": "core/product_physics/src/retained_product.rs",
+   "string_fields": []
+  },
+  "SourceError": {
+   "at": "core/solver/frame_kernel/src/structural/retained/source.rs",
+   "string_fields": []
+  },
+  "OriginError": {
+   "at": "core/solver/frame_kernel/src/structural/retained/origins.rs",
+   "string_fields": []
+  },
+  "Cause": {
+   "at": "core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs",
+   "string_fields": []
+  },
+  "ProductFailure": {
+   "at": "core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs",
+   "string_fields": []
+  },
+  "ProductProofFailure": {
+   "at": "core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs",
+   "string_fields": []
+  },
+  "ProductValuesFailure": {
+   "at": "core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs",
+   "string_fields": []
+  },
+  "NumericError": {
+   "at": "core/solver/frame_kernel/src/structural/retained/product_certificate.rs",
+   "string_fields": []
+  },
+  "BridgeError": {
+   "at": "core/solver/frame_kernel/src/structural/retained/product_certificate/bridge.rs",
+   "string_fields": []
+  },
+  "HelperError": {
+   "at": "core/solver/frame_kernel/src/structural/retained/directed/certificate.rs",
+   "string_fields": []
+  },
+  "SectionPreparationError": {
+   "at": "core/solver/frame_kernel/src/structural/retained/product_certificate.rs",
+   "string_fields": []
+  },
+  "PreparationArithmeticCause": {
+   "at": "core/solver/frame_kernel/src/structural/retained/product_certificate.rs",
+   "string_fields": []
+  },
+  "SourceBridgeViewIssue": {
+   "at": "core/solver/frame_kernel/src/structural/retained/adaptive.rs",
+   "string_fields": []
+  },
+  "AttemptStop": {
+   "at": "core/solver/frame_kernel/src/structural/retained/adaptive.rs",
+   "string_fields": []
+  },
+  "WorkFault": {
+   "at": "core/solver/frame_kernel/src/structural/retained/work.rs",
+   "string_fields": []
+  }
+ },
+ "owner_fields": [
+  "retained_product.rs:126: pub error: Option<CaptureError>,",
+  "retained_product.rs:130: pub observable_error: Option<CaptureError>,",
+  "retained_product.rs:198: error: Option<CaptureError>,",
+  "retained_product.rs:202: observable_error: Option<CaptureError>,",
+  "retained_product.rs:3642: pub error: PreparedCandidateError,",
+  "retained_product.rs:3669: pub error: CaptureError,",
+  "retained_product.rs:4177: Values{failure:k::ProductValuesFailure,proof:k::ProductProofFailure},Abandoned{cause:CaptureError,proof:k::ProductProofFailure},Numeric,Observable,G5a",
+  "retained_product.rs:4179: pub ordinary:MechanicsEnvelope,prepared:PreparedCase,pub error:PreparedCandidateError,",
+  "retained_product.rs:4425: None=>{trace.fail_entered();Err(RefusedCase{error:PreparedCandidateError::Capture(\"frozen candidate without certificate\".into()),",
+  "retained_receipt.rs:41: pub native_error:Option<p::CaptureError>,pub proof_ready:bool,pub private_commit_precharged:bool,"
+ ],
+ "setters_reached_from_direct_root": {
+  "prepare_cases": [
+   [
+    "retained_product.rs:3871:prepare_cases",
+    true
+   ]
+  ],
+  "prepare_attempt": [
+   [
+    "retained_product.rs:3882:prepare_attempt",
+    true
+   ]
+  ],
+  "native": [
+   [
+    "retained_product.rs:3678:native",
+    true
+   ]
+  ],
+  "native_call": [
+   [
+    "retained_product.rs:3901:native_call",
+    true
+   ]
+  ],
+  "freeze": [
+   [
+    "retained_product.rs:3716:freeze",
+    true
+   ],
+   [
+    "retained_receipt.rs:57:freeze",
+    true
+   ]
+  ],
+  "freeze_case": [
+   [
+    "retained_product.rs:4321:freeze_case",
+    true
+   ]
+  ],
+  "observables": [
+   [
+    "retained_product.rs:2251:observables",
+    true
+   ]
+  ],
+  "observables_view": [
+   [
+    "retained_product.rs:2254:observables_view",
+    true
+   ]
+  ],
+  "solve_native": [
+   [
+    "retained_product.rs:4099:solve_native",
+    false
+   ]
+  ],
+  "project_candidate": [
+   [
+    "retained_product.rs:4309:project_candidate",
+    false
+   ]
+  ],
+  "freeze_candidate": [
+   [
+    "retained_product.rs:4437:freeze_candidate",
+    false
+   ]
+  ]
+ },
+ "association_text_sites": {
+  "retained_product.rs:2210 (bind_rows_view, Association(format!))": [
+   {
+    "kind": "format",
+    "bytes": 149,
+    "capacity_per_call": 298,
+    "mult": 21150
+   }
+  ],
+  "retained_product.rs:2510 (validate_final_metadata, Association(format!))": [
+   {
+    "kind": "format",
+    "bytes": 1049,
+    "capacity_per_call": 2098,
+    "mult": 21150
+   }
+  ],
+  "retained_product.rs:2713 (validate_final_metadata, Association(format!))": [
+   {
+    "kind": "format",
+    "bytes": 1046,
+    "capacity_per_call": 2092,
+    "mult": 21150
+   }
+  ],
+  "lib.rs:14015 (parse_dof's format!, into Association by CaptureError::from at retained_product.rs:1340, :1392)": [
+   {
+    "kind": "format",
+    "bytes": 150,
+    "capacity_per_call": 300,
+    "mult": 115008
+   }
+  ],
+  "retained_product.rs:3431 (From<&str>: a literal's to_string)": [
+   {
+    "kind": "to_string",
+    "bytes": 327,
+    "capacity_per_call": 654,
+    "mult": 7296
+   }
+  ],
+  "retained_product.rs:3692 (native: the batch call's one error cloned per prepared case; QUAL_B1 \u00a711's row)": [
+   {
+    "kind": "clone_text",
+    "bytes": 8192,
+    "capacity_per_call": 16384,
+    "mult": 3
+   }
+  ]
+ },
+ "literal_sources": {
+  "count": 234,
+  "max_len": 58
+ },
+ "Text(err)": 16384,
+ "m": 32,
+ "C": 3,
+ "bound_per_case_owners": 97,
+ "bound_bytes": 4767744,
+ "owners_at_once": {
+  "per_case": 3,
+  "per_invocation": 10
+ },
+ "max_owner_capacity": 16384,
+ "each_owner_within_Text(err)": true,
+ "verdict": "BOUNDED"
+}

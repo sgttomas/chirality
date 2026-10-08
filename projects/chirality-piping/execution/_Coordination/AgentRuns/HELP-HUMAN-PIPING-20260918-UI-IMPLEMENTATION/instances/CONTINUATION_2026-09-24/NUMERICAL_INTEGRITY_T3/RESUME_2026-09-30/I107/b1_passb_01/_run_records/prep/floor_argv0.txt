@@ -1,0 +1,10 @@
+# I107: the challenge's process_floor control (tests/retained_memory_challenge.rs:150-152 prints the counting
+# allocator's live bytes at the test's start; no product code runs) against the length of argv[0], the path the
+# binary is run by. One process each, through WT/tools/t3_slot.sh; copies of this pass's challenge binary.
+# argv[0] length (bytes) -> live_bytes
+101 (WT/targets/i107-sb-b1/debug/deps/retained_memory_challenge-397e0b03dcf3a137, the pass's own run) -> 4161
+57  (a scratch copy) -> 4117
+58  (a scratch copy) -> 4118
+59  (a scratch copy) -> 4119
+# live_bytes = 4060 + len(argv[0]). SQ's binary path (WT/targets/i104-sq-reg/...-137faca14e9351c2) is 102 bytes -> 4162
+# (SQ's dev_table.json); RV124's (WT/targets/rv124-reg/...) is 100 -> 4160 (RV124's process_floor.log). Environmental.

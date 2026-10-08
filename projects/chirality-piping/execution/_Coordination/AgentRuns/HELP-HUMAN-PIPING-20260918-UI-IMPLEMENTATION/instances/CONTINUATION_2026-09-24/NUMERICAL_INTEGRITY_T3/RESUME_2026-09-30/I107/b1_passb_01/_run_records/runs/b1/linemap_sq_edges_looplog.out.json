@@ -1,0 +1,12 @@
+{
+ "old": "57c92a7b3310229406733a7134e271c29bcc6978",
+ "new": "d07006c2f001be5565646d6f1cf046e6dc96006c",
+ "changed_production_rs": [
+  "core/product_physics/src/retained_memory.rs"
+ ],
+ "hunks": {
+  "core/product_physics/src/retained_memory.rs": 24
+ },
+ "remapped": 560,
+ "unmapped": []
+}

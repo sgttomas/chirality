@@ -1,0 +1,1 @@
+{"check": "text_sq", "code": 0, "issues": [], "compared": [["cg.out.json", "bytes", true], ["producer_caps.caps.out.json", "bytes", true], ["profile_tree.json", "bytes", true], ["summary.json", "json", true]], "D": 41769, "D_env": 22911, "TAV": 6234394666, "complete": true, "E_mov_plus_R": [9588404355, 9647535699]}

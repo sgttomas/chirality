@@ -1,0 +1,10 @@
+P1 PASS outside projects/chirality-piping = main 3d73db745e; projects/chirality-piping without execution/ = NUM 75cd6be76b
+P2 PASS 10 files differ between b1 ddc8eaaf54 and the PR head
+P3 PASS profile_block.diff = git diff 57c92a7b33 b075c5c59f
+P4 PASS g6_commit.diff = git show 69002bc862
+P5 PASS registration.diff on 69002bc862 = ddc8eaaf54's retained_memory.rs (9841ff3f15)
+P5b PASS ddc8eaaf54 -> NUM 75cd6be76b on retained_memory.rs: comment lines only, line count kept (04f625c650)
+P6 PASS 6 D1-crate files changed since 57c92a7b33: each = NUM 75cd6be76b's blob, and = ddc8eaaf54's except retained_memory.rs (P5b)
+P7 PASS 9 other files changed since 57c92a7b33, each = main 3d73db745e's blob
+P8 PASS 8248921552 -> d07006c2f0 in projects/chirality-piping: retained_memory.rs only, comment lines only, line count kept
+PREP exit=0

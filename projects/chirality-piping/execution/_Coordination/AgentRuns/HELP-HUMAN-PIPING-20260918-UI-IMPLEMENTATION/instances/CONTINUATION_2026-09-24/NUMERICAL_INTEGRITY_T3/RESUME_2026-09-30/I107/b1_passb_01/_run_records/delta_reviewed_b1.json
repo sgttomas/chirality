@@ -1,0 +1,662 @@
+{
+ "about": "B1 Pass B (I107): reviewed entries for the hunks of 57c92a7b33 (SQ's TEXT basis) -> 8248921552 (PR-B1's head) that need one (class live, item, cfg-test-stmt, data-live or qualification-test), keyed by delta_inventory2.py's fingerprint. Each is SQ's Pass A change, reviewed by RV124, tied to the reviewed diff by mk_delta_reviewed.py.",
+ "dry_run_inventory": {
+  "old": "57c92a7b3310229406733a7134e271c29bcc6978",
+  "new": "d07006c2f001be5565646d6f1cf046e6dc96006c",
+  "needing_entries": 50
+ },
+ "entries": [
+  {
+   "fingerprint": "6024bc786135371109afe23951d9ed0bef38537f5c1bffe5ef8c2632ce58cc35",
+   "file": "core/product_physics/src/retained_memory.rs",
+   "at_final_basis": "retained_memory.rs:983-985",
+   "class": "item",
+   "removed": 2,
+   "added": 3,
+   "from_reviewed_diffs": [
+    "R6b registration (registration.diff, 69002bc862..ddc8eaaf54)",
+    "ROOT's citation correction (comment lines only; git diff ddc8eaaf54 75cd6be76b)"
+   ],
+   "evidence": "R6b's registration: `threshold_bytes` = 11_274_289_152 (M = 10.5 GiB) and its comment, in `REGISTERED_PROFILES` (an item: a static's field, no allocation or text). RV124 REVIEW \u00a72-3: M confirmed; registration.diff applies as one hunk; PP 741/1 (Mac t13)/79 registered. This pass gates its bytes (entry: equal to NUM 75cd6be76b's; entry_code: its code lines equal to b1 ddc8eaaf54's; m) and the law tests at that M (law, law_sq). Its comment lines come from ROOT's comment-only citation correction (NUM 75cd6be76b), which cites RR \"R6b: ...\" for M. Mechanical: the PR head's blob of this file is b1 ddc8eaaf54's, and every line of this hunk is removed or added by the named reviewed diff(s).",
+   "reviewed_by": "the code lines: RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "83729186bce7714de8ae3013fa087bc5981508af38b4a29cd71182304c88bd71",
+   "file": "core/product_physics/src/retained_memory.rs",
+   "at_final_basis": "retained_memory.rs:2706-2706",
+   "class": "live",
+   "removed": 1,
+   "added": 1,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ G6's SF-1 (RR \"RV112 passes SA\"): G-B's late bound in the const fn `phase_caps` becomes T11 - F_T11_LATE_CAPTURE / C (integer arithmetic on profile constants: no allocation or text, so TEXT and the profile are unchanged by it). RV124 REVIEW \u00a71.5 and \u00a74: exact (every coefficient a multiple of C, pinned), G-B's bound 405,120 B in-build; M01-M03 and M09 killed. This pass runs those law tests (law). Mechanical: the PR head's blob of this file is b1 ddc8eaaf54's, and every line of this hunk is removed or added by the named reviewed diff(s).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "34eb8f20b2a0c5cc9079178050829eee57b28aff503519227824adb1f561f121",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:12-15",
+   "class": "qualification-test",
+   "removed": 1,
+   "added": 4,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's G6 re-pins (PLAN_v2 \u00a73.3, A1-N-3, I89's value pins, SF-1, N-1, N-2) at M = 10.5 GiB. RV124 REVIEW \u00a74: every listed re-pin present and right; 20 of 21 mutants killed (M17 equivalent, Q-N4). This pass runs them (law: 0 failed; law_sq: the in-build record equals SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "d9a814f911a7dc3f789052e14b97206b52c88a203bf59d689228806a5d952373",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:316-316",
+   "class": "qualification-test",
+   "removed": 1,
+   "added": 1,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's G6 re-pins (PLAN_v2 \u00a73.3, A1-N-3, I89's value pins, SF-1, N-1, N-2) at M = 10.5 GiB. RV124 REVIEW \u00a74: every listed re-pin present and right; 20 of 21 mutants killed (M17 equivalent, Q-N4). This pass runs them (law: 0 failed; law_sq: the in-build record equals SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "66c54cc4240241b4df087a0d8b088b6ec0af73aeb5578f00641eb4240f8a33b9",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:358-358",
+   "class": "qualification-test",
+   "removed": 1,
+   "added": 1,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's G6 re-pins (PLAN_v2 \u00a73.3, A1-N-3, I89's value pins, SF-1, N-1, N-2) at M = 10.5 GiB. RV124 REVIEW \u00a74: every listed re-pin present and right; 20 of 21 mutants killed (M17 equivalent, Q-N4). This pass runs them (law: 0 failed; law_sq: the in-build record equals SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "c233b5aca7002d4be1ab2f5386b1a2556aa676c484c7ab1eccfddf3d64d13108",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:852-852",
+   "class": "qualification-test",
+   "removed": 1,
+   "added": 1,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's G6 re-pins (PLAN_v2 \u00a73.3, A1-N-3, I89's value pins, SF-1, N-1, N-2) at M = 10.5 GiB. RV124 REVIEW \u00a74: every listed re-pin present and right; 20 of 21 mutants killed (M17 equivalent, Q-N4). This pass runs them (law: 0 failed; law_sq: the in-build record equals SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "f67d07f04fb7a2b01964613f2dcb9d8258ba3ed17cebbd1bcbe3a979a165741d",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:914-914",
+   "class": "qualification-test",
+   "removed": 1,
+   "added": 1,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's G6 re-pins (PLAN_v2 \u00a73.3, A1-N-3, I89's value pins, SF-1, N-1, N-2) at M = 10.5 GiB. RV124 REVIEW \u00a74: every listed re-pin present and right; 20 of 21 mutants killed (M17 equivalent, Q-N4). This pass runs them (law: 0 failed; law_sq: the in-build record equals SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "bad4ce90e54319b5a1224cddd1896b123a2ac267f31e7457216f2ec2d890af25",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:921-924",
+   "class": "qualification-test",
+   "removed": 4,
+   "added": 4,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's G6 re-pins (PLAN_v2 \u00a73.3, A1-N-3, I89's value pins, SF-1, N-1, N-2) at M = 10.5 GiB. RV124 REVIEW \u00a74: every listed re-pin present and right; 20 of 21 mutants killed (M17 equivalent, Q-N4). This pass runs them (law: 0 failed; law_sq: the in-build record equals SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "41d2c49edd17603a5dcd2b5e3b6f5348816acebd66ec81b39bb4f64348590c01",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:1111-1111",
+   "class": "qualification-test",
+   "removed": 1,
+   "added": 1,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's G6 re-pins (PLAN_v2 \u00a73.3, A1-N-3, I89's value pins, SF-1, N-1, N-2) at M = 10.5 GiB. RV124 REVIEW \u00a74: every listed re-pin present and right; 20 of 21 mutants killed (M17 equivalent, Q-N4). This pass runs them (law: 0 failed; law_sq: the in-build record equals SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "68c8b886fd99b537845c609016f9a5fc8712443e932c418bb054eabf0b67ff6d",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:1132-1132",
+   "class": "qualification-test",
+   "removed": 1,
+   "added": 1,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's G6 re-pins (PLAN_v2 \u00a73.3, A1-N-3, I89's value pins, SF-1, N-1, N-2) at M = 10.5 GiB. RV124 REVIEW \u00a74: every listed re-pin present and right; 20 of 21 mutants killed (M17 equivalent, Q-N4). This pass runs them (law: 0 failed; law_sq: the in-build record equals SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "9169f859c93bff9c67d22d7593c8bdd6f445c3f9f974a12b46d746a45d143c1e",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:1149-1149",
+   "class": "qualification-test",
+   "removed": 0,
+   "added": 1,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's G6 re-pins (PLAN_v2 \u00a73.3, A1-N-3, I89's value pins, SF-1, N-1, N-2) at M = 10.5 GiB. RV124 REVIEW \u00a74: every listed re-pin present and right; 20 of 21 mutants killed (M17 equivalent, Q-N4). This pass runs them (law: 0 failed; law_sq: the in-build record equals SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "7b5c2f8d89de479bc316991974b079fdff7b5f52027940d1bb042514ac72419a",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:1151-1152",
+   "class": "qualification-test",
+   "removed": 2,
+   "added": 2,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's G6 re-pins (PLAN_v2 \u00a73.3, A1-N-3, I89's value pins, SF-1, N-1, N-2) at M = 10.5 GiB. RV124 REVIEW \u00a74: every listed re-pin present and right; 20 of 21 mutants killed (M17 equivalent, Q-N4). This pass runs them (law: 0 failed; law_sq: the in-build record equals SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "3dfe5c2271a6d91e64e5471989e3720a54fb5959e777514af6d406bc316115f3",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:1173-1180",
+   "class": "qualification-test",
+   "removed": 0,
+   "added": 8,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's G6 re-pins (PLAN_v2 \u00a73.3, A1-N-3, I89's value pins, SF-1, N-1, N-2) at M = 10.5 GiB. RV124 REVIEW \u00a74: every listed re-pin present and right; 20 of 21 mutants killed (M17 equivalent, Q-N4). This pass runs them (law: 0 failed; law_sq: the in-build record equals SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "52fb9f81e881f524afbf10d4ca4fb4bfc0fb62116728542a7ea86f8dd6eda227",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:1241-1241",
+   "class": "qualification-test",
+   "removed": 1,
+   "added": 1,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's G6 re-pins (PLAN_v2 \u00a73.3, A1-N-3, I89's value pins, SF-1, N-1, N-2) at M = 10.5 GiB. RV124 REVIEW \u00a74: every listed re-pin present and right; 20 of 21 mutants killed (M17 equivalent, Q-N4). This pass runs them (law: 0 failed; law_sq: the in-build record equals SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "74f37d9b3395418d2ed6ff2751a0c258f906ca1743f45e44e1cc927b343dda97",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:1251-1251",
+   "class": "qualification-test",
+   "removed": 0,
+   "added": 1,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's G6 re-pins (PLAN_v2 \u00a73.3, A1-N-3, I89's value pins, SF-1, N-1, N-2) at M = 10.5 GiB. RV124 REVIEW \u00a74: every listed re-pin present and right; 20 of 21 mutants killed (M17 equivalent, Q-N4). This pass runs them (law: 0 failed; law_sq: the in-build record equals SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "13acef58f1784c9077078c203414bdc69739f58d54c71c4796b84bf6ce6274f5",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:1253-1253",
+   "class": "qualification-test",
+   "removed": 1,
+   "added": 1,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's G6 re-pins (PLAN_v2 \u00a73.3, A1-N-3, I89's value pins, SF-1, N-1, N-2) at M = 10.5 GiB. RV124 REVIEW \u00a74: every listed re-pin present and right; 20 of 21 mutants killed (M17 equivalent, Q-N4). This pass runs them (law: 0 failed; law_sq: the in-build record equals SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "aa939edc1f59a013f2d269ad944d243fa787d963206065c1859cf69dbb9f2e3a",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:1583-1590",
+   "class": "qualification-test",
+   "removed": 0,
+   "added": 8,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's G6 re-pins (PLAN_v2 \u00a73.3, A1-N-3, I89's value pins, SF-1, N-1, N-2) at M = 10.5 GiB. RV124 REVIEW \u00a74: every listed re-pin present and right; 20 of 21 mutants killed (M17 equivalent, Q-N4). This pass runs them (law: 0 failed; law_sq: the in-build record equals SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "f191043068293bae999fc396e684e8a952ed51d352d22b830940680a87c23771",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:1808-1809",
+   "class": "qualification-test",
+   "removed": 2,
+   "added": 2,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's G6 re-pins (PLAN_v2 \u00a73.3, A1-N-3, I89's value pins, SF-1, N-1, N-2) at M = 10.5 GiB. RV124 REVIEW \u00a74: every listed re-pin present and right; 20 of 21 mutants killed (M17 equivalent, Q-N4). This pass runs them (law: 0 failed; law_sq: the in-build record equals SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "39bbf5db4da0f307856084169871bfb1b0df2c0d3f2587e58ca4dd940f5d5098",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:1868-1921",
+   "class": "qualification-test",
+   "removed": 0,
+   "added": 54,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's G6 re-pins (PLAN_v2 \u00a73.3, A1-N-3, I89's value pins, SF-1, N-1, N-2) at M = 10.5 GiB. RV124 REVIEW \u00a74: every listed re-pin present and right; 20 of 21 mutants killed (M17 equivalent, Q-N4). This pass runs them (law: 0 failed; law_sq: the in-build record equals SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "14fcf2b80ef9be35a1b6f4e421f1b8659d888502c988f9935bb3ec3e5deceb66",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:10-10",
+   "class": "qualification-test",
+   "removed": 2,
+   "added": 1,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "77c03e7fa13a15bbde2b877ff5b5f2c32041de22ff11e40b4ae41fe640197c55",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:12-18",
+   "class": "qualification-test",
+   "removed": 0,
+   "added": 7,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "a08853095f7aa93e9f6ebe4699197a42417754ecbd3bcb568d24bb0aae652152",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:24-27",
+   "class": "qualification-test",
+   "removed": 1,
+   "added": 4,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "ed869fc7c84848c4fb94553b5c938e39369dd8e8c97a86363e8073a4f1af740a",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:33-56",
+   "class": "qualification-test",
+   "removed": 0,
+   "added": 24,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "c3bc8cad5ea3875159830f332e48bbe38d707093c1cd8267f21d618b3df1e314",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:66-66",
+   "class": "qualification-test",
+   "removed": 0,
+   "added": 1,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "cb401aad3bab35fad9b8bbf643bde8e5a8afdabfdbe1ea89f45c64b2ccbc3ae0",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:70-70",
+   "class": "qualification-test",
+   "removed": 0,
+   "added": 1,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "7e63387b6901743d8aaba4e3c6cf8f56353ffe4eb94dc6c1bbc4f69d5189d726",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:81-85",
+   "class": "qualification-test",
+   "removed": 1,
+   "added": 5,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "83b54e0f9827af649d434e83156dafe22dbbb9dbf4acc476ce86b5a42aabc1ab",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:141-145",
+   "class": "qualification-test",
+   "removed": 7,
+   "added": 5,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "20165480271f641152e50a414003b18b6e14f19bc4056d11597ac65f4ce7e9d4",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:150-155",
+   "class": "qualification-test",
+   "removed": 10,
+   "added": 6,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "6d3da8e5fdb13796ee428197a25ba0489f748aab3099cc08037c963c8b5d6479",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:161-166",
+   "class": "qualification-test",
+   "removed": 8,
+   "added": 6,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "5339dfebf19fa131c99ea0f7f7645e19a2270bd62f0141b764b508095d16635b",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:171-171",
+   "class": "qualification-test",
+   "removed": 1,
+   "added": 1,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "3007f9dd74020452130ac1cdca42c1ce57483eef2a105ff87062a7b1ea32de2f",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:182-188",
+   "class": "qualification-test",
+   "removed": 9,
+   "added": 7,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "4475fe1dec143e1b4cb28e8e8ddc02d917deb1d141b95ae0ccb4a94cafda46a2",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:192-203",
+   "class": "qualification-test",
+   "removed": 0,
+   "added": 12,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "0bd02805faab320c031b36cb9db39c6b045801506e395e743284faa87f65eef6",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:224-231",
+   "class": "qualification-test",
+   "removed": 9,
+   "added": 8,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "8bf2397c24c84f9592deb76f2036a3a10ec6064ea1e77edca6c2d7c52c065565",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:238-241",
+   "class": "qualification-test",
+   "removed": 6,
+   "added": 4,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "c9a71681931e2fd1d954b55593bd6fa014f65095932027f2b3c30707f4295e36",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:272-283",
+   "class": "qualification-test",
+   "removed": 18,
+   "added": 12,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "d8b27e1a78b99e2b4cde93b831d48f22f57d6ed04262f9d8f2fcbe9eaad75114",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:290-293",
+   "class": "qualification-test",
+   "removed": 6,
+   "added": 4,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "23ace2eaa15db6649e94d997d06d13e50ee33e2a6fbd4ee43b8eb4e6db8bc78d",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:311-311",
+   "class": "qualification-test",
+   "removed": 1,
+   "added": 1,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "f67bf17781049f76a7bc2961defc17a72b003fdf38dce2d29e37c5dae0d43aac",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:329-336",
+   "class": "qualification-test",
+   "removed": 10,
+   "added": 8,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "dd0afa96619f948a973765e2f713fb257f49e2338f6fb4fa091f3b494d5fcad0",
+   "file": "core/product_physics/src/retained_memory_witness_tests.rs",
+   "at_final_basis": "retained_memory_witness_tests.rs:340-543",
+   "class": "qualification-test",
+   "removed": 0,
+   "added": 204,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's S1 witnesses and DEF-O reports (PLAN_v2 \u00a73.4; SQ item 9). RV124 REVIEW \u00a75: every entry point passes, outcomes asserted. This pass runs SQ's 40 entry points, one process each (witnesses gate: equal to SQ's lines).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "6062dd2cc5bb65618541a86fdd31565cc90e6ec1dffc69e2c19d82616d2ac716",
+   "file": "core/product_physics/tests/retained_memory_challenge.rs",
+   "at_final_basis": "retained_memory_challenge.rs:1-2",
+   "class": "qualification-test",
+   "removed": 2,
+   "added": 2,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's challenge (PLAN_v2 \u00a73.5, A1-S-1, CAP_BYTES 16 GiB). RV124 REVIEW \u00a76: all 27 entries and the default pass, each peak within its bound. This pass runs every entry (challenge gate: peaks and bounds equal to SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "a6a88897e8c895b9b76ad67958d85d98a2cb3a000caba298ce22897a54ba1480",
+   "file": "core/product_physics/tests/retained_memory_challenge.rs",
+   "at_final_basis": "retained_memory_challenge.rs:4-25",
+   "class": "qualification-test",
+   "removed": 11,
+   "added": 22,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's challenge (PLAN_v2 \u00a73.5, A1-S-1, CAP_BYTES 16 GiB). RV124 REVIEW \u00a76: all 27 entries and the default pass, each peak within its bound. This pass runs every entry (challenge gate: peaks and bounds equal to SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "87d6ae2509433a6604479a1a63e8a737698710794c5bf83260294e1baa6d6352",
+   "file": "core/product_physics/tests/retained_memory_challenge.rs",
+   "at_final_basis": "retained_memory_challenge.rs:28-32",
+   "class": "qualification-test",
+   "removed": 0,
+   "added": 5,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's challenge (PLAN_v2 \u00a73.5, A1-S-1, CAP_BYTES 16 GiB). RV124 REVIEW \u00a76: all 27 entries and the default pass, each peak within its bound. This pass runs every entry (challenge gate: peaks and bounds equal to SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "5a1d210d70252702fca3da0727dcfcc2b191c1a466859c2e84fdd115154d8093",
+   "file": "core/product_physics/tests/retained_memory_challenge.rs",
+   "at_final_basis": "retained_memory_challenge.rs:36-36",
+   "class": "qualification-test",
+   "removed": 1,
+   "added": 1,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's challenge (PLAN_v2 \u00a73.5, A1-S-1, CAP_BYTES 16 GiB). RV124 REVIEW \u00a76: all 27 entries and the default pass, each peak within its bound. This pass runs every entry (challenge gate: peaks and bounds equal to SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "e6cc65ff380d9afb6dfe5ed454aa515cc49a28b8b798fdf200c4982c308e52c1",
+   "file": "core/product_physics/tests/retained_memory_challenge.rs",
+   "at_final_basis": "retained_memory_challenge.rs:38-43",
+   "class": "qualification-test",
+   "removed": 3,
+   "added": 6,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's challenge (PLAN_v2 \u00a73.5, A1-S-1, CAP_BYTES 16 GiB). RV124 REVIEW \u00a76: all 27 entries and the default pass, each peak within its bound. This pass runs every entry (challenge gate: peaks and bounds equal to SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "f9c14a6e7b953cef66b70249705dc1d2155d73088cdcdb612f5db5ef2206d292",
+   "file": "core/product_physics/tests/retained_memory_challenge.rs",
+   "at_final_basis": "retained_memory_challenge.rs:47-48",
+   "class": "qualification-test",
+   "removed": 0,
+   "added": 2,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's challenge (PLAN_v2 \u00a73.5, A1-S-1, CAP_BYTES 16 GiB). RV124 REVIEW \u00a76: all 27 entries and the default pass, each peak within its bound. This pass runs every entry (challenge gate: peaks and bounds equal to SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "ba69dc33aa3a393d217e5ea46b553da4ace769c24847a0629c615409c5867a90",
+   "file": "core/product_physics/tests/retained_memory_challenge.rs",
+   "at_final_basis": "retained_memory_challenge.rs:84-87",
+   "class": "qualification-test",
+   "removed": 2,
+   "added": 4,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's challenge (PLAN_v2 \u00a73.5, A1-S-1, CAP_BYTES 16 GiB). RV124 REVIEW \u00a76: all 27 entries and the default pass, each peak within its bound. This pass runs every entry (challenge gate: peaks and bounds equal to SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "c87f63b30e8230571c8feee95975a300e766e0f9e00cf88d8375695546f21b69",
+   "file": "core/product_physics/tests/retained_memory_challenge.rs",
+   "at_final_basis": "retained_memory_challenge.rs:89-133",
+   "class": "qualification-test",
+   "removed": 44,
+   "added": 45,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's challenge (PLAN_v2 \u00a73.5, A1-S-1, CAP_BYTES 16 GiB). RV124 REVIEW \u00a76: all 27 entries and the default pass, each peak within its bound. This pass runs every entry (challenge gate: peaks and bounds equal to SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "baff482b0568a7828f5aaf7b52f3ac12b2b0ad9a342e079c3798deed7270ad42",
+   "file": "core/product_physics/tests/retained_memory_challenge.rs",
+   "at_final_basis": "retained_memory_challenge.rs:136-137",
+   "class": "qualification-test",
+   "removed": 0,
+   "added": 2,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's challenge (PLAN_v2 \u00a73.5, A1-S-1, CAP_BYTES 16 GiB). RV124 REVIEW \u00a76: all 27 entries and the default pass, each peak within its bound. This pass runs every entry (challenge gate: peaks and bounds equal to SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "6f59938370258ad3cc084f70d1231c8dc778247488f79ff17a35ffaeb220c2a7",
+   "file": "core/product_physics/tests/retained_memory_challenge.rs",
+   "at_final_basis": "retained_memory_challenge.rs:139-142",
+   "class": "qualification-test",
+   "removed": 19,
+   "added": 4,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's challenge (PLAN_v2 \u00a73.5, A1-S-1, CAP_BYTES 16 GiB). RV124 REVIEW \u00a76: all 27 entries and the default pass, each peak within its bound. This pass runs every entry (challenge gate: peaks and bounds equal to SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  },
+  {
+   "fingerprint": "37727276c2c8b3a94a3b87e97c3ca25a8aab5b6f06ad64965da4e60b0aa721b4",
+   "file": "core/product_physics/tests/retained_memory_challenge.rs",
+   "at_final_basis": "retained_memory_challenge.rs:146-189",
+   "class": "qualification-test",
+   "removed": 0,
+   "added": 44,
+   "from_reviewed_diffs": [
+    "SQ G6 (g6/g6_commit.diff, b075c5c59f..69002bc862)"
+   ],
+   "evidence": "SQ's challenge (PLAN_v2 \u00a73.5, A1-S-1, CAP_BYTES 16 GiB). RV124 REVIEW \u00a76: all 27 entries and the default pass, each peak within its bound. This pass runs every entry (challenge gate: peaks and bounds equal to SQ's).",
+   "reviewed_by": "RV124 (RV-Q), R/REVIEW_RV124/b1_sq_01/REVIEW.md sha256 9bb6f81143f60b7e2edaf7d49887d4a0579acd3ea37d7abe6dac3bf4751a2531 (PASS, 0/0/5), which reviewed SQ's G5 and G6 commits and registration.diff; entry written by I107 (SB) for RV-Q's confirmation"
+  }
+ ],
+ "refused": []
+}
