@@ -16102,3 +16102,24 @@ ROOT ran PLAN_v2 §3.9's gates (`T/IMPLEMENTATION/B1_PREFREEZE/RECORD.md`). The 
 - **src-tauri:** 116 = 116, identical.
 
 The exact-head DEC-025 and src-tauri runs on PR-B1 follow the package and RV-X.
+
+## I108's package returned; the `threshold_bytes` citation corrected; PR-B1 recut from main `3d73db745e` with a true message (ROOT, 2026-10-08 UTC)
+
+**I108 (SK) returned** the package at `T/IMPLEMENTATION/B1/` (CHANGE_RECORD `b685c9a0…`, PR_BODY `23105642…`, SHA256SUMS 6 of 6). `source_equality.py` passes checks 1–5 with the package on a scratch head. `check_citations.py` FAILED, with one verification failure.
+
+**Ruled on I108's five items:**
+1. **The citation.** The `threshold_bytes` comment in `PP/src/retained_memory.rs` cited RR "R6a: B1's G5 holds on B1's real code; …", but the heading reads "…on the real code; …". M is final at R6b, not R6a, so the comment now cites RR "R6b: RV124 passes SQ and confirms M". This is a comment-only change on NUM.
+   - The two lines stay two lines, so the line map is unchanged.
+   - `retained_memory.rs` is not among the 14 reviewed inputs (`build_identity.rs` `REVIEWED_INPUTS`), so the registered identity is unchanged.
+   - SQ's `registration.diff` stays as recorded; the package's copy is SQ's historical diff.
+2. **The message.** Commit `8248921552` named the wrong reviewers. RV121–RV123 reviewed B2/B3 lanes, and the registration was SQ's, applied at R6b. No PR is open yet, so PR-B1 is recut as one commit from main `3d73db745e` (#1153, App v4 only; none of its 179 paths is under P or among the 33), with a true message, and pushed with `--force-with-lease`. B1's reviewers:
+   - RV109 (ST, SP);
+   - RV112 (SA);
+   - RV113 and RV120 (the readers, I4′, SC);
+   - RV124 (SQ);
+   - SG by I106.
+3. **The pin.** Accepted. The index is re-pinned at the NUM head that carries this section.
+4. **The open phase-4 check** (PLAN_v2 §2.3: RetainedErrorTextBytes ≤ C·(3m + 1)·Text(err) against SP's producer; RR "RV112 passes SA; …" item 6) goes to I107 as Pass B's item 10. I107 counts the producer's retained error-text owners per case and per invocation against 3m + 1, citing QUAL_B1's row for `retained_product.rs` (`native`).
+5. **N-5's composite physics-source receipt clause** (DESIGN_v2 §7's PR-B1 row) goes to RV125 (RV-X): read the test against the clause, and say whether a test of the composite path is needed.
+
+**Next:** I108 refreshes the package for the new head (the file table, the pin, the citation run and the checks). I107 and RV125 read the one-comment delta. Then the package commit, the PR and its gates.
