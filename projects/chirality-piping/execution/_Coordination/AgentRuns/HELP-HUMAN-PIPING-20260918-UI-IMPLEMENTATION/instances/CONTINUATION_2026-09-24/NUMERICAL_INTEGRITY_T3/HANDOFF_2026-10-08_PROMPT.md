@@ -27,11 +27,11 @@ Steer (this run): Continue T3, numerical integrity, precision and scale, of the 
    - the worktrees the note lists;
    - whether main moved;
    - the free disk space;
-   - **the work in flight at handoff:** RV113's held SR-PY addendum (being redacted by its author before first commit) and PR #1118 (the private-term check) under review. Verify each from disk and GitHub.
+   - **the work in flight at handoff:** PR #1124 (records-only CI routing) under independent review. Check its review and CI on GitHub.
 
    Then give the owner a short status that references the graph.
 5. **Then follow the graph's next safe action:**
-   1. commit RV113's SR-PY addendum once both screens show no hit; merge #1118 when its review and CI pass;
+   1. merge #1124 when its review and CI pass, with `--match-head-commit`;
    2. make I4 (RV113 has confirmed all three readers), and rule RV113's three items;
    3. B1's SC (`BRIEFS/B1_SC.md`), then SQ, SG, SB and SK, then PR-B1;
    4. J0, and B2/B3 (B2-C is final for J1);
@@ -56,7 +56,7 @@ Steer (this run): Continue T3, numerical integrity, precision and scale, of the 
    - **Never merge NUM itself into main,** because its history holds redacted originals.
    - **Records reach main through records-only PRs,** after each main merge and before any handoff:
      - cut the PR from main, taking NUM's execution files;
-     - screen with `WT/tools/t3_host_screen.py` and, once #1118 merges, `tools/validation/validate_private_terms.py --from-host --terms-file WT/tools/t3_host_names.private.txt`; a hit stops the commit until ROOT has read it;
+     - screen with `tools/validation/validate_private_terms.py --from-host --terms-file WT/tools/t3_host_names.private.txt` and `WT/tools/t3_host_screen.py`; a hit stops the commit until ROOT has read it;
      - run main's leak validator, and GEN-8 on the exact head;
      - gate it with the automatic CI and an independent review;
      - squash-merge it with `--match-head-commit`.
@@ -65,7 +65,7 @@ Steer (this run): Continue T3, numerical integrity, precision and scale, of the 
      - Briefs and living documents never spell out screen patterns, machine paths or host names.
      - Pytest junit output reaches records only after its `hostname` attribute is removed.
    - **IDs and returns:**
-     - give implementers and reviewers separate, fresh IDs (the next are I100 and RV120);
+     - give implementers and reviewers separate, fresh IDs (the next are I100 and RV120; reviewers of non-T3 PRs this session were unnumbered);
      - agents from the previous session cannot be resumed;
      - verify every return yourself.
    - **Owner-held choices:** prepare the decisions the graph lists as owner-held, and never decide them.
