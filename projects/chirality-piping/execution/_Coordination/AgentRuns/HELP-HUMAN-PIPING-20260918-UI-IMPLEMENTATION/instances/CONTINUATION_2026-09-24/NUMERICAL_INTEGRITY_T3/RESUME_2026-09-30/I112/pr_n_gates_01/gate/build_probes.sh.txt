@@ -1,0 +1,18 @@
+#!/bin/bash
+# I112 PR-N both-entry gate: build the full-envelope t3_p1_probe (main.rs cd1052f7..., the calibration's 6 GiB heap cap)
+# --release --offline from the base B (7eae707bb7) and candidate C (8dd64c1835) trees. Derived from I61's build_probes.sh.
+# Differences: paths (WT/scratch/i112_gates, WT/targets/i112-gate); cargo through WT/tools/t3_cargo.sh (host rule);
+# the trees' PP lock is checked against its blob after each build.
+set -u
+WT=WT; S=$WT/scratch/i112_gates; G=$S/gate
+pgrep -f memguard.sh >/dev/null || { echo "MEMGUARD NOT RUNNING"; exit 9; }
+for n in base cand; do
+  echo "== probe $n start $(date -u +%FT%TZ)"
+  ( cd $G/probe_$n && env -u RUSTFLAGS CARGO_BUILD_JOBS=4 $WT/tools/t3_cargo.sh build --release --offline --target-dir $WT/targets/i112-gate/$n > $G/logs/build_probe_$n.log 2>&1 ); echo "== probe $n exit=$? $(date -u +%FT%TZ)"
+  diff $G/probe_${n}_Cargo.lock.before $G/probe_$n/Cargo.lock > $G/lock_diff_probe_$n.txt; echo "lock diff lines $(wc -l < $G/lock_diff_probe_$n.txt | tr -d ' ')"
+  want=$(awk -F'\t' '$2=="projects/chirality-piping/core/product_physics/Cargo.lock"{split($1,a," "); print a[3]}' $S/tree_${n}_expected.txt)
+  have=$(git hash-object --no-filters $S/tree_$n/projects/chirality-piping/core/product_physics/Cargo.lock)
+  [ "$want" = "$have" ] && echo "PP lock $n unchanged after build (blob $have)" || echo "PP lock $n CHANGED ($want vs $have)"
+  shasum -a 256 $WT/targets/i112-gate/$n/release/t3_p1_probe | sed "s#$WT#WT#"
+done
+echo PROBES-DONE $(date -u +%FT%TZ)

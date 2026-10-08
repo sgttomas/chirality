@@ -1,0 +1,19 @@
+2026-10-08T18:11:11Z START pid=58900 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_gates/t9/harness_base args: %CRG% build --release --offline --target-dir WT/targets/i112-t9/base
+2026-10-08T18:11:39Z END rc=0 pid=58900 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_gates/t9/harness_base
+2026-10-08T18:11:39Z START pid=62406 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_gates/t9/harness_cand args: %CRG% build --release --offline --target-dir WT/targets/i112-t9/cand
+2026-10-08T18:12:12Z END rc=0 pid=62406 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_gates/t9/harness_cand
+2026-10-08T18:12:12Z START pid=65546 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_gates/t9 args: /bin/bash WT/scratch/i112_gates/t9/run_t9_runs.sh
+2026-10-08T18:12:15Z END rc=0 pid=65546 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_gates/t9
+2026-10-08T18:30:26Z START pid=81353 slot=cargo_job.slot2.lock cwd=WT/scratch/i112_gates/gate args: WT/venv/bin/python -B scripts/gen.py inputs/references.py inputs/references.json inputs/fixtures.jso
+2026-10-08T18:31:03Z END rc=0 pid=81353 slot=cargo_job.slot2.lock cwd=WT/scratch/i112_gates/gate
+2026-10-08T18:35:47Z START pid=55816 slot=cargo_job.lock cwd=WT/scratch/i112_gates/gate/probe_base args: %CRG% build --release --offline --target-dir WT/targets/i112-gate/base
+2026-10-08T18:36:16Z END rc=0 pid=55816 slot=cargo_job.lock cwd=WT/scratch/i112_gates/gate/probe_base
+2026-10-08T18:51:56Z START pid=25983 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_gates/gate/probe_cand args: %CRG% build --release --offline --target-dir WT/targets/i112-gate/cand
+2026-10-08T18:52:38Z END rc=0 pid=25983 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_gates/gate/probe_cand
+2026-10-08T18:53:21Z START pid=47625 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_gates/gate args: WT/venv/bin/python -B scripts/gate_run_base_full.py WT/targets/i112-gate/base/release/t3_p1_probe ge
+2026-10-08T18:56:37Z END rc=0 pid=47625 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_gates/gate
+2026-10-08T18:58:18Z START pid=6383 slot=cargo_job.lock cwd=WT/scratch/i112_gates/gate args: WT/venv/bin/python -B scripts/gate_run_base_full.py WT/targets/i112-gate/cand/release/t3_p1_probe gen_out p
+2026-10-08T19:01:47Z END rc=0 pid=6383 slot=cargo_job.lock cwd=WT/scratch/i112_gates/gate
+2026-10-08T20:04:20Z WAIT-EXCLUSIVE pid=57167 cwd=WT/scratch/i112_gates/gate args: /bin/bash WT/scratch/i112_gates/gate/run_part2.sh part2_run1
+2026-10-08T20:04:20Z START-EXCLUSIVE pid=57174 cwd=WT/scratch/i112_gates/gate args: /bin/bash WT/scratch/i112_gates/gate/run_part2.sh part2_run1
+2026-10-08T20:13:49Z END-EXCLUSIVE rc=0 pid=57174 cwd=WT/scratch/i112_gates/gate

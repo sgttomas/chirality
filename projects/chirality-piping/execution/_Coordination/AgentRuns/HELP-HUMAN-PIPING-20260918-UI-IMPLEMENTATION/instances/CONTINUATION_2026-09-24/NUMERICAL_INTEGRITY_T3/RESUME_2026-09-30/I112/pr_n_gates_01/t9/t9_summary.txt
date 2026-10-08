@@ -1,0 +1,17 @@
+== build base start 2026-10-08T18:11:10Z
+== build base exit=0 2026-10-08T18:11:39Z
+lock diff lines 9
+PP lock base unchanged after build (blob 833cbda45ad04a2e4b58cab299a846ed1b32dab4)
+6b516df9b13629a2a4af77a83aa2840cab77dd4c2fd2f9011cd2527ca41d4db7  WT/targets/i112-t9/base/release/calib_fixdiff_native
+== build cand start 2026-10-08T18:11:39Z
+== build cand exit=0 2026-10-08T18:12:12Z
+lock diff lines 9
+PP lock cand unchanged after build (blob 833cbda45ad04a2e4b58cab299a846ed1b32dab4)
+4949bf5fd1742ed19cbc0f3af2fbec4627d97e25e280d9a0ac40dc3aca0e7a95  WT/targets/i112-t9/cand/release/calib_fixdiff_native
+== runs start 2026-10-08T18:12:12Z
+== run base start 2026-10-08T18:12:12Z
+== run base end 2026-10-08T18:12:14Z
+== run cand start 2026-10-08T18:12:14Z
+== run cand end 2026-10-08T18:12:15Z
+== runs exit=0 2026-10-08T18:12:15Z
+T9-DONE 2026-10-08T18:12:15Z

@@ -1,0 +1,56 @@
+I112 script provenance. Paths: scratch copies under WT/scratch/i112_gates/; preserved copies relative to T.
+A. Used unchanged (each scratch copy's sha256 equals the preserved copy's):
+  ec089c1d4a2a46dda689aad3ac55948cf858537ed5c986726c7accdd63cade53  t9/harness_base/src/main.rs  = IMPLEMENTATION/KF2/_run_records/b/t9/fixdiff_main.rs.txt (S11-K's fixdiff_main.rs (also IMPLEMENTATION/S11K/_run_records/fixture_diff/fixdiff_main.rs.txt))
+  cd1052f7a4ac4cb8f3a13b38c899081cb2cd39f099991944157226be6939f232  gate/probe_base/src/main.rs  = IMPLEMENTATION/KF2/_run_records/b/gate/probe_main.rs.txt (the full-envelope t3_p1_probe main.rs (probe_cand's is the same file))
+  1c91b6c687fa1009dbbc9b28b9ee241fcfbab220d020203d003513f686c4318c  gate/scripts/compare.py  = IMPLEMENTATION/KF2/_run_records/b/gate/scripts/compare.py.txt (P1's comparator)
+  08e6bf45ae2de60114cf3518ef0fafd8a41d0f4b9d6465cebb6c44edf98b2c17  gate/scripts/compare_gate_kf2.py  = IMPLEMENTATION/KF2/_run_records/b/gate/scripts/compare_gate_kf2.py.txt (KF2's part-1 comparison)
+  8ad89fca7641d3e1d947772c2b9e24e2bf43f40a6b7e4ab3130a40f12c6ee96b  gate/scripts/gate_check.py  = IMPLEMENTATION/KF2/_run_records/b/gate/scripts/gate_check.py.txt (K-D5's gate_check)
+  8cf952aedb600c4812a6967c75474b932495603d20592b6540283f24c03718d6  gate/scripts/gate_run_base_full.py  = IMPLEMENTATION/KF2/_run_records/b/gate/scripts/gate_run_base_full.py.txt (G1's full-envelope driver)
+  c515ec63f8828addb88e82aa92bc4c5c0060764046bf9cbd6a82dfcd06909b5b  gate/scripts/gen.py  = IMPLEMENTATION/KF2/_run_records/b/gate/scripts/gen.py.txt (the request generator)
+  8d9a32a34bc0602f5ba24b72c999068ca8e6ee2c770a1cbdbc217629983816f6  gate/scripts/run.py  = IMPLEMENTATION/KF2/_run_records/b/gate/scripts/run.py.txt (run_one)
+  e43c662b84a23de335e388b98c3fcd08a209e1ed17488d39578c3be96d057391  gate/scripts/gate_part2.py  = IMPLEMENTATION/F1B/_run_records/gate2_130445db2/scripts/gate_part2.py.txt (I13's part-2 driver)
+  09e467498da19de0f6c127de02bfe2f14392381b44a7ddc6f95cfcfc2b22b55e  gate/overlap.py  = RESUME_2026-09-30/I61/u9_g5g6_01/gate/overlap.py (I61's overlap matcher)
+  b9f2799f67e8ae5a13a6537dfec2402cdd65f335eb369fe334afe9c18bcc52c6  gate/part2_combined.py  = RESUME_2026-09-30/I61/u9_g5g6_01/gate/part2_combined.py (I61's part-2 combiner)
+  0e110b4b50415797c835b451f3ceab1597b940fa5fd652fba4e6b15a2538babd  gate/inputs/FORMATION_EXCEPTIONS.json  = GATE/FORMATION_EXCEPTIONS.json (input)
+  138515b3e1f95f969a297d629c1ac0b50c63c3eb546df8a89049b71fda66fe61  gate/inputs/S11_EXCEPTIONS.json  = GATE/S11_EXCEPTIONS.json (input)
+  7b176dbbf2296be02d8bca19c698ee56d0d5753751150a9175e0d3ad4cf89cc9  gate/inputs/references.json  = REFERENCES/references.json (input)
+  80d473a7351e92a2a903d233b9e633aac794aeff07f3ac41e40d25a0d94fc8a8  gate/inputs/references.py  = REFERENCES/references.py (input)
+  gate/inputs/fixtures.json c061d73481d2ad137f7cef988475721681131789ec222e3e93c5ed3836b2910e = both trees' validation/benchmarks/numerical_integrity/fixtures.json; the 12 script and input hashes equal I61's gate/scripts_and_inputs_sha256.txt line for line
+  extra corpus: the 8 requests of IMPLEMENTATION/F1B/_run_records/checkpoint_a1/extra_corpus/requests/, equal to KF2's t9/extra_corpus_inputs_sha256.txt
+B. Rebuilt from I61's preserved scripts, with the differences named in each header:
+  a35bd92d18cd67732ff5076cd5b58c1e90df7618389946c848246621b8027b11  t9/run_t9.sh  from RESUME_2026-09-30/I61/u9_g5g6_01/t9/run_t9.sh.txt (b0704d10fb9b9111...): paths; each build through WT/tools/t3_cargo.sh; the run loop moved, unchanged but for paths, to t9/run_t9_runs.sh, run as one WT/tools/t3_slot.sh job; the lock diff and the PP-lock blob check taken in the script
+  fee8c1686d6087a58f613b7f4601a6f67cab23d330d124a1f19d788e9030df5c  t9/run_t9_runs.sh  from RESUME_2026-09-30/I61/u9_g5g6_01/t9/run_t9.sh.txt (b0704d10fb9b9111...): the run loop of run_t9.sh, paths only
+  230be6839577ee50330abe3fd034e93584260e55eb61fd23b92cd58a77611a1b  gate/build_probes.sh  from RESUME_2026-09-30/I61/u9_g5g6_01/gate/build_probes.sh.txt (545362f9a44ff904...): paths; cargo through WT/tools/t3_cargo.sh; the PP-lock blob check added
+  527fd8c15d923f886f2556c984e7bad0ae8409b4da9c65c3dcd575340e2c0c9f  gate/run_part1.sh  from RESUME_2026-09-30/I61/u9_g5g6_01/gate/run_part1.sh.txt (f4c4f62315e24751...): paths; interpreter WT/venv/bin/python (python 3.13.14, as I61's; the REPO_ROOT .venv it named is absent); each side's driver as one WT/tools/t3_slot.sh job
+  1b67b42b65e4847d760f38ddc40f2193a60c46ab1e194987cdb4edf037ea5620  gate/run_part2.sh  from RESUME_2026-09-30/I61/u9_g5g6_01/gate/run_part2.sh.txt (37417708fff8ed3e...): paths; interpreter as above; run only as WT/tools/t3_exclusive.sh /bin/bash run_part2.sh <execution>; the watcher and quiet wait as I61 fixed them
+  419a00860071b4908878596729f27d7a85e00833a4f62bb3dc8d325ce4813fc3  gate/foreign_jobs.sh  from RESUME_2026-09-30/I61/u9_g5g6_01/gate/foreign_jobs.sh.txt (4bb5cfd16832b972...): own-probe filter targets/i112-gate/; shell and lock wrappers (bash, sh, zsh, lockf, sleep) not counted, because T3 jobs now queue in wrappers carrying their job's words while this gate holds the exclusive lock
+  manifests: t9/harness_{base,cand}/Cargo.toml and gate/probe_{base,cand}/Cargo.toml equal I61's t9/harness_*_Cargo.toml.txt and gate/probe_*_Cargo.toml.txt except the tree path
+C. New in I112:
+  78b2087876e35f97c8f724d75add9aa19fcdc9db7b0d4c6020c090c69e1e5bef  setup_trees.sh
+  8d995e175dcbc7115cb365900ce5298057fa76974391a80f3aac895e33fca734  verify_trees.sh
+  973bb95633040073b3d3469932822b4173c1bb9257ed3da3a87cd211b07a80bb  normdiff.py
+  2282f3b18edaf2416398e443bd76dc520192ccee8db51815a14bbc61743838a2  normdiff2.py
+  697f8207b2d34bee1b848d611185f562847f63a3863078fc3201ae8cd82e2e89  t9/t9_compare.py
+  3cf86717dd86dbaad85461d72dedde317e7fa9a3dd18cbdf8c99d7bcb8e4212e  gate/part1_norm_compare.py
+  c3e8ba7f92ecb4d14006c479140b82d509631f47474849ca415c1aa054ba5bd5  gate/diag_norm_check.py
+  fc3fbddbf4f7870d37a20396d0a156556ea5775e342507db3c210442bdea5934  gate/gate_rows_compare.py
+  6f68023bfb698f786b312e447b146ba95b34cea0332aadf65fb12c7931039597  t9/t9_libm_check.py
+  ea422f76d6cdb305b775ea75cb33c05735148c8fa20c0086c5a2d3c5236de46c  screen_files.py
+D. Commands without a script: gen.py ran as `WT/tools/t3_slot.sh WT/venv/bin/python -B scripts/gen.py inputs/references.py inputs/references.json inputs/fixtures.json gen_out` in WT/scratch/i112_gates/gate (gen.log).
+E. Recorded copies (machine paths replaced by WT/NUM placeholders, so a copy's sha256 differs from its scratch original where it held a path):
+  146511919df368c41605a2407a8ab54c1f58b0329a88c3cff084ec75fe2e7ad8  t9/run_t9.sh.txt  (from t9/run_t9.sh)
+  fb0696840af18a09fa62cc9a20672c78d78a282b26ba3a4b182c8109c1fc20d0  t9/run_t9_runs.sh.txt  (from t9/run_t9_runs.sh)
+  1fb2e023a4e3af765f54b244ad0bd393ee071349fd5a9336df7d7840d65b559a  gate/build_probes.sh.txt  (from gate/build_probes.sh)
+  78571967ab2d58bc079f47e1052750d8a392bbb0bef9c5828b3233b58f4e9dcf  gate/run_part1.sh.txt  (from gate/run_part1.sh)
+  b13bb43bf81e16b935f69a1ccc99c32931b3aac098efb061702ad877a3f63336  gate/run_part2.sh.txt  (from gate/run_part2.sh)
+  419a00860071b4908878596729f27d7a85e00833a4f62bb3dc8d325ce4813fc3  gate/foreign_jobs.sh.txt  (from gate/foreign_jobs.sh)
+  7e039961b7d0076163770f5e1f927c803abf7ade23025ca6b227dd2db902ccaf  gate/setup_trees.sh.txt  (from setup_trees.sh)
+  3d4192d90cee51b570399808437ed883ec4e303af71047d76a01b9489a8990db  gate/verify_trees.sh.txt  (from verify_trees.sh)
+  973bb95633040073b3d3469932822b4173c1bb9257ed3da3a87cd211b07a80bb  normdiff.py  (from normdiff.py)
+  2282f3b18edaf2416398e443bd76dc520192ccee8db51815a14bbc61743838a2  normdiff2.py  (from normdiff2.py)
+  697f8207b2d34bee1b848d611185f562847f63a3863078fc3201ae8cd82e2e89  t9/t9_compare.py  (from t9/t9_compare.py)
+  3cf86717dd86dbaad85461d72dedde317e7fa9a3dd18cbdf8c99d7bcb8e4212e  gate/part1_norm_compare.py  (from gate/part1_norm_compare.py)
+  c3e8ba7f92ecb4d14006c479140b82d509631f47474849ca415c1aa054ba5bd5  gate/part1/diag_norm_check.py  (from gate/diag_norm_check.py)
+  fc3fbddbf4f7870d37a20396d0a156556ea5775e342507db3c210442bdea5934  gate/part1/gate_rows_compare.py  (from gate/gate_rows_compare.py)
+  6f68023bfb698f786b312e447b146ba95b34cea0332aadf65fb12c7931039597  t9/t9_libm_check.py  (from t9/t9_libm_check.py)
+  8d832c83dea9a81415ebf017920dddd42f63ae41458086f20a13192d9be67671  screen_files.py  (from screen_files.py)

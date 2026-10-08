@@ -1,0 +1,16 @@
+#!/bin/bash
+# I112: re-check the extracted trees after the builds (setup_trees.sh made the same check at extraction): the path set equals the
+# revision's blob list under projects/chirality-piping (execution/ excluded), and every file's git hash-object (no -w, no filters)
+# equals its blob. Read only.
+set -u
+export GIT_OPTIONAL_LOCKS=0
+WT=WT
+S=$WT/scratch/i112_gates
+for n in base cand; do
+  T=$S/tree_$n
+  ( cd "$T" && find . -type f -o -type l | sed 's#^\./##' | LC_ALL=C sort ) > $S/tree_${n}_files_now.txt
+  extra=$(diff $S/tree_${n}_expected_paths.txt $S/tree_${n}_files_now.txt | grep -c '^[<>]')
+  ( cd "$T" && cut -f2 $S/tree_${n}_expected.txt | tr '\n' '\0' | xargs -0 git hash-object --no-filters -- ) > $S/tree_${n}_hashobj_now.txt
+  mm=$(paste -d' ' <(awk '{print $3}' $S/tree_${n}_expected.txt) $S/tree_${n}_hashobj_now.txt | awk '$1!=$2{m++} END{print m+0}')
+  echo "$n: $(wc -l < $S/tree_${n}_expected.txt | tr -d ' ') blobs (modes: $(awk '{print $1}' $S/tree_${n}_expected.txt | sort | uniq -c | tr -s ' ' | tr '\n' ';')) path-set differences $extra, blob mismatches $mm"
+done

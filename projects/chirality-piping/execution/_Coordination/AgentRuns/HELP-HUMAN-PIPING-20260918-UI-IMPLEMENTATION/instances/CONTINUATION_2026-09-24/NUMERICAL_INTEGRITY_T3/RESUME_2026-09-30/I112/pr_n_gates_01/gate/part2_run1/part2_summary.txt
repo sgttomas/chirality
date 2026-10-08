@@ -1,0 +1,8 @@
+== waiting for a quiet host 2026-10-08T20:04:20Z
+== quiet since 2026-10-08T20:06:21Z
+== part2 exit=0 2026-10-08T20:13:49Z
+foreign-job samples during the run: 0 of 89
+WT/scratch/i112_gates/gate/run_part2.sh: line 23: 60984 Terminated: 15          ( while true; do
+    n=$($G/foreign_jobs.sh | wc -l | tr -d " "); j=$($G/foreign_jobs.sh | head -3 | cut -c1-120 | tr "\t\n" "  "); printf "%s\t%s\t%s\t%s\n" "$(date -u +%FT%TZ)" "$n" "$(sysctl -n vm.loadavg)" "$j"; sleep 5;
+done ) > $OUT/host_watch.tsv 2> /dev/null
+PART2-DONE 2026-10-08T20:13:49Z

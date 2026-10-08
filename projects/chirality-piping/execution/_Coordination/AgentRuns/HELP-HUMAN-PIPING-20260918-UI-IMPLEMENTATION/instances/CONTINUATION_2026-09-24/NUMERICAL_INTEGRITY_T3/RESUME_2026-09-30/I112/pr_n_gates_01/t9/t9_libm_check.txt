@@ -1,0 +1,12 @@
+main core/product_physics__tests__fixtures__exact_pressure_connected_request.json.sparse_interactive.out: norm_only; same moves as normdiff: True; base values = libm hypot chain: [True]
+main core/product_physics__tests__fixtures__preview_physics_unicode_ids_model.json.dense_scrutiny.out: norm_only; same moves as normdiff: True; base values = libm hypot chain: [True]
+main core/reporting__result_export__tests__fixtures__load_reference_fallback_uz.request.json.sparse_interactive.out: norm_only; same moves as normdiff: True; base values = libm hypot chain: [True]
+main fixtures/model_operations__exact_pressure_authoring_model.json.sparse_interactive.out: norm_only; same moves as normdiff: True; base values = libm hypot chain: [True]
+main fixtures/model_operations__physics_thermal_ui_model.json.sparse_interactive.out: norm_only; same moves as normdiff: True; base values = libm hypot chain: [True]
+main fixtures/model_operations__precision_connected_ui_model.json.dense_scrutiny.out: norm_only; same moves as normdiff: True; base values = libm hypot chain: [True]
+main fixtures/product_preview__load_reference__connected.request.json.dense_scrutiny.out: norm_only; same moves as normdiff: True; base values = libm hypot chain: [True]
+main fixtures/product_preview__load_reference__connected.request.json.sparse_interactive.out: norm_only; same moves as normdiff: True; base values = libm hypot chain: [True, True]
+main fixtures/product_preview__rf_skew_t_cant_off_122_r1e-04.request.json.dense_scrutiny.out: norm_only; same moves as normdiff: True; base values = libm hypot chain: [True]
+extra b7_gap_rf_skew_t_cant_off_122_r1e_04.json.dense_scrutiny.out: norm_only; same moves as normdiff: True; base values = libm hypot chain: [True]
+extra kd5_rf_skew_t_cant_off_122_r1e_04.json.dense_scrutiny.out: norm_only; same moves as normdiff: True; base values = libm hypot chain: [True]
+outputs 11, agreeing 11; moved values 12, candidate CR 12, base = libm hypot chain 12

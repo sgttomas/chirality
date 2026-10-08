@@ -1,0 +1,563 @@
+{
+ "sets": {
+  "main": {
+   "base": 114,
+   "cand": 114,
+   "common": 114,
+   "identical": 105,
+   "differing": 9,
+   "only_base": [],
+   "only_cand": []
+  },
+  "extra": {
+   "base": 16,
+   "cand": 16,
+   "common": 16,
+   "identical": 14,
+   "differing": 2,
+   "only_base": [],
+   "only_cand": []
+  }
+ },
+ "differing": [
+  {
+   "set": "main",
+   "output": "core/product_physics__tests__fixtures__exact_pressure_connected_request.json.sparse_interactive.out",
+   "verdict": "norm_only",
+   "items": [
+    {
+     "path": "/results/122/value",
+     "id": "result:support-action:23:case:six-component-load:20:support:fixture-root:force_magnitude",
+     "kind": "support_reaction_force_magnitude_v2",
+     "unit": "N",
+     "base": "3741.6573867739435",
+     "cand": "3741.657386773944",
+     "ulps": 1,
+     "norm_ok": true,
+     "base_is_cr": false,
+     "components": {
+      "Fx": -1000.0,
+      "Fy": -2000.0000000000018,
+      "Fz": 3000.000000000002
+     },
+     "cr_norm": "3741.657386773944",
+     "why": null
+    }
+   ],
+   "base_sha256": "4a58b5e25121a29056f1acda4e5b7522c1a62d156f2e97c4fcd8e86d2e2dd617",
+   "cand_sha256": "ffde382257c9db6a994fcf36bed88557ecf3b267123a0201590e02d4e58c4c65"
+  },
+  {
+   "set": "main",
+   "output": "core/product_physics__tests__fixtures__preview_physics_unicode_ids_model.json.dense_scrutiny.out",
+   "verdict": "norm_only",
+   "items": [
+    {
+     "path": "/results/284/value",
+     "id": "result:combination:combination-Σ:disp:node-γ",
+     "kind": "displacement_magnitude",
+     "unit": "mm",
+     "base": "1.9846472695235164",
+     "cand": "1.9846472695235162",
+     "ulps": 1,
+     "norm_ok": true,
+     "base_is_cr": false,
+     "components": {
+      "ux": 0.6332318988894486,
+      "uy": -0.2371906752487287,
+      "uz": 1.8658999786245414
+     },
+     "cr_norm": "1.9846472695235162",
+     "why": null
+    }
+   ],
+   "base_sha256": "f716fd0b6c99cc602d3f0ddbe9566efeebd85b268dd630a5067ab650317fe79a",
+   "cand_sha256": "ba68e429b7a5fb11f06fe40b389fa4571efc19ef4c7526e7c551c1546ffb1971"
+  },
+  {
+   "set": "main",
+   "output": "core/reporting__result_export__tests__fixtures__load_reference_fallback_uz.request.json.sparse_interactive.out",
+   "verdict": "norm_only",
+   "items": [
+    {
+     "path": "/results/22/value",
+     "id": "result:support-action:9:case:join:6:anchor:moment_magnitude",
+     "kind": "support_reaction_moment_magnitude_v2",
+     "unit": "N*m",
+     "base": "2.000000000000002e-6",
+     "cand": "2.0000000000000025e-6",
+     "ulps": 1,
+     "norm_ok": true,
+     "base_is_cr": false,
+     "components": {
+      "Mx": 0.0,
+      "My": 1.999999999999999e-06,
+      "Mz": 1.1368683772161603e-13
+     },
+     "cr_norm": "2.0000000000000025e-06",
+     "why": null
+    }
+   ],
+   "base_sha256": "bf773bbfe348ea391f33b2e944e193185ba8260b6c79b92c695f3f70c720155b",
+   "cand_sha256": "bc7893f29ae56d4381f241da1479e2a7bf72fc90c986cc10dd15f38b0a5bfe84"
+  },
+  {
+   "set": "main",
+   "output": "fixtures/model_operations__exact_pressure_authoring_model.json.sparse_interactive.out",
+   "verdict": "norm_only",
+   "items": [
+    {
+     "path": "/results/122/value",
+     "id": "result:support-action:23:case:six-component-load:20:support:fixture-root:force_magnitude",
+     "kind": "support_reaction_force_magnitude_v2",
+     "unit": "N",
+     "base": "3741.6573867739435",
+     "cand": "3741.657386773944",
+     "ulps": 1,
+     "norm_ok": true,
+     "base_is_cr": false,
+     "components": {
+      "Fx": -1000.0,
+      "Fy": -2000.0000000000018,
+      "Fz": 3000.000000000002
+     },
+     "cr_norm": "3741.657386773944",
+     "why": null
+    }
+   ],
+   "base_sha256": "4a58b5e25121a29056f1acda4e5b7522c1a62d156f2e97c4fcd8e86d2e2dd617",
+   "cand_sha256": "ffde382257c9db6a994fcf36bed88557ecf3b267123a0201590e02d4e58c4c65"
+  },
+  {
+   "set": "main",
+   "output": "fixtures/model_operations__physics_thermal_ui_model.json.sparse_interactive.out",
+   "verdict": "norm_only",
+   "items": [
+    {
+     "path": "/results/122/value",
+     "id": "result:support-action:23:case:six-component-load:20:support:fixture-root:force_magnitude",
+     "kind": "support_reaction_force_magnitude_v2",
+     "unit": "N",
+     "base": "3741.6573867739435",
+     "cand": "3741.657386773944",
+     "ulps": 1,
+     "norm_ok": true,
+     "base_is_cr": false,
+     "components": {
+      "Fx": -1000.0,
+      "Fy": -2000.0000000000018,
+      "Fz": 3000.000000000002
+     },
+     "cr_norm": "3741.657386773944",
+     "why": null
+    }
+   ],
+   "base_sha256": "dc7a2e9c5ea24d5f2ec699ad3f592e735fe6c09825532cf2d9eebc765e39c692",
+   "cand_sha256": "aa16cbeb0e6918c65c3521e21b6ed3ec5cef004318078aa77cea72c607881926"
+  },
+  {
+   "set": "main",
+   "output": "fixtures/model_operations__precision_connected_ui_model.json.dense_scrutiny.out",
+   "verdict": "norm_only",
+   "items": [
+    {
+     "path": "/results/23/value",
+     "id": "result:support-action:23:case:six-component-load:20:support:fixture-root:moment_magnitude",
+     "kind": "support_reaction_moment_magnitude_v2",
+     "unit": "N*m",
+     "base": "3629.04946232481",
+     "cand": "3629.0494623248105",
+     "ulps": 1,
+     "norm_ok": true,
+     "base_is_cr": false,
+     "components": {
+      "Mx": -399.99999999999994,
+      "My": -2499.9999999999995,
+      "Mz": -2599.9999999999995
+     },
+     "cr_norm": "3629.0494623248105",
+     "why": null
+    }
+   ],
+   "base_sha256": "0584f62af19d7deab061ef6ea97eef6c599d52c8fe09443df0f6c39bd1e77741",
+   "cand_sha256": "05f9e6a7e17990f88c61cd2ab3c84ebbd16f5db00adf198a7fcf2a24251f56de"
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__load_reference__connected.request.json.dense_scrutiny.out",
+   "verdict": "norm_only",
+   "items": [
+    {
+     "path": "/results/170/value",
+     "id": "result:support-action:8:case:hot:12:support:root:force_magnitude",
+     "kind": "support_reaction_force_magnitude_v2",
+     "unit": "N",
+     "base": "1172235.122530021",
+     "cand": "1172235.1225300212",
+     "ulps": 1,
+     "norm_ok": true,
+     "base_is_cr": false,
+     "components": {
+      "Fx": 1172215.2411708564,
+      "Fy": 6827.214638828608,
+      "Fz": 0.0
+     },
+     "cr_norm": "1172235.1225300212",
+     "why": null
+    }
+   ],
+   "base_sha256": "c87ec102fbe3a6f6393e5524d2523331cec53739816b5e1c9855f70025138d30",
+   "cand_sha256": "6220e6c5bcadd998608c2aa5e57437a60b499d1e8d09f2caf11570897cd7df73"
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__load_reference__connected.request.json.sparse_interactive.out",
+   "verdict": "norm_only",
+   "items": [
+    {
+     "path": "/results/28/value",
+     "id": "result:support-action:9:case:cold:12:support:root:force_magnitude",
+     "kind": "support_reaction_force_magnitude_v2",
+     "unit": "N",
+     "base": "298575.2677594065",
+     "cand": "298575.26775940653",
+     "ulps": 1,
+     "norm_ok": true,
+     "base_is_cr": false,
+     "components": {
+      "Fx": -298451.3020910304,
+      "Fy": 8602.952851771477,
+      "Fz": 0.0
+     },
+     "cr_norm": "298575.26775940653",
+     "why": null
+    },
+    {
+     "path": "/results/168/value",
+     "id": "result:support-action:8:case:hot:12:support:root:force_magnitude",
+     "kind": "support_reaction_force_magnitude_v2",
+     "unit": "N",
+     "base": "1172235.122530021",
+     "cand": "1172235.1225300212",
+     "ulps": 1,
+     "norm_ok": true,
+     "base_is_cr": false,
+     "components": {
+      "Fx": 1172215.2411708564,
+      "Fy": 6827.214638828608,
+      "Fz": 0.0
+     },
+     "cr_norm": "1172235.1225300212",
+     "why": null
+    }
+   ],
+   "base_sha256": "92d555549547e3babe6a36dda22fd09d72d977bcc3aab921fb0ec06e40ea8317",
+   "cand_sha256": "8ae75eaef374b8ce8bcf13b9af12d51e53743224905e0f4e9879a7b5982b718b"
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__rf_skew_t_cant_off_122_r1e-04.request.json.dense_scrutiny.out",
+   "verdict": "norm_only",
+   "items": [
+    {
+     "path": "/results/22/value",
+     "id": "result:support-action:4:case:8:rigid:N0:force_magnitude",
+     "kind": "support_reaction_force_magnitude_v2",
+     "unit": "N",
+     "base": "1.6258317075882521e-12",
+     "cand": "1.6258317075882523e-12",
+     "ulps": 1,
+     "norm_ok": true,
+     "base_is_cr": false,
+     "components": {
+      "Fx": -2.6069424396979457e-14,
+      "Fy": -1.142953787169887e-12,
+      "Fz": 1.1559869233278357e-12
+     },
+     "cr_norm": "1.6258317075882523e-12",
+     "why": null
+    }
+   ],
+   "base_sha256": "12a6ddc73b507edbd0f13736365900540da3036968b22856d62ea32fc0ecaa58",
+   "cand_sha256": "5338b24459fd3901d33b577b13f0b188c6e37030b245e59a9ab6695e46156e9d"
+  },
+  {
+   "set": "extra",
+   "output": "b7_gap_rf_skew_t_cant_off_122_r1e_04.json.dense_scrutiny.out",
+   "verdict": "norm_only",
+   "items": [
+    {
+     "path": "/results/31/value",
+     "id": "result:support-action:4:case:8:rigid:N0:force_magnitude",
+     "kind": "support_reaction_force_magnitude_v2",
+     "unit": "N",
+     "base": "1.6258317075882521e-12",
+     "cand": "1.6258317075882523e-12",
+     "ulps": 1,
+     "norm_ok": true,
+     "base_is_cr": false,
+     "components": {
+      "Fx": -2.6069424396979457e-14,
+      "Fy": -1.142953787169887e-12,
+      "Fz": 1.1559869233278357e-12
+     },
+     "cr_norm": "1.6258317075882523e-12",
+     "why": null
+    }
+   ],
+   "base_sha256": "7a1b97447c2b87d3f70abef517b80bf37cf8bd223f05d3d4be47a627bf53067c",
+   "cand_sha256": "e234fd01ae9b69a9b0008919875318fc268b802e1443847c620b6fdcf92f3f9b"
+  },
+  {
+   "set": "extra",
+   "output": "kd5_rf_skew_t_cant_off_122_r1e_04.json.dense_scrutiny.out",
+   "verdict": "norm_only",
+   "items": [
+    {
+     "path": "/results/22/value",
+     "id": "result:support-action:4:case:8:rigid:N0:force_magnitude",
+     "kind": "support_reaction_force_magnitude_v2",
+     "unit": "N",
+     "base": "1.6258317075882521e-12",
+     "cand": "1.6258317075882523e-12",
+     "ulps": 1,
+     "norm_ok": true,
+     "base_is_cr": false,
+     "components": {
+      "Fx": -2.6069424396979457e-14,
+      "Fy": -1.142953787169887e-12,
+      "Fz": 1.1559869233278357e-12
+     },
+     "cr_norm": "1.6258317075882523e-12",
+     "why": null
+    }
+   ],
+   "base_sha256": "12a6ddc73b507edbd0f13736365900540da3036968b22856d62ea32fc0ecaa58",
+   "cand_sha256": "5338b24459fd3901d33b577b13f0b188c6e37030b245e59a9ab6695e46156e9d"
+  }
+ ],
+ "raw_fixtures": [
+  {
+   "fixture": "core/reporting/result_export/tests/fixtures/load_reference_fallback_uz-sparse_interactive.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": false,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "core/reporting/result_export/tests/fixtures/load_reference_fallback_uz-dense_scrutiny.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/eigen_motion-sparse_interactive.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/eigen_motion-dense_scrutiny.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/fields-sparse_interactive.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/fields-dense_scrutiny.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/mixed-sparse_interactive.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/mixed-dense_scrutiny.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/n05-sparse_interactive.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/n05-dense_scrutiny.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/n06-sparse_interactive.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/n06-dense_scrutiny.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": false,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference/connected-dense_scrutiny.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": false,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference/pressure-sparse_interactive.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference/pressure-dense_scrutiny.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/fields-sparse_interactive.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/fields-dense_scrutiny.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/mixed-sparse_interactive.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/mixed-dense_scrutiny.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/mixed_units-sparse_interactive.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/mixed_units-dense_scrutiny.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05-dense_scrutiny.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05_unicode-sparse_interactive.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05_unicode-dense_scrutiny.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05_units-sparse_interactive.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05_units-dense_scrutiny.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n06-sparse_interactive.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n06-dense_scrutiny.raw.json",
+   "raw_same_in_both_trees": true,
+   "base_output_equals_raw": true,
+   "cand_output_equals_raw": true,
+   "raw_ends_with_one_newline": true
+  }
+ ],
+ "raw_summary": {
+  "fixtures": 30,
+  "cand_reproduces": 30,
+  "base_reproduces": 27,
+  "base_misses": [
+   "core/reporting/result_export/tests/fixtures/load_reference_fallback_uz-sparse_interactive.raw.json",
+   "fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json",
+   "fixtures/product_preview/load_reference/connected-dense_scrutiny.raw.json"
+  ],
+  "cand_misses": []
+ },
+ "RESULT": "PASS"
+}

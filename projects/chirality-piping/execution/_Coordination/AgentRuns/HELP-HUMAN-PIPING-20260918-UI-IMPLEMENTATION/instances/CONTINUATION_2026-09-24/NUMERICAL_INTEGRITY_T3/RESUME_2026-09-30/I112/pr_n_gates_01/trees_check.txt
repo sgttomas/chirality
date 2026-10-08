@@ -1,0 +1,35 @@
+I112 trees: git archive of projects/chirality-piping with ':(exclude)projects/chirality-piping/execution', read from the shared object store
+through the PR worktree WT/pr-n (GIT_OPTIONAL_LOCKS=0; no Git writes), extracted with tar into WT/scratch/i112_gates/tree_{base,cand}.
+  base B = 7eae707bb77722a69b61678c149aa816976bc162 (main, the merge of #1154)
+  cand C = 8dd64c1835698da87e5f0fd303c1b886daee956f (PR-N's code commit; its parent is B)
+Check (setup_trees.sh at extraction, 2026-10-08T18:10Z; verify_trees.sh again after every build, below): the extracted path set equals
+the revision's blob list under projects/chirality-piping outside execution/, and every file's `git hash-object --no-filters` equals its blob.
+At extraction:
+  base 7eae707bb7 expected 2970 extracted 2970 pathset_diff 0; blob mismatches 0 of 2970; 2970 100644 blob
+  cand 8dd64c1835 expected 2973 extracted 2973 pathset_diff 0; blob mismatches 0 of 2973; 2973 100644 blob
+After the T9 and probe builds:
+base: 2970 blobs (modes: 2970 100644;) path-set differences 0, blob mismatches 0
+cand: 2973 blobs (modes: 2973 100644;) path-set differences 0, blob mismatches 0
+B to C, outside execution/ (git diff --stat):
+   projects/chirality-piping/core/loads/stress_recovery/src/elastic_section.rs                                  |    7 +-
+   projects/chirality-piping/core/loads/stress_recovery/src/lib.rs                                              |    4 +
+   projects/chirality-piping/core/product_physics/src/case_state/resolve.rs                                     |    5 +-
+   projects/chirality-piping/core/product_physics/src/lib.rs                                                    |   12 +-
+   projects/chirality-piping/core/product_physics/src/pressure_runtime.rs                                       |    5 +-
+   projects/chirality-piping/core/product_physics/src/preview_physics.rs                                        |    8 +-
+   projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs                                  |   50 +---
+   projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs                              |   15 +-
+   projects/chirality-piping/core/product_physics/src/retained_product.rs                                       |    2 +-
+   projects/chirality-piping/core/product_physics/src/retained_wire_tests.rs                                    |   12 +-
+   projects/chirality-piping/core/product_physics/tests/preview_physics_runtime.rs                              |    4 +-
+   projects/chirality-piping/core/solver/frame_kernel/src/correct_norm.rs                                       |  295 ++++++++++++++++++++
+   projects/chirality-piping/core/solver/frame_kernel/src/lib.rs                                                |    1 +
+   projects/chirality-piping/core/solver/frame_kernel/src/rigid_body.rs                                         |    8 +-
+   projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs |    5 +-
+   projects/chirality-piping/core/solver/frame_kernel/tests/correct_norm_oracle.rs                              |   67 +++++
+   projects/chirality-piping/core/solver/frame_kernel/tests/correct_norm_vectors.txt                            | 1202 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   projects/chirality-piping/core/solver/frame_kernel/tests/k5_constrained_bodies.rs                            |   26 +-
+   projects/chirality-piping/fixtures/results/retained_precision_cases.json                                     |   22 +-
+   projects/chirality-piping/fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json             |    6 +-
+   projects/chirality-piping/tests/test_retained_precision_contract.py                                          |    6 +-
+   21 files changed, 1658 insertions(+), 104 deletions(-)

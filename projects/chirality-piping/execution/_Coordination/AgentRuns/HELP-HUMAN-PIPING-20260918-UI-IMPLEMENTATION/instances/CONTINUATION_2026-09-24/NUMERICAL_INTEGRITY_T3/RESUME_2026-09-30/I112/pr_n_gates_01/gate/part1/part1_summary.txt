@@ -1,0 +1,12 @@
+== part1 base start 2026-10-08T18:52:44Z
+== part1 base exit=0 2026-10-08T18:56:37Z
+== gate_check base exit=0
+== part1 cand start 2026-10-08T18:56:40Z
+== part1 cand exit=0 2026-10-08T19:01:47Z
+== gate_check cand exit=0
+== compare exit=0
+diff -rq full:      116 differing; files      818
+diff -rq envelopes:       10 differing; files      818
+diff -rq stdout:      881 differing; files      884
+diff -rq stderr:        0 differing; files      884
+PART1-DONE 2026-10-08T19:01:55Z

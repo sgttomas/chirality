@@ -1,0 +1,56 @@
+I112 part 1: the 116 differing runs grouped by case (S/D = sparse_interactive/dense_scrutiny, c/t = captured/typed).
+moved = published magnitudes moved in the full envelopes; ulps = how many moved by 1 and by 2 ulps; CR = candidate equals the exact
+correctly rounded norm of its components; libm = base equals this host's libm hypot chain; diag = diagnostic-text items (S2).
+case	runs	moved	ulps	CR	libm	diag
+RF-FINITE-ROT-Q9-NONMULT	Sc,St	4	{1: 4}	4	4	0
+RF-FINITE-TENTHS-O1e6	Sc,St	2	{1: 2}	2	2	0
+RF-FINITE-THIRDS-O0	Dc,Dt,Sc,St	6	{1: 6}	6	6	0
+RF-FINITE-THIRDS-O1e3	Sc,St	2	{1: 2}	2	2	0
+RF-FINITE-THIRTIETHS-O1e6	Sc,St	4	{1: 4}	4	4	0
+RF-INVARIANCE-CONT4-BASE	Sc,St	2	{1: 2}	2	2	0
+RF-INVARIANCE-CONT4-OFF-1e3	Sc,St	2	{1: 2}	2	2	0
+RF-INVARIANCE-CONT4-OFF-1e6	Sc,St	2	{1: 2}	2	2	0
+RF-INVARIANCE-CONT4-ROT-Q3	Dc,Dt,Sc,St	8	{1: 8}	8	8	0
+RF-INVARIANCE-CONT4-ROT-Q9	Dc,Dt	2	{1: 2}	2	2	0
+RF-INVARIANCE-CONT4-UNITS-mm	Sc,St	2	{1: 2}	2	2	0
+RF-INVARIANCE-TREE100-BASE	Sc,St	2	{1: 2}	2	2	0
+RF-INVARIANCE-TREE100-OFF-1e3	Sc,St	2	{1: 2}	2	2	0
+RF-INVARIANCE-TREE100-OFF-1e6	Sc,St	2	{1: 2}	2	2	0
+RF-INVARIANCE-TREE100-RELABEL	Sc,St	2	{1: 2}	2	2	0
+RF-LARGE-CHAIN-n00010-AX	Sc,St	2	{1: 2}	2	2	0
+RF-LARGE-CHAIN-n00010-ROT	Sc,St	2	{1: 2}	2	2	0
+RF-LARGE-CHAIN-n00100-AX	Sc,St	2	{1: 2}	2	2	0
+RF-LARGE-CHAIN-n00100-ROT	Sc,St	2	{1: 2}	2	2	0
+RF-LARGE-CONT-n00010-AX	Sc,St	2	{1: 2}	2	2	0
+RF-LARGE-CONT-n00010-ROT	Dc,Dt	2	{1: 2}	2	2	0
+RF-LARGE-CONT-n00100-AX	Dc,Dt,Sc,St	18	{1: 18}	18	18	0
+RF-LARGE-CONT-n00100-ROT	Dc,Dt,Sc,St	64	{1: 64}	64	64	0
+RF-LARGE-CONT-n01000-AX	Dc,Dt,Sc,St	136	{1: 136}	136	136	0
+RF-LARGE-CONT-n01000-ROT	Dc,Dt,Sc,St	554	{1: 550, 2: 4}	554	554	0
+RF-LARGE-CONT-n10000-AX	Sc,St	1324	{1: 1324}	1324	1324	0
+RF-LARGE-CONT-n10000-ROT	Sc,St	3052	{1: 3046, 2: 6}	3052	3052	0
+RF-LARGE-TREE-n00010-ROT	Dc,Dt	2	{1: 2}	2	2	0
+RF-LARGE-TREE-n00100-AX	Sc,St	2	{1: 2}	2	2	0
+RF-LARGE-TREE-n00100-ROT	Dc,Dt,Sc,St	6	{1: 6}	6	6	0
+RF-MECH-DISC-CHAIN100	Dc,Dt,Sc,St	0	{}	0	0	4
+RF-MECH-DISC-CHAIN100-SPRING	Dc,Dt,Sc,St	0	{}	0	0	4
+RF-RANGE-CONT-E+960	St	1	{1: 1}	1	1	0
+RF-RANGE-CONT-F-960	Sc,St	2	{1: 2}	2	2	0
+RF-RANGE-CONT-L+240	St	1	{1: 1}	1	1	0
+RF-RANGE-CONT-LEF-large	St	1	{1: 1}	1	1	0
+RF-RANGE-CONT-SIM-b	St	1	{1: 1}	1	1	0
+RF-RANGE-SKEW-L+240	Dt	1	{1: 1}	1	1	0
+RF-RANGE-SKEW-LEF-large	Dt	1	{1: 1}	1	1	0
+RF-RANGE-SKEW-SIM-b	Dt	1	{1: 1}	1	1	0
+RF-RANGE-THIN-A	St	1	{1: 1}	1	1	0
+RF-SKEW-T-CANT-OFF-122-r1e-04	Dc,Dt	2	{1: 2}	2	2	0
+RF-SKEW-T-CANT-OFF-122-r1e-08	Dc,Dt	2	{1: 2}	2	2	0
+RF-SKEW-T-PIN-OFF-122-r1e-08	Dc,Dt	4	{1: 4}	4	4	0
+RF-WEAK-W-3D-rho1e-04	Dc,Dt,Sc,St	4	{1: 4}	4	4	0
+RF-WEAK-W-3D-rho1e-08	Dc,Dt,Sc,St	8	{1: 8}	8	8	2
+RF-WEAK-W-3D-rho1e-12	Dc,Dt	2	{1: 2}	2	2	0
+RF-WEAK-W-AX-rho1e-04	Sc,St	2	{1: 2}	2	2	0
+RF-WEAK-W-AX-rho1e-08	Dc,Dt	2	{1: 2}	2	2	0
+RF-WEAK-W-AX-rho1e-12	Sc,St	2	{1: 2}	2	2	0
+RF-ZERO-TORSION	Sc,St	2	{1: 2}	2	2	0
+cases 51, runs 116, moved 5254, CR 5254, libm 5254, diag items 10

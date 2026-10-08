@@ -1,0 +1,30 @@
+main: base 114 cand 114 common 114 identical 105 differing 9 only_base 0 only_cand 0
+extra: base 16 cand 16 common 16 identical 14 differing 2 only_base 0 only_cand 0
+differing outputs:
+  [main] core/product_physics__tests__fixtures__exact_pressure_connected_request.json.sparse_interactive.out: norm_only
+      support_reaction_force_magnitude_v2 result:support-action:23:case:six-component-load:20:support:fixture-root:force_magnitude (N): 3741.6573867739435 -> 3741.657386773944, 1 ulp; CR norm of {'Fx': -1000.0, 'Fy': -2000.0000000000018, 'Fz': 3000.000000000002} = 3741.657386773944: cand equals; base is CR: False
+  [main] core/product_physics__tests__fixtures__preview_physics_unicode_ids_model.json.dense_scrutiny.out: norm_only
+      displacement_magnitude result:combination:combination-Σ:disp:node-γ (mm): 1.9846472695235164 -> 1.9846472695235162, 1 ulp; CR norm of {'ux': 0.6332318988894486, 'uy': -0.2371906752487287, 'uz': 1.8658999786245414} = 1.9846472695235162: cand equals; base is CR: False
+  [main] core/reporting__result_export__tests__fixtures__load_reference_fallback_uz.request.json.sparse_interactive.out: norm_only
+      support_reaction_moment_magnitude_v2 result:support-action:9:case:join:6:anchor:moment_magnitude (N*m): 2.000000000000002e-6 -> 2.0000000000000025e-6, 1 ulp; CR norm of {'Mx': 0.0, 'My': 1.999999999999999e-06, 'Mz': 1.1368683772161603e-13} = 2.0000000000000025e-06: cand equals; base is CR: False
+  [main] fixtures/model_operations__exact_pressure_authoring_model.json.sparse_interactive.out: norm_only
+      support_reaction_force_magnitude_v2 result:support-action:23:case:six-component-load:20:support:fixture-root:force_magnitude (N): 3741.6573867739435 -> 3741.657386773944, 1 ulp; CR norm of {'Fx': -1000.0, 'Fy': -2000.0000000000018, 'Fz': 3000.000000000002} = 3741.657386773944: cand equals; base is CR: False
+  [main] fixtures/model_operations__physics_thermal_ui_model.json.sparse_interactive.out: norm_only
+      support_reaction_force_magnitude_v2 result:support-action:23:case:six-component-load:20:support:fixture-root:force_magnitude (N): 3741.6573867739435 -> 3741.657386773944, 1 ulp; CR norm of {'Fx': -1000.0, 'Fy': -2000.0000000000018, 'Fz': 3000.000000000002} = 3741.657386773944: cand equals; base is CR: False
+  [main] fixtures/model_operations__precision_connected_ui_model.json.dense_scrutiny.out: norm_only
+      support_reaction_moment_magnitude_v2 result:support-action:23:case:six-component-load:20:support:fixture-root:moment_magnitude (N*m): 3629.04946232481 -> 3629.0494623248105, 1 ulp; CR norm of {'Mx': -399.99999999999994, 'My': -2499.9999999999995, 'Mz': -2599.9999999999995} = 3629.0494623248105: cand equals; base is CR: False
+  [main] fixtures/product_preview__load_reference__connected.request.json.dense_scrutiny.out: norm_only
+      support_reaction_force_magnitude_v2 result:support-action:8:case:hot:12:support:root:force_magnitude (N): 1172235.122530021 -> 1172235.1225300212, 1 ulp; CR norm of {'Fx': 1172215.2411708564, 'Fy': 6827.214638828608, 'Fz': 0.0} = 1172235.1225300212: cand equals; base is CR: False
+  [main] fixtures/product_preview__load_reference__connected.request.json.sparse_interactive.out: norm_only
+      support_reaction_force_magnitude_v2 result:support-action:9:case:cold:12:support:root:force_magnitude (N): 298575.2677594065 -> 298575.26775940653, 1 ulp; CR norm of {'Fx': -298451.3020910304, 'Fy': 8602.952851771477, 'Fz': 0.0} = 298575.26775940653: cand equals; base is CR: False
+      support_reaction_force_magnitude_v2 result:support-action:8:case:hot:12:support:root:force_magnitude (N): 1172235.122530021 -> 1172235.1225300212, 1 ulp; CR norm of {'Fx': 1172215.2411708564, 'Fy': 6827.214638828608, 'Fz': 0.0} = 1172235.1225300212: cand equals; base is CR: False
+  [main] fixtures/product_preview__rf_skew_t_cant_off_122_r1e-04.request.json.dense_scrutiny.out: norm_only
+      support_reaction_force_magnitude_v2 result:support-action:4:case:8:rigid:N0:force_magnitude (N): 1.6258317075882521e-12 -> 1.6258317075882523e-12, 1 ulp; CR norm of {'Fx': -2.6069424396979457e-14, 'Fy': -1.142953787169887e-12, 'Fz': 1.1559869233278357e-12} = 1.6258317075882523e-12: cand equals; base is CR: False
+  [extra] b7_gap_rf_skew_t_cant_off_122_r1e_04.json.dense_scrutiny.out: norm_only
+      support_reaction_force_magnitude_v2 result:support-action:4:case:8:rigid:N0:force_magnitude (N): 1.6258317075882521e-12 -> 1.6258317075882523e-12, 1 ulp; CR norm of {'Fx': -2.6069424396979457e-14, 'Fy': -1.142953787169887e-12, 'Fz': 1.1559869233278357e-12} = 1.6258317075882523e-12: cand equals; base is CR: False
+  [extra] kd5_rf_skew_t_cant_off_122_r1e_04.json.dense_scrutiny.out: norm_only
+      support_reaction_force_magnitude_v2 result:support-action:4:case:8:rigid:N0:force_magnitude (N): 1.6258317075882521e-12 -> 1.6258317075882523e-12, 1 ulp; CR norm of {'Fx': -2.6069424396979457e-14, 'Fy': -1.142953787169887e-12, 'Fz': 1.1559869233278357e-12} = 1.6258317075882523e-12: cand equals; base is CR: False
+committed raw fixtures beside requests: 30; candidate reproduces 30; base reproduces 27
+  base misses: ['core/reporting/result_export/tests/fixtures/load_reference_fallback_uz-sparse_interactive.raw.json', 'fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json', 'fixtures/product_preview/load_reference/connected-dense_scrutiny.raw.json']
+  candidate misses: []
+RESULT PASS

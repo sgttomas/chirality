@@ -1,0 +1,14 @@
+Uncommitted gate files, kept in WT/scratch/i112_gates/gate/ (too large to commit; part 1 is indexed by part1/index_*.tsv):
+part1_base/runs.jsonl  92a7665131f9e6406d724f1901c0197b6a2cb0f9df397d1a2ee82b2dcfb7b272  605711609 bytes, 884 records
+part1_base/full/  818 files; sha256 of the sorted per-file sha256 list: a8fb70b932978b729d5897d41ef64e8d5c2b15eba2d2dbedfb5a65fed8dceb5b
+part1_base/envelopes/  818 files; sha256 of the sorted per-file sha256 list: 32005949474219ce93cedae5020d4953bbfeba483ef33461fac15d9a44b6874f
+part1_base/stdout/  884 files; sha256 of the sorted per-file sha256 list: 89534411754a1f9e03b170b1224123ca05f2f3f4e2bab6a469f7dec10417858a
+part1_base/stderr/  884 files; sha256 of the sorted per-file sha256 list: 2606975467d98d0c4ca6fbdb91d5330de34d636350fdf9f3cc0e322b3b5761f1
+part1_cand/runs.jsonl  506dff8bec4fc8850d3ebb432e393d2a8ef95f30344afb5b8f7cae24df1da5fa  605711620 bytes, 884 records
+part1_cand/full/  818 files; sha256 of the sorted per-file sha256 list: 0b478a78fcee490b2a5b450ad596b2a81d3fbee970b1011e05392b2ff5049c85
+part1_cand/envelopes/  818 files; sha256 of the sorted per-file sha256 list: c3113bff631042b0a9fb4b0e61e0c19850e09e8ecb60e71887df56fa097a309c
+part1_cand/stdout/  884 files; sha256 of the sorted per-file sha256 list: 35abc1fdbc12e284be71b0fbea900e2bda996410a5d7c9efe886f5daa79c879a
+part1_cand/stderr/  884 files; sha256 of the sorted per-file sha256 list: 2606975467d98d0c4ca6fbdb91d5330de34d636350fdf9f3cc0e322b3b5761f1
+part2_run1/base/runs.jsonl  28646ff99dc2ffe9212b04dece31735eab55d74533091c243a3dd24dcc136393  592842 bytes, 4 records; full/ list sha256 5780a71265069fb91d7ed9ca4193bff06ea68b6e33353b96721b86fb36263001
+part2_run1/cand/runs.jsonl  a2ffa9a5ee37bef695ff93c310b8e9b08d235975115a8343f49a86f2e11aff0c  592711 bytes, 4 records; full/ list sha256 5780a71265069fb91d7ed9ca4193bff06ea68b6e33353b96721b86fb36263001
+gen_out/: 223 files (gen_out_sha256_regenerated.txt). Trees: WT/scratch/i112_gates/tree_{base,cand} (2,970 and 2,973 files; trees_check.txt). T9 outputs: WT/scratch/i112_gates/t9/{out,extra}_{base,cand}/ (t9/sha_*.txt).

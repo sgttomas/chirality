@@ -1,0 +1,59 @@
+I112 PR-N both-entry gate, part 1 (Mac; both entries, both modes; 884 runs per side, the 4 known dense timeouts excluded).
+
+Method (exactly I61's, itself KF2 B's and G1's full-envelope base):
+- The full-envelope t3_p1_probe (main.rs cd1052f7..., the calibration's 6 GiB heap cap), built --release --offline through
+  WT/tools/t3_cargo.sh from git-archive trees of projects/chirality-piping (execution/ excluded, every blob verified):
+    base      B = 7eae707bb7 (main),
+    candidate C = 8dd64c1835 (PR-N's code commit).
+- Lock: each tree's core/product_physics/Cargo.lock copied, then extended by cargo with the path package t3_p1_probe only
+  (result_export is already in PP's lock); no registry entry changed (lock_diff_probe_*.txt). The trees' PP lock is unchanged
+  (blob 833cbda4..., the same in B and C).
+- Probe binaries: probe_binaries_sha256.txt.
+- Requests: gen.py (c515ec63...) with python 3.13.14, from references.json 7b176dbb..., references.py 80d473a7... and
+  fixtures.json c061d734... (both trees' validation/benchmarks/numerical_integrity/fixtures.json). 223/223 files match
+  PLATFORM_CALIBRATION_MAC/gate/gen_out_sha256.txt.
+- Driver: G1's gate_run_base_full.py (8cf952ae...), unchanged, with run.py (8d9a32a3...) and compare.py (1c91b6c6...) unchanged,
+  each side as one WT/tools/t3_slot.sh job. Phase A: 24 runs at 10,000 members, 2 workers. Phase B: 860 runs, 4 workers.
+    base       2026-10-08T18:53:21Z-18:56:37Z (195 s)
+    candidate  2026-10-08T18:58:18Z-19:01:46Z (208 s)
+  Other T3 lanes ran on the host in their slots meanwhile (host_samples); this part compares bytes, not timing.
+- gate_check.py (8ad89fca..., K-D5's, unchanged), with the empty S11_EXCEPTIONS.json (138515b3...) and FORMATION_EXCEPTIONS.json (0e110b4b...):
+    base: PASS, 764 evaluated, 332 trusted, 0 trusted breach triples (captured 0, typed 0)
+    C:    PASS, 764 evaluated, 332 trusted, 0 trusted breach triples (captured 0, typed 0)
+  The 764 gate_check rows are identical in outcome, quality, standing, trusted and breaches (gate_rows_compare.txt).
+
+Identity comparison (compare_gate_kf2.py, 08e6bf45..., KF2's, unchanged; compare_part1.log): RESULT FAIL, as expected under PR-N,
+with 126 differences, all envelope hashes: 106 runs differ in full_envelope_sha256 only, 10 in summary_envelope_sha256 and
+full_envelope_sha256 (gate_rows_compare.txt lists all 116 runs). No run differs in outcome, ok, exit code or error text.
+Outcomes on both sides: solved 676, refused_blocked 142, refused_capture 64, refused_error 2. memory_refused 0 (no heap-cap
+abort), 0 timeouts, every exit code 0. stderr/ 884/884 identical (list sha256 2606975... on both sides, as I61's).
+
+The brief's acceptance rule, run by run (part1_norm_compare.py with normdiff2.py; part1_norm_compare.txt, part1_differing_runs.tsv,
+part1_norm_compare.json.gz):
+- full envelopes: 702 identical, 66 runs without one, 100 norm-only, 6 with a 2-ulp magnitude move, 10 with moved numbers in
+  diagnostic text; summary envelopes: 808 identical, 66 none, 10 with the same diagnostic-text moves.
+- runs.jsonl, stdout/ and stderr/: no residue in any run beyond the probe's timing field, run.envelope_sha256 (each equal to the
+  sha256 of its side's full envelope) and the summary span (judged above).
+- runs within the rule (identical or norm-only): 868 of 884; outside: 16.
+- moved published magnitudes: 5,254 in 108 runs (the 100 norm-only runs, the 6 runs of S1 and the 2 RF-WEAK runs of S2) (support_reaction_force_magnitude_v2 5,214, support_reaction_moment_magnitude_v2 40);
+  5,244 by 1 ulp and 10 by 2 ulps. Every candidate value equals the exactly computed correctly rounded Euclidean norm of the same
+  envelope's own Fx, Fy, Fz (or Mx, My, Mz) rows (5,254 of 5,254); no base value is correctly rounded, and every base value equals
+  this host's libm hypot chain hypot(hypot(x, y), z) of the same components (5,254 of 5,254); the components are identical on both sides.
+- outside the rule (stops):
+  S1. 10 magnitude moves of 2 ulps in 6 runs: RF-LARGE-CONT-n01000-ROT (dense S118, sparse S435; both entries) and
+      RF-LARGE-CONT-n10000-ROT sparse (S435, S2700, S3375; both entries). Each candidate value is the exact correctly rounded norm;
+      each base value is the libm chain, 2 ulps away.
+  S2. Numbers in diagnostic text, in 10 runs (diag_norm_check.txt):
+      - NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM (blocking), RF-MECH-DISC-CHAIN100 and RF-MECH-DISC-CHAIN100-SPRING, both modes and
+        entries: 4 entries of the printed mechanism direction, 5.196152422706631 -> 5.196152422706632 (1 ulp). Each is FK
+        assess_rigid_body's characteristic length (x the rigid translation 1): max over the free body D0-D3 of norm3(p - p_D0), whose
+        maximum is D3 - D0 = (3, 3, 3) in the run's request. The candidate's value is RN(sqrt 27) exactly; the base's is the libm chain.
+      - NUMERICAL_INTEGRITY_SENSITIVE (warning), RF-WEAK-W-3D-rho1e-08 dense, both entries: "A01.j: q=" 7.21050920018446e-7 ->
+        7.210509200184459e-7 (1 ulp). q is the formation guard's end bending magnitude norm2(My, Mz); the candidate's value is the
+        exact correctly rounded norm of the same envelope's published A01 end-j element_local_bending_moment_y and _z; the base's is
+        libm hypot of them.
+      These texts are not magnitude result fields, so the brief's rule does not cover them.
+
+Bulk: WT/scratch/i112_gates/gate/part1_{base,cand}/ (runs.jsonl about 606 MB each). Hashes and sizes are in ../uncommitted_sha256.txt.
+The base's full/ and envelopes/ list hashes (a8fb70b9..., 32005949...) equal I61's and KF2 B's, so B publishes the same 818 envelopes as
+U9's base; the candidate's are 0b478a78... and c3113bff....

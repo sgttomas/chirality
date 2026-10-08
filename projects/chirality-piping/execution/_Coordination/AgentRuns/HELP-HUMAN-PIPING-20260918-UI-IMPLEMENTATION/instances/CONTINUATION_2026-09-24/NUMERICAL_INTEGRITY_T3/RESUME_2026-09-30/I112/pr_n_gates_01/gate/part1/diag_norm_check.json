@@ -1,0 +1,2689 @@
+{
+ "items": [
+  {
+   "run": "RF-MECH-DISC-CHAIN100__dense_scrutiny__captured",
+   "source": "full",
+   "path": "/diagnostics/7",
+   "code": "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+   "severity": "blocking",
+   "explained": true,
+   "checks": [
+    {
+     "what": "D0:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D1:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D2:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D3:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-MECH-DISC-CHAIN100__dense_scrutiny__captured",
+   "source": "summary",
+   "path": "/diagnostics/7",
+   "code": "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+   "severity": "blocking",
+   "explained": true,
+   "checks": [
+    {
+     "what": "D0:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D1:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D2:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D3:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-MECH-DISC-CHAIN100__dense_scrutiny__typed",
+   "source": "full",
+   "path": "/diagnostics/6",
+   "code": "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+   "severity": "blocking",
+   "explained": true,
+   "checks": [
+    {
+     "what": "D0:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D1:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D2:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D3:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-MECH-DISC-CHAIN100__dense_scrutiny__typed",
+   "source": "summary",
+   "path": "/diagnostics/6",
+   "code": "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+   "severity": "blocking",
+   "explained": true,
+   "checks": [
+    {
+     "what": "D0:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D1:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D2:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D3:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-MECH-DISC-CHAIN100__sparse_interactive__captured",
+   "source": "full",
+   "path": "/diagnostics/7",
+   "code": "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+   "severity": "blocking",
+   "explained": true,
+   "checks": [
+    {
+     "what": "D0:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D1:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D2:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D3:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-MECH-DISC-CHAIN100__sparse_interactive__captured",
+   "source": "summary",
+   "path": "/diagnostics/7",
+   "code": "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+   "severity": "blocking",
+   "explained": true,
+   "checks": [
+    {
+     "what": "D0:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D1:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D2:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D3:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-MECH-DISC-CHAIN100__sparse_interactive__typed",
+   "source": "full",
+   "path": "/diagnostics/6",
+   "code": "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+   "severity": "blocking",
+   "explained": true,
+   "checks": [
+    {
+     "what": "D0:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D1:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D2:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D3:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-MECH-DISC-CHAIN100__sparse_interactive__typed",
+   "source": "summary",
+   "path": "/diagnostics/6",
+   "code": "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+   "severity": "blocking",
+   "explained": true,
+   "checks": [
+    {
+     "what": "D0:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D1:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D2:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D3:UX direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-MECH-DISC-CHAIN100-SPRING__dense_scrutiny__captured",
+   "source": "full",
+   "path": "/diagnostics/7",
+   "code": "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+   "severity": "blocking",
+   "explained": true,
+   "checks": [
+    {
+     "what": "D0:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D1:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D2:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D3:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-MECH-DISC-CHAIN100-SPRING__dense_scrutiny__captured",
+   "source": "summary",
+   "path": "/diagnostics/7",
+   "code": "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+   "severity": "blocking",
+   "explained": true,
+   "checks": [
+    {
+     "what": "D0:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D1:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D2:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D3:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-MECH-DISC-CHAIN100-SPRING__dense_scrutiny__typed",
+   "source": "full",
+   "path": "/diagnostics/6",
+   "code": "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+   "severity": "blocking",
+   "explained": true,
+   "checks": [
+    {
+     "what": "D0:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D1:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D2:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D3:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-MECH-DISC-CHAIN100-SPRING__dense_scrutiny__typed",
+   "source": "summary",
+   "path": "/diagnostics/6",
+   "code": "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+   "severity": "blocking",
+   "explained": true,
+   "checks": [
+    {
+     "what": "D0:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D1:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D2:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D3:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-MECH-DISC-CHAIN100-SPRING__sparse_interactive__captured",
+   "source": "full",
+   "path": "/diagnostics/7",
+   "code": "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+   "severity": "blocking",
+   "explained": true,
+   "checks": [
+    {
+     "what": "D0:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D1:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D2:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D3:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-MECH-DISC-CHAIN100-SPRING__sparse_interactive__captured",
+   "source": "summary",
+   "path": "/diagnostics/7",
+   "code": "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+   "severity": "blocking",
+   "explained": true,
+   "checks": [
+    {
+     "what": "D0:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D1:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D2:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D3:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-MECH-DISC-CHAIN100-SPRING__sparse_interactive__typed",
+   "source": "full",
+   "path": "/diagnostics/6",
+   "code": "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+   "severity": "blocking",
+   "explained": true,
+   "checks": [
+    {
+     "what": "D0:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D1:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D2:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D3:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-MECH-DISC-CHAIN100-SPRING__sparse_interactive__typed",
+   "source": "summary",
+   "path": "/diagnostics/6",
+   "code": "NUMERICAL_INTEGRITY_PHYSICAL_MECHANISM",
+   "severity": "blocking",
+   "explained": true,
+   "checks": [
+    {
+     "what": "D0:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D1:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D2:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    },
+    {
+     "what": "D3:UY direction entry (characteristic length x rigid translation 1)",
+     "body_nodes": [
+      "D0",
+      "D1",
+      "D2",
+      "D3"
+     ],
+     "origin": "D0",
+     "components": {
+      "D0": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "D1": [
+       3.0,
+       0.0,
+       0.0
+      ],
+      "D2": [
+       3.0,
+       3.0,
+       0.0
+      ],
+      "D3": [
+       3.0,
+       3.0,
+       3.0
+      ]
+     },
+     "base": "5.196152422706631",
+     "cand": "5.196152422706632",
+     "ulps": 1,
+     "cr_norm": "5.196152422706632",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-WEAK-W-3D-rho1e-08__dense_scrutiny__captured",
+   "source": "full",
+   "path": "/diagnostics/2",
+   "code": "NUMERICAL_INTEGRITY_SENSITIVE",
+   "severity": "warning",
+   "explained": true,
+   "checks": [
+    {
+     "what": "A01.j q (formation guard end bending magnitude)",
+     "components": {
+      "result:moment:A01:bending-y:end-j": 3.999771536200569e-07,
+      "result:moment:A01:bending-z:end-j": -5.999439189136303e-07
+     },
+     "base": "7.21050920018446e-7",
+     "cand": "7.210509200184459e-7",
+     "ulps": 1,
+     "cr_norm": "7.210509200184459e-07",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-WEAK-W-3D-rho1e-08__dense_scrutiny__captured",
+   "source": "summary",
+   "path": "/diagnostics/2",
+   "code": "NUMERICAL_INTEGRITY_SENSITIVE",
+   "severity": "warning",
+   "explained": true,
+   "checks": [
+    {
+     "what": "A01.j q (formation guard end bending magnitude)",
+     "components": {
+      "result:moment:A01:bending-y:end-j": 3.999771536200569e-07,
+      "result:moment:A01:bending-z:end-j": -5.999439189136303e-07
+     },
+     "base": "7.21050920018446e-7",
+     "cand": "7.210509200184459e-7",
+     "ulps": 1,
+     "cr_norm": "7.210509200184459e-07",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-WEAK-W-3D-rho1e-08__dense_scrutiny__typed",
+   "source": "full",
+   "path": "/diagnostics/2",
+   "code": "NUMERICAL_INTEGRITY_SENSITIVE",
+   "severity": "warning",
+   "explained": true,
+   "checks": [
+    {
+     "what": "A01.j q (formation guard end bending magnitude)",
+     "components": {
+      "result:moment:A01:bending-y:end-j": 3.999771536200569e-07,
+      "result:moment:A01:bending-z:end-j": -5.999439189136303e-07
+     },
+     "base": "7.21050920018446e-7",
+     "cand": "7.210509200184459e-7",
+     "ulps": 1,
+     "cr_norm": "7.210509200184459e-07",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  },
+  {
+   "run": "RF-WEAK-W-3D-rho1e-08__dense_scrutiny__typed",
+   "source": "summary",
+   "path": "/diagnostics/2",
+   "code": "NUMERICAL_INTEGRITY_SENSITIVE",
+   "severity": "warning",
+   "explained": true,
+   "checks": [
+    {
+     "what": "A01.j q (formation guard end bending magnitude)",
+     "components": {
+      "result:moment:A01:bending-y:end-j": 3.999771536200569e-07,
+      "result:moment:A01:bending-z:end-j": -5.999439189136303e-07
+     },
+     "base": "7.21050920018446e-7",
+     "cand": "7.210509200184459e-7",
+     "ulps": 1,
+     "cr_norm": "7.210509200184459e-07",
+     "cand_is_cr": true,
+     "base_is_libm_hypot": true
+    }
+   ]
+  }
+ ],
+ "all_explained": true
+}
