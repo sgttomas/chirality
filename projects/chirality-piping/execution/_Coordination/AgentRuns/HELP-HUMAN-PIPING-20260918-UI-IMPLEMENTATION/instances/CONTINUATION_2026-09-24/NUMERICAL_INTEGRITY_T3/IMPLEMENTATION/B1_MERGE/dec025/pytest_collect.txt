@@ -1,0 +1,3 @@
+pytest --collect-only -q tests (P), under t3_slot.sh
+main-baseline dd50b1692c: 3833 tests collected
+candidate f4a0430412: 4458 tests collected

@@ -1,0 +1,5 @@
+rigid rotation about local z, theta=1e-3: nonzero end actions {1: -1980.0, 7: 1980.0}
+delta = 0.0003325438185816374 end Fy_i, Fy_j = -299.28943672347367 299.28943672347367 Mz_i, Mz_j = 0.0 0.0
+net moment about node i (z) = 658.4367607916421 N*m  (k*delta*L = 658.4367607916421 )
+cited 900000*3.3254e-4*2.2 = 658.4292
+control lateral=0 rigid rotation max|f| = 0

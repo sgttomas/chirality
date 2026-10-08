@@ -1,0 +1,10 @@
+[package]
+name = "i111_m07_probe"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+open_pipe_stress_frame_kernel = { path = "../../../numerics/projects/chirality-piping/core/solver/frame_kernel" }
+
+[workspace]

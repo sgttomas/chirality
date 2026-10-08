@@ -1,0 +1,4 @@
+probe (FK-linked binary, source in probe/) was queued through WT/tools/t3_cargo.sh at 2026-10-08T16:57:07Z behind ROOT's exclusive DEC-025 (START-EXCLUSIVE 16:23:45Z, still running at 17:19Z).
+I111 withdrew its own queued waiter at 2026-10-08T17:19Z without it starting: no build, no run, no output.
+The defect evidence therefore rests on local_check.out (exact transcription of FK lib.rs:1739-1758) and the independent 2026-09-08 frozen record (evidence.json F5-F8).
+Rerun when the lock is free: cd WT/scratch/i111_m07/probe && WT/tools/t3_cargo.sh run --locked --offline --release --manifest-path WT/scratch/i111_m07/probe/Cargo.toml --target-dir WT/targets/i111-m07

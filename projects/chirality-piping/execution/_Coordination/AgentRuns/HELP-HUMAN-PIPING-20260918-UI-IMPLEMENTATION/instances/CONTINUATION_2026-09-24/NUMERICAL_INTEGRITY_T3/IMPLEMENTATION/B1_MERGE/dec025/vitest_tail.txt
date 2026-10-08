@@ -1,0 +1,8 @@
+    at runWithFiberInDEV (WT/sweep-skewpin/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+    at commitHookEffectListMount (WT/sweep-skewpin/projects/chirality-piping/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29) undefined
+
+ Test Files  141 passed (141)
+      Tests  4245 passed (4245)
+   Start at  11:19:57
+   Duration  79.24s (transform 21.64s, setup 7.48s, import 50.73s, tests 429.75s, environment 33.64s)
+
