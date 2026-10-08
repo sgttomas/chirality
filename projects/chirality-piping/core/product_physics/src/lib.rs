@@ -14875,6 +14875,26 @@ mod tests {
             changed > 0 && changed <= 4,
             "expected named inherited fixture pressures for {purpose}"
         );
+        // U3 (D-2 A1): a pressure primitive of any value, zero included, is refused
+        // on every route, so the named pressures are removed rather than zeroed. The
+        // two M07-held tests (they run inside the historical scope) keep the zeroed
+        // primitives unchanged until the owner's ruling.
+        if !matches!(
+            purpose,
+            "tests::current_composite_derived_normal_friction_and_reversal"
+                | "tests::expansion_joint_user_stiffness_emits_macro_element_review_rows"
+        ) {
+            for case in &mut input.model.load_cases {
+                let case_id = case.id.clone();
+                case.primitive_loads.retain(|load| {
+                    !matches!(
+                        (case_id.as_str(), load.id.as_str()),
+                        ("load:L-100", "load:L-100-P" | "load:L-100-P-EJ")
+                            | ("load:L-200", "load:L-200-P" | "load:L-200-P-EJ")
+                    )
+                });
+            }
+        }
         // T0R (M07 containment): omit the demo's realized joint C-150, which
         // the ordinary route refuses (JOINT_ELEMENT_EQUILIBRIUM_UNQUALIFIED).
         input.model.components.retain(|component| component.id != "component:C-150");

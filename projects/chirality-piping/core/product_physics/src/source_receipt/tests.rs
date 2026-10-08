@@ -416,8 +416,11 @@ fn composite_resource_policy_cannot_promote_old_method_or_refund_failure() {
     assert!(limited.rejected > 0 && limited.publication_charged == 0);
 }
 
+/// U3 (D-2 A1): the retired `1.0.0/legacy_pressure_v1` label is refused before any
+/// solve with `PRESSURE_MODEL_REAUTHOR_REQUIRED`, zero pressure included; nothing is
+/// published and no source blocks are recovered.
 #[test]
-fn legacy_model_three_retains_ordinary_route_without_old_source_namespace() {
+fn retired_legacy_pressure_label_is_refused_on_the_ordinary_route() {
     let mut value = exact_raw();
     value["model"]["pressure_contract"] = json!({"version":"1.0.0","mode":"legacy_pressure_v1"});
     value["model"]["load_cases"][0]
@@ -429,23 +432,56 @@ fn legacy_model_three_retains_ordinary_route_without_old_source_namespace() {
         PreviewSolverMode::SparseInteractive,
     ] {
         let envelope = run_linear_static_preview_value_with_mode(value.clone(), mode).unwrap();
+        assert_eq!(envelope.status.mechanics, "MODEL_INCOMPLETE");
+        assert!(envelope.results.is_empty());
         assert!(envelope.source_block_recovery.is_none());
+        let refusal = envelope
+            .diagnostics
+            .iter()
+            .find(|d| d.code == "PRESSURE_MODEL_REAUTHOR_REQUIRED")
+            .unwrap_or_else(|| panic!("{:?}", envelope.diagnostics));
+        assert_eq!(refusal.severity, "blocking");
+        assert_eq!(refusal.affected_refs, ["pressure_contract"]);
+        assert!(refusal.message.contains("2.0.0/exact_straight_pressure_v2"));
         assert!(!envelope
             .diagnostics
             .iter()
             .any(|d| d.code == "SOURCE_BLOCK_RECOVERY_SELECTED"));
-        assert!(
-            envelope
-                .diagnostics
-                .iter()
-                .any(|d| d.code == "SOURCE_BLOCK_RECOVERY_UNAVAILABLE"
-                    && d.message.contains("legacy source-blocks namespace")),
-            "{:?}",
-            envelope.diagnostics
-        );
-        assert!(!envelope
+    }
+}
+
+/// U3 (D-2 A1), the retained route: the labelled document is outside D1 (D1.3), so the
+/// retained entry publishes the ordinary route's refusal and never a successor.
+#[test]
+fn retired_legacy_pressure_label_is_refused_on_the_retained_entry() {
+    use crate::retained_memory::{AdmissionRefusal, D1Clause};
+    let mut value = exact_raw();
+    value["model"]["pressure_contract"] = json!({"version":"1.0.0","mode":"legacy_pressure_v1"});
+    value["model"]["load_cases"][0]
+        .as_object_mut()
+        .unwrap()
+        .remove("pressure_regions");
+    for mode in [
+        PreviewSolverMode::DenseScrutiny,
+        PreviewSolverMode::SparseInteractive,
+    ] {
+        let ordinary = serde_json::to_vec(&run_linear_static_preview_value_with_mode(value.clone(), mode).unwrap()).unwrap();
+        let direct = crate::run_linear_static_preview_value_with_retained_direct(value.clone(), mode).unwrap();
+        assert!(matches!(
+            direct.admission().unwrap().law().domain,
+            Some(AdmissionRefusal::Family(D1Clause::Namespace, _))
+        ));
+        assert!(direct.retained().is_none());
+        assert!(direct
+            .envelope()
             .diagnostics
             .iter()
-            .any(|d| d.code == "PREVIEW_CONTRACT_VERSION_MISMATCH"));
+            .any(|d| d.code == "PRESSURE_MODEL_REAUTHOR_REQUIRED" && d.affected_refs == ["pressure_contract"]));
+        match direct.into_publication() {
+            crate::RetainedPublication::Ordinary(envelope) => {
+                assert_eq!(serde_json::to_vec(&envelope).unwrap(), ordinary)
+            }
+            crate::RetainedPublication::Successor(_) => panic!("a successor for a refused document"),
+        }
     }
 }

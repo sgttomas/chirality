@@ -17,6 +17,9 @@ use std::collections::{BTreeMap, HashMap, HashSet};
 
 const EXACT_MODE: &str = "exact_straight_pressure_v2";
 const EXACT_VERSION: &str = "2.0.0";
+/// The retired legacy contract: recognized only so that it is refused by name.
+const RETIRED_MODE: &str = "legacy_pressure_v1";
+const RETIRED_VERSION: &str = "1.0.0";
 const PRESSURE_BASIS: &str = "internal_differential_zero_external_v1";
 const MATERIAL_BASIS: &str = "homogeneous_isotropic_E_nu_v1";
 /// Representation agreement only, not an engineering geometry tolerance.
@@ -133,13 +136,13 @@ pub(crate) fn validate_profile(model: &PreviewModel, diagnostics: &mut Vec<Diagn
                 "model document 0.3.0 requires an explicit pressure contract version and mode",
             ),
             Some(contract) => {
-                if !matches!(
-                    (contract.version.as_deref(), contract.mode.as_deref()),
-                    (Some("1.0.0"), Some("legacy_pressure_v1"))
-                        | (Some(EXACT_VERSION), Some(EXACT_MODE))
-                ) {
+                let declared = (contract.version.as_deref(), contract.mode.as_deref());
+                if declared == (Some(RETIRED_VERSION), Some(RETIRED_MODE)) {
+                    problem(diagnostics, "PRESSURE_MODEL_REAUTHOR_REQUIRED", &["pressure_contract"],
+                        "the 1.0.0/legacy_pressure_v1 pressure contract is retired; re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pressure_regions (an explicit [] for an unpressurized case) and E/nu materials");
+                } else if declared != (Some(EXACT_VERSION), Some(EXACT_MODE)) {
                     problem(diagnostics, "PRESSURE_CONTRACT_UNSUPPORTED", &["pressure_contract"],
-                        "supported pressure contracts are 1.0.0/legacy_pressure_v1 and 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back");
+                        "the supported pressure contract is 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back");
                 }
             }
         },
@@ -210,17 +213,21 @@ pub(crate) fn validate_profile(model: &PreviewModel, diagnostics: &mut Vec<Diagn
                 problem(diagnostics, "PREVIEW_CONTRACT_VERSION_MISMATCH", &[&case.id, "pressure_regions"],
                     "pressure_regions requires the explicit exact pressure profile; legacy cases must omit the namespace");
             }
+            // Legacy pressure is retired on every route: a pressure primitive of any
+            // value, zero included, is refused in a document without the exact contract.
             for load in &case.primitive_loads {
-                if (load.category == "pressure" || load.dimension == "pressure")
-                    && load.magnitude.value != 0.0
-                {
+                if load.category == "pressure" || load.dimension == "pressure" {
                     // Only named in-crate historical tests can enter this scope; normal builds have no selector.
                     #[cfg(test)]
                     if crate::historical_pressure_reference::active() {
                         continue;
                     }
                     problem(diagnostics, "PRESSURE_MODEL_REAUTHOR_REQUIRED", &[&case.id, &load.id],
-                        "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs");
+                        if load.magnitude.value != 0.0 {
+                            "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs"
+                        } else {
+                            "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pressure_regions (an explicit [] for an unpressurized case) and E/nu materials"
+                        });
                 }
             }
             continue;
@@ -1331,10 +1338,36 @@ mod tests {
         assert!(diagnostics
             .iter()
             .any(|d| d.code == "PRESSURE_MODEL_REAUTHOR_REQUIRED"));
+        // Retired product-wide (U3, D-2 A1): a zero-valued pressure primitive is
+        // refused too, by the same code, with the re-author text.
         old["load_cases"][0]["primitive_loads"][0]["magnitude"]["value"] = json!(0.0);
+        diagnostics.clear();
+        validate_profile(&parse(old.clone()), &mut diagnostics);
+        assert_eq!(diagnostics.len(), 1, "{diagnostics:?}");
+        assert_eq!(diagnostics[0].code, "PRESSURE_MODEL_REAUTHOR_REQUIRED");
+        assert!(diagnostics[0].message.contains("2.0.0/exact_straight_pressure_v2"));
+        // Without the primitive, the 0.2.0 document is pressure-free and admitted.
+        old["load_cases"][0]["primitive_loads"] = json!([]);
         diagnostics.clear();
         validate_profile(&parse(old), &mut diagnostics);
         assert!(diagnostics.is_empty(), "{diagnostics:?}");
+        // The retired 1.0.0/legacy_pressure_v1 label is refused with the re-author code;
+        // any other contract stays unsupported.
+        let mut labelled = input();
+        labelled["pressure_contract"] = json!({"version":"1.0.0","mode":"legacy_pressure_v1"});
+        labelled["load_cases"][0].as_object_mut().unwrap().remove("pressure_regions");
+        let mut diagnostics = Vec::new();
+        validate_profile(&parse(labelled), &mut diagnostics);
+        assert_eq!(
+            diagnostics.iter().map(|d| d.code.as_str()).collect::<Vec<_>>(),
+            ["PRESSURE_MODEL_REAUTHOR_REQUIRED"],
+            "{diagnostics:?}"
+        );
+        assert_eq!(diagnostics[0].affected_refs, ["pressure_contract"]);
+        assert!(diagnostics[0].message.contains("retired") && diagnostics[0].message.contains("2.0.0/exact_straight_pressure_v2"));
+        let mut unknown = input();
+        unknown["pressure_contract"] = json!({"version":"1.0.1","mode":"legacy_pressure_v1"});
+        expect_rejected(unknown, "PRESSURE_CONTRACT_UNSUPPORTED");
     }
 
     #[test]
