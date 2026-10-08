@@ -1,0 +1,42 @@
+{
+ "pp": {
+  "base": {
+   "FAILED": 1,
+   "ignored": 11,
+   "ok": 591
+  },
+  "candidate": {
+   "FAILED": 1,
+   "ignored": 11,
+   "ok": 599
+  },
+  "changed": {},
+  "only_base": {
+   "src/lib.rs::retained_memory::law_tests::b1_sa_runner_oracle_literal_is_load_cases_plus_one": "ok"
+  },
+  "only_candidate": {
+   "src/lib.rs::retained_memory::law_tests::b2_a_admitted_combinations_keep_the_exact_ordinary_bytes_until_b2_p": "ok",
+   "src/lib.rs::retained_memory::law_tests::b2_a_combination_ids_are_disjoint_from_load_case_ids": "ok",
+   "src/lib.rs::retained_memory::law_tests::b2_a_d1_admits_case_equivalents_up_to_three": "ok",
+   "src/lib.rs::retained_memory::law_tests::b2_a_g_c_bounds_are_per_case_equivalent": "ok",
+   "src/lib.rs::retained_memory::law_tests::b2_a_runner_oracle_literal_is_case_equivalents_plus_one": "ok",
+   "src/lib.rs::retained_memory::law_tests::b2_a_terms_and_range_operands_are_at_most_three": "ok",
+   "src/lib.rs::retained_memory::law_tests::b2_a_typed_census_reads_every_combination_string": "ok",
+   "src/lib.rs::retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0": "ok",
+   "src/lib.rs::retained_memory::law_tests::b3a_direct_entry_oracles": "ok"
+  }
+ },
+ "runner": {
+  "base": {
+   "FAILED": 2,
+   "ok": 85
+  },
+  "candidate": {
+   "FAILED": 2,
+   "ok": 85
+  },
+  "changed": {},
+  "only_base": {},
+  "only_candidate": {}
+ }
+}

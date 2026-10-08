@@ -1,0 +1,294 @@
+[
+ {
+  "id": "B2A-01",
+  "check": "combination ids disjoint (C-9)",
+  "filter": "b2_a_combination_ids",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 0,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_combination_ids_are_disjoint_from_load_case_ids"
+  ]
+ },
+ {
+  "id": "B2A-02",
+  "check": "z <= 2: the cap",
+  "filter": "b2_a_d1_admits",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 0,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_d1_admits_case_equivalents_up_to_three"
+  ]
+ },
+ {
+  "id": "B2A-03",
+  "check": "z <= 2: combination counting",
+  "filter": "b2_a_d1_admits",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 0,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_d1_admits_case_equivalents_up_to_three"
+  ]
+ },
+ {
+  "id": "B2A-04",
+  "check": "C_eq = c + z: combination counting (z dropped)",
+  "filter": "b2_a_",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 5,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_runner_oracle_literal_is_case_equivalents_plus_one",
+   "retained_memory::law_tests::b2_a_d1_admits_case_equivalents_up_to_three"
+  ]
+ },
+ {
+  "id": "B2A-05",
+  "check": "C_eq <= 3: the bound",
+  "filter": "b2_a_",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 5,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_runner_oracle_literal_is_case_equivalents_plus_one",
+   "retained_memory::law_tests::b2_a_d1_admits_case_equivalents_up_to_three"
+  ]
+ },
+ {
+  "id": "B2A-06",
+  "check": "h <= 3: the term bound",
+  "filter": "b2_a_terms",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 0,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_terms_and_range_operands_are_at_most_three"
+  ]
+ },
+ {
+  "id": "B2A-07",
+  "check": "h: term counting over every combination",
+  "filter": "b2_a_terms",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 0,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_terms_and_range_operands_are_at_most_three"
+  ]
+ },
+ {
+  "id": "B2A-08",
+  "check": "h: the typed terms capacity",
+  "filter": "b2_a_terms",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 0,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_terms_and_range_operands_are_at_most_three"
+  ]
+ },
+ {
+  "id": "B2A-09",
+  "check": "range operands <= 3: the bound",
+  "filter": "b2_a_terms",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 0,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_terms_and_range_operands_are_at_most_three"
+  ]
+ },
+ {
+  "id": "B2A-10",
+  "check": "range operands: the typed capacity",
+  "filter": "b2_a_terms",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 0,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_terms_and_range_operands_are_at_most_three"
+  ]
+ },
+ {
+  "id": "B2A-11",
+  "check": "combinations typed capacity <= 2",
+  "filter": "typed_capacity_and_units_rows",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 0,
+  "killed_by": [
+   "retained_memory::law_tests::typed_capacity_and_units_rows_read_the_actual_owners"
+  ]
+ },
+ {
+  "id": "B2A-12",
+  "check": "the typed census reads combination strings",
+  "filter": "b2_a_typed_census",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 0,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_typed_census_reads_every_combination_string"
+  ]
+ },
+ {
+  "id": "B2A-13",
+  "check": "G-C: EnvelopeResults <= C_eq * P_final (vs c * P_final; equivalent while C_eq's cap = C's)",
+  "filter": "b2_a_g_c|b1_sa_",
+  "rc": 0,
+  "killed": false,
+  "compile_error": false,
+  "passed": 8,
+  "killed_by": []
+ },
+ {
+  "id": "B3A-01",
+  "check": "L3: the contract version",
+  "filter": "b3a_",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 0,
+  "killed_by": [
+   "retained_memory::law_tests::b3a_direct_entry_oracles",
+   "retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0"
+  ]
+ },
+ {
+  "id": "B3A-02",
+  "check": "L3: the contract mode",
+  "filter": "b3a_",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 1,
+  "killed_by": [
+   "retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0"
+  ]
+ },
+ {
+  "id": "B3A-03",
+  "check": "L3: the schema 0.3.0",
+  "filter": "b3a_",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 1,
+  "killed_by": [
+   "retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0"
+  ]
+ },
+ {
+  "id": "B3A-04",
+  "check": "D1.3 refusal map: a contract outside its branch is PressureContract",
+  "filter": "b3a_|every_family_clause",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 0,
+  "killed_by": [
+   "retained_memory::law_tests::every_family_clause_refuses_with_its_fact",
+   "retained_memory::law_tests::b3a_direct_entry_oracles",
+   "retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0"
+  ]
+ },
+ {
+  "id": "B3A-05",
+  "check": "the typed census reads the contract strings",
+  "filter": "b3a_",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 1,
+  "killed_by": [
+   "retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0"
+  ]
+ },
+ {
+  "id": "B3B-01",
+  "check": "exact D1.4: no combination (ruling 4)",
+  "filter": "b3b_",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 1,
+  "killed_by": [
+   "retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions"
+  ]
+ },
+ {
+  "id": "B3B-02",
+  "check": "exact D1.5: regions absent refuse",
+  "filter": "b3b_",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 1,
+  "killed_by": [
+   "retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions"
+  ]
+ },
+ {
+  "id": "B3B-03",
+  "check": "exact D1.5: non-empty regions refuse",
+  "filter": "b3b_",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 1,
+  "killed_by": [
+   "retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions"
+  ]
+ },
+ {
+  "id": "B3B-04",
+  "check": "D1.5 on L and L3: Some([]) refuses",
+  "filter": "b3a_|every_family_clause",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 1,
+  "killed_by": [
+   "retained_memory::law_tests::every_family_clause_refuses_with_its_fact",
+   "retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0"
+  ]
+ },
+ {
+  "id": "B3B-05",
+  "check": "E: the contract version",
+  "filter": "b3b_",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 1,
+  "killed_by": [
+   "retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions"
+  ]
+ },
+ {
+  "id": "B3B-06",
+  "check": "E: 0.4.0 stays out",
+  "filter": "b3b_",
+  "rc": 101,
+  "killed": true,
+  "compile_error": false,
+  "passed": 1,
+  "killed_by": [
+   "retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions"
+  ]
+ }
+]

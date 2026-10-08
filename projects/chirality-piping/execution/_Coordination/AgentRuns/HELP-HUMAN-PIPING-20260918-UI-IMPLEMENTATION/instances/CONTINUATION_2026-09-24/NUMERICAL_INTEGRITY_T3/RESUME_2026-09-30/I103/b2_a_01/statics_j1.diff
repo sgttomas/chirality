@@ -1,0 +1,3182 @@
+diff --git a/projects/chirality-piping/apps/desktop/src/features/results/numericalResultQuality.ts b/projects/chirality-piping/apps/desktop/src/features/results/numericalResultQuality.ts
+index ffba239340..0111f06f10 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/results/numericalResultQuality.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/results/numericalResultQuality.ts
+@@ -31,7 +31,7 @@ export const LOAD_REFERENCE_SOURCE_CONTRACT_SHA256 = "d1628194a7730f427843b00228
+  * so that this module's top level never reads a binding across the import cycle
+  * (the reader's G7 calls `sourceContract`). Imported bindings are read in functions only. */
+ export const PREVIEW_PHYSICS_RETAINED_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/preview-physics-retained-1";
+-export const PREVIEW_PHYSICS_RETAINED_CONTRACT_SHA256 = "c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8";
++export const PREVIEW_PHYSICS_RETAINED_CONTRACT_SHA256 = "b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c";
+ export const PREVIEW_PHYSICS_RETAINED_PROFILE = "product_preview_retained_w1a_v2";
+ /** A receipt member, or a raw row with the W1 method token, offered under any
+  * other identity (I66 F-5: the base readers' closed lists do not name it). */
+diff --git a/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts b/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts
+index 5eb8a8e85e..2baa75b571 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts
+@@ -98,7 +98,7 @@ const SUMMARY_COVERAGE_COMPLETE = true;
+ const COVERAGE_KEYS = ['body', 'has_data', 'stop'];
+ const BASE_ID = 'openpipestress.result_semantics/0.3.0/preview-physics-1';
+ const BASE_HASH = 'ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a';
+-const TABLE_HASH = 'c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8';
++const TABLE_HASH = 'b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c';
+ const COMPONENTS = ['UX', 'UY', 'UZ', 'RX', 'RY', 'RZ'];
+ const KINDS = ['translation', 'rotation', 'force', 'moment'];
+ const SLOTS = ['s128', 's256', 's512', 's1024', 'v256', 'v512', 'v1024'];
+@@ -184,7 +184,7 @@ async function header(source: Obj): Promise<void> {
+   const producer = isObj(source) ? source.producer : undefined;
+   fail(isObj(producer) && producer.semantic_contract_id === RETAINED_PRECISION_ID && source.formulation_basis?.profile_id === RETAINED_PRECISION_PROFILE);
+   fail(source.schema_version === '0.2.0' && producer.component_name === 'open_pipe_stress_product_physics' && producer.component_version === '0.2.0');
+-  fail(table.semantic_contract_id === RETAINED_PRECISION_ID && table.formulation_profile_id === RETAINED_PRECISION_PROFILE && table.inherited_semantic_contract_sha256 === BASE_HASH && same(table.product_formation_definitions, [{ id: PREPARED_DEFINITION_ID, sha256: PREPARED_DEFINITION_HASH }]), 'FORMATION_MISMATCH');
++  fail(table.semantic_contract_id === RETAINED_PRECISION_ID && table.formulation_profile_id === RETAINED_PRECISION_PROFILE && table.inherited_semantic_contract_sha256 === BASE_HASH && same(table.product_formation_definitions, [{ id: PREPARED_DEFINITION_ID, sha256: PREPARED_DEFINITION_HASH }, { id: 'RP-PREPARED-COMBINATION-DUAL-v1', sha256: 'd3fde142aff9c05d709b2fc2a04add42e14c66be3e2b2ba82012da57edf3d957' }]), 'FORMATION_MISMATCH');
+   fail(await hash('retained_precision_formation_v1', definition) === PREPARED_DEFINITION_HASH, 'FORMATION_MISMATCH');
+   fail(await sha256Text(tableBytes) === TABLE_HASH && await sha256Text(inheritedTableBytes) === table.inherited_semantic_contract_sha256);
+   // Settled reading (D2): with the retained-precision contract named, an absent or mistyped
+diff --git a/projects/chirality-piping/core/analysis_runs/compatibility.py b/projects/chirality-piping/core/analysis_runs/compatibility.py
+index 3dd7560e1e..7fe62e0acc 100644
+--- a/projects/chirality-piping/core/analysis_runs/compatibility.py
++++ b/projects/chirality-piping/core/analysis_runs/compatibility.py
+@@ -219,7 +219,7 @@ _PREVIEW_PHYSICS_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_
+ # checked only by the accepted reader (`retained_precision`), and its standing
+ # comes only from that reader's verified receipt (D1 5 item 3).
+ PREVIEW_PHYSICS_RETAINED_CONTRACT_ID = "openpipestress.result_semantics/0.3.0/preview-physics-retained-1"
+-PREVIEW_PHYSICS_RETAINED_CONTRACT_SHA256 = "c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8"
++PREVIEW_PHYSICS_RETAINED_CONTRACT_SHA256 = "b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c"
+ _PREVIEW_PHYSICS_RETAINED_CONTRACT_PATH = _CONTRACT_PATH.with_name("semantic_contract_v0_3_preview_physics_retained_1.json")
+ RETAINED_METHOD = "contribution_preserving_multiprecision_v1"
+ RETAINED_PRECISION_DOWNGRADE_FORBIDDEN = "RETAINED_PRECISION_DOWNGRADE_FORBIDDEN"
+diff --git a/projects/chirality-piping/core/analysis_runs/retained_precision.py b/projects/chirality-piping/core/analysis_runs/retained_precision.py
+index cfb86c641b..7c91a9b2a6 100644
+--- a/projects/chirality-piping/core/analysis_runs/retained_precision.py
++++ b/projects/chirality-piping/core/analysis_runs/retained_precision.py
+@@ -20,7 +20,7 @@ CONTRACT_ID = "openpipestress.result_semantics/0.3.0/preview-physics-retained-1"
+ PROFILE = "product_preview_retained_w1a_v2"
+ DEFINITION_ID = "RP-PREPARED-ORDINARY-DUAL-v1"
+ DEFINITION_HASH = "a7ed7ca0bf0bba6e8b821ca4befa00a0fa9541a83694be8b28ac63e39b1d0349"
+-TABLE_HASH = "c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8"
++TABLE_HASH = "b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c"
+ METHOD = "contribution_preserving_multiprecision_v1"
+ SAFE = (1 << 53) - 1
+ MAX_BITS = 0x7FEFFFFFFFFFFFFF
+diff --git a/projects/chirality-piping/core/product_physics/build.rs b/projects/chirality-piping/core/product_physics/build.rs
+index bb0b85340f..74ba7ecc37 100644
+--- a/projects/chirality-piping/core/product_physics/build.rs
++++ b/projects/chirality-piping/core/product_physics/build.rs
+@@ -30,7 +30,7 @@ fn main() {
+     let _ = writeln!(out, "cargo:rustc-env={IDENTITY_VARIABLE}={identity}");
+     // The reviewed inputs: the PP lock and the reader's statics, by SHA-256.
+     let root = std::env::var_os("CARGO_MANIFEST_DIR").map(std::path::PathBuf::from);
+-    let digests: [Option<[u8; 32]>; 14] = std::array::from_fn(|i| {
++    let digests: [Option<[u8; 32]>; 17] = std::array::from_fn(|i| {
+         let path = root.as_ref()?.join(REVIEWED_INPUTS[i]);
+         std::fs::read(path).ok().map(|bytes| sha256(&bytes))
+     });
+diff --git a/projects/chirality-piping/core/product_physics/src/build_identity.rs b/projects/chirality-piping/core/product_physics/src/build_identity.rs
+index a076357a3d..279b345b9e 100644
+--- a/projects/chirality-piping/core/product_physics/src/build_identity.rs
++++ b/projects/chirality-piping/core/product_physics/src/build_identity.rs
+@@ -145,7 +145,7 @@ pub(crate) const REVIEWED_INPUTS_VARIABLE: &str = "OPS_RETAINED_REVIEWED_INPUTS"
+ /// The reviewed inputs, relative to this package's manifest directory: the PP
+ /// lock, then the reader's statics in G4's ORIGINS.json order.
+ #[allow(dead_code)]
+-pub(crate) const REVIEWED_INPUTS: [&str; 14] = [
++pub(crate) const REVIEWED_INPUTS: [&str; 17] = [
+     "Cargo.lock",
+     "../../schemas/physics_source_recovery.schema.json",
+     "../../schemas/retained_precision_mp_v2.schema.json",
+@@ -160,11 +160,17 @@ pub(crate) const REVIEWED_INPUTS: [&str; 14] = [
+     "../../fixtures/results/semantic_contract_v0_3_physics_source_1.json",
+     "../../fixtures/results/semantic_contract_v0_3_source_blocks_1.json",
+     "../../schemas/source_block_recovery.schema.json",
++    // B2/B3 J1 (I93 REVISION_01 §1.4; B3-D decision B3D-18: appended, so existing
++    // positions keep their meaning): the combination and exact formation definitions
++    // and the physics-retained-1 table.
++    "../../fixtures/results/retained_precision_prepared_combination_v1.json",
++    "../../fixtures/results/retained_precision_prepared_exact_v1.json",
++    "../../fixtures/results/semantic_contract_v0_3_physics_retained_1.json",
+ ];
+ 
+ /// The reviewed-input text for the given digests (`None`: unreadable).
+ #[allow(dead_code)]
+-pub(crate) fn encode_reviewed_inputs(digests: &[Option<[u8; 32]>; 14]) -> String {
++pub(crate) fn encode_reviewed_inputs(digests: &[Option<[u8; 32]>; 17]) -> String {
+     const HEX: &[u8; 16] = b"0123456789abcdef";
+     let mut out = String::from(IDENTITY_VERSION);
+     for (path, digest) in REVIEWED_INPUTS.iter().zip(digests.iter()) {
+diff --git a/projects/chirality-piping/core/product_physics/src/retained_memory.rs b/projects/chirality-piping/core/product_physics/src/retained_memory.rs
+index c00c3cb853..eec95a653e 100644
+--- a/projects/chirality-piping/core/product_physics/src/retained_memory.rs
++++ b/projects/chirality-piping/core/product_physics/src/retained_memory.rs
+@@ -972,8 +972,11 @@ pub(super) struct RegisteredProfile {
+ static REGISTERED_PROFILES: &[RegisteredProfile] = &[RegisteredProfile {
+     // aarch64-apple-darwin, rustc 1.97.1 (8bab26f4f68e), profile=debug, opt_level=0,
+     // debug_assertions=true, panic=unwind, no RUSTFLAGS.
++    // reviewed_inputs: J1's interim re-pin on `b2` only (I93 REVISION_01 §1.4; RR decision 30),
++    // re-derived from the 17 inputs' sha256 in REVIEWED_INPUTS order. SQ2's registration
++    // supersedes it; identity, reader layouts and M are unchanged.
+     identity: "v1;rustc.release=1.97.1;rustc.commit=8bab26f4f68e0e26f0bb7960be334d5b520ea452;rustc.host=aarch64-apple-darwin;rustc.llvm=22.1.6;target=aarch64-apple-darwin;target.arch=aarch64;target.pointer_width=64;target.endian=little;target.os=macos;target.env=;panic=unwind;profile=debug;opt_level=0;debug_assertions=true;rustflags=;pkg=open_pipe_stress_product_physics@0.2.0",
+-    reviewed_inputs: "v1;Cargo.lock=4f494db6d8a6eca87e7a16d8561197f20b1951a033bd3a6c424acfff5613475b;../../schemas/physics_source_recovery.schema.json=3bb969555d5616af6eefdb68788ee4a74a8a3681c42fe9aae577a5d25a51ac5c;../../schemas/retained_precision_mp_v2.schema.json=07951edacfedd410c153929ee75bb5bada15dbd222369ec63240c678b233b61c;../../fixtures/results/retained_precision_prepared_ordinary_v1.json=3e0779a45a74cf0bb3a4ed08ed3a6b44347aea8a3c33b59e9dd92130426ee296;../../fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json=c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8;../../fixtures/results/semantic_contract_v0_2.json=4d6886d19e304db897e5e9f8f0054cbee91ba7795868f9698e2bbe070bde94da;../../fixtures/results/semantic_contract_v0_3_precision_1.json=d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e;../../fixtures/results/semantic_contract_v0_3_physics_1.json=9a2cf6268b57bd5265a1a115497c07450819dd4d03cd5ab618097bd9d19da8cc;../../fixtures/results/semantic_contract_v0_3_load_reference_1.json=44bc41c06f589fab6ce931ac0eaa5344765ff64fd5f880cc2dd69ecb839c4f4d;../../fixtures/results/semantic_contract_v0_3_load_reference_source_1.json=d1628194a7730f427843b00228dd233cf92b8e7d26f3bc31c660a3ea59e28337;../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json=ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a;../../fixtures/results/semantic_contract_v0_3_physics_source_1.json=ba13f2aefd7a38bd725e5f111e6ec30144bc8776aa957c6278ee7b1178298ba1;../../fixtures/results/semantic_contract_v0_3_source_blocks_1.json=5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f;../../schemas/source_block_recovery.schema.json=544e196d2f7bef27276acc160aa19ab738a4f7949e846d2e8871328d2208129c",
++    reviewed_inputs: "v1;Cargo.lock=4f494db6d8a6eca87e7a16d8561197f20b1951a033bd3a6c424acfff5613475b;../../schemas/physics_source_recovery.schema.json=3bb969555d5616af6eefdb68788ee4a74a8a3681c42fe9aae577a5d25a51ac5c;../../schemas/retained_precision_mp_v2.schema.json=abf3225ca431342dd785072a1baad7715b7e8c19afd15b5777feebf06d48669e;../../fixtures/results/retained_precision_prepared_ordinary_v1.json=3e0779a45a74cf0bb3a4ed08ed3a6b44347aea8a3c33b59e9dd92130426ee296;../../fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json=b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c;../../fixtures/results/semantic_contract_v0_2.json=4d6886d19e304db897e5e9f8f0054cbee91ba7795868f9698e2bbe070bde94da;../../fixtures/results/semantic_contract_v0_3_precision_1.json=d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e;../../fixtures/results/semantic_contract_v0_3_physics_1.json=9a2cf6268b57bd5265a1a115497c07450819dd4d03cd5ab618097bd9d19da8cc;../../fixtures/results/semantic_contract_v0_3_load_reference_1.json=44bc41c06f589fab6ce931ac0eaa5344765ff64fd5f880cc2dd69ecb839c4f4d;../../fixtures/results/semantic_contract_v0_3_load_reference_source_1.json=d1628194a7730f427843b00228dd233cf92b8e7d26f3bc31c660a3ea59e28337;../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json=ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a;../../fixtures/results/semantic_contract_v0_3_physics_source_1.json=ba13f2aefd7a38bd725e5f111e6ec30144bc8776aa957c6278ee7b1178298ba1;../../fixtures/results/semantic_contract_v0_3_source_blocks_1.json=5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f;../../schemas/source_block_recovery.schema.json=544e196d2f7bef27276acc160aa19ab738a4f7949e846d2e8871328d2208129c;../../fixtures/results/retained_precision_prepared_combination_v1.json=3cebce55d1b31e0031628d7542a33a8debdfa37d2d258cb27dfbdfd1fc28db22;../../fixtures/results/retained_precision_prepared_exact_v1.json=71f63d3916fa37ad0021ffb6ad993760a274166fe7ef275d7435c6856ed5642e;../../fixtures/results/semantic_contract_v0_3_physics_retained_1.json=c4987e874889645ac315b5f55f58690082ad5e7745527f20e3e316efa3e70a3d",
+     reader_layouts: [
+         TypeLayout { size: 56, align: 8 },
+         TypeLayout { size: 64, align: 8 },
+diff --git a/projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs b/projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs
+index b0e8b308e3..6d585d8bb7 100644
+--- a/projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs
++++ b/projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs
+@@ -245,13 +245,15 @@ fn sha256_matches_the_sha2_dependency() {
+ #[test]
+ fn reviewed_inputs_bind_the_lock_and_the_reader_statics() {
+     use sha2::{Digest, Sha256};
+-    // G4 NOTES §3 and ORIGINS.json `statics`: the reviewed hashes at NUM b1f80234dc.
+-    const REVIEWED: [&str; 14] = [
++    // G4 NOTES §3 and ORIGINS.json `statics`: the reviewed hashes at NUM b1f80234dc, with
++    // J1's interim registration (I93 REVISION_01 §1.4): SCHEMA and PTABLE as B2-C selected
++    // them (`abf3225c…`, `b2b4a54d…`), then DEF-C, DEF-E and XTABLE appended (B3D-18).
++    const REVIEWED: [&str; 17] = [
+         "4f494db6d8a6eca87e7a16d8561197f20b1951a033bd3a6c424acfff5613475b",
+         "3bb969555d5616af6eefdb68788ee4a74a8a3681c42fe9aae577a5d25a51ac5c",
+-        "07951edacfedd410c153929ee75bb5bada15dbd222369ec63240c678b233b61c",
++        "abf3225ca431342dd785072a1baad7715b7e8c19afd15b5777feebf06d48669e",
+         "3e0779a45a74cf0bb3a4ed08ed3a6b44347aea8a3c33b59e9dd92130426ee296",
+-        "c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8",
++        "b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c",
+         "4d6886d19e304db897e5e9f8f0054cbee91ba7795868f9698e2bbe070bde94da",
+         "d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e",
+         "9a2cf6268b57bd5265a1a115497c07450819dd4d03cd5ab618097bd9d19da8cc",
+@@ -261,9 +263,12 @@ fn reviewed_inputs_bind_the_lock_and_the_reader_statics() {
+         "ba13f2aefd7a38bd725e5f111e6ec30144bc8776aa957c6278ee7b1178298ba1",
+         "5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f",
+         "544e196d2f7bef27276acc160aa19ab738a4f7949e846d2e8871328d2208129c",
++        "3cebce55d1b31e0031628d7542a33a8debdfa37d2d258cb27dfbdfd1fc28db22",
++        "71f63d3916fa37ad0021ffb6ad993760a274166fe7ef275d7435c6856ed5642e",
++        "c4987e874889645ac315b5f55f58690082ad5e7745527f20e3e316efa3e70a3d",
+     ];
+     // The same files, read here at compile time (test-only), by the sha2 dependency.
+-    let files: [&[u8]; 14] = [
++    let files: [&[u8]; 17] = [
+         include_bytes!("../Cargo.lock"),
+         include_bytes!("../../../schemas/physics_source_recovery.schema.json"),
+         include_bytes!("../../../schemas/retained_precision_mp_v2.schema.json"),
+@@ -278,12 +283,15 @@ fn reviewed_inputs_bind_the_lock_and_the_reader_statics() {
+         include_bytes!("../../../fixtures/results/semantic_contract_v0_3_physics_source_1.json"),
+         include_bytes!("../../../fixtures/results/semantic_contract_v0_3_source_blocks_1.json"),
+         include_bytes!("../../../schemas/source_block_recovery.schema.json"),
++        include_bytes!("../../../fixtures/results/retained_precision_prepared_combination_v1.json"),
++        include_bytes!("../../../fixtures/results/retained_precision_prepared_exact_v1.json"),
++        include_bytes!("../../../fixtures/results/semantic_contract_v0_3_physics_retained_1.json"),
+     ];
+     let compiled = COMPILED_REVIEWED_INPUTS.expect("build.rs sets the reviewed inputs");
+     assert_eq!(option_env!("OPS_RETAINED_REVIEWED_INPUTS"), Some(compiled));
+     let mut tokens = compiled.split(';');
+     assert_eq!(tokens.next(), Some("v1"));
+-    for (i, token) in tokens.by_ref().take(14).enumerate() {
++    for (i, token) in tokens.by_ref().take(17).enumerate() {
+         let (path, hex) = token.split_once('=').unwrap();
+         assert_eq!(path, build_identity::REVIEWED_INPUTS[i]);
+         assert_eq!(hex, format!("{:x}", Sha256::digest(files[i])), "{path}: build.rs's digest");
+@@ -291,7 +299,10 @@ fn reviewed_inputs_bind_the_lock_and_the_reader_statics() {
+     }
+     assert_eq!(tokens.next(), None);
+     println!("I65_G5_REVIEWED_INPUTS {compiled}");
+-    // Each reviewed static is the reader's own input: result_export names it.
++    // Each reviewed static of G4's set is the reader's own input: result_export names it.
++    // J1's three appended statics (DEF-C, DEF-E, XTABLE) are not yet: RS packages DEF-C in
++    // B2's reader work (B2-C REVISION_01 N-8) and DEF-E and XTABLE in B3b's. Until then
++    // they are bound here by hash only, and the check below covers G4's 13 statics.
+     let reader = [
+         include_str!("../../reporting/result_export/src/retained_precision.rs"),
+         include_str!("../../reporting/result_export/src/physics_source.rs"),
+@@ -299,7 +310,7 @@ fn reviewed_inputs_bind_the_lock_and_the_reader_statics() {
+         include_str!("../../reporting/result_export/src/source_blocks.rs"),
+     ]
+     .concat();
+-    for path in &build_identity::REVIEWED_INPUTS[1..] {
++    for path in &build_identity::REVIEWED_INPUTS[1..14] {
+         let name = path.rsplit('/').next().unwrap();
+         assert!(reader.contains(&format!("{name}\"")), "{name} is an include_str! input of the reader");
+     }
+@@ -1346,17 +1357,17 @@ fn gate_sums_saturate_and_the_longest_string_reads_every_diagnostic_field() {
+ #[test]
+ fn an_unreadable_reviewed_input_never_binds() {
+     let layouts = READER_LAYOUTS;
+-    let read = build_identity::encode_reviewed_inputs(&[Some([7; 32]); 14]);
++    let read = build_identity::encode_reviewed_inputs(&[Some([7; 32]); 17]);
+     assert!(!read.contains("unavailable"));
+     assert!(bindings_hold(true, Some(&read), &read, &layouts, &layouts), "every input read: the record binds");
+-    for i in 0..14 {
+-        let mut digests = [Some([7u8; 32]); 14];
++    for i in 0..17 {
++        let mut digests = [Some([7u8; 32]); 17];
+         digests[i] = None;
+         let unread = build_identity::encode_reviewed_inputs(&digests);
+         assert!(unread.contains("=unavailable"));
+         assert!(!bindings_hold(true, Some(&unread), &unread, &layouts, &layouts), "input {i} unreadable");
+     }
+-    let none = build_identity::encode_reviewed_inputs(&[None; 14]);
++    let none = build_identity::encode_reviewed_inputs(&[None; 17]);
+     assert!(!bindings_hold(true, Some(&none), &none, &layouts, &layouts), "no input read");
+     assert_eq!(identity_match(Some(build_identity::IDENTITY_UNAVAILABLE), [build_identity::IDENTITY_UNAVAILABLE].into_iter()),
+         Err(ProfileStatus::Stale), "the identity's own unavailable value is Stale");
+diff --git a/projects/chirality-piping/core/product_physics/src/retained_wire_tests.rs b/projects/chirality-piping/core/product_physics/src/retained_wire_tests.rs
+index 36859019c8..8b63bbed97 100644
+--- a/projects/chirality-piping/core/product_physics/src/retained_wire_tests.rs
++++ b/projects/chirality-piping/core/product_physics/src/retained_wire_tests.rs
+@@ -375,7 +375,7 @@ fn u1_constants_bound_to_in_tree_fixtures() {
+     let definition: Value = serde_json::from_str(DEFINITION).unwrap();
+     let table: Value = serde_json::from_str(TABLE).unwrap();
+     assert_eq!(wire::domain_hash("retained_precision_formation_v1", &definition).as_deref(), Some(wire::DEFINITION_SHA256));
+-    assert_eq!(table["product_formation_definitions"], json!([{"id":wire::DEFINITION_ID,"sha256":wire::DEFINITION_SHA256}]));
++    assert_eq!(table["product_formation_definitions"], json!([{"id":wire::DEFINITION_ID,"sha256":wire::DEFINITION_SHA256},{"id":"RP-PREPARED-COMBINATION-DUAL-v1","sha256":"d3fde142aff9c05d709b2fc2a04add42e14c66be3e2b2ba82012da57edf3d957"}]));
+     assert_eq!(table["semantic_contract_id"], json!(wire::RETAINED_SEMANTIC_ID));
+     assert_eq!(table["formulation_profile_id"], json!(wire::RETAINED_PROFILE_ID));
+     assert_eq!(table["receipt_policy"], json!(wire::POLICY));
+diff --git a/projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs b/projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs
+index 43a880551b..060388215a 100644
+--- a/projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs
++++ b/projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs
+@@ -493,7 +493,7 @@ const TABLE_BYTES: &[u8] = include_bytes!(
+ );
+ const INHERITED_TABLE_BYTES: &[u8] =
+     include_bytes!("../../../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json");
+-const TABLE_HASH: &str = "c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8";
++const TABLE_HASH: &str = "b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c";
+ fn sha256_hex(bytes: &[u8]) -> String {
+     use sha2::{Digest, Sha256};
+     Sha256::digest(bytes)
+@@ -530,7 +530,7 @@ fn g0(source: &Value) -> VResult {
+             "FORMATION_MISMATCH",
+         )? == DEFINITION_HASH
+             && table()["product_formation_definitions"]
+-                == json!([{"id":DEFINITION_ID,"sha256":DEFINITION_HASH}]),
++                == json!([{"id":DEFINITION_ID,"sha256":DEFINITION_HASH},{"id":"RP-PREPARED-COMBINATION-DUAL-v1","sha256":"d3fde142aff9c05d709b2fc2a04add42e14c66be3e2b2ba82012da57edf3d957"}]),
+         "G0",
+         "FORMATION_MISMATCH",
+     )?;
+diff --git a/projects/chirality-piping/core/reporting/result_export/src/semantic_contract.rs b/projects/chirality-piping/core/reporting/result_export/src/semantic_contract.rs
+index 24d96ecd13..7b78200aed 100644
+--- a/projects/chirality-piping/core/reporting/result_export/src/semantic_contract.rs
++++ b/projects/chirality-piping/core/reporting/result_export/src/semantic_contract.rs
+@@ -112,7 +112,7 @@ pub const PREVIEW_PHYSICS_SHA256: &str =
+ pub const PREVIEW_PHYSICS_RETAINED_ID: &str = crate::retained_precision::CONTRACT_ID;
+ pub const PREVIEW_PHYSICS_RETAINED_PROFILE: &str = crate::retained_precision::PROFILE;
+ pub const PREVIEW_PHYSICS_RETAINED_SHA256: &str =
+-    "c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8";
++    "b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c";
+ /// A receipt member or a W1 method-token row offered under any other identity
+ /// (I66 F-5: the base readers' closed lists do not name `retained_precision`).
+ pub const RETAINED_PRECISION_DOWNGRADE_FORBIDDEN: &str = "RETAINED_PRECISION_DOWNGRADE_FORBIDDEN";
+diff --git a/projects/chirality-piping/fixtures/results/retained_precision_prepared_combination_v1.json b/projects/chirality-piping/fixtures/results/retained_precision_prepared_combination_v1.json
+new file mode 100644
+index 0000000000..391aedc0b0
+--- /dev/null
++++ b/projects/chirality-piping/fixtures/results/retained_precision_prepared_combination_v1.json
+@@ -0,0 +1 @@
++{"acceptance":{"composition":"no operand radius, published row, retained state, verification or certificate enters the proof; the combination's rows are its own solve on the prepared stiffness and are not the factor-weighted sum of its operands' published rows; operand cases keep their values, evidence, cache snapshots and standing","final":"direct error certificate of the actual frozen raw and SI values against both physical readouts; unchanged absolute bound, two sharper predicates, raw/SI decimal checks, scale/class/zero/small-scale rules, G5a and observable guards","native":"unchanged native admission/R7/A1 checks","scoped_cross_references":["D2 section4.9.10 formed-at-p row descriptions","D2 section4.11.2 historical operational-convergence warrant for b","D2 section5 I-9 historical formed-at-p magnitude description"],"standing":"G0-G8 remain ordered; pre-S-I absolute/not_covered row and headline binding stays refused; no S-I activation, private interval export or exact-profile guarantee change","warrant":"Native p/P stops are native operational convergence only. For this registered formation the final b and relative allowances are independently checked by the direct final certificate; this replaces historical native-formation warrant wording only for these final rows."},"hash_domains":{"definition":"retained_precision_formation_v1","publication":"retained_precision_publication_mp_v2","receipt":"retained_precision_receipt_mp_v2","source":"retained_precision_source_mp_v2"},"id":"RP-PREPARED-COMBINATION-DUAL-v1","inherits":{"base_contract":"openpipestress.result_semantics/0.3.0/preview-physics-1","canonicalization":"openpipestress_jcs_ijson_v1","facade_policy":"RP-FACADE-SI-v2","kernel_policy":"M03-INTEGRITY-MP-v2","method":"contribution_preserving_multiprecision_v1","operand_definition":{"id":"RP-PREPARED-ORDINARY-DUAL-v1","sha256":"a7ed7ca0bf0bba6e8b821ca4befa00a0fa9541a83694be8b28ac63e39b1d0349"},"projection_policy":"RP-LOGICAL-ATTEMPTS-v1","semantic_contract":"openpipestress.result_semantics/0.3.0/preview-physics-retained-1","work_policy":"W1-LME-20B-60B-v1"},"lanes":{"admitted_k":"exact admitted products E*A,G*J,E*Iz,E*Iy of the representative source's members and exactly zero coefficient differences; actual common frame and support law; loads per lanes.loads","annular_seed":"same-draft admitted_k global displacement/rotation midpoint RN1024(lo+hi)/2; exact prescribed coordinates; complete owner/DOF/unit/data binding","annular_source":"directed1024 annulus geometry; base/point E,G are exact lifts; interpolated material encloses the affine normalized endpoint interpolation and actual selected E_hat/G_hat; use its coefficients in both residual and recovery","loads":"each loaded DOF's exact combined net N_g (the owner's K4LED: every operand term's exact product c_i*v_ij, summed exactly per DOF) enclosed outward at 1024 bits as [RD1024(N_g),RU1024(N_g)], in free residual rows and constrained reaction offsets; prescribed coordinates exact zero; data flags from each individual product (c_i!=0 and v_ij!=0), never from a net, so an exactly cancelled net stays data; the enclosure never takes an operand's individual terms, a binary64 product or a rounded net","order":["admitted_k","annular_source"],"owner":"the combination's recorded selected run (NativeOwner::Combination), its K4CMB source and combined ledger, its cache (imports from selected operands plus its own builds) and one nonreused proof anchor","per_lane":"fresh residual and alpha check; zero or one existing verification-factor correction when data exists; fresh final residual/radius and complete recovery; zero-Delta work still counted","private_only":["enclosures","radii","alpha_endpoints","epsilon_endpoints","seed_vectors"],"reuse":"project and certify the same stored lane results; no extra residual call"},"precision":{"extra_native_factorization":false,"native_candidates":[128,256,512],"native_floor_trigger":"native_p_equals_512_only","native_stop_scope":"native_q_p_and_q_P_only","native_verification":"P=2*p","product_projection_bits":1024,"product_proof_bits":1024,"projection_retry":false},"preparation":{"combination":"not_entered","operands":"every operand source is a prepared source of operand_definition: a selected or unavailable operand through its case ProductAttempt's preparation (retained_precision_preparation_v1), a not_required operand through one OperandPreparation (retained_precision_operand_preparation_v1); RP-PREPARED-ANNULUS-v1 unchanged"},"projection":{"H":["s=RN1024(lo+hi)","m=s/2 by exact exponent shift","raw=RN1024(m*1000) for mm; RN1024(m/1000000) for MPa; otherwise m","y=RN64(raw), retain actual Normal/Subnormal/Underflow/Overflow result before branching","Normal/Subnormal preserve actual nonzero; zero canonicalizes to +0; Underflow becomes +0 with loss retained by final distance test; Overflow refuses","n=RN64(y/1000) for mm; RN64(y*1000000) for MPa; otherwise y"],"nonfinite":"refuse","search_or_retry":"none","units":["mm","rad","N","N*m","MPa","Pa"]},"rows":{"ancillary":"none: a mechanics combination publishes no mode, parity or modulus record","component":"H of hull(admitted_k functional,annular_source functional)","component_stress":"directed signed-corner N/A,My/Z,Mz/Z,T*c/J before H; admitted-K bending Z is hull(actual Z,I_K/c); source uses own denominators","coverage":"exactly the combination's own final rows: 6n displacement components (constrained ones input-derived +0), n displacement magnitudes, 12m end actions and 18m station actions, 20m signed stresses, 6g signed support components and 2g support magnitudes over its g attributed supports (7n+50m+8g); derivative slots 0-19 of every member required and slot 20 empty; no record required; a missing, duplicated or extra row fails the whole proof","displacement_magnitude":"finish the same node's frozen global_nodal_displacement_x/y/z rows; RN64, ties to even, of the exact 3-norm sqrt(x^2+y^2+z^2) of their frozen raw values (mm): each square and their sum formed exactly, the square root rounded once to binary64, the same bits on every platform; finite only (a norm beyond binary64's range refuses the row), canonical +0, SI by the projection's mm rule; formed in the kernel's projection for combination owners only; still certify dual physical norm and the unchanged 64-epsilon combination magnitude guard (base G7 combination_magnitudes), which the observables stage checks; not H of a lane norm hull and not a nested binary64 hypot","maximum":"not published: no combination maximum (COMBINATION_STRESS_MAXIMUM_UNAVAILABLE) and no intensified row","prescribed":"exact zero prescription of every operand term, so the combined prescription is exactly +0; prescribed classification, raw/SI equality","support_magnitude":"finish same-support authenticated Fx/Fy/Fz or Mx/My/Mz slots; binary64 hypot(hypot(x,y),z), finite nonnegative and canonical +0; still certify dual physical norm and unchanged 64-epsilon component guard"},"scope":{"entry":"captured_actual_request_and_mode","excludes":["typed_without_capture","exact_profile_prepared_formation","pressure","curved_members","nonlinear_supports","directional_springs","nonzero_imposed_motion","user_review_rows","result_state_subtraction","range_envelope","nested_combinations","repeated_operand_cases","combinations_without_selected_operand","combination_maxima","intensified_rows","nonzero_operand_prescriptions"],"loads":"combined_exact_ledger","materials":["base_independent_E_G","named_point_independent_E_G","interpolated_independent_E_G"],"operand_equality":"equal K4STF bytes, layout, stations and supports (kernel OperandsDiffer) and equal prepared section facts across all operands and the combination: material basis, the selected material operands of every member bit for bit, normalized D, effective wall and the prepared A,I,J,Z,c bits of every member, as the operands' preparations and CaseSource section_terms state them","operand_sources":"selected operand: its selected solve (cache imports allowed); unavailable operand with a CaseSource: that registered source, rebuilt and K4SRC-identity-checked (no import); not_required operand: the one registered OperandPreparation source shared by every combination that requests it (no import); no operand is solved, mutated or re-prepared for a combination","owners":"mechanics_combination","prescriptions":"exact_positive_zero","requires":"whole_invocation_has_no_exact_block_selection","scope_limit":"These are this formation's limits, not permission to omit other promised F2a routes or protected cases.","source":"ordinary_straight_W1a","supports":"existing_rigid_and_global_scalar_spring_laws","trigger":"a mechanics combination that the T0R gates admit, whose terms name distinct load cases, at least one of them selected after T-9; its group is the first selected operand's and its representative source is operand 0's"},"stages":{"aliases":"completes with no headline alias: headlines cover load cases only","entered":["native","proof_start","projection","maxima","values","aliases","certificate","observables","g5a"],"maxima":"completes with no maximum row","not_entered":["preparation"],"observables":"base G7 combination_magnitudes on the frozen rows: one support-action row per support and component, and each displacement, force and moment magnitude p with |p-r| <= 64*eps*max(|p|,MIN_POSITIVE), r the binary64 hypot(hypot(x,y),z) of the same combination's published components; the case support coverage and guard; no preview case evidence, maximum or headline check; a failure is this combination's facade_certificate"},"trust":{"G7":"unchanged projected preview base evidence validator","G8":"independent invocation/model/material/normalized-input/map rederivation; the combination expression (case ids and factor bits in authored order) equal to the invocation's; each operand CaseSource rederived as a case's; K4CMB recomputed from the operands' K4SRC bytes and factor bits and bound to kernel_source_sha256 with one common K4STF; scope.operand_equality; checked source/preparation associations; the combined ledger bound by ledger_sha256 as attestation; no historical physics-source stress recipe","attestation":"digests bind facts but do not prove producer origin, solve, actual lane execution or rounded preparation","validation":"independent Rust replay and producer review validate algorithm/custody on exact implementation; Python/TS do not replay private proofs"},"version":1,"work":{"additional_product":"entered lanes/projection/conversion/comparison/adapter/maximum-completion work separately retained with actual status and failed prefixes; combined-net enclosures counted as add entries; no preparation; no all-in LME total or new price","auxiliary":"unqualified library/internal work remains explicitly auxiliary; capacity evidence is not an RSS or aggregate allowance","finalization":"complete public identity/receipt/diagnostic/certificate/hash/resource transaction required after private proof","native_meter":"C1/C2 physical/logical partition and recorded native debit unchanged; the combination's own Run on the invocation's one meter under its own 20B case limit"}}
+\ No newline at end of file
+diff --git a/projects/chirality-piping/fixtures/results/retained_precision_prepared_exact_v1.json b/projects/chirality-piping/fixtures/results/retained_precision_prepared_exact_v1.json
+new file mode 100644
+index 0000000000..530ad851f2
+--- /dev/null
++++ b/projects/chirality-piping/fixtures/results/retained_precision_prepared_exact_v1.json
+@@ -0,0 +1 @@
++{"acceptance":{"final":"direct error certificate of the actual frozen raw and SI values against both physical readouts; unchanged absolute bound, two sharper predicates, raw/SI decimal checks, scale/class/zero/small-scale rules, G5a and observable guards","native":"unchanged native admission/R7/A1 checks","scoped_cross_references":["D2 section4.9.10 formed-at-p row descriptions","D2 section4.11.2 historical operational-convergence warrant for b","D2 section5 I-9 historical formed-at-p magnitude description"],"standing":"G0-G8 remain ordered; pre-S-I absolute/not_covered row and headline binding stays refused; no S-I activation, private interval export, ordinary-profile guarantee or physics-1 base change","warrant":"Native p/P stops are native operational convergence only. For this registered formation the final b and relative allowances are independently checked by the direct final certificate; this replaces historical native-formation warrant wording only for these final rows."},"evidence":{"pipe_sections":"in the owner case's contract_evidence.exact_cases entry (matched by load_case_id) only: regenerate pipe_sections[].As_m2,I_m4,J_m4,Z_m3 as the prepared A,I,J,Z bits; outside_diameter_m, effective_wall_thickness_m, ro_m, ri_m, Ai_m2, geometry_basis, pipe_id and order unchanged","pipe_stress_extrema":"in the owner case's entry only: the maximum row family's eight regenerated numeric fields; every other key unchanged","unchanged":"pressure [] and connector []; in the owner case's entry, load_case_id, profile_mode, material_basis, pipe_materials, pressure_rhs_assembly and stress_maximum_coverage (complete) byte-identical to the ordinary exact envelope; the entry of every case that is not selected byte-identical to the ordinary exact envelope; no recovery_method member"},"hash_domains":{"definition":"retained_precision_formation_v1","preparation":"retained_precision_preparation_v1","publication":"retained_precision_publication_mp_v2","receipt":"retained_precision_receipt_mp_v2","source":"retained_precision_source_mp_v2"},"id":"RP-PREPARED-EXACT-DUAL-v1","inherits":{"base_contract":"openpipestress.result_semantics/0.3.0/physics-1","canonicalization":"openpipestress_jcs_ijson_v1","facade_policy":"RP-FACADE-SI-v2","kernel_policy":"M03-INTEGRITY-MP-v2","method":"contribution_preserving_multiprecision_v1","projection_policy":"RP-LOGICAL-ATTEMPTS-v1","semantic_contract":"openpipestress.result_semantics/0.3.0/physics-retained-1","work_policy":"W1-LME-20B-60B-v1"},"lanes":{"admitted_k":"exact admitted products E*A,G*J,E*Iz,E*Iy and exactly zero coefficient differences; actual common frame/load/support law","annular_seed":"same-draft admitted_k global displacement/rotation midpoint RN1024(lo+hi)/2; exact prescribed coordinates; complete owner/DOF/unit/data binding","annular_source":"directed1024 annulus geometry; E is the exact lift of the selected common E; G is enclosed as E/(2(1+nu)) from the exact lifts of the selected common E and nu by directed binary1024 add and divide (homogeneous_isotropic_E_nu_v1), never from the represented G_hat; use its coefficients in both residual and recovery","order":["admitted_k","annular_source"],"owner":"same recorded invocation/run/new source/cache and one nonreused proof anchor","per_lane":"fresh residual and alpha check; zero or one existing verification-factor correction when data exists; fresh final residual/radius and complete recovery; zero-Delta work still counted","private_only":["enclosures","radii","alpha_endpoints","epsilon_endpoints","seed_vectors"],"reuse":"project and certify the same stored lane results; no extra residual call"},"precision":{"extra_native_factorization":false,"native_candidates":[128,256,512],"native_floor_trigger":"native_p_equals_512_only","native_stop_scope":"native_q_p_and_q_P_only","native_verification":"P=2*p","product_projection_bits":1024,"product_proof_bits":1024,"projection_retry":false},"preparation":{"arithmetic":"directed binary1024 enclosure; exact binary64 lifts; nearest_even binary64 conversion","id":"RP-PREPARED-ANNULUS-v1","input_order":["normalized_diameter","effective_wall"],"operational":"Re-evaluate existing binary64 length, normalization check, EA/L and GJ/L on prepared inputs; retain their actual operation order.","output_order":["A","I","J","Z","c"],"pi":{"lower":["0000000000000000","0000000000000000","0000000000000000","0000000000000000","0000000000000000","0000000000000000","0000000000000000","c000000000000000","4fe1356d6d51c245","302b0a6df25f1437","ef9519b3cd3a431b","514a08798e3404dd","020bbea63b139b22","29024e088a67cc74","c4c6628b80dc1cd1","c90fdaa22168c234"],"representation":"positive Endpoint exponent1, sixteen little_endian u64 limbs; each string is one exact hexadecimal limb","upper":["0000000000000000","0000000000000000","0000000000000000","0000000000000000","0000000000000000","0000000000000000","0000000000000000","0000000000000000","4fe1356d6d51c246","302b0a6df25f1437","ef9519b3cd3a431b","514a08798e3404dd","020bbea63b139b22","29024e088a67cc74","c4c6628b80dc1cd1","c90fdaa22168c234"]},"primitive_requirements":"finite_positive_normal_output; 0<t<D/2; input bit equality and old-to-old provenance before replacement","replaces":"Only A,Iy,Iz,J native section inputs and matching A,I,J,Z,c product facts; Iy=Iz=I. E/G, maps, loads and support laws retain actual identity.","rust_variant":"AnnulusPreparationVersion::NormalizedAnnulusV1","sequence":["c=D/2 by exact exponent shift","ri=[c-t]","dm=[D-t]","P=[t*dm]","c2=RU1024(c*c) exact for binary64 D","ri2=[ri*ri]","Q=[c2+ri2]","G=[P*Q]","A=[pi*P]","I=[pi*G]/4 exact exponent shift","J=2*I exact exponent shift","Z=[I/c]","RN64 lower then upper of A,I,J,Z; require same positive normal bits","RN64 c once; require positive normal bits"]},"projection":{"H":["s=RN1024(lo+hi)","m=s/2 by exact exponent shift","raw=RN1024(m*1000) for mm; RN1024(m/1000000) for MPa; otherwise m","y=RN64(raw), retain actual Normal/Subnormal/Underflow/Overflow result before branching","Normal/Subnormal preserve actual nonzero; zero canonicalizes to +0; Underflow becomes +0 with loss retained by final distance test; Overflow refuses","n=RN64(y/1000) for mm; RN64(y*1000000) for MPa; otherwise y"],"nonfinite":"refuse","search_or_retry":"none","units":["mm","rad","N","N*m","MPa","Pa"]},"rows":{"ancillary":"actual observed mode/parity bits/text; no modulus-basis record under the base common E/nu selection; no mechanical proof or invented values","component":"H of hull(admitted_k functional,annular_source functional)","component_stress":"directed signed-corner N/A,My/Z,Mz/Z,T*c/J before H; admitted-K bending Z is hull(actual Z,I_K/c); source uses own denominators","displacement_magnitude":"H of hull of independent lane norm functionals, not norm of published components","maximum":"existing binary64 span-statical coefficient bounder from final projected endpoint actions and prepared section, empty loads/no pressure state; regenerate the eight numeric fields of pipe_stress_extrema in the owner case's contract_evidence.exact_cases entry (matched by load_case_id); output RN64(lo+RN64(0.5*RN64(hi-lo))); retain coefficient scope/location/tie/coverage and certify actual output against separate dual physical maximum","prescribed":"exact actual zero prescription, prescribed classification, raw/SI equality","support_magnitude":"finish same-support authenticated Fx/Fy/Fz or Mx/My/Mz slots; binary64 hypot(hypot(x,y),z), finite nonnegative and canonical +0; still certify dual physical norm and unchanged 64-epsilon component guard"},"scope":{"entry":"captured_actual_request_and_mode","excludes":["typed_without_capture","ordinary_profile_prepared_formation","prepared_combinations","combinations","nonempty_pressure_regions","pressure_primitives","load_reference_states","curved_members","components","nonlinear_supports","constant_effort_supports","directional_springs","nonzero_imposed_motion","equivalent_static","user_review_rows","named_point_common_E_nu","interpolated_common_E_nu"],"loads":"individual_normalized_nodal_terms","materials":["base_common_E_nu_derived_G"],"owners":"load_case","prescriptions":"exact_positive_zero","pressure":"explicitly_empty_pressure_regions_and_no_pressure_primitives","requires":"whole_invocation_has_no_exact_block_selection","scope_limit":"These are this formation's limits, not permission to omit other promised F2a routes or protected cases.","source":"exact_straight_W1a","supports":"existing_rigid_and_global_scalar_spring_laws"},"trust":{"G7":"unchanged projected physics-1 base evidence validator","G8":"independent invocation/model/common E/nu rederivation with shear_modulus bits equal to RN64(E/(2*RN64(1+nu))), normalized-input/map rederivation, physics-source-1 actual-material binding over the physics-1 evidence, plus checked source/preparation associations; no historical physics-source stress recipe","attestation":"digests bind facts but do not prove producer origin, solve, actual lane execution or rounded preparation","validation":"independent Rust replay and producer review validate algorithm/custody on exact implementation; Python/TS do not replay private proofs"},"version":1,"work":{"additional_product":"entered preparation/lanes/projection/conversion/comparison/adapter/operational/maximum work separately retained with actual status and failed prefixes; no all-in LME total or new price","auxiliary":"unqualified library/internal work remains explicitly auxiliary; capacity evidence is not an RSS or aggregate allowance","finalization":"complete public identity/receipt/diagnostic/certificate/hash/resource transaction required after private proof","native_meter":"C1/C2 physical/logical partition and recorded native debit unchanged"}}
+\ No newline at end of file
+diff --git a/projects/chirality-piping/fixtures/results/semantic_contract_v0_3_physics_retained_1.json b/projects/chirality-piping/fixtures/results/semantic_contract_v0_3_physics_retained_1.json
+new file mode 100644
+index 0000000000..24e4b020f7
+--- /dev/null
++++ b/projects/chirality-piping/fixtures/results/semantic_contract_v0_3_physics_retained_1.json
+@@ -0,0 +1,1292 @@
++{
++  "schema_version": "0.3.0",
++  "source_signature_count": 77,
++  "source_kind_count": 57,
++  "canonical_metadata_vocabulary": {
++    "component": {
++      "type": "string",
++      "enum": [
++        "axial_force",
++        "shear_force_y",
++        "shear_force_z",
++        "torsional_moment",
++        "bending_moment_y",
++        "bending_moment_z",
++        "nodal_force_x",
++        "nodal_force_y",
++        "nodal_force_z",
++        "nodal_moment_x",
++        "nodal_moment_y",
++        "nodal_moment_z",
++        "axial_normal_stress",
++        "bending_normal_stress_y",
++        "bending_normal_stress_z",
++        "torsional_shear_stress",
++        "pressure_hoop_stress",
++        "pressure_longitudinal_stress",
++        "section_area",
++        "section_modulus_y",
++        "section_modulus_z",
++        "torsion_constant",
++        "torsion_radius",
++        "TBD",
++        "nodal_displacement_x",
++        "nodal_displacement_y",
++        "nodal_displacement_z",
++        "nodal_rotation_x",
++        "nodal_rotation_y",
++        "nodal_rotation_z",
++        "Fx",
++        "Fy",
++        "Fz",
++        "Mx",
++        "My",
++        "Mz",
++        "force_magnitude",
++        "moment_magnitude",
++        "maximum_absolute_normal_stress",
++        "wall_axial_end_action",
++        "wall_axial_force",
++        "effective_axial_force",
++        "axial_membrane_stress",
++        "lame_inner_radial_stress",
++        "lame_outer_radial_stress",
++        "lame_inner_hoop_stress",
++        "lame_outer_hoop_stress"
++      ]
++    },
++    "coordinate_system": {
++      "type": "string",
++      "enum": [
++        "global",
++        "element_local",
++        "pipe_section",
++        "TBD"
++      ]
++    },
++    "location": {
++      "type": "string",
++      "enum": [
++        "end_i",
++        "end_j",
++        "node",
++        "quarter_1",
++        "midspan",
++        "quarter_3",
++        "summary",
++        "TBD",
++        "governing_station"
++      ]
++    },
++    "basis": {
++      "type": "string",
++      "enum": [
++        "recovered_from_local_element_stiffness",
++        "assembled_solver_load_vector",
++        "solved_from_global_linear_system",
++        "recovered_from_open_mechanics_stress_components",
++        "interpolated_from_endpoint_resultants",
++        "derived_from_user_entered_section_geometry",
++        "explicit_user_linear_combination",
++        "explicit_user_result_state_subtraction",
++        "explicit_user_range_envelope",
++        "stress_recovery_summary",
++        "rule_pack_evaluation",
++        "TBD",
++        "recovered_from_assembled_support_law"
++      ]
++    },
++    "sign_convention": {
++      "type": "string",
++      "minLength": 1
++    }
++  },
++  "rows": [
++    {
++      "signature_id": "supported-source-000",
++      "kind": "linear_solver_mode_basis",
++      "unit": "mode_code",
++      "component": "linear_solver_mode",
++      "source_physical_semantic_dimension": "dimensionless",
++      "derivative_target_dimension": "dimensionless",
++      "category": "solver_mode",
++      "family": null,
++      "canonical_disposition": "disclosed",
++      "legacy_declared_dimension": "dimensionless",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-001",
++      "kind": "displacement_magnitude",
++      "unit": "mm",
++      "component": null,
++      "source_physical_semantic_dimension": "length",
++      "derivative_target_dimension": "length",
++      "category": "physical_quantity",
++      "family": "displacement",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "length",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-002",
++      "kind": "global_nodal_displacement_x",
++      "unit": "mm",
++      "component": "nodal_displacement_x",
++      "source_physical_semantic_dimension": "length",
++      "derivative_target_dimension": "length",
++      "category": "physical_quantity",
++      "family": "displacement",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "length",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-003",
++      "kind": "global_nodal_displacement_y",
++      "unit": "mm",
++      "component": "nodal_displacement_y",
++      "source_physical_semantic_dimension": "length",
++      "derivative_target_dimension": "length",
++      "category": "physical_quantity",
++      "family": "displacement",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "length",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-004",
++      "kind": "global_nodal_displacement_z",
++      "unit": "mm",
++      "component": "nodal_displacement_z",
++      "source_physical_semantic_dimension": "length",
++      "derivative_target_dimension": "length",
++      "category": "physical_quantity",
++      "family": "displacement",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "length",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-005",
++      "kind": "global_nodal_rotation_x",
++      "unit": "rad",
++      "component": "nodal_rotation_x",
++      "source_physical_semantic_dimension": "angle",
++      "derivative_target_dimension": "angle",
++      "category": "physical_quantity",
++      "family": "rotation",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "angle",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-006",
++      "kind": "global_nodal_rotation_y",
++      "unit": "rad",
++      "component": "nodal_rotation_y",
++      "source_physical_semantic_dimension": "angle",
++      "derivative_target_dimension": "angle",
++      "category": "physical_quantity",
++      "family": "rotation",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "angle",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-007",
++      "kind": "global_nodal_rotation_z",
++      "unit": "rad",
++      "component": "nodal_rotation_z",
++      "source_physical_semantic_dimension": "angle",
++      "derivative_target_dimension": "angle",
++      "category": "physical_quantity",
++      "family": "rotation",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "angle",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-008",
++      "kind": "reaction_resultant",
++      "unit": "N",
++      "component": null,
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "physical_quantity",
++      "family": "reaction",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "force",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-009",
++      "kind": "element_local_axial_force",
++      "unit": "N",
++      "component": "axial_force",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "physical_quantity",
++      "family": "force",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "force",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-010",
++      "kind": "element_local_shear_force_y",
++      "unit": "N",
++      "component": "shear_force_y",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "physical_quantity",
++      "family": "force",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "force",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-011",
++      "kind": "element_local_shear_force_z",
++      "unit": "N",
++      "component": "shear_force_z",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "physical_quantity",
++      "family": "force",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "force",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-012",
++      "kind": "element_local_torsional_moment",
++      "unit": "N*m",
++      "component": "torsional_moment",
++      "source_physical_semantic_dimension": "moment",
++      "derivative_target_dimension": "moment",
++      "category": "physical_quantity",
++      "family": "moment",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "moment",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-013",
++      "kind": "element_local_bending_moment_y",
++      "unit": "N*m",
++      "component": "bending_moment_y",
++      "source_physical_semantic_dimension": "moment",
++      "derivative_target_dimension": "moment",
++      "category": "physical_quantity",
++      "family": "moment",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "moment",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-014",
++      "kind": "element_local_bending_moment_z",
++      "unit": "N*m",
++      "component": "bending_moment_z",
++      "source_physical_semantic_dimension": "moment",
++      "derivative_target_dimension": "moment",
++      "category": "physical_quantity",
++      "family": "moment",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "moment",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-015",
++      "kind": "element_local_axial_normal_stress",
++      "unit": "MPa",
++      "component": "axial_normal_stress",
++      "source_physical_semantic_dimension": "stress",
++      "derivative_target_dimension": "stress",
++      "category": "physical_quantity",
++      "family": "stress",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "stress",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-016",
++      "kind": "element_local_bending_normal_stress_y",
++      "unit": "MPa",
++      "component": "bending_normal_stress_y",
++      "source_physical_semantic_dimension": "stress",
++      "derivative_target_dimension": "stress",
++      "category": "physical_quantity",
++      "family": "stress",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "stress",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-017",
++      "kind": "element_local_bending_normal_stress_z",
++      "unit": "MPa",
++      "component": "bending_normal_stress_z",
++      "source_physical_semantic_dimension": "stress",
++      "derivative_target_dimension": "stress",
++      "category": "physical_quantity",
++      "family": "stress",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "stress",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-018",
++      "kind": "element_local_torsional_shear_stress",
++      "unit": "MPa",
++      "component": "torsional_shear_stress",
++      "source_physical_semantic_dimension": "stress",
++      "derivative_target_dimension": "stress",
++      "category": "physical_quantity",
++      "family": "stress",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "stress",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-019",
++      "kind": "pipe_section_pressure_hoop_stress",
++      "unit": "MPa",
++      "component": "pressure_hoop_stress",
++      "source_physical_semantic_dimension": "stress",
++      "derivative_target_dimension": "stress",
++      "category": "physical_quantity",
++      "family": "stress",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "stress",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-020",
++      "kind": "open_formula_stress_summary",
++      "unit": "MPa",
++      "component": null,
++      "source_physical_semantic_dimension": "stress",
++      "derivative_target_dimension": "stress",
++      "category": "physical_quantity",
++      "family": "stress",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "stress",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-021",
++      "kind": "component_user_stress_multiplier_review",
++      "unit": "MPa",
++      "component": "user_entered_component_stress_multiplier",
++      "source_physical_semantic_dimension": "stress",
++      "derivative_target_dimension": "stress",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": "stress",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-022",
++      "kind": "curved_bend_macro_element_review",
++      "unit": "unitless",
++      "component": "curved_bend_flexibility",
++      "source_physical_semantic_dimension": "dimensionless",
++      "derivative_target_dimension": "dimensionless",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-023",
++      "kind": "nonlinear_support_active_set_iteration_count",
++      "unit": "count",
++      "component": "active_set_iteration_count",
++      "source_physical_semantic_dimension": "dimensionless",
++      "derivative_target_dimension": "dimensionless",
++      "category": "count",
++      "family": null,
++      "canonical_disposition": "disclosed",
++      "legacy_declared_dimension": "dimensionless",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-024",
++      "kind": "nonlinear_support_active_set_final_residual_count",
++      "unit": "count",
++      "component": "active_set_final_residual_count",
++      "source_physical_semantic_dimension": "dimensionless",
++      "derivative_target_dimension": "dimensionless",
++      "category": "count",
++      "family": null,
++      "canonical_disposition": "disclosed",
++      "legacy_declared_dimension": "dimensionless",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-025",
++      "kind": "nonlinear_support_active_set_converged_flag",
++      "unit": "boolean",
++      "component": "active_set_converged_flag",
++      "source_physical_semantic_dimension": "dimensionless",
++      "derivative_target_dimension": "dimensionless",
++      "category": "flag",
++      "family": null,
++      "canonical_disposition": "disclosed",
++      "legacy_declared_dimension": "dimensionless",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-026",
++      "kind": "nonlinear_support_observed_free_dof_force_residual",
++      "unit": "N",
++      "component": "observed_free_dof_force_residual",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "diagnostic_observation",
++      "family": null,
++      "canonical_disposition": "disclosed",
++      "legacy_declared_dimension": "force",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-027",
++      "kind": "nonlinear_support_observed_free_dof_moment_residual",
++      "unit": "N*m",
++      "component": "observed_free_dof_moment_residual",
++      "source_physical_semantic_dimension": "moment",
++      "derivative_target_dimension": "moment",
++      "category": "diagnostic_observation",
++      "family": null,
++      "canonical_disposition": "disclosed",
++      "legacy_declared_dimension": "moment",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-028",
++      "kind": "nonlinear_support_free_dof_work_residual",
++      "unit": "N*m",
++      "component": "free_dof_work_residual",
++      "source_physical_semantic_dimension": null,
++      "derivative_target_dimension": null,
++      "category": "diagnostic_work",
++      "family": null,
++      "canonical_disposition": "disclosed",
++      "legacy_declared_dimension": "moment",
++      "legacy_run_creation_admission": "accepts_with_preserved_legacy_dimension_different_from_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-029",
++      "kind": "nonlinear_support_friction_normal_reaction_input",
++      "unit": "N",
++      "component": "friction_normal_reaction_input",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-030",
++      "kind": "nonlinear_support_active_set_state_code",
++      "unit": "state_code",
++      "component": "active_set_state_code",
++      "source_physical_semantic_dimension": "dimensionless",
++      "derivative_target_dimension": "dimensionless",
++      "category": "state",
++      "family": null,
++      "canonical_disposition": "disclosed",
++      "legacy_declared_dimension": "dimensionless",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-031",
++      "kind": "nonlinear_support_final_displacement",
++      "unit": "mm",
++      "component": "nonlinear_support_final_displacement",
++      "source_physical_semantic_dimension": "length",
++      "derivative_target_dimension": "length",
++      "category": "physical_quantity",
++      "family": "displacement",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "length",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-032",
++      "kind": "nonlinear_support_final_reaction",
++      "unit": "N",
++      "component": "nonlinear_support_final_reaction",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "physical_quantity",
++      "family": "reaction",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "force",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-033",
++      "kind": "nonlinear_support_observed_max_translation_delta",
++      "unit": "mm",
++      "component": "observed_max_translation_delta",
++      "source_physical_semantic_dimension": "length",
++      "derivative_target_dimension": "length",
++      "category": "diagnostic_observation",
++      "family": null,
++      "canonical_disposition": "disclosed",
++      "legacy_declared_dimension": "length",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-034",
++      "kind": "nonlinear_support_observed_max_rotation_delta",
++      "unit": "rad",
++      "component": "observed_max_rotation_delta",
++      "source_physical_semantic_dimension": "angle",
++      "derivative_target_dimension": "angle",
++      "category": "diagnostic_observation",
++      "family": null,
++      "canonical_disposition": "disclosed",
++      "legacy_declared_dimension": "angle",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-035",
++      "kind": "nonlinear_support_observed_max_force_reaction_delta",
++      "unit": "N",
++      "component": "observed_max_force_reaction_delta",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "diagnostic_observation",
++      "family": null,
++      "canonical_disposition": "disclosed",
++      "legacy_declared_dimension": "force",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-036",
++      "kind": "nonlinear_support_observed_max_moment_reaction_delta",
++      "unit": "N*m",
++      "component": "observed_max_moment_reaction_delta",
++      "source_physical_semantic_dimension": "moment",
++      "derivative_target_dimension": "moment",
++      "category": "diagnostic_observation",
++      "family": null,
++      "canonical_disposition": "disclosed",
++      "legacy_declared_dimension": "moment",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-037",
++      "kind": "sparse_live_path_dense_parity_relative_delta",
++      "unit": "unitless",
++      "component": "sparse_live_path",
++      "source_physical_semantic_dimension": "dimensionless",
++      "derivative_target_dimension": "ratio",
++      "category": "diagnostic_relative_ratio",
++      "family": null,
++      "canonical_disposition": "disclosed",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-038",
++      "kind": "expansion_joint_pressure_thrust_load_review",
++      "unit": "N",
++      "component": "expansion_joint_pressure_thrust",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": "force",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-039",
++      "kind": "component_user_stiffness_macro_element_review",
++      "unit": "N/m",
++      "component": "axial_user_stiffness",
++      "source_physical_semantic_dimension": "linear_stiffness",
++      "derivative_target_dimension": "linear_stiffness",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": "linear_stiffness",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-040",
++      "kind": "component_user_stiffness_macro_element_review",
++      "unit": "N/m",
++      "component": "lateral_user_stiffness",
++      "source_physical_semantic_dimension": "linear_stiffness",
++      "derivative_target_dimension": "linear_stiffness",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": "linear_stiffness",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-041",
++      "kind": "component_user_stiffness_macro_element_review",
++      "unit": "N*m/rad",
++      "component": "angular_user_stiffness",
++      "source_physical_semantic_dimension": "rotational_stiffness",
++      "derivative_target_dimension": "rotational_stiffness",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": "rotational_stiffness",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-042",
++      "kind": "component_user_stiffness_macro_element_review",
++      "unit": "N*m/rad",
++      "component": "torsional_user_stiffness",
++      "source_physical_semantic_dimension": "rotational_stiffness",
++      "derivative_target_dimension": "rotational_stiffness",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": "rotational_stiffness",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-043",
++      "kind": "spring_hanger_user_input_review",
++      "unit": "N/m",
++      "component": "variable_spring_hanger_stiffness",
++      "source_physical_semantic_dimension": "linear_stiffness",
++      "derivative_target_dimension": "linear_stiffness",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": "linear_stiffness",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-044",
++      "kind": "spring_hanger_user_input_review",
++      "unit": "N",
++      "component": "variable_spring_hanger_installed_load",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": "force",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-045",
++      "kind": "spring_hanger_user_input_review",
++      "unit": "N",
++      "component": "variable_spring_hanger_cold_load",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": "force",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-046",
++      "kind": "spring_hanger_user_input_review",
++      "unit": "N",
++      "component": "variable_spring_hanger_hot_load",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": "force",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-047",
++      "kind": "spring_hanger_user_input_review",
++      "unit": "m",
++      "component": "variable_spring_hanger_travel_range",
++      "source_physical_semantic_dimension": "length",
++      "derivative_target_dimension": "length",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": "length",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-048",
++      "kind": "constant_effort_user_input_review",
++      "unit": "N",
++      "component": "constant_effort_support_constant_load",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": "force",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-049",
++      "kind": "constant_effort_user_input_review",
++      "unit": "m",
++      "component": "constant_effort_support_travel_range",
++      "source_physical_semantic_dimension": "length",
++      "derivative_target_dimension": "length",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": "length",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-050",
++      "kind": "modulus_basis_record",
++      "unit": "record",
++      "component": "material_modulus_basis",
++      "source_physical_semantic_dimension": "dimensionless",
++      "derivative_target_dimension": "dimensionless",
++      "category": "basis_record",
++      "family": null,
++      "canonical_disposition": "disclosed",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-051",
++      "kind": "combination_modulus_basis_record",
++      "unit": "record",
++      "component": "material_modulus_basis",
++      "source_physical_semantic_dimension": "dimensionless",
++      "derivative_target_dimension": "dimensionless",
++      "category": "basis_record",
++      "family": null,
++      "canonical_disposition": "disclosed",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-052",
++      "kind": "constant_effort_support_applied_load",
++      "unit": "N",
++      "component": "constant_effort_support_applied_load",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "assembled_load_review",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-053",
++      "kind": "nonlinear_support_final_displacement",
++      "unit": "rad",
++      "component": "nonlinear_support_final_displacement",
++      "source_physical_semantic_dimension": "angle",
++      "derivative_target_dimension": "angle",
++      "category": "physical_quantity",
++      "family": "rotation",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "length",
++      "legacy_run_creation_admission": "accepts_with_preserved_legacy_dimension_different_from_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-054",
++      "kind": "nonlinear_support_final_reaction",
++      "unit": "N*m",
++      "component": "nonlinear_support_final_reaction",
++      "source_physical_semantic_dimension": "moment",
++      "derivative_target_dimension": "moment",
++      "category": "physical_quantity",
++      "family": "reaction",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "force",
++      "legacy_run_creation_admission": "accepts_with_preserved_legacy_dimension_different_from_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-055",
++      "kind": "nonlinear_support_friction_normal_reaction_derived",
++      "unit": "N",
++      "component": "friction_normal_reaction_derived",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "physical_quantity",
++      "family": "reaction",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": "force",
++      "legacy_run_creation_admission": "accepts_with_legacy_dimension_equal_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-056",
++      "kind": "spring_hanger_user_input_review",
++      "unit": "m",
++      "component": "variable_spring_hanger_movement_limit",
++      "source_physical_semantic_dimension": "length",
++      "derivative_target_dimension": "length",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-057",
++      "kind": "constant_effort_user_input_review",
++      "unit": "m",
++      "component": "constant_effort_support_movement_limit",
++      "source_physical_semantic_dimension": "length",
++      "derivative_target_dimension": "length",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-058",
++      "kind": "spring_hanger_user_input_review",
++      "unit": "N*m/rad",
++      "component": "variable_spring_hanger_stiffness",
++      "source_physical_semantic_dimension": "rotational_stiffness",
++      "derivative_target_dimension": "rotational_stiffness",
++      "category": "review_evidence",
++      "family": null,
++      "canonical_disposition": "exported_review",
++      "legacy_declared_dimension": "linear_stiffness",
++      "legacy_run_creation_admission": "accepts_with_preserved_legacy_dimension_different_from_new_semantics",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-059",
++      "kind": "pipe_section_pressure_longitudinal_stress",
++      "unit": "MPa",
++      "component": "pressure_longitudinal_stress",
++      "source_physical_semantic_dimension": "stress",
++      "derivative_target_dimension": "stress",
++      "category": "physical_quantity",
++      "family": "stress",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-060",
++      "kind": "support_reaction_component_v2",
++      "unit": "N",
++      "component": "Fx",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "physical_quantity",
++      "family": "reaction",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-061",
++      "kind": "support_reaction_component_v2",
++      "unit": "N",
++      "component": "Fy",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "physical_quantity",
++      "family": "reaction",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-062",
++      "kind": "support_reaction_component_v2",
++      "unit": "N",
++      "component": "Fz",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "physical_quantity",
++      "family": "reaction",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-063",
++      "kind": "support_reaction_component_v2",
++      "unit": "N*m",
++      "component": "Mx",
++      "source_physical_semantic_dimension": "moment",
++      "derivative_target_dimension": "moment",
++      "category": "physical_quantity",
++      "family": "reaction",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-064",
++      "kind": "support_reaction_component_v2",
++      "unit": "N*m",
++      "component": "My",
++      "source_physical_semantic_dimension": "moment",
++      "derivative_target_dimension": "moment",
++      "category": "physical_quantity",
++      "family": "reaction",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-065",
++      "kind": "support_reaction_component_v2",
++      "unit": "N*m",
++      "component": "Mz",
++      "source_physical_semantic_dimension": "moment",
++      "derivative_target_dimension": "moment",
++      "category": "physical_quantity",
++      "family": "reaction",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-066",
++      "kind": "support_reaction_force_magnitude_v2",
++      "unit": "N",
++      "component": "force_magnitude",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "physical_quantity",
++      "family": "reaction",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-067",
++      "kind": "support_reaction_moment_magnitude_v2",
++      "unit": "N*m",
++      "component": "moment_magnitude",
++      "source_physical_semantic_dimension": "moment",
++      "derivative_target_dimension": "moment",
++      "category": "physical_quantity",
++      "family": "reaction",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-068",
++      "kind": "pipe_elastic_normal_stress_maximum_v2",
++      "unit": "Pa",
++      "component": "maximum_absolute_normal_stress",
++      "source_physical_semantic_dimension": "stress",
++      "derivative_target_dimension": "stress",
++      "category": "physical_quantity",
++      "family": "stress",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-069",
++      "kind": "pipe_wall_endpoint_action_v2",
++      "unit": "N",
++      "component": "wall_axial_end_action",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "physical_quantity",
++      "family": "force",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-070",
++      "kind": "pipe_wall_axial_force_v2",
++      "unit": "N",
++      "component": "wall_axial_force",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "physical_quantity",
++      "family": "force",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-071",
++      "kind": "pipe_effective_axial_force_v2",
++      "unit": "N",
++      "component": "effective_axial_force",
++      "source_physical_semantic_dimension": "force",
++      "derivative_target_dimension": "force",
++      "category": "physical_quantity",
++      "family": "force",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-072",
++      "kind": "pipe_axial_membrane_stress_v2",
++      "unit": "Pa",
++      "component": "axial_membrane_stress",
++      "source_physical_semantic_dimension": "stress",
++      "derivative_target_dimension": "stress",
++      "category": "physical_quantity",
++      "family": "stress",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-073",
++      "kind": "pipe_lame_radial_stress_v2",
++      "unit": "Pa",
++      "component": "lame_inner_radial_stress",
++      "source_physical_semantic_dimension": "stress",
++      "derivative_target_dimension": "stress",
++      "category": "physical_quantity",
++      "family": "stress",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-074",
++      "kind": "pipe_lame_radial_stress_v2",
++      "unit": "Pa",
++      "component": "lame_outer_radial_stress",
++      "source_physical_semantic_dimension": "stress",
++      "derivative_target_dimension": "stress",
++      "category": "physical_quantity",
++      "family": "stress",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-075",
++      "kind": "pipe_lame_hoop_stress_v2",
++      "unit": "Pa",
++      "component": "lame_inner_hoop_stress",
++      "source_physical_semantic_dimension": "stress",
++      "derivative_target_dimension": "stress",
++      "category": "physical_quantity",
++      "family": "stress",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    },
++    {
++      "signature_id": "supported-source-076",
++      "kind": "pipe_lame_hoop_stress_v2",
++      "unit": "Pa",
++      "component": "lame_outer_hoop_stress",
++      "source_physical_semantic_dimension": "stress",
++      "derivative_target_dimension": "stress",
++      "category": "physical_quantity",
++      "family": "stress",
++      "canonical_disposition": "exported_quantity",
++      "legacy_declared_dimension": null,
++      "legacy_run_creation_admission": "throws_ANALYSIS_RUN_RESULT_DIMENSION_UNDECLARED",
++      "governing_ratio_eligible": false
++    }
++  ],
++  "hash_vectors": [
++    {
++      "id": "qualified-hash-vector-0",
++      "input": {
++        "2": 2,
++        "10": 10,
++        "\ud800\udc00": "supplementary",
++        "\ue000": "bmp",
++        "\u00e9": "accent",
++        "zero": -0.0
++      },
++      "expected_canonical_json": "{\"10\":10,\"2\":2,\"zero\":0,\"\u00e9\":\"accent\",\"\ud800\udc00\":\"supplementary\",\"\ue000\":\"bmp\"}",
++      "expected_sha256": "d4f93403ef979f898ab63d64af7da7886e4b5e2b6d27d2dc412b9ddac7c7dde2"
++    },
++    {
++      "id": "qualified-hash-vector-1",
++      "input": {
++        "nested": {
++          "20": 1e-07,
++          "3": 1e-06
++        },
++        "array": [
++          true,
++          null,
++          10,
++          1.5
++        ],
++        "raw_annotations": {
++          "extra": {
++            "\u00e9": [
++              "\ud800\udc00",
++              1
++            ]
++          }
++        }
++      },
++      "expected_canonical_json": "{\"array\":[true,null,10,1.5],\"nested\":{\"20\":1e-7,\"3\":0.000001},\"raw_annotations\":{\"extra\":{\"\u00e9\":[\"\ud800\udc00\",1]}}}",
++      "expected_sha256": "99b9faeb10cab02302cc0e6975e38ff4574b2ef02d5f485d2a05859bca1ccbe1"
++    }
++  ],
++  "semantic_contract_id": "openpipestress.result_semantics/0.3.0/physics-retained-1",
++  "source_schema_version": "0.2.0",
++  "source_producer": {
++    "component_name": "open_pipe_stress_product_physics",
++    "component_version": "0.2.0"
++  },
++  "metadata_policy": "preserve_source_producer_numerical_quality_formulation_basis_contract_evidence",
++  "reserved_inactive_successors": [
++    "openpipestress.result_semantics/0.3.0/reactions-1",
++    "openpipestress.result_semantics/0.3.0/pressure-1",
++    "openpipestress.result_semantics/0.3.0/stress-1",
++    "openpipestress.result_semantics/0.3.0/precision-2",
++    "openpipestress.result_semantics/0.3.0/source-blocks-1"
++  ],
++  "inherited_semantic_contract_sha256": "9a2cf6268b57bd5265a1a115497c07450819dd4d03cd5ab618097bd9d19da8cc",
++  "formulation_profile_id": "exact_straight_retained_w1a_v2",
++  "contract_evidence_policy": "closed_finite_case_member_material_geometry_region_result_and_extrema_binding_v1",
++  "supported_profile_limitations": [
++    "Straight circular members and linear restraints or springs only.",
++    "Direct load cases only; derived combinations and state differences are unsupported.",
++    "Normal-stress maxima are bounded elastic normal stress, not code or equivalent stress.",
++    "Source evidence and numerical standing do not authenticate a producer or grant engineering acceptance."
++  ],
++  "receipt_policy": "M03-INTEGRITY-MP-v2",
++  "receipt_schema": "retained_precision_mp_v2.schema.json",
++  "product_formation_definitions": [
++    {
++      "id": "RP-PREPARED-EXACT-DUAL-v1",
++      "sha256": "5a3bac430df9bbc77484d5419c75880ad40ae209b439e5f928374458025281af"
++    }
++  ],
++  "accuracy_classification": {
++    "policy": "RP-FACADE-SI-v2",
++    "relative_threshold_bits": "3dd0000000000000",
++    "small_scale_threshold_bits": "0230000000000000",
++    "classes": [
++      "relative_verified",
++      "absolute_verified",
++      "input_derived",
++      "non_quantity",
++      "not_covered"
++    ],
++    "absolute_bound": "RU64(2^-64 S); for 0<S<2^-988, one RU64 of b0+r+minimum_subnormal; for S=0, canonical +0",
++    "small_components": "b0 and r use selected RN64 divide, multiply-back and conditional next-up operations",
++    "standing": "G0 through G8 and actual invocation required; before S-I, absolute_verified and not_covered quantity/headline binding stays refused",
++    "scope": "registered exact-prepared source only: model 0.3.0 with the 2.0.0/exact_straight_pressure_v2 contract, explicitly empty pressure regions and the base common E/nu selection; no pressure-region, prepared-combination, load-reference-state or ordinary-profile extension"
++  },
++  "formation_warrant": {
++    "definition_id": "RP-PREPARED-EXACT-DUAL-v1",
++    "affected_historical_clauses": [
++      "D2 section4.9.10",
++      "D2 section4.11.2",
++      "D2 section5 I-9"
++    ],
++    "native": "p/P and stop records describe native operational convergence only",
++    "final": "actual final values use the direct certificate against both physical readouts with unchanged b and inequalities",
++    "standing": "no S-I activation or new interval-binding grant"
++  },
++  "receipt_bindings": {
++    "canonicalization": "openpipestress_jcs_ijson_v1",
++    "method": "contribution_preserving_multiprecision_v1",
++    "projection_policy": "RP-LOGICAL-ATTEMPTS-v1",
++    "work": {
++      "case_limit": 20000000000,
++      "invocation_limit": 60000000000
++    },
++    "work_policy": "W1-LME-20B-60B-v1"
++  }
++}
+diff --git a/projects/chirality-piping/fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json b/projects/chirality-piping/fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json
+index d48f55dd53..f57d12ac92 100644
+--- a/projects/chirality-piping/fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json
++++ b/projects/chirality-piping/fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json
+@@ -1254,6 +1254,10 @@
+     {
+       "id": "RP-PREPARED-ORDINARY-DUAL-v1",
+       "sha256": "a7ed7ca0bf0bba6e8b821ca4befa00a0fa9541a83694be8b28ac63e39b1d0349"
++    },
++    {
++      "id": "RP-PREPARED-COMBINATION-DUAL-v1",
++      "sha256": "d3fde142aff9c05d709b2fc2a04add42e14c66be3e2b2ba82012da57edf3d957"
+     }
+   ],
+   "accuracy_classification": {
+@@ -1270,17 +1274,40 @@
+     "absolute_bound": "RU64(2^-64 S); for 0<S<2^-988, one RU64 of b0+r+minimum_subnormal; for S=0, canonical +0",
+     "small_components": "b0 and r use selected RN64 divide, multiply-back and conditional next-up operations",
+     "standing": "G0 through G8 and actual invocation required; before S-I, absolute_verified and not_covered quantity/headline binding stays refused",
+-    "scope": "registered ordinary-prepared source only; no exact-profile or prepared-combination extension"
++    "scope": "registered ordinary-prepared source, and registered prepared mechanics combinations (RP-PREPARED-COMBINATION-DUAL-v1: their own solve on the combined exact ledger, at least one operand selected); no exact-profile, subtraction or range extension; R-COMB-1: each quantity row of a retained_unavailable combination, and of an ordinary combination whose expression names a load case that is not not_required, is not_covered and withheld from binding with its value unchanged; record rows stay non_quantity"
+   },
+-  "formation_warrant": {
+-    "definition_id": "RP-PREPARED-ORDINARY-DUAL-v1",
+-    "affected_historical_clauses": [
+-      "D2 section4.9.10",
+-      "D2 section4.11.2",
+-      "D2 section5 I-9"
+-    ],
+-    "native": "p/P and stop records describe native operational convergence only",
+-    "final": "actual final values use the direct certificate against both physical readouts with unchanged b and inequalities",
+-    "standing": "no S-I activation or new interval-binding grant"
++  "formation_warrant": [
++    {
++      "definition_id": "RP-PREPARED-ORDINARY-DUAL-v1",
++      "affected_historical_clauses": [
++        "D2 section4.9.10",
++        "D2 section4.11.2",
++        "D2 section5 I-9"
++      ],
++      "native": "p/P and stop records describe native operational convergence only",
++      "final": "actual final values use the direct certificate against both physical readouts with unchanged b and inequalities",
++      "standing": "no S-I activation or new interval-binding grant"
++    },
++    {
++      "definition_id": "RP-PREPARED-COMBINATION-DUAL-v1",
++      "affected_historical_clauses": [
++        "D2 section4.9.10",
++        "D2 section4.11.2",
++        "D2 section5 I-9"
++      ],
++      "native": "p/P and stop records describe native operational convergence only",
++      "final": "actual final values use the direct certificate against both physical readouts with unchanged b and inequalities",
++      "standing": "no S-I activation or new interval-binding grant"
++    }
++  ],
++  "receipt_bindings": {
++    "canonicalization": "openpipestress_jcs_ijson_v1",
++    "method": "contribution_preserving_multiprecision_v1",
++    "projection_policy": "RP-LOGICAL-ATTEMPTS-v1",
++    "work": {
++      "case_limit": 20000000000,
++      "invocation_limit": 60000000000
++    },
++    "work_policy": "W1-LME-20B-60B-v1"
+   }
+ }
+diff --git a/projects/chirality-piping/schemas/analysis_run.v0.3.schema.json b/projects/chirality-piping/schemas/analysis_run.v0.3.schema.json
+index e8d635650c..5ce2b64a4d 100644
+--- a/projects/chirality-piping/schemas/analysis_run.v0.3.schema.json
++++ b/projects/chirality-piping/schemas/analysis_run.v0.3.schema.json
+@@ -267,7 +267,7 @@
+             "ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a",
+             "44bc41c06f589fab6ce931ac0eaa5344765ff64fd5f880cc2dd69ecb839c4f4d",
+             "d1628194a7730f427843b00228dd233cf92b8e7d26f3bc31c660a3ea59e28337",
+-            "c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8"
++            "b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c"
+           ]
+         },
+         "signature_id": {
+@@ -354,7 +354,7 @@
+               "const": "openpipestress.result_semantics/0.3.0/preview-physics-retained-1"
+             },
+             "sha256": {
+-              "const": "c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8"
++              "const": "b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c"
+             }
+           }
+         }
+@@ -1102,7 +1102,7 @@
+                       "const": "openpipestress.result_semantics/0.3.0/preview-physics-retained-1"
+                     },
+                     "sha256": {
+-                      "const": "c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8"
++                      "const": "b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c"
+                     }
+                   }
+                 }
+@@ -1117,7 +1117,7 @@
+                         "const": "openpipestress.result_semantics/0.3.0/preview-physics-retained-1"
+                       },
+                       "sha256": {
+-                        "const": "c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8"
++                        "const": "b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c"
+                       }
+                     }
+                   }
+diff --git a/projects/chirality-piping/schemas/retained_precision_mp_v2.schema.json b/projects/chirality-piping/schemas/retained_precision_mp_v2.schema.json
+index 67f8b44b4b..5e7b340033 100644
+--- a/projects/chirality-piping/schemas/retained_precision_mp_v2.schema.json
++++ b/projects/chirality-piping/schemas/retained_precision_mp_v2.schema.json
+@@ -1,8 +1,8 @@
+ {
+   "$schema": "https://json-schema.org/draft/2020-12/schema",
+   "$id": "https://openpipestress.local/schemas/retained_precision_mp_v2.schema.json",
+-  "title": "Standalone ordinary prepared C1/C2/C3 receipt",
+-  "$comment": "Ordinary-prepared scope only; exact and prepared-combination admission require their later selected extension. Integer and bit constraints (U, I32, Bits, NonnegativeBits, Hash and their x-rp-encoding) are G2 encoding checks, not G1 shape (C3:301; RV78-N4). The type domain may exceed the emitted domain; G5 enforces the emitted one (RV78-N8). D9b: an unavailable case carries source_ref null|U; source_decline only with null.",
++  "title": "Standalone prepared C1/C2/C3 receipt",
++  "$comment": "Prepared ordinary and exact case formations, selected by ProductAttempt.definition_id, and the prepared combination formation (CombinationAttempt, RP-PREPARED-COMBINATION-DUAL-v1) with its operand preparations (OperandPreparation, ordinary only); the exact route's constraints are reader gates (G0, G5b, G8), and combination dispositions, operand sources and row coverage are reader gates (G3, G5, G8), not schema branches. Integer and bit constraints (U, I32, Bits, NonnegativeBits, Hash and their x-rp-encoding) are G2 encoding checks, not G1 shape (C3:301; RV78-N4). The type domain may exceed the emitted domain; G5 enforces the emitted one (RV78-N8). D9b: an unavailable case carries source_ref null|U; source_decline only with null.",
+   "$defs": {
+     "U": {
+       "type": "integer",
+@@ -3189,7 +3189,10 @@
+           "$ref": "#/$defs/U"
+         },
+         "definition_id": {
+-          "const": "RP-PREPARED-ORDINARY-DUAL-v1"
++          "enum": [
++            "RP-PREPARED-ORDINARY-DUAL-v1",
++            "RP-PREPARED-EXACT-DUAL-v1"
++          ]
+         },
+         "owner_ref": {
+           "type": "object",
+@@ -4216,6 +4219,22 @@
+                 "sha256"
+               ],
+               "additionalProperties": false
++            },
++            {
++              "type": "object",
++              "properties": {
++                "operand_preparation_ref": {
++                  "$ref": "#/$defs/U"
++                },
++                "sha256": {
++                  "$ref": "#/$defs/Hash"
++                }
++              },
++              "required": [
++                "operand_preparation_ref",
++                "sha256"
++              ],
++              "additionalProperties": false
+             }
+           ]
+         }
+@@ -6607,8 +6626,43 @@
+           ],
+           "additionalProperties": false
+         },
++        {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "operand_preparation_failure"
++            },
++            "operand_preparation_ref": {
++              "$ref": "#/$defs/U"
++            }
++          },
++          "required": [
++            "kind",
++            "operand_preparation_ref"
++          ],
++          "additionalProperties": false
++        },
++        {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "operand_source_unavailable"
++            },
++            "operand_index": {
++              "$ref": "#/$defs/U"
++            }
++          },
++          "required": [
++            "kind",
++            "operand_index"
++          ],
++          "additionalProperties": false
++        },
+         {
+           "$ref": "#/$defs/Reason"
++        },
++        {
++          "$ref": "#/$defs/CombinationReason"
+         }
+       ]
+     },
+@@ -7237,14 +7291,21 @@
+         },
+         "combinations": {
+           "type": "array",
+-          "items": {},
+-          "minItems": 0,
+-          "maxItems": 0
++          "items": {
++            "$ref": "#/$defs/Combination"
++          }
+         },
+         "sources": {
+           "type": "array",
+           "items": {
+-            "$ref": "#/$defs/CaseSource"
++            "oneOf": [
++              {
++                "$ref": "#/$defs/CaseSource"
++              },
++              {
++                "$ref": "#/$defs/CombinationSource"
++              }
++            ]
+           }
+         },
+         "material_bases": {
+@@ -7256,13 +7317,27 @@
+         "calls": {
+           "type": "array",
+           "items": {
+-            "$ref": "#/$defs/Call"
++            "oneOf": [
++              {
++                "$ref": "#/$defs/Call"
++              },
++              {
++                "$ref": "#/$defs/MechanicsCombinationCall"
++              }
++            ]
+           }
+         },
+         "groups": {
+           "type": "array",
+           "items": {
+-            "$ref": "#/$defs/Group"
++            "oneOf": [
++              {
++                "$ref": "#/$defs/Group"
++              },
++              {
++                "$ref": "#/$defs/CombinationGroup"
++              }
++            ]
+           }
+         },
+         "builds": {
+@@ -7280,9 +7355,23 @@
+         "product_attempts": {
+           "type": "array",
+           "items": {
+-            "$ref": "#/$defs/ProductAttempt"
++            "oneOf": [
++              {
++                "$ref": "#/$defs/ProductAttempt"
++              },
++              {
++                "$ref": "#/$defs/CombinationAttempt"
++              }
++            ]
+           }
+         },
++        "operand_preparations": {
++          "type": "array",
++          "items": {
++            "$ref": "#/$defs/OperandPreparation"
++          },
++          "minItems": 1
++        },
+         "legacy_source_work": {
+           "type": "array",
+           "items": {
+@@ -7437,6 +7526,1277 @@
+         "entity_ref"
+       ],
+       "additionalProperties": false
++    },
++    "CombinationExpression": {
++      "oneOf": [
++        {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "mechanics"
++            },
++            "terms": {
++              "type": "array",
++              "items": {
++                "type": "object",
++                "properties": {
++                  "case_id": {
++                    "$ref": "#/$defs/Text"
++                  },
++                  "factor": {
++                    "$ref": "#/$defs/Bits"
++                  }
++                },
++                "required": [
++                  "case_id",
++                  "factor"
++                ],
++                "additionalProperties": false
++              },
++              "minItems": 1
++            }
++          },
++          "required": [
++            "kind",
++            "terms"
++          ],
++          "additionalProperties": false
++        },
++        {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "result_state_subtraction"
++            },
++            "minuend_id": {
++              "$ref": "#/$defs/Text"
++            },
++            "subtrahend_id": {
++              "$ref": "#/$defs/Text"
++            }
++          },
++          "required": [
++            "kind",
++            "minuend_id",
++            "subtrahend_id"
++          ],
++          "additionalProperties": false
++        },
++        {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "range_envelope"
++            },
++            "operand_ids": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/Text"
++              },
++              "minItems": 1
++            },
++            "mode": {
++              "enum": [
++                "min",
++                "max",
++                "min_abs",
++                "max_abs"
++              ]
++            }
++          },
++          "required": [
++            "kind",
++            "operand_ids",
++            "mode"
++          ],
++          "additionalProperties": false
++        }
++      ]
++    },
++    "Combination": {
++      "oneOf": [
++        {
++          "type": "object",
++          "properties": {
++            "basis_ref": {
++              "type": "object",
++              "properties": {
++                "ref_type": {
++                  "const": "combination"
++                },
++                "ref_id": {
++                  "$ref": "#/$defs/Text"
++                }
++              },
++              "required": [
++                "ref_type",
++                "ref_id"
++              ],
++              "additionalProperties": false
++            },
++            "expression": {
++              "$ref": "#/$defs/CombinationExpression"
++            },
++            "result_ids": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/Text"
++              }
++            },
++            "diagnostic_refs": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/Text"
++              }
++            },
++            "disposition": {
++              "const": "retained_selected"
++            },
++            "method": {
++              "const": "contribution_preserving_multiprecision_v1"
++            },
++            "call_ref": {
++              "$ref": "#/$defs/U"
++            },
++            "product_attempt_ref": {
++              "$ref": "#/$defs/U"
++            },
++            "run": {
++              "$ref": "#/$defs/Run"
++            },
++            "source_ref": {
++              "$ref": "#/$defs/U"
++            },
++            "source_identity_sha256": {
++              "$ref": "#/$defs/Hash"
++            },
++            "selection": {
++              "$ref": "#/$defs/Selection"
++            }
++          },
++          "required": [
++            "basis_ref",
++            "expression",
++            "result_ids",
++            "diagnostic_refs",
++            "disposition",
++            "method",
++            "call_ref",
++            "product_attempt_ref",
++            "run",
++            "source_ref",
++            "source_identity_sha256",
++            "selection"
++          ],
++          "additionalProperties": false
++        },
++        {
++          "type": "object",
++          "properties": {
++            "basis_ref": {
++              "type": "object",
++              "properties": {
++                "ref_type": {
++                  "const": "combination"
++                },
++                "ref_id": {
++                  "$ref": "#/$defs/Text"
++                }
++              },
++              "required": [
++                "ref_type",
++                "ref_id"
++              ],
++              "additionalProperties": false
++            },
++            "expression": {
++              "$ref": "#/$defs/CombinationExpression"
++            },
++            "result_ids": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/Text"
++              }
++            },
++            "diagnostic_refs": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/Text"
++              }
++            },
++            "disposition": {
++              "const": "retained_unavailable"
++            },
++            "call_ref": {
++              "oneOf": [
++                {
++                  "type": "null"
++                },
++                {
++                  "$ref": "#/$defs/U"
++                }
++              ]
++            },
++            "product_attempt_ref": {
++              "oneOf": [
++                {
++                  "type": "null"
++                },
++                {
++                  "$ref": "#/$defs/U"
++                }
++              ]
++            },
++            "reason": {
++              "type": "object",
++              "properties": {
++                "code": {
++                  "$ref": "#/$defs/Text"
++                },
++                "phase": {
++                  "enum": [
++                    "routing",
++                    "preparation",
++                    "kernel",
++                    "facade",
++                    "receipt"
++                  ]
++                },
++                "cause": {
++                  "$ref": "#/$defs/UnavailableCause"
++                }
++              },
++              "required": [
++                "code",
++                "phase",
++                "cause"
++              ],
++              "additionalProperties": false
++            },
++            "diagnostic_ref": {
++              "$ref": "#/$defs/Text"
++            },
++            "run": {
++              "oneOf": [
++                {
++                  "type": "null"
++                },
++                {
++                  "$ref": "#/$defs/Run"
++                }
++              ]
++            },
++            "source_ref": {
++              "oneOf": [
++                {
++                  "type": "null"
++                },
++                {
++                  "$ref": "#/$defs/U"
++                }
++              ]
++            }
++          },
++          "required": [
++            "basis_ref",
++            "expression",
++            "result_ids",
++            "diagnostic_refs",
++            "disposition",
++            "call_ref",
++            "product_attempt_ref",
++            "reason",
++            "diagnostic_ref",
++            "run",
++            "source_ref"
++          ],
++          "additionalProperties": false
++        },
++        {
++          "type": "object",
++          "properties": {
++            "basis_ref": {
++              "type": "object",
++              "properties": {
++                "ref_type": {
++                  "const": "combination"
++                },
++                "ref_id": {
++                  "$ref": "#/$defs/Text"
++                }
++              },
++              "required": [
++                "ref_type",
++                "ref_id"
++              ],
++              "additionalProperties": false
++            },
++            "expression": {
++              "$ref": "#/$defs/CombinationExpression"
++            },
++            "result_ids": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/Text"
++              }
++            },
++            "diagnostic_refs": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/Text"
++              }
++            },
++            "disposition": {
++              "const": "ordinary"
++            },
++            "reason": {
++              "const": "no_retained_mechanics"
++            }
++          },
++          "required": [
++            "basis_ref",
++            "expression",
++            "result_ids",
++            "diagnostic_refs",
++            "disposition",
++            "reason"
++          ],
++          "additionalProperties": false
++        },
++        {
++          "type": "object",
++          "properties": {
++            "basis_ref": {
++              "type": "object",
++              "properties": {
++                "ref_type": {
++                  "const": "combination"
++                },
++                "ref_id": {
++                  "$ref": "#/$defs/Text"
++                }
++              },
++              "required": [
++                "ref_type",
++                "ref_id"
++              ],
++              "additionalProperties": false
++            },
++            "expression": {
++              "$ref": "#/$defs/CombinationExpression"
++            },
++            "result_ids": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/Text"
++              },
++              "maxItems": 0
++            },
++            "diagnostic_refs": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/Text"
++              }
++            },
++            "disposition": {
++              "const": "base_withheld"
++            },
++            "reason": {
++              "enum": [
++                "NONLINEAR_COMBINATION_REQUIRES_SOLVE",
++                "CONSTANT_EFFORT_COMBINATION_REQUIRES_SOLVE",
++                "COMBINATION_MODULUS_BASIS_MIXED"
++              ]
++            }
++          },
++          "required": [
++            "basis_ref",
++            "expression",
++            "result_ids",
++            "diagnostic_refs",
++            "disposition",
++            "reason"
++          ],
++          "additionalProperties": false
++        }
++      ]
++    },
++    "CombinationReason": {
++      "oneOf": [
++        {
++          "type": "object",
++          "properties": {
++            "space": {
++              "const": "combination"
++            },
++            "tag": {
++              "enum": [
++                "no_operands",
++                "nested_combination",
++                "operands_differ",
++                "no_selected_operand"
++              ]
++            }
++          },
++          "required": [
++            "space",
++            "tag"
++          ],
++          "additionalProperties": false
++        },
++        {
++          "type": "object",
++          "properties": {
++            "space": {
++              "const": "combination"
++            },
++            "tag": {
++              "const": "ledger_unavailable"
++            },
++            "error": {
++              "$ref": "#/$defs/LedgerError"
++            }
++          },
++          "required": [
++            "space",
++            "tag",
++            "error"
++          ],
++          "additionalProperties": false
++        },
++        {
++          "type": "object",
++          "properties": {
++            "space": {
++              "const": "combination"
++            },
++            "tag": {
++              "const": "count_range"
++            },
++            "name": {
++              "$ref": "#/$defs/Text"
++            }
++          },
++          "required": [
++            "space",
++            "tag",
++            "name"
++          ],
++          "additionalProperties": false
++        }
++      ]
++    },
++    "CombinationSource": {
++      "type": "object",
++      "properties": {
++        "index": {
++          "$ref": "#/$defs/U"
++        },
++        "owner": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "combination"
++            },
++            "combination_index": {
++              "$ref": "#/$defs/U"
++            },
++            "combination_id": {
++              "$ref": "#/$defs/Text"
++            }
++          },
++          "required": [
++            "kind",
++            "combination_index",
++            "combination_id"
++          ],
++          "additionalProperties": false
++        },
++        "kernel_source_sha256": {
++          "$ref": "#/$defs/Hash"
++        },
++        "ledger_sha256": {
++          "$ref": "#/$defs/Hash"
++        },
++        "stiffness_sha256": {
++          "$ref": "#/$defs/Hash"
++        },
++        "representative_source_ref": {
++          "$ref": "#/$defs/U"
++        },
++        "operands": {
++          "type": "array",
++          "items": {
++            "type": "object",
++            "properties": {
++              "case_index": {
++                "$ref": "#/$defs/U"
++              },
++              "factor": {
++                "$ref": "#/$defs/Bits"
++              },
++              "source_ref": {
++                "$ref": "#/$defs/U"
++              },
++              "source_identity_sha256": {
++                "$ref": "#/$defs/Hash"
++              }
++            },
++            "required": [
++              "case_index",
++              "factor",
++              "source_ref",
++              "source_identity_sha256"
++            ],
++            "additionalProperties": false
++          },
++          "minItems": 1
++        }
++      },
++      "required": [
++        "index",
++        "owner",
++        "kernel_source_sha256",
++        "ledger_sha256",
++        "stiffness_sha256",
++        "representative_source_ref",
++        "operands"
++      ],
++      "additionalProperties": false
++    },
++    "MechanicsCombinationCall": {
++      "type": "object",
++      "properties": {
++        "id": {
++          "$ref": "#/$defs/U"
++        },
++        "kind": {
++          "const": "mechanics_combination"
++        },
++        "owner_refs": {
++          "type": "array",
++          "items": {
++            "type": "object",
++            "properties": {
++              "kind": {
++                "const": "combination"
++              },
++              "index": {
++                "$ref": "#/$defs/U"
++              }
++            },
++            "required": [
++              "kind",
++              "index"
++            ],
++            "additionalProperties": false
++          },
++          "minItems": 1,
++          "maxItems": 1
++        },
++        "requested_operands": {
++          "type": "array",
++          "items": {
++            "type": "object",
++            "properties": {
++              "source_ref": {
++                "$ref": "#/$defs/U"
++              },
++              "factor": {
++                "$ref": "#/$defs/Bits"
++              }
++            },
++            "required": [
++              "source_ref",
++              "factor"
++            ],
++            "additionalProperties": false
++          }
++        },
++        "source_refs": {
++          "type": "array",
++          "items": {
++            "$ref": "#/$defs/U"
++          },
++          "maxItems": 1
++        },
++        "run_refs": {
++          "type": "array",
++          "items": {
++            "$ref": "#/$defs/U"
++          },
++          "maxItems": 1
++        },
++        "invocation_before": {
++          "$ref": "#/$defs/U"
++        },
++        "invocation_after": {
++          "$ref": "#/$defs/U"
++        },
++        "result": {
++          "oneOf": [
++            {
++              "type": "object",
++              "properties": {
++                "kind": {
++                  "const": "runs"
++                }
++              },
++              "required": [
++                "kind"
++              ],
++              "additionalProperties": false
++            },
++            {
++              "type": "object",
++              "properties": {
++                "kind": {
++                  "const": "pre_source_refusal"
++                },
++                "stage": {
++                  "enum": [
++                    "operand_validation",
++                    "combined_preparation"
++                  ]
++                },
++                "reason": {
++                  "$ref": "#/$defs/CombinationReason"
++                }
++              },
++              "required": [
++                "kind",
++                "stage",
++                "reason"
++              ],
++              "additionalProperties": false
++            }
++          ]
++        }
++      },
++      "required": [
++        "id",
++        "kind",
++        "owner_refs",
++        "requested_operands",
++        "source_refs",
++        "run_refs",
++        "invocation_before",
++        "invocation_after",
++        "result"
++      ],
++      "additionalProperties": false
++    },
++    "CombinationGroup": {
++      "type": "object",
++      "properties": {
++        "id": {
++          "$ref": "#/$defs/U"
++        },
++        "call": {
++          "$ref": "#/$defs/U"
++        },
++        "first_source_ref": {
++          "$ref": "#/$defs/U"
++        },
++        "source_refs": {
++          "type": "array",
++          "items": {
++            "$ref": "#/$defs/U"
++          }
++        },
++        "stiffness_sha256": {
++          "$ref": "#/$defs/Hash"
++        },
++        "preparation": {
++          "oneOf": [
++            {
++              "type": "object",
++              "properties": {
++                "kind": {
++                  "const": "ready"
++                }
++              },
++              "required": [
++                "kind"
++              ],
++              "additionalProperties": false
++            },
++            {
++              "type": "object",
++              "properties": {
++                "kind": {
++                  "const": "refused"
++                },
++                "reason": {
++                  "$ref": "#/$defs/Refusal"
++                }
++              },
++              "required": [
++                "kind",
++                "reason"
++              ],
++              "additionalProperties": false
++            }
++          ]
++        },
++        "imports": {
++          "type": "array",
++          "items": {
++            "type": "object",
++            "properties": {
++              "operand_index": {
++                "$ref": "#/$defs/U"
++              },
++              "selected_run": {
++                "$ref": "#/$defs/U"
++              },
++              "slot": {
++                "enum": [
++                  "s128",
++                  "s256",
++                  "s512",
++                  "s1024",
++                  "v256",
++                  "v512",
++                  "v1024"
++                ]
++              },
++              "build": {
++                "$ref": "#/$defs/U"
++              }
++            },
++            "required": [
++              "operand_index",
++              "selected_run",
++              "slot",
++              "build"
++            ],
++            "additionalProperties": false
++          }
++        }
++      },
++      "required": [
++        "id",
++        "call",
++        "first_source_ref",
++        "source_refs",
++        "stiffness_sha256",
++        "preparation",
++        "imports"
++      ],
++      "additionalProperties": false
++    },
++    "CombinationAttempt": {
++      "type": "object",
++      "properties": {
++        "id": {
++          "$ref": "#/$defs/U"
++        },
++        "definition_id": {
++          "const": "RP-PREPARED-COMBINATION-DUAL-v1"
++        },
++        "owner_ref": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "combination"
++            },
++            "index": {
++              "$ref": "#/$defs/U"
++            }
++          },
++          "required": [
++            "kind",
++            "index"
++          ],
++          "additionalProperties": false
++        },
++        "material_basis_ref": {
++          "$ref": "#/$defs/U"
++        },
++        "source_ref": {
++          "$ref": "#/$defs/U"
++        },
++        "run_ref": {
++          "$ref": "#/$defs/U"
++        },
++        "result": {
++          "oneOf": [
++            {
++              "type": "object",
++              "properties": {
++                "kind": {
++                  "const": "ready"
++                }
++              },
++              "required": [
++                "kind"
++              ],
++              "additionalProperties": false
++            },
++            {
++              "type": "object",
++              "properties": {
++                "kind": {
++                  "const": "unavailable"
++                },
++                "error": {
++                  "$ref": "#/$defs/PublicError"
++                }
++              },
++              "required": [
++                "kind",
++                "error"
++              ],
++              "additionalProperties": false
++            }
++          ]
++        },
++        "stages": {
++          "type": "object",
++          "properties": {
++            "native": {
++              "enum": [
++                "not_entered",
++                "completed",
++                "failed"
++              ]
++            },
++            "proof_start": {
++              "enum": [
++                "not_entered",
++                "completed",
++                "failed"
++              ]
++            },
++            "projection": {
++              "enum": [
++                "not_entered",
++                "completed",
++                "failed"
++              ]
++            },
++            "maxima": {
++              "enum": [
++                "not_entered",
++                "completed",
++                "failed"
++              ]
++            },
++            "values": {
++              "enum": [
++                "not_entered",
++                "completed",
++                "failed"
++              ]
++            },
++            "aliases": {
++              "enum": [
++                "not_entered",
++                "completed",
++                "failed"
++              ]
++            },
++            "certificate": {
++              "enum": [
++                "not_entered",
++                "completed",
++                "failed"
++              ]
++            },
++            "observables": {
++              "enum": [
++                "not_entered",
++                "completed",
++                "failed"
++              ]
++            },
++            "g5a": {
++              "enum": [
++                "not_entered",
++                "completed",
++                "failed"
++              ]
++            }
++          },
++          "required": [
++            "native",
++            "proof_start",
++            "projection",
++            "maxima",
++            "values",
++            "aliases",
++            "certificate",
++            "observables",
++            "g5a"
++          ],
++          "additionalProperties": false
++        },
++        "proof": {
++          "oneOf": [
++            {
++              "type": "null"
++            },
++            {
++              "$ref": "#/$defs/ProofTrace"
++            }
++          ]
++        },
++        "adapter": {
++          "type": "object",
++          "properties": {
++            "counts": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/U"
++              },
++              "minItems": 10,
++              "maxItems": 10
++            },
++            "fault": {
++              "oneOf": [
++                {
++                  "type": "null"
++                },
++                {
++                  "type": "object",
++                  "properties": {
++                    "kind": {
++                      "const": "overflow"
++                    },
++                    "event": {
++                      "enum": [
++                        "source_visit",
++                        "row_visit",
++                        "map_write",
++                        "validation_entry",
++                        "identity_byte_read",
++                        "key_probe",
++                        "allocation_request",
++                        "library_boundary",
++                        "requested_copy_bytes",
++                        "rust_capacity_bytes"
++                      ]
++                    }
++                  },
++                  "required": [
++                    "kind",
++                    "event"
++                  ],
++                  "additionalProperties": false
++                }
++              ]
++            },
++            "prepared_capacity_bytes": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/U"
++              },
++              "minItems": 16,
++              "maxItems": 16
++            },
++            "observation_capacity_bytes": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/U"
++              },
++              "minItems": 3,
++              "maxItems": 3
++            },
++            "support_capacity_bytes": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/U"
++              },
++              "minItems": 7,
++              "maxItems": 7
++            }
++          },
++          "required": [
++            "counts",
++            "fault",
++            "prepared_capacity_bytes",
++            "observation_capacity_bytes",
++            "support_capacity_bytes"
++          ],
++          "additionalProperties": false
++        },
++        "overlay_work": {
++          "$ref": "#/$defs/ScalarTrace"
++        },
++        "g5a_work": {
++          "$ref": "#/$defs/ScalarTrace"
++        }
++      },
++      "required": [
++        "id",
++        "definition_id",
++        "owner_ref",
++        "material_basis_ref",
++        "source_ref",
++        "run_ref",
++        "result",
++        "stages",
++        "proof",
++        "adapter",
++        "overlay_work",
++        "g5a_work"
++      ],
++      "additionalProperties": false
++    },
++    "OperandPreparation": {
++      "type": "object",
++      "properties": {
++        "id": {
++          "$ref": "#/$defs/U"
++        },
++        "definition_id": {
++          "const": "RP-PREPARED-ORDINARY-DUAL-v1"
++        },
++        "owner_ref": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "case"
++            },
++            "index": {
++              "$ref": "#/$defs/U"
++            }
++          },
++          "required": [
++            "kind",
++            "index"
++          ],
++          "additionalProperties": false
++        },
++        "ordinary_attempt_ref": {
++          "$ref": "#/$defs/U"
++        },
++        "material_basis_ref": {
++          "$ref": "#/$defs/U"
++        },
++        "purpose": {
++          "const": "combination_operand"
++        },
++        "requested_by": {
++          "type": "array",
++          "items": {
++            "$ref": "#/$defs/U"
++          },
++          "minItems": 1
++        },
++        "source_ref": {
++          "oneOf": [
++            {
++              "type": "null"
++            },
++            {
++              "$ref": "#/$defs/U"
++            }
++          ]
++        },
++        "result": {
++          "oneOf": [
++            {
++              "type": "object",
++              "properties": {
++                "kind": {
++                  "const": "prepared"
++                }
++              },
++              "required": [
++                "kind"
++              ],
++              "additionalProperties": false
++            },
++            {
++              "type": "object",
++              "properties": {
++                "kind": {
++                  "const": "refused"
++                },
++                "error": {
++                  "type": "object",
++                  "properties": {
++                    "kind": {
++                      "const": "preparation"
++                    },
++                    "capture": {
++                      "$ref": "#/$defs/CaptureError"
++                    },
++                    "section": {
++                      "oneOf": [
++                        {
++                          "type": "null"
++                        },
++                        {
++                          "$ref": "#/$defs/SectionError"
++                        }
++                      ]
++                    }
++                  },
++                  "required": [
++                    "kind",
++                    "capture",
++                    "section"
++                  ],
++                  "additionalProperties": false
++                }
++              },
++              "required": [
++                "kind",
++                "error"
++              ],
++              "additionalProperties": false
++            }
++          ]
++        },
++        "stage": {
++          "enum": [
++            "completed",
++            "failed"
++          ]
++        },
++        "preparation": {
++          "type": "object",
++          "properties": {
++            "members": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/PreparedMember"
++              }
++            }
++          },
++          "required": [
++            "members"
++          ],
++          "additionalProperties": false
++        },
++        "adapter": {
++          "type": "object",
++          "properties": {
++            "counts": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/U"
++              },
++              "minItems": 10,
++              "maxItems": 10
++            },
++            "fault": {
++              "oneOf": [
++                {
++                  "type": "null"
++                },
++                {
++                  "type": "object",
++                  "properties": {
++                    "kind": {
++                      "const": "overflow"
++                    },
++                    "event": {
++                      "enum": [
++                        "source_visit",
++                        "row_visit",
++                        "map_write",
++                        "validation_entry",
++                        "identity_byte_read",
++                        "key_probe",
++                        "allocation_request",
++                        "library_boundary",
++                        "requested_copy_bytes",
++                        "rust_capacity_bytes"
++                      ]
++                    }
++                  },
++                  "required": [
++                    "kind",
++                    "event"
++                  ],
++                  "additionalProperties": false
++                }
++              ]
++            },
++            "prepared_capacity_bytes": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/U"
++              },
++              "minItems": 16,
++              "maxItems": 16
++            },
++            "observation_capacity_bytes": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/U"
++              },
++              "minItems": 3,
++              "maxItems": 3
++            },
++            "support_capacity_bytes": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/U"
++              },
++              "minItems": 7,
++              "maxItems": 7
++            }
++          },
++          "required": [
++            "counts",
++            "fault",
++            "prepared_capacity_bytes",
++            "observation_capacity_bytes",
++            "support_capacity_bytes"
++          ],
++          "additionalProperties": false
++        },
++        "operational": {
++          "type": "object",
++          "properties": {
++            "old_coverage": {
++              "enum": [
++                "captured_prefix",
++                "complete"
++              ]
++            },
++            "old": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/MemberOperational"
++              }
++            },
++            "new": {
++              "type": "array",
++              "items": {
++                "$ref": "#/$defs/MemberOperational"
++              }
++            }
++          },
++          "required": [
++            "old_coverage",
++            "old",
++            "new"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "id",
++        "definition_id",
++        "owner_ref",
++        "ordinary_attempt_ref",
++        "material_basis_ref",
++        "purpose",
++        "requested_by",
++        "source_ref",
++        "result",
++        "stage",
++        "preparation",
++        "adapter",
++        "operational"
++      ],
++      "additionalProperties": false
+     }
+   },
+   "type": "object",
+diff --git a/projects/chirality-piping/schemas/stress_neutral_export.v0.3.schema.json b/projects/chirality-piping/schemas/stress_neutral_export.v0.3.schema.json
+index a73165af91..7b8c7e742f 100644
+--- a/projects/chirality-piping/schemas/stress_neutral_export.v0.3.schema.json
++++ b/projects/chirality-piping/schemas/stress_neutral_export.v0.3.schema.json
+@@ -3782,7 +3782,7 @@
+               "const": "openpipestress.result_semantics/0.3.0/preview-physics-retained-1"
+             },
+             "sha256": {
+-              "const": "c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8"
++              "const": "b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c"
+             }
+           }
+         },
+diff --git a/projects/chirality-piping/tests/test_load_reference_source_schema.py b/projects/chirality-piping/tests/test_load_reference_source_schema.py
+index f2a644cc28..3ff27d9589 100644
+--- a/projects/chirality-piping/tests/test_load_reference_source_schema.py
++++ b/projects/chirality-piping/tests/test_load_reference_source_schema.py
+@@ -64,7 +64,7 @@ PREVIEW_ID = "openpipestress.result_semantics/0.3.0/preview-physics-1"
+ # then T1's appended identities. Positions are derived from this pinned order.
+ # T3's F2a preview successor follows T1's branches (C1:162; reader fan-in and U6c).
+ SUCCESSOR_ID = "openpipestress.result_semantics/0.3.0/preview-physics-retained-1"
+-SUCCESSOR_SHA = "c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8"
++SUCCESSOR_SHA = "b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c"
+ SUCCESSOR_PROFILE = "product_preview_retained_w1a_v2"
+ CARRIER_ORDER = [PRECISION_ID, PHYSICS_ID, SOURCE_BLOCKS_ID, PS_ID, PREVIEW_ID, LR_ID, LRS_ID, SUCCESSOR_ID]
+ BRANCH_OF = {contract_id: index for index, contract_id in enumerate(CARRIER_ORDER)}
+diff --git a/projects/chirality-piping/tests/test_retained_precision_schema.py b/projects/chirality-piping/tests/test_retained_precision_schema.py
+index 3ebf8db61d..b51dae134c 100644
+--- a/projects/chirality-piping/tests/test_retained_precision_schema.py
++++ b/projects/chirality-piping/tests/test_retained_precision_schema.py
+@@ -84,7 +84,7 @@ def test_results_successor_branch_is_explicit_and_old_branches_reject_receipt():
+ 
+ SUCC = "openpipestress.result_semantics/0.3.0/preview-physics-retained-1"
+ PREVIEW = "openpipestress.result_semantics/0.3.0/preview-physics-1"
+-SUCC_SHA = "c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8"
++SUCC_SHA = "b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c"
+ PREVIEW_SHA = "ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a"
+ PROFILE = "product_preview_retained_w1a_v2"
+ CODES = ["retained_precision_absolute_verified", "retained_precision_not_covered"]

@@ -1,0 +1,20 @@
+{
+ "pp": {
+  "base": {
+   "FAILED": 1,
+   "ignored": 11,
+   "ok": 591
+  },
+  "candidate": {
+   "FAILED": 1,
+   "ignored": 11,
+   "ok": 593
+  },
+  "changed": {},
+  "only_base": {},
+  "only_candidate": {
+   "src/lib.rs::retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0": "ok",
+   "src/lib.rs::retained_memory::law_tests::b3a_direct_entry_oracles": "ok"
+  }
+ }
+}

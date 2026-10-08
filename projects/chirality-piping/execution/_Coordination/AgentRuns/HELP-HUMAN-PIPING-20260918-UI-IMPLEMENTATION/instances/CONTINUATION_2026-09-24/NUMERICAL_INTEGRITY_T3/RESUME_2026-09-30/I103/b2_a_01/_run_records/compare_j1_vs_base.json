@@ -1,0 +1,65 @@
+{
+ "re": {
+  "base": {
+   "ok": 196
+  },
+  "candidate": {
+   "ok": 196
+  },
+  "changed": {},
+  "only_base": {},
+  "only_candidate": {}
+ },
+ "pp": {
+  "base": {
+   "FAILED": 1,
+   "ignored": 11,
+   "ok": 591
+  },
+  "candidate": {
+   "FAILED": 1,
+   "ignored": 11,
+   "ok": 591
+  },
+  "changed": {},
+  "only_base": {},
+  "only_candidate": {}
+ },
+ "runner": {
+  "base": {
+   "FAILED": 2,
+   "ok": 85
+  },
+  "candidate": {
+   "FAILED": 2,
+   "ok": 85
+  },
+  "changed": {},
+  "only_base": {},
+  "only_candidate": {}
+ },
+ "py": {
+  "base": {
+   "PASSED": 2168,
+   "SKIPPED": 17
+  },
+  "candidate": {
+   "PASSED": 2168,
+   "SKIPPED": 17
+  },
+  "changed": {},
+  "only_base": {},
+  "only_candidate": {}
+ },
+ "ts": {
+  "base": {
+   "passed": 1846
+  },
+  "candidate": {
+   "passed": 1846
+  },
+  "changed": {},
+  "only_base": {},
+  "only_candidate": {}
+ }
+}
