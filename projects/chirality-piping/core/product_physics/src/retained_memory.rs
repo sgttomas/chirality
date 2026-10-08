@@ -980,8 +980,9 @@ static REGISTERED_PROFILES: &[RegisteredProfile] = &[RegisteredProfile {
         TypeLayout { size: 96, align: 8 },
         TypeLayout { size: 16, align: 8 },
     ],
-    // M (D-7, proposed in QUALIFICATION.md §6): E_mov,max + R <= 0.8927 M in this build.
-    threshold_bytes: 4_026_531_840,
+    // M (D-7; RR "R6a: B1's G5 holds on B1's real code; M = 10.5 GiB, provisional"; B1 SQ
+    // QUAL_B1.md): E_mov,max + R <= 0.8745 M in this build (dense W3; sparse 0.8693 M).
+    threshold_bytes: 11_274_289_152,
 }];
 
 /// D-6 identity matching (G2_AMENDMENTS §1): `Missing` with nothing registered;
