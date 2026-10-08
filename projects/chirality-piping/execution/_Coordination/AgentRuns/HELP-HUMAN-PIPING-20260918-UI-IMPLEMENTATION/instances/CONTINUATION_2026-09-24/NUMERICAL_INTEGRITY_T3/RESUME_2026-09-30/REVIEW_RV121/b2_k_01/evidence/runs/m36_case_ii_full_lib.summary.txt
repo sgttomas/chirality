@@ -1,0 +1,3 @@
+     Running unittests src/lib.rs (WT/targets/rv121-fk-rv3/debug/deps/open_pipe_stress_frame_kernel-df02854d48d3f9db)
+test result: ok. 508 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 184.62s
+rc=0

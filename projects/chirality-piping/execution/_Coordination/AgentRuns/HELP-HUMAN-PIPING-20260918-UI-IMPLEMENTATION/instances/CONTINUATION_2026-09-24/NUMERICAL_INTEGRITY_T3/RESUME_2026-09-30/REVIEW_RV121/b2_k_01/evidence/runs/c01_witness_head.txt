@@ -1,0 +1,8 @@
+B2K_C01 B1-C legacy len=104653 hash=a6b8fa8a045bcb6b meter InvocationMeter { limit: 18446744073709551615, charged: 1022011 }
+B2K_C01 B1-C recorded len=104584 hash=fb17449a06b4c3ba calls len=609 hash=8c193ea1a4fabf6a sources len=9392 hash=ad6a9041622ec26f groups len=583 hash=779c4a07f7eaed59 builds len=1317 hash=c03001aab0d7037d runs len=2572 hash=9b57a1d0e72220ad meter InvocationMeter { limit: 18446744073709551615, charged: 4822664 }
+B2K_C01 B1-E legacy len=102890 hash=bcfd1e18f83ee52d meter InvocationMeter { limit: 18446744073709551615, charged: 1022536 }
+B2K_C01 B1-E recorded len=102821 hash=8a6f44f27c8777e9 calls len=522 hash=79b23a42a3c34c9e sources len=6748 hash=2406a49f38b2844f groups len=583 hash=02eecd23ca7d4098 builds len=1317 hash=c03001aab0d7037d runs len=1927 hash=7186ca09731c88f0 meter InvocationMeter { limit: 18446744073709551615, charged: 3765861 }
+B2K_C01 PRECISION-RULE legacy len=157266 hash=c89a10706ee6231e meter InvocationMeter { limit: 18446744073709551615, charged: 1262456 }
+B2K_C01 PRECISION-RULE recorded len=157197 hash=326867026c49829f calls len=521 hash=70b722fb63b5a746 sources len=7131 hash=a236557212d5cf95 groups len=662 hash=6f41e89b65538418 builds len=1776 hash=8a5889672d0aefd6 runs len=1951 hash=d2257e6ffd449897 meter InvocationMeter { limit: 18446744073709551615, charged: 5606093 }
+B2K_C01 CEILING operand CEIL-A unavailable len=3333 hash=511c93cf2a338311
+B2K_C01 CEILING operand CEIL-B unavailable len=3331 hash=ddf5447ccdb52bbc

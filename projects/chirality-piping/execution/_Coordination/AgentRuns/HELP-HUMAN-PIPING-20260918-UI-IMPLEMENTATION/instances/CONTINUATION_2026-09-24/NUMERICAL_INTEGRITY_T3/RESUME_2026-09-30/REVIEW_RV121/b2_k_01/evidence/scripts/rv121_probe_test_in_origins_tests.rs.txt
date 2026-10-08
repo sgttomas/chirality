@@ -1,0 +1,70 @@
+// ---------------------------------------------------------------- RV121 (review probe, scratch only)
+// SF-1: random declared capacities and random call orders (batches, registrations,
+// combinations with selected, prepared, out-of-range and combination-source
+// operands). After every call: no registry exceeds its reservation, no capacity
+// changes (no reallocation), and nothing panics.
+#[test]
+fn rv121_sf1_random_orders_never_outgrow_a_reservation() {
+    let (a, b) = (models::model("N05").source(), models::model("N05-TRANSVERSE").source());
+    let pa = PreparedCaseSource::new(a.clone()).unwrap();
+    let pb = PreparedCaseSource::new(b.clone()).unwrap();
+    let mut state = 0x2545_f491_4f6c_dd1du64;
+    let mut next = |n: u64| { state ^= state << 13; state ^= state >> 7; state ^= state << 17; state % n };
+    let (mut ops_total, mut refused, mut ran) = (0usize, 0usize, 0usize);
+    for _seed in 0..120 {
+        let batches: Vec<usize> = (0..next(3)).map(|_| next(3) as usize + 1).collect();
+        let combos: Vec<usize> = (0..next(4)).map(|_| next(3) as usize + 1).collect();
+        let prepared = next(4) as usize;
+        let mut ctx = b2k_ctx(&batches, &combos, prepared);
+        let reserved = b2k_capacities(&ctx);
+        let mut selected_cases: Vec<RecordedCase> = Vec::new();
+        let mut registered: Vec<(usize, bool)> = Vec::new();
+        for _op in 0..10 {
+            ops_total += 1;
+            match next(3) {
+                0 => {
+                    let n = next(4) as usize;
+                    let srcs: Vec<_> = (0..n).map(|k| if k % 2 == 0 { a.clone() } else { b.clone() }).collect();
+                    match ctx.solve_cases(&srcs, limit()) {
+                        Ok(out) => { ran += 1; selected_cases.extend(out.into_iter().filter(|c| matches!(c.outcome, ExecutionOutcome::Selected(_)))); }
+                        Err(_) => refused += 1,
+                    }
+                }
+                1 => {
+                    let which = next(2) == 0;
+                    match ctx.register_prepared_source(if which { &pa } else { &pb }) {
+                        Ok(id) => { ran += 1; registered.push((id, which)); }
+                        Err(_) => refused += 1,
+                    }
+                }
+                _ => {
+                    let n = next(3) as usize + 1;
+                    let mut ops: Vec<(f64, RecordedOperand<'_>)> = Vec::new();
+                    for _ in 0..n {
+                        let pick = next(4);
+                        if pick == 0 && !selected_cases.is_empty() {
+                            let i = next(selected_cases.len() as u64) as usize;
+                            ops.push((1.0, RecordedOperand::Selected(selected(&selected_cases[i]))));
+                        } else if pick == 1 && !registered.is_empty() {
+                            let (id, w) = registered[next(registered.len() as u64) as usize];
+                            ops.push((2.0, RecordedOperand::Prepared { source: id, prepared: if w { &pa } else { &pb } }));
+                        } else if pick == 2 {
+                            let id = next(ctx.sources().len() as u64 + 3) as usize;
+                            ops.push((-1.0, RecordedOperand::Prepared { source: id, prepared: &pa }));
+                        } else if !selected_cases.is_empty() {
+                            ops.push((0.5, RecordedOperand::Selected(selected(&selected_cases[0]))));
+                        }
+                    }
+                    match ctx.solve_combination_sources(&ops, limit()) {
+                        Ok(_) => ran += 1,
+                        Err(_) => refused += 1,
+                    }
+                }
+            }
+            b2k_within(&ctx, reserved);
+            assert!(ctx.runs().len() <= reserved[4] && ctx.builds().len() <= reserved[3]);
+        }
+    }
+    println!("RV121_SF1 ops={ops_total} ran={ran} refused={refused}");
+    assert!(ran > 0 && refused > 0);
+}

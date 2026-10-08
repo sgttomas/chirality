@@ -1,0 +1,49 @@
+     Running unittests src/lib.rs (WT/targets/rv121-main-core_product_physics/debug/deps/open_pipe_stress_product_physics-93589b6827b358fb)
+test s11g_tests::t13_committed_fallback_uz_is_byte_identical ... FAILED
+test result: FAILED. 545 passed; 1 failed; 10 ignored; 0 measured; 0 filtered out; finished in 11.77s
+     Running tests/elastic_extrema_runtime.rs (WT/targets/rv121-main-core_product_physics/debug/deps/elastic_extrema_runtime-8e6dc92292b8f7b6)
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/f1b_guard_ceiling.rs (WT/targets/rv121-main-core_product_physics/debug/deps/f1b_guard_ceiling-211173554a8a8f7f)
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.35s
+     Running tests/f1b_sparse_pattern_memory.rs (WT/targets/rv121-main-core_product_physics/debug/deps/f1b_sparse_pattern_memory-f7414a5d7f45dc79)
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 16.07s
+     Running tests/f1b_w2_runtime.rs (WT/targets/rv121-main-core_product_physics/debug/deps/f1b_w2_runtime-1104f9f4ab6cf246)
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+     Running tests/formation_check_runtime.rs (WT/targets/rv121-main-core_product_physics/debug/deps/formation_check_runtime-12c76fb99f034da8)
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.31s
+     Running tests/k2a_formation_range_runtime.rs (WT/targets/rv121-main-core_product_physics/debug/deps/k2a_formation_range_runtime-3cb8b62b08c34e40)
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+     Running tests/k5_curved_mechanism_runtime.rs (WT/targets/rv121-main-core_product_physics/debug/deps/k5_curved_mechanism_runtime-4aeac5b164343404)
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.30s
+     Running tests/load_reference_state_runtime.rs (WT/targets/rv121-main-core_product_physics/debug/deps/load_reference_state_runtime-ad95098e132ca34e)
+test result: ok. 20 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+     Running tests/load_reference_state_runtime_extension.rs (WT/targets/rv121-main-core_product_physics/debug/deps/load_reference_state_runtime_extension-accaf2eb88cfdad6)
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.30s
+     Running tests/physics_source_runtime.rs (WT/targets/rv121-main-core_product_physics/debug/deps/physics_source_runtime-bdccdfb5517aca9f)
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.24s
+     Running tests/pressure_grouping_limits.rs (WT/targets/rv121-main-core_product_physics/debug/deps/pressure_grouping_limits-bc30fbfd915d1a77)
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/pressure_membrane_range.rs (WT/targets/rv121-main-core_product_physics/debug/deps/pressure_membrane_range-e059697f39b1ef17)
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/pressure_runtime.rs (WT/targets/rv121-main-core_product_physics/debug/deps/pressure_runtime-4c3e2f23670e0a9a)
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+     Running tests/pressure_section_geometry.rs (WT/targets/rv121-main-core_product_physics/debug/deps/pressure_section_geometry-72789961a5707c1f)
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+     Running tests/preview_physics_runtime.rs (WT/targets/rv121-main-core_product_physics/debug/deps/preview_physics_runtime-d7dde7b9e066f4c8)
+test result: ok. 26 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+     Running tests/represented_gap_publication.rs (WT/targets/rv121-main-core_product_physics/debug/deps/represented_gap_publication-75e15ed7cb113d91)
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/retained_memory_challenge.rs (WT/targets/rv121-main-core_product_physics/debug/deps/retained_memory_challenge-5d4e930107fb8007)
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.61s
+     Running tests/retained_precision_admission.rs (WT/targets/rv121-main-core_product_physics/debug/deps/retained_precision_admission-f4ae2838e3b757f1)
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.65s
+     Running tests/s11f_site_test.rs (WT/targets/rv121-main-core_product_physics/debug/deps/s11f_site_test-cb6f4a64627c61c5)
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.63s
+     Running tests/source_block_recovery.rs (WT/targets/rv121-main-core_product_physics/debug/deps/source_block_recovery-f8d4f55630a052c7)
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.76s
+     Running tests/stress_maximum_coverage.rs (WT/targets/rv121-main-core_product_physics/debug/deps/stress_maximum_coverage-2607bde4c293e648)
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/support_reactions_runtime.rs (WT/targets/rv121-main-core_product_physics/debug/deps/support_reactions_runtime-c59d78a27ca9b142)
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+rc=101 seconds=63

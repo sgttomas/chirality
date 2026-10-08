@@ -1,0 +1,472 @@
+{
+ "baseline": {
+  "rc": 0,
+  "built": true,
+  "failed": [],
+  "passed": 29,
+  "seconds": 17
+ },
+ "m01": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k08_residual_and_recovery_contain_the_oracle_and_nets_are_exact_outward"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "net enclosure: directions swapped",
+  "file": "src/structural/retained/product_certificate.rs",
+  "verdict": "KILLED"
+ },
+ "m02": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k08_residual_and_recovery_contain_the_oracle_and_nets_are_exact_outward"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "net enclosure: lo rounded up (one-sided)",
+  "file": "src/structural/retained/product_certificate.rs",
+  "verdict": "KILLED"
+ },
+ "m03": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "source_residual_combination_and_missing_uniqueness_are_explicit_refusals",
+   "b2k_k08_residual_and_recovery_contain_the_oracle_and_nets_are_exact_outward",
+   "b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows",
+   "b2k_k10_mutation_controls_fail_containment"
+  ],
+  "passed": 25,
+  "seconds": 4,
+  "what": "free rows: combined net dropped",
+  "file": "src/structural/retained/product_certificate/source_residual.rs",
+  "verdict": "KILLED"
+ },
+ "m04": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k08_residual_and_recovery_contain_the_oracle_and_nets_are_exact_outward",
+   "b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows",
+   "b2k_k10_mutation_controls_fail_containment"
+  ],
+  "passed": 26,
+  "seconds": 8,
+  "what": "reaction offset: sign flipped",
+  "file": "src/structural/retained/product_certificate/source_residual.rs",
+  "verdict": "KILLED"
+ },
+ "m05": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k08_residual_and_recovery_contain_the_oracle_and_nets_are_exact_outward",
+   "b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows",
+   "b2k_k10_mutation_controls_fail_containment"
+  ],
+  "passed": 26,
+  "seconds": 4,
+  "what": "free rows: representative loads for a combination",
+  "file": "src/structural/retained/product_certificate/source_residual.rs",
+  "verdict": "KILLED"
+ },
+ "m06": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k08_residual_and_recovery_contain_the_oracle_and_nets_are_exact_outward",
+   "b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows",
+   "b2k_k10_mutation_controls_fail_containment"
+  ],
+  "passed": 26,
+  "seconds": 8,
+  "what": "reaction offsets: representative loads for a combination",
+  "file": "src/structural/retained/product_certificate/source_residual.rs",
+  "verdict": "KILLED"
+ },
+ "m07": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k08_residual_and_recovery_contain_the_oracle_and_nets_are_exact_outward"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "free rows: zero nets enclosed too (work only)",
+  "file": "src/structural/retained/product_certificate/source_residual.rs",
+  "verdict": "KILLED"
+ },
+ "m08": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "source_residual_combination_and_missing_uniqueness_are_explicit_refusals",
+   "b2k_c06_a_nonzero_prescription_in_a_later_operand_is_unsupported",
+   "b2k_k07_view_admits_p2_refuses_corruption_and_keeps_native_data_flags"
+  ],
+  "passed": 26,
+  "seconds": 10,
+  "what": "view: P2 value check dropped",
+  "file": "src/structural/retained/adaptive.rs",
+  "verdict": "KILLED"
+ },
+ "m09": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k07_view_admits_p2_refuses_corruption_and_keeps_native_data_flags"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "view: P2 by value (admits -0.0)",
+  "file": "src/structural/retained/adaptive.rs",
+  "verdict": "KILLED"
+ },
+ "m10": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k07_view_admits_p2_refuses_corruption_and_keeps_native_data_flags"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "view: factor bits unchecked",
+  "file": "src/structural/retained/adaptive.rs",
+  "verdict": "KILLED"
+ },
+ "m11": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k07_view_admits_p2_refuses_corruption_and_keeps_native_data_flags"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "view: term count unchecked",
+  "file": "src/structural/retained/adaptive.rs",
+  "verdict": "KILLED"
+ },
+ "m12": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k07_view_admits_p2_refuses_corruption_and_keeps_native_data_flags"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "view: combination prescribed flags set",
+  "file": "src/structural/retained/adaptive.rs",
+  "verdict": "KILLED"
+ },
+ "m13": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k06_product_owner_is_the_recorded_kind_of_the_run"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "product_owner: kind check dropped",
+  "file": "src/structural/retained/origins.rs",
+  "verdict": "KILLED"
+ },
+ "m14": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k06_both_certificate_entries_accept_a_recorded_combination_owner_only"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "run_case: recorded owner unchecked",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "KILLED"
+ },
+ "m15": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_c05_the_combination_coverage_rule"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "row_scales: combination row families admitted",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "KILLED"
+ },
+ "m16": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_c05_the_combination_coverage_rule",
+   "b2k_c06_a_nonzero_prescription_in_a_later_operand_is_unsupported",
+   "b2k_k06_both_certificate_entries_accept_a_recorded_combination_owner_only",
+   "b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows"
+  ],
+  "passed": 25,
+  "seconds": 6,
+  "what": "row_scales: mode record required of a combination",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "KILLED"
+ },
+ "m17": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_c05_the_combination_coverage_rule",
+   "b2k_c06_a_nonzero_prescription_in_a_later_operand_is_unsupported",
+   "b2k_k06_both_certificate_entries_accept_a_recorded_combination_owner_only",
+   "b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows"
+  ],
+  "passed": 25,
+  "seconds": 6,
+  "what": "row_scales: wrong exempt slot",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "KILLED"
+ },
+ "m18": {
+  "rc": 0,
+  "built": true,
+  "failed": [],
+  "passed": 29,
+  "seconds": 10,
+  "what": "row_scales: slot 20 exempt for cases too",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "SURVIVED"
+ },
+ "m19": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows"
+  ],
+  "passed": 28,
+  "seconds": 8,
+  "what": "project: no (ii), hull projection",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "KILLED"
+ },
+ "m20": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_rn64_norm3_agrees_with_the_oracle_vectors",
+   "b2k_rn64_norm3_vectors_signed_zeros_refusal_and_work"
+  ],
+  "passed": 27,
+  "seconds": 10,
+  "what": "norm: ties to odd",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "KILLED"
+ },
+ "m21": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_rn64_norm3_agrees_with_the_oracle_vectors",
+   "b2k_rn64_norm3_vectors_signed_zeros_refusal_and_work"
+  ],
+  "passed": 27,
+  "seconds": 10,
+  "what": "norm: binade-rule lower midpoint at 2^-1022 (SA4-1 (a))",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "KILLED"
+ },
+ "m22": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_rn64_norm3_agrees_with_the_oracle_vectors",
+   "b2k_rn64_norm3_vectors_signed_zeros_refusal_and_work"
+  ],
+  "passed": 27,
+  "seconds": 10,
+  "what": "norm: beyond MAX published as MAX (SA4-1 (b))",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "KILLED"
+ },
+ "m23": {
+  "rc": 0,
+  "built": true,
+  "failed": [],
+  "passed": 29,
+  "seconds": 10,
+  "what": "norm: overflowing estimate refused outright (SA4-1 (c))",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "SURVIVED"
+ },
+ "m24": {
+  "rc": 0,
+  "built": true,
+  "failed": [],
+  "passed": 29,
+  "seconds": 10,
+  "what": "norm: a second step allowed (SA4-1 (d))",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "SURVIVED"
+ },
+ "m25": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_rn64_norm3_agrees_with_the_oracle_vectors",
+   "b2k_rn64_norm3_vectors_signed_zeros_refusal_and_work"
+  ],
+  "passed": 27,
+  "seconds": 10,
+  "what": "norm: exact side test skipped (estimate published)",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "KILLED"
+ },
+ "m26": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_rn64_norm3_vectors_signed_zeros_refusal_and_work"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "norm: component unit unchecked",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "KILLED"
+ },
+ "m27": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k02_for_invocation_registration_and_the_run_capacity_check"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "SF-1: Run-capacity check dropped",
+  "file": "src/structural/retained/origins.rs",
+  "verdict": "KILLED"
+ },
+ "m28": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k02_for_invocation_registration_and_the_run_capacity_check"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "SF-1: remaining combinations not reserved",
+  "file": "src/structural/retained/origins.rs",
+  "verdict": "KILLED"
+ },
+ "m29": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k02_for_invocation_registration_and_the_run_capacity_check"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "registration: capacity unchecked",
+  "file": "src/structural/retained/origins.rs",
+  "verdict": "KILLED"
+ },
+ "m30": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k03_an_unavailable_operand_is_rebuilt_identity_checked_and_custody_refuses_otherwise"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "I7: identity unchecked",
+  "file": "src/structural/retained/origins.rs",
+  "verdict": "KILLED"
+ },
+ "m31": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k03_each_i7_check_refuses_on_its_own"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "I7: owner kind unchecked",
+  "file": "src/structural/retained/origins.rs",
+  "verdict": "KILLED"
+ },
+ "m32": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k03_each_i7_check_refuses_on_its_own"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "I7: combination ledger unchecked",
+  "file": "src/structural/retained/origins.rs",
+  "verdict": "KILLED"
+ },
+ "m33": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k02_for_invocation_registration_and_the_run_capacity_check"
+  ],
+  "passed": 28,
+  "seconds": 10,
+  "what": "for_invocation: prepared sources reserve Runs",
+  "file": "src/structural/retained/origins.rs",
+  "verdict": "KILLED"
+ },
+ "m34": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_c02_operands_differ_on_a_prepared_or_a_selected_operand",
+   "b2k_k04_unrecorded_all_prepared_is_no_selected_operand_after_the_native_checks",
+   "b2k_k04_no_selected_operand_is_refused_after_the_native_checks"
+  ],
+  "passed": 26,
+  "seconds": 12,
+  "what": "OperandsDiffer: K4STF unchecked",
+  "file": "src/structural/retained/combine.rs",
+  "verdict": "KILLED"
+ },
+ "m35": {
+  "rc": 0,
+  "built": true,
+  "failed": [],
+  "passed": 29,
+  "seconds": 12,
+  "what": "imports: last selected operand wins (authored order lost)",
+  "file": "src/structural/retained/origins.rs",
+  "verdict": "SURVIVED"
+ },
+ "p1a": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b3k_base_e_nu_stress_and_maximum_rows_certify_in_both_lanes_nu_0_3125_control",
+   "b3k_restored_material_gate_fails_stress_and_maximum_rows_with_represented_z",
+   "b3k_exact_e_nu_represented_z_axis_bits_and_restored_material_gate",
+   "b3k_nu_0_3125_control_and_exact_g_against_represented_g"
+  ],
+  "passed": 25,
+  "seconds": 10,
+  "what": "K3-2 reverted in production code",
+  "file": "src/structural/retained/product_certificate.rs",
+  "verdict": "KILLED"
+ },
+ "p1b": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b3k_base_e_nu_maps_to_exact_operands_and_refuses_through_the_public_variant",
+   "b3k_restored_material_gate_fails_stress_and_maximum_rows_with_represented_z"
+  ],
+  "passed": 27,
+  "seconds": 10,
+  "what": "K3-1 mapped to the ordinary route",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "KILLED"
+ }
+}

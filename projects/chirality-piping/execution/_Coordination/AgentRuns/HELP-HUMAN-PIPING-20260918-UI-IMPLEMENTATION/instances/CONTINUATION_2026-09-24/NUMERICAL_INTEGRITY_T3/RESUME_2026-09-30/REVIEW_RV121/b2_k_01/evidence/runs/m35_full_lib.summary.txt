@@ -1,0 +1,4 @@
+     Running unittests src/lib.rs (WT/targets/rv121-fk-rv5/debug/deps/open_pipe_stress_frame_kernel-df02854d48d3f9db)
+test structural::retained::origins::tests::frozen_selected_snapshots_and_authored_first_occupied_imports_are_actual ... FAILED
+test result: FAILED. 507 passed; 1 failed; 1 ignored; 0 measured; 0 filtered out; finished in 187.65s
+rc=101

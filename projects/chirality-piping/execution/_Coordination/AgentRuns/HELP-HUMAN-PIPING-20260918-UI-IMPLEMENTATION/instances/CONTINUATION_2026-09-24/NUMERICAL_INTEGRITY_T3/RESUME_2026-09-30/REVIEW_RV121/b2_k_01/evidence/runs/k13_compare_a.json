@@ -1,0 +1,10 @@
+{
+ "a_tests": 84,
+ "b_tests": 106,
+ "common": 84,
+ "common_with_output": 18,
+ "printed_lines_common": 300,
+ "differ": [],
+ "only_a": [],
+ "only_b_count": 22
+}

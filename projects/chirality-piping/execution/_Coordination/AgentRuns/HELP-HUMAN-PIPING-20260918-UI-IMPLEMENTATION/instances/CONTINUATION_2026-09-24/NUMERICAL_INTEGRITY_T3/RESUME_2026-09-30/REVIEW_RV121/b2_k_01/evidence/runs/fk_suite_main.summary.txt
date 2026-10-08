@@ -1,0 +1,18 @@
+     Running unittests src/lib.rs (WT/targets/rv121-fk-main/debug/deps/open_pipe_stress_frame_kernel-df02854d48d3f9db)
+test result: ok. 480 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 183.34s
+     Running tests/k1_k2a_interaction.rs (WT/targets/rv121-fk-main/debug/deps/k1_k2a_interaction-53884748f47e1fb1)
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/k2a_checked_formation.rs (WT/targets/rv121-fk-main/debug/deps/k2a_checked_formation-d8931dc78a81fc1a)
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/k2b_force_scaling.rs (WT/targets/rv121-fk-main/debug/deps/k2b_force_scaling-c5e7eb1f9e84dfe8)
+test result: ok. 20 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/k5_constrained_bodies.rs (WT/targets/rv121-fk-main/debug/deps/k5_constrained_bodies-adec91ac59b35b78)
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.54s
+     Running tests/k5_scale.rs (WT/targets/rv121-fk-main/debug/deps/k5_scale-30d1172751fb2291)
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.36s
+     Running tests/m03_skew_scope.rs (WT/targets/rv121-fk-main/debug/deps/m03_skew_scope-60007ec00aa2fbec)
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/s11_site_table.rs (WT/targets/rv121-fk-main/debug/deps/s11_site_table-bde986a930308442)
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.22s
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.62s
+rc=0

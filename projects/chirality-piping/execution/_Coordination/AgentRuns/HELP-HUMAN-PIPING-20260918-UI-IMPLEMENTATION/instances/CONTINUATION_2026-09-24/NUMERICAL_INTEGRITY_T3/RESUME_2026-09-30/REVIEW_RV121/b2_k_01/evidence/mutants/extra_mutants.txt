@@ -1,0 +1,10 @@
+Extra single-replacement copies of head (FK final_case.rs or origins.rs), each run as batch2.sh shows.
+rv2 (I102's p2m29, with the RV121 norm probe):  "let up=upper>0 || (upper==0 && odd);"  ->  "let up=upper>0;"
+    result: 3 of 1,093 vectors differ from the oracle, exactly the three exact overflow ties (MAX published, refusal expected).
+rv3 (m36):  "let combination=!self.data.owner.prep.factors.is_empty();"  ->  "let combination=true;"
+    result: FK whole lib 508 passed (survives); case magnitude probe: net-C7 and net-C9 tip magnitudes move by one ulp.
+rv4 (m18):  "!(combination && j % 21 == 20)"  ->  "!(j % 21 == 20)"
+    result: FK whole lib 508 passed (survives).
+rv5 (m35):  imports loop "for slot in OriginSlot::ALL { ... if slots[i].is_none() {"  ->  ".into_iter().rev() ... || operand_index > 0 {"
+    result: killed by origins::tests::frozen_selected_snapshots_and_authored_first_occupied_imports_are_actual.
+rv  (no mutation): head plus the RV121 probe tests only.
