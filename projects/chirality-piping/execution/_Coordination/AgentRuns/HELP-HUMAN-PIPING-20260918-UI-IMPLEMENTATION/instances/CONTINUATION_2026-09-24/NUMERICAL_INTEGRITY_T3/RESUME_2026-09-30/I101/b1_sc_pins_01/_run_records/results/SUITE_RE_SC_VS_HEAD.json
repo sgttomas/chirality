@@ -1,0 +1,122 @@
+{
+ "suite": "re",
+ "sc": {
+  "FAILED": 19,
+  "ok": 177
+ },
+ "head": {
+  "ok": 199
+ },
+ "differences": [
+  {
+   "test": "retained_precision_contract.rs :: shared_must_pass_entries_validate",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_03_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_04_coverage_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_05a_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_05b_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_06a_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_06b_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_06c_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_06d_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_07_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_07b_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_07d_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_07e_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_07f_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_07g_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_07h_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_07k_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_07l_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_07m_mutation_outcomes",
+   "sc": "FAILED",
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_07n_counts_and_format",
+   "sc": null,
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_07n_mutation_outcomes",
+   "sc": null,
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: snapshot_07n_unbound_and_transport_reads",
+   "sc": null,
+   "head": "ok"
+  }
+ ]
+}

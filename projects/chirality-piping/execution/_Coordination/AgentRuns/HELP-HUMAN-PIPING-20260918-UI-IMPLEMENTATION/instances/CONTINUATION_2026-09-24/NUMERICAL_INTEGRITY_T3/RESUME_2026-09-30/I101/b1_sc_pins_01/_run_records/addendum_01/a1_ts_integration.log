@@ -1,0 +1,13 @@
+# i101 job a1_ts_integration (slot) queued 2026-10-08T10:33:22Z dir=scratch/i101_b1_sc_pins/copies/n6/projects/chirality-piping/apps/desktop
+# args: WT/scratch/i101_b1_sc_pins/copies/n6/projects/chirality-piping/node_modules/.bin/vitest run src/features/results/retainedPrecisionIntegration.test.tsx
+# start 2026-10-08T10:33:22Z
+
+ RUN  v4.1.10 WT/scratch/i101_b1_sc_pins/copies/n6/projects/chirality-piping/apps/desktop
+
+
+ Test Files  1 passed (1)
+      Tests  180 passed (180)
+   Start at  04:33:22
+   Duration  7.81s (transform 291ms, setup 80ms, import 386ms, tests 7.01s, environment 278ms)
+
+# end 2026-10-08T10:33:30Z rc=0

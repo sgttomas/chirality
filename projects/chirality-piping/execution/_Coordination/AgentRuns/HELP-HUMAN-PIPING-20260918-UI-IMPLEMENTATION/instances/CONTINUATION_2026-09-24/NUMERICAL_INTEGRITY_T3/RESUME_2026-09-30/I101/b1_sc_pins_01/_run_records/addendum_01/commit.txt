@@ -1,0 +1,8 @@
+57c92a7b3310229406733a7134e271c29bcc6978 2026-10-08T04:32:24-06:00
+  piping(T3 B1 SC pins): the carrier case file's transport scope sentence (RV108 N6(b)) and its three pins
+
+ .../src/features/results/retainedPrecisionIntegration.test.tsx        | 2 +-
+ .../core/reporting/result_export/tests/retained_precision_carriers.rs | 4 ++--
+ .../fixtures/results/retained_precision_carrier_cases.json            | 2 +-
+ projects/chirality-piping/tests/test_retained_precision_carriers.py   | 2 +-
+ 4 files changed, 5 insertions(+), 5 deletions(-)

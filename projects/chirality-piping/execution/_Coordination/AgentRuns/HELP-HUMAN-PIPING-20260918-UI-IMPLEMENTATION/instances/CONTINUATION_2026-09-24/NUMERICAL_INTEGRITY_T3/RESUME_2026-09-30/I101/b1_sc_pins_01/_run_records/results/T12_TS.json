@@ -1,0 +1,200 @@
+{
+ "request_sha256": "ea5c13b1d21cf8374ade0a161bc8113272dcc9aa7bdae1f47968dbe58f818a1d",
+ "modes": {
+  "sparse_interactive": {
+   "sha256": {
+    "base": "906c2eb5880ea3ec474ab04de860a960e48fd072e08e7eb825581f1a57609793",
+    "noticed_plain": "d51eadab519f946281042c1669bc74a9fb5d36971deb947a1ee3e90cc624e83a",
+    "noticed_receipt": "338f54298a0e003871e6cfd7d589b2c302f659062b58f73158f959726b77abbe"
+   },
+   "reads": {
+    "base": {
+     "raw": [
+      "preview_physics",
+      {
+       "id": "openpipestress.result_semantics/0.3.0/preview-physics-1",
+       "sha256": "ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a"
+      }
+     ],
+     "transport": "preview_physics",
+     "evidence": "ok",
+     "standing": {
+      "contract": "preview_physics",
+      "status": "needs_recompute",
+      "eligible": false,
+      "findings": [
+       "NUMERICAL_INTEGRITY_NOT_QUALIFIED",
+       "NUMERICAL_CASE_EVIDENCE_INCOMPLETE"
+      ]
+     },
+     "record": "validates",
+     "binding_refusals": 0,
+     "summary_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "noticed_plain": {
+     "raw": [
+      "preview_physics",
+      {
+       "id": "openpipestress.result_semantics/0.3.0/preview-physics-1",
+       "sha256": "ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a"
+      }
+     ],
+     "transport": "preview_physics",
+     "evidence": "ok",
+     "standing": {
+      "contract": "preview_physics",
+      "status": "needs_recompute",
+      "eligible": false,
+      "findings": [
+       "NUMERICAL_INTEGRITY_NOT_QUALIFIED",
+       "NUMERICAL_CASE_EVIDENCE_INCOMPLETE"
+      ]
+     },
+     "record": "validates",
+     "binding_refusals": 0,
+     "summary_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "noticed_receipt": {
+     "raw": [
+      "preview_physics",
+      {
+       "id": "openpipestress.result_semantics/0.3.0/preview-physics-1",
+       "sha256": "ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a"
+      }
+     ],
+     "transport": "preview_physics",
+     "evidence": "ok",
+     "standing": {
+      "contract": "preview_physics",
+      "status": "needs_recompute",
+      "eligible": false,
+      "findings": [
+       "NUMERICAL_INTEGRITY_NOT_QUALIFIED",
+       "NUMERICAL_CASE_EVIDENCE_INCOMPLETE"
+      ]
+     },
+     "record": "validates",
+     "binding_refusals": 0,
+     "summary_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+   },
+   "notices": {
+    "base": [],
+    "noticed_plain": [
+     "diagnostic:retained-precision:case-a:unavailable",
+     "diagnostic:retained-precision:case-c:unavailable"
+    ],
+    "noticed_receipt": [
+     "diagnostic:retained-precision:case-a:unavailable",
+     "diagnostic:retained-precision:case-c:unavailable"
+    ]
+   },
+   "same_as_base": {
+    "noticed_plain": true,
+    "noticed_receipt": true
+   },
+   "only_notices_added": {
+    "noticed_plain": true,
+    "noticed_receipt": true
+   }
+  },
+  "dense_scrutiny": {
+   "sha256": {
+    "base": "f86099d46cee834eadfcd71dd6043d5aa2d7783010fe365db5a348104ad36127",
+    "noticed_plain": "3725543490f68445ea7e94f159d34ff72f215bed73124baf9786fbc2e813923c",
+    "noticed_receipt": "c698faf67c99a99e8e486f8693426f2c9d89aca8837528b9c270232ed4de9441"
+   },
+   "reads": {
+    "base": {
+     "raw": [
+      "preview_physics",
+      {
+       "id": "openpipestress.result_semantics/0.3.0/preview-physics-1",
+       "sha256": "ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a"
+      }
+     ],
+     "transport": "preview_physics",
+     "evidence": "ok",
+     "standing": {
+      "contract": "preview_physics",
+      "status": "needs_recompute",
+      "eligible": false,
+      "findings": [
+       "NUMERICAL_INTEGRITY_NOT_QUALIFIED",
+       "NUMERICAL_CASE_EVIDENCE_INCOMPLETE"
+      ]
+     },
+     "record": "validates",
+     "binding_refusals": 0,
+     "summary_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "noticed_plain": {
+     "raw": [
+      "preview_physics",
+      {
+       "id": "openpipestress.result_semantics/0.3.0/preview-physics-1",
+       "sha256": "ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a"
+      }
+     ],
+     "transport": "preview_physics",
+     "evidence": "ok",
+     "standing": {
+      "contract": "preview_physics",
+      "status": "needs_recompute",
+      "eligible": false,
+      "findings": [
+       "NUMERICAL_INTEGRITY_NOT_QUALIFIED",
+       "NUMERICAL_CASE_EVIDENCE_INCOMPLETE"
+      ]
+     },
+     "record": "validates",
+     "binding_refusals": 0,
+     "summary_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "noticed_receipt": {
+     "raw": [
+      "preview_physics",
+      {
+       "id": "openpipestress.result_semantics/0.3.0/preview-physics-1",
+       "sha256": "ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a"
+      }
+     ],
+     "transport": "preview_physics",
+     "evidence": "ok",
+     "standing": {
+      "contract": "preview_physics",
+      "status": "needs_recompute",
+      "eligible": false,
+      "findings": [
+       "NUMERICAL_INTEGRITY_NOT_QUALIFIED",
+       "NUMERICAL_CASE_EVIDENCE_INCOMPLETE"
+      ]
+     },
+     "record": "validates",
+     "binding_refusals": 0,
+     "summary_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+   },
+   "notices": {
+    "base": [],
+    "noticed_plain": [
+     "diagnostic:retained-precision:case-a:unavailable",
+     "diagnostic:retained-precision:case-c:unavailable"
+    ],
+    "noticed_receipt": [
+     "diagnostic:retained-precision:case-a:unavailable",
+     "diagnostic:retained-precision:case-c:unavailable"
+    ]
+   },
+   "same_as_base": {
+    "noticed_plain": true,
+    "noticed_receipt": true
+   },
+   "only_notices_added": {
+    "noticed_plain": true,
+    "noticed_receipt": true
+   }
+  }
+ },
+ "ok": true
+}

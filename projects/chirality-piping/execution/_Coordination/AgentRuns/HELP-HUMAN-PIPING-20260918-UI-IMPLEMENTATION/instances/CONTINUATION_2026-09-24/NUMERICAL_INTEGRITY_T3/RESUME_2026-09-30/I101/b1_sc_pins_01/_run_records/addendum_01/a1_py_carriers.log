@@ -1,0 +1,6 @@
+# i101 job a1_py_carriers (slot) queued 2026-10-08T10:33:30Z dir=scratch/i101_b1_sc_pins/copies/n6/projects/chirality-piping
+# args: /usr/bin/env -u OPENPIPESTRESS_BINARY64_JSON_BIN OPENPIPESTRESS_CHECKED_JSON_BIN=WT/targets/i100-b1-i4p-py/checked-json/release/openpipestress_jcs_ijson OPENPIPESTRESS_UNITS_BIN=WT/targets/i100-b1-i4p-py/units-authority/release/openpipestress_units PYTHONDONTWRITEBYTECODE=1 WT/venv/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i101_b1_sc_pins/tmp/a1_py_bt/bt -q -rf tests/test_retained_precision_carriers.py
+# start 2026-10-08T10:33:30Z
+....................................................                     [100%]
+52 passed in 77.98s (0:01:17)
+# end 2026-10-08T10:34:48Z rc=0

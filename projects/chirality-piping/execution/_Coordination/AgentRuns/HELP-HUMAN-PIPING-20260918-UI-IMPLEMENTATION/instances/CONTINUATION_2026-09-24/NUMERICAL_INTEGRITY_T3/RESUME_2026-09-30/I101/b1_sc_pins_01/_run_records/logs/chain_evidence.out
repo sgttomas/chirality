@@ -1,0 +1,8 @@
+rs census rc=0
+ts census rc=0
+ts t12 rc=0
+head re rc=0
+sc re rc=101
+head vitest rc=0
+sc vitest rc=1
+head tsc rc=0

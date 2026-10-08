@@ -1,0 +1,8 @@
+# WT/b1, codex/piping-t3-b1-20261007, over SC 09fe4cc69b
+901745f46beee78b7bfbabee7f2307eff590f47b 2026-10-08T04:19:15-06:00
+  piping(T3 B1 SC pins): TS's retained-reader tests read corpus 07n
+90d8fbeea5b0e6c7a93fdc5bc3df4990b72dd7fe 2026-10-08T04:19:15-06:00
+  piping(T3 B1 SC pins): RS's contract test reads corpus 07n; slice ids pinned (I83 §7 item 8)
+ .../src/features/results/retainedPrecision.test.ts |  66 +-
+ .../tests/retained_precision_contract.rs           | 808 ++++++++++++++++++++-
+ 2 files changed, 858 insertions(+), 16 deletions(-)

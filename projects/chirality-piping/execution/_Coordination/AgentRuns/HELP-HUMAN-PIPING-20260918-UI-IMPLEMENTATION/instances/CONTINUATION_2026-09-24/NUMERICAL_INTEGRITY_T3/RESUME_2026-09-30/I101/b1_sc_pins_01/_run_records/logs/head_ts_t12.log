@@ -1,0 +1,13 @@
+# i101 job head_ts_t12 (slot) queued 2026-10-08T10:21:48Z dir=scratch/i101_b1_sc_pins/copies/hd/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env I101_T12_DIR=WT/numerics/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I85/b1_sp_01/_run_records/final/t12_bytes I101_T12_OUT=WT/scratch/i101_b1_sc_pins/out/T12_TS.json WT/scratch/i101_b1_sc_pins/copies/hd/projects/chirality-piping/node_modules/.bin/vitest run src/features/results/i101T12.test.ts
+# start 2026-10-08T10:21:48Z
+
+ RUN  v4.1.10 WT/scratch/i101_b1_sc_pins/copies/hd/projects/chirality-piping/apps/desktop
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  04:21:48
+   Duration  1.33s (transform 156ms, setup 45ms, import 169ms, tests 938ms, environment 124ms)
+
+# end 2026-10-08T10:21:49Z rc=0
