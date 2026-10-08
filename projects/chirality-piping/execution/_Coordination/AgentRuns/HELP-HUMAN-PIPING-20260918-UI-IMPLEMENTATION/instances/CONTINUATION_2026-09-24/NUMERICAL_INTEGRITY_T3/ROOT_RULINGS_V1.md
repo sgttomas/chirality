@@ -15532,3 +15532,8 @@ Both are availability limits of the frozen DEF-O, not soundness defects: a faili
 - a screen hit stops the commit until ROOT has read it.
 
 **Main's earlier records:** 11 T3 records on main from 2026-10-03 carry the network name, and RV76's REVIEW.md carries one home-relative path. They predate this session's screens. Cleaning main's tree is the owner's choice; the owner has been told.
+
+**Addendum to E-16 (ROOT's own correction):**
+- **The rule existed; ROOT applied it wrongly.** RR "RV117 passes #1111; …", ruling 4 (2026-10-07) already required the screen to check the machine's full host name and `\.local\b` in decompressed `.gz` files, and N-4 named this very attribute. ROOT then screened with the machine's other host-name form, and judged `.local` hits in text only. So E-16 is a lapse in applying ruling 4, not a gap in the rule. `REDACTION_E16/RECORD.md` says the screen "looked for the machine's other host-name form only"; that is accurate, but it does not say the rule already covered this. This addendum supplies that.
+- **Main also carries the attribute in I91's five junit `.gz` files** (`R/I91/b1_sr_py_01/_run_records/suites/`), merged with #1111 under ruling 4's "no new kind of exposure". That is besides the 11 records from 2026-10-03 and RV76's path. The owner has been told.
+- **The records-PR screen** reads every hit in the PR's added and changed lines, in text and in decompressed `.gz`. The remaining hits are pattern or rule text, the owner's own words, or an already-redacted `<host>` placeholder.
