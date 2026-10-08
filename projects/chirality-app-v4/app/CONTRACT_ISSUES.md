@@ -276,3 +276,339 @@ custody review records RC1-COLD as repaired for the core scope. Root consumer
 integration is in the combined checkpoint. Actual native quit/relaunch evidence
 and external PI-6 mapping remain open. Exact source pins are in the Group A run's
 CC-REC-ITEM-TURN-SOURCE-ADOPTION.json; review status in V6-RECOVERY-CUSTODY-CORE.md.
+
+## CI-18 Development workflow selections were composed and sent as runs
+
+- **Found:** 2026-10-07 during J1 publication work (run APP-V4-GROUP-A-20261004;
+  TASK dispatched by HELP_HUMAN). The prior J1 reading was checked by HELP_HUMAN
+  against the WR text and rechecked here.
+- **Conflicting texts.** WR Design (`DEL-02-02 …/Design/WORKSPACE_AND_REGISTRATION.md`,
+  accepted, governs):
+  - TT-1 (SETTLED): "Only registered revisions (and bundled or host-listed
+    workflows, LS-5, LS-6) are selectable for a run."
+  - TX-1: "Only a selected revision with standing LS-1, LS-5, LS-6 or LS-8 is
+    composed."
+  - WP-6: "Selected-development evidence cannot be laundered into a registered
+    selection_record."
+
+  Run record `changes/I2-DEVELOPMENT-CATALOG.md` (affected receivers): "explicit
+  per-run selection only, supply via existing WR run-start text after its usual
+  checks." The built-in catalog's `coordinated-knowledge-work` has standing
+  "App-v4 development build candidate; not a published release", which is none of
+  LS-1, LS-5, LS-6 or LS-8. Root `prepare_run`/`send` nevertheless composed and sent
+  development selections.
+- **Correction (code only; no Design change).** A development selection may still
+  be admitted, selected and shown with its development standing. Root
+  `prepare_run` refuses to prepare, record or send a run from it, naming TT-1/TX-1;
+  the panel shows the refusal and disables preparation. No standing is invented.
+  The ordinary journey runs a hot registered revision (development copy → draft →
+  review → A15 → registered selection → run). `PreparedRunPublication` already
+  refused development admission for a `selection_record`. The library-level
+  `PreparedRunText::start` composer still accepts any admitted `Selection`, because
+  a maintained catalog test asserts development provenance through composition;
+  production reaches it only after the Root refusal.
+- **Tests moved, assertions unchanged:**
+  `workflow_root_closed_prepare_scoped_send_failed_turn_and_genuine_pages` and
+  `workflow_root_stale_prepared_scope_keeps_original_receipt_without_resend` now use
+  a registered selection. The new test
+  `workflow_root_development_selection_run_is_refused_tt1_tx1` shows the refusal,
+  with no run, no WR record and no `turn/start`.
+- **Alternative for the design owner and the owner:** if development runs are
+  wanted, a named, reviewed WR Design change could add an explicit development
+  standing (for example an LS-9 "development build candidate") with its own
+  selection_record standing value, TX-1 composition rule, framing and limits, and
+  RS R3 consequences. Until then the accepted Design governs.
+- **Consequence:** the earlier exact832ec9 native workflow witness
+  (`probes/NATIVE_WORKFLOW_832ec9_ATTEMPT_2.json`) ran the development selection
+  `coordinated-knowledge-work`. It remains valid historical delivery evidence for
+  those bytes, but it is not evidence of a conforming registered workflow run, and
+  it cannot be reused as such. A registered-selection native witness is still needed.
+
+## CI-19 (J2) EXEC compatibility report: representation limits at publication
+
+- **Found:** 2026-10-07, J2 TASK of `APP-V4-GROUP-A-20261004`, while
+  implementing `execution_compatibility::report::evaluate`, which publishes the
+  EXEC report body (`compatibility-report.schema.json`, proposed-0.6, embedded
+  byte-identical at `src-tauri/resources/workflow_role/`) only from supplied facts.
+- **(a) Unrecognized elements.** EXEC EV-2 reports an unrecognized required-tool
+  element as *not established*, never skipped, and CR-9 lists every declared
+  checkpoint. The schema's requirement row requires `class` and `necessity`
+  from closed enums. Its checkpoint row requires a recognized required act,
+  reached-when kind, subject class and held-actions form, and a boolean
+  `governed`, so an unrecognized `governed` value (FB-19: preserved, never
+  assumed) has no place either. Such an element cannot be represented. The
+  code refuses publication, naming the element. Nothing is dropped or guessed.
+  For an unrepresentable required-tool element, the advisory preparation still
+  reports the check as *not established*. For an unrepresentable checkpoint,
+  the Phase-1 check is unchanged (PH-3) and may pass; only publication is
+  refused. Proposed EXEC change for the Design owner (not made): allow
+  `not_established` for row `class`/`necessity` and for the checkpoint fields
+  including `governed`, or add a list of unrecognized elements carried as found.
+- **(b) Revision method.** The report identity (CR-2) has no `revision_method`,
+  which WD-v0.8 §6.1 and CC-CONTENT-IDENTITY carry. The code omits it from the
+  identity and states it in `limitations`. Proposed: an optional
+  `revision_method` in the report identity.
+- **(c) Host facts for App-only runs.** `host.host_id`, `host.catalog_edition`,
+  `host.catalog_readable` and `surface.channel_state` are required. A workflow
+  that needs only harness capabilities, checked for an App run on X with no
+  external host, has no host identity, edition, catalog readability or channel
+  state to supply. It therefore has no publishable report unless the caller
+  supplies them. The code refuses instead of inventing them. The Design owner
+  should say what CR-4 and CR-5 mean for an App-only run.
+- **(d) R14 without a report.** RS R14 keeps "no report evaluated" explicit,
+  but `compatibilityReportRef` requires a report reference even for that
+  value. The code produces no R14 body when publication is refused and never
+  uses a preparation id as a report reference. RS should say how the absence
+  is written.
+- **(e) Strictness.** `report_check` now treats any unrecognized required-tool
+  element, including one marked optional, as *not established* (WD §3.4). This
+  is in tension with EXEC PS-5 ("optional references never block") and with the
+  older `Compatibility::check`, which still ignores unrecognized optional
+  elements; the Design owner should confirm which reading governs.
+- **Not changed:** channel state stays `enabled`/`not_enabled`; an unobserved
+  channel or an unobserved catalog refuses publication (V6: no schema change
+  follows from collector absence). `actual_host` standing needs a real
+  environment collector, which does not exist; current origins are
+  caller-supplied (`illustrative`) or test double (`test_double`).
+- **Standing:** open Design questions. Implementation and tests are in
+  `compatibility_report.rs` and `compatibility_report_tests.rs` (`j2_*`, `v8_*`).
+
+## CI-20 J1/J3 supply and lifecycle: gaps found in implementation
+
+Found 2026-10-07 by the J1/J3 TASK of `APP-V4-GROUP-A-20261004`, partly through
+independent review V9 (`reviews/V9-J1-PUBLICATION.md`). Each item states what
+the accepted text says, what the code does, and what remains for the design
+owner or the owner. No Design file was changed.
+
+- **(a) Unknown `turn/start` outcome (V9 F-1).** WR §16.4 ("`turn/start` refused
+  or fails before the item is recorded" → `supply_check` *not found*) and RN-4
+  name a state for a refused or failed start, but none for an outcome that is
+  genuinely unknown: no response, a timeout, or transport loss after the frame
+  may have been delivered. The App now mints *not found* only from a typed
+  Host refusal (`Host::prepared_turn_refusal`: the exact written `turn/start`
+  received a correlated native error). The check cites that request's receipt,
+  has no `turn` or item, and R3 stays unavailable (RS §13.6a). For an unknown
+  outcome it mints nothing, shows "outcome unknown", records the run start as
+  not confirmed and never resends. *Not found* there would be an unsupported
+  claim, since the text may have been supplied. Proposed for the WR owner: name
+  an unknown-outcome state (for example *outcome unknown*, with a later read
+  of the turn when an identity becomes known), or rule that an unknown start
+  leaves no `supply_check`. A start that fails before any frame is written has
+  no Host receipt and is treated the same way.
+- **(b) App-minted run identity (V9 F-7).** WR §16.1–16.2 make the run identity
+  DEL-02-03's (EXEC). No EXEC producer exists, so Root mints an App-local opaque
+  `run:workflow:<uuid>`, chosen to satisfy RS `$defs/runId`
+  (`^run:[A-Za-z0-9._:/-]+$`). At J1 (`8a785ac4e3`), R3 `supplied_guidance`
+  entries were written under that id with no `run_opened`, although RS R1
+  marks the run identity record Required. This is interim. J3 closes the
+  missing record: the App writer records `run_opened` (with `follows` for a
+  sequential run) when the start turn is observed (EXEC A-2), and `run_ended`
+  only on the person's explicit end (AE-7). The identity itself stays
+  App-minted until the EXEC owner supplies or adopts one; a later EXEC identity
+  must not relabel runs already recorded under this id.
+- **(c) No end notice after relaunch (J3).** TX-5 and SQ-END require the
+  end notice on the person's next turn after a run ends with no successor.
+  After relaunch, the person can end a run that the record shows open and
+  interrupted (`end_recorded_run`; `run_ended`, *the person*). But the notice is
+  composed only from the typed `PreparedRunText` that the run's own process
+  held. `PreparedEndPublication` deliberately refuses cold evidence ("cold
+  evidence does not create a lifecycle event or a new sendable notice"). So no
+  notice is sent for such an end, and the panel says so. For the WR owner:
+  either permit composing the notice from the resolved run-start `run_text`
+  (name, revision, run) plus the recorded end, or rule that an end after
+  relaunch carries no notice.
+- **(d) REC run tag and restart limit (J3).** EXEC A-2 and §2.7 have the run
+  starter tag the conversation with the run reference through REC
+  `tag / look up / tags of` (RECOVERY §4.1). On relaunch, RS writes the
+  "App-restart interruption" `evidence_limit` on the run that was current. The
+  ledger's tag write is owned by the Host (`hosting.rs`), which supplies only
+  the NIR submission-context tag. J3's fence did not include a run-tag write or
+  a startup RS writer. The App therefore stores no run tag. The record writes
+  no restart limit, and records no automatic RE-4 "interruption not
+  recovered" run-owner end. Reopen instead finds runs and conversations from
+  the project's own RS `run_opened.conversationRef`, and shows the REC
+  `app_restart_interruption` facts that name each conversation. Needed: the
+  Host or REC owner adds a run-tag owner and lookup, and a startup writer for
+  the restart limit.
+- **(e) Start not confirmed, and liveness (J3).** EXEC A-3 says a turn that is
+  not started leaves the run not opened. A refused or unknown start therefore
+  records no `run_opened`, and is not live. A new start in the conversation is
+  allowed. When the outcome was unknown and Codex did start the turn, its text
+  sits in history with no run record (see (a)).
+
+  "End ‹A› and start ‹B›" (corrected by V10 G-2):
+  - **Before A ends.** B is prepared first: admission, verified selection,
+    project, publication, composition and CK-1. If that fails, A is not ended.
+  - **A's end is held.** It is recorded in memory and written only when B's
+    start outcome is known.
+  - **B opens.** A's `run_ended` ("ended to start ‹B›") is written, then B's
+    `run_opened`.
+  - **B does not open.** This covers a refused or unknown start, or nothing
+    sent. A's end is written as a plain end ("ended by the person"; WR's
+    end-notice pattern admits only that cause or *completed*). Its end
+    notice is pending for the next ordinary turn. A B that was never sent is
+    withdrawn.
+  - **Every outcome releases A's end (V10 R-2).** The start call that claims
+    B's hold owns A's held end and writes it on every outcome, including a
+    failure before any send (for example another run of the conversation is
+    busy, or B's publication fails). A being busy does not stop B's start; A's
+    end is written once A is free, before B's `run_opened`.
+  - **The step reserves its conversation (V10 R-5).** Until B's start outcome
+    is known, the held B and the held A count as live in both one-run checks
+    (prepare and dispatch). No third run can be prepared or started there, so
+    a fallback "No workflow is in force" can never follow a live run.
+  - **In-memory window.** Between the person's confirmed step and the start's
+    outcome (one command, normally moments), A's end exists only in this
+    process. If the process is lost in that window, A reopens as *open;
+    interrupted* and the person ends it again (`end_recorded_run`).
+  - **Residual.** When B's outcome is unknown, B's chain line ("ended to start
+    ‹B›") may have reached the model while the record says "ended by the
+    person", and the notice follows as well. For the WR and EXEC owners: name
+    the cause for an end whose successor did not start, or allow "ended to
+    start ‹B›" in the end notice.
+  - **B's own records after a definite refusal (V10 review).** B's
+    `selection_record` and `run_text` are published before its send. They
+    keep `prior_run.ended` and the chain line "ended to start ‹B›", while A's
+    `run_ended` says "ended by the person". They are the records of a run
+    that never opened: B has no `run_opened`, so they make no RS lifecycle
+    claim, and immutable records are not rewritten (WP-1). A reader must
+    take A's ending from A's `run_ended`, not from B's records.
+- **(f) Predecessor across relaunch (J3).** CH-2 and RE-7: a later run cites
+  the run before it (`follows`, `prior_run`, chain line). The chain is composed
+  only from an `OwnerRunEnd` held by this process, the typed owner callback.
+  A predecessor ended in an earlier process gives the next run no chain line,
+  `follows` or `prior_run`. Needed: a ruling on whether a recorded `run_ended`
+  may supply the owner end for chaining.
+- **(g) Compatibility wiring (J3, with CI-19).**
+  - Root evaluates CK-1 when a selection is prepared for a run in a
+    conversation, and CK-2 immediately before the start turn. Both are made
+    from the run's own selection, holding library, home, generation and
+    conversation. The result is shown and never gates a start.
+  - With no environment collector, the inventory is unobserved, so
+    publication is refused and no R14 is written.
+  - Even a published report has no App store: WR envelopes admit only WR
+    bodies, and RS has no report location. Root would therefore still write no
+    R14 (CI-19 (d)).
+  - `RoleBinding` exposes home and thread but no generation. The
+    same-conversation obligation is met by looking up the binding for the
+    run's own home and thread after the run's generation is checked as
+    current. A missing binding stays `Unknown`.
+  - No catalog edition is ever observed, so CK-3 is never evaluated.
+- **(h) `run_ended.waitingArrivals` (J3).** The App has no checkpoint recorder
+  (EXEC §2.4). `run_ended` writes `waitingArrivals: []`, meaning only that the
+  App recorded no arrivals. It is not evidence that none were reached.
+- **(i) Notice dispatch is counted once (J3; corrected by V10 G-1).** TX-5 says
+  "once".
+  - When consumed: only when the Host observed a write attempt of the
+    `turn/start` frame carrying it.
+  - Refusals before any write: the notice stays pending, and the next ordinary
+    turn carries it. These refusals are parameter or scope validation, a
+    refused request, or a record that could not be written. A pending notice is
+    re-scoped to the current generation of the same home, so a Codex relaunch
+    does not strand it. Its record identity and bytes are unchanged.
+  - After its frame was written: if Codex then refuses the turn, or the outcome
+    is unknown, the notice is not resent, and the model may not have received
+    it. The panel shows the outcome. A *native* fork
+  is not observed by the App, which has no `thread/fork` route. A run belongs to
+  its (home, thread), so any other thread, a fork included, has no live run.
+- **(j) An earlier record that can never be written holds `run_ended` (V10
+  R-3).** RS W-2 has a run's log written in observation order.
+  `flush_records` stops at the first record that cannot be written and holds
+  every later one; each gets its "record write failed" limit when it is
+  written late. W-2 gives no way past a record that can *never* be written,
+  for example an R3 whose reserved record identity conflicts with an existing
+  entry.
+  - **Behaviour.** The person's later `run_ended` stays held. In this process
+    the view says it is "held behind an earlier unwritten record of this run
+    (W-2)", and
+    the run is ended. After a relaunch the record has no `run_ended`, so the
+    run reads *open; interrupted* although the person ended it (review probe
+    P4). The person can end it again from the record (`end_recorded_run`).
+  - **Options for the RS owner.**
+    1. Keep strict order, as now. The person's end is lost on relaunch, and
+       the person ends the run again.
+    2. Define a terminal *not writable* state for such an entry. Record an
+       `evidence_limit` naming the record and why it can never be written,
+       then let later entries proceed.
+    3. Let lifecycle entries (`run_ended`) pass a stuck R3, with a limit
+       naming the R3 they passed.
+  - No code change was made for this item.
+
+## CI-21 (J5) App-kept draft bases and re-registration after relaunch
+
+Found 2026-10-07 by the J5 TASK of `APP-V4-GROUP-A-20261004`, repairing J4
+finding 1 (after process loss, the same workflow could not be registered again
+in the same library). No Design file was changed. SEAL-2 stays deferred: no old
+`RegisteredRevision`, `Selection` or A15 receipt is rebuilt from disk.
+
+- **(a) Where the base is kept.** WR §3: "Draft bases | App data folder, keyed
+  by draft key | The App only | App-kept pointer (R17-4); lost if the App data
+  is lost — then the draft has no base (U-WR-12)". §8 gives the record:
+  `draft_reference`, "App-recorded base", with `base` only when
+  `base_recorded_by` is *app*. The App writes one such record per draft key at
+  `<App user-data>/runtime/wr/draft-bases/<sha256 of the draft key JSON>.json`.
+  It validates the record against the WR schema before writing and again when
+  reading, and replaces it atomically. WR names only "App data folder" (§3 is
+  PROPOSED; OI-008 open), so the sub-path and file name are this
+  implementation's choice. For the WR owner: confirm or name the location.
+  **Trust assumption (V11 J5-1).** The record is a claim, not proof. Any
+  process running as the user can write it, including an agent whose Codex
+  sandbox allows full access (D3). The App checks the record's schema and
+  draft key. Since V11 it also requires that the first tuple in the base's
+  lineage naming the target slot be a revision that the slot's ledger
+  registered (SP-3: "a revision of that slot"). Otherwise the review refuses
+  with DS-3 ("lineage not established") and names the tuple as ID-4's "lineage
+  incomplete at ‹tuple›". A base naming another slot or origin cannot be
+  checked against that library's ledger. For DS-1 (empty slot) the claimed
+  base is still disclosed and becomes the new revision's `derived_from`, so a
+  forged record can still place a false `derived_from` on a first revision.
+  The `state`, `content` and `findings` fields record what the App saw when it
+  wrote the record (V11 J5-6). They are not refreshed on later edits.
+- **(b) Identical bytes cannot run again after relaunch.** DS-4 refuses content
+  identical to a registered revision ("select it instead"). Cold selection of
+  that revision stays refused (SEAL-2). After relaunch, the person can run the
+  workflow from the same library only by registering changed content (a
+  refinement, DS-2). The exact bytes registered in a lost process cannot be run
+  from that library until SEAL-2 or a WR ruling. For the owner and WR owner:
+  either accept this as the SEAL-2 boundary, or rule on a route (for example,
+  re-registering identical content under a new A15 as a new ledger line).
+- **(c) Base freshness.** RB-3 names two freshness conditions: the live draft
+  and the slot's latest revision. Following the I2 owner plan ("disclosed,
+  frozen and checked under lock"), the App also freezes its App-kept base
+  observation at review. It rechecks that observation at `current()` and under
+  the ledger lock at G1:
+  - a changed base withdraws the review, or after capture ends the attempt as
+    *not completed* (the act is kept, with no effect);
+  - an unreadable or malformed base keeps the attempt pending, with the exact
+    cause.
+  For the WR owner: confirm that base change belongs to RB-3.
+- **(d) No base for in-place entries.** §5.1 and G-6 record the new revision as
+  the *draft's* base. Before J5, the in-memory map also recorded a base, keyed
+  by name, after an in-place registration. Within that process, a same-name
+  draft written from scratch would then have passed SP-3. Now only draft
+  registrations record a base.
+- **(e) Folder removal.** §5.1: "Folder removed → the App's base pointer is
+  dropped". The App drops the pointer when it observes the draft folder absent,
+  at listing or at review. It does not watch the folder between its own
+  observations (D3). A draft that an agent deletes and recreates between two
+  App observations keeps its pointer.
+- **(f) Exact ledger causes.** The ledger reader names the path, the line and
+  the cause: *unreadable*, *malformed* (incomplete final line, not JSON, or
+  refused by the WR `library_entry` schema) or *ambiguous* (`ledger_seq` out of
+  order). For the slot under review, the registered lines must form one series
+  under SP-1 and G-4: `sequence` 1, 2, …; each `prior_revision` naming the
+  previous registered revision; and no revision registered twice. Otherwise the
+  latest revision is reported as ambiguous, with the line that breaks the
+  series. These reader checks are this implementation's reading of SP-1 and
+  G-4. WR states no reader rule beyond LS-1.
+- **(g) Root wiring.** `WorkflowRootSession::set_app_user_data` is called from
+  `lib.rs` setup with the App data folder. `open_library` attaches that folder
+  to each `LibraryOwner` (`attach_app_kept_bases`). An owner with no attached
+  folder keeps bases in process memory only, and its review presentation says
+  so.
+  - **V11 J5-2.** `create_selected_draft` copies the draft and then records
+    its base. If recording fails, a draft with no base could register only
+    as DS-3, and D-1 forbids the App to overwrite it. So the App removes its
+    own copy (`discard_unbased_copy`), but only when the folder still holds
+    exactly the copied bytes. The refusal says that the copy was removed.
+    Otherwise the draft is kept and the refusal names the folder to remove.
