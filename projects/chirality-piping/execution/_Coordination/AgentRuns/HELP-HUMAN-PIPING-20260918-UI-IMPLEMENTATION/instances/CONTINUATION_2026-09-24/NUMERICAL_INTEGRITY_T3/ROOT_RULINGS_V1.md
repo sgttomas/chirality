@@ -15354,3 +15354,35 @@ A first version marked the exclusive job pending while it still waited behind sl
 - **I92's SR-TS repair 01** goes into I90's slot (`BRIEFS/B1_SR_TS_REPAIR_01.md`).
 
 **Implementers running:** I85 (I3 step), I91 (SR-PY repair 02) and I92 (SR-TS repair 01). I97's B2-C revision is next in the queue.
+
+## I91's and I92's rounds verified; the header move's nine transport changes ruled in; TS's G3 combinations conjunct moves to G8 (ROOT, 2026-10-08 UTC)
+
+**I91's SR-PY repair 02:** `R/I91/b1_sr_py_01/REPAIR_02.md` sha256 `f7e50348…`, with SHA256SUMS.repair_02 56 of 56 OK. The earlier sums still verify, and the screens are clean, including the decompressed `.gz` files and the junit `hostname` attribute.
+- `b1-p` is at `70d4a68bd7`: three commits over `11cc14e3e6`, touching PY's 2 files. It is clean.
+- **The one removed assertion** (`dict.fromkeys(got, PREP)`) is replaced by explicit per-input expectations, with G5 ATTEMPT for the basis reference as ruled.
+- **Items 1–3, 5 and 6 are done, and S-2 is corrected** (REPAIR_02 §6).
+- **The census** shows 0 of 1,017 outcomes changed. The suites go 1,937 → 1,942.
+- **Mutants:** 29 of 30 are killed. F-src-kind cannot be killed, because the schema refuses first at G1.
+
+**I92's SR-TS repair 01:** `R/I92/b1_sr_ts_01/REPAIR_01.md` sha256 `592d6164…`, with SHA256SUMS.repair_01 36 of 36 OK. The earlier sums still verify, and the screens are clean.
+- `b1-t` is at `b82b932923`, one commit over `7e47e51b5d`. It is clean.
+- **(g) and the C2 precondition keying are committed.** (f) is confirmed with no change.
+- **The census** shows 0 changes. vitest goes 3,626 → 3,628.
+- **Mutants:** 18 of 18 killed.
+
+**Both implementers stopped correctly on the header move,** and held it as a tested patch. Item 4's (and item 3's) header move to G2 necessarily changes the transport verdict of 07m's nine header mutations (entries 277 and 286–293, RV113 N-1's nine), and the briefs' census rule said no 07m verdict may change. ROOT's briefs were inconsistent there.
+
+**Rulings:**
+1. **The census rule applies to the input, bound and unbound verdicts.** The transport verdicts of those nine entries change as the alignment set's item 4 rules, onto RS's G2 reading:
+   - PY: G7 → G2, with code and detail unchanged;
+   - TS: six admitted → G2, and three G7 `SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID` → G2.
+
+   No corpus entry pins a transport verdict. Any other change remains a stop. **I91 and I92 commit their held patches** (both apply cleanly, and both were tested). Each records the commit in a new record (`REPAIR_02_ITEM4.md`, `REPAIR_01_ITEM3.md`), leaving the sealed ones untouched.
+2. **TS's G3 combinations conjunct** (TS's stand-in for C1's combination-coverage row) is removed. A non-empty `combinations` is then refused at G8 INVOCATION by the (g) rule, as in RS and PY, and TT's two rows follow. B2's contract brings combination coverage at G3 in its own scope.
+3. **SC's 07n** pins the C2 precondition keying, which no 07m entry or probe carries (I92), and the nine transport readings.
+
+**Then:**
+- RV113 confirms SR-PY repair 02 (with item 4) and SR-TS repair 01 (with item 3 and the conjunct), alongside SR-RS round 2, which it is confirming now;
+- then **I4**: ROOT merges `b1-r` (again), `b1-p` and `b1-t` into `b1`.
+
+**Host:** the exclusive-mode test passed. It queued for slot 1 behind a long pytest, took all slots, ran, and cleared its pending mark.
