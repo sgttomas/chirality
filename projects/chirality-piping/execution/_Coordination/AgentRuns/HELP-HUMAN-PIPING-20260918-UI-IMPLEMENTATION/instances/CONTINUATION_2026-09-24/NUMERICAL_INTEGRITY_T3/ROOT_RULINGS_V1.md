@@ -16123,3 +16123,16 @@ The exact-head DEC-025 and src-tauri runs on PR-B1 follow the package and RV-X.
 5. **N-5's composite physics-source receipt clause** (DESIGN_v2 §7's PR-B1 row) goes to RV125 (RV-X): read the test against the clause, and say whether a test of the composite path is needed.
 
 **Next:** I108 refreshes the package for the new head (the file table, the pin, the citation run and the checks). I107 and RV125 read the one-comment delta. Then the package commit, the PR and its gates.
+
+## PR-B1 open as #1154 (head `0752ae8b98`); source equality, citations and GEN-8 pass (ROOT, 2026-10-08 UTC)
+
+I108 refreshed the package for `d07006c2f0` (CHANGE_RECORD `ddce438a…`, PR_BODY `e2617b78…`, citations `9cdf9bab…` pinned at NUM `75cd6be76b`; SHA256SUMS 6 of 6). It is committed on NUM as `55e8a8e3a0`, `_draft_run_records/` included. On the PR branch it is commit 2, `0752ae8b98`, without the draft records.
+
+**PR-B1:** sgttomas/chirality#1154, head `0752ae8b98`, base main `3d73db745e`. ROOT's checks on that head:
+- **`source_equality.py`:** `--int 75cd6be76b --main 3d73db745e --package …/IMPLEMENTATION/B1` passes checks 1–5. There are 7 execution files, all inside the package.
+- **`check_citations.py`:** passes. 98 resolved; 0 ambiguous, unresolved or failed.
+- **The PR body's claim of no reviewed-input change:** checked. None of the 14 `REVIEWED_INPUTS`, no schema and no `Cargo.lock` is among the 33 files.
+- **GEN-8:** passes (1 passed).
+- **The full-SHA dispatch:** run 37789751525, with `target_base` main `3d73db745e`.
+
+**Open before the merge:** Pass B (I107, then RV124's confirmation), RV-X (RV125), hosted CI, and the exact-head DEC-025 against a fresh main baseline with the src-tauri suite.
