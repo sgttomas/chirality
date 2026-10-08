@@ -16425,3 +16425,11 @@ I110's inventory is at `R/I110/pressure_retire_01/` (RETURN `d6edc387…`; 219 s
 **D-4 (WORKING_ITEMS'):** reuse `PRESSURE_MODEL_REAUTHOR_REQUIRED`, with re-authoring text. Noted.
 
 **Stage 1 proceeds now**, as I110's plan sets out: one PR from main `7eae707bb7`. Afterwards no product path reaches the legacy computation, and the evidence includes byte-equal outputs for the exact, pressure-free and B1-corpus documents. Stage 2 (the deletion of the legacy computation, with H-1's −0.0 check) waits for the owner's M07 answer.
+
+## RV120 confirms the reader repairs; N2 (RS's nondeterministic G7 code) fixed in T3's RS lane; F1's order probe pinned in all three readers (ROOT, 2026-10-08 UTC)
+
+RV120 CONFIRMED F1, N1 and F2 (`R/REVIEW_RV120/b3_readers_01/ADDENDUM_01.md`, `9a4b3abf…`), so the reader lanes may merge into `b2`.
+
+**N2 is fixed now, by I101 on `b2-r`.** RS's physics-1 transport check iterates a HashMap (`RE/src/physics_evidence.rs:67`, `:1019`), so one input gives a G7 code that varies from run to run. The fix iterates in array order, as TS and PY do, and pins RV120's probe in all three readers. It ships with PR-B2.
+
+**F1's order probe** is pinned in RS and TS as well, in the same round.
