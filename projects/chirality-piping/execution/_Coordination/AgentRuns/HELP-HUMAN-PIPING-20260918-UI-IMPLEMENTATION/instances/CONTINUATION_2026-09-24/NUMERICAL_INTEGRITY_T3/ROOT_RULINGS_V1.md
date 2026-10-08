@@ -16406,3 +16406,22 @@ RV120 confirms both repair rounds.
   - reviews of consequential returns;
   - continuity.
 - **The superseded arrangement:** ROOT dispatching every TASK and doing integration mechanics itself (RR passim since 2026-10-03).
+
+## U3 rulings on I110's pressure inventory: D-1 A, D-2 A1, D-3 held with M07 (ROOT, 2026-10-08 UTC)
+
+I110's inventory is at `R/I110/pressure_retire_01/` (RETURN `d6edc387…`; 219 sites).
+
+**The facts the rulings rest on:**
+- No committed fixture, app default or qualification document carries `1.0.0/legacy_pressure_v1`.
+- The exact contract refuses components, nonlinear and constant-effort supports, combinations, `equivalent_static`, and materials without E/ν.
+- 0.1.0 and 0.2.0, which carry no contract, are therefore the only namespace for those features, for the retained route (B0 D1.3; B1's corpus), for source-block recovery and for the app's blank document.
+
+**D-1 A:** 0.1.0 and 0.2.0 stay as the pressure-free namespace, and every legacy pressure semantic is removed from them. This reads the owner's decision as retiring the legacy pressure contract and the flawed computation on every route. It does not remove pressure-free documents. Retiring them too (option B) would strand 107 committed documents and B1's whole domain; that would be a new owner decision, not this one.
+
+**D-2 A1:** a pressure primitive of any value, zero included, in a non-exact document is refused with `PRESSURE_MODEL_REAUTHOR_REQUIRED`. This matches "zero-pressure documents must be re-authored" and the exact profile's own refusal of a zero primitive. The one class that loses its as-is route is degenerate: its result is identically zero.
+
+**D-3 (`invented_mechanics_result.json`, the demo's frozen legacy result):** held, unchanged in Stage 1. It is settled with the owner's answer on M07 and its G10 recommendation, which is to remove bundled results computed with flawed premises.
+
+**D-4 (WORKING_ITEMS'):** reuse `PRESSURE_MODEL_REAUTHOR_REQUIRED`, with re-authoring text. Noted.
+
+**Stage 1 proceeds now**, as I110's plan sets out: one PR from main `7eae707bb7`. Afterwards no product path reaches the legacy computation, and the evidence includes byte-equal outputs for the exact, pressure-free and B1-corpus documents. Stage 2 (the deletion of the legacy computation, with H-1's −0.0 check) waits for the owner's M07 answer.
