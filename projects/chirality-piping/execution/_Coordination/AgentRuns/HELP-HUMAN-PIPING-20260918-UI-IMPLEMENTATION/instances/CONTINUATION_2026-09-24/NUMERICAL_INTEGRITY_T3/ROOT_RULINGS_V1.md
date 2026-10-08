@@ -15494,3 +15494,22 @@ Both are availability limits of the frozen DEF-O, not soundness defects: a faili
 - **B2-C is final for J1** once both confirm. J1's inputs become SCHEMA `abf3225c…` with PTABLE r2 and DEF-C r2.
 
 **Screen widened (E-16, recorded with the redaction):** the host-name term includes the machine's network name and any `MacBook` form, case-insensitive, beside `Mac.ht.home`. Every new brief carries it.
+
+## I97's B2-C revision 02 verified; RV115 and RV118 confirm it (ROOT, 2026-10-08 UTC)
+
+**I97's revision 02:** `R/I97/b2_c_01/REVISION_02.md` sha256 `79007dcd…`, with SHA256SUMS.revision_02 9 of 9 OK. The sealed SHA256SUMS (13 of 13) and `.revision_01` (10 of 10) still verify, and CONTRACT, REVISION_01, `statics/` and `statics/r1/` are unchanged. The screens are clean, the host-name and `MacBook` terms included.
+- **ROOT reran both r2 scripts** in its own scratch. They reproduce DEF-C r2, PTABLE r2, the statics report, the checks output and `exact_norm_vectors.json` (411 vectors) byte for byte.
+- **The statics:** DEF-C r2 raw `3cebce55…`, H `d3fde142…`; PTABLE r2 `b2b4a54d…`. The J1 SCHEMA `abf3225c…` is unchanged. Against r1, DEF-C changes two paths and PTABLE one.
+- **(ii):** RN64, ties to even, of the exact 3-norm of the frozen raw mm components, with r1's other clauses kept.
+  - The reference `rn64_norm3` agrees with an independent midpoint oracle, and bit for bit with RV118's `rn64_sqrt`, on 32,027 triples.
+  - G7 measures at most 3 ulps (3/64 of the allowance), with 0 failures over 144,598 pairs.
+  - **The midpoint side must be decided exactly:** this host's nested hypot, or a sum rounded to 1,024 bits, rounds I97's example the wrong way.
+- **B2-K's cost is 2.5–3.5 h, under the 4 h threshold.** It reuses FK's exact arithmetic only (`ExactWideSum`, `WideContext::<16>::sqrt`, and the pattern of `directed::certificate::sqrt_owned`). B2-K becomes 21.5–33.5 h; B2-P is unchanged.
+- **A-1 to A-6, NC-2 and NC-3** are applied.
+
+**Routed to B2-K's brief:** the KD §5.7 branch, the K-09 check with the vectors (including the midpoint + 2⁻¹⁰⁷⁴ vector, decided exactly), K-13 byte identity for case magnitudes, unit tests, and RV-K's review.
+
+**Confirmations:**
+- **RV115 (RV-K)** confirms (ii)'s numerics: REVISION_02 §1–§2, DEF-C r2 and its H, and the reference implementation.
+- **RV118 (RV-C)** confirms revision 02.
+- **B2-C is then final for J1,** with reviewed inputs SCHEMA `abf3225c…`, PTABLE r2 `b2b4a54d…` and DEF-C r2 `3cebce55…`.
