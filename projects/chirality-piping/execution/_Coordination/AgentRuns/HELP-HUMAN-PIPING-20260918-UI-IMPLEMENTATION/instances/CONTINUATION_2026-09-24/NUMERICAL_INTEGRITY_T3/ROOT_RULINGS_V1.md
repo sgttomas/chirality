@@ -15513,3 +15513,22 @@ Both are availability limits of the frozen DEF-O, not soundness defects: a faili
 - **RV115 (RV-K)** confirms (ii)'s numerics: REVISION_02 §1–§2, DEF-C r2 and its H, and the reference implementation.
 - **RV118 (RV-C)** confirms revision 02.
 - **B2-C is then final for J1,** with reviewed inputs SCHEMA `abf3225c…`, PTABLE r2 `b2b4a54d…` and DEF-C r2 `3cebce55…`.
+
+## Erratum E-16: RV113's SR-PY evidence carried the junit host attribute; redacted on NUM by the owner's decision (ROOT, 2026-10-08 UTC)
+
+**What:** 42 gzipped junit files under `R/REVIEW_RV113/rvr_sr_py_01/evidence/` carried the junit `hostname` attribute, with the machine's network name. ROOT's screen at commit time looked only for the machine's other host-name form (RR "RV117 passes #1111; …", ruling 4), so it missed them. ROOT found them while cutting the next records PR. None reached main.
+
+**The owner chose redaction in place on NUM** (option 1 of three), as E-10's was. The auto-mode safety check refused ROOT's rewrite of a reviewer's sealed files, so **the owner ran ROOT's script.** ROOT then verified the result against the originals at `c8e54918cd`:
+- 42 `.gz` files and `SHA256SUMS` changed, and nothing else;
+- each file differs from its original only by the removed attribute;
+- `SHA256SUMS` changed in exactly those 42 lines, and is 245 of 245 OK;
+- `REVIEW.md` is unchanged (`d8611e59…`).
+
+**The record:** `IMPLEMENTATION/REDACTION_E16/RECORD.md` (sha256 `e3af69ba…`), with each file's old and new sha256. **The redacted originals' list gains the 42 files.** The originals survive only in NUM's history.
+
+**Rules from now on:**
+- the host-name screen covers the machine's network name and any `MacBook` form, case-insensitive, beside the earlier form;
+- every brief carries it;
+- a screen hit stops the commit until ROOT has read it.
+
+**Main's earlier records:** 11 T3 records on main from 2026-10-03 carry the network name, and RV76's REVIEW.md carries one home-relative path. They predate this session's screens. Cleaning main's tree is the owner's choice; the owner has been told.
