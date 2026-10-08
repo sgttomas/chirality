@@ -1,0 +1,144 @@
+{
+ "old": "57c92a7b3310229406733a7134e271c29bcc6978",
+ "new": "8dd64c1835698da87e5f0fd303c1b886daee956f",
+ "changed_production_rs": [
+  "core/loads/stress_recovery/src/elastic_section.rs",
+  "core/loads/stress_recovery/src/lib.rs",
+  "core/product_physics/src/case_state/resolve.rs",
+  "core/product_physics/src/lib.rs",
+  "core/product_physics/src/pressure_runtime.rs",
+  "core/product_physics/src/preview_physics.rs",
+  "core/product_physics/src/retained_memory.rs",
+  "core/product_physics/src/retained_product.rs",
+  "core/solver/frame_kernel/src/correct_norm.rs",
+  "core/solver/frame_kernel/src/lib.rs",
+  "core/solver/frame_kernel/src/rigid_body.rs",
+  "core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs"
+ ],
+ "hunks": {
+  "core/loads/stress_recovery/src/elastic_section.rs": 2,
+  "core/loads/stress_recovery/src/lib.rs": 1,
+  "core/product_physics/src/case_state/resolve.rs": 2,
+  "core/product_physics/src/lib.rs": 6,
+  "core/product_physics/src/pressure_runtime.rs": 3,
+  "core/product_physics/src/preview_physics.rs": 3,
+  "core/product_physics/src/retained_memory.rs": 24,
+  "core/product_physics/src/retained_product.rs": 1,
+  "core/solver/frame_kernel/src/correct_norm.rs": 1,
+  "core/solver/frame_kernel/src/lib.rs": 1,
+  "core/solver/frame_kernel/src/rigid_body.rs": 3,
+  "core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs": 2
+ },
+ "remapped": 504,
+ "unmapped": [],
+ "resolved_ambiguous": [
+  [
+   "text_args.g4.json/site_zero/key",
+   "lib.rs:14170",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "text_args.g4.json/site_zero/lib.rs:14170",
+   "lib.rs:13636",
+   "core/product_physics/src/lib.rs",
+   "the one file with that line"
+  ],
+  [
+   "text_args.g4.json/site_zero/key",
+   "lib.rs:14171",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "text_args.g4.json/site_zero/lib.rs:14171",
+   "lib.rs:13636",
+   "core/product_physics/src/lib.rs",
+   "the one file with that line"
+  ],
+  [
+   "text_args.g4.json/site_zero/key",
+   "lib.rs:14172",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "text_args.g4.json/site_zero/lib.rs:14172",
+   "lib.rs:13636",
+   "core/product_physics/src/lib.rs",
+   "the one file with that line"
+  ],
+  [
+   "text_args.g4.json/site_zero/key",
+   "lib.rs:14173",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "text_args.g4.json/site_zero/lib.rs:14173",
+   "lib.rs:13636",
+   "core/product_physics/src/lib.rs",
+   "the one file with that line"
+  ],
+  [
+   "text_args.g4.json/site_zero/key",
+   "lib.rs:14174",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "text_args.g4.json/site_zero/lib.rs:14174",
+   "lib.rs:13636",
+   "core/product_physics/src/lib.rs",
+   "the one file with that line"
+  ],
+  [
+   "text_args.g4.json/site_zero/key",
+   "lib.rs:14169",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "text_args.g4.json/site_zero/lib.rs:14169",
+   "lib.rs:13643",
+   "core/product_physics/src/lib.rs",
+   "the one file with that line"
+  ],
+  [
+   "text_args.g4.json/site_aggregate/key",
+   "lib.rs:1272",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "text_args.g4.json/site_aggregate/key",
+   "lib.rs:1276",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "text_args.g4.json/site_size/key",
+   "lib.rs:14015",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "text_args.g4.json/site_size/key",
+   "lib.rs:9069",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "text_args.g4.json/site_size/key",
+   "lib.rs:9090",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "text_args.g4.json/lex_site_size/key",
+   "lib.rs:1764",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ]
+ ]
+}

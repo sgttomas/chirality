@@ -1,0 +1,12 @@
+archived 8ca80508b63cee25005e221dc355b27bd673943e
+crate product_physics rc=0 passed=743 failed=0 ignored=79
+crate frame_kernel rc=0 passed=550 failed=0 ignored=2
+crate result_export rc=0 passed=199 failed=0 ignored=0
+bin checked-json rc=0
+bin units rc=0
+wasm cargo rc=0
+worktree equals 8ca80508b6 outside execution
+wasm-bindgen rc=0
+vitest rc=0  Test Files  4 passed (4) /       Tests  1314 passed (1314)
+pytest rc=0 1079 passed
+CHAIN-DONE

@@ -1,0 +1,9 @@
+production files changed by the repair commit: 3
+core/product_physics/src/lib.rs @@ -38,1 +38,1: line-neutral=True comment-only=True
+  file lines 24517 -> 24517
+core/solver/frame_kernel/src/correct_norm.rs @@ -6,5 +6,5: line-neutral=True comment-only=True
+  file lines 296 -> 296
+core/solver/frame_kernel/src/rigid_body.rs @@ -465,2 +465,2: line-neutral=True comment-only=True
+core/solver/frame_kernel/src/rigid_body.rs @@ -542,2 +542,2: line-neutral=True comment-only=True
+  file lines 1410 -> 1410
+ALL OK

@@ -1,0 +1,238 @@
+# round 2's tools against round 1's (R/I107/b1_passb_01/_run_records/tools/) and SQ's (R/I104/b1_sq_01/_run_records/tools/)
+
+## R/I107/b1_passb_01/_run_records/tools/b1_pass.sh -> pn_pass.sh
+--- 
++++ 
+@@ -2,22 +2,17 @@
+-# I107 SB: B1's Pass B (PLAN_v2 §3.8) on PR-B1's head. A copy of I72's g7_pass.sh (R/I72/u8_passb_01/_run_records/),
+-# itself I65 u4_g7_06's fail-closed driver path-retargeted, retargeted to B1. Every I65 gate, early stop and the
+-# verdict logic (finish) are kept; what changes is the Pass A they compare with, which is SQ (R/I104/b1_sq_01):
+-#   - Pass A's TEXT basis is 57c92a7b33 (b1-q's base, the code SQ's G5 and N-5 chains priced); its head 69002bc862;
+-#     the registered entry is NUM 75cd6be76b's: b1 ddc8eaaf54's (SQ's registration.diff applied at R6b) with ROOT's
+-#     comment-only citation correction (RR "I108's package returned; ..."), so a second gate checks its code lines
+-#     against ddc8eaaf54's;
+-#   - the rules are SQ's chain (R/I104/.../chain = mcr_b1q, keyed to 57c92a7b33), carried to the basis by SQ's
+-#     crate-restricted g7_linemap_crates.py; I65's premise pins are first carried Pass A ba1faa1c -> 57c92a7b33;
+-#   - TEXT runs at SQ's cap vector {"l": 128, "c": 3} with SQ's run_point.sh steps (run_point_b1.sh), on both of
+-#     SQ's chains: G5's (mcr) and N-5's (mcn = sq_n5_chain.py on mcr); each is compared with SQ's recorded point;
+-#   - FORMS: N-5's tree regenerates the basis's block; G5's tree regenerates b075c5c59f's block;
+-#   - the non-candidates use SQ's noncand_compare_nomult.py (RR "R6b", Q-N5) against SQ's swept set; I65's
+-#     noncand_compare.py runs for information only; the controls are SQ's audit_controls_b1.py (12);
+-#   - item 5 (run_cargo_b1.sh): PP's suite, the runner/headless suite (also on SQ's registered tree, as the
+-#     reference), SQ's 40 witness entry points and the challenge's 28 entries, one process each through t3_slot.sh;
+-#   - the delta inventory is I65's delta_inventory2.py from 57c92a7b33 with this pass's reviewed table;
+-#   - I65's price_delta.py (U6's F5 delta on T17) does not apply to B1 and is not run.
+-# Host (B1_SB.md): every cargo through WT/tools/t3_cargo.sh (--locked --offline), every other heavy command through
+-# WT/tools/t3_slot.sh, one at a time; targets WT/targets/i107-sb-<tag>*; outputs under WT/scratch/i107_b1_sb/.
+-# Usage: I107_WT=<WT> b1_pass.sh <basis dir holding projects/chirality-piping> <basis rev> <tag> <SQ registered tree dir>
+-#   I107_SKIP_CARGO=1 skips the law gate and item 5 (a dry run of the Python gates; the verdict then says so).
++# I107 SB round 2: Pass B on PR-N's code commit (R/BRIEFS/PR_N_SB.md), against B1 as merged (main 7eae707bb7).
++# A copy of round 1's b1_pass.sh (R/I107/b1_passb_01/_run_records/tools/), itself I72's g7_pass.sh retargeted to B1.
++# Every gate, stop and the verdict logic are kept. What changes:
++#   - the delta runs from main 7eae707bb7 (B1 as merged) to the basis, with this round's reviewed table;
++#   - the entry is compared byte for byte with main's (B1's registration), and its code with b1 ddc8eaaf54's;
++#   - TEXT is compared with SQ's points by text_pn.py: round 1's equalities, with the norm's added call-graph nodes,
++#     edges, site loops and spans attributed (every other output byte-equal);
++#   - the controls are SQ's, re-keyed by +2 in PP lib.rs (audit_controls_pn.py), compared with SQ's with line numbers
++#     dropped (pn_checks.py controls_pn);
++#   - the rules are still SQ's chain keyed to 57c92a7b33, carried to the basis by the line map (g7_linemap_crates_rows.py:
++#     SQ's copy, which resolves a short `lib.rs:N` key made ambiguous by three changed lib.rs files to the one with a
++#     TEXT row there at the basis, each resolution reported); TEXT, FORMS, the
++#     non-candidates and the controls are still compared with SQ's points (B1's Pass A, which round 1 matched);
++#   - PP's and the runner's outcomes are compared with the same suites on main's tree (run_cargo_pn.sh);
++#   - the witnesses and the challenge are compared with SQ's tables, as in round 1.
++# Usage: I107_WT=<WT> pn_pass.sh <basis dir holding projects/chirality-piping> <basis rev> <tag> <main tree dir>
++#   I107_SKIP_CARGO=1 skips the law gate and item 5 (a dry run of the Python gates).
+@@ -27 +22 @@
+-T=${I107_WT:?set I107_WT to WT}; BASIS=$1; REV=$2; TAG=$3; SQREG=$4
++T=${I107_WT:?set I107_WT to WT}; BASIS=$1; REV=$2; TAG=$3; MAINW=$4
+@@ -30,2 +25,2 @@
+-REC=$R0/I65/u4_g7_06/_run_records; SQ=$R0/I104/b1_sq_01/_run_records; RB=$R0/I107/b1_passb_01/_run_records
+-TOOLS=$RB/tools; CHK="python3 $TOOLS/b1_checks.py"
++REC=$R0/I65/u4_g7_06/_run_records; SQ=$R0/I104/b1_sq_01/_run_records; RB=$R0/I107/pr_n_passb_01/_run_records
++TOOLS=$RB/tools; CHK="python3 $R0/I107/b1_passb_01/_run_records/tools/b1_checks.py"   # round 1's checks, unchanged
+@@ -36 +31,2 @@
+-REGISTERED_REV=75cd6be76bd6407fc24e0f1da834c2135407b69e   # NUM: the same entry with ROOT's citation correction (comment only)
++REGISTERED_REV=7eae707bb77722a69b61678c149aa816976bc162   # main: B1 as merged (#1154), its registered entry
++DELTA_OLD=7eae707bb77722a69b61678c149aa816976bc162        # the delta's base: B1 as merged
+@@ -38,3 +34,3 @@
+-O=$T/scratch/i107_b1_sb/pass_$TAG; WK=$O/work; RR=$O/rr_g5; RN=$O/rr_n5
+-TGT=$T/targets/i107-sb-$TAG
+-export GIT_OPTIONAL_LOCKS=0 TMPDIR=$T/scratch/i107_b1_sb/tmp PATH=$T/venv/bin:$PATH I107_WT=$T LINEMAP_CRATES=$SQ/chain/crate_dirs.txt
++O=$T/scratch/i107_pn/pass_$TAG; WK=$O/work; RR=$O/rr_g5; RN=$O/rr_n5
++TGT=$T/targets/i107-pn-$TAG
++export GIT_OPTIONAL_LOCKS=0 TMPDIR=$T/scratch/i107_pn/tmp PATH=$T/venv/bin:$PATH I107_WT=$T LINEMAP_CRATES=$SQ/chain/crate_dirs.txt
+@@ -49,0 +46,3 @@
++gatet() { # gatet <name> <text_pn.py args...>: the TEXT gate with the norm's graph changes attributed (text_pn.py)
++  local name=$1; shift; python3 $TOOLS/text_pn.py "$@" > $O/gate_$name.json; local c=$?
++  printf "%s\t%s\n" "$name" "$c" >> $O/verdict.tsv; say "gate $name: code $c $(head -c 300 $O/gate_$name.json)"; return $c; }
+@@ -54 +53 @@
+-  echo "VERDICT $word exit=$code basis=$REV tag=$TAG passA=SQ($PASS_A_REV..69002bc862+registration) gates=$(awk -F'\t' '{printf "%s:%s ", $1, $2}' $O/verdict.tsv)" | tee $O/VERDICT.txt
++  echo "VERDICT $word exit=$code basis=$REV tag=$TAG passA=SQ($PASS_A_REV..69002bc862+registration) delta_old=B1-as-merged($DELTA_OLD) gates=$(awk -F'\t' '{printf "%s:%s ", $1, $2}' $O/verdict.tsv)" | tee $O/VERDICT.txt
+@@ -62 +61 @@
+-# ---- the entry against NUM 75cd6be76b's, byte for byte; its code against the applied registration's (b1 ddc8eaaf54); M; the law tests
++# ---- the entry against main's (B1 as merged), byte for byte; its code against the applied registration's (b1 ddc8eaaf54); M; the law tests
+@@ -74 +73 @@
+-python3 $REC/statics_list.py $SQREG/projects/chirality-piping $SQ/chain/crate_dirs.txt > $O/statics_sq.json
++python3 $REC/statics_list.py $MAINW/projects/chirality-piping $SQ/chain/crate_dirs.txt > $O/statics_sq.json   # reference: main
+@@ -84 +83 @@
+-python3 $SQ/tools/g7_linemap_crates.py $NUMREPO $PASS_A_REV $REV $O/rules $SQ/chain/callgraph_rules.g4.json $SQ/chain/loop_bounds.g4.json $SQ/chain/text_args.g4.json $SQ/chain/sens.py $O/rules57/premise_pins.json > $O/linemap.out.json
++LINEMAP_ROWS=$SQ/g5/g5_c3/text_budget.caps.out.json.gz python3 $TOOLS/g7_linemap_crates_rows.py $NUMREPO $PASS_A_REV $REV $O/rules $SQ/chain/callgraph_rules.g4.json $SQ/chain/loop_bounds.g4.json $SQ/chain/text_args.g4.json $SQ/chain/sens.py $O/rules57/premise_pins.json > $O/linemap.out.json
+@@ -102 +101 @@
+-$T/tools/t3_slot.sh bash $TOOLS/run_point_b1.sh $RR $O/g5 "$CAPS" $W > $O/logs/point_g5.txt 2>&1; t5=$?
++$T/tools/t3_slot.sh bash $TOOLS/run_point_pn.sh $RR $O/g5 "$CAPS" $W > $O/logs/point_g5.txt 2>&1; t5=$?
+@@ -104 +103 @@
+-$T/tools/t3_slot.sh bash $TOOLS/run_point_b1.sh $RN $O/n5 "$CAPS" $W > $O/logs/point_n5.txt 2>&1; tn=$?
++$T/tools/t3_slot.sh bash $TOOLS/run_point_pn.sh $RN $O/n5 "$CAPS" $W > $O/logs/point_n5.txt 2>&1; tn=$?
+@@ -108,2 +107,2 @@
+-# ---- the production delta from SQ's TEXT basis, every hunk classified; unreviewed production hunks stop
+-python3 $REC/delta_inventory2.py $NUMREPO $PASS_A_REV $REV $W $SQ/chain/crate_dirs.txt $O/n5/edges.json $O/n5/work/loop_bounds.g4.json $RB/delta_reviewed_b1.json $O/delta_inventory.json > $O/delta.out.txt
++# ---- the production delta from B1 as merged, every hunk classified; unreviewed production hunks stop
++python3 $REC/delta_inventory2.py $NUMREPO $DELTA_OLD $REV $W $SQ/chain/crate_dirs.txt $O/n5/edges.json $O/n5/work/loop_bounds.g4.json $RB/delta_reviewed_pn.json $O/delta_inventory.json > $O/delta.out.txt
+@@ -117,3 +116,4 @@
+-python3 $SQ/tools/g7_linemap_crates.py $NUMREPO $PASS_A_REV $REV $O/ref_g5_mapped $O/ref_g5/edges.json $O/ref_g5/looplog.json > $O/linemap_sq_edges_looplog.out.json; say "SQ's edges/looplog line map: exit $?"
+-gateb text text_sq $O/g5 $SQ/g5/g5_c3 $REC/text_row_diff.py $O/ref_g5_mapped $O/delta_inventory.json
+-gateb text_n5 text_sq $O/n5 $SQ/g6/n5/g5_c3 -
++LINEMAP_ROWS=$SQ/g5/g5_c3/text_budget.caps.out.json.gz python3 $TOOLS/g7_linemap_crates_rows.py $NUMREPO $PASS_A_REV $REV $O/ref_g5_mapped $O/ref_g5/edges.json $O/ref_g5/looplog.json > $O/linemap_sq_edges_looplog.out.json; say "SQ's edges/looplog line map: exit $?"
++R1INV=$R0/I107/b1_passb_01/_run_records/runs/b1/delta_inventory.json.gz   # round 1's rows (57c92a7b33 -> B1)
++gatet text $O/g5 $SQ/g5/g5_c3 $REC/text_row_diff.py $O/ref_g5_mapped $O/delta_inventory.json $O/linemap.out.json $R1INV
++gatet text_n5 $O/n5 $SQ/g6/n5/g5_c3 - - $O/delta_inventory.json $O/linemap.out.json $R1INV
+@@ -132 +132 @@
+-( cd $W && $T/tools/t3_slot.sh env G4_CAPS_RUN="$CAPS" TB_D_RUN=$D python3 $SQ/tools/audit_controls_b1.py $O/g5/work $W $O/g5/edges.json $O/g5/lexicon.json $O/ctl > $O/controls.out.txt ); cr=$?
++( cd $W && $T/tools/t3_slot.sh env G4_CAPS_RUN="$CAPS" TB_D_RUN=$D python3 $TOOLS/audit_controls_pn.py $O/g5/work $W $O/g5/edges.json $O/g5/lexicon.json $O/ctl > $O/controls.out.txt ); cr=$?
+@@ -135 +135,2 @@
+-gateb controls_sq controls_sq $O/ctl/audit_controls_g7.out.json $SQ/g5/g5_c3/audit_controls.out.json
++python3 $TOOLS/pn_checks.py controls_pn $O/ctl/audit_controls_g7.out.json $SQ/g5/g5_c3/audit_controls.out.json > $O/gate_controls_sq.json; c=$?
++printf "controls_sq\t%s\n" $c >> $O/verdict.tsv; say "gate controls_sq: code $c $(head -c 300 $O/gate_controls_sq.json)"
+@@ -139 +140 @@
+-bash $TOOLS/run_cargo_b1.sh $TAG $WK $SQREG $O > $O/logs/cargo.out 2>&1
++bash $TOOLS/run_cargo_pn.sh $TAG $WK $MAINW $O > $O/logs/cargo.out 2>&1
+@@ -143,2 +144,2 @@
+-gate pp_outcomes outcomes $O/sq_pp.outcomes $O/logs/${TAG}_pp.outcomes
+-gate runner_outcomes outcomes $O/logs/sq_runner.outcomes $O/logs/${TAG}_runner.outcomes
++gate pp_outcomes outcomes $O/logs/main_pp.outcomes $O/logs/${TAG}_pp.outcomes
++gate runner_outcomes outcomes $O/logs/main_runner.outcomes $O/logs/${TAG}_runner.outcomes
+
+## R/I107/b1_passb_01/_run_records/tools/run_cargo_b1.sh -> run_cargo_pn.sh
+--- 
++++ 
+@@ -2 +2,3 @@
+-# I107 SB, item 5 of B1's Pass B: I65's run_cargo_a.sh (as I72 retargeted it), retargeted to B1. The jobs:
++# I107 SB round 2 (PR-N): round 1's run_cargo_b1.sh with its reference tree now B1 as merged (main 7eae707bb7): PP's
++# suite and the runner's run on both trees (main's are the outcome references), targets WT/targets/i107-pn-<tag>*.
++# Round 1's header: I65's run_cargo_a.sh (as I72 retargeted it), retargeted to B1. The jobs:
+@@ -10 +12 @@
+-# Usage: I107_WT=<WT> run_cargo_b1.sh <tag> <work copy dir> <SQ registered tree dir> <pass out dir>
++# Usage: I107_WT=<WT> run_cargo_pn.sh <tag> <work copy dir> <main tree dir> <pass out dir>
+@@ -12 +14 @@
+-T=${I107_WT:?}; TAG=$1; WK=$2; SQREG=$3; O=$4
++T=${I107_WT:?}; TAG=$1; WK=$2; MAINW=$3; O=$4
+@@ -15,2 +17,2 @@
+-C=$WK/projects/chirality-piping/core; L=$O/logs; TGT=$T/targets/i107-sb-$TAG
+-export TMPDIR=$T/scratch/i107_b1_sb/tmp PATH=$T/venv/bin:$PATH
++C=$WK/projects/chirality-piping/core; L=$O/logs; TGT=$T/targets/i107-pn-$TAG
++export TMPDIR=$T/scratch/i107_pn/tmp PATH=$T/venv/bin:$PATH
+@@ -26 +28,2 @@
+-run sq_runner $SQREG/projects/chirality-piping/core/runner/headless/Cargo.toml $TGT-runner-sq
++run main_pp $MAINW/projects/chirality-piping/core/product_physics/Cargo.toml $TGT-main
++run main_runner $MAINW/projects/chirality-piping/core/runner/headless/Cargo.toml $TGT-runner-main
+
+## R/I107/b1_passb_01/_run_records/tools/run_point_b1.sh -> run_point_pn.sh
+--- 
++++ 
+@@ -2 +2 @@
+-# I107 SB: SQ's run_point.sh (R/I104/b1_sq_01/_run_records/tools/run_point.sh), retargeted only: the chain dir,
++# I107 SB round 2 (PR-N): round 1's run_point_b1.sh with TMPDIR in WT/scratch/i107_pn/. Round 1: SQ's run_point.sh (R/I104/b1_sq_01/_run_records/tools/run_point.sh), retargeted only: the chain dir,
+@@ -11 +11 @@
+-export TMPDIR=$T/scratch/i107_b1_sb/tmp PATH=$T/venv/bin:$PATH GIT_OPTIONAL_LOCKS=0
++export TMPDIR=$T/scratch/i107_pn/tmp PATH=$T/venv/bin:$PATH GIT_OPTIONAL_LOCKS=0
+
+## R/I107/b1_passb_01/_run_records/tools/post_run_b1.py -> post_run_pn.py
+--- 
++++ 
+@@ -1 +1,2 @@
+-"""I107 SB: gather B1's Pass B run into the records (stdlib only; read-only for every input). The WT root is
++"""I107 SB round 2 (PR-N): round 1's post_run_b1.py retargeted (scratch WT/scratch/i107_pn/; no RV124 comparison).
++Round 1: gather B1's Pass B run into the records (stdlib only; read-only for every input). The WT root is
+@@ -3,2 +4 @@
+-are left out: this pass measures nothing. Also compares the TEXT points with RV124's full runs, which RV124
+-kept host-only for SB (WT/scratch/rv124_rvq/chain/runs), for information.
++are left out: this pass measures nothing.
+@@ -8 +8 @@
+-O = f"{T}/scratch/i107_b1_sb/pass_{TAG}"; L = f"{O}/logs"; RV = f"{T}/scratch/rv124_rvq/chain/runs"
++O = f"{T}/scratch/i107_pn/pass_{TAG}"; L = f"{O}/logs"
+@@ -27 +27 @@
+-          "sq_pp.outcomes"] + sorted(x for x in os.listdir(O) if x.startswith("gate_")):
++          "sq_pp.outcomes", "item10_error_owners.json"] + sorted(x for x in os.listdir(O) if x.startswith("gate_")):
+@@ -55,13 +54,0 @@
+-# the host-only comparison with RV124's full TEXT runs (every file of the point, byte for byte)
+-info = []
+-for mine, theirs in (("g5", "g5_c3"), ("n5", "n5_c3")):
+-    for sub in ("", "work"):
+-        a, b = os.path.join(O, mine, sub), os.path.join(RV, theirs, sub)
+-        if not os.path.isdir(b): info.append(f"{mine}/{sub}: RV124's {theirs} not present"); continue
+-        for f in sorted(os.listdir(a)):
+-            pa, pb = os.path.join(a, f), os.path.join(b, f)
+-            if os.path.isdir(pa): continue
+-            st = "absent-in-RV124" if not os.path.exists(pb) else ("identical" if open(pa, "rb").read() == open(pb, "rb").read() else "differs")
+-            info.append(f"{st}\t{mine}/{sub + '/' if sub else ''}{f}")
+-put("text_vs_rv124_full_runs.info.txt", "# I107 pass_" + TAG + " TEXT points against RV124's host-only runs (WT/scratch/rv124_rvq/chain/runs/{g5_c3,n5_c3}),"
+-    " which ran the same chains on 57c92a7b33: files with retained_memory.rs line keys or byte spans differ by the line map\n" + "\n".join(info) + "\n")
+
+## R/I104/b1_sq_01/_run_records/tools/g7_linemap_crates.py -> g7_linemap_crates_rows.py
+--- 
++++ 
+@@ -1 +1,7 @@
+-"""[I104 SQ copy: CHANGED restricted to crate_dirs.txt; otherwise I65's tool unchanged]
++"""[I107 PR-N copy of SQ's g7_linemap_crates.py. One change: a short key (`lib.rs:N`) that is ambiguous because
++several changed files share its basename resolves to the one candidate on which the basis's own TEXT run has a row at
++line N (env LINEMAP_ROWS: SQ's G5 point text_budget, keyed at 57c92a7b33); with no row in any candidate (a citation),
++to the one candidate with at least N lines. The candidates are every chain-crate file of that basename at OLD, changed or
++not; a key resolved to an unchanged file is left as written. Anything else stays ambiguous and unmapped. Each resolution
++is reported.]
++[I104 SQ copy: CHANGED restricted to crate_dirs.txt; otherwise I65's tool unchanged]
+@@ -53 +59,9 @@
+-report, unmapped = [], []
++report, unmapped, resolved = [], [], []
++import gzip
++_rows = json.load(gzip.open(os.environ["LINEMAP_ROWS"]) if os.environ["LINEMAP_ROWS"].endswith(".gz") else open(os.environ["LINEMAP_ROWS"]))["rows"]
++ROWS = {(r["file"].split("projects/chirality-piping/")[-1], r["line"]) for r in _rows}
++ALL_OLD = [f[len(P):] for c in _CR for f in git("ls-tree", "-r", "--name-only", old, "--", P + c).split("\n") if f.endswith(".rs")]
++_len = {}
++def old_len(f):
++    if f not in _len: _len[f] = len(git("show", f"{old}:{P}{f}").split("\n"))
++    return _len[f]
+@@ -80 +94,11 @@
+-            unmapped.append([ctx, whole, "ambiguous: " + ", ".join(hits)]); return whole
++            # every chain-crate file with this basename at OLD, changed or not, is a candidate for a short key
++            same = [f for f in ALL_OLD if f.endswith("/" + rel) or f == rel]
++            byrow = [f for f in same if (f, ln) in ROWS]
++            bylen = [f for f in same if ln <= old_len(f)]
++            pick, how = (byrow, "the one file with a TEXT row there at the basis") if byrow else (bylen, "the one file with that line")
++            if len(pick) != 1:
++                unmapped.append([ctx, whole, "ambiguous: " + ", ".join(hits)]); return whole
++            if pick[0] not in hits:
++                resolved.append([ctx, whole, pick[0], how + " (unchanged: left as written)"]); return whole
++            resolved.append([ctx, whole, pick[0], how])
++            hits = pick
+@@ -117 +141 @@
+-           "remapped": len(report), "unmapped": unmapped}
++           "remapped": len(report), "unmapped": unmapped, "resolved_ambiguous": resolved}
+
+## R/I104/b1_sq_01/_run_records/tools/audit_controls_b1.py -> audit_controls_pn.py
+--- 
++++ 
+@@ -1 +1,2 @@
+-"""[I104 SQ copy of I65 u4_g7_06 audit_controls_g7.py: the control sites re-keyed to b1-q by the line map (lib.rs:5592->5773, :8795->8976; retained_product.rs:3125->3404; retained_precision.rs:4272->4421, :1722->1745), and the cap vector from G4_CAPS_RUN; otherwise unchanged]
++"""[I107 PR-N copy of SQ's audit_controls_b1.py: PP lib.rs's control sites re-keyed +2 (PR-N adds two lines at lib.rs:38), as the rules' line map carried them (lib.rs:5773->5775, :1708->1710, :8976->8978); otherwise unchanged]
++[I104 SQ copy of I65 u4_g7_06 audit_controls_g7.py: the control sites re-keyed to b1-q by the line map (lib.rs:5592->5773, :8795->8976; retained_product.rs:3125->3404; retained_precision.rs:4272->4421, :1722->1745), and the cap vector from G4_CAPS_RUN; otherwise unchanged]
+@@ -33,2 +34,2 @@
+-    ("c3_rv87_c1_lib_5592", drop("core/product_physics/src/lib.rs:5773", "matched[0].id"), ("id-unaudited", "lib.rs:5773 matched[0].id")),
+-    ("c4_sf1_label_1708", drop("core/product_physics/src/lib.rs:1708", "integrity_dof_label(model,record.global_dof)"), ("id-unaudited", "lib.rs:1708 integrity_dof_label")),
++    ("c3_rv87_c1_lib_5592", drop("core/product_physics/src/lib.rs:5775", "matched[0].id"), ("id-unaudited", "lib.rs:5775 matched[0].id")),
++    ("c4_sf1_label_1708", drop("core/product_physics/src/lib.rs:1710", "integrity_dof_label(model,record.global_dof)"), ("id-unaudited", "lib.rs:1710 integrity_dof_label")),
+@@ -37,2 +38,2 @@
+-    ("c7_stale_audit_entry", bogus_entry("core/product_physics/src/lib.rs:5773"), ("stale-audit-entry", "lib.rs:5773 no_such_expression.id")),
+-    ("c8_static_class_entry_8795", drop("core/product_physics/src/lib.rs:8976", "label"), ("id-unaudited", "lib.rs:8976 label")),
++    ("c7_stale_audit_entry", bogus_entry("core/product_physics/src/lib.rs:5775"), ("stale-audit-entry", "lib.rs:5775 no_such_expression.id")),
++    ("c8_static_class_entry_8795", drop("core/product_physics/src/lib.rs:8978", "label"), ("id-unaudited", "lib.rs:8978 label")),

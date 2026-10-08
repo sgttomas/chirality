@@ -1,0 +1,43 @@
+start 2026-10-08T18:32:57Z
+== gate tree: code 0 {"check": "tree", "code": 0, "result": "listed 2973, mismatched 0, extra 0"} (2026-10-08T18:32:59Z)
+== gate entry: code 0 {"check": "entry", "code": 0, "equal": true, "threshold": "11_274_289_152", "diff": []} (2026-10-08T18:32:59Z)
+== gate entry_code: code 0 {"check": "entry_code", "code": 0, "code_equal": true, "comment_lines_differing": ["-    // M (D-7; RR \"R6a: B1's G5 holds on B1's real code; M = 10.5 GiB, provisional\"; B1 SQ", "-    // QUAL_B1.md): E_mov,max + R <= 0.8745 M in this build (dense W3; sparse 0.8693 M).", "+    // M (D-7; RR \"R6b:  (2026-10-08T18:33:00Z)
+== gate m: code 0 {"check": "m", "code": 0, "threshold": "11_274_289_152", "expected": "11_274_289_152", "registered_profiles": 1} (2026-10-08T18:33:00Z)
+== gate law: code 0 {"check": "law", "code": 0, "identity_equal": true, "inputs_equal": true, "layouts_equal": true, "summary": ["test result: ok. 55 passed; 0 failed; 51 ignored; 0 measured; 526 filtered out; finished in 6.30s"], "registered_tests": {"the_registered_profile_is_the_only_permit_source": true, "admit_gra (2026-10-08T18:35:47Z)
+== gate law_sq: code 0 {"check": "law_sq", "code": 0, "lines": [276, 276], "in_order": true, "only_mine": [], "only_sq": []} (2026-10-08T18:35:47Z)
+== gate statics: code 0 {"check": "statics", "code": 0, "added": [], "removed": []} (2026-10-08T18:35:54Z)
+== gate premise57: code 0 {"check": "premise57", "code": 0, "mine": [["premise_pins.json/pins/key", "core/reporting/result_export/src/retained_precision.rs:4252", "core/reporting/result_export/src/retained_precision.rs:4401"], ["premise_pins.json/pins/key", "core/reporting/result_export/src/retained_precision.rs:4253", "core (2026-10-08T18:35:58Z)
+== linemap: exit 0 (2026-10-08T18:35:59Z)
+== gate premise: code 0 {"check": "premise", "code": 0, "pins": 3, "bad": []} (2026-10-08T18:35:59Z)
+== TEXT points exit g5=0 n5=0 (2026-10-08T18:51:56Z)
+== D from the run: 41769 (2026-10-08T18:51:56Z)
+== delta: exit 0 {"files": 21, "hunks_and_files": 39, "classes": {"no-code": 2, "unreachable": 4, "item": 6, "live": 14, "test": 2, "qualification-test": 5, "not-d1": 6}, "verdict": "PASS: every hunk classified; every live, item, cfg(test)-statement or qualification-test hunk has a reviewed entry"} (2026-10-08T18:51:59Z)
+== SQ's edges/looplog line map: exit 1 (2026-10-08T18:52:00Z)
+== gate text: code 0 {"check": "text_pn", "code": 0, "issues": [], "attributed": {"edges": {"new_nodes": ["correct_norm.rs:113:midpoint_sign", "correct_norm.rs:120:exponent", "correct_norm.rs:131:ulp_exponent", "correct_norm.rs:141:pow2", "correct_norm.rs:147:scale", "correct_norm.rs:160:square", "correct_norm.rs:166:tw (2026-10-08T18:52:00Z)
+== gate text_n5: code 0 {"check": "text_pn", "code": 0, "issues": [], "attributed": {"cg.out": {"files": [94, 95], "nodes": [3487, 3497], "edges": [13953, 13982], "norm_nodes": 10, "edges_touching_norm": 29, "root_depths": [[40], [40]]}}, "compared": [["cg.out.json", "counts up by the norm's nodes and edges; depths equal", (2026-10-08T18:52:00Z)
+== gate forms: code 0 {"check": "forms", "code": 0, "equal": true, "diff": []} (2026-10-08T18:52:01Z)
+== gate forms_g5: code 0 {"check": "forms", "code": 0, "equal": true, "diff": []} (2026-10-08T18:52:01Z)
+== section 11 run exit 0 (2026-10-08T18:53:45Z)
+== gate noncand: code 0 {"check": "noncand_sq", "code": 0, "issues": [], "run_rows": 412, "matched": 408, "new": 4, "gone": 2, "rows_equal_without_lines": true, "rows_bytes_equal": false} (2026-10-08T18:53:45Z)
+Traceback (most recent call last):
+  File "WT/numerics/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I104/b1_sq_01/_run_records/tools/audit_controls_b1.py", line 54, in <module>
+    mod(ta)
+    ~~~^^^^
+  File "WT/numerics/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I104/b1_sq_01/_run_records/tools/audit_controls_b1.py", line 13, in f
+    del ta["id_audit"][site][k]
+        ~~~~~~~~~~~~~~^^^^^^
+KeyError: 'core/product_physics/src/lib.rs:5773'
+== controls run exit 1 (2026-10-08T18:53:54Z)
+Traceback (most recent call last):
+  File "WT/numerics/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I65/u4_g7_06/_run_records/pass_checks.py", line 90, in <module>
+    d = json.load(open(args[0])); n = sum(1 for r in d if r["pass"])
+                  ~~~~^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'WT/scratch/i107_pn/pass_pn/ctl/audit_controls_g7.out.json'
+== gate controls: code 1  (2026-10-08T18:53:54Z)
+Traceback (most recent call last):
+  File "WT/numerics/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I107/b1_passb_01/_run_records/tools/b1_checks.py", line 108, in <module>
+    a, b = json.load(open(args[0])), json.load(open(args[1]))
+                     ~~~~^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'WT/scratch/i107_pn/pass_pn/ctl/audit_controls_g7.out.json'
+== gate controls_sq: code 1  (2026-10-08T18:53:54Z)
+CHAIN-DONE rc=143 stopped by I107 at 2026-10-08T19:04:10Z: controls tool keyed to 57c92a7b33's lib.rs lines; rerun with the re-keyed copy

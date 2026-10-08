@@ -1,0 +1,28 @@
+# I107 PR-N identity (git reads, GIT_OPTIONAL_LOCKS=0)
+head 8dd64c1835698da87e5f0fd303c1b886daee956f, parent 7eae707bb77722a69b61678c149aa816976bc162, main 7eae707bb7 = 7eae707bb77722a69b61678c149aa816976bc162
+paths changed outside projects/chirality-piping/: 0
+projects/chirality-piping without execution/ = NUM ef8ab78473: yes
+changed files (main -> head): 21
+M	P/core/loads/stress_recovery/src/elastic_section.rs
+M	P/core/loads/stress_recovery/src/lib.rs
+M	P/core/product_physics/src/case_state/resolve.rs
+M	P/core/product_physics/src/lib.rs
+M	P/core/product_physics/src/pressure_runtime.rs
+M	P/core/product_physics/src/preview_physics.rs
+M	P/core/product_physics/src/retained_facade_tests.rs
+M	P/core/product_physics/src/retained_memory_law_tests.rs
+M	P/core/product_physics/src/retained_product.rs
+M	P/core/product_physics/src/retained_wire_tests.rs
+M	P/core/product_physics/tests/preview_physics_runtime.rs
+A	P/core/solver/frame_kernel/src/correct_norm.rs
+M	P/core/solver/frame_kernel/src/lib.rs
+M	P/core/solver/frame_kernel/src/rigid_body.rs
+M	P/core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs
+A	P/core/solver/frame_kernel/tests/correct_norm_oracle.rs
+A	P/core/solver/frame_kernel/tests/correct_norm_vectors.txt
+M	P/core/solver/frame_kernel/tests/k5_constrained_bodies.rs
+M	P/fixtures/results/retained_precision_cases.json
+M	P/fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json
+M	P/tests/test_retained_precision_contract.py
+# the 14 reviewed inputs (delta_inventory2.py's REVIEWED_INPUTS, Cargo.lock among them) and every Cargo.lock/Cargo.toml: changed?
+none changed

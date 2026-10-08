@@ -1,0 +1,14 @@
+== gate tree: code 0 {"check": "tree", "code": 0, "result": "listed 2973, mismatched 0, extra 0"} (2026-10-08T18:10:05Z)
+== gate entry: code 0 {"check": "entry", "code": 0, "equal": true, "threshold": "11_274_289_152", "diff": []} (2026-10-08T18:10:05Z)
+== gate entry_code: code 0 {"check": "entry_code", "code": 0, "code_equal": true, "comment_lines_differing": ["-    // M (D-7; RR \"R6a: B1's G5 holds on B1's real code; M = 10.5 GiB, provisional\"; B1 SQ", "-    // QUAL_B1.md): E_mov,max + R <= 0.8745 M in this build (dense W3; sparse 0.8693 M).", "+    // M (D-7; RR \"R6b:  (2026-10-08T18:10:05Z)
+== gate m: code 0 {"check": "m", "code": 0, "threshold": "11_274_289_152", "expected": "11_274_289_152", "registered_profiles": 1} (2026-10-08T18:10:05Z)
+== law: skipped (I107_SKIP_CARGO) (2026-10-08T18:10:05Z)
+== gate statics: code 0 {"check": "statics", "code": 0, "added": [], "removed": []} (2026-10-08T18:10:12Z)
+== gate premise57: code 0 {"check": "premise57", "code": 0, "mine": [["premise_pins.json/pins/key", "core/reporting/result_export/src/retained_precision.rs:4252", "core/reporting/result_export/src/retained_precision.rs:4401"], ["premise_pins.json/pins/key", "core/reporting/result_export/src/retained_precision.rs:4253", "core (2026-10-08T18:10:16Z)
+== linemap: exit 0 (2026-10-08T18:10:17Z)
+== gate premise: code 0 {"check": "premise", "code": 0, "pins": 3, "bad": []} (2026-10-08T18:10:17Z)
+== TEXT points exit g5=0 n5=0 (2026-10-08T18:11:08Z)
+== D from the run: 41769 (2026-10-08T18:11:08Z)
+== delta: exit 5 {"files": 21, "hunks_and_files": 39, "classes": {"no-code": 2, "unreachable": 4, "item": 6, "live": 14, "test": 2, "qualification-test": 5, "not-d1": 6}, "verdict": "STOP: 20 hunk(s) need a reviewed entry"} (2026-10-08T18:11:11Z)
+VERDICT STOP exit=5 basis=8dd64c1835698da87e5f0fd303c1b886daee956f tag=prep passA=SQ(57c92a7b3310229406733a7134e271c29bcc6978..69002bc862+registration) delta_old=B1-as-merged(7eae707bb77722a69b61678c149aa816976bc162) gates=tree:0 entry:0 entry_code:0 m:0 law:skipped statics:0 premise57:0 linemap:0 premise:0 text_run:0 delta:5 
+CHAIN-DONE rc=5

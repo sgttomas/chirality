@@ -1,0 +1,376 @@
+{
+ "about": "PR-N Pass B (I107): entries for the hunks of main 7eae707bb7 (B1 as merged) -> 8dd64c1835 (PR-N's code) that need one, keyed by delta_inventory2.py's fingerprint, each attributed to the norm by mk_delta_reviewed_pn.py's checks.",
+ "dry_run_inventory": {
+  "old": "7eae707bb77722a69b61678c149aa816976bc162",
+  "new": "8dd64c1835698da87e5f0fd303c1b886daee956f",
+  "needing_entries": 25
+ },
+ "norm_module": {
+  "alloc_tokens": [],
+  "recursive_fns": [],
+  "fns": 10
+ },
+ "entries": [
+  {
+   "fingerprint": "984fd73ce0426c8aef310b827733683a7322c6c986369836d35c76b95f3898a9",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:9-12",
+   "class": "item",
+   "attribution": "D",
+   "removed": [],
+   "added": [
+    "#[path = \"../../../solver/frame_kernel/src/correct_norm.rs\"]",
+    "#[allow(dead_code)]",
+    "mod correct_norm;"
+   ],
+   "evidence": "a declaration of the norm module or an import of norm2/norm3; no executable code",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "59653881eb573b7b0c7ef97bd01ca077f468ab86213014405020c4191fc80bd9",
+   "file": "core/product_physics/src/case_state/resolve.rs",
+   "at_final_basis": "resolve.rs:18-18",
+   "class": "item",
+   "attribution": "D",
+   "removed": [],
+   "added": [
+    "use open_pipe_stress_frame_kernel::correct_norm::norm3;"
+   ],
+   "evidence": "a declaration of the norm module or an import of norm2/norm3; no executable code",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "e1243dc194715b11ab6799f0671f1056c2450fcc0b7f78f96e18a96ef2bd69f7",
+   "file": "core/product_physics/src/case_state/resolve.rs",
+   "at_final_basis": "resolve.rs:899-899",
+   "class": "live",
+   "attribution": "C",
+   "removed": [
+    "let length = (to[0] - from[0])",
+    ".hypot(to[1] - from[1])",
+    ".hypot(to[2] - from[2]);"
+   ],
+   "added": [
+    "let length = norm3(to[0] - from[0], to[1] - from[1], to[2] - from[2]);"
+   ],
+   "evidence": "a call site: libm `hypot` replaced by the correctly rounded norm with the same operands (file: 2 hypot calls = 2 norm arguments less one per norm)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "e569f6b5afb8fce48e0b142ad917061903e94b13f7c1e9576b7bd21eb8a0f113",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:38-39",
+   "class": "item",
+   "attribution": "D",
+   "removed": [],
+   "added": [
+    "use open_pipe_stress_frame_kernel::correct_norm::{norm2, norm3};"
+   ],
+   "evidence": "a declaration of the norm module or an import of norm2/norm3; no executable code",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "d2eb82aa3ab2a74dcbc04419e1652cda03ddb1a44e42e966b0b327000fbac5f7",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:4928-4928",
+   "class": "live",
+   "attribution": "C",
+   "removed": [
+    "force_vector[0].hypot(force_vector[1]).hypot(force_vector[2])"
+   ],
+   "added": [
+    "norm3(force_vector[0], force_vector[1], force_vector[2])"
+   ],
+   "evidence": "a call site: libm `hypot` replaced by the correctly rounded norm with the same operands (file: 9 hypot calls = 9 norm arguments less one per norm)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "50033a6b8c052ad653aa9ab5cced0a84a06b4575cea4df0542e097662ba55bf6",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:5124-5124",
+   "class": "live",
+   "attribution": "C",
+   "removed": [
+    "corrected_local_forces[offset + RY].hypot(corrected_local_forces[offset + RZ]),"
+   ],
+   "added": [
+    "norm2(corrected_local_forces[offset + RY], corrected_local_forces[offset + RZ]),"
+   ],
+   "evidence": "a call site: libm `hypot` replaced by the correctly rounded norm with the same operands (file: 9 hypot calls = 9 norm arguments less one per norm)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "e25732e4a67ec9784a0c92d04e0ec2d2a12baa78483ca8f92da7c2299e14528a",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:11876-11876",
+   "class": "live",
+   "attribution": "C",
+   "removed": [
+    "action[0].hypot(action[1]).hypot(action[2]),"
+   ],
+   "added": [
+    "norm3(action[0], action[1], action[2]),"
+   ],
+   "evidence": "a call site: libm `hypot` replaced by the correctly rounded norm with the same operands (file: 9 hypot calls = 9 norm arguments less one per norm)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "1adcb86a4634422064869ea4da1fa7d1a48ea833a85be98833b9b90933ac9243",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:11882-11882",
+   "class": "live",
+   "attribution": "C",
+   "removed": [
+    "action[3].hypot(action[4]).hypot(action[5]),"
+   ],
+   "added": [
+    "norm3(action[3], action[4], action[5]),"
+   ],
+   "evidence": "a call site: libm `hypot` replaced by the correctly rounded norm with the same operands (file: 9 hypot calls = 9 norm arguments less one per norm)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "dc9fbf82ab75d5dc80c37603008daa342e0b1b2508d9c63e7b80afea8ffa06b4",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:13511-13511",
+   "class": "live",
+   "attribution": "C",
+   "removed": [
+    "combined.value = vector[0].hypot(vector[1]).hypot(vector[2]);"
+   ],
+   "added": [
+    "combined.value = norm3(vector[0], vector[1], vector[2]);"
+   ],
+   "evidence": "a call site: libm `hypot` replaced by the correctly rounded norm with the same operands (file: 9 hypot calls = 9 norm arguments less one per norm)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "507875b7c081aa674c6b69b15203027c235512c1471519eb29cae6639809aa8e",
+   "file": "core/product_physics/src/pressure_runtime.rs",
+   "at_final_basis": "pressure_runtime.rs:13-13",
+   "class": "item",
+   "attribution": "D",
+   "removed": [],
+   "added": [
+    "use open_pipe_stress_frame_kernel::correct_norm::norm3;"
+   ],
+   "evidence": "a declaration of the norm module or an import of norm2/norm3; no executable code",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "b0f055ec8892f72eac49137fa9d38c2f80bb1e97e3d09eae5f06343467696f65",
+   "file": "core/product_physics/src/preview_physics.rs",
+   "at_final_basis": "preview_physics.rs:465-465",
+   "class": "live",
+   "attribution": "C",
+   "removed": [
+    "let angle = cross[0].hypot(cross[1]).hypot(cross[2]).atan2(dot);"
+   ],
+   "added": [
+    "let angle = norm3(cross[0], cross[1], cross[2]).atan2(dot);"
+   ],
+   "evidence": "a call site: libm `hypot` replaced by the correctly rounded norm with the same operands (file: 7 hypot calls = 7 norm arguments less one per norm)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "68f2349057fe3eee885a3d169fafb635ccca45564951477240423aef23574771",
+   "file": "core/product_physics/src/preview_physics.rs",
+   "at_final_basis": "preview_physics.rs:634-634",
+   "class": "live",
+   "attribution": "C",
+   "removed": [
+    "let value = association.sif * (my.hypot(mz) / member.section_modulus);"
+   ],
+   "added": [
+    "let value = association.sif * (norm2(my, mz) / member.section_modulus);"
+   ],
+   "evidence": "a call site: libm `hypot` replaced by the correctly rounded norm with the same operands (file: 7 hypot calls = 7 norm arguments less one per norm)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "f790d072756b94a02930778aeff32caf73a63b39c49c0e5de63128e9d4a73513",
+   "file": "core/product_physics/src/preview_physics.rs",
+   "at_final_basis": "preview_physics.rs:966-967",
+   "class": "live",
+   "attribution": "C",
+   "removed": [
+    "(\"force_magnitude\", combined[0].hypot(combined[1]).hypot(combined[2])),",
+    "(\"moment_magnitude\", combined[3].hypot(combined[4]).hypot(combined[5])),"
+   ],
+   "added": [
+    "(\"force_magnitude\", norm3(combined[0], combined[1], combined[2])),",
+    "(\"moment_magnitude\", norm3(combined[3], combined[4], combined[5])),"
+   ],
+   "evidence": "a call site: libm `hypot` replaced by the correctly rounded norm with the same operands (file: 7 hypot calls = 7 norm arguments less one per norm)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "f8a32e9758d6385c50f026190ccba22ffc418214089aa546181bb52d7d5dff31",
+   "file": "core/product_physics/src/retained_product.rs",
+   "at_final_basis": "retained_product.rs:2446-2446",
+   "class": "live",
+   "attribution": "C",
+   "removed": [
+    "if (y - v[0].hypot(v[1]).hypot(v[2])).abs()"
+   ],
+   "added": [
+    "if (y - norm3(v[0], v[1], v[2])).abs()"
+   ],
+   "evidence": "a call site: libm `hypot` replaced by the correctly rounded norm with the same operands (file: 2 hypot calls = 2 norm arguments less one per norm)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "7f7bdf7e0ed7855d1b6ce0771f7fa8259307eee1437609a8f32409b0ec632ffc",
+   "file": "core/solver/frame_kernel/src/correct_norm.rs",
+   "at_final_basis": "correct_norm.rs:1-295",
+   "class": "live",
+   "attribution": "M",
+   "removed": [],
+   "added": [
+    "(the module)"
+   ],
+   "evidence": "the norm module (new, 295 lines): norm2/norm3 and their helpers. Its production part has no allocating construct and no recursion on this pass's call graph (10 fns). I109's oracle: 0 misrounded in 22,000,000 results against exact integer square roots (R/I109/platform_norm_01/). Its loops: this pass's item 4.",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "c0b6f0adc66f52a5fb310f4b85c282ddf12827a7c9eac45afb227e0ec98b9dcb",
+   "file": "core/solver/frame_kernel/src/lib.rs",
+   "at_final_basis": "lib.rs:6-6",
+   "class": "item",
+   "attribution": "D",
+   "removed": [],
+   "added": [
+    "pub mod correct_norm;"
+   ],
+   "evidence": "a declaration of the norm module or an import of norm2/norm3; no executable code",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "cda6eb8f22a49503e844f9d6e4b0e4ece28462cc5742404e98903b69c212dace",
+   "file": "core/solver/frame_kernel/src/rigid_body.rs",
+   "at_final_basis": "rigid_body.rs:52-53",
+   "class": "live",
+   "attribution": "C",
+   "removed": [
+    "length = length.max(r[0].hypot(r[1]).hypot(r[2]));"
+   ],
+   "added": [
+    "length = length.max(crate::correct_norm::norm3(r[0], r[1], r[2]));"
+   ],
+   "evidence": "a call site: libm `hypot` replaced by the correctly rounded norm with the same operands (file: 3 hypot calls = 3 norm arguments less one per norm)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "251d9b29e756a052252bb3cf1a6a584aacc2d87c84deef641517aef7180f0d01",
+   "file": "core/solver/frame_kernel/src/rigid_body.rs",
+   "at_final_basis": "rigid_body.rs:109-109",
+   "class": "live",
+   "attribution": "C",
+   "removed": [
+    "let t = zeta.signum() / (zeta.abs() + zeta.hypot(1.0));"
+   ],
+   "added": [
+    "let t = zeta.signum() / (zeta.abs() + crate::correct_norm::norm2(zeta, 1.0));"
+   ],
+   "evidence": "a call site: libm `hypot` replaced by the correctly rounded norm with the same operands (file: 3 hypot calls = 3 norm arguments less one per norm)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "2e1652e97dac2412831351374a18198b5d04598a76267bcda594888911954278",
+   "file": "core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs",
+   "at_final_basis": "final_case.rs:after 1846",
+   "class": "item",
+   "attribution": "C",
+   "removed": [
+    "let xy=v[0].hypot(v[1]);"
+   ],
+   "added": [],
+   "evidence": "a call site: libm `hypot` replaced by the correctly rounded norm with the same operands (file: 2 hypot calls = 2 norm arguments less one per norm; the chain's temporary ['xy'] removed)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "facc41d2efd7617108425b99e2ccb8c2ebf4c7b0fc628e07372780f4efd14ee0",
+   "file": "core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs",
+   "at_final_basis": "final_case.rs:1849-1851",
+   "class": "live",
+   "attribution": "C",
+   "removed": [
+    "let value=xy.hypot(v[2]);"
+   ],
+   "added": [
+    "let value=crate::correct_norm::norm3(v[0],v[1],v[2]);"
+   ],
+   "evidence": "a call site: libm `hypot` replaced by the correctly rounded norm with the same operands (file: 2 hypot calls = 2 norm arguments less one per norm; the chain's temporary ['xy'] removed)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "f545c78a7b8016aff76c0e3be1395fe8e6d621ffa3eefde3f6fbba34e90ddb80",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:134-134",
+   "class": "qualification-test",
+   "attribution": "Q",
+   "removed": [],
+   "added": [],
+   "evidence": "I109 round 2's ring check (RV125 A1-N1; I109 pr_n_01 RETURN \u00a73, commit e4ec1cb5c9): the absolute 1e-14 escape now covers only the three counted near-zero residues; every other coordinate within one ulp. A tightening",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "0b2775281f2dd9544027c6cd576d6fa7e3fe50ce96dbce445e4092a774e26bbf",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:138-138",
+   "class": "qualification-test",
+   "attribution": "Q",
+   "removed": [],
+   "added": [
+    "let mut residues = 0;"
+   ],
+   "evidence": "I109 round 2's ring check (RV125 A1-N1; I109 pr_n_01 RETURN \u00a73, commit e4ec1cb5c9): the absolute 1e-14 escape now covers only the three counted near-zero residues; every other coordinate within one ulp. A tightening",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "db795b84b490204cbbf2d231b0693e36718c8528082557210b0d815c8018da33",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:after 141",
+   "class": "qualification-test",
+   "attribution": "Q",
+   "removed": [],
+   "added": [],
+   "evidence": "I109 round 2's ring check (RV125 A1-N1; I109 pr_n_01 RETURN \u00a73, commit e4ec1cb5c9): the absolute 1e-14 escape now covers only the three counted near-zero residues; every other coordinate within one ulp. A tightening",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "cc6c919304ed4c430cb5af85b79b0a28bfcfdf3a48cc0fc51e217a789a0d8a04",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:143-151",
+   "class": "qualification-test",
+   "attribution": "Q",
+   "removed": [
+    "assert!(ulps(pinned, computed) <= 1 || (pinned - computed).abs() <= 1e-14, \"N{i}: {pinned:e} against {computed:e}\");"
+   ],
+   "added": [
+    "if pinned != 0.0 && pinned.abs() < 1e-14 {",
+    "residues += 1;",
+    "assert!((pinned - computed).abs() <= 1e-14, \"N{i}: {pinned:e} against {computed:e}\");",
+    "} else {",
+    "assert!(ulps(pinned, computed) <= 1, \"N{i}: {pinned:e} against {computed:e}\");",
+    "}"
+   ],
+   "evidence": "I109 round 2's ring check (RV125 A1-N1; I109 pr_n_01 RETURN \u00a73, commit e4ec1cb5c9): the absolute 1e-14 escape now covers only the three counted near-zero residues; every other coordinate within one ulp. A tightening",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  },
+  {
+   "fingerprint": "2b628124d7f3fbed7f0579fd9cb7056c8d7755dd5972169f73f1f6ee6177f381",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:154-154",
+   "class": "qualification-test",
+   "attribution": "Q",
+   "removed": [],
+   "added": [
+    "assert_eq!(residues, 3, \"the residues are N8's x, N16's y and N24's x\");"
+   ],
+   "evidence": "I109 round 2's ring check (RV125 A1-N1; I109 pr_n_01 RETURN \u00a73, commit e4ec1cb5c9): the absolute 1e-14 escape now covers only the three counted near-zero residues; every other coordinate within one ulp. A tightening",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 2) to I109's norm (RR \"I109: a correctly rounded norm replaces libm `hypot` on published paths; ...\"); for RV126 (RV-N), which reviews the module and every call site, and RV124's confirmation"
+  }
+ ],
+ "refused": []
+}

@@ -1,0 +1,8 @@
+Scratch integration head for source_equality.py (--int), I109 repair round 01.
+ec7902ed24106ba3111f79b1d9ce97c32ee4ff67
+= NUM 8dac73c9a0 (whose non-execution tree equals NUM ef8ab78473's) with the 5 maintained files of the
+  repair commit 8ca80508b6 (blob and mode from 8ca80508b6), parent 8dac73c9a0.
+Made with a scratch GIT_INDEX_FILE (read-tree, update-index --cacheinfo, write-tree) and git commit-tree;
+no ref or branch exists, and it was never pushed. WORKING_ITEMS's NUM mirror replaces it.
+PR head checked: 0c7490e1be723fd72c762403e282e2d789f3af38 (code 8dd64c1835, package dab19291a8,
+repair 8ca80508b6, package 0c7490e1be).

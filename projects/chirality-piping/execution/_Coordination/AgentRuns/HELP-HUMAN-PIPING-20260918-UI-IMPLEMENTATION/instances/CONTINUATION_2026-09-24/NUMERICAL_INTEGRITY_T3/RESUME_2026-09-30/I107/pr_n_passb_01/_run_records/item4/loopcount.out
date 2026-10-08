@@ -1,0 +1,3 @@
+vectors: 1200 lines, 0 mismatched, passes histogram (0..7+) [158, 2121, 121, 0, 0, 0, 0, 0]
+random: 20000000 triples (norm3 and norm2 each), passes histogram (0..7+) [27833136, 12166862, 2, 0, 0, 0, 0, 0]
+max passes: vectors 2, random 2
