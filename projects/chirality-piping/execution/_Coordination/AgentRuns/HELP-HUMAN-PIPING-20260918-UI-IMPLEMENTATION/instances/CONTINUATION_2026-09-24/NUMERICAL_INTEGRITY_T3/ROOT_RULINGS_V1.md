@@ -16502,3 +16502,8 @@ I110's round 3 is at `6b6543dc1e`. Its evidence: 588/588 bytes equal on exact, i
    - `lib.rs:1944`'s limitation and the joint review-row text are each assessed the same way: corrected if published and no longer true, removed if no longer publishable.
    - The byte evidence becomes "equal except the declared text changes", checked mechanically so that the diff is confined to those strings.
    - **If the change reaches retained successor pins or the readers' corpora,** WORKING_ITEMS reports the blast radius to ROOT before re-pinning.
+
+**U3, I114's demo lane and WORKING_ITEMS' three items** (ROOT, 2026-10-08 UTC). I114 replaced the bundled results with product-computed results from a valid demo model (`invented_demo_model.json`: joint-free, pressure-free; friction normal 52.37 N, matching I111's independent record). RV128 is reviewing it.
+1. **The app's default session model** (the browser fallback and native `load_preview_model`) switches to `invented_demo_model.json` in the U3 PR. Today it is `invented_preview_model.json`, which carries the retired pressure and the flawed joint, so the app's out-of-the-box model is refused. This follows from the owner's retirement decision. PP's tests keep the refused model as their refusal fixture.
+2. **`buildPreviewComparison` throwing `ANALYSIS-RUN-RESULT-DIMENSION-UNDECLARED`** on preview-physics-1 combination rows is routed to T6 (results and comparison), in its row. It predates U3, and today it is latent.
+3. **I114's derived 0.1.0 carrier** is accepted, labelled as derived. 0.1.0 is a live format under D-1 A, so its reader tests stay.
