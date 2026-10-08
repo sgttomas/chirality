@@ -15386,3 +15386,40 @@ A first version marked the exclusive job pending while it still waited behind sl
 - then **I4**: ROOT merges `b1-r` (again), `b1-p` and `b1-t` into `b1`.
 
 **Host:** the exclusive-mode test passed. It queued for slot 1 behind a long pytest, took all slots, ran, and cleared its pending mark.
+
+## I92's SR-TS commits and I85's I3 step verified; RV109 confirms SP; RV113 queues SR-TS (ROOT, 2026-10-08 UTC)
+
+**I92's SR-TS commits:** `b1-t` is at `6fa6a64658`, pushed. Over `b82b932923` there are two commits:
+- `1d9455c714`: the header at G2, the held patch applied byte for byte;
+- `6fa6a64658`: the G3 combinations conjunct removed, with TT's two rows moved to G8 bound and two unbound rows added.
+
+The record is `REPAIR_01_ITEM3.md` `8f1fc645…`, with SHA256SUMS.repair_01_item3 13 of 13; the sealed REPAIR_01 still verifies. It also corrects REPAIR_01 §1's +47 to +48.
+- **The census:** input, bound and unbound 0; transport 9 (entries 277 and 286–293, onto RS's reading); 0 misses.
+- **TS equals RS** on 338 of 339 entries and 133 of 135 probes. The differences are the declared per-reader G7 codes.
+- **vitest** 3,626 → 3,629; tsc clean.
+- **Mutants:** 26 of 26 killed.
+
+RV113 confirms it after SR-RS round 2.
+
+**I85's I3 step:** `R/I85/b1_sp_01/I3_01.md` sha256 `5084603d…`. SHA256SUMS.i3_01 120 of 120, and the earlier sums still verify. The screens are clean. It is committed at `03d4266d40`.
+- `b1` is at `03f55e7178`, pushed: three commits over I3 `2ba2f81863`.
+- **The only product source change** is `retained_wire.rs`'s one line, `constructor_ordinal: t.original`, with its comment. ROOT read it.
+- **Every removed assertion has a post-I3 replacement:**
+  - N-16 is compared record by record, with exactly the three flags as the exception (SF-1);
+  - T-7-on-C expects G8 `PREPARATION_MISMATCH`;
+  - the "before SR-RS" expectations became the published-successor pins.
+- **The W-C2 pins equal the front-run.** The SF-2 pins (C, B, A) and (A, A2), and the ordinal pin (`cause_milestone_reversed` publishes in both modes, each ordinal equal to its primitive-load index), are added.
+- **The c = 1 pins are unchanged.**
+- **Mutants:** 35 of 35, and RV109's six and O1 die on their own assertions at the head.
+- **PP:** registered 730/6 → 738/1; Stale 731/5 → 738/1. Only t13 still fails.
+- **Host breach, disclosed:** two of I85's jobs overlapped for 51 s at the switch to slots, and a SIGSTOPped `lockf` held slot 1 idle for 57 s. Nothing was damaged and nothing was killed. **Rule restated: an agent with jobs in flight when the host changes finishes them one at a time, and must not use signals on its own lock processes.**
+
+**RV109 (RV-P)** confirms the I3 step: the pins, SF-1, SF-2, and the ordinal fix's c = 1 byte identity and pin. It extends the PR-head ledger to `03f55e7178`. I85's scratch and targets stay until RV109 is done.
+
+**B1's position:**
+- SP is complete pending RV109.
+- Each reader's round is done: RS `6e3e4fe219`, PY `70d4a68bd7` with item 4 being committed, and TS `6fa6a64658`. RV113 confirms each.
+- **Then I4:** ROOT merges `b1-r`, `b1-p` and `b1-t` into `b1`.
+- **Then SC** (07n, I-PY), and **SQ** (I-A).
+
+**Implementers running:** I91 (item 4's commit) and I97 (B2-C revision). One slot is free. **SC is next:** it waits for I4, so ROOT prepares SC's brief now.
