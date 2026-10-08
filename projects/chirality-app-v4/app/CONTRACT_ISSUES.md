@@ -564,14 +564,18 @@ in the same library). No Design file was changed. SEAL-2 stays deferred: no old
   forged record can still place a false `derived_from` on a first revision.
   The `state`, `content` and `findings` fields record what the App saw when it
   wrote the record (V11 J5-6). They are not refreshed on later edits.
-- **(b) Identical bytes cannot run again after relaunch.** DS-4 refuses content
+- **(b) Identical bytes cannot run again after relaunch.** *Closed by adoption
+  (J8, 2026-10-08).* The owner chose "A15 re-confirmation now (Recommended)",
+  and the WR change CC-WR-RECONFIRM is adopted (commit `007489e72b`). After a
+  relaunch, identical bytes review as DS-8. A new genuine A15 re-confirms the
+  registered revision with no new revision, and the result is selectable in
+  that process only (WR §4.8). DS-4 still applies while the revision is
+  selectable in the process, or when it is not LS-1. App implementation and its
+  limits: CI-24. The original text follows, for history: "DS-4 refuses content
   identical to a registered revision ("select it instead"). Cold selection of
   that revision stays refused (SEAL-2). After relaunch, the person can run the
   workflow from the same library only by registering changed content (a
-  refinement, DS-2). The exact bytes registered in a lost process cannot be run
-  from that library until SEAL-2 or a WR ruling. For the owner and WR owner:
-  either accept this as the SEAL-2 boundary, or rule on a route (for example,
-  re-registering identical content under a new A15 as a new ledger line).
+  refinement, DS-2)."
 - **(c) Base freshness.** RB-3 names two freshness conditions: the live draft
   and the slot's latest revision. Following the I2 owner plan ("disclosed,
   frozen and checked under lock"), the App also freezes its App-kept base
@@ -612,3 +616,354 @@ in the same library). No Design file was changed. SEAL-2 stays deferred: no old
     own copy (`discard_unbased_copy`), but only when the folder still holds
     exactly the copied bytes. The refusal says that the copy was removed.
     Otherwise the draft is kept and the refusal names the folder to remove.
+
+## CI-22 (J6) Readable native confirmations: what the A15 alert shows
+
+Found 2026-10-08 by the J6 TASK of `APP-V4-GROUP-A-20261004`, repairing the
+native journey witness defect D-1 (PR 1113 witness). The A15 alert embedded the
+complete review and offer JSON. It grew taller than the screen, so the person
+could not read the statement or reach the buttons, and pressed Return unseen.
+No Design file was changed. The A15 repair uses only what AAC already
+permits (below). The A16 App route and the three-button layout, added after
+review V14 by HELP_HUMAN direction and the owner's decision, go beyond the
+committed §4.1a and §6.2 text; the adoption text they need is at the end.
+
+- §6.2 P-2 lists what the native confirmation shows: "the act wording, subject
+  and its identity, scope, purpose, the arrival or 'standing act', and the
+  buttons". It does not require the review itself.
+- §4.2 step 1: "DEL-02-02 shows the review package". §6.2: "The interface may
+  show the offer in the webview too, for reading; only the native confirmation
+  captures."
+- §4.1a (A16): "The host must display all selected text without silent
+  truncation; if the surface cannot do so, it refuses presentation with the
+  cause and captures nothing."
+
+What the code now does (J6, revised after independent review V14):
+
+- **(a) A15 statement.** The alert carries a bounded statement: the wording;
+  each entry's name, origin, disposition, short revision and full revision on
+  its own line, revision method and prior revision; the library, scope,
+  purpose and standing; the review reference and the sha-256 digest of the
+  complete review (`aac-offer-digest/0.1` canonical form); the offer and its
+  short digest; the consequence; the actor with "identity not verified"; and
+  what each button does. The App shows the complete review beside the digest
+  the host reports, before the alert and, while the alert is open, under
+  "Content named by an open native confirmation". Capture still binds the
+  frozen offer (digest checked) and the frozen review (full equality). It now
+  also checks that the review digest equals the one the statement named.
+  The wording, consequence and act label follow the descriptor's kind and
+  disposition (V14 F7). A *re-confirmation* descriptor (AAC §4.2 as adopted
+  by CC-WR-RECONFIRM) gets "Re-confirm revision ‹k› of ‹origin›:‹name› for use
+  in this App session. This registers no new revision." and the buttons
+  [Don't re-confirm] [Re-confirm] [Cancel]. WR does not yet compose such a
+  descriptor (J8); the statement is tested with a synthetic one.
+- **(b) Bound, and the App route.** Each native statement is limited to 30
+  lines and 1500 characters (not natively witnessed). Nothing is truncated.
+  - When a logout/key-removal assessment, an A16 chosen alternative, a request
+    answer or an attachment comparison does not fit, the App shows that
+    content whole while the alert is open, and the alert names it by sha-256
+    digest (V14 F1, F5). The logout alert always gives the counts and, when
+    they fit, one line per live turn, outstanding request, active child,
+    child with unknown activity and unresolved turn observation (DEL-01-05
+    AE-12, KE-13, Q-5: "listing all three"). Counts alone are never the whole
+    statement. The binding of each operation is unchanged and host-side: the
+    frozen A16 offer and digest; the logout assessment's material recheck;
+    the answer preview's recheck; the attachment owner/revision recheck.
+  - A hard refusal with its cause remains only where no such route exists:
+    an A15 whose entries' identities do not fit (with a ~120-character
+    library path: a single draft fits; two in-place entries fit; a third is
+    refused, so the person registers fewer entries per act); a statement
+    whose fixed parts alone exceed the bound (for example a package purpose
+    longer than the alert); a sign-in cancellation (a short fixed field set);
+    and file acts (below).
+  - A refusal is reported to the App as a refusal with its cause, never as
+    the person's cancel (V14 F4).
+- **(c) Default key: owner decision.** OWNER_DECISIONS "Native confirmation
+  default key — 2026-10-08", answer "Three buttons; Return is safe
+  (Recommended)". A15, A16 and request-answer confirmations use
+  `YesNoCancelCustom("Don't ‹act›", "‹Act›", "Cancel")`: Return chooses
+  "Don't ‹act›", which records nothing; tauri-plugin-dialog 2.7.2 reports any
+  unmatched, failed or aborted alert as the third label, "Cancel"; only the
+  middle label acts. Escape: the act sits in the alternate slot, so before
+  the witness Escape had to be observed natively before reliance, with the
+  layout revisited if it reached the middle slot (V14-R1 R1-1). Witnessed
+  2026-10-08 (`probes/NATIVE_RECONFIRM_WITNESS_8cd69ff7.md`), on macOS
+  (Darwin 25.6), for A15:
+  - Escape and Return each closed the alert with no capture or
+    registration, and "Don't register" was the highlighted default.
+  - The App does not report which non-act slot either key took.
+  - The middle button registered when clicked; the Cancel button was not
+    clicked.
+  - The A16 and request-answer dialogs were not witnessed natively. **Known limit: file acts are excluded.** Their three slots are
+  act, decline and Cancel; under the three-button layout an aborted alert
+  would map to the third slot, which there would be a decline. They keep
+  [act (default)] [Decline this act] [Cancel], so Return still performs a
+  file act, until a custom dialog exists. Logout, sign-in cancellation and
+  attachment source keep their two-button layouts (the owner's decision
+  names A15, A16 and request answers).
+- **(d) File acts (V14 F3).** The file-act statement is bounded inside the
+  freeze, before the actor and context are frozen and the offer is
+  Presented; a refused statement leaves the offer Composed. The dead
+  24 000-byte check is removed. The statement is readable lines (file path,
+  content identity in full, scope, purpose, requirement, actor, standing),
+  with no raw JSON.
+- **(e) Numbers (V14 F2).** AAC §5.1 defines `aac-offer-digest/0.1` over
+  integers only. Content holding a non-integer number cannot be named by
+  digest: it is refused with the number's JSON Pointer location and that
+  cause ("defines integers only"), not "the offer is not offered". A review is
+  refused when it is opened for A15 (compose), so the person learns it at
+  review time. Integers above 2^53 are digested exactly by the host. The
+  App's own JSON parsing has already rounded them, so the App shows the
+  host's digest and says it cannot recompute it.
+- **(f) The App's digest is a reading aid (V14 F8).** The App shows the digest
+  reported by the host and its own recomputation from the content it shows.
+  A compromised webview could show other bytes beside the right digest; the
+  binding is checked by the host at capture, never by the view. The App
+  states this beside every digest.
+
+AAC adoption text needed (for the AAC owner; the code above implements it
+ahead of adoption, as directed by HELP_HUMAN after V14; not applied to the
+Design):
+
+> §6.2, after "the buttons": "The native confirmation shows a statement the
+> person can read whole with its buttons on screen. Where content the act or
+> operation binds is too large for that surface (an A15 review; an A16
+> alternative and its consequences), the statement names it by reference and
+> digest (`aac-offer-digest/0.1` form, integers only) and the App shows the
+> complete content with the same digest before and while the confirmation is
+> open; the capture binds that content as before, and the App's display is a
+> reading aid only. A statement the surface cannot show whole and that has no
+> such route is refused with its cause and nothing is captured. The act
+> confirmations for A15 and A16 present [Don't ‹act›] [‹Act›] [Cancel], with
+> the first the default; only ‹Act› captures, and an aborted or failed
+> confirmation captures nothing (OWNER_DECISIONS 2026-10-08). A file act's
+> confirmation keeps [‹act›] [Decline] [Cancel] until a surface exists whose
+> abort cannot be read as a decline."
+>
+> §4.1a, replace "if the surface cannot do so, it refuses presentation with
+> the cause and captures nothing" with "if the surface cannot do so, the App
+> shows the selected alternative's statement and every consequence whole and
+> the native statement names them by digest (§6.2); only when that is not
+> possible is presentation refused with the cause, capturing nothing".
+
+DEL-01-05 (AE-12, KE-13, Q-5) and NIR are met as written: the logout list is
+shown in full (in the alert or in the App while the alert is open), and a
+request answer of any length can be confirmed unless its content holds a
+non-integer number, which is refused with its location (V14-R1 R1-1).
+
+## CI-23 RS schema `if` breaks the DEL-04-03 and WR prototypes
+
+Found 2026-10-08 by independent review V13 (CC-WR-RECONFIRM, Q8), and
+reproduced on an unmodified tree. `RS_RECORD.schema.json`
+`#/$defs/suppliedGuidance/allOf/2` uses the keyword `if`. DEL-04-03's
+`minischema` does not support it, so DEL-04-03 `run_prototype.py` and WR
+`wrproto.py` exit 1 ("unsupported keyword 'if'") before running any check.
+The keyword entered with the CC-RS-WR-SUPPLY-FIT candidate (checkpoint
+`0a2ed81b47`), which was checked with the installed `jsonschema` rather
+than `minischema`. The App's validator, `jsonschema`, is unaffected, and
+App tests pass.
+
+Owner: DEL-04-03 (RS). Options: rewrite the rule with `anyOf`/`not`, or add
+`if`/`then` to `minischema`. The App copy must follow either way. Until
+then, the Design prototypes do not run as evidence.
+
+## CI-24 (J8) Re-confirmation and Refine without a selection: implementation notes
+
+Found 2026-10-08 by the J8 TASK of `APP-V4-GROUP-A-20261004`, implementing
+the adopted CC-WR-RECONFIRM: WR §4.8 RC-1…RC-10, §4.6 RF-1, and the change
+record's "App implementation items". No Design or schema file was changed.
+
+- **(a) Where "selectable in this process" lives.** RC-2 makes ‹k› selectable
+  only while the App holds the result of its registration (G-4) or
+  re-confirmation (G-4R). The library owner keeps an in-memory set, filled only
+  by its own hot commits. Root's `WorkflowReviewContext.registered` values hold
+  the selectable revisions. Both end with the process, and neither is rebuilt
+  from disk. DS-4 "select it instead" and RC-5 (d) read the owner's set. LS-1
+  "as read" (ledger line, A15 record with the same bound content, store
+  recompute) only gates the DS-8 offer (V13 R2-N2).
+- **(b) Attempt journal placement (X-1, X-2).** WR §5.2 names an "attempt
+  journal (App-kept)" without a location, and X-1 reads "each library's
+  attempt journal". The App writes one journal file per *stored*
+  re-confirmation at
+  `<library>/.chirality/.workflow-staging/attempts/<sha256 of the A15 record id>.json`.
+  This is inside §3's App-written, temporary staging area. The file is
+  removed when the attempt closes. X-2 runs when a library owner is opened (in
+  Root, once per library per process). It takes the ledger lock, then lists
+  the journal directory and treats a journal that has gone as already closed
+  (V15 F8). It rereads the ledger for a line citing the A15. If one exists it
+  writes nothing; otherwise it writes *not completed* "process lost before
+  re-confirmation committed", but only if the App's RC-9 reader would accept
+  that line. If not, it writes nothing, keeps the journal and reports
+  "X-2 pending" with the exact cause (V15 F1). It never completes a
+  re-confirmation. Its outcomes appear in the Root snapshot's
+  `libraries[].reconciliation`. For the WR owner: name the journal location.
+
+  **Second App process (corrected after V15 F1; the earlier text understated
+  it).** A journal is visible outside the lock only when the attempt is
+  pending: the append failed or was uncertain, or the journal's own
+  publication failed after the file was visible.
+  - If a second App process opens the library then, its X-2 closes the
+    attempt as lost and writes *not completed* citing the A15.
+  - When the first process continues, G-1R finds the ledger already citing its
+    A15. It appends nothing and ends the attempt *not completed* in that
+    process, naming the line ("already has ledger line ‹n›"). ‹k› is not held.
+  - So one act keeps one ledger line (RC-7, RB-8), and the ledger stays
+    readable.
+  - The person's act had no effect and they review again; a second review and
+    A15 re-confirms.
+  - Tested: `v15_p2_second_process_x2_then_continue_keeps_one_line_per_act`,
+    through the `storage::fail_directory_for_test` hook.
+  - **Exception (V15-R1 R1-1, open).** The ending above holds only when the
+    first process's attempt is not in *Intended*. If its append failed
+    without writing anything, the attempt is *Intended*. On every Continue
+    it then takes the intended-line path, is refused on `ledger_seq`, and
+    reports "registration ledger durability uncertain; same hot attempt
+    retained" for as long as the process runs. This is safe: there is still
+    one ledger line for the act, the ledger stays readable, and ‹k› is not
+    held. But it never shows the definite *not completed* line already in
+    the ledger. The repair is to fail on the intended path with the same
+    "already has ledger line ‹n›" reason, with the reviewer's probe P6 as a
+    test. It is open as a follow-up.
+- **(c) Registration X-2 is still absent.** The App keeps no attempt journal
+  for a *registration* (F15). A registration lost after G-3 and before G-4
+  leaves its store folder and no ledger line, as before J8.
+- **(d) F14, rollback and version skew.** G-1, G-1R and RB-3 (b) now compare
+  the slot's latest *registered* revision, not the whole slot. *Re-confirmed*
+  and *not completed* lines therefore never fail a concurrent attempt or stale
+  a review. Once a *re-confirmed* line exists, an App binary built on the
+  preimage WR schema refuses the whole ledger (`read_ledger` →
+  `wr_validate("library_entry")`). That is acceptable for development builds.
+  Rolling back to such a binary needs the *re-confirmed* lines set aside by
+  hand.
+- **(e) A single in-place registration is refused by the AAC offer schema
+  (found, not introduced).** WR's single in-place entry (DS-7) goes out as an
+  `a15_descriptor` with an `entry:` reviewed reference. The adopted
+  `aac.offer.schema.json` `allOf/6` requires the `draft:` form for an
+  `a15_descriptor`, so `compose_a15` refuses it. Two or more in-place entries
+  (`a15_multi_descriptor`) work. The RF-1 test therefore registers in place
+  with two entries. For the AAC and WR owners: admit `entry:` for a single
+  in-place `a15_descriptor`, or route DS-7 through another form.
+- **(f) Native statement and buttons (AAC §4.2 re-confirmation): J6's, now
+  integrated.** J8 does not write the native statement or dialog code.
+  `a15_native.rs` and the J6 dialog code in `act_control_a15.rs` are as J6
+  merged them (integration head `9d1e0bb0cd`, merged into J8).
+  - **What J8 supplies:**
+    - the descriptor's wording "re-confirm workflow revision for use",
+      disposition *re-confirmation*, re-confirm purpose and `reconfirms`;
+    - the offer that `compose_a15` builds from them unchanged;
+    - the review presentation's `entries[0].reconfirmation.statement`.
+  - **What J6 does with them.** J6's `a15_variant` selects the
+    re-confirmation statement when the descriptor kind is `a15_descriptor` and
+    the disposition is *re-confirmation*. The statement reads "Re-confirm
+    revision ‹short k› of ‹origin›:‹name› for use in this App session. This
+    registers no new revision." It has no "Registering makes …" sentence. The
+    owner's three-button layout (OWNER_DECISIONS, 2026-10-08; V15 F6) then
+    gives [Don't re-confirm (default)] [Re-confirm] [Cancel], where only
+    "Re-confirm" acts.
+  - **Tests.** Journey step 9 checks, on the combined code, that the
+    descriptor the DS-8 path composes selects that variant:
+    - the act label is "Re-confirm";
+    - the statement opens with the re-confirm wording and contains the
+      re-confirm sentence for revision three;
+    - no registration sentence appears;
+    - a registration keeps "Register".
+
+    J6's `reconfirmation_descriptor_has_its_own_statement_and_act_label` also
+    passes.
+  - **Limit.** No native witness of the dialog has been taken; the tests use
+    the synthetic event.
+- **(g) Capture outcome not written.** `aac.capture-evidence` now admits the
+  entry outcome *re-confirmed*. The App writes no capture entry outcome for
+  any registration, so none is written for a re-confirmation either. The
+  ledger line and Root status carry the outcome.
+- **(h) Base freshness interacts with G-6R (CI-21 (c)).** G-6R rewrites the
+  draft's App-kept base record. A second review of the same draft taken
+  before that commit then goes stale ("App-kept base changed since review").
+  At G-1R the WR checks run first, so a concurrent re-confirmation of an
+  already selectable ‹k› reports "already selectable in this App session".
+- **(i) RF-1 Root route.** `WorkflowRootSession::refine_registered(name,
+  revision)` and the `workflow_refine_registered` command call
+  `LibraryOwner::refine_from_store`. The owner recomputes the store, makes the
+  draft (D-1: never overwrites), and records ‹k› as the App-kept base (on
+  failure the copy is removed, as in V11 J5-2). It makes no selection.
+  `create_selected_draft` (from a hot selection) is kept.
+- **(j) Not touched.** V13 R2-N1: WR's LS-4 row still offers "Review to
+  register", while a draft with an LS-4 revision's bytes reviews as DS-4 with
+  the restore route. That is left to the WR owner. U-WR-21 (re-confirmation
+  from the listing without a draft) stays deferred.
+- **(k) An unreadable act log is a read limit, not LS-4 (V15 F4).** WR LS-4
+  names "A15 record missing or bound to other content". The App separates a
+  third case: an act log it cannot read completely (an unreadable or invalid
+  line anywhere, a sequence gap, an I/O error).
+  - At review, ‹k›'s standing cannot be read as LS-1, so the review is DS-4
+    with that exact cause and DS-8 is not offered. As before, any unreadable
+    line in the library act log, even one unrelated to ‹k›, blocks DS-8.
+  - At G-1R, after the person's act was captured, the attempt stays *pending*
+    with the cause, and no ledger line is written. Once the log reads again,
+    the same attempt continues. A missing record, or one bound to other
+    content, still ends the attempt *not completed*.
+  - Tested: `v15_f4_unreadable_act_log_keeps_g1r_pending`.
+  - For the WR owner: confirm that a read limit at G-1R is "pending", as for
+    an unreadable ledger.
+- **(l) Listing of registered revisions (V15 F5; WR §4.6 LS-1 note, §5.4).**
+  Each library in the Root snapshot gains a `registered` list: name, sequence,
+  revision, registration time, disposition, and the label "registered —
+  re-confirm to use in this App session", or "registered — selectable in this
+  App session" when this process holds the result. The workflow panel shows
+  the active library's rows, each with a Refine action (RF-1), so the content
+  identity need not be typed. The list reads the ledger only. It does not
+  check LS-1; Refine checks it.
+- **(m) RF-1 failure cleanup (V15 F3).**
+  - RF-1 copies exactly the store snapshot that `standing_as_read` verified.
+  - The copy uses the store's exclusive, self-cleaning writer
+    (`publish_reserved_store`).
+  - Any later failure removes the App's own copy, using the exact-bytes check
+    (sync of the copy or its parent, or recording the base). So RF-1 leaves no
+    draft without an App-kept base.
+  - Tested: `v15_f3_rf1_removes_its_copy_on_every_failure`.
+
+## CI-25 (J8, V15 F1) WR G-1R "registered line changed or missing" against RC-9
+
+Found 2026-10-08 by independent review V15 (probe P5) of J8. No Design file was
+changed.
+
+- **The WR rule.** WR §4.8 RC-6, G-1R: when the registered line ‹ledger_seq›
+  has changed or is missing after capture, write *not completed* "registered
+  line ‹ledger_seq› no longer reads as reviewed", citing the A15.
+- **The conflict.** RC-9 requires that every line with disposition
+  *re-confirmation*, a *not completed* one included, name in `reconfirms` an
+  earlier *registered* line of the same slot, with the same tuple and
+  sequence.
+  - If line ‹ledger_seq› was removed, or no longer reads as *registered* for
+    ‹k›'s tuple and sequence, no *not completed* line can satisfy RC-9.
+  - If the App wrote one anyway, its own reader would refuse the whole library
+    ledger: every review, registration, Refine and X-2, until a hand repair.
+  - A related path has the same result: when the line no longer reads as
+    registered, the slot's latest also changes, and G-1R's "slot moved on"
+    *not completed* line runs into the same refusal.
+- **What the App does.**
+  - Before every append of a line with disposition *re-confirmation* (G-1R
+    and G-2R/G-3R failures, G-4R, the in-process retry and X-2), the App runs
+    its RC-9 reader over the ledger as it would then read.
+  - If the reader would refuse, the App appends nothing. The attempt stays
+    *pending* in the process, with the cause "re-confirmation line not
+    appended: the App's RC-9 reader would refuse it (…)".
+  - The person's act stands, recorded in the act log, with no effect. ‹k› is
+    not selectable.
+  - A change that still leaves ‹k›'s line reading as registered for its tuple
+    and sequence (for example a changed `written_at`) is written *not
+    completed* as WR says.
+  - X-2 likewise keeps a journal whose *not completed* line would breach RC-9,
+    reporting "X-2 pending" with the cause.
+  - Tests: `v15_p5_g1r_line_no_longer_registered_appends_nothing`,
+    `v15_p1_x2_never_appends_a_line_its_reader_refuses` and
+    `v15_f2_g1r_registered_line_changed_is_not_completed`.
+- **For the WR owner.** Rule on the case, for example:
+  - G-1R ends the attempt without a ledger line when RC-9 cannot be met (the
+    act log keeps the act); or
+  - RC-9 admits a *not completed* re-confirmation line whose `reconfirms` no
+    longer resolves, which the reader then reports instead of refusing; or
+  - another form.
+
+  Until then, the App's behaviour above stands. It is stricter than WR: it
+  never writes an unreadable ledger.

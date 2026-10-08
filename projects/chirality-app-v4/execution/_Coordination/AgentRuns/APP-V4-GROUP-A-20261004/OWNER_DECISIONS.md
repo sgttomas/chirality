@@ -193,3 +193,84 @@ Effect:
   the owner did not say so (correction from review V12 F1).
 
 This approves no signing, credentials or downloads.
+
+## Native journey witness launch — 2026-10-07
+
+HELP_HUMAN prepared the following and described the steps, including that
+the owner signs in and confirms the native A15 dialog themselves:
+- the unsigned debug bundle "Chirality v4 Journey Witness.app", built offline
+  from `4c77f34ea6`, main binary sha256
+  `23d4f56a9f01b4ed6253b3d07669fa4d16ed3c5d0f9336993f063f8cf5f22e48`,
+  identifier `dev.chirality.v4.witness1113`;
+- a synthetic workspace, a library holding the `coordinated-knowledge-work`
+  development copy, and a fresh scratch Codex home.
+
+Answer: **"Approve, sign in via App"**. Custody: a structured answer in the
+active Claude Code chat.
+
+Scope: this exact artifact and the described steps only. Agents perform no
+positive human act, and never see or handle credentials. The approval covers
+no other artifact, launch or act.
+
+## Native confirmation default key — 2026-10-08
+
+Context: the native witness's blind registration (D-1), and review V14 Q4 /
+CI-22(c). With tauri-plugin-dialog 2.7.2 and rfd 0.16, the act button is the
+default, so Return performs the act. Swapping the slots is unsafe, because
+an aborted or failed dialog reports its cancel-slot label.
+
+HELP_HUMAN offered: three buttons with Return safe (recommended); a custom
+native NSAlert; or keeping Return as the act. Answer: **"Three buttons;
+Return is safe (Recommended)"**. Custody: a structured answer in the active
+Claude Code chat.
+
+Effect: registration (A15), decisions (A16) and request-answer
+confirmations use [Don't ‹act› (default)] [‹Act›] [Cancel]. Return and
+Escape never act, an abort maps to Cancel, and only the middle button acts.
+File acts are excluded, because an abort there would record a decline; they
+keep their current layout until a custom dialog exists, recorded as a known
+limit. The AAC wording follows through CI-22. This answer approves no
+launch or act.
+
+Correction (V14-R1 R1-1, 2026-10-08): HELP_HUMAN's effect line above
+overstated "Return and Escape never act". Return chooses "Don't ‹act›" and
+an abort maps to Cancel, by the dialog plugin's mapping. Which button Escape
+triggers in the parentless macOS alert is not yet observed; it is a gating
+step of the native re-witness. The owner's answer is unchanged.
+
+## Native re-witness launch — 2026-10-08
+
+HELP_HUMAN asked for approval of one specific artifact and plan:
+- **Artifact.** The unsigned debug "Chirality v4 Reconfirm Witness.app",
+  built offline from `8cd69ff7fc`; main binary sha256
+  `63f2d8d048d35b5dea9c65c3bf7b92b0e82b087b8cad63f0891b01eb66e555a1`.
+- **Environment.** Stock Codex 0.160.0 and a fresh synthetic workspace.
+- **Plan.** Two launches. The owner presses each dialog key personally:
+  Escape, then Return, then Register; after the relaunch, Re-confirm.
+  HELP_HUMAN sends one real model turn.
+
+Answer: **"Approve; reuse sign-in (Recommended)"**. Custody: a structured
+answer in the active Claude Code chat.
+
+Effect: the run uses the existing scratch Codex home
+`/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-v4-witness-codex-home.skB5uW2FWI`,
+which holds the owner's sign-in from the first witness, never `~/.codex`.
+The approval covers this artifact and plan only. Each dialog act is the
+owner's own key press.
+
+Clarification (V16 F11): the owner's dialog answers were two key presses
+(Escape, Return) and two clicks (Register, Re-confirm).
+
+## Scratch Codex home cleanup — 2026-10-08
+
+HELP_HUMAN asked what to do with the scratch Codex home used by both
+native witnesses. It is
+`/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-v4-witness-codex-home.skB5uW2FWI`,
+not `~/.codex`, and it still held the owner's ChatGPT sign-in. Answer:
+**"Delete it now (Recommended)"**. Custody: a structured answer in the
+active Claude Code chat.
+
+Effect: HELP_HUMAN checked the path pattern, confirmed that no Codex process
+was running, and deleted the folder. Its absence was verified, and
+`~/.codex` was untouched. A future native witness needs a fresh sign-in by
+the owner in a new scratch home.
