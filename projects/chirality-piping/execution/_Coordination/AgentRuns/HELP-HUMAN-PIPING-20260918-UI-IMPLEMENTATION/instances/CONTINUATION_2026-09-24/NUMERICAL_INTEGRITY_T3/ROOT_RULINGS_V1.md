@@ -15711,3 +15711,44 @@ The next ROOT verifies all of them from disk. ROOT has verified and committed no
 - **PR [#1118](https://github.com/sgttomas/chirality/pull/1118)** adds `tools/validation/validate_private_terms.py`, its tests, and a `governance-harness` step. The terms come from the `PRIVATE_TERMS` repository secret; the owner sets it. They are never printed, and are matched in any split or escaped form. A junit `hostname` attribute in a run record blocks without terms.
 - An independent reviewer reviews it.
 - **ROOT's slip, disclosed:** its first commit went through with three unread screen hits. On reading, they were the junit rule's text and a docstring example: the laptop-model word in split form, and an invented dotted name close to the earlier form. The commit was amended before the PR opened. The rule "a screen hit stops the commit until read" stands, and ROOT's commit commands now stop on a hit.
+
+## E-19 done: main's machine names redacted (#1120, #1123); the private-term check is live (#1118); records-only CI made cheap (#1124) (ROOT, 2026-10-08 UTC)
+
+**E-19, the owner's "Cover all 31":**
+- **[#1120](https://github.com/sgttomas/chirality/pull/1120)** redacted 31 files and was merged from the owner's account at `17ad5ead41` (`b21685c037`, 05:26Z), before its independent review returned.
+- **That review failed it on B-1:** `hostname="<host>"` left five I91 junit files invalid XML. It also found a 32nd file, an app-v4 return, that #1117 had added after the cut.
+- **[#1123](https://github.com/sgttomas/chirality/pull/1123)** fixes both. The owner ran ROOT's second script: the attribute is removed, as E-16 did, and all five files parse. It also corrects the record, which now holds final hashes for 32 files and lists every record in five projects that cites an old hash.
+  - The same reviewer passed #1123 (0/0/5), and CI was green, including the new private-term check.
+  - It was merged from the owner's account at the reviewed head (`f2e7a2a9ff`, 05:52Z).
+  - **Main's tree now carries no machine name** except I90's kept line.
+- **NUM absorbed main** at `fb329f31e7`, taking the 21 redacted T3 records as main has them. NUM had not changed them, so the usual resolution to NUM's tree does not apply to them.
+- **The reviewer's NOTEs, for the record:**
+  - `REVIEW_RV76/summary_coverage_01/SOURCE_EVIDENCE_MANIFEST.json` also cites I57's old `ORIGINS.json` hash;
+  - 1,196 commits on main carry a private-list or system name in an author or committer email;
+  - the private-term secret holds 5 terms against ROOT's local 6, probably the same coverage.
+
+**[#1118](https://github.com/sgttomas/chirality/pull/1118), the private-term check, is live.**
+- It passed independent review after two repair rounds, the second fixing a stale PR base that would have blocked other PRs for commits already on main.
+- It was merged from the owner's account at `9f27151556` (`dd661bacdb`, 05:27Z). The owner set the `PRIVATE_TERMS` secret.
+- It screens what each PR or push adds: contents (raw, plus decompressed `.gz` and `.zip`), paths, and commit identities and messages.
+- Its first live runs passed (#1123: 10 files against 5 terms).
+
+**Commit identities:**
+- #1118's re-review found that #1119's 11 commits used git's automatic `user@<the second Mac's name>.local` identity.
+- History is not rewritten.
+- ROOT gave the owner an instruction text for the agent on the second Mac: set `user.email` in the repository's config, verify with `git var`, re-author unmerged branch commits, and run `validate_private_terms.py` before each commit and push.
+- #1122's title records an owner-authorized identity rewrite of that branch.
+- **This Mac:** its global identity is set, yet host-derived commits also came from it earlier, so the repository-level `user.email` is recommended here too.
+
+**Records-only CI made cheap ([#1124](https://github.com/sgttomas/chirality/pull/1124), owner direction 2026-10-08: "we do a lot of purely documentation PRs so optimizing that will save a lot of time and tokens").**
+- Measured on #1114, #1120 and #1123, three gaps made records-only PRs run product suites that `docs/CI_SELECTION.md` says they should not:
+  - App v4 records were unrouted, selecting full App/Runtime and PEC (about 220 s and 50 s);
+  - Piping's `validation/portability_policy.json` counted as a numerical input (about 1,680 s);
+  - Piping's selector demanded the latest base even when nothing Piping-related ran, forcing a main merge and a full re-run whenever main moved.
+- #1124 closes all three, with tests that fail on main's code. Any Piping input, an unavailable base and every manual target keep their checks.
+- It is under independent review. Records-only PRs after it should cost about the governance harness's 2–3 minutes.
+
+**Practice from now on:**
+- one PR per logical change, with follow-ups folded in before merge;
+- merge main into a records-only PR only when a gate requires it;
+- before any records commit or PR, run `tools/validation/validate_private_terms.py --from-host --terms-file WT/tools/t3_host_names.private.txt` beside `WT/tools/t3_host_screen.py`.
