@@ -16466,3 +16466,5 @@ RV126 (RV-N) reviewed PR-N (`R/REVIEW_RV126/pr_n_01/REVIEW.md`, `3ca41a9e…`).
 **U3 Stage 2 is released to WORKING_ITEMS:** items 1–3 plus the legacy pressure computation's deletion, with H-1's −0.0 check.
 
 **U3, RV127's N-2: accepted** (ROOT, 2026-10-08 UTC). The operation applier's new public code `OP-PRESSURE-PRIMITIVE-RETIRED` (`operation_applier/src/lib.rs:4961-4973`) refuses the authoring of a new pressure primitive. Authoring refusals use the applier's own `OP-*` namespace, and the refusal is the owner's retirement itself. D-4 still covers the solve refusal (`PRESSURE_MODEL_REAUTHOR_REQUIRED`).
+
+**B3 readers, N2b: within the N2 ruling** (ROOT, 2026-10-08 UTC). RS's `validate_physics_evidence` has the same hash-order defect on the bound and unbound path: I101's probe switched its G7 code across runs. A reader's reported code must not depend on hash order on any path. The fix is array order, with a three-reader pin and a mutant. I101 also lists every other iteration over a hashed collection in RS's readers that feeds a reported code or order, so the class is closed. RV120 confirms.
