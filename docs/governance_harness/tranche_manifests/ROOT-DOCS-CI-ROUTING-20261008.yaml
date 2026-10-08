@@ -1,0 +1,59 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-DOCS-CI-ROUTING-20261008
+title: Records-only pull requests run only the governance harness, as CI_SELECTION already intends
+date: '2026-10-08'
+basis: f2e7a2a9ff3ba4e6f5dd0f726766961c8dba1ce1
+instruction_surface_paths:
+  - "tools/hosted-ci-routing.json"
+  - "tools/software_workflow/test_hosted_ci.py"
+  - "docs/CI_SELECTION.md"
+  - "docs/governance_harness/tranche_manifests/ROOT-DOCS-CI-ROUTING-20261008.yaml"
+  - "exports/chirality-app/export-manifest.csv"
+m2_gate:
+  authorization: >-
+    The repository owner (sgttomas) directed in a Claude Code conversation on
+    2026-10-08, after asking why so much CI ran for documentation pull
+    requests: "we do a lot of purely documentation PRs so optimizing that will
+    save a lot of time and tokens". This authorizes three routing corrections
+    that bring records-only pull requests back to docs/CI_SELECTION.md's stated
+    policy (governance harness only), their tests, the two policy documents and
+    the regenerated export-manifest rows. This manifest records the gate and
+    grants no authority (K-AUTH-1).
+  authorized_by: repository owner sgttomas (Claude Code conversation)
+  authorization_date: '2026-10-08'
+  integration_owner: >-
+    The Claude Code session acting as ROOT for Piping T3 (numerical integrity),
+    integrating this candidate on branch claude/ci-docs-fast-20261008 under the
+    standing Git authorization of 2026-09-12.
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: none-required
+  routed_to: []
+  rationale: >-
+    Measured on the owner's recent records-only PRs (#1114, #1120, #1123), three
+    gaps ran product suites the policy says should not run. (1)
+    projects/chirality-app-v4 had no hosted routing rule, so its records were
+    unknown inputs and selected the full App/Runtime (about 220 s) and PEC
+    (about 50 s) suites, which test chirality-app-dev and PEC and read no App v4
+    file. Its records and prose folders now route as records; its app/ source
+    stays an unknown input with full coverage, since no hosted suite tests it.
+    (2) Piping's validation/portability_policy.json, which only the root
+    governance harness reads, counted as a numerical input and selected the
+    Piping numerical cargo suite (about 1,680 s). (3) Piping's selector required
+    the PR to contain the latest base even when it changed no Piping input and
+    ran no Piping test, forcing a main merge and a full re-run whenever main
+    moved. Any Piping input, an unavailable base, and every manual target keep
+    the requirement. No loop's instructions, accepted basis or contract mirror
+    change; the governance harness, including GEN-8, the run-record leak check
+    and the private-term check, still runs on every pull request.
+scope_limits:
+  - >-
+    Piping's own selector and its tests (projects/chirality-piping/tools/ci/,
+    projects/chirality-piping/tests/test_ci_e2e_plan.py) and its CI strategy
+    document change in the same pull request; they are Piping project inputs
+    and select Piping's numerical and source coverage for this pull request.
+  - >-
+    No workflow file, required check name or branch-protection setting
+    changes. Product pull requests keep their existing selection.
+  - No decision record, SPEC text or loop instruction is changed. No release.
