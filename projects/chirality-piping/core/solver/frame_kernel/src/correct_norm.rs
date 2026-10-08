@@ -19,10 +19,10 @@
 //!    below the midpoint x₀ + 2^(e−53) to the next double (subnormal
 //!    gaps are wider still).
 //! 2. Otherwise each kept yᵢ (y₀, y₁, and y₂ when y₂ ≥ 2⁻¹²⁰) is squared exactly
-//!    as p + q with `mul_add`; every q is a normal number, so S = Σ(p + q) is the
-//!    exact scaled sum of squares. A smaller y₂ ≠ 0 is a sticky bit: y₂² < 2⁻²⁴⁰,
-//!    while S − m² for any midpoint m below is a multiple of 2⁻²²⁴, so y₂ can only
-//!    break an exact tie (upward).
+//!    as p + q with `mul_add`; every q is zero or a normal number, so S = Σ(p + q)
+//!    is the exact scaled sum of squares. A smaller y₂ ≠ 0 is a sticky bit:
+//!    y₂² < 2⁻²⁴⁰, while S − m² for every candidate midpoint m is a multiple of
+//!    2⁻²²⁴, so y₂ can only break an exact tie (upward).
 //! 3. A candidate from a double-double square root is moved, one ulp at a time
 //!    on the destination's grid (subnormal and overflowing results included),
 //!    until the exact sign of S − m² at its two neighbouring midpoints m, found
