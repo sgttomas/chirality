@@ -15904,3 +15904,22 @@ The record is `IMPLEMENTATION/B1_I4/` (RECORD.md, SHA256SUMS, sanitized logs). `
 **ROOT's slip, disclosed:** commit `9e8e41d95d` went through with one unread screen hit. On reading, it was RV121's screening script spelling the generic laptop-model word as a pattern; it names no machine, and the private-term check passed. ROOT's commit commands now chain on the screen's exit status.
 
 **IDs:** I103 is used. The next unused are **I104 and RV122**.
+
+## SC passed its acceptance; the readers' pins; SQ starts on its own lane (I104) while RV120 reviews SC (ROOT, 2026-10-08 UTC)
+
+**SC (I100):** 07n is appended to 07m (`ea113e7b…`; 9 bases, 240 mutations, 50 must-pass entries), at `09fe4cc69b`. All three readers pass all 1,374 of its stated checks, and the 07m census is unchanged.
+- **The pins (I101):** `90d8fbeea5` (RS) and `901745f46b` (TS). RE runs 199/0 and vitest 4,245/0.
+- **N6(b)** is at `57c92a7b33`. The carrier scope sentence and its three pins moved together; ROOT authorized PY's one line.
+- **Ruled:**
+  - I100's four new optional fields are accepted;
+  - the per-reader form across 45 entries is the declared class;
+  - item 9's "(a)" was a slip in the brief;
+  - 07n's size is kept.
+- **RV120 reviews SC and the pins at `57c92a7b33`.**
+
+**SQ starts now, as I104,** in `WT/b1-q` (`codex/piping-t3-b1-q-20261008`, from `57c92a7b33`), by `BRIEFS/B1_SQ.md`.
+- **The production code is frozen there.** SC's review can only repair the corpus or the reader tests, which ROOT merges into `b1-q`.
+- This is I5 in substance, without waiting for SC's review.
+- Implementers: I103 (lane A) and I104 (SQ).
+
+**IDs:** I104 is used. The next unused are **I105 and RV122**.

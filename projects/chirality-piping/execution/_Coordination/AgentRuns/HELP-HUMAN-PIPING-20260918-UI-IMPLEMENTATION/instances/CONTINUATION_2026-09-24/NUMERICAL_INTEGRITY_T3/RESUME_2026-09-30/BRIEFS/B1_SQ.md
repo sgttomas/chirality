@@ -6,7 +6,8 @@ Read `R/BRIEFS/B1_COMMON.md` first, for records, Git and placeholders. Its host 
 
 ## Where
 
-- **`WT/b1` at I5,** `{I5 commit}`, the code freeze. ROOT gives the commit in its message. SP, SA, the three readers with their follow-up round, and SC are merged there.
+- **`WT/b1-q`,** branch `codex/piping-t3-b1-q-20261008`, cut by ROOT from `b1` at `57c92a7b33`. SP, SA, the three readers with their follow-up round (I4′), SC's corpus 07n and the readers' pins are merged there.
+- **The production code is frozen there.** RV120's review of SC may still repair the corpus or the reader tests on `b1`, which ROOT merges into `b1-q`. Those touch none of your files. A product-code change after this point comes only by ROOT's ruling.
 - **Your writes:**
   - the profile generator's output;
   - the registration diff;
@@ -53,13 +54,13 @@ Read `R/BRIEFS/B1_COMMON.md` first, for records, Git and placeholders. Its host 
 - **One heavy job of yours at a time;** one wait per job, ending when its process has gone. Never signal another job.
 - **Not allowed:** DEC-025 and installs.
 - **Python:** `WT/venv/bin/python`.
-- **Paths:** absolute paths only. Scratch goes in `WT/scratch/<id>_b1_sq/`.
+- **Paths:** absolute paths only. Scratch goes in `WT/scratch/i104_b1_sq/`.
 - **Records:** placeholder paths only, no symlink, and no folder named `build`. Remove the `hostname` attribute from junit output.
 
 ## Output
 
-- **Commits** on `codex/piping-t3-b1-20261007` in `WT/b1`, with truthful messages. ROOT pushes. ROOT applies the registration after R6b.
-- **The record:** `R/<id>/b1_sq_01/`:
+- **Commits** on `codex/piping-t3-b1-q-20261008` in `WT/b1-q`, with truthful messages. ROOT pushes, merges into `b1`, and applies the registration after R6b.
+- **The record:** `R/I104/b1_sq_01/`:
   - `RETURN.md`;
   - `QUAL_B1.md`, in QUAL's form;
   - `RSS_TIME.md`;
