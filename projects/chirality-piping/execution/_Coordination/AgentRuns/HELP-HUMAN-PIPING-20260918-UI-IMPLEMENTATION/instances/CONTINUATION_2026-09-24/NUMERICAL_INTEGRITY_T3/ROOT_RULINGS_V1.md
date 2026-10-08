@@ -15579,3 +15579,16 @@ The record is `R/I97/b2_c_01/`: CONTRACT, REVISION_01 and REVISION_02. Its names
 **RV117's sealed `REVIEW_RV117/records_01/REVIEW.md`** quotes two `/tmp/` snippets from I89's, I91's and I92's mutant scripts (line 154). GEN-8 reads them as machine paths. A reviewer's sealed record is not rewritten, so it is registered as a hash-bound `historical_role_override` (role EVIDENCE), as #1084's 211 review and TASK records were.
 
 **Both registrations** are made under the owner's standing authorization. They follow #1084's owner-approved registration and `f9ff31f163`'s precedent for as-issued T1 briefs. The next records PR carries them in `P/validation/portability_policy.json`, and its reviewer checks them.
+
+## Records PR #1114 opened; RV119 reviews it (ROOT, 2026-10-08 UTC)
+
+**[#1114](https://github.com/sgttomas/chirality/pull/1114)**, branch `codex/piping-t3-records-20261008`, head `57f078b4c8`: one commit on main `f4358eb0be`.
+- **Content:** NUM's `execution/` at `96cf68289f` (1,055 added, 2 modified, 0 deleted), plus E-17's two appended entries in `P/validation/portability_policy.json`.
+- **The cut:** main changed nothing under piping's `execution/` since NUM's merge base `0b6c5d7362`.
+- **Gates at the head:**
+  - GEN-8: passed. Its first run failed on E-17's two files, which are now registered.
+  - `validate_run_record_leaks.py`: PASS on 1,056 files, with one size warning (an 8.1 MB evidence file).
+  - ROOT's screen: every remaining hit read and judged.
+- **The PR description was corrected once before review.** I96's B3-D revision 01 and RV116's addendum were already on main with #1111, and RV113's confirmation of SR-RS's repair was missing.
+
+**RV119** reviews it, by `BRIEFS/RV119_RECORDS_PR8_REVIEW.md` (sha256 `62078533…`). **The next unused IDs are I100 and RV120.**
