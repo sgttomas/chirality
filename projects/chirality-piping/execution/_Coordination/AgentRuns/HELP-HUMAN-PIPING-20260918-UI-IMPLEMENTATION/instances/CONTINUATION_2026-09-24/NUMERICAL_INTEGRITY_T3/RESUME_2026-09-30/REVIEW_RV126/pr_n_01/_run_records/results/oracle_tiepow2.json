@@ -1,0 +1,28 @@
+{
+ "triples": 40000,
+ "results_checked": 80000,
+ "norm3_misrounded_oracle_A": 0,
+ "norm2_misrounded_oracle_A": 0,
+ "norm3_rejected_oracle_B": 0,
+ "norm2_rejected_oracle_B": 0,
+ "oracle_A_B_disagreements": 0,
+ "by_category_[cases,A_bad,B_bad]": {
+  "tie3d": [
+   40000,
+   0,
+   0
+  ]
+ },
+ "closeness_norm3_ulps_to_midpoint": {
+  "<2^-10": 9,
+  ">=2^-10": 5968,
+  "tie": 34023
+ },
+ "closeness_norm2_ulps_to_midpoint": {
+  "<2^-10": 71,
+  ">=2^-10": 39929
+ },
+ "info_libm_hypot2_not_RN": 6696,
+ "info_libm_chain3_not_RN3": 28836,
+ "first_failures": []
+}

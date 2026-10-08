@@ -1,0 +1,15 @@
+{
+ "i4": {
+  "ok": 207
+ },
+ "head": {
+  "ok": 208
+ },
+ "differences": [
+  {
+   "test": "retained_precision_contract :: b3b_rv120_f2_forgeries_are_refused_at_g8_step_4",
+   "i4": null,
+   "head": "ok"
+  }
+ ]
+}

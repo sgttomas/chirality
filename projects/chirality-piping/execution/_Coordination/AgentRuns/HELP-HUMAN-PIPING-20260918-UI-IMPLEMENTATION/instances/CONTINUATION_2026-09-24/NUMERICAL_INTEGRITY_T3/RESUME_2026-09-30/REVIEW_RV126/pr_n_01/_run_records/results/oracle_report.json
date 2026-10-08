@@ -1,0 +1,92 @@
+{
+ "triples": 1360648,
+ "results_checked": 2721296,
+ "norm3_misrounded_oracle_A": 0,
+ "norm2_misrounded_oracle_A": 0,
+ "norm3_rejected_oracle_B": 0,
+ "norm2_rejected_oracle_B": 0,
+ "oracle_A_B_disagreements": 0,
+ "by_category_[cases,A_bad,B_bad]": {
+  "special": [
+   10648,
+   0,
+   0
+  ],
+  "rbits": [
+   150000,
+   0,
+   0
+  ],
+  "compar": [
+   250000,
+   0,
+   0
+  ],
+  "thresh": [
+   150000,
+   0,
+   0
+  ],
+  "tie2d": [
+   200000,
+   0,
+   0
+  ],
+  "tie3d": [
+   100000,
+   0,
+   0
+  ],
+  "near2d": [
+   100000,
+   0,
+   0
+  ],
+  "near3d": [
+   200000,
+   0,
+   0
+  ],
+  "subnorm": [
+   100000,
+   0,
+   0
+  ],
+  "overflow": [
+   50000,
+   0,
+   0
+  ],
+  "smallint": [
+   50000,
+   0,
+   0
+  ]
+ },
+ "closeness_norm3_ulps_to_midpoint": {
+  "<2^-10": 19954,
+  "<2^-20": 23464,
+  "<2^-30": 27017,
+  "<2^-40": 45700,
+  "<2^-50": 189948,
+  "<2^-60": 1160,
+  "<2^-70": 982,
+  "<2^-80": 996,
+  "<2^-90": 86818,
+  ">=2^-10": 839870,
+  "tie": 120727
+ },
+ "closeness_norm2_ulps_to_midpoint": {
+  "<2^-10": 5058,
+  "<2^-20": 8751,
+  "<2^-30": 5912,
+  "<2^-40": 9457,
+  "<2^-50": 37553,
+  "<2^-60": 126,
+  ">=2^-10": 1244302,
+  "tie": 46506
+ },
+ "info_libm_hypot2_not_RN": 148977,
+ "info_libm_chain3_not_RN3": 387092,
+ "first_failures": []
+}

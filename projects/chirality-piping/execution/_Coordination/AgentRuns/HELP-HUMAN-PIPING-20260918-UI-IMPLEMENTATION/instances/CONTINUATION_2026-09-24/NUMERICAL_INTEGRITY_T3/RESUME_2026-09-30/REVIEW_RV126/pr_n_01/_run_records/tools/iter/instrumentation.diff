@@ -1,0 +1,9 @@
+32,33d31
+< pub static MAXP: std::sync::atomic::AtomicU32 = std::sync::atomic::AtomicU32::new(0);
+< pub static HIST: [std::sync::atomic::AtomicU64; 8] = [const { std::sync::atomic::AtomicU64::new(0) }; 8];
+87d84
+<     let mut passes = 0u32;
+89,91d85
+<         passes += 1;
+<         MAXP.fetch_max(passes, std::sync::atomic::Ordering::Relaxed);
+<         HIST[passes.min(7) as usize].fetch_add(1, std::sync::atomic::Ordering::Relaxed);

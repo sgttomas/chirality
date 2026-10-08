@@ -1,0 +1,21 @@
+# RV126 reader suites on A (archive of 8dd64c1835)
+bin checked-json rc=0
+bin units rc=0
+pytest rc=0 1079 passed in 355.06s (0:05:55)
+wasm cargo rc=0
+wasm-bindgen rc=0
+node_modules clone rc=0
+vitest rc=0       Tests  1314 passed (1314)  Test Files  4 passed (4)
+CHAIN-DONE
+## pytest tail
+1079 passed in 355.06s (0:05:55)
+## vitest
+ Test Files  4 passed (4)
+      Tests  1314 passed (1314)
+## wasm engine
+   Compiling wasm-bindgen-shared v0.2.123
+   Compiling wasm-bindgen v0.2.123
+   Compiling wasm-bindgen-macro-support v0.2.123
+   Compiling wasm-bindgen-macro v0.2.123
+    Finished `release` profile [optimized] target(s) in 20.75s
+wasm-bindgen 0.2.123

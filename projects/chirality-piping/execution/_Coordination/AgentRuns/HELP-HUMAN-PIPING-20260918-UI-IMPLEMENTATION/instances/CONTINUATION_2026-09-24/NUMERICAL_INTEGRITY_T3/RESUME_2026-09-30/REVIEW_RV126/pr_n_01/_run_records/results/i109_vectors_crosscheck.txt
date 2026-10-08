@@ -1,0 +1,1 @@
+RV126 oracle A on R's committed FK/tests/correct_norm_vectors.txt (1,200 vectors, 2,400 results): 0 disagreements with the committed expected bits; RV126's release driver reproduces all 2,400. Closeness of the 2,400: tie 180, <2^-90 44, <2^-60 5, <2^-50 617, <2^-40 126, <2^-10 1, >=2^-10 1427.

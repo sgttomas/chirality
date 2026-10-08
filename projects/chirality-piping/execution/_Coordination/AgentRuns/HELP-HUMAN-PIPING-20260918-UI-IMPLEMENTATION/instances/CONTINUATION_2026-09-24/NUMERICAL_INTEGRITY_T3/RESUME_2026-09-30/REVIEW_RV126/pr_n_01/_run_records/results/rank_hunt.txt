@@ -1,0 +1,7 @@
+HUNT-DISAGREE delta=7.29381236747799e-12 old_restrained=true new_restrained=false nodes=4
+HUNT-DISAGREE delta=7.293812367477992e-12 old_restrained=true new_restrained=false nodes=4
+HUNT-DISAGREE delta=7.293812367477994e-12 old_restrained=true new_restrained=false nodes=4
+HUNT-DISAGREE delta=7.293812367477995e-12 old_restrained=true new_restrained=false nodes=4
+HUNT-DISAGREE delta=7.293812367477997e-12 old_restrained=true new_restrained=false nodes=4
+hunt: configs=2000 transitions_found=1305 deltas_examined=1045305 decision_disagreements=126567 (new Restrained where old not: 59600; old Restrained where new not: 66967); adjacent-ulp self-flips: old 1305, new 995
+band (delta* x (1 + j 1e-6), |j| <= 2000): examined=5221305 disagreements=56833 old_self_flips=4041; widest |j| with a disagreement = 1482 (relative 1.482e-3); histogram of per-transition widest |j| by decade [1-9,10-99,100-999,1000-2000]: [17, 134, 344, 3, 0]; widest |j| where old itself flips = 1740

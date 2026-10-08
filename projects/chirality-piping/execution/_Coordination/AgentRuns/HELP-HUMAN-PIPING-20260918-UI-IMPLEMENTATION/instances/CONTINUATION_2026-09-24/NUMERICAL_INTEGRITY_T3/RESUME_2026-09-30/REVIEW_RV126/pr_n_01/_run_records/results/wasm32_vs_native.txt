@@ -1,0 +1,1 @@
+{'triples': 1360648, 'results': 2721296, 'wasm32_vs_native_bit_differences': 0, 'nan_payload_only_differences': 0}  (wasm32-unknown-unknown build of the head's correct_norm.rs, run under node v24.18.0, against the aarch64-apple-darwin release driver; output sha256 in data_sha256.txt)

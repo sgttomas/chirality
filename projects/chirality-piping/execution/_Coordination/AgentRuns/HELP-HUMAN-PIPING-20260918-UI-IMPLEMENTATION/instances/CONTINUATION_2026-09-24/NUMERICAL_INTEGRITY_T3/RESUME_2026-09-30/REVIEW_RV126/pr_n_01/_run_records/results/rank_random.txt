@@ -1,0 +1,18 @@
+DECISION_CHANGED class2 old=MechanismWitnessed new=NumericallyUnresolved: 1
+class0: 50000
+class1: 50000
+class2: 50000
+class3: 50000
+class4: 50000
+class5: 50000
+iterations_changed: 6726
+length_bits_changed: 33653
+node_motion_bits_changed (status new=MechanismWitnessed): 22966
+node_motion_bits_changed (status new=NumericallyUnresolved): 1
+rigid_parameters_changed: 35
+screen_bits_changed: 15154
+singular_bits_changed: 46781
+status_new:MechanismWitnessed: 246587
+status_new:NumericallyUnresolved: 32190
+status_new:Restrained: 21223
+EXAMPLE class2 old=MechanismWitnessed new=NumericallyUnresolved coords=[[3e200, -1e200, -1e200], [3e200, 6e200, 3e200]] ground=[0, 2, 1, 8, 6] len_new=8.06225774829855e200 len_old=8.062257748298551e200 min_sv_new=0e0 screen_new=5.6479694699456555e-14

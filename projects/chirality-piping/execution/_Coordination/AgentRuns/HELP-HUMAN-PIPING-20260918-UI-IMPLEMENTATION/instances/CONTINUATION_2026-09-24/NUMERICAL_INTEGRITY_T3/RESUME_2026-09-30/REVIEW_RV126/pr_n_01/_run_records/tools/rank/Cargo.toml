@@ -1,0 +1,12 @@
+[package]
+name = "rv126_rank"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+fk_new = { path = "../../../rv126/projects/chirality-piping/core/solver/frame_kernel", package = "open_pipe_stress_frame_kernel" }
+fk_old = { path = "fk_old", package = "fk_old_frame_kernel" }
+
+[profile.release]
+debug-assertions = true

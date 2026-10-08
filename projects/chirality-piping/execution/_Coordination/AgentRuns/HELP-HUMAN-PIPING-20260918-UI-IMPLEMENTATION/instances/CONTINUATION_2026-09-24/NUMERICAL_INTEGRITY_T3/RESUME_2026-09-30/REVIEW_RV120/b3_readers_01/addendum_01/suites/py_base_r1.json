@@ -1,0 +1,1927 @@
+{
+ "i4": {
+  "passed": 1318,
+  "skipped": 11
+ },
+ "head": {
+  "passed": 1701,
+  "skipped": 11
+ },
+ "differences": [
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-analysis_state=null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-analysis_state={\"kind\": \"load_reference_state\"}]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-analysis_state={}]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-equivalent_static=0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-equivalent_static=false]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-equivalent_static=null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-equivalent_static={}]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-notes=\"free text\"]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure=0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure=null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure={\"value\": 1000.0, \"unit\": \"Pa\"}]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions=\"\"]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions=\"x\"]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions=0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions=1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions=[]]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions=[{\"id\": \"region:x\", \"member_pipe_ids\": [\"M1\"]}]]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions=false]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions=null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions=true]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions={\"id\": \"region:x\"}]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions={}]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-analysis_state=null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-analysis_state={\"kind\": \"load_reference_state\"}]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-analysis_state={}]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-equivalent_static=0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-equivalent_static=false]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-equivalent_static=null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-equivalent_static={}]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-notes=\"free text\"]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure=0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure=null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure={\"value\": 1000.0, \"unit\": \"Pa\"}]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions=\"\"]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions=\"x\"]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions=0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions=1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions=[]]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions=[{\"id\": \"region:x\", \"member_pipe_ids\": [\"M1\"]}]]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions=false]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions=null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions=true]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions={\"id\": \"region:x\"}]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions={}]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_branch_l_admits_only_an_absent_or_null_contract[0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_branch_l_admits_only_an_absent_or_null_contract[False]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_branch_l_admits_only_an_absent_or_null_contract[]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_branch_l_admits_only_an_absent_or_null_contract[value0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_branch_l_admits_only_an_absent_or_null_contract[value2]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_branch_l_admits_only_an_absent_or_null_contract[value5]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[dense_scrutiny-a non-zero element pressure load]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[dense_scrutiny-a non-zero node force with category pressure]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[dense_scrutiny-a zero-magnitude element pressure load]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[dense_scrutiny-contract mode changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[dense_scrutiny-contract null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[dense_scrutiny-contract removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[dense_scrutiny-contract the exact one]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[dense_scrutiny-contract version as a number]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[dense_scrutiny-contract version changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[dense_scrutiny-contract with an extra key]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[dense_scrutiny-schema 0.2.0 keeping the contract]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[dense_scrutiny-schema 0.4.0 keeping the contract]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[sparse_interactive-a non-zero element pressure load]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[sparse_interactive-a non-zero node force with category pressure]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[sparse_interactive-a zero-magnitude element pressure load]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[sparse_interactive-contract mode changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[sparse_interactive-contract null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[sparse_interactive-contract removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[sparse_interactive-contract the exact one]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[sparse_interactive-contract version as a number]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[sparse_interactive-contract version changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[sparse_interactive-contract with an extra key]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[sparse_interactive-schema 0.2.0 keeping the contract]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_mutations[sparse_interactive-schema 0.4.0 keeping the contract]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_successor_is_admitted_like_the_milestone[dense_scrutiny]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_m3l_successor_is_admitted_like_the_milestone[sparse_interactive]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3a_tightening_0_3_0_needs_the_legacy_contract",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_carriers[dense_scrutiny]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_carriers[sparse_interactive]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g0_constant_drift_is_refused_by_the_cross_check",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g0_reads_the_packaged_table",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g0_table_bytes_and_definition_hash",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g0_table_constant_cross_check[accuracy_classification.policy-<lambda>]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g0_table_constant_cross_check[receipt_bindings.method-<lambda>]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g0_table_constant_cross_check[receipt_bindings.projection_policy-<lambda>]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g0_table_constant_cross_check[receipt_bindings.work.case_limit-<lambda>]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g0_table_constant_cross_check[receipt_policy-<lambda>]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g0_table_steps_3_to_5[a second definition-<lambda>-RETAINED_PRECISION_FORMATION_MISMATCH]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g0_table_steps_3_to_5[bound definition-<lambda>-RETAINED_PRECISION_FORMATION_MISMATCH]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g0_table_steps_3_to_5[identity-<lambda>-SOURCE_PRODUCER_CONTRACT_UNSUPPORTED]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g0_table_steps_3_to_5[inherited hash-<lambda>-SOURCE_PRODUCER_CONTRACT_UNSUPPORTED]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g0_table_steps_3_to_5[profile-<lambda>-SOURCE_PRODUCER_CONTRACT_UNSUPPORTED]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g5b_evidence_check_runs_only_on_the_exact_branch",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g8_material_binding_precedes_s_c[26 shear_origin.poisson_ratio bits changed-False]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g8_material_binding_precedes_s_c[28 S-C only: an entry's pipe_materials nu one ulp-True]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g8_material_binding_precedes_s_c[x10 authored nu unit not 1-False]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g8_material_binding_precedes_s_c[x11 authored nu 0.5-False]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g8_material_binding_precedes_s_c[x12 authored constitutive_basis changed-True]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g8_material_binding_precedes_s_c[x24 authored nu unit empty-False]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_g8_material_binding_precedes_s_c[x26 G_hat one ulp high, every copy consistent-False]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_must_pass[producer-dense_scrutiny-p01 an authored redundant G in the invocation (ignored by the producer)]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_must_pass[producer-dense_scrutiny-p02 a case-level pressure key (PP's typed case has none; addendum 01)]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_must_pass[producer-sparse_interactive-p01 an authored redundant G in the invocation (ignored by the producer)]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_must_pass[producer-sparse_interactive-p02 a case-level pressure key (PP's typed case has none; addendum 01)]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_must_pass[synthetic-dense_scrutiny-p01 an authored redundant G in the invocation (ignored by the producer)]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_must_pass[synthetic-dense_scrutiny-p02 a case-level pressure key (PP's typed case has none; addendum 01)]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_must_pass[synthetic-sparse_interactive-p01 an authored redundant G in the invocation (ignored by the producer)]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_must_pass[synthetic-sparse_interactive-p02 a case-level pressure key (PP's typed case has none; addendum 01)]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-01 identity relabelled preview (profile kept)]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-02 profile relabelled preview]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-03 an attempt's definition_id ordinary]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-04 projection_policy changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-05 work_policy changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-06 canonicalization changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-07 work.case_limit changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-08 work.invocation_limit changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-09 the preview milestone successor relabelled physics-retained-1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-10 the exact successor relabelled preview-physics-retained-1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-11 S-1: the preparation hash over a payload with DEF-O's H]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-12 owner pipe_sections As_m2 one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-13 owner pipe_sections Z_m3 one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-14 owner pipe_sections I_m4 one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-15 owner pipe_sections ro_m one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-16 connector non-empty]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-17 pipe_materials G_pa three ulps]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-18 recovery_method added to an exact_cases entry]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-19 invocation contract legacy]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-20 invocation schema 0.4.0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-21 invocation pressure_contract false]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-22 a combination added to the invocation]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-23 a case naming modulus_basis_ref]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-24 shear_origin explicit_g]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-25 receipt shear_modulus one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-26 shear_origin.poisson_ratio bits changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-27 authored nu changed in the invocation]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-28 S-C only: an entry's pipe_materials nu one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-29 N-6: an entry's pipe_materials G_pa one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-30 a case's pressure_regions null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-31 a case's pressure_regions with one region]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-32 a member's geometry.route preview]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x01 owner pipe_sections J_m4 one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x02 owner pipe_sections outside_diameter_m one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x03 owner pipe_sections effective_wall_thickness_m one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x04 the owner entry's load_case_id renamed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x05 exact_cases empty]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x06 contract_evidence removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x07 a case's pressure_regions removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x08 a case with analysis_state]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x09 authored E one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x10 authored nu unit not 1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x11 authored nu 0.5]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x12 authored constitutive_basis changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x13 invocation contract mode only]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x14 invocation contract extra key]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x15 invocation contract removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x16 invocation schema 0.2.0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x17 physics-1 headline altered]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x18 a named point basis equal to the base, named in the receipt]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x19 the owner entry's pipe section listed twice]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x20 the owner entry's As_m2 a string]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x21 invocation contract version 2.0.1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x22 invocation contract with an extra null key]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x23 a component added to the invocation]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x24 authored nu unit empty]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x25 authored constitutive_basis removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x26 G_hat one ulp high, every copy consistent]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x27 policy changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x28 facade_policy changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x29 receipt_version 2]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x30 the owner's exact_cases entry listed twice]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x31 producer component_version 0.2.1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-dense_scrutiny-x32 a material's selection named_point]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-01 identity relabelled preview (profile kept)]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-02 profile relabelled preview]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-03 an attempt's definition_id ordinary]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-04 projection_policy changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-05 work_policy changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-06 canonicalization changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-07 work.case_limit changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-08 work.invocation_limit changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-09 the preview milestone successor relabelled physics-retained-1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-10 the exact successor relabelled preview-physics-retained-1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-11 S-1: the preparation hash over a payload with DEF-O's H]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-12 owner pipe_sections As_m2 one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-13 owner pipe_sections Z_m3 one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-14 owner pipe_sections I_m4 one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-15 owner pipe_sections ro_m one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-16 connector non-empty]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-17 pipe_materials G_pa three ulps]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-18 recovery_method added to an exact_cases entry]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-19 invocation contract legacy]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-20 invocation schema 0.4.0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-21 invocation pressure_contract false]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-22 a combination added to the invocation]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-23 a case naming modulus_basis_ref]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-24 shear_origin explicit_g]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-25 receipt shear_modulus one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-26 shear_origin.poisson_ratio bits changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-27 authored nu changed in the invocation]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-28 S-C only: an entry's pipe_materials nu one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-29 N-6: an entry's pipe_materials G_pa one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-30 a case's pressure_regions null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-31 a case's pressure_regions with one region]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-32 a member's geometry.route preview]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x01 owner pipe_sections J_m4 one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x02 owner pipe_sections outside_diameter_m one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x03 owner pipe_sections effective_wall_thickness_m one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x04 the owner entry's load_case_id renamed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x05 exact_cases empty]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x06 contract_evidence removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x07 a case's pressure_regions removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x08 a case with analysis_state]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x09 authored E one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x10 authored nu unit not 1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x11 authored nu 0.5]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x12 authored constitutive_basis changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x13 invocation contract mode only]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x14 invocation contract extra key]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x15 invocation contract removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x16 invocation schema 0.2.0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x17 physics-1 headline altered]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x18 a named point basis equal to the base, named in the receipt]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x19 the owner entry's pipe section listed twice]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x20 the owner entry's As_m2 a string]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x21 invocation contract version 2.0.1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x22 invocation contract with an extra null key]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x23 a component added to the invocation]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x24 authored nu unit empty]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x25 authored constitutive_basis removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x26 G_hat one ulp high, every copy consistent]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x27 policy changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x28 facade_policy changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x29 receipt_version 2]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x30 the owner's exact_cases entry listed twice]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x31 producer component_version 0.2.1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[producer-sparse_interactive-x32 a material's selection named_point]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-01 identity relabelled preview (profile kept)]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-02 profile relabelled preview]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-03 an attempt's definition_id ordinary]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-04 projection_policy changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-05 work_policy changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-06 canonicalization changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-07 work.case_limit changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-08 work.invocation_limit changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-09 the preview milestone successor relabelled physics-retained-1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-10 the exact successor relabelled preview-physics-retained-1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-11 S-1: the preparation hash over a payload with DEF-O's H]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-12 owner pipe_sections As_m2 one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-13 owner pipe_sections Z_m3 one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-14 owner pipe_sections I_m4 one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-15 owner pipe_sections ro_m one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-16 connector non-empty]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-17 pipe_materials G_pa three ulps]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-18 recovery_method added to an exact_cases entry]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-19 invocation contract legacy]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-20 invocation schema 0.4.0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-21 invocation pressure_contract false]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-22 a combination added to the invocation]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-23 a case naming modulus_basis_ref]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-24 shear_origin explicit_g]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-25 receipt shear_modulus one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-26 shear_origin.poisson_ratio bits changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-27 authored nu changed in the invocation]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-28 S-C only: an entry's pipe_materials nu one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-29 N-6: an entry's pipe_materials G_pa one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-30 a case's pressure_regions null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-31 a case's pressure_regions with one region]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-32 a member's geometry.route preview]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x01 owner pipe_sections J_m4 one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x02 owner pipe_sections outside_diameter_m one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x03 owner pipe_sections effective_wall_thickness_m one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x04 the owner entry's load_case_id renamed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x05 exact_cases empty]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x06 contract_evidence removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x07 a case's pressure_regions removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x08 a case with analysis_state]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x09 authored E one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x10 authored nu unit not 1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x11 authored nu 0.5]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x12 authored constitutive_basis changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x13 invocation contract mode only]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x14 invocation contract extra key]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x15 invocation contract removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x16 invocation schema 0.2.0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x17 physics-1 headline altered]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x18 a named point basis equal to the base, named in the receipt]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x19 the owner entry's pipe section listed twice]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x20 the owner entry's As_m2 a string]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x21 invocation contract version 2.0.1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x22 invocation contract with an extra null key]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x23 a component added to the invocation]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x24 authored nu unit empty]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x25 authored constitutive_basis removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x26 G_hat one ulp high, every copy consistent]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x27 policy changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x28 facade_policy changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x29 receipt_version 2]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x30 the owner's exact_cases entry listed twice]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x31 producer component_version 0.2.1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x32 a material's selection named_point]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-01 identity relabelled preview (profile kept)]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-02 profile relabelled preview]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-03 an attempt's definition_id ordinary]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-04 projection_policy changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-05 work_policy changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-06 canonicalization changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-07 work.case_limit changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-08 work.invocation_limit changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-09 the preview milestone successor relabelled physics-retained-1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-10 the exact successor relabelled preview-physics-retained-1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-11 S-1: the preparation hash over a payload with DEF-O's H]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-12 owner pipe_sections As_m2 one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-13 owner pipe_sections Z_m3 one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-14 owner pipe_sections I_m4 one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-15 owner pipe_sections ro_m one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-16 connector non-empty]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-17 pipe_materials G_pa three ulps]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-18 recovery_method added to an exact_cases entry]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-19 invocation contract legacy]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-20 invocation schema 0.4.0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-21 invocation pressure_contract false]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-22 a combination added to the invocation]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-23 a case naming modulus_basis_ref]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-24 shear_origin explicit_g]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-25 receipt shear_modulus one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-26 shear_origin.poisson_ratio bits changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-27 authored nu changed in the invocation]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-28 S-C only: an entry's pipe_materials nu one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-29 N-6: an entry's pipe_materials G_pa one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-30 a case's pressure_regions null]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-31 a case's pressure_regions with one region]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-32 a member's geometry.route preview]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x01 owner pipe_sections J_m4 one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x02 owner pipe_sections outside_diameter_m one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x03 owner pipe_sections effective_wall_thickness_m one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x04 the owner entry's load_case_id renamed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x05 exact_cases empty]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x06 contract_evidence removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x07 a case's pressure_regions removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x08 a case with analysis_state]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x09 authored E one ulp]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x10 authored nu unit not 1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x11 authored nu 0.5]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x12 authored constitutive_basis changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x13 invocation contract mode only]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x14 invocation contract extra key]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x15 invocation contract removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x16 invocation schema 0.2.0]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x17 physics-1 headline altered]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x18 a named point basis equal to the base, named in the receipt]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x19 the owner entry's pipe section listed twice]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x20 the owner entry's As_m2 a string]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x21 invocation contract version 2.0.1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x22 invocation contract with an extra null key]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x23 a component added to the invocation]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x24 authored nu unit empty]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x25 authored constitutive_basis removed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x26 G_hat one ulp high, every copy consistent]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x27 policy changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x28 facade_policy changed]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x29 receipt_version 2]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x30 the owner's exact_cases entry listed twice]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x31 producer component_version 0.2.1]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_mutations[synthetic-sparse_interactive-x32 a material's selection named_point]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_synthetic_base_is_eligible_and_classified_as_the_milestone[dense_scrutiny]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_m3x_synthetic_base_is_eligible_and_classified_as_the_milestone[sparse_interactive]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_producer_m3x_successor_pins[dense_scrutiny]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_producer_m3x_successor_pins[sparse_interactive]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_s1_payload_carries_the_route_hash",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_stress_neutral_packager_refuses_the_exact_successor[dense_scrutiny]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_stress_neutral_packager_refuses_the_exact_successor[sparse_interactive]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_transport[producer-dense_scrutiny]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_transport[producer-sparse_interactive]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_transport[synthetic-dense_scrutiny]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_b3b_transport[synthetic-sparse_interactive]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_repair01_g5b_shared_checks_precede_the_exact_evidence[X G5b control: case 0's evidence As_m2 one ulp [two_case_synthetic]]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_repair01_g5b_shared_checks_precede_the_exact_evidence[X G5b control: case 1's body_scales force one ulp [two_case_synthetic]]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_repair01_g5b_shared_checks_precede_the_exact_evidence[X G5b order: case 0's evidence As_m2 and case 1's body_scales force [two_case_synthetic]]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_repair01_g5b_shared_checks_precede_the_exact_evidence[X G5b order: case 0's evidence As_m2 and case 1's section term area [two_case_synthetic]]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_repair01_rv120_forgeries_are_refused_at_g8[forge E-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive]]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_repair01_rv120_forgeries_are_refused_at_g8[forge E-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic]]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_repair01_rv120_forgeries_are_refused_at_g8[forge G-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive]]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_repair01_rv120_forgeries_are_refused_at_g8[forge G-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic]]",
+   "i4": null,
+   "head": "passed"
+  }
+ ]
+}

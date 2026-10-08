@@ -1,0 +1,7 @@
+W-C2 dense | after==RN3(oracle): True | head norm3==after: True | before==macOS libm chain (Rust f64::hypot here): True | ulps: 1
+SF-2 (C, B, A) dense | after==RN3(oracle): True | head norm3==after: True | before==macOS libm chain (Rust f64::hypot here): True | ulps: 1
+rf_skew milestone dense ordinary (u1) | after==RN3(oracle): True | head norm3==after: True | before==macOS libm chain (Rust f64::hypot here): True | ulps: 1
+load_reference/connected sparse cold | after==RN3(oracle): True | head norm3==after: True | before==macOS libm chain (Rust f64::hypot here): True | ulps: 1
+load_reference/connected sparse hot | after==RN3(oracle): True | head norm3==after: True | before==macOS libm chain (Rust f64::hypot here): True | ulps: 1
+load_reference/connected dense hot | after==RN3(oracle): True | head norm3==after: True | before==macOS libm chain (Rust f64::hypot here): True | ulps: 1
+load_reference_fallback_uz sparse anchor moment (t13) | after==RN3(oracle): True | head norm3==after: True | before==macOS libm chain (Rust f64::hypot here): True | ulps: 1

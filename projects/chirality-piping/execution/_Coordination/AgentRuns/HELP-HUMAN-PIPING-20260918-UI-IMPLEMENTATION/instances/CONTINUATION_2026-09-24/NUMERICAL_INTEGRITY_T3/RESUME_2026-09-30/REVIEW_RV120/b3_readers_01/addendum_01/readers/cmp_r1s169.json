@@ -1,0 +1,301 @@
+{
+ "inputs": 169,
+ "differences_outside_g7": [],
+ "want_misses": [
+  {
+   "i": 28,
+   "name": "16 connector non-empty [ordinary_prepared_synthetic]",
+   "reader": "ts",
+   "want": "G7 SOURCE_PHYSICS_CONNECTOR_UNSUPPORTED",
+   "got": "G7 PHYSICS_EVIDENCE_UNSUPPORTED_COMPOSITION"
+  },
+  {
+   "i": 28,
+   "name": "16 connector non-empty [ordinary_prepared_synthetic]",
+   "reader": "py",
+   "want": "G7 SOURCE_PHYSICS_CONNECTOR_UNSUPPORTED",
+   "got": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 29,
+   "name": "17 an entry's G_pa three ulps [ordinary_prepared_synthetic]",
+   "reader": "ts",
+   "want": "G7 SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "got": "G7 PHYSICS_EVIDENCE_MATERIAL_INVALID"
+  },
+  {
+   "i": 29,
+   "name": "17 an entry's G_pa three ulps [ordinary_prepared_synthetic]",
+   "reader": "py",
+   "want": "G7 SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "got": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 30,
+   "name": "18 recovery_method added to an exact_cases entry [ordinary_prepared_synthetic]",
+   "reader": "ts",
+   "want": "G7 SOURCE_PHYSICS_CASE_SHAPE",
+   "got": "G7 PHYSICS_EVIDENCE_CASE_SHAPE"
+  },
+  {
+   "i": 30,
+   "name": "18 recovery_method added to an exact_cases entry [ordinary_prepared_synthetic]",
+   "reader": "py",
+   "want": "G7 SOURCE_PHYSICS_CASE_SHAPE",
+   "got": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 83,
+   "name": "16 connector non-empty [m3x_sparse_interactive]",
+   "reader": "ts",
+   "want": "G7 SOURCE_PHYSICS_CONNECTOR_UNSUPPORTED",
+   "got": "G7 PHYSICS_EVIDENCE_UNSUPPORTED_COMPOSITION"
+  },
+  {
+   "i": 83,
+   "name": "16 connector non-empty [m3x_sparse_interactive]",
+   "reader": "py",
+   "want": "G7 SOURCE_PHYSICS_CONNECTOR_UNSUPPORTED",
+   "got": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 84,
+   "name": "17 an entry's G_pa three ulps [m3x_sparse_interactive]",
+   "reader": "ts",
+   "want": "G7 SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "got": "G7 PHYSICS_EVIDENCE_MATERIAL_INVALID"
+  },
+  {
+   "i": 84,
+   "name": "17 an entry's G_pa three ulps [m3x_sparse_interactive]",
+   "reader": "py",
+   "want": "G7 SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "got": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 85,
+   "name": "18 recovery_method added to an exact_cases entry [m3x_sparse_interactive]",
+   "reader": "ts",
+   "want": "G7 SOURCE_PHYSICS_CASE_SHAPE",
+   "got": "G7 PHYSICS_EVIDENCE_CASE_SHAPE"
+  },
+  {
+   "i": 85,
+   "name": "18 recovery_method added to an exact_cases entry [m3x_sparse_interactive]",
+   "reader": "py",
+   "want": "G7 SOURCE_PHYSICS_CASE_SHAPE",
+   "got": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 137,
+   "name": "16 connector non-empty [m3x_dense_scrutiny]",
+   "reader": "ts",
+   "want": "G7 SOURCE_PHYSICS_CONNECTOR_UNSUPPORTED",
+   "got": "G7 PHYSICS_EVIDENCE_UNSUPPORTED_COMPOSITION"
+  },
+  {
+   "i": 137,
+   "name": "16 connector non-empty [m3x_dense_scrutiny]",
+   "reader": "py",
+   "want": "G7 SOURCE_PHYSICS_CONNECTOR_UNSUPPORTED",
+   "got": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 138,
+   "name": "17 an entry's G_pa three ulps [m3x_dense_scrutiny]",
+   "reader": "ts",
+   "want": "G7 SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "got": "G7 PHYSICS_EVIDENCE_MATERIAL_INVALID"
+  },
+  {
+   "i": 138,
+   "name": "17 an entry's G_pa three ulps [m3x_dense_scrutiny]",
+   "reader": "py",
+   "want": "G7 SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "got": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 139,
+   "name": "18 recovery_method added to an exact_cases entry [m3x_dense_scrutiny]",
+   "reader": "ts",
+   "want": "G7 SOURCE_PHYSICS_CASE_SHAPE",
+   "got": "G7 PHYSICS_EVIDENCE_CASE_SHAPE"
+  },
+  {
+   "i": 139,
+   "name": "18 recovery_method added to an exact_cases entry [m3x_dense_scrutiny]",
+   "reader": "py",
+   "want": "G7 SOURCE_PHYSICS_CASE_SHAPE",
+   "got": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  }
+ ],
+ "g7": [
+  {
+   "reading": "bound",
+   "rs": "G7 SOURCE_PHYSICS_CASE_SHAPE",
+   "ts": "G7 PHYSICS_EVIDENCE_CASE_SHAPE",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 3
+  },
+  {
+   "reading": "bound",
+   "rs": "G7 SOURCE_PHYSICS_CONNECTOR_UNSUPPORTED",
+   "ts": "G7 PHYSICS_EVIDENCE_UNSUPPORTED_COMPOSITION",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 3
+  },
+  {
+   "reading": "bound",
+   "rs": "G7 SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_MATERIAL_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 3
+  },
+  {
+   "reading": "transport",
+   "rs": "G7 SOURCE_PHYSICS_DUPLICATE_ID",
+   "ts": "G7 PHYSICS_EVIDENCE_TRANSPORT_CASES",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 3
+  },
+  {
+   "reading": "transport",
+   "rs": "G7 SOURCE_PHYSICS_DUPLICATE_ID",
+   "ts": "G7 PHYSICS_EVIDENCE_TRANSPORT_MEMBER_COVERAGE",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 3
+  },
+  {
+   "reading": "transport",
+   "rs": "G7 SOURCE_PHYSICS_GEOMETRY_SOURCE_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_SECTION_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 8
+  },
+  {
+   "reading": "transport",
+   "rs": "G7 SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_MATERIAL_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 3
+  },
+  {
+   "reading": "transport",
+   "rs": "G7 SOURCE_PHYSICS_RHS_METHOD",
+   "ts": "G7 PHYSICS_EVIDENCE_RHS_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 3
+  },
+  {
+   "reading": "transport",
+   "rs": "G7 SOURCE_PHYSICS_TRANSPORT_SHAPE",
+   "ts": "G7 PHYSICS_EVIDENCE_TRANSPORT_SHAPE",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 12
+  },
+  {
+   "reading": "unbound",
+   "rs": "G7 SOURCE_PHYSICS_CASE_SHAPE",
+   "ts": "G7 PHYSICS_EVIDENCE_CASE_SHAPE",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 3
+  },
+  {
+   "reading": "unbound",
+   "rs": "G7 SOURCE_PHYSICS_CONNECTOR_UNSUPPORTED",
+   "ts": "G7 PHYSICS_EVIDENCE_UNSUPPORTED_COMPOSITION",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 3
+  },
+  {
+   "reading": "unbound",
+   "rs": "G7 SOURCE_PHYSICS_MATERIAL_G_BINDING",
+   "ts": "G7 PHYSICS_EVIDENCE_MATERIAL_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 3
+  }
+ ],
+ "tally": [
+  {
+   "reading": "bound",
+   "verdict": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "n": 40
+  },
+  {
+   "reading": "bound",
+   "verdict": "G1 RECEIPT_MISMATCH",
+   "n": 3
+  },
+  {
+   "reading": "bound",
+   "verdict": "G5b SECTION_MISMATCH",
+   "n": 36
+  },
+  {
+   "reading": "bound",
+   "verdict": "G7",
+   "n": 9
+  },
+  {
+   "reading": "bound",
+   "verdict": "G8 INVOCATION_MISMATCH",
+   "n": 24
+  },
+  {
+   "reading": "bound",
+   "verdict": "G8 PREPARATION_MISMATCH",
+   "n": 52
+  },
+  {
+   "reading": "bound",
+   "verdict": "eligible",
+   "n": 5
+  },
+  {
+   "reading": "transport",
+   "verdict": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "n": 40
+  },
+  {
+   "reading": "transport",
+   "verdict": "G1 RECEIPT_MISMATCH",
+   "n": 3
+  },
+  {
+   "reading": "transport",
+   "verdict": "G7",
+   "n": 32
+  },
+  {
+   "reading": "transport",
+   "verdict": "ok",
+   "n": 94
+  },
+  {
+   "reading": "unbound",
+   "verdict": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "n": 40
+  },
+  {
+   "reading": "unbound",
+   "verdict": "G1 RECEIPT_MISMATCH",
+   "n": 3
+  },
+  {
+   "reading": "unbound",
+   "verdict": "G5b SECTION_MISMATCH",
+   "n": 36
+  },
+  {
+   "reading": "unbound",
+   "verdict": "G7",
+   "n": 9
+  },
+  {
+   "reading": "unbound",
+   "verdict": "ok",
+   "n": 81
+  }
+ ],
+ "unwanted_bound": []
+}

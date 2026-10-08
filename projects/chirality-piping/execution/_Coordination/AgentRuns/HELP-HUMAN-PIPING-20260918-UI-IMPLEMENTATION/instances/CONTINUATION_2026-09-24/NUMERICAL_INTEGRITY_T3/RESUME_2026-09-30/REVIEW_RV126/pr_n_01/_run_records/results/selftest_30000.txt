@@ -1,0 +1,1 @@
+{'sampled_triples': 29681, 'results_checked': 59362, 'A_vs_C_disagree': 0, 'B_rejects_RN': 0, 'B_accepts_a_neighbour': 0, 'exact_ties_in_sample': 3655}

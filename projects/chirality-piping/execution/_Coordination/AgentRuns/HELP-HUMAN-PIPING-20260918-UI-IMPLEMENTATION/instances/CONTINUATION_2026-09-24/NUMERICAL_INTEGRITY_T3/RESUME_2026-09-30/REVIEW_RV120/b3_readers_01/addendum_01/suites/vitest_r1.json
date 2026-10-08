@@ -1,0 +1,30 @@
+{
+ "i1": {
+  "files": 521,
+  "tests": {
+   "passed": 3679
+  }
+ },
+ "head": {
+  "tests": {
+   "passed": 3680
+  }
+ },
+ "differences": [
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3b (I101): the exact successor <physics-retained> on reader-local synthetic receipts and lane P's m3x successors (B3-D \u00a76; REVISION_01 \u00a74.3) RV120 F2: the four forgeries are RV120's inputs, refused at G8 step 4 bound, never eligible unbound or on transport #1",
+   "i1": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3b (I101): the exact successor <physics-retained> on reader-local synthetic receipts and lane P's m3x successors (B3-D \u00a76; REVISION_01 \u00a74.3) pins the Rust test's 165 shapes (57 synthetic, 54 on each m3x successor), their first failures, and their three readings #1",
+   "i1": "passed",
+   "head": null
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B3b (I101): the exact successor <physics-retained> on reader-local synthetic receipts and lane P's m3x successors (B3-D \u00a76; REVISION_01 \u00a74.3) pins the Rust test's 169 shapes (57 synthetic, 54 on each m3x successor, RV120's 4 forgeries), their first failures, and their three readings #1",
+   "i1": null,
+   "head": "passed"
+  }
+ ]
+}

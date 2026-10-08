@@ -1,0 +1,4 @@
+W-C2 dense fixture: values moved 1 | recomputed publication == committed: True | recomputed receipt == committed: True | whole source equal: True
+corpus case 18 w_c2_dense_scrutiny : values moved 1 | recomputed source == committed source: True | provenance receipt == source receipt: True
+corpus case 23 sf2_c_b_a_dense_scrutiny : values moved 1 | recomputed source == committed source: True | provenance receipt == source receipt: True
+other corpus cases unchanged: True
