@@ -107,8 +107,9 @@ pub(crate) fn sanitize_blocked_diagnostics(diagnostics: &mut Vec<Diagnostic>) {
 /// nonzero lateral stiffness over a nonzero length has lateral springs without
 /// the rigid-body moment coupling, so it is not in moment equilibrium and every
 /// result of the model is suspect. Refuse the solve until T4 repairs it. A joint
-/// that declares user flexibility without all four user stiffness values is
-/// refused too (G11): the element builder would skip it silently.
+/// that declares user flexibility without all four user stiffness values, or
+/// whose pipe or node does not resolve, is refused too (G11): the element
+/// builder would skip it silently.
 pub(crate) fn refuse_unqualified_joint_elements(model: &PreviewModel, diagnostics: &mut Vec<Diagnostic>) {
     for component in model.components.iter().filter(|c| is_expansion_joint_component(c)) {
         if component.mechanics_interface.as_ref().and_then(|i| i.solver_consumption.as_deref())
@@ -144,6 +145,42 @@ pub(crate) fn refuse_unqualified_joint_elements(model: &PreviewModel, diagnostic
                 "JOINT_ELEMENT_STIFFNESS_INCOMPLETE",
                 "blocking",
                 format!("expansion joint {} declares mechanics_geometry_and_user_flexibility but has no user-entered {} stiffness, so its user-stiffness element cannot be assembled; the solve is refused rather than published without the joint (G11)", component.id, missing.join(", ")),
+                refs,
+            ));
+            continue;
+        }
+        // G11, extended by ROOT: the builder also skips a joint whose pipe or node
+        // does not resolve (no pipe, an unknown pipe, an unknown node, or a node
+        // that is not an end of the pipe). Refuse it by name, before M07, whose
+        // claim about a realized lateral coupling would not hold. A joint pipe
+        // without y_reference or with an unknown end node is refused by the pipe
+        // itself (PIPE_ORIENTATION_INPUT_MISSING, PIPE_ENDPOINT_UNKNOWN).
+        let pipe_ref = component
+            .geometry
+            .as_ref()
+            .and_then(|g| g.expansion_joint_pipe_ref.as_deref())
+            .filter(|id| !id.trim().is_empty());
+        let unresolved = match pipe_ref {
+            None => Some("declares no expansion_joint_pipe_ref".to_string()),
+            Some(id) => match model.pipe_segments.iter().find(|p| p.id == id) {
+                None => Some(format!("maps to pipe {id}, which is not in the model")),
+                Some(_) if !model.nodes.iter().any(|n| n.id == component.node) => {
+                    Some(format!("sits at node {}, which is not in the model", component.node))
+                }
+                Some(pipe) if component.node != pipe.from && component.node != pipe.to => {
+                    Some(format!("sits at node {}, which is not an end of pipe {id}", component.node))
+                }
+                Some(_) => None,
+            },
+        };
+        if let Some(reason) = unresolved {
+            let mut refs = vec![component.id.clone()];
+            refs.extend(pipe_ref.map(str::to_string));
+            diagnostics.push(diag(
+                &format!("diagnostic:preview-physics:joint-mapping-unresolved:{}", identity(&[&component.id])),
+                "JOINT_ELEMENT_MAPPING_UNRESOLVED",
+                "blocking",
+                format!("expansion joint {} declares mechanics_geometry_and_user_flexibility but {reason}, so its user-stiffness element cannot be assembled; the solve is refused rather than published without the joint (G11)", component.id),
                 refs,
             ));
             continue;

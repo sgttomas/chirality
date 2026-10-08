@@ -17454,6 +17454,116 @@ mod tests {
     }
 
     #[test]
+    fn flexibility_joint_with_an_unresolved_mapping_is_refused_not_dropped() {
+        // G11, extended by ROOT: the element builder also skips a joint whose pipe
+        // or node does not resolve. With no pipe, or an unknown one, the M07
+        // refusal skips the joint too, so the model solved without it (and an
+        // unknown pipe still got "consumed" review rows). With a node that is not
+        // an end of the pipe, M07 refused for a lateral coupling the model never
+        // realizes. Every case is now refused by name, before M07.
+        let consumed = |output: &MechanicsEnvelope| {
+            output
+                .results
+                .iter()
+                .filter(|row| row.kind == "component_user_stiffness_macro_element_review")
+                .count()
+        };
+        let mut observed = Vec::new();
+        for case in ["no pipe", "unknown pipe", "unknown node", "node not on the pipe"] {
+            let mut input = request_with_refused_joint();
+            for load_case in &mut input.model.load_cases {
+                // The demo's legacy nonzero pressure is refused first; remove it here.
+                load_case.primitive_loads.retain(|load| load.category != "pressure");
+            }
+            let joint = input
+                .model
+                .components
+                .iter_mut()
+                .find(|component| component.id == "component:C-150")
+                .unwrap();
+            let pipe_ref = &mut joint.geometry.as_mut().unwrap().expansion_joint_pipe_ref;
+            match case {
+                "no pipe" => *pipe_ref = None,
+                "unknown pipe" => *pipe_ref = Some("pipe:missing".into()),
+                "unknown node" => joint.node = "node:missing".into(),
+                _ => joint.node = "node:N-100".into(),
+            }
+            let output = run_linear_static_preview(input);
+            let refusal = output
+                .diagnostics
+                .iter()
+                .find(|d| d.code == "JOINT_ELEMENT_MAPPING_UNRESOLVED" && d.severity == "blocking")
+                .map(|d| d.affected_refs.clone());
+            observed.push((
+                case,
+                output.status.mechanics.clone(),
+                consumed(&output),
+                output.results.is_empty(),
+                refusal,
+            ));
+        }
+        let refs = |pipe: Option<&str>| {
+            let mut refs = vec!["component:C-150".to_string()];
+            refs.extend(pipe.map(str::to_string));
+            Some(refs)
+        };
+        let expected = vec![
+            ("no pipe", "MODEL_INCOMPLETE".to_string(), 0, true, refs(None)),
+            ("unknown pipe", "MODEL_INCOMPLETE".to_string(), 0, true, refs(Some("pipe:missing"))),
+            ("unknown node", "MODEL_INCOMPLETE".to_string(), 0, true, refs(Some("pipe:P-130"))),
+            ("node not on the pipe", "MODEL_INCOMPLETE".to_string(), 0, true, refs(Some("pipe:P-130"))),
+        ];
+        assert_eq!(observed, expected, "(case, status, consumed review rows, no results, mapping refusal refs)");
+    }
+
+    #[test]
+    fn flexibility_joint_pipe_without_orientation_or_a_known_end_is_refused_by_the_pipe() {
+        // G11, extended by ROOT: the builder's other two skips, a joint pipe
+        // without y_reference and a joint pipe whose end node is unknown, cannot
+        // drop the joint silently: the pipe itself is refused, by name. A zero
+        // lateral value keeps the M07 refusal, which runs first, out of the way
+        // (the zero value is itself refused when an element is assembled).
+        for (case, code) in [
+            ("no y_reference", "PIPE_ORIENTATION_INPUT_MISSING"),
+            ("unknown end node", "PIPE_ENDPOINT_UNKNOWN"),
+        ] {
+            let mut input = request_with_refused_joint();
+            for load_case in &mut input.model.load_cases {
+                load_case.primitive_loads.retain(|load| load.category != "pressure");
+            }
+            let joint = input
+                .model
+                .components
+                .iter_mut()
+                .find(|component| component.id == "component:C-150")
+                .unwrap();
+            let modifiers = joint.modifiers.as_mut().unwrap();
+            modifiers.lateral_stiffness_user_value.as_mut().unwrap().value = 0.0;
+            let pipe = input
+                .model
+                .pipe_segments
+                .iter_mut()
+                .find(|pipe| pipe.id == "pipe:P-130")
+                .unwrap();
+            match case {
+                "no y_reference" => pipe.y_reference = None,
+                // The joint sits at P-130's to-node; its from-node becomes unknown.
+                _ => pipe.from = "node:missing".into(),
+            }
+            let output = run_linear_static_preview(input);
+            assert_eq!(output.status.mechanics, "MODEL_INCOMPLETE", "{case}");
+            assert!(output.results.is_empty(), "{case}");
+            assert!(
+                output.diagnostics.iter().any(|d| d.code == code
+                    && d.severity == "blocking"
+                    && d.affected_refs.first().map(String::as_str) == Some("pipe:P-130")),
+                "{case}: {:?}",
+                output.diagnostics.iter().map(|d| &d.code).collect::<Vec<_>>()
+            );
+        }
+    }
+
+    #[test]
     fn spring_hanger_user_inputs_emit_review_rows_without_catalog_defaults() {
         let result = run_linear_static_preview(mechanical_fixture_for_test(
             request(),
