@@ -1,0 +1,22 @@
+{
+ "i4": {
+  "passed": 1736,
+  "skipped": 11
+ },
+ "head": {
+  "passed": 1738,
+  "skipped": 11
+ },
+ "differences": [
+  {
+   "test": "tests.test_retained_precision_b3::test_repair03_n2b_reads_the_cases_in_array_order[N2b: entry 0's material_basis and entry 1's profile_mode [two_case_synthetic]]",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3::test_repair03_n2b_reads_the_cases_in_array_order[N2b: entry 0's profile_mode and entry 1's material_basis [two_case_synthetic]]",
+   "i4": null,
+   "head": "passed"
+  }
+ ]
+}

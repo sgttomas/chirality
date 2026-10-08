@@ -1,0 +1,582 @@
+diff --git a/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts b/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts
+index e44edf31ae..38ec7a60ff 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts
+@@ -1693,6 +1693,45 @@ describe('B3b (I101): the exact successor <physics-retained> on reader-local syn
+       set(['retained_precision', 'body', 'sources', 0, 'stiffness_sha256'], 'd7aa429e5be25210f15a34f7138f7178efbbc443d6a016cc35f857268d9ec194'),
+     ]],
+   ];
++  /** RV120's probes for repair 02, as the Rust reader's `rv120_probes`: N2, an exact_cases entry for a case not in the
++   * invocation (entry 0 copied, renamed), on the synthetic exact base and the sparse m3x; F1's four G5b probes on the exact
++   * two_case_synthetic. TS's own G7 codes for N2 (C1 G7 settlement). */
++  const N2_BOUND = { gate: 'G7', code: 'PHYSICS_EVIDENCE_CASE_COVERAGE' }, N2_TRANSPORT = { gate: 'G7', code: 'PHYSICS_EVIDENCE_TRANSPORT_MAXIMUM_ID' };
++  const RV120_N2_INPUTS = ['b73004449c1894a0b562032d7352d18cae0ad351f7e58d91a1572e76963530a0', 'a6bb4fdf601064c2946e440b15a6bb7cb320839c9c3097fff11b2f632c6a09fe'];
++  const rv120Probes = async (): Promise<[Shape, any][]> => {
++    const out: [Shape, any][] = [];
++    for (const base of [ORD, 'm3x_sparse_interactive']) {
++      const { source } = await exactBase(base);
++      const entry = structuredClone(source.contract_evidence.exact_cases[0]), other = structuredClone(entry);
++      other.load_case_id = 'case:rv120-other';
++      out.push([{ name: 'RV120 N2: an exact_cases entry for a case not in the invocation', base, edits: [set(['contract_evidence', 'exact_cases'], [entry, other])] }, N2_BOUND]);
++    }
++    const base = 'two_case_synthetic', { source } = await exactBase(base);
++    const evidence = set(['contract_evidence', 'exact_cases', 0, 'pipe_sections', 0, 'As_m2'], ulps(source.contract_evidence.exact_cases[0].pipe_sections[0].As_m2, 1));
++    const force = set(rb('cases', 1, 'selection', 'body_scales', 0, 'force'), '0000000000000001');
++    const area = set(rb('cases', 1, 'selection', 'section_terms', 0, 'area'), '3f00000000000000');
++    const SCALE = G('G5b', 'SCALE_MISMATCH');
++    out.push([{ name: "RV120 F1 control: case 0's evidence As_m2 one ulp", base, edits: [evidence] }, SEC]);
++    out.push([{ name: "RV120 F1 control: case 1's body_scales force one ulp", base, edits: [force] }, SCALE]);
++    out.push([{ name: "RV120 F1 order: case 0's evidence As_m2 and case 1's body_scales force", base, edits: [evidence, force] }, SCALE]);
++    out.push([{ name: "RV120 F1 order: case 0's evidence As_m2 and case 1's section term area", base, edits: [evidence, area] }, SEC]);
++    return out;
++  };
++  /** Repair 03 (N2b, WORKING_ITEMS' ruling on RV120's N2), as the Rust reader's `repair03_probes`: two faults in the two
++   * exact_cases entries of the exact two_case_synthetic (one entry's profile_mode "x", the other's material_basis not a
++   * string), and the same faults swapped. TS reads its cases in array order; both faults fail TS's one case check, so
++   * its own G7 code is the same for both (C1 G7 settlement). */
++  const N2B = { gate: 'G7', code: 'PHYSICS_EVIDENCE_CASE_INVALID' }, N2B_TRANSPORT = { gate: 'G7', code: 'PHYSICS_EVIDENCE_TRANSPORT_SHAPE' };
++  const REPAIR03_N2B_INPUTS = ['ab2807e39c79015c5929dac4c4a4a86f82e9e6187c66511686c93f57de60759d', '9451b8272ac84a10984b6848fe44d5fcd3585903ce7ab1f3d8fd59f4a3675da6'];
++  const n2bProbes = (): [Shape, any][] => {
++    const profile = (i: number) => set(['contract_evidence', 'exact_cases', i, 'profile_mode'], 'x');
++    const basis = (i: number) => set(['contract_evidence', 'exact_cases', i, 'material_basis'], 0);
++    const base = 'two_case_synthetic';
++    return [
++      [{ name: "N2b: entry 0's profile_mode and entry 1's material_basis", base, edits: [profile(0), basis(1)] }, N2B],
++      [{ name: "N2b: entry 0's material_basis and entry 1's profile_mode", base, edits: [basis(0), profile(1)] }, N2B],
++    ];
++  };
+   /** sha256 of the canonical JSON of each forgery's `[source, invocation]`: RV120's input bytes (the Rust test's pins). */
+   const RV120_FORGERY_DIGESTS = ['97566866cef65597109de17d34c69508ef3889a1d526321c8feedf5dc88b1f4a', '6e67243c49548db2cbcd10be6156c30182c1e884addbf95a264e33965431ef13', '3828c07c73d41e33324ec6be349ab4d265e57b439222962d1df1a91c974eb1ff', 'c17c8283efeb034afe82c4e9fdb4f46aad54ffef676c181733fbc6eec43226e6'];
+   const shapes = async (): Promise<[Shape, any][]> => [
+@@ -1705,6 +1744,8 @@ describe('B3b (I101): the exact successor <physics-retained> on reader-local syn
+       [{ name: "11 S-1: the preparation hashed with DEF-O's H", base: `<s1:${name}>` }, G('G1', 'RECEIPT_MISMATCH')],
+     ]),
+     ...RV120_FORGERIES.map(([name, base, edits]): [Shape, any] => [{ name, base, edits }, PREP]),
++    ...await rv120Probes(),
++    ...n2bProbes(),
+     ...(process.env.B3B_EXACT_BASE ? [
+       [{ name: 'base', base: FILE_BASE }, 'pass'] as [Shape, any], ...rows(FILE_BASE, await exactBase(FILE_BASE)),
+       [{ name: "11 S-1: the preparation hashed with DEF-O's H", base: '<s1:file>' }, G('G1', 'RECEIPT_MISMATCH')] as [Shape, any],
+@@ -1726,9 +1767,9 @@ describe('B3b (I101): the exact successor <physics-retained> on reader-local syn
+     return x;
+   }
+   const reading = async (run: () => Promise<any>) => { try { const r = await run(); return { ok: { eligible: r.numerical_eligible } }; } catch (e) { expect(e).toBeInstanceOf(RetainedPrecisionError); return { gate: (e as any).gate, code: (e as any).code }; } };
+-  it('pins the Rust test\'s 169 shapes (57 synthetic, 54 on each m3x successor, RV120\'s 4 forgeries), their first failures, and their three readings', async () => {
++  it('pins the Rust test\'s 177 shapes (57 synthetic, 54 on each m3x successor, RV120\'s 4 forgeries and 6 probes, repair 03\'s 2 N2b probes), their first failures, and their three readings', async () => {
+     const list = await shapes(), misses: string[] = [], lines: any[] = [];
+-    expect(list.filter(([x]) => x.base !== FILE_BASE && x.base !== '<s1:file>').length).toBe(3 + 52 + 2 + 2 * (1 + 52 + 1) + 4);
++    expect(list.filter(([x]) => x.base !== FILE_BASE && x.base !== '<s1:file>').length).toBe(3 + 52 + 2 + 2 * (1 + 52 + 1) + 4 + 2 + 4 + 2);
+     for (const [shape, want] of list) {
+       const { source, invocation } = await input(shape);
+       const got = await firstFailure(source, invocation);
+@@ -1820,6 +1861,34 @@ describe('B3b (I101): the exact successor <physics-retained> on reader-local syn
+     }
+     expect(digests).toEqual(RV120_FORGERY_DIGESTS);
+   });
++  it("RV120 N2: an extra exact_cases entry reads one transport code, run after run (array order), on RV120's inputs", async () => {
++    const probes = (await rv120Probes()).filter(([x]) => x.name.startsWith('RV120 N2: '));
++    expect(probes.length).toBe(2);
++    const digests: string[] = [];
++    for (const [shape] of probes) {
++      const { source, invocation } = await input(shape);
++      digests.push(await canonicalSha256Hex([source, invocation]));
++      for (let run = 0; run < 8; run++) {
++        expect({ bound: await reading(() => validateRetainedPrecision(source, invocation)), unbound: await reading(() => validateRetainedPrecision(source)), transport: await reading(() => validateRetainedPrecisionTransport(source)) }, `${shape.name} [${shape.base}] run ${run}`)
++          .toEqual({ bound: N2_BOUND, unbound: N2_BOUND, transport: N2_TRANSPORT });
++      }
++    }
++    expect(digests).toEqual(RV120_N2_INPUTS);
++  }, 60_000);
++  it("repair 03 N2b: two faults in two exact_cases entries read one code, run after run (array order), on the Rust test's inputs", async () => {
++    const probes = n2bProbes();
++    expect(probes.length).toBe(2);
++    const digests: string[] = [];
++    for (const [shape] of probes) {
++      const { source, invocation } = await input(shape);
++      digests.push(await canonicalSha256Hex([source, invocation]));
++      for (let run = 0; run < 8; run++) {
++        expect({ bound: await reading(() => validateRetainedPrecision(source, invocation)), unbound: await reading(() => validateRetainedPrecision(source)), transport: await reading(() => validateRetainedPrecisionTransport(source)) }, `${shape.name} [${shape.base}] run ${run}`)
++          .toEqual({ bound: N2B, unbound: N2B, transport: N2B_TRANSPORT });
++      }
++    }
++    expect(digests).toEqual(REPAIR03_N2B_INPUTS);
++  }, 60_000);
+   it("ROOT's ruling on I100's B3 addendum 01: G8's sourced-case check on the preview and exact routes", async () => {
+     // A sourced case passes only with pressure_regions absent, null or [] (type-strict; [] only on the exact route),
+     // equivalent_static absent or null, and no analysis_state member (null included); a case-level `pressure`, a key PP's
+diff --git a/projects/chirality-piping/core/reporting/result_export/src/physics_evidence.rs b/projects/chirality-piping/core/reporting/result_export/src/physics_evidence.rs
+index 981acbf0e6..4aed23eed9 100644
+--- a/projects/chirality-piping/core/reporting/result_export/src/physics_evidence.rs
++++ b/projects/chirality-piping/core/reporting/result_export/src/physics_evidence.rs
+@@ -382,7 +382,11 @@ pub(crate) fn validate_physics_evidence_in(source: &Value, composite: bool) -> C
+     let mut extrema_ids = HashSet::new();
+     let mut coverage_complete = true;
+     let mut all_members: Option<HashSet<&str>> = None;
+-    for (case_id, case) in &cases {
++    // N2b (RV120; WORKING_ITEMS' ruling): every loop of this validator runs in array order,
++    // as TS's and PY's do, so its first failure (the code) never depends on a hash map's or
++    // set's per-process order. The maps and sets only detect duplicates and answer lookups.
++    for case in array(&evidence["exact_cases"])? {
++        let case_id = text(&case["load_case_id"])?;
+         require(
+             keys(
+                 case,
+@@ -418,10 +422,10 @@ pub(crate) fn validate_physics_evidence_in(source: &Value, composite: bool) -> C
+         } else {
+             all_members = Some(members.clone());
+         }
+-        for m in materials.values() {
++        for m in array(&case["pipe_materials"])? {
+             material(m)?;
+         }
+-        for s in sections.values() {
++        for s in array(&case["pipe_sections"])? {
+             geometry(s)?;
+         }
+         let coverage = &case["stress_maximum_coverage"];
+@@ -442,7 +446,8 @@ pub(crate) fn validate_physics_evidence_in(source: &Value, composite: bool) -> C
+                 == members.difference(&unavailable).copied().collect(),
+             "EXTREMA_MEMBER_COVERAGE",
+         )?;
+-        for (pipe, ex) in extrema {
++        for ex in array(&case["pipe_stress_extrema"])? {
++            let pipe = text(&ex["pipe_id"])?;
+             if composite && case["recovery_method"] == crate::physics_source::EXACT {
+                 crate::physics_source::validate_maximum(source, case, ex, &rows)?;
+                 require(
+@@ -480,7 +485,7 @@ pub(crate) fn validate_physics_evidence_in(source: &Value, composite: bool) -> C
+             require(
+                 row["kind"] == "pipe_elastic_normal_stress_maximum_v2"
+                     && row["entity_ref"] == pipe
+-                    && case_basis(row)? == *case_id,
++                    && case_basis(row)? == case_id,
+                 "EXTREMA_RESULT_BINDING",
+             )?;
+             for k in ["station_fraction", "local_fraction"] {
+@@ -507,11 +512,12 @@ pub(crate) fn validate_physics_evidence_in(source: &Value, composite: bool) -> C
+             )?;
+             require(ex["approximation"] == "piecewise_quadratic_straight_section_statics" && ex["coefficient_basis"] == "j_side_section_equilibrium_binary64" && ex["enclosure_scope"] == "supplied_binary64_polynomial_coefficients; solution and coefficient formation error are separate", "EXTREMA_BASIS")?;
+         }
+-        case_members.insert(*case_id, members);
++        case_members.insert(case_id, members);
+     }
+     let mut slots = HashSet::new();
+     let mut support_components: HashMap<(&str, &str), HashSet<&str>> = HashMap::new();
+-    for (id, row) in &rows {
++    for row in array(&source["results"])? {
++        let id = text(&row["id"])?;
+         number(&row["value"])?;
+         text(&row["unit"])?;
+         text(&row["entity_ref"])?;
+@@ -636,9 +642,10 @@ pub(crate) fn validate_physics_evidence_in(source: &Value, composite: bool) -> C
+             !members.is_empty() && members.is_subset(&case_members[case]),
+             "REGION_MEMBER_COVERAGE",
+         )?;
+-        for member in &members {
++        for member in array(&region["member_pipe_ids"])? {
++            let member = text(member)?;
+             require(
+-                owned_members.insert((case, *member)),
++                owned_members.insert((case, member)),
+                 "REGION_MEMBER_OVERLAP",
+             )?;
+         }
+@@ -652,7 +659,8 @@ pub(crate) fn validate_physics_evidence_in(source: &Value, composite: bool) -> C
+                 duplicates.keys().copied().collect::<HashSet<_>>() == members,
+                 "REGION_DUPLICATE_COVERAGE",
+             )?;
+-            for (member, duplicate) in duplicates {
++            for duplicate in array(&region[field])? {
++                let member = text(&duplicate["pipe_id"])?;
+                 require(
+                     without(duplicate, extra) == *basis[member],
+                     "REGION_DUPLICATE_CONTRADICTION",
+@@ -673,7 +681,7 @@ pub(crate) fn validate_physics_evidence_in(source: &Value, composite: bool) -> C
+             applied.keys().copied().collect::<HashSet<_>>() == members,
+             "APPLIED_MEMBER_COVERAGE",
+         )?;
+-        for item in applied.values() {
++        for item in array(&region["applied_loads"])? {
+             require(
+                 keys(
+                     item,
+@@ -759,10 +767,11 @@ pub(crate) fn validate_physics_evidence_in(source: &Value, composite: bool) -> C
+             .map(|(id, _)| *id)
+             .collect();
+         require(actual == expected, "REGION_RESULT_BINDING")?;
+-        for id in actual {
+-            require(bound_results.insert(id), "REGION_RESULT_DUPLICATE")?;
++        for id in array(&region["result_ids"])? {
++            require(bound_results.insert(text(id)?), "REGION_RESULT_DUPLICATE")?;
+         }
+-        for member in &members {
++        for member in array(&region["member_pipe_ids"])? {
++            let member = text(member)?;
+             for (kind, components) in [
+                 (
+                     "pipe_wall_endpoint_action_v2",
+@@ -794,7 +803,7 @@ pub(crate) fn validate_physics_evidence_in(source: &Value, composite: bool) -> C
+                 for component in components {
+                     for station in stations {
+                         require(
+-                            slots.contains(&(case, *member, kind, *component, *station)),
++                            slots.contains(&(case, member, kind, *component, *station)),
+                             "PRESSURE_ROW_COVERAGE",
+                         )?;
+                     }
+@@ -802,13 +811,18 @@ pub(crate) fn validate_physics_evidence_in(source: &Value, composite: bool) -> C
+             }
+         }
+     }
+-    for (id, row) in &rows {
++    for row in array(&source["results"])? {
++        let id = text(&row["id"])?;
+         if pressure_kind(row["kind"].as_str().unwrap_or("")) {
+             require(bound_results.contains(id), "PRESSURE_ROW_UNBOUND")?;
+         }
+     }
+-    for (case_id, case) in &cases {
+-        assembly(&case["pressure_rhs_assembly"], case_id, &regions)?;
++    for case in array(&evidence["exact_cases"])? {
++        assembly(
++            &case["pressure_rhs_assembly"],
++            text(&case["load_case_id"])?,
++            &regions,
++        )?;
+     }
+     let headline = &source["summary"]["max_open_formula_stress"];
+     if !headline.is_null() {
+@@ -1016,7 +1030,11 @@ pub fn validate_transport_metadata(source: &Value) -> Check {
+     finite_tree(evidence)?;
+     let cases = indexed(&evidence["exact_cases"], "load_case_id")?;
+     let mut ids = HashSet::new();
+-    for (cid, case) in &cases {
++    // N2 (RV120): this check's loops run in array order, as TS's and PY's do, so its first
++    // failure (the code) does not depend on a hash map's per-process order. Its maps and
++    // sets only detect duplicates and answer lookups.
++    for case in array(&evidence["exact_cases"])? {
++        let cid = text(&case["load_case_id"])?;
+         let materials = indexed(&case["pipe_materials"], "pipe_id")?;
+         let sections = indexed(&case["pipe_sections"], "pipe_id")?;
+         require(
+@@ -1025,10 +1043,10 @@ pub fn validate_transport_metadata(source: &Value) -> Check {
+                     == sections.keys().copied().collect(),
+             "TRANSPORT_MEMBERS",
+         )?;
+-        for value in materials.values() {
++        for value in array(&case["pipe_materials"])? {
+             material(value)?;
+         }
+-        for value in sections.values() {
++        for value in array(&case["pipe_sections"])? {
+             geometry(value)?;
+         }
+         let missing = strings(&case["stress_maximum_coverage"]["unavailable_pipe_ids"])?;
+@@ -1045,7 +1063,7 @@ pub fn validate_transport_metadata(source: &Value) -> Check {
+                 == members.difference(&missing).copied().collect(),
+             "TRANSPORT_MAXIMUM_MEMBERS",
+         )?;
+-        for ex in maxima.values() {
++        for ex in array(&case["pipe_stress_extrema"])? {
+             require(
+                 ids.insert(text(&ex["result_id"])?),
+                 "TRANSPORT_MAXIMUM_RESULT",
+@@ -1066,7 +1084,7 @@ pub fn validate_transport_metadata(source: &Value) -> Check {
+         }
+         let regions = array(&evidence["pressure"])?
+             .iter()
+-            .filter(|p| p["load_case_id"] == *cid)
++            .filter(|p| p["load_case_id"] == cid)
+             .map(|p| Ok(((text(&p["load_case_id"])?, text(&p["region_id"])?), p)))
+             .collect::<Result<HashMap<_, _>, String>>()?;
+         assembly(&case["pressure_rhs_assembly"], cid, &regions)?;
+@@ -1093,7 +1111,8 @@ pub fn validate_transport_metadata(source: &Value) -> Check {
+                 && members == mm.keys().copied().collect(),
+             "TRANSPORT_REGION_MEMBERS",
+         )?;
+-        for pid in members {
++        for pid in array(&region["member_pipe_ids"])? {
++            let pid = text(pid)?;
+             require(
+                 sections
+                     .get(pid)
+diff --git a/projects/chirality-piping/core/reporting/result_export/src/preview_physics_evidence.rs b/projects/chirality-piping/core/reporting/result_export/src/preview_physics_evidence.rs
+index ade81d4f55..439bd400e7 100644
+--- a/projects/chirality-piping/core/reporting/result_export/src/preview_physics_evidence.rs
++++ b/projects/chirality-piping/core/reporting/result_export/src/preview_physics_evidence.rs
+@@ -520,10 +520,17 @@ pub fn validate_preview_physics_evidence(source: &Value) -> Check {
+             None => first_dispositions = Some(dispositions),
+         }
+         let mut actions: HashMap<&str, HashMap<&str, &Value>> = HashMap::new();
++        // I101 repair 03 (class closure of RV120's N2): the supports are checked in the
++        // order they first appear in the case's rows, as TS's and PY's grouping is, so the
++        // first failure (the code) never depends on a hash map's per-process order.
++        let mut support_order: Vec<&str> = Vec::new();
+         for row in rows_list.iter().filter(in_case) {
+             let kind = row["kind"].as_str().unwrap_or("");
+             if matches!(kind, SUPPORT_COMPONENT | SUPPORT_FORCE | SUPPORT_MOMENT) {
+                 let support = text(&row["entity_ref"])?;
++                if !actions.contains_key(support) {
++                    support_order.push(support);
++                }
+                 let c = component(row);
+                 require(
+                     text(&row["id"])?
+@@ -563,7 +570,8 @@ pub fn validate_preview_physics_evidence(source: &Value) -> Check {
+             actions.keys().copied().collect::<HashSet<_>>() == attributed.iter().copied().collect(),
+             "SUPPORT_ATTRIBUTION_COVERAGE",
+         )?;
+-        for components in actions.values() {
++        for support in &support_order {
++            let components = &actions[support];
+             require(
+                 components.len() == 8
+                     && SUPPORT_COMPONENTS
+@@ -675,6 +683,9 @@ pub fn validate_preview_physics_evidence(source: &Value) -> Check {
+         }
+     }
+     let mut combined: HashMap<&str, Vec<&Value>> = HashMap::new();
++    // I101 repair 03: the combinations are checked in the order they first appear in the
++    // rows, as TS's and PY's grouping is, never in a hash map's per-process order.
++    let mut combination_order: Vec<&str> = Vec::new();
+     for row in rows_list {
+         let Some(combination) = combination_of(row) else {
+             continue;
+@@ -690,9 +701,14 @@ pub fn validate_preview_physics_evidence(source: &Value) -> Check {
+                 require(rows.contains_key(text(reference)?), "DANGLING_RESULT_REF")?;
+             }
+         }
+-        combined.entry(combination).or_default().push(row);
++        let members = combined.entry(combination).or_default();
++        if members.is_empty() {
++            combination_order.push(combination);
++        }
++        members.push(row);
+     }
+-    for members in combined.values() {
++    for combination in &combination_order {
++        let members = &combined[combination];
+         if members
+             .iter()
+             .any(|r| r["metadata"]["basis"] == RANGE_BASIS)
+diff --git a/projects/chirality-piping/core/reporting/result_export/tests/preview_physics_contract.rs b/projects/chirality-piping/core/reporting/result_export/tests/preview_physics_contract.rs
+index 9bfc26ef6b..c034d489bb 100644
+--- a/projects/chirality-piping/core/reporting/result_export/tests/preview_physics_contract.rs
++++ b/projects/chirality-piping/core/reporting/result_export/tests/preview_physics_contract.rs
+@@ -828,3 +828,83 @@ fn a2_attribution_identical_in_every_case_and_standing_order() {
+         "unsupported"
+     );
+ }
++
++/// I101 repair 03 (the class of RV120's N2): two attributed supports of one case with
++/// different faults (one force magnitude off, the other's Mz row missing), both ways
++/// round. The reader checks the supports in the order they first appear in the case's
++/// rows, as TS and PY group them, so the earlier support's fault is the code, run after
++/// run; each call builds fresh hash maps (a fresh random order).
++#[test]
++fn repair03_support_faults_are_read_in_row_order() {
++    let s100 = "result:support-action:10:load:L-100:13:support:S-100";
++    let nl140 = "result:support-action:10:load:L-100:14:support:NL-140";
++    for (magnitude, missing, want) in [
++        (s100, nl140, "SUPPORT_MAGNITUDE"),
++        (nl140, s100, "SUPPORT_COMPONENT_COVERAGE"),
++    ] {
++        let mut raw = invented();
++        row(&mut raw, &format!("{magnitude}:force_magnitude"))["value"] = json!(1.0e9);
++        let gone = format!("{missing}:Mz");
++        rows(&mut raw).retain(|r| r["id"] != gone.as_str());
++        for run in 0..64 {
++            assert_eq!(
++                s::for_source(&raw).map(|_| ()),
++                Err(format!("SOURCE_PREVIEW_PHYSICS_{want}")),
++                "{magnitude} / {missing}, run {run}"
++            );
++        }
++    }
++}
++
++/// I101 repair 03: two admitted combinations with different faults (one's displacement
++/// magnitude off, the other's support Fz row missing), both ways round. The reader checks
++/// the combinations in the order they first appear in the rows, as TS and PY group them,
++/// so the earlier combination's fault is the code, run after run.
++#[test]
++fn repair03_combination_faults_are_read_in_row_order() {
++    const SECOND: &str = "combination:C-OPER-ALT-2";
++    let one = "result:combination:combination-C-OPER-ALT";
++    let two = "result:combination:combination-C-OPER-ALT-2";
++    let base = || {
++        let mut raw = with_admitted_combination();
++        let copies: Vec<Value> = rows(&mut raw)
++            .iter()
++            .filter(|r| r["basis_ref"]["ref_id"] == COMB)
++            .map(|r| {
++                let mut r = r.clone();
++                let renamed = |v: &Value| json!(v.as_str().unwrap().replacen(one, two, 1));
++                r["id"] = renamed(&r["id"]);
++                r["basis_ref"]["ref_id"] = json!(SECOND);
++                if let Some(refs) = r.get_mut("source_result_refs") {
++                    for x in refs.as_array_mut().unwrap() {
++                        *x = renamed(x);
++                    }
++                }
++                r
++            })
++            .collect();
++        rows(&mut raw).extend(copies);
++        raw["contract_evidence"]["combination_gates"]
++            .as_array_mut()
++            .unwrap()
++            .push(json!({"combination_id":SECOND,"withheld":false,"reason":null}));
++        raw
++    };
++    s::for_source(&base()).unwrap();
++    for (displacement, missing, want) in [
++        (one, two, "COMBINATION_MAGNITUDE"),
++        (two, one, "COMBINATION_MAGNITUDE_COMPONENTS"),
++    ] {
++        let mut raw = base();
++        row(&mut raw, &format!("{displacement}:disp:node-N-140"))["value"] = json!(7.0);
++        let gone = format!("{missing}:support-action:13:support:S-100:Fz");
++        rows(&mut raw).retain(|r| r["id"] != gone.as_str());
++        for run in 0..64 {
++            assert_eq!(
++                s::for_source(&raw).map(|_| ()),
++                Err(format!("SOURCE_PREVIEW_PHYSICS_{want}")),
++                "{displacement} / {missing}, run {run}"
++            );
++        }
++    }
++}
+diff --git a/projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs b/projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs
+index 1bc23b27df..bc9742f99d 100644
+--- a/projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs
++++ b/projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs
+@@ -5390,6 +5390,8 @@ fn b3b_shapes(shared: &Value) -> Vec<(ExactShape, Value)> {
+     for (name, base, edits) in rv120_forgeries() {
+         out.push((ExactShape { name, base, edits, invocation_edits: vec![], after: vec![] }, gate("G8", PREPARATION)));
+     }
++    out.extend(rv120_probes(shared));
++    out.extend(repair03_probes());
+     if std::env::var("B3B_EXACT_BASE").is_ok() {
+         out.push((ExactShape { name: "base", base: FILE_BASE, edits: vec![], invocation_edits: vec![], after: vec![] }, Value::Null));
+         out.extend(b3b_rows(shared, FILE_BASE));
+@@ -5469,6 +5471,110 @@ fn rv120_forgeries() -> Vec<(&'static str, &'static str, Vec<Value>)> {
+         ]),
+     ]
+ }
++/// RV120's probes for repair 02 (REVIEW_RV120 b3_readers_01, `gen_b3_probes.py`): N2, an
++/// `exact_cases` entry for a case not in the invocation (entry 0 copied, renamed), on the
++/// synthetic exact base and lane P's sparse m3x successor; and F1's G5b order probes on the
++/// exact `two_case_synthetic` (case 0's evidence `As_m2` one ulp, with or without case 1's
++/// body-scale force or section-term area changed). Bound: G7 (physics-1's base code) for N2;
++/// the shared G5b's SCALE or SECTION code, then the exact evidence, for F1.
++fn rv120_probes(shared: &Value) -> Vec<(ExactShape, Value)> {
++    use serde_json::json;
++    let mut out = Vec::new();
++    for base in [ORD, "m3x_sparse_interactive"] {
++        let (source, _) = exact_base(shared, base);
++        let entry = source["contract_evidence"]["exact_cases"][0].clone();
++        let mut other = entry.clone();
++        other["load_case_id"] = json!("case:rv120-other");
++        out.push((
++            ExactShape { name: "RV120 N2: an exact_cases entry for a case not in the invocation", base, edits: vec![set(json!(["contract_evidence", "exact_cases"]), json!([entry, other]))], invocation_edits: vec![], after: vec![] },
++            gate("G7", "SOURCE_PHYSICS_NUMERICAL_CASE_COVERAGE"),
++        ));
++    }
++    let base = "two_case_synthetic";
++    let (source, _) = exact_base(shared, base);
++    let as_m2 = json!(ulps(source["contract_evidence"]["exact_cases"][0]["pipe_sections"][0]["As_m2"].as_f64().unwrap(), 1));
++    let evidence = set(json!(["contract_evidence", "exact_cases", 0, "pipe_sections", 0, "As_m2"]), as_m2);
++    let force = set(rb(json!(["cases", 1, "selection", "body_scales", 0, "force"])), json!("0000000000000001"));
++    let area = set(rb(json!(["cases", 1, "selection", "section_terms", 0, "area"])), json!("3f00000000000000"));
++    for (name, edits, want) in [
++        ("RV120 F1 control: case 0's evidence As_m2 one ulp", vec![evidence.clone()], gate("G5b", SECTION)),
++        ("RV120 F1 control: case 1's body_scales force one ulp", vec![force.clone()], gate("G5b", "RETAINED_PRECISION_SCALE_MISMATCH")),
++        ("RV120 F1 order: case 0's evidence As_m2 and case 1's body_scales force", vec![evidence.clone(), force], gate("G5b", "RETAINED_PRECISION_SCALE_MISMATCH")),
++        ("RV120 F1 order: case 0's evidence As_m2 and case 1's section term area", vec![evidence, area], gate("G5b", SECTION)),
++    ] {
++        out.push((ExactShape { name, base, edits, invocation_edits: vec![], after: vec![] }, want));
++    }
++    out
++}
++/// RV120 N2: RS's physics-1 transport check reads RV120's probe with one code, run after
++/// run (it iterates its cases in array order, as TS and PY do): entry 0 passes, and the
++/// copy's maximum result ids repeat entry 0's. Bound and unbound stay at G7's case coverage.
++#[test]
++fn b3b_rv120_n2_transport_code_is_array_ordered_and_stable() {
++    use serde_json::json;
++    let shared = corpus();
++    let probes: Vec<_> = rv120_probes(&shared).into_iter().filter(|(s, _)| s.name.starts_with("RV120 N2: ")).collect();
++    assert_eq!(probes.len(), 2);
++    let mut digests = Vec::new();
++    for (shape, _) in &probes {
++        let (source, invocation) = b3b_input(&shared, shape);
++        digests.push(sha256_canonical(&json!([source, invocation])));
++        let want = json!({"bound": {"gate": "G7", "code": "SOURCE_PHYSICS_NUMERICAL_CASE_COVERAGE"},
++            "unbound": {"gate": "G7", "code": "SOURCE_PHYSICS_NUMERICAL_CASE_COVERAGE"},
++            "transport": {"gate": "G7", "code": "SOURCE_PHYSICS_TRANSPORT_MAXIMUM_RESULT"}});
++        // Each call builds fresh hash maps (a fresh random order), so a hash-ordered loop
++        // would show both of the probe's first failures well within these runs.
++        for run in 0..64 {
++            assert_eq!(readings(&source, &invocation), want, "{} [{}], run {run}", shape.name, shape.base);
++        }
++    }
++    assert_eq!(digests, RV120_N2_INPUTS, "RV120's N2 inputs");
++}
++/// Repair 03 (N2b, WORKING_ITEMS' ruling on RV120's N2): two faults in the two
++/// `exact_cases` entries of the exact `two_case_synthetic` (one entry's `profile_mode`
++/// "x", the other's `material_basis` not a string), and the same faults swapped. physics-1's
++/// base validator reads its cases in array order on the bound and unbound path, as TS and
++/// PY do, so entry 0's fault is G7's code: CASE_PROFILE, or STRING_INVALID when swapped.
++fn repair03_probes() -> Vec<(ExactShape, Value)> {
++    use serde_json::json;
++    let profile = |i: usize| set(json!(["contract_evidence", "exact_cases", i, "profile_mode"]), json!("x"));
++    let basis = |i: usize| set(json!(["contract_evidence", "exact_cases", i, "material_basis"]), json!(0));
++    let base = "two_case_synthetic";
++    vec![
++        (ExactShape { name: "N2b: entry 0's profile_mode and entry 1's material_basis", base, edits: vec![profile(0), basis(1)], invocation_edits: vec![], after: vec![] }, gate("G7", "SOURCE_PHYSICS_CASE_PROFILE")),
++        (ExactShape { name: "N2b: entry 0's material_basis and entry 1's profile_mode", base, edits: vec![basis(0), profile(1)], invocation_edits: vec![], after: vec![] }, gate("G7", "SOURCE_PHYSICS_STRING_INVALID")),
++    ]
++}
++/// Repair 03 (N2b): RS's physics-1 base validator reads the two-fault probes with one code
++/// on the bound and unbound path, run after run: entry 0's fault, in array order. Transport
++/// refuses both by its closed shape.
++#[test]
++fn b3b_repair03_n2b_physics_code_is_array_ordered_and_stable() {
++    use serde_json::json;
++    let shared = corpus();
++    let mut digests = Vec::new();
++    for (shape, want) in repair03_probes() {
++        let (source, invocation) = b3b_input(&shared, &shape);
++        digests.push(sha256_canonical(&json!([source, invocation])));
++        let want = json!({"bound": want, "unbound": want,
++            "transport": {"gate": "G7", "code": "SOURCE_PHYSICS_TRANSPORT_SHAPE"}});
++        // Each call builds fresh hash maps (a fresh random order), so a hash-ordered loop
++        // would show both entries' faults well within these runs.
++        for run in 0..64 {
++            assert_eq!(readings(&source, &invocation), want, "{} [{}], run {run}", shape.name, shape.base);
++        }
++    }
++    assert_eq!(digests, REPAIR03_N2B_INPUTS, "the N2b probe inputs");
++}
++/// The N2b probe inputs (sha256 of the canonical `[source, invocation]`).
++const REPAIR03_N2B_INPUTS: [&str; 2] = ["ab2807e39c79015c5929dac4c4a4a86f82e9e6187c66511686c93f57de60759d", "9451b8272ac84a10984b6848fe44d5fcd3585903ce7ab1f3d8fd59f4a3675da6"];
++/// RV120's N2 probe inputs (sha256 of the canonical `[source, invocation]`), as in its index.
++const RV120_N2_INPUTS: [&str; 2] = ["b73004449c1894a0b562032d7352d18cae0ad351f7e58d91a1572e76963530a0", "a6bb4fdf601064c2946e440b15a6bb7cb320839c9c3097fff11b2f632c6a09fe"];
++fn sha256_canonical(v: &Value) -> String {
++    use open_pipe_stress_canonical_json::canonical_json;
++    use sha2::{Digest, Sha256};
++    format!("{:x}", Sha256::digest(canonical_json(v).as_bytes()))
++}
+ /// The forgeries' materialized inputs: sha256 of the canonical JSON of `[source, invocation]`
+ /// (`canonical_json`), the same bytes as RV120's input lines (checked against its index).
+ const RV120_FORGERY_INPUTS: [(&str, &str, &str); 4] = [
+@@ -5651,7 +5757,7 @@ fn b3b_exact_successor_shapes_first_failures() {
+         }
+     }
+     assert!(misses.is_empty(), "{}", misses.join("\n"));
+-    assert_eq!(shapes.iter().filter(|(s, _)| s.base != FILE_BASE && s.base != "<s1:file>").count(), 3 + 52 + 2 + 2 * (1 + 52 + 1) + 4);
++    assert_eq!(shapes.iter().filter(|(s, _)| s.base != FILE_BASE && s.base != "<s1:file>").count(), 3 + 52 + 2 + 2 * (1 + 52 + 1) + 4 + 2 + 4 + 2);
+ }
+ fn observe_validation(r: Result<rp::Validation, rp::ValidationError>) -> Value {
+     match r {

@@ -1,0 +1,62 @@
+RS retained_precision.rs: 0 sites
+RS physics_evidence.rs: 15 sites
+   (340, 'rows', 'let mut all_ids: HashSet<&str> = rows.keys().copied().collect();')
+   (356, 'cases', '!cases.is_empty() && cases.keys().copied().collect::<HashSet<_>>() == quality_cases,')
+   (415, 'materials', 'let members: HashSet<_> = materials.keys().copied().collect();')
+   (417, 'sections', '!members.is_empty() && members == sections.keys().copied().collect(),')
+   (445, 'extrema', 'extrema.keys().copied().collect::<HashSet<_>>()')
+   (570, 'support_components', 'for components in support_components.values() {')
+   (659, 'duplicates', 'duplicates.keys().copied().collect::<HashSet<_>>() == members,')
+   (681, 'applied', 'applied.keys().copied().collect::<HashSet<_>>() == members,')
+   (844, 'rows', 'rows.values()')
+   (1042, 'materials', '&& materials.keys().copied().collect::<HashSet<_>>()')
+   (1043, 'sections', '== sections.keys().copied().collect(),')
+   (1053, 'sections', 'let members = sections.keys().copied().collect::<HashSet<_>>();')
+   (1062, 'maxima', 'maxima.keys().copied().collect::<HashSet<_>>()')
+   (1110, 'gm', '&& members == gm.keys().copied().collect()')
+   (1111, 'mm', '&& members == mm.keys().copied().collect(),')
+RS preview_physics_evidence.rs: 9 sites
+   (430, 'unavailable', 'for pipe in unavailable.iter().chain(outside.iter()) {')
+   (430, 'outside', 'for pipe in unavailable.iter().chain(outside.iter()) {')
+   (490, 'attributed', 'let mut listed: HashSet<&str> = attributed.iter().copied().collect();')
+   (515, 'attributed', 'attributed.iter().copied().collect::<HashSet<_>>(),')
+   (570, 'actions', 'actions.keys().copied().collect::<HashSet<_>>() == attributed.iter().copied().collect(),')
+   (570, 'attributed', 'actions.keys().copied().collect::<HashSet<_>>() == attributed.iter().copied().collect(),')
+   (741, 'rows', 'for row in rows {')
+   (769, 'rows', 'for row in rows {')
+   (793, 'rows', 'for row in rows.iter().filter(|r| r["kind"] == kind) {')
+RS physics_source.rs: 0 sites
+RS semantic_contract.rs: 0 sites
+RS source_blocks.rs: 2 sites
+   (62, 'expected', '.is_some_and(|o| o.len() == expected.len() && expected.iter().all(|k| o.contains_key(*k)))')
+   (1225, 'raw', 'covered == raw.keys().copied().collect(),')
+RS derivative.rs: 0 sites
+PY retained_precision.py: 9 sites
+   (664, 'sorted(set(r["precision"] for r in records))')
+   (814, 'sorted(set(slots), key=order.index)')
+   (1134, 'sorted(set(x["row_index"] for x in outcomes))')
+   (1374, '[bi for bi in ids if has_data[bi]]')
+   (1378, '(has_data[bi] or theta[bi] == "0000000000000000" for bi in ids)')
+   (1379, '(1 for bi in ids if has_data[bi])')
+   (1775, 'sorted({find(i) for i in range(len(nodes))})')
+   (2008, '{cid:[] for cid in ids}')
+   (2041, 'sorted(set(indices))')
+PY compatibility.py: 2 sites
+   (159, 'sorted(statuses)')
+   (758, '(not isinstance(item, str) for item in statuses)')
+PY physics_evidence.py: 2 sites
+   (122, '(_number(geometry[k]) and geometry[k] > 0 for k in GEOMETRY - {"pipe_id", "geometry_basis"})')
+   (326, '(section[k] > 0 for k in GEOMETRY - {"pipe_id","geometry_basis"})')
+PY preview_physics_evidence.py: 7 sites
+   (192, 'sorted(records)')
+   (361, '{support for support, _ in records}')
+   (363, '{support for support, reason in records if reason == "SUPPORT_ACTION_ATTRIBUTION_WITHHELD"}')
+   (390, '{(row.get("metadata") or {}).get("basis") for row in members}')
+   (394, '{(row["entity_ref"], row["kind"]): row for row in members if row["kind"].startswith("global_nodal_displacement_")}')
+   (396, 'for row in members:             if row["kind"] in SUPPORT_KINDS:                 key = (row["entity_ref"], (row.get("metadata") or {}).get("')
+   (401, 'for row in members:             if row["kind"] == "displacement_magnitude":                 parts = [nodal.get((row["entity_ref"], f"global_')
+PY physics_source.py: 0 sites
+PY source_blocks.py: 1 sites
+   (364, '{i for i in pending if set(treatment[i]["input_result_ids"]) <= done}')
+PY load_reference_evidence.py: 0 sites
+PY load_reference_source.py: 0 sites
