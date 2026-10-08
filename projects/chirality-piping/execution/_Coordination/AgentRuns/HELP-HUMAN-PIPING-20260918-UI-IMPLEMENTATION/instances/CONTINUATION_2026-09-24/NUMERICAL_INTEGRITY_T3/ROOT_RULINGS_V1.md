@@ -16332,3 +16332,21 @@ PR-B1 is recut once the Linux diagnostic (run 37792750591) is read.
    - then RV-N (a fresh review) of the norm module and every call site.
 
    The sin, cos, atan2 and exp items are a later round.
+
+## RV120 (RV-R2) confirms B3's three readers and lane T, with two repairs before `b2` (ROOT, 2026-10-08 UTC)
+
+**RV120 CONFIRMED** (`R/REVIEW_RV120/b3_readers_01/REVIEW.md`, `1cf687f6…`; 87 files).
+- **B3a and B3b:** they hold in all three readers.
+- **S-1's route hash** is at every site.
+- **The sourced-case rule** holds on both routes.
+- **Census:** 0 changes over 07m and 07n.
+- **Suites:** added tests only.
+- **Agreement:** 0 differences on I101's 165 shapes, I100's 52 and I100's 318.
+- **Lane T:** the exact goldens validate, and downgrades are refused.
+- **Platform:** B3's paths use no libm-dependent function.
+
+**Ruled: both repairs are required before `b2-p`, `b2-r` and `b2-t` merge into `b2`.**
+- **F1 (PY; I100).** Move the exact-route G5b evidence check out of the per-case shared loop to after it, as RS, TS and DESIGN §6.2 order it, with RV120's two-fault pin and a mutant. **N1:** drop `_preparation_payload`'s DEF-O default.
+- **F2 (all three readers; I100 for PY, I101 for RS and TS).** Pin RV120's four E/Ĝ forgeries, which every shipped reader refuses at G8 `PREPARATION_MISMATCH`. **I101's B28 and B29 are survivors, not equivalents.** They are killed by the new pins, and I101 corrects its record. B06b and B30 are accepted as equivalent.
+
+RV120 confirms both repair rounds.

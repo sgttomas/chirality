@@ -1,0 +1,27 @@
+{
+ "i4": {
+  "passed": 1318,
+  "skipped": 11
+ },
+ "head": {
+  "passed": 1321,
+  "skipped": 11
+ },
+ "differences": [
+  {
+   "test": "tests.test_retained_precision_schema::test_exact_successor_analysis_run_branch",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_schema::test_exact_successor_results_branch",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_schema::test_exact_successor_stress_neutral_branch",
+   "i4": null,
+   "head": "passed"
+  }
+ ]
+}

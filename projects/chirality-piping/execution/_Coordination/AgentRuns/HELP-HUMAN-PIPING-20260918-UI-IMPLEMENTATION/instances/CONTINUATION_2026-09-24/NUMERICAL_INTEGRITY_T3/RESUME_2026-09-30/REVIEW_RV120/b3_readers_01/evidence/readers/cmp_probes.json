@@ -1,0 +1,283 @@
+{
+ "inputs": 128,
+ "differences_outside_g7": [
+  {
+   "i": 126,
+   "name": "X G5b order: case 0's evidence As_m2 and case 1's body_scales force [two_case_synthetic]",
+   "reading": "bound",
+   "rs": "G5b SCALE_MISMATCH",
+   "ts": "G5b SCALE_MISMATCH",
+   "py": "G5b SECTION_MISMATCH",
+   "details": {
+    "rs": null,
+    "ts": null,
+    "py": null
+   }
+  },
+  {
+   "i": 126,
+   "name": "X G5b order: case 0's evidence As_m2 and case 1's body_scales force [two_case_synthetic]",
+   "reading": "unbound",
+   "rs": "G5b SCALE_MISMATCH",
+   "ts": "G5b SCALE_MISMATCH",
+   "py": "G5b SECTION_MISMATCH",
+   "details": {
+    "rs": null,
+    "ts": null,
+    "py": null
+   }
+  }
+ ],
+ "want_misses": [
+  {
+   "i": 126,
+   "name": "X G5b order: case 0's evidence As_m2 and case 1's body_scales force [two_case_synthetic]",
+   "reader": "py",
+   "want": "G5b SCALE_MISMATCH",
+   "got": "G5b SECTION_MISMATCH"
+  }
+ ],
+ "g7": [
+  {
+   "reading": "bound",
+   "rs": "G7 SOURCE_PHYSICS_NUMBER_INVALID",
+   "ts": "G7 PHYSICS_EVIDENCE_MATERIAL_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 2
+  },
+  {
+   "reading": "bound",
+   "rs": "G7 SOURCE_PHYSICS_NUMERICAL_CASE_COVERAGE",
+   "ts": "G7 PHYSICS_EVIDENCE_CASE_COVERAGE",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 2
+  },
+  {
+   "reading": "transport",
+   "rs": "G7 SOURCE_PHYSICS_RHS_METHOD",
+   "ts": "G7 PHYSICS_EVIDENCE_TRANSPORT_MAXIMUM_ID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 1
+  },
+  {
+   "reading": "transport",
+   "rs": "G7 SOURCE_PHYSICS_TRANSPORT_MAXIMUM_RESULT",
+   "ts": "G7 PHYSICS_EVIDENCE_TRANSPORT_MAXIMUM_ID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 1
+  },
+  {
+   "reading": "transport",
+   "rs": "G7 SOURCE_PHYSICS_TRANSPORT_SHAPE",
+   "ts": "G7 PHYSICS_EVIDENCE_TRANSPORT_SHAPE",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 2
+  },
+  {
+   "reading": "unbound",
+   "rs": "G7 SOURCE_PHYSICS_NUMBER_INVALID",
+   "ts": "G7 PHYSICS_EVIDENCE_MATERIAL_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 2
+  },
+  {
+   "reading": "unbound",
+   "rs": "G7 SOURCE_PHYSICS_NUMERICAL_CASE_COVERAGE",
+   "ts": "G7 PHYSICS_EVIDENCE_CASE_COVERAGE",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID",
+   "n": 2
+  }
+ ],
+ "tally": [
+  {
+   "reading": "bound",
+   "verdict": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "n": 6
+  },
+  {
+   "reading": "bound",
+   "verdict": "G1 RECEIPT_MISMATCH",
+   "n": 9
+  },
+  {
+   "reading": "bound",
+   "verdict": "G5b SCALE_MISMATCH",
+   "n": 1
+  },
+  {
+   "reading": "bound",
+   "verdict": "G5b SECTION_MISMATCH",
+   "n": 2
+  },
+  {
+   "reading": "bound",
+   "verdict": "G7",
+   "n": 4
+  },
+  {
+   "reading": "bound",
+   "verdict": "G8 INVOCATION_MISMATCH",
+   "n": 44
+  },
+  {
+   "reading": "bound",
+   "verdict": "G8 PREPARATION_MISMATCH",
+   "n": 41
+  },
+  {
+   "reading": "bound",
+   "verdict": "eligible",
+   "n": 20
+  },
+  {
+   "reading": "transport",
+   "verdict": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "n": 6
+  },
+  {
+   "reading": "transport",
+   "verdict": "G1 RECEIPT_MISMATCH",
+   "n": 9
+  },
+  {
+   "reading": "transport",
+   "verdict": "G7",
+   "n": 4
+  },
+  {
+   "reading": "transport",
+   "verdict": "ok",
+   "n": 109
+  },
+  {
+   "reading": "unbound",
+   "verdict": "G0 SOURCE_PRODUCER_CONTRACT_UNSUPPORTED",
+   "n": 6
+  },
+  {
+   "reading": "unbound",
+   "verdict": "G1 RECEIPT_MISMATCH",
+   "n": 9
+  },
+  {
+   "reading": "unbound",
+   "verdict": "G5b SCALE_MISMATCH",
+   "n": 1
+  },
+  {
+   "reading": "unbound",
+   "verdict": "G5b SECTION_MISMATCH",
+   "n": 2
+  },
+  {
+   "reading": "unbound",
+   "verdict": "G7",
+   "n": 4
+  },
+  {
+   "reading": "unbound",
+   "verdict": "ok",
+   "n": 105
+  }
+ ],
+ "unwanted_bound": [
+  {
+   "i": 78,
+   "name": "X G8 step 4: authored shear_modulus with an unknown unit [ordinary_prepared_synthetic]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 79,
+   "name": "X G8 step 4: authored shear_modulus removed [ordinary_prepared_synthetic]",
+   "rs": "eligible",
+   "ts": "eligible",
+   "py": "eligible"
+  },
+  {
+   "i": 80,
+   "name": "X G8 step 4: authored shear_modulus a string value [ordinary_prepared_synthetic]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 81,
+   "name": "X G8 step 4: authored thermal_expansion_coefficient with an unknown unit [ordinary_prepared_synthetic]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 82,
+   "name": "X G8 step 4: a temperature point with an unknown-unit modulus [ordinary_prepared_synthetic]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 84,
+   "name": "X G8: an exact_cases entry for a case not in the invocation [ordinary_prepared_synthetic]",
+   "rs": "G7 SOURCE_PHYSICS_NUMERICAL_CASE_COVERAGE",
+   "ts": "G7 PHYSICS_EVIDENCE_CASE_COVERAGE",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 85,
+   "name": "X G8 N-6: an entry's G_pa a string [ordinary_prepared_synthetic]",
+   "rs": "G7 SOURCE_PHYSICS_NUMBER_INVALID",
+   "ts": "G7 PHYSICS_EVIDENCE_MATERIAL_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 116,
+   "name": "X G8 step 4: authored shear_modulus with an unknown unit [m3x_sparse_interactive]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 117,
+   "name": "X G8 step 4: authored shear_modulus removed [m3x_sparse_interactive]",
+   "rs": "eligible",
+   "ts": "eligible",
+   "py": "eligible"
+  },
+  {
+   "i": 118,
+   "name": "X G8 step 4: authored shear_modulus a string value [m3x_sparse_interactive]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 119,
+   "name": "X G8 step 4: authored thermal_expansion_coefficient with an unknown unit [m3x_sparse_interactive]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 120,
+   "name": "X G8 step 4: a temperature point with an unknown-unit modulus [m3x_sparse_interactive]",
+   "rs": "G8 PREPARATION_MISMATCH",
+   "ts": "G8 PREPARATION_MISMATCH",
+   "py": "G8 PREPARATION_MISMATCH"
+  },
+  {
+   "i": 122,
+   "name": "X G8: an exact_cases entry for a case not in the invocation [m3x_sparse_interactive]",
+   "rs": "G7 SOURCE_PHYSICS_NUMERICAL_CASE_COVERAGE",
+   "ts": "G7 PHYSICS_EVIDENCE_CASE_COVERAGE",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  },
+  {
+   "i": 123,
+   "name": "X G8 N-6: an entry's G_pa a string [m3x_sparse_interactive]",
+   "rs": "G7 SOURCE_PHYSICS_NUMBER_INVALID",
+   "ts": "G7 PHYSICS_EVIDENCE_MATERIAL_INVALID",
+   "py": "G7 SOURCE_PHYSICS_EVIDENCE_INVALID"
+  }
+ ]
+}

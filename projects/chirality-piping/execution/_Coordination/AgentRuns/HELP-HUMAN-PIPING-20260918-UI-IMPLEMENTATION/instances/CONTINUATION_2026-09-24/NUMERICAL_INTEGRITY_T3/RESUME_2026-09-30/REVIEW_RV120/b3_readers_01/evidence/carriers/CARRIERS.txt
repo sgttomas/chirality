@@ -1,0 +1,12 @@
+PY built and validated the exact AnalysisRun sparse_interactive openpipestress.result_semantics/0.3.0/physics-retained-1
+PY built and validated the exact AnalysisRun dense_scrutiny openpipestress.result_semantics/0.3.0/physics-retained-1
+results.v0.3 retained_precision_exact_successor_derivative_sparse_interactive.json valid
+results.v0.3 retained_precision_exact_successor_derivative_dense_scrutiny.json valid
+results.v0.3 retained_precision_successor_derivative_sparse_interactive.json valid
+results.v0.3 retained_precision_successor_derivative_dense_scrutiny.json valid
+results.v0.3 exact golden, preview profile: refused
+results.v0.3 exact golden, no receipt: refused
+analysis_run.v0.3 PY exact record sparse_interactive valid
+analysis_run.v0.3 PY exact record without receipt sparse_interactive refused
+analysis_run.v0.3 PY exact record dense_scrutiny valid
+analysis_run.v0.3 PY exact record without receipt dense_scrutiny refused

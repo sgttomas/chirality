@@ -1,0 +1,24 @@
+{
+ "inputs": 4,
+ "differences_outside_g7": [],
+ "want_misses": [],
+ "g7": [],
+ "tally": [
+  {
+   "reading": "bound",
+   "verdict": "G8 PREPARATION_MISMATCH",
+   "n": 4
+  },
+  {
+   "reading": "transport",
+   "verdict": "ok",
+   "n": 4
+  },
+  {
+   "reading": "unbound",
+   "verdict": "ok",
+   "n": 4
+  }
+ ],
+ "unwanted_bound": []
+}
