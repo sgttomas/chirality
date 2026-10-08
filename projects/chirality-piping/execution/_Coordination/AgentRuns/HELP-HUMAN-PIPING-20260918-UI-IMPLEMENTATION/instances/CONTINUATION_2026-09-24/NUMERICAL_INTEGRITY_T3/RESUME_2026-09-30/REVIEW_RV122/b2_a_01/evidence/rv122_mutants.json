@@ -1,0 +1,470 @@
+[
+ {
+  "id": "RQ-01",
+  "check": "C-9 removed",
+  "compile_error": false,
+  "passed": 583,
+  "failed": 3,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_combination_ids_are_disjoint_from_load_case_ids",
+   "retained_memory::law_tests::every_family_clause_refuses_with_its_fact"
+  ]
+ },
+ {
+  "id": "RQ-02",
+  "check": "C-9 against the first case only",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_combination_ids_are_disjoint_from_load_case_ids"
+  ]
+ },
+ {
+  "id": "RQ-03",
+  "check": "C-9 over the first combination only",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_combination_ids_are_disjoint_from_load_case_ids"
+  ]
+ },
+ {
+  "id": "RQ-04",
+  "check": "z cap 2 -> 3",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_d1_admits_case_equivalents_up_to_three"
+  ]
+ },
+ {
+  "id": "RQ-05",
+  "check": "z row observes 0",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_d1_admits_case_equivalents_up_to_three"
+  ]
+ },
+ {
+  "id": "RQ-06",
+  "check": "C_eq cap 3 -> 4",
+  "compile_error": false,
+  "passed": 579,
+  "failed": 7,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b1_sa_envelope_results_bound_is_c_times_p_final",
+   "retained_memory::law_tests::b1_sa_gate_bounds_at_c_are_the_stated_expressions",
+   "retained_memory::law_tests::b2_a_d1_admits_case_equivalents_up_to_three",
+   "retained_memory::law_tests::b2_a_g_c_bounds_are_per_case_equivalent",
+   "retained_memory::law_tests::b2_a_runner_oracle_literal_is_case_equivalents_plus_one",
+   "retained_memory::law_tests::every_phase_fact_admits_its_cap_and_refuses_cap_plus_one"
+  ]
+ },
+ {
+  "id": "RQ-07",
+  "check": "C_eq drops z",
+  "compile_error": false,
+  "passed": 583,
+  "failed": 3,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_d1_admits_case_equivalents_up_to_three",
+   "retained_memory::law_tests::b2_a_runner_oracle_literal_is_case_equivalents_plus_one"
+  ]
+ },
+ {
+  "id": "RQ-08",
+  "check": "C_eq drops c",
+  "compile_error": false,
+  "passed": 583,
+  "failed": 3,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_d1_admits_case_equivalents_up_to_three",
+   "retained_memory::law_tests::b2_a_runner_oracle_literal_is_case_equivalents_plus_one"
+  ]
+ },
+ {
+  "id": "RQ-09",
+  "check": "h cap 3 -> 4",
+  "compile_error": false,
+  "passed": 583,
+  "failed": 3,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_d1_admits_case_equivalents_up_to_three",
+   "retained_memory::law_tests::b2_a_terms_and_range_operands_are_at_most_three"
+  ]
+ },
+ {
+  "id": "RQ-10",
+  "check": "census over the first combination only",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_terms_and_range_operands_are_at_most_three"
+  ]
+ },
+ {
+  "id": "RQ-11",
+  "check": "terms capacity read as length",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_terms_and_range_operands_are_at_most_three"
+  ]
+ },
+ {
+  "id": "RQ-12",
+  "check": "range-operand cap 3 -> 4",
+  "compile_error": false,
+  "passed": 583,
+  "failed": 3,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_d1_admits_case_equivalents_up_to_three",
+   "retained_memory::law_tests::b2_a_terms_and_range_operands_are_at_most_three"
+  ]
+ },
+ {
+  "id": "RQ-13",
+  "check": "operand ids not censused",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_terms_and_range_operands_are_at_most_three"
+  ]
+ },
+ {
+  "id": "RQ-14",
+  "check": "operand-ids capacity read as length",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_terms_and_range_operands_are_at_most_three"
+  ]
+ },
+ {
+  "id": "RQ-15",
+  "check": "CombinationsCapacity cap z+1",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::typed_capacity_and_units_rows_read_the_actual_owners"
+  ]
+ },
+ {
+  "id": "RQ-16",
+  "check": "walk skips combination provenance",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_typed_census_reads_every_combination_string"
+  ]
+ },
+ {
+  "id": "RQ-17",
+  "check": "walk skips term case ids",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_typed_census_reads_every_combination_string"
+  ]
+ },
+ {
+  "id": "RQ-18",
+  "check": "walk skips operand ids",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_typed_census_reads_every_combination_string"
+  ]
+ },
+ {
+  "id": "RQ-19",
+  "check": "walk skips combination label",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_typed_census_reads_every_combination_string"
+  ]
+ },
+ {
+  "id": "RQ-20",
+  "check": "G-C rows bound (C_eq+1)",
+  "compile_error": false,
+  "passed": 581,
+  "failed": 5,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b1_sa_envelope_results_bound_is_c_times_p_final",
+   "retained_memory::law_tests::b1_sa_gate_bounds_at_c_are_the_stated_expressions",
+   "retained_memory::law_tests::b2_a_g_c_bounds_are_per_case_equivalent",
+   "retained_memory::law_tests::every_phase_fact_admits_its_cap_and_refuses_cap_plus_one"
+  ]
+ },
+ {
+  "id": "RQ-21",
+  "check": "G-C error-text bound (C_eq+1)",
+  "compile_error": false,
+  "passed": 582,
+  "failed": 4,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b1_sa_gate_bounds_at_c_are_the_stated_expressions",
+   "retained_memory::law_tests::b2_a_g_c_bounds_are_per_case_equivalent",
+   "retained_memory::law_tests::every_phase_fact_admits_its_cap_and_refuses_cap_plus_one"
+  ]
+ },
+ {
+  "id": "RQ-22",
+  "check": "B2A-13 analogue: C_eq read as C (equivalent while caps equal)",
+  "compile_error": false,
+  "passed": 585,
+  "failed": 1,
+  "killed": false,
+  "killed_by": []
+ },
+ {
+  "id": "RQ-23",
+  "check": "L3 ignores the version",
+  "compile_error": false,
+  "passed": 582,
+  "failed": 4,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0",
+   "retained_memory::law_tests::b3a_direct_entry_oracles",
+   "retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions"
+  ]
+ },
+ {
+  "id": "RQ-24",
+  "check": "L3 ignores the mode",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0"
+  ]
+ },
+ {
+  "id": "RQ-25",
+  "check": "L3 admits 0.4.0",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0"
+  ]
+ },
+ {
+  "id": "RQ-26",
+  "check": "E ignores the version",
+  "compile_error": false,
+  "passed": 583,
+  "failed": 3,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0",
+   "retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions"
+  ]
+ },
+ {
+  "id": "RQ-27",
+  "check": "E admits 0.4.0",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions"
+  ]
+ },
+ {
+  "id": "RQ-28",
+  "check": "refusal map: 0.3.0 mismatch -> SchemaVersion",
+  "compile_error": false,
+  "passed": 581,
+  "failed": 5,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0",
+   "retained_memory::law_tests::b3a_direct_entry_oracles",
+   "retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions",
+   "retained_memory::law_tests::every_family_clause_refuses_with_its_fact"
+  ]
+ },
+ {
+  "id": "RQ-29",
+  "check": "L admits any contract",
+  "compile_error": false,
+  "passed": 582,
+  "failed": 4,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0",
+   "retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions",
+   "retained_memory::law_tests::every_family_clause_refuses_with_its_fact"
+  ]
+ },
+ {
+  "id": "RQ-30",
+  "check": "exact D1.4 clause removed",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions"
+  ]
+ },
+ {
+  "id": "RQ-31",
+  "check": "E admits non-empty regions",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions"
+  ]
+ },
+ {
+  "id": "RQ-32",
+  "check": "E admits absent regions",
+  "compile_error": false,
+  "passed": 583,
+  "failed": 3,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0",
+   "retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions"
+  ]
+ },
+ {
+  "id": "RQ-33",
+  "check": "L/L3 admit Some([])",
+  "compile_error": false,
+  "passed": 583,
+  "failed": 3,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0",
+   "retained_memory::law_tests::every_family_clause_refuses_with_its_fact"
+  ]
+ },
+ {
+  "id": "RQ-34",
+  "check": "exact clauses applied on L3",
+  "compile_error": false,
+  "passed": 582,
+  "failed": 4,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0",
+   "retained_memory::law_tests::b3a_direct_entry_oracles",
+   "retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions"
+  ]
+ },
+ {
+  "id": "RQ-35",
+  "check": "walk skips the contract strings",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0"
+  ]
+ },
+ {
+  "id": "RQ-36",
+  "check": "branch E dropped (E refused)",
+  "compile_error": false,
+  "passed": 582,
+  "failed": 4,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0",
+   "retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions",
+   "retained_memory::law_tests::b3b_direct_entry_keeps_the_exact_ordinary_bytes"
+  ]
+ },
+ {
+  "id": "RQ-37",
+  "check": "terms-capacity row reads length",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_terms_and_range_operands_are_at_most_three"
+  ]
+ },
+ {
+  "id": "RQ-38",
+  "check": "operand-capacity row reads length",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_terms_and_range_operands_are_at_most_three"
+  ]
+ },
+ {
+  "id": "RQ-39",
+  "check": "census keeps the last combination only",
+  "compile_error": false,
+  "passed": 584,
+  "failed": 2,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_terms_and_range_operands_are_at_most_three"
+  ]
+ },
+ {
+  "id": "RQ-40",
+  "check": "C-9 compares ids by prefix",
+  "compile_error": false,
+  "passed": 583,
+  "failed": 3,
+  "killed": true,
+  "killed_by": [
+   "retained_memory::law_tests::b2_a_combination_ids_are_disjoint_from_load_case_ids",
+   "retained_memory::law_tests::every_family_clause_refuses_with_its_fact"
+  ]
+ }
+]

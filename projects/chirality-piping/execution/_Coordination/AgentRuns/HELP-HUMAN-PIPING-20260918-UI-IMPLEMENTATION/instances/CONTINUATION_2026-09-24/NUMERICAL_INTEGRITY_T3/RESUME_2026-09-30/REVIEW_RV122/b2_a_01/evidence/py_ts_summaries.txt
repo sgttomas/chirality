@@ -1,0 +1,4 @@
+base py: ================ 2168 passed, 17 skipped in 1102.94s (0:18:22) =================
+base ts:       Tests  1846 passed (1846)
+head py: ================ 2168 passed, 17 skipped in 1228.93s (0:20:28) =================
+head ts:       Tests  1846 passed (1846)

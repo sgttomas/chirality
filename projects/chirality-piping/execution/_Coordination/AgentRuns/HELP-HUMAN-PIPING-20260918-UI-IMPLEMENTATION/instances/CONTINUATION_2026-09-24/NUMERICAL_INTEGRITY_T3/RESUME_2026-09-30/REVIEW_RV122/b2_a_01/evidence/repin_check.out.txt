@@ -1,0 +1,63 @@
+== base
+REVIEWED_INPUTS 14 paths 14 registered entries 1
+re-derived == pinned: True
+build.rs array: ['14']
+encode array: ['14']
+  4f494db6d8a6eca8 Cargo.lock
+  3bb969555d5616af ../../schemas/physics_source_recovery.schema.json
+  07951edacfedd410 ../../schemas/retained_precision_mp_v2.schema.json
+  3e0779a45a74cf0b ../../fixtures/results/retained_precision_prepared_ordinary_v1.json
+  c74742ce6a936384 ../../fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json
+  4d6886d19e304db8 ../../fixtures/results/semantic_contract_v0_2.json
+  d75aacee175e178d ../../fixtures/results/semantic_contract_v0_3_precision_1.json
+  9a2cf6268b57bd52 ../../fixtures/results/semantic_contract_v0_3_physics_1.json
+  44bc41c06f589fab ../../fixtures/results/semantic_contract_v0_3_load_reference_1.json
+  d1628194a7730f42 ../../fixtures/results/semantic_contract_v0_3_load_reference_source_1.json
+  ae55503d44a47507 ../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json
+  ba13f2aefd7a38bd ../../fixtures/results/semantic_contract_v0_3_physics_source_1.json
+  5f299065f15a157b ../../fixtures/results/semantic_contract_v0_3_source_blocks_1.json
+  544e196d2f7bef27 ../../schemas/source_block_recovery.schema.json
+== j1
+REVIEWED_INPUTS 17 paths 17 registered entries 1
+re-derived == pinned: True
+build.rs array: ['17']
+encode array: ['17']
+  4f494db6d8a6eca8 Cargo.lock
+  3bb969555d5616af ../../schemas/physics_source_recovery.schema.json
+  abf3225ca431342d ../../schemas/retained_precision_mp_v2.schema.json
+  3e0779a45a74cf0b ../../fixtures/results/retained_precision_prepared_ordinary_v1.json
+  b2b4a54d610aa38c ../../fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json
+  4d6886d19e304db8 ../../fixtures/results/semantic_contract_v0_2.json
+  d75aacee175e178d ../../fixtures/results/semantic_contract_v0_3_precision_1.json
+  9a2cf6268b57bd52 ../../fixtures/results/semantic_contract_v0_3_physics_1.json
+  44bc41c06f589fab ../../fixtures/results/semantic_contract_v0_3_load_reference_1.json
+  d1628194a7730f42 ../../fixtures/results/semantic_contract_v0_3_load_reference_source_1.json
+  ae55503d44a47507 ../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json
+  ba13f2aefd7a38bd ../../fixtures/results/semantic_contract_v0_3_physics_source_1.json
+  5f299065f15a157b ../../fixtures/results/semantic_contract_v0_3_source_blocks_1.json
+  544e196d2f7bef27 ../../schemas/source_block_recovery.schema.json
+  3cebce55d1b31e00 ../../fixtures/results/retained_precision_prepared_combination_v1.json
+  71f63d3916fa37ad ../../fixtures/results/retained_precision_prepared_exact_v1.json
+  c4987e874889645a ../../fixtures/results/semantic_contract_v0_3_physics_retained_1.json
+== head
+REVIEWED_INPUTS 17 paths 17 registered entries 1
+re-derived == pinned: True
+build.rs array: ['17']
+encode array: ['17']
+  4f494db6d8a6eca8 Cargo.lock
+  3bb969555d5616af ../../schemas/physics_source_recovery.schema.json
+  abf3225ca431342d ../../schemas/retained_precision_mp_v2.schema.json
+  3e0779a45a74cf0b ../../fixtures/results/retained_precision_prepared_ordinary_v1.json
+  b2b4a54d610aa38c ../../fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json
+  4d6886d19e304db8 ../../fixtures/results/semantic_contract_v0_2.json
+  d75aacee175e178d ../../fixtures/results/semantic_contract_v0_3_precision_1.json
+  9a2cf6268b57bd52 ../../fixtures/results/semantic_contract_v0_3_physics_1.json
+  44bc41c06f589fab ../../fixtures/results/semantic_contract_v0_3_load_reference_1.json
+  d1628194a7730f42 ../../fixtures/results/semantic_contract_v0_3_load_reference_source_1.json
+  ae55503d44a47507 ../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json
+  ba13f2aefd7a38bd ../../fixtures/results/semantic_contract_v0_3_physics_source_1.json
+  5f299065f15a157b ../../fixtures/results/semantic_contract_v0_3_source_blocks_1.json
+  544e196d2f7bef27 ../../schemas/source_block_recovery.schema.json
+  3cebce55d1b31e00 ../../fixtures/results/retained_precision_prepared_combination_v1.json
+  71f63d3916fa37ad ../../fixtures/results/retained_precision_prepared_exact_v1.json
+  c4987e874889645a ../../fixtures/results/semantic_contract_v0_3_physics_retained_1.json

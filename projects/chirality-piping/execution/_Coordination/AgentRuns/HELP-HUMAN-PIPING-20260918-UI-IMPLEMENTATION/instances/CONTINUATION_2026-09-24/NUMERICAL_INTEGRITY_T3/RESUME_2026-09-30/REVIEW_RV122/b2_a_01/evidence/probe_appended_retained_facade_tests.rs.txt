@@ -1,0 +1,22 @@
+// ---- RV122 probes (review only; not part of the candidate) ----
+/// RV122 probe A: m3l on the Direct entry, pinned as B1 pins a precommit fallback:
+/// the exact cause and the ordinary bytes plus exactly one notice.
+#[test]
+fn rv122_probe_m3l_direct_entry_exact_publication() {
+    for mode in MODES {
+        let mut m3l = raw();
+        m3l["model"]["schema_version"] = json!("0.3.0");
+        m3l["model"]["pressure_contract"] = json!({"version": "1.0.0", "mode": "legacy_pressure_v1"});
+        let plain_bytes = plain(mode, &m3l);
+        let (output, counts) = direct(&m3l, mode);
+        println!("RV122_M3L mode={} registered={} counts={:?} retained={:?}", mode.as_str(), registered(), counts,
+            output.retained().map(|r| r.as_ref().err()));
+        if !registered() { continue; }
+        assert_eq!(output.retained().and_then(|r| r.as_ref().err()),
+            Some(&W1Fallback::Precommit { gate: "G8", code: "RETAINED_PRECISION_INVOCATION_MISMATCH".into() }), "{mode:?}");
+        let bytes = published(output);
+        let expected = with_notice(&plain_bytes, "case", None);
+        println!("RV122_M3L_BYTES mode={} equal_with_notice={} notices={} len={} plain_len={}", mode.as_str(), bytes == expected, notices(&bytes), bytes.len(), plain_bytes.len());
+        assert_eq!(bytes, expected, "{mode:?}: the ordinary bytes plus one notice");
+    }
+}

@@ -1,0 +1,27 @@
+# RV122 probes A, B, C at the candidate head (probe copy = git archive of e96355ef8f plus the appended probe tests; fresh target)
+RV122_M3L mode=sparse_interactive registered=true counts=Counts { runs: 1, complete_gates: 1 } retained=Some(Some(Precommit { gate: "G8", code: "RETAINED_PRECISION_INVOCATION_MISMATCH" }))
+RV122_M3L_BYTES mode=sparse_interactive equal_with_notice=true notices=1 len=68614 plain_len=68295
+RV122_M3L mode=dense_scrutiny registered=true counts=Counts { runs: 1, complete_gates: 1 } retained=Some(Some(Precommit { gate: "G8", code: "RETAINED_PRECISION_INVOCATION_MISMATCH" }))
+RV122_M3L_BYTES mode=dense_scrutiny equal_with_notice=true notices=1 len=69730 plain_len=69411
+test retained_memory::law_tests::rv122_probe_build_facts ... RV122_IDENTITY_IS_REGISTERED true
+RV122_BUILD_STATUS Ok(0)
+RV122_LAYOUTS [TypeLayout { size: 56, align: 8 }, TypeLayout { size: 64, align: 8 }, TypeLayout { size: 96, align: 8 }, TypeLayout { size: 16, align: 8 }]
+RV122_SIZES report=928 nested=240 cap_rows=53
+test retained_memory::law_tests::rv122_probe_exact_regions_capacity_is_unread ... RV122_REGIONS_CAPACITY domain=None
+RV122_SECTIONS_CAPACITY domain=Some(Cap { fact: SectionsCapacity, observed: 1, cap: 0 })
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 597 filtered out; finished in 1.43s
+
+# profile atoms and phases (I65_G5_*), base vs head probe copy: identical
+I65_G5_ATOM InBuild	s(ThreadPacketOutput)	1704	2048
+I65_G5_PROFILE mode=dense max_without_R=3528379870 E_mov_plus_R=3595488734 fraction_of_M=0.8929 phase=W3 publication (T16) with the staged copy
+test retained_memory::law_tests::profile_in_build_record ... I65_G5_PROFILE mode=sparse max_without_R=3508669422 E_mov_plus_R=3575778286 fraction_of_M=0.8881 phase=W3 publication (T16) with the staged copy
+base lines=     246 head lines=     246 diff=0
+
+# build-record tests at the probe copy
+probe rv122_probe rc=0 2026-10-08T13:08:03Z
+probe profile_in_build_record rc=0 2026-10-08T13:08:03Z
+probe the_registered_profile_is_the_only_permit_source rc=0 2026-10-08T13:08:03Z
+probe reviewed_inputs_bind_the_lock rc=0 2026-10-08T13:08:03Z
+probe b3a_direct_entry_oracles rc=0 2026-10-08T13:08:05Z
+probe b2_a_g_c_bounds rc=0 2026-10-08T13:08:05Z
+DONE 2026-10-08T13:08:05Z

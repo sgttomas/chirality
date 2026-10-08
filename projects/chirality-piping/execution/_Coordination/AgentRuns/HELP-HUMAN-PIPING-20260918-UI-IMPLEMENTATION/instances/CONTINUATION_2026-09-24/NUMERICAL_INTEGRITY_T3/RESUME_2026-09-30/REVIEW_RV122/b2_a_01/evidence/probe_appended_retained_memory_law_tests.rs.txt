@@ -1,0 +1,21 @@
+// ---- RV122 probes (review only; not part of the candidate) ----
+/// RV122 probe B: on branch E a case's `pressure_regions` is `Some(vec)` with length 0; its
+/// capacity is a typed heap owner that no D1.9 row reads (T03: actual capacities). The sections
+/// owner, empty with spare capacity, is the control.
+#[test]
+fn rv122_probe_exact_regions_capacity_is_unread() {
+    let report = admitted_typed(exact3(milestone()), |r| r.model.load_cases[0].pressure_regions = Some(Vec::with_capacity(1 << 16)));
+    println!("RV122_REGIONS_CAPACITY domain={:?}", report.law().domain);
+    let control = admitted_typed(exact3(milestone()), |r| r.model.sections.reserve_exact(1));
+    println!("RV122_SECTIONS_CAPACITY domain={:?}", control.law().domain);
+    assert!(control.law().domain.is_some(), "the control refuses");
+}
+/// RV122 probe C: the facts this review reads in the build: the identity and status, and the
+/// in-build layout atoms.
+#[test]
+fn rv122_probe_build_facts() {
+    println!("RV122_IDENTITY_IS_REGISTERED {}", COMPILED_IDENTITY == Some(REGISTERED_PROFILES[0].identity));
+    println!("RV122_BUILD_STATUS {:?}", build_status());
+    println!("RV122_LAYOUTS {:?}", READER_LAYOUTS);
+    println!("RV122_SIZES report={} nested={} cap_rows={}", std::mem::size_of::<RetainedAdmissionReport>(), std::mem::size_of::<NestedTypedFacts>(), CAP_ROWS);
+}

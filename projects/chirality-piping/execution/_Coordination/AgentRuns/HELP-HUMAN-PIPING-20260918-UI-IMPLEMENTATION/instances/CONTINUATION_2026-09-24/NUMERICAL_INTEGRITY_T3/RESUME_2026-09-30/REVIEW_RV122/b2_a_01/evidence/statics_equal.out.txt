@@ -1,0 +1,11 @@
+# RV122: each J1 static against its selected file (cmp), at J1 cd7bc9b363 and head e96355ef8f
+EQUAL j1 P/schemas/retained_precision_mp_v2.schema.json abf3225ca431342dd785072a1baad7715b7e8c19afd15b5777feebf06d48669e (R/I97/b2_c_01/statics/)
+EQUAL head P/schemas/retained_precision_mp_v2.schema.json abf3225ca431342dd785072a1baad7715b7e8c19afd15b5777feebf06d48669e (R/I97/b2_c_01/statics/)
+EQUAL j1 P/fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c (R/I97/b2_c_01/statics/r2/)
+EQUAL head P/fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json b2b4a54d610aa38c66f5d31921c2d8f3113313e33eb6933e45093ba6f1e3667c (R/I97/b2_c_01/statics/r2/)
+EQUAL j1 P/fixtures/results/retained_precision_prepared_combination_v1.json 3cebce55d1b31e0031628d7542a33a8debdfa37d2d258cb27dfbdfd1fc28db22 (R/I97/b2_c_01/statics/r2/)
+EQUAL head P/fixtures/results/retained_precision_prepared_combination_v1.json 3cebce55d1b31e0031628d7542a33a8debdfa37d2d258cb27dfbdfd1fc28db22 (R/I97/b2_c_01/statics/r2/)
+EQUAL j1 P/fixtures/results/retained_precision_prepared_exact_v1.json 71f63d3916fa37ad0021ffb6ad993760a274166fe7ef275d7435c6856ed5642e (R/I96/b3_d_01/statics/r1/)
+EQUAL head P/fixtures/results/retained_precision_prepared_exact_v1.json 71f63d3916fa37ad0021ffb6ad993760a274166fe7ef275d7435c6856ed5642e (R/I96/b3_d_01/statics/r1/)
+EQUAL j1 P/fixtures/results/semantic_contract_v0_3_physics_retained_1.json c4987e874889645ac315b5f55f58690082ad5e7745527f20e3e316efa3e70a3d (R/I96/b3_d_01/statics/r1/)
+EQUAL head P/fixtures/results/semantic_contract_v0_3_physics_retained_1.json c4987e874889645ac315b5f55f58690082ad5e7745527f20e3e316efa3e70a3d (R/I96/b3_d_01/statics/r1/)

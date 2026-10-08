@@ -1,0 +1,89 @@
+{
+ "pp": {
+  "base": {
+   "FAILED": 1,
+   "ignored": 11,
+   "ok": 738
+  },
+  "candidate": {
+   "FAILED": 1,
+   "ignored": 11,
+   "ok": 748
+  },
+  "changed": {},
+  "only_base": {
+   "unittests::retained_memory::law_tests::b1_sa_runner_oracle_literal_is_load_cases_plus_one": "ok"
+  },
+  "only_candidate": {
+   "unittests::retained_memory::law_tests::b2_a_admitted_combinations_keep_the_exact_ordinary_bytes_until_b2_p": "ok",
+   "unittests::retained_memory::law_tests::b2_a_combination_ids_are_disjoint_from_load_case_ids": "ok",
+   "unittests::retained_memory::law_tests::b2_a_d1_admits_case_equivalents_up_to_three": "ok",
+   "unittests::retained_memory::law_tests::b2_a_runner_oracle_literal_is_case_equivalents_plus_one": "ok",
+   "unittests::retained_memory::law_tests::b2_a_terms_and_range_operands_are_at_most_three": "ok",
+   "unittests::retained_memory::law_tests::b2_a_typed_census_reads_every_combination_string": "ok",
+   "unittests::retained_memory::law_tests::b2_a_g_c_bounds_are_per_case_equivalent": "ok",
+   "unittests::retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0": "ok",
+   "unittests::retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions": "ok",
+   "unittests::retained_memory::law_tests::b3b_direct_entry_keeps_the_exact_ordinary_bytes": "ok",
+   "unittests::retained_memory::law_tests::b3a_direct_entry_oracles": "ok"
+  },
+  "failed_both": [
+   "unittests::s11g_tests::t13_committed_fallback_uz_is_byte_identical"
+  ]
+ },
+ "re": {
+  "base": {
+   "ok": 196
+  },
+  "candidate": {
+   "ok": 196
+  },
+  "changed": {},
+  "only_base": {},
+  "only_candidate": {},
+  "failed_both": []
+ },
+ "runner": {
+  "base": {
+   "FAILED": 2,
+   "ok": 85
+  },
+  "candidate": {
+   "FAILED": 2,
+   "ok": 85
+  },
+  "changed": {},
+  "only_base": {},
+  "only_candidate": {},
+  "failed_both": [
+   "tests/load_reference_cli.rs::cli_load_reference_one_both_modes_is_controlled_and_equals_the_library_route",
+   "unittests::load_reference_route_tests::load_reference_one_actual_solve_mints_bound_evidence_and_canonical_document_both_modes"
+  ]
+ },
+ "py": {
+  "base": {
+   "PASSED": 2160,
+   "SKIPPED": 17
+  },
+  "candidate": {
+   "PASSED": 2160,
+   "SKIPPED": 17
+  },
+  "changed": {},
+  "only_base": {},
+  "only_candidate": {},
+  "failed_both": []
+ },
+ "ts": {
+  "base": {
+   "ok": 1846
+  },
+  "candidate": {
+   "ok": 1846
+  },
+  "changed": {},
+  "only_base": {},
+  "only_candidate": {},
+  "failed_both": []
+ }
+}
