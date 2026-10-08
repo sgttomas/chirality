@@ -17410,6 +17410,17 @@ mod tests {
         // skipped it silently, and the model solved without the joint while the
         // joint's review rows said its stiffness was consumed by the assembled
         // element. The builder needs all four values, so a missing one refuses.
+        // When another value is missing, the lateral value is set to zero so that
+        // M07 (which keys on a nonzero lateral value) cannot mask the defect
+        // (RV127 A1-N-4); a zero value is itself refused once an element forms.
+        let consumed = |output: &MechanicsEnvelope| {
+            output
+                .results
+                .iter()
+                .filter(|row| row.kind == "component_user_stiffness_macro_element_review")
+                .count()
+        };
+        let mut observed = Vec::new();
         for missing in ["lateral", "axial", "angular", "torsional"] {
             let mut input = request_with_refused_joint();
             for case in &mut input.model.load_cases {
@@ -17423,6 +17434,9 @@ mod tests {
                 .find(|component| component.id == "component:C-150")
                 .unwrap();
             let modifiers = joint.modifiers.as_mut().unwrap();
+            if missing != "lateral" {
+                modifiers.lateral_stiffness_user_value.as_mut().unwrap().value = 0.0;
+            }
             match missing {
                 "lateral" => modifiers.lateral_stiffness_user_value = None,
                 "axial" => modifiers.axial_stiffness_user_value = None,
@@ -17430,37 +17444,36 @@ mod tests {
                 _ => modifiers.torsional_stiffness_user_value = None,
             }
             let output = run_linear_static_preview(input);
-            let consumed_rows = output
-                .results
-                .iter()
-                .filter(|row| row.kind == "component_user_stiffness_macro_element_review")
-                .count();
-            assert_eq!(
-                (output.status.mechanics.as_str(), consumed_rows),
-                ("MODEL_INCOMPLETE", 0),
-                "{missing}: the joint without this value must be refused, not dropped"
-            );
-            assert!(output.results.is_empty(), "{missing}");
-            assert!(
-                output.diagnostics.iter().any(|d| d.code == "JOINT_ELEMENT_STIFFNESS_INCOMPLETE"
+            let refused = output.diagnostics.iter().any(|d| {
+                d.code == "JOINT_ELEMENT_STIFFNESS_INCOMPLETE"
                     && d.severity == "blocking"
-                    && d.message.contains(&format!("{missing} stiffness"))
+                    && d.message.contains(&format!("no user-entered {missing} stiffness"))
                     && d.affected_refs
-                        == vec!["component:C-150".to_string(), "pipe:P-130".to_string()]),
-                "{missing}: {:?}",
-                output.diagnostics.iter().map(|d| &d.code).collect::<Vec<_>>()
-            );
+                        == vec!["component:C-150".to_string(), "pipe:P-130".to_string()]
+            });
+            observed.push((
+                missing,
+                output.status.mechanics.clone(),
+                consumed(&output),
+                output.results.is_empty(),
+                refused,
+            ));
         }
+        let expected = ["lateral", "axial", "angular", "torsional"]
+            .map(|missing| (missing, "MODEL_INCOMPLETE".to_string(), 0, true, true))
+            .to_vec();
+        assert_eq!(observed, expected, "(missing value, status, consumed review rows, no results, refused by name)");
     }
 
     #[test]
     fn flexibility_joint_with_an_unresolved_mapping_is_refused_not_dropped() {
         // G11, extended by ROOT: the element builder also skips a joint whose pipe
-        // or node does not resolve. With no pipe, or an unknown one, the M07
-        // refusal skips the joint too, so the model solved without it (and an
-        // unknown pipe still got "consumed" review rows). With a node that is not
-        // an end of the pipe, M07 refused for a lateral coupling the model never
-        // realizes. Every case is now refused by name, before M07.
+        // or node does not resolve, so the model solved without the joint while
+        // its review rows said its stiffness was consumed. The lateral value is
+        // set to zero so that M07 (which keys on a nonzero lateral value over a
+        // resolved pipe) cannot mask the defect (RV127 A1-N-4); a zero value is
+        // itself refused once an element forms. Every case is now refused by
+        // name, before M07.
         let consumed = |output: &MechanicsEnvelope| {
             output
                 .results
@@ -17481,6 +17494,14 @@ mod tests {
                 .iter_mut()
                 .find(|component| component.id == "component:C-150")
                 .unwrap();
+            joint
+                .modifiers
+                .as_mut()
+                .unwrap()
+                .lateral_stiffness_user_value
+                .as_mut()
+                .unwrap()
+                .value = 0.0;
             let pipe_ref = &mut joint.geometry.as_mut().unwrap().expansion_joint_pipe_ref;
             match case {
                 "no pipe" => *pipe_ref = None,
