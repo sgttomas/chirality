@@ -1,0 +1,21 @@
+MUTANT r1_head_p2m29 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=2 passed=22
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_rn64_norm3_agrees_with_the_oracle_vectors
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_rn64_norm3_vectors_signed_zeros_refusal_and_work
+MUTANT r1_head_m36 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=23
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k13_a_case_owner_keeps_its_hull_projected_displacement_magnitude
+MUTANT r1_head_m18 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=23
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_c05_the_combination_coverage_rule
+MUTANT r1_head_mrk4 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=23
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows
+MUTANT r1_ef51_mrk4 file=src/structural/retained/product_certificate/final_case.rs
+  filter= rc=0
+  verdict=SURVIVED failed=0 passed=508
+R1_MUTANTS_DONE

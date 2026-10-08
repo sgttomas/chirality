@@ -1,0 +1,6 @@
+t3_host_screen.py WT/b2-k ef51a2d295 e22fd799bc:
+files 3, hits 0, names screened 5
+rc=0
+validate_private_terms.py --base ef51a2d295 --head e22fd799bc --from-host --terms-file <private list> --require-terms:
+PASS: 3 changed file(s) scanned against 5 private term(s); 0 finding(s).
+rc=0

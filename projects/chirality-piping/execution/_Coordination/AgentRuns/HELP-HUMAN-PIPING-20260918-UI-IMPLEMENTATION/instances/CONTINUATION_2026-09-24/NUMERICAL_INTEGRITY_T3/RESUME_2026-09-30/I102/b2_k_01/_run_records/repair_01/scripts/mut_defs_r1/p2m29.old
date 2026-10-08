@@ -1,0 +1,1 @@
+let up=upper>0 || (upper==0 && odd);

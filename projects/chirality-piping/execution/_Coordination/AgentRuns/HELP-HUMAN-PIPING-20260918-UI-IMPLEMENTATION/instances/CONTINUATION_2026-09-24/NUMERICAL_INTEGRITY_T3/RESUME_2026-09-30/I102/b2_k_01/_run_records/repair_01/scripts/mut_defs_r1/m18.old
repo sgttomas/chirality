@@ -1,0 +1,1 @@
+!(combination && j % 21 == 20)

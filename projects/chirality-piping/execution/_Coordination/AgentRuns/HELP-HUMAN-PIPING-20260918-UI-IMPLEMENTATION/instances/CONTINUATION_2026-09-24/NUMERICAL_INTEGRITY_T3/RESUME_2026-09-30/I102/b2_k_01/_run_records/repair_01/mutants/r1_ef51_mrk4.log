@@ -1,0 +1,3 @@
+MUTANT r1_ef51_mrk4 file=src/structural/retained/product_certificate/final_case.rs
+  filter= rc=0
+  verdict=SURVIVED failed=0 passed=508

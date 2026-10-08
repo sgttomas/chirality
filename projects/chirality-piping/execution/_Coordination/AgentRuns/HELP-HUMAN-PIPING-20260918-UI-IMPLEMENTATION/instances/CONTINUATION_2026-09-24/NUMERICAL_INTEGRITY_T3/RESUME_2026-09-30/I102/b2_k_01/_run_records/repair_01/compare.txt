@@ -1,0 +1,10 @@
+FK suite, test for test: ef51a2d295 (b2_k_01 _run_records/suites/part2_fk.log) vs e22fd799bc (r1_fk_full.log)
+ef51a2d295:      575 test lines; e22fd799bc:      576 test lines
+diff:
+353a354
+> test structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k13_a_case_owner_keeps_its_hull_projected_displacement_magnitude ... ok
+K-09 printed B2K_ lines: ef51a2d295 (p2f_k09_rows.log) vs e22fd799bc (r1_k09_rows.log):      658 lines each; cmp: identical
+git diff --name-only ef51a2d295 e22fd799bc:
+projects/chirality-piping/core/solver/frame_kernel/tests/retained_k4/product_certificate_combination_vectors.rs
+projects/chirality-piping/core/solver/frame_kernel/tests/retained_k4/product_certificate_vectors.py
+projects/chirality-piping/core/solver/frame_kernel/tests/retained_k4/product_final_case_tests.rs

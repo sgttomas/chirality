@@ -1,0 +1,4 @@
+MUTANT r1_head_m36 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=23
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k13_a_case_owner_keeps_its_hull_projected_displacement_magnitude

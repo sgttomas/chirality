@@ -1,0 +1,3 @@
+thread 'structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows' panicked at src/structural/retained/product_certificate/../../../../tests/retained_k4/product_final_case_tests.rs:1519:13:
+C1 DisplacementMagnitude(1)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

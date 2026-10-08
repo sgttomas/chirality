@@ -1,0 +1,19 @@
+{
+ "baseline": {
+  "rc": 0,
+  "built": true,
+  "failed": [],
+  "passed": 29,
+  "seconds": 17
+ },
+ "rk4": {
+  "rc": 0,
+  "built": true,
+  "failed": [],
+  "passed": 29,
+  "seconds": 10,
+  "what": "availability: a combination magnitude row gated as InputDerived (RK-4)",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "SURVIVED"
+ }
+}

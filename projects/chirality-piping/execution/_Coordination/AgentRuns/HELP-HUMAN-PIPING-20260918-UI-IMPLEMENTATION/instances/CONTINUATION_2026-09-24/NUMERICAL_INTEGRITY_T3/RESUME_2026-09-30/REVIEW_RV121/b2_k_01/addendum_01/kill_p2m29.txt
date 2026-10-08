@@ -1,0 +1,6 @@
+thread 'structural::retained::product_certificate::final_case::product_final_case_tests::b2k_rn64_norm3_agrees_with_the_oracle_vectors' panicked at src/structural/retained/product_certificate/../../../../tests/retained_k4/product_final_case_tests.rs:1724:21:
+assertion `left == right` failed: 7fefffffffffffe5 7e7443426b800000 7e4d4ef94a000000
+  left: Ok(1.7976931348623157e308)
+thread 'structural::retained::product_certificate::final_case::product_final_case_tests::b2k_rn64_norm3_vectors_signed_zeros_refusal_and_work' panicked at src/structural/retained/product_certificate/../../../../tests/retained_k4/product_final_case_tests.rs:1686:21:
+assertion `left == right` failed: 7fefffffffffffe5 7e7443426b800000
+  left: Ok(1.7976931348623157e308)

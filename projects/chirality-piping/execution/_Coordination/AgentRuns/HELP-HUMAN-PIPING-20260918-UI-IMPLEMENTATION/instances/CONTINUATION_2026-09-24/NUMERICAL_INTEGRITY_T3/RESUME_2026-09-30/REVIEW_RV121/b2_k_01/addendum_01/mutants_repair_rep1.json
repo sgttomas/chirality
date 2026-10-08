@@ -1,0 +1,58 @@
+{
+ "baseline": {
+  "rc": 0,
+  "built": true,
+  "failed": [],
+  "passed": 30,
+  "seconds": 18
+ },
+ "p2m29": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_rn64_norm3_agrees_with_the_oracle_vectors",
+   "b2k_rn64_norm3_vectors_signed_zeros_refusal_and_work"
+  ],
+  "passed": 28,
+  "seconds": 11,
+  "what": "I102's p2m29: upper tie clause dropped (RK-1)",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "KILLED"
+ },
+ "m36": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k13_a_case_owner_keeps_its_hull_projected_displacement_magnitude"
+  ],
+  "passed": 29,
+  "seconds": 11,
+  "what": "(ii) for case owners too (RK-2)",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "KILLED"
+ },
+ "m18": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_c05_the_combination_coverage_rule"
+  ],
+  "passed": 29,
+  "seconds": 12,
+  "what": "slot 20 exempt for case owners too (RK-3)",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "KILLED"
+ },
+ "rk4": {
+  "rc": 101,
+  "built": true,
+  "failed": [
+   "b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows"
+  ],
+  "passed": 29,
+  "seconds": 7,
+  "what": "availability: a combination magnitude row gated as InputDerived (RK-4)",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "verdict": "KILLED"
+ }
+}

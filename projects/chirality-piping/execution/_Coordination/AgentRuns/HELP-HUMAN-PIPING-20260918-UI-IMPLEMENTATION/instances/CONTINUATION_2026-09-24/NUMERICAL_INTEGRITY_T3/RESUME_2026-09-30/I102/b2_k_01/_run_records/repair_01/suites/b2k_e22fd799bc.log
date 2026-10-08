@@ -1,0 +1,33 @@
+   Compiling open_pipe_stress_frame_kernel v0.1.0 (WT/b2-k/projects/chirality-piping/core/solver/frame_kernel)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 8.84s
+     Running unittests src/lib.rs (WT/targets/i102-b2-k/r1/debug/deps/open_pipe_stress_frame_kernel-df02854d48d3f9db)
+
+running 24 tests
+test structural::retained::origins::tests::b2k_k06_product_owner_is_the_recorded_kind_of_the_run ... ok
+test structural::retained::origins::tests::b2k_k03_each_i7_check_refuses_on_its_own ... ok
+test structural::retained::origins::tests::b2k_k04_no_selected_operand_is_refused_after_the_native_checks ... ok
+test structural::retained::product_certificate::final_case::product_final_case_tests::b2k_c06_a_nonzero_prescription_in_a_later_operand_is_unsupported ... ok
+test structural::retained::combine::tests::b2k_k04_unrecorded_all_prepared_is_no_selected_operand_after_the_native_checks ... ok
+test structural::retained::combine::tests::b2k_c02_operands_differ_on_a_prepared_or_a_selected_operand ... ok
+test structural::retained::product_certificate::final_case::product_final_case_tests::b2k_rn64_norm3_vectors_signed_zeros_refusal_and_work ... ok
+test structural::retained::origins::tests::b2k_c01_c04_mixed_operands_match_all_selected_bits_charge_nothing_and_change_no_operand ... ok
+test structural::retained::origins::tests::b2k_k05_a_prepared_first_operand_keeps_authored_order_and_takes_the_group_of_operand_one ... ok
+test structural::retained::origins::tests::b2k_k02_for_invocation_registration_and_the_run_capacity_check ... ok
+test structural::retained::combine::tests::b2k_c01_the_old_api_is_the_source_api_and_a_mixed_combination_has_the_all_selected_bits ... ok
+test structural::retained::product_certificate::final_case::product_final_case_tests::b2k_rn64_norm3_agrees_with_the_oracle_vectors ... ok
+test structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k06_both_certificate_entries_accept_a_recorded_combination_owner_only ... ok
+test structural::retained::combine::tests::b2k_k01_a_prepared_case_source_is_exactly_the_solve_paths_prep ... ok
+test structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k07_view_admits_p2_refuses_corruption_and_keeps_native_data_flags ... ok
+test structural::retained::product_certificate::final_case::product_final_case_tests::b2k_c05_the_combination_coverage_rule ... ok
+test structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k12_the_i42_bridge_holds_for_a_p2_combination_owner ... ok
+test structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k13_a_case_owner_keeps_its_hull_projected_displacement_magnitude ... ok
+test structural::retained::origins::tests::b2k_k03_an_unavailable_operand_is_rebuilt_identity_checked_and_custody_refuses_otherwise ... ok
+test structural::retained::combine::tests::b2k_c01_existing_combinations_print_their_bytes ... ok
+test structural::retained::origins::tests::b2k_w05_w06_custody_of_terminal_work_and_imports_from_selected_operands_only ... ok
+test structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k08_residual_and_recovery_contain_the_oracle_and_nets_are_exact_outward ... ok
+test structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k10_mutation_controls_fail_containment ... ok
+test structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows ... ok
+
+test result: ok. 24 passed; 0 failed; 0 ignored; 0 measured; 486 filtered out; finished in 7.89s
+
+RUN label=r1_b2k start=2026-10-08T09:49:44Z end=2026-10-08T09:50:02Z rc=0 args=test --locked --offline --lib b2k

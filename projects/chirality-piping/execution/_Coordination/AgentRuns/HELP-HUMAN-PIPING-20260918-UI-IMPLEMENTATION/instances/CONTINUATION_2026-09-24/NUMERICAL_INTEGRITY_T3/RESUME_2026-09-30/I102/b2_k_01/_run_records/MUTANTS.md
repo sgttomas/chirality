@@ -41,7 +41,7 @@
 | p2m26 | coverage: no mode record | KILLED | b2k_c05_the_combination_coverage_rule, b2k_c06_a_nonzero_prescription_in_a_later_operand_is_unsupported, b2k_k06_both_certificate_entries_accept_a_recorded_combination_owner_only, b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows |
 | p2m27 | (ii): magnitudes hull-projected instead | KILLED | b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows |
 | p2m28 | (ii): mm components | KILLED | b2k_rn64_norm3_vectors_signed_zeros_refusal_and_work |
-| p2m29 | (ii): upper tie to even | SURVIVED | - |
+| p2m29 | (ii): upper tie to even | SURVIVED (not equivalent: corrected in Repair 01 below) | - |
 | p2m30 | (ii): lower tie to even | SURVIVED | - |
 | p2m31 | (ii): SA4-1 (b) refusal at MAX | KILLED | b2k_rn64_norm3_agrees_with_the_oracle_vectors, b2k_rn64_norm3_vectors_signed_zeros_refusal_and_work |
 | p2m32 | (ii): SA4-1 (d) one step | SURVIVED | - |
@@ -56,3 +56,25 @@ Re-run against ef51a2d295 after the follow-up tests:
 | p2m03 (re-run) | I7: a case-owned source | KILLED | b2k_k03_each_i7_check_refuses_on_its_own |
 | p2m04 (re-run) | I7: no combination ledger | KILLED | b2k_k03_each_i7_check_refuses_on_its_own |
 | p2m10 (re-run) | authored-order cache merge (recorded) | KILLED | b2k_k05_a_prepared_first_operand_keeps_authored_order_and_takes_the_group_of_operand_one |
+
+## Repair 01 (RV121's RK-1 to RK-4), against e22fd799bc; filter `b2k`
+
+**Correction (RK-1).** p2m29 is not equivalent. RETURN.md said that y0 is never
+odd at a tie. That holds only for estimates that do not overflow. At an exact
+overflow tie, S = (MAX + 2^970)^2, the 1024-bit square root is MAX + 2^970,
+which overflows to y0 = MAX. MAX is odd, and only the upper tie clause refuses.
+Under p2m29 the kernel publishes MAX where SA4-1 (b) refuses. Three binary64
+components reach this, for example (7fefffffffffffe5, 7e7443426b800000,
+7e4d4ef94a000000). The reasons for p2m30, p2m32, p2m33 and p2m34 stand:
+RV121 confirms them.
+
+| Id | Check | Verdict | Killed by |
+|---|---|---|---|
+| p2m29 (re-run) | (ii): upper tie to even | KILLED | b2k_rn64_norm3_vectors_signed_zeros_refusal_and_work, b2k_rn64_norm3_agrees_with_the_oracle_vectors (the overflow tie) |
+| m36 (RV121's) | a case owner's displacement magnitude formed as (ii) (`let combination=true;` in `project`) | KILLED | b2k_k13_a_case_owner_keeps_its_hull_projected_displacement_magnitude |
+| m18 (RV121's) | slot 20 exempted for every owner (`!(j % 21 == 20)`) | KILLED | b2k_c05_the_combination_coverage_rule (the maximum alone missing) |
+| mrk4 | relative rows judged only on the two decimal predicates (`tests.into_iter().skip(2)`) | KILLED | b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows (the pinned pattern) |
+
+At ef51a2d295, mrk4 survives FK's whole lib: 508 passed, 0 failed. The net-case
+parity in K-09 cannot detect it, because the same gate decides both owners.
+RV121 shows that p2m29 (with its probe), m36 and m18 survive at ef51a2d295.
