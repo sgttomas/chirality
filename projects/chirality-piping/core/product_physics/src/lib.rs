@@ -17404,6 +17404,56 @@ mod tests {
     }
 
     #[test]
+    fn flexibility_joint_missing_a_user_stiffness_is_refused_not_dropped() {
+        // G11 (I111): a joint declaring mechanics_geometry_and_user_flexibility
+        // without its lateral value passed the M07 refusal, the element builder
+        // skipped it silently, and the model solved without the joint while the
+        // joint's review rows said its stiffness was consumed by the assembled
+        // element. The builder needs all four values, so a missing one refuses.
+        for missing in ["lateral", "axial", "angular", "torsional"] {
+            let mut input = request_with_refused_joint();
+            for case in &mut input.model.load_cases {
+                // The demo's legacy nonzero pressure is refused first; remove it here.
+                case.primitive_loads.retain(|load| load.category != "pressure");
+            }
+            let joint = input
+                .model
+                .components
+                .iter_mut()
+                .find(|component| component.id == "component:C-150")
+                .unwrap();
+            let modifiers = joint.modifiers.as_mut().unwrap();
+            match missing {
+                "lateral" => modifiers.lateral_stiffness_user_value = None,
+                "axial" => modifiers.axial_stiffness_user_value = None,
+                "angular" => modifiers.angular_stiffness_user_value = None,
+                _ => modifiers.torsional_stiffness_user_value = None,
+            }
+            let output = run_linear_static_preview(input);
+            let consumed_rows = output
+                .results
+                .iter()
+                .filter(|row| row.kind == "component_user_stiffness_macro_element_review")
+                .count();
+            assert_eq!(
+                (output.status.mechanics.as_str(), consumed_rows),
+                ("MODEL_INCOMPLETE", 0),
+                "{missing}: the joint without this value must be refused, not dropped"
+            );
+            assert!(output.results.is_empty(), "{missing}");
+            assert!(
+                output.diagnostics.iter().any(|d| d.code == "JOINT_ELEMENT_STIFFNESS_INCOMPLETE"
+                    && d.severity == "blocking"
+                    && d.message.contains(&format!("{missing} stiffness"))
+                    && d.affected_refs
+                        == vec!["component:C-150".to_string(), "pipe:P-130".to_string()]),
+                "{missing}: {:?}",
+                output.diagnostics.iter().map(|d| &d.code).collect::<Vec<_>>()
+            );
+        }
+    }
+
+    #[test]
     fn spring_hanger_user_inputs_emit_review_rows_without_catalog_defaults() {
         let result = run_linear_static_preview(mechanical_fixture_for_test(
             request(),
