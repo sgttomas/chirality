@@ -15325,3 +15325,32 @@ A first version marked the exclusive job pending while it still waited behind sl
 3. **Four slots** (`cargo_job.slot4.lock` added). Memory no longer binds at three, and the Mac has 18 cores. Exclusive jobs take all four.
 
 **Unchanged:** the product's M ≤ 12 GiB, exclusive mode for DEC-025 and product measurements, each agent one heavy job at a time, and the three-implementer cap. The cap is a coordination limit, not a memory one.
+
+## I90's SR-RS repair round 2 verified; RV113 confirms it; I92's SR-TS round dispatched (ROOT, 2026-10-08 UTC)
+
+**I90's repair:** `R/I90/b1_sr_rs_01/REPAIR_02.md` sha256 `a315bc7f…`. ROOT verified:
+- SHA256SUMS.repair_02 75 of 75, and the earlier sums (64 and 23) still verify;
+- the screens are clean;
+- `b1-r` is at `6e3e4fe219`, one commit over `b5cb7faaeb`, touching RS's 2 files (`source_blocks.rs` unchanged). It is clean and pushed;
+- the 3 removed assertions are each replaced by an explicit expectation.
+
+**Erratum E-15:** 8 sealed files under `_run_records/repair_02/out/` were hidden by `.gitignore`'s `**/out/` rule. ROOT force-added them (E-7's rule) and committed them at `d914194721`.
+
+**I90's claims,** for RV113 to confirm:
+- every item behaves as ruled;
+- RV113's census harness shows 0 changes and 0 misses over 339 entries;
+- 135 of 135 probes read as ruled, and RS equals TS on 120. The other 15 are TS's side: 8 header probes, 2 compound probes and 5 (g) probes;
+- RE goes 187 → 193;
+- PP and the c = 1 pins are unchanged;
+- 20 of 20 mutants are killed.
+
+**Rulings on I90's points:**
+1. **The metadata check is RS's own copy** of TS's and PY's. Adding a metadata-only entry to the Rust base reader would touch a base reader, which PLAN_v2 §1 makes a stop. That is accepted, kept in step by review. One Rust source of truth (`validate_transport_metadata` in `preview_physics_evidence.rs`) is noted for a later ruled scope, at B7.
+2. **To SQ's brief:** RS's new production loops (G3's over `sources` and `material_bases`/`case_indices`, and `g5_ordinary`'s per-case basis lookup) join SQ's TEXT-rule inventory for RS's re-qualification.
+3. **I90's host note is accepted:** it stopped its own queued job, before that job took a slot, to keep one heavy job at a time.
+
+**Dispatched:**
+- **RV113** confirms SR-RS round 2 (ADDENDUM_02).
+- **I92's SR-TS repair 01** goes into I90's slot (`BRIEFS/B1_SR_TS_REPAIR_01.md`).
+
+**Implementers running:** I85 (I3 step), I91 (SR-PY repair 02) and I92 (SR-TS repair 01). I97's B2-C revision is next in the queue.
