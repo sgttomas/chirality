@@ -12,3 +12,4 @@ One line per integration event (UTC). Brief: `R/BRIEFS/WORKING_ITEMS_T3.md` (`80
 - 2026-10-08 17:24 U1: #1154 MERGED `7eae707bb7` (`--match-head-commit f4a0430412`); main since cut 0 paths under P. NUM absorbed main at `a232d1edd5` (equal to main outside P/execution). Record `IMPLEMENTATION/B1_MERGE/` (RECORD.md accepted by the host).
 - 2026-10-08 17:45 U4: I105 repair 02 (S-1 hook test, N-3 pins) verified; `b2` pushed at `cf607a02cd`; RV123 resumed to confirm.
 - 2026-10-08 17:50 U3: I110 returned (219 sites; D-1..D-4; Stage 1 ~16 h, Stage 2 ~13 h after M07). Label on NUM at 4 sites only; old branches hold no live work. D-1/D-2 to ROOT; D-4 reuse `PRESSURE_MODEL_REAUTHOR_REQUIRED` (WI); D-3 (a) pending.
+- 2026-10-08 18:00 U3: ROOT ruled D-1 A, D-2 A1, D-3 held with M07. I110 resumed for Stage 1 (`BRIEFS/U3_PRESSURE_RETIRE_02.md` `d313dca0…`) on `codex/piping-t3-pressure-retire-20261008` (`WT/t3-pret`, from main `7eae707bb7`).
