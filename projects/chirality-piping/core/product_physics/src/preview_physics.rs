@@ -108,12 +108,6 @@ pub(crate) fn sanitize_blocked_diagnostics(diagnostics: &mut Vec<Diagnostic>) {
 /// the rigid-body moment coupling, so it is not in moment equilibrium and every
 /// result of the model is suspect. Refuse the solve until T4 repairs it.
 pub(crate) fn refuse_unqualified_joint_elements(model: &PreviewModel, diagnostics: &mut Vec<Diagnostic>) {
-    // Only named in-crate historical tests can enter this scope; normal builds
-    // have no selector (same custody as the historical pressure premise).
-    #[cfg(test)]
-    if crate::historical_pressure_reference::active() {
-        return;
-    }
     for component in model.components.iter().filter(|c| is_expansion_joint_component(c)) {
         if component.mechanics_interface.as_ref().and_then(|i| i.solver_consumption.as_deref())
             != Some("mechanics_geometry_and_user_flexibility")

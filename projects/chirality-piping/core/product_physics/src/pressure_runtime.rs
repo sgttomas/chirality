@@ -217,11 +217,6 @@ pub(crate) fn validate_profile(model: &PreviewModel, diagnostics: &mut Vec<Diagn
             // value, zero included, is refused in a document without the exact contract.
             for load in &case.primitive_loads {
                 if load.category == "pressure" || load.dimension == "pressure" {
-                    // Only named in-crate historical tests can enter this scope; normal builds have no selector.
-                    #[cfg(test)]
-                    if crate::historical_pressure_reference::active() {
-                        continue;
-                    }
                     problem(diagnostics, "PRESSURE_MODEL_REAUTHOR_REQUIRED", &[&case.id, &load.id],
                         if load.magnitude.value != 0.0 {
                             "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs"

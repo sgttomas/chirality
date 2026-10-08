@@ -103,7 +103,6 @@ mod validation;
 use validation::validate_model_inputs;
 
 #[cfg(test)]
-mod historical_pressure_reference;
 #[cfg(test)]
 mod membrane_publication_range;
 #[allow(dead_code)]
@@ -14822,7 +14821,6 @@ mod tests {
             | "tests::constant_effort_coexists_with_nonlinear_supports_and_nonlinear_field_precedence"
             | "tests::curved_bend_macro_element_emits_arc_interior_station_results"
             | "tests::dense_scrutiny_mode_keeps_sparse_parity_row"
-            | "tests::expansion_joint_user_stiffness_emits_macro_element_review_rows"
             | "tests::f3_canonical_spring_retains_elastic_stiffness"
             | "tests::f3_explicit_six_dof_guide_keeps_family_and_reports_invalid_rotations"
             | "tests::f3_missing_and_null_family_preserve_existing_inference_and_payloads"
@@ -14852,49 +14850,32 @@ mod tests {
             | "tests::p5_adjacent_spans_and_qualified_case_edges_preserve_physics"
             | "tests::mixed_units_are_normalized_at_preview_mechanics_boundary_without_pressure"
             | "tests::valid_invented_model_exposes_endpoint_stress_components_without_pressure"
-            | "tests::current_composite_derived_normal_friction_and_reversal"
             | "tests::integrity_exact_case_ids_keep_actual_linear_passes_and_component_warnings_distinct"
             | "tests::integrity_multicase_evidence_and_component_diagnostics_have_unique_real_case_identity"
         ), "unreviewed pressure-free fixture purpose: {purpose}");
+        // U3 (D-2 A1): a pressure primitive of any value, zero included, is refused
+        // on every route, so the demo's named legacy pressures are removed.
         let mut changed = 0;
         for case in &mut input.model.load_cases {
-            for load in &mut case.primitive_loads {
-                if matches!(
-                    (case.id.as_str(), load.id.as_str()),
+            let case_id = case.id.clone();
+            case.primitive_loads.retain(|load| {
+                let named = matches!(
+                    (case_id.as_str(), load.id.as_str()),
                     ("load:L-100", "load:L-100-P" | "load:L-100-P-EJ")
                         | ("load:L-200", "load:L-200-P" | "load:L-200-P-EJ")
-                ) {
+                );
+                if named {
                     assert_eq!(load.category, "pressure");
                     assert_eq!(load.dimension, "pressure");
-                    load.magnitude.value = 0.0;
                     changed += 1;
                 }
-            }
+                !named
+            });
         }
         assert!(
             changed > 0 && changed <= 4,
             "expected named inherited fixture pressures for {purpose}"
         );
-        // U3 (D-2 A1): a pressure primitive of any value, zero included, is refused
-        // on every route, so the named pressures are removed rather than zeroed. The
-        // two M07-held tests (they run inside the historical scope) keep the zeroed
-        // primitives unchanged until the owner's ruling.
-        if !matches!(
-            purpose,
-            "tests::current_composite_derived_normal_friction_and_reversal"
-                | "tests::expansion_joint_user_stiffness_emits_macro_element_review_rows"
-        ) {
-            for case in &mut input.model.load_cases {
-                let case_id = case.id.clone();
-                case.primitive_loads.retain(|load| {
-                    !matches!(
-                        (case_id.as_str(), load.id.as_str()),
-                        ("load:L-100", "load:L-100-P" | "load:L-100-P-EJ")
-                            | ("load:L-200", "load:L-200-P" | "load:L-200-P-EJ")
-                    )
-                });
-            }
-        }
         // T0R (M07 containment): omit the demo's realized joint C-150, which
         // the ordinary route refuses (JOINT_ELEMENT_EQUILIBRIUM_UNQUALIFIED).
         input.model.components.retain(|component| component.id != "component:C-150");
@@ -14921,267 +14902,17 @@ mod tests {
         input
     }
 
-    fn historical_pressure_preview(input: LinearStaticPreviewRequest) -> MechanicsEnvelope {
-        historical_pressure_preview_with_mode(input, PreviewSolverMode::default())
-    }
-
-    fn historical_pressure_preview_with_mode(
-        input: LinearStaticPreviewRequest,
-        mode: PreviewSolverMode,
-    ) -> MechanicsEnvelope {
-        crate::historical_pressure_reference::run(input, mode)
-    }
-
-    // Independent Decimal 30-DOF strain-energy/reference branch enumeration froze both
-    // cases and reversal before product execution. Original historical constants remain
-    // in their original test; this current companion tests the explicit pressure-free premise.
-    // T0R (R2 N4): despite the historical "current" name, this is now a retained
-    // historical premise. Its frozen oracle includes the refused joint C-150, so it
-    // runs inside `historical_pressure_reference::with_scope`, which suspends both
-    // the legacy-pressure refusal and the joint refusal for named tests only.
     #[test]
-    fn current_composite_derived_normal_friction_and_reversal() {
-        for mode in [
-            PreviewSolverMode::DenseScrutiny,
-            PreviewSolverMode::SparseInteractive,
-        ] {
-            for reversal in ["original", "reverse_z", "reverse_all"] {
-                let mut input = mechanical_fixture_for_test(
-                    request(),
-                    "tests::current_composite_derived_normal_friction_and_reversal",
-                );
-                // T0R: the frozen Decimal oracle includes the demo's joint C-150,
-                // which the ordinary route now refuses (M07). Keep the joint and
-                // run this oracle only inside the private historical test scope;
-                // it is retained evidence, not a Current qualification.
-                input.model.components = request_with_refused_joint().model.components;
-                input.model.supports.retain(|support| {
-                    support.stiffness.is_none()
-                        && support.family.as_deref() != Some("variable_spring_hanger")
-                });
-                // Also freeze the old distributed-load assembly as explicit qL/2
-                // nodal inputs. This is an explicit nodal-load premise, not
-                // the current distributed-load formulation (tested independently).
-                for case in &mut input.model.load_cases {
-                    let mut old_nodal_loads = Vec::new();
-                    for load in &case.primitive_loads {
-                        if load.dimension != "force_per_length" {
-                            old_nodal_loads.push(load.clone());
-                            continue;
-                        }
-                        let LoadTargetInput::Element { pipe } = &load.target else {
-                            unreachable!()
-                        };
-                        let pipe = input
-                            .model
-                            .pipe_segments
-                            .iter()
-                            .find(|p| &p.id == pipe)
-                            .unwrap();
-                        let i = input
-                            .model
-                            .nodes
-                            .iter()
-                            .find(|n| n.id == pipe.from)
-                            .unwrap()
-                            .position;
-                        let j = input
-                            .model
-                            .nodes
-                            .iter()
-                            .find(|n| n.id == pipe.to)
-                            .unwrap()
-                            .position;
-                        let length =
-                            ((j.x - i.x).powi(2) + (j.y - i.y).powi(2) + (j.z - i.z).powi(2))
-                                .sqrt();
-                        for (end, node) in [("i", &pipe.from), ("j", &pipe.to)] {
-                            let mut nodal = load.clone();
-                            nodal.id = format!("{}:historical-nodal-{end}", load.id);
-                            nodal.target = LoadTargetInput::Node { node: node.clone() };
-                            nodal.dimension = "force".to_string();
-                            nodal.category = "occasional".to_string();
-                            nodal.magnitude = Quantity {
-                                value: load.magnitude.value * length / 2.0,
-                                unit: "N".to_string(),
-                            };
-                            old_nodal_loads.push(nodal);
-                        }
-                    }
-                    case.primitive_loads = old_nodal_loads;
-                }
-
-                if reversal != "original" {
-                    for case in &mut input.model.load_cases {
-                        for load in &mut case.primitive_loads {
-                            if reversal == "reverse_all"
-                                || matches!(
-                                    load.id.as_str(),
-                                    "load:L-100-Z:historical-nodal-i"
-                                        | "load:L-100-Z:historical-nodal-j"
-                                        | "load:L-200-Z:historical-nodal-i"
-                                        | "load:L-200-Z:historical-nodal-j"
-                                )
-                            {
-                                load.magnitude.value = -load.magnitude.value;
-                            }
-                        }
-                    }
-                }
-                let result = crate::historical_pressure_reference::with_scope(|| {
-                    run_linear_static_preview_with_mode(input, mode)
-                });
-                assert_eq!(
-                    result.status.mechanics, "MECHANICS_SOLVED",
-                    "{:?}",
-                    result.diagnostics
-                );
-                assert!(!result.accepted_model_state_mutated);
-                let sign = if reversal == "original" { 1.0 } else { -1.0 };
-                // Independent equilibrium expectations, not fitted product outputs.
-                for (
-                    case,
-                    prefix,
-                    forward_normal_n,
-                    forward_slip_mm,
-                    applied_y_n,
-                    reverse_all_slip_mm,
-                    reverse_all_stop_mm,
-                ) in [
-                    (
-                        "load:L-100",
-                        "result:",
-                        48.95271889097364,
-                        -5.469174519535312,
-                        350.0,
-                        5.392795815727053,
-                        -0.3150817339455187,
-                    ),
-                    (
-                        "load:L-200",
-                        "result:loadcase:load-L-200:",
-                        24.47635944548682,
-                        -2.734587259767656,
-                        125.0,
-                        2.709083407550966,
-                        -0.10520992865888537,
-                    ),
-                ] {
-                    let released = reversal == "reverse_all";
-                    let normal_n = if released {
-                        applied_y_n
-                    } else {
-                        forward_normal_n
-                    };
-                    let expected_slip = if released {
-                        reverse_all_slip_mm
-                    } else {
-                        sign * forward_slip_mm
-                    };
-                    let value = |tail: &str| {
-                        result_value(&result, &format!("{prefix}nonlinear-support:{tail}"))
-                    };
-                    assert_eq!(value("iteration-count"), 2.0);
-                    assert_eq!(value("converged-flag"), 1.0);
-                    assert_eq!(value("final-residual-count"), 0.0);
-                    assert_eq!(
-                        value("support-NL-140:state-code"),
-                        if released { 0.0 } else { 1.0 }
-                    );
-                    if released {
-                        analytic_close!(value("support-NL-140:uy-displacement"), reverse_all_stop_mm);
-                    } else {
-                        assert_eq!(value("support-NL-140:uy-displacement"), 0.0);
-                    }
-                    // Signed normal-source reaction is -sign*N. Global Y equilibrium:
-                    // source reaction + one-way stop reaction + applied Y = 0.
-                    if released {
-                        // Zero analytical reaction uses the authored Y-force scale
-                        // at the same 1e-9 criterion, with no display-quantum allowance.
-                        assert!(value("support-NL-140:uy-reaction").abs() <= 1e-9 * applied_y_n);
-                    } else {
-                        analytic_close!(value("support-NL-140:uy-reaction"), sign * normal_n - applied_y_n);
-                    }
-                    assert_eq!(value("support-NL-130-FRIC:state-code"), 3.0);
-                    let slip = value("support-NL-130-FRIC:uz-displacement");
-                    let friction = value("support-NL-130-FRIC:uz-reaction");
-                    analytic_close!(slip, expected_slip);
-                    analytic_close!(friction, sign * 0.01 * normal_n);
-                    assert!(friction * slip < 0.0);
-                    let normal_id = format!(
-                        "{prefix}nonlinear-support:support-NL-130-FRIC:friction-normal-reaction"
-                    );
-                    let normal = result
-                        .results
-                        .iter()
-                        .find(|row| row.id == normal_id)
-                        .unwrap();
-                    assert_eq!(
-                        normal.kind,
-                        "nonlinear_support_friction_normal_reaction_derived"
-                    );
-                    analytic_close!(normal.value, normal_n);
-                    assert_eq!(normal.unit, "N");
-                    // This source support restrains UY only; its magnitude establishes
-                    // the current normal linkage but does not publish the signed source UY.
-                    assert_eq!(
-                        normal.value,
-                        support_force_norm(&result, &format!("{prefix}reaction:support-S-130"))
-                    );
-                    assert_eq!(normal.basis_ref.as_ref().unwrap().ref_id, case);
-                    let metadata = normal.metadata.as_ref().unwrap();
-                    assert!(metadata.basis.contains("derived_support_reaction"));
-                    assert!(metadata.basis.contains("source_ref=support:S-130"));
-                    assert!(metadata.basis.contains("source_dof=uy"));
-                }
-                assert!(!result
-                    .diagnostics
-                    .iter()
-                    .any(|d| d.code == "PRESSURE_MODEL_REAUTHOR_REQUIRED"
-                        || d.code == "NONLINEAR_SUPPORT_LOOP_BLOCKED"));
-            }
-        }
-    }
-
-    #[test]
-    fn private_historical_pressure_scope_restores_public_refusal_and_rejects_exact() {
-        fn refused(output: &MechanicsEnvelope) {
-            assert_eq!(output.status.mechanics, "MODEL_INCOMPLETE");
-            assert!(output.results.is_empty());
-            assert!(output
-                .diagnostics
-                .iter()
-                .any(|d| d.code == "PRESSURE_MODEL_REAUTHOR_REQUIRED"));
-        }
-        refused(&run_linear_static_preview(request()));
-        assert_eq!(
-            historical_pressure_preview(request()).status.mechanics,
-            "MECHANICS_SOLVED"
-        );
-        refused(&run_linear_static_preview(request()));
-        let mut exact_namespace = request();
-        exact_namespace.model.pressure_contract = Some(PressureContractInput {
-            version: Some("2.0.0".into()),
-            mode: Some("exact_straight_pressure_v2".into()),
-        });
-        assert!(std::panic::catch_unwind(|| historical_pressure_preview(exact_namespace)).is_err());
-        refused(&run_linear_static_preview(request()));
-    }
-
-    #[test]
-    fn private_historical_scope_restores_after_unwind_and_is_thread_local() {
-        assert!(!crate::historical_pressure_reference::active());
-        let outcome = std::panic::catch_unwind(|| {
-            crate::historical_pressure_reference::with_scope(|| {
-                assert!(crate::historical_pressure_reference::active());
-                std::thread::spawn(|| assert!(!crate::historical_pressure_reference::active()))
-                    .join()
-                    .unwrap();
-                panic!("intentional restoration witness");
-            })
-        });
-        assert!(outcome.is_err());
-        assert!(!crate::historical_pressure_reference::active());
+    fn bundled_demo_with_legacy_nonzero_pressure_is_refused_on_the_ordinary_route() {
+        // U3: legacy pressure is retired; the unchanged bundled demo carries nonzero
+        // legacy pressure primitives and is refused before any solve.
+        let output = run_linear_static_preview(request());
+        assert_eq!(output.status.mechanics, "MODEL_INCOMPLETE");
+        assert!(output.results.is_empty());
+        assert!(output
+            .diagnostics
+            .iter()
+            .any(|d| d.code == "PRESSURE_MODEL_REAUTHOR_REQUIRED"));
     }
 
     // Current arc/chord integration control: tip force plus uniform weight, no pressure input.
@@ -16595,194 +16326,6 @@ mod tests {
             .contains("DEC-053 dense_scrutiny_sparse_parity"));
         assert!(metadata.basis.contains("solver_mode=dense_scrutiny"));
         assert!(metadata.basis.contains("sparse_interactive_default=true"));
-    }
-
-    // Retained historical pressure premise; this private test route cannot qualify Current.
-    #[test]
-    fn valid_invented_model_exposes_nonlinear_support_loop_evidence_historical_pressure_premise() {
-        for mode in [
-            PreviewSolverMode::DenseScrutiny,
-            PreviewSolverMode::SparseInteractive,
-        ] {
-            // Reference control for the historical nonlinear fixture: the former
-            // nonlinear path omitted linear springs. Keep that exact no-spring
-            // case explicit, rather than rewriting its friction oracle from output.
-            // T0R: this historical oracle includes the demo's joint C-150, which the
-            // ordinary route now refuses (M07); it stays a historical premise and
-            // runs only inside the private test-only historical scope.
-            let mut input = request_with_refused_joint();
-            input.model.supports.retain(|support| {
-                support.stiffness.is_none()
-                    && support.family.as_deref() != Some("variable_spring_hanger")
-            });
-            // Also freeze the old distributed-load assembly as explicit qL/2
-            // nodal inputs. This is a historical friction-policy control, not
-            // the current distributed-load formulation (tested independently).
-            for case in &mut input.model.load_cases {
-                let mut old_nodal_loads = Vec::new();
-                for load in &case.primitive_loads {
-                    if load.dimension != "force_per_length" {
-                        old_nodal_loads.push(load.clone());
-                        continue;
-                    }
-                    let LoadTargetInput::Element { pipe } = &load.target else {
-                        unreachable!()
-                    };
-                    let pipe = input
-                        .model
-                        .pipe_segments
-                        .iter()
-                        .find(|p| &p.id == pipe)
-                        .unwrap();
-                    let i = input
-                        .model
-                        .nodes
-                        .iter()
-                        .find(|n| n.id == pipe.from)
-                        .unwrap()
-                        .position;
-                    let j = input
-                        .model
-                        .nodes
-                        .iter()
-                        .find(|n| n.id == pipe.to)
-                        .unwrap()
-                        .position;
-                    let length =
-                        ((j.x - i.x).powi(2) + (j.y - i.y).powi(2) + (j.z - i.z).powi(2)).sqrt();
-                    for (end, node) in [("i", &pipe.from), ("j", &pipe.to)] {
-                        let mut nodal = load.clone();
-                        nodal.id = format!("{}:historical-nodal-{end}", load.id);
-                        nodal.target = LoadTargetInput::Node { node: node.clone() };
-                        nodal.dimension = "force".to_string();
-                        nodal.category = "occasional".to_string();
-                        nodal.magnitude = Quantity {
-                            value: load.magnitude.value * length / 2.0,
-                            unit: "N".to_string(),
-                        };
-                        old_nodal_loads.push(nodal);
-                    }
-                }
-                case.primitive_loads = old_nodal_loads;
-            }
-            let result = historical_pressure_preview_with_mode(input, mode);
-            let result_ids = result
-                .results
-                .iter()
-                .map(|item| item.id.as_str())
-                .collect::<HashSet<_>>();
-            let diagnostic_codes = result
-                .diagnostics
-                .iter()
-                .map(|item| item.code.as_str())
-                .collect::<HashSet<_>>();
-
-            assert!(result_ids.contains("result:nonlinear-support:iteration-count"));
-            assert!(result_ids.contains("result:nonlinear-support:final-residual-count"));
-            assert!(result_ids.contains("result:nonlinear-support:converged-flag"));
-            assert!(result_ids.contains("result:nonlinear-support:support-NL-140:state-code"));
-            assert!(result_ids.contains("result:nonlinear-support:support-NL-140:uy-displacement"));
-            assert!(result_ids.contains("result:nonlinear-support:support-NL-140:uy-reaction"));
-            assert!(result_ids.contains("result:nonlinear-support:support-NL-130-FRIC:state-code"));
-            assert!(
-                result_ids.contains("result:nonlinear-support:support-NL-130-FRIC:uz-displacement")
-            );
-            assert!(result_ids.contains("result:nonlinear-support:support-NL-130-FRIC:uz-reaction"));
-            assert!(result_ids
-                .contains("result:nonlinear-support:support-NL-130-FRIC:friction-normal-reaction"));
-            assert!(result_ids.contains(
-                "result:loadcase:load-L-200:nonlinear-support:support-NL-140:uy-reaction"
-            ));
-            // T0R (B-1): superposed nonlinear states are withheld; the case rows stay.
-            assert!(!result_ids.iter().any(|id| id.starts_with("result:combination:combination-C-OPER-ALT:")));
-            assert!(result.diagnostics.iter().any(|d| d.code == "NONLINEAR_COMBINATION_REQUIRES_SOLVE"
-                && d.affected_refs == vec!["combination:C-OPER-ALT".to_string()]));
-            // DEC-067: the sliding-seeded friction support defers convergence one
-            // iteration so the bounded sliding force is applied before the loop
-            // converges.
-            assert_eq!(
-                result_value(&result, "result:nonlinear-support:iteration-count"),
-                2.0
-            );
-            assert_eq!(
-                result_value(&result, "result:nonlinear-support:final-residual-count"),
-                0.0
-            );
-            assert_eq!(
-                result_value(&result, "result:nonlinear-support:converged-flag"),
-                1.0
-            );
-            assert_eq!(
-                result_value(
-                    &result,
-                    "result:nonlinear-support:support-NL-140:state-code"
-                ),
-                1.0
-            );
-            assert_eq!(
-                result_value(
-                    &result,
-                    "result:nonlinear-support:support-NL-140:uy-displacement"
-                ),
-                0.0
-            );
-            assert!(
-                result_value(
-                    &result,
-                    "result:nonlinear-support:support-NL-140:uy-reaction"
-                ) < 0.0
-            );
-            assert_eq!(
-                result_value(
-                    &result,
-                    "result:nonlinear-support:support-NL-130-FRIC:state-code"
-                ),
-                3.0
-            );
-            assert_ne!(
-                result_value(
-                    &result,
-                    "result:nonlinear-support:support-NL-130-FRIC:uz-displacement"
-                ),
-                0.0
-            );
-            // DEC-067: the sliding support carries the bounded +mu*N tangential
-            // reaction opposing its negative-Z motion instead of a released zero
-            // reaction.
-            let friction_reaction = result_value(
-                &result,
-                "result:nonlinear-support:support-NL-130-FRIC:uz-reaction",
-            );
-            let normal_evidence = result
-                .results
-                .iter()
-                .find(|item| {
-                    item.id
-                        == "result:nonlinear-support:support-NL-130-FRIC:friction-normal-reaction"
-                })
-                .expect("derived normal evidence row is present");
-            assert_eq!(
-                normal_evidence.kind,
-                "nonlinear_support_friction_normal_reaction_derived"
-            );
-            // Historical carrier regression only: these constants recorded six-decimal values.
-            assert_eq!(round6(friction_reaction), 0.489527);
-            assert_eq!(round6(normal_evidence.value), 48.952719);
-            // SI force-balance admissibility, not bit identity between separately
-            // recovered force components; preserves the analytic 1e-9 criterion.
-            assert_coulomb_force_balance_n(friction_reaction, 0.01 * normal_evidence.value);
-            let normal_metadata = normal_evidence.metadata.as_ref().unwrap();
-            assert!(normal_metadata.basis.contains("derived_support_reaction"));
-            assert!(normal_metadata.basis.contains("source_ref=support:S-130"));
-            assert!(normal_metadata.basis.contains("source_dof=uy"));
-            assert!(!normal_metadata
-                .basis
-                .contains("derived_normal_force_model=TBD"));
-            assert!(!diagnostic_codes.contains("TOLERANCE_POLICY_TBD"));
-            assert!(diagnostic_codes.contains("NONLINEAR_SUPPORT_STATE_REVIEW"));
-            assert!(diagnostic_codes.contains("NONLINEAR_SUPPORT_LOOP_CONVERGED"));
-            assert!(!diagnostic_codes.contains("NONLINEAR_SUPPORT_LOOP_BLOCKED"));
-        }
     }
 
     fn two_node_nonlinear_preview_request(
@@ -18430,8 +17973,9 @@ mod tests {
     }
 
     #[test]
-    fn expansion_joint_user_stiffness_emits_macro_element_review_rows() {
-        // T0R (M07 containment): the ordinary route refuses the realized joint.
+    fn realized_user_stiffness_joint_is_refused_on_the_ordinary_route() {
+        // T0R (M07 containment; owner decision, option A): the ordinary route refuses
+        // the realized joint until T4 lands the corrected element.
         let mut refused_input = request_with_refused_joint();
         for case in &mut refused_input.model.load_cases {
             // The demo's legacy nonzero pressure is refused first; remove it here.
@@ -18442,138 +17986,6 @@ mod tests {
         assert!(refused.results.is_empty());
         assert!(refused.diagnostics.iter().any(|d| d.code == "JOINT_ELEMENT_EQUILIBRIUM_UNQUALIFIED"
             && d.affected_refs == vec!["component:C-150".to_string(), "pipe:P-130".to_string()]));
-        // The retained review-row premise runs only in the private historical scope.
-        let mut input = mechanical_fixture_for_test(
-            request(),
-            "tests::expansion_joint_user_stiffness_emits_macro_element_review_rows",
-        );
-        input.model.components = request_with_refused_joint().model.components;
-        let result = crate::historical_pressure_reference::with_scope(|| run_linear_static_preview(input));
-        let axial = result
-            .results
-            .iter()
-            .find(|item| item.id == "result:component-stiffness:component-C-150:axial")
-            .expect("expansion joint axial stiffness review row should be emitted");
-        let torsional = result
-            .results
-            .iter()
-            .find(|item| item.id == "result:component-stiffness:component-C-150:torsional")
-            .expect("expansion joint torsional stiffness review row should be emitted");
-
-        assert_eq!(
-            result.summary.component_user_stiffness_macro_element_count,
-            4
-        );
-        assert_eq!(axial.kind, "component_user_stiffness_macro_element_review");
-        assert_eq!(axial.entity_ref, "component:C-150");
-        assert_eq!(axial.value, 3_200_000.0);
-        assert_eq!(axial.unit, "N/m");
-        let axial_metadata = axial
-            .metadata
-            .as_ref()
-            .expect("expansion joint row carries macro-element metadata");
-        assert_eq!(axial_metadata.component, "axial_user_stiffness");
-        assert_eq!(axial_metadata.coordinate_system, "component_local_preview");
-        assert_eq!(axial_metadata.location, "pipe:P-130");
-        assert!(axial_metadata
-            .basis
-            .contains("component_family=expansion_joint"));
-        assert!(axial_metadata
-            .basis
-            .contains("solver_consumption=mechanics_geometry_and_user_flexibility"));
-        assert!(axial_metadata
-            .basis
-            .contains("macro_element_solve=assembled_user_stiffness"));
-        assert!(axial_metadata
-            .basis
-            .contains("pressure_thrust_generation=load_side_user_effective_area"));
-        assert!(axial_metadata
-            .basis
-            .contains("pressure_thrust=load_side_pressure_thrust_user_review_required"));
-        assert!(axial_metadata
-            .sign_convention
-            .contains("consumed by the assembled user-stiffness macro-element"));
-
-        assert_eq!(torsional.value, 620_000.0);
-        assert_eq!(torsional.unit, "N*m/rad");
-        assert!(result
-            .diagnostics
-            .iter()
-            .any(|diagnostic| diagnostic.code == "EXPANSION_JOINT_USER_STIFFNESS_REVIEWED"));
-        assert!(
-            result
-                .diagnostics
-                .iter()
-                .all(|diagnostic| diagnostic.code
-                    != "EXPANSION_JOINT_MECHANICS_INTERFACE_UNSUPPORTED")
-        );
-    }
-
-    // Retained historical pressure premise; this private test route cannot qualify Current.
-    #[test]
-    fn expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence_historical_pressure_premise(
-    ) {
-        // T0R: historical premise with the demo's joint C-150 (refused on the ordinary route, M07).
-        let result = historical_pressure_preview(request_with_refused_joint());
-        let default_row = result
-            .results
-            .iter()
-            .find(|item| item.id == "result:pressure-thrust:component-C-150")
-            .expect("default load case expansion joint pressure-thrust row should be emitted");
-        let alternate_row = result
-            .results
-            .iter()
-            .find(|item| item.id == "result:loadcase:load-L-200:pressure-thrust:component-C-150")
-            .expect("alternate load case expansion joint pressure-thrust row should be emitted");
-        // T0R: a load-side review row is never combined (and this fixture's
-        // mechanics combination is withheld for its nonlinear supports).
-        assert!(!result.results.iter().any(|item| {
-            item.id == "result:combination:combination-C-OPER-ALT:pressure-thrust:component-C-150"
-        }));
-
-        assert_eq!(result.summary.component_pressure_thrust_load_count, 2);
-        assert_eq!(
-            default_row.kind,
-            "expansion_joint_pressure_thrust_load_review"
-        );
-        assert_eq!(default_row.entity_ref, "component:C-150");
-        assert_eq!(default_row.value, 21_600.0);
-        assert_eq!(default_row.unit, "N");
-        assert_eq!(default_row.source_result_refs, vec!["load:L-100-P-EJ"]);
-        let metadata = default_row
-            .metadata
-            .as_ref()
-            .expect("pressure-thrust row carries load-side evidence metadata");
-        assert_eq!(metadata.component, "expansion_joint_pressure_thrust");
-        assert_eq!(metadata.coordinate_system, "element_local");
-        assert_eq!(metadata.location, "pipe:P-130");
-        assert!(metadata
-            .basis
-            .contains("pressure_thrust_generation=load_side_user_effective_area"));
-        assert!(metadata.basis.contains("effective_area=0.018"));
-        assert!(metadata
-            .basis
-            .contains("source=invented_user_entered_expansion_joint_preview_geometry"));
-        assert!(metadata
-            .sign_convention
-            .contains("user-entered effective pressure area"));
-
-        assert_eq!(alternate_row.value, 10_800.0);
-        assert_eq!(alternate_row.source_result_refs, vec!["load:L-200-P-EJ"]);
-        assert!(result
-            .results
-            .iter()
-            .any(|item| item.id == "result:stress:pipe-P-130:end-i:pressure-hoop"));
-        assert!(!result
-            .results
-            .iter()
-            .any(|item| item.id == "result:stress:pipe-P-130:end-i:pressure-longitudinal"));
-        assert!(result.diagnostics.iter().any(|diagnostic| {
-            diagnostic.code == "EXPANSION_JOINT_PRESSURE_THRUST_APPLIED"
-                && diagnostic
-                    .affected_refs
-                    .contains(&"load:L-100-P-EJ".to_string())
-        }));
     }
 
     #[test]
