@@ -1,0 +1,47 @@
+[
+ {
+  "id": "R-01",
+  "check": "RV123 n-case serializer: an unavailable exact attempt's preparation hash uses DEF-O's H (S-1, unavailable branch)",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_rv123_s2_unavailable_exact_case_binds_def_e"
+  ],
+  "passed": 27
+ },
+ {
+  "id": "R-02",
+  "check": "RV123 c = 1 serializer: an unavailable exact attempt's preparation hash uses DEF-O's H",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_rv123_s2_one_case_unavailable_exact_serializer"
+  ],
+  "passed": 27
+ },
+ {
+  "id": "R-03",
+  "check": "RV123 c = 1 serializer: an unavailable exact successor takes the preview identity",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_rv123_s2_one_case_unavailable_exact_serializer"
+  ],
+  "passed": 27
+ },
+ {
+  "id": "R-06",
+  "check": "RV123 P-3: every material counts as used (an unused material is checked)",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_rv123_n2_unused_exact_material_is_not_checked"
+  ],
+  "passed": 27
+ },
+ {
+  "id": "R-11",
+  "check": "RV123 P-8: only the first section patch is applied (multi-member)",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_rv123_s1_two_member_exact_overlays_each_member"
+  ],
+  "passed": 27
+ }
+]

@@ -1,0 +1,19 @@
+SCHEMA (P/schemas/retained_precision_mp_v2.schema.json, jsonschema Draft 2020-12) on each B2-P successor's retained_precision.
+Lines 1-14: the private driver's successors, written by the tests before 384c9a1ed8 (each receipt equal to its 384c9a1ed8 pin): c1_range_mechanics, W-CB1 (the two files named retained_precision_combination_successor_* in that set; receipts 6345c3a3/3b24b62e), W-CB2, W-CB3, W-CB4a, W-CB4b, W-CB5, both modes.
+Lines 15-16: the committed fixtures (W-CB3).
+c1_range_mechanics_dense_scrutiny.json errors 0
+c1_range_mechanics_sparse_interactive.json errors 0
+retained_precision_combination_successor_dense_scrutiny.json errors 0
+retained_precision_combination_successor_sparse_interactive.json errors 0
+w_cb2_dense_scrutiny.json errors 0
+w_cb2_sparse_interactive.json errors 0
+w_cb3_dense_scrutiny.json errors 0
+w_cb3_sparse_interactive.json errors 0
+w_cb4a_dense_scrutiny.json errors 0
+w_cb4a_sparse_interactive.json errors 0
+w_cb4b_dense_scrutiny.json errors 0
+w_cb4b_sparse_interactive.json errors 0
+w_cb5_dense_scrutiny.json errors 0
+w_cb5_sparse_interactive.json errors 0
+retained_precision_combination_successor_dense_scrutiny.json errors 0
+retained_precision_combination_successor_sparse_interactive.json errors 0

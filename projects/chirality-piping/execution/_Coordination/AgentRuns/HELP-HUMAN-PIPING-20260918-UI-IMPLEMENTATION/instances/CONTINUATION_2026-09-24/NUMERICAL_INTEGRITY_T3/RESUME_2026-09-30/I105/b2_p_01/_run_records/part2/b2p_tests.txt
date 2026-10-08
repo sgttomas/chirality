@@ -1,0 +1,127 @@
+B2-P and RV123 tests at 384c9a1ed8, registered build: PP --lib -- b2p_ b3b_rv123 --nocapture (runs/dev/p2d_b2p2.log), filtered to the test lines and the tests' own B2P_* lines:
+test retained_facade_tests::b2p_capture_refuses_combinations_outside_d14 ... ok
+test retained_facade_tests::b2p_constants_bound_to_in_tree_fixtures ... ok
+test retained_facade_tests::b2p_combination_observables_stage ... ok
+test retained_facade_tests::b2p_custody_binds_the_combination_rows ... ok
+B2P_READERS w_cb2 SparseInteractive for_source=ok standing=needs_recompute
+test retained_facade_tests::b2p_combination_successor_fixtures_are_the_live_successors ... ok
+test retained_facade_tests::b2p_combination_expressions ... ok
+test retained_facade_tests::b2p_repeated_case_combination_is_ordinary ... ok
+B2P_READERS w_cb2 DenseScrutiny for_source=ok standing=needs_recompute
+test retained_facade_tests::b2p_gate_entries_shape_and_consistency ... ok
+B2P_READERS w_cb3 SparseInteractive for_source=ok standing=needs_recompute
+B2P_READERS w_cb3 DenseScrutiny for_source=ok standing=needs_recompute
+B2P_READERS w_cb4a SparseInteractive for_source=ok standing=needs_recompute
+B2P_READERS w_cb4a DenseScrutiny for_source=ok standing=needs_recompute
+test retained_facade_tests::b2p_hooks_and_failure_set ... ok
+B2P_INPUT w_cb3 value_sha=05e9ae15f4b6155b5907dec9ed6a56084b511d26777cfd6c7e2ea8ebe998d28d
+B2P_OUTCOME w_cb3 SparseInteractive retained=Some(Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" })
+B2P_READERS w_cb4b SparseInteractive for_source=ok standing=needs_recompute
+B2P_OUTCOME w_cb3 DenseScrutiny retained=Some(Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" })
+B2P_INPUT w_cb2 value_sha=7f07d08e694947addf9e90f023fee9080b8b2a71d647260d528ce01c44c509a0
+B2P_READERS w_cb4b DenseScrutiny for_source=ok standing=needs_recompute
+B2P_OUTCOME w_cb2 SparseInteractive retained=Some(Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" })
+B2P_READERS w_cb5 SparseInteractive for_source=ok standing=needs_recompute
+B2P_OUTCOME w_cb2 DenseScrutiny retained=Some(Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" })
+B2P_INPUT w_cb4a value_sha=d408ddc7dfbe2f7aee8312cdfd61aa1c2f182e91adcf2c86ea625c969b254ecf
+B2P_OUTCOME w_cb4a SparseInteractive retained=Some(Precommit { gate: "G3", code: "RETAINED_PRECISION_COVERAGE_MISMATCH" })
+B2P_READERS w_cb5 DenseScrutiny for_source=ok standing=needs_recompute
+B2P_OUTCOME w_cb4a DenseScrutiny retained=Some(Precommit { gate: "G3", code: "RETAINED_PRECISION_COVERAGE_MISMATCH" })
+B2P_INPUT w_cb4b value_sha=148a14e9c2b162d4fe892f3322060d6ef4c7a18e95bbed6bef27fc265ca653ae
+B2P_OUTCOME w_cb4b SparseInteractive retained=Some(Precommit { gate: "G3", code: "RETAINED_PRECISION_COVERAGE_MISMATCH" })
+B2P_OUTCOME w_cb4b DenseScrutiny retained=Some(Precommit { gate: "G3", code: "RETAINED_PRECISION_COVERAGE_MISMATCH" })
+B2P_INPUT w_cb5 value_sha=e150e595c73d768000e2ba574c25aff6c04f6991189040caf6899909b8c360cd
+B2P_READERS c1_range_mechanics SparseInteractive for_source=ok standing=needs_recompute
+B2P_OUTCOME w_cb5 SparseInteractive retained=Some(Precommit { gate: "G3", code: "RETAINED_PRECISION_COVERAGE_MISMATCH" })
+B2P_OUTCOME w_cb5 DenseScrutiny retained=Some(Precommit { gate: "G3", code: "RETAINED_PRECISION_COVERAGE_MISMATCH" })
+B2P_INPUT c1_range_mechanics value_sha=f4cdf19b39ecc4bcdfbb43c5734815bcab194e431f7cd240a4a020a552dcfa4b
+B2P_OUTCOME c1_range_mechanics SparseInteractive retained=Some(Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" })
+B2P_READERS c1_range_mechanics DenseScrutiny for_source=ok standing=needs_recompute
+test retained_facade_tests::b2p_direct_entry_runs_the_combinations ... ok
+B2P_INPUT w_cb1 value_sha=c1b85bd47605ca0df6f847be1b2b23b91c544d6981c4208f68b67d2c499a7ceb
+B2P_INPUT w_cb1z value_sha=9c21d45e0ee9314946a7f2a7e88e55f73488d8cb1af0efd4912eb0a07399d3c1
+B2P_INPUT w_cb2 value_sha=7f07d08e694947addf9e90f023fee9080b8b2a71d647260d528ce01c44c509a0
+B2P_INPUT w_cb3 value_sha=05e9ae15f4b6155b5907dec9ed6a56084b511d26777cfd6c7e2ea8ebe998d28d
+test retained_facade_tests::b2p_witness_inputs ... ok
+B2P_OUTCOME c1_range_mechanics DenseScrutiny retained=Some(Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" })
+test retained_facade_tests::b2p_witness_dispositions_on_the_private_driver ... ok
+B2P_DISPOSITIONS w_cb2 SparseInteractive ["retained_unavailable"]
+B2P_PIN w_cb2 sparse_interactive receipt=154c52607fe0a4a91d591e48af428c360f17cd043d9f5621acfcadf15db48605 bytes=9731586e98ab443c08636931f29ace24be49e0006ac574b2b4526c9155993b9e
+test retained_facade_tests::b3b_rv123_n2_unused_exact_material_is_not_checked ... ok
+B2P_DISPOSITIONS w_cb2 DenseScrutiny ["retained_unavailable"]
+B2P_PIN w_cb2 dense_scrutiny receipt=0538a9195b036a524bec6a772099909e0bb95088481ff6443b8eef8fd7274309 bytes=7d51220289aee557733c672e1a56c9526a445489978d64954227b6d825af9a1f
+B2P_DISPOSITIONS w_cb3 SparseInteractive ["retained_selected"]
+B2P_PIN w_cb3 sparse_interactive receipt=f86ffd2b3b403c84fca91aeb686028e7d613c23f291f23b2acdc91633bea3e99 bytes=82edc28b3f797c3d41a14dd31fcc2185baf630a76e6a857681dd435c00a6a9f5
+B2P_DISPOSITIONS w_cb3 DenseScrutiny ["retained_selected"]
+B2P_PIN w_cb3 dense_scrutiny receipt=beb1461c0860663d74dd2b012aeedfa2667e701c71073ca59c6ea842bb9f786d bytes=d8a46a71f9d3a5b32dc03b5a9724eacc2956ab56936ab488182c3a48577e9f1e
+B2P_DISPOSITIONS w_cb4a SparseInteractive ["ordinary"]
+B2P_PIN w_cb4a sparse_interactive receipt=7b8773530d63fb32542210bb6ad4c709fe957f554da835b9efb7ccd485883fe9 bytes=318c4abd082c1df910a91803ccc14973f498cdad7d2c13a40004bbc7ca7afbc0
+B2P_DISPOSITIONS w_cb4a DenseScrutiny ["ordinary"]
+B2P_PIN w_cb4a dense_scrutiny receipt=c002d0a6c2822ab44c80bd030dd7fce7576121dd6b6b5fe3c3cd3dbafb2b1fcf bytes=ac6076f1752332ec94309d9bc473cdce74430ac4f6b215f61fc088d54a27aa2e
+test retained_facade_tests::b3b_rv123_s1_two_member_exact_overlays_each_member ... ok
+B2P_DISPOSITIONS w_cb4b SparseInteractive ["ordinary"]
+B2P_PIN w_cb4b sparse_interactive receipt=31e0fd4804064ffbc298fccec0981cc0aab7db9348f583094ff2f83795f0a643 bytes=c291b532c781092d6b13aeec9dbf055631181169fb43edb40a18f6120ddb6e73
+test retained_facade_tests::b3b_rv123_s2_one_case_unavailable_exact_serializer ... ok
+B2P_DISPOSITIONS w_cb4b DenseScrutiny ["ordinary"]
+B2P_PIN w_cb4b dense_scrutiny receipt=830ecd1c8eba48cb5ddf03e56f5573bcd6cf32706338d5948696ffd24150d76a bytes=16bd73ce68d0ba970b0db5352b3aa68250b5e04eb625ea5b74404598539257dd
+B2P_DISPOSITIONS w_cb5 SparseInteractive ["ordinary"]
+B2P_PIN w_cb5 sparse_interactive receipt=e26015faa2ab14d571ad67c037a3a4afa69b1b4d97841a31b2fb4713b2bda3fe bytes=8e83f75890ef99057942f4e10b6b378fb56b1363e59fdd52050d1659078124a9
+B2P_DISPOSITIONS w_cb5 DenseScrutiny ["ordinary"]
+B2P_PIN w_cb5 dense_scrutiny receipt=f27870de60f57d3e28998305f856079e3f788762f562f58e38af1419d5144c58 bytes=265a84bbd39b4380cb2c950847f0e47d60fe56b74bcb6e207b86e2701baf1834
+test retained_facade_tests::b3b_rv123_s2_unavailable_exact_case_binds_def_e ... ok
+B2P_DISPOSITIONS c1_range_mechanics SparseInteractive ["ordinary", "retained_selected"]
+B2P_PIN c1_range_mechanics sparse_interactive receipt=877e0c7a32f4740b6a907ac4cb9d63e6f018687208ba396148b22112ee5956d8 bytes=d32ed8bf6594ce7107763bc31f9fc1d2d989a644d1538243b4b78aec79951ce8
+B2P_DISPOSITIONS c1_range_mechanics DenseScrutiny ["ordinary", "retained_selected"]
+B2P_PIN c1_range_mechanics dense_scrutiny receipt=046bfc3f0357325d3104fb2759205a881bfa45ec62dcc70cff0d6fe77f7bd02c bytes=e579371eb7d4c51ec5c0f71093ee673ba9e288edba7af59b101fb28d15da4dcf
+test retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes ... ok
+B2P_DISPOSITIONS w_cb1 SparseInteractive ["retained_selected"]
+B2P_PIN w_cb1 sparse_interactive receipt=6345c3a32dd243ecc877ebce349307602cfe65e700048981d9171f4c15ee7880 bytes=d5fa0b8bc48646c88506490eda71ba9264244dbe3f6658816d83e6b6d62b7e7a
+test retained_facade_tests::b2p_w_cb1_direct_entry_runs_the_combinations has been running for over 60 seconds
+test retained_facade_tests::b2p_w_cb1_successors_are_pinned_in_both_modes has been running for over 60 seconds
+B2P_READERS w_cb1 SparseInteractive for_source=ok standing=needs_recompute
+B2P_DISPOSITIONS w_cb1 DenseScrutiny ["retained_selected"]
+B2P_PIN w_cb1 dense_scrutiny receipt=3b24b62e72b366554e51d621f395c6128a75f1fe9e92f6b42e4da47e697750ed bytes=295f3575f6a475e69f3d7cb7db4326983aefaba3caa1e31d9a711c68ea431b70
+B2P_DISPOSITIONS w_cb1z SparseInteractive ["retained_selected"]
+B2P_PIN w_cb1z sparse_interactive receipt=133b60a763a9cc6bb85541d18dce65e8ecdb550e8538e5d167d5a706adfd0b12 bytes=ad01b6adf436777a4b370bfaa152e8fe4459ae8f28d048b7ff992405004311ec
+B2P_DISPOSITIONS w_cb1z DenseScrutiny ["retained_selected"]
+B2P_PIN w_cb1z dense_scrutiny receipt=70e5bfc9569f4d6f2a958dfecee0f541602caf9e84796187c0754c8fbfede71b bytes=d38ff80c33deae242fc3e440ac9270a5299d198a053e1e273a7b8b23789441fa
+test retained_facade_tests::b2p_w_cb1_successors_are_pinned_in_both_modes ... ok
+B2P_READERS w_cb1 DenseScrutiny for_source=ok standing=needs_recompute
+B2P_READERS w_cb1z SparseInteractive for_source=ok standing=needs_recompute
+B2P_READERS w_cb1z DenseScrutiny for_source=ok standing=needs_recompute
+test retained_facade_tests::b2p_w_cb1_direct_entry_runs_the_combinations ... ok
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 613 filtered out; finished in 431.16s
+
+Part 3's working tree (committed as 638214d8d8), registered build: PP --lib -- b2p_ b3b_rv123 i51_c0 b1_sp_domain b1_sp_w_c2 --skip b2p_w_cb1 (runs/dev/p2e.log), test lines:
+test retained_facade_tests::b1_sp_domain_recheck_names_the_requested_cases ... ok
+test retained_facade_tests::b1_sp_w_c2_fixtures_are_the_live_successors ... ok
+test retained_facade_tests::b1_sp_w_c2_direct_entry_publishes_the_pinned_successor ... ok
+test retained_facade_tests::b2p_capture_refuses_combinations_outside_d14 ... ok
+test retained_facade_tests::b2p_combination_expressions ... ok
+test retained_facade_tests::b2p_combination_observables_stage ... ok
+test retained_facade_tests::b1_sp_w_c2_transaction_outcomes_and_ordinal_mapping ... ok
+test retained_facade_tests::b2p_constants_bound_to_in_tree_fixtures ... ok
+test retained_facade_tests::b1_sp_w_c2_through_retained_w1_publishes_t12 ... ok
+test retained_facade_tests::b2p_d14_predicate_at_its_caps ... ok
+test retained_facade_tests::b2p_custody_binds_the_combination_rows ... ok
+test retained_facade_tests::b2p_combination_successor_fixtures_are_the_live_successors ... ok
+test retained_facade_tests::b2p_gate_entries_shape_and_consistency ... ok
+test retained_facade_tests::b1_sp_w_c2_transaction_faults_and_abandonment ... ok
+test retained_facade_tests::b2p_selectors_at_two_cases_are_refused ... ok
+test retained_facade_tests::b2p_repeated_case_combination_is_ordinary ... ok
+test retained_facade_tests::b2p_with_case_guards_cross_case_reads - should panic ... ok
+test retained_facade_tests::b2p_serializer_refuses_an_unchained_meter ... ok
+test retained_facade_tests::b2p_witness_inputs ... ok
+test retained_facade_tests::b2p_hooks_and_failure_set ... ok
+test retained_facade_tests::b3b_rv123_n2_unused_exact_material_is_not_checked ... ok
+test retained_facade_tests::b3b_rv123_s1_two_member_exact_overlays_each_member ... ok
+test retained_facade_tests::b3b_rv123_s2_one_case_unavailable_exact_serializer ... ok
+test retained_facade_tests::b2p_witness_dispositions_on_the_private_driver ... ok
+test retained_product_tests::b2p_early_hook_refuses_combinations_outside_d14 ... ok
+test retained_product_tests::i51_c0_isolated_guard_accounting_boundaries ... ok
+test retained_product_tests::i51_c0_isolated_late_hook_custody_and_prefixes ... ok
+test retained_facade_tests::b3b_rv123_s2_unavailable_exact_case_binds_def_e ... ok
+test retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes ... ok
+test retained_facade_tests::b2p_direct_entry_runs_the_combinations ... ok
+test result: ok. 30 passed; 0 failed; 0 ignored; 0 measured; 608 filtered out; finished in 33.21s
+(b2p_selectors_at_two_cases_are_refused then pinned each fallback exactly; rerun runs/dev/p2f.log: ok.)

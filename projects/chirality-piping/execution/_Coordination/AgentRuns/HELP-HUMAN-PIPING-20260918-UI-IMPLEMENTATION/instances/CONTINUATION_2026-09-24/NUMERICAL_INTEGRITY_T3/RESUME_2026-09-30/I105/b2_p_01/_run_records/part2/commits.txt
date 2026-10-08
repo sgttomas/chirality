@@ -1,0 +1,27 @@
+Part 2 commits on codex/piping-t3-b2-20261008 (WT/b2), after Part 1's head 22e9d00062 (first parent):
+56e44fa081 piping(T3 B3b-P): lane A's Direct-entry oracle after B3b-P (ROOT's one-off edit on b2)
+a09e24b44c piping(T3 B3b-P): lane A's Direct-entry oracle pins m3x's G0 fallback bytes (RV123)
+1032fc8357 piping(T3 B2-P): combinations through W1, T-10a and T-10b (producer, part 1)
+794cb36e85 piping(T3 B3b-P): RV123's S-1, S-2 and N-2 pins (test-only)
+384c9a1ed8 piping(T3 B2-P): witness pins, combination successor fixtures and the B2-P tests (part 2)
+583fc758ee piping(T3 B2): merge lane A's repair round 01 (ea5625ad04; RV122 confirmed) into b2
+638214d8d8 piping(T3 B2-P): mutant kills, RV125's selector refusal pin and the with_case guard (part 3)
+
+Merged from lane A (codex/piping-t3-b2-a-20261008) by 583fc758ee:
+c2c725347d piping(T3 B3a-A repair 01): pin m3l's interim Direct outcome exactly (RV122 SF-1)
+70cb600519 piping(T3 B3b-A repair 01): the exact D1.5 clause reads the empty regions' capacity (RV122 SF-2)
+ea5625ad04 piping(T3 J1 repair 01): the reviewed-input comments name all 17 inputs (RV122 N-1)
+
+Lane P's files changed in Part 2 (22e9d00062..638214d8d8, excluding the merge's lane-A files build.rs, build_identity.rs, retained_memory.rs):
+  .../core/product_physics/src/lib.rs                |    85 +-
+  .../product_physics/src/retained_facade_tests.rs   |  1177 +-
+  .../src/retained_memory_law_tests.rs               |   132 +-
+  .../core/product_physics/src/retained_product.rs   |  1039 +-
+  .../product_physics/src/retained_product_tests.rs  |    34 +-
+  .../src/retained_tests_hooks/grant2.rs             |    48 +-
+  .../core/product_physics/src/retained_wire.rs      |   505 +-
+  ...ision_combination_successor_dense_scrutiny.json | 14768 +++++++++++++++++++
+  ...n_combination_successor_sparse_interactive.json | 14731 ++++++++++++++++++
+  9 files changed, 32334 insertions(+), 185 deletions(-)
+
+retained_memory_law_tests.rs above combines ROOT's one-off oracle edits (56e44fa081, a09e24b44c) and lane A's merged repair.

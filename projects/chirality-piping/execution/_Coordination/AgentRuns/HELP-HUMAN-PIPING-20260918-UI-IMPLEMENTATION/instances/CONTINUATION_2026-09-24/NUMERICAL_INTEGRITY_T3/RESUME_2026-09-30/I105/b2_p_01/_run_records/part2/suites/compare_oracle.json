@@ -1,0 +1,34 @@
+{
+ "pp": {
+  "base": {
+   "ok": 748,
+   "FAILED": 1,
+   "ignored": 11
+  },
+  "candidate": {
+   "ok": 764,
+   "FAILED": 1,
+   "ignored": 11
+  },
+  "changed": {},
+  "added": {
+   "lib.rs::retained_facade_tests::b3a_m3l_needs_no_producer_change": "ok",
+   "lib.rs::retained_facade_tests::b3b_coexistence_publishes_the_exact_ordinary_bytes_under_p2": "ok",
+   "lib.rs::retained_facade_tests::b3b_direct_entry_runs_the_exact_route": "ok",
+   "lib.rs::retained_facade_tests::b3b_exact_capture_refuses_a_selected_basis": "ok",
+   "lib.rs::retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect": "ok",
+   "lib.rs::retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice": "ok",
+   "lib.rs::retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors": "ok",
+   "lib.rs::retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes": "ok",
+   "lib.rs::retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required": "ok",
+   "lib.rs::retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice": "ok",
+   "lib.rs::retained_facade_tests::b3b_p4_w1_calls_no_pressure_runtime_builder": "ok",
+   "lib.rs::retained_facade_tests::b3b_refused_exact_requests_take_the_ordinary_route": "ok",
+   "lib.rs::retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry": "ok",
+   "lib.rs::retained_facade_tests::b3b_witness_inputs_and_routes": "ok",
+   "lib.rs::retained_product_tests::b3b_exact_material_check_refuses_each_defect": "ok",
+   "lib.rs::retained_wire_tests::b3b_exact_constants_bound_to_in_tree_fixtures": "ok"
+  },
+  "removed": {}
+ }
+}

@@ -1,0 +1,35 @@
+RV125 N-2 (forward constraint on lane P): does any B3b-P or B2-P path admit a material selector at c >= 2?
+
+Reading (b2 at the Part 2 head):
+- G-A: lane A's D1.5 refuses `modulus_basis_ref` / `modulus_basis_temperature` on every case
+  (retained_memory.rs F::ModulusBasisRef; law tests "case {case}: a point basis"), so the Direct entry
+  never starts W1 on a request with a selector, at any c, with or without combinations.
+- Exact route (B3b-P P-5): the capture refuses any selector ("exact route: base common E/nu selection
+  only"; b3b_exact_capture_refuses_a_selected_basis).
+- Preview route on the private driver (no G-A; tests only): the modulus-basis custody (selections,
+  basis_record, basis_record_calls, basis_expected) is the invocation's; B2-P did not move it and does
+  not rely on it per case. Its behaviour at c = 2 is pinned below.
+- B2-P's combination freeze binds combination rows with `modulus_basis == false` required
+  (bind_rows_subject: a combination block carries no modulus record).
+So no path admits a selector at c >= 2; the fields stay per invocation. Test:
+retained_facade_tests.rs b2p_selectors_at_two_cases_are_refused (output below).
+
+Private-driver outcomes printed by the test's first run (runs/dev/p2e.log), now asserted:
+B2P_SELECTORS c = 2, selected [0] SparseInteractive retained=Some(Preparation)
+B2P_SELECTORS c = 2, selected [0] DenseScrutiny retained=Some(Preparation)
+B2P_SELECTORS c = 2, selected [1] SparseInteractive retained=Some(Candidate)
+B2P_SELECTORS c = 2, selected [1] DenseScrutiny retained=Some(Candidate)
+B2P_SELECTORS c = 2, selected [0, 1] SparseInteractive retained=Some(Preparation)
+B2P_SELECTORS c = 2, selected [0, 1] DenseScrutiny retained=Some(Preparation)
+B2P_SELECTORS c = 2, z = 1, selected [0] SparseInteractive retained=Some(Preparation)
+B2P_SELECTORS c = 2, z = 1, selected [0] DenseScrutiny retained=Some(Preparation)
+B2P_SELECTORS c = 2, z = 1, selected [1] SparseInteractive retained=Some(Candidate)
+B2P_SELECTORS c = 2, z = 1, selected [1] DenseScrutiny retained=Some(Candidate)
+B2P_SELECTORS c = 2, z = 1, selected [0, 1] SparseInteractive retained=Some(Preparation)
+B2P_SELECTORS c = 2, z = 1, selected [0, 1] DenseScrutiny retained=Some(Preparation)
+
+RV125 N-3 (optional): retained_product.rs `with_case` documents the hazard; in debug builds `case_native`,
+`case_prepared_source` and `case_scope` assert (`assert_not_lent`) that inside `with_case(lent, f)` they read
+neither case `lent` (its parked slot holds a default) nor the last-seen case (its fields hold case `lent`).
+Test b2p_with_case_guards_cross_case_reads (should_panic "read across with_case"); mutant P2-47 removes the
+assert. The whole PP suite at 638214d8d8 runs with the assert active (debug profile).

@@ -1,0 +1,5 @@
+B2-P witness inputs built in the tests vs I98 B2-W inputs (R/I98/b2_w_probe_01/_run_records/inputs/)
+w_cb1 (w_cb1(); written by b2p_witness_inputs): JSON-equal to I98 r7_cb1_halfb.json (file sha256 7af8c0495438505c5137c6d474a27ec567e11387b03f5e1b071109cdead5584d): True
+w_cb1z (w_cb1z(); written by b2p_witness_inputs): JSON-equal to I98 r7_cb1.json (file sha256 0c346f49bd4bbe28c6f3c63c4930af6ffad89b78015d46e642c51f39ac42adcb): True
+w_cb2 (w_cb2(); the request in the dispositions test document): JSON-equal to I98 r7_cb2.json (file sha256 ce52d528d5bdfe8dcb66e10ba52cd33a4006c0b8430f6ad94d295e445e2aee8b): True
+w_cb3 (w_cb3(); the request in the fixture document): JSON-equal to I98 r7_cb3_v1.json (file sha256 76bb983124a7ebc6562c83f5197a5e550160a12ff5d19ee0516a1318b9c9772b): True

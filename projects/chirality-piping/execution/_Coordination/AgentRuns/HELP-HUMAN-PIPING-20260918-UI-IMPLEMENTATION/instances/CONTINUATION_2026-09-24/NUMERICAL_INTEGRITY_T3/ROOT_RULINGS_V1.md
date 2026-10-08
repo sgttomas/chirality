@@ -16227,3 +16227,31 @@ A case-level `pressure` key is not refused. PP's `PreviewLoadCase` has no such f
 - **Pass B's gates are unchanged.** `law` and `pp_outcomes` each gain the one added test, and `delta` gains test-class rows only.
 
 PR-B1 is recut once the Linux diagnostic (run 37792750591) is read.
+
+## I105's B2-P complete (`b2` `72b3e5d9ea`); lane A's interim test re-pinned; NUM's merge into `b2` deferred to J0; RV-P2 round 2 (RV123) (ROOT, 2026-10-08 UTC)
+
+**I105 (lane P) returned B2-P** (`R/I105/b2_p_01/RETURN.md`, `cd33b9b9…`, with Part 2 appended).
+- **The commits:**
+  - `1032fc8357`: the producer;
+  - `384c9a1ed8`: witnesses, pins, fixtures and tests;
+  - `638214d8d8`: mutant kills, RV125 N-2's refusal pin, the `with_case` debug guard (N-3) and a meter-chain hook;
+  - `583fc758ee`: the merge of lane A's repairs, without conflict.
+- **The pins, in both modes:**
+  - W-CB1 (1·A + 0.5·B), W-CB1z (A + B), W-CB3 v1 and `b2_c1_range_mechanics` select;
+  - W-CB2 is retained-unavailable (kernel);
+  - W-CB4a/b and W-CB5 are ordinary.
+- **New fixtures:** W-CB3's two live documents.
+- **Mutants:** 45 of 47 killed. Two are argued equivalent and go to RV123.
+- **PP:** 42 tests added, every c = 1 and B1 pin unchanged.
+- **NA4-5:** stated. On these witnesses every retained magnitude equals RN64 of the exact 3-norm.
+- **RV125 N-2:** no B2-P or B3b-P path admits a material selector at c ≥ 2. D1.5 and P-5 refuse them, and a test pins it.
+
+**Ruled: lane A's interim `b2_a_…_until_b2_p`**, which failed by design once W1 runs, is applied on `b2` as I105 proposed (`72b3e5d9ea`, test-only).
+- It is renamed `…_run_w1_and_fall_back_at_precommit_today` and pins each fallback byte for byte.
+- Law tests pass 56 of 56; `retained_precision_admission` passes 5 of 5.
+
+**Withdrawn: the merge of NUM's platform fix into `b2`.** `b2` descends from I4′ (`8d46b045e2`). Merging NUM now would bring all of B1's qualification (SQ's G5/G6, R6b's M, B6 and SI1b/c) and conflicts in `retained_memory_law_tests.rs`. That is J0, which follows PR-B1's merge, and the platform fix travels with it.
+
+**Dispatched: RV123 (RV-P2 round 2).** It confirms S-1, S-2 and N-2, then reviews B2-P at `72b3e5d9ea` against B2-C final, including a platform note on libm-formed published values.
+
+`b2` is pushed at `72b3e5d9ea`.

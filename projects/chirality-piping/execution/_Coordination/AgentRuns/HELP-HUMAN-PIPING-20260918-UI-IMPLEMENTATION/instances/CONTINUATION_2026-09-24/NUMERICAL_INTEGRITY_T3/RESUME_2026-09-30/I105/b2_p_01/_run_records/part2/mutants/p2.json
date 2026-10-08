@@ -1,0 +1,531 @@
+{
+ "filters": [
+  "b2p_",
+  "b3b_rv123",
+  "b1_sp_w_c2",
+  "b1_sp_domain",
+  "i51_c0"
+ ],
+ "skip": [
+  "b2p_w_cb1"
+ ],
+ "mutants": [
+  {
+   "id": "P2-01",
+   "check": "D1.4 re-check: C_eq <= 3",
+   "edits": [
+    {
+     "file": "src/lib.rs",
+     "old": "c.checked_add(z).is_none_or(|equivalents| equivalents > caps::CASE_EQUIVALENTS)",
+     "new": "false"
+    }
+   ]
+  },
+  {
+   "id": "P2-02",
+   "check": "D1.4 re-check: h <= 3",
+   "edits": [
+    {
+     "file": "src/lib.rs",
+     "old": "terms <= caps::COMBINATION_TERMS && ",
+     "new": ""
+    }
+   ]
+  },
+  {
+   "id": "P2-03",
+   "check": "D1.4 re-check: range operands <= 3",
+   "edits": [
+    {
+     "file": "src/lib.rs",
+     "old": "operands <= caps::RANGE_OPERANDS && ",
+     "new": ""
+    }
+   ]
+  },
+  {
+   "id": "P2-04",
+   "check": "D1.4 re-check: ids disjoint (C-9)",
+   "edits": [
+    {
+     "file": "src/lib.rs",
+     "old": " && !case_ids.clone().any(|case| case == id)",
+     "new": ""
+    }
+   ]
+  },
+  {
+   "id": "P2-05",
+   "check": "D1.4 re-check: z <= 2 (implied by c >= 1 and C_eq <= 3)",
+   "edits": [
+    {
+     "file": "src/lib.rs",
+     "old": "z > caps::COMBINATIONS || ",
+     "new": ""
+    }
+   ]
+  },
+  {
+   "id": "P2-06",
+   "check": "T-2': normalized's combination conjunct",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "            || !super::w1_model_combinations_admitted(model)\n            || (self.route",
+     "new": "            || (self.route"
+    }
+   ]
+  },
+  {
+   "id": "P2-07",
+   "check": "T-2': the early hook's combination conjunct",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "index>=model.load_cases.len() || !super::w1_model_combinations_admitted(model) {",
+     "new": "index>=model.load_cases.len() {"
+    }
+   ]
+  },
+  {
+   "id": "P2-08",
+   "check": "T-2': the late hook's combination conjunct",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "                || !super::w1_model_combinations_admitted(model) {return Err(\"prepared late hook scope/presence\".into());}",
+     "new": "                {return Err(\"prepared late hook scope/presence\".into());}"
+    }
+   ]
+  },
+  {
+   "id": "P2-09",
+   "check": "T-9': one gate entry per combination",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if gates.len() != self.combinations.len() {",
+     "new": "if false {"
+    }
+   ]
+  },
+  {
+   "id": "P2-10",
+   "check": "T-9': the gate entry names the model's combination",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if !self.checked_same(id, &combination.id)? {",
+     "new": "if false {"
+    }
+   ]
+  },
+  {
+   "id": "P2-11",
+   "check": "T-9': a withheld entry carries a gate code",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": " if COMBINATION_GATE_CODES.contains(&code.as_str()) => {}",
+     "new": " => {}"
+    }
+   ]
+  },
+  {
+   "id": "P2-12",
+   "check": "T-6': the case blocks end at the first combination row",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if !self.combinations.is_empty() && self.checked_same(&basis.ref_type,\"combination\")? {",
+     "new": "if false {"
+    }
+   ]
+  },
+  {
+   "id": "P2-13",
+   "check": "T-6': every later row is a combination row",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if !self.checked_same(&basis.ref_type,\"combination\")? {",
+     "new": "if false {"
+    }
+   ]
+  },
+  {
+   "id": "P2-14",
+   "check": "T-6': a mechanics combination's rows are contiguous",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "} else if run.end==index {",
+     "new": "} else if true {"
+    }
+   ]
+  },
+  {
+   "id": "P2-15",
+   "check": "T-9': at c = 1 the case's scope is its own block",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if cases == 1 && self.combinations.is_empty() {",
+     "new": "if cases == 1 {"
+    }
+   ]
+  },
+  {
+   "id": "P2-16",
+   "check": "T-11': the one case's aliases at c = 1",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "    if scope.cases==1 {",
+     "new": "    if scope.rows.is_none() {"
+    }
+   ]
+  },
+  {
+   "id": "P2-17",
+   "check": "T-11': headlines over load-case rows only",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if basis.ref_type!=\"load_case\" {continue;}",
+     "new": ""
+    }
+   ]
+  },
+  {
+   "id": "P2-18",
+   "check": "T-8': the combination Calls' capacity",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "for_invocation(&[count],operands,prepared)",
+     "new": "for_invocation(&[count],&[],0)"
+    }
+   ]
+  },
+  {
+   "id": "P2-19",
+   "check": "T-10a rule 1: withheld -> base_withheld",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if gate.is_some_and(|gate| gate[\"withheld\"] == serde_json::Value::Bool(true)) {",
+     "new": "if false {"
+    }
+   ]
+  },
+  {
+   "id": "P2-20",
+   "check": "T-10a rule 2: distinct cases (C-1)",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "combination.mechanics && distinct_terms(&combination.terms) && combination.terms.iter().any(|&(case, _)| selected(case))",
+     "new": "combination.mechanics && combination.terms.iter().any(|&(case, _)| selected(case))"
+    }
+   ]
+  },
+  {
+   "id": "P2-21",
+   "check": "T-10a rule 2: a selected term",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "distinct_terms(&combination.terms) && combination.terms.iter().any(|&(case, _)| selected(case))",
+     "new": "distinct_terms(&combination.terms) && combination.terms.iter().all(|&(case, _)| selected(case))"
+    }
+   ]
+  },
+  {
+   "id": "P2-22",
+   "check": "T-10a rule 2: mechanics only",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "            } else if combination.mechanics && distinct_terms(",
+     "new": "            } else if distinct_terms("
+    }
+   ]
+  },
+  {
+   "id": "P2-23",
+   "check": "T-10b (i): a T-7-refused operand has no source (C-4)",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "Some(attempt) if !attempt.prepared => { decided = Some(operand_index); break; }",
+     "new": "Some(attempt) if !attempt.prepared && false => { decided = Some(operand_index); break; }"
+    }
+   ]
+  },
+  {
+   "id": "P2-24",
+   "check": "T-10b (i): a rebuilt operand's batch source id",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "invocation.runs().get(run.run).map(|origin| origin.source)",
+     "new": "invocation.runs().get(run.run).map(|origin| origin.source ^ 1)"
+    }
+   ]
+  },
+  {
+   "id": "P2-25",
+   "check": "T-10b (iii) 1: a refused operand preparation decides the combination",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": ".filter(|record| record.source.is_none()).map(|record| record.id)",
+     "new": ".filter(|_| false).map(|record| record.id)"
+    }
+   ]
+  },
+  {
+   "id": "P2-26",
+   "check": "T-10b (iii) 2: a pre-source refusal",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "                combination.end = CombinationEnd::PreSource { stage, reason };",
+     "new": "                let _ = (stage, reason); combination.end = CombinationEnd::Native;"
+    }
+   ]
+  },
+  {
+   "id": "P2-27",
+   "check": "T-10b (iii) 3: a non-selected Run is Native",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "                if !selected {\n                    combination.trace.fail_entered();",
+     "new": "                if false {\n                    combination.trace.fail_entered();"
+    }
+   ]
+  },
+  {
+   "id": "P2-28",
+   "check": "observables stage: the gate entry not withheld",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": " || gate[\"withheld\"] != serde_json::Value::Bool(false) {",
+     "new": " {"
+    }
+   ]
+  },
+  {
+   "id": "P2-29",
+   "check": "observables stage: no maximum or intensified row",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if row.kind == \"pipe_elastic_normal_stress_maximum_v2\" || row.kind == super::preview_physics::INTENSIFIED_KIND {",
+     "new": "if false {"
+    }
+   ]
+  },
+  {
+   "id": "P2-30",
+   "check": "observables stage: the displacement magnitude guard",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if (p - v[0].hypot(v[1]).hypot(v[2])).abs() > 64.0 * f64::EPSILON * p.abs().max(f64::MIN_POSITIVE) {",
+     "new": "if false {"
+    }
+   ]
+  },
+  {
+   "id": "P2-31",
+   "check": "observables stage: one row per translation",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if found.is_some() { return Err(\"combination displacement identity\".into()); }",
+     "new": ""
+    }
+   ]
+  },
+  {
+   "id": "P2-32",
+   "check": "staging: a frozen combination's values on its block",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "apply_combination_overlay(&mut staged, &frozen.values, rows)?;",
+     "new": "let _ = (&frozen.values, rows);"
+    }
+   ]
+  },
+  {
+   "id": "P2-33",
+   "check": "serializer: recovery_method on a selected combination's rows",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "            if row[\"basis_ref\"][\"ref_type\"] == json!(\"combination\") && row[\"basis_ref\"][\"ref_id\"] == json!(combination_id) {",
+     "new": "            if false {"
+    }
+   ]
+  },
+  {
+   "id": "P2-34",
+   "check": "serializer: a combination group's imports",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "if inv.calls().get(g.call).is_some_and(|c| matches!(c.kind, k::CallKind::MechanicsCombination)) {",
+     "new": "if false {"
+    }
+   ]
+  },
+  {
+   "id": "P2-35",
+   "check": "ordinal mapping: a combination Run's authored index",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "k::NativeOwner::Combination(i) => self.combinations.get(*i).map(|index| json!({\"kind\":\"combination\",\"index\":index})),",
+     "new": "k::NativeOwner::Combination(i) => Some(json!({\"kind\":\"combination\",\"index\":i})),"
+    }
+   ]
+  },
+  {
+   "id": "P2-36",
+   "check": "ordinal mapping: a prepared registration's owner",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": ".or_else(|| ordinal.checked_sub(self.requests.len()).and_then(|j| self.prepared.get(j).copied()))",
+     "new": ""
+    }
+   ]
+  },
+  {
+   "id": "P2-37",
+   "check": "C-6: operand_preparations absent when empty",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "    if !operand_preparations.is_empty() {",
+     "new": "    if true {"
+    }
+   ]
+  },
+  {
+   "id": "P2-38",
+   "check": "CombinationSource: each operand's source identity",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "\"source_identity_sha256\":source_identity(operand_source)?}));",
+     "new": "\"source_identity_sha256\":\"0\".repeat(64)}));"
+    }
+   ]
+  },
+  {
+   "id": "P2-39",
+   "check": "failure set: a non-selected combination Run is the kernel's",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "                (_, false) => (\"combination_unresolved\", \"kernel\"),",
+     "new": "                (_, false) => (\"facade_certificate\", \"facade\"),"
+    }
+   ]
+  },
+  {
+   "id": "P2-40",
+   "check": "failure set: operand_source_unavailable names its operand",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "json!({\"kind\":\"operand_source_unavailable\",\"operand_index\":operand_index})",
+     "new": "json!({\"kind\":\"operand_source_unavailable\",\"operand_index\":0})"
+    }
+   ]
+  },
+  {
+   "id": "P2-41",
+   "check": "T-10a rule 1: the gate's code",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "CombinationEnd::BaseWithheld(gate.and_then(|gate| gate[\"reason\"].as_str()).unwrap_or_default().to_owned())",
+     "new": "CombinationEnd::BaseWithheld(String::new())"
+    }
+   ]
+  },
+  {
+   "id": "P2-42",
+   "check": "expression: a range's operand ids sorted",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "            ids.sort();\n",
+     "new": ""
+    }
+   ]
+  },
+  {
+   "id": "P2-43",
+   "check": "serializer: an unavailable combination's diagnostic",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "(format!(\"diagnostic:retained-precision:{combination_id}:unavailable\"), UNAVAILABLE_CODE, COMBINATION_UNAVAILABLE_MESSAGE)",
+     "new": "(format!(\"diagnostic:retained-precision:{combination_id}:unavailable\"), UNAVAILABLE_CODE, COMBINATION_SELECTED_MESSAGE)"
+    }
+   ]
+  },
+  {
+   "id": "P2-44",
+   "check": "serializer: the meter chain",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "|| inv.calls().windows(2).any(|pair| e.exact(pair[1].invocation_before, \"work.charged\") != e.exact(pair[0].invocation_after, \"work.charged\").saturating_add(unchained)) {",
+     "new": "{ let _ = unchained;"
+    }
+   ]
+  },
+  {
+   "id": "P2-45",
+   "check": "CombinationSource: the representative is operand 0",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "let representative = operands.first().map(|operand| operand[\"source_ref\"].clone())",
+     "new": "let representative = operands.last().map(|operand| operand[\"source_ref\"].clone())"
+    }
+   ]
+  },
+  {
+   "id": "P2-46",
+   "check": "operand preparation: its CaseSource's binding H (C3a-5)",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "payload[\"purpose\"] = json!(\"combination_operand\");",
+     "new": "payload[\"purpose\"] = json!(\"case\");"
+    }
+   ]
+  },
+  {
+   "id": "P2-47",
+   "check": "RV125 N-3: the per-case accessors refuse a cross-case read inside with_case (debug)",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "debug_assert!(self.lent.is_none_or(|lent| index != lent && index != self.parked.len()), \"case {index} read across with_case\");",
+     "new": ""
+    }
+   ]
+  }
+ ]
+}

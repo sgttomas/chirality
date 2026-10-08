@@ -1,0 +1,463 @@
+[
+ {
+  "id": "P2-01",
+  "check": "D1.4 re-check: C_eq <= 3",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b1_sp_domain_recheck_names_the_requested_cases"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-02",
+  "check": "D1.4 re-check: h <= 3",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b1_sp_domain_recheck_names_the_requested_cases",
+   "retained_facade_tests::b2p_capture_refuses_combinations_outside_d14",
+   "retained_product_tests::i51_c0_isolated_late_hook_custody_and_prefixes"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P2-03",
+  "check": "D1.4 re-check: range operands <= 3",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b1_sp_domain_recheck_names_the_requested_cases"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-04",
+  "check": "D1.4 re-check: ids disjoint (C-9)",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b1_sp_domain_recheck_names_the_requested_cases"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-05",
+  "check": "D1.4 re-check: z <= 2 (implied by c >= 1 and C_eq <= 3)",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_d14_predicate_at_its_caps"
+  ],
+  "passed": 29
+ },
+ {
+  "id": "P2-06",
+  "check": "T-2': normalized's combination conjunct",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_capture_refuses_combinations_outside_d14"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-07",
+  "check": "T-2': the early hook's combination conjunct",
+  "verdict": "killed",
+  "failed": [
+   "retained_product_tests::b2p_early_hook_refuses_combinations_outside_d14"
+  ],
+  "passed": 29
+ },
+ {
+  "id": "P2-08",
+  "check": "T-2': the late hook's combination conjunct",
+  "verdict": "killed",
+  "failed": [
+   "retained_product_tests::i51_c0_isolated_late_hook_custody_and_prefixes"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-09",
+  "check": "T-9': one gate entry per combination",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_gate_entries_shape_and_consistency"
+  ],
+  "passed": 29
+ },
+ {
+  "id": "P2-10",
+  "check": "T-9': the gate entry names the model's combination",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_combination_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b2p_gate_entries_shape_and_consistency",
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P2-11",
+  "check": "T-9': a withheld entry carries a gate code",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_gate_entries_shape_and_consistency"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-12",
+  "check": "T-6': the case blocks end at the first combination row",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_combination_expressions",
+   "retained_facade_tests::b2p_combination_observables_stage",
+   "retained_facade_tests::b2p_combination_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b2p_direct_entry_runs_the_combinations",
+   "retained_facade_tests::b2p_gate_entries_shape_and_consistency",
+   "retained_facade_tests::b2p_hooks_and_failure_set",
+   "retained_facade_tests::b2p_witness_dispositions_on_the_private_driver",
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 17
+ },
+ {
+  "id": "P2-13",
+  "check": "T-6': every later row is a combination row",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_combination_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 23
+ },
+ {
+  "id": "P2-14",
+  "check": "T-6': a mechanics combination's rows are contiguous",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_custody_binds_the_combination_rows"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-15",
+  "check": "T-9': at c = 1 the case's scope is its own block",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_direct_entry_runs_the_combinations",
+   "retained_facade_tests::b2p_witness_dispositions_on_the_private_driver",
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P2-16",
+  "check": "T-11': the one case's aliases at c = 1",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-17",
+  "check": "T-11': headlines over load-case rows only",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-18",
+  "check": "T-8': the combination Calls' capacity",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_combination_expressions",
+   "retained_facade_tests::b2p_combination_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b2p_direct_entry_runs_the_combinations",
+   "retained_facade_tests::b2p_hooks_and_failure_set",
+   "retained_facade_tests::b2p_witness_dispositions_on_the_private_driver",
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 19
+ },
+ {
+  "id": "P2-19",
+  "check": "T-10a rule 1: withheld -> base_withheld",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_gate_entries_shape_and_consistency"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-20",
+  "check": "T-10a rule 2: distinct cases (C-1)",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_repeated_case_combination_is_ordinary"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-21",
+  "check": "T-10a rule 2: a selected term",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_combination_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b2p_direct_entry_runs_the_combinations",
+   "retained_facade_tests::b2p_hooks_and_failure_set",
+   "retained_facade_tests::b2p_witness_dispositions_on_the_private_driver",
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 20
+ },
+ {
+  "id": "P2-22",
+  "check": "T-10a rule 2: mechanics only",
+  "verdict": "survived",
+  "failed": [],
+  "passed": 30
+ },
+ {
+  "id": "P2-23",
+  "check": "T-10b (i): a T-7-refused operand has no source (C-4)",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_hooks_and_failure_set"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-24",
+  "check": "T-10b (i): a rebuilt operand's batch source id",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_hooks_and_failure_set"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-25",
+  "check": "T-10b (iii) 1: a refused operand preparation decides the combination",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_hooks_and_failure_set"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-26",
+  "check": "T-10b (iii) 2: a pre-source refusal",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_hooks_and_failure_set"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-27",
+  "check": "T-10b (iii) 3: a non-selected Run is Native",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-28",
+  "check": "observables stage: the gate entry not withheld",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_combination_observables_stage"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-29",
+  "check": "observables stage: no maximum or intensified row",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_combination_observables_stage"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-30",
+  "check": "observables stage: the displacement magnitude guard",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_combination_observables_stage"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-31",
+  "check": "observables stage: one row per translation",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_combination_observables_stage"
+  ],
+  "passed": 29
+ },
+ {
+  "id": "P2-32",
+  "check": "staging: a frozen combination's values on its block",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_combination_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 23
+ },
+ {
+  "id": "P2-33",
+  "check": "serializer: recovery_method on a selected combination's rows",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_combination_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 23
+ },
+ {
+  "id": "P2-34",
+  "check": "serializer: a combination group's imports",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_combination_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b2p_hooks_and_failure_set",
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P2-35",
+  "check": "ordinal mapping: a combination Run's authored index",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_direct_entry_runs_the_combinations",
+   "retained_facade_tests::b2p_witness_dispositions_on_the_private_driver",
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P2-36",
+  "check": "ordinal mapping: a prepared registration's owner",
+  "verdict": "survived",
+  "failed": [],
+  "passed": 30
+ },
+ {
+  "id": "P2-37",
+  "check": "C-6: operand_preparations absent when empty",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b1_sp_w_c2_direct_entry_publishes_the_pinned_successor",
+   "retained_facade_tests::b1_sp_w_c2_fixtures_are_the_live_successors",
+   "retained_facade_tests::b1_sp_w_c2_through_retained_w1_publishes_t12",
+   "retained_facade_tests::b1_sp_w_c2_transaction_faults_and_abandonment",
+   "retained_facade_tests::b1_sp_w_c2_transaction_outcomes_and_ordinal_mapping",
+   "retained_facade_tests::b2p_direct_entry_runs_the_combinations",
+   "retained_facade_tests::b2p_hooks_and_failure_set",
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes",
+   "retained_facade_tests::b3b_rv123_s1_two_member_exact_overlays_each_member",
+   "retained_facade_tests::b3b_rv123_s2_unavailable_exact_case_binds_def_e"
+  ],
+  "passed": 15
+ },
+ {
+  "id": "P2-38",
+  "check": "CombinationSource: each operand's source identity",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_combination_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 23
+ },
+ {
+  "id": "P2-39",
+  "check": "failure set: a non-selected combination Run is the kernel's",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_witness_dispositions_on_the_private_driver",
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 23
+ },
+ {
+  "id": "P2-40",
+  "check": "failure set: operand_source_unavailable names its operand",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_hooks_and_failure_set"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-41",
+  "check": "T-10a rule 1: the gate's code",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_gate_entries_shape_and_consistency"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-42",
+  "check": "expression: a range's operand ids sorted",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_combination_expressions"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-43",
+  "check": "serializer: an unavailable combination's diagnostic",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 24
+ },
+ {
+  "id": "P2-44",
+  "check": "serializer: the meter chain",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_serializer_refuses_an_unchained_meter"
+  ],
+  "passed": 29
+ },
+ {
+  "id": "P2-45",
+  "check": "CombinationSource: the representative is operand 0",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_combination_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 23
+ },
+ {
+  "id": "P2-46",
+  "check": "operand preparation: its CaseSource's binding H (C3a-5)",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_combination_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes"
+  ],
+  "passed": 23
+ },
+ {
+  "id": "P2-47",
+  "check": "RV125 N-3: the per-case accessors refuse a cross-case read inside with_case (debug)",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_with_case_guards_cross_case_reads - should panic"
+  ],
+  "passed": 29
+ }
+]

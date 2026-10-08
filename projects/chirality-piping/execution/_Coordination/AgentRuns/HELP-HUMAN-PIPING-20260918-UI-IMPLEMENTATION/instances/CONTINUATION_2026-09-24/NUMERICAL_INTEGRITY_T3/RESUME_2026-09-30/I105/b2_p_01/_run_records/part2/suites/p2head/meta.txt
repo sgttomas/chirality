@@ -1,0 +1,7 @@
+START p2head 2026-10-08T14:44:28Z root=WT/scratch/i105_b2_p/p2head parts=pp runner deps tauri
+pp rc=101 2026-10-08T14:52:58Z
+runner rc=101 2026-10-08T14:53:50Z
+deps_self_weight_wasm rc=0 2026-10-08T14:53:59Z
+deps_operation_applier rc=0 2026-10-08T14:54:08Z
+tauri rc=0 2026-10-08T14:54:13Z
+DONE p2head 2026-10-08T14:54:13Z

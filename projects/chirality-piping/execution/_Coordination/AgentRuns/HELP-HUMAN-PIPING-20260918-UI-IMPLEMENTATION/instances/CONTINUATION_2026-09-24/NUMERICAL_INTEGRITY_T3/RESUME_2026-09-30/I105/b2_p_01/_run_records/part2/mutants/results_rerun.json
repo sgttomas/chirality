@@ -1,0 +1,70 @@
+[
+ {
+  "id": "P2-05",
+  "check": "D1.4 re-check: z <= 2 (implied by c >= 1 and C_eq <= 3)",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_d14_predicate_at_its_caps"
+  ],
+  "passed": 29
+ },
+ {
+  "id": "P2-07",
+  "check": "T-2': the early hook's combination conjunct",
+  "verdict": "killed",
+  "failed": [
+   "retained_product_tests::b2p_early_hook_refuses_combinations_outside_d14"
+  ],
+  "passed": 29
+ },
+ {
+  "id": "P2-09",
+  "check": "T-9': one gate entry per combination",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_gate_entries_shape_and_consistency"
+  ],
+  "passed": 29
+ },
+ {
+  "id": "P2-22",
+  "check": "T-10a rule 2: mechanics only",
+  "verdict": "survived",
+  "failed": [],
+  "passed": 30
+ },
+ {
+  "id": "P2-31",
+  "check": "observables stage: one row per translation",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_combination_observables_stage"
+  ],
+  "passed": 29
+ },
+ {
+  "id": "P2-36",
+  "check": "ordinal mapping: a prepared registration's owner",
+  "verdict": "survived",
+  "failed": [],
+  "passed": 30
+ },
+ {
+  "id": "P2-44",
+  "check": "serializer: the meter chain",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_serializer_refuses_an_unchained_meter"
+  ],
+  "passed": 29
+ },
+ {
+  "id": "P2-47",
+  "check": "RV125 N-3: the per-case accessors refuse a cross-case read inside with_case (debug)",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_with_case_guards_cross_case_reads - should panic"
+  ],
+  "passed": 29
+ }
+]
