@@ -62,7 +62,6 @@ impl Fixture {
             load_case: &self.model.load_cases[0],
             load_application: &self.loads,
             thermal_loads: &[],
-            pressure_thrust_loads: &[],
             load_state: None,
         }
     }

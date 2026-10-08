@@ -592,18 +592,6 @@ STRESS_CASES = [
         ),
     ),
     Case(
-        "STRESS-PRESSURE-MEMBRANE-ORIGINAL",
-        "stress",
-        "pressure_membrane.md",
-        ["recovers_pressure_membrane_fixture"],
-        "stress_numeric",
-        purpose_fallback=(
-            "Verify thin-wall pressure membrane stress recovery from "
-            "explicit user-supplied pressure basis inputs, within the "
-            "mechanics-only stress recovery boundary."
-        ),
-    ),
-    Case(
         "STRESS-RANGE-MECHANICS-ORIGINAL",
         "stress",
         "stress_range.md",

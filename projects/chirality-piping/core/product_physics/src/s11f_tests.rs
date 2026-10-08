@@ -244,13 +244,11 @@ fn case_ledger(request: &Value, case_index: usize) -> (Vec<ForceTerm>, Assembled
         &built.sections,
         &mut diagnostics,
     );
-    let thrust = build_pressure_thrust_loads(&model, load_case, &pipe_map, &built.sections);
     let ledger = case_force_ledger(
         &model,
         &built,
         &application,
         &bends,
-        &thrust,
         &thermal,
         None,
         &load_case.id,

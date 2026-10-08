@@ -1037,16 +1037,6 @@ fn evaluate_stress_case(fixture_id: &str) -> CaseEvaluation {
                 result.components.torsional_shear,
             )])
         }
-        "STRESS-PRESSURE-MEMBRANE-ORIGINAL" => {
-            let result = stress::recover_complete_fixture();
-            collect(vec![
-                optional_component("pressure_hoop", result.components.pressure_hoop),
-                optional_component(
-                    "pressure_longitudinal",
-                    result.components.pressure_longitudinal,
-                ),
-            ])
-        }
         "STRESS-RANGE-MECHANICS-ORIGINAL" => {
             let result = stress::recover_range_fixture();
             collect(vec![
@@ -1209,11 +1199,6 @@ fn evaluate_stress_case(fixture_id: &str) -> CaseEvaluation {
                 optional_component("bending_normal_y", result.components.bending_normal_y),
                 optional_component("bending_normal_z", result.components.bending_normal_z),
                 optional_component("torsional_shear", result.components.torsional_shear),
-                optional_component("pressure_hoop", result.components.pressure_hoop),
-                optional_component(
-                    "pressure_longitudinal",
-                    result.components.pressure_longitudinal,
-                ),
             ])
         }
         "STRESS-TP-PHYS-008-THERMAL-AXIAL-EFFECT-TO-STRESS" => CaseEvaluation::NotReusable(
@@ -1447,12 +1432,12 @@ mod tests {
     }
 
     #[test]
-    fn mechanics_whole_suite_is_25_cases_206_values_and_preserves_original_11_91() {
+    fn mechanics_whole_suite_is_24_cases_194_values_and_preserves_original_11_91() {
         let outcome = run_benchmark_cases("mechanics", &[]);
         assert!(outcome.diagnostics.is_empty(), "{:?}", outcome.diagnostics);
         let report = outcome.report.expect("mechanics report");
-        assert_eq!(report.requested_case_count, 25);
-        assert_eq!(report.executed_and_matched, 25);
+        assert_eq!(report.requested_case_count, 24);
+        assert_eq!(report.executed_and_matched, 24);
         assert_eq!(report.executed_and_mismatched, 0);
         assert_eq!(report.blocked, 0);
         assert_eq!(
@@ -1461,7 +1446,7 @@ mod tests {
                 .iter()
                 .map(|case| case.values.len())
                 .sum::<usize>(),
-            206
+            194
         );
         assert!(report
             .cases
@@ -1512,13 +1497,13 @@ mod tests {
             .iter()
             .filter(|case| !original_ids.contains(case.fixture_id.as_str()))
             .collect::<Vec<_>>();
-        assert_eq!(new_cases.len(), 14);
+        assert_eq!(new_cases.len(), 13);
         assert_eq!(
             new_cases
                 .iter()
                 .map(|case| case.values.len())
                 .sum::<usize>(),
-            115
+            103
         );
         for case in new_cases {
             let names = case

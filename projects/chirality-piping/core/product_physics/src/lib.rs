@@ -35,7 +35,7 @@ mod s11g_tests;
 mod source_budget_tests;
 
 use open_pipe_stress_curved_bend::CurvedBendMacroElement;
-use open_pipe_stress_frame_kernel::exact_sum::{exact_rounded_sum, ExactAccumulator};
+use open_pipe_stress_frame_kernel::exact_sum::ExactAccumulator;
 use open_pipe_stress_frame_kernel::load_ledger::{
     gamma, product_upward, AssembledForce, Formation, LoadLedger,
 };
@@ -91,7 +91,7 @@ use open_pipe_stress_straight_pipe::{
     UniformLoadSpan,
 };
 use open_pipe_stress_stress_recovery::{
-    recover_stresses, AnalysisStatus, ForceResultants, PressureBasis, StressComponents,
+    recover_stresses, AnalysisStatus, ForceResultants, StressComponents,
     StressRecoveryInput, StressSectionProperties,
 };
 use open_pipe_stress_units::{canonical_unit, convert_for_dimension, unit_by_symbol, Dimension};
@@ -1419,7 +1419,6 @@ fn force_scaling_attempt(
     load_case: &PreviewLoadCase,
     load_application: &LoadApplication,
     thermal_loads: &[ThermalElementLoad],
-    pressure_thrust_loads: &[PressureThrustLoad],
     exact_pressure: Option<&pressure_runtime::ExactPressureCase>,
     force: &AssembledForce,
     prescribed: &[(usize, f64)],
@@ -1477,7 +1476,6 @@ fn force_scaling_attempt(
         load_case,
         load_application,
         thermal_loads,
-        pressure_thrust_loads,
         exact_pressure,
         force,
         b,
@@ -1524,8 +1522,8 @@ fn force_scaling_attempt(
 /// frames, ground springs, rigid restraints, prescribed support motion and
 /// authored nodal loads. The first failing check names the family. Every
 /// element-targeted primitive (distributed, weight, thermal, pressure) is an
-/// `element_uniform_loads` entry, so the thermal, pressure-thrust and
-/// exact-pressure checks precede that one, which names what remains (A2: a
+/// `element_uniform_loads` entry, so the thermal and exact-pressure checks
+/// precede that one, which names what remains (A2: a
 /// thermal load was named `uniform_element_load` in the plan's order). The
 /// authored value of a nodal load is not available here (units are normalized
 /// in place; a 0.4.0 case's magnitudes are factored), so every exactly-zero
@@ -1539,7 +1537,6 @@ fn force_scaling_admission(
     load_case: &PreviewLoadCase,
     load_application: &LoadApplication,
     thermal_loads: &[ThermalElementLoad],
-    pressure_thrust_loads: &[PressureThrustLoad],
     exact_pressure: Option<&pressure_runtime::ExactPressureCase>,
     force: &AssembledForce,
     b: i32,
@@ -1562,8 +1559,6 @@ fn force_scaling_admission(
         Some("curved_bend_macro_element")
     } else if !thermal_loads.is_empty() {
         Some("thermal_or_eigen_load")
-    } else if !pressure_thrust_loads.is_empty() {
-        Some("pressure_thrust_load")
     } else if exact_pressure.is_some_and(|exact| !exact.assembled_operands.is_empty()) {
         Some("exact_pressure_operand")
     } else if !load_application.element_uniform_loads.is_empty() {
@@ -2113,30 +2108,6 @@ struct CurvedBendMacroBuild {
     macro_element: CurvedBendMacroElement,
 }
 
-#[derive(Debug, Clone)]
-struct PressureThrustLoad {
-    element_index: usize,
-    axial_load: f64,
-    source_load_id: String,
-    source: PressureThrustSource,
-}
-
-#[derive(Debug, Clone)]
-enum PressureThrustSource {
-    PipeInternalArea,
-    ExpansionJointEffectiveArea(ExpansionJointPressureThrustInput),
-}
-
-#[derive(Debug, Clone)]
-struct ExpansionJointPressureThrustInput {
-    component_id: String,
-    pipe_id: String,
-    effective_area: f64,
-    pressure_thrust_reference: String,
-    source_reference: String,
-    solver_consumption: String,
-}
-
 #[derive(Debug, Clone, Copy)]
 struct DerivedSection {
     area: f64,
@@ -2145,7 +2116,6 @@ struct DerivedSection {
     torsion_constant: f64,
     section_modulus: f64,
     torsion_radius: f64,
-    membrane_radius: f64,
     wall_thickness: f64,
 }
 
@@ -3865,15 +3835,15 @@ fn push_nodal_loads(ledger: &mut LoadLedger, application: &LoadApplication, node
 
 /// The case's load ledger (S11 sections 4.2 and 4.3): every force producer
 /// pushes its contributions, term by term, in this fixed order (nodal loads,
-/// uniform element equivalents, pressure thrust, thermal and eigen
-/// equivalents, exact-pressure group operands, constant effort).
+/// uniform element equivalents, thermal and eigen equivalents, exact-pressure
+/// group operands, constant effort). The legacy pressure thrust producer is
+/// retired with legacy pressure (U3).
 #[allow(clippy::too_many_arguments)]
 fn case_force_ledger(
     model: &PreviewModel,
     built: &BuiltModel,
     load_application: &LoadApplication,
     curved_bends_by_pipe: &HashMap<usize, &CurvedBendMacroBuild>,
-    pressure_thrust_loads: &[PressureThrustLoad],
     thermal_loads: &[ThermalElementLoad],
     exact_pressure: Option<&pressure_runtime::ExactPressureCase>,
     load_case_id: &str,
@@ -3889,18 +3859,6 @@ fn case_force_ledger(
         curved_bends_by_pipe,
         load_case_id,
         diagnostics,
-    );
-    // Pressure thrust on macro-realized bend spans applies the complete
-    // self-equilibrated arc system: end-cap forces along the validated arc
-    // end tangents plus the exact work-equivalent consistent nodal vector of
-    // the outward radial wall load (decision recorded in the curved-bend
-    // review-row basis). Straight spans keep the equal/opposite chord-axial
-    // end forces unchanged.
-    add_pressure_thrust_loads(
-        &mut ledger,
-        pressure_thrust_loads,
-        &built.pipes,
-        curved_bends_by_pipe,
     );
     add_thermal_equivalent_loads(
         &mut ledger,
@@ -4156,8 +4114,6 @@ fn solve_load_case_observed(
             diagnostics,
         ),
     };
-    let pressure_thrust_loads =
-        build_pressure_thrust_loads(model, load_case, &pipe_map, &built.sections);
 
     let curved_bends_by_pipe = built
         .curved_bend_elements
@@ -4178,7 +4134,6 @@ fn solve_load_case_observed(
         built,
         &load_application,
         &curved_bends_by_pipe,
-        &pressure_thrust_loads,
         &thermal_loads,
         exact_pressure.as_ref(),
         &load_case.id,
@@ -4186,7 +4141,7 @@ fn solve_load_case_observed(
     );
     if let Some(observer) = product.as_deref_mut() {
         observer.case_source(model, built, materials, load_case, restrained_dofs, spring_entries,
-            &load_application, &thermal_loads, &pressure_thrust_loads);
+            &load_application, &thermal_loads);
     }
     let force = finish_case_ledger(ledger, built.nodes.len())?;
     // S11-G section 3.5: the load-row guard reads the ledger's formation
@@ -4358,7 +4313,7 @@ fn solve_load_case_observed(
     let recovery_input = || source_recovery::Input {
         model, built, stiffness: &recovery_stiffness, force: &force, free: free_dofs,
         prescribed: &prescribed, spring_entries, load_case, load_application: &load_application,
-        thermal_loads: &thermal_loads, pressure_thrust_loads: &pressure_thrust_loads,
+        thermal_loads: &thermal_loads,
         load_state,
     };
     if source_eligible && needs_source_recovery {
@@ -4502,7 +4457,6 @@ fn solve_load_case_observed(
                     load_case,
                     &load_application,
                     &thermal_loads,
-                    &pressure_thrust_loads,
                     exact_pressure.as_ref(),
                     &force,
                     &prescribed,
@@ -4773,12 +4727,8 @@ fn solve_load_case_observed(
         }
     }
     require_finite_mechanics(displacements.iter().copied())?;
-    let component_pressure_thrust_load_count = append_expansion_joint_pressure_thrust_results(
-        &mut results,
-        diagnostics,
-        load_case,
-        &pressure_thrust_loads,
-    );
+    // U3: legacy pressure thrust is retired; the published summary count stays 0.
+    let component_pressure_thrust_load_count = 0;
     let mut max_displacement = None;
     for node in &model.nodes {
         let node_index = node_index(&model, &node.id).unwrap();
@@ -4978,7 +4928,6 @@ fn solve_load_case_observed(
             .get(&pipe_index)
             .map(Vec::as_slice)
             .unwrap_or(&[]);
-        let pressure_thrusts = pressure_thrusts_for_pipe(pipe_index, &pressure_thrust_loads);
         let straight_loads = if macro_bend.is_none() {
             match straight_local_uniform_loads(
                 pipe,
@@ -5015,7 +4964,6 @@ fn solve_load_case_observed(
                 pipe,
                 &displacements,
                 &thermal_loads,
-                &pressure_thrusts,
                 uniform_intensities,
             ) {
                 Ok(local_forces) => local_forces,
@@ -5069,11 +5017,6 @@ fn solve_load_case_observed(
                 &equivalent_terms,
                 pipe_index,
                 &thermal_loads,
-                if pressure_runtime::is_exact(model) {
-                    &[]
-                } else {
-                    &pressure_thrust_loads
-                },
             );
             if let Some(state) = exact_pressure
                 .as_ref()
@@ -5140,7 +5083,6 @@ fn solve_load_case_observed(
                 pipe,
                 &corrected_local_forces,
                 uniform_intensities,
-                &pressure_thrusts,
             ) {
                 Ok(stations) => stations.to_vec(),
                 Err(message) => {
@@ -5206,7 +5148,6 @@ fn solve_load_case_observed(
                     pipe,
                     &corrected_local_forces,
                     uniform_intensities,
-                    &pressure_thrusts,
                     fraction,
                 )
             };
@@ -5297,19 +5238,14 @@ fn solve_load_case_observed(
                 section_modulus: section.section_modulus,
             });
         }
-        let pressure = pressure_for_pipe(model, load_case, pipe_index, &pipe.element_id);
-        // Whether the thrust loads on the pipe have a nonzero exact net.
-        let pressure_thrust_active =
-            exact_rounded_sum(pressure_thrusts.iter().copied()).map_or(true, |net| net != 0.0);
-        let include_pressure_longitudinal = !pressure_thrust_active;
-        let end_i_stress = recover_section_stress(&endpoint_resultants[0], section, pressure);
-        let end_j_stress = recover_section_stress(&endpoint_resultants[1], section, pressure);
+        let end_i_stress = recover_section_stress(&endpoint_resultants[0], section);
+        let end_j_stress = recover_section_stress(&endpoint_resultants[1], section);
         let station_stresses = station_resultants
             .iter()
             .map(|station| {
                 (
                     station.location,
-                    recover_section_stress(&station.resultants, section, pressure),
+                    recover_section_stress(&station.resultants, section),
                 )
             })
             .collect::<Vec<_>>();
@@ -5324,8 +5260,6 @@ fn solve_load_case_observed(
                     c.bending_normal_y,
                     c.bending_normal_z,
                     c.torsional_shear,
-                    c.pressure_hoop,
-                    c.pressure_longitudinal,
                 ]
                 .into_iter()
                 .flatten(),
@@ -5369,8 +5303,6 @@ fn solve_load_case_observed(
                 &pipe.element_id,
                 "end_i",
                 &end_i_stress.components,
-                pressure.is_some(),
-                include_pressure_longitudinal,
                 if macro_bend.is_some() {
                     CURVED_BEND_SECTION_SIGN_CONVENTION
                 } else {
@@ -5384,8 +5316,6 @@ fn solve_load_case_observed(
                 &pipe.element_id,
                 "end_j",
                 &end_j_stress.components,
-                pressure.is_some(),
-                include_pressure_longitudinal,
                 if macro_bend.is_some() {
                     CURVED_BEND_SECTION_SIGN_CONVENTION
                 } else {
@@ -5402,8 +5332,6 @@ fn solve_load_case_observed(
                 &pipe.element_id,
                 location,
                 &stress.components,
-                pressure.is_some(),
-                include_pressure_longitudinal,
                 if macro_bend.is_some() {
                     station_basis
                 } else {
@@ -5415,14 +5343,14 @@ fn solve_load_case_observed(
             );
         }
         let mut summary_values = [
-            open_formula_summary_mpa(&end_i_stress, include_pressure_longitudinal),
-            open_formula_summary_mpa(&end_j_stress, include_pressure_longitudinal),
+            open_formula_summary_mpa(&end_i_stress),
+            open_formula_summary_mpa(&end_j_stress),
         ]
         .into_iter()
         .flatten()
         .collect::<Vec<_>>();
         for (_, stress) in &station_stresses {
-            if let Some(value) = open_formula_summary_mpa(stress, include_pressure_longitudinal) {
+            if let Some(value) = open_formula_summary_mpa(stress) {
                 summary_values.push(value);
             }
         }
@@ -5432,8 +5360,6 @@ fn solve_load_case_observed(
                 &corrected_local_forces,
                 &straight_loads,
                 section,
-                pressure,
-                include_pressure_longitudinal,
             ) {
                 Ok(value) => summary_values.push(value),
                 Err(error) => diagnostics.push(diag(
@@ -5576,7 +5502,6 @@ fn solve_load_case_observed(
             &pipe.element_id,
             &end_i_stress,
             &end_j_stress,
-            include_pressure_longitudinal,
         );
     }
 
@@ -5714,8 +5639,7 @@ fn solve_load_case_observed(
     } else { None };
     if let Some(observer) = product.as_deref_mut() {
         observer.prepared_case_source(source_selected, model, built, materials, load_case,
-            restrained_dofs, spring_entries, &load_application, &thermal_loads,
-            &pressure_thrust_loads);
+            restrained_dofs, spring_entries, &load_application, &thermal_loads);
     }
     Ok(LoadCaseSolve {
         load_state_evidence,
@@ -10313,7 +10237,6 @@ fn derive_pipe_section(
         torsion_constant,
         section_modulus: second_moment / (od / 2.0),
         torsion_radius: od / 2.0,
-        membrane_radius: (od - thickness) / 2.0,
         wall_thickness: thickness,
     })
 }
@@ -10514,8 +10437,6 @@ fn straight_summary_extrema(
     end_forces: &[f64],
     loads: &[SpannedUniformLocalLoad],
     section: &DerivedSection,
-    pressure: Option<f64>,
-    include_pressure_longitudinal: bool,
 ) -> Result<f64, StraightPipeError> {
     let mut boundaries = vec![0.0, 1.0];
     for load in loads {
@@ -10525,15 +10446,12 @@ fn straight_summary_extrema(
     boundaries.dedup();
     let components = |fraction| -> Result<[f64; 3], StraightPipeError> {
         let r = straight_section_resultants(pipe, end_forces, loads, fraction)?;
-        let stress = recover_section_stress(&r, section, pressure);
+        let stress = recover_section_stress(&r, section);
         let c = stress.components;
         let values = [
-            c.axial_normal.unwrap_or(0.0)
-                + if include_pressure_longitudinal {
-                    c.pressure_longitudinal.unwrap_or(0.0)
-                } else {
-                    0.0
-                },
+            // H-1 (U3): the retired legacy pressure term was always +0.0 here;
+            // the explicit + 0.0 keeps a zero axial stress's published sign.
+            c.axial_normal.unwrap_or(0.0) + 0.0,
             c.bending_normal_y.unwrap_or(0.0),
             c.bending_normal_z.unwrap_or(0.0),
         ];
@@ -10797,242 +10715,6 @@ fn build_thermal_element_loads(
     loads
 }
 
-fn build_pressure_thrust_loads(
-    model: &PreviewModel,
-    load_case: &PreviewLoadCase,
-    pipe_map: &HashMap<&str, usize>,
-    sections: &HashMap<String, DerivedSection>,
-) -> Vec<PressureThrustLoad> {
-    let mut loads = Vec::new();
-    let expansion_joint_inputs = expansion_joint_pressure_thrust_inputs_by_pipe(model);
-    for load in &load_case.primitive_loads {
-        let Some(pipe) = genuine_pressure_element_target(load) else {
-            continue;
-        };
-        let Some(&element_index) = pipe_map.get(pipe) else {
-            continue;
-        };
-        if let Some(inputs) = expansion_joint_inputs.get(pipe) {
-            for input in inputs {
-                loads.push(PressureThrustLoad {
-                    element_index,
-                    axial_load: load.magnitude.value * input.effective_area,
-                    source_load_id: load.id.clone(),
-                    source: PressureThrustSource::ExpansionJointEffectiveArea(input.clone()),
-                });
-            }
-            continue;
-        }
-        let Some(section) = sections.get(pipe) else {
-            continue;
-        };
-        loads.push(PressureThrustLoad {
-            element_index,
-            axial_load: load.magnitude.value * section.internal_area,
-            source_load_id: load.id.clone(),
-            source: PressureThrustSource::PipeInternalArea,
-        });
-    }
-    loads
-}
-
-fn genuine_pressure_element_target(load: &PreviewPrimitiveLoad) -> Option<&str> {
-    if load.category != "pressure" || load.dimension != "pressure" {
-        return None;
-    }
-    let LoadTargetInput::Element { pipe } = &load.target else {
-        return None;
-    };
-    Some(pipe.as_str())
-}
-
-fn expansion_joint_pressure_thrust_inputs_by_pipe(
-    model: &PreviewModel,
-) -> HashMap<String, Vec<ExpansionJointPressureThrustInput>> {
-    let mut inputs_by_pipe: HashMap<String, Vec<ExpansionJointPressureThrustInput>> =
-        HashMap::new();
-    for component in model
-        .components
-        .iter()
-        .filter(|component| is_expansion_joint_component(component))
-    {
-        let solver_consumption = component
-            .mechanics_interface
-            .as_ref()
-            .and_then(|interface| interface.solver_consumption.as_deref())
-            .unwrap_or("not_provided");
-        if solver_consumption != "mechanics_geometry_and_user_flexibility" {
-            continue;
-        }
-        let Some(geometry) = component.geometry.as_ref() else {
-            continue;
-        };
-        let Some(pipe_id) = geometry
-            .expansion_joint_pipe_ref
-            .as_deref()
-            .filter(|value| !value.trim().is_empty())
-        else {
-            continue;
-        };
-        let Some(effective_area) = geometry
-            .effective_area
-            .as_ref()
-            .map(|quantity| quantity.value)
-            .filter(|value| positive_finite(*value))
-        else {
-            continue;
-        };
-        let pressure_thrust_reference = geometry
-            .pressure_thrust_reference
-            .as_deref()
-            .filter(|value| !value.trim().is_empty())
-            .unwrap_or("load_side_pressure_thrust_reference_missing")
-            .to_string();
-        let source_reference = geometry
-            .expansion_joint_source_reference
-            .as_deref()
-            .filter(|value| !value.trim().is_empty())
-            .unwrap_or("expansion_joint_source_reference_missing")
-            .to_string();
-        inputs_by_pipe.entry(pipe_id.to_string()).or_default().push(
-            ExpansionJointPressureThrustInput {
-                component_id: component.id.clone(),
-                pipe_id: pipe_id.to_string(),
-                effective_area,
-                pressure_thrust_reference,
-                source_reference,
-                solver_consumption: solver_consumption.to_string(),
-            },
-        );
-    }
-    inputs_by_pipe
-}
-
-fn add_pressure_thrust_loads(
-    ledger: &mut LoadLedger,
-    pressure_loads: &[PressureThrustLoad],
-    pipes: &[StraightPipeElement],
-    curved_bends_by_pipe: &HashMap<usize, &CurvedBendMacroBuild>,
-) {
-    for load in pressure_loads {
-        if let Some(bend) = curved_bends_by_pipe.get(&load.element_index) {
-            add_curved_bend_pressure_thrust_load(
-                ledger,
-                &load.source_load_id,
-                bend,
-                load.axial_load,
-            );
-            continue;
-        }
-        let Some(pipe) = pipes.get(load.element_index) else {
-            continue;
-        };
-        let Ok(frame_element) = pipe.frame_element() else {
-            continue;
-        };
-        let Ok(orientation) = frame_element.orientation() else {
-            continue;
-        };
-        let local_x = orientation.local_axes[0];
-        let i_base = pipe.node_i.index * DOF_PER_NODE;
-        let j_base = pipe.node_j.index * DOF_PER_NODE;
-        // S11 section 4.2: fl(P * x_a) per axis, one term at each end; S11-G:
-        // each is an exact rounded product of a self-equilibrated pair.
-        for axis in 0..3 {
-            let (a, b) = (load.axial_load, local_x[axis]);
-            let value = a * b;
-            let product = |k| Formation::RoundedProduct { k, a, b };
-            ledger.push_formed(
-                &load.source_load_id,
-                i_base + axis,
-                -value,
-                product(-1.0),
-                0.0,
-                true,
-            );
-            ledger.push_formed(
-                &load.source_load_id,
-                j_base + axis,
-                value,
-                product(1.0),
-                0.0,
-                true,
-            );
-        }
-    }
-}
-
-// Complete self-equilibrated arc pressure system for a macro-realized bend
-// span: end-cap forces -pA t_i at node i and +pA t_j at node j (unit end
-// tangents from the build-time validated macro element, the single geometry
-// source) PLUS the exact work-equivalent consistent nodal vector of the
-// outward radial wall load q(theta) = (pA / R) n(theta) (closed form in the
-// curved-bend crate). The cap pair and wall load together carry zero net
-// force and zero net moment, and segment equilibrium of the completely
-// loaded arc yields wall tension +pA along the local tangent at every
-// station (see validation/hand_calcs/mechanics/
-// curved_bend_pressure_thrust_arc.md). The build-time validated geometry
-// makes the crate calls infallible on this path; a failure would only
-// repeat a validation already enforced at model build.
-fn add_curved_bend_pressure_thrust_load(
-    ledger: &mut LoadLedger,
-    source: &str,
-    bend: &CurvedBendMacroBuild,
-    axial_load: f64,
-) {
-    let Ok([tangent_i, tangent_j]) = bend.macro_element.end_tangents() else {
-        return;
-    };
-    let Ok(wall_loads) = bend
-        .macro_element
-        .consistent_radial_pressure_nodal_loads(axial_load)
-    else {
-        return;
-    };
-    let i_base = bend.node_i * DOF_PER_NODE;
-    let j_base = bend.node_j * DOF_PER_NODE;
-    // S11 section 4.2: fl(P * t_a) per axis for the caps; one term per wall slot.
-    // S11-G: the caps are exact rounded products (self-equilibrated with the
-    // wall vector); the wall vector is a curved consistent vector, CannotBound.
-    for axis in 0..3 {
-        ledger.push_formed(
-            source,
-            i_base + axis,
-            -(axial_load * tangent_i[axis]),
-            Formation::RoundedProduct {
-                k: -1.0,
-                a: axial_load,
-                b: tangent_i[axis],
-            },
-            0.0,
-            true,
-        );
-        ledger.push_formed(
-            source,
-            j_base + axis,
-            axial_load * tangent_j[axis],
-            Formation::RoundedProduct {
-                k: 1.0,
-                a: axial_load,
-                b: tangent_j[axis],
-            },
-            0.0,
-            true,
-        );
-    }
-    let dof_map = element_dof_map(bend.node_i, bend.node_j);
-    for (local_slot, &global_slot) in dof_map.iter().enumerate() {
-        ledger.push_formed(
-            source,
-            global_slot,
-            wall_loads[local_slot],
-            Formation::CannotBound,
-            0.0,
-            false,
-        );
-    }
-}
-
 fn add_thermal_equivalent_loads(
     ledger: &mut LoadLedger,
     thermal_loads: &[ThermalElementLoad],
@@ -11137,7 +10819,7 @@ fn curved_bend_free_expansion_displacements(
 
 /// E5 (S11 section 4.4): each straight end force is one exact sum of the
 /// formed elastic term `local_i`, minus every load's own fixed-end term (SP's
-/// per-load E1 terms), plus each thermal and each pressure-thrust `axial_load`
+/// per-load E1 terms), plus each thermal `axial_load`
 /// on the end UX rows (+ at i, - at j), rounded once. This replaces the two
 /// roundings of `mechanical = local - equivalent` and the summed axial
 /// correction. A non-finite or out-of-range sum keeps a non-finite value,
@@ -11147,18 +10829,11 @@ fn exact_straight_end_forces(
     equivalent_terms: &[[f64; ELEMENT_DOF]],
     element_index: usize,
     thermal_loads: &[ThermalElementLoad],
-    pressure_loads: &[PressureThrustLoad],
 ) -> Vec<f64> {
     let axial_loads = thermal_loads
         .iter()
         .filter(|load| load.element_index == element_index)
         .map(|load| load.axial_load)
-        .chain(
-            pressure_loads
-                .iter()
-                .filter(|load| load.element_index == element_index)
-                .map(|load| load.axial_load),
-        )
         .collect::<Vec<_>>();
     (0..local_forces.len())
         .map(|slot| {
@@ -11204,7 +10879,6 @@ fn recover_curved_bend_local_forces(
     pipe: &StraightPipeElement,
     displacements: &[f64],
     thermal_loads: &[ThermalElementLoad],
-    pressure_thrusts: &[f64],
     uniform_intensities: &[[f64; 3]],
 ) -> Result<Vec<f64>, String> {
     let required = (bend.node_i.max(bend.node_j) + 1) * DOF_PER_NODE;
@@ -11239,15 +10913,6 @@ fn recover_curved_bend_local_forces(
             equivalents.push(
                 bend.macro_element
                     .consistent_uniform_nodal_loads(intensity)
-                    .map_err(|error| error.to_string())?,
-            );
-        }
-    }
-    for &thrust in pressure_thrusts {
-        if thrust != 0.0 {
-            equivalents.push(
-                bend.macro_element
-                    .consistent_radial_pressure_nodal_loads(thrust)
                     .map_err(|error| error.to_string())?,
             );
         }
@@ -11350,7 +11015,6 @@ fn curved_bend_section_resultants(
     pipe: &StraightPipeElement,
     corrected_local_forces: &[f64],
     uniform_intensities: &[[f64; 3]],
-    pressure_thrusts: &[f64],
     fraction: f64,
 ) -> Result<[f64; 6], String> {
     if corrected_local_forces.len() < ELEMENT_DOF {
@@ -11386,7 +11050,6 @@ fn curved_bend_section_resultants(
             fraction,
             node_j_force,
             uniform_intensities,
-            pressure_thrusts,
         )
         .map_err(|error| error.to_string())
 }
@@ -11396,7 +11059,6 @@ fn curved_bend_station_resultants(
     pipe: &StraightPipeElement,
     corrected_local_forces: &[f64],
     uniform_intensities: &[[f64; 3]],
-    pressure_thrusts: &[f64],
 ) -> Result<[StationResultants; 3], String> {
     let locations: [(&'static str, f64); 3] =
         [("quarter_1", 0.25), ("midspan", 0.5), ("quarter_3", 0.75)];
@@ -11421,121 +11083,10 @@ fn curved_bend_station_resultants(
             pipe,
             corrected_local_forces,
             uniform_intensities,
-            pressure_thrusts,
             fraction,
         )?;
     }
     Ok(stations)
-}
-
-/// Each pressure-thrust load's axial load on the pipe, one entry per load.
-fn pressure_thrusts_for_pipe(
-    element_index: usize,
-    pressure_loads: &[PressureThrustLoad],
-) -> Vec<f64> {
-    pressure_loads
-        .iter()
-        .filter(|load| load.element_index == element_index)
-        .map(|load| load.axial_load)
-        .collect()
-}
-
-#[derive(Debug, Clone)]
-struct ExpansionJointPressureThrustAggregate {
-    input: ExpansionJointPressureThrustInput,
-    /// E16 (S11 section 4.4): each pressure load's `axial_load`, summed
-    /// exactly and rounded once.
-    axial_loads: Vec<f64>,
-    source_load_ids: Vec<String>,
-}
-
-fn append_expansion_joint_pressure_thrust_results(
-    results: &mut Vec<ResultItem>,
-    diagnostics: &mut Vec<Diagnostic>,
-    load_case: &PreviewLoadCase,
-    pressure_loads: &[PressureThrustLoad],
-) -> usize {
-    let mut aggregates: BTreeMap<String, ExpansionJointPressureThrustAggregate> = BTreeMap::new();
-    for load in pressure_loads {
-        let PressureThrustSource::ExpansionJointEffectiveArea(input) = &load.source else {
-            continue;
-        };
-        let entry = aggregates
-            .entry(input.component_id.clone())
-            .or_insert_with(|| ExpansionJointPressureThrustAggregate {
-                input: input.clone(),
-                axial_loads: Vec::new(),
-                source_load_ids: Vec::new(),
-            });
-        entry.axial_loads.push(load.axial_load);
-        entry.source_load_ids.push(load.source_load_id.clone());
-    }
-
-    let mut appended = 0;
-    for (_, mut aggregate) in aggregates {
-        // A non-finite operand or an out-of-range net keeps a non-finite
-        // value, as the binary64 fold did.
-        let axial_load =
-            exact_rounded_sum(aggregate.axial_loads.iter().copied()).unwrap_or(f64::NAN);
-        if axial_load == 0.0 {
-            continue;
-        }
-        aggregate.source_load_ids.sort();
-        aggregate.source_load_ids.dedup();
-        let component_suffix = stable_suffix(&aggregate.input.component_id);
-        let result_id = format!("result:pressure-thrust:{component_suffix}");
-        results.push(ResultItem {
-            id: result_id.clone(),
-            kind: "expansion_joint_pressure_thrust_load_review".to_string(),
-            value: axial_load,
-            unit: "N".to_string(),
-            entity_ref: aggregate.input.component_id.clone(),
-            basis_ref: None,
-            source_result_refs: aggregate.source_load_ids.clone(),
-            metadata: Some(ResultMetadata {
-                component: "expansion_joint_pressure_thrust".to_string(),
-                coordinate_system: "element_local".to_string(),
-                location: aggregate.input.pipe_id.clone(),
-                basis: format!(
-                    "component_family=expansion_joint;pressure_thrust_generation=load_side_user_effective_area;effective_area={};source={};pressure_thrust={};solver_consumption={}",
-                    scalar_string(aggregate.input.effective_area),
-                    aggregate.input.source_reference,
-                    aggregate.input.pressure_thrust_reference,
-                    aggregate.input.solver_consumption
-                ),
-                sign_convention:
-                    "positive value is explicit pressure multiplied by user-entered effective pressure area and applied as equal/opposite axial load along the mapped pipe; no compliance claim is made"
-                        .to_string(),
-            }),
-        });
-        let mut affected_refs = vec![
-            aggregate.input.component_id.clone(),
-            aggregate.input.pipe_id.clone(),
-            load_case.id.clone(),
-            result_id,
-            aggregate.input.pressure_thrust_reference.clone(),
-        ];
-        affected_refs.extend(aggregate.source_load_ids.clone());
-        diagnostics.push(diag(
-            &format!(
-                "diagnostic:pressure-thrust:{}:{}",
-                stable_suffix(&load_case.id),
-                component_suffix
-            ),
-            "EXPANSION_JOINT_PRESSURE_THRUST_APPLIED",
-            "info",
-            format!(
-                "expansion joint {} pressure thrust uses explicit effective area {} m^2 and pressure primitive(s) from load case {}; applied on load side along {}; no protected/default manufacturer value is supplied",
-                aggregate.input.component_id,
-                scalar_string(aggregate.input.effective_area),
-                load_case.id,
-                aggregate.input.pipe_id
-            ),
-            affected_refs,
-        ));
-        appended += 1;
-    }
-    appended
 }
 
 #[derive(Debug, Clone, Copy)]
@@ -12035,7 +11586,6 @@ fn append_exact_pressure_results(
 fn recover_section_stress(
     resultants: &[f64; 6],
     section: &DerivedSection,
-    pressure: Option<f64>,
 ) -> open_pipe_stress_stress_recovery::StressRecoveryResult {
     recover_stresses(&StressRecoveryInput {
         resultants: ForceResultants::new(
@@ -12051,34 +11601,23 @@ fn recover_section_stress(
             Some(section.torsion_constant),
             Some(section.torsion_radius),
         ),
-        pressure: pressure.map(|p| {
-            PressureBasis::new(
-                Some(p),
-                Some(section.membrane_radius),
-                Some(section.wall_thickness),
-            )
-        }),
         statuses: vec![AnalysisStatus::MechanicsSolved],
     })
 }
 
 fn open_formula_summary_mpa(
     stress: &open_pipe_stress_stress_recovery::StressRecoveryResult,
-    include_pressure_longitudinal: bool,
 ) -> Option<f64> {
     if !stress.findings.is_empty() {
         return None;
     }
     let components = &stress.components;
     let axial = components.axial_normal.unwrap_or(0.0);
-    let pressure_longitudinal = if include_pressure_longitudinal {
-        components.pressure_longitudinal.unwrap_or(0.0)
-    } else {
-        0.0
-    };
     let bending_y = components.bending_normal_y.unwrap_or(0.0).abs();
     let bending_z = components.bending_normal_z.unwrap_or(0.0).abs();
-    let base_normal = axial + pressure_longitudinal;
+    // H-1 (U3): the retired legacy pressure term was always +0.0 here; the
+    // explicit + 0.0 keeps the arithmetic, and so the published bytes, as before.
+    let base_normal = axial + 0.0;
     let bending_total = bending_y + bending_z;
     Some(
         (base_normal + bending_total)
@@ -12096,7 +11635,6 @@ fn append_component_stress_multiplier_results(
     pipe_id: &str,
     end_i_stress: &open_pipe_stress_stress_recovery::StressRecoveryResult,
     end_j_stress: &open_pipe_stress_stress_recovery::StressRecoveryResult,
-    include_pressure_longitudinal: bool,
 ) -> usize {
     let Some(pipe) = model
         .pipe_segments
@@ -12111,8 +11649,7 @@ fn append_component_stress_multiplier_results(
     ];
     let mut appended = 0;
     for (location, node_id, stress) in endpoint_stresses {
-        let Some(base_value_mpa) = open_formula_summary_mpa(stress, include_pressure_longitudinal)
-        else {
+        let Some(base_value_mpa) = open_formula_summary_mpa(stress) else {
             continue;
         };
         for component in model
@@ -13017,8 +12554,6 @@ fn append_endpoint_stress_results(
     pipe_id: &str,
     location: &str,
     components: &StressComponents,
-    include_pressure: bool,
-    include_pressure_longitudinal: bool,
     section_sign_convention: &str,
 ) {
     let suffix = stable_suffix(pipe_id);
@@ -13069,39 +12604,6 @@ fn append_endpoint_stress_results(
             );
         }
     }
-
-    if include_pressure {
-        if let Some(value) = components.pressure_hoop {
-            append_endpoint_stress_result(
-                results,
-                pipe_id,
-                &format!("result:stress:{suffix}:{id_location}:pressure-hoop"),
-                "pipe_section_pressure_hoop_stress",
-                "pressure_hoop_stress",
-                value,
-                "pipe_section",
-                location,
-                "recovered_from_open_mechanics_stress_components",
-                "positive pressure membrane hoop stress follows the explicit pipe pressure basis",
-            );
-        }
-        if include_pressure_longitudinal {
-            if let Some(value) = components.pressure_longitudinal {
-                append_endpoint_stress_result(
-                    results,
-                    pipe_id,
-                    &format!("result:stress:{suffix}:{id_location}:pressure-longitudinal"),
-                    "pipe_section_pressure_longitudinal_stress",
-                    "pressure_longitudinal_stress",
-                    value,
-                    "pipe_section",
-                    location,
-                    "recovered_from_open_mechanics_stress_components",
-                    "positive pressure membrane longitudinal stress follows the explicit pipe pressure basis",
-                );
-            }
-        }
-    }
 }
 
 fn append_station_stress_results(
@@ -13109,8 +12611,6 @@ fn append_station_stress_results(
     pipe_id: &str,
     location: &str,
     components: &StressComponents,
-    include_pressure: bool,
-    include_pressure_longitudinal: bool,
     basis: &str,
     section_sign_convention: Option<&str>,
 ) {
@@ -13171,39 +12671,6 @@ fn append_station_stress_results(
                 basis,
                 &sign_convention,
             );
-        }
-    }
-
-    if include_pressure {
-        if let Some(value) = components.pressure_hoop {
-            append_station_stress_result(
-                results,
-                pipe_id,
-                &format!("result:stress:{suffix}:{station}:pressure-hoop"),
-                "pipe_section_pressure_hoop_stress",
-                "pressure_hoop_stress",
-                value,
-                "pipe_section",
-                location,
-                basis,
-                "positive pressure membrane hoop stress follows the explicit pipe pressure basis at this station",
-            );
-        }
-        if include_pressure_longitudinal {
-            if let Some(value) = components.pressure_longitudinal {
-                append_station_stress_result(
-                    results,
-                    pipe_id,
-                    &format!("result:stress:{suffix}:{station}:pressure-longitudinal"),
-                    "pipe_section_pressure_longitudinal_stress",
-                    "pressure_longitudinal_stress",
-                    value,
-                    "pipe_section",
-                    location,
-                    basis,
-                    "positive pressure membrane longitudinal stress follows the explicit pipe pressure basis at this station",
-                );
-            }
         }
     }
 }
@@ -13881,33 +13348,6 @@ fn solver_blocked(
         vec!["model".to_string()],
     ));
     blocked_envelope(model, diagnostics)
-}
-
-fn pressure_for_pipe(
-    model: &PreviewModel,
-    load_case: &PreviewLoadCase,
-    pipe_index: usize,
-    pipe_id: &str,
-) -> Option<f64> {
-    // E15 (S11 section 4.4): the pipe's pressure is one exact sum of every
-    // pressure load's magnitude, rounded once; the pressure stresses are then
-    // formed from that net as before.
-    let mut pressures = Vec::new();
-    let resolved_pipe_id = model
-        .pipe_segments
-        .get(pipe_index)
-        .map(|pipe| pipe.id.as_str())
-        .unwrap_or(pipe_id);
-    for load in load_case.primitive_loads.iter() {
-        let Some(target_pipe_id) = genuine_pressure_element_target(load) else {
-            continue;
-        };
-        if target_pipe_id == resolved_pipe_id {
-            pressures.push(load.magnitude.value);
-        }
-    }
-    (!pressures.is_empty())
-        .then(|| exact_rounded_sum(pressures.iter().copied()).unwrap_or(f64::NAN))
 }
 
 fn displacement_magnitude(displacements: &[f64], node_index: usize) -> f64 {
@@ -14969,8 +14409,6 @@ mod tests {
         .unwrap();
         let build = curved_bend_direct_build();
         let intensity = [0.0, 0.0, -190.0];
-        let pressure = 0.0;
-        let pressure_thrust = pressure * derived.internal_area;
         let node_j_force: [f64; DOF_PER_NODE] = corrected[DOF_PER_NODE..]
             .try_into()
             .expect("six j-end action slots");
@@ -14982,19 +14420,7 @@ mod tests {
             .macro_element
             .consistent_uniform_nodal_loads(intensity)
             .unwrap();
-        let radial_equivalent = build
-            .macro_element
-            .consistent_radial_pressure_nodal_loads(pressure_thrust)
-            .unwrap();
-        let [tangent_i, tangent_j] = build.macro_element.end_tangents().unwrap();
-        let mut applied = [0.0; ELEMENT_DOF];
-        for slot in 0..ELEMENT_DOF {
-            applied[slot] = uniform_equivalent[slot] + radial_equivalent[slot];
-        }
-        for axis in 0..3 {
-            applied[axis] -= pressure_thrust * tangent_i[axis];
-            applied[DOF_PER_NODE + axis] += pressure_thrust * tangent_j[axis];
-        }
+        let mut applied = uniform_equivalent;
         applied[DOF_PER_NODE + UY] += 1000.0;
         let displacements = curved_bend_direct_solution(&applied);
         let stiffness = build.macro_element.global_stiffness().unwrap();
@@ -15003,7 +14429,7 @@ mod tests {
             for col in 0..ELEMENT_DOF {
                 expected_raw[row] += stiffness[row][col] * displacements[col];
             }
-            expected_raw[row] -= uniform_equivalent[row] + radial_equivalent[row];
+            expected_raw[row] -= uniform_equivalent[row];
             assert!(
                 (corrected[row] - round6(expected_raw[row])).abs() <= 1.1e-6,
                 "raw chord-frame action slot {row}: {} != {}",
@@ -15037,18 +14463,12 @@ mod tests {
                 &pipe,
                 &corrected,
                 &[intensity],
-                &[pressure_thrust],
                 fraction,
             )
             .unwrap();
             let expected = build
                 .macro_element
-                .arc_section_resultants_with_radial_pressure(
-                    fraction,
-                    node_j_force,
-                    intensity,
-                    pressure_thrust,
-                )
+                .arc_section_resultants(fraction, node_j_force, intensity)
                 .unwrap();
             for slot in 0..6 {
                 assert!(
@@ -15058,7 +14478,7 @@ mod tests {
                     expected[slot]
                 );
             }
-            let recovered = recover_section_stress(&actual, &derived, None);
+            let recovered = recover_section_stress(&actual, &derived);
             let expected_stresses = [
                 ("axial-normal", recovered.components.axial_normal.unwrap()),
                 (
@@ -15101,12 +14521,7 @@ mod tests {
         for (fraction, station) in [(0.25, "quarter-1"), (0.5, "midspan"), (0.75, "quarter-3")] {
             let expected = build
                 .macro_element
-                .arc_section_resultants_with_radial_pressure(
-                    fraction,
-                    node_j_force,
-                    intensity,
-                    pressure_thrust,
-                )
+                .arc_section_resultants(fraction, node_j_force, intensity)
                 .unwrap();
             for (slot, (family, tail)) in [
                 ("force", "axial"),
@@ -22930,111 +22345,6 @@ mod tests {
             source_reference: "invented_example_user_input".to_string(),
             macro_element: element,
         }
-    }
-
-    // Predicate: the pressure-thrust contribution assembled for a
-    // macro-realized span is the complete self-equilibrated arc system —
-    // end-cap forces along the validated end tangents plus the exact
-    // consistent radial wall-load vector — for the pipe-internal-area and
-    // expansion-joint effective-area sources alike, with zero net force and
-    // zero net moment about an arbitrary point at floating-point precision.
-    #[test]
-    fn pressure_thrust_on_macro_span_assembles_complete_self_equilibrated_arc_system() {
-        let build = curved_bend_direct_build();
-        let pipe_thrust = 4321.0;
-        let joint_thrust = 1234.5;
-        let loads = vec![
-            PressureThrustLoad {
-                element_index: 0,
-                axial_load: pipe_thrust,
-                source_load_id: "load:L-100-P".to_string(),
-                source: PressureThrustSource::PipeInternalArea,
-            },
-            PressureThrustLoad {
-                element_index: 0,
-                axial_load: joint_thrust,
-                source_load_id: "load:L-100-P".to_string(),
-                source: PressureThrustSource::ExpansionJointEffectiveArea(
-                    ExpansionJointPressureThrustInput {
-                        component_id: "component:EJ-1".to_string(),
-                        pipe_id: "pipe:P-100".to_string(),
-                        effective_area: 6.0e-4,
-                        pressure_thrust_reference: "invented".to_string(),
-                        source_reference: "invented".to_string(),
-                        solver_consumption: "mechanics_geometry_and_user_flexibility".to_string(),
-                    },
-                ),
-            },
-        ];
-        let bends_by_pipe: HashMap<usize, &CurvedBendMacroBuild> =
-            [(0usize, &build)].into_iter().collect();
-        let mut ledger = LoadLedger::new();
-        add_pressure_thrust_loads(&mut ledger, &loads, &[], &bends_by_pipe);
-        let force = ledger.finish(2 * DOF_PER_NODE).unwrap();
-        let force = force.values();
-
-        // Both sources receive the identical arc treatment: the assembled
-        // vector is linear in the thrust, so it equals cap pair plus
-        // consistent wall vector at the summed thrust.
-        let total_thrust = pipe_thrust + joint_thrust;
-        let [tangent_i, tangent_j] = build.macro_element.end_tangents().unwrap();
-        let wall = build
-            .macro_element
-            .consistent_radial_pressure_nodal_loads(total_thrust)
-            .unwrap();
-        for axis in 0..3 {
-            let expected_i = -total_thrust * tangent_i[axis] + wall[axis];
-            let expected_j = total_thrust * tangent_j[axis] + wall[DOF_PER_NODE + axis];
-            assert!((force[axis] - expected_i).abs() <= 1.0e-9 * total_thrust);
-            assert!((force[DOF_PER_NODE + axis] - expected_j).abs() <= 1.0e-9 * total_thrust);
-            let expected_moment_i = wall[3 + axis];
-            let expected_moment_j = wall[DOF_PER_NODE + 3 + axis];
-            assert!((force[3 + axis] - expected_moment_i).abs() <= 1.0e-9 * total_thrust);
-            assert!(
-                (force[DOF_PER_NODE + 3 + axis] - expected_moment_j).abs() <= 1.0e-9 * total_thrust
-            );
-        }
-
-        // Self-equilibrium of the assembled system: zero net force, zero net
-        // moment about an arbitrary off-arc point.
-        let positions = [[0.0, 0.0, 0.0], [CURVED_BEND_TEST_CHORD_M, 0.0, 0.0]];
-        let reference_point = [0.7, -1.3, 0.4];
-        let force_scale = total_thrust;
-        let moment_scale = total_thrust * CURVED_BEND_TEST_RADIUS_M;
-        for axis in 0..3 {
-            let net = force[axis] + force[DOF_PER_NODE + axis];
-            assert!(
-                net.abs() <= 1.0e-12 * force_scale,
-                "net pressure force component {axis} is {net}, expected zero"
-            );
-        }
-        let mut net_moment = [0.0; 3];
-        for (node_slot, position) in positions.iter().enumerate() {
-            let base = node_slot * DOF_PER_NODE;
-            let arm = [
-                position[0] - reference_point[0],
-                position[1] - reference_point[1],
-                position[2] - reference_point[2],
-            ];
-            let nodal_force = [force[base], force[base + 1], force[base + 2]];
-            net_moment[0] += force[base + 3] + arm[1] * nodal_force[2] - arm[2] * nodal_force[1];
-            net_moment[1] += force[base + 4] + arm[2] * nodal_force[0] - arm[0] * nodal_force[2];
-            net_moment[2] += force[base + 5] + arm[0] * nodal_force[1] - arm[1] * nodal_force[0];
-        }
-        for (axis, net) in net_moment.iter().enumerate() {
-            assert!(
-                net.abs() <= 1.0e-12 * moment_scale,
-                "net pressure moment component {axis} is {net}, expected zero"
-            );
-        }
-
-        // No-pressure invariance: an empty pressure-load list leaves the
-        // assembled vector untouched on the same macro span.
-        let mut untouched = LoadLedger::new();
-        add_pressure_thrust_loads(&mut untouched, &[], &[], &bends_by_pipe);
-        assert!(untouched.terms().is_empty());
-        let untouched = untouched.finish(2 * DOF_PER_NODE).unwrap();
-        assert!(untouched.values().iter().all(|value| *value == 0.0));
     }
 
     #[test]

@@ -250,13 +250,11 @@ fn guard_view(request: &Value, case_index: usize) -> GuardView {
         &built.sections,
         &mut diagnostics,
     );
-    let thrust = build_pressure_thrust_loads(&model, load_case, &pipe_map, &built.sections);
     let ledger = case_force_ledger(
         &model,
         &built,
         &application,
         &bends,
-        &thrust,
         &thermal,
         None,
         &load_case.id,
@@ -2638,7 +2636,6 @@ fn t21_selection_is_declined_for_a_formation_finding() {
         load_case: &model.load_cases[0],
         load_application: &loads,
         thermal_loads: &[],
-        pressure_thrust_loads: &[],
         load_state: None,
     };
     let finding = formation_guard::FormationFinding {

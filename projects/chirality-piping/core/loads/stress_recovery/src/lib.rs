@@ -32,7 +32,6 @@ pub enum AnalysisStatus {
 pub enum FindingCode {
     MissingResultant,
     MissingSectionProperty,
-    MissingPressureInput,
     NonFiniteInput,
     NonPositiveInput,
     IncompleteMechanicsStatus,
@@ -190,56 +189,12 @@ impl StressSectionUnitMetadata {
     }
 }
 
-#[derive(Debug, Clone, PartialEq)]
-pub struct PressureBasis {
-    pub pressure: Option<f64>,
-    pub membrane_radius: Option<f64>,
-    pub wall_thickness: Option<f64>,
-}
-
-impl PressureBasis {
-    pub fn new(
-        pressure: Option<f64>,
-        membrane_radius: Option<f64>,
-        wall_thickness: Option<f64>,
-    ) -> Self {
-        Self {
-            pressure,
-            membrane_radius,
-            wall_thickness,
-        }
-    }
-}
-
-#[derive(Debug, Clone, PartialEq)]
-pub struct PressureBasisUnitMetadata {
-    pub pressure: Option<QuantityUnitMetadata>,
-    pub membrane_radius: Option<QuantityUnitMetadata>,
-    pub wall_thickness: Option<QuantityUnitMetadata>,
-}
-
-impl PressureBasisUnitMetadata {
-    pub fn new(
-        pressure: Option<QuantityUnitMetadata>,
-        membrane_radius: Option<QuantityUnitMetadata>,
-        wall_thickness: Option<QuantityUnitMetadata>,
-    ) -> Self {
-        Self {
-            pressure,
-            membrane_radius,
-            wall_thickness,
-        }
-    }
-}
-
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct StressComponents {
     pub axial_normal: Option<f64>,
     pub bending_normal_y: Option<f64>,
     pub bending_normal_z: Option<f64>,
     pub torsional_shear: Option<f64>,
-    pub pressure_hoop: Option<f64>,
-    pub pressure_longitudinal: Option<f64>,
 }
 
 impl StressComponents {
@@ -249,8 +204,6 @@ impl StressComponents {
             bending_normal_y: None,
             bending_normal_z: None,
             torsional_shear: None,
-            pressure_hoop: None,
-            pressure_longitudinal: None,
         }
     }
 
@@ -281,8 +234,6 @@ impl StressComponents {
             StressComponentKind::BendingNormalY => self.bending_normal_y,
             StressComponentKind::BendingNormalZ => self.bending_normal_z,
             StressComponentKind::TorsionalShear => self.torsional_shear,
-            StressComponentKind::PressureHoop => self.pressure_hoop,
-            StressComponentKind::PressureLongitudinal => self.pressure_longitudinal,
         }
     }
 }
@@ -293,8 +244,6 @@ pub enum StressComponentKind {
     BendingNormalY,
     BendingNormalZ,
     TorsionalShear,
-    PressureHoop,
-    PressureLongitudinal,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -310,8 +259,6 @@ pub struct StressRangeComponents {
     pub bending_normal_y_range: Option<f64>,
     pub bending_normal_z_range: Option<f64>,
     pub torsional_shear_range: Option<f64>,
-    pub pressure_hoop_range: Option<f64>,
-    pub pressure_longitudinal_range: Option<f64>,
 }
 
 impl StressRangeComponents {
@@ -321,8 +268,6 @@ impl StressRangeComponents {
             bending_normal_y_range: None,
             bending_normal_z_range: None,
             torsional_shear_range: None,
-            pressure_hoop_range: None,
-            pressure_longitudinal_range: None,
         }
     }
 }
@@ -331,7 +276,6 @@ impl StressRangeComponents {
 pub struct StressRecoveryInput {
     pub resultants: ForceResultants,
     pub section: StressSectionProperties,
-    pub pressure: Option<PressureBasis>,
     pub statuses: Vec<AnalysisStatus>,
 }
 
@@ -339,19 +283,13 @@ pub struct StressRecoveryInput {
 pub struct StressRecoveryInputUnitMetadata {
     pub resultants: ForceResultantUnitMetadata,
     pub section: StressSectionUnitMetadata,
-    pub pressure: Option<PressureBasisUnitMetadata>,
 }
 
 impl StressRecoveryInputUnitMetadata {
-    pub fn new(
-        resultants: ForceResultantUnitMetadata,
-        section: StressSectionUnitMetadata,
-        pressure: Option<PressureBasisUnitMetadata>,
-    ) -> Self {
+    pub fn new(resultants: ForceResultantUnitMetadata, section: StressSectionUnitMetadata) -> Self {
         Self {
             resultants,
             section,
-            pressure,
         }
     }
 }
@@ -419,7 +357,6 @@ pub struct StationStressRecoveryInput {
     pub station_fraction: f64,
     pub resultants: ForceResultants,
     pub section: StressSectionProperties,
-    pub pressure: Option<PressureBasis>,
     pub statuses: Vec<AnalysisStatus>,
 }
 
@@ -428,7 +365,6 @@ impl StationStressRecoveryInput {
         station_id: impl Into<String>,
         resultants: &StationResultants,
         section: StressSectionProperties,
-        pressure: Option<PressureBasis>,
         statuses: Vec<AnalysisStatus>,
     ) -> Result<Self, StressRecoveryError> {
         Ok(Self {
@@ -436,7 +372,6 @@ impl StationStressRecoveryInput {
             station_fraction: checked_station_fraction(resultants.station_fraction)?,
             resultants: ForceResultants::from_station_resultants(resultants)?,
             section,
-            pressure,
             statuses,
         })
     }
@@ -518,12 +453,6 @@ pub fn recover_stresses(input: &StressRecoveryInput) -> StressRecoveryResult {
     );
     components.torsional_shear = torsional_shear(&input.resultants, &input.section, &mut findings);
 
-    if let Some(pressure) = &input.pressure {
-        let (hoop, longitudinal) = pressure_membrane(pressure, &mut findings);
-        components.pressure_hoop = hoop;
-        components.pressure_longitudinal = longitudinal;
-    }
-
     let summary = if findings.is_empty() {
         Some(summarize_components(&components))
     } else {
@@ -546,7 +475,6 @@ pub fn recover_station_stresses(input: &StationStressRecoveryInput) -> StationSt
     let stress_input = StressRecoveryInput {
         resultants: input.resultants.clone(),
         section: input.section.clone(),
-        pressure: input.pressure.clone(),
         statuses: input.statuses.clone(),
     };
     StationStressRecoveryResult {
@@ -560,7 +488,6 @@ pub fn recover_station_stress_sweep(
     station_id_prefix: impl AsRef<str>,
     resultants: &[StationResultants],
     section: StressSectionProperties,
-    pressure: Option<PressureBasis>,
     statuses: Vec<AnalysisStatus>,
 ) -> Result<Vec<StationStressRecoveryResult>, StressRecoveryError> {
     let station_id_prefix = station_id_prefix.as_ref();
@@ -572,7 +499,6 @@ pub fn recover_station_stress_sweep(
                 format!("{station_id_prefix}:station:{index}"),
                 resultants,
                 section.clone(),
-                pressure.clone(),
                 statuses.clone(),
             )?;
             Ok(recover_station_stresses(&input))
@@ -668,30 +594,6 @@ pub fn validate_stress_input_unit_metadata(
         &mut findings,
     );
 
-    if let Some(pressure) = &input.pressure {
-        let pressure_units = units.pressure.as_ref();
-        check_unit_metadata(
-            pressure.pressure,
-            pressure_units.and_then(|metadata| metadata.pressure.as_ref()),
-            "pressure",
-            CanonicalDimension::Pressure,
-            &mut findings,
-        );
-        check_unit_metadata(
-            pressure.membrane_radius,
-            pressure_units.and_then(|metadata| metadata.membrane_radius.as_ref()),
-            "membrane_radius",
-            CanonicalDimension::Length,
-            &mut findings,
-        );
-        check_unit_metadata(
-            pressure.wall_thickness,
-            pressure_units.and_then(|metadata| metadata.wall_thickness.as_ref()),
-            "wall_thickness",
-            CanonicalDimension::Length,
-            &mut findings,
-        );
-    }
 
     findings
 }
@@ -753,18 +655,6 @@ pub fn recover_stress_range(
             first_components.torsional_shear,
             second_components.torsional_shear,
             "torsional_shear_range",
-            &mut findings,
-        ),
-        pressure_hoop_range: range_optional(
-            first_components.pressure_hoop,
-            second_components.pressure_hoop,
-            "pressure_hoop_range",
-            &mut findings,
-        ),
-        pressure_longitudinal_range: range_optional(
-            first_components.pressure_longitudinal,
-            second_components.pressure_longitudinal,
-            "pressure_longitudinal_range",
             &mut findings,
         ),
     };
@@ -926,42 +816,6 @@ fn torsional_shear(
     )
 }
 
-fn pressure_membrane(
-    pressure: &PressureBasis,
-    findings: &mut Vec<StressFinding>,
-) -> (Option<f64>, Option<f64>) {
-    let pressure_value = require_finite(
-        pressure.pressure,
-        "pressure",
-        FindingCode::MissingPressureInput,
-        findings,
-    );
-    let radius = require_positive(
-        pressure.membrane_radius,
-        "membrane_radius",
-        FindingCode::MissingPressureInput,
-        findings,
-    );
-    let wall = require_positive(
-        pressure.wall_thickness,
-        "wall_thickness",
-        FindingCode::MissingPressureInput,
-        findings,
-    );
-
-    match (pressure_value, radius, wall) {
-        (Some(p), Some(r), Some(t)) => {
-            let hoop = p * r / t;
-            let hoop = checked_recovered(hoop, "pressure_hoop", findings);
-            let longitudinal = hoop.and_then(|value| {
-                checked_recovered(value / 2.0, "pressure_longitudinal", findings)
-            });
-            (hoop, longitudinal)
-        }
-        _ => (None, None),
-    }
-}
-
 fn checked_recovered(
     value: f64,
     subject: &'static str,
@@ -1043,10 +897,11 @@ fn require_positive(
 
 fn summarize_components(components: &StressComponents) -> StressSummary {
     let axial = components.axial_normal.unwrap_or(0.0);
-    let pressure_longitudinal = components.pressure_longitudinal.unwrap_or(0.0);
     let bending_y = components.bending_normal_y.unwrap_or(0.0).abs();
     let bending_z = components.bending_normal_z.unwrap_or(0.0).abs();
-    let base_normal = axial + pressure_longitudinal;
+    // H-1 (U3): the retired pressure membrane term was +0.0 here whenever no
+    // pressure was supplied; the explicit + 0.0 keeps a zero's published sign.
+    let base_normal = axial + 0.0;
     let bending_total = bending_y + bending_z;
 
     StressSummary {
@@ -1131,11 +986,6 @@ mod tests {
                 Some(unit("m^4", CanonicalDimension::SecondMomentArea)),
                 Some(unit("m", CanonicalDimension::Length)),
             ),
-            Some(PressureBasisUnitMetadata::new(
-                Some(unit("Pa", CanonicalDimension::Pressure)),
-                Some(unit("m", CanonicalDimension::Length)),
-                Some(unit("m", CanonicalDimension::Length)),
-            )),
         )
     }
 
@@ -1161,13 +1011,12 @@ mod tests {
                 Some(80.0),
                 Some(2.0),
             ),
-            pressure: Some(PressureBasis::new(Some(100.0), Some(3.0), Some(0.5))),
             statuses: vec![AnalysisStatus::MechanicsSolved],
         }
     }
 
     #[test]
-    fn recovers_axial_bending_torsion_and_pressure_components() {
+    fn recovers_axial_bending_and_torsion_components() {
         let result = recover_stresses(&complete_input());
 
         assert!(!result.is_blocked());
@@ -1175,8 +1024,6 @@ mod tests {
         assert_eq!(result.components.bending_normal_y, Some(2.0));
         assert_eq!(result.components.bending_normal_z, Some(-2.0));
         assert_eq!(result.components.torsional_shear, Some(1.0));
-        assert_eq!(result.components.pressure_hoop, Some(600.0));
-        assert_eq!(result.components.pressure_longitudinal, Some(300.0));
     }
 
     #[test]
@@ -1185,7 +1032,6 @@ mod tests {
 
         assert!(!result.is_blocked());
         assert_eq!(result.components.axial_normal, Some(10.0));
-        assert_eq!(result.components.pressure_hoop, Some(600.0));
     }
 
     #[test]
@@ -1287,8 +1133,10 @@ mod tests {
         let result = recover_stresses(&complete_input());
         let summary = result.summary.unwrap();
 
-        assert_eq!(summary.max_normal, 314.0);
-        assert_eq!(summary.min_normal, 306.0);
+        // U3: the fixture's retired pressure membrane term (300) is gone: the
+        // base normal is the axial 10 alone, with bending |2| + |-2|.
+        assert_eq!(summary.max_normal, 14.0);
+        assert_eq!(summary.min_normal, 6.0);
         assert_eq!(summary.max_shear_magnitude, 1.0);
     }
 
@@ -1303,13 +1151,11 @@ mod tests {
                 Some(80.0),
                 Some(2.0),
             ),
-            pressure: None,
             statuses: vec![AnalysisStatus::MechanicsSolved],
         };
         let second = StressRecoveryInput {
             resultants: ForceResultants::new(Some(180.0), Some(80.0), Some(10.0), Some(60.0)),
             section: first.section.clone(),
-            pressure: None,
             statuses: vec![AnalysisStatus::MechanicsSolved],
         };
 
@@ -1320,8 +1166,6 @@ mod tests {
         assert_eq!(result.ranges.bending_normal_y_range, Some(4.0));
         assert_eq!(result.ranges.bending_normal_z_range, Some(0.0));
         assert_eq!(result.ranges.torsional_shear_range, Some(1.0));
-        assert_eq!(result.ranges.pressure_hoop_range, None);
-        assert_eq!(result.ranges.pressure_longitudinal_range, None);
     }
 
     #[test]
@@ -1342,23 +1186,6 @@ mod tests {
             .findings
             .iter()
             .any(|finding| finding.code == FindingCode::MissingResultant));
-    }
-
-    #[test]
-    fn stress_range_blocks_asymmetric_optional_components() {
-        let mut first = complete_input();
-        first.pressure = None;
-        let second = complete_input();
-
-        let result = recover_stress_range(&first, &second);
-
-        assert!(result.is_blocked());
-        assert_eq!(result.ranges, StressRangeComponents::empty());
-        assert!(result
-            .findings
-            .iter()
-            .any(|finding| finding.code == FindingCode::MissingResultant
-                && finding.subject_id == "pressure_hoop_range"));
     }
 
     #[test]
@@ -1392,38 +1219,23 @@ mod tests {
     }
 
     #[test]
-    fn non_finite_pressure_is_reported() {
-        let mut input = complete_input();
-        input.pressure = Some(PressureBasis::new(Some(f64::NAN), Some(3.0), Some(0.5)));
-
-        let result = recover_stresses(&input);
-
-        assert!(result.is_blocked());
-        assert!(result
-            .findings
-            .iter()
-            .any(|finding| finding.code == FindingCode::NonFiniteInput));
-    }
-
-    #[test]
     fn non_finite_recovered_values_are_reported() {
+        // U3: formerly an overflowing pressure membrane; the same check on an
+        // overflowing axial normal stress.
         let mut input = complete_input();
-        input.pressure = Some(PressureBasis::new(
-            Some(f64::MAX),
-            Some(f64::MAX),
-            Some(0.5),
-        ));
+        input.resultants.axial_force = Some(f64::MAX);
+        input.section.area = Some(f64::MIN_POSITIVE);
 
         let result = recover_stresses(&input);
 
         assert!(result.is_blocked());
-        assert_eq!(result.components.pressure_hoop, None);
+        assert_eq!(result.components.axial_normal, None);
         assert_eq!(result.summary, None);
         assert!(result
             .findings
             .iter()
             .any(|finding| finding.code == FindingCode::NonFiniteInput
-                && finding.subject_id == "pressure_hoop"));
+                && finding.subject_id == "axial_force"));
     }
 
     #[test]
@@ -1437,13 +1249,11 @@ mod tests {
                 Some(1.0),
                 Some(1.0),
             ),
-            pressure: None,
             statuses: vec![AnalysisStatus::MechanicsSolved],
         };
         let second = StressRecoveryInput {
             resultants: ForceResultants::new(Some(f64::MAX), Some(0.0), Some(0.0), Some(0.0)),
             section: first.section.clone(),
-            pressure: None,
             statuses: vec![AnalysisStatus::MechanicsSolved],
         };
 
@@ -1469,13 +1279,11 @@ mod tests {
                 Some(80.0),
                 Some(2.0),
             ),
-            pressure: None,
             statuses: vec![AnalysisStatus::MechanicsSolved],
         };
         let second = StressRecoveryInput {
             resultants: ForceResultants::new(Some(180.0), Some(80.0), Some(10.0), Some(60.0)),
             section: first.section.clone(),
-            pressure: None,
             statuses: vec![AnalysisStatus::MechanicsSolved],
         };
         let record =
@@ -1546,7 +1354,6 @@ mod tests {
                 Some(2.0),
                 Some(0.5),
             ),
-            pressure: None,
             statuses: vec![AnalysisStatus::MechanicsSolved],
         };
 
@@ -1575,7 +1382,6 @@ mod tests {
             "station:midspan",
             &station,
             StressSectionProperties::new(Some(4.0), Some(20.0), Some(25.0), Some(2.0), Some(0.5)),
-            None,
             vec![AnalysisStatus::MechanicsSolved],
         )
         .unwrap();
@@ -1630,7 +1436,6 @@ mod tests {
             "stress-sweep",
             &stations,
             StressSectionProperties::new(Some(4.0), Some(20.0), Some(2.0), Some(1.0), Some(0.5)),
-            None,
             vec![AnalysisStatus::MechanicsSolved],
         )
         .unwrap();
@@ -1665,7 +1470,6 @@ mod tests {
             "stress-sweep",
             &stations,
             StressSectionProperties::new(Some(4.0), Some(20.0), Some(2.0), Some(1.0), Some(0.5)),
-            None,
             vec![AnalysisStatus::MechanicsSolved],
         )
         .unwrap_err();
