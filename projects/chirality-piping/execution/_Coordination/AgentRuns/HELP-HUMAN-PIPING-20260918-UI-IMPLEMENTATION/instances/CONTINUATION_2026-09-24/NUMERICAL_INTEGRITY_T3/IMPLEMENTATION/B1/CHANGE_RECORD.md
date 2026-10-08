@@ -3,15 +3,17 @@
 **This PR brings B1 to main: up to three load cases (C = 3) in one retained-precision invocation, at I82's option S3, through the retained route.** It is B1's compact PR under PLAN_v2 §6 (`R/I84/b1_plan_01/PLAN_v2.md`, `c85786b7…`). The reviews are agent reviews, not personal review by the owner.
 
 **Status of this file.** I108 (SK) drafted it, records only, from the records named here. The PR-head gates run before the merge and are recorded in the merge record on the integration branch.
-- **The code commit** is `d07006c2f0` on `codex/piping-t3-pr-b1-20261008`, cut from main `3d73db745e`. It carries the 33 maintained files that NUM `75cd6be76b` changes (RR "I108's package returned; the `threshold_bytes` citation corrected; PR-B1 recut from main `3d73db745e` with a true message").
-- **NUM carries B1:** `b1` `ddc8eaaf54` (R6b's registration) merged as `fd62a11046`, then main `6c821d9ccf` as `a41eea7b5f`. `75cd6be76b` then corrects the `threshold_bytes` comment, which now cites RR "R6b: RV124 passes SQ and confirms M". That is a two-line comment change; `retained_memory.rs` is not a reviewed input.
-- **Main:** NUM's main base is `6c821d9ccf`. The PR's main, `3d73db745e`, adds #1153 (App v4 only: 179 paths, none under P), so it touches none of the 33.
+- **The code commit** is `7f5f72912e` on `codex/piping-t3-pr-b1-20261008` (#1154), cut from main `953d8c9446`. It carries the 33 maintained files that NUM `31eed8497f` changes (RR "RV124 confirms B1's Pass B; the platform test fix committed on NUM").
+- **NUM carries B1:** `b1` `ddc8eaaf54` (R6b's registration) merged as `fd62a11046`, then main `6c821d9ccf` as `a41eea7b5f`. Two later commits change maintained source:
+  - `75cd6be76b` corrects the `threshold_bytes` comment, which now cites RR "R6b: RV124 passes SQ and confirms M". That is a two-line comment change; `retained_memory.rs` is not a reviewed input;
+  - `31eed8497f` carries the platform test fix (§1.1).
+- **Main:** NUM's main base is `6c821d9ccf`. The PR's main, `953d8c9446`, adds #1153 and #1155 (App v4 only: 209 paths, none under P), so it touches none of the 33.
 
 **Notation:** P = `projects/chirality-piping`; PP = `P/core/product_physics`; RE = `P/core/reporting/result_export`; DT = `P/apps/desktop/src/features/results`; AR = `P/core/analysis_runs`; RR = T3's append-only `ROOT_RULINGS_V1.md` (an RR "title" names a heading); R = T3's `RESUME_2026-09-30` records on NUM; T = T3's folder on NUM. DESIGN = `R/I78/b0_contract_01/DESIGN_v2.md` (`5933b90b…`); QUAL = main's `IMPLEMENTATION/F2A_D1/copies/QUALIFICATION.md`.
 
 ## 1. What the PR contains
 
-**33 files under P:** 3 added and 30 modified, +329,865 / −943 lines, 22,003,200 B at the head. sha256 from the Git objects at `d07006c2f0`.
+**33 files under P:** 3 added and 30 modified, +329,970 / −947 lines, 22,010,200 B at the head. sha256 from the Git objects at `7f5f72912e`.
 
 | File | +/− | Change | sha256 |
 |---|---|---|---|
@@ -23,10 +25,10 @@
 | `AR/compatibility.py` | +24 / −8 | `_source_contract`: string guards on the enum tests (RV108 N1, ruled in); Rust's header order on the retained transport step only (I4 ruling 1) | `d2eb8465b6f0715e9ea5e2f82e1e961a618e5c5688c514c5f04ad1e8f2c94c2c` |
 | `AR/preview_physics_evidence.py` | +15 / −4 | On transport, withheld records compared as multisets (I4 ruling 2) | `0d92228583d0044749700b2e8c35dd0b005d0003ec1ff191fd9d4ce64133d566` |
 | `AR/retained_precision.py` | +163 / −19 | PY retained reader at n cases: D38 (4b), F-1 text B, G8's invocation and material-basis checks, the alignment set, header at G2, C2's kernel row; RV108 N2 | `75e12637685816f0a7a44ae4ad2e18191a38147c89b3fd10cea5f7c58b85580c` |
-| `PP/src/lib.rs` | +240 / −59 | `retained_w1`: T-4's classifier (decision 21, `NoTriggeredCase`), the SA–SP seam, the n-case custody and notices; test hooks | `f77e2273860f946539dd2a8580902fd1188a9d99158bcadbf0d8ddfb1c885b09` |
-| `PP/src/retained_facade_tests.rs` | +1,308 / −37 | ST's and SP's tests: classifier, re-basings, W-C2 and SF-2 pins, N-16, ordinal pin, fault tests; I77's two line citations as symbols | `c43d945a745ca6c64968d2c2afd4790cd818e765bb05b3e3e06b79ec4768c6ad` |
+| `PP/src/lib.rs` | +240 / −59 | `retained_w1`: T-4's classifier (decisions 1 and 21, `NoTriggeredCase`), the SA–SP seam, the n-case custody and notices; test hooks | `f77e2273860f946539dd2a8580902fd1188a9d99158bcadbf0d8ddfb1c885b09` |
+| `PP/src/retained_facade_tests.rs` | +1,346 / −37 | ST's and SP's tests: classifier, re-basings, W-C2 and SF-2 pins, N-16, ordinal pin, fault tests; I77's two line citations as symbols; the glibc variants (§1.1) | `23ec8dea0d6daa36748d01d835215d51dbb0cda65110833b277188c5d1f53109` |
 | `PP/src/retained_memory.rs` | +188 / −110 | Admission at S3 (SA); the parked-slot error text; the regenerated GENERATED PROFILE block; G-B's SF-1 bound; `threshold_bytes` = 11,274,289,152 | `bb9f4eb1cacc891f54f148ab97929e26db7976145ccb72b4574a0cbfe16e3bea` |
-| `PP/src/retained_memory_law_tests.rs` | +564 / −43 | SA's gate tests; SQ's re-pins at M and new law tests | `01d79ad439101f2a4860f7f28e1de2fa725aa708accb23f274b643a141b52ee5` |
+| `PP/src/retained_memory_law_tests.rs` | +609 / −47 | SA's gate tests; SQ's re-pins at M and new law tests; `CAP_MAXIMAL_RING` (§1.1) | `ea192e51da70624973a58c4a7b757d434616367d4f088c6a3158cf01f36886b8` |
 | `PP/src/retained_memory_witness_tests.rs` | +385 / −89 | The S1 witnesses, one entry point per mode, with B1's inputs and DEF-O reports | `82cd49b20261bdeeeb046c14d22ca46463a834edecb9a1a9ef1a4920bd0be248` |
 | `PP/src/retained_product.rs` | +963 / −273 | The n-case transaction, DESIGN T-2 to T-13 | `cac6e68d379fef76976491677a310a6dcd4d1e80a2f4bdd335025a37d782b24e` |
 | `PP/src/retained_product_tests.rs` | +43 / −31 | Adapted to the per-case structures | `97e0f7fa4d0f11c2207af04f53bc2f23dc284383c7b34c620a94b67c06ce5a96` |
@@ -34,7 +36,7 @@
 | `PP/src/retained_tests_hooks/grant2.rs` | +34 / −6 | Per-case fault hooks (`fail_preparation_of_case`) | `1f849c75b1c9cad0f124ae7465c063ef7039ae147b7e506e4a357dd53d76781a` |
 | `PP/src/retained_wire.rs` | +388 / −61 | The n-case serializer and receipt; `constructor_ordinal` is the authored ordinal | `f24f258f40281ded54b537a3acd68057b9c1662aae39a6db1689f6055a3c4ac1` |
 | `PP/src/retained_wire_tests.rs` | +6 / −6 | Reads `native_pair()` | `1f0dd77b68d4093eb14b1dd8772d839dbc79299ceb5b1c6cc0bb05881fc24e90` |
-| `PP/tests/common/b1_sq_inputs.rs` | new, 359 lines | I86's inputs for the witnesses and the challenge, pinned by I86's hashes | `7ab71068166b81a1c0192ce17f287794ff7e0dbd50ef4c025be5a01b6b19ef72` |
+| `PP/tests/common/b1_sq_inputs.rs` | new, 381 lines | I86's inputs for the witnesses and the challenge, pinned by I86's hashes; the ring as bits (§1.1) | `acc37104f6aca3c76c775f78e78c90109dc4915e01835027ad70f8be67f54df5` |
 | `PP/tests/retained_memory_challenge.rs` | +137 / −82 | The challenge at C = 3: `CAP_BYTES` 16 GiB; the bound by furthest phase (A1-S-1); per-input, per-mode entries | `d330eb15d05b5a190ce71e8d70510d62de156a5182de364037b2dbd2ca3cf72a` |
 | `PP/tests/s11f_site_test.rs` | +4 / −0 | `retained_product.rs` joins rule 8, with its two integer sites (E-12) | `17ffdb42d66c4939041fe35129a16bc7c2810de536e453ae8cafd5d3a209ac19` |
 | `RE/src/retained_precision.rs` | +481 / −37 | RS retained reader at n cases: D38 (4b), F-1 text B, G5 `not_required`, the alignment set, the transport metadata check | `e175d4149f926a06b78312a8bb26965aaf5f683ac678d48e73ab5f4c0aa207e8` |
@@ -49,6 +51,13 @@
 | `P/tests/test_retained_precision_carriers.py` | +118 / −1 | SR-PY's carrier tests (RV108 N1, N2), header pins, the scope sentence's pin | `ff61a071510695fa1820e6ce9df5800366d0fefe73c4851e954e20c598355396` |
 | `P/tests/test_retained_precision_contract.py` | +865 / −11 | SR-PY's n-case tests, repair pins, 07n's PY pins | `29e69391eef16ea97ffcb18a5bf3c6a9fa2341a4613a74fa1d868e0468be87a2` |
 
+### 1.1 The platform test fix
+
+#1154's hosted CI failed on Linux in 4 `product_physics` tests that pass on the Mac (RR "I107's Pass B (no stop); PR-B1's hosted CI fails on Linux: two platform defects in B1's tests, diagnosed and fixed"). Both causes are in B1's tests, not its production code. The fix is three test files, +110 / −9, which RV124 read.
+- **W2b's input pins.** `cap_maximal`'s ring used `f64::cos` and `f64::sin`, which differ between glibc and macOS in the last bit. The ring is now spelled as binary64 bits (`CAP_MAXIMAL_RING`), with a test that each entry is within one ulp of the platform's trigonometry. On the Mac the table equals libSystem's values bit for bit, so every input and pin is unchanged.
+- **W-C2's dense document and (C, B, A)'s dense pin.** On Linux, one value differs (case C's `rigid:N0` support force magnitude, formed by the ordinary route's `f64::hypot`), and with it the two hashes over it. Exact glibc variants now apply under `cfg(all(target_os = "linux", target_env = "gnu"))`. Each platform must produce its own bytes exactly, with no tolerance, and the committed fixtures are unchanged.
+- **Pass B's gates are unchanged** by it: `law` and `pp_outcomes` each gain the added test, and `delta` gains test-class rows only (RV124's confirmation).
+
 **The slice history** is on `b1` (`codex/piping-t3-b1-20261007`) through `ddc8eaaf54`: ST, SP, SA, SR-RS, SR-PY, SR-TS, SC and SQ, integrated at I1–I4′ and R6b. The PR carries none of it.
 
 ## 2. What it does
@@ -56,7 +65,7 @@
 **C = 3 at S3, through the retained route.**
 - **Admission (SA):** `LOAD_CASES` = 3 and `TOTAL_LOADS` = 384 at D1's model caps (n = m = g = 32, Σr = 192, l = 128). D1.4 admits 1 to C cases with no combination or component; D1.5 and D1.7 hold per case; G-B and G-C are priced at C = 3. G-B's byte bound is T11 less one case's late capture (RV112 SF-1, at SQ).
 - **The producer (ST, SP):** DESIGN T-1 to T-13.
-  - **T-4:** a case whose ordinary verdict is `checks_passed` is not attempted (decision 21). With no attempted case, `NoTriggeredCase` publishes the exact ordinary bytes, with no W1 work.
+  - **T-4:** a case whose ordinary verdict is `checks_passed` is not attempted (decision 1). Decision 21's exclusion also keeps out of A a case whose seed records a mechanism, asymmetric or invalid-input structural failure with no W2 publication. With no attempted case, `NoTriggeredCase` publishes the exact ordinary bytes, with no W1 work.
   - The attempted cases are prepared in request order, solved in one native batch call, frozen per case, staged and serialized in request order. On a fallback, one N1 notice is published per attempted case (T-12).
   - c = 1 runs through the same n-case path. Every committed c = 1 successor pin is byte-identical (RV109 rounds 1 and 2).
 - **T-11's headline staging, a clarification of DESIGN.** At c ≥ 2, each summary headline is recomputed as the governing row over the staged rows: greatest value, then the smaller case id, then location (RR "SP returned before I3; the headline rule accepted; …").
@@ -67,7 +76,7 @@
   - Every other build is Stale and publishes the ordinary bytes (SG's Stale sweep is byte-identical to base).
 - **The witnesses publish.** W-C2 (A selected, B `not_required`, C unavailable at Ceiling) publishes in both modes, pinned as the two new fixtures. So does the cap-maximal three-case input (|A| = 3, Σ l_i = 384; QUAL_B1 §4).
 
-**The three readers' eligibility.** RS, PY and TS read an n-case successor and agree on every gate and code, apart from the declared raw G7 codes.
+**The three readers' eligibility.** RS, PY and TS read an n-case successor and agree on every gate and code, apart from declared differences: the raw G7 codes, and RV120 A-N2's two Python-only transport differences (PY refuses an array over 16,384 items; PY admits an unsafe integral `span_index`, which RS refuses at G7 and TS at G1).
 - **SR's alignment:** D38's (4b) relaxation; F-1 text B per case; G5's `not_required` rule; G8 per case.
 - **The three-reader alignment set** (RR "RV113's three returns verified; …"): the (f) family at G3; the (g) model-scope members at G8; C2's cause table at G5; the transport header at G2 and the metadata at G7.
 - **I4′** (RR "I4 made at `30f3d1b24a`; …", rulings 1–5): Rust's header order in PY, the extrema-number demand, the multiset rule, and C2's kernel row.
@@ -91,7 +100,7 @@
 - **T6S is untouched:** one T6S test file gains one line outside T6S's block. The c = 1 successors are unchanged, so T6S-2's goldens stand (PLAN_v2 §3.12).
 - **The disclosed limit (F-1 text B, with RV113 N-4's wording).** A dense case's parity row deleted, with the receipt resealed including its row indices, is admitted and eligible.
 - **R-b′:** the whole invocation is abandoned on an unrecoverable fault. This is a known limit (DESIGN §7, RV105 N-5).
-- **About 30 KB of B1's heap is unpriced** (RV124 Q-N1: `Vec<CaseAttempt>`, 28,200 B at |A| = 3, and small O(c) locals). That is against 287,052,726 B of dense margin, and M is unaffected. It goes to SB with that bound.
+- **About 30 KB of B1's heap is unpriced** (RV124 Q-N1: `Vec<CaseAttempt>`, 28,200 B at |A| = 3, and small O(c) locals). That is against 287,052,726 B of dense margin, and M is unaffected. Pass B found no other unpriced owner (I107).
 
 ## 4. Review
 
@@ -108,7 +117,8 @@
 | RV120 RV-R (`R/REVIEW_RV120/rvr_i4p_01/`) | I4′'s three lanes | RS and TS CONFIRMED, 0/0/2 (`5397c4f3…`); PY CONFIRMED, 0/0/2 (`dec198e8…`) | none |
 | RV120 (`sc_01/`) | SC and the readers' pins | PASS 0/0/5 (`cb681753…`) | none |
 | RV124 RV-Q (`R/REVIEW_RV124/b1_sq_01/`) | SQ: G5, M, G6, the re-pins, the witnesses, the challenge, RSS_TIME | PASS 0/0/5; M confirmed (`9bb6f811…`) | Q-N1 and Q-N5 to SB; Q-N3 in §6 below |
-| RV125 RV-X | The whole PR | See the merge record | — |
+| RV125 RV-X (`R/REVIEW_RV125/b1_x_01/`) | The whole PR, at `0752ae8b98` | PASS 0/0/7 (`3c2ea5d4…`) | Its two should-fixes on `8248921552` (the misquoted R6a title, the commit message's reviewers) were repaired by the recut. N-4, N-6 and N-7 are corrected in this package |
+| RV124 RV-Q (`R/REVIEW_RV124/b1_passb_01/`) | I107's Pass B | CONFIRMED 0/0/2 (`c88e7a82…`) | none |
 
 Counts are BLOCKING/SHOULD-FIX/NOTE.
 
@@ -116,12 +126,12 @@ Counts are BLOCKING/SHOULD-FIX/NOTE.
 
 | Gate | Result |
 |---|---|
-| Complete-diff review (RV-X) | See the merge record |
-| `source_equality.py`, `--int 75cd6be76b --main 3d73db745e` | Checks 1–3 and 5 PASS on `d07006c2f0`: B = `6c821d9ccf`, \|S\| = 33, 33 equal, no three-way merge. Check 4 PASSES on a scratch commit of `d07006c2f0` with this package (`_draft_run_records/`). On the PR head: see the merge record |
-| `check_citations.py`, `--base 3d73db745e --head d07006c2f0` | **PASS:** 98 resolved, 0 ambiguous, 0 unresolved (§6). On the PR head: see the merge record |
+| Complete-diff review (RV-X) | PASS 0/0/7, RV125 (`R/REVIEW_RV125/b1_x_01/REVIEW.md`, `3c2ea5d4…`) |
+| `source_equality.py`, `--int 31eed8497f --main 953d8c9446` | Checks 1–3 and 5 PASS on `7f5f72912e`: B = `6c821d9ccf`, \|S\| = 33, 33 equal, no three-way merge. Check 4 PASSES on a scratch commit of `7f5f72912e` with this package (`_draft_run_records/`). On the PR head: see the merge record |
+| `check_citations.py`, `--base 953d8c9446 --head 7f5f72912e` | **PASS:** 98 resolved, 0 ambiguous, 0 unresolved (§6). On the PR head: see the merge record |
 | The full 40-manifest suite and the src-tauri suite, before the freeze | PASS: 0 changed outcomes; src-tauri 116 = 116 (`T/IMPLEMENTATION/B1_PREFREEZE/RECORD.md`, `33daa960…`) |
-| Pass B (SB, I107), with RV-Q's confirmation | See the merge record |
-| Hosted CI and the full-SHA dispatch | See the merge record |
+| Pass B (SB, I107), with RV-Q's confirmation | PASS with no stop: I107 (`R/I107/b1_passb_01/RETURN.md`, `8449242f…`; its one delta, the challenge's `process_floor`, is environmental), and RV124 CONFIRMED (`R/REVIEW_RV124/b1_passb_01/CONFIRM.md`, `c88e7a82…`). The platform fix leaves its gates unchanged |
+| Hosted CI and the full-SHA dispatch | See the merge record. CI failed on Linux at `0752ae8b98`; §1.1 is the fix |
 | GEN-8 | See the merge record |
 | The exact-head DEC-025 and the src-tauri suite on the head | See the merge record |
 | T9 and both-entry part 1 | See the merge record |
@@ -142,11 +152,11 @@ Counts are BLOCKING/SHOULD-FIX/NOTE.
 | **RSS_TIME, with R9's reading** | `copies/RSS_TIME.md` = `R/I104/b1_sq_01/RSS_TIME.md` (`f230c7ec…`). R9: RR "SQ complete; R9 read; …". The largest RSS at the caps is 206.5 MiB; the priced worst case is 9.18 GiB; release wall time is at most 1.77 s |
 | **07n's parity** | RV120 `sc_01/REVIEW.md`: 1,218 checks per reader, 0 misses; TS = PY on all 1,914 verdicts; RS differs only on 46 entries' declared raw G7 codes; 07m's 339 entries unchanged. Records: I100 `b1_sc_01/RETURN.md` (`a4bd24f9…`); I101 `b1_sc_pins_01/` (`6343e404…`, ADDENDUM_01 `ba4f17ab…`) |
 | **The W-C2 pins** | I85 `R/I85/b1_sp_01/I3_01.md` §2 (`5084603d…`): document = fixture `7922e3e5…` / `f2800bd4…`; published bytes `c7a18593…` / `a77c010b…` (sparse / dense). RV109 round 2 ADDENDUM_01 rebuilt both byte for byte; SG gate 2 matched them |
-| **RV95 N-5's direct test** | I90 `R/I90/b1_sr_rs_01/RETURN.md` §3.5 (`29eb10a3…`); RV113 SR-RS §7. It kills S1 and the off-by-one, and covers the 13 receipt fields, `failure.block_order` included. It calls `integer` directly, and a census binds every call site; it does not take the composite receipt's path. RV125 reads the test against DESIGN §7's composite-receipt clause |
+| **RV95 N-5's direct test** | I90 `R/I90/b1_sr_rs_01/RETURN.md` §3.5 (`29eb10a3…`); RV113 SR-RS §7. It kills S1 and the off-by-one, and covers the 13 receipt fields, `failure.block_order` included. It calls `integer` directly, and a census binds every call site; it does not take the composite receipt's path. RV125 N-5: DESIGN §7's composite-receipt clause is met in substance, because the composite receipt reaches `integer` only through the call sites the census enumerates |
 | **RV97 R2-N-2** | `a4eab1dd01`. The module doc of `RE/tests/retained_precision_contract.rs` now says the two L = 0 bases were published by the Direct entry in the registered dev/test build, and that reading the controls establishes no execution |
 
-**`citations.json`** (#1082's format) is pinned at NUM `75cd6be76b`. Its documents table is #1082's 23 names, unchanged.
-- **The run** (`--base 3d73db745e --head d07006c2f0`, `_draft_run_records/outputs/check_pr.out`): 71 record and RR citations (28 distinct) and 27 document citations; 98 resolved, 0 ambiguous, 0 unresolved, 0 verification failures. **PASS.**
+**`citations.json`** (#1082's format) is pinned at NUM `31eed8497f`. Its documents table is #1082's 23 names, unchanged.
+- **The run** (`--base 953d8c9446 --head 7f5f72912e`, `_draft_run_records/outputs/check_pr.out`): 71 record and RR citations (28 distinct) and 27 document citations; 98 resolved, 0 ambiguous, 0 unresolved, 0 verification failures. **PASS.**
 - **Three negative controls** each fail, as they should: a missing entry (UNRESOLVED), R6b's entry pointed at R6a's heading line, and a changed copy (each FAILED).
 
 ## 7. Routed notes
@@ -155,13 +165,18 @@ Counts are BLOCKING/SHOULD-FIX/NOTE.
 - **B2 (DEF-O):** any DEF-O revision covers the MPa ×1e6 projection beside NC-1's mm→SI (RV124 Q-N2; RR "R6b: …").
 - **B2:** combination coverage comes at G3 with B2's contract, which also changes (g)'s `combinations` and `components` rule (RR "RV113's three returns verified; …", item 2; RR "I91's and I92's rounds verified; …", ruling 2).
 - **B3:** B3a changes (g)'s `pressure_contract` rule (the same item). RV78-N1's preview-table bindings go to `physics-retained-1` (RR "I86's SW probe accepted; …", ruling 1).
-- **B3 (`b2`):** a three-reader disagreement at G8's sourced-case check predates B3 and is with I100. PR-B1's readers equal main's there (RR "PR-B1 cut (`8248921552`); …").
+- **B3 (`b2`):** the G8 sourced-case rule, a three-reader disagreement that predates B3, is aligned for B2/B3: PY on `b2-p`, RS and TS with I101. PR-B1's readers equal main's there (RR "The G8 sourced-case rule aligned across the three readers (I100's B3 addendum 01); …").
+- **B2/B3 admission (lane A, lane P, SQ2):** the modulus-basis custody fields in `retained_product.rs` are per invocation. They must become per case before any lane admits material selectors at c ≥ 2 (RV125 N-2; RR "RV125 (RV-X) passes PR-B1 (0/0/7); …").
+- **B2's reader round:** a negative-value refusal for `global_upper_bound_pa` and `certified_gap_pa`, with a shared shape (RV125 N-1, which carries RV120 N-2; the same ruling).
 - **Outside B2, B3 and SQ2:**
   - F2b gets the per-term `constructor_ordinal` (RV109 round 2 ADDENDUM_01 N-1);
   - B7 gets one Rust source for the transport metadata check (RR "I90's SR-RS repair round 2 verified; …", ruling 1);
-  - SB (I107) gets Q-N1 and Q-N5, and PLAN_v2 §2.3's phase-4 check as Pass B's item 10: RetainedErrorTextBytes ≤ C·(3m + 1)·Text(err) against SP's producer (RR "I108's package returned; …", item 4);
-  - RV-X (RV125) gets RV120 N-2 (a negative or zero bound is admitted), RV109 round 2's N-1, and DESIGN §7's composite-receipt clause for N-5's test (the same ruling, item 5);
+  - T3 product work after PR-B1 (I109): published magnitudes that do not depend on the platform's libm, such as a correctly rounded `hypot`. It would retire `t13`'s Mac failure and §1.1's glibc variants (RR "I107's Pass B (no stop); …");
   - the owner's machine-adaptive memory budget study comes after PR-B1 (RR "#1114 merged; …").
 - **Not taken, optional:**
   - a Direct-entry variant with a fault armed (RV109 round 2 ADDENDUM_01 N-2; SQ item 10);
   - the per-call observation rule, about −150 MB (RR "R6a: …").
+
+**Closed by Pass B and RV-X:** PLAN_v2 §2.3's phase-4 check (I107's item 10: 3 error-text owners per case, within 3m + 1, and 3c + 1 per invocation); RV109 round 2's N-1 (RV125: M11 is killed by five SP tests); and Q-N1 (no other unpriced owner).
+
+**Erratum (RV125 N-7).** The first draft of this record attributed the `checks_passed` rule to decision 21. It is decision 1; §1 and §2 now read so.

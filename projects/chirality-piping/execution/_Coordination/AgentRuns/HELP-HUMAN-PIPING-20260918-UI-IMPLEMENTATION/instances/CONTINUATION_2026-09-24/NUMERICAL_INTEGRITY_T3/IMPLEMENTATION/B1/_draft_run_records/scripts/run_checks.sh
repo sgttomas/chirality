@@ -7,7 +7,7 @@ set -eu
 PY="$WT/venv/bin/python"
 T="$WT/numerics/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3"
 B="$T/IMPLEMENTATION/B1"; O="$B/_draft_run_records/outputs"; S="$WT/scratch/i108_b1_sk"; TOOL="$T/IMPLEMENTATION/F2A_D1/check_citations.py"
-REPO="$WT/pr-b1"; BASE=3d73db745e; HEAD=d07006c2f0; NUM=75cd6be76bd6407fc24e0f1da834c2135407b69e
+REPO="$WT/pr-b1"; BASE=953d8c9446; HEAD=7f5f72912e; NUM=31eed8497fef9770feace42fc83880b7c6bd01ac
 export GIT_OPTIONAL_LOCKS=0
 mkdir -p "$S" "$O"
 
