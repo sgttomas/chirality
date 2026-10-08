@@ -1,0 +1,271 @@
+# RV113 SR-PY repair 02 jobs: each job's own log stamps
+== py2_census.log
+# rv113 rsr2 job py2_census (slot) queued 2026-10-08T02:08:04Z dir=rv113/py2-head/projects/chirality-piping
+# start 2026-10-08T02:08:04Z
+# end 2026-10-08T02:08:40Z rc=0
+== py2_probes.log
+# rv113 rsr2 job py2_probes (slot) queued 2026-10-08T02:08:40Z dir=rv113/py2-head/projects/chirality-piping
+# start 2026-10-08T02:08:40Z
+# end 2026-10-08T02:09:24Z rc=0
+== py2_tests.log
+# rv113 rsr2 job py2_tests (slot) queued 2026-10-08T02:09:24Z dir=rv113/py2-head/projects/chirality-piping
+# start 2026-10-08T02:09:24Z
+# end 2026-10-08T02:12:07Z rc=0
+== mutant runs (run.log stamps)
+-- NONE
+# NONE tests queued 2026-10-08T02:17:00Z
+# start 2026-10-08T02:17:00Z RV113_MUT=unset
+pytest rc=0
+# end 2026-10-08T02:19:34Z
+# NONE probes queued 2026-10-08T04:03:23Z
+# probes start 2026-10-08T04:03:23Z
+probes rc=0
+# probes end 2026-10-08T04:04:08Z
+# NONE probes_py2x queued 2026-10-08T04:09:25Z
+# probes_py2x start 2026-10-08T04:09:25Z
+probes_py2x rc=0
+# probes_py2x end 2026-10-08T04:09:26Z
+# NONE probes_py2x queued 2026-10-08T04:10:27Z
+# probes_py2x start 2026-10-08T04:10:28Z
+probes_py2x rc=0
+# probes_py2x end 2026-10-08T04:10:28Z
+-- P01
+# P01 tests queued 2026-10-08T02:19:34Z
+# start 2026-10-08T02:19:34Z RV113_MUT=P01
+pytest rc=1
+# end 2026-10-08T02:22:17Z
+-- P02
+# P02 tests queued 2026-10-08T02:22:17Z
+# start 2026-10-08T02:22:17Z RV113_MUT=P02
+pytest rc=0
+# end 2026-10-08T02:25:05Z
+# P02 probes queued 2026-10-08T04:04:08Z
+# probes start 2026-10-08T04:04:08Z
+probes rc=0
+# probes end 2026-10-08T04:04:53Z
+-- P03
+# P03 tests queued 2026-10-08T02:25:05Z
+# start 2026-10-08T02:25:05Z RV113_MUT=P03
+pytest rc=1
+# end 2026-10-08T02:27:49Z
+-- P04
+# P04 tests queued 2026-10-08T02:27:49Z
+# start 2026-10-08T02:27:49Z RV113_MUT=P04
+pytest rc=1
+# end 2026-10-08T02:30:33Z
+-- P05
+# P05 tests queued 2026-10-08T02:30:33Z
+# start 2026-10-08T02:30:33Z RV113_MUT=P05
+pytest rc=1
+# end 2026-10-08T02:33:23Z
+-- P06
+# P06 tests queued 2026-10-08T02:33:23Z
+# start 2026-10-08T02:33:23Z RV113_MUT=P06
+pytest rc=1
+# end 2026-10-08T02:36:15Z
+-- P07
+# P07 tests queued 2026-10-08T02:36:15Z
+# start 2026-10-08T02:36:15Z RV113_MUT=P07
+pytest rc=1
+# end 2026-10-08T02:39:14Z
+-- P08
+# P08 tests queued 2026-10-08T02:39:14Z
+# start 2026-10-08T02:39:14Z RV113_MUT=P08
+pytest rc=1
+# end 2026-10-08T02:42:08Z
+-- P09
+# P09 tests queued 2026-10-08T02:42:08Z
+# start 2026-10-08T02:42:08Z RV113_MUT=P09
+pytest rc=1
+# end 2026-10-08T02:45:00Z
+-- P10
+# P10 tests queued 2026-10-08T02:45:00Z
+# start 2026-10-08T02:45:00Z RV113_MUT=P10
+pytest rc=1
+# end 2026-10-08T02:47:48Z
+-- P11
+# P11 tests queued 2026-10-08T02:47:49Z
+# start 2026-10-08T02:47:49Z RV113_MUT=P11
+pytest rc=1
+# end 2026-10-08T02:50:30Z
+-- P12
+# P12 tests queued 2026-10-08T02:50:30Z
+# start 2026-10-08T02:50:31Z RV113_MUT=P12
+pytest rc=1
+# end 2026-10-08T02:53:17Z
+-- P13
+# P13 tests queued 2026-10-08T02:53:17Z
+# start 2026-10-08T02:53:17Z RV113_MUT=P13
+pytest rc=1
+# end 2026-10-08T02:56:00Z
+-- P14
+# P14 tests queued 2026-10-08T02:56:00Z
+# start 2026-10-08T02:56:00Z RV113_MUT=P14
+pytest rc=1
+# end 2026-10-08T02:58:44Z
+-- P15
+# P15 tests queued 2026-10-08T02:58:44Z
+# start 2026-10-08T02:58:44Z RV113_MUT=P15
+pytest rc=1
+# end 2026-10-08T03:01:30Z
+-- P16
+# P16 tests queued 2026-10-08T03:01:30Z
+# start 2026-10-08T03:01:30Z RV113_MUT=P16
+pytest rc=1
+# end 2026-10-08T03:04:09Z
+-- P17
+# P17 tests queued 2026-10-08T03:04:09Z
+# start 2026-10-08T03:04:09Z RV113_MUT=P17
+pytest rc=1
+# end 2026-10-08T03:06:46Z
+-- P18
+# P18 tests queued 2026-10-08T03:06:46Z
+# start 2026-10-08T03:06:46Z RV113_MUT=P18
+pytest rc=0
+# end 2026-10-08T03:09:23Z
+# P18 probes queued 2026-10-08T04:04:53Z
+# probes start 2026-10-08T04:04:53Z
+probes rc=0
+# probes end 2026-10-08T04:05:37Z
+# P18 probes_py2x queued 2026-10-08T04:09:26Z
+# probes_py2x start 2026-10-08T04:09:26Z
+probes_py2x rc=0
+# probes_py2x end 2026-10-08T04:09:26Z
+# P18 probes_py2x queued 2026-10-08T04:10:28Z
+# probes_py2x start 2026-10-08T04:10:28Z
+probes_py2x rc=0
+# probes_py2x end 2026-10-08T04:10:28Z
+-- P19
+# P19 tests queued 2026-10-08T03:09:23Z
+# start 2026-10-08T03:09:23Z RV113_MUT=P19
+pytest rc=1
+# end 2026-10-08T03:11:59Z
+-- P20
+# P20 tests queued 2026-10-08T03:11:59Z
+# start 2026-10-08T03:11:59Z RV113_MUT=P20
+pytest rc=1
+# end 2026-10-08T03:14:39Z
+-- P21
+# P21 tests queued 2026-10-08T03:14:39Z
+# start 2026-10-08T03:14:39Z RV113_MUT=P21
+pytest rc=1
+# end 2026-10-08T03:17:09Z
+-- P22
+# P22 tests queued 2026-10-08T03:17:09Z
+# start 2026-10-08T03:17:09Z RV113_MUT=P22
+pytest rc=1
+# end 2026-10-08T03:19:34Z
+-- P23
+# P23 tests queued 2026-10-08T03:19:34Z
+# start 2026-10-08T03:19:34Z RV113_MUT=P23
+pytest rc=1
+# end 2026-10-08T03:22:00Z
+-- P24
+# P24 tests queued 2026-10-08T03:22:00Z
+# start 2026-10-08T03:22:00Z RV113_MUT=P24
+pytest rc=1
+# end 2026-10-08T03:24:30Z
+-- P25
+# P25 tests queued 2026-10-08T03:24:30Z
+# start 2026-10-08T03:24:31Z RV113_MUT=P25
+pytest rc=1
+# end 2026-10-08T03:26:58Z
+-- P26
+# P26 tests queued 2026-10-08T03:26:58Z
+# start 2026-10-08T03:26:58Z RV113_MUT=P26
+pytest rc=1
+# end 2026-10-08T03:29:22Z
+-- P27
+# P27 tests queued 2026-10-08T03:29:22Z
+# start 2026-10-08T03:29:22Z RV113_MUT=P27
+pytest rc=1
+# end 2026-10-08T03:31:45Z
+-- P28
+# P28 tests queued 2026-10-08T03:31:45Z
+# start 2026-10-08T03:31:45Z RV113_MUT=P28
+pytest rc=1
+# end 2026-10-08T03:34:09Z
+-- P29
+# P29 tests queued 2026-10-08T03:34:09Z
+# start 2026-10-08T03:34:09Z RV113_MUT=P29
+pytest rc=1
+# end 2026-10-08T03:36:34Z
+-- P30
+# P30 tests queued 2026-10-08T03:36:34Z
+# start 2026-10-08T03:36:34Z RV113_MUT=P30
+pytest rc=1
+# end 2026-10-08T03:38:57Z
+-- P31
+# P31 tests queued 2026-10-08T03:38:57Z
+# start 2026-10-08T03:38:57Z RV113_MUT=P31
+pytest rc=1
+# end 2026-10-08T03:41:21Z
+# P31 probes queued 2026-10-08T04:05:37Z
+# probes start 2026-10-08T04:05:37Z
+probes rc=0
+# probes end 2026-10-08T04:06:21Z
+# P31 probes_py2x queued 2026-10-08T04:09:26Z
+# probes_py2x start 2026-10-08T04:09:26Z
+probes_py2x rc=0
+# probes_py2x end 2026-10-08T04:09:26Z
+-- P32
+# P32 tests queued 2026-10-08T03:41:21Z
+# start 2026-10-08T03:41:21Z RV113_MUT=P32
+pytest rc=1
+# end 2026-10-08T03:43:46Z
+-- P33
+# P33 tests queued 2026-10-08T03:43:46Z
+# start 2026-10-08T03:43:46Z RV113_MUT=P33
+pytest rc=1
+# end 2026-10-08T03:46:10Z
+-- P34
+# P34 tests queued 2026-10-08T03:46:10Z
+# start 2026-10-08T03:46:10Z RV113_MUT=P34
+pytest rc=1
+# end 2026-10-08T03:46:46Z
+-- P35
+# P35 tests queued 2026-10-08T03:46:46Z
+# start 2026-10-08T03:46:46Z RV113_MUT=P35
+pytest rc=1
+# end 2026-10-08T03:49:20Z
+-- P36
+# P36 tests queued 2026-10-08T03:49:20Z
+# start 2026-10-08T03:49:20Z RV113_MUT=P36
+pytest rc=1
+# end 2026-10-08T03:52:01Z
+-- P37
+# P37 tests queued 2026-10-08T03:52:32Z
+# start 2026-10-08T03:52:32Z RV113_MUT=P37
+pytest rc=1
+# end 2026-10-08T03:55:18Z
+# P37 probes queued 2026-10-08T04:06:21Z
+# probes start 2026-10-08T04:06:21Z
+probes rc=0
+# probes end 2026-10-08T04:07:05Z
+-- P38
+# P38 tests queued 2026-10-08T03:55:18Z
+# start 2026-10-08T03:55:18Z RV113_MUT=P38
+pytest rc=1
+# end 2026-10-08T03:58:01Z
+# P38 probes queued 2026-10-08T04:07:05Z
+# probes start 2026-10-08T04:07:05Z
+probes rc=0
+# probes end 2026-10-08T04:07:49Z
+-- P39
+# P39 tests queued 2026-10-08T03:58:01Z
+# start 2026-10-08T03:58:01Z RV113_MUT=P39
+pytest rc=1
+# end 2026-10-08T04:00:43Z
+# P39 probes queued 2026-10-08T04:07:49Z
+# probes start 2026-10-08T04:07:49Z
+probes rc=0
+# probes end 2026-10-08T04:08:33Z
+-- P40
+# P40 tests queued 2026-10-08T04:00:43Z
+# start 2026-10-08T04:00:43Z RV113_MUT=P40
+pytest rc=1
+# end 2026-10-08T04:03:23Z
+# P40 probes queued 2026-10-08T04:08:33Z
+# probes start 2026-10-08T04:08:33Z
+probes rc=0
+# probes end 2026-10-08T04:09:17Z

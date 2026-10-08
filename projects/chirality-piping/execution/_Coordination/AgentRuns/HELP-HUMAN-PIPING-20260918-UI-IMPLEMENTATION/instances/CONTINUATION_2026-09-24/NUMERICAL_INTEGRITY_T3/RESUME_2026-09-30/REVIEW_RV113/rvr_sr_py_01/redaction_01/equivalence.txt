@@ -1,0 +1,13 @@
+# RV113 REDACTION_01: the new sanitize_py.py against the old one (VENV's Python; names read at run time, never printed)
+## 1. Both scripts on the same raw inputs (the addendum's evidence re-assembled from scratch, unsanitized)
+old: rc=0, new: rc=0 (each on its own copy of the same inputs, 2026-10-08)
+files 183, identical 183, unexpected differences 0
+## 2. The new script rerun on what was sanitized (the folder as now published, the new script in it)
+new rerun: rc=0
+files 183, identical 183, unexpected differences 0
+plain files byte-identical: 76 of 76
+gz files: 107, each with identical decompressed bytes (each rewrite stamps its own gzip header time, as the old script did)
+## 3. The new script rerun on the folder as first published (with the old script in it)
+rc=1: the one file it flags is the old sanitize_py.py itself (a machine-name form); every other file passes, unchanged.
+## 4. Self-test (scratch files written from the commands and the private file by redirection, never printed, then deleted)
+Each name the commands return, and each name in the private file with its domain: the new script flags every form the old one flagged.

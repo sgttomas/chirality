@@ -1,0 +1,69 @@
+{
+ "note": "The further C2 probe (probes_py2x.json) on the mutant copy: the control and P18. A first version (mutants/py2x_first/) also held a kernel probe and ran on P31; both of its probes were malformed for the schema and read G1 everywhere, so they say nothing about the mutants.",
+ "runs": {
+  "NONE": [
+   {
+    "bound": {
+     "err": {
+      "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH",
+      "detail": null,
+      "gate": "G5"
+     }
+    },
+    "i": 0,
+    "id": "x:c2_source_error_beside_run",
+    "input_sha256": "b0e6235d4b204e2f16194da3a38014b41684f47d4ef13f9b7b50953bb58113f8",
+    "set": "probe",
+    "transport": {
+     "ok": {
+      "classifications": 0,
+      "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "invocation_bound": false,
+      "numerical_eligible": false,
+      "publication_sha256": "3bd85bf14602f9a4053ad945a944ac9adbbd5581b4481fb972c9fecc487c92a4",
+      "standing": "needs_recompute"
+     }
+    },
+    "unbound": {
+     "err": {
+      "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH",
+      "detail": null,
+      "gate": "G5"
+     }
+    }
+   }
+  ],
+  "P18": [
+   {
+    "bound": {
+     "err": {
+      "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH",
+      "detail": null,
+      "gate": "G5"
+     }
+    },
+    "i": 0,
+    "id": "x:c2_source_error_beside_run",
+    "input_sha256": "b0e6235d4b204e2f16194da3a38014b41684f47d4ef13f9b7b50953bb58113f8",
+    "set": "probe",
+    "transport": {
+     "ok": {
+      "classifications": 0,
+      "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "invocation_bound": false,
+      "numerical_eligible": false,
+      "publication_sha256": "3bd85bf14602f9a4053ad945a944ac9adbbd5581b4481fb972c9fecc487c92a4",
+      "standing": "needs_recompute"
+     }
+    },
+    "unbound": {
+     "err": {
+      "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH",
+      "detail": null,
+      "gate": "G5"
+     }
+    }
+   }
+  ]
+ }
+}

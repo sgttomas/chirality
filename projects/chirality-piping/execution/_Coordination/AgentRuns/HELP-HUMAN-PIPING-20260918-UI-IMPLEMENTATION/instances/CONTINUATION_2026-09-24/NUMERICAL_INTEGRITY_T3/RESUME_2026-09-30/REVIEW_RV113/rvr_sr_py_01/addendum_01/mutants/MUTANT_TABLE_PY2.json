@@ -1,0 +1,784 @@
+{
+ "control_probes_equal_head": true,
+ "rows": [
+  {
+   "id": "NONE",
+   "item": "control",
+   "description": "RV113_MUT unset",
+   "tests": 470,
+   "failed": [],
+   "errors": [],
+   "killed_by_assertion": false,
+   "assertion_failures": [],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P01",
+   "item": "1 (f)",
+   "description": "G3: a source's index at its position dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_receipt_references_at_g3_and_the_ordinary_basis_at_g5"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_receipt_references_at_g3_and_the_ordinary_basis_at_g5"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P02",
+   "item": "1 (f)",
+   "description": "G3: the source owner's kind dropped (I91's F-src-kind)",
+   "tests": 470,
+   "failed": [],
+   "errors": [],
+   "killed_by_assertion": false,
+   "assertion_failures": [],
+   "probes_run": true,
+   "probes_moved": 0,
+   "probe_moves": []
+  },
+  {
+   "id": "P03",
+   "item": "1 (f)",
+   "description": "G3: the owner's case index range dropped (an IndexError then reaches the fallback)",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_receipt_references_at_g3_and_the_ordinary_basis_at_g5"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_receipt_references_at_g3_and_the_ordinary_basis_at_g5"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P04",
+   "item": "1 (f)",
+   "description": "G3: the owner's case id dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_receipt_references_at_g3_and_the_ordinary_basis_at_g5"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_receipt_references_at_g3_and_the_ordinary_basis_at_g5"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P05",
+   "item": "1 (f)",
+   "description": "G3: a material basis's index dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_receipt_references_at_g3_and_the_ordinary_basis_at_g5"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_receipt_references_at_g3_and_the_ordinary_basis_at_g5"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P06",
+   "item": "1 (f)",
+   "description": "G3: case_indices unique dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_receipt_references_at_g3_and_the_ordinary_basis_at_g5"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_receipt_references_at_g3_and_the_ordinary_basis_at_g5"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P07",
+   "item": "1 (f)",
+   "description": "G3: case_indices in range dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_receipt_references_at_g3_and_the_ordinary_basis_at_g5"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_receipt_references_at_g3_and_the_ordinary_basis_at_g5"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P08",
+   "item": "1 G5",
+   "description": "G5 ordinary: the ordinary attempt's basis reference dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair01_g8_material_basis_of_every_case_and_exact_case_indices",
+    "test_retained_precision_contract::test_b1_repair01_g8_every_material_basis_has_its_materials_checked",
+    "test_retained_precision_contract::test_b1_repair02_receipt_references_at_g3_and_the_ordinary_basis_at_g5"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair01_g8_material_basis_of_every_case_and_exact_case_indices",
+    "test_retained_precision_contract::test_b1_repair01_g8_every_material_basis_has_its_materials_checked",
+    "test_retained_precision_contract::test_b1_repair02_receipt_references_at_g3_and_the_ordinary_basis_at_g5"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P09",
+   "item": "1 G5",
+   "description": "G5 ordinary: the basis need only resolve",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair01_g8_material_basis_of_every_case_and_exact_case_indices",
+    "test_retained_precision_contract::test_b1_repair02_receipt_references_at_g3_and_the_ordinary_basis_at_g5"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair01_g8_material_basis_of_every_case_and_exact_case_indices",
+    "test_retained_precision_contract::test_b1_repair02_receipt_references_at_g3_and_the_ordinary_basis_at_g5"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P10",
+   "item": "2 (g)",
+   "description": "G8: reference_configurations check dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_model_scope_at_g8_invocation"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_model_scope_at_g8_invocation"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P11",
+   "item": "2 (g)",
+   "description": "G8: pressure_contract back to the falsiness test",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_model_scope_at_g8_invocation"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_model_scope_at_g8_invocation"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P12",
+   "item": "2 (g)",
+   "description": "G8: combinations back to `not model.get(...)`",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_model_scope_at_g8_invocation"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_model_scope_at_g8_invocation"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P13",
+   "item": "2 (g)",
+   "description": "G8: components back to `not model.get(...)`",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_model_scope_at_g8_invocation"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_model_scope_at_g8_invocation"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P14",
+   "item": "2 (g)",
+   "description": "G8: combinations and components may be null",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_model_scope_at_g8_invocation"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_model_scope_at_g8_invocation"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P15",
+   "item": "3 C2",
+   "description": "the whole C2 table dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_d38_capture_before_any_run_beside_a_selected_case",
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic",
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_in_the_reader"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_d38_capture_before_any_run_beside_a_selected_case",
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic",
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_in_the_reader"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P16",
+   "item": "3 C2",
+   "description": "source_error: phase dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P17",
+   "item": "3 C2",
+   "description": "source_error: code dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P18",
+   "item": "3 C2",
+   "description": "source_error: no Run dropped",
+   "tests": 470,
+   "failed": [],
+   "errors": [],
+   "killed_by_assertion": false,
+   "assertion_failures": [],
+   "probes_run": true,
+   "probes_moved": 0,
+   "probe_moves": []
+  },
+  {
+   "id": "P19",
+   "item": "3 C2",
+   "description": "source_error: the decline's error equality dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P20",
+   "item": "3 C2",
+   "description": "receipt_failure: phase dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P21",
+   "item": "3 C2",
+   "description": "receipt_failure: code set dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic",
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_in_the_reader"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic",
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_in_the_reader"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P22",
+   "item": "3 C2",
+   "description": "receipt_failure: invocation_not_representable removed from the set",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P23",
+   "item": "3 C2",
+   "description": "facade_failure: phase dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic",
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_in_the_reader"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic",
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_in_the_reader"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P24",
+   "item": "3 C2",
+   "description": "facade_failure: code dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P25",
+   "item": "3 C2",
+   "description": "facade_failure: selected Run dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P26",
+   "item": "3 C2",
+   "description": "facade_failure: owner_ref dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P27",
+   "item": "3 C2",
+   "description": "unavailable_precondition: phase dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P28",
+   "item": "3 C2",
+   "description": "unavailable_precondition: no Run dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P29",
+   "item": "3 C2",
+   "description": "unavailable_precondition: keying replaced by the set of four codes",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P30",
+   "item": "3 C2",
+   "description": "kernel: phase dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P31",
+   "item": "3 C2",
+   "description": "kernel: a Run present dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "errors": [],
+   "killed_by_assertion": false,
+   "assertion_failures": [],
+   "probes_run": true,
+   "probes_moved": 2,
+   "probe_moves": [
+    {
+     "probe": "r2:cb_kernel_no_run",
+     "verdict": "bound",
+     "control": [
+      "G5",
+      "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+     ],
+     "mutant": [
+      "G5",
+      "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+     ]
+    },
+    {
+     "probe": "r2:cb_kernel_no_run",
+     "verdict": "unbound",
+     "control": [
+      "G5",
+      "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+     ],
+     "mutant": [
+      "G5",
+      "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "P32",
+   "item": "3 C2",
+   "description": "kernel: code dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P33",
+   "item": "3 C2",
+   "description": "kernel: cause equal to the terminal's reason dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P34",
+   "item": "3 C2",
+   "description": "the table also applied to prepared_product_failure causes",
+   "tests": 127,
+   "failed": [
+    "test_retained_precision_contract::test_complete_synthetic_draft_control_is_not_qualification",
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[unavailable_certificate_passed_coverage_null]",
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[unavailable_no_data_claim_with_free_loads]",
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[unavailable_stop_uncoupled]",
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[unavailable_layout_relabelled]",
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[unavailable_verification_bound_duplicate]",
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[cert_failed_before_summary_g5a_passed]",
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[lane_k_failed_with_coverage]",
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[maxima_abandoned_with_coverage]",
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[cross_case_gate_order_unavailable]"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[unavailable_certificate_passed_coverage_null]",
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[unavailable_no_data_claim_with_free_loads]",
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[unavailable_stop_uncoupled]",
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[unavailable_layout_relabelled]",
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[unavailable_verification_bound_duplicate]",
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[cert_failed_before_summary_g5a_passed]",
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[lane_k_failed_with_coverage]",
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[maxima_abandoned_with_coverage]",
+    "test_retained_precision_contract::test_shared_draft_first_failure_controls[cross_case_gate_order_unavailable]"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P35",
+   "item": "4 header",
+   "description": "every transport base failure at G7 (the old label)",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_carriers::test_rv108_n1_retained_reader_reports_the_base_header_code_at_g7[dense_scrutiny]",
+    "test_retained_precision_carriers::test_rv108_n1_retained_reader_reports_the_base_header_code_at_g7[sparse_interactive]",
+    "test_retained_precision_carriers::test_repair02_transport_reports_the_header_at_g2_and_the_metadata_at_g7[dense_scrutiny]",
+    "test_retained_precision_carriers::test_repair02_transport_reports_the_header_at_g2_and_the_metadata_at_g7[sparse_interactive]"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_carriers::test_rv108_n1_retained_reader_reports_the_base_header_code_at_g7[dense_scrutiny]",
+    "test_retained_precision_carriers::test_rv108_n1_retained_reader_reports_the_base_header_code_at_g7[sparse_interactive]",
+    "test_retained_precision_carriers::test_repair02_transport_reports_the_header_at_g2_and_the_metadata_at_g7[dense_scrutiny]",
+    "test_retained_precision_carriers::test_repair02_transport_reports_the_header_at_g2_and_the_metadata_at_g7[sparse_interactive]"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P36",
+   "item": "4 header",
+   "description": "every transport base failure at G2 (the metadata check's too)",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_carriers::test_transport_refuses_a_receipt_consistent_base_inconsistent_statement_at_g7[dense_scrutiny]",
+    "test_retained_precision_carriers::test_transport_refuses_a_receipt_consistent_base_inconsistent_statement_at_g7[sparse_interactive]",
+    "test_retained_precision_carriers::test_repair02_transport_reports_the_header_at_g2_and_the_metadata_at_g7[dense_scrutiny]",
+    "test_retained_precision_carriers::test_repair02_transport_reports_the_header_at_g2_and_the_metadata_at_g7[sparse_interactive]"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_carriers::test_transport_refuses_a_receipt_consistent_base_inconsistent_statement_at_g7[dense_scrutiny]",
+    "test_retained_precision_carriers::test_transport_refuses_a_receipt_consistent_base_inconsistent_statement_at_g7[sparse_interactive]",
+    "test_retained_precision_carriers::test_repair02_transport_reports_the_header_at_g2_and_the_metadata_at_g7[dense_scrutiny]",
+    "test_retained_precision_carriers::test_repair02_transport_reports_the_header_at_g2_and_the_metadata_at_g7[sparse_interactive]"
+   ],
+   "probes_run": false,
+   "probes_moved": null,
+   "probe_moves": null
+  },
+  {
+   "id": "P37",
+   "item": "S-4",
+   "description": "Q17: not_required without its product_attempt_ref null conjunct",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_g5_not_required_admits_a_w2_published_case"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_g5_not_required_admits_a_w2_published_case"
+   ],
+   "probes_run": true,
+   "probes_moved": 2,
+   "probe_moves": [
+    {
+     "probe": "nr_product_attempt_ref_with_attempt",
+     "verdict": "bound",
+     "control": [
+      "G5",
+      "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+     ],
+     "mutant": [
+      "G5",
+      "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+     ]
+    },
+    {
+     "probe": "nr_product_attempt_ref_with_attempt",
+     "verdict": "unbound",
+     "control": [
+      "G5",
+      "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+     ],
+     "mutant": [
+      "G5",
+      "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "P38",
+   "item": "N-2",
+   "description": "(4b): the case's Run absent dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_d38_reader_logic_names_every_conjunct",
+    "test_retained_precision_contract::test_b1_d38_stage_rule_refuses_each_conjunct_held_elsewhere"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_d38_reader_logic_names_every_conjunct"
+   ],
+   "probes_run": true,
+   "probes_moved": 0,
+   "probe_moves": []
+  },
+  {
+   "id": "P39",
+   "item": "N-2",
+   "description": "(4b): the case's status unavailable dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_d38_reader_logic_names_every_conjunct",
+    "test_retained_precision_contract::test_b1_d38_stage_rule_refuses_each_conjunct_held_elsewhere"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_d38_reader_logic_names_every_conjunct"
+   ],
+   "probes_run": true,
+   "probes_moved": 0,
+   "probe_moves": []
+  },
+  {
+   "id": "P40",
+   "item": "N-2",
+   "description": "(4b): the cause naming this attempt dropped",
+   "tests": 470,
+   "failed": [
+    "test_retained_precision_contract::test_b1_d38_reader_logic_names_every_conjunct",
+    "test_retained_precision_contract::test_b1_d38_stage_rule_refuses_each_conjunct_held_elsewhere"
+   ],
+   "errors": [],
+   "killed_by_assertion": true,
+   "assertion_failures": [
+    "test_retained_precision_contract::test_b1_d38_reader_logic_names_every_conjunct"
+   ],
+   "probes_run": true,
+   "probes_moved": 0,
+   "probe_moves": []
+  }
+ ]
+}

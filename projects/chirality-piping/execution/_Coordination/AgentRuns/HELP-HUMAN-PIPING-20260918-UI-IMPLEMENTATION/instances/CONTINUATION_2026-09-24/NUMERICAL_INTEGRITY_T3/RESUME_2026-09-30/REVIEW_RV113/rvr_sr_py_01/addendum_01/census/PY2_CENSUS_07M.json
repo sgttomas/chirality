@@ -1,0 +1,201 @@
+{
+ "corpus_expectation_misses": {
+  "head": [],
+  "i1": []
+ },
+ "counts": {
+  "base": 17,
+  "must_pass": 28,
+  "mutation": 294
+ },
+ "entries": 339,
+ "escapes_head": [],
+ "head_py_vs_rs": [
+  {
+   "id": "g7_maximum_off_enclosure",
+   "py": {
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+    "gate": "G7"
+   },
+   "rs": {
+    "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS",
+    "gate": "G7"
+   }
+  }
+ ],
+ "head_py_vs_ts": [],
+ "inputs_differ": [],
+ "verdict_changes_i1_to_head": [
+  {
+   "head": {
+    "err": {
+     "code": "SOURCE_NUMERICAL_CASE_INVALID",
+     "detail": "SOURCE_NUMERICAL_CASE_INVALID",
+     "gate": "G2"
+    }
+   },
+   "i1": {
+    "err": {
+     "code": "SOURCE_NUMERICAL_CASE_INVALID",
+     "detail": "SOURCE_NUMERICAL_CASE_INVALID",
+     "gate": "G7"
+    }
+   },
+   "id": "g7_not_required_quality_enum_invalid",
+   "set": "mutation",
+   "verdict": "transport"
+  },
+  {
+   "head": {
+    "err": {
+     "code": "SOURCE_NUMERICAL_CASE_INVALID",
+     "detail": "SOURCE_NUMERICAL_CASE_INVALID",
+     "gate": "G2"
+    }
+   },
+   "i1": {
+    "err": {
+     "code": "SOURCE_NUMERICAL_CASE_INVALID",
+     "detail": "SOURCE_NUMERICAL_CASE_INVALID",
+     "gate": "G7"
+    }
+   },
+   "id": "g7_selected_quality_enum_invalid",
+   "set": "mutation",
+   "verdict": "transport"
+  },
+  {
+   "head": {
+    "err": {
+     "code": "SOURCE_NUMERICAL_CASE_INVALID",
+     "detail": "SOURCE_NUMERICAL_CASE_INVALID",
+     "gate": "G2"
+    }
+   },
+   "i1": {
+    "err": {
+     "code": "SOURCE_NUMERICAL_CASE_INVALID",
+     "detail": "SOURCE_NUMERICAL_CASE_INVALID",
+     "gate": "G7"
+    }
+   },
+   "id": "g7_unavailable_quality_enum_invalid",
+   "set": "mutation",
+   "verdict": "transport"
+  },
+  {
+   "head": {
+    "err": {
+     "code": "SOURCE_NUMERICAL_CASE_INVALID",
+     "detail": "SOURCE_NUMERICAL_CASE_INVALID",
+     "gate": "G2"
+    }
+   },
+   "i1": {
+    "err": {
+     "code": "SOURCE_NUMERICAL_CASE_INVALID",
+     "detail": "SOURCE_NUMERICAL_CASE_INVALID",
+     "gate": "G7"
+    }
+   },
+   "id": "g7_quality_case_evidence_ref_empty",
+   "set": "mutation",
+   "verdict": "transport"
+  },
+  {
+   "head": {
+    "err": {
+     "code": "SOURCE_NUMERICAL_CASE_INVALID",
+     "detail": "SOURCE_NUMERICAL_CASE_INVALID",
+     "gate": "G2"
+    }
+   },
+   "i1": {
+    "err": {
+     "code": "SOURCE_NUMERICAL_CASE_INVALID",
+     "detail": "SOURCE_NUMERICAL_CASE_INVALID",
+     "gate": "G7"
+    }
+   },
+   "id": "g7_quality_case_extra_member",
+   "set": "mutation",
+   "verdict": "transport"
+  },
+  {
+   "head": {
+    "err": {
+     "code": "SOURCE_NUMERICAL_QUALITY_INVALID",
+     "detail": "SOURCE_NUMERICAL_QUALITY_INVALID",
+     "gate": "G2"
+    }
+   },
+   "i1": {
+    "err": {
+     "code": "SOURCE_NUMERICAL_QUALITY_INVALID",
+     "detail": "SOURCE_NUMERICAL_QUALITY_INVALID",
+     "gate": "G7"
+    }
+   },
+   "id": "g7_quality_status_invalid",
+   "set": "mutation",
+   "verdict": "transport"
+  },
+  {
+   "head": {
+    "err": {
+     "code": "SOURCE_FORMULATION_BASIS_UNSUPPORTED",
+     "detail": "SOURCE_FORMULATION_BASIS_UNSUPPORTED",
+     "gate": "G2"
+    }
+   },
+   "i1": {
+    "err": {
+     "code": "SOURCE_FORMULATION_BASIS_UNSUPPORTED",
+     "detail": "SOURCE_FORMULATION_BASIS_UNSUPPORTED",
+     "gate": "G7"
+    }
+   },
+   "id": "g7_formulation_limitations_empty",
+   "set": "mutation",
+   "verdict": "transport"
+  },
+  {
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED",
+     "gate": "G2"
+    }
+   },
+   "i1": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED",
+     "gate": "G7"
+    }
+   },
+   "id": "g7_contract_evidence_null",
+   "set": "mutation",
+   "verdict": "transport"
+  },
+  {
+   "head": {
+    "err": {
+     "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN",
+     "detail": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN",
+     "gate": "G2"
+    }
+   },
+   "i1": {
+    "err": {
+     "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN",
+     "detail": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN",
+     "gate": "G7"
+    }
+   },
+   "id": "g7_source_block_recovery_present",
+   "set": "mutation",
+   "verdict": "transport"
+  }
+ ]
+}

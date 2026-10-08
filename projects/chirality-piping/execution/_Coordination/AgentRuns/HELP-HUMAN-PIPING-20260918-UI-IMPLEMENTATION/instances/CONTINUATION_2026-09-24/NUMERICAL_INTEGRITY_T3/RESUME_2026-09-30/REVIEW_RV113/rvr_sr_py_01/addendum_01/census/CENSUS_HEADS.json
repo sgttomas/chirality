@@ -1,0 +1,1074 @@
+{
+ "entries": 339,
+ "pairs": {
+  "ts_old~ts1": {
+   "differences": 9,
+   "by_verdict": {
+    "bound": 0,
+    "unbound": 0,
+    "transport": 9
+   },
+   "rows": [
+    {
+     "set": "mutation",
+     "i": 277,
+     "id": "g7_not_required_quality_enum_invalid",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 286,
+     "id": "g7_selected_quality_enum_invalid",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 287,
+     "id": "g7_unavailable_quality_enum_invalid",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 288,
+     "id": "g7_quality_case_evidence_ref_empty",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 289,
+     "id": "g7_quality_case_extra_member",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 290,
+     "id": "g7_quality_status_invalid",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 291,
+     "id": "g7_formulation_limitations_empty",
+     "verdict": "transport",
+     "ts_old": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     },
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_FORMULATION_BASIS_UNSUPPORTED"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 292,
+     "id": "g7_contract_evidence_null",
+     "verdict": "transport",
+     "ts_old": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     },
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 293,
+     "id": "g7_source_block_recovery_present",
+     "verdict": "transport",
+     "ts_old": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     },
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"
+     }
+    }
+   ]
+  },
+  "ts_old~rs2": {
+   "differences": 11,
+   "by_verdict": {
+    "bound": 1,
+    "unbound": 1,
+    "transport": 9
+   },
+   "rows": [
+    {
+     "set": "mutation",
+     "i": 139,
+     "id": "g7_maximum_off_enclosure",
+     "verdict": "bound",
+     "ts_old": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     },
+     "rs2": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 139,
+     "id": "g7_maximum_off_enclosure",
+     "verdict": "unbound",
+     "ts_old": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     },
+     "rs2": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 277,
+     "id": "g7_not_required_quality_enum_invalid",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 286,
+     "id": "g7_selected_quality_enum_invalid",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 287,
+     "id": "g7_unavailable_quality_enum_invalid",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 288,
+     "id": "g7_quality_case_evidence_ref_empty",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 289,
+     "id": "g7_quality_case_extra_member",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 290,
+     "id": "g7_quality_status_invalid",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 291,
+     "id": "g7_formulation_limitations_empty",
+     "verdict": "transport",
+     "ts_old": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     },
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_FORMULATION_BASIS_UNSUPPORTED"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 292,
+     "id": "g7_contract_evidence_null",
+     "verdict": "transport",
+     "ts_old": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     },
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 293,
+     "id": "g7_source_block_recovery_present",
+     "verdict": "transport",
+     "ts_old": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     },
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"
+     }
+    }
+   ]
+  },
+  "ts_old~py_r01": {
+   "differences": 9,
+   "by_verdict": {
+    "bound": 0,
+    "unbound": 0,
+    "transport": 9
+   },
+   "rows": [
+    {
+     "set": "mutation",
+     "i": 277,
+     "id": "g7_not_required_quality_enum_invalid",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 286,
+     "id": "g7_selected_quality_enum_invalid",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 287,
+     "id": "g7_unavailable_quality_enum_invalid",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 288,
+     "id": "g7_quality_case_evidence_ref_empty",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 289,
+     "id": "g7_quality_case_extra_member",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 290,
+     "id": "g7_quality_status_invalid",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 291,
+     "id": "g7_formulation_limitations_empty",
+     "verdict": "transport",
+     "ts_old": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_FORMULATION_BASIS_UNSUPPORTED"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 292,
+     "id": "g7_contract_evidence_null",
+     "verdict": "transport",
+     "ts_old": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 293,
+     "id": "g7_source_block_recovery_present",
+     "verdict": "transport",
+     "ts_old": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"
+     }
+    }
+   ]
+  },
+  "ts_old~py2": {
+   "differences": 9,
+   "by_verdict": {
+    "bound": 0,
+    "unbound": 0,
+    "transport": 9
+   },
+   "rows": [
+    {
+     "set": "mutation",
+     "i": 277,
+     "id": "g7_not_required_quality_enum_invalid",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 286,
+     "id": "g7_selected_quality_enum_invalid",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 287,
+     "id": "g7_unavailable_quality_enum_invalid",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 288,
+     "id": "g7_quality_case_evidence_ref_empty",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 289,
+     "id": "g7_quality_case_extra_member",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 290,
+     "id": "g7_quality_status_invalid",
+     "verdict": "transport",
+     "ts_old": {
+      "admitted": false
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 291,
+     "id": "g7_formulation_limitations_empty",
+     "verdict": "transport",
+     "ts_old": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_FORMULATION_BASIS_UNSUPPORTED"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 292,
+     "id": "g7_contract_evidence_null",
+     "verdict": "transport",
+     "ts_old": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 293,
+     "id": "g7_source_block_recovery_present",
+     "verdict": "transport",
+     "ts_old": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"
+     }
+    }
+   ]
+  },
+  "ts1~rs2": {
+   "differences": 2,
+   "by_verdict": {
+    "bound": 1,
+    "unbound": 1,
+    "transport": 0
+   },
+   "rows": [
+    {
+     "set": "mutation",
+     "i": 139,
+     "id": "g7_maximum_off_enclosure",
+     "verdict": "bound",
+     "ts1": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     },
+     "rs2": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 139,
+     "id": "g7_maximum_off_enclosure",
+     "verdict": "unbound",
+     "ts1": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     },
+     "rs2": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS"
+     }
+    }
+   ]
+  },
+  "ts1~py_r01": {
+   "differences": 9,
+   "by_verdict": {
+    "bound": 0,
+    "unbound": 0,
+    "transport": 9
+   },
+   "rows": [
+    {
+     "set": "mutation",
+     "i": 277,
+     "id": "g7_not_required_quality_enum_invalid",
+     "verdict": "transport",
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 286,
+     "id": "g7_selected_quality_enum_invalid",
+     "verdict": "transport",
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 287,
+     "id": "g7_unavailable_quality_enum_invalid",
+     "verdict": "transport",
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 288,
+     "id": "g7_quality_case_evidence_ref_empty",
+     "verdict": "transport",
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 289,
+     "id": "g7_quality_case_extra_member",
+     "verdict": "transport",
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 290,
+     "id": "g7_quality_status_invalid",
+     "verdict": "transport",
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 291,
+     "id": "g7_formulation_limitations_empty",
+     "verdict": "transport",
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_FORMULATION_BASIS_UNSUPPORTED"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_FORMULATION_BASIS_UNSUPPORTED"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 292,
+     "id": "g7_contract_evidence_null",
+     "verdict": "transport",
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 293,
+     "id": "g7_source_block_recovery_present",
+     "verdict": "transport",
+     "ts1": {
+      "gate": "G2",
+      "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"
+     }
+    }
+   ]
+  },
+  "ts1~py2": {
+   "differences": 0,
+   "by_verdict": {
+    "bound": 0,
+    "unbound": 0,
+    "transport": 0
+   },
+   "rows": []
+  },
+  "rs2~py_r01": {
+   "differences": 11,
+   "by_verdict": {
+    "bound": 1,
+    "unbound": 1,
+    "transport": 9
+   },
+   "rows": [
+    {
+     "set": "mutation",
+     "i": 139,
+     "id": "g7_maximum_off_enclosure",
+     "verdict": "bound",
+     "rs2": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 139,
+     "id": "g7_maximum_off_enclosure",
+     "verdict": "unbound",
+     "rs2": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 277,
+     "id": "g7_not_required_quality_enum_invalid",
+     "verdict": "transport",
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 286,
+     "id": "g7_selected_quality_enum_invalid",
+     "verdict": "transport",
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 287,
+     "id": "g7_unavailable_quality_enum_invalid",
+     "verdict": "transport",
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 288,
+     "id": "g7_quality_case_evidence_ref_empty",
+     "verdict": "transport",
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 289,
+     "id": "g7_quality_case_extra_member",
+     "verdict": "transport",
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 290,
+     "id": "g7_quality_status_invalid",
+     "verdict": "transport",
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 291,
+     "id": "g7_formulation_limitations_empty",
+     "verdict": "transport",
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_FORMULATION_BASIS_UNSUPPORTED"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_FORMULATION_BASIS_UNSUPPORTED"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 292,
+     "id": "g7_contract_evidence_null",
+     "verdict": "transport",
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 293,
+     "id": "g7_source_block_recovery_present",
+     "verdict": "transport",
+     "rs2": {
+      "gate": "G2",
+      "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"
+     },
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"
+     }
+    }
+   ]
+  },
+  "rs2~py2": {
+   "differences": 2,
+   "by_verdict": {
+    "bound": 1,
+    "unbound": 1,
+    "transport": 0
+   },
+   "rows": [
+    {
+     "set": "mutation",
+     "i": 139,
+     "id": "g7_maximum_off_enclosure",
+     "verdict": "bound",
+     "rs2": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS"
+     },
+     "py2": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 139,
+     "id": "g7_maximum_off_enclosure",
+     "verdict": "unbound",
+     "rs2": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS"
+     },
+     "py2": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+     }
+    }
+   ]
+  },
+  "py_r01~py2": {
+   "differences": 9,
+   "by_verdict": {
+    "bound": 0,
+    "unbound": 0,
+    "transport": 9
+   },
+   "rows": [
+    {
+     "set": "mutation",
+     "i": 277,
+     "id": "g7_not_required_quality_enum_invalid",
+     "verdict": "transport",
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 286,
+     "id": "g7_selected_quality_enum_invalid",
+     "verdict": "transport",
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 287,
+     "id": "g7_unavailable_quality_enum_invalid",
+     "verdict": "transport",
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 288,
+     "id": "g7_quality_case_evidence_ref_empty",
+     "verdict": "transport",
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 289,
+     "id": "g7_quality_case_extra_member",
+     "verdict": "transport",
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_CASE_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 290,
+     "id": "g7_quality_status_invalid",
+     "verdict": "transport",
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 291,
+     "id": "g7_formulation_limitations_empty",
+     "verdict": "transport",
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_FORMULATION_BASIS_UNSUPPORTED"
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_FORMULATION_BASIS_UNSUPPORTED"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 292,
+     "id": "g7_contract_evidence_null",
+     "verdict": "transport",
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"
+     }
+    },
+    {
+     "set": "mutation",
+     "i": 293,
+     "id": "g7_source_block_recovery_present",
+     "verdict": "transport",
+     "py_r01": {
+      "gate": "G7",
+      "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"
+     },
+     "py2": {
+      "gate": "G2",
+      "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"
+     }
+    }
+   ]
+  }
+ }
+}
