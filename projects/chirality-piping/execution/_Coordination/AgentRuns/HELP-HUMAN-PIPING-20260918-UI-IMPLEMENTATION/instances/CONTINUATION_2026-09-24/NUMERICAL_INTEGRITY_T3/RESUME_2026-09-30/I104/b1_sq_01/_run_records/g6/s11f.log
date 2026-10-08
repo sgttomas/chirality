@@ -1,0 +1,16 @@
+
+running 11 tests
+test scanner_self_checks ... ok
+test sparse_direct_factor_inherits_the_prepared_ledger_binding ... ok
+test rule_6_kernel_functions_that_touch_the_force_are_the_listed_sites ... ok
+test rule_4_generic_kernels_are_called_only_by_observation_lanes ... ok
+test t10b_routing_site_calls_the_tested_predicates ... ok
+test rule_2_values_are_copied_only_in_allow_listed_functions ... ok
+test rule_3_force_bindings_are_mutated_only_in_allow_listed_functions ... ok
+test t8_every_case_force_producer_is_classified ... ok
+test rule_5_the_ledger_producers_are_exactly_the_section_4_2_list ... ok
+test rule_1_and_forbidden_calls_the_product_never_folds_or_uses_untyped_seams ... ok
+test rule_8_every_accumulation_in_the_listed_files_is_in_the_table ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.70s
+

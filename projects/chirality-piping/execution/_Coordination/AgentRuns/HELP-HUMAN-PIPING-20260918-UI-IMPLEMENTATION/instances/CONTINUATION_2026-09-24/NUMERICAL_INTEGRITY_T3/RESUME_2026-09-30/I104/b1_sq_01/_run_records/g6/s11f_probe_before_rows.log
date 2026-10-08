@@ -1,0 +1,17 @@
+
+running 1 test
+
+thread 'rule_8_every_accumulation_in_the_listed_files_is_in_the_table' (113637308) panicked at tests/s11f_site_test.rs:1289:5:
+site table mismatch:
+("PP/retained_product.rs", "check_support_maps"): 1 unlisted accumulation(s)
+("PP/retained_product.rs", "selected_attempts"): 1 unlisted accumulation(s)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test rule_8_every_accumulation_in_the_listed_files_is_in_the_table ... FAILED
+
+failures:
+
+failures:
+    rule_8_every_accumulation_in_the_listed_files_is_in_the_table
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 10 filtered out; finished in 0.66s
+

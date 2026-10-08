@@ -1,0 +1,326 @@
+{
+ "b1_sq_inputs_are_i86s_and_the_committed_helpers": {
+  "result": "ok 1/0",
+  "lines": [],
+  "panics": []
+ },
+ "b1_t4_w2b_and_w6_phys_r4_inputs_are_no_triggered_case_pins": {
+  "result": "ok 1/0",
+  "lines": [],
+  "panics": []
+ },
+ "def_o_b2_k1e3.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_DEF_O def_o_b2_k1e3 DenseScrutiny case=case end=candidate rows=2114 verdicts=2114 by_class={\"mm_to_si\": 128, \"other\": 1922, \"support_magnitude\": 64} failing=81 tally={(\"Some(SharperExact)\", \"mm_to_si\"): 2, (\"Some(SharperExact)\", \"other\"): 79} first_failing=Some(\"row=7 kind=displacement_magnitude class=mm_to_si failed=Some(SharperExact) predicates=[Some(false), Some(false), Some(true), Some(true)]\") cause=Proof(Predicate { row: 7, predicate: SharperExact })"
+  ],
+  "panics": []
+ },
+ "def_o_b2_k1e3.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_DEF_O def_o_b2_k1e3 SparseInteractive case=case end=candidate rows=2113 verdicts=2113 by_class={\"mm_to_si\": 128, \"other\": 1921, \"support_magnitude\": 64} failing=81 tally={(\"Some(SharperExact)\", \"mm_to_si\"): 2, (\"Some(SharperExact)\", \"other\"): 79} first_failing=Some(\"row=6 kind=displacement_magnitude class=mm_to_si failed=Some(SharperExact) predicates=[Some(false), Some(false), Some(true), Some(true)]\") cause=Proof(Predicate { row: 6, predicate: SharperExact })"
+  ],
+  "panics": []
+ },
+ "def_o_c1.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_DEF_O def_o_c1 DenseScrutiny case=case end=frozen rows=2114 verdicts=2114 by_class={\"mm_to_si\": 128, \"other\": 1922, \"support_magnitude\": 64} failing=0 tally={} first_failing=None cause="
+  ],
+  "panics": []
+ },
+ "def_o_c1.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_DEF_O def_o_c1 SparseInteractive case=case end=frozen rows=2113 verdicts=2113 by_class={\"mm_to_si\": 128, \"other\": 1921, \"support_magnitude\": 64} failing=0 tally={} first_failing=None cause="
+  ],
+  "panics": []
+ },
+ "def_o_i3_three_case.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_DEF_O def_o_i3_three_case DenseScrutiny case=case:a end=frozen rows=2114 verdicts=2114 by_class={\"mm_to_si\": 128, \"other\": 1922, \"support_magnitude\": 64} failing=0 tally={} first_failing=None cause=",
+   "I104_SQ_DEF_O def_o_i3_three_case DenseScrutiny case=case:b end=frozen rows=2114 verdicts=2114 by_class={\"mm_to_si\": 128, \"other\": 1922, \"support_magnitude\": 64} failing=0 tally={} first_failing=None cause=",
+   "I104_SQ_DEF_O def_o_i3_three_case DenseScrutiny case=case:c end=frozen rows=2114 verdicts=2114 by_class={\"mm_to_si\": 128, \"other\": 1922, \"support_magnitude\": 64} failing=0 tally={} first_failing=None cause="
+  ],
+  "panics": []
+ },
+ "def_o_i3_three_case.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_DEF_O def_o_i3_three_case SparseInteractive case=case:a end=frozen rows=2113 verdicts=2113 by_class={\"mm_to_si\": 128, \"other\": 1921, \"support_magnitude\": 64} failing=0 tally={} first_failing=None cause=",
+   "I104_SQ_DEF_O def_o_i3_three_case SparseInteractive case=case:b end=frozen rows=2113 verdicts=2113 by_class={\"mm_to_si\": 128, \"other\": 1921, \"support_magnitude\": 64} failing=0 tally={} first_failing=None cause=",
+   "I104_SQ_DEF_O def_o_i3_three_case SparseInteractive case=case:c end=frozen rows=2113 verdicts=2113 by_class={\"mm_to_si\": 128, \"other\": 1921, \"support_magnitude\": 64} failing=0 tally={} first_failing=None cause="
+  ],
+  "panics": []
+ },
+ "def_o_w2.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_DEF_O def_o_w2 DenseScrutiny end=custody error=Association(\"prepared case custody/permit\")"
+  ],
+  "panics": []
+ },
+ "def_o_w2.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_DEF_O def_o_w2 SparseInteractive end=custody error=Association(\"prepared case custody/permit\")"
+  ],
+  "panics": []
+ },
+ "def_o_w_c2.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_DEF_O def_o_w_c2 DenseScrutiny case=case-a end=frozen rows=171 verdicts=171 by_class={\"mm_to_si\": 16, \"other\": 145, \"support_magnitude\": 10} failing=0 tally={} first_failing=None cause=",
+   "I104_SQ_DEF_O def_o_w_c2 DenseScrutiny case=case-c end=native rows=171 verdicts=0 by_class={} failing=0 tally={} first_failing=None cause="
+  ],
+  "panics": []
+ },
+ "def_o_w_c2.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_DEF_O def_o_w_c2 SparseInteractive case=case-a end=frozen rows=171 verdicts=171 by_class={\"mm_to_si\": 16, \"other\": 145, \"support_magnitude\": 10} failing=0 tally={} first_failing=None cause=",
+   "I104_SQ_DEF_O def_o_w_c2 SparseInteractive case=case-c end=native rows=171 verdicts=0 by_class={} failing=0 tally={} first_failing=None cause="
+  ],
+  "panics": []
+ },
+ "witness_c1_cap_maximal_publishes.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=144.7 w1_ms=19675.3",
+   "I65_G5_WITNESS c1 DenseScrutiny stack=4194304 ran=Successor"
+  ],
+  "panics": []
+ },
+ "witness_c1_cap_maximal_publishes.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=111.4 w1_ms=19768.2",
+   "I65_G5_WITNESS c1 SparseInteractive stack=4194304 ran=Successor"
+  ],
+  "panics": []
+ },
+ "witness_headroom_w1_at_one_mebibyte.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=5.2 w1_ms=708.2",
+   "I65_G5_WITNESS W1@1MiB DenseScrutiny stack=1048576 ran=Successor"
+  ],
+  "panics": []
+ },
+ "witness_headroom_w1_at_one_mebibyte.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=5.0 w1_ms=699.7",
+   "I65_G5_WITNESS W1@1MiB SparseInteractive stack=1048576 ran=Successor"
+  ],
+  "panics": []
+ },
+ "witness_i3_three_case.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=408.0 w1_ms=56278.5",
+   "I65_G5_WITNESS i3 three-case DenseScrutiny stack=4194304 ran=Successor"
+  ],
+  "panics": []
+ },
+ "witness_i3_three_case.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=258.9 w1_ms=56790.8",
+   "I65_G5_WITNESS i3 three-case SparseInteractive stack=4194304 ran=Successor"
+  ],
+  "panics": []
+ },
+ "witness_w1_milestone.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=5.1 w1_ms=719.1",
+   "I65_G5_WITNESS W1 DenseScrutiny stack=4194304 ran=Successor"
+  ],
+  "panics": []
+ },
+ "witness_w1_milestone.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=5.4 w1_ms=684.0",
+   "I65_G5_WITNESS W1 SparseInteractive stack=4194304 ran=Successor"
+  ],
+  "panics": []
+ },
+ "witness_w2_cap_maximal.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=18.3 w1_ms=0.1",
+   "I65_G5_WITNESS W2 DenseScrutiny stack=4194304 ran=Fallback(\"Preparation\")"
+  ],
+  "panics": []
+ },
+ "witness_w2_cap_maximal.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=18.6 w1_ms=0.1",
+   "I65_G5_WITNESS W2 SparseInteractive stack=4194304 ran=Fallback(\"Preparation\")"
+  ],
+  "panics": []
+ },
+ "witness_w2_deep_milestone_publishes.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=4.8 w1_ms=708.8",
+   "I65_G5_WITNESS W2-deep DenseScrutiny stack=4194304 ran=Successor",
+   "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=4.7 w1_ms=757.9",
+   "I65_G5_WITNESS W2-deep DenseScrutiny stack=1048576 ran=Successor"
+  ],
+  "panics": []
+ },
+ "witness_w2_deep_milestone_publishes.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=5.3 w1_ms=815.1",
+   "I65_G5_WITNESS W2-deep SparseInteractive stack=4194304 ran=Successor",
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=5.6 w1_ms=952.2",
+   "I65_G5_WITNESS W2-deep SparseInteractive stack=1048576 ran=Successor"
+  ],
+  "panics": []
+ },
+ "witness_w2b_cap_maximal_passed_report_no_triggered_case.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I65_G5_WITNESS W2b DenseScrutiny stack=4194304 ran=Fallback(\"NoTriggeredCase\")"
+  ],
+  "panics": []
+ },
+ "witness_w2b_cap_maximal_passed_report_no_triggered_case.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I65_G5_WITNESS W2b SparseInteractive stack=4194304 ran=Fallback(\"NoTriggeredCase\")"
+  ],
+  "panics": []
+ },
+ "witness_w2b_replacement_b2_k1e3.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=198.3 w1_ms=24871.2",
+   "I65_G5_WITNESS W2b-replacement b2_k1e3 DenseScrutiny stack=4194304 ran=Fallback(\"Candidate\")"
+  ],
+  "panics": []
+ },
+ "witness_w2b_replacement_b2_k1e3.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=103.0 w1_ms=24516.8",
+   "I65_G5_WITNESS W2b-replacement b2_k1e3 SparseInteractive stack=4194304 ran=Fallback(\"Candidate\")"
+  ],
+  "panics": []
+ },
+ "witness_w3_exact_selected.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I65_G5_WITNESS W3 DenseScrutiny stack=4194304 ran=ExactSelected"
+  ],
+  "panics": []
+ },
+ "witness_w3_exact_selected.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I65_G5_WITNESS W3 SparseInteractive stack=4194304 ran=ExactSelected"
+  ],
+  "panics": []
+ },
+ "witness_w4_preparation_refusal.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=5.5 w1_ms=0.2",
+   "I65_G5_WITNESS W4 DenseScrutiny stack=4194304 ran=Fallback(\"Preparation\")"
+  ],
+  "panics": []
+ },
+ "witness_w4_preparation_refusal.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=5.7 w1_ms=0.1",
+   "I65_G5_WITNESS W4 SparseInteractive stack=4194304 ran=Fallback(\"Preparation\")"
+  ],
+  "panics": []
+ },
+ "witness_w6_force_scaled.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I65_G5_WITNESS_INPUT W6 force_scaled=true",
+   "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=8.6 w1_ms=193.5",
+   "I65_G5_WITNESS W6 DenseScrutiny stack=4194304 ran=Fallback(\"Native\")",
+   "I65_G5_WITNESS_OUTCOME W6 DenseScrutiny Fallback(\"Native\")"
+  ],
+  "panics": []
+ },
+ "witness_w6_force_scaled.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I65_G5_WITNESS_INPUT W6 force_scaled=true",
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=8.8 w1_ms=199.8",
+   "I65_G5_WITNESS W6 SparseInteractive stack=4194304 ran=Fallback(\"Native\")",
+   "I65_G5_WITNESS_OUTCOME W6 SparseInteractive Fallback(\"Native\")"
+  ],
+  "panics": []
+ },
+ "witness_w6_phys_r4_input_no_triggered_case.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I65_G5_WITNESS W6-PHYS-R4 DenseScrutiny stack=4194304 ran=Fallback(\"NoTriggeredCase\")"
+  ],
+  "panics": []
+ },
+ "witness_w6_phys_r4_input_no_triggered_case.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I65_G5_WITNESS W6-PHYS-R4 SparseInteractive stack=4194304 ran=Fallback(\"NoTriggeredCase\")"
+  ],
+  "panics": []
+ },
+ "witness_w7_fault_fallbacks": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=5.6 w1_ms=0.8",
+   "I65_G5_WITNESS W7 native stack=4194304 ran=Fallback(\"Native\")",
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=4.9 w1_ms=705.6",
+   "I65_G5_WITNESS W7 serializer stack=4194304 ran=Fallback(\"Serializer(ReceiptFailure { check: Encoding, field_path: \\\"cases[].run.invocation_after\\\" })\")",
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=4.4 w1_ms=681.3",
+   "I65_G5_WITNESS W7 staging stack=4194304 ran=Fallback(\"Staging(StagingFault(\\\"pipe_stress_extrema[]\\\"))\")",
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=5.0 w1_ms=740.2",
+   "I65_G5_WITNESS W7 precommit binding stack=4194304 ran=Fallback(\"Precommit { gate: \\\"G8\\\", code: \\\"RETAINED_PRECISION_INVOCATION_MISMATCH\\\" }\")",
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=4.9 w1_ms=710.8",
+   "I65_G5_WITNESS W7 precommit corruption stack=4194304 ran=Fallback(\"Precommit { gate: \\\"G1\\\", code: \\\"RETAINED_PRECISION_RECEIPT_MISMATCH\\\" }\")"
+  ],
+  "panics": []
+ },
+ "witness_w_c2_ac_publishes_sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=16.1 w1_ms=1362.4",
+   "I65_G5_WITNESS W-C2 (A, C) SparseInteractive stack=4194304 ran=Successor"
+  ],
+  "panics": []
+ },
+ "witness_w_c2_publishes.dense": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=23.4 w1_ms=1401.8",
+   "I65_G5_WITNESS W-C2 DenseScrutiny stack=4194304 ran=Successor",
+   "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=22.4 w1_ms=1435.5",
+   "I65_G5_WITNESS W-C2 DenseScrutiny stack=1048576 ran=Successor"
+  ],
+  "panics": []
+ },
+ "witness_w_c2_publishes.sparse": {
+  "result": "ok 1/0",
+  "lines": [
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=24.3 w1_ms=1392.2",
+   "I65_G5_WITNESS W-C2 SparseInteractive stack=4194304 ran=Successor",
+   "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=20.7 w1_ms=1400.6",
+   "I65_G5_WITNESS W-C2 SparseInteractive stack=1048576 ran=Successor"
+  ],
+  "panics": []
+ }
+}

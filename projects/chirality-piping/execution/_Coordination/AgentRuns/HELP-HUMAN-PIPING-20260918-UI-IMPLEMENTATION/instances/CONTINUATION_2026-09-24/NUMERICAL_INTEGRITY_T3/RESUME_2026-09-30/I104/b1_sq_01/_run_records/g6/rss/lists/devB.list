@@ -1,0 +1,8 @@
+dev.b2_k1e3.sparse.direct WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 b2_k1e3::sparse::direct
+dev.b2_k1e3.sparse.ordinary WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 b2_k1e3::sparse::ordinary
+dev.b2_k1e3.dense.direct WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 b2_k1e3::dense::direct
+dev.b2_k1e3.dense.ordinary WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 b2_k1e3::dense::ordinary
+dev.c1.sparse.direct WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 c1::sparse::direct
+dev.c1.sparse.ordinary WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 c1::sparse::ordinary
+dev.c1.dense.direct WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 c1::dense::direct
+dev.c1.dense.ordinary WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 c1::dense::ordinary

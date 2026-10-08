@@ -1,0 +1,14 @@
+{
+ "T11_late_capture": {
+  "atoms_c1": 10,
+  "atoms_cC": 10,
+  "exact_C_times": true,
+  "differences": {}
+ },
+ "T11_ordinary_seed": {
+  "atoms_c1": 2,
+  "atoms_cC": 2,
+  "exact_C_times": true,
+  "differences": {}
+ }
+}

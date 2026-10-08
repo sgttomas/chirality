@@ -1,0 +1,4 @@
+dev.i3_three_case.sparse.direct WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 i3_three_case::sparse::direct
+dev.i3_three_case.sparse.ordinary WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 i3_three_case::sparse::ordinary
+dev.i3_three_case.dense.direct WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 i3_three_case::dense::direct
+dev.i3_three_case.dense.ordinary WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 i3_three_case::dense::ordinary

@@ -1,0 +1,1025 @@
+{
+ "dev.b2_k1e3.dense.direct": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME b2_k1e3 DenseScrutiny Direct call_ms=20504.4",
+    "I104_SQ_CHALLENGE b2_k1e3 DenseScrutiny Direct outcome=notices(1) rows=2114 peak_bytes=13249270 bound=E_mov_max bound_bytes=9792698646 ratio=0.001353"
+   ],
+   "max_rss_bytes": 39829504,
+   "peak_footprint_bytes": 28148144,
+   "real_s": 20.5,
+   "result": "ok",
+   "sys_s": 0.01,
+   "user_s": 20.37
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME b2_k1e3 DenseScrutiny Direct call_ms=20367.6",
+    "I104_SQ_CHALLENGE b2_k1e3 DenseScrutiny Direct outcome=notices(1) rows=2114 peak_bytes=13249270 bound=E_mov_max bound_bytes=9792698646 ratio=0.001353"
+   ],
+   "max_rss_bytes": 39452672,
+   "peak_footprint_bytes": 27771312,
+   "real_s": 20.37,
+   "result": "ok",
+   "sys_s": 0.01,
+   "user_s": 20.3
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME b2_k1e3 DenseScrutiny Direct call_ms=20516.3",
+    "I104_SQ_CHALLENGE b2_k1e3 DenseScrutiny Direct outcome=notices(1) rows=2114 peak_bytes=13249270 bound=E_mov_max bound_bytes=9792698646 ratio=0.001353"
+   ],
+   "max_rss_bytes": 39256064,
+   "peak_footprint_bytes": 27541888,
+   "real_s": 20.52,
+   "result": "ok",
+   "sys_s": 0.01,
+   "user_s": 20.35
+  }
+ },
+ "dev.b2_k1e3.dense.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME b2_k1e3 DenseScrutiny Ordinary call_ms=167.8",
+    "I104_SQ_CHALLENGE b2_k1e3 DenseScrutiny Ordinary outcome=ordinary_route rows=2114 peak_bytes=13201145 bound=W1_phase bound_bytes=5128452734 ratio=0.002574"
+   ],
+   "max_rss_bytes": 32849920,
+   "peak_footprint_bytes": 22839680,
+   "real_s": 0.17,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.16
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME b2_k1e3 DenseScrutiny Ordinary call_ms=172.8",
+    "I104_SQ_CHALLENGE b2_k1e3 DenseScrutiny Ordinary outcome=ordinary_route rows=2114 peak_bytes=13201145 bound=W1_phase bound_bytes=5128452734 ratio=0.002574"
+   ],
+   "max_rss_bytes": 32849920,
+   "peak_footprint_bytes": 22839680,
+   "real_s": 0.17,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.17
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME b2_k1e3 DenseScrutiny Ordinary call_ms=171.1",
+    "I104_SQ_CHALLENGE b2_k1e3 DenseScrutiny Ordinary outcome=ordinary_route rows=2114 peak_bytes=13201145 bound=W1_phase bound_bytes=5128452734 ratio=0.002574"
+   ],
+   "max_rss_bytes": 32866304,
+   "peak_footprint_bytes": 22839656,
+   "real_s": 0.17,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.17
+  }
+ },
+ "dev.b2_k1e3.sparse.direct": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME b2_k1e3 SparseInteractive Direct call_ms=20714.4",
+    "I104_SQ_CHALLENGE b2_k1e3 SparseInteractive Direct outcome=notices(1) rows=2113 peak_bytes=13241078 bound=E_mov_max bound_bytes=9733567302 ratio=0.001360"
+   ],
+   "max_rss_bytes": 37961728,
+   "peak_footprint_bytes": 26280368,
+   "real_s": 20.71,
+   "result": "ok",
+   "sys_s": 0.05,
+   "user_s": 20.34
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME b2_k1e3 SparseInteractive Direct call_ms=20689.9",
+    "I104_SQ_CHALLENGE b2_k1e3 SparseInteractive Direct outcome=notices(1) rows=2113 peak_bytes=13241078 bound=E_mov_max bound_bytes=9733567302 ratio=0.001360"
+   ],
+   "max_rss_bytes": 37093376,
+   "peak_footprint_bytes": 25395608,
+   "real_s": 20.69,
+   "result": "ok",
+   "sys_s": 0.05,
+   "user_s": 20.3
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME b2_k1e3 SparseInteractive Direct call_ms=20415.4",
+    "I104_SQ_CHALLENGE b2_k1e3 SparseInteractive Direct outcome=notices(1) rows=2113 peak_bytes=13241078 bound=E_mov_max bound_bytes=9733567302 ratio=0.001360"
+   ],
+   "max_rss_bytes": 37076992,
+   "peak_footprint_bytes": 25379224,
+   "real_s": 20.42,
+   "result": "ok",
+   "sys_s": 0.02,
+   "user_s": 20.26
+  }
+ },
+ "dev.b2_k1e3.sparse.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME b2_k1e3 SparseInteractive Ordinary call_ms=93.5",
+    "I104_SQ_CHALLENGE b2_k1e3 SparseInteractive Ordinary outcome=ordinary_route rows=2113 peak_bytes=13193548 bound=W1_phase bound_bytes=5069321390 ratio=0.002603"
+   ],
+   "max_rss_bytes": 30720000,
+   "peak_footprint_bytes": 20676968,
+   "real_s": 0.09,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.09
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME b2_k1e3 SparseInteractive Ordinary call_ms=94.4",
+    "I104_SQ_CHALLENGE b2_k1e3 SparseInteractive Ordinary outcome=ordinary_route rows=2113 peak_bytes=13193548 bound=W1_phase bound_bytes=5069321390 ratio=0.002603"
+   ],
+   "max_rss_bytes": 30703616,
+   "peak_footprint_bytes": 20660584,
+   "real_s": 0.09,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.09
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME b2_k1e3 SparseInteractive Ordinary call_ms=93.2",
+    "I104_SQ_CHALLENGE b2_k1e3 SparseInteractive Ordinary outcome=ordinary_route rows=2113 peak_bytes=13193548 bound=W1_phase bound_bytes=5069321390 ratio=0.002603"
+   ],
+   "max_rss_bytes": 30720000,
+   "peak_footprint_bytes": 20693376,
+   "real_s": 0.09,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.09
+  }
+ },
+ "dev.c1.dense.direct": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME c1 DenseScrutiny Direct call_ms=17171.7",
+    "I104_SQ_CHALLENGE c1 DenseScrutiny Direct outcome=successor(2177405 B) rows=2114 peak_bytes=41893086 bound=E_mov_max bound_bytes=9792698646 ratio=0.004278"
+   ],
+   "max_rss_bytes": 75825152,
+   "peak_footprint_bytes": 56902088,
+   "real_s": 17.23,
+   "result": "ok",
+   "sys_s": 0.01,
+   "user_s": 17.09
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME c1 DenseScrutiny Direct call_ms=17149.1",
+    "I104_SQ_CHALLENGE c1 DenseScrutiny Direct outcome=successor(2177405 B) rows=2114 peak_bytes=41893086 bound=E_mov_max bound_bytes=9792698646 ratio=0.004278"
+   ],
+   "max_rss_bytes": 76742656,
+   "peak_footprint_bytes": 56754632,
+   "real_s": 17.21,
+   "result": "ok",
+   "sys_s": 0.02,
+   "user_s": 17.06
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME c1 DenseScrutiny Direct call_ms=17110.6",
+    "I104_SQ_CHALLENGE c1 DenseScrutiny Direct outcome=successor(2177405 B) rows=2114 peak_bytes=41893086 bound=E_mov_max bound_bytes=9792698646 ratio=0.004278"
+   ],
+   "max_rss_bytes": 75939840,
+   "peak_footprint_bytes": 57016776,
+   "real_s": 17.17,
+   "result": "ok",
+   "sys_s": 0.01,
+   "user_s": 17.07
+  }
+ },
+ "dev.c1.dense.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME c1 DenseScrutiny Ordinary call_ms=135.0",
+    "I104_SQ_CHALLENGE c1 DenseScrutiny Ordinary outcome=ordinary_route rows=2114 peak_bytes=13287258 bound=W1_phase bound_bytes=5128452734 ratio=0.002591"
+   ],
+   "max_rss_bytes": 32669696,
+   "peak_footprint_bytes": 22610304,
+   "real_s": 0.14,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.13
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME c1 DenseScrutiny Ordinary call_ms=135.2",
+    "I104_SQ_CHALLENGE c1 DenseScrutiny Ordinary outcome=ordinary_route rows=2114 peak_bytes=13287258 bound=W1_phase bound_bytes=5128452734 ratio=0.002591"
+   ],
+   "max_rss_bytes": 32669696,
+   "peak_footprint_bytes": 22610304,
+   "real_s": 0.14,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.13
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME c1 DenseScrutiny Ordinary call_ms=134.3",
+    "I104_SQ_CHALLENGE c1 DenseScrutiny Ordinary outcome=ordinary_route rows=2114 peak_bytes=13287258 bound=W1_phase bound_bytes=5128452734 ratio=0.002591"
+   ],
+   "max_rss_bytes": 32686080,
+   "peak_footprint_bytes": 22610280,
+   "real_s": 0.13,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.13
+  }
+ },
+ "dev.c1.sparse.direct": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME c1 SparseInteractive Direct call_ms=17173.2",
+    "I104_SQ_CHALLENGE c1 SparseInteractive Direct outcome=successor(2176063 B) rows=2113 peak_bytes=41876615 bound=E_mov_max bound_bytes=9733567302 ratio=0.004302"
+   ],
+   "max_rss_bytes": 73187328,
+   "peak_footprint_bytes": 54247880,
+   "real_s": 17.23,
+   "result": "ok",
+   "sys_s": 0.01,
+   "user_s": 16.98
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME c1 SparseInteractive Direct call_ms=17210.8",
+    "I104_SQ_CHALLENGE c1 SparseInteractive Direct outcome=successor(2176063 B) rows=2113 peak_bytes=41876615 bound=E_mov_max bound_bytes=9733567302 ratio=0.004302"
+   ],
+   "max_rss_bytes": 75284480,
+   "peak_footprint_bytes": 54739424,
+   "real_s": 17.29,
+   "result": "ok",
+   "sys_s": 0.01,
+   "user_s": 17.06
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME c1 SparseInteractive Direct call_ms=17157.9",
+    "I104_SQ_CHALLENGE c1 SparseInteractive Direct outcome=successor(2176063 B) rows=2113 peak_bytes=41876615 bound=E_mov_max bound_bytes=9733567302 ratio=0.004302"
+   ],
+   "max_rss_bytes": 73121792,
+   "peak_footprint_bytes": 54264264,
+   "real_s": 17.22,
+   "result": "ok",
+   "sys_s": 0.01,
+   "user_s": 17.02
+  }
+ },
+ "dev.c1.sparse.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME c1 SparseInteractive Ordinary call_ms=92.7",
+    "I104_SQ_CHALLENGE c1 SparseInteractive Ordinary outcome=ordinary_route rows=2113 peak_bytes=13279295 bound=W1_phase bound_bytes=5069321390 ratio=0.002620"
+   ],
+   "max_rss_bytes": 30048256,
+   "peak_footprint_bytes": 19972480,
+   "real_s": 0.09,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.09
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME c1 SparseInteractive Ordinary call_ms=92.5",
+    "I104_SQ_CHALLENGE c1 SparseInteractive Ordinary outcome=ordinary_route rows=2113 peak_bytes=13279295 bound=W1_phase bound_bytes=5069321390 ratio=0.002620"
+   ],
+   "max_rss_bytes": 30015488,
+   "peak_footprint_bytes": 19939712,
+   "real_s": 0.09,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.09
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME c1 SparseInteractive Ordinary call_ms=93.0",
+    "I104_SQ_CHALLENGE c1 SparseInteractive Ordinary outcome=ordinary_route rows=2113 peak_bytes=13279295 bound=W1_phase bound_bytes=5069321390 ratio=0.002620"
+   ],
+   "max_rss_bytes": 30048256,
+   "peak_footprint_bytes": 19972480,
+   "real_s": 0.09,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.09
+  }
+ },
+ "dev.i3_three_case.dense.direct": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME i3_three_case DenseScrutiny Direct call_ms=51545.1",
+    "I104_SQ_CHALLENGE i3_three_case DenseScrutiny Direct outcome=successor(6651380 B) rows=6342 peak_bytes=118781785 bound=E_mov_max bound_bytes=9792698646 ratio=0.012130"
+   ],
+   "max_rss_bytes": 167395328,
+   "peak_footprint_bytes": 115065384,
+   "real_s": 51.72,
+   "result": "ok",
+   "sys_s": 0.04,
+   "user_s": 51.51
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME i3_three_case DenseScrutiny Direct call_ms=51380.4",
+    "I104_SQ_CHALLENGE i3_three_case DenseScrutiny Direct outcome=successor(6651380 B) rows=6342 peak_bytes=118781785 bound=E_mov_max bound_bytes=9792698646 ratio=0.012130"
+   ],
+   "max_rss_bytes": 168853504,
+   "peak_footprint_bytes": 117752360,
+   "real_s": 51.56,
+   "result": "ok",
+   "sys_s": 0.03,
+   "user_s": 51.49
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME i3_three_case DenseScrutiny Direct call_ms=51204.9",
+    "I104_SQ_CHALLENGE i3_three_case DenseScrutiny Direct outcome=successor(6651380 B) rows=6342 peak_bytes=118781785 bound=E_mov_max bound_bytes=9792698646 ratio=0.012130"
+   ],
+   "max_rss_bytes": 168853504,
+   "peak_footprint_bytes": 117785128,
+   "real_s": 51.38,
+   "result": "ok",
+   "sys_s": 0.04,
+   "user_s": 51.06
+  }
+ },
+ "dev.i3_three_case.dense.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME i3_three_case DenseScrutiny Ordinary call_ms=387.4",
+    "I104_SQ_CHALLENGE i3_three_case DenseScrutiny Ordinary outcome=ordinary_route rows=6342 peak_bytes=31682668 bound=W1_phase bound_bytes=5128452734 ratio=0.006178"
+   ],
+   "max_rss_bytes": 58687488,
+   "peak_footprint_bytes": 48595352,
+   "real_s": 0.39,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.39
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME i3_three_case DenseScrutiny Ordinary call_ms=386.7",
+    "I104_SQ_CHALLENGE i3_three_case DenseScrutiny Ordinary outcome=ordinary_route rows=6342 peak_bytes=31682668 bound=W1_phase bound_bytes=5128452734 ratio=0.006178"
+   ],
+   "max_rss_bytes": 58703872,
+   "peak_footprint_bytes": 48628144,
+   "real_s": 0.39,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.38
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME i3_three_case DenseScrutiny Ordinary call_ms=386.0",
+    "I104_SQ_CHALLENGE i3_three_case DenseScrutiny Ordinary outcome=ordinary_route rows=6342 peak_bytes=31682668 bound=W1_phase bound_bytes=5128452734 ratio=0.006178"
+   ],
+   "max_rss_bytes": 58703872,
+   "peak_footprint_bytes": 48644552,
+   "real_s": 0.39,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.38
+  }
+ },
+ "dev.i3_three_case.sparse.direct": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME i3_three_case SparseInteractive Direct call_ms=51588.1",
+    "I104_SQ_CHALLENGE i3_three_case SparseInteractive Direct outcome=successor(6647340 B) rows=6339 peak_bytes=118736625 bound=E_mov_max bound_bytes=9733567302 ratio=0.012199"
+   ],
+   "max_rss_bytes": 168591360,
+   "peak_footprint_bytes": 117768744,
+   "real_s": 51.76,
+   "result": "ok",
+   "sys_s": 0.04,
+   "user_s": 51.19
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME i3_three_case SparseInteractive Direct call_ms=51656.2",
+    "I104_SQ_CHALLENGE i3_three_case SparseInteractive Direct outcome=successor(6647340 B) rows=6339 peak_bytes=118736625 bound=E_mov_max bound_bytes=9733567302 ratio=0.012199"
+   ],
+   "max_rss_bytes": 166789120,
+   "peak_footprint_bytes": 114049576,
+   "real_s": 51.83,
+   "result": "ok",
+   "sys_s": 0.04,
+   "user_s": 51.42
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME i3_three_case SparseInteractive Direct call_ms=51661.6",
+    "I104_SQ_CHALLENGE i3_three_case SparseInteractive Direct outcome=successor(6647340 B) rows=6339 peak_bytes=118736625 bound=E_mov_max bound_bytes=9733567302 ratio=0.012199"
+   ],
+   "max_rss_bytes": 166051840,
+   "peak_footprint_bytes": 116523536,
+   "real_s": 51.84,
+   "result": "ok",
+   "sys_s": 0.04,
+   "user_s": 51.44
+  }
+ },
+ "dev.i3_three_case.sparse.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME i3_three_case SparseInteractive Ordinary call_ms=253.0",
+    "I104_SQ_CHALLENGE i3_three_case SparseInteractive Ordinary outcome=ordinary_route rows=6339 peak_bytes=31661444 bound=W1_phase bound_bytes=5069321390 ratio=0.006246"
+   ],
+   "max_rss_bytes": 56000512,
+   "peak_footprint_bytes": 45908400,
+   "real_s": 0.26,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.25
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME i3_three_case SparseInteractive Ordinary call_ms=254.3",
+    "I104_SQ_CHALLENGE i3_three_case SparseInteractive Ordinary outcome=ordinary_route rows=6339 peak_bytes=31661444 bound=W1_phase bound_bytes=5069321390 ratio=0.006246"
+   ],
+   "max_rss_bytes": 56000512,
+   "peak_footprint_bytes": 45891992,
+   "real_s": 0.26,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.25
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME i3_three_case SparseInteractive Ordinary call_ms=253.7",
+    "I104_SQ_CHALLENGE i3_three_case SparseInteractive Ordinary outcome=ordinary_route rows=6339 peak_bytes=31661444 bound=W1_phase bound_bytes=5069321390 ratio=0.006246"
+   ],
+   "max_rss_bytes": 56000512,
+   "peak_footprint_bytes": 45891992,
+   "real_s": 0.26,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.25
+  }
+ },
+ "dev.milestone.dense.direct": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME milestone DenseScrutiny Direct call_ms=649.8",
+    "I104_SQ_CHALLENGE milestone DenseScrutiny Direct outcome=successor(114894 B) rows=99 peak_bytes=3556346 bound=E_mov_max bound_bytes=9792698646 ratio=0.000363"
+   ],
+   "max_rss_bytes": 21446656,
+   "peak_footprint_bytes": 8241560,
+   "real_s": 0.65,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.65
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME milestone DenseScrutiny Direct call_ms=650.6",
+    "I104_SQ_CHALLENGE milestone DenseScrutiny Direct outcome=successor(114894 B) rows=99 peak_bytes=3556346 bound=E_mov_max bound_bytes=9792698646 ratio=0.000363"
+   ],
+   "max_rss_bytes": 21446656,
+   "peak_footprint_bytes": 8225152,
+   "real_s": 0.65,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.65
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME milestone DenseScrutiny Direct call_ms=650.9",
+    "I104_SQ_CHALLENGE milestone DenseScrutiny Direct outcome=successor(114894 B) rows=99 peak_bytes=3556346 bound=E_mov_max bound_bytes=9792698646 ratio=0.000363"
+   ],
+   "max_rss_bytes": 21430272,
+   "peak_footprint_bytes": 8208768,
+   "real_s": 0.65,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.65
+  }
+ },
+ "dev.milestone.dense.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME milestone DenseScrutiny Ordinary call_ms=4.6",
+    "I104_SQ_CHALLENGE milestone DenseScrutiny Ordinary outcome=ordinary_route rows=99 peak_bytes=540831 bound=W1_phase bound_bytes=5128452734 ratio=0.000105"
+   ],
+   "max_rss_bytes": 13074432,
+   "peak_footprint_bytes": 3178856,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME milestone DenseScrutiny Ordinary call_ms=4.5",
+    "I104_SQ_CHALLENGE milestone DenseScrutiny Ordinary outcome=ordinary_route rows=99 peak_bytes=540831 bound=W1_phase bound_bytes=5128452734 ratio=0.000105"
+   ],
+   "max_rss_bytes": 13107200,
+   "peak_footprint_bytes": 3211624,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME milestone DenseScrutiny Ordinary call_ms=4.5",
+    "I104_SQ_CHALLENGE milestone DenseScrutiny Ordinary outcome=ordinary_route rows=99 peak_bytes=540831 bound=W1_phase bound_bytes=5128452734 ratio=0.000105"
+   ],
+   "max_rss_bytes": 13107200,
+   "peak_footprint_bytes": 3228032,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  }
+ },
+ "dev.milestone.sparse.direct": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME milestone SparseInteractive Direct call_ms=694.0",
+    "I104_SQ_CHALLENGE milestone SparseInteractive Direct outcome=successor(113733 B) rows=98 peak_bytes=3551298 bound=E_mov_max bound_bytes=9733567302 ratio=0.000365"
+   ],
+   "max_rss_bytes": 21430272,
+   "peak_footprint_bytes": 8225176,
+   "real_s": 0.7,
+   "result": "ok",
+   "sys_s": 0.01,
+   "user_s": 0.66
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME milestone SparseInteractive Direct call_ms=652.8",
+    "I104_SQ_CHALLENGE milestone SparseInteractive Direct outcome=successor(113733 B) rows=98 peak_bytes=3551298 bound=E_mov_max bound_bytes=9733567302 ratio=0.000365"
+   ],
+   "max_rss_bytes": 21446656,
+   "peak_footprint_bytes": 8225152,
+   "real_s": 0.65,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.65
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME milestone SparseInteractive Direct call_ms=648.2",
+    "I104_SQ_CHALLENGE milestone SparseInteractive Direct outcome=successor(113733 B) rows=98 peak_bytes=3551298 bound=E_mov_max bound_bytes=9733567302 ratio=0.000365"
+   ],
+   "max_rss_bytes": 21446656,
+   "peak_footprint_bytes": 8225152,
+   "real_s": 0.65,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.65
+  }
+ },
+ "dev.milestone.sparse.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME milestone SparseInteractive Ordinary call_ms=4.6",
+    "I104_SQ_CHALLENGE milestone SparseInteractive Ordinary outcome=ordinary_route rows=98 peak_bytes=533234 bound=W1_phase bound_bytes=5069321390 ratio=0.000105"
+   ],
+   "max_rss_bytes": 13139968,
+   "peak_footprint_bytes": 3228008,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME milestone SparseInteractive Ordinary call_ms=4.5",
+    "I104_SQ_CHALLENGE milestone SparseInteractive Ordinary outcome=ordinary_route rows=98 peak_bytes=533234 bound=W1_phase bound_bytes=5069321390 ratio=0.000105"
+   ],
+   "max_rss_bytes": 13123584,
+   "peak_footprint_bytes": 3211624,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME milestone SparseInteractive Ordinary call_ms=4.4",
+    "I104_SQ_CHALLENGE milestone SparseInteractive Ordinary outcome=ordinary_route rows=98 peak_bytes=533234 bound=W1_phase bound_bytes=5069321390 ratio=0.000105"
+   ],
+   "max_rss_bytes": 13123584,
+   "peak_footprint_bytes": 3228032,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  }
+ },
+ "dev.w2.dense.direct": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w2_cap_maximal DenseScrutiny Direct call_ms=19.9",
+    "I104_SQ_CHALLENGE w2_cap_maximal DenseScrutiny Direct outcome=no_w1_work rows=0 peak_bytes=1971967 bound=W1_phase bound_bytes=5128452734 ratio=0.000385"
+   ],
+   "max_rss_bytes": 12238848,
+   "peak_footprint_bytes": 5423488,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.02
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w2_cap_maximal DenseScrutiny Direct call_ms=19.9",
+    "I104_SQ_CHALLENGE w2_cap_maximal DenseScrutiny Direct outcome=no_w1_work rows=0 peak_bytes=1971967 bound=W1_phase bound_bytes=5128452734 ratio=0.000385"
+   ],
+   "max_rss_bytes": 12222464,
+   "peak_footprint_bytes": 5423512,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.02
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w2_cap_maximal DenseScrutiny Direct call_ms=19.9",
+    "I104_SQ_CHALLENGE w2_cap_maximal DenseScrutiny Direct outcome=no_w1_work rows=0 peak_bytes=1971967 bound=W1_phase bound_bytes=5128452734 ratio=0.000385"
+   ],
+   "max_rss_bytes": 12238848,
+   "peak_footprint_bytes": 5456280,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.02
+  }
+ },
+ "dev.w2.dense.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w2_cap_maximal DenseScrutiny Ordinary call_ms=18.8",
+    "I104_SQ_CHALLENGE w2_cap_maximal DenseScrutiny Ordinary outcome=ordinary_route rows=0 peak_bytes=1971967 bound=W1_phase bound_bytes=5128452734 ratio=0.000385"
+   ],
+   "max_rss_bytes": 11419648,
+   "peak_footprint_bytes": 5292392,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.02
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w2_cap_maximal DenseScrutiny Ordinary call_ms=18.8",
+    "I104_SQ_CHALLENGE w2_cap_maximal DenseScrutiny Ordinary outcome=ordinary_route rows=0 peak_bytes=1971967 bound=W1_phase bound_bytes=5128452734 ratio=0.000385"
+   ],
+   "max_rss_bytes": 11468800,
+   "peak_footprint_bytes": 5341568,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.02
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w2_cap_maximal DenseScrutiny Ordinary call_ms=19.1",
+    "I104_SQ_CHALLENGE w2_cap_maximal DenseScrutiny Ordinary outcome=ordinary_route rows=0 peak_bytes=1971967 bound=W1_phase bound_bytes=5128452734 ratio=0.000385"
+   ],
+   "max_rss_bytes": 11468800,
+   "peak_footprint_bytes": 5325160,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.02
+  }
+ },
+ "dev.w2.sparse.direct": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w2_cap_maximal SparseInteractive Direct call_ms=20.0",
+    "I104_SQ_CHALLENGE w2_cap_maximal SparseInteractive Direct outcome=no_w1_work rows=0 peak_bytes=1971979 bound=W1_phase bound_bytes=5069321390 ratio=0.000389"
+   ],
+   "max_rss_bytes": 12238848,
+   "peak_footprint_bytes": 5456280,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.02
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w2_cap_maximal SparseInteractive Direct call_ms=20.0",
+    "I104_SQ_CHALLENGE w2_cap_maximal SparseInteractive Direct outcome=no_w1_work rows=0 peak_bytes=1971979 bound=W1_phase bound_bytes=5069321390 ratio=0.000389"
+   ],
+   "max_rss_bytes": 12255232,
+   "peak_footprint_bytes": 5456280,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.02
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w2_cap_maximal SparseInteractive Direct call_ms=19.9",
+    "I104_SQ_CHALLENGE w2_cap_maximal SparseInteractive Direct outcome=no_w1_work rows=0 peak_bytes=1971979 bound=W1_phase bound_bytes=5069321390 ratio=0.000389"
+   ],
+   "max_rss_bytes": 12255232,
+   "peak_footprint_bytes": 5439872,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.02
+  }
+ },
+ "dev.w2.sparse.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w2_cap_maximal SparseInteractive Ordinary call_ms=18.8",
+    "I104_SQ_CHALLENGE w2_cap_maximal SparseInteractive Ordinary outcome=ordinary_route rows=0 peak_bytes=1971979 bound=W1_phase bound_bytes=5069321390 ratio=0.000389"
+   ],
+   "max_rss_bytes": 11452416,
+   "peak_footprint_bytes": 5325160,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.02
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w2_cap_maximal SparseInteractive Ordinary call_ms=18.7",
+    "I104_SQ_CHALLENGE w2_cap_maximal SparseInteractive Ordinary outcome=ordinary_route rows=0 peak_bytes=1971979 bound=W1_phase bound_bytes=5069321390 ratio=0.000389"
+   ],
+   "max_rss_bytes": 11436032,
+   "peak_footprint_bytes": 5308800,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.02
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w2_cap_maximal SparseInteractive Ordinary call_ms=18.8",
+    "I104_SQ_CHALLENGE w2_cap_maximal SparseInteractive Ordinary outcome=ordinary_route rows=0 peak_bytes=1971979 bound=W1_phase bound_bytes=5069321390 ratio=0.000389"
+   ],
+   "max_rss_bytes": 11452416,
+   "peak_footprint_bytes": 5325160,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.02
+  }
+ },
+ "dev.w_c2.dense.direct": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2 DenseScrutiny Direct call_ms=1224.3",
+    "I104_SQ_CHALLENGE w_c2 DenseScrutiny Direct outcome=successor(455479 B) rows=513 peak_bytes=9847334 bound=E_mov_max bound_bytes=9792698646 ratio=0.001006"
+   ],
+   "max_rss_bytes": 29130752,
+   "peak_footprint_bytes": 15843736,
+   "real_s": 1.24,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 1.22
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2 DenseScrutiny Direct call_ms=1212.0",
+    "I104_SQ_CHALLENGE w_c2 DenseScrutiny Direct outcome=successor(455479 B) rows=513 peak_bytes=9847334 bound=E_mov_max bound_bytes=9792698646 ratio=0.001006"
+   ],
+   "max_rss_bytes": 28950528,
+   "peak_footprint_bytes": 15647104,
+   "real_s": 1.22,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 1.22
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2 DenseScrutiny Direct call_ms=1213.2",
+    "I104_SQ_CHALLENGE w_c2 DenseScrutiny Direct outcome=successor(455479 B) rows=513 peak_bytes=9847334 bound=E_mov_max bound_bytes=9792698646 ratio=0.001006"
+   ],
+   "max_rss_bytes": 28917760,
+   "peak_footprint_bytes": 15614336,
+   "real_s": 1.22,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 1.22
+  }
+ },
+ "dev.w_c2.dense.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2 DenseScrutiny Ordinary call_ms=19.9",
+    "I104_SQ_CHALLENGE w_c2 DenseScrutiny Ordinary outcome=ordinary_route rows=513 peak_bytes=2703361 bound=W1_phase bound_bytes=5128452734 ratio=0.000527"
+   ],
+   "max_rss_bytes": 15941632,
+   "peak_footprint_bytes": 5980544,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.02
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2 DenseScrutiny Ordinary call_ms=19.8",
+    "I104_SQ_CHALLENGE w_c2 DenseScrutiny Ordinary outcome=ordinary_route rows=513 peak_bytes=2703361 bound=W1_phase bound_bytes=5128452734 ratio=0.000527"
+   ],
+   "max_rss_bytes": 15941632,
+   "peak_footprint_bytes": 5964136,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.02
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2 DenseScrutiny Ordinary call_ms=19.3",
+    "I104_SQ_CHALLENGE w_c2 DenseScrutiny Ordinary outcome=ordinary_route rows=513 peak_bytes=2703361 bound=W1_phase bound_bytes=5128452734 ratio=0.000527"
+   ],
+   "max_rss_bytes": 15974400,
+   "peak_footprint_bytes": 5996904,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.01
+  }
+ },
+ "dev.w_c2.sparse.direct": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2 SparseInteractive Direct call_ms=1195.7",
+    "I104_SQ_CHALLENGE w_c2 SparseInteractive Direct outcome=successor(455001 B) rows=513 peak_bytes=9845649 bound=E_mov_max bound_bytes=9733567302 ratio=0.001012"
+   ],
+   "max_rss_bytes": 28966912,
+   "peak_footprint_bytes": 15614336,
+   "real_s": 1.21,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 1.2
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2 SparseInteractive Direct call_ms=1195.9",
+    "I104_SQ_CHALLENGE w_c2 SparseInteractive Direct outcome=successor(455001 B) rows=513 peak_bytes=9845649 bound=E_mov_max bound_bytes=9733567302 ratio=0.001012"
+   ],
+   "max_rss_bytes": 29048832,
+   "peak_footprint_bytes": 15712664,
+   "real_s": 1.21,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 1.2
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2 SparseInteractive Direct call_ms=1224.7",
+    "I104_SQ_CHALLENGE w_c2 SparseInteractive Direct outcome=successor(455001 B) rows=513 peak_bytes=9845649 bound=E_mov_max bound_bytes=9733567302 ratio=0.001012"
+   ],
+   "max_rss_bytes": 29245440,
+   "peak_footprint_bytes": 15909272,
+   "real_s": 1.23,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 1.2
+  }
+ },
+ "dev.w_c2.sparse.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2 SparseInteractive Ordinary call_ms=19.4",
+    "I104_SQ_CHALLENGE w_c2 SparseInteractive Ordinary outcome=ordinary_route rows=513 peak_bytes=2702864 bound=W1_phase bound_bytes=5069321390 ratio=0.000533"
+   ],
+   "max_rss_bytes": 16023552,
+   "peak_footprint_bytes": 5964136,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.02
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2 SparseInteractive Ordinary call_ms=19.8",
+    "I104_SQ_CHALLENGE w_c2 SparseInteractive Ordinary outcome=ordinary_route rows=513 peak_bytes=2702864 bound=W1_phase bound_bytes=5069321390 ratio=0.000533"
+   ],
+   "max_rss_bytes": 16023552,
+   "peak_footprint_bytes": 5980544,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.02
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2 SparseInteractive Ordinary call_ms=21.4",
+    "I104_SQ_CHALLENGE w_c2 SparseInteractive Ordinary outcome=ordinary_route rows=513 peak_bytes=2702864 bound=W1_phase bound_bytes=5069321390 ratio=0.000533"
+   ],
+   "max_rss_bytes": 16367616,
+   "peak_footprint_bytes": 6341016,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.02
+  }
+ },
+ "dev.w_c2_ac.sparse.direct": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2_ac SparseInteractive Direct call_ms=1162.8",
+    "I104_SQ_CHALLENGE w_c2_ac SparseInteractive Direct outcome=successor(342907 B) rows=342 peak_bytes=7542949 bound=E_mov_max bound_bytes=9733567302 ratio=0.000775"
+   ],
+   "max_rss_bytes": 26705920,
+   "peak_footprint_bytes": 13353344,
+   "real_s": 1.17,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 1.16
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2_ac SparseInteractive Direct call_ms=1183.5",
+    "I104_SQ_CHALLENGE w_c2_ac SparseInteractive Direct outcome=successor(342907 B) rows=342 peak_bytes=7542949 bound=E_mov_max bound_bytes=9733567302 ratio=0.000775"
+   ],
+   "max_rss_bytes": 26836992,
+   "peak_footprint_bytes": 13500824,
+   "real_s": 1.19,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 1.17
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2_ac SparseInteractive Direct call_ms=1158.7",
+    "I104_SQ_CHALLENGE w_c2_ac SparseInteractive Direct outcome=successor(342907 B) rows=342 peak_bytes=7542949 bound=E_mov_max bound_bytes=9733567302 ratio=0.000775"
+   ],
+   "max_rss_bytes": 26705920,
+   "peak_footprint_bytes": 13369752,
+   "real_s": 1.17,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 1.16
+  }
+ },
+ "dev.w_c2_ac.sparse.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2_ac SparseInteractive Ordinary call_ms=13.7",
+    "I104_SQ_CHALLENGE w_c2_ac SparseInteractive Ordinary outcome=ordinary_route rows=342 peak_bytes=1761883 bound=W1_phase bound_bytes=5069321390 ratio=0.000348"
+   ],
+   "max_rss_bytes": 15122432,
+   "peak_footprint_bytes": 5063016,
+   "real_s": 0.01,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.01
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2_ac SparseInteractive Ordinary call_ms=13.5",
+    "I104_SQ_CHALLENGE w_c2_ac SparseInteractive Ordinary outcome=ordinary_route rows=342 peak_bytes=1761883 bound=W1_phase bound_bytes=5069321390 ratio=0.000348"
+   ],
+   "max_rss_bytes": 15089664,
+   "peak_footprint_bytes": 5030248,
+   "real_s": 0.01,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.01
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE_TIME w_c2_ac SparseInteractive Ordinary call_ms=13.5",
+    "I104_SQ_CHALLENGE w_c2_ac SparseInteractive Ordinary outcome=ordinary_route rows=342 peak_bytes=1761883 bound=W1_phase bound_bytes=5069321390 ratio=0.000348"
+   ],
+   "max_rss_bytes": 15122432,
+   "peak_footprint_bytes": 5079424,
+   "real_s": 0.01,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.01
+  }
+ },
+ "floor": {
+  "1": {
+   "lines": [
+    "I104_SQ_CHALLENGE process_floor live_bytes=4162"
+   ],
+   "max_rss_bytes": 2834432,
+   "peak_footprint_bytes": 1671504,
+   "real_s": 0.02,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CHALLENGE process_floor live_bytes=4162"
+   ],
+   "max_rss_bytes": 2834432,
+   "peak_footprint_bytes": 1687912,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CHALLENGE process_floor live_bytes=4162"
+   ],
+   "max_rss_bytes": 2834432,
+   "peak_footprint_bytes": 1671504,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  }
+ }
+}

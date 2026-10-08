@@ -1,0 +1,14 @@
+{
+ "patches": [
+  [
+   "producer_caps.py",
+   "out = {\"which\": which, \"counts\": dict(n=n, m=m, s=sp, r=r, l=l, g=g, N",
+   1
+  ],
+  [
+   "g5_profile.py",
+   "forms = tree[\"forms\"]; exprs = tree[\"exprs\"]; phases = tree[\"phases\"]",
+   1
+  ]
+ ]
+}

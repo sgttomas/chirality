@@ -1,0 +1,15 @@
+floor WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 process_floor
+dev.milestone.sparse.direct WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 milestone::sparse::direct
+dev.milestone.sparse.ordinary WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 milestone::sparse::ordinary
+dev.milestone.dense.direct WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 milestone::dense::direct
+dev.milestone.dense.ordinary WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 milestone::dense::ordinary
+dev.w_c2.sparse.direct WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 w_c2::sparse::direct
+dev.w_c2.sparse.ordinary WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 w_c2::sparse::ordinary
+dev.w_c2.dense.direct WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 w_c2::dense::direct
+dev.w_c2.dense.ordinary WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 w_c2::dense::ordinary
+dev.w_c2_ac.sparse.direct WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 w_c2_ac::sparse::direct
+dev.w_c2_ac.sparse.ordinary WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 w_c2_ac::sparse::ordinary
+dev.w2.sparse.direct WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 w2::sparse::direct
+dev.w2.sparse.ordinary WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 w2::sparse::ordinary
+dev.w2.dense.direct WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 w2::dense::direct
+dev.w2.dense.ordinary WT/targets/i104-sq-reg/debug/deps/retained_memory_challenge-137faca14e9351c2 w2::dense::ordinary

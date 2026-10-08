@@ -1,0 +1,5461 @@
+{
+ "rv87_rows": 410,
+ "run_rows": 412,
+ "new_noncandidates": [
+  {
+   "site": "core/loads/primitive_loads/src/lib.rs:2417",
+   "expr": "node_index",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 1152,
+   "fn": "core/loads/primitive_loads/src/lib.rs:2405:prepare_node_load"
+  },
+  {
+   "site": "core/loads/primitive_loads/src/lib.rs:2417",
+   "expr": "node_count",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 1152,
+   "fn": "core/loads/primitive_loads/src/lib.rs:2405:prepare_node_load"
+  },
+  {
+   "site": "core/loads/primitive_loads/src/lib.rs:2460",
+   "expr": "element_index",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 1152,
+   "fn": "core/loads/primitive_loads/src/lib.rs:2448:prepare_element_load"
+  },
+  {
+   "site": "core/loads/primitive_loads/src/lib.rs:2460",
+   "expr": "element_count",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 1152,
+   "fn": "core/loads/primitive_loads/src/lib.rs:2448:prepare_element_load"
+  },
+  {
+   "site": "core/loads/primitive_loads/src/lib.rs:2520",
+   "expr": "node_index",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 1152,
+   "fn": "core/loads/primitive_loads/src/lib.rs:2507:prepare_support_load"
+  },
+  {
+   "site": "core/loads/primitive_loads/src/lib.rs:2520",
+   "expr": "node_count",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 1152,
+   "fn": "core/loads/primitive_loads/src/lib.rs:2507:prepare_support_load"
+  },
+  {
+   "site": "core/loads/primitive_loads/src/lib.rs:2716",
+   "expr": "magnitude.value",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 1152,
+   "fn": "core/loads/primitive_loads/src/lib.rs:2707:finite_load_magnitude"
+  },
+  {
+   "site": "core/product_physics/src/formation_guard.rs:324",
+   "expr": "fired.len() - NAMED",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "joined_list",
+   "mult": 3,
+   "fn": "core/product_physics/src/formation_guard.rs:297:load_row_finding"
+  },
+  {
+   "site": "core/product_physics/src/formation_guard.rs:450",
+   "expr": "end",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 192,
+   "fn": "core/product_physics/src/formation_guard.rs:435:recovery_finding"
+  },
+  {
+   "site": "core/product_physics/src/formation_guard.rs:456",
+   "expr": "end",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 192,
+   "fn": "core/product_physics/src/formation_guard.rs:435:recovery_finding"
+  },
+  {
+   "site": "core/product_physics/src/formation_guard.rs:456",
+   "expr": "reason",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 192,
+   "fn": "core/product_physics/src/formation_guard.rs:435:recovery_finding"
+  },
+  {
+   "site": "core/product_physics/src/formation_guard.rs:465",
+   "expr": "fired.len()",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "joined_list",
+   "mult": 3,
+   "fn": "core/product_physics/src/formation_guard.rs:435:recovery_finding"
+  },
+  {
+   "site": "core/product_physics/src/formation_guard.rs:465",
+   "expr": "fired.iter().take(NAMED).cloned().collect::<Vec<_>>().join(\"; \")",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "joined_list",
+   "mult": 3,
+   "fn": "core/product_physics/src/formation_guard.rs:435:recovery_finding"
+  },
+  {
+   "site": "core/product_physics/src/formation_guard.rs:465",
+   "expr": "if fired.len() > NAMED { format!(\"; and {} more\", fired.len() - NAMED) } else { String::new() }",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "joined_list",
+   "mult": 3,
+   "fn": "core/product_physics/src/formation_guard.rs:435:recovery_finding"
+  },
+  {
+   "site": "core/product_physics/src/formation_guard.rs:469",
+   "expr": "fired.len() - NAMED",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "joined_list",
+   "mult": 3,
+   "fn": "core/product_physics/src/formation_guard.rs:435:recovery_finding"
+  },
+  {
+   "site": "core/product_physics/src/formation_guard.rs:487",
+   "expr": "diagnostic.message",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "message_int",
+   "mult": 9,
+   "fn": "core/product_physics/src/formation_guard.rs:481:demote"
+  },
+  {
+   "site": "core/product_physics/src/formation_guard.rs:487",
+   "expr": "finding.sentence",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "evidence_line",
+   "mult": 9,
+   "fn": "core/product_physics/src/formation_guard.rs:481:demote"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1079",
+   "expr": "part.len()",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 2592,
+   "fn": "core/product_physics/src/lib.rs:1076:exact_source_identity"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1123",
+   "expr": "report.policy",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1105:append_integrity_report"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1123",
+   "expr": "report",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "struct_report_debug",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1105:append_integrity_report"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1123",
+   "expr": "integrity_dof_map(model)",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "dof_map_debug",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1105:append_integrity_report"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1123",
+   "expr": "equilibrium.map(|e|format!(\"{} final same-state evaluated equilibrium and derived residual-work evidence: {:?}; residual units are N for global DOF%6<3 and N*m otherwise; work units N*m; observed maximum only, exact represented maximum not claimed; general-energy historical alias is residual work, not total energy balance; separate zero count/cap/contact/sliding checks passed\",e.policy,e)).unwrap_or_else(||\"The contribution audit distinguishes intended assembly from stored equations; physical formulation limitations remain applicable.\".into())",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1105:append_integrity_report"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1124",
+   "expr": "e.policy",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1105:append_integrity_report"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1124",
+   "expr": "e",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1105:append_integrity_report"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1130",
+   "expr": "record.message",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "message_int",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1105:append_integrity_report"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1130",
+   "expr": "formation_check_evidence_line(model, check)",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "evidence_line",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1105:append_integrity_report"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1137",
+   "expr": "record.message",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "message_int",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1105:append_integrity_report"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1137",
+   "expr": "range_scaling_evidence_line(model, publication)",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "evidence_line",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1105:append_integrity_report"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1149",
+   "expr": "check.doubled_correction",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1147:formation_check_evidence_line"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1149",
+   "expr": "check.scale",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1147:formation_check_evidence_line"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1149",
+   "expr": "check.ratio",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1147:formation_check_evidence_line"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1160",
+   "expr": "detail",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1147:formation_check_evidence_line"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1272",
+   "expr": "row.global_dof",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1258:append_load_contribution_absorbed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1272",
+   "expr": "row.restrained",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": 327,
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1258:append_load_contribution_absorbed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1272",
+   "expr": "reason",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1258:append_load_contribution_absorbed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1272",
+   "expr": "row.sources",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "sources_debug",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1258:append_load_contribution_absorbed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1276",
+   "expr": "row.global_dof",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1258:append_load_contribution_absorbed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1276",
+   "expr": "row.restrained",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": 327,
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1258:append_load_contribution_absorbed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1276",
+   "expr": "row.guarded_ratio",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1258:append_load_contribution_absorbed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1276",
+   "expr": "row.target",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1258:append_load_contribution_absorbed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1276",
+   "expr": "row.operation_count",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1258:append_load_contribution_absorbed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1276",
+   "expr": "row.completeness_limit",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1258:append_load_contribution_absorbed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1276",
+   "expr": "row.sources",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "sources_debug",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1258:append_load_contribution_absorbed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1287",
+   "expr": "error",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1258:append_load_contribution_absorbed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1294",
+   "expr": "rows.join(\"; \")",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "joined_list",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1258:append_load_contribution_absorbed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1294",
+   "expr": "audit",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1258:append_load_contribution_absorbed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1327",
+   "expr": "error",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1320:append_integrity_failure"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1327",
+   "expr": "integrity_dof_map(model)",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "dof_map_debug",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1320:append_integrity_failure"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1699",
+   "expr": "relative_precision",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 6912,
+   "fn": "core/product_physics/src/lib.rs:1686:range_scaling_evidence_line"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1708",
+   "expr": "record.record",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 6912,
+   "fn": "core/product_physics/src/lib.rs:1686:range_scaling_evidence_line"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1708",
+   "expr": "outcome",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 6912,
+   "fn": "core/product_physics/src/lib.rs:1686:range_scaling_evidence_line"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1721",
+   "expr": "p",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 1152,
+   "fn": "core/product_physics/src/lib.rs:1686:range_scaling_evidence_line"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1739",
+   "expr": "p",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 192,
+   "fn": "core/product_physics/src/lib.rs:1686:range_scaling_evidence_line"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1753",
+   "expr": "end",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 2304,
+   "fn": "core/product_physics/src/lib.rs:1686:range_scaling_evidence_line"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1753",
+   "expr": "COMPONENTS[index % DOF_PER_NODE]",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 2304,
+   "fn": "core/product_physics/src/lib.rs:1686:range_scaling_evidence_line"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1753",
+   "expr": "p",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 2304,
+   "fn": "core/product_physics/src/lib.rs:1686:range_scaling_evidence_line"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1766",
+   "expr": "entries.len() - formation_guard::NAMED",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1686:range_scaling_evidence_line"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1770",
+   "expr": "publication.force_scale_exponent",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1686:range_scaling_evidence_line"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1770",
+   "expr": "named",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1686:range_scaling_evidence_line"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1770",
+   "expr": "more",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1686:range_scaling_evidence_line"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1789",
+   "expr": "b",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1782:append_force_scaling_refusal"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1817",
+   "expr": "ForceScaleReason::PublicationOutsideBinary64 { global_dof: None }",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1782:append_force_scaling_refusal"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1833",
+   "expr": "reason",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1782:append_force_scaling_refusal"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1833",
+   "expr": "trigger",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1782:append_force_scaling_refusal"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1833",
+   "expr": "b",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1782:append_force_scaling_refusal"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1833",
+   "expr": "integrity_dof_map(model)",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "dof_map_debug",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1782:append_force_scaling_refusal"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:3771",
+   "expr": "refusal.profile_entries",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:3760:observation_lane_refusal_diagnostic"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:3771",
+   "expr": "refusal.max_half_bandwidth",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:3760:observation_lane_refusal_diagnostic"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:3771",
+   "expr": "refusal.estimated_bytes",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "u128",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:3760:observation_lane_refusal_diagnostic"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:3771",
+   "expr": "SPARSE_OBSERVATION_BYTES_PER_PROFILE_ENTRY",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:3760:observation_lane_refusal_diagnostic"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:3771",
+   "expr": "refusal.profile_entries",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:3760:observation_lane_refusal_diagnostic"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:3771",
+   "expr": "refusal.ceiling_bytes",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "u128",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:3760:observation_lane_refusal_diagnostic"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:4423",
+   "expr": "cause",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:4429",
+   "expr": "failure",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:4429",
+   "expr": "withheld",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:4455",
+   "expr": "solver_mode.as_str()",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:4455",
+   "expr": "attempt",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:4473",
+   "expr": "record.message",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "message_int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:4665",
+   "expr": "solver_mode.as_str()",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:4665",
+   "expr": "recovery.summary()",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "recovery_summary_debug",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:4746",
+   "expr": "iteration.structural_report",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:4746",
+   "expr": "iteration.product_equilibrium",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:4757",
+   "expr": "reason",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:4757",
+   "expr": "iteration.structural_report",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:4757",
+   "expr": "iteration.product_equilibrium",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:5156",
+   "expr": "message",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 96,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:5224",
+   "expr": "message",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 96,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:5338",
+   "expr": "finding.code",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": 64,
+   "mult": 768,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:5354",
+   "expr": "finding.code",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": 64,
+   "mult": 1152,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:5522",
+   "expr": "error",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 96,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:5704",
+   "expr": "error.0",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:5710",
+   "expr": "error.0",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:5710",
+   "expr": "error.1",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6269",
+   "expr": "solver_mode.as_str()",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6262:append_linear_solver_mode_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6269",
+   "expr": "linear_solve.solution_basis",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6262:append_linear_solver_mode_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6269",
+   "expr": "optional_usize(linear_solve.sparse_entry_count)",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6262:append_linear_solver_mode_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6269",
+   "expr": "optional_usize(linear_solve.original_profile_entry_count)",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6262:append_linear_solver_mode_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6269",
+   "expr": "optional_usize(linear_solve.ordered_profile_entry_count)",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6262:append_linear_solver_mode_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6269",
+   "expr": "optional_usize(linear_solve.original_max_half_bandwidth)",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6262:append_linear_solver_mode_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6269",
+   "expr": "optional_usize(linear_solve.ordered_max_half_bandwidth)",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6262:append_linear_solver_mode_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6269",
+   "expr": "optional_usize(linear_solve.nonpositive_pivot_count)",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6262:append_linear_solver_mode_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6269",
+   "expr": "optional_f64(linear_solve.pivot_condition_ratio_estimate)",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6262:append_linear_solver_mode_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6269",
+   "expr": "optional_f64(linear_solve.sparse_residual)",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6262:append_linear_solver_mode_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6269",
+   "expr": "fallback",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6262:append_linear_solver_mode_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6269",
+   "expr": "linear_solve\n            .dense_fallback_message\n            .as_deref()\n            .unwrap_or(\"none\")",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6262:append_linear_solver_mode_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6346",
+   "expr": "error",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6321:append_sparse_live_path_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6359",
+   "expr": "dense_solution.len()",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6321:append_sparse_live_path_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6380",
+   "expr": "error",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6321:append_sparse_live_path_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6431",
+   "expr": "sparse.solution.len()",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6321:append_sparse_live_path_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6431",
+   "expr": "direct_system.entries.len()",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6321:append_sparse_live_path_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6431",
+   "expr": "sparse.original_profile_entry_count",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6321:append_sparse_live_path_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6431",
+   "expr": "sparse.ordered_profile_entry_count",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6321:append_sparse_live_path_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6431",
+   "expr": "sparse.original_max_half_bandwidth",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6321:append_sparse_live_path_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6431",
+   "expr": "sparse.ordered_max_half_bandwidth",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6321:append_sparse_live_path_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6431",
+   "expr": "max_abs_dense_sparse_solution_delta",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6321:append_sparse_live_path_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6431",
+   "expr": "sparse_residual",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6321:append_sparse_live_path_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6431",
+   "expr": "sparse.factorization.nonpositive_pivot_count",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:6321:append_sparse_live_path_evidence"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:7326",
+   "expr": "error",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 416,
+   "fn": "core/product_physics/src/lib.rs:7256:build_model_for_members"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:8183",
+   "expr": "error",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 7,
+   "fn": "core/product_physics/src/lib.rs:8158:normalize_node_coordinates"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:9146",
+   "expr": "message.into()",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": 600,
+   "mult": 11298,
+   "fn": "core/product_physics/src/lib.rs:9137:unit_conversion_diag"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:9189",
+   "expr": "preview",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 1152,
+   "fn": "core/product_physics/src/lib.rs:9154:build_load_case_primitive_loads"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:9956",
+   "expr": "solve_temperature",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 48,
+   "fn": "core/product_physics/src/lib.rs:9811:materials_for_modulus_basis_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:10055",
+   "expr": "solve_temperature",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 48,
+   "fn": "core/product_physics/src/lib.rs:9811:materials_for_modulus_basis_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:10144",
+   "expr": "provenance_records.join(\" | \")",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "joined_list",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:9811:materials_for_modulus_basis_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:10149",
+   "expr": "provenance_records.join(\" | \")",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "joined_list",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:9811:materials_for_modulus_basis_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:10154",
+   "expr": "temperature.value",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:9811:materials_for_modulus_basis_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:10463",
+   "expr": "e",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 864,
+   "fn": "core/product_physics/src/lib.rs:10416:exact_straight_summary_extrema"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:10477",
+   "expr": "e",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 288,
+   "fn": "core/product_physics/src/lib.rs:10416:exact_straight_summary_extrema"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:10498",
+   "expr": "e",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 288,
+   "fn": "core/product_physics/src/lib.rs:10416:exact_straight_summary_extrema"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11213",
+   "expr": "required",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": 327,
+   "mult": 96,
+   "fn": "core/product_physics/src/lib.rs:11203:recover_curved_bend_local_forces"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11213",
+   "expr": "displacements.len()",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 96,
+   "fn": "core/product_physics/src/lib.rs:11203:recover_curved_bend_local_forces"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11358",
+   "expr": "ELEMENT_DOF",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 384,
+   "fn": "core/product_physics/src/lib.rs:11349:curved_bend_section_resultants"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11358",
+   "expr": "corrected_local_forces.len()",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 384,
+   "fn": "core/product_physics/src/lib.rs:11349:curved_bend_section_resultants"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11727",
+   "expr": "station",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 576,
+   "fn": "core/product_physics/src/lib.rs:11714:append_station_force_results"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11734",
+   "expr": "station",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 576,
+   "fn": "core/product_physics/src/lib.rs:11714:append_station_force_results"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11741",
+   "expr": "station",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 576,
+   "fn": "core/product_physics/src/lib.rs:11714:append_station_force_results"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11748",
+   "expr": "station",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 576,
+   "fn": "core/product_physics/src/lib.rs:11714:append_station_force_results"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11755",
+   "expr": "station",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 576,
+   "fn": "core/product_physics/src/lib.rs:11714:append_station_force_results"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11762",
+   "expr": "station",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 576,
+   "fn": "core/product_physics/src/lib.rs:11714:append_station_force_results"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:13155",
+   "expr": "sign_convention.replace(\n                            \"interpolated element-local\",\n                            \"section-equilibrium element-local\"\n                        )",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3072,
+   "fn": "core/product_physics/src/lib.rs:13108:append_station_stress_results"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:13166",
+   "expr": "station",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 3072,
+   "fn": "core/product_physics/src/lib.rs:13108:append_station_stress_results"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:13183",
+   "expr": "station",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 768,
+   "fn": "core/product_physics/src/lib.rs:13108:append_station_stress_results"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:13198",
+   "expr": "station",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 768,
+   "fn": "core/product_physics/src/lib.rs:13108:append_station_stress_results"
+  },
+  {
+   "site": "core/product_physics/src/preview_physics.rs:508",
+   "expr": "error",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 96,
+   "fn": "core/product_physics/src/preview_physics.rs:497:render_members"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:2565",
+   "expr": "axis",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": 327,
+   "mult": 21150,
+   "fn": "core/product_physics/src/retained_product.rs:2481:validate_final_metadata"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:2567",
+   "expr": "axis",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": 327,
+   "mult": 21150,
+   "fn": "core/product_physics/src/retained_product.rs:2481:validate_final_metadata"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:2576",
+   "expr": "[\"ux\", \"uy\", \"uz\", \"rx\", \"ry\", \"rz\"][i]",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 21150,
+   "fn": "core/product_physics/src/retained_product.rs:2481:validate_final_metadata"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:2603",
+   "expr": "if i < 3 { \"force\" } else { \"moment\" }",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 21150,
+   "fn": "core/product_physics/src/retained_product.rs:2481:validate_final_metadata"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:2603",
+   "expr": "if end == k::End::J { \":end-j\" } else { \"\" }",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 21150,
+   "fn": "core/product_physics/src/retained_product.rs:2481:validate_final_metadata"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:2622",
+   "expr": "if i < 3 { \"force\" } else { \"moment\" }",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 21150,
+   "fn": "core/product_physics/src/retained_product.rs:2481:validate_final_metadata"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:2654",
+   "expr": "case.len()",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 21150,
+   "fn": "core/product_physics/src/retained_product.rs:2481:validate_final_metadata"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:2684",
+   "expr": "prefix",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 21150,
+   "fn": "core/product_physics/src/retained_product.rs:2481:validate_final_metadata"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:2687",
+   "expr": "tail",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 21150,
+   "fn": "core/product_physics/src/retained_product.rs:2481:validate_final_metadata"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:2692",
+   "expr": "case.len()",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 21150,
+   "fn": "core/product_physics/src/retained_product.rs:2481:validate_final_metadata"
+  },
+  {
+   "site": "core/product_physics/src/retained_wire.rs:1998",
+   "expr": "other",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_debug",
+   "mult": 3,
+   "fn": "core/product_physics/src/retained_wire.rs:1912:serialize_attempt"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt.rs:225",
+   "expr": "e",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/source_receipt.rs:197:check_load_state_input"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt.rs:252",
+   "expr": "e",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/source_receipt.rs:197:check_load_state_input"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt.rs:330",
+   "expr": "e",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/source_receipt.rs:270:check_input_with_physical"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt.rs:369",
+   "expr": "e",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/source_receipt.rs:270:check_input_with_physical"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt.rs:654",
+   "expr": "e",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/source_receipt.rs:636:exact"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt.rs:658",
+   "expr": "e",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/source_receipt.rs:636:exact"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt.rs:675",
+   "expr": "e",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/source_receipt.rs:636:exact"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/rows.rs:29",
+   "expr": "case.len()",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 576,
+   "fn": "core/product_physics/src/source_receipt/rows.rs:28:support_id"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/rows.rs:29",
+   "expr": "support.len()",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 576,
+   "fn": "core/product_physics/src/source_receipt/rows.rs:28:support_id"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:27",
+   "expr": "case.len()",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 49206,
+   "fn": "core/product_physics/src/source_receipt/source.rs:26:functional_id"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:27",
+   "expr": "index",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 49206,
+   "fn": "core/product_physics/src/source_receipt/source.rs:26:functional_id"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:51",
+   "expr": "i",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": 20,
+   "mult": 49152,
+   "fn": "core/product_physics/src/source_receipt/source.rs:46:lowered_products"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:51",
+   "expr": "j",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": 20,
+   "mult": 49152,
+   "fn": "core/product_physics/src/source_receipt/source.rs:46:lowered_products"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:147",
+   "expr": "index",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 25175040,
+   "fn": "core/product_physics/src/source_receipt/source.rs:57:function"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:147",
+   "expr": "i",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": 20,
+   "mult": 25175040,
+   "fn": "core/product_physics/src/source_receipt/source.rs:57:function"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:150",
+   "expr": "index",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 5280,
+   "fn": "core/product_physics/src/source_receipt/source.rs:57:function"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:175",
+   "expr": "i",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": 20,
+   "mult": 6345,
+   "fn": "core/product_physics/src/source_receipt/source.rs:153:recipes"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:176",
+   "expr": "i",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": 20,
+   "mult": 6345,
+   "fn": "core/product_physics/src/source_receipt/source.rs:153:recipes"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:181",
+   "expr": "i",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": 20,
+   "mult": 6345,
+   "fn": "core/product_physics/src/source_receipt/source.rs:153:recipes"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:181",
+   "expr": "i",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": 20,
+   "mult": 6345,
+   "fn": "core/product_physics/src/source_receipt/source.rs:153:recipes"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:181",
+   "expr": "i",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": 20,
+   "mult": 6345,
+   "fn": "core/product_physics/src/source_receipt/source.rs:153:recipes"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:181",
+   "expr": "i",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": 20,
+   "mult": 6345,
+   "fn": "core/product_physics/src/source_receipt/source.rs:153:recipes"
+  },
+  {
+   "site": "core/product_physics/src/validation.rs:1478",
+   "expr": "canonical",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 728,
+   "fn": "core/product_physics/src/validation.rs:1465:expect_unit"
+  },
+  {
+   "site": "core/product_physics/src/validation.rs:1478",
+   "expr": "message",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 728,
+   "fn": "core/product_physics/src/validation.rs:1465:expect_unit"
+  },
+  {
+   "site": "core/reporting/result_export/src/preview_physics_evidence.rs:149",
+   "expr": "p.len()",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 144630,
+   "fn": "core/reporting/result_export/src/preview_physics_evidence.rs:146:identity"
+  },
+  {
+   "site": "core/reporting/result_export/src/preview_physics_evidence.rs:149",
+   "expr": "p",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 144630,
+   "fn": "core/reporting/result_export/src/preview_physics_evidence.rs:146:identity"
+  },
+  {
+   "site": "core/reporting/result_export/src/preview_physics_evidence.rs:291",
+   "expr": "e",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 6345,
+   "fn": "core/reporting/result_export/src/preview_physics_evidence.rs:244:validate_preview_physics_evidence"
+  },
+  {
+   "site": "core/reporting/result_export/src/preview_physics_evidence.rs:530",
+   "expr": "c",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": 20,
+   "mult": 6345,
+   "fn": "core/reporting/result_export/src/preview_physics_evidence.rs:244:validate_preview_physics_evidence"
+  },
+  {
+   "site": "core/reporting/result_export/src/retained_precision.rs:1114",
+   "expr": "p",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 12,
+   "fn": "core/reporting/result_export/src/retained_precision.rs:904:g5_native"
+  },
+  {
+   "site": "core/reporting/result_export/src/retained_precision.rs:1121",
+   "expr": "p",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 12,
+   "fn": "core/reporting/result_export/src/retained_precision.rs:904:g5_native"
+  },
+  {
+   "site": "core/solver/frame_kernel/src/structural.rs:1753",
+   "expr": "error",
+   "kind_or_spec": "?",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 336,
+   "fn": "core/solver/frame_kernel/src/structural.rs:1689:finish_checked_factor"
+  },
+  {
+   "site": "core/solver/frame_kernel/src/structural/formation_check.rs:145",
+   "expr": "e",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 672,
+   "fn": "core/solver/frame_kernel/src/structural/formation_check.rs:143:detail"
+  },
+  {
+   "site": "core/solver/frame_kernel/src/structural/formation_check.rs:146",
+   "expr": "e",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 672,
+   "fn": "core/solver/frame_kernel/src/structural/formation_check.rs:143:detail"
+  },
+  {
+   "site": "core/solver/frame_kernel/src/structural/formation_check.rs:147",
+   "expr": "e",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 672,
+   "fn": "core/solver/frame_kernel/src/structural/formation_check.rs:143:detail"
+  },
+  {
+   "site": "core/solver/frame_kernel/src/structural/formation_check.rs:148",
+   "expr": "s",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 672,
+   "fn": "core/solver/frame_kernel/src/structural/formation_check.rs:143:detail"
+  },
+  {
+   "site": "core/solver/frame_kernel/src/structural/formation_check.rs:171",
+   "expr": "user.node_i.index",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 672,
+   "fn": "core/solver/frame_kernel/src/structural/formation_check.rs:155:check"
+  },
+  {
+   "site": "core/solver/frame_kernel/src/structural/formation_check.rs:171",
+   "expr": "user.node_j.index",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 672,
+   "fn": "core/solver/frame_kernel/src/structural/formation_check.rs:155:check"
+  },
+  {
+   "site": "core/solver/linear_supports/src/lib.rs:395",
+   "expr": "support.node_index",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 224,
+   "fn": "core/solver/linear_supports/src/lib.rs:384:prepare_boundary"
+  },
+  {
+   "site": "core/solver/linear_supports/src/lib.rs:395",
+   "expr": "node_count",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 224,
+   "fn": "core/solver/linear_supports/src/lib.rs:384:prepare_boundary"
+  },
+  {
+   "site": "core/solver/linear_supports/src/lib.rs:645",
+   "expr": "global_dof",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "int",
+   "mult": 2304,
+   "fn": "core/solver/linear_supports/src/lib.rs:634:add_restrained_dof"
+  },
+  {
+   "site": "core/solver/nonlinear_integration/src/structural_adapter.rs:1541",
+   "expr": "family_basis",
+   "kind_or_spec": "",
+   "candidate": false,
+   "class": "static",
+   "mult": 54,
+   "fn": "core/solver/nonlinear_integration/src/structural_adapter.rs:1535:symmetry_basis"
+  },
+  {
+   "site": "core/product_physics/src/formation_guard.rs:323",
+   "expr": "()",
+   "kind_or_spec": "join",
+   "candidate": false,
+   "class": null,
+   "mult": 3,
+   "fn": "core/product_physics/src/formation_guard.rs:297:load_row_finding"
+  },
+  {
+   "site": "core/product_physics/src/formation_guard.rs:468",
+   "expr": "()",
+   "kind_or_spec": "join",
+   "candidate": false,
+   "class": null,
+   "mult": 3,
+   "fn": "core/product_physics/src/formation_guard.rs:435:recovery_finding"
+  },
+  {
+   "site": "core/product_physics/src/formation_guard.rs:485",
+   "expr": "SENSITIVE",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "static",
+   "mult": 9,
+   "fn": "core/product_physics/src/formation_guard.rs:481:demote"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:10426",
+   "expr": "e",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 288,
+   "fn": "core/product_physics/src/lib.rs:10416:exact_straight_summary_extrema"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:10438",
+   "expr": "e",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 288,
+   "fn": "core/product_physics/src/lib.rs:10416:exact_straight_summary_extrema"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11282",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 96,
+   "fn": "core/product_physics/src/lib.rs:11203:recover_curved_bend_local_forces"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11285",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 96,
+   "fn": "core/product_physics/src/lib.rs:11203:recover_curved_bend_local_forces"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11364",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 384,
+   "fn": "core/product_physics/src/lib.rs:11349:curved_bend_section_resultants"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11367",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 384,
+   "fn": "core/product_physics/src/lib.rs:11349:curved_bend_section_resultants"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11392",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 384,
+   "fn": "core/product_physics/src/lib.rs:11349:curved_bend_section_resultants"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11708",
+   "expr": "sign_convention",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "static",
+   "mult": 1152,
+   "fn": "core/product_physics/src/lib.rs:11630:append_node_displacement_component_results"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1296",
+   "expr": "rows",
+   "kind_or_spec": "join",
+   "candidate": false,
+   "class": "int",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1258:append_load_contribution_absorbed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:13157",
+   "expr": "sign_convention",
+   "kind_or_spec": "replace",
+   "candidate": false,
+   "class": "static",
+   "mult": 3072,
+   "fn": "core/product_physics/src/lib.rs:13108:append_station_stress_results"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1350",
+   "expr": "error",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1347:ordinary_range_trigger"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1353",
+   "expr": "error",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1347:ordinary_range_trigger"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:13881",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 17,
+   "fn": "core/product_physics/src/lib.rs:13872:solver_blocked"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:14126",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 728,
+   "fn": "core/product_physics/src/lib.rs:14120:unit_symbol_matches_dimension"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1764",
+   "expr": "entries .iter() .take(formation_guard::NAMED) .map(|entry| format!(\" \"))",
+   "kind_or_spec": "collect_string",
+   "candidate": false,
+   "class": "int",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:1686:range_scaling_evidence_line"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1793",
+   "expr": "refusal",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1782:append_force_scaling_refusal"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:1807",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:1782:append_force_scaling_refusal"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:3057",
+   "expr": "retained_wire::UNAVAILABLE_CODE",
+   "kind_or_spec": "to_owned",
+   "candidate": false,
+   "class": 30,
+   "mult": 471,
+   "fn": "core/product_physics/src/lib.rs:3049:reserve"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:3052",
+   "expr": "RETAINED_UNAVAILABLE_NOTICE",
+   "kind_or_spec": "push_str",
+   "candidate": false,
+   "class": "static",
+   "mult": 471,
+   "fn": "core/product_physics/src/lib.rs:3049:reserve"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:3055",
+   "expr": "",
+   "kind_or_spec": "diag_literal",
+   "candidate": false,
+   "class": null,
+   "mult": 471,
+   "fn": "core/product_physics/src/lib.rs:3049:reserve"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:3110",
+   "expr": "RECEIPT_ENCODING_REASON",
+   "kind_or_spec": "push_str",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:3096:publish"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:3111",
+   "expr": "detail",
+   "kind_or_spec": "push_str",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:3096:publish"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:5047",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 96,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:5062",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 96,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:5119",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 96,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:5187",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 288,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:5253",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 96,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:5444",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 96,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:4324",
+   "expr": "error",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:5346",
+   "expr": "finding.message",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 768,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:5362",
+   "expr": "finding.message",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 1152,
+   "fn": "core/product_physics/src/lib.rs:4060:solve_load_case_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6310",
+   "expr": "value",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 18,
+   "fn": "core/product_physics/src/lib.rs:6308:optional_usize"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:6317",
+   "expr": "value",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:6314:optional_f64"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:7276",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 416,
+   "fn": "core/product_physics/src/lib.rs:7256:build_model_for_members"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:7380",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 416,
+   "fn": "core/product_physics/src/lib.rs:7256:build_model_for_members"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:7395",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 416,
+   "fn": "core/product_physics/src/lib.rs:7256:build_model_for_members"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:8212",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 672,
+   "fn": "core/product_physics/src/lib.rs:8158:normalize_node_coordinates"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:8218",
+   "expr": "to.definition().symbol",
+   "kind_or_spec": "into_text",
+   "candidate": false,
+   "class": "static",
+   "mult": 7,
+   "fn": "core/product_physics/src/lib.rs:8158:normalize_node_coordinates"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:9069",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 10619,
+   "fn": "core/product_physics/src/lib.rs:9054:normalize_quantity"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:9086",
+   "expr": "to.definition().symbol",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "static",
+   "mult": 10619,
+   "fn": "core/product_physics/src/lib.rs:9054:normalize_quantity"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:9090",
+   "expr": "error",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 10619,
+   "fn": "core/product_physics/src/lib.rs:9054:normalize_quantity"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:10146",
+   "expr": "provenance_records",
+   "kind_or_spec": "join",
+   "candidate": false,
+   "class": null,
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:9811:materials_for_modulus_basis_observed"
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:10156",
+   "expr": "provenance_records",
+   "kind_or_spec": "join",
+   "candidate": false,
+   "class": null,
+   "mult": 6,
+   "fn": "core/product_physics/src/lib.rs:9811:materials_for_modulus_basis_observed"
+  },
+  {
+   "site": "core/product_physics/src/pressure_runtime.rs:99",
+   "expr": "value",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "f64_display",
+   "mult": 10752,
+   "fn": "core/product_physics/src/pressure_runtime.rs:85:problem"
+  },
+  {
+   "site": "core/product_physics/src/preview_physics.rs:293",
+   "expr": "MAXIMUM_SIGN",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "static",
+   "mult": 96,
+   "fn": "core/product_physics/src/preview_physics.rs:270:maximum_row"
+  },
+  {
+   "site": "core/product_physics/src/preview_physics.rs:605",
+   "expr": "ARC_BASIS",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "static",
+   "mult": 6345,
+   "fn": "core/product_physics/src/preview_physics.rs:528:render"
+  },
+  {
+   "site": "core/product_physics/src/preview_physics.rs:612",
+   "expr": "ARC_COORDINATE",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "static",
+   "mult": 6345,
+   "fn": "core/product_physics/src/preview_physics.rs:528:render"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:2675",
+   "expr": "STRAIGHT_ENDPOINT_SECTION_SIGN_CONVENTION",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "static",
+   "mult": 21150,
+   "fn": "core/product_physics/src/retained_product.rs:2481:validate_final_metadata"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:3125",
+   "expr": "cause",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 7168,
+   "fn": "core/product_physics/src/retained_product.rs:2963:g5a"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:3692",
+   "expr": "error",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/retained_product.rs:3678:native"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:374",
+   "expr": "f.sentence",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": "formation_sentence",
+   "mult": 3,
+   "fn": "core/product_physics/src/retained_product.rs:372:ordinary_finding"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:379",
+   "expr": "error",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/retained_product.rs:377:ordinary_initial_failure"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:380",
+   "expr": "error",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/retained_product.rs:377:ordinary_initial_failure"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:418",
+   "expr": "failure",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/retained_product.rs:417:ordinary_w2_failed"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:426",
+   "expr": "record.code",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/retained_product.rs:421:ordinary_report"
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:4362",
+   "expr": "failure.failure()",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/retained_product.rs:4321:freeze_case"
+  },
+  {
+   "site": "core/product_physics/src/retained_wire.rs:1989",
+   "expr": "terminal[\" \"].as_str().unwrap_or_default()",
+   "kind_or_spec": "to_owned",
+   "candidate": false,
+   "class": "static",
+   "mult": 3,
+   "fn": "core/product_physics/src/retained_wire.rs:1912:serialize_attempt"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt.rs:138",
+   "expr": "e",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 13,
+   "fn": "core/product_physics/src/source_receipt.rs:137:requested"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt.rs:216",
+   "expr": "e",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/source_receipt.rs:197:check_load_state_input"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt.rs:318",
+   "expr": "e",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/product_physics/src/source_receipt.rs:270:check_input_with_physical"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt.rs:31",
+   "expr": "e",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 21,
+   "fn": "core/product_physics/src/source_receipt.rs:30:checked"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt.rs:55",
+   "expr": "e",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 23271,
+   "fn": "core/product_physics/src/source_receipt.rs:54:serialized"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt.rs:702",
+   "expr": "capture.digest",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": 64,
+   "mult": 3,
+   "fn": "core/product_physics/src/source_receipt.rs:636:exact"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt.rs:731",
+   "expr": "capture.digest",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": 64,
+   "mult": 3,
+   "fn": "core/product_physics/src/source_receipt.rs:720:ordinary"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt.rs:773",
+   "expr": "capture.digest",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": 64,
+   "mult": 3,
+   "fn": "core/product_physics/src/source_receipt.rs:762:failed"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt.rs:1037",
+   "expr": "case.failure",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": 2048,
+   "mult": 6,
+   "fn": "core/product_physics/src/source_receipt.rs:867:finalize_for"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:278",
+   "expr": "e",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 96,
+   "fn": "core/product_physics/src/source_receipt/source.rs:252:commitment"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:279",
+   "expr": "e",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 96,
+   "fn": "core/product_physics/src/source_receipt/source.rs:252:commitment"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:282",
+   "expr": "e",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 96,
+   "fn": "core/product_physics/src/source_receipt/source.rs:252:commitment"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:299",
+   "expr": "e",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 96,
+   "fn": "core/product_physics/src/source_receipt/source.rs:252:commitment"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:80",
+   "expr": "[\" \", \" \", \" \", \" \", \" \", \" \"][dof % 6]",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "static",
+   "mult": 5280,
+   "fn": "core/product_physics/src/source_receipt/source.rs:57:function"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:87",
+   "expr": "ACTIONS[*row as usize]",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "static",
+   "mult": 5280,
+   "fn": "core/product_physics/src/source_receipt/source.rs:57:function"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:94",
+   "expr": "{ \" \" }",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "static",
+   "mult": 5280,
+   "fn": "core/product_physics/src/source_receipt/source.rs:57:function"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:113",
+   "expr": "ACTIONS[*component as usize]",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "static",
+   "mult": 5280,
+   "fn": "core/product_physics/src/source_receipt/source.rs:57:function"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:121",
+   "expr": "[\" \", \" \", \" \", \" \", \" \", \" \"][dof % 6]",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "static",
+   "mult": 5280,
+   "fn": "core/product_physics/src/source_receipt/source.rs:57:function"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:130",
+   "expr": "[\" \", \" \", \" \", \" \", \" \", \" \"][*component as usize]",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "static",
+   "mult": 5280,
+   "fn": "core/product_physics/src/source_receipt/source.rs:57:function"
+  },
+  {
+   "site": "core/product_physics/src/source_receipt/source.rs:137",
+   "expr": "[\" \", \" \", \" \", \" \", \" \", \" \"][dof % 6]",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "static",
+   "mult": 5280,
+   "fn": "core/product_physics/src/source_receipt/source.rs:57:function"
+  },
+  {
+   "site": "core/product_physics/src/source_recovery.rs:325",
+   "expr": "error",
+   "kind_or_spec": "into_text",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 6,
+   "fn": "core/product_physics/src/source_recovery.rs:322:charge_finalization"
+  },
+  {
+   "site": "core/product_physics/src/source_recovery.rs:847",
+   "expr": "rigid_owner[global]",
+   "kind_or_spec": "replace",
+   "candidate": false,
+   "class": 0,
+   "mult": 2304,
+   "fn": "core/product_physics/src/source_recovery.rs:502:prepare_sources"
+  },
+  {
+   "site": "core/reporting/result_export/src/preview_physics_evidence.rs:151",
+   "expr": "()",
+   "kind_or_spec": "join",
+   "candidate": false,
+   "class": null,
+   "mult": 48210,
+   "fn": "core/reporting/result_export/src/preview_physics_evidence.rs:146:identity"
+  },
+  {
+   "site": "core/reporting/result_export/src/retained_precision.rs:1761",
+   "expr": "i",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": 20,
+   "mult": 39744,
+   "fn": "core/reporting/result_export/src/retained_precision.rs:1745:located"
+  },
+  {
+   "site": "core/reporting/result_export/src/retained_precision.rs:1752",
+   "expr": "path",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": "static",
+   "mult": 207,
+   "fn": "core/reporting/result_export/src/retained_precision.rs:1745:located"
+  },
+  {
+   "site": "core/reporting/result_export/src/source_blocks.rs:185",
+   "expr": "e",
+   "kind_or_spec": "to_string",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 10,
+   "fn": "core/reporting/result_export/src/source_blocks.rs:182:domain_hash"
+  },
+  {
+   "site": "core/solver/frame_kernel/src/structural.rs:1402",
+   "expr": "e.basis",
+   "kind_or_spec": "to_owned",
+   "candidate": false,
+   "class": "static",
+   "mult": 54,
+   "fn": "core/solver/frame_kernel/src/structural.rs:1288:prepare_bound"
+  },
+  {
+   "site": "core/solver/frame_kernel/src/structural.rs:570",
+   "expr": "self.symmetry_basis",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": "symmetry_basis",
+   "mult": 336,
+   "fn": "core/solver/frame_kernel/src/structural.rs:566:gate_symmetry"
+  },
+  {
+   "site": "core/solver/frame_kernel/src/structural/exact_boundary.rs:477",
+   "expr": "s.basis",
+   "kind_or_spec": "to_owned",
+   "candidate": false,
+   "class": "static",
+   "mult": 9,
+   "fn": "core/solver/frame_kernel/src/structural/exact_boundary.rs:288:new_charged"
+  },
+  {
+   "site": "core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs:1902",
+   "expr": "failure",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": "error_display",
+   "mult": 3,
+   "fn": "core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs:1877:certify_final"
+  },
+  {
+   "site": "core/solver/frame_kernel/src/structural/sparse.rs:1472",
+   "expr": "e.basis",
+   "kind_or_spec": "to_owned",
+   "candidate": false,
+   "class": "static",
+   "mult": 30,
+   "fn": "core/solver/frame_kernel/src/structural/sparse.rs:1299:prepare_sparse_bound"
+  },
+  {
+   "site": "core/solver/frame_kernel/src/structural/sparse.rs:1718",
+   "expr": "self.symmetry_basis",
+   "kind_or_spec": "clone_text",
+   "candidate": false,
+   "class": "symmetry_basis",
+   "mult": 336,
+   "fn": "core/solver/frame_kernel/src/structural/sparse.rs:1714:gate_symmetry"
+  }
+ ],
+ "rv87_rows_absent_now": [
+  [
+   [
+    "loads/primitive_loads/src/lib.rs",
+    "prepare_node_load",
+    "",
+    "int",
+    384
+   ],
+   "node_index"
+  ],
+  [
+   [
+    "loads/primitive_loads/src/lib.rs",
+    "prepare_node_load",
+    "",
+    "int",
+    384
+   ],
+   "node_count"
+  ],
+  [
+   [
+    "loads/primitive_loads/src/lib.rs",
+    "prepare_element_load",
+    "",
+    "int",
+    384
+   ],
+   "element_index"
+  ],
+  [
+   [
+    "loads/primitive_loads/src/lib.rs",
+    "prepare_element_load",
+    "",
+    "int",
+    384
+   ],
+   "element_count"
+  ],
+  [
+   [
+    "loads/primitive_loads/src/lib.rs",
+    "prepare_support_load",
+    "",
+    "int",
+    384
+   ],
+   "node_index"
+  ],
+  [
+   [
+    "loads/primitive_loads/src/lib.rs",
+    "prepare_support_load",
+    "",
+    "int",
+    384
+   ],
+   "node_count"
+  ],
+  [
+   [
+    "loads/primitive_loads/src/lib.rs",
+    "finite_load_magnitude",
+    "",
+    "f64_display",
+    384
+   ],
+   "magnitude.value"
+  ],
+  [
+   [
+    "product_physics/src/formation_guard.rs",
+    "load_row_finding",
+    "",
+    "joined_list",
+    1
+   ],
+   "fired.len() - NAMED"
+  ],
+  [
+   [
+    "product_physics/src/formation_guard.rs",
+    "recovery_finding",
+    "",
+    "int",
+    64
+   ],
+   "end"
+  ],
+  [
+   [
+    "product_physics/src/formation_guard.rs",
+    "recovery_finding",
+    "",
+    "int",
+    64
+   ],
+   "end"
+  ],
+  [
+   [
+    "product_physics/src/formation_guard.rs",
+    "recovery_finding",
+    "",
+    "error_display",
+    64
+   ],
+   "reason"
+  ],
+  [
+   [
+    "product_physics/src/formation_guard.rs",
+    "recovery_finding",
+    "",
+    "joined_list",
+    1
+   ],
+   "fired.len()"
+  ],
+  [
+   [
+    "product_physics/src/formation_guard.rs",
+    "recovery_finding",
+    "",
+    "joined_list",
+    1
+   ],
+   "fired.iter().take(NAMED).cloned().collect::<Vec<_>>().join(\"; \")"
+  ],
+  [
+   [
+    "product_physics/src/formation_guard.rs",
+    "recovery_finding",
+    "",
+    "joined_list",
+    1
+   ],
+   "if fired.len() > NAMED { format!(\"; and {} more\", fired.len() - NAMED) } else { String::new() }"
+  ],
+  [
+   [
+    "product_physics/src/formation_guard.rs",
+    "recovery_finding",
+    "",
+    "joined_list",
+    1
+   ],
+   "fired.len() - NAMED"
+  ],
+  [
+   [
+    "product_physics/src/formation_guard.rs",
+    "demote",
+    "",
+    "message_int",
+    3
+   ],
+   "diagnostic.message"
+  ],
+  [
+   [
+    "product_physics/src/formation_guard.rs",
+    "demote",
+    "",
+    "evidence_line",
+    3
+   ],
+   "finding.sentence"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "exact_source_identity",
+    "",
+    "int",
+    1248
+   ],
+   "part.len()"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_integrity_report",
+    "",
+    "static",
+    2
+   ],
+   "report.policy"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_integrity_report",
+    "",
+    "static",
+    2
+   ],
+   "e.policy"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_integrity_report",
+    "?",
+    "struct_report_debug",
+    2
+   ],
+   "report"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_integrity_report",
+    "?",
+    "dof_map_debug",
+    2
+   ],
+   "integrity_dof_map(model)"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_integrity_report",
+    "",
+    "error_display",
+    2
+   ],
+   "equilibrium.map(|e|format!(\"{} final same-state evaluated equilibrium and derived residual-work evidence: {:?}; residual units are N for global DOF%6<3 and N*m"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_integrity_report",
+    "?",
+    "error_display",
+    2
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_integrity_report",
+    "",
+    "message_int",
+    2
+   ],
+   "record.message"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_integrity_report",
+    "",
+    "message_int",
+    2
+   ],
+   "record.message"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_integrity_report",
+    "",
+    "evidence_line",
+    2
+   ],
+   "formation_check_evidence_line(model, check)"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_integrity_report",
+    "",
+    "evidence_line",
+    2
+   ],
+   "range_scaling_evidence_line(model, publication)"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "formation_check_evidence_line",
+    "?",
+    "f64_display",
+    2
+   ],
+   "check.doubled_correction"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "formation_check_evidence_line",
+    "?",
+    "f64_display",
+    2
+   ],
+   "check.scale"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "formation_check_evidence_line",
+    "?",
+    "f64_display",
+    2
+   ],
+   "check.ratio"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "formation_check_evidence_line",
+    "",
+    "error_display",
+    2
+   ],
+   "detail"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_load_contribution_absorbed",
+    "",
+    "int",
+    1
+   ],
+   "row.global_dof"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_load_contribution_absorbed",
+    "",
+    "int",
+    1
+   ],
+   "row.global_dof"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_load_contribution_absorbed",
+    "",
+    "int",
+    1
+   ],
+   "row.operation_count"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_load_contribution_absorbed",
+    "",
+    327,
+    1
+   ],
+   "row.restrained"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_load_contribution_absorbed",
+    "",
+    327,
+    1
+   ],
+   "row.restrained"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_load_contribution_absorbed",
+    "",
+    "error_display",
+    1
+   ],
+   "reason"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_load_contribution_absorbed",
+    "",
+    "error_display",
+    1
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_load_contribution_absorbed",
+    "",
+    "error_display",
+    1
+   ],
+   "audit"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_load_contribution_absorbed",
+    "?",
+    "sources_debug",
+    1
+   ],
+   "row.sources"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_load_contribution_absorbed",
+    "?",
+    "sources_debug",
+    1
+   ],
+   "row.sources"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_load_contribution_absorbed",
+    "?",
+    "f64_display",
+    1
+   ],
+   "row.guarded_ratio"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_load_contribution_absorbed",
+    "?",
+    "f64_display",
+    1
+   ],
+   "row.target"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_load_contribution_absorbed",
+    "?",
+    "f64_display",
+    1
+   ],
+   "row.completeness_limit"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_load_contribution_absorbed",
+    "",
+    "joined_list",
+    1
+   ],
+   "rows.join(\"; \")"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_integrity_failure",
+    "",
+    "error_display",
+    2
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_integrity_failure",
+    "?",
+    "dof_map_debug",
+    2
+   ],
+   "integrity_dof_map(model)"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "range_scaling_evidence_line",
+    "?",
+    "f64_display",
+    2304
+   ],
+   "relative_precision"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "range_scaling_evidence_line",
+    "",
+    "int",
+    2304
+   ],
+   "record.record"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "range_scaling_evidence_line",
+    "",
+    "error_display",
+    2304
+   ],
+   "outcome"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "range_scaling_evidence_line",
+    "?",
+    "f64_display",
+    384
+   ],
+   "p"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "range_scaling_evidence_line",
+    "?",
+    "f64_display",
+    64
+   ],
+   "p"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "range_scaling_evidence_line",
+    "",
+    "int",
+    768
+   ],
+   "end"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "range_scaling_evidence_line",
+    "",
+    "int",
+    768
+   ],
+   "COMPONENTS[index % DOF_PER_NODE]"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "range_scaling_evidence_line",
+    "?",
+    "f64_display",
+    768
+   ],
+   "p"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "range_scaling_evidence_line",
+    "",
+    "int",
+    2
+   ],
+   "entries.len() - formation_guard::NAMED"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "range_scaling_evidence_line",
+    "",
+    "int",
+    2
+   ],
+   "publication.force_scale_exponent"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "range_scaling_evidence_line",
+    "",
+    "int",
+    2
+   ],
+   "named"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "range_scaling_evidence_line",
+    "",
+    "int",
+    2
+   ],
+   "more"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_force_scaling_refusal",
+    "",
+    "int",
+    1
+   ],
+   "b"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_force_scaling_refusal",
+    "",
+    "int",
+    1
+   ],
+   "b"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_force_scaling_refusal",
+    "",
+    "static",
+    1
+   ],
+   "ForceScaleReason::PublicationOutsideBinary64 { global_dof: None }"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_force_scaling_refusal",
+    "",
+    "error_display",
+    1
+   ],
+   "reason"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_force_scaling_refusal",
+    "?",
+    "error_display",
+    1
+   ],
+   "trigger"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_force_scaling_refusal",
+    "?",
+    "dof_map_debug",
+    1
+   ],
+   "integrity_dof_map(model)"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "observation_lane_refusal_diagnostic",
+    "",
+    "int",
+    1
+   ],
+   "refusal.profile_entries"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "observation_lane_refusal_diagnostic",
+    "",
+    "int",
+    1
+   ],
+   "refusal.max_half_bandwidth"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "observation_lane_refusal_diagnostic",
+    "",
+    "int",
+    1
+   ],
+   "refusal.profile_entries"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "observation_lane_refusal_diagnostic",
+    "",
+    "u128",
+    1
+   ],
+   "refusal.estimated_bytes"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "observation_lane_refusal_diagnostic",
+    "",
+    "u128",
+    1
+   ],
+   "refusal.ceiling_bytes"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "observation_lane_refusal_diagnostic",
+    "",
+    "static",
+    1
+   ],
+   "SPARSE_OBSERVATION_BYTES_PER_PROFILE_ENTRY"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "",
+    "error_display",
+    1
+   ],
+   "cause"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "",
+    "error_display",
+    1
+   ],
+   "withheld"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "",
+    "error_display",
+    1
+   ],
+   "attempt"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "",
+    "error_display",
+    1
+   ],
+   "reason"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "",
+    "error_display",
+    1
+   ],
+   "error.0"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "",
+    "error_display",
+    1
+   ],
+   "error.0"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "?",
+    "error_display",
+    1
+   ],
+   "failure"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "?",
+    "error_display",
+    1
+   ],
+   "iteration.structural_report"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "?",
+    "error_display",
+    1
+   ],
+   "iteration.product_equilibrium"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "?",
+    "error_display",
+    1
+   ],
+   "iteration.structural_report"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "?",
+    "error_display",
+    1
+   ],
+   "iteration.product_equilibrium"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "?",
+    "error_display",
+    1
+   ],
+   "error.1"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "",
+    "static",
+    1
+   ],
+   "solver_mode.as_str()"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "",
+    "static",
+    1
+   ],
+   "solver_mode.as_str()"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "",
+    "message_int",
+    1
+   ],
+   "record.message"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "?",
+    "recovery_summary_debug",
+    1
+   ],
+   "recovery.summary()"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "",
+    "error_display",
+    32
+   ],
+   "message"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "",
+    "error_display",
+    32
+   ],
+   "message"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "",
+    "error_display",
+    32
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "?",
+    64,
+    256
+   ],
+   "finding.code"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "?",
+    64,
+    384
+   ],
+   "finding.code"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_linear_solver_mode_evidence",
+    "",
+    "static",
+    1
+   ],
+   "solver_mode.as_str()"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_linear_solver_mode_evidence",
+    "",
+    "static",
+    1
+   ],
+   "linear_solve.solution_basis"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_linear_solver_mode_evidence",
+    "",
+    "static",
+    1
+   ],
+   "optional_usize(linear_solve.sparse_entry_count)"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_linear_solver_mode_evidence",
+    "",
+    "static",
+    1
+   ],
+   "optional_usize(linear_solve.original_profile_entry_count)"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_linear_solver_mode_evidence",
+    "",
+    "static",
+    1
+   ],
+   "optional_usize(linear_solve.ordered_profile_entry_count)"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_linear_solver_mode_evidence",
+    "",
+    "static",
+    1
+   ],
+   "optional_usize(linear_solve.original_max_half_bandwidth)"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_linear_solver_mode_evidence",
+    "",
+    "static",
+    1
+   ],
+   "optional_usize(linear_solve.ordered_max_half_bandwidth)"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_linear_solver_mode_evidence",
+    "",
+    "static",
+    1
+   ],
+   "optional_usize(linear_solve.nonpositive_pivot_count)"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_linear_solver_mode_evidence",
+    "",
+    "static",
+    1
+   ],
+   "optional_f64(linear_solve.pivot_condition_ratio_estimate)"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_linear_solver_mode_evidence",
+    "",
+    "static",
+    1
+   ],
+   "optional_f64(linear_solve.sparse_residual)"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_linear_solver_mode_evidence",
+    "",
+    "static",
+    1
+   ],
+   "linear_solve .dense_fallback_message .as_deref() .unwrap_or(\"none\")"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_linear_solver_mode_evidence",
+    "",
+    "error_display",
+    1
+   ],
+   "fallback"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_sparse_live_path_evidence",
+    "",
+    "error_display",
+    1
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_sparse_live_path_evidence",
+    "",
+    "error_display",
+    1
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_sparse_live_path_evidence",
+    "",
+    "int",
+    1
+   ],
+   "dense_solution.len()"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_sparse_live_path_evidence",
+    "",
+    "int",
+    1
+   ],
+   "sparse.solution.len()"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_sparse_live_path_evidence",
+    "",
+    "int",
+    1
+   ],
+   "direct_system.entries.len()"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_sparse_live_path_evidence",
+    "",
+    "int",
+    1
+   ],
+   "sparse.original_profile_entry_count"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_sparse_live_path_evidence",
+    "",
+    "int",
+    1
+   ],
+   "sparse.ordered_profile_entry_count"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_sparse_live_path_evidence",
+    "",
+    "int",
+    1
+   ],
+   "sparse.original_max_half_bandwidth"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_sparse_live_path_evidence",
+    "",
+    "int",
+    1
+   ],
+   "sparse.ordered_max_half_bandwidth"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_sparse_live_path_evidence",
+    "",
+    "int",
+    1
+   ],
+   "sparse.factorization.nonpositive_pivot_count"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_sparse_live_path_evidence",
+    "",
+    "f64_display",
+    1
+   ],
+   "max_abs_dense_sparse_solution_delta"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_sparse_live_path_evidence",
+    "",
+    "f64_display",
+    1
+   ],
+   "sparse_residual"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "build_model_for_members",
+    "?",
+    "error_display",
+    160
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "normalize_node_coordinates",
+    "",
+    "error_display",
+    3
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "unit_conversion_diag",
+    "",
+    600,
+    4032
+   ],
+   "message.into()"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "build_load_case_primitive_loads",
+    "",
+    "error_display",
+    384
+   ],
+   "preview"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "materials_for_modulus_basis_observed",
+    "",
+    "f64_display",
+    16
+   ],
+   "solve_temperature"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "materials_for_modulus_basis_observed",
+    "",
+    "f64_display",
+    16
+   ],
+   "solve_temperature"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "materials_for_modulus_basis_observed",
+    "",
+    "joined_list",
+    2
+   ],
+   "provenance_records.join(\" | \")"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "materials_for_modulus_basis_observed",
+    "",
+    "joined_list",
+    2
+   ],
+   "provenance_records.join(\" | \")"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "materials_for_modulus_basis_observed",
+    "",
+    "f64_display",
+    2
+   ],
+   "temperature.value"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "exact_straight_summary_extrema",
+    "",
+    "error_display",
+    288
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "exact_straight_summary_extrema",
+    "?",
+    "error_display",
+    96
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "exact_straight_summary_extrema",
+    "?",
+    "error_display",
+    96
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "recover_curved_bend_local_forces",
+    "",
+    327,
+    32
+   ],
+   "required"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "recover_curved_bend_local_forces",
+    "",
+    "int",
+    32
+   ],
+   "displacements.len()"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "curved_bend_section_resultants",
+    "",
+    "static",
+    128
+   ],
+   "ELEMENT_DOF"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "curved_bend_section_resultants",
+    "",
+    "int",
+    128
+   ],
+   "corrected_local_forces.len()"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_station_force_results",
+    "",
+    "int",
+    192
+   ],
+   "station"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_station_force_results",
+    "",
+    "int",
+    192
+   ],
+   "station"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_station_force_results",
+    "",
+    "int",
+    192
+   ],
+   "station"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_station_force_results",
+    "",
+    "int",
+    192
+   ],
+   "station"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_station_force_results",
+    "",
+    "int",
+    192
+   ],
+   "station"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_station_force_results",
+    "",
+    "int",
+    192
+   ],
+   "station"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_station_stress_results",
+    "",
+    "error_display",
+    1024
+   ],
+   "sign_convention.replace( \"interpolated element-local\", \"section-equilibrium element-local\" )"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_station_stress_results",
+    "",
+    "int",
+    1024
+   ],
+   "station"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_station_stress_results",
+    "",
+    "int",
+    256
+   ],
+   "station"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_station_stress_results",
+    "",
+    "int",
+    256
+   ],
+   "station"
+  ],
+  [
+   [
+    "product_physics/src/preview_physics.rs",
+    "render_members",
+    "",
+    "error_display",
+    32
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "validate_final_metadata",
+    "",
+    327,
+    8460
+   ],
+   "axis"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "validate_final_metadata",
+    "",
+    327,
+    8460
+   ],
+   "axis"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "validate_final_metadata",
+    "",
+    "static",
+    8460
+   ],
+   "[\"ux\", \"uy\", \"uz\", \"rx\", \"ry\", \"rz\"][i]"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "validate_final_metadata",
+    "",
+    "static",
+    8460
+   ],
+   "if i < 3 { \"force\" } else { \"moment\" }"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "validate_final_metadata",
+    "",
+    "static",
+    8460
+   ],
+   "if end == k::End::J { \":end-j\" } else { \"\" }"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "validate_final_metadata",
+    "",
+    "static",
+    8460
+   ],
+   "if i < 3 { \"force\" } else { \"moment\" }"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "validate_final_metadata",
+    "",
+    "static",
+    8460
+   ],
+   "prefix"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "validate_final_metadata",
+    "",
+    "static",
+    8460
+   ],
+   "tail"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "validate_final_metadata",
+    "",
+    "int",
+    8460
+   ],
+   "case.len()"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "validate_final_metadata",
+    "",
+    "int",
+    8460
+   ],
+   "case.len()"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt.rs",
+    "check_load_state_input",
+    "",
+    "error_display",
+    1
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt.rs",
+    "check_load_state_input",
+    "?",
+    "error_display",
+    1
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt.rs",
+    "check_input_with_physical",
+    "",
+    "error_display",
+    1
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt.rs",
+    "check_input_with_physical",
+    "?",
+    "error_display",
+    1
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt.rs",
+    "exact",
+    "?",
+    "error_display",
+    1
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt.rs",
+    "exact",
+    "?",
+    "error_display",
+    1
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt.rs",
+    "exact",
+    "?",
+    "error_display",
+    1
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/rows.rs",
+    "support_id",
+    "",
+    "int",
+    192
+   ],
+   "case.len()"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/rows.rs",
+    "support_id",
+    "",
+    "int",
+    192
+   ],
+   "support.len()"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "functional_id",
+    "",
+    "int",
+    16402
+   ],
+   "case.len()"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "functional_id",
+    "",
+    "int",
+    16402
+   ],
+   "index"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "lowered_products",
+    "",
+    20,
+    16384
+   ],
+   "i"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "lowered_products",
+    "",
+    20,
+    16384
+   ],
+   "j"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "function",
+    "",
+    "int",
+    8391680
+   ],
+   "index"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "function",
+    "",
+    20,
+    8391680
+   ],
+   "i"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "function",
+    "",
+    "int",
+    1760
+   ],
+   "index"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "recipes",
+    "",
+    20,
+    2115
+   ],
+   "i"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "recipes",
+    "",
+    20,
+    2115
+   ],
+   "i"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "recipes",
+    "",
+    20,
+    2115
+   ],
+   "i"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "recipes",
+    "",
+    20,
+    2115
+   ],
+   "i"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "recipes",
+    "",
+    20,
+    2115
+   ],
+   "i"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "recipes",
+    "",
+    20,
+    2115
+   ],
+   "i"
+  ],
+  [
+   [
+    "product_physics/src/validation.rs",
+    "expect_unit",
+    "",
+    "static",
+    472
+   ],
+   "canonical"
+  ],
+  [
+   [
+    "product_physics/src/validation.rs",
+    "expect_unit",
+    "",
+    "error_display",
+    472
+   ],
+   "message"
+  ],
+  [
+   [
+    "reporting/result_export/src/preview_physics_evidence.rs",
+    "identity",
+    "",
+    "int",
+    50643
+   ],
+   "p.len()"
+  ],
+  [
+   [
+    "reporting/result_export/src/preview_physics_evidence.rs",
+    "identity",
+    "",
+    "f64_display",
+    50643
+   ],
+   "p"
+  ],
+  [
+   [
+    "reporting/result_export/src/preview_physics_evidence.rs",
+    "validate_preview_physics_evidence",
+    "",
+    "error_display",
+    2115
+   ],
+   "e"
+  ],
+  [
+   [
+    "reporting/result_export/src/preview_physics_evidence.rs",
+    "validate_preview_physics_evidence",
+    "",
+    20,
+    2115
+   ],
+   "c"
+  ],
+  [
+   [
+    "reporting/result_export/src/retained_precision.rs",
+    "g5_native",
+    "",
+    "f64_display",
+    4
+   ],
+   "p"
+  ],
+  [
+   [
+    "reporting/result_export/src/retained_precision.rs",
+    "g5_native",
+    "",
+    "f64_display",
+    4
+   ],
+   "p"
+  ],
+  [
+   [
+    "solver/frame_kernel/src/structural.rs",
+    "finish_checked_factor",
+    "?",
+    "error_display",
+    112
+   ],
+   "error"
+  ],
+  [
+   [
+    "solver/frame_kernel/src/structural/formation_check.rs",
+    "detail",
+    "",
+    "error_display",
+    224
+   ],
+   "e"
+  ],
+  [
+   [
+    "solver/frame_kernel/src/structural/formation_check.rs",
+    "detail",
+    "",
+    "error_display",
+    224
+   ],
+   "e"
+  ],
+  [
+   [
+    "solver/frame_kernel/src/structural/formation_check.rs",
+    "detail",
+    "",
+    "error_display",
+    224
+   ],
+   "e"
+  ],
+  [
+   [
+    "solver/frame_kernel/src/structural/formation_check.rs",
+    "detail",
+    "",
+    "f64_display",
+    224
+   ],
+   "s"
+  ],
+  [
+   [
+    "solver/frame_kernel/src/structural/formation_check.rs",
+    "check",
+    "",
+    "int",
+    224
+   ],
+   "user.node_i.index"
+  ],
+  [
+   [
+    "solver/frame_kernel/src/structural/formation_check.rs",
+    "check",
+    "",
+    "int",
+    224
+   ],
+   "user.node_j.index"
+  ],
+  [
+   [
+    "solver/linear_supports/src/lib.rs",
+    "prepare_boundary",
+    "",
+    "int",
+    96
+   ],
+   "support.node_index"
+  ],
+  [
+   [
+    "solver/linear_supports/src/lib.rs",
+    "prepare_boundary",
+    "",
+    "int",
+    96
+   ],
+   "node_count"
+  ],
+  [
+   [
+    "solver/linear_supports/src/lib.rs",
+    "add_restrained_dof",
+    "",
+    "int",
+    768
+   ],
+   "global_dof"
+  ],
+  [
+   [
+    "solver/nonlinear_integration/src/structural_adapter.rs",
+    "symmetry_basis",
+    "",
+    "static",
+    18
+   ],
+   "family_basis"
+  ],
+  [
+   [
+    "product_physics/src/formation_guard.rs",
+    "load_row_finding",
+    "join",
+    null,
+    1
+   ],
+   "()"
+  ],
+  [
+   [
+    "product_physics/src/formation_guard.rs",
+    "recovery_finding",
+    "join",
+    null,
+    1
+   ],
+   "()"
+  ],
+  [
+   [
+    "product_physics/src/formation_guard.rs",
+    "demote",
+    "to_string",
+    "static",
+    3
+   ],
+   "SENSITIVE"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "exact_straight_summary_extrema",
+    "to_string",
+    "error_display",
+    96
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "exact_straight_summary_extrema",
+    "to_string",
+    "error_display",
+    96
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "recover_curved_bend_local_forces",
+    "to_string",
+    "error_display",
+    32
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "recover_curved_bend_local_forces",
+    "to_string",
+    "error_display",
+    32
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "curved_bend_section_resultants",
+    "to_string",
+    "error_display",
+    128
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "curved_bend_section_resultants",
+    "to_string",
+    "error_display",
+    128
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "curved_bend_section_resultants",
+    "to_string",
+    "error_display",
+    128
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_node_displacement_component_results",
+    "to_string",
+    "static",
+    384
+   ],
+   "sign_convention"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_load_contribution_absorbed",
+    "join",
+    "int",
+    1
+   ],
+   "rows"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_station_stress_results",
+    "replace",
+    "static",
+    1024
+   ],
+   "sign_convention"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "ordinary_range_trigger",
+    "clone_text",
+    "error_display",
+    1
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "ordinary_range_trigger",
+    "clone_text",
+    "error_display",
+    1
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solver_blocked",
+    "to_string",
+    "error_display",
+    7
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "unit_symbol_matches_dimension",
+    "to_string",
+    "error_display",
+    472
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "range_scaling_evidence_line",
+    "collect_string",
+    "int",
+    2
+   ],
+   "entries .iter() .take(formation_guard::NAMED) .map(|entry| format!(\" \"))"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_force_scaling_refusal",
+    "to_string",
+    "static",
+    1
+   ],
+   "refusal"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "append_force_scaling_refusal",
+    "to_string",
+    "error_display",
+    1
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "reserve",
+    "to_owned",
+    30,
+    40
+   ],
+   "retained_wire::UNAVAILABLE_CODE"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "reserve",
+    "push_str",
+    "static",
+    40
+   ],
+   "RETAINED_UNAVAILABLE_NOTICE"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "reserve",
+    "diag_literal",
+    null,
+    40
+   ],
+   ""
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "publish",
+    "push_str",
+    "static",
+    6
+   ],
+   "RECEIPT_ENCODING_REASON"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "publish",
+    "push_str",
+    "error_display",
+    6
+   ],
+   "detail"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "to_string",
+    "error_display",
+    32
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "to_string",
+    "error_display",
+    32
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "to_string",
+    "error_display",
+    32
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "to_string",
+    "error_display",
+    32
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "to_string",
+    "error_display",
+    32
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "to_string",
+    "error_display",
+    32
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "clone_text",
+    "error_display",
+    128
+   ],
+   "finding.message"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "clone_text",
+    "error_display",
+    1
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "solve_load_case_observed",
+    "clone_text",
+    "error_display",
+    256
+   ],
+   "finding.message"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "optional_usize",
+    "to_string",
+    "f64_display",
+    6
+   ],
+   "value"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "optional_f64",
+    "to_string",
+    "f64_display",
+    2
+   ],
+   "value"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "build_model_for_members",
+    "to_string",
+    "error_display",
+    160
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "build_model_for_members",
+    "to_string",
+    "error_display",
+    160
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "build_model_for_members",
+    "to_string",
+    "error_display",
+    160
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "normalize_node_coordinates",
+    "to_string",
+    "error_display",
+    288
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "normalize_node_coordinates",
+    "into_text",
+    "static",
+    3
+   ],
+   "to.definition().symbol"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "normalize_quantity",
+    "to_string",
+    "error_display",
+    3741
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "normalize_quantity",
+    "to_string",
+    "error_display",
+    3741
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "normalize_quantity",
+    "to_string",
+    "static",
+    3741
+   ],
+   "to.definition().symbol"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "materials_for_modulus_basis_observed",
+    "join",
+    null,
+    2
+   ],
+   "provenance_records"
+  ],
+  [
+   [
+    "product_physics/src/lib.rs",
+    "materials_for_modulus_basis_observed",
+    "join",
+    null,
+    2
+   ],
+   "provenance_records"
+  ],
+  [
+   [
+    "product_physics/src/pressure_runtime.rs",
+    "problem",
+    "to_string",
+    "f64_display",
+    1536
+   ],
+   "value"
+  ],
+  [
+   [
+    "product_physics/src/preview_physics.rs",
+    "maximum_row",
+    "to_string",
+    "static",
+    32
+   ],
+   "MAXIMUM_SIGN"
+  ],
+  [
+   [
+    "product_physics/src/preview_physics.rs",
+    "render",
+    "to_string",
+    "static",
+    2115
+   ],
+   "ARC_BASIS"
+  ],
+  [
+   [
+    "product_physics/src/preview_physics.rs",
+    "render",
+    "to_string",
+    "static",
+    2115
+   ],
+   "ARC_COORDINATE"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "validate_final_metadata",
+    "to_string",
+    "static",
+    8460
+   ],
+   "STRAIGHT_ENDPOINT_SECTION_SIGN_CONVENTION"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "ordinary_finding",
+    "clone_text",
+    "formation_sentence",
+    1
+   ],
+   "f.sentence"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "ordinary_initial_failure",
+    "clone_text",
+    "error_display",
+    1
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "ordinary_initial_failure",
+    "clone_text",
+    "error_display",
+    1
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "g5a",
+    "clone_text",
+    "error_display",
+    3072
+   ],
+   "cause"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "ordinary_w2_failed",
+    "clone_text",
+    "error_display",
+    1
+   ],
+   "failure"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "ordinary_report",
+    "clone_text",
+    "static",
+    1
+   ],
+   "record.code"
+  ],
+  [
+   [
+    "product_physics/src/retained_product.rs",
+    "freeze_candidate",
+    "clone_text",
+    "error_display",
+    1
+   ],
+   "failure.failure()"
+  ],
+  [
+   [
+    "product_physics/src/retained_wire.rs",
+    "one_case",
+    "to_owned",
+    null,
+    1
+   ],
+   ""
+  ],
+  [
+   [
+    "product_physics/src/source_receipt.rs",
+    "requested",
+    "to_string",
+    "error_display",
+    9
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt.rs",
+    "check_load_state_input",
+    "to_string",
+    "error_display",
+    1
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt.rs",
+    "check_input_with_physical",
+    "to_string",
+    "error_display",
+    1
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt.rs",
+    "checked",
+    "to_string",
+    "error_display",
+    11
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt.rs",
+    "serialized",
+    "to_string",
+    "error_display",
+    7761
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt.rs",
+    "exact",
+    "clone_text",
+    64,
+    1
+   ],
+   "capture.digest"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt.rs",
+    "ordinary",
+    "clone_text",
+    64,
+    1
+   ],
+   "capture.digest"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt.rs",
+    "failed",
+    "clone_text",
+    64,
+    1
+   ],
+   "capture.digest"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt.rs",
+    "finalize_for",
+    "clone_text",
+    2048,
+    2
+   ],
+   "case.failure"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "commitment",
+    "to_string",
+    "error_display",
+    32
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "commitment",
+    "to_string",
+    "error_display",
+    32
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "commitment",
+    "to_string",
+    "error_display",
+    32
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "commitment",
+    "to_string",
+    "error_display",
+    32
+   ],
+   "e"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "function",
+    "to_string",
+    "static",
+    1760
+   ],
+   "[\" \", \" \", \" \", \" \", \" \", \" \"][dof % 6]"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "function",
+    "to_string",
+    "static",
+    1760
+   ],
+   "ACTIONS[*row as usize]"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "function",
+    "to_string",
+    "static",
+    1760
+   ],
+   "{ \" \" }"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "function",
+    "to_string",
+    "static",
+    1760
+   ],
+   "ACTIONS[*component as usize]"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "function",
+    "to_string",
+    "static",
+    1760
+   ],
+   "[\" \", \" \", \" \", \" \", \" \", \" \"][dof % 6]"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "function",
+    "to_string",
+    "static",
+    1760
+   ],
+   "[\" \", \" \", \" \", \" \", \" \", \" \"][*component as usize]"
+  ],
+  [
+   [
+    "product_physics/src/source_receipt/source.rs",
+    "function",
+    "to_string",
+    "static",
+    1760
+   ],
+   "[\" \", \" \", \" \", \" \", \" \", \" \"][dof % 6]"
+  ],
+  [
+   [
+    "product_physics/src/source_recovery.rs",
+    "charge_finalization",
+    "into_text",
+    "error_display",
+    2
+   ],
+   "error"
+  ],
+  [
+   [
+    "product_physics/src/source_recovery.rs",
+    "prepare_sources",
+    "replace",
+    0,
+    768
+   ],
+   "rigid_owner[global]"
+  ],
+  [
+   [
+    "reporting/result_export/src/preview_physics_evidence.rs",
+    "identity",
+    "join",
+    null,
+    16881
+   ],
+   "()"
+  ],
+  [
+   [
+    "reporting/result_export/src/retained_precision.rs",
+    "located",
+    "to_string",
+    20,
+    13248
+   ],
+   "i"
+  ],
+  [
+   [
+    "reporting/result_export/src/retained_precision.rs",
+    "located",
+    "clone_text",
+    "static",
+    69
+   ],
+   "path"
+  ],
+  [
+   [
+    "reporting/result_export/src/source_blocks.rs",
+    "domain_hash",
+    "to_string",
+    "error_display",
+    6
+   ],
+   "e"
+  ],
+  [
+   [
+    "solver/frame_kernel/src/structural.rs",
+    "prepare_bound",
+    "to_owned",
+    "static",
+    18
+   ],
+   "e.basis"
+  ],
+  [
+   [
+    "solver/frame_kernel/src/structural.rs",
+    "gate_symmetry",
+    "clone_text",
+    "symmetry_basis",
+    112
+   ],
+   "self.symmetry_basis"
+  ],
+  [
+   [
+    "solver/frame_kernel/src/structural/exact_boundary.rs",
+    "new_charged",
+    "to_owned",
+    "static",
+    3
+   ],
+   "s.basis"
+  ],
+  [
+   [
+    "solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs",
+    "certify_final",
+    "clone_text",
+    "error_display",
+    1
+   ],
+   "failure"
+  ],
+  [
+   [
+    "solver/frame_kernel/src/structural/sparse.rs",
+    "prepare_sparse_bound",
+    "to_owned",
+    "static",
+    10
+   ],
+   "e.basis"
+  ],
+  [
+   [
+    "solver/frame_kernel/src/structural/sparse.rs",
+    "gate_symmetry",
+    "clone_text",
+    "symmetry_basis",
+    112
+   ],
+   "self.symmetry_basis"
+  ]
+ ],
+ "verdict": "NEW non-candidates: read them"
+}

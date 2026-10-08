@@ -1,0 +1,7 @@
+Checking patch projects/chirality-piping/core/product_physics/src/retained_memory.rs...
+Applied patch projects/chirality-piping/core/product_physics/src/retained_memory.rs cleanly.
+985:    threshold_bytes: 11_274_289_152,
+REGCOPY rev=69002bc862
+pp suite exit 101
+release build exit 0
+CHAIN-DONE

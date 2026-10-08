@@ -1,0 +1,438 @@
+
+running 105 tests
+test retained_memory::law_tests::actual_inputs_map_each_cap_fact ... ok
+test retained_memory::law_tests::admission_bound_adds_r_before_comparing_with_m ... ok
+test retained_memory::law_tests::admit_grants_a_permit_for_the_milestone_in_the_registered_build ... 
+thread 'retained_memory::law_tests::admit_grants_a_permit_for_the_milestone_in_the_registered_build' (113848357) panicked at src/retained_memory_law_tests.rs:352:61:
+SparseInteractive: refused Some(Bound(Exceeds { required: 9800676166, threshold: 4026531840 }))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+test retained_memory::law_tests::an_unreadable_reviewed_input_never_binds ... ok
+test retained_memory::law_tests::b1_sa_d1_4_admits_one_to_c_load_cases ... 
+thread 'retained_memory::law_tests::b1_sa_d1_4_admits_one_to_c_load_cases' (113848359) panicked at src/retained_memory_law_tests.rs:1566:13:
+assertion `left == right` failed: c = 1 SparseInteractive: D1.1 first, then D1.4
+  left: Some(Bound(Exceeds { required: 9800676166, threshold: 4026531840 }))
+ right: None
+FAILED
+test retained_memory::law_tests::b1_sa_envelope_results_bound_is_c_times_p_final ... I89_B1_SA_ENVELOPE_RESULTS mode=sparse_interactive one=(2113, 4096, 687320) three=(6339, 8192, 2171438) p_final=2115
+I89_B1_SA_ENVELOPE_RESULTS mode=dense_scrutiny one=(2114, 4096, 688664) three=(6342, 8192, 2175514) p_final=2115
+ok
+test retained_memory::law_tests::b1_sa_g_b_reads_each_case_and_the_running_total ... 
+thread 'retained_memory::law_tests::b1_sa_g_b_reads_each_case_and_the_running_total' (113848652) panicked at src/retained_memory_law_tests.rs:1668:97:
+SparseInteractive: Some(Bound(Exceeds { required: 9800676166, threshold: 4026531840 }))
+FAILED
+test retained_memory::law_tests::b1_sa_gate_bounds_at_c_are_the_stated_expressions ... ok
+test retained_memory::law_tests::b1_sa_retained_error_text_reads_every_case_slot ... ok
+test retained_memory::law_tests::b1_sa_runner_oracle_literal_is_load_cases_plus_one ... ok
+test retained_memory::law_tests::b1_sa_t3_e_counts_the_requested_cases ... 
+thread 'retained_memory::law_tests::b1_sa_t3_e_counts_the_requested_cases' (113848661) panicked at src/retained_memory_law_tests.rs:1784:13:
+assertion `left == right` failed: case 0's attempt fails and blocks SparseInteractive: admitted
+  left: Some(Bound(Exceeds { required: 9800676166, threshold: 4026531840 }))
+ right: None
+FAILED
+test retained_memory::law_tests::b1_sa_total_loads_row_admits_l_and_refuses_l_plus_one ... ok
+test retained_memory::law_tests::b1_sq_late_capture_form_is_c_times_one_case ... I104_SQ_G_B_BOUND T11=443136 late_capture=114048 one_case=38016 g_b_bound=405120
+ok
+test retained_memory::law_tests::b1_sq_retained_error_text_reads_every_parked_slot_at_c ... ok
+test retained_memory::law_tests::bindings_need_witnesses_inputs_and_reader_layouts ... I65_G5_READER_LAYOUT Validation size=56 align=8
+I65_G5_READER_LAYOUT ValidationError size=64 align=8
+I65_G5_READER_LAYOUT RowClassification size=96 align=8
+I65_G5_READER_LAYOUT AccuracyClass size=16 align=8
+ok
+test retained_memory::law_tests::bound_admits_at_m_and_refuses_above ... ok
+test retained_memory::law_tests::challenge_bounds_are_the_profile ... ok
+test retained_memory::law_tests::complete_facts_read_the_actual_owners ... ok
+test retained_memory::law_tests::d1_3_refuses_one_authored_law_among_several_materials ... ok
+test retained_memory::law_tests::encoder_roundtrip_covers_every_byte ... ok
+test retained_memory::law_tests::every_cap_row_admits_its_cap_and_refuses_cap_plus_one ... ok
+test retained_memory::law_tests::every_family_clause_refuses_with_its_fact ... ok
+test retained_memory::law_tests::every_phase_fact_admits_its_cap_and_refuses_cap_plus_one ... ok
+test retained_memory::law_tests::g_c_declines_w1_when_the_ordinary_solve_was_not_attempted ... ok
+test retained_memory::law_tests::gate_sums_saturate_and_the_longest_string_reads_every_diagnostic_field ... ok
+test retained_memory::law_tests::identity_carries_every_key_in_order ... I65_G5_IDENTITY v1;rustc.release=1.97.1;rustc.commit=8bab26f4f68e0e26f0bb7960be334d5b520ea452;rustc.host=aarch64-apple-darwin;rustc.llvm=22.1.6;target=aarch64-apple-darwin;target.arch=aarch64;target.pointer_width=64;target.endian=little;target.os=macos;target.env=;panic=unwind;profile=debug;opt_level=0;debug_assertions=true;rustflags=;pkg=open_pipe_stress_product_physics@0.2.0
+ok
+test retained_memory::law_tests::identity_matching_is_missing_stale_or_exact ... ok
+test retained_memory::law_tests::late_facts_read_the_actual_owners ... ok
+test retained_memory::law_tests::law_order_reports_the_first_failing_clause ... ok
+test retained_memory::law_tests::maximum_takes_every_phase ... ok
+test retained_memory::law_tests::milestone_and_cap_maximal_inputs_are_inside_d1 ... 
+thread 'retained_memory::law_tests::milestone_and_cap_maximal_inputs_are_inside_d1' (113849129) panicked at src/retained_memory_law_tests.rs:435:13:
+assertion `left == right` failed: D1.1: the qualified build admits; any other is Stale
+  left: Some(Bound(Exceeds { required: 9800676166, threshold: 4026531840 }))
+ right: None
+FAILED
+test retained_memory::law_tests::nested_typed_census_reads_the_roster ... ok
+test retained_memory::law_tests::profile_in_build_record ... I65_G5_PROFILE mode=sparse max_without_R=9733567302 E_mov_plus_R=9800676166 fraction_of_M=0.8693 phase=W3 publication (T16) with the staged copy
+I65_G5_PHASE mode=sparse phase=W1 requested=5060932782 moving=8388608 E_mov_plus_R=5136430254
+I65_G5_PHASE mode=sparse phase=W2 requested=5384364744 moving=8388608 E_mov_plus_R=5459862216
+I65_G5_PHASE mode=sparse phase=W3 requested=9228111683 moving=505455619 E_mov_plus_R=9800676166
+I65_G5_PHASE mode=sparse phase=W4 requested=9012926106 moving=505455619 E_mov_plus_R=9585490589
+I65_G5_PHASE mode=sparse phase=W5 requested=5956386704 moving=8388608 E_mov_plus_R=6031884176
+I65_G5_PHASE mode=sparse phase=X1 requested=8341702998 moving=504784788 E_mov_plus_R=8913596650
+I65_G5_PHASE mode=sparse phase=X2 requested=5015463216 moving=8388608 E_mov_plus_R=5090960688
+I65_G5_ESTIMATE_WEIGHT mode=sparse bytes=0
+I65_G5_PROFILE mode=dense max_without_R=9792698646 E_mov_plus_R=9859807510 fraction_of_M=0.8745 phase=W3 publication (T16) with the staged copy
+I65_G5_PHASE mode=dense phase=W1 requested=5120064126 moving=8388608 E_mov_plus_R=5195561598
+I65_G5_PHASE mode=dense phase=W2 requested=5443496088 moving=8388608 E_mov_plus_R=5518993560
+I65_G5_PHASE mode=dense phase=W3 requested=9287243027 moving=505455619 E_mov_plus_R=9859807510
+I65_G5_PHASE mode=dense phase=W4 requested=9072057450 moving=505455619 E_mov_plus_R=9644621933
+I65_G5_PHASE mode=dense phase=W5 requested=6015518048 moving=8388608 E_mov_plus_R=6091015520
+I65_G5_PHASE mode=dense phase=X1 requested=8400834342 moving=504784788 E_mov_plus_R=8972727994
+I65_G5_PHASE mode=dense phase=X2 requested=5074594560 moving=8388608 E_mov_plus_R=5150092032
+I65_G5_ESTIMATE_WEIGHT mode=dense bytes=0
+I65_G5_ATOM InBuild	Node(&String,())	208	200
+I65_G5_ATOM InBuild	Node(&str,&ResultItem)	384	376
+I65_G5_ATOM InBuild	Node(&str,())	296	288
+I65_G5_ATOM InBuild	Node((String,String),())	648	600
+I65_G5_ATOM InBuild	Node(String,())	384	376
+I65_G5_ATOM InBuild	Node(String,BTreeMap)	648	640
+I65_G5_ATOM InBuild	Node(String,ResultItem)	3640	3632
+I65_G5_ATOM SourceUpper	Node(String,RowTreatment)	1528	1520
+I65_G5_ATOM InBuild	Node(String,Value)	736	736
+I65_G5_ATOM SourceUpper	Node(TrackerKey,())	256	512
+I65_G5_ATOM SourceUpper	Node(TrackerKey,Tracker)	1224	4096
+I65_G5_ATOM InBuild	Node(usize,())	208	200
+I65_G5_ATOM InBuild	Node(usize,ResultItem)	3464	3456
+I65_G5_ATOM InBuild	Node(usize,String)	472	464
+I65_G5_ATOM Text	Text(audit_error)	16384	16384
+I65_G5_ATOM Text	Text(err)	16384	16384
+I65_G5_ATOM Text	Text(formation_detail)	16426	16426
+I65_G5_ATOM Text	Text(recovery_finding)	10466306	10466306
+I65_G5_ATOM Text	Text(row)	11474	11474
+I65_G5_ATOM Text	Text(sym)	368	368
+I65_G5_ATOM InBuild	s(&Value)	8	8
+I65_G5_ATOM InBuild	s(&str)	16	16
+I65_G5_ATOM InBuild	s((&str,&T))	24	24
+I65_G5_ATOM InBuild	s((&str,&Value))	24	32
+I65_G5_ATOM InBuild	s((&str,StressRecoveryResult))	192	216
+I65_G5_ATOM InBuild	s((&str,usize))	24	24
+I65_G5_ATOM InBuild	s((&str,usize,u64))	32	32
+I65_G5_ATOM SourceUpper	s((Content,Content))	64	64
+I65_G5_ATOM InBuild	s((EWS,EWS,f64))	4304	2216
+I65_G5_ATOM InBuild	s((QuantityId,Binary64Outcome))	40	32
+I65_G5_ATOM InBuild	s((QuantityId,u64))	24	16
+I65_G5_ATOM InBuild	s((String,DerivedSection))	88	120
+I65_G5_ATOM InBuild	s((String,ResultItem))	320	320
+I65_G5_ATOM InBuild	s((String,String))	48	48
+I65_G5_ATOM InBuild	s((String,[f64;3]))	48	48
+I65_G5_ATOM InBuild	s((String,[f64;6]))	72	72
+I65_G5_ATOM InBuild	s((String,f64,f64))	40	40
+I65_G5_ATOM InBuild	s((String,usize))	32	32
+I65_G5_ATOM InBuild	s((Wide,Wide,Wide))	432	432
+I65_G5_ATOM InBuild	s((bool,f64,Wide))	160	160
+I65_G5_ATOM InBuild	s((f64,f64))	16	16
+I65_G5_ATOM InBuild	s((u32,Kind,u64))	16	16
+I65_G5_ATOM InBuild	s((u32,SpringKind))	8	8
+I65_G5_ATOM InBuild	s((usize,(f64,f64)))	24	24
+I65_G5_ATOM InBuild	s((usize,ExactAccumulator,bool))	1104	1120
+I65_G5_ATOM InBuild	s((usize,LedgerNet))	48	40
+I65_G5_ATOM InBuild	s((usize,PublishedValue))	32	56
+I65_G5_ATOM InBuild	s((usize,VecPair))	32	32
+I65_G5_ATOM InBuild	s((usize,[f64;3],usize,[f64;3]))	64	64
+I65_G5_ATOM InBuild	s((usize,f64))	16	16
+I65_G5_ATOM InBuild	s((usize,f64,f64))	24	24
+I65_G5_ATOM InBuild	s((usize,usize))	16	16
+I65_G5_ATOM InBuild	s((usize,usize,Matrix12))	1168	1168
+I65_G5_ATOM InBuild	s((usize,usize,bool))	24	24
+I65_G5_ATOM InBuild	s(AdapterSnapshot)	296	512
+I65_G5_ATOM InBuild	s(AffineTerm)	32	32
+I65_G5_ATOM InBuild	s(AliasE)	80	32
+I65_G5_ATOM InBuild	s(AnalysisStatus)	1	24
+I65_G5_ATOM InBuild	s(ArcCasePrep)	432	1024
+I65_G5_ATOM InBuild	s(ArcGroupPrep)	368	1024
+I65_G5_ATOM InBuild	s(ArcPrepared)	32	512
+I65_G5_ATOM InBuild	s(AttemptRecord)	880	256
+I65_G5_ATOM InBuild	s(Authored<Vec<ExpansionLawInput>>)	24	32
+I65_G5_ATOM InBuild	s(BasisRecord)	72	96
+I65_G5_ATOM InBuild	s(Binary64Outcome)	24	24
+I65_G5_ATOM InBuild	s(BlockBound<16>)	592	576
+I65_G5_ATOM InBuild	s(BlockBound<4>)	208	192
+I65_G5_ATOM InBuild	s(BlockBound<8>)	336	320
+I65_G5_ATOM InBuild	s(BlockCertificate<16>)	1648	576
+I65_G5_ATOM InBuild	s(BlockCertificate<4>)	592	192
+I65_G5_ATOM InBuild	s(BlockCertificate<8>)	944	320
+I65_G5_ATOM InBuild	s(BlockNorms<16>)	1008	288
+I65_G5_ATOM InBuild	s(BlockNorms<4>)	336	96
+I65_G5_ATOM InBuild	s(BlockNorms<8>)	560	160
+I65_G5_ATOM InBuild	s(BlockRefusal)	24	48
+I65_G5_ATOM InBuild	s(BlockWitness)	120	120
+I65_G5_ATOM InBuild	s(BodyCoverage)	64	32
+I65_G5_ATOM InBuild	s(BodyGeometry)	24	160
+I65_G5_ATOM SourceUpper	s(BodyMapE)	52	56
+I65_G5_ATOM InBuild	s(BodyReport<16>)	1872	1152
+I65_G5_ATOM InBuild	s(BodyReport<4>)	624	384
+I65_G5_ATOM InBuild	s(BodyReport<8>)	1040	640
+I65_G5_ATOM InBuild	s(BoundedCoefficients<16>)	728	20736
+I65_G5_ATOM InBuild	s(BoundedCoefficients<4>)	248	6912
+I65_G5_ATOM InBuild	s(BoundedCoefficients<8>)	408	11520
+I65_G5_ATOM InBuild	s(CaptureError)	152	48
+I65_G5_ATOM InBuild	s(CaseSlot)	1336	1560
+I65_G5_ATOM InBuild	s(ConstraintMapE)	32	40
+I65_G5_ATOM InBuild	s(ContributionE)	8	40
+I65_G5_ATOM InBuild	s(ContributionRounding)	96	96
+I65_G5_ATOM InBuild	s(ConversionE)	32	48
+I65_G5_ATOM InBuild	s(ConversionEvent)	40	64
+I65_G5_ATOM InBuild	s(CoverageFact)	24	32
+I65_G5_ATOM SourceUpper	s(Derived)	336	360
+I65_G5_ATOM InBuild	s(Diagnostic)	144	152
+I65_G5_ATOM SourceUpper	s(EnclosureE)	288	304
+I65_G5_ATOM InBuild	s(ExactAccumulator)	1088	1104
+I65_G5_ATOM InBuild	s(ExactWideSum)	2144	1104
+I65_G5_ATOM InBuild	s(Expansion)	32	32
+I65_G5_ATOM InBuild	s(Expansion6)	192	144
+I65_G5_ATOM InBuild	s(FinalRowConversion)	32	64
+I65_G5_ATOM InBuild	s(FinalizedSourceBlockCase)	1328	1200
+I65_G5_ATOM InBuild	s(ForceContribution)	40	40
+I65_G5_ATOM InBuild	s(ForceTerm)	56	48
+I65_G5_ATOM InBuild	s(FrameElement)	136	200
+I65_G5_ATOM InBuild	s(FrameNode)	32	40
+I65_G5_ATOM InBuild	s(FunctionalDescriptor)	120	128
+I65_G5_ATOM SourceUpper	s(IntervalE)	288	32
+I65_G5_ATOM InBuild	s(LaneTerminal)	4168	256
+I65_G5_ATOM SourceUpper	s(LawE)	112	64
+I65_G5_ATOM InBuild	s(LazyE)	4304	2232
+I65_G5_ATOM InBuild	s(LinearSupport)	208	120
+I65_G5_ATOM InBuild	s(LoadFidelityRow)	104	160
+I65_G5_ATOM InBuild	s(MaterialDescriptor)	272	96
+I65_G5_ATOM InBuild	s(MaterialInput)	224	224
+I65_G5_ATOM InBuild	s(MaterialSelection)	272	64
+I65_G5_ATOM SourceUpper	s(MaximumE)	193	128
+I65_G5_ATOM InBuild	s(MechanicsEnvelope)	736	640
+I65_G5_ATOM InBuild	s(MemberIdentity)	64	120
+I65_G5_ATOM InBuild	s(MemberMapE)	64	64
+I65_G5_ATOM InBuild	s(MemberOperators<16>)	23632	20736
+I65_G5_ATOM InBuild	s(MemberOperators<4>)	7888	6912
+I65_G5_ATOM InBuild	s(MemberOperators<8>)	13136	11520
+I65_G5_ATOM InBuild	s(MemberRecord)	208	200
+I65_G5_ATOM InBuild	s(MemberRecovery)	696	696
+I65_G5_ATOM InBuild	s(NodalLoadContribution)	48	64
+I65_G5_ATOM InBuild	s(NodalMapE)	64	48
+I65_G5_ATOM InBuild	s(NodeMapE)	48	40
+I65_G5_ATOM InBuild	s(Node_SR)	184	64
+I65_G5_ATOM InBuild	s(OperationalSpent)	168	96
+I65_G5_ATOM InBuild	s(Option<BoundRefusal>)	16	56
+I65_G5_ATOM SourceUpper	s(Option<FormationRecord>)	56	64
+I65_G5_ATOM InBuild	s(Option<Wide<16>>)	144	152
+I65_G5_ATOM InBuild	s(Option<Wide<4>>)	48	56
+I65_G5_ATOM InBuild	s(Option<Wide<8>>)	80	88
+I65_G5_ATOM InBuild	s(Option<[f64;3]>)	32	32
+I65_G5_ATOM InBuild	s(Option<f64>)	16	16
+I65_G5_ATOM InBuild	s(Option<i32>)	8	8
+I65_G5_ATOM InBuild	s(Option<usize>)	16	16
+I65_G5_ATOM InBuild	s(OrdinarySeed)	400	400
+I65_G5_ATOM InBuild	s(Pair)	16	16
+I65_G5_ATOM InBuild	s(PivotEvidence)	48	48
+I65_G5_ATOM InBuild	s(PivotScreen<16>)	296	448
+I65_G5_ATOM InBuild	s(PivotScreen<4>)	104	160
+I65_G5_ATOM InBuild	s(PivotScreen<8>)	168	256
+I65_G5_ATOM InBuild	s(PrecisionState)	16	64
+I65_G5_ATOM InBuild	s(PreparedAttemptView)	1648	512
+I65_G5_ATOM InBuild	s(PreparedMemberEvent)	1304	256
+I65_G5_ATOM InBuild	s(PreviewLoadCase)	584	512
+I65_G5_ATOM InBuild	s(PreviewNode)	72	96
+I65_G5_ATOM InBuild	s(PreviewPipe)	400	384
+I65_G5_ATOM InBuild	s(PreviewSupport)	832	400
+I65_G5_ATOM InBuild	s(PrimitiveLoad)	88	120
+I65_G5_ATOM InBuild	s(PrimitiveLoadInput)	184	256
+I65_G5_ATOM InBuild	s(PrimitiveSource)	248	1024
+I65_G5_ATOM InBuild	s(ProductMemberFacts)	160	512
+I65_G5_ATOM InBuild	s(ProductRecipe)	16	16
+I65_G5_ATOM InBuild	s(ProductRow)	112	96
+I65_G5_ATOM InBuild	s(ProductRowSpec)	72	96
+I65_G5_ATOM InBuild	s(ProductRowVerdict)	48	48
+I65_G5_ATOM InBuild	s(ProductValue)	9	32
+I65_G5_ATOM SourceUpper	s(Projection)	192	80
+I65_G5_ATOM InBuild	s(ProjectionOutcome)	32	64
+I65_G5_ATOM InBuild	s(PublishedRow)	64	64
+I65_G5_ATOM InBuild	s(PublishedValue)	24	48
+I65_G5_ATOM InBuild	s(QuadraticStressSpan)	88	64
+I65_G5_ATOM InBuild	s(QualifiedFunctionalProjection)	72	96
+I65_G5_ATOM InBuild	s(QualifiedProjection)	80	96
+I65_G5_ATOM InBuild	s(QuantityMeta)	20	32
+I65_G5_ATOM InBuild	s(Ratio)	64	64
+I65_G5_ATOM InBuild	s(RecordOutcome)	48	48
+I65_G5_ATOM InBuild	s(RecordedCase)	112	1024
+I65_G5_ATOM InBuild	s(RecordedInvocation)	240	1024
+I65_G5_ATOM InBuild	s(RecoveryRecord)	104	152
+I65_G5_ATOM SourceUpper	s(RegistryE)	1608	128
+I65_G5_ATOM InBuild	s(ResidualRow)	104	120
+I65_G5_ATOM InBuild	s(ResultBasisRef)	48	48
+I65_G5_ATOM InBuild	s(ResultItem)	296	296
+I65_G5_ATOM InBuild	s(RetainedFunctionalProjection)	64	72
+I65_G5_ATOM InBuild	s(RetainedProjection)	64	72
+I65_G5_ATOM InBuild	s(RetainedSolve)	2144	2048
+I65_G5_ATOM InBuild	s(Row6)	48	48
+I65_G5_ATOM InBuild	s(RowBinding)	64	64
+I65_G5_ATOM InBuild	s(RowClassification)	96	128
+I65_G5_ATOM SourceUpper	s(RowTreatment)	104	104
+I65_G5_ATOM InBuild	s(RunRow)	1	32
+I65_G5_ATOM InBuild	s(SectionMapE)	160	64
+I65_G5_ATOM InBuild	s(Shared<16>)	752	400
+I65_G5_ATOM InBuild	s(Shared<4>)	752	400
+I65_G5_ATOM InBuild	s(Shared<8>)	752	400
+I65_G5_ATOM InBuild	s(Solved<16>)	88	120
+I65_G5_ATOM InBuild	s(Solved<4>)	88	120
+I65_G5_ATOM InBuild	s(Solved<8>)	88	120
+I65_G5_ATOM InBuild	s(SolverObservations)	96	96
+I65_G5_ATOM InBuild	s(SpringAction)	48	48
+I65_G5_ATOM InBuild	s(SpringEntry)	112	80
+I65_G5_ATOM InBuild	s(SpringIdentity)	32	64
+I65_G5_ATOM InBuild	s(SpringMapE)	32	48
+I65_G5_ATOM InBuild	s(SrcConstraint)	16	16
+I65_G5_ATOM InBuild	s(SrcCoord)	24	24
+I65_G5_ATOM InBuild	s(SrcMember)	88	96
+I65_G5_ATOM InBuild	s(SrcNodal)	40	48
+I65_G5_ATOM InBuild	s(SrcSpring)	24	24
+I65_G5_ATOM InBuild	s(SrcStation)	16	24
+I65_G5_ATOM InBuild	s(SrcSupport)	64	72
+I65_G5_ATOM InBuild	s(StationMapE)	16	32
+I65_G5_ATOM InBuild	s(StationResultants)	64	104
+I65_G5_ATOM InBuild	s(StiffnessContribution)	24	24
+I65_G5_ATOM InBuild	s(StraightPipeElement)	176	256
+I65_G5_ATOM InBuild	s(StressFinding)	56	80
+I65_G5_ATOM InBuild	s(String)	24	24
+I65_G5_ATOM InBuild	s(SupportActions)	128	128
+I65_G5_ATOM InBuild	s(SupportCoverage)	6	64
+I65_G5_ATOM InBuild	s(SupportFinding)	56	80
+I65_G5_ATOM InBuild	s(SupportMapE)	38	64
+I65_G5_ATOM InBuild	s(SupportVector)	72	80
+I65_G5_ATOM InBuild	s(SymmetricMatrixEntry)	24	24
+I65_G5_ATOM SourceUpper	s(TableE)	56	48
+I65_G5_ATOM InBuild	s(Tag)	16	8
+I65_G5_ATOM InBuild	s(TemperaturePoint)	208	208
+I65_G5_ATOM InBuild	s(TermIdentity)	64	64
+I65_G5_ATOM InBuild	s(ThreadPacketOutput)	1704	2048
+I65_G5_ATOM SourceUpper	s(TrackerE)	4472	64
+I65_G5_ATOM InBuild	s(Validation)	56	96
+I65_G5_ATOM InBuild	s(Value)	32	32
+I65_G5_ATOM InBuild	s(Vec)	24	24
+I65_G5_ATOM InBuild	s(Vec<&ForceTerm>)	24	24
+I65_G5_ATOM InBuild	s(Vec<Expansion>)	24	24
+I65_G5_ATOM InBuild	s(Vec<Wide>)	24	24
+I65_G5_ATOM InBuild	s(Vec<f64>)	24	24
+I65_G5_ATOM InBuild	s(Vec<usize>)	24	24
+I65_G5_ATOM InBuild	s(VerificationReport<16>)	328	400
+I65_G5_ATOM InBuild	s(VerificationReport<4>)	328	400
+I65_G5_ATOM InBuild	s(VerificationReport<8>)	328	400
+I65_G5_ATOM InBuild	s(VerifyShared<16>)	688	240
+I65_G5_ATOM InBuild	s(VerifyShared<4>)	592	240
+I65_G5_ATOM InBuild	s(VerifyShared<8>)	624	240
+I65_G5_ATOM InBuild	s(Wide<16>)	144	144
+I65_G5_ATOM InBuild	s(Wide<4>)	48	48
+I65_G5_ATOM InBuild	s(Wide<8>)	80	80
+I65_G5_ATOM InBuild	s([PublishedValue;12])	288	576
+I65_G5_ATOM InBuild	s([bool;6])	6	6
+I65_G5_ATOM InBuild	s([usize;2])	16	16
+I65_G5_ATOM InBuild	s(f64)	8	8
+I65_G5_ATOM InBuild	s(u32)	4	4
+I65_G5_ATOM InBuild	s(u64)	8	8
+I65_G5_ATOM InBuild	s(usize)	8	8
+ok
+test retained_memory::law_tests::profile_laws_hold_in_this_build ... ok
+test retained_memory::law_tests::profile_transcribes_the_python_chain_exactly ... ok
+test retained_memory::law_tests::raw_text_census_reads_lengths_and_control_bytes ... ok
+test retained_memory::law_tests::refusal_kinds_are_the_schema_preconditions ... ok
+test retained_memory::law_tests::registered_g_c_declines_only_unattempted_solves ... 
+thread 'retained_memory::law_tests::registered_g_c_declines_only_unattempted_solves' (113849140) panicked at src/retained_memory_law_tests.rs:1526:13:
+assertion `left == right` failed: document kind: admitted
+  left: Some(Bound(Exceeds { required: 9800676166, threshold: 4026531840 }))
+ right: None
+FAILED
+test retained_memory::law_tests::reserved_stack_is_r_with_a_test_override ... ok
+test retained_memory::law_tests::restraint_capacity_total_is_the_sum_over_supports ... ok
+test retained_memory::law_tests::reviewed_inputs_bind_the_lock_and_the_reader_statics ... I65_G5_REVIEWED_INPUTS v1;Cargo.lock=4f494db6d8a6eca87e7a16d8561197f20b1951a033bd3a6c424acfff5613475b;../../schemas/physics_source_recovery.schema.json=3bb969555d5616af6eefdb68788ee4a74a8a3681c42fe9aae577a5d25a51ac5c;../../schemas/retained_precision_mp_v2.schema.json=07951edacfedd410c153929ee75bb5bada15dbd222369ec63240c678b233b61c;../../fixtures/results/retained_precision_prepared_ordinary_v1.json=3e0779a45a74cf0bb3a4ed08ed3a6b44347aea8a3c33b59e9dd92130426ee296;../../fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json=c74742ce6a936384e00986006e6a0b2e6bb11f190451e876eed9ffa11903c6a8;../../fixtures/results/semantic_contract_v0_2.json=4d6886d19e304db897e5e9f8f0054cbee91ba7795868f9698e2bbe070bde94da;../../fixtures/results/semantic_contract_v0_3_precision_1.json=d75aacee175e178dbdeb256d89a65f4b375265f7da077725ee635af33df51d7e;../../fixtures/results/semantic_contract_v0_3_physics_1.json=9a2cf6268b57bd5265a1a115497c07450819dd4d03cd5ab618097bd9d19da8cc;../../fixtures/results/semantic_contract_v0_3_load_reference_1.json=44bc41c06f589fab6ce931ac0eaa5344765ff64fd5f880cc2dd69ecb839c4f4d;../../fixtures/results/semantic_contract_v0_3_load_reference_source_1.json=d1628194a7730f427843b00228dd233cf92b8e7d26f3bc31c660a3ea59e28337;../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json=ae55503d44a4750714a35c423623e38cf4132099134097193024d1635bfbc88a;../../fixtures/results/semantic_contract_v0_3_physics_source_1.json=ba13f2aefd7a38bd725e5f111e6ec30144bc8776aa957c6278ee7b1178298ba1;../../fixtures/results/semantic_contract_v0_3_source_blocks_1.json=5f299065f15a157bbedf9467a598994ae684c4ecb3f851bbcb291981ec550a9f;../../schemas/source_block_recovery.schema.json=544e196d2f7bef27276acc160aa19ab738a4f7949e846d2e8871328d2208129c
+ok
+test retained_memory::law_tests::sha256_matches_the_sha2_dependency ... ok
+test retained_memory::law_tests::structural_budgets_are_u3s ... I65_G5_BUDGET staged 254737894
+I65_G5_BUDGET successor 572021960
+I65_G5_BUDGET invocation 15782080
+I65_G5_BUDGET reader 3040757322
+I65_G5_BUDGET statics 5397696
+ok
+test retained_memory::law_tests::the_registered_profile_is_the_only_permit_source ... 
+thread 'retained_memory::law_tests::the_registered_profile_is_the_only_permit_source' (113849180) panicked at src/retained_memory_law_tests.rs:316:5:
+assertion `left == right` failed: M = 10.5 GiB (R6a)
+  left: 4026531840
+ right: 11274289152
+FAILED
+test retained_memory::law_tests::typed_capacity_and_units_rows_read_the_actual_owners ... ok
+test retained_memory::law_tests::typed_walk_reads_request_materials_and_temperature_point_ids ... ok
+test retained_memory::law_tests::unknown_stale_overflow_and_partial_refusals_keep_every_fact ... ok
+test retained_memory::tests::actual_retained_entry_dispatches_ordinary_once ... ok
+test retained_memory::tests::arithmetic_refusal_keeps_prefix_and_never_wraps ... ok
+test retained_memory::tests::missing_stale_overflow_and_unknowns_cannot_mint_a_permit ... ok
+test retained_memory::tests::object_keys_and_array_spare_capacity_are_observed ... ok
+test retained_memory::tests::prefix_depth_and_value_limits_are_honest ... ok
+test retained_memory::witness_tests::b1_sq_inputs_are_i86s_and_the_committed_helpers ... ok
+test retained_memory::witness_tests::b1_t4_w2b_and_w6_phys_r4_inputs_are_no_triggered_case_pins ... 
+thread 'retained_memory::witness_tests::b1_t4_w2b_and_w6_phys_r4_inputs_are_no_triggered_case_pins' (113849704) panicked at src/retained_facade_tests.rs:1284:13:
+assertion `left == right` failed: W2b's input SparseInteractive: admitted (inside D1)
+  left: Some(Bound(Exceeds { required: 9800676166, threshold: 4026531840 }))
+ right: None
+FAILED
+test retained_memory::witness_tests::control_ordinary_b2_k1e3::dense ... ignored
+test retained_memory::witness_tests::control_ordinary_b2_k1e3::sparse ... ignored
+test retained_memory::witness_tests::control_ordinary_c1::dense ... ignored
+test retained_memory::witness_tests::control_ordinary_c1::sparse ... ignored
+test retained_memory::witness_tests::control_ordinary_i3_three_case::dense ... ignored
+test retained_memory::witness_tests::control_ordinary_i3_three_case::sparse ... ignored
+test retained_memory::witness_tests::control_ordinary_milestone::dense ... ignored
+test retained_memory::witness_tests::control_ordinary_milestone::sparse ... ignored
+test retained_memory::witness_tests::control_ordinary_w2::dense ... ignored
+test retained_memory::witness_tests::control_ordinary_w2::sparse ... ignored
+test retained_memory::witness_tests::control_ordinary_w_c2::dense ... ignored
+test retained_memory::witness_tests::control_ordinary_w_c2::sparse ... ignored
+test retained_memory::witness_tests::control_process_floor ... ignored
+test retained_memory::witness_tests::def_o_b2_k1e3::dense ... ignored
+test retained_memory::witness_tests::def_o_b2_k1e3::sparse ... ignored
+test retained_memory::witness_tests::def_o_c1::dense ... ignored
+test retained_memory::witness_tests::def_o_c1::sparse ... ignored
+test retained_memory::witness_tests::def_o_i3_three_case::dense ... ignored
+test retained_memory::witness_tests::def_o_i3_three_case::sparse ... ignored
+test retained_memory::witness_tests::def_o_w2::dense ... ignored
+test retained_memory::witness_tests::def_o_w2::sparse ... ignored
+test retained_memory::witness_tests::def_o_w_c2::dense ... ignored
+test retained_memory::witness_tests::def_o_w_c2::sparse ... ignored
+test retained_memory::witness_tests::witness_c1_cap_maximal_publishes::dense ... ignored
+test retained_memory::witness_tests::witness_c1_cap_maximal_publishes::sparse ... ignored
+test retained_memory::witness_tests::witness_headroom_w1_at_one_mebibyte::dense ... ignored
+test retained_memory::witness_tests::witness_headroom_w1_at_one_mebibyte::sparse ... ignored
+test retained_memory::witness_tests::witness_i3_three_case::dense ... ignored
+test retained_memory::witness_tests::witness_i3_three_case::sparse ... ignored
+test retained_memory::witness_tests::witness_w1_milestone::dense ... ignored
+test retained_memory::witness_tests::witness_w1_milestone::sparse ... ignored
+test retained_memory::witness_tests::witness_w2_cap_maximal::dense ... ignored
+test retained_memory::witness_tests::witness_w2_cap_maximal::sparse ... ignored
+test retained_memory::witness_tests::witness_w2_deep_milestone_publishes::dense ... ignored
+test retained_memory::witness_tests::witness_w2_deep_milestone_publishes::sparse ... ignored
+test retained_memory::witness_tests::witness_w2b_cap_maximal_passed_report_no_triggered_case::dense ... ignored
+test retained_memory::witness_tests::witness_w2b_cap_maximal_passed_report_no_triggered_case::sparse ... ignored
+test retained_memory::witness_tests::witness_w2b_replacement_b2_k1e3::dense ... ignored
+test retained_memory::witness_tests::witness_w2b_replacement_b2_k1e3::sparse ... ignored
+test retained_memory::witness_tests::witness_w3_exact_selected::dense ... ignored
+test retained_memory::witness_tests::witness_w3_exact_selected::sparse ... ignored
+test retained_memory::witness_tests::witness_w4_preparation_refusal::dense ... ignored
+test retained_memory::witness_tests::witness_w4_preparation_refusal::sparse ... ignored
+test retained_memory::witness_tests::witness_w6_force_scaled::dense ... ignored
+test retained_memory::witness_tests::witness_w6_force_scaled::sparse ... ignored
+test retained_memory::witness_tests::witness_w6_phys_r4_input_no_triggered_case::dense ... ignored
+test retained_memory::witness_tests::witness_w6_phys_r4_input_no_triggered_case::sparse ... ignored
+test retained_memory::witness_tests::witness_w7_fault_fallbacks ... ignored
+test retained_memory::witness_tests::witness_w_c2_ac_publishes_sparse ... ignored
+test retained_memory::witness_tests::witness_w_c2_publishes::dense ... ignored
+test retained_memory::witness_tests::witness_w_c2_publishes::sparse ... ignored
+
+failures:
+
+failures:
+    retained_memory::law_tests::admit_grants_a_permit_for_the_milestone_in_the_registered_build
+    retained_memory::law_tests::b1_sa_d1_4_admits_one_to_c_load_cases
+    retained_memory::law_tests::b1_sa_g_b_reads_each_case_and_the_running_total
+    retained_memory::law_tests::b1_sa_t3_e_counts_the_requested_cases
+    retained_memory::law_tests::milestone_and_cap_maximal_inputs_are_inside_d1
+    retained_memory::law_tests::registered_g_c_declines_only_unattempted_solves
+    retained_memory::law_tests::the_registered_profile_is_the_only_permit_source
+    retained_memory::witness_tests::b1_t4_w2b_and_w6_phys_r4_inputs_are_no_triggered_case_pins
+
+test result: FAILED. 46 passed; 8 failed; 51 ignored; 0 measured; 526 filtered out; finished in 3.35s
+

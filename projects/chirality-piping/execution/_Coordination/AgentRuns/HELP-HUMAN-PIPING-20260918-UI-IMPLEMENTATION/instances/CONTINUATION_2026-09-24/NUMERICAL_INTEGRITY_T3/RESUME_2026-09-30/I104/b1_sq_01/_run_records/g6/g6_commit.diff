@@ -1,0 +1,1628 @@
+commit 69002bc8620ed10a0ec4910afc7ab5c8210b3acd
+Author: Ryan C Tufts <ryan@chirality.ai>
+Date:   Thu Oct 8 05:55:29 2026 -0600
+
+    piping(T3 B1 SQ G6): re-pins at M = 10.5 GiB, G-B's SF-1 bound, N-1/N-2/N-5, the B1 witnesses and challenge, E-12 (I104)
+    
+    - Profile: the GENERATED PROFILE block regenerated at C = 3 with RV112 N-5's adapter
+      reservations priced (SP's parked CaseSlots and per-case counters in T11; the batch
+      PrimitiveSource vector in T13): 247 atoms, three new InBuild. E_mov,max + R in-build
+      9,800,676,166 B sparse / 9,859,807,510 B dense (0.8693 / 0.8745 M at M = 10.5 GiB).
+    - G-B (RV112 SF-1): phase_caps().late reads T11 less one case's late capture,
+      F_T11_LATE_CAPTURE / C; a law test checks every coefficient of the form is a multiple of C.
+    - Law tests: const M and the threshold pin at 11,274,289,152 B; the 0.9 M margin pins as
+      floor(0.9 M); TEXT_TEXT_DIAG_ENV, L_PUB, L_DIAGID, Text(err), D_env, PushCap(D_env) at C = 3;
+      PINNED_RECORD; challenge_bounds_are_the_profile extended to CAP_BYTES and the N1 text.
+      N-1: the runner's C_PLUS_ONE line is read from source and held to C + 1. N-2: a C = 3
+      parked-slot test with text in the last parked slot alone.
+    - Witnesses: one entry point per mode; W2b's replacement (b2_k1e3), W-C2 (and at R/64),
+      W-C2 (A, C), c1, the three-case input (inside D1 by assess); RSS_TIME controls; a DEF-O
+      report (NC-1). Shared inputs in tests/common/b1_sq_inputs.rs, pinned by I86's input hashes.
+    - Challenge: CAP_BYTES 16 GiB; A1-S-1's bound (W1 work, a successor or an N1 notice, by
+      E_mov,max; otherwise the W1 phase); one entry point per input, mode and route.
+    - E-12: s11f's rule 8 now scans retained_product.rs (two integer accumulations listed).
+    
+    The registration (threshold_bytes) is not applied: until it is, 8 of the retained_memory::
+    lib tests, which need the registered M, fail by design (registration.diff, for ROOT after R6b).
+    
+    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+diff --git a/projects/chirality-piping/core/product_physics/src/retained_memory.rs b/projects/chirality-piping/core/product_physics/src/retained_memory.rs
+index 7e65fb1abf..10b4451302 100644
+--- a/projects/chirality-piping/core/product_physics/src/retained_memory.rs
++++ b/projects/chirality-piping/core/product_physics/src/retained_memory.rs
+@@ -1123,7 +1123,7 @@ pub(super) mod profile {
+     pub(crate) const TEXT_TEXT_SYM: u64 = 368; // Text(sym)
+     pub(crate) const L_DIAGID: u64 = 2330;
+     pub(crate) const L_PUB: u64 = 2599962;
+-    pub(crate) const ATOMS: usize = 244;
++    pub(crate) const ATOMS: usize = 247;
+     /// The atoms, in index order: their names (as the records write them) and bindings.
+     pub(crate) const ATOM_NAMES: [&str; ATOMS] = [
+         "Node(&String,())",
+@@ -1212,6 +1212,7 @@ pub(super) mod profile {
+         "s(BoundedCoefficients<4>)",
+         "s(BoundedCoefficients<8>)",
+         "s(CaptureError)",
++        "s(CaseSlot)",
+         "s(ConstraintMapE)",
+         "s(ContributionE)",
+         "s(ContributionRounding)",
+@@ -1279,6 +1280,7 @@ pub(super) mod profile {
+         "s(PreviewSupport)",
+         "s(PrimitiveLoad)",
+         "s(PrimitiveLoadInput)",
++        "s(PrimitiveSource)",
+         "s(ProductMemberFacts)",
+         "s(ProductRecipe)",
+         "s(ProductRow)",
+@@ -1366,6 +1368,7 @@ pub(super) mod profile {
+         "s(Wide<8>)",
+         "s([PublishedValue;12])",
+         "s([bool;6])",
++        "s([usize;2])",
+         "s(f64)",
+         "s(u32)",
+         "s(u64)",
+@@ -1464,6 +1467,7 @@ pub(super) mod profile {
+         Binding::InBuild,
+         Binding::InBuild,
+         Binding::InBuild,
++        Binding::InBuild,
+         Binding::SourceUpper,
+         Binding::InBuild,
+         Binding::SourceUpper,
+@@ -1531,6 +1535,7 @@ pub(super) mod profile {
+         Binding::InBuild,
+         Binding::InBuild,
+         Binding::InBuild,
++        Binding::InBuild,
+         Binding::SourceUpper,
+         Binding::InBuild,
+         Binding::InBuild,
+@@ -1616,6 +1621,7 @@ pub(super) mod profile {
+         Binding::InBuild,
+         Binding::InBuild,
+         Binding::InBuild,
++        Binding::InBuild,
+     ];
+     /// The in-build value of each atom (Estimate atoms carry their design-record stride).
+     pub(crate) const ATOM_VALUES: [u64; ATOMS] = [
+@@ -1705,6 +1711,7 @@ pub(super) mod profile {
+         (fkr::BOUNDED_COEFFICIENTS_4) as u64, // s(BoundedCoefficients<4>) (kernel export structural::retained_resource)
+         (fkr::BOUNDED_COEFFICIENTS_8) as u64, // s(BoundedCoefficients<8>) (kernel export structural::retained_resource)
+         (size_of::<crate::retained_product::CaptureError>()) as u64, // s(CaptureError)
++        (size_of::<crate::retained_product::CaseSlot>()) as u64, // s(CaseSlot)
+         (max_usize(fkr::SOURCE_CONSTRAINT, size_of::<(String, usize)>())) as u64, // s(ConstraintMapE) (C2 constraint map: the kernel Constraint or a support identity entry, the larger)
+         (fkr::CONTRIBUTION) as u64, // s(ContributionE) (assemble.rs: Structure.items Vec<Contribution>)
+         (fkr::CONTRIBUTION_ROUNDING) as u64, // s(ContributionRounding) (kernel export structural::retained_resource)
+@@ -1772,6 +1779,7 @@ pub(super) mod profile {
+         (size_of::<crate::PreviewSupport>()) as u64, // s(PreviewSupport)
+         (size_of::<open_pipe_stress_primitive_loads::PrimitiveLoad>()) as u64, // s(PrimitiveLoad)
+         (size_of::<crate::PreviewPrimitiveLoad>()) as u64, // s(PrimitiveLoadInput)
++        (size_of::<open_pipe_stress_frame_kernel::structural::retained_api::PrimitiveSource>()) as u64, // s(PrimitiveSource)
+         (fkr::PRODUCT_MEMBER_FACTS) as u64, // s(ProductMemberFacts) (kernel export structural::retained_resource)
+         (fkr::PRODUCT_RECIPE) as u64, // s(ProductRecipe) (kernel export structural::retained_resource)
+         (fkr::PRODUCT_FINAL_ROW + fkr::PRODUCT_ROW_VERDICT) as u64, // s(ProductRow) (per final row: the descriptor ProductFinalRow and PP's verdict copy)
+@@ -1859,6 +1867,7 @@ pub(super) mod profile {
+         (fkr::WIDE_8) as u64, // s(Wide<8>) (kernel export structural::retained_resource)
+         (fkr::PUBLISHED_VALUES_12) as u64, // s([PublishedValue;12]) (kernel export structural::retained_resource)
+         (size_of::<[bool; 6]>()) as u64, // s([bool;6])
++        (size_of::<[usize; 2]>()) as u64, // s([usize;2])
+         (size_of::<f64>()) as u64, // s(f64)
+         (size_of::<u32>()) as u64, // s(u32)
+         (size_of::<u64>()) as u64, // s(u64)
+@@ -1953,6 +1962,7 @@ pub(super) mod profile {
+         6912,
+         11520,
+         48,
++        1560,
+         40,
+         40,
+         96,
+@@ -2020,6 +2030,7 @@ pub(super) mod profile {
+         400,
+         120,
+         256,
++        1024,
+         512,
+         16,
+         96,
+@@ -2107,6 +2118,7 @@ pub(super) mod profile {
+         80,
+         576,
+         6,
++        16,
+         8,
+         4,
+         8,
+@@ -2119,49 +2131,49 @@ pub(super) mod profile {
+         pub(crate) terms: &'static [(usize, u64)],
+     }
+     pub(crate) const FORMS: [Form; 47] = [
+-        Form { name: "BODY", constant: 176510682, terms: &[(8, 91557), (222, 106209)] },
++        Form { name: "BODY", constant: 176510682, terms: &[(8, 91557), (224, 106209)] },
+         Form { name: "HELPER_moving", constant: 8388608, terms: &[] },
+-        Form { name: "INVOC", constant: 262272, terms: &[(8, 19662), (222, 32768)] },
+-        Form { name: "NOTICE", constant: 2154, terms: &[(93, 3), (208, 3)] },
+-        Form { name: "NOTICE_moving", constant: 0, terms: &[(93, 22911)] },
+-        Form { name: "O_base_dense", constant: 163415409, terms: &[(0, 5673), (5, 6345), (6, 7209), (8, 57541), (14, 24), (15, 294), (16, 15), (17, 3), (18, 24906), (19, 15), (21, 1920), (22, 1232), (24, 9), (25, 640), (26, 96), (31, 64), (32, 1536), (33, 20480), (35, 192), (37, 576), (40, 84096), (43, 192), (46, 576), (48, 288), (49, 2976), (51, 608), (52, 224), (53, 384), (55, 148656), (57, 147), (62, 4), (75, 1344), (88, 143328), (93, 65536), (95, 1728), (97, 1440576), (101, 1152), (102, 3072), (103, 1472), (104, 32), (105, 19824), (110, 64), (111, 6144), (113, 16), (122, 96), (123, 96), (124, 768), (127, 786432), (130, 1920), (134, 672), (135, 1152), (136, 1728), (137, 4032), (140, 5184), (147, 3), (148, 32), (149, 32), (150, 32), (151, 768), (152, 384), (162, 1344), (163, 12), (164, 6144), (165, 1536), (167, 12864), (168, 15744), (171, 96), (173, 7680), (174, 3), (175, 30573), (176, 5280), (177, 1152), (182, 5673), (192, 96), (193, 32), (204, 12), (205, 126144), (206, 32), (207, 72), (208, 23047), (209, 96), (211, 256), (213, 96), (214, 24576), (217, 256), (222, 78338), (223, 158622), (224, 1728), (225, 6912), (227, 1728), (228, 7520), (238, 192), (243, 7162)] },
+-        Form { name: "O_base_sparse", constant: 142055889, terms: &[(0, 5673), (5, 6345), (6, 7209), (8, 57541), (14, 24), (15, 294), (16, 15), (17, 3), (18, 24906), (19, 15), (21, 1920), (22, 1232), (24, 9), (25, 640), (26, 96), (31, 64), (32, 1536), (33, 20480), (35, 192), (37, 576), (40, 84096), (43, 192), (46, 576), (48, 288), (49, 2976), (50, 3456), (51, 4064), (52, 224), (53, 384), (55, 148656), (57, 147), (62, 4), (75, 1344), (88, 143328), (93, 65536), (95, 1728), (97, 280512), (101, 1152), (102, 3072), (103, 1472), (104, 32), (105, 19824), (110, 64), (111, 6144), (113, 16), (122, 96), (123, 96), (124, 768), (127, 786432), (130, 1920), (134, 672), (135, 1152), (136, 1728), (137, 3456), (140, 5184), (147, 3), (148, 32), (149, 32), (150, 32), (151, 768), (152, 384), (162, 1344), (163, 12), (164, 6144), (165, 1536), (167, 12864), (168, 15744), (171, 96), (173, 7680), (174, 3), (175, 30573), (176, 5280), (177, 1152), (182, 5673), (192, 96), (193, 32), (204, 12), (205, 126144), (206, 32), (207, 72), (208, 23047), (209, 96), (211, 256), (213, 96), (214, 12288), (217, 256), (222, 78338), (223, 141342), (224, 1728), (227, 3456), (228, 9824), (238, 192), (243, 7156)] },
+-        Form { name: "STAGED", constant: 248544558, terms: &[(8, 531), (93, 22911), (116, 1), (175, 6345), (208, 25380), (222, 480)] },
+-        Form { name: "STATICS", constant: 369376, terms: &[(8, 5801), (222, 23712)] },
+-        Form { name: "SUCC", constant: 429924104, terms: &[(8, 182010), (222, 254328)] },
++        Form { name: "INVOC", constant: 262272, terms: &[(8, 19662), (224, 32768)] },
++        Form { name: "NOTICE", constant: 2154, terms: &[(94, 3), (210, 3)] },
++        Form { name: "NOTICE_moving", constant: 0, terms: &[(94, 22911)] },
++        Form { name: "O_base_dense", constant: 163415409, terms: &[(0, 5673), (5, 6345), (6, 7209), (8, 57541), (14, 24), (15, 294), (16, 15), (17, 3), (18, 24906), (19, 15), (21, 1920), (22, 1232), (24, 9), (25, 640), (26, 96), (31, 64), (32, 1536), (33, 20480), (35, 192), (37, 576), (40, 84096), (43, 192), (46, 576), (48, 288), (49, 2976), (51, 608), (52, 224), (53, 384), (55, 148656), (57, 147), (62, 4), (75, 1344), (89, 143328), (94, 65536), (96, 1728), (98, 1440576), (102, 1152), (103, 3072), (104, 1472), (105, 32), (106, 19824), (111, 64), (112, 6144), (114, 16), (123, 96), (124, 96), (125, 768), (128, 786432), (131, 1920), (135, 672), (136, 1152), (137, 1728), (138, 4032), (141, 5184), (148, 3), (149, 32), (150, 32), (151, 32), (152, 768), (153, 384), (164, 1344), (165, 12), (166, 6144), (167, 1536), (169, 12864), (170, 15744), (173, 96), (175, 7680), (176, 3), (177, 30573), (178, 5280), (179, 1152), (184, 5673), (194, 96), (195, 32), (206, 12), (207, 126144), (208, 32), (209, 72), (210, 23047), (211, 96), (213, 256), (215, 96), (216, 24576), (219, 256), (224, 78338), (225, 158622), (226, 1728), (227, 6912), (229, 1728), (230, 7520), (240, 192), (246, 7162)] },
++        Form { name: "O_base_sparse", constant: 142055889, terms: &[(0, 5673), (5, 6345), (6, 7209), (8, 57541), (14, 24), (15, 294), (16, 15), (17, 3), (18, 24906), (19, 15), (21, 1920), (22, 1232), (24, 9), (25, 640), (26, 96), (31, 64), (32, 1536), (33, 20480), (35, 192), (37, 576), (40, 84096), (43, 192), (46, 576), (48, 288), (49, 2976), (50, 3456), (51, 4064), (52, 224), (53, 384), (55, 148656), (57, 147), (62, 4), (75, 1344), (89, 143328), (94, 65536), (96, 1728), (98, 280512), (102, 1152), (103, 3072), (104, 1472), (105, 32), (106, 19824), (111, 64), (112, 6144), (114, 16), (123, 96), (124, 96), (125, 768), (128, 786432), (131, 1920), (135, 672), (136, 1152), (137, 1728), (138, 3456), (141, 5184), (148, 3), (149, 32), (150, 32), (151, 32), (152, 768), (153, 384), (164, 1344), (165, 12), (166, 6144), (167, 1536), (169, 12864), (170, 15744), (173, 96), (175, 7680), (176, 3), (177, 30573), (178, 5280), (179, 1152), (184, 5673), (194, 96), (195, 32), (206, 12), (207, 126144), (208, 32), (209, 72), (210, 23047), (211, 96), (213, 256), (215, 96), (216, 12288), (219, 256), (224, 78338), (225, 141342), (226, 1728), (229, 3456), (230, 9824), (240, 192), (246, 7156)] },
++        Form { name: "STAGED", constant: 248544558, terms: &[(8, 531), (94, 22911), (117, 1), (177, 6345), (210, 25380), (224, 480)] },
++        Form { name: "STATICS", constant: 369376, terms: &[(8, 5801), (224, 23712)] },
++        Form { name: "SUCC", constant: 429924104, terms: &[(8, 182010), (224, 254328)] },
+         Form { name: "T07_moving", constant: 1797413, terms: &[] },
+-        Form { name: "T11", constant: 281152, terms: &[(34, 32), (36, 8), (37, 96), (63, 1), (85, 3), (114, 8), (117, 96), (128, 192), (135, 576), (138, 12), (153, 96), (191, 3), (194, 96), (196, 768), (197, 96), (198, 96), (199, 384), (200, 96), (201, 384), (202, 96), (218, 384), (239, 96), (241, 576)] },
+-        Form { name: "T11_late_capture", constant: 49536, terms: &[(135, 576), (196, 768), (197, 96), (198, 96), (199, 384), (200, 96), (201, 384), (202, 96), (241, 576)] },
+-        Form { name: "T11_ordinary_seed", constant: 31104, terms: &[(138, 12)] },
+-        Form { name: "T12", constant: 1595190, terms: &[(44, 384), (45, 384), (47, 768), (51, 12288), (58, 3), (59, 3), (77, 96), (78, 96), (86, 768), (87, 12288), (96, 12), (98, 96), (112, 24), (118, 96), (125, 384), (126, 96), (135, 1152), (139, 3456), (166, 6144), (172, 24), (179, 2016), (184, 96), (195, 96), (196, 2112), (197, 384), (198, 336), (199, 1152), (200, 336), (201, 1056), (202, 336), (203, 384), (212, 96), (216, 12288), (228, 2304), (241, 2304), (242, 53760), (243, 125757)] },
+-        Form { name: "T13", constant: 751698, terms: &[(9, 156), (10, 156), (28, 768), (29, 6144), (30, 6144), (38, 1536), (39, 768), (41, 384), (42, 192), (61, 15), (64, 6144), (65, 1536), (66, 768), (67, 768), (68, 768), (69, 768), (70, 768), (71, 768), (72, 768), (73, 768), (74, 10752), (77, 96), (79, 96), (80, 96), (81, 96), (82, 288), (83, 96), (84, 96), (109, 1536), (119, 192), (120, 192), (121, 96), (129, 768), (131, 63744), (132, 31488), (133, 31488), (141, 768), (142, 1536), (143, 768), (144, 12), (161, 12288), (166, 6144), (178, 3), (185, 3), (186, 6), (187, 3), (188, 3), (189, 6), (190, 3), (215, 62400), (220, 5376), (226, 4032), (228, 576), (229, 3), (230, 3), (231, 3), (232, 3), (233, 3), (234, 3), (235, 418752), (236, 226752), (237, 152928)] },
+-        Form { name: "T14", constant: 6550704, terms: &[(56, 12288), (60, 3), (76, 96), (89, 12288), (91, 96), (94, 12288), (106, 12288), (108, 12288), (115, 96), (127, 786432), (155, 12288), (156, 12288), (157, 12288), (158, 24576), (160, 12288), (183, 6144), (210, 96), (235, 13824), (240, 12288)] },
+-        Form { name: "T15", constant: 12288, terms: &[(54, 3), (90, 1536), (99, 12288), (107, 6), (128, 192), (146, 96), (169, 3), (170, 3)] },
+-        Form { name: "T16_P1", constant: 301279080, terms: &[(8, 203587), (22, 8192), (145, 1), (154, 6345), (180, 6345), (208, 8448), (222, 247670)] },
+-        Form { name: "T16_P2", constant: 3179483861, terms: &[(8, 492724), (22, 8192), (145, 1), (154, 6345), (180, 6345), (208, 8448), (222, 1436616)] },
+-        Form { name: "T16_P3", constant: 2392798627, terms: &[(8, 494938), (22, 8192), (145, 1), (154, 6345), (180, 6345), (208, 8480), (222, 1143246)] },
+-        Form { name: "T16_P4", constant: 807075258, terms: &[(8, 403382), (22, 8192), (145, 1), (154, 6345), (180, 6345), (208, 8192), (222, 505992)] },
++        Form { name: "T11", constant: 281152, terms: &[(34, 32), (36, 8), (37, 96), (63, 1), (85, 3), (86, 2), (115, 8), (118, 96), (129, 192), (136, 576), (139, 12), (155, 96), (193, 3), (196, 96), (198, 768), (199, 96), (200, 96), (201, 384), (202, 96), (203, 384), (204, 96), (220, 384), (241, 96), (242, 6), (244, 576)] },
++        Form { name: "T11_late_capture", constant: 49536, terms: &[(136, 576), (198, 768), (199, 96), (200, 96), (201, 384), (202, 96), (203, 384), (204, 96), (244, 576)] },
++        Form { name: "T11_ordinary_seed", constant: 31104, terms: &[(139, 12)] },
++        Form { name: "T12", constant: 1595190, terms: &[(44, 384), (45, 384), (47, 768), (51, 12288), (58, 3), (59, 3), (77, 96), (78, 96), (87, 768), (88, 12288), (97, 12), (99, 96), (113, 24), (119, 96), (126, 384), (127, 96), (136, 1152), (140, 3456), (168, 6144), (174, 24), (181, 2016), (186, 96), (197, 96), (198, 2112), (199, 384), (200, 336), (201, 1152), (202, 336), (203, 1056), (204, 336), (205, 384), (214, 96), (218, 12288), (230, 2304), (244, 2304), (245, 53760), (246, 125757)] },
++        Form { name: "T13", constant: 751698, terms: &[(9, 156), (10, 156), (28, 768), (29, 6144), (30, 6144), (38, 1536), (39, 768), (41, 384), (42, 192), (61, 15), (64, 6144), (65, 1536), (66, 768), (67, 768), (68, 768), (69, 768), (70, 768), (71, 768), (72, 768), (73, 768), (74, 10752), (77, 96), (79, 96), (80, 96), (81, 96), (82, 288), (83, 96), (84, 96), (110, 1536), (120, 192), (121, 192), (122, 96), (130, 768), (132, 63744), (133, 31488), (134, 31488), (142, 768), (143, 1536), (144, 768), (145, 12), (154, 3), (163, 12288), (168, 6144), (180, 3), (187, 3), (188, 6), (189, 3), (190, 3), (191, 6), (192, 3), (217, 62400), (222, 5376), (228, 4032), (230, 576), (231, 3), (232, 3), (233, 3), (234, 3), (235, 3), (236, 3), (237, 418752), (238, 226752), (239, 152928)] },
++        Form { name: "T14", constant: 6550704, terms: &[(56, 12288), (60, 3), (76, 96), (90, 12288), (92, 96), (95, 12288), (107, 12288), (109, 12288), (116, 96), (128, 786432), (157, 12288), (158, 12288), (159, 12288), (160, 24576), (162, 12288), (185, 6144), (212, 96), (237, 13824), (243, 12288)] },
++        Form { name: "T15", constant: 12288, terms: &[(54, 3), (91, 1536), (100, 12288), (108, 6), (129, 192), (147, 96), (171, 3), (172, 3)] },
++        Form { name: "T16_P1", constant: 301279080, terms: &[(8, 203587), (22, 8192), (146, 1), (156, 6345), (182, 6345), (210, 8448), (224, 247670)] },
++        Form { name: "T16_P2", constant: 3179483861, terms: &[(8, 492724), (22, 8192), (146, 1), (156, 6345), (182, 6345), (210, 8448), (224, 1436616)] },
++        Form { name: "T16_P3", constant: 2392798627, terms: &[(8, 494938), (22, 8192), (146, 1), (156, 6345), (182, 6345), (210, 8480), (224, 1143246)] },
++        Form { name: "T16_P4", constant: 807075258, terms: &[(8, 403382), (22, 8192), (146, 1), (156, 6345), (182, 6345), (210, 8192), (224, 505992)] },
+         Form { name: "T16_moving", constant: 505455619, terms: &[] },
+-        Form { name: "T17_V1", constant: 1762234115, terms: &[(8, 183114), (208, 288), (222, 743463)] },
+-        Form { name: "T17_V2_clone", constant: 429924104, terms: &[(8, 182010), (222, 254328)] },
+-        Form { name: "T17_V2_hash", constant: 2802332626, terms: &[(8, 271350), (208, 256), (222, 1184952)] },
+-        Form { name: "T17_V3", constant: 31959932, terms: &[(8, 84990), (208, 384), (222, 72448)] },
+-        Form { name: "T17_V4", constant: 20638269, terms: &[(2, 10455), (3, 39), (8, 24111), (20, 204743), (21, 1024), (23, 24576), (181, 8192), (208, 153909), (222, 25380), (223, 32768)] },
+-        Form { name: "T17_V5", constant: 437110973, terms: &[(2, 10455), (3, 39), (8, 188355), (20, 149064), (21, 1024), (23, 24576), (181, 8192), (208, 153909), (222, 254328), (223, 32768)] },
+-        Form { name: "T17_V6", constant: 277198989, terms: &[(2, 10455), (3, 39), (8, 238583), (20, 149064), (21, 1024), (23, 24576), (181, 8192), (208, 154453), (222, 403223), (223, 32768)] },
++        Form { name: "T17_V1", constant: 1762234115, terms: &[(8, 183114), (210, 288), (224, 743463)] },
++        Form { name: "T17_V2_clone", constant: 429924104, terms: &[(8, 182010), (224, 254328)] },
++        Form { name: "T17_V2_hash", constant: 2802332626, terms: &[(8, 271350), (210, 256), (224, 1184952)] },
++        Form { name: "T17_V3", constant: 31959932, terms: &[(8, 84990), (210, 384), (224, 72448)] },
++        Form { name: "T17_V4", constant: 20638269, terms: &[(2, 10455), (3, 39), (8, 24111), (20, 204743), (21, 1024), (23, 24576), (183, 8192), (210, 153909), (224, 25380), (225, 32768)] },
++        Form { name: "T17_V5", constant: 437110973, terms: &[(2, 10455), (3, 39), (8, 188355), (20, 149064), (21, 1024), (23, 24576), (183, 8192), (210, 153909), (224, 254328), (225, 32768)] },
++        Form { name: "T17_V6", constant: 277198989, terms: &[(2, 10455), (3, 39), (8, 238583), (20, 149064), (21, 1024), (23, 24576), (183, 8192), (210, 154453), (224, 403223), (225, 32768)] },
+         Form { name: "T17_moving_invocation", constant: 1179864, terms: &[] },
+         Form { name: "T17_moving_publication", constant: 505455619, terms: &[] },
+-        Form { name: "T17_output", constant: 0, terms: &[(181, 8192), (221, 1)] },
+-        Form { name: "T19", constant: 8192, terms: &[(219, 1)] },
+-        Form { name: "T25_I1", constant: 3093923008, terms: &[(2, 5852), (4, 1270), (8, 376467), (27, 16384), (62, 4), (113, 8), (147, 3), (148, 32), (149, 32), (150, 32), (152, 384), (175, 6345), (208, 6729), (217, 128), (222, 1296181)] },
+-        Form { name: "T25_I2", constant: 1252731066, terms: &[(2, 5852), (4, 1270), (8, 248673), (27, 16384), (62, 4), (113, 8), (147, 3), (148, 32), (149, 32), (150, 32), (152, 384), (175, 6345), (208, 6793), (217, 128), (222, 397276)] },
+-        Form { name: "T25_I3", constant: 619075938, terms: &[(2, 5852), (4, 1270), (8, 223395), (27, 16384), (62, 4), (113, 8), (147, 3), (148, 32), (149, 32), (150, 32), (152, 384), (175, 6345), (208, 6537), (217, 128), (222, 279088)] },
+-        Form { name: "T25_S1", constant: 20579900, terms: &[(8, 39320), (21, 384), (22, 400), (25, 192), (26, 32), (27, 16384), (31, 64), (37, 64), (49, 256), (53, 32), (55, 16784), (62, 4), (75, 256), (97, 37248), (101, 256), (102, 256), (103, 64), (104, 32), (105, 3088), (110, 64), (113, 12), (124, 128), (130, 256), (134, 32), (135, 192), (137, 192), (147, 3), (148, 32), (149, 32), (150, 32), (151, 256), (152, 384), (167, 2144), (193, 32), (205, 12832), (206, 32), (208, 2272), (211, 256), (217, 192), (222, 65536), (223, 14154), (228, 640), (243, 256)] },
+-        Form { name: "T25_S2", constant: 5594299, terms: &[(21, 384), (22, 320), (25, 128), (26, 32), (37, 64), (49, 64), (53, 32), (55, 16784), (101, 128), (102, 128), (103, 32), (105, 3088), (130, 128), (134, 32), (135, 192), (137, 192), (205, 8192), (208, 2080), (223, 13386), (228, 192)] },
+-        Form { name: "T25_S3", constant: 78439670, terms: &[(1, 424), (4, 353), (7, 424), (8, 2034), (12, 353), (13, 353), (92, 2115), (159, 2048), (182, 2115), (222, 1152)] },
+-        Form { name: "T25_S4", constant: 367697553, terms: &[(8, 384010), (11, 78), (159, 2048), (182, 2115), (208, 512), (222, 1051510), (228, 192)] },
+-        Form { name: "T25_S5", constant: 70217356, terms: &[(8, 13718), (100, 1), (159, 2048), (182, 2115), (222, 9036)] },
+-        Form { name: "T25_carried_case", constant: 137034882, terms: &[(8, 22107), (159, 6144), (182, 6345), (222, 14418)] },
++        Form { name: "T17_output", constant: 0, terms: &[(183, 8192), (223, 1)] },
++        Form { name: "T19", constant: 8192, terms: &[(221, 1)] },
++        Form { name: "T25_I1", constant: 3093923008, terms: &[(2, 5852), (4, 1270), (8, 376467), (27, 16384), (62, 4), (114, 8), (148, 3), (149, 32), (150, 32), (151, 32), (153, 384), (177, 6345), (210, 6729), (219, 128), (224, 1296181)] },
++        Form { name: "T25_I2", constant: 1252731066, terms: &[(2, 5852), (4, 1270), (8, 248673), (27, 16384), (62, 4), (114, 8), (148, 3), (149, 32), (150, 32), (151, 32), (153, 384), (177, 6345), (210, 6793), (219, 128), (224, 397276)] },
++        Form { name: "T25_I3", constant: 619075938, terms: &[(2, 5852), (4, 1270), (8, 223395), (27, 16384), (62, 4), (114, 8), (148, 3), (149, 32), (150, 32), (151, 32), (153, 384), (177, 6345), (210, 6537), (219, 128), (224, 279088)] },
++        Form { name: "T25_S1", constant: 20579900, terms: &[(8, 39320), (21, 384), (22, 400), (25, 192), (26, 32), (27, 16384), (31, 64), (37, 64), (49, 256), (53, 32), (55, 16784), (62, 4), (75, 256), (98, 37248), (102, 256), (103, 256), (104, 64), (105, 32), (106, 3088), (111, 64), (114, 12), (125, 128), (131, 256), (135, 32), (136, 192), (138, 192), (148, 3), (149, 32), (150, 32), (151, 32), (152, 256), (153, 384), (169, 2144), (195, 32), (207, 12832), (208, 32), (210, 2272), (213, 256), (219, 192), (224, 65536), (225, 14154), (230, 640), (246, 256)] },
++        Form { name: "T25_S2", constant: 5594299, terms: &[(21, 384), (22, 320), (25, 128), (26, 32), (37, 64), (49, 64), (53, 32), (55, 16784), (102, 128), (103, 128), (104, 32), (106, 3088), (131, 128), (135, 32), (136, 192), (138, 192), (207, 8192), (210, 2080), (225, 13386), (230, 192)] },
++        Form { name: "T25_S3", constant: 78439670, terms: &[(1, 424), (4, 353), (7, 424), (8, 2034), (12, 353), (13, 353), (93, 2115), (161, 2048), (184, 2115), (224, 1152)] },
++        Form { name: "T25_S4", constant: 367697553, terms: &[(8, 384010), (11, 78), (161, 2048), (184, 2115), (210, 512), (224, 1051510), (230, 192)] },
++        Form { name: "T25_S5", constant: 70217356, terms: &[(8, 13718), (101, 1), (161, 2048), (184, 2115), (224, 9036)] },
++        Form { name: "T25_carried_case", constant: 137034882, terms: &[(8, 22107), (161, 6144), (184, 6345), (224, 14418)] },
+         Form { name: "T25_moving", constant: 504784788, terms: &[] },
+         Form { name: "TAV_W", constant: 4301774658, terms: &[] },
+         Form { name: "TAV_X", constant: 4009007112, terms: &[] },
+@@ -2319,7 +2331,7 @@ pub(super) mod profile {
+     pub(crate) const DENSE: Option<(u64, usize)> = maximum(&phases_dense(&ATOM_VALUES));
+     /// The Python chain's own evaluation (ASSUMED strides), for the transcription check.
+     #[cfg(test)]
+-    pub(crate) const PYTHON_CHECK: [(u64, &str); 2] = [(9521289203, "W3 publication (T16) with the staged copy"), (9580420547, "W3 publication (T16) with the staged copy")];
++    pub(crate) const PYTHON_CHECK: [(u64, &str); 2] = [(9521295491, "W3 publication (T16) with the staged copy"), (9580426835, "W3 publication (T16) with the staged copy")];
+ }
+ // ---- END GENERATED PROFILE ----
+ 
+@@ -2672,7 +2684,12 @@ pub(super) const P_FINAL: u64 = (7 * caps::NODES + 51 * caps::MEMBERS + 8 * caps
+ /// The gate bounds. Count bounds are D1's caps; text bounds are 2× the G4 text
+ /// atoms (exact-capacity copies at most double: API_G4.md §2); the preview tree
+ /// bounds are ordinary_caps.py's PREVIEW facts at the caps. The byte bounds (T11, T11
+-/// without its late capture, T11.4) are the generated profile's in-build forms.
++/// without one case's late capture, T11.4) are the generated profile's in-build forms.
++/// B1 SQ (RV112 SF-1): G-B at case k reads the capture's cumulative tally, which already holds
++/// cases 0…k−1's late captures, so its bound is T11 less **one** case's late capture:
++/// `F_T11_LATE_CAPTURE / C`. The generator prices the late capture per requested case, so the
++/// form is exactly C times one case's (G5 checks the c = 1 and c = C forms; a law test checks
++/// every coefficient is a multiple of C).
+ /// B1 SA (option S3; I82 STUDY §4.3; PLAN_v2 §2.3), at C = `LOAD_CASES`: G-B bounds each
+ /// case's loads by l and their running total by L; G-C bounds the result rows, their
+ /// capacity and text by C·P_final (RV107 N-13), the contract-evidence facts by C times
+@@ -2685,7 +2702,7 @@ pub(super) const fn phase_caps() -> PhaseCaps {
+     let k = if 6 * n < RESTRAINTS as u64 { 6 * n } else { RESTRAINTS as u64 };
+     PhaseCaps {
+         late: [n, m, m, g, LOADS as u64, TOTAL_LOADS as u64, k, SPRINGS as u64, 2 * MATERIALS as u64,
+-            profile_bytes(profile::F_T11).saturating_sub(profile_bytes(profile::F_T11_LATE_CAPTURE))],
++            profile_bytes(profile::F_T11).saturating_sub(profile_bytes(profile::F_T11_LATE_CAPTURE) / c)],
+         complete: [
+             c * P_FINAL,
+             push_capacity(c * P_FINAL),
+diff --git a/projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs b/projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs
+index b0e8b308e3..8d4664c528 100644
+--- a/projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs
++++ b/projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs
+@@ -9,7 +9,10 @@ use serde_json::json;
+ 
+ const MILESTONE: &str = include_str!("../../../fixtures/product_preview/rf_skew_t_cant_off_122_r1e-04.request.json");
+ const MODES: [PreviewSolverMode; 2] = [PreviewSolverMode::SparseInteractive, PreviewSolverMode::DenseScrutiny];
+-const M: u64 = 4_026_531_840;
++/// M (D-7): 10.5 GiB, ROOT's R6a ruling on B1's G5 (provisional; final at R6b).
++const M: u64 = 11_274_289_152;
++/// The 0.9 M margin rule's limit, ⌊0.9 M⌋ (`profile_laws_hold_in_this_build` pins its value).
++const MARGIN: u64 = 9 * M / 10;
+ 
+ fn milestone() -> Value {
+     serde_json::from_str(MILESTONE).unwrap()
+@@ -310,7 +313,7 @@ fn the_registered_profile_is_the_only_permit_source() {
+     // G6: exactly one production profile, registered by reviewed change (decision 7: no test permit).
+     assert_eq!(REGISTERED_PROFILES.len(), 1);
+     assert_eq!(REGISTERED_PROFILES[0].identity, super::law_tests::PINNED_RECORD_IDENTITY, "the qualified build is the pinned record's");
+-    assert_eq!(REGISTERED_PROFILES[0].threshold_bytes, 4_026_531_840);
++    assert_eq!(REGISTERED_PROFILES[0].threshold_bytes, 11_274_289_152, "M = 10.5 GiB (R6a)");
+     let source = include_str!("retained_memory.rs");
+     let production = &source[..source.find("#[cfg(test)]\n#[path = \"retained_memory_law_tests.rs\"]").unwrap()];
+     assert_eq!(production.matches("RegisteredProfile {").count(), 2, "the definition and the one registered entry: no other literal");
+@@ -352,7 +355,7 @@ fn admit_grants_a_permit_for_the_milestone_in_the_registered_build() {
+         let required = cap_priced_maximum(mode).unwrap() + RESERVED_STACK_BYTES as u64;
+         // RV89 G6 S-3: admission's own bound is the mode's maximum plus R (64 MiB).
+         assert_eq!(report.law().required, Some(required), "{mode:?}: admit adds R before comparing with M");
+-        assert!(required <= 3_623_878_656, "the 0.9 M margin holds at admission");
++        assert!(required <= MARGIN, "the 0.9 M margin holds at admission");
+         // Headless is refused at D1.0 even in the registered build.
+         let raw = milestone();
+         let invocation = json!({"request": raw, "solver_mode": mode.as_str()});
+@@ -846,7 +849,7 @@ fn admission_bound_adds_r_before_comparing_with_m() {
+     for mode in MODES {
+         let maximum = cap_priced_maximum(mode).unwrap();
+         assert_eq!(admission_bound(Ok(maximum), M), Ok(maximum + r), "{mode:?}");
+-        assert!(maximum + r <= 3_623_878_656, "{mode:?}: the 0.9 M margin holds at admission");
++        assert!(maximum + r <= MARGIN, "{mode:?}: the 0.9 M margin holds at admission");
+     }
+     // The R override sizes only the witness thread; the bound ignores it.
+     RESERVED_STACK_OVERRIDE.with(|c| c.set(Some(1 << 20)));
+@@ -908,17 +911,17 @@ fn every_phase_fact_admits_its_cap_and_refuses_cap_plus_one() {
+     let c = caps::LOAD_CASES as u64;
+     assert_eq!(caps.complete[2], 2 * c * P_FINAL * text_atoms::ROW, "2·C·P_final·Text(row)");
+     assert_eq!(caps.complete[5], 2 * profile::TEXT_TEXT_DIAG_ENV, "2·Text(diag_env) at l ≤ 128 (API_G4.md, S-6(d))");
+-    assert_eq!(profile::TEXT_TEXT_DIAG_ENV, 68_720_236, "the part-2 text closure (1e323058f3, R-4 graph, RV87 S-2)");
++    assert_eq!(profile::TEXT_TEXT_DIAG_ENV, 175_409_684, "the text closure at C = 3 (B1 SQ G5: D 41,769, D_env 22,911)");
+     assert_eq!((caps.complete[0], caps.complete[1]), (3 * 2_115, 8_192), "C·P_final, PushCap(C·P_final)");
+     assert_eq!(caps.complete[4], push_capacity(text_atoms::D_ENV), "PushCap(D_env)");
+     assert!(caps.late[LATE_FACTS - 1] > 0 && caps.late[LATE_FACTS - 1] < caps.complete[15], "T11 without its late capture < T11");
+     assert!(caps.complete[16] > 0 && caps.complete[16] < caps.complete[15], "T11.4 < T11");
+     assert_eq!((caps.complete[6], caps.complete[7]), (text_atoms::L_PUB, text_atoms::L_DIAGID), "L_PUB (RV84 C-N1) and L_DIAGID (RV87 N-3)");
+     assert_eq!(caps.complete[17], c * (3 * 32 + 1) * text_atoms::ERR, "C·(3m + 1)·Text(err)");
+-    // The atoms' values in the profile as registered at G6 (c = 1). SQ re-pins them with the
+-    // regenerated profile; until then they are unchanged by SA.
+-    assert_eq!((text_atoms::L_PUB, text_atoms::L_DIAGID, text_atoms::ERR, push_capacity(text_atoms::D_ENV)), (2_599_962, 2_330, 16_384, 16_384),
+-        "L_PUB, L_DIAGID, Text(err) and PushCap(D_env) as registered");
++    // The atoms' values in the profile regenerated at C = 3 (B1 SQ G5; I89's value pins).
++    assert_eq!((text_atoms::L_PUB, text_atoms::L_DIAGID, text_atoms::ERR, text_atoms::D_ENV, push_capacity(text_atoms::D_ENV)),
++        (2_599_962, 2_330, 16_384, 22_911, 32_768), "L_PUB, L_DIAGID, Text(err), D_env and PushCap(D_env) at C = 3");
++    assert_eq!(caps.complete[17], 3 * (3 * 32 + 1) * 16_384, "C·(3m + 1)·Text(err) at C = 3");
+     let complete_facts: Vec<PhaseFact> = complete_observations_of_milestone().iter().map(|o| o.fact).collect();
+     let at: [PhaseObservation; COMPLETE_FACTS] = observed(&complete_facts, &caps.complete).try_into().unwrap();
+     assert_eq!(check_phase(PhaseGate::Complete, &at, &caps.complete), Ok(()));
+@@ -1105,7 +1108,7 @@ fn profile_in_build_record() {
+     for (m, (name, phases)) in [("sparse", phases_sparse(&ATOM_VALUES)), ("dense", phases_dense(&ATOM_VALUES))].iter().enumerate() {
+         let (bytes, phase) = maximum(phases).unwrap();
+         println!("I65_G5_PROFILE mode={name} max_without_R={bytes} E_mov_plus_R={} fraction_of_M={:.4} phase={}", bytes + r,
+-            (bytes + r) as f64 / 4_026_531_840.0, PHASE_NAMES[phase]);
++            (bytes + r) as f64 / M as f64, PHASE_NAMES[phase]);
+         for (i, (req, mov)) in phases.iter().enumerate() {
+             println!("I65_G5_PHASE mode={name} phase={} requested={} moving={} E_mov_plus_R={}", PHASE_NAMES[i].split(' ').next().unwrap(),
+                 req.unwrap(), mov.unwrap(), req.unwrap() + mov.unwrap() + r);
+@@ -1126,7 +1129,7 @@ fn profile_in_build_record() {
+     }
+     assert!(SPARSE.is_some() && DENSE.is_some());
+     assert_eq!(PHASE_NAMES.map(|n| n.split(' ').next().unwrap()), ["W1", "W2", "W3", "W4", "W5", "X1", "X2"]);
+-    // The pinned record G6 qualifies (R/I65/u4_g6_01/QUALIFICATION.md §3): each phase's requested
++    // The pinned record G6 qualifies (R/I65/u4_g6_01/QUALIFICATION.md §3; B1: R/I104/b1_sq_01/QUAL_B1.md): each phase's requested
+     // + moving bytes, without R, in the build whose identity is PINNED_RECORD_IDENTITY. It is
+     // asserted only in that build (ROOT's ruling on part 2's decision 1); another identity has
+     // its own layouts and prints a skip. Any change to a binding, form, combination or phase
+@@ -1143,9 +1146,10 @@ fn profile_in_build_record() {
+ /// The build identity of the pinned profile record (the qualified dev/test build of G6).
+ pub(super) const PINNED_RECORD_IDENTITY: &str = "v1;rustc.release=1.97.1;rustc.commit=8bab26f4f68e0e26f0bb7960be334d5b520ea452;rustc.host=aarch64-apple-darwin;rustc.llvm=22.1.6;target=aarch64-apple-darwin;target.arch=aarch64;target.pointer_width=64;target.endian=little;target.os=macos;target.env=;panic=unwind;profile=debug;opt_level=0;debug_assertions=true;rustflags=;pkg=open_pipe_stress_product_physics@0.2.0";
+ /// The pinned record (W1, W2, W3, W4, W5, X1, X2), sparse then dense, in that build.
++/// B1 SQ: regenerated at C = 3 on B1's code (G5, with RV112 N-5's reservations; RETURN.md).
+ pub(super) const PINNED_RECORD: [[u64; 7]; 2] = [
+-    [1_856_156_348, 1_963_966_754, 3_508_669_422, 3_482_311_587, 2_136_222_836, 3_256_308_814, 1_777_046_728],
+-    [1_875_866_796, 1_983_677_202, 3_528_379_870, 3_502_022_035, 2_155_933_284, 3_276_019_262, 1_796_757_176],
++    [5_069_321_390, 5_392_753_352, 9_733_567_302, 9_518_381_725, 5_964_775_312, 8_846_487_786, 5_023_851_824],
++    [5_128_452_734, 5_451_884_696, 9_792_698_646, 9_577_513_069, 6_023_906_656, 8_905_619_130, 5_082_983_168],
+ ];
+ 
+ #[test]
+@@ -1166,6 +1170,14 @@ fn challenge_bounds_are_the_profile() {
+     let line = text.lines().find(|l| l.starts_with("const MAX_PHASE_BYTES: [u64; 2] = [")).unwrap();
+     let digits: Vec<u64> = line.split(['[', ']', ',']).filter_map(|t| t.trim().replace('_', "").parse().ok()).collect();
+     assert_eq!(digits, [profile::SPARSE.unwrap().0, profile::DENSE.unwrap().0]);
++    // B1 SQ (PLAN_v2 §3.5): the abort cap is 16 GiB, above E_mov,max + R and above M; and the
++    // challenge reads W1 work from the public surface by the N1 notice's own text (A1-S-1).
++    assert_eq!(text.lines().filter(|l| l.starts_with("const CAP_BYTES: usize = ")).collect::<Vec<_>>(), ["const CAP_BYTES: usize = 16 << 30;"]);
++    let r = RESERVED_STACK_BYTES as u64;
++    assert!(profile::DENSE.unwrap().0 + r < M && M < 16 << 30, "the cap is above M, and M above E_mov,max + R");
++    let line = text.lines().find(|l| l.starts_with("const N1_NOTICE: &str = ")).unwrap();
++    let notice = line.split('"').nth(1).unwrap();
++    assert!(notice.len() > 40 && crate::RETAINED_UNAVAILABLE_NOTICE.starts_with(notice), "the challenge's N1 text is the notice's");
+ }
+ 
+ /// RV89 G5 part 2 S-3: `profile::maximum` takes every phase, X1 and X2 included. Each phase
+@@ -1226,7 +1238,7 @@ fn profile_laws_hold_in_this_build() {
+     assert_eq!((checked_or_zero(None), checked_or_zero(Some(5))), (0, 5));
+     // The gate's D_env and text bounds are the profile's text closure.
+     let caps = phase_caps();
+-    assert_eq!(caps.complete[3], 9_361);
++    assert_eq!(caps.complete[3], 22_911, "D_env at C = 3");
+     assert_eq!(text_atoms::ROW, 11_474);
+     // Every atom is bound; the source-derived and estimate atoms are the recorded ones.
+     let count = |b| profile::ATOM_BINDINGS.iter().filter(|x| **x == b).count();
+@@ -1236,8 +1248,9 @@ fn profile_laws_hold_in_this_build() {
+     assert_eq!(cap_priced_maximum(PreviewSolverMode::DenseScrutiny), Ok(profile::DENSE.unwrap().0), "priced in-build");
+     // The in-build maximum is within the 0.9 M margin rule in both modes (RR "U4 G3 verified").
+     let r = RESERVED_STACK_BYTES as u64;
++    assert_eq!((M, MARGIN), (11_274_289_152, 10_146_860_236), "M = 10.5 GiB (R6a) and ⌊0.9 M⌋");
+     for (bytes, _) in [profile::SPARSE.unwrap(), profile::DENSE.unwrap()] {
+-        assert!(bytes + r <= 3_623_878_656, "{} above 0.9 M", bytes + r);
++        assert!(bytes + r <= MARGIN, "{} above 0.9 M", bytes + r);
+     }
+     assert!(profile::DENSE.unwrap().0 >= profile::SPARSE.unwrap().0, "the dense parity tail");
+ }
+@@ -1567,6 +1580,14 @@ fn b1_sa_d1_4_admits_one_to_c_load_cases() {
+ fn b1_sa_runner_oracle_literal_is_load_cases_plus_one() {
+     const RUNNER_LITERAL: usize = 4;
+     assert_eq!(caps::LOAD_CASES + 1, RUNNER_LITERAL, "re-base the runner's literal (explicit_headless_refusal_preserves_output_and_completion_fields_both_modes)");
++    // B1 SQ (RV112 N-1): the tie runs both ways. The runner's workspace is Stale, so its own test
++    // passes with any literal; this test reads the runner's source and holds its one literal
++    // line to C + 1, so a change of C or of the runner's literal alone fails here.
++    let runner = include_str!("../../runner/headless/tests/retained_precision_admission.rs");
++    let lines: Vec<&str> = runner.lines().filter(|l| l.contains("const C_PLUS_ONE")).collect();
++    assert_eq!(lines.len(), 1, "the runner holds one C_PLUS_ONE literal");
++    assert_eq!(lines[0].trim(), format!("const C_PLUS_ONE: usize = {};", caps::LOAD_CASES + 1), "the runner's literal is C + 1");
++    assert!(runner.contains("fn explicit_headless_refusal_preserves_output_and_completion_fields_both_modes()"));
+     for mode in MODES {
+         let (request, capture) = CapturedInvocation::parse(milestone_cases(caps::LOAD_CASES + 1), mode).unwrap();
+         let report = admit(&capture, &request, Entry::Direct).err().expect("C + 1 cases are refused in every build");
+@@ -1784,8 +1805,8 @@ fn b1_sa_gate_bounds_at_c_are_the_stated_expressions() {
+     let p = phase_caps();
+     let (n, m, g, c) = (32u64, 32u64, 32u64, caps::LOAD_CASES as u64);
+     // G-B's facts are in `late_observations`' order (b1_sa_g_b_reads_each_case_and_the_running_total).
+-    let late = [n, m, m, g, 128, 384, 192, 192, 8, profile_bytes(F_T11).saturating_sub(profile_bytes(F_T11_LATE_CAPTURE))];
+-    assert_eq!(p.late, late, "G-B: n, m, m, g, l, L, min(6n, Σr), s, 4 + 4, T11 − T11_late_capture");
++    let late = [n, m, m, g, 128, 384, 192, 192, 8, profile_bytes(F_T11).saturating_sub(profile_bytes(F_T11_LATE_CAPTURE) / c)];
++    assert_eq!(p.late, late, "G-B: n, m, m, g, l, L, min(6n, Σr), s, 4 + 4, T11 − T11_late_capture / C (RV112 SF-1)");
+     let observed: Vec<PhaseFact> = complete_observations_of_milestone().iter().map(|o| o.fact).collect();
+     use PhaseFact as F;
+     let complete: [(PhaseFact, u64); COMPLETE_FACTS] = [
+@@ -1844,3 +1865,57 @@ fn b1_sa_retained_error_text_reads_every_case_slot() {
+         assert_eq!(o.iter().find(|x| x.fact == PhaseFact::RetainedErrorTextBytes).unwrap().observed, 40 + 9 + 7 + 3, "{mode:?}: both slots");
+     }
+ }
++
++/// B1 SQ (RV112 N-2): at C = 3 there are two parked slots, so "every parked slot" differs from
++/// "the first": text in the last parked slot alone is counted (RV112's mutant G04, which folds
++/// `parked[..1]`, reads 0), and then every slot's text with the capture's own.
++#[test]
++fn b1_sq_retained_error_text_reads_every_parked_slot_at_c() {
++    use crate::retained_product::{CaptureError, ProductCapture};
++    let fact = |o: &[PhaseObservation]| o.iter().find(|x| x.fact == PhaseFact::RetainedErrorTextBytes).unwrap().observed;
++    for mode in MODES {
++        let (request, capture) = CapturedInvocation::parse(milestone_cases(caps::LOAD_CASES), mode).unwrap();
++        let mut observer = ProductCapture::prepared_probe();
++        let ordinary = crate::run_linear_static_preview_observed(request, mode, Some(&capture), &mut crate::SourceRecoveryBudget::default(), Some(&mut observer));
++        assert_eq!((observer.cases_seen(), observer.parked_cases().len()), (3, 2), "{mode:?}: cases 0 and 1 are parked, case 2 is in the capture's fields");
++        let facts = |observer: &ProductCapture| complete_observations(&CompleteFacts { ordinary: &ordinary, capture: observer, requested_cases: 3 });
++        assert_eq!(fact(&facts(&observer)), 0, "{mode:?}: no error text");
++        observer.with_case(1, |case| case.observable_error = Some(CaptureError::Association(String::with_capacity(101))));
++        assert_eq!(fact(&facts(&observer)), 101, "{mode:?}: the last parked slot alone");
++        observer.with_case(0, |case| {
++            case.error = Some(CaptureError::Association(String::with_capacity(40)));
++            case.observable_error = Some(CaptureError::Association(String::with_capacity(9)));
++        });
++        observer.with_case(1, |case| case.error = Some(CaptureError::Association(String::with_capacity(5))));
++        observer.error = Some(CaptureError::Association(String::with_capacity(7)));
++        observer.observable_error = Some(CaptureError::Association(String::with_capacity(3)));
++        assert_eq!(fact(&facts(&observer)), 40 + 9 + 101 + 5 + 7 + 3, "{mode:?}: every slot and the capture's own");
++    }
++}
++
++/// B1 SQ (RV112 SF-1): G-B's byte bound subtracts one case's late capture, `F_T11_LATE_CAPTURE / C`.
++/// That is exact because the generator prices the late capture per requested case: every
++/// coefficient of the form (and its constant) is a multiple of C, so the form is C times a form
++/// with integer coefficients (G5's chain checks it equals the c = 1 late form), and its in-build
++/// value is C times that form's value. At C = 1 the bound is T11 − T11_late_capture as before.
++#[test]
++fn b1_sq_late_capture_form_is_c_times_one_case() {
++    use profile::{ATOM_VALUES, FORMS, F_T11, F_T11_LATE_CAPTURE};
++    let c = caps::LOAD_CASES as u64;
++    let late = &FORMS[F_T11_LATE_CAPTURE];
++    assert_eq!(late.name, "T11_late_capture");
++    assert_eq!(late.constant % c, 0, "the constant is C times one case's");
++    for (atom, coefficient) in late.terms {
++        assert_eq!(coefficient % c, 0, "atom {}: the coefficient is C times one case's", profile::ATOM_NAMES[*atom]);
++    }
++    let one_case = late.constant / c + late.terms.iter().map(|(atom, coefficient)| ATOM_VALUES[*atom] * (coefficient / c)).sum::<u64>();
++    assert_eq!(profile_bytes(F_T11_LATE_CAPTURE), c * one_case, "the in-build value is C times one case's");
++    assert_eq!(phase_caps().late[LATE_FACTS - 1], profile_bytes(F_T11) - one_case, "G-B: T11 less one case's late capture");
++    // The late form is part of T11: each of its atoms appears in T11 with at least its coefficient.
++    for (atom, coefficient) in late.terms {
++        let in_t11 = FORMS[F_T11].terms.iter().find(|(a, _)| a == atom).map_or(0, |(_, x)| *x);
++        assert!(in_t11 >= *coefficient, "atom {}: T11 holds the late capture", profile::ATOM_NAMES[*atom]);
++    }
++    println!("I104_SQ_G_B_BOUND T11={} late_capture={} one_case={} g_b_bound={}", profile_bytes(F_T11), profile_bytes(F_T11_LATE_CAPTURE), one_case,
++        phase_caps().late[LATE_FACTS - 1]);
++}
+diff --git a/projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs b/projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs
+index 3381a6bd13..39daf5b849 100644
+--- a/projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs
++++ b/projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs
+@@ -7,20 +7,53 @@
+ //! enters `retained_w1` directly, as the facade tests do; G-B and G-C are not
+ //! consulted. The witness is measured evidence for this build and these inputs,
+ //! not a proof (D-3 = S1). A stack overflow aborts the test process, so the
+-//! witnesses are `#[ignore]` and run explicitly, one invocation each
+-//! (`cargo test --lib witness_ -- --ignored --test-threads=1`); G6 records them per
++//! witnesses are `#[ignore]` and run explicitly, one invocation each; G6 records them per
+ //! qualified build identity.
++//!
++//! B1 SQ (PLAN_v2 §3.4, RV107 SF-5): each witness has one entry point per mode, run as its own
++//! process: `<lib test binary> <witness>::sparse --exact --ignored --test-threads=1 --nocapture`
++//! (and `::dense`). W7's fault controls run in one mode, as before. The B1 inputs (W2b's
++//! replacement, the c = 1 publishing input, the three-case input) are shared with the challenge
++//! through `tests/common/b1_sq_inputs.rs`, pinned by I86's input hashes. The `control_*` entries
++//! are RSS_TIME.md's controls in this build: the ordinary value route alone, and the process floor.
+ use super::*;
+ use crate::source_receipt::CapturedInvocation;
+ use crate::{PreviewSolverMode, SourceRecoveryBudget};
+ use serde_json::{json, Value};
+ 
+-const MODES: [PreviewSolverMode; 2] = [PreviewSolverMode::SparseInteractive, PreviewSolverMode::DenseScrutiny];
++#[path = "../tests/common/b1_sq_inputs.rs"]
++mod b1_sq_inputs;
++use b1_sq_inputs as inputs;
++
+ const WITNESS_STACK: usize = RESERVED_STACK_BYTES / STACK_WITNESS_DIVISOR;
+ 
+ fn milestone() -> Value {
+     serde_json::from_str(include_str!("../../../fixtures/product_preview/rf_skew_t_cant_off_122_r1e-04.request.json")).unwrap()
+ }
++/// One witness entry point per mode: `$name::sparse` and `$name::dense`, each `#[ignore]`.
++macro_rules! per_mode {
++    ($(#[$doc:meta])* $name:ident, |$mode:ident| $body:block) => {
++        $(#[$doc])*
++        mod $name {
++            use super::*;
++            fn run($mode: PreviewSolverMode) $body
++            #[test]
++            #[ignore]
++            fn sparse() {
++                run(PreviewSolverMode::SparseInteractive)
++            }
++            #[test]
++            #[ignore]
++            fn dense() {
++                run(PreviewSolverMode::DenseScrutiny)
++            }
++        }
++    };
++}
++fn sha256_of(raw: &Value) -> String {
++    use sha2::Digest;
++    format!("{:x}", sha2::Sha256::digest(serde_json::to_vec(raw).unwrap()))
++}
+ /// The outcome a witness records: what the reserved thread ran to.
+ #[derive(Debug, PartialEq)]
+ enum Ran {
+@@ -30,9 +63,11 @@ enum Ran {
+ }
+ /// The permitted path's work on the reserved thread, through the private driver.
+ fn permitted_work(raw: Value, mode: PreviewSolverMode, before_w1: impl FnOnce(&mut crate::retained_product::ProductCapture) + Send) -> Ran {
++    let start = std::time::Instant::now();
+     let (request, capture) = CapturedInvocation::parse(raw, mode).expect("a valid request");
+     let mut observer = crate::retained_product::ProductCapture::prepared_probe();
+     let ordinary = crate::run_linear_static_preview_observed(request, mode, Some(&capture), &mut SourceRecoveryBudget::default(), Some(&mut observer));
++    let ordinary_ms = start.elapsed().as_secs_f64() * 1e3;
+     if ordinary.source_block_recovery.is_some() {
+         let (_, retained) = crate::retained_w1(observer, ordinary, &capture);
+         assert_eq!(retained.err(), Some(crate::W1Fallback::Coexistence));
+@@ -43,7 +78,11 @@ fn permitted_work(raw: Value, mode: PreviewSolverMode, before_w1: impl FnOnce(&m
+     if let Some(error) = &observer.error {
+         println!("I65_G5_WITNESS_CAPTURE_ERROR {error:?}");
+     }
+-    match crate::retained_w1(observer, ordinary, &capture).1 {
++    let w1 = std::time::Instant::now();
++    let retained = crate::retained_w1(observer, ordinary, &capture).1;
++    // B1 SQ (PLAN_v2 §3.6): the ordinary observed run's and W1's wall times, in this build.
++    println!("I104_SQ_WITNESS_TIME {mode:?} parse_and_ordinary_ms={ordinary_ms:.1} w1_ms={:.1}", w1.elapsed().as_secs_f64() * 1e3);
++    match retained {
+         Ok(_) => Ran::Successor,
+         Err(fallback) => Ran::Fallback(format!("{fallback:?}")),
+     }
+@@ -99,45 +138,37 @@ fn no_triggered_case_witness(label: &str, raw: Value, mode: PreviewSolverMode, i
+     assert!(serde_json::to_vec(&envelope).unwrap() == plain, "{label}: the exact ordinary bytes");
+ }
+ 
+-/// W1 (and W5's dense half): the milestone, both modes: native, proof, serializer and
+-/// the precommit reader on the selected W1 path.
+-#[test]
+-#[ignore]
+-fn witness_w1_milestone() {
+-    for mode in MODES {
+-        let ran = witness(&format!("W1 {mode:?}"), WITNESS_STACK, || permitted_work(milestone(), mode, |_| {}));
++per_mode! {
++    /// W1 (and W5's dense half): the milestone: native, proof, serializer and the precommit
++    /// reader on the selected W1 path.
++    witness_w1_milestone, |mode| {
++        let ran = witness(&format!("W1 {mode:?}"), WITNESS_STACK, move || permitted_work(milestone(), mode, |_| {}));
+         assert_eq!(ran, Ran::Successor);
+     }
+ }
+ 
+-/// W2 (and W5's dense half): the cap-maximal D1 input (law_tests::cap_maximal), both
+-/// modes: the largest counts, 128-byte identifiers, a quote and a backslash in every
+-/// provenance, and a raw value of depth 16. Its support shapes stop it at preparation.
+-#[test]
+-#[ignore]
+-fn witness_w2_cap_maximal() {
+-    for mode in MODES {
+-        let mut raw = super::law_tests::cap_maximal();
+-        escape_every_provenance(&mut raw);
+-        raw["model"]["unknown_depth_witness"] = depth_16_value();
++per_mode! {
++    /// W2 (and W5's dense half): the cap-maximal D1 input (law_tests::cap_maximal): the largest
++    /// counts, 128-byte identifiers, a quote and a backslash in every provenance, and a raw value
++    /// of depth 16. Its support shapes stop it at preparation.
++    witness_w2_cap_maximal, |mode| {
++        let raw = inputs::w2();
+         let ran = witness(&format!("W2 {mode:?}"), WITNESS_STACK, move || permitted_work(raw, mode, |_| {}));
+         assert_eq!(ran, Ran::Fallback("Preparation".into()), "W2 {mode:?}");
+     }
+ }
+ 
+-/// W2's publishing half (RV89 G5 part 2 S-2): the milestone with a quote and a backslash
+-/// in every provenance and a raw value of depth 16, inside D1. It publishes a successor
+-/// at R/16 and at R/64 = 1 MiB in both modes, so the deepest raw Value and the maximal
+-/// escaping run through the serializer and the precommit reader on the witness stack.
+-#[test]
+-#[ignore]
+-fn witness_w2_deep_milestone_publishes() {
+-    for mode in MODES {
++per_mode! {
++    /// W2's publishing half (RV89 G5 part 2 S-2): the milestone with a quote and a backslash in
++    /// every provenance and a raw value of depth 16, inside D1. It publishes a successor at R/16
++    /// and at R/64 = 1 MiB, so the deepest raw Value and the maximal escaping run through the
++    /// serializer and the precommit reader on the witness stack.
++    witness_w2_deep_milestone_publishes, |mode| {
+         let mut raw = milestone();
+         escape_every_provenance(&mut raw);
+         raw["model"]["deep_input_witness"] = depth_16_value();
+         let (request, capture) = CapturedInvocation::parse(raw.clone(), mode).unwrap();
+-        let report = super::assess(&capture, &request, super::Entry::Direct);
++        let report = super::super::assess(&capture, &request, super::super::Entry::Direct);
+         assert_eq!(report.law().domain, None, "inside D1");
+         assert_eq!(report.raw.maximum_depth, 16, "raw depth 16");
+         for stack in [WITNESS_STACK, RESERVED_STACK_BYTES / 64] {
+@@ -148,18 +179,28 @@ fn witness_w2_deep_milestone_publishes() {
+     }
+ }
+ 
+-/// W2b's input: the cap-maximal shape made solvable (one rigid support, 31 scalar springs). Its
+-/// ordinary report passes (`checks_passed`, no W2; R/I81/b1_probe_01 PROBE §2.1), so under T-4 (B1)
+-/// A is empty and it pins `NoTriggeredCase` at the largest counts: the exact ordinary bytes and no
+-/// W1 work (RR "I81's B1-0 probe verified…", ruling 4). Its former role, the only full native run at
+-/// the cap-maximal counts, moves to B1's SQ (W2b's replacement, from the SW probe).
+-#[test]
+-#[ignore]
+-fn witness_w2b_cap_maximal_passed_report_no_triggered_case() {
+-    for mode in MODES {
++per_mode! {
++    /// W2b's input: the cap-maximal shape made solvable (one rigid support, 31 scalar springs). Its
++    /// ordinary report passes (`checks_passed`, no W2; R/I81/b1_probe_01 PROBE §2.1), so under T-4
++    /// (B1) A is empty and it pins `NoTriggeredCase` at the largest counts: the exact ordinary bytes
++    /// and no W1 work (RR "I81's B1-0 probe verified…", ruling 4). Its former role, the only full
++    /// native run at the cap-maximal counts, moves to W2b's replacement below.
++    witness_w2b_cap_maximal_passed_report_no_triggered_case, |mode| {
+         no_triggered_case_witness(&format!("W2b {mode:?}"), w2b_input(), mode, W2B_INPUT_SHA256);
+     }
+ }
++
++per_mode! {
++    /// B1 SQ: W2b's replacement (RR "I86's SW probe accepted; …", ruling 1): W2b's input with S0 an
++    /// anchor restraining UX, UY, UZ, RY, RZ and S31 an RX spring of 1000 N·m/rad at N0. Sensitive
++    /// by its report, so W1 runs at the cap-maximal counts; the candidate fails (`Candidate`).
++    witness_w2b_replacement_b2_k1e3, |mode| {
++        let raw = inputs::b2_k1e3();
++        assert_eq!(sha256_of(&raw), inputs::B2_K1E3_SHA256, "I86's b2_k1e3");
++        let ran = witness(&format!("W2b-replacement b2_k1e3 {mode:?}"), WITNESS_STACK, move || permitted_work(raw, mode, |_| {}));
++        assert_eq!(ran, Ran::Fallback("Candidate".into()), "b2_k1e3 {mode:?}");
++    }
++}
+ /// W2b's input: `law_tests::cap_maximal` with the milestone's support shapes.
+ fn w2b_input() -> Value {
+     let mut raw = super::law_tests::cap_maximal();
+@@ -180,27 +221,24 @@ fn w2b_input() -> Value {
+ const W2B_INPUT_SHA256: &str = "d74d01ce1bc33244796877890ad134dd8476beb059bd82f26f2e004f8af619cb";
+ const W6_PHYS_R4_INPUT_SHA256: &str = "19a424c5ff064fa0010bcbb95b437e87092605e322f405e8252066995795e8f5";
+ 
+-/// W3: an in-domain request whose legacy exact recovery selects (the X branch: T25's
+-/// requested() calls, the commitment, the publication and body hashes).
+-#[test]
+-#[ignore]
+-fn witness_w3_exact_selected() {
+-    for (mode, file) in [
+-        (PreviewSolverMode::SparseInteractive, include_str!("../../../fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json")),
+-        (PreviewSolverMode::DenseScrutiny, include_str!("../../../fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json")),
+-    ] {
++per_mode! {
++    /// W3: an in-domain request whose legacy exact recovery selects (the X branch: T25's
++    /// requested() calls, the commitment, the publication and body hashes).
++    witness_w3_exact_selected, |mode| {
++        let file = match mode {
++            PreviewSolverMode::SparseInteractive => include_str!("../../../fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json"),
++            _ => include_str!("../../../fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json"),
++        };
+         let raw: Value = serde_json::from_str(file).unwrap();
+         let ran = witness(&format!("W3 {mode:?}"), WITNESS_STACK, move || permitted_work(raw, mode, |_| {}));
+         assert_eq!(ran, Ran::ExactSelected, "the exact-block selection ran");
+     }
+ }
+ 
+-/// W4: the preparation refusal and its fallback chain (the closed annulus helper).
+-#[test]
+-#[ignore]
+-fn witness_w4_preparation_refusal() {
+-    for mode in MODES {
+-        let ran = witness(&format!("W4 {mode:?}"), WITNESS_STACK, || permitted_work(milestone(), mode, |o| o.facts[0].diameter = 0.0));
++per_mode! {
++    /// W4: the preparation refusal and its fallback chain (the closed annulus helper).
++    witness_w4_preparation_refusal, |mode| {
++        let ran = witness(&format!("W4 {mode:?}"), WITNESS_STACK, move || permitted_work(milestone(), mode, |o| o.facts[0].diameter = 0.0));
+         assert_eq!(ran, Ran::Fallback("Preparation".into()));
+     }
+ }
+@@ -231,36 +269,28 @@ pub(super) fn w6_input() -> Value {
+     raw
+ }
+ 
+-/// W6: an in-domain force-scaled (W2) case on the native stack path. Since B1 (T-4; RR "I81's
+-/// B1-0 probe verified…", ruling 3) its input is W-C2's case C alone (R/I81/b1_probe_01 PROBE
+-/// §4–§5): Sensitive and W2-published (b = 518), so W1 runs, and its native run climbs the full
+-/// ladder to Unresolved(Ceiling): `Fallback("Native")` in both modes.
+-#[test]
+-#[ignore]
+-fn witness_w6_force_scaled() {
+-    let raw = crate::retained_facade_tests::w_c2_case_c();
+-    {
+-        use sha2::Digest;
+-        assert_eq!(format!("{:x}", sha2::Sha256::digest(serde_json::to_vec(&raw).unwrap())), crate::retained_facade_tests::W_C2_CASE_C_INPUT_SHA256, "PROBE §4's case C");
+-    }
+-    let plain = crate::run_linear_static_preview_value_with_mode(raw.clone(), PreviewSolverMode::SparseInteractive).unwrap();
+-    let scaled = plain.diagnostics.iter().any(|d| d.message.contains("range_scaling: force_scale_exponent=") && !d.message.contains("force_scale_exponent=none"));
+-    println!("I65_G5_WITNESS_INPUT W6 force_scaled={scaled}");
+-    assert!(scaled, "W6: the ordinary run is force-scaled");
+-    for mode in MODES {
+-        let raw = raw.clone();
++per_mode! {
++    /// W6: an in-domain force-scaled (W2) case on the native stack path. Since B1 (T-4; RR "I81's
++    /// B1-0 probe verified…", ruling 3) its input is W-C2's case C alone (R/I81/b1_probe_01 PROBE
++    /// §4–§5): Sensitive and W2-published (b = 518), so W1 runs, and its native run climbs the full
++    /// ladder to Unresolved(Ceiling): `Fallback("Native")`.
++    witness_w6_force_scaled, |mode| {
++        let raw = crate::retained_facade_tests::w_c2_case_c();
++        assert_eq!(sha256_of(&raw), crate::retained_facade_tests::W_C2_CASE_C_INPUT_SHA256, "PROBE §4's case C");
++        let plain = crate::run_linear_static_preview_value_with_mode(raw.clone(), PreviewSolverMode::SparseInteractive).unwrap();
++        let scaled = plain.diagnostics.iter().any(|d| d.message.contains("range_scaling: force_scale_exponent=") && !d.message.contains("force_scale_exponent=none"));
++        println!("I65_G5_WITNESS_INPUT W6 force_scaled={scaled}");
++        assert!(scaled, "W6: the ordinary run is force-scaled");
+         let ran = witness(&format!("W6 {mode:?}"), WITNESS_STACK, move || permitted_work(raw, mode, |_| {}));
+         println!("I65_G5_WITNESS_OUTCOME W6 {mode:?} {ran:?}");
+         assert_eq!(ran, Ran::Fallback("Native".into()), "W6 {mode:?}: case C's full native ladder, then Native");
+     }
+ }
+ 
+-/// B1 ST (T-4; RR "I81's B1-0 probe verified…", ruling 4): PHYS-R4's cantilever (`w6_input()`),
+-/// W6's input before B1, pins `NoTriggeredCase` on the witness stack in both modes.
+-#[test]
+-#[ignore]
+-fn witness_w6_phys_r4_input_no_triggered_case() {
+-    for mode in MODES {
++per_mode! {
++    /// B1 ST (T-4; RR "I81's B1-0 probe verified…", ruling 4): PHYS-R4's cantilever (`w6_input()`),
++    /// W6's input before B1, pins `NoTriggeredCase` on the witness stack.
++    witness_w6_phys_r4_input_no_triggered_case, |mode| {
+         no_triggered_case_witness(&format!("W6-PHYS-R4 {mode:?}"), w6_input(), mode, W6_PHYS_R4_INPUT_SHA256);
+     }
+ }
+@@ -278,7 +308,7 @@ fn b1_t4_w2b_and_w6_phys_r4_inputs_are_no_triggered_case_pins() {
+ }
+ 
+ /// W7: U3's fault-injection controls, carried onto the reserved thread: each stage's
+-/// fallback (native, serializer, staging, precommit binding and corruption).
++/// fallback (native, serializer, staging, precommit binding and corruption). One mode.
+ #[test]
+ #[ignore]
+ fn witness_w7_fault_fallbacks() {
+@@ -296,16 +326,218 @@ fn witness_w7_fault_fallbacks() {
+     assert!(matches!(witness("W7 precommit corruption", WITNESS_STACK, || permitted_work(milestone(), mode, |_| {})), Ran::Fallback(f) if f.starts_with("Precommit")));
+ }
+ 
+-/// Headroom (carry item 8): W1 again at R/64 = 1 MiB. Its reader validates the whole
+-/// successor, so passing here bounds the reader's schema-walk chain on the W1
+-/// input at a quarter of the witness stack. The 36-level `$ref` chain is bounded by
+-/// source (schema_depth.py); whether W1's successor drives the deepest chain is not
+-/// observable without instrumenting the reader, which is outside the fence.
+-#[test]
+-#[ignore]
+-fn witness_headroom_w1_at_one_mebibyte() {
+-    for mode in MODES {
+-        let ran = witness(&format!("W1@1MiB {mode:?}"), RESERVED_STACK_BYTES / 64, || permitted_work(milestone(), mode, |_| {}));
++per_mode! {
++    /// Headroom (carry item 8): W1 again at R/64 = 1 MiB. Its reader validates the whole
++    /// successor, so passing here bounds the reader's schema-walk chain on the W1 input at a
++    /// quarter of the witness stack. The 36-level `$ref` chain is bounded by source
++    /// (schema_depth.py); whether W1's successor drives the deepest chain is not observable
++    /// without instrumenting the reader, which is outside the fence.
++    witness_headroom_w1_at_one_mebibyte, |mode| {
++        let ran = witness(&format!("W1@1MiB {mode:?}"), RESERVED_STACK_BYTES / 64, move || permitted_work(milestone(), mode, |_| {}));
+         assert_eq!(ran, Ran::Successor);
+     }
+ }
++
++// ---- B1 SQ (PLAN_v2 §3.4): the multi-case and cap-maximal witnesses --------------------------
++
++per_mode! {
++    /// W-C2 (R/I81/b1_probe_01 PROBE §4; the facade tests' `w_c2()`): three cases, A and C in A. A
++    /// successor at R/16, and again at R/64 = 1 MiB as headroom.
++    witness_w_c2_publishes, |mode| {
++        for stack in [WITNESS_STACK, RESERVED_STACK_BYTES / 64] {
++            let raw = crate::retained_facade_tests::w_c2();
++            let ran = witness(&format!("W-C2 {mode:?}"), stack, move || permitted_work(raw, mode, |_| {}));
++            assert_eq!(ran, Ran::Successor, "W-C2 {mode:?} at {stack} B");
++        }
++    }
++}
++
++/// W-C2's (A, C) (RV109 round 2 N-3: it publishes through the registered Direct entry in sparse):
++/// a successor at R/16. Sparse only.
++#[test]
++#[ignore]
++fn witness_w_c2_ac_publishes_sparse() {
++    let mode = PreviewSolverMode::SparseInteractive;
++    let ran = witness(&format!("W-C2 (A, C) {mode:?}"), WITNESS_STACK, move || permitted_work(inputs::w_c2_ac(), mode, |_| {}));
++    assert_eq!(ran, Ran::Successor, "W-C2 (A, C) {mode:?}");
++}
++
++per_mode! {
++    /// SW item 2's publishing cap-maximal input (I86 `c1`; RR "I86's SW probe accepted; …", ruling 2):
++    /// 7 milestone copies and 4 filler bodies at D1's count caps, 128 moments, one case. A successor.
++    witness_c1_cap_maximal_publishes, |mode| {
++        let raw = inputs::c1();
++        assert_eq!(sha256_of(&raw), inputs::C1_SHA256, "I86's c1");
++        let ran = witness(&format!("c1 {mode:?}"), WITNESS_STACK, move || permitted_work(raw, mode, |_| {}));
++        assert_eq!(ran, Ran::Successor, "c1 {mode:?}");
++    }
++}
++
++per_mode! {
++    /// The cap-maximal three-case input (I86 `i3_c1_three_case`; |A| = 3): c1's model with cases A,
++    /// B and C of 128 moments each (Σ l_i = 384 = L), every provenance escaped, a raw value of
++    /// depth 16. The private driver skips admission, so `assess` asserts it is inside D1 first
++    /// (RV107 N-7). Its outcome is asserted.
++    witness_i3_three_case, |mode| {
++        let raw = inputs::i3_three_case();
++        assert_eq!(sha256_of(&raw), inputs::I3_THREE_CASE_SHA256, "I86's i3_c1_three_case");
++        let (request, capture) = CapturedInvocation::parse(raw.clone(), mode).unwrap();
++        let report = super::super::assess(&capture, &request, super::super::Entry::Direct);
++        assert_eq!(report.law().domain, None, "inside D1");
++        assert_eq!(report.raw.maximum_depth, 16, "raw depth 16");
++        assert_eq!((report.typed.load_cases.length, report.law().nested.total_loads), (3, 384), "C cases, Σ l_i = L");
++        let ran = witness(&format!("i3 three-case {mode:?}"), WITNESS_STACK, move || permitted_work(raw, mode, |_| {}));
++        assert_eq!(ran, Ran::Successor, "i3 three-case {mode:?}");
++    }
++}
++
++/// B1 SQ: the shared inputs are I86's (their `input_sha` pins) and equal the committed helpers
++/// they transcribe. Not a witness; no solve.
++#[test]
++fn b1_sq_inputs_are_i86s_and_the_committed_helpers() {
++    assert_eq!(inputs::milestone(), milestone());
++    assert_eq!(inputs::law_cap_maximal(), super::law_tests::cap_maximal(), "law_tests::cap_maximal");
++    assert_eq!(inputs::w2b(), w2b_input(), "W2b's input");
++    assert_eq!(inputs::W2B_SHA256, W2B_INPUT_SHA256);
++    assert_eq!(sha256_of(&inputs::w2b()), W2B_INPUT_SHA256, "W2b's PROBE pin");
++    let mut w2 = super::law_tests::cap_maximal();
++    escape_every_provenance(&mut w2);
++    w2["model"]["unknown_depth_witness"] = depth_16_value();
++    assert_eq!(inputs::w2(), w2, "W2's input");
++    assert_eq!(inputs::w_c2(), crate::retained_facade_tests::w_c2(), "W-C2");
++    let mut ac = crate::retained_facade_tests::w_c2();
++    ac["model"]["load_cases"].as_array_mut().unwrap().remove(1);
++    assert_eq!(inputs::w_c2_ac(), ac, "W-C2's (A, C)");
++    assert_eq!(sha256_of(&inputs::b2_k1e3()), inputs::B2_K1E3_SHA256, "b2_k1e3");
++    assert_eq!(sha256_of(&inputs::c1()), inputs::C1_SHA256, "c1");
++    for (id, pin) in inputs::I3_CASE_SHA256 {
++        assert_eq!(sha256_of(&inputs::i3_case(id)), pin, "i3 {id}");
++    }
++    assert_eq!(sha256_of(&inputs::i3_three_case()), inputs::I3_THREE_CASE_SHA256, "i3 three-case");
++    assert_eq!(inputs::depth_16_value(), depth_16_value());
++}
++
++// ---- B1 SQ (PLAN_v2 §3.6): RSS_TIME.md's controls in this build ------------------------------
++
++/// The ordinary value route alone on the witness stack (W1's increment is the witness's peak
++/// over this one), for each RSS_TIME input.
++fn ordinary_only(label: &str, raw: Value, mode: PreviewSolverMode) {
++    let work = move || {
++        let start = std::time::Instant::now();
++        let envelope = crate::run_linear_static_preview_value_with_mode(raw, mode).unwrap();
++        (start.elapsed().as_secs_f64() * 1e3, envelope.results.len())
++    };
++    let (ms, rows) = crate::on_reserved_stack(WITNESS_STACK, work).unwrap_or_else(|| panic!("{label}: the reserved thread did not spawn"));
++    println!("I104_SQ_CONTROL ordinary {label} {mode:?} rows={rows} ordinary_ms={ms:.1}");
++}
++macro_rules! control_ordinary {
++    ($($name:ident: $input:expr;)+) => {
++        $(per_mode! { $name, |mode| { ordinary_only(stringify!($name), $input, mode); } })+
++    };
++}
++control_ordinary! {
++    control_ordinary_milestone: milestone();
++    control_ordinary_w_c2: crate::retained_facade_tests::w_c2();
++    control_ordinary_w2: inputs::w2();
++    control_ordinary_b2_k1e3: inputs::b2_k1e3();
++    control_ordinary_c1: inputs::c1();
++    control_ordinary_i3_three_case: inputs::i3_three_case();
++}
++/// The process floor in this build: no product call.
++#[test]
++#[ignore]
++fn control_process_floor() {
++    println!("I104_SQ_CONTROL process_floor");
++}
++
++// ---- B1 SQ (RR "RV115 confirms S-4 (a)'s soundness …", NC-1): DEF-O's availability, report only --
++
++/// The DEF-O row classes RV115 names: `mm_to_si`, the rows DEF-O projects from mm to SI by a
++/// second rounding (`ProductUnit::Millimetre`: the three displacement components and the
++/// displacement magnitude); `support_magnitude`, the support force and moment magnitudes (the
++/// nested hypot); `other`, every other row.
++fn def_o_class(kind: &str) -> &'static str {
++    match kind {
++        "global_nodal_displacement_x" | "global_nodal_displacement_y" | "global_nodal_displacement_z" | "displacement_magnitude" => "mm_to_si",
++        "support_reaction_force_magnitude_v2" | "support_reaction_moment_magnitude_v2" => "support_magnitude",
++        _ => "other",
++    }
++}
++/// The private transaction to T-9 (custody, preparation, the batch call, the freezes) on the
++/// witness stack, as `w1_transaction` runs it. Then, per case in A: its end; its verdicts' failing
++/// rows by predicate and class; and, for a Candidate fallback, its typed cause and the class of its
++/// cause row (`certify_final` reports the first failing verdict). Prints only: no assertion on the
++/// shares, which ROOT reads (NC-1).
++fn def_o_report(label: &'static str, raw: Value, mode: PreviewSolverMode) {
++    use crate::retained_product::{AttemptEnd, PreparedCandidateError};
++    use std::collections::BTreeMap;
++    let work = move || {
++        let (request, capture) = CapturedInvocation::parse(raw, mode).expect("a valid request");
++        let mut observer = crate::retained_product::ProductCapture::prepared_probe();
++        let ordinary = crate::run_linear_static_preview_observed(request, mode, Some(&capture), &mut SourceRecoveryBudget::default(), Some(&mut observer));
++        if ordinary.source_block_recovery.is_some() {
++            return println!("I104_SQ_DEF_O {label} {mode:?} end=exact_selected");
++        }
++        let cases = crate::w1_case_ids(&capture).expect("inside D1.4");
++        let ids: Vec<String> = cases.ids().iter().map(|id| id.to_string()).collect();
++        let attempted = cases.attempted(crate::case_triggers(&ordinary.numerical_quality, &observer.ordinary, cases.ids()));
++        if attempted.requests().is_empty() {
++            return println!("I104_SQ_DEF_O {label} {mode:?} end=no_triggered_case");
++        }
++        let mut prepared = match observer.prepare_cases(ordinary, ids.len(), attempted.requests()) {
++            Ok(prepared) => prepared,
++            Err(failure) => return println!("I104_SQ_DEF_O {label} {mode:?} end=custody error={:?}", failure.error),
++        };
++        prepared.native();
++        prepared.freeze();
++        for i in 0..prepared.attempts.len() {
++            let request = prepared.attempts[i].request;
++            let case_id = &ids[request];
++            let verdicts = prepared.capture.with_case(request, |c| c.verdicts.clone());
++            let rows: Vec<&crate::ResultItem> = prepared.ordinary.results.iter()
++                .filter(|r| r.basis_ref.as_ref().is_some_and(|b| b.ref_type == "load_case" && &b.ref_id == case_id))
++                .collect();
++            let kind = |row: usize| rows.get(row).map_or("?", |r| r.kind.as_str());
++            let mut tally: BTreeMap<(String, &'static str), usize> = BTreeMap::new();
++            for v in verdicts.iter().filter(|v| !v.passed) {
++                *tally.entry((format!("{:?}", v.failed), def_o_class(kind(v.row)))).or_default() += 1;
++            }
++            let classes: BTreeMap<&'static str, usize> = verdicts.iter().fold(BTreeMap::new(), |mut m, v| {
++                *m.entry(def_o_class(kind(v.row))).or_default() += 1;
++                m
++            });
++            let (end, cause) = match &prepared.attempts[i].end {
++                AttemptEnd::Frozen(_) => ("frozen", String::new()),
++                AttemptEnd::Native => ("native", String::new()),
++                AttemptEnd::Preparation => ("preparation", String::new()),
++                AttemptEnd::Candidate(refused) => ("candidate", match &refused.error {
++                    PreparedCandidateError::Proof(failure) => format!("Proof({:?})", failure.failure().typed_cause(&mut open_pipe_stress_frame_kernel::structural::retained_api::TraceCopyWork::default())),
++                    PreparedCandidateError::Values { .. } => "Values".to_owned(),
++                    PreparedCandidateError::Abandoned { cause, .. } => format!("Abandoned({cause:?})"),
++                    PreparedCandidateError::Capture(e) => format!("Capture({e:?})"),
++                    PreparedCandidateError::Numeric => "Numeric".to_owned(),
++                    PreparedCandidateError::Observable => "Observable".to_owned(),
++                    PreparedCandidateError::G5a => "G5a".to_owned(),
++                }),
++                _ => ("other", String::new()),
++            };
++            let first = verdicts.iter().find(|v| !v.passed)
++                .map(|v| format!("row={} kind={} class={} failed={:?} predicates={:?}", v.row, kind(v.row), def_o_class(kind(v.row)), v.failed, v.predicates));
++            println!("I104_SQ_DEF_O {label} {mode:?} case={case_id} end={end} rows={} verdicts={} by_class={classes:?} failing={} tally={tally:?} first_failing={first:?} cause={cause}",
++                rows.len(), verdicts.len(), verdicts.iter().filter(|v| !v.passed).count());
++        }
++    };
++    crate::on_reserved_stack(WITNESS_STACK, work).unwrap_or_else(|| panic!("{label}: the reserved thread did not spawn"));
++}
++macro_rules! def_o {
++    ($($name:ident: $input:expr;)+) => {
++        $(per_mode! { $name, |mode| { def_o_report(stringify!($name), $input, mode); } })+
++    };
++}
++def_o! {
++    def_o_b2_k1e3: inputs::b2_k1e3();
++    def_o_c1: inputs::c1();
++    def_o_i3_three_case: inputs::i3_three_case();
++    def_o_w2: inputs::w2();
++    def_o_w_c2: crate::retained_facade_tests::w_c2();
++}
+diff --git a/projects/chirality-piping/core/product_physics/tests/common/b1_sq_inputs.rs b/projects/chirality-piping/core/product_physics/tests/common/b1_sq_inputs.rs
+new file mode 100644
+index 0000000000..ec6fb51add
+--- /dev/null
++++ b/projects/chirality-piping/core/product_physics/tests/common/b1_sq_inputs.rs
+@@ -0,0 +1,359 @@
++//! B1 SQ (PLAN_v2 §3.4–§3.6): the cap-maximal qualification inputs, shared by the S1 witnesses
++//! (`src/retained_memory_witness_tests.rs`, through `#[path]`) and the allocation challenge
++//! (`tests/retained_memory_challenge.rs`). Test-only; the product never reads this file.
++//!
++//! Each builder transcribes I86's input generator (R/I86/b1_w_probe_01/_run_records/gen_inputs.py)
++//! or a committed test helper, and its result is pinned by the sha256 of `serde_json::to_vec` of
++//! the Value, the `input_sha` I86's probe logs record (RR "I86's SW probe accepted; …", rulings 1
++//! and 2):
++//! - `b2_k1e3()`: W2b's replacement, W2b's input with S0 an anchor restraining UX, UY, UZ, RY, RZ
++//!   and S31 an RX spring of 1000 N·m/rad at N0 (Sensitive by its report; `Fallback("Candidate")`);
++//! - `c1()`: the c = 1 cap-maximal input that publishes (7 milestone copies and 4 filler bodies);
++//! - `i3_case(…)` and `i3_three_case()`: the three case components on c1's model, each stressed
++//!   (every provenance escaped, a raw value of depth 16), and their three-case assembly (|A| = 3);
++//! - `w_c2()`: W-C2 (R/I81/b1_probe_01 PROBE §4), the facade tests' `w_c2()`.
++#![allow(dead_code)]
++use serde_json::{json, Value};
++
++pub const MILESTONE: &str = include_str!("../../../../fixtures/product_preview/rf_skew_t_cant_off_122_r1e-04.request.json");
++const PROV: &str = "invented_t3_b1_sw_probe_input_no_library_data";
++
++/// I86's `input_sha` pins (sha256 of `serde_json::to_vec(&value)`).
++pub const W2B_SHA256: &str = "d74d01ce1bc33244796877890ad134dd8476beb059bd82f26f2e004f8af619cb";
++pub const B2_K1E3_SHA256: &str = "1ea4a168b40fd0c5a35c056c93c29b8b562eb739b7a5a09c1f888271f39d67a0";
++pub const C1_SHA256: &str = "c5d2e93240b421092550097f8d1926d75be864df997a37a1901fe25a106388ed";
++pub const I3_CASE_SHA256: [(&str, &str); 3] = [
++    ("case:a", "8756006a612b6ed66c1dd01b2af228b339b6b51cd43a6fd416638c6f87c215b0"),
++    ("case:b", "c533f5674753a880f6a7b83839b4d1957d32834570133ea27fd5821ddfa65e24"),
++    ("case:c", "b4a22b37f452dfd12449fac41ef86fb4d13ad0dbb23cac0d4e321dd9a38092fb"),
++];
++pub const I3_THREE_CASE_SHA256: &str = "2ca29f02fc1bc96d0b30133951516bbe59abd5495b4a4e7cebde479bcbc4c508";
++
++pub fn milestone() -> Value {
++    serde_json::from_str(MILESTONE).unwrap()
++}
++fn text(prefix: &str, len: usize) -> String {
++    let mut s = String::from(prefix);
++    while s.len() < len {
++        s.push('x');
++    }
++    s.truncate(len);
++    s
++}
++
++/// `law_tests::cap_maximal`, transcribed (a lib test asserts the two are equal): 32 nodes, a
++/// 32-member ring, 32 supports with 6 restraints and a scalar spring each, 128 nodal loads,
++/// 4 + 4 materials with 16 temperature points, a 128-byte project id.
++pub fn law_cap_maximal() -> Value {
++    let p = "invented_t3_g5_cap_maximal_input_no_library_data";
++    let nodes: Vec<Value> = (0..32)
++        .map(|i| {
++            let t = 2.0 * std::f64::consts::PI * i as f64 / 32.0;
++            json!({"id": format!("N{i}"), "position": {"x": 10.0 * t.cos(), "y": 10.0 * t.sin(), "z": 0.0}, "provenance": p})
++        })
++        .collect();
++    let pipes: Vec<Value> = (0..32)
++        .map(|i| json!({"id": format!("M{i}"), "from": format!("N{i}"), "to": format!("N{}", (i + 1) % 32), "material": "mat:0", "y_reference": {"x": 0.0, "y": 0.0, "z": 1.0},
++            "section": {"outside_diameter": {"value": 0.2, "unit": "m"}, "wall_thickness": {"value": 0.01, "unit": "m"}}, "provenance": p}))
++        .collect();
++    let supports: Vec<Value> = (0..32)
++        .map(|i| json!({"id": format!("S{i}"), "node": format!("N{i}"), "restraints": ["UX", "UY", "UZ", "RX", "RY", "RZ"],
++            "stiffness": {"dof": "UY", "value": {"value": 1.0e6, "unit": "N/m"}}, "provenance": p}))
++        .collect();
++    let loads: Vec<Value> = (0..128)
++        .map(|i| json!({"id": format!("L{i}"), "category": "concentrated_force", "target": {"type": "node", "node": format!("N{}", i % 32)},
++            "direction": if i % 2 == 0 { "global_y" } else { "rotation_x" }, "magnitude": {"value": 1.0, "unit": if i % 2 == 0 { "N" } else { "N*m" }},
++            "dimension": if i % 2 == 0 { "force" } else { "moment" }, "provenance": p}))
++        .collect();
++    let points: Vec<Value> = (0..16).map(|i| json!({"id": format!("T{i}"), "provenance": p})).collect();
++    let materials: Vec<Value> = (0..4)
++        .map(|i| json!({"id": format!("mat:{i}"), "elastic_modulus": {"value": 2.0e11, "unit": "Pa"}, "shear_modulus": {"value": 8.0e10, "unit": "Pa"},
++            "temperature_points": points, "provenance": p}))
++        .collect();
++    json!({
++        "model": {
++            "schema_version": "0.1.0",
++            "document_kind": "openpipestress.product_preview.model",
++            "analysis_status": {"mechanics": "ready_for_preview_diagnostics", "rule_check": "not_performed_user_rule_inputs_missing", "professional_acceptance": "not_provided"},
++            "project": {"id": text("project:", 128), "units": {"length": "m", "force": "N"}},
++            "nodes": nodes,
++            "pipe_segments": pipes,
++            "materials": materials,
++            "supports": supports,
++            "load_cases": [{"id": "case", "primitive_loads": loads, "provenance": p}],
++            "combinations": []
++        },
++        "materials": materials
++    })
++}
++/// W2b's input (`witness_tests::w2b_input`): `law_cap_maximal` with the milestone's support shapes.
++pub fn w2b() -> Value {
++    let mut raw = law_cap_maximal();
++    for (i, support) in raw["model"]["supports"].as_array_mut().unwrap().iter_mut().enumerate() {
++        if i == 0 {
++            support.as_object_mut().unwrap().remove("stiffness");
++        } else {
++            support["family"] = json!("spring");
++            support["restraints"] = json!(["UY"]);
++        }
++    }
++    raw
++}
++/// W2b's replacement (gen_inputs.py `variant_b(w2b, 1000.0, anchor=True)`).
++pub fn b2_k1e3() -> Value {
++    let mut raw = w2b();
++    let supports = raw["model"]["supports"].as_array_mut().unwrap();
++    assert_eq!(supports[0]["node"], "N0");
++    supports[0]["restraints"] = json!(["UX", "UY", "UZ", "RY", "RZ"]);
++    supports[0]["family"] = json!("anchor");
++    assert_eq!((&supports[31]["node"], &supports[31]["family"]), (&json!("N31"), &json!("spring")));
++    let provenance = supports[31]["provenance"].clone();
++    supports[31] = json!({"id": "S31", "node": "N0", "family": "spring", "restraints": ["RX"],
++        "stiffness": {"dof": "RX", "value": {"value": 1000.0, "unit": "N*m/rad"}}, "provenance": provenance});
++    raw
++}
++
++/// gen_inputs.py `split_exact`: `v` split into parts proportional to `weights`, each an integer
++/// multiple of 2^E (v = M·2^E, |M| < 2^53), whose integer sum is M, so every partial sum is exact.
++fn split_exact(v: f64, weights: &[u64]) -> Vec<f64> {
++    let bits = v.to_bits();
++    let exponent = ((bits >> 52) & 0x7ff) as i32;
++    assert!(exponent != 0 && exponent != 0x7ff, "a normal value");
++    let m = (bits & ((1u64 << 52) - 1)) | (1u64 << 52);
++    let e = exponent - 1075;
++    let sign = if bits >> 63 == 1 { -1.0 } else { 1.0 };
++    let total: u64 = weights.iter().sum();
++    let mut ints: Vec<u64> = weights.iter().map(|w| ((m as u128 * *w as u128) / total as u128) as u64).collect();
++    let sum: u64 = ints.iter().sum();
++    *ints.last_mut().unwrap() += m - sum;
++    assert!(ints.iter().all(|i| *i > 0));
++    let scale = 2f64.powi(e);
++    let parts: Vec<f64> = ints.iter().map(|i| sign * (*i as f64 * scale)).collect();
++    assert_eq!(parts.iter().fold(0.0, |a, p| a + p), v, "exact in order");
++    assert_eq!(parts.iter().rev().fold(0.0, |a, p| a + p), v, "exact in reverse");
++    parts
++}
++fn perpendicular_reference(d: [f64; 3]) -> Value {
++    for r in [[0.0, 0.0, 1.0], [1.0, 0.0, 0.0], [0.0, 1.0, 0.0]] {
++        let c = [d[1] * r[2] - d[2] * r[1], d[2] * r[0] - d[0] * r[2], d[0] * r[1] - d[1] * r[0]];
++        let n = (c[0] * c[0] + c[1] * c[1] + c[2] * c[2]).sqrt();
++        if n > 0.5 * (d[0] * d[0] + d[1] * d[1] + d[2] * d[2]).sqrt() {
++            return json!({"x": r[0], "y": r[1], "z": r[2]});
++        }
++    }
++    unreachable!("a member direction")
++}
++/// gen_inputs.py `filler_bodies`: four anchored, connected, unloaded bodies (18 nodes, 25 members,
++/// 4 supports), each first node fully restrained with no family.
++fn filler_bodies() -> (Vec<Value>, Vec<Value>, Vec<Value>) {
++    let shapes: [&[[f64; 3]]; 4] = [
++        &[[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0], [1.0, 1.0, 1.0]],
++        &[[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [1.0, 1.0, 0.0], [0.0, 1.0, 0.0], [0.5, 0.5, 1.0]],
++        &[[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]],
++        &[[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [1.0, 1.0, 0.0], [1.0, 1.0, 1.0]],
++    ];
++    let complete = |n: usize| (0..n).flat_map(|i| (i + 1..n).map(move |j| (i, j))).collect::<Vec<_>>();
++    let edges = [complete(5), vec![(0, 1), (1, 2), (2, 3), (3, 0), (0, 4), (2, 4)], complete(4), vec![(0, 1), (1, 2), (2, 3)]];
++    let (mut nodes, mut pipes, mut supports) = (Vec::new(), Vec::new(), Vec::new());
++    for (b, (shape, es)) in shapes.iter().zip(edges.iter()).enumerate() {
++        let origin = [100.0 + 10.0 * b as f64, 50.0, 0.0];
++        let ids: Vec<String> = (0..shape.len()).map(|i| format!("F{b}:N{i}")).collect();
++        for (i, p) in shape.iter().enumerate() {
++            nodes.push(json!({"id": ids[i], "position": {"x": origin[0] + p[0], "y": origin[1] + p[1], "z": origin[2] + p[2]}, "provenance": PROV}));
++        }
++        for &(i, j) in es {
++            let d = [shape[j][0] - shape[i][0], shape[j][1] - shape[i][1], shape[j][2] - shape[i][2]];
++            pipes.push(json!({"id": format!("F{b}:M{i}{j}"), "from": ids[i], "to": ids[j], "material": "mat:1", "y_reference": perpendicular_reference(d),
++                "section": {"outside_diameter": {"value": 0.2, "unit": "m"}, "wall_thickness": {"value": 0.01, "unit": "m"}}, "provenance": PROV}));
++        }
++        supports.push(json!({"id": format!("F{b}:anchor"), "node": ids[0], "restraints": ["UX", "UY", "UZ", "RX", "RY", "RZ"], "provenance": PROV}));
++    }
++    assert_eq!((nodes.len(), pipes.len(), supports.len()), (18, 25, 4));
++    (nodes, pipes, supports)
++}
++fn materials(points: usize) -> Vec<Value> {
++    let pts: Vec<Value> = (0..points).map(|i| json!({"id": format!("T{i}"), "provenance": PROV})).collect();
++    (0..4)
++        .map(|i| {
++            let mut m = json!({"id": format!("mat:{i}"), "elastic_modulus": {"value": 200000000000.0, "unit": "Pa"},
++                "shear_modulus": {"value": 80000000000.0, "unit": "Pa"}, "provenance": PROV});
++            if points > 0 {
++                m["temperature_points"] = json!(pts);
++            }
++            m
++        })
++        .collect()
++}
++/// gen_inputs.py `copies_loads`: `total` moments over `copies` milestone copies (three rotational
++/// DOFs at each copy's N1); copy k's net on each DOF is exactly `scale(k)` times the milestone's.
++fn copies_loads(ms: &Value, prefix: &str, copies: usize, total: usize, scale: impl Fn(usize) -> f64, weights: impl Fn(usize) -> Vec<u64>) -> Vec<Value> {
++    let base = |d: &str| {
++        ms["model"]["load_cases"][0]["primitive_loads"].as_array().unwrap().iter()
++            .find(|l| l["direction"] == d).unwrap()["magnitude"]["value"].as_f64().unwrap()
++    };
++    let slots: Vec<(usize, &str)> = (0..copies).flat_map(|k| ["RX", "RY", "RZ"].map(|d| (k, d))).collect();
++    let mut per = vec![total / slots.len(); slots.len()];
++    for p in per.iter_mut().take(total - (total / slots.len()) * slots.len()) {
++        *p += 1;
++    }
++    let mut out = Vec::new();
++    for (&(k, d), &n) in slots.iter().zip(&per) {
++        let net = base(d) * scale(k);
++        for (j, part) in split_exact(net, &weights(n)).into_iter().enumerate() {
++            out.push(json!({"id": format!("{prefix}C{k}:{d}:{j}"), "category": "concentrated_moment", "target": {"type": "node", "node": format!("C{k}:N1")},
++                "direction": d, "magnitude": {"value": part, "unit": "N*m"}, "dimension": "moment", "provenance": PROV}));
++        }
++    }
++    assert_eq!(out.len(), total);
++    out
++}
++/// gen_inputs.py `build_model`: the milestone body replicated `copies` times along X, plus the
++/// filler, at D1's count caps (32 nodes, members and supports).
++fn build_model(ms: &Value, copies: usize, points: usize, cases: Vec<Value>) -> Value {
++    let m = &ms["model"];
++    let (mut nodes, mut pipes, mut supports) = (Vec::new(), Vec::new(), Vec::new());
++    for k in 0..copies {
++        let dx = 10.0 * k as f64;
++        for n in m["nodes"].as_array().unwrap() {
++            let p = &n["position"];
++            nodes.push(json!({"id": format!("C{k}:{}", n["id"].as_str().unwrap()),
++                "position": {"x": p["x"].as_f64().unwrap() + dx, "y": p["y"], "z": p["z"]}, "provenance": n["provenance"]}));
++        }
++        for pipe in m["pipe_segments"].as_array().unwrap() {
++            let mut q = pipe.clone();
++            q["id"] = json!(format!("C{k}:{}", pipe["id"].as_str().unwrap()));
++            q["from"] = json!(format!("C{k}:{}", pipe["from"].as_str().unwrap()));
++            q["to"] = json!(format!("C{k}:{}", pipe["to"].as_str().unwrap()));
++            q["material"] = json!("mat:0");
++            pipes.push(q);
++        }
++        for s in m["supports"].as_array().unwrap() {
++            let mut q = s.clone();
++            q["id"] = json!(format!("C{k}:{}", s["id"].as_str().unwrap()));
++            q["node"] = json!(format!("C{k}:{}", s["node"].as_str().unwrap()));
++            supports.push(q);
++        }
++    }
++    let (fnodes, fpipes, fsupports) = filler_bodies();
++    nodes.extend(fnodes);
++    pipes.extend(fpipes);
++    supports.extend(fsupports);
++    assert_eq!((nodes.len(), pipes.len(), supports.len()), (32, 32, 32));
++    json!({"model": {
++        "schema_version": m["schema_version"], "document_kind": m["document_kind"], "analysis_status": m["analysis_status"],
++        "project": {"id": text("invented:t3-b1-sw:", 128), "units": m["project"]["units"]},
++        "nodes": nodes, "pipe_segments": pipes, "materials": materials(points), "supports": supports,
++        "load_cases": cases, "combinations": []}, "materials": materials(points)})
++}
++fn one_case(id: &str, loads: Vec<Value>) -> Value {
++    json!({"id": id, "label": "I86 B1-SW probe case", "kind": "primitive_user_load", "primitive_loads": loads, "provenance": PROV})
++}
++/// The c = 1 cap-maximal input that publishes (gen_inputs.py `build_c("c1")`).
++pub fn c1() -> Value {
++    let ms = milestone();
++    let loads = copies_loads(&ms, "", 7, 128, |_| 1.0, |n| vec![1; n]);
++    build_model(&ms, 7, 16, vec![one_case("case", loads)])
++}
++/// A quote and a backslash appended to every provenance (maximal escaping under D1.11).
++pub fn escape_every_provenance(v: &mut Value) {
++    match v {
++        Value::Object(m) => {
++            for (k, x) in m.iter_mut() {
++                match x {
++                    Value::String(s) if k == "provenance" => s.push_str(" q\"b\\"),
++                    _ => escape_every_provenance(x),
++                }
++            }
++        }
++        Value::Array(a) => a.iter_mut().for_each(escape_every_provenance),
++        _ => {}
++    }
++}
++/// A raw value of depth 16 at the root (D1.2's cap).
++pub fn depth_16_value() -> Value {
++    let mut deep = json!(1);
++    for _ in 0..14 {
++        deep = json!([deep]);
++    }
++    deep
++}
++fn stressed(mut raw: Value) -> Value {
++    escape_every_provenance(&mut raw);
++    raw["model"]["unknown_depth_witness"] = depth_16_value();
++    raw
++}
++/// gen_inputs.py `i3_sets`: three 128-moment sets on c1's model. A: each copy's net the
++/// milestone's, equal parts; B: minus it, parts weighted 1..n; C: copy k's net 2^(k−3) times it,
++/// parts weighted n+1..2.
++fn i3_sets(ms: &Value) -> [(&'static str, Vec<Value>); 3] {
++    [
++        ("case:a", copies_loads(ms, "a:", 7, 128, |_| 1.0, |n| vec![1; n])),
++        ("case:b", copies_loads(ms, "b:", 7, 128, |_| -1.0, |n| (1..=n as u64).collect())),
++        ("case:c", copies_loads(ms, "c:", 7, 128, |k| 2f64.powi(k as i32 - 3), |n| (0..n as u64).map(|i| n as u64 - i + 1).collect())),
++    ]
++}
++/// One stressed component, alone (`i3_c1_case_{a,b,c}`).
++pub fn i3_case(id: &str) -> Value {
++    let ms = milestone();
++    let (cid, loads) = i3_sets(&ms).into_iter().find(|(cid, _)| *cid == id).unwrap();
++    stressed(build_model(&ms, 7, 16, vec![one_case(cid, loads)]))
++}
++/// The stressed three-case assembly (`i3_c1_three_case`): A, B and C, every case in A.
++pub fn i3_three_case() -> Value {
++    let ms = milestone();
++    let cases = i3_sets(&ms).into_iter().map(|(cid, loads)| one_case(cid, loads)).collect();
++    stressed(build_model(&ms, 7, 16, cases))
++}
++
++/// W-C2 (the facade tests' `w_c2()`, transcribed; a lib test asserts the two are equal): the
++/// milestone plus PHYS-R4's cantilever as body 1, with case A (the milestone's moments), case B
++/// (the tip force and torque) and case C (A's loads then B's, ids suffixed `:c`).
++pub fn w_c2() -> Value {
++    let mut raw = milestone();
++    let p = "invented_t3_g5_witness_input_no_library_data";
++    let model = &mut raw["model"];
++    model["nodes"].as_array_mut().unwrap().extend([
++        json!({"id": "node:section-a", "position": {"x": 5.0, "y": 0.0, "z": 0.0}, "provenance": p}),
++        json!({"id": "node:section-b", "position": {"x": 6.0, "y": 0.0, "z": 0.0}, "provenance": p}),
++    ]);
++    model["pipe_segments"].as_array_mut().unwrap().push(json!({"id": "pipe:source-section", "from": "node:section-a", "to": "node:section-b",
++        "material": "material:section", "y_reference": {"x": 0.0, "y": 1.0, "z": 0.0},
++        "section": {"outside_diameter": {"value": 4e-77, "unit": "m"}, "wall_thickness": {"value": 1e-77, "unit": "m"}}, "provenance": p}));
++    model["materials"].as_array_mut().unwrap().push(json!({"id": "material:section", "elastic_modulus": {"value": 1.0, "unit": "Pa"},
++        "shear_modulus": {"value": 0.4545, "unit": "Pa"}, "provenance": p}));
++    model["supports"].as_array_mut().unwrap().push(json!({"id": "support:section-a", "node": "node:section-a", "family": "anchor",
++        "restraints": ["UX", "UY", "UZ", "RX", "RY", "RZ"], "provenance": p}));
++    let template = model["load_cases"][0].clone();
++    let loads_a = template["primitive_loads"].clone();
++    let tip = f64::from_bits(0x0031fa182c40c60d);
++    let loads_b = json!([
++        {"id": "load:tip-y", "category": "concentrated_force", "target": {"type": "node", "node": "node:section-b"}, "direction": "global_y",
++            "dimension": "force", "magnitude": {"value": tip, "unit": "N"}, "provenance": p},
++        {"id": "load:tip-torque", "category": "concentrated_moment", "target": {"type": "node", "node": "node:section-b"}, "direction": "rotation_x",
++            "dimension": "moment", "magnitude": {"value": tip, "unit": "N*m"}, "provenance": p}]);
++    let mut loads_c: Vec<Value> = loads_a.as_array().unwrap().iter().chain(loads_b.as_array().unwrap()).cloned().collect();
++    for load in &mut loads_c {
++        load["id"] = json!(format!("{}:c", load["id"].as_str().unwrap()));
++    }
++    let case = |id: &str, loads: Value| {
++        let mut case = template.clone();
++        case["id"] = json!(id);
++        case["primitive_loads"] = loads;
++        case
++    };
++    model["load_cases"] = json!([case("case-a", loads_a), case("case-b", loads_b), case("case-c", json!(loads_c))]);
++    raw
++}
++/// W-C2's (A, C): W-C2 without case B (RV109 round 2 N-3: it publishes in sparse).
++pub fn w_c2_ac() -> Value {
++    let mut raw = w_c2();
++    let cases = raw["model"]["load_cases"].as_array_mut().unwrap();
++    assert_eq!(cases[1]["id"], "case-b");
++    cases.remove(1);
++    raw
++}
++/// W2's input (`witness_w2_cap_maximal`): `law_cap_maximal`, every provenance escaped, with a raw
++/// value of depth 16; its support shapes stop it at preparation.
++pub fn w2() -> Value {
++    stressed(law_cap_maximal())
++}
+diff --git a/projects/chirality-piping/core/product_physics/tests/retained_memory_challenge.rs b/projects/chirality-piping/core/product_physics/tests/retained_memory_challenge.rs
+index da0a0126e6..ccf49c9cce 100644
+--- a/projects/chirality-piping/core/product_physics/tests/retained_memory_challenge.rs
++++ b/projects/chirality-piping/core/product_physics/tests/retained_memory_challenge.rs
+@@ -1,30 +1,51 @@
+-//! U4 G5 part 2: the allocation challenge (brief §6). A challenge only, not a proof
+-//! and not a production guard.
++//! U4 G5 part 2, re-qualified by B1 SQ (PLAN_v2 §3.5, with RV107's A1-S-1 and A1-N-9): the
++//! allocation challenge. A challenge only, not a proof and not a production guard.
+ //!
+-//! This binary's own global allocator records the peak of live requested heap
+-//! bytes (the f1b_sparse_pattern_memory.rs pattern). Through the public retained
+-//! Direct entry (G-A's census and law, the parse, the ordinary run, and the W1
+-//! phases when the registered build permits the call), it measures the peak on the
+-//! milestone and on a cap-maximal D1 input, in both modes, against the cap-priced
+-//! profile: a permitted run's peak (the milestone, registered build) at or below E_mov,max,
+-//! any other's at or below the in-build W1 phase, without R. The bounds below are the
+-//! generated profile's values; a lib test (`challenge_bounds_are_the_profile`)
+-//! reads this file and checks they equal the in-build evaluation.
+-use open_pipe_stress_product_physics::{run_linear_static_preview_value_with_retained_direct, PreviewSolverMode};
+-use serde_json::{json, Value};
++//! This binary's own global allocator records the peak of live requested heap bytes (the
++//! f1b_sparse_pattern_memory.rs pattern), like-for-like with E_mov,max. Each entry point runs one
++//! input in one mode, through one route, and is meant to run as its own process
++//! (`<binary> <name> --exact --ignored --test-threads=1 --nocapture`; RSS_TIME.md's runs):
++//! - `direct_*`: the public retained Direct entry (G-A's census and law, the parse, the ordinary
++//!   run, and the W1 phases when the registered build permits the call);
++//! - `ordinary_*`: the ordinary value route alone (the control for W1's increment);
++//! - `process_floor`: no product call.
++//!
++//! The bound (A1-S-1): a run that did W1 work, which the public surface shows as a successor or an
++//! N1 notice, is bounded by E_mov,max, the maximum over every phase; any other run (no permit,
++//! `NoTriggeredCase`, or the ordinary route) by the in-build W1 phase. Both without R. The
++//! furthest W1 phase a run reached is not visible here (`W1Fallback` is `pub(crate)`); it comes
++//! from the witness-driver run of the same input, mode and build (`witness_tests`), and RSS_TIME.md
++//! records it beside this peak. The bounds below are the generated profile's values; a lib test
++//! (`challenge_bounds_are_the_profile`) reads this file and checks they equal the in-build
++//! evaluation. The one default test runs the cheap inputs (milestone, W-C2) in both modes.
++//!
++//! The counting allocator does SeqCst atomics on every allocation, which slows these dev/test
++//! timings; release times come from the witness tests, without it (A1-N-9).
++use open_pipe_stress_product_physics::{run_linear_static_preview_value_with_mode, run_linear_static_preview_value_with_retained_direct, PreviewSolverMode};
++use serde_json::Value;
+ use std::alloc::{GlobalAlloc, Layout, System};
+ use std::sync::atomic::{AtomicUsize, Ordering};
++use std::sync::Mutex;
++
++#[path = "common/b1_sq_inputs.rs"]
++mod b1_sq_inputs;
++use b1_sq_inputs as inputs;
+ 
+ /// The profile's in-build W1 phase (requested + moving, without R), sparse and dense, in the
+ /// pinned record's build (the lib test `challenge_bounds_are_the_profile` checks it there).
+-const W1_PHASE_BYTES: [u64; 2] = [1_856_156_348, 1_875_866_796];
++const W1_PHASE_BYTES: [u64; 2] = [5_069_321_390, 5_128_452_734];
+ /// The profile's in-build maximum over every phase (E_mov,max, without R; W3 in both modes),
+-/// the bound once a permit admits the W1 phases (a registered build, G6).
+-const MAX_PHASE_BYTES: [u64; 2] = [3_508_669_422, 3_528_379_870];
+-const CAP_BYTES: usize = 6 << 30;
++/// the bound once a run has done W1 work (a registered build, G6).
++const MAX_PHASE_BYTES: [u64; 2] = [9_733_567_302, 9_792_698_646];
++/// The abort cap: above E_mov,max + R at M and within T3's host allowance (PLAN_v2 §3.5).
++const CAP_BYTES: usize = 16 << 30;
++/// The N1 notice's fixed text (lib.rs `RETAINED_UNAVAILABLE_NOTICE`), as the base publication shows it.
++const N1_NOTICE: &str = "Retained-precision recovery is unavailable for this load case.";
+ 
+ static CURRENT: AtomicUsize = AtomicUsize::new(0);
+ static PEAK: AtomicUsize = AtomicUsize::new(0);
++/// One measured span at a time in this process.
++static SPAN: Mutex<()> = Mutex::new(());
+ struct Counting;
+ impl Counting {
+     fn grow(size: usize) {
+@@ -60,75 +81,109 @@ unsafe impl GlobalAlloc for Counting {
+ #[global_allocator]
+ static GLOBAL: Counting = Counting;
+ 
+-fn milestone() -> Value {
+-    serde_json::from_str(include_str!("../../../fixtures/product_preview/rf_skew_t_cant_off_122_r1e-04.request.json")).unwrap()
++#[derive(Clone, Copy, Debug)]
++enum Route {
++    Direct,
++    Ordinary,
+ }
+-/// A large D1 input in the law tests' shape (32 nodes, a 32-member ring, 32 supports:
+-/// one anchor and 31 scalar springs, 128 nodal loads, 4 + 4 materials with 16
+-/// temperature points, a 128-byte identifier).
+-fn cap_maximal() -> Value {
+-    let p = "invented_t3_g5_cap_maximal_input_no_library_data";
+-    let nodes: Vec<Value> = (0..32)
+-        .map(|i| {
+-            let t = 2.0 * std::f64::consts::PI * i as f64 / 32.0;
+-            json!({"id": format!("N{i}"), "position": {"x": 10.0 * t.cos(), "y": 10.0 * t.sin(), "z": 0.0}, "provenance": p})
+-        })
+-        .collect();
+-    let pipes: Vec<Value> = (0..32)
+-        .map(|i| json!({"id": format!("M{i}"), "from": format!("N{i}"), "to": format!("N{}", (i + 1) % 32), "material": "mat:0", "y_reference": {"x": 0.0, "y": 0.0, "z": 1.0},
+-            "section": {"outside_diameter": {"value": 0.2, "unit": "m"}, "wall_thickness": {"value": 0.01, "unit": "m"}}, "provenance": p}))
+-        .collect();
+-    // Node 0 is anchored; every other node has one scalar spring, so the model solves.
+-    let supports: Vec<Value> = (0..32)
+-        .map(|i| if i == 0 {
+-            json!({"id": "S0", "node": "N0", "family": "anchor", "restraints": ["UX", "UY", "UZ", "RX", "RY", "RZ"], "provenance": p})
+-        } else {
+-            json!({"id": format!("S{i}"), "node": format!("N{i}"), "family": "spring", "restraints": [],
+-                "stiffness": {"dof": "UY", "value": {"value": 1.0e6, "unit": "N/m"}}, "provenance": p})
+-        })
+-        .collect();
+-    let loads: Vec<Value> = (0..128)
+-        .map(|i| json!({"id": format!("L{i}"), "category": "concentrated_force", "target": {"type": "node", "node": format!("N{}", i % 32)},
+-            "direction": if i % 2 == 0 { "global_y" } else { "rotation_x" }, "magnitude": {"value": 1.0, "unit": if i % 2 == 0 { "N" } else { "N*m" }},
+-            "dimension": if i % 2 == 0 { "force" } else { "moment" }, "provenance": p}))
+-        .collect();
+-    let points: Vec<Value> = (0..16).map(|i| json!({"id": format!("T{i}"), "provenance": p})).collect();
+-    let materials: Vec<Value> = (0..4)
+-        .map(|i| json!({"id": format!("mat:{i}"), "elastic_modulus": {"value": 2.0e11, "unit": "Pa"}, "shear_modulus": {"value": 8.0e10, "unit": "Pa"},
+-            "temperature_points": points, "provenance": p}))
+-        .collect();
+-    let mut project = String::from("project:");
+-    while project.len() < 128 {
+-        project.push('x');
+-    }
+-    json!({"model": {"schema_version": "0.1.0", "document_kind": "openpipestress.product_preview.model",
+-        "analysis_status": {"mechanics": "ready_for_preview_diagnostics", "rule_check": "not_performed_user_rule_inputs_missing", "professional_acceptance": "not_provided"},
+-        "project": {"id": project, "units": {"length": "m", "force": "N"}},
+-        "nodes": nodes, "pipe_segments": pipes, "materials": materials, "supports": supports,
+-        "load_cases": [{"id": "case", "primitive_loads": loads, "provenance": p}], "combinations": []},
+-        "materials": materials})
++const SPARSE: PreviewSolverMode = PreviewSolverMode::SparseInteractive;
++const DENSE: PreviewSolverMode = PreviewSolverMode::DenseScrutiny;
++
++/// One measured run: the input is built before the span; the peak is the span's live requested
++/// bytes above its start. Prints the outcome, the peak, its bound and the call's wall time.
++fn measure(label: &str, raw: Value, mode: PreviewSolverMode, route: Route) {
++    let _span = SPAN.lock().unwrap_or_else(|poison| poison.into_inner());
++    let m = match mode {
++        PreviewSolverMode::SparseInteractive => 0,
++        _ => 1,
++    };
++    let base = CURRENT.load(Ordering::SeqCst);
++    PEAK.store(base, Ordering::SeqCst);
++    let start = std::time::Instant::now();
++    let (outcome, w1_work, envelope_rows) = match route {
++        Route::Direct => {
++            let output = run_linear_static_preview_value_with_retained_direct(raw, mode).unwrap();
++            let elapsed = start.elapsed();
++            let notices = output.envelope().diagnostics.iter().filter(|d| d.message.starts_with(N1_NOTICE)).count();
++            let successor = output.successor().map(|s| serde_json::to_vec(s).unwrap().len());
++            let rows = output.envelope().results.len();
++            drop(output);
++            println!("I104_SQ_CHALLENGE_TIME {label} {mode:?} {route:?} call_ms={:.1}", elapsed.as_secs_f64() * 1e3);
++            let outcome = match (successor, notices) {
++                (Some(bytes), 0) => format!("successor({bytes} B)"),
++                (Some(bytes), n) => format!("successor({bytes} B)+notices({n})"),
++                (None, 0) => "no_w1_work".to_owned(),
++                (None, n) => format!("notices({n})"),
++            };
++            (outcome, successor.is_some() || notices > 0, rows)
++        }
++        Route::Ordinary => {
++            let envelope = run_linear_static_preview_value_with_mode(raw, mode).unwrap();
++            let elapsed = start.elapsed();
++            let rows = envelope.results.len();
++            drop(envelope);
++            println!("I104_SQ_CHALLENGE_TIME {label} {mode:?} {route:?} call_ms={:.1}", elapsed.as_secs_f64() * 1e3);
++            ("ordinary_route".to_owned(), false, rows)
++        }
++    };
++    let peak = (PEAK.load(Ordering::SeqCst) - base) as u64;
++    let bound = if w1_work { MAX_PHASE_BYTES[m] } else { W1_PHASE_BYTES[m] };
++    println!("I104_SQ_CHALLENGE {label} {mode:?} {route:?} outcome={outcome} rows={envelope_rows} peak_bytes={peak} bound={} bound_bytes={bound} ratio={:.6}",
++        if w1_work { "E_mov_max" } else { "W1_phase" }, peak as f64 / bound as f64);
++    assert!(peak <= bound, "{label} {mode:?} {route:?}: measured peak {peak} above the profile's bound {bound}");
+ }
+ 
++/// The default suite's challenge: the milestone (its peak still within bound) and W-C2, both modes,
++/// through the Direct entry, in one process.
+ #[test]
+-fn retained_direct_peak_is_within_the_profiles_ordinary_span() {
+-    for (label, raw) in [("milestone", milestone()), ("cap_maximal", cap_maximal())] {
+-        for (m, mode) in [PreviewSolverMode::SparseInteractive, PreviewSolverMode::DenseScrutiny].into_iter().enumerate() {
+-            let input = raw.clone();
+-            let base = CURRENT.load(Ordering::SeqCst);
+-            PEAK.store(base, Ordering::SeqCst);
+-            let output = run_linear_static_preview_value_with_retained_direct(input, mode).unwrap();
+-            let blocking: Vec<&str> = output.envelope().diagnostics.iter().filter(|d| d.severity == "blocking").map(|d| d.code.as_str()).collect();
+-            println!("I65_G5_CHALLENGE_RUN {label} {mode:?} mechanics={} rows={} blocking={blocking:?}", output.envelope().status.mechanics,
+-                output.envelope().results.len());
+-            let peak = PEAK.load(Ordering::SeqCst) - base;
+-            // Without a permit the ordinary span runs (the W1 phase bounds it); with one (a
+-            // registered build) the W1 phases run too, and the whole maximum bounds it.
+-            let permitted = output.successor().is_some();
+-            let bound = if permitted { MAX_PHASE_BYTES[m] } else { W1_PHASE_BYTES[m] };
+-            drop(output);
+-            println!("I65_G5_CHALLENGE {label} {mode:?} permitted={permitted} peak_bytes={peak} bound_bytes={bound} ratio={:.6}",
+-                peak as f64 / bound as f64);
+-            assert!(peak as u64 <= bound, "{label} {mode:?}: measured peak {peak} above the profile's bound {bound}");
++fn retained_direct_peak_is_within_the_profiles_bounds() {
++    for (label, raw) in [("milestone", inputs::milestone()), ("w_c2", inputs::w_c2())] {
++        for mode in [SPARSE, DENSE] {
++            measure(label, raw.clone(), mode, Route::Direct);
+         }
+     }
+ }
++
++/// The process floor: no product call.
++#[test]
++#[ignore]
++fn process_floor() {
++    let _span = SPAN.lock().unwrap_or_else(|poison| poison.into_inner());
++    println!("I104_SQ_CHALLENGE process_floor live_bytes={}", CURRENT.load(Ordering::SeqCst));
++}
++
++macro_rules! entries {
++    ($($name:ident: $input:expr, $label:literal, [$($mode:ident => $value:expr),+];)+) => {
++        $(
++            mod $name {
++                use super::*;
++                $(
++                    mod $mode {
++                        use super::*;
++                        #[test]
++                        #[ignore]
++                        fn direct() {
++                            measure($label, $input, $value, Route::Direct);
++                        }
++                        #[test]
++                        #[ignore]
++                        fn ordinary() {
++                            measure($label, $input, $value, Route::Ordinary);
++                        }
++                    }
++                )+
++            }
++        )+
++    };
++}
++// One entry point per input, mode and route (A1-N-9), e.g. `c1::dense::direct`. The inputs are the
++// witnesses' own (`witness_tests`), so each run's furthest phase is the witness's outcome.
++entries! {
++    milestone: inputs::milestone(), "milestone", [sparse => SPARSE, dense => DENSE];
++    w_c2: inputs::w_c2(), "w_c2", [sparse => SPARSE, dense => DENSE];
++    w_c2_ac: inputs::w_c2_ac(), "w_c2_ac", [sparse => SPARSE];
++    w2: inputs::w2(), "w2_cap_maximal", [sparse => SPARSE, dense => DENSE];
++    b2_k1e3: inputs::b2_k1e3(), "b2_k1e3", [sparse => SPARSE, dense => DENSE];
++    c1: inputs::c1(), "c1", [sparse => SPARSE, dense => DENSE];
++    i3_three_case: inputs::i3_three_case(), "i3_three_case", [sparse => SPARSE, dense => DENSE];
++}
+diff --git a/projects/chirality-piping/core/product_physics/tests/s11f_site_test.rs b/projects/chirality-piping/core/product_physics/tests/s11f_site_test.rs
+index 8c4ec83e06..feb953fb96 100644
+--- a/projects/chirality-piping/core/product_physics/tests/s11f_site_test.rs
++++ b/projects/chirality-piping/core/product_physics/tests/s11f_site_test.rs
+@@ -545,6 +545,9 @@ const TABLE: &[(&str, &str, usize, &str)] = &[
+     // ---- PP/pressure_runtime.rs
+     ("PP/pressure_runtime.rs", "finish_source_groups", 1, "max fold of the pressure-RHS screen magnitude"),
+     ("PP/pressure_runtime.rs", "traverse_region", 1, "geometry: chord projection (section 2.5)"),
++    // ---- PP/retained_product.rs (B1 SQ, RR "RV109 passes SP in RV-P round 2; …", ruling 3: E-12)
++    ("PP/retained_product.rs", "check_support_maps", 1, "integer: one support's spring-map count"),
++    ("PP/retained_product.rs", "selected_attempts", 1, "integer: the selected attempts' bit set (T-12's detail)"),
+     // ---- PP/self_weight.rs
+     ("PP/self_weight.rs", "stable_mass_per_length", 2, "declared formation: same-sign mass (section 2.2)"),
+     // ---- PP/source_recovery.rs
+@@ -574,6 +577,7 @@ const TABLE: &[(&str, &str, usize, &str)] = &[
+ const RULE8_FILES: &[&str] = &[
+     "PP/lib.rs",
+     "PP/pressure_runtime.rs",
++    "PP/retained_product.rs",
+     "PP/self_weight.rs",
+     "PP/source_recovery.rs",
+     "PP/source_receipt.rs",

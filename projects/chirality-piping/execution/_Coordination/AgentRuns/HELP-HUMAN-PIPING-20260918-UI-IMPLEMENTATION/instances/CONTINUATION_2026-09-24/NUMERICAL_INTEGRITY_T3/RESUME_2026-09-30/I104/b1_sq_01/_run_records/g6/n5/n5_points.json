@@ -1,0 +1,84 @@
+{
+ "note": "I104 SQ G6: the N-5 chain (mcn_b1q = mcr_b1q + sq_n5_chain.py) against G5's chain (mcr_b1q), at c = 1, 2, 3; E_mov_plus_R under the chain's ASSUMED strides (in-build values: law/).",
+ "c1": {
+  "sparse": {
+   "g5": 3575275797,
+   "n5": 3575275797,
+   "delta": 0,
+   "phase": "W3"
+  },
+  "dense": {
+   "g5": 3594986245,
+   "n5": 3594986245,
+   "delta": 0,
+   "phase": "W3"
+  },
+  "D": [
+   14781,
+   14781
+  ],
+  "D_env": [
+   9361,
+   9361
+  ],
+  "TAV": [
+   2221122770,
+   2221122770
+  ],
+  "text_complete": true
+ },
+ "c2": {
+  "sparse": {
+   "g5": 6509325900,
+   "n5": 6509329572,
+   "delta": 3672,
+   "phase": "W3"
+  },
+  "dense": {
+   "g5": 6548746796,
+   "n5": 6548750468,
+   "delta": 3672,
+   "phase": "W3"
+  },
+  "D": [
+   27712,
+   27712
+  ],
+  "D_env": [
+   16008,
+   16008
+  ],
+  "TAV": [
+   4177457568,
+   4177457568
+  ],
+  "text_complete": true
+ },
+ "c3": {
+  "sparse": {
+   "g5": 9588398067,
+   "n5": 9588404355,
+   "delta": 6288,
+   "phase": "W3"
+  },
+  "dense": {
+   "g5": 9647529411,
+   "n5": 9647535699,
+   "delta": 6288,
+   "phase": "W3"
+  },
+  "D": [
+   41769,
+   41769
+  ],
+  "D_env": [
+   22911,
+   22911
+  ],
+  "TAV": [
+   6234394666,
+   6234394666
+  ],
+  "text_complete": true
+ }
+}

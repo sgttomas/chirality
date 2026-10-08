@@ -1,0 +1,963 @@
+{
+ "rel.b2_k1e3.dense.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_b2_k1e3 DenseScrutiny rows=2114 ordinary_ms=15.2"
+   ],
+   "max_rss_bytes": 30113792,
+   "peak_footprint_bytes": 25215360,
+   "real_s": 0.01,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.01
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_b2_k1e3 DenseScrutiny rows=2114 ordinary_ms=15.5"
+   ],
+   "max_rss_bytes": 30687232,
+   "peak_footprint_bytes": 25788800,
+   "real_s": 0.01,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.01
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_b2_k1e3 DenseScrutiny rows=2114 ordinary_ms=15.2"
+   ],
+   "max_rss_bytes": 29933568,
+   "peak_footprint_bytes": 25035136,
+   "real_s": 0.01,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.01
+  }
+ },
+ "rel.b2_k1e3.dense.witness": {
+  "1": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=14.7 w1_ms=669.0",
+    "I65_G5_WITNESS W2b-replacement b2_k1e3 DenseScrutiny stack=4194304 ran=Fallback(\"Candidate\")"
+   ],
+   "max_rss_bytes": 38240256,
+   "peak_footprint_bytes": 31785368,
+   "real_s": 0.68,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.67
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=15.6 w1_ms=669.9",
+    "I65_G5_WITNESS W2b-replacement b2_k1e3 DenseScrutiny stack=4194304 ran=Fallback(\"Candidate\")"
+   ],
+   "max_rss_bytes": 38125568,
+   "peak_footprint_bytes": 31670680,
+   "real_s": 0.68,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.68
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=14.9 w1_ms=667.9",
+    "I65_G5_WITNESS W2b-replacement b2_k1e3 DenseScrutiny stack=4194304 ran=Fallback(\"Candidate\")"
+   ],
+   "max_rss_bytes": 38076416,
+   "peak_footprint_bytes": 31621528,
+   "real_s": 0.68,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.67
+  }
+ },
+ "rel.b2_k1e3.sparse.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_b2_k1e3 SparseInteractive rows=2113 ordinary_ms=11.5"
+   ],
+   "max_rss_bytes": 26869760,
+   "peak_footprint_bytes": 21971352,
+   "real_s": 0.01,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.01
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_b2_k1e3 SparseInteractive rows=2113 ordinary_ms=11.4"
+   ],
+   "max_rss_bytes": 28459008,
+   "peak_footprint_bytes": 23544192,
+   "real_s": 0.01,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.01
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_b2_k1e3 SparseInteractive rows=2113 ordinary_ms=11.2"
+   ],
+   "max_rss_bytes": 27328512,
+   "peak_footprint_bytes": 22413696,
+   "real_s": 0.01,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.01
+  }
+ },
+ "rel.b2_k1e3.sparse.witness": {
+  "1": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=12.0 w1_ms=670.9",
+    "I65_G5_WITNESS W2b-replacement b2_k1e3 SparseInteractive stack=4194304 ran=Fallback(\"Candidate\")"
+   ],
+   "max_rss_bytes": 34963456,
+   "peak_footprint_bytes": 28492160,
+   "real_s": 0.68,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.67
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=11.1 w1_ms=673.5",
+    "I65_G5_WITNESS W2b-replacement b2_k1e3 SparseInteractive stack=4194304 ran=Fallback(\"Candidate\")"
+   ],
+   "max_rss_bytes": 34504704,
+   "peak_footprint_bytes": 28033408,
+   "real_s": 0.68,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.68
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=11.3 w1_ms=669.9",
+    "I65_G5_WITNESS W2b-replacement b2_k1e3 SparseInteractive stack=4194304 ran=Fallback(\"Candidate\")"
+   ],
+   "max_rss_bytes": 35962880,
+   "peak_footprint_bytes": 29491584,
+   "real_s": 0.68,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.67
+  }
+ },
+ "rel.c1.dense.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_c1 DenseScrutiny rows=2114 ordinary_ms=14.1"
+   ],
+   "max_rss_bytes": 30769152,
+   "peak_footprint_bytes": 25788800,
+   "real_s": 0.01,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.01
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_c1 DenseScrutiny rows=2114 ordinary_ms=13.5"
+   ],
+   "max_rss_bytes": 30769152,
+   "peak_footprint_bytes": 25805208,
+   "real_s": 0.01,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.01
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_c1 DenseScrutiny rows=2114 ordinary_ms=13.8"
+   ],
+   "max_rss_bytes": 29310976,
+   "peak_footprint_bytes": 24347032,
+   "real_s": 0.01,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.01
+  }
+ },
+ "rel.c1.dense.witness": {
+  "1": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=13.3 w1_ms=562.2",
+    "I65_G5_WITNESS c1 DenseScrutiny stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 86507520,
+   "peak_footprint_bytes": 64373168,
+   "real_s": 0.58,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.57
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=13.9 w1_ms=583.2",
+    "I65_G5_WITNESS c1 DenseScrutiny stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 88014848,
+   "peak_footprint_bytes": 65438128,
+   "real_s": 0.6,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.59
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=14.1 w1_ms=576.2",
+    "I65_G5_WITNESS c1 DenseScrutiny stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 87965696,
+   "peak_footprint_bytes": 65470920,
+   "real_s": 0.59,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.58
+  }
+ },
+ "rel.c1.sparse.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_c1 SparseInteractive rows=2113 ordinary_ms=11.1"
+   ],
+   "max_rss_bytes": 27885568,
+   "peak_footprint_bytes": 22888832,
+   "real_s": 0.01,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.01
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_c1 SparseInteractive rows=2113 ordinary_ms=11.0"
+   ],
+   "max_rss_bytes": 27852800,
+   "peak_footprint_bytes": 22856064,
+   "real_s": 0.01,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.01
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_c1 SparseInteractive rows=2113 ordinary_ms=10.9"
+   ],
+   "max_rss_bytes": 26361856,
+   "peak_footprint_bytes": 21365120,
+   "real_s": 0.01,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.01
+  }
+ },
+ "rel.c1.sparse.witness": {
+  "1": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=11.2 w1_ms=577.2",
+    "I65_G5_WITNESS c1 SparseInteractive stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 85245952,
+   "peak_footprint_bytes": 62734768,
+   "real_s": 0.59,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.58
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=11.3 w1_ms=564.1",
+    "I65_G5_WITNESS c1 SparseInteractive stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 85147648,
+   "peak_footprint_bytes": 62603696,
+   "real_s": 0.58,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.57
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=11.4 w1_ms=565.3",
+    "I65_G5_WITNESS c1 SparseInteractive stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 85000192,
+   "peak_footprint_bytes": 62570952,
+   "real_s": 0.58,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.57
+  }
+ },
+ "rel.floor": {
+  "1": {
+   "lines": [
+    "I104_SQ_CONTROL process_floor"
+   ],
+   "max_rss_bytes": 2883584,
+   "peak_footprint_bytes": 1769808,
+   "real_s": 0.01,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CONTROL process_floor"
+   ],
+   "max_rss_bytes": 2899968,
+   "peak_footprint_bytes": 1786192,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CONTROL process_floor"
+   ],
+   "max_rss_bytes": 2883584,
+   "peak_footprint_bytes": 1769808,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  }
+ },
+ "rel.i3_three_case.dense.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_i3_three_case DenseScrutiny rows=6342 ordinary_ms=42.2"
+   ],
+   "max_rss_bytes": 57769984,
+   "peak_footprint_bytes": 52806040,
+   "real_s": 0.04,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.04
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_i3_three_case DenseScrutiny rows=6342 ordinary_ms=39.2"
+   ],
+   "max_rss_bytes": 57769984,
+   "peak_footprint_bytes": 52806040,
+   "real_s": 0.04,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.03
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_i3_three_case DenseScrutiny rows=6342 ordinary_ms=39.2"
+   ],
+   "max_rss_bytes": 57835520,
+   "peak_footprint_bytes": 52887984,
+   "real_s": 0.04,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.03
+  }
+ },
+ "rel.i3_three_case.dense.witness": {
+  "1": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=38.7 w1_ms=1693.2",
+    "I65_G5_WITNESS i3 three-case DenseScrutiny stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 216580096,
+   "peak_footprint_bytes": 140853776,
+   "real_s": 1.74,
+   "result": "ok",
+   "sys_s": 0.02,
+   "user_s": 1.71
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=37.1 w1_ms=1694.8",
+    "I65_G5_WITNESS i3 three-case DenseScrutiny stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 216350720,
+   "peak_footprint_bytes": 140886544,
+   "real_s": 1.74,
+   "result": "ok",
+   "sys_s": 0.03,
+   "user_s": 1.71
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=37.6 w1_ms=1715.6",
+    "I65_G5_WITNESS i3 three-case DenseScrutiny stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 194101248,
+   "peak_footprint_bytes": 132891152,
+   "real_s": 1.76,
+   "result": "ok",
+   "sys_s": 0.02,
+   "user_s": 1.74
+  }
+ },
+ "rel.i3_three_case.sparse.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_i3_three_case SparseInteractive rows=6339 ordinary_ms=32.4"
+   ],
+   "max_rss_bytes": 53428224,
+   "peak_footprint_bytes": 48447896,
+   "real_s": 0.03,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.03
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_i3_three_case SparseInteractive rows=6339 ordinary_ms=32.2"
+   ],
+   "max_rss_bytes": 53723136,
+   "peak_footprint_bytes": 48742808,
+   "real_s": 0.03,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.03
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_i3_three_case SparseInteractive rows=6339 ordinary_ms=32.6"
+   ],
+   "max_rss_bytes": 54788096,
+   "peak_footprint_bytes": 49824176,
+   "real_s": 0.03,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.03
+  }
+ },
+ "rel.i3_three_case.sparse.witness": {
+  "1": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=31.6 w1_ms=1725.9",
+    "I65_G5_WITNESS i3 three-case SparseInteractive stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 213712896,
+   "peak_footprint_bytes": 139411960,
+   "real_s": 1.77,
+   "result": "ok",
+   "sys_s": 0.02,
+   "user_s": 1.74
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=32.0 w1_ms=1689.3",
+    "I65_G5_WITNESS i3 three-case SparseInteractive stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 191201280,
+   "peak_footprint_bytes": 130957864,
+   "real_s": 1.73,
+   "result": "ok",
+   "sys_s": 0.02,
+   "user_s": 1.7
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=30.3 w1_ms=1670.6",
+    "I65_G5_WITNESS i3 three-case SparseInteractive stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 211648512,
+   "peak_footprint_bytes": 137740840,
+   "real_s": 1.71,
+   "result": "ok",
+   "sys_s": 0.02,
+   "user_s": 1.68
+  }
+ },
+ "rel.milestone.dense.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_milestone DenseScrutiny rows=99 ordinary_ms=0.9"
+   ],
+   "max_rss_bytes": 8175616,
+   "peak_footprint_bytes": 3342696,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_milestone DenseScrutiny rows=99 ordinary_ms=0.9"
+   ],
+   "max_rss_bytes": 8159232,
+   "peak_footprint_bytes": 3342720,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_milestone DenseScrutiny rows=99 ordinary_ms=0.9"
+   ],
+   "max_rss_bytes": 8224768,
+   "peak_footprint_bytes": 3391848,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  }
+ },
+ "rel.milestone.dense.witness": {
+  "1": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=1.0 w1_ms=29.1",
+    "I65_G5_WITNESS W1 DenseScrutiny stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 16826368,
+   "peak_footprint_bytes": 8913256,
+   "real_s": 0.03,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.03
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=1.0 w1_ms=29.3",
+    "I65_G5_WITNESS W1 DenseScrutiny stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 16744448,
+   "peak_footprint_bytes": 8831336,
+   "real_s": 0.03,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.03
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=0.9 w1_ms=28.9",
+    "I65_G5_WITNESS W1 DenseScrutiny stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 17006592,
+   "peak_footprint_bytes": 9109888,
+   "real_s": 0.03,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.03
+  }
+ },
+ "rel.milestone.sparse.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_milestone SparseInteractive rows=98 ordinary_ms=1.0"
+   ],
+   "max_rss_bytes": 8110080,
+   "peak_footprint_bytes": 3244392,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_milestone SparseInteractive rows=98 ordinary_ms=0.9"
+   ],
+   "max_rss_bytes": 8159232,
+   "peak_footprint_bytes": 3293544,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_milestone SparseInteractive rows=98 ordinary_ms=0.9"
+   ],
+   "max_rss_bytes": 8208384,
+   "peak_footprint_bytes": 3342696,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  }
+ },
+ "rel.milestone.sparse.witness": {
+  "1": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=0.9 w1_ms=28.8",
+    "I65_G5_WITNESS W1 SparseInteractive stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 16941056,
+   "peak_footprint_bytes": 9044352,
+   "real_s": 0.03,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.03
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=0.9 w1_ms=28.9",
+    "I65_G5_WITNESS W1 SparseInteractive stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 16744448,
+   "peak_footprint_bytes": 8831336,
+   "real_s": 0.03,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.03
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=1.0 w1_ms=29.9",
+    "I65_G5_WITNESS W1 SparseInteractive stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 16941056,
+   "peak_footprint_bytes": 9027944,
+   "real_s": 0.03,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.03
+  }
+ },
+ "rel.w2.dense.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_w2 DenseScrutiny rows=0 ordinary_ms=2.0"
+   ],
+   "max_rss_bytes": 8749056,
+   "peak_footprint_bytes": 5570944,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_w2 DenseScrutiny rows=0 ordinary_ms=2.1"
+   ],
+   "max_rss_bytes": 8716288,
+   "peak_footprint_bytes": 5538176,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_w2 DenseScrutiny rows=0 ordinary_ms=2.0"
+   ],
+   "max_rss_bytes": 8732672,
+   "peak_footprint_bytes": 5538152,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  }
+ },
+ "rel.w2.dense.witness": {
+  "1": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=2.0 w1_ms=0.0",
+    "I65_G5_WITNESS W2 DenseScrutiny stack=4194304 ran=Fallback(\"Preparation\")"
+   ],
+   "max_rss_bytes": 8814592,
+   "peak_footprint_bytes": 5554536,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=2.1 w1_ms=0.0",
+    "I65_G5_WITNESS W2 DenseScrutiny stack=4194304 ran=Fallback(\"Preparation\")"
+   ],
+   "max_rss_bytes": 8830976,
+   "peak_footprint_bytes": 5570920,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=1.9 w1_ms=0.0",
+    "I65_G5_WITNESS W2 DenseScrutiny stack=4194304 ran=Fallback(\"Preparation\")"
+   ],
+   "max_rss_bytes": 8781824,
+   "peak_footprint_bytes": 5538176,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  }
+ },
+ "rel.w2.sparse.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_w2 SparseInteractive rows=0 ordinary_ms=2.1"
+   ],
+   "max_rss_bytes": 8732672,
+   "peak_footprint_bytes": 5538152,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_w2 SparseInteractive rows=0 ordinary_ms=1.9"
+   ],
+   "max_rss_bytes": 8749056,
+   "peak_footprint_bytes": 5554536,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_w2 SparseInteractive rows=0 ordinary_ms=1.9"
+   ],
+   "max_rss_bytes": 8765440,
+   "peak_footprint_bytes": 5570920,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  }
+ },
+ "rel.w2.sparse.witness": {
+  "1": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=2.4 w1_ms=0.0",
+    "I65_G5_WITNESS W2 SparseInteractive stack=4194304 ran=Fallback(\"Preparation\")"
+   ],
+   "max_rss_bytes": 9355264,
+   "peak_footprint_bytes": 6111616,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=2.1 w1_ms=0.0",
+    "I65_G5_WITNESS W2 SparseInteractive stack=4194304 ran=Fallback(\"Preparation\")"
+   ],
+   "max_rss_bytes": 8765440,
+   "peak_footprint_bytes": 5505384,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=2.1 w1_ms=0.0",
+    "I65_G5_WITNESS W2 SparseInteractive stack=4194304 ran=Fallback(\"Preparation\")"
+   ],
+   "max_rss_bytes": 8765440,
+   "peak_footprint_bytes": 5521792,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  }
+ },
+ "rel.w_c2.dense.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_w_c2 DenseScrutiny rows=513 ordinary_ms=2.8"
+   ],
+   "max_rss_bytes": 10944512,
+   "peak_footprint_bytes": 6095208,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_w_c2 DenseScrutiny rows=513 ordinary_ms=2.8"
+   ],
+   "max_rss_bytes": 11042816,
+   "peak_footprint_bytes": 6209920,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_w_c2 DenseScrutiny rows=513 ordinary_ms=2.8"
+   ],
+   "max_rss_bytes": 11075584,
+   "peak_footprint_bytes": 6226280,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  }
+ },
+ "rel.w_c2.dense.witness": {
+  "1": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=2.8 w1_ms=56.5",
+    "I65_G5_WITNESS W-C2 DenseScrutiny stack=4194304 ran=Successor",
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=2.5 w1_ms=55.1",
+    "I65_G5_WITNESS W-C2 DenseScrutiny stack=1048576 ran=Successor"
+   ],
+   "max_rss_bytes": 25657344,
+   "peak_footprint_bytes": 17596800,
+   "real_s": 0.12,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.11
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=2.8 w1_ms=55.5",
+    "I65_G5_WITNESS W-C2 DenseScrutiny stack=4194304 ran=Successor",
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=2.4 w1_ms=53.4",
+    "I65_G5_WITNESS W-C2 DenseScrutiny stack=1048576 ran=Successor"
+   ],
+   "max_rss_bytes": 25772032,
+   "peak_footprint_bytes": 17711488,
+   "real_s": 0.11,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.11
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=2.9 w1_ms=55.5",
+    "I65_G5_WITNESS W-C2 DenseScrutiny stack=4194304 ran=Successor",
+    "I104_SQ_WITNESS_TIME DenseScrutiny parse_and_ordinary_ms=2.5 w1_ms=54.3",
+    "I65_G5_WITNESS W-C2 DenseScrutiny stack=1048576 ran=Successor"
+   ],
+   "max_rss_bytes": 25952256,
+   "peak_footprint_bytes": 17891712,
+   "real_s": 0.11,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.11
+  }
+ },
+ "rel.w_c2.sparse.ordinary": {
+  "1": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_w_c2 SparseInteractive rows=513 ordinary_ms=2.9"
+   ],
+   "max_rss_bytes": 11059200,
+   "peak_footprint_bytes": 6144360,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_w_c2 SparseInteractive rows=513 ordinary_ms=2.8"
+   ],
+   "max_rss_bytes": 11255808,
+   "peak_footprint_bytes": 6340968,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_CONTROL ordinary control_ordinary_w_c2 SparseInteractive rows=513 ordinary_ms=2.8"
+   ],
+   "max_rss_bytes": 11124736,
+   "peak_footprint_bytes": 6209896,
+   "real_s": 0.0,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.0
+  }
+ },
+ "rel.w_c2.sparse.witness": {
+  "1": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=2.9 w1_ms=55.8",
+    "I65_G5_WITNESS W-C2 SparseInteractive stack=4194304 ran=Successor",
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=2.4 w1_ms=55.0",
+    "I65_G5_WITNESS W-C2 SparseInteractive stack=1048576 ran=Successor"
+   ],
+   "max_rss_bytes": 25690112,
+   "peak_footprint_bytes": 17596800,
+   "real_s": 0.12,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.11
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=2.8 w1_ms=57.1",
+    "I65_G5_WITNESS W-C2 SparseInteractive stack=4194304 ran=Successor",
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=2.6 w1_ms=55.6",
+    "I65_G5_WITNESS W-C2 SparseInteractive stack=1048576 ran=Successor"
+   ],
+   "max_rss_bytes": 25772032,
+   "peak_footprint_bytes": 17678720,
+   "real_s": 0.12,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.11
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=2.8 w1_ms=55.8",
+    "I65_G5_WITNESS W-C2 SparseInteractive stack=4194304 ran=Successor",
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=2.5 w1_ms=54.6",
+    "I65_G5_WITNESS W-C2 SparseInteractive stack=1048576 ran=Successor"
+   ],
+   "max_rss_bytes": 24887296,
+   "peak_footprint_bytes": 16777576,
+   "real_s": 0.11,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.11
+  }
+ },
+ "rel.w_c2_ac.sparse.witness": {
+  "1": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=13.5 w1_ms=63.6",
+    "I65_G5_WITNESS W-C2 (A, C) SparseInteractive stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 23707648,
+   "peak_footprint_bytes": 15597928,
+   "real_s": 0.08,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.05
+  },
+  "2": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=2.2 w1_ms=53.0",
+    "I65_G5_WITNESS W-C2 (A, C) SparseInteractive stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 22740992,
+   "peak_footprint_bytes": 14647680,
+   "real_s": 0.05,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.05
+  },
+  "3": {
+   "lines": [
+    "I104_SQ_WITNESS_TIME SparseInteractive parse_and_ordinary_ms=2.1 w1_ms=53.7",
+    "I65_G5_WITNESS W-C2 (A, C) SparseInteractive stack=4194304 ran=Successor"
+   ],
+   "max_rss_bytes": 23838720,
+   "peak_footprint_bytes": 15745408,
+   "real_s": 0.05,
+   "result": "ok",
+   "sys_s": 0.0,
+   "user_s": 0.05
+  }
+ }
+}
