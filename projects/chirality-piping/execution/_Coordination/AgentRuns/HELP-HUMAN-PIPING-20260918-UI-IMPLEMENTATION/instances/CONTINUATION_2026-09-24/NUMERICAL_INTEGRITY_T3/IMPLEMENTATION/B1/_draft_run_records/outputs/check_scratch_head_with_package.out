@@ -1,0 +1,4 @@
+COUNTS resolved 98; ambiguous 0; unresolved 0
+  records/RR: occurrences 71, distinct 28, unresolved 0; documents: 27 citations (27 resolved, 0 ambiguous, 0 unresolved); verification failures 0; unused index entries 0; code lines: 0 (0 pinned in code_anchors, 0 unresolved)
+RESULT PASS
+exit 0

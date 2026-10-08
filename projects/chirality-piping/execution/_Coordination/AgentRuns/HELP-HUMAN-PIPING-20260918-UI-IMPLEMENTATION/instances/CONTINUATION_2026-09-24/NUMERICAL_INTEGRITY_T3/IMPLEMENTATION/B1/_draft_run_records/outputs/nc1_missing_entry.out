@@ -1,0 +1,5 @@
+UNRESOLVED projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs:1132 [record_path] R/I104/b1_sq_01/QUAL_B1.md
+COUNTS resolved 97; ambiguous 0; unresolved 1
+  records/RR: occurrences 71, distinct 28, unresolved 1; documents: 27 citations (27 resolved, 0 ambiguous, 0 unresolved); verification failures 0; unused index entries 0; code lines: 0 (0 pinned in code_anchors, 0 unresolved)
+RESULT FAIL
+exit 1

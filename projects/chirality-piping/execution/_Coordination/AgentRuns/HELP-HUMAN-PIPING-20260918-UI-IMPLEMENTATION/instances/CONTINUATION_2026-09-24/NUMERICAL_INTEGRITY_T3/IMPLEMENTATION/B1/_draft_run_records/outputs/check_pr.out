@@ -1,0 +1,102 @@
+COUNTS resolved 98; ambiguous 0; unresolved 0
+  records/RR: occurrences 71, distinct 28, unresolved 0; documents: 27 citations (27 resolved, 0 ambiguous, 0 unresolved); verification failures 0; unused index entries 0; code lines: 0 (0 pinned in code_anchors, 0 unresolved)
+  projects/chirality-piping/apps/desktop/src/features/results/previewPhysicsEvidence.test.ts:334	rr_title	I4 made at `30f3d1b24a`;
+  projects/chirality-piping/apps/desktop/src/features/results/previewPhysicsEvidence.ts:165	rr_title	I4 made at `30f3d1b24a`;
+  projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts:1353	rr_title	RV113's three returns verified;
+  projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts:1402	rr_title	I4 made at `30f3d1b24a`;
+  projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts:658	rr_line	RR:8823
+  projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts:1139	rr_title	RV113's three returns verified;
+  projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts:1325	rr_title	RV113's three returns verified;
+  projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts:1376	rr_title	RV113's three returns verified;
+  projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts:1433	rr_title	RV113's three returns verified;
+  projects/chirality-piping/core/analysis_runs/compatibility.py:282	rr_title	I4 made at `30f3d1b24a`;
+  projects/chirality-piping/core/analysis_runs/compatibility.py:397	rr_title	I4 made at `30f3d1b24a`; RV113's items for ROOT ruled;
+  projects/chirality-piping/core/analysis_runs/preview_physics_evidence.py:418	rr_title	I4 made at `30f3d1b24a`;
+  projects/chirality-piping/core/analysis_runs/retained_precision.py:827	rr_line	RR:8823
+  projects/chirality-piping/core/analysis_runs/retained_precision.py:871	rr_line	RR:8823
+  projects/chirality-piping/core/product_physics/src/lib.rs:3181	rr_title	I81's B1-0 probe verified
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:854	record_path	R/I81/b1_probe_01
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:894	rr_title	I68's probe verified
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:895	record_path	R/I81/b1_probe_01
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:906	record_path	R/I81/b1_probe_01
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:908	rr_title	I81's B1-0 probe verified
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:933	rr_title	I81's B1-0 probe verified
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:1115	record_path	R/I84/b1_plan_01/PLAN_v2.md
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:1117	record_path	R/I81/b1_probe_01
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:1118	rr_title	I81's B1-0 probe verified
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:1209	rr_title	I81's B1-0 probe verified
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:1234	rr_title	I81's B1-0 probe verified
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:1297	rr_title	I81's B1-0 probe verified
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:1344	record_path	R/I84/b1_plan_01/PLAN_v2.md
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:1600	rr_title	RV109 passes SP in RV-P round 2;
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2089	rr_title	I89's SA verified and ruled
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2186	rr_title	RV109 passes SP in RV-P round 2;
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2186	rr_title	I98's B2-W verified;
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2212	rr_title	RV109 passes SP in RV-P round 2;
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2295	record_path	R/I98/b2_w_probe_01/PROBE.md
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:2308	rr_title	I98's B2-W verified;
+  projects/chirality-piping/core/product_physics/src/retained_memory.rs:474	rr_title	I82's addendum: B1's target is S3
+  projects/chirality-piping/core/product_physics/src/retained_memory.rs:983	rr_title	R6b: RV124 passes SQ and confirms M
+  projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs:1132	record_path	R/I65/u4_g6_01/QUALIFICATION.md
+  projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs:1132	record_path	R/I104/b1_sq_01/QUAL_B1.md
+  projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs:118	rr_title	I81's B1-0 probe verified
+  projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs:184	record_path	R/I81/b1_probe_01
+  projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs:186	rr_title	I81's B1-0 probe verified
+  projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs:194	rr_title	I86's SW probe accepted;
+  projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs:220	record_path	R/I81/b1_probe_01
+  projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs:249	record_path	R/I81/b1_probe_01
+  projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs:274	record_path	R/I81/b1_probe_01
+  projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs:291	rr_title	I81's B1-0 probe verified
+  projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs:344	record_path	R/I81/b1_probe_01
+  projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs:366	rr_title	I86's SW probe accepted;
+  projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs:453	rr_title	RV115 confirms S-4 (a)'s soundness
+  projects/chirality-piping/core/product_physics/tests/common/b1_sq_inputs.rs:5	record_path	R/I86/b1_w_probe_01/_run_records/gen_inputs.py
+  projects/chirality-piping/core/product_physics/tests/common/b1_sq_inputs.rs:5	generator	R/I86/b1_w_probe_01/_run_records/gen_inputs.py
+  projects/chirality-piping/core/product_physics/tests/common/b1_sq_inputs.rs:7	rr_title	I86's SW probe accepted;
+  projects/chirality-piping/core/product_physics/tests/common/b1_sq_inputs.rs:14	record_path	R/I81/b1_probe_01
+  projects/chirality-piping/core/product_physics/tests/s11f_site_test.rs:548	rr_title	RV109 passes SP in RV-P round 2;
+  projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs:2025	rr_line	RR:8823
+  projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs:2305	rr_line	RR:8823
+  projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs:4478	rr_title	I4 made at `30f3d1b24a`;
+  projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs:4657	rr_title	I4 made at `30f3d1b24a`;
+  projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs:5270	rr_title	I4 made at `30f3d1b24a`;
+  projects/chirality-piping/fixtures/results/retained_precision_carrier_cases.json:4	run	RV92 u6f_01
+  projects/chirality-piping/fixtures/results/retained_precision_carrier_cases.json:4	run	RV92 u6f_02
+  projects/chirality-piping/fixtures/results/retained_precision_carrier_cases.json:4	run	I66 u7_slice_f_01
+  projects/chirality-piping/fixtures/results/retained_precision_carrier_cases.json:4	run	I67 u7_slice_f_01
+  projects/chirality-piping/fixtures/results/retained_precision_carrier_cases.json:4	rr_title	RV92 (U6f) on the whole of U6: PASS; the post-U6f repair round; U7 preconditions
+  projects/chirality-piping/fixtures/results/retained_precision_carrier_cases.json:4	rr_title	RV92 on the post-U6f round: one transport residue, declared by a scope sentence
+  projects/chirality-piping/fixtures/results/retained_precision_carrier_cases.json:4	rr_title	RV93 on U3 grant 2: PASS; RV89 confirms the final basis re-qualified; U7 planned and ruled
+  projects/chirality-piping/fixtures/results/retained_precision_cases.json:192937	record_path	R/I98/b2_w_probe_01/PROBE.md
+  projects/chirality-piping/fixtures/results/retained_precision_cases.json:199537	record_path	R/I98/b2_w_probe_01/PROBE.md
+  projects/chirality-piping/tests/test_retained_precision_carriers.py:720	rr_title	SR-PY prepared; the N1 guard in `_source_contract` ruled in
+  projects/chirality-piping/tests/test_retained_precision_carriers.py:804	rr_title	RV113's three returns verified;
+  projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts:658	document	C1:103	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c1/WIRE_CONTRACT.md
+  projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts:658	document	C3:167	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I52/prepared_public_contract_02/C3_DELTA.md
+  projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts:659	document	C2 §3	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c2/CONTRACT_DELTA.md
+  projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts:1324	document	C2:72-74	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c2/CONTRACT_DELTA.md
+  projects/chirality-piping/core/analysis_runs/retained_precision.py:827	document	C1:103	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c1/WIRE_CONTRACT.md
+  projects/chirality-piping/core/analysis_runs/retained_precision.py:827	document	C3:167	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I52/prepared_public_contract_02/C3_DELTA.md
+  projects/chirality-piping/core/analysis_runs/retained_precision.py:828	document	C2 §3	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c2/CONTRACT_DELTA.md
+  projects/chirality-piping/core/product_physics/src/lib.rs:3044	document	COMP:66	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I51/public_producer_admission_05/COMPOSITION.md
+  projects/chirality-piping/core/product_physics/src/lib.rs:3092	document	C1:68	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c1/WIRE_CONTRACT.md
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:489	document	C1:68	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c1/WIRE_CONTRACT.md
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:1603	document	C2 §4	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c2/CONTRACT_DELTA.md
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:1637	document	C2 §4	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c2/CONTRACT_DELTA.md
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:1659	document	C2 §4	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c2/CONTRACT_DELTA.md
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:1748	document	C1:68	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c1/WIRE_CONTRACT.md
+  projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs:1814	document	C1:68	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c1/WIRE_CONTRACT.md
+  projects/chirality-piping/core/product_physics/src/retained_memory.rs:814	document	DOMAIN.md §2	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I65/u4_g2_01/DOMAIN.md
+  projects/chirality-piping/core/product_physics/src/retained_memory.rs:2683	document	DOMAIN.md §2	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I65/u4_g2_01/DOMAIN.md
+  projects/chirality-piping/core/product_physics/src/retained_memory.rs:3043	document	QUALIFICATION.md §7	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I65/u4_g6_01/QUALIFICATION.md
+  projects/chirality-piping/core/product_physics/src/retained_product.rs:3892	document	C2 §4	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c2/CONTRACT_DELTA.md
+  projects/chirality-piping/core/product_physics/src/retained_wire.rs:1403	document	C2 §4	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c2/CONTRACT_DELTA.md
+  projects/chirality-piping/core/product_physics/src/retained_wire.rs:1436	document	C1 §4	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c1/WIRE_CONTRACT.md
+  projects/chirality-piping/core/product_physics/src/retained_wire.rs:1517	document	C3 §2	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I52/prepared_public_contract_02/C3_DELTA.md
+  projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs:2025	document	C1:103	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c1/WIRE_CONTRACT.md
+  projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs:2025	document	C3:167	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I52/prepared_public_contract_02/C3_DELTA.md
+  projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs:2027	document	C2 §3	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c2/CONTRACT_DELTA.md
+  projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs:4255	document	C1:101	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c1/WIRE_CONTRACT.md
+  projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs:4321	document	C2 §2	main: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I32/f2a_wire_c2/CONTRACT_DELTA.md
+RESULT PASS
+exit 0

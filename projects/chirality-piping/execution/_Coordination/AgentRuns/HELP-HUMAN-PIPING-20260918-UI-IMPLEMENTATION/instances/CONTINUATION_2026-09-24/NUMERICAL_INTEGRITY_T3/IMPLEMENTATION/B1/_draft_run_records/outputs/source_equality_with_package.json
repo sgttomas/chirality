@@ -1,0 +1,335 @@
+{
+ "base": "6c821d9ccf36d6b5f6a81ccbece6bee5a09fc9e6",
+ "checks": {
+  "check1": {
+   "detail": "PR non-execution paths equal S",
+   "pass": true
+  },
+  "check2": {
+   "detail": "33 paths identical in blob and mode",
+   "pass": true
+  },
+  "check3": {
+   "detail": {
+    "rules_not_needed": [
+     "projects/chirality-piping/core/analysis_runs/compatibility.py"
+    ]
+   },
+   "pass": true
+  },
+  "check4": {
+   "detail": {
+    "execution_files": 7,
+    "outside_package": [],
+    "sha256_mismatch": []
+   },
+   "pass": true
+  },
+  "check5": {
+   "detail": "33 rows; 33 equal; 0 recorded three-way merge(s); unexplained []",
+   "pass": true
+  }
+ },
+ "int": "75cd6be76bd6407fc24e0f1da834c2135407b69e",
+ "main": "3d73db745edd3378e0bb254a1b263215ef0861e9",
+ "pr": "abc7f7c3799b99f9f74599f042c84b170d279434",
+ "table": [
+  {
+   "equal": true,
+   "int_blob": "dca25bd3ce0cf02d865d5a30ab0e8c8dc5db459c",
+   "int_last_commit": "819e44f63e39e01de46b593945cbcb14f0d4e65c",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/results/previewPhysicsEvidence.test.ts",
+   "pr_blob": "dca25bd3ce0cf02d865d5a30ab0e8c8dc5db459c",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "d4546d527d55afb7dd8999b6982acc0999c2edb4",
+   "int_last_commit": "819e44f63e39e01de46b593945cbcb14f0d4e65c",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/results/previewPhysicsEvidence.ts",
+   "pr_blob": "d4546d527d55afb7dd8999b6982acc0999c2edb4",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "9c9966464914f6edba77cbb44ffcd6f597fa4552",
+   "int_last_commit": "901745f46beee78b7bfbabee7f2307eff590f47b",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts",
+   "pr_blob": "9c9966464914f6edba77cbb44ffcd6f597fa4552",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "5eb8a8e85e23025121fc1b8f9c45f0a215426a60",
+   "int_last_commit": "6fa6a64658f6e94c817d26e0cab28e5087b2cf01",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts",
+   "pr_blob": "5eb8a8e85e23025121fc1b8f9c45f0a215426a60",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "02e058ccfef7caf09c71993f631f96918a27b870",
+   "int_last_commit": "57c92a7b3310229406733a7134e271c29bcc6978",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/results/retainedPrecisionIntegration.test.tsx",
+   "pr_blob": "02e058ccfef7caf09c71993f631f96918a27b870",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "3dd7560e1e2aba5fd1a533e8c51d33713becd279",
+   "int_last_commit": "52d83da2755599ce554a673077a8409d30d8722b",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/analysis_runs/compatibility.py",
+   "pr_blob": "3dd7560e1e2aba5fd1a533e8c51d33713becd279",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "87768417c432b5b690ab99b5640992166bf6c07d",
+   "int_last_commit": "8fa5aac15cdf5e39a4b025f3a77919116daa609d",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/analysis_runs/preview_physics_evidence.py",
+   "pr_blob": "87768417c432b5b690ab99b5640992166bf6c07d",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "cfb86c641bc407907130b22a258c6f854d7eb3b7",
+   "int_last_commit": "8fa5aac15cdf5e39a4b025f3a77919116daa609d",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/analysis_runs/retained_precision.py",
+   "pr_blob": "cfb86c641bc407907130b22a258c6f854d7eb3b7",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "e1b63039b0738f0adfbdcaf0818668f83cdd1c35",
+   "int_last_commit": "603e238517361e4e4ead1627bb90b8e5a35558ef",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+   "pr_blob": "e1b63039b0738f0adfbdcaf0818668f83cdd1c35",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "66c1bfea22188d0159bb4b0f0ecc763c41cb1639",
+   "int_last_commit": "03f55e71786a58ce9ed61863813e2410a9f53827",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs",
+   "pr_blob": "66c1bfea22188d0159bb4b0f0ecc763c41cb1639",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "04f625c650bbff6806beb77d5c1a81e0c7006f85",
+   "int_last_commit": "75cd6be76bd6407fc24e0f1da834c2135407b69e",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/retained_memory.rs",
+   "pr_blob": "04f625c650bbff6806beb77d5c1a81e0c7006f85",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "8d4664c5280102c3cdc885ad7d7dbf6b8fe7e9c0",
+   "int_last_commit": "69002bc8620ed10a0ec4910afc7ab5c8210b3acd",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs",
+   "pr_blob": "8d4664c5280102c3cdc885ad7d7dbf6b8fe7e9c0",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "39daf5b849b7f5badd95d570c4206bb14dc6a7a0",
+   "int_last_commit": "69002bc8620ed10a0ec4910afc7ab5c8210b3acd",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs",
+   "pr_blob": "39daf5b849b7f5badd95d570c4206bb14dc6a7a0",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "191be25e7b84bda775a5a677292a74c64c86cd25",
+   "int_last_commit": "603e238517361e4e4ead1627bb90b8e5a35558ef",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/retained_product.rs",
+   "pr_blob": "191be25e7b84bda775a5a677292a74c64c86cd25",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "0a5f9f63b5fdbea4fcae1e22af6a3c6ea64b786f",
+   "int_last_commit": "7458527ff7c7e281fd8af713507fb6968028d739",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/retained_product_tests.rs",
+   "pr_blob": "0a5f9f63b5fdbea4fcae1e22af6a3c6ea64b786f",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "3c312cf43faf139eb38f36db5b678608f59e7c35",
+   "int_last_commit": "7458527ff7c7e281fd8af713507fb6968028d739",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/retained_receipt.rs",
+   "pr_blob": "3c312cf43faf139eb38f36db5b678608f59e7c35",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "155d86565f4832dfa37378acf3917a67ebb0b53a",
+   "int_last_commit": "0ec3651a36f7ee5d23431298368115d13bf34c6c",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/retained_tests_hooks/grant2.rs",
+   "pr_blob": "155d86565f4832dfa37378acf3917a67ebb0b53a",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "0aba074160b78c4878e1152ae219c5391be57c90",
+   "int_last_commit": "2fb55b60e20d14bd7182db5c6469a998545f6b7e",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/retained_wire.rs",
+   "pr_blob": "0aba074160b78c4878e1152ae219c5391be57c90",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "36859019c80adfe68627f12ebe863c3591dcf082",
+   "int_last_commit": "7458527ff7c7e281fd8af713507fb6968028d739",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/retained_wire_tests.rs",
+   "pr_blob": "36859019c80adfe68627f12ebe863c3591dcf082",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "ec6fb51add5c29acee938e5c0f6510de0a1d4b89",
+   "int_last_commit": "69002bc8620ed10a0ec4910afc7ab5c8210b3acd",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/tests/common/b1_sq_inputs.rs",
+   "pr_blob": "ec6fb51add5c29acee938e5c0f6510de0a1d4b89",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "ccf49c9ccef0ed2d9bedcf546723569c6414ad1a",
+   "int_last_commit": "69002bc8620ed10a0ec4910afc7ab5c8210b3acd",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/tests/retained_memory_challenge.rs",
+   "pr_blob": "ccf49c9ccef0ed2d9bedcf546723569c6414ad1a",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "feb953fb9692e76a77df13ae383fa84811e2a8c3",
+   "int_last_commit": "69002bc8620ed10a0ec4910afc7ab5c8210b3acd",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/tests/s11f_site_test.rs",
+   "pr_blob": "feb953fb9692e76a77df13ae383fa84811e2a8c3",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "43a880551b6f5d4473cd72f4e2f8977dc0205d46",
+   "int_last_commit": "990339d94f83c420116d7f3f91e3c36d620c9028",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs",
+   "pr_blob": "43a880551b6f5d4473cd72f4e2f8977dc0205d46",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "ec171b690b454779bba65685ccb2e656bcf58e96",
+   "int_last_commit": "cc81e78801d187fdba136803c6e0244466d9207b",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs",
+   "pr_blob": "ec171b690b454779bba65685ccb2e656bcf58e96",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "7b5c748469336e5f76703224f48d6168d6805127",
+   "int_last_commit": "57c92a7b3310229406733a7134e271c29bcc6978",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/reporting/result_export/tests/retained_precision_carriers.rs",
+   "pr_blob": "7b5c748469336e5f76703224f48d6168d6805127",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "36cb50a5b29f490476249907a22a4dfa4812b2ed",
+   "int_last_commit": "90d8fbeea5b0e6c7a93fdc5bc3df4990b72dd7fe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs",
+   "pr_blob": "36cb50a5b29f490476249907a22a4dfa4812b2ed",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "c81ee6939b86b58f35e11b15b9fcda0e1233dfac",
+   "int_last_commit": "6b626067786523068188ccd29f9ac2db9ed50e7d",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/runner/headless/tests/retained_precision_admission.rs",
+   "pr_blob": "c81ee6939b86b58f35e11b15b9fcda0e1233dfac",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "52d92a7452b919602094bf2b866bb610bc94d3ff",
+   "int_last_commit": "57c92a7b3310229406733a7134e271c29bcc6978",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/results/retained_precision_carrier_cases.json",
+   "pr_blob": "52d92a7452b919602094bf2b866bb610bc94d3ff",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "153b22c8f9413f750d5f86fd78cec38b21e1bc68",
+   "int_last_commit": "09fe4cc69bce6b48621d4c4c3bc455e9ff32a5d8",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/results/retained_precision_cases.json",
+   "pr_blob": "153b22c8f9413f750d5f86fd78cec38b21e1bc68",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "cf49b69e2f8c0b8fb7d64738a564075972b4be80",
+   "int_last_commit": "2fb55b60e20d14bd7182db5c6469a998545f6b7e",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json",
+   "pr_blob": "cf49b69e2f8c0b8fb7d64738a564075972b4be80",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "e30d2d754653b9173935f564a2cb39a28c538a17",
+   "int_last_commit": "2fb55b60e20d14bd7182db5c6469a998545f6b7e",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/results/retained_precision_w_c2_successor_sparse_interactive.json",
+   "pr_blob": "e30d2d754653b9173935f564a2cb39a28c538a17",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "55d3bbec007954e9748d2cb31bfde3129e6589ff",
+   "int_last_commit": "57c92a7b3310229406733a7134e271c29bcc6978",
+   "mode": "100644",
+   "path": "projects/chirality-piping/tests/test_retained_precision_carriers.py",
+   "pr_blob": "55d3bbec007954e9748d2cb31bfde3129e6589ff",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "387b0a6ba6fce47c9c29bb6085aa5e85dc211ba6",
+   "int_last_commit": "09fe4cc69bce6b48621d4c4c3bc455e9ff32a5d8",
+   "mode": "100644",
+   "path": "projects/chirality-piping/tests/test_retained_precision_contract.py",
+   "pr_blob": "387b0a6ba6fce47c9c29bb6085aa5e85dc211ba6",
+   "resolution": null
+  }
+ ]
+}
