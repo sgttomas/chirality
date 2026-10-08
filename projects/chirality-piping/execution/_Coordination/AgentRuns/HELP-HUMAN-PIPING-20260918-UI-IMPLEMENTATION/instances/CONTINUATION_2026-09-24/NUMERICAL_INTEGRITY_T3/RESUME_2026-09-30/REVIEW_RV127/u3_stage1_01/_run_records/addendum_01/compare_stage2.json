@@ -1,0 +1,633 @@
+{
+ "by_set": {
+  "B1": {
+   "rows": 16,
+   "all_equal": 16,
+   "solved": 16,
+   "w1_successor": 10,
+   "w1_ordinary": 6,
+   "export_documents": 6
+  },
+  "E": {
+   "rows": 32,
+   "all_equal": 32,
+   "solved": 32,
+   "w1_successor": 0,
+   "w1_ordinary": 32,
+   "export_documents": 28
+  },
+  "F": {
+   "rows": 50,
+   "all_equal": 50,
+   "solved": 26,
+   "w1_successor": 2,
+   "w1_ordinary": 48,
+   "export_documents": 18
+  },
+  "P": {
+   "rows": 10,
+   "all_equal": 10,
+   "solved": 0,
+   "w1_successor": 0,
+   "w1_ordinary": 10,
+   "export_documents": 0
+  },
+  "R": {
+   "rows": 26,
+   "all_equal": 4,
+   "solved": 0,
+   "w1_successor": 0,
+   "w1_ordinary": 26,
+   "export_documents": 0
+  }
+ },
+ "differences": [],
+ "probe_changes": [
+  {
+   "set": "R",
+   "label": "R1 label on n05 (regions removed)",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.unavailability",
+    "runner_retained_headless.output"
+   ],
+   "base": {
+    "status": "MECHANICS_SOLVED",
+    "blocking": [],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R1 label on n05 (regions removed)",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.unavailability",
+    "runner_retained_headless.output"
+   ],
+   "base": {
+    "status": "MECHANICS_SOLVED",
+    "blocking": [],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R2 label plus nonzero legacy primitive",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "base": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R2 label plus nonzero legacy primitive",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "base": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R3 unknown contract 1.0.1/legacy (UNSUPPORTED)",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "base": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_CONTRACT_UNSUPPORTED"
+    ],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_CONTRACT_UNSUPPORTED"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R3 unknown contract 1.0.1/legacy (UNSUPPORTED)",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "base": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_CONTRACT_UNSUPPORTED"
+    ],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_CONTRACT_UNSUPPORTED"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R4 zero pressure primitive on B1#0",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner.unavailability",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "base": {
+    "status": "MECHANICS_SOLVED",
+    "blocking": [],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R4 zero pressure primitive on B1#0",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner.unavailability",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "base": {
+    "status": "MECHANICS_SOLVED",
+    "blocking": [],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R4 zero pressure primitive on F invented",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner.unavailability",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "base": {
+    "status": "MECHANICS_SOLVED",
+    "blocking": [],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R4 zero pressure primitive on F invented",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner.unavailability",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "base": {
+    "status": "MECHANICS_SOLVED",
+    "blocking": [],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R5 negative-zero pressure primitive on B1#0",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner.unavailability",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "base": {
+    "status": "MECHANICS_SOLVED",
+    "blocking": [],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R5 negative-zero pressure primitive on B1#0",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner.unavailability",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "base": {
+    "status": "MECHANICS_SOLVED",
+    "blocking": [],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R5 negative-zero pressure primitive on F invented",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner.unavailability",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "base": {
+    "status": "MECHANICS_SOLVED",
+    "blocking": [],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R5 negative-zero pressure primitive on F invented",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner.unavailability",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "base": {
+    "status": "MECHANICS_SOLVED",
+    "blocking": [],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R6 category pressure, dimension force, zero on B1#0",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "base": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "UNIT_INPUT_INVALID"
+    ],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+     "UNIT_INPUT_INVALID"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R6 category pressure, dimension force, zero on B1#0",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "base": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "UNIT_INPUT_INVALID"
+    ],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+     "UNIT_INPUT_INVALID"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R6 category pressure, dimension force, zero on F invented",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "base": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "UNIT_INPUT_INVALID"
+    ],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+     "UNIT_INPUT_INVALID"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R6 category pressure, dimension force, zero on F invented",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "base": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "UNIT_INPUT_INVALID"
+    ],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+     "UNIT_INPUT_INVALID"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R7 hydrotest category, pressure dimension, zero on B1#0",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "base": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "HYDROTEST_PRESSURE_UNSUPPORTED"
+    ],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "HYDROTEST_PRESSURE_UNSUPPORTED",
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R7 hydrotest category, pressure dimension, zero on B1#0",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "base": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "HYDROTEST_PRESSURE_UNSUPPORTED"
+    ],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "HYDROTEST_PRESSURE_UNSUPPORTED",
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R7 hydrotest category, pressure dimension, zero on F invented",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "base": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "HYDROTEST_PRESSURE_UNSUPPORTED"
+    ],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "HYDROTEST_PRESSURE_UNSUPPORTED",
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   }
+  },
+  {
+   "set": "R",
+   "label": "R7 hydrotest category, pressure dimension, zero on F invented",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "base": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "HYDROTEST_PRESSURE_UNSUPPORTED"
+    ],
+    "w1": "ordinary"
+   },
+   "cand": {
+    "status": "MODEL_INCOMPLETE",
+    "blocking": [
+     "HYDROTEST_PRESSURE_UNSUPPORTED",
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ],
+    "w1": "ordinary"
+   }
+  }
+ ]
+}

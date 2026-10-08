@@ -1,0 +1,6 @@
+     Running unittests src/lib.rs (WT/targets/rv127-base-pp/debug/deps/open_pipe_stress_product_physics)
+RV127_G11_ZERO_LATERAL missing=axial status=MECHANICS_SOLVED consumed_rows=2 results=627 blocking=[]
+RV127_G11_ZERO_LATERAL missing=angular status=MECHANICS_SOLVED consumed_rows=2 results=627 blocking=[]
+RV127_G11_ZERO_LATERAL missing=torsional status=MECHANICS_SOLVED consumed_rows=2 results=627 blocking=[]
+test tests::rv127_probe_g11_zero_lateral_other_value_missing ... ok
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 633 filtered out; finished in 0.12s

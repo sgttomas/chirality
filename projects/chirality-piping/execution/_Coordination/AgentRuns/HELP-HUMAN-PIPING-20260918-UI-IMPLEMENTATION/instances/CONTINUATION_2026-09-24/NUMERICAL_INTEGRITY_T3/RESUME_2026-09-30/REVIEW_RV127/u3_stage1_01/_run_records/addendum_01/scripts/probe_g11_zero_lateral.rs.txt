@@ -1,0 +1,25 @@
+    // RV127 probe only (never committed): G11 with a zero lateral value (which M07's
+    // refusal admits) and one of the other three user stiffness values removed.
+    #[test]
+    fn rv127_probe_g11_zero_lateral_other_value_missing() {
+        for missing in ["axial", "angular", "torsional"] {
+            let mut input = request_with_refused_joint();
+            for case in &mut input.model.load_cases {
+                case.primitive_loads.retain(|load| load.category != "pressure");
+            }
+            let joint = input.model.components.iter_mut().find(|c| c.id == "component:C-150").unwrap();
+            let modifiers = joint.modifiers.as_mut().unwrap();
+            modifiers.lateral_stiffness_user_value.as_mut().unwrap().value = 0.0;
+            match missing {
+                "axial" => modifiers.axial_stiffness_user_value = None,
+                "angular" => modifiers.angular_stiffness_user_value = None,
+                _ => modifiers.torsional_stiffness_user_value = None,
+            }
+            let output = run_linear_static_preview(input);
+            let consumed = output.results.iter().filter(|r| r.kind == "component_user_stiffness_macro_element_review").count();
+            let blocking: Vec<&str> = output.diagnostics.iter().filter(|d| d.severity == "blocking").map(|d| d.code.as_str()).collect();
+            eprintln!("RV127_G11_ZERO_LATERAL missing={missing} status={} consumed_rows={consumed} results={} blocking={blocking:?}",
+                output.status.mechanics, output.results.len());
+        }
+    }
+

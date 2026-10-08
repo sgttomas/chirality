@@ -1,0 +1,5 @@
+RV127 H-1 mutant (probe only, never committed): in an archive copy of 6b6543dc1e, the three explicit `+ 0.0` sites were removed:
+- core/loads/stress_recovery/src/lib.rs:904   `let base_normal = axial + 0.0;`             -> `let base_normal = axial;`
+- core/product_physics/src/lib.rs:10454       `c.axial_normal.unwrap_or(0.0) + 0.0,`        -> `c.axial_normal.unwrap_or(0.0),`
+- core/product_physics/src/lib.rs:11620       `let base_normal = axial + 0.0;`             -> `let base_normal = axial;`
+Then rv127_bytes_v2.rs ran on the same 67 inputs (bytes_h1mut.jsonl) and compare.py compared it with the head (compare_h1mut.json).

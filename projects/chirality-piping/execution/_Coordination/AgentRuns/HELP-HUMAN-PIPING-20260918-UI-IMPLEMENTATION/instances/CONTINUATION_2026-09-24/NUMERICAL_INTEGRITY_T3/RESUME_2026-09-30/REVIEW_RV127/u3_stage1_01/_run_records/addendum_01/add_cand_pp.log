@@ -1,0 +1,29 @@
+     Running unittests src/lib.rs (WT/targets/rv127-cand2-pp/debug/deps/open_pipe_stress_product_physics)
+I65_G5_PROFILE mode=sparse max_without_R=9733566502 E_mov_plus_R=9800675366 fraction_of_M=0.8693 phase=W3 publication (T16) with the staged copy
+I65_G5_PHASE mode=sparse phase=W1 requested=5060931982 moving=8388608 E_mov_plus_R=5136429454
+I65_G5_PHASE mode=sparse phase=W2 requested=5384363944 moving=8388608 E_mov_plus_R=5459861416
+I65_G5_PHASE mode=sparse phase=W3 requested=9228110883 moving=505455619 E_mov_plus_R=9800675366
+I65_G5_PHASE mode=sparse phase=W4 requested=9012925306 moving=505455619 E_mov_plus_R=9585489789
+I65_G5_PHASE mode=sparse phase=W5 requested=5956385904 moving=8388608 E_mov_plus_R=6031883376
+I65_G5_PHASE mode=sparse phase=X1 requested=8341702198 moving=504784788 E_mov_plus_R=8913595850
+I65_G5_PHASE mode=sparse phase=X2 requested=5015462416 moving=8388608 E_mov_plus_R=5090959888
+I65_G5_PROFILE mode=dense max_without_R=9792697846 E_mov_plus_R=9859806710 fraction_of_M=0.8745 phase=W3 publication (T16) with the staged copy
+I65_G5_PHASE mode=dense phase=W1 requested=5120063326 moving=8388608 E_mov_plus_R=5195560798
+I65_G5_PHASE mode=dense phase=W2 requested=5443495288 moving=8388608 E_mov_plus_R=5518992760
+I65_G5_PHASE mode=dense phase=W3 requested=9287242227 moving=505455619 E_mov_plus_R=9859806710
+I65_G5_PHASE mode=dense phase=W4 requested=9072056650 moving=505455619 E_mov_plus_R=9644621133
+I65_G5_PHASE mode=dense phase=W5 requested=6015517248 moving=8388608 E_mov_plus_R=6091014720
+I65_G5_PHASE mode=dense phase=X1 requested=8400833542 moving=504784788 E_mov_plus_R=8972727194
+I65_G5_PHASE mode=dense phase=X2 requested=5074593760 moving=8388608 E_mov_plus_R=5150091232
+test retained_memory::law_tests::profile_in_build_record ... ok
+test retained_memory::law_tests::challenge_bounds_are_the_profile ... ok
+test tests::bundled_demo_with_legacy_nonzero_pressure_is_refused_on_the_ordinary_route ... ok
+test tests::realized_user_stiffness_joint_is_refused_on_the_ordinary_route ... ok
+test pressure_runtime::tests::profile_dispatch_requires_explicit_regions_and_refuses_legacy_pressure ... ok
+test source_receipt::tests::retired_legacy_pressure_label_is_refused_on_the_ordinary_route ... ok
+test tests::flexibility_joint_missing_a_user_stiffness_is_refused_not_dropped ... ok
+test source_recovery::tests::non_exact_source_blocks_gate_refuses_a_later_version_a_contract_or_regions ... ok
+test source_receipt::tests::zero_legacy_pressure_primitive_is_refused_on_the_ordinary_route_and_the_retained_entry ... ok
+test source_receipt::tests::retired_legacy_pressure_label_is_refused_on_the_retained_entry ... ok
+test tests::endpoint_section_cut_fixed_and_free_thermal_match_uniform_stations ... ok
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 608 filtered out; finished in 0.02s

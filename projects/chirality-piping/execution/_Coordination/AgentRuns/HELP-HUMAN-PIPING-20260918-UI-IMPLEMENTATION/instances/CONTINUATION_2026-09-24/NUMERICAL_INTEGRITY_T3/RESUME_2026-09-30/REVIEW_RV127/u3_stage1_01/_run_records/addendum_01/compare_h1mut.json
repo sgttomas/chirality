@@ -1,0 +1,46 @@
+{
+ "by_set": {
+  "B1": {
+   "rows": 16,
+   "all_equal": 16,
+   "solved": 16,
+   "w1_successor": 10,
+   "w1_ordinary": 6,
+   "export_documents": 6
+  },
+  "E": {
+   "rows": 32,
+   "all_equal": 32,
+   "solved": 32,
+   "w1_successor": 0,
+   "w1_ordinary": 32,
+   "export_documents": 28
+  },
+  "F": {
+   "rows": 50,
+   "all_equal": 50,
+   "solved": 26,
+   "w1_successor": 2,
+   "w1_ordinary": 48,
+   "export_documents": 18
+  },
+  "P": {
+   "rows": 10,
+   "all_equal": 10,
+   "solved": 0,
+   "w1_successor": 0,
+   "w1_ordinary": 10,
+   "export_documents": 0
+  },
+  "R": {
+   "rows": 26,
+   "all_equal": 26,
+   "solved": 0,
+   "w1_successor": 0,
+   "w1_ordinary": 26,
+   "export_documents": 0
+  }
+ },
+ "differences": [],
+ "probe_changes": []
+}
