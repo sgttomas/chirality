@@ -1,0 +1,378 @@
+{
+ "manifests_40": {
+  "base": {
+   "ok": 2776,
+   "ignored": 80,
+   "FAILED": 3
+  },
+  "cand": {
+   "ok": 2753,
+   "ignored": 80,
+   "FAILED": 3
+  },
+  "changed": [
+   {
+    "test": "core_loads_stress_recovery_Cargo.toml|src/lib.rs|tests::non_finite_pressure_is_reported",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_loads_stress_recovery_Cargo.toml|src/lib.rs|tests::recovers_axial_bending_and_torsion_components",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_loads_stress_recovery_Cargo.toml|src/lib.rs|tests::recovers_axial_bending_torsion_and_pressure_components",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_loads_stress_recovery_Cargo.toml|src/lib.rs|tests::stress_range_blocks_asymmetric_optional_components",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_model_operations_operation_applier_Cargo.toml|src/lib.rs|tests::explicit_create_primitive_load_payload_applies_pressure_and_thermal_only",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_model_operations_operation_applier_Cargo.toml|src/lib.rs|tests::explicit_create_primitive_load_payload_refuses_retired_pressure_and_applies_thermal",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|s11f_tests::f10_pressure_and_joint_thrust_g1e8",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|s11f_tests::f10_pressure_and_joint_thrust_g1e80",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|source_receipt::tests::legacy_model_three_retains_ordinary_route_without_old_source_namespace",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|source_receipt::tests::retired_legacy_pressure_label_is_refused_on_the_ordinary_route",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|source_receipt::tests::retired_legacy_pressure_label_is_refused_on_the_retained_entry",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|source_receipt::tests::zero_legacy_pressure_primitive_is_refused_on_the_ordinary_route_and_the_retained_entry",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|source_recovery::tests::non_exact_source_blocks_gate_refuses_a_later_version_a_contract_or_regions",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::bundled_demo_with_legacy_nonzero_pressure_is_refused_on_the_ordinary_route",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::current_composite_derived_normal_friction_and_reversal",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::curved_bend_macro_span_pressure_reaches_nonlinear_loop_with_same_vector_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::endpoint_section_cut_curved_bend_pressure_shows_membrane_end_and_station_state_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::endpoint_section_cut_curved_endpoints_use_all_six_arc_resultants_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::endpoint_section_cut_fixed_and_free_pressure_thermal_match_uniform_stations_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::endpoint_section_cut_fixed_and_free_thermal_match_uniform_stations",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::endpoint_section_cut_genuine_pressure_preserves_existing_result_leaves_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::endpoint_section_cut_two_genuine_pressures_sum_once_for_thrust_and_stress_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::expansion_joint_user_stiffness_emits_macro_element_review_rows",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::flexibility_joint_missing_a_user_stiffness_is_refused_not_dropped",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::generated_result_metadata_and_historical_quantization_match_legacy_fixture_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::mixed_units_are_normalized_at_preview_mechanics_boundary_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::pressure_load_direction_does_not_change_thrust_magnitude_or_sign_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::pressure_thrust_applies_axial_fixed_end_correction_without_longitudinal_rows_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::pressure_thrust_on_macro_span_assembles_complete_self_equilibrated_arc_system",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::private_historical_pressure_scope_restores_public_refusal_and_rejects_exact",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::private_historical_scope_restores_after_unwind_and_is_thread_local",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::realized_user_stiffness_joint_is_refused_on_the_ordinary_route",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::valid_invented_model_exposes_endpoint_stress_components_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::valid_invented_model_exposes_nonlinear_support_loop_evidence_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|tests/f1b_w2_runtime.rs|f1b_w2_admission_refuses_a_zero_legacy_pressure_as_pressure_thrust",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|tests/pressure_runtime.rs|retired_legacy_pressure_is_refused_and_pressure_free_documents_solve",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_runner_headless_Cargo.toml|src/bin/openpipestress-runner.rs|tests::retired_legacy_pressure_label_is_refused_by_a_cli_solve",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_runner_headless_Cargo.toml|src/bin/openpipestress-runner.rs|tests::zero_legacy_pressure_primitive_is_refused_by_a_cli_solve",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_runner_headless_Cargo.toml|src/lib.rs|benchmark_binding::tests::mechanics_whole_suite_is_24_cases_194_values_and_preserves_original_11_91",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_runner_headless_Cargo.toml|src/lib.rs|benchmark_binding::tests::mechanics_whole_suite_is_25_cases_206_values_and_preserves_original_11_91",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_solver_curved_bend_Cargo.toml|src/lib.rs|tests::anchored_arc_under_complete_pressure_system_reaches_membrane_state",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_solver_curved_bend_Cargo.toml|src/lib.rs|tests::cap_pair_plus_consistent_radial_load_is_self_equilibrated",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_solver_curved_bend_Cargo.toml|src/lib.rs|tests::consistent_radial_pressure_load_satisfies_rigid_equilibrium",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_solver_curved_bend_Cargo.toml|src/lib.rs|tests::radial_pressure_inputs_rejected_when_non_finite",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_solver_curved_bend_Cargo.toml|src/lib.rs|tests::radial_pressure_system_reduces_to_chord_pair_at_small_angle",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_solver_curved_bend_Cargo.toml|src/lib.rs|tests::zero_thrust_station_resultants_match_plain_arc_section_resultants",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "validation_benchmarks_mechanics_Cargo.toml|src/lib.rs|tests::curved_bend_pressure_thrust_complete_system_is_self_equilibrated",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "validation_benchmarks_mechanics_Cargo.toml|src/lib.rs|tests::curved_bend_pressure_thrust_fixture_matches_witness_reference_table",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "validation_benchmarks_mechanics_Cargo.toml|src/lib.rs|tests::suite_observation_api_covers_all_13_cases_and_103_names",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "validation_benchmarks_mechanics_Cargo.toml|src/lib.rs|tests::suite_observation_api_covers_all_14_cases_and_115_names",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "validation_benchmarks_stress_Cargo.toml|src/lib.rs|tests::recovers_pressure_membrane_fixture",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "validation_benchmarks_stress_Cargo.toml|src/lib.rs|tests::stress_range_blocks_asymmetric_optional_pressure_components",
+    "base": "ok",
+    "cand": null
+   }
+  ]
+ },
+ "src_tauri": {
+  "base": {
+   "ok": 116
+  },
+  "cand": {
+   "ok": 117
+  },
+  "changed": [
+   {
+    "test": "src-tauri|src/lib.rs|tests::retired_legacy_pressure_label_opens_unchanged_and_its_solve_is_refused",
+    "base": null,
+    "cand": "ok"
+   }
+  ]
+ },
+ "pytest": {
+  "base": {
+   "PASSED": 4353,
+   "SKIPPED": 8
+  },
+  "cand": {
+   "PASSED": 4353,
+   "SKIPPED": 8
+  },
+  "changed": []
+ },
+ "vitest": {
+  "base": {
+   "passed": 4244
+  },
+  "cand": {
+   "passed": 4247
+  },
+  "changed": [
+   {
+    "test": "apps/desktop/src/App.test.tsx|SWBPIPE desktop preview does not offer retired legacy pressure primitives in the manager panel (U3)",
+    "base": null,
+    "cand": "passed"
+   },
+   {
+    "test": "apps/desktop/src/App.test.tsx|SWBPIPE desktop preview queues and applies a pressure primitive load through the manager panel",
+    "base": "passed",
+    "cand": null
+   },
+   {
+    "test": "apps/desktop/src/features/pressure-authoring/PressureAuthoringPanel.test.tsx|says when a model without a contract still carries legacy pressure primitives, and when a contract is unsupported (U3, RV127 N-5)",
+    "base": null,
+    "cand": "passed"
+   },
+   {
+    "test": "apps/desktop/src/features/pressure-authoring/PressureAuthoringPanel.test.tsx|shows a model without a pressure contract as pressure-free (U3)",
+    "base": null,
+    "cand": "passed"
+   },
+   {
+    "test": "apps/desktop/src/features/pressure-authoring/PressureAuthoringPanel.test.tsx|shows the retired legacy label and re-authors it to the exact profile (U3)",
+    "base": null,
+    "cand": "passed"
+   }
+  ]
+ },
+ "bytes_release": {
+  "by_set": {
+   "F": {
+    "rows": 364,
+    "equal": 364,
+    "runner_export_document": 98,
+    "ordinary_solved": 109
+   },
+   "E": {
+    "rows": 96,
+    "equal": 96,
+    "runner_export_document": 84,
+    "ordinary_solved": 96
+   },
+   "B1": {
+    "rows": 64,
+    "equal": 64,
+    "runner_export_document": 30,
+    "ordinary_solved": 64
+   }
+  },
+  "differences": []
+ },
+ "bytes_w1": {
+  "by_set": {
+   "B1": {
+    "rows": 64,
+    "equal": 64,
+    "w1_ordinary_published": 30,
+    "runner_export_document": 30,
+    "ordinary_solved": 64,
+    "w1_successor_published": 34
+   }
+  },
+  "differences": []
+ }
+}

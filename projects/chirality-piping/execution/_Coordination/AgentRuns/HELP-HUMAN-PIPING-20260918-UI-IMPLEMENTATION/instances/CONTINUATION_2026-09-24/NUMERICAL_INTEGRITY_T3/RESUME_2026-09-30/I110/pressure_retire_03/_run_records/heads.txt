@@ -1,0 +1,3 @@
+cand 6b6543dc1e546d859ac6f8d19f29d20cfb1485a6
+base 7eae707bb77722a69b61678c149aa816976bc162 (round-2 base records reused)
+hc 6b6543dc1e546d859ac6f8d19f29d20cfb1485a6

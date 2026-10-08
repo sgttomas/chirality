@@ -1,0 +1,22 @@
+# cargo test --lib flexibility_joint_missing_a_user_stiffness_is_refused_not_dropped, tree before the G11 fix (Stage 2 edits uncommitted)
+running 1 test
+test tests::flexibility_joint_missing_a_user_stiffness_is_refused_not_dropped ... FAILED
+
+failures:
+
+---- tests::flexibility_joint_missing_a_user_stiffness_is_refused_not_dropped stdout ----
+
+thread 'tests::flexibility_joint_missing_a_user_stiffness_is_refused_not_dropped' (126434560) panicked at src/lib.rs:17438:13:
+assertion `left == right` failed: lateral: the joint without this value must be refused, not dropped
+  left: ("MECHANICS_SOLVED", 3)
+ right: ("MODEL_INCOMPLETE", 0)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::flexibility_joint_missing_a_user_stiffness_is_refused_not_dropped
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 618 filtered out; finished in 0.05s
+
+error: test failed, to rerun pass `--lib`
+rc=101
