@@ -1,0 +1,31 @@
+# i100 job rep1_mut_R1 (slot) queued 2026-10-08T17:45:54Z dir=scratch/i100_b3r/rep1/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=R1 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/rep1_mut_R1/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/rep1/mutants/runs/R1/junit.xml tests/test_retained_precision_b3.py
+# start 2026-10-08T17:45:54Z
+........................................................................ [ 18%]
+........................................................................ [ 37%]
+........................................................................ [ 56%]
+........................................................................ [ 75%]
+........................................................................ [ 93%]
+.................F.....                                                  [100%]
+=================================== FAILURES ===================================
+_ test_repair01_g5b_shared_checks_precede_the_exact_evidence[X G5b order: case 0's evidence As_m2 and case 1's body_scales force [two_case_synthetic]] _
+
+shape = {'base': ['corpus', 'two_case_synthetic'], 'name': "X G5b order: case 0's evidence As_m2 and case 1's body_scales forc... 'want': 'G5b SCALE_MISMATCH', 'input_sha256': 'cd1c6d69aa95f78f17949ebf2c624b1a79f9314e1f47ef745f74508ecfd698a9', ...}
+
+    @pytest.mark.parametrize("shape", RV120_G5B, ids=[s["name"] for s in RV120_G5B])
+    def test_repair01_g5b_shared_checks_precede_the_exact_evidence(shape):
+        """F1: the two-fault order probe (case 0's evidence As_m2 and case 1's body_scales force, each one ulp) reads
+        G5b SCALE_MISMATCH, as RS and TS read it; each fault alone, and the other order probe, read as before."""
+        assert len(RV120_G5B) == 4
+        source, invocation = rv120_input(shape)
+>       assert outcome(source, invocation) == _rv120_want(shape["want"])
+E       AssertionError: assert ('G5b', 'RETA...ION_MISMATCH') == ('G5b', 'RETA...ALE_MISMATCH')
+E         
+E         At index 1 diff: 'RETAINED_PRECISION_SECTION_MISMATCH' != 'RETAINED_PRECISION_SCALE_MISMATCH'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:812: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_repair01_g5b_shared_checks_precede_the_exact_evidence[X G5b order: case 0's evidence As_m2 and case 1's body_scales force [two_case_synthetic]]
+1 failed, 382 passed in 44.87s
+# end 2026-10-08T17:46:39Z rc=1

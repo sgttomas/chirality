@@ -1,0 +1,25 @@
+== NONE
+forge E-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic] -> G8 RETAINED_PRECISION_PREPARATION_MISMATCH at _need:164 < <lambda>:1611 < _g8:1722 < _validate_draft:2079 | need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+forge G-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic] -> G8 RETAINED_PRECISION_PREPARATION_MISMATCH at _need:164 < <lambda>:1611 < _g8:1722 < _validate_draft:2079 | need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+forge E-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive] -> G8 RETAINED_PRECISION_PREPARATION_MISMATCH at _need:164 < <lambda>:1611 < _g8:1722 < _validate_draft:2079 | need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+forge G-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive] -> G8 RETAINED_PRECISION_PREPARATION_MISMATCH at _need:164 < <lambda>:1611 < _g8:1722 < _validate_draft:2079 | need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+== R2
+forge E-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic] -> G8 RETAINED_PRECISION_PREPARATION_MISMATCH at _need:164 < <lambda>:1611 < _g8:1859 < _validate_draft:2079 | need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+forge G-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic] -> G8 RETAINED_PRECISION_PREPARATION_MISMATCH at _need:164 < <lambda>:1611 < _g8:1722 < _validate_draft:2079 | need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+forge E-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive] -> G8 RETAINED_PRECISION_PREPARATION_MISMATCH at _need:164 < <lambda>:1611 < _g8:1859 < _validate_draft:2079 | need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+forge G-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive] -> G8 RETAINED_PRECISION_PREPARATION_MISMATCH at _need:164 < <lambda>:1611 < _g8:1722 < _validate_draft:2079 | need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+== R3
+forge E-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic] -> G8 RETAINED_PRECISION_PREPARATION_MISMATCH at _need:164 < <lambda>:1611 < _g8:1722 < _validate_draft:2079 | need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+forge G-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic] -> G8 RETAINED_PRECISION_PREPARATION_MISMATCH at _need:164 < <lambda>:1611 < _g8:1859 < _validate_draft:2079 | need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+forge E-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive] -> G8 RETAINED_PRECISION_PREPARATION_MISMATCH at _need:164 < <lambda>:1611 < _g8:1722 < _validate_draft:2079 | need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+forge G-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive] -> G8 RETAINED_PRECISION_PREPARATION_MISMATCH at _need:164 < <lambda>:1611 < _g8:1859 < _validate_draft:2079 | need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+== R4
+forge E-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic] -> pass True
+forge G-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic] -> G8 RETAINED_PRECISION_PREPARATION_MISMATCH at _need:164 < <lambda>:1611 < _g8:1722 < _validate_draft:2079 | need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+forge E-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive] -> pass True
+forge G-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive] -> G8 RETAINED_PRECISION_PREPARATION_MISMATCH at _need:164 < <lambda>:1611 < _g8:1722 < _validate_draft:2079 | need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+== R5
+forge E-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic] -> G8 RETAINED_PRECISION_PREPARATION_MISMATCH at _need:164 < <lambda>:1611 < _g8:1722 < _validate_draft:2079 | need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+forge G-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic] -> pass True
+forge E-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive] -> G8 RETAINED_PRECISION_PREPARATION_MISMATCH at _need:164 < <lambda>:1611 < _g8:1722 < _validate_draft:2079 | need = lambda ok, code="PREPARATION_MISMATCH": _need(ok, "G8", code)
+forge G-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive] -> pass True

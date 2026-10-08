@@ -1,0 +1,14 @@
+R1: the exact G5b evidence check in the shared per-case loop (before the repair); R2: step 4's E bits unchecked; R3: step 4's G-hat bits unchecked
+py rc=0
+py rc=0
+suites rep1 rc=0
+mutant NONE rc=0
+mutant R1 rc=1
+mutant R2 rc=0
+mutant R3 rc=0
+py probes rc=0
+py forge rc=0
+py s52 rc=0
+py s165 rc=0
+py s318 rc=0
+rep1 chain done

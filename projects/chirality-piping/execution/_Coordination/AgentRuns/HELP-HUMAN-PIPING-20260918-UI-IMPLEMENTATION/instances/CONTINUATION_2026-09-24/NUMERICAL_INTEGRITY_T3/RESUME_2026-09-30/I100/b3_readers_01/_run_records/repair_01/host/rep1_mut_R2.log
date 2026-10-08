@@ -1,0 +1,11 @@
+# i100 job rep1_mut_R2 (slot) queued 2026-10-08T17:46:39Z dir=scratch/i100_b3r/rep1/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=R2 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/rep1_mut_R2/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/rep1/mutants/runs/R2/junit.xml tests/test_retained_precision_b3.py
+# start 2026-10-08T17:46:39Z
+........................................................................ [ 18%]
+........................................................................ [ 37%]
+........................................................................ [ 56%]
+........................................................................ [ 75%]
+........................................................................ [ 93%]
+.......................                                                  [100%]
+383 passed in 45.52s
+# end 2026-10-08T17:47:24Z rc=0

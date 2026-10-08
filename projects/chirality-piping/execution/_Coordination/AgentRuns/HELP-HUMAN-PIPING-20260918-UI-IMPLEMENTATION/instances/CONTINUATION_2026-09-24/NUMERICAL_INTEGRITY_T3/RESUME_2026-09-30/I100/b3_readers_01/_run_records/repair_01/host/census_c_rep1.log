@@ -1,0 +1,5 @@
+# i100 job census_c_rep1 (slot) queued 2026-10-08T16:24:09Z dir=scratch/i100_b3r
+# args: VENV/bin/python WT/scratch/i100_b3r/tools/rv113_py_harness.py WT/scratch/i100_b3r/trees/c_rep1/projects/chirality-piping census WT/scratch/i100_b3r/runs/c_rep1/py.jsonl
+# start 2026-10-08T17:21:24Z
+339 lines -> WT/scratch/i100_b3r/runs/c_rep1/py.jsonl
+# end 2026-10-08T17:22:18Z rc=0

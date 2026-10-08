@@ -1,0 +1,8 @@
+R1: the exact G5b evidence check in the shared per-case loop; R2/R3: step 4's E/G-hat bits unchecked; R4/R5: and the attempts loop's old E/G-hat binding too
+mutant NONE rc=0
+mutant R1 rc=1
+mutant R2 rc=0
+mutant R3 rc=0
+mutant R4 rc=1
+mutant R5 rc=1
+mut2 done

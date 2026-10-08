@@ -1,0 +1,9 @@
+2026-10-08T17:48:09Z WAIT pid=29519 cwd=WT/rv123/rep2/projects/chirality-piping/core/product_physics args: %CRG% test --locked --offline --no-fail-fast
+2026-10-08T17:48:09Z START pid=29562 slot=cargo_job.slot4.lock cwd=WT/rv123/rep2/projects/chirality-piping/core/product_physics args: %CRG% test --locked --offline --no-fail-fast
+2026-10-08T17:57:04Z END rc=101 pid=29562 slot=cargo_job.slot4.lock cwd=WT/rv123/rep2/projects/chirality-piping/core/product_physics
+2026-10-08T17:57:04Z WAIT pid=2808 cwd=WT/rv123/rep2m/projects/chirality-piping/core/product_physics args: %CRG% test --locked --offline --no-fail-fast --lib -- b2p_ledger_unavailable_operand_has_no_source b2p_hooks_and_failure_set b2p_rv123_n3_shapes_are_pinned --test-threads=2
+2026-10-08T17:57:04Z START pid=2820 slot=cargo_job.slot2.lock cwd=WT/rv123/rep2m/projects/chirality-piping/core/product_physics args: %CRG% test --locked --offline --no-fail-fast --lib -- b2p_ledger_unavailable_operand_has_no_source b2p_hooks_and_failure_set b2p_rv123_n3_shapes_are_pinned --test-threads=2
+2026-10-08T17:57:51Z END rc=101 pid=2820 slot=cargo_job.slot2.lock cwd=WT/rv123/rep2m/projects/chirality-piping/core/product_physics
+2026-10-08T17:57:51Z WAIT pid=3666 cwd=WT/rv123/rep2/projects/chirality-piping/core/runner/headless args: %CRG% test --locked --offline --no-fail-fast
+2026-10-08T17:57:51Z START pid=3678 slot=cargo_job.slot2.lock cwd=WT/rv123/rep2/projects/chirality-piping/core/runner/headless args: %CRG% test --locked --offline --no-fail-fast
+2026-10-08T17:58:53Z END rc=101 pid=3678 slot=cargo_job.slot2.lock cwd=WT/rv123/rep2/projects/chirality-piping/core/runner/headless

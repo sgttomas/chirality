@@ -1,0 +1,7 @@
+E           AssertionError: assert 'c11f7566f1f0...d35ff92ded22f' == 'f2800bd4f2b4...0f387c075d3a3'
+E             
+E             - f2800bd4f2b4c90217918a6e1287f98305a1b6b07893295b5790f387c075d3a3
+E             + c11f7566f1f0c469bc0a2808466dd9dd137ea64abed327fb9e4d35ff92ded22f
+tests/test_retained_precision_contract.py:1815: AssertionError
+FAILED tests/test_retained_precision_contract.py::test_snapshot_07n_bases_are_the_pinned_successors_and_the_d38_derivation
+1 failed, 1078 passed in 324.46s (0:05:24)

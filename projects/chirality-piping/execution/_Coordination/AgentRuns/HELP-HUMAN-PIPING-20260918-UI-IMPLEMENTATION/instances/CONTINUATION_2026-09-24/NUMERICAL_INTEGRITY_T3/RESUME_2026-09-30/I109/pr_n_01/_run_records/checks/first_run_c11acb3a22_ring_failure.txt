@@ -1,0 +1,5 @@
+test retained_memory::law_tests::cap_maximal_ring_is_the_trigonometric_ring ... FAILED
+thread 'retained_memory::law_tests::cap_maximal_ring_is_the_trigonometric_ring' (120069840) panicked at src/retained_memory_law_tests.rs:153:5:
+  left: 4
+ right: 3
+test result: FAILED. 579 passed; 1 failed; 52 ignored; 0 measured; 0 filtered out; finished in 44.53s

@@ -1,0 +1,4 @@
+RV120 F2: E +1 ulp in every receipt copy, stiffness and native hashes resealed [ordinary_prepared_synthetic]: equal to RV120's input True; RV120's input_sha256 True (0292c86c96e1…)
+RV120 F2: G-hat +1 ulp in every receipt copy, stiffness and native hashes resealed [ordinary_prepared_synthetic]: equal to RV120's input True; RV120's input_sha256 True (a02aac3a39a1…)
+RV120 F2: E +1 ulp in every receipt copy, stiffness and native hashes resealed [m3x_sparse_interactive]: equal to RV120's input True; RV120's input_sha256 True (11ef2090ec14…)
+RV120 F2: G-hat +1 ulp in every receipt copy, stiffness and native hashes resealed [m3x_sparse_interactive]: equal to RV120's input True; RV120's input_sha256 True (4a8e63ee1d86…)

@@ -1,0 +1,9 @@
+archived e4ec1cb5c9
+crate product_physics rc=0 passed=743 failed=0 ignored=79
+crate result_export rc=0 passed=199 failed=0 ignored=0
+bin checked-json rc=0
+bin units rc=0
+pytest rc=1 1 failed, 1078 passed in 324.46s (0:05:24)
+vitest rc=1 
+suites40 rc=0
+CHAIN-DONE

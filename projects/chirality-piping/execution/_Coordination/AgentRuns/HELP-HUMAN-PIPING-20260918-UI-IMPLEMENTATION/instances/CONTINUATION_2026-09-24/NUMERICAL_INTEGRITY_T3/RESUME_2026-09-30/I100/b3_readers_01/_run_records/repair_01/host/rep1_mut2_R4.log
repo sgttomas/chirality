@@ -1,0 +1,51 @@
+# i100 job rep1_mut2_R4 (slot) queued 2026-10-08T17:53:25Z dir=scratch/i100_b3r/rep1/mut2/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=R4 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/rep1_mut2_R4/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/rep1/mutants2/runs/R4/junit.xml tests/test_retained_precision_b3.py
+# start 2026-10-08T17:53:26Z
+........................................................................ [ 18%]
+........................................................................ [ 37%]
+........................................................................ [ 56%]
+........................................................................ [ 75%]
+........................................................................ [ 93%]
+...................F.F.                                                  [100%]
+=================================== FAILURES ===================================
+_ test_repair01_rv120_forgeries_are_refused_at_g8[forge E-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic]] _
+
+shape = {'base': ['corpus', 'ordinary_prepared_synthetic'], 'name': 'forge E-hat+1ulp, every copy, native hashes resealed [ord...t': 'G8 PREPARATION_MISMATCH', 'input_sha256': '0292c86c96e1daabbda863c4094ef13e3343bc0d5ca2ef061f6d21c8ae992da1', ...}
+
+    @pytest.mark.parametrize("shape", RV120_FORGERIES, ids=[s["name"] for s in RV120_FORGERIES])
+    def test_repair01_rv120_forgeries_are_refused_at_g8(shape):
+        """F2: RV120's four E and G-hat forgeries (on its exact ordinary_prepared_synthetic and lane P's m3x successor)
+        are refused at G8 PREPARATION_MISMATCH; unbound and on transport G8 does not run, so each reads as its base."""
+        assert len(RV120_FORGERIES) == 4 and shape["want"] == "G8 PREPARATION_MISMATCH"
+        source, invocation = rv120_input(shape)
+>       assert outcome(source, invocation) == PREPARATION
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:823: AssertionError
+_ test_repair01_rv120_forgeries_are_refused_at_g8[forge E-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive]] _
+
+shape = {'base': ['m3x_producer', 'sparse_interactive'], 'name': 'forge E-hat+1ulp, every copy, native hashes resealed [m3x_sp...t': 'G8 PREPARATION_MISMATCH', 'input_sha256': '11ef2090ec14b45710b24b56d4a47cdb3c683c76665fc24c4f7f900e9bfe4a98', ...}
+
+    @pytest.mark.parametrize("shape", RV120_FORGERIES, ids=[s["name"] for s in RV120_FORGERIES])
+    def test_repair01_rv120_forgeries_are_refused_at_g8(shape):
+        """F2: RV120's four E and G-hat forgeries (on its exact ordinary_prepared_synthetic and lane P's m3x successor)
+        are refused at G8 PREPARATION_MISMATCH; unbound and on transport G8 does not run, so each reads as its base."""
+        assert len(RV120_FORGERIES) == 4 and shape["want"] == "G8 PREPARATION_MISMATCH"
+        source, invocation = rv120_input(shape)
+>       assert outcome(source, invocation) == PREPARATION
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:823: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_repair01_rv120_forgeries_are_refused_at_g8[forge E-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic]]
+FAILED tests/test_retained_precision_b3.py::test_repair01_rv120_forgeries_are_refused_at_g8[forge E-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive]]
+2 failed, 381 passed in 45.44s
+# end 2026-10-08T17:54:11Z rc=1

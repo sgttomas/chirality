@@ -1,0 +1,14 @@
+RV123_JOB name=rep2_m203 dir=WT/rv123/rep2m/projects/chirality-piping/core/product_physics target=rv123-r2-rep2m stale=0 args=test --locked --offline --no-fail-fast --lib -- b2p_ledger_unavailable_operand_has_no_source b2p_hooks_and_failure_set b2p_rv123_n3_shapes_are_pinned --test-threads=2 start=2026-10-08T17:57:04Z
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 17.26s
+     Running unittests src/lib.rs (WT/targets/rv123-r2-rep2m/debug/deps/open_pipe_stress_product_physics-bb39da2c4469dd71)
+test retained_facade_tests::b2p_ledger_unavailable_operand_has_no_source ... FAILED
+test retained_facade_tests::b2p_hooks_and_failure_set ... ok
+test retained_facade_tests::b2p_rv123_n3_shapes_are_pinned ... ok
+failures:
+thread 'retained_facade_tests::b2p_ledger_unavailable_operand_has_no_source' (121238797) panicked at src/retained_facade_tests.rs:4297:9:
+failures:
+    retained_facade_tests::b2p_ledger_unavailable_operand_has_no_source
+test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 637 filtered out; finished in 29.00s
+error: test failed, to rerun pass `--lib`
+error: 1 target failed:
+RV123_JOB_END name=rep2_m203 rc=101 end=2026-10-08T17:57:51Z

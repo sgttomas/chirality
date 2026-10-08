@@ -1,0 +1,6 @@
+# i100 job rep1_dev1 (slot) queued 2026-10-08T16:14:57Z dir=b2-p/projects/chirality-piping
+# args: VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/rep1_dev1/bt -q -rf tests/test_retained_precision_b3.py -k repair01 or s1_payload
+# start 2026-10-08T16:21:17Z
+.........                                                                [100%]
+9 passed, 374 deselected in 1.23s
+# end 2026-10-08T16:21:19Z rc=0

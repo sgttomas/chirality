@@ -1,0 +1,4 @@
+base 800 {'ok': 788, 'ignored': 11, 'FAILED': 1}
+cand 802 {'ok': 790, 'ignored': 11, 'FAILED': 1}
+-        -> ok       src/lib.rs retained_facade_tests::b2p_ledger_unavailable_operand_has_no_source
+-        -> ok       src/lib.rs retained_facade_tests::b2p_rv123_n3_shapes_are_pinned

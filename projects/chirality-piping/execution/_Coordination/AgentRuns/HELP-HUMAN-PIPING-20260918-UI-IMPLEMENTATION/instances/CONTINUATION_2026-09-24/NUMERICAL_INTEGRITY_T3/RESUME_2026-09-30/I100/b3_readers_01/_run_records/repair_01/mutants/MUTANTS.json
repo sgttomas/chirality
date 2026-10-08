@@ -1,0 +1,7 @@
+[
+ {"id": "R1", "file": "core/analysis_runs/retained_precision.py", "edit": "repair 01 F1: the exact G5b evidence check back inside the shared per-case G5b loop (the placement before the repair)"},
+ {"id": "R2", "file": "core/analysis_runs/retained_precision.py", "edit": "repair 01 F2: G8 step 4's E bits unchecked, both material-basis loops (PY's analogue of I101's B28)"},
+ {"id": "R3", "file": "core/analysis_runs/retained_precision.py", "edit": "repair 01 F2: G8 step 4's G-hat bits unchecked, both material-basis loops (PY's analogue of I101's B29)"},
+ {"id": "R4", "file": "core/analysis_runs/retained_precision.py", "edit": "repair 01 F2: R2, and the attempts loop's binding of each prepared member's old E to the authored material dropped too"},
+ {"id": "R5", "file": "core/analysis_runs/retained_precision.py", "edit": "repair 01 F2: R3, and the attempts loop's binding of each prepared member's old G-hat to the authored material dropped too"}
+]

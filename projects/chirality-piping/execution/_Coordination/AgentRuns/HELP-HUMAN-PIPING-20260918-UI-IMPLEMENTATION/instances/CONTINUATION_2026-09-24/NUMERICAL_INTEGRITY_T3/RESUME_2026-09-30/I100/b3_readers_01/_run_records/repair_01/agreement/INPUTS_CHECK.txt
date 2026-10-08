@@ -1,0 +1,7 @@
+# I100 B3 repair 01: RV120's inputs (R/REVIEW_RV120/b3_readers_01; its WT/scratch materializations for the large sets),
+# each line's sha256 of the compact key-sorted JSON of [source, invocation], in order, against its INPUTS_INDEX.jsonl.
+probes/b3_probes.jsonl: 128 inputs; equal to INPUTS_INDEX, in order: True
+inputs/forge_eg.jsonl: 4 inputs; equal to INPUTS_INDEX, in order: True
+inputs/i100_52.jsonl: 52 inputs; equal to INPUTS_INDEX, in order: True
+inputs/i101_165.jsonl: 165 inputs; equal to INPUTS_INDEX, in order: True
+inputs/i100_318.jsonl: 318 inputs; equal to INPUTS_INDEX, in order: True

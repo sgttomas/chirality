@@ -1,0 +1,32 @@
+{
+ "base": {
+  "passed": 2395,
+  "skipped": 30
+ },
+ "head": {
+  "passed": 2403,
+  "skipped": 30
+ },
+ "added": [
+  "tests.test_retained_precision_b3::test_repair01_g5b_shared_checks_precede_the_exact_evidence[X G5b control: case 0's evidence As_m2 one ulp [two_case_synthetic]]",
+  "tests.test_retained_precision_b3::test_repair01_g5b_shared_checks_precede_the_exact_evidence[X G5b control: case 1's body_scales force one ulp [two_case_synthetic]]",
+  "tests.test_retained_precision_b3::test_repair01_g5b_shared_checks_precede_the_exact_evidence[X G5b order: case 0's evidence As_m2 and case 1's body_scales force [two_case_synthetic]]",
+  "tests.test_retained_precision_b3::test_repair01_g5b_shared_checks_precede_the_exact_evidence[X G5b order: case 0's evidence As_m2 and case 1's section term area [two_case_synthetic]]",
+  "tests.test_retained_precision_b3::test_repair01_rv120_forgeries_are_refused_at_g8[forge E-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive]]",
+  "tests.test_retained_precision_b3::test_repair01_rv120_forgeries_are_refused_at_g8[forge E-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic]]",
+  "tests.test_retained_precision_b3::test_repair01_rv120_forgeries_are_refused_at_g8[forge G-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive]]",
+  "tests.test_retained_precision_b3::test_repair01_rv120_forgeries_are_refused_at_g8[forge G-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic]]"
+ ],
+ "removed": [],
+ "changed": [],
+ "added_outcomes": {
+  "tests.test_retained_precision_b3::test_repair01_g5b_shared_checks_precede_the_exact_evidence[X G5b control: case 0's evidence As_m2 one ulp [two_case_synthetic]]": "passed",
+  "tests.test_retained_precision_b3::test_repair01_g5b_shared_checks_precede_the_exact_evidence[X G5b control: case 1's body_scales force one ulp [two_case_synthetic]]": "passed",
+  "tests.test_retained_precision_b3::test_repair01_g5b_shared_checks_precede_the_exact_evidence[X G5b order: case 0's evidence As_m2 and case 1's body_scales force [two_case_synthetic]]": "passed",
+  "tests.test_retained_precision_b3::test_repair01_g5b_shared_checks_precede_the_exact_evidence[X G5b order: case 0's evidence As_m2 and case 1's section term area [two_case_synthetic]]": "passed",
+  "tests.test_retained_precision_b3::test_repair01_rv120_forgeries_are_refused_at_g8[forge E-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive]]": "passed",
+  "tests.test_retained_precision_b3::test_repair01_rv120_forgeries_are_refused_at_g8[forge E-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic]]": "passed",
+  "tests.test_retained_precision_b3::test_repair01_rv120_forgeries_are_refused_at_g8[forge G-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive]]": "passed",
+  "tests.test_retained_precision_b3::test_repair01_rv120_forgeries_are_refused_at_g8[forge G-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic]]": "passed"
+ }
+}

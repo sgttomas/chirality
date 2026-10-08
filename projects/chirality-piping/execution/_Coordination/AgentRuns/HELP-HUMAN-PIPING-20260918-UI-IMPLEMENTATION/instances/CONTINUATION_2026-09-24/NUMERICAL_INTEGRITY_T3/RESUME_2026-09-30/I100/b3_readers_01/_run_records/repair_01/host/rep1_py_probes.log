@@ -1,0 +1,5 @@
+# i100 job rep1_py_probes (slot) queued 2026-10-08T17:48:13Z dir=scratch/i100_b3r
+# args: VENV/bin/python WT/scratch/i100_b3r/tools/rv120_b3_py_raw.py WT/scratch/i100_b3r/head6/projects/chirality-piping WT/scratch/i100_b3r/rep1/inputs/b3_probes.jsonl WT/scratch/i100_b3r/rep1/agree/probes_py.jsonl
+# start 2026-10-08T17:48:13Z
+128 inputs
+# end 2026-10-08T17:48:26Z rc=0

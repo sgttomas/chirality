@@ -1,0 +1,44 @@
+[
+ {
+  "id": "NONE",
+  "edit": "control",
+  "tests": 383,
+  "failed": 0,
+  "killed_by_assertion": false,
+  "errors": [],
+  "failures": []
+ },
+ {
+  "id": "R1",
+  "edit": "repair 01 F1: the exact G5b evidence check back inside the shared per-case G5b loop (the placement before the repair)",
+  "tests": 383,
+  "failed": 1,
+  "killed_by_assertion": true,
+  "errors": [],
+  "failures": [
+   {
+    "test": "test_retained_precision_b3::test_repair01_g5b_shared_checks_precede_the_exact_evidence[X G5b order: case 0's evidence As_m2 and case 1's body_scales force [two_case_synthetic]]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('G5b', 'RETA...ION_MISMATCH') == ('G5b', 'RETA...ALE_MISMATCH')\n  \n  At index 1 diff: 'RETAINED_PRECISION_SECTION_MISMATCH' != 'RETAINED"
+   }
+  ]
+ },
+ {
+  "id": "R2",
+  "edit": "repair 01 F2: G8 step 4's E bits unchecked, both material-basis loops (PY's analogue of I101's B28)",
+  "tests": 383,
+  "failed": 0,
+  "killed_by_assertion": false,
+  "errors": [],
+  "failures": []
+ },
+ {
+  "id": "R3",
+  "edit": "repair 01 F2: G8 step 4's G-hat bits unchecked, both material-basis loops (PY's analogue of I101's B29)",
+  "tests": 383,
+  "failed": 0,
+  "killed_by_assertion": false,
+  "errors": [],
+  "failures": []
+ }
+]

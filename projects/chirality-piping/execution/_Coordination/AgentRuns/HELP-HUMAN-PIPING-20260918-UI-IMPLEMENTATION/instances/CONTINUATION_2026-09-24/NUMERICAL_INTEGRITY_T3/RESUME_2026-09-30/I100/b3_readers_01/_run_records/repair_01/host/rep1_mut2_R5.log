@@ -1,0 +1,148 @@
+# i100 job rep1_mut2_R5 (slot) queued 2026-10-08T17:54:11Z dir=scratch/i100_b3r/rep1/mut2/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=R5 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/rep1_mut2_R5/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/rep1/mutants2/runs/R5/junit.xml tests/test_retained_precision_b3.py
+# start 2026-10-08T17:54:11Z
+........................................................................ [ 18%]
+.................F...................................................... [ 37%]
+.........F.............................................................. [ 56%]
+.F...............................................................F...... [ 75%]
+.................F...................................................... [ 93%]
+....................F.F                                                  [100%]
+=================================== FAILURES ===================================
+_ test_b3b_m3x_mutations[synthetic-dense_scrutiny-x26 G_hat one ulp high, every copy consistent] _
+
+kind = 'synthetic', mode = 'dense_scrutiny'
+label = 'x26 G_hat one ulp high, every copy consistent'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    @pytest.mark.parametrize("kind", KINDS)
+    def test_b3b_m3x_mutations(kind, mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label, kind)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:479: AssertionError
+_ test_b3b_m3x_mutations[synthetic-sparse_interactive-x26 G_hat one ulp high, every copy consistent] _
+
+kind = 'synthetic', mode = 'sparse_interactive'
+label = 'x26 G_hat one ulp high, every copy consistent'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    @pytest.mark.parametrize("kind", KINDS)
+    def test_b3b_m3x_mutations(kind, mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label, kind)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:479: AssertionError
+_ test_b3b_m3x_mutations[producer-dense_scrutiny-x26 G_hat one ulp high, every copy consistent] _
+
+kind = 'producer', mode = 'dense_scrutiny'
+label = 'x26 G_hat one ulp high, every copy consistent'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    @pytest.mark.parametrize("kind", KINDS)
+    def test_b3b_m3x_mutations(kind, mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label, kind)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:479: AssertionError
+_ test_b3b_m3x_mutations[producer-sparse_interactive-x26 G_hat one ulp high, every copy consistent] _
+
+kind = 'producer', mode = 'sparse_interactive'
+label = 'x26 G_hat one ulp high, every copy consistent'
+
+    @pytest.mark.parametrize("label", sorted(B3B_REFUSALS) + sorted(B3B_SPECIAL))
+    @pytest.mark.parametrize("mode", MODES)
+    @pytest.mark.parametrize("kind", KINDS)
+    def test_b3b_m3x_mutations(kind, mode, label):
+        expected = B3B_REFUSALS[label][1] if label in B3B_REFUSALS else B3B_SPECIAL[label]
+        source, invocation = exact_shape(mode, label, kind)
+>       assert outcome(source, invocation) == expected
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:479: AssertionError
+_ test_b3b_g8_material_binding_precedes_s_c[x26 G_hat one ulp high, every copy consistent-False] _
+
+label = 'x26 G_hat one ulp high, every copy consistent', s_c = False
+
+    @pytest.mark.parametrize("label, s_c", [("x10 authored nu unit not 1", False), ("x24 authored nu unit empty", False), ("x11 authored nu 0.5", False),
+                                            ("26 shear_origin.poisson_ratio bits changed", False), ("x26 G_hat one ulp high, every copy consistent", False),
+                                            ("28 S-C only: an entry's pipe_materials nu one ulp", True), ("x12 authored constitutive_basis changed", True)])
+    def test_b3b_g8_material_binding_precedes_s_c(label, s_c):
+        """REVISION_01 §4.2's G8 order on the exact branch: step 4 (the receipt's E, G_hat and nu against the authored
+        material) before step 5 (S-C), whose own code is the detail of G8's PREPARATION_MISMATCH (B3D-13)."""
+        source, invocation = exact_shape("sparse_interactive", label)
+>       with pytest.raises(rp.RetainedPrecisionError) as error:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RetainedPrecisionError
+
+tests/test_retained_precision_b3.py:517: Failed
+_ test_repair01_rv120_forgeries_are_refused_at_g8[forge G-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic]] _
+
+shape = {'base': ['corpus', 'ordinary_prepared_synthetic'], 'name': 'forge G-hat+1ulp, every copy, native hashes resealed [ord...t': 'G8 PREPARATION_MISMATCH', 'input_sha256': 'a02aac3a39a18ccb1c187b7746addd70c5870dbf9926a0904f715c7115de55d0', ...}
+
+    @pytest.mark.parametrize("shape", RV120_FORGERIES, ids=[s["name"] for s in RV120_FORGERIES])
+    def test_repair01_rv120_forgeries_are_refused_at_g8(shape):
+        """F2: RV120's four E and G-hat forgeries (on its exact ordinary_prepared_synthetic and lane P's m3x successor)
+        are refused at G8 PREPARATION_MISMATCH; unbound and on transport G8 does not run, so each reads as its base."""
+        assert len(RV120_FORGERIES) == 4 and shape["want"] == "G8 PREPARATION_MISMATCH"
+        source, invocation = rv120_input(shape)
+>       assert outcome(source, invocation) == PREPARATION
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:823: AssertionError
+_ test_repair01_rv120_forgeries_are_refused_at_g8[forge G-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive]] _
+
+shape = {'base': ['m3x_producer', 'sparse_interactive'], 'name': 'forge G-hat+1ulp, every copy, native hashes resealed [m3x_sp...t': 'G8 PREPARATION_MISMATCH', 'input_sha256': '4a8e63ee1d86a053558edff73563596220ba89b0077f9cdfb5718ab219b25999', ...}
+
+    @pytest.mark.parametrize("shape", RV120_FORGERIES, ids=[s["name"] for s in RV120_FORGERIES])
+    def test_repair01_rv120_forgeries_are_refused_at_g8(shape):
+        """F2: RV120's four E and G-hat forgeries (on its exact ordinary_prepared_synthetic and lane P's m3x successor)
+        are refused at G8 PREPARATION_MISMATCH; unbound and on transport G8 does not run, so each reads as its base."""
+        assert len(RV120_FORGERIES) == 4 and shape["want"] == "G8 PREPARATION_MISMATCH"
+        source, invocation = rv120_input(shape)
+>       assert outcome(source, invocation) == PREPARATION
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:823: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[synthetic-dense_scrutiny-x26 G_hat one ulp high, every copy consistent]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[synthetic-sparse_interactive-x26 G_hat one ulp high, every copy consistent]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[producer-dense_scrutiny-x26 G_hat one ulp high, every copy consistent]
+FAILED tests/test_retained_precision_b3.py::test_b3b_m3x_mutations[producer-sparse_interactive-x26 G_hat one ulp high, every copy consistent]
+FAILED tests/test_retained_precision_b3.py::test_b3b_g8_material_binding_precedes_s_c[x26 G_hat one ulp high, every copy consistent-False]
+FAILED tests/test_retained_precision_b3.py::test_repair01_rv120_forgeries_are_refused_at_g8[forge G-hat+1ulp, every copy, native hashes resealed [ordinary_prepared_synthetic]]
+FAILED tests/test_retained_precision_b3.py::test_repair01_rv120_forgeries_are_refused_at_g8[forge G-hat+1ulp, every copy, native hashes resealed [m3x_sparse_interactive]]
+7 failed, 376 passed in 45.70s
+# end 2026-10-08T17:54:57Z rc=1
