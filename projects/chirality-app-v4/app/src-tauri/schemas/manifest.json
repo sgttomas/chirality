@@ -3,7 +3,7 @@
     {
       "file": "RS_RECORD.schema.json",
       "source": "projects/chirality-app-v4/execution/PKG-04_Human acts, autonomy and run evidence/1_Working/DEL-04-03_Content-bound decisions and compact run records/Design/RS_RECORD.schema.json",
-      "sha256": "c94dbd441388f52de4dbce5b79859abf2a07223bf236f209eedcb6aee548e3e6",
+      "sha256": "84200fd0ad045c11ce82ca5531ea461388304c46c1ea49d30263de5d6fa0f72a",
       "id": "urn:chirality:app-v4:del-04-03:rs-record:0.1"
     },
     {
@@ -27,13 +27,13 @@
     {
       "file": "aac.offer.schema.json",
       "source": "projects/chirality-app-v4/execution/PKG-01_Native App and third-party harness integration/1_Working/DEL-01-04_Native requests, outcomes and attachments/Design/aac.offer.schema.json",
-      "sha256": "f2091fcf2583b6863370ba51d86f4c8671dbae5bbd6fe0e39046154d98c7d066",
+      "sha256": "34e61d5ac20bc4481f43bff3431dbab5e9032bcac966354ce9861c8b7b9d603e",
       "id": "urn:chirality:app-v4:del-01-04:aac:offer:0.3"
     },
     {
       "file": "aac.capture-evidence.schema.json",
       "source": "projects/chirality-app-v4/execution/PKG-01_Native App and third-party harness integration/1_Working/DEL-01-04_Native requests, outcomes and attachments/Design/aac.capture-evidence.schema.json",
-      "sha256": "4405a1228e5982d948eb82776aaaf54d966d4305f8829a656473a523ad1ca4ba",
+      "sha256": "53e4a553b765dab705b1dc251c25d9755ddaafb26d762d5f03386ed7047241e4",
       "id": "urn:chirality:app-v4:del-01-04:aac:capture-evidence:0.3"
     }
   ],

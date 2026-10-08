@@ -7,13 +7,13 @@ review, acceptance, native verification or release requirements.
 
 | PR contents | Hosted checks |
 |---|---|
-| Deliverable records, coordination notices, project loop prose | Governance harness; product selectors report not applicable. Documents used as executable validation inputs retain their consumer checks. |
+| Deliverable records, coordination notices, project loop prose (App-dev, App v4, Runtime, PEC, Piping, root `execution/`) | Governance harness; product selectors report not applicable, and the PR need not be brought up to date with main to pass them. Documents used as executable validation inputs retain their consumer checks. |
 | Root instructions, bundled workflows/skills and packaged instruction assets | Governance harness and App instruction-bundle construction/integrity. No App server or browser setup. |
 | App frontend, application configuration or public App export | Full App/Runtime pre-merge integration. |
 | Runtime source, tests, dependencies or configuration | Full App/Runtime integration and PEC workspace tests. |
 | PEC source, tests, fixtures or configuration | PEC workspace tests with its Runtime dependency. |
 | Piping desktop, core, fixtures, schemas, examples or Piping CI | Existing Piping lean, affected, changed-spec or full selection. |
-| Piping validation, Python tests or non-CI project tools | Piping numerical suite only; browser selector reports not applicable. |
+| Piping validation, Python tests or non-CI project tools | Piping numerical suite only; browser selector reports not applicable. Piping's `validation/portability_policy.json` is a governance-harness input only. |
 | Routing policy or unknown input | Full checks for the affected product consumers; unknown shared inputs select full product coverage. |
 
 Mixed PRs take the union of their required checks. Selectors inspect the complete

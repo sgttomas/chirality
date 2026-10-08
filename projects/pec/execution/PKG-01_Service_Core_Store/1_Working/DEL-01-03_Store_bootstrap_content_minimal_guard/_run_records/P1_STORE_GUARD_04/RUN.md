@@ -61,7 +61,7 @@ Branch: `claude/pec-d91-count-domain-slice`, created from fresh `origin/main`
 Interpreter: `/Library/Frameworks/Python.framework/Versions/3.13/bin/python3`,
 Python 3.13.7; SQLite 3.50.4; `id -u` 501. Commit identity: no
 `user.email` is configured (exit 1); commits use the auto-derived identity
-`Ryan Tufts <ryan@Ryans-MacBook-Air.local>`, as the base's recent non-merge
+`Ryan Tufts <ryan@<host>.local>`, as the base's recent non-merge
 commits do (`c906efbc5`, `3dedb4c52`, `ca85173ad`).
 
 ## Work graph

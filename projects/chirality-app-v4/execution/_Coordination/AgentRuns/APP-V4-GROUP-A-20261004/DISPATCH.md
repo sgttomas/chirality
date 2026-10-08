@@ -46,3 +46,93 @@ Successor production branch: Root switched clean checkout to codex/app-v4-group-
 2026-10-05 continued native descendant turns (same explicit gpt-6.1-sol/medium TASK instances, no descendants): runtime_core_production froze generation-race repair after four offline tests, then read-only native userVerification prerequisites; hosting_contract_review checks the affected Host and vertical RuntimeSession/UI seams; p0_integration_review independently backchecked policy successor READY; runtime_integration repairs native partial/forms/context and seeds independently reviewed v4 guidance; design_hosting_access executes bounded CC-H-RT-LATE source join; catalog_adapter_production implements disjoint external_observation.rs and tests for person-supplied read-only host observations. Shared lib/UI remains runtime_integration sole-owned during that unit. Cargo is serialized, metadata/archive holds unchanged.
 
 2026-10-05 shared freeze correction: manager released I4 after passing reviewer checks but before final I1 report. Reviewer rejected changed lib/session seals. Writer preserved I4 partial work at /var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/i4-integration-preserved-uq76e5xj/app and restored exact I1 lib b92010c8…, session 77114507…, App 9501bb82… and tests 18ed6496…. Existing passing review is preserved; shared writes stay paused until actual final reviewer return. No work discarded or extra approval layer introduced.
+
+## Resume dispatches — 2026-10-07 (Claude Code)
+
+Mechanism: Claude Code host-native subagents launched with the Agent tool by
+HELP_HUMAN (Claude Opus 5.5). Agent type `type2-opus-high` (Opus 5.5, high
+effort), per the owner's model answer. Each runs in its own temporary Git
+worktree created from `3d0db214cb`, and commits only to a local branch;
+HELP_HUMAN integrates. These children cannot dispatch further agents. Briefs
+state purpose, basis, write boundary, constraints and return; they are
+retained in the session transcript. Write scopes are disjoint.
+
+| Node | Branch | Write scope | Status |
+|---|---|---|---|
+| J1 publication and supply-check path | `claude/app-v4-j1-publication` | WR store/workspace, record_supply, records; sole Root receiver (`runtime_session.rs`, `lib.rs`, `App.tsx`); CONTRACT_ISSUES append | Dispatched |
+| J2 compatibility advisory report | `claude/app-v4-j2-compatibility` | `execution_compatibility.rs`, `compatibility_report.rs`, their tests; CONTRACT_ISSUES append | Dispatched |
+
+Neither child may use the network, credentials, `~/.codex`, real model
+turns or native UI. Independent review of each return is dispatched
+separately, to a fresh reviewer, at the returned commit.
+
+Correction (2026-10-07): the harness built the isolated worktrees from
+main, not from `3d0db214cb`. J1 stopped at its entry check, as briefed, and
+did no work. A manually added J1 worktree could not be written from the
+child session, so HELP_HUMAN removed it unused. J1 was redispatched into a
+fresh harness worktree, where it switched to `claude/app-v4-j1-publication`
+at `3d0db214cb`. J2 received the same base correction. Both children work in
+harness-created worktrees under `.claude/worktrees/agent-*`.
+
+The first J1 instance's read-only finding was verified by HELP_HUMAN against
+the WR source, and the redispatch carries it: WR TT-1 (SETTLED) and TX-1
+admit only LS-1/LS-5/LS-6/LS-8 revisions to runs, so a development-catalog
+selection cannot be run. J1 logs CI-18.
+
+J8 return (2026-10-08): the J5 owner returned `claude/app-v4-j8-reconfirm`
+at `1a74f7f307` (`39519096c4` implementation; `1a74f7f307` restores
+`a15_native.rs` and `act_control_a15.rs` to their `007489e72b` blobs so the
+native statement stays with J6). HELP_HUMAN confirmed the branch, the
+ancestry and the retained logs' hashes against the return, and copied the
+logs to `validation/J8_1a74f7f3/` with `SHA256SUMS`. The hand-back is the
+implementer's account, not review evidence. Independent review V15 was
+dispatched to a fresh harness-native Type 2 reviewer (Opus 5.5, high) at
+`1a74f7f307`, read-only on the candidate, offline, writing only
+`reviews/V15-J8-RECONFIRM.md` in its own worktree.
+
+V15 and J6 repairs (2026-10-08):
+- V15 returned NOT READY for J8. The reviewer was dispatched without
+  worktree isolation, so it wrote `reviews/V15-J8-RECONFIRM.md` directly in
+  the HELP_HUMAN checkout (sha256 `16c99a2c…6366`). HELP_HUMAN retained its
+  `$TMPDIR` logs in `validation/V15_1a74f7f3/` (SHA256SUMS verified). The
+  repairs (F1 MAJOR; F2–F8) were routed to the J5 owner on the same branch.
+- J6's owner returned the V14 repairs and the owner's three-button layout at
+  `5a6af1cfa7`. The ancestry of `8868614f93` was confirmed and the logs were
+  retained in `validation/J6_5a6af1cf/`. HELP_HUMAN sent the return to the
+  V14 reviewer for confirmation (R1). The hand-back is the implementer's
+  account. The implementer reports that it overwrote an earlier `mutate.py`
+  in the shared session scratchpad before renaming its own copy, so that
+  file's earlier content was not preserved; it was a scratch helper, not
+  retained evidence.
+
+J6 integrated (2026-10-08): V14-R1 returned READY at `5a6af1cfa7`. HELP_HUMAN
+merged it into `claude/app-v4-group-a-resume` as `745f09397c`, whose `app/`
+bytes equal `5a6af1cfa7` (`git diff` empty), so V14-R1's suite covers it.
+R1-1 was corrected in `9d1e0bb0cd` (CI-22 (c) and an appended
+OWNER_DECISIONS correction). J8's owner was told to merge the integration
+head and resolve the `lib.rs`/`App.tsx` overlap within its V15 repairs, so
+that the V15 confirmation review covers the combined candidate.
+
+J8 integrated (2026-10-08): V15-R1 returned READY at `7f0300cfe2`. HELP_HUMAN
+merged it as `6889359941`; its `app/` bytes equal `7f0300cfe2`. The R1-1
+code repair (the intended-path ending, with probe P6) is not made. Instead
+CI-24 (b) now names that case as an open follow-up. This is the reviewer's
+stated minimum, and the change to the CI-24 text is sent to the reviewer
+for confirmation. The reviewer's logs are retained in
+`validation/V15R1_7f0300cf/`.
+
+R1-1, re-witness and V16 (2026-10-08):
+- The V15 reviewer confirmed that the CI-24 (b) R1-1 bullet in `8cd69ff7fc`
+  is accurate and meets its minimum; the code repair stays a follow-up. The
+  confirmation is appended to `reviews/V15-J8-RECONFIRM-R1.md`.
+- HELP_HUMAN ran the owner-approved native re-witness
+  (`probes/NATIVE_RECONFIRM_WITNESS_8cd69ff7.md`) and opened PR 1115.
+- V16, a fresh harness-native reviewer in its own worktree, reviewed head
+  `58a7bd4ccc` and returned NOT READY. F1 MAJOR: the witness
+  workspace-records were ignored by `.gitignore` (`**/.chirality/`) and
+  were not committed, for this witness or for witness 1113. F2–F7 MINOR
+  were overclaims in wording; F8–F11 were notes.
+- HELP_HUMAN repaired all of them: force-added both workspace-records trees
+  plus a post-run workspace listing, corrected the wording, and fixed the
+  PR body. The repair is sent to the V16 reviewer for confirmation.
+- The owner chose to delete the scratch Codex home (OWNER_DECISIONS).

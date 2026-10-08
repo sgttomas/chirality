@@ -33,7 +33,7 @@
       "method": "remoteControl/status/changed",
       "params": {
         "status": "disabled",
-        "serverName": "Ryans-MacBook-Pro.local",
+        "serverName": "<host>",
         "installationId": "a8265cc3-44b3-46e7-9ff2-9c65c7f9dd03",
         "environmentId": null
       },

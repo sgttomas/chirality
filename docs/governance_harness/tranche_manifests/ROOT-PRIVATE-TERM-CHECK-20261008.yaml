@@ -1,0 +1,69 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-PRIVATE-TERM-CHECK-20261008
+title: Private-term check keeps the owner's machine names out of what a change adds
+date: '2026-10-08'
+basis: 462f66975d36cd10d5b8455193ada9517d28d353
+instruction_surface_paths:
+  - "tools/validation/validate_private_terms.py"
+  - "tools/validation/test_validate_private_terms.py"
+  - ".github/workflows/governance-harness.yml"
+  - "docs/governance_harness/tranche_manifests/ROOT-PRIVATE-TERM-CHECK-20261008.yaml"
+  - "exports/chirality-app/export-manifest.csv"
+m2_gate:
+  authorization: >-
+    The repository owner (sgttomas) directed in a Claude Code conversation on
+    2026-10-08: "set up a test or CI to catch future instances of my Mac's
+    network name." The machine's names had reached Piping T3 run records in
+    plain, split and character-class forms and in pytest junit hostname
+    attributes (Piping T3 errata E-16 and E-18 in that track's ROOT_RULINGS_V1.md, and E-19's
+    record IMPLEMENTATION/REDACTION_E19/ in PR #1120). This authorizes the new
+    validator, its maintained tests, one governance-harness step that runs it
+    with the PRIVATE_TERMS repository secret, and the regenerated
+    export-manifest rows for those three files. This manifest records the gate
+    and grants no authority (K-AUTH-1).
+  authorized_by: repository owner sgttomas (Claude Code conversation)
+  authorization_date: '2026-10-08'
+  integration_owner: >-
+    The Claude Code session acting as ROOT for Piping T3 (numerical integrity),
+    integrating this candidate on branch claude/private-terms-check-20261008
+    under the standing Git authorization of 2026-09-12.
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: none-required
+  routed_to: []
+  rationale: >-
+    The check screens only what a change adds. That is every added file whole
+    (a renamed or moved file counts as added, since renames are not followed),
+    the added lines of modified text files, and modified binary, .gz and .zip
+    files whole (raw bytes, and .gz and .zip contents decompressed). It also
+    screens changed paths and the new commits' identities and messages. For
+    pull requests the commit range starts at the checked-out merge commit's
+    first parent, so commits already on main are not re-screened; for pushes it
+    is the pushed range. An existing file can newly fail only when a change
+    modifies, renames or moves it. Five T3 junit .gz files with a real hostname
+    attribute are being redacted by the owner's cleanup (PR #1120). One junit
+    file outside run records
+    (execution/_Evaluation/SOW-STAGE2-EXEC-20260712-01/C2F-R2/reproduction/checklist-targeted.xml)
+    still carries a generic factory host name, and blocks only if a change
+    modifies or moves it. On pushes and same-repository pull requests the step
+    requires the PRIVATE_TERMS secret and fails if it is missing; fork pull
+    requests receive no secrets and run the junit rule only. No loop's
+    instructions, accepted basis or contract mirror changes.
+scope_limits:
+  - >-
+    D-GOV-45 item 5 lists the run-record check's rules. This is a separate
+    validator at the owner's direction; whether to record it in D-GOV-45 is
+    left to the owner, and the ratified decision record is not edited.
+  - >-
+    The terms are never in the repository. The owner sets the PRIVATE_TERMS
+    secret (one distinctive name per line); generic names would trip on
+    ordinary text.
+  - >-
+    CI detects after a branch is pushed. Prevention before publication needs a
+    local pre-commit run (--staged --from-host), which the validator supports
+    but this change does not install.
+  - >-
+    Deliberate evasion (homoglyphs, base64, splitting across lines, more than
+    six separators) is out of scope; the check guards against accidental leaks.
+  - No decision record, SPEC text or loop instruction is changed. No release.

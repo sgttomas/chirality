@@ -22,6 +22,8 @@
 //! Still outstanding: automatic restart rules (§4.4), native recovery reads,
 //! quit/relaunch integration and the per-home configuration link.
 
+#[path = "execution_custody.rs"]
+mod execution_custody;
 #[path = "attachment_custody.rs"]
 pub mod attachment_custody;
 use attachment_custody::AttachmentCustody;
@@ -168,6 +170,7 @@ struct Inner {
     stop_record: Option<Value>,
     threads: Vec<Value>,
     conversation_turns: Vec<Value>,
+    execution_custody: execution_custody::ExecutionCustody,
     turn_request_threads: HashMap<String, (Value, String, u64)>,
     interrupt_requests: Vec<Value>,
     stderr_bytes: u64,
@@ -233,6 +236,16 @@ impl PreparedNativeTurnStart<'_> {
     pub(crate) fn observed_status(&self)->&str {&self.observed_status}
 }
 
+/// V9 F-1: Codex's definite refusal of one original prepared `turn/start`,
+/// issued only by `Host::prepared_turn_refusal`. No public constructor, Clone or Serde.
+pub(crate) struct NativeTurnRefusal { request_ref:String, thread:String, client_id:String, error:Value, response_position:u64 }
+impl NativeTurnRefusal {
+    pub(crate) fn request_ref(&self)->&str {&self.request_ref}
+    pub(crate) fn thread(&self)->&str {&self.thread}
+    pub(crate) fn client_id(&self)->&str {&self.client_id}
+    pub(crate) fn error(&self)->&Value {&self.error}
+    pub(crate) fn response_position(&self)->u64 {self.response_position}
+}
 /// A genuine current accepted read, borrowed from NativeHistory; no raw transcript copy.
 /// No public constructor/Serde/Clone: JSON observation is not source authority.
 pub(crate) struct AcceptedNativeItemPage<'a> {
@@ -523,6 +536,26 @@ impl Host {
         }).cloned().collect();
         json!({"snapshot":snapshot,"generation":i.generation,"position":i.receipt_position,"gap":gap,"frames":frames})
     }
+    /// Read-only App metadata, never admission to native/act/dispatch authority.
+    pub fn recovery_custody(&self) -> crate::recovery::RecoveryCustodyView {
+        let i=self.inner.0.lock().unwrap();
+        let pending=i.pending_recovery.facts.lock().unwrap().len();
+        crate::recovery::RecoveryCustodyView::from_owner(
+            &i.app_session, i.recovery_snapshot.as_ref(), i.execution_custody.snapshot(),
+            pending,
+            i.recovery_initialization_error.as_deref().or(i.recovery_error.as_deref()))
+    }
+    fn persist_execution(i:&mut Inner) {
+        let mut history=i.recovery_snapshot.as_ref().and_then(|s|s["entries"].as_array()).cloned().unwrap_or_default();
+        history.extend(i.pending_recovery.facts.lock().unwrap().iter().cloned());
+        for row in i.execution_custody.rows(&i.generation,&history) {
+            match RecoveryLedger::validate_pointer_entry(&row) {
+                Ok(()) if i.recovery.is_some()=>i.pending_recovery.facts.lock().unwrap().push_back(row),
+                Ok(())=>i.recovery_error=Some("execution pointer observation is memory-only; App ledger unavailable".into()),
+                Err(error)=>{i.recovery_error=Some(error.clone());i.recovery_projection_errors.push(json!({"generation":i.generation,"limit":error,"standing":"execution pointer projection refused; no native payload copied"}));}
+            }
+        }
+    }
     fn persist_requests(i:&mut Inner){
         if i.recovery.is_none(){return;}
         for request in i.server_requests.entries(){let mut history=i.recovery_snapshot.as_ref().and_then(|s|s["entries"].as_array()).cloned().unwrap_or_default();history.extend(i.pending_recovery.facts.lock().unwrap().iter().cloned());match RecoveryLedger::request_summary_entry(&request,&history){Ok(Some(entry))=>i.pending_recovery.facts.lock().unwrap().push_back(entry),Ok(None)=>{},Err(error)=>{i.recovery_error=Some(error.clone());i.recovery_projection_errors.push(json!({"generation":request["generation"],"requestIdentity":request["requestId"],"method":request["method"],"limit":error,"standing":"pointer projection unavailable; original request source retained"}));}}}
@@ -564,12 +597,18 @@ impl Host {
         let _writer=self.recovery_writer.lock().unwrap();self.drain_recovery_owned();self.refresh_recovery_observation();
         let(ledger,rows)={let i=self.inner.0.lock().unwrap();Self::context_scope(&i,generation,thread,home)?;(i.recovery.clone(),Self::context_rows(i.recovery_snapshot.as_ref()))};
         let existing=home.and_then(|h|rows.iter().rev().find(|e|e["home"]==h&&e["threadId"]==thread)).cloned();
-        if let Some(index)=existing{return Ok(json!({"indexSnapshot":index,"projectContext":context.view(),"standing":"historical App index retained; current reference does not transfer/backfill it"}));}
+        if let Some(index)=existing{
+            let mut i=self.inner.0.lock().unwrap();Self::context_scope(&i,generation,thread,home)?;
+            i.execution_custody.bind(generation,thread,&index);Self::persist_execution(&mut i);drop(i);self.drain_recovery_owned();
+            return Ok(json!({"indexSnapshot":index,"projectContext":context.view(),"standing":"historical App index retained; current reference does not transfer/backfill it"}));}
         let(Some(home),Some(project),Some(ledger))=(home,context.reference(),ledger)else{return Ok(json!({"indexSnapshot":null,"projectContext":context.view(),"limit":"known owning home/project/index ledger absent: no project-bearing row; hot-only/cold lookup unavailable"}));};
         let at=now_rfc3339();let entry=json!({"kind":"conversation_index","session":generation["appSession"],"at":at,"threadId":thread,"home":home,"project":project,"tags":[],"lastObservedExecution":{"state":"indexed","at":at},"lastLoadedGeneration":crate::recovery::generation_ref(generation)?});
         {let i=self.inner.0.lock().unwrap();Self::context_scope(&i,generation,thread,Some(home))?;}
         let(result,snapshot)={let mut ledger=ledger.lock().unwrap();let result=ledger.append(entry.clone());(result,ledger.snapshot())};let mut i=self.inner.0.lock().unwrap();i.recovery_snapshot=Some(snapshot);if let Err(error)=result{i.recovery_error=Some(error.clone());return Ok(json!({"indexSnapshot":null,"projectContext":context.view(),"limit":format!("CURRENT index append unavailable: {error}; no durable association claimed")}));}
-        let changed=i.generation!=*generation||i.server_requests.is_closed(generation);Ok(json!({"indexSnapshot":entry,"projectContext":context.view(),"standing":"CURRENT App admission observation indexed; not earlier-history/native provenance","scopeChangedDuringIO":changed}))
+        let changed=i.generation!=*generation||i.server_requests.is_closed(generation);
+        if !changed {i.execution_custody.bind(generation,thread,&entry);Self::persist_execution(&mut i);}
+        drop(i);self.drain_recovery_owned();
+        Ok(json!({"indexSnapshot":entry,"projectContext":context.view(),"standing":"CURRENT App admission observation indexed; not earlier-history/native provenance","scopeChangedDuringIO":changed}))
     }
     /// Owning NIR interpretation of existing REC opaque tags. Real prepared
     /// submission/native namespace remains the private Host source authority.
@@ -869,6 +908,9 @@ impl Host {
             }
         }
         let generation = i.generation.clone();
+        let cause=if i.stop_record.is_some() {if i.stop_record.as_ref().is_some_and(|s|s["reason"]=="App quit") {"app-quit"} else {"supplier-stop"}} else {"supplier-exit"};
+        i.execution_custody.close(&generation,cause,&i.server_requests.entries(),&now_rfc3339());
+        Self::persist_execution(i);
         Self::oauth_lost(i,&generation);
         let ended = i.server_requests.close(&generation);
         Self::persist_requests(i);
@@ -1306,6 +1348,19 @@ impl Host {
         if e.response.as_ref().unwrap()["result"]!=*observed.page(){return Err("native item final accepted data differs from actual source".into());}
         Ok(NativeItemCoverageSeal{check})
     }
+    /// V9 F-3: every given page equals, in order, the result this Host retained
+    /// for the corresponding sealed source request. Count alone is not a binding.
+    pub(crate) fn native_coverage_pages_match(&self,seal:&NativeItemCoverageSeal,pages:&[Value])->Result<(),String>{
+        if pages.len()!=seal.check.sources.len(){return Err("checked pages differ from the sealed native coverage (count)".into());}
+        let i=self.inner.0.lock().unwrap();
+        for (pin,page) in seal.check.sources.iter().zip(pages){
+            let request=&pin.dispatch.source;
+            let e=i.source_requests.get(&request.request_id().to_string()).ok_or("sealed native page source record unavailable")?;
+            if e.request.request_ref!=request.request_ref||e.request.frame!=request.frame||e.response_position!=Some(pin.receipt_position){return Err("sealed native page source association changed".into());}
+            if e.response.as_ref().and_then(|r|r.get("result"))!=Some(page){return Err("checked page differs from the Host's retained native response".into());}
+        }
+        Ok(())
+    }
 
     pub fn history_admit_resume(&self, history: &NativeHistory, dispatch: &HistoryDispatch) -> Result<Value,String> {
         self.check_source(&dispatch.source)?;
@@ -1530,6 +1585,21 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
         let observed_status=observed["nativeTurn"]["status"].as_str().ok_or("prepared turn observed status unavailable")?;
         Ok(PreparedNativeTurnStart{source,turn_id:id.into(),reply_status:reply_status.into(),observed_status:observed_status.into()})
     }
+    /// V9 F-1: a typed *definite* refusal of this exact prepared `turn/start`.
+    /// Some only when its original frame was completely written and Codex's
+    /// response correlated to that request carries `error` (and no `result`).
+    /// No response, a timeout, a write failure or transport loss is not a
+    /// refusal: the outcome stays unknown and this returns None.
+    pub(crate) fn prepared_turn_refusal(&self,source:&SourceRequest)->Option<NativeTurnRefusal>{
+        if source.frame["method"]!="turn/start"{return None;}
+        let i=self.inner.0.lock().unwrap();
+        let e=i.source_requests.get(&source.request_id().to_string())?;
+        if e.request.request_ref!=source.request_ref||e.request.frame!=source.frame||e.request.generation!=source.generation||!e.written||e.write_attempt_in_progress||e.write_error.is_some(){return None;}
+        let response=e.response.as_ref()?;
+        if response.get("id")!=Some(source.request_id())||response.get("method").is_some()||response.get("result").is_some(){return None;}
+        let error=response.get("error")?.clone();
+        Some(NativeTurnRefusal{request_ref:source.request_ref.clone(),thread:source.frame["params"]["threadId"].as_str()?.into(),client_id:source.frame["params"]["clientUserMessageId"].as_str()?.into(),error,response_position:e.response_position?})
+    }
 
     /// Native interrupt acknowledgment is distinct from turn completion.
     pub fn turn_interrupt(&self, generation: &Value, thread_id: &str, turn_id: &str) -> Result<Value, String> {
@@ -1603,6 +1673,8 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
         } else {
             i.conversation_turns.push(json!({"generation":generation,"threadId":thread,"turnId":native["id"],"nativeTurn":native,"source":source,"receiptPosition":position,"terminalEventObserved":source=="turn/completed","observationEnded":false}));
         }
+        i.execution_custody.turn(generation,thread,native,source=="turn/completed",&now_rfc3339());
+        Self::persist_execution(i);
     }
 
     fn check_conversation_request(i: &Inner, method: &str, params: &Value) -> Result<(), String> { Self::check_conversation_request_excluding(i,method,params,None) }
@@ -1729,6 +1801,10 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
                 Self::remember_turn(&mut i, &gen, thread, &frame["params"]["turn"], frame["method"].as_str().unwrap(), pos);
             }
         }
+        if class == "notification" && matches!(frame["method"].as_str(),Some("item/started"|"item/completed")) {
+            i.execution_custody.item(&gen,&frame["params"],frame["method"]=="item/completed",&now_rfc3339());
+            Self::persist_execution(&mut i);
+        }
         if class == "malformed" {
             i.malformed += 1;
         }
@@ -1758,6 +1834,7 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
                 let attachment_source = i.source_requests.get(&key).filter(|e|e.attachment.is_some()).map(|e|e.request.clone());
                 drop(i);
                 if let Some(source) = attachment_source { let _ = self.persist_attachment_observation(&source); }
+                self.flush_recovery_observations();
                 return;
             }
             // Uncorrelated response: surfaced, never dropped (§5).
@@ -2409,6 +2486,20 @@ mod conversation_transport_tests {
     fn context_fixture()->(Arc<Host>,Value,std::path::PathBuf,Arc<AttachmentCustody>,Vec<SelectedTextAttachment>){let(root,owner,selections)=attachment_fixture();let host=Arc::new(Host::new());host.configure_recovery(owner.root().join("runtime/recovery.ledger.jsonl")).unwrap();let generation={let mut i=host.inner.0.lock().unwrap();let generation=json!({"appSession":i.app_session,"home":"opaque-native-home","spawnCounter":1});i.generation=generation.clone();i.state="ready".into();i.threads.push(json!({"generation":generation,"threadId":"thread","cwd":"/different/native/Q","projectId":"native-project-not-app"}));generation};(host,generation,root,owner,selections)}
     fn context_packet(host:&Arc<Host>,owner:&Arc<AttachmentCustody>,generation:&Value,selections:&[SelectedTextAttachment])->PreparedAttachmentDispatch{let mut packet=None;no_attachment_write(host,||{packet=Some(host.prepare_attachment_turn(Arc::clone(owner),generation,"thread",None,"ordinary input without WR prefix",selections).unwrap());});packet.unwrap()}
     #[test]
+    fn recovery_custody_rc2_cross_session_actual_tag_writer_keeps_new_metadata(){
+        use crate::recovery::{ExplicitAppProjectContext as Context,AppProjectSource};
+        let(host,g,root,owner,selections)=context_fixture();let p=Context::known("P",AppProjectSource::ConfiguredDirectory).unwrap();
+        host.observe_conversation_project(&g,"thread",Some("H-acct"),&p).unwrap();
+        let successor=Arc::new(Host::new());successor.configure_recovery(owner.root().join("runtime/recovery.ledger.jsonl")).unwrap();
+        let next={let mut i=successor.inner.0.lock().unwrap();let next=json!({"appSession":i.app_session,"home":"opaque-native-home","spawnCounter":1});i.generation=next.clone();i.state="ready".into();i.threads.push(json!({"generation":next,"threadId":"thread"}));next};
+        successor.observe_conversation_project(&next,"thread",Some("H-acct"),&p).unwrap();
+        let packet=context_packet(&successor,&owner,&next,&selections);let q=Context::known("Q",AppProjectSource::OpenedDirectory).unwrap();let bound=successor.bind_attachment_context(&packet,&q,Some("H-acct")).unwrap();assert_eq!(bound["persistence"],"durable App metadata");
+        let view=successor.recovery_custody().snapshot();let row=&view["historicalConversations"][0]["index"];
+        assert_eq!(row["tags"].as_array().unwrap().last().unwrap()["value"],bound["tag"]["value"]);
+        assert_eq!(row["project"],"P");assert_eq!(row["session"],next["appSession"]);assert_eq!(row["lastLoadedGeneration"],crate::recovery::generation_ref(&g).unwrap());
+        std::fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
     fn explicit_context_host_actual_index_p_tag_q_absence_and_idempotence_preserve_source(){
         use crate::recovery::{ExplicitAppProjectContext as Context,AppProjectSource};let(host,g,root,owner,selections)=context_fixture();let p=Context::known("explicit App P",AppProjectSource::ConfiguredDirectory).unwrap();let q=Context::known("explicit App Q / 家",AppProjectSource::OpenedDirectory).unwrap();let admission=host.observe_conversation_project(&g,"thread",Some("H-acct"),&p).unwrap();assert_eq!(admission["indexSnapshot"]["project"],"explicit App P");assert_eq!(host.observe_conversation_project(&g,"thread",Some("H-acct"),&q).unwrap()["indexSnapshot"]["project"],"explicit App P");let packet=context_packet(&host,&owner,&g,&selections);let bound=host.bind_attachment_context(&packet,&q,Some("H-acct")).unwrap();assert_eq!(bound["historicalProject"],"explicit App P");assert_eq!(bound["currentSubmissionProject"],"explicit App Q / 家");assert_eq!(bound["relation"],"different; no transfer");assert_eq!(bound["persistence"],"durable App metadata");let value=crate::recovery::encode_submission_context(packet.submission_ref(),q.reference()).unwrap();assert_eq!(bound["tag"]["value"],value);let count=host.snapshot()["recovery"]["entries"].as_array().unwrap().len();assert_eq!(host.bind_attachment_context(&packet,&q,Some("H-acct")).unwrap()["idempotent"],true);assert_eq!(host.snapshot()["recovery"]["entries"].as_array().unwrap().len(),count);assert!(host.bind_attachment_context(&packet,&p,Some("H-acct")).is_err());let second=context_packet(&host,&owner,&g,&selections);let none=host.bind_attachment_context(&second,&Context::unknown(),Some("H-acct")).unwrap();assert_eq!(none["historicalProject"],"explicit App P");assert!(none["currentSubmissionProject"].is_null());assert_eq!(none["relation"],"unbound");let ledger=RecoveryLedger::open(owner.root().join("runtime/recovery.ledger.jsonl")).unwrap().snapshot();let indexes:Vec<_>=ledger["entries"].as_array().unwrap().iter().filter(|e|e["kind"]=="conversation_index").collect();assert!(indexes.iter().all(|e|e["project"]=="explicit App P"));assert_eq!(indexes.last().unwrap()["tags"].as_array().unwrap().len(),2);assert!(packet.source().attempted_frame()["params"].get("cwd").is_none());assert!(packet.source().attempted_frame()["params"].get("project").is_none());std::fs::remove_dir_all(root).unwrap();
     }
@@ -2819,6 +2910,21 @@ mod conversation_transport_tests {
         let goal=h.read_goal().unwrap();h.receive(&goal,"conversation-home",&g(),&json!({"goal":null})).unwrap();
         let seal=f.host.finish_native_items_supply_check(check,h.accepted_items_observation(&next).unwrap()).unwrap();assert_eq!(seal.page_count(),2);assert_eq!(seal.query(),&next);
     }
+    // V9 F-3: pages bind to the sealed traversal by the Host's retained results, in order.
+    #[test]
+    fn native_coverage_pages_match_only_the_retained_results_in_order(){
+        use crate::native_history::Direction;let mut f=NativePagePipe::new();let mut h=native_page_selected();let q=h.items_page("turn",None,Direction::Asc).unwrap();let raw=native_page_data(json!("opaque-next"));let d=f.dispatch(&q,&raw);h.receive(&q,"conversation-home",&g(),&raw).unwrap();
+        let page=f.host.mint_accepted_items_page(&d,h.accepted_items_observation(&q).unwrap()).unwrap();let mut check=f.host.begin_native_items_supply_check(&page).unwrap();drop(page);
+        let next=h.items_page("turn",check.next_cursor(),Direction::Asc).unwrap();
+        let d=f.host.dispatch_next_native_items_supply_page(&mut check,&next).unwrap();let tail=json!({"data":[],"nextCursor":null});f.reply(&d,&tail);h.receive(&next,"conversation-home",&g(),&tail).unwrap();
+        let page=f.host.mint_accepted_items_page(&d,h.accepted_items_observation(&next).unwrap()).unwrap();f.host.accept_next_native_items_supply_page(&mut check,&page).unwrap();drop(page);
+        let seal=f.host.finish_native_items_supply_check(check,h.accepted_items_observation(&next).unwrap()).unwrap();
+        f.host.native_coverage_pages_match(&seal,&[raw.clone(),tail.clone()]).unwrap();
+        assert!(f.host.native_coverage_pages_match(&seal,&[tail.clone(),raw.clone()]).is_err(),"order");
+        assert!(f.host.native_coverage_pages_match(&seal,std::slice::from_ref(&raw)).is_err(),"count");
+        let mut altered=raw.clone();altered["data"][0]["item"]["content"][0]["text"]=json!("substituted");
+        assert!(f.host.native_coverage_pages_match(&seal,&[altered,tail]).is_err(),"bytes");
+    }
     #[test]
     fn native_page_mint_omitted_cursor_unknown_and_desc_does_not_seed_supply_check(){
         use crate::native_history::Direction;for direction in [Direction::Asc,Direction::Desc]{
@@ -2908,5 +3014,30 @@ mod conversation_transport_tests {
             let r=host.turn_start_prepared_run_text(&g(),&f.prepared,"person","client:original")?;assert!(host.turn_start_prepared_finish(&r,&f.prepared,"person","client:original",Duration::from_millis(50)).is_err());Ok(r.evidence())
         });assert_eq!(result.unwrap()["outcome"],"response-observed-error");assert_eq!(host.client_requests().len(),1);assert_eq!(host.snapshot()["conversationTurns"],json!([]));
     }
+    // V9 F-1: only a correlated native error to the exact written turn/start is a typed
+    // definite refusal; a successful result or no response at all is not.
+    #[test]
+    fn prepared_turn_refusal_is_typed_only_for_a_correlated_native_error(){
+        let f=PreparedTurnFixture::new("thread");
+        let h1=host();let(refused,_)=exchange(&h1,Some(json!({"error":{"code":-32600,"message":"synthetic native refusal"}})),vec![],||{
+            let r=h1.turn_start_prepared_run_text(&g(),&f.prepared,"person","client:original")?;assert!(h1.turn_start_prepared_finish(&r,&f.prepared,"person","client:original",Duration::from_millis(50)).is_err());
+            let refusal=h1.prepared_turn_refusal(&r).ok_or("definite refusal not typed")?;
+            assert_eq!(refusal.request_ref(),r.request_ref());assert_eq!(refusal.thread(),"thread");assert_eq!(refusal.client_id(),"client:original");assert_eq!(refusal.error()["message"],"synthetic native refusal");assert!(refusal.response_position()>0);Ok(json!(true))
+        });assert_eq!(refused.unwrap(),json!(true));
+        let h2=host();let(accepted,_)=exchange(&h2,Some(json!({"result":{"turn":turn("failed")}})),vec![],||{
+            let r=h2.turn_start_prepared_run_text(&g(),&f.prepared,"person","client:original")?;h2.turn_start_prepared_finish(&r,&f.prepared,"person","client:original",Duration::from_millis(50))?;Ok(json!(h2.prepared_turn_refusal(&r).is_none()))
+        });assert_eq!(accepted.unwrap(),json!(true),"a native result is never a refusal");
+        let h3=host();let(unknown,_)=exchange(&h3,None,vec![],||{
+            let r=h3.turn_start_prepared_run_text(&g(),&f.prepared,"person","client:original")?;assert!(h3.turn_start_prepared_finish(&r,&f.prepared,"person","client:original",Duration::from_millis(20)).is_err());Ok(json!(h3.prepared_turn_refusal(&r).is_none()))
+        });assert_eq!(unknown.unwrap(),json!(true),"no response stays unknown, never a refusal");
+    }
 
 }
+
+#[cfg(test)]
+#[path = "execution_custody_tests.rs"]
+mod execution_custody_tests;
+
+#[cfg(test)]
+#[path = "recovery_root_tests.rs"]
+mod recovery_root_tests;

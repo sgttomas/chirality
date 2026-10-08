@@ -11,6 +11,7 @@ pub mod act_policy;
 pub mod attachments;
 pub mod canonical;
 pub mod catalog;
+pub mod connector_standing;
 pub mod decision_view;
 mod file_act_root;
 mod file_act_view;
@@ -18,6 +19,8 @@ pub mod external_observation;
 pub mod external_trace;
 pub mod trace_receiving;
 pub mod hosting;
+#[cfg(unix)]
+pub mod distribution_preflight;
 pub mod home_resources;
 pub mod native_items;
 pub mod native_history;
@@ -27,6 +30,7 @@ pub mod receiving;
 pub mod recorder;
 pub mod records;
 pub mod recovery;
+mod recovery_root_view;
 pub mod role_supply;
 pub mod runtime_session;
 pub(crate) mod workflow_declaration;
@@ -98,6 +102,20 @@ pub fn host_config_from_env(workspace: Option<&PathBuf>) -> Result<HostConfig, S
         .map(|v| v == "1")
         .unwrap_or(false);
     Ok(cfg)
+}
+
+/// Person-requested metadata read. No Root guard spans Host/queue observation,
+/// no ledger flush, and no supplier/native History operation is requested.
+#[tauri::command(async)]
+fn read_recovery_custody(state: State<'_, AppState>, mode_home_class: String, generation: Value) -> Result<Value,String> {
+    read_recovery_custody_from_root(&state.homes, &mode_home_class, &generation)
+}
+fn read_recovery_custody_from_root(homes:&Mutex<runtime_session::HomeRouter>,mode_home_class:&str,generation:&Value)->Result<Value,String>{
+    let home=homes.try_lock().map_err(|_|"Home selection busy; recovery read not performed")?.active();
+    let view=recovery_root_view::read(&home,mode_home_class,generation)?;
+    let active=homes.try_lock().map_err(|_|"Home selection busy after read; refresh recovery source")?.active();
+    if !Arc::ptr_eq(&home,&active){return Err("Active recovery home changed while reading; original snapshot not reassigned".into());}
+    Ok(view)
 }
 
 #[tauri::command]
@@ -193,7 +211,9 @@ fn logout_home(app:tauri::AppHandle,state:State<'_,AppState>,generation:Value,mo
     if home.class()!=home_class(&mode_home_class)? {return Err("Logout mode differs from its actual source; no other-home fallback".into());}
     state.validate_home_source(&home)?;
     let bootstrap=state.home_bootstrap.lock().unwrap().as_ref().ok().cloned();
-    runtime_session::logout_native_home(&home,bootstrap.as_deref(),&generation,|assessment|app.dialog().message(format!("Log out through Codex for this exact native home?\n{}",serde_json::to_string_pretty(assessment).unwrap_or_else(|_|"Assessment unavailable".into()))).title("Native home logout / remove key").buttons(MessageDialogButtons::OkCancel).blocking_show())
+    let mut refused=None;
+    let result=runtime_session::logout_native_home(&home,bootstrap.as_deref(),&generation,|assessment|confirm_bounded(&app,"Native home logout / remove key",act_control::native_statement::logout_statement(assessment),MessageDialogButtons::OkCancel,&mut refused));
+    act_control::native_statement::refusal_or(refused,result)
 }
 
 #[tauri::command(async)]
@@ -217,7 +237,9 @@ fn oauth_cancel(app:tauri::AppHandle,state:State<'_,AppState>,generation:Value)-
     let home=state.homes.lock().unwrap().for_generation(&generation)?;
     state.validate_home_source(&home)?;
     let bootstrap=state.home_bootstrap.lock().unwrap().as_ref().ok().cloned();
-    runtime_session::cancel_native_oauth(&home,&generation,bootstrap.as_deref(),|safe|app.dialog().message(format!("Cancel this original Codex sign-in?\n{}",serde_json::to_string_pretty(safe).unwrap_or_else(|_|"Original safe observation unavailable".into()))).title("Cancel original pending sign-in").buttons(MessageDialogButtons::OkCancel).blocking_show())
+    let mut refused=None;
+    let result=runtime_session::cancel_native_oauth(&home,&generation,bootstrap.as_deref(),|safe|confirm_bounded(&app,"Cancel original pending sign-in",act_control::native_statement::oauth_cancel_statement(safe),MessageDialogButtons::OkCancel,&mut refused));
+    act_control::native_statement::refusal_or(refused,result)
 }
 
 #[tauri::command(async)]
@@ -405,6 +427,11 @@ fn conversation_send_text(
     text: String,
 ) -> Result<Value, String> {
     let home = state.homes.lock().unwrap().for_generation(&generation)?;
+    // WR TX-5 / SQ-END: when a run in this conversation ended with no successor,
+    // this next ordinary turn carries its end notice first, exactly once.
+    if let Some(result) = runtime_session::send_with_pending_notice(&state.workflows, &generation, &thread_id, &text) {
+        return result;
+    }
     runtime_session::send_conversation_text(
         &home.host.snapshot(),
         &generation,
@@ -472,11 +499,12 @@ fn reorder_attachments(state:State<'_,AppState>,owner_ref:String,list_revision:u
 }
 #[tauri::command(async)]
 fn reconfirm_attachment(app:tauri::AppHandle,state:State<'_,AppState>,owner_ref:String,list_revision:u64,selection_ref:String)->Result<Value,String>{
-    runtime_session::reconfirm_attachment_source(&state.attachment_selection,&owner_ref,list_revision,&selection_ref,|comparison| {
-        app.dialog().message(format!("Confirm current attachment source\n\n{}\n\nThis changes only the selected source. Nothing is sent or registered.",serde_json::to_string_pretty(comparison).unwrap()))
-            .title("Chirality — confirm current attachment source").kind(MessageDialogKind::Info)
-            .buttons(MessageDialogButtons::OkCancelCustom("Use current source".into(),"Keep original selection".into())).blocking_show()
-    })
+    let mut refused=None;
+    let result=runtime_session::reconfirm_attachment_source(&state.attachment_selection,&owner_ref,list_revision,&selection_ref,|comparison| {
+        confirm_bounded(&app,"Chirality — confirm current attachment source",act_control::native_statement::attachment_source_statement(comparison),
+            MessageDialogButtons::OkCancelCustom("Use current source".into(),"Keep original selection".into()),&mut refused)
+    });
+    act_control::native_statement::refusal_or(refused,result)
 }
 
 /// The IPC accepts declared kinds only. Path and bytes originate exclusively
@@ -567,20 +595,20 @@ fn answer_native_request(
     );
     let preview =
         runtime_session::answer_preview(&snapshot, &generation, &request_id, &answer, &actor)?;
-    let confirmed = app
-        .dialog()
-        .message(format!(
-            "Send this native request answer?\n{}",
-            serde_json::to_string_pretty(&preview).map_err(|e| e.to_string())?
-        ))
-        .title("Chirality — answer native request")
-        .kind(MessageDialogKind::Warning)
-        .buttons(MessageDialogButtons::OkCancelCustom(
-            "Send answer".into(),
-            "Keep waiting".into(),
-        ))
-        .blocking_show();
-    if !confirmed {
+    // Owner's three-button layout: Return chooses "Don't send"; an abort maps
+    // to "Cancel"; only the middle "Send answer" sends. A statement too long for
+    // the alert names the preview by digest while the App shows it whole.
+    use act_control::native_statement::{self as ns, DONT_SEND, SEND_ANSWER};
+    let statement = ns::request_answer_statement(&preview)?;
+    let result = ns::showing_in_app(statement.in_app.as_ref(), || {
+        app.dialog()
+            .message(statement.text.clone())
+            .title("Chirality — answer native request")
+            .kind(MessageDialogKind::Warning)
+            .buttons(ns::act_buttons(DONT_SEND, SEND_ANSWER))
+            .blocking_show_with_result()
+    });
+    if !ns::chose(&result, SEND_ANSWER) {
         return Ok(json!({"state":"dismissed","replyWriteResult":"not-attempted"}));
     }
     let (snapshot, current) = current_actor_context_for(&state, &home);
@@ -597,6 +625,29 @@ fn answer_native_request(
     )
 }
 
+/// J6: a native confirmation shows a bounded, readable statement, with any
+/// content it names by digest shown whole in the App while it is open. When no
+/// statement can be presented, the alert says why, nothing is chosen, and the
+/// cause is kept in `refused` so the command reports a refusal, never the
+/// person's cancel (V14 F4).
+fn confirm_bounded(app:&tauri::AppHandle,title:&str,statement:Result<act_control::native_statement::NativeStatement,String>,buttons:MessageDialogButtons,refused:&mut Option<String>)->bool{
+    match statement {
+        Ok(s)=>act_control::native_statement::showing_in_app(s.in_app.as_ref(),||app.dialog().message(s.text.clone()).title(title).kind(MessageDialogKind::Info).buttons(buttons).blocking_show()),
+        Err(cause)=>{app.dialog().message(cause.clone()).title(title).kind(MessageDialogKind::Info).buttons(MessageDialogButtons::Ok).blocking_show();*refused=Some(cause);false}
+    }
+}
+/// Content an open native confirmation names by digest (read-only).
+#[tauri::command]
+fn native_confirmation_content()->Value{act_control::native_statement::shown_in_app()}
+/// The host's digest of a review's complete presentation, as the A15
+/// statement names it. A reading aid: the binding is checked host-side.
+#[tauri::command(async)]
+fn workflow_review_digest(state:State<'_,AppState>,review_ref:String)->Result<Value,String>{
+    let review=state.workflows.lock().unwrap().reviews.get(&review_ref).cloned().ok_or("Review unavailable")?;
+    let review=review.try_lock().map_err(|_|"Review held by an open native confirmation; its content is shown under the confirmation")?;
+    let presentation=review.status.get("presentation").ok_or("Review presentation not available in this state")?;
+    Ok(match act_control::review_digest(presentation){Ok(d)=>json!({"reviewRef":review_ref,"digest":d}),Err(cause)=>json!({"reviewRef":review_ref,"unavailable":cause})})
+}
 fn workflow_native_folder(app:&tauri::AppHandle,title:&str)->Result<Option<PathBuf>,String>{
     app.dialog().file().set_title(title).blocking_pick_folder().map(|path|path.into_path().map_err(|_|"Native folder has no local filesystem path".to_string())).transpose()
 }
@@ -618,6 +669,9 @@ fn workflow_select_registered(app:tauri::AppHandle,state:State<'_,AppState>,revi
 }
 #[tauri::command]
 fn workflow_create_draft(state:State<'_,AppState>,name:String)->Result<Value,String>{state.workflows.lock().unwrap().create_selected_draft(&name)}
+/// J8 (WR §4.6 RF-1): Refine a registered revision from the revision store; no selection.
+#[tauri::command]
+fn workflow_refine_registered(state:State<'_,AppState>,name:String,revision:String)->Result<Value,String>{state.workflows.lock().unwrap().refine_registered(&name,&revision)}
 #[tauri::command]
 fn workflow_review(state:State<'_,AppState>,names:Vec<String>,in_place:bool)->Result<Value,String>{
     let home=state.homes.lock().unwrap().active();state.validate_home_source(&home)?;
@@ -667,12 +721,78 @@ fn workflow_continue_registration(state:State<'_,AppState>,review_ref:String)->R
 #[tauri::command]
 fn workflow_prepare_run(state:State<'_,AppState>,generation:Value,thread_id:String,person_text:String)->Result<Value,String>{
     let home=state.homes.lock().unwrap().for_generation(&generation)?;state.validate_home_source(&home)?;
-    let mut root=state.workflows.lock().unwrap();let reference=root.prepare_run(home,&generation,&thread_id,person_text)?;Ok(json!({"reference":reference,"state":"original closed selection prepared; not sent"}))
+    // WR WP-1: the explicit App project owns WR records; None is refused with no fallback.
+    let mut root=state.workflows.lock().unwrap();let reference=root.prepare_run(home,&generation,&thread_id,person_text,state.workspace.as_deref())?;Ok(json!({"reference":reference,"state":"original registered selection prepared; WR records pending; not sent"}))
+}
+#[tauri::command(async)]
+fn workflow_retry_records(state:State<'_,AppState>,run_ref:String)->Result<Value,String>{
+    let run=state.workflows.lock().unwrap().runs.get(&run_ref).cloned().ok_or("Actual prepared original run unavailable")?;
+    let mut run=run.try_lock().map_err(|_|"Original run operation pending")?;run.retry_records()
+}
+/// Durable reading of the explicit project's WR records and R3 entries; writes nothing.
+#[tauri::command(async)]
+fn workflow_read_records(state:State<'_,AppState>)->Result<Value,String>{
+    let root=state.workspace.as_ref().ok_or("No explicit App project (CHIRALITY_WORKSPACE); no WR records to read and no fallback")?;
+    let project=workflow_workspace::publication::ProjectRecords::open(root)?;
+    Ok(records::supply::read_project_supply(&project))
 }
 #[tauri::command(async)]
 fn workflow_send_run(state:State<'_,AppState>,run_ref:String)->Result<Value,String>{
     let run=state.workflows.lock().unwrap().runs.get(&run_ref).cloned().ok_or("Actual prepared original run unavailable")?;
-    let mut run=run.try_lock().map_err(|_|"Original run operation pending")?;state.validate_home_source(&run.home)?;run.send()
+    {let run=run.try_lock().map_err(|_|"Original run operation pending")?;state.validate_home_source(&run.home)?;}
+    // RE-7 / CH-1 rechecked at dispatch; a successor start supersedes a pending end notice.
+    runtime_session::start_workflow_run(&state.workflows,&run_ref)
+}
+/// EXEC AE-7 / A-11: only the person's explicit end ends a run (FN-2: completed on a finished report).
+#[tauri::command]
+fn workflow_end_run(state:State<'_,AppState>,run_ref:String,completed:bool)->Result<Value,String>{
+    let run=state.workflows.lock().unwrap().runs.get(&run_ref).cloned().ok_or("Actual run unavailable in this process")?;
+    let mut run=run.try_lock().map_err(|_|"Original run operation pending")?;run.end_run(completed,None)
+}
+/// CH-1 "End ‹A› and start ‹B›" as one confirmed step: A ends, B is prepared and started.
+#[tauri::command(async)]
+fn workflow_end_and_start(state:State<'_,AppState>,run_ref:String,generation:Value,thread_id:String,person_text:String)->Result<Value,String>{
+    let home=state.homes.lock().unwrap().for_generation(&generation)?;state.validate_home_source(&home)?;
+    let next=state.workflows.lock().unwrap().end_and_start(&run_ref,home,&generation,&thread_id,person_text,state.workspace.as_deref())?;
+    let started=runtime_session::start_workflow_run(&state.workflows,&next);
+    Ok(json!({"ended":run_ref,"started":next,"start":match started{Ok(v)=>v,Err(e)=>json!({"state":"successor not started","limit":e})}}))
+}
+/// V10 G-5: the person sends without the pending end notice (its record cannot be
+/// written); the choice is recorded in the run log and never shown as supplied.
+#[tauri::command]
+fn workflow_skip_notice(state:State<'_,AppState>,run_ref:String)->Result<Value,String>{
+    let run=state.workflows.lock().unwrap().runs.get(&run_ref).cloned().ok_or("Actual run unavailable in this process")?;
+    let mut run=run.try_lock().map_err(|_|"Original run operation pending")?;run.skip_end_notice()
+}
+#[tauri::command(async)]
+fn workflow_check_notice(state:State<'_,AppState>,run_ref:String)->Result<Value,String>{
+    let run=state.workflows.lock().unwrap().runs.get(&run_ref).cloned().ok_or("Actual run unavailable in this process")?;
+    let mut run=run.try_lock().map_err(|_|"Original run operation pending")?;state.validate_home_source(&run.home)?;run.check_end_notice_supply()
+}
+/// Reopen: the explicit project's WR/RS records plus the REC restart facts this process holds.
+#[tauri::command(async)]
+fn workflow_reopen(state:State<'_,AppState>)->Result<Value,String>{
+    let root=state.workspace.as_ref().ok_or("No explicit App project (CHIRALITY_WORKSPACE); nothing to reopen and no fallback")?;
+    let home=state.homes.lock().unwrap().active();
+    let recovery=home.recovery_startup.lock().unwrap().snapshot();
+    let events=restart_events(&recovery);
+    state.workflows.lock().unwrap().reopen(root,&events)
+}
+/// The person's explicit end of a run the record shows open and interrupted after relaunch.
+#[tauri::command]
+fn workflow_end_recorded(state:State<'_,AppState>,run_id:String,thread_id:Option<String>)->Result<Value,String>{
+    let root=state.workspace.as_ref().ok_or("No explicit App project (CHIRALITY_WORKSPACE); nothing recorded and no fallback")?;
+    let thread=thread_id.ok_or("The record names no conversation for this run; it cannot be ended from here")?;
+    // V10 G-7: a reopened run is ended only as the person's plain end (no completed).
+    state.workflows.lock().unwrap().end_recorded_run(root,&run_id,&thread,false)
+}
+/// REC `app_restart_interruption` facts, wherever the recovery projection carries them.
+fn restart_events(value:&Value)->Vec<Value>{
+    match value{
+        Value::Object(map)=>{let mut out:Vec<Value>=map.get("restartEvents").and_then(Value::as_array).cloned().unwrap_or_default();for (k,v) in map{if k!="restartEvents"{out.extend(restart_events(v));}}out}
+        Value::Array(items)=>items.iter().flat_map(restart_events).collect(),
+        _=>vec![],
+    }
 }
 #[tauri::command(async)]
 fn workflow_check_supply(state:State<'_,AppState>,run_ref:String)->Result<Value,String>{
@@ -735,19 +855,20 @@ fn decide(
     }
     let mut g = state.act.lock().unwrap();
     let ac = g.as_mut().ok_or("CHIRALITY_WORKSPACE is not set")?;
-    let text = ac.confirmation_text(&offer_id, &alternative, &actor)?;
+    let statement = ac.confirmation_statement(&offer_id, &alternative, &actor)?;
     ac.present(&offer_id)?;
-    let confirmed = app
-        .dialog()
-        .message(text)
-        .title("Chirality — decide")
-        .kind(MessageDialogKind::Warning)
-        .buttons(MessageDialogButtons::OkCancelCustom(
-            "Decide".into(),
-            "Cancel".into(),
-        ))
-        .blocking_show();
-    if !confirmed {
+    // Owner's three-button layout: Return chooses "Don't decide"; an abort maps
+    // to "Cancel"; only the middle "Decide" captures.
+    use act_control::native_statement::{self as ns, DECIDE, DONT_DECIDE};
+    let result = ns::showing_in_app(statement.in_app.as_ref(), || {
+        app.dialog()
+            .message(statement.text.clone())
+            .title("Chirality — decide")
+            .kind(MessageDialogKind::Warning)
+            .buttons(ns::act_buttons(DONT_DECIDE, DECIDE))
+            .blocking_show_with_result()
+    });
+    if !ns::chose(&result, DECIDE) {
         ac.dismiss(&offer_id);
         return Ok(json!({"state": "AC-5 dismissed", "recorded": false}));
     }
@@ -893,6 +1014,8 @@ pub fn run() {
                 *state.decision_writer_status.lock().unwrap() = runtime_session::continue_decision_writer(ws, control.as_mut(), "app-startup-writer");
             }
             *state.app_user_data_root.lock().unwrap() = data.clone();
+            // WR §3: App-kept draft bases live in the App data folder.
+            if let Ok(data) = data.as_ref() { state.workflows.lock().unwrap().set_app_user_data(data.clone()); }
             // Current account/probe protection is independent of a bad new key
             // candidate; do not create/adopt K or replace an existing L binding.
             let namespaces=(|| {
@@ -937,6 +1060,7 @@ pub fn run() {
         // event touches the child.
         .invoke_handler(tauri::generate_handler![
             file_act_select, file_act_confirm, file_act_continue, file_act_dismiss, file_act_read,
+            read_recovery_custody,
             host_status,
             select_home,
             read_home_access,
@@ -961,7 +1085,7 @@ pub fn run() {
             conversation_steer_text,
             conversation_interrupt,
             set_person_name,
-            workflow_select_development,workflow_open_library,workflow_select_registered,workflow_create_draft,workflow_review,workflow_register_native,workflow_continue_registration,workflow_prepare_run,workflow_send_run,workflow_check_supply,
+            workflow_select_development,workflow_open_library,workflow_select_registered,workflow_create_draft,workflow_refine_registered,workflow_review,workflow_register_native,workflow_continue_registration,workflow_prepare_run,workflow_send_run,workflow_check_supply,workflow_retry_records,workflow_read_records,workflow_end_run,workflow_end_and_start,workflow_check_notice,workflow_skip_notice,workflow_reopen,workflow_end_recorded,workflow_review_digest,native_confirmation_content,
             decision_view,
             continue_decision_recording,
             compose_offer,
@@ -1014,6 +1138,13 @@ mod workflow_root_context_tests {
         std::fs::remove_dir_all(root).unwrap();
     }
     #[test]
+    fn j3_reopen_collects_rec_restart_facts_wherever_projected(){
+        let e=|id:&str|json!({"kind":"app_restart_interruption","eventId":id,"threadId":"thread"});
+        let projection=json!({"state":"initialized","projection":{"restartEvents":[e("a")],"historicalConversations":[{"restartEvents":[e("b")]}]},"other":[{"x":1}]});
+        let found=restart_events(&projection);assert_eq!(found.len(),2);assert!(found.contains(&e("a"))&&found.contains(&e("b")));
+        assert!(restart_events(&json!({"state":"not-initialized"})).is_empty());
+    }
+    #[test]
     fn workflow_root_actual_observe_preserves_offline_context_and_refuses_retarget(){
         let(root,state,home,library,reference,context)=fixture();
         let(actor,observed)=workflow_review_observe(&state,&home,&library,&reference,&context).unwrap();assert_eq!(actor["identityVerified"],false);assert_eq!(observed["observedHome"]["hostState"],"absent");
@@ -1026,3 +1157,7 @@ mod workflow_root_context_tests {
 
 #[cfg(all(test,unix))]
 mod file_act_consumer_tests;
+
+#[cfg(test)]
+#[path = "../../tests/group_b_fixture_consumer.rs"]
+mod group_b_fixture_consumer;

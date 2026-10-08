@@ -56,6 +56,16 @@ class HostedCITests(unittest.TestCase):
                  ["docs", "execution", "loop", "plans"] for filename in ["note.md", "state.json"]]
         self.assertEqual(select_paths(paths, PROFILE)["modes"], {"app": "not-applicable", "pec": "not-applicable"})
 
+    def test_app_v4_records_and_prose_do_not_run_product_suites(self):
+        paths = [f"projects/chirality-app-v4/{folder}/{filename}" for folder in
+                 ["execution/_Coordination/AgentRuns/RUN", "docs", "conceptual", "foundation", "reference", "loop", "init"]
+                 for filename in ["note.md", "state.json"]]
+        paths += ["projects/chirality-app-v4/AGENTS.md", "projects/chirality-app-v4/README.md"]
+        self.assertEqual(select_paths(paths, PROFILE)["modes"], {"app": "not-applicable", "pec": "not-applicable"})
+        # Its application source stays a conservative unknown input.
+        self.assertEqual(select_paths(["projects/chirality-app-v4/app/src/main.rs"], PROFILE)["modes"],
+                         {"app": "full", "pec": "full"})
+
     def test_owned_product_and_shared_runtime_dependencies_select_consumers(self):
         for path, modes in [
             ("projects/chirality-app-dev/frontend/src/a.tsx", {"app": "full", "pec": "not-applicable"}),

@@ -74,3 +74,42 @@ def test_unresolvable_base_is_operational_error(repo):
     result = subprocess.run([sys.executable, str(SCRIPT), '--base', 'nope', '--head', 'HEAD'],
                             cwd=root, capture_output=True, text=True)
     assert result.returncode == 2
+
+
+def link(repo, links):
+    """Commit `links` ({path: target}) as symlinks and run the check."""
+    root, git, base = repo
+    for name, target in links.items():
+        path = root / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        if path.exists() or path.is_symlink():
+            path.unlink()
+        path.symlink_to(target)
+    git('add', '.')
+    git('commit', '-qm', 'links')
+    return subprocess.run([sys.executable, str(SCRIPT), '--base', base, '--head', 'HEAD'],
+                          cwd=root, capture_output=True, text=True)
+
+
+@pytest.mark.parametrize('target', [
+    '/Users/example/worktree/frame_kernel/src/lib.rs',
+    '../../../../../../../../outside.txt',
+    '~/notes.md',
+])
+def test_machine_local_or_escaping_symlink_blocks(repo, target):
+    result = link(repo, {RUN + 'fixture/lib.rs': target})
+    assert result.returncode == 1, result.stdout
+    assert 'symlink to a machine-local path' in result.stdout
+    assert '0 possible credential(s); 1 machine-local symlink(s)' in result.stdout
+
+
+def test_file_retyped_to_symlink_blocks(repo):
+    result = link(repo, {RUN + 'old.md': '/tmp/old.md'})
+    assert result.returncode == 1, result.stdout
+    assert 'old.md: symlink to a machine-local path' in result.stdout
+
+
+def test_symlink_inside_repository_passes(repo):
+    result = link(repo, {RUN + 'fixture/lib.rs': '../../../../../../../docs/lib.rs'})
+    assert result.returncode == 0, result.stdout
+    assert '1 changed run-record file(s) scanned' in result.stdout

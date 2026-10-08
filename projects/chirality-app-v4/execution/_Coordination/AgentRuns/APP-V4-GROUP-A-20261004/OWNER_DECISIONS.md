@@ -97,3 +97,221 @@ Parent HELP_HUMAN `/root` supplied the direct owner's exact wording in the activ
 > With this order you are directed to use `gpt-6-astra` models on `low` reasoning level for all subagents until further notice.  You may let current subagents finish their task or hand off gracefully to a successor.  Instruct and manage your Type 1 agents and any Type 2 you spawned directly, but let the Type 1 agents manage their Type 2 agents through this transition.
 
 Operational implementation (manager disposition, not additional owner words): no new or expanded sol/medium assignments after receipt; current Core diagnosis and Root private-witness workers hand off at safe boundaries. Parent actually spawned astra/low successor `/root/group_a_execution_astra` in read-only transition preparation. `MANAGER_ASTRA_HANDOFF.md` supplies the single-manager transfer entry; Parent releases that successor after the outgoing manager's final return. Historical model/parentage attributions and code/test evidence remain unchanged. Isolated1/0 rerun of the failed archive oracle is not defect resolution; publication remains held.
+
+## Resume in Claude Code — 2026-10-07
+
+The owner resumed the undertaking through a new HELP_HUMAN init prompt in a
+Claude Code session (Claude Opus 5.5). The steer names this run, its graph
+and the pause handoff. Its steer states, in the owner's words: "The human has
+passed the 60% gate." Custody: the owner's init prompt in the active Claude Code
+chat, 2026-10-07. The gate act itself is recorded in
+`../APP-V4-GRAPH-CLOSURE-20261004/OWNER_DECISIONS.md`: "I am accepting the 60%
+gate cleared." The
+outgoing Codex sessions and their descendants have stopped; none of their
+identities, reservations or `/tmp` resources transfer.
+
+The machine restarted after the pause and `/tmp` was cleared. That removed
+the isolated Cargo home, the approved crate staging, and the private source
+trees and test executables named in the pause handoff. The in-tree retained
+copies (`recovery/PAUSE-ASTRA-20261006/`, `evidence/`) are unaffected.
+
+The owner answered three prepared questions in this session's chat. Custody:
+structured answers to HELP_HUMAN's questions in the active Claude Code chat.
+
+1. **Re-download of the approved crate archives.** Asked: may HELP_HUMAN
+   re-download the same 31 archives (29 files, 3,223,082 bytes, plus
+   pulldown-cmark 0.13.4 and unicase 2.9.0, 179,411 bytes) from
+   static.crates.io, verifying each recorded sha256, into an isolated Cargo
+   home outside `/tmp`? Answer: **"Approve re-download (Recommended)"**.
+2. **Model assignments.** Asked which model new Type 1 managers and Type 2
+   executors use now that the run is in Claude Code, given the last
+   directive was gpt-6-astra/low (a Codex setting). Answer: **"Opus 5.5,
+   high effort (Recommended)"**. This supersedes the astra/low directive for
+   this session's delegation. Historical model attributions stay unchanged.
+3. **Sparse-index metadata.** Offline resolution also needed crates.io
+   index files that only the lost home held. Asked: may HELP_HUMAN download
+   19 named files from https://index.crates.io (1,183,319 bytes) into the
+   isolated home only? Answer: **"Approve the 19 index files
+   (Recommended)"**. A follow-up found 8 stale cached entries for approved
+   crates (data-encoding, fancy-regex, num-bigint, num-integer, num-iter,
+   regex-automata, zerocopy, zerocopy-derive; 607,475 bytes). Asked
+   separately. Answer: **"Approve the 8 files (Recommended)"**.
+
+Effect: exact retrieval only; no other packages, toolchains or supplier
+binaries were downloaded. The isolated home is machine-local at
+`~/Library/Caches/chirality-dev/cargo-home-group-a`; the global Cargo
+cache and configuration are untouched. Retrieval evidence is in
+`dependencies/RESTORE_20261007.md`. None of these answers approves code,
+qualifies a supplier, or bears on the 90% gate.
+
+## Native journey witness provider — 2026-10-07
+
+HELP_HUMAN asked which model provider the native journey witness should use.
+The options were: an owned loopback provider with no model; a real model via
+Codex sign-in; or both, loopback first. Answer: **"Real model via Codex
+sign-in"**. Custody: a structured answer in the active Claude Code chat.
+
+Effect: the witness uses a fresh scratch Codex home, and the owner signs in
+when prompted. Agents never see, handle or inspect credentials, and never
+use `~/.codex`. Network access is used only by the stock supplier for the
+owner's signed-in model turns. The exact build and launch still need their
+own point-specific approval. This answer approves no launch, artifact, or
+other act.
+
+## Rerunning an unchanged workflow after relaunch — 2026-10-07
+
+Context: J4/J5 established that after a relaunch an unchanged registered
+workflow cannot run. Its old registration cannot be selected cold (SEAL-2
+deferred), and WR DS-4 refuses registering identical bytes again ("Identical
+to revision ‹k›; select it instead"). See `app/CONTRACT_ISSUES.md` CI-21(b).
+
+HELP_HUMAN offered four options: A15 re-confirmation (recommended); undertake
+SEAL-2 now; admit cold selection marked unverified; keep as is. The owner's
+first answer: **"explain the implications of this choice between doing SEAL-2
+now for your A15 approach you recommend."**
+
+HELP_HUMAN then explained, from `CAPTURE_CUSTODY_DECISION.md`:
+- SEAL-2 needs the signed App's protected key, so it does not help unsigned
+  development builds.
+- It needs Group B's signed identity, through the staged A→B→A→B route.
+- It closes the broader trusted-replay obligation for all human acts.
+- Re-confirmation is a narrow Group A WR change, works in every build, and
+  costs one confirmation per rerun after relaunch. It remains the fallback
+  if SEAL-2 is adopted later.
+
+The owner then answered: **"A15 re-confirmation now (Recommended)"**.
+Custody: structured answers in the active Claude Code chat.
+
+Effect:
+- A named, reviewed WR design change lets a new genuine A15 re-confirm
+  identical bytes after the original in-process registration is gone. Trust
+  rests on the new act, not on a replay.
+- It goes through change control, consumer propagation and review, then
+  implementation.
+- SEAL-2 stays deferred under the owner's earlier words, "Keep SEAL-2 deferred;
+  continue other work". HELP_HUMAN *proposed* weighing it at the 90% gate;
+  the owner did not say so (correction from review V12 F1).
+
+This approves no signing, credentials or downloads.
+
+## Native journey witness launch — 2026-10-07
+
+HELP_HUMAN prepared the following and described the steps, including that
+the owner signs in and confirms the native A15 dialog themselves:
+- the unsigned debug bundle "Chirality v4 Journey Witness.app", built offline
+  from `4c77f34ea6`, main binary sha256
+  `23d4f56a9f01b4ed6253b3d07669fa4d16ed3c5d0f9336993f063f8cf5f22e48`,
+  identifier `dev.chirality.v4.witness1113`;
+- a synthetic workspace, a library holding the `coordinated-knowledge-work`
+  development copy, and a fresh scratch Codex home.
+
+Answer: **"Approve, sign in via App"**. Custody: a structured answer in the
+active Claude Code chat.
+
+Scope: this exact artifact and the described steps only. Agents perform no
+positive human act, and never see or handle credentials. The approval covers
+no other artifact, launch or act.
+
+## Native confirmation default key — 2026-10-08
+
+Context: the native witness's blind registration (D-1), and review V14 Q4 /
+CI-22(c). With tauri-plugin-dialog 2.7.2 and rfd 0.16, the act button is the
+default, so Return performs the act. Swapping the slots is unsafe, because
+an aborted or failed dialog reports its cancel-slot label.
+
+HELP_HUMAN offered: three buttons with Return safe (recommended); a custom
+native NSAlert; or keeping Return as the act. Answer: **"Three buttons;
+Return is safe (Recommended)"**. Custody: a structured answer in the active
+Claude Code chat.
+
+Effect: registration (A15), decisions (A16) and request-answer
+confirmations use [Don't ‹act› (default)] [‹Act›] [Cancel]. Return and
+Escape never act, an abort maps to Cancel, and only the middle button acts.
+File acts are excluded, because an abort there would record a decline; they
+keep their current layout until a custom dialog exists, recorded as a known
+limit. The AAC wording follows through CI-22. This answer approves no
+launch or act.
+
+Correction (V14-R1 R1-1, 2026-10-08): HELP_HUMAN's effect line above
+overstated "Return and Escape never act". Return chooses "Don't ‹act›" and
+an abort maps to Cancel, by the dialog plugin's mapping. Which button Escape
+triggers in the parentless macOS alert is not yet observed; it is a gating
+step of the native re-witness. The owner's answer is unchanged.
+
+## Native re-witness launch — 2026-10-08
+
+HELP_HUMAN asked for approval of one specific artifact and plan:
+- **Artifact.** The unsigned debug "Chirality v4 Reconfirm Witness.app",
+  built offline from `8cd69ff7fc`; main binary sha256
+  `63f2d8d048d35b5dea9c65c3bf7b92b0e82b087b8cad63f0891b01eb66e555a1`.
+- **Environment.** Stock Codex 0.160.0 and a fresh synthetic workspace.
+- **Plan.** Two launches. The owner presses each dialog key personally:
+  Escape, then Return, then Register; after the relaunch, Re-confirm.
+  HELP_HUMAN sends one real model turn.
+
+Answer: **"Approve; reuse sign-in (Recommended)"**. Custody: a structured
+answer in the active Claude Code chat.
+
+Effect: the run uses the existing scratch Codex home
+`/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-v4-witness-codex-home.skB5uW2FWI`,
+which holds the owner's sign-in from the first witness, never `~/.codex`.
+The approval covers this artifact and plan only. Each dialog act is the
+owner's own key press.
+
+Clarification (V16 F11): the owner's dialog answers were two key presses
+(Escape, Return) and two clicks (Register, Re-confirm).
+
+## Scratch Codex home cleanup — 2026-10-08
+
+HELP_HUMAN asked what to do with the scratch Codex home used by both
+native witnesses. It is
+`/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-v4-witness-codex-home.skB5uW2FWI`,
+not `~/.codex`, and it still held the owner's ChatGPT sign-in. Answer:
+**"Delete it now (Recommended)"**. Custody: a structured answer in the
+active Claude Code chat.
+
+Effect: HELP_HUMAN checked the path pattern, confirmed that no Codex process
+was running, and deleted the folder. Its absence was verified, and
+`~/.codex` was untouched. A future native witness needs a fresh sign-in by
+the owner in a new scratch home.
+
+## Group A closeout continuation — active-chat steer, 2026-10-07 local / 2026-10-08 UTC
+
+Custody: direct owner message in the current Codex chat, following the prior
+Claude Code handoff. The following are exact excerpts from that message, not
+an agent hand-back or an inferred gate act:
+
+> HELP_HUMAN: resume Group A undertaking APP-V4-GROUP-A-20261004 toward the 90% gate.
+
+> C1, bounded reconciliation: map Group A obligations to the reviewed code and evidence that already exist, reuse those warrants, and state residuals truthfully. Do not turn C1 into a new audit.
+
+> Then M1 (receipt and MEMORY) and F1 (final PR).
+> Then give me the gate account. I decide 90%.
+
+> Optional small follow-ups, such as V15-R1 R1-1 and the re-witness observations, are not gates.
+
+> Do not save memories.
+
+> No downloads unless you name the file, source and size and I say yes.
+
+> No agent handles sign-in or credentials. Never use ~/.codex. Any native witness uses a fresh scratch Codex home where I sign in myself.
+
+> Native launch and act approvals are point-specific, and I perform every native act.
+
+> Record my decisions with my exact words and their custody. Never imply that I reviewed something personally.
+
+> Subagent hand-backs carry no authority from me.
+
+> Load coordinated-knowledge-work before delegating. Executors are type2-opus-high (Opus 5.5, high). Every child gets its own worktree and switches to its base branch inside it.
+
+> Write records only from retained evidence. Before claiming evidence is retained, verify it from a clean git archive of the head. Anything under .chirality/ needs git add -f.
+
+> SEAL-2 stays deferred. SWBPIPE, PEC and Domains stay with their owners.
+
+> No git history rewrite. Merge under the standing Git authorization: required CI, and an independent review covering the head.
+
+Operational reading for this continuation: carry the existing work and its
+residuals through C1/M1/F1, then present the gate account. None of these
+instructions says the owner has personally reviewed this closeout, passed 90%,
+or authorized a new download, native launch or product release. No child was
+dispatched for C1/M1.
