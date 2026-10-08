@@ -15312,3 +15312,16 @@ RV113 confirms each round. I4 follows them, with SR-PY and SR-TS and SR-RS's rou
 A first version marked the exclusive job pending while it still waited behind slot 1's queue, which held back new slot jobs. ROOT stopped its own test before any agent's job was affected, and reordered the stages as above. The old wrapper is kept in ROOT's scratch.
 
 **Briefs from now on** name `t3_slot.sh` for heavy non-cargo commands and `t3_exclusive.sh` for DEC-025 and measurements. Running agents may keep their present commands.
+
+## Owner clarification: 64 GiB is T3's own allocation; the machine may run to 100 GiB, and jobs start under 90 GiB (ROOT, 2026-10-08 UTC)
+
+**The owner, quoted:** "oh and I meant 64 GiB allocated for your work, not 64 GiB total used on this machine. You can load this up to 100 GiB total and start jobs when there's less than 90 GiB total memory consumption. If this helps speed up throughput."
+
+**The host now follows it** (amending the preceding section):
+1. **The memory guard's floor is 22% free,** which is about 99.8 GiB used of 128 GiB, so T3 jobs are killed only above about 100 GiB in total. It was 35%, about 83 GiB.
+   - ROOT started a new guard with the 22% floor (PID 29411) before stopping the old one (PID 5387), so the host was never unguarded.
+   - `memguard.sh`'s default is now 22%.
+2. **The start gate:** a slot job starts only while the system has at least 30% free (under about 90 GiB used in total) and T3's own resident memory is under 52 GiB, so that one more job stays within T3's 64 GiB.
+3. **Four slots** (`cargo_job.slot4.lock` added). Memory no longer binds at three, and the Mac has 18 cores. Exclusive jobs take all four.
+
+**Unchanged:** the product's M ≤ 12 GiB, exclusive mode for DEC-025 and product measurements, each agent one heavy job at a time, and the three-implementer cap. The cap is a coordination limit, not a memory one.
