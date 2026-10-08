@@ -116,7 +116,7 @@ pub(crate) fn validate_profile(model: &PreviewModel, diagnostics: &mut Vec<Diagn
         "0.1.0" | "0.2.0" => {
             if model.pressure_contract.is_some() {
                 problem(diagnostics, "PREVIEW_CONTRACT_VERSION_MISMATCH", &["pressure_contract"],
-                    "pressure contract namespaces require model document 0.3.0; old inputs are not reinterpreted");
+                    "pressure contracts require model document 0.3.0 or 0.4.0, and the supported contract is 2.0.0/exact_straight_pressure_v2 (1.0.0/legacy_pressure_v1 is retired); old inputs are not reinterpreted");
             }
         }
         "0.4.0" => {
@@ -133,7 +133,7 @@ pub(crate) fn validate_profile(model: &PreviewModel, diagnostics: &mut Vec<Diagn
                 diagnostics,
                 "PRESSURE_CONTRACT_REQUIRED",
                 &["pressure_contract"],
-                "model document 0.3.0 requires an explicit pressure contract version and mode",
+                "model document 0.3.0 requires the explicit 2.0.0/exact_straight_pressure_v2 pressure contract version and mode",
             ),
             Some(contract) => {
                 let declared = (contract.version.as_deref(), contract.mode.as_deref());
@@ -1368,6 +1368,28 @@ mod tests {
         let mut unknown = input();
         unknown["pressure_contract"] = json!({"version":"1.0.1","mode":"legacy_pressure_v1"});
         expect_rejected(unknown, "PRESSURE_CONTRACT_UNSUPPORTED");
+        // RV127 N-7: the namespace refusals name the exact contract too.
+        for (schema, contract, code) in [
+            ("0.2.0", Some(json!({"version":"1.0.0","mode":"legacy_pressure_v1"})), "PREVIEW_CONTRACT_VERSION_MISMATCH"),
+            ("0.3.0", None, "PRESSURE_CONTRACT_REQUIRED"),
+        ] {
+            let mut value = input();
+            value["schema_version"] = json!(schema);
+            match contract {
+                Some(contract) => value["pressure_contract"] = contract,
+                None => {
+                    value.as_object_mut().unwrap().remove("pressure_contract");
+                }
+            }
+            value["load_cases"][0].as_object_mut().unwrap().remove("pressure_regions");
+            let mut diagnostics = Vec::new();
+            validate_profile(&parse(value), &mut diagnostics);
+            let found = diagnostics
+                .iter()
+                .find(|d| d.code == code)
+                .unwrap_or_else(|| panic!("{schema}: {diagnostics:?}"));
+            assert!(found.message.contains("2.0.0/exact_straight_pressure_v2"), "{schema}: {}", found.message);
+        }
     }
 
     #[test]

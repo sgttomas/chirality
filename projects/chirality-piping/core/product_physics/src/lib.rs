@@ -22029,6 +22029,48 @@ mod tests {
         }
     }
 
+    // U3 (RV127 B-1): the pressure-free thermal half of the retired
+    // `endpoint_section_cut_fixed_and_free_pressure_thermal_match_uniform_stations_historical_pressure_premise`,
+    // a current public check: fixed-fixed and free thermal states have uniform
+    // endpoint and station axial-normal stress, and the fixed state is compressive.
+    #[test]
+    fn endpoint_section_cut_fixed_and_free_thermal_match_uniform_stations() {
+        let mut fixed = fixed_fixed_thermal_request("global_x");
+        for free in [false, true] {
+            if free {
+                fixed.model.supports.truncate(1);
+            }
+            for mode in [
+                PreviewSolverMode::DenseScrutiny,
+                PreviewSolverMode::SparseInteractive,
+            ] {
+                let result = run_linear_static_preview_with_mode(fixed.clone(), mode);
+                assert_eq!(
+                    result.status.mechanics, "MECHANICS_SOLVED",
+                    "thermal free={free}: {:?}",
+                    result.diagnostics
+                );
+                let endpoint_i =
+                    result_value(&result, "result:stress:pipe-P-100:end-i:axial-normal");
+                let endpoint_j =
+                    result_value(&result, "result:stress:pipe-P-100:end-j:axial-normal");
+                p5_close(endpoint_i, endpoint_j);
+                for station in ["quarter-1", "midspan", "quarter-3"] {
+                    p5_close(
+                        result_value(
+                            &result,
+                            &format!("result:stress:pipe-P-100:{station}:axial-normal"),
+                        ),
+                        endpoint_i,
+                    );
+                }
+                if !free {
+                    assert!(endpoint_i < 0.0, "fixed thermal state is compressive");
+                }
+            }
+        }
+    }
+
     fn endpoint_section_cut_pressure_request(
         records: &[(&str, &str, f64)],
     ) -> LinearStaticPreviewRequest {

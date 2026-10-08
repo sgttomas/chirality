@@ -1106,6 +1106,40 @@ mod tests {
         }
     }
 
+    /// U3 (D-2 A1; RV127 N-6): a zero-valued legacy pressure primitive in a 0.1.0
+    /// document is refused by a CLI solve in both modes.
+    #[test]
+    fn zero_legacy_pressure_primitive_is_refused_by_a_cli_solve() {
+        let mut model: Value = serde_json::from_str(include_str!(
+            "../../../../../fixtures/product_preview/numerical_sensitive_torsion_model.json"
+        ))
+        .expect("pressure-free fixture must parse");
+        model["load_cases"][0]["primitive_loads"]
+            .as_array_mut()
+            .unwrap()
+            .push(json!({"id": "load:zero-pressure", "category": "pressure",
+                "target": {"type": "element", "pipe": "pipe"}, "direction": "global_x",
+                "dimension": "pressure", "magnitude": {"value": 0.0, "unit": "Pa"},
+                "provenance": "retired_legacy_zero_pressure"}));
+        let input = json!({
+            "request": request(RunnerOperation::Solve),
+            "solve": {"preview_model": {"model": model, "materials": []}}
+        })
+        .to_string();
+        for mode in [
+            PreviewSolverMode::SparseInteractive,
+            PreviewSolverMode::DenseScrutiny,
+        ] {
+            let (code, output) = execute_json_with_mode("solve", &input, mode);
+            assert_eq!(code, 1, "{mode:?}");
+            let raw = output.mechanics_envelope.unwrap();
+            assert_eq!(raw.status.mechanics, "MODEL_INCOMPLETE");
+            assert!(raw.results.is_empty());
+            assert!(raw.diagnostics.iter().any(|d| d.code == "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+                && d.affected_refs == ["case", "load:zero-pressure"]));
+        }
+    }
+
     #[test]
     fn stable_verbs_map_to_runner_operations() {
         assert_eq!(operation_for_verb("solve"), Some(RunnerOperation::Solve));

@@ -450,6 +450,45 @@ fn retired_legacy_pressure_label_is_refused_on_the_ordinary_route() {
     }
 }
 
+/// U3 (D-2 A1; RV127 N-6): a zero-valued legacy pressure primitive in a 0.1.0
+/// document is refused on the ordinary route and on the retained entry, which
+/// publishes the ordinary refusal byte for byte and never a successor.
+#[test]
+fn zero_legacy_pressure_primitive_is_refused_on_the_ordinary_route_and_the_retained_entry() {
+    let mut value = raw();
+    value["model"]["load_cases"][0]["primitive_loads"]
+        .as_array_mut()
+        .unwrap()
+        .push(json!({"id":"load:zero-pressure","category":"pressure",
+            "target":{"type":"element","pipe":"pipe"},"direction":"global_x",
+            "dimension":"pressure","magnitude":{"value":0.0,"unit":"Pa"},
+            "provenance":"retired_legacy_zero_pressure"}));
+    for mode in [
+        PreviewSolverMode::DenseScrutiny,
+        PreviewSolverMode::SparseInteractive,
+    ] {
+        let envelope = run_linear_static_preview_value_with_mode(value.clone(), mode).unwrap();
+        assert_eq!(envelope.status.mechanics, "MODEL_INCOMPLETE");
+        assert!(envelope.results.is_empty());
+        let refusal = envelope
+            .diagnostics
+            .iter()
+            .find(|d| d.code == "PRESSURE_MODEL_REAUTHOR_REQUIRED")
+            .unwrap_or_else(|| panic!("{:?}", envelope.diagnostics));
+        assert_eq!(refusal.affected_refs, ["case", "load:zero-pressure"]);
+        assert!(refusal.message.contains("2.0.0/exact_straight_pressure_v2"));
+        let ordinary = serde_json::to_vec(&envelope).unwrap();
+        let direct = crate::run_linear_static_preview_value_with_retained_direct(value.clone(), mode).unwrap();
+        assert!(direct.retained().is_none());
+        match direct.into_publication() {
+            crate::RetainedPublication::Ordinary(published) => {
+                assert_eq!(serde_json::to_vec(&published).unwrap(), ordinary)
+            }
+            crate::RetainedPublication::Successor(_) => panic!("a successor for a refused document"),
+        }
+    }
+}
+
 /// U3 (D-2 A1), the retained route: the labelled document is outside D1 (D1.3), so the
 /// retained entry publishes the ordinary route's refusal and never a successor.
 #[test]
