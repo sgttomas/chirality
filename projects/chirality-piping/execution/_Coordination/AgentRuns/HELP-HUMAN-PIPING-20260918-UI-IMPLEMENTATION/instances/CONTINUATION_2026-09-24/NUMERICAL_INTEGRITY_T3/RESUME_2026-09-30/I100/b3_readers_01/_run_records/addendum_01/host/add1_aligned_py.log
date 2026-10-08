@@ -1,0 +1,5 @@
+# i100 job add1_aligned_py (slot) queued 2026-10-08T13:52:06Z dir=scratch/i100_b3r
+# args: VENV/bin/python WT/scratch/i100_b3r/tools/rv113_py_harness.py WT/scratch/i100_b3r/add1/arch2/projects/chirality-piping probes WT/scratch/i100_b3r/add1/probes.json WT/scratch/i100_b3r/add1/runs/aligned/py.jsonl
+# start 2026-10-08T13:52:06Z
+44 lines -> WT/scratch/i100_b3r/add1/runs/aligned/py.jsonl
+# end 2026-10-08T13:52:12Z rc=0

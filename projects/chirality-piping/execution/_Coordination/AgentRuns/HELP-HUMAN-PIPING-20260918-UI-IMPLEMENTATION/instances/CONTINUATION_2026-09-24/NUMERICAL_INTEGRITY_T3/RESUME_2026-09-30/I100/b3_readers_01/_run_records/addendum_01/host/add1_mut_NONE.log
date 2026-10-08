@@ -1,0 +1,11 @@
+# i100 job add1_mut_NONE (slot) queued 2026-10-08T14:14:32Z dir=scratch/i100_b3r/add1/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT= VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/add1_mut_NONE/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/add1/mutants/runs/NONE/junit.xml tests/test_retained_precision_b3.py
+# start 2026-10-08T14:14:32Z
+........................................................................ [ 19%]
+........................................................................ [ 38%]
+........................................................................ [ 57%]
+........................................................................ [ 76%]
+........................................................................ [ 96%]
+...............                                                          [100%]
+375 passed in 52.72s
+# end 2026-10-08T14:15:25Z rc=0

@@ -1,0 +1,13 @@
+--- a/projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs
++++ b/projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs
+@@ -4055,7 +4055,9 @@
+             if route.exact {
+                 case.get("pressure_regions").is_some_and(|r| r.as_array().is_some_and(Vec::is_empty))
+             } else {
+-                list(&case["pressure_regions"]).is_empty()
++                // Preview route: absent, null or [] (B3D-11's leniency), type-strict (I100 B3 addendum 01).
++                case.get("pressure_regions")
++                    .is_none_or(|r| r.is_null() || r.as_array().is_some_and(Vec::is_empty))
+             } && case["equivalent_static"].is_null()
+                 && !case
+                     .as_object()

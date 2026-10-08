@@ -1,0 +1,13 @@
+# i100 job add1_aligned_ts (slot) queued 2026-10-08T13:52:26Z dir=scratch/i100_b3r/add1/arch2/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV113_PROBES=WT/scratch/i100_b3r/add1/probes.json RV113_PROBES_OUT=WT/scratch/i100_b3r/add1/runs/aligned/ts.jsonl WT/sweep-skewpin/projects/chirality-piping/node_modules/.bin/vitest run src/features/results/rv113Census.test.ts
+# start 2026-10-08T13:52:26Z
+
+ RUN  v4.1.10 WT/scratch/i100_b3r/add1/arch2/projects/chirality-piping/apps/desktop
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  07:52:26
+   Duration  2.50s (transform 499ms, setup 98ms, import 625ms, tests 1.38s, environment 326ms)
+
+# end 2026-10-08T13:52:29Z rc=0

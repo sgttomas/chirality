@@ -1,0 +1,61 @@
+# i100 job add1_mut_C3 (slot) queued 2026-10-08T14:17:06Z dir=scratch/i100_b3r/add1/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=C3 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/add1_mut_C3/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/add1/mutants/runs/C3/junit.xml tests/test_retained_precision_b3.py
+# start 2026-10-08T14:17:07Z
+........................................................................ [ 19%]
+........................................................................ [ 38%]
+........................................................................ [ 57%]
+........................................................................ [ 76%]
+...........................................................F............ [ 96%]
+.........F.....                                                          [100%]
+=================================== FAILURES ===================================
+_ test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions=[{"id": "region:x", "member_pipe_ids": ["M1"]}]] _
+
+mode = 'dense_scrutiny', key = 'pressure_regions'
+value = [{'id': 'region:x', 'member_pipe_ids': ['M1']}]
+expected = ('G8', 'RETAINED_PRECISION_PREPARATION_MISMATCH')
+
+    @pytest.mark.parametrize("key, value, expected", SOURCED_CASE, ids=[f"{k}={json.dumps(v)}" for k, v, _ in SOURCED_CASE])
+    @pytest.mark.parametrize("mode", MODES)
+    def test_addendum01_sourced_case_on_the_preview_route(mode, key, value, expected):
+        """Refused: an analysis_state member (null included); pressure_regions other than absent, null or []; equivalent_static
+        other than absent or null. Admitted: a key PP's typed load case does not have, a case-level `pressure` included (serde
+        ignores it, and the invocation digest is over the raw request, so a producer-emitted successor can carry it)."""
+        source, invocation = milestone(mode)
+        invocation = edited_invocation(invocation, lambda m: m["load_cases"][0].update({key: deepcopy(value)}))
+        sealed = reseal(source, invocation)
+>       assert outcome(sealed, invocation) == (expected or ("pass", True, "eligible"))
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:749: AssertionError
+_ test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions=[{"id": "region:x", "member_pipe_ids": ["M1"]}]] _
+
+mode = 'sparse_interactive', key = 'pressure_regions'
+value = [{'id': 'region:x', 'member_pipe_ids': ['M1']}]
+expected = ('G8', 'RETAINED_PRECISION_PREPARATION_MISMATCH')
+
+    @pytest.mark.parametrize("key, value, expected", SOURCED_CASE, ids=[f"{k}={json.dumps(v)}" for k, v, _ in SOURCED_CASE])
+    @pytest.mark.parametrize("mode", MODES)
+    def test_addendum01_sourced_case_on_the_preview_route(mode, key, value, expected):
+        """Refused: an analysis_state member (null included); pressure_regions other than absent, null or []; equivalent_static
+        other than absent or null. Admitted: a key PP's typed load case does not have, a case-level `pressure` included (serde
+        ignores it, and the invocation digest is over the raw request, so a producer-emitted successor can carry it)."""
+        source, invocation = milestone(mode)
+        invocation = edited_invocation(invocation, lambda m: m["load_cases"][0].update({key: deepcopy(value)}))
+        sealed = reseal(source, invocation)
+>       assert outcome(sealed, invocation) == (expected or ("pass", True, "eligible"))
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:749: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions=[{"id": "region:x", "member_pipe_ids": ["M1"]}]]
+FAILED tests/test_retained_precision_b3.py::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions=[{"id": "region:x", "member_pipe_ids": ["M1"]}]]
+2 failed, 373 passed in 49.89s
+# end 2026-10-08T14:17:57Z rc=1

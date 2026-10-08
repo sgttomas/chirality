@@ -1,0 +1,13 @@
+# i100 job add1_base_ts (slot) queued 2026-10-08T13:48:40Z dir=scratch/i100_b3r/add1/arch/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV113_PROBES=WT/scratch/i100_b3r/add1/probes.json RV113_PROBES_OUT=WT/scratch/i100_b3r/add1/runs/base/ts.jsonl WT/sweep-skewpin/projects/chirality-piping/node_modules/.bin/vitest run src/features/results/rv113Census.test.ts
+# start 2026-10-08T13:48:41Z
+
+ RUN  v4.1.10 WT/scratch/i100_b3r/add1/arch/projects/chirality-piping/apps/desktop
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  07:48:41
+   Duration  1.90s (transform 369ms, setup 70ms, import 472ms, tests 1.05s, environment 247ms)
+
+# end 2026-10-08T13:48:43Z rc=0

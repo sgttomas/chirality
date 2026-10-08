@@ -1,0 +1,13 @@
+# i100 job add1_exact_aligned_ts (slot) queued 2026-10-08T14:18:51Z dir=scratch/i100_b3r/add1/arch2/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV113_OUT=WT/scratch/i100_b3r/add1/runs/exact_aligned/ts.jsonl WT/sweep-skewpin/projects/chirality-piping/node_modules/.bin/vitest run src/features/results/rv113Census.test.ts
+# start 2026-10-08T14:18:51Z
+
+ RUN  v4.1.10 WT/scratch/i100_b3r/add1/arch2/projects/chirality-piping/apps/desktop
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  08:18:51
+   Duration  869ms (transform 272ms, setup 51ms, import 325ms, tests 282ms, environment 152ms)
+
+# end 2026-10-08T14:18:52Z rc=0

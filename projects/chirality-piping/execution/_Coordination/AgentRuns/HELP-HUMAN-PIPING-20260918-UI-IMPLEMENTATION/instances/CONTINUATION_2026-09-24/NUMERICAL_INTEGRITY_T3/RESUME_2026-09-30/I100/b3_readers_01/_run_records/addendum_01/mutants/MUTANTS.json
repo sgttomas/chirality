@@ -1,0 +1,5 @@
+[
+ {"id": "C1", "file": "core/analysis_runs/retained_precision.py", "edit": "addendum 01: an analysis_state member admitted on the preview route"},
+ {"id": "C2", "file": "core/analysis_runs/retained_precision.py", "edit": "addendum 01: pressure_regions read as falsy (the reading before the change)"},
+ {"id": "C3", "file": "core/analysis_runs/retained_precision.py", "edit": "addendum 01: any list admitted as pressure_regions on the preview route"}
+]

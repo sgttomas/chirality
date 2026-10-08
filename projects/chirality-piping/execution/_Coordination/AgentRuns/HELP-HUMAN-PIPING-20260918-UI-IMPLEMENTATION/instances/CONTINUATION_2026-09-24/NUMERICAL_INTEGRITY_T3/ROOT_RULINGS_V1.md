@@ -16161,3 +16161,22 @@ I108 refreshed the package for `d07006c2f0` (CHANGE_RECORD `ddce438a…`, PR_BOD
 - **N-3 and N-5.** No action. N-5's clause is met in substance.
 
 **Open before the merge:** Pass B (I107, then RV124), hosted CI, and the exact-head DEC-025 with the src-tauri suite.
+
+## The G8 sourced-case rule aligned across the three readers (I100's B3 addendum 01); RS and TS to I101 (ROOT, 2026-10-08 UTC)
+
+**I100's addendum** (`R/I100/b3_readers_01/ADDENDUM_01.md`, `7a336bfd…`; SHA256SUMS.addendum_01 85 of 85; PY at `b7721d27e9` on `b2-p`) found that all four disputed keys reach G8 in every reader. 44 preview probes pass G0–G7 everywhere, and 18 bound readings differ. No D-number introduced any reader's clause; all three come from the 2026-10-03 reader drafts.
+
+**Ruled: the aligned rule, for both routes in all three readers.** At G8's sourced-case check, a sourced case passes only when:
+- `pressure_regions` is absent, null or `[]` (type-strict; B3D-11's `[]` leniency; on the exact route `[]` only);
+- `equivalent_static` is null or absent;
+- the `analysis_state` key is absent (DOMAIN D1.5; PP's D1.5 admission refuses any non-Absent `analysis_state`).
+
+A case-level `pressure` key is not refused. PP's `PreviewLoadCase` has no such field and accepts unknown keys, so a successor PP emits can carry it, and TS's clause refused a receipt PP can emit.
+
+**PY is aligned** at `b7721d27e9`.
+- **Tests:** 48 added.
+- **Mutants:** 3 of 3 killed.
+- **Census:** 0 changes over 07m and 07n.
+- **Suites:** 0 removed, 0 changed.
+
+**RS and TS** get I100's diffs, which I101 applies with a test and a mutant per clause. The 52 shared shapes are I100's. With the diffs applied, 0 of 44 preview and 0 of 12 exact readings differ. The fix ships with B2/B3. PR-B1's readers equal main's on this check.

@@ -1,0 +1,45 @@
+# i100 job add1_exact_today_rs (cargo) queued 2026-10-08T14:18:36Z dir=scratch/i100_b3r/add1/arch3/projects/chirality-piping/core/reporting/result_export
+# target=targets/i100-b3r-rs-x3 args: test --locked --offline --test rv113_census rv113_census -- --exact
+   Compiling proc-macro2 v1.0.107
+   Compiling version_check v0.9.5
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.26
+   Compiling typenum v1.20.1
+   Compiling serde_core v1.0.229
+   Compiling zmij v1.0.23
+   Compiling libc v0.2.189
+   Compiling serde_json v1.0.151
+   Compiling serde v1.0.229
+   Compiling itoa v1.0.18
+   Compiling memchr v2.8.3
+   Compiling ryu v1.0.23
+   Compiling cfg-if v1.0.5
+   Compiling open_pipe_stress_units v0.1.0 (WT/scratch/i100_b3r/add1/arch3/projects/chirality-piping/core/units)
+   Compiling generic-array v0.14.7
+   Compiling syn v3.0.6
+   Compiling serde_derive v1.0.229
+   Compiling cpufeatures v0.2.17
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling digest v0.10.7
+   Compiling sha2 v0.10.9
+   Compiling open_pipe_stress_canonical_json v0.1.0 (WT/scratch/i100_b3r/add1/arch3/projects/chirality-piping/core/serialization/canonical_json)
+   Compiling open_pipe_stress_result_export v0.1.0 (WT/scratch/i100_b3r/add1/arch3/projects/chirality-piping/core/reporting/result_export)
+warning: function `derived` is never used
+   --> src/source_blocks.rs:433:4
+    |
+433 | fn derived(recipe: &Value, row: &Value, inputs: &[&Value]) -> Result<(), String> {
+    |    ^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `open_pipe_stress_result_export` (lib) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.58s
+     Running tests/rv113_census.rs (WT/targets/i100-b3r-rs-x3/debug/deps/rv113_census-a92cb1c701bab55e)
+
+running 1 test
+test rv113_census ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 2.15s
+
+# end 2026-10-08T14:18:44Z rc=0

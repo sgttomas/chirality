@@ -1,0 +1,5 @@
+# i100 job add1_shapes (slot) queued 2026-10-08T14:18:14Z dir=scratch/i100_b3r
+# args: VENV/bin/python WT/scratch/i100_b3r/tools/add1_shapes.py WT/scratch/i100_b3r/head5/projects/chirality-piping WT/scratch/i100_b3r/add1/probes.json WT/scratch/i100_b3r/add1/shapes/add1_shapes.json WT/scratch/i100_b3r/add1/shapes/py_add1_shapes.jsonl WT/scratch/i100_b3r/add1/shapes/add1_inputs.jsonl
+# start 2026-10-08T14:18:24Z
+6 bases; 52 shapes; 0 bound verdicts differ from the expectation
+# end 2026-10-08T14:18:34Z rc=0

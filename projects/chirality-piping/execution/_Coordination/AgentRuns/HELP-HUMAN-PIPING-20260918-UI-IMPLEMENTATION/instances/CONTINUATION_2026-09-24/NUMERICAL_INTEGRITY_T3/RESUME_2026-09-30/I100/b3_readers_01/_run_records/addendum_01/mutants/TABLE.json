@@ -1,0 +1,121 @@
+[
+ {
+  "id": "C1",
+  "edit": "addendum 01: an analysis_state member admitted on the preview route",
+  "tests": 375,
+  "failed": 6,
+  "killed_by_assertion": true,
+  "errors": [],
+  "failures": [
+   {
+    "test": "test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-analysis_state={\"kind\": \"load_reference_state\"}]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')\n  \n  At index 0 diff: 'pass' != 'G8'\n  Left contains one more item: 'eligibl"
+   },
+   {
+    "test": "test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-analysis_state=null]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')\n  \n  At index 0 diff: 'pass' != 'G8'\n  Left contains one more item: 'eligibl"
+   },
+   {
+    "test": "test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-analysis_state={}]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')\n  \n  At index 0 diff: 'pass' != 'G8'\n  Left contains one more item: 'eligibl"
+   },
+   {
+    "test": "test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-analysis_state={\"kind\": \"load_reference_state\"}]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')\n  \n  At index 0 diff: 'pass' != 'G8'\n  Left contains one more item: 'eligibl"
+   },
+   {
+    "test": "test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-analysis_state=null]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')\n  \n  At index 0 diff: 'pass' != 'G8'\n  Left contains one more item: 'eligibl"
+   },
+   {
+    "test": "test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-analysis_state={}]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')\n  \n  At index 0 diff: 'pass' != 'G8'\n  Left contains one more item: 'eligibl"
+   }
+  ]
+ },
+ {
+  "id": "C2",
+  "edit": "addendum 01: pressure_regions read as falsy (the reading before the change)",
+  "tests": 375,
+  "failed": 8,
+  "killed_by_assertion": true,
+  "errors": [],
+  "failures": [
+   {
+    "test": "test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions={}]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')\n  \n  At index 0 diff: 'pass' != 'G8'\n  Left contains one more item: 'eligibl"
+   },
+   {
+    "test": "test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions=0]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')\n  \n  At index 0 diff: 'pass' != 'G8'\n  Left contains one more item: 'eligibl"
+   },
+   {
+    "test": "test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions=false]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')\n  \n  At index 0 diff: 'pass' != 'G8'\n  Left contains one more item: 'eligibl"
+   },
+   {
+    "test": "test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions=\"\"]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')\n  \n  At index 0 diff: 'pass' != 'G8'\n  Left contains one more item: 'eligibl"
+   },
+   {
+    "test": "test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions={}]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')\n  \n  At index 0 diff: 'pass' != 'G8'\n  Left contains one more item: 'eligibl"
+   },
+   {
+    "test": "test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions=0]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')\n  \n  At index 0 diff: 'pass' != 'G8'\n  Left contains one more item: 'eligibl"
+   },
+   {
+    "test": "test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions=false]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')\n  \n  At index 0 diff: 'pass' != 'G8'\n  Left contains one more item: 'eligibl"
+   },
+   {
+    "test": "test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions=\"\"]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')\n  \n  At index 0 diff: 'pass' != 'G8'\n  Left contains one more item: 'eligibl"
+   }
+  ]
+ },
+ {
+  "id": "C3",
+  "edit": "addendum 01: any list admitted as pressure_regions on the preview route",
+  "tests": 375,
+  "failed": 2,
+  "killed_by_assertion": true,
+  "errors": [],
+  "failures": [
+   {
+    "test": "test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-pressure_regions=[{\"id\": \"region:x\", \"member_pipe_ids\": [\"M1\"]}]]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')\n  \n  At index 0 diff: 'pass' != 'G8'\n  Left contains one more item: 'eligibl"
+   },
+   {
+    "test": "test_retained_precision_b3::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-pressure_regions=[{\"id\": \"region:x\", \"member_pipe_ids\": [\"M1\"]}]]",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')\n  \n  At index 0 diff: 'pass' != 'G8'\n  Left contains one more item: 'eligibl"
+   }
+  ]
+ },
+ {
+  "id": "NONE",
+  "edit": "control",
+  "tests": 375,
+  "failed": 0,
+  "killed_by_assertion": false,
+  "errors": [],
+  "failures": []
+ }
+]

@@ -1,0 +1,5 @@
+# i100 job add1_exact_today_py (slot) queued 2026-10-08T14:18:34Z dir=scratch/i100_b3r
+# args: VENV/bin/python WT/scratch/i100_b3r/tools/rv113_py_harness.py WT/scratch/i100_b3r/add1/arch3/projects/chirality-piping census WT/scratch/i100_b3r/add1/runs/exact_today/py.jsonl
+# start 2026-10-08T14:18:34Z
+12 lines -> WT/scratch/i100_b3r/add1/runs/exact_today/py.jsonl
+# end 2026-10-08T14:18:36Z rc=0

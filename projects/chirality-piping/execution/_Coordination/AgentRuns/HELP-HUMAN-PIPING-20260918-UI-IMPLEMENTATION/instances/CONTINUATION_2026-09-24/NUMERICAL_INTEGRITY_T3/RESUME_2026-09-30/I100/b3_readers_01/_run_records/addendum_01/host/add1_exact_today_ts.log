@@ -1,0 +1,13 @@
+# i100 job add1_exact_today_ts (slot) queued 2026-10-08T14:18:44Z dir=scratch/i100_b3r/add1/arch3/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV113_OUT=WT/scratch/i100_b3r/add1/runs/exact_today/ts.jsonl WT/sweep-skewpin/projects/chirality-piping/node_modules/.bin/vitest run src/features/results/rv113Census.test.ts
+# start 2026-10-08T14:18:45Z
+
+ RUN  v4.1.10 WT/scratch/i100_b3r/add1/arch3/projects/chirality-piping/apps/desktop
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  08:18:45
+   Duration  1.11s (transform 291ms, setup 81ms, import 347ms, tests 336ms, environment 277ms)
+
+# end 2026-10-08T14:18:46Z rc=0

@@ -1,0 +1,153 @@
+# i100 job add1_mut_C1 (slot) queued 2026-10-08T14:15:25Z dir=scratch/i100_b3r/add1/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=C1 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b3r/tmp/add1_mut_C1/basetemp -q -rf --junitxml=WT/scratch/i100_b3r/add1/mutants/runs/C1/junit.xml tests/test_retained_precision_b3.py
+# start 2026-10-08T14:15:25Z
+........................................................................ [ 19%]
+........................................................................ [ 38%]
+........................................................................ [ 57%]
+........................................................................ [ 76%]
+...........................................FFF...................FFF.... [ 96%]
+...............                                                          [100%]
+=================================== FAILURES ===================================
+_ test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-analysis_state={"kind": "load_reference_state"}] _
+
+mode = 'dense_scrutiny', key = 'analysis_state'
+value = {'kind': 'load_reference_state'}
+expected = ('G8', 'RETAINED_PRECISION_PREPARATION_MISMATCH')
+
+    @pytest.mark.parametrize("key, value, expected", SOURCED_CASE, ids=[f"{k}={json.dumps(v)}" for k, v, _ in SOURCED_CASE])
+    @pytest.mark.parametrize("mode", MODES)
+    def test_addendum01_sourced_case_on_the_preview_route(mode, key, value, expected):
+        """Refused: an analysis_state member (null included); pressure_regions other than absent, null or []; equivalent_static
+        other than absent or null. Admitted: a key PP's typed load case does not have, a case-level `pressure` included (serde
+        ignores it, and the invocation digest is over the raw request, so a producer-emitted successor can carry it)."""
+        source, invocation = milestone(mode)
+        invocation = edited_invocation(invocation, lambda m: m["load_cases"][0].update({key: deepcopy(value)}))
+        sealed = reseal(source, invocation)
+>       assert outcome(sealed, invocation) == (expected or ("pass", True, "eligible"))
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:749: AssertionError
+_ test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-analysis_state=null] _
+
+mode = 'dense_scrutiny', key = 'analysis_state', value = None
+expected = ('G8', 'RETAINED_PRECISION_PREPARATION_MISMATCH')
+
+    @pytest.mark.parametrize("key, value, expected", SOURCED_CASE, ids=[f"{k}={json.dumps(v)}" for k, v, _ in SOURCED_CASE])
+    @pytest.mark.parametrize("mode", MODES)
+    def test_addendum01_sourced_case_on_the_preview_route(mode, key, value, expected):
+        """Refused: an analysis_state member (null included); pressure_regions other than absent, null or []; equivalent_static
+        other than absent or null. Admitted: a key PP's typed load case does not have, a case-level `pressure` included (serde
+        ignores it, and the invocation digest is over the raw request, so a producer-emitted successor can carry it)."""
+        source, invocation = milestone(mode)
+        invocation = edited_invocation(invocation, lambda m: m["load_cases"][0].update({key: deepcopy(value)}))
+        sealed = reseal(source, invocation)
+>       assert outcome(sealed, invocation) == (expected or ("pass", True, "eligible"))
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:749: AssertionError
+_ test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-analysis_state={}] _
+
+mode = 'dense_scrutiny', key = 'analysis_state', value = {}
+expected = ('G8', 'RETAINED_PRECISION_PREPARATION_MISMATCH')
+
+    @pytest.mark.parametrize("key, value, expected", SOURCED_CASE, ids=[f"{k}={json.dumps(v)}" for k, v, _ in SOURCED_CASE])
+    @pytest.mark.parametrize("mode", MODES)
+    def test_addendum01_sourced_case_on_the_preview_route(mode, key, value, expected):
+        """Refused: an analysis_state member (null included); pressure_regions other than absent, null or []; equivalent_static
+        other than absent or null. Admitted: a key PP's typed load case does not have, a case-level `pressure` included (serde
+        ignores it, and the invocation digest is over the raw request, so a producer-emitted successor can carry it)."""
+        source, invocation = milestone(mode)
+        invocation = edited_invocation(invocation, lambda m: m["load_cases"][0].update({key: deepcopy(value)}))
+        sealed = reseal(source, invocation)
+>       assert outcome(sealed, invocation) == (expected or ("pass", True, "eligible"))
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:749: AssertionError
+_ test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-analysis_state={"kind": "load_reference_state"}] _
+
+mode = 'sparse_interactive', key = 'analysis_state'
+value = {'kind': 'load_reference_state'}
+expected = ('G8', 'RETAINED_PRECISION_PREPARATION_MISMATCH')
+
+    @pytest.mark.parametrize("key, value, expected", SOURCED_CASE, ids=[f"{k}={json.dumps(v)}" for k, v, _ in SOURCED_CASE])
+    @pytest.mark.parametrize("mode", MODES)
+    def test_addendum01_sourced_case_on_the_preview_route(mode, key, value, expected):
+        """Refused: an analysis_state member (null included); pressure_regions other than absent, null or []; equivalent_static
+        other than absent or null. Admitted: a key PP's typed load case does not have, a case-level `pressure` included (serde
+        ignores it, and the invocation digest is over the raw request, so a producer-emitted successor can carry it)."""
+        source, invocation = milestone(mode)
+        invocation = edited_invocation(invocation, lambda m: m["load_cases"][0].update({key: deepcopy(value)}))
+        sealed = reseal(source, invocation)
+>       assert outcome(sealed, invocation) == (expected or ("pass", True, "eligible"))
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:749: AssertionError
+_ test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-analysis_state=null] _
+
+mode = 'sparse_interactive', key = 'analysis_state', value = None
+expected = ('G8', 'RETAINED_PRECISION_PREPARATION_MISMATCH')
+
+    @pytest.mark.parametrize("key, value, expected", SOURCED_CASE, ids=[f"{k}={json.dumps(v)}" for k, v, _ in SOURCED_CASE])
+    @pytest.mark.parametrize("mode", MODES)
+    def test_addendum01_sourced_case_on_the_preview_route(mode, key, value, expected):
+        """Refused: an analysis_state member (null included); pressure_regions other than absent, null or []; equivalent_static
+        other than absent or null. Admitted: a key PP's typed load case does not have, a case-level `pressure` included (serde
+        ignores it, and the invocation digest is over the raw request, so a producer-emitted successor can carry it)."""
+        source, invocation = milestone(mode)
+        invocation = edited_invocation(invocation, lambda m: m["load_cases"][0].update({key: deepcopy(value)}))
+        sealed = reseal(source, invocation)
+>       assert outcome(sealed, invocation) == (expected or ("pass", True, "eligible"))
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:749: AssertionError
+_ test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-analysis_state={}] _
+
+mode = 'sparse_interactive', key = 'analysis_state', value = {}
+expected = ('G8', 'RETAINED_PRECISION_PREPARATION_MISMATCH')
+
+    @pytest.mark.parametrize("key, value, expected", SOURCED_CASE, ids=[f"{k}={json.dumps(v)}" for k, v, _ in SOURCED_CASE])
+    @pytest.mark.parametrize("mode", MODES)
+    def test_addendum01_sourced_case_on_the_preview_route(mode, key, value, expected):
+        """Refused: an analysis_state member (null included); pressure_regions other than absent, null or []; equivalent_static
+        other than absent or null. Admitted: a key PP's typed load case does not have, a case-level `pressure` included (serde
+        ignores it, and the invocation digest is over the raw request, so a producer-emitted successor can carry it)."""
+        source, invocation = milestone(mode)
+        invocation = edited_invocation(invocation, lambda m: m["load_cases"][0].update({key: deepcopy(value)}))
+        sealed = reseal(source, invocation)
+>       assert outcome(sealed, invocation) == (expected or ("pass", True, "eligible"))
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:749: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-analysis_state={"kind": "load_reference_state"}]
+FAILED tests/test_retained_precision_b3.py::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-analysis_state=null]
+FAILED tests/test_retained_precision_b3.py::test_addendum01_sourced_case_on_the_preview_route[dense_scrutiny-analysis_state={}]
+FAILED tests/test_retained_precision_b3.py::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-analysis_state={"kind": "load_reference_state"}]
+FAILED tests/test_retained_precision_b3.py::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-analysis_state=null]
+FAILED tests/test_retained_precision_b3.py::test_addendum01_sourced_case_on_the_preview_route[sparse_interactive-analysis_state={}]
+6 failed, 369 passed in 50.42s
+# end 2026-10-08T14:16:16Z rc=1

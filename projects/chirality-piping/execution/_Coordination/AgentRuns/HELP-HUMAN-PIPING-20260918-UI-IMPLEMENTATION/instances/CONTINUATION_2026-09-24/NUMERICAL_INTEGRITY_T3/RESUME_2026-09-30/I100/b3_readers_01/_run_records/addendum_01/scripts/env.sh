@@ -1,0 +1,10 @@
+WT=WT
+S=$WT/scratch/i100_b3r
+VENV=$WT/venv
+TG=$WT/targets/i100-b3r-auth
+export OPENPIPESTRESS_CHECKED_JSON_BIN=$TG/checked-json/release/openpipestress_jcs_ijson
+export OPENPIPESTRESS_BINARY64_JSON_BIN=$TG/checked-json/release/openpipestress_jcs_binary64
+export OPENPIPESTRESS_UNITS_BIN=$TG/units-authority/release/openpipestress_units
+export PYTHONDONTWRITEBYTECODE=1
+LANE=$WT/b2-p/projects/chirality-piping
+BASE=$S/base/projects/chirality-piping
