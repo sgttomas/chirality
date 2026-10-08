@@ -1,0 +1,25 @@
+{
+ "filters": [
+  "b2p_",
+  "b3b_rv123",
+  "b1_sp_w_c2",
+  "b1_sp_domain",
+  "i51_c0"
+ ],
+ "skip": [
+  "b2p_w_cb1"
+ ],
+ "mutants": [
+  {
+   "id": "M2-03",
+   "check": "RV123 M2-03 (B2-C \u00a72.4 (i) row 2): a ledger-unavailable operand Run is not decided (rebuild attempted)",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if matches!(&run.outcome, k::ExecutionOutcome::Refused { refusal: k::Refusal::LedgerUnavailable(_), .. }) {",
+     "new": "if false {"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,35 @@
+{
+ "pp": {
+  "base": {
+   "ok": 789,
+   "FAILED": 1,
+   "ignored": 11
+  },
+  "candidate": {
+   "ok": 791,
+   "FAILED": 1,
+   "ignored": 11
+  },
+  "changed": {},
+  "added": {
+   "lib.rs::retained_facade_tests::b2p_ledger_unavailable_operand_has_no_source": "ok",
+   "lib.rs::retained_facade_tests::b2p_rv123_n3_shapes_are_pinned": "ok"
+  },
+  "removed": {}
+ },
+ "runner": {
+  "base": {
+   "ok": 85,
+   "FAILED": 2,
+   "ignored": 0
+  },
+  "candidate": {
+   "ok": 85,
+   "FAILED": 2,
+   "ignored": 0
+  },
+  "changed": {},
+  "added": {},
+  "removed": {}
+ }
+}

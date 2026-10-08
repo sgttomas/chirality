@@ -1,0 +1,11 @@
+[
+ {
+  "id": "M2-03",
+  "check": "RV123 M2-03 (B2-C \u00a72.4 (i) row 2): a ledger-unavailable operand Run is not decided (rebuild attempted)",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b2p_ledger_unavailable_operand_has_no_source"
+  ],
+  "passed": 31
+ }
+]

@@ -1,0 +1,49 @@
+RV123 round-2 repair tests on the working tree committed as cf607a02cd, registered build: PP --lib -- b2p_ b3b_rv123 i51_c0 b1_sp_domain b1_sp_w_c2 --skip b2p_w_cb1 (runs/dev/r2_dev2.log):
+test retained_facade_tests::b1_sp_domain_recheck_names_the_requested_cases ... ok
+test retained_facade_tests::b1_sp_w_c2_fixtures_are_the_live_successors ... ok
+test retained_facade_tests::b1_sp_w_c2_direct_entry_publishes_the_pinned_successor ... ok
+test retained_facade_tests::b2p_capture_refuses_combinations_outside_d14 ... ok
+test retained_facade_tests::b2p_combination_expressions ... ok
+test retained_facade_tests::b2p_combination_observables_stage ... ok
+test retained_facade_tests::b1_sp_w_c2_transaction_outcomes_and_ordinal_mapping ... ok
+test retained_facade_tests::b2p_constants_bound_to_in_tree_fixtures ... ok
+test retained_facade_tests::b1_sp_w_c2_through_retained_w1_publishes_t12 ... ok
+test retained_facade_tests::b2p_d14_predicate_at_its_caps ... ok
+test retained_facade_tests::b2p_custody_binds_the_combination_rows ... ok
+test retained_facade_tests::b2p_combination_successor_fixtures_are_the_live_successors ... ok
+test retained_facade_tests::b2p_gate_entries_shape_and_consistency ... ok
+test retained_facade_tests::b1_sp_w_c2_transaction_faults_and_abandonment ... ok
+test retained_facade_tests::b2p_ledger_unavailable_operand_has_no_source ... ok
+test retained_facade_tests::b2p_repeated_case_combination_is_ordinary ... ok
+test retained_facade_tests::b2p_selectors_at_two_cases_are_refused ... ok
+test retained_facade_tests::b2p_hooks_and_failure_set ... ok
+test retained_facade_tests::b2p_with_case_guards_cross_case_reads - should panic ... ok
+test retained_facade_tests::b2p_serializer_refuses_an_unchained_meter ... ok
+test retained_facade_tests::b2p_witness_inputs ... ok
+test retained_facade_tests::b2p_witness_dispositions_on_the_private_driver ... ok
+test retained_facade_tests::b2p_direct_entry_runs_the_combinations ... ok
+test retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes ... ok
+test retained_facade_tests::b3b_rv123_n2_unused_exact_material_is_not_checked ... ok
+test retained_facade_tests::b3b_rv123_s2_one_case_unavailable_exact_serializer ... ok
+test retained_product_tests::b2p_early_hook_refuses_combinations_outside_d14 ... ok
+test retained_product_tests::i51_c0_isolated_guard_accounting_boundaries ... ok
+test retained_product_tests::i51_c0_isolated_late_hook_custody_and_prefixes ... ok
+test retained_facade_tests::b3b_rv123_s2_unavailable_exact_case_binds_def_e ... ok
+test retained_facade_tests::b3b_rv123_s1_two_member_exact_overlays_each_member ... ok
+test retained_facade_tests::b2p_rv123_n3_shapes_are_pinned ... ok
+test result: ok. 32 passed; 0 failed; 0 ignored; 0 measured; 608 filtered out; finished in 50.20s
+
+First run of the two new tests (runs/dev/r2_dev1.log; the N-3 pins were still TBD, so that test printed them and failed at the pin step; the S-1 test passed):
+RV123_S1 SparseInteractive case={"reason":{"cause":{"kind":"prepared_product_failure","product_attempt_ref":1},"code":"kernel_refused","phase":"kernel"},"source_ref":1,"status":"unavailable","terminal":{"kind":"refused","reason":{"error":{"error":{"tag":"non_finite"},"tag":"accumulator"},"space":"refusal","tag":"ledger_unavailable"}}}
+B2P_DISPOSITIONS rv123_w_cb3_ba SparseInteractive ["retained_selected"]
+B2P_PIN rv123_w_cb3_ba sparse_interactive receipt=86d0f1f821bb212fdea7f431291fe4b22b92c3564320b91911abe04ab50686ca bytes=ec58bcab704f8e870947a90a48321f211637e0131288a86ea1116aeb188751ba
+RV123_S1 DenseScrutiny case={"reason":{"cause":{"kind":"prepared_product_failure","product_attempt_ref":1},"code":"kernel_refused","phase":"kernel"},"source_ref":1,"status":"unavailable","terminal":{"kind":"refused","reason":{"error":{"error":{"tag":"non_finite"},"tag":"accumulator"},"space":"refusal","tag":"ledger_unavailable"}}}
+test retained_facade_tests::b2p_ledger_unavailable_operand_has_no_source ... ok
+B2P_DISPOSITIONS rv123_w_cb3_ba DenseScrutiny ["retained_selected"]
+B2P_PIN rv123_w_cb3_ba dense_scrutiny receipt=03a8eec6106b3c507ca4a7648e0010f6c382e9ece099521b2a0d9044486c2454 bytes=6149647c6cd9264c0fad7760e05c6148462ec36b986eac1e9ad62978f98ecd6c
+B2P_DISPOSITIONS rv123_c1_two_mechanics SparseInteractive ["retained_selected", "retained_unavailable"]
+B2P_PIN rv123_c1_two_mechanics sparse_interactive receipt=577b1fcb79c57e86f498a6cdd04211ba5279fb0effee046607705fecde64c28e bytes=167eb7117c22be10643ae39d39908ec425a955760be5b25201b5edd04b18df68
+B2P_DISPOSITIONS rv123_c1_two_mechanics DenseScrutiny ["retained_selected", "retained_unavailable"]
+B2P_PIN rv123_c1_two_mechanics dense_scrutiny receipt=b2a8db32435415e70ec1d521675e391960c61b19baad27b3eec5a79480280118 bytes=e5ad415d360bdc400df34813b05e6f92e94d6fb76c02b00e11a70b4da0d96342
+test retained_facade_tests::b2p_rv123_n3_shapes_are_pinned ... FAILED
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 638 filtered out; finished in 7.06s

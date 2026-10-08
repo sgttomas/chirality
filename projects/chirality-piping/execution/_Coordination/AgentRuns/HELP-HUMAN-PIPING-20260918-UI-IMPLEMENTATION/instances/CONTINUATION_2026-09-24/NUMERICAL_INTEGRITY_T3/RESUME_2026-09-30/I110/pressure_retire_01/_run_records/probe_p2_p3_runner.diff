@@ -1,0 +1,128 @@
+diff --git a/projects/chirality-piping/core/product_physics/src/lib.rs b/projects/chirality-piping/core/product_physics/src/lib.rs
+index e1b63039b0..b17e7acf3f 100644
+--- a/projects/chirality-piping/core/product_physics/src/lib.rs
++++ b/projects/chirality-piping/core/product_physics/src/lib.rs
+@@ -14875,6 +14875,10 @@ mod tests {
+             changed > 0 && changed <= 4,
+             "expected named inherited fixture pressures for {purpose}"
+         );
++        // I110 P3 probe: strip the zeroed legacy pressure primitives.
++        for case in &mut input.model.load_cases {
++            case.primitive_loads.retain(|load| !(load.category == "pressure" && load.magnitude.value == 0.0));
++        }
+         // T0R (M07 containment): omit the demo's realized joint C-150, which
+         // the ordinary route refuses (JOINT_ELEMENT_EQUILIBRIUM_UNQUALIFIED).
+         input.model.components.retain(|component| component.id != "component:C-150");
+diff --git a/projects/chirality-piping/core/product_physics/src/pressure_runtime.rs b/projects/chirality-piping/core/product_physics/src/pressure_runtime.rs
+index 9872d1f0b8..95bca316cd 100644
+--- a/projects/chirality-piping/core/product_physics/src/pressure_runtime.rs
++++ b/projects/chirality-piping/core/product_physics/src/pressure_runtime.rs
+@@ -133,10 +133,12 @@ pub(crate) fn validate_profile(model: &PreviewModel, diagnostics: &mut Vec<Diagn
+                 "model document 0.3.0 requires an explicit pressure contract version and mode",
+             ),
+             Some(contract) => {
+-                if !matches!(
++                if (contract.version.as_deref(), contract.mode.as_deref()) == (Some("1.0.0"), Some("legacy_pressure_v1")) {
++                    problem(diagnostics, "PRESSURE_MODEL_REAUTHOR_REQUIRED", &["pressure_contract"],
++                        "the 1.0.0/legacy_pressure_v1 pressure contract is retired; re-author this model to 2.0.0/exact_straight_pressure_v2");
++                } else if !matches!(
+                     (contract.version.as_deref(), contract.mode.as_deref()),
+-                    (Some("1.0.0"), Some("legacy_pressure_v1"))
+-                        | (Some(EXACT_VERSION), Some(EXACT_MODE))
++                    (Some(EXACT_VERSION), Some(EXACT_MODE))
+                 ) {
+                     problem(diagnostics, "PRESSURE_CONTRACT_UNSUPPORTED", &["pressure_contract"],
+                         "supported pressure contracts are 1.0.0/legacy_pressure_v1 and 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back");
+@@ -211,14 +213,7 @@ pub(crate) fn validate_profile(model: &PreviewModel, diagnostics: &mut Vec<Diagn
+                     "pressure_regions requires the explicit exact pressure profile; legacy cases must omit the namespace");
+             }
+             for load in &case.primitive_loads {
+-                if (load.category == "pressure" || load.dimension == "pressure")
+-                    && load.magnitude.value != 0.0
+-                {
+-                    // Only named in-crate historical tests can enter this scope; normal builds have no selector.
+-                    #[cfg(test)]
+-                    if crate::historical_pressure_reference::active() {
+-                        continue;
+-                    }
++                if load.category == "pressure" || load.dimension == "pressure" {
+                     problem(diagnostics, "PRESSURE_MODEL_REAUTHOR_REQUIRED", &[&case.id, &load.id],
+                         "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs");
+                 }
+diff --git a/projects/chirality-piping/core/runner/headless/src/lib.rs b/projects/chirality-piping/core/runner/headless/src/lib.rs
+index c226f523d7..bb7bfadf37 100644
+--- a/projects/chirality-piping/core/runner/headless/src/lib.rs
++++ b/projects/chirality-piping/core/runner/headless/src/lib.rs
+@@ -1363,11 +1363,7 @@ mod tests {
+         // solving; do not change the shared fixture or other tests' inputs.
+         let mut current_request = preview_request();
+         for case in &mut current_request.model.load_cases {
+-            for load in &mut case.primitive_loads {
+-                if load.category == "pressure" || load.dimension == "pressure" {
+-                    load.magnitude.value = 0.0;
+-                }
+-            }
++            case.primitive_loads.retain(|load| !(load.category == "pressure" || load.dimension == "pressure"));
+         }
+         let output = run_preview_in_memory(request(), current_request);
+         let mechanics = output
+@@ -1446,11 +1442,7 @@ mod tests {
+         // declare only this current input unpressurized before the real solve.
+         let mut current_request = preview_request();
+         for case in &mut current_request.model.load_cases {
+-            for load in &mut case.primitive_loads {
+-                if load.category == "pressure" || load.dimension == "pressure" {
+-                    load.magnitude.value = 0.0;
+-                }
+-            }
++            case.primitive_loads.retain(|load| !(load.category == "pressure" || load.dimension == "pressure"));
+         }
+         let output = run_preview_in_memory_with_rule_check(
+             request(),
+@@ -1511,11 +1503,7 @@ mod tests {
+             "../../../product_physics/tests/fixtures/preview_physics_invented_model.json"
+         )).unwrap(), "materials": []});
+         for case in ordinary["model"]["load_cases"].as_array_mut().unwrap() {
+-            for load in case["primitive_loads"].as_array_mut().unwrap() {
+-                if load["category"] == "pressure" || load["dimension"] == "pressure" {
+-                    load["magnitude"]["value"] = serde_json::json!(0.0);
+-                }
+-            }
++            case["primitive_loads"].as_array_mut().unwrap().retain(|load| !(load["category"] == "pressure" || load["dimension"] == "pressure"));
+         }
+         // T0R: a fresh non-exact solve publishes preview-physics-1, never precision-1.
+         for (payload, contract) in [(ordinary, open_pipe_stress_result_export::semantic_contract::PREVIEW_PHYSICS_ID),
+diff --git a/projects/chirality-piping/core/runner/headless/src/result_envelope_binding.rs b/projects/chirality-piping/core/runner/headless/src/result_envelope_binding.rs
+index 719bfc3002..5b2c2ce1b4 100644
+--- a/projects/chirality-piping/core/runner/headless/src/result_envelope_binding.rs
++++ b/projects/chirality-piping/core/runner/headless/src/result_envelope_binding.rs
+@@ -456,11 +456,7 @@ mod tests {
+  // declare a zero-pressure current companion before invoking the public solver.
+  fn unpressurized_binding_model(mut model: Value) -> Value {
+    for case in model["load_cases"].as_array_mut().unwrap() {
+-     for load in case["primitive_loads"].as_array_mut().unwrap() {
+-       if load["category"] == "pressure" || load["dimension"] == "pressure" {
+-         load["magnitude"]["value"] = serde_json::json!(0.0);
+-       }
+-     }
++     case["primitive_loads"].as_array_mut().unwrap().retain(|load| !(load["category"] == "pressure" || load["dimension"] == "pressure"));
+    }
+    model
+  }
+diff --git a/projects/chirality-piping/core/runner/headless/tests/preview_physics_admission.rs b/projects/chirality-piping/core/runner/headless/tests/preview_physics_admission.rs
+index 564d9fef0d..cd698a82c5 100644
+--- a/projects/chirality-piping/core/runner/headless/tests/preview_physics_admission.rs
++++ b/projects/chirality-piping/core/runner/headless/tests/preview_physics_admission.rs
+@@ -253,11 +253,7 @@ fn realized_joint_is_refused_as_a_sanitized_blocked_envelope() {
+     let mut model = read("fixtures/product_preview/invented_preview_model.json");
+     // Pressure is incidental; zero it in memory so only the joint refusal applies.
+     for case in model["load_cases"].as_array_mut().unwrap() {
+-        for load in case["primitive_loads"].as_array_mut().unwrap() {
+-            if load["category"] == "pressure" {
+-                load["magnitude"]["value"] = json!(0.0);
+-            }
+-        }
++        case["primitive_loads"].as_array_mut().unwrap().retain(|load| !(load["category"] == "pressure" || load["dimension"] == "pressure"));
+     }
+     let payload = json!({"model":model,"materials":[]});
+     for mode in MODES {

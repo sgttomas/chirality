@@ -10,3 +10,5 @@ One line per integration event (UTC). Brief: `R/BRIEFS/WORKING_ITEMS_T3.md` (`80
 - 2026-10-08 17:10 U3: I111 returned (M07 report; host refused REPORT.md for I111 and WI; ROOT wrote it). Forwarded to ROOT; ROOT takes options (a)/(b)/(c) to the owner. Hold: the scope file, the bypass, O1–O4, G10, G11.
 - 2026-10-08 17:24 U1: DEC-025 `B1_f4a0430412_r2` ALL-DONE (0 changed of 40 manifests; +131/−9 as pre-freeze plus the ring test; pytest 4,426/32 = collected 4,458; vitest 4,245); src-tauri 116 = 116 identical; dispatch 37808185743 green.
 - 2026-10-08 17:24 U1: #1154 MERGED `7eae707bb7` (`--match-head-commit f4a0430412`); main since cut 0 paths under P. NUM absorbed main at `a232d1edd5` (equal to main outside P/execution). Record `IMPLEMENTATION/B1_MERGE/` (RECORD.md accepted by the host).
+- 2026-10-08 17:45 U4: I105 repair 02 (S-1 hook test, N-3 pins) verified; `b2` pushed at `cf607a02cd`; RV123 resumed to confirm.
+- 2026-10-08 17:50 U3: I110 returned (219 sites; D-1..D-4; Stage 1 ~16 h, Stage 2 ~13 h after M07). Label on NUM at 4 sites only; old branches hold no live work. D-1/D-2 to ROOT; D-4 reuse `PRESSURE_MODEL_REAUTHOR_REQUIRED` (WI); D-3 (a) pending.
