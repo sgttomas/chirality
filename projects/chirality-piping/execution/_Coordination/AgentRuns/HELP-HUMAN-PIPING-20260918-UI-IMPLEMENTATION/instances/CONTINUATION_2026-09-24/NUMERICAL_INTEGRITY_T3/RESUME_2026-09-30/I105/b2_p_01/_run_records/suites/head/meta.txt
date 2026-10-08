@@ -1,0 +1,7 @@
+START head 2026-10-08T11:59:34Z root=WT/scratch/i105_b2_p/head parts=pp runner deps tauri
+pp rc=101 2026-10-08T12:01:21Z
+runner rc=101 2026-10-08T12:02:15Z
+deps_self_weight_wasm rc=0 2026-10-08T12:02:23Z
+deps_operation_applier rc=0 2026-10-08T12:02:33Z
+tauri rc=0 2026-10-08T12:02:56Z
+DONE head 2026-10-08T12:02:56Z

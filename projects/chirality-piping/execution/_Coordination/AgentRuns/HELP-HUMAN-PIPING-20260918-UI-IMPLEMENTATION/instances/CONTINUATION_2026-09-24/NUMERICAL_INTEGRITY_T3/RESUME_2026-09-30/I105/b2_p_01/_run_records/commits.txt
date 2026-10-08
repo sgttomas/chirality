@@ -1,0 +1,4 @@
+Branch codex/piping-t3-b2-20261008 in WT/b2 (not pushed), over e67c3646808f19d61a77e77e8006dda723105243:
+22e9d000620a44fd7575eb11b8d51fc702436f09 piping(T3 B3b-P): the ordinary view of the exact evidence, a control and its coverage check
+cc24cd955ca6ccedca6502bec0624de32ee5c0a9 piping(T3 B3b-P): tests for the remaining exact evidence checks and two selected exact cases
+8d3419b542941f817114727cb659337726c0f805 piping(T3 B3b-P): the exact route under physics-retained-1 (B3-D P-1 to P-13)

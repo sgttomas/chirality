@@ -1,0 +1,698 @@
+[
+ {
+  "id": "P1-01",
+  "check": "P-1 route: branch E is the exact route",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_coexistence_publishes_the_exact_ordinary_bytes_under_p2",
+   "retained_facade_tests::b3b_direct_entry_runs_the_exact_route",
+   "retained_facade_tests::b3b_exact_capture_refuses_a_selected_basis",
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry",
+   "retained_facade_tests::b3b_witness_inputs_and_routes"
+  ],
+  "passed": 12
+ },
+ {
+  "id": "P1-02",
+  "check": "P-1 route: a load-state model has no route (redundant with the namespace branch)",
+  "verdict": "survived",
+  "failed": [],
+  "passed": 23
+ },
+ {
+  "id": "P1-03",
+  "check": "P-1 route: no namespace branch, no route",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_witness_inputs_and_routes"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-04",
+  "check": "P-2 budget: the exact route takes PHYSICS_SOURCE_WORK_LIMIT",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b1_sp_w_c2_transaction_faults_and_abandonment",
+   "retained_facade_tests::b1_sp_w_c2_transaction_outcomes_and_ordinal_mapping",
+   "retained_facade_tests::b3a_m3l_needs_no_producer_change",
+   "retained_facade_tests::b3b_coexistence_publishes_the_exact_ordinary_bytes_under_p2",
+   "retained_facade_tests::b3b_direct_entry_runs_the_exact_route",
+   "retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry",
+   "retained_facade_tests::b3b_witness_inputs_and_routes",
+   "retained_facade_tests::u3_permitted_path_publishes_the_pinned_successor"
+  ],
+  "passed": 10
+ },
+ {
+  "id": "P1-05",
+  "check": "P-2 budget: permitted_run uses the route budget",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_coexistence_publishes_the_exact_ordinary_bytes_under_p2",
+   "retained_facade_tests::b3b_direct_entry_runs_the_exact_route",
+   "retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice"
+  ],
+  "passed": 18
+ },
+ {
+  "id": "P1-06",
+  "check": "P-1 the facade observer is on the route",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_direct_entry_runs_the_exact_route",
+   "retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice"
+  ],
+  "passed": 19
+ },
+ {
+  "id": "P1-07",
+  "check": "P-3 scope: an exact model only on the exact route",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_direct_entry_runs_the_exact_route",
+   "retained_facade_tests::b3b_exact_capture_refuses_a_selected_basis",
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "passed": 14
+ },
+ {
+  "id": "P1-08",
+  "check": "P-3 the exact route captures materials",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_direct_entry_runs_the_exact_route",
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "passed": 15
+ },
+ {
+  "id": "P1-09",
+  "check": "P-3 a used material is checked",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_direct_entry_runs_the_exact_route",
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "passed": 15
+ },
+ {
+  "id": "P1-10",
+  "check": "P-3 the constitutive basis",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_product_tests::b3b_exact_material_check_refuses_each_defect"
+  ],
+  "passed": 19
+ },
+ {
+  "id": "P1-11",
+  "check": "P-3 G-hat equals RN64(E/(2 RN64(1+nu)))",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice",
+   "retained_product_tests::b3b_exact_material_check_refuses_each_defect"
+  ],
+  "passed": 21
+ },
+ {
+  "id": "P1-12",
+  "check": "P-3 G-hat normal",
+  "verdict": "killed",
+  "failed": [
+   "retained_product_tests::b3b_exact_material_check_refuses_each_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-13",
+  "check": "P-3 G-hat positive",
+  "verdict": "killed",
+  "failed": [
+   "retained_product_tests::b3b_exact_material_check_refuses_each_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-14",
+  "check": "P-5 BaseENu on the exact route",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required"
+  ],
+  "passed": 20
+ },
+ {
+  "id": "P1-15",
+  "check": "P-5 the base common E/nu selection only",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_capture_refuses_a_selected_basis"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-16",
+  "check": "P-1 finish: the route base contract",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_direct_entry_runs_the_exact_route",
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "passed": 15
+ },
+ {
+  "id": "P1-17",
+  "check": "P-1 custody: the route base contract",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_direct_entry_runs_the_exact_route",
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "passed": 15
+ },
+ {
+  "id": "P1-18",
+  "check": "P-6 a one-case scope carries the route",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_direct_entry_runs_the_exact_route",
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice"
+  ],
+  "passed": 17
+ },
+ {
+  "id": "P1-19",
+  "check": "P-6 observables dispatch on the route",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_direct_entry_runs_the_exact_route",
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "passed": 15
+ },
+ {
+  "id": "P1-20",
+  "check": "P-6 closed evidence",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required"
+  ],
+  "passed": 19
+ },
+ {
+  "id": "P1-21",
+  "check": "P-6 pressure evidence empty",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-22",
+  "check": "P-6 connector evidence empty",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-23",
+  "check": "P-6 one exact case per requested case",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-24",
+  "check": "P-6 the case entry eight keys",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required"
+  ],
+  "passed": 19
+ },
+ {
+  "id": "P1-25",
+  "check": "P-6 the entry case",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required"
+  ],
+  "passed": 19
+ },
+ {
+  "id": "P1-26",
+  "check": "P-6 profile_mode",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required"
+  ],
+  "passed": 19
+ },
+ {
+  "id": "P1-27",
+  "check": "P-6 material basis",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required"
+  ],
+  "passed": 19
+ },
+ {
+  "id": "P1-28",
+  "check": "P-6 coverage closed keys",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required"
+  ],
+  "passed": 19
+ },
+ {
+  "id": "P1-29",
+  "check": "P-6 coverage complete",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-30",
+  "check": "P-6 coverage no unavailable pipe",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-31",
+  "check": "P-6 no assembly group",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-32",
+  "check": "P-6 assembly vectors +0",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-33",
+  "check": "P-6 material record coverage",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-34",
+  "check": "P-6 section record coverage (pre-empted by P-8)",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-35",
+  "check": "P-6 section OD",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-36",
+  "check": "P-6 section wall",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-37",
+  "check": "P-6 material record identity",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required"
+  ],
+  "passed": 19
+ },
+ {
+  "id": "P1-38",
+  "check": "P-6 material E",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-39",
+  "check": "P-6 material nu",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-40",
+  "check": "P-6 material G (N-6 producer side)",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-41",
+  "check": "P-7 maxima read the route evidence",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_direct_entry_runs_the_exact_route",
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "passed": 15
+ },
+ {
+  "id": "P1-42",
+  "check": "P-6 view numbers read the route evidence",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-43",
+  "check": "P-8 sections regenerated on the exact route",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "passed": 16
+ },
+ {
+  "id": "P1-44",
+  "check": "P-8 section domain",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-45",
+  "check": "P-8 section identity",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required"
+  ],
+  "passed": 19
+ },
+ {
+  "id": "P1-46",
+  "check": "P-8 section numeric slots",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect"
+  ],
+  "passed": 22
+ },
+ {
+  "id": "P1-47",
+  "check": "P-8 the prepared values (I)",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "passed": 19
+ },
+ {
+  "id": "P1-48",
+  "check": "P-8 the commit plan precharges the section moves",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required"
+  ],
+  "passed": 20
+ },
+ {
+  "id": "P1-49",
+  "check": "P-8 overlay applies the sections on the exact route",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "passed": 17
+ },
+ {
+  "id": "P1-50",
+  "check": "P-8 overlay keys",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "passed": 19
+ },
+ {
+  "id": "P1-51",
+  "check": "P-9 identity",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry",
+   "retained_wire_tests::b3b_exact_constants_bound_to_in_tree_fixtures"
+  ],
+  "passed": 18
+ },
+ {
+  "id": "P1-52",
+  "check": "P-9 profile",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry",
+   "retained_wire_tests::b3b_exact_constants_bound_to_in_tree_fixtures"
+  ],
+  "passed": 18
+ },
+ {
+  "id": "P1-53",
+  "check": "P-9 the attempt definition id",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry",
+   "retained_wire_tests::b3b_exact_constants_bound_to_in_tree_fixtures"
+  ],
+  "passed": 18
+ },
+ {
+  "id": "P1-54",
+  "check": "S-1 the preparation payload definition H",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry",
+   "retained_wire_tests::b3b_exact_constants_bound_to_in_tree_fixtures"
+  ],
+  "passed": 18
+ },
+ {
+  "id": "P1-55",
+  "check": "P-9 geometry route",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry",
+   "retained_wire_tests::b3b_exact_constants_bound_to_in_tree_fixtures"
+  ],
+  "passed": 18
+ },
+ {
+  "id": "P1-56",
+  "check": "P-9 material shear origin dispatch",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_direct_entry_runs_the_exact_route",
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "passed": 17
+ },
+ {
+  "id": "P1-57",
+  "check": "P-9 derived origin: nu bits",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "passed": 19
+ },
+ {
+  "id": "P1-58",
+  "check": "P-9 successor identity on the route (n-case serializer)",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "passed": 19
+ },
+ {
+  "id": "P1-59",
+  "check": "S-1 the preparation payload takes the route",
+  "verdict": "killed",
+  "failed": [
+   "retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors",
+   "retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes",
+   "retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required",
+   "retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry"
+  ],
+  "passed": 19
+ }
+]

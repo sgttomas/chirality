@@ -1,0 +1,18 @@
+N11_TS direct_DenseScrutiny contract=physics status=needs_recompute findings=NUMERICAL_INTEGRITY_NOT_QUALIFIED|NUMERICAL_CASE_EVIDENCE_INCOMPLETE
+N11_TS direct_SparseInteractive contract=physics status=needs_recompute findings=NUMERICAL_INTEGRITY_NOT_QUALIFIED|NUMERICAL_CASE_EVIDENCE_INCOMPLETE
+N11_TS precommit_DenseScrutiny contract=physics status=needs_recompute findings=NUMERICAL_INTEGRITY_NOT_QUALIFIED|NUMERICAL_CASE_EVIDENCE_INCOMPLETE
+N11_TS precommit_SparseInteractive contract=physics status=needs_recompute findings=NUMERICAL_INTEGRITY_NOT_QUALIFIED|NUMERICAL_CASE_EVIDENCE_INCOMPLETE
+N11_TS section_overlay_DenseScrutiny contract=physics status=needs_recompute findings=NUMERICAL_INTEGRITY_NOT_QUALIFIED|NUMERICAL_CASE_EVIDENCE_INCOMPLETE
+N11_TS section_overlay_SparseInteractive contract=physics status=needs_recompute findings=NUMERICAL_INTEGRITY_NOT_QUALIFIED|NUMERICAL_CASE_EVIDENCE_INCOMPLETE
+N11_TS serializer_DenseScrutiny contract=physics status=needs_recompute findings=NUMERICAL_INTEGRITY_NOT_QUALIFIED|NUMERICAL_CASE_EVIDENCE_INCOMPLETE
+N11_TS serializer_SparseInteractive contract=physics status=needs_recompute findings=NUMERICAL_INTEGRITY_NOT_QUALIFIED|NUMERICAL_CASE_EVIDENCE_INCOMPLETE
+ ✓ src/features/results/zzI105N11.test.ts > I105 N-11: physics-1 base readers accept the noticed exact fallback > has the written envelopes 1ms
+ ✓ src/features/results/zzI105N11.test.ts > I105 N-11: physics-1 base readers accept the noticed exact fallback > direct_DenseScrutiny 4ms
+ ✓ src/features/results/zzI105N11.test.ts > I105 N-11: physics-1 base readers accept the noticed exact fallback > direct_SparseInteractive 2ms
+ ✓ src/features/results/zzI105N11.test.ts > I105 N-11: physics-1 base readers accept the noticed exact fallback > precommit_DenseScrutiny 2ms
+ ✓ src/features/results/zzI105N11.test.ts > I105 N-11: physics-1 base readers accept the noticed exact fallback > precommit_SparseInteractive 1ms
+ ✓ src/features/results/zzI105N11.test.ts > I105 N-11: physics-1 base readers accept the noticed exact fallback > section_overlay_DenseScrutiny 1ms
+ ✓ src/features/results/zzI105N11.test.ts > I105 N-11: physics-1 base readers accept the noticed exact fallback > section_overlay_SparseInteractive 1ms
+ ✓ src/features/results/zzI105N11.test.ts > I105 N-11: physics-1 base readers accept the noticed exact fallback > serializer_DenseScrutiny 1ms
+ ✓ src/features/results/zzI105N11.test.ts > I105 N-11: physics-1 base readers accept the noticed exact fallback > serializer_SparseInteractive 2ms
+      Tests  9 passed (9)

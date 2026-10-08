@@ -1,0 +1,49 @@
+test retained_facade_tests::b3b_coexistence_publishes_the_exact_ordinary_bytes_under_p2 ... FAILED
+test retained_facade_tests::b3b_direct_entry_runs_the_exact_route ... FAILED
+test retained_facade_tests::b3b_exact_capture_refuses_a_selected_basis ... FAILED
+test retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect ... FAILED
+test retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice ... FAILED
+test retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors ... FAILED
+test retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes ... FAILED
+test retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required ... FAILED
+test retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice ... FAILED
+test retained_facade_tests::b3b_p4_w1_calls_no_pressure_runtime_builder ... ok
+test retained_facade_tests::b3b_refused_exact_requests_take_the_ordinary_route ... ok
+test retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry ... FAILED
+test retained_facade_tests::b3b_witness_inputs_and_routes ... FAILED
+test retained_facade_tests::b3a_m3l_needs_no_producer_change ... ok
+test retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0 ... ok
+test retained_facade_tests::u3_permitted_path_publishes_the_pinned_successor ... ok
+test retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions ... ok
+test retained_product_tests::b3b_exact_material_check_refuses_each_defect ... ok
+test retained_wire_tests::b3b_exact_constants_bound_to_in_tree_fixtures ... ok
+test retained_wire_tests::u1_constants_bound_to_in_tree_fixtures ... ok
+test retained_memory::law_tests::b3a_direct_entry_oracles ... ok
+test retained_facade_tests::b1_sp_w_c2_transaction_outcomes_and_ordinal_mapping ... ok
+test retained_facade_tests::b1_sp_w_c2_transaction_faults_and_abandonment ... ok
+thread 'retained_facade_tests::b3b_coexistence_publishes_the_exact_ordinary_bytes_under_p2' (112888973) panicked at src/retained_facade_tests.rs:2788:13:
+assertion `left == right` failed: n05 SparseInteractive: the private driver's run is the ordinary route's (P-2)
+  left: [123, 34, 99, 111, 110, 116, 114, 97, 99, 116, 95, 101, 118, 105, 100, 101, 110, 99, 101, 34, 58, 123, 34, 99, 111, 110, 110, 101, 99, 116, 111, 114, 34, 58, 91, 93, 44, 34, 101, 120, 97, 99, 116, 95, 99, 97, 115, 101, 115, 34, 58, 91, 123, 34, 108, 111, 97, 100, 95, 99, 97, 115, 101, 95, 105, 100, 34, 58, 34, 99, 97, 115, 101, 34, 44, 34, 109, 97, 116, 101, 114, 105, 97, 108, 95, 98, 97, 115, 105, 115, 34, 58, 34, 98, 97, 115, 101, 95, 109, 97, 116, 101, 114, 105, 97, 108, 95, 99, 111, 109, 109, 111, 110, 95, 69, 95, 110, 117, 34, 44, 34, 112, 105, 112, 101, 95, 109, 97, 116, 101, 114, 105, 97, 108, 115, 34, 58, 91, 123, 34, 69, 95, 112, 97, 34, 58, 50, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 46, 48, 44, 34, 71, 95, 112, 97, 34, 58, 56, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 46, 48, 44, 34, 97, 108, 112, 104, 97, 95, 112, 101, 114, 95, 107, 101, 108, 118, 105, 110, 34, 58, 110, 117, 108, 108, 44, 34, 99, 111, 110, 115, 116, 105, 116, 117, 116, 105, 118, 101, 95, 98, 97, 1 …[cut: 533100 bytes, sha256 9cc20c48ce8b6c853f55f773f6aba940992125ac4213115c3037a54bc07d3c25]
+ right: [123, 34, 99, 111, 110, 116, 114, 97, 99, 116, 95, 101, 118, 105, 100, 101, 110, 99, 101, 34, 58, 123, 34, 99, 111, 110, 110, 101, 99, 116, 111, 114, 34, 58, 91, 93, 44, 34, 101, 120, 97, 99, 116, 95, 99, 97, 115, 101, 115, 34, 58, 91, 123, 34, 108, 111, 97, 100, 95, 99, 97, 115, 101, 95, 105, 100, 34, 58, 34, 99, 97, 115, 101, 34, 44, 34, 109, 97, 116, 101, 114, 105, 97, 108, 95, 98, 97, 115, 105, 115, 34, 58, 34, 98, 97, 115, 101, 95, 109, 97, 116, 101, 114, 105, 97, 108, 95, 99, 111, 109, 109, 111, 110, 95, 69, 95, 110, 117, 34, 44, 34, 112, 105, 112, 101, 95, 109, 97, 116, 101, 114, 105, 97, 108, 115, 34, 58, 91, 123, 34, 69, 95, 112, 97, 34, 58, 50, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 46, 48, 44, 34, 71, 95, 112, 97, 34, 58, 56, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 46, 48, 44, 34, 97, 108, 112, 104, 97, 95, 112, 101, 114, 95, 107, 101, 108, 118, 105, 110, 34, 58, 110, 117, 108, 108, 44, 34, 99, 111, 110, 115, 116, 105, 116, 117, 116, 105, 118, 101, 95, 98, 97, 1 …[cut: 533099 bytes, sha256 1a117b6c7f757becb99d5e1a8e32160bf0923c6112a99723f294c032700d8ac5]
+thread 'retained_facade_tests::b3b_direct_entry_runs_the_exact_route' (112889086) panicked at src/retained_facade_tests.rs:2685:33:
+thread 'retained_facade_tests::b3b_exact_capture_refuses_a_selected_basis' (112889094) panicked at src/retained_facade_tests.rs:3018:9:
+assertion `left == right` failed: SparseInteractive
+  left: "outside private ordinary no-component/no-combination scope"
+ right: "exact route: base common E/nu selection only"
+thread 'retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect' (112889103) panicked at src/retained_facade_tests.rs:2896:5:
+assertion `left == right` failed: control: the untampered evidence freezes
+  left: "custody: outside private ordinary no-component/no-combination scope"
+ right: "frozen"
+thread 'retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice' (112889107) panicked at src/retained_facade_tests.rs:2858:13:
+thread 'retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors' (112889117) panicked at src/retained_facade_tests.rs:2657:61:
+thread 'retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes' (112889122) panicked at src/retained_facade_tests.rs:2629:52:
+thread 'retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required' (112889132) panicked at src/retained_facade_tests.rs:2816:52:
+thread 'retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice' (112889159) panicked at src/retained_facade_tests.rs:2751:13:
+thread 'retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry' (112889182) panicked at src/retained_facade_tests.rs:3058:52:
+thread 'retained_facade_tests::b3b_witness_inputs_and_routes' (112889198) panicked at src/retained_facade_tests.rs:2417:9:
+assertion `left == right` failed: n05
+  left: Some(Preview)
+ right: Some(Exact)
+test result: FAILED. 12 passed; 11 failed; 0 ignored; 0 measured; 590 filtered out; finished in 13.94s
+error: test failed, to rerun pass `--lib`
+error: 1 target failed:

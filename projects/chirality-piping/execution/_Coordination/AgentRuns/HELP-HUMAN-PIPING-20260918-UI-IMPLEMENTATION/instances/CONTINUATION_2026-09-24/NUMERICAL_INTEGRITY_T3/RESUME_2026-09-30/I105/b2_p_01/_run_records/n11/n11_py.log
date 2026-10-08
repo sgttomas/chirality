@@ -1,0 +1,17 @@
+N11_PY direct_DenseScrutiny contract=openpipestress.result_semantics/0.3.0/physics-1 standing=needs_recompute notices=1 ok=True
+N11_PY direct_DenseScrutiny negative_control_refused=True
+N11_PY direct_SparseInteractive contract=openpipestress.result_semantics/0.3.0/physics-1 standing=needs_recompute notices=1 ok=True
+N11_PY direct_SparseInteractive negative_control_refused=True
+N11_PY precommit_DenseScrutiny contract=openpipestress.result_semantics/0.3.0/physics-1 standing=needs_recompute notices=1 ok=True
+N11_PY precommit_DenseScrutiny negative_control_refused=True
+N11_PY precommit_SparseInteractive contract=openpipestress.result_semantics/0.3.0/physics-1 standing=needs_recompute notices=1 ok=True
+N11_PY precommit_SparseInteractive negative_control_refused=True
+N11_PY section_overlay_DenseScrutiny contract=openpipestress.result_semantics/0.3.0/physics-1 standing=needs_recompute notices=1 ok=True
+N11_PY section_overlay_DenseScrutiny negative_control_refused=True
+N11_PY section_overlay_SparseInteractive contract=openpipestress.result_semantics/0.3.0/physics-1 standing=needs_recompute notices=1 ok=True
+N11_PY section_overlay_SparseInteractive negative_control_refused=True
+N11_PY serializer_DenseScrutiny contract=openpipestress.result_semantics/0.3.0/physics-1 standing=needs_recompute notices=1 ok=True
+N11_PY serializer_DenseScrutiny negative_control_refused=True
+N11_PY serializer_SparseInteractive contract=openpipestress.result_semantics/0.3.0/physics-1 standing=needs_recompute notices=1 ok=True
+N11_PY serializer_SparseInteractive negative_control_refused=True
+N11_PY failures=0

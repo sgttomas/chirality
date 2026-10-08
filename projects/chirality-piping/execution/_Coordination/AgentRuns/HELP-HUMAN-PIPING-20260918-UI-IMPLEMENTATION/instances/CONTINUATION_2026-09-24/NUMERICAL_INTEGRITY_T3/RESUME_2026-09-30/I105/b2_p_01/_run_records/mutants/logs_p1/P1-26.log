@@ -1,0 +1,39 @@
+test retained_facade_tests::b3b_coexistence_publishes_the_exact_ordinary_bytes_under_p2 ... ok
+test retained_facade_tests::b3a_m3l_needs_no_producer_change ... ok
+test retained_facade_tests::b3b_exact_capture_refuses_a_selected_basis ... ok
+test retained_facade_tests::b3b_direct_entry_runs_the_exact_route ... ok
+test retained_facade_tests::b1_sp_w_c2_transaction_outcomes_and_ordinal_mapping ... ok
+test retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors ... FAILED
+test retained_facade_tests::b3b_exact_route_faults_fall_back_with_one_notice ... ok
+test retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes ... FAILED
+test retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required ... FAILED
+test retained_facade_tests::b3b_p4_w1_calls_no_pressure_runtime_builder ... ok
+test retained_facade_tests::b3b_refused_exact_requests_take_the_ordinary_route ... ok
+test retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect ... FAILED
+test retained_facade_tests::b3b_witness_inputs_and_routes ... ok
+test retained_facade_tests::u3_permitted_path_publishes_the_pinned_successor ... ok
+test retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0 ... ok
+test retained_facade_tests::b3b_two_selected_exact_cases_each_regenerate_their_own_entry ... ok
+test retained_memory::law_tests::b3b_d1_admits_the_exact_route_with_empty_regions ... ok
+test retained_product_tests::b3b_exact_material_check_refuses_each_defect ... ok
+test retained_wire_tests::b3b_exact_constants_bound_to_in_tree_fixtures ... ok
+test retained_wire_tests::u1_constants_bound_to_in_tree_fixtures ... ok
+test retained_memory::law_tests::b3a_direct_entry_oracles ... ok
+test retained_facade_tests::b3b_n11_abandoned_exact_w1_publishes_physics_1_with_the_notice ... ok
+test retained_facade_tests::b1_sp_w_c2_transaction_faults_and_abandonment ... ok
+thread 'retained_facade_tests::b3b_exact_successor_fixtures_are_the_live_successors' (113260153) panicked at src/retained_facade_tests.rs:2658:9:
+thread 'retained_facade_tests::b3b_exact_successor_is_pinned_in_both_modes' (113260817) panicked at src/retained_facade_tests.rs:2636:9:
+assertion `left == right` failed: sparse_interactive: the pinned exact successor
+  left: (Some("f62482a485fa9be7b8b0545894a7ab3e5746ce0e50c5f0d372fc881073eb8593"), "9a1c910be1990c0a2b90e27180f49aa382b6491f80b5adce493003c414cb6d13", "b9fcc3e51c3e141cfe92fb58c5eb4f7c3e580963e4b09fef267758cbcb6b2c6f")
+ right: (Some("b1b4a6682260ca6bc499950b30f0f7179a77c038e266cc4b42045ed86ed3896f"), "f18227f7c5eb10d849b0499c7afd139ba2aab493bbdc581805db3ba3ebd4b20d", "02465c6c92ac2e4360a77910cb54803590b5a11042dfddb223bf78f9e856e5d6")
+thread 'retained_facade_tests::b3b_mixed_exact_base_selects_case_beside_not_required' (113261085) panicked at src/retained_facade_tests.rs:2821:9:
+assertion `left == right` failed: sparse_interactive: the pinned mixed successor
+  left: (Some("fd1a3c3ed85f6d109fd66403a6a53a963a54690f86e25b2d53c77f3182832fee"), "d85ed67fc6f703d8571ec15f5863e0be52d722a9682800095b90d14c705ef298")
+ right: (Some("71703ab120645b7c7b903a072b5e2cc95b72e0a0759db75f3b4b7bcfbe7cb29f"), "ca2cd75096cee1fe318d2623ae5c4737438e300ab92dbe8f0f61310d19c4a53b")
+thread 'retained_facade_tests::b3b_exact_observables_refuse_each_evidence_defect' (113257477) panicked at src/retained_facade_tests.rs:2925:9:
+assertion `left == right` failed: profile mode
+  left: "frozen"
+ right: "observable: exact profile/material basis"
+test result: FAILED. 19 passed; 4 failed; 0 ignored; 0 measured; 590 filtered out; finished in 13.94s
+error: test failed, to rerun pass `--lib`
+error: 1 target failed:

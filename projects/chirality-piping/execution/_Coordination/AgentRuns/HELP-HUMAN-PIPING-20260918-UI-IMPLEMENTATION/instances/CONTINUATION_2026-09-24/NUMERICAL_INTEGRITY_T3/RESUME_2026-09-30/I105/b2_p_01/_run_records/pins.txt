@@ -1,0 +1,31 @@
+I105 Part 1 (B3b-P) pins, as committed in PP/src/retained_facade_tests.rs (EXACT_PINNED, MIX_PINNED).
+Receipt = sha256 of the successor's receipt bytes; bytes = sha256 of the successor bytes;
+document = sha256 of the committed fixture file (P/fixtures/results/retained_precision_exact_successor_<mode>.json).
+
+m3x exact successor (physics-retained-1, exact_straight_retained_w1a_v2):
+  sparse_interactive receipt  b1b4a6682260ca6bc499950b30f0f7179a77c038e266cc4b42045ed86ed3896f
+  sparse_interactive bytes    f18227f7c5eb10d849b0499c7afd139ba2aab493bbdc581805db3ba3ebd4b20d
+  sparse_interactive document 02465c6c92ac2e4360a77910cb54803590b5a11042dfddb223bf78f9e856e5d6
+  dense_scrutiny     receipt  eabd2fc57b42158ad415ae664e7c712c1c4db21258b667251758172f3a5b776d
+  dense_scrutiny     bytes    e31f03a45d8028f32ae518d2004e97423d33139c3c807700755bcbe0113cdb2a
+  dense_scrutiny     document 31f10f04f6f335dfb1a7e5f904198972903bfc9208660031bbfaa5c547d347cc
+
+m3x_mix_anchor (case selected, case:b not_required):
+  sparse_interactive receipt  71703ab120645b7c7b903a072b5e2cc95b72e0a0759db75f3b4b7bcfbe7cb29f
+  sparse_interactive bytes    ca2cd75096cee1fe318d2623ae5c4737438e300ab92dbe8f0f61310d19c4a53b
+  dense_scrutiny     receipt  b5cf5a4f42bc4e4d1b576250096cf18875c8601fb29b92e6ce0f2fdd86a0eec3
+  dense_scrutiny     bytes    a50c530faba48a8d0afe87b79ac7c85771a529fd3ce4fbef251189f13c621337
+
+Inputs (sha256 of serde_json::to_vec of the request Value; built in the tests, equal to B3-W's):
+  m3x            c920a96dc542c3ecadb63f724cfcf243d73d5dd71692e4f48827a620bb0e5497
+  m3x_mix_anchor 6ca777a6e3ed658bcf58813d277e839033ac07f0b84efb8526351a20c67d1ee0
+  m3l            2f5ff465bfa97005a581d88e02c0a5478ea24da3bdc1c2eb9fcda491803fc0c3
+Committed requests (sha256 of the file): n05 332319ee6f47870a074a6c16fbf2f43c0171e376a0b4cd1cb7f7ad8b59254b00,
+  n06 5551f164b9e8ab88f04f3abce810e1e1b1ff47236bba6a296e32905f628be931, fields 7f8ff9d5e23712cedd6ca58a86a690517a8e820b9b072962ca43ad60be286002
+(asserted in b3b_witness_inputs_and_routes)
+
+The section overlay (m3x, member M1; binary64 bits): SourceAnnulus I/J/Z 3efc52664442210b / 3f0c52664442210b /
+3f31b37feaa954a7 become the prepared 3efc52664442210a / 3f0c52664442210a / 3f31b37feaa954a6; As unchanged.
+
+Every c = 1 and B1 multi-case pin is unchanged: no pre-existing PP test changed outcome other than lane A's
+b3b_direct_entry_keeps_the_exact_ordinary_bytes (suites/compare_*.json).

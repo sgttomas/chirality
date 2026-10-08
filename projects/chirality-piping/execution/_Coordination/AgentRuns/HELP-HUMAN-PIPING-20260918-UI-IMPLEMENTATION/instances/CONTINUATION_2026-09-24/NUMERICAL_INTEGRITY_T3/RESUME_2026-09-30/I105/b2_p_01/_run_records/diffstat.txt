@@ -1,0 +1,10 @@
+ projects/chirality-piping/core/product_physics/src/lib.rs                                             |   54 +-
+ projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs                           |  739 +++++++++++-
+ projects/chirality-piping/core/product_physics/src/retained_product.rs                                |  350 +++++-
+ projects/chirality-piping/core/product_physics/src/retained_product_tests.rs                          |   38 +
+ projects/chirality-piping/core/product_physics/src/retained_tests_hooks/grant2.rs                     |   15 +-
+ projects/chirality-piping/core/product_physics/src/retained_wire.rs                                   |  104 +-
+ projects/chirality-piping/core/product_physics/src/retained_wire_tests.rs                             |   36 +
+ projects/chirality-piping/fixtures/results/retained_precision_exact_successor_dense_scrutiny.json     | 5589 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ projects/chirality-piping/fixtures/results/retained_precision_exact_successor_sparse_interactive.json | 5570 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 9 files changed, 12428 insertions(+), 67 deletions(-)

@@ -1,0 +1,663 @@
+{
+ "filters": [
+  "b3b_",
+  "b3a_",
+  "u1_constants",
+  "u3_permitted_path",
+  "b1_sp_w_c2_transaction"
+ ],
+ "skip": [
+  "b3b_direct_entry_keeps_the_exact_ordinary_bytes"
+ ],
+ "mutants": [
+  {
+   "id": "P1-01",
+   "check": "P-1 route: branch E is the exact route",
+   "edits": [
+    {
+     "file": "src/lib.rs",
+     "old": "Ok(B::Exact) => Some(retained_product::W1Route::Exact),",
+     "new": "Ok(B::Exact) => Some(retained_product::W1Route::Preview),"
+    }
+   ]
+  },
+  {
+   "id": "P1-02",
+   "check": "P-1 route: a load-state model has no route (redundant with the namespace branch)",
+   "edits": [
+    {
+     "file": "src/lib.rs",
+     "old": "    if case_state::is_load_state(model) {\n        return None;\n    }\n    match retained_memory::namespace_branch(model) {",
+     "new": "    if false && case_state::is_load_state(model) {\n        return None;\n    }\n    match retained_memory::namespace_branch(model) {"
+    }
+   ]
+  },
+  {
+   "id": "P1-03",
+   "check": "P-1 route: no namespace branch, no route",
+   "edits": [
+    {
+     "file": "src/lib.rs",
+     "old": "        Err(_) => None,\n    }\n}",
+     "new": "        Err(_) => Some(retained_product::W1Route::Preview),\n    }\n}"
+    }
+   ]
+  },
+  {
+   "id": "P1-04",
+   "check": "P-2 budget: the exact route takes PHYSICS_SOURCE_WORK_LIMIT",
+   "edits": [
+    {
+     "file": "src/lib.rs",
+     "old": "    if route == retained_product::W1Route::Exact {\n        budget.per_case_limit = PHYSICS_SOURCE_WORK_LIMIT;",
+     "new": "    if route != retained_product::W1Route::Exact {\n        budget.per_case_limit = PHYSICS_SOURCE_WORK_LIMIT;"
+    }
+   ]
+  },
+  {
+   "id": "P1-05",
+   "check": "P-2 budget: permitted_run uses the route budget",
+   "edits": [
+    {
+     "file": "src/lib.rs",
+     "old": "    let mut budget = w1_budget(route);",
+     "new": "    let mut budget = SourceRecoveryBudget::default();"
+    }
+   ]
+  },
+  {
+   "id": "P1-06",
+   "check": "P-1 the facade observer is on the route",
+   "edits": [
+    {
+     "file": "src/lib.rs",
+     "old": "ProductCapture::permitted_probe_on(permit, route);",
+     "new": "ProductCapture::permitted_probe_on(permit, retained_product::W1Route::Preview);"
+    }
+   ]
+  },
+  {
+   "id": "P1-07",
+   "check": "P-3 scope: an exact model only on the exact route",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if pressure_runtime::is_exact(model) != (self.route == W1Route::Exact)",
+     "new": "if pressure_runtime::is_exact(model)"
+    }
+   ]
+  },
+  {
+   "id": "P1-08",
+   "check": "P-3 the exact route captures materials",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "            if self.route == W1Route::Exact {\n                self.capture_exact_materials(model, materials)?;",
+     "new": "            if false {\n                self.capture_exact_materials(model, materials)?;"
+    }
+   ]
+  },
+  {
+   "id": "P1-09",
+   "check": "P-3 a used material is checked",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "                if self.checked_same(&pipe.material, &m.id)? {\n                    used = true;",
+     "new": "                if self.checked_same(&pipe.material, &m.id)? && false {\n                    used = true;"
+    }
+   ]
+  },
+  {
+   "id": "P1-10",
+   "check": "P-3 the constitutive basis",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "        if !self.checked_same(basis, EXACT_CONSTITUTIVE_BASIS)? {",
+     "new": "        if false && !self.checked_same(basis, EXACT_CONSTITUTIVE_BASIS)? {"
+    }
+   ]
+  },
+  {
+   "id": "P1-11",
+   "check": "P-3 G-hat equals RN64(E/(2 RN64(1+nu)))",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "g.is_normal() && g > 0.0 && g.to_bits() == derived.to_bits()",
+     "new": "g.is_normal() && g > 0.0"
+    }
+   ]
+  },
+  {
+   "id": "P1-12",
+   "check": "P-3 G-hat normal",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "g.is_normal() && g > 0.0 && g.to_bits() == derived.to_bits()",
+     "new": "g > 0.0 && g.to_bits() == derived.to_bits()"
+    }
+   ]
+  },
+  {
+   "id": "P1-13",
+   "check": "P-3 G-hat positive",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "g.is_normal() && g > 0.0 && g.to_bits() == derived.to_bits()",
+     "new": "g.is_normal() && g.to_bits() == derived.to_bits()"
+    }
+   ]
+  },
+  {
+   "id": "P1-14",
+   "check": "P-5 BaseENu on the exact route",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "Some(nu) => k::ProductMaterial::BaseENu { e: self.materials[mi].1, nu },",
+     "new": "Some(_nu) => k::ProductMaterial::Base { e: self.materials[mi].1, g: self.materials[mi].2 },"
+    }
+   ]
+  },
+  {
+   "id": "P1-15",
+   "check": "P-5 the base common E/nu selection only",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "        if self.route == W1Route::Exact && load_case_selector(case).is_some() {",
+     "new": "        if false && self.route == W1Route::Exact && load_case_selector(case).is_some() {"
+    }
+   ]
+  },
+  {
+   "id": "P1-16",
+   "check": "P-1 finish: the route base contract",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if envelope.producer.semantic_contract_id != self.route.base_contract()",
+     "new": "if envelope.producer.semantic_contract_id != preview_physics::ID"
+    }
+   ]
+  },
+  {
+   "id": "P1-17",
+   "check": "P-1 custody: the route base contract",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "|| ordinary.producer.semantic_contract_id!=self.route.base_contract() ||",
+     "new": "|| ordinary.producer.semantic_contract_id!=preview_physics::ID ||"
+    }
+   ]
+  },
+  {
+   "id": "P1-18",
+   "check": "P-6 a one-case scope carries the route",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "            return CaseScope::whole(self.route);",
+     "new": "            return CaseScope::WHOLE;"
+    }
+   ]
+  },
+  {
+   "id": "P1-19",
+   "check": "P-6 observables dispatch on the route",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "            W1Route::Exact => self.exact_case_evidence(view)?,\n        };",
+     "new": "            W1Route::Exact => self.preview_case_evidence(view)?,\n        };"
+    }
+   ]
+  },
+  {
+   "id": "P1-20",
+   "check": "P-6 closed evidence",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "        self.adapter.closed_keys(evidence, &[\"pressure\", \"connector\", \"exact_cases\"], \"evidence shape\")?;",
+     "new": ""
+    }
+   ]
+  },
+  {
+   "id": "P1-21",
+   "check": "P-6 pressure evidence empty",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if evidence[\"pressure\"].as_array().is_none_or(|v| !v.is_empty()) || evidence[\"connector\"]",
+     "new": "if false || evidence[\"connector\"]"
+    }
+   ]
+  },
+  {
+   "id": "P1-22",
+   "check": "P-6 connector evidence empty",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "|| evidence[\"connector\"].as_array().is_none_or(|v| !v.is_empty()) {",
+     "new": "|| false {"
+    }
+   ]
+  },
+  {
+   "id": "P1-23",
+   "check": "P-6 one exact case per requested case",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "        let cases = evidence[\"exact_cases\"].as_array().ok_or(\"exact cases\")?;\n        if cases.len() != view.scope.cases {",
+     "new": "        let cases = evidence[\"exact_cases\"].as_array().ok_or(\"exact cases\")?;\n        if false && cases.len() != view.scope.cases {"
+    }
+   ]
+  },
+  {
+   "id": "P1-24",
+   "check": "P-6 the case entry eight keys",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "        self.adapter.closed_keys(c, &[\"load_case_id\", \"profile_mode\", \"material_basis\", \"pressure_rhs_assembly\", \"pipe_sections\",\n            \"pipe_stress_extrema\", \"stress_maximum_coverage\", \"pipe_materials\"], \"case shape\")?;",
+     "new": ""
+    }
+   ]
+  },
+  {
+   "id": "P1-25",
+   "check": "P-6 the entry case",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "        if !self.checked_same(case_id, &self.case_id)? {\n            return Err(\"evidence case\".into());",
+     "new": "        if false && !self.checked_same(case_id, &self.case_id)? {\n            return Err(\"evidence case\".into());"
+    }
+   ]
+  },
+  {
+   "id": "P1-26",
+   "check": "P-6 profile_mode",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if !self.checked_same(c[\"profile_mode\"].as_str().ok_or(\"exact profile mode\")?, \"exact_straight_pressure_v2\")?",
+     "new": "if false"
+    }
+   ]
+  },
+  {
+   "id": "P1-27",
+   "check": "P-6 material basis",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "            || !self.checked_same(c[\"material_basis\"].as_str().ok_or(\"exact material basis\")?, \"base_material_common_E_nu\")? {",
+     "new": "            || false {"
+    }
+   ]
+  },
+  {
+   "id": "P1-28",
+   "check": "P-6 coverage closed keys",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "        self.adapter.closed_keys(&c[\"stress_maximum_coverage\"], &[\"complete\", \"unavailable_pipe_ids\"], \"stress coverage shape\")?;",
+     "new": ""
+    }
+   ]
+  },
+  {
+   "id": "P1-29",
+   "check": "P-6 coverage complete",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "\"unavailable_pipe_ids\"], \"stress coverage shape\")?;\n        if c[\"stress_maximum_coverage\"][\"complete\"] != true",
+     "new": "\"unavailable_pipe_ids\"], \"stress coverage shape\")?;\n        if false"
+    }
+   ]
+  },
+  {
+   "id": "P1-30",
+   "check": "P-6 coverage no unavailable pipe",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "            || c[\"stress_maximum_coverage\"][\"unavailable_pipe_ids\"].as_array().is_none_or(|v| !v.is_empty()) {\n            return Err(\"maximum coverage\".into());",
+     "new": "            || false {\n            return Err(\"maximum coverage\".into());"
+    }
+   ]
+  },
+  {
+   "id": "P1-31",
+   "check": "P-6 no assembly group",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "        if assembly[\"groups\"].as_array().is_none_or(|v| !v.is_empty()) {",
+     "new": "        if false {"
+    }
+   ]
+  },
+  {
+   "id": "P1-32",
+   "check": "P-6 assembly vectors +0",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "                if v.as_f64().is_none_or(|x| x.to_bits() != 0) {",
+     "new": "                if v.as_f64().is_none() {"
+    }
+   ]
+  },
+  {
+   "id": "P1-33",
+   "check": "P-6 material record coverage",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "        if sections.len() != self.members.len() || materials.len() != self.members.len() {",
+     "new": "        if sections.len() != self.members.len() {"
+    }
+   ]
+  },
+  {
+   "id": "P1-34",
+   "check": "P-6 section record coverage (pre-empted by P-8)",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "        if sections.len() != self.members.len() || materials.len() != self.members.len() {",
+     "new": "        if materials.len() != self.members.len() {"
+    }
+   ]
+  },
+  {
+   "id": "P1-35",
+   "check": "P-6 section OD",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if bits(\"outside_diameter_m\") != Some(f.diameter.to_bits()) || bits",
+     "new": "if false || bits"
+    }
+   ]
+  },
+  {
+   "id": "P1-36",
+   "check": "P-6 section wall",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "|| bits(\"effective_wall_thickness_m\") != Some(f.effective_wall.to_bits()) {",
+     "new": "|| false {"
+    }
+   ]
+  },
+  {
+   "id": "P1-37",
+   "check": "P-6 material record identity",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "                if self.checked_same(x[\"pipe_id\"].as_str().ok_or(\"exact material id\")?, &member.id)? {",
+     "new": "                if true {"
+    }
+   ]
+  },
+  {
+   "id": "P1-38",
+   "check": "P-6 material E",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if bits(\"E_pa\") != Some(e_pa.to_bits()) || ",
+     "new": "if false || "
+    }
+   ]
+  },
+  {
+   "id": "P1-39",
+   "check": "P-6 material nu",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "|| bits(\"nu\") != Some(nu.to_bits()) ||",
+     "new": "|| false ||"
+    }
+   ]
+  },
+  {
+   "id": "P1-40",
+   "check": "P-6 material G (N-6 producer side)",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "|| bits(\"G_pa\") != Some(g_pa.to_bits()) {",
+     "new": "|| false {"
+    }
+   ]
+  },
+  {
+   "id": "P1-41",
+   "check": "P-7 maxima read the route evidence",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "let extrema=evidence[scope.route.evidence_cases()][scope.evidence][\"pipe_stress_extrema\"]",
+     "new": "let extrema=evidence[\"preview_cases\"][scope.evidence][\"pipe_stress_extrema\"]"
+    }
+   ]
+  },
+  {
+   "id": "P1-42",
+   "check": "P-6 view numbers read the route evidence",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "and_then(|e|e[self.scope.route.evidence_cases()][self.scope.evidence][\"pipe_stress_extrema\"][index][key]",
+     "new": "and_then(|e|e[\"preview_cases\"][self.scope.evidence][\"pipe_stress_extrema\"][index][key]"
+    }
+   ]
+  },
+  {
+   "id": "P1-43",
+   "check": "P-8 sections regenerated on the exact route",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "                W1Route::Exact=>match self.prepared_sections(ordinary,scope) {",
+     "new": "                W1Route::Exact=>match Ok::<Vec<PreparedSectionPatch>,CaptureError>(Vec::new()) {"
+    }
+   ]
+  },
+  {
+   "id": "P1-44",
+   "check": "P-8 section domain",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "        if sections.len()!=self.members.len(){return Err(\"prepared section complete domain\".into());}",
+     "new": ""
+    }
+   ]
+  },
+  {
+   "id": "P1-45",
+   "check": "P-8 section identity",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "                if self.checked_same(x[\"pipe_id\"].as_str().ok_or(\"prepared section pipe id\")?,&member.id)? {",
+     "new": "                if true {"
+    }
+   ]
+  },
+  {
+   "id": "P1-46",
+   "check": "P-8 section numeric slots",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "if sections[index][key].as_number().is_none(){return Err(\"prepared section numeric slot\".into());}",
+     "new": ""
+    }
+   ]
+  },
+  {
+   "id": "P1-47",
+   "check": "P-8 the prepared values (I)",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "let numbers=[n(f.area)?,n(f.second_moment)?,n(f.torsion_constant)?,n(f.section_modulus)?];",
+     "new": "let numbers=[n(f.area)?,n(f.torsion_constant)?,n(f.torsion_constant)?,n(f.section_modulus)?];"
+    }
+   ]
+  },
+  {
+   "id": "P1-48",
+   "check": "P-8 the commit plan precharges the section moves",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "                .and_then(|v|v.checked_add(section_moves))\n",
+     "new": ""
+    }
+   ]
+  },
+  {
+   "id": "P1-49",
+   "check": "P-8 overlay applies the sections on the exact route",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "    if scope.route==W1Route::Exact {\n        apply_exact_section_overlay(case,payload)?;",
+     "new": "    if false {\n        apply_exact_section_overlay(case,payload)?;"
+    }
+   ]
+  },
+  {
+   "id": "P1-50",
+   "check": "P-8 overlay keys",
+   "edits": [
+    {
+     "file": "src/retained_product.rs",
+     "old": "const PREPARED_SECTION_KEYS:[&str;4]=[\"As_m2\",\"I_m4\",\"J_m4\",\"Z_m3\"];",
+     "new": "const PREPARED_SECTION_KEYS:[&str;4]=[\"As_m2\",\"J_m4\",\"I_m4\",\"Z_m3\"];"
+    }
+   ]
+  },
+  {
+   "id": "P1-51",
+   "check": "P-9 identity",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "rp::W1Route::Exact => RouteWire { semantic_id: EXACT_SEMANTIC_ID,",
+     "new": "rp::W1Route::Exact => RouteWire { semantic_id: RETAINED_SEMANTIC_ID,"
+    }
+   ]
+  },
+  {
+   "id": "P1-52",
+   "check": "P-9 profile",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": " profile_id: EXACT_PROFILE_ID,",
+     "new": " profile_id: RETAINED_PROFILE_ID,"
+    }
+   ]
+  },
+  {
+   "id": "P1-53",
+   "check": "P-9 the attempt definition id",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "            definition_id: EXACT_DEFINITION_ID, definition_sha256: EXACT_DEFINITION_SHA256,",
+     "new": "            definition_id: DEFINITION_ID, definition_sha256: EXACT_DEFINITION_SHA256,"
+    }
+   ]
+  },
+  {
+   "id": "P1-54",
+   "check": "S-1 the preparation payload definition H",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "            definition_id: EXACT_DEFINITION_ID, definition_sha256: EXACT_DEFINITION_SHA256,",
+     "new": "            definition_id: EXACT_DEFINITION_ID, definition_sha256: DEFINITION_SHA256,"
+    }
+   ]
+  },
+  {
+   "id": "P1-55",
+   "check": "P-9 geometry route",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "definition_sha256: EXACT_DEFINITION_SHA256, geometry_route: \"exact\" },",
+     "new": "definition_sha256: EXACT_DEFINITION_SHA256, geometry_route: \"preview\" },"
+    }
+   ]
+  },
+  {
+   "id": "P1-56",
+   "check": "P-9 material shear origin dispatch",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "            rp::W1Route::Exact => derived_e_nu_origin(e, capture, i)?,",
+     "new": "            rp::W1Route::Exact => explicit_g_origin(input)?,"
+    }
+   ]
+  },
+  {
+   "id": "P1-57",
+   "check": "P-9 derived origin: nu bits",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "Ok(json!({\"kind\":\"derived_e_nu\",\"poisson_ratio\":e.bits(nu,",
+     "new": "Ok(json!({\"kind\":\"derived_e_nu\",\"poisson_ratio\":e.bits(nu+0.0625,"
+    }
+   ]
+  },
+  {
+   "id": "P1-58",
+   "check": "P-9 successor identity on the route (n-case serializer)",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "    successor_identity(&mut env, pc.route());",
+     "new": "    successor_identity(&mut env, rp::W1Route::Preview);"
+    }
+   ]
+  },
+  {
+   "id": "P1-59",
+   "check": "S-1 the preparation payload takes the route",
+   "edits": [
+    {
+     "file": "src/retained_wire.rs",
+     "old": "\"definition_sha256\":route_wire(route).definition_sha256,\"owner_ref\":a[\"owner_ref\"],",
+     "new": "\"definition_sha256\":DEFINITION_SHA256,\"owner_ref\":a[\"owner_ref\"],"
+    }
+   ]
+  }
+ ]
+}
