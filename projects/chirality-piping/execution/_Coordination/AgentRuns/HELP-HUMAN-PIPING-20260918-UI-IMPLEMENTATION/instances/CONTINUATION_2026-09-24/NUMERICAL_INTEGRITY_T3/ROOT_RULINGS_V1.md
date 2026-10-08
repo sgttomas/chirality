@@ -16090,3 +16090,15 @@ RV124 confirms SB.
 **Lane A is accepted.** Its repairs (`c2c725347d`, `70cb600519`, `ea5625ad04`) touch only `build.rs`, `build_identity.rs`, `retained_memory.rs` and its law tests. `merge-tree` against `b2` `794cb36e85` shows no conflicts.
 
 So that `b2` is not moved under a running lane, I105 makes the merge commit at its next clean point. It then reruns the law and admission tests, and reports the commit. ROOT pushes.
+
+## B1's pre-freeze gates pass: the 40-manifest suite and the src-tauri suite (ROOT, 2026-10-08 UTC)
+
+ROOT ran PLAN_v2 §3.9's gates (`T/IMPLEMENTATION/B1_PREFREEZE/RECORD.md`). The candidate was `0d19f995b5` with the registration applied; the base was main `2007709549`.
+- **The 40 manifests:**
+  - 0 changed outcomes;
+  - 130 added (53 ok and 77 ignored: the per-mode witness and challenge entry points SQ runs);
+  - 9 removed, all renames;
+  - the same 3 known Mac failures on both sides.
+- **src-tauri:** 116 = 116, identical.
+
+The exact-head DEC-025 and src-tauri runs on PR-B1 follow the package and RV-X.
