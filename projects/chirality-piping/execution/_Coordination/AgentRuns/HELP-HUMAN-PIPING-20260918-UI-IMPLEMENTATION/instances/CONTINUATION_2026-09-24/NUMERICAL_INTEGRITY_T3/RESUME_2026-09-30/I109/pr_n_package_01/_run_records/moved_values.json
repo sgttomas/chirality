@@ -1,0 +1,100 @@
+[
+ {
+  "where": "W-C2 dense",
+  "id": "result:support-action:6:case-c:8:rigid:N0:force_magnitude",
+  "components": [
+   "-0x1.d5a0000000000p-46",
+   "-0x1.41b6800000000p-40",
+   "0x1.4561a2ed5be5bp-40"
+  ],
+  "before_macos": "1.6258317075882521e-12",
+  "after": "1.6258317075882523e-12",
+  "after_is_cr_norm3": true,
+  "cr_chain": "1.6258317075882523e-12",
+  "ulps": 1
+ },
+ {
+  "where": "SF-2 (C, B, A) dense",
+  "id": "result:support-action:6:case-c:8:rigid:N0:force_magnitude",
+  "components": [
+   "-0x1.d5a0000000000p-46",
+   "-0x1.41b6800000000p-40",
+   "0x1.4561a2ed5be5bp-40"
+  ],
+  "before_macos": "1.6258317075882521e-12",
+  "after": "1.6258317075882523e-12",
+  "after_is_cr_norm3": true,
+  "cr_chain": "1.6258317075882523e-12",
+  "ulps": 1
+ },
+ {
+  "where": "rf_skew milestone dense ordinary (u1)",
+  "id": "result:support-action:4:case:8:rigid:N0:force_magnitude",
+  "components": [
+   "-0x1.d5a0000000000p-46",
+   "-0x1.41b6800000000p-40",
+   "0x1.4561a2ed5be5bp-40"
+  ],
+  "before_macos": "1.6258317075882521e-12",
+  "after": "1.6258317075882523e-12",
+  "after_is_cr_norm3": true,
+  "cr_chain": "1.6258317075882523e-12",
+  "ulps": 1
+ },
+ {
+  "where": "load_reference/connected sparse cold",
+  "id": "result:support-action:9:case:cold:12:support:root:force_magnitude",
+  "components": [
+   "-0x1.2374d355759e0p+18",
+   "0x1.0cd79f70bfe37p+13",
+   "0x0.0p+0"
+  ],
+  "before_macos": "298575.2677594065",
+  "after": "298575.26775940653",
+  "after_is_cr_norm3": true,
+  "cr_chain": "298575.26775940653",
+  "ulps": 1
+ },
+ {
+  "where": "load_reference/connected sparse hot",
+  "id": "result:support-action:8:case:hot:12:support:root:force_magnitude",
+  "components": [
+   "0x1.1e2f73dbd5f8dp+20",
+   "0x1.aab36f291fd53p+12",
+   "0x0.0p+0"
+  ],
+  "before_macos": "1172235.122530021",
+  "after": "1172235.1225300212",
+  "after_is_cr_norm3": true,
+  "cr_chain": "1172235.1225300212",
+  "ulps": 1
+ },
+ {
+  "where": "load_reference/connected dense hot",
+  "id": "result:support-action:8:case:hot:12:support:root:force_magnitude",
+  "components": [
+   "0x1.1e2f73dbd5f8dp+20",
+   "0x1.aab36f291fd53p+12",
+   "0x0.0p+0"
+  ],
+  "before_macos": "1172235.122530021",
+  "after": "1172235.1225300212",
+  "after_is_cr_norm3": true,
+  "cr_chain": "1172235.1225300212",
+  "ulps": 1
+ },
+ {
+  "where": "load_reference_fallback_uz sparse anchor moment (t13)",
+  "id": "result:support-action:9:case:join:6:anchor:moment_magnitude",
+  "components": [
+   "0x0.0p+0",
+   "0x1.0c6f7a0b5ed8bp-19",
+   "0x1.0000000000000p-43"
+  ],
+  "before_macos": "2.000000000000002e-06",
+  "after": "2.0000000000000025e-06",
+  "after_is_cr_norm3": true,
+  "cr_chain": "2.0000000000000025e-06",
+  "ulps": 1
+ }
+]

@@ -1,0 +1,123 @@
+{
+ "root": [
+  "core/product_physics/src/lib.rs:2266:run_linear_static_preview_value_with_retained_direct"
+ ],
+ "reachable_nodes": 2813,
+ "nodes": 3497,
+ "norm_fns_in_d1": [
+  "core/solver/frame_kernel/src/correct_norm.rs:34:norm2",
+  "core/solver/frame_kernel/src/correct_norm.rs:39:norm3",
+  "core/solver/frame_kernel/src/correct_norm.rs:113:midpoint_sign",
+  "core/solver/frame_kernel/src/correct_norm.rs:120:exponent",
+  "core/solver/frame_kernel/src/correct_norm.rs:131:ulp_exponent",
+  "core/solver/frame_kernel/src/correct_norm.rs:141:pow2",
+  "core/solver/frame_kernel/src/correct_norm.rs:147:scale",
+  "core/solver/frame_kernel/src/correct_norm.rs:160:square",
+  "core/solver/frame_kernel/src/correct_norm.rs:166:two_sum",
+  "core/solver/frame_kernel/src/correct_norm.rs:175:exact_sign"
+ ],
+ "sites": [
+  {
+   "site": "core/loads/stress_recovery/src/elastic_section.rs:106",
+   "fn": "core/loads/stress_recovery/src/elastic_section.rs:70:evaluate_elastic_section",
+   "in_d1": false,
+   "calls_norm_edge": true
+  },
+  {
+   "site": "core/product_physics/src/case_state/resolve.rs:899",
+   "fn": "core/product_physics/src/case_state/resolve.rs:633:resolve_case",
+   "in_d1": true,
+   "calls_norm_edge": true
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11876",
+   "fn": "core/product_physics/src/lib.rs:11850:append_signed_support_results",
+   "in_d1": true,
+   "calls_norm_edge": true
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:11882",
+   "fn": "core/product_physics/src/lib.rs:11850:append_signed_support_results",
+   "in_d1": true,
+   "calls_norm_edge": true
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:13511",
+   "fn": "core/product_physics/src/lib.rs:13419:append_combined_vector_magnitude",
+   "in_d1": true,
+   "calls_norm_edge": true
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:4928",
+   "fn": "core/product_physics/src/lib.rs:4062:solve_load_case_observed",
+   "in_d1": true,
+   "calls_norm_edge": true
+  },
+  {
+   "site": "core/product_physics/src/lib.rs:5124",
+   "fn": "core/product_physics/src/lib.rs:4062:solve_load_case_observed",
+   "in_d1": true,
+   "calls_norm_edge": true
+  },
+  {
+   "site": "core/product_physics/src/pressure_runtime.rs:1082",
+   "fn": "core/product_physics/src/pressure_runtime.rs:945:traverse_region",
+   "in_d1": true,
+   "calls_norm_edge": true
+  },
+  {
+   "site": "core/product_physics/src/pressure_runtime.rs:1100",
+   "fn": "core/product_physics/src/pressure_runtime.rs:945:traverse_region",
+   "in_d1": true,
+   "calls_norm_edge": true
+  },
+  {
+   "site": "core/product_physics/src/preview_physics.rs:465",
+   "fn": "core/product_physics/src/preview_physics.rs:438:tangent_diagnostics",
+   "in_d1": true,
+   "calls_norm_edge": true
+  },
+  {
+   "site": "core/product_physics/src/preview_physics.rs:634",
+   "fn": "core/product_physics/src/preview_physics.rs:528:render",
+   "in_d1": true,
+   "calls_norm_edge": true
+  },
+  {
+   "site": "core/product_physics/src/preview_physics.rs:966",
+   "fn": "core/product_physics/src/preview_physics.rs:854:append_combination_results",
+   "in_d1": true,
+   "calls_norm_edge": true
+  },
+  {
+   "site": "core/product_physics/src/preview_physics.rs:967",
+   "fn": "core/product_physics/src/preview_physics.rs:854:append_combination_results",
+   "in_d1": true,
+   "calls_norm_edge": true
+  },
+  {
+   "site": "core/product_physics/src/retained_product.rs:2446",
+   "fn": "core/product_physics/src/retained_product.rs:2254:observables_view",
+   "in_d1": true,
+   "calls_norm_edge": true
+  },
+  {
+   "site": "core/solver/frame_kernel/src/rigid_body.rs:109",
+   "fn": "core/solver/frame_kernel/src/rigid_body.rs:33:assess_rigid_body",
+   "in_d1": true,
+   "calls_norm_edge": true
+  },
+  {
+   "site": "core/solver/frame_kernel/src/rigid_body.rs:53",
+   "fn": "core/solver/frame_kernel/src/rigid_body.rs:33:assess_rigid_body",
+   "in_d1": true,
+   "calls_norm_edge": true
+  },
+  {
+   "site": "core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs:1851",
+   "fn": "core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs:1831:support_hypot",
+   "in_d1": true,
+   "calls_norm_edge": true
+  }
+ ]
+}

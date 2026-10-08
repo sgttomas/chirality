@@ -1,0 +1,227 @@
+{
+ "base": "7eae707bb77722a69b61678c149aa816976bc162",
+ "checks": {
+  "check1": {
+   "detail": "PR non-execution paths equal S",
+   "pass": true
+  },
+  "check2": {
+   "detail": "21 paths identical in blob and mode",
+   "pass": true
+  },
+  "check3": {
+   "detail": {
+    "rules_not_needed": [
+     "projects/chirality-piping/core/analysis_runs/compatibility.py"
+    ]
+   },
+   "pass": true
+  },
+  "check4": {
+   "detail": {
+    "execution_files": 4,
+    "outside_package": [],
+    "sha256_mismatch": []
+   },
+   "pass": true
+  },
+  "check5": {
+   "detail": "21 rows; 21 equal; 0 recorded three-way merge(s); unexplained []",
+   "pass": true
+  }
+ },
+ "int": "ef8ab78473391e531039b5577a1b29134267202f",
+ "main": "7eae707bb77722a69b61678c149aa816976bc162",
+ "pr": "91b6185e646baa3b95482e06093ad58bb3f3832f",
+ "table": [
+  {
+   "equal": true,
+   "int_blob": "9b02f3b122b785639f38ad3ff5eb7afc92c3f40a",
+   "int_last_commit": "c8369cfda23d819805502139907df1e85e92829f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/loads/stress_recovery/src/elastic_section.rs",
+   "pr_blob": "9b02f3b122b785639f38ad3ff5eb7afc92c3f40a",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "090e1297ea59c80dc09102253a0dde4afc233032",
+   "int_last_commit": "c8369cfda23d819805502139907df1e85e92829f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/loads/stress_recovery/src/lib.rs",
+   "pr_blob": "090e1297ea59c80dc09102253a0dde4afc233032",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "5e48a0676af72848f37c25d957b915f7b538075a",
+   "int_last_commit": "c8369cfda23d819805502139907df1e85e92829f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/case_state/resolve.rs",
+   "pr_blob": "5e48a0676af72848f37c25d957b915f7b538075a",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "585b41102438d263d03e10fd927c262f768cffd1",
+   "int_last_commit": "c8369cfda23d819805502139907df1e85e92829f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+   "pr_blob": "585b41102438d263d03e10fd927c262f768cffd1",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "6fcc99917e0ae60bd2530b54b5f7d6ac434fe282",
+   "int_last_commit": "c8369cfda23d819805502139907df1e85e92829f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/pressure_runtime.rs",
+   "pr_blob": "6fcc99917e0ae60bd2530b54b5f7d6ac434fe282",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "7932145a7e94a3752e78d1b5587d0b3e69da41b8",
+   "int_last_commit": "c8369cfda23d819805502139907df1e85e92829f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/preview_physics.rs",
+   "pr_blob": "7932145a7e94a3752e78d1b5587d0b3e69da41b8",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "25b4b98d7a189b1ca69ba505657888f5d46a4f2e",
+   "int_last_commit": "f3939f214135104eca8a320c5bcfc9d1dda43e12",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs",
+   "pr_blob": "25b4b98d7a189b1ca69ba505657888f5d46a4f2e",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "9ea093559b6749eed0f54d52f90268ecc4499c17",
+   "int_last_commit": "e4ec1cb5c9bb4a631645e730ac34828373e4700c",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs",
+   "pr_blob": "9ea093559b6749eed0f54d52f90268ecc4499c17",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "f3dff20d104498c80d0aa9e909c98bff09c3fb26",
+   "int_last_commit": "c8369cfda23d819805502139907df1e85e92829f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/retained_product.rs",
+   "pr_blob": "f3dff20d104498c80d0aa9e909c98bff09c3fb26",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "12fc48aee50e6124422c755028ca02041d81414b",
+   "int_last_commit": "f3939f214135104eca8a320c5bcfc9d1dda43e12",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/retained_wire_tests.rs",
+   "pr_blob": "12fc48aee50e6124422c755028ca02041d81414b",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "2e34b18c0648d1a4edb23edcead1d431dcebca12",
+   "int_last_commit": "f3939f214135104eca8a320c5bcfc9d1dda43e12",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/tests/preview_physics_runtime.rs",
+   "pr_blob": "2e34b18c0648d1a4edb23edcead1d431dcebca12",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "da151aedf2bf5d68238159f0822fde79a9f16463",
+   "int_last_commit": "cd8e7100399eb8e6dd666dede3083a4d2c93f20c",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/solver/frame_kernel/src/correct_norm.rs",
+   "pr_blob": "da151aedf2bf5d68238159f0822fde79a9f16463",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "1aebb137ca980774624e3794eb573fd6e007293a",
+   "int_last_commit": "c613c6816040795b2b511d62b9e950a6d2770443",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/solver/frame_kernel/src/lib.rs",
+   "pr_blob": "1aebb137ca980774624e3794eb573fd6e007293a",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "1dffb1d26be5e7e3363ad7a66970244cf62f37fa",
+   "int_last_commit": "d538f469af5b793a89d20baa7fd2bf5f6d3e5ec7",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/solver/frame_kernel/src/rigid_body.rs",
+   "pr_blob": "1dffb1d26be5e7e3363ad7a66970244cf62f37fa",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "ff22b652752c4f29aa354a3c59e6d08215e3fa20",
+   "int_last_commit": "c8369cfda23d819805502139907df1e85e92829f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs",
+   "pr_blob": "ff22b652752c4f29aa354a3c59e6d08215e3fa20",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "adbc4d8b28b724829f95bf3da1eb29816ae3b972",
+   "int_last_commit": "c613c6816040795b2b511d62b9e950a6d2770443",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/solver/frame_kernel/tests/correct_norm_oracle.rs",
+   "pr_blob": "adbc4d8b28b724829f95bf3da1eb29816ae3b972",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "759e82717cafe1b9b975a7055545496994dc129c",
+   "int_last_commit": "c613c6816040795b2b511d62b9e950a6d2770443",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/solver/frame_kernel/tests/correct_norm_vectors.txt",
+   "pr_blob": "759e82717cafe1b9b975a7055545496994dc129c",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "5e0701f7259db1c8649bafa114955baeb7fb7b3f",
+   "int_last_commit": "d538f469af5b793a89d20baa7fd2bf5f6d3e5ec7",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/solver/frame_kernel/tests/k5_constrained_bodies.rs",
+   "pr_blob": "5e0701f7259db1c8649bafa114955baeb7fb7b3f",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "11a910ce2f19d7854eb5fabc265393edf20c482f",
+   "int_last_commit": "f3939f214135104eca8a320c5bcfc9d1dda43e12",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/results/retained_precision_cases.json",
+   "pr_blob": "11a910ce2f19d7854eb5fabc265393edf20c482f",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "3f98631e95b953284b08b432c6b2e5d16e4a26a7",
+   "int_last_commit": "f3939f214135104eca8a320c5bcfc9d1dda43e12",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json",
+   "pr_blob": "3f98631e95b953284b08b432c6b2e5d16e4a26a7",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "7c08c657113057a952ef4aceb8d5fa9a22697b7a",
+   "int_last_commit": "7bd84e0526a8480c9d5572a4e647fe247b9980e1",
+   "mode": "100644",
+   "path": "projects/chirality-piping/tests/test_retained_precision_contract.py",
+   "pr_blob": "7c08c657113057a952ef4aceb8d5fa9a22697b7a",
+   "resolution": null
+  }
+ ]
+}
