@@ -15923,3 +15923,30 @@ The record is `IMPLEMENTATION/B1_I4/` (RECORD.md, SHA256SUMS, sanitized logs). `
 - Implementers: I103 (lane A) and I104 (SQ).
 
 **IDs:** I104 is used. The next unused are **I105 and RV122**.
+
+## Lane A returned; `b2` built ahead of PR-B1; lane P and B3's readers dispatched; four implementers (ROOT, 2026-10-08 UTC)
+
+**Lane A (I103) returned** at `e96355ef8f`, with no stop. Every suite matches I4′ test by test, apart from added tests and the J1 re-pins, and 23 of 24 mutants are killed (B2A-13 equivalent by value).
+- **J1** (`cd7bc9b363`) passes its acceptance in a Registered build. The five statics are byte-equal to their selected files, and `REVIEWED_INPUTS` is 17.
+- **Then:** B3a-A `3cc71f2e60`, B2-A `a76bbd4477`, and B3b-A `e96355ef8f` (provisional on R6b).
+- **I103's notes, accepted:**
+  - B2-A changes one lane-P test (`u3g2_direct_entry_no_w1_refusals_keep_exact_bytes`), so lane P starts on it;
+  - m3l now gets a notice on the Direct entry until B3a's readers land;
+  - B2-A was amended before any push.
+- **RV122 (RV-Q2), fresh,** reviews J1 and the admission by `BRIEFS/RV122_RVQ2_ROUND1.md`. It also checks the statics' fidelity to B2-C and B3-D, because RV116 and RV118 are not resumable.
+
+**`b2` is built now,** not at J0: `codex/piping-t3-b2-20261008` at `e67c364680`, which is lane A's head with lane K (`e22fd799bc`) merged.
+- Lane K was cut from main, so `b2` also carries main's commits since `b1`'s base, including SI1c. The merge had no conflict.
+- **At J0,** after PR-B1 merges, ROOT merges main into `b2`, with lane A's owner resolving any overlap with SQ's re-pins.
+
+**Dispatched:**
+- **I105, lane P:** B3b-P, then B2-P, in `WT/b2`, by `BRIEFS/B2_P_LANE.md`.
+- **B3's readers,** by `BRIEFS/B3_READERS.md`, each lane cut from `b2`:
+  - I101: RS in `WT/b2-r`; TS and lane T's carriers in `WT/b2-t`;
+  - I100: PY in `WT/b2-p`.
+
+**The implementer cap is raised from three to four** (ROOT's own operating rule, RR "RV98 confirms U8's Pass B; operating adjustments …", item 4), given the owner's production-first direction and the host's four lock slots.
+- Running: I104 (SQ), I105, I101 and I100.
+- **Reviews remain the check.** Each lane's return goes to its RV before ROOT merges it.
+
+**IDs:** I105 is used. The next unused are **I106 and RV123**.
