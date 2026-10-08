@@ -1123,7 +1123,7 @@ pub(super) mod profile {
     pub(crate) const TEXT_TEXT_SYM: u64 = 368; // Text(sym)
     pub(crate) const L_DIAGID: u64 = 2330;
     pub(crate) const L_PUB: u64 = 2599962;
-    pub(crate) const ATOMS: usize = 244;
+    pub(crate) const ATOMS: usize = 247;
     /// The atoms, in index order: their names (as the records write them) and bindings.
     pub(crate) const ATOM_NAMES: [&str; ATOMS] = [
         "Node(&String,())",
@@ -1212,6 +1212,7 @@ pub(super) mod profile {
         "s(BoundedCoefficients<4>)",
         "s(BoundedCoefficients<8>)",
         "s(CaptureError)",
+        "s(CaseSlot)",
         "s(ConstraintMapE)",
         "s(ContributionE)",
         "s(ContributionRounding)",
@@ -1279,6 +1280,7 @@ pub(super) mod profile {
         "s(PreviewSupport)",
         "s(PrimitiveLoad)",
         "s(PrimitiveLoadInput)",
+        "s(PrimitiveSource)",
         "s(ProductMemberFacts)",
         "s(ProductRecipe)",
         "s(ProductRow)",
@@ -1366,6 +1368,7 @@ pub(super) mod profile {
         "s(Wide<8>)",
         "s([PublishedValue;12])",
         "s([bool;6])",
+        "s([usize;2])",
         "s(f64)",
         "s(u32)",
         "s(u64)",
@@ -1464,33 +1467,10 @@ pub(super) mod profile {
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
-        Binding::SourceUpper,
-        Binding::InBuild,
-        Binding::SourceUpper,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
         Binding::InBuild,
         Binding::SourceUpper,
         Binding::InBuild,
         Binding::SourceUpper,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::SourceUpper,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
@@ -1504,27 +1484,7 @@ pub(super) mod profile {
         Binding::InBuild,
         Binding::SourceUpper,
         Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
+        Binding::SourceUpper,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
@@ -1537,14 +1497,6 @@ pub(super) mod profile {
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::InBuild,
-        Binding::SourceUpper,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
@@ -1584,6 +1536,59 @@ pub(super) mod profile {
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
+        Binding::SourceUpper,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::SourceUpper,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::SourceUpper,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
+        Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
@@ -1593,6 +1598,7 @@ pub(super) mod profile {
         Binding::InBuild,
         Binding::InBuild,
         Binding::SourceUpper,
+        Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
         Binding::InBuild,
@@ -1705,6 +1711,7 @@ pub(super) mod profile {
         (fkr::BOUNDED_COEFFICIENTS_4) as u64, // s(BoundedCoefficients<4>) (kernel export structural::retained_resource)
         (fkr::BOUNDED_COEFFICIENTS_8) as u64, // s(BoundedCoefficients<8>) (kernel export structural::retained_resource)
         (size_of::<crate::retained_product::CaptureError>()) as u64, // s(CaptureError)
+        (size_of::<crate::retained_product::CaseSlot>()) as u64, // s(CaseSlot)
         (max_usize(fkr::SOURCE_CONSTRAINT, size_of::<(String, usize)>())) as u64, // s(ConstraintMapE) (C2 constraint map: the kernel Constraint or a support identity entry, the larger)
         (fkr::CONTRIBUTION) as u64, // s(ContributionE) (assemble.rs: Structure.items Vec<Contribution>)
         (fkr::CONTRIBUTION_ROUNDING) as u64, // s(ContributionRounding) (kernel export structural::retained_resource)
@@ -1772,6 +1779,7 @@ pub(super) mod profile {
         (size_of::<crate::PreviewSupport>()) as u64, // s(PreviewSupport)
         (size_of::<open_pipe_stress_primitive_loads::PrimitiveLoad>()) as u64, // s(PrimitiveLoad)
         (size_of::<crate::PreviewPrimitiveLoad>()) as u64, // s(PrimitiveLoadInput)
+        (size_of::<open_pipe_stress_frame_kernel::structural::retained_api::PrimitiveSource>()) as u64, // s(PrimitiveSource)
         (fkr::PRODUCT_MEMBER_FACTS) as u64, // s(ProductMemberFacts) (kernel export structural::retained_resource)
         (fkr::PRODUCT_RECIPE) as u64, // s(ProductRecipe) (kernel export structural::retained_resource)
         (fkr::PRODUCT_FINAL_ROW + fkr::PRODUCT_ROW_VERDICT) as u64, // s(ProductRow) (per final row: the descriptor ProductFinalRow and PP's verdict copy)
@@ -1859,6 +1867,7 @@ pub(super) mod profile {
         (fkr::WIDE_8) as u64, // s(Wide<8>) (kernel export structural::retained_resource)
         (fkr::PUBLISHED_VALUES_12) as u64, // s([PublishedValue;12]) (kernel export structural::retained_resource)
         (size_of::<[bool; 6]>()) as u64, // s([bool;6])
+        (size_of::<[usize; 2]>()) as u64, // s([usize;2])
         (size_of::<f64>()) as u64, // s(f64)
         (size_of::<u32>()) as u64, // s(u32)
         (size_of::<u64>()) as u64, // s(u64)
@@ -1953,6 +1962,7 @@ pub(super) mod profile {
         6912,
         11520,
         48,
+        1560,
         40,
         40,
         96,
@@ -2020,6 +2030,7 @@ pub(super) mod profile {
         400,
         120,
         256,
+        1024,
         512,
         16,
         96,
@@ -2107,6 +2118,7 @@ pub(super) mod profile {
         80,
         576,
         6,
+        16,
         8,
         4,
         8,
@@ -2119,49 +2131,49 @@ pub(super) mod profile {
         pub(crate) terms: &'static [(usize, u64)],
     }
     pub(crate) const FORMS: [Form; 47] = [
-        Form { name: "BODY", constant: 176510682, terms: &[(8, 91557), (222, 106209)] },
+        Form { name: "BODY", constant: 176510682, terms: &[(8, 91557), (224, 106209)] },
         Form { name: "HELPER_moving", constant: 8388608, terms: &[] },
-        Form { name: "INVOC", constant: 262272, terms: &[(8, 19662), (222, 32768)] },
-        Form { name: "NOTICE", constant: 2154, terms: &[(93, 3), (208, 3)] },
-        Form { name: "NOTICE_moving", constant: 0, terms: &[(93, 22911)] },
-        Form { name: "O_base_dense", constant: 163415409, terms: &[(0, 5673), (5, 6345), (6, 7209), (8, 57541), (14, 24), (15, 294), (16, 15), (17, 3), (18, 24906), (19, 15), (21, 1920), (22, 1232), (24, 9), (25, 640), (26, 96), (31, 64), (32, 1536), (33, 20480), (35, 192), (37, 576), (40, 84096), (43, 192), (46, 576), (48, 288), (49, 2976), (51, 608), (52, 224), (53, 384), (55, 148656), (57, 147), (62, 4), (75, 1344), (88, 143328), (93, 65536), (95, 1728), (97, 1440576), (101, 1152), (102, 3072), (103, 1472), (104, 32), (105, 19824), (110, 64), (111, 6144), (113, 16), (122, 96), (123, 96), (124, 768), (127, 786432), (130, 1920), (134, 672), (135, 1152), (136, 1728), (137, 4032), (140, 5184), (147, 3), (148, 32), (149, 32), (150, 32), (151, 768), (152, 384), (162, 1344), (163, 12), (164, 6144), (165, 1536), (167, 12864), (168, 15744), (171, 96), (173, 7680), (174, 3), (175, 30573), (176, 5280), (177, 1152), (182, 5673), (192, 96), (193, 32), (204, 12), (205, 126144), (206, 32), (207, 72), (208, 23047), (209, 96), (211, 256), (213, 96), (214, 24576), (217, 256), (222, 78338), (223, 158622), (224, 1728), (225, 6912), (227, 1728), (228, 7520), (238, 192), (243, 7162)] },
-        Form { name: "O_base_sparse", constant: 142055889, terms: &[(0, 5673), (5, 6345), (6, 7209), (8, 57541), (14, 24), (15, 294), (16, 15), (17, 3), (18, 24906), (19, 15), (21, 1920), (22, 1232), (24, 9), (25, 640), (26, 96), (31, 64), (32, 1536), (33, 20480), (35, 192), (37, 576), (40, 84096), (43, 192), (46, 576), (48, 288), (49, 2976), (50, 3456), (51, 4064), (52, 224), (53, 384), (55, 148656), (57, 147), (62, 4), (75, 1344), (88, 143328), (93, 65536), (95, 1728), (97, 280512), (101, 1152), (102, 3072), (103, 1472), (104, 32), (105, 19824), (110, 64), (111, 6144), (113, 16), (122, 96), (123, 96), (124, 768), (127, 786432), (130, 1920), (134, 672), (135, 1152), (136, 1728), (137, 3456), (140, 5184), (147, 3), (148, 32), (149, 32), (150, 32), (151, 768), (152, 384), (162, 1344), (163, 12), (164, 6144), (165, 1536), (167, 12864), (168, 15744), (171, 96), (173, 7680), (174, 3), (175, 30573), (176, 5280), (177, 1152), (182, 5673), (192, 96), (193, 32), (204, 12), (205, 126144), (206, 32), (207, 72), (208, 23047), (209, 96), (211, 256), (213, 96), (214, 12288), (217, 256), (222, 78338), (223, 141342), (224, 1728), (227, 3456), (228, 9824), (238, 192), (243, 7156)] },
-        Form { name: "STAGED", constant: 248544558, terms: &[(8, 531), (93, 22911), (116, 1), (175, 6345), (208, 25380), (222, 480)] },
-        Form { name: "STATICS", constant: 369376, terms: &[(8, 5801), (222, 23712)] },
-        Form { name: "SUCC", constant: 429924104, terms: &[(8, 182010), (222, 254328)] },
+        Form { name: "INVOC", constant: 262272, terms: &[(8, 19662), (224, 32768)] },
+        Form { name: "NOTICE", constant: 2154, terms: &[(94, 3), (210, 3)] },
+        Form { name: "NOTICE_moving", constant: 0, terms: &[(94, 22911)] },
+        Form { name: "O_base_dense", constant: 163415409, terms: &[(0, 5673), (5, 6345), (6, 7209), (8, 57541), (14, 24), (15, 294), (16, 15), (17, 3), (18, 24906), (19, 15), (21, 1920), (22, 1232), (24, 9), (25, 640), (26, 96), (31, 64), (32, 1536), (33, 20480), (35, 192), (37, 576), (40, 84096), (43, 192), (46, 576), (48, 288), (49, 2976), (51, 608), (52, 224), (53, 384), (55, 148656), (57, 147), (62, 4), (75, 1344), (89, 143328), (94, 65536), (96, 1728), (98, 1440576), (102, 1152), (103, 3072), (104, 1472), (105, 32), (106, 19824), (111, 64), (112, 6144), (114, 16), (123, 96), (124, 96), (125, 768), (128, 786432), (131, 1920), (135, 672), (136, 1152), (137, 1728), (138, 4032), (141, 5184), (148, 3), (149, 32), (150, 32), (151, 32), (152, 768), (153, 384), (164, 1344), (165, 12), (166, 6144), (167, 1536), (169, 12864), (170, 15744), (173, 96), (175, 7680), (176, 3), (177, 30573), (178, 5280), (179, 1152), (184, 5673), (194, 96), (195, 32), (206, 12), (207, 126144), (208, 32), (209, 72), (210, 23047), (211, 96), (213, 256), (215, 96), (216, 24576), (219, 256), (224, 78338), (225, 158622), (226, 1728), (227, 6912), (229, 1728), (230, 7520), (240, 192), (246, 7162)] },
+        Form { name: "O_base_sparse", constant: 142055889, terms: &[(0, 5673), (5, 6345), (6, 7209), (8, 57541), (14, 24), (15, 294), (16, 15), (17, 3), (18, 24906), (19, 15), (21, 1920), (22, 1232), (24, 9), (25, 640), (26, 96), (31, 64), (32, 1536), (33, 20480), (35, 192), (37, 576), (40, 84096), (43, 192), (46, 576), (48, 288), (49, 2976), (50, 3456), (51, 4064), (52, 224), (53, 384), (55, 148656), (57, 147), (62, 4), (75, 1344), (89, 143328), (94, 65536), (96, 1728), (98, 280512), (102, 1152), (103, 3072), (104, 1472), (105, 32), (106, 19824), (111, 64), (112, 6144), (114, 16), (123, 96), (124, 96), (125, 768), (128, 786432), (131, 1920), (135, 672), (136, 1152), (137, 1728), (138, 3456), (141, 5184), (148, 3), (149, 32), (150, 32), (151, 32), (152, 768), (153, 384), (164, 1344), (165, 12), (166, 6144), (167, 1536), (169, 12864), (170, 15744), (173, 96), (175, 7680), (176, 3), (177, 30573), (178, 5280), (179, 1152), (184, 5673), (194, 96), (195, 32), (206, 12), (207, 126144), (208, 32), (209, 72), (210, 23047), (211, 96), (213, 256), (215, 96), (216, 12288), (219, 256), (224, 78338), (225, 141342), (226, 1728), (229, 3456), (230, 9824), (240, 192), (246, 7156)] },
+        Form { name: "STAGED", constant: 248544558, terms: &[(8, 531), (94, 22911), (117, 1), (177, 6345), (210, 25380), (224, 480)] },
+        Form { name: "STATICS", constant: 369376, terms: &[(8, 5801), (224, 23712)] },
+        Form { name: "SUCC", constant: 429924104, terms: &[(8, 182010), (224, 254328)] },
         Form { name: "T07_moving", constant: 1797413, terms: &[] },
-        Form { name: "T11", constant: 281152, terms: &[(34, 32), (36, 8), (37, 96), (63, 1), (85, 3), (114, 8), (117, 96), (128, 192), (135, 576), (138, 12), (153, 96), (191, 3), (194, 96), (196, 768), (197, 96), (198, 96), (199, 384), (200, 96), (201, 384), (202, 96), (218, 384), (239, 96), (241, 576)] },
-        Form { name: "T11_late_capture", constant: 49536, terms: &[(135, 576), (196, 768), (197, 96), (198, 96), (199, 384), (200, 96), (201, 384), (202, 96), (241, 576)] },
-        Form { name: "T11_ordinary_seed", constant: 31104, terms: &[(138, 12)] },
-        Form { name: "T12", constant: 1595190, terms: &[(44, 384), (45, 384), (47, 768), (51, 12288), (58, 3), (59, 3), (77, 96), (78, 96), (86, 768), (87, 12288), (96, 12), (98, 96), (112, 24), (118, 96), (125, 384), (126, 96), (135, 1152), (139, 3456), (166, 6144), (172, 24), (179, 2016), (184, 96), (195, 96), (196, 2112), (197, 384), (198, 336), (199, 1152), (200, 336), (201, 1056), (202, 336), (203, 384), (212, 96), (216, 12288), (228, 2304), (241, 2304), (242, 53760), (243, 125757)] },
-        Form { name: "T13", constant: 751698, terms: &[(9, 156), (10, 156), (28, 768), (29, 6144), (30, 6144), (38, 1536), (39, 768), (41, 384), (42, 192), (61, 15), (64, 6144), (65, 1536), (66, 768), (67, 768), (68, 768), (69, 768), (70, 768), (71, 768), (72, 768), (73, 768), (74, 10752), (77, 96), (79, 96), (80, 96), (81, 96), (82, 288), (83, 96), (84, 96), (109, 1536), (119, 192), (120, 192), (121, 96), (129, 768), (131, 63744), (132, 31488), (133, 31488), (141, 768), (142, 1536), (143, 768), (144, 12), (161, 12288), (166, 6144), (178, 3), (185, 3), (186, 6), (187, 3), (188, 3), (189, 6), (190, 3), (215, 62400), (220, 5376), (226, 4032), (228, 576), (229, 3), (230, 3), (231, 3), (232, 3), (233, 3), (234, 3), (235, 418752), (236, 226752), (237, 152928)] },
-        Form { name: "T14", constant: 6550704, terms: &[(56, 12288), (60, 3), (76, 96), (89, 12288), (91, 96), (94, 12288), (106, 12288), (108, 12288), (115, 96), (127, 786432), (155, 12288), (156, 12288), (157, 12288), (158, 24576), (160, 12288), (183, 6144), (210, 96), (235, 13824), (240, 12288)] },
-        Form { name: "T15", constant: 12288, terms: &[(54, 3), (90, 1536), (99, 12288), (107, 6), (128, 192), (146, 96), (169, 3), (170, 3)] },
-        Form { name: "T16_P1", constant: 301279080, terms: &[(8, 203587), (22, 8192), (145, 1), (154, 6345), (180, 6345), (208, 8448), (222, 247670)] },
-        Form { name: "T16_P2", constant: 3179483861, terms: &[(8, 492724), (22, 8192), (145, 1), (154, 6345), (180, 6345), (208, 8448), (222, 1436616)] },
-        Form { name: "T16_P3", constant: 2392798627, terms: &[(8, 494938), (22, 8192), (145, 1), (154, 6345), (180, 6345), (208, 8480), (222, 1143246)] },
-        Form { name: "T16_P4", constant: 807075258, terms: &[(8, 403382), (22, 8192), (145, 1), (154, 6345), (180, 6345), (208, 8192), (222, 505992)] },
+        Form { name: "T11", constant: 281152, terms: &[(34, 32), (36, 8), (37, 96), (63, 1), (85, 3), (86, 2), (115, 8), (118, 96), (129, 192), (136, 576), (139, 12), (155, 96), (193, 3), (196, 96), (198, 768), (199, 96), (200, 96), (201, 384), (202, 96), (203, 384), (204, 96), (220, 384), (241, 96), (242, 6), (244, 576)] },
+        Form { name: "T11_late_capture", constant: 49536, terms: &[(136, 576), (198, 768), (199, 96), (200, 96), (201, 384), (202, 96), (203, 384), (204, 96), (244, 576)] },
+        Form { name: "T11_ordinary_seed", constant: 31104, terms: &[(139, 12)] },
+        Form { name: "T12", constant: 1595190, terms: &[(44, 384), (45, 384), (47, 768), (51, 12288), (58, 3), (59, 3), (77, 96), (78, 96), (87, 768), (88, 12288), (97, 12), (99, 96), (113, 24), (119, 96), (126, 384), (127, 96), (136, 1152), (140, 3456), (168, 6144), (174, 24), (181, 2016), (186, 96), (197, 96), (198, 2112), (199, 384), (200, 336), (201, 1152), (202, 336), (203, 1056), (204, 336), (205, 384), (214, 96), (218, 12288), (230, 2304), (244, 2304), (245, 53760), (246, 125757)] },
+        Form { name: "T13", constant: 751698, terms: &[(9, 156), (10, 156), (28, 768), (29, 6144), (30, 6144), (38, 1536), (39, 768), (41, 384), (42, 192), (61, 15), (64, 6144), (65, 1536), (66, 768), (67, 768), (68, 768), (69, 768), (70, 768), (71, 768), (72, 768), (73, 768), (74, 10752), (77, 96), (79, 96), (80, 96), (81, 96), (82, 288), (83, 96), (84, 96), (110, 1536), (120, 192), (121, 192), (122, 96), (130, 768), (132, 63744), (133, 31488), (134, 31488), (142, 768), (143, 1536), (144, 768), (145, 12), (154, 3), (163, 12288), (168, 6144), (180, 3), (187, 3), (188, 6), (189, 3), (190, 3), (191, 6), (192, 3), (217, 62400), (222, 5376), (228, 4032), (230, 576), (231, 3), (232, 3), (233, 3), (234, 3), (235, 3), (236, 3), (237, 418752), (238, 226752), (239, 152928)] },
+        Form { name: "T14", constant: 6550704, terms: &[(56, 12288), (60, 3), (76, 96), (90, 12288), (92, 96), (95, 12288), (107, 12288), (109, 12288), (116, 96), (128, 786432), (157, 12288), (158, 12288), (159, 12288), (160, 24576), (162, 12288), (185, 6144), (212, 96), (237, 13824), (243, 12288)] },
+        Form { name: "T15", constant: 12288, terms: &[(54, 3), (91, 1536), (100, 12288), (108, 6), (129, 192), (147, 96), (171, 3), (172, 3)] },
+        Form { name: "T16_P1", constant: 301279080, terms: &[(8, 203587), (22, 8192), (146, 1), (156, 6345), (182, 6345), (210, 8448), (224, 247670)] },
+        Form { name: "T16_P2", constant: 3179483861, terms: &[(8, 492724), (22, 8192), (146, 1), (156, 6345), (182, 6345), (210, 8448), (224, 1436616)] },
+        Form { name: "T16_P3", constant: 2392798627, terms: &[(8, 494938), (22, 8192), (146, 1), (156, 6345), (182, 6345), (210, 8480), (224, 1143246)] },
+        Form { name: "T16_P4", constant: 807075258, terms: &[(8, 403382), (22, 8192), (146, 1), (156, 6345), (182, 6345), (210, 8192), (224, 505992)] },
         Form { name: "T16_moving", constant: 505455619, terms: &[] },
-        Form { name: "T17_V1", constant: 1762234115, terms: &[(8, 183114), (208, 288), (222, 743463)] },
-        Form { name: "T17_V2_clone", constant: 429924104, terms: &[(8, 182010), (222, 254328)] },
-        Form { name: "T17_V2_hash", constant: 2802332626, terms: &[(8, 271350), (208, 256), (222, 1184952)] },
-        Form { name: "T17_V3", constant: 31959932, terms: &[(8, 84990), (208, 384), (222, 72448)] },
-        Form { name: "T17_V4", constant: 20638269, terms: &[(2, 10455), (3, 39), (8, 24111), (20, 204743), (21, 1024), (23, 24576), (181, 8192), (208, 153909), (222, 25380), (223, 32768)] },
-        Form { name: "T17_V5", constant: 437110973, terms: &[(2, 10455), (3, 39), (8, 188355), (20, 149064), (21, 1024), (23, 24576), (181, 8192), (208, 153909), (222, 254328), (223, 32768)] },
-        Form { name: "T17_V6", constant: 277198989, terms: &[(2, 10455), (3, 39), (8, 238583), (20, 149064), (21, 1024), (23, 24576), (181, 8192), (208, 154453), (222, 403223), (223, 32768)] },
+        Form { name: "T17_V1", constant: 1762234115, terms: &[(8, 183114), (210, 288), (224, 743463)] },
+        Form { name: "T17_V2_clone", constant: 429924104, terms: &[(8, 182010), (224, 254328)] },
+        Form { name: "T17_V2_hash", constant: 2802332626, terms: &[(8, 271350), (210, 256), (224, 1184952)] },
+        Form { name: "T17_V3", constant: 31959932, terms: &[(8, 84990), (210, 384), (224, 72448)] },
+        Form { name: "T17_V4", constant: 20638269, terms: &[(2, 10455), (3, 39), (8, 24111), (20, 204743), (21, 1024), (23, 24576), (183, 8192), (210, 153909), (224, 25380), (225, 32768)] },
+        Form { name: "T17_V5", constant: 437110973, terms: &[(2, 10455), (3, 39), (8, 188355), (20, 149064), (21, 1024), (23, 24576), (183, 8192), (210, 153909), (224, 254328), (225, 32768)] },
+        Form { name: "T17_V6", constant: 277198989, terms: &[(2, 10455), (3, 39), (8, 238583), (20, 149064), (21, 1024), (23, 24576), (183, 8192), (210, 154453), (224, 403223), (225, 32768)] },
         Form { name: "T17_moving_invocation", constant: 1179864, terms: &[] },
         Form { name: "T17_moving_publication", constant: 505455619, terms: &[] },
-        Form { name: "T17_output", constant: 0, terms: &[(181, 8192), (221, 1)] },
-        Form { name: "T19", constant: 8192, terms: &[(219, 1)] },
-        Form { name: "T25_I1", constant: 3093923008, terms: &[(2, 5852), (4, 1270), (8, 376467), (27, 16384), (62, 4), (113, 8), (147, 3), (148, 32), (149, 32), (150, 32), (152, 384), (175, 6345), (208, 6729), (217, 128), (222, 1296181)] },
-        Form { name: "T25_I2", constant: 1252731066, terms: &[(2, 5852), (4, 1270), (8, 248673), (27, 16384), (62, 4), (113, 8), (147, 3), (148, 32), (149, 32), (150, 32), (152, 384), (175, 6345), (208, 6793), (217, 128), (222, 397276)] },
-        Form { name: "T25_I3", constant: 619075938, terms: &[(2, 5852), (4, 1270), (8, 223395), (27, 16384), (62, 4), (113, 8), (147, 3), (148, 32), (149, 32), (150, 32), (152, 384), (175, 6345), (208, 6537), (217, 128), (222, 279088)] },
-        Form { name: "T25_S1", constant: 20579900, terms: &[(8, 39320), (21, 384), (22, 400), (25, 192), (26, 32), (27, 16384), (31, 64), (37, 64), (49, 256), (53, 32), (55, 16784), (62, 4), (75, 256), (97, 37248), (101, 256), (102, 256), (103, 64), (104, 32), (105, 3088), (110, 64), (113, 12), (124, 128), (130, 256), (134, 32), (135, 192), (137, 192), (147, 3), (148, 32), (149, 32), (150, 32), (151, 256), (152, 384), (167, 2144), (193, 32), (205, 12832), (206, 32), (208, 2272), (211, 256), (217, 192), (222, 65536), (223, 14154), (228, 640), (243, 256)] },
-        Form { name: "T25_S2", constant: 5594299, terms: &[(21, 384), (22, 320), (25, 128), (26, 32), (37, 64), (49, 64), (53, 32), (55, 16784), (101, 128), (102, 128), (103, 32), (105, 3088), (130, 128), (134, 32), (135, 192), (137, 192), (205, 8192), (208, 2080), (223, 13386), (228, 192)] },
-        Form { name: "T25_S3", constant: 78439670, terms: &[(1, 424), (4, 353), (7, 424), (8, 2034), (12, 353), (13, 353), (92, 2115), (159, 2048), (182, 2115), (222, 1152)] },
-        Form { name: "T25_S4", constant: 367697553, terms: &[(8, 384010), (11, 78), (159, 2048), (182, 2115), (208, 512), (222, 1051510), (228, 192)] },
-        Form { name: "T25_S5", constant: 70217356, terms: &[(8, 13718), (100, 1), (159, 2048), (182, 2115), (222, 9036)] },
-        Form { name: "T25_carried_case", constant: 137034882, terms: &[(8, 22107), (159, 6144), (182, 6345), (222, 14418)] },
+        Form { name: "T17_output", constant: 0, terms: &[(183, 8192), (223, 1)] },
+        Form { name: "T19", constant: 8192, terms: &[(221, 1)] },
+        Form { name: "T25_I1", constant: 3093923008, terms: &[(2, 5852), (4, 1270), (8, 376467), (27, 16384), (62, 4), (114, 8), (148, 3), (149, 32), (150, 32), (151, 32), (153, 384), (177, 6345), (210, 6729), (219, 128), (224, 1296181)] },
+        Form { name: "T25_I2", constant: 1252731066, terms: &[(2, 5852), (4, 1270), (8, 248673), (27, 16384), (62, 4), (114, 8), (148, 3), (149, 32), (150, 32), (151, 32), (153, 384), (177, 6345), (210, 6793), (219, 128), (224, 397276)] },
+        Form { name: "T25_I3", constant: 619075938, terms: &[(2, 5852), (4, 1270), (8, 223395), (27, 16384), (62, 4), (114, 8), (148, 3), (149, 32), (150, 32), (151, 32), (153, 384), (177, 6345), (210, 6537), (219, 128), (224, 279088)] },
+        Form { name: "T25_S1", constant: 20579900, terms: &[(8, 39320), (21, 384), (22, 400), (25, 192), (26, 32), (27, 16384), (31, 64), (37, 64), (49, 256), (53, 32), (55, 16784), (62, 4), (75, 256), (98, 37248), (102, 256), (103, 256), (104, 64), (105, 32), (106, 3088), (111, 64), (114, 12), (125, 128), (131, 256), (135, 32), (136, 192), (138, 192), (148, 3), (149, 32), (150, 32), (151, 32), (152, 256), (153, 384), (169, 2144), (195, 32), (207, 12832), (208, 32), (210, 2272), (213, 256), (219, 192), (224, 65536), (225, 14154), (230, 640), (246, 256)] },
+        Form { name: "T25_S2", constant: 5594299, terms: &[(21, 384), (22, 320), (25, 128), (26, 32), (37, 64), (49, 64), (53, 32), (55, 16784), (102, 128), (103, 128), (104, 32), (106, 3088), (131, 128), (135, 32), (136, 192), (138, 192), (207, 8192), (210, 2080), (225, 13386), (230, 192)] },
+        Form { name: "T25_S3", constant: 78439670, terms: &[(1, 424), (4, 353), (7, 424), (8, 2034), (12, 353), (13, 353), (93, 2115), (161, 2048), (184, 2115), (224, 1152)] },
+        Form { name: "T25_S4", constant: 367697553, terms: &[(8, 384010), (11, 78), (161, 2048), (184, 2115), (210, 512), (224, 1051510), (230, 192)] },
+        Form { name: "T25_S5", constant: 70217356, terms: &[(8, 13718), (101, 1), (161, 2048), (184, 2115), (224, 9036)] },
+        Form { name: "T25_carried_case", constant: 137034882, terms: &[(8, 22107), (161, 6144), (184, 6345), (224, 14418)] },
         Form { name: "T25_moving", constant: 504784788, terms: &[] },
         Form { name: "TAV_W", constant: 4301774658, terms: &[] },
         Form { name: "TAV_X", constant: 4009007112, terms: &[] },
@@ -2319,7 +2331,7 @@ pub(super) mod profile {
     pub(crate) const DENSE: Option<(u64, usize)> = maximum(&phases_dense(&ATOM_VALUES));
     /// The Python chain's own evaluation (ASSUMED strides), for the transcription check.
     #[cfg(test)]
-    pub(crate) const PYTHON_CHECK: [(u64, &str); 2] = [(9521289203, "W3 publication (T16) with the staged copy"), (9580420547, "W3 publication (T16) with the staged copy")];
+    pub(crate) const PYTHON_CHECK: [(u64, &str); 2] = [(9521295491, "W3 publication (T16) with the staged copy"), (9580426835, "W3 publication (T16) with the staged copy")];
 }
 // ---- END GENERATED PROFILE ----
 
@@ -2672,7 +2684,12 @@ pub(super) const P_FINAL: u64 = (7 * caps::NODES + 51 * caps::MEMBERS + 8 * caps
 /// The gate bounds. Count bounds are D1's caps; text bounds are 2× the G4 text
 /// atoms (exact-capacity copies at most double: API_G4.md §2); the preview tree
 /// bounds are ordinary_caps.py's PREVIEW facts at the caps. The byte bounds (T11, T11
-/// without its late capture, T11.4) are the generated profile's in-build forms.
+/// without one case's late capture, T11.4) are the generated profile's in-build forms.
+/// B1 SQ (RV112 SF-1): G-B at case k reads the capture's cumulative tally, which already holds
+/// cases 0…k−1's late captures, so its bound is T11 less **one** case's late capture:
+/// `F_T11_LATE_CAPTURE / C`. The generator prices the late capture per requested case, so the
+/// form is exactly C times one case's (G5 checks the c = 1 and c = C forms; a law test checks
+/// every coefficient is a multiple of C).
 /// B1 SA (option S3; I82 STUDY §4.3; PLAN_v2 §2.3), at C = `LOAD_CASES`: G-B bounds each
 /// case's loads by l and their running total by L; G-C bounds the result rows, their
 /// capacity and text by C·P_final (RV107 N-13), the contract-evidence facts by C times
@@ -2685,7 +2702,7 @@ pub(super) const fn phase_caps() -> PhaseCaps {
     let k = if 6 * n < RESTRAINTS as u64 { 6 * n } else { RESTRAINTS as u64 };
     PhaseCaps {
         late: [n, m, m, g, LOADS as u64, TOTAL_LOADS as u64, k, SPRINGS as u64, 2 * MATERIALS as u64,
-            profile_bytes(profile::F_T11).saturating_sub(profile_bytes(profile::F_T11_LATE_CAPTURE))],
+            profile_bytes(profile::F_T11).saturating_sub(profile_bytes(profile::F_T11_LATE_CAPTURE) / c)],
         complete: [
             c * P_FINAL,
             push_capacity(c * P_FINAL),
