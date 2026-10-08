@@ -616,8 +616,10 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 - **Earlier:** T1 option (a); D-3 = S1; D-6 = (a); M selected under D-7.
 
 **Assignment IDs.** Dispatched 2026-10-06/08: I68–I99, RV97–RV99 and RV101–RV119 (RV100 was 2026-10-05's).
-- **Running:** RV113 (confirming SR-RS round 2, then SR-TS, then SR-PY) and RV119 (records PR #1114).
-- **Idle, resumable:** I85 (SP; done through I3), I88 (SI1c), I89 (SA), I90 (SR-RS), I91 (SR-PY; SC next), I92 (SR-TS), I93 (B2/B3 plan), I94 (B2-KD), I95 (B3-S), I96 (B3-D), I97 (B2-C), I98 (B2-W), I99 (B3-W), RV109 (RV-P), RV111 (SI1c), RV115 (RV-K), RV116 (RV-D), RV117 (records) and RV118 (RV-C).
+- **At the 2026-10-08 handoff, still running in the previous session** (their records land on disk; the new ROOT verifies them there):
+  - RV113: SR-RS round 2 and SR-TS repair 01 are CONFIRMED and sealed (`REVIEW_RV113/rvr_sr_rs_01/ADDENDUM_02.md`, `rvr_sr_ts_01/ADDENDUM_01.md`); SR-PY repair 02's confirmation (`rvr_sr_py_01/ADDENDUM_01.md`) was running;
+  - RV119: its ADDENDUM_01 on #1114's head `8568fb2053`.
+- **Agents of earlier sessions are not resumable from a new session.** Their IDs stay used; dispatch fresh agents with the next IDs.
 - **The next unused** are **I100 and RV120**.
 
 **T3 rulings in force** (section headings in `ROOT_RULINGS_V1.md`):
@@ -704,11 +706,11 @@ This section is T3's current account, kept up to date as T3 moves. It replaces T
 **Next safe action:**
 1. **B1 phases 2–3:**
    - I85's I3 step is done (`03f55e7178`) → RV109 confirmed: **SP is complete.**
-   - The alignment repairs are done (RS `6e3e4fe219`, PY `2843a59a16`, TS `6fa6a64658`) → RV113 confirms each → **I4** (ROOT merges `b1-r` again, `b1-p` and `b1-t` into `b1`).
-   - Then SC (07n, I-PY), SQ (I-A; with E-12's guard item and N-3's inputs), and SG, SB and SK → PR-B1.
+   - The alignment repairs are done (RS `6e3e4fe219`, PY `2843a59a16`, TS `6fa6a64658`) → RV113 confirmed RS and TS (sealed, not yet verified or committed by ROOT); PY's confirmation was running at handoff → **I4** (ROOT merges `b1-r` again, `b1-p` and `b1-t` into `b1`).
+   - Then SC (07n, I-PY; `BRIEFS/B1_SC.md`, its `{I4 commit}` filled in), SQ (I-A; with E-12's guard item and N-3's inputs), and SG, SB and SK → PR-B1.
 2. **B2/B3 phase 0:** B2-C is ruled → I97's revision 01 (verified) → RV115 confirmed S-4 (a) (SA3-1: option (ii) ruled) → RV118 confirmed revision 01 (A-1: (ii) in B2-K) → I97's revision 02 → RV115 and RV118 confirmed → **B2-C final for J1** (done), with names reserved → J1's package (I-A) after J0. B2's and B3's witnesses are selected (RR "I98's B2-W verified; …", "I99's B3-W verified; …"). **J0** follows PR-B1.
-3. **Records:** #1111 is merged (`54f1ba1f6d`; `IMPLEMENTATION/RECORDS_MERGE_2026-10-07C/`). **[#1114](https://github.com/sgttomas/chirality/pull/1114)** carries NUM's records through `96cf68289f` (with E-16's redaction and E-17's two portability entries); RV119 reviews it, then squash-merge and NUM absorbs main.
+3. **Records:** #1111 is merged (`54f1ba1f6d`; `IMPLEMENTATION/RECORDS_MERGE_2026-10-07C/`). **[#1114](https://github.com/sgttomas/chirality/pull/1114)**, head `8568fb2053`, carries NUM's records through `dc4ffdc7c8` (E-16's redaction, E-17's two portability entries, S-1's rewordings). RV119 passed it (0/1/3) and confirms the S-1 delta; then hosted CI on the head, a squash-merge with `--match-head-commit` and the N-3 body, the merge record `IMPLEMENTATION/RECORDS_MERGE_2026-10-08/`, and NUM absorbs main. The next records PR carries RV119's and RV113's records and the handoff note.
 4. **Post-merge cleanup `apply`** when the host is idle:
-   - the merged worktrees `s-i1`, `u8-pr`, `f2a-u8`, `t6-outputs`, `t6s-pr`, `records-pr`, `s-i1b`, `si1b-pr`, `b6`, `b6-pr`, `records-pr-b`, `records-pr-c`, `s-i1c` and `si1c-pr`;
+   - the merged worktrees `s-i1`, `u8-pr`, `f2a-u8`, `t6-outputs`, `t6s-pr`, `records-pr`, `s-i1b`, `si1b-pr`, `b6`, `b6-pr`, `records-pr-b`, `records-pr-c`, `s-i1c` and `si1c-pr`, and `records-pr-d` after #1114 merges; `b1-a` (SA, merged at I2) and `b1-r`, `b1-p`, `b1-t` after I4;
    - stale targets, including `sweep-skewpin-target`;
    - (I85's scratch and targets are deleted, 2026-10-08.)

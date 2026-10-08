@@ -15658,3 +15658,18 @@ What the owner was told named the path correctly.
 1. #1114 gains one commit: NUM's `execution/` at this commit. It adds RV109's ADDENDUM_01, the two rewordings, these RR sections and the work graph; RV119's own records stay out.
 2. RV119 confirms the delta (ADDENDUM_01).
 3. ROOT squash-merges with `--match-head-commit`.
+
+## Handoff to the next ROOT session (ROOT, 2026-10-08 UTC)
+
+**The owner hands T3 to a new session.**
+- **The ephemeral note:** `HANDOFF_2026-10-08_TO_NEXT_ROOT.md`, with the work in flight and the machine-local host details.
+- **The steer:** `HANDOFF_2026-10-08_PROMPT.md`, piping's init prompt with the steer filled in.
+- The work graph's T3 section carries the rest.
+
+**In flight, still running in this session,** which stays open and idle so its reviewers can finish writing to disk and takes no further action:
+- RV119's ADDENDUM_01 on #1114's head `8568fb2053`;
+- RV113's confirmation of SR-PY repair 02. RV113 has already sealed CONFIRMED on SR-RS round 2 and SR-TS repair 01.
+
+The next ROOT verifies all of them from disk. ROOT has verified and committed none of RV113's addenda, or RV119's records.
+
+**Agents of this session are not resumable from the next.** Their IDs stay used, and the next unused are I100 and RV120.
