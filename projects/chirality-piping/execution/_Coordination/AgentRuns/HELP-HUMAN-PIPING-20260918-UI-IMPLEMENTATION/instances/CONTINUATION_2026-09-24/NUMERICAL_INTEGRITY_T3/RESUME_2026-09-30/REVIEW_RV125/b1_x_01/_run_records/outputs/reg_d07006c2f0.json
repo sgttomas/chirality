@@ -1,0 +1,278 @@
+[
+  {
+    "cause": "successor",
+    "class": "successor",
+    "envelope_equals_value_route": true,
+    "label": "w_c2",
+    "load_cases": 3,
+    "mode": "sparse_interactive",
+    "profile": "Registered",
+    "published_sha": "c7a1859330e9e36e18f5572838dbad72ea251a817241acc6968f8f83b70170fa",
+    "refusal": null,
+    "unavailable_diagnostics": 1,
+    "value_sha": "42b24d16e5fe8dd7b0263675223259ffd8ce5add92963e2a2a84bd165e53d824"
+  },
+  {
+    "label": "w_c2",
+    "mode": "sparse_interactive",
+    "rs_bound": {
+      "bound": true,
+      "classes": 171,
+      "eligible": false,
+      "ok": true
+    },
+    "rs_transport": {
+      "bound": false,
+      "classes": 0,
+      "eligible": false,
+      "ok": true
+    },
+    "rs_unbound": {
+      "bound": false,
+      "classes": 171,
+      "eligible": false,
+      "ok": true
+    }
+  },
+  {
+    "cause": "successor",
+    "class": "successor",
+    "envelope_equals_value_route": true,
+    "label": "w_c2_cab",
+    "load_cases": 3,
+    "mode": "sparse_interactive",
+    "profile": "Registered",
+    "published_sha": "d86ecc4ecc40a03a875c86017c1e12ea926d2c47040ade8a974e4024310228cd",
+    "refusal": null,
+    "unavailable_diagnostics": 1,
+    "value_sha": "93959bf735b7278526fddc70d36732fcb364403812e69823f034085f9db475dd"
+  },
+  {
+    "evidence_equal": true,
+    "first_differing": [],
+    "label": "w_c2_cab_vs_abc",
+    "mode": "sparse_interactive",
+    "rows": [
+      513,
+      513
+    ],
+    "rows_equal": true,
+    "summary_abc": {
+      "component_pressure_thrust_load_count": 0,
+      "component_stress_modifier_count": 0,
+      "component_user_stiffness_macro_element_count": 0,
+      "load_case_count": 3,
+      "max_displacement": {
+        "location_ref": "node:section-b",
+        "result_ref": "result:loadcase:case-b:disp:node-section-b",
+        "unit": "mm",
+        "value": 282.94212105225847
+      },
+      "max_open_formula_stress": {
+        "location_ref": "M1",
+        "result_ref": "result:elastic-maximum:6:case-c:2:M1",
+        "unit": "Pa",
+        "value": 2.5172202259989904e-8
+      },
+      "node_count": 4,
+      "segment_count": 2,
+      "spring_hanger_user_input_count": 0,
+      "support_count": 5
+    },
+    "summary_cab": {
+      "component_pressure_thrust_load_count": 0,
+      "component_stress_modifier_count": 0,
+      "component_user_stiffness_macro_element_count": 0,
+      "load_case_count": 3,
+      "max_displacement": {
+        "location_ref": "node:section-b",
+        "result_ref": "result:loadcase:case-b:disp:node-section-b",
+        "unit": "mm",
+        "value": 282.94212105225847
+      },
+      "max_open_formula_stress": {
+        "location_ref": "M1",
+        "result_ref": "result:elastic-maximum:6:case-c:2:M1",
+        "unit": "Pa",
+        "value": 2.5172202259989904e-8
+      },
+      "node_count": 4,
+      "segment_count": 2,
+      "spring_hanger_user_input_count": 0,
+      "support_count": 5
+    }
+  },
+  {
+    "label": "w_c2_cab",
+    "mode": "sparse_interactive",
+    "rs_bound": {
+      "bound": true,
+      "classes": 171,
+      "eligible": false,
+      "ok": true
+    },
+    "rs_transport": {
+      "bound": false,
+      "classes": 0,
+      "eligible": false,
+      "ok": true
+    },
+    "rs_unbound": {
+      "bound": false,
+      "classes": 171,
+      "eligible": false,
+      "ok": true
+    }
+  },
+  {
+    "cause": "none",
+    "class": "exact",
+    "envelope_equals_value_route": true,
+    "label": "w_c2_pressure_on_third",
+    "load_cases": 3,
+    "mode": "sparse_interactive",
+    "profile": "Registered",
+    "published_sha": "935b79b8d7f934a7f11adcad270c46e3777d4ca2acf26d65aef682a3b4a9d50b",
+    "refusal": "Family(Case, PressureRegions)",
+    "unavailable_diagnostics": 0,
+    "value_sha": "935b79b8d7f934a7f11adcad270c46e3777d4ca2acf26d65aef682a3b4a9d50b"
+  },
+  {
+    "cause": "successor",
+    "class": "successor",
+    "envelope_equals_value_route": true,
+    "label": "w_c2",
+    "load_cases": 3,
+    "mode": "dense_scrutiny",
+    "profile": "Registered",
+    "published_sha": "a77c010b4ae7ffa9c535c31305b8a91fcc3c05e8a512075fa5b4694dbae3062c",
+    "refusal": null,
+    "unavailable_diagnostics": 1,
+    "value_sha": "c382c16e19074e5b06f21cc2d6d894e747cfb672e9983e39b33d17d60e0d5623"
+  },
+  {
+    "label": "w_c2",
+    "mode": "dense_scrutiny",
+    "rs_bound": {
+      "bound": true,
+      "classes": 171,
+      "eligible": false,
+      "ok": true
+    },
+    "rs_transport": {
+      "bound": false,
+      "classes": 0,
+      "eligible": false,
+      "ok": true
+    },
+    "rs_unbound": {
+      "bound": false,
+      "classes": 171,
+      "eligible": false,
+      "ok": true
+    }
+  },
+  {
+    "cause": "successor",
+    "class": "successor",
+    "envelope_equals_value_route": true,
+    "label": "w_c2_cab",
+    "load_cases": 3,
+    "mode": "dense_scrutiny",
+    "profile": "Registered",
+    "published_sha": "c701da853aa1ddc4d4e319e4fc35efafd4589ca66fb741701bdec8ed40b6b25d",
+    "refusal": null,
+    "unavailable_diagnostics": 1,
+    "value_sha": "dbebb58ab0749bedd88346ec7e084fe9dc3de0746c2df4921c53184775393692"
+  },
+  {
+    "evidence_equal": true,
+    "first_differing": [],
+    "label": "w_c2_cab_vs_abc",
+    "mode": "dense_scrutiny",
+    "rows": [
+      513,
+      513
+    ],
+    "rows_equal": true,
+    "summary_abc": {
+      "component_pressure_thrust_load_count": 0,
+      "component_stress_modifier_count": 0,
+      "component_user_stiffness_macro_element_count": 0,
+      "load_case_count": 3,
+      "max_displacement": {
+        "location_ref": "node:section-b",
+        "result_ref": "result:loadcase:case-b:disp:node-section-b",
+        "unit": "mm",
+        "value": 282.9421210522583
+      },
+      "max_open_formula_stress": {
+        "location_ref": "M1",
+        "result_ref": "result:elastic-maximum:6:case-c:2:M1",
+        "unit": "Pa",
+        "value": 4.619475839070268e-8
+      },
+      "node_count": 4,
+      "segment_count": 2,
+      "spring_hanger_user_input_count": 0,
+      "support_count": 5
+    },
+    "summary_cab": {
+      "component_pressure_thrust_load_count": 0,
+      "component_stress_modifier_count": 0,
+      "component_user_stiffness_macro_element_count": 0,
+      "load_case_count": 3,
+      "max_displacement": {
+        "location_ref": "node:section-b",
+        "result_ref": "result:loadcase:case-b:disp:node-section-b",
+        "unit": "mm",
+        "value": 282.9421210522583
+      },
+      "max_open_formula_stress": {
+        "location_ref": "M1",
+        "result_ref": "result:elastic-maximum:6:case-c:2:M1",
+        "unit": "Pa",
+        "value": 4.619475839070268e-8
+      },
+      "node_count": 4,
+      "segment_count": 2,
+      "spring_hanger_user_input_count": 0,
+      "support_count": 5
+    }
+  },
+  {
+    "label": "w_c2_cab",
+    "mode": "dense_scrutiny",
+    "rs_bound": {
+      "bound": true,
+      "classes": 171,
+      "eligible": false,
+      "ok": true
+    },
+    "rs_transport": {
+      "bound": false,
+      "classes": 0,
+      "eligible": false,
+      "ok": true
+    },
+    "rs_unbound": {
+      "bound": false,
+      "classes": 171,
+      "eligible": false,
+      "ok": true
+    }
+  },
+  {
+    "cause": "none",
+    "class": "exact",
+    "envelope_equals_value_route": true,
+    "label": "w_c2_pressure_on_third",
+    "load_cases": 3,
+    "mode": "dense_scrutiny",
+    "profile": "Registered",
+    "published_sha": "935b79b8d7f934a7f11adcad270c46e3777d4ca2acf26d65aef682a3b4a9d50b",
+    "refusal": "Family(Case, PressureRegions)",
+    "unavailable_diagnostics": 0,
+    "value_sha": "935b79b8d7f934a7f11adcad270c46e3777d4ca2acf26d65aef682a3b4a9d50b"
+  }
+]

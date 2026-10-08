@@ -16136,3 +16136,28 @@ I108 refreshed the package for `d07006c2f0` (CHANGE_RECORD `ddce438a…`, PR_BOD
 - **The full-SHA dispatch:** run 37789751525, with `target_base` main `3d73db745e`.
 
 **Open before the merge:** Pass B (I107, then RV124's confirmation), RV-X (RV125), hosted CI, and the exact-head DEC-025 against a fresh main baseline with the src-tauri suite.
+
+## RV125 (RV-X) passes PR-B1 (0/0/7); the PR body corrected; N-2 routed forward (ROOT, 2026-10-08 UTC)
+
+**RV125 PASSED** #1154 at `0752ae8b98` (`R/REVIEW_RV125/b1_x_01/REVIEW.md`, `3c2ea5d4…`; 28 of 28 sums). Counts: 0 BLOCKING, 0 SHOULD-FIX, 7 NOTE.
+- **Its two should-fixes on `8248921552`** (the misquoted R6a title and the commit message's reviewer list) are confirmed repaired by the recut.
+- **Source equality:** checks 1–5 pass.
+- **The ledger:** every one of the 33 files maps to a review of its own commits. Every merge on `b1` is an automatic merge.
+- **`ddc8eaaf54`** equals the reviewed `registration.diff`. The 14 reviewed inputs and PP's `Cargo.lock` are unchanged.
+- **The package:** checked.
+- **Spot checks on both heads:** W-C2 in three cases through the Direct entry in both modes equals SP's pins; Stale gives the ordinary bytes; pressure on the third case is refused at D1.5; the three readers agree.
+- **Its own probes:** the ordinal mapping under permutation; custody at C = 3; `NoTriggeredCase`; one notice per attempted case.
+- **RV109 round 2's N-1** is closed: M11 is killed by five SP tests.
+
+**Ruled on the notes:**
+- **N-4 and N-6 (text).** The PR body is corrected on GitHub, which does not move the head:
+  - the readers' agreement now names the raw G7 codes and RV120 A-N2's two declared Python-only transport differences;
+  - 07n's counts are its own: 9 cases, 240 mutations and 50 must-pass entries, for 26, 534 and 78 in all.
+
+  The package's PR_BODY.md and the commit message stay as committed, and the merge record carries the qualification.
+- **N-7.** CHANGE_RECORD §1 and §2 attribute the `checks_passed` rule to decision 21; it is decision 1. This is an erratum in the merge record, with no package commit.
+- **N-2 (forward).** The modulus-basis custody fields in `retained_product.rs` (`selections`, `basis_record`, `basis_record_calls`, `basis_expected`) are per invocation. They must become per case before any lane admits material selectors at c ≥ 2. This binds lane A's admission widening and lane P (sent to I105), and SQ2's brief carries it.
+- **N-1.** The readers admit a negative or zero `global_upper_bound_pa` or `certified_gap_pa`. The producer cannot emit a negative value, and main behaves the same. No action for PR-B1. The next reader round (B2's) adds a negative-value refusal with a shared shape.
+- **N-3 and N-5.** No action. N-5's clause is met in substance.
+
+**Open before the merge:** Pass B (I107, then RV124), hosted CI, and the exact-head DEC-025 with the src-tauri suite.

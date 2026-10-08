@@ -1,0 +1,38 @@
+== pp_reg
+RV125_OUT rows=12 registered=Some(true)
+test zz_rv125_spot::zz_rv125_spot ... ok
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 631 filtered out; finished in 6.73s
+== pp_stale
+RV125_OUT rows=4 registered=Some(false)
+test zz_rv125_spot::zz_rv125_spot ... ok
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 631 filtered out; finished in 0.21s
+== pp_reg_probe
+RV125_OUT rows=12 registered=Some(true)
+test zz_rv125_spot::zz_rv125_spot ... ok
+RV125_PROBE_OUT rows=16
+test zz_rv125_spot::zz_rv125_probe ... ok
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 631 filtered out; finished in 12.45s
+== py
+4 passed in 2.06s
+== ts
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+== pp_reg_head2 (d07006c2f0)
+RV125_OUT rows=12 registered=Some(true)
+test zz_rv125_spot::zz_rv125_spot ... ok
+RV125_PROBE_OUT rows=16
+test zz_rv125_spot::zz_rv125_probe ... ok
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 631 filtered out; finished in 11.52s
+== re_n5 (d07006c2f0)
+test source_blocks::rv95_n5_integer_tests::integer_admits_two_to_53_minus_1_and_refuses_two_to_53 ... ok
+test source_blocks::rv95_n5_integer_tests::every_field_read_through_integer_refuses_two_to_53 ... ok
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 24 filtered out; finished in 0.00s
+== M11 (RV109 round 2 N-1): native_call moves the sources back in reverse; b1_sp_ tests on d07006c2f0
+test retained_facade_tests::b1_sp_sf2_selected_not_first_and_two_selected_pins ... FAILED
+test retained_facade_tests::b1_sp_w_c2_direct_entry_publishes_the_pinned_successor ... FAILED
+test retained_facade_tests::b1_sp_w_c2_fixtures_are_the_live_successors ... FAILED
+test retained_facade_tests::b1_sp_w_c2_through_retained_w1_publishes_t12 ... FAILED
+test retained_facade_tests::b1_sp_w_c2_transaction_outcomes_and_ordinal_mapping ... FAILED
+SparseInteractive: not NoTriggeredCase (R17): Precommit { gate: "G8", code: "RETAINED_PRECISION_PREPARATION_MISMATCH" }
+SparseInteractive: since I3 the precommit accepts W-C2: (Precommit { gate: "G8", code: "RETAINED_PRECISION_PREPARATION_MISMATCH" }, 1)
+test result: FAILED. 13 passed; 5 failed; 0 ignored; 0 measured; 615 filtered out; finished in 24.59s

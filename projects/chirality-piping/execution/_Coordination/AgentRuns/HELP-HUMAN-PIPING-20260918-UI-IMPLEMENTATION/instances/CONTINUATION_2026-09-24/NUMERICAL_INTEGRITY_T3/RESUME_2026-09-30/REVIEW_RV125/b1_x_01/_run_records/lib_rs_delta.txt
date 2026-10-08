@@ -1,0 +1,4 @@
+# Appended to the archive copy's core/product_physics/src/lib.rs (the only edit to a PR file in the copy):
+
+#[cfg(test)]
+mod zz_rv125_spot;

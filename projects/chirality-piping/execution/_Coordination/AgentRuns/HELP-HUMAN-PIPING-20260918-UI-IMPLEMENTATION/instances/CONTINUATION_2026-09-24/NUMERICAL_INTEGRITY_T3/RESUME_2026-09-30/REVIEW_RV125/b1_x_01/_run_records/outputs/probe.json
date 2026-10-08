@@ -1,0 +1,190 @@
+[
+  {
+    "cause": "successor",
+    "class": "successor",
+    "envelope_equals_value_route": true,
+    "label": "a_alone",
+    "load_cases": 1,
+    "mode": "sparse_interactive",
+    "profile": "Registered",
+    "published_sha": "55cb7deacefc8e86fda410d5b0c81294713b522f6e8760a657e382150a2ecb05",
+    "refusal": null,
+    "unavailable_diagnostics": 0,
+    "value_sha": "da7b5a8750fa3dd763b124aed78a6453763068684d62c815b3deedfb0b6829a7"
+  },
+  {
+    "cause": "successor",
+    "class": "successor",
+    "envelope_equals_value_route": true,
+    "label": "a_a2_a3",
+    "load_cases": 3,
+    "mode": "sparse_interactive",
+    "profile": "Registered",
+    "published_sha": "bc8ac155fdb5f06ede890ccde77119e28b96eac94c0a5a790d783c15cf20effa",
+    "refusal": null,
+    "unavailable_diagnostics": 0,
+    "value_sha": "1afe79765a9299586f29f6a925f96f1bcf8dcb9edca6fcb5e04f102ff4e71528"
+  },
+  {
+    "case": "case-a",
+    "classes": 171,
+    "classes_equal": true,
+    "evidence_equal": true,
+    "label": "a_a2_a3_vs_a_alone",
+    "mode": "sparse_interactive",
+    "rows_equal": true,
+    "status": "selected"
+  },
+  {
+    "case": "case-a2",
+    "classes": 171,
+    "classes_equal": true,
+    "evidence_equal": true,
+    "label": "a_a2_a3_vs_a_alone",
+    "mode": "sparse_interactive",
+    "rows_equal": true,
+    "status": "selected"
+  },
+  {
+    "case": "case-a3",
+    "classes": 171,
+    "classes_equal": true,
+    "evidence_equal": true,
+    "label": "a_a2_a3_vs_a_alone",
+    "mode": "sparse_interactive",
+    "rows_equal": true,
+    "status": "selected"
+  },
+  {
+    "cause": "NoTriggeredCase",
+    "class": "exact",
+    "envelope_equals_value_route": true,
+    "label": "b_b2_b3",
+    "load_cases": 3,
+    "mode": "sparse_interactive",
+    "profile": "Registered",
+    "published_sha": "f3cbc39a8d7d6324565ca252872c6ff050cd71383afa1080627fbf34125f853b",
+    "refusal": null,
+    "unavailable_diagnostics": 0,
+    "value_sha": "f3cbc39a8d7d6324565ca252872c6ff050cd71383afa1080627fbf34125f853b"
+  },
+  {
+    "cause": "Native",
+    "class": "OTHER",
+    "label": "c_c2_c3",
+    "mode": "sparse_interactive",
+    "notice_ids": [
+      "diagnostic:retained-precision:case-c:unavailable",
+      "diagnostic:retained-precision:case-c2:unavailable",
+      "diagnostic:retained-precision:case-c3:unavailable"
+    ],
+    "prefix_equals_value_route": true,
+    "published_sha": "b799eade1127778ee9e5deff4caf8ff49604b8752670d50cd1f1d22554dcb146"
+  },
+  {
+    "cause": "Native",
+    "class": "OTHER",
+    "label": "b_c_c2",
+    "mode": "sparse_interactive",
+    "notice_ids": [
+      "diagnostic:retained-precision:case-c:unavailable",
+      "diagnostic:retained-precision:case-c2:unavailable"
+    ],
+    "prefix_equals_value_route": true,
+    "published_sha": "cbcd04808ed8042d9f7676dde652b963f11516dcc73232b3ada79abe99341d57"
+  },
+  {
+    "cause": "successor",
+    "class": "successor",
+    "envelope_equals_value_route": true,
+    "label": "a_alone",
+    "load_cases": 1,
+    "mode": "dense_scrutiny",
+    "profile": "Registered",
+    "published_sha": "7ab820c4e34f15aebe3a633f21074ad7600a2a9b9ab4e56ae8dffeaa82adb227",
+    "refusal": null,
+    "unavailable_diagnostics": 0,
+    "value_sha": "51f926f19bbacfddd7b0df0a765e59f31fab4941f5e2a0564351752b0b7142ed"
+  },
+  {
+    "cause": "successor",
+    "class": "successor",
+    "envelope_equals_value_route": true,
+    "label": "a_a2_a3",
+    "load_cases": 3,
+    "mode": "dense_scrutiny",
+    "profile": "Registered",
+    "published_sha": "60a26eb10b733158dde607a1b09494fd894fe8dfa7fa1de4ab0ee41a69e6f287",
+    "refusal": null,
+    "unavailable_diagnostics": 0,
+    "value_sha": "fe58cca07e58cc8858d7a103349ff3ffb616292470b3ce4e9537ef5a8c3c4b93"
+  },
+  {
+    "case": "case-a",
+    "classes": 171,
+    "classes_equal": true,
+    "evidence_equal": true,
+    "label": "a_a2_a3_vs_a_alone",
+    "mode": "dense_scrutiny",
+    "rows_equal": true,
+    "status": "selected"
+  },
+  {
+    "case": "case-a2",
+    "classes": 171,
+    "classes_equal": true,
+    "evidence_equal": true,
+    "label": "a_a2_a3_vs_a_alone",
+    "mode": "dense_scrutiny",
+    "rows_equal": true,
+    "status": "selected"
+  },
+  {
+    "case": "case-a3",
+    "classes": 171,
+    "classes_equal": true,
+    "evidence_equal": true,
+    "label": "a_a2_a3_vs_a_alone",
+    "mode": "dense_scrutiny",
+    "rows_equal": true,
+    "status": "selected"
+  },
+  {
+    "cause": "NoTriggeredCase",
+    "class": "exact",
+    "envelope_equals_value_route": true,
+    "label": "b_b2_b3",
+    "load_cases": 3,
+    "mode": "dense_scrutiny",
+    "profile": "Registered",
+    "published_sha": "f02215f754e19ddf5169cee12b67500f5108f33df9695d07dd7b69a4421f35db",
+    "refusal": null,
+    "unavailable_diagnostics": 0,
+    "value_sha": "f02215f754e19ddf5169cee12b67500f5108f33df9695d07dd7b69a4421f35db"
+  },
+  {
+    "cause": "Native",
+    "class": "OTHER",
+    "label": "c_c2_c3",
+    "mode": "dense_scrutiny",
+    "notice_ids": [
+      "diagnostic:retained-precision:case-c:unavailable",
+      "diagnostic:retained-precision:case-c2:unavailable",
+      "diagnostic:retained-precision:case-c3:unavailable"
+    ],
+    "prefix_equals_value_route": true,
+    "published_sha": "6815e397e3becb4185059c9d54ffc1b5d591ef864eb181f6eef5a0a42f65847d"
+  },
+  {
+    "cause": "Native",
+    "class": "OTHER",
+    "label": "b_c_c2",
+    "mode": "dense_scrutiny",
+    "notice_ids": [
+      "diagnostic:retained-precision:case-c:unavailable",
+      "diagnostic:retained-precision:case-c2:unavailable"
+    ],
+    "prefix_equals_value_route": true,
+    "published_sha": "66d7bf8413d5dec0712386a94ac3d660453316f4227bd659dd208b94f9b5565a"
+  }
+]

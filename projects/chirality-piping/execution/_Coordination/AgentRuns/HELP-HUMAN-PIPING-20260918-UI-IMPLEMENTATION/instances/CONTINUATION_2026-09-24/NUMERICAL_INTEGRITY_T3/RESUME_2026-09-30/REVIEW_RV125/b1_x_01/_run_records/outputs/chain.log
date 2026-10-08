@@ -1,0 +1,12 @@
+chain start 2026-10-08T13:52:25Z
+== pp_reg start 2026-10-08T13:52:25Z
+== pp_reg exit=0 2026-10-08T13:52:49Z
+== pp_stale start 2026-10-08T13:52:49Z
+== pp_stale exit=0 2026-10-08T13:53:05Z
+== auth start 2026-10-08T13:53:05Z
+== auth exit=0 2026-10-08T13:53:09Z
+== py start 2026-10-08T13:53:09Z
+== py exit=0 2026-10-08T13:53:12Z
+== ts start 2026-10-08T13:53:12Z
+== ts exit=0 2026-10-08T13:53:13Z
+CHAIN-DONE 2026-10-08T13:53:13Z
