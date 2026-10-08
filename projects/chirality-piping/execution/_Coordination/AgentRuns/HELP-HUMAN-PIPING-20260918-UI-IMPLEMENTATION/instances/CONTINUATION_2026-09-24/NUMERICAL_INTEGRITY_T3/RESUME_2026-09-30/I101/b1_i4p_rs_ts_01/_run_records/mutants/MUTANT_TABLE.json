@@ -1,0 +1,2854 @@
+{
+ "rs_control": {
+  "id": "NONE",
+  "failed": [],
+  "panics": [],
+  "rc": {
+   "lib": [
+    "ok",
+    "26",
+    "0"
+   ],
+   "contract": [
+    "ok",
+    "79",
+    "0"
+   ]
+  },
+  "killed": false,
+  "killed_by_assertion": false
+ },
+ "ts_control": {
+  "id": "NONE",
+  "failed": [],
+  "assertion_failures": 0,
+  "tests": {
+   "passed": 551,
+   "failed": 0,
+   "total": 551,
+   "suites_failed": 0
+  },
+  "killed": false,
+  "killed_by_assertion": false
+ },
+ "rs": [
+  {
+   "id": "N01",
+   "failed": [
+    "contract:b1_r2_f_family_at_g3_bound_and_unbound"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_f_family_at_g3_bound_and_unbound",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "a source index not its position",
+      "two source indices swapped"
+     ],
+     "message": [
+      "a source index not its position: got {\"admitted\":true} want {\"code\":\"RETAINED_PRECISION_COVERAGE_MISMATCH\",\"gate\":\"G3\"}",
+      "two source indices swapped: got {\"admitted\":true} want {\"code\":\"RETAINED_PRECISION_COVERAGE_MISMATCH\",\"gate\":\"G3\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "1 (f)",
+   "description": "G3: a source's index at its position dropped"
+  },
+  {
+   "id": "N03",
+   "failed": [
+    "contract:b1_r2_f_family_at_g3_bound_and_unbound"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_f_family_at_g3_bound_and_unbound",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "a source owner naming another case's id"
+     ],
+     "message": [
+      "a source owner naming another case's id: got {\"code\":\"RETAINED_PRECISION_PREPARATION_MISMATCH\",\"gate\":\"G8\"} want {\"code\":\"RETAINED_PRECISION_COVERAGE_MISMATCH\",\"gate\":\"G3\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "1 (f)",
+   "description": "G3: the owner's case binding dropped (index range and id)"
+  },
+  {
+   "id": "N04",
+   "failed": [
+    "contract:b1_r2_f_family_at_g3_bound_and_unbound"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_f_family_at_g3_bound_and_unbound",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "a source owner naming another case's id"
+     ],
+     "message": [
+      "a source owner naming another case's id: got {\"code\":\"RETAINED_PRECISION_PREPARATION_MISMATCH\",\"gate\":\"G8\"} want {\"code\":\"RETAINED_PRECISION_COVERAGE_MISMATCH\",\"gate\":\"G3\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "1 (f)",
+   "description": "G3: the owner's case id against the case at its index dropped (index range kept)"
+  },
+  {
+   "id": "N05",
+   "failed": [
+    "contract:b1_r2_f_family_at_g3_bound_and_unbound"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_f_family_at_g3_bound_and_unbound",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "a basis index not its position",
+      "two basis indices swapped"
+     ],
+     "message": [
+      "a basis index not its position: got {\"admitted\":true} want {\"code\":\"RETAINED_PRECISION_COVERAGE_MISMATCH\",\"gate\":\"G3\"}",
+      "two basis indices swapped: got {\"admitted\":true} want {\"code\":\"RETAINED_PRECISION_COVERAGE_MISMATCH\",\"gate\":\"G3\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "1 (f)",
+   "description": "G3: a material basis's index at its position dropped"
+  },
+  {
+   "id": "N06",
+   "failed": [
+    "contract:b1_r2_f_family_at_g3_bound_and_unbound"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_f_family_at_g3_bound_and_unbound",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "case_indices out of range"
+     ],
+     "message": [
+      "case_indices out of range: got {\"code\":\"RETAINED_PRECISION_PREPARATION_MISMATCH\",\"gate\":\"G8\"} want {\"code\":\"RETAINED_PRECISION_COVERAGE_MISMATCH\",\"gate\":\"G3\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "1 (f)",
+   "description": "G3: case_indices in range dropped"
+  },
+  {
+   "id": "N07",
+   "failed": [
+    "contract:b1_r2_f_family_at_g3_bound_and_unbound"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_f_family_at_g3_bound_and_unbound",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "case_indices with a duplicate"
+     ],
+     "message": [
+      "case_indices with a duplicate: got {\"code\":\"RETAINED_PRECISION_PREPARATION_MISMATCH\",\"gate\":\"G8\"} want {\"code\":\"RETAINED_PRECISION_COVERAGE_MISMATCH\",\"gate\":\"G3\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "1 (f)",
+   "description": "G3: case_indices unique dropped"
+  },
+  {
+   "id": "N08",
+   "failed": [
+    "contract:b1_r2_ordinary_basis_reference_at_g5_attempt"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_ordinary_basis_reference_at_g5_attempt",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "the basis missing",
+      "the basis not listing the case"
+     ],
+     "message": [
+      "the basis missing: got {\"code\":\"RETAINED_PRECISION_PREPARATION_MISMATCH\",\"gate\":\"G8\"} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}",
+      "the basis not listing the case: got {\"code\":\"RETAINED_PRECISION_PREPARATION_MISMATCH\",\"gate\":\"G8\"} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "1 G5",
+   "description": "G5 ordinary: the ordinary attempt's basis reference dropped"
+  },
+  {
+   "id": "N09",
+   "failed": [
+    "contract:b1_r2_ordinary_basis_reference_at_g5_attempt"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_ordinary_basis_reference_at_g5_attempt",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "the basis not listing the case"
+     ],
+     "message": [
+      "the basis not listing the case: got {\"code\":\"RETAINED_PRECISION_PREPARATION_MISMATCH\",\"gate\":\"G8\"} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "1 G5",
+   "description": "G5 ordinary: the basis need only resolve (not list the case)"
+  },
+  {
+   "id": "N10",
+   "failed": [
+    "contract:b1_r2_g_model_scope_at_g8_invocation"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_g_model_scope_at_g8_invocation",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "combinations null",
+      "combinations an object",
+      "combinations a string"
+     ],
+     "message": [
+      "combinations null: got {\"admitted\":true} want {\"code\":\"RETAINED_PRECISION_INVOCATION_MISMATCH\",\"gate\":\"G8\"}",
+      "combinations an object: got {\"admitted\":true} want {\"code\":\"RETAINED_PRECISION_INVOCATION_MISMATCH\",\"gate\":\"G8\"}",
+      "combinations a string: got {\"admitted\":true} want {\"code\":\"RETAINED_PRECISION_INVOCATION_MISMATCH\",\"gate\":\"G8\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "2 (g)",
+   "description": "G8: combinations back to the old list(..).is_empty() (null and non-arrays admitted)"
+  },
+  {
+   "id": "N11",
+   "failed": [
+    "contract:b1_r2_g_model_scope_at_g8_invocation"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_g_model_scope_at_g8_invocation",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "components null",
+      "components a string",
+      "components an object"
+     ],
+     "message": [
+      "components null: got {\"admitted\":true} want {\"code\":\"RETAINED_PRECISION_INVOCATION_MISMATCH\",\"gate\":\"G8\"}",
+      "components a string: got {\"admitted\":true} want {\"code\":\"RETAINED_PRECISION_INVOCATION_MISMATCH\",\"gate\":\"G8\"}",
+      "components an object: got {\"admitted\":true} want {\"code\":\"RETAINED_PRECISION_INVOCATION_MISMATCH\",\"gate\":\"G8\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "2 (g)",
+   "description": "G8: components back to the old list(..).is_empty()"
+  },
+  {
+   "id": "N12",
+   "failed": [
+    "contract:b1_r2_g_model_scope_at_g8_invocation"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_g_model_scope_at_g8_invocation",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "combinations null",
+      "components null"
+     ],
+     "message": [
+      "combinations null: got {\"admitted\":true} want {\"code\":\"RETAINED_PRECISION_INVOCATION_MISMATCH\",\"gate\":\"G8\"}",
+      "components null: got {\"admitted\":true} want {\"code\":\"RETAINED_PRECISION_INVOCATION_MISMATCH\",\"gate\":\"G8\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "2 (g)",
+   "description": "G8: combinations and components may be null"
+  },
+  {
+   "id": "N13",
+   "failed": [
+    "contract:b1_r2_g_model_scope_at_g8_invocation"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_g_model_scope_at_g8_invocation",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "reference_configurations null"
+     ],
+     "message": [
+      "reference_configurations null: got {\"admitted\":true} want {\"code\":\"RETAINED_PRECISION_INVOCATION_MISMATCH\",\"gate\":\"G8\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "2 (g)",
+   "description": "G8: reference_configurations check dropped"
+  },
+  {
+   "id": "N14",
+   "failed": [
+    "contract:b1_r2_g_model_scope_at_g8_invocation"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_g_model_scope_at_g8_invocation",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "pressure_contract false"
+     ],
+     "message": [
+      "pressure_contract false: got {\"admitted\":true} want {\"code\":\"RETAINED_PRECISION_INVOCATION_MISMATCH\",\"gate\":\"G8\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "2 (g)",
+   "description": "G8: pressure_contract false admitted"
+  },
+  {
+   "id": "N15",
+   "failed": [
+    "contract:b1_d38_capture_before_any_run_beside_a_selected_case",
+    "contract:b1_i4p_c2_conjuncts_alone",
+    "contract:b1_r2_c2_cause_table_source_precondition_kernel",
+    "contract:b1_r2_c2_cause_table_receipt_and_facade",
+    "contract:d19_converse_cause_binding"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_d38_capture_before_any_run_beside_a_selected_case",
+     "at": "tests/retained_precision_contract.rs:3697",
+     "assertion": true,
+     "missed_rows": [
+      "cause not a prepared product failure"
+     ],
+     "message": [
+      "cause not a prepared product failure: got {\"code\":\"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}"
+     ]
+    },
+    {
+     "test": "contract:b1_i4p_c2_conjuncts_alone",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "unavailable_precondition, keyed, phase preparation, beside the selected Run",
+      "receipt_failure, receipt_encoding, phase kernel",
+      "facade_failure, facade_certificate, phase facade, naming its case, with no Run"
+     ],
+     "message": [
+      "unavailable_precondition, keyed, phase preparation, beside the selected Run: got {\"code\":\"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}",
+      "receipt_failure, receipt_encoding, phase kernel: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}",
+      "facade_failure, facade_certificate, phase facade, naming its case, with no Run: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}"
+     ]
+    },
+    {
+     "test": "contract:b1_r2_c2_cause_table_source_precondition_kernel",
+     "at": "tests/retained_precision_contract.rs:4492",
+     "assertion": true,
+     "missed_rows": [
+      "source_error: no source_decline",
+      "source_error: the decline's error differs",
+      "source_error: phase routing",
+      "source_error: code caller_not_qualified",
+      "unavailable_precondition: phase kernel",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "kernel reason: code kernel_unresolved",
+      "kernel reason: phase facade",
+      "kernel reason: a cause other than the terminal's"
+     ],
+     "message": [
+      "source_error: no source_decline: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} ({\"cause\":{\"error\":{\"tag\":\"no_nodes\"},\"kind\":\"source_error\"},\"code\":\"source_unavailable\",\"phase\":\"preparation\"})",
+      "source_error: the decline's error differs: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} ({\"cause\":{\"error\":{\"tag\":\"no_nodes\"},\"kind\":\"source_error\"},\"code\":\"source_unavailable\",\"phase\":\"preparation\"})",
+      "source_error: phase routing: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} ({\"cause\":{\"error\":{\"tag\":\"no_nodes\"},\"kind\":\"source_error\"},\"code\":\"source_unavailable\",\"phase\":\"routing\"})"
+     ]
+    },
+    {
+     "test": "contract:b1_r2_c2_cause_table_receipt_and_facade",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "receipt_failure: phase kernel",
+      "receipt_failure: code facade_certificate",
+      "receipt_failure: phase preparation",
+      "facade_failure: phase kernel",
+      "facade_failure: code receipt_encoding",
+      "facade_failure: another case's owner"
+     ],
+     "message": [
+      "receipt_failure: phase kernel: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}",
+      "receipt_failure: code facade_certificate: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}",
+      "receipt_failure: phase preparation: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}"
+     ]
+    },
+    {
+     "test": "contract:d19_converse_cause_binding",
+     "at": "tests/retained_precision_contract.rs:2793",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed: a precondition beside the case's Run (C2's table)",
+      "  left: Object {\"code\": String(\"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH\"), \"gate\": String(\"G5\")}",
+      " right: Object {\"code\": String(\"RETAINED_PRECISION_ATTEMPT_MISMATCH\"), \"gate\": String(\"G5\")}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "74",
+     "5"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "the whole C2 table dropped"
+  },
+  {
+   "id": "N16",
+   "failed": [
+    "contract:b1_r2_c2_cause_table_source_precondition_kernel"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_c2_cause_table_source_precondition_kernel",
+     "at": "tests/retained_precision_contract.rs:4492",
+     "assertion": true,
+     "missed_rows": [
+      "source_error: phase routing"
+     ],
+     "message": [
+      "source_error: phase routing: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} ({\"cause\":{\"error\":{\"tag\":\"no_nodes\"},\"kind\":\"source_error\"},\"code\":\"source_unavailable\",\"phase\":\"routing\"})"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "source_error: phase dropped"
+  },
+  {
+   "id": "N17",
+   "failed": [
+    "contract:b1_r2_c2_cause_table_source_precondition_kernel"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_c2_cause_table_source_precondition_kernel",
+     "at": "tests/retained_precision_contract.rs:4492",
+     "assertion": true,
+     "missed_rows": [
+      "source_error: code caller_not_qualified"
+     ],
+     "message": [
+      "source_error: code caller_not_qualified: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} ({\"cause\":{\"error\":{\"tag\":\"no_nodes\"},\"kind\":\"source_error\"},\"code\":\"caller_not_qualified\",\"phase\":\"preparation\"})"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "source_error: code dropped"
+  },
+  {
+   "id": "N18",
+   "failed": [],
+   "panics": [],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "ok",
+     "79",
+     "0"
+    ]
+   },
+   "killed": false,
+   "killed_by_assertion": false,
+   "item": "3 C2",
+   "description": "source_error: no Run dropped"
+  },
+  {
+   "id": "N19",
+   "failed": [
+    "contract:b1_r2_c2_cause_table_source_precondition_kernel"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_c2_cause_table_source_precondition_kernel",
+     "at": "tests/retained_precision_contract.rs:4492",
+     "assertion": true,
+     "missed_rows": [
+      "source_error: the decline's error differs"
+     ],
+     "message": [
+      "source_error: the decline's error differs: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} ({\"cause\":{\"error\":{\"tag\":\"no_nodes\"},\"kind\":\"source_error\"},\"code\":\"source_unavailable\",\"phase\":\"preparation\"})"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "source_error: the decline's error equality dropped"
+  },
+  {
+   "id": "N20",
+   "failed": [
+    "contract:b1_r2_c2_cause_table_source_precondition_kernel"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_c2_cause_table_source_precondition_kernel",
+     "at": "tests/retained_precision_contract.rs:4492",
+     "assertion": true,
+     "missed_rows": [
+      "unavailable_precondition: phase kernel"
+     ],
+     "message": [
+      "unavailable_precondition: phase kernel: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} ({\"cause\":{\"affected_refs\":[],\"kind\":\"unavailable_precondition\",\"precondition\":\"capture\"},\"code\":\"source_unavailable\",\"phase\":\"kernel\"})"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "unavailable_precondition: phase dropped"
+  },
+  {
+   "id": "N21",
+   "failed": [
+    "contract:b1_i4p_c2_conjuncts_alone"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_i4p_c2_conjuncts_alone",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "unavailable_precondition, keyed, phase preparation, beside the selected Run"
+     ],
+     "message": [
+      "unavailable_precondition, keyed, phase preparation, beside the selected Run: got {\"code\":\"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "unavailable_precondition: no Run dropped"
+  },
+  {
+   "id": "N22",
+   "failed": [
+    "contract:b1_r2_c2_cause_table_source_precondition_kernel"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_c2_cause_table_source_precondition_kernel",
+     "at": "tests/retained_precision_contract.rs:4492",
+     "assertion": true,
+     "missed_rows": [
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code",
+      "unavailable_precondition: another precondition's code"
+     ],
+     "message": [
+      "unavailable_precondition: another precondition's code: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} ({\"cause\":{\"affected_refs\":[],\"kind\":\"unavailable_precondition\",\"precondition\":\"caller\"},\"code\":\"resource_admission_not_available\",\"phase\":\"preparation\"})",
+      "unavailable_precondition: another precondition's code: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} ({\"cause\":{\"affected_refs\":[],\"kind\":\"unavailable_precondition\",\"precondition\":\"caller\"},\"code\":\"upstream_no_wrap_not_established\",\"phase\":\"preparation\"})",
+      "unavailable_precondition: another precondition's code: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} ({\"cause\":{\"affected_refs\":[],\"kind\":\"unavailable_precondition\",\"precondition\":\"caller\"},\"code\":\"source_unavailable\",\"phase\":\"preparation\"})"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "unavailable_precondition: keying replaced by TS's present set (any of the four codes)"
+  },
+  {
+   "id": "N23",
+   "failed": [
+    "contract:b1_r2_c2_cause_table_source_precondition_kernel"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_c2_cause_table_source_precondition_kernel",
+     "at": "tests/retained_precision_contract.rs:4492",
+     "assertion": true,
+     "missed_rows": [
+      "unavailable_precondition: its keyed code",
+      "unavailable_precondition: its keyed code"
+     ],
+     "message": [
+      "unavailable_precondition: its keyed code: got {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} want {\"admitted\":false} ({\"cause\":{\"affected_refs\":[],\"kind\":\"unavailable_precondition\",\"precondition\":\"source_family\"},\"code\":\"source_unavailable\",\"phase\":\"routing\"})",
+      "unavailable_precondition: its keyed code: got {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} want {\"admitted\":false} ({\"cause\":{\"affected_refs\":[],\"kind\":\"unavailable_precondition\",\"precondition\":\"source_family\"},\"code\":\"source_unavailable\",\"phase\":\"preparation\"})"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "unavailable_precondition: source_family's keyed code refused"
+  },
+  {
+   "id": "N24",
+   "failed": [],
+   "panics": [],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "ok",
+     "79",
+     "0"
+    ]
+   },
+   "killed": false,
+   "killed_by_assertion": false,
+   "item": "3 C2",
+   "description": "unavailable_precondition: an unknown precondition admitted"
+  },
+  {
+   "id": "N25",
+   "failed": [
+    "contract:b1_i4p_c2_conjuncts_alone"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_i4p_c2_conjuncts_alone",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "receipt_failure, receipt_encoding, phase kernel"
+     ],
+     "message": [
+      "receipt_failure, receipt_encoding, phase kernel: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "receipt_failure: phase dropped"
+  },
+  {
+   "id": "N26",
+   "failed": [
+    "contract:b1_r2_c2_cause_table_receipt_and_facade"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_c2_cause_table_receipt_and_facade",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "receipt_failure: code facade_certificate"
+     ],
+     "message": [
+      "receipt_failure: code facade_certificate: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "receipt_failure: code set dropped"
+  },
+  {
+   "id": "N27",
+   "failed": [
+    "contract:b1_r2_c2_cause_table_receipt_and_facade"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_c2_cause_table_receipt_and_facade",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "receipt_failure: invocation_not_representable, receipt"
+     ],
+     "message": [
+      "receipt_failure: invocation_not_representable, receipt: got {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} want {\"admitted\":false}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "receipt_failure: invocation_not_representable removed from the set"
+  },
+  {
+   "id": "N28",
+   "failed": [
+    "contract:b1_r2_c2_cause_table_receipt_and_facade"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_c2_cause_table_receipt_and_facade",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "facade_failure: phase kernel"
+     ],
+     "message": [
+      "facade_failure: phase kernel: got {\"code\":\"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "facade_failure: phase dropped"
+  },
+  {
+   "id": "N29",
+   "failed": [
+    "contract:b1_r2_c2_cause_table_receipt_and_facade"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_c2_cause_table_receipt_and_facade",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "facade_failure: code receipt_encoding"
+     ],
+     "message": [
+      "facade_failure: code receipt_encoding: got {\"code\":\"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "facade_failure: code dropped"
+  },
+  {
+   "id": "N30",
+   "failed": [
+    "contract:b1_i4p_c2_conjuncts_alone"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_i4p_c2_conjuncts_alone",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "facade_failure, facade_certificate, phase facade, naming its case, with no Run"
+     ],
+     "message": [
+      "facade_failure, facade_certificate, phase facade, naming its case, with no Run: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "facade_failure: selected Run dropped"
+  },
+  {
+   "id": "N31",
+   "failed": [
+    "contract:b1_r2_c2_cause_table_receipt_and_facade"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_c2_cause_table_receipt_and_facade",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "facade_failure: another case's owner"
+     ],
+     "message": [
+      "facade_failure: another case's owner: got {\"code\":\"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "facade_failure: owner_ref dropped"
+  },
+  {
+   "id": "N32",
+   "failed": [
+    "contract:b1_r2_c2_cause_table_source_precondition_kernel"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_c2_cause_table_source_precondition_kernel",
+     "at": "tests/retained_precision_contract.rs:4492",
+     "assertion": true,
+     "missed_rows": [
+      "kernel reason: phase facade"
+     ],
+     "message": [
+      "kernel reason: phase facade: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} ({\"cause\":{\"error\":{\"error\":{\"tag\":\"non_finite\"},\"tag\":\"accumulator\"},\"space\":\"refusal\",\"tag\":\"ledger_unavailable\"},\"code\":\"kernel_refused\",\"phase\":\"facade\"})"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "kernel: phase dropped"
+  },
+  {
+   "id": "N33",
+   "failed": [
+    "contract:b1_d38_4a_native_failure_with_a_run_is_admitted",
+    "contract:b1_d38_capture_before_any_run_beside_a_selected_case",
+    "contract:b1_g8_mode_row_and_requested_mode_for_every_case",
+    "contract:b1_g8_parity_rows_p2_to_p4_for_every_case",
+    "contract:complete_synthetic_controls_carry_their_shared_eligibility",
+    "contract:d13_reader_local_pins_and_mutant_kills",
+    "contract:d1_g3_coverage_relations",
+    "contract:d22_dangling_attempt_source_ref",
+    "contract:d29_empty_body_inventory_without_roster",
+    "contract:d32_integers_by_value",
+    "contract:d37_error_kind_agrees_with_stage_record",
+    "contract:d4_association_relations",
+    "contract:d8_accounting_rules_on_shared_bases",
+    "contract:g5_audit_local_controls",
+    "contract:shared_must_pass_entries_validate",
+    "contract:snapshot_05a_mutation_outcomes",
+    "contract:snapshot_05b_mutation_outcomes",
+    "contract:snapshot_06a_mutation_outcomes",
+    "contract:snapshot_06b_mutation_outcomes",
+    "contract:snapshot_06d_mutation_outcomes",
+    "contract:snapshot_07_mutation_outcomes",
+    "contract:snapshot_07b_mutation_outcomes",
+    "contract:shared_rehashed_first_failure_mutations",
+    "contract:snapshot_07d_mutation_outcomes",
+    "contract:snapshot_07f_mutation_outcomes",
+    "contract:snapshot_07m_mutation_outcomes",
+    "contract:source_decline_relation_reader_logic"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_d38_4a_native_failure_with_a_run_is_admitted",
+     "at": "tests/retained_precision_contract.rs:3750",
+     "assertion": true,
+     "missed_rows": [
+      "(4a): a native error naming the case's refused Run",
+      "(4a): a capture error beside the case's refused Run",
+      "(4b)'s reason on the Run-bearing failure"
+     ],
+     "message": [
+      "(4a): a native error naming the case's refused Run: got {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} want {\"admitted\":false}",
+      "(4a): a capture error beside the case's refused Run: got {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} want {\"admitted\":false}",
+      "(4b)'s reason on the Run-bearing failure: got {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} want {\"code\":\"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}"
+     ]
+    },
+    {
+     "test": "contract:b1_d38_capture_before_any_run_beside_a_selected_case",
+     "at": "tests/retained_precision_contract.rs:3553",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed: (4b) beside a selected case",
+      "  left: Object {\"code\": String(\"RETAINED_PRECISION_ATTEMPT_MISMATCH\"), \"gate\": String(\"G5\")}",
+      " right: Object {\"admitted\": Bool(false)}"
+     ]
+    },
+    {
+     "test": "contract:b1_g8_mode_row_and_requested_mode_for_every_case",
+     "at": "tests/retained_precision_contract.rs:3839",
+     "assertion": true,
+     "missed_rows": [
+      "unavailable case: dense code in sparse",
+      "unavailable case: mode code 3",
+      "unavailable case: two mode rows",
+      "unavailable case: requested mode flipped"
+     ],
+     "message": [
+      "unavailable case: dense code in sparse: got {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}",
+      "unavailable case: mode code 3: got {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}",
+      "unavailable case: two mode rows: got {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}"
+     ]
+    },
+    {
+     "test": "contract:b1_g8_parity_rows_p2_to_p4_for_every_case",
+     "at": "tests/retained_precision_contract.rs:3910",
+     "assertion": true,
+     "missed_rows": [
+      "P3: a parity row on the sparse unavailable case"
+     ],
+     "message": [
+      "P3: a parity row on the sparse unavailable case: got {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} want {\"code\":\"RETAINED_PRECISION_PREPARATION_MISMATCH\",\"gate\":\"G8\"}"
+     ]
+    },
+    {
+     "test": "contract:complete_synthetic_controls_carry_their_shared_eligibility",
+     "at": "tests/retained_precision_contract.rs:207",
+     "assertion": false,
+     "missed_rows": [],
+     "message": [
+      "\"two_case_facade_after_certificate_synthetic\": ValidationError { gate: \"G5\", code: \"RETAINED_PRECISION_ATTEMPT_MISMATCH\", detail: None }"
+     ]
+    },
+    {
+     "test": "contract:d13_reader_local_pins_and_mutant_kills",
+     "at": "tests/retained_precision_contract.rs:2603",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed",
+      "  left: Object {\"code\": String(\"RETAINED_PRECISION_ATTEMPT_MISMATCH\"), \"gate\": String(\"G5\")}",
+      " right: Object {\"code\": String(\"RETAINED_PRECISION_SCALE_MISMATCH\"), \"gate\": String(\"G5a\")}"
+     ]
+    },
+    {
+     "test": "contract:d1_g3_coverage_relations",
+     "at": "tests/retained_precision_contract.rs:2354",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed: captured prefix with a run_ref",
+      "  left: Object {\"code\": String(\"RETAINED_PRECISION_ATTEMPT_MISMATCH\"), \"gate\": String(\"G5\")}",
+      " right: Object {\"code\": String(\"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH\"), \"gate\": String(\"G5\")}"
+     ]
+    },
+    {
+     "test": "contract:d22_dangling_attempt_source_ref",
+     "at": "tests/retained_precision_contract.rs:2874",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed",
+      "  left: Object {\"code\": String(\"RETAINED_PRECISION_ATTEMPT_MISMATCH\"), \"gate\": String(\"G5\")}",
+      " right: Object {\"code\": String(\"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH\"), \"gate\": String(\"G5\")}"
+     ]
+    },
+    {
+     "test": "contract:d29_empty_body_inventory_without_roster",
+     "at": "tests/retained_precision_contract.rs:2992",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed",
+      "  left: Object {\"code\": String(\"RETAINED_PRECISION_ATTEMPT_MISMATCH\"), \"gate\": String(\"G5\")}",
+      " right: Null"
+     ]
+    },
+    {
+     "test": "contract:d32_integers_by_value",
+     "at": "tests/retained_precision_contract.rs:3091",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "\"two_case_facade_after_certificate_synthetic\": Some(ValidationError { gate: \"G5\", code: \"RETAINED_PRECISION_ATTEMPT_MISMATCH\", detail: None })"
+     ]
+    },
+    {
+     "test": "contract:d37_error_kind_agrees_with_stage_record",
+     "at": "tests/retained_precision_contract.rs:3425",
+     "assertion": true,
+     "missed_rows": [
+      "g5a with G5a not entered",
+      "observable with observables not entered",
+      "proof with certificate passed",
+      "values with values completed",
+      "numeric with checks not entered",
+      "abandoned with certificate completed",
+      "g5a with G5a passed",
+      "observable with observables passed",
+      "numeric with G5a failed",
+      "capture with G5a failed",
+      "g5a with observables failed",
+      "numeric with observables failed",
+      "proof after failed preparation",
+      "numeric after failed preparation",
+      "g5a after failed preparation",
+      "capture after failed preparation"
+     ],
+     "message": [
+      "g5a with G5a not entered: got {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}, rejected wanted true",
+      "observable with observables not entered: got {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}, rejected wanted true",
+      "proof with certificate passed: got {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}, rejected wanted true"
+     ]
+    },
+    {
+     "test": "contract:d4_association_relations",
+     "at": "tests/retained_precision_contract.rs:2457",
+     "assertion": true,
+     "missed_rows": [
+      "D4a source back-reference foreign (R4)",
+      "D4a source preparation null",
+      "D4c cause without its own attempt (RV81-B2)",
+      "D4d native with a selected Run (R6a)",
+      "D4d native with a foreign run_ref (PR5)",
+      "D4e run_ref without a native call"
+     ],
+     "message": [
+      "D4a source back-reference foreign (R4): got {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}",
+      "D4a source preparation null: got {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}",
+      "D4c cause without its own attempt (RV81-B2): got {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"}"
+     ]
+    },
+    {
+     "test": "contract:d8_accounting_rules_on_shared_bases",
+     "at": "tests/retained_precision_contract.rs:2728",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed: R2' old operational accounting without a lost trace",
+      "  left: Object {\"code\": String(\"RETAINED_PRECISION_ATTEMPT_MISMATCH\"), \"gate\": String(\"G5\")}",
+      " right: Object {\"code\": String(\"RETAINED_PRECISION_WORK_MISMATCH\"), \"gate\": String(\"G5\")}"
+     ]
+    },
+    {
+     "test": "contract:g5_audit_local_controls",
+     "at": "tests/retained_precision_contract.rs:866",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed: P9: maxima failure reported as a proof error",
+      "  left: Object {\"code\": String(\"RETAINED_PRECISION_ATTEMPT_MISMATCH\"), \"gate\": String(\"G5\")}",
+      " right: Object {\"code\": String(\"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH\"), \"gate\": String(\"G5\")}"
+     ]
+    },
+    {
+     "test": "contract:shared_must_pass_entries_validate",
+     "at": "tests/retained_precision_contract.rs:958",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "\"cert_failed_before_summary\" rejected ValidationError { gate: \"G5\", code: \"RETAINED_PRECISION_ATTEMPT_MISMATCH\", detail: None }",
+      "\"lane_k_failed\" rejected ValidationError { gate: \"G5\", code: \"RETAINED_PRECISION_ATTEMPT_MISMATCH\", detail: None }",
+      "\"lane_source_failed\" rejected ValidationError { gate: \"G5\", code: \"RETAINED_PRECISION_ATTEMPT_MISMATCH\", detail: None }"
+     ]
+    },
+    {
+     "test": "contract:snapshot_05a_mutation_outcomes",
+     "at": "tests/retained_precision_contract.rs:309",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed: I63_OUTCOME_05A",
+      "  left: 19",
+      " right: 27"
+     ]
+    },
+    {
+     "test": "contract:snapshot_05b_mutation_outcomes",
+     "at": "tests/retained_precision_contract.rs:309",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed: I63_OUTCOME_05B",
+      "  left: 14",
+      " right: 17"
+     ]
+    },
+    {
+     "test": "contract:snapshot_06a_mutation_outcomes",
+     "at": "tests/retained_precision_contract.rs:309",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed: I63_OUTCOME_06A",
+      "  left: 24",
+      " right: 29"
+     ]
+    },
+    {
+     "test": "contract:snapshot_06b_mutation_outcomes",
+     "at": "tests/retained_precision_contract.rs:309",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed: I63_OUTCOME_06B",
+      "  left: 11",
+      " right: 13"
+     ]
+    },
+    {
+     "test": "contract:snapshot_06d_mutation_outcomes",
+     "at": "tests/retained_precision_contract.rs:309",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed: I63_OUTCOME_06D",
+      "  left: 1",
+      " right: 5"
+     ]
+    },
+    {
+     "test": "contract:snapshot_07_mutation_outcomes",
+     "at": "tests/retained_precision_contract.rs:309",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed: I63_OUTCOME_07",
+      "  left: 45",
+      " right: 58"
+     ]
+    },
+    {
+     "test": "contract:snapshot_07b_mutation_outcomes",
+     "at": "tests/retained_precision_contract.rs:309",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed: I63_OUTCOME_07B",
+      "  left: 17",
+      " right: 18"
+     ]
+    },
+    {
+     "test": "contract:shared_rehashed_first_failure_mutations",
+     "at": "tests/retained_precision_contract.rs:275",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "\"unavailable_certificate_passed_coverage_null\" expected {\"code\":\"RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} got ValidationError { gate: \"G5\", code: \"RETAINED_PRECISION_ATTEMPT_MISMATCH\", detail: None }",
+      "\"unavailable_no_data_claim_with_free_loads\" expected {\"code\":\"RETAINED_PRECISION_SCALE_MISMATCH\",\"gate\":\"G5a\"} got ValidationError { gate: \"G5\", code: \"RETAINED_PRECISION_ATTEMPT_MISMATCH\", detail: None }",
+      "\"unavailable_stop_uncoupled\" expected {\"code\":\"RETAINED_PRECISION_SCALE_MISMATCH\",\"gate\":\"G5a\"} got ValidationError { gate: \"G5\", code: \"RETAINED_PRECISION_ATTEMPT_MISMATCH\", detail: None }"
+     ]
+    },
+    {
+     "test": "contract:snapshot_07d_mutation_outcomes",
+     "at": "tests/retained_precision_contract.rs:309",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed: I63_OUTCOME_07D",
+      "  left: 4",
+      " right: 5"
+     ]
+    },
+    {
+     "test": "contract:snapshot_07f_mutation_outcomes",
+     "at": "tests/retained_precision_contract.rs:309",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed: I63_OUTCOME_07F",
+      "  left: 0",
+      " right: 5"
+     ]
+    },
+    {
+     "test": "contract:snapshot_07m_mutation_outcomes",
+     "at": "tests/retained_precision_contract.rs:309",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion `left == right` failed: I83_OUTCOME_07M",
+      "  left: 7",
+      " right: 8"
+     ]
+    },
+    {
+     "test": "contract:source_decline_relation_reader_logic",
+     "at": "tests/retained_precision_contract.rs:801",
+     "assertion": true,
+     "missed_rows": [],
+     "message": [
+      "assertion failed: rp::reader_logic::ordinary(&source).is_ok()"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "52",
+     "27"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": false,
+   "item": "3 C2",
+   "description": "the table also applied to prepared_product_failure causes"
+  },
+  {
+   "id": "N34",
+   "failed": [],
+   "panics": [],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "ok",
+     "79",
+     "0"
+    ]
+   },
+   "killed": false,
+   "killed_by_assertion": false,
+   "item": "3 C2",
+   "description": "kernel: a Run present dropped"
+  },
+  {
+   "id": "N35",
+   "failed": [
+    "contract:b1_r2_c2_cause_table_source_precondition_kernel"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_c2_cause_table_source_precondition_kernel",
+     "at": "tests/retained_precision_contract.rs:4492",
+     "assertion": true,
+     "missed_rows": [
+      "kernel reason: code kernel_unresolved"
+     ],
+     "message": [
+      "kernel reason: code kernel_unresolved: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} ({\"cause\":{\"error\":{\"error\":{\"tag\":\"non_finite\"},\"tag\":\"accumulator\"},\"space\":\"refusal\",\"tag\":\"ledger_unavailable\"},\"code\":\"kernel_unresolved\",\"phase\":\"kernel\"})"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "kernel: code dropped"
+  },
+  {
+   "id": "N36",
+   "failed": [
+    "contract:b1_r2_c2_cause_table_source_precondition_kernel"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_c2_cause_table_source_precondition_kernel",
+     "at": "tests/retained_precision_contract.rs:4492",
+     "assertion": true,
+     "missed_rows": [
+      "kernel reason: a cause other than the terminal's"
+     ],
+     "message": [
+      "kernel reason: a cause other than the terminal's: got {\"admitted\":false} want {\"code\":\"RETAINED_PRECISION_ATTEMPT_MISMATCH\",\"gate\":\"G5\"} ({\"cause\":{\"space\":\"refusal\",\"tag\":\"structure\"},\"code\":\"kernel_refused\",\"phase\":\"kernel\"})"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "3 C2",
+   "description": "kernel: cause equal to the terminal's reason dropped"
+  },
+  {
+   "id": "N40",
+   "failed": [
+    "contract:b1_i4p_transport_extrema_numbers_at_g7",
+    "contract:b1_i4p_transport_metadata_demands_alone",
+    "contract:b1_r2_transport_metadata_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_i4p_transport_extrema_numbers_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "global_upper_bound_pa a string",
+      "global_upper_bound_pa null",
+      "global_upper_bound_pa a boolean",
+      "certified_gap_pa null",
+      "certified_gap_pa a string",
+      "certified_gap_pa a list",
+      "a string bound beside a fraction above 1 (the demand comes first)",
+      "a fraction above 1 alone"
+     ],
+     "message": [
+      "global_upper_bound_pa a string: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers\",\"gate\":\"G7\"}",
+      "global_upper_bound_pa null: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers\",\"gate\":\"G7\"}",
+      "global_upper_bound_pa a boolean: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers\",\"gate\":\"G7\"}"
+     ]
+    },
+    {
+     "test": "contract:b1_i4p_transport_metadata_demands_alone",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "N45: a preview case with another member",
+      "N47: an unavailable pipe listed twice",
+      "N48: a pipe both unavailable and outside the domain",
+      "N56: an extremum's pipe listed unavailable",
+      "N58: a measure's moment a string",
+      "N60: two measures with one result id",
+      "N63: an extremum with another member",
+      "N64: a measure with another member",
+      "N65: a gate with another member"
+     ],
+     "message": [
+      "N45: a preview case with another member: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: preview case shape\",\"gate\":\"G7\"}",
+      "N47: an unavailable pipe listed twice: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: maximum coverage values\",\"gate\":\"G7\"}",
+      "N48: a pipe both unavailable and outside the domain: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: maximum coverage overlap\",\"gate\":\"G7\"}"
+     ]
+    },
+    {
+     "test": "contract:b1_r2_transport_metadata_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "carrier_evidence present",
+      "limitations other than the table's",
+      "contract_evidence with another member",
+      "preview_cases not a list",
+      "a preview case missing a member",
+      "two preview cases with one id",
+      "coverage complete with an unavailable pipe",
+      "an extrema constant changed",
+      "an extrema fraction above 1",
+      "an extrema span index negative",
+      "subdivisions above the maximum",
+      "extrema bounds inverted",
+      "a withheld record with an unknown reason",
+      "a support attributed and withheld",
+      "attribution sets differ between cases",
+      "an intensified measure in another place",
+      "a withheld gate without a code",
+      "two gates with one id"
+     ],
+     "message": [
+      "carrier_evidence present: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}",
+      "limitations other than the table's: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}",
+      "contract_evidence with another member: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "76",
+     "3"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "the metadata check not run"
+  },
+  {
+   "id": "N41",
+   "failed": [
+    "contract:b1_i4p_transport_extrema_numbers_at_g7",
+    "contract:b1_i4p_transport_metadata_demands_alone",
+    "contract:b1_r2_transport_metadata_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_i4p_transport_extrema_numbers_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "global_upper_bound_pa a string",
+      "global_upper_bound_pa null",
+      "global_upper_bound_pa a boolean",
+      "certified_gap_pa null",
+      "certified_gap_pa a string",
+      "certified_gap_pa a list",
+      "a string bound beside a fraction above 1 (the demand comes first)",
+      "a fraction above 1 alone"
+     ],
+     "message": [
+      "global_upper_bound_pa a string: got {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers\",\"gate\":\"G2\"} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers\",\"gate\":\"G7",
+      "global_upper_bound_pa null: got {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers\",\"gate\":\"G2\"} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers\",\"gate\":\"G7\"}",
+      "global_upper_bound_pa a boolean: got {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers\",\"gate\":\"G2\"} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers\",\"gate\":\"G"
+     ]
+    },
+    {
+     "test": "contract:b1_i4p_transport_metadata_demands_alone",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "N45: a preview case with another member",
+      "N47: an unavailable pipe listed twice",
+      "N48: a pipe both unavailable and outside the domain",
+      "N56: an extremum's pipe listed unavailable",
+      "N58: a measure's moment a string",
+      "N60: two measures with one result id",
+      "N63: an extremum with another member",
+      "N64: a measure with another member",
+      "N65: a gate with another member"
+     ],
+     "message": [
+      "N45: a preview case with another member: got {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: preview case shape\",\"gate\":\"G2\"} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: preview case sh",
+      "N47: an unavailable pipe listed twice: got {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: maximum coverage values\",\"gate\":\"G2\"} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: maximum cove",
+      "N48: a pipe both unavailable and outside the domain: got {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: maximum coverage overlap\",\"gate\":\"G2\"} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALI"
+     ]
+    },
+    {
+     "test": "contract:b1_r2_transport_metadata_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "carrier_evidence present",
+      "limitations other than the table's",
+      "contract_evidence with another member",
+      "preview_cases not a list",
+      "a preview case missing a member",
+      "two preview cases with one id",
+      "coverage complete with an unavailable pipe",
+      "an extrema constant changed",
+      "an extrema fraction above 1",
+      "an extrema span index negative",
+      "subdivisions above the maximum",
+      "extrema bounds inverted",
+      "a withheld record with an unknown reason",
+      "a support attributed and withheld",
+      "attribution sets differ between cases",
+      "an intensified measure in another place",
+      "a withheld gate without a code",
+      "two gates with one id"
+     ],
+     "message": [
+      "carrier_evidence present: got {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G2\"} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}",
+      "limitations other than the table's: got {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G2\"} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}",
+      "contract_evidence with another member: got {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G2\"} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "76",
+     "3"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "the metadata check reported at G2 instead of G7"
+  },
+  {
+   "id": "N42",
+   "failed": [
+    "contract:b1_r2_transport_metadata_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_transport_metadata_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "carrier_evidence present"
+     ],
+     "message": [
+      "carrier_evidence present: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the namespace demand dropped"
+  },
+  {
+   "id": "N43",
+   "failed": [
+    "contract:b1_r2_transport_metadata_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_transport_metadata_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "limitations other than the table's"
+     ],
+     "message": [
+      "limitations other than the table's: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'formulation profile or limitations' dropped"
+  },
+  {
+   "id": "N44",
+   "failed": [
+    "contract:b1_r2_transport_metadata_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_transport_metadata_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "contract_evidence with another member",
+      "preview_cases not a list"
+     ],
+     "message": [
+      "contract_evidence with another member: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}",
+      "preview_cases not a list: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'transport evidence shape (both demands)' dropped"
+  },
+  {
+   "id": "N45",
+   "failed": [
+    "contract:b1_i4p_transport_metadata_demands_alone"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_i4p_transport_metadata_demands_alone",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "N45: a preview case with another member"
+     ],
+     "message": [
+      "N45: a preview case with another member: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: preview case shape\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'preview case shape' dropped"
+  },
+  {
+   "id": "N46",
+   "failed": [
+    "contract:b1_r2_transport_metadata_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_transport_metadata_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "two preview cases with one id"
+     ],
+     "message": [
+      "two preview cases with one id: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'preview case identity' dropped"
+  },
+  {
+   "id": "N47",
+   "failed": [
+    "contract:b1_i4p_transport_metadata_demands_alone"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_i4p_transport_metadata_demands_alone",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "N47: an unavailable pipe listed twice"
+     ],
+     "message": [
+      "N47: an unavailable pipe listed twice: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: maximum coverage values\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'maximum coverage values' dropped"
+  },
+  {
+   "id": "N48",
+   "failed": [
+    "contract:b1_i4p_transport_metadata_demands_alone"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_i4p_transport_metadata_demands_alone",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "N48: a pipe both unavailable and outside the domain"
+     ],
+     "message": [
+      "N48: a pipe both unavailable and outside the domain: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: maximum coverage overlap\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'maximum coverage overlap' dropped"
+  },
+  {
+   "id": "N49",
+   "failed": [
+    "contract:b1_r2_transport_metadata_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_transport_metadata_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "coverage complete with an unavailable pipe"
+     ],
+     "message": [
+      "coverage complete with an unavailable pipe: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'maximum coverage completeness' dropped"
+  },
+  {
+   "id": "N50",
+   "failed": [
+    "contract:b1_r2_transport_metadata_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_transport_metadata_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "a support attributed and withheld"
+     ],
+     "message": [
+      "a support attributed and withheld: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'support both attributed and withheld' dropped"
+  },
+  {
+   "id": "N51",
+   "failed": [
+    "contract:b1_r2_transport_metadata_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_transport_metadata_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "a withheld record with an unknown reason"
+     ],
+     "message": [
+      "a withheld record with an unknown reason: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'withheld support values' dropped"
+  },
+  {
+   "id": "N52",
+   "failed": [
+    "contract:b1_r2_transport_metadata_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_transport_metadata_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "an extrema constant changed"
+     ],
+     "message": [
+      "an extrema constant changed: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'extrema identity or basis' dropped"
+  },
+  {
+   "id": "N53",
+   "failed": [
+    "contract:b1_i4p_transport_extrema_numbers_at_g7",
+    "contract:b1_r2_transport_metadata_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_i4p_transport_extrema_numbers_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "a fraction above 1 alone"
+     ],
+     "message": [
+      "a fraction above 1 alone: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema fractions\",\"gate\":\"G7\"}"
+     ]
+    },
+    {
+     "test": "contract:b1_r2_transport_metadata_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "an extrema fraction above 1"
+     ],
+     "message": [
+      "an extrema fraction above 1: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "77",
+     "2"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'extrema fractions' dropped"
+  },
+  {
+   "id": "N54",
+   "failed": [
+    "contract:b1_r2_transport_metadata_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_transport_metadata_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "an extrema span index negative",
+      "subdivisions above the maximum"
+     ],
+     "message": [
+      "an extrema span index negative: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}",
+      "subdivisions above the maximum: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'extrema integers' dropped"
+  },
+  {
+   "id": "N55",
+   "failed": [
+    "contract:b1_r2_transport_metadata_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_transport_metadata_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "extrema bounds inverted"
+     ],
+     "message": [
+      "extrema bounds inverted: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'extrema bounds' dropped"
+  },
+  {
+   "id": "N56",
+   "failed": [
+    "contract:b1_i4p_transport_metadata_demands_alone"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_i4p_transport_metadata_demands_alone",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "N56: an extremum's pipe listed unavailable"
+     ],
+     "message": [
+      "N56: an extremum's pipe listed unavailable: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema member partition\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'extrema member partition' dropped"
+  },
+  {
+   "id": "N57",
+   "failed": [
+    "contract:b1_r2_transport_metadata_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_transport_metadata_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "an intensified measure in another place"
+     ],
+     "message": [
+      "an intensified measure in another place: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'intensified measure identity' dropped"
+  },
+  {
+   "id": "N58",
+   "failed": [
+    "contract:b1_i4p_transport_metadata_demands_alone"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_i4p_transport_metadata_demands_alone",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "N58: a measure's moment a string"
+     ],
+     "message": [
+      "N58: a measure's moment a string: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: intensified measure inputs\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'intensified measure inputs' dropped"
+  },
+  {
+   "id": "N59",
+   "failed": [
+    "contract:b1_r2_transport_metadata_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_transport_metadata_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "attribution sets differ between cases"
+     ],
+     "message": [
+      "attribution sets differ between cases: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'attribution sets differ between cases' dropped"
+  },
+  {
+   "id": "N60",
+   "failed": [
+    "contract:b1_i4p_transport_metadata_demands_alone"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_i4p_transport_metadata_demands_alone",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "N60: two measures with one result id"
+     ],
+     "message": [
+      "N60: two measures with one result id: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: duplicate evidence result binding\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'duplicate evidence result binding' dropped"
+  },
+  {
+   "id": "N61",
+   "failed": [
+    "contract:b1_r2_transport_metadata_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_transport_metadata_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "a withheld gate without a code"
+     ],
+     "message": [
+      "a withheld gate without a code: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'combination gate reason' dropped"
+  },
+  {
+   "id": "N62",
+   "failed": [
+    "contract:b1_r2_transport_metadata_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_r2_transport_metadata_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "two gates with one id"
+     ],
+     "message": [
+      "two gates with one id: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'combination gate identity' dropped"
+  },
+  {
+   "id": "N63",
+   "failed": [
+    "contract:b1_i4p_transport_metadata_demands_alone"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_i4p_transport_metadata_demands_alone",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "N63: an extremum with another member"
+     ],
+     "message": [
+      "N63: an extremum with another member: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema shape\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'extrema shape' dropped"
+  },
+  {
+   "id": "N64",
+   "failed": [
+    "contract:b1_i4p_transport_metadata_demands_alone"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_i4p_transport_metadata_demands_alone",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "N64: a measure with another member"
+     ],
+     "message": [
+      "N64: a measure with another member: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: intensified measure shape\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'intensified measure shape' dropped"
+  },
+  {
+   "id": "N65",
+   "failed": [
+    "contract:b1_i4p_transport_metadata_demands_alone"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_i4p_transport_metadata_demands_alone",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "N65: a gate with another member"
+     ],
+     "message": [
+      "N65: a gate with another member: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: combination gate shape\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "4 T",
+   "description": "metadata: the demand 'combination gate shape' dropped"
+  },
+  {
+   "id": "X01",
+   "failed": [
+    "contract:b1_i4p_transport_extrema_numbers_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_i4p_transport_extrema_numbers_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "global_upper_bound_pa a string",
+      "global_upper_bound_pa null",
+      "global_upper_bound_pa a boolean",
+      "a string bound beside a fraction above 1 (the demand comes first)"
+     ],
+     "message": [
+      "global_upper_bound_pa a string: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers\",\"gate\":\"G7\"}",
+      "global_upper_bound_pa null: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers\",\"gate\":\"G7\"}",
+      "global_upper_bound_pa a boolean: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "ruling 2",
+   "description": "transport 'extrema numbers': the global_upper_bound_pa conjunct dropped"
+  },
+  {
+   "id": "X02",
+   "failed": [
+    "contract:b1_i4p_transport_extrema_numbers_at_g7"
+   ],
+   "panics": [
+    {
+     "test": "contract:b1_i4p_transport_extrema_numbers_at_g7",
+     "at": "tests/retained_precision_contract.rs:3942",
+     "assertion": true,
+     "missed_rows": [
+      "certified_gap_pa null",
+      "certified_gap_pa a string",
+      "certified_gap_pa a list"
+     ],
+     "message": [
+      "certified_gap_pa null: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers\",\"gate\":\"G7\"}",
+      "certified_gap_pa a string: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers\",\"gate\":\"G7\"}",
+      "certified_gap_pa a list: got {\"admitted\":false} want {\"code\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID\",\"detail\":\"SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers\",\"gate\":\"G7\"}"
+     ]
+    }
+   ],
+   "rc": {
+    "lib": [
+     "ok",
+     "26",
+     "0"
+    ],
+    "contract": [
+     "FAILED",
+     "78",
+     "1"
+    ]
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "ruling 2",
+   "description": "transport 'extrema numbers': the certified_gap_pa conjunct dropped"
+  }
+ ],
+ "ts": [
+  {
+   "id": "Y01",
+   "failed": [
+    "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa a string: refused by the raw reader and the transport check",
+    "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa null: refused by the raw reader and the transport check",
+    "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa a boolean: refused by the raw reader and the transport check",
+    "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number admits integers; the demand precedes the fraction, integer and bound checks",
+    "src/features/results/retainedPrecision.test.ts :: B1 I4' (I101): the extrema-number demand at G7, bound, unbound and on transport a non-number member is refused at G7 \"extrema numbers\" by every entry point; JSON integers are admitted"
+   ],
+   "assertion_failures": 5,
+   "tests": {
+    "passed": 546,
+    "failed": 5,
+    "total": 551,
+    "suites_failed": 4
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "rulings 2 and 3",
+   "description": "readCases 'extrema numbers': the global_upper_bound_pa conjunct dropped"
+  },
+  {
+   "id": "Y02",
+   "failed": [
+    "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa null: refused by the raw reader and the transport check",
+    "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa a string: refused by the raw reader and the transport check",
+    "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa a list: refused by the raw reader and the transport check",
+    "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number admits integers; the demand precedes the fraction, integer and bound checks",
+    "src/features/results/retainedPrecision.test.ts :: B1 I4' (I101): the extrema-number demand at G7, bound, unbound and on transport a non-number member is refused at G7 \"extrema numbers\" by every entry point; JSON integers are admitted"
+   ],
+   "assertion_failures": 5,
+   "tests": {
+    "passed": 546,
+    "failed": 5,
+    "total": 551,
+    "suites_failed": 4
+   },
+   "killed": true,
+   "killed_by_assertion": true,
+   "item": "rulings 2 and 3",
+   "description": "readCases 'extrema numbers': the certified_gap_pa conjunct dropped"
+  }
+ ]
+}

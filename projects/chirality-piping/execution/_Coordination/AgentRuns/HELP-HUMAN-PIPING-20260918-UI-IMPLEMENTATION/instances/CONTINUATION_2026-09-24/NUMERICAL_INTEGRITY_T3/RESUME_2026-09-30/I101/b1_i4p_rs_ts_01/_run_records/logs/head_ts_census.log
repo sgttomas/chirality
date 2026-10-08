@@ -1,0 +1,13 @@
+# i101 job head_ts_census (slot) queued 2026-10-08T07:17:25Z dir=scratch/i101_b1_i4p_rs_ts/copies/tsh/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV113_OUT=WT/scratch/i101_b1_i4p_rs_ts/out/head/ts_census.jsonl RV113_PROBES=WT/scratch/i101_b1_i4p_rs_ts/probes/probes_i101.json RV113_PROBES_OUT=WT/scratch/i101_b1_i4p_rs_ts/out/head/ts_probes.jsonl WT/scratch/i101_b1_i4p_rs_ts/copies/tsh/projects/chirality-piping/node_modules/.bin/vitest run src/features/results/rv113Census.test.ts
+# start 2026-10-08T07:17:25Z
+
+ RUN  v4.1.10 WT/scratch/i101_b1_i4p_rs_ts/copies/tsh/projects/chirality-piping/apps/desktop
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  01:17:25
+   Duration  17.06s (transform 545ms, setup 73ms, import 769ms, tests 15.92s, environment 246ms)
+
+# end 2026-10-08T07:17:42Z rc=0

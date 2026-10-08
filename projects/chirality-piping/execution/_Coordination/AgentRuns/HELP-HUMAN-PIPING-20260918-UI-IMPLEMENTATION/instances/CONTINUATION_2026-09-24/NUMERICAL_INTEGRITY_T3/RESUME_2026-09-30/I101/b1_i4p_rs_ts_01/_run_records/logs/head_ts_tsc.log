@@ -1,0 +1,4 @@
+# i101 job head_ts_tsc (slot) queued 2026-10-08T07:21:17Z dir=scratch/i101_b1_i4p_rs_ts/copies/tss/projects/chirality-piping/apps/desktop
+# args: WT/scratch/i101_b1_i4p_rs_ts/copies/tss/projects/chirality-piping/node_modules/.bin/tsc --noEmit -p tsconfig.json
+# start 2026-10-08T07:21:17Z
+# end 2026-10-08T07:21:25Z rc=0

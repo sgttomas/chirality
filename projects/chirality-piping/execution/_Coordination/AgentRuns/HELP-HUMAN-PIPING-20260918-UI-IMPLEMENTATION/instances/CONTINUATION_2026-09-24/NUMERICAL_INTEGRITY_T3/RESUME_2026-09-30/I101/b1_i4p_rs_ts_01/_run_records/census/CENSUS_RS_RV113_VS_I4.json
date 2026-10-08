@@ -1,0 +1,10 @@
+{
+ "reader": "rust",
+ "entries": 339,
+ "inputs_differ": [],
+ "verdict_changes": [],
+ "expectation_misses": {
+  "before": [],
+  "after": []
+ }
+}

@@ -1,0 +1,6 @@
+== WT/b1-r: git status --short --ignored (empty = clean); head
+e8791183483af1ba7b33032b022b5458fb97b6b6
+node_modules present: no; public assets present: no
+== WT/b1-t: git status --short --ignored (empty = clean); head
+819e44f63e39e01de46b593945cbcb14f0d4e65c
+node_modules present: no; public assets present: no

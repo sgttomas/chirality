@@ -1,0 +1,6 @@
+51a52
+> const mx = (id: string): boolean => (globalThis as any).process?.env?.I101_MUT === id;
+167c168
+<       demand(finite(x.global_upper_bound_pa) && finite(x.certified_gap_pa), "extrema numbers");
+---
+>       demand((mx("Y01") || finite(x.global_upper_bound_pa)) && (mx("Y02") || finite(x.certified_gap_pa)), "extrema numbers");

@@ -1,0 +1,98 @@
+diff --git a/projects/chirality-piping/apps/desktop/src/features/results/previewPhysicsEvidence.test.ts b/projects/chirality-piping/apps/desktop/src/features/results/previewPhysicsEvidence.test.ts
+index 3a5dd87ca2..dca25bd3ce 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/results/previewPhysicsEvidence.test.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/results/previewPhysicsEvidence.test.ts
+@@ -330,3 +330,36 @@ describe("A2 shared tamper vector", () => {
+     else invalid(source, TS_REFUSAL_DETAIL[variant.id]);
+   });
+ });
++
++// B1's reader follow-up toward I4' (I101; RR "I4 made at `30f3d1b24a`; …", rulings 2 and 3): PY's extrema-number
++// demand. readCases runs it for the raw reader and for the transport check, so both refuse a non-number
++// global_upper_bound_pa or certified_gap_pa (null included) with "extrema numbers", at PY's place.
++describe("rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number", () => {
++  const message = (run: () => void): string | null => { try { run(); return null; } catch (error) { return (error as Error).message; } };
++  const both = (source: MechanicsResult) => [message(() => validatePreviewPhysicsEvidence(source)), message(() => validatePreviewPhysicsTransportMetadata(source))];
++  const refused = (detail: string) => [`SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: ${detail}`, `SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: ${detail}`];
++  const edited = (fixture: unknown, edit: (x: any) => void, at = [0, 0]) => {
++    const source = clone(fixture);
++    edit(evidence(source).preview_cases[at[0]].pipe_stress_extrema[at[1]]);
++    return source;
++  };
++  const shapes: [string, string, unknown][] = [
++    ["global_upper_bound_pa a string", "global_upper_bound_pa", "x"],
++    ["global_upper_bound_pa null", "global_upper_bound_pa", null],
++    ["global_upper_bound_pa a boolean", "global_upper_bound_pa", true],
++    ["certified_gap_pa null", "certified_gap_pa", null],
++    ["certified_gap_pa a string", "certified_gap_pa", "0"],
++    ["certified_gap_pa a list", "certified_gap_pa", [0]],
++  ];
++  it.each(shapes)("%s: refused by the raw reader and the transport check", (_name, member, value) => {
++    for (const fixture of [connectedSparse, inventedSparse]) expect(both(edited(fixture, x => { x[member] = value; }))).toEqual(refused("extrema numbers"));
++    // A later case's later extremum is read the same way.
++    expect(both(edited(inventedSparse, x => { x[member] = value; }, [1, 3]))).toEqual(refused("extrema numbers"));
++  });
++  it("admits integers; the demand precedes the fraction, integer and bound checks", () => {
++    expect(both(edited(connectedSparse, x => { x.global_upper_bound_pa = 41354909; x.certified_gap_pa = 0; }))).toEqual([null, null]);
++    expect(both(edited(connectedSparse, x => { x.global_upper_bound_pa = "x"; x.station_fraction = 2; }))).toEqual(refused("extrema numbers"));
++    expect(both(edited(connectedSparse, x => { x.certified_gap_pa = null; x.span_index = -1; }))).toEqual(refused("extrema numbers"));
++    expect(both(edited(connectedSparse, x => { x.station_fraction = 2; }))).toEqual(refused("extrema fractions"));
++  });
++});
+diff --git a/projects/chirality-piping/apps/desktop/src/features/results/previewPhysicsEvidence.ts b/projects/chirality-piping/apps/desktop/src/features/results/previewPhysicsEvidence.ts
+index bb7b1e598e..d4546d527d 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/results/previewPhysicsEvidence.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/results/previewPhysicsEvidence.ts
+@@ -162,7 +162,10 @@ function readCases(evidence: Json): Map<string, Json> {
+     for (const x of c.pipe_stress_extrema as unknown[]) {
+       shape(x, EXTREMA_KEYS, "extrema shape");
+       demand(text(x.pipe_id) && text(x.result_id) && Object.entries(EXTREMA_CONSTANTS).every(([k, v]) => x[k] === v), "extrema identity or basis");
+-      // A1 d + A2 1: exactly these checks; no certified-gap bound (finiteness is item 1).
++      // RR "I4 made at `30f3d1b24a`; …", rulings 2 and 3: PY's extrema-number demand, at PY's place and with its
++      // detail. readCases serves the raw reader and the transport check, so both refuse a non-number (null included).
++      demand(finite(x.global_upper_bound_pa) && finite(x.certified_gap_pa), "extrema numbers");
++      // A1 d + A2 1: these checks; no certified-gap bound (the two members above are typed, never bounded).
+       demand(finite(x.station_fraction) && x.station_fraction >= 0 && x.station_fraction <= 1
+         && finite(x.local_fraction) && x.local_fraction >= 0 && x.local_fraction <= 1, "extrema fractions");
+       demand(Number.isSafeInteger(x.span_index) && x.span_index >= 0
+diff --git a/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts b/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts
+index 827565f702..7864c32067 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts
+@@ -1392,3 +1392,36 @@ describe('B1 SR-TS repair 01: the transport reading\'s base header at G2 (Rust\'
+     await table(header.map((m: any) => [m.id, transport(m), { gate: 'G2', code: (m.expected_by_reader?.rust ?? m.expected).code }] as [string, () => Promise<unknown>, unknown]));
+   });
+ });
++
++// B1's reader follow-up toward I4' (I101; RR "I4 made at `30f3d1b24a`; …", rulings 2 and 3), through the retained
++// reader: PY's extrema-number demand refuses a non-number global_upper_bound_pa or certified_gap_pa at G7 with TS's
++// base code, bound, unbound and on transport (RV113's t_extrema_global_upper_string and t_extrema_certified_gap_null).
++describe('B1 I4\' (I101): the extrema-number demand at G7, bound, unbound and on transport', () => {
++  const ORD = 'ordinary_prepared_synthetic';
++  const x = (member: string) => ['contract_evidence', 'preview_cases', 0, 'pipe_stress_extrema', 0, member];
++  const entry = (edits: any[]) => ({ id: 'b1_i4p_extrema_probe', base: ORD, edits, invocation_edits: [], rehash: 'all' });
++  const outcome = async (run: () => Promise<any>): Promise<unknown> => {
++    try { return { admitted: (await run()).numerical_eligible }; }
++    catch (error) { expect(error).toBeInstanceOf(RetainedPrecisionError); const e = error as RetainedPrecisionError; return { gate: e.gate, code: e.code, detail: e.detail }; }
++  };
++  const verdicts = async (edits: any[]) => {
++    const { source, invocation } = await applyEntry(entry(edits));
++    return { bound: await outcome(() => validateRetainedPrecision(structuredClone(source), structuredClone(invocation))),
++      unbound: await outcome(() => validateRetainedPrecision(structuredClone(source))),
++      transport: await outcome(() => validateRetainedPrecisionTransport(structuredClone(source))) };
++  };
++  const g7 = (detail: string) => ({ gate: 'G7', code: 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID', detail });
++  it('a non-number member is refused at G7 "extrema numbers" by every entry point; JSON integers are admitted', async () => {
++    const rows: [string, any[], unknown][] = [
++      ['t_extrema_global_upper_string', [{ path: x('global_upper_bound_pa'), op: 'set', value: 'x' }], { bound: g7('extrema numbers'), unbound: g7('extrema numbers'), transport: g7('extrema numbers') }],
++      ['t_extrema_certified_gap_null', [{ path: x('certified_gap_pa'), op: 'set', value: null }], { bound: g7('extrema numbers'), unbound: g7('extrema numbers'), transport: g7('extrema numbers') }],
++      ['global_upper_bound_pa null', [{ path: x('global_upper_bound_pa'), op: 'set', value: null }], { bound: g7('extrema numbers'), unbound: g7('extrema numbers'), transport: g7('extrema numbers') }],
++      ['certified_gap_pa a string', [{ path: x('certified_gap_pa'), op: 'set', value: '0' }], { bound: g7('extrema numbers'), unbound: g7('extrema numbers'), transport: g7('extrema numbers') }],
++      ['both members JSON integers', [{ path: x('global_upper_bound_pa'), op: 'set', value: 41354909 }, { path: x('certified_gap_pa'), op: 'set', value: 0 }], { bound: { admitted: true }, unbound: { admitted: false }, transport: { admitted: false } }],
++      ['the base', [], { bound: { admitted: true }, unbound: { admitted: false }, transport: { admitted: false } }],
++    ];
++    const misses: string[] = [];
++    for (const [name, edits, want] of rows) { const got = await verdicts(edits); if (JSON.stringify(got) !== JSON.stringify(want)) misses.push(`${name}: got ${JSON.stringify(got)} want ${JSON.stringify(want)}`); }
++    expect(misses).toEqual([]);
++  });
++});

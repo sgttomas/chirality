@@ -1,0 +1,50 @@
+# i101 job mut_rs_build (cargo) queued 2026-10-08T07:21:54Z dir=scratch/i101_b1_i4p_rs_ts/copies/rsm/projects/chirality-piping/core/reporting/result_export
+# target=targets/i101-b1-i4p-rs-ts/rsm args: test --locked --offline --no-run
+   Compiling proc-macro2 v1.0.107
+   Compiling version_check v0.9.5
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.26
+   Compiling serde_core v1.0.229
+   Compiling typenum v1.20.1
+   Compiling zmij v1.0.23
+   Compiling libc v0.2.189
+   Compiling serde_json v1.0.151
+   Compiling generic-array v0.14.7
+   Compiling serde v1.0.229
+   Compiling itoa v1.0.18
+   Compiling memchr v2.8.3
+   Compiling ryu v1.0.23
+   Compiling cfg-if v1.0.5
+   Compiling open_pipe_stress_units v0.1.0 (WT/scratch/i101_b1_i4p_rs_ts/copies/rsm/projects/chirality-piping/core/units)
+   Compiling syn v3.0.6
+   Compiling cpufeatures v0.2.17
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling digest v0.10.7
+   Compiling sha2 v0.10.9
+   Compiling serde_derive v1.0.229
+   Compiling open_pipe_stress_canonical_json v0.1.0 (WT/scratch/i101_b1_i4p_rs_ts/copies/rsm/projects/chirality-piping/core/serialization/canonical_json)
+   Compiling open_pipe_stress_result_export v0.1.0 (WT/scratch/i101_b1_i4p_rs_ts/copies/rsm/projects/chirality-piping/core/reporting/result_export)
+warning: function `derived` is never used
+   --> src/source_blocks.rs:433:4
+    |
+433 | fn derived(recipe: &Value, row: &Value, inputs: &[&Value]) -> Result<(), String> {
+    |    ^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `open_pipe_stress_result_export` (lib) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.68s
+  Executable unittests src/lib.rs (WT/targets/i101-b1-i4p-rs-ts/rsm/debug/deps/open_pipe_stress_result_export-9d8d993aa951a5e4)
+  Executable tests/derivative_contract.rs (WT/targets/i101-b1-i4p-rs-ts/rsm/debug/deps/derivative_contract-8e9a0e302071f52f)
+  Executable tests/load_reference_contract.rs (WT/targets/i101-b1-i4p-rs-ts/rsm/debug/deps/load_reference_contract-e4a4ccf8958f1de9)
+  Executable tests/load_reference_source_contract.rs (WT/targets/i101-b1-i4p-rs-ts/rsm/debug/deps/load_reference_source_contract-d705d97c906b6675)
+  Executable tests/physics_contract.rs (WT/targets/i101-b1-i4p-rs-ts/rsm/debug/deps/physics_contract-0acd261ca6a3de7e)
+  Executable tests/physics_source_contract.rs (WT/targets/i101-b1-i4p-rs-ts/rsm/debug/deps/physics_source_contract-45b2149f2674795d)
+  Executable tests/precision_contract.rs (WT/targets/i101-b1-i4p-rs-ts/rsm/debug/deps/precision_contract-5dfc53e73affb533)
+  Executable tests/preview_physics_contract.rs (WT/targets/i101-b1-i4p-rs-ts/rsm/debug/deps/preview_physics_contract-5b0e6ef3b93c1ce8)
+  Executable tests/retained_precision_carriers.rs (WT/targets/i101-b1-i4p-rs-ts/rsm/debug/deps/retained_precision_carriers-3b0f8d97b49ebf7e)
+  Executable tests/retained_precision_contract.rs (WT/targets/i101-b1-i4p-rs-ts/rsm/debug/deps/retained_precision_contract-6599dca3fb386c24)
+  Executable tests/retained_precision_derivative_golden.rs (WT/targets/i101-b1-i4p-rs-ts/rsm/debug/deps/retained_precision_derivative_golden-d525c9e50cd97190)
+  Executable tests/source_blocks.rs (WT/targets/i101-b1-i4p-rs-ts/rsm/debug/deps/source_blocks-025ed531c92e65b0)
+# end 2026-10-08T07:22:00Z rc=0

@@ -1,0 +1,15 @@
+# RS: WT/b1-r, codex/piping-t3-b1-r-20261007, over I4 = 30f3d1b24a
+e8791183483af1ba7b33032b022b5458fb97b6b6 2026-10-08T01:15:21-06:00
+  piping(T3 B1 I4'): RS pins RV113's twelve unpinned checks, one row each (ruling 4)
+990339d94f83c420116d7f3f91e3c36d620c9028 2026-10-08T01:15:21-06:00
+  piping(T3 B1 I4'): RS's transport metadata check takes PY's extrema-number demand (ruling 2); doc comment (RV113 N-1)
+ .../result_export/src/retained_precision.rs        |  24 +-
+ .../tests/retained_precision_contract.rs           | 342 +++++++++++++++++++++
+ 2 files changed, 360 insertions(+), 6 deletions(-)
+# TS: WT/b1-t, codex/piping-t3-b1-t-20261007, over I4 = 30f3d1b24a
+819e44f63e39e01de46b593945cbcb14f0d4e65c 2026-10-08T01:15:32-06:00
+  piping(T3 B1 I4'): TS's preview-physics readers take PY's extrema-number demand, raw and transport (rulings 2 and 3)
+ .../results/previewPhysicsEvidence.test.ts         | 33 ++++++++++++++++++++++
+ .../src/features/results/previewPhysicsEvidence.ts |  5 +++-
+ .../src/features/results/retainedPrecision.test.ts | 33 ++++++++++++++++++++++
+ 3 files changed, 70 insertions(+), 1 deletion(-)

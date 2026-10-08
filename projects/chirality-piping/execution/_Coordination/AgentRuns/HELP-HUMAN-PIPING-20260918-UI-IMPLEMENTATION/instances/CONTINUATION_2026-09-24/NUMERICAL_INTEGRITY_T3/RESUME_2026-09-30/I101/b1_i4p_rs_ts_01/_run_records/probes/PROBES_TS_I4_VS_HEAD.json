@@ -1,0 +1,89 @@
+{
+ "probes": 394,
+ "verdict_changes": [
+  {
+   "id": "r2:t_extrema_global_upper_string",
+   "verdict": "bound",
+   "before": {
+    "admitted": true
+   },
+   "after": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   },
+   "before_detail": null,
+   "after_detail": "extrema numbers",
+   "short_equal": false
+  },
+  {
+   "id": "r2:t_extrema_global_upper_string",
+   "verdict": "unbound",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   },
+   "before_detail": null,
+   "after_detail": "extrema numbers",
+   "short_equal": false
+  },
+  {
+   "id": "r2:t_extrema_global_upper_string",
+   "verdict": "transport",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   },
+   "before_detail": null,
+   "after_detail": "extrema numbers",
+   "short_equal": false
+  },
+  {
+   "id": "r2:t_extrema_certified_gap_null",
+   "verdict": "bound",
+   "before": {
+    "admitted": true
+   },
+   "after": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   },
+   "before_detail": null,
+   "after_detail": "extrema numbers",
+   "short_equal": false
+  },
+  {
+   "id": "r2:t_extrema_certified_gap_null",
+   "verdict": "unbound",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   },
+   "before_detail": null,
+   "after_detail": "extrema numbers",
+   "short_equal": false
+  },
+  {
+   "id": "r2:t_extrema_certified_gap_null",
+   "verdict": "transport",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   },
+   "before_detail": null,
+   "after_detail": "extrema numbers",
+   "short_equal": false
+  }
+ ]
+}

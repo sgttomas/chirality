@@ -1,0 +1,325 @@
+# I101 job stamps: each job log's queued, start and end lines
+== dev1_re.log
+# i101 job dev1_re (cargo) queued 2026-10-08T07:13:52Z dir=scratch/i101_b1_i4p_rs_ts/copies/dev/projects/chirality-piping/core/reporting/result_export
+# end 2026-10-08T07:13:59Z rc=0
+== dev1_ts.log
+# i101 job dev1_ts (slot) queued 2026-10-08T07:13:59Z dir=scratch/i101_b1_i4p_rs_ts/copies/dev/projects/chirality-piping/apps/desktop
+# start 2026-10-08T07:13:59Z
+# end 2026-10-08T07:14:09Z rc=0
+== dev1_tsc.log
+# i101 job dev1_tsc (slot) queued 2026-10-08T07:14:09Z dir=scratch/i101_b1_i4p_rs_ts/copies/dev/projects/chirality-piping/apps/desktop
+# start 2026-10-08T07:14:09Z
+# end 2026-10-08T07:14:14Z rc=0
+== head_pp_law.log
+# i101 job head_pp_law (cargo) queued 2026-10-08T07:54:42Z dir=scratch/i101_b1_i4p_rs_ts/copies/rss/projects/chirality-piping/core/product_physics
+# end 2026-10-08T07:54:57Z rc=0
+== head_rs_census.log
+# i101 job head_rs_census (cargo) queued 2026-10-08T07:16:17Z dir=scratch/i101_b1_i4p_rs_ts/copies/rsh/projects/chirality-piping/core/reporting/result_export
+# end 2026-10-08T07:17:25Z rc=0
+== head_rs_re_suite.log
+# i101 job head_rs_re_suite (cargo) queued 2026-10-08T07:17:42Z dir=scratch/i101_b1_i4p_rs_ts/copies/rss/projects/chirality-piping/core/reporting/result_export
+# end 2026-10-08T07:19:23Z rc=0
+== head_ts_census.log
+# i101 job head_ts_census (slot) queued 2026-10-08T07:17:25Z dir=scratch/i101_b1_i4p_rs_ts/copies/tsh/projects/chirality-piping/apps/desktop
+# start 2026-10-08T07:17:25Z
+# end 2026-10-08T07:17:42Z rc=0
+== head_ts_tsc.log
+# i101 job head_ts_tsc (slot) queued 2026-10-08T07:21:17Z dir=scratch/i101_b1_i4p_rs_ts/copies/tss/projects/chirality-piping/apps/desktop
+# start 2026-10-08T07:21:17Z
+# end 2026-10-08T07:21:25Z rc=0
+== head_ts_vitest.log
+# i101 job head_ts_vitest (slot) queued 2026-10-08T07:19:23Z dir=scratch/i101_b1_i4p_rs_ts/copies/tss/projects/chirality-piping/apps/desktop
+# start 2026-10-08T07:19:23Z
+# end 2026-10-08T07:21:17Z rc=0
+== i4_re_suite.log
+# i101 job i4_re_suite (cargo) queued 2026-10-08T07:09:10Z dir=scratch/i101_b1_i4p_rs_ts/copies/i4s/projects/chirality-piping/core/reporting/result_export
+# end 2026-10-08T07:10:47Z rc=0
+== i4_rs_census.log
+# i101 job i4_rs_census (cargo) queued 2026-10-08T07:07:45Z dir=scratch/i101_b1_i4p_rs_ts/copies/i4h/projects/chirality-piping/core/reporting/result_export
+# end 2026-10-08T07:08:52Z rc=0
+== i4_ts_census.log
+# i101 job i4_ts_census (slot) queued 2026-10-08T07:08:52Z dir=scratch/i101_b1_i4p_rs_ts/copies/i4h/projects/chirality-piping/apps/desktop
+# start 2026-10-08T07:08:52Z
+# end 2026-10-08T07:09:09Z rc=0
+== i4_tsc.log
+# i101 job i4_tsc (slot) queued 2026-10-08T07:12:07Z dir=scratch/i101_b1_i4p_rs_ts/copies/i4s/projects/chirality-piping/apps/desktop
+# start 2026-10-08T07:12:07Z
+# end 2026-10-08T07:12:11Z rc=0
+== i4_vitest.log
+# i101 job i4_vitest (slot) queued 2026-10-08T07:10:47Z dir=scratch/i101_b1_i4p_rs_ts/copies/i4s/projects/chirality-piping/apps/desktop
+# start 2026-10-08T07:10:47Z
+# end 2026-10-08T07:12:07Z rc=0
+== mut_rs_build.log
+# i101 job mut_rs_build (cargo) queued 2026-10-08T07:21:54Z dir=scratch/i101_b1_i4p_rs_ts/copies/rsm/projects/chirality-piping/core/reporting/result_export
+# end 2026-10-08T07:22:00Z rc=0
+== rsi_contract.log
+# i101 job rsi_contract (cargo) queued 2026-10-08T07:21:25Z dir=scratch/i101_b1_i4p_rs_ts/copies/rsi/projects/chirality-piping/core/reporting/result_export
+# end 2026-10-08T07:21:54Z rc=0
+== mutant runs (run.log)
+-- N01
+# N01 tests queued 2026-10-08T07:22:30Z
+# start 2026-10-08T07:22:30Z RV113_MUT=N01
+# end 2026-10-08T07:23:00Z
+-- N03
+# N03 tests queued 2026-10-08T07:23:00Z
+# start 2026-10-08T07:23:00Z RV113_MUT=N03
+# end 2026-10-08T07:23:29Z
+-- N04
+# N04 tests queued 2026-10-08T07:23:29Z
+# start 2026-10-08T07:23:29Z RV113_MUT=N04
+# end 2026-10-08T07:23:58Z
+-- N05
+# N05 tests queued 2026-10-08T07:23:58Z
+# start 2026-10-08T07:23:58Z RV113_MUT=N05
+# end 2026-10-08T07:24:38Z
+-- N06
+# N06 tests queued 2026-10-08T07:24:38Z
+# start 2026-10-08T07:24:38Z RV113_MUT=N06
+# end 2026-10-08T07:25:20Z
+-- N07
+# N07 tests queued 2026-10-08T07:25:20Z
+# start 2026-10-08T07:25:20Z RV113_MUT=N07
+# end 2026-10-08T07:25:51Z
+-- N08
+# N08 tests queued 2026-10-08T07:25:51Z
+# start 2026-10-08T07:25:51Z RV113_MUT=N08
+# end 2026-10-08T07:26:21Z
+-- N09
+# N09 tests queued 2026-10-08T07:26:21Z
+# start 2026-10-08T07:26:21Z RV113_MUT=N09
+# end 2026-10-08T07:26:51Z
+-- N10
+# N10 tests queued 2026-10-08T07:26:51Z
+# start 2026-10-08T07:26:51Z RV113_MUT=N10
+# end 2026-10-08T07:27:20Z
+-- N11
+# N11 tests queued 2026-10-08T07:27:20Z
+# start 2026-10-08T07:27:20Z RV113_MUT=N11
+# end 2026-10-08T07:27:49Z
+-- N12
+# N12 tests queued 2026-10-08T07:27:49Z
+# start 2026-10-08T07:27:49Z RV113_MUT=N12
+# end 2026-10-08T07:28:17Z
+-- N13
+# N13 tests queued 2026-10-08T07:28:17Z
+# start 2026-10-08T07:28:18Z RV113_MUT=N13
+# end 2026-10-08T07:28:51Z
+-- N14
+# N14 tests queued 2026-10-08T07:28:51Z
+# start 2026-10-08T07:28:51Z RV113_MUT=N14
+# end 2026-10-08T07:29:20Z
+-- N15
+# N15 tests queued 2026-10-08T07:29:20Z
+# start 2026-10-08T07:29:20Z RV113_MUT=N15
+# end 2026-10-08T07:29:51Z
+-- N16
+# N16 tests queued 2026-10-08T07:29:51Z
+# start 2026-10-08T07:29:51Z RV113_MUT=N16
+# end 2026-10-08T07:30:20Z
+-- N17
+# N17 tests queued 2026-10-08T07:30:20Z
+# start 2026-10-08T07:30:20Z RV113_MUT=N17
+# end 2026-10-08T07:30:48Z
+-- N18
+# N18 tests queued 2026-10-08T07:30:48Z
+# start 2026-10-08T07:30:48Z RV113_MUT=N18
+# end 2026-10-08T07:31:18Z
+-- N19
+# N19 tests queued 2026-10-08T07:31:18Z
+# start 2026-10-08T07:31:18Z RV113_MUT=N19
+# end 2026-10-08T07:31:49Z
+-- N20
+# N20 tests queued 2026-10-08T07:31:49Z
+# start 2026-10-08T07:31:49Z RV113_MUT=N20
+# end 2026-10-08T07:32:18Z
+-- N21
+# N21 tests queued 2026-10-08T07:32:18Z
+# start 2026-10-08T07:32:18Z RV113_MUT=N21
+# end 2026-10-08T07:32:47Z
+-- N22
+# N22 tests queued 2026-10-08T07:32:47Z
+# start 2026-10-08T07:32:47Z RV113_MUT=N22
+# end 2026-10-08T07:33:18Z
+-- N23
+# N23 tests queued 2026-10-08T07:33:18Z
+# start 2026-10-08T07:33:18Z RV113_MUT=N23
+# end 2026-10-08T07:33:49Z
+-- N24
+# N24 tests queued 2026-10-08T07:33:49Z
+# start 2026-10-08T07:33:49Z RV113_MUT=N24
+# end 2026-10-08T07:34:18Z
+-- N25
+# N25 tests queued 2026-10-08T07:34:18Z
+# start 2026-10-08T07:34:18Z RV113_MUT=N25
+# end 2026-10-08T07:34:46Z
+-- N26
+# N26 tests queued 2026-10-08T07:34:46Z
+# start 2026-10-08T07:34:46Z RV113_MUT=N26
+# end 2026-10-08T07:35:15Z
+-- N27
+# N27 tests queued 2026-10-08T07:35:15Z
+# start 2026-10-08T07:35:15Z RV113_MUT=N27
+# end 2026-10-08T07:35:44Z
+-- N28
+# N28 tests queued 2026-10-08T07:35:44Z
+# start 2026-10-08T07:35:44Z RV113_MUT=N28
+# end 2026-10-08T07:36:13Z
+-- N29
+# N29 tests queued 2026-10-08T07:36:13Z
+# start 2026-10-08T07:36:13Z RV113_MUT=N29
+# end 2026-10-08T07:36:42Z
+-- N30
+# N30 tests queued 2026-10-08T07:36:42Z
+# start 2026-10-08T07:36:42Z RV113_MUT=N30
+# end 2026-10-08T07:37:11Z
+-- N31
+# N31 tests queued 2026-10-08T07:37:11Z
+# start 2026-10-08T07:37:11Z RV113_MUT=N31
+# end 2026-10-08T07:37:41Z
+-- N32
+# N32 tests queued 2026-10-08T07:37:41Z
+# start 2026-10-08T07:37:41Z RV113_MUT=N32
+# end 2026-10-08T07:38:15Z
+-- N33
+# N33 tests queued 2026-10-08T07:38:15Z
+# start 2026-10-08T07:38:15Z RV113_MUT=N33
+# end 2026-10-08T07:38:54Z
+-- N34
+# N34 tests queued 2026-10-08T07:38:54Z
+# start 2026-10-08T07:38:54Z RV113_MUT=N34
+# end 2026-10-08T07:39:29Z
+-- N35
+# N35 tests queued 2026-10-08T07:39:29Z
+# start 2026-10-08T07:39:29Z RV113_MUT=N35
+# end 2026-10-08T07:39:59Z
+-- N36
+# N36 tests queued 2026-10-08T07:39:59Z
+# start 2026-10-08T07:39:59Z RV113_MUT=N36
+# end 2026-10-08T07:40:28Z
+-- N40
+# N40 tests queued 2026-10-08T07:40:28Z
+# start 2026-10-08T07:40:28Z RV113_MUT=N40
+# end 2026-10-08T07:40:58Z
+-- N41
+# N41 tests queued 2026-10-08T07:40:58Z
+# start 2026-10-08T07:40:58Z RV113_MUT=N41
+# end 2026-10-08T07:41:26Z
+-- N42
+# N42 tests queued 2026-10-08T07:41:26Z
+# start 2026-10-08T07:41:27Z RV113_MUT=N42
+# end 2026-10-08T07:41:55Z
+-- N43
+# N43 tests queued 2026-10-08T07:41:55Z
+# start 2026-10-08T07:41:55Z RV113_MUT=N43
+# end 2026-10-08T07:42:23Z
+-- N44
+# N44 tests queued 2026-10-08T07:42:23Z
+# start 2026-10-08T07:42:23Z RV113_MUT=N44
+# end 2026-10-08T07:42:52Z
+-- N45
+# N45 tests queued 2026-10-08T07:42:52Z
+# start 2026-10-08T07:42:52Z RV113_MUT=N45
+# end 2026-10-08T07:43:21Z
+-- N46
+# N46 tests queued 2026-10-08T07:43:21Z
+# start 2026-10-08T07:43:21Z RV113_MUT=N46
+# end 2026-10-08T07:43:49Z
+-- N47
+# N47 tests queued 2026-10-08T07:43:49Z
+# start 2026-10-08T07:43:49Z RV113_MUT=N47
+# end 2026-10-08T07:44:18Z
+-- N48
+# N48 tests queued 2026-10-08T07:44:18Z
+# start 2026-10-08T07:44:18Z RV113_MUT=N48
+# end 2026-10-08T07:44:46Z
+-- N49
+# N49 tests queued 2026-10-08T07:44:46Z
+# start 2026-10-08T07:44:47Z RV113_MUT=N49
+# end 2026-10-08T07:45:15Z
+-- N50
+# N50 tests queued 2026-10-08T07:45:15Z
+# start 2026-10-08T07:45:15Z RV113_MUT=N50
+# end 2026-10-08T07:45:44Z
+-- N51
+# N51 tests queued 2026-10-08T07:45:44Z
+# start 2026-10-08T07:45:44Z RV113_MUT=N51
+# end 2026-10-08T07:46:12Z
+-- N52
+# N52 tests queued 2026-10-08T07:46:12Z
+# start 2026-10-08T07:46:12Z RV113_MUT=N52
+# end 2026-10-08T07:46:41Z
+-- N53
+# N53 tests queued 2026-10-08T07:46:41Z
+# start 2026-10-08T07:46:41Z RV113_MUT=N53
+# end 2026-10-08T07:47:10Z
+-- N54
+# N54 tests queued 2026-10-08T07:47:10Z
+# start 2026-10-08T07:47:10Z RV113_MUT=N54
+# end 2026-10-08T07:47:38Z
+-- N55
+# N55 tests queued 2026-10-08T07:47:38Z
+# start 2026-10-08T07:47:38Z RV113_MUT=N55
+# end 2026-10-08T07:48:07Z
+-- N56
+# N56 tests queued 2026-10-08T07:48:07Z
+# start 2026-10-08T07:48:07Z RV113_MUT=N56
+# end 2026-10-08T07:48:35Z
+-- N57
+# N57 tests queued 2026-10-08T07:48:35Z
+# start 2026-10-08T07:48:35Z RV113_MUT=N57
+# end 2026-10-08T07:49:04Z
+-- N58
+# N58 tests queued 2026-10-08T07:49:04Z
+# start 2026-10-08T07:49:04Z RV113_MUT=N58
+# end 2026-10-08T07:49:33Z
+-- N59
+# N59 tests queued 2026-10-08T07:49:33Z
+# start 2026-10-08T07:49:33Z RV113_MUT=N59
+# end 2026-10-08T07:50:02Z
+-- N60
+# N60 tests queued 2026-10-08T07:50:02Z
+# start 2026-10-08T07:50:02Z RV113_MUT=N60
+# end 2026-10-08T07:50:30Z
+-- N61
+# N61 tests queued 2026-10-08T07:50:30Z
+# start 2026-10-08T07:50:30Z RV113_MUT=N61
+# end 2026-10-08T07:50:59Z
+-- N62
+# N62 tests queued 2026-10-08T07:50:59Z
+# start 2026-10-08T07:50:59Z RV113_MUT=N62
+# end 2026-10-08T07:51:28Z
+-- N63
+# N63 tests queued 2026-10-08T07:51:28Z
+# start 2026-10-08T07:51:28Z RV113_MUT=N63
+# end 2026-10-08T07:51:56Z
+-- N64
+# N64 tests queued 2026-10-08T07:51:56Z
+# start 2026-10-08T07:51:56Z RV113_MUT=N64
+# end 2026-10-08T07:52:25Z
+-- N65
+# N65 tests queued 2026-10-08T07:52:25Z
+# start 2026-10-08T07:52:25Z RV113_MUT=N65
+# end 2026-10-08T07:52:53Z
+-- NONE
+# NONE tests queued 2026-10-08T07:22:00Z
+# start 2026-10-08T07:22:00Z RV113_MUT=unset
+# end 2026-10-08T07:22:30Z
+# NONE vitest queued 2026-10-08T07:53:50Z
+# vitest start 2026-10-08T07:53:50Z I101_MUT=unset
+# vitest end 2026-10-08T07:54:00Z
+-- X01
+# X01 tests queued 2026-10-08T07:52:53Z
+# start 2026-10-08T07:52:53Z RV113_MUT=X01
+# end 2026-10-08T07:53:21Z
+-- X02
+# X02 tests queued 2026-10-08T07:53:21Z
+# start 2026-10-08T07:53:21Z RV113_MUT=X02
+# end 2026-10-08T07:53:50Z
+-- Y01
+# Y01 vitest queued 2026-10-08T07:54:00Z
+# vitest start 2026-10-08T07:54:00Z I101_MUT=Y01
+# vitest end 2026-10-08T07:54:10Z
+-- Y02
+# Y02 vitest queued 2026-10-08T07:54:10Z
+# vitest start 2026-10-08T07:54:10Z I101_MUT=Y02
+# vitest end 2026-10-08T07:54:20Z

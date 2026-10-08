@@ -1,0 +1,12 @@
+[
+ {
+  "id": "Y01",
+  "item": "rulings 2 and 3",
+  "description": "readCases 'extrema numbers': the global_upper_bound_pa conjunct dropped"
+ },
+ {
+  "id": "Y02",
+  "item": "rulings 2 and 3",
+  "description": "readCases 'extrema numbers': the certified_gap_pa conjunct dropped"
+ }
+]

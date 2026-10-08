@@ -1,0 +1,8 @@
+I101: how probes_i101.json (394 probes, sha256 94f07f4f7ed2ffcb492709040671151753de4f918d59d154e3ff9bd56df0fa9b) is built
+from RV113's records (R = RESUME_2026-09-30; RV = R/REVIEW_RV113). It is not copied into these records (8.9 MB).
+
+  gunzip -c RV/rvr_sr_ts_01/addendum_01/probes/probes_ts1.json.gz > probes_ts1.json      # 392 probes; sha256 e4a74e48...5a21
+  cp RV/rvr_sr_rs_01/addendum_02/probes/probes_r2x.json .                                  # 2 probes;   sha256 8d1c33d2...5c90
+  python3 -c "import json;a=json.load(open('probes_ts1.json'));b=json.load(open('probes_r2x.json'));json.dump(a+b,open('probes_i101.json','w'))"
+
+The same 392 are in RV/rvr_sr_py_01/addendum_01/probes/probes_ts1.json.gz (its parsed content is equal).

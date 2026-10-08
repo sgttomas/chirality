@@ -1,0 +1,51 @@
+{
+ "suite": "vitest",
+ "i4": {
+  "passed": 3629
+ },
+ "head": {
+  "passed": 3637
+ },
+ "differences": [
+  {
+   "test": "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number admits integers; the demand precedes the fraction, integer and bound checks #1",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa a list: refused by the raw reader and the transport check #1",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa a string: refused by the raw reader and the transport check #1",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa null: refused by the raw reader and the transport check #1",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa a boolean: refused by the raw reader and the transport check #1",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa a string: refused by the raw reader and the transport check #1",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa null: refused by the raw reader and the transport check #1",
+   "i4": null,
+   "head": "passed"
+  },
+  {
+   "test": "src/features/results/retainedPrecision.test.ts :: B1 I4' (I101): the extrema-number demand at G7, bound, unbound and on transport a non-number member is refused at G7 \"extrema numbers\" by every entry point; JSON integers are admitted #1",
+   "i4": null,
+   "head": "passed"
+  }
+ ]
+}

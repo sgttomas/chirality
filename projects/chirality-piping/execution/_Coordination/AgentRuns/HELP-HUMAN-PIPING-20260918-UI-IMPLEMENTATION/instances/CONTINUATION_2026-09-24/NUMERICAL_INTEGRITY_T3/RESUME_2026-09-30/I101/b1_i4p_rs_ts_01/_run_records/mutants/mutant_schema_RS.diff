@@ -1,0 +1,147 @@
+14a15,18
+> fn mx(id: &str) -> bool {
+>     std::env::var("RV113_MUT").map_or(false, |v| v == id)
+> }
+> 
+739c743
+<                 && u(&s["index"]) == si as u64
+---
+>                 && (mx("N01") || u(&s["index"]) == si as u64)
+741c745
+<                 && usize::try_from(u(&owner["case_index"]))
+---
+>                 && (mx("N03") || usize::try_from(u(&owner["case_index"]))
+744c748
+<                     .is_some_and(|c| c["basis_ref"]["ref_id"] == owner["case_id"]),
+---
+>                     .is_some_and(|c| mx("N04") || c["basis_ref"]["ref_id"] == owner["case_id"])),
+750c754
+<             u(&mb["index"]) == mi as u64
+---
+>             (mx("N05") || u(&mb["index"]) == mi as u64)
+753c757
+<                     .all(|ci| u(ci) < cs.len() as u64 && seen.insert(u(ci))),
+---
+>                     .all(|ci| (mx("N06") || u(ci) < cs.len() as u64) && (mx("N07") || seen.insert(u(ci)))),
+3519c3523
+<             && model["pressure_contract"].is_null()
+---
+>             && (model["pressure_contract"].is_null() || (mx("N14") && model["pressure_contract"] == false))
+3522,3523c3526,3527
+<                 .all(|k| model.get(*k).is_none_or(|v| v.as_array().is_some_and(Vec::is_empty)))
+<             && !model
+---
+>                 .all(|k| if (mx("N10") && *k == "combinations") || (mx("N11") && *k == "components") { list(&model[*k]).is_empty() } else { model.get(*k).is_none_or(|v| (mx("N12") && v.is_null()) || v.as_array().is_some_and(Vec::is_empty)) })
+>             && (mx("N13") || !model
+3525c3529
+<                 .is_some_and(|m| m.contains_key("reference_configurations")),
+---
+>                 .is_some_and(|m| m.contains_key("reference_configurations"))),
+4220c4224,4225
+<             .is_ok_and(|mb| list(&mb["case_indices"]).iter().any(|x| u(x) == i as u64)),
+---
+>             .is_ok_and(|mb| mx("N09") || list(&mb["case_indices"]).iter().any(|x| u(x) == i as u64))
+>                 || mx("N08"),
+4326,4327c4331,4332
+<         if c["status"] == "unavailable"
+<             && c["reason"]["cause"]["kind"] != "prepared_product_failure"
+---
+>         if !mx("N15") && c["status"] == "unavailable"
+>             && (mx("N33") || c["reason"]["cause"]["kind"] != "prepared_product_failure")
+4334,4336c4339,4341
+<                     phase == "preparation"
+<                         && code == "source_unavailable"
+<                         && run.is_null()
+---
+>                     (mx("N16") || phase == "preparation")
+>                         && (mx("N17") || code == "source_unavailable")
+>                         && (mx("N18") || run.is_null())
+4338c4343
+<                         && decline["error"] == cause["error"]
+---
+>                         && (mx("N19") || decline["error"] == cause["error"])
+4341,4343c4346,4348
+<                     matches!(phase, "routing" | "preparation")
+<                         && run.is_null()
+<                         && match text(&cause["precondition"]) {
+---
+>                     (mx("N20") || matches!(phase, "routing" | "preparation"))
+>                         && (mx("N21") || run.is_null())
+>                         && (mx("N22") && matches!(code, "source_unavailable" | "resource_admission_not_available" | "upstream_no_wrap_not_established" | "caller_not_qualified") || !mx("N22") && match text(&cause["precondition"]) {
+4347,4349c4352,4355
+<                             "capture" | "source_family" => code == "source_unavailable",
+<                             _ => false,
+<                         }
+---
+>                             "capture" => code == "source_unavailable",
+>                             "source_family" => code == "source_unavailable" && !mx("N23"),
+>                             _ => mx("N24"),
+>                         })
+4352,4353c4358,4359
+<                     phase == "receipt"
+<                         && matches!(
+---
+>                     (mx("N25") || phase == "receipt")
+>                         && (mx("N26") || matches!(
+4357,4358c4363
+<                                 | "invocation_not_representable"
+<                         )
+---
+>                         ) || (!mx("N27") && code == "invocation_not_representable"))
+4361,4364c4366,4369
+<                     phase == "facade"
+<                         && code == "facade_certificate"
+<                         && run["kernel_terminal"]["kind"] == "selected"
+<                         && cause["owner_ref"] == json!({"kind": "case", "index": i})
+---
+>                     (mx("N28") || phase == "facade")
+>                         && (mx("N29") || code == "facade_certificate")
+>                         && (mx("N30") || run["kernel_terminal"]["kind"] == "selected")
+>                         && (mx("N31") || cause["owner_ref"] == json!({"kind": "case", "index": i}))
+4369,4372c4374,4377
+<                     phase == "kernel"
+<                         && !run.is_null()
+<                         && code == format!("kernel_{}", text(&run["kernel_terminal"]["kind"]))
+<                         && *cause == run["kernel_terminal"]["reason"]
+---
+>                     (mx("N32") || phase == "kernel")
+>                         && (mx("N34") || !run.is_null())
+>                         && (mx("N35") || code == format!("kernel_{}", text(&run["kernel_terminal"]["kind"])))
+>                         && (mx("N36") || *cause == run["kernel_terminal"]["reason"])
+4486a4492,4517
+>         let skip = |id: &str, d: &str| mx(id) && detail == d;
+>         let ok = ok
+>             || skip("N42", "unsupported source namespace")
+>             || skip("N43", "formulation profile or limitations")
+>             || skip("N44", "transport evidence shape")
+>             || skip("N45", "preview case shape")
+>             || skip("N46", "preview case identity")
+>             || skip("N47", "maximum coverage values")
+>             || skip("N48", "maximum coverage overlap")
+>             || skip("N49", "maximum coverage completeness")
+>             || skip("N50", "support both attributed and withheld")
+>             || skip("N51", "withheld support values")
+>             || skip("N52", "extrema identity or basis")
+>             || skip("N53", "extrema fractions")
+>             || skip("N54", "extrema integers")
+>             || skip("N55", "extrema bounds")
+>             || skip("N56", "extrema member partition")
+>             || skip("N57", "intensified measure identity")
+>             || skip("N58", "intensified measure inputs")
+>             || skip("N59", "attribution sets differ between cases")
+>             || skip("N60", "duplicate evidence result binding")
+>             || skip("N61", "combination gate reason")
+>             || skip("N62", "combination gate identity")
+>             || skip("N63", "extrema shape")
+>             || skip("N64", "intensified measure shape")
+>             || skip("N65", "combination gate shape");
+4662c4693
+<                     .all(|k| number(&x[*k]).is_some()),
+---
+>                     .all(|k| (mx("X01") && *k == "global_upper_bound_pa") || (mx("X02") && *k == "certified_gap_pa") || number(&x[*k]).is_some()),
+4780c4811,4813
+<     preview_physics_transport_metadata(&projected).map_err(base_error)?;
+---
+>     if !mx("N40") {
+>         preview_physics_transport_metadata(&projected).map_err(|e| if mx("N41") { ValidationError { gate: "G2", ..base_error(e) } } else { base_error(e) })?;
+>     }

@@ -1,0 +1,26 @@
+{
+ "suite": "re",
+ "i4": {
+  "ok": 193
+ },
+ "head": {
+  "ok": 196
+ },
+ "differences": [
+  {
+   "test": "retained_precision_contract.rs :: b1_i4p_c2_conjuncts_alone",
+   "i4": null,
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: b1_i4p_transport_extrema_numbers_at_g7",
+   "i4": null,
+   "head": "ok"
+  },
+  {
+   "test": "retained_precision_contract.rs :: b1_i4p_transport_metadata_demands_alone",
+   "i4": null,
+   "head": "ok"
+  }
+ ]
+}
