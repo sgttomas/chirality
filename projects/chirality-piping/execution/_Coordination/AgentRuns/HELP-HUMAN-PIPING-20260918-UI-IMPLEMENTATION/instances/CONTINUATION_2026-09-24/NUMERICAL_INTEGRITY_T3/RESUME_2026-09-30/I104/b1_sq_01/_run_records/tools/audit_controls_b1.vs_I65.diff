@@ -1,0 +1,41 @@
+--- R/I65/u4_g7_06/_run_records/audit_controls_g7.py	2026-10-04 17:30:34
++++ bin/audit_controls_b1.py	2026-10-08 05:04:49
+@@ -1,4 +1,5 @@
+-"""G7 (from G6 repair's audit_controls_g6r.py): enforcement controls on the integrated tree, plus the cycle control. Each control is one change to a scratch copy of
++"""[I104 SQ copy of I65 u4_g7_06 audit_controls_g7.py: the control sites re-keyed to b1-q by the line map (lib.rs:5592->5773, :8795->8976; retained_product.rs:3125->3404; retained_precision.rs:4272->4421, :1722->1745), and the cap vector from G4_CAPS_RUN; otherwise unchanged]
++G7 (from G6 repair's audit_controls_g6r.py): enforcement controls on the integrated tree, plus the cycle control. Each control is one change to a scratch copy of
+ text_args.g4.json; the whole-run text_budget.py (D from the run's summary, TB_D_RUN) must then be
+ incomplete with the named finding, and the unmodified copy must be complete.
+ Usage: python3 audit_controls_g6r.py <sens work dir> <snapshot P dir> <edges json> <lexicon json> <out dir>"""
+@@ -29,15 +30,15 @@
+     ("c0_unmodified", None, None),
+     ("c1_rv87_c2_primitive_loads_299", drop("core/loads/primitive_loads/src/lib.rs:299", "actual.schema_ref()"), ("id-unaudited", "primitive_loads/src/lib.rs:299 actual.schema_ref()")),
+     ("c2_stale_site_zero_key", add("site_zero", "product_physics/src/lib.rs:99999", {"why": "control: a key matching no row"}), ("stale-key", "site_zero product_physics/src/lib.rs:99999")),
+-    ("c3_rv87_c1_lib_5592", drop("core/product_physics/src/lib.rs:5592", "matched[0].id"), ("id-unaudited", "lib.rs:5592 matched[0].id")),
++    ("c3_rv87_c1_lib_5592", drop("core/product_physics/src/lib.rs:5773", "matched[0].id"), ("id-unaudited", "lib.rs:5773 matched[0].id")),
+     ("c4_sf1_label_1708", drop("core/product_physics/src/lib.rs:1708", "integrity_dof_label(model,record.global_dof)"), ("id-unaudited", "lib.rs:1708 integrity_dof_label")),
+-    ("c5_sf2_copy_3125", drop("core/product_physics/src/retained_product.rs:3125", "s"), ("id-unaudited", "retained_product.rs:3125 s")),
+-    ("c6_sf2_lex_key_back_to_2963", rekey("lex_site_size", "retained_product.rs:3125", "retained_product.rs:2963"), ("stale-key", "lex_site_size retained_product.rs:2963")),
+-    ("c7_stale_audit_entry", bogus_entry("core/product_physics/src/lib.rs:5592"), ("stale-audit-entry", "lib.rs:5592 no_such_expression.id")),
+-    ("c8_static_class_entry_8795", drop("core/product_physics/src/lib.rs:8795", "label"), ("id-unaudited", "lib.rs:8795 label")),
+-    ("c9_g7_cycle_edge_restored", "LB:semantic_contract.rs:437:for_source>retained_precision.rs:4272:validate", ("scc", "retained_precision.rs:4272:validate semantic_contract.rs:437:for_source")),
++    ("c5_sf2_copy_3125", drop("core/product_physics/src/retained_product.rs:3404", "s"), ("id-unaudited", "retained_product.rs:3404 s")),
++    ("c6_sf2_lex_key_back_to_2963", rekey("lex_site_size", "retained_product.rs:3404", "retained_product.rs:2963"), ("stale-key", "lex_site_size retained_product.rs:2963")),
++    ("c7_stale_audit_entry", bogus_entry("core/product_physics/src/lib.rs:5773"), ("stale-audit-entry", "lib.rs:5773 no_such_expression.id")),
++    ("c8_static_class_entry_8795", drop("core/product_physics/src/lib.rs:8976", "label"), ("id-unaudited", "lib.rs:8976 label")),
++    ("c9_g7_cycle_edge_restored", "LB:semantic_contract.rs:437:for_source>retained_precision.rs:4421:validate", ("scc", "retained_precision.rs:4421:validate semantic_contract.rs:437:for_source")),
+     ("c10_g7_si_rule_removed", "TA:si", ("", "si")),
+-    ("c11_g7_self_recursion_unreviewed", "LBR:retained_precision.rs:1722:located", ("self-recursion", "retained_precision.rs:1722:located")),
++    ("c11_g7_self_recursion_unreviewed", "LBR:retained_precision.rs:1745:located", ("self-recursion", "retained_precision.rs:1745:located")),
+ ]
+ res = []
+ for name, mod, expect in CONTROLS:
+@@ -55,7 +56,7 @@
+     json.dump(ta, open(tap, "w"), indent=1)
+     lbp = os.path.join(out, f"loop_bounds.{name}.json")
+     json.dump(lb, open(lbp, "w"), indent=1)
+-    env = dict(os.environ, G4_CAPS='{"l": 128}', TB_LEXICON=lexicon, TB_COMPOSITE=os.path.join(work, "composite_text.caps.json"), TB_D=os.environ["TB_D_RUN"])   # G7 Pass B (RV89 S-1(d)): the run's own D, never a constant
++    env = dict(os.environ, G4_CAPS=os.environ.get("G4_CAPS_RUN", '{"l": 128}'), TB_LEXICON=lexicon, TB_COMPOSITE=os.path.join(work, "composite_text.caps.json"), TB_D=os.environ["TB_D_RUN"])   # G7 Pass B (RV89 S-1(d)): the run's own D, never a constant
+     op = os.path.join(out, f"{name}.out.json")
+     with open(op, "w") as fh:
+         subprocess.run(["python3", os.path.join(work, "text_budget.py"), snap, os.path.join(work, "template_inventory_head.out.json"), edges,

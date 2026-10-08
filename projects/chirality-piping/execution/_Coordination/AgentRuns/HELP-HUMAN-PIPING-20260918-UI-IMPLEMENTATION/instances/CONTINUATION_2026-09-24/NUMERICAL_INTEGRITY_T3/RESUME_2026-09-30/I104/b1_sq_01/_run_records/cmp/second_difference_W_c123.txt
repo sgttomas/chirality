@@ -1,0 +1,13 @@
+{"TAV_W": [1640333910, 2953217280, 4301774658], "first_differences": [1312883370, 1348557378], "second_difference": 35674008}
+positive d2: 10 functions, sum 35,674,008; negative d2 sum 0
+            d2            c=1            c=2            c=3  fn
+    18,596,640      9,403,896     35,256,024     79,704,792  product_physics/lib.rs:integrity_diagnostic_id
+    11,398,144     11,398,144     34,194,432     68,388,864  product_physics/pressure_runtime.rs:problem
+     2,947,868     44,317,504     83,791,708    126,213,780  reporting/result_export/preview_physics_evidence.rs:identity
+     1,702,512     59,921,534    117,045,868    175,872,714  reporting/result_export/preview_physics_evidence.rs:validate_preview_physics_evidence
+       507,600        829,712      2,167,024      4,011,936  product_physics/retained_product.rs:bind_observations_by_case
+       373,700        424,730      1,194,900      2,338,770  product_physics/lib.rs:reserve
+        81,072      1,219,680      2,305,728      3,472,848  reporting/result_export/preview_physics_evidence.rs:array
+        65,536     18,535,424     31,354,112     44,238,336  product_physics/lib.rs:stable_suffix
+           540            540          1,620          3,240  reporting/result_export/retained_precision.rs:g5_ordinary
+           396            372          1,140          2,304  product_physics/retained_product.rs:validate_selected_case

@@ -1,0 +1,21 @@
+--- R/I65/u4_g7_06/_run_records/g7_linemap.py	2026-10-04 17:30:34
++++ bin/g7_linemap_crates.py	2026-10-08 04:41:22
+@@ -1,4 +1,5 @@
+-"""I65 U4 G7: carry the TEXT chain's line-keyed rules from the G6 text basis (1e323058f3) to the
++"""[I104 SQ copy: CHANGED restricted to crate_dirs.txt; otherwise I65's tool unchanged]
++I65 U4 G7: carry the TEXT chain's line-keyed rules from the G6 text basis (1e323058f3) to the
+ integrated tree (stdlib only; Git reads only, GIT_OPTIONAL_LOCKS=0).
+ 
+ Every production file whose text changed between OLD and NEW is listed (CHANGED; the run fails if
+@@ -19,6 +20,11 @@
+     return subprocess.run(["git", "-C", repo, *a], capture_output=True, text=True, env=env, check=True).stdout
+ changed_all = [f[len(P):] for f in git("diff", "--name-only", old, new, "--", P + "core").split("\n") if f.endswith(".rs")]
+ CHANGED = [f for f in changed_all if "/tests/" not in f and not f.endswith("_tests.rs")]
++# I104 SQ: only the TEXT chain's crates (crate_dirs.txt, env LINEMAP_CRATES) are scanned by the chain, so only
++# their files are mapped; other crates' same-basename files (core/rules/*/src/lib.rs, SI1b/SI1c) would make
++# the short `lib.rs:N` keys ambiguous. A rule key can only name a chain crate's file.
++_CR = open(os.environ["LINEMAP_CRATES"]).read().split()
++CHANGED = [f for f in CHANGED if any(f.startswith(c + "/") for c in _CR)]
+ maps, oldtext, newtext = {}, {}, {}
+ for f in CHANGED:
+     hunks = []

@@ -1,0 +1,2410 @@
+{
+ "new_loop_rules": [
+  {
+   "header": "for (k, case_id) in case_ids.iter().enumerate()",
+   "bound": "att",
+   "sites": [
+    "lib.rs:3077"
+   ],
+   "re": "^for\\ \\(k,\\ case_id\\)\\ in\\ case_ids\\.iter\\(\\)\\.enumerate\\(\\)$"
+  },
+  {
+   "header": "for ((slot, id), case_id) in notices.iter_mut().zip(ids).zip(case_ids)",
+   "bound": "att",
+   "sites": [
+    "lib.rs:3086"
+   ],
+   "re": "^for\\ \\(\\(slot,\\ id\\),\\ case_id\\)\\ in\\ notices\\.iter_mut\\(\\)\\.zip\\(ids\\)\\.zip\\(case_ids\\)$"
+  },
+  {
+   "header": "for (k, ReservedNotice(mut notice)) in self.0.into_iter().flatten().enumerate()",
+   "bound": "att",
+   "sites": [
+    "lib.rs:3105"
+   ],
+   "re": "^for\\ \\(k,\\ ReservedNotice\\(mut\\ notice\\)\\)\\ in\\ self\\.0\\.into_iter\\(\\)\\.flatten\\(\\)\\.enumerate\\(\\)$"
+  },
+  {
+   "header": "for ((&request, &id), trigger) in self.requests().iter().zip(self.ids()).zip(triggers)",
+   "bound": "cases",
+   "sites": [
+    "lib.rs:3146"
+   ],
+   "re": "^for\\ \\(\\(\\&request,\\ \\&id\\),\\ trigger\\)\\ in\\ self\\.requests\\(\\)\\.iter\\(\\)\\.zip\\(self\\.ids\\(\\)\\)\\.zip\\(triggers\\)$"
+  },
+  {
+   "header": "for (request, case) in cases.iter().enumerate()",
+   "bound": "cases",
+   "sites": [
+    "lib.rs:3165"
+   ],
+   "re": "^for\\ \\(request,\\ case\\)\\ in\\ cases\\.iter\\(\\)\\.enumerate\\(\\)$"
+  },
+  {
+   "header": "iter:if ordinary.diagnostics.iter().any",
+   "bound": "D",
+   "sites": [
+    "lib.rs:3079"
+   ],
+   "re": "^iter:if\\ ordinary\\.diagnostics\\.iter\\(\\)\\.any$"
+  },
+  {
+   "header": "iter:case_ids.iter().map",
+   "bound": "cases",
+   "sites": [
+    "lib.rs:3196"
+   ],
+   "re": "^iter:case_ids\\.iter\\(\\)\\.map$"
+  },
+  {
+   "header": "iter:quality.cases.iter().filter",
+   "bound": "cases",
+   "sites": [
+    "lib.rs:3197"
+   ],
+   "re": "^iter:quality\\.cases\\.iter\\(\\)\\.filter$"
+  },
+  {
+   "header": "iter:only_one(quality.cases.iter().filter(|entry| entry.basis_ref.ref_id == case_id)).map",
+   "bound": "1",
+   "sites": [
+    "lib.rs:3197"
+   ],
+   "re": "^iter:only_one\\(quality\\.cases\\.iter\\(\\)\\.filter\\(\\|entry\\|\\ entry\\.basis_ref\\.ref_id\\ ==\\ case_id\\)\\)\\.map$"
+  },
+  {
+   "header": "iter:seeds.iter().filter",
+   "bound": "cases",
+   "sites": [
+    "lib.rs:3198"
+   ],
+   "re": "^iter:seeds\\.iter\\(\\)\\.filter$"
+  },
+  {
+   "header": "iter:if !case_triggers(&ordinary.numerical_quality, &observer.ordinary, cases.ids()).any",
+   "bound": "cases",
+   "sites": [
+    "lib.rs:3250"
+   ],
+   "re": "^iter:if\\ !case_triggers\\(\\&ordinary\\.numerical_quality,\\ \\&observer\\.ordinary,\\ cases\\.ids\\(\\)\\)\\.any$"
+  },
+  {
+   "header": "iter:|stage: fn(&AttemptEnd) -> bool| prepared.attempts.iter().any",
+   "bound": "att",
+   "sites": [
+    "lib.rs:3299"
+   ],
+   "re": "^iter:\\|stage:\\ fn\\(\\&AttemptEnd\\)\\ \\->\\ bool\\|\\ prepared\\.attempts\\.iter\\(\\)\\.any$"
+  },
+  {
+   "header": "for load in m.load_cases.iter().flat_map(|case| &case.primitive_loads)",
+   "bound": "L",
+   "sites": [
+    "retained_memory.rs:791"
+   ],
+   "re": "^for\\ load\\ in\\ m\\.load_cases\\.iter\\(\\)\\.flat_map\\(\\|case\\|\\ \\&case\\.primitive_loads\\)$"
+  },
+  {
+   "header": "iter:refuse(C::Case, F::AnalysisState); } } for support in &m.supports { if support.hanger.is_some() { return refuse(C::Supports, F::Hanger); } if support.nonlinear.is_some() { return refuse(C::Supports, F::Nonlinear); } if let Some(family) = &support.family { if !matches!(family.as_str(), \" \" | \" \"",
+   "bound": "cases",
+   "sites": [
+    "retained_memory.rs:791"
+   ],
+   "re": "^iter:refuse\\(C::Case,\\ F::AnalysisState\\);\\ \\}\\ \\}\\ for\\ support\\ in\\ \\&m\\.supports\\ \\{\\ if\\ support\\.hanger\\.is_some\\(\\)\\ \\{\\ return\\ refuse\\(C::Supports,\\ F::Hanger\\);\\ \\}\\ if\\ support\\.nonlinear\\.is_some\\(\\)\\ \\{\\ return\\ refuse\\(C::Supports,\\ F::Nonlinear\\);\\ \\}\\ if\\ let\\ Some\\(family\\)\\ =\\ \\&support\\.family\\ \\{\\ if\\ !matches!\\(family\\.as_str\\(\\),\\ \"\\ \"\\ \\|\\ \"\\ \"$"
+  },
+  {
+   "header": "iter:requested && capture.ordinary.iter().all",
+   "bound": "cases",
+   "sites": [
+    "retained_memory.rs:2621"
+   ],
+   "re": "^iter:requested\\ \\&\\&\\ capture\\.ordinary\\.iter\\(\\)\\.all$"
+  },
+  {
+   "header": "for index in 0..cases",
+   "bound": "cases",
+   "sites": [
+    "retained_product.rs:1117",
+    "retained_product.rs:1154",
+    "retained_product.rs:1175"
+   ],
+   "re": "^for\\ index\\ in\\ 0\\.\\.cases$"
+  },
+  {
+   "header": "for _ in 0..cases",
+   "bound": "cases",
+   "sites": [
+    "retained_product.rs:1138"
+   ],
+   "re": "^for\\ _\\ in\\ 0\\.\\.cases$"
+  },
+  {
+   "header": "for row in &envelope.results",
+   "bound": "Pall",
+   "sites": [
+    "retained_product.rs:1142"
+   ],
+   "re": "^for\\ row\\ in\\ \\&envelope\\.results$"
+  },
+  {
+   "header": "for attempt in attempts.iter_mut().filter(|attempt| matches!(attempt.end, AttemptEnd::Prepared))",
+   "bound": "att",
+   "sites": [
+    "retained_product.rs:3683",
+    "retained_product.rs:3690"
+   ],
+   "re": "^for\\ attempt\\ in\\ attempts\\.iter_mut\\(\\)\\.filter\\(\\|attempt\\|\\ matches!\\(attempt\\.end,\\ AttemptEnd::Prepared\\)\\)$"
+  },
+  {
+   "header": "for attempt in attempts.iter_mut().filter(|attempt| matches!(attempt.end, AttemptEnd::Selected))",
+   "bound": "att",
+   "sites": [
+    "retained_product.rs:3719"
+   ],
+   "re": "^for\\ attempt\\ in\\ attempts\\.iter_mut\\(\\)\\.filter\\(\\|attempt\\|\\ matches!\\(attempt\\.end,\\ AttemptEnd::Selected\\)\\)$"
+  },
+  {
+   "header": "for attempt in &self.attempts",
+   "bound": "att",
+   "sites": [
+    "retained_product.rs:3742"
+   ],
+   "re": "^for\\ attempt\\ in\\ \\&self\\.attempts$"
+  },
+  {
+   "header": "for (index,row) in ordinary.results.iter().enumerate()",
+   "bound": "Pall",
+   "sites": [
+    "retained_product.rs:3843"
+   ],
+   "re": "^for\\ \\(index,row\\)\\ in\\ ordinary\\.results\\.iter\\(\\)\\.enumerate\\(\\)$"
+  },
+  {
+   "header": "for (attempt,&request) in attempted.iter().enumerate()",
+   "bound": "att",
+   "sites": [
+    "retained_product.rs:3876"
+   ],
+   "re": "^for\\ \\(attempt,\\&request\\)\\ in\\ attempted\\.iter\\(\\)\\.enumerate\\(\\)$"
+  },
+  {
+   "header": "for request in submitted()",
+   "bound": "att",
+   "sites": [
+    "retained_product.rs:3921",
+    "retained_product.rs:3927"
+   ],
+   "re": "^for\\ request\\ in\\ submitted\\(\\)$"
+  },
+  {
+   "header": "for (request,case) in submitted().zip(cases)",
+   "bound": "att",
+   "sites": [
+    "retained_product.rs:3937"
+   ],
+   "re": "^for\\ \\(request,case\\)\\ in\\ submitted\\(\\)\\.zip\\(cases\\)$"
+  },
+  {
+   "header": "for (i,r) in rows.iter().enumerate()",
+   "bound": "P",
+   "sites": [
+    "retained_product.rs:4296"
+   ],
+   "re": "^for\\ \\(i,r\\)\\ in\\ rows\\.iter\\(\\)\\.enumerate\\(\\)$"
+  },
+  {
+   "header": "for (i,row) in rows.iter_mut().enumerate()",
+   "bound": "P",
+   "sites": [
+    "retained_product.rs:4457"
+   ],
+   "re": "^for\\ \\(i,row\\)\\ in\\ rows\\.iter_mut\\(\\)\\.enumerate\\(\\)$"
+  },
+  {
+   "header": "for row in staged.results.iter().filter(|row|row.kind==kind)",
+   "bound": "Pall",
+   "sites": [
+    "retained_product.rs:4485"
+   ],
+   "re": "^for\\ row\\ in\\ staged\\.results\\.iter\\(\\)\\.filter\\(\\|row\\|row\\.kind==kind\\)$"
+  },
+  {
+   "header": "iter:1 || self.source.is_none() || self.parked.iter().any",
+   "bound": "cases",
+   "sites": [
+    "retained_product.rs:1935"
+   ],
+   "re": "^iter:1\\ \\|\\|\\ self\\.source\\.is_none\\(\\)\\ \\|\\|\\ self\\.parked\\.iter\\(\\)\\.any$"
+  },
+  {
+   "header": "iter:if !attempts.iter().any",
+   "bound": "att",
+   "sites": [
+    "retained_product.rs:3680"
+   ],
+   "re": "^iter:if\\ !attempts\\.iter\\(\\)\\.any$"
+  },
+  {
+   "header": "iter:if !attempts.iter().any(|attempt| matches!(attempt.end, AttemptEnd::Prepared)) { return; } for attempt in attempts.iter_mut().filter",
+   "bound": "att",
+   "sites": [
+    "retained_product.rs:3683"
+   ],
+   "re": "^iter:if\\ !attempts\\.iter\\(\\)\\.any\\(\\|attempt\\|\\ matches!\\(attempt\\.end,\\ AttemptEnd::Prepared\\)\\)\\ \\{\\ return;\\ \\}\\ for\\ attempt\\ in\\ attempts\\.iter_mut\\(\\)\\.filter$"
+  },
+  {
+   "header": "iter:|| attempts.iter().filter",
+   "bound": "att",
+   "sites": [
+    "retained_product.rs:3688"
+   ],
+   "re": "^iter:\\|\\|\\ attempts\\.iter\\(\\)\\.filter$"
+  },
+  {
+   "header": "iter:|| attempts.iter().filter(|attempt| matches!(attempt.end, AttemptEnd::Prepared)).map",
+   "bound": "att",
+   "sites": [
+    "retained_product.rs:3688"
+   ],
+   "re": "^iter:\\|\\|\\ attempts\\.iter\\(\\)\\.filter\\(\\|attempt\\|\\ matches!\\(attempt\\.end,\\ AttemptEnd::Prepared\\)\\)\\.map$"
+  },
+  {
+   "header": "iter:for attempt in attempts.iter_mut().filter",
+   "bound": "att",
+   "sites": [
+    "retained_product.rs:3690",
+    "retained_product.rs:3719"
+   ],
+   "re": "^iter:for\\ attempt\\ in\\ attempts\\.iter_mut\\(\\)\\.filter$"
+  },
+  {
+   "header": "iter:self.attempts.iter().enumerate().filter",
+   "bound": "att",
+   "sites": [
+    "retained_product.rs:3755"
+   ],
+   "re": "^iter:self\\.attempts\\.iter\\(\\)\\.enumerate\\(\\)\\.filter$"
+  },
+  {
+   "header": "iter:self.parked.iter_mut().find",
+   "bound": "cases",
+   "sites": [
+    "retained_product.rs:3810"
+   ],
+   "re": "^iter:self\\.parked\\.iter_mut\\(\\)\\.find$"
+  },
+  {
+   "header": "iter:1 || ordinary.source_block_recovery.is_some() || self.native.is_some() || self.native_invocation.is_some() || self.parked.iter().any",
+   "bound": "cases",
+   "sites": [
+    "retained_product.rs:3819"
+   ],
+   "re": "^iter:1\\ \\|\\|\\ ordinary\\.source_block_recovery\\.is_some\\(\\)\\ \\|\\|\\ self\\.native\\.is_some\\(\\)\\ \\|\\|\\ self\\.native_invocation\\.is_some\\(\\)\\ \\|\\|\\ self\\.parked\\.iter\\(\\)\\.any$"
+  },
+  {
+   "header": "iter:requested { return Err(\" \".into()); } if attempted.iter().any",
+   "bound": "att",
+   "sites": [
+    "retained_product.rs:3827"
+   ],
+   "re": "^iter:requested\\ \\{\\ return\\ Err\\(\"\\ \"\\.into\\(\\)\\);\\ \\}\\ if\\ attempted\\.iter\\(\\)\\.any$"
+  },
+  {
+   "header": "iter:requested { return Err(\" \".into()); } if attempted.iter().any(|&request|request>=requested) || attempted.windows(2).any",
+   "bound": "att",
+   "sites": [
+    "retained_product.rs:3827"
+   ],
+   "re": "^iter:requested\\ \\{\\ return\\ Err\\(\"\\ \"\\.into\\(\\)\\);\\ \\}\\ if\\ attempted\\.iter\\(\\)\\.any\\(\\|\\&request\\|request>=requested\\)\\ \\|\\|\\ attempted\\.windows\\(2\\)\\.any$"
+  },
+  {
+   "header": "iter:if self.native_invocation.is_some() || submitted().any",
+   "bound": "att",
+   "sites": [
+    "retained_product.rs:3902"
+   ],
+   "re": "^iter:if\\ self\\.native_invocation\\.is_some\\(\\)\\ \\|\\|\\ submitted\\(\\)\\.any$"
+  },
+  {
+   "header": "iter:if self.native_invocation.is_some() || submitted().any(|request|self.case_native(request).is_some()) { return Err(\" \".into()); } if submitted().any",
+   "bound": "att",
+   "sites": [
+    "retained_product.rs:3905"
+   ],
+   "re": "^iter:if\\ self\\.native_invocation\\.is_some\\(\\)\\ \\|\\|\\ submitted\\(\\)\\.any\\(\\|request\\|self\\.case_native\\(request\\)\\.is_some\\(\\)\\)\\ \\{\\ return\\ Err\\(\"\\ \"\\.into\\(\\)\\);\\ \\}\\ if\\ submitted\\(\\)\\.any$"
+  },
+  {
+   "header": "iter:self.case_rows().iter().enumerate().map",
+   "bound": "P",
+   "sites": [
+    "retained_product.rs:4150"
+   ],
+   "re": "^iter:self\\.case_rows\\(\\)\\.iter\\(\\)\\.enumerate\\(\\)\\.map$"
+  },
+  {
+   "header": "iter:\" \":self.verdicts.iter().map",
+   "bound": "P",
+   "sites": [
+    "retained_product.rs:4377",
+    "retained_product.rs:4401"
+   ],
+   "re": "^iter:\"\\ \":self\\.verdicts\\.iter\\(\\)\\.map$"
+  },
+  {
+   "header": "iter:for row in staged.results.iter().filter",
+   "bound": "Pall",
+   "sites": [
+    "retained_product.rs:4485"
+   ],
+   "re": "^iter:for\\ row\\ in\\ staged\\.results\\.iter\\(\\)\\.filter$"
+  },
+  {
+   "header": "for case_index in 0..cases",
+   "bound": "cases",
+   "sites": [
+    "retained_wire.rs:870"
+   ],
+   "re": "^for\\ case_index\\ in\\ 0\\.\\.cases$"
+  },
+  {
+   "header": "for d in env[\" \"].as_array().ok_or(fail(ReceiptCheck::Association, \" \"))?",
+   "bound": "D",
+   "sites": [
+    "retained_wire.rs:1481"
+   ],
+   "re": "^for\\ d\\ in\\ env\\[\"\\ \"\\]\\.as_array\\(\\)\\.ok_or\\(fail\\(ReceiptCheck::Association,\\ \"\\ \"\\)\\)\\?$"
+  },
+  {
+   "header": "for (case_id, refs) in case_ids.iter().zip(refs.iter_mut())",
+   "bound": "cases",
+   "sites": [
+    "retained_wire.rs:1486"
+   ],
+   "re": "^for\\ \\(case_id,\\ refs\\)\\ in\\ case_ids\\.iter\\(\\)\\.zip\\(refs\\.iter_mut\\(\\)\\)$"
+  },
+  {
+   "header": "for attempt in attempts",
+   "bound": "att",
+   "sites": [
+    "retained_wire.rs:1794",
+    "retained_wire.rs:1853"
+   ],
+   "re": "^for\\ attempt\\ in\\ attempts$"
+  },
+  {
+   "header": "for (index, seed) in pc.ordinary.iter().enumerate()",
+   "bound": "cases",
+   "sites": [
+    "retained_wire.rs:1818"
+   ],
+   "re": "^for\\ \\(index,\\ seed\\)\\ in\\ pc\\.ordinary\\.iter\\(\\)\\.enumerate\\(\\)$"
+  },
+  {
+   "header": "for (index, (_, omit)) in legacy.iter().enumerate()",
+   "bound": "cases",
+   "sites": [
+    "retained_wire.rs:1825"
+   ],
+   "re": "^for\\ \\(index,\\ \\(_,\\ omit\\)\\)\\ in\\ legacy\\.iter\\(\\)\\.enumerate\\(\\)$"
+  },
+  {
+   "header": "for index in 0..count",
+   "bound": "cases",
+   "sites": [
+    "retained_wire.rs:1830"
+   ],
+   "re": "^for\\ index\\ in\\ 0\\.\\.count$"
+  },
+  {
+   "header": "for (index, ((seed, (legacy_v, _)), refs)) in pc.ordinary.iter().zip(legacy).zip(diagnostic_refs).enumerate()",
+   "bound": "cases",
+   "sites": [
+    "retained_wire.rs:1840"
+   ],
+   "re": "^for\\ \\(index,\\ \\(\\(seed,\\ \\(legacy_v,\\ _\\)\\),\\ refs\\)\\)\\ in\\ pc\\.ordinary\\.iter\\(\\)\\.zip\\(legacy\\)\\.zip\\(diagnostic_refs\\)\\.enumerate\\(\\)$"
+  },
+  {
+   "header": "for (index, part) in case_parts.into_iter().enumerate()",
+   "bound": "cases",
+   "sites": [
+    "retained_wire.rs:1873"
+   ],
+   "re": "^for\\ \\(index,\\ part\\)\\ in\\ case_parts\\.into_iter\\(\\)\\.enumerate\\(\\)$"
+  },
+  {
+   "header": "iter:\" \":c.owners.iter().map(owner)",
+   "bound": "att",
+   "sites": [
+    "retained_wire.rs:1417"
+   ],
+   "re": "^iter:\"\\ \":c\\.owners\\.iter\\(\\)\\.map\\(owner\\)$"
+  },
+  {
+   "header": "iter:e.exact(run.work.invocation_after(), \" \") { return Err(fail(ReceiptCheck::WorkCounterInconsistent, \" \")); } if inv.calls().iter().any",
+   "bound": "1",
+   "sites": [
+    "retained_wire.rs:1442"
+   ],
+   "re": "^iter:e\\.exact\\(run\\.work\\.invocation_after\\(\\),\\ \"\\ \"\\)\\ \\{\\ return\\ Err\\(fail\\(ReceiptCheck::WorkCounterInconsistent,\\ \"\\ \"\\)\\);\\ \\}\\ if\\ inv\\.calls\\(\\)\\.iter\\(\\)\\.any$"
+  },
+  {
+   "header": "iter:if affected.iter().any",
+   "bound": "L+4",
+   "sites": [
+    "retained_wire.rs:1487"
+   ],
+   "re": "^iter:if\\ affected\\.iter\\(\\)\\.any$"
+  },
+  {
+   "header": "iter:request_cases.iter().map",
+   "bound": "cases",
+   "sites": [
+    "retained_wire.rs:1785"
+   ],
+   "re": "^iter:request_cases\\.iter\\(\\)\\.map$"
+  },
+  {
+   "header": "iter:count { return Err(scope(\" \")); } if pc.ordinary.iter().zip(&case_ids).any",
+   "bound": "cases",
+   "sites": [
+    "retained_wire.rs:1789"
+   ],
+   "re": "^iter:count\\ \\{\\ return\\ Err\\(scope\\(\"\\ \"\\)\\);\\ \\}\\ if\\ pc\\.ordinary\\.iter\\(\\)\\.zip\\(\\&case_ids\\)\\.any$"
+  },
+  {
+   "header": "iter:attempt_of.iter().map",
+   "bound": "cases",
+   "sites": [
+    "retained_wire.rs:1800"
+   ],
+   "re": "^iter:attempt_of\\.iter\\(\\)\\.map$"
+  },
+  {
+   "header": "iter:attempts.iter().filter",
+   "bound": "att",
+   "sites": [
+    "retained_wire.rs:1809"
+   ],
+   "re": "^iter:attempts\\.iter\\(\\)\\.filter$"
+  },
+  {
+   "header": "iter:attempts.iter().filter(|attempt| attempt.prepared).map",
+   "bound": "att",
+   "sites": [
+    "retained_wire.rs:1809"
+   ],
+   "re": "^iter:attempts\\.iter\\(\\)\\.filter\\(\\|attempt\\|\\ attempt\\.prepared\\)\\.map$"
+  },
+  {
+   "header": "iter:requests.iter().position",
+   "bound": "att",
+   "sites": [
+    "retained_wire.rs:1855"
+   ],
+   "re": "^iter:requests\\.iter\\(\\)\\.position$"
+  },
+  {
+   "header": "iter:requests.iter().position(|r| *r == request).filter",
+   "bound": "1",
+   "sites": [
+    "retained_wire.rs:1855"
+   ],
+   "re": "^iter:requests\\.iter\\(\\)\\.position\\(\\|r\\|\\ \\*r\\ ==\\ request\\)\\.filter$"
+  },
+  {
+   "header": "iter:inv.runs().iter().map",
+   "bound": "att",
+   "sites": [
+    "retained_wire.rs:1889"
+   ],
+   "re": "^iter:inv\\.runs\\(\\)\\.iter\\(\\)\\.map$"
+  },
+  {
+   "header": "iter:results.iter().map",
+   "bound": "P",
+   "sites": [
+    "retained_wire.rs:1935"
+   ],
+   "re": "^iter:results\\.iter\\(\\)\\.map$"
+  },
+  {
+   "header": "iter:|r| r[\" \"].as_str().map(str::to_owned)",
+   "bound": "1",
+   "sites": [
+    "retained_wire.rs:1935"
+   ],
+   "re": "^iter:\\|r\\|\\ r\\[\"\\ \"\\]\\.as_str\\(\\)\\.map\\(str::to_owned\\)$"
+  },
+  {
+   "header": "iter:row_ids.len() || rows.iter().zip(&row_ids).any",
+   "bound": "P",
+   "sites": [
+    "retained_wire.rs:1936"
+   ],
+   "re": "^iter:row_ids\\.len\\(\\)\\ \\|\\|\\ rows\\.iter\\(\\)\\.zip\\(\\&row_ids\\)\\.any$"
+  },
+  {
+   "header": "for (si, s) in list(&b[\" \"]).iter().enumerate()",
+   "bound": "att",
+   "sites": [
+    "retained_precision.rs:735"
+   ],
+   "re": "^for\\ \\(si,\\ s\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$"
+  },
+  {
+   "header": "for s in list(&b[\" \"])",
+   "bound": "att",
+   "sites": [
+    "retained_precision.rs:3732"
+   ],
+   "re": "^for\\ s\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)$"
+  },
+  {
+   "header": "for c in list(&evidence[\" \"])",
+   "bound": "cases",
+   "sites": [
+    "retained_precision.rs:4579"
+   ],
+   "re": "^for\\ c\\ in\\ list\\(\\&evidence\\[\"\\ \"\\]\\)$"
+  },
+  {
+   "header": "for record in list(&attribution[\" \"])",
+   "bound": "g",
+   "sites": [
+    "retained_precision.rs:4629"
+   ],
+   "re": "^for\\ record\\ in\\ list\\(\\&attribution\\[\"\\ \"\\]\\)$"
+  },
+  {
+   "header": "for x in list(&c[\" \"])",
+   "bound": "2*m",
+   "sites": [
+    "retained_precision.rs:4646"
+   ],
+   "re": "^for\\ x\\ in\\ list\\(\\&c\\[\"\\ \"\\]\\)$"
+  },
+  {
+   "header": "for m in list(&c[\" \"])",
+   "bound": "m",
+   "sites": [
+    "retained_precision.rs:4698"
+   ],
+   "re": "^for\\ m\\ in\\ list\\(\\&c\\[\"\\ \"\\]\\)$"
+  },
+  {
+   "header": "for gate in list(&evidence[\" \"])",
+   "bound": "0",
+   "sites": [
+    "retained_precision.rs:4743"
+   ],
+   "re": "^for\\ gate\\ in\\ list\\(\\&evidence\\[\"\\ \"\\]\\)$"
+  },
+  {
+   "header": "iter:mi as u64 && list(&mb[\" \"]) .iter().all",
+   "bound": "cases",
+   "sites": [
+    "retained_precision.rs:753"
+   ],
+   "re": "^iter:mi\\ as\\ u64\\ \\&\\&\\ list\\(\\&mb\\[\"\\ \"\\]\\)\\ \\.iter\\(\\)\\.all$"
+  },
+  {
+   "header": "iter:\" \" && STAGE8[2..] .iter() .chain(&[\" \", \" \"]).all",
+   "bound": "8",
+   "sites": [
+    "retained_precision.rs:2052"
+   ],
+   "re": "^iter:\"\\ \"\\ \\&\\&\\ STAGE8\\[2\\.\\.\\]\\ \\.iter\\(\\)\\ \\.chain\\(\\&\\[\"\\ \",\\ \"\\ \"\\]\\)\\.all$"
+  },
+  {
+   "header": "iter:matches!(text(&model[\" \"]), \" \" | \" \" | \" \") && model[\" \"].is_null() && [\" \", \" \"] .iter().all",
+   "bound": "2",
+   "sites": [
+    "retained_precision.rs:3522"
+   ],
+   "re": "^iter:matches!\\(text\\(\\&model\\[\"\\ \"\\]\\),\\ \"\\ \"\\ \\|\\ \"\\ \"\\ \\|\\ \"\\ \"\\)\\ \\&\\&\\ model\\[\"\\ \"\\]\\.is_null\\(\\)\\ \\&\\&\\ \\[\"\\ \",\\ \"\\ \"\\]\\ \\.iter\\(\\)\\.all$"
+  },
+  {
+   "header": "iter:rows .iter().filter",
+   "bound": "P",
+   "sites": [
+    "retained_precision.rs:3604"
+   ],
+   "re": "^iter:rows\\ \\.iter\\(\\)\\.filter$"
+  },
+  {
+   "header": "iter:|mb| list(&mb[\" \"]).iter().any",
+   "bound": "cases",
+   "sites": [
+    "retained_precision.rs:4220"
+   ],
+   "re": "^iter:\\|mb\\|\\ list\\(\\&mb\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.any$"
+  },
+  {
+   "header": "iter:keys.len() && keys.iter().all",
+   "bound": "16",
+   "sites": [
+    "retained_precision.rs:4495"
+   ],
+   "re": "^iter:keys\\.len\\(\\)\\ \\&\\&\\ keys\\.iter\\(\\)\\.all$"
+  },
+  {
+   "header": "iter:a.iter().all",
+   "bound": "max(m, g)",
+   "sites": [
+    "retained_precision.rs:4501"
+   ],
+   "re": "^iter:a\\.iter\\(\\)\\.all$"
+  },
+  {
+   "header": "iter:!list(unavailable).iter().any",
+   "bound": "m",
+   "sites": [
+    "retained_precision.rs:4610"
+   ],
+   "re": "^iter:!list\\(unavailable\\)\\.iter\\(\\)\\.any$"
+  },
+  {
+   "header": "iter:!list(attributed) .iter().any",
+   "bound": "g",
+   "sites": [
+    "retained_precision.rs:4643"
+   ],
+   "re": "^iter:!list\\(attributed\\)\\ \\.iter\\(\\)\\.any$"
+  },
+  {
+   "header": "iter:|x| withheld.iter().any",
+   "bound": "g",
+   "sites": [
+    "retained_precision.rs:4643"
+   ],
+   "re": "^iter:\\|x\\|\\ withheld\\.iter\\(\\)\\.any$"
+  },
+  {
+   "header": "iter:[\" \", \" \"] .iter().all",
+   "bound": "2",
+   "sites": [
+    "retained_precision.rs:4662",
+    "retained_precision.rs:4668"
+   ],
+   "re": "^iter:\\[\"\\ \",\\ \"\\ \"\\]\\ \\.iter\\(\\)\\.all$"
+  },
+  {
+   "header": "iter:list(&c[\" \"]) .iter().map",
+   "bound": "2*m",
+   "sites": [
+    "retained_precision.rs:4686"
+   ],
+   "re": "^iter:list\\(\\&c\\[\"\\ \"\\]\\)\\ \\.iter\\(\\)\\.map$"
+  },
+  {
+   "header": "iter:list(unavailable) .iter() .chain(list(outside)).any",
+   "bound": "2*m",
+   "sites": [
+    "retained_precision.rs:4694"
+   ],
+   "re": "^iter:list\\(unavailable\\)\\ \\.iter\\(\\)\\ \\.chain\\(list\\(outside\\)\\)\\.any$"
+  },
+  {
+   "header": "iter:[ \" \", \" \", \" \", \" \", ] .iter().all",
+   "bound": "4",
+   "sites": [
+    "retained_precision.rs:4720"
+   ],
+   "re": "^iter:\\[\\ \"\\ \",\\ \"\\ \",\\ \"\\ \",\\ \"\\ \",\\ \\]\\ \\.iter\\(\\)\\.all$"
+  },
+  {
+   "header": "iter:list(attributed).iter().map(text)",
+   "bound": "g",
+   "sites": [
+    "retained_precision.rs:4727"
+   ],
+   "re": "^iter:list\\(attributed\\)\\.iter\\(\\)\\.map\\(text\\)$"
+  }
+ ],
+ "first_rules": [
+  {
+   "re": "^for r in &envelope\\.results$",
+   "bound": "Pall",
+   "why": "I104 SQ B1 (placed first): source_receipt.rs finalize_for (:982, :1074; branch X): the whole envelope's rows. B1: every row of the c-case envelope (one block of P_final rows per requested case, lib.rs's case loop): c*P_final (the composite rule `for r in rows|&case.rows|..|&envelope..` keeps P for per-case rows)"
+  },
+  {
+   "re": "^for row in &envelope\\.results$",
+   "bound": "Pall",
+   "why": "I104 SQ B1 (placed first): retained_product.rs bind_observations_by_case (:1142): the whole envelope's rows. B1: every row of the c-case envelope (one block of P_final rows per requested case, lib.rs's case loop): c*P_final"
+  }
+ ],
+ "rebind": [
+  {
+   "index": 22,
+   "re": "^for\\ a\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)$",
+   "old": "1",
+   "new": "att",
+   "why": "RS reader (retained_precision.rs :560, :2377, :3956): body.product_attempts, one per case in A. B1 SP T-5/T-7..T-11: one entry per case in A, the attempted cases (|A| <= a <= c)",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): a receipt body array other than builds: cases, sources, material_bases, calls, groups, ordinary_attempts, product_attempts and legacy_source_work each hold <= 1 entry in D1 (one case, no combinations, one native call and run; retained_wire.rs one_case/one_run, finish)"
+  },
+  {
+   "index": 23,
+   "re": "^for\\ \\(ai,\\ a\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "old": "1",
+   "new": "att",
+   "why": "RS reader (:2083 g5_products): body.product_attempts. B1 SP T-5/T-7..T-11: one entry per case in A, the attempted cases (|A| <= a <= c)",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): a receipt body array other than builds: cases, sources, material_bases, calls, groups, ordinary_attempts, product_attempts and legacy_source_work each hold <= 1 entry in D1 (one case, no combinations, one native call and run; retained_wire.rs one_case/one_run, finish)"
+  },
+  {
+   "index": 24,
+   "re": "^for\\ \\(si,\\ s\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "old": "1",
+   "new": "att",
+   "why": "RS reader (:735 g3): body.sources, one per submitted case. B1 SP T-8: the prepared cases of A submitted to the one CaseBatchCall (<= |A| <= a)",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): a receipt body array other than builds: cases, sources, material_bases, calls, groups, ordinary_attempts, product_attempts and legacy_source_work each hold <= 1 entry in D1 (one case, no combinations, one native call and run; retained_wire.rs one_case/one_run, finish)"
+  },
+  {
+   "index": 26,
+   "re": "^for\\ \\(i,\\ c\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "old": "1",
+   "new": "cases",
+   "why": "RS reader (:4200 g5_ordinary): body.cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA)",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): a receipt body array other than builds: cases, sources, material_bases, calls, groups, ordinary_attempts, product_attempts and legacy_source_work each hold <= 1 entry in D1 (one case, no combinations, one native call and run; retained_wire.rs one_case/one_run, finish)"
+  },
+  {
+   "index": 27,
+   "re": "^for\\ \\(i,\\ a\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "old": "1",
+   "new": "att",
+   "why": "RS reader (:756 g3): body.product_attempts. B1 SP T-5/T-7..T-11: one entry per case in A, the attempted cases (|A| <= a <= c)",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): a receipt body array other than builds: cases, sources, material_bases, calls, groups, ordinary_attempts, product_attempts and legacy_source_work each hold <= 1 entry in D1 (one case, no combinations, one native call and run; retained_wire.rs one_case/one_run, finish)"
+  },
+  {
+   "index": 31,
+   "re": "^for\\ c\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\ \\.iter\\(\\)\\ \\.filter\\(\\|c\\|\\ c\\[\"\\ \"\\]\\ ==\\ \"\\ \"\\)$",
+   "old": "1",
+   "new": "cases",
+   "why": "RS reader (:2657 numeric_cases): body.cases filtered. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA)",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): a receipt body array other than builds: cases, sources, material_bases, calls, groups, ordinary_attempts, product_attempts and legacy_source_work each hold <= 1 entry in D1 (one case, no combinations, one native call and run; retained_wire.rs one_case/one_run, finish)"
+  },
+  {
+   "index": 32,
+   "re": "^for\\ c\\ in\\ list\\(\\&body\\[\"\\ \"\\]\\)$",
+   "old": "1",
+   "new": "cases",
+   "why": "RS reader (:3030 g5a, :4437 validate): body.cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA)",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): a receipt body array other than builds: cases, sources, material_bases, calls, groups, ordinary_attempts, product_attempts and legacy_source_work each hold <= 1 entry in D1 (one case, no combinations, one native call and run; retained_wire.rs one_case/one_run, finish)"
+  },
+  {
+   "index": 33,
+   "re": "^for\\ s\\ in\\ list\\(\\&r\\[\"\\ \"\\]\\[\"\\ \"\\]\\)$",
+   "old": "1",
+   "new": "att",
+   "why": "RS reader (:608 g1): body.sources. B1 SP T-8: the prepared cases of A submitted to the one CaseBatchCall (<= |A| <= a)",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): a receipt body array other than builds: cases, sources, material_bases, calls, groups, ordinary_attempts, product_attempts and legacy_source_work each hold <= 1 entry in D1 (one case, no combinations, one native call and run; retained_wire.rs one_case/one_run, finish)"
+  },
+  {
+   "index": 34,
+   "re": "^for\\ c\\ in\\ list\\(\\&r\\[\"\\ \"\\]\\[\"\\ \"\\]\\)$",
+   "old": "1",
+   "new": "cases",
+   "why": "RS reader (:631 g1): body.cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA)",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): a receipt body array other than builds: cases, sources, material_bases, calls, groups, ordinary_attempts, product_attempts and legacy_source_work each hold <= 1 entry in D1 (one case, no combinations, one native call and run; retained_wire.rs one_case/one_run, finish)"
+  },
+  {
+   "index": 35,
+   "re": "^for\\ \\(position,\\ ri\\)\\ in\\ list\\(\\&call\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "old": "1",
+   "new": "att",
+   "why": "RS reader (:968 g5_native): the one call's run_refs, one Run per submitted case. B1 SP T-8: the prepared cases of A submitted to the one CaseBatchCall (<= |A| <= a)",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): run refs of the one call"
+  },
+  {
+   "index": 36,
+   "re": "^for\\ \\(ri,\\ si\\)\\ in\\ list\\(\\&call\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.zip\\(list\\(\\&call\\[\"\\ \"\\]\\)\\)$",
+   "old": "1",
+   "new": "att",
+   "why": "RS reader (:1434): the one call's run/source refs. B1 SP T-8: the prepared cases of A submitted to the one CaseBatchCall (<= |A| <= a)",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): run/source refs of the one call"
+  },
+  {
+   "index": 37,
+   "re": "^for\\ si\\ in\\ list\\(\\&g\\[\"\\ \"\\]\\)$",
+   "old": "1",
+   "new": "att",
+   "why": "RS reader (:952 g5_native): the one group's source_refs, every submitted case's source. B1 SP T-8: the prepared cases of A submitted to the one CaseBatchCall (<= |A| <= a)",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): source refs of the one group"
+  },
+  {
+   "index": 52,
+   "re": "^for\\ c\\ in\\ cases$",
+   "old": "1",
+   "new": "cases",
+   "why": "RS reader (:3206 g5b, :3293 g5c): the numeric cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA)",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): numeric cases: one case"
+  },
+  {
+   "index": 53,
+   "re": "^for\\ \\(i,\\ c\\)\\ in\\ cs\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "old": "1",
+   "new": "cases",
+   "why": "RS reader (:668 g3): body.cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA)",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): one case"
+  },
+  {
+   "index": 54,
+   "re": "^for\\ \\(i,\\ case\\)\\ in\\ cases\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "old": "1",
+   "new": "cases",
+   "why": "RS reader (:3566 g8): the invocation's load cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA)",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): one load case (D1.4)"
+  },
+  {
+   "index": 65,
+   "re": "^for\\ row\\ in\\ rows_list$",
+   "old": "P",
+   "new": "Pall",
+   "why": "preview_physics_evidence.rs validate_preview_physics_evidence (:270, :280, :629, :678): the source's whole results array. B1: every row of the c-case envelope (one block of P_final rows per requested case, lib.rs's case loop): c*P_final",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): published rows <= P"
+  },
+  {
+   "index": 68,
+   "re": "^for\\ row\\ in\\ rows\\.iter\\(\\)\\.filter\\(\\|r\\|\\ r\\[\"\\ \"\\]\\ ==\\ kind\\)$",
+   "old": "P",
+   "new": "Pall",
+   "why": "preview_physics_evidence.rs headline (:775), called on rows_list (:640, :646): the whole results array. B1: every row of the c-case envelope (one block of P_final rows per requested case, lib.rs's case loop): c*P_final",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): rows <= P"
+  },
+  {
+   "index": 212,
+   "re": "flat_map\\(\\|case\\| case\\.primitive_loads",
+   "old": "l",
+   "new": "L",
+   "why": "every case's primitive loads (validation.rs :227, :802, :1890; lib.rs :8920 normalize_model_units): sum_i l_i <= L (I82's rebind, re-derived on the real code)",
+   "old_why": "loads over the one case: l"
+  },
+  {
+   "index": 250,
+   "re": "for id in ids",
+   "old": "l",
+   "new": "max(l, L)",
+   "why": "entity id lists (validation.rs detect_empty_ids/detect_duplicate_ids, pressure_runtime.rs :363): the load-id list spans every case (I82's rebind): <= max(l, L)",
+   "old_why": "entity id iterator: <= the largest D1 entity list (l = 192)"
+  },
+  {
+   "index": 258,
+   "re": "sources\\.iter\\(\\)\\.enumerate\\(\\)",
+   "old": "1",
+   "new": "att",
+   "why": "FK origins.rs :364 solve_cases and adaptive.rs :4994 solve_cases_projected: one kernel case per submitted source (B1 SP T-8; FK unchanged). B1 SP T-8: the prepared cases of A submitted to the one CaseBatchCall (<= |A| <= a)",
+   "old_why": "D1.4: one case source, no combination sources"
+  },
+  {
+   "index": 80,
+   "re": "^for\\ reference\\ in\\ affected$",
+   "old": "l+4",
+   "new": "L+4",
+   "why": "the T17 reader's preview-evidence check (preview_physics_evidence.rs `for reference in affected`): one diagnostic's affected refs (G4's l + 4, with a per-load list spanning every case: L + 4)",
+   "old_why": "G4 (T17 precommit reader at b1f80234dc): affected refs of one diagnostic <= l + 4"
+  }
+ ],
+ "keep": [
+  {
+   "index": 25,
+   "re": "^for\\ \\(mi,\\ mb\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "bound": "1",
+   "why": "RS reader (:747 g3, :3616 g8): body.material_bases: the producer emits one material basis (D1.5's one default basis) whose case_indices name every case (retained_wire.rs material_basis)"
+  },
+  {
+   "index": 28,
+   "re": "^for\\ \\(call_id,\\ call\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "bound": "1",
+   "why": "RS reader (:963, :1427): body.calls: one CaseBatchCall per invocation (T-8; the serializer refuses calls().len() != 1)"
+  },
+  {
+   "index": 29,
+   "re": "^for\\ \\(i,\\ g\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "bound": "1",
+   "why": "RS reader (:946): body.groups: every case shares the model and D1.5's one basis, so one stiffness and one group (C2 \u00a74; RV109 round 2 SF-1: one group, C reusing A's builds)"
+  },
+  {
+   "index": 30,
+   "re": "^for\\ \\(i,\\ build\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "bound": "7",
+   "why": "RS reader: body.builds: one shared build per origin slot of the one group (7 slots), reused by every case's Run (RV109 round 2 SF-1)"
+  },
+  {
+   "index": 91,
+   "re": "^iter:inv\\.calls\\(\\)\\.iter\\(\\)\\.map$|^iter:inv\\.groups\\(\\)\\.iter\\(\\)\\.map$",
+   "bound": "1",
+   "why": "retained_wire.rs invocation_arrays: one call and one group (as above)"
+  },
+  {
+   "index": 92,
+   "re": "^iter:inv\\.builds\\(\\)\\.iter\\(\\)\\.map$",
+   "bound": "7",
+   "why": "retained_wire.rs invocation_arrays: the one group's 7 shared builds (as above)"
+  },
+  {
+   "index": 66,
+   "re": "^for\\ row\\ in\\ rows_list\\.iter\\(\\)\\.filter\\(in_case\\)$",
+   "bound": "P",
+   "why": "preview_physics_evidence.rs :523: the rows of one case (inside `for case in preview_cases`)"
+  },
+  {
+   "index": 70,
+   "re": "^for\\ item\\ in\\ array\\(v\\)\\?$",
+   "bound": "P",
+   "why": "preview_physics_evidence.rs strings: one case's coverage/attribution id list (<= P, G4's bound), called per case"
+  },
+  {
+   "index": 196,
+   "re": "^for selection in &self\\.selections$",
+   "bound": "cases",
+   "why": "one selection per case (as G4)"
+  }
+ ],
+ "edge_per_call": [
+  {
+   "caller": "pressure_runtime.rs:111:validate_profile",
+   "callee": "pressure_runtime.rs:85:problem",
+   "old": "l",
+   "new": "L",
+   "why": "validate_profile's !exact arm (D1.3) fires PRESSURE_MODEL_REAUTHOR_REQUIRED at most once per primitive load of every case (pressure_runtime.rs :207-225, `for case in &model.load_cases { .. for load in &case.primitive_loads`): <= L per call (I82's rebind, re-derived)"
+  }
+ ],
+ "callgraph_rules_dropped": [
+  {
+   "rule": {
+    "caller": "core/product_physics/src/retained_wire.rs:1493:capture",
+    "name": "capture",
+    "targets": [
+     "core/product_physics/src/retained_product.rs:3795:capture"
+    ],
+    "added": "G4 (R-1 adjudication at b1f80234dc)",
+    "evidence": "retained_wire.rs:1485-1497 (U3): the SelectedCandidate impl for FrozenCandidate delegates with the path call `rp::FrozenCandidate::capture(self)`; an inherent method takes precedence over the trait method in path resolution, so the target is the inherent FrozenCandidate::capture, not this impl itself"
+   },
+   "why": "B1 SP removed `impl SelectedCandidate for rp::FrozenCandidate` (retained_wire.rs; the Direct path serializes through `serialize_cases`), so the rule's caller no longer exists; the line map left its keys unmapped (they lie in a changed hunk)"
+  },
+  {
+   "rule": {
+    "caller": "core/product_physics/src/retained_wire.rs:1494:certificate",
+    "name": "certificate",
+    "targets": [
+     "core/product_physics/src/retained_product.rs:3796:certificate"
+    ],
+    "added": "G4 (R-1 adjudication at b1f80234dc)",
+    "evidence": "retained_wire.rs:1485-1497 (U3): the SelectedCandidate impl for FrozenCandidate delegates with the path call `rp::FrozenCandidate::certificate(self)`; an inherent method takes precedence over the trait method in path resolution, so the target is the inherent FrozenCandidate::certificate, not this impl itself"
+   },
+   "why": "B1 SP removed `impl SelectedCandidate for rp::FrozenCandidate` (retained_wire.rs; the Direct path serializes through `serialize_cases`), so the rule's caller no longer exists; the line map left its keys unmapped (they lie in a changed hunk)"
+  },
+  {
+   "rule": {
+    "caller": "core/product_physics/src/retained_wire.rs:1495:typed_trace",
+    "name": "typed_trace",
+    "targets": [
+     "core/product_physics/src/retained_product.rs:3816:typed_trace"
+    ],
+    "added": "G4 (R-1 adjudication at b1f80234dc)",
+    "evidence": "retained_wire.rs:1485-1497 (U3): the SelectedCandidate impl for FrozenCandidate delegates with the path call `rp::FrozenCandidate::typed_trace(self)`; an inherent method takes precedence over the trait method in path resolution, so the target is the inherent FrozenCandidate::typed_trace, not this impl itself"
+   },
+   "why": "B1 SP removed `impl SelectedCandidate for rp::FrozenCandidate` (retained_wire.rs; the Direct path serializes through `serialize_cases`), so the rule's caller no longer exists; the line map left its keys unmapped (they lie in a changed hunk)"
+  }
+ ],
+ "text_args": [
+  {
+   "action": "re-key",
+   "key": "core/product_physics/src/lib.rs:3042 -> :3078",
+   "value": {
+    "case_id": {
+     "bytes": 128,
+     "source": "IN128"
+    }
+   },
+   "why": "B1 SP moved the notice id's format! from ReservedNotice::reserve into ReservedNotices::reserve (lib.rs:3078), same text and argument (the request case id, <= 128 B)"
+  },
+  {
+   "action": "re-key",
+   "key": "core/product_physics/src/retained_wire.rs:1593 -> :1946",
+   "value": {
+    "source": {
+     "bytes": 128,
+     "source": "NOTID"
+    }
+   },
+   "why": "the source-identity binding's `source.clone()`: serialize_selected_from's (the one-case serializer, now reached only by the private driver) moved into serialize_attempt (retained_wire.rs:1946), same expression"
+  },
+  {
+   "action": "add",
+   "key": "core/product_physics/src/retained_wire.rs:1634",
+   "value": {
+    "case_id": {
+     "bytes": 128,
+     "source": "IN128"
+    }
+   },
+   "why": "unavailable_case_envelope's notice id format!: the request case id, as selected_case_envelope's (retained_wire.rs:772, IN128)"
+  },
+  {
+   "action": "add site_zero",
+   "key": "retained_wire.rs:1796",
+   "value": "I104 SQ B1: Option::replace on an attempt or source slot (serialize_cases_with), not a String (as text_args' `rigid_owner[global]` rule)",
+   "why": "Option::replace, no text"
+  },
+  {
+   "action": "add site_zero",
+   "key": "retained_wire.rs:1863",
+   "value": "I104 SQ B1: Option::replace on an attempt or source slot (serialize_cases_with), not a String (as text_args' `rigid_owner[global]` rule)",
+   "why": "Option::replace, no text"
+  },
+  {
+   "action": "add args rule (first)",
+   "key": "^terminal\\[\" \"\\]\\.as_str\\(\\)\\.unwrap_or_default\\(\\)$",
+   "value": "static",
+   "why": "I104 SQ B1: a Run's kernel_terminal.kind, one of kernel_outcome's fixed terminal tokens (retained_wire.rs), copied with to_owned (serialize_attempt :1989; serialize_unavailable :1712): a static literal"
+  },
+  {
+   "action": "remove",
+   "key": "lex_site_size retained_wire.rs:1359",
+   "value": {
+    "class": "ident",
+    "why": "G4 (U1 serializer one_case): the request case id, a raw string <= 128 (D1 text cap)"
+   },
+   "why": "one_case's case-id copy, in the one-case serializer (unreached from the D1 root at B1)"
+  },
+  {
+   "action": "add",
+   "key": "core/product_physics/src/retained_product.rs:4492",
+   "value": {
+    "row.unit": {
+     "bytes": 128,
+     "source": "STATIC"
+    },
+    "row.entity_ref": {
+     "bytes": 128,
+     "source": "IN128"
+    },
+    "row.id": {
+     "bytes": 1024,
+     "source": "RES"
+    }
+   },
+   "why": "stage_headlines' LocatedQuantity copies a staged row's unit, entity_ref and id: the same classes as the ordinary headline's copy of a row (preview_physics.rs:690: row.unit STATIC, row.entity_ref IN128, row.id RES)"
+  },
+  {
+   "action": "add",
+   "key": "core/reporting/result_export/src/retained_precision.rs:4371",
+   "value": {
+    "text(&run[\"kernel_terminal\"][\"kind\"])": {
+     "bytes": 128,
+     "source": "STATIC"
+    }
+   },
+   "why": "g5_ordinary's `kernel_{kind}`: the Run's kernel_terminal.kind, one of the producer's fixed terminal tokens (retained_wire.rs kernel_outcome), STATIC <= 128 B"
+  },
+  {
+   "action": "scale site_total",
+   "key": "load_ledger.rs:133",
+   "value": "5*cases*l*2*128",
+   "why": "the case ledger and the T25 replay's are per requested case, the three prepare_sources folded ledgers per case (5 per case, c cases)"
+  },
+  {
+   "action": "scale site_total",
+   "key": "load_ledger.rs:408",
+   "value": "4*cases*l*2*128",
+   "why": "W2's two evaluations run per requested case"
+  },
+  {
+   "action": "scale site_total",
+   "key": "load_ledger.rs:670",
+   "value": "5*cases*l*2*128",
+   "why": "as LoadLedger::push: 5 ledgers per case"
+  },
+  {
+   "action": "scale site_total",
+   "key": "source_receipt/source.rs:147",
+   "value": "cases*16384*2*87",
+   "why": "the unit limit per T25 replay, one per requested case (conservative)"
+  },
+  {
+   "action": "scale site_from",
+   "key": "retained_precision.rs:211",
+   "value": "1+4*64*att",
+   "why": "g5_native's tw() swallows sum()'s WORK_MISMATCH over each Run's <= 4 records x 64 amounts, one Run per submitted case"
+  },
+  {
+   "action": "scale site_from",
+   "key": "retained_precision.rs:213",
+   "value": "1+4*64*att",
+   "why": "as :211"
+  },
+  {
+   "action": "keep site_total",
+   "key": "source_receipt.rs:28",
+   "value": "8*2*2173",
+   "why": "2*cases + 2 = 8 at c = 3: the charged 8 holds"
+  },
+  {
+   "action": "keep site_total",
+   "key": "source_receipt.rs:31",
+   "value": "8*2*8192",
+   "why": "2*cases + 2 = 8 at c = 3: the charged 8 holds"
+  },
+  {
+   "action": "keep site_total",
+   "key": "source_receipt.rs:55",
+   "value": "8*2*8192",
+   "why": "2*cases + 2 = 8 at c = 3: the charged 8 holds"
+  }
+ ],
+ "inventory_dispositions": [
+  {
+   "index": 0,
+   "site": "lib.rs:3077",
+   "header": "for (k, case_id) in case_ids.iter().enumerate()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 1,
+   "site": "lib.rs:3086",
+   "header": "for ((slot, id), case_id) in notices.iter_mut().zip(ids).zip(case_ids)",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 2,
+   "site": "lib.rs:3105",
+   "header": "for (k, ReservedNotice(mut notice)) in self.0.into_iter().flatten().enumerate()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 3,
+   "site": "lib.rs:3146",
+   "header": "for ((&request, &id), trigger) in self.requests().iter().zip(self.ids()).zip(triggers)",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 4,
+   "site": "lib.rs:3165",
+   "header": "for (request, case) in cases.iter().enumerate()",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 5,
+   "site": "lib.rs:3015",
+   "header": "iter:match observer.permit().map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #226: 1 (correct at B1)"
+  },
+  {
+   "index": 6,
+   "site": "lib.rs:3079",
+   "header": "iter:if ordinary.diagnostics.iter().any",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: D"
+  },
+  {
+   "index": 7,
+   "site": "lib.rs:3109",
+   "header": "iter:detail.filter",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #226: 1 (correct at B1)"
+  },
+  {
+   "index": 8,
+   "site": "lib.rs:3196",
+   "header": "iter:case_ids.iter().map",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 9,
+   "site": "lib.rs:3197",
+   "header": "iter:quality.cases.iter().filter",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 10,
+   "site": "lib.rs:3197",
+   "header": "iter:only_one(quality.cases.iter().filter(|entry| entry.basis_ref.ref_id == case_id)).map",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: 1"
+  },
+  {
+   "index": 11,
+   "site": "lib.rs:3198",
+   "header": "iter:seeds.iter().filter",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 12,
+   "site": "lib.rs:3250",
+   "header": "iter:if !case_triggers(&ordinary.numerical_quality, &observer.ordinary, cases.ids()).any",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 13,
+   "site": "lib.rs:3299",
+   "header": "iter:|stage: fn(&AttemptEnd) -> bool| prepared.attempts.iter().any",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 14,
+   "site": "lib.rs:3458",
+   "header": "iter:prepared.attempts.iter().find",
+   "reached": false,
+   "text_ancestor": false,
+   "disposition": "not reached from the D1 root (test or private-driver code): no rule needed"
+  },
+  {
+   "index": 15,
+   "site": "lib.rs:3458",
+   "header": "iter:prepared.attempts.iter().find(|attempt| attempt.prepared).map",
+   "reached": false,
+   "text_ancestor": false,
+   "disposition": "not reached from the D1 root (test or private-driver code): no rule needed"
+  },
+  {
+   "index": 16,
+   "site": "retained_memory.rs:412",
+   "header": "for case in &m.load_cases",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #232: cases (correct at B1)"
+  },
+  {
+   "index": 17,
+   "site": "retained_memory.rs:759",
+   "header": "for case in &m.load_cases",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "existing rule #232: cases (correct at B1)"
+  },
+  {
+   "index": 18,
+   "site": "retained_memory.rs:791",
+   "header": "for load in m.load_cases.iter().flat_map(|case| &case.primitive_loads)",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: L"
+  },
+  {
+   "index": 19,
+   "site": "retained_memory.rs:3031",
+   "header": "for ordinal in 2..=caps::LOAD_CASES + 1",
+   "reached": false,
+   "text_ancestor": false,
+   "disposition": "not reached from the D1 root (test or private-driver code): no rule needed"
+  },
+  {
+   "index": 20,
+   "site": "retained_memory.rs:791",
+   "header": "iter:refuse(C::Case, F::AnalysisState); } } for support in &m.supports { if support.hanger.is_some() { return refuse(C::Supports, F::Hanger); } if support.nonlinear.is_some() { return refuse(C::Suppor",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 21,
+   "site": "retained_memory.rs:2621",
+   "header": "iter:requested && capture.ordinary.iter().all",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 22,
+   "site": "retained_product.rs:1058",
+   "header": "for row in rows",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #69: P (correct at B1)"
+  },
+  {
+   "index": 23,
+   "site": "retained_product.rs:1117",
+   "header": "for index in 0..cases",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 24,
+   "site": "retained_product.rs:1138",
+   "header": "for _ in 0..cases",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 25,
+   "site": "retained_product.rs:1142",
+   "header": "for row in &envelope.results",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: Pall"
+  },
+  {
+   "index": 26,
+   "site": "retained_product.rs:1154",
+   "header": "for index in 0..cases",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 27,
+   "site": "retained_product.rs:1175",
+   "header": "for index in 0..cases",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 28,
+   "site": "retained_product.rs:3683",
+   "header": "for attempt in attempts.iter_mut().filter(|attempt| matches!(attempt.end, AttemptEnd::Prepared))",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 29,
+   "site": "retained_product.rs:3690",
+   "header": "for attempt in attempts.iter_mut().filter(|attempt| matches!(attempt.end, AttemptEnd::Prepared))",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 30,
+   "site": "retained_product.rs:3719",
+   "header": "for attempt in attempts.iter_mut().filter(|attempt| matches!(attempt.end, AttemptEnd::Selected))",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 31,
+   "site": "retained_product.rs:3742",
+   "header": "for attempt in &self.attempts",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 32,
+   "site": "retained_product.rs:3843",
+   "header": "for (index,row) in ordinary.results.iter().enumerate()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: Pall"
+  },
+  {
+   "index": 33,
+   "site": "retained_product.rs:3876",
+   "header": "for (attempt,&request) in attempted.iter().enumerate()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 34,
+   "site": "retained_product.rs:3921",
+   "header": "for request in submitted()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 35,
+   "site": "retained_product.rs:3927",
+   "header": "for request in submitted()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 36,
+   "site": "retained_product.rs:3937",
+   "header": "for (request,case) in submitted().zip(cases)",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 37,
+   "site": "retained_product.rs:3988",
+   "header": "for (m,op) in old.members().iter().zip(&self.operational)",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #234: m (correct at B1)"
+  },
+  {
+   "index": 38,
+   "site": "retained_product.rs:4009",
+   "header": "for x in old.nodes()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #235: n (correct at B1)"
+  },
+  {
+   "index": 39,
+   "site": "retained_product.rs:4010",
+   "header": "for x in old.constraints()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #161: r (correct at B1)"
+  },
+  {
+   "index": 40,
+   "site": "retained_product.rs:4011",
+   "header": "for x in old.springs()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #162: s (correct at B1)"
+  },
+  {
+   "index": 41,
+   "site": "retained_product.rs:4012",
+   "header": "for x in old.stations()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #164: 3*m (correct at B1)"
+  },
+  {
+   "index": 42,
+   "site": "retained_product.rs:4013",
+   "header": "for x in old.supports()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #231: g (correct at B1)"
+  },
+  {
+   "index": 43,
+   "site": "retained_product.rs:4015",
+   "header": "for &id in &x.springs",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #162: s (correct at B1)"
+  },
+  {
+   "index": 44,
+   "site": "retained_product.rs:4017",
+   "header": "for &id in &x.directional_springs",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #163: 0 (correct at B1)"
+  },
+  {
+   "index": 45,
+   "site": "retained_product.rs:4021",
+   "header": "for x in old.loads()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #165: l (correct at B1)"
+  },
+  {
+   "index": 46,
+   "site": "retained_product.rs:4026",
+   "header": "for (i,m) in old.members().iter().enumerate()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #234: m (correct at B1)"
+  },
+  {
+   "index": 47,
+   "site": "retained_product.rs:4296",
+   "header": "for (i,r) in rows.iter().enumerate()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: P"
+  },
+  {
+   "index": 48,
+   "site": "retained_product.rs:4457",
+   "header": "for (i,row) in rows.iter_mut().enumerate()",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: P"
+  },
+  {
+   "index": 49,
+   "site": "retained_product.rs:4481",
+   "header": "for (kind,stress) in [(\" \",false),(\" \",true)]",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing array literal: 2 (correct at B1)"
+  },
+  {
+   "index": 50,
+   "site": "retained_product.rs:4485",
+   "header": "for row in staged.results.iter().filter(|row|row.kind==kind)",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: Pall"
+  },
+  {
+   "index": 51,
+   "site": "retained_product.rs:1935",
+   "header": "iter:1 || self.source.is_none() || self.parked.iter().any",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 52,
+   "site": "retained_product.rs:3680",
+   "header": "iter:if !attempts.iter().any",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 53,
+   "site": "retained_product.rs:3683",
+   "header": "iter:if !attempts.iter().any(|attempt| matches!(attempt.end, AttemptEnd::Prepared)) { return; } for attempt in attempts.iter_mut().filter",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 54,
+   "site": "retained_product.rs:3688",
+   "header": "iter:|| attempts.iter().filter",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 55,
+   "site": "retained_product.rs:3688",
+   "header": "iter:|| attempts.iter().filter(|attempt| matches!(attempt.end, AttemptEnd::Prepared)).map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 56,
+   "site": "retained_product.rs:3690",
+   "header": "iter:for attempt in attempts.iter_mut().filter",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 57,
+   "site": "retained_product.rs:3693",
+   "header": "iter:> match capture.case_native(attempt.request).map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #226: 1 (correct at B1)"
+  },
+  {
+   "index": 58,
+   "site": "retained_product.rs:3719",
+   "header": "iter:for attempt in attempts.iter_mut().filter",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 59,
+   "site": "retained_product.rs:3755",
+   "header": "iter:self.attempts.iter().enumerate().filter",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 60,
+   "site": "retained_product.rs:3764",
+   "header": "iter:self.attempts.iter_mut().map",
+   "reached": false,
+   "text_ancestor": false,
+   "disposition": "not reached from the D1 root (test or private-driver code): no rule needed"
+  },
+  {
+   "index": 61,
+   "site": "retained_product.rs:3764",
+   "header": "iter:self.attempts.iter_mut().map(|attempt| &mut attempt.end).find",
+   "reached": false,
+   "text_ancestor": false,
+   "disposition": "not reached from the D1 root (test or private-driver code): no rule needed"
+  },
+  {
+   "index": 62,
+   "site": "retained_product.rs:3780",
+   "header": "iter:failure.map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #226: 1 (correct at B1)"
+  },
+  {
+   "index": 63,
+   "site": "retained_product.rs:3780",
+   "header": "iter:|| refused.certificate.as_ref().map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #225: 1 (correct at B1)"
+  },
+  {
+   "index": 64,
+   "site": "retained_product.rs:3783",
+   "header": "iter:failure.map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #226: 1 (correct at B1)"
+  },
+  {
+   "index": 65,
+   "site": "retained_product.rs:3810",
+   "header": "iter:self.parked.iter_mut().find",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 66,
+   "site": "retained_product.rs:3819",
+   "header": "iter:1 || ordinary.source_block_recovery.is_some() || self.native.is_some() || self.native_invocation.is_some() || self.parked.iter().any",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 67,
+   "site": "retained_product.rs:3827",
+   "header": "iter:requested { return Err(\" \".into()); } if attempted.iter().any",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 68,
+   "site": "retained_product.rs:3827",
+   "header": "iter:requested { return Err(\" \".into()); } if attempted.iter().any(|&request|request>=requested) || attempted.windows(2).any",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 69,
+   "site": "retained_product.rs:3849",
+   "header": "iter:current.checked_add(1).filter",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #225: 1 (correct at B1)"
+  },
+  {
+   "index": 70,
+   "site": "retained_product.rs:3902",
+   "header": "iter:if self.native_invocation.is_some() || submitted().any",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 71,
+   "site": "retained_product.rs:3905",
+   "header": "iter:if self.native_invocation.is_some() || submitted().any(|request|self.case_native(request).is_some()) { return Err(\" \".into()); } if submitted().any",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 72,
+   "site": "retained_product.rs:4109",
+   "header": "iter:o.native.as_ref().map",
+   "reached": false,
+   "text_ancestor": false,
+   "disposition": "not reached from the D1 root (test or private-driver code): no rule needed"
+  },
+  {
+   "index": 73,
+   "site": "retained_product.rs:4150",
+   "header": "iter:self.case_rows().iter().enumerate().map",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: P"
+  },
+  {
+   "index": 74,
+   "site": "retained_product.rs:4377",
+   "header": "iter:\" \":self.verdicts.iter().map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: P"
+  },
+  {
+   "index": 75,
+   "site": "retained_product.rs:4401",
+   "header": "iter:\" \":self.verdicts.iter().map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: P"
+  },
+  {
+   "index": 76,
+   "site": "retained_product.rs:4485",
+   "header": "iter:for row in staged.results.iter().filter",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: Pall"
+  },
+  {
+   "index": 77,
+   "site": "retained_product.rs:4486",
+   "header": "iter:row.basis_ref.as_ref().map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #225: 1 (correct at B1)"
+  },
+  {
+   "index": 78,
+   "site": "retained_receipt.rs:177",
+   "header": "iter:match capture.native.as_ref().map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #225: 1 (correct at B1)"
+  },
+  {
+   "index": 79,
+   "site": "retained_receipt.rs:194",
+   "header": "iter:native_run:capture.native.as_ref().map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #225: 1 (correct at B1)"
+  },
+  {
+   "index": 80,
+   "site": "retained_wire.rs:870",
+   "header": "for case_index in 0..cases",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 81,
+   "site": "retained_wire.rs:1481",
+   "header": "for d in env[\" \"].as_array().ok_or(fail(ReceiptCheck::Association, \" \"))?",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: D"
+  },
+  {
+   "index": 82,
+   "site": "retained_wire.rs:1486",
+   "header": "for (case_id, refs) in case_ids.iter().zip(refs.iter_mut())",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 83,
+   "site": "retained_wire.rs:1794",
+   "header": "for attempt in attempts",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 84,
+   "site": "retained_wire.rs:1818",
+   "header": "for (index, seed) in pc.ordinary.iter().enumerate()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 85,
+   "site": "retained_wire.rs:1825",
+   "header": "for (index, (_, omit)) in legacy.iter().enumerate()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 86,
+   "site": "retained_wire.rs:1830",
+   "header": "for index in 0..count",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 87,
+   "site": "retained_wire.rs:1840",
+   "header": "for (index, ((seed, (legacy_v, _)), refs)) in pc.ordinary.iter().zip(legacy).zip(diagnostic_refs).enumerate()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 88,
+   "site": "retained_wire.rs:1853",
+   "header": "for attempt in attempts",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 89,
+   "site": "retained_wire.rs:1873",
+   "header": "for (index, part) in case_parts.into_iter().enumerate()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 90,
+   "site": "retained_wire.rs:1410",
+   "header": "iter:> requests.get(*i).map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #225: 1 (correct at B1)"
+  },
+  {
+   "index": 91,
+   "site": "retained_wire.rs:1417",
+   "header": "iter:\" \":c.owners.iter().map(owner)",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 92,
+   "site": "retained_wire.rs:1442",
+   "header": "iter:e.exact(run.work.invocation_after(), \" \") { return Err(fail(ReceiptCheck::WorkCounterInconsistent, \" \")); } if inv.calls().iter().any",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: 1"
+  },
+  {
+   "index": 93,
+   "site": "retained_wire.rs:1487",
+   "header": "iter:if affected.iter().any",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: L+4"
+  },
+  {
+   "index": 94,
+   "site": "retained_wire.rs:1785",
+   "header": "iter:request_cases.iter().map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 95,
+   "site": "retained_wire.rs:1789",
+   "header": "iter:count { return Err(scope(\" \")); } if pc.ordinary.iter().zip(&case_ids).any",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 96,
+   "site": "retained_wire.rs:1800",
+   "header": "iter:attempt_of.iter().map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 97,
+   "site": "retained_wire.rs:1800",
+   "header": "iter:|attempt| match attempt.map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #226: 1 (correct at B1)"
+  },
+  {
+   "index": 98,
+   "site": "retained_wire.rs:1809",
+   "header": "iter:attempts.iter().filter",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 99,
+   "site": "retained_wire.rs:1809",
+   "header": "iter:attempts.iter().filter(|attempt| attempt.prepared).map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 100,
+   "site": "retained_wire.rs:1855",
+   "header": "iter:requests.iter().position",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 101,
+   "site": "retained_wire.rs:1855",
+   "header": "iter:requests.iter().position(|r| *r == request).filter",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: 1"
+  },
+  {
+   "index": 102,
+   "site": "retained_wire.rs:1874",
+   "header": "iter:attempt_of[index].map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #226: 1 (correct at B1)"
+  },
+  {
+   "index": 103,
+   "site": "retained_wire.rs:1889",
+   "header": "iter:inv.runs().iter().map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 104,
+   "site": "retained_wire.rs:1890",
+   "header": "iter:> requests.get(ordinal).map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #225: 1 (correct at B1)"
+  },
+  {
+   "index": 105,
+   "site": "retained_wire.rs:1935",
+   "header": "iter:results.iter().map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: P"
+  },
+  {
+   "index": 106,
+   "site": "retained_wire.rs:1935",
+   "header": "iter:|r| r[\" \"].as_str().map(str::to_owned)",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: 1"
+  },
+  {
+   "index": 107,
+   "site": "retained_wire.rs:1936",
+   "header": "iter:row_ids.len() || rows.iter().zip(&row_ids).any",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: P"
+  },
+  {
+   "index": 108,
+   "site": "retained_wire.rs:1939",
+   "header": "iter:rows.iter().map",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #252: P (correct at B1)"
+  },
+  {
+   "index": 109,
+   "site": "retained_wire.rs:2001",
+   "header": "iter:if view.members.iter().all",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #234: m (correct at B1)"
+  },
+  {
+   "index": 110,
+   "site": "retained_precision.rs:735",
+   "header": "for (si, s) in list(&b[\" \"]).iter().enumerate()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 111,
+   "site": "retained_precision.rs:747",
+   "header": "for (mi, mb) in list(&b[\" \"]).iter().enumerate()",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "existing rule #25: 1 (correct at B1)"
+  },
+  {
+   "index": 112,
+   "site": "retained_precision.rs:3732",
+   "header": "for s in list(&b[\" \"])",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: att"
+  },
+  {
+   "index": 113,
+   "site": "retained_precision.rs:4579",
+   "header": "for c in list(&evidence[\" \"])",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 114,
+   "site": "retained_precision.rs:4629",
+   "header": "for record in list(&attribution[\" \"])",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: g"
+  },
+  {
+   "index": 115,
+   "site": "retained_precision.rs:4646",
+   "header": "for x in list(&c[\" \"])",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: 2*m"
+  },
+  {
+   "index": 116,
+   "site": "retained_precision.rs:4698",
+   "header": "for m in list(&c[\" \"])",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: m"
+  },
+  {
+   "index": 117,
+   "site": "retained_precision.rs:4743",
+   "header": "for gate in list(&evidence[\" \"])",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: 0"
+  },
+  {
+   "index": 118,
+   "site": "retained_precision.rs:753",
+   "header": "iter:mi as u64 && list(&mb[\" \"]) .iter().all",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 119,
+   "site": "retained_precision.rs:2052",
+   "header": "iter:\" \" && STAGE8[2..] .iter() .chain(&[\" \", \" \"]).all",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: 8"
+  },
+  {
+   "index": 120,
+   "site": "retained_precision.rs:3522",
+   "header": "iter:matches!(text(&model[\" \"]), \" \" | \" \" | \" \") && model[\" \"].is_null() && [\" \", \" \"] .iter().all",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: 2"
+  },
+  {
+   "index": 121,
+   "site": "retained_precision.rs:3604",
+   "header": "iter:rows .iter().filter",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: P"
+  },
+  {
+   "index": 122,
+   "site": "retained_precision.rs:4220",
+   "header": "iter:|mb| list(&mb[\" \"]).iter().any",
+   "reached": true,
+   "text_ancestor": true,
+   "disposition": "new rule: cases"
+  },
+  {
+   "index": 123,
+   "site": "retained_precision.rs:4495",
+   "header": "iter:keys.len() && keys.iter().all",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: 16"
+  },
+  {
+   "index": 124,
+   "site": "retained_precision.rs:4501",
+   "header": "iter:a.iter().all",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: max(m, g)"
+  },
+  {
+   "index": 125,
+   "site": "retained_precision.rs:4504",
+   "header": "iter:|v: &Value| v.as_f64().filter",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "existing rule #226: 1 (correct at B1)"
+  },
+  {
+   "index": 126,
+   "site": "retained_precision.rs:4505",
+   "header": "iter:|v: &Value| number(v).filter",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "existing rule #226: 1 (correct at B1)"
+  },
+  {
+   "index": 127,
+   "site": "retained_precision.rs:4610",
+   "header": "iter:!list(unavailable).iter().any",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: m"
+  },
+  {
+   "index": 128,
+   "site": "retained_precision.rs:4643",
+   "header": "iter:!list(attributed) .iter().any",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: g"
+  },
+  {
+   "index": 129,
+   "site": "retained_precision.rs:4643",
+   "header": "iter:|x| withheld.iter().any",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: g"
+  },
+  {
+   "index": 130,
+   "site": "retained_precision.rs:4662",
+   "header": "iter:[\" \", \" \"] .iter().all",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: 2"
+  },
+  {
+   "index": 131,
+   "site": "retained_precision.rs:4668",
+   "header": "iter:[\" \", \" \"] .iter().all",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: 2"
+  },
+  {
+   "index": 132,
+   "site": "retained_precision.rs:4686",
+   "header": "iter:list(&c[\" \"]) .iter().map",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: 2*m"
+  },
+  {
+   "index": 133,
+   "site": "retained_precision.rs:4690",
+   "header": "iter:pipes.len() && !pipes.iter().any",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "existing rule #234: m (correct at B1)"
+  },
+  {
+   "index": 134,
+   "site": "retained_precision.rs:4694",
+   "header": "iter:list(unavailable) .iter() .chain(list(outside)).any",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: 2*m"
+  },
+  {
+   "index": 135,
+   "site": "retained_precision.rs:4720",
+   "header": "iter:[ \" \", \" \", \" \", \" \", ] .iter().all",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: 4"
+  },
+  {
+   "index": 136,
+   "site": "retained_precision.rs:4727",
+   "header": "iter:list(attributed).iter().map(text)",
+   "reached": true,
+   "text_ancestor": false,
+   "disposition": "new rule: g"
+  },
+  {
+   "index": 137,
+   "site": "source_blocks.rs:1789",
+   "header": "for value in [json!(TWO_53), json!(TWO_53 + 1), json!(u64::MAX)]",
+   "reached": false,
+   "text_ancestor": false,
+   "disposition": "not reached from the D1 root (test or private-driver code): no rule needed"
+  },
+  {
+   "index": 138,
+   "site": "source_blocks.rs:1806",
+   "header": "for (at, _) in production.match_indices(\" \")",
+   "reached": false,
+   "text_ancestor": false,
+   "disposition": "not reached from the D1 root (test or private-driver code): no rule needed"
+  },
+  {
+   "index": 139,
+   "site": "source_blocks.rs:1850",
+   "header": "for field in &fields",
+   "reached": false,
+   "text_ancestor": false,
+   "disposition": "not reached from the D1 root (test or private-driver code): no rule needed"
+  },
+  {
+   "index": 140,
+   "site": "source_blocks.rs:1851",
+   "header": "for (value, want) in [(TWO_53, Err(INTEGER.to_string())), (TWO_53 - 1, Ok((TWO_53 - 1) as usize))]",
+   "reached": false,
+   "text_ancestor": false,
+   "disposition": "not reached from the D1 root (test or private-driver code): no rule needed"
+  },
+  {
+   "index": 141,
+   "site": "source_blocks.rs:1854",
+   "header": "for key in field.trim_start_matches(' ').split(' ')",
+   "reached": false,
+   "text_ancestor": false,
+   "disposition": "not reached from the D1 root (test or private-driver code): no rule needed"
+  },
+  {
+   "index": 142,
+   "site": "source_blocks.rs:1872",
+   "header": "for (key, next) in [ (\" \", \" \"), (\" \", \" \"), (\" \", \" \"), (\" \", \" \"), ]",
+   "reached": false,
+   "text_ancestor": false,
+   "disposition": "not reached from the D1 root (test or private-driver code): no rule needed"
+  },
+  {
+   "index": 143,
+   "site": "source_blocks.rs:1886",
+   "header": "for key in [\" \", \" \", \" \", \" \"]",
+   "reached": false,
+   "text_ancestor": false,
+   "disposition": "not reached from the D1 root (test or private-driver code): no rule needed"
+  },
+  {
+   "index": 144,
+   "site": "source_blocks.rs:1811",
+   "header": "iter:rest .char_indices().find",
+   "reached": false,
+   "text_ancestor": false,
+   "disposition": "not reached from the D1 root (test or private-driver code): no rule needed"
+  },
+  {
+   "index": 145,
+   "site": "source_blocks.rs:1844",
+   "header": "iter:receipt.iter().map",
+   "reached": false,
+   "text_ancestor": false,
+   "disposition": "not reached from the D1 root (test or private-driver code): no rule needed"
+  },
+  {
+   "index": 146,
+   "site": "source_blocks.rs:1847",
+   "header": "iter:receipt.iter().map",
+   "reached": false,
+   "text_ancestor": false,
+   "disposition": "not reached from the D1 root (test or private-driver code): no rule needed"
+  }
+ ],
+ "scaled_totals": [
+  {
+   "family": "loop_total",
+   "key": "source_receipt/source.rs:46:lowered_products",
+   "old": "16384",
+   "new": "16384*cases"
+  },
+  {
+   "family": "loop_total",
+   "key": "source_receipt/source.rs:17:products",
+   "old": "16384",
+   "new": "16384*cases"
+  },
+  {
+   "family": "loop_total",
+   "key": "source_receipt/source.rs:252:commitment",
+   "old": "16384",
+   "new": "16384*cases"
+  },
+  {
+   "family": "loop_total",
+   "key": "source_receipt/source.rs:11:matrix12",
+   "old": "3*m*144",
+   "new": "cases*3*m*144"
+  },
+  {
+   "family": "loop_total",
+   "key": "source_receipt/source.rs:5:matrix",
+   "old": "N*N",
+   "new": "cases*N*N"
+  },
+  {
+   "family": "fn_cap",
+   "key": "lib.rs:249:new",
+   "old": "4*(g+r)",
+   "new": "4*cases*(g+r)"
+  },
+  {
+   "family": "fn_cap",
+   "key": "lib.rs:634:add_restrained_dof",
+   "old": "4*r",
+   "new": "4*cases*r"
+  }
+ ],
+ "callgraph_rules_added": [
+  {
+   "caller": "core/product_physics/src/lib.rs:3279:w1_transaction",
+   "name": "freeze",
+   "targets": [
+    "core/product_physics/src/retained_product.rs:3716:freeze"
+   ],
+   "added": "I104 SQ G5 (B1's new same-named methods)",
+   "evidence": "lib.rs w1_transaction `prepared.freeze()`: prepared is the PreparedCases returned by prepare_cases, so PreparedCases::freeze; the receiver is an untyped binding, so the call would fan out by name to both freeze methods"
+  },
+  {
+   "caller": "core/product_physics/src/retained_product.rs:3678:native",
+   "name": "freeze",
+   "targets": [
+    "core/product_physics/src/retained_receipt.rs:57:freeze"
+   ],
+   "added": "I104 SQ G5 (B1's new same-named methods)",
+   "evidence": "retained_product.rs native `attempt.trace.freeze(capture)`: attempt is a &mut CaseAttempt, whose trace is a trace::PreparedTrace (retained_receipt.rs:57); the receiver is an untyped binding, so the call would fan out by name to both freeze methods"
+  },
+  {
+   "caller": "core/product_physics/src/retained_product.rs:3882:prepare_attempt",
+   "name": "freeze",
+   "targets": [
+    "core/product_physics/src/retained_receipt.rs:57:freeze"
+   ],
+   "added": "I104 SQ G5 (B1's new same-named methods)",
+   "evidence": "retained_product.rs prepare_attempt `trace.freeze(self)`: trace is the local trace::PreparedTrace::default() (retained_receipt.rs:57); the receiver is an untyped binding, so the call would fan out by name to both freeze methods"
+  }
+ ],
+ "basis_label": {
+  "old": "tree = {\"basis\": \"NUM 1e323058f3 (G5 part 1 code); text at l <= 128 on the R-4 graph\"",
+  "new": "tree = {\"basis\": \"b1-q 57c92a7b33 (B1 SQ G5: C = 3, L <= 384, I104 rules); text at l <= 128 on the R-4 graph\""
+ }
+}

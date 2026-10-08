@@ -15950,3 +15950,29 @@ The record is `IMPLEMENTATION/B1_I4/` (RECORD.md, SHA256SUMS, sanitized logs). `
 - **Reviews remain the check.** Each lane's return goes to its RV before ROOT merges it.
 
 **IDs:** I105 is used. The next unused are **I106 and RV123**.
+
+## R6a: B1's G5 holds on the real code; M = 10.5 GiB, provisional (ROOT, 2026-10-08 UTC)
+
+**I104's G5** (`b1-q` `b075c5c59f`: the GENERATED PROFILE block only; `R/I104/b1_sq_01/`):
+- **TEXT is complete** at c = 1 to 3. There is no unmapped loop and no multi-member cycle. D = 41,769, converged; the audit's 12 controls pass; `ESTIMATES` = 0.
+- **E_mov,max + R:** 9,800,672,654 B sparse and 9,859,803,998 B dense, W3 binding.
+- **That is +112,078,320 B over I82's pricing** in each mode, all TAV_W:
+  - about +102 MB is B1's per-case observation binding;
+  - +9.3 MB is per-invocation totals scaled by c;
+  - −6.2 MB is RS's restructured G8;
+  - about +6.7 MB is small sites.
+- **The c = 1 control:** +70,292,048 B per mode, all named B1 code.
+- **The rules:** 97 new loop rules over B1's 147 changed loops, 19 of I82's 22 rebinds applied, and 3 call-graph rules for the same-named `freeze` methods.
+- **SF-1's premise holds:** the late-capture forms are exactly 3 × c = 1.
+
+**R6a: M = 10.5 GiB (11,274,289,152 B), provisional.**
+- **By D-7, in both modes:**
+  - sparse 0.8693 M, with an 8.05 % text budget;
+  - dense 0.8745 M, with 6.67 %;
+  - 10.25 GiB fails dense's 5 % budget (1.06 %).
+- It is within ROOT's authority of M ≤ 12 GiB (owner, 2026-10-07). It becomes final at R6b, after RV-Q's G6 review.
+- **The per-call observation rule** (about −150 MB at c = 3) is not applied. The budget is adequate without it, and it would need its own review.
+
+**For SQ2 (B2/B3), noted:** B1's +112 MB uses part of B3-S's headroom. The exact route priced +152.4 MB over S3, which at 10.5 GiB leaves dense under a 5 % text budget. SQ2 prices it on B1's real profile and may select 10.75 GiB, still within ROOT's 12 GiB. **B3b-A stays provisional.**
+
+**Next:** I104 resumes for G6 with the registration at M, the S1 witnesses, the challenge, RSS_TIME through `t3_exclusive.sh`, DEF-O's fallback shares and QUAL §11's carry.

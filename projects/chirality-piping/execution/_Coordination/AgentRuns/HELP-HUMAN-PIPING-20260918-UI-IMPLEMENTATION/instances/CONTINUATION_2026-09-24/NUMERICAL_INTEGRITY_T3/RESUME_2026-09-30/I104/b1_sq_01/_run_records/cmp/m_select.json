@@ -1,0 +1,109 @@
+{
+ "G5_in_build": {
+  "sparse": 9800672654,
+  "dense": 9859803998
+ },
+ "TAV_W": 4301774658,
+ "ADD_1": {
+  "dense": 9747725678,
+  "sparse": 9688594334
+ },
+ "delta_vs_ADD_1": {
+  "sparse": 112078320,
+  "dense": 112078320
+ },
+ "delta_share_of_ADD_TAV_W": {
+  "sparse": 0.0268,
+  "dense": 0.0268
+ },
+ "smallest_M_for_0.9M_rule": 10955337776,
+ "proposed_M": 11274289152,
+ "proposed_M_GiB": 10.5,
+ "within_12GiB": true,
+ "at_proposed_M": {
+  "sparse": {
+   "E_plus_R": 9800672654,
+   "fraction_of_M": 0.8693,
+   "under_0.9M_by": 346187582,
+   "text_error_budget": 0.0805
+  },
+  "dense": {
+   "E_plus_R": 9859803998,
+   "fraction_of_M": 0.8745,
+   "under_0.9M_by": 287056238,
+   "text_error_budget": 0.0667
+  }
+ },
+ "at_step_below": {
+  "M": 11005853696,
+  "M_GiB": 10.25,
+  "modes": {
+   "sparse": {
+    "E_plus_R": 9800672654,
+    "fraction_of_M": 0.8905,
+    "under_0.9M_by": 104595672,
+    "text_error_budget": 0.0243
+   },
+   "dense": {
+    "E_plus_R": 9859803998,
+    "fraction_of_M": 0.8959,
+    "under_0.9M_by": 45464328,
+    "text_error_budget": 0.0106
+   }
+  }
+ },
+ "at_12GiB": {
+  "sparse": {
+   "E_plus_R": 9800672654,
+   "fraction_of_M": 0.7606,
+   "under_0.9M_by": 1795739045,
+   "text_error_budget": 0.4174
+  },
+  "dense": {
+   "E_plus_R": 9859803998,
+   "fraction_of_M": 0.7652,
+   "under_0.9M_by": 1736607701,
+   "text_error_budget": 0.4037
+  }
+ },
+ "SF1_late_forms": {
+  "T11_late_capture": {
+   "c1": {
+    "1": 16512,
+    "s(Option<f64>)": 192,
+    "s(SrcConstraint)": 256,
+    "s(SrcCoord)": 32,
+    "s(SrcMember)": 32,
+    "s(SrcNodal)": 128,
+    "s(SrcSpring)": 32,
+    "s(SrcStation)": 128,
+    "s(SrcSupport)": 32,
+    "s(u32)": 192
+   },
+   "c3": {
+    "1": 49536,
+    "s(Option<f64>)": 576,
+    "s(SrcConstraint)": 768,
+    "s(SrcCoord)": 96,
+    "s(SrcMember)": 96,
+    "s(SrcNodal)": 384,
+    "s(SrcSpring)": 96,
+    "s(SrcStation)": 384,
+    "s(SrcSupport)": 96,
+    "s(u32)": 576
+   },
+   "c3_is_exactly_3x_c1": true
+  },
+  "T11_ordinary_seed": {
+   "c1": {
+    "1": 10368,
+    "s(OrdinarySeed)": 4
+   },
+   "c3": {
+    "1": 31104,
+    "s(OrdinarySeed)": 12
+   },
+   "c3_is_exactly_3x_c1": true
+  }
+ }
+}

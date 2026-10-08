@@ -1,0 +1,78 @@
+--- R/I82/b1_cap_study_01/_run_records/b1_mc_chain.py	2026-10-06 18:50:15
++++ bin/b1q_chain.py	2026-10-08 04:46:33
+@@ -1,4 +1,5 @@
+-"""I82 B1-S: the multi-case (c, a, l, L) variant of I65's cap-priced chain, made in a scratch copy.
++"""[I104 SQ copy of I82 b1_mc_chain.py: the emulated rebinds and edges removed; otherwise unchanged]
++I82 B1-S: the multi-case (c, a, l, L) variant of I65's cap-priced chain, made in a scratch copy.
+ 
+ Input: a copy of u4_g7_06's chain whose line-keyed rules are mapped to the code basis (b1_text_base.sh
+ makes it, WT/scratch/i82_b1_study/rr). Output: a patched copy (argv[2]). No maintained file and no
+@@ -62,58 +63,9 @@
+ LB = json.load(open(lbp))
+ LB["counts"]["caps"].update({"att": 1, "L": 192, "Pall": LB["counts"]["caps"]["P"]})
+ LB["counts"]["milestone"].update({"att": 1, "L": LB["counts"]["milestone"]["l"], "Pall": LB["counts"]["milestone"]["P"]})
+-rebind = []
+-for i, r in enumerate(LB["loops"]):
+-    w, re_ = r["why"], r["re"]
+-    new = None
+-    if "a receipt body array other than builds" in w:
+-        new = "cases"                        # cases[], ordinary_attempts[] hold c; sources/product_attempts a <= c; calls/groups/material_bases 1
+-    elif w.endswith("run refs of the one call") or w.endswith("run/source refs of the one call") or w.endswith("source refs of the one group"):
+-        new = "att"                          # one CaseBatchCall and one group over the a prepared sources (T-8)
+-    elif w in ("G4 (T17 precommit reader at b1f80234dc): numeric cases: one case",
+-               "G4 (T17 precommit reader at b1f80234dc): one case",
+-               "G4 (T17 precommit reader at b1f80234dc): one load case (D1.4)"):
+-        new = "cases"
+-    elif w == "D1.4: one case source, no combination sources":
+-        new = "att"
+-    elif w == "loads over the one case: l":
+-        new = "L"                            # flat_map over every case's loads
+-    elif w.startswith("entity id iterator"):
+-        new = "max(l, L)"                    # the load-id list may span every case
+-    elif re_ == "^for\\ row\\ in\\ rows_list$":
+-        new = "Pall"                         # validate_preview_physics_evidence: every envelope row
+-    if new is not None:
+-        rebind.append({"index": i, "re": re_, "old": r["bound"], "new": new, "why": w[:160]})
+-        r["bound"] = new
+-        r["why"] = f"I82 B1-S rebind ({rebind[-1]['old']} -> {new}): " + w
+-# the whole-envelope row loops become c * P (inserted first, so they win over rules 156 and 193's alternatives)
+-LB["loops"][0:0] = [
+-    {"re": "^for r in &envelope\\.results$", "bound": "Pall", "why": "I82 B1-S: every row of the c-case envelope"},
+-    {"re": "^for row in &envelope\\.results$", "bound": "Pall", "why": "I82 B1-S: every row of the c-case envelope"},
+-]
+-# validate_profile reaches problem() once per load over every case
+-eps = [e for e in LB["edge_per_call"] if e["caller"] == "pressure_runtime.rs:111:validate_profile"]
+-assert len(eps) == 1 and eps[0]["per_call"] == "l"
+-eps[0]["per_call"] = "L"
+-eps[0]["why"] = "I82 B1-S rebind (l -> L): " + eps[0]["why"]
+-# W1's per-case stages, emulating B1's loop over A (T-5, T-7, T-9, T-11) on today's one-case call graph
+-W1 = "lib.rs:3102:retained_w1"; SER = "retained_wire.rs:1500:serialize_selected_from"
+-# publish: today's six exclusive fallback call sites are all counted (I65's method), for each case in A
+-per_call = [(W1, "lib.rs:3041:reserve", "att"), (W1, "lib.rs:3063:publish", "6*att"),
+-            (W1, "retained_product.rs:3310:prepare_case", "att"), (W1, "retained_product.rs:3652:freeze_candidate", "att")]
+-for callee in ("retained_wire.rs:1130:selection", "retained_wire.rs:1264:product_attempt", "retained_wire.rs:1348:one_run",
+-               "retained_wire.rs:1359:kernel_outcome", "retained_wire.rs:1367:run_value", "retained_wire.rs:1457:bind_preparation",
+-               "retained_wire.rs:896:case_source", "retained_product.rs:3816:typed_trace", "retained_product.rs:3879:typed_trace",
+-               "retained_product.rs:3893:typed_trace", "retained_product.rs:3900:typed_trace", "retained_wire.rs:1488:typed_trace",
+-               "retained_wire.rs:1495:typed_trace", "retained_product.rs:1742:bind_rows", "retained_wire.rs:194:domain_hash"):
+-    per_call.append((SER, callee, "att"))
+-for callee in ("retained_wire.rs:1321:one_case", "retained_wire.rs:1412:ordinary_value", "retained_wire.rs:776:legacy_source"):
+-    per_call.append((SER, callee, "cases"))
+-# finish's two hashes (publication, receipt) are per invocation and stay as counted; the preparation hash
+-# is bind_preparation's (scaled above through its own edge), the source identity hash serialize_selected_from's
+-for a_, b_, k_ in per_call:
+-    LB["edge_per_call"].append({"caller": a_, "callee": b_, "per_call": k_,
+-                                "why": "I82 B1-S: per attempted/requested case under B1's n-case transaction (emulated edge multiplicity)"})
++# I104 SQ: I82's 22 emulated loop-rule rebinds and 22 emulated edge multiplicities are NOT applied here.
++# B1's real loops get real rules (i104_rules.py, applied after this script), with I82's list as the checklist.
++rebind = []; per_call = []
+ json.dump(LB, open(lbp, "w"), indent=1)
+ 
+ # the diagnostics fixpoint starts above c x the D1 start and may iterate longer; convergence is reported
+@@ -292,5 +244,5 @@
+       '''NOTICE = (B(2 * (30 + ID + 12) + 30 + 4 + 196 + 20 + ID) + s("String") + s("Diagnostic")) * AA   # I82: one per case in A (T-5)''')
+ 
+ json.dump({"patches": LOG, "loop_rebinds": rebind, "edge_per_call_added": per_call,
+-           "per_case_ordinary_families": PER_CASE_FAMILIES}, open(os.path.join(dst, "I82_PATCHES.json"), "w"), indent=1)
++           "per_case_ordinary_families": PER_CASE_FAMILIES}, open(os.path.join(dst, "B1Q_CHAIN_PATCHES.json"), "w"), indent=1)
+ print(json.dumps({"patches": len(LOG), "loop_rebinds": len(rebind), "edge_per_call_added": len(per_call)}))

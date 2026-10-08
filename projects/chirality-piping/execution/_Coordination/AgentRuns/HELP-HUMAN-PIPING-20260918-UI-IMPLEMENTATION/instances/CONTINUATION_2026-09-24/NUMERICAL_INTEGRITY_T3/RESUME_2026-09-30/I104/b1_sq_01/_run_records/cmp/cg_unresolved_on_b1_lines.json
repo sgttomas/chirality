@@ -1,0 +1,2195 @@
+[
+ {
+  "line": "lib.rs:2999",
+  "caller": "lib.rs:2983:permitted_run",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "let requested_cases = request.model.load_cases.len("
+ },
+ {
+  "line": "lib.rs:3073",
+  "caller": "lib.rs:3072:reserve",
+  "caller_reached": true,
+  "name": "default",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "ng; retained_memory::caps::LOAD_CASES] = Default::default("
+ },
+ {
+  "line": "lib.rs:3074",
+  "caller": "lib.rs:3072:reserve",
+  "caller_reached": true,
+  "name": "is_empty",
+  "reason": "receiver std array: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 3,
+  "context": "_CASES] = Default::default(); if case_ids.is_empty("
+ },
+ {
+  "line": "lib.rs:3074",
+  "caller": "lib.rs:3072:reserve",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std array: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "ult(); if case_ids.is_empty() || case_ids.len("
+ },
+ {
+  "line": "lib.rs:3084",
+  "caller": "lib.rs:3072:reserve",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std array: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "ordinary.diagnostics.try_reserve_exact(case_ids.len("
+ },
+ {
+  "line": "lib.rs:3117",
+  "caller": "lib.rs:3096:publish",
+  "caller_reached": true,
+  "name": "push",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [
+   "load_ledger.rs:131:push"
+  ],
+  "scanned_fns_of_that_name": 2,
+  "context": "ordinary.diagnostics.push("
+ },
+ {
+  "line": "lib.rs:3211",
+  "caller": "lib.rs:3210:only_one",
+  "caller_reached": true,
+  "name": "next",
+  "reason": "receiver typed Iterator: no method of that name on it or a scanned trait",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "{ match (items.next("
+ },
+ {
+  "line": "lib.rs:3211",
+  "caller": "lib.rs:3210:only_one",
+  "caller_reached": true,
+  "name": "next",
+  "reason": "receiver typed Iterator: no method of that name on it or a scanned trait",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "{ match (items.next(), items.next("
+ },
+ {
+  "line": "lib.rs:3259",
+  "caller": "lib.rs:3232:retained_w1",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "nsaction(observer, ordinary, capture, cases.ids().len("
+ },
+ {
+  "line": "lib.rs:3263",
+  "caller": "lib.rs:3232:retained_w1",
+  "caller_reached": true,
+  "name": "drop",
+  "reason": "free call with no free fn of that name (method name only, or external)",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "(ordinary, Ok(successor)) => { drop("
+ },
+ {
+  "line": "lib.rs:3299",
+  "caller": "lib.rs:3279:w1_transaction",
+  "caller_reached": true,
+  "name": "stage",
+  "reason": "free call with no free fn of that name (method name only, or external)",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 2,
+  "context": ") -> bool| prepared.attempts.iter().any(|attempt| stage("
+ },
+ {
+  "line": "retained_memory.rs:416",
+  "caller": "retained_memory.rs:365:walk",
+  "caller_reached": true,
+  "name": "max",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 2,
+  "context": "ve_loads; loads.length = loads.length.max("
+ },
+ {
+  "line": "retained_memory.rs:417",
+  "caller": "retained_memory.rs:365:walk",
+  "caller_reached": true,
+  "name": "max",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 2,
+  "context": "n()); loads.capacity = loads.capacity.max("
+ },
+ {
+  "line": "retained_memory.rs:417",
+  "caller": "retained_memory.rs:365:walk",
+  "caller_reached": true,
+  "name": "capacity",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 2,
+  "context": "apacity = loads.capacity.max(case.primitive_loads.capacity("
+ },
+ {
+  "line": "retained_memory.rs:835",
+  "caller": "retained_memory.rs:817:cap_rows",
+  "caller_reached": true,
+  "name": "row",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "city, n.primitive_loads.capacity, LOADS), row("
+ },
+ {
+  "line": "retained_memory.rs:2549",
+  "caller": "retained_memory.rs:2542:retained_error_text",
+  "caller_reached": true,
+  "name": "text",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "preview_physics_evidence.rs:97:text",
+   "source_blocks.rs:41:text",
+   "load_reference.rs:237:text",
+   "physics_source.rs:25:text",
+   "physics_evidence.rs:45:text"
+  ],
+  "scanned_fns_of_that_name": 6,
+  "context": "let own = Bytes::ZERO.add(text("
+ },
+ {
+  "line": "retained_memory.rs:2549",
+  "caller": "retained_memory.rs:2542:retained_error_text",
+  "caller_reached": true,
+  "name": "text",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "preview_physics_evidence.rs:97:text",
+   "source_blocks.rs:41:text",
+   "load_reference.rs:237:text",
+   "physics_source.rs:25:text",
+   "physics_evidence.rs:45:text"
+  ],
+  "scanned_fns_of_that_name": 6,
+  "context": "t own = Bytes::ZERO.add(text(&capture.error)).add(text("
+ },
+ {
+  "line": "retained_memory.rs:2550",
+  "caller": "retained_memory.rs:2542:retained_error_text",
+  "caller_reached": true,
+  "name": "text",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "preview_physics_evidence.rs:97:text",
+   "source_blocks.rs:41:text",
+   "load_reference.rs:237:text",
+   "physics_source.rs:25:text",
+   "physics_evidence.rs:45:text"
+  ],
+  "scanned_fns_of_that_name": 6,
+  "context": "rked_cases().iter().fold(own, |sum, slot| sum.add(text("
+ },
+ {
+  "line": "retained_memory.rs:2550",
+  "caller": "retained_memory.rs:2542:retained_error_text",
+  "caller_reached": true,
+  "name": "text",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "preview_physics_evidence.rs:97:text",
+   "source_blocks.rs:41:text",
+   "load_reference.rs:237:text",
+   "physics_source.rs:25:text",
+   "physics_evidence.rs:45:text"
+  ],
+  "scanned_fns_of_that_name": 6,
+  "context": "d(own, |sum, slot| sum.add(text(&slot.error)).add(text("
+ },
+ {
+  "line": "retained_memory.rs:2600",
+  "caller": "retained_memory.rs:2568:complete_observations",
+  "caller_reached": true,
+  "name": "from",
+  "reason": "free call with no free fn of that name (method name only, or external)",
+  "text_ancestor_fns_of_that_name": [
+   "retained_product.rs:3430:from"
+  ],
+  "scanned_fns_of_that_name": 27,
+  "context": "()), o(P::OrdinarySolveNotAttempted, u64::from("
+ },
+ {
+  "line": "retained_product.rs:216",
+  "caller": "retained_product.rs:216:cases_seen",
+  "caller_reached": true,
+  "name": "from",
+  "reason": "free call with no free fn of that name (method name only, or external)",
+  "text_ancestor_fns_of_that_name": [
+   "retained_product.rs:3430:from"
+  ],
+  "scanned_fns_of_that_name": 27,
+  "context": "{ self.parked.len() + usize::from("
+ },
+ {
+  "line": "retained_product.rs:225",
+  "caller": "retained_product.rs:223:with_case",
+  "caller_reached": true,
+  "name": "f",
+  "reason": "free call with no free fn of that name (method name only, or external)",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "f index == self.parked.len() { return f("
+ },
+ {
+  "line": "retained_product.rs:227",
+  "caller": "retained_product.rs:223:with_case",
+  "caller_reached": true,
+  "name": "take",
+  "reason": "free call with no free fn of that name (method name only, or external)",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "self); } let mut slot = std::mem::take("
+ },
+ {
+  "line": "retained_product.rs:229",
+  "caller": "retained_product.rs:223:with_case",
+  "caller_reached": true,
+  "name": "f",
+  "reason": "free call with no free fn of that name (method name only, or external)",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "self.swap_case(&mut slot); let result = f("
+ },
+ {
+  "line": "retained_product.rs:246",
+  "caller": "retained_product.rs:245:case_native",
+  "caller_reached": true,
+  "name": "cmp",
+  "reason": "receiver prim usize: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "{ match index.cmp("
+ },
+ {
+  "line": "retained_product.rs:253",
+  "caller": "retained_product.rs:252:case_prepared_source",
+  "caller_reached": true,
+  "name": "cmp",
+  "reason": "receiver prim usize: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "{ match index.cmp("
+ },
+ {
+  "line": "retained_product.rs:268",
+  "caller": "retained_product.rs:263:case_scope",
+  "caller_reached": true,
+  "name": "cmp",
+  "reason": "receiver prim usize: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "::WHOLE; } let rows = match index.cmp("
+ },
+ {
+  "line": "retained_product.rs:279",
+  "caller": "retained_product.rs:278:park_case",
+  "caller_reached": true,
+  "name": "capacity",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 2,
+  "context": "{ if self.parked.capacity("
+ },
+ {
+  "line": "retained_product.rs:282",
+  "caller": "retained_product.rs:278:park_case",
+  "caller_reached": true,
+  "name": "capacity",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 2,
+  "context": "} if self.parked.len() == self.parked.capacity("
+ },
+ {
+  "line": "retained_product.rs:286",
+  "caller": "retained_product.rs:278:park_case",
+  "caller_reached": true,
+  "name": "default",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "ent::MapWrite)?; let mut slot = CaseSlot::default("
+ },
+ {
+  "line": "retained_product.rs:831",
+  "caller": "retained_product.rs:809:observation_copy",
+  "caller_reached": true,
+  "name": "capacity",
+  "reason": "receiver prim String: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 2,
+  "context": "pacity_bytes[slot] .checked_add(value.capacity("
+ },
+ {
+  "line": "retained_product.rs:1164",
+  "caller": "retained_product.rs:1114:bind_observations_by_case",
+  "caller_reached": true,
+  "name": "from",
+  "reason": "free call with no free fn of that name (method name only, or external)",
+  "text_ancestor_fns_of_that_name": [
+   "retained_product.rs:3430:from"
+  ],
+  "scanned_fns_of_that_name": 27,
+  "context": "\")?; let slot = usize::from("
+ },
+ {
+  "line": "retained_product.rs:1177",
+  "caller": "retained_product.rs:1114:bind_observations_by_case",
+  "caller_reached": true,
+  "name": "from",
+  "reason": "free call with no free fn of that name (method name only, or external)",
+  "text_ancestor_fns_of_that_name": [
+   "retained_product.rs:3430:from"
+  ],
+  "scanned_fns_of_that_name": 27,
+  "context": "\")?; if counts[index] != [1, usize::from("
+ },
+ {
+  "line": "retained_product.rs:1551",
+  "caller": "retained_product.rs:1540:capture_case_source",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "if self.case_calls != 1 || (model.load_cases.len("
+ },
+ {
+  "line": "retained_product.rs:2035",
+  "caller": "retained_product.rs:2020:bind_rows_view",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "t mut out = self.adapter.reserve(view.case_rows().len("
+ },
+ {
+  "line": "retained_product.rs:3472",
+  "caller": "retained_product.rs:3469:prepared_case_seen",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "case_seen && self.parked.len()+1<model.load_cases.len("
+ },
+ {
+  "line": "retained_product.rs:3472",
+  "caller": "retained_product.rs:3469:prepared_case_seen",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "load_cases.len() {self.park_case(model.load_cases.len("
+ },
+ {
+  "line": "retained_product.rs:3474",
+  "caller": "retained_product.rs:3469:prepared_case_seen",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "prepared_one_case_seen || index>=model.load_cases.len("
+ },
+ {
+  "line": "retained_product.rs:3474",
+  "caller": "retained_product.rs:3469:prepared_case_seen",
+  "caller_reached": true,
+  "name": "is_empty",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 3,
+  "context": "ex>=model.load_cases.len() || !model.combinations.is_empty("
+ },
+ {
+  "line": "retained_product.rs:3516",
+  "caller": "retained_product.rs:3504:prepared_case_source",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "e_calls!=1 || self.parked.len()>=model.load_cases.len("
+ },
+ {
+  "line": "retained_product.rs:3533",
+  "caller": "retained_product.rs:3504:prepared_case_source",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "e_loads_total.saturating_add(case.primitive_loads.len("
+ },
+ {
+  "line": "retained_product.rs:3814",
+  "caller": "retained_product.rs:3809:prepared_custody",
+  "caller_reached": true,
+  "name": "take",
+  "reason": "receiver std Option: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "ror.is_some() { return Err(self.error.take("
+ },
+ {
+  "line": "retained_product.rs:3857",
+  "caller": "retained_product.rs:3840:bind_case_rows",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "t.checked_add(1)!=Some(cases) || ordinary.results.len("
+ },
+ {
+  "line": "retained_product.rs:3861",
+  "caller": "retained_product.rs:3840:bind_case_rows",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "ent::MapWrite)?; let end=ordinary.results.len("
+ },
+ {
+  "line": "retained_product.rs:3875",
+  "caller": "retained_product.rs:3871:prepare_cases",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std array: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "let mut attempts=Vec::with_capacity(attempted.len("
+ },
+ {
+  "line": "retained_product.rs:3877",
+  "caller": "retained_product.rs:3871:prepare_cases",
+  "caller_reached": true,
+  "name": "push",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [
+   "load_ledger.rs:131:push"
+  ],
+  "scanned_fns_of_that_name": 2,
+  "context": "tempted.iter().enumerate() { attempts.push("
+ },
+ {
+  "line": "retained_product.rs:3884",
+  "caller": "retained_product.rs:3882:prepare_attempt",
+  "caller_reached": true,
+  "name": "default",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "let mut parts=AttemptParts::default("
+ },
+ {
+  "line": "retained_product.rs:3885",
+  "caller": "retained_product.rs:3882:prepare_attempt",
+  "caller_reached": true,
+  "name": "default",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "lt(); let mut trace=trace::PreparedTrace::default("
+ },
+ {
+  "line": "retained_product.rs:3890",
+  "caller": "retained_product.rs:3882:prepare_attempt",
+  "caller_reached": true,
+  "name": "default",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "ce,proof_attempted:false,overlay_work:ScalarWork::default("
+ },
+ {
+  "line": "retained_product.rs:3961",
+  "caller": "retained_product.rs:3958:prepare_owned_case",
+  "caller_reached": false,
+  "name": "default",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "let mut trace=trace::PreparedTrace::default("
+ },
+ {
+  "line": "retained_product.rs:3963",
+  "caller": "retained_product.rs:3958:prepare_owned_case",
+  "caller_reached": false,
+  "name": "new",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [
+   "lib.rs:1239:new",
+   "lib.rs:427:new",
+   "structural/exact_boundary.rs:275:new",
+   "lib.rs:249:new",
+   "structural_adapter.rs:63:new",
+   "structural_adapter.rs:1082:new",
+   "structural_adapter.rs:492:new",
+   "lib.rs:53:new",
+   "source_recovery.rs:467:new"
+  ],
+  "scanned_fns_of_that_name": 104,
+  "context": "Err(PreparedCaseFailure{associations:Vec::new("
+ },
+ {
+  "line": "retained_product.rs:3963",
+  "caller": "retained_product.rs:3958:prepare_owned_case",
+  "caller_reached": false,
+  "name": "new",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [
+   "lib.rs:1239:new",
+   "lib.rs:427:new",
+   "structural/exact_boundary.rs:275:new",
+   "lib.rs:249:new",
+   "structural_adapter.rs:63:new",
+   "structural_adapter.rs:1082:new",
+   "structural_adapter.rs:492:new",
+   "lib.rs:53:new",
+   "source_recovery.rs:467:new"
+  ],
+  "scanned_fns_of_that_name": 104,
+  "context": "ons:Vec::new(),ordinary,capture,preparations:Vec::new("
+ },
+ {
+  "line": "retained_product.rs:3963",
+  "caller": "retained_product.rs:3958:prepare_owned_case",
+  "caller_reached": false,
+  "name": "new",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [
+   "lib.rs:1239:new",
+   "lib.rs:427:new",
+   "structural/exact_boundary.rs:275:new",
+   "lib.rs:249:new",
+   "structural_adapter.rs:63:new",
+   "structural_adapter.rs:1082:new",
+   "structural_adapter.rs:492:new",
+   "lib.rs:53:new",
+   "source_recovery.rs:467:new"
+  ],
+  "scanned_fns_of_that_name": 104,
+  "context": "ure,preparations:Vec::new(),preparation_work:Vec::new("
+ },
+ {
+  "line": "retained_product.rs:3964",
+  "caller": "retained_product.rs:3958:prepare_owned_case",
+  "caller_reached": false,
+  "name": "new",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [
+   "lib.rs:1239:new",
+   "lib.rs:427:new",
+   "structural/exact_boundary.rs:275:new",
+   "lib.rs:249:new",
+   "structural_adapter.rs:63:new",
+   "structural_adapter.rs:1082:new",
+   "structural_adapter.rs:492:new",
+   "lib.rs:53:new",
+   "source_recovery.rs:467:new"
+  ],
+  "scanned_fns_of_that_name": 104,
+  "context": "preparation_error:None,old_operational:Vec::new("
+ },
+ {
+  "line": "retained_product.rs:3970",
+  "caller": "retained_product.rs:3958:prepare_owned_case",
+  "caller_reached": false,
+  "name": "default",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "y),proof_attempted:false,overlay_work:ScalarWork::default("
+ },
+ {
+  "line": "retained_product.rs:3984",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "\")?; if old.members().len("
+ },
+ {
+  "line": "retained_product.rs:3984",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "\")?; if old.members().len()!=self.facts.len("
+ },
+ {
+  "line": "retained_product.rs:3984",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "embers().len()!=self.facts.len() || old.members().len("
+ },
+ {
+  "line": "retained_product.rs:3984",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "ts.len() || old.members().len()!=self.operational.len("
+ },
+ {
+  "line": "retained_product.rs:3994",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "default",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "let mut parts=k::SourceParts::default("
+ },
+ {
+  "line": "retained_product.rs:3995",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "r,&mut self.prepared_capacity_bytes,0,old.nodes().len("
+ },
+ {
+  "line": "retained_product.rs:3996",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "&mut self.prepared_capacity_bytes,1,old.members().len("
+ },
+ {
+  "line": "retained_product.rs:3997",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "self.prepared_capacity_bytes,2,old.constraints().len("
+ },
+ {
+  "line": "retained_product.rs:3998",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "&mut self.prepared_capacity_bytes,3,old.springs().len("
+ },
+ {
+  "line": "retained_product.rs:3999",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "mut self.prepared_capacity_bytes,4,old.stations().len("
+ },
+ {
+  "line": "retained_product.rs:4000",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "mut self.prepared_capacity_bytes,5,old.supports().len("
+ },
+ {
+  "line": "retained_product.rs:4001",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "r,&mut self.prepared_capacity_bytes,6,old.loads().len("
+ },
+ {
+  "line": "retained_product.rs:4002",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "&mut self.prepared_capacity_bytes,7,old.members().len("
+ },
+ {
+  "line": "retained_product.rs:4003",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "&mut self.prepared_capacity_bytes,8,old.members().len("
+ },
+ {
+  "line": "retained_product.rs:4004",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "mut self.prepared_capacity_bytes,13,old.members().len("
+ },
+ {
+  "line": "retained_product.rs:4005",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "&mut self.prepared_capacity_bytes,9,old.members().len("
+ },
+ {
+  "line": "retained_product.rs:4008",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "mut self.prepared_capacity_bytes,14,old.members().len("
+ },
+ {
+  "line": "retained_product.rs:4028",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "get",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 7,
+  "context": "vent::SourceVisit)?; let f=self.facts.get("
+ },
+ {
+  "line": "retained_product.rs:4036",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "erEvent::MapWrite)?; if trace.members.len("
+ },
+ {
+  "line": "retained_product.rs:4036",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "capacity",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 2,
+  "context": "if trace.members.len()==trace.members.capacity("
+ },
+ {
+  "line": "retained_product.rs:4036",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "=trace.members.capacity() || out.preparation_work.len("
+ },
+ {
+  "line": "retained_product.rs:4036",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "capacity",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 2,
+  "context": "out.preparation_work.len()==out.preparation_work.capacity("
+ },
+ {
+  "line": "retained_product.rs:4038",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "push",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [
+   "load_ledger.rs:131:push"
+  ],
+  "scanned_fns_of_that_name": 2,
+  "context": "e::PreparationEntry>(); trace.members.push("
+ },
+ {
+  "line": "retained_product.rs:4041",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "onResult::Entered,work_index:out.preparation_work.len("
+ },
+ {
+  "line": "retained_product.rs:4043",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "push",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [
+   "load_ledger.rs:131:push"
+  ],
+  "scanned_fns_of_that_name": 2,
+  "context": "result,w)=spent.into_parts();out.preparation_work.push("
+ },
+ {
+  "line": "retained_product.rs:4055",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "push",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [
+   "load_ledger.rs:131:push"
+  ],
+  "scanned_fns_of_that_name": 2,
+  "context": ".adapter.require()?; out.associations.push("
+ },
+ {
+  "line": "retained_product.rs:4069",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "push",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [
+   "load_ledger.rs:131:push"
+  ],
+  "scanned_fns_of_that_name": 2,
+  "context": ".adapter.require()?; self.operational.push("
+ },
+ {
+  "line": "retained_product.rs:4072",
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "caller_reached": true,
+  "name": "push",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [
+   "load_ledger.rs:131:push"
+  ],
+  "scanned_fns_of_that_name": 2,
+  "context": "e_entry(AdapterEvent::MapWrite)?;out.preparations.push("
+ },
+ {
+  "line": "retained_product.rs:4136",
+  "caller": "retained_product.rs:4135:rows_of",
+  "caller_reached": true,
+  "name": "get",
+  "reason": "receiver std array: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 7,
+  "context": "{ results.get("
+ },
+ {
+  "line": "retained_product.rs:4136",
+  "caller": "retained_product.rs:4135:rows_of",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std array: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "{ results.get(self.row_range(results.len("
+ },
+ {
+  "line": "retained_product.rs:4367",
+  "caller": "retained_product.rs:4321:freeze_case",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "if self.error.is_none() && self.verdicts.len("
+ },
+ {
+  "line": "retained_product.rs:4438",
+  "caller": "retained_product.rs:4437:freeze_candidate",
+  "caller_reached": false,
+  "name": "take",
+  "reason": "receiver std Option: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "{ let ordinary=self.ordinary.take("
+ },
+ {
+  "line": "retained_product.rs:4439",
+  "caller": "retained_product.rs:4437:freeze_candidate",
+  "caller_reached": false,
+  "name": "take",
+  "reason": "receiver std Option: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "ture.native_invocation.take(),self.capture.native.take("
+ },
+ {
+  "line": "retained_wire.rs:975",
+  "caller": "retained_wire.rs:909:case_source",
+  "caller_reached": true,
+  "name": "push",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [
+   "load_ledger.rs:131:push"
+  ],
+  "scanned_fns_of_that_name": 2,
+  "context": "nodal_terms.push("
+ },
+ {
+  "line": "retained_wire.rs:1410",
+  "caller": "retained_wire.rs:1407:invocation_arrays",
+  "caller_reached": true,
+  "name": "get",
+  "reason": "receiver std array: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 7,
+  "context": "h o { k::NativeOwner::Case(i) => requests.get("
+ },
+ {
+  "line": "retained_wire.rs:1476",
+  "caller": "retained_wire.rs:1475:case_diagnostic_refs",
+  "caller_reached": false,
+  "name": "new",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [
+   "lib.rs:1239:new",
+   "lib.rs:427:new",
+   "structural/exact_boundary.rs:275:new",
+   "lib.rs:249:new",
+   "structural_adapter.rs:63:new",
+   "structural_adapter.rs:1082:new",
+   "structural_adapter.rs:492:new",
+   "lib.rs:53:new",
+   "source_recovery.rs:467:new"
+  ],
+  "scanned_fns_of_that_name": 104,
+  "context": "s: [Vec<Value>; N] = std::array::from_fn(|_| Vec::new("
+ },
+ {
+  "line": "retained_wire.rs:1488",
+  "caller": "retained_wire.rs:1480:case_diagnostic_refs_into",
+  "caller_reached": true,
+  "name": "push",
+  "reason": "receiver std array: std method",
+  "text_ancestor_fns_of_that_name": [
+   "load_ledger.rs:131:push"
+  ],
+  "scanned_fns_of_that_name": 2,
+  "context": "r().any(|r| r == *case_id) { refs.push("
+ },
+ {
+  "line": "retained_wire.rs:1771",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "default",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "p| fail(ReceiptCheck::Scope, p); let e = Enc::default("
+ },
+ {
+  "line": "retained_wire.rs:1776",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "as_str",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 19,
+  "context": "t.as_deref() != Some(invocation.borrowed_digest().as_str("
+ },
+ {
+  "line": "retained_wire.rs:1804",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "collect",
+  "reason": "chained call: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": ", None => CaseStatus::NotRequired, }).collect("
+ },
+ {
+  "line": "retained_wire.rs:1809",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "collect",
+  "reason": "chained call: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "attempt.prepared).map(|attempt| attempt.request).collect("
+ },
+ {
+  "line": "retained_wire.rs:1811",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "calls",
+  "reason": "receiver std Option: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "let inv = inv.ok_or(assoc(\" \"))?; if inv.calls("
+ },
+ {
+  "line": "retained_wire.rs:1811",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "runs",
+  "reason": "receiver std Option: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "(\" \"))?; if inv.calls().len() != 1 || inv.runs("
+ },
+ {
+  "line": "retained_wire.rs:1811",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "\"))?; if inv.calls().len() != 1 || inv.runs().len("
+ },
+ {
+  "line": "retained_wire.rs:1811",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "alls().len() != 1 || inv.runs().len() != requests.len("
+ },
+ {
+  "line": "retained_wire.rs:1811",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "sources",
+  "reason": "receiver std Option: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "!= 1 || inv.runs().len() != requests.len() || inv.sources("
+ },
+ {
+  "line": "retained_wire.rs:1811",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "requests.len() || inv.sources().len() != requests.len("
+ },
+ {
+  "line": "retained_wire.rs:1816",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "new",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [
+   "lib.rs:1239:new",
+   "lib.rs:427:new",
+   "structural/exact_boundary.rs:275:new",
+   "lib.rs:249:new",
+   "structural_adapter.rs:63:new",
+   "structural_adapter.rs:1082:new",
+   "structural_adapter.rs:492:new",
+   "lib.rs:53:new",
+   "source_recovery.rs:467:new"
+  ],
+  "scanned_fns_of_that_name": 104,
+  "context": "let mut legacy_source_work = Vec::new("
+ },
+ {
+  "line": "retained_wire.rs:1819",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "push",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [
+   "load_ledger.rs:131:push"
+  ],
+  "scanned_fns_of_that_name": 2,
+  "context": "n pc.ordinary.iter().enumerate() { legacy.push("
+ },
+ {
+  "line": "retained_wire.rs:1836",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "new",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [
+   "lib.rs:1239:new",
+   "lib.rs:427:new",
+   "structural/exact_boundary.rs:275:new",
+   "lib.rs:249:new",
+   "structural_adapter.rs:63:new",
+   "structural_adapter.rs:1082:new",
+   "structural_adapter.rs:492:new",
+   "lib.rs:53:new",
+   "source_recovery.rs:467:new"
+  ],
+  "scanned_fns_of_that_name": 104,
+  "context": "let mut diagnostic_refs = vec![Vec::new("
+ },
+ {
+  "line": "retained_wire.rs:1846",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "push",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [
+   "load_ledger.rs:131:push"
+  ],
+  "scanned_fns_of_that_name": 2,
+  "context": "oc(\" \")); } ordinary.push("
+ },
+ {
+  "line": "retained_wire.rs:1847",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "push",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [
+   "load_ledger.rs:131:push"
+  ],
+  "scanned_fns_of_that_name": 2,
+  "context": "} ordinary.push(entry); quality.push("
+ },
+ {
+  "line": "retained_wire.rs:1850",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "sources",
+  "reason": "receiver std Option: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "mut sources: Vec<Option<Value>> = vec![None; inv.sources("
+ },
+ {
+  "line": "retained_wire.rs:1851",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std array: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "ut product_attempts = Vec::with_capacity(attempts.len("
+ },
+ {
+  "line": "retained_wire.rs:1867",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "push",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [
+   "load_ledger.rs:131:push"
+  ],
+  "scanned_fns_of_that_name": 2,
+  "context": "} } product_attempts.push("
+ },
+ {
+  "line": "retained_wire.rs:1885",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "push",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [
+   "load_ledger.rs:131:push"
+  ],
+  "scanned_fns_of_that_name": 2,
+  "context": "\")); } } cases_v.push("
+ },
+ {
+  "line": "retained_wire.rs:1887",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "runs",
+  "reason": "receiver std Option: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "cases_v.push(case_v); } let last = inv.runs("
+ },
+ {
+  "line": "retained_wire.rs:1889",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "runs",
+  "reason": "receiver std Option: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "last, &requests)?; let execution_order = inv.runs("
+ },
+ {
+  "line": "retained_wire.rs:1890",
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "caller_reached": true,
+  "name": "get",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 7,
+  "context": "k::NativeOwner::Case(ordinal) => requests.get("
+ },
+ {
+  "line": "retained_wire.rs:1901",
+  "caller": "retained_wire.rs:1900:case_run",
+  "caller_reached": true,
+  "name": "get",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 7,
+  "context": "{ let run = inv.runs().get("
+ },
+ {
+  "line": "retained_wire.rs:1917",
+  "caller": "retained_wire.rs:1912:serialize_attempt",
+  "caller_reached": true,
+  "name": "default",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": ".request; let mut costs = rr::ProjectionWork::default("
+ },
+ {
+  "line": "retained_wire.rs:1936",
+  "caller": "retained_wire.rs:1912:serialize_attempt",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "\"))?; if rows.len() != row_ids.len("
+ },
+ {
+  "line": "retained_wire.rs:1939",
+  "caller": "retained_wire.rs:1912:serialize_attempt",
+  "caller_reached": true,
+  "name": "collect",
+  "reason": "chained call: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "k::ProductRecipe> = rows.iter().map(|r| r.recipe).collect("
+ },
+ {
+  "line": "retained_wire.rs:1960",
+  "caller": "retained_wire.rs:1912:serialize_attempt",
+  "caller_reached": true,
+  "name": "bound",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "if refused.proof_failure().is_some_and(|f| !bound("
+ },
+ {
+  "line": "retained_wire.rs:1963",
+  "caller": "retained_wire.rs:1912:serialize_attempt",
+  "caller_reached": true,
+  "name": "bound",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "if refused.certificate().is_some_and(|c| !bound("
+ },
+ {
+  "line": "retained_tests_hooks/grant2.rs:95",
+  "caller": "retained_tests_hooks/grant2.rs:94:before_case_preparation",
+  "caller_reached": false,
+  "name": "consume",
+  "reason": "free call with no free fn of that name (method name only, or external)",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "{ if consume("
+ },
+ {
+  "line": "retained_precision.rs:737",
+  "caller": "retained_precision.rs:659:g3",
+  "caller_reached": true,
+  "name": "fail",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "retained_wire.rs:115:fail"
+  ],
+  "scanned_fns_of_that_name": 3,
+  "context": "rate() { let owner = &s[\" \"]; fail("
+ },
+ {
+  "line": "retained_precision.rs:738",
+  "caller": "retained_precision.rs:659:g3",
+  "caller_reached": true,
+  "name": "is_empty",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 3,
+  "context": "fail( !list(&s[\" \"]).is_empty("
+ },
+ {
+  "line": "retained_precision.rs:743",
+  "caller": "retained_precision.rs:659:g3",
+  "caller_reached": true,
+  "name": "get",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 7,
+  "context": ".ok() .and_then(|ci| cs.get("
+ },
+ {
+  "line": "retained_precision.rs:748",
+  "caller": "retained_precision.rs:659:g3",
+  "caller_reached": true,
+  "name": "new",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [
+   "lib.rs:1239:new",
+   "lib.rs:427:new",
+   "structural/exact_boundary.rs:275:new",
+   "lib.rs:249:new",
+   "structural_adapter.rs:63:new",
+   "structural_adapter.rs:1082:new",
+   "structural_adapter.rs:492:new",
+   "lib.rs:53:new",
+   "source_recovery.rs:467:new"
+  ],
+  "scanned_fns_of_that_name": 104,
+  "context": "().enumerate() { let mut seen = BTreeSet::new("
+ },
+ {
+  "line": "retained_precision.rs:749",
+  "caller": "retained_precision.rs:659:g3",
+  "caller_reached": true,
+  "name": "fail",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "retained_wire.rs:115:fail"
+  ],
+  "scanned_fns_of_that_name": 3,
+  "context": "{ let mut seen = BTreeSet::new(); fail("
+ },
+ {
+  "line": "retained_precision.rs:753",
+  "caller": "retained_precision.rs:659:g3",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": ".iter() .all(|ci| u(ci) < cs.len("
+ },
+ {
+  "line": "retained_precision.rs:2058",
+  "caller": "retained_precision.rs:2044:d38_capture_before_run",
+  "caller_reached": true,
+  "name": "is_null",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "\"] == \" \" && !a[\" \"].is_null("
+ },
+ {
+  "line": "retained_precision.rs:2308",
+  "caller": "retained_precision.rs:2061:g5_products",
+  "caller_reached": true,
+  "name": "is_null",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "if st[\" \"] == \" \" && a[\" \"].is_null("
+ },
+ {
+  "line": "retained_precision.rs:2311",
+  "caller": "retained_precision.rs:2061:g5_products",
+  "caller_reached": true,
+  "name": "is_null",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "} else { pf(!a[\" \"].is_null("
+ },
+ {
+  "line": "retained_precision.rs:3522",
+  "caller": "retained_precision.rs:3488:g8",
+  "caller_reached": true,
+  "name": "get",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 7,
+  "context": ".iter() .all(|k| model.get("
+ },
+ {
+  "line": "retained_precision.rs:3593",
+  "caller": "retained_precision.rs:3488:g8",
+  "caller_reached": true,
+  "name": "fail",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "retained_wire.rs:115:fail"
+  ],
+  "scanned_fns_of_that_name": 3,
+  "context": "fail("
+ },
+ {
+  "line": "retained_precision.rs:3594",
+  "caller": "retained_precision.rs:3488:g8",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "fail( modes.len("
+ },
+ {
+  "line": "retained_precision.rs:3605",
+  "caller": "retained_precision.rs:3488:g8",
+  "caller_reached": true,
+  "name": "count",
+  "reason": "chained call: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [
+   "retained_wire.rs:138:count"
+  ],
+  "scanned_fns_of_that_name": 3,
+  "context": "\") .count("
+ },
+ {
+  "line": "retained_precision.rs:3609",
+  "caller": "retained_precision.rs:3488:g8",
+  "caller_reached": true,
+  "name": "fail",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "retained_wire.rs:115:fail"
+  ],
+  "scanned_fns_of_that_name": 3,
+  "context": "fail("
+ },
+ {
+  "line": "retained_precision.rs:4213",
+  "caller": "retained_precision.rs:4195:g5_ordinary",
+  "caller_reached": true,
+  "name": "fail",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "retained_wire.rs:115:fail"
+  ],
+  "scanned_fns_of_that_name": 3,
+  "context": "fail("
+ },
+ {
+  "line": "retained_precision.rs:4262",
+  "caller": "retained_precision.rs:4195:g5_ordinary",
+  "caller_reached": true,
+  "name": "fail",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "retained_wire.rs:115:fail"
+  ],
+  "scanned_fns_of_that_name": 3,
+  "context": "if c[\" \"] == \" \" { fail("
+ },
+ {
+  "line": "retained_precision.rs:4262",
+  "caller": "retained_precision.rs:4195:g5_ordinary",
+  "caller_reached": true,
+  "name": "is_null",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "\" { fail(c[\" \"].is_null("
+ },
+ {
+  "line": "retained_precision.rs:4332",
+  "caller": "retained_precision.rs:4195:g5_ordinary",
+  "caller_reached": true,
+  "name": "fail",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "retained_wire.rs:115:fail"
+  ],
+  "scanned_fns_of_that_name": 3,
+  "context": "on[\" \"]), text(&reason[\" \"])); fail("
+ },
+ {
+  "line": "retained_precision.rs:4336",
+  "caller": "retained_precision.rs:4195:g5_ordinary",
+  "caller_reached": true,
+  "name": "is_null",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "\" && run.is_null("
+ },
+ {
+  "line": "retained_precision.rs:4337",
+  "caller": "retained_precision.rs:4195:g5_ordinary",
+  "caller_reached": true,
+  "name": "is_null",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "run.is_null() && !decline.is_null("
+ },
+ {
+  "line": "retained_precision.rs:4342",
+  "caller": "retained_precision.rs:4195:g5_ordinary",
+  "caller_reached": true,
+  "name": "is_null",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "\" | \" \") && run.is_null("
+ },
+ {
+  "line": "retained_precision.rs:4370",
+  "caller": "retained_precision.rs:4195:g5_ordinary",
+  "caller_reached": true,
+  "name": "is_null",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "phase == \" \" && !run.is_null("
+ },
+ {
+  "line": "retained_precision.rs:4497",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "is_empty",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 3,
+  "context": "empty = |v: &Value| v.as_str().is_some_and(|t| !t.is_empty("
+ },
+ {
+  "line": "retained_precision.rs:4500",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "new",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [
+   "lib.rs:1239:new",
+   "lib.rs:427:new",
+   "structural/exact_boundary.rs:275:new",
+   "lib.rs:249:new",
+   "structural_adapter.rs:63:new",
+   "structural_adapter.rs:1082:new",
+   "structural_adapter.rs:492:new",
+   "lib.rs:53:new",
+   "source_recovery.rs:467:new"
+  ],
+  "scanned_fns_of_that_name": 104,
+  "context": "me_and(|a| { let mut seen = BTreeSet::new("
+ },
+ {
+  "line": "retained_precision.rs:4501",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "nonempty",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "n = BTreeSet::new(); a.iter().all(|x| nonempty("
+ },
+ {
+  "line": "retained_precision.rs:4505",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "number",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "load_reference.rs:242:number",
+   "physics_evidence.rs:50:number",
+   "preview_physics_evidence.rs:102:number"
+  ],
+  "scanned_fns_of_that_name": 6,
+  "context": ".is_number()); let safe_integer = |v: &Value| number("
+ },
+ {
+  "line": "retained_precision.rs:4505",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "abs",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 2,
+  "context": "Value| number(v).filter(|n| n.fract() == 0.0 && n.abs("
+ },
+ {
+  "line": "retained_precision.rs:4508",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "get",
+  "reason": "generic/trait receiver fan-out",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 7,
+  "context": "preview_physics_contract(); demand( p.get("
+ },
+ {
+  "line": "retained_precision.rs:4508",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "get",
+  "reason": "generic/trait receiver fan-out",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 7,
+  "context": "p.get(\" \").is_none() && p.get("
+ },
+ {
+  "line": "retained_precision.rs:4576",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "new",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [
+   "lib.rs:1239:new",
+   "lib.rs:427:new",
+   "structural/exact_boundary.rs:275:new",
+   "lib.rs:249:new",
+   "structural_adapter.rs:63:new",
+   "structural_adapter.rs:1082:new",
+   "structural_adapter.rs:492:new",
+   "lib.rs:53:new",
+   "source_recovery.rs:467:new"
+  ],
+  "scanned_fns_of_that_name": 104,
+  "context": "IONS: f64 = 131072.0; let mut ids = BTreeSet::new("
+ },
+ {
+  "line": "retained_precision.rs:4577",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "new",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [
+   "lib.rs:1239:new",
+   "lib.rs:427:new",
+   "structural/exact_boundary.rs:275:new",
+   "lib.rs:249:new",
+   "structural_adapter.rs:63:new",
+   "structural_adapter.rs:1082:new",
+   "structural_adapter.rs:492:new",
+   "lib.rs:53:new",
+   "source_recovery.rs:467:new"
+  ],
+  "scanned_fns_of_that_name": 104,
+  "context": "::new(); let mut attribution_sets = BTreeSet::new("
+ },
+ {
+  "line": "retained_precision.rs:4578",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "new",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [
+   "lib.rs:1239:new",
+   "lib.rs:427:new",
+   "structural/exact_boundary.rs:275:new",
+   "lib.rs:249:new",
+   "structural_adapter.rs:63:new",
+   "structural_adapter.rs:1082:new",
+   "structural_adapter.rs:492:new",
+   "lib.rs:53:new",
+   "source_recovery.rs:467:new"
+  ],
+  "scanned_fns_of_that_name": 104,
+  "context": "let (mut extrema_ids, mut measure_ids) = (Vec::new("
+ },
+ {
+  "line": "retained_precision.rs:4578",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "new",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [
+   "lib.rs:1239:new",
+   "lib.rs:427:new",
+   "structural/exact_boundary.rs:275:new",
+   "lib.rs:249:new",
+   "structural_adapter.rs:63:new",
+   "structural_adapter.rs:1082:new",
+   "structural_adapter.rs:492:new",
+   "lib.rs:53:new",
+   "source_recovery.rs:467:new"
+  ],
+  "scanned_fns_of_that_name": 104,
+  "context": "extrema_ids, mut measure_ids) = (Vec::new(), Vec::new("
+ },
+ {
+  "line": "retained_precision.rs:4582",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "nonempty",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "\")?; demand( nonempty("
+ },
+ {
+  "line": "retained_precision.rs:4606",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "strings",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "physics_evidence.rs:59:strings",
+   "preview_physics_evidence.rs:116:strings"
+  ],
+  "scanned_fns_of_that_name": 3,
+  "context": "coverage[\" \"].is_boolean() && strings("
+ },
+ {
+  "line": "retained_precision.rs:4606",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "strings",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "physics_evidence.rs:59:strings",
+   "preview_physics_evidence.rs:116:strings"
+  ],
+  "scanned_fns_of_that_name": 3,
+  "context": "\"].is_boolean() && strings(unavailable) && strings("
+ },
+ {
+  "line": "retained_precision.rs:4615",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "is_empty",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 3,
+  "context": "_bool() == Some(list(unavailable).is_empty("
+ },
+ {
+  "line": "retained_precision.rs:4615",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "is_empty",
+  "reason": "chained call resolved by the head's return type: no method of that name on it",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 3,
+  "context": "ome(list(unavailable).is_empty() && list(outside).is_empty("
+ },
+ {
+  "line": "retained_precision.rs:4625",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "strings",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "physics_evidence.rs:59:strings",
+   "preview_physics_evidence.rs:116:strings"
+  ],
+  "scanned_fns_of_that_name": 3,
+  "context": "\"]; demand( strings("
+ },
+ {
+  "line": "retained_precision.rs:4628",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "new",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [
+   "lib.rs:1239:new",
+   "lib.rs:427:new",
+   "structural/exact_boundary.rs:275:new",
+   "lib.rs:249:new",
+   "structural_adapter.rs:63:new",
+   "structural_adapter.rs:1082:new",
+   "structural_adapter.rs:492:new",
+   "lib.rs:53:new",
+   "source_recovery.rs:467:new"
+  ],
+  "scanned_fns_of_that_name": 104,
+  "context": "\", )?; let mut withheld = Vec::new("
+ },
+ {
+  "line": "retained_precision.rs:4635",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "nonempty",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": ")?; demand( nonempty("
+ },
+ {
+  "line": "retained_precision.rs:4638",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "push",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [
+   "load_ledger.rs:131:push"
+  ],
+  "scanned_fns_of_that_name": 2,
+  "context": "\", )?; withheld.push("
+ },
+ {
+  "line": "retained_precision.rs:4649",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "nonempty",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "\")?; demand( nonempty("
+ },
+ {
+  "line": "retained_precision.rs:4650",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "nonempty",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "nonempty(&x[\" \"]) && nonempty("
+ },
+ {
+  "line": "retained_precision.rs:4662",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "number",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "load_reference.rs:242:number",
+   "physics_evidence.rs:50:number",
+   "preview_physics_evidence.rs:102:number"
+  ],
+  "scanned_fns_of_that_name": 6,
+  "context": ".iter() .all(|k| number("
+ },
+ {
+  "line": "retained_precision.rs:4668",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "number",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "load_reference.rs:242:number",
+   "physics_evidence.rs:50:number",
+   "preview_physics_evidence.rs:102:number"
+  ],
+  "scanned_fns_of_that_name": 6,
+  "context": ".iter() .all(|k| number("
+ },
+ {
+  "line": "retained_precision.rs:4677",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "number",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "load_reference.rs:242:number",
+   "physics_evidence.rs:50:number",
+   "preview_physics_evidence.rs:102:number"
+  ],
+  "scanned_fns_of_that_name": 6,
+  "context": ")?; let (lower, upper) = (number("
+ },
+ {
+  "line": "retained_precision.rs:4677",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "number",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "load_reference.rs:242:number",
+   "physics_evidence.rs:50:number",
+   "preview_physics_evidence.rs:102:number"
+  ],
+  "scanned_fns_of_that_name": 6,
+  "context": "t (lower, upper) = (number(&x[\" \"]), number("
+ },
+ {
+  "line": "retained_precision.rs:4682",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "push",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [
+   "load_ledger.rs:131:push"
+  ],
+  "scanned_fns_of_that_name": 2,
+  "context": "\", )?; extrema_ids.push("
+ },
+ {
+  "line": "retained_precision.rs:4687",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "collect",
+  "reason": "chained call: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": ".map(|x| text(&x[\" \"])) .collect("
+ },
+ {
+  "line": "retained_precision.rs:4689",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "pipes.iter().collect::<BTreeSet<_>>().len("
+ },
+ {
+  "line": "retained_precision.rs:4689",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std Vec: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "es.iter().collect::<BTreeSet<_>>().len() == pipes.len("
+ },
+ {
+  "line": "retained_precision.rs:4701",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "nonempty",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "\")?; demand( nonempty("
+ },
+ {
+  "line": "retained_precision.rs:4702",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "nonempty",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "nonempty(&m[\" \"]) && nonempty("
+ },
+ {
+  "line": "retained_precision.rs:4703",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "nonempty",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "nempty(&m[\" \"]) && nonempty("
+ },
+ {
+  "line": "retained_precision.rs:4709",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "nonempty",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "\" ) && nonempty("
+ },
+ {
+  "line": "retained_precision.rs:4720",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "number",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "load_reference.rs:242:number",
+   "physics_evidence.rs:50:number",
+   "preview_physics_evidence.rs:102:number"
+  ],
+  "scanned_fns_of_that_name": 6,
+  "context": ".iter() .all(|k| number("
+ },
+ {
+  "line": "retained_precision.rs:4721",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "number",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "load_reference.rs:242:number",
+   "physics_evidence.rs:50:number",
+   "preview_physics_evidence.rs:102:number"
+  ],
+  "scanned_fns_of_that_name": 6,
+  "context": "number(&m[*k]).is_some()) && number("
+ },
+ {
+  "line": "retained_precision.rs:4722",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "number",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [
+   "load_reference.rs:242:number",
+   "physics_evidence.rs:50:number",
+   "preview_physics_evidence.rs:102:number"
+  ],
+  "scanned_fns_of_that_name": 6,
+  "context": ").is_some_and(|n| n > 0.0) && number("
+ },
+ {
+  "line": "retained_precision.rs:4725",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "push",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [
+   "load_ledger.rs:131:push"
+  ],
+  "scanned_fns_of_that_name": 2,
+  "context": "\", )?; measure_ids.push("
+ },
+ {
+  "line": "retained_precision.rs:4727",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "collect",
+  "reason": "chained call: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "ed: Vec<&str> = list(attributed).iter().map(text).collect("
+ },
+ {
+  "line": "retained_precision.rs:4734",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std BTreeSet: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "demand( attribution_sets.len("
+ },
+ {
+  "line": "retained_precision.rs:4738",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "extrema_ids.iter().collect::<BTreeSet<_>>().len("
+ },
+ {
+  "line": "retained_precision.rs:4738",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "r().collect::<BTreeSet<_>>().len() == extrema_ids.len("
+ },
+ {
+  "line": "retained_precision.rs:4739",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "chained call: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "&& measure_ids.iter().collect::<BTreeSet<_>>().len("
+ },
+ {
+  "line": "retained_precision.rs:4739",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "r().collect::<BTreeSet<_>>().len() == measure_ids.len("
+ },
+ {
+  "line": "retained_precision.rs:4742",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "new",
+  "reason": "Type::f: no fn of that name on that type (derived, std or external)",
+  "text_ancestor_fns_of_that_name": [
+   "lib.rs:1239:new",
+   "lib.rs:427:new",
+   "structural/exact_boundary.rs:275:new",
+   "lib.rs:249:new",
+   "structural_adapter.rs:63:new",
+   "structural_adapter.rs:1082:new",
+   "structural_adapter.rs:492:new",
+   "lib.rs:53:new",
+   "source_recovery.rs:467:new"
+  ],
+  "scanned_fns_of_that_name": 104,
+  "context": "\", )?; let mut gates = BTreeSet::new("
+ },
+ {
+  "line": "retained_precision.rs:4749",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "nonempty",
+  "reason": "closure-shadowed",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": "\", )?; demand( nonempty("
+ },
+ {
+  "line": "retained_precision.rs:4755",
+  "caller": "retained_precision.rs:4485:preview_physics_transport_metadata",
+  "caller_reached": true,
+  "name": "is_null",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 1,
+  "context": ")), Some(false) => gate[\" \"].is_null("
+ },
+ {
+  "line": "retained_precision.rs:4495",
+  "caller": "retained_precision.rs:4493:shape",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "unknown receiver: no scanned method of that name",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "v.as_object() .is_some_and(|o| o.len("
+ },
+ {
+  "line": "retained_precision.rs:4495",
+  "caller": "retained_precision.rs:4493:shape",
+  "caller_reached": true,
+  "name": "len",
+  "reason": "receiver std array: std method",
+  "text_ancestor_fns_of_that_name": [],
+  "scanned_fns_of_that_name": 6,
+  "context": "ct() .is_some_and(|o| o.len() == keys.len("
+ }
+]

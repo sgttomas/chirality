@@ -1,0 +1,2628 @@
+[
+ {
+  "caller": "lib.rs:3096:publish",
+  "M_caller": 1,
+  "name": "push",
+  "targets": [
+   [
+    "lib.rs:3135:push",
+    0
+   ],
+   [
+    "load_ledger.rs:131:push",
+    3063150516
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:278:park_case",
+  "M_caller": 3,
+  "name": "push",
+  "targets": [
+   [
+    "lib.rs:3135:push",
+    0
+   ],
+   [
+    "load_ledger.rs:131:push",
+    3063150516
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:1114:bind_observations_by_case",
+  "M_caller": 2,
+  "name": "push",
+  "targets": [
+   [
+    "lib.rs:3135:push",
+    0
+   ],
+   [
+    "load_ledger.rs:131:push",
+    3063150516
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:1540:capture_case_source",
+  "M_caller": 6,
+  "name": "push",
+  "targets": [
+   [
+    "lib.rs:3135:push",
+    0
+   ],
+   [
+    "load_ledger.rs:131:push",
+    3063150516
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:2020:bind_rows_view",
+  "M_caller": 10,
+  "name": "push",
+  "targets": [
+   [
+    "lib.rs:3135:push",
+    0
+   ],
+   [
+    "load_ledger.rs:131:push",
+    3063150516
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3901:native_call",
+  "M_caller": 1,
+  "name": "push",
+  "targets": [
+   [
+    "lib.rs:3135:push",
+    0
+   ],
+   [
+    "load_ledger.rs:131:push",
+    3063150516
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "M_caller": 3,
+  "name": "push",
+  "targets": [
+   [
+    "lib.rs:3135:push",
+    0
+   ],
+   [
+    "load_ledger.rs:131:push",
+    3063150516
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:4239:prepared_maxima",
+  "M_caller": 3,
+  "name": "push",
+  "targets": [
+   [
+    "lib.rs:3135:push",
+    0
+   ],
+   [
+    "load_ledger.rs:131:push",
+    3063150516
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:751:selected_case_envelope",
+  "M_caller": 3,
+  "name": "push",
+  "targets": [
+   [
+    "lib.rs:3135:push",
+    0
+   ],
+   [
+    "load_ledger.rs:131:push",
+    3063150516
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:1631:unavailable_case_envelope",
+  "M_caller": 3,
+  "name": "push",
+  "targets": [
+   [
+    "lib.rs:3135:push",
+    0
+   ],
+   [
+    "load_ledger.rs:131:push",
+    3063150516
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:1407:invocation_arrays",
+  "M_caller": 1,
+  "name": "fail",
+  "targets": [
+   [
+    "retained_wire.rs:115:fail",
+    25318696
+   ],
+   [
+    "retained_wire.rs:97:fail",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:1283:product_attempt",
+  "M_caller": 9,
+  "name": "bits",
+  "targets": [
+   [
+    "retained_wire.rs:127:bits",
+    101734
+   ],
+   [
+    "structural/retained/product_certificate.rs:621:bits",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:4321:freeze_case",
+  "M_caller": 3,
+  "name": "project",
+  "targets": [
+   [
+    "structural/exact_boundary/functionals.rs:727:project",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1799:project",
+    5283
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:278:park_case",
+  "M_caller": 3,
+  "name": "reserve",
+  "targets": [
+   [
+    "lib.rs:3049:reserve",
+    471
+   ],
+   [
+    "lib.rs:3072:reserve",
+    118
+   ],
+   [
+    "retained_product.rs:3373:reserve",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:1114:bind_observations_by_case",
+  "M_caller": 2,
+  "name": "reserve",
+  "targets": [
+   [
+    "lib.rs:3049:reserve",
+    471
+   ],
+   [
+    "lib.rs:3072:reserve",
+    118
+   ],
+   [
+    "retained_product.rs:3373:reserve",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:1540:capture_case_source",
+  "M_caller": 6,
+  "name": "reserve",
+  "targets": [
+   [
+    "lib.rs:3049:reserve",
+    471
+   ],
+   [
+    "lib.rs:3072:reserve",
+    118
+   ],
+   [
+    "retained_product.rs:3373:reserve",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:2020:bind_rows_view",
+  "M_caller": 10,
+  "name": "reserve",
+  "targets": [
+   [
+    "lib.rs:3049:reserve",
+    471
+   ],
+   [
+    "lib.rs:3072:reserve",
+    118
+   ],
+   [
+    "retained_product.rs:3373:reserve",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3901:native_call",
+  "M_caller": 1,
+  "name": "reserve",
+  "targets": [
+   [
+    "lib.rs:3049:reserve",
+    471
+   ],
+   [
+    "lib.rs:3072:reserve",
+    118
+   ],
+   [
+    "retained_product.rs:3373:reserve",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:4239:prepared_maxima",
+  "M_caller": 3,
+  "name": "reserve",
+  "targets": [
+   [
+    "lib.rs:3049:reserve",
+    471
+   ],
+   [
+    "lib.rs:3072:reserve",
+    118
+   ],
+   [
+    "retained_product.rs:3373:reserve",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_precision.rs:2061:g5_products",
+  "M_caller": 1,
+  "name": "reason_table",
+  "targets": [
+   [
+    "retained_precision.rs:1708:reason_table",
+    3
+   ],
+   [
+    "retained_precision.rs:1975:reason_table",
+    6
+   ]
+  ]
+ },
+ {
+  "caller": "lib.rs:3232:retained_w1",
+  "M_caller": 1,
+  "name": "publish",
+  "targets": [
+   [
+    "lib.rs:3096:publish",
+    1
+   ],
+   [
+    "structural/retained/adaptive.rs:3717:publish",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "lib.rs:3049:reserve",
+  "M_caller": 471,
+  "name": "len",
+  "targets": [
+   [
+    "retained_receipt.rs:93:len",
+    0
+   ],
+   [
+    "load_ledger.rs:269:len",
+    0
+   ],
+   [
+    "load_ledger.rs:757:len",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:718:len",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1779:len",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "lib.rs:3072:reserve",
+  "M_caller": 118,
+  "name": "len",
+  "targets": [
+   [
+    "retained_receipt.rs:93:len",
+    0
+   ],
+   [
+    "load_ledger.rs:269:len",
+    0
+   ],
+   [
+    "load_ledger.rs:757:len",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:718:len",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1779:len",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "lib.rs:3279:w1_transaction",
+  "M_caller": 1,
+  "name": "into_ordinary",
+  "targets": [
+   [
+    "retained_product.rs:3759:into_ordinary",
+    0
+   ],
+   [
+    "retained_product.rs:4096:into_ordinary",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_memory.rs:365:walk",
+  "M_caller": 1,
+  "name": "add",
+  "targets": [
+   [
+    "retained_memory.rs:2230:add",
+    0
+   ],
+   [
+    "retained_memory.rs:98:add",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_memory.rs:365:walk",
+  "M_caller": 1,
+  "name": "len",
+  "targets": [
+   [
+    "retained_receipt.rs:93:len",
+    0
+   ],
+   [
+    "load_ledger.rs:269:len",
+    0
+   ],
+   [
+    "load_ledger.rs:757:len",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:718:len",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1779:len",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_memory.rs:2568:complete_observations",
+  "M_caller": 1,
+  "name": "add",
+  "targets": [
+   [
+    "case_state/temperature.rs:43:add",
+    0
+   ],
+   [
+    "pressure_exact.rs:66:add",
+    0
+   ],
+   [
+    "retained_memory.rs:2470:add",
+    0
+   ],
+   [
+    "exact_sum.rs:213:add",
+    0
+   ],
+   [
+    "structural/retained/work.rs:134:add",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_memory.rs:2568:complete_observations",
+  "M_caller": 1,
+  "name": "get",
+  "targets": [
+   [
+    "retained_memory.rs:2482:get",
+    0
+   ],
+   [
+    "load_ledger.rs:265:get",
+    0
+   ],
+   [
+    "structural/retained/adaptive.rs:83:get",
+    0
+   ],
+   [
+    "structural/sparse.rs:288:get",
+    0
+   ],
+   [
+    "lib.rs:303:get",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_memory.rs:2568:complete_observations",
+  "M_caller": 1,
+  "name": "len",
+  "targets": [
+   [
+    "retained_receipt.rs:93:len",
+    0
+   ],
+   [
+    "load_ledger.rs:269:len",
+    0
+   ],
+   [
+    "load_ledger.rs:757:len",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:718:len",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1779:len",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:278:park_case",
+  "M_caller": 3,
+  "name": "len",
+  "targets": [
+   [
+    "retained_receipt.rs:93:len",
+    0
+   ],
+   [
+    "load_ledger.rs:269:len",
+    0
+   ],
+   [
+    "load_ledger.rs:757:len",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:718:len",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1779:len",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:809:observation_copy",
+  "M_caller": 9,
+  "name": "enter",
+  "targets": [
+   [
+    "retained_product.rs:3337:enter",
+    0
+   ],
+   [
+    "retained_receipt.rs:45:enter",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:1540:capture_case_source",
+  "M_caller": 6,
+  "name": "get",
+  "targets": [
+   [
+    "retained_memory.rs:2482:get",
+    0
+   ],
+   [
+    "load_ledger.rs:265:get",
+    0
+   ],
+   [
+    "structural/retained/adaptive.rs:83:get",
+    0
+   ],
+   [
+    "structural/sparse.rs:288:get",
+    0
+   ],
+   [
+    "lib.rs:303:get",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:1540:capture_case_source",
+  "M_caller": 6,
+  "name": "enter",
+  "targets": [
+   [
+    "retained_product.rs:3337:enter",
+    0
+   ],
+   [
+    "retained_receipt.rs:45:enter",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:1540:capture_case_source",
+  "M_caller": 6,
+  "name": "len",
+  "targets": [
+   [
+    "retained_receipt.rs:93:len",
+    0
+   ],
+   [
+    "load_ledger.rs:269:len",
+    0
+   ],
+   [
+    "load_ledger.rs:757:len",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:718:len",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1779:len",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:1540:capture_case_source",
+  "M_caller": 6,
+  "name": "is_empty",
+  "targets": [
+   [
+    "load_ledger.rs:273:is_empty",
+    0
+   ],
+   [
+    "load_ledger.rs:761:is_empty",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:721:is_empty",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:1908:finish",
+  "M_caller": 1,
+  "name": "get",
+  "targets": [
+   [
+    "retained_memory.rs:2482:get",
+    0
+   ],
+   [
+    "load_ledger.rs:265:get",
+    0
+   ],
+   [
+    "structural/retained/adaptive.rs:83:get",
+    0
+   ],
+   [
+    "structural/sparse.rs:288:get",
+    0
+   ],
+   [
+    "lib.rs:303:get",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:1908:finish",
+  "M_caller": 1,
+  "name": "enter",
+  "targets": [
+   [
+    "retained_product.rs:3337:enter",
+    0
+   ],
+   [
+    "retained_receipt.rs:45:enter",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:1908:finish",
+  "M_caller": 1,
+  "name": "passed",
+  "targets": [
+   [
+    "source_receipt.rs:463:passed",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1858:passed",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:409:passed",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:1908:finish",
+  "M_caller": 1,
+  "name": "is_empty",
+  "targets": [
+   [
+    "load_ledger.rs:273:is_empty",
+    0
+   ],
+   [
+    "load_ledger.rs:761:is_empty",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:721:is_empty",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:1908:finish",
+  "M_caller": 1,
+  "name": "new",
+  "targets": [
+   [
+    "structural/retained/adaptive.rs:80:new",
+    0
+   ],
+   [
+    "structural/retained/origins.rs:310:new",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:1908:finish",
+  "M_caller": 1,
+  "name": "failure",
+  "targets": [
+   [
+    "structural/retained/product_certificate/final_case.rs:1612:failure",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:406:failure",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:1908:finish",
+  "M_caller": 1,
+  "name": "verdicts",
+  "targets": [
+   [
+    "structural/retained/product_certificate/final_case.rs:1859:verdicts",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:403:verdicts",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:1908:finish",
+  "M_caller": 1,
+  "name": "summary_coverage",
+  "targets": [
+   [
+    "structural/retained/product_certificate/final_case.rs:1860:summary_coverage",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:400:summary_coverage",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:2020:bind_rows_view",
+  "M_caller": 10,
+  "name": "as_str",
+  "targets": [
+   [
+    "lib.rs:1206:as_str",
+    0
+   ],
+   [
+    "lib.rs:1254:as_str",
+    0
+   ],
+   [
+    "lib.rs:1268:as_str",
+    0
+   ],
+   [
+    "lib.rs:1286:as_str",
+    0
+   ],
+   [
+    "lib.rs:133:as_str",
+    0
+   ],
+   [
+    "lib.rs:1468:as_str",
+    0
+   ],
+   [
+    "lib.rs:380:as_str",
+    0
+   ],
+   [
+    "lib.rs:42:as_str",
+    0
+   ],
+   [
+    "lib.rs:80:as_str",
+    0
+   ],
+   [
+    "case_state/thermal.rs:82:as_str",
+    0
+   ],
+   [
+    "lib.rs:791:as_str",
+    0
+   ],
+   [
+    "retained_memory.rs:554:as_str",
+    0
+   ],
+   [
+    "lib.rs:86:as_str",
+    0
+   ],
+   [
+    "lib.rs:129:as_str",
+    0
+   ],
+   [
+    "lib.rs:277:as_str",
+    0
+   ],
+   [
+    "lib.rs:55:as_str",
+    0
+   ],
+   [
+    "lib.rs:49:as_str",
+    0
+   ],
+   [
+    "lib.rs:157:as_str",
+    0
+   ],
+   [
+    "lib.rs:93:as_str",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:2020:bind_rows_view",
+  "M_caller": 10,
+  "name": "body_of_node",
+  "targets": [
+   [
+    "formation_guard.rs:140:body_of_node",
+    0
+   ],
+   [
+    "structural/retained/source.rs:759:body_of_node",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:2020:bind_rows_view",
+  "M_caller": 10,
+  "name": "enter",
+  "targets": [
+   [
+    "retained_product.rs:3337:enter",
+    0
+   ],
+   [
+    "retained_receipt.rs:45:enter",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:2254:observables_view",
+  "M_caller": 7,
+  "name": "as_str",
+  "targets": [
+   [
+    "lib.rs:1206:as_str",
+    0
+   ],
+   [
+    "lib.rs:1254:as_str",
+    0
+   ],
+   [
+    "lib.rs:1268:as_str",
+    0
+   ],
+   [
+    "lib.rs:1286:as_str",
+    0
+   ],
+   [
+    "lib.rs:133:as_str",
+    0
+   ],
+   [
+    "lib.rs:1468:as_str",
+    0
+   ],
+   [
+    "lib.rs:380:as_str",
+    0
+   ],
+   [
+    "lib.rs:42:as_str",
+    0
+   ],
+   [
+    "lib.rs:80:as_str",
+    0
+   ],
+   [
+    "case_state/thermal.rs:82:as_str",
+    0
+   ],
+   [
+    "lib.rs:791:as_str",
+    0
+   ],
+   [
+    "retained_memory.rs:554:as_str",
+    0
+   ],
+   [
+    "lib.rs:86:as_str",
+    0
+   ],
+   [
+    "lib.rs:129:as_str",
+    0
+   ],
+   [
+    "lib.rs:277:as_str",
+    0
+   ],
+   [
+    "lib.rs:55:as_str",
+    0
+   ],
+   [
+    "lib.rs:49:as_str",
+    0
+   ],
+   [
+    "lib.rs:157:as_str",
+    0
+   ],
+   [
+    "lib.rs:93:as_str",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:2254:observables_view",
+  "M_caller": 7,
+  "name": "get",
+  "targets": [
+   [
+    "retained_memory.rs:2482:get",
+    0
+   ],
+   [
+    "load_ledger.rs:265:get",
+    0
+   ],
+   [
+    "structural/retained/adaptive.rs:83:get",
+    0
+   ],
+   [
+    "structural/sparse.rs:288:get",
+    0
+   ],
+   [
+    "lib.rs:303:get",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:2254:observables_view",
+  "M_caller": 7,
+  "name": "enter",
+  "targets": [
+   [
+    "retained_product.rs:3337:enter",
+    0
+   ],
+   [
+    "retained_receipt.rs:45:enter",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:2254:observables_view",
+  "M_caller": 7,
+  "name": "len",
+  "targets": [
+   [
+    "retained_receipt.rs:93:len",
+    0
+   ],
+   [
+    "load_ledger.rs:269:len",
+    0
+   ],
+   [
+    "load_ledger.rs:757:len",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:718:len",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1779:len",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:2254:observables_view",
+  "M_caller": 7,
+  "name": "is_empty",
+  "targets": [
+   [
+    "load_ledger.rs:273:is_empty",
+    0
+   ],
+   [
+    "load_ledger.rs:761:is_empty",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:721:is_empty",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:2481:validate_final_metadata",
+  "M_caller": 21150,
+  "name": "as_str",
+  "targets": [
+   [
+    "lib.rs:1206:as_str",
+    0
+   ],
+   [
+    "lib.rs:1254:as_str",
+    0
+   ],
+   [
+    "lib.rs:1268:as_str",
+    0
+   ],
+   [
+    "lib.rs:1286:as_str",
+    0
+   ],
+   [
+    "lib.rs:133:as_str",
+    0
+   ],
+   [
+    "lib.rs:1468:as_str",
+    0
+   ],
+   [
+    "lib.rs:380:as_str",
+    0
+   ],
+   [
+    "lib.rs:42:as_str",
+    0
+   ],
+   [
+    "lib.rs:80:as_str",
+    0
+   ],
+   [
+    "case_state/thermal.rs:82:as_str",
+    0
+   ],
+   [
+    "lib.rs:791:as_str",
+    0
+   ],
+   [
+    "retained_memory.rs:554:as_str",
+    0
+   ],
+   [
+    "lib.rs:86:as_str",
+    0
+   ],
+   [
+    "lib.rs:129:as_str",
+    0
+   ],
+   [
+    "lib.rs:277:as_str",
+    0
+   ],
+   [
+    "lib.rs:55:as_str",
+    0
+   ],
+   [
+    "lib.rs:49:as_str",
+    0
+   ],
+   [
+    "lib.rs:157:as_str",
+    0
+   ],
+   [
+    "lib.rs:93:as_str",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:2481:validate_final_metadata",
+  "M_caller": 21150,
+  "name": "index",
+  "targets": [
+   [
+    "structural/exact_boundary/functionals.rs:710:index",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:836:index",
+    0
+   ],
+   [
+    "structural/retained/source.rs:48:index",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3469:prepared_case_seen",
+  "M_caller": 3,
+  "name": "len",
+  "targets": [
+   [
+    "retained_receipt.rs:93:len",
+    0
+   ],
+   [
+    "load_ledger.rs:269:len",
+    0
+   ],
+   [
+    "load_ledger.rs:757:len",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:718:len",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1779:len",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3504:prepared_case_source",
+  "M_caller": 3,
+  "name": "len",
+  "targets": [
+   [
+    "retained_receipt.rs:93:len",
+    0
+   ],
+   [
+    "load_ledger.rs:269:len",
+    0
+   ],
+   [
+    "load_ledger.rs:757:len",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:718:len",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1779:len",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3678:native",
+  "M_caller": 1,
+  "name": "enter",
+  "targets": [
+   [
+    "retained_product.rs:3337:enter",
+    0
+   ],
+   [
+    "retained_receipt.rs:45:enter",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3772:typed_trace",
+  "M_caller": 6,
+  "name": "proof_failure",
+  "targets": [
+   [
+    "retained_product.rs:3649:proof_failure",
+    0
+   ],
+   [
+    "retained_product.rs:4195:proof_failure",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3772:typed_trace",
+  "M_caller": 6,
+  "name": "work",
+  "targets": [
+   [
+    "structural/retained/product_certificate.rs:725:work",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1613:work",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1861:work",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3772:typed_trace",
+  "M_caller": 6,
+  "name": "failure",
+  "targets": [
+   [
+    "structural/retained/product_certificate/final_case.rs:1612:failure",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:406:failure",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3809:prepared_custody",
+  "M_caller": 1,
+  "name": "is_empty",
+  "targets": [
+   [
+    "load_ledger.rs:273:is_empty",
+    0
+   ],
+   [
+    "load_ledger.rs:761:is_empty",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:721:is_empty",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3882:prepare_attempt",
+  "M_caller": 3,
+  "name": "enter",
+  "targets": [
+   [
+    "retained_product.rs:3337:enter",
+    0
+   ],
+   [
+    "retained_receipt.rs:45:enter",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3901:native_call",
+  "M_caller": 1,
+  "name": "enter",
+  "targets": [
+   [
+    "retained_product.rs:3337:enter",
+    0
+   ],
+   [
+    "retained_receipt.rs:45:enter",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3901:native_call",
+  "M_caller": 1,
+  "name": "len",
+  "targets": [
+   [
+    "retained_receipt.rs:93:len",
+    0
+   ],
+   [
+    "load_ledger.rs:269:len",
+    0
+   ],
+   [
+    "load_ledger.rs:757:len",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:718:len",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1779:len",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3901:native_call",
+  "M_caller": 1,
+  "name": "new",
+  "targets": [
+   [
+    "structural/retained/adaptive.rs:80:new",
+    0
+   ],
+   [
+    "structural/retained/origins.rs:310:new",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "M_caller": 3,
+  "name": "into_parts",
+  "targets": [
+   [
+    "lib.rs:2259:into_parts",
+    0
+   ],
+   [
+    "structural/retained/product_certificate.rs:726:into_parts",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "M_caller": 3,
+  "name": "enter",
+  "targets": [
+   [
+    "retained_product.rs:3337:enter",
+    0
+   ],
+   [
+    "retained_receipt.rs:45:enter",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "M_caller": 3,
+  "name": "len",
+  "targets": [
+   [
+    "retained_receipt.rs:93:len",
+    0
+   ],
+   [
+    "load_ledger.rs:269:len",
+    0
+   ],
+   [
+    "load_ledger.rs:757:len",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:718:len",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1779:len",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:3982:prepare_active_case",
+  "M_caller": 3,
+  "name": "members",
+  "targets": [
+   [
+    "source_recovery.rs:221:members",
+    0
+   ],
+   [
+    "structural/retained/source.rs:722:members",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:4203:bind_observations_view",
+  "M_caller": 10,
+  "name": "as_str",
+  "targets": [
+   [
+    "lib.rs:1206:as_str",
+    0
+   ],
+   [
+    "lib.rs:1254:as_str",
+    0
+   ],
+   [
+    "lib.rs:1268:as_str",
+    0
+   ],
+   [
+    "lib.rs:1286:as_str",
+    0
+   ],
+   [
+    "lib.rs:133:as_str",
+    0
+   ],
+   [
+    "lib.rs:1468:as_str",
+    0
+   ],
+   [
+    "lib.rs:380:as_str",
+    0
+   ],
+   [
+    "lib.rs:42:as_str",
+    0
+   ],
+   [
+    "lib.rs:80:as_str",
+    0
+   ],
+   [
+    "case_state/thermal.rs:82:as_str",
+    0
+   ],
+   [
+    "lib.rs:791:as_str",
+    0
+   ],
+   [
+    "retained_memory.rs:554:as_str",
+    0
+   ],
+   [
+    "lib.rs:86:as_str",
+    0
+   ],
+   [
+    "lib.rs:129:as_str",
+    0
+   ],
+   [
+    "lib.rs:277:as_str",
+    0
+   ],
+   [
+    "lib.rs:55:as_str",
+    0
+   ],
+   [
+    "lib.rs:49:as_str",
+    0
+   ],
+   [
+    "lib.rs:157:as_str",
+    0
+   ],
+   [
+    "lib.rs:93:as_str",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:4239:prepared_maxima",
+  "M_caller": 3,
+  "name": "as_str",
+  "targets": [
+   [
+    "lib.rs:1206:as_str",
+    0
+   ],
+   [
+    "lib.rs:1254:as_str",
+    0
+   ],
+   [
+    "lib.rs:1268:as_str",
+    0
+   ],
+   [
+    "lib.rs:1286:as_str",
+    0
+   ],
+   [
+    "lib.rs:133:as_str",
+    0
+   ],
+   [
+    "lib.rs:1468:as_str",
+    0
+   ],
+   [
+    "lib.rs:380:as_str",
+    0
+   ],
+   [
+    "lib.rs:42:as_str",
+    0
+   ],
+   [
+    "lib.rs:80:as_str",
+    0
+   ],
+   [
+    "case_state/thermal.rs:82:as_str",
+    0
+   ],
+   [
+    "lib.rs:791:as_str",
+    0
+   ],
+   [
+    "retained_memory.rs:554:as_str",
+    0
+   ],
+   [
+    "lib.rs:86:as_str",
+    0
+   ],
+   [
+    "lib.rs:129:as_str",
+    0
+   ],
+   [
+    "lib.rs:277:as_str",
+    0
+   ],
+   [
+    "lib.rs:55:as_str",
+    0
+   ],
+   [
+    "lib.rs:49:as_str",
+    0
+   ],
+   [
+    "lib.rs:157:as_str",
+    0
+   ],
+   [
+    "lib.rs:93:as_str",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:4239:prepared_maxima",
+  "M_caller": 3,
+  "name": "len",
+  "targets": [
+   [
+    "retained_receipt.rs:93:len",
+    0
+   ],
+   [
+    "load_ledger.rs:269:len",
+    0
+   ],
+   [
+    "load_ledger.rs:757:len",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:718:len",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1779:len",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:4239:prepared_maxima",
+  "M_caller": 3,
+  "name": "members",
+  "targets": [
+   [
+    "source_recovery.rs:221:members",
+    0
+   ],
+   [
+    "structural/retained/source.rs:722:members",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:4321:freeze_case",
+  "M_caller": 3,
+  "name": "enter",
+  "targets": [
+   [
+    "retained_product.rs:3337:enter",
+    0
+   ],
+   [
+    "retained_receipt.rs:45:enter",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:4321:freeze_case",
+  "M_caller": 3,
+  "name": "len",
+  "targets": [
+   [
+    "retained_receipt.rs:93:len",
+    0
+   ],
+   [
+    "load_ledger.rs:269:len",
+    0
+   ],
+   [
+    "load_ledger.rs:757:len",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:718:len",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1779:len",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:4321:freeze_case",
+  "M_caller": 3,
+  "name": "passed",
+  "targets": [
+   [
+    "source_receipt.rs:463:passed",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1858:passed",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:409:passed",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:4321:freeze_case",
+  "M_caller": 3,
+  "name": "work",
+  "targets": [
+   [
+    "structural/retained/product_certificate.rs:725:work",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1613:work",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1861:work",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:4321:freeze_case",
+  "M_caller": 3,
+  "name": "failure",
+  "targets": [
+   [
+    "structural/retained/product_certificate/final_case.rs:1612:failure",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:406:failure",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:4321:freeze_case",
+  "M_caller": 3,
+  "name": "into_ready",
+  "targets": [
+   [
+    "structural/retained/product_certificate/final_case.rs:1619:into_ready",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1786:into_ready",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1792:into_ready",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1868:into_ready",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:4321:freeze_case",
+  "M_caller": 3,
+  "name": "abandon",
+  "targets": [
+   [
+    "structural/retained/product_certificate/final_case.rs:1740:abandon",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1870:abandon",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:4321:freeze_case",
+  "M_caller": 3,
+  "name": "verdicts",
+  "targets": [
+   [
+    "structural/retained/product_certificate/final_case.rs:1859:verdicts",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:403:verdicts",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:4321:freeze_case",
+  "M_caller": 3,
+  "name": "summary_coverage",
+  "targets": [
+   [
+    "structural/retained/product_certificate/final_case.rs:1860:summary_coverage",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:400:summary_coverage",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_product.rs:4480:stage_headlines",
+  "M_caller": 1,
+  "name": "as_str",
+  "targets": [
+   [
+    "lib.rs:1206:as_str",
+    0
+   ],
+   [
+    "lib.rs:1254:as_str",
+    0
+   ],
+   [
+    "lib.rs:1268:as_str",
+    0
+   ],
+   [
+    "lib.rs:1286:as_str",
+    0
+   ],
+   [
+    "lib.rs:133:as_str",
+    0
+   ],
+   [
+    "lib.rs:1468:as_str",
+    0
+   ],
+   [
+    "lib.rs:380:as_str",
+    0
+   ],
+   [
+    "lib.rs:42:as_str",
+    0
+   ],
+   [
+    "lib.rs:80:as_str",
+    0
+   ],
+   [
+    "case_state/thermal.rs:82:as_str",
+    0
+   ],
+   [
+    "lib.rs:791:as_str",
+    0
+   ],
+   [
+    "retained_memory.rs:554:as_str",
+    0
+   ],
+   [
+    "lib.rs:86:as_str",
+    0
+   ],
+   [
+    "lib.rs:129:as_str",
+    0
+   ],
+   [
+    "lib.rs:277:as_str",
+    0
+   ],
+   [
+    "lib.rs:55:as_str",
+    0
+   ],
+   [
+    "lib.rs:49:as_str",
+    0
+   ],
+   [
+    "lib.rs:157:as_str",
+    0
+   ],
+   [
+    "lib.rs:93:as_str",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_receipt.rs:105:summary_coverage",
+  "M_caller": 24,
+  "name": "is_empty",
+  "targets": [
+   [
+    "load_ledger.rs:273:is_empty",
+    0
+   ],
+   [
+    "load_ledger.rs:761:is_empty",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:721:is_empty",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_receipt.rs:148:project",
+  "M_caller": 24,
+  "name": "status",
+  "targets": [
+   [
+    "structural/retained/product_certificate.rs:138:status",
+    0
+   ],
+   [
+    "structural/retained/product_certificate.rs:672:status",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:389:status",
+    0
+   ],
+   [
+    "structural/retained/work.rs:61:status",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_receipt.rs:148:project",
+  "M_caller": 24,
+  "name": "owner_matches",
+  "targets": [
+   [
+    "structural/retained/product_certificate/final_case.rs:1615:owner_matches",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1865:owner_matches",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:374:owner_matches",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:868:material_basis",
+  "M_caller": 1,
+  "name": "as_str",
+  "targets": [
+   [
+    "lib.rs:1206:as_str",
+    0
+   ],
+   [
+    "lib.rs:1254:as_str",
+    0
+   ],
+   [
+    "lib.rs:1268:as_str",
+    0
+   ],
+   [
+    "lib.rs:1286:as_str",
+    0
+   ],
+   [
+    "lib.rs:133:as_str",
+    0
+   ],
+   [
+    "lib.rs:1468:as_str",
+    0
+   ],
+   [
+    "lib.rs:380:as_str",
+    0
+   ],
+   [
+    "lib.rs:42:as_str",
+    0
+   ],
+   [
+    "lib.rs:80:as_str",
+    0
+   ],
+   [
+    "case_state/thermal.rs:82:as_str",
+    0
+   ],
+   [
+    "lib.rs:791:as_str",
+    0
+   ],
+   [
+    "retained_memory.rs:554:as_str",
+    0
+   ],
+   [
+    "lib.rs:86:as_str",
+    0
+   ],
+   [
+    "lib.rs:129:as_str",
+    0
+   ],
+   [
+    "lib.rs:277:as_str",
+    0
+   ],
+   [
+    "lib.rs:55:as_str",
+    0
+   ],
+   [
+    "lib.rs:49:as_str",
+    0
+   ],
+   [
+    "lib.rs:157:as_str",
+    0
+   ],
+   [
+    "lib.rs:93:as_str",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:868:material_basis",
+  "M_caller": 1,
+  "name": "get",
+  "targets": [
+   [
+    "retained_memory.rs:2482:get",
+    0
+   ],
+   [
+    "load_ledger.rs:265:get",
+    0
+   ],
+   [
+    "structural/retained/adaptive.rs:83:get",
+    0
+   ],
+   [
+    "structural/sparse.rs:288:get",
+    0
+   ],
+   [
+    "lib.rs:303:get",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:868:material_basis",
+  "M_caller": 1,
+  "name": "is_empty",
+  "targets": [
+   [
+    "load_ledger.rs:273:is_empty",
+    0
+   ],
+   [
+    "load_ledger.rs:761:is_empty",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:721:is_empty",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:909:case_source",
+  "M_caller": 6,
+  "name": "get",
+  "targets": [
+   [
+    "retained_memory.rs:2482:get",
+    0
+   ],
+   [
+    "load_ledger.rs:265:get",
+    0
+   ],
+   [
+    "structural/retained/adaptive.rs:83:get",
+    0
+   ],
+   [
+    "structural/sparse.rs:288:get",
+    0
+   ],
+   [
+    "lib.rs:303:get",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:909:case_source",
+  "M_caller": 6,
+  "name": "len",
+  "targets": [
+   [
+    "retained_receipt.rs:93:len",
+    0
+   ],
+   [
+    "load_ledger.rs:269:len",
+    0
+   ],
+   [
+    "load_ledger.rs:757:len",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:718:len",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1779:len",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:909:case_source",
+  "M_caller": 6,
+  "name": "index",
+  "targets": [
+   [
+    "structural/exact_boundary/functionals.rs:710:index",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:836:index",
+    0
+   ],
+   [
+    "structural/retained/source.rs:48:index",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:1224:public_error",
+  "M_caller": 30,
+  "name": "failure",
+  "targets": [
+   [
+    "structural/retained/product_certificate/final_case.rs:1612:failure",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:406:failure",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:1283:product_attempt",
+  "M_caller": 9,
+  "name": "get",
+  "targets": [
+   [
+    "retained_memory.rs:2482:get",
+    0
+   ],
+   [
+    "load_ledger.rs:265:get",
+    0
+   ],
+   [
+    "structural/retained/adaptive.rs:83:get",
+    0
+   ],
+   [
+    "structural/sparse.rs:288:get",
+    0
+   ],
+   [
+    "lib.rs:303:get",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "M_caller": 1,
+  "name": "as_str",
+  "targets": [
+   [
+    "lib.rs:1206:as_str",
+    0
+   ],
+   [
+    "lib.rs:1254:as_str",
+    0
+   ],
+   [
+    "lib.rs:1268:as_str",
+    0
+   ],
+   [
+    "lib.rs:1286:as_str",
+    0
+   ],
+   [
+    "lib.rs:133:as_str",
+    0
+   ],
+   [
+    "lib.rs:1468:as_str",
+    0
+   ],
+   [
+    "lib.rs:380:as_str",
+    0
+   ],
+   [
+    "lib.rs:42:as_str",
+    0
+   ],
+   [
+    "lib.rs:80:as_str",
+    0
+   ],
+   [
+    "case_state/thermal.rs:82:as_str",
+    0
+   ],
+   [
+    "lib.rs:791:as_str",
+    0
+   ],
+   [
+    "retained_memory.rs:554:as_str",
+    0
+   ],
+   [
+    "lib.rs:86:as_str",
+    0
+   ],
+   [
+    "lib.rs:129:as_str",
+    0
+   ],
+   [
+    "lib.rs:277:as_str",
+    0
+   ],
+   [
+    "lib.rs:55:as_str",
+    0
+   ],
+   [
+    "lib.rs:49:as_str",
+    0
+   ],
+   [
+    "lib.rs:157:as_str",
+    0
+   ],
+   [
+    "lib.rs:93:as_str",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:1767:serialize_cases_with",
+  "M_caller": 1,
+  "name": "len",
+  "targets": [
+   [
+    "retained_receipt.rs:93:len",
+    0
+   ],
+   [
+    "load_ledger.rs:269:len",
+    0
+   ],
+   [
+    "load_ledger.rs:757:len",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:718:len",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1779:len",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:1912:serialize_attempt",
+  "M_caller": 3,
+  "name": "as_str",
+  "targets": [
+   [
+    "lib.rs:1206:as_str",
+    0
+   ],
+   [
+    "lib.rs:1254:as_str",
+    0
+   ],
+   [
+    "lib.rs:1268:as_str",
+    0
+   ],
+   [
+    "lib.rs:1286:as_str",
+    0
+   ],
+   [
+    "lib.rs:133:as_str",
+    0
+   ],
+   [
+    "lib.rs:1468:as_str",
+    0
+   ],
+   [
+    "lib.rs:380:as_str",
+    0
+   ],
+   [
+    "lib.rs:42:as_str",
+    0
+   ],
+   [
+    "lib.rs:80:as_str",
+    0
+   ],
+   [
+    "case_state/thermal.rs:82:as_str",
+    0
+   ],
+   [
+    "lib.rs:791:as_str",
+    0
+   ],
+   [
+    "retained_memory.rs:554:as_str",
+    0
+   ],
+   [
+    "lib.rs:86:as_str",
+    0
+   ],
+   [
+    "lib.rs:129:as_str",
+    0
+   ],
+   [
+    "lib.rs:277:as_str",
+    0
+   ],
+   [
+    "lib.rs:55:as_str",
+    0
+   ],
+   [
+    "lib.rs:49:as_str",
+    0
+   ],
+   [
+    "lib.rs:157:as_str",
+    0
+   ],
+   [
+    "lib.rs:93:as_str",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:1912:serialize_attempt",
+  "M_caller": 3,
+  "name": "failure",
+  "targets": [
+   [
+    "pressure_material.rs:5:failure",
+    0
+   ],
+   [
+    "source_recovery.rs:397:failure",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:1912:serialize_attempt",
+  "M_caller": 3,
+  "name": "get",
+  "targets": [
+   [
+    "retained_memory.rs:2482:get",
+    0
+   ],
+   [
+    "load_ledger.rs:265:get",
+    0
+   ],
+   [
+    "structural/retained/adaptive.rs:83:get",
+    0
+   ],
+   [
+    "structural/sparse.rs:288:get",
+    0
+   ],
+   [
+    "lib.rs:303:get",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:1912:serialize_attempt",
+  "M_caller": 3,
+  "name": "certificate",
+  "targets": [
+   [
+    "retained_product.rs:3638:certificate",
+    0
+   ],
+   [
+    "retained_product.rs:3647:certificate",
+    0
+   ],
+   [
+    "retained_product.rs:4187:certificate",
+    0
+   ],
+   [
+    "retained_product.rs:4193:certificate",
+    0
+   ],
+   [
+    "retained_wire.rs:1542:certificate",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:1912:serialize_attempt",
+  "M_caller": 3,
+  "name": "proof_failure",
+  "targets": [
+   [
+    "retained_product.rs:3649:proof_failure",
+    0
+   ],
+   [
+    "retained_product.rs:4195:proof_failure",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:1912:serialize_attempt",
+  "M_caller": 3,
+  "name": "len",
+  "targets": [
+   [
+    "retained_receipt.rs:93:len",
+    0
+   ],
+   [
+    "load_ledger.rs:269:len",
+    0
+   ],
+   [
+    "load_ledger.rs:757:len",
+    0
+   ],
+   [
+    "structural/exact_boundary/functionals.rs:718:len",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1779:len",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:1912:serialize_attempt",
+  "M_caller": 3,
+  "name": "passed",
+  "targets": [
+   [
+    "source_receipt.rs:463:passed",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1858:passed",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:409:passed",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:1912:serialize_attempt",
+  "M_caller": 3,
+  "name": "source",
+  "targets": [
+   [
+    "structural.rs:193:source",
+    0
+   ],
+   [
+    "structural/retained/adaptive.rs:3723:source",
+    0
+   ],
+   [
+    "structural/sparse.rs:1017:source",
+    0
+   ],
+   [
+    "lib.rs:367:source",
+    0
+   ],
+   [
+    "lib.rs:403:source",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:1912:serialize_attempt",
+  "M_caller": 3,
+  "name": "owner_matches",
+  "targets": [
+   [
+    "structural/retained/product_certificate/final_case.rs:1615:owner_matches",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:1865:owner_matches",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:374:owner_matches",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_wire.rs:1912:serialize_attempt",
+  "M_caller": 3,
+  "name": "verdicts",
+  "targets": [
+   [
+    "structural/retained/product_certificate/final_case.rs:1859:verdicts",
+    0
+   ],
+   [
+    "structural/retained/product_certificate/final_case.rs:403:verdicts",
+    0
+   ]
+  ]
+ },
+ {
+  "caller": "retained_precision.rs:904:g5_native",
+  "M_caller": 1,
+  "name": "as_str",
+  "targets": [
+   [
+    "lib.rs:86:as_str",
+    0
+   ],
+   [
+    "lib.rs:93:as_str",
+    0
+   ]
+  ]
+ }
+]

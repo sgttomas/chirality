@@ -1,0 +1,362 @@
+{
+ "which": "caps",
+ "EPS": 2,
+ "basis": "NUM b1f80234dc",
+ "M": 4026531840,
+ "R": 67108864,
+ "margin_0.9M": 3623878656,
+ "facts": {
+  "ENV_S": {
+   "arr": 102416,
+   "obj": 28882,
+   "ent": 165166,
+   "strb": 169569068,
+   "keyb": 3180250,
+   "nums": 4990,
+   "depth": 8
+  },
+  "BODY": {
+   "arr": 57006,
+   "obj": 37996,
+   "ent": 115512,
+   "strb": 81816912,
+   "keyb": 3696384,
+   "nums": 33300,
+   "depth": 9
+  },
+  "SOURCE": {
+   "arr": 5632,
+   "obj": 10824,
+   "ent": 40110,
+   "strb": 721664,
+   "keyb": 1283520,
+   "nums": 15814,
+   "depth": 8
+  },
+  "SUCC_text": 514088595,
+  "ENV_S_text": 344578810,
+  "BODY_text": 169509560,
+  "INVOC_text": 1179864,
+  "statics": {
+   "schemas/physics_source_recovery.schema.json": {
+    "arr": 457,
+    "obj": 479,
+    "ent": 1203,
+    "strb": 9658,
+    "keyb": 10032,
+    "nums": 231
+   },
+   "schemas/retained_precision_mp_v2.schema.json": {
+    "arr": 1766,
+    "obj": 1696,
+    "ent": 3461,
+    "strb": 24281,
+    "keyb": 25724,
+    "nums": 72
+   },
+   "fixtures/results/retained_precision_prepared_ordinary_v1.json": {
+    "arr": 90,
+    "obj": 13,
+    "ent": 89,
+    "strb": 6638,
+    "keyb": 916,
+    "nums": 6
+   },
+   "fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json": {
+    "arr": 199,
+    "obj": 95,
+    "ent": 973,
+    "strb": 19934,
+    "keyb": 15990,
+    "nums": 11
+   },
+   "fixtures/results/semantic_contract_v0_2.json": {
+    "arr": 122,
+    "obj": 74,
+    "ent": 763,
+    "strb": 12741,
+    "keyb": 12539,
+    "nums": 11
+   },
+   "fixtures/results/semantic_contract_v0_3_precision_1.json": {
+    "arr": 125,
+    "obj": 75,
+    "ent": 770,
+    "strb": 13035,
+    "keyb": 12669,
+    "nums": 11
+   },
+   "fixtures/results/semantic_contract_v0_3_physics_1.json": {
+    "arr": 167,
+    "obj": 92,
+    "ent": 977,
+    "strb": 16680,
+    "keyb": 16209,
+    "nums": 11
+   },
+   "fixtures/results/semantic_contract_v0_3_load_reference_1.json": {
+    "arr": 170,
+    "obj": 92,
+    "ent": 977,
+    "strb": 17460,
+    "keyb": 16209,
+    "nums": 11
+   },
+   "fixtures/results/semantic_contract_v0_3_load_reference_source_1.json": {
+    "arr": 172,
+    "obj": 95,
+    "ent": 997,
+    "strb": 18439,
+    "keyb": 16494,
+    "nums": 11
+   },
+   "fixtures/results/semantic_contract_v0_3_preview_physics_1.json": {
+    "arr": 190,
+    "obj": 92,
+    "ent": 953,
+    "strb": 18966,
+    "keyb": 15721,
+    "nums": 11
+   },
+   "fixtures/results/semantic_contract_v0_3_physics_source_1.json": {
+    "arr": 172,
+    "obj": 95,
+    "ent": 997,
+    "strb": 17860,
+    "keyb": 16494,
+    "nums": 11
+   },
+   "fixtures/results/semantic_contract_v0_3_source_blocks_1.json": {
+    "arr": 138,
+    "obj": 81,
+    "ent": 844,
+    "strb": 14090,
+    "keyb": 13937,
+    "nums": 11
+   },
+   "schemas/source_block_recovery.schema.json": {
+    "arr": 184,
+    "obj": 151,
+    "ent": 384,
+    "strb": 3666,
+    "keyb": 2994,
+    "nums": 74
+   }
+  }
+ },
+ "rows": {
+  "T18.1 staged typed envelope copy (U3 D-b; live during T16 only)": {
+   "symbolic": "354*Node(String,Value) + 16008*s(Diagnostic) + 1*s(MechanicsEnvelope) + 4230*s(ResultItem) + 16920*s(String) + 320*s(Value) + 169454844",
+   "assumed_bytes": 173817644
+  },
+  "T16 publication peak (P2 body json! + hash(publication))": {
+   "symbolic": "333448*Node(String,Value) + 8192*s((&str,&T)) + 1*s(PreparedAttemptView) + 4230*s(ProductRecipe) + 4230*s(RowBinding) + 8448*s(String) + 960238*s(Value) + 2102465507",
+   "assumed_bytes": 2379349123
+  },
+  "T17.0 the 13 result_export OnceLock statics (process-lifetime, first use counted here)": {
+   "symbolic": "5801*Node(String,Value) + 23712*s(Value) + 369376",
+   "assumed_bytes": 5397696
+  },
+  "T17 precommit reader peak (V2 G1 public clone + hash(publication))": {
+   "symbolic": "185745*Node(String,Value) + 8192*s(RowClassification) + 256*s(String) + 1*s(Validation) + 819328*s(Value) + 1915349084",
+   "assumed_bytes": 2079330716
+  },
+  "T17.1 the invocation Value (U3 lib.rs:2989, live for the precommit to :2995)": {
+   "symbolic": "19662*Node(String,Value) + 32768*s(Value) + 262272",
+   "assumed_bytes": 15782080
+  },
+  "T18.2 N1 notice reserve (pre-built strings + diagnostics Vec reserve)": {
+   "symbolic": "2*s(Diagnostic) + 2*s(String) + 1436",
+   "assumed_bytes": 1788
+  },
+  "T18.3 transfer and fallback (moves only; W1Fallback allocates nothing new: a precommit code String is moved)": {
+   "symbolic": "1*s(W1Fallback)",
+   "assumed_bytes": 48
+  },
+  "T19 Direct completion (thread spawn heap; moves)": {
+   "symbolic": "1*s(ThreadPacketOutput) + 8192",
+   "assumed_bytes": 10240
+  }
+ },
+ "T16_stages": {
+  "P1 env to_value + successor deltas + members + source identity hash": 311936185,
+  "P2 body json! + hash(publication)": 2379349123,
+  "P3 hash(body)": 1478156908,
+  "P4 retained_precision insert (third body copy)": 654969565
+ },
+ "T17_stages": {
+  "V1 G1 receipt hash": 955493759,
+  "V2 G1 public clone + hash(publication)": 2078282044,
+  "V3 G1 source and preparation hashes": 64719068,
+  "V4 G3-G6 working sets": 34166813,
+  "V5 G7 project + preview evidence": 369584756,
+  "V6 G8 projected + invocation hash + model rebuild": 337257678
+ },
+ "modes": {
+  "sparse": {
+   "components": {
+    "O_base_sparse": 449650535,
+    "T25": 2444615034,
+    "TAV_X": 2688777378,
+    "TAV_W": 2953217280,
+    "T11": 320256,
+    "T12_T15": 135873664,
+    "T16": 2379349123,
+    "T17": 2079330716,
+    "STAGED": 173817644,
+    "SUCC": 353903303,
+    "INVOC": 15782080,
+    "STATICS": 5397696,
+    "NOTICE": 1788,
+    "T19": 10240,
+    "BODY": 132305616
+   },
+   "phases": {
+    "X1 ordinary span with T25 (selected finalization)": {
+     "requested": 5588771139,
+     "moving_extra": 344131504,
+     "E_mov": 5932902643,
+     "E_mov_plus_R": 6000011507,
+     "fraction_of_M": 1.4901
+    },
+    "X2 X completion: retained receipt + reserve + Direct completion": {
+     "requested": 3276463509,
+     "moving_extra": 8388608,
+     "E_mov": 3284852117,
+     "E_mov_plus_R": 3351960981,
+     "fraction_of_M": 0.8325
+    },
+    "W1 ordinary span (W1 not yet run)": {
+     "requested": 3408596007,
+     "moving_extra": 8388608,
+     "E_mov": 3416984615,
+     "E_mov_plus_R": 3484093479,
+     "fraction_of_M": 0.8653
+    },
+    "W2 G-B, G-C and the W1 phases (T12-T15) with the N1 reserve": {
+     "requested": 3544471459,
+     "moving_extra": 8388608,
+     "E_mov": 3552860067,
+     "E_mov_plus_R": 3619968931,
+     "fraction_of_M": 0.899
+    },
+    "W3 publication (T16) with the staged copy": {
+     "requested": 6097638226,
+     "moving_extra": 344578810,
+     "E_mov": 6442217036,
+     "E_mov_plus_R": 6509325900,
+     "fraction_of_M": 1.6166
+    },
+    "W4 precommit validation (T17) with the successor and the invocation Value": {
+     "requested": 5993487558,
+     "moving_extra": 344578810,
+     "E_mov": 6338066368,
+     "E_mov_plus_R": 6405175232,
+     "fraction_of_M": 1.5907
+    },
+    "W5 transfer and Direct completion (T18, T19)": {
+     "requested": 3898374762,
+     "moving_extra": 8388608,
+     "E_mov": 3906763370,
+     "E_mov_plus_R": 3973872234,
+     "fraction_of_M": 0.9869
+    }
+   },
+   "admission_max": {
+    "phase": "W3 publication (T16) with the staged copy",
+    "requested": 6097638226,
+    "moving_extra": 344578810,
+    "E_mov": 6442217036,
+    "E_mov_plus_R": 6509325900,
+    "fraction_of_M": 1.6166
+   },
+   "margin_rule_0.9M": false,
+   "fits_M": false
+  },
+  "dense": {
+   "components": {
+    "O_base_dense": 489071431,
+    "T25": 2444615034,
+    "TAV_X": 2688777378,
+    "TAV_W": 2953217280,
+    "T11": 320256,
+    "T12_T15": 135873664,
+    "T16": 2379349123,
+    "T17": 2079330716,
+    "STAGED": 173817644,
+    "SUCC": 353903303,
+    "INVOC": 15782080,
+    "STATICS": 5397696,
+    "NOTICE": 1788,
+    "T19": 10240,
+    "BODY": 132305616
+   },
+   "phases": {
+    "X1 ordinary span with T25 (selected finalization)": {
+     "requested": 5628192035,
+     "moving_extra": 344131504,
+     "E_mov": 5972323539,
+     "E_mov_plus_R": 6039432403,
+     "fraction_of_M": 1.4999
+    },
+    "X2 X completion: retained receipt + reserve + Direct completion": {
+     "requested": 3315884405,
+     "moving_extra": 8388608,
+     "E_mov": 3324273013,
+     "E_mov_plus_R": 3391381877,
+     "fraction_of_M": 0.8423
+    },
+    "W1 ordinary span (W1 not yet run)": {
+     "requested": 3448016903,
+     "moving_extra": 8388608,
+     "E_mov": 3456405511,
+     "E_mov_plus_R": 3523514375,
+     "fraction_of_M": 0.8751
+    },
+    "W2 G-B, G-C and the W1 phases (T12-T15) with the N1 reserve": {
+     "requested": 3583892355,
+     "moving_extra": 8388608,
+     "E_mov": 3592280963,
+     "E_mov_plus_R": 3659389827,
+     "fraction_of_M": 0.9088
+    },
+    "W3 publication (T16) with the staged copy": {
+     "requested": 6137059122,
+     "moving_extra": 344578810,
+     "E_mov": 6481637932,
+     "E_mov_plus_R": 6548746796,
+     "fraction_of_M": 1.6264
+    },
+    "W4 precommit validation (T17) with the successor and the invocation Value": {
+     "requested": 6032908454,
+     "moving_extra": 344578810,
+     "E_mov": 6377487264,
+     "E_mov_plus_R": 6444596128,
+     "fraction_of_M": 1.6005
+    },
+    "W5 transfer and Direct completion (T18, T19)": {
+     "requested": 3937795658,
+     "moving_extra": 8388608,
+     "E_mov": 3946184266,
+     "E_mov_plus_R": 4013293130,
+     "fraction_of_M": 0.9967
+    }
+   },
+   "admission_max": {
+    "phase": "W3 publication (T16) with the staged copy",
+    "requested": 6137059122,
+    "moving_extra": 344578810,
+    "E_mov": 6481637932,
+    "E_mov_plus_R": 6548746796,
+    "fraction_of_M": 1.6264
+   },
+   "margin_rule_0.9M": false,
+   "fits_M": false
+  }
+ },
+ "L": {
+  "L_PUB": 2599962,
+  "L_DIAGID": 2330,
+  "L_ROW": 2173
+ }
+}

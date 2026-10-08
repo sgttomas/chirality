@@ -1,0 +1,457 @@
+{
+ "edges": [
+  {
+   "i82_caller": "lib.rs:3102:retained_w1",
+   "i82_callee": "lib.rs:3041:reserve",
+   "i82_per_call": "att",
+   "i82_M_c3": {
+    "lib.rs:3041:reserve": 114
+   },
+   "b1_real_path": "retained_w1 -> ReservedNotices::reserve (lib.rs:3072), whose loops over A (att) call ReservedNotice::reserve (lib.rs:3049)",
+   "b1_M_c3": {
+    "lib.rs:3072:reserve": 118,
+    "lib.rs:3049:reserve": 471
+   }
+  },
+  {
+   "i82_caller": "lib.rs:3102:retained_w1",
+   "i82_callee": "lib.rs:3063:publish",
+   "i82_per_call": "6*att",
+   "i82_M_c3": {
+    "lib.rs:3063:publish": 18
+   },
+   "b1_real_path": "retained_w1 -> ReservedNotices::publish once (one call site); its loop over the reserved notices is att",
+   "b1_M_c3": {
+    "lib.rs:3096:publish": 1
+   }
+  },
+  {
+   "i82_caller": "lib.rs:3102:retained_w1",
+   "i82_callee": "retained_product.rs:3310:prepare_case",
+   "i82_per_call": "att",
+   "i82_M_c3": {
+    "retained_product.rs:3310:prepare_case": 3
+   },
+   "b1_real_path": "w1_transaction -> prepare_cases -> `for (attempt,&request) in attempted` (att) -> prepare_attempt -> prepare_active_case",
+   "b1_M_c3": {
+    "retained_product.rs:3982:prepare_active_case": 3
+   }
+  },
+  {
+   "i82_caller": "lib.rs:3102:retained_w1",
+   "i82_callee": "retained_product.rs:3652:freeze_candidate",
+   "i82_per_call": "att",
+   "i82_M_c3": {
+    "retained_product.rs:3652:freeze_candidate": 3
+   },
+   "b1_real_path": "w1_transaction -> PreparedCases::freeze -> `for attempt in attempts..Selected` (att) -> freeze_case",
+   "b1_M_c3": {
+    "retained_product.rs:4321:freeze_case": 3
+   }
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_wire.rs:1130:selection",
+   "i82_per_call": "att",
+   "i82_M_c3": {
+    "retained_wire.rs:1130:selection": 3,
+    "retained_product.rs:439:selection": 48
+   },
+   "b1_real_path": "serialize_cases_with -> `for attempt in attempts` (att) -> serialize_attempt -> selection",
+   "b1_M_c3": {
+    "retained_wire.rs:1148:selection": 3,
+    "retained_product.rs:583:selection": 48
+   }
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_wire.rs:1264:product_attempt",
+   "i82_per_call": "att",
+   "i82_M_c3": {
+    "retained_wire.rs:1264:product_attempt": 3
+   },
+   "b1_real_path": "serialize_attempt (att) -> product_attempt",
+   "b1_M_c3": {
+    "retained_wire.rs:1283:product_attempt": 9
+   }
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_wire.rs:1348:one_run",
+   "i82_per_call": "att",
+   "i82_M_c3": {},
+   "b1_real_path": "replaced: serialize_attempt's case_run per attempt (att); the one-case one_run is only on the private driver",
+   "b1_M_c3": {}
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_wire.rs:1359:kernel_outcome",
+   "i82_per_call": "att",
+   "i82_M_c3": {
+    "retained_wire.rs:1359:kernel_outcome": 3
+   },
+   "b1_real_path": "serialize_attempt (att) -> kernel_outcome",
+   "b1_M_c3": {
+    "retained_wire.rs:1378:kernel_outcome": 6
+   }
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_wire.rs:1367:run_value",
+   "i82_per_call": "att",
+   "i82_M_c3": {
+    "retained_wire.rs:1367:run_value": 3
+   },
+   "b1_real_path": "serialize_attempt (att) -> run_value",
+   "b1_M_c3": {
+    "retained_wire.rs:1388:run_value": 6
+   }
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_wire.rs:1457:bind_preparation",
+   "i82_per_call": "att",
+   "i82_M_c3": {
+    "retained_wire.rs:1457:bind_preparation": 3
+   },
+   "b1_real_path": "serialize_attempt (att) -> bind_preparation",
+   "b1_M_c3": {
+    "retained_wire.rs:1519:bind_preparation": 6
+   }
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_wire.rs:896:case_source",
+   "i82_per_call": "att",
+   "i82_M_c3": {
+    "retained_wire.rs:896:case_source": 3,
+    "retained_product.rs:1261:case_source": 3
+   },
+   "b1_real_path": "serialize_attempt (att) -> case_source",
+   "b1_M_c3": {
+    "retained_wire.rs:909:case_source": 6,
+    "retained_product.rs:1520:case_source": 3
+   }
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_product.rs:3816:typed_trace",
+   "i82_per_call": "att",
+   "i82_M_c3": {
+    "retained_product.rs:3816:typed_trace": 6,
+    "retained_product.rs:3879:typed_trace": 6,
+    "retained_product.rs:3893:typed_trace": 3,
+    "retained_product.rs:3900:typed_trace": 3,
+    "retained_wire.rs:1488:typed_trace": 3,
+    "retained_wire.rs:1495:typed_trace": 3
+   },
+   "b1_real_path": "serialize_attempt (att) -> CaseAttempt::typed_trace (and the name fan-out to the other typed_trace methods)",
+   "b1_M_c3": {
+    "retained_product.rs:3772:typed_trace": 6
+   }
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_product.rs:3879:typed_trace",
+   "i82_per_call": "att",
+   "i82_M_c3": {
+    "retained_product.rs:3816:typed_trace": 6,
+    "retained_product.rs:3879:typed_trace": 6,
+    "retained_product.rs:3893:typed_trace": 3,
+    "retained_product.rs:3900:typed_trace": 3,
+    "retained_wire.rs:1488:typed_trace": 3,
+    "retained_wire.rs:1495:typed_trace": 3
+   },
+   "b1_real_path": "serialize_attempt (att) -> CaseAttempt::typed_trace (and the name fan-out to the other typed_trace methods)",
+   "b1_M_c3": {
+    "retained_product.rs:3772:typed_trace": 6
+   }
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_product.rs:3893:typed_trace",
+   "i82_per_call": "att",
+   "i82_M_c3": {
+    "retained_product.rs:3816:typed_trace": 6,
+    "retained_product.rs:3879:typed_trace": 6,
+    "retained_product.rs:3893:typed_trace": 3,
+    "retained_product.rs:3900:typed_trace": 3,
+    "retained_wire.rs:1488:typed_trace": 3,
+    "retained_wire.rs:1495:typed_trace": 3
+   },
+   "b1_real_path": "serialize_attempt (att) -> CaseAttempt::typed_trace (and the name fan-out to the other typed_trace methods)",
+   "b1_M_c3": {
+    "retained_product.rs:3772:typed_trace": 6
+   }
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_product.rs:3900:typed_trace",
+   "i82_per_call": "att",
+   "i82_M_c3": {
+    "retained_product.rs:3816:typed_trace": 6,
+    "retained_product.rs:3879:typed_trace": 6,
+    "retained_product.rs:3893:typed_trace": 3,
+    "retained_product.rs:3900:typed_trace": 3,
+    "retained_wire.rs:1488:typed_trace": 3,
+    "retained_wire.rs:1495:typed_trace": 3
+   },
+   "b1_real_path": "serialize_attempt (att) -> CaseAttempt::typed_trace (and the name fan-out to the other typed_trace methods)",
+   "b1_M_c3": {
+    "retained_product.rs:3772:typed_trace": 6
+   }
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_wire.rs:1488:typed_trace",
+   "i82_per_call": "att",
+   "i82_M_c3": {
+    "retained_product.rs:3816:typed_trace": 6,
+    "retained_product.rs:3879:typed_trace": 6,
+    "retained_product.rs:3893:typed_trace": 3,
+    "retained_product.rs:3900:typed_trace": 3,
+    "retained_wire.rs:1488:typed_trace": 3,
+    "retained_wire.rs:1495:typed_trace": 3
+   },
+   "b1_real_path": "serialize_attempt (att) -> CaseAttempt::typed_trace (and the name fan-out to the other typed_trace methods)",
+   "b1_M_c3": {
+    "retained_product.rs:3772:typed_trace": 6
+   }
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_wire.rs:1495:typed_trace",
+   "i82_per_call": "att",
+   "i82_M_c3": {
+    "retained_product.rs:3816:typed_trace": 6,
+    "retained_product.rs:3879:typed_trace": 6,
+    "retained_product.rs:3893:typed_trace": 3,
+    "retained_product.rs:3900:typed_trace": 3,
+    "retained_wire.rs:1488:typed_trace": 3,
+    "retained_wire.rs:1495:typed_trace": 3
+   },
+   "b1_real_path": "serialize_attempt (att) -> CaseAttempt::typed_trace (and the name fan-out to the other typed_trace methods)",
+   "b1_M_c3": {
+    "retained_product.rs:3772:typed_trace": 6
+   }
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_product.rs:1742:bind_rows",
+   "i82_per_call": "att",
+   "i82_M_c3": {
+    "retained_product.rs:1742:bind_rows": 7
+   },
+   "b1_real_path": "serialize_attempt (att) -> bind_rows_scoped -> bind_rows_view; freeze_case (att) -> bind_rows_view",
+   "b1_M_c3": {
+    "retained_product.rs:2020:bind_rows_view": 10
+   }
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_wire.rs:194:domain_hash",
+   "i82_per_call": "att",
+   "i82_M_c3": {
+    "source_blocks.rs:182:domain_hash": 10,
+    "retained_wire.rs:194:domain_hash": 8
+   },
+   "b1_real_path": "serialize_attempt (att) -> domain_hash (source identity), plus finish's per-invocation hashes",
+   "b1_M_c3": {
+    "source_blocks.rs:182:domain_hash": 10,
+    "retained_wire.rs:194:domain_hash": 11
+   }
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_wire.rs:1321:one_case",
+   "i82_per_call": "cases",
+   "i82_M_c3": {
+    "retained_wire.rs:1321:one_case": 3
+   },
+   "b1_real_path": "replaced: serialize_cases_with's loops over the requested cases (cases); one_case is only on the private driver",
+   "b1_M_c3": {
+    "retained_wire.rs:1767:serialize_cases_with": 1
+   }
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_wire.rs:1412:ordinary_value",
+   "i82_per_call": "cases",
+   "i82_M_c3": {
+    "retained_wire.rs:1412:ordinary_value": 3
+   },
+   "b1_real_path": "serialize_cases_with -> `for (index, ((seed, ..)))` (cases) -> ordinary_entry",
+   "b1_M_c3": {
+    "retained_wire.rs:1457:ordinary_entry": 3
+   }
+  },
+  {
+   "i82_caller": "retained_wire.rs:1500:serialize_selected_from",
+   "i82_callee": "retained_wire.rs:776:legacy_source",
+   "i82_per_call": "cases",
+   "i82_M_c3": {
+    "retained_wire.rs:776:legacy_source": 3
+   },
+   "b1_real_path": "serialize_cases_with -> `for (index, seed) in pc.ordinary` (cases) -> legacy_source",
+   "b1_M_c3": {
+    "retained_wire.rs:785:legacy_source": 3
+   }
+  }
+ ],
+ "rebinds": [
+  {
+   "i82_index": 22,
+   "re": "^for\\ a\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)$",
+   "i82": "1 -> cases",
+   "i104": "rebind 1 -> att",
+   "i104_why": "RS reader (retained_precision.rs :560, :2377, :3956): body.product_attempts, one per case in A. B1 SP T-5/T-7..T-11: one entry per case in A, the attempted cases (|A| <= a <= c)"
+  },
+  {
+   "i82_index": 23,
+   "re": "^for\\ \\(ai,\\ a\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "i82": "1 -> cases",
+   "i104": "rebind 1 -> att",
+   "i104_why": "RS reader (:2083 g5_products): body.product_attempts. B1 SP T-5/T-7..T-11: one entry per case in A, the attempted cases (|A| <= a <= c)"
+  },
+  {
+   "i82_index": 24,
+   "re": "^for\\ \\(si,\\ s\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "i82": "1 -> cases",
+   "i104": "rebind 1 -> att",
+   "i104_why": "RS reader (:735 g3): body.sources, one per submitted case. B1 SP T-8: the prepared cases of A submitted to the one CaseBatchCall (<= |A| <= a)"
+  },
+  {
+   "i82_index": 25,
+   "re": "^for\\ \\(mi,\\ mb\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "i82": "1 -> cases",
+   "i104": "kept 1",
+   "i104_why": "RS reader (:747 g3, :3616 g8): body.material_bases: the producer emits one material basis (D1.5's one default basis) whose case_indices name every case (retained_wire.rs material_basis)"
+  },
+  {
+   "i82_index": 26,
+   "re": "^for\\ \\(i,\\ c\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "i82": "1 -> cases",
+   "i104": "rebind 1 -> cases",
+   "i104_why": "RS reader (:4200 g5_ordinary): body.cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA)"
+  },
+  {
+   "i82_index": 27,
+   "re": "^for\\ \\(i,\\ a\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "i82": "1 -> cases",
+   "i104": "rebind 1 -> att",
+   "i104_why": "RS reader (:756 g3): body.product_attempts. B1 SP T-5/T-7..T-11: one entry per case in A, the attempted cases (|A| <= a <= c)"
+  },
+  {
+   "i82_index": 28,
+   "re": "^for\\ \\(call_id,\\ call\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "i82": "1 -> cases",
+   "i104": "kept 1",
+   "i104_why": "RS reader (:963, :1427): body.calls: one CaseBatchCall per invocation (T-8; the serializer refuses calls().len() != 1)"
+  },
+  {
+   "i82_index": 29,
+   "re": "^for\\ \\(i,\\ g\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "i82": "1 -> cases",
+   "i104": "kept 1",
+   "i104_why": "RS reader (:946): body.groups: every case shares the model and D1.5's one basis, so one stiffness and one group (C2 \u00a74; RV109 round 2 SF-1: one group, C reusing A's builds)"
+  },
+  {
+   "i82_index": 31,
+   "re": "^for\\ c\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\ \\.iter\\(\\)\\ \\.filter\\(\\|c\\|\\ c\\[\"\\ \"\\]\\ ==\\ \"\\ \"\\)$",
+   "i82": "1 -> cases",
+   "i104": "rebind 1 -> cases",
+   "i104_why": "RS reader (:2657 numeric_cases): body.cases filtered. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA)"
+  },
+  {
+   "i82_index": 32,
+   "re": "^for\\ c\\ in\\ list\\(\\&body\\[\"\\ \"\\]\\)$",
+   "i82": "1 -> cases",
+   "i104": "rebind 1 -> cases",
+   "i104_why": "RS reader (:3030 g5a, :4437 validate): body.cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA)"
+  },
+  {
+   "i82_index": 33,
+   "re": "^for\\ s\\ in\\ list\\(\\&r\\[\"\\ \"\\]\\[\"\\ \"\\]\\)$",
+   "i82": "1 -> cases",
+   "i104": "rebind 1 -> att",
+   "i104_why": "RS reader (:608 g1): body.sources. B1 SP T-8: the prepared cases of A submitted to the one CaseBatchCall (<= |A| <= a)"
+  },
+  {
+   "i82_index": 34,
+   "re": "^for\\ c\\ in\\ list\\(\\&r\\[\"\\ \"\\]\\[\"\\ \"\\]\\)$",
+   "i82": "1 -> cases",
+   "i104": "rebind 1 -> cases",
+   "i104_why": "RS reader (:631 g1): body.cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA)"
+  },
+  {
+   "i82_index": 35,
+   "re": "^for\\ \\(position,\\ ri\\)\\ in\\ list\\(\\&call\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "i82": "1 -> att",
+   "i104": "rebind 1 -> att",
+   "i104_why": "RS reader (:968 g5_native): the one call's run_refs, one Run per submitted case. B1 SP T-8: the prepared cases of A submitted to the one CaseBatchCall (<= |A| <= a)"
+  },
+  {
+   "i82_index": 36,
+   "re": "^for\\ \\(ri,\\ si\\)\\ in\\ list\\(\\&call\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.zip\\(list\\(\\&call\\[\"\\ \"\\]\\)\\)$",
+   "i82": "1 -> att",
+   "i104": "rebind 1 -> att",
+   "i104_why": "RS reader (:1434): the one call's run/source refs. B1 SP T-8: the prepared cases of A submitted to the one CaseBatchCall (<= |A| <= a)"
+  },
+  {
+   "i82_index": 37,
+   "re": "^for\\ si\\ in\\ list\\(\\&g\\[\"\\ \"\\]\\)$",
+   "i82": "1 -> att",
+   "i104": "rebind 1 -> att",
+   "i104_why": "RS reader (:952 g5_native): the one group's source_refs, every submitted case's source. B1 SP T-8: the prepared cases of A submitted to the one CaseBatchCall (<= |A| <= a)"
+  },
+  {
+   "i82_index": 52,
+   "re": "^for\\ c\\ in\\ cases$",
+   "i82": "1 -> cases",
+   "i104": "rebind 1 -> cases",
+   "i104_why": "RS reader (:3206 g5b, :3293 g5c): the numeric cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA)"
+  },
+  {
+   "i82_index": 53,
+   "re": "^for\\ \\(i,\\ c\\)\\ in\\ cs\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "i82": "1 -> cases",
+   "i104": "rebind 1 -> cases",
+   "i104_why": "RS reader (:668 g3): body.cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA)"
+  },
+  {
+   "i82_index": 54,
+   "re": "^for\\ \\(i,\\ case\\)\\ in\\ cases\\.iter\\(\\)\\.enumerate\\(\\)$",
+   "i82": "1 -> cases",
+   "i104": "rebind 1 -> cases",
+   "i104_why": "RS reader (:3566 g8): the invocation's load cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA)"
+  },
+  {
+   "i82_index": 65,
+   "re": "^for\\ row\\ in\\ rows_list$",
+   "i82": "P -> Pall",
+   "i104": "rebind P -> Pall",
+   "i104_why": "preview_physics_evidence.rs validate_preview_physics_evidence (:270, :280, :629, :678): the source's whole results array. B1: every row of the c-case envelope (one block of P_final rows per requested case, lib.rs's case loop): c*P_final"
+  },
+  {
+   "i82_index": 212,
+   "re": "flat_map\\(\\|case\\| case\\.primitive_loads",
+   "i82": "l -> L",
+   "i104": "rebind l -> L",
+   "i104_why": "every case's primitive loads (validation.rs :227, :802, :1890; lib.rs :8920 normalize_model_units): sum_i l_i <= L (I82's rebind, re-derived on the real code)"
+  },
+  {
+   "i82_index": 250,
+   "re": "for id in ids",
+   "i82": "l -> max(l, L)",
+   "i104": "rebind l -> max(l, L)",
+   "i104_why": "entity id lists (validation.rs detect_empty_ids/detect_duplicate_ids, pressure_runtime.rs :363): the load-id list spans every case (I82's rebind): <= max(l, L)"
+  },
+  {
+   "i82_index": 258,
+   "re": "sources\\.iter\\(\\)\\.enumerate\\(\\)",
+   "i82": "1 -> att",
+   "i104": "rebind 1 -> att",
+   "i104_why": "FK origins.rs :364 solve_cases and adaptive.rs :4994 solve_cases_projected: one kernel case per submitted source (B1 SP T-8; FK unchanged). B1 SP T-8: the prepared cases of A submitted to the one CaseBatchCall (<= |A| <= a)"
+  }
+ ]
+}

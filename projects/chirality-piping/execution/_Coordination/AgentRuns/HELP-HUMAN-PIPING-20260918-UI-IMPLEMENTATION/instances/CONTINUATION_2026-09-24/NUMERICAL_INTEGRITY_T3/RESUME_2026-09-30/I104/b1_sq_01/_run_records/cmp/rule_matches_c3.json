@@ -1,0 +1,1395 @@
+[
+ {
+  "rule": 0,
+  "bound": "Pall",
+  "re": "^for r in &envelope\\.results$",
+  "why": "I104 SQ B1 (placed first): source_receipt.rs finalize_for (:982, :1074; branch X): the whole envelope's rows. B1: every row of the c-case envelope (one block of",
+  "headers": {
+   "for r in &envelope.results": [
+    "call source_receipt.rs:867:finalize_for -> source_receipt.rs:27:bad",
+    "site source_receipt.rs:867:finalize_for @source_receipt.rs:1077"
+   ]
+  },
+  "files": [
+   "source_receipt.rs"
+  ]
+ },
+ {
+  "rule": 1,
+  "bound": "Pall",
+  "re": "^for row in &envelope\\.results$",
+  "why": "I104 SQ B1 (placed first): retained_product.rs bind_observations_by_case (:1142): the whole envelope's rows. B1: every row of the c-case envelope (one block of ",
+  "headers": {
+   "for row in &envelope.results": [
+    "call retained_product.rs:1114:bind_observations_by_case -> retained_product.rs:855:observation_fields_of",
+    "site retained_product.rs:1114:bind_observations_by_case @retained_product.rs:1152",
+    "site retained_product.rs:1114:bind_observations_by_case @retained_product.rs:1155",
+    "site retained_product.rs:1114:bind_observations_by_case @retained_product.rs:1163",
+    "site retained_product.rs:1114:bind_observations_by_case @retained_product.rs:1169"
+   ]
+  },
+  "files": [
+   "retained_product.rs"
+  ]
+ },
+ {
+  "rule": 2,
+  "bound": "att",
+  "re": "^for\\ \\(k,\\ case_id\\)\\ in\\ case_ids\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 (new or changed loop at lib.rs:3077): lib.rs ReservedNotices::reserve: case_ids are A's ids (retained_w1 passes attempted.ids()). B1 SP T-5/T-7..T-11",
+  "headers": {
+   "for (k, case_id) in case_ids.iter().enumerate()": [
+    "site lib.rs:3072:reserve @lib.rs:3078"
+   ]
+  },
+  "files": [
+   "lib.rs"
+  ]
+ },
+ {
+  "rule": 3,
+  "bound": "att",
+  "re": "^for\\ \\(\\(slot,\\ id\\),\\ case_id\\)\\ in\\ notices\\.iter_mut\\(\\)\\.zip\\(ids\\)\\.zip\\(case_ids\\)$",
+  "why": "I104 SQ B1 (new or changed loop at lib.rs:3086): lib.rs ReservedNotices::reserve: one notice slot per case in A. B1 SP T-5/T-7..T-11: one entry per case in A, t",
+  "headers": {
+   "for ((slot, id), case_id) in notices.iter_mut().zip(ids).zip(case_ids)": [
+    "call lib.rs:3072:reserve -> lib.rs:3049:reserve"
+   ]
+  },
+  "files": [
+   "lib.rs"
+  ]
+ },
+ {
+  "rule": 4,
+  "bound": "att",
+  "re": "^for\\ \\(k,\\ ReservedNotice\\(mut\\ notice\\)\\)\\ in\\ self\\.0\\.into_iter\\(\\)\\.flatten\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 (new or changed loop at lib.rs:3105): lib.rs ReservedNotices::publish: the reserved notices, one per case in A. B1 SP T-5/T-7..T-11: one entry per ca",
+  "headers": {
+   "for (k, ReservedNotice(mut notice)) in self.0.into_iter().flatten().enumerate()": [
+    "call lib.rs:3096:publish -> load_ledger.rs:131:push",
+    "site lib.rs:3096:publish @lib.rs:3110",
+    "site lib.rs:3096:publish @lib.rs:3111"
+   ]
+  },
+  "files": [
+   "lib.rs"
+  ]
+ },
+ {
+  "rule": 5,
+  "bound": "cases",
+  "re": "^for\\ \\(\\(\\&request,\\ \\&id\\),\\ trigger\\)\\ in\\ self\\.requests\\(\\)\\.iter\\(\\)\\.zip\\(self\\.ids\\(\\)\\)\\.zip\\(triggers\\)$",
+  "why": "I104 SQ B1 (new or changed loop at lib.rs:3146): lib.rs CaseSet::attempted: the requested cases and their triggers. B1: one entry per requested case (c <= C = 3",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 6,
+  "bound": "cases",
+  "re": "^for\\ \\(request,\\ case\\)\\ in\\ cases\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 (new or changed loop at lib.rs:3165): lib.rs w1_case_ids: the request's load_cases, 1 <= len <= LOAD_CASES checked first. B1: one entry per requested",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 7,
+  "bound": "D",
+  "re": "^iter:if\\ ordinary\\.diagnostics\\.iter\\(\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at lib.rs:3079): lib.rs ReservedNotices::reserve: the ordinary envelope's diagnostics <= D_env <= D (TEXT fixpoint), once per ca",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 8,
+  "bound": "cases",
+  "re": "^iter:case_ids\\.iter\\(\\)\\.map$",
+  "why": "I104 SQ B1 (new or changed loop at lib.rs:3196): lib.rs case_triggers: one trigger per requested case id. B1: one entry per requested case (c <= C = 3; D1.4 at ",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 9,
+  "bound": "cases",
+  "re": "^iter:quality\\.cases\\.iter\\(\\)\\.filter$",
+  "why": "I104 SQ B1 (new or changed loop at lib.rs:3197): lib.rs case_triggers: numerical_quality.cases, one entry per requested case. B1: one entry per requested case (",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 10,
+  "bound": "1",
+  "re": "^iter:only_one\\(quality\\.cases\\.iter\\(\\)\\.filter\\(\\|entry\\|\\ entry\\.basis_ref\\.ref_id\\ ==\\ case_id\\)\\)\\.map$",
+  "why": "I104 SQ B1 (new or changed loop at lib.rs:3197): lib.rs case_triggers: only_one(..).map is Option::map. Option/Result adapter: the closure runs at most once",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 11,
+  "bound": "cases",
+  "re": "^iter:seeds\\.iter\\(\\)\\.filter$",
+  "why": "I104 SQ B1 (new or changed loop at lib.rs:3198): lib.rs case_triggers: the ordinary seeds, one per requested case (T-2). B1: one entry per requested case (c <= ",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 12,
+  "bound": "cases",
+  "re": "^iter:if\\ !case_triggers\\(\\&ordinary\\.numerical_quality,\\ \\&observer\\.ordinary,\\ cases\\.ids\\(\\)\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at lib.rs:3250): lib.rs retained_w1: .any over case_triggers(..), one item per requested case (the generic 'no iterator source' ",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 13,
+  "bound": "att",
+  "re": "^iter:\\|stage:\\ fn\\(\\&AttemptEnd\\)\\ \\->\\ bool\\|\\ prepared\\.attempts\\.iter\\(\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at lib.rs:3299): lib.rs w1_transaction: `reached` scans prepared.attempts, one per case in A. B1 SP T-5/T-7..T-11: one entry per",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 14,
+  "bound": "L",
+  "re": "^for\\ load\\ in\\ m\\.load_cases\\.iter\\(\\)\\.flat_map\\(\\|case\\|\\ \\&case\\.primitive_loads\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_memory.rs:791): retained_memory.rs family_clauses (D1.7 per case, B1 SA): every case's primitive loads, sum_i l_i <=",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 15,
+  "bound": "cases",
+  "re": "^iter:refuse\\(C::Case,\\ F::AnalysisState\\);\\ \\}\\ \\}\\ for\\ support\\ in\\ \\&m\\.supports\\ \\{\\ if\\ support\\.hanger\\.is_some\\(\\)\\ \\{\\ return\\ refuse\\(C::Supports,\\ F::Hanger\\);\\ \\}\\ if\\ support\\.nonlinear\\.",
+  "why": "I104 SQ B1 (new or changed loop at retained_memory.rs:791): retained_memory.rs family_clauses: the header is the `.flat_map(|case| &case.primitive_loads)` adapt",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 16,
+  "bound": "cases",
+  "re": "^iter:requested\\ \\&\\&\\ capture\\.ordinary\\.iter\\(\\)\\.all$",
+  "why": "I104 SQ B1 (new or changed loop at retained_memory.rs:2621): retained_memory.rs ordinary_solve_attempted: capture.ordinary, one seed per requested case (T-3 (e)",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 17,
+  "bound": "cases",
+  "re": "^for\\ index\\ in\\ 0\\.\\.cases$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:1117): retained_product.rs bind_observations_by_case: cases = cases_seen() <= c. B1: one entry per reques",
+  "headers": {
+   "for index in 0..cases": [
+    "site retained_product.rs:1114:bind_observations_by_case @retained_product.rs:1120",
+    "site retained_product.rs:1114:bind_observations_by_case @retained_product.rs:1123",
+    "site retained_product.rs:1114:bind_observations_by_case @retained_product.rs:1133",
+    "site retained_product.rs:1114:bind_observations_by_case @retained_product.rs:1155",
+    "site retained_product.rs:1114:bind_observations_by_case @retained_product.rs:1176",
+    "site retained_product.rs:1114:bind_observations_by_case @retained_product.rs:1178"
+   ]
+  },
+  "files": [
+   "retained_product.rs"
+  ]
+ },
+ {
+  "rule": 18,
+  "bound": "cases",
+  "re": "^for\\ _\\ in\\ 0\\.\\.cases$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:1138): retained_product.rs bind_observations_by_case: one counter pair per case seen. B1: one entry per r",
+  "headers": {
+   "for _ in 0..cases": [
+    "call retained_product.rs:1114:bind_observations_by_case -> load_ledger.rs:131:push"
+   ]
+  },
+  "files": [
+   "retained_product.rs"
+  ]
+ },
+ {
+  "rule": 19,
+  "bound": "Pall",
+  "re": "^for\\ row\\ in\\ \\&envelope\\.results$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:1142): retained_product.rs bind_observations_by_case: one pass over the whole envelope's rows (T-6; RV109",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 20,
+  "bound": "att",
+  "re": "^for\\ attempt\\ in\\ attempts\\.iter_mut\\(\\)\\.filter\\(\\|attempt\\|\\ matches!\\(attempt\\.end,\\ AttemptEnd::Prepared\\)\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3683): retained_product.rs PreparedCases::native: attempts filtered to Prepared. B1 SP T-5/T-7..T-11: one",
+  "headers": {
+   "for attempt in attempts.iter_mut().filter(|attempt| matches!(attempt.end, AttemptEnd::Prepared))": [
+    "site retained_product.rs:3678:native @retained_product.rs:3692"
+   ]
+  },
+  "files": [
+   "retained_product.rs"
+  ]
+ },
+ {
+  "rule": 21,
+  "bound": "att",
+  "re": "^for\\ attempt\\ in\\ attempts\\.iter_mut\\(\\)\\.filter\\(\\|attempt\\|\\ matches!\\(attempt\\.end,\\ AttemptEnd::Selected\\)\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3719): retained_product.rs PreparedCases::freeze: attempts filtered to Selected (T-9). B1 SP T-5/T-7..T-1",
+  "headers": {
+   "for attempt in attempts.iter_mut().filter(|attempt| matches!(attempt.end, AttemptEnd::Selected))": [
+    "call retained_product.rs:3716:freeze -> retained_product.rs:4321:freeze_case"
+   ]
+  },
+  "files": [
+   "retained_product.rs"
+  ]
+ },
+ {
+  "rule": 22,
+  "bound": "att",
+  "re": "^for\\ attempt\\ in\\ \\&self\\.attempts$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3742): retained_product.rs PreparedCases::staged_envelope: one overlay per frozen attempt. B1 SP T-5/T-7.",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 23,
+  "bound": "Pall",
+  "re": "^for\\ \\(index,row\\)\\ in\\ ordinary\\.results\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3843): retained_product.rs bind_case_rows: one pass over the whole envelope's rows (T-6, c >= 2). B1: eve",
+  "headers": {
+   "for (index,row) in ordinary.results.iter().enumerate()": [
+    "site retained_product.rs:3840:bind_case_rows @retained_product.rs:3845",
+    "site retained_product.rs:3840:bind_case_rows @retained_product.rs:3849",
+    "site retained_product.rs:3840:bind_case_rows @retained_product.rs:3852"
+   ]
+  },
+  "files": [
+   "retained_product.rs"
+  ]
+ },
+ {
+  "rule": 24,
+  "bound": "att",
+  "re": "^for\\ \\(attempt,\\&request\\)\\ in\\ attempted\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3876): retained_product.rs prepare_cases: one product attempt per case in A (T-7). B1 SP T-5/T-7..T-11: o",
+  "headers": {
+   "for (attempt,&request) in attempted.iter().enumerate()": [
+    "call retained_product.rs:3871:prepare_cases -> retained_product.rs:3882:prepare_attempt"
+   ]
+  },
+  "files": [
+   "retained_product.rs"
+  ]
+ },
+ {
+  "rule": 25,
+  "bound": "att",
+  "re": "^for\\ request\\ in\\ submitted\\(\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3921): retained_product.rs native_call: submitted() yields the prepared requests. B1 SP T-8: the prepared",
+  "headers": {
+   "for request in submitted()": [
+    "call retained_product.rs:3901:native_call -> load_ledger.rs:131:push"
+   ]
+  },
+  "files": [
+   "retained_product.rs"
+  ]
+ },
+ {
+  "rule": 26,
+  "bound": "att",
+  "re": "^for\\ \\(request,case\\)\\ in\\ submitted\\(\\)\\.zip\\(cases\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3937): retained_product.rs native_call: one kernel case per submitted request. B1 SP T-8: the prepared ca",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 27,
+  "bound": "P",
+  "re": "^for\\ \\(i,r\\)\\ in\\ rows\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:4296): retained_product.rs prepared_alias: the frozen case's own rows (its case scope, one block of P_fin",
+  "headers": {
+   "for (i,r) in rows.iter().enumerate()": [
+    "site retained_product.rs:4294:prepared_alias @retained_product.rs:4299"
+   ]
+  },
+  "files": [
+   "retained_product.rs"
+  ]
+ },
+ {
+  "rule": 28,
+  "bound": "P",
+  "re": "^for\\ \\(i,row\\)\\ in\\ rows\\.iter_mut\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:4457): retained_product.rs apply_prepared_overlay: the case's scoped rows (one block of P_final; the whol",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 29,
+  "bound": "Pall",
+  "re": "^for\\ row\\ in\\ staged\\.results\\.iter\\(\\)\\.filter\\(\\|row\\|row\\.kind==kind\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:4485): retained_product.rs stage_headlines: the staged envelope's rows of one kind, per headline kind (th",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 30,
+  "bound": "cases",
+  "re": "^iter:1\\ \\|\\|\\ self\\.source\\.is_none\\(\\)\\ \\|\\|\\ self\\.parked\\.iter\\(\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:1935): retained_product.rs finish: the parked case slots (c - 1 at most). B1: one entry per requested cas",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 31,
+  "bound": "att",
+  "re": "^iter:if\\ !attempts\\.iter\\(\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3680): retained_product.rs PreparedCases::native: attempts.iter().any. B1 SP T-5/T-7..T-11: one entry per",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 32,
+  "bound": "att",
+  "re": "^iter:if\\ !attempts\\.iter\\(\\)\\.any\\(\\|attempt\\|\\ matches!\\(attempt\\.end,\\ AttemptEnd::Prepared\\)\\)\\ \\{\\ return;\\ \\}\\ for\\ attempt\\ in\\ attempts\\.iter_mut\\(\\)\\.filter$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3683): retained_product.rs PreparedCases::native: the filter closure over attempts (its receiver text run",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 33,
+  "bound": "att",
+  "re": "^iter:\\|\\|\\ attempts\\.iter\\(\\)\\.filter$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3688): retained_product.rs PreparedCases::native: submitted() closure: attempts filtered to Prepared. B1 ",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 34,
+  "bound": "att",
+  "re": "^iter:\\|\\|\\ attempts\\.iter\\(\\)\\.filter\\(\\|attempt\\|\\ matches!\\(attempt\\.end,\\ AttemptEnd::Prepared\\)\\)\\.map$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3688): retained_product.rs PreparedCases::native: submitted() closure's map over the filtered attempts. B",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 35,
+  "bound": "att",
+  "re": "^iter:for\\ attempt\\ in\\ attempts\\.iter_mut\\(\\)\\.filter$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3690): retained_product.rs PreparedCases::native/freeze: the filter closure over attempts. B1 SP T-5/T-7.",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 36,
+  "bound": "att",
+  "re": "^iter:self\\.attempts\\.iter\\(\\)\\.enumerate\\(\\)\\.filter$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3755): retained_product.rs selected_attempts: attempts enumerated and filtered. B1 SP T-5/T-7..T-11: one ",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 37,
+  "bound": "cases",
+  "re": "^iter:self\\.parked\\.iter_mut\\(\\)\\.find$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3810): retained_product.rs prepared_custody: the parked slots (c - 1 at most). B1: one entry per requeste",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 38,
+  "bound": "cases",
+  "re": "^iter:1\\ \\|\\|\\ ordinary\\.source_block_recovery\\.is_some\\(\\)\\ \\|\\|\\ self\\.native\\.is_some\\(\\)\\ \\|\\|\\ self\\.native_invocation\\.is_some\\(\\)\\ \\|\\|\\ self\\.parked\\.iter\\(\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3819): retained_product.rs prepared_custody: parked.iter().any over the parked slots. B1: one entry per r",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 39,
+  "bound": "att",
+  "re": "^iter:requested\\ \\{\\ return\\ Err\\(\"\\ \"\\.into\\(\\)\\);\\ \\}\\ if\\ attempted\\.iter\\(\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3827): retained_product.rs prepared_custody: attempted.iter().any over A's request indices. B1 SP T-5/T-7",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 40,
+  "bound": "att",
+  "re": "^iter:requested\\ \\{\\ return\\ Err\\(\"\\ \"\\.into\\(\\)\\);\\ \\}\\ if\\ attempted\\.iter\\(\\)\\.any\\(\\|\\&request\\|request>=requested\\)\\ \\|\\|\\ attempted\\.windows\\(2\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3827): retained_product.rs prepared_custody: attempted.windows(2).any over A's request indices. B1 SP T-5",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 41,
+  "bound": "att",
+  "re": "^iter:if\\ self\\.native_invocation\\.is_some\\(\\)\\ \\|\\|\\ submitted\\(\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3902): retained_product.rs native_call: submitted().any (the generic 'no iterator source' rule would read",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 42,
+  "bound": "att",
+  "re": "^iter:if\\ self\\.native_invocation\\.is_some\\(\\)\\ \\|\\|\\ submitted\\(\\)\\.any\\(\\|request\\|self\\.case_native\\(request\\)\\.is_some\\(\\)\\)\\ \\{\\ return\\ Err\\(\"\\ \"\\.into\\(\\)\\);\\ \\}\\ if\\ submitted\\(\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:3905): retained_product.rs native_call: the second submitted().any (its receiver text runs back over the ",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 43,
+  "bound": "P",
+  "re": "^iter:self\\.case_rows\\(\\)\\.iter\\(\\)\\.enumerate\\(\\)\\.map$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:4150): retained_product.rs ProductCaseView::rows: the case's rows (case_rows: its scope, one block of P_f",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 44,
+  "bound": "P",
+  "re": "^iter:\"\\ \":self\\.verdicts\\.iter\\(\\)\\.map$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:4377): retained_product.rs freeze_case: the case's verdicts, one per row of its scope (inside a #[cfg(tes",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 45,
+  "bound": "Pall",
+  "re": "^iter:for\\ row\\ in\\ staged\\.results\\.iter\\(\\)\\.filter$",
+  "why": "I104 SQ B1 (new or changed loop at retained_product.rs:4485): retained_product.rs stage_headlines: the filter closure over the staged envelope's rows. B1: every",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 46,
+  "bound": "cases",
+  "re": "^for\\ case_index\\ in\\ 0\\.\\.cases$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:870): retained_wire.rs material_basis: every requested case's base selector. B1: one entry per requested cas",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 47,
+  "bound": "D",
+  "re": "^for\\ d\\ in\\ env\\[\"\\ \"\\]\\.as_array\\(\\)\\.ok_or\\(fail\\(ReceiptCheck::Association,\\ \"\\ \"\\)\\)\\?$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1481): retained_wire.rs case_diagnostic_refs_into: the successor envelope's diagnostics, D_env plus the appe",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 48,
+  "bound": "cases",
+  "re": "^for\\ \\(case_id,\\ refs\\)\\ in\\ case_ids\\.iter\\(\\)\\.zip\\(refs\\.iter_mut\\(\\)\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1486): retained_wire.rs case_diagnostic_refs_into: one ref list per requested case. B1: one entry per reques",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 49,
+  "bound": "att",
+  "re": "^for\\ attempt\\ in\\ attempts$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1794): retained_wire.rs serialize_cases_with: every attempt's slot. B1 SP T-5/T-7..T-11: one entry per case ",
+  "headers": {
+   "for attempt in attempts": [
+    "call retained_wire.rs:1767:serialize_cases_with -> retained_wire.rs:1912:serialize_attempt",
+    "site retained_wire.rs:1767:serialize_cases_with @retained_wire.rs:1796",
+    "site retained_wire.rs:1767:serialize_cases_with @retained_wire.rs:1863"
+   ]
+  },
+  "files": [
+   "retained_wire.rs"
+  ]
+ },
+ {
+  "rule": 50,
+  "bound": "cases",
+  "re": "^for\\ \\(index,\\ seed\\)\\ in\\ pc\\.ordinary\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1818): retained_wire.rs serialize_cases_with: one legacy disposition per requested case's seed. B1: one entr",
+  "headers": {
+   "for (index, seed) in pc.ordinary.iter().enumerate()": [
+    "call retained_wire.rs:1767:serialize_cases_with -> retained_wire.rs:785:legacy_source"
+   ]
+  },
+  "files": [
+   "retained_wire.rs"
+  ]
+ },
+ {
+  "rule": 51,
+  "bound": "cases",
+  "re": "^for\\ \\(index,\\ \\(_,\\ omit\\)\\)\\ in\\ legacy\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1825): retained_wire.rs serialize_cases_with: each requested case's legacy entry. B1: one entry per requeste",
+  "headers": {
+   "for (index, (_, omit)) in legacy.iter().enumerate()": [
+    "call retained_wire.rs:1767:serialize_cases_with -> retained_wire.rs:751:selected_case_envelope"
+   ]
+  },
+  "files": [
+   "retained_wire.rs"
+  ]
+ },
+ {
+  "rule": 52,
+  "bound": "cases",
+  "re": "^for\\ index\\ in\\ 0\\.\\.count$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1830): retained_wire.rs serialize_cases_with: `0..count`, count = requested cases. B1: one entry per request",
+  "headers": {
+   "for index in 0..count": [
+    "call retained_wire.rs:1767:serialize_cases_with -> retained_wire.rs:1631:unavailable_case_envelope"
+   ]
+  },
+  "files": [
+   "retained_wire.rs"
+  ]
+ },
+ {
+  "rule": 53,
+  "bound": "cases",
+  "re": "^for\\ \\(index,\\ \\(\\(seed,\\ \\(legacy_v,\\ _\\)\\),\\ refs\\)\\)\\ in\\ pc\\.ordinary\\.iter\\(\\)\\.zip\\(legacy\\)\\.zip\\(diagnostic_refs\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1840): retained_wire.rs serialize_cases_with: one ordinary attempt per requested case. B1: one entry per req",
+  "headers": {
+   "for (index, ((seed, (legacy_v, _)), refs)) in pc.ordinary.iter().zip(legacy).zip(diagnostic_refs).enumerate()": [
+    "call retained_wire.rs:1767:serialize_cases_with -> retained_wire.rs:1457:ordinary_entry"
+   ]
+  },
+  "files": [
+   "retained_wire.rs"
+  ]
+ },
+ {
+  "rule": 54,
+  "bound": "cases",
+  "re": "^for\\ \\(index,\\ part\\)\\ in\\ case_parts\\.into_iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1873): retained_wire.rs serialize_cases_with: cases[], one per requested case. B1: one entry per requested c",
+  "headers": {
+   "for (index, part) in case_parts.into_iter().enumerate()": [
+    "site retained_wire.rs:1767:serialize_cases_with @retained_wire.rs:1882"
+   ]
+  },
+  "files": [
+   "retained_wire.rs"
+  ]
+ },
+ {
+  "rule": 55,
+  "bound": "att",
+  "re": "^iter:\"\\ \":c\\.owners\\.iter\\(\\)\\.map\\(owner\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1417): retained_wire.rs invocation_arrays: the one call's owners, one per submitted case. B1 SP T-8: the pre",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 56,
+  "bound": "1",
+  "re": "^iter:e\\.exact\\(run\\.work\\.invocation_after\\(\\),\\ \"\\ \"\\)\\ \\{\\ return\\ Err\\(fail\\(ReceiptCheck::WorkCounterInconsistent,\\ \"\\ \"\\)\\);\\ \\}\\ if\\ inv\\.calls\\(\\)\\.iter\\(\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1442): retained_wire.rs invocation_arrays: inv.calls().iter().any: one CaseBatchCall per invocation (T-8; se",
+  "headers": {
+   "iter:e.exact(run.work.invocation_after(), \" \") { return Err(fail(ReceiptCheck::WorkCounterInconsistent, \" \")); } if inv.calls().iter().any": [
+    "call retained_wire.rs:1407:invocation_arrays -> retained_wire.rs:152:exact"
+   ]
+  },
+  "files": [
+   "retained_wire.rs"
+  ]
+ },
+ {
+  "rule": 57,
+  "bound": "L+4",
+  "re": "^iter:if\\ affected\\.iter\\(\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1487): retained_wire.rs case_diagnostic_refs_into: one diagnostic's affected refs (G4's l + 4, rule `for ref",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 58,
+  "bound": "cases",
+  "re": "^iter:request_cases\\.iter\\(\\)\\.map$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1785): retained_wire.rs serialize_cases_with: the request's load_cases. B1: one entry per requested case (c ",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 59,
+  "bound": "cases",
+  "re": "^iter:count\\ \\{\\ return\\ Err\\(scope\\(\"\\ \"\\)\\);\\ \\}\\ if\\ pc\\.ordinary\\.iter\\(\\)\\.zip\\(\\&case_ids\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1789): retained_wire.rs serialize_cases_with: seeds zipped with the case ids. B1: one entry per requested ca",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 60,
+  "bound": "cases",
+  "re": "^iter:attempt_of\\.iter\\(\\)\\.map$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1800): retained_wire.rs serialize_cases_with: each requested case's attempt slot. B1: one entry per requeste",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 61,
+  "bound": "att",
+  "re": "^iter:attempts\\.iter\\(\\)\\.filter$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1809): retained_wire.rs serialize_cases_with: the attempts filtered to prepared. B1 SP T-5/T-7..T-11: one en",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 62,
+  "bound": "att",
+  "re": "^iter:attempts\\.iter\\(\\)\\.filter\\(\\|attempt\\|\\ attempt\\.prepared\\)\\.map$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1809): retained_wire.rs serialize_cases_with: the prepared attempts' requests. B1 SP T-5/T-7..T-11: one entr",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 63,
+  "bound": "att",
+  "re": "^iter:requests\\.iter\\(\\)\\.position$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1855): retained_wire.rs serialize_cases_with: requests = the prepared attempts' request indices. B1 SP T-8: ",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 64,
+  "bound": "1",
+  "re": "^iter:requests\\.iter\\(\\)\\.position\\(\\|r\\|\\ \\*r\\ ==\\ request\\)\\.filter$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1855): retained_wire.rs serialize_cases_with: Option::filter on the position. Option/Result adapter: the clo",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 65,
+  "bound": "att",
+  "re": "^iter:inv\\.runs\\(\\)\\.iter\\(\\)\\.map$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1889): retained_wire.rs serialize_cases_with: execution_order over the call's Runs, one per submitted case. ",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 66,
+  "bound": "P",
+  "re": "^iter:results\\.iter\\(\\)\\.map$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1935): retained_wire.rs serialize_attempt: the case scope's rows of the successor (one block of P_final)",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 67,
+  "bound": "1",
+  "re": "^iter:\\|r\\|\\ r\\[\"\\ \"\\]\\.as_str\\(\\)\\.map\\(str::to_owned\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1935): retained_wire.rs serialize_attempt: Option::map inside the row map. Option/Result adapter: the closur",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 68,
+  "bound": "P",
+  "re": "^iter:row_ids\\.len\\(\\)\\ \\|\\|\\ rows\\.iter\\(\\)\\.zip\\(\\&row_ids\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at retained_wire.rs:1936): retained_wire.rs serialize_attempt: the case's bound rows zipped with its row ids (one block of P_fin",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 69,
+  "bound": "att",
+  "re": "^for\\ \\(si,\\ s\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:735): retained_precision.rs g3 (RS): body.sources, one CaseSource per submitted case. B1 SP T-8: the pr",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 70,
+  "bound": "att",
+  "re": "^for\\ s\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:3732): retained_precision.rs g8 (RS): body.sources, one CaseSource per submitted case. B1 SP T-8: the p",
+  "headers": {
+   "for s in list(&b[\" \"])": [
+    "call retained_precision.rs:3488:g8 -> retained_precision.rs:206:error",
+    "call retained_precision.rs:3488:g8 -> retained_precision.rs:312:bits",
+    "call retained_precision.rs:3488:g8 -> retained_precision.rs:3361:unit_value",
+    "call retained_precision.rs:3488:g8 -> retained_precision.rs:3477:find_node",
+    "call retained_precision.rs:3488:g8 -> retained_precision.rs:3483:dof_index",
+    "call retained_precision.rs:3488:g8 -> retained_precision.rs:4096:verify_native_source_hashes"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 71,
+  "bound": "cases",
+  "re": "^for\\ c\\ in\\ list\\(\\&evidence\\[\"\\ \"\\]\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:4579): retained_precision.rs preview_physics_transport_metadata (RS): evidence.preview_cases, one per r",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 72,
+  "bound": "g",
+  "re": "^for\\ record\\ in\\ list\\(\\&attribution\\[\"\\ \"\\]\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:4629): retained_precision.rs preview_physics_transport_metadata (RS): one case's withheld support recor",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 73,
+  "bound": "2*m",
+  "re": "^for\\ x\\ in\\ list\\(\\&c\\[\"\\ \"\\]\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:4646): retained_precision.rs preview_physics_transport_metadata (RS): one case's pipe_stress_extrema <=",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 74,
+  "bound": "m",
+  "re": "^for\\ m\\ in\\ list\\(\\&c\\[\"\\ \"\\]\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:4698): retained_precision.rs preview_physics_transport_metadata (RS): one case's intensified measures <",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 75,
+  "bound": "0",
+  "re": "^for\\ gate\\ in\\ list\\(\\&evidence\\[\"\\ \"\\]\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:4743): retained_precision.rs preview_physics_transport_metadata (RS): combination_gates exist only for ",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 76,
+  "bound": "cases",
+  "re": "^iter:mi\\ as\\ u64\\ \\&\\&\\ list\\(\\&mb\\[\"\\ \"\\]\\)\\ \\.iter\\(\\)\\.all$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:753): retained_precision.rs g3 (RS): one material basis's case_indices, each a requested case. B1: one ",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 77,
+  "bound": "8",
+  "re": "^iter:\"\\ \"\\ \\&\\&\\ STAGE8\\[2\\.\\.\\]\\ \\.iter\\(\\)\\ \\.chain\\(\\&\\[\"\\ \",\\ \"\\ \"\\]\\)\\.all$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:2052): retained_precision.rs d38_capture_before_run (RS): STAGE8[2..] (6 of the 8 stage names) chained ",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 78,
+  "bound": "2",
+  "re": "^iter:matches!\\(text\\(\\&model\\[\"\\ \"\\]\\),\\ \"\\ \"\\ \\|\\ \"\\ \"\\ \\|\\ \"\\ \"\\)\\ \\&\\&\\ model\\[\"\\ \"\\]\\.is_null\\(\\)\\ \\&\\&\\ \\[\"\\ \",\\ \"\\ \"\\]\\ \\.iter\\(\\)\\.all$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:3522): retained_precision.rs g8 (RS): the 2-element literal [combinations, components]",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 79,
+  "bound": "P",
+  "re": "^iter:rows\\ \\.iter\\(\\)\\.filter$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:3604): retained_precision.rs g8 (RS): the case's rows (rows_for, one block of P_final)",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 80,
+  "bound": "cases",
+  "re": "^iter:\\|mb\\|\\ list\\(\\&mb\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:4220): retained_precision.rs g5_ordinary (RS): one material basis's case_indices. B1: one entry per req",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 81,
+  "bound": "16",
+  "re": "^iter:keys\\.len\\(\\)\\ \\&\\&\\ keys\\.iter\\(\\)\\.all$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:4495): retained_precision.rs preview_physics_transport_metadata `shape` (RS): a literal key list, at mo",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 82,
+  "bound": "max(m, g)",
+  "re": "^iter:a\\.iter\\(\\)\\.all$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:4501): retained_precision.rs preview_physics_transport_metadata `strings` (RS): a pipe-id (<= m) or sup",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 83,
+  "bound": "m",
+  "re": "^iter:!list\\(unavailable\\)\\.iter\\(\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:4610): retained_precision.rs preview_physics_transport_metadata (RS): one case's unavailable pipe ids <",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 84,
+  "bound": "g",
+  "re": "^iter:!list\\(attributed\\)\\ \\.iter\\(\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:4643): retained_precision.rs preview_physics_transport_metadata (RS): one case's attributed support ids",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 85,
+  "bound": "g",
+  "re": "^iter:\\|x\\|\\ withheld\\.iter\\(\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:4643): retained_precision.rs preview_physics_transport_metadata (RS): the withheld records collected fo",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 86,
+  "bound": "2",
+  "re": "^iter:\\[\"\\ \",\\ \"\\ \"\\]\\ \\.iter\\(\\)\\.all$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:4662): retained_precision.rs preview_physics_transport_metadata (RS): a 2-element key literal",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 87,
+  "bound": "2*m",
+  "re": "^iter:list\\(\\&c\\[\"\\ \"\\]\\)\\ \\.iter\\(\\)\\.map$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:4686): retained_precision.rs preview_physics_transport_metadata (RS): one case's pipe_stress_extrema <=",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 88,
+  "bound": "2*m",
+  "re": "^iter:list\\(unavailable\\)\\ \\.iter\\(\\)\\ \\.chain\\(list\\(outside\\)\\)\\.any$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:4694): retained_precision.rs preview_physics_transport_metadata (RS): unavailable then outside-domain p",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 89,
+  "bound": "4",
+  "re": "^iter:\\[\\ \"\\ \",\\ \"\\ \",\\ \"\\ \",\\ \"\\ \",\\ \\]\\ \\.iter\\(\\)\\.all$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:4720): retained_precision.rs preview_physics_transport_metadata (RS): a 4-element key literal",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 90,
+  "bound": "g",
+  "re": "^iter:list\\(attributed\\)\\.iter\\(\\)\\.map\\(text\\)$",
+  "why": "I104 SQ B1 (new or changed loop at retained_precision.rs:4727): retained_precision.rs preview_physics_transport_metadata (RS): one case's attributed support ids",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 113,
+  "bound": "att",
+  "re": "^for\\ a\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)$",
+  "why": "I104 SQ B1 rebind (1 -> att): RS reader (retained_precision.rs :560, :2377, :3956): body.product_attempts, one per case in A. B1 SP T-5/T-7..T-11: one entry per",
+  "headers": {
+   "for a in list(&b[\" \"])": [
+    "call retained_precision.rs:3488:g8 -> retained_precision.rs:206:error",
+    "call retained_precision.rs:3488:g8 -> retained_precision.rs:291:at",
+    "call retained_precision.rs:3488:g8 -> retained_precision.rs:312:bits",
+    "call retained_precision.rs:3488:g8 -> retained_precision.rs:3361:unit_value",
+    "call retained_precision.rs:3488:g8 -> retained_precision.rs:3477:find_node",
+    "call retained_precision.rs:3488:g8 -> retained_precision.rs:4068:verify_new_operational"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 114,
+  "bound": "att",
+  "re": "^for\\ \\(ai,\\ a\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 rebind (1 -> att): RS reader (:2083 g5_products): body.product_attempts. B1 SP T-5/T-7..T-11: one entry per case in A, the attempted cases (|A| <= a ",
+  "headers": {
+   "for (ai, a) in list(&b[\" \"]).iter().enumerate()": [
+    "call retained_precision.rs:2061:g5_products -> retained_precision.rs:1708:reason_table",
+    "call retained_precision.rs:2061:g5_products -> retained_precision.rs:1867:accounting_rules",
+    "call retained_precision.rs:2061:g5_products -> retained_precision.rs:1931:g5_coverage",
+    "call retained_precision.rs:2061:g5_products -> retained_precision.rs:1975:reason_table",
+    "call retained_precision.rs:2061:g5_products -> retained_precision.rs:291:at"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 115,
+  "bound": "att",
+  "re": "^for\\ \\(si,\\ s\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 rebind (1 -> att): RS reader (:735 g3): body.sources, one per submitted case. B1 SP T-8: the prepared cases of A submitted to the one CaseBatchCall (",
+  "headers": {},
+  "files": []
+ },
+ {
+  "rule": 116,
+  "bound": "1",
+  "re": "^for\\ \\(mi,\\ mb\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 re-checked, kept (1): RS reader (:747 g3, :3616 g8): body.material_bases: the producer emits one material basis (D1.5's one default basis) whose case",
+  "headers": {
+   "for (mi, mb) in list(&b[\" \"]).iter().enumerate()": [
+    "call retained_precision.rs:3488:g8 -> retained_precision.rs:206:error",
+    "call retained_precision.rs:3488:g8 -> retained_precision.rs:312:bits",
+    "call retained_precision.rs:3488:g8 -> retained_precision.rs:3377:selected_material"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 117,
+  "bound": "cases",
+  "re": "^for\\ \\(i,\\ c\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 rebind (1 -> cases): RS reader (:4200 g5_ordinary): body.cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA). Was: G4 (T17 precommit ",
+  "headers": {
+   "for (i, c) in list(&b[\" \"]).iter().enumerate()": [
+    "call retained_precision.rs:4195:g5_ordinary -> retained_precision.rs:206:error",
+    "call retained_precision.rs:4195:g5_ordinary -> retained_precision.rs:291:at",
+    "site retained_precision.rs:4195:g5_ordinary @retained_precision.rs:4248",
+    "site retained_precision.rs:4195:g5_ordinary @retained_precision.rs:4371"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 118,
+  "bound": "att",
+  "re": "^for\\ \\(i,\\ a\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 rebind (1 -> att): RS reader (:756 g3): body.product_attempts. B1 SP T-5/T-7..T-11: one entry per case in A, the attempted cases (|A| <= a <= c). Was",
+  "headers": {
+   "for (i, a) in list(&b[\" \"]).iter().enumerate()": [
+    "call retained_precision.rs:659:g3 -> retained_precision.rs:291:at"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 119,
+  "bound": "1",
+  "re": "^for\\ \\(call_id,\\ call\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 re-checked, kept (1): RS reader (:963, :1427): body.calls: one CaseBatchCall per invocation (T-8; the serializer refuses calls().len() != 1). Was: G4",
+  "headers": {
+   "for (call_id, call) in list(&b[\" \"]).iter().enumerate()": [
+    "call retained_precision.rs:904:g5_native -> retained_precision.rs:1505:g5_schedule",
+    "call retained_precision.rs:904:g5_native -> retained_precision.rs:206:error",
+    "call retained_precision.rs:904:g5_native -> retained_precision.rs:291:at",
+    "call retained_precision.rs:904:g5_native -> retained_precision.rs:315:sum",
+    "call retained_precision.rs:904:g5_native -> retained_precision.rs:897:stages_sum",
+    "site retained_precision.rs:904:g5_native @retained_precision.rs:1114",
+    "site retained_precision.rs:904:g5_native @retained_precision.rs:1121"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 120,
+  "bound": "1",
+  "re": "^for\\ \\(i,\\ g\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 re-checked, kept (1): RS reader (:946): body.groups: every case shares the model and D1.5's one basis, so one stiffness and one group (C2 \u00a74; RV109 r",
+  "headers": {
+   "for (i, g) in list(&b[\" \"]).iter().enumerate()": [
+    "call retained_precision.rs:904:g5_native -> retained_precision.rs:291:at"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 121,
+  "bound": "7",
+  "re": "^for\\ \\(i,\\ build\\)\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 re-checked, kept (7): RS reader: body.builds: one shared build per origin slot of the one group (7 slots), reused by every case's Run (RV109 round 2 ",
+  "headers": {
+   "for (i, build) in list(&b[\" \"]).iter().enumerate()": [
+    "call retained_precision.rs:904:g5_native -> retained_precision.rs:897:stages_sum"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 122,
+  "bound": "cases",
+  "re": "^for\\ c\\ in\\ list\\(\\&b\\[\"\\ \"\\]\\)\\ \\.iter\\(\\)\\ \\.filter\\(\\|c\\|\\ c\\[\"\\ \"\\]\\ ==\\ \"\\ \"\\)$",
+  "why": "I104 SQ B1 rebind (1 -> cases): RS reader (:2657 numeric_cases): body.cases filtered. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA). Was: G4 (T17",
+  "headers": {
+   "for c in list(&b[\" \"]) .iter() .filter(|c| c[\" \"] == \" \")": [
+    "call retained_precision.rs:2654:numeric_cases -> retained_precision.rs:2623:finite_check",
+    "call retained_precision.rs:2654:numeric_cases -> retained_precision.rs:2629:body_extent",
+    "call retained_precision.rs:2654:numeric_cases -> retained_precision.rs:291:at",
+    "site retained_precision.rs:2654:numeric_cases @retained_precision.rs:2679",
+    "site retained_precision.rs:2654:numeric_cases @retained_precision.rs:2688"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 123,
+  "bound": "cases",
+  "re": "^for\\ c\\ in\\ list\\(\\&body\\[\"\\ \"\\]\\)$",
+  "why": "I104 SQ B1 rebind (1 -> cases): RS reader (:3030 g5a, :4437 validate): body.cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA). Was: G4 (T17 pr",
+  "headers": {
+   "for c in list(&body[\" \"])": [
+    "call retained_precision.rs:3028:g5a -> retained_precision.rs:206:error",
+    "call retained_precision.rs:3028:g5a -> retained_precision.rs:2629:body_extent",
+    "call retained_precision.rs:3028:g5a -> retained_precision.rs:2838:coverage_g5a",
+    "call retained_precision.rs:3028:g5a -> retained_precision.rs:291:at",
+    "call retained_precision.rs:3028:g5a -> retained_precision.rs:3058:g5a_selected",
+    "call retained_precision.rs:4421:validate -> retained_precision.rs:217:need"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 124,
+  "bound": "att",
+  "re": "^for\\ s\\ in\\ list\\(\\&r\\[\"\\ \"\\]\\[\"\\ \"\\]\\)$",
+  "why": "I104 SQ B1 rebind (1 -> att): RS reader (:608 g1): body.sources. B1 SP T-8: the prepared cases of A submitted to the one CaseBatchCall (<= |A| <= a). Was: G4 (T",
+  "headers": {
+   "for s in list(&r[\" \"][\" \"])": [
+    "call retained_precision.rs:567:g1 -> retained_precision.rs:217:need",
+    "call retained_precision.rs:567:g1 -> retained_precision.rs:322:hash",
+    "call retained_precision.rs:567:g1 -> retained_precision.rs:480:preparation_payload"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 125,
+  "bound": "cases",
+  "re": "^for\\ c\\ in\\ list\\(\\&r\\[\"\\ \"\\]\\[\"\\ \"\\]\\)$",
+  "why": "I104 SQ B1 rebind (1 -> cases): RS reader (:631 g1): body.cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA). Was: G4 (T17 precommit reader at ",
+  "headers": {
+   "for c in list(&r[\" \"][\" \"])": [
+    "call retained_precision.rs:567:g1 -> retained_precision.rs:217:need",
+    "call retained_precision.rs:567:g1 -> retained_precision.rs:468:source_hash"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 126,
+  "bound": "att",
+  "re": "^for\\ \\(position,\\ ri\\)\\ in\\ list\\(\\&call\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 rebind (1 -> att): RS reader (:968 g5_native): the one call's run_refs, one Run per submitted case. B1 SP T-8: the prepared cases of A submitted to t",
+  "headers": {
+   "for (position, ri) in list(&call[\" \"]).iter().enumerate()": [
+    "call retained_precision.rs:904:g5_native -> retained_precision.rs:1505:g5_schedule",
+    "call retained_precision.rs:904:g5_native -> retained_precision.rs:206:error",
+    "call retained_precision.rs:904:g5_native -> retained_precision.rs:291:at",
+    "call retained_precision.rs:904:g5_native -> retained_precision.rs:315:sum",
+    "call retained_precision.rs:904:g5_native -> retained_precision.rs:897:stages_sum",
+    "site retained_precision.rs:904:g5_native @retained_precision.rs:1114",
+    "site retained_precision.rs:904:g5_native @retained_precision.rs:1121"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 127,
+  "bound": "att",
+  "re": "^for\\ \\(ri,\\ si\\)\\ in\\ list\\(\\&call\\[\"\\ \"\\]\\)\\.iter\\(\\)\\.zip\\(list\\(\\&call\\[\"\\ \"\\]\\)\\)$",
+  "why": "I104 SQ B1 rebind (1 -> att): RS reader (:1434): the one call's run/source refs. B1 SP T-8: the prepared cases of A submitted to the one CaseBatchCall (<= |A| <",
+  "headers": {
+   "for (ri, si) in list(&call[\" \"]).iter().zip(list(&call[\" \"]))": [
+    "call retained_precision.rs:904:g5_native -> retained_precision.rs:206:error",
+    "call retained_precision.rs:904:g5_native -> retained_precision.rs:291:at"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 128,
+  "bound": "att",
+  "re": "^for\\ si\\ in\\ list\\(\\&g\\[\"\\ \"\\]\\)$",
+  "why": "I104 SQ B1 rebind (1 -> att): RS reader (:952 g5_native): the one group's source_refs, every submitted case's source. B1 SP T-8: the prepared cases of A submitt",
+  "headers": {
+   "for si in list(&g[\" \"])": [
+    "call retained_precision.rs:904:g5_native -> retained_precision.rs:291:at"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 143,
+  "bound": "cases",
+  "re": "^for\\ c\\ in\\ cases$",
+  "why": "I104 SQ B1 rebind (1 -> cases): RS reader (:3206 g5b, :3293 g5c): the numeric cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA). Was: G4 (T17 ",
+  "headers": {
+   "for c in cases": [
+    "call retained_precision.rs:3203:g5b -> retained_precision.rs:206:error",
+    "call retained_precision.rs:3203:g5b -> retained_precision.rs:312:bits",
+    "call retained_precision.rs:3203:g5b -> retained_precision.rs:3257:row_scale",
+    "call retained_precision.rs:3291:g5c -> retained_precision.rs:206:error",
+    "call retained_precision.rs:3291:g5c -> retained_precision.rs:217:need",
+    "call retained_precision.rs:3291:g5c -> retained_precision.rs:312:bits",
+    "call retained_precision.rs:3291:g5c -> retained_precision.rs:3257:row_scale",
+    "site retained_precision.rs:3291:g5c @retained_precision.rs:3299"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 144,
+  "bound": "cases",
+  "re": "^for\\ \\(i,\\ c\\)\\ in\\ cs\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 rebind (1 -> cases): RS reader (:668 g3): body.cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA). Was: G4 (T17 precommit reader at ",
+  "headers": {
+   "for (i, c) in cs.iter().enumerate()": [
+    "call retained_precision.rs:659:g3 -> retained_precision.rs:291:at"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 145,
+  "bound": "cases",
+  "re": "^for\\ \\(i,\\ case\\)\\ in\\ cases\\.iter\\(\\)\\.enumerate\\(\\)$",
+  "why": "I104 SQ B1 rebind (1 -> cases): RS reader (:3566 g8): the invocation's load cases. B1: one entry per requested case (c <= C = 3; D1.4 at B1 SA). Was: G4 (T17 pr",
+  "headers": {
+   "for (i, case) in cases.iter().enumerate()": [
+    "call retained_precision.rs:3488:g8 -> retained_precision.rs:291:at",
+    "call retained_precision.rs:3488:g8 -> retained_precision.rs:3463:selector"
+   ]
+  },
+  "files": [
+   "retained_precision.rs"
+  ]
+ },
+ {
+  "rule": 156,
+  "bound": "Pall",
+  "re": "^for\\ row\\ in\\ rows_list$",
+  "why": "I104 SQ B1 rebind (P -> Pall): preview_physics_evidence.rs validate_preview_physics_evidence (:270, :280, :629, :678): the source's whole results array. B1: eve",
+  "headers": {
+   "for row in rows_list": [
+    "call preview_physics_evidence.rs:244:validate_preview_physics_evidence -> preview_physics_evidence.rs:102:number",
+    "call preview_physics_evidence.rs:244:validate_preview_physics_evidence -> preview_physics_evidence.rs:112:array",
+    "call preview_physics_evidence.rs:244:validate_preview_physics_evidence -> preview_physics_evidence.rs:182:row_semantics",
+    "call preview_physics_evidence.rs:244:validate_preview_physics_evidence -> preview_physics_evidence.rs:86:require",
+    "call preview_physics_evidence.rs:244:validate_preview_physics_evidence -> preview_physics_evidence.rs:97:text",
+    "call preview_physics_evidence.rs:244:validate_preview_physics_evidence -> semantic_contract.rs:16:signature_in",
+    "site preview_physics_evidence.rs:244:validate_preview_physics_evidence @preview_physics_evidence.rs:291"
+   ]
+  },
+  "files": [
+   "preview_physics_evidence.rs"
+  ]
+ },
+ {
+  "rule": 157,
+  "bound": "P",
+  "re": "^for\\ row\\ in\\ rows_list\\.iter\\(\\)\\.filter\\(in_case\\)$",
+  "why": "I104 SQ B1 re-checked, kept (P): preview_physics_evidence.rs :523: the rows of one case (inside `for case in preview_cases`). Was: G4 (T17 precommit reader at b",
+  "headers": {
+   "for row in rows_list.iter().filter(in_case)": [
+    "call preview_physics_evidence.rs:244:validate_preview_physics_evidence -> preview_physics_evidence.rs:146:identity",
+    "call preview_physics_evidence.rs:244:validate_preview_physics_evidence -> preview_physics_evidence.rs:86:require",
+    "call preview_physics_evidence.rs:244:validate_preview_physics_evidence -> preview_physics_evidence.rs:97:text",
+    "site preview_physics_evidence.rs:244:validate_preview_physics_evidence @preview_physics_evidence.rs:530"
+   ]
+  },
+  "files": [
+   "preview_physics_evidence.rs"
+  ]
+ },
+ {
+  "rule": 159,
+  "bound": "Pall",
+  "re": "^for\\ row\\ in\\ rows\\.iter\\(\\)\\.filter\\(\\|r\\|\\ r\\[\"\\ \"\\]\\ ==\\ kind\\)$",
+  "why": "I104 SQ B1 rebind (P -> Pall): preview_physics_evidence.rs headline (:775), called on rows_list (:640, :646): the whole results array. B1: every row of the c-ca",
+  "headers": {
+   "for row in rows.iter().filter(|r| r[\" \"] == kind)": [
+    "call preview_physics_evidence.rs:775:headline -> preview_physics_evidence.rs:102:number",
+    "call preview_physics_evidence.rs:775:headline -> preview_physics_evidence.rs:97:text"
+   ]
+  },
+  "files": [
+   "preview_physics_evidence.rs"
+  ]
+ },
+ {
+  "rule": 161,
+  "bound": "P",
+  "re": "^for\\ item\\ in\\ array\\(v\\)\\?$",
+  "why": "I104 SQ B1 re-checked, kept (P): preview_physics_evidence.rs strings: one case's coverage/attribution id list (<= P, G4's bound), called per case. Was: G4 (T17 ",
+  "headers": {
+   "for item in array(v)?": [
+    "call preview_physics_evidence.rs:116:strings -> preview_physics_evidence.rs:86:require",
+    "call preview_physics_evidence.rs:116:strings -> preview_physics_evidence.rs:97:text"
+   ]
+  },
+  "files": [
+   "preview_physics_evidence.rs"
+  ]
+ },
+ {
+  "rule": 171,
+  "bound": "L+4",
+  "re": "^for\\ reference\\ in\\ affected$",
+  "why": "I104 SQ B1 rebind (l+4 -> L+4): the T17 reader's preview-evidence check (preview_physics_evidence.rs `for reference in affected`): one diagnostic's affected ref",
+  "headers": {
+   "for reference in affected": [
+    "call preview_physics_evidence.rs:244:validate_preview_physics_evidence -> preview_physics_evidence.rs:86:require",
+    "call preview_physics_evidence.rs:244:validate_preview_physics_evidence -> preview_physics_evidence.rs:97:text"
+   ]
+  },
+  "files": [
+   "preview_physics_evidence.rs"
+  ]
+ },
+ {
+  "rule": 182,
+  "bound": "1",
+  "re": "^iter:inv\\.calls\\(\\)\\.iter\\(\\)\\.map$|^iter:inv\\.groups\\(\\)\\.iter\\(\\)\\.map$",
+  "why": "I104 SQ B1 re-checked, kept (1): retained_wire.rs invocation_arrays: one call and one group (as above). Was: G4 (U1 serializer and U1/U3 capture, retained_wire.",
+  "headers": {
+   "iter:inv.groups().iter().map": [
+    "call retained_wire.rs:1407:invocation_arrays -> retained_wire.rs:115:fail",
+    "call retained_wire.rs:1407:invocation_arrays -> retained_wire.rs:190:sha_hex",
+    "call retained_wire.rs:1407:invocation_arrays -> retained_wire.rs:417:refusal"
+   ],
+   "iter:inv.calls().iter().map": [
+    "call retained_wire.rs:1407:invocation_arrays -> retained_wire.rs:152:exact"
+   ]
+  },
+  "files": [
+   "retained_wire.rs"
+  ]
+ },
+ {
+  "rule": 183,
+  "bound": "7",
+  "re": "^iter:inv\\.builds\\(\\)\\.iter\\(\\)\\.map$",
+  "why": "I104 SQ B1 re-checked, kept (7): retained_wire.rs invocation_arrays: the one group's 7 shared builds (as above). Was: G4 (U1 serializer and U1/U3 capture, retai",
+  "headers": {
+   "iter:inv.builds().iter().map": [
+    "call retained_wire.rs:1407:invocation_arrays -> retained_wire.rs:152:exact",
+    "call retained_wire.rs:1407:invocation_arrays -> retained_wire.rs:239:stages",
+    "call retained_wire.rs:1407:invocation_arrays -> retained_wire.rs:355:stop"
+   ]
+  },
+  "files": [
+   "retained_wire.rs"
+  ]
+ },
+ {
+  "rule": 287,
+  "bound": "cases",
+  "re": "^for selection in &self\\.selections$",
+  "why": "I104 SQ B1 re-checked, kept (cases): one selection per case (as G4). Was: one selection per case",
+  "headers": {
+   "for selection in &self.selections": [
+    "site retained_product.rs:736:validate_selected_case @retained_product.rs:748"
+   ]
+  },
+  "files": [
+   "retained_product.rs"
+  ]
+ },
+ {
+  "rule": 303,
+  "bound": "L",
+  "re": "flat_map\\(\\|case\\| case\\.primitive_loads",
+  "why": "I104 SQ B1 rebind (l -> L): every case's primitive loads (validation.rs :227, :802, :1890; lib.rs :8920 normalize_model_units): sum_i l_i <= L (I82's rebind, re",
+  "headers": {
+   "for load in model .load_cases .iter() .flat_map(|case| case.primitive_loads.iter())": [
+    "call validation.rs:314:validate_units -> lib.rs:14212:stable_suffix",
+    "call validation.rs:314:validate_units -> validation.rs:1465:expect_unit",
+    "site validation.rs:314:validate_units @validation.rs:808",
+    "site validation.rs:314:validate_units @validation.rs:809"
+   ],
+   "for load in model .load_cases .iter() .flat_map(|case| case.primitive_loads.iter()) .filter(|load| load.category == \" \")": [
+    "call validation.rs:1867:validate_thermal_inputs -> lib.rs:14162:diag",
+    "call validation.rs:1867:validate_thermal_inputs -> lib.rs:14212:stable_suffix",
+    "site validation.rs:1867:validate_thermal_inputs @validation.rs:1903",
+    "site validation.rs:1867:validate_thermal_inputs @validation.rs:1904",
+    "site validation.rs:1867:validate_thermal_inputs @validation.rs:1911",
+    "site validation.rs:1867:validate_thermal_inputs @validation.rs:1916",
+    "site validation.rs:1867:validate_thermal_inputs @validation.rs:1917",
+    "site validation.rs:1867:validate_thermal_inputs @validation.rs:1924"
+   ],
+   "for (entity, ids) in [ ( \" \", model .nodes .iter() .map(|item| item.id.as_str()) .collect::<Vec<_>>(), ), ( \" \", model .pipe_segments .iter() .map(|item| item.id.as_str()) .collect::<Vec<_>>(), ), ( \" \", model .supports .iter() .map(|item| item.id.as_str()) .collect::<Vec<_>>(), ), ( \" \", model .components .iter() .map(|item| item.id.as_str()) .collect::<Vec<_>>(), ), ( \" \", materials .iter() .map(|item| item.id.as_str()) .collect::<Vec<_>>(), ), ( \" \", model .load_cases .iter() .map(|item| item.id.as_str()) .collect::<Vec<_>>(), ), ( \" \", model .load_cases .iter() .flat_map(|case| case.primitive_loads.iter()) .map(|item| item.id.as_str()) .collect::<Vec<_>>(), ), ( \" \", model .combinations .iter() .map(|item| item.id.as_str()) .collect::<Vec<_>>(), ), ]": [
+    "call validation.rs:169:validate_ids -> validation.rs:1400:detect_empty_ids",
+    "call validation.rs:169:validate_ids -> validation.rs:1418:detect_duplicate_ids"
+   ],
+   "for load in model .load_cases .iter_mut() .flat_map(|case| case.primitive_loads.iter_mut())": [
+    "call lib.rs:8221:normalize_model_units -> lib.rs:14212:stable_suffix",
+    "call lib.rs:8221:normalize_model_units -> lib.rs:9054:normalize_quantity",
+    "site lib.rs:8221:normalize_model_units @lib.rs:8926",
+    "site lib.rs:8221:normalize_model_units @lib.rs:8930"
+   ]
+  },
+  "files": [
+   "lib.rs",
+   "validation.rs"
+  ]
+ },
+ {
+  "rule": 341,
+  "bound": "max(l, L)",
+  "re": "for id in ids",
+  "why": "I104 SQ B1 rebind (l -> max(l, L)): entity id lists (validation.rs detect_empty_ids/detect_duplicate_ids, pressure_runtime.rs :363): the load-id list spans ever",
+  "headers": {
+   "for id in ids": [
+    "call validation.rs:1400:detect_empty_ids -> lib.rs:14162:diag",
+    "call validation.rs:1418:detect_duplicate_ids -> lib.rs:14162:diag",
+    "call validation.rs:1418:detect_duplicate_ids -> lib.rs:14212:stable_suffix",
+    "site validation.rs:1400:detect_empty_ids @validation.rs:1407",
+    "site validation.rs:1400:detect_empty_ids @validation.rs:1408",
+    "site validation.rs:1400:detect_empty_ids @validation.rs:1411",
+    "site validation.rs:1400:detect_empty_ids @validation.rs:1412",
+    "site validation.rs:1418:detect_duplicate_ids @validation.rs:1427"
+   ]
+  },
+  "files": [
+   "validation.rs"
+  ]
+ },
+ {
+  "rule": 349,
+  "bound": "att",
+  "re": "sources\\.iter\\(\\)\\.enumerate\\(\\)",
+  "why": "I104 SQ B1 rebind (1 -> att): FK origins.rs :364 solve_cases and adaptive.rs :4994 solve_cases_projected: one kernel case per submitted source (B1 SP T-8; FK un",
+  "headers": {
+   "for (position, source) in sources.iter().enumerate()": [
+    "call structural/retained/adaptive.rs:4981:solve_cases_projected -> load_ledger.rs:197:finish",
+    "call structural/retained/adaptive.rs:4981:solve_cases_projected -> structural/retained/adaptive.rs:4467:run_core_with_origins",
+    "call structural/retained/adaptive.rs:4981:solve_cases_projected -> structural/retained/adaptive.rs:4932:prepare_group",
+    "call structural/retained/origins.rs:346:solve_cases -> load_ledger.rs:131:push",
+    "call structural/retained/origins.rs:346:solve_cases -> structural/retained/adaptive.rs:2525:encoding",
+    "call structural/retained/origins.rs:346:solve_cases -> structural/retained/ledger.rs:276:encoding",
+    "site structural/retained/adaptive.rs:4981:solve_cases_projected @structural/retained/adaptive.rs:5055"
+   ]
+  },
+  "files": [
+   "structural/retained/adaptive.rs",
+   "structural/retained/origins.rs"
+  ]
+ }
+]
