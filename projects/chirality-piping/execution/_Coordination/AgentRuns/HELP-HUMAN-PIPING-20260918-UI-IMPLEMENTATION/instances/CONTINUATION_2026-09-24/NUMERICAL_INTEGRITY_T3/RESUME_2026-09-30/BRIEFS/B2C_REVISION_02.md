@@ -38,7 +38,7 @@ As revision 01's brief (`R/BRIEFS/B2C_REVISION_01.md`):
 - absolute paths only;
 - scratch in `WT/scratch/i97_b2_c/`;
 - placeholder paths only, no symlink and no `build` folder;
-- screen with the strict pattern, the host names (`Mac.ht.home`, and any `MacBook` form, case-insensitive) and `.local` (judged by what it names);
+- screen with the strict pattern, the host names (the machine's earlier host-name form named in RR, its network name, and the laptop-model form, case-insensitive) and `.local` (judged by what it names);
 - run `git status --ignored`.
 
 ## Output

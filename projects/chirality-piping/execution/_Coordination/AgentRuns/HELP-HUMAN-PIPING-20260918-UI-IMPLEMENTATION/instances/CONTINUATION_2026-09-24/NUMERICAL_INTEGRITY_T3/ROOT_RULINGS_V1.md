@@ -15493,7 +15493,7 @@ Both are availability limits of the frozen DEF-O, not soundness defects: a faili
 - **Then:** RV115 confirms (ii)'s numerics, and RV118 revision 02.
 - **B2-C is final for J1** once both confirm. J1's inputs become SCHEMA `abf3225c…` with PTABLE r2 and DEF-C r2.
 
-**Screen widened (E-16, recorded with the redaction):** the host-name term includes the machine's network name and any `MacBook` form, case-insensitive, beside `Mac.ht.home`. Every new brief carries it.
+**Screen widened (E-16, recorded with the redaction):** the host-name term includes the machine's network name and the laptop-model form, case-insensitive, beside the machine's earlier host-name form (RR "RV117 passes #1111; …", ruling 4). Every new brief carries it.
 
 ## I97's B2-C revision 02 verified; RV115 and RV118 confirm it (ROOT, 2026-10-08 UTC)
 
@@ -15615,3 +15615,46 @@ The record is `R/I97/b2_c_01/`: CONTRACT, REVISION_01 and REVISION_02. Its names
 - **N-2:** nothing now pins the c ≥ 2 notice path through the Direct entry (T-12 at c ≥ 2 is pinned through `retained_w1` with injected faults; Direct calls the same function). A Direct variant with a fault armed is optional, and goes to SQ.
 
 **Cleanup done:** I85's scratch (3.3 GB) and its five targets (about 31 GB) are deleted, as RR planned once RV109 finished. RV109's own copies and targets are already deleted.
+
+## RV119 passes #1114 with S-1; the owner has ROOT's two hostname lines reworded (E-18); a run-time host screen; errata to E-16's account (ROOT, 2026-10-08 UTC)
+
+**RV119's review of #1114** (head `57f078b4c8`): `R/REVIEW_RV119/records_01/REVIEW.md` sha256 `ef2c9538…`, with SHA256SUMS 67 of 67 OK. The screens are clean. Its records reach main with the next records PR, as RV117's did.
+- **PASS: 0 BLOCKING, 1 SHOULD-FIX, 3 NOTEs.**
+- **Scope:** the PR's `execution/` equals NUM's at `96cf68289f`, plus only E-17's two policy entries. There are no symlinks.
+- **Screens:** the leak validator passes, and all 156 `.gz` files decompress and screen clean. E-16's 42 files match the record, and none of E-10's or REDACTIONS.json's originals is present.
+- **GEN-8** passes (RV119's own run).
+- **Sums:** all 28 added sum files verify.
+- **Citations:** all 228 hash, path and heading citations resolve.
+- **Owner-held decisions:** ROOT took none, and every owner quotation is verbatim.
+- **CI:** 4/4 on the head.
+
+**S-1 (SHOULD-FIX): #1114 would put the machine's earlier host-name form on main for the first time,** in three lines:
+- ROOT's RR line in "RV118 confirms B2-C revision 01; …" ("Screen widened"), spelled out;
+- ROOT's brief `BRIEFS/B2C_REVISION_02.md`, line 41, spelled out;
+- I90's sealed `_run_records/repair_02/scripts/write_records_r2.sh`, line 35, in character-class form inside its own screen pattern.
+
+**The owner chose (2026-10-08, "Redact my two lines"):** ROOT's two lines are reworded in place to describe the form; I90's sealed script stays as executed. So main carries the form only inside that one regex.
+
+**Erratum E-18, the two rewordings,** made before the lines reach main. The meaning is unchanged.
+- **RR:** "beside `…`" becomes "beside the machine's earlier host-name form (RR "RV117 passes #1111; …", ruling 4)". The line is past main's prefix, as E-2's repair was.
+- **`BRIEFS/B2C_REVISION_02.md`:** its host-name rule names the forms instead of spelling them. Its sha256 changes from `d82dba65…` to `d1d213d8…`. RR "RV118 confirms B2-C revision 01; …" and I97's REVISION_02 cite the old hash; this maps it.
+
+**A run-time host screen (RV119's recommendation):** `WT/tools/t3_host_screen.py`, outside every repository.
+- **The names it screens:** this machine's names, read at run time (hostname, LocalHostName, ComputerName). The plain hostname follows the network, so the tool also reads earlier names from a private list beside it.
+- **The forms it matches:** plain, split, escaped and character-class, plus the junit `hostname` attribute and the strict path forms.
+- **It never prints a name:** every match is shown as `<host>`.
+- **It now runs on every records commit and every records PR,** and a hit stops the commit until ROOT has read it.
+- On #1114's head it finds all three of S-1's lines, which the literal screens missed.
+
+**N-2, errata to E-16's account** (RR "Erratum E-16: …" and its addendum, and the sealed `REDACTION_E16/RECORD.md`):
+- RV76's path on main is home-rooted absolute, not "home-relative". It is registered in the portability policy.
+- I91's five junit `.gz` files on main sit in two folders: three in `suites/` and two in `repair_01/suites/`.
+
+What the owner was told named the path correctly.
+
+**N-1:** the work graph's T3 section is brought current in this commit. **N-3:** the squash body says "the owner's own words", and states that RV109's round 2 reviewed SP before I3.
+
+**Then:**
+1. #1114 gains one commit: NUM's `execution/` at this commit. It adds RV109's ADDENDUM_01, the two rewordings, these RR sections and the work graph; RV119's own records stay out.
+2. RV119 confirms the delta (ADDENDUM_01).
+3. ROOT squash-merges with `--match-head-commit`.
