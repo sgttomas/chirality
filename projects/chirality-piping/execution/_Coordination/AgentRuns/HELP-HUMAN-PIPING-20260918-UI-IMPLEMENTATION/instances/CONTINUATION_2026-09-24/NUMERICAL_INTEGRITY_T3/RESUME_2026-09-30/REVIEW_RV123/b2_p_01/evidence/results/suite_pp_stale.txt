@@ -1,0 +1,28 @@
+base 613 {'ok': 601, 'ignored': 11, 'FAILED': 1}
+cand 637 {'ok': 625, 'ignored': 11, 'FAILED': 1}
+-        -> ok       src/lib.rs retained_facade_tests::b2p_capture_refuses_combinations_outside_d14
+-        -> ok       src/lib.rs retained_facade_tests::b2p_combination_expressions
+-        -> ok       src/lib.rs retained_facade_tests::b2p_combination_observables_stage
+-        -> ok       src/lib.rs retained_facade_tests::b2p_combination_successor_fixtures_are_the_live_successors
+-        -> ok       src/lib.rs retained_facade_tests::b2p_constants_bound_to_in_tree_fixtures
+-        -> ok       src/lib.rs retained_facade_tests::b2p_custody_binds_the_combination_rows
+-        -> ok       src/lib.rs retained_facade_tests::b2p_d14_predicate_at_its_caps
+-        -> ok       src/lib.rs retained_facade_tests::b2p_direct_entry_runs_the_combinations
+-        -> ok       src/lib.rs retained_facade_tests::b2p_gate_entries_shape_and_consistency
+-        -> ok       src/lib.rs retained_facade_tests::b2p_hooks_and_failure_set
+-        -> ok       src/lib.rs retained_facade_tests::b2p_repeated_case_combination_is_ordinary
+-        -> ok       src/lib.rs retained_facade_tests::b2p_selectors_at_two_cases_are_refused
+-        -> ok       src/lib.rs retained_facade_tests::b2p_serializer_refuses_an_unchained_meter
+-        -> ok       src/lib.rs retained_facade_tests::b2p_w_cb1_direct_entry_runs_the_combinations
+-        -> ok       src/lib.rs retained_facade_tests::b2p_w_cb1_successors_are_pinned_in_both_modes
+-        -> ok       src/lib.rs retained_facade_tests::b2p_witness_dispositions_on_the_private_driver
+-        -> ok       src/lib.rs retained_facade_tests::b2p_witness_inputs
+-        -> ok       src/lib.rs retained_facade_tests::b2p_witness_successors_are_pinned_in_both_modes
+-        -> ok       src/lib.rs retained_facade_tests::b3b_rv123_n2_unused_exact_material_is_not_checked
+-        -> ok       src/lib.rs retained_facade_tests::b3b_rv123_s1_two_member_exact_overlays_each_member
+-        -> ok       src/lib.rs retained_facade_tests::b3b_rv123_s2_one_case_unavailable_exact_serializer
+-        -> ok       src/lib.rs retained_facade_tests::b3b_rv123_s2_unavailable_exact_case_binds_def_e
+ok       -> -        src/lib.rs retained_memory::law_tests::b2_a_admitted_combinations_keep_the_exact_ordinary_bytes_until_b2_p
+-        -> ok       src/lib.rs retained_memory::law_tests::b2_a_admitted_combinations_run_w1_and_fall_back_at_precommit_today
+-        -> ok       src/lib.rs retained_memory::law_tests::b3b_exact_regions_capacity_is_read
+-        -> ok       src/lib.rs retained_product_tests::b2p_early_hook_refuses_combinations_outside_d14

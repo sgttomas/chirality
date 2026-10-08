@@ -1,0 +1,11 @@
+RV123_JOB name=probe2 dir=WT/rv123/chk/projects/chirality-piping/core/product_physics target=rv123-r2-pp-chk stale=0 args=test --locked --offline --no-fail-fast --lib rv123_r2_probe -- --nocapture --test-threads=1 start=2026-10-08T15:53:32Z
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.01s
+     Running unittests src/lib.rs (WT/targets/rv123-r2-pp-chk/debug/deps/open_pipe_stress_product_physics-0745dccb432e0cdb)
+test retained_facade_tests::rv123_r2_probe_two_mechanics_cause ... RV123_PROBE two status=MECHANICS_SOLVED rows=[("load_case:case", 98), ("combination:combination:2case", 96), ("combination:combination:m3case", 96)]
+RV123_PROBE two prepared ends=["Prepared"]
+RV123_PROBE one_neg status=MECHANICS_SOLVED rows=[("load_case:case", 98), ("combination:combination:m3case", 96)]
+RV123_PROBE one_neg prepared ends=["Prepared"]
+RV123_PROBE two_pos status=MECHANICS_SOLVED rows=[("load_case:case", 98), ("combination:combination:2case", 96), ("combination:combination:3case", 96)]
+RV123_PROBE two_pos prepared ends=["Prepared"]
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 639 filtered out; finished in 0.02s
+RV123_JOB_END name=probe2 rc=0 end=2026-10-08T15:53:37Z

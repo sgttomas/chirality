@@ -16350,3 +16350,28 @@ PR-B1 is recut once the Linux diagnostic (run 37792750591) is read.
 - **F2 (all three readers; I100 for PY, I101 for RS and TS).** Pin RV120's four E/Ĝ forgeries, which every shipped reader refuses at G8 `PREPARATION_MISMATCH`. **I101's B28 and B29 are survivors, not equivalents.** They are killed by the new pins, and I101 corrects its record. B06b and B30 are accepted as equivalent.
 
 RV120 confirms both repair rounds.
+
+## RV123 (RV-P2 round 2) passes B2-P (0/1/4); PR-B1 at its final head; the exact-head DEC-025 running (ROOT, 2026-10-08 UTC)
+
+**RV123 PASSED B2-P** at `b2` `72b3e5d9ea` (`R/REVIEW_RV123/b2_p_01/REVIEW.md`, `616828f7…`; 69 sums). It found no correctness defect against B2-C (CONTRACT and revisions 01 and 02).
+- **Byte identity:** plain bytes are identical on all 37 inputs in both modes, and Direct bytes on the 33 non-combination inputs.
+- **Suites:** PP 776 → 800 (+25, −1, the re-pinned interim test).
+- **Independent checks:** 22 dumped successors with 0 failures.
+- **Its round-1 items** S-1, S-2 and N-2 are closed.
+
+**Ruled:**
+- **S-1 (should-fix):** the `ledger_unavailable` operand-source branch has no test (mutant M2-03 survives). It goes to I105 as a test-only hook and pin, with N-3's two optional pins: a `not_required` representative, and `[2·case, −3·case]`'s hook-free `facade_certificate` witness.
+- **N-1 (platform):** B2-P's Mac pins hold ordinary magnitudes formed by libm `hypot`, three of them not correctly rounded. They will move on glibc. `b2` re-pins at J0, after PR-B1 and PR-N (the correctly rounded norm) are on main. A Linux CI dispatch of `b2` is a J0 gate. Retained support magnitudes and combination displacement magnitudes are already robust.
+- **N-2:** P2-22 and P2-36 are accepted as equivalent.
+- **N-4:** to SQ2's brief, which prices `combination_observables` explicitly (quadratic) and notes S1's missing stack witnesses for the combination freeze.
+
+**PR-B1 (#1154) is at its final head `f4a0430412`:** code `7f5f72912e` plus the package.
+- **Hosted CI on `7f5f72912e` passed in full on glibc,** including the (A, A2) dense pin, as RV125 predicted.
+- **On the final head:** source equality (checks 1–5), `check_citations.py` and GEN-8 pass.
+- **The full-SHA dispatch** is run 37806597259, with `target_base` main `dd50b1692c`. Main's commits since the cut (#1157 and its parents) touch only App v4 paths, none under P.
+- **The exact-head DEC-025** is running under the exclusive lock, against a fresh main baseline at `dd50b1692c`, followed by the src-tauri suite on both sides.
+
+**Redaction E-20** (as E-16). The host-name screen stopped the commit of RV123's record. One word in the generic-label set of RV123's sanitizer script `evidence/tools/sanitize2.py:19` is one of the private host-name labels.
+- ROOT replaced that one token with `'redacted-label'` before the first commit, and refreshed that file's line in SHA256SUMS (now `243b38ef…`).
+- REVIEW.md (`616828f7…`) and every other file are unchanged.
+- The private list is not quoted here.

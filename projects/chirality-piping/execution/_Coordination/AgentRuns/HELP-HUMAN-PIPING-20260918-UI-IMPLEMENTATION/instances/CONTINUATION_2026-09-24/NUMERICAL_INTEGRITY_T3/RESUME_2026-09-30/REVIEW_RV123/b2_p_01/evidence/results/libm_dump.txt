@@ -1,0 +1,26 @@
+  c1_range_mechanics.dense_scrutiny.successor.json combination:combination:range rigid:N0 support_reaction_force_magnitude_v2: published 3d7c9a1856ab3947 cr_nested 3d7c9a1856ab3948 host 3d7c9a1856ab3948
+c1_range_mechanics.dense_scrutiny.successor.json {'combination_displacement_magnitudes': 4, 'magnitudes': 24, 'libm_ne_cr': 1, 'min_midpoint_margin': 0.03420310074803643, 'exact_norm_ne_published': 0}
+  c1_range_mechanics.sparse_interactive.successor.json combination N1 displacement_magnitude published 3fb821e752142e13 exact-norm 3fb821e752142e14
+c1_range_mechanics.sparse_interactive.successor.json {'combination_displacement_magnitudes': 4, 'magnitudes': 24, 'libm_ne_cr': 0, 'min_midpoint_margin': 0.08824248545628416, 'exact_norm_ne_published': 1}
+rv123_w_cb3_b_half_a.dense_scrutiny.successor.json {'combination_displacement_magnitudes': 3, 'magnitudes': 30, 'libm_ne_cr': 0, 'min_midpoint_margin': 0.3160460671703529, 'exact_norm_ne_published': 0}
+rv123_w_cb3_b_half_a.sparse_interactive.successor.json {'combination_displacement_magnitudes': 3, 'magnitudes': 30, 'libm_ne_cr': 0, 'min_midpoint_margin': 0.3160460671703529, 'exact_norm_ne_published': 0}
+rv123_w_cb3_ba.dense_scrutiny.successor.json {'combination_displacement_magnitudes': 3, 'magnitudes': 30, 'libm_ne_cr': 0, 'min_midpoint_margin': 0.3160460671703529, 'exact_norm_ne_published': 0}
+rv123_w_cb3_ba.sparse_interactive.successor.json {'combination_displacement_magnitudes': 3, 'magnitudes': 30, 'libm_ne_cr': 0, 'min_midpoint_margin': 0.3160460671703529, 'exact_norm_ne_published': 0}
+w_cb1.dense_scrutiny.successor.json {'combination_displacement_magnitudes': 32, 'magnitudes': 192, 'libm_ne_cr': 0, 'min_midpoint_margin': 0.3160460671703529, 'exact_norm_ne_published': 0}
+w_cb1.sparse_interactive.successor.json {'combination_displacement_magnitudes': 32, 'magnitudes': 192, 'libm_ne_cr': 0, 'min_midpoint_margin': 0.3160460671703529, 'exact_norm_ne_published': 0}
+w_cb1z.dense_scrutiny.successor.json {'combination_displacement_magnitudes': 32, 'magnitudes': 192, 'libm_ne_cr': 0, 'min_midpoint_margin': 0.3160460671703529, 'exact_norm_ne_published': 0}
+w_cb1z.sparse_interactive.successor.json {'combination_displacement_magnitudes': 32, 'magnitudes': 192, 'libm_ne_cr': 0, 'min_midpoint_margin': 0.3160460671703529, 'exact_norm_ne_published': 0}
+  w_cb2.dense_scrutiny.successor.json combination:combination:ab rigid:N0 support_reaction_force_magnitude_v2: published 3d7c9a1856ab3947 cr_nested 3d7c9a1856ab3948 host 3d7c9a1856ab3948
+w_cb2.dense_scrutiny.successor.json {'combination_displacement_magnitudes': 4, 'magnitudes': 30, 'libm_ne_cr': 1, 'min_midpoint_margin': 0.03420310074803643, 'exact_norm_ne_published': 0}
+w_cb2.sparse_interactive.successor.json {'combination_displacement_magnitudes': 4, 'magnitudes': 30, 'libm_ne_cr': 0, 'min_midpoint_margin': 0.08824248545628416, 'exact_norm_ne_published': 0}
+w_cb3.dense_scrutiny.successor.json {'combination_displacement_magnitudes': 3, 'magnitudes': 30, 'libm_ne_cr': 0, 'min_midpoint_margin': 0.3160460671703529, 'exact_norm_ne_published': 0}
+w_cb3.sparse_interactive.successor.json {'combination_displacement_magnitudes': 3, 'magnitudes': 30, 'libm_ne_cr': 0, 'min_midpoint_margin': 0.3160460671703529, 'exact_norm_ne_published': 0}
+  w_cb4a.dense_scrutiny.successor.json combination:combination:a-minus-b rigid:N0 support_reaction_force_magnitude_v2: published 3d7c9a1856ab3947 cr_nested 3d7c9a1856ab3948 host 3d7c9a1856ab3948
+w_cb4a.dense_scrutiny.successor.json {'combination_displacement_magnitudes': 3, 'magnitudes': 30, 'libm_ne_cr': 1, 'min_midpoint_margin': 0.03420310074803643, 'exact_norm_ne_published': 0}
+w_cb4a.sparse_interactive.successor.json {'combination_displacement_magnitudes': 3, 'magnitudes': 30, 'libm_ne_cr': 0, 'min_midpoint_margin': 0.08824248545628416, 'exact_norm_ne_published': 0}
+  w_cb4b.dense_scrutiny.successor.json combination:combination:range-ab rigid:N0 support_reaction_force_magnitude_v2: published 3d7c9a1856ab3947 cr_nested 3d7c9a1856ab3948 host 3d7c9a1856ab3948
+w_cb4b.dense_scrutiny.successor.json {'combination_displacement_magnitudes': 3, 'magnitudes': 30, 'libm_ne_cr': 1, 'min_midpoint_margin': 0.03420310074803643, 'exact_norm_ne_published': 0}
+  w_cb4b.sparse_interactive.successor.json combination N1 displacement_magnitude published 3fb821e752142e13 exact-norm 3fb821e752142e14
+w_cb4b.sparse_interactive.successor.json {'combination_displacement_magnitudes': 3, 'magnitudes': 30, 'libm_ne_cr': 0, 'min_midpoint_margin': 0.08824248545628416, 'exact_norm_ne_published': 1}
+w_cb5.dense_scrutiny.successor.json {'combination_displacement_magnitudes': 3, 'magnitudes': 30, 'libm_ne_cr': 0, 'min_midpoint_margin': 0.3160460671703529, 'exact_norm_ne_published': 0}
+w_cb5.sparse_interactive.successor.json {'combination_displacement_magnitudes': 3, 'magnitudes': 30, 'libm_ne_cr': 0, 'min_midpoint_margin': 0.3160460671703529, 'exact_norm_ne_published': 0}

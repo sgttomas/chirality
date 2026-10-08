@@ -1,0 +1,3 @@
+RV123_JOB name=dep_tauri dir=WT/rv123/cand/projects/chirality-piping/apps/desktop/src-tauri target=rv123-r2-dep-tauri stale=0 args=check --locked --offline --all-targets start=2026-10-08T15:16:39Z
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 29.94s
+RV123_JOB_END name=dep_tauri rc=0 end=2026-10-08T15:17:09Z

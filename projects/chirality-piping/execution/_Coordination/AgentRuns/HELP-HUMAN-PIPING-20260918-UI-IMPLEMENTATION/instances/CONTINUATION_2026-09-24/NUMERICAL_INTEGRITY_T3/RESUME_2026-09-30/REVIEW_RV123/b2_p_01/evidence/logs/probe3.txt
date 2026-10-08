@@ -1,0 +1,13 @@
+RV123_JOB name=probe3 dir=WT/rv123/chk/projects/chirality-piping/core/product_physics target=rv123-r2-pp-chk stale=0 args=test --locked --offline --no-fail-fast --lib rv123_r2_probe_two_mechanics_steps -- --nocapture --test-threads=1 start=2026-10-08T15:54:32Z
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.26s
+     Running unittests src/lib.rs (WT/targets/rv123-r2-pp-chk/debug/deps/open_pipe_stress_product_physics-0745dccb432e0cdb)
+test retained_facade_tests::rv123_r2_probe_two_mechanics_steps ... RV123_STEP two ids=["case"] attempted=[0]
+RV123_STEP two after T-7 ["Prepared"]
+RV123_STEP two after T-8 ["Selected"] native_error=["None"]
+RV123_STEP two after T-9 ["Frozen"]
+RV123_STEP c1_range_mechanics ids=["case"] attempted=[0]
+RV123_STEP c1_range_mechanics after T-7 ["Prepared"]
+RV123_STEP c1_range_mechanics after T-8 ["Selected"] native_error=["None"]
+RV123_STEP c1_range_mechanics after T-9 ["Frozen"]
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 640 filtered out; finished in 1.20s
+RV123_JOB_END name=probe3 rc=0 end=2026-10-08T15:54:38Z

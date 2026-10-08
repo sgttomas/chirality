@@ -1,0 +1,33 @@
+c1_range_mechanics.dense_scrutiny: combination:2case linear consistency worst |comb - sum f*case| / kind scale = 0.000e+00
+c1_range_mechanics.dense_scrutiny: dispositions ['ordinary', 'retained_selected'] cases ['selected'] calls 2 sources 2 oppreps 0 precommit_today Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" }
+c1_range_mechanics.sparse_interactive: combination:2case linear consistency worst |comb - sum f*case| / kind scale = 0.000e+00
+c1_range_mechanics.sparse_interactive: dispositions ['ordinary', 'retained_selected'] cases ['selected'] calls 2 sources 2 oppreps 0 precommit_today Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" }
+rv123_c1_two_mechanics.dense_scrutiny: combination:2case linear consistency worst |comb - sum f*case| / kind scale = 0.000e+00
+rv123_c1_two_mechanics.dense_scrutiny: dispositions ['retained_selected', 'retained_unavailable'] cases ['selected'] calls 3 sources 3 oppreps 0 precommit_today Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" }
+rv123_c1_two_mechanics.sparse_interactive: combination:2case linear consistency worst |comb - sum f*case| / kind scale = 0.000e+00
+rv123_c1_two_mechanics.sparse_interactive: dispositions ['retained_selected', 'retained_unavailable'] cases ['selected'] calls 3 sources 3 oppreps 0 precommit_today Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" }
+rv123_w_cb3_b_half_a.dense_scrutiny: dispositions ['retained_selected'] cases ['selected', 'not_required'] calls 2 sources 3 oppreps 1 precommit_today Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" }
+rv123_w_cb3_b_half_a.sparse_interactive: dispositions ['retained_selected'] cases ['selected', 'not_required'] calls 2 sources 3 oppreps 1 precommit_today Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" }
+rv123_w_cb3_ba.dense_scrutiny: dispositions ['retained_selected'] cases ['selected', 'not_required'] calls 2 sources 3 oppreps 1 precommit_today Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" }
+rv123_w_cb3_ba.sparse_interactive: dispositions ['retained_selected'] cases ['selected', 'not_required'] calls 2 sources 3 oppreps 1 precommit_today Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" }
+w_cb1.dense_scrutiny: combination:ab linear consistency worst |comb - sum f*case| / kind scale = 0.000e+00
+w_cb1.dense_scrutiny: dispositions ['retained_selected'] cases ['selected', 'selected'] calls 2 sources 3 oppreps 0 precommit_today Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" }
+w_cb1.sparse_interactive: combination:ab linear consistency worst |comb - sum f*case| / kind scale = 0.000e+00
+w_cb1.sparse_interactive: dispositions ['retained_selected'] cases ['selected', 'selected'] calls 2 sources 3 oppreps 0 precommit_today Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" }
+w_cb1z.dense_scrutiny: combination:ab linear consistency worst |comb - sum f*case| / kind scale = 0.000e+00
+w_cb1z.dense_scrutiny: selected combination rows: 2080, nonzero 0, max |v| 0.0; plain nonzero 0
+w_cb1z.dense_scrutiny: dispositions ['retained_selected'] cases ['selected', 'selected'] calls 2 sources 3 oppreps 0 precommit_today Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" }
+w_cb1z.sparse_interactive: combination:ab linear consistency worst |comb - sum f*case| / kind scale = 0.000e+00
+w_cb1z.sparse_interactive: selected combination rows: 2080, nonzero 0, max |v| 0.0; plain nonzero 0
+w_cb1z.sparse_interactive: dispositions ['retained_selected'] cases ['selected', 'selected'] calls 2 sources 3 oppreps 0 precommit_today Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" }
+w_cb2.dense_scrutiny: dispositions ['retained_unavailable'] cases ['selected', 'not_required'] calls 2 sources 3 oppreps 1 precommit_today Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" }
+w_cb2.sparse_interactive: dispositions ['retained_unavailable'] cases ['selected', 'not_required'] calls 2 sources 3 oppreps 1 precommit_today Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" }
+w_cb3.dense_scrutiny: dispositions ['retained_selected'] cases ['selected', 'not_required'] calls 2 sources 3 oppreps 1 precommit_today Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" }
+w_cb3.sparse_interactive: dispositions ['retained_selected'] cases ['selected', 'not_required'] calls 2 sources 3 oppreps 1 precommit_today Precommit { gate: "G0", code: "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED" }
+w_cb4a.dense_scrutiny: dispositions ['ordinary'] cases ['selected', 'not_required'] calls 1 sources 1 oppreps 0 precommit_today Precommit { gate: "G3", code: "RETAINED_PRECISION_COVERAGE_MISMATCH" }
+w_cb4a.sparse_interactive: dispositions ['ordinary'] cases ['selected', 'not_required'] calls 1 sources 1 oppreps 0 precommit_today Precommit { gate: "G3", code: "RETAINED_PRECISION_COVERAGE_MISMATCH" }
+w_cb4b.dense_scrutiny: dispositions ['ordinary'] cases ['selected', 'not_required'] calls 1 sources 1 oppreps 0 precommit_today Precommit { gate: "G3", code: "RETAINED_PRECISION_COVERAGE_MISMATCH" }
+w_cb4b.sparse_interactive: dispositions ['ordinary'] cases ['selected', 'not_required'] calls 1 sources 1 oppreps 0 precommit_today Precommit { gate: "G3", code: "RETAINED_PRECISION_COVERAGE_MISMATCH" }
+w_cb5.dense_scrutiny: dispositions ['ordinary'] cases ['selected', 'not_required'] calls 1 sources 1 oppreps 0 precommit_today Precommit { gate: "G3", code: "RETAINED_PRECISION_COVERAGE_MISMATCH" }
+w_cb5.sparse_interactive: dispositions ['ordinary'] cases ['selected', 'not_required'] calls 1 sources 1 oppreps 0 precommit_today Precommit { gate: "G3", code: "RETAINED_PRECISION_COVERAGE_MISMATCH" }
+FAILS 0

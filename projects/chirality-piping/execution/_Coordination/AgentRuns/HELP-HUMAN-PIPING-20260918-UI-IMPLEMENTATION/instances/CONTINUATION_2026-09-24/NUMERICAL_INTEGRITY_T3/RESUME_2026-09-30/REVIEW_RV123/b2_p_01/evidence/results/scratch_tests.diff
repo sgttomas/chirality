@@ -1,0 +1,192 @@
+--- WT/rv123/cand/projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs	2026-10-08 08:56:38
++++ WT/rv123/chk/projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs	2026-10-08 10:03:43
+@@ -4217,5 +4217,178 @@
+         let ((_, retained), _, captured) = hooks::counted_with_successor(|| retained_w1(observer, ordinary, &capture));
+         assert!(hooks::armed_names().is_empty(), "{mode:?}");
+         assert!(!matches!(retained, Err(W1Fallback::Serializer(_))) && captured.is_some(), "{mode:?}: the control reaches precommit");
++    }
++}
++
++// ---- RV123 (RV-P2 round 2), scratch only: dump every B2-P witness successor for checks outside PP ----
++#[test]
++fn rv123_r2_dump_b2p_successors() {
++    let dir = std::env::var("RV123_DUMP").expect("RV123_DUMP");
++    let mut all = b2p_witnesses();
++    all.extend(b2p_cap_witnesses());
++    // RV123 probes: W-CB3 with its terms reversed (operand 0 the not_required, operand-prepared
++    // case: the freeze on a prepared slot), B + 0.5 A, and c = 1 with two retained mechanics
++    // combinations (two Calls; the meter chain and the ordinal mapping over three Calls).
++    let mut ba = w_cb3();
++    ba["model"]["combinations"][0]["terms"] = json!([{"load_case": "case:b", "factor": 1.0}, {"load_case": "case:a", "factor": 1.0}]);
++    ba["model"]["combinations"][0]["id"] = json!("combination:ba");
++    let mut bha = ba.clone();
++    bha["model"]["combinations"][0]["terms"][1]["factor"] = json!(0.5);
++    bha["model"]["combinations"][0]["id"] = json!("combination:b-half-a");
++    let mut two = raw();
++    two["model"]["combinations"] = json!([
++        {"id": "combination:2case", "label": "RV123 probe: 2 case", "basis": "mechanics", "terms": [{"load_case": "case", "factor": 2.0}], "provenance": B2P},
++        {"id": "combination:m3case", "label": "RV123 probe: -3 case", "basis": "mechanics", "terms": [{"load_case": "case", "factor": -3.0}], "provenance": B2P}]);
++    all.extend([("rv123_w_cb3_ba", ba), ("rv123_w_cb3_b_half_a", bha), ("rv123_c1_two_mechanics", two)]);
++    for (name, raw) in all {
++        for mode in MODES {
++            let plain = plain(mode, &raw);
++            let (capture, observer, ordinary) = observed(mode, &raw);
++            let ((_, retained), _, captured) = hooks::counted_with_successor(|| retained_w1(observer, ordinary, &capture));
++            let Some(successor) = captured else {
++                println!("RV123_DUMP {name} {} successor=none w1={retained:?}", mode.as_str());
++                continue;
++            };
++            let doc = json!({"name": name, "source": successor, "invocation": {"request": raw, "solver_mode": mode.as_str()},
++                "precommit_today": retained.as_ref().err().map(|e| format!("{e:?}"))});
++            std::fs::write(format!("{dir}/{name}.{}.successor.json", mode.as_str()), serde_json::to_vec(&doc).unwrap()).unwrap();
++            std::fs::write(format!("{dir}/{name}.{}.plain.json", mode.as_str()), &plain).unwrap();
++            println!("RV123_DUMP {name} {} bytes={}", mode.as_str(), sha(&serde_json::to_vec(&successor).unwrap()));
++        }
++    }
++}
++
++// RV123 scratch: why c = 1 with two mechanics combinations falls back at preparation.
++#[test]
++fn rv123_r2_probe_two_mechanics_cause() {
++    let mut two = raw();
++    two["model"]["combinations"] = json!([
++        {"id": "combination:2case", "label": "RV123 probe: 2 case", "basis": "mechanics", "terms": [{"load_case": "case", "factor": 2.0}], "provenance": B2P},
++        {"id": "combination:m3case", "label": "RV123 probe: -3 case", "basis": "mechanics", "terms": [{"load_case": "case", "factor": -3.0}], "provenance": B2P}]);
++    let mut one_neg = raw();
++    one_neg["model"]["combinations"] = json!([
++        {"id": "combination:m3case", "label": "RV123 probe: -3 case", "basis": "mechanics", "terms": [{"load_case": "case", "factor": -3.0}], "provenance": B2P}]);
++    let mut two_pos = raw();
++    two_pos["model"]["combinations"] = json!([
++        {"id": "combination:2case", "label": "RV123 probe: 2 case", "basis": "mechanics", "terms": [{"load_case": "case", "factor": 2.0}], "provenance": B2P},
++        {"id": "combination:3case", "label": "RV123 probe: 3 case", "basis": "mechanics", "terms": [{"load_case": "case", "factor": 3.0}], "provenance": B2P}]);
++    for (name, raw) in [("two", two), ("one_neg", one_neg), ("two_pos", two_pos)] {
++        let mode = PreviewSolverMode::SparseInteractive;
++        let (_capture, observer, ordinary) = observed(mode, &raw);
++        let rows: Vec<String> = ordinary.results.iter().map(|r| r.basis_ref.as_ref().map(|b| format!("{}:{}", b.ref_type, b.ref_id)).unwrap_or_default()).collect();
++        let mut runs: Vec<(String, usize)> = Vec::new();
++        for r in rows { if runs.last().map(|l| l.0 == r) == Some(true) { runs.last_mut().unwrap().1 += 1 } else { runs.push((r, 1)) } }
++        println!("RV123_PROBE {name} status={} rows={runs:?}", ordinary.status.mechanics);
++        match observer.prepare_cases(ordinary, 1, &[0]) {
++            Err(failure) => println!("RV123_PROBE {name} custody_err={:?}", failure.error),
++            Ok(mut prepared) => println!("RV123_PROBE {name} prepared ends={:?}", prepared.attempts.iter().map(|a| match &a.end { rp::AttemptEnd::Preparation => format!("Preparation({})", prepared.capture.rv123_case_error(a.request)), rp::AttemptEnd::Prepared => "Prepared".into(), _ => "later".into() }).collect::<Vec<String>>()),
++        }
+     }
+ }
++
++// RV123 scratch: the two-mechanics milestone, step by step through W1's own helpers.
++#[test]
++fn rv123_r2_probe_two_mechanics_steps() {
++    let mut two = raw();
++    two["model"]["combinations"] = json!([
++        {"id": "combination:2case", "label": "RV123 probe: 2 case", "basis": "mechanics", "terms": [{"load_case": "case", "factor": 2.0}], "provenance": B2P},
++        {"id": "combination:m3case", "label": "RV123 probe: -3 case", "basis": "mechanics", "terms": [{"load_case": "case", "factor": -3.0}], "provenance": B2P}]);
++    let name_end = |end: &rp::AttemptEnd| match end {
++        rp::AttemptEnd::Preparation => "Preparation", rp::AttemptEnd::Prepared => "Prepared", rp::AttemptEnd::Native => "Native",
++        rp::AttemptEnd::Selected => "Selected", rp::AttemptEnd::Frozen(_) => "Frozen", rp::AttemptEnd::Candidate(_) => "Candidate" };
++    for (name, raw) in [("two", two), ("c1_range_mechanics", b2_c1_range_mechanics())] {
++        let mode = PreviewSolverMode::SparseInteractive;
++        let (capture, observer, ordinary) = observed(mode, &raw);
++        let cases = w1_case_ids(&capture).expect("domain");
++        let attempted = cases.attempted(case_triggers(&ordinary.numerical_quality, &observer.ordinary, cases.ids()));
++        println!("RV123_STEP {name} ids={:?} attempted={:?}", cases.ids(), attempted.requests());
++        let mut prepared = match observer.prepare_cases(ordinary, cases.ids().len(), attempted.requests()) {
++            Ok(p) => p,
++            Err(f) => { println!("RV123_STEP {name} custody_err={:?}", f.error); continue; }
++        };
++        println!("RV123_STEP {name} after T-7 {:?}", prepared.attempts.iter().map(|a| name_end(&a.end)).collect::<Vec<_>>());
++        prepared.native();
++        println!("RV123_STEP {name} after T-8 {:?} native_error={:?}", prepared.attempts.iter().map(|a| name_end(&a.end)).collect::<Vec<_>>(),
++            prepared.attempts.iter().map(|a| format!("{:?}", a.trace.native_error)).collect::<Vec<_>>());
++        prepared.freeze();
++        println!("RV123_STEP {name} after T-9 {:?}", prepared.attempts.iter().map(|a| name_end(&a.end)).collect::<Vec<_>>());
++    }
++}
++
++// RV123 scratch: the two-mechanics milestone through w1_transaction and retained_w1 directly.
++#[test]
++fn rv123_r2_probe_two_mechanics_direct() {
++    let mut two = raw();
++    two["model"]["combinations"] = json!([
++        {"id": "combination:2case", "label": "RV123 probe: 2 case", "basis": "mechanics", "terms": [{"load_case": "case", "factor": 2.0}], "provenance": B2P},
++        {"id": "combination:m3case", "label": "RV123 probe: -3 case", "basis": "mechanics", "terms": [{"load_case": "case", "factor": -3.0}], "provenance": B2P}]);
++    for mode in MODES {
++        let (capture, observer, ordinary) = observed(mode, &two);
++        let (_, r) = retained_w1(observer, ordinary, &capture);
++        println!("RV123_DIRECT {mode:?} retained_w1={:?}", r.as_ref().err());
++        let (capture, observer, ordinary) = observed(mode, &two);
++        let (_, r) = w1_transaction(observer, ordinary, &capture, 1, &[0]);
++        println!("RV123_DIRECT {mode:?} w1_transaction={:?}", r.as_ref().err());
++        let (capture, observer, ordinary) = observed(mode, &two);
++        let cases = w1_case_ids(&capture).expect("domain");
++        let attempted = cases.attempted(case_triggers(&ordinary.numerical_quality, &observer.ordinary, cases.ids()));
++        let mut prepared = match observer.prepare_cases(ordinary, 1, attempted.requests()) { Ok(p) => p, Err(f) => { println!("custody {:?}", f.error); continue; } };
++        prepared.native(); prepared.freeze(); prepared.dispositions();
++        let combined = prepared.combine();
++        println!("RV123_DIRECT {mode:?} combine={:?} ends={:?}", combined.as_ref().err().map(|e| e.0),
++            prepared.combinations.iter().map(|c| format!("{:?}", std::mem::discriminant(&c.end))).collect::<Vec<_>>());
++        match prepared.staged_envelope() { Ok(_) => println!("RV123_DIRECT {mode:?} staged ok"), Err(f) => println!("RV123_DIRECT {mode:?} staging {f:?}") }
++    }
++}
++
++// RV123 scratch: is the dump's Preparation for the two-mechanics probe carried state?
++#[test]
++fn rv123_r2_probe_two_mechanics_sequence() {
++    let mut two = raw();
++    two["model"]["combinations"] = json!([
++        {"id": "combination:2case", "label": "RV123 probe: 2 case", "basis": "mechanics", "terms": [{"load_case": "case", "factor": 2.0}], "provenance": B2P},
++        {"id": "combination:m3case", "label": "RV123 probe: -3 case", "basis": "mechanics", "terms": [{"load_case": "case", "factor": -3.0}], "provenance": B2P}]);
++    let mut seq: Vec<(&str, Value)> = vec![("two-first", two.clone())];
++    seq.extend(b2p_witnesses().into_iter().map(|(n, v)| (n, v)));
++    seq.push(("two-after-witnesses", two.clone()));
++    seq.extend(b2p_cap_witnesses());
++    seq.push(("two-after-cap", two.clone()));
++    for (name, raw) in seq {
++        for mode in MODES {
++            let armed = hooks::armed_names();
++            let (capture, observer, ordinary) = observed(mode, &raw);
++            let ((_, retained), _, captured) = hooks::counted_with_successor(|| retained_w1(observer, ordinary, &capture));
++            println!("RV123_SEQ {name} {} armed_before={armed:?} w1={:?} successor={}", mode.as_str(), retained.as_ref().err(), captured.is_some());
++        }
++    }
++}
++
++// RV123 scratch: a combination with no provenance: where W1 stops.
++#[test]
++fn rv123_r2_probe_no_provenance() {
++    let mut variants: Vec<(&str, Value)> = Vec::new();
++    let mut two = raw();
++    two["model"]["combinations"] = json!([
++        {"id": "combination:2case", "label": "RV123 probe: 2 case", "basis": "mechanics", "terms": [{"load_case": "case", "factor": 2.0}]},
++        {"id": "combination:m3case", "label": "RV123 probe: -3 case", "basis": "mechanics", "terms": [{"load_case": "case", "factor": -3.0}]}]);
++    variants.push(("two_no_provenance", two));
++    let mut one = raw();
++    one["model"]["combinations"] = json!([{"id": "combination:2case", "label": "RV123 probe: 2 case", "basis": "mechanics", "terms": [{"load_case": "case", "factor": 2.0}]}]);
++    variants.push(("one_no_provenance", one));
++    for (name, raw) in variants {
++        let mode = PreviewSolverMode::SparseInteractive;
++        let plain = plain(mode, &raw);
++        let diags: Vec<String> = serde_json::from_slice::<Value>(&plain).unwrap()["diagnostics"].as_array().unwrap().iter().map(|d| d["code"].as_str().unwrap_or("").to_owned()).collect();
++        println!("RV123_NOPROV {name} plain diagnostics={diags:?}");
++        let (capture, observer, ordinary) = observed(mode, &raw);
++        let cases = w1_case_ids(&capture);
++        println!("RV123_NOPROV {name} domain={}", cases.is_some());
++        let (_, r) = retained_w1(observer, ordinary, &capture);
++        println!("RV123_NOPROV {name} w1={:?}", r.as_ref().err());
++        let (_capture, observer, ordinary) = observed(mode, &raw);
++        match observer.prepare_cases(ordinary, 1, &[0]) {
++            Err(f) => println!("RV123_NOPROV {name} custody_err={:?}", f.error),
++            Ok(mut p) => println!("RV123_NOPROV {name} T-7 {:?}", p.attempts.iter().map(|a| match &a.end { rp::AttemptEnd::Preparation => p.capture.rv123_case_error(a.request), _ => "ok".to_owned() }).collect::<Vec<_>>()),
++        }
++    }
++}
+--- WT/rv123/cand/projects/chirality-piping/core/product_physics/src/retained_product.rs	2026-10-08 08:56:38
++++ WT/rv123/chk/projects/chirality-piping/core/product_physics/src/retained_product.rs	2026-10-08 09:34:30
+@@ -289,6 +289,8 @@
+     /// the last-seen case is held aside, so `f` reads case `index` from the capture's own fields
+     /// only, never case `index` or the last-seen case through `case_native`,
+     /// `case_prepared_source` or `case_scope` (RV125 N-3; debug builds assert it).
++    #[cfg(test)]
++    pub(super) fn rv123_case_error(&mut self, index: usize) -> String { self.with_case(index, |c| format!("{:?}", c.error)) }
+     pub(super) fn with_case<R>(&mut self, index: usize, f: impl FnOnce(&mut Self) -> R) -> R {
+         if index == self.parked.len() {
+             return f(self);

@@ -1,0 +1,79 @@
+[
+ {
+  "id": "R-01",
+  "file": "retained_wire.rs",
+  "what": "n-case serializer: an unavailable exact attempt's preparation hash uses DEF-O's H (S-1, unavailable branch)",
+  "old": "                bind_preparation(&mut source_v, &attempt_v, attempt.attempt, pc.route())?;",
+  "new": "                bind_preparation(&mut source_v, &attempt_v, attempt.attempt, rp::W1Route::Preview)?;"
+ },
+ {
+  "id": "R-02",
+  "file": "retained_wire.rs",
+  "what": "c = 1 serializer: an unavailable exact attempt's preparation hash uses DEF-O's H",
+  "old": "                bind_preparation(&mut source_v, &attempt, 0, pc.route())?;",
+  "new": "                bind_preparation(&mut source_v, &attempt, 0, rp::W1Route::Preview)?;"
+ },
+ {
+  "id": "R-03",
+  "file": "retained_wire.rs",
+  "what": "c = 1 serializer: an unavailable exact successor takes the preview identity",
+  "old": "    let diagnostic_ref = unavailable_envelope(&mut env, pc.route(), &case_id)?;",
+  "new": "    let diagnostic_ref = unavailable_envelope(&mut env, rp::W1Route::Preview, &case_id)?;"
+ },
+ {
+  "id": "R-06",
+  "file": "retained_product.rs",
+  "what": "P-3: every material counts as used (an unused material is checked)",
+  "old": "                if self.checked_same(&pipe.material, &m.id)? {",
+  "new": "                if { self.checked_same(&pipe.material, &m.id)?; true } {"
+ },
+ {
+  "id": "R-11",
+  "file": "retained_product.rs",
+  "what": "P-8: only the first section patch is applied (multi-member)",
+  "old": "    for patch in &payload.sections {",
+  "new": "    for patch in payload.sections.iter().take(1) {"
+ },
+ {
+  "id": "M2-03",
+  "file": "retained_product.rs",
+  "what": "T-10b (i): a ledger-unavailable operand Run is not decided (rebuild attempted)",
+  "old": "if matches!(&run.outcome, k::ExecutionOutcome::Refused { refusal: k::Refusal::LedgerUnavailable(_), .. }) {",
+  "new": "if false {"
+ },
+ {
+  "id": "M2-06",
+  "file": "retained_wire.rs",
+  "what": "R-COMB-1 producer side: recovery_method also on an unavailable combination's rows",
+  "old": "    if selected {\n        for row in env[\"results\"].as_array_mut().ok_or(assoc(\"results\"))? {",
+  "new": "    if true {\n        for row in env[\"results\"].as_array_mut().ok_or(assoc(\"results\"))? {"
+ },
+ {
+  "id": "M2-11",
+  "file": "retained_product.rs",
+  "what": "T-6': contiguity required of every combination (subtraction and range too)",
+  "old": "            if self.combinations[k].mechanics {\n                let run=&mut runs[k];",
+  "new": "            if true {\n                let run=&mut runs[k];"
+ },
+ {
+  "id": "M2-15",
+  "file": "retained_wire.rs",
+  "what": "expression: subtraction's minuend and subtrahend swapped",
+  "old": "            \"minuend_id\":raw[\"minuend_id\"].as_str().ok_or(assoc(\"combinations[].expression.minuend_id\"))?,\n            \"subtrahend_id\":raw[\"subtrahend_id\"]",
+  "new": "            \"minuend_id\":raw[\"subtrahend_id\"].as_str().ok_or(assoc(\"combinations[].expression.minuend_id\"))?,\n            \"subtrahend_id\":raw[\"minuend_id\"]"
+ },
+ {
+  "id": "M2-21",
+  "file": "retained_wire.rs",
+  "what": "failure set: a facade refusal after a selected combination Run reported in phase kernel",
+  "old": "                (_, true) => (\"facade_certificate\", \"facade\"),",
+  "new": "                (_, true) => (\"facade_certificate\", \"kernel\"),"
+ },
+ {
+  "id": "M2-31",
+  "file": "retained_wire.rs",
+  "what": "combinations[].result_ids: every combination row, not only this combination's",
+  "old": "        .filter(|row| row[\"basis_ref\"][\"ref_type\"] == json!(\"combination\") && row[\"basis_ref\"][\"ref_id\"] == json!(id))",
+  "new": "        .filter(|row| row[\"basis_ref\"][\"ref_type\"] == json!(\"combination\"))"
+ }
+]
