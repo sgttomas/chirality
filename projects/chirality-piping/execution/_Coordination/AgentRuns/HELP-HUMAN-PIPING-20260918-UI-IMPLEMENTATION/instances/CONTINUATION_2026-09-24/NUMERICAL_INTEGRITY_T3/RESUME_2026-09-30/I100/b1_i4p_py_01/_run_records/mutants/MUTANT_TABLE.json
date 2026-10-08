@@ -1,0 +1,197 @@
+[
+ {
+  "id": "M1",
+  "edit": "ruling 1: the carrier branch restored on the retained transport header",
+  "tests": 613,
+  "failed": 1,
+  "killed_by_assertion": true,
+  "errors": [],
+  "failures": [
+   {
+    "test": "test_retained_precision_contract::test_i4p_ruling1_transport_header_takes_rusts_order_and_codes",
+    "kind": "assertion",
+    "message": "AssertionError: assert {'h_carrier_p...ORTED')), ...} == {'h_carrier_p...VALID')), ...}\n  \n  Omitting 2 identical items, use -vv to show\n  Differing items:\n  {'"
+   }
+  ]
+ },
+ {
+  "id": "M10",
+  "edit": "kept (ruling 2): both PY demands on the two members gone on transport (M9 and the schema walk skipped)",
+  "tests": 613,
+  "failed": 2,
+  "killed_by_assertion": true,
+  "errors": [],
+  "failures": [
+   {
+    "test": "test_retained_precision_contract::test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets",
+    "kind": "assertion",
+    "message": "AssertionError: global_upper_bound_pa\nassert (('admitted',...s_recompute')) == (('G7', 'SOUR...NCE_INVALID'))\n  \n  At index 0 diff: ('admitted', True, 'eligible"
+   },
+   {
+    "test": "test_preview_physics_consumer_contract::test_transport_metadata_checks_statement_without_rows",
+    "kind": "assertion",
+    "message": "Failed: DID NOT RAISE ValueError"
+   }
+  ]
+ },
+ {
+  "id": "M2",
+  "edit": "ruling 1: recovery not moved before the evidence demand (Python's order kept on transport)",
+  "tests": 613,
+  "failed": 1,
+  "killed_by_assertion": true,
+  "errors": [],
+  "failures": [
+   {
+    "test": "test_retained_precision_contract::test_i4p_ruling1_transport_header_takes_rusts_order_and_codes",
+    "kind": "assertion",
+    "message": "AssertionError: assert {'h_carrier_p...VALID')), ...} == {'h_carrier_p...VALID')), ...}\n  \n  Omitting 4 identical items, use -vv to show\n  Differing items:\n  {'"
+   }
+  ]
+ },
+ {
+  "id": "M3",
+  "edit": "ruling 1: the transport step does not ask for Rust's order (both moves undone)",
+  "tests": 613,
+  "failed": 1,
+  "killed_by_assertion": true,
+  "errors": [],
+  "failures": [
+   {
+    "test": "test_retained_precision_contract::test_i4p_ruling1_transport_header_takes_rusts_order_and_codes",
+    "kind": "assertion",
+    "message": "AssertionError: assert {'h_carrier_p...ORTED')), ...} == {'h_carrier_p...VALID')), ...}\n  \n  Differing items:\n  {'n6_carrier_evidence_with_case_defect': (('G7',"
+   }
+  ]
+ },
+ {
+  "id": "M4",
+  "edit": "ruling 1's scope: Rust's order for every caller of _source_contract (the non-retained dispatch too)",
+  "tests": 613,
+  "failed": 1,
+  "killed_by_assertion": true,
+  "errors": [],
+  "failures": [
+   {
+    "test": "test_retained_precision_contract::test_i4p_ruling1_transport_header_takes_rusts_order_and_codes",
+    "kind": "assertion",
+    "message": "AssertionError: assert {'h_carrier_p...VALID')), ...} == {'h_carrier_p...VALID')), ...}\n  \n  Differing items:\n  {'h_carrier_present': (('G7', 'SOURCE_PREVIEW_PH"
+   }
+  ]
+ },
+ {
+  "id": "M5",
+  "edit": "ruling 2: the transport metadata check compares withheld records as sets again",
+  "tests": 613,
+  "failed": 1,
+  "killed_by_assertion": true,
+  "errors": [],
+  "failures": [
+   {
+    "test": "test_retained_precision_contract::test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets",
+    "kind": "assertion",
+    "message": "AssertionError: assert {'t_withheld_...ompute'), ...} == {'t_withheld_...ompute'), ...}\n  \n  Omitting 3 identical items, use -vv to show\n  Differing items:\n  {'"
+   }
+  ]
+ },
+ {
+  "id": "M6",
+  "edit": "ruling 2: the multiset compared as an ordered list (not sorted)",
+  "tests": 613,
+  "failed": 1,
+  "killed_by_assertion": true,
+  "errors": [],
+  "failures": [
+   {
+    "test": "test_retained_precision_contract::test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets",
+    "kind": "assertion",
+    "message": "AssertionError: assert {'t_withheld_...NVALID'), ...} == {'t_withheld_...ompute'), ...}\n  \n  Omitting 4 identical items, use -vv to show\n  Differing items:\n  {'"
+   }
+  ]
+ },
+ {
+  "id": "M7",
+  "edit": "ruling 2's scope: the raw evidence check compares multisets too",
+  "tests": 613,
+  "failed": 1,
+  "killed_by_assertion": true,
+  "errors": [],
+  "failures": [
+   {
+    "test": "test_retained_precision_contract::test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets",
+    "kind": "assertion",
+    "message": "AssertionError: assert ('SOURCE_PREV...etween cases') == ('SOURCE_PREV...tic disagree')\n  \n  At index 0 diff: 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: support "
+   }
+  ]
+ },
+ {
+  "id": "M8",
+  "edit": "ruling 5: C2's kernel branch without its Run-present conjunct (RV113's P31)",
+  "tests": 613,
+  "failed": 2,
+  "killed_by_assertion": true,
+  "errors": [
+   {
+    "test": "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic",
+    "kind": "error",
+    "message": "TypeError: 'NoneType' object is not subscriptable"
+   }
+  ],
+  "failures": [
+   {
+    "test": "test_retained_precision_contract::test_b1_repair02_c2_cause_table_reader_logic",
+    "kind": "error",
+    "message": "TypeError: 'NoneType' object is not subscriptable"
+   },
+   {
+    "test": "test_retained_precision_contract::test_i4p_ruling5_kernel_reason_without_a_run_is_g5_attempt_in_the_reader",
+    "kind": "assertion",
+    "message": "assert ('G5', 'RETAI...bscriptable\")) == ('G5', 'RETAI...SMATCH', None)\n  \n  At index 1 diff: 'RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH' != 'RETAINED_PRECISI"
+   }
+  ]
+ },
+ {
+  "id": "M9",
+  "edit": "kept (ruling 2): the extrema-number demand without global_upper_bound_pa and certified_gap_pa in _cases",
+  "tests": 613,
+  "failed": 1,
+  "killed_by_assertion": true,
+  "errors": [],
+  "failures": [
+   {
+    "test": "test_retained_precision_contract::test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets",
+    "kind": "assertion",
+    "message": "AssertionError: global_upper_bound_pa\nassert (('admitted',...NCE_INVALID')) == (('G7', 'SOUR...NCE_INVALID'))\n  \n  At index 0 diff: ('admitted', True, 'eligible"
+   }
+  ]
+ },
+ {
+  "id": "NONE",
+  "edit": "control",
+  "tests": 613,
+  "failed": 0,
+  "killed_by_assertion": false,
+  "errors": [],
+  "failures": []
+ },
+ {
+  "id": "PRE",
+  "edit": "the head's tests on I4's reader",
+  "tests": 613,
+  "failed": 2,
+  "killed_by_assertion": true,
+  "errors": [],
+  "failures": [
+   {
+    "test": "test_retained_precision_contract::test_i4p_ruling1_transport_header_takes_rusts_order_and_codes",
+    "kind": "assertion",
+    "message": "AssertionError: assert {'h_carrier_p...ORTED')), ...} == {'h_carrier_p...VALID')), ...}\n  \n  Differing items:\n  {'n6_contract_evidence_null_and_source_block_rec"
+   },
+   {
+    "test": "test_retained_precision_contract::test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets",
+    "kind": "assertion",
+    "message": "AssertionError: assert {'t_withheld_...ompute'), ...} == {'t_withheld_...ompute'), ...}\n  \n  Omitting 3 identical items, use -vv to show\n  Differing items:\n  {'"
+   }
+  ]
+ }
+]

@@ -1,0 +1,6 @@
+tests/test_preview_physics_consumer_contract.py:451: Failed
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_contract.py::test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets
+FAILED tests/test_preview_physics_consumer_contract.py::test_transport_metadata_checks_statement_without_rows
+2 failed, 611 passed in 202.01s (0:03:22)
+# end 2026-10-08T08:59:13Z rc=1

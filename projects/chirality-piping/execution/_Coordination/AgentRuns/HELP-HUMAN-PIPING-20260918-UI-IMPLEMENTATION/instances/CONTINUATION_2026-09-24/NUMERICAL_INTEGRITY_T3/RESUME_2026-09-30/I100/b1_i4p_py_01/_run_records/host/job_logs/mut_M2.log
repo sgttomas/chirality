@@ -1,0 +1,50 @@
+# i100 job mut_M2 (slot) queued 2026-10-08T08:20:27Z dir=scratch/i100_b1_i4p_py/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=M2 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b1_i4p_py/tmp/mut_M2/basetemp -q -rf --junitxml=WT/scratch/i100_b1_i4p_py/mutants/runs/M2/junit.xml tests/test_retained_precision_contract.py tests/test_retained_precision_carriers.py tests/test_preview_physics_consumer_contract.py
+# start 2026-10-08T08:20:27Z
+........................................................................ [ 11%]
+........................................................................ [ 23%]
+........................................................................ [ 35%]
+........................................................................ [ 46%]
+........................................................................ [ 58%]
+..........................................................F............. [ 70%]
+........................................................................ [ 82%]
+........................................................................ [ 93%]
+.....................................                                    [100%]
+=================================== FAILURES ===================================
+________ test_i4p_ruling1_transport_header_takes_rusts_order_and_codes _________
+
+    def test_i4p_ruling1_transport_header_takes_rusts_order_and_codes():
+        """Ruling 1 (RV113's SR-PY addendum S-1, option (a)): on transport, PY's base header takes Rust's order and
+        codes, as TS's does. It has no carrier branch, so a `carrier_evidence` member alone is a metadata defect, G7
+        SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID, and beside a header defect that defect's G2 code reads; and
+        `source_block_recovery` is checked before `contract_evidence`. RV113's six transport probes, each expected
+        with RS's and TS's gate and code at I4. Raw reads keep PY's own order at G7 (their codes are the declared
+        per-reader raw class, B1_SC item 13), unchanged; so does the transport dispatch of a statement that is not
+        a retained successor (ruling 1 is the retained reader's transport header)."""
+        from core.analysis_runs import compatibility as c
+        quality = _set(["numerical_quality", "status"], "bogus")
+        case = _set(["numerical_quality", "cases", 0, "structural_status"], ["x"])
+        probes = {
+            "h_carrier_present": ([I4P_CARRIER], I4P_INVALID, "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
+            "h_carrier_and_quality_defect": ([I4P_CARRIER, quality], ("G2", "SOURCE_NUMERICAL_QUALITY_INVALID"), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
+            "h_carrier_and_recovery": ([I4P_CARRIER, I4P_RECOVERY], ("G2", "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
+            "n6_carrier_evidence_with_case_defect": ([I4P_CARRIER, case], ("G2", "SOURCE_NUMERICAL_CASE_INVALID"), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
+            "h_recovery_and_evidence_null": ([I4P_RECOVERY, I4P_EVIDENCE_NULL], ("G2", "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"), "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"),
+            "n6_contract_evidence_null_and_source_block_recovery": ([I4P_EVIDENCE_NULL, I4P_RECOVERY], ("G2", "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"), "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"),
+        }
+        got = {name: _i4p_three(O_BASE, edits)[0] for name, (edits, _, _) in probes.items()}
+>       assert got == {name: (("G7", raw), ("G7", raw), transport) for name, (_, transport, raw) in probes.items()}
+E       AssertionError: assert {'h_carrier_p...VALID')), ...} == {'h_carrier_p...VALID')), ...}
+E         
+E         Omitting 4 identical items, use -vv to show
+E         Differing items:
+E         {'n6_contract_evidence_null_and_source_block_recovery': (('G7', 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED'), ('G7', 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED'), ('G2', 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED'))} != {'n6_contract_evidence_null_and_source_block_recovery': (('G7', 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED'), ('G7', 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED'), ('G2', 'SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN'))}
+E         {'h_recovery_and_evidence_null': (('G7', 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED'), (...
+E         
+E         ...Full output truncated (2 lines hidden), use '-vv' to show
+
+tests/test_retained_precision_contract.py:1647: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_contract.py::test_i4p_ruling1_transport_header_takes_rusts_order_and_codes
+1 failed, 612 passed in 225.59s (0:03:45)
+# end 2026-10-08T08:24:13Z rc=1

@@ -1,0 +1,1628 @@
+[
+ {
+  "id": "rv120:gub_str",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": "x"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "global_upper_bound_pa = \"x\"",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gub_null",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": null
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "global_upper_bound_pa = null",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gub_true",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": true
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "global_upper_bound_pa = true",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gub_false",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": false
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "global_upper_bound_pa = false",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gub_list",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": [
+     1.0
+    ]
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "global_upper_bound_pa = [1.0]",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gub_empty_list",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": []
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "global_upper_bound_pa = []",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gub_object",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": {}
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "global_upper_bound_pa = {}",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gub_numeric_string",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": "1e6"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "global_upper_bound_pa = \"1e6\"",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gap_null",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "certified_gap_pa"
+    ],
+    "op": "set",
+    "value": null
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "certified_gap_pa = null",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gap_str",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "certified_gap_pa"
+    ],
+    "op": "set",
+    "value": "0"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "certified_gap_pa = \"0\"",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gap_true",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "certified_gap_pa"
+    ],
+    "op": "set",
+    "value": true
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "certified_gap_pa = true",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gap_list",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "certified_gap_pa"
+    ],
+    "op": "set",
+    "value": [
+     0.0
+    ]
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "certified_gap_pa = [0.0]",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gap_object",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "certified_gap_pa"
+    ],
+    "op": "set",
+    "value": {
+     "v": 0
+    }
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "certified_gap_pa = {\"v\": 0}",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gap_empty_string",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "certified_gap_pa"
+    ],
+    "op": "set",
+    "value": ""
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "certified_gap_pa = \"\"",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:both_null",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": null
+   },
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "certified_gap_pa"
+    ],
+    "op": "set",
+    "value": null
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gub_str_case1",
+  "item": "I4P",
+  "base": "two_case_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     1,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": "x"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gap_null_case1",
+  "item": "I4P",
+  "base": "two_case_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     1,
+     "pipe_stress_extrema",
+     0,
+     "certified_gap_pa"
+    ],
+    "op": "set",
+    "value": null
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gub_null_extremum1",
+  "item": "I4P",
+  "base": "two_body_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     1,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": null
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gap_str_extremum1",
+  "item": "I4P",
+  "base": "two_body_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     1,
+     "certified_gap_pa"
+    ],
+    "op": "set",
+    "value": "0"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gap_null_u8_sparse",
+  "item": "I4P",
+  "base": "u8_l0_isolated_node_sparse_interactive",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "certified_gap_pa"
+    ],
+    "op": "set",
+    "value": null
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gub_str_u8_dense",
+  "item": "I4P",
+  "base": "u8_l0_isolated_node_dense_scrutiny",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": "x"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gap_null_two_groups_case1",
+  "item": "I4P",
+  "base": "two_case_two_groups_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     1,
+     "pipe_stress_extrema",
+     0,
+     "certified_gap_pa"
+    ],
+    "op": "set",
+    "value": null
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gub_int0",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": 0
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "admitted": false
+   }
+  },
+  "note": "",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gap_int0",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "certified_gap_pa"
+    ],
+    "op": "set",
+    "value": 0
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "admitted": false
+   }
+  },
+  "note": "",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gub_neg",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": -1.0
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "admitted": false
+   }
+  },
+  "note": "",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gap_neg",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "certified_gap_pa"
+    ],
+    "op": "set",
+    "value": -1.0
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "admitted": false
+   }
+  },
+  "note": "",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gub_big_frac",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": 123456789.125
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "admitted": false
+   }
+  },
+  "note": "",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gap_big_frac",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "certified_gap_pa"
+    ],
+    "op": "set",
+    "value": 123456789.125
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "admitted": false
+   }
+  },
+  "note": "",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gub_int_big",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": 41354909
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "admitted": false
+   }
+  },
+  "note": "",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gap_int_big",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "certified_gap_pa"
+    ],
+    "op": "set",
+    "value": 41354909
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "admitted": false
+   }
+  },
+  "note": "",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:order_shape_first",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": "x"
+   },
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "extra"
+    ],
+    "op": "set",
+    "value": 1
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "extrema shape first",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:order_identity_first",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": "x"
+   },
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "approximation"
+    ],
+    "op": "set",
+    "value": "other"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "identity first",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:order_before_fractions",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "certified_gap_pa"
+    ],
+    "op": "set",
+    "value": null
+   },
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "station_fraction"
+    ],
+    "op": "set",
+    "value": 2.0
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "numbers before fractions",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:order_before_integers",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "certified_gap_pa"
+    ],
+    "op": "set",
+    "value": null
+   },
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "span_index"
+    ],
+    "op": "set",
+    "value": -1
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "numbers before integers",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:order_before_bounds",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "global_upper_bound_pa"
+    ],
+    "op": "set",
+    "value": null
+   },
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "value_lower_pa"
+    ],
+    "op": "set",
+    "value": -1.0
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "numbers before bounds",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:gap_missing",
+  "item": "I4P",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "pipe_stress_extrema",
+     0,
+     "certified_gap_pa"
+    ],
+    "op": "remove"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "extrema shape",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:withheld_dup_case1_only",
+  "item": "I4P",
+  "base": "two_case_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "support_attribution",
+     "withheld"
+    ],
+    "op": "set",
+    "value": [
+     {
+      "support_id": "s",
+      "reason": "CONSTANT_EFFORT_NOT_CONSUMED"
+     }
+    ]
+   },
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     1,
+     "support_attribution",
+     "withheld"
+    ],
+    "op": "set",
+    "value": [
+     {
+      "support_id": "s",
+      "reason": "CONSTANT_EFFORT_NOT_CONSUMED"
+     },
+     {
+      "support_id": "s",
+      "reason": "CONSTANT_EFFORT_NOT_CONSUMED"
+     }
+    ]
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "case 1 withholds s twice, case 0 once",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:withheld_dup_both",
+  "item": "I4P",
+  "base": "two_case_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "support_attribution",
+     "withheld"
+    ],
+    "op": "set",
+    "value": [
+     {
+      "support_id": "s",
+      "reason": "CONSTANT_EFFORT_NOT_CONSUMED"
+     },
+     {
+      "support_id": "s",
+      "reason": "CONSTANT_EFFORT_NOT_CONSUMED"
+     }
+    ]
+   },
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     1,
+     "support_attribution",
+     "withheld"
+    ],
+    "op": "set",
+    "value": [
+     {
+      "support_id": "s",
+      "reason": "CONSTANT_EFFORT_NOT_CONSUMED"
+     },
+     {
+      "support_id": "s",
+      "reason": "CONSTANT_EFFORT_NOT_CONSUMED"
+     }
+    ]
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "observe": true
+   }
+  },
+  "note": "both cases withhold s twice",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:withheld_dup_three_vs_two",
+  "item": "I4P",
+  "base": "two_case_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "support_attribution",
+     "withheld"
+    ],
+    "op": "set",
+    "value": [
+     {
+      "support_id": "s",
+      "reason": "CONSTANT_EFFORT_NOT_CONSUMED"
+     },
+     {
+      "support_id": "s",
+      "reason": "CONSTANT_EFFORT_NOT_CONSUMED"
+     },
+     {
+      "support_id": "s",
+      "reason": "CONSTANT_EFFORT_NOT_CONSUMED"
+     }
+    ]
+   },
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     1,
+     "support_attribution",
+     "withheld"
+    ],
+    "op": "set",
+    "value": [
+     {
+      "support_id": "s",
+      "reason": "CONSTANT_EFFORT_NOT_CONSUMED"
+     },
+     {
+      "support_id": "s",
+      "reason": "CONSTANT_EFFORT_NOT_CONSUMED"
+     }
+    ]
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "multiplicities 3 and 2",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:withheld_same_once",
+  "item": "I4P",
+  "base": "two_case_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "support_attribution",
+     "withheld"
+    ],
+    "op": "set",
+    "value": [
+     {
+      "support_id": "s",
+      "reason": "CONSTANT_EFFORT_NOT_CONSUMED"
+     }
+    ]
+   },
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     1,
+     "support_attribution",
+     "withheld"
+    ],
+    "op": "set",
+    "value": [
+     {
+      "support_id": "s",
+      "reason": "CONSTANT_EFFORT_NOT_CONSUMED"
+     }
+    ]
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "observe": true
+   }
+  },
+  "note": "control: once in each case",
+  "set_name": "rv120"
+ },
+ {
+  "id": "rv120:withheld_reason_differs",
+  "item": "I4P",
+  "base": "two_case_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "support_attribution",
+     "withheld"
+    ],
+    "op": "set",
+    "value": [
+     {
+      "support_id": "s",
+      "reason": "CONSTANT_EFFORT_NOT_CONSUMED"
+     }
+    ]
+   },
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     1,
+     "support_attribution",
+     "withheld"
+    ],
+    "op": "set",
+    "value": [
+     {
+      "support_id": "s",
+      "reason": "SUPPORT_ACTION_ATTRIBUTION_WITHHELD"
+     }
+    ]
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "same support, other reason",
+  "set_name": "rv120"
+ }
+]

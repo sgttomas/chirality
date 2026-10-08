@@ -1,0 +1,2 @@
+same code apart from docstrings
+files: compatibility.py at 8fa5aac15c and at 52d83da275 (git show)

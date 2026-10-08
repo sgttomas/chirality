@@ -1,0 +1,113 @@
+# RV120 jobs: each job log's own stamp lines (queued/target/args/start/end)
+== rs_head_harness.log
+# rv120 job rs_head_harness (slot) queued 2026-10-08T08:09:28Z dir=scratch/rv120_rvr/copies/rs-head/projects/chirality-piping/core/reporting/result_export
+# args: /usr/bin/env RV113_OUT=WT/scratch/rv120_rvr/census/rs_head.jsonl RV113_PROBES=WT/scratch/rv120_rvr/probes/probes_rv120_all.json RV113_PROBES_OUT=WT/scratch/rv120_rvr/probes/rs_head.jsonl RUST_TEST_THREADS=2 WT/targets/rv120-rs-head/debug/deps/rv113_census-b4b2fbf1bb352d01
+# start 2026-10-08T08:09:28Z
+# end 2026-10-08T08:10:36Z rc=101
+== rs_head_probes.log
+# rv120 job rs_head_probes (slot) queued 2026-10-08T08:11:59Z dir=scratch/rv120_rvr/copies/rs-head/projects/chirality-piping/core/reporting/result_export
+# args: /usr/bin/env RV113_PROBES=WT/scratch/rv120_rvr/probes/probes_rv120_all.json RV113_PROBES_OUT=WT/scratch/rv120_rvr/probes/rs_head.jsonl RUST_TEST_THREADS=2 WT/targets/rv120-rs-head/debug/deps/rv113_census-b4b2fbf1bb352d01 rv113_probes --exact
+# start 2026-10-08T08:11:59Z
+# end 2026-10-08T08:13:08Z rc=0
+== rs_head_suite.log
+# rv120 job rs_head_suite (cargo) queued 2026-10-08T08:06:43Z dir=scratch/rv120_rvr/copies/rs-head/projects/chirality-piping/core/reporting/result_export
+# target=targets/rv120-rs-head args: test --locked --offline
+# end 2026-10-08T08:08:19Z rc=0
+== rs_i4_harness.log
+# rv120 job rs_i4_harness (slot) queued 2026-10-08T08:08:19Z dir=scratch/rv120_rvr/copies/rs-i4/projects/chirality-piping/core/reporting/result_export
+# args: /usr/bin/env RV113_OUT=WT/scratch/rv120_rvr/census/rs_i4.jsonl RV113_PROBES=WT/scratch/rv120_rvr/probes/probes_rv120_all.json RV113_PROBES_OUT=WT/scratch/rv120_rvr/probes/rs_i4.jsonl RUST_TEST_THREADS=2 WT/targets/rv120-rs-i4/debug/deps/rv113_census-8f8a742f2ebd69c5
+# start 2026-10-08T08:08:19Z
+# end 2026-10-08T08:09:28Z rc=101
+== rs_i4_probes.log
+# rv120 job rs_i4_probes (slot) queued 2026-10-08T08:10:49Z dir=scratch/rv120_rvr/copies/rs-i4/projects/chirality-piping/core/reporting/result_export
+# args: /usr/bin/env RV113_PROBES=WT/scratch/rv120_rvr/probes/probes_rv120_all.json RV113_PROBES_OUT=WT/scratch/rv120_rvr/probes/rs_i4.jsonl RUST_TEST_THREADS=2 WT/targets/rv120-rs-i4/debug/deps/rv113_census-8f8a742f2ebd69c5 rv113_probes --exact
+# start 2026-10-08T08:10:50Z
+# end 2026-10-08T08:11:58Z rc=0
+== rs_i4_suite.log
+# rv120 job rs_i4_suite (cargo) queued 2026-10-08T08:05:01Z dir=scratch/rv120_rvr/copies/rs-i4/projects/chirality-piping/core/reporting/result_export
+# target=targets/rv120-rs-i4 args: test --locked --offline
+# end 2026-10-08T08:06:43Z rc=0
+== rs_mut_build.log
+# rv120 job rs_mut_build (cargo) queued 2026-10-08T08:10:36Z dir=scratch/rv120_rvr/copies/rs-mut/projects/chirality-piping/core/reporting/result_export
+# target=targets/rv120-rs-mut args: test --locked --offline --no-run
+# end 2026-10-08T08:10:42Z rc=0
+== ts_head_harness.log
+# rv120 job ts_head_harness (slot) queued 2026-10-08T08:26:05Z dir=scratch/rv120_rvr/copies/ts-head/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV113_OUT=WT/scratch/rv120_rvr/census/ts_head.jsonl RV113_PROBES=WT/scratch/rv120_rvr/probes/probes_rv120_all.json RV113_PROBES_OUT=WT/scratch/rv120_rvr/probes/ts_head.jsonl WT/scratch/rv120_rvr/copies/ts-head/projects/chirality-piping/node_modules/.bin/vitest run src/features/results/rv113Census.test.ts
+# start 2026-10-08T08:26:05Z
+# end 2026-10-08T08:26:27Z rc=0
+== ts_head_tsc.log
+# rv120 job ts_head_tsc (slot) queued 2026-10-08T08:29:23Z dir=scratch/rv120_rvr/copies/ts-head/projects/chirality-piping/apps/desktop
+# args: WT/scratch/rv120_rvr/copies/ts-head/projects/chirality-piping/node_modules/.bin/tsc --noEmit -p tsconfig.json
+# start 2026-10-08T08:29:24Z
+# end 2026-10-08T08:29:29Z rc=0
+== ts_head_vitest.log
+# rv120 job ts_head_vitest (slot) queued 2026-10-08T08:27:52Z dir=scratch/rv120_rvr/copies/ts-head/projects/chirality-piping/apps/desktop
+# args: WT/scratch/rv120_rvr/copies/ts-head/projects/chirality-piping/node_modules/.bin/vitest run --reporter=dot --reporter=json --outputFile.json=WT/scratch/rv120_rvr/suites/vitest_ts_head.json
+# start 2026-10-08T08:27:52Z
+# end 2026-10-08T08:29:23Z rc=0
+== ts_i4_harness.log
+# rv120 job ts_i4_harness (slot) queued 2026-10-08T08:25:45Z dir=scratch/rv120_rvr/copies/ts-i4/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV113_OUT=WT/scratch/rv120_rvr/census/ts_i4.jsonl RV113_PROBES=WT/scratch/rv120_rvr/probes/probes_rv120_all.json RV113_PROBES_OUT=WT/scratch/rv120_rvr/probes/ts_i4.jsonl WT/scratch/rv120_rvr/copies/ts-i4/projects/chirality-piping/node_modules/.bin/vitest run src/features/results/rv113Census.test.ts
+# start 2026-10-08T08:25:45Z
+# end 2026-10-08T08:26:05Z rc=0
+== ts_i4_vitest.log
+# rv120 job ts_i4_vitest (slot) queued 2026-10-08T08:26:27Z dir=scratch/rv120_rvr/copies/ts-i4/projects/chirality-piping/apps/desktop
+# args: WT/scratch/rv120_rvr/copies/ts-i4/projects/chirality-piping/node_modules/.bin/vitest run --reporter=dot --reporter=json --outputFile.json=WT/scratch/rv120_rvr/suites/vitest_ts_i4.json
+# start 2026-10-08T08:26:27Z
+# end 2026-10-08T08:27:52Z rc=0
+== ts_mut_NONE.log
+# rv120 job ts_mut_NONE (slot) queued 2026-10-08T08:29:29Z dir=scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV120_MUT= WT/scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/node_modules/.bin/vitest run --reporter=dot --reporter=json --outputFile.json=WT/scratch/rv120_rvr/mutants/ts_runs/NONE/vitest.json
+# start 2026-10-08T08:29:29Z
+# end 2026-10-08T08:30:54Z rc=0
+== ts_mut_NONE_probes.log
+# rv120 job ts_mut_NONE_probes (slot) queued 2026-10-08T08:43:25Z dir=scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV113_PROBES=WT/scratch/rv120_rvr/probes/probes_rv120_all.json RV113_PROBES_OUT=WT/scratch/rv120_rvr/mutants/ts_runs/NONE/probes.jsonl WT/scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/node_modules/.bin/vitest run src/features/results/rv113Census.test.ts
+# start 2026-10-08T08:43:25Z
+# end 2026-10-08T08:43:36Z rc=0
+== ts_mut_W01.log
+# rv120 job ts_mut_W01 (slot) queued 2026-10-08T08:30:54Z dir=scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV120_MUT=W01 WT/scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/node_modules/.bin/vitest run --reporter=dot --reporter=json --outputFile.json=WT/scratch/rv120_rvr/mutants/ts_runs/W01/vitest.json
+# start 2026-10-08T08:30:55Z
+# end 2026-10-08T08:32:16Z rc=1
+== ts_mut_W02.log
+# rv120 job ts_mut_W02 (slot) queued 2026-10-08T08:32:16Z dir=scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV120_MUT=W02 WT/scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/node_modules/.bin/vitest run --reporter=dot --reporter=json --outputFile.json=WT/scratch/rv120_rvr/mutants/ts_runs/W02/vitest.json
+# start 2026-10-08T08:32:16Z
+# end 2026-10-08T08:33:47Z rc=1
+== ts_mut_W03.log
+# rv120 job ts_mut_W03 (slot) queued 2026-10-08T08:33:47Z dir=scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV120_MUT=W03 WT/scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/node_modules/.bin/vitest run --reporter=dot --reporter=json --outputFile.json=WT/scratch/rv120_rvr/mutants/ts_runs/W03/vitest.json
+# start 2026-10-08T08:33:47Z
+# end 2026-10-08T08:35:13Z rc=1
+== ts_mut_W04.log
+# rv120 job ts_mut_W04 (slot) queued 2026-10-08T08:35:13Z dir=scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV120_MUT=W04 WT/scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/node_modules/.bin/vitest run --reporter=dot --reporter=json --outputFile.json=WT/scratch/rv120_rvr/mutants/ts_runs/W04/vitest.json
+# start 2026-10-08T08:35:13Z
+# end 2026-10-08T08:36:36Z rc=1
+== ts_mut_W05.log
+# rv120 job ts_mut_W05 (slot) queued 2026-10-08T08:36:36Z dir=scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV120_MUT=W05 WT/scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/node_modules/.bin/vitest run --reporter=dot --reporter=json --outputFile.json=WT/scratch/rv120_rvr/mutants/ts_runs/W05/vitest.json
+# start 2026-10-08T08:36:36Z
+# end 2026-10-08T08:37:58Z rc=1
+== ts_mut_W06.log
+# rv120 job ts_mut_W06 (slot) queued 2026-10-08T08:37:58Z dir=scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV120_MUT=W06 WT/scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/node_modules/.bin/vitest run --reporter=dot --reporter=json --outputFile.json=WT/scratch/rv120_rvr/mutants/ts_runs/W06/vitest.json
+# start 2026-10-08T08:37:58Z
+# end 2026-10-08T08:39:20Z rc=1
+== ts_mut_W07.log
+# rv120 job ts_mut_W07 (slot) queued 2026-10-08T08:39:20Z dir=scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV120_MUT=W07 WT/scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/node_modules/.bin/vitest run --reporter=dot --reporter=json --outputFile.json=WT/scratch/rv120_rvr/mutants/ts_runs/W07/vitest.json
+# start 2026-10-08T08:39:20Z
+# end 2026-10-08T08:40:39Z rc=1
+== ts_mut_W08.log
+# rv120 job ts_mut_W08 (slot) queued 2026-10-08T08:40:39Z dir=scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV120_MUT=W08 WT/scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/node_modules/.bin/vitest run --reporter=dot --reporter=json --outputFile.json=WT/scratch/rv120_rvr/mutants/ts_runs/W08/vitest.json
+# start 2026-10-08T08:40:39Z
+# end 2026-10-08T08:42:02Z rc=1
+== ts_mut_W10.log
+# rv120 job ts_mut_W10 (slot) queued 2026-10-08T08:42:02Z dir=scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV120_MUT=W10 WT/scratch/rv120_rvr/copies/ts-mut/projects/chirality-piping/node_modules/.bin/vitest run --reporter=dot --reporter=json --outputFile.json=WT/scratch/rv120_rvr/mutants/ts_runs/W10/vitest.json
+# start 2026-10-08T08:42:02Z
+# end 2026-10-08T08:43:25Z rc=1

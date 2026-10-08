@@ -1,0 +1,52 @@
+[
+ {
+  "id": "M1",
+  "file": "core/analysis_runs/compatibility.py",
+  "edit": "ruling 1: the carrier branch restored on the retained transport header"
+ },
+ {
+  "id": "M2",
+  "file": "core/analysis_runs/compatibility.py",
+  "edit": "ruling 1: recovery not moved before the evidence demand (Python's order kept on transport)"
+ },
+ {
+  "id": "M3",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "ruling 1: the transport step does not ask for Rust's order (both moves undone)"
+ },
+ {
+  "id": "M4",
+  "file": "core/analysis_runs/compatibility.py",
+  "edit": "ruling 1's scope: Rust's order for every caller of _source_contract (the non-retained dispatch too)"
+ },
+ {
+  "id": "M5",
+  "file": "core/analysis_runs/preview_physics_evidence.py",
+  "edit": "ruling 2: the transport metadata check compares withheld records as sets again"
+ },
+ {
+  "id": "M6",
+  "file": "core/analysis_runs/preview_physics_evidence.py",
+  "edit": "ruling 2: the multiset compared as an ordered list (not sorted)"
+ },
+ {
+  "id": "M7",
+  "file": "core/analysis_runs/preview_physics_evidence.py",
+  "edit": "ruling 2's scope: the raw evidence check compares multisets too"
+ },
+ {
+  "id": "M8",
+  "file": "core/analysis_runs/retained_precision.py",
+  "edit": "ruling 5: C2's kernel branch without its Run-present conjunct (RV113's P31)"
+ },
+ {
+  "id": "M9",
+  "file": "core/analysis_runs/preview_physics_evidence.py",
+  "edit": "kept (ruling 2): the extrema-number demand without global_upper_bound_pa and certified_gap_pa in _cases"
+ },
+ {
+  "id": "M10",
+  "file": "core/analysis_runs/preview_physics_evidence.py",
+  "edit": "kept (ruling 2): both PY demands on the two members gone on transport (M9 and the schema walk skipped)"
+ }
+]

@@ -1,0 +1,47 @@
+[
+ {
+  "id": "W01",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "the extrema-number demand dropped (raw and transport)"
+ },
+ {
+  "id": "W02",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "certified_gap_pa's half dropped"
+ },
+ {
+  "id": "W03",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "global_upper_bound_pa's half dropped"
+ },
+ {
+  "id": "W04",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "null admitted"
+ },
+ {
+  "id": "W05",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "the demand moved after the extrema bounds"
+ },
+ {
+  "id": "W06",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "the demand reported with another detail ('extrema fractions')"
+ },
+ {
+  "id": "W07",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "raw only: the transport check skips the demand"
+ },
+ {
+  "id": "W08",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "transport only: the raw reader skips the demand"
+ },
+ {
+  "id": "W10",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "a string admitted"
+ }
+]

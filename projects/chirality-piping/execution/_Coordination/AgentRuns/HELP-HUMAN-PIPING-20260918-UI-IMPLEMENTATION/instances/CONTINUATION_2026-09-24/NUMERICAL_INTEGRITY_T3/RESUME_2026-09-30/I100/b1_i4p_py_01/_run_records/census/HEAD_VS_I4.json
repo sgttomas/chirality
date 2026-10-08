@@ -1,0 +1,115 @@
+{
+ "entries": 339,
+ "escapes": {
+  "py_head": [],
+  "py_i4": []
+ },
+ "full_changes": [],
+ "inputs_differ": [],
+ "labels": [
+  "py_i4",
+  "py_head",
+  "rs_6e3e",
+  "ts_6fa6"
+ ],
+ "misses": {
+  "py_head": [],
+  "py_i4": []
+ },
+ "short_vs": {
+  "py_head~rs_6e3e": {
+   "by_verdict": {
+    "bound": 1,
+    "transport": 0,
+    "unbound": 1
+   },
+   "differences": 2,
+   "rows": [
+    {
+     "i": 139,
+     "id": "g7_maximum_off_enclosure",
+     "py_head": {
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+      "gate": "G7"
+     },
+     "rs_6e3e": {
+      "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS",
+      "gate": "G7"
+     },
+     "set": "mutation",
+     "verdict": "bound"
+    },
+    {
+     "i": 139,
+     "id": "g7_maximum_off_enclosure",
+     "py_head": {
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+      "gate": "G7"
+     },
+     "rs_6e3e": {
+      "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS",
+      "gate": "G7"
+     },
+     "set": "mutation",
+     "verdict": "unbound"
+    }
+   ]
+  },
+  "py_head~ts_6fa6": {
+   "by_verdict": {
+    "bound": 0,
+    "transport": 0,
+    "unbound": 0
+   },
+   "differences": 0,
+   "rows": []
+  },
+  "py_i4~rs_6e3e": {
+   "by_verdict": {
+    "bound": 1,
+    "transport": 0,
+    "unbound": 1
+   },
+   "differences": 2,
+   "rows": [
+    {
+     "i": 139,
+     "id": "g7_maximum_off_enclosure",
+     "py_i4": {
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+      "gate": "G7"
+     },
+     "rs_6e3e": {
+      "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS",
+      "gate": "G7"
+     },
+     "set": "mutation",
+     "verdict": "bound"
+    },
+    {
+     "i": 139,
+     "id": "g7_maximum_off_enclosure",
+     "py_i4": {
+      "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+      "gate": "G7"
+     },
+     "rs_6e3e": {
+      "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS",
+      "gate": "G7"
+     },
+     "set": "mutation",
+     "verdict": "unbound"
+    }
+   ]
+  },
+  "py_i4~ts_6fa6": {
+   "by_verdict": {
+    "bound": 0,
+    "transport": 0,
+    "unbound": 0
+   },
+   "differences": 0,
+   "rows": []
+  }
+ }
+}

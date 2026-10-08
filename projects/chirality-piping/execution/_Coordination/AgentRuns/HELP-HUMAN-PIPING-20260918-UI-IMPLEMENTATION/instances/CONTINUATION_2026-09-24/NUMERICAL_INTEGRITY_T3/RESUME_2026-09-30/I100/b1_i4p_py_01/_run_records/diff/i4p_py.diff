@@ -1,0 +1,297 @@
+diff --git a/projects/chirality-piping/core/analysis_runs/compatibility.py b/projects/chirality-piping/core/analysis_runs/compatibility.py
+index eee5f42afa..060e370089 100644
+--- a/projects/chirality-piping/core/analysis_runs/compatibility.py
++++ b/projects/chirality-piping/core/analysis_runs/compatibility.py
+@@ -389,8 +389,15 @@ def _classification_summary_from(validation: Mapping[str, Any], source: Mapping[
+     return out
+ 
+ 
+-def _source_contract(source: Mapping[str, Any], *, check_receipt: bool = True) -> tuple[str, str, Path]:
+-    """Interpretation dispatch does not authenticate a producer or qualify Current."""
++def _source_contract(source: Mapping[str, Any], *, check_receipt: bool = True, rust_header_order: bool = False) -> tuple[str, str, Path]:
++    """Interpretation dispatch does not authenticate a producer or qualify Current.
++
++    `rust_header_order` is passed only by the retained reader's transport step, on its projection
++    (RR "I4 made at `30f3d1b24a`; RV113's items for ROOT ruled; …", ruling 1). The header then takes
++    Rust's `for_source_metadata` order and codes, as TS's does: it has no carrier branch, so a
++    `carrier_evidence` member is left to the preview-physics transport metadata check (G7
++    SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID), and `source_block_recovery` is checked before
++    `contract_evidence`. Every other caller passes nothing and reads exactly as before."""
+     if _is_retained(source):
+         return _retained_contract(source, check_receipt=check_receipt)
+     # F-5: no other identity may carry a receipt member.
+@@ -399,7 +406,7 @@ def _source_contract(source: Mapping[str, Any], *, check_receipt: bool = True) -
+     version = source.get("schema_version")
+     # A source-block receipt belongs only to its explicit method branch below;
+     # the unrelated carrier namespace remains unsupported for every profile.
+-    if "carrier_evidence" in source:
++    if "carrier_evidence" in source and not rust_header_order:
+         raise ValueError("SOURCE_PRODUCER_CONTRACT_UNSUPPORTED")
+     if version == "0.1.0":
+         if any(key in source for key in ("producer", "numerical_quality", "formulation_basis", "contract_evidence", "source_block_recovery")):
+@@ -418,11 +425,15 @@ def _source_contract(source: Mapping[str, Any], *, check_receipt: bool = True) -
+     preview = producer["semantic_contract_id"] == PREVIEW_PHYSICS_CONTRACT_ID
+     load_reference = producer["semantic_contract_id"] == LOAD_REFERENCE_CONTRACT_ID
+     joined = producer["semantic_contract_id"] == LOAD_REFERENCE_SOURCE_CONTRACT_ID
++    recovery_forbidden = producer["semantic_contract_id"] not in {SOURCE_BLOCKS_CONTRACT_ID, PHYSICS_SOURCE_CONTRACT_ID, LOAD_REFERENCE_SOURCE_CONTRACT_ID} and "source_block_recovery" in source
++    if rust_header_order and recovery_forbidden:
++        # Ruling 1: Rust's order, the recovery member before the evidence demand.
++        raise ValueError("SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN")
+     if not physics and not preview and not load_reference and not joined and source.get("contract_evidence") is not None:
+         raise ValueError("SOURCE_PHYSICS_CONTRACT_MISMATCH")
+     if preview and not isinstance(source.get("contract_evidence"), Mapping):
+         raise ValueError("SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED")
+-    if producer["semantic_contract_id"] not in {SOURCE_BLOCKS_CONTRACT_ID, PHYSICS_SOURCE_CONTRACT_ID, LOAD_REFERENCE_SOURCE_CONTRACT_ID} and "source_block_recovery" in source:
++    if recovery_forbidden:
+         raise ValueError("SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN")
+     quality = source.get("numerical_quality")
+     if not isinstance(quality, Mapping) or set(quality) != {"value_representation", "publication_quantization", "integrity_policy", "status", "cases"} or quality.get("value_representation") != "finite_binary64" or quality.get("publication_quantization") != "none" or quality.get("integrity_policy") != "M03-INTEGRITY-v1" or not isinstance(quality.get("status"), str) or quality.get("status") not in {"not_assessed", "checks_passed", "sensitive", "unresolved", "failed"} or not isinstance(quality.get("cases"), list):
+diff --git a/projects/chirality-piping/core/analysis_runs/preview_physics_evidence.py b/projects/chirality-piping/core/analysis_runs/preview_physics_evidence.py
+index bd06c2b9bd..87768417c4 100644
+--- a/projects/chirality-piping/core/analysis_runs/preview_physics_evidence.py
++++ b/projects/chirality-piping/core/analysis_runs/preview_physics_evidence.py
+@@ -151,7 +151,7 @@ def _header(source: Mapping[str, Any]) -> None:
+     _finite_tree(evidence)
+ 
+ 
+-def _cases(evidence: Mapping[str, Any]) -> dict[str, Mapping[str, Any]]:
++def _cases(evidence: Mapping[str, Any], *, withheld_multiset: bool = False) -> dict[str, Mapping[str, Any]]:
+     cases: dict[str, Mapping[str, Any]] = {}
+     for case in evidence["preview_cases"]:
+         _shape(case, CASE_KEYS, "preview case shape")
+@@ -185,8 +185,12 @@ def _cases(evidence: Mapping[str, Any]) -> dict[str, Mapping[str, Any]]:
+             _shape(measure, INTENSIFIED_KEYS, "intensified measure shape")
+             _require(all(_text(measure[key]) for key in ("result_id", "component_id", "pipe_id")) and measure["location"] in {"end_i", "end_j"} and measure["factor_role"] in {"bend", "branch_header", "branch_branch"} and _text(measure["sif_source_reference"]), "intensified measure identity")
+             _require(all(_number(measure[key]) for key in ("sif", "section_modulus_m3", "bending_moment_y_n_m", "bending_moment_z_n_m")) and measure["sif"] > 0 and measure["section_modulus_m3"] > 0, "intensified measure inputs")
+-    # A2 3: dispositions are structural, so every case carries the same sets.
+-    dispositions = {(frozenset(case["support_attribution"]["attributed_support_ids"]), frozenset((r["support_id"], r["reason"]) for r in case["support_attribution"]["withheld"])) for case in cases.values()}
++    # A2 3: dispositions are structural, so every case carries the same sets. On transport (RR "I4 made at
++    # `30f3d1b24a`; …", ruling 2) the withheld records are compared as multisets, as Rust and TS compare
++    # sorted lists, so a record whose multiplicity differs between cases is refused here. The raw read
++    # keeps sets: its support-action step refuses any record repeated within a case.
++    withheld = (lambda records: tuple(sorted(records))) if withheld_multiset else frozenset
++    dispositions = {(frozenset(case["support_attribution"]["attributed_support_ids"]), withheld((r["support_id"], r["reason"]) for r in case["support_attribution"]["withheld"])) for case in cases.values()}
+     _require(len(dispositions) <= 1, "support attribution differs between cases")
+     extrema_ids = [extremum["result_id"] for case in cases.values() for extremum in case["pipe_stress_extrema"]]
+     measure_ids = [measure["result_id"] for case in cases.values() for measure in case["intensified_measures"]]
+@@ -410,6 +414,13 @@ def validate_transport_metadata(source: Mapping[str, Any]) -> None:
+     A retained package carries the statement without the raw rows, so the row
+     joins of ``validate_preview_physics_evidence`` are checked only when the
+     supplied raw envelope is validated separately.
++
++    Since RR "I4 made at `30f3d1b24a`; …" (ruling 2) this is the three readers'
++    shared form: Rust's and TS's checks plus this reader's extrema-number demand
++    (``global_upper_bound_pa`` and ``certified_gap_pa`` numbers), with the cases'
++    withheld records compared as multisets. It serves the retained reader's
++    transport step and the transport dispatch of a preview-physics-1 statement
++    (``compatibility._source_contract(..., check_receipt=False)``) alike.
+     """
+     from .source_blocks import _shape as schema_shape
+     try:
+@@ -421,7 +432,7 @@ def validate_transport_metadata(source: Mapping[str, Any]) -> None:
+         evidence = source.get("contract_evidence")
+         _require(schema_shape(evidence, schema["$defs"]["PreviewPhysicsContractEvidence"], schema), "transport evidence shape")
+         _finite_tree(evidence)
+-        _cases(evidence)
++        _cases(evidence, withheld_multiset=True)
+         _gates(evidence)
+     except (TypeError, KeyError, AttributeError, OverflowError, IndexError) as error:
+         raise ValueError("SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: malformed evidence") from error
+diff --git a/projects/chirality-piping/core/analysis_runs/retained_precision.py b/projects/chirality-piping/core/analysis_runs/retained_precision.py
+index f387be6452..cfb86c641b 100644
+--- a/projects/chirality-piping/core/analysis_runs/retained_precision.py
++++ b/projects/chirality-piping/core/analysis_runs/retained_precision.py
+@@ -1719,29 +1719,32 @@ def validate_retained_precision(source: Any, invocation: Any = None) -> dict[str
+ 
+ 
+ def validate_retained_precision_transport(source: Any) -> dict[str, Any]:
+-    """F-U6b-2 (B6): G0-G2, then the unchanged base step on the transport projection (no rows read).
++    """F-U6b-2 (B6): G0-G2, then the base step on the transport projection (no rows read).
+     On G0-G2 this is the twin of Rust `validate_transport_metadata` and TS
+     `validateRetainedPrecisionTransport`: the same checks, gates and codes. At the base step it runs
+     both of theirs, and every reader runs both (RV108 N6(a); the alignment set, item 4): the base header
+-    check, reported here at G2 with the header's code, as Rust reports it (RV113 N-1); then the
+-    preview-physics transport metadata check, reported at G7 (SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID).
+-    Omitted raw publication bytes are never reconstructed or verified, so a transported statement is
+-    never eligible."""
++    check, in Rust's order and with Rust's codes, reported at G2 (RV113 N-1; RR "I4 made at
++    `30f3d1b24a`; …", ruling 1: no carrier branch, and `source_block_recovery` before `contract_evidence`);
++    then the preview-physics transport metadata check, reported at G7
++    (SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID), which refuses a `carrier_evidence` member and compares
++    the cases' withheld records as multisets (ruling 2). Omitted raw publication bytes are never
++    reconstructed or verified, so a transported statement is never eligible."""
+     return _validate_draft(source, None, raw=False)
+ 
+ 
+ def _transport_base(snapshot: dict[str, Any]) -> None:
+     """The base step on the reader's transport projection (no rows are read): `_source_contract` runs the base
+-    header check, then the preview-physics transport metadata check. A failure keeps the base validator's
+-    leading code, with its full text as detail, as at the raw G7. Its gate (the alignment set, item 4): the
+-    metadata check raises only SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID, and the header check never does
+-    (it runs first, and every header code differs), so that code is G7's and every other is the header's, G2."""
++    header check in Rust's order (`rust_header_order`, ruling 1), then the preview-physics transport metadata
++    check. A failure keeps the base validator's leading code, with its full text as detail, as at the raw G7.
++    Its gate (the alignment set, item 4): the metadata check raises only SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID,
++    and the header check never does (it runs first, and every header code differs), so that code is G7's and
++    every other is the header's, G2. Raw reads keep Python's own header order at G7 (the declared raw codes)."""
+     projected=deepcopy(snapshot);del projected["retained_precision"]
+     projected["producer"]["semantic_contract_id"]="openpipestress.result_semantics/0.3.0/preview-physics-1";projected["formulation_basis"]["profile_id"]="product_preview_mechanics_v1"
+     for row in projected["results"] if type(projected.get("results")) is list else []:
+         if type(row) is dict:row.pop("recovery_method",None)
+     from .compatibility import _source_contract
+-    try:_source_contract(projected,check_receipt=False)
++    try:_source_contract(projected,check_receipt=False,rust_header_order=True)
+     except ValueError as exc:
+         text=str(exc);match=re.match(r"[A-Z][A-Z0-9_]*",text)
+         code=match.group(0) if match else "SOURCE_PREVIEW_PHYSICS_INVALID"
+diff --git a/projects/chirality-piping/tests/test_retained_precision_contract.py b/projects/chirality-piping/tests/test_retained_precision_contract.py
+index 5be0c96af0..959acaf586 100644
+--- a/projects/chirality-piping/tests/test_retained_precision_contract.py
++++ b/projects/chirality-piping/tests/test_retained_precision_contract.py
+@@ -1583,3 +1583,146 @@ def test_b1_repair02_c2_cause_table_in_the_reader():
+     }
+     assert got == {"c2_receipt_ok": ("admitted", False, "needs_recompute"), "c2_receipt_phase_kernel": ATTEMPT, "c2_receipt_code_facade": ATTEMPT,
+                    "c2_receipt_phase_preparation": ATTEMPT, "c2_facade_ok": PRODUCT, "c2_facade_phase_kernel": ATTEMPT}
++
++
++# ---------------------------------------------------------------------------------------------
++# B1's reader follow-up toward I4′, PY's lane (I100; RR "I4 made at `30f3d1b24a`; RV113's items for ROOT
++# ruled; …", rulings 1, 2 and 5). The inputs are RV113's probes (`probes_ts1.json`: the `h:`, `n6_` and
++# `r2:` ids named below), each built from its corpus base and edits and rehashed as a shared entry.
++# ---------------------------------------------------------------------------------------------
++I4P_INVALID = ("G7", "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID")
++I4P_NEEDS = ("admitted", False, "needs_recompute")
++I4P_CARRIER = _set(["carrier_evidence"], {})
++I4P_RECOVERY = _set(["source_block_recovery"], {})
++I4P_EVIDENCE_NULL = _set(["contract_evidence"], None)
++
++
++def _i4p_three(base, edits):
++    """((bound, unbound, transport) verdicts, their details) of the rehashed entry. A verdict is ("admitted",
++    eligible, standing) or the first failure (gate, code); a detail is the refusal's detail, or None."""
++    source, invocation = apply_entry(_cases()[base], {"edits": edits, "rehash": "all"})
++    verdicts, details = [], []
++    for read in (lambda s: rp.validate_retained_precision(s, deepcopy(invocation)), rp.validate_retained_precision, rp.validate_retained_precision_transport):
++        try:
++            result = read(deepcopy(source))
++            verdicts.append(("admitted", result["numerical_eligible"], result["standing"]))
++            details.append(None)
++        except rp.RetainedPrecisionError as error:
++            verdicts.append((error.gate, error.code))
++            details.append(error.detail)
++    return tuple(verdicts), tuple(details)
++
++
++def _i4p_projected(source):
++    """The reader's projection: the same statement under the preview-physics-1 identity (no receipt)."""
++    base = deepcopy(source)
++    del base["retained_precision"]
++    base["producer"]["semantic_contract_id"] = "openpipestress.result_semantics/0.3.0/preview-physics-1"
++    base["formulation_basis"]["profile_id"] = "product_preview_mechanics_v1"
++    for row in base["results"]:
++        row.pop("recovery_method", None)
++    return base
++
++
++def test_i4p_ruling1_transport_header_takes_rusts_order_and_codes():
++    """Ruling 1 (RV113's SR-PY addendum S-1, option (a)): on transport, PY's base header takes Rust's order and
++    codes, as TS's does. It has no carrier branch, so a `carrier_evidence` member alone is a metadata defect, G7
++    SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID, and beside a header defect that defect's G2 code reads; and
++    `source_block_recovery` is checked before `contract_evidence`. RV113's six transport probes, each expected
++    with RS's and TS's gate and code at I4. Raw reads keep PY's own order at G7 (their codes are the declared
++    per-reader raw class, B1_SC item 13), unchanged; so does the transport dispatch of a statement that is not
++    a retained successor (ruling 1 is the retained reader's transport header)."""
++    from core.analysis_runs import compatibility as c
++    quality = _set(["numerical_quality", "status"], "bogus")
++    case = _set(["numerical_quality", "cases", 0, "structural_status"], ["x"])
++    probes = {
++        "h_carrier_present": ([I4P_CARRIER], I4P_INVALID, "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
++        "h_carrier_and_quality_defect": ([I4P_CARRIER, quality], ("G2", "SOURCE_NUMERICAL_QUALITY_INVALID"), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
++        "h_carrier_and_recovery": ([I4P_CARRIER, I4P_RECOVERY], ("G2", "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
++        "n6_carrier_evidence_with_case_defect": ([I4P_CARRIER, case], ("G2", "SOURCE_NUMERICAL_CASE_INVALID"), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
++        "h_recovery_and_evidence_null": ([I4P_RECOVERY, I4P_EVIDENCE_NULL], ("G2", "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"), "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"),
++        "n6_contract_evidence_null_and_source_block_recovery": ([I4P_EVIDENCE_NULL, I4P_RECOVERY], ("G2", "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"), "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"),
++    }
++    got = {name: _i4p_three(O_BASE, edits)[0] for name, (edits, _, _) in probes.items()}
++    assert got == {name: (("G7", raw), ("G7", raw), transport) for name, (_, transport, raw) in probes.items()}
++    # The carrier member alone reaches the metadata check's namespace demand.
++    assert _i4p_three(O_BASE, [I4P_CARRIER])[1][2] == "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: unsupported source namespace"
++    # Each member alone keeps its own gate and code; the unedited base is admitted, never eligible.
++    assert _i4p_three(O_BASE, [I4P_RECOVERY])[0][2] == ("G2", "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN")
++    assert _i4p_three(O_BASE, [I4P_EVIDENCE_NULL])[0][2] == ("G2", "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED")
++    assert _i4p_three(O_BASE, [])[0][2] == I4P_NEEDS
++    # The successor's transport dispatch is the reader's transport step: its text is the reader's detail.
++    def dispatch(s):
++        try:
++            c._source_contract(deepcopy(s), check_receipt=False)
++            return "ok"
++        except ValueError as error:
++            return str(error)
++    carrier, _ = apply_entry(_cases()[O_BASE], {"edits": [I4P_CARRIER], "rehash": "all"})
++    pair, _ = apply_entry(_cases()[O_BASE], {"edits": [I4P_RECOVERY, I4P_EVIDENCE_NULL], "rehash": "all"})
++    assert dispatch(carrier) == "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: unsupported source namespace"
++    assert dispatch(pair) == "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"
++    # A preview-physics-1 statement's own transport dispatch is unchanged (Python's order).
++    assert dispatch(_i4p_projected(carrier)) == "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"
++    assert dispatch(_i4p_projected(pair)) == "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"
++
++
++def test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets():
++    """Ruling 2 (N-1 in RV113's three addenda): the transport metadata check's shared form is Rust's and TS's
++    check plus PY's extrema-number demand. On transport, a withheld record whose multiplicity differs between
++    cases (`r2:t_withheld_duplicate_multiset`) is refused at G7 SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: PY now
++    compares the records as multisets (it compared sets and admitted it). Equal multisets, in any order, are
++    admitted, as in RS and TS. The extrema-number demand stays (`r2:t_extrema_global_upper_string`,
++    `r2:t_extrema_certified_gap_null`). The same check serves a preview-physics-1 statement's transport
++    dispatch, with the same result. Raw reads are unchanged."""
++    from core.analysis_runs import compatibility as c
++    from core.analysis_runs.preview_physics_evidence import validate_transport_metadata
++    two = "two_case_synthetic"
++    path = lambda i: ["contract_evidence", "preview_cases", i, "support_attribution", "withheld"]
++    s = {"support_id": "s", "reason": "CONSTANT_EFFORT_NOT_CONSUMED"}
++    t = {"support_id": "t", "reason": "SUPPORT_ACTION_ATTRIBUTION_WITHHELD"}
++    rows = {
++        "t_withheld_duplicate_multiset": ([_set(path(0), [s, s]), _set(path(1), [s])], I4P_INVALID),
++        "the multiplicities the other way": ([_set(path(0), [s]), _set(path(1), [s, s])], I4P_INVALID),
++        "equal multisets, a duplicate in each": ([_set(path(0), [s, s]), _set(path(1), [s, s])], I4P_NEEDS),
++        "equal multisets, in another order": ([_set(path(0), [s, t]), _set(path(1), [t, s])], I4P_NEEDS),
++        "the sets differ": ([_set(path(0), [s]), _set(path(1), [t])], I4P_INVALID),
++    }
++    got = {name: _i4p_three(two, edits) for name, (edits, _) in rows.items()}
++    assert {name: verdicts[2] for name, (verdicts, _) in got.items()} == {name: want for name, (_, want) in rows.items()}
++    verdicts, details = got["t_withheld_duplicate_multiset"]
++    assert details[2] == "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: support attribution differs between cases"
++    # Raw reads are unchanged: the support-action step refuses a record repeated within a case.
++    assert verdicts[:2] == (I4P_INVALID, I4P_INVALID)
++    assert details[:2] == ("SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: withheld support record and diagnostic disagree",) * 2
++    # The same transport metadata check, reached without a receipt, and the raw base check.
++    source, _ = apply_entry(_cases()[two], {"edits": rows["t_withheld_duplicate_multiset"][0], "rehash": "all"})
++    base = _i4p_projected(source)
++    for check in (validate_transport_metadata, lambda s: c._source_contract(s, check_receipt=False)):
++        with pytest.raises(ValueError) as error:
++            check(deepcopy(base))
++        assert str(error.value) == "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: support attribution differs between cases"
++    with pytest.raises(ValueError) as error:
++        c._source_contract(deepcopy(base))
++    assert str(error.value) == "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: withheld support record and diagnostic disagree"
++    equal, _ = apply_entry(_cases()[two], {"edits": rows["equal multisets, in another order"][0], "rehash": "all"})
++    validate_transport_metadata(_i4p_projected(equal))
++    # The extrema-number demand, kept: refused bound, unbound and on transport.
++    extremum = ["contract_evidence", "preview_cases", 0, "pipe_stress_extrema", 0]
++    for key, value in (("global_upper_bound_pa", "x"), ("certified_gap_pa", None)):
++        assert _i4p_three(O_BASE, [_set(extremum + [key], value)])[0] == (I4P_INVALID,) * 3, key
++
++
++def test_i4p_ruling5_kernel_reason_without_a_run_is_g5_attempt_in_the_reader():
++    """Ruling 5 (RV113's SR-PY addendum N-2): C2's kernel branch through the whole reader. A kernel reason on a
++    case with no Run (`r2:cb_kernel_no_run`) is G5 ATTEMPT_MISMATCH, bound and unbound, refused by the check
++    itself with no cause (D16), never by the fail-closed fallback's G5 PRODUCT_ATTEMPT."""
++    case = {"basis_ref": {"ref_type": "load_case", "ref_id": UNAVAILABLE_ROW}, "ordinary": {"attempt_ref": 1, "quality_binding": {"kind": "present", "index": 1}},
++            "product_attempt_ref": None, "status": "unavailable",
++            "reason": {"code": "kernel_refused", "phase": "kernel", "cause": {"space": "refusal", "tag": "structure"}},
++            "diagnostic_ref": "diagnostic:retained:unavailable-row", "run": None, "source_ref": None}
++    source, invocation = apply_entry(_cases()[P_BASE], {"edits": [_set(B + ["cases", 1], case), {"path": B + ["product_attempts", 1], "op": "remove"}], "rehash": "all"})
++    for inv in (invocation, None):
++        with pytest.raises(rp.RetainedPrecisionError) as error:
++            rp.validate_retained_precision(deepcopy(source), deepcopy(inv))
++        assert (error.value.gate, error.value.code, error.value.__cause__) == (*ATTEMPT, None)

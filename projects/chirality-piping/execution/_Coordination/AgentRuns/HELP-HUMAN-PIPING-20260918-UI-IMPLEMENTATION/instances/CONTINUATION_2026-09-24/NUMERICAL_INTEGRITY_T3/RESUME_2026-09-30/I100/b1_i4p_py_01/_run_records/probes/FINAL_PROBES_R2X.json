@@ -1,0 +1,119 @@
+{
+ "full_changes": [],
+ "labels": [
+  "py_i4",
+  "py_final",
+  "rs_6e3e_control"
+ ],
+ "probes": 2,
+ "rows": [
+  {
+   "diff": {
+    "rs_6e3e_control": [
+     "bound",
+     "unbound"
+    ]
+   },
+   "id": "r2x:t_measure_extra_member",
+   "item": "T",
+   "py_final": {
+    "bound": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "gate": "G7"
+    },
+    "transport": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "gate": "G7"
+    },
+    "unbound": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "gate": "G7"
+    }
+   },
+   "py_i4": {
+    "bound": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "gate": "G7"
+    },
+    "transport": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "gate": "G7"
+    },
+    "unbound": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "gate": "G7"
+    }
+   },
+   "rs_6e3e_control": {
+    "bound": {
+     "code": "SOURCE_PREVIEW_PHYSICS_INTENSIFIED_SHAPE",
+     "gate": "G7"
+    },
+    "transport": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "gate": "G7"
+    },
+    "unbound": {
+     "code": "SOURCE_PREVIEW_PHYSICS_INTENSIFIED_SHAPE",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "diff": {
+    "rs_6e3e_control": [
+     "bound",
+     "unbound"
+    ]
+   },
+   "id": "r2x:t_gate_extra_member",
+   "item": "T",
+   "py_final": {
+    "bound": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "gate": "G7"
+    },
+    "transport": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "gate": "G7"
+    },
+    "unbound": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "gate": "G7"
+    }
+   },
+   "py_i4": {
+    "bound": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "gate": "G7"
+    },
+    "transport": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "gate": "G7"
+    },
+    "unbound": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "gate": "G7"
+    }
+   },
+   "rs_6e3e_control": {
+    "bound": {
+     "code": "SOURCE_PREVIEW_PHYSICS_GATE_SHAPE",
+     "gate": "G7"
+    },
+    "transport": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "gate": "G7"
+    },
+    "unbound": {
+     "code": "SOURCE_PREVIEW_PHYSICS_GATE_SHAPE",
+     "gate": "G7"
+    }
+   }
+  }
+ ],
+ "want_misses": {
+  "py_final": [],
+  "py_i4": []
+ }
+}

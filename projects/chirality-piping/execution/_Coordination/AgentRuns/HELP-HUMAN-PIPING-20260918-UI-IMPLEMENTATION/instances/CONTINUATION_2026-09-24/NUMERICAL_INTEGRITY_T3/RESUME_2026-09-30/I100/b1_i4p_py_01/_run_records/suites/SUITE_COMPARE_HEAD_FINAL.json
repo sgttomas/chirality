@@ -1,0 +1,14 @@
+{
+ "base": {
+  "passed": 1947,
+  "skipped": 30
+ },
+ "head": {
+  "passed": 1947,
+  "skipped": 30
+ },
+ "added": [],
+ "removed": [],
+ "changed": [],
+ "added_outcomes": {}
+}

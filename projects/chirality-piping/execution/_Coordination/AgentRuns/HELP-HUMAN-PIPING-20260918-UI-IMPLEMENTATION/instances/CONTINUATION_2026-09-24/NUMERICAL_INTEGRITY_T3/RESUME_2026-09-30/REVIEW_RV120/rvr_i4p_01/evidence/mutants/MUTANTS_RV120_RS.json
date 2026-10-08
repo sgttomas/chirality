@@ -1,0 +1,37 @@
+[
+ {
+  "id": "V01",
+  "item": "ruling 2 (RS)",
+  "description": "the extrema-number demand dropped"
+ },
+ {
+  "id": "V02",
+  "item": "ruling 2 (RS)",
+  "description": "certified_gap_pa's half dropped (only global_upper_bound_pa typed)"
+ },
+ {
+  "id": "V03",
+  "item": "ruling 2 (RS)",
+  "description": "global_upper_bound_pa's half dropped (only certified_gap_pa typed)"
+ },
+ {
+  "id": "V04",
+  "item": "ruling 2 (RS)",
+  "description": "null admitted as a number"
+ },
+ {
+  "id": "V05",
+  "item": "ruling 2 (RS)",
+  "description": "the demand moved after the extrema bounds (PY's place lost)"
+ },
+ {
+  "id": "V06",
+  "item": "ruling 2 (RS)",
+  "description": "the demand reported with another detail ('extrema fractions')"
+ },
+ {
+  "id": "V07",
+  "item": "ruling 2 (RS)",
+  "description": "a string admitted as a number"
+ }
+]

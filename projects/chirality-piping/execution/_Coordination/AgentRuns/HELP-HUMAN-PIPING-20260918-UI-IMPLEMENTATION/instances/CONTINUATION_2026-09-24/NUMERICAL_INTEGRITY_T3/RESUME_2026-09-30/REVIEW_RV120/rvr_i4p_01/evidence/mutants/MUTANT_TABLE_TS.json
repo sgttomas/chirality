@@ -1,0 +1,202 @@
+[
+ {
+  "id": "NONE",
+  "item": "control",
+  "description": "RV113_MUT/RV120_MUT unset",
+  "tests": {
+   "passed": 3639,
+   "failed": 0,
+   "total": 3639
+  },
+  "failed_tests": [],
+  "panic_locations": [],
+  "load_failures": [],
+  "result": "control"
+ },
+ {
+  "id": "W01",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "the extrema-number demand dropped (raw and transport)",
+  "tests": {
+   "passed": 3631,
+   "failed": 8,
+   "total": 3639
+  },
+  "failed_tests": [
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa a string: refused by the raw reader and the transport check :: AssertionError: expected [ null, null ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa null: refused by the raw reader and the transport check :: AssertionError: expected [ null, null ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa a boolean: refused by the raw reader and the transport check :: AssertionError: expected [ null, null ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa null: refused by the raw reader and the transport check :: AssertionError: expected [ null, null ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa a string: refused by the raw reader and the transport check :: AssertionError: expected [ null, null ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa a list: refused by the raw reader and the transport check :: AssertionError: expected [ null, null ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number admits integers; the demand precedes the fraction, integer and bound checks :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/retainedPrecision.test.ts :: B1 I4' (I101): the extrema-number demand at G7, bound, unbound and on transport a non-number member is refused at G7 \"extrema numbers\" by every entry point; JSON integers are admitted :: AssertionError: expected [ \u2026(4) ] to deeply equal []"
+  ],
+  "panic_locations": [],
+  "load_failures": [],
+  "result": "killed"
+ },
+ {
+  "id": "W02",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "certified_gap_pa's half dropped",
+  "tests": {
+   "passed": 3634,
+   "failed": 5,
+   "total": 3639
+  },
+  "failed_tests": [
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa null: refused by the raw reader and the transport check :: AssertionError: expected [ null, null ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa a string: refused by the raw reader and the transport check :: AssertionError: expected [ null, null ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa a list: refused by the raw reader and the transport check :: AssertionError: expected [ null, null ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number admits integers; the demand precedes the fraction, integer and bound checks :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/retainedPrecision.test.ts :: B1 I4' (I101): the extrema-number demand at G7, bound, unbound and on transport a non-number member is refused at G7 \"extrema numbers\" by every entry point; JSON integers are admitted :: AssertionError: expected [ \u2026(2) ] to deeply equal []"
+  ],
+  "panic_locations": [],
+  "load_failures": [],
+  "result": "killed"
+ },
+ {
+  "id": "W03",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "global_upper_bound_pa's half dropped",
+  "tests": {
+   "passed": 3634,
+   "failed": 5,
+   "total": 3639
+  },
+  "failed_tests": [
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa a string: refused by the raw reader and the transport check :: AssertionError: expected [ null, null ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa null: refused by the raw reader and the transport check :: AssertionError: expected [ null, null ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa a boolean: refused by the raw reader and the transport check :: AssertionError: expected [ null, null ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number admits integers; the demand precedes the fraction, integer and bound checks :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/retainedPrecision.test.ts :: B1 I4' (I101): the extrema-number demand at G7, bound, unbound and on transport a non-number member is refused at G7 \"extrema numbers\" by every entry point; JSON integers are admitted :: AssertionError: expected [ \u2026(2) ] to deeply equal []"
+  ],
+  "panic_locations": [],
+  "load_failures": [],
+  "result": "killed"
+ },
+ {
+  "id": "W04",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "null admitted",
+  "tests": {
+   "passed": 3635,
+   "failed": 4,
+   "total": 3639
+  },
+  "failed_tests": [
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa null: refused by the raw reader and the transport check :: AssertionError: expected [ null, null ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa null: refused by the raw reader and the transport check :: AssertionError: expected [ null, null ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number admits integers; the demand precedes the fraction, integer and bound checks :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/retainedPrecision.test.ts :: B1 I4' (I101): the extrema-number demand at G7, bound, unbound and on transport a non-number member is refused at G7 \"extrema numbers\" by every entry point; JSON integers are admitted :: AssertionError: expected [ \u2026(2) ] to deeply equal []"
+  ],
+  "panic_locations": [],
+  "load_failures": [],
+  "result": "killed"
+ },
+ {
+  "id": "W05",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "the demand moved after the extrema bounds",
+  "tests": {
+   "passed": 3638,
+   "failed": 1,
+   "total": 3639
+  },
+  "failed_tests": [
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number admits integers; the demand precedes the fraction, integer and bound checks :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]"
+  ],
+  "panic_locations": [],
+  "load_failures": [],
+  "result": "killed"
+ },
+ {
+  "id": "W06",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "the demand reported with another detail ('extrema fractions')",
+  "tests": {
+   "passed": 3631,
+   "failed": 8,
+   "total": 3639
+  },
+  "failed_tests": [
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa a string: refused by the raw reader and the transport check :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa null: refused by the raw reader and the transport check :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa a boolean: refused by the raw reader and the transport check :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa null: refused by the raw reader and the transport check :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa a string: refused by the raw reader and the transport check :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa a list: refused by the raw reader and the transport check :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number admits integers; the demand precedes the fraction, integer and bound checks :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/retainedPrecision.test.ts :: B1 I4' (I101): the extrema-number demand at G7, bound, unbound and on transport a non-number member is refused at G7 \"extrema numbers\" by every entry point; JSON integers are admitted :: AssertionError: expected [ \u2026(4) ] to deeply equal []"
+  ],
+  "panic_locations": [],
+  "load_failures": [],
+  "result": "killed"
+ },
+ {
+  "id": "W07",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "raw only: the transport check skips the demand",
+  "tests": {
+   "passed": 3631,
+   "failed": 8,
+   "total": 3639
+  },
+  "failed_tests": [
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa a string: refused by the raw reader and the transport check :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa null: refused by the raw reader and the transport check :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa a boolean: refused by the raw reader and the transport check :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa null: refused by the raw reader and the transport check :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa a string: refused by the raw reader and the transport check :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa a list: refused by the raw reader and the transport check :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number admits integers; the demand precedes the fraction, integer and bound checks :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/retainedPrecision.test.ts :: B1 I4' (I101): the extrema-number demand at G7, bound, unbound and on transport a non-number member is refused at G7 \"extrema numbers\" by every entry point; JSON integers are admitted :: AssertionError: expected [ \u2026(4) ] to deeply equal []"
+  ],
+  "panic_locations": [],
+  "load_failures": [],
+  "result": "killed"
+ },
+ {
+  "id": "W08",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "transport only: the raw reader skips the demand",
+  "tests": {
+   "passed": 3631,
+   "failed": 8,
+   "total": 3639
+  },
+  "failed_tests": [
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa a string: refused by the raw reader and the transport check :: AssertionError: expected [ null, \u2026(1) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa null: refused by the raw reader and the transport check :: AssertionError: expected [ null, \u2026(1) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa a boolean: refused by the raw reader and the transport check :: AssertionError: expected [ null, \u2026(1) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa null: refused by the raw reader and the transport check :: AssertionError: expected [ null, \u2026(1) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa a string: refused by the raw reader and the transport check :: AssertionError: expected [ null, \u2026(1) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa a list: refused by the raw reader and the transport check :: AssertionError: expected [ null, \u2026(1) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number admits integers; the demand precedes the fraction, integer and bound checks :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/retainedPrecision.test.ts :: B1 I4' (I101): the extrema-number demand at G7, bound, unbound and on transport a non-number member is refused at G7 \"extrema numbers\" by every entry point; JSON integers are admitted :: AssertionError: expected [ \u2026(4) ] to deeply equal []"
+  ],
+  "panic_locations": [],
+  "load_failures": [],
+  "result": "killed"
+ },
+ {
+  "id": "W10",
+  "item": "rulings 2 and 3 (TS)",
+  "description": "a string admitted",
+  "tests": {
+   "passed": 3635,
+   "failed": 4,
+   "total": 3639
+  },
+  "failed_tests": [
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number global_upper_bound_pa a string: refused by the raw reader and the transport check :: AssertionError: expected [ null, null ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number certified_gap_pa a string: refused by the raw reader and the transport check :: AssertionError: expected [ null, null ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/previewPhysicsEvidence.test.ts :: rulings 2 and 3: each extremum's global_upper_bound_pa and certified_gap_pa is a finite number admits integers; the demand precedes the fraction, integer and bound checks :: AssertionError: expected [ \u2026(2) ] to deeply equal [ \u2026(2) ]",
+   "src/features/results/retainedPrecision.test.ts :: B1 I4' (I101): the extrema-number demand at G7, bound, unbound and on transport a non-number member is refused at G7 \"extrema numbers\" by every entry point; JSON integers are admitted :: AssertionError: expected [ \u2026(2) ] to deeply equal []"
+  ],
+  "panic_locations": [],
+  "load_failures": [],
+  "result": "killed"
+ }
+]

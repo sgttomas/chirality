@@ -1,0 +1,33 @@
+# I100: the inputs taken from RV113's sealed records (R/REVIEW_RV113/...), sha256 of each copy used, and of the sealed file (from its SHA256SUMS where listed)
+0a78b04d2732120d400f87e7e2266ee530f02ea9293241ec7b76870924aeb462  inputs/probes_i100x.json
+8d1c33d2ad38fe1c68fb9b0aca035bc69b33d5613d6df9a95f51c77dea775c90  inputs/probes_r2x.json
+e4a74e4841d70b8b9ff4b328576b347f901df02e7b9b2ef73e503223161b5a21  inputs/probes_ts1.json
+657773a7a58211c7766522cf1fa7aa687de09540bbf5f541890ade6d1a28b65a  inputs/rv113_py2_head_census.jsonl.gz
+2dfd7b50c736503477648369926c5e06307b569213fef7ef7ba98c38f8cdf573  inputs/rv113_py2_head_probes.jsonl.gz
+da666c1b51edc0496331b8b3f5ee284aade9c4a32005ce5048c0dce93978ef62  inputs/rv113_rs2_control_probes_r2x.jsonl.gz
+4a2c3b48df5751af731e5807d81410f8ed75f142bd11ac95a34a4789724fbc16  inputs/rv113_rs2_head_census.jsonl.gz
+26591f79864dffa87bce0640891b677d9f9596832b18ec2d64d30d859660957d  inputs/rv113_rs2_head_probes_ts1.jsonl.gz
+90d30c854b0ffa9074859cf0767e01f4cfb38705a0ae39c133f42a270943d67e  inputs/rv113_ts1_head_census.jsonl.gz
+51727464639973d28ed7fcd0426de1c18dbe42f99b06283242442e23dbf6eb2b  inputs/rv113_ts1_head_probes_ts1.jsonl.gz
+## sealed sources
+rvr_sr_py_01/addendum_01/probes/probes_ts1.json.gz -> inputs/probes_ts1.json (decompressed)
+rvr_sr_rs_01/addendum_02/probes/probes_r2x.json -> inputs/probes_r2x.json
+rvr_sr_py_01/addendum_01/census/py2_head.jsonl.gz -> inputs/rv113_py2_head_census.jsonl.gz (PY at 2843a59a16)
+rvr_sr_rs_01/addendum_02/census/rs2_head.jsonl.gz -> inputs/rv113_rs2_head_census.jsonl.gz (RS at 6e3e4fe219)
+rvr_sr_ts_01/addendum_01/census/census_ts1_head.jsonl.gz -> inputs/rv113_ts1_head_census.jsonl.gz (TS at 6fa6a64658)
+rvr_sr_py_01/addendum_01/probes/py2_head.jsonl.gz -> inputs/rv113_py2_head_probes.jsonl.gz (PY at 2843a59a16)
+rvr_sr_ts_01/addendum_01/probes/rs2_head_ts1.jsonl.gz -> inputs/rv113_rs2_head_probes_ts1.jsonl.gz (RS at 6e3e4fe219)
+rvr_sr_ts_01/addendum_01/probes/ts1_head.jsonl.gz -> inputs/rv113_ts1_head_probes_ts1.jsonl.gz (TS at 6fa6a64658)
+rvr_sr_rs_01/addendum_02/mutants/runs/NONE/probes_r2x.jsonl.gz -> inputs/rv113_rs2_control_probes_r2x.jsonl.gz (RS's control at 6e3e4fe219)
+rvr_sr_py_01/addendum_01/harness/rv113_py_harness.py (df4310a8...) and cross_heads.py, used as published
+## the sealed files' own sums
+8c8d1accdc552b5a0d3abd8535b2c9f4c0291d8bb366c0e83afee9cd74c9577c  rvr_sr_py_01/addendum_01/probes/probes_ts1.json.gz  sums-file:8c8d1accdc552b5a0d3abd8535b2c9f4c0291d8bb366c0e83afee9cd74c9577c
+8d1c33d2ad38fe1c68fb9b0aca035bc69b33d5613d6df9a95f51c77dea775c90  rvr_sr_rs_01/addendum_02/probes/probes_r2x.json  sums-file:8d1c33d2ad38fe1c68fb9b0aca035bc69b33d5613d6df9a95f51c77dea775c90
+657773a7a58211c7766522cf1fa7aa687de09540bbf5f541890ade6d1a28b65a  rvr_sr_py_01/addendum_01/census/py2_head.jsonl.gz  sums-file:657773a7a58211c7766522cf1fa7aa687de09540bbf5f541890ade6d1a28b65a
+4a2c3b48df5751af731e5807d81410f8ed75f142bd11ac95a34a4789724fbc16  rvr_sr_rs_01/addendum_02/census/rs2_head.jsonl.gz  sums-file:4a2c3b48df5751af731e5807d81410f8ed75f142bd11ac95a34a4789724fbc16
+90d30c854b0ffa9074859cf0767e01f4cfb38705a0ae39c133f42a270943d67e  rvr_sr_ts_01/addendum_01/census/census_ts1_head.jsonl.gz  sums-file:90d30c854b0ffa9074859cf0767e01f4cfb38705a0ae39c133f42a270943d67e
+2dfd7b50c736503477648369926c5e06307b569213fef7ef7ba98c38f8cdf573  rvr_sr_py_01/addendum_01/probes/py2_head.jsonl.gz  sums-file:2dfd7b50c736503477648369926c5e06307b569213fef7ef7ba98c38f8cdf573
+26591f79864dffa87bce0640891b677d9f9596832b18ec2d64d30d859660957d  rvr_sr_ts_01/addendum_01/probes/rs2_head_ts1.jsonl.gz  sums-file:26591f79864dffa87bce0640891b677d9f9596832b18ec2d64d30d859660957d
+51727464639973d28ed7fcd0426de1c18dbe42f99b06283242442e23dbf6eb2b  rvr_sr_ts_01/addendum_01/probes/ts1_head.jsonl.gz  sums-file:51727464639973d28ed7fcd0426de1c18dbe42f99b06283242442e23dbf6eb2b
+da666c1b51edc0496331b8b3f5ee284aade9c4a32005ce5048c0dce93978ef62  rvr_sr_rs_01/addendum_02/mutants/runs/NONE/probes_r2x.jsonl.gz  sums-file:da666c1b51edc0496331b8b3f5ee284aade9c4a32005ce5048c0dce93978ef62
+df4310a8481e7fdd1eb5306fc987d79f371374b62a2ec290fd833b1861b86e41  rvr_sr_py_01/addendum_01/harness/rv113_py_harness.py  sums-file:df4310a8481e7fdd1eb5306fc987d79f371374b62a2ec290fd833b1861b86e41

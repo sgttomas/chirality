@@ -1,0 +1,72 @@
+# I100: the readers' files at I4 (30f3d1b24a) against the heads RV113 ran, and the archive copies.
+## git diff --name-only <head> 30f3d1b24a, outside execution/ (each reader's own files absent from its list = byte-identical at I4)
+### 2843a59a16 vs I4
+projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts
+projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts
+projects/chirality-piping/core/product_physics/src/lib.rs
+projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs
+projects/chirality-piping/core/product_physics/src/retained_memory.rs
+projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs
+projects/chirality-piping/core/product_physics/src/retained_product.rs
+projects/chirality-piping/core/product_physics/src/retained_product_tests.rs
+projects/chirality-piping/core/product_physics/src/retained_receipt.rs
+projects/chirality-piping/core/product_physics/src/retained_tests_hooks/grant2.rs
+projects/chirality-piping/core/product_physics/src/retained_wire.rs
+projects/chirality-piping/core/product_physics/src/retained_wire_tests.rs
+projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs
+projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs
+projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs
+projects/chirality-piping/core/runner/headless/tests/retained_precision_admission.rs
+projects/chirality-piping/fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json
+projects/chirality-piping/fixtures/results/retained_precision_w_c2_successor_sparse_interactive.json
+### 6e3e4fe219 vs I4
+projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts
+projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts
+projects/chirality-piping/core/analysis_runs/compatibility.py
+projects/chirality-piping/core/analysis_runs/retained_precision.py
+projects/chirality-piping/core/product_physics/src/lib.rs
+projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs
+projects/chirality-piping/core/product_physics/src/retained_memory.rs
+projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs
+projects/chirality-piping/core/product_physics/src/retained_product.rs
+projects/chirality-piping/core/product_physics/src/retained_product_tests.rs
+projects/chirality-piping/core/product_physics/src/retained_receipt.rs
+projects/chirality-piping/core/product_physics/src/retained_tests_hooks/grant2.rs
+projects/chirality-piping/core/product_physics/src/retained_wire.rs
+projects/chirality-piping/core/product_physics/src/retained_wire_tests.rs
+projects/chirality-piping/core/runner/headless/tests/retained_precision_admission.rs
+projects/chirality-piping/fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json
+projects/chirality-piping/fixtures/results/retained_precision_w_c2_successor_sparse_interactive.json
+projects/chirality-piping/tests/test_retained_precision_carriers.py
+projects/chirality-piping/tests/test_retained_precision_contract.py
+### 6fa6a64658 vs I4
+projects/chirality-piping/core/analysis_runs/compatibility.py
+projects/chirality-piping/core/analysis_runs/retained_precision.py
+projects/chirality-piping/core/product_physics/src/lib.rs
+projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs
+projects/chirality-piping/core/product_physics/src/retained_memory.rs
+projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs
+projects/chirality-piping/core/product_physics/src/retained_product.rs
+projects/chirality-piping/core/product_physics/src/retained_product_tests.rs
+projects/chirality-piping/core/product_physics/src/retained_receipt.rs
+projects/chirality-piping/core/product_physics/src/retained_tests_hooks/grant2.rs
+projects/chirality-piping/core/product_physics/src/retained_wire.rs
+projects/chirality-piping/core/product_physics/src/retained_wire_tests.rs
+projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs
+projects/chirality-piping/core/reporting/result_export/src/source_blocks.rs
+projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs
+projects/chirality-piping/core/runner/headless/tests/retained_precision_admission.rs
+projects/chirality-piping/fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json
+projects/chirality-piping/fixtures/results/retained_precision_w_c2_successor_sparse_interactive.json
+projects/chirality-piping/tests/test_retained_precision_carriers.py
+projects/chirality-piping/tests/test_retained_precision_contract.py
+## RS's reader crate and its dependency crates, the corpus and the schemas, 6e3e4fe219 vs I4 (empty list = unchanged)
+(end)
+## TS's apps/, the corpus and the schemas, 6fa6a64658 vs I4 (empty list = unchanged)
+(end)
+## result_export's [dependencies] (Cargo.toml at I4)
+[dependencies]
+serde_json = { version = "1", features = ["float_roundtrip"] }
+open_pipe_stress_canonical_json = { path = "../../serialization/canonical_json" }
+sha2 = "0.10"
+open_pipe_stress_units = { path = "../../units" }

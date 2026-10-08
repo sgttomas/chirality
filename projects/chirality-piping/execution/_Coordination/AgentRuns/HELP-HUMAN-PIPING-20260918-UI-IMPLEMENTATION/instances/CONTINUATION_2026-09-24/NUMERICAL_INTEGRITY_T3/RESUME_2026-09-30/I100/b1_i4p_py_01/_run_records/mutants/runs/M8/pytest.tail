@@ -1,0 +1,6 @@
+tests/test_retained_precision_contract.py:1728: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_contract.py::test_b1_repair02_c2_cause_table_reader_logic
+FAILED tests/test_retained_precision_contract.py::test_i4p_ruling5_kernel_reason_without_a_run_is_g5_attempt_in_the_reader
+2 failed, 611 passed in 259.45s (0:04:19)
+# end 2026-10-08T08:52:04Z rc=1

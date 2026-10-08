@@ -1,0 +1,6 @@
+
+tests/test_retained_precision_contract.py:1647: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_contract.py::test_i4p_ruling1_transport_header_takes_rusts_order_and_codes
+1 failed, 612 passed in 225.59s (0:03:45)
+# end 2026-10-08T08:24:13Z rc=1

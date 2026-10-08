@@ -1,0 +1,51 @@
+# i100 job mut_M5 (slot) queued 2026-10-08T08:34:33Z dir=scratch/i100_b1_i4p_py/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=M5 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b1_i4p_py/tmp/mut_M5/basetemp -q -rf --junitxml=WT/scratch/i100_b1_i4p_py/mutants/runs/M5/junit.xml tests/test_retained_precision_contract.py tests/test_retained_precision_carriers.py tests/test_preview_physics_consumer_contract.py
+# start 2026-10-08T08:34:33Z
+........................................................................ [ 11%]
+........................................................................ [ 23%]
+........................................................................ [ 35%]
+........................................................................ [ 46%]
+........................................................................ [ 58%]
+...........................................................F............ [ 70%]
+........................................................................ [ 82%]
+........................................................................ [ 93%]
+.....................................                                    [100%]
+=================================== FAILURES ===================================
+__ test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets __
+
+    def test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets():
+        """Ruling 2 (N-1 in RV113's three addenda): the transport metadata check's shared form is Rust's and TS's
+        check plus PY's extrema-number demand. On transport, a withheld record whose multiplicity differs between
+        cases (`r2:t_withheld_duplicate_multiset`) is refused at G7 SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: PY now
+        compares the records as multisets (it compared sets and admitted it). Equal multisets, in any order, are
+        admitted, as in RS and TS. The extrema-number demand stays (`r2:t_extrema_global_upper_string`,
+        `r2:t_extrema_certified_gap_null`). The same check serves a preview-physics-1 statement's transport
+        dispatch, with the same result. Raw reads are unchanged."""
+        from core.analysis_runs import compatibility as c
+        from core.analysis_runs.preview_physics_evidence import validate_transport_metadata
+        two = "two_case_synthetic"
+        path = lambda i: ["contract_evidence", "preview_cases", i, "support_attribution", "withheld"]
+        s = {"support_id": "s", "reason": "CONSTANT_EFFORT_NOT_CONSUMED"}
+        t = {"support_id": "t", "reason": "SUPPORT_ACTION_ATTRIBUTION_WITHHELD"}
+        rows = {
+            "t_withheld_duplicate_multiset": ([_set(path(0), [s, s]), _set(path(1), [s])], I4P_INVALID),
+            "the multiplicities the other way": ([_set(path(0), [s]), _set(path(1), [s, s])], I4P_INVALID),
+            "equal multisets, a duplicate in each": ([_set(path(0), [s, s]), _set(path(1), [s, s])], I4P_NEEDS),
+            "equal multisets, in another order": ([_set(path(0), [s, t]), _set(path(1), [t, s])], I4P_NEEDS),
+            "the sets differ": ([_set(path(0), [s]), _set(path(1), [t])], I4P_INVALID),
+        }
+        got = {name: _i4p_three(two, edits) for name, (edits, _) in rows.items()}
+>       assert {name: verdicts[2] for name, (verdicts, _) in got.items()} == {name: want for name, (_, want) in rows.items()}
+E       AssertionError: assert {'t_withheld_...ompute'), ...} == {'t_withheld_...ompute'), ...}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'t_withheld_duplicate_multiset': ('admitted', False, 'needs_recompute')} != {'t_withheld_duplicate_multiset': ('G7', 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID')}
+E         {'the multiplicities the other way': ('admitted', False, 'needs_recompute')} != {'the multiplicities the other way': ('G7', 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID')}
+E         Use -v to get more diff
+
+tests/test_retained_precision_contract.py:1692: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_contract.py::test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets
+1 failed, 612 passed in 309.19s (0:05:09)
+# end 2026-10-08T08:39:43Z rc=1

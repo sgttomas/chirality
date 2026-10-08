@@ -1,0 +1,12 @@
+# i100 job verdicts_final (slot) queued 2026-10-08T07:53:40Z dir=scratch/i100_b1_i4p_py
+# args: /bin/bash -c 
+VENV/bin/python WT/scratch/i100_b1_i4p_py/tools/rv113_py_harness.py WT/scratch/i100_b1_i4p_py/final/projects/chirality-piping census WT/scratch/i100_b1_i4p_py/verdicts/final/census.jsonl &&
+VENV/bin/python WT/scratch/i100_b1_i4p_py/tools/rv113_py_harness.py WT/scratch/i100_b1_i4p_py/final/projects/chirality-piping probes WT/scratch/i100_b1_i4p_py/inputs/probes_ts1.json WT/scratch/i100_b1_i4p_py/verdicts/final/probes_ts1.jsonl &&
+VENV/bin/python WT/scratch/i100_b1_i4p_py/tools/rv113_py_harness.py WT/scratch/i100_b1_i4p_py/final/projects/chirality-piping probes WT/scratch/i100_b1_i4p_py/inputs/probes_r2x.json WT/scratch/i100_b1_i4p_py/verdicts/final/probes_r2x.jsonl &&
+VENV/bin/python WT/scratch/i100_b1_i4p_py/tools/rv113_py_harness.py WT/scratch/i100_b1_i4p_py/final/projects/chirality-piping probes WT/scratch/i100_b1_i4p_py/inputs/probes_i100x.json WT/scratch/i100_b1_i4p_py/verdicts/final/probes_i100x.jsonl
+# start 2026-10-08T07:53:40Z
+339 lines -> WT/scratch/i100_b1_i4p_py/verdicts/final/census.jsonl
+392 lines -> WT/scratch/i100_b1_i4p_py/verdicts/final/probes_ts1.jsonl
+2 lines -> WT/scratch/i100_b1_i4p_py/verdicts/final/probes_r2x.jsonl
+4 lines -> WT/scratch/i100_b1_i4p_py/verdicts/final/probes_i100x.jsonl
+# end 2026-10-08T07:55:03Z rc=0

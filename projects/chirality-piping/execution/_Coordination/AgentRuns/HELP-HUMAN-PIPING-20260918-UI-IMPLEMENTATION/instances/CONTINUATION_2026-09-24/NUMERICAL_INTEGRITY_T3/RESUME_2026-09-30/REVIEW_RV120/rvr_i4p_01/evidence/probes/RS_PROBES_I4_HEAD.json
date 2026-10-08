@@ -1,0 +1,543 @@
+{
+ "probes": 435,
+ "verdict_changes": [
+  {
+   "id": "r2:t_extrema_global_upper_string",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "8f757990d5a4c51fe281b8e2a752f15c3d353b0a88e44b99a067af1266e3212a"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "r2:t_extrema_certified_gap_null",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "f54d22c6063757b791133fbc5f03f3c28de98c41dab17e893815e4782281cb3b"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gub_str",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "8f757990d5a4c51fe281b8e2a752f15c3d353b0a88e44b99a067af1266e3212a"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gub_null",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "228242d1dcd0268ddd4828cc3ca759e616bba858bb0011ce0f31217f3b0b6857"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gub_true",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "b7477c7b751ffd27b9a954bfb04b7f110ffb211633b63a94daad94116708bf0d"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gub_false",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "e8894d7b879305ca9b170a6ccb24d4b6f9aeb60c684c6f4e0568a021a946cefe"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gub_list",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "698a4add040e685d460f57e34a3199958f673d36632c6bf32d02462c153bb862"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gub_empty_list",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "7d40942b435ea474ba5f02d5de43f7e88b349397477126f1cf0b22b9128a197a"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gub_object",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "7bf3befc29d6f4e3cf88d62ae357a0f5cf758e766877cfe114f94cc04a804536"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gub_numeric_string",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "df6a278a3ca0b5e1b1f310bdd5cac982970263a5eaf342b73a83d325caa82108"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gap_null",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "f54d22c6063757b791133fbc5f03f3c28de98c41dab17e893815e4782281cb3b"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gap_str",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "b3984dd46b75e8b8676dbeef6bb8c2cf5f426569114dc42c9b79012a4d47d73d"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gap_true",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "195922f02bdf9b7e9361275be8322f3efac4e4af895808ca75d066342a46a83e"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gap_list",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "ea118d251be6f52fca8d54627c070d2cf3aa163d99979f235b2be43f696c2076"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gap_object",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "a32a2ac8cdba4dd20b9e70e12498145b792c7afcee166ad5c04018171b3a8367"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gap_empty_string",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "1be8ae541af9335708aa10e6356efac4304a20a70e83db2b2f82ff0e5d2fde14"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:both_null",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "7feb539b8e52c4f17df94430e0d1ce237dfd7ba2529271035625ce2bef6f3ca2"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gub_str_case1",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "625e993c597c3937e97f31f4ce6cda7b951ec2bdd209f2b1bfbe41f439712873"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gap_null_case1",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "b8b5d3b5a9832087c68b085ba20050e3e95416181ed64cc8183979cc01984291"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gub_null_extremum1",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "2ace904647525f32ae7a3d29937d901b93d190b495da4299b30b862068db20b5"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gap_str_extremum1",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "3c79f42c8fb870b6e5886aed870f38eac7c04be5f5d61d3253bef7f66c68d9bf"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gap_null_u8_sparse",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "6992ca6a28746d3805d89357cfc99166d7d401963aa2a9d5f974989a6c8fe76e"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gub_str_u8_dense",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "e5781d8d8f13e25e71bda9c8206e9356981e766711a812e9ca3803dea6be6433"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:gap_null_two_groups_case1",
+   "verdict": "transport",
+   "i4": {
+    "ok": {
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "publication_sha256": "5b7f1c6ba4d5dbb859aa9f59e2ade3c1af5f9713f0c351b9991077760c898f06"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  }
+ ],
+ "detail_only_changes": [
+  {
+   "id": "rv120:order_before_fractions",
+   "verdict": "transport",
+   "i4": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema fractions",
+     "gate": "G7"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:order_before_integers",
+   "verdict": "transport",
+   "i4": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema integers",
+     "gate": "G7"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  },
+  {
+   "id": "rv120:order_before_bounds",
+   "verdict": "transport",
+   "i4": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema bounds",
+     "gate": "G7"
+    }
+   },
+   "head": {
+    "err": {
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: extrema numbers",
+     "gate": "G7"
+    }
+   }
+  }
+ ],
+ "stated": 471,
+ "misses_head": []
+}

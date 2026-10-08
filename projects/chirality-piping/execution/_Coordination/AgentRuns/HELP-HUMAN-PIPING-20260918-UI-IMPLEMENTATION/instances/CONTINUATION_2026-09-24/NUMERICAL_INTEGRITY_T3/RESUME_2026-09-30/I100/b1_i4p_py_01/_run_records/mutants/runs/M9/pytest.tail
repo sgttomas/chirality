@@ -1,0 +1,6 @@
+
+tests/test_retained_precision_contract.py:1713: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_contract.py::test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets
+1 failed, 612 passed in 226.47s (0:03:46)
+# end 2026-10-08T08:55:50Z rc=1

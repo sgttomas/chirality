@@ -1,0 +1,5 @@
+ .../core/analysis_runs/compatibility.py            |  19 ++-
+ .../core/analysis_runs/preview_physics_evidence.py |  19 ++-
+ .../core/analysis_runs/retained_precision.py       |  23 ++--
+ .../tests/test_retained_precision_contract.py      | 143 +++++++++++++++++++++
+ 4 files changed, 186 insertions(+), 18 deletions(-)

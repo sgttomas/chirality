@@ -1,0 +1,84 @@
+# i100 job mut_PRE (slot) queued 2026-10-08T08:59:13Z dir=scratch/i100_b1_i4p_py/pre/projects/chirality-piping
+# args: /usr/bin/env I100_MUT= VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b1_i4p_py/tmp/mut_PRE/basetemp -q -rf --junitxml=WT/scratch/i100_b1_i4p_py/mutants/runs/PRE/junit.xml tests/test_retained_precision_contract.py tests/test_retained_precision_carriers.py tests/test_preview_physics_consumer_contract.py
+# start 2026-10-08T08:59:13Z
+........................................................................ [ 11%]
+........................................................................ [ 23%]
+........................................................................ [ 35%]
+........................................................................ [ 46%]
+........................................................................ [ 58%]
+..........................................................FF............ [ 70%]
+........................................................................ [ 82%]
+........................................................................ [ 93%]
+.....................................                                    [100%]
+=================================== FAILURES ===================================
+________ test_i4p_ruling1_transport_header_takes_rusts_order_and_codes _________
+
+    def test_i4p_ruling1_transport_header_takes_rusts_order_and_codes():
+        """Ruling 1 (RV113's SR-PY addendum S-1, option (a)): on transport, PY's base header takes Rust's order and
+        codes, as TS's does. It has no carrier branch, so a `carrier_evidence` member alone is a metadata defect, G7
+        SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID, and beside a header defect that defect's G2 code reads; and
+        `source_block_recovery` is checked before `contract_evidence`. RV113's six transport probes, each expected
+        with RS's and TS's gate and code at I4. Raw reads keep PY's own order at G7 (their codes are the declared
+        per-reader raw class, B1_SC item 13), unchanged; so does the transport dispatch of a statement that is not
+        a retained successor (ruling 1 is the retained reader's transport header)."""
+        from core.analysis_runs import compatibility as c
+        quality = _set(["numerical_quality", "status"], "bogus")
+        case = _set(["numerical_quality", "cases", 0, "structural_status"], ["x"])
+        probes = {
+            "h_carrier_present": ([I4P_CARRIER], I4P_INVALID, "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
+            "h_carrier_and_quality_defect": ([I4P_CARRIER, quality], ("G2", "SOURCE_NUMERICAL_QUALITY_INVALID"), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
+            "h_carrier_and_recovery": ([I4P_CARRIER, I4P_RECOVERY], ("G2", "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
+            "n6_carrier_evidence_with_case_defect": ([I4P_CARRIER, case], ("G2", "SOURCE_NUMERICAL_CASE_INVALID"), "SOURCE_PRODUCER_CONTRACT_UNSUPPORTED"),
+            "h_recovery_and_evidence_null": ([I4P_RECOVERY, I4P_EVIDENCE_NULL], ("G2", "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"), "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"),
+            "n6_contract_evidence_null_and_source_block_recovery": ([I4P_EVIDENCE_NULL, I4P_RECOVERY], ("G2", "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"), "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"),
+        }
+        got = {name: _i4p_three(O_BASE, edits)[0] for name, (edits, _, _) in probes.items()}
+>       assert got == {name: (("G7", raw), ("G7", raw), transport) for name, (_, transport, raw) in probes.items()}
+E       AssertionError: assert {'h_carrier_p...ORTED')), ...} == {'h_carrier_p...VALID')), ...}
+E         
+E         Differing items:
+E         {'n6_contract_evidence_null_and_source_block_recovery': (('G7', 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED'), ('G7', 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED'), ('G2', 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED'))} != {'n6_contract_evidence_null_and_source_block_recovery': (('G7', 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED'), ('G7', 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED'), ('G2', 'SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN'))}
+E         {'h_recovery_and_evidence_null': (('G7', 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED'), ('G7', 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQU...
+E         
+E         ...Full output truncated (6 lines hidden), use '-vv' to show
+
+tests/test_retained_precision_contract.py:1647: AssertionError
+__ test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets __
+
+    def test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets():
+        """Ruling 2 (N-1 in RV113's three addenda): the transport metadata check's shared form is Rust's and TS's
+        check plus PY's extrema-number demand. On transport, a withheld record whose multiplicity differs between
+        cases (`r2:t_withheld_duplicate_multiset`) is refused at G7 SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID: PY now
+        compares the records as multisets (it compared sets and admitted it). Equal multisets, in any order, are
+        admitted, as in RS and TS. The extrema-number demand stays (`r2:t_extrema_global_upper_string`,
+        `r2:t_extrema_certified_gap_null`). The same check serves a preview-physics-1 statement's transport
+        dispatch, with the same result. Raw reads are unchanged."""
+        from core.analysis_runs import compatibility as c
+        from core.analysis_runs.preview_physics_evidence import validate_transport_metadata
+        two = "two_case_synthetic"
+        path = lambda i: ["contract_evidence", "preview_cases", i, "support_attribution", "withheld"]
+        s = {"support_id": "s", "reason": "CONSTANT_EFFORT_NOT_CONSUMED"}
+        t = {"support_id": "t", "reason": "SUPPORT_ACTION_ATTRIBUTION_WITHHELD"}
+        rows = {
+            "t_withheld_duplicate_multiset": ([_set(path(0), [s, s]), _set(path(1), [s])], I4P_INVALID),
+            "the multiplicities the other way": ([_set(path(0), [s]), _set(path(1), [s, s])], I4P_INVALID),
+            "equal multisets, a duplicate in each": ([_set(path(0), [s, s]), _set(path(1), [s, s])], I4P_NEEDS),
+            "equal multisets, in another order": ([_set(path(0), [s, t]), _set(path(1), [t, s])], I4P_NEEDS),
+            "the sets differ": ([_set(path(0), [s]), _set(path(1), [t])], I4P_INVALID),
+        }
+        got = {name: _i4p_three(two, edits) for name, (edits, _) in rows.items()}
+>       assert {name: verdicts[2] for name, (verdicts, _) in got.items()} == {name: want for name, (_, want) in rows.items()}
+E       AssertionError: assert {'t_withheld_...ompute'), ...} == {'t_withheld_...ompute'), ...}
+E         
+E         Omitting 3 identical items, use -vv to show
+E         Differing items:
+E         {'t_withheld_duplicate_multiset': ('admitted', False, 'needs_recompute')} != {'t_withheld_duplicate_multiset': ('G7', 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID')}
+E         {'the multiplicities the other way': ('admitted', False, 'needs_recompute')} != {'the multiplicities the other way': ('G7', 'SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID')}
+E         Use -v to get more diff
+
+tests/test_retained_precision_contract.py:1692: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_contract.py::test_i4p_ruling1_transport_header_takes_rusts_order_and_codes
+FAILED tests/test_retained_precision_contract.py::test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets
+2 failed, 611 passed in 222.63s (0:03:42)
+# end 2026-10-08T09:02:56Z rc=1

@@ -1,0 +1,183 @@
+# i100 job mut_M8 (slot) queued 2026-10-08T08:47:44Z dir=scratch/i100_b1_i4p_py/mut/projects/chirality-piping
+# args: /usr/bin/env I100_MUT=M8 VENV/bin/python -m pytest -p no:cacheprovider --basetemp=WT/scratch/i100_b1_i4p_py/tmp/mut_M8/basetemp -q -rf --junitxml=WT/scratch/i100_b1_i4p_py/mutants/runs/M8/junit.xml tests/test_retained_precision_contract.py tests/test_retained_precision_carriers.py tests/test_preview_physics_consumer_contract.py
+# start 2026-10-08T08:47:44Z
+........................................................................ [ 11%]
+........................................................................ [ 23%]
+........................................................................ [ 35%]
+........................................................................ [ 46%]
+........................................................................ [ 58%]
+........................................................F...F........... [ 70%]
+........................................................................ [ 82%]
+........................................................................ [ 93%]
+.....................................                                    [100%]
+=================================== FAILURES ===================================
+_________________ test_b1_repair02_c2_cause_table_reader_logic _________________
+
+    def test_b1_repair02_c2_cause_table_reader_logic():
+        """Item 3: C2's cause table (CONTRACT_DELTA:72-74) at G5 ATTEMPT_MISMATCH in the ordinary class, for an
+        unavailable case whose cause is not a prepared product failure: TS's form with the `precondition` keying.
+        Each branch satisfied, then broken one conjunct at a time, on F_BASE's unavailable case 1 (`_g5_ordinary`
+        alone, as the source-decline control does)."""
+        body, diags, quality = _c2_body()
+        selected_run = deepcopy(body["cases"][1]["run"])
+        assert selected_run["kernel_terminal"]["kind"] == "selected"
+        unresolved = dict(deepcopy(selected_run), kernel_terminal={"kind": "unresolved", "reason": {"space": "unresolved", "tag": "ceiling"}})
+        decline = {"input_owner": {"case_index": 1, "case_id": "case:unavailable-row", "material_basis_ref": 0},
+                   "constructor_counts": {"nodes": 2, "members": 1, "springs": 0, "constraints": 6, "nodal_terms": 6, "stations": 3, "supports": 1, "id_utf8_bytes": 0, "directional_springs": 0},
+                   "error": {"tag": "no_nodes"}}
+    
+        def case(code, phase, cause, run=None, source_ref=None, source_decline=None):
+            c = {k: deepcopy(body["cases"][1][k]) for k in ("basis_ref", "ordinary", "product_attempt_ref", "status", "diagnostic_ref")}
+            c.update(reason={"code": code, "phase": phase, "cause": cause}, run=run, source_ref=source_ref)
+            if source_decline is not None:
+                c["source_decline"] = source_decline
+            return c
+    
+        def verdict(c):
+            b = deepcopy(body)
+            b["cases"][1] = c
+            try:
+                rp._g5_ordinary(b, b["cases"], diags, quality)
+                return "ok"
+            except rp.RetainedPrecisionError as error:
+                return (error.gate, error.code)
+    
+        receipt = {"kind": "receipt_failure", "check": "encoding", "field_path": "retained_precision.body"}
+        facade = {"kind": "facade_failure", "owner_ref": {"kind": "case", "index": 1}, "row_id": None, "recipe": "identity", "operand_index": None, "check": "identity", "predicate": None}
+        source_error = {"kind": "source_error", "error": {"tag": "no_nodes"}}
+        precondition = lambda p: {"kind": "unavailable_precondition", "precondition": p, "affected_refs": ["case:unavailable-row"]}
+        kernel = {"space": "unresolved", "tag": "ceiling"}
+        satisfied = {
+            **{f"receipt_failure, {code}": case(code, "receipt", receipt, selected_run, 1) for code in ("receipt_encoding", "publication_hash_range", "invocation_not_representable")},
+            "facade_failure": case("facade_certificate", "facade", facade, selected_run, 1),
+            "source_error": case("source_unavailable", "preparation", source_error, source_decline=decline),
+            **{f"precondition {p}, phase {phase}": case(code, phase, precondition(p)) for p, code in rp.PRECONDITION_CODES.items() for phase in ("routing", "preparation")},
+            "kernel reason": case("kernel_unresolved", "kernel", kernel, unresolved, 1),
+        }
+        assert {name: verdict(c) for name, c in satisfied.items()} == dict.fromkeys(satisfied, "ok")
+        broken = {
+            "receipt_failure, phase kernel": case("receipt_encoding", "kernel", receipt, selected_run, 1),
+            "receipt_failure, code facade_certificate": case("facade_certificate", "receipt", receipt, selected_run, 1),
+            "facade_failure, phase kernel": case("facade_certificate", "kernel", facade, selected_run, 1),
+            "facade_failure, code kernel_unresolved": case("kernel_unresolved", "facade", facade, selected_run, 1),
+            "facade_failure, no Run": case("facade_certificate", "facade", facade),
+            "facade_failure, an unresolved Run": case("facade_certificate", "facade", facade, unresolved, 1),
+            "facade_failure, another case's owner": case("facade_certificate", "facade", dict(facade, owner_ref={"kind": "case", "index": 0}), selected_run, 1),
+            "source_error, phase routing": case("source_unavailable", "routing", source_error, source_decline=decline),
+            "source_error, code caller_not_qualified": case("caller_not_qualified", "preparation", source_error, source_decline=decline),
+            "source_error, no decline": case("source_unavailable", "preparation", source_error),
+            "source_error, the decline's error another": case("source_unavailable", "preparation", dict(source_error, error={"tag": "no_members"}), source_decline=decline),
+            "source_error, a Run": case("source_unavailable", "preparation", source_error, selected_run, 1),
+            "precondition caller, code source_unavailable": case("source_unavailable", "routing", precondition("caller")),
+            "precondition capture, code caller_not_qualified": case("caller_not_qualified", "routing", precondition("capture")),
+            "precondition resource_admission, code upstream_no_wrap_not_established": case("upstream_no_wrap_not_established", "routing", precondition("resource_admission")),
+            "precondition upstream_no_wrap, code resource_admission_not_available": case("resource_admission_not_available", "routing", precondition("upstream_no_wrap")),
+            "precondition source_family, phase kernel": case("source_unavailable", "kernel", precondition("source_family")),
+            "precondition caller, a Run": case("caller_not_qualified", "routing", precondition("caller"), selected_run, 1),
+            "kernel reason, phase facade": case("kernel_unresolved", "facade", kernel, unresolved, 1),
+            "kernel reason, code kernel_refused": case("kernel_refused", "kernel", kernel, unresolved, 1),
+            "kernel reason, another reason": case("kernel_unresolved", "kernel", {"space": "unresolved", "tag": "budget", "scope": "case"}, unresolved, 1),
+            "kernel reason, no Run": case("kernel_unresolved", "kernel", kernel),
+        }
+>       assert {name: verdict(c) for name, c in broken.items()} == dict.fromkeys(broken, ("G5", "RETAINED_PRECISION_ATTEMPT_MISMATCH"))
+                      ^^^^^^^^^^
+
+tests/test_retained_precision_contract.py:1553: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_retained_precision_contract.py:1511: in verdict
+    rp._g5_ordinary(b, b["cases"], diags, quality)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+body = {'receipt_version': 1, 'policy': 'M03-INTEGRITY-MP-v2', 'projection_policy': 'RP-LOGICAL-ATTEMPTS-v1', 'work_policy': 'W1-LME-20B-60B-v1', ...}
+cases = [{'basis_ref': {'ref_type': 'load_case', 'ref_id': 'case:six-component-load'}, 'ordinary': {'attempt_ref': 0, 'quality..._ref': 1, 'quality_binding': {'kind': 'present', 'index': 1}}, 'product_attempt_ref': 1, 'status': 'unavailable', ...}]
+diags = [{'id': 'diagnostic:load:load-fixture-global_x:category-mapping', 'code': 'LOAD_CATEGORY_PREVIEW_MAPPED', 'severity': ... preview category occasional; the preview classification is not a user-selected engineering classification', ...}, ...]
+quality = [{'basis_ref': {'ref_type': 'load_case', 'ref_id': 'case:six-component-load'}, 'structural_status': 'passive_model_bas...: 'passive_model_basis', 'solve_quality': 'sensitive', 'model_matrix_fidelity': 'represented_equations_retained', ...}]
+
+    def _g5_ordinary(body, cases, diags, quality):
+        """G5 class 2 ordinary pass (C3:304; D3, D6): checklist O2-O5 (C2:149-161; S06:51), plus the
+        ordinary-list, not_attempted, report, not_required, selected-quality and rcond checks that
+        previously ran after the product WORK list (RV79-S2)."""
+        fail = lambda ok: _need(ok, "G5", "ATTEMPT_MISMATCH")
+        by_id = {d["id"]: d for d in diags}
+        ids = set(by_id)
+        for i, c in enumerate(cases):
+            o = body["ordinary_attempts"][i]
+            # The ordinary attempt's material basis resolves to a basis that lists its case (the alignment set,
+            # item 1; TS `ordinaryAttempts`), the ordinary class's reference rule, as D4b is the product class's.
+            basis = _ref(body["material_bases"], o["material_basis_ref"])
+            fail(basis is not None and i in basis["case_indices"])
+            refs = o["diagnostic_refs"]
+            # D6a (C1:100, C1:148, C2:166): untyped refs are unique and resolve.
+            fail(len(set(refs)) == len(refs) and all(x in by_id for x in refs))
+            # F5 (D-U6-7; decision 2, A2, RR:8821, amending checkpoint A's D6a, RR:8117): the list is
+            # exactly the diagnostics whose affected_refs name the case, once each, in envelope order,
+            # excluding RETAINED_PRECISION_* (a T1 (a)-omitted disclosure is absent from the envelope).
+            name = c["basis_ref"]["ref_id"]
+            # A non-array affected_refs names no case (S1, RV90: parity with Rust list() and TS Array.isArray).
+            fail(refs == [d["id"] for d in diags if isinstance(d.get("affected_refs"), list) and name in d["affected_refs"]
+                          and not str(d.get("code")).startswith("RETAINED_PRECISION_")])
+            fail(o["initial"]["kind"] != "not_attempted" if c["status"] in ("selected", "not_required") else True)
+            # RV108 N2: a quality case without `solve_quality` has no published verdict. Each rule
+            # below that reads the verdict then fails with its own G5 ATTEMPT code, as Rust's null and
+            # TypeScript's undefined do, never through the fail-closed fallback's PRODUCT_ATTEMPT code.
+            # A case for which no rule here reads the verdict passes this pass unchanged, and G7's base
+            # header then refuses the missing member (SOURCE_NUMERICAL_CASE_INVALID), as before.
+            verdict = quality[i]["solve_quality"] if "solve_quality" in quality[i] else None
+            if o["initial"]["kind"] == "report":
+                fail(o["initial"]["report_diagnostic_ref"] in by_id and o["initial"]["outcome"] == verdict)
+            if c["status"] == "not_required":
+                fail(c["product_attempt_ref"] is None and verdict == "checks_passed")
+            if c["status"] == "selected":
+                # D6b (C1:101; C2:153, :164; source_receipt.rs `OrdinaryAttempt::wire`): only an attempted trigger selects.
+                fail(verdict in ("sensitive", "unresolved", "failed"))
+                fail(c["selection"]["rcond_label"] == RCOND_LABEL)
+            cause = c["reason"]["cause"] if c["status"] == "unavailable" else None
+            if cause is not None and cause.get("kind") != "prepared_product_failure":
+                # C2's cause table (CONTRACT_DELTA:72-74), for every unavailable case whose cause is not a
+                # prepared product failure (the alignment set, item 3; TS `ordinaryAttempts`, with the
+                # precondition keying). D4d's table covers prepared_product_failure in the product class.
+                phase, code, run = c["reason"]["phase"], c["reason"]["code"], c.get("run")
+                if cause.get("kind") == "source_error":
+                    fail(phase == "preparation" and code == "source_unavailable" and run is None
+                         and c.get("source_decline") is not None and _same(c["source_decline"]["error"], cause["error"]))
+                elif cause.get("kind") == "receipt_failure":
+                    fail(phase == "receipt" and code in RECEIPT_FAILURE_CODES)
+                elif cause.get("kind") == "facade_failure":
+                    fail(phase == "facade" and code == "facade_certificate" and run is not None and run["kernel_terminal"]["kind"] == "selected"
+                         and _same(cause["owner_ref"], {"kind": "case", "index": i}))
+                elif cause.get("kind") == "unavailable_precondition":
+                    fail(phase in ("routing", "preparation") and run is None and code == PRECONDITION_CODES.get(cause["precondition"]))
+                else:
+                    # A kernel reason: the cause is the case's own Run's terminal reason.
+>                   fail(phase == "kernel" and (run is not None or __import__("os").environ.get("I100_MUT") == "M8") and code == "kernel_" + run["kernel_terminal"]["kind"]
+                                                                                                                                             ^^^^^^^^^^^^^^^^^^^^^^
+                         and _same(cause, run["kernel_terminal"]["reason"]))
+E                   TypeError: 'NoneType' object is not subscriptable
+
+core/analysis_runs/retained_precision.py:998: TypeError
+___ test_i4p_ruling5_kernel_reason_without_a_run_is_g5_attempt_in_the_reader ___
+
+    def test_i4p_ruling5_kernel_reason_without_a_run_is_g5_attempt_in_the_reader():
+        """Ruling 5 (RV113's SR-PY addendum N-2): C2's kernel branch through the whole reader. A kernel reason on a
+        case with no Run (`r2:cb_kernel_no_run`) is G5 ATTEMPT_MISMATCH, bound and unbound, refused by the check
+        itself with no cause (D16), never by the fail-closed fallback's G5 PRODUCT_ATTEMPT."""
+        case = {"basis_ref": {"ref_type": "load_case", "ref_id": UNAVAILABLE_ROW}, "ordinary": {"attempt_ref": 1, "quality_binding": {"kind": "present", "index": 1}},
+                "product_attempt_ref": None, "status": "unavailable",
+                "reason": {"code": "kernel_refused", "phase": "kernel", "cause": {"space": "refusal", "tag": "structure"}},
+                "diagnostic_ref": "diagnostic:retained:unavailable-row", "run": None, "source_ref": None}
+        source, invocation = apply_entry(_cases()[P_BASE], {"edits": [_set(B + ["cases", 1], case), {"path": B + ["product_attempts", 1], "op": "remove"}], "rehash": "all"})
+        for inv in (invocation, None):
+            with pytest.raises(rp.RetainedPrecisionError) as error:
+                rp.validate_retained_precision(deepcopy(source), deepcopy(inv))
+>           assert (error.value.gate, error.value.code, error.value.__cause__) == (*ATTEMPT, None)
+E           assert ('G5', 'RETAI...bscriptable")) == ('G5', 'RETAI...SMATCH', None)
+E             
+E             At index 1 diff: 'RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH' != 'RETAINED_PRECISION_ATTEMPT_MISMATCH'
+E             Use -v to get more diff
+
+tests/test_retained_precision_contract.py:1728: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_contract.py::test_b1_repair02_c2_cause_table_reader_logic
+FAILED tests/test_retained_precision_contract.py::test_i4p_ruling5_kernel_reason_without_a_run_is_g5_attempt_in_the_reader
+2 failed, 611 passed in 259.45s (0:04:19)
+# end 2026-10-08T08:52:04Z rc=1

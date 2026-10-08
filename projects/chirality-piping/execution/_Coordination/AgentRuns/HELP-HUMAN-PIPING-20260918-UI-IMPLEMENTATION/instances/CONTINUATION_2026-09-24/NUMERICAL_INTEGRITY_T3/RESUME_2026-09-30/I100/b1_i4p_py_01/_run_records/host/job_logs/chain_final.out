@@ -1,0 +1,16 @@
+rc=0
+suites final rc=0
+NONE rc=0
+M1 rc=1
+M2 rc=1
+M3 rc=1
+M4 rc=1
+M5 rc=1
+M6 rc=1
+M7 rc=1
+M8 rc=1
+M9 rc=1
+M10 rc=1
+PRE rc=1
+mutants done
+chain done

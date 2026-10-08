@@ -1,0 +1,6 @@
+tests/test_retained_precision_contract.py:1692: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_contract.py::test_i4p_ruling1_transport_header_takes_rusts_order_and_codes
+FAILED tests/test_retained_precision_contract.py::test_i4p_ruling2_transport_metadata_compares_withheld_records_as_multisets
+2 failed, 611 passed in 222.63s (0:03:42)
+# end 2026-10-08T09:02:56Z rc=1
