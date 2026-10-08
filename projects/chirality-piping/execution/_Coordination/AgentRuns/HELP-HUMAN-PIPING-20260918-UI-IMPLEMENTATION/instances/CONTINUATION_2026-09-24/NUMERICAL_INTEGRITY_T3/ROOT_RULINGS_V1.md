@@ -15446,3 +15446,30 @@ RV113 confirms it after SR-RS round 2.
 - **RV118 (RV-C)** confirms the revision, including the §9.2 choices. B2-C is then final for J1, with its names reserved.
 
 **Implementers running:** none. I-PY (I91) takes SC after I4, by `BRIEFS/B1_SC.md`. No other B1 or B2/B3 unit can start before I4 or J0.
+
+## RV115 confirms S-4 (a)'s soundness with SA3-1; the combination's displacement magnitude becomes one exact rounding (ROOT, 2026-10-08 UTC)
+
+**RV115 (RV-K) ADDENDUM_03:** `R/REVIEW_RV115/b2_kd_01/ADDENDUM_03.md` sha256 `4bd3e234…`, with SHA256SUMS.addendum_03 4 of 4 OK. Its sealed SHA256SUMS, `.addendum_01` and `.addendum_02` still verify. The screens are clean.
+- **Soundness CONFIRMED:** 0 BLOCKING, 1 SHOULD-FIX, 5 NOTEs.
+- The recipe cannot publish a magnitude outside the dual enclosure, because the kernel's final gate measures the published value. The coverage bound holds as an upper bound (9,000 of 9,000 trials).
+- **G7's 64ε guard holds by construction** for any two hypot implementations each within about 32 ulps (a margin of at least 16× with faithful libraries).
+- DEF-C r1 changes exactly four leaf paths from v0. RV115 rebuilt H `0c43cf42…` independently. NB-1 and NB-3 are worded as asked.
+
+**SA3-1 (SHOULD-FIX): S-4 (a) costs certificate availability, and makes the published bits platform-dependent.** The gate's relative allowance covers one round-to-nearest; the nested hypot brings two, on the producer's libm. With a point enclosure, r1 fails 10–17 % of near-scale rows with a correctly rounded hypot and 63–100 % with an adversarial faithful one, against v0's 9–13 %. In 98 % of those failures every component row passes.
+
+**Ruled: option (ii).** A combination's `displacement_magnitude` is **RN64 of the exact 3-norm of its frozen published components** (mm): computed exactly, rounded once, the same bits on every platform.
+- **Why:** in RV115's model it restores v0's availability (379 vs 378, 315 vs 314, 292 vs 273 per 3,000). G7 still holds by construction, with |p − r| ≤ 2.5 ulps (a 25× margin). The retained route's published bits no longer depend on the OS's `hypot`. Option (i) would only measure a loss that (ii) removes.
+- **Scope:** only the combination displacement-magnitude row that S-4 (a) changed. DEF-C's `support_magnitude` stays DEF-O's, byte for byte, as does DEF-O itself (frozen in B1).
+- **§1.1's text is corrected:** the coverage argument is an upper bound, not availability parity.
+- **NC-2 is taken:** `stages.observables` states the guard's formula, 64ε·max(|p|, MIN_POSITIVE).
+- **I97 writes revision 02** after RV118's confirmation of revision 01 returns, so one revision carries both. It gives the exact recipe (exact sum of squares, then a correctly rounded square root), the kernel's cost in B2-P, DEF-C r2, H and PTABLE. **If the cost exceeds 4 h of B2-P, I97 returns before writing, and ROOT reconsiders (i).** RV115 then confirms (ii)'s numerics, and RV118 confirms revision 02.
+
+**Routed (DEF-O's availability, a later unit):**
+- **NC-1:** DEF-O's mm→SI projection (`y / 1000.0` after RN64) is a second rounding against an allowance sized for one. With a point enclosure, about 7 % of top-scale mm component rows fail the sharper predicates.
+- **The same property for support magnitudes** (DEF-O's `support_magnitude`, nested hypot), in cases and combinations.
+
+Both are availability limits of the frozen DEF-O, not soundness defects: a failing row falls back and never publishes outside the enclosure. **SQ measures them** on its cap-maximal inputs: the share of `SharperExact` fallbacks each causes. ROOT then decides whether a DEF-O revision goes into a later unit. They are not attributed to RV97's, I98's or I99's fallbacks until measured.
+
+**NC-3 and NC-4** are recorded:
+- TS's `Math.hypot` has no specified accuracy, and an unscaled hypot overflows near 1e±154 mm. Flush-to-zero and x87 modes are not targets. **SC2** adds a TS test of `consistentNorm` on adversarial and subnormal triples.
+- The recipe reads the same raw bits the guard reads.
