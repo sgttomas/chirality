@@ -16375,3 +16375,34 @@ RV120 confirms both repair rounds.
 - ROOT replaced that one token with `'redacted-label'` before the first commit, and refreshed that file's line in SHA256SUMS (now `243b38ef…`).
 - REVIEW.md (`616828f7…`) and every other file are unchanged.
 - The private list is not quoted here.
+
+## Owner decisions: the legacy pressure contract is retired product-wide; T3 gains a WORKING_ITEMS manager (ROOT, 2026-10-08 UTC)
+
+**The owner asked** why a legacy pressure route was being kept, given that the old pressure model was flawed and replaced: "If you have replaced old code with new because the old was flawed, don't maintain the flawed code or compatibility with it". The owner also asked why ROOT was acting as both coordinator and integrator.
+
+**The facts ROOT reported:**
+- The ordinary route already refuses any legacy-contract model with a non-zero pressure load (`PRESSURE_MODEL_REAUTHOR_REQUIRED`, `pressure_runtime.rs:222`). The flawed computation does not run in the product.
+- B3a only admitted zero-pressure documents still carrying the `1.0.0/legacy_pressure_v1` label to the retained route.
+- The legacy nonzero-pressure path still exists, reachable only through the test-only `historical_pressure_reference.rs` scope for named historical oracles.
+
+**Owner decision 1 ("1a, retire it product-wide"):**
+- `1.0.0/legacy_pressure_v1` stops being accepted anywhere, so zero-pressure documents must be re-authored to the exact contract.
+- The legacy nonzero-pressure computation path, the pressure part of the historical test scope, and the oracles that depend on it are removed.
+- B3a is dropped from `b2`. B3D-10's tightenings stay.
+- It goes as its own PR with independent review and the T3 gate set.
+- T4 (pressure; PLANNED, no active loop) is notified in its row.
+- The historical scope's other premise (M07's refused user-stiffness joint) is inventoried and brought to ROOT with a recommendation; it is not removed silently.
+
+**Owner decision 2 ("yes, commission WORKING_ITEMS as described"):**
+- A WORKING_ITEMS manager (Agent 1; `BRIEFS/WORKING_ITEMS_T3.md`) owns T3's implementation and integration and dispatches the TASKs. Its undertakings are:
+  - PR-B1 to merge;
+  - PR-N (the correctly rounded norm);
+  - the pressure retirement;
+  - B2/B3 through J0, SQ2 and PR-B2.
+- ROOT keeps:
+  - alignment with the owner;
+  - rulings on design and scope;
+  - the owner-held items;
+  - reviews of consequential returns;
+  - continuity.
+- **The superseded arrangement:** ROOT dispatching every TASK and doing integration mechanics itself (RR passim since 2026-10-03).
