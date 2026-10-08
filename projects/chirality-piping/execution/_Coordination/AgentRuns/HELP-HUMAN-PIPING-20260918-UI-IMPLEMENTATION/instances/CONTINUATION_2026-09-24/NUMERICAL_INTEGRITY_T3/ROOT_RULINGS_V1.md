@@ -15473,3 +15473,24 @@ Both are availability limits of the frozen DEF-O, not soundness defects: a faili
 **NC-3 and NC-4** are recorded:
 - TS's `Math.hypot` has no specified accuracy, and an unscaled hypot overflows near 1e±154 mm. Flush-to-zero and x87 modes are not targets. **SC2** adds a TS test of `consistentNorm` on adversarial and subnormal triples.
 - The recipe reads the same raw bits the guard reads.
+
+## RV118 confirms B2-C revision 01; the exact rounding is formed in the kernel's projection (B2-K); I97 writes revision 02 (ROOT, 2026-10-08 UTC)
+
+**RV118 (RV-C) ADDENDUM_01:** `R/REVIEW_RV118/b2_c_01/ADDENDUM_01.md` sha256 `774b06bd…`, with SHA256SUMS.addendum_01 7 of 7 OK. The sealed REVIEW.md and SHA256SUMS still verify. The screens are clean; the only `.local` hit is the screen's own rule text.
+- **CONFIRMED:** 0 BLOCKING, 1 SHOULD-FIX (routing), 5 NOTEs. Every amendment and NOTE is applied as ruled (N-13 was declined, and is correctly omitted). RV118 reran I97's r1 scripts twice and reproduced DEF-C r1, PTABLE r1 and the checks byte for byte, and H with its own JCS.
+- **All eight of I97's §9.2 choices are accepted.** They stand.
+- §10's 19 bases and 69 mutations are consistent: every designed first failure is reachable under S-6's rehash.
+- **Option (ii) changes none of these:** the observables stage, §10.1's G7 row, m69 or the witnesses' expectations. RV118 measured |p − r| ≤ 3 ulps over 20,000 triples, 3/64 of the allowance.
+- **Disclosed slip:** one host `python3 -c` call read a scratch file and wrote nothing.
+
+**A-1 (SHOULD-FIX) is accepted.** ROOT read FK `final_case.rs` `certify_final` (`:1884–1894`). It refuses any row whose value bits differ from those the projection froze, and PP's `observed` bits exist only for record rows. So (ii)'s formation is in FK's `ProductProofDraft::project`, for combination owners only: **lane K (B2-K), not B2-P.** B2-P keeps the observables stage.
+- **The 4 h threshold of the SA3-1 ruling reads against B2-K.**
+- B2-K's brief gains the branch in KD §5.7, a K-09 diagnose check of the published bits, K-13 byte identity for case magnitudes, and RV-K's review.
+
+**The NOTEs go into revision 02:** A-2 (S-3's parenthesis), A-3 (two predicted bases), A-4 (m69's and m50's rows), A-5 (ties to even, with r1's clauses kept) and A-6 (the shape count). So do RV115's NC-2 and NC-3.
+
+**I97 writes revision 02** by `BRIEFS/B2C_REVISION_02.md` (sha256 `d82dba65…`): (ii) with a reference implementation, A-1's site and B2-K's cost, and the NOTEs. It regenerates DEF-C r2, H and PTABLE r2 into `statics/r2/`.
+- **Then:** RV115 confirms (ii)'s numerics, and RV118 revision 02.
+- **B2-C is final for J1** once both confirm. J1's inputs become SCHEMA `abf3225c…` with PTABLE r2 and DEF-C r2.
+
+**Screen widened (E-16, recorded with the redaction):** the host-name term includes the machine's network name and any `MacBook` form, case-insensitive, beside `Mac.ht.home`. Every new brief carries it.
