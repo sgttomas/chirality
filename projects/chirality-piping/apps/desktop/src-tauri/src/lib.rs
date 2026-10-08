@@ -6889,6 +6889,36 @@ mod tests {
         );
     }
 
+    /// U3 (D-2 A1): a 0.3.0 document declaring the retired 1.0.0/legacy_pressure_v1
+    /// contract opens unchanged (no migration rewrites it), and its solve is refused
+    /// with PRESSURE_MODEL_REAUTHOR_REQUIRED; nothing is published.
+    #[test]
+    fn retired_legacy_pressure_label_opens_unchanged_and_its_solve_is_refused() {
+        let mut labelled: Value = serde_json::from_str(include_str!(
+            "../../../../fixtures/model_operations/exact_pressure_authoring_model.json"
+        ))
+        .unwrap();
+        labelled["pressure_contract"] = json!({"version": "1.0.0", "mode": "legacy_pressure_v1"});
+        for case in labelled["load_cases"].as_array_mut().unwrap() {
+            case.as_object_mut().unwrap().remove("pressure_regions");
+        }
+        let before = labelled.clone();
+        let opened = evaluate_model_document(&labelled, &model_document_migrations());
+        assert_eq!(opened.status.status, "current");
+        assert_eq!(opened.status.target_schema_version, "0.3.0");
+        assert!(opened.migrated_document.is_none());
+        assert_eq!(labelled, before);
+
+        let solved = run_preview_mechanics(Some(labelled)).expect("refusal is a published envelope");
+        assert_eq!(solved["status"]["mechanics"], json!("MODEL_INCOMPLETE"));
+        assert!(solved["results"].as_array().expect("result rows").is_empty());
+        assert!(solved["diagnostics"].as_array().expect("diagnostics").iter().any(|d| {
+            d["code"] == json!("PRESSURE_MODEL_REAUTHOR_REQUIRED")
+                && d["severity"] == json!("blocking")
+                && d["affected_refs"] == json!(["pressure_contract"])
+        }));
+    }
+
     #[test]
     fn run_preview_mechanics_reports_blank_model_incomplete_without_defaults() {
         let blank = json!({
