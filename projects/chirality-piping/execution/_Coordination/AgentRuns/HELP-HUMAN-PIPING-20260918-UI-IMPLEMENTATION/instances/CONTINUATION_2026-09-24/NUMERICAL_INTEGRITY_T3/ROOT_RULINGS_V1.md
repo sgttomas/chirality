@@ -15537,3 +15537,45 @@ Both are availability limits of the frozen DEF-O, not soundness defects: a faili
 - **The rule existed; ROOT applied it wrongly.** RR "RV117 passes #1111; …", ruling 4 (2026-10-07) already required the screen to check the machine's full host name and `\.local\b` in decompressed `.gz` files, and N-4 named this very attribute. ROOT then screened with the machine's other host-name form, and judged `.local` hits in text only. So E-16 is a lapse in applying ruling 4, not a gap in the rule. `REDACTION_E16/RECORD.md` says the screen "looked for the machine's other host-name form only"; that is accurate, but it does not say the rule already covered this. This addendum supplies that.
 - **Main also carries the attribute in I91's five junit `.gz` files** (`R/I91/b1_sr_py_01/_run_records/suites/`), merged with #1111 under ruling 4's "no new kind of exposure". That is besides the 11 records from 2026-10-03 and RV76's path. The owner has been told.
 - **The records-PR screen** reads every hit in the PR's added and changed lines, in text and in decompressed `.gz`. The remaining hits are pattern or rule text, the owner's own words, or an already-redacted `<host>` placeholder.
+
+## RV115 and RV118 confirm B2-C revision 02: B2-C is final for J1; SA4-1 and B-2 go to B2-K's brief, B-1 to SC2's; E-17 and two portability registrations (ROOT, 2026-10-08 UTC)
+
+**RV115 (RV-K) ADDENDUM_04:** `R/REVIEW_RV115/b2_kd_01/ADDENDUM_04.md` sha256 `ed6acc50…`, with SHA256SUMS.addendum_04 4 of 4 OK. The earlier sums still verify, and the screens are clean.
+- **CONFIRMED:** 0 BLOCKING, 1 SHOULD-FIX, 5 NOTEs.
+- The recipe is exact as stated. `rn64_norm3` agrees bit for bit, tie flags included, with RV115's independent oracle on 18,018 triples and I97's 411 vectors.
+- Availability is v0's.
+- G7 measures at most 2.0 ulps against an exact faithful nested hypot.
+- B2-K's planned formation is sound under SA4-1's conditions.
+- DEF-C r2 changes exactly two paths from r1, and H `d3fde142…` rebuilds independently.
+
+**RV118 (RV-C) ADDENDUM_02:** `R/REVIEW_RV118/b2_c_01/ADDENDUM_02.md` sha256 `be20b10b…`, with SHA256SUMS.addendum_02 5 of 5 OK. The earlier sums still verify, and the screens are clean.
+- **CONFIRMED:** 0 BLOCKING, 1 SHOULD-FIX (routing), 2 NOTEs.
+- RV118 reproduced I97's r2 scripts and H independently.
+- A-1 to A-6 are applied, and (ii) is placed consistently.
+- J1's inputs and the estimates are consistent.
+
+**B2-C is final for J1.** Its reviewed inputs are:
+- SCHEMA `abf3225c…`;
+- PTABLE r2 `b2b4a54d…`;
+- DEF-C r2 `3cebce55…` (H `d3fde142…`).
+
+The record is `R/I97/b2_c_01/`: CONTRACT, REVISION_01 and REVISION_02. Its names are reserved. **No revision 03:** each finding below corrects a later brief, not the contract's statics.
+
+**Routed to B2-K's brief** (B2-K runs after J0; these supersede REVISION_02 §2.2 step 4's midpoint wording):
+- **SA4-1 (a):** both midpoints come from y₀'s actual binary64 neighbours, averaged exactly, never from a binade rule. At 2⁻¹⁰²² both gaps are 2⁻¹⁰⁷⁴.
+- **SA4-1 (b):** at y₀ = MAX, the upper midpoint is MAX + 2⁹⁷⁰, and S at or above its square refuses.
+- **SA4-1 (c), and B-2 (b):** an overflowing estimate is decided by the same exact comparison (one more `signum`), not refused on the estimate.
+- **SA4-1 (d):** at most one correction step; a second is an invariant failure.
+- **SA4-1 (e):** a zero or underflowing estimate when S > 0 is an invariant failure.
+- **The vectors:** K-09's vector set and the unit tests add RV115's counterexample (`000fffffffffffff`, `0000000004000001`, 0), RV118's witness (`000fffffffffffff`, 2⁻¹⁰⁴⁸, 0), and a near-threshold triple. Each is expected at MIN_POSITIVE. `exact_norm_vectors.json` stays sealed; B2-K's brief carries the additions.
+- **NA4-5:** the ordinary and retained routes now form combination magnitudes differently, up to about 2 ulps apart. G7 holds on both. B2-K's and B2-P's records state it.
+
+**Routed to SC2's brief, B-1:** REVISION_02 §4.5's TS `consistentNorm` test refuses p·(1 + 2⁻⁴⁰) only for p ≥ MIN_POSITIVE. For smaller p, +0 included, it refuses p + 256·2⁻¹⁰⁷⁴.
+
+**Erratum E-17: ROOT's brief `BRIEFS/B2W_B3W_PROBES.md` spells out the screen pattern,** which GEN-8 reads as machine-absolute paths (line 59). It breaks RR "Records PR #1084: redactions, GEN-8 repair and re-cut", whose rule says ROOT's living documents carry no machine-absolute-path form.
+- **The brief is as-issued:** I98's and I99's probes ran under it and cite it. So it is not rewritten. It is registered as a hash-bound `control_path_exception` (role CONTROL), as #1084's 43 as-issued briefs were.
+- **From now on,** briefs name the strict pattern ("the strict pattern of B1_COMMON") and never spell it out.
+
+**RV117's sealed `REVIEW_RV117/records_01/REVIEW.md`** quotes two `/tmp/` snippets from I89's, I91's and I92's mutant scripts (line 154). GEN-8 reads them as machine paths. A reviewer's sealed record is not rewritten, so it is registered as a hash-bound `historical_role_override` (role EVIDENCE), as #1084's 211 review and TASK records were.
+
+**Both registrations** are made under the owner's standing authorization. They follow #1084's owner-approved registration and `f9ff31f163`'s precedent for as-issued T1 briefs. The next records PR carries them in `P/validation/portability_policy.json`, and its reviewer checks them.
