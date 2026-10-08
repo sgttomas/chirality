@@ -5069,7 +5069,7 @@ mod tests {
         // Canonical hashing may normalize -0 to +0; all shared nonzero vectors
         // above retain their exact bits, with no unsafe-integer guard relaxation.
         assert_eq!(model_payload_hash(&json!({"value": -0.0_f64})), model_payload_hash(&json!({"value": 0.0_f64})));
-        let historical = read_fixture("invented_mechanics_result.json").unwrap();
+        let historical = read_fixture("invented_demo_result_legacy_0_1.json").unwrap();
         let mut historical_model = model.clone();
         historical_model["project"]["id"] = historical["model_ref"].clone();
         let output = precision_transport(&historical_model, &historical);

@@ -39,8 +39,9 @@ type WorkflowResultFixture = {
 const modelFixturePath = fileURLToPath(
   new URL("../../../fixtures/product_preview/invented_preview_model.json", import.meta.url)
 );
+// The bundled reference: the demo model's actual sparse output (its own model, not the session's).
 const resultFixturePath = fileURLToPath(
-  new URL("../../../fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json", import.meta.url)
+  new URL("../../../fixtures/product_preview/invented_demo_result_preview_physics_1_sparse.json", import.meta.url)
 );
 const modelFixture = JSON.parse(readFileSync(modelFixturePath, "utf8")) as WorkflowModelFixture;
 const resultFixture = JSON.parse(readFileSync(resultFixturePath, "utf8")) as WorkflowResultFixture;

@@ -14,8 +14,8 @@
       "shape": "milestone"
     },
     "legacy_preview_0_1": {
-      "path": "fixtures/product_preview/invented_mechanics_result.json",
-      "sha256": "fb6724aafca965509b999390b3abd4a3eed6b8b85551a6b308ec5aa529c2a58c",
+      "path": "fixtures/product_preview/invented_demo_result_legacy_0_1.json",
+      "sha256": "ca3ecdb517401741de5d2c8ba098390402d2f8b451edb988d32ed48c9c0a97ae",
       "shape": "raw"
     },
     "preview_physics_1_invented_sparse": {
@@ -254,7 +254,7 @@
           "target": "source",
           "path": [
             "results",
-            829,
+            512,
             "recovery_method"
           ],
           "op": "set",
