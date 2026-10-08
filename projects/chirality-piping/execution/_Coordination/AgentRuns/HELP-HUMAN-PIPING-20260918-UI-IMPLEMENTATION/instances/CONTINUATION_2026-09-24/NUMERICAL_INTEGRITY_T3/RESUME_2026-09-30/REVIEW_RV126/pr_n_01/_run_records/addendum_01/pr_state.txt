@@ -1,0 +1,6 @@
+# #1163 at the confirmation (read with gh, read-only)
+headRefOid 0c7490e1be723fd72c762403e282e2d789f3af38 state OPEN
+PR body == PR_BODY.md at 0c7490e1be: True
+package SHA256SUMS at 0c7490e1be: 3 of 3 OK (CHANGE_RECORD.md 220cd55a…, PR_BODY.md 064953f3…, citations.json c89eea28…)
+dispatch 37824479785 on dab19291a8: completed, success (numerical cargo suite, source coverage, remainder 1-4, source-mode desktop E2E; accessibility skipped)
+dispatch 37820998162 on 7bd84e0526: completed, success (read in the review)

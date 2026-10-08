@@ -1,0 +1,3 @@
+98eb74498590b02cda12f12edef64514c52a825208fad66b657f608d2e72695d  WT/scratch/rv127_u3/inputs.json
+309dd3e469ecffcf85aa2c8c302ee8469369e3c4adc5168bb9710ac1f28d9dcf  WT/scratch/rv127_u3/enum_cand.json
+309dd3e469ecffcf85aa2c8c302ee8469369e3c4adc5168bb9710ac1f28d9dcf  WT/scratch/rv127_u3/enum_base.json

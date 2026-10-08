@@ -1,0 +1,31 @@
+RV124: I107's g7_linemap_crates_rows.py against SQ's g7_linemap_crates.py (R/I104/b1_sq_01/_run_records/tools/)
+diff hunks: ['1c1,7', '53c59,67', '80c94,104', '117c141']
+The change: a short key (`lib.rs:N`) made ambiguous by several changed files of that basename resolves to the one chain-crate file
+with a row at line N in SQ's G5 TEXT run (keyed at 57c92a7b33, the old side of the map), else to the one file with at least N lines;
+anything else stays ambiguous and unmapped (as before). Every resolution is reported.
+
+I107 on 8dd64c1835: remapped 504, unmapped 0, resolved_ambiguous 18
+RV124 on 0c7490e1be: remapped 504, unmapped 0, resolved_ambiguous 18
+
+The 18 resolutions (context, key, file, how):
+   text_args.g4.json/site_zero/key | lib.rs:14170 | core/product_physics/src/lib.rs | the one file with a TEXT row there at the basis
+   text_args.g4.json/site_zero/lib.rs:14170 | lib.rs:13636 | core/product_physics/src/lib.rs | the one file with that line
+   text_args.g4.json/site_zero/key | lib.rs:14171 | core/product_physics/src/lib.rs | the one file with a TEXT row there at the basis
+   text_args.g4.json/site_zero/lib.rs:14171 | lib.rs:13636 | core/product_physics/src/lib.rs | the one file with that line
+   text_args.g4.json/site_zero/key | lib.rs:14172 | core/product_physics/src/lib.rs | the one file with a TEXT row there at the basis
+   text_args.g4.json/site_zero/lib.rs:14172 | lib.rs:13636 | core/product_physics/src/lib.rs | the one file with that line
+   text_args.g4.json/site_zero/key | lib.rs:14173 | core/product_physics/src/lib.rs | the one file with a TEXT row there at the basis
+   text_args.g4.json/site_zero/lib.rs:14173 | lib.rs:13636 | core/product_physics/src/lib.rs | the one file with that line
+   text_args.g4.json/site_zero/key | lib.rs:14174 | core/product_physics/src/lib.rs | the one file with a TEXT row there at the basis
+   text_args.g4.json/site_zero/lib.rs:14174 | lib.rs:13636 | core/product_physics/src/lib.rs | the one file with that line
+   text_args.g4.json/site_zero/key | lib.rs:14169 | core/product_physics/src/lib.rs | the one file with a TEXT row there at the basis
+   text_args.g4.json/site_zero/lib.rs:14169 | lib.rs:13643 | core/product_physics/src/lib.rs | the one file with that line
+   text_args.g4.json/site_aggregate/key | lib.rs:1272 | core/product_physics/src/lib.rs | the one file with a TEXT row there at the basis
+   text_args.g4.json/site_aggregate/key | lib.rs:1276 | core/product_physics/src/lib.rs | the one file with a TEXT row there at the basis
+   text_args.g4.json/site_size/key | lib.rs:14015 | core/product_physics/src/lib.rs | the one file with a TEXT row there at the basis
+   text_args.g4.json/site_size/key | lib.rs:9069 | core/product_physics/src/lib.rs | the one file with a TEXT row there at the basis
+   text_args.g4.json/site_size/key | lib.rs:9090 | core/product_physics/src/lib.rs | the one file with a TEXT row there at the basis
+   text_args.g4.json/lex_site_size/key | lib.rs:1764 | core/product_physics/src/lib.rs | the one file with a TEXT row there at the basis
+
+All 18 resolve to core/product_physics/src/lib.rs: the 12 rule keys by SQ's TEXT rows; the 6 citation values (lib.rs:13636, :13643) by length.
+PR-N's only line-count change in PP lib.rs is +2 at :38, so each resolved key maps to its old line + 2 in PP lib.rs (the map's report).

@@ -1,0 +1,35 @@
+RV124: does I107's Pass B on 8dd64c1835 carry over to PR-N's head 0c7490e1be? (Git reads, GIT_OPTIONAL_LOCKS=0)
+
+## 1. Commits
+0c7490e1be piping(T3 PR-N): the package for repair round 01 (RV126's B-1 ruling, S-1 and notes)
+8ca80508b6 piping(T3 PR-N): repair round 01: S-1's scope correction, comments and exact test constants (RV126)
+dab19291a8 piping(T3 PR-N): the evidence package (change record, PR body, citation index)
+8dd64c1835 piping(T3 PR-N): a correctly rounded Euclidean norm replaces libm hypot on published paths
+
+8dd64c1835..dab19291a8: 4 files; outside projects/chirality-piping/execution/: 0
+dab19291a8..8ca80508b6: 5 files; outside projects/chirality-piping/execution/: 5
+    P/core/product_physics/src/lib.rs ['1', '1']
+    P/core/product_physics/tests/preview_physics_runtime.rs ['4', '2']
+    P/core/solver/frame_kernel/src/correct_norm.rs ['5', '5']
+    P/core/solver/frame_kernel/src/rigid_body.rs ['4', '4']
+    P/core/solver/frame_kernel/tests/retained_k4/product_final_case_tests.rs ['2', '2']
+8ca80508b6..0c7490e1be: 3 files; outside projects/chirality-piping/execution/: 0
+outside P (8dd64c1835..0c7490e1be): []
+
+## 2. Production files, 8dd64c1835 -> 0c7490e1be: every changed line, with I65's code_of (comments dropped, literals blanked)
+core/product_physics/src/lib.rs: lines 24517 -> 24517; changed lines [38]; all changed lines are // comments on both sides: True; code-differing lines []
+core/solver/frame_kernel/src/correct_norm.rs: lines 296 -> 296; changed lines [6, 7, 8, 9, 10]; all changed lines are // comments on both sides: True; code-differing lines []
+core/solver/frame_kernel/src/rigid_body.rs: lines 1410 -> 1410; changed lines [465, 466, 542, 543]; all changed lines are // comments on both sides: True; code-differing lines []
+
+## 3. Test files changed by the repair (outside Pass B's PP and runner outcome gates, or comment-only)
+core/product_physics/tests/preview_physics_runtime.rs: -2 +4; code lines removed 0, added 0; #[test] fns 26 -> 26, names equal True
+core/solver/frame_kernel/tests/retained_k4/product_final_case_tests.rs: -2 +2; code lines removed 2, added 1; #[test] fns 22 -> 22, names equal True
+    - for input in [[3.0,4.0,12.0],[-0.0,0.0,-0.0],[f64::from_bits(1),f64::from_bits(2),f64::from_bits(3)]] {
+    - let expected=input[0].hypot(input[1]).hypot(input[2]);
+    + for (input,expected) in [([3.0,4.0,12.0],13.0),([-0.0,0.0,-0.0],0.0),([f64::from_bits(1),f64::from_bits(2),f64::from_bits(3)],f64::from_bits(4))] {
+
+## 4. Source-text guards that read a changed production file (include_str!), at 0c7490e1be
+PP lib.rs: retained_facade_tests.rs (u3_n9 and S3 sections: section slices and whole-file counts of 'CapturedInvocation::parse(',
+  'permitted_dispatch(', 'permitted_run(', 'retained_w1(', 'carry_test_hooks(', 'for CapturedInvocation'); PP tests/retained_precision_admission.rs
+  (fn-body slices); s11f_site_test.rs (lexed: comments removed). FK rigid_body.rs: k5_constrained_bodies.rs (lexed: comments removed).
+the new PP lib.rs:38 comment contains none of the counted tokens: True ; line 38 lies before every sliced fn body

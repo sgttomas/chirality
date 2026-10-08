@@ -1,0 +1,64 @@
+RV124: I107's pn_pass.sh (retargeted to RV124's scratch: tools/pn_pass_rv.diff) on PR-N's head 0c7490e1be, I107_SKIP_CARGO=1
+(no cargo: the law gate and item 5 are skipped), with delta_reviewed_carry_0c.json (delta_rerun.txt C). Compared with I107's run on 8dd64c1835
+(WT/scratch/i107_pn/pass_pn, read only).
+
+## verdict.tsv
+tree	0
+entry	0
+entry_code	0
+m	0
+law	skipped
+statics	0
+premise57	0
+linemap	0
+premise	0
+text_run	0
+delta	0
+text	6
+text_n5	0
+forms	0
+forms_g5	0
+noncand_run	0
+noncand	0
+controls_run	0
+controls	0
+controls_sq	0
+item5	skipped
+
+VERDICT line: VERDICT DELTAS TO READ exit=6 basis=0c7490e1be723fd72c762403e282e2d789f3af38 tag=rep0c passA=SQ(57c92a7b3310229406733a7134e271c29bcc6978..69002bc862+registration) delta_old=B1-as-merged(7eae707bb77722a69b61678c149aa816976bc162) gates=tree:0 entry:0 entry_code:0 m:0 law:skipped statics:0 premise57:0 linemap:0 premise:0 text_run:0 delta:0 text:6 text_n5:0 forms:0 forms_g5:0 noncand_run:0 noncand:0 controls_run:0 controls:0 controls_sq:0 item5:skipped
+
+## Outputs against I107's run on 8dd64c1835 (sha256 equality)
+g5/ (TEXT chain point): 42 files equal; differing: ['g5/edges.json']
+n5/ (TEXT chain point): 42 files equal; differing: ['n5/edges.json']
+  statics.json: equal
+  statics_sq.json: equal
+  linemap_premise57.json: equal
+  gate_premise.json: equal
+  gate_forms.json: equal
+  gate_forms_g5.json: equal
+  noncand.json: equal
+  whole_nc.out.json: equal
+  controls.out.txt: equal
+  ctl/audit_controls_g7.out.json: equal
+  gate_controls_sq.json: equal
+  gate_noncand.json: equal
+  gate_statics.json: equal
+  D.txt: equal
+  gate_entry.json: equal
+  gate_entry_code.json: equal
+  gate_m.json: equal
+  gate_text_n5.json: equal
+  linemap.out.json: DIFFERS
+linemap.out.json: keys differing: ['new', 'hunks'] ; new 8dd64c1835 -> 0c7490e1be ; hunks in rigid_body.rs 3 -> 5 ; remapped 504 504 ; unmapped 0 0 ; resolved_ambiguous equal True
+
+## edges.json (g5 and n5): what differs
+g5: edges equal True; site_loops equal True; span keys equal True; spans moved 307 in files ['core/product_physics/src/lib.rs', 'core/solver/frame_kernel/src/correct_norm.rs', 'core/solver/frame_kernel/src/rigid_body.rs']; resized [('core/solver/frame_kernel/src/rigid_body.rs:480:assess_constrained_bodies', 7469, 7498)]
+n5: edges equal True; site_loops equal True; span keys equal True; spans moved 307 in files ['core/product_physics/src/lib.rs', 'core/solver/frame_kernel/src/correct_norm.rs', 'core/solver/frame_kernel/src/rigid_body.rs']; resized [('core/solver/frame_kernel/src/rigid_body.rs:480:assess_constrained_bodies', 7469, 7498)]
+rigid_body.rs:465-466 (comments) characters 162 -> 201
+rigid_body.rs:542-543 (comments) characters 125 -> 154
+assess_constrained_bodies spans :480 to past :543, so its span grows by the :542-543 comment's 29 characters; the :465-466 doc comment
+(+39 characters) lies before it and moves it. Spans are character offsets of the source text; text_pn.py's G5 check allows a
+resize only for fns enclosing a norm call site, so it reports this one (gate text: 6). TEXT's rows, TAV and D, and every other output, are equal.
+
+## gate_text.json (G5)
+{"check": "text_pn", "code": 6, "issues": [{"edges": "rigid_body.rs:480:assess_constrained_bodies"}], "attributed": {"edges": {"new_nodes": ["correct_norm.rs:113:midpoint_sign", "correct_norm.rs:120:exponent", "correct_norm.rs:131:ulp_exponent", "correct_norm.rs:141:pow2", "correct_norm.rs:147:scale", "correct_norm.rs:160:square", "correct_norm.rs:166:two_sum", "correct_norm.rs:175:exact_sign", "correct_norm.rs:34:norm2", "correct_norm.rs:39:norm3"], "added_edges": 29, "added_site_loops": 29, "spans_moved": 640, "resized": ["case_state/resolve.rs:633:resolve_case", "elastic_section.rs:70:evaluate_elastic_section", "lib.rs:11850:append_signed_support_results", "lib.rs:13419:append_combined_vector_magnitude", "lib.rs:4062:solve_load_case_observed", "pressure_runtime.rs:945:traverse_region", "preview_physics.rs:438:tangent_diagnostics", "preview_physics.rs:528:render", "preview_physics.rs:854:append_combination_results", "retained_memory.rs:2700:phase_caps", "retained_product.rs:2254:observables_view", "rigid_body.rs:33:assess_rigid_body", "rigid_body.rs:480:assess_constrained_bodies", "structural/retained/product_certificate/final_case.rs:1831:support_hypot"], "bad": ["rigid_body.rs:480:assess_constrained_bodies"]}, "looplog": {"entries": [3348, 3348], "added_norm_entries": 0}}, "compared": [["composite_text.caps.json", "bytes", true], ["edges.json", "SQ's graph kept; additions are the norm's", false], ["g4_caps.caps.eps2.out.json", "bytes", true], ["looplog.json", "multiset, l

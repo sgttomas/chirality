@@ -1,0 +1,27 @@
+OK  D item               lib.rs:9-12  hunk=True row=True check=True  3 declaration line(s)
+OK  D item               case_state/resolve.rs:18-18  hunk=True row=True check=True  1 declaration line(s)
+OK  C live               case_state/resolve.rs:899-899  hunk=True row=True check=True  hypot 2, norms [3]
+OK  D item               lib.rs:38-39  hunk=True row=True check=True  1 declaration line(s)
+OK  C live               lib.rs:4928-4928  hunk=True row=True check=True  hypot 2, norms [3]
+OK  C live               lib.rs:5124-5124  hunk=True row=True check=True  hypot 1, norms [2]
+OK  C live               lib.rs:11876-11876  hunk=True row=True check=True  hypot 2, norms [3]
+OK  C live               lib.rs:11882-11882  hunk=True row=True check=True  hypot 2, norms [3]
+OK  C live               lib.rs:13511-13511  hunk=True row=True check=True  hypot 2, norms [3]
+OK  D item               pressure_runtime.rs:13-13  hunk=True row=True check=True  1 declaration line(s)
+OK  C live               preview_physics.rs:465-465  hunk=True row=True check=True  hypot 2, norms [3]
+OK  C live               preview_physics.rs:634-634  hunk=True row=True check=True  hypot 1, norms [2]
+OK  C live               preview_physics.rs:966-967  hunk=True row=True check=True  hypot 4, norms [3, 3]
+OK  C live               retained_product.rs:2446-2446  hunk=True row=True check=True  hypot 2, norms [3]
+OK  M live               correct_norm.rs:1-295  hunk=True row=True check=True  production lines 1-201, allocating tokens [], hunk = whole file True
+OK  D item               lib.rs:6-6  hunk=True row=True check=True  1 declaration line(s)
+OK  C live               rigid_body.rs:52-53  hunk=True row=True check=True  hypot 2, norms [3]
+OK  C live               rigid_body.rs:109-109  hunk=True row=True check=True  hypot 1, norms [2]
+OK  C item               structural/retained/product_certificate/final_case.rs:after 1846  hunk=True row=True check=True  checked with its pair below
+OK  C live               structural/retained/product_certificate/final_case.rs:1849-1851  hunk=True row=True check=True  checked with its pair below
+OK  Q qualification-test retained_memory_law_tests.rs:134-134  hunk=True row=True check=True  read: 
+OK  Q qualification-test retained_memory_law_tests.rs:138-138  hunk=True row=True check=True  read: let mut residues = 0;
+OK  Q qualification-test retained_memory_law_tests.rs:after 141  hunk=True row=True check=True  read: 
+OK  Q qualification-test retained_memory_law_tests.rs:143-151  hunk=True row=True check=True  read: if pinned != 0.0 && pinned.abs() < 1e-14 { / residues += 1; / assert!((pinned - computed).abs() <= 1e-14, "N{i}: {pinned:e} against {computed:e}"); / } else { /
+OK  Q qualification-test retained_memory_law_tests.rs:154-154  hunk=True row=True check=True  read: assert_eq!(residues, 3, "the residues are N8's x, N16's y and N24's x");
+OK  final_case.rs pair: hypot 2, norms [3]; tokens only in removed {'let': 1, 'xy': 2, '=': 1}, only in added {} (the temporary xy)
+entries 25 refused [] ALL OK

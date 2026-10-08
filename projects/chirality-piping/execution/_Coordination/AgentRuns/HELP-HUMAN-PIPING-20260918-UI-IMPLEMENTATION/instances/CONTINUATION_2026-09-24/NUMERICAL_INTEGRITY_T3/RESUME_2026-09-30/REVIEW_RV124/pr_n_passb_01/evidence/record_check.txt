@@ -1,0 +1,13 @@
+RV124: I107's PR-N record (R/I107/pr_n_passb_01/), read at NUM 09a8af1d19's working tree
+
+## sums
+7cd20ba77ef6983b665d022b4d94b27226678f4b1dbd3c358bc032c23dada071  RETURN.md
+bcf0ce2b6f535bdb1dee4d3ca56d041226ccb9a4aab457f74267b936daf9258b  _run_records/delta_reviewed_pn.json
+SHA256SUMS: 79 of 79 OK
+
+## VERDICT (runs/pn/VERDICT.txt)
+VERDICT DELTAS TO READ exit=6 basis=8dd64c1835698da87e5f0fd303c1b886daee956f tag=pn passA=SQ(57c92a7b3310229406733a7134e271c29bcc6978..69002bc862+registration) delta_old=B1-as-merged(7eae707bb77722a69b61678c149aa816976bc162) gates=tree:0 entry:0 entry_code:0 m:0 law:0 law_sq:0 statics:0 premise57:0 linemap:0 premise:0 text_run:0 delta:0 text:0 text_n5:0 forms:0 forms_g5:0 noncand_run:0 noncand:0 controls_run:0 controls:0 controls_sq:0 pp_outcomes:6 runner_outcomes:6 witnesses:0 challenge:6 
+
+## challenge (runs/pn/gate_challenge.json, first 600 characters)
+{"check": "challenge_sq", "code": 6, "entries": 28, "sq_entries": 27, "issues": [{"entry": "process_floor", "ok": true, "lines": ["I104_SQ_CHALLENGE process_floor live_bytes=4161"], "sq": ["I104_SQ_CHALLENGE process_floor live_bytes=4162"]}]}
+

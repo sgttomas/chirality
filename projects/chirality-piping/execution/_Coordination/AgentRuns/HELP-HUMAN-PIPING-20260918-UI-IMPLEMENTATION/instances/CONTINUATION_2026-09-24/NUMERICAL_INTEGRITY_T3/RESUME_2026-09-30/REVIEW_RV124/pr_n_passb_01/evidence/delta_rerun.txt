@@ -1,0 +1,20 @@
+RV124: I65's delta_inventory2.py re-run with I107's inputs (crate_dirs: SQ's chain; edges and loop bounds: I107's N-5 point at 8dd64c1835),
+old = main 7eae707bb7 (B1 as merged). Driver: tools/delta_rep.sh. The production code at 8ca80508b6 and 0c7490e1be is the same (head_carry.txt).
+
+A. new = 8dd64c1835, I107's table delta_reviewed_pn.json (bcf0ce2b...): {"files": 21, "hunks_and_files": 39, "classes": {"no-code": 2, "unreachable": 4, "item": 6, "live": 14, "test": 2, "qualification-test": 5, "not-d1": 6}, "verdict": "PASS: every hunk classified; every live, item, cfg(test)-statement or qualification-test hunk has a reviewed entry"}
+   equal to I107's runs/pn/delta_inventory.json.gz as a whole: True
+B. new = 8ca80508b6, the same table: {"files": 22, "hunks_and_files": 42, "classes": {"no-code": 4, "unreachable": 4, "item": 6, "live": 14, "test": 2, "qualification-test": 5, "not-d1": 7}, "verdict": "STOP: 2 hunk(s) need a reviewed entry"} | UNREVIEWED core/product_physics/src/lib.rs 38-39 item c95c80bbaa63ffc9 | UNREVIEWED core/solver/frame_kernel/src/correct_norm.rs 1-295 live 8f93c7e7f9c06f61
+   new fingerprint: core/product_physics/src/lib.rs 38-39 item c95c80bbaa63ffc9
+   new fingerprint: core/solver/frame_kernel/src/correct_norm.rs 1-295 live 8f93c7e7f9c06f61
+   new fingerprint: core/solver/frame_kernel/src/rigid_body.rs 465-466 no-code 596f0cbfea026b33
+   new fingerprint: core/solver/frame_kernel/src/rigid_body.rs 542-543 no-code 134a80601cfdb3d8
+   gone fingerprint: core/product_physics/src/lib.rs 38-39 item e569f6b5afb8fce4
+   gone fingerprint: core/solver/frame_kernel/src/correct_norm.rs 1-295 live 7f7bdf7e0ed7855d
+   new file rows: ['core/solver/frame_kernel/tests/retained_k4/product_final_case_tests.rs'] ['not-d1']
+   the two changed hunks differ from the reviewed ones only in comment lines (head_carry.txt section 2); I65's fingerprint hashes every
+   line of a hunk, comments included, so a comment edit inside a reviewed hunk needs its entry re-fingerprinted.
+C. new = 0c7490e1be inside the dry run (pass_head_0c), with delta_reviewed_carry_0c.json: I107's 25 entries, two fingerprints refreshed:
+   {"files": 22, "hunks_and_files": 42, "classes": {"no-code": 4, "unreachable": 4, "item": 6, "live": 14, "test": 2, "qualification-test": 5, "not-d1": 7}, "unreviewed": [], "unreviewed_qualification_tests": [], "verdict": "PASS: every hunk classified; every live, item, cfg(test)-statement or qualification-test hunk has a reviewed entry"}
+   refreshed: core/product_physics/src/lib.rs lib.rs:38-39 D e569f6b5afb8fce4 -> c95c80bbaa63ffc9
+   refreshed: core/solver/frame_kernel/src/correct_norm.rs correct_norm.rs:1-295 M 7f7bdf7e0ed7855d -> 8f93c7e7f9c06f61
+   sha256 delta_reviewed_carry_0c.json (scratch only, not a record of I107's): 08f0fca941db72db83060156267cebb9c76a53d4066f2b41a51b6ca9fdbead5d

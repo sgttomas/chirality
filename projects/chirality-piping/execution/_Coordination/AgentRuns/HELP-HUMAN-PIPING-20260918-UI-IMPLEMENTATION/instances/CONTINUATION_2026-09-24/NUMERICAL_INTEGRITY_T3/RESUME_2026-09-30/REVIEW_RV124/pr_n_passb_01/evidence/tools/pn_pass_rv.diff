@@ -1,0 +1,26 @@
+26c26
+< TOOLS=$RB/tools; CHK="python3 $R0/I107/b1_passb_01/_run_records/tools/b1_checks.py"   # round 1's checks, unchanged
+---
+> TOOLS=$T/scratch/rv124_rvq/passb/tools_rv; CHK="python3 $R0/I107/b1_passb_01/_run_records/tools/b1_checks.py"   # round 1's checks, unchanged
+34,37c34,37
+< O=$T/scratch/i107_pn/pass_$TAG; WK=$O/work; RR=$O/rr_g5; RN=$O/rr_n5
+< TGT=$T/targets/i107-pn-$TAG
+< export GIT_OPTIONAL_LOCKS=0 TMPDIR=$T/scratch/i107_pn/tmp PATH=$T/venv/bin:$PATH I107_WT=$T LINEMAP_CRATES=$SQ/chain/crate_dirs.txt
+< rm -rf "${O:?}"; mkdir -p $O/logs $TMPDIR; : > $O/verdict.tsv
+---
+> O=$T/scratch/rv124_rvq/passb/pass_$TAG; WK=$O/work; RR=$O/rr_g5; RN=$O/rr_n5
+> TGT=$T/targets/rv124-pn-$TAG
+> export GIT_OPTIONAL_LOCKS=0 TMPDIR=$T/scratch/rv124_rvq/tmp PATH=$T/venv/bin:$PATH I107_WT=$T LINEMAP_CRATES=$SQ/chain/crate_dirs.txt
+> [ -e "$O" ] && { echo "O exists: $O"; exit 1; }; mkdir -p $O/logs $TMPDIR; : > $O/verdict.tsv
+57c57
+< rm -rf "${WK:?}"; mkdir -p $WK; cp -R $BASIS/projects $WK/
+---
+> mkdir -p $WK; cp -R $BASIS/projects $WK/
+108c108
+< python3 $REC/delta_inventory2.py $NUMREPO $DELTA_OLD $REV $W $SQ/chain/crate_dirs.txt $O/n5/edges.json $O/n5/work/loop_bounds.g4.json $RB/delta_reviewed_pn.json $O/delta_inventory.json > $O/delta.out.txt
+---
+> python3 $REC/delta_inventory2.py $NUMREPO $DELTA_OLD $REV $W $SQ/chain/crate_dirs.txt $O/n5/edges.json $O/n5/work/loop_bounds.g4.json ${RV124_REVIEWED:?} $O/delta_inventory.json > $O/delta.out.txt
+11c11
+< export TMPDIR=$T/scratch/i107_pn/tmp PATH=$T/venv/bin:$PATH GIT_OPTIONAL_LOCKS=0
+---
+> export TMPDIR=$T/scratch/rv124_rvq/tmp PATH=$T/venv/bin:$PATH GIT_OPTIONAL_LOCKS=0

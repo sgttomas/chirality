@@ -1,0 +1,20 @@
+     Running unittests src/lib.rs (WT/targets/rv127-probe/debug/deps/open_pipe_stress_product_physics)
+test pressure_runtime::tests::profile_dispatch_requires_explicit_regions_and_refuses_legacy_pressure ... ok
+test source_receipt::tests::retired_legacy_pressure_label_is_refused_on_the_ordinary_route ... ok
+RV127 thermal free=false DenseScrutiny: end-i -24.000000000000004
+test source_receipt::tests::retired_legacy_pressure_label_is_refused_on_the_retained_entry ... ok
+test tests::endpoint_section_cut_curved_endpoints_use_all_six_arc_resultants_without_pressure ... ok
+RV127 thermal free=false SparseInteractive: end-i -24.000000000000004
+RV127 thermal free=true DenseScrutiny: end-i 0.000000000000004110043016945538
+RV127 thermal free=true SparseInteractive: end-i -0
+test tests::rv127_probe_endpoint_section_cut_fixed_and_free_thermal_match_uniform_stations ... ok
+test tests::valid_invented_model_exposes_endpoint_stress_components_without_pressure ... ok
+test tests::private_historical_pressure_scope_restores_public_refusal_and_rejects_exact ... ok
+test tests::expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence_historical_pressure_premise ... ok
+test tests::expansion_joint_user_stiffness_emits_macro_element_review_rows ... ok
+test tests::operation_authored_primitive_categories_map_to_preview_mechanics ... ok
+test tests::mixed_units_are_normalized_at_preview_mechanics_boundary_without_pressure ... ok
+test tests::valid_invented_model_exposes_nonlinear_support_loop_evidence_historical_pressure_premise ... ok
+test s11g_tests::t6a_collinear_runs_are_silent_with_the_floor ... ok
+test tests::current_composite_derived_normal_friction_and_reversal ... ok
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 607 filtered out; finished in 0.27s

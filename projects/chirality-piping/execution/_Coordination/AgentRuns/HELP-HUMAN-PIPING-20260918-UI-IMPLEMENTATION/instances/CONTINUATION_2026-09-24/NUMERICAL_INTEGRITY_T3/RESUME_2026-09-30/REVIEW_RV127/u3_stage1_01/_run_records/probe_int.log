@@ -1,0 +1,6 @@
+     Running tests/f1b_w2_runtime.rs (WT/targets/rv127-probe/debug/deps/f1b_w2_runtime)
+test f1b_w2_admission_refuses_each_reachable_family_by_name ... ok
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 13 filtered out; finished in 0.17s
+     Running tests/pressure_runtime.rs (WT/targets/rv127-probe/debug/deps/pressure_runtime)
+test retired_legacy_pressure_is_refused_and_pressure_free_documents_solve ... ok
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 14 filtered out; finished in 0.01s

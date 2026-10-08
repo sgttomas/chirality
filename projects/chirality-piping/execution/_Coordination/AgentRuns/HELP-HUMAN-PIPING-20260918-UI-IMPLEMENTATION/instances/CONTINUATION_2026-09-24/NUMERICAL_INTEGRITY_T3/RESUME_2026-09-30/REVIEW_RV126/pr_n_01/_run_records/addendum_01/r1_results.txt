@@ -1,0 +1,12 @@
+# RV126 addendum 01: the two edited tests at 0c7490e1be (archive copy A, fresh target)
+fk rc=0 test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 480 filtered out; finished in 0.00s
+pp rc=0 test result: ok. 26 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.23s
+CHAIN-DONE
+## named
+test m08_branch_intensified_sides_and_coverage ... ok
+test m08_headline_tie_rule ... ok
+test m08_marker_intensified_measure_matches_references_and_never_combines ... ok
+test correct_norm::tests::annex_f_special_values ... ok
+test correct_norm::tests::exact_midpoint_ties_and_third_components ... ok
+test correct_norm::tests::exact_cases_order_and_overflow ... ok
+test structural::retained::product_certificate::final_case::product_final_case_tests::i51_support_hypot_identity_order_zero_subnormal_and_failed_prefixes ... ok
