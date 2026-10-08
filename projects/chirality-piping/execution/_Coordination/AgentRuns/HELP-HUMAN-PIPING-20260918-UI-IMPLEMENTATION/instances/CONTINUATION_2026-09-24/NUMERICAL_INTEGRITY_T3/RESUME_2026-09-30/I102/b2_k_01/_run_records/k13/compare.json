@@ -1,0 +1,32 @@
+{
+ "common_tests": 127,
+ "common_output_lines": 938,
+ "only_in_first": [],
+ "only_in_second": [
+  "structural::retained::combine::tests::b2k_c01_existing_combinations_print_their_bytes",
+  "structural::retained::combine::tests::b2k_c01_the_old_api_is_the_source_api_and_a_mixed_combination_has_the_all_selected_bits",
+  "structural::retained::combine::tests::b2k_c02_operands_differ_on_a_prepared_or_a_selected_operand",
+  "structural::retained::combine::tests::b2k_k01_a_prepared_case_source_is_exactly_the_solve_paths_prep",
+  "structural::retained::combine::tests::b2k_k04_unrecorded_all_prepared_is_no_selected_operand_after_the_native_checks",
+  "structural::retained::origins::tests::b2k_c01_c04_mixed_operands_match_all_selected_bits_charge_nothing_and_change_no_operand",
+  "structural::retained::origins::tests::b2k_k02_for_invocation_registration_and_the_run_capacity_check",
+  "structural::retained::origins::tests::b2k_k03_an_unavailable_operand_is_rebuilt_identity_checked_and_custody_refuses_otherwise",
+  "structural::retained::origins::tests::b2k_k03_each_i7_check_refuses_on_its_own",
+  "structural::retained::origins::tests::b2k_k04_no_selected_operand_is_refused_after_the_native_checks",
+  "structural::retained::origins::tests::b2k_k05_a_prepared_first_operand_keeps_authored_order_and_takes_the_group_of_operand_one",
+  "structural::retained::origins::tests::b2k_k06_product_owner_is_the_recorded_kind_of_the_run",
+  "structural::retained::origins::tests::b2k_w05_w06_custody_of_terminal_work_and_imports_from_selected_operands_only",
+  "structural::retained::product_certificate::final_case::product_final_case_tests::b2k_c05_the_combination_coverage_rule",
+  "structural::retained::product_certificate::final_case::product_final_case_tests::b2k_c06_a_nonzero_prescription_in_a_later_operand_is_unsupported",
+  "structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k06_both_certificate_entries_accept_a_recorded_combination_owner_only",
+  "structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k07_view_admits_p2_refuses_corruption_and_keeps_native_data_flags",
+  "structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k08_residual_and_recovery_contain_the_oracle_and_nets_are_exact_outward",
+  "structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows",
+  "structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k10_mutation_controls_fail_containment",
+  "structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k12_the_i42_bridge_holds_for_a_p2_combination_owner",
+  "structural::retained::product_certificate::final_case::product_final_case_tests::b2k_rn64_norm3_agrees_with_the_oracle_vectors",
+  "structural::retained::product_certificate::final_case::product_final_case_tests::b2k_rn64_norm3_vectors_signed_zeros_refusal_and_work"
+ ],
+ "declared_repin_differs": [],
+ "differ": []
+}

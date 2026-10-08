@@ -1,0 +1,1 @@
+if found || !values[i].is_finite(){return Err(bad("displacement norm identity/unit"));}

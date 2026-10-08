@@ -1,0 +1,2 @@
+matches!(origin.owner, NativeOwner::Case(_))
+                            && 

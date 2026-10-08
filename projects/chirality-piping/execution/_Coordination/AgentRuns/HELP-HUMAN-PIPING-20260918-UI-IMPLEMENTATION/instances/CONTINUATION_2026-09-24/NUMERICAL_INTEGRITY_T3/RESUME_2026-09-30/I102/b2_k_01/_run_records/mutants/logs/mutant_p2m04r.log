@@ -1,0 +1,4 @@
+MUTANT p2m04r file=src/structural/retained/origins.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=22
+  FAILED structural::retained::origins::tests::b2k_k03_each_i7_check_refuses_on_its_own

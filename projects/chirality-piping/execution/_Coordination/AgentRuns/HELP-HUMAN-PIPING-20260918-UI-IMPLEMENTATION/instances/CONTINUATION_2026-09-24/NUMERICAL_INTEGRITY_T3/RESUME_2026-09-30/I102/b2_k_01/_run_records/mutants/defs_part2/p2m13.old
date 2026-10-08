@@ -1,0 +1,6 @@
+                sources: reserved(
+                    capacity
+                        .cases
+                        .checked_add(capacity.combinations)
+                        .ok_or(OriginError::CountRange("record allocation"))?,
+                )?,

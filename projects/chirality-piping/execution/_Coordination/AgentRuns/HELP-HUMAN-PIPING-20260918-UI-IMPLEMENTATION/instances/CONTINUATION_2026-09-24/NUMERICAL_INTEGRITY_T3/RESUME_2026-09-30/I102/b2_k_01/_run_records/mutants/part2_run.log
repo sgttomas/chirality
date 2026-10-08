@@ -1,0 +1,163 @@
+MUTANT p2m01 file=src/structural/retained/origins.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::origins::tests::b2k_k02_for_invocation_registration_and_the_run_capacity_check
+MUTANT p2m02 file=src/structural/retained/origins.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::origins::tests::b2k_k02_for_invocation_registration_and_the_run_capacity_check
+MUTANT p2m03 file=src/structural/retained/origins.rs
+  filter=b2k rc=0
+  verdict=SURVIVED failed=0 passed=21
+MUTANT p2m04 file=src/structural/retained/origins.rs
+  filter=b2k rc=0
+  verdict=SURVIVED failed=0 passed=21
+MUTANT p2m05 file=src/structural/retained/origins.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::origins::tests::b2k_k03_an_unavailable_operand_is_rebuilt_identity_checked_and_custody_refuses_otherwise
+MUTANT p2m06 file=src/structural/retained/origins.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::origins::tests::b2k_k04_no_selected_operand_is_refused_after_the_native_checks
+MUTANT p2m07 file=src/structural/retained/combine.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::combine::tests::b2k_k04_unrecorded_all_prepared_is_no_selected_operand_after_the_native_checks
+MUTANT p2m08 file=src/structural/retained/origins.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::origins::tests::b2k_k05_a_prepared_first_operand_keeps_authored_order_and_takes_the_group_of_operand_one
+MUTANT p2m09 file=src/structural/retained/combine.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::origins::tests::b2k_k05_a_prepared_first_operand_keeps_authored_order_and_takes_the_group_of_operand_one
+MUTANT p2m10 file=src/structural/retained/origins.rs
+  filter=b2k rc=0
+  filter=origins rc=0
+  verdict=SURVIVED failed=0 passed=37
+MUTANT p2m11 file=src/structural/retained/origins.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::origins::tests::b2k_k03_an_unavailable_operand_is_rebuilt_identity_checked_and_custody_refuses_otherwise
+MUTANT p2m12 file=src/structural/retained/origins.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=9 passed=12
+  FAILED structural::retained::origins::tests::b2k_c01_c04_mixed_operands_match_all_selected_bits_charge_nothing_and_change_no_operand
+  FAILED structural::retained::origins::tests::b2k_k02_for_invocation_registration_and_the_run_capacity_check
+  FAILED structural::retained::origins::tests::b2k_k04_no_selected_operand_is_refused_after_the_native_checks
+  FAILED structural::retained::origins::tests::b2k_k05_a_prepared_first_operand_keeps_authored_order_and_takes_the_group_of_operand_one
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k07_view_admits_p2_refuses_corruption_and_keeps_native_data_flags
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k08_residual_and_recovery_contain_the_oracle_and_nets_are_exact_outward
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k10_mutation_controls_fail_containment
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k12_the_i42_bridge_holds_for_a_p2_combination_owner
+MUTANT p2m13 file=src/structural/retained/origins.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::origins::tests::b2k_k02_for_invocation_registration_and_the_run_capacity_check
+MUTANT p2m14 file=src/structural/retained/origins.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::origins::tests::b2k_k06_product_owner_is_the_recorded_kind_of_the_run
+MUTANT p2m15 file=src/structural/retained/adaptive.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k07_view_admits_p2_refuses_corruption_and_keeps_native_data_flags
+MUTANT p2m16 file=src/structural/retained/adaptive.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k07_view_admits_p2_refuses_corruption_and_keeps_native_data_flags
+MUTANT p2m17 file=src/structural/retained/adaptive.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k07_view_admits_p2_refuses_corruption_and_keeps_native_data_flags
+MUTANT p2m18 file=src/structural/retained/adaptive.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k07_view_admits_p2_refuses_corruption_and_keeps_native_data_flags
+MUTANT p2m19 file=src/structural/retained/product_certificate/source_residual.rs
+  filter=b2k rc=101
+  filter=source_residual rc=0
+  verdict=KILLED failed=3 passed=28
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k08_residual_and_recovery_contain_the_oracle_and_nets_are_exact_outward
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k10_mutation_controls_fail_containment
+MUTANT p2m20 file=src/structural/retained/product_certificate/source_residual.rs
+  filter=b2k rc=101
+  filter=source_residual rc=0
+  verdict=KILLED failed=3 passed=28
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k08_residual_and_recovery_contain_the_oracle_and_nets_are_exact_outward
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k10_mutation_controls_fail_containment
+MUTANT p2m21 file=src/structural/retained/product_certificate.rs
+  filter=b2k rc=101
+  filter=source_residual rc=0
+  verdict=KILLED failed=1 passed=30
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k08_residual_and_recovery_contain_the_oracle_and_nets_are_exact_outward
+MUTANT p2m22 file=src/structural/retained/product_certificate/source_residual.rs
+  filter=b2k rc=101
+  filter=source_residual rc=101
+  verdict=KILLED failed=4 passed=27
+  FAILED structural::retained::adaptive::source_residual_tests::source_residual_combination_and_missing_uniqueness_are_explicit_refusals
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k08_residual_and_recovery_contain_the_oracle_and_nets_are_exact_outward
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k10_mutation_controls_fail_containment
+MUTANT p2m23 file=src/structural/retained/product_certificate/source_residual.rs
+  filter=b2k rc=101
+  filter=source_residual rc=0
+  verdict=KILLED failed=3 passed=28
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k08_residual_and_recovery_contain_the_oracle_and_nets_are_exact_outward
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k10_mutation_controls_fail_containment
+MUTANT p2m24 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_c05_the_combination_coverage_rule
+MUTANT p2m25 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=4 passed=17
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_c05_the_combination_coverage_rule
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_c06_a_nonzero_prescription_in_a_later_operand_is_unsupported
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k06_both_certificate_entries_accept_a_recorded_combination_owner_only
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows
+MUTANT p2m26 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=4 passed=17
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_c05_the_combination_coverage_rule
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_c06_a_nonzero_prescription_in_a_later_operand_is_unsupported
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k06_both_certificate_entries_accept_a_recorded_combination_owner_only
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows
+MUTANT p2m27 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows
+MUTANT p2m28 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_rn64_norm3_vectors_signed_zeros_refusal_and_work
+MUTANT p2m29 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=0
+  verdict=SURVIVED failed=0 passed=21
+MUTANT p2m30 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=0
+  verdict=SURVIVED failed=0 passed=21
+MUTANT p2m31 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=2 passed=19
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_rn64_norm3_agrees_with_the_oracle_vectors
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_rn64_norm3_vectors_signed_zeros_refusal_and_work
+MUTANT p2m32 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=0
+  verdict=SURVIVED failed=0 passed=21
+MUTANT p2m33 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=0
+  verdict=SURVIVED failed=0 passed=21
+MUTANT p2m34 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=0
+  verdict=SURVIVED failed=0 passed=21
+MUTANT p2m35 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k06_both_certificate_entries_accept_a_recorded_combination_owner_only
+P2_MUTANTS_DONE

@@ -1,0 +1,7 @@
+MUTANT p2m25 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=4 passed=17
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_c05_the_combination_coverage_rule
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_c06_a_nonzero_prescription_in_a_later_operand_is_unsupported
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k06_both_certificate_entries_accept_a_recorded_combination_owner_only
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows

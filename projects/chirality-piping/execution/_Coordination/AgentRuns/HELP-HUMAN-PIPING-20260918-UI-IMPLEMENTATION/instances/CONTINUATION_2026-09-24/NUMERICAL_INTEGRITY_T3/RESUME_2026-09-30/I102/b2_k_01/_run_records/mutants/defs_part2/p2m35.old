@@ -1,0 +1,3 @@
+    if invocation.product_owner(run, owner).is_none() {
+        return Err(bad("recorded owner"));
+    }

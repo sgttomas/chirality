@@ -1,0 +1,4 @@
+MUTANT p2m28 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_rn64_norm3_vectors_signed_zeros_refusal_and_work

@@ -1,0 +1,4 @@
+MUTANT p2m05 file=src/structural/retained/origins.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::origins::tests::b2k_k03_an_unavailable_operand_is_rebuilt_identity_checked_and_custody_refuses_otherwise

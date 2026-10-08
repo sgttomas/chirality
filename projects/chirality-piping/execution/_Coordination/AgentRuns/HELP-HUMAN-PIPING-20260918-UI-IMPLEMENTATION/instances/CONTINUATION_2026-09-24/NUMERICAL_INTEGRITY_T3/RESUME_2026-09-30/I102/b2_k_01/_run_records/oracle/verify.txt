@@ -1,0 +1,28 @@
+{
+  "cases": 8,
+  "pi_bracket": "128-term rational Machin, adjacent 2^-512 grid",
+  "exact_K_discriminator": "2^-104",
+  "fixture_sha256": "467f881181efb35ca11e8303dc212e3f90e00dd394571cb26f67b8504745f72c"
+}
+{
+  "b2k_combinations": 9,
+  "section_bits": [
+    "0x3f5872fa3a37ac13",
+    "0x3ebc52664442210a",
+    "0x3ecc52664442210a",
+    "0x3f01b37feaa954a6",
+    "0x3fa999999999999a"
+  ],
+  "combination_fixture_sha256": "1999a32685f38830a8435e9b1525cd8bed302c9635da28dc8072feea187fc712",
+  "k4led_sha256": {
+    "C1": "383dcc898a1f4da9589fe43de8ab12def09e86607996998f400b479ea8975c42",
+    "C2": "08aff5bb4843c586280b7a250a2a7a68557260ac6428085579742609b26cab4e",
+    "C3": "73427054b57bbaf68ca0a905a6dd2d39904d4abf4414149c8f1007054e80a2f1",
+    "C4": "0d26142d1b11150dcb7d790733148a389cfc61ea5142062b8d053d46c7b186df",
+    "C5": "a3067622f1180c5b23a2e4094962ca091cf82be2631678476d97ffc4ca4075da",
+    "C6": "ad44d876100ab1ed45f5baaf60e5843b6f03616f8ed9ea740f664706759769c5",
+    "C7": "efd570eec52404d9dbc9c29505a42b5ab674e4a71c8423aeaccfe82a224a7b1d",
+    "C8": "8c0c39e8dcf054084dc9481bad6e2668a52e71a6d2803a9f6218ed2c9ac72361",
+    "C9": "bf89d5a92de6a3d5cd82f234452705373d03c6555902c8ea7bdc68ce026ba360"
+  }
+}

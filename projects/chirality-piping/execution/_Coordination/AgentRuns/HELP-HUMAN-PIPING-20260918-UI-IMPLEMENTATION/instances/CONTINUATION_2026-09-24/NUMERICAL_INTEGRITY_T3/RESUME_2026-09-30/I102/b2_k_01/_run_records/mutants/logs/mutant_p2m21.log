@@ -1,0 +1,5 @@
+MUTANT p2m21 file=src/structural/retained/product_certificate.rs
+  filter=b2k rc=101
+  filter=source_residual rc=0
+  verdict=KILLED failed=1 passed=30
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k08_residual_and_recovery_contain_the_oracle_and_nets_are_exact_outward

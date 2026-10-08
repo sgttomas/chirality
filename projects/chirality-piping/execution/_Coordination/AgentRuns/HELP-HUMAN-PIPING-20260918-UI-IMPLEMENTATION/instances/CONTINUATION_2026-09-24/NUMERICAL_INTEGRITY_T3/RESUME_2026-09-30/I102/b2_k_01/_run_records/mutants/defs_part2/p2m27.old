@@ -1,0 +1,4 @@
+                if combination && matches!(spec.recipe,ProductRecipe::Native(QuantityId::DisplacementMagnitude(_))){continue;}
+=====MUT=====
+            if combination {
+                for (i,spec) in self.data.specs.iter().enumerate() {

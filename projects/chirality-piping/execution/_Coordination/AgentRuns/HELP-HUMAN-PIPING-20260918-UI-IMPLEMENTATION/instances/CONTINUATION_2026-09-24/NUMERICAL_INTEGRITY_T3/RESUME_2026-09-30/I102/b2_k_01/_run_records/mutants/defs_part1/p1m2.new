@@ -1,0 +1,1 @@
+    let represented_z = if hooks::material_gated(&input.material) || matches!(input.material, MaterialOperands::ExactENu { .. }) {

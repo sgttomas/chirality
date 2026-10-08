@@ -1,0 +1,25 @@
+MUTANT p1m1 file=src/structural/retained/product_certificate/final_case.rs
+  filter=product_certificate rc=101
+  verdict=KILLED failed=3 passed=36
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b3k_base_e_nu_maps_to_exact_operands_and_refuses_through_the_public_variant
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b3k_base_e_nu_stress_and_maximum_rows_certify_in_both_lanes_nu_0_3125_control
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b3k_restored_material_gate_fails_stress_and_maximum_rows_with_represented_z
+MUTANT p1m2 file=src/structural/retained/product_certificate.rs
+  filter=product_certificate rc=101
+  verdict=KILLED failed=5 passed=34
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b3k_base_e_nu_stress_and_maximum_rows_certify_in_both_lanes_nu_0_3125_control
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b3k_restored_material_gate_fails_stress_and_maximum_rows_with_represented_z
+  FAILED structural::retained::product_certificate::tests::b3k_exact_e_nu_represented_z_axis_bits_and_restored_material_gate
+  FAILED structural::retained::product_certificate::tests::b3k_nu_0_3125_control_and_exact_g_against_represented_g
+  FAILED structural::retained::product_certificate::tests::product_certificate_fraction_geometry_material_and_coefficients
+MUTANT p1m3 file=src/structural/retained/product_certificate.rs
+  filter=product_certificate rc=101
+  verdict=KILLED failed=1 passed=38
+  FAILED structural::retained::product_certificate::tests::b3k_exact_e_nu_represented_z_axis_bits_and_restored_material_gate
+MUTANT p1m4 file=src/structural/retained/product_certificate.rs
+  filter=product_certificate rc=101
+  verdict=KILLED failed=3 passed=36
+  FAILED structural::retained::product_certificate::tests::b3k_exact_e_nu_represented_z_axis_bits_and_restored_material_gate
+  FAILED structural::retained::product_certificate::tests::b3k_nu_0_3125_control_and_exact_g_against_represented_g
+  FAILED structural::retained::product_certificate::tests::product_certificate_fraction_geometry_material_and_coefficients
+P1_MUTANTS_DONE

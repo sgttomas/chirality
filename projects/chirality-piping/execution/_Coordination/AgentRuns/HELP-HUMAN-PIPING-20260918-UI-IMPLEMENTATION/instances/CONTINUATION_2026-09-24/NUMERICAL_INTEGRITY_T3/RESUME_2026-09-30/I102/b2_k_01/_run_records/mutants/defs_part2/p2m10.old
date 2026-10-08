@@ -1,0 +1,2 @@
+                .filter_map(|o| o.1.selected())
+                .map(|s| &s.cache),

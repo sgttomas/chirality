@@ -1,0 +1,1 @@
+let Some(first_selected) = operands.iter().find_map(|o| o.1.selected()) else {

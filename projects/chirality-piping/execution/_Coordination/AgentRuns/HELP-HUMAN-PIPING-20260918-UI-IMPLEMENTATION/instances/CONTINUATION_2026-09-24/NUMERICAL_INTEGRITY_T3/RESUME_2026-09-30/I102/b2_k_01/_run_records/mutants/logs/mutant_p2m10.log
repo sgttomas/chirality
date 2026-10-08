@@ -1,0 +1,4 @@
+MUTANT p2m10 file=src/structural/retained/origins.rs
+  filter=b2k rc=0
+  filter=origins rc=0
+  verdict=SURVIVED failed=0 passed=37

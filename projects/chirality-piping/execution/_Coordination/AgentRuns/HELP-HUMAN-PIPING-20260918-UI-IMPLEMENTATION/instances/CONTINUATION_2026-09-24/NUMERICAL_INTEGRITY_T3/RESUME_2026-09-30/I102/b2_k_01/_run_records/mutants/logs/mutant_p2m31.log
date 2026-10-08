@@ -1,0 +1,5 @@
+MUTANT p2m31 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=2 passed=19
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_rn64_norm3_agrees_with_the_oracle_vectors
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_rn64_norm3_vectors_signed_zeros_refusal_and_work

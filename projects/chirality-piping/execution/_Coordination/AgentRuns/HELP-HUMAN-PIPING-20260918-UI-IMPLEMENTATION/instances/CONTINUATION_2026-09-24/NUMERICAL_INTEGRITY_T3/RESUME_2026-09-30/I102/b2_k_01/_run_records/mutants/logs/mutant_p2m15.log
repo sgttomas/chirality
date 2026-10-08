@@ -1,0 +1,4 @@
+MUTANT p2m15 file=src/structural/retained/adaptive.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k07_view_admits_p2_refuses_corruption_and_keeps_native_data_flags

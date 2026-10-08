@@ -1,0 +1,4 @@
+        Some(if matches!(input.material, MaterialOperands::ExactENu { .. }) { Enclosure::point(actual) } else {
+            work.div(Enclosure::point(pos_lift(k.iz)?), Enclosure::point(c))?
+                .hull_point(actual) },
+        )

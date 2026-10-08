@@ -1,0 +1,8 @@
+MUTANT p2m22 file=src/structural/retained/product_certificate/source_residual.rs
+  filter=b2k rc=101
+  filter=source_residual rc=101
+  verdict=KILLED failed=4 passed=27
+  FAILED structural::retained::adaptive::source_residual_tests::source_residual_combination_and_missing_uniqueness_are_explicit_refusals
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k08_residual_and_recovery_contain_the_oracle_and_nets_are_exact_outward
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k09_full_prepared_proof_certifies_combinations_and_prints_the_diagnose_rows
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_k10_mutation_controls_fail_containment

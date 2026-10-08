@@ -1,0 +1,4 @@
+MUTANT p2m07 file=src/structural/retained/combine.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::combine::tests::b2k_k04_unrecorded_all_prepared_is_no_selected_operand_after_the_native_checks

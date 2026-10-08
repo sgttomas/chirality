@@ -1,0 +1,2 @@
+    if view.owner().prep.factors.is_empty() {
+        for load in source.loads() {

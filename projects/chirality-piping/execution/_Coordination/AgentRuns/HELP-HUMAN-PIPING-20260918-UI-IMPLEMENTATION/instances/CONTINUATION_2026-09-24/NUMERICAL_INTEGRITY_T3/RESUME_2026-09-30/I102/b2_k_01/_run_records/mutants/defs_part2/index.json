@@ -1,0 +1,283 @@
+[
+ {
+  "id": "p2m01",
+  "file": "src/structural/retained/origins.rs",
+  "check": "SF-1 run-capacity check",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m02",
+  "file": "src/structural/retained/origins.rs",
+  "check": "registration capacity",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m03",
+  "file": "src/structural/retained/origins.rs",
+  "check": "I7: a case-owned source",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m04",
+  "file": "src/structural/retained/origins.rs",
+  "check": "I7: no combination ledger",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m05",
+  "file": "src/structural/retained/origins.rs",
+  "check": "I7: full K4SRC bytes",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m06",
+  "file": "src/structural/retained/origins.rs",
+  "check": "NoSelectedOperand (recorded)",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m07",
+  "file": "src/structural/retained/combine.rs",
+  "check": "NoSelectedOperand (unrecorded)",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m08",
+  "file": "src/structural/retained/origins.rs",
+  "check": "first selected group (recorded)",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m09",
+  "file": "src/structural/retained/combine.rs",
+  "check": "first selected group (unrecorded)",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m10",
+  "file": "src/structural/retained/origins.rs",
+  "check": "authored-order cache merge (recorded)",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m11",
+  "file": "src/structural/retained/origins.rs",
+  "check": "requested operand source in range",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m12",
+  "file": "src/structural/retained/origins.rs",
+  "check": "for_invocation counts prepared ordinals",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m13",
+  "file": "src/structural/retained/origins.rs",
+  "check": "source reservation cases + combinations",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m14",
+  "file": "src/structural/retained/origins.rs",
+  "check": "I9 owner kind",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m15",
+  "file": "src/structural/retained/adaptive.rs",
+  "check": "view: factor bits",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m16",
+  "file": "src/structural/retained/adaptive.rs",
+  "check": "view: term count",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m17",
+  "file": "src/structural/retained/adaptive.rs",
+  "check": "view: +0.0 by bits (N-3)",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m18",
+  "file": "src/structural/retained/adaptive.rs",
+  "check": "view: visits before checks (N-8)",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m19",
+  "file": "src/structural/retained/product_certificate/source_residual.rs",
+  "check": "residual: free rows read the ledger",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m20",
+  "file": "src/structural/retained/product_certificate/source_residual.rs",
+  "check": "recovery: reaction offsets read the ledger (SF-2)",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m21",
+  "file": "src/structural/retained/product_certificate.rs",
+  "check": "net: outward, not nearest (SF-4)",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m22",
+  "file": "src/structural/retained/product_certificate/source_residual.rs",
+  "check": "free rows add the net",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m23",
+  "file": "src/structural/retained/product_certificate/source_residual.rs",
+  "check": "reactions subtract the net",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m24",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "check": "coverage: combination row families",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m25",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "check": "coverage: slot 20 empty",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m26",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "check": "coverage: no mode record",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m27",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "check": "(ii): magnitudes hull-projected instead",
+  "occurrences": [
+   1,
+   1
+  ]
+ },
+ {
+  "id": "p2m28",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "check": "(ii): mm components",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m29",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "check": "(ii): upper tie to even",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m30",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "check": "(ii): lower tie to even",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m31",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "check": "(ii): SA4-1 (b) refusal at MAX",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m32",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "check": "(ii): SA4-1 (d) one step",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m33",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "check": "(ii): SA4-1 (c) overflowing estimate decided exactly",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m34",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "check": "(ii): SA4-1 (e) zero estimate",
+  "occurrences": [
+   1
+  ]
+ },
+ {
+  "id": "p2m35",
+  "file": "src/structural/retained/product_certificate/final_case.rs",
+  "check": "certify_product_case owner check",
+  "occurrences": [
+   1
+  ]
+ }
+]

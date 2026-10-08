@@ -1,0 +1,6 @@
+MUTANT p1m4 file=src/structural/retained/product_certificate.rs
+  filter=product_certificate rc=101
+  verdict=KILLED failed=3 passed=36
+  FAILED structural::retained::product_certificate::tests::b3k_exact_e_nu_represented_z_axis_bits_and_restored_material_gate
+  FAILED structural::retained::product_certificate::tests::b3k_nu_0_3125_control_and_exact_g_against_represented_g
+  FAILED structural::retained::product_certificate::tests::product_certificate_fraction_geometry_material_and_coefficients

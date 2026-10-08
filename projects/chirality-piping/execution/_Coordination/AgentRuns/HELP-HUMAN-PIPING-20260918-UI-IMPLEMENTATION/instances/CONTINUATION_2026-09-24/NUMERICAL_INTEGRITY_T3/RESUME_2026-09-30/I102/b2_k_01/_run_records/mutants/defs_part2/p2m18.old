@@ -1,0 +1,9 @@
+                for (term, factor) in terms.iter().zip(&self.prep.factors) {
+                    work.visit(1)?;
+                    if term.0.to_bits() != factor.to_bits() {
+                        return Err(CertificateIssue::PairIdentity.into());
+                    }
+                    if term.1.to_bits() != 0f64.to_bits() {
+                        return Err(SourceBridgeViewIssue::UnsupportedCombination);
+                    }
+                }

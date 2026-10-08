@@ -1,0 +1,1 @@
+if combination && matches!(r.recipe, ProductRecipe::NonQuantity

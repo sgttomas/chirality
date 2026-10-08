@@ -1,0 +1,4 @@
+MUTANT p2m24 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::product_certificate::final_case::product_final_case_tests::b2k_c05_the_combination_coverage_rule

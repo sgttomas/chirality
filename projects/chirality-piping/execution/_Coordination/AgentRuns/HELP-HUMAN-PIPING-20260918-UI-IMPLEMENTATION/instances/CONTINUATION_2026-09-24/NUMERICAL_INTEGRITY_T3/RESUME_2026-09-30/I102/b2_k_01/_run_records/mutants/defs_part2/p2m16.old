@@ -1,0 +1,1 @@
+if *g != c.dof.global() || terms.len() != self.prep.factors.len() {

@@ -1,0 +1,4 @@
+MUTANT p2m06 file=src/structural/retained/origins.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::origins::tests::b2k_k04_no_selected_operand_is_refused_after_the_native_checks

@@ -1,0 +1,3 @@
+MUTANT p2m29 file=src/structural/retained/product_certificate/final_case.rs
+  filter=b2k rc=0
+  verdict=SURVIVED failed=0 passed=21

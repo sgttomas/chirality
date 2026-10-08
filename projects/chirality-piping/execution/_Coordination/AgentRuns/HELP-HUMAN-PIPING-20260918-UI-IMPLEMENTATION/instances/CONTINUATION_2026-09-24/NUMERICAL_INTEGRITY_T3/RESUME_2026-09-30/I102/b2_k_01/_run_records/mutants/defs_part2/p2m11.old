@@ -1,0 +1,1 @@
+(None, (source < self.store.sources.len()).then_some(source))

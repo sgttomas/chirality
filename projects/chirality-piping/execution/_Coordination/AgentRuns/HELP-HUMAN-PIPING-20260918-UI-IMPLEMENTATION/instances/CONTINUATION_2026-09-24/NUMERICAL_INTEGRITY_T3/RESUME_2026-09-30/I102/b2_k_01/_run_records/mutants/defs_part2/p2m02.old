@@ -1,0 +1,4 @@
+        if next > self.capacity.cases {
+            return Err(OriginError::Capacity);
+        }
+        let id = self.store.sources.len();

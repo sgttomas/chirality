@@ -1,0 +1,1 @@
+any(|(j, v)| !*v && !(combination && j % 21 == 20))

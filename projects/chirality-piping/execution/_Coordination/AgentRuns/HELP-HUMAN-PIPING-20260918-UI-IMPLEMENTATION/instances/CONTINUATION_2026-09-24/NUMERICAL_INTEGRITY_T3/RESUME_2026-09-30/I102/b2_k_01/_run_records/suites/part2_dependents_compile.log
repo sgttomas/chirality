@@ -1,0 +1,25 @@
+COMPILE crate=core/loads/load_case_algebra extra=[] rc=0
+COMPILE crate=core/loads/primitive_loads extra=[] rc=0
+COMPILE crate=core/loads/user_loads extra=[] rc=0
+COMPILE crate=core/loads/stress_recovery extra=[] rc=0
+COMPILE crate=core/loads/self_weight_wasm extra=[] rc=0
+COMPILE crate=core/model_operations/operation_applier extra=[] rc=0
+COMPILE crate=core/runner/headless extra=[] rc=0
+COMPILE crate=core/solver/curved_bend extra=[] rc=0
+COMPILE crate=core/solver/diagnostics extra=[] rc=0
+COMPILE crate=core/solver/linear_supports extra=[] rc=0
+COMPILE crate=core/solver/nonlinear_integration extra=[] rc=0
+COMPILE crate=core/solver/nonlinear_supports extra=[] rc=0
+COMPILE crate=core/solver/performance_harness extra=[] rc=0
+COMPILE crate=core/solver/sparse_direct extra=[] rc=0
+COMPILE crate=core/solver/straight_pipe extra=[] rc=0
+COMPILE crate=validation/benchmarks/mechanics extra=[] rc=0
+COMPILE crate=validation/benchmarks/nonlinear extra=[] rc=0
+COMPILE crate=validation/benchmarks/numerical_integrity extra=[] rc=0
+COMPILE crate=validation/benchmarks/numerical_robustness extra=[] rc=0
+COMPILE crate=validation/benchmarks/physics_audit_regression extra=[] rc=0
+COMPILE crate=validation/benchmarks/stress extra=[] rc=0
+COMPILE crate=apps/desktop/src-tauri extra=[] rc=0
+COMPILE crate=validation/benchmarks/numerical_robustness extra=[--features seeded-faults] rc=0
+COMPILE crate=core/solver/frame_kernel extra=[--features mutation-controls] rc=0
+COMPILE_DONE label=p2f_deps failures=0 2026-10-08T08:29:11Z

@@ -1,0 +1,1 @@
+        if k.iy.to_bits() != k.iz.to_bits() && !matches!(input.material, MaterialOperands::ExactENu { .. }) {

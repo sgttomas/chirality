@@ -1,0 +1,4 @@
+MUTANT p2m08 file=src/structural/retained/origins.rs
+  filter=b2k rc=101
+  verdict=KILLED failed=1 passed=20
+  FAILED structural::retained::origins::tests::b2k_k05_a_prepared_first_operand_keeps_authored_order_and_takes_the_group_of_operand_one
