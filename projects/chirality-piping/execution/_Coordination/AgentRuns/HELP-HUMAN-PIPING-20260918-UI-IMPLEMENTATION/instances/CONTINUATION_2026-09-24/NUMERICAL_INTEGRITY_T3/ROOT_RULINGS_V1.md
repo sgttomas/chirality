@@ -15221,3 +15221,31 @@ The record is `IMPLEMENTATION/SI1C_MERGE/` (RECORD.md, `_run_records/`, `dec025/
 - **I92, SR-TS repair 01** (items 2–4), when I85 returns.
 
 RV113 confirms each round. I4 follows them, with SR-PY and SR-TS and SR-RS's round 2.
+
+## I98's B2-W verified; B2's witnesses selected (W-CB1 rebased); the nodal-term ordinal is a producer defect, fixed at I3; I90's round 2 dispatched (ROOT, 2026-10-07 UTC)
+
+**I98's probe:** `R/I98/b2_w_probe_01/PROBE.md` sha256 `e224899a…`. SHA256SUMS 62 of 62 OK. The strict, host-name and `.local` screens are clean, with no `.gz` and no links. The archive and targets are deleted. ROOT checked the key input hashes against the record. No stop rule fired.
+- **W-CB1's proxy (A + B, 256 loads, unnetted)** nets to exactly 0 on all 21 loaded DOFs.
+  - G-A and G-B refuse it over the cap.
+  - With them bypassed, native is Selected, and the certificate, staging and serializer pass. Precommit then refuses at G5 `ATTEMPT_MISMATCH` through D6b, a case-only rule (a `selected` case must not be ordinarily `checks_passed`).
+  - **1·A + 0.5·B publishes a successor in both modes**, and the Rust reader passes it, with non-zero rows. A + C falls back at Candidate.
+- **W-CB3:** variant v1 qualifies: B is a 1 N `global_y` force on the L = 0 base's restrained isolated node N2. B alone is `not_required`, and A + B publishes, with both readers passing.
+- **W-CB2:** case C reproduces I81 field for field, so it still predicts `retained_unavailable` / `combination_unresolved`.
+- **R-7 (RV115 NB-2)** is confirmed on four W1a requests in both modes: 168, 111, 2,080 and 2,080 combination rows, each equal to 7n + 50m + 8g.
+- **Controls:** two rounds are identical, and I81's and I86's lines reproduce (109 comparisons, 0 differences).
+- **I98's host slips** are disclosed in its §9: an empty-input host `python3` run, a wrong tool help call, and a `lockf` with no command. None did anything.
+
+**Rulings:**
+1. **W-CB1 is rebased on 1·A + 0.5·B,** with base `r7_cb1_halfb.json` `7af8c049…` and proxy `cb1_a_halfb_canonical.json` `012fec52…`. It is the measured witness for S1, the challenge and RSS_TIME. As planned, A + B would measure a zero solution. **A + B is kept as an additional labelled cancellation pin** (`r7_cb1.json` `0c346f49…`): it shows the combined ledger preserves exact cancellation.
+2. **W-CB2** is `r7_cb2.json` (`ce52d528…`). **W-CB3** is `r7_cb3_v1.json` (`76bb9831…`), with one OperandPreparation. W-CB4 is split per RV118's S-5, in B2-C's revision.
+3. **D6b is a case rule.** B2-C's revision states that D6b does not apply to combination entries, and that no combination analogue refuses a `retained_selected` combination for being ordinarily `checks_passed` (to B2-C's revision).
+4. **The nodal-term ordinal is a producer defect.** PP `retained_wire.rs` writes `constructor_ordinal` as the term's canonical position. All three readers (RS and PY G8, and TS, checked by ROOT) derive it as the authored ordinal, as C2's row reads (CONTRACT_DELTA:104: a "stable constructor_ordinal breaks indistinguishable duplicates for provenance only").
+   - **The consequence:** an in-domain case whose loads are not authored in canonical order falls back at precommit G8 with one notice. This is fail-safe, but it denies a certified successor, on main and on B1. It is latent on main in the registered dev/test build, with no product caller.
+   - **The fix is SP's** (`retained_wire.rs` is in SP's fence): `constructor_ordinal: t.original`. Every existing pin was authored in canonical order, so no existing byte changes.
+   - **It is added to I85's I3 step,** with a new pin for `cause_milestone_reversed` (`d28e1317…`), which publishes in both modes, and a killed mutant. RV109 (RV-P) reviews it with the step.
+   - **07n gains** an out-of-order-authored base (SC).
+   - PR-B1's change record states it as a repaired latent defect of main.
+
+**I90's SR-RS repair round 2** is dispatched in I98's slot, by `BRIEFS/B1_SR_RS_REPAIR_02.md` (items 1–4 of the alignment set, on `b1-r`).
+- **Implementers running:** I85 (I3 step), I91 (SR-PY repair 02) and I90 (SR-RS repair 02).
+- **Queued:** I92 (SR-TS repair 01), then I97 (B2-C revision).
