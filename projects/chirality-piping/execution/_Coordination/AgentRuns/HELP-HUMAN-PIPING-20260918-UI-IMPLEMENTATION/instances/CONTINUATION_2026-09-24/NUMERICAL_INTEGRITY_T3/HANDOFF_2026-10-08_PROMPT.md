@@ -27,15 +27,13 @@ Steer (this run): Continue T3, numerical integrity, precision and scale, of the 
    - the worktrees the note lists;
    - whether main moved;
    - the free disk space;
-   - **the work in flight at handoff:** PR #1124 (records-only CI routing) under independent review. Check its review and CI on GitHub.
 
    Then give the owner a short status that references the graph.
 5. **Then follow the graph's next safe action:**
-   1. merge #1124 when its review and CI pass, with `--match-head-commit`;
-   2. make I4 (RV113 has confirmed all three readers), and rule RV113's three items;
-   3. B1's SC (`BRIEFS/B1_SC.md`), then SQ, SG, SB and SK, then PR-B1;
-   4. J0, and B2/B3 (B2-C is final for J1);
-   5. B7, B8, then S-I2, F2b and F3, with S-I1 alongside.
+   1. make I4 (RV113 has confirmed all three readers), and rule RV113's three items;
+   2. B1's SC (`BRIEFS/B1_SC.md`), then SQ, SG, SB and SK, then PR-B1;
+   3. J0, and B2/B3 (B2-C is final for J1);
+   4. B7, B8, then S-I2, F2b and F3, with S-I1 alongside.
 6. **Hold to these T3 practices.** Their basis is in the T3 rulings the graph lists.
    - **Host jobs:**
      - heavy builds and tests run on this Mac only while the memory guard runs;

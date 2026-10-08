@@ -23,9 +23,7 @@ T3's current account is the piping work graph's **T3 current route** section, `e
 
 1. **I4 is unblocked.** RV113 CONFIRMED all three readers' rounds. Merge `b1-r` (`6e3e4fe219`), `b1-p` (`2843a59a16`) and `b1-t` (`6fa6a64658`) into `b1` (`03f55e7178`). Then fill `{I4 commit}` in `BRIEFS/B1_SC.md` and dispatch SC.
    - RV113's three items for ROOT (RR "#1114 merged; …") do not block I4.
-2. **PR [#1124](https://github.com/sgttomas/chirality/pull/1124)** (records-only CI; branch `claude/ci-docs-fast-20261008`, worktree `WT/ci-docs-fast`) is under an independent review in the previous session.
-   - It merges when that review and its CI pass, with `--match-head-commit`.
-   - If the review is missing once that session has closed, dispatch a fresh reviewer with the same brief as its PR description.
+2. **PR [#1124](https://github.com/sgttomas/chirality/pull/1124) is merged** (`015f9763ea`, by the owner): records-only PRs now run only the governance harness. NUM absorbed it.
 3. **The next records PR** carries NUM's records after `dc4ffdc7c8` (the work graph's next safe action 3).
 
 ## Where things are, in this folder

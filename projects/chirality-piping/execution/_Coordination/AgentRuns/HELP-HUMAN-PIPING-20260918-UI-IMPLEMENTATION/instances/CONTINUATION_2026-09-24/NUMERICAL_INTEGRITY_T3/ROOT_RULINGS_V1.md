@@ -15752,3 +15752,9 @@ The next ROOT verifies all of them from disk. ROOT has verified and committed no
 - one PR per logical change, with follow-ups folded in before merge;
 - merge main into a records-only PR only when a gate requires it;
 - before any records commit or PR, run `tools/validation/validate_private_terms.py --from-host --terms-file WT/tools/t3_host_names.private.txt` beside `WT/tools/t3_host_screen.py`.
+
+**Addendum (#1124 merged).**
+- The owner merged #1124 at `5274625ace` (`015f9763ea`, 06:11Z), and NUM absorbed it.
+- **CI on that head:** the required `harness` check passed. At the owner's direction, its 28-minute Piping cargo run was cancelled as unnecessary for a routing change. Branch protection requires only `harness`, and the selector-policy tests, including the new ones, had passed in CI on `8dbffa23bc`.
+- **The independent review was stopped once the PR had merged.** Its last report: `harness` passed.
+- **From now on,** records-only PRs run only the governance harness and need no main merge to pass.
