@@ -979,7 +979,7 @@ changed.
   all three schema IDs and the prototype digest. The EXP result schema carries
   its own `schema_id` and optional `prototype_digest`; PKG's identity schema
   carries only the EXP version in `support_revision`.
-- **Current bounded behavior:** schema validation preserves those exact fields
+- **Preserved legacy behavior:** schema validation preserves those exact fields
   and optionality. The new package-link check additionally requires the pinned
   prototype digest under §4.4, checks result schema/version and matching package
   version, and reports maintained tool/rule/source identities separately. It
@@ -988,7 +988,31 @@ changed.
 - **Owning route:** DEL-09-01 and DEL-01-06 design owners confirm how a complete
   M1 support identity is bound across package and result records before full M1
   reliance (Group B B3). Any changed interface uses a named reviewed change and
-  consumer propagation; no schema or Design change is made by this slice.
+  consumer propagation; no schema or Design change was made by that original slice.
+
+- **CC-EXP-SUPPORT-IDENTITY-01 scoped disposition:** additive
+  `EXP-SUPPORT-BINDING-v1` is implemented for independent review and named
+  technical adoption. Its canonical EXP Design supplement is
+  `DEL-09-01/Design/support-identity-v1/METHOD.md`; PKG receives it through
+  `DEL-01-06/Design/SUPPORT_IDENTITY_BINDING_V1.md`. The unchanged EXP-v0.2
+  tuple and canonical source bytes are identified at prior publication merge
+  `09106477e351c6e5bde85259c55a00cc8fc5f7f5` (PR #1077). The new method has a
+  distinct version and becomes effective at the reviewed merge of this named
+  contribution; authoring or checking it before merge does not adopt it.
+- **Initial consumer cohort:** `app/examination/support_identity/canonical.py`
+  fixes declaration/method/schema/PKG supplement selection outside record
+  input and performs complete exact-byte result/review/change/current-package
+  joins through unchanged validators. A record writer cannot mint publication.
+  Current producer declaration and historical correspondence remain distinct;
+  neither authenticates actual producer use. All prior schemas, prototypes,
+  proposed checker bytes and source locks are preserved.
+- **Closure boundary:** the reviewed named technical merge closes CI-26's
+  representational gap and this explicit consumer cohort, recorded in
+  `AgentRuns/APP-V4-GROUP-B-20261008/support-identity-adoption/`. It does not
+  establish complete M1 runner/native qualification, M2/M3 witnesses, or
+  SQ/native-form/S4 receiving adoption. Those consumers retain their existing
+  partial basis until their separately identified receiving work; no blanket
+  adoption or qualification follows from a consistent file join.
 
 ## CI-27 Full-distribution verification identity and PKG record coverage
 
@@ -1036,3 +1060,57 @@ changed.
   identities; historical fixtures stay frozen. Existing actual dossiers, if
   any, require the examiner's EXP §6.2 affected-claim assessment. Group E's
   receiving notice is carried in the Group B work graph, not automatic adoption.
+
+## CI-29 Wholly unavailable sources in a connector route account
+
+- **Found:** 2026-10-08 by independent Group C source preparation;
+  run APP-V4-GROUP-C-20261008.
+- **Source:** DEL-07-02 CONNECTOR_FALLBACK §7 says a missing or unreadable
+  source produces a gap with its responsible party and leaves the affected
+  part unsupported. ScopeOfWork REQ-002 and VER-002 include unavailable
+  underlying sources. The current connector.route-account schema requires
+  `sources` with `minItems: 1`; §4 describes each source read with its revision
+  and digest. A wholly unavailable source set cannot be represented by
+  inventing a successful source read.
+- **Current bounded behavior:** C1 computes semantic standing and identifies
+  question parts needing the source route. It writes no route account and
+  changes no schema, source identity or criterion. Missing evidence remains
+  missing; this issue does not prevent the bounded in-memory slice.
+- **Owning route:** Group C C3, DEL-07-02 source-owner design treatment with
+  affected PEC/Domains receiving and later fleet/examination consumer review,
+  before persistent account writing. Resolve through a named reviewed change;
+  no product meaning or group order is changed here. A consequential choice
+  returns through HELP_HUMAN to the owner. No fabricated source entry or
+  weakened test may conceal the mismatch.
+- **C3 source successor:** named CI-29 / CFB-v0.3 defines route-account
+  format 0.2 in the additive `Design/CONNECTOR_FALLBACK_v0.3.md` and
+  `connector.route-account.v0.2.schema.json`. With no successful source reads,
+  it requires empty facts and supported conclusions, nonempty gaps with
+  effects/responsibility, and unsupported conclusions. Historical 0.1 bytes,
+  pins and evidence are unchanged. Source preparation is not consumer adoption
+  or persistent behavior; independent source review is READY at `96791613ed`,
+  with combined integration review and placement disposition separate.
+- **Consumer and placement account:** Group C
+  `AgentRuns/APP-V4-GROUP-C-20261008/C3_DESIGN_TREATMENT.md` identifies
+  PEC, Domains, fleet, examination and later research receiving work. O-D
+  placement was subsequently selected through C3-PLACE-01; this correction adds no
+  requirement for Group D software and changes no accepted group order.
+- **Placement follow-through:** C3-PLACE-01 / CRP-v0.2 is technically selected
+  in the Group C `C3_PLACEMENT_ADOPTION.md` after repaired independent review
+  and DEL-06-01 concurrence. It selects project-local connector records and
+  opened-directory capability containment with explicit rename residuals;
+  no continuous-path safety or finished persistence is claimed. CI-29's
+  source-only successor merged in PR #1130; backend behavior remains C3-P.
+- **Persistence implementation:** the bounded C3-P backend now has a tested
+  writer, cold discovery and reference reconciliation for caller-supplied
+  schema-valid accounts; independent repair review is READY at `f1ff1699e0`,
+  with final combined-head READY at `2ecde9055d` and all selected CI passed;
+  PR #1137 merged as `412cf7fa01`. Initial code passed 25 checks but failed two independent temporary-name
+  substitution checks. Named CRP-R2 / CRP-v0.3 selects exclusive no-replace
+  rename with no automatic unlink, exact intended binding checks and explicit
+  late-substitution uncertainty. The repaired author candidate `8f1195761d`
+  passed 31 connector checks; independent review passed those plus three
+  substitution probes. `C3_PERSISTENCE_REVIEW.md` preserves the original
+  finding; a passing rerun alone does not establish its repair. This backend
+  does not reconstruct the question from real sources, establish source truth,
+  perform duties, wire providers, or supply UI/connected witness behavior.
