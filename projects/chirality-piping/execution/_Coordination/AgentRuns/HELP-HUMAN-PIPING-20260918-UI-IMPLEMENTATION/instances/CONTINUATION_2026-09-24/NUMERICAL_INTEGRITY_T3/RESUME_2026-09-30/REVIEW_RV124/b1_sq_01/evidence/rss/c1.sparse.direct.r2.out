@@ -1,0 +1,8 @@
+
+running 1 test
+test c1::sparse::direct ... I104_SQ_CHALLENGE_TIME c1 SparseInteractive Direct call_ms=16745.1
+I104_SQ_CHALLENGE c1 SparseInteractive Direct outcome=successor(2176063 B) rows=2113 peak_bytes=41876615 bound=E_mov_max bound_bytes=9733567302 ratio=0.004302
+ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 27 filtered out; finished in 16.80s
+

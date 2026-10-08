@@ -1,0 +1,7 @@
+waiting for pid 72809 2026-10-08T13:04:42Z
+start 2026-10-08T13:13:42Z
+audit controls rc=0 2026-10-08T13:14:11Z
+noncand run rc=0 2026-10-08T13:14:14Z
+noncand_compare rc=1
+nomult rc=0
+CHAIN-DONE

@@ -1,0 +1,7 @@
+c0_unmodified complete= True TAV= 6234394666 pass= True []
+b1_wire_1634_case_id complete= False TAV= 6234394666 pass= True [[['id-unaudited', 'core/product_physics/src/retained_wire.rs:1634 case_id'], 2]]
+b1_product_4492_row_id complete= False TAV= 6234394666 pass= True [[['id-unaudited', 'core/product_physics/src/retained_product.rs:4492 row.id'], 4]]
+b1_lib_3078_site complete= False TAV= 6234394666 pass= True [[['id-unaudited', 'core/product_physics/src/lib.rs:3078 case_id'], 2]]
+b1_wire_1946_site complete= False TAV= 6234394666 pass= True [[['id-unaudited', 'core/product_physics/src/retained_wire.rs:1946 source'], 2]]
+b1_rs_4371_site complete= False TAV= 6234394666 pass= True [[['id-unaudited', 'core/reporting/result_export/src/retained_precision.rs:4371 text(&run["kernel_terminal"]["kind"])'], 2]]
+b1_terminal_kind_rule complete= False TAV= 6234381628 pass= False [[['to_owned', 'terminal[" "].as_str().unwrap_or_default()'], 1]]

@@ -1,0 +1,382 @@
+[
+ {
+  "id": "M00",
+  "selector": "law",
+  "mutant": "baseline + DEF-O failing-row kinds probe (test code only)",
+  "result": [
+   [
+    "ok",
+    "47",
+    "0"
+   ]
+  ],
+  "failing": [],
+  "compile_error": false,
+  "verdict": "baseline"
+ },
+ {
+  "id": "M01",
+  "selector": "law",
+  "mutant": "G-B bound reverts to the SF-1 defect: T11 - T11_late_capture",
+  "result": [
+   [
+    "FAILED",
+    "45",
+    "2"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::b1_sa_gate_bounds_at_c_are_the_stated_expressions",
+   "retained_memory::law_tests::b1_sq_late_capture_form_is_c_times_one_case"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M02",
+  "selector": "law",
+  "mutant": "G-B bound divides by 2, not C",
+  "result": [
+   [
+    "FAILED",
+    "45",
+    "2"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::b1_sa_gate_bounds_at_c_are_the_stated_expressions",
+   "retained_memory::law_tests::b1_sq_late_capture_form_is_c_times_one_case"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M03",
+  "selector": "law",
+  "mutant": "G-B bound is T11 (no late subtraction)",
+  "result": [
+   [
+    "FAILED",
+    "44",
+    "3"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::b1_sa_gate_bounds_at_c_are_the_stated_expressions",
+   "retained_memory::law_tests::b1_sq_late_capture_form_is_c_times_one_case",
+   "retained_memory::law_tests::every_phase_fact_admits_its_cap_and_refuses_cap_plus_one"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M04",
+  "selector": "law",
+  "mutant": "registered threshold one byte low",
+  "result": [
+   [
+    "FAILED",
+    "46",
+    "1"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::the_registered_profile_is_the_only_permit_source"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M05",
+  "selector": "law",
+  "mutant": "registered threshold at 12 GiB",
+  "result": [
+   [
+    "FAILED",
+    "46",
+    "1"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::the_registered_profile_is_the_only_permit_source"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M06",
+  "selector": "law",
+  "mutant": "block: Text(diag_env) + 1",
+  "result": [
+   [
+    "FAILED",
+    "46",
+    "1"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::every_phase_fact_admits_its_cap_and_refuses_cap_plus_one"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M07",
+  "selector": "law",
+  "mutant": "block: D_env - 1",
+  "result": [
+   [
+    "FAILED",
+    "45",
+    "2"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::every_phase_fact_admits_its_cap_and_refuses_cap_plus_one",
+   "retained_memory::law_tests::profile_laws_hold_in_this_build"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M08",
+  "selector": "law",
+  "mutant": "block: L_DIAGID + 1",
+  "result": [
+   [
+    "FAILED",
+    "46",
+    "1"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::every_phase_fact_admits_its_cap_and_refuses_cap_plus_one"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M09",
+  "selector": "law",
+  "mutant": "block: a T11_late_capture coefficient not a multiple of C",
+  "result": [
+   [
+    "FAILED",
+    "46",
+    "1"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::b1_sq_late_capture_form_is_c_times_one_case"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M10",
+  "selector": "law",
+  "mutant": "block: N-5's parked-slot term removed from T11",
+  "result": [
+   [
+    "FAILED",
+    "44",
+    "3"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::challenge_bounds_are_the_profile",
+   "retained_memory::law_tests::profile_in_build_record",
+   "retained_memory::law_tests::profile_transcribes_the_python_chain_exactly"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M11",
+  "selector": "law",
+  "mutant": "block: s(CaseSlot) bound to 0 in-build",
+  "result": [
+   [
+    "FAILED",
+    "45",
+    "2"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::challenge_bounds_are_the_profile",
+   "retained_memory::law_tests::profile_in_build_record"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M12",
+  "selector": "law",
+  "mutant": "block: N-5's batch-source term removed from T13",
+  "result": [
+   [
+    "FAILED",
+    "44",
+    "3"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::challenge_bounds_are_the_profile",
+   "retained_memory::law_tests::profile_in_build_record",
+   "retained_memory::law_tests::profile_transcribes_the_python_chain_exactly"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M13",
+  "selector": "law",
+  "mutant": "challenge: CAP_BYTES 15 GiB",
+  "result": [
+   [
+    "FAILED",
+    "46",
+    "1"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::challenge_bounds_are_the_profile"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M14",
+  "selector": "law",
+  "mutant": "challenge: MAX_PHASE_BYTES dense + 1",
+  "result": [
+   [
+    "FAILED",
+    "46",
+    "1"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::challenge_bounds_are_the_profile"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M15",
+  "selector": "law",
+  "mutant": "challenge: W1_PHASE_BYTES sparse - 1",
+  "result": [
+   [
+    "FAILED",
+    "46",
+    "1"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::challenge_bounds_are_the_profile"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M16",
+  "selector": "law",
+  "mutant": "challenge: N1 text not the notice's",
+  "result": [
+   [
+    "FAILED",
+    "46",
+    "1"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::challenge_bounds_are_the_profile"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M17",
+  "selector": "chal",
+  "mutant": "challenge: W1 work read from the successor only (A1-S-1's notice ignored)",
+  "result": [
+   [
+    "ok",
+    "1",
+    "0"
+   ]
+  ],
+  "failing": [],
+  "compile_error": false,
+  "verdict": "SURVIVED"
+ },
+ {
+  "id": "M18",
+  "selector": "law",
+  "mutant": "runner: C_PLUS_ONE literal 5",
+  "result": [
+   [
+    "FAILED",
+    "46",
+    "1"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::b1_sa_runner_oracle_literal_is_load_cases_plus_one"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M19",
+  "selector": "law",
+  "mutant": "G04: the parked-slot reader folds the first slot only",
+  "result": [
+   [
+    "FAILED",
+    "46",
+    "1"
+   ]
+  ],
+  "failing": [
+   "retained_memory::law_tests::b1_sq_retained_error_text_reads_every_parked_slot_at_c"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M20",
+  "selector": "s11f",
+  "mutant": "s11f: retained_product.rs dropped from RULE8_FILES (E-12 reverted)",
+  "result": [
+   [
+    "FAILED",
+    "10",
+    "1"
+   ]
+  ],
+  "failing": [
+   "rule_8_every_accumulation_in_the_listed_files_is_in_the_table"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ },
+ {
+  "id": "M21",
+  "selector": "s11f",
+  "mutant": "retained_product.rs: a new float accumulation (rule 8 must fail)",
+  "result": [
+   [
+    "FAILED",
+    "10",
+    "1"
+   ]
+  ],
+  "failing": [
+   "rule_8_every_accumulation_in_the_listed_files_is_in_the_table"
+  ],
+  "compile_error": false,
+  "verdict": "KILLED"
+ }
+]

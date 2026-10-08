@@ -1,0 +1,10 @@
+BATCH-START 2026-10-08T13:26:27Z
+RUN 2026-10-08T13:27:18Z i3_three_case.dense.direct r1 rc=0
+RUN 2026-10-08T13:28:09Z i3_three_case.dense.direct r2 rc=0
+RUN 2026-10-08T13:29:00Z i3_three_case.dense.direct r3 rc=0
+RUN 2026-10-08T13:29:16Z c1.sparse.direct r1 rc=0
+RUN 2026-10-08T13:29:33Z c1.sparse.direct r2 rc=0
+RUN 2026-10-08T13:29:50Z c1.sparse.direct r3 rc=0
+RUN 2026-10-08T13:29:51Z milestone.dense.direct r1 rc=0
+RUN 2026-10-08T13:29:51Z process_floor r1 rc=0
+BATCH-DONE 2026-10-08T13:29:51Z

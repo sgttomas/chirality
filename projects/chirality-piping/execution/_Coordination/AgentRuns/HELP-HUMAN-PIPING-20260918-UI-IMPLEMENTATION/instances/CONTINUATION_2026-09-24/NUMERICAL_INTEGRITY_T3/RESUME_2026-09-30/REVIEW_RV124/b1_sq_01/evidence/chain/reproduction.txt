@@ -1,0 +1,35 @@
+# RV124: the chain rebuilt from I104's records, compared with I104's (cmp; 0 = identical)
+linemap summary == I104 g5/linemap_passA_to_b1q.json summary: True
+chain/B1Q_CHAIN_PATCHES.json (mcr_b1q vs I104 chain/): 0
+chain/I104_RULES.json (mcr_b1q vs I104 chain/): 0
+chain/callgraph_g5.py (mcr_b1q vs I104 chain/): 0
+chain/callgraph_rules.g4.json (mcr_b1q vs I104 chain/): 0
+chain/composite_text.py (mcr_b1q vs I104 chain/): 0
+chain/crate_dirs.txt (mcr_b1q vs I104 chain/): 0
+chain/g3lib.py (mcr_b1q vs I104 chain/): 0
+chain/g4_caps.py (mcr_b1q vs I104 chain/): 0
+chain/g5_profile.py (mcr_b1q vs I104 chain/): 0
+chain/loop_bounds.g4.json (mcr_b1q vs I104 chain/): 0
+chain/loopscan.py (mcr_b1q vs I104 chain/): 0
+chain/ordinary_caps.py (mcr_b1q vs I104 chain/): 0
+chain/producer_caps.py (mcr_b1q vs I104 chain/): 0
+chain/run_text_part2.sh (mcr_b1q vs I104 chain/): 0
+chain/sens.py (mcr_b1q vs I104 chain/): 0
+chain/t07_repair.py (mcr_b1q vs I104 chain/): 0
+chain/t08_closure.py (mcr_b1q vs I104 chain/): 0
+chain/t25_g4.py (mcr_b1q vs I104 chain/): 0
+chain/template_inventory.py (mcr_b1q vs I104 chain/): 0
+chain/template_inventory_head.out.json (mcr_b1q vs I104 chain/): 0
+chain/text_args.g4.json (mcr_b1q vs I104 chain/): 0
+chain/text_budget.py (mcr_b1q vs I104 chain/): 0
+chain/text_lexicon.py (mcr_b1q vs I104 chain/): 0
+SQ_N5_PATCHES.json: 0
+profile_tree G5 c=3: 0
+profile_tree N-5 c=3: 0
+profile_tree N-5 c=1: 0
+GENERATED PROFILE block regenerated from RV124's G5 tree vs b075c5c59f: 0 (    1250 lines)
+GENERATED PROFILE block regenerated from RV124's N-5 tree vs 69002bc862: 0 (    1262 lines)
+I82's c = 3 tree (I82 profile_trees/d1_c3.json) sha256 0a1d52574925be5f6034bd03d93526770c9ca3c4dd70044c1002471db3464d35 = I104 g5/i82_c3/profile_tree.json 0a1d52574925be5f6034bd03d93526770c9ca3c4dd70044c1002471db3464d35
+noncand.json (RV124 c=3 point) == I104 g6/noncand/noncand.json: True
+law record lines (RV124 registered build, 265) == I104 law_tests.registered_dev.log lines: identical
+I104 registered_dev vs release law record lines: identical

@@ -1,0 +1,326 @@
+# RV124: every distinct loop the c = 3 TEXT run (RV124 n5_c3) priced at P = 2115, l = 128 or 1, with its rule and contexts
+
+== bound value 2115
+* for (i,r) in rows.iter().enumerate() | rule P
+    site retained_product.rs:4294:prepared_alias @retained_product.rs:4299
+* for (i,spec) in self.data.specs.iter().enumerate() | rule P
+    call structural/retained/product_certificate/final_case.rs:1799:project -> load_ledger.rs:131:push
+    call structural/retained/product_certificate/final_case.rs:1799:project -> structural/retained/product_certificate/final_case.rs:722:recipe
+    call structural/retained/product_certificate/final_case.rs:1799:project -> structural/retained/product_certificate/source_residual.rs:316:member
+* for (spec,value) in specs.iter().zip(&values) | rule P
+    call structural/retained/product_certificate/final_case.rs:1624:begin_prepared_product -> load_ledger.rs:131:push
+* for base_id in &base_ids | rule P
+    call lib.rs:13520:append_combination_results -> lib.rs:113:new
+    call lib.rs:13520:append_combination_results -> lib.rs:13369:evaluate
+    call lib.rs:13520:append_combination_results -> lib.rs:13399:result_sign_convention
+    call lib.rs:13520:append_combination_results -> lib.rs:13417:append_combined_vector_magnitude
+    call lib.rs:13520:append_combination_results -> lib.rs:13774:combination_diag
+    call lib.rs:13520:append_combination_results -> lib.rs:13805:qualified_combination_result_id
+    call preview_physics.rs:854:append_combination_results -> lib.rs:13417:append_combined_vector_magnitude
+    call preview_physics.rs:854:append_combination_results -> lib.rs:13805:qualified_combination_result_id
+    ... +23
+* for d in derived_for(input, selected, &primary, composite)? .into_iter() .chain(additional) | rule P
+    call source_receipt/rows.rs:570:bind_for -> source_receipt.rs:27:bad
+    call source_receipt/rows.rs:570:bind_for -> source_receipt/rows.rs:306:compare
+    site source_receipt/rows.rs:570:bind_for @source_receipt/rows.rs:625
+    site source_receipt/rows.rs:570:bind_for @source_receipt/rows.rs:631
+    site source_receipt/rows.rs:570:bind_for @source_receipt/rows.rs:633
+* for item in array(v)? | rule P
+    call preview_physics_evidence.rs:116:strings -> preview_physics_evidence.rs:86:require
+    call preview_physics_evidence.rs:116:strings -> preview_physics_evidence.rs:97:text
+* for mut result in solve.results | rule P
+    call lib.rs:2377:run_linear_static_preview_observed -> lib.rs:13797:qualified_load_case_result_id
+    site lib.rs:2377:run_linear_static_preview_observed @lib.rs:2774
+    site lib.rs:2377:run_linear_static_preview_observed @lib.rs:2776
+    site lib.rs:2377:run_linear_static_preview_observed @lib.rs:2777
+    site lib.rs:2377:run_linear_static_preview_observed @lib.rs:2790
+* for mut row in old | rule P
+    call preview_physics.rs:528:render -> preview_physics.rs:192:final_id
+    site preview_physics.rs:528:render @preview_physics.rs:605
+    site preview_physics.rs:528:render @preview_physics.rs:612
+* for observed in view.rows() | rule P
+    call retained_product.rs:2020:bind_rows_view -> load_ledger.rs:131:push
+    call retained_product.rs:2020:bind_rows_view -> retained_product.rs:2481:validate_final_metadata
+    call retained_product.rs:2020:bind_rows_view -> retained_product.rs:772:validate_modulus_record
+    site retained_product.rs:2020:bind_rows_view @retained_product.rs:2043
+    site retained_product.rs:2020:bind_rows_view @retained_product.rs:2048
+    site retained_product.rs:2020:bind_rows_view @retained_product.rs:2066
+    site retained_product.rs:2020:bind_rows_view @retained_product.rs:2073
+    site retained_product.rs:2020:bind_rows_view @retained_product.rs:2083
+    ... +14
+* for r in &case.rows | rule P
+    call source_receipt.rs:867:finalize_for -> source_receipt.rs:27:bad
+    site source_receipt.rs:867:finalize_for @source_receipt.rs:1016
+* for r in &rows | rule P
+    call retained_precision.rs:2654:numeric_cases -> retained_precision.rs:2623:finite_check
+    site retained_precision.rs:2654:numeric_cases @retained_precision.rs:2688
+* for r in rows | rule P
+    call retained_product.rs:4219:prepared_specs -> load_ledger.rs:131:push
+    call source_receipt.rs:803:validate_case_rows -> source_receipt.rs:27:bad
+    site source_receipt.rs:803:validate_case_rows @source_receipt.rs:814
+    site source_receipt/rows.rs:570:bind_for @source_receipt/rows.rs:642
+    site source_receipt/rows.rs:570:bind_for @source_receipt/rows.rs:643
+    site source_receipt/rows.rs:570:bind_for @source_receipt/rows.rs:651
+* for r in rows.iter().flatten().filter(|r|r.metadata.as_ref().is_some_and(|m|m.component==c)) | rule P
+    site retained_product.rs:2254:observables_view @retained_product.rs:2436
+* for r in view.rows() | rule P
+    site retained_product.rs:4203:bind_observations_view @retained_product.rs:4208
+* for r in view.rows().filter(|r| &r.entity_ref==id && r.kind==kind) | rule P
+    site retained_product.rs:2254:observables_view @retained_product.rs:2443
+* for row in &c.rows | rule P
+    call retained_precision.rs:3203:g5b -> retained_precision.rs:3257:row_scale
+    call retained_precision.rs:3291:g5c -> retained_precision.rs:206:error
+    call retained_precision.rs:3291:g5c -> retained_precision.rs:217:need
+    call retained_precision.rs:3291:g5c -> retained_precision.rs:312:bits
+    call retained_precision.rs:3291:g5c -> retained_precision.rs:3257:row_scale
+    site retained_precision.rs:3291:g5c @retained_precision.rs:3316
+    site retained_precision.rs:3291:g5c @retained_precision.rs:3346
+* for row in &rows | rule P
+    site formation_guard.rs:297:load_row_finding @formation_guard.rs:315
+* for row in produced_rows | rule P
+    site retained_product.rs:938:solver_observations @retained_product.rs:982
+    site retained_product.rs:938:solver_observations @retained_product.rs:989
+* for row in rows | rule P
+    call preview_physics_evidence.rs:721:combination_magnitudes -> preview_physics_evidence.rs:102:number
+    call preview_physics_evidence.rs:721:combination_magnitudes -> preview_physics_evidence.rs:86:require
+    call retained_product.rs:1035:bind_observations_in -> retained_product.rs:855:observation_fields_of
+    site retained_product.rs:1035:bind_observations_in @retained_product.rs:1083
+* for row in rows_for(source, c) | rule P
+    call retained_precision.rs:4421:validate -> retained_precision.rs:217:need
+* for row in rows_list.iter().filter(in_case) | rule P
+    call preview_physics_evidence.rs:244:validate_preview_physics_evidence -> preview_physics_evidence.rs:146:identity
+    call preview_physics_evidence.rs:244:validate_preview_physics_evidence -> preview_physics_evidence.rs:86:require
+    call preview_physics_evidence.rs:244:validate_preview_physics_evidence -> preview_physics_evidence.rs:97:text
+    site preview_physics_evidence.rs:244:validate_preview_physics_evidence @preview_physics_evidence.rs:530
+* for spec in specs | rule P
+    call structural/retained/product_certificate/final_case.rs:1624:begin_prepared_product -> load_ledger.rs:131:push
+* for treatment in ledger.iter().filter(|r| r.treatment == " ") | rule P
+    call source_receipt/source.rs:153:recipes -> source_receipt.rs:27:bad
+    call source_receipt/source.rs:153:recipes -> source_receipt.rs:38:bits
+    call source_receipt/source.rs:153:recipes -> source_receipt/source.rs:26:functional_id
+    call source_receipt/source.rs:153:recipes -> source_receipt/source.rs:39:source_operand
+    site source_receipt/source.rs:153:recipes @source_receipt/source.rs:175
+    site source_receipt/source.rs:153:recipes @source_receipt/source.rs:176
+    site source_receipt/source.rs:153:recipes @source_receipt/source.rs:181
+* for v in verdicts | rule P
+    call retained_wire.rs:1148:selection -> retained_wire.rs:133:ubits
+* iter:" ":p.projection_outcomes.iter().map | rule P
+    call retained_wire.rs:1256:proof_trace -> retained_wire.rs:253:conversion
+* iter:rows.iter().map | rule P
+    call lib.rs:5738:qualify_source_case_rows -> lib.rs:13797:qualified_load_case_result_id
+    site lib.rs:5738:qualify_source_case_rows @lib.rs:5740
+* iter:rows: rows .iter().map | rule P
+    site source_receipt.rs:720:ordinary @source_receipt.rs:739
+    site source_receipt.rs:762:failed @source_receipt.rs:781
+* iter:rows_list .iter() .filter(in_case) .filter(|r| r[" "] == " ").map | rule P
+    call preview_physics_evidence.rs:244:validate_preview_physics_evidence -> preview_physics_evidence.rs:97:text
+* iter:solve .results .iter().map | rule P
+    call lib.rs:2377:run_linear_static_preview_observed -> lib.rs:13797:qualified_load_case_result_id
+    site lib.rs:2377:run_linear_static_preview_observed @lib.rs:2764
+    site lib.rs:2377:run_linear_static_preview_observed @lib.rs:2766
+
+== bound value 128
+* for &index in indices | rule l
+    call load_ledger.rs:674:formation_row -> load_ledger.rs:668:push_unique
+* for (i, l) in list(&case[" "]).iter().enumerate() | rule l
+    call retained_precision.rs:3488:g8 -> retained_precision.rs:206:error
+    call retained_precision.rs:3488:g8 -> retained_precision.rs:312:bits
+    call retained_precision.rs:3488:g8 -> retained_precision.rs:3361:unit_value
+    call retained_precision.rs:3488:g8 -> retained_precision.rs:3477:find_node
+* for (i, l) in source.loads().iter().enumerate() | rule l
+    call retained_wire.rs:909:case_source -> retained_wire.rs:127:bits
+* for (index, term) in self.terms.iter().enumerate() | rule l
+    call load_ledger.rs:197:finish -> load_ledger.rs:131:push
+* for (occurrence, l) in application.nodal_loads.iter().enumerate() | rule l
+    call retained_product.rs:1540:capture_case_source -> lib.rs:14057:parse_direction
+    call retained_product.rs:1540:capture_case_source -> load_ledger.rs:131:push
+    site retained_product.rs:1540:capture_case_source @retained_product.rs:1836
+    site retained_product.rs:1540:capture_case_source @retained_product.rs:1843
+* for (primitive_index, load) in case.primitive_loads.iter().enumerate() | rule l
+    call self_weight.rs:789:inspect_applied_self_weight -> load_ledger.rs:131:push
+    site self_weight.rs:789:inspect_applied_self_weight @self_weight.rs:814
+    site self_weight.rs:789:inspect_applied_self_weight @self_weight.rs:829
+    site self_weight.rs:789:inspect_applied_self_weight @self_weight.rs:902
+    site self_weight.rs:789:inspect_applied_self_weight @self_weight.rs:909
+    site self_weight.rs:789:inspect_applied_self_weight @self_weight.rs:910
+    site self_weight.rs:789:inspect_applied_self_weight @self_weight.rs:921
+    site self_weight.rs:789:inspect_applied_self_weight @self_weight.rs:922
+    ... +5
+* for f in forces | rule l
+    call source_receipt/source.rs:252:commitment -> source_receipt.rs:27:bad
+    call source_receipt/source.rs:252:commitment -> source_receipt.rs:38:bits
+* for finding in &load_application.findings | rule l
+    call lib.rs:4060:solve_load_case_observed -> lib.rs:14162:diag
+    site lib.rs:4060:solve_load_case_observed @lib.rs:4090
+    site lib.rs:4060:solve_load_case_observed @lib.rs:4091
+    site lib.rs:4060:solve_load_case_observed @lib.rs:4094
+    site lib.rs:4060:solve_load_case_observed @lib.rs:4095
+* for force in force_terms .iter() .filter(|f| f.dof == dof && f.value != 0.0) | rule l
+    call source_recovery.rs:502:prepare_sources -> load_ledger.rs:131:push
+* for load in &application.nodal_loads | rule l
+    call lib.rs:3858:push_nodal_loads -> load_ledger.rs:131:push
+* for load in &case.primitive_loads | rule l
+    call pressure_runtime.rs:111:validate_profile -> pressure_runtime.rs:85:problem
+    call validation.rs:29:validate_connected_input_contracts -> lib.rs:14162:diag
+    call validation.rs:29:validate_connected_input_contracts -> lib.rs:14212:stable_suffix
+    site validation.rs:29:validate_connected_input_contracts @validation.rs:33
+    site validation.rs:29:validate_connected_input_contracts @validation.rs:34
+    site validation.rs:29:validate_connected_input_contracts @validation.rs:37
+* for load in &input.load_application.nodal_loads | rule l
+    call source_recovery.rs:502:prepare_sources -> lib.rs:14057:parse_direction
+    call source_recovery.rs:502:prepare_sources -> lib.rs:14092:parse_load_dimension
+    call source_recovery.rs:502:prepare_sources -> load_ledger.rs:131:push
+    call source_recovery.rs:502:prepare_sources -> source_recovery.rs:473:name
+    site source_recovery.rs:502:prepare_sources @source_recovery.rs:737
+* for load in &input.load_case.primitive_loads | rule l
+    call source_recovery.rs:502:prepare_sources -> lib.rs:14069:parse_category
+    call source_recovery.rs:502:prepare_sources -> lib.rs:14092:parse_load_dimension
+    call source_recovery.rs:502:prepare_sources -> source_recovery.rs:473:name
+* for load in &load_case.primitive_loads | rule l
+    call validation.rs:245:validate_provenance -> validation.rs:1438:expect_local_input_provenance
+    site lib.rs:10801:build_pressure_thrust_loads @lib.rs:10821
+    site lib.rs:10801:build_pressure_thrust_loads @lib.rs:10833
+* for load in case.get(" ").and_then(|v| v.as_array()).into_iter().flatten() | rule l
+    site preview_physics.rs:1015:imposed_displacement_refusal @preview_physics.rs:1028
+    site preview_physics.rs:1015:imposed_displacement_refusal @preview_physics.rs:1029
+    site preview_physics.rs:1015:imposed_displacement_refusal @preview_physics.rs:1030
+* for load in loads | rule l
+    call lib.rs:11305:curved_bend_uniform_intensities_by_pipe -> load_ledger.rs:131:push
+    call lib.rs:1676:prepare_loads -> lib.rs:1239:new
+    call lib.rs:1676:prepare_loads -> lib.rs:2405:prepare_node_load
+    call lib.rs:1676:prepare_loads -> lib.rs:2448:prepare_element_load
+    call lib.rs:1676:prepare_loads -> lib.rs:2507:prepare_support_load
+    call lib.rs:1676:prepare_loads -> lib.rs:2707:finite_load_magnitude
+* for t in list(&s[" "]) | rule l
+    call retained_precision.rs:4096:verify_native_source_hashes -> retained_precision.rs:4098:put
+    call retained_precision.rs:4096:verify_native_source_hashes -> retained_precision.rs:4103:val
+    call retained_precision.rs:4096:verify_native_source_hashes -> retained_precision.rs:4111:dof
+* for v in list(&sel[key]) | rule 4*n
+    call retained_precision.rs:3058:g5a_selected -> retained_precision.rs:206:error
+* for x in old.loads() | rule l
+    call retained_product.rs:3982:prepare_active_case -> load_ledger.rs:131:push
+    call retained_product.rs:3982:prepare_active_case -> retained_product.rs:3549:prepared_string
+* iter:" ":forces.iter().map | rule l
+    call source_receipt/source.rs:252:commitment -> source_receipt.rs:38:bits
+* iter:case.primitive_loads.iter().enumerate().position | rule l
+    call retained_product.rs:1540:capture_case_source -> lib.rs:14057:parse_direction
+* iter:list.iter().map | rule 4*n
+    call retained_wire.rs:1148:selection -> retained_wire.rs:127:bits
+* iter:load_case .primitive_loads .iter().filter_map | rule l
+    call lib.rs:9154:build_load_case_primitive_loads -> lib.rs:14057:parse_direction
+    call lib.rs:9154:build_load_case_primitive_loads -> lib.rs:14069:parse_category
+    call lib.rs:9154:build_load_case_primitive_loads -> lib.rs:14092:parse_load_dimension
+    call lib.rs:9154:build_load_case_primitive_loads -> lib.rs:14162:diag
+    call lib.rs:9154:build_load_case_primitive_loads -> lib.rs:14212:stable_suffix
+    call lib.rs:9154:build_load_case_primitive_loads -> lib.rs:899:nodal_force
+    call lib.rs:9154:build_load_case_primitive_loads -> lib.rs:916:uniform_element_load
+    site lib.rs:9154:build_load_case_primitive_loads @lib.rs:9182
+    ... +15
+* iter:offending .into_iter().map | rule l
+    call preview_physics.rs:1015:imposed_displacement_refusal -> lib.rs:14162:diag
+    call preview_physics.rs:1015:imposed_displacement_refusal -> preview_physics.rs:188:identity
+    site preview_physics.rs:1015:imposed_displacement_refusal @preview_physics.rs:1053
+    site preview_physics.rs:1015:imposed_displacement_refusal @preview_physics.rs:1054
+    site preview_physics.rs:1015:imposed_displacement_refusal @preview_physics.rs:1057
+* iter:self .terms .iter().map | rule l
+    call load_ledger.rs:337:force_scaled -> load_ledger.rs:373:force_scaled_term
+* iter:terms.iter().map | rule l
+    site structural.rs:1100:row_sources @structural.rs:1101
+
+== bound value 1
+* for (call_id, call) in list(&b[" "]).iter().enumerate() | rule 1
+    call retained_precision.rs:904:g5_native -> retained_precision.rs:1505:g5_schedule
+    call retained_precision.rs:904:g5_native -> retained_precision.rs:206:error
+    call retained_precision.rs:904:g5_native -> retained_precision.rs:291:at
+    call retained_precision.rs:904:g5_native -> retained_precision.rs:315:sum
+    call retained_precision.rs:904:g5_native -> retained_precision.rs:897:stages_sum
+    site retained_precision.rs:904:g5_native @retained_precision.rs:1114
+    site retained_precision.rs:904:g5_native @retained_precision.rs:1121
+* for (i, g) in list(&b[" "]).iter().enumerate() | rule 1
+    call retained_precision.rs:904:g5_native -> retained_precision.rs:291:at
+* for (mi, mb) in list(&b[" "]).iter().enumerate() | rule 1
+    call retained_precision.rs:3488:g8 -> retained_precision.rs:206:error
+    call retained_precision.rs:3488:g8 -> retained_precision.rs:312:bits
+    call retained_precision.rs:3488:g8 -> retained_precision.rs:3377:selected_material
+* for bounds in boundaries.windows(2) | rule 1
+    site lib.rs:10416:exact_straight_summary_extrema @lib.rs:10438
+    site lib.rs:10416:exact_straight_summary_extrema @lib.rs:10457
+    site lib.rs:10416:exact_straight_summary_extrema @lib.rs:10463
+    site lib.rs:10416:exact_straight_summary_extrema @lib.rs:10477
+* for interval in boundaries.windows(2) | rule 1
+    call lib.rs:10513:straight_summary_extrema -> retained_wire.rs:166:sum
+* iter:" ":a.fault.map | rule 1
+    call retained_wire.rs:1283:product_attempt -> retained_wire.rs:118:untranslated
+* iter:" ":b.reason.as_ref().map | rule 1
+    call retained_wire.rs:1407:invocation_arrays -> retained_wire.rs:355:stop
+* iter:" ":capture.numeric_failure.as_ref().map | rule 1
+    call retained_wire.rs:1224:public_error -> retained_wire.rs:498:product_error
+* iter:" ":ev.floor.as_ref().map | rule 1
+    call retained_wire.rs:1148:selection -> retained_wire.rs:133:ubits
+* iter:" ":r.pivot_margin_min.map | rule 1
+    call retained_wire.rs:1020:physical -> retained_wire.rs:127:bits
+* iter:" ":r.rcond.map | rule 1
+    call retained_wire.rs:1020:physical -> retained_wire.rs:127:bits
+* iter:" ":r.residual_worst.map | rule 1
+    call retained_wire.rs:1020:physical -> retained_wire.rs:127:bits
+* iter:" ":section.map | rule 1
+    call retained_wire.rs:1224:public_error -> retained_wire.rs:679:section_error
+* iter:" ":x.map | rule 1
+    call retained_wire.rs:1020:physical -> retained_wire.rs:127:bits
+* iter:[" ", " ", " ", " ", " ", " "].map | rule 1
+    site lib.rs:1056:integrity_dof_map @lib.rs:1061
+* iter:canonical_json_checked_v1_text(&text).ok().map | rule 1
+    call retained_wire.rs:194:domain_hash -> retained_wire.rs:190:sha_hex
+* iter:capture.g5a_error.as_ref().map | rule 1
+    call retained_wire.rs:1224:public_error -> retained_wire.rs:600:g5a_error
+* iter:capture.map | rule 1
+    site retained_product.rs:441:invocation @retained_product.rs:456
+* iter:capture.observable_error.as_ref().map | rule 1
+    call retained_wire.rs:1224:public_error -> retained_wire.rs:585:capture_error
+* iter:e.exact(run.work.invocation_after(), " ") { return Err(fail(ReceiptCheck::WorkCounterInconsistent, " ")); } if inv.calls().iter().any | rule 1
+    call retained_wire.rs:1407:invocation_arrays -> retained_wire.rs:152:exact
+* iter:equilibrium.map | rule 1
+    site lib.rs:1105:append_integrity_report @lib.rs:1124
+* iter:evidence_refs: evidence.map | rule 1
+    site lib.rs:1841:assessed_numerical_quality @lib.rs:1916
+* iter:finding.map | rule 1
+    site retained_product.rs:372:ordinary_finding @retained_product.rs:374
+* iter:hi.map | rule 1
+    call retained_product.rs:583:selection -> retained_product.rs:3394:copy
+* iter:inv.calls().iter().map | rule 1
+    call retained_wire.rs:1407:invocation_arrays -> retained_wire.rs:152:exact
+* iter:inv.groups().iter().map | rule 1
+    call retained_wire.rs:1407:invocation_arrays -> retained_wire.rs:115:fail
+    call retained_wire.rs:1407:invocation_arrays -> retained_wire.rs:190:sha_hex
+    call retained_wire.rs:1407:invocation_arrays -> retained_wire.rs:417:refusal
+* iter:inv.sources().get(g.first_source).map | rule 1
+    call retained_wire.rs:1407:invocation_arrays -> retained_wire.rs:190:sha_hex
+* iter:item.metadata .as_ref().map | rule 1
+    site lib.rs:10200:append_combination_modulus_basis_records @lib.rs:10207
+* iter:load_case .modulus_basis_temperature .as_ref().map | rule 1
+    site lib.rs:9811:materials_for_modulus_basis_observed @lib.rs:10154
+* iter:match load_state.map | rule 1
+    call lib.rs:4060:solve_load_case_observed -> lib.rs:3485:load_state_eigen_loads
+* iter:match observer.permit().map | rule 1
+    call lib.rs:2983:permitted_run -> retained_memory.rs:2884:check_complete
+* iter:match retained_entry.map | rule 1
+    call lib.rs:2279:run_linear_static_preview_value_dispatch -> retained_memory.rs:2939:admit
+* iter:pending.take().map | rule 1
+    call lib.rs:2925:permitted_dispatch -> lib.rs:2983:permitted_run
+* iter:r.verification.as_ref().map | rule 1
+    call retained_wire.rs:1020:physical -> retained_wire.rs:127:bits
+* iter:recording .as_mut().map | rule 1
+    call structural/retained/adaptive.rs:4981:solve_cases_projected -> load_ledger.rs:197:finish
+* iter:recording.as_mut().map | rule 1
+    call structural/retained/adaptive.rs:4981:solve_cases_projected -> load_ledger.rs:197:finish
+* iter:report .audit_error .as_ref().map | rule 1
+    site lib.rs:1258:append_load_contribution_absorbed @lib.rs:1287
+* iter:symmetry: system.symmetry.as_ref().map | rule 1
+    site structural/exact_boundary.rs:288:new_charged @structural/exact_boundary.rs:477
+* iter:symmetry_basis: system.symmetry.as_ref().map | rule 1
+    site structural.rs:1288:prepare_bound @structural.rs:1402
+    site structural/sparse.rs:1299:prepare_sparse_bound @structural/sparse.rs:1472
+* iter:value .filter(|value| value.is_finite()).map | rule 1
+    site lib.rs:6314:optional_f64 @lib.rs:6317
+* iter:value.map | rule 1
+    site lib.rs:6308:optional_usize @lib.rs:6310

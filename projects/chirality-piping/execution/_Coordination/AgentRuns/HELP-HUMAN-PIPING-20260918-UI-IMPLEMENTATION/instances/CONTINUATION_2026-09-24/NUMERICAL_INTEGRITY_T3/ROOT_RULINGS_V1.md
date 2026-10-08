@@ -16001,3 +16001,40 @@ B1 fits the 12 GiB product cap with room. Behaviour under memory pressure on a 1
 - **RV123 (RV-P2 round 1)** reviews B3b-P at `22e9d00062`. Its interim found no blocking issue, and ROOT asked I105 to tighten lane A's oracle test.
 
 **IDs:** I106, RV123 and RV124 are used. The next unused are **I107 and RV125**.
+
+## R6b: RV124 passes SQ and confirms M; the registration is applied (`b1` `ddc8eaaf54`); RV122 passes lane A; RV123 passes B3b-P; SG passes (ROOT, 2026-10-08 UTC)
+
+**RV124 (RV-Q) PASSED SQ:** 0 BLOCKING, 0 SHOULD-FIX, 5 NOTE (`R/REVIEW_RV124/b1_sq_01/`, `9bb6f811…`).
+- **It reproduced G5 byte for byte from the records:** both GENERATED PROFILE blocks, D = 41,769 and D_env = 22,911.
+- **The loop rules:** no under-count was found.
+- **The re-pins and the measurements:** confirmed.
+
+**R6b: M = 10.5 GiB is final.** SQ's `registration.diff` is applied on `b1` as `ddc8eaaf54` (`threshold_bytes` = 11,274,289,152). B1's product code is complete there.
+
+**RV124's notes, ruled:**
+- **Q-N1:** B1's unpriced heap owners (`Vec<CaseAttempt>`, 28,200 B at |A| = 3, and small O(c) locals; about 30 KB in all) go to SB with that stated bound, against a 287 MB dense margin. M is unaffected.
+- **Q-N2:** any DEF-O revision covers the MPa ×1e6 projection beside NC-1's mm→SI. RSS_TIME §6's class split is noted.
+- **Q-N3:** SK's package carries QUAL's §7 (the identifier audit) and §9 (controls) for B1.
+- **Q-N4:** noted. M17 is equivalent on today's inputs.
+- **Q-N5:** SB's Pass B uses the multiplicity-free non-candidate comparison (I104's `noncand_compare_nomult.py`).
+
+**SG (I106) passed** the four Direct-entry gates with the registration applied (`R/I106/b1_sg_01/`):
+- pressure is refused at D1.5 with the exact bytes;
+- coexistence holds;
+- Stale is byte-identical to base;
+- the eight registered rows are all D1.4's widening, with identical published bytes;
+- there is no product caller.
+
+**RV122 (RV-Q2) passed lane A** (0/2/3; `c49591fd…`). The repairs go to I103:
+- SF-1: pin m3l's interim Precommit{G8} bytes;
+- SF-2: `capacity() == 0` in the exact D1.5 clause, with probe B as its test;
+- N-1.
+
+**RV123 (RV-P2 round 1) passed B3b-P** (0/2/6; `e564db93…`). The repairs go to I105:
+- S-1: a two-member exact pin;
+- S-2: an exact successor with an unavailable prepared case, through a case-specific hook;
+- N-2, optionally.
+
+N-5 (the exact route's loops and allocations, and stack witnesses for its frames) goes to SQ2's brief.
+
+**Next for B1:** `b1` merges into NUM, then PR-B1 is cut compactly from main. Then SB (Pass B), SK (the package), RV-X (the complete-diff review), CI with the full-SHA dispatch, GEN-8, and an exact-head DEC-025 with the src-tauri suite.

@@ -1,0 +1,18 @@
+b2_k1e3 sparse: rows 2113, verdicts 2113, failing 81
+   30  element_local_torsional_shear_stress          MPa  projection x1e6 (MPa->Pa)         predicates [False, False, True, True]
+   18  element_local_bending_normal_stress_z         MPa  projection x1e6 (MPa->Pa)         predicates [False, False, True, True]
+   12  pipe_elastic_normal_stress_maximum_v2         Pa   projection none                   predicates [False, False, True, True]
+   10  element_local_axial_force                     N    projection none                   predicates [False, False, True, True]
+    5  element_local_shear_force_z                   N    projection none                   predicates [False, False, True, True]
+    4  element_local_bending_normal_stress_y         MPa  projection x1e6 (MPa->Pa)         predicates [False, False, True, True]
+    2  displacement_magnitude                        mm   projection /1000 (mm->SI, NC-1)   predicates [False, False, True, True]
+  by projection: {'/1000 (mm->SI, NC-1)': 2, 'none': 27, 'x1e6 (MPa->Pa)': 52}
+b2_k1e3 dense: rows 2114, verdicts 2114, failing 81
+   30  element_local_torsional_shear_stress          MPa  projection x1e6 (MPa->Pa)         predicates [False, False, True, True]
+   18  element_local_bending_normal_stress_z         MPa  projection x1e6 (MPa->Pa)         predicates [False, False, True, True]
+   12  pipe_elastic_normal_stress_maximum_v2         Pa   projection none                   predicates [False, False, True, True]
+   10  element_local_axial_force                     N    projection none                   predicates [False, False, True, True]
+    5  element_local_shear_force_z                   N    projection none                   predicates [False, False, True, True]
+    4  element_local_bending_normal_stress_y         MPa  projection x1e6 (MPa->Pa)         predicates [False, False, True, True]
+    2  displacement_magnitude                        mm   projection /1000 (mm->SI, NC-1)   predicates [False, False, True, True]
+  by projection: {'/1000 (mm->SI, NC-1)': 2, 'none': 27, 'x1e6 (MPa->Pa)': 52}

@@ -1,0 +1,8 @@
+
+running 1 test
+test i3_three_case::dense::direct ... I104_SQ_CHALLENGE_TIME i3_three_case DenseScrutiny Direct call_ms=50534.0
+I104_SQ_CHALLENGE i3_three_case DenseScrutiny Direct outcome=successor(6651380 B) rows=6342 peak_bytes=118781785 bound=E_mov_max bound_bytes=9792698646 ratio=0.012130
+ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 27 filtered out; finished in 50.71s
+

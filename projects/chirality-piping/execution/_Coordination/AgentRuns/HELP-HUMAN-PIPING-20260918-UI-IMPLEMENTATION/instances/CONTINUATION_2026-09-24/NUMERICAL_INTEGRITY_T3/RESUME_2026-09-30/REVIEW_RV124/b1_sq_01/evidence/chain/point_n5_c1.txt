@@ -1,0 +1,7 @@
+sens exit 0
+{"caps": {"l": 128, "c": 1}, "eps": 2, "text_complete": true, "D": 14781, "D_converged": true, "D_env": 9361, "TAV": 2221122770, "sparse": {"admission_phase": "W3", "E_mov_plus_R": 3575275797, "fraction_of_M": 0.8879, "X1": 0.8235, "W4": 0.8814, "margin_rule": true, "fits_M": true, "TAV_X": 1464063692, "TAV_W": 1640333910, "T25": 1348846906, "T16": 1268331449, "T17": 1149523110}, "dense": {"admission_phase": "W3", "E_mov_plus_R": 3594986245, "fraction_of_M": 0.8928, "X1": 0.8284, "W4": 0.8863, "margin_rule": true, "fits_M": true, "TAV_X": 1464063692, "TAV_W": 1640333910, "T25": 1348846906, "T16": 1268331449, "T17": 1149523110}}
+
+complete True D 14781 TAV 2221122770
+unmapped []
+unclassified []
+selfrec ['derivative.rs:62:guard_json', 'lib.rs:125:write_canonical', 'lib.rs:94:validate_checked_value', 'load_reference.rs:306:finite_tree', 'physics_evidence.rs:77:finite_tree', 'preview_physics_evidence.rs:126:finite_tree', 'retained_precision.rs:1745:located', 'retained_precision.rs:400:encoding', 'self_weight.rs:558:retained_basis', 'source_blocks.rs:87:shape_in', 'structural/sparse.rs:592:assemble_sparse_stiffness']

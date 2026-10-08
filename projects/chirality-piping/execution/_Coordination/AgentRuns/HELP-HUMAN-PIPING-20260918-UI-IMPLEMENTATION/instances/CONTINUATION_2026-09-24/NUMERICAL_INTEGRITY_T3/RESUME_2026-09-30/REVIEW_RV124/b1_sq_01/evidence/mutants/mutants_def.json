@@ -1,0 +1,255 @@
+{
+ "M00": {
+  "desc": "baseline + DEF-O failing-row kinds probe (test code only)",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/src/retained_memory_witness_tests.rs",
+    "            let first = verdicts.iter().find(|v| !v.passed)",
+    "            let fails: Vec<String> = verdicts.iter().filter(|v| !v.passed).map(|v| format!(\"{}:{}\", v.row, kind(v.row))).collect();\n            println!(\"RV124_DEF_O_FAILS {label} {mode:?} case={case_id} {fails:?}\");\n            let first = verdicts.iter().find(|v| !v.passed)"
+   ]
+  ]
+ },
+ "M01": {
+  "desc": "G-B bound reverts to the SF-1 defect: T11 - T11_late_capture",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/src/retained_memory.rs",
+    "profile_bytes(profile::F_T11_LATE_CAPTURE) / c)],",
+    "profile_bytes(profile::F_T11_LATE_CAPTURE))],"
+   ]
+  ]
+ },
+ "M02": {
+  "desc": "G-B bound divides by 2, not C",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/src/retained_memory.rs",
+    "profile_bytes(profile::F_T11_LATE_CAPTURE) / c)],",
+    "profile_bytes(profile::F_T11_LATE_CAPTURE) / 2)],"
+   ]
+  ]
+ },
+ "M03": {
+  "desc": "G-B bound is T11 (no late subtraction)",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/src/retained_memory.rs",
+    "profile_bytes(profile::F_T11).saturating_sub(profile_bytes(profile::F_T11_LATE_CAPTURE) / c)],",
+    "profile_bytes(profile::F_T11)],"
+   ]
+  ]
+ },
+ "M04": {
+  "desc": "registered threshold one byte low",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/src/retained_memory.rs",
+    "threshold_bytes: 11_274_289_152,",
+    "threshold_bytes: 11_274_289_151,"
+   ]
+  ]
+ },
+ "M05": {
+  "desc": "registered threshold at 12 GiB",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/src/retained_memory.rs",
+    "threshold_bytes: 11_274_289_152,",
+    "threshold_bytes: 12_884_901_888,"
+   ]
+  ]
+ },
+ "M06": {
+  "desc": "block: Text(diag_env) + 1",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/src/retained_memory.rs",
+    "pub(crate) const TEXT_TEXT_DIAG_ENV: u64 = 175409684;",
+    "pub(crate) const TEXT_TEXT_DIAG_ENV: u64 = 175409685;"
+   ]
+  ]
+ },
+ "M07": {
+  "desc": "block: D_env - 1",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/src/retained_memory.rs",
+    "pub(crate) const TEXT_D_ENV: u64 = 22911;",
+    "pub(crate) const TEXT_D_ENV: u64 = 22910;"
+   ]
+  ]
+ },
+ "M08": {
+  "desc": "block: L_DIAGID + 1",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/src/retained_memory.rs",
+    "pub(crate) const L_DIAGID: u64 = 2330;",
+    "pub(crate) const L_DIAGID: u64 = 2331;"
+   ]
+  ]
+ },
+ "M09": {
+  "desc": "block: a T11_late_capture coefficient not a multiple of C",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/src/retained_memory.rs",
+    "Form { name: \"T11_late_capture\", constant: 49536, terms: &[(136, 576),",
+    "Form { name: \"T11_late_capture\", constant: 49536, terms: &[(136, 577),"
+   ]
+  ]
+ },
+ "M10": {
+  "desc": "block: N-5's parked-slot term removed from T11",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/src/retained_memory.rs",
+    "(63, 1), (85, 3), (86, 2), (115, 8)",
+    "(63, 1), (85, 3), (115, 8)"
+   ]
+  ]
+ },
+ "M11": {
+  "desc": "block: s(CaseSlot) bound to 0 in-build",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/src/retained_memory.rs",
+    "(size_of::<crate::retained_product::CaseSlot>()) as u64, // s(CaseSlot)",
+    "(0) as u64, // s(CaseSlot)"
+   ]
+  ]
+ },
+ "M12": {
+  "desc": "block: N-5's batch-source term removed from T13",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/src/retained_memory.rs",
+    "(145, 12), (154, 3), (163, 12288)",
+    "(145, 12), (163, 12288)"
+   ]
+  ]
+ },
+ "M13": {
+  "desc": "challenge: CAP_BYTES 15 GiB",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/tests/retained_memory_challenge.rs",
+    "const CAP_BYTES: usize = 16 << 30;",
+    "const CAP_BYTES: usize = 15 << 30;"
+   ]
+  ]
+ },
+ "M14": {
+  "desc": "challenge: MAX_PHASE_BYTES dense + 1",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/tests/retained_memory_challenge.rs",
+    "const MAX_PHASE_BYTES: [u64; 2] = [9_733_567_302, 9_792_698_646];",
+    "const MAX_PHASE_BYTES: [u64; 2] = [9_733_567_302, 9_792_698_647];"
+   ]
+  ]
+ },
+ "M15": {
+  "desc": "challenge: W1_PHASE_BYTES sparse - 1",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/tests/retained_memory_challenge.rs",
+    "const W1_PHASE_BYTES: [u64; 2] = [5_069_321_390, 5_128_452_734];",
+    "const W1_PHASE_BYTES: [u64; 2] = [5_069_321_389, 5_128_452_734];"
+   ]
+  ]
+ },
+ "M16": {
+  "desc": "challenge: N1 text not the notice's",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/tests/retained_memory_challenge.rs",
+    "const N1_NOTICE: &str = \"Retained-precision recovery is unavailable for this load case.\";",
+    "const N1_NOTICE: &str = \"Retained-precision recovery is not available for this load case.\";"
+   ]
+  ]
+ },
+ "M17": {
+  "desc": "challenge: W1 work read from the successor only (A1-S-1's notice ignored)",
+  "selector": "chal",
+  "edits": [
+   [
+    "P/core/product_physics/tests/retained_memory_challenge.rs",
+    "(outcome, successor.is_some() || notices > 0, rows)",
+    "(outcome, successor.is_some(), rows)"
+   ]
+  ]
+ },
+ "M18": {
+  "desc": "runner: C_PLUS_ONE literal 5",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/runner/headless/tests/retained_precision_admission.rs",
+    "const C_PLUS_ONE: usize = 4;",
+    "const C_PLUS_ONE: usize = 5;"
+   ]
+  ]
+ },
+ "M19": {
+  "desc": "G04: the parked-slot reader folds the first slot only",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/src/retained_memory.rs",
+    "capture.parked_cases().iter().fold(own,",
+    "capture.parked_cases().iter().take(1).fold(own,"
+   ]
+  ]
+ },
+ "M20": {
+  "desc": "s11f: retained_product.rs dropped from RULE8_FILES (E-12 reverted)",
+  "selector": "s11f",
+  "edits": [
+   [
+    "P/core/product_physics/tests/s11f_site_test.rs",
+    "    \"PP/retained_product.rs\",\n    \"PP/self_weight.rs\",",
+    "    \"PP/self_weight.rs\","
+   ]
+  ]
+ },
+ "M21": {
+  "desc": "retained_product.rs: a new float accumulation (rule 8 must fail)",
+  "selector": "s11f",
+  "edits": [
+   [
+    "P/core/product_physics/src/retained_product.rs",
+    "    fn capture_entry(&self, event: AdapterEvent) -> Result<(), CaptureError> {\n",
+    "    fn capture_entry(&self, event: AdapterEvent) -> Result<(), CaptureError> {\n        let mut rv124_acc = 0.0f64; for rv124_x in [1.0f64] { rv124_acc += rv124_x; } let _ = rv124_acc;\n"
+   ]
+  ]
+ },
+ "M22": {
+  "desc": "phase_caps late bound divides by LOAD_CASES - 1",
+  "selector": "law",
+  "edits": [
+   [
+    "P/core/product_physics/src/retained_memory.rs",
+    "profile_bytes(profile::F_T11_LATE_CAPTURE) / c)],",
+    "profile_bytes(profile::F_T11_LATE_CAPTURE) / (c - 1))],"
+   ]
+  ]
+ }
+}

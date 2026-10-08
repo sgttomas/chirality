@@ -1,0 +1,124 @@
+[
+ {
+  "control": "c0_unmodified",
+  "expect": null,
+  "complete": true,
+  "TAV": 6234394666,
+  "findings": [],
+  "pass": true
+ },
+ {
+  "control": "b1_wire_1634_case_id",
+  "expect": [
+   "id-unaudited",
+   "retained_wire.rs:1634 case_id"
+  ],
+  "complete": false,
+  "TAV": 6234394666,
+  "findings": [
+   [
+    [
+     "id-unaudited",
+     "core/product_physics/src/retained_wire.rs:1634 case_id"
+    ],
+    2
+   ]
+  ],
+  "pass": true
+ },
+ {
+  "control": "b1_product_4492_row_id",
+  "expect": [
+   "id-unaudited",
+   "retained_product.rs:4492 row.id"
+  ],
+  "complete": false,
+  "TAV": 6234394666,
+  "findings": [
+   [
+    [
+     "id-unaudited",
+     "core/product_physics/src/retained_product.rs:4492 row.id"
+    ],
+    4
+   ]
+  ],
+  "pass": true
+ },
+ {
+  "control": "b1_lib_3078_site",
+  "expect": [
+   "id-unaudited",
+   "lib.rs:3078"
+  ],
+  "complete": false,
+  "TAV": 6234394666,
+  "findings": [
+   [
+    [
+     "id-unaudited",
+     "core/product_physics/src/lib.rs:3078 case_id"
+    ],
+    2
+   ]
+  ],
+  "pass": true
+ },
+ {
+  "control": "b1_wire_1946_site",
+  "expect": [
+   "id-unaudited",
+   "retained_wire.rs:1946"
+  ],
+  "complete": false,
+  "TAV": 6234394666,
+  "findings": [
+   [
+    [
+     "id-unaudited",
+     "core/product_physics/src/retained_wire.rs:1946 source"
+    ],
+    2
+   ]
+  ],
+  "pass": true
+ },
+ {
+  "control": "b1_rs_4371_site",
+  "expect": [
+   "id-unaudited",
+   "retained_precision.rs:4371"
+  ],
+  "complete": false,
+  "TAV": 6234394666,
+  "findings": [
+   [
+    [
+     "id-unaudited",
+     "core/reporting/result_export/src/retained_precision.rs:4371 text(&run[\"kernel_terminal\"][\"kind\"])"
+    ],
+    2
+   ]
+  ],
+  "pass": true
+ },
+ {
+  "control": "b1_terminal_kind_rule",
+  "expect": [
+   "",
+   "terminal"
+  ],
+  "complete": false,
+  "TAV": 6234381628,
+  "findings": [
+   [
+    [
+     "to_owned",
+     "terminal[\" \"].as_str().unwrap_or_default()"
+    ],
+    1
+   ]
+  ],
+  "pass": false
+ }
+]
