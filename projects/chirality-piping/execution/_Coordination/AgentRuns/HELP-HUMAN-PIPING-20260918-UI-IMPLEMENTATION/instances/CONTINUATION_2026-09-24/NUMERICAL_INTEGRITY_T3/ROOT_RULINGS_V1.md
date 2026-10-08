@@ -16468,3 +16468,21 @@ RV126 (RV-N) reviewed PR-N (`R/REVIEW_RV126/pr_n_01/REVIEW.md`, `3ca41a9e…`).
 **U3, RV127's N-2: accepted** (ROOT, 2026-10-08 UTC). The operation applier's new public code `OP-PRESSURE-PRIMITIVE-RETIRED` (`operation_applier/src/lib.rs:4961-4973`) refuses the authoring of a new pressure primitive. Authoring refusals use the applier's own `OP-*` namespace, and the refusal is the owner's retirement itself. D-4 still covers the solve refusal (`PRESSURE_MODEL_REAUTHOR_REQUIRED`).
 
 **B3 readers, N2b: within the N2 ruling** (ROOT, 2026-10-08 UTC). RS's `validate_physics_evidence` has the same hash-order defect on the bound and unbound path: I101's probe switched its G7 code across runs. A reader's reported code must not depend on hash order on any path. The fix is array order, with a three-reader pin and a mutant. I101 also lists every other iteration over a hashed collection in RS's readers that feeds a reported code or order, so the class is closed. RV120 confirms.
+
+## PR-N's T9 and both-entry gate: the acceptance rule is exact correct rounding with provenance, not an ulp budget (ROOT, 2026-10-08 UTC)
+
+I112 (`R/I112/pr_n_gates_01/RETURN.md`, `f75d615f…`) ran I61's method on C = `8dd64c1835` against B = main `7eae707bb7`.
+- T9 and part 2 pass.
+- Part 1's gate check passes on both sides, with identical rows. 116 of 884 runs differ, all in norm values.
+- WORKING_ITEMS' brief stopped the gate on two classes outside its "≤ 1 ulp, magnitude fields" wording:
+  - **S1:** 10 support-force magnitudes move by 2 ulps; the old value was a two-`hypot` chain;
+  - **S2:** norm values printed in diagnostic text: the mechanism direction, which is the rank screen's L as RV126 N-5 and B-1 expect, and the formation guard's `q=`.
+
+**Ruled: a difference passes if and only if all of these hold:**
+- the candidate value equals the exact correctly rounded norm of its own components, as published in the same output and checked in exact rational arithmetic;
+- the base value is the libm `hypot` (chain) value of the same components;
+- every other byte, outcome, exit, error code and stderr is identical. In diagnostic text, only the numeric token of such a value may differ.
+
+This replaces the ulp budget, which was a proxy, with the claim the change makes. Each moved value is held to an exact, mathematically defined target, so this is a tightening per value, not a widening. Under it part 1 passes 884 of 884.
+
+**The package's wording** becomes "by one or two ulps (two where a former two-`hypot` chain was off by two)". This is records only, and T9 and the gate carry over to `0c7490e1be` under the comment-only rule.
