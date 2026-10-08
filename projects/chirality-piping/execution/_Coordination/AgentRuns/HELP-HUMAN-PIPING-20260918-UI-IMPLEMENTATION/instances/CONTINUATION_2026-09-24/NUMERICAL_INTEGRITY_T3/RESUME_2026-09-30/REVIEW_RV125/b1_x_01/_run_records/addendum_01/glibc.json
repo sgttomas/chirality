@@ -1,0 +1,46 @@
+[
+  {
+    "absolute_clause_admits_up_to_ulps": 45,
+    "check": "ring",
+    "coordinates_bit_exact_on_this_platform": 64,
+    "of": 64,
+    "tables_equal": true
+  },
+  {
+    "check": "w_c2_sparse_value_places",
+    "places": []
+  },
+  {
+    "check": "w_c2_dense_glibc",
+    "equals_repair_variant": true,
+    "glibc_published_bytes_sha": "604e4a3380b28d3757d7a7f20aa5d72eae8a93bdc9e24dc966afe6b48fafca3f",
+    "recomputed_publication": "35fa7acae6fbd731ff50b611aec588e673f32978af80a9bb89a7c27f66e88fd7",
+    "recomputed_receipt": "ca6a62a6187a08d7b2e2643911fd232b02076b9032be1455754ff780540995f2",
+    "value_places": [
+      "/results/377/value"
+    ]
+  },
+  {
+    "check": "cba_dense_glibc",
+    "equals_repair_pair": true,
+    "recomputed": [
+      "255785d20cf0aa9f497ea324d744eb3e946871d5aac863ed8d0081d0521e8c92",
+      "a320a5d33707c1fc8c12a35de624720dddbc35084979522c96ab1906e17c708f"
+    ],
+    "value_places": [
+      "/results/35/value"
+    ]
+  },
+  {
+    "case_a2_rows_equal_w_c2_case_a": true,
+    "case_a_rows_equal_w_c2_case_a": true,
+    "check": "aa2_dense",
+    "differing_value_places": [],
+    "macos_pin": [
+      "30001ccf42ad12acd9dbb458392fee514946c1a52aa0d4e5f0b20bde5b09ea71",
+      "f4075cdc80eff27099a28f787cec07080b745eca2d598eb3381a84ec03964176"
+    ],
+    "pin_equals_AA2_PINNED": true,
+    "rows": 171
+  }
+]

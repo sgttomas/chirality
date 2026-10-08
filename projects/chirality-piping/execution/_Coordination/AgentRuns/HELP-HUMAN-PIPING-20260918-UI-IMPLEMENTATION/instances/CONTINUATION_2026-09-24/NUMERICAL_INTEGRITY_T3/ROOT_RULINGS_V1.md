@@ -16255,3 +16255,20 @@ PR-B1 is recut once the Linux diagnostic (run 37792750591) is read.
 **Dispatched: RV123 (RV-P2 round 2).** It confirms S-1, S-2 and N-2, then reviews B2-P at `72b3e5d9ea` against B2-C final, including a platform note on libm-formed published values.
 
 `b2` is pushed at `72b3e5d9ea`.
+
+## RV125 confirms PR-B1's platform test repair; the package refreshed for `7f5f72912e` (ROOT, 2026-10-08 UTC)
+
+**PR-B1's code commit** is now `7f5f72912e`, cut from main `953d8c9446` (#1155, App v4 only). It carries NUM `31eed8497f`'s 33 files. **I108 refreshed the package** (NUM `38a01a27b6`):
+- CHANGE_RECORD `8ab7b648…`, with the platform fix in §1.1, RV125 and RV124's rows, and N-7's erratum;
+- PR_BODY `d6b55…`;
+- citations pinned at `31eed8497f`.
+
+**ROOT's checks on the prepared PR head `f4a0430412`:** source equality (checks 1–5), `check_citations.py` and GEN-8 all pass.
+
+**RV125 CONFIRMED the repair** (`R/REVIEW_RV125/b1_x_01/ADDENDUM_01.md`, `ff980c12…`; 8 of 8 sums). Counts: 0 BLOCKING, 0 SHOULD-FIX, 1 NOTE.
+- **Test-only:** the delta is the `744c1633…` diff.
+- **Exact glibc values.** RV125 re-derived both independently on the Mac: it bumped the one value by one ulp and recomputed the wire hashes.
+- **The macOS path is unchanged:** the 64 coordinates equal libSystem's bit for bit.
+- **No pin is weakened.**
+- **Prediction:** the (A, A2) dense pin holds on glibc. Its cases match W-C2's case A row for row, and the differing value is absent from it.
+- **A1-N1 (NOTE):** the ring check's absolute 1e-14 escape admits more than one ulp for coordinates ≥ 1. Tighten it to the near-zero entries once glibc has run.
