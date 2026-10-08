@@ -1,0 +1,38 @@
+I106 B1 SG: the copies, the builds and the runs.
+
+CANDIDATE 0d19f995b503b7ce12ec05758ef3af3ec72ca758 (b1: SP, SA, the three readers, SC and SQ merged; RR "SQ complete; ...").
+  git archive of P/core, P/fixtures, P/schemas into WT/scratch/i106_b1_sg/cand/tree: 1,047 blobs.
+  Registration applied in the copy with `patch -p1` from R/I104/b1_sq_01/registration.diff (sha256 d85101ea1bca112aa742ab430c5538a548a9fa345e05ea1410d96d91f37d6526):
+  one hunk, threshold_bytes 4_026_531_840 -> 11_274_289_152 (outputs/registration_applied.diff, the copy against the commit's blob).
+BASE 2007709549e9701b302e0eb62a1474d82acc1c40 (main's #1107 merge, B6): git merge-base 0d19f995b5 origin/main. It is b1's I1' main base:
+  the second parent of 262bd687f0 ("I1 (= I1'): ... absorb main 2007709549"), the only main commit b1 absorbed; no later main commit is
+  reachable from 0d19f995b5. Between the two, P outside execution/ differs only in B1's 33 files (git diff --stat).
+  git archive of the same three trees into WT/scratch/i106_b1_sg/base/tree: 1,044 blobs.
+
+COPY CHECK (_run_records/verify_tree.sh: git ls-tree -r against git hash-object without -w):
+  candidate: every blob equal except retained_memory.rs (the registration) and lib.rs (the appended harness modules);
+  base: every blob equal except lib.rs; extra files in each: the two harness modules only.
+  lib.rs delta, identical in both copies (outputs/lib_rs_delta_{cand,base}.diff): 5 appended lines declaring
+  `#[cfg(test)] mod zz_i106_sg_sweep;` and `#[cfg(test)] mod zz_i106_sg_gates;`.
+
+HARNESSES (identical in both copies and in _run_records/):
+  zz_i106_sg_sweep.rs f3d9642a2d8188eed0f15e13e87a7608cd657aae72b9f493a381bedf5f1d1c17
+    = R/I61/u3_grant2_01/_run_records/zz_i61_u3g2_sweep.rs (6b181a61...) with T-12's n-notice reading (notice_x<k>), the env var and the test name;
+  zz_i106_sg_gates.rs f2c2f83a3ab7c31ec59cf1151ef8ff1fabecae655e4d15da3e0095d0e299699d
+    = R/I61/u9_g8_01/_run_records/zz_i61_u9g8_pressure.rs (c029af7d...) with three added requests, n1_notices and load_cases fields, and the env var.
+
+BUILDS (_run_records/run_sg.sh; one cargo job of mine at a time through WT/tools/t3_cargo.sh, --locked --offline, CARGO_BUILD_JOBS=4,
+  RUST_TEST_THREADS=2, TMPDIR in my scratch, RUSTFLAGS and CARGO_ENCODED_RUSTFLAGS unset except Stale's `--cfg=i106_sg_stale`):
+  cand reg   WT/targets/i106-sg-cand-reg    every Direct row reports Registered
+  cand stale WT/targets/i106-sg-cand-stale  every Direct row reports Stale, refused at D1.1
+  base reg   WT/targets/i106-sg-base-reg    Registered
+  base stale WT/targets/i106-sg-base-stale  Stale at D1.1
+  Each: `cargo test --locked --offline --lib --target-dir <target> zz_i106_ -- --ignored --nocapture`: 2 passed, 0 failed
+  (candidate 631 filtered out, base 556). Slot lines: outputs/cargo_jobs_i106.log (all four ran in slot 4, one after another, 12:52:18Z-12:54:34Z).
+
+PUBLISHED SUCCESSOR DUMPS (kept in WT/scratch/i106_b1_sg/out; sha256 of the published bytes):
+  milestone sparse 1d9ba7098dd20390357851e84a136890581a625ae21bf928864c30bc98a1a8c9 (candidate = base = I61 u9_g8_01's dump)
+  milestone dense  7c5fe5c59f2bcc3b3313055223214d0f4884dc44981e3f6bb615a8d84acca595 (candidate = base = I61's)
+  w_c2 sparse      c7a1859330e9e36e18f5572838dbad72ea251a817241acc6968f8f83b70170fa (= SP's pinned published-bytes sha256, I3_01.md §2)
+  w_c2 dense       a77c010b4ae7ffa9c535c31305b8a91fcc3c05e8a512075fa5b4694dbae3062c (= SP's pinned)
+  Each also equals, as a JSON value, its committed fixture's "source" (compare_sg.json, gates checks).

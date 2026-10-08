@@ -1,0 +1,18 @@
+I106 SG gate 4: callers of the retained entries at the candidate 0d19f995b5 (the registration changes no caller).
+Command: git grep -n -E 'with_retained_direct|with_retained_headless|run_preview_model_value_with_retained_headless|RetainedHeadlessContext'
+         0d19f995b5 -- . ':!P/execution' ':!**/_Coordination/**'   (whole repository; GIT_OPTIONAL_LOCKS=0)
+Hits: 43 (caller_scan.txt); the same scan at base 2007709549: 42 (caller_scan_base.txt).
+
+Where                                              | Hits | What
+PP src/lib.rs                                      | 4    | :122 re-export; :2264 / :2271 the two entry definitions; :2274 the Headless parameter type
+PP src/retained_memory.rs                          | 4    | :2825/:2830/:2936 the context type and Entry::Headless; :3060 a call inside `#[cfg(test)] pub(super) mod tests` (:3026-:3153)
+PP src/retained_facade_tests.rs, retained_memory_law_tests.rs, retained_wire_tests.rs | 4+7+1 | cfg(test) modules
+PP tests/retained_memory_challenge.rs, tests/retained_precision_admission.rs | 2+7 | integration tests
+runner/headless src/lib.rs                         | 4    | :740 the `run_preview_model_value_with_retained_headless` wrapper, whose body (:772-:774) calls only the Headless entry (refused at D1.0). No other hit in the runner's sources or binaries calls the wrapper
+runner/headless tests/retained_precision_admission.rs | 7 | the reviewed runner test (Direct on a refused variant; :175 asserts the runner source never contains `with_retained_direct`)
+P/fixtures/results/retained_precision_cases.json   | 2    | data: corpus entries' "entry" strings (already at base, B6's 07m)
+P/tests/test_retained_precision_contract.py        | 1    | a test asserting that corpus string (already at base)
+Everywhere else                                    | 0    | P/apps (src-tauri, desktop TS), self_weight_wasm, operation_applier, validation/benchmarks/*, every other crate, and everything outside P
+
+Delta against base (line numbers ignored): +1 Direct call in retained_memory_law_tests.rs (a test), and the challenge test's import and call text (a test). No new non-test hit.
+Result: no product caller of the Direct entry; no workspace other than PP calls it, except the reviewed runner test.

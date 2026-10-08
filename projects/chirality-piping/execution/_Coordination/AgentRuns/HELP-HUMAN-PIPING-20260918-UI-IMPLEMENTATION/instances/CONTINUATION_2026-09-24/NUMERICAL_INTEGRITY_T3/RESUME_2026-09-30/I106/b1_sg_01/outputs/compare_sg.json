@@ -1,0 +1,1382 @@
+{
+ "sweep": {
+  "registered": {
+   "rows": 324,
+   "base_rows": 324,
+   "sha256": "cc6350d0a3614aeebbd5ff68d498518759ad2ece6cd221f5a140e4d11f0c1425",
+   "base_sha256": "9a74ff16d42c2b5afe321ee1889e0f307af946f65d3c1ab8f6dd01bd3c539b62",
+   "identical": false,
+   "differing_rows": 8
+  },
+  "stale": {
+   "rows": 324,
+   "base_rows": 324,
+   "sha256": "0e2db8b89745fdf11c1cc3a263e66d901ba134490ab14a1c5e2e83947c452586",
+   "base_sha256": "0e2db8b89745fdf11c1cc3a263e66d901ba134490ab14a1c5e2e83947c452586",
+   "identical": true,
+   "differing_rows": 0,
+   "rows_listed": []
+  },
+  "registered_direct_candidate": {
+   "classes": {
+    "exact": 64,
+    "successor": 2,
+    "notice": 4
+   },
+   "causes": {
+    "none": 38,
+    "Coexistence": 26,
+    "successor": 2,
+    "Preparation": 4
+   },
+   "reports": {
+    "Some((Registered, Some(\"D1.3\")))": 32,
+    "Some((Registered, Some(\"D1.9\")))": 2,
+    "Some((Registered, Some(\"D1.4\")))": 4,
+    "Some((Registered, None))": 32
+   }
+  },
+  "registered_direct_base": {
+   "classes": {
+    "exact": 64,
+    "successor": 2,
+    "notice": 4
+   },
+   "causes": {
+    "none": 46,
+    "Coexistence": 18,
+    "successor": 2,
+    "Preparation": 4
+   },
+   "reports": {
+    "Some((Registered, Some(\"D1.3\")))": 32,
+    "Some((Registered, Some(\"D1.9\")))": 2,
+    "Some((Registered, Some(\"D1.4\")))": 12,
+    "Some((Registered, None))": 24
+   }
+  }
+ },
+ "registered_differences": [
+  {
+   "fixture": "product_preview/source_blocks/multicase-dense_scrutiny.request.json",
+   "route": "retained_direct",
+   "mode": "dense_scrutiny",
+   "base": "5affe0d964692734d8d5a4b4940e84af6be586803fbe96cd27fa544748375adb\texact\tSome((Registered, Some(\"D1.4\")))\tnone",
+   "candidate": "5affe0d964692734d8d5a4b4940e84af6be586803fbe96cd27fa544748375adb\texact\tSome((Registered, None))\tCoexistence",
+   "explained_by": [
+    "D1.4"
+   ],
+   "explanation": "base refused c = 2 at D1.4 (C = 1); the candidate's D1.4 admits 1 <= c <= 3, then Some((Registered, None)) / Coexistence",
+   "shape": {
+    "cand": {
+     "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+     "cases": 2,
+     "combinations": 0,
+     "components": 0
+    },
+    "base": {
+     "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+     "cases": 2,
+     "combinations": 0,
+     "components": 0
+    }
+   }
+  },
+  {
+   "fixture": "product_preview/source_blocks/multicase-dense_scrutiny.request.json",
+   "route": "retained_direct",
+   "mode": "sparse_interactive",
+   "base": "38d8e66896d85dfa76a9c5a7530d55f8700e51622cc6dca5eac09125cb43ab4e\texact\tSome((Registered, Some(\"D1.4\")))\tnone",
+   "candidate": "38d8e66896d85dfa76a9c5a7530d55f8700e51622cc6dca5eac09125cb43ab4e\texact\tSome((Registered, None))\tCoexistence",
+   "explained_by": [
+    "D1.4"
+   ],
+   "explanation": "base refused c = 2 at D1.4 (C = 1); the candidate's D1.4 admits 1 <= c <= 3, then Some((Registered, None)) / Coexistence",
+   "shape": {
+    "cand": {
+     "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+     "cases": 2,
+     "combinations": 0,
+     "components": 0
+    },
+    "base": {
+     "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+     "cases": 2,
+     "combinations": 0,
+     "components": 0
+    }
+   }
+  },
+  {
+   "fixture": "product_preview/source_blocks/multicase-sparse_interactive.request.json",
+   "route": "retained_direct",
+   "mode": "dense_scrutiny",
+   "base": "5affe0d964692734d8d5a4b4940e84af6be586803fbe96cd27fa544748375adb\texact\tSome((Registered, Some(\"D1.4\")))\tnone",
+   "candidate": "5affe0d964692734d8d5a4b4940e84af6be586803fbe96cd27fa544748375adb\texact\tSome((Registered, None))\tCoexistence",
+   "explained_by": [
+    "D1.4"
+   ],
+   "explanation": "base refused c = 2 at D1.4 (C = 1); the candidate's D1.4 admits 1 <= c <= 3, then Some((Registered, None)) / Coexistence",
+   "shape": {
+    "cand": {
+     "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+     "cases": 2,
+     "combinations": 0,
+     "components": 0
+    },
+    "base": {
+     "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+     "cases": 2,
+     "combinations": 0,
+     "components": 0
+    }
+   }
+  },
+  {
+   "fixture": "product_preview/source_blocks/multicase-sparse_interactive.request.json",
+   "route": "retained_direct",
+   "mode": "sparse_interactive",
+   "base": "38d8e66896d85dfa76a9c5a7530d55f8700e51622cc6dca5eac09125cb43ab4e\texact\tSome((Registered, Some(\"D1.4\")))\tnone",
+   "candidate": "38d8e66896d85dfa76a9c5a7530d55f8700e51622cc6dca5eac09125cb43ab4e\texact\tSome((Registered, None))\tCoexistence",
+   "explained_by": [
+    "D1.4"
+   ],
+   "explanation": "base refused c = 2 at D1.4 (C = 1); the candidate's D1.4 admits 1 <= c <= 3, then Some((Registered, None)) / Coexistence",
+   "shape": {
+    "cand": {
+     "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+     "cases": 2,
+     "combinations": 0,
+     "components": 0
+    },
+    "base": {
+     "sha256": "81da34b8e514b060daa8e349459a2f4f2cafee4836dd2fb5d5e734f0b870099b",
+     "cases": 2,
+     "combinations": 0,
+     "components": 0
+    }
+   }
+  },
+  {
+   "fixture": "product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json",
+   "route": "retained_direct",
+   "mode": "dense_scrutiny",
+   "base": "e2fc5c137d9b9b6f46820c9e9b2dc8a98b5e4a4ed0a8516dedab2f06853cea0e\texact\tSome((Registered, Some(\"D1.4\")))\tnone",
+   "candidate": "e2fc5c137d9b9b6f46820c9e9b2dc8a98b5e4a4ed0a8516dedab2f06853cea0e\texact\tSome((Registered, None))\tCoexistence",
+   "explained_by": [
+    "D1.4"
+   ],
+   "explanation": "base refused c = 2 at D1.4 (C = 1); the candidate's D1.4 admits 1 <= c <= 3, then Some((Registered, None)) / Coexistence",
+   "shape": {
+    "cand": {
+     "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6",
+     "cases": 2,
+     "combinations": 0,
+     "components": 0
+    },
+    "base": {
+     "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6",
+     "cases": 2,
+     "combinations": 0,
+     "components": 0
+    }
+   }
+  },
+  {
+   "fixture": "product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json",
+   "route": "retained_direct",
+   "mode": "sparse_interactive",
+   "base": "ba1a75edc2ca53162ad90eb84e5b52c7424038b92c4d4d1e090356ab025397fe\texact\tSome((Registered, Some(\"D1.4\")))\tnone",
+   "candidate": "ba1a75edc2ca53162ad90eb84e5b52c7424038b92c4d4d1e090356ab025397fe\texact\tSome((Registered, None))\tCoexistence",
+   "explained_by": [
+    "D1.4"
+   ],
+   "explanation": "base refused c = 2 at D1.4 (C = 1); the candidate's D1.4 admits 1 <= c <= 3, then Some((Registered, None)) / Coexistence",
+   "shape": {
+    "cand": {
+     "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6",
+     "cases": 2,
+     "combinations": 0,
+     "components": 0
+    },
+    "base": {
+     "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6",
+     "cases": 2,
+     "combinations": 0,
+     "components": 0
+    }
+   }
+  },
+  {
+   "fixture": "product_preview/source_blocks/ui/multicase-sparse_interactive.request.json",
+   "route": "retained_direct",
+   "mode": "dense_scrutiny",
+   "base": "e2fc5c137d9b9b6f46820c9e9b2dc8a98b5e4a4ed0a8516dedab2f06853cea0e\texact\tSome((Registered, Some(\"D1.4\")))\tnone",
+   "candidate": "e2fc5c137d9b9b6f46820c9e9b2dc8a98b5e4a4ed0a8516dedab2f06853cea0e\texact\tSome((Registered, None))\tCoexistence",
+   "explained_by": [
+    "D1.4"
+   ],
+   "explanation": "base refused c = 2 at D1.4 (C = 1); the candidate's D1.4 admits 1 <= c <= 3, then Some((Registered, None)) / Coexistence",
+   "shape": {
+    "cand": {
+     "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6",
+     "cases": 2,
+     "combinations": 0,
+     "components": 0
+    },
+    "base": {
+     "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6",
+     "cases": 2,
+     "combinations": 0,
+     "components": 0
+    }
+   }
+  },
+  {
+   "fixture": "product_preview/source_blocks/ui/multicase-sparse_interactive.request.json",
+   "route": "retained_direct",
+   "mode": "sparse_interactive",
+   "base": "ba1a75edc2ca53162ad90eb84e5b52c7424038b92c4d4d1e090356ab025397fe\texact\tSome((Registered, Some(\"D1.4\")))\tnone",
+   "candidate": "ba1a75edc2ca53162ad90eb84e5b52c7424038b92c4d4d1e090356ab025397fe\texact\tSome((Registered, None))\tCoexistence",
+   "explained_by": [
+    "D1.4"
+   ],
+   "explanation": "base refused c = 2 at D1.4 (C = 1); the candidate's D1.4 admits 1 <= c <= 3, then Some((Registered, None)) / Coexistence",
+   "shape": {
+    "cand": {
+     "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6",
+     "cases": 2,
+     "combinations": 0,
+     "components": 0
+    },
+    "base": {
+     "sha256": "aeeaaf19760c1d02fc3a8125ade88eb2b74b6f795ff7b300171c08172c4d24d6",
+     "cases": 2,
+     "combinations": 0,
+     "components": 0
+    }
+   }
+  }
+ ],
+ "coexistence": [
+  {
+   "fixture": "product_preview/source_blocks/n05-dense_scrutiny.request.json",
+   "mode": "dense_scrutiny",
+   "registered": [
+    "exact",
+    "Some((Registered, None))",
+    "Coexistence"
+   ],
+   "stale": [
+    "exact",
+    "Some((Stale, Some(\"D1.1\")))",
+    "none"
+   ],
+   "direct_equals_value_registered": true,
+   "direct_equals_value_stale": true,
+   "registered_equals_base": true
+  },
+  {
+   "fixture": "product_preview/source_blocks/n05-dense_scrutiny.request.json",
+   "mode": "sparse_interactive",
+   "registered": [
+    "exact",
+    "Some((Registered, None))",
+    "Coexistence"
+   ],
+   "stale": [
+    "exact",
+    "Some((Stale, Some(\"D1.1\")))",
+    "none"
+   ],
+   "direct_equals_value_registered": true,
+   "direct_equals_value_stale": true,
+   "registered_equals_base": true
+  },
+  {
+   "fixture": "product_preview/source_blocks/n05-sparse_interactive.request.json",
+   "mode": "dense_scrutiny",
+   "registered": [
+    "exact",
+    "Some((Registered, None))",
+    "Coexistence"
+   ],
+   "stale": [
+    "exact",
+    "Some((Stale, Some(\"D1.1\")))",
+    "none"
+   ],
+   "direct_equals_value_registered": true,
+   "direct_equals_value_stale": true,
+   "registered_equals_base": true
+  },
+  {
+   "fixture": "product_preview/source_blocks/n05-sparse_interactive.request.json",
+   "mode": "sparse_interactive",
+   "registered": [
+    "exact",
+    "Some((Registered, None))",
+    "Coexistence"
+   ],
+   "stale": [
+    "exact",
+    "Some((Stale, Some(\"D1.1\")))",
+    "none"
+   ],
+   "direct_equals_value_registered": true,
+   "direct_equals_value_stale": true,
+   "registered_equals_base": true
+  },
+  {
+   "fixture": "product_preview/source_blocks/n06-dense_scrutiny.request.json",
+   "mode": "dense_scrutiny",
+   "registered": [
+    "exact",
+    "Some((Registered, None))",
+    "Coexistence"
+   ],
+   "stale": [
+    "exact",
+    "Some((Stale, Some(\"D1.1\")))",
+    "none"
+   ],
+   "direct_equals_value_registered": true,
+   "direct_equals_value_stale": true,
+   "registered_equals_base": true
+  },
+  {
+   "fixture": "product_preview/source_blocks/n06-dense_scrutiny.request.json",
+   "mode": "sparse_interactive",
+   "registered": [
+    "exact",
+    "Some((Registered, None))",
+    "Coexistence"
+   ],
+   "stale": [
+    "exact",
+    "Some((Stale, Some(\"D1.1\")))",
+    "none"
+   ],
+   "direct_equals_value_registered": true,
+   "direct_equals_value_stale": true,
+   "registered_equals_base": true
+  },
+  {
+   "fixture": "product_preview/source_blocks/n06-sparse_interactive.request.json",
+   "mode": "dense_scrutiny",
+   "registered": [
+    "exact",
+    "Some((Registered, None))",
+    "Coexistence"
+   ],
+   "stale": [
+    "exact",
+    "Some((Stale, Some(\"D1.1\")))",
+    "none"
+   ],
+   "direct_equals_value_registered": true,
+   "direct_equals_value_stale": true,
+   "registered_equals_base": true
+  },
+  {
+   "fixture": "product_preview/source_blocks/n06-sparse_interactive.request.json",
+   "mode": "sparse_interactive",
+   "registered": [
+    "exact",
+    "Some((Registered, None))",
+    "Coexistence"
+   ],
+   "stale": [
+    "exact",
+    "Some((Stale, Some(\"D1.1\")))",
+    "none"
+   ],
+   "direct_equals_value_registered": true,
+   "direct_equals_value_stale": true,
+   "registered_equals_base": true
+  },
+  {
+   "fixture": "product_preview/source_blocks/ui/n05-dense_scrutiny.request.json",
+   "mode": "dense_scrutiny",
+   "registered": [
+    "exact",
+    "Some((Registered, None))",
+    "Coexistence"
+   ],
+   "stale": [
+    "exact",
+    "Some((Stale, Some(\"D1.1\")))",
+    "none"
+   ],
+   "direct_equals_value_registered": true,
+   "direct_equals_value_stale": true,
+   "registered_equals_base": true
+  },
+  {
+   "fixture": "product_preview/source_blocks/ui/n05-dense_scrutiny.request.json",
+   "mode": "sparse_interactive",
+   "registered": [
+    "exact",
+    "Some((Registered, None))",
+    "Coexistence"
+   ],
+   "stale": [
+    "exact",
+    "Some((Stale, Some(\"D1.1\")))",
+    "none"
+   ],
+   "direct_equals_value_registered": true,
+   "direct_equals_value_stale": true,
+   "registered_equals_base": true
+  },
+  {
+   "fixture": "product_preview/source_blocks/ui/n05-sparse_interactive.request.json",
+   "mode": "dense_scrutiny",
+   "registered": [
+    "exact",
+    "Some((Registered, None))",
+    "Coexistence"
+   ],
+   "stale": [
+    "exact",
+    "Some((Stale, Some(\"D1.1\")))",
+    "none"
+   ],
+   "direct_equals_value_registered": true,
+   "direct_equals_value_stale": true,
+   "registered_equals_base": true
+  },
+  {
+   "fixture": "product_preview/source_blocks/ui/n05-sparse_interactive.request.json",
+   "mode": "sparse_interactive",
+   "registered": [
+    "exact",
+    "Some((Registered, None))",
+    "Coexistence"
+   ],
+   "stale": [
+    "exact",
+    "Some((Stale, Some(\"D1.1\")))",
+    "none"
+   ],
+   "direct_equals_value_registered": true,
+   "direct_equals_value_stale": true,
+   "registered_equals_base": true
+  },
+  {
+   "fixture": "product_preview/source_blocks/ui/n06-dense_scrutiny.request.json",
+   "mode": "dense_scrutiny",
+   "registered": [
+    "exact",
+    "Some((Registered, None))",
+    "Coexistence"
+   ],
+   "stale": [
+    "exact",
+    "Some((Stale, Some(\"D1.1\")))",
+    "none"
+   ],
+   "direct_equals_value_registered": true,
+   "direct_equals_value_stale": true,
+   "registered_equals_base": true
+  },
+  {
+   "fixture": "product_preview/source_blocks/ui/n06-dense_scrutiny.request.json",
+   "mode": "sparse_interactive",
+   "registered": [
+    "exact",
+    "Some((Registered, None))",
+    "Coexistence"
+   ],
+   "stale": [
+    "exact",
+    "Some((Stale, Some(\"D1.1\")))",
+    "none"
+   ],
+   "direct_equals_value_registered": true,
+   "direct_equals_value_stale": true,
+   "registered_equals_base": true
+  },
+  {
+   "fixture": "product_preview/source_blocks/ui/n06-sparse_interactive.request.json",
+   "mode": "dense_scrutiny",
+   "registered": [
+    "exact",
+    "Some((Registered, None))",
+    "Coexistence"
+   ],
+   "stale": [
+    "exact",
+    "Some((Stale, Some(\"D1.1\")))",
+    "none"
+   ],
+   "direct_equals_value_registered": true,
+   "direct_equals_value_stale": true,
+   "registered_equals_base": true
+  },
+  {
+   "fixture": "product_preview/source_blocks/ui/n06-sparse_interactive.request.json",
+   "mode": "sparse_interactive",
+   "registered": [
+    "exact",
+    "Some((Registered, None))",
+    "Coexistence"
+   ],
+   "stale": [
+    "exact",
+    "Some((Stale, Some(\"D1.1\")))",
+    "none"
+   ],
+   "direct_equals_value_registered": true,
+   "direct_equals_value_stale": true,
+   "registered_equals_base": true
+  }
+ ],
+ "gates": [
+  {
+   "label": "milestone",
+   "mode": "dense_scrutiny",
+   "candidate_registered": {
+    "cause": "successor",
+    "class": "successor",
+    "clause": null,
+    "direct_sha": "7c5fe5c59f2bcc3b3313055223214d0f4884dc44981e3f6bb615a8d84acca595",
+    "label": "milestone",
+    "load_cases": 1,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": null,
+    "value_blocking": [],
+    "value_sha": "21ca629c27e6ca03b1411c8c51097f7a50f90429045b1e36313163014dd4278a",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "candidate_stale": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.1",
+    "direct_sha": "21ca629c27e6ca03b1411c8c51097f7a50f90429045b1e36313163014dd4278a",
+    "label": "milestone",
+    "load_cases": 1,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Stale",
+    "refusal": "Profile(Stale)",
+    "value_blocking": [],
+    "value_sha": "21ca629c27e6ca03b1411c8c51097f7a50f90429045b1e36313163014dd4278a",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "base_registered": {
+    "cause": "successor",
+    "class": "successor",
+    "clause": null,
+    "direct_sha": "7c5fe5c59f2bcc3b3313055223214d0f4884dc44981e3f6bb615a8d84acca595",
+    "label": "milestone",
+    "load_cases": 1,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": null,
+    "value_blocking": [],
+    "value_sha": "21ca629c27e6ca03b1411c8c51097f7a50f90429045b1e36313163014dd4278a",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "checks": {
+    "stale_exact_at_D1_1_build": true,
+    "value_route_same_in_both_builds": true,
+    "value_route_same_as_base": true,
+    "registered_successor_equals_pinned_fixture": true,
+    "registered_no_n1_notice": true
+   }
+  },
+  {
+   "label": "milestone",
+   "mode": "sparse_interactive",
+   "candidate_registered": {
+    "cause": "successor",
+    "class": "successor",
+    "clause": null,
+    "direct_sha": "1d9ba7098dd20390357851e84a136890581a625ae21bf928864c30bc98a1a8c9",
+    "label": "milestone",
+    "load_cases": 1,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": null,
+    "value_blocking": [],
+    "value_sha": "9c7ec1a144a729f456a25fedb5dbe6a7dafde67d52b9cc8caff6c39bb0050871",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "candidate_stale": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.1",
+    "direct_sha": "9c7ec1a144a729f456a25fedb5dbe6a7dafde67d52b9cc8caff6c39bb0050871",
+    "label": "milestone",
+    "load_cases": 1,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Stale",
+    "refusal": "Profile(Stale)",
+    "value_blocking": [],
+    "value_sha": "9c7ec1a144a729f456a25fedb5dbe6a7dafde67d52b9cc8caff6c39bb0050871",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "base_registered": {
+    "cause": "successor",
+    "class": "successor",
+    "clause": null,
+    "direct_sha": "1d9ba7098dd20390357851e84a136890581a625ae21bf928864c30bc98a1a8c9",
+    "label": "milestone",
+    "load_cases": 1,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": null,
+    "value_blocking": [],
+    "value_sha": "9c7ec1a144a729f456a25fedb5dbe6a7dafde67d52b9cc8caff6c39bb0050871",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "checks": {
+    "stale_exact_at_D1_1_build": true,
+    "value_route_same_in_both_builds": true,
+    "value_route_same_as_base": true,
+    "registered_successor_equals_pinned_fixture": true,
+    "registered_no_n1_notice": true
+   }
+  },
+  {
+   "label": "milestone_two_cases_pressure_on_second",
+   "mode": "dense_scrutiny",
+   "candidate_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.5",
+    "direct_sha": "242b597c1c0a445ae344e737d97ae11dc5f61af6a92e6cbfcaec3d733205f67e",
+    "label": "milestone_two_cases_pressure_on_second",
+    "load_cases": 2,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Case, PressureRegions)",
+    "value_blocking": [
+     "PREVIEW_CONTRACT_VERSION_MISMATCH"
+    ],
+    "value_sha": "242b597c1c0a445ae344e737d97ae11dc5f61af6a92e6cbfcaec3d733205f67e",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "candidate_stale": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.1",
+    "direct_sha": "242b597c1c0a445ae344e737d97ae11dc5f61af6a92e6cbfcaec3d733205f67e",
+    "label": "milestone_two_cases_pressure_on_second",
+    "load_cases": 2,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Stale",
+    "refusal": "Profile(Stale)",
+    "value_blocking": [
+     "PREVIEW_CONTRACT_VERSION_MISMATCH"
+    ],
+    "value_sha": "242b597c1c0a445ae344e737d97ae11dc5f61af6a92e6cbfcaec3d733205f67e",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "base_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.4",
+    "direct_sha": "242b597c1c0a445ae344e737d97ae11dc5f61af6a92e6cbfcaec3d733205f67e",
+    "label": "milestone_two_cases_pressure_on_second",
+    "load_cases": 2,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Invocation, LoadCases)",
+    "value_blocking": [
+     "PREVIEW_CONTRACT_VERSION_MISMATCH"
+    ],
+    "value_sha": "242b597c1c0a445ae344e737d97ae11dc5f61af6a92e6cbfcaec3d733205f67e",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "checks": {
+    "stale_exact_at_D1_1_build": true,
+    "value_route_same_in_both_builds": true,
+    "value_route_same_as_base": true,
+    "registered_exact_no_notice": true,
+    "refused_at_D1_5_pressure_regions": true,
+    "two_cases": true
+   }
+  },
+  {
+   "label": "milestone_two_cases_pressure_on_second",
+   "mode": "sparse_interactive",
+   "candidate_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.5",
+    "direct_sha": "242b597c1c0a445ae344e737d97ae11dc5f61af6a92e6cbfcaec3d733205f67e",
+    "label": "milestone_two_cases_pressure_on_second",
+    "load_cases": 2,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Case, PressureRegions)",
+    "value_blocking": [
+     "PREVIEW_CONTRACT_VERSION_MISMATCH"
+    ],
+    "value_sha": "242b597c1c0a445ae344e737d97ae11dc5f61af6a92e6cbfcaec3d733205f67e",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "candidate_stale": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.1",
+    "direct_sha": "242b597c1c0a445ae344e737d97ae11dc5f61af6a92e6cbfcaec3d733205f67e",
+    "label": "milestone_two_cases_pressure_on_second",
+    "load_cases": 2,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Stale",
+    "refusal": "Profile(Stale)",
+    "value_blocking": [
+     "PREVIEW_CONTRACT_VERSION_MISMATCH"
+    ],
+    "value_sha": "242b597c1c0a445ae344e737d97ae11dc5f61af6a92e6cbfcaec3d733205f67e",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "base_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.4",
+    "direct_sha": "242b597c1c0a445ae344e737d97ae11dc5f61af6a92e6cbfcaec3d733205f67e",
+    "label": "milestone_two_cases_pressure_on_second",
+    "load_cases": 2,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Invocation, LoadCases)",
+    "value_blocking": [
+     "PREVIEW_CONTRACT_VERSION_MISMATCH"
+    ],
+    "value_sha": "242b597c1c0a445ae344e737d97ae11dc5f61af6a92e6cbfcaec3d733205f67e",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "checks": {
+    "stale_exact_at_D1_1_build": true,
+    "value_route_same_in_both_builds": true,
+    "value_route_same_as_base": true,
+    "registered_exact_no_notice": true,
+    "refused_at_D1_5_pressure_regions": true,
+    "two_cases": true
+   }
+  },
+  {
+   "label": "milestone_with_pressure",
+   "mode": "dense_scrutiny",
+   "candidate_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.5",
+    "direct_sha": "3d4bb6e0a847a03de01b209bd024070b5881bf21b6380b639aacbafe39b4b635",
+    "label": "milestone_with_pressure",
+    "load_cases": 1,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Case, PressureRegions)",
+    "value_blocking": [
+     "PREVIEW_CONTRACT_VERSION_MISMATCH"
+    ],
+    "value_sha": "3d4bb6e0a847a03de01b209bd024070b5881bf21b6380b639aacbafe39b4b635",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "candidate_stale": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.1",
+    "direct_sha": "3d4bb6e0a847a03de01b209bd024070b5881bf21b6380b639aacbafe39b4b635",
+    "label": "milestone_with_pressure",
+    "load_cases": 1,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Stale",
+    "refusal": "Profile(Stale)",
+    "value_blocking": [
+     "PREVIEW_CONTRACT_VERSION_MISMATCH"
+    ],
+    "value_sha": "3d4bb6e0a847a03de01b209bd024070b5881bf21b6380b639aacbafe39b4b635",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "base_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.5",
+    "direct_sha": "3d4bb6e0a847a03de01b209bd024070b5881bf21b6380b639aacbafe39b4b635",
+    "label": "milestone_with_pressure",
+    "load_cases": 1,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Case, PressureRegions)",
+    "value_blocking": [
+     "PREVIEW_CONTRACT_VERSION_MISMATCH"
+    ],
+    "value_sha": "3d4bb6e0a847a03de01b209bd024070b5881bf21b6380b639aacbafe39b4b635",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "checks": {
+    "stale_exact_at_D1_1_build": true,
+    "value_route_same_in_both_builds": true,
+    "value_route_same_as_base": true,
+    "registered_exact_no_notice": true,
+    "refused_at_D1_5_pressure_regions": true
+   }
+  },
+  {
+   "label": "milestone_with_pressure",
+   "mode": "sparse_interactive",
+   "candidate_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.5",
+    "direct_sha": "3d4bb6e0a847a03de01b209bd024070b5881bf21b6380b639aacbafe39b4b635",
+    "label": "milestone_with_pressure",
+    "load_cases": 1,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Case, PressureRegions)",
+    "value_blocking": [
+     "PREVIEW_CONTRACT_VERSION_MISMATCH"
+    ],
+    "value_sha": "3d4bb6e0a847a03de01b209bd024070b5881bf21b6380b639aacbafe39b4b635",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "candidate_stale": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.1",
+    "direct_sha": "3d4bb6e0a847a03de01b209bd024070b5881bf21b6380b639aacbafe39b4b635",
+    "label": "milestone_with_pressure",
+    "load_cases": 1,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Stale",
+    "refusal": "Profile(Stale)",
+    "value_blocking": [
+     "PREVIEW_CONTRACT_VERSION_MISMATCH"
+    ],
+    "value_sha": "3d4bb6e0a847a03de01b209bd024070b5881bf21b6380b639aacbafe39b4b635",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "base_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.5",
+    "direct_sha": "3d4bb6e0a847a03de01b209bd024070b5881bf21b6380b639aacbafe39b4b635",
+    "label": "milestone_with_pressure",
+    "load_cases": 1,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Case, PressureRegions)",
+    "value_blocking": [
+     "PREVIEW_CONTRACT_VERSION_MISMATCH"
+    ],
+    "value_sha": "3d4bb6e0a847a03de01b209bd024070b5881bf21b6380b639aacbafe39b4b635",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "checks": {
+    "stale_exact_at_D1_1_build": true,
+    "value_route_same_in_both_builds": true,
+    "value_route_same_as_base": true,
+    "registered_exact_no_notice": true,
+    "refused_at_D1_5_pressure_regions": true
+   }
+  },
+  {
+   "label": "n05_two_cases",
+   "mode": "dense_scrutiny",
+   "candidate_registered": {
+    "cause": "Coexistence",
+    "class": "exact",
+    "clause": null,
+    "direct_sha": "d46dae28c224fc33583e700f87a4ebbb03e7ce7737a04626b18ddd0c932d6dc1",
+    "label": "n05_two_cases",
+    "load_cases": 2,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": null,
+    "value_blocking": [],
+    "value_sha": "d46dae28c224fc33583e700f87a4ebbb03e7ce7737a04626b18ddd0c932d6dc1",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "candidate_stale": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.1",
+    "direct_sha": "d46dae28c224fc33583e700f87a4ebbb03e7ce7737a04626b18ddd0c932d6dc1",
+    "label": "n05_two_cases",
+    "load_cases": 2,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Stale",
+    "refusal": "Profile(Stale)",
+    "value_blocking": [],
+    "value_sha": "d46dae28c224fc33583e700f87a4ebbb03e7ce7737a04626b18ddd0c932d6dc1",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "base_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.4",
+    "direct_sha": "d46dae28c224fc33583e700f87a4ebbb03e7ce7737a04626b18ddd0c932d6dc1",
+    "label": "n05_two_cases",
+    "load_cases": 2,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Invocation, LoadCases)",
+    "value_blocking": [],
+    "value_sha": "d46dae28c224fc33583e700f87a4ebbb03e7ce7737a04626b18ddd0c932d6dc1",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "checks": {
+    "stale_exact_at_D1_1_build": true,
+    "value_route_same_in_both_builds": true,
+    "value_route_same_as_base": true,
+    "registered_exact_no_notice": true,
+    "multi_case_coexistence_admitted": true
+   }
+  },
+  {
+   "label": "n05_two_cases",
+   "mode": "sparse_interactive",
+   "candidate_registered": {
+    "cause": "Coexistence",
+    "class": "exact",
+    "clause": null,
+    "direct_sha": "9713a9ad3773a02a691e96c0f21693e4fd9e754a7338804d9dc2067b23b36e8f",
+    "label": "n05_two_cases",
+    "load_cases": 2,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": null,
+    "value_blocking": [],
+    "value_sha": "9713a9ad3773a02a691e96c0f21693e4fd9e754a7338804d9dc2067b23b36e8f",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "candidate_stale": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.1",
+    "direct_sha": "9713a9ad3773a02a691e96c0f21693e4fd9e754a7338804d9dc2067b23b36e8f",
+    "label": "n05_two_cases",
+    "load_cases": 2,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Stale",
+    "refusal": "Profile(Stale)",
+    "value_blocking": [],
+    "value_sha": "9713a9ad3773a02a691e96c0f21693e4fd9e754a7338804d9dc2067b23b36e8f",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "base_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.4",
+    "direct_sha": "9713a9ad3773a02a691e96c0f21693e4fd9e754a7338804d9dc2067b23b36e8f",
+    "label": "n05_two_cases",
+    "load_cases": 2,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Invocation, LoadCases)",
+    "value_blocking": [],
+    "value_sha": "9713a9ad3773a02a691e96c0f21693e4fd9e754a7338804d9dc2067b23b36e8f",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "checks": {
+    "stale_exact_at_D1_1_build": true,
+    "value_route_same_in_both_builds": true,
+    "value_route_same_as_base": true,
+    "registered_exact_no_notice": true,
+    "multi_case_coexistence_admitted": true
+   }
+  },
+  {
+   "label": "phys_r4_pressurized",
+   "mode": "dense_scrutiny",
+   "candidate_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.3",
+    "direct_sha": "5a2b9663093b13f19d6e6dec068b0808acb885ab31627bafca435450edac6541",
+    "label": "phys_r4_pressurized",
+    "load_cases": 1,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Namespace, SchemaVersion)",
+    "value_blocking": [
+     "NUMERICAL_INTEGRITY_UNRESOLVED"
+    ],
+    "value_sha": "5a2b9663093b13f19d6e6dec068b0808acb885ab31627bafca435450edac6541",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "candidate_stale": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.1",
+    "direct_sha": "5a2b9663093b13f19d6e6dec068b0808acb885ab31627bafca435450edac6541",
+    "label": "phys_r4_pressurized",
+    "load_cases": 1,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Stale",
+    "refusal": "Profile(Stale)",
+    "value_blocking": [
+     "NUMERICAL_INTEGRITY_UNRESOLVED"
+    ],
+    "value_sha": "5a2b9663093b13f19d6e6dec068b0808acb885ab31627bafca435450edac6541",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "base_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.3",
+    "direct_sha": "5a2b9663093b13f19d6e6dec068b0808acb885ab31627bafca435450edac6541",
+    "label": "phys_r4_pressurized",
+    "load_cases": 1,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Namespace, SchemaVersion)",
+    "value_blocking": [
+     "NUMERICAL_INTEGRITY_UNRESOLVED"
+    ],
+    "value_sha": "5a2b9663093b13f19d6e6dec068b0808acb885ab31627bafca435450edac6541",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "checks": {
+    "stale_exact_at_D1_1_build": true,
+    "value_route_same_in_both_builds": true,
+    "value_route_same_as_base": true,
+    "registered_exact_no_notice": true,
+    "refused_at_D1_namespace": true,
+    "ordinary_refusal_numerical_integrity": true
+   }
+  },
+  {
+   "label": "phys_r4_pressurized",
+   "mode": "sparse_interactive",
+   "candidate_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.3",
+    "direct_sha": "5a2b9663093b13f19d6e6dec068b0808acb885ab31627bafca435450edac6541",
+    "label": "phys_r4_pressurized",
+    "load_cases": 1,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Namespace, SchemaVersion)",
+    "value_blocking": [
+     "NUMERICAL_INTEGRITY_UNRESOLVED"
+    ],
+    "value_sha": "5a2b9663093b13f19d6e6dec068b0808acb885ab31627bafca435450edac6541",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "candidate_stale": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.1",
+    "direct_sha": "5a2b9663093b13f19d6e6dec068b0808acb885ab31627bafca435450edac6541",
+    "label": "phys_r4_pressurized",
+    "load_cases": 1,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Stale",
+    "refusal": "Profile(Stale)",
+    "value_blocking": [
+     "NUMERICAL_INTEGRITY_UNRESOLVED"
+    ],
+    "value_sha": "5a2b9663093b13f19d6e6dec068b0808acb885ab31627bafca435450edac6541",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "base_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.3",
+    "direct_sha": "5a2b9663093b13f19d6e6dec068b0808acb885ab31627bafca435450edac6541",
+    "label": "phys_r4_pressurized",
+    "load_cases": 1,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Namespace, SchemaVersion)",
+    "value_blocking": [
+     "NUMERICAL_INTEGRITY_UNRESOLVED"
+    ],
+    "value_sha": "5a2b9663093b13f19d6e6dec068b0808acb885ab31627bafca435450edac6541",
+    "value_status": "MODEL_INCOMPLETE"
+   },
+   "checks": {
+    "stale_exact_at_D1_1_build": true,
+    "value_route_same_in_both_builds": true,
+    "value_route_same_as_base": true,
+    "registered_exact_no_notice": true,
+    "refused_at_D1_namespace": true,
+    "ordinary_refusal_numerical_integrity": true
+   }
+  },
+  {
+   "label": "phys_r4_without_pressure",
+   "mode": "dense_scrutiny",
+   "candidate_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.3",
+    "direct_sha": "e5f669bdd153cfc68170d4887f58d4a0a2c2c8da9b04968a8e9431cd99b89aaa",
+    "label": "phys_r4_without_pressure",
+    "load_cases": 1,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Namespace, SchemaVersion)",
+    "value_blocking": [],
+    "value_sha": "e5f669bdd153cfc68170d4887f58d4a0a2c2c8da9b04968a8e9431cd99b89aaa",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "candidate_stale": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.1",
+    "direct_sha": "e5f669bdd153cfc68170d4887f58d4a0a2c2c8da9b04968a8e9431cd99b89aaa",
+    "label": "phys_r4_without_pressure",
+    "load_cases": 1,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Stale",
+    "refusal": "Profile(Stale)",
+    "value_blocking": [],
+    "value_sha": "e5f669bdd153cfc68170d4887f58d4a0a2c2c8da9b04968a8e9431cd99b89aaa",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "base_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.3",
+    "direct_sha": "e5f669bdd153cfc68170d4887f58d4a0a2c2c8da9b04968a8e9431cd99b89aaa",
+    "label": "phys_r4_without_pressure",
+    "load_cases": 1,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Namespace, SchemaVersion)",
+    "value_blocking": [],
+    "value_sha": "e5f669bdd153cfc68170d4887f58d4a0a2c2c8da9b04968a8e9431cd99b89aaa",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "checks": {
+    "stale_exact_at_D1_1_build": true,
+    "value_route_same_in_both_builds": true,
+    "value_route_same_as_base": true,
+    "registered_exact_no_notice": true,
+    "refused_at_D1_namespace": true,
+    "no_pressure_published": true
+   }
+  },
+  {
+   "label": "phys_r4_without_pressure",
+   "mode": "sparse_interactive",
+   "candidate_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.3",
+    "direct_sha": "44068a925313793ab672d2abf1a450c05b0ff4d7b10e1a8f6bc32cb14ec1e50b",
+    "label": "phys_r4_without_pressure",
+    "load_cases": 1,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Namespace, SchemaVersion)",
+    "value_blocking": [],
+    "value_sha": "44068a925313793ab672d2abf1a450c05b0ff4d7b10e1a8f6bc32cb14ec1e50b",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "candidate_stale": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.1",
+    "direct_sha": "44068a925313793ab672d2abf1a450c05b0ff4d7b10e1a8f6bc32cb14ec1e50b",
+    "label": "phys_r4_without_pressure",
+    "load_cases": 1,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Stale",
+    "refusal": "Profile(Stale)",
+    "value_blocking": [],
+    "value_sha": "44068a925313793ab672d2abf1a450c05b0ff4d7b10e1a8f6bc32cb14ec1e50b",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "base_registered": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.3",
+    "direct_sha": "44068a925313793ab672d2abf1a450c05b0ff4d7b10e1a8f6bc32cb14ec1e50b",
+    "label": "phys_r4_without_pressure",
+    "load_cases": 1,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Registered",
+    "refusal": "Family(Namespace, SchemaVersion)",
+    "value_blocking": [],
+    "value_sha": "44068a925313793ab672d2abf1a450c05b0ff4d7b10e1a8f6bc32cb14ec1e50b",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "checks": {
+    "stale_exact_at_D1_1_build": true,
+    "value_route_same_in_both_builds": true,
+    "value_route_same_as_base": true,
+    "registered_exact_no_notice": true,
+    "refused_at_D1_namespace": true,
+    "no_pressure_published": true
+   }
+  },
+  {
+   "label": "w_c2",
+   "mode": "dense_scrutiny",
+   "candidate_registered": {
+    "cause": "successor",
+    "class": "successor",
+    "clause": null,
+    "direct_sha": "a77c010b4ae7ffa9c535c31305b8a91fcc3c05e8a512075fa5b4694dbae3062c",
+    "label": "w_c2",
+    "load_cases": 3,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 1,
+    "profile": "Registered",
+    "refusal": null,
+    "value_blocking": [],
+    "value_sha": "c382c16e19074e5b06f21cc2d6d894e747cfb672e9983e39b33d17d60e0d5623",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "candidate_stale": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.1",
+    "direct_sha": "c382c16e19074e5b06f21cc2d6d894e747cfb672e9983e39b33d17d60e0d5623",
+    "label": "w_c2",
+    "load_cases": 3,
+    "mode": "dense_scrutiny",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Stale",
+    "refusal": "Profile(Stale)",
+    "value_blocking": [],
+    "value_sha": "c382c16e19074e5b06f21cc2d6d894e747cfb672e9983e39b33d17d60e0d5623",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "base_registered": {
+    "direct": "ABSENT",
+    "label": "w_c2",
+    "mode": "dense_scrutiny"
+   },
+   "checks": {
+    "stale_exact_at_D1_1_build": true,
+    "value_route_same_in_both_builds": true,
+    "registered_successor_equals_pinned_fixture": true,
+    "registered_no_n1_notice": true
+   }
+  },
+  {
+   "label": "w_c2",
+   "mode": "sparse_interactive",
+   "candidate_registered": {
+    "cause": "successor",
+    "class": "successor",
+    "clause": null,
+    "direct_sha": "c7a1859330e9e36e18f5572838dbad72ea251a817241acc6968f8f83b70170fa",
+    "label": "w_c2",
+    "load_cases": 3,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 1,
+    "profile": "Registered",
+    "refusal": null,
+    "value_blocking": [],
+    "value_sha": "42b24d16e5fe8dd7b0263675223259ffd8ce5add92963e2a2a84bd165e53d824",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "candidate_stale": {
+    "cause": "none",
+    "class": "exact",
+    "clause": "D1.1",
+    "direct_sha": "42b24d16e5fe8dd7b0263675223259ffd8ce5add92963e2a2a84bd165e53d824",
+    "label": "w_c2",
+    "load_cases": 3,
+    "mode": "sparse_interactive",
+    "n1_notices": 0,
+    "notices": 0,
+    "profile": "Stale",
+    "refusal": "Profile(Stale)",
+    "value_blocking": [],
+    "value_sha": "42b24d16e5fe8dd7b0263675223259ffd8ce5add92963e2a2a84bd165e53d824",
+    "value_status": "MECHANICS_SOLVED"
+   },
+   "base_registered": {
+    "direct": "ABSENT",
+    "label": "w_c2",
+    "mode": "sparse_interactive"
+   },
+   "checks": {
+    "stale_exact_at_D1_1_build": true,
+    "value_route_same_in_both_builds": true,
+    "registered_successor_equals_pinned_fixture": true,
+    "registered_no_n1_notice": true
+   }
+  }
+ ],
+ "failures": []
+}
