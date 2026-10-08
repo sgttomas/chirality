@@ -5860,95 +5860,24 @@ describe("SWBPIPE desktop preview", () => {
     );
   });
 
-  it("queues and applies a pressure primitive load through the manager panel", async () => {
+  it("does not offer retired legacy pressure primitives in the manager panel (U3)", async () => {
     render(<App />);
 
     const manager = await loadCaseManager();
-    fireEvent.change(
-      within(manager).getByTestId("load-manager-create-primitive-category"),
-      {
-        target: { value: "pressure" },
-      },
-    );
+    const category = within(manager).getByTestId(
+      "load-manager-create-primitive-category",
+    ) as HTMLSelectElement;
+    expect(Array.from(category.options).map((option) => option.value)).toEqual([
+      "concentrated_force",
+      "distributed_force",
+      "concentrated_moment",
+      "thermal",
+      "imposed_displacement",
+    ]);
     expect(
-      within(manager).getByTestId("load-manager-create-primitive-id"),
-    ).toHaveValue("load:L-100-P300");
-    expectVirtualTargetValue(manager, "load-manager-create-primitive-load-case", "load:L-100");
-    expectVirtualTargetValue(manager, "load-manager-create-primitive-pipe", "pipe:P-100");
-    expect(
-      within(manager).getByTestId("load-manager-create-primitive-direction"),
-    ).toHaveValue("global_x");
-    expect(
-      within(manager).getByTestId("load-manager-create-primitive-unit"),
-    ).toHaveValue("Pa");
-    expect(
-      await within(manager).findByText("Magnitude (Pa, model metadata)"),
-    ).toBeInTheDocument();
-    expect(
-      within(manager).getByTestId("load-manager-create-primitive-preview")
+      within(manager).getByTestId("load-manager-pressure-primitive-retired")
         .textContent,
-    ).toContain("op:load-manager-load:L-100-load:L-100-P300-primitive");
-    expect(
-      within(manager).getByTestId("load-manager-create-primitive-preview")
-        .textContent,
-    ).toContain("target=pipe:P-100; direction=global_x; unit=Pa; pressure");
-
-    fireEvent.change(
-      within(manager).getByTestId("load-manager-create-primitive-magnitude"),
-      {
-        target: { value: "1200000" },
-      },
-    );
-    fireEvent.click(
-      within(manager).getByTestId("queue-create-primitive-intent"),
-    );
-
-    const applyPanel = operationApplyPanel();
-    expect(
-      within(applyPanel).getByTestId("operation-apply-row-editor-intent-1")
-        .textContent,
-    ).toContain("primitive_loads");
-    fireEvent.click(
-      within(applyPanel).getByTestId("apply-intent-editor-intent-1"),
-    );
-    await waitFor(() =>
-      expect(
-        within(applyPanel).getByTestId("operation-apply-message").textContent,
-      ).toContain(
-        "Applied op:load-manager-load:L-100-load:L-100-P300-primitive",
-      ),
-    );
-
-    expect(
-      within(manager).getByTestId("load-case-manager-summary").textContent,
-    ).toContain("2 load cases; 10 primitive loads; 1 combinations");
-    expect(
-      within(manager).getByTestId("load-manager-case-load:L-100").textContent,
-    ).toContain("load:L-100; primitive_user_load; preview_only; primitives=6");
-    expect(
-      within(manager).getByTestId("load-manager-primitive-load:L-100-P300")
-        .textContent,
-    ).toContain("pressure; 1200000 Pa");
-    expect(
-      within(manager).getByTestId("load-manager-primitive-load:L-100-P300")
-        .textContent,
-    ).toContain(
-      "load:L-100-P300; element:pipe:P-100; global_x; dimension=pressure",
-    );
-    expect(
-      within(applyPanel).getByTestId(
-        "applied-operation-route-applied-1-editor-intent-1",
-      ).textContent,
-    ).toContain("persistence session_state_only_not_yet_saved");
-    expect(
-      screen.getByTestId("local-project-review-context").textContent,
-    ).toContain("0 pending operations");
-    expect(
-      screen.getByTestId("local-project-review-context").textContent,
-    ).toContain("applied_operations=1");
-    expect(solveJobSummary().textContent).toContain(
-      "state=not_started",
-    );
+    ).toContain("Legacy pressure primitives are retired");
   });
 
   it("queues and applies a thermal primitive load through the manager panel", async () => {

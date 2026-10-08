@@ -62,6 +62,15 @@ function CreateExactMaterial(props: RichFormProps) {
     <button type="button" onClick={() => void submit()}>Queue exact material</button>
   </fieldset><QueueFeedback {...state} /></details>;
 }
+/** U3: the legacy pressure contract is retired product-wide. A 0.1.0/0.2.0 model has no
+ * pressure contract and is pressure-free (a pressure primitive is refused); a declared
+ * 1.0.0/legacy_pressure_v1 contract is refused until the model is re-authored to exact. */
+export function pressureModeText(model: RichFormProps["model"]): string {
+  const mode = model.pressure_contract?.mode;
+  if (mode === "legacy_pressure_v1") return "legacy_pressure_v1 (retired; solves are refused until the model is re-authored to exact_straight_pressure_v2)";
+  if (mode) return mode;
+  return model.schema_version === "0.3.0" ? "not declared" : "none (pressure-free; legacy pressure primitives are refused)";
+}
 export function PressureAuthoringPanel(props: RichFormProps & { loadCaseId?: string }) {
   const state = useRichQueue(props);
   const [profile, setProfile] = useState("");
@@ -71,7 +80,7 @@ export function PressureAuthoringPanel(props: RichFormProps & { loadCaseId?: str
   const currentProfile = { schema_version: props.model.schema_version, ...(props.model.pressure_contract ? { pressure_contract: props.model.pressure_contract } : {}) };
   const loadCase = props.model.load_cases.find(c => c.id === props.loadCaseId);
   return <section aria-label="Exact pressure authoring"><h3>Pressure mechanics profile</h3>
-    <p>Current model: {props.model.schema_version}; pressure mode: {props.model.pressure_contract?.mode ?? (props.model.schema_version === "0.3.0" ? "not declared" : "legacy")}. Every exact-profile case needs an explicit pressure-region array, including an explicitly reviewed empty array for unpressurized cases. Existing pressure primitives must be removed explicitly before this profile can be applied. Unsupported combinations, fittings and nonlinear cases remain subject to solver diagnostics.</p>
+    <p>Current model: {props.model.schema_version}; pressure mode: {pressureModeText(props.model)}. Every exact-profile case needs an explicit pressure-region array, including an explicitly reviewed empty array for unpressurized cases. Existing pressure primitives must be removed explicitly before this profile can be applied. Unsupported combinations, fittings and nonlinear cases remain subject to solver diagnostics.</p>
     <p>Pressure is uniform within each region. Structural line loads act as entered; a contents-density value does not imply hydrostatic pressure head or a coupled static-fluid pressure and weight state.</p>
     <fieldset disabled={state.busy}>
       <TextField label="Pressure profile" value={profile} choices={["exact_straight_pressure_v2"]} onChange={setProfile} />

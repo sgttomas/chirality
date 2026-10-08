@@ -486,16 +486,9 @@ test("R2 browser smoke covers authoring, explicit reference results, and qualifi
   await expect(page.getByTestId("load-manager-create-primitive-preview")).toContainText(
     "target=node:N-100; direction=rotation_z; unit=N*m; moment"
   );
-  await page.getByTestId("load-manager-create-primitive-category").selectOption("pressure");
-  await expect(page.getByTestId("load-manager-create-primitive-id")).toHaveValue("load:L-100-P300");
-  await expectVirtualTarget(page, "load-manager-create-primitive-pipe", "pipe:P-100");
-  await expect(page.getByTestId("load-manager-create-primitive-direction")).toHaveValue("global_x");
-  await expect(page.getByTestId("load-manager-create-primitive-preview")).toContainText(
-    "op:load-manager-load:L-100-load:L-100-P300-primitive"
-  );
-  await expect(page.getByTestId("load-manager-create-primitive-preview")).toContainText(
-    "target=pipe:P-100; direction=global_x; unit=Pa; pressure"
-  );
+  // U3: legacy pressure primitives are retired; pressure is authored as exact regions.
+  await expect(page.getByTestId("load-manager-create-primitive-category").locator('option[value="pressure"]')).toHaveCount(0);
+  await expect(page.getByTestId("load-manager-pressure-primitive-retired")).toContainText("Legacy pressure primitives are retired");
   await page.getByTestId("load-manager-create-primitive-category").selectOption("thermal");
   await expect(page.getByTestId("load-manager-create-primitive-id")).toHaveValue("load:L-100-T300");
   await expectVirtualTarget(page, "load-manager-create-primitive-pipe", "pipe:P-100");
