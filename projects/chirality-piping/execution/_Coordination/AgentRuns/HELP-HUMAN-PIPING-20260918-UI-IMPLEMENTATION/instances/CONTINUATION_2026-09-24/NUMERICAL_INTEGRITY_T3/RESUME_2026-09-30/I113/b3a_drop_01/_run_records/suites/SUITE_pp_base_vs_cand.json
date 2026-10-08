@@ -1,0 +1,45 @@
+{
+ "suite": "re",
+ "base": {
+  "FAILED": 2,
+  "ignored": 11,
+  "ok": 790
+ },
+ "head": {
+  "FAILED": 1,
+  "ignored": 11,
+  "ok": 791
+ },
+ "differences": [
+  {
+   "test": "lib.rs :: retained_facade_tests::b3a_dropped_m3l_takes_the_ordinary_route",
+   "base": null,
+   "head": "ok"
+  },
+  {
+   "test": "lib.rs :: retained_facade_tests::b3a_m3l_needs_no_producer_change",
+   "base": "ok",
+   "head": null
+  },
+  {
+   "test": "lib.rs :: retained_memory::law_tests::b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0",
+   "base": "ok",
+   "head": null
+  },
+  {
+   "test": "lib.rs :: retained_memory::law_tests::b3a_direct_entry_oracles",
+   "base": "FAILED",
+   "head": null
+  },
+  {
+   "test": "lib.rs :: retained_memory::law_tests::b3a_dropped_d1_3_refuses_the_legacy_pressure_contract_on_0_3_0",
+   "base": null,
+   "head": "ok"
+  },
+  {
+   "test": "lib.rs :: retained_memory::law_tests::b3a_dropped_direct_entry_refuses_m3l",
+   "base": null,
+   "head": "ok"
+  }
+ ]
+}

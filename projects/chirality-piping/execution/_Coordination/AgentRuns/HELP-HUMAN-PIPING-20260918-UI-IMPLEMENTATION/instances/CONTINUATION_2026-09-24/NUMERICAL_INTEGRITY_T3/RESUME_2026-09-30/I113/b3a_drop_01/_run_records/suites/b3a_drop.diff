@@ -1,0 +1,813 @@
+diff --git a/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts b/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts
+index e44edf31ae..d3fd2bb8d4 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts
+@@ -1444,15 +1444,16 @@ describe('B1 I4\' (I101): the extrema-number demand at G7, bound, unbound and on
+ });
+ 
+ describe('B3a (I101): G8\'s namespace predicate, type-strict (B3-D §6.3, §6.4; REVISION_01 §3, N-4; reader-local synthetic receipts)', () => {
+-  // Branch L (0.1.0 or 0.2.0, pressure_contract absent or JSON null) and branch L3 (0.3.0, exactly
+-  // {"version":"1.0.0","mode":"legacy_pressure_v1"}) are admitted; any other value is G8 INVOCATION_MISMATCH. A
+-  // zero-magnitude element pressure load on L3 is outside D1.7 (N-11's reading): G8 PREPARATION_MISMATCH. The shapes and
+-  // expectations are the Rust reader's `b3a_legacy_pressure_contract_namespace_at_g8`, entry for entry.
++  // B3a dropped (RR "Owner decisions: the legacy pressure contract is retired product-wide; …"): only branch L (0.1.0 or
++  // 0.2.0, pressure_contract absent or JSON null) is admitted; any other value is G8 INVOCATION_MISMATCH. "L3" in the
++  // entry names is B3a's retired contract {"version":"1.0.0","mode":"legacy_pressure_v1"} on 0.3.0, now refused on every
++  // base, and before any load is read (the former N-11 entries). The shapes and expectations are the Rust reader's
++  // `b3a_legacy_pressure_contract_namespace_at_g8` and PY's `B3A_DROPPED_TABLE`, entry for entry.
+   const l3 = { version: '1.0.0', mode: 'legacy_pressure_v1' };
+   const schema = (v: string) => ({ path: ['request', 'model', 'schema_version'], op: 'set', value: v });
+   const contract = (v: unknown) => ({ path: ['request', 'model', 'pressure_contract'], op: 'set', value: v });
+   const noContract = () => ({ path: ['request', 'model', 'pressure_contract'], op: 'remove' });
+-  const INV = G('G8', 'INVOCATION_MISMATCH'), PREP = G('G8', 'PREPARATION_MISMATCH');
++  const INV = G('G8', 'INVOCATION_MISMATCH');
+   const zeroPressure = (id: string) => {
+     const loads = structuredClone(corpus.cases.find((c: any) => c.id === id).invocation.request.model.load_cases[0].primitive_loads);
+     loads.push({ id: 'load:b3a-zero-pressure', category: 'pressure', target: { type: 'element', pipe: 'pipe:fixture-span' },
+@@ -1462,7 +1463,7 @@ describe('B3a (I101): G8\'s namespace predicate, type-strict (B3-D §6.3, §6.4;
+   const ORD = 'ordinary_prepared_synthetic', DENSE = 'ordinary_prepared_dense_synthetic';
+   const entries: [string, string, any[], any][] = [
+     ...[ORD, DENSE, 'two_case_synthetic', 'u8_l0_isolated_node_sparse_interactive', 'u8_l0_isolated_node_dense_scrutiny']
+-      .map((base): [string, string, any[], any] => [`L3 on ${base}`, base, [schema('0.3.0'), contract(l3)], 'pass']),
++      .map((base): [string, string, any[], any] => [`L3 on ${base}`, base, [schema('0.3.0'), contract(l3)], INV]),
+     ['L: 0.2.0, contract null', ORD, [contract(null)], 'pass'],
+     ['L: 0.1.0, contract absent', ORD, [schema('0.1.0'), noContract()], 'pass'],
+     ['L3: mode exact_straight_pressure_v2, version 1.0.0', ORD, [schema('0.3.0'), contract({ ...l3, mode: 'exact_straight_pressure_v2' })], INV],
+@@ -1485,8 +1486,8 @@ describe('B3a (I101): G8\'s namespace predicate, type-strict (B3-D §6.3, §6.4;
+     ['N-4: 0.2.0, contract []', ORD, [contract([])], INV],
+     ['N-4: 0.2.0, contract ""', ORD, [contract('')], INV],
+     ['N-4: 0.2.0, contract 0', ORD, [contract(0)], INV],
+-    ['N-11: L3 with a zero-magnitude element pressure load', ORD, [schema('0.3.0'), contract(l3), zeroPressure(ORD)], PREP],
+-    ['N-11: L3 dense with a zero-magnitude element pressure load', DENSE, [schema('0.3.0'), contract(l3), zeroPressure(DENSE)], PREP],
++    ['N-11: L3 with a zero-magnitude element pressure load', ORD, [schema('0.3.0'), contract(l3), zeroPressure(ORD)], INV],
++    ['N-11: L3 dense with a zero-magnitude element pressure load', DENSE, [schema('0.3.0'), contract(l3), zeroPressure(DENSE)], INV],
+   ];
+   it('has the Rust test\'s 29 entries', () => { expect(entries.length).toBe(29); });
+   for (const [name, base, edits, want] of entries) it(name, async () => {
+diff --git a/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts b/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts
+index 7d6b26909b..266084ae5e 100644
+--- a/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts
++++ b/projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts
+@@ -1216,14 +1216,13 @@ function pressureContractIs(contract: unknown, version: string, mode: string): b
+   return !!contract && typeof contract === 'object' && !Array.isArray(contract) && same(Object.keys(contract).sort(), ['mode', 'version'])
+     && (contract as Obj).version === version && (contract as Obj).mode === mode;
+ }
+-/** D1.3 on the preview branch (B3a; B3-D §6.3, REVISION_01 §3, N-4), type-strict: branch L, schema 0.1.0 or 0.2.0 with
+- * `pressure_contract` absent or JSON null; or branch L3, schema 0.3.0 with exactly
+- * `{"version":"1.0.0","mode":"legacy_pressure_v1"}`. Anything else (0.3.0 without a contract, `{}`, `false`, `""`, `0`,
+- * an extra key, 0.2.0 with a contract, 0.4.0) is outside the namespace. */
++/** D1.3 on the preview branch, type-strict (B3-D REVISION_01 §3, N-4): branch L, schema 0.1.0 or 0.2.0 with
++ * `pressure_contract` absent or JSON null. Anything else (any 0.3.0 model, the retired `legacy_pressure_v1` contract
++ * included; `{}`, `false`, `""`, `0` or any contract on 0.1.0 or 0.2.0; 0.4.0) is outside the namespace. B3a's branch L3
++ * is dropped (the owner retired that contract product-wide); B3D-10's tightenings stay. */
+ function legacyNamespace(model: Obj): boolean {
+-  if (model.schema_version === '0.1.0' || model.schema_version === '0.2.0') return !Object.hasOwn(model, 'pressure_contract') || model.pressure_contract === null;
+-  if (model.schema_version === '0.3.0') return pressureContractIs(model.pressure_contract, '1.0.0', 'legacy_pressure_v1');
+-  return false;
++  return (model.schema_version === '0.1.0' || model.schema_version === '0.2.0')
++    && (!Object.hasOwn(model, 'pressure_contract') || model.pressure_contract === null);
+ }
+ /** D1.3 on the exact route (B3b): schema 0.3.0 with exactly `{"version":"2.0.0","mode":"exact_straight_pressure_v2"}`. */
+ function exactNamespace(model: Obj): boolean {
+@@ -1235,7 +1234,7 @@ async function invocationBinding(b: Obj, source: Obj, invocation: Obj, route: Ro
+   fail(await hash('source_blocks_invocation_v1', invocation) === b.invocation.value, 'INVOCATION_MISMATCH');
+   const request = invocation.request, model = request.model;
+   // D31: model 0.1.0 and 0.2.0 on one branch (PP pressure_runtime.rs `validate_profile`); 0.4.0 stays excluded (C1 G8
+-  // row, "no 0.4 extension"). B3a: D1.3's namespace, type-strict (`legacyNamespace`); B3b: the exact route's own branch.
++  // row, "no 0.4 extension"). D1.3's namespace, type-strict (`legacyNamespace`; B3a's L3 dropped); B3b: the exact route's own branch.
+   fail(model?.project?.id === source.model_ref && (route.exact ? exactNamespace(model) : legacyNamespace(model)), 'INVOCATION_MISMATCH');
+   // (g), B1's three-reader alignment set (RR "RV113's three returns verified; …", item 2): PP's acceptance, before any
+   // PREPARATION check. No reference_configurations member (null included); combinations and components absent or [].
+diff --git a/projects/chirality-piping/core/analysis_runs/retained_precision.py b/projects/chirality-piping/core/analysis_runs/retained_precision.py
+index fe940d596b..181b07cc91 100644
+--- a/projects/chirality-piping/core/analysis_runs/retained_precision.py
++++ b/projects/chirality-piping/core/analysis_runs/retained_precision.py
+@@ -1553,9 +1553,6 @@ def _g5_numeric(body, rows_by_case, phase=None, exact_evidence=None):
+     return classes
+ 
+ 
+-LEGACY_PRESSURE_CONTRACT = {"version": "1.0.0", "mode": "legacy_pressure_v1"}
+-
+-
+ def _pressure_contract_is(model, expected):
+     """Exactly the JSON object `expected`: the two keys, each value that exact string (B3-D REVISION_01 §3)."""
+     value = model.get("pressure_contract")
+@@ -1563,13 +1560,12 @@ def _pressure_contract_is(model, expected):
+ 
+ 
+ def _legacy_namespace(model):
+-    """G8's namespace on the preview successor (B3a; B3-D §6.3 and REVISION_01 §3, N-4), type-strict: branch L,
+-    schema 0.1.0 or 0.2.0 with `pressure_contract` absent or JSON null; or branch L3, schema 0.3.0 with exactly
+-    {"version": "1.0.0", "mode": "legacy_pressure_v1"}. 0.3.0 without that contract is refused (B3D-10)."""
++    """G8's namespace on the preview successor, type-strict (B3-D REVISION_01 §3, N-4): branch L, schema 0.1.0 or
++    0.2.0 with `pressure_contract` absent or JSON null. Anything else is refused: any 0.3.0 model, the retired
++    {"version": "1.0.0", "mode": "legacy_pressure_v1"} included (B3a's branch L3 is dropped; the owner retired that
++    contract product-wide), and B3D-10's tightenings (0.3.0 without a contract; `{}` and other falsy values) stay."""
+     version = model.get("schema_version")
+-    if version in ("0.1.0", "0.2.0") and type(version) is str:
+-        return model.get("pressure_contract") is None
+-    return version == "0.3.0" and _pressure_contract_is(model, LEGACY_PRESSURE_CONTRACT)
++    return type(version) is str and version in ("0.1.0", "0.2.0") and model.get("pressure_contract") is None
+ 
+ 
+ EXACT_PRESSURE_CONTRACT = {"version": "2.0.0", "mode": "exact_straight_pressure_v2"}
+@@ -1619,7 +1615,7 @@ def _g8(body, source, invocation, route=PREVIEW_ROUTE):
+     request = invocation["request"]; model = request["model"]
+     need(model["project"]["id"] == source["model_ref"], "INVOCATION_MISMATCH")
+     # The model scope, as PP accepts it (the alignment set, item 2): no reference_configurations member (null
+-    # included); the route's namespace (B3a; B3b's exact one); combinations and components absent or [] (on the
++    # included); the route's namespace (branch L; B3b's exact one); combinations and components absent or [] (on the
+     # exact route a combination is ruling 4's expected refusal).
+     need((_exact_namespace(model) if exact else _legacy_namespace(model)) and model.get("combinations", []) == [], "INVOCATION_MISMATCH")
+     need(model.get("components", []) == [] and "reference_configurations" not in model, "INVOCATION_MISMATCH")
+diff --git a/projects/chirality-piping/core/product_physics/src/lib.rs b/projects/chirality-piping/core/product_physics/src/lib.rs
+index e89ce11e5e..cf9fbcaa2a 100644
+--- a/projects/chirality-piping/core/product_physics/src/lib.rs
++++ b/projects/chirality-piping/core/product_physics/src/lib.rs
+@@ -3030,7 +3030,7 @@ fn permitted_run(
+ }
+ 
+ /// B3b-P (B3-D P-1; I95's ruling 1): an admitted model's W1 route, decided once, from its D1.3
+-/// namespace branch: L and L3 take the preview route (preview-physics-1 base), E the exact route
++/// namespace branch: L takes the preview route (preview-physics-1 base), E the exact route
+ /// (physics-1 base, `physics-retained-1`). `None` (no W1: `Domain`) for a load-state model and
+ /// any model on no branch (0.4.0 included).
+ fn w1_route(model: &PreviewModel) -> Option<retained_product::W1Route> {
+@@ -3039,7 +3039,7 @@ fn w1_route(model: &PreviewModel) -> Option<retained_product::W1Route> {
+         return None;
+     }
+     match retained_memory::namespace_branch(model) {
+-        Ok(B::Legacy | B::LegacyPressure) => Some(retained_product::W1Route::Preview),
++        Ok(B::Legacy) => Some(retained_product::W1Route::Preview),
+         Ok(B::Exact) => Some(retained_product::W1Route::Exact),
+         Err(_) => None,
+     }
+diff --git a/projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs b/projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs
+index 8d4330afc1..55d465c8cd 100644
+--- a/projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs
++++ b/projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs
+@@ -2377,7 +2377,7 @@ fn b1_sp_constructor_ordinal_is_the_authored_index() {
+ //
+ // RR "I99's B3-W verified; B3's witnesses selected; …": the exact successor is `m3x` (the
+ // milestone authored as 0.3.0 exact), the coexistence pins are n05 and n06 (with `fields` for
+-// P-2), and the mixed exact base is `m3x_mix_anchor`. B3a's `m3l` needs no producer change.
++// P-2), and the mixed exact base is `m3x_mix_anchor`. B3a is dropped; `m3l` is its refusal witness.
+ 
+ /// `raw` authored as 0.3.0 exact (I99's `gen_inputs.py`, item 1): the exact contract; each
+ /// material's shear modulus removed, with the common E/ν basis and ν = 0.25; explicitly empty
+@@ -2411,6 +2411,7 @@ fn m3x_mix_anchor() -> Value {
+     exact3(raw)
+ }
+ /// B3-W's `m3l` (B3a): the milestone authored as 0.3.0 `legacy_pressure_v1` with zero pressure.
++/// B3a is dropped, so `m3l` is a refusal witness (D1.3 `PressureContract`; no W1 route).
+ fn m3l() -> Value {
+     let mut raw = raw();
+     raw["model"]["schema_version"] = json!("0.3.0");
+@@ -2427,8 +2428,9 @@ fn model_of(raw: &Value) -> PreviewModel {
+ }
+ 
+ /// The witnesses are B3-W's (I99 §2: the Value sha256 of each built input; the committed
+-/// requests' file sha256), and P-1's route is decided from the namespace branch: L and L3 on the
+-/// preview route, E on the exact route, a load-state or 0.4.0 model on none.
++/// requests' file sha256), and P-1's route is decided from the namespace branch: L on the
++/// preview route, E on the exact route, a load-state or 0.4.0 model, and B3a's dropped `m3l`, on
++/// none.
+ #[test]
+ fn b3b_witness_inputs_and_routes() {
+     use rp::W1Route as R;
+@@ -2443,7 +2445,7 @@ fn b3b_witness_inputs_and_routes() {
+         assert_eq!(w1_route(&model_of(&serde_json::from_str(text).unwrap())), Some(R::Exact), "{name}");
+     }
+     assert_eq!(w1_route(&model_of(&raw())), Some(R::Preview), "L");
+-    assert_eq!(w1_route(&model_of(&m3l())), Some(R::Preview), "L3");
++    assert_eq!(w1_route(&model_of(&m3l())), None, "m3l (B3a dropped): no branch");
+     assert_eq!(w1_route(&model_of(&m3x())), Some(R::Exact), "E");
+     assert_eq!(w1_route(&model_of(&m3x_mix_anchor())), Some(R::Exact), "E, two cases");
+     let mut four = m3x();
+@@ -2962,48 +2964,23 @@ fn b3b_exact_observables_refuse_each_evidence_defect() {
+     }
+ }
+ 
+-/// B3a (`m3l`; RR "I99's B3-W verified; …", ruling 3): the producer needs no change. Its W1 runs
+-/// on the preview route to precommit; the successor precommit receives differs from the 0.1.0
+-/// milestone's pinned successor in exactly the invocation hash (the model echo),
+-/// `legacy_source_work[0].charged` and the receipt hash, and its ordinary bytes from the
+-/// milestone's in exactly the one legacy exact-block message. Today RS's G8 refuses its contract
+-/// (the readers' B3a is pending), so W1 falls back with one notice; or the reader admits it.
++/// B3a is dropped (RR "Owner decisions: the legacy pressure contract is retired product-wide;
++/// …"): `m3l`, B3a's former witness, is now its refusal witness. G-A refuses it at D1.3 with
++/// `PressureContract`, so it takes the ordinary route: the plain bytes, no W1, one run, in both
++/// modes and every build.
+ #[test]
+-fn b3a_m3l_needs_no_producer_change() {
+-    const MILESTONE_FIXTURES: [&str; 2] = [
+-        include_str!("../../../fixtures/results/retained_precision_milestone_successor_sparse_interactive.json"),
+-        include_str!("../../../fixtures/results/retained_precision_milestone_successor_dense_scrutiny.json"),
+-    ];
+-    fn paths(a: &Value, b: &Value, at: String, out: &mut Vec<String>) {
+-        match (a, b) {
+-            (Value::Object(x), Value::Object(y)) if x.keys().eq(y.keys()) => for (k, v) in x { paths(v, &y[k], format!("{at}.{k}"), out) },
+-            (Value::Array(x), Value::Array(y)) if x.len() == y.len() => for (i, (v, w)) in x.iter().zip(y).enumerate() { paths(v, w, format!("{at}[{i}]"), out) },
+-            _ if a != b => out.push(at),
+-            _ => {}
+-        }
+-    }
+-    for (mode, fixture) in MODES.into_iter().zip(MILESTONE_FIXTURES) {
++fn b3a_dropped_m3l_takes_the_ordinary_route() {
++    use super::retained_memory::{AdmissionRefusal, D1Clause, FamilyFact};
++    for mode in MODES {
+         let raw = m3l();
+         let plain = plain(mode, &raw);
+-        let mut ordinary_paths = Vec::new();
+-        paths(&serde_json::from_slice(&plain).unwrap(), &serde_json::from_slice(&self::plain(mode, &self::raw())).unwrap(), "$".into(), &mut ordinary_paths);
+-        assert_eq!(ordinary_paths, ["$.diagnostics[3].message"], "{mode:?}: the ordinary bytes");
+-        let (envelope, retained, captured) = exact_w1(&raw, mode);
+-        let successor = captured.unwrap_or_else(|| panic!("{mode:?}: {retained:?}"));
+-        let milestone: Value = serde_json::from_str::<Value>(fixture).unwrap()["source"].clone();
+-        let mut successor_paths = Vec::new();
+-        paths(&successor, &milestone, "$".into(), &mut successor_paths);
+-        assert_eq!(successor_paths, ["$.retained_precision.body.invocation.value", "$.retained_precision.body.legacy_source_work[0].charged",
+-            "$.retained_precision.receipt_sha256"], "{mode:?}: the successor");
+-        match &retained {
+-            Ok(validated) => assert_eq!(validated.value(), &successor, "{mode:?}"),
+-            Err(W1Fallback::Precommit { gate, code }) => {
+-                assert_eq!((*gate, code.as_str()), ("G8", "RETAINED_PRECISION_INVOCATION_MISMATCH"), "{mode:?}: today's reader");
+-                assert_eq!(serde_json::to_vec(&envelope).unwrap(), with_notice(&plain, "case", None), "{mode:?}");
+-            }
+-            Err(other) => panic!("{mode:?}: {other:?}"),
+-        }
+-        println!("B3A_M3L {mode:?} precommit={:?}", retained.as_ref().err());
++        let (output, counts) = direct(&raw, mode);
++        assert_eq!(output.admission().unwrap().law().domain, Some(AdmissionRefusal::Family(D1Clause::Namespace, FamilyFact::PressureContract)),
++            "{mode:?}: D1.3 refuses the label");
++        assert!(output.admission().unwrap().law().refusal.is_some(), "{mode:?}: G-A refuses");
++        assert!(output.retained().is_none() && output.successor().is_none(), "{mode:?}: no W1");
++        assert_eq!(counts, ONE_RUN, "{mode:?}");
++        assert_eq!(published(output), plain, "{mode:?}: the ordinary route's bytes");
+     }
+ }
+ 
+diff --git a/projects/chirality-piping/core/product_physics/src/retained_memory.rs b/projects/chirality-piping/core/product_physics/src/retained_memory.rs
+index a97324dd63..6ddcf20ba8 100644
+--- a/projects/chirality-piping/core/product_physics/src/retained_memory.rs
++++ b/projects/chirality-piping/core/product_physics/src/retained_memory.rs
+@@ -293,8 +293,8 @@ pub(super) fn raw_text_census(root: &Value) -> RawTextFacts {
+ /// borrowed typed request (actual lengths and capacities, never construction
+ /// history). Owners of excluded families (hangers, nonlinear supports, pressure
+ /// regions, sections, components, generated and load-state inputs) are not read: their
+-/// presence is refused by D1.3–D1.6 instead. Allocation-free. B3a: the pressure
+-/// contract's strings are read (D1.3's branch L3 admits one). B2-A: each combination's
++/// presence is refused by D1.3–D1.6 instead. Allocation-free. The pressure contract's
++/// strings are read (D1.3's branch E admits one, B3b). B2-A: each combination's
+ /// strings are read (D1.4 admits combinations); its arrays are `CombinationFacts`.
+ #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+ pub(super) struct NestedTypedFacts {
+@@ -370,7 +370,7 @@ impl TypedWalk {
+             self.material(material)?;
+         }
+         self.string(&m.schema_version)?;
+-        // B3a: D1.3 admits a pressure contract on branch L3, so its two typed strings are read.
++        // D1.3 admits a pressure contract on branch E (B3b), so its two typed strings are read.
+         if let Some(contract) = &m.pressure_contract {
+             self.optional(&contract.version)?;
+             self.optional(&contract.mode)?;
+@@ -640,8 +640,8 @@ pub(super) enum FamilyFact {
+     Sections,
+     SectionRef,
+     LoadCases,
+-    /// B3b-A (B3-D §4.2; RR "I95's B3-S: …", ruling 4): the exact route's D1.4 clause. On L and
+-    /// L3 combinations are counted by D1.9 (B2-A).
++    /// B3b-A (B3-D §4.2; RR "I95's B3-S: …", ruling 4): the exact route's D1.4 clause. On L
++    /// combinations are counted by D1.9 (B2-A).
+     Combinations,
+     /// B2-A (C-9): a combination id equal to a load-case id.
+     CombinationIds,
+@@ -797,13 +797,13 @@ fn census_complete_part(f: &DomainFacts<'_>) -> Result<(), AdmissionRefusal> {
+ }
+ /// D1.3's namespace branches (B3-D §4.1). One decision per request: `family_clauses`
+ /// applies the branch's own D1.4 and D1.5 clauses, which is also the route split G5's
+-/// per-route pricing needs (B3-D §4.4).
++/// per-route pricing needs (B3-D §4.4). B3a's branch L3 (0.3.0 with `legacy_pressure_v1`)
++/// is dropped: the owner retired that contract product-wide, so D1.3 refuses it with
++/// `PressureContract`, as any other contract outside L and E.
+ #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+ pub(super) enum NamespaceBranch {
+     /// L: schema 0.1.0 or 0.2.0, no pressure contract.
+     Legacy,
+-    /// L3 (B3a): schema 0.3.0 with the `legacy_pressure_v1` contract, version 1.0.0.
+-    LegacyPressure,
+     /// E (B3b): schema 0.3.0 with the `exact_straight_pressure_v2` contract, version 2.0.0.
+     /// Its own D1.4 and D1.5 clauses apply (B3-D §4.2).
+     Exact,
+@@ -817,7 +817,6 @@ fn contract_is(contract: &crate::PressureContractInput, version: &str, mode: &st
+ pub(super) fn namespace_branch(m: &crate::PreviewModel) -> Result<NamespaceBranch, FamilyFact> {
+     match (m.schema_version.as_str(), &m.pressure_contract) {
+         ("0.1.0" | "0.2.0", None) => Ok(NamespaceBranch::Legacy),
+-        ("0.3.0", Some(c)) if contract_is(c, "1.0.0", "legacy_pressure_v1") => Ok(NamespaceBranch::LegacyPressure),
+         ("0.3.0", Some(c)) if contract_is(c, "2.0.0", "exact_straight_pressure_v2") => Ok(NamespaceBranch::Exact),
+         ("0.1.0" | "0.2.0" | "0.3.0", _) => Err(FamilyFact::PressureContract),
+         _ => Err(FamilyFact::SchemaVersion),
+@@ -831,8 +830,7 @@ fn family_clauses(request: &LinearStaticPreviewRequest) -> Result<(), AdmissionR
+     let refuse = |clause, fact| Err(AdmissionRefusal::Family(clause, fact));
+     let m = &request.model;
+     // D1.3: the namespace branch, decided once from (schema, contract) (B3-D §4.1–§4.3):
+-    // branch L, 0.1.0 or 0.2.0 with no pressure contract; branch L3 (B3a), 0.3.0 with
+-    // exactly `{version "1.0.0", mode "legacy_pressure_v1"}`; or branch E (B3b), 0.3.0 with
++    // branch L, 0.1.0 or 0.2.0 with no pressure contract; or branch E (B3b), 0.3.0 with
+     // exactly `{version "2.0.0", mode "exact_straight_pressure_v2"}` (0.4.0 stays out). A
+     // schema in no branch refuses with `SchemaVersion`, a contract that does not match its
+     // schema's branch with `PressureContract`. Then, on every branch, no sections (S-4).
+@@ -864,7 +862,7 @@ fn family_clauses(request: &LinearStaticPreviewRequest) -> Result<(), AdmissionR
+     }
+     // D1.4's exact clause (B3-D §4.2; RR "I95's B3-S: …", ruling 4): no combination on the
+     // exact route, which the ordinary route also blocks, so its forms never price
+-    // combination text. B2-C's combination clauses apply on L and L3 only.
++    // combination text. B2-C's combination clauses apply on L only.
+     if exact && !m.combinations.is_empty() {
+         return refuse(C::Invocation, F::Combinations);
+     }
+@@ -876,7 +874,7 @@ fn family_clauses(request: &LinearStaticPreviewRequest) -> Result<(), AdmissionR
+     }
+     // D1.5 (B1 SA): every case, in request order. B3b (B3-D §4.2): on branch E every case's
+     // `pressure_regions` is explicitly empty (`Some([])`, as physics-source-1 requires); absent
+-    // or non-empty refuses. On L and L3 it is absent. RV122 SF-2 (RESIDUALS T03: actual
++    // or non-empty refuses. On L it is absent. RV122 SF-2 (RESIDUALS T03: actual
+     // capacities, never construction history): the empty list's typed capacity is 0 too, or
+     // it refuses with its capacity fact (the reason an empty `sections` with spare capacity
+     // gets at D1.9). A parsed request always has capacity 0 here.
+diff --git a/projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs b/projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs
+index ba9a5e1279..45f773a830 100644
+--- a/projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs
++++ b/projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs
+@@ -464,7 +464,7 @@ fn every_family_clause_refuses_with_its_fact() {
+         change(&mut raw);
+         domain(raw)
+     };
+-    // B3a (B3-D §4.1): 0.3.0 is a namespace branch (L3) whose contract is required, so 0.3.0
++    // B3-D §4.1: 0.3.0 is a namespace (branch E, B3b) whose contract is required, so 0.3.0
+     // without one refuses with `PressureContract`; a schema in no branch with `SchemaVersion`.
+     assert_eq!(with(&|r| r["model"]["schema_version"] = json!("0.3.0")), family(C::Namespace, F::PressureContract));
+     assert_eq!(with(&|r| r["model"]["schema_version"] = json!("0.4.0")), family(C::Namespace, F::SchemaVersion));
+@@ -1879,36 +1879,37 @@ fn b1_sa_retained_error_text_reads_every_case_slot() {
+     }
+ }
+ 
+-// ---- B3a-A: D1.3 admits 0.3.0 `legacy_pressure_v1` (I93 PLAN §1.3; B3-D §4.1) ----------
++// ---- B3a dropped: D1.3 refuses 0.3.0 `legacy_pressure_v1` (RR "Owner decisions: the legacy ----
++// ---- pressure contract is retired product-wide; …"; formerly B3a-A, I93 PLAN §1.3; B3-D §4.1) ----
+ 
+ /// `raw` authored as 0.3.0 `legacy_pressure_v1` with zero pressure: I99's `legacy3` (B3-W's
+-/// `m3l` when `raw` is the milestone): the schema and the contract change, nothing else.
++/// `m3l` when `raw` is the milestone): the schema and the contract change, nothing else. B3a is
++/// dropped, so this is a refusal witness.
+ fn legacy3(mut raw: Value) -> Value {
+     raw["model"]["schema_version"] = json!("0.3.0");
+     raw["model"]["pressure_contract"] = json!({"version": "1.0.0", "mode": "legacy_pressure_v1"});
+     raw
+ }
+ 
+-/// D1.3's branch L3: 0.3.0 with exactly `{1.0.0, legacy_pressure_v1}` is inside D1, alone and
+-/// with C cases, in both modes, and the registered build grants it a permit. Every contract
+-/// that does not match its schema's branch refuses with `PressureContract`; a schema in no
+-/// branch with `SchemaVersion` (B3-D §4.1's refusal map). D1.5 and D1.7 are unchanged on L3.
++/// B3a's drop: 0.3.0 with exactly `{1.0.0, legacy_pressure_v1}` is on no D1.3 branch, so it
++/// refuses with `PressureContract`, alone and with C cases, in both modes, and no build grants
++/// it a permit. Every contract that does not match its schema's branch refuses with
++/// `PressureContract`; a schema in no branch with `SchemaVersion` (B3-D §4.1's refusal map, L
++/// and E). D1.3 refuses the label before D1.5's and D1.7's clauses are read.
+ #[test]
+-fn b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0() {
++fn b3a_dropped_d1_3_refuses_the_legacy_pressure_contract_on_0_3_0() {
+     use D1Clause as C;
+     use FamilyFact as F;
+-    let registered = COMPILED_IDENTITY == Some(REGISTERED_PROFILES[0].identity);
+     for raw in [legacy3(milestone()), legacy3(milestone_cases(caps::LOAD_CASES)), legacy3(cap_maximal_cases(caps::LOAD_CASES))] {
+         for mode in MODES {
+             let (request, capture) = CapturedInvocation::parse(raw.clone(), mode).unwrap();
+-            assert_eq!(namespace_branch(&request.model), Ok(NamespaceBranch::LegacyPressure));
++            assert_eq!(namespace_branch(&request.model), Err(F::PressureContract));
+             let admitted = admit(&capture, &request, Entry::Direct);
+             let report = match &admitted {
+                 Ok((_, report)) | Err(report) => *report,
+             };
+-            assert_eq!(report.law().domain, None, "{mode:?}: L3 is inside D1");
+-            assert_eq!(report.law().refusal, d1_1_refusal(), "{mode:?}");
+-            assert_eq!(admitted.is_ok(), registered, "{mode:?}: a permit in the registered build");
++            assert_eq!(report.law().domain, family(C::Namespace, F::PressureContract), "{mode:?}: the label is outside D1");
++            assert!(admitted.is_err(), "{mode:?}: no permit in any build");
+         }
+     }
+     let contract = |schema: &str, contract: Value| {
+@@ -1918,7 +1919,7 @@ fn b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0() {
+         domain(raw)
+     };
+     let legacy = json!({"version": "1.0.0", "mode": "legacy_pressure_v1"});
+-    assert_eq!(contract("0.3.0", legacy.clone()), None);
++    assert_eq!(contract("0.3.0", legacy.clone()), family(C::Namespace, F::PressureContract), "0.3.0 with the legacy contract");
+     // B3b: the exact contract is branch E, whose D1.5 needs explicitly empty regions.
+     assert_eq!(contract("0.3.0", json!({"version": "2.0.0", "mode": "exact_straight_pressure_v2"})), family(C::Case, F::PressureRegions));
+     for (label, schema, value, fact) in [
+@@ -1936,26 +1937,26 @@ fn b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0() {
+     ] {
+         assert_eq!(contract(schema, value), family(C::Namespace, fact), "{label}");
+     }
+-    // D1.5 is unchanged on L3: no pressure region, not even an empty list.
++    // D1.3 first: the label with an empty region list (D1.5), a zero-magnitude element pressure
++    // load (D1.7, formerly N-11's reading on L3) or a nodal force whose free-text category is
++    // `pressure` refuses at D1.3.
+     let mut regions = legacy3(milestone());
+     regions["model"]["load_cases"][0]["pressure_regions"] = json!([]);
+-    assert_eq!(domain(regions), family(C::Case, F::PressureRegions));
+-    // N-11 (B3-D §4.1): a zero-magnitude legacy pressure load is outside D1.7 (an element
+-    // target, refused first), while a nodal force whose free-text category is `pressure` is a
+-    // nodal term under D1.7.
++    assert_eq!(domain(regions), family(C::Namespace, F::PressureContract), "regions");
+     let mut element = legacy3(milestone());
+     element["model"]["load_cases"][0]["primitive_loads"][2] = json!({"id": "load:p", "category": "pressure",
+         "target": {"type": "element", "pipe": "M1"}, "direction": "internal", "magnitude": {"value": 0.0, "unit": "Pa"}, "dimension": "pressure"});
+-    assert_eq!(domain(element), family(C::Loads, F::LoadTarget));
++    assert_eq!(domain(element), family(C::Namespace, F::PressureContract), "element pressure load");
+     let mut nodal = legacy3(milestone());
+     nodal["model"]["load_cases"][0]["primitive_loads"][2]["category"] = json!("pressure");
+-    assert_eq!(domain(nodal), None);
+-    // The contract's two typed strings are read by the census (D1.9's typed text rows).
++    assert_eq!(domain(nodal), family(C::Namespace, F::PressureContract), "nodal pressure category");
++    // The census reads a contract's two typed strings whatever its branch (D1.9's typed text
++    // rows). Their capacity is priced on branch E, the one branch that admits a contract.
+     let base = nested_typed_census(&serde_json::from_value(milestone()).unwrap());
+     let l3 = nested_typed_census(&serde_json::from_value(legacy3(milestone())).unwrap());
+     assert_eq!(l3.strings, base.strings + 2, "version and mode");
+     for field in ["version", "mode"] {
+-        let report = admitted_typed(legacy3(milestone()), |r| {
++        let report = admitted_typed(exact3(milestone()), |r| {
+             let c = r.model.pressure_contract.as_mut().unwrap();
+             let s = if field == "version" { c.version.as_mut() } else { c.mode.as_mut() };
+             s.unwrap().reserve_exact(200);
+@@ -1964,64 +1965,22 @@ fn b3a_d1_3_admits_the_legacy_pressure_contract_on_0_3_0() {
+     }
+ }
+ 
+-/// The ordinary bytes with R-2's one unavailable notice for `case` appended after the ordinary
+-/// diagnostics, pinned independently of the product constants. The same text as the facade
+-/// tests' `with_notice(plain, case, None)` (`retained_facade_tests.rs`, lane P's file), copied
+-/// here so lane A's pin stays in lane A's files.
+-fn with_one_notice(plain: &[u8], case: &str) -> Vec<u8> {
+-    let notice = format!(r#"{{"id":"diagnostic:retained-precision:{case}:unavailable","code":"RETAINED_PRECISION_UNAVAILABLE","severity":"info","message":"Retained-precision recovery is unavailable for this load case. Its published rows keep their ordinary values, standing and diagnostics.","source":"core/product_physics","affected_refs":["{case}"]}}"#);
+-    let text = std::str::from_utf8(plain).unwrap();
+-    let (head, tail) = text.split_once(r#""diagnostics":["#).unwrap();
+-    let close = tail.find("],\"professional_boundary\"").unwrap();
+-    let (items, rest) = tail.split_at(close);
+-    let sep = if items.is_empty() { "" } else { "," };
+-    format!(r#"{head}"diagnostics":[{items}{sep}{notice}{rest}"#).into_bytes()
+-}
+-
+-/// B3a's oracles on the Direct entry: a 0.3.0 contract outside L3 publishes the exact
+-/// ordinary bytes with no successor (no permit). `m3l` itself is admitted in the registered
+-/// build, so W1 runs, and its interim outcome is pinned exactly, in both modes (RV122 SF-1),
+-/// as B1 pins a precommit fallback (`u3g2_direct_entry_w1_fallbacks_append_one_notice`): the
+-/// accepted Rust reader refuses the successor at G8 `RETAINED_PRECISION_INVOCATION_MISMATCH`
+-/// (it requires `pressure_contract` null; I99 §5), and the one publication is the ordinary
+-/// bytes plus exactly one notice for `case`. **This pin changes at J5**, when the readers'
+-/// B3a work admits the L3 contract and m3l publishes its successor (RR "I99's B3-W
+-/// verified; …", ruling 3: `invocation.value`, `legacy_source_work[0].charged` and
+-/// `receipt_sha256` differ from the milestone's).
++/// B3a's drop on the Direct entry: `m3l`, and a 0.3.0 contract with another version, are
++/// refused at G-A with `PressureContract` and publish the exact ordinary bytes, with no W1 and
++/// no successor, in every build and both modes.
+ #[test]
+-fn b3a_direct_entry_oracles() {
+-    let registered = COMPILED_IDENTITY == Some(REGISTERED_PROFILES[0].identity);
++fn b3a_dropped_direct_entry_refuses_m3l() {
+     for mode in MODES {
+         let mut outside = legacy3(milestone());
+         outside["model"]["pressure_contract"]["version"] = json!("1.0.1");
+-        let plain = serde_json::to_vec(&crate::run_linear_static_preview_value_with_mode(outside.clone(), mode).unwrap()).unwrap();
+-        let direct = crate::run_linear_static_preview_value_with_retained_direct(outside, mode).unwrap();
+-        assert_eq!(direct.admission().unwrap().law().domain, family(D1Clause::Namespace, FamilyFact::PressureContract), "{mode:?}");
+-        assert!(direct.retained().is_none() && direct.successor().is_none(), "{mode:?}: no permit, no W1");
+-        assert_eq!(serde_json::to_vec(direct.envelope()).unwrap(), plain, "{mode:?}: the exact ordinary bytes");
+-        let m3l = legacy3(milestone());
+-        let plain = serde_json::to_vec(&crate::run_linear_static_preview_value_with_mode(m3l.clone(), mode).unwrap()).unwrap();
+-        let direct = crate::run_linear_static_preview_value_with_retained_direct(m3l, mode).unwrap();
+-        let report = direct.admission().unwrap();
+-        assert_eq!(report.law().domain, None, "{mode:?}");
+-        if !registered {
+-            assert_eq!(report.law().refusal, d1_1_refusal(), "{mode:?}");
+-            assert!(direct.retained().is_none());
+-            assert_eq!(serde_json::to_vec(direct.envelope()).unwrap(), plain, "{mode:?}: no permit: the exact ordinary bytes");
+-            continue;
++        for (label, raw) in [("version 1.0.1", outside), ("m3l", legacy3(milestone()))] {
++            let plain = serde_json::to_vec(&crate::run_linear_static_preview_value_with_mode(raw.clone(), mode).unwrap()).unwrap();
++            let direct = crate::run_linear_static_preview_value_with_retained_direct(raw, mode).unwrap();
++            assert_eq!(direct.admission().unwrap().law().domain, family(D1Clause::Namespace, FamilyFact::PressureContract), "{label} {mode:?}");
++            assert!(direct.admission().unwrap().law().refusal.is_some(), "{label} {mode:?}: refused");
++            assert!(direct.retained().is_none() && direct.successor().is_none(), "{label} {mode:?}: no permit, no W1");
++            assert_eq!(serde_json::to_vec(direct.envelope()).unwrap(), plain, "{label} {mode:?}: the exact ordinary bytes");
+         }
+-        assert_eq!(report.law().refusal, None, "{mode:?}: admitted");
+-        assert_eq!(direct.retained().and_then(|r| r.as_ref().err()),
+-            Some(&crate::W1Fallback::Precommit { gate: "G8", code: "RETAINED_PRECISION_INVOCATION_MISMATCH".into() }), "{mode:?}: the interim cause");
+-        assert!(direct.successor().is_none(), "{mode:?}");
+-        let published = match direct.into_publication() {
+-            crate::RetainedPublication::Ordinary(envelope) => serde_json::to_vec(&envelope).unwrap(),
+-            crate::RetainedPublication::Successor(value) => panic!("{mode:?}: a successor was published: {}", value["producer"]),
+-        };
+-        assert_eq!(published, with_one_notice(&plain, "case"), "{mode:?}: the ordinary bytes plus exactly one notice");
+-        let value: Value = serde_json::from_slice(&published).unwrap();
+-        let notices = value["diagnostics"].as_array().unwrap().iter().filter(|d| d["code"] == "RETAINED_PRECISION_UNAVAILABLE").count();
+-        assert_eq!(notices, 1, "{mode:?}");
+     }
+ }
+ 
+@@ -2348,10 +2307,10 @@ fn b3b_d1_admits_the_exact_route_with_empty_regions() {
+     assert_eq!(with(&|r| r["model"]["pressure_contract"]["mode"] = json!("legacy_pressure_v1")), family(C::Namespace, F::PressureContract),
+         "2.0.0 with the legacy mode");
+     assert_eq!(with(&|r| r["model"]["schema_version"] = json!("0.2.0")), family(C::Namespace, F::PressureContract));
+-    // A combination on L or L3 is still inside D1 (B2-C's clauses apply there only).
+-    let mut l3 = legacy3(milestone());
+-    l3["model"]["combinations"] = json!([{"id": "combination", "basis": "mechanics", "terms": [{"load_case": "case", "factor": 1.0}]}]);
+-    assert_eq!(domain(l3), None);
++    // A combination on L is still inside D1 (B2-C's clauses apply there only; B3a's L3 is dropped).
++    let mut l = milestone();
++    l["model"]["combinations"] = json!([{"id": "combination", "basis": "mechanics", "terms": [{"load_case": "case", "factor": 1.0}]}]);
++    assert_eq!(domain(l), None);
+     // The committed physics-source requests n05 and n06 (B3b's coexistence pins) are on branch E.
+     for (name, text) in [("n05", N05), ("n06", N06)] {
+         assert_eq!(domain(serde_json::from_str(text).unwrap()), None, "{name}");
+diff --git a/projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs b/projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs
+index 8755d19e1e..41ea423577 100644
+--- a/projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs
++++ b/projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs
+@@ -3731,19 +3731,15 @@ fn pressure_contract_is(v: &Value, version: &str, mode: &str) -> bool {
+             && o.get("mode").and_then(Value::as_str) == Some(mode)
+     })
+ }
+-/// D1.3 on the preview branch (B3a): branch L, schema 0.1.0 or 0.2.0 with
+-/// `pressure_contract` absent or JSON null; or branch L3, schema 0.3.0 with
+-/// exactly `{"version":"1.0.0","mode":"legacy_pressure_v1"}`. Anything else
+-/// (0.3.0 without a contract, `{}`, `false`, an extra key, 0.2.0 with a
+-/// contract, 0.4.0) is outside the namespace.
++/// D1.3 on the preview branch, type-strict (B3-D REVISION_01 §3, N-4): branch
++/// L, schema 0.1.0 or 0.2.0 with `pressure_contract` absent or JSON null.
++/// Anything else (any 0.3.0 model, the retired `legacy_pressure_v1` contract
++/// included; `{}`, `false`, any contract on 0.1.0 or 0.2.0; 0.4.0) is outside
++/// the namespace. B3a's branch L3 is dropped (the owner retired that contract
++/// product-wide); B3D-10's tightenings stay.
+ fn legacy_namespace(model: &Value) -> bool {
+-    match model["schema_version"].as_str() {
+-        Some("0.1.0" | "0.2.0") => model["pressure_contract"].is_null(),
+-        Some("0.3.0") => {
+-            pressure_contract_is(&model["pressure_contract"], "1.0.0", "legacy_pressure_v1")
+-        }
+-        _ => false,
+-    }
++    matches!(model["schema_version"].as_str(), Some("0.1.0" | "0.2.0"))
++        && model["pressure_contract"].is_null()
+ }
+ fn g8(source: &Value, inv: &Value, route: &Route) -> VResult {
+     let b = &source["retained_precision"]["body"];
+@@ -3772,8 +3768,8 @@ fn g8(source: &Value, inv: &Value, route: &Route) -> VResult {
+     need(
+         // D31: the producer treats model 0.1.0 and 0.2.0 on one branch
+         // (pressure_runtime.rs `validate_profile`); 0.4.0 stays excluded.
+-        // B3a (B3-D §6.3; REVISION_01 §3, N-4): D1.3's namespace, type-strict;
+-        // B3b: the exact route's own branch.
++        // D1.3's namespace, type-strict (B3-D REVISION_01 §3, N-4; B3a's L3
++        // dropped); B3b: the exact route's own branch.
+         if route.exact { exact_namespace(model) } else { legacy_namespace(model) }
+             // B1's alignment set, item 2 (g), PP's acceptance: no
+             // `reference_configurations` member (null included); `combinations`
+diff --git a/projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs b/projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs
+index 1bc23b27df..f72260a51b 100644
+--- a/projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs
++++ b/projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs
+@@ -5066,13 +5066,16 @@ fn b1_i4p_transport_metadata_demands_alone() {
+     );
+ }
+ 
+-/// B3a (B3-D §6.3 and §6.4; REVISION_01 §3, N-4): G8's namespace predicate is
+-/// type-strict. Branch L (0.1.0 or 0.2.0, `pressure_contract` absent or JSON
+-/// null) and branch L3 (0.3.0, exactly `{"version":"1.0.0","mode":
+-/// "legacy_pressure_v1"}`) are admitted; any other value is G8
+-/// INVOCATION_MISMATCH. A zero-magnitude element pressure load on L3 is
+-/// outside D1.7 (N-11's reading): G8 PREPARATION_MISMATCH. Reader-local
+-/// synthetic receipts: invocation edits on the shared bases, rehashed.
++/// B3a dropped (RR "Owner decisions: the legacy pressure contract is retired
++/// product-wide; ..."; formerly B3-D §6.3 and §6.4; REVISION_01 §3, N-4): G8's
++/// namespace predicate is type-strict. Only branch L (0.1.0 or 0.2.0,
++/// `pressure_contract` absent or JSON null) is admitted; any other value is G8
++/// INVOCATION_MISMATCH. "L3" in the entry names is B3a's retired contract
++/// `{"version":"1.0.0","mode":"legacy_pressure_v1"}` on 0.3.0, now refused on
++/// every base, and before any load is read (the former N-11 entries). The
++/// table is the one shape RS, TS and PY pin alike, entry for entry.
++/// Reader-local synthetic receipts: invocation edits on the shared bases,
++/// rehashed.
+ #[test]
+ fn b3a_legacy_pressure_contract_namespace_at_g8() {
+     use serde_json::json;
+@@ -5082,7 +5085,6 @@ fn b3a_legacy_pressure_contract_namespace_at_g8() {
+     let contract = |v: Value| set(json!(["request", "model", "pressure_contract"]), v);
+     let no_contract = || remove(json!(["request", "model", "pressure_contract"]));
+     let inv = gate("G8", "RETAINED_PRECISION_INVOCATION_MISMATCH");
+-    let prep = gate("G8", "RETAINED_PRECISION_PREPARATION_MISMATCH");
+     let base_invocation = |id: &str| {
+         shared["cases"]
+             .as_array()
+@@ -5115,7 +5117,7 @@ fn b3a_legacy_pressure_contract_namespace_at_g8() {
+         "u8_l0_isolated_node_sparse_interactive",
+         "u8_l0_isolated_node_dense_scrutiny",
+     ] {
+-        entries.push((format!("L3 on {base}"), base, vec![schema("0.3.0"), contract(l3.clone())], Value::Null));
++        entries.push((format!("L3 on {base}"), base, vec![schema("0.3.0"), contract(l3.clone())], inv.clone()));
+     }
+     for (name, edits, want) in [
+         ("L: 0.2.0, contract null", vec![contract(Value::Null)], Value::Null),
+@@ -5140,7 +5142,7 @@ fn b3a_legacy_pressure_contract_namespace_at_g8() {
+         ("N-4: 0.2.0, contract []", vec![contract(json!([]))], inv.clone()),
+         ("N-4: 0.2.0, contract \"\"", vec![contract(json!(""))], inv.clone()),
+         ("N-4: 0.2.0, contract 0", vec![contract(json!(0))], inv.clone()),
+-        ("N-11: L3 with a zero-magnitude element pressure load", vec![schema("0.3.0"), contract(l3.clone()), zero_pressure(ORD)], prep.clone()),
++        ("N-11: L3 with a zero-magnitude element pressure load", vec![schema("0.3.0"), contract(l3.clone()), zero_pressure(ORD)], inv.clone()),
+     ] {
+         entries.push((name.to_string(), ORD, edits, want));
+     }
+@@ -5148,7 +5150,7 @@ fn b3a_legacy_pressure_contract_namespace_at_g8() {
+         "N-11: L3 dense with a zero-magnitude element pressure load".into(),
+         "ordinary_prepared_dense_synthetic",
+         vec![schema("0.3.0"), contract(l3.clone()), zero_pressure("ordinary_prepared_dense_synthetic")],
+-        prep.clone(),
++        inv.clone(),
+     ));
+     let mut misses = Vec::new();
+     for (name, base, edits, want) in &entries {
+diff --git a/projects/chirality-piping/tests/test_retained_precision_b3.py b/projects/chirality-piping/tests/test_retained_precision_b3.py
+index e3f500a1db..4c1a52f5f8 100644
+--- a/projects/chirality-piping/tests/test_retained_precision_b3.py
++++ b/projects/chirality-piping/tests/test_retained_precision_b3.py
+@@ -1,9 +1,10 @@
+-"""B3's Python reader controls: B3a's 0.3.0 legacy namespace (G8) and B3b's `<physics-retained>` branch.
++"""B3's Python reader controls: B3a's dropped 0.3.0 legacy namespace (G8 refuses it) and B3b's `<physics-retained>` branch.
+ 
+ The bases are synthetic receipts derived from PP's pinned milestone successor (D-U6-5) and resealed by the 07e format
+ rule (preparation hashes, source identities, publication, receipt). They are reader controls, not producer execution or
+ native Current evidence. Since lane P's B3b-P landed, every B3b shape is also read on its producer-solved m3x
+-successors (`EXACT_PINNED`); B3a's m3l has no producer fixture (PP: "B3a's m3l needs no producer change").
++successors (`EXACT_PINNED`). B3a is dropped (RR "Owner decisions: the legacy pressure contract is retired
++product-wide; …"): m3l has no producer fixture (PP refuses it at D1.3) and is a refusal witness here.
+ - m3l: the milestone's request with schema 0.3.0 and {"version": "1.0.0", "mode": "legacy_pressure_v1"}, as I99's
+   m3l input (RR "I99's B3-W verified; …", ruling 4); its receipt differs only in the invocation digest.
+ """
+@@ -68,7 +69,8 @@ def edited_invocation(invocation, change):
+ 
+ 
+ # ---------------------------------------------------------------------------------------------------------------
+-# B3a: G8 admits 0.3.0 with exactly the legacy_pressure_v1 contract (B3-D §6.3; REVISION_01 §3, N-4; B3D-10).
++# B3a dropped: G8 refuses 0.3.0 with the retired legacy_pressure_v1 contract (formerly B3-D §6.3; REVISION_01 §3, N-4);
++# B3D-10's tightenings stay.
+ 
+ 
+ def m3l(mode):
+@@ -78,15 +80,12 @@ def m3l(mode):
+ 
+ 
+ @pytest.mark.parametrize("mode", MODES)
+-def test_b3a_m3l_successor_is_admitted_like_the_milestone(mode):
++def test_b3a_dropped_m3l_successor_is_refused(mode):
++    """B3a is dropped: m3l's successor (the milestone's, resealed on the retired legacy contract) is refused at G8's
++    namespace; the milestone itself, the control, stays eligible."""
+     source, invocation = m3l(mode)
+-    assert outcome(source, invocation) == ("pass", True, "eligible")
+-    base_source, base_invocation = milestone(mode)
+-    got, want = rp.validate_retained_precision(source, invocation), rp.validate_retained_precision(base_source, base_invocation)
+-    assert got == want and got["numerical_eligible"] is True
+-    # B3a's successor differs from the milestone's only in the invocation digest and the receipt hash (ruling 3).
+-    assert source["retained_precision"]["body"]["publication_sha256"] == base_source["retained_precision"]["body"]["publication_sha256"]
+-    assert source["retained_precision"]["body"]["invocation"]["value"] != base_source["retained_precision"]["body"]["invocation"]["value"]
++    assert outcome(source, invocation) == INVOCATION
++    assert outcome(*milestone(mode)) == ("pass", True, "eligible")
+ 
+ 
+ def _element_pressure(magnitude):
+@@ -95,6 +94,9 @@ def _element_pressure(magnitude):
+          "magnitude": {"unit": "Pa", "value": magnitude}, "target": {"type": "element", "pipe": "M1"}, "provenance": "b3a_reader_control"})
+ 
+ 
++# m3l is refused at G8's namespace step, so a mutation that keeps the legacy label is refused there first, before any
++# load is read (the three load entries, PREPARATION while B3a admitted m3l); the others are outside the namespace on
++# their own (0.3.0 without a contract, B3D-10; another contract on 0.3.0; a contract on 0.2.0; 0.4.0).
+ B3A_REFUSALS = {
+     "contract mode changed": (lambda m: m["pressure_contract"].update(mode="exact_straight_pressure_v2"), INVOCATION),
+     "contract version changed": (lambda m: m["pressure_contract"].update(version="1.0.1"), INVOCATION),
+@@ -105,11 +107,11 @@ B3A_REFUSALS = {
+     "contract version as a number": (lambda m: m["pressure_contract"].update(version=1.0), INVOCATION),
+     "schema 0.2.0 keeping the contract": (lambda m: m.update(schema_version="0.2.0"), INVOCATION),
+     "schema 0.4.0 keeping the contract": (lambda m: m.update(schema_version="0.4.0"), INVOCATION),
+-    "a zero-magnitude element pressure load": (_element_pressure(0.0), PREPARATION),
+-    "a non-zero element pressure load": (_element_pressure(1000.0), PREPARATION),
++    "a zero-magnitude element pressure load": (_element_pressure(0.0), INVOCATION),
++    "a non-zero element pressure load": (_element_pressure(1000.0), INVOCATION),
+     "a non-zero node force with category pressure": (lambda m: m["load_cases"][0]["primitive_loads"].append(
+         {"id": "load:p", "category": "pressure", "dimension": "force", "direction": "UX", "magnitude": {"unit": "N", "value": 1.0},
+-         "target": {"type": "node", "node": "N1"}, "provenance": "b3a_reader_control"}), PREPARATION),
++         "target": {"type": "node", "node": "N1"}, "provenance": "b3a_reader_control"}), INVOCATION),
+ }
+ 
+ 
+@@ -143,6 +145,75 @@ def test_b3a_tightening_0_3_0_needs_the_legacy_contract():
+     assert outcome(reseal(source, bare), bare) == INVOCATION
+ 
+ 
++# B3a dropped: the one table RS (`b3a_legacy_pressure_contract_namespace_at_g8`), TS (its "B3a (I101)" block) and PY
++# pin alike, entry for entry: invocation edits on the shared corpus bases (07e's rule, `reseal`). Only branch L
++# (0.1.0 or 0.2.0, pressure_contract absent or JSON null) passes. "L3" in the names is B3a's retired contract on 0.3.0,
++# refused on every base and before any load is read (the former N-11 entries).
++SHARED = {case["id"]: case for case in json.loads((ROOT / "fixtures/results/retained_precision_cases.json").read_text())["cases"]}
++B3A_DROPPED_BASES = ("ordinary_prepared_synthetic", "ordinary_prepared_dense_synthetic", "two_case_synthetic",
++                     "u8_l0_isolated_node_sparse_interactive", "u8_l0_isolated_node_dense_scrutiny")
++ORD, DENSE = B3A_DROPPED_BASES[:2]
++
++
++def _schema(version):
++    return lambda m: m.update(schema_version=version)
++
++
++def _contract(value):
++    return lambda m: m.update(pressure_contract=deepcopy(value))
++
++
++def _no_contract(m):
++    m.pop("pressure_contract", None)
++
++
++def _zero_pressure(m):
++    m["load_cases"][0]["primitive_loads"].append(
++        {"id": "load:b3a-zero-pressure", "category": "pressure", "target": {"type": "element", "pipe": "pipe:fixture-span"},
++         "magnitude": {"value": 0, "unit": "Pa"}, "dimension": "pressure", "provenance": "synthetic_integration_input_not_library_data"})
++
++
++B3A_DROPPED_TABLE = [
++    *[(f"L3 on {base}", base, [_schema("0.3.0"), _contract(LEGACY)], INVOCATION) for base in B3A_DROPPED_BASES],
++    ("L: 0.2.0, contract null", ORD, [_contract(None)], "pass"),
++    ("L: 0.1.0, contract absent", ORD, [_schema("0.1.0"), _no_contract], "pass"),
++    ("L3: mode exact_straight_pressure_v2, version 1.0.0", ORD, [_schema("0.3.0"), _contract({**LEGACY, "mode": "exact_straight_pressure_v2"})], INVOCATION),
++    ("L3: version 1.0.1", ORD, [_schema("0.3.0"), _contract({**LEGACY, "version": "1.0.1"})], INVOCATION),
++    ("L3: the exact contract 2.0.0", ORD, [_schema("0.3.0"), _contract({"version": "2.0.0", "mode": "exact_straight_pressure_v2"})], INVOCATION),
++    ("0.3.0, contract null", ORD, [_schema("0.3.0"), _contract(None)], INVOCATION),
++    ("0.3.0, contract absent", ORD, [_schema("0.3.0"), _no_contract], INVOCATION),
++    ("L3: an extra key", ORD, [_schema("0.3.0"), _contract({**LEGACY, "extra": "x"})], INVOCATION),
++    ("L3: an extra key valued null", ORD, [_schema("0.3.0"), _contract({**LEGACY, "extra": None})], INVOCATION),
++    ("L3: version only", ORD, [_schema("0.3.0"), _contract({"version": "1.0.0"})], INVOCATION),
++    ("L3: mode only", ORD, [_schema("0.3.0"), _contract({"mode": "legacy_pressure_v1"})], INVOCATION),
++    ("L3: version a number", ORD, [_schema("0.3.0"), _contract({**LEGACY, "version": 1.0})], INVOCATION),
++    ("L3: mode null", ORD, [_schema("0.3.0"), _contract({**LEGACY, "mode": None})], INVOCATION),
++    ("0.3.0, contract {}", ORD, [_schema("0.3.0"), _contract({})], INVOCATION),
++    ("0.2.0 keeping the L3 contract", ORD, [_contract(LEGACY)], INVOCATION),
++    ("0.1.0 keeping the L3 contract", ORD, [_schema("0.1.0"), _contract(LEGACY)], INVOCATION),
++    ("0.4.0 with the L3 contract", ORD, [_schema("0.4.0"), _contract(LEGACY)], INVOCATION),
++    ("N-4: 0.2.0, contract {}", ORD, [_contract({})], INVOCATION),
++    ("N-4: 0.2.0, contract false", ORD, [_contract(False)], INVOCATION),
++    ("N-4: 0.2.0, contract []", ORD, [_contract([])], INVOCATION),
++    ('N-4: 0.2.0, contract ""', ORD, [_contract("")], INVOCATION),
++    ("N-4: 0.2.0, contract 0", ORD, [_contract(0)], INVOCATION),
++    ("N-11: L3 with a zero-magnitude element pressure load", ORD, [_schema("0.3.0"), _contract(LEGACY), _zero_pressure], INVOCATION),
++    ("N-11: L3 dense with a zero-magnitude element pressure load", DENSE, [_schema("0.3.0"), _contract(LEGACY), _zero_pressure], INVOCATION),
++]
++
++
++def test_b3a_dropped_namespace_table_has_the_rust_tests_29_entries():
++    assert len(B3A_DROPPED_TABLE) == 29 and len({name for name, *_ in B3A_DROPPED_TABLE}) == 29
++
++
++@pytest.mark.parametrize("name,base,changes,expected", B3A_DROPPED_TABLE, ids=[entry[0] for entry in B3A_DROPPED_TABLE])
++def test_b3a_dropped_namespace_table(name, base, changes, expected):
++    fixture = SHARED[base]
++    invocation = edited_invocation(fixture["invocation"], lambda m: [change(m) for change in changes])
++    got = outcome(reseal(fixture["source"], invocation), invocation)
++    assert (got[0] if expected == "pass" else got) == expected, name
++
++
+ # ---------------------------------------------------------------------------------------------------------------
+ # B3b: the `<physics-retained>` branch (B3-D §6 with REVISION_01; RV116's rulings). The synthetic exact base is the
+ # milestone successor re-expressed on I99's m3x request (0ffbea35…): schema 0.3.0, the exact contract, E and
+diff --git a/projects/chirality-piping/tests/test_retained_precision_contract.py b/projects/chirality-piping/tests/test_retained_precision_contract.py
+index b87005c705..42d3ca9c98 100644
+--- a/projects/chirality-piping/tests/test_retained_precision_contract.py
++++ b/projects/chirality-piping/tests/test_retained_precision_contract.py
+@@ -798,14 +798,14 @@ def test_integers_by_value_at_every_site_d32():
+ 
+ 
+ def test_model_schema_versions_d31():
+-    """D31: G8 admits model schema_version 0.1.0, 0.2.0 and 0.3.0; 0.4.0 stays excluded. B3a (B3D-10, as ruled):
+-    0.3.0 is admitted only with the legacy_pressure_v1 contract, so 0.3.0 without a contract is refused."""
++    """D31: G8 admits model schema_version 0.1.0 and 0.2.0; 0.4.0 stays excluded. B3D-10, as ruled: 0.3.0 without a
++    contract is refused. B3a is dropped, so 0.3.0 with the retired legacy_pressure_v1 contract is refused too."""
+     expected = _cases()[O_BASE]["expected_classifications"]
+     version_edit = lambda version: {"path": ["request", "model", "schema_version"], "op": "set", "value": version}
+     legacy = {"path": ["request", "model", "pressure_contract"], "op": "set", "value": {"version": "1.0.0", "mode": "legacy_pressure_v1"}}
+     for version in ("0.1.0", "0.2.0"):
+         assert _validate_entry(O_BASE, [], [version_edit(version)])["classifications"] == expected
+-    assert _validate_entry(O_BASE, [], [version_edit("0.3.0"), legacy])["classifications"] == expected
++    _raises(lambda: _validate_entry(O_BASE, [], [version_edit("0.3.0"), legacy]), "G8", "INVOCATION_MISMATCH")
+     _raises(lambda: _validate_entry(O_BASE, [], [version_edit("0.3.0")]), "G8", "INVOCATION_MISMATCH")
+     _raises(lambda: _validate_entry(O_BASE, [], [version_edit("0.4.0")]), "G8", "INVOCATION_MISMATCH")
+ 

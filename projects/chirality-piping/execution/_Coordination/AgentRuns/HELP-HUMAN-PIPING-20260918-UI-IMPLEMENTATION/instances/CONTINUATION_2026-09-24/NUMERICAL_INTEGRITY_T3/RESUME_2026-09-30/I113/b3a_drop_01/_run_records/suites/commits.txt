@@ -1,0 +1,5 @@
+start head: 51f339a11ed5bb4e5bdfbd5bf88cc6b93a1e6cdf
+candidate head: 0ef9a8ace92a5d6f706b22e059cf66b46a82d621
+branch: codex/piping-t3-b2-20261008
+
+0ef9a8ace92a5d6f706b22e059cf66b46a82d621 piping(T3 B3a drop): D1.3 and the three readers' G8 refuse 0.3.0 legacy_pressure_v1

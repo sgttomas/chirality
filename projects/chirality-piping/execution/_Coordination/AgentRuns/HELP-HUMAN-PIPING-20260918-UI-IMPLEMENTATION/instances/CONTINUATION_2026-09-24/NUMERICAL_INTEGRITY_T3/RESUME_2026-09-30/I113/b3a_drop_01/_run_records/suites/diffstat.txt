@@ -1,0 +1,12 @@
+ .../src/features/results/retainedPrecision.test.ts |  17 +--
+ .../src/features/results/retainedPrecision.ts      |  15 ++-
+ .../core/analysis_runs/retained_precision.py       |  16 ++-
+ .../core/product_physics/src/lib.rs                |   4 +-
+ .../product_physics/src/retained_facade_tests.rs   |  63 ++++-------
+ .../core/product_physics/src/retained_memory.rs    |  24 ++---
+ .../src/retained_memory_law_tests.rs               | 119 +++++++--------------
+ .../result_export/src/retained_precision.rs        |  24 ++---
+ .../tests/retained_precision_contract.rs           |  24 +++--
+ .../tests/test_retained_precision_b3.py            |  99 ++++++++++++++---
+ .../tests/test_retained_precision_contract.py      |   6 +-
+ 11 files changed, 205 insertions(+), 206 deletions(-)

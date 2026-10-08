@@ -1,0 +1,68 @@
+I113 reverse check: the candidate's tests on the start head's five production files (copies/rev1)
+
+PY (B3 and contract modules, -k 'b3a or d31 or b3b_carriers'):
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_m3l_successor_is_refused[dense_scrutiny]
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_m3l_successor_is_refused[sparse_interactive]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[dense_scrutiny-a non-zero element pressure load]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[dense_scrutiny-a non-zero node force with category pressure]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[dense_scrutiny-a zero-magnitude element pressure load]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[sparse_interactive-a non-zero element pressure load]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[sparse_interactive-a non-zero node force with category pressure]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[sparse_interactive-a zero-magnitude element pressure load]
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_namespace_table[L3 on ordinary_prepared_synthetic]
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_namespace_table[L3 on ordinary_prepared_dense_synthetic]
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_namespace_table[L3 on two_case_synthetic]
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_namespace_table[L3 on u8_l0_isolated_node_sparse_interactive]
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_namespace_table[L3 on u8_l0_isolated_node_dense_scrutiny]
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_namespace_table[N-11: L3 with a zero-magnitude element pressure load]
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_namespace_table[N-11: L3 dense with a zero-magnitude element pressure load]
+FAILED tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+16 failed, 50 passed, 768 deselected in 28.19s
+
+TS (retainedPrecision.test.ts):
+525 passed 7 failed
+FAILED B3a (I101): G8's namespace predicate, type-strict (B3-D §6.3, §6.4; REVISION_01 §3, N-4; reader-local synthetic receipts) L3 on ordinary_prepared_synthetic
+FAILED B3a (I101): G8's namespace predicate, type-strict (B3-D §6.3, §6.4; REVISION_01 §3, N-4; reader-local synthetic receipts) L3 on ordinary_prepared_dense_synthetic
+FAILED B3a (I101): G8's namespace predicate, type-strict (B3-D §6.3, §6.4; REVISION_01 §3, N-4; reader-local synthetic receipts) L3 on two_case_synthetic
+FAILED B3a (I101): G8's namespace predicate, type-strict (B3-D §6.3, §6.4; REVISION_01 §3, N-4; reader-local synthetic receipts) L3 on u8_l0_isolated_node_sparse_interactive
+FAILED B3a (I101): G8's namespace predicate, type-strict (B3-D §6.3, §6.4; REVISION_01 §3, N-4; reader-local synthetic receipts) L3 on u8_l0_isolated_node_dense_scrutiny
+FAILED B3a (I101): G8's namespace predicate, type-strict (B3-D §6.3, §6.4; REVISION_01 §3, N-4; reader-local synthetic receipts) N-11: L3 with a zero-magnitude element pressure load
+FAILED B3a (I101): G8's namespace predicate, type-strict (B3-D §6.3, §6.4; REVISION_01 §3, N-4; reader-local synthetic receipts) N-11: L3 dense with a zero-magnitude element pressure load
+
+RS (retained_precision_contract: b3a, d31, b3b_exact):
+test b3a_legacy_pressure_contract_namespace_at_g8 ... FAILED
+test d31_model_schema_versions_at_g8 ... ok
+test b3b_exact_successor_readings_standing_and_dispatch ... ok
+test b3b_exact_successor_derivative_carries_the_receipt_and_evidence ... ok
+test b3b_exact_successor_shapes_first_failures ... ok
+L3 on ordinary_prepared_synthetic: got null, want {"code":"RETAINED_PRECISION_INVOCATION_MISMATCH","gate":"G8"}
+L3 on ordinary_prepared_dense_synthetic: got null, want {"code":"RETAINED_PRECISION_INVOCATION_MISMATCH","gate":"G8"}
+L3 on two_case_synthetic: got null, want {"code":"RETAINED_PRECISION_INVOCATION_MISMATCH","gate":"G8"}
+L3 on u8_l0_isolated_node_sparse_interactive: got null, want {"code":"RETAINED_PRECISION_INVOCATION_MISMATCH","gate":"G8"}
+L3 on u8_l0_isolated_node_dense_scrutiny: got null, want {"code":"RETAINED_PRECISION_INVOCATION_MISMATCH","gate":"G8"}
+N-11: L3 with a zero-magnitude element pressure load: got {"code":"RETAINED_PRECISION_PREPARATION_MISMATCH","gate":"G8"}, want {"code":"RETAINED_PRECISION_INVOCATION_MISMATCH","gate":"G8"}
+N-11: L3 dense with a zero-magnitude element pressure load: got {"code":"RETAINED_PRECISION_PREPARATION_MISMATCH","gate":"G8"}, want {"code":"RETAINED_PRECISION_INVOCATION_MISMATCH","gate":"G8"}
+test result: FAILED. 4 passed; 1 failed; 0 ignored; 0 measured; 80 filtered out; finished in 24.69s
+
+PP (lib: b3a, b3b, every_family_clause):
+test retained_facade_tests::b3a_dropped_m3l_takes_the_ordinary_route ... FAILED
+test retained_facade_tests::b3b_witness_inputs_and_routes ... FAILED
+test retained_memory::law_tests::b3a_dropped_d1_3_refuses_the_legacy_pressure_contract_on_0_3_0 ... FAILED
+test retained_memory::law_tests::b3a_dropped_direct_entry_refuses_m3l ... FAILED
+test result: FAILED. 22 passed; 4 failed; 0 ignored; 0 measured; 614 filtered out; finished in 16.51s
+thread 'retained_facade_tests::b3a_dropped_m3l_takes_the_ordinary_route' panicked at src/retained_facade_tests.rs:2978:9:
+assertion `left == right` failed: SparseInteractive: D1.3 refuses the label
+  left: None
+ right: Some(Family(Namespace, PressureContract))
+thread 'retained_facade_tests::b3b_witness_inputs_and_routes' panicked at src/retained_facade_tests.rs:2448:5:
+assertion `left == right` failed: m3l (B3a dropped): no branch
+  left: Some(Preview)
+ right: None
+thread 'retained_memory::law_tests::b3a_dropped_d1_3_refuses_the_legacy_pressure_contract_on_0_3_0' panicked at src/retained_memory_law_tests.rs:1906:13:
+assertion `left == right` failed
+  left: Ok(LegacyPressure)
+ right: Err(PressureContract)
+thread 'retained_memory::law_tests::b3a_dropped_direct_entry_refuses_m3l' panicked at src/retained_memory_law_tests.rs:1979:13:
+assertion `left == right` failed: m3l SparseInteractive
+  left: None
+ right: Some(Family(Namespace, PressureContract))

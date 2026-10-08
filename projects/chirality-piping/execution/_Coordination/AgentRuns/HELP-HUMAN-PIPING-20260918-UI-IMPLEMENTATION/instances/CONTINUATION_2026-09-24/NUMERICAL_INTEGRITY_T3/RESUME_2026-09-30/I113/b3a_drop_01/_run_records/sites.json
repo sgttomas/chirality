@@ -1,0 +1,380 @@
+[
+ {
+  "site": "PP/src/retained_facade_tests.rs:2413",
+  "branch": "b2 72b3e5d9ea",
+  "symbol": "/// B3-W's `m3l` (B3a): the milestone authored as 0.3.0 `legacy_pressure_v1` with zero pre",
+  "base_lines": [
+   2413
+  ],
+  "candidate_lines": [
+   2413
+  ],
+  "disposition_i113": "edited: m3l's doc says it is the refusal witness (m3l kept)"
+ },
+ {
+  "site": "PP/src/retained_facade_tests.rs:2417",
+  "branch": "b2 72b3e5d9ea",
+  "symbol": "raw[\"model\"][\"pressure_contract\"] = json!({\"version\": \"1.0.0\", \"mode\": \"legacy_pressure_v1",
+  "base_lines": [
+   2417
+  ],
+  "candidate_lines": [
+   2418
+  ],
+  "disposition_i113": "unchanged: m3l kept as the refusal witness (its Value sha256 2f5ff465… still pinned)"
+ },
+ {
+  "site": "PP/src/retained_facade_tests.rs:2940",
+  "branch": "b2 72b3e5d9ea",
+  "symbol": "(\"profile mode\", Box::new(|e: &mut Value| { e[\"exact_cases\"][0][\"profile_mode\"] = json!(\"l",
+  "base_lines": [
+   2940
+  ],
+  "candidate_lines": [
+   2942
+  ],
+  "disposition_i113": "unchanged: a B3b observable tamper (exact evidence profile_mode set to the label), a refusal; B3b kept byte-identical"
+ },
+ {
+  "site": "PP/src/retained_memory.rs:805",
+  "branch": "b2 72b3e5d9ea",
+  "symbol": "/// L3 (B3a): schema 0.3.0 with the `legacy_pressure_v1` contract, version 1.0.0.",
+  "base_lines": [
+   805
+  ],
+  "candidate_lines": [],
+  "disposition_i113": "removed with NamespaceBranch::LegacyPressure"
+ },
+ {
+  "site": "PP/src/retained_memory.rs:820",
+  "branch": "b2 72b3e5d9ea",
+  "symbol": "(\"0.3.0\", Some(c)) if contract_is(c, \"1.0.0\", \"legacy_pressure_v1\") => Ok(NamespaceBranch:",
+  "base_lines": [
+   820
+  ],
+  "candidate_lines": [],
+  "disposition_i113": "removed: D1.3's L3 arm (the admission)"
+ },
+ {
+  "site": "PP/src/retained_memory.rs:835",
+  "branch": "b2 72b3e5d9ea",
+  "symbol": "// exactly `{version \"1.0.0\", mode \"legacy_pressure_v1\"}`; or branch E (B3b), 0.3.0 with",
+  "base_lines": [
+   835
+  ],
+  "candidate_lines": [],
+  "disposition_i113": "edited: D1.3's comment names L and E only"
+ },
+ {
+  "site": "PP/src/retained_memory_law_tests.rs:1882",
+  "branch": "b2 72b3e5d9ea",
+  "symbol": "// ---- B3a-A: D1.3 admits 0.3.0 `legacy_pressure_v1` (I93 PLAN §1.3; B3-D §4.1) ---------",
+  "base_lines": [
+   1882
+  ],
+  "candidate_lines": [],
+  "disposition_i113": "edited: the section header (B3a dropped)"
+ },
+ {
+  "site": "PP/src/retained_memory_law_tests.rs:1884",
+  "branch": "b2 72b3e5d9ea",
+  "symbol": "/// `raw` authored as 0.3.0 `legacy_pressure_v1` with zero pressure: I99's `legacy3` (B3-W",
+  "base_lines": [
+   1884
+  ],
+  "candidate_lines": [
+   1885
+  ],
+  "disposition_i113": "edited: legacy3's doc (a refusal witness)"
+ },
+ {
+  "site": "PP/src/retained_memory_law_tests.rs:1888",
+  "branch": "b2 72b3e5d9ea",
+  "symbol": "raw[\"model\"][\"pressure_contract\"] = json!({\"version\": \"1.0.0\", \"mode\": \"legacy_pressure_v1",
+  "base_lines": [
+   1888
+  ],
+  "candidate_lines": [
+   1890
+  ],
+  "disposition_i113": "unchanged: legacy3 builds m3l's shape for the refusal tests"
+ },
+ {
+  "site": "PP/src/retained_memory_law_tests.rs:1892",
+  "branch": "b2 72b3e5d9ea",
+  "symbol": "/// D1.3's branch L3: 0.3.0 with exactly `{1.0.0, legacy_pressure_v1}` is inside D1, alone",
+  "base_lines": [
+   1892
+  ],
+  "candidate_lines": [],
+  "disposition_i113": "edited: the admission test's doc, now the refusal test's (renamed b3a_dropped_d1_3_refuses_…)"
+ },
+ {
+  "site": "PP/src/retained_memory_law_tests.rs:1920",
+  "branch": "b2 72b3e5d9ea",
+  "symbol": "let legacy = json!({\"version\": \"1.0.0\", \"mode\": \"legacy_pressure_v1\"});",
+  "base_lines": [
+   1920
+  ],
+  "candidate_lines": [
+   1921
+  ],
+  "disposition_i113": "unchanged line; its assertion now expects Family(Namespace, PressureContract)"
+ },
+ {
+  "site": "PP/src/retained_memory_law_tests.rs:1926",
+  "branch": "b2 72b3e5d9ea",
+  "symbol": "(\"0.3.0, version 1.0.1\", \"0.3.0\", json!({\"version\": \"1.0.1\", \"mode\": \"legacy_pressure_v1\"}",
+  "base_lines": [
+   1926
+  ],
+  "candidate_lines": [
+   1927
+  ],
+  "disposition_i113": "unchanged: a refusal-map entry (PressureContract)"
+ },
+ {
+  "site": "PP/src/retained_memory_law_tests.rs:1927",
+  "branch": "b2 72b3e5d9ea",
+  "symbol": "(\"0.3.0, version absent\", \"0.3.0\", json!({\"mode\": \"legacy_pressure_v1\"}), F::PressureContr",
+  "base_lines": [
+   1927
+  ],
+  "candidate_lines": [
+   1928
+  ],
+  "disposition_i113": "unchanged: a refusal-map entry (PressureContract)"
+ },
+ {
+  "site": "PP/src/retained_memory_law_tests.rs:2348",
+  "branch": "b2 72b3e5d9ea",
+  "symbol": "assert_eq!(with(&|r| r[\"model\"][\"pressure_contract\"][\"mode\"] = json!(\"legacy_pressure_v1\")",
+  "base_lines": [
+   2348
+  ],
+  "candidate_lines": [
+   2307
+  ],
+  "disposition_i113": "unchanged: a B3b law-test refusal (2.0.0 with the legacy mode: PressureContract)"
+ },
+ {
+  "site": "P/core/analysis_runs/retained_precision.py:1556",
+  "branch": "b2-p 6d3d4cdca6",
+  "symbol": "LEGACY_PRESSURE_CONTRACT = {\"version\": \"1.0.0\", \"mode\": \"legacy_pressure_v1\"}",
+  "base_lines": [
+   1556
+  ],
+  "candidate_lines": [],
+  "disposition_i113": "removed: LEGACY_PRESSURE_CONTRACT (its one use was the L3 arm)"
+ },
+ {
+  "site": "P/core/analysis_runs/retained_precision.py:1568",
+  "branch": "b2-p 6d3d4cdca6",
+  "symbol": "{\"version\": \"1.0.0\", \"mode\": \"legacy_pressure_v1\"}. 0.3.0 without that contract is refused",
+  "base_lines": [
+   1568
+  ],
+  "candidate_lines": [],
+  "disposition_i113": "edited: _legacy_namespace's docstring; the L3 arm removed"
+ },
+ {
+  "site": "P/tests/test_retained_precision_b3.py:7",
+  "branch": "b2-p 6d3d4cdca6",
+  "symbol": "- m3l: the milestone's request with schema 0.3.0 and {\"version\": \"1.0.0\", \"mode\": \"legacy_",
+  "base_lines": [
+   7
+  ],
+  "candidate_lines": [
+   8
+  ],
+  "disposition_i113": "unchanged line (m3l's description); the module docstring around it edited"
+ },
+ {
+  "site": "P/tests/test_retained_precision_b3.py:23",
+  "branch": "b2-p 6d3d4cdca6",
+  "symbol": "LEGACY = {\"version\": \"1.0.0\", \"mode\": \"legacy_pressure_v1\"}",
+  "base_lines": [
+   23
+  ],
+  "candidate_lines": [
+   24
+  ],
+  "disposition_i113": "unchanged: LEGACY kept (m3l, B3b's entry 19 and the shared table use it)"
+ },
+ {
+  "site": "P/tests/test_retained_precision_b3.py:71",
+  "branch": "b2-p 6d3d4cdca6",
+  "symbol": "# B3a: G8 admits 0.3.0 with exactly the legacy_pressure_v1 contract (B3-D §6.3; REVISION_0",
+  "base_lines": [
+   71
+  ],
+  "candidate_lines": [],
+  "disposition_i113": "edited: the section comment (B3a dropped)"
+ },
+ {
+  "site": "P/tests/test_retained_precision_b3.py:331",
+  "branch": "b2-p 6d3d4cdca6",
+  "symbol": "\"x13 invocation contract mode only\": (_model(lambda m: m[\"pressure_contract\"].update(mode=",
+  "base_lines": [
+   331
+  ],
+  "candidate_lines": [
+   402
+  ],
+  "disposition_i113": "unchanged: B3b's x13 (exact branch, contract mode -> legacy), a refusal"
+ },
+ {
+  "site": "P/tests/test_retained_precision_contract.py:802",
+  "branch": "b2-p 6d3d4cdca6",
+  "symbol": "0.3.0 is admitted only with the legacy_pressure_v1 contract, so 0.3.0 without a contract i",
+  "base_lines": [
+   802
+  ],
+  "candidate_lines": [],
+  "disposition_i113": "edited: d31's docstring"
+ },
+ {
+  "site": "P/tests/test_retained_precision_contract.py:805",
+  "branch": "b2-p 6d3d4cdca6",
+  "symbol": "legacy = {\"path\": [\"request\", \"model\", \"pressure_contract\"], \"op\": \"set\", \"value\": {\"versi",
+  "base_lines": [
+   805
+  ],
+  "candidate_lines": [
+   805
+  ],
+  "disposition_i113": "unchanged line; d31's legacy entry now expects G8 INVOCATION_MISMATCH"
+ },
+ {
+  "site": "RE/src/retained_precision.rs:3736",
+  "branch": "b2-r 81d41baebf",
+  "symbol": "/// exactly `{\"version\":\"1.0.0\",\"mode\":\"legacy_pressure_v1\"}`. Anything else",
+  "base_lines": [
+   3736
+  ],
+  "candidate_lines": [],
+  "disposition_i113": "edited: legacy_namespace's doc"
+ },
+ {
+  "site": "RE/src/retained_precision.rs:3743",
+  "branch": "b2-r 81d41baebf",
+  "symbol": "pressure_contract_is(&model[\"pressure_contract\"], \"1.0.0\", \"legacy_pressure_v1\")",
+  "base_lines": [
+   3743
+  ],
+  "candidate_lines": [],
+  "disposition_i113": "removed: the L3 arm (the admission)"
+ },
+ {
+  "site": "RE/tests/retained_precision_contract.rs:5072",
+  "branch": "b2-r 81d41baebf",
+  "symbol": "/// \"legacy_pressure_v1\"}`) are admitted; any other value is G8",
+  "base_lines": [
+   5072
+  ],
+  "candidate_lines": [],
+  "disposition_i113": "edited: the shared table's doc"
+ },
+ {
+  "site": "RE/tests/retained_precision_contract.rs:5080",
+  "branch": "b2-r 81d41baebf",
+  "symbol": "let l3 = json!({\"version\": \"1.0.0\", \"mode\": \"legacy_pressure_v1\"});",
+  "base_lines": [
+   5080
+  ],
+  "candidate_lines": [
+   5083
+  ],
+  "disposition_i113": "unchanged: `l3` names the retired contract in the refusal entries"
+ },
+ {
+  "site": "RE/tests/retained_precision_contract.rs:5131",
+  "branch": "b2-r 81d41baebf",
+  "symbol": "(\"L3: mode only\", vec![schema(\"0.3.0\"), contract(json!({\"mode\": \"legacy_pressure_v1\"}))], ",
+  "base_lines": [
+   5131
+  ],
+  "candidate_lines": [
+   5133
+  ],
+  "disposition_i113": "unchanged: a refusal entry (INVOCATION_MISMATCH)"
+ },
+ {
+  "site": "RE/tests/retained_precision_contract.rs:5564",
+  "branch": "b2-r 81d41baebf",
+  "symbol": "(\"19 invocation contract -> legacy 1.0.0\", vec![], vec![set(model(json!([\"pressure_contrac",
+  "base_lines": [
+   5564
+  ],
+  "candidate_lines": [
+   5566
+  ],
+  "disposition_i113": "unchanged: B3b's entry 19 (exact branch, contract -> legacy), a refusal"
+ },
+ {
+  "site": "P/apps/desktop/src/features/results/retainedPrecision.test.ts:1448",
+  "branch": "b2-t 65c04cd0c7",
+  "symbol": "// {\"version\":\"1.0.0\",\"mode\":\"legacy_pressure_v1\"}) are admitted; any other value is G8 IN",
+  "base_lines": [
+   1448
+  ],
+  "candidate_lines": [],
+  "disposition_i113": "edited: the shared table's comment"
+ },
+ {
+  "site": "P/apps/desktop/src/features/results/retainedPrecision.test.ts:1451",
+  "branch": "b2-t 65c04cd0c7",
+  "symbol": "const l3 = { version: '1.0.0', mode: 'legacy_pressure_v1' };",
+  "base_lines": [
+   1451
+  ],
+  "candidate_lines": [
+   1452
+  ],
+  "disposition_i113": "unchanged: `l3` names the retired contract in the refusal entries"
+ },
+ {
+  "site": "P/apps/desktop/src/features/results/retainedPrecision.test.ts:1476",
+  "branch": "b2-t 65c04cd0c7",
+  "symbol": "['L3: mode only', ORD, [schema('0.3.0'), contract({ mode: 'legacy_pressure_v1' })], INV],",
+  "base_lines": [
+   1476
+  ],
+  "candidate_lines": [
+   1477
+  ],
+  "disposition_i113": "unchanged: a refusal entry (INVOCATION_MISMATCH)"
+ },
+ {
+  "site": "P/apps/desktop/src/features/results/retainedPrecision.test.ts:1585",
+  "branch": "b2-t 65c04cd0c7",
+  "symbol": "[{ name: '19 invocation contract -> legacy 1.0.0', base, invocation_edits: [set(md('pressu",
+  "base_lines": [
+   1585
+  ],
+  "candidate_lines": [
+   1586
+  ],
+  "disposition_i113": "unchanged: B3b's entry 19 (exact branch, contract -> legacy), a refusal"
+ },
+ {
+  "site": "P/apps/desktop/src/features/results/retainedPrecision.ts:1221",
+  "branch": "b2-t 65c04cd0c7",
+  "symbol": "* `{\"version\":\"1.0.0\",\"mode\":\"legacy_pressure_v1\"}`. Anything else (0.3.0 without a contra",
+  "base_lines": [
+   1221
+  ],
+  "candidate_lines": [],
+  "disposition_i113": "edited: legacyNamespace's doc"
+ },
+ {
+  "site": "P/apps/desktop/src/features/results/retainedPrecision.ts:1225",
+  "branch": "b2-t 65c04cd0c7",
+  "symbol": "if (model.schema_version === '0.3.0') return pressureContractIs(model.pressure_contract, '",
+  "base_lines": [
+   1225
+  ],
+  "candidate_lines": [],
+  "disposition_i113": "removed: the L3 arm (the admission)"
+ }
+]

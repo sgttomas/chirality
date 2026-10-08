@@ -1,0 +1,124 @@
+{
+ "07m_rs": {
+  "base_entries": 339,
+  "candidate_entries": 339,
+  "same_roster": true,
+  "sets": {
+   "base": 17,
+   "mutation": 294,
+   "must_pass": 28
+  },
+  "fields": [
+   "bound",
+   "i",
+   "id",
+   "input_sha256",
+   "set",
+   "standing",
+   "transport",
+   "unbound"
+  ],
+  "changes": []
+ },
+ "07m_ts": {
+  "base_entries": 339,
+  "candidate_entries": 339,
+  "same_roster": true,
+  "sets": {
+   "base": 17,
+   "mutation": 294,
+   "must_pass": 28
+  },
+  "fields": [
+   "bound",
+   "i",
+   "id",
+   "input_sha256",
+   "set",
+   "transport",
+   "unbound"
+  ],
+  "changes": []
+ },
+ "07m_py": {
+  "base_entries": 339,
+  "candidate_entries": 339,
+  "same_roster": true,
+  "sets": {
+   "base": 17,
+   "mutation": 294,
+   "must_pass": 28
+  },
+  "fields": [
+   "bound",
+   "i",
+   "id",
+   "input_sha256",
+   "set",
+   "transport",
+   "unbound"
+  ],
+  "changes": []
+ },
+ "07n_rs": {
+  "base_entries": 638,
+  "candidate_entries": 638,
+  "same_roster": true,
+  "sets": {
+   "base": 26,
+   "mutation": 534,
+   "must_pass": 78
+  },
+  "fields": [
+   "bound",
+   "i",
+   "id",
+   "input_sha256",
+   "set",
+   "standing",
+   "transport",
+   "unbound"
+  ],
+  "changes": []
+ },
+ "07n_ts": {
+  "base_entries": 638,
+  "candidate_entries": 638,
+  "same_roster": true,
+  "sets": {
+   "base": 26,
+   "mutation": 534,
+   "must_pass": 78
+  },
+  "fields": [
+   "bound",
+   "i",
+   "id",
+   "input_sha256",
+   "set",
+   "transport",
+   "unbound"
+  ],
+  "changes": []
+ },
+ "07n_py": {
+  "base_entries": 638,
+  "candidate_entries": 638,
+  "same_roster": true,
+  "sets": {
+   "base": 26,
+   "mutation": 534,
+   "must_pass": 78
+  },
+  "fields": [
+   "bound",
+   "i",
+   "id",
+   "input_sha256",
+   "set",
+   "transport",
+   "unbound"
+  ],
+  "changes": []
+ }
+}

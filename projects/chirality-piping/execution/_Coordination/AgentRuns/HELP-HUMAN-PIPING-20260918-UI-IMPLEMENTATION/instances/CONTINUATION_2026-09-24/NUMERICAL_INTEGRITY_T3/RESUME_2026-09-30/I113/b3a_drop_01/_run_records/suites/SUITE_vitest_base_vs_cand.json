@@ -1,0 +1,10 @@
+{
+ "suite": "vitest",
+ "base": {
+  "passed": 3678
+ },
+ "head": {
+  "passed": 3678
+ },
+ "differences": []
+}

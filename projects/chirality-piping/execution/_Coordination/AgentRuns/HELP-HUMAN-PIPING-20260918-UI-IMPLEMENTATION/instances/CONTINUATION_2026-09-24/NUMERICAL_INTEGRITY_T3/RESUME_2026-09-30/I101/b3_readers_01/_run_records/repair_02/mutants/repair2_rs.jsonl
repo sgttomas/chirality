@@ -1,0 +1,2 @@
+{"id": "control", "rc": 0, "failed": [], "build_error": false}
+{"id": "N2H", "desc": "transport: the cases read in HashMap order again", "file": "core/reporting/result_export/src/physics_evidence.rs", "rc": 101, "killed": true, "failed": ["b3b_rv120_n2_transport_code_is_array_ordered_and_stable"], "build_error": false}

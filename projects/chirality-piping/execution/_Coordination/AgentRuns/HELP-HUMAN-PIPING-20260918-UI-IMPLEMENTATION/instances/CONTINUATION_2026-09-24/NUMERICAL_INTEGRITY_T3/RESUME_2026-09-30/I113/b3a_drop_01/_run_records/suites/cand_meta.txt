@@ -1,0 +1,15 @@
+START cand 0ef9a8ace9 2026-10-08T19:23:18Z parts=copies pp runner re py ts tsc census
+copies rc=0 2026-10-08T19:23:21Z
+pp rc=101 2026-10-08T19:32:42Z
+runner rc=101 2026-10-08T19:33:36Z
+re rc=0 2026-10-08T19:35:28Z
+py rc=1 2026-10-08T19:56:06Z
+vitest rc=0 2026-10-08T19:57:28Z
+tsc rc=0 2026-10-08T19:57:32Z
+census_h_rs rc=0 2026-10-08T19:58:30Z
+census_h_ts rc=0 2026-10-08T19:58:39Z
+census_h_py rc=0 2026-10-08T19:59:13Z
+census_n_rs rc=0 2026-10-08T20:01:00Z
+census_n_ts rc=0 2026-10-08T20:01:18Z
+census_n_py rc=0 2026-10-08T20:02:31Z
+DONE cand 2026-10-08T20:02:31Z

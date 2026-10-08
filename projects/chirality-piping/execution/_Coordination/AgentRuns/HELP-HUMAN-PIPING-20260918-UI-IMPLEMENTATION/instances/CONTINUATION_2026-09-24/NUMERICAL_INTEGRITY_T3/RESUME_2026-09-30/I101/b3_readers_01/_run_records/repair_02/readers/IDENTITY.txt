@@ -1,0 +1,7 @@
+RV120 N2: an exact_cases entry for a case not in the invocation [ordinary_prepared_synthetic]: RV120's input_sha256 True (deb972aca48f…)
+RV120 N2: an exact_cases entry for a case not in the invocation [m3x_sparse_interactive]: RV120's input_sha256 True (7732c8627d9d…)
+RV120 F1 control: case 0's evidence As_m2 one ulp [two_case_synthetic]: RV120's input_sha256 True (588601c0f8d9…)
+RV120 F1 control: case 1's body_scales force one ulp [two_case_synthetic]: RV120's input_sha256 True (a2b56fe82eb0…)
+RV120 F1 order: case 0's evidence As_m2 and case 1's body_scales force [two_case_synthetic]: RV120's input_sha256 True (cd1c6d69aa95…)
+RV120 F1 order: case 0's evidence As_m2 and case 1's section term area [two_case_synthetic]: RV120's input_sha256 True (24ac27f80804…)
+6 probes

@@ -1,0 +1,21 @@
+{
+ "suite": "junit",
+ "base": {
+  "passed": 804
+ },
+ "head": {
+  "passed": 806
+ },
+ "differences": [
+  {
+   "test": "tests.test_retained_precision_b3 :: test_repair02_rv120_n2_reads_the_cases_in_array_order[X G8: an exact_cases entry for a case not in the invocation [m3x_sparse_interactive]]",
+   "base": null,
+   "head": "passed"
+  },
+  {
+   "test": "tests.test_retained_precision_b3 :: test_repair02_rv120_n2_reads_the_cases_in_array_order[X G8: an exact_cases entry for a case not in the invocation [ordinary_prepared_synthetic]]",
+   "base": null,
+   "head": "passed"
+  }
+ ]
+}

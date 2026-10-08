@@ -1,0 +1,324 @@
+FFFFF.........FFF.................FFFFF......................FF..F       [100%]
+=================================== FAILURES ===================================
+__________ test_b3a_dropped_m3l_successor_is_refused[dense_scrutiny] ___________
+
+mode = 'dense_scrutiny'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_dropped_m3l_successor_is_refused(mode):
+        """B3a is dropped: m3l's successor (the milestone's, resealed on the retired legacy contract) is refused at G8's
+        namespace; the milestone itself, the control, stays eligible."""
+        source, invocation = m3l(mode)
+>       assert outcome(source, invocation) == INVOCATION
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:87: AssertionError
+________ test_b3a_dropped_m3l_successor_is_refused[sparse_interactive] _________
+
+mode = 'sparse_interactive'
+
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_dropped_m3l_successor_is_refused(mode):
+        """B3a is dropped: m3l's successor (the milestone's, resealed on the retired legacy contract) is refused at G8's
+        namespace; the milestone itself, the control, stays eligible."""
+        source, invocation = m3l(mode)
+>       assert outcome(source, invocation) == INVOCATION
+E       AssertionError: assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:87: AssertionError
+___ test_b3a_m3l_mutations[dense_scrutiny-a non-zero element pressure load] ____
+
+mode = 'dense_scrutiny', label = 'a non-zero element pressure load'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 1 diff: 'RETAINED_PRECISION_PREPARATION_MISMATCH' != 'RETAINED_PRECISION_INVOCATION_MISMATCH'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:124: AssertionError
+_ test_b3a_m3l_mutations[dense_scrutiny-a non-zero node force with category pressure] _
+
+mode = 'dense_scrutiny', label = 'a non-zero node force with category pressure'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 1 diff: 'RETAINED_PRECISION_PREPARATION_MISMATCH' != 'RETAINED_PRECISION_INVOCATION_MISMATCH'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:124: AssertionError
+_ test_b3a_m3l_mutations[dense_scrutiny-a zero-magnitude element pressure load] _
+
+mode = 'dense_scrutiny', label = 'a zero-magnitude element pressure load'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 1 diff: 'RETAINED_PRECISION_PREPARATION_MISMATCH' != 'RETAINED_PRECISION_INVOCATION_MISMATCH'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:124: AssertionError
+_ test_b3a_m3l_mutations[sparse_interactive-a non-zero element pressure load] __
+
+mode = 'sparse_interactive', label = 'a non-zero element pressure load'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 1 diff: 'RETAINED_PRECISION_PREPARATION_MISMATCH' != 'RETAINED_PRECISION_INVOCATION_MISMATCH'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:124: AssertionError
+_ test_b3a_m3l_mutations[sparse_interactive-a non-zero node force with category pressure] _
+
+mode = 'sparse_interactive'
+label = 'a non-zero node force with category pressure'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 1 diff: 'RETAINED_PRECISION_PREPARATION_MISMATCH' != 'RETAINED_PRECISION_INVOCATION_MISMATCH'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:124: AssertionError
+_ test_b3a_m3l_mutations[sparse_interactive-a zero-magnitude element pressure load] _
+
+mode = 'sparse_interactive', label = 'a zero-magnitude element pressure load'
+
+    @pytest.mark.parametrize("label", sorted(B3A_REFUSALS))
+    @pytest.mark.parametrize("mode", MODES)
+    def test_b3a_m3l_mutations(mode, label):
+        change, expected = B3A_REFUSALS[label]
+        source, invocation = m3l(mode)
+        invocation = edited_invocation(invocation, change)
+>       assert outcome(reseal(source, invocation), invocation) == expected
+E       AssertionError: assert ('G8', 'RETAI...ION_MISMATCH') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 1 diff: 'RETAINED_PRECISION_PREPARATION_MISMATCH' != 'RETAINED_PRECISION_INVOCATION_MISMATCH'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:124: AssertionError
+_____ test_b3a_dropped_namespace_table[L3 on ordinary_prepared_synthetic] ______
+
+name = 'L3 on ordinary_prepared_synthetic', base = 'ordinary_prepared_synthetic'
+changes = [<function _schema.<locals>.<lambda> at 0x1092a27a0>, <function _contract.<locals>.<lambda> at 0x1092a2840>]
+expected = ('G8', 'RETAINED_PRECISION_INVOCATION_MISMATCH')
+
+    @pytest.mark.parametrize("name,base,changes,expected", B3A_DROPPED_TABLE, ids=[entry[0] for entry in B3A_DROPPED_TABLE])
+    def test_b3a_dropped_namespace_table(name, base, changes, expected):
+        fixture = SHARED[base]
+        invocation = edited_invocation(fixture["invocation"], lambda m: [change(m) for change in changes])
+        got = outcome(reseal(fixture["source"], invocation), invocation)
+>       assert (got[0] if expected == "pass" else got) == expected, name
+E       AssertionError: L3 on ordinary_prepared_synthetic
+E       assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:214: AssertionError
+__ test_b3a_dropped_namespace_table[L3 on ordinary_prepared_dense_synthetic] ___
+
+name = 'L3 on ordinary_prepared_dense_synthetic'
+base = 'ordinary_prepared_dense_synthetic'
+changes = [<function _schema.<locals>.<lambda> at 0x1092a28e0>, <function _contract.<locals>.<lambda> at 0x1092a2980>]
+expected = ('G8', 'RETAINED_PRECISION_INVOCATION_MISMATCH')
+
+    @pytest.mark.parametrize("name,base,changes,expected", B3A_DROPPED_TABLE, ids=[entry[0] for entry in B3A_DROPPED_TABLE])
+    def test_b3a_dropped_namespace_table(name, base, changes, expected):
+        fixture = SHARED[base]
+        invocation = edited_invocation(fixture["invocation"], lambda m: [change(m) for change in changes])
+        got = outcome(reseal(fixture["source"], invocation), invocation)
+>       assert (got[0] if expected == "pass" else got) == expected, name
+E       AssertionError: L3 on ordinary_prepared_dense_synthetic
+E       assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:214: AssertionError
+__________ test_b3a_dropped_namespace_table[L3 on two_case_synthetic] __________
+
+name = 'L3 on two_case_synthetic', base = 'two_case_synthetic'
+changes = [<function _schema.<locals>.<lambda> at 0x1092a2a20>, <function _contract.<locals>.<lambda> at 0x1092a2ac0>]
+expected = ('G8', 'RETAINED_PRECISION_INVOCATION_MISMATCH')
+
+    @pytest.mark.parametrize("name,base,changes,expected", B3A_DROPPED_TABLE, ids=[entry[0] for entry in B3A_DROPPED_TABLE])
+    def test_b3a_dropped_namespace_table(name, base, changes, expected):
+        fixture = SHARED[base]
+        invocation = edited_invocation(fixture["invocation"], lambda m: [change(m) for change in changes])
+        got = outcome(reseal(fixture["source"], invocation), invocation)
+>       assert (got[0] if expected == "pass" else got) == expected, name
+E       AssertionError: L3 on two_case_synthetic
+E       assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:214: AssertionError
+_ test_b3a_dropped_namespace_table[L3 on u8_l0_isolated_node_sparse_interactive] _
+
+name = 'L3 on u8_l0_isolated_node_sparse_interactive'
+base = 'u8_l0_isolated_node_sparse_interactive'
+changes = [<function _schema.<locals>.<lambda> at 0x1092a2b60>, <function _contract.<locals>.<lambda> at 0x1092a2c00>]
+expected = ('G8', 'RETAINED_PRECISION_INVOCATION_MISMATCH')
+
+    @pytest.mark.parametrize("name,base,changes,expected", B3A_DROPPED_TABLE, ids=[entry[0] for entry in B3A_DROPPED_TABLE])
+    def test_b3a_dropped_namespace_table(name, base, changes, expected):
+        fixture = SHARED[base]
+        invocation = edited_invocation(fixture["invocation"], lambda m: [change(m) for change in changes])
+        got = outcome(reseal(fixture["source"], invocation), invocation)
+>       assert (got[0] if expected == "pass" else got) == expected, name
+E       AssertionError: L3 on u8_l0_isolated_node_sparse_interactive
+E       assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:214: AssertionError
+__ test_b3a_dropped_namespace_table[L3 on u8_l0_isolated_node_dense_scrutiny] __
+
+name = 'L3 on u8_l0_isolated_node_dense_scrutiny'
+base = 'u8_l0_isolated_node_dense_scrutiny'
+changes = [<function _schema.<locals>.<lambda> at 0x1092a2ca0>, <function _contract.<locals>.<lambda> at 0x1092a2d40>]
+expected = ('G8', 'RETAINED_PRECISION_INVOCATION_MISMATCH')
+
+    @pytest.mark.parametrize("name,base,changes,expected", B3A_DROPPED_TABLE, ids=[entry[0] for entry in B3A_DROPPED_TABLE])
+    def test_b3a_dropped_namespace_table(name, base, changes, expected):
+        fixture = SHARED[base]
+        invocation = edited_invocation(fixture["invocation"], lambda m: [change(m) for change in changes])
+        got = outcome(reseal(fixture["source"], invocation), invocation)
+>       assert (got[0] if expected == "pass" else got) == expected, name
+E       AssertionError: L3 on u8_l0_isolated_node_dense_scrutiny
+E       assert ('pass', True, 'eligible') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 0 diff: 'pass' != 'G8'
+E         Left contains one more item: 'eligible'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:214: AssertionError
+_ test_b3a_dropped_namespace_table[N-11: L3 with a zero-magnitude element pressure load] _
+
+name = 'N-11: L3 with a zero-magnitude element pressure load'
+base = 'ordinary_prepared_synthetic'
+changes = [<function _schema.<locals>.<lambda> at 0x10962c400>, <function _contract.<locals>.<lambda> at 0x10962c4a0>, <function _zero_pressure at 0x1092a2700>]
+expected = ('G8', 'RETAINED_PRECISION_INVOCATION_MISMATCH')
+
+    @pytest.mark.parametrize("name,base,changes,expected", B3A_DROPPED_TABLE, ids=[entry[0] for entry in B3A_DROPPED_TABLE])
+    def test_b3a_dropped_namespace_table(name, base, changes, expected):
+        fixture = SHARED[base]
+        invocation = edited_invocation(fixture["invocation"], lambda m: [change(m) for change in changes])
+        got = outcome(reseal(fixture["source"], invocation), invocation)
+>       assert (got[0] if expected == "pass" else got) == expected, name
+E       AssertionError: N-11: L3 with a zero-magnitude element pressure load
+E       assert ('G8', 'RETAI...ION_MISMATCH') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 1 diff: 'RETAINED_PRECISION_PREPARATION_MISMATCH' != 'RETAINED_PRECISION_INVOCATION_MISMATCH'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:214: AssertionError
+_ test_b3a_dropped_namespace_table[N-11: L3 dense with a zero-magnitude element pressure load] _
+
+name = 'N-11: L3 dense with a zero-magnitude element pressure load'
+base = 'ordinary_prepared_dense_synthetic'
+changes = [<function _schema.<locals>.<lambda> at 0x10962c540>, <function _contract.<locals>.<lambda> at 0x10962c5e0>, <function _zero_pressure at 0x1092a2700>]
+expected = ('G8', 'RETAINED_PRECISION_INVOCATION_MISMATCH')
+
+    @pytest.mark.parametrize("name,base,changes,expected", B3A_DROPPED_TABLE, ids=[entry[0] for entry in B3A_DROPPED_TABLE])
+    def test_b3a_dropped_namespace_table(name, base, changes, expected):
+        fixture = SHARED[base]
+        invocation = edited_invocation(fixture["invocation"], lambda m: [change(m) for change in changes])
+        got = outcome(reseal(fixture["source"], invocation), invocation)
+>       assert (got[0] if expected == "pass" else got) == expected, name
+E       AssertionError: N-11: L3 dense with a zero-magnitude element pressure load
+E       assert ('G8', 'RETAI...ION_MISMATCH') == ('G8', 'RETAI...ION_MISMATCH')
+E         
+E         At index 1 diff: 'RETAINED_PRECISION_PREPARATION_MISMATCH' != 'RETAINED_PRECISION_INVOCATION_MISMATCH'
+E         Use -v to get more diff
+
+tests/test_retained_precision_b3.py:214: AssertionError
+________________________ test_model_schema_versions_d31 ________________________
+
+    def test_model_schema_versions_d31():
+        """D31: G8 admits model schema_version 0.1.0 and 0.2.0; 0.4.0 stays excluded. B3D-10, as ruled: 0.3.0 without a
+        contract is refused. B3a is dropped, so 0.3.0 with the retired legacy_pressure_v1 contract is refused too."""
+        expected = _cases()[O_BASE]["expected_classifications"]
+        version_edit = lambda version: {"path": ["request", "model", "schema_version"], "op": "set", "value": version}
+        legacy = {"path": ["request", "model", "pressure_contract"], "op": "set", "value": {"version": "1.0.0", "mode": "legacy_pressure_v1"}}
+        for version in ("0.1.0", "0.2.0"):
+            assert _validate_entry(O_BASE, [], [version_edit(version)])["classifications"] == expected
+>       _raises(lambda: _validate_entry(O_BASE, [], [version_edit("0.3.0"), legacy]), "G8", "INVOCATION_MISMATCH")
+
+tests/test_retained_precision_contract.py:808: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+fn = <function test_model_schema_versions_d31.<locals>.<lambda> at 0x109bf2e80>
+gate = 'G8', code = 'INVOCATION_MISMATCH'
+
+    def _raises(fn, gate, code):
+>       with pytest.raises(rp.RetainedPrecisionError) as error:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE RetainedPrecisionError
+
+tests/test_retained_precision_contract.py:344: Failed
+=========================== short test summary info ============================
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_m3l_successor_is_refused[dense_scrutiny]
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_m3l_successor_is_refused[sparse_interactive]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[dense_scrutiny-a non-zero element pressure load]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[dense_scrutiny-a non-zero node force with category pressure]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[dense_scrutiny-a zero-magnitude element pressure load]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[sparse_interactive-a non-zero element pressure load]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[sparse_interactive-a non-zero node force with category pressure]
+FAILED tests/test_retained_precision_b3.py::test_b3a_m3l_mutations[sparse_interactive-a zero-magnitude element pressure load]
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_namespace_table[L3 on ordinary_prepared_synthetic]
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_namespace_table[L3 on ordinary_prepared_dense_synthetic]
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_namespace_table[L3 on two_case_synthetic]
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_namespace_table[L3 on u8_l0_isolated_node_sparse_interactive]
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_namespace_table[L3 on u8_l0_isolated_node_dense_scrutiny]
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_namespace_table[N-11: L3 with a zero-magnitude element pressure load]
+FAILED tests/test_retained_precision_b3.py::test_b3a_dropped_namespace_table[N-11: L3 dense with a zero-magnitude element pressure load]
+FAILED tests/test_retained_precision_contract.py::test_model_schema_versions_d31
+16 failed, 50 passed, 768 deselected in 28.19s

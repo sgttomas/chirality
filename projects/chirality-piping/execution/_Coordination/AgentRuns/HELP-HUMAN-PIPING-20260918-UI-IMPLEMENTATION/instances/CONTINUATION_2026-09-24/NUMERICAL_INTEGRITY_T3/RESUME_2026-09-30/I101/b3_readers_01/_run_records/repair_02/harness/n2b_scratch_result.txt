@@ -1,0 +1,5 @@
+I101_SCRATCH 4
+I101_SCRATCH {"bound":{"code":"SOURCE_PHYSICS_CASE_PROFILE","gate":"G7"},"transport":{"code":"SOURCE_PHYSICS_TRANSPORT_SHAPE","gate":"G7"},"unbound":{"code":"SOURCE_PHYSICS_CASE_PROFILE","gate":"G7"}}
+I101_SCRATCH {"bound":{"code":"SOURCE_PHYSICS_CASE_PROFILE","gate":"G7"},"transport":{"code":"SOURCE_PHYSICS_TRANSPORT_SHAPE","gate":"G7"},"unbound":{"code":"SOURCE_PHYSICS_STRING_INVALID","gate":"G7"}}
+I101_SCRATCH {"bound":{"code":"SOURCE_PHYSICS_STRING_INVALID","gate":"G7"},"transport":{"code":"SOURCE_PHYSICS_TRANSPORT_SHAPE","gate":"G7"},"unbound":{"code":"SOURCE_PHYSICS_CASE_PROFILE","gate":"G7"}}
+I101_SCRATCH {"bound":{"code":"SOURCE_PHYSICS_STRING_INVALID","gate":"G7"},"transport":{"code":"SOURCE_PHYSICS_TRANSPORT_SHAPE","gate":"G7"},"unbound":{"code":"SOURCE_PHYSICS_STRING_INVALID","gate":"G7"}}
