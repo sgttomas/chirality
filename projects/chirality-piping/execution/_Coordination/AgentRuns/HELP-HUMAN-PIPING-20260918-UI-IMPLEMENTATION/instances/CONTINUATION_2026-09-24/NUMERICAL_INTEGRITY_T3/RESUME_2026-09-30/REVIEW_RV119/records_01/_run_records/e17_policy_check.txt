@@ -1,0 +1,15 @@
+top-level keys equal: True
+control_path_exceptions: 92 -> 93; M's list is an exact prefix of H's: True
+  appended: T3/RESUME_2026-09-30/BRIEFS/B2W_B3W_PROBES.md
+    exists at H: True; sha256 at H == entry: True (b7e2fdc726f8...)
+    entry_type=control_path_exception role=CONTROL
+    authority cites: "RV115 and RV118 confirm B2-C revision 02: B2-C is final for J1; SA4-1 and B-2 go to B2-K's brief, B-1 to SC2's; E-17 and two portability registrations".
+historical_role_overrides: 740 -> 741; M's list is an exact prefix of H's: True
+  appended: T3/RESUME_2026-09-30/REVIEW_RV117/records_01/REVIEW.md
+    exists at H: True; sha256 at H == entry: True (fb368f741d15...)
+    entry_type=historical_role_override role=EVIDENCE
+    authority cites: "RV115 and RV118 confirm B2-C revision 02: B2-C is final for J1; SA4-1 and B-2 go to B2-K's brief, B-1 to SC2's; E-17 and two portability registrations".
+project_root: equal: True
+schema_version: equal: True
+H without the appended entries equals M (parsed): True
+numstat: +16 -0

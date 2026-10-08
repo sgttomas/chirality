@@ -1,0 +1,25 @@
+read at 2026-10-08T04:22:33Z
+== GitHub Actions runs on H2 8568fb2053f6750e4d09aa00d1791f9f3757f7e1
+37724855268 Harness Pre-merge Validation pull_request completed success 8568fb2053
+37724855435 pec-tests pull_request completed success 8568fb2053
+37724855363 governance-harness pull_request completed success 8568fb2053
+37724855398 Piping Desktop E2E pull_request completed success 8568fb2053
+== jobs
+Harness Pre-merge Validation | Select App coverage | success
+Harness Pre-merge Validation | Harness pre-merge | success
+Harness Pre-merge Validation | App Runtime integration | skipped
+Harness Pre-merge Validation | App instruction bundle | skipped
+pec-tests | Select PEC coverage | success
+pec-tests | pec | success
+pec-tests | PEC workspace tests | skipped
+governance-harness | harness | success
+Piping Desktop E2E | Select source coverage | success
+Piping Desktop E2E | Numerical cargo suite | success
+Piping Desktop E2E | Accessibility barrier and selected coverage | skipped
+Piping Desktop E2E | Source remainder (${{ matrix.shard }}/4) | skipped
+Piping Desktop E2E | Desktop E2E (source mode) | success
+== PR state
+state=OPEN draft=false mergeable=MERGEABLE mergeState=CLEAN head=8568fb2053 base=f4358eb0be
+== origin main
+7b0170ed4d
+== main moved again: 7b0170ed4d (#1116), 27 files, all under projects/chirality-app-v4 (GitHub compare 0e62b8e36b...7b0170ed4d); nothing under projects/chirality-piping

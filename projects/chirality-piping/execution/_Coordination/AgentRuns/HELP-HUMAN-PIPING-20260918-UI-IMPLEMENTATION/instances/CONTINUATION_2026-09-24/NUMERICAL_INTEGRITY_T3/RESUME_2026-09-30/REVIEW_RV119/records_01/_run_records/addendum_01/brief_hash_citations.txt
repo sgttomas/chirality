@@ -1,0 +1,5 @@
+T3/RESUME_2026-09-30/I97/b2_c_01/REVISION_02.md:5:**The brief:** `R/BRIEFS/B2C_REVISION_02.md`, sha256 `d82dba65f45a01aecf46b5ce8c86bc8f456cd0ad7d77e9
+T3/RESUME_2026-09-30/REVIEW_RV118/b2_c_01/ADDENDUM_02.md:9:- The revision's brief, `R/BRIEFS/B2C_REVISION_02.md`, is `d82dba65…0c56` (verified).
+T3/RESUME_2026-09-30/REVIEW_RV118/b2_c_01/addendum_02/checks_addendum_02.txt:5:d82dba65f45a01aecf46b5ce8c86bc8f456cd0ad7d77e907b125741850b80c56  R/BRI
+T3/ROOT_RULINGS_V1.md:15492:**I97 writes revision 02** by `BRIEFS/B2C_REVISION_02.md` (sha256 `d82dba65…`): (ii) with a reference implementation, A-
+T3/ROOT_RULINGS_V1.md:15640:- **`BRIEFS/B2C_REVISION_02.md`:** its host-name rule names the forms instead of spelling them. Its sha256 changes from `d

@@ -1,0 +1,3 @@
+  24 WT/rv109/a1_head
+  18 WT/rv109/a1_i3
+  33 WT/rv109/a1_mut

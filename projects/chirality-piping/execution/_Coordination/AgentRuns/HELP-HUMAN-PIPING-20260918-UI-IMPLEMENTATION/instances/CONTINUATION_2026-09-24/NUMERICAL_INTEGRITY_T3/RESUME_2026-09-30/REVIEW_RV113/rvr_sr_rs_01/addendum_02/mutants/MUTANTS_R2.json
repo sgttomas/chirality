@@ -1,0 +1,307 @@
+[
+ {
+  "id": "N01",
+  "item": "1 (f)",
+  "description": "G3: a source's index at its position dropped"
+ },
+ {
+  "id": "N03",
+  "item": "1 (f)",
+  "description": "G3: the owner's case binding dropped (index range and id)"
+ },
+ {
+  "id": "N04",
+  "item": "1 (f)",
+  "description": "G3: the owner's case id against the case at its index dropped (index range kept)"
+ },
+ {
+  "id": "N05",
+  "item": "1 (f)",
+  "description": "G3: a material basis's index at its position dropped"
+ },
+ {
+  "id": "N06",
+  "item": "1 (f)",
+  "description": "G3: case_indices in range dropped"
+ },
+ {
+  "id": "N07",
+  "item": "1 (f)",
+  "description": "G3: case_indices unique dropped"
+ },
+ {
+  "id": "N08",
+  "item": "1 G5",
+  "description": "G5 ordinary: the ordinary attempt's basis reference dropped"
+ },
+ {
+  "id": "N09",
+  "item": "1 G5",
+  "description": "G5 ordinary: the basis need only resolve (not list the case)"
+ },
+ {
+  "id": "N10",
+  "item": "2 (g)",
+  "description": "G8: combinations back to the old list(..).is_empty() (null and non-arrays admitted)"
+ },
+ {
+  "id": "N11",
+  "item": "2 (g)",
+  "description": "G8: components back to the old list(..).is_empty()"
+ },
+ {
+  "id": "N12",
+  "item": "2 (g)",
+  "description": "G8: combinations and components may be null"
+ },
+ {
+  "id": "N13",
+  "item": "2 (g)",
+  "description": "G8: reference_configurations check dropped"
+ },
+ {
+  "id": "N14",
+  "item": "2 (g)",
+  "description": "G8: pressure_contract false admitted"
+ },
+ {
+  "id": "N15",
+  "item": "3 C2",
+  "description": "the whole C2 table dropped"
+ },
+ {
+  "id": "N16",
+  "item": "3 C2",
+  "description": "source_error: phase dropped"
+ },
+ {
+  "id": "N17",
+  "item": "3 C2",
+  "description": "source_error: code dropped"
+ },
+ {
+  "id": "N18",
+  "item": "3 C2",
+  "description": "source_error: no Run dropped"
+ },
+ {
+  "id": "N19",
+  "item": "3 C2",
+  "description": "source_error: the decline's error equality dropped"
+ },
+ {
+  "id": "N20",
+  "item": "3 C2",
+  "description": "unavailable_precondition: phase dropped"
+ },
+ {
+  "id": "N21",
+  "item": "3 C2",
+  "description": "unavailable_precondition: no Run dropped"
+ },
+ {
+  "id": "N22",
+  "item": "3 C2",
+  "description": "unavailable_precondition: keying replaced by TS's present set (any of the four codes)"
+ },
+ {
+  "id": "N23",
+  "item": "3 C2",
+  "description": "unavailable_precondition: source_family's keyed code refused"
+ },
+ {
+  "id": "N24",
+  "item": "3 C2",
+  "description": "unavailable_precondition: an unknown precondition admitted"
+ },
+ {
+  "id": "N25",
+  "item": "3 C2",
+  "description": "receipt_failure: phase dropped"
+ },
+ {
+  "id": "N26",
+  "item": "3 C2",
+  "description": "receipt_failure: code set dropped"
+ },
+ {
+  "id": "N27",
+  "item": "3 C2",
+  "description": "receipt_failure: invocation_not_representable removed from the set"
+ },
+ {
+  "id": "N28",
+  "item": "3 C2",
+  "description": "facade_failure: phase dropped"
+ },
+ {
+  "id": "N29",
+  "item": "3 C2",
+  "description": "facade_failure: code dropped"
+ },
+ {
+  "id": "N30",
+  "item": "3 C2",
+  "description": "facade_failure: selected Run dropped"
+ },
+ {
+  "id": "N31",
+  "item": "3 C2",
+  "description": "facade_failure: owner_ref dropped"
+ },
+ {
+  "id": "N32",
+  "item": "3 C2",
+  "description": "kernel: phase dropped"
+ },
+ {
+  "id": "N33",
+  "item": "3 C2",
+  "description": "the table also applied to prepared_product_failure causes"
+ },
+ {
+  "id": "N34",
+  "item": "3 C2",
+  "description": "kernel: a Run present dropped"
+ },
+ {
+  "id": "N35",
+  "item": "3 C2",
+  "description": "kernel: code dropped"
+ },
+ {
+  "id": "N36",
+  "item": "3 C2",
+  "description": "kernel: cause equal to the terminal's reason dropped"
+ },
+ {
+  "id": "N40",
+  "item": "4 T",
+  "description": "the metadata check not run"
+ },
+ {
+  "id": "N41",
+  "item": "4 T",
+  "description": "the metadata check reported at G2 instead of G7"
+ },
+ {
+  "id": "N42",
+  "item": "4 T",
+  "description": "metadata: the namespace demand dropped"
+ },
+ {
+  "id": "N43",
+  "item": "4 T",
+  "description": "metadata: the demand 'formulation profile or limitations' dropped"
+ },
+ {
+  "id": "N44",
+  "item": "4 T",
+  "description": "metadata: the demand 'transport evidence shape (both demands)' dropped"
+ },
+ {
+  "id": "N45",
+  "item": "4 T",
+  "description": "metadata: the demand 'preview case shape' dropped"
+ },
+ {
+  "id": "N46",
+  "item": "4 T",
+  "description": "metadata: the demand 'preview case identity' dropped"
+ },
+ {
+  "id": "N47",
+  "item": "4 T",
+  "description": "metadata: the demand 'maximum coverage values' dropped"
+ },
+ {
+  "id": "N48",
+  "item": "4 T",
+  "description": "metadata: the demand 'maximum coverage overlap' dropped"
+ },
+ {
+  "id": "N49",
+  "item": "4 T",
+  "description": "metadata: the demand 'maximum coverage completeness' dropped"
+ },
+ {
+  "id": "N50",
+  "item": "4 T",
+  "description": "metadata: the demand 'support both attributed and withheld' dropped"
+ },
+ {
+  "id": "N51",
+  "item": "4 T",
+  "description": "metadata: the demand 'withheld support values' dropped"
+ },
+ {
+  "id": "N52",
+  "item": "4 T",
+  "description": "metadata: the demand 'extrema identity or basis' dropped"
+ },
+ {
+  "id": "N53",
+  "item": "4 T",
+  "description": "metadata: the demand 'extrema fractions' dropped"
+ },
+ {
+  "id": "N54",
+  "item": "4 T",
+  "description": "metadata: the demand 'extrema integers' dropped"
+ },
+ {
+  "id": "N55",
+  "item": "4 T",
+  "description": "metadata: the demand 'extrema bounds' dropped"
+ },
+ {
+  "id": "N56",
+  "item": "4 T",
+  "description": "metadata: the demand 'extrema member partition' dropped"
+ },
+ {
+  "id": "N57",
+  "item": "4 T",
+  "description": "metadata: the demand 'intensified measure identity' dropped"
+ },
+ {
+  "id": "N58",
+  "item": "4 T",
+  "description": "metadata: the demand 'intensified measure inputs' dropped"
+ },
+ {
+  "id": "N59",
+  "item": "4 T",
+  "description": "metadata: the demand 'attribution sets differ between cases' dropped"
+ },
+ {
+  "id": "N60",
+  "item": "4 T",
+  "description": "metadata: the demand 'duplicate evidence result binding' dropped"
+ },
+ {
+  "id": "N61",
+  "item": "4 T",
+  "description": "metadata: the demand 'combination gate reason' dropped"
+ },
+ {
+  "id": "N62",
+  "item": "4 T",
+  "description": "metadata: the demand 'combination gate identity' dropped"
+ },
+ {
+  "id": "N63",
+  "item": "4 T",
+  "description": "metadata: the demand 'extrema shape' dropped"
+ },
+ {
+  "id": "N64",
+  "item": "4 T",
+  "description": "metadata: the demand 'intensified measure shape' dropped"
+ },
+ {
+  "id": "N65",
+  "item": "4 T",
+  "description": "metadata: the demand 'combination gate shape' dropped"
+ }
+]

@@ -1,0 +1,35 @@
+== 0d5bb812: files at H under T3 that state it (first 4)
+RESUME_2026-09-30/I97/b2_c_01/CONTRACT.md
+RESUME_2026-09-30/I97/b2_c_01/_run_records/b2c_statics.out.json
+RESUME_2026-09-30/I97/b2_c_01/_run_records/RUN.md
+RESUME_2026-09-30/I96/b3_d_01/REVISION_01.md
+== 9adf5178: files at H under T3 that state it (first 4)
+RESUME_2026-09-30/I97/b2_c_01/CONTRACT.md
+RESUME_2026-09-30/I97/b2_c_01/_run_records/r1/b2c_statics_r1.out.json
+RESUME_2026-09-30/I97/b2_c_01/REVISION_01.md
+RESUME_2026-09-30/I97/b2_c_01/statics/semantic_contract_v0_3_preview_physics_retained_1.json
+== a7ed7ca0: files at H under T3 that state it (first 4)
+RESUME_2026-09-30/REVIEW_RV113/rvr_sr_ts_01/evidence/mutants/mutant_schema_TS.diff
+RESUME_2026-09-30/REVIEW_RV113/rvr_sr_ts_01/evidence/harness/rv113Census.test.ts
+RESUME_2026-09-30/REVIEW_RV113/rvr_sr_py_01/evidence/harness/rv113_py_harness_lib.py
+RESUME_2026-09-30/REVIEW_RV113/rvr_sr_py_01/evidence/harness/rv113_py_harness.py
+== c920a96d: files at H under T3 that state it (first 4)
+RESUME_2026-09-30/I99/b3_w_probe_01/_run_records/probe_run3.log
+RESUME_2026-09-30/I99/b3_w_probe_01/PROBE.md
+RESUME_2026-09-30/I99/b3_w_probe_01/_run_records/summary.md
+RESUME_2026-09-30/I99/b3_w_probe_01/_run_records/probe_run1.log
+== 2f5ff465: files at H under T3 that state it (first 4)
+RESUME_2026-09-30/I99/b3_w_probe_01/_run_records/probe_run2.log
+RESUME_2026-09-30/I99/b3_w_probe_01/_run_records/summary.md
+RESUME_2026-09-30/I99/b3_w_probe_01/PROBE.md
+RESUME_2026-09-30/I99/b3_w_probe_01/_run_records/probe_run1.log
+== 0c43cf42: files at H under T3 that state it (first 4)
+RESUME_2026-09-30/I97/b2_c_01/REVISION_02.md
+RESUME_2026-09-30/I97/b2_c_01/REVISION_01.md
+RESUME_2026-09-30/I97/b2_c_01/statics/r1/semantic_contract_v0_3_preview_physics_retained_1.json
+RESUME_2026-09-30/I97/b2_c_01/_run_records/r1/b2c_statics_r1.out.json
+== d3fde142: files at H under T3 that state it (first 4)
+RESUME_2026-09-30/I97/b2_c_01/REVISION_02.md
+RESUME_2026-09-30/I97/b2_c_01/statics/r2/semantic_contract_v0_3_preview_physics_retained_1.json
+RESUME_2026-09-30/I97/b2_c_01/_run_records/r2/b2c_statics_r2.out.json
+RESUME_2026-09-30/REVIEW_RV115/b2_kd_01/ADDENDUM_04.md

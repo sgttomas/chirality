@@ -1,0 +1,15 @@
+== H..H2 changed files: sizes, types
+total bytes 2746293 files 56
+1356352	T3/ROOT_RULINGS_V1.md
+230862	T3/RESUME_2026-09-30/REVIEW_RV109/rvp_round2_01/evidence/addendum_01/probe/out_head.jsonl
+230792	T3/RESUME_2026-09-30/REVIEW_RV109/rvp_round2_01/evidence/addendum_01/probe/out_i3.jsonl
+   4 application/json
+  42 text/plain
+   1 text/x-Algol68
+   6 text/x-script.python
+   3 text/x-shellscript
+build-output or build paths: 0
+binary entries (numstat -): 0
+== NUM working tree: ignored entries under RV109's round-2 folder: 0
+== files on disk vs N2 tree in RV109 round 2: disk 178 N2 178
+== symlinks on disk in RV109 round 2: 0

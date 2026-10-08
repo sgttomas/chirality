@@ -1,0 +1,47 @@
+M=f4358eb0be945bc98677d05b526bb4a1b0b1d5cf (main, #1113's merge)
+H=57f078b4c8a87756d3d0985f58a67e15bbeda476 (PR head)
+N=96cf68289fbac2fe3f4919d1b2e55bcfa0a2b6cd (NUM, the PR's source)
+NUM tip at dispatch=7e6a5ba7ea53dc459ce03e82ab5f200af601c755; NUM tip during review=180314cf18b7bd17a5caa2aee55b1f60bcb5a1c7 (after N; not in the PR)
+== H's parents
+f4358eb0be945bc98677d05b526bb4a1b0b1d5cf
+== rev-list --count M..H
+1
+== is H an ancestor of N?
+no
+== is M an ancestor of N?
+no: NUM's merge base with main is 0b6c5d7362ff21104e078d8168f62e3f38928cf9 (#1112's merge); main then moved by #1113 only
+== commits in M..N (NUM history not on main): 892; commits in M..H: 57f078b4c8a87756d3d0985f58a67e15bbeda476 
+== commits of M..N in H's ancestry: 0
+== trees
+P/execution at H: 4619994e3d828937a451a3b108ec346836627ac6
+P/execution at N: 4619994e3d828937a451a3b108ec346836627ac6
+P/validation/portability_policy.json at H: 5bff4b249828eb80d7cc0f9782fd20a2a597a7fb; at N: 5bff4b249828eb80d7cc0f9782fd20a2a597a7fb; at M: 9fb269d2a0694db99eadcd9f27a0af143ded914a
+== N..H differences, by top folder (H = M + N's piping execution/ and policy file; the rest is #1113's App v4 move on main)
+ 209 projects/chirality-app-v4
+== main's move since NUM's merge base: f4358eb0be Merge pull request #1113 from sgttomas/claude/app-v4-group-a-resume
+   its paths under projects/chirality-piping: 0
+== M..H by status and folder
+1055 A projects/chirality-piping/execution
+   2 M projects/chirality-piping/execution
+   1 M projects/chirality-piping/validation
+== modified paths
+M	T3/ROOT_RULINGS_V1.md
+M	projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md
+M	projects/chirality-piping/validation/portability_policy.json
+== modes of the changed paths at H (new mode)
+1042 100644
+  16 100755
+mode 120000 entries in M..H: 0; links under P/execution at H: 0
+== H's message (author and committer: the owner's configured Git identity)
+piping(T3): records after #1111 (NUM 96cf68289f)
+
+NUM's projects/chirality-piping/execution/ at 96cf68289f: the T3 records
+after #1111 (NUM 0b8299e496), with two hash-bound entries appended to
+piping's portability policy (T3 erratum E-17). Nothing else outside
+execution/.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+== ls-remote
+57f078b4c8a87756d3d0985f58a67e15bbeda476	refs/heads/codex/piping-t3-records-20261008
+f4358eb0be945bc98677d05b526bb4a1b0b1d5cf	refs/heads/main

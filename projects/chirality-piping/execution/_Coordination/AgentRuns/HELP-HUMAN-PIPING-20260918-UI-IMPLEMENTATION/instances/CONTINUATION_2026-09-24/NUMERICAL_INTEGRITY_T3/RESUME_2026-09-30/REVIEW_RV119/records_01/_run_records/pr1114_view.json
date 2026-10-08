@@ -1,0 +1,23 @@
+{
+ "additions": 490110,
+ "author": {
+  "login": "sgttomas",
+  "name": "Ryan C Tufts"
+ },
+ "baseRefName": "main",
+ "baseRefOid": "f4358eb0be945bc98677d05b526bb4a1b0b1d5cf",
+ "changedFiles": 1058,
+ "createdAt": "2026-10-08T02:45:43Z",
+ "deletions": 29,
+ "headRefName": "codex/piping-t3-records-20261008",
+ "headRefOid": "57f078b4c8a87756d3d0985f58a67e15bbeda476",
+ "isDraft": false,
+ "mergeStateStatus": "UNSTABLE",
+ "mergeable": "MERGEABLE",
+ "note": "read at dispatch time; mergeStateStatus later CLEAN (ci_runs_H.txt)",
+ "number": 1114,
+ "reviewDecision": "",
+ "state": "OPEN",
+ "title": "piping(T3): records after #1111 (records only)",
+ "updatedAt": "2026-10-08T02:46:06Z"
+}

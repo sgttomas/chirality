@@ -1,0 +1,11 @@
+rows in REDACTION_E16's table: 42 ; distinct paths: 42
+old sha256 match at c8e54918cd: 42/42; new sha256 match at H: 42/42
+H's files parse as XML: 42; carry no hostname attribute (and no 'hostname' byte string): 42; equal the original minus exactly one attribute: 42
+pre-redaction blob ids in H's tree: 0 ; in M's tree: 0
+.gz files under T3 in H's tree: 240; hashing to an old sha256: 0
+changed files (of 1111) hashing to an old sha256: 0
+rvr_sr_py_01/SHA256SUMS at H: 245 entries, 245 ok, 0 bad, 0 missing; the 42 new sha256 all listed: True
+REVIEW.md sha256 at H: d8611e59f67f092a77145e8634566fdba55c9eea2f868951fcf6783e1916c3dc
+REVIEW.md sha256 at pre-redaction rev: d8611e59f67f092a77145e8634566fdba55c9eea2f868951fcf6783e1916c3dc
+SHA256SUMS lines changed between pre-redaction rev and H: 42 (line counts 245 -> 245)
+removed attribute values equal to the network name: 42; different: 0

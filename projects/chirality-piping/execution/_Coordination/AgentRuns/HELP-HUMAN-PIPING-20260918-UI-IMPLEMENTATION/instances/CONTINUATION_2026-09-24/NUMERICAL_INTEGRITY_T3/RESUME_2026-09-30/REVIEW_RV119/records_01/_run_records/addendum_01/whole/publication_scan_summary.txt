@@ -1,0 +1,42 @@
+M=f4358eb0be945bc98677d05b526bb4a1b0b1d5cf
+H=8568fb2053f6750e4d09aa00d1791f9f3757f7e1
+changed paths: 1111
+lines scanned: 539514
+host names read at run time: network name 23 chars, local host name 17 chars, computer name 18 chars
+ghp_	3 hits	3 files
+gho_	3 hits	3 files
+ghs_/ghu_/ghr_	0 hits	0 files
+github_pat_	6 hits	6 files
+sk- (any)	14 hits	7 files
+sk- token-shaped	0 hits	0 files
+AKIA	8 hits	7 files
+PRIVATE KEY	3 hits	3 files
+password	9 hits	7 files
+secret	5 hits	4 files
+token=	7 hits	6 files
+Authorization:	5 hits	5 files
+Bearer	0 hits	0 files
+slack token	0 hits	0 files
+cred vars	1 hits	1 files
+api_key	4 hits	3 files
+email	23 hits	8 files
+owner name	14 hits	7 files
+Applications	2 hits	2 files
+apps	11 hits	7 files
+session ids	1 hits	1 files
+uuid	0 hits	0 files
+toolcall ids	0 hits	0 files
+transcripts	1 hits	1 files
+system paths	1 hits	1 files
+ps headers	2 hits	2 files
+ps/pgrep/lsof	18 hits	10 files
+home path	1 hits	1 files
+tilde home	0 hits	0 files
+strict	1 hits	1 files
+host: network name	0 hits	0 files
+host: local host name	0 hits	0 files
+host: computer name	0 hits	0 files
+host: model form	8 hits	6 files
+host: earlier form	0 hits	0 files
+dot-local	24 hits	15 files
+junit hostname attr	13 hits	4 files

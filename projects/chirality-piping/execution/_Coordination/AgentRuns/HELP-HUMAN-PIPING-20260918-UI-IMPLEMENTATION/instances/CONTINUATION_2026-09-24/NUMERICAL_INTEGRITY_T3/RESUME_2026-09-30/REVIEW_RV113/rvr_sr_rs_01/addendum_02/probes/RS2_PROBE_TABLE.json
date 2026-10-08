@@ -1,0 +1,8324 @@
+{
+ "r2_rows": [
+  {
+   "id": "r2:f_mb_index_1",
+   "item": "F",
+   "note": "the one basis labelled 1",
+   "bound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:f_mb_index_swapped",
+   "item": "F",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:f_src_index_1",
+   "item": "F",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:f_src_index_swapped",
+   "item": "F",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:f_mb_case_indices_duplicate",
+   "item": "F",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:f_mb_case_indices_out_of_range",
+   "item": "F",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:f_src_owner_case_id_other",
+   "item": "F",
+   "note": "the id of another case",
+   "bound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:f_src_owner_case_id_unknown",
+   "item": "F",
+   "note": "an id of no case",
+   "bound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:f_src_owner_case_index_out_of_range",
+   "item": "F",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "got": {
+     "gate": "G3",
+     "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:f_src_owner_other_case_consistent",
+   "item": "F",
+   "note": "owner consistent but not the source's case: G3 passes; G5's Call binding refuses",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:f_ordinary_basis_ref_dangling",
+   "item": "F",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:f_mb_case_indices_empty",
+   "item": "F",
+   "note": "G3 passes (unique, in range); the ordinary attempt's basis no longer lists case 0",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:f_b_basis_ref_7",
+   "item": "F",
+   "note": "repair 01's (b) input: now G5 ATTEMPT in all readers by the ruling",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:f_c_basis_omits_case_1",
+   "item": "F",
+   "note": "repair 01's (c) input",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:f_c_basis_out_of_order",
+   "item": "F",
+   "note": "internal facts hold; G8's exact case list by selector refuses",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:f_control_07j",
+   "item": "F",
+   "note": "",
+   "bound": {
+    "want": {
+     "admitted": true
+    },
+    "got": {
+     "admitted": true
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_combinations_absent",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "admitted": true
+    },
+    "got": {
+     "admitted": true
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_combinations_empty_array",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "admitted": true
+    },
+    "got": {
+     "admitted": true
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_combinations_null",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_combinations_empty_object",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_combinations_object",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_combinations_string",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_combinations_zero",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_combinations_false",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_combinations_nonempty",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_components_absent",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "admitted": true
+    },
+    "got": {
+     "admitted": true
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_components_null",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_components_string",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_components_empty_object",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_components_nonempty",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_reference_configurations_null",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_reference_configurations_empty",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_reference_configurations_object",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_pressure_contract_null",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "admitted": true
+    },
+    "got": {
+     "admitted": true
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_pressure_contract_empty_object",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_pressure_contract_false",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_pressure_contract_zero",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_pressure_contract_empty_string",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_pressure_contract_empty_array",
+   "item": "G",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_order_before_preparation",
+   "item": "G",
+   "note": "INVOCATION before the P1 PREPARATION defect",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:g_order_control_preparation",
+   "item": "G",
+   "note": "the PREPARATION defect alone",
+   "bound": {
+    "want": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+    },
+    "got": {
+     "gate": "G8",
+     "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_receipt_ok_receipt_encoding",
+   "item": "C-a",
+   "note": "satisfied; D19 admits a Ready attempt under receipt_failure",
+   "bound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_receipt_ok_publication_hash_range",
+   "item": "C-a",
+   "note": "satisfied; D19 admits a Ready attempt under receipt_failure",
+   "bound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_receipt_ok_invocation_not_representable",
+   "item": "C-a",
+   "note": "satisfied; D19 admits a Ready attempt under receipt_failure",
+   "bound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_receipt_phase_routing",
+   "item": "C-a",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_receipt_phase_preparation",
+   "item": "C-a",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_receipt_phase_kernel",
+   "item": "C-a",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_receipt_phase_facade",
+   "item": "C-a",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_receipt_code_source_unavailable",
+   "item": "C-a",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_receipt_code_facade_certificate",
+   "item": "C-a",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_receipt_code_kernel_selected",
+   "item": "C-a",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_receipt_code_caller_not_qualified",
+   "item": "C-a",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_facade_ok",
+   "item": "C-a",
+   "note": "satisfied; D19 refuses a Ready attempt under facade_failure",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_facade_phase_routing",
+   "item": "C-a",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_facade_phase_preparation",
+   "item": "C-a",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_facade_phase_kernel",
+   "item": "C-a",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_facade_phase_receipt",
+   "item": "C-a",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_facade_code_receipt_encoding",
+   "item": "C-a",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_facade_owner_other_case",
+   "item": "C-a",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_facade_owner_combination",
+   "item": "C-a",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_precondition_beside_run",
+   "item": "C-a",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:ca_kernel_beside_selected_run",
+   "item": "C-a",
+   "note": "a kernel reason needs the cause to equal the terminal's reason; a selected terminal has none",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_caller_not_qualified_routing",
+   "item": "C-b",
+   "note": "keyed and in phase",
+   "bound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_caller_not_qualified_preparation",
+   "item": "C-b",
+   "note": "keyed and in phase",
+   "bound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_caller_not_qualified_kernel",
+   "item": "C-b",
+   "note": "phase",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_caller_not_qualified_facade",
+   "item": "C-b",
+   "note": "phase",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_caller_not_qualified_receipt",
+   "item": "C-b",
+   "note": "phase",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_resource_admission_not_available_routing",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_resource_admission_not_available_preparation",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_resource_admission_not_available_kernel",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_resource_admission_not_available_facade",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_resource_admission_not_available_receipt",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_source_unavailable_routing",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_source_unavailable_preparation",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_source_unavailable_kernel",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_source_unavailable_facade",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_source_unavailable_receipt",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_upstream_no_wrap_not_established_routing",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_upstream_no_wrap_not_established_preparation",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_upstream_no_wrap_not_established_kernel",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_upstream_no_wrap_not_established_facade",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_caller_upstream_no_wrap_not_established_receipt",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_caller_not_qualified_routing",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_caller_not_qualified_preparation",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_caller_not_qualified_kernel",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_caller_not_qualified_facade",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_caller_not_qualified_receipt",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_resource_admission_not_available_routing",
+   "item": "C-b",
+   "note": "keyed and in phase",
+   "bound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_resource_admission_not_available_preparation",
+   "item": "C-b",
+   "note": "keyed and in phase",
+   "bound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_resource_admission_not_available_kernel",
+   "item": "C-b",
+   "note": "phase",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_resource_admission_not_available_facade",
+   "item": "C-b",
+   "note": "phase",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_resource_admission_not_available_receipt",
+   "item": "C-b",
+   "note": "phase",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_source_unavailable_routing",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_source_unavailable_preparation",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_source_unavailable_kernel",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_source_unavailable_facade",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_source_unavailable_receipt",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_upstream_no_wrap_not_established_routing",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_upstream_no_wrap_not_established_preparation",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_upstream_no_wrap_not_established_kernel",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_upstream_no_wrap_not_established_facade",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_resource_admission_upstream_no_wrap_not_established_receipt",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_caller_not_qualified_routing",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_caller_not_qualified_preparation",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_caller_not_qualified_kernel",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_caller_not_qualified_facade",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_caller_not_qualified_receipt",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_resource_admission_not_available_routing",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_resource_admission_not_available_preparation",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_resource_admission_not_available_kernel",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_resource_admission_not_available_facade",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_resource_admission_not_available_receipt",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_source_unavailable_routing",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_source_unavailable_preparation",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_source_unavailable_kernel",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_source_unavailable_facade",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_source_unavailable_receipt",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_upstream_no_wrap_not_established_routing",
+   "item": "C-b",
+   "note": "keyed and in phase",
+   "bound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_upstream_no_wrap_not_established_preparation",
+   "item": "C-b",
+   "note": "keyed and in phase",
+   "bound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_upstream_no_wrap_not_established_kernel",
+   "item": "C-b",
+   "note": "phase",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_upstream_no_wrap_not_established_facade",
+   "item": "C-b",
+   "note": "phase",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_upstream_no_wrap_upstream_no_wrap_not_established_receipt",
+   "item": "C-b",
+   "note": "phase",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_caller_not_qualified_routing",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_caller_not_qualified_preparation",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_caller_not_qualified_kernel",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_caller_not_qualified_facade",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_caller_not_qualified_receipt",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_resource_admission_not_available_routing",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_resource_admission_not_available_preparation",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_resource_admission_not_available_kernel",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_resource_admission_not_available_facade",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_resource_admission_not_available_receipt",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_source_unavailable_routing",
+   "item": "C-b",
+   "note": "keyed and in phase",
+   "bound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_source_unavailable_preparation",
+   "item": "C-b",
+   "note": "keyed and in phase",
+   "bound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_source_unavailable_kernel",
+   "item": "C-b",
+   "note": "phase",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_source_unavailable_facade",
+   "item": "C-b",
+   "note": "phase",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_source_unavailable_receipt",
+   "item": "C-b",
+   "note": "phase",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_upstream_no_wrap_not_established_routing",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_upstream_no_wrap_not_established_preparation",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_upstream_no_wrap_not_established_kernel",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_upstream_no_wrap_not_established_facade",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_capture_upstream_no_wrap_not_established_receipt",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_caller_not_qualified_routing",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_caller_not_qualified_preparation",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_caller_not_qualified_kernel",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_caller_not_qualified_facade",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_caller_not_qualified_receipt",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_resource_admission_not_available_routing",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_resource_admission_not_available_preparation",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_resource_admission_not_available_kernel",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_resource_admission_not_available_facade",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_resource_admission_not_available_receipt",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_source_unavailable_routing",
+   "item": "C-b",
+   "note": "keyed and in phase",
+   "bound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_source_unavailable_preparation",
+   "item": "C-b",
+   "note": "keyed and in phase",
+   "bound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_source_unavailable_kernel",
+   "item": "C-b",
+   "note": "phase",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_source_unavailable_facade",
+   "item": "C-b",
+   "note": "phase",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_source_unavailable_receipt",
+   "item": "C-b",
+   "note": "phase",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_upstream_no_wrap_not_established_routing",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_upstream_no_wrap_not_established_preparation",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_upstream_no_wrap_not_established_kernel",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_upstream_no_wrap_not_established_facade",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_pre_source_family_upstream_no_wrap_not_established_receipt",
+   "item": "C-b",
+   "note": "cross-code",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_source_error_ok",
+   "item": "C-b",
+   "note": "satisfied: not G5 ATTEMPT (later checks may refuse the hand-made decline)",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_source_error_no_decline",
+   "item": "C-b",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_source_error_decline_error_differs",
+   "item": "C-b",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_source_error_phase_routing",
+   "item": "C-b",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_source_error_code_caller",
+   "item": "C-b",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_receipt_ok_receipt_encoding",
+   "item": "C-b",
+   "note": "no Run needed for receipt_failure",
+   "bound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_receipt_ok_publication_hash_range",
+   "item": "C-b",
+   "note": "no Run needed for receipt_failure",
+   "bound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_receipt_ok_invocation_not_representable",
+   "item": "C-b",
+   "note": "no Run needed for receipt_failure",
+   "bound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_receipt_phase_preparation",
+   "item": "C-b",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_facade_no_run",
+   "item": "C-b",
+   "note": "facade needs a selected Run",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_kernel_no_run",
+   "item": "C-b",
+   "note": "a kernel reason needs a Run",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cb_control_ppf_reason_missing_attempt",
+   "item": "C-b",
+   "note": "ppf is outside C2's table (D4c refuses the missing attempt elsewhere)",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cc_pre_caller_keyed",
+   "item": "C-c",
+   "note": "C2 satisfied; D19 (product class) then refuses the unavailable attempt",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cc_pre_resource_admission_keyed",
+   "item": "C-c",
+   "note": "C2 satisfied; D19 (product class) then refuses the unavailable attempt",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cc_pre_upstream_no_wrap_keyed",
+   "item": "C-c",
+   "note": "C2 satisfied; D19 (product class) then refuses the unavailable attempt",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cc_pre_capture_keyed",
+   "item": "C-c",
+   "note": "C2 satisfied; D19 (product class) then refuses the unavailable attempt",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cc_pre_source_family_keyed",
+   "item": "C-c",
+   "note": "C2 satisfied; D19 (product class) then refuses the unavailable attempt",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cc_pre_capture_cross",
+   "item": "C-c",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cd_kernel_ok",
+   "item": "C-d",
+   "note": "C2 satisfied; D19 then refuses the unavailable attempt (cause not ppf)",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cd_kernel_code_unresolved",
+   "item": "C-d",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cd_kernel_phase_facade",
+   "item": "C-d",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cd_kernel_cause_other",
+   "item": "C-d",
+   "note": "",
+   "bound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:cd_ppf_control",
+   "item": "C-d",
+   "note": "ppf with the kernel reason: outside C2's table",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G5",
+     "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_control",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": true
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_evidence_extra_member",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_SHAPE"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_SHAPE"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_preview_cases_not_list",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_ARRAY_INVALID"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_ARRAY_INVALID"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_case_extra_member",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_CASE_SHAPE"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_CASE_SHAPE"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_case_id_empty",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_STRING_INVALID"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_STRING_INVALID"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_case_id_duplicate",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_DUPLICATE_CASE"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_DUPLICATE_CASE"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_coverage_complete_false",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_STRESS_COVERAGE"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_STRESS_COVERAGE"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_coverage_overlap",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_STRESS_COVERAGE_PARTITION"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_STRESS_COVERAGE_PARTITION"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_coverage_duplicate_ids",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_DUPLICATE_ID"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_DUPLICATE_ID"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_attributed_and_withheld",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_SUPPORT_LISTED_TWICE"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_SUPPORT_LISTED_TWICE"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_withheld_reason_unknown",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_SUPPORT_WITHHELD_REASON"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_SUPPORT_WITHHELD_REASON"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_withheld_ok",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_SUPPORT_WITHHELD_RECORD"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_SUPPORT_WITHHELD_RECORD"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_attribution_sets_differ",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_SUPPORT_ATTRIBUTION_CASE_MISMATCH"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_SUPPORT_ATTRIBUTION_CASE_MISMATCH"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_withheld_duplicate_multiset",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_SUPPORT_LISTED_TWICE"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_SUPPORT_LISTED_TWICE"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_extrema_extra_member",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_SHAPE"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_SHAPE"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_extrema_approximation_other",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BASIS"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BASIS"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_extrema_station_fraction_1_5",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_STATION"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_STATION"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_extrema_local_fraction_negative",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_STATION"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_STATION"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_extrema_span_index_negative",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_SUBDIVISIONS"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_SUBDIVISIONS"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_extrema_span_index_fraction",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_SUBDIVISIONS"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_SUBDIVISIONS"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_extrema_subdivisions_over",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_SUBDIVISIONS"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_SUBDIVISIONS"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_extrema_subdivisions_max",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": true
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_extrema_bounds_inverted",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_extrema_lower_negative",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_extrema_upper_string",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_NUMBER_INVALID"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_NUMBER_INVALID"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_extrema_global_upper_string",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_NUMBER_INVALID"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_NUMBER_INVALID"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_extrema_certified_gap_null",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_NUMBER_INVALID"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_NUMBER_INVALID"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_extrema_pipe_in_unavailable",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_STRESS_COVERAGE_PARTITION"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_STRESS_COVERAGE_PARTITION"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_extrema_pipe_duplicate",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_STRESS_COVERAGE_PARTITION"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_STRESS_COVERAGE_PARTITION"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_measure_ok",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_INTENSIFIED_RESULT_MISSING"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_INTENSIFIED_RESULT_MISSING"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_measure_sif_zero",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_INTENSIFIED_RESULT_MISSING"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_INTENSIFIED_RESULT_MISSING"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_measure_location_mid",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_INTENSIFIED_RESULT_MISSING"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_INTENSIFIED_RESULT_MISSING"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_measure_moment_string",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_INTENSIFIED_RESULT_MISSING"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_INTENSIFIED_RESULT_MISSING"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_measure_duplicate_result",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_INTENSIFIED_RESULT_MISSING"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_INTENSIFIED_RESULT_MISSING"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_gate_ok",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": true
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_gate_withheld_reason_null",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_GATE_REASON"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_GATE_REASON"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_gate_released_with_reason",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_GATE_REASON"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_GATE_REASON"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_gate_released_ok",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": true
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "admitted": false
+    },
+    "got": {
+     "admitted": false
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_gate_duplicate",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_GATE_DUPLICATE"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_GATE_DUPLICATE"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  },
+  {
+   "id": "r2:t_gate_withheld_string",
+   "item": "T",
+   "note": "",
+   "bound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_GATE_SHAPE"
+    },
+    "ok": true
+   },
+   "unbound": {
+    "want": {
+     "observe": true
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_GATE_SHAPE"
+    },
+    "ok": true
+   },
+   "transport": {
+    "want": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "got": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+    },
+    "ok": true
+   }
+  }
+ ],
+ "r2_mismatches": 0,
+ "earlier_sets_changed": [
+  {
+   "id": "x_reason_cause_receipt_failure",
+   "verdict": "bound",
+   "before": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+   },
+   "after": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   }
+  },
+  {
+   "id": "x_reason_cause_receipt_failure",
+   "verdict": "unbound",
+   "before": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+   },
+   "after": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   }
+  },
+  {
+   "id": "c2_receipt_phase_kernel",
+   "verdict": "bound",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   }
+  },
+  {
+   "id": "c2_receipt_phase_kernel",
+   "verdict": "unbound",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   }
+  },
+  {
+   "id": "c2_receipt_code_facade",
+   "verdict": "bound",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   }
+  },
+  {
+   "id": "c2_receipt_code_facade",
+   "verdict": "unbound",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   }
+  },
+  {
+   "id": "c2_receipt_phase_preparation",
+   "verdict": "bound",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   }
+  },
+  {
+   "id": "c2_receipt_phase_preparation",
+   "verdict": "unbound",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   }
+  },
+  {
+   "id": "c2_facade_phase_kernel",
+   "verdict": "bound",
+   "before": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+   },
+   "after": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   }
+  },
+  {
+   "id": "c2_facade_phase_kernel",
+   "verdict": "unbound",
+   "before": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_PRODUCT_ATTEMPT_MISMATCH"
+   },
+   "after": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   }
+  },
+  {
+   "id": "fg:f_mb_index_1",
+   "verdict": "bound",
+   "before": {
+    "gate": "G8",
+    "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "after": {
+    "gate": "G3",
+    "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+   }
+  },
+  {
+   "id": "fg:f_mb_index_1",
+   "verdict": "unbound",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G3",
+    "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+   }
+  },
+  {
+   "id": "fg:f_mb_index_swapped",
+   "verdict": "bound",
+   "before": {
+    "gate": "G8",
+    "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "after": {
+    "gate": "G3",
+    "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+   }
+  },
+  {
+   "id": "fg:f_mb_index_swapped",
+   "verdict": "unbound",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G3",
+    "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+   }
+  },
+  {
+   "id": "fg:f_src_index_1",
+   "verdict": "bound",
+   "before": {
+    "gate": "G8",
+    "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "after": {
+    "gate": "G3",
+    "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+   }
+  },
+  {
+   "id": "fg:f_src_index_1",
+   "verdict": "unbound",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G3",
+    "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+   }
+  },
+  {
+   "id": "fg:f_src_index_swapped",
+   "verdict": "bound",
+   "before": {
+    "gate": "G8",
+    "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "after": {
+    "gate": "G3",
+    "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+   }
+  },
+  {
+   "id": "fg:f_src_index_swapped",
+   "verdict": "unbound",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G3",
+    "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+   }
+  },
+  {
+   "id": "fg:f_mb_case_indices_duplicate",
+   "verdict": "bound",
+   "before": {
+    "gate": "G8",
+    "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "after": {
+    "gate": "G3",
+    "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+   }
+  },
+  {
+   "id": "fg:f_mb_case_indices_duplicate",
+   "verdict": "unbound",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G3",
+    "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+   }
+  },
+  {
+   "id": "fg:f_mb_case_indices_out_of_range",
+   "verdict": "bound",
+   "before": {
+    "gate": "G8",
+    "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "after": {
+    "gate": "G3",
+    "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+   }
+  },
+  {
+   "id": "fg:f_mb_case_indices_out_of_range",
+   "verdict": "unbound",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G3",
+    "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+   }
+  },
+  {
+   "id": "fg:f_src_owner_case_id_other",
+   "verdict": "bound",
+   "before": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   },
+   "after": {
+    "gate": "G3",
+    "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+   }
+  },
+  {
+   "id": "fg:f_src_owner_case_id_other",
+   "verdict": "unbound",
+   "before": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   },
+   "after": {
+    "gate": "G3",
+    "code": "RETAINED_PRECISION_COVERAGE_MISMATCH"
+   }
+  },
+  {
+   "id": "fg:g_combinations_null",
+   "verdict": "bound",
+   "before": {
+    "admitted": true
+   },
+   "after": {
+    "gate": "G8",
+    "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+   }
+  },
+  {
+   "id": "fg:g_combinations_object",
+   "verdict": "bound",
+   "before": {
+    "admitted": true
+   },
+   "after": {
+    "gate": "G8",
+    "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+   }
+  },
+  {
+   "id": "fg:g_components_string",
+   "verdict": "bound",
+   "before": {
+    "admitted": true
+   },
+   "after": {
+    "gate": "G8",
+    "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"
+   }
+  },
+  {
+   "id": "rp:r_b_basis_ref_7",
+   "verdict": "bound",
+   "before": {
+    "gate": "G8",
+    "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "after": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   }
+  },
+  {
+   "id": "rp:r_b_basis_ref_7",
+   "verdict": "unbound",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   }
+  },
+  {
+   "id": "rp:r_c_basis_omits_case_1",
+   "verdict": "bound",
+   "before": {
+    "gate": "G8",
+    "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "after": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   }
+  },
+  {
+   "id": "rp:r_c_basis_omits_case_1",
+   "verdict": "unbound",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   }
+  },
+  {
+   "id": "rp:r_c_missing_sourceless_basis",
+   "verdict": "bound",
+   "before": {
+    "gate": "G8",
+    "code": "RETAINED_PRECISION_PREPARATION_MISMATCH"
+   },
+   "after": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   }
+  },
+  {
+   "id": "rp:r_c_missing_sourceless_basis",
+   "verdict": "unbound",
+   "before": {
+    "admitted": false
+   },
+   "after": {
+    "gate": "G5",
+    "code": "RETAINED_PRECISION_ATTEMPT_MISMATCH"
+   }
+  }
+ ]
+}

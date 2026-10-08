@@ -1,0 +1,980 @@
+[
+ {
+  "id": "h_control",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "admitted": false
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_recovery_present",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "source_block_recovery"
+    ],
+    "op": "set",
+    "value": {}
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_evidence_null",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence"
+    ],
+    "op": "set",
+    "value": null
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_evidence_array",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence"
+    ],
+    "op": "set",
+    "value": []
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_recovery_and_evidence_null",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "source_block_recovery"
+    ],
+    "op": "set",
+    "value": {}
+   },
+   {
+    "path": [
+     "contract_evidence"
+    ],
+    "op": "set",
+    "value": null
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"
+   }
+  },
+  "note": "RS's order: recovery first"
+ },
+ {
+  "id": "h_carrier_present",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "carrier_evidence"
+    ],
+    "op": "set",
+    "value": {}
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "no carrier branch in RS's header; the metadata check refuses it"
+ },
+ {
+  "id": "h_carrier_and_quality_defect",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "carrier_evidence"
+    ],
+    "op": "set",
+    "value": {}
+   },
+   {
+    "path": [
+     "numerical_quality",
+     "status"
+    ],
+    "op": "set",
+    "value": "bogus"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+   }
+  },
+  "note": "the header defect first"
+ },
+ {
+  "id": "h_carrier_and_recovery",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "carrier_evidence"
+    ],
+    "op": "set",
+    "value": {}
+   },
+   {
+    "path": [
+     "source_block_recovery"
+    ],
+    "op": "set",
+    "value": {}
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_quality_extra_member",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "extra"
+    ],
+    "op": "set",
+    "value": 1
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_quality_representation",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "value_representation"
+    ],
+    "op": "set",
+    "value": "decimal"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_quality_quantization",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "publication_quantization"
+    ],
+    "op": "set",
+    "value": "x"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_quality_policy",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "integrity_policy"
+    ],
+    "op": "set",
+    "value": "x"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_quality_status_bogus",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "status"
+    ],
+    "op": "set",
+    "value": "bogus"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_quality_cases_object",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "cases"
+    ],
+    "op": "set",
+    "value": {}
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_case_extra_member",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "cases",
+     0,
+     "extra"
+    ],
+    "op": "set",
+    "value": 1
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_CASE_INVALID"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_case_basis_ref_extra",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "cases",
+     0,
+     "basis_ref",
+     "extra"
+    ],
+    "op": "set",
+    "value": 1
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_CASE_INVALID"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_case_basis_ref_type_empty",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "cases",
+     0,
+     "basis_ref",
+     "ref_type"
+    ],
+    "op": "set",
+    "value": ""
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_CASE_INVALID"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_case_solve_quality_bogus",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "cases",
+     0,
+     "solve_quality"
+    ],
+    "op": "set",
+    "value": "bogus"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_CASE_INVALID"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_case_structural_bogus",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "cases",
+     0,
+     "structural_status"
+    ],
+    "op": "set",
+    "value": "bogus"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_CASE_INVALID"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_case_fidelity_bogus",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "cases",
+     0,
+     "model_matrix_fidelity"
+    ],
+    "op": "set",
+    "value": "bogus"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_CASE_INVALID"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_case_accuracy_bogus",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "cases",
+     0,
+     "accuracy_evidence"
+    ],
+    "op": "set",
+    "value": "bogus"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_CASE_INVALID"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_case_evidence_refs_empty_string",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "cases",
+     0,
+     "evidence_refs"
+    ],
+    "op": "set",
+    "value": [
+     ""
+    ]
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_CASE_INVALID"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_case_evidence_refs_not_list",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "cases",
+     0,
+     "evidence_refs"
+    ],
+    "op": "set",
+    "value": "x"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_CASE_INVALID"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_case_evidence_refs_empty_list",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "cases",
+     0,
+     "evidence_refs"
+    ],
+    "op": "set",
+    "value": []
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "observe": true
+   }
+  },
+  "note": "an empty list passes the header"
+ },
+ {
+  "id": "h_formulation_extra_member",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "formulation_basis",
+     "extra"
+    ],
+    "op": "set",
+    "value": 1
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_FORMULATION_BASIS_UNSUPPORTED"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_formulation_limitations_empty",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "formulation_basis",
+     "limitations"
+    ],
+    "op": "set",
+    "value": []
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_FORMULATION_BASIS_UNSUPPORTED"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_formulation_limitations_empty_string",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "formulation_basis",
+     "limitations"
+    ],
+    "op": "set",
+    "value": [
+     ""
+    ]
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_FORMULATION_BASIS_UNSUPPORTED"
+   }
+  },
+  "note": ""
+ },
+ {
+  "id": "h_formulation_limitations_other",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "formulation_basis",
+     "limitations"
+    ],
+    "op": "set",
+    "value": [
+     "rv113"
+    ]
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "the header admits it; the metadata check wants the table's list"
+ },
+ {
+  "id": "h_quality_and_formulation",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "status"
+    ],
+    "op": "set",
+    "value": "bogus"
+   },
+   {
+    "path": [
+     "formulation_basis",
+     "limitations"
+    ],
+    "op": "set",
+    "value": []
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_QUALITY_INVALID"
+   }
+  },
+  "note": "quality before formulation"
+ },
+ {
+  "id": "h_case_and_formulation",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "numerical_quality",
+     "cases",
+     0,
+     "accuracy_evidence"
+    ],
+    "op": "set",
+    "value": "bogus"
+   },
+   {
+    "path": [
+     "formulation_basis",
+     "limitations"
+    ],
+    "op": "set",
+    "value": []
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G2",
+    "code": "SOURCE_NUMERICAL_CASE_INVALID"
+   }
+  },
+  "note": "cases before formulation"
+ },
+ {
+  "id": "h_schema_version_010",
+  "item": "H",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "schema_version"
+    ],
+    "op": "set",
+    "value": "0.1.0"
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "observe": true
+   }
+  },
+  "note": "G0 refuses a successor that is not 0.2.0 first, by reading"
+ }
+]

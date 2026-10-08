@@ -1,0 +1,12 @@
+RR sha256 H cba01040244f91c4…, H2 137c622b713a2374…; lines H 15581, H2 15660
+main's RR is an exact byte prefix of H2's: True
+RR: replace H lines 15496-15496 -> H2 lines 15496-15496
+   - H:15496: **Screen widened (E-16, recorded with the redaction):** the host-name term includes the machine's network name and any `<model-form>` form, case-insensitive, beside `<earlier-host>`. Every new brief carries it.
+   + H2:15496: **Screen widened (E-16, recorded with the redaction):** the host-name term includes the machine's network name and the laptop-model form, case-insensitive, beside the machine's earlier host-name form (RR "RV117 passes #1111; …", ruling 4). Every new brief carries it.
+RR: insert H lines 15583-15582 -> H2 lines 15583-15661
+brief sha256 H d82dba65f45a01aecf46b5ce8c86bc8f456cd0ad7d77e907b125741850b80c56  H2 d1d213d8d27e539d7aa244e7a2517692415a5e317591d804304ab8f9dcd2b847
+brief: replace H lines 41-41 -> H2 lines 41-41
+   - H:41: - screen with the strict pattern, the host names (`<earlier-host>`, and any `<model-form>` form, case-insensitive) and `[.]local` (judged by what it names);
+   + H2:41: - screen with the strict pattern, the host names (the machine's earlier host-name form named in RR, its network name, and the laptop-model form, case-insensitive) and `[.]local` (judged by what it names);
+earlier form present (any case) in H2's RR: False ; in H2's brief: False
+H..H2 non-added changes: [('M', 'T3/RESUME_2026-09-30/BRIEFS/B2C_REVISION_02.md'), ('M', 'T3/ROOT_RULINGS_V1.md'), ('M', 'projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md')]

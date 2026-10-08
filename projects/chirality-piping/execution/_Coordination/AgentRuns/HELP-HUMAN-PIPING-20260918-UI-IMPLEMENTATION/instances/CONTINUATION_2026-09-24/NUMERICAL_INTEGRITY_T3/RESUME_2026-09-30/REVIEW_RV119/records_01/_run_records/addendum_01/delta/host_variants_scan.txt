@@ -1,0 +1,2 @@
+model form (split)	T3/RESUME_2026-09-30/BRIEFS/RV119_RECORDS_PR8_REVIEW.md	31	- the machine's host names, which means its network name and any `<frag>` form, case-insensitive, besides the earlier form;
+TOTALS	model form (split)=1	first name + s (host prefix)=0	earlier form, plain=0	earlier form (any joiner)=0	earlier domain (split)=0	mbp short form=0

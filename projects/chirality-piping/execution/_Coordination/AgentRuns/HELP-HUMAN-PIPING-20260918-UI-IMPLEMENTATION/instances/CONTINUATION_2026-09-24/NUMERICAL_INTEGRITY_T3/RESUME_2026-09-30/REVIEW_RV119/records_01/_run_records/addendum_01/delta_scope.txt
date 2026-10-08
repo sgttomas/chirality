@@ -1,0 +1,56 @@
+H (reviewed)=57f078b4c8a87756d3d0985f58a67e15bbeda476
+H2 (new head)=8568fb2053f6750e4d09aa00d1791f9f3757f7e1
+N2 (NUM)=dc4ffdc7c8d8d7adbefe05127c9c8817973e57be
+M (PR base)=f4358eb0be945bc98677d05b526bb4a1b0b1d5cf
+M2 (main now)=0e62b8e36b02ee85680e99ab8b313997930c45c7
+== H2's parents
+57f078b4c8a87756d3d0985f58a67e15bbeda476
+== rev-list M..H2
+8568fb2053f6750e4d09aa00d1791f9f3757f7e1
+57f078b4c8a87756d3d0985f58a67e15bbeda476
+== NUM commits N..N2
+dc4ffdc7c8 piping(T3): S-1 ruled by the owner; E-18 rewordings; errata to E-16's account
+180314cf18 piping(T3): RV109 confirms SP's I3 step; SP is complete
+7e6a5ba7ea piping(T3): records PR #1114 opened; RV119 reviews it
+== is H2 an ancestor of N2? no; commits of M..N2 in H2's ancestry: 0
+== P/execution: H2 d44512e12905161ee651d5931bf81e8b9fe35c15; N2 d44512e12905161ee651d5931bf81e8b9fe35c15
+== non-execution diff H..H2: 0 paths
+== non-execution diff M..H2 (whole PR): 
+M	projects/chirality-piping/validation/portability_policy.json
+== portability_policy.json H vs H2 equal: yes
+== H..H2 by status
+  53 A
+   3 M
+== H..H2 modified
+M	T3/RESUME_2026-09-30/BRIEFS/B2C_REVISION_02.md
+M	T3/ROOT_RULINGS_V1.md
+M	projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md
+== H..H2 added, by folder
+   1 R/BRIEFS/RV119_RECORDS_PR8_REVIEW.md
+  52 R/REVIEW_RV109/rvp_round2_01
+== H..H2 added outside RV109's round-2 folder
+T3/RESUME_2026-09-30/BRIEFS/RV119_RECORDS_PR8_REVIEW.md
+== modes in H..H2
+  56 100644
+== M..H2 by status and folder
+1108 A projects/chirality-piping/execution
+   2 M projects/chirality-piping/execution
+   1 M projects/chirality-piping/validation
+== REVIEW_RV119 in H2? 0 files; RV119 brief in H2? yes
+== main's move M..M2
+0e62b8e36b Merge pull request #1115 from sgttomas/claude/app-v4-group-a-resume
+paths: 207; under piping: 0; top folders:
+ 207 projects/chirality-app-v4
+== shared paths between M..M2 and M..H2: 0
+== H2 message
+piping(T3): records PR, the S-1 delta (NUM dc4ffdc7c8)
+
+NUM's execution/ at dc4ffdc7c8: RV109's ADDENDUM_01 (SP's I3 step
+confirmed), the owner's S-1 choice with E-18's two rewordings, the T3
+rulings and the work graph.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+== ls-remote
+8568fb2053f6750e4d09aa00d1791f9f3757f7e1	refs/heads/codex/piping-t3-records-20261008
+0e62b8e36b02ee85680e99ab8b313997930c45c7	refs/heads/main

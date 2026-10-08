@@ -1,0 +1,6 @@
+governance-harness run 37724855363, job 113140586453 (harness), excerpt (paths omitted):
+CHIRALITY_REQUIRE_LIVE_TESTS: 1
+1f8846377c45cca164a3847445ce9ecae942eec5 -> pull/1114/merge
+1161 passed, 48 subtests passed in 97.25s
+merge ref 1f8846377c parents: 0e62b8e36b, 8568fb2053; tree cbddceffa9
+H2 tree f607b1e86c

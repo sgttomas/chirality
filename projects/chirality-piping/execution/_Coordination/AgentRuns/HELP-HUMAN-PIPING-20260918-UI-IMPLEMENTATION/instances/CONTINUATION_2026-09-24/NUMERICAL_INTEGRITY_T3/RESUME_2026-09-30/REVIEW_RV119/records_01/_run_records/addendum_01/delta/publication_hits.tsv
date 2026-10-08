@@ -1,0 +1,4 @@
+pattern	path	line	text (sanitized)
+host: model form	T3/RESUME_2026-09-30/BRIEFS/RV119_RECORDS_PR8_REVIEW.md	31	- the machine's host names, which means its network name and any `<model-form>` form, case-insensitive, besides the earlier form;
+dot-local	T3/RESUME_2026-09-30/BRIEFS/B2C_REVISION_02.md	41	- screen with the strict pattern, the host names (the machine's earlier host-name form named in RR, its network name, and the laptop-model form, case-insensitive) and `[.]local` (judged by what it names);
+dot-local	T3/RESUME_2026-09-30/BRIEFS/RV119_RECORDS_PR8_REVIEW.md	32	- `[.]local`, judged by what it names;

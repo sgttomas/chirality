@@ -1,0 +1,91 @@
+RR:14966	206fd360	FILE	R/REVIEW_RV109/rvp_round2_01/REVIEW.md
+RR:14966	1863f506	FILE	R/REVIEW_RV109/rvp_round2_01/SHA256SUMS
+RR:15008	5f08916a	FILE	R/REVIEW_RV111/si1c_01/ADDENDUM_02.md
+RR:15010	23264979	FILE	R/REVIEW_RV111/si1c_01/ADDENDUM_03.md
+RR:15012	58e6af64	FILE	R/REVIEW_RV111/si1c_01/ADDENDUM_04.md
+RR:15030	fb368f74	FILE	R/REVIEW_RV117/records_01/REVIEW.md
+RR:15030	e3d47596	FILE	R/REVIEW_RV117/records_01/SHA256SUMS
+RR:15050	b1597c7b	FILE	R/I96/b3_d_01/statics/r1/SCHEMA_ENUM.diff
+RR:15062	165cd4b1	FILE	R/I97/b2_c_01/CONTRACT.md
+RR:15062	d8f032d1	FILE	R/I97/b2_c_01/SHA256SUMS
+RR:15065	03d40598	FILE	R/I97/b2_c_01/statics/retained_precision_prepared_combination_v1.json
+RR:15066	863738f1	FILE	R/I97/b2_c_01/statics/semantic_contract_v0_3_preview_physics_retained_1.json
+RR:15067	ff3b8895	FILE	R/I97/b2_c_01/statics/SCHEMA_B2.diff
+RR:15068	abf3225c	FILE	R/I97/b2_c_01/statics/retained_precision_mp_v2.schema.json
+RR:15069	f674370d	FILE	R/I97/b2_c_01/statics/SCHEMA_J1.diff
+RR:15130	7cd7a1b4	FILE	R/REVIEW_RV115/b2_kd_01/ADDENDUM_02.md
+RR:15146	1628a8e3	FILE	R/I99/b3_w_probe_01/PROBE.md
+RR:15146	332319ee	FILE	R/I99/b3_w_probe_01/_run_records/inputs/n05.json; P/fixtures/product_preview/physics_source/n05.request.json
+RR:15146	5551f164	FILE	R/I99/b3_w_probe_01/_run_records/inputs/n06.json; P/fixtures/product_preview/physics_source/n06.request.json
+RR:15146	7f8ff9d5	FILE	R/I99/b3_w_probe_01/_run_records/inputs/fields.json; P/fixtures/product_preview/physics_source/fields.request.json
+RR:15160	0ffbea35	FILE	R/I99/b3_w_probe_01/_run_records/inputs/m3x.json
+RR:15162	3c9a6fdb	FILE	R/I99/b3_w_probe_01/_run_records/inputs/m3x_mix_anchor.json
+RR:15166	7f8ff9d5	FILE	R/I99/b3_w_probe_01/_run_records/inputs/fields.json; P/fixtures/product_preview/physics_source/fields.request.json
+RR:15172	c32170b3	FILE	R/I99/b3_w_probe_01/_run_records/inputs/m3l.json
+RR:15179	d44dec19	FILE	R/REVIEW_RV113/rvr_sr_ts_01/REVIEW.md
+RR:15183	10ca3fe4	FILE	R/REVIEW_RV113/rvr_sr_rs_01/ADDENDUM_01.md
+RR:15184	d8611e59	FILE	R/REVIEW_RV113/rvr_sr_py_01/REVIEW.md
+RR:15227	e224899a	FILE	R/I98/b2_w_probe_01/PROBE.md
+RR:15239	7af8c049	FILE	R/I98/b2_w_probe_01/_run_records/inputs/r7_cb1_halfb.json
+RR:15239	012fec52	FILE	R/I98/b2_w_probe_01/_run_records/inputs/cb1_a_halfb_canonical.json
+RR:15239	0c346f49	FILE	R/I98/b2_w_probe_01/_run_records/inputs/r7_cb1.json
+RR:15240	ce52d528	FILE	R/I98/b2_w_probe_01/_run_records/inputs/r7_cb2.json
+RR:15240	76bb9831	FILE	R/I98/b2_w_probe_01/_run_records/inputs/r7_cb3_v1.json
+RR:15245	d28e1317	FILE	R/I98/b2_w_probe_01/_run_records/inputs/cause_milestone_reversed.json
+RR:15255	fe640ca5	FILE	R/REVIEW_RV118/b2_c_01/REVIEW.md
+RR:15255	352befe1	FILE	R/REVIEW_RV118/b2_c_01/SHA256SUMS
+RR:15331	a315bc7f	FILE	R/I90/b1_sr_rs_01/REPAIR_02.md
+RR:15360	f7e50348	FILE	R/I91/b1_sr_py_01/REPAIR_02.md
+RR:15367	592d6164	FILE	R/I92/b1_sr_ts_01/REPAIR_01.md
+RR:15396	8f1fc645	FILE	R/I92/b1_sr_ts_01/REPAIR_01_ITEM3.md
+RR:15404	5084603d	FILE	R/I85/b1_sp_01/I3_01.md
+RR:15429	06a72494	FILE	R/I91/b1_sr_py_01/REPAIR_02_ITEM4.md
+RR:15431	357098ba	FILE	R/I91/b1_sr_py_01/_run_records/repair_02/item4/item4_held.diff; R/I91/b1_sr_py_01/_run_records/repair_02_item4/diff/repair_02_item4.diff
+RR:15437	6f6a583f	FILE	R/I97/b2_c_01/REVISION_01.md
+RR:15439	6467c733	FILE	R/I97/b2_c_01/statics/r1/retained_precision_prepared_combination_v1.json
+RR:15439	791c0a0d	FILE	R/I97/b2_c_01/statics/r1/semantic_contract_v0_3_preview_physics_retained_1.json
+RR:15439	ff3b8895	FILE	R/I97/b2_c_01/statics/SCHEMA_B2.diff
+RR:15439	abf3225c	FILE	R/I97/b2_c_01/statics/retained_precision_mp_v2.schema.json
+RR:15439	abf3225c	FILE	R/I97/b2_c_01/statics/retained_precision_mp_v2.schema.json
+RR:15439	791c0a0d	FILE	R/I97/b2_c_01/statics/r1/semantic_contract_v0_3_preview_physics_retained_1.json
+RR:15439	6467c733	FILE	R/I97/b2_c_01/statics/r1/retained_precision_prepared_combination_v1.json
+RR:15452	4bd3e234	FILE	R/REVIEW_RV115/b2_kd_01/ADDENDUM_03.md
+RR:15479	774b06bd	FILE	R/REVIEW_RV118/b2_c_01/ADDENDUM_01.md
+RR:15492	d82dba65	FILE	R/BRIEFS/B2C_REVISION_02.md
+RR:15494	abf3225c	FILE	R/I97/b2_c_01/statics/retained_precision_mp_v2.schema.json
+RR:15500	79007dcd	FILE	R/I97/b2_c_01/REVISION_02.md
+RR:15502	3cebce55	FILE	R/I97/b2_c_01/statics/r2/retained_precision_prepared_combination_v1.json
+RR:15502	b2b4a54d	FILE	R/I97/b2_c_01/statics/r2/semantic_contract_v0_3_preview_physics_retained_1.json
+RR:15502	abf3225c	FILE	R/I97/b2_c_01/statics/retained_precision_mp_v2.schema.json
+RR:15515	abf3225c	FILE	R/I97/b2_c_01/statics/retained_precision_mp_v2.schema.json
+RR:15515	b2b4a54d	FILE	R/I97/b2_c_01/statics/r2/semantic_contract_v0_3_preview_physics_retained_1.json
+RR:15515	3cebce55	FILE	R/I97/b2_c_01/statics/r2/retained_precision_prepared_combination_v1.json
+RR:15525	d8611e59	FILE	R/REVIEW_RV113/rvr_sr_py_01/REVIEW.md
+RR:15527	e3af69ba	FILE	T3/IMPLEMENTATION/REDACTION_E16/RECORD.md
+RR:15543	ed6acc50	FILE	R/REVIEW_RV115/b2_kd_01/ADDENDUM_04.md
+RR:15551	be20b10b	FILE	R/REVIEW_RV118/b2_c_01/ADDENDUM_02.md
+RR:15558	abf3225c	FILE	R/I97/b2_c_01/statics/retained_precision_mp_v2.schema.json
+RR:15559	b2b4a54d	FILE	R/I97/b2_c_01/statics/r2/semantic_contract_v0_3_preview_physics_retained_1.json
+RR:15560	3cebce55	FILE	R/I97/b2_c_01/statics/r2/retained_precision_prepared_combination_v1.json
+WG:569	791c0a0d	FILE	R/I97/b2_c_01/statics/r1/semantic_contract_v0_3_preview_physics_retained_1.json
+WG:569	abf3225c	FILE	R/I97/b2_c_01/statics/retained_precision_mp_v2.schema.json
+WG:569	b2b4a54d	FILE	R/I97/b2_c_01/statics/r2/semantic_contract_v0_3_preview_physics_retained_1.json
+WG:569	3cebce55	FILE	R/I97/b2_c_01/statics/r2/retained_precision_prepared_combination_v1.json
+hex citations 88; matching a file at H: 73; not matching a file: 15
+NOFILE	RR:15050	0d5bb812	- "I96's B3-D revision 01 verified; …": `0d5bb812…` is the **patched SCHEMA's** hash. `SCHEMA_ENUM.diff` itself is `b1597c7b…`.
+NOFILE	RR:15072	9adf5178	- **DEF-C** `RP-PREPARED-COMBINATION-DUAL-v1` has H(`retained_precision_formation_v1`) `9adf5178…` (R-10, the domain reused).
+NOFILE	RR:15133	a7ed7ca0	- **R-10:** RV115 rebuilt H with its own canonicaliser. DEF-O gives `a7ed7ca0…` (the control), and DEF-C gives `9adf5178…`. DEF-C's `operand_definition.sha256` 
+NOFILE	RR:15133	9adf5178	- **R-10:** RV115 rebuilt H with its own canonicaliser. DEF-O gives `a7ed7ca0…` (the control), and DEF-C gives `9adf5178…`. DEF-C's `operand_definition.sha256` 
+NOFILE	RR:15160	c920a96d	- **the exact successor** is `m3x` (`0ffbea35…`; Value `c920a96d…`);
+NOFILE	RR:15172	2f5ff465	4. **B3a's base** is `m3l` (`c32170b3…`; Value `2f5ff465…`).
+NOFILE	RR:15256	9adf5178	- **The statics:** `b2c_statics.py` rebuilds all six outputs byte for byte, twice. RV118's own JCS gives DEF-C's H `9adf5178…`, with DEF-O's `a7ed7ca0…` as the 
+NOFILE	RR:15256	a7ed7ca0	- **The statics:** `b2c_statics.py` rebuilds all six outputs byte for byte, twice. RV118's own JCS gives DEF-C's H `9adf5178…`, with DEF-O's `a7ed7ca0…` as the 
+NOFILE	RR:15439	0c43cf42	- **The statics:** DEF-C r1 raw `6467c733…`, H `0c43cf42…`; PTABLE `791c0a0d…`. SCHEMA_B2.diff `ff3b8895…` and the J1 SCHEMA `abf3225c…` are unchanged. J1's rev
+NOFILE	RR:15456	0c43cf42	- DEF-C r1 changes exactly four leaf paths from v0. RV115 rebuilt H `0c43cf42…` independently. NB-1 and NB-3 are worded as asked.
+NOFILE	RR:15502	d3fde142	- **The statics:** DEF-C r2 raw `3cebce55…`, H `d3fde142…`; PTABLE r2 `b2b4a54d…`. The J1 SCHEMA `abf3225c…` is unchanged. Against r1, DEF-C changes two paths a
+NOFILE	RR:15549	d3fde142	- DEF-C r2 changes exactly two paths from r1, and H `d3fde142…` rebuilds independently.
+NOFILE	RR:15560	d3fde142	- DEF-C r2 `3cebce55…` (H `d3fde142…`).
+NOFILE	WG:569	0c43cf42	- **B2-C returned** (I97, `R/I97/b2_c_01/CONTRACT.md`; statics rebuilt by ROOT). **RV118 (RV-C): ACCEPT WITH AMENDMENTS (0/6/15). RV115 (RV-K) accepts DEF-C's n
+NOFILE	WG:569	d3fde142	- **B2-C returned** (I97, `R/I97/b2_c_01/CONTRACT.md`; statics rebuilt by ROOT). **RV118 (RV-C): ACCEPT WITH AMENDMENTS (0/6/15). RV115 (RV-K) accepts DEF-C's n
+path-bound citations 24; the named path's sha256 matches: 23
+PATHBOUND-MISMATCH	WG:569	R/I97/b2_c_01/REVISION_01.md	0c43cf42	candidates=1

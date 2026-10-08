@@ -1,0 +1,4 @@
+gzipped added files: 0
+file	gz_bytes	raw_bytes	lines	kind	parses	home/tmp/private paths	email	token-shaped	cred words	host names (run time)	model form	dot-local	other host data	hostname attr	strict	owner name
+kinds: {}; decompress failures: 0; junit documents: 0; junit documents with a hostname attribute: 0
+TOTAL lines 0	home/tmp/private paths=0	email=0	token-shaped=0	cred words=0	host names (run time)=0	model form=0	dot-local=0	other host data=0	hostname attr=0	strict=0	owner name=0

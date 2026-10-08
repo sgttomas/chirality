@@ -1,0 +1,16 @@
+RR:15594	62078533	FILE	R/BRIEFS/RV119_RECORDS_PR8_REVIEW.md
+RR:15598	f065a1f6	FILE	R/REVIEW_RV109/rvp_round2_01/ADDENDUM_01.md
+RR:15598	5084603d	FILE	R/I85/b1_sp_01/I3_01.md
+RR:15640	d1d213d8	FILE	R/BRIEFS/B2C_REVISION_02.md
+WG:569	791c0a0d	FILE	R/I97/b2_c_01/statics/r1/semantic_contract_v0_3_preview_physics_retained_1.json
+WG:569	abf3225c	FILE	R/I97/b2_c_01/statics/retained_precision_mp_v2.schema.json
+WG:569	b2b4a54d	FILE	R/I97/b2_c_01/statics/r2/semantic_contract_v0_3_preview_physics_retained_1.json
+WG:569	3cebce55	FILE	R/I97/b2_c_01/statics/r2/retained_precision_prepared_combination_v1.json
+hex citations 12; matching a file at H: 8; not matching a file: 4
+NOFILE	RR:15621	ef2c9538	**RV119's review of #1114** (head `57f078b4c8`): `R/REVIEW_RV119/records_01/REVIEW.md` sha256 `ef2c9538…`, with SHA256SUMS 67 of 67 OK. The screens are clean. I
+NOFILE	RR:15640	d82dba65	- **`BRIEFS/B2C_REVISION_02.md`:** its host-name rule names the forms instead of spelling them. Its sha256 changes from `d82dba65…` to `d1d213d8…`. RR "RV118 co
+NOFILE	WG:569	0c43cf42	- **B2-C returned** (I97, `R/I97/b2_c_01/CONTRACT.md`; statics rebuilt by ROOT). **RV118 (RV-C): ACCEPT WITH AMENDMENTS (0/6/15). RV115 (RV-K) accepts DEF-C's n
+NOFILE	WG:569	d3fde142	- **B2-C returned** (I97, `R/I97/b2_c_01/CONTRACT.md`; statics rebuilt by ROOT). **RV118 (RV-C): ACCEPT WITH AMENDMENTS (0/6/15). RV115 (RV-K) accepts DEF-C's n
+path-bound citations 4; the named path's sha256 matches: 2
+PATHBOUND-MISMATCH	RR:15621	R/REVIEW_RV119/records_01/REVIEW.md	ef2c9538	candidates=0
+PATHBOUND-MISMATCH	WG:569	R/I97/b2_c_01/REVISION_01.md	0c43cf42	candidates=1

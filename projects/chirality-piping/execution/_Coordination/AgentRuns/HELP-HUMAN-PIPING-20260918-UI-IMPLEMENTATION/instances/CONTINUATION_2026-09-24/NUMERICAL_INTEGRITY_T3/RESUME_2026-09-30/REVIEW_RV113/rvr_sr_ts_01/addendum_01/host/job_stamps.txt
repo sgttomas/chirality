@@ -1,0 +1,111 @@
+# RV113 SR-TS repair 01 jobs: each job's own log stamps
+== ts1_harness.log
+# rv113 rsr2 job ts1_harness (slot) queued 2026-10-08T02:01:22Z dir=rv113/ts1-head/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV113_OUT=WT/scratch/rv113_rvr_01/tsr1/census_ts1_head.jsonl RV113_PROBES=WT/scratch/rv113_rvr_01/tsr1/probes/probes_ts1.json RV113_PROBES_OUT=WT/scratch/rv113_rvr_01/tsr1/probes/ts1_head.jsonl NMS/.bin/vitest run src/features/results/rv113Census.test.ts
+# start 2026-10-08T02:01:22Z
+# end 2026-10-08T02:01:40Z rc=0
+== rs2_probes_ts1.log
+# rv113 rsr2 job rs2_probes_ts1 (slot) queued 2026-10-08T02:01:40Z dir=rv113/rs2-head/projects/chirality-piping/core/reporting/result_export
+# args: /usr/bin/env RV113_PROBES=WT/scratch/rv113_rvr_01/tsr1/probes/probes_ts1.json RV113_PROBES_OUT=WT/scratch/rv113_rvr_01/tsr1/probes/rs2_head_ts1.jsonl RUST_TEST_THREADS=2 WT/targets/rv113-rs2/debug/deps/rv113_census-2a7e1fb53dc907ac rv113_probes --exact
+# start 2026-10-08T02:01:40Z
+# end 2026-10-08T02:02:41Z rc=0
+== ts1_vitest.log
+# rv113 rsr2 job ts1_vitest (slot) queued 2026-10-08T02:02:41Z dir=rv113/ts1-head/projects/chirality-piping/apps/desktop
+# args: NMS/.bin/vitest run --reporter=dot --reporter=json --outputFile.json=WT/scratch/rv113_rvr_01/tsr1/vitest_ts1_head.json
+# start 2026-10-08T02:02:41Z
+# end 2026-10-08T02:04:02Z rc=0
+== ts1_tsc.log
+# rv113 rsr2 job ts1_tsc (slot) queued 2026-10-08T02:04:02Z dir=rv113/ts1-head/projects/chirality-piping/apps/desktop
+# args: NMS/.bin/tsc --noEmit -p tsconfig.json
+# start 2026-10-08T02:04:02Z
+# end 2026-10-08T02:04:07Z rc=0
+== mutant runs (run.log stamps)
+-- NONE
+# NONE tests queued 2026-10-08T02:04:47Z
+# start 2026-10-08T02:04:47Z RV113_MUT=unset
+vitest rc=0
+# end 2026-10-08T02:04:57Z
+# NONE probes queued 2026-10-08T02:07:46Z
+# probes start 2026-10-08T02:07:46Z
+probes rc=0
+# probes end 2026-10-08T02:07:56Z
+-- U01
+# U01 tests queued 2026-10-08T02:04:57Z
+# start 2026-10-08T02:04:57Z RV113_MUT=U01
+vitest rc=1
+# end 2026-10-08T02:05:08Z
+-- U02
+# U02 tests queued 2026-10-08T02:05:08Z
+# start 2026-10-08T02:05:08Z RV113_MUT=U02
+vitest rc=1
+# end 2026-10-08T02:05:19Z
+-- U03
+# U03 tests queued 2026-10-08T02:05:19Z
+# start 2026-10-08T02:05:19Z RV113_MUT=U03
+vitest rc=1
+# end 2026-10-08T02:05:30Z
+-- U04
+# U04 tests queued 2026-10-08T02:05:30Z
+# start 2026-10-08T02:05:30Z RV113_MUT=U04
+vitest rc=1
+# end 2026-10-08T02:05:41Z
+-- U05
+# U05 tests queued 2026-10-08T02:05:41Z
+# start 2026-10-08T02:05:41Z RV113_MUT=U05
+vitest rc=1
+# end 2026-10-08T02:05:51Z
+-- U06
+# U06 tests queued 2026-10-08T02:05:51Z
+# start 2026-10-08T02:05:51Z RV113_MUT=U06
+vitest rc=1
+# end 2026-10-08T02:06:02Z
+-- U07
+# U07 tests queued 2026-10-08T02:06:02Z
+# start 2026-10-08T02:06:02Z RV113_MUT=U07
+vitest rc=1
+# end 2026-10-08T02:06:12Z
+-- U08
+# U08 tests queued 2026-10-08T02:06:12Z
+# start 2026-10-08T02:06:12Z RV113_MUT=U08
+vitest rc=1
+# end 2026-10-08T02:06:22Z
+-- U09
+# U09 tests queued 2026-10-08T02:06:22Z
+# start 2026-10-08T02:06:23Z RV113_MUT=U09
+vitest rc=1
+# end 2026-10-08T02:06:33Z
+-- U10
+# U10 tests queued 2026-10-08T02:06:33Z
+# start 2026-10-08T02:06:33Z RV113_MUT=U10
+vitest rc=1
+# end 2026-10-08T02:06:43Z
+-- U11
+# U11 tests queued 2026-10-08T02:06:43Z
+# start 2026-10-08T02:06:43Z RV113_MUT=U11
+vitest rc=1
+# end 2026-10-08T02:06:54Z
+-- U12
+# U12 tests queued 2026-10-08T02:06:54Z
+# start 2026-10-08T02:06:54Z RV113_MUT=U12
+vitest rc=1
+# end 2026-10-08T02:07:04Z
+-- U13
+# U13 tests queued 2026-10-08T02:07:04Z
+# start 2026-10-08T02:07:04Z RV113_MUT=U13
+vitest rc=1
+# end 2026-10-08T02:07:14Z
+-- U14
+# U14 tests queued 2026-10-08T02:07:14Z
+# start 2026-10-08T02:07:14Z RV113_MUT=U14
+vitest rc=1
+# end 2026-10-08T02:07:25Z
+-- U15
+# U15 tests queued 2026-10-08T02:07:25Z
+# start 2026-10-08T02:07:25Z RV113_MUT=U15
+vitest rc=1
+# end 2026-10-08T02:07:35Z
+-- U16
+# U16 tests queued 2026-10-08T02:07:35Z
+# start 2026-10-08T02:07:35Z RV113_MUT=U16
+vitest rc=1
+# end 2026-10-08T02:07:46Z

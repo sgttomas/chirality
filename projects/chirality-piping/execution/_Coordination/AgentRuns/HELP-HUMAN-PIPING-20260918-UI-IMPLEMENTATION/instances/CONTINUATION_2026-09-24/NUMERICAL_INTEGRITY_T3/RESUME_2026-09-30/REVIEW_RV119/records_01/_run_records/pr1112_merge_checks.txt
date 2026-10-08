@@ -1,0 +1,50 @@
+== 0b6c5d7362
+commit 0b6c5d7362ff21104e078d8168f62e3f38928cf9
+parents 54f1ba1f6d079cfa5b1b3a66439c135066596267 13d02273f48f22b97d7e4bace87b4189d7f03594
+committer date 2026-10-07T17:27:13-06:00
+subject Merge pull request #1112 from sgttomas/codex/piping-t3-si1c-pr-20261007
+diff first parent -> merge:
+ 9 files changed, 1788 insertions(+), 161 deletions(-)
+M	projects/chirality-piping/core/rules/expression_evaluator/README.md
+M	projects/chirality-piping/core/rules/expression_evaluator/src/lib.rs
+M	projects/chirality-piping/core/rules/rule_check_runner/src/lib.rs
+M	projects/chirality-piping/core/rules/rule_check_runner/tests/point_path_non_finite_run.rs
+A	T3/IMPLEMENTATION/SI1C/CHANGE_RECORD.md
+A	T3/IMPLEMENTATION/SI1C/PR_BODY.md
+A	T3/IMPLEMENTATION/SI1C/SHA256SUMS
+A	T3/IMPLEMENTATION/SI1C/citations.json
+M	projects/chirality-piping/tests/test_rule_interval.py
+== GitHub #1112
+state=MERGED mergedAt=2026-10-07T23:27:14Z mergeCommit=0b6c5d7362ff21104e078d8168f62e3f38928cf9 head=13d02273f48f22b97d7e4bace87b4189d7f03594 base=e33f3e2f1b0a0271da3ef4db8521b3981257b5ce
+== PR head commits
+b8bc059e35 piping(T3 SI1c): point-path rule evaluation blocks at an overflowing …
+2881cb1969 piping(T3 SI1c): correct the package's byte-identity wording for N-4 …
+13d02273f4 piping(T3 SI1c): state the bounded-run change exactly (records only)
+== record's PARENTS.txt and MERGE_COMMAND.txt
+merge commit 0b6c5d7362ff21104e078d8168f62e3f38928cf9 (#1112), merged 2026-10-07T23:27:14Z
+parent 1: 54f1ba1f6d079cfa5b1b3a66439c135066596267 (main: #1111's squash, records only, after the cut from e33f3e2f1b)
+parent 2: 13d02273f48f22b97d7e4bace87b4189d7f03594 (the PR head)
+main's diff (parent 1 → merge): the 5 slice files and the 4 package files under IMPLEMENTATION/SI1C/
+gh pr ready 1112 --repo sgttomas/chirality; gh pr merge 1112 --repo sgttomas/chirality --merge --match-head-commit 13d02273f48f22b97d7e4bace87b4189d7f03594 (PR CLEAN; main at 54f1ba1f6d; strict up-to-date not required)
+== record's CI_RUNS
+PR #1112 head 13d02273f48f22b97d7e4bace87b4189d7f03594
+37697774199 governance-harness pull_request completed success
+37697774147 Harness Pre-merge Validation pull_request completed success
+37697774158 pec-tests pull_request completed success
+37697774138 Piping Desktop E2E pull_request completed success
+37697773464 Piping Desktop E2E workflow_dispatch completed success
+earlier dispatches: 37696852261 on b8bc059e35 completed success; 37697481281 on 2881cb1969 completed cancelled (superseded by 37697773464)
+== GitHub runs on 13d02273f4
+37697774199 governance-harness pull_request completed success 13d02273f4
+37697774147 Harness Pre-merge Validation pull_request completed success 13d02273f4
+37697774158 pec-tests pull_request completed success 13d02273f4
+37697774138 Piping Desktop E2E pull_request completed success 13d02273f4
+37697773464 Piping Desktop E2E workflow_dispatch completed success 13d02273f4
+== dispatches
+37697773464 Piping Desktop E2E workflow_dispatch completed success 13d02273f4 Piping Desktop E2E
+37696852261 Piping Desktop E2E workflow_dispatch completed success b8bc059e35 Piping Desktop E2E
+37697481281 Piping Desktop E2E workflow_dispatch completed cancelled 2881cb1969 Piping Desktop E2E
+== NUM absorb 46d3f6f937
+parents 96e52b5e626c0338011f0473d8cbbeb9ba627d4e 0b6c5d7362ff21104e078d8168f62e3f38928cf9
+subject Merge main (#1112, T3-SI1c) into the T3 integration branch
+tree(46d3f6f937)==tree(first parent)? yes

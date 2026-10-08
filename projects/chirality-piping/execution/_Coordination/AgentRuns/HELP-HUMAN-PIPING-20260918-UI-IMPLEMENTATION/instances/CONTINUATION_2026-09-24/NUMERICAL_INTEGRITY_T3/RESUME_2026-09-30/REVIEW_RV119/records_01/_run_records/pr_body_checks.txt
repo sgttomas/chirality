@@ -1,0 +1,38 @@
+== on main (M): I96 REVISION_01 and RV116 ADDENDUM_01
+present: R/I96/b3_d_01/REVISION_01.md
+present: R/REVIEW_RV116/b3_d_01/ADDENDUM_01.md
+== E-15: I90 repair_02/out files in the PR
+8
+check-ignore (they need -f):
+.gitignore:50:**/out/	R/I90/b1_sr_rs_01/_run_records/repair_02/out/census_head.jsonl
+== NUM untracked RV113 addenda (not in PR)
+?? R/REVIEW_RV113/rvr_sr_rs_01/ADDENDUM_02.md
+?? R/REVIEW_RV113/rvr_sr_rs_01/SHA256SUMS.addendum_02
+?? R/REVIEW_RV113/rvr_sr_rs_01/addendum_02/
+?? R/REVIEW_RV113/rvr_sr_ts_01/ADDENDUM_01.md
+?? R/REVIEW_RV113/rvr_sr_ts_01/SHA256SUMS.addendum_01
+?? R/REVIEW_RV113/rvr_sr_ts_01/addendum_01/
+== briefs added
+B1_SC.md
+B1_SP_I3.md
+B1_SR_PY_REPAIR_02.md
+B1_SR_RS_REPAIR_02.md
+B1_SR_TS_REPAIR_01.md
+B2C_CONTRACT.md
+B2C_REVISION_01.md
+B2C_REVISION_02.md
+B2W_B3W_PROBES.md
+RV117_RECORDS_PR7_REVIEW.md
+RV118_RVC_CONTRACT_REVIEW.md
+== IDs at N
+I97: folder at N
+I98: folder at N
+I99: folder at N
+I100: no folder at N
+REVIEW_RV118: folder at N
+REVIEW_RV119: no folder at N
+REVIEW_RV120: no folder at N
+RV119 brief at N? no
+mentions of RV119/RV120/I100 in text at N under T3 (files):
+T3/ROOT_RULINGS_V1.md
+619:- **The next unused** are **I100 and RV119**.

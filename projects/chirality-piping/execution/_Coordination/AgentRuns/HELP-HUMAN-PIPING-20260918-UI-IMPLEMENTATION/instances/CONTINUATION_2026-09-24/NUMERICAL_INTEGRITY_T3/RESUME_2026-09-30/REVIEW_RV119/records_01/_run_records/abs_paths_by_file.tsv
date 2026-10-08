@@ -1,0 +1,10 @@
+gen8_whole	broad_whole	gen8_added	broad_added	status	path	broad_samples(added)
+1	1	1	1	A	T3/RESUME_2026-09-30/BRIEFS/B2W_B3W_PROBES.md	59:/U-sers/|/pri-vate/|\.claude/work-trees|swbpipe-c
+1	1	1	1	A	T3/RESUME_2026-09-30/I91/b1_sr_py_01/_run_records/repair_02/scripts/mutants_r02.py	95:/t-mp/mut/{label}
+1	1	1	1	A	T3/RESUME_2026-09-30/I91/b1_sr_py_01/_run_records/repair_02_item4/scripts/mutants_item4.py	42:/t-mp/mut/{label}
+1	1	1	1	A	T3/RESUME_2026-09-30/I92/b1_sr_ts_01/_run_records/repair_01/harness/mutants_r1.py	47:/t-mp/mut
+1	1	1	1	A	T3/RESUME_2026-09-30/I92/b1_sr_ts_01/_run_records/repair_01_item3/mutants/mutants_r1.py	57:/t-mp/mut
+1	1	1	1	A	T3/RESUME_2026-09-30/REVIEW_RV117/records_01/REVIEW.md	154:/t-mp/…
+5	6	5	6	A	T3/RESUME_2026-09-30/REVIEW_RV117/records_01/_run_records/abs_paths_by_file.tsv	2:/t-mp/cargo_jobs_i89.log;3:/t-mp/mut/{label};4:/t-mp/mut/{label}
+0	3	0	1	M	T3/ROOT_RULINGS_V1.md	15579:/t-mp/
+TOTAL	11	15	11	13

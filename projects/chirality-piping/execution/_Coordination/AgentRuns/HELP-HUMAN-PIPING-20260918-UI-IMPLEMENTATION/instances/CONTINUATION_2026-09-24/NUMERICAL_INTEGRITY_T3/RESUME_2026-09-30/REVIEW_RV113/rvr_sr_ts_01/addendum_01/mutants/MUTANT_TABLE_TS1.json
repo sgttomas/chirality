@@ -1,0 +1,258 @@
+{
+ "control_probes_equal_head": true,
+ "rows": [
+  {
+   "id": "NONE",
+   "item": "control",
+   "description": "RV113_MUT unset",
+   "vitest": {
+    "total": 807,
+    "files_failed_to_load": 0,
+    "failed": [],
+    "assertion_failures": 0
+   },
+   "killed_by_assertion": false,
+   "probes_moved": null
+  },
+  {
+   "id": "U01",
+   "item": "(g)",
+   "description": "reference_configurations check dropped",
+   "vitest": {
+    "total": 807,
+    "files_failed_to_load": 0,
+    "failed": [
+     "B1 SR-TS repair 01: (g) at G8, and the C2 cause table keyed by precondition (g): the model-scope members are PP's acceptance, at G8 INVOCATION before any PREPAR"
+    ],
+    "assertion_failures": 1
+   },
+   "killed_by_assertion": true,
+   "probes_moved": null
+  },
+  {
+   "id": "U02",
+   "item": "(g)",
+   "description": "pressure_contract back to the falsiness test (false, 0 and '' admitted)",
+   "vitest": {
+    "total": 807,
+    "files_failed_to_load": 0,
+    "failed": [
+     "B1 SR-TS repair 01: (g) at G8, and the C2 cause table keyed by precondition (g): the model-scope members are PP's acceptance, at G8 INVOCATION before any PREPAR"
+    ],
+    "assertion_failures": 1
+   },
+   "killed_by_assertion": true,
+   "probes_moved": null
+  },
+  {
+   "id": "U03",
+   "item": "(g)",
+   "description": "combinations back to the old `!combinations?.length`",
+   "vitest": {
+    "total": 807,
+    "files_failed_to_load": 0,
+    "failed": [
+     "B1 SR-TS repair 01: (g) at G8, and the C2 cause table keyed by precondition (g): the model-scope members are PP's acceptance, at G8 INVOCATION before any PREPAR"
+    ],
+    "assertion_failures": 1
+   },
+   "killed_by_assertion": true,
+   "probes_moved": null
+  },
+  {
+   "id": "U04",
+   "item": "(g)",
+   "description": "components back to the old `!components?.length`",
+   "vitest": {
+    "total": 807,
+    "files_failed_to_load": 0,
+    "failed": [
+     "B1 SR-TS repair 01: (g) at G8, and the C2 cause table keyed by precondition (g): the model-scope members are PP's acceptance, at G8 INVOCATION before any PREPAR"
+    ],
+    "assertion_failures": 1
+   },
+   "killed_by_assertion": true,
+   "probes_moved": null
+  },
+  {
+   "id": "U05",
+   "item": "(g)",
+   "description": "combinations and components may be null",
+   "vitest": {
+    "total": 807,
+    "files_failed_to_load": 0,
+    "failed": [
+     "B1 SR-TS repair 01: (g) at G8, and the C2 cause table keyed by precondition (g): the model-scope members are PP's acceptance, at G8 INVOCATION before any PREPAR"
+    ],
+    "assertion_failures": 1
+   },
+   "killed_by_assertion": true,
+   "probes_moved": null
+  },
+  {
+   "id": "U06",
+   "item": "conjunct",
+   "description": "TS's G3 combinations conjunct restored",
+   "vitest": {
+    "total": 807,
+    "files_failed_to_load": 0,
+    "failed": [
+     "B1 SR-TS repair 01: (g) at G8, and the C2 cause table keyed by precondition (g): the model-scope members are PP's acceptance, at G8 INVOCATION before any PREPAR"
+    ],
+    "assertion_failures": 1
+   },
+   "killed_by_assertion": true,
+   "probes_moved": null
+  },
+  {
+   "id": "U07",
+   "item": "C2",
+   "description": "precondition keying replaced by the old set of four codes",
+   "vitest": {
+    "total": 807,
+    "files_failed_to_load": 0,
+    "failed": [
+     "B1 SR-TS repair 01: (g) at G8, and the C2 cause table keyed by precondition C2's cause table: an unavailable_precondition code is keyed one-to-one by its precon"
+    ],
+    "assertion_failures": 1
+   },
+   "killed_by_assertion": true,
+   "probes_moved": null
+  },
+  {
+   "id": "U08",
+   "item": "C2",
+   "description": "source_family keyed to caller_not_qualified",
+   "vitest": {
+    "total": 807,
+    "files_failed_to_load": 0,
+    "failed": [
+     "B1 SR-TS repair 01: (g) at G8, and the C2 cause table keyed by precondition C2's cause table: an unavailable_precondition code is keyed one-to-one by its precon"
+    ],
+    "assertion_failures": 1
+   },
+   "killed_by_assertion": true,
+   "probes_moved": null
+  },
+  {
+   "id": "U09",
+   "item": "C2",
+   "description": "precondition phase dropped",
+   "vitest": {
+    "total": 807,
+    "files_failed_to_load": 0,
+    "failed": [
+     "B1 SR-TS repair 01: (g) at G8, and the C2 cause table keyed by precondition C2's cause table: an unavailable_precondition code is keyed one-to-one by its precon"
+    ],
+    "assertion_failures": 1
+   },
+   "killed_by_assertion": true,
+   "probes_moved": null
+  },
+  {
+   "id": "U10",
+   "item": "C2",
+   "description": "precondition no-Run dropped",
+   "vitest": {
+    "total": 807,
+    "files_failed_to_load": 0,
+    "failed": [
+     "B1 SR-TS repair 01: (g) at G8, and the C2 cause table keyed by precondition C2's cause table: an unavailable_precondition code is keyed one-to-one by its precon"
+    ],
+    "assertion_failures": 1
+   },
+   "killed_by_assertion": true,
+   "probes_moved": null
+  },
+  {
+   "id": "U11",
+   "item": "header",
+   "description": "transport header check dropped",
+   "vitest": {
+    "total": 807,
+    "files_failed_to_load": 0,
+    "failed": [
+     "B1 SR-TS repair 01: the transport reading's base header at G2 (Rust's code), then its metadata at G7 the header at G2 with Rust's code, then the preview-physics"
+    ],
+    "assertion_failures": 1
+   },
+   "killed_by_assertion": true,
+   "probes_moved": null
+  },
+  {
+   "id": "U12",
+   "item": "header",
+   "description": "transport header in Python's order (carrier branch, evidence before recovery)",
+   "vitest": {
+    "total": 807,
+    "files_failed_to_load": 0,
+    "failed": [
+     "B1 SR-TS repair 01: the transport reading's base header at G2 (Rust's code), then its metadata at G7 the header at G2 with Rust's code, then the preview-physics"
+    ],
+    "assertion_failures": 1
+   },
+   "killed_by_assertion": true,
+   "probes_moved": null
+  },
+  {
+   "id": "U13",
+   "item": "header",
+   "description": "transport header refusal reported at G7",
+   "vitest": {
+    "total": 807,
+    "files_failed_to_load": 0,
+    "failed": [
+     "B1 SR-TS repair 01: the transport reading's base header at G2 (Rust's code), then its metadata at G7 the header at G2 with Rust's code, then the preview-physics"
+    ],
+    "assertion_failures": 1
+   },
+   "killed_by_assertion": true,
+   "probes_moved": null
+  },
+  {
+   "id": "U14",
+   "item": "header",
+   "description": "Rust order: contract_evidence before source_block_recovery",
+   "vitest": {
+    "total": 807,
+    "files_failed_to_load": 0,
+    "failed": [
+     "B1 SR-TS repair 01: the transport reading's base header at G2 (Rust's code), then its metadata at G7 the header at G2 with Rust's code, then the preview-physics"
+    ],
+    "assertion_failures": 1
+   },
+   "killed_by_assertion": true,
+   "probes_moved": null
+  },
+  {
+   "id": "U15",
+   "item": "header",
+   "description": "Rust order: the carrier_evidence branch kept",
+   "vitest": {
+    "total": 807,
+    "files_failed_to_load": 0,
+    "failed": [
+     "B1 SR-TS repair 01: the transport reading's base header at G2 (Rust's code), then its metadata at G7 the header at G2 with Rust's code, then the preview-physics"
+    ],
+    "assertion_failures": 1
+   },
+   "killed_by_assertion": true,
+   "probes_moved": null
+  },
+  {
+   "id": "U16",
+   "item": "header",
+   "description": "Rust order: the formulation-basis branch dropped",
+   "vitest": {
+    "total": 807,
+    "files_failed_to_load": 0,
+    "failed": [
+     "B1 SR-TS repair 01: the transport reading's base header at G2 (Rust's code), then its metadata at G7 the header at G2 with Rust's code, then the preview-physics"
+    ],
+    "assertion_failures": 1
+   },
+   "killed_by_assertion": true,
+   "probes_moved": null
+  }
+ ]
+}

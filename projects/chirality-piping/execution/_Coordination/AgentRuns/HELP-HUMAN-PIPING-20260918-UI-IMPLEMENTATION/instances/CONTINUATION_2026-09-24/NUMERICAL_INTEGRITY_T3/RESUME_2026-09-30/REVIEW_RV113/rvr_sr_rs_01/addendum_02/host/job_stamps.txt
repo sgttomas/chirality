@@ -1,0 +1,70 @@
+# RV113 SR-RS repair 02 jobs: each job's own log stamps
+== build_pybins_jcs.log
+# rv113 rsr2 job build_pybins_jcs (cargo) queued 2026-10-08T01:10:22Z dir=rv113/py-cmp/projects/chirality-piping/core/serialization/canonical_json
+# target=targets/rv113-pybins2 args: build --locked --offline --release --features checked-cli --bin openpipestress_jcs_ijson --bin openpipestress_jcs_binary64
+# end 2026-10-08T01:10:27Z rc=0
+== build_pybins_units.log
+# rv113 rsr2 job build_pybins_units (cargo) queued 2026-10-08T01:10:27Z dir=rv113/py-cmp/projects/chirality-piping/core/units
+# target=targets/rv113-pybins2 args: build --locked --offline --release --features cli --bin openpipestress_units
+# end 2026-10-08T01:10:27Z rc=0
+== build_rs2_head.log
+# rv113 rsr2 job build_rs2_head (cargo) queued 2026-10-08T01:02:24Z dir=rv113/rs2-head/projects/chirality-piping/core/reporting/result_export
+# target=targets/rv113-rs2 args: test --locked --offline --no-run
+# end 2026-10-08T01:02:31Z rc=0
+== build_rs2_mut.log
+# rv113 rsr2 job build_rs2_mut (cargo) queued 2026-10-08T01:15:36Z dir=rv113/rs2-mut/projects/chirality-piping/core/reporting/result_export
+# target=targets/rv113-rs2mut args: test --locked --offline --no-run
+# end 2026-10-08T01:15:44Z rc=0
+== py2_census.log
+# rv113 rsr2 job py2_census (slot) queued 2026-10-08T02:08:04Z dir=rv113/py2-head/projects/chirality-piping
+# args: /usr/bin/env OPENPIPESTRESS_CHECKED_JSON_BIN=WT/targets/rv113-pybins2/release/openpipestress_jcs_ijson OPENPIPESTRESS_BINARY64_JSON_BIN=WT/targets/rv113-pybins2/release/openpipestress_jcs_binary64 OPENPIPESTRESS_UNITS_BIN=WT/targets/rv113-pybins2/release/openpipestress_units TMPDIR=WT/scratch/rv113_rvr_01/pyr2/tmp VENV/bin/python WT/scratch/rv113_rvr_01/tools/rv113_py_harness.py WT/rv113/py2-head/projects/chirality-piping census WT/scratch/rv113_rvr_01/pyr2/census/py2_head.jsonl
+# start 2026-10-08T02:08:04Z
+# end 2026-10-08T02:08:40Z rc=0
+== py2_probes.log
+# rv113 rsr2 job py2_probes (slot) queued 2026-10-08T02:08:40Z dir=rv113/py2-head/projects/chirality-piping
+# args: /usr/bin/env OPENPIPESTRESS_CHECKED_JSON_BIN=WT/targets/rv113-pybins2/release/openpipestress_jcs_ijson OPENPIPESTRESS_BINARY64_JSON_BIN=WT/targets/rv113-pybins2/release/openpipestress_jcs_binary64 OPENPIPESTRESS_UNITS_BIN=WT/targets/rv113-pybins2/release/openpipestress_units TMPDIR=WT/scratch/rv113_rvr_01/pyr2/tmp VENV/bin/python WT/scratch/rv113_rvr_01/tools/rv113_py_harness.py WT/rv113/py2-head/projects/chirality-piping probes WT/scratch/rv113_rvr_01/tsr1/probes/probes_ts1.json WT/scratch/rv113_rvr_01/pyr2/probes/py2_head.jsonl
+# start 2026-10-08T02:08:40Z
+== py_cmp_probes.log
+# rv113 rsr2 job py_cmp_probes (slot) queued 2026-10-08T01:10:34Z dir=rv113/py-cmp/projects/chirality-piping
+# args: /usr/bin/env OPENPIPESTRESS_CHECKED_JSON_BIN=WT/targets/rv113-pybins2/release/openpipestress_jcs_ijson OPENPIPESTRESS_BINARY64_JSON_BIN=WT/targets/rv113-pybins2/release/openpipestress_jcs_binary64 OPENPIPESTRESS_UNITS_BIN=WT/targets/rv113-pybins2/release/openpipestress_units VENV/bin/python WT/scratch/rv113_rvr_01/tools/rv113_py_harness.py WT/rv113/py-cmp/projects/chirality-piping probes WT/scratch/rv113_rvr_01/rsr2/probes/probes_all.json WT/scratch/rv113_rvr_01/rsr2/probes/py_cmp_all.jsonl
+# start 2026-10-08T01:10:34Z
+# end 2026-10-08T01:11:32Z rc=0
+== rs2_head_harness.log
+# rv113 rsr2 job rs2_head_harness (slot) queued 2026-10-08T01:04:52Z dir=rv113/rs2-head/projects/chirality-piping/core/reporting/result_export
+# args: /usr/bin/env RV113_OUT=WT/scratch/rv113_rvr_01/rsr2/census/rs2_head.jsonl RV113_PROBES=WT/scratch/rv113_rvr_01/rsr2/probes/probes_all.json RV113_PROBES_OUT=WT/scratch/rv113_rvr_01/rsr2/probes/rs2_head_all.jsonl RUST_TEST_THREADS=2 WT/targets/rv113-rs2/debug/deps/rv113_census-2a7e1fb53dc907ac --test-threads 2
+# start 2026-10-08T01:04:52Z
+# end 2026-10-08T01:05:42Z rc=101
+== rs2_head_probes.log
+# rv113 rsr2 job rs2_head_probes (slot) queued 2026-10-08T01:08:21Z dir=rv113/rs2-head/projects/chirality-piping/core/reporting/result_export
+# args: /usr/bin/env RV113_PROBES=WT/scratch/rv113_rvr_01/rsr2/probes/probes_all.json RV113_PROBES_OUT=WT/scratch/rv113_rvr_01/rsr2/probes/rs2_head_all.jsonl RUST_TEST_THREADS=2 WT/targets/rv113-rs2/debug/deps/rv113_census-2a7e1fb53dc907ac rv113_probes --exact
+# start 2026-10-08T01:08:21Z
+# end 2026-10-08T01:09:33Z rc=0
+== rs2_probes_ts1.log
+# rv113 rsr2 job rs2_probes_ts1 (slot) queued 2026-10-08T02:01:40Z dir=rv113/rs2-head/projects/chirality-piping/core/reporting/result_export
+# args: /usr/bin/env RV113_PROBES=WT/scratch/rv113_rvr_01/tsr1/probes/probes_ts1.json RV113_PROBES_OUT=WT/scratch/rv113_rvr_01/tsr1/probes/rs2_head_ts1.jsonl RUST_TEST_THREADS=2 WT/targets/rv113-rs2/debug/deps/rv113_census-2a7e1fb53dc907ac rv113_probes --exact
+# start 2026-10-08T02:01:40Z
+# end 2026-10-08T02:02:41Z rc=0
+== rs2_suite.log
+# rv113 rsr2 job rs2_suite (cargo) queued 2026-10-08T01:12:27Z dir=rv113/rs2-head/projects/chirality-piping/core/reporting/result_export
+# target=targets/rv113-rs2 args: test --locked --offline --no-fail-fast
+# end 2026-10-08T01:13:57Z rc=0
+== ts1_harness.log
+# rv113 rsr2 job ts1_harness (slot) queued 2026-10-08T02:01:22Z dir=rv113/ts1-head/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV113_OUT=WT/scratch/rv113_rvr_01/tsr1/census_ts1_head.jsonl RV113_PROBES=WT/scratch/rv113_rvr_01/tsr1/probes/probes_ts1.json RV113_PROBES_OUT=WT/scratch/rv113_rvr_01/tsr1/probes/ts1_head.jsonl NMS/.bin/vitest run src/features/results/rv113Census.test.ts
+# start 2026-10-08T02:01:22Z
+# end 2026-10-08T02:01:40Z rc=0
+== ts1_tsc.log
+# rv113 rsr2 job ts1_tsc (slot) queued 2026-10-08T02:04:02Z dir=rv113/ts1-head/projects/chirality-piping/apps/desktop
+# args: NMS/.bin/tsc --noEmit -p tsconfig.json
+# start 2026-10-08T02:04:02Z
+# end 2026-10-08T02:04:07Z rc=0
+== ts1_vitest.log
+# rv113 rsr2 job ts1_vitest (slot) queued 2026-10-08T02:02:41Z dir=rv113/ts1-head/projects/chirality-piping/apps/desktop
+# args: NMS/.bin/vitest run --reporter=dot --reporter=json --outputFile.json=WT/scratch/rv113_rvr_01/tsr1/vitest_ts1_head.json
+# start 2026-10-08T02:02:41Z
+# end 2026-10-08T02:04:02Z rc=0
+== ts_cmp_probes.log
+# rv113 rsr2 job ts_cmp_probes (slot) queued 2026-10-08T01:09:58Z dir=rv113/ts-cmp/projects/chirality-piping/apps/desktop
+# args: /usr/bin/env RV113_PROBES=WT/scratch/rv113_rvr_01/rsr2/probes/probes_all.json RV113_PROBES_OUT=WT/scratch/rv113_rvr_01/rsr2/probes/ts_cmp_all.jsonl NMS/.bin/vitest run src/features/results/rv113Census.test.ts
+# start 2026-10-08T01:09:58Z
+# end 2026-10-08T01:10:16Z rc=0

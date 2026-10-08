@@ -1,0 +1,71 @@
+== I3 2ba2f81863
+parents 603e238517361e4e4ead1627bb90b8e5a35558ef b5cb7faaeb55e4553b64c75b49c6f9dbef77ac64
+subject I3: merge SR-RS (b1-r, b5cb7faaeb) into b1 at 603e238517
+files 603e238517..b5cb7faaeb side (merge-base to b1-r):
+merge-base 262bd687f0bc4a552586be14ba1b8e8f290f710b
+core/reporting/result_export/src/retained_precision.rs
+core/reporting/result_export/src/source_blocks.rs
+core/reporting/result_export/tests/retained_precision_contract.rs
+files merge-base..603e238517 (SP and SA side), count:       11
+intersection:        0
+== b1 03f55e7178 over 2ba2f81863
+03f55e7178 piping(T3 B1 SP): check the ordinary owner after SF-2's structure
+105e1a78c6 piping(T3 B1 SP): assert SF-2's structure on the successor precommit received
+2fb55b60e2 piping(T3 B1 SP): I3's pins; RV109's SF-1 and SF-2; the nodal-term ordinal
+ 4 files changed, 37499 insertions(+), 43 deletions(-)
+non-test source changes:
+core/product_physics/src/retained_facade_tests.rs
+core/product_physics/src/retained_wire.rs
+fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json
+fixtures/results/retained_precision_w_c2_successor_sparse_interactive.json
+retained_wire.rs diff:
+-        nodal_terms.push(json!({"constructor_ordinal":i,"source_id":l.source_id,"primitive_load_index":t.original,"dof":dof(l.dof),"value":e.bits(l.value,P)}));
++        // C2 (CONTRACT_DELTA:104): the stable `constructor_ordinal` is the term's ordinal in the
++        // constructor's input, its authored primitive-load index, not its canonical position (RR
++        // "I98's B2-W verified; …"); the array order stays kernel canonical.
++        nodal_terms.push(json!({"constructor_ordinal":t.original,"source_id":l.source_id,"primitive_load_index":t.original,"dof":dof(l.dof),"value":e.bits(l.value,P)}));
+== NUM commit 03d4266d40
+03d4266d40 piping(T3): I85's I3 step for SP (records only)
+== b1-r 6e3e4fe219 over b5cb7faaeb
+6e3e4fe219 piping(T3 B1 SR-RS): repair 2, the three-reader alignment set in the Rust reader
+ .../result_export/src/retained_precision.rs        |  403 +++++++-
+ .../tests/retained_precision_contract.rs           | 1042 +++++++++++++++++++-
+ 2 files changed, 1397 insertions(+), 48 deletions(-)
+== b1-p 70d4a68bd7 over 11cc14e3e6
+70d4a68bd7 piping(T3 B1 SR-PY): repair 02, pin a source owner out of range as G3's own refusal (D16)
+5f267db91d piping(T3 B1 SR-PY): repair 02, RV113 N-1: the transport docstring states Python's gate
+a721e58483 piping(T3 B1 SR-PY): repair 02, the three-reader alignment set's items 1-3; S-4 and N-2 pins
+ .../core/analysis_runs/retained_precision.py       |  53 ++++-
+ .../tests/test_retained_precision_contract.py      | 254 ++++++++++++++++++++-
+ 2 files changed, 294 insertions(+), 13 deletions(-)
+== b1-p 2843a59a16 over 11cc14e3e6
+2843a59a16 piping(T3 B1 SR-PY): repair 02, item 4: the transport header check at G2
+70d4a68bd7 piping(T3 B1 SR-PY): repair 02, pin a source owner out of range as G3's own refusal (D16)
+5f267db91d piping(T3 B1 SR-PY): repair 02, RV113 N-1: the transport docstring states Python's gate
+a721e58483 piping(T3 B1 SR-PY): repair 02, the three-reader alignment set's items 1-3; S-4 and N-2 pins
+ .../core/analysis_runs/retained_precision.py       | 24 +++++++-----
+ .../tests/test_retained_precision_carriers.py      | 45 +++++++++++++++++++---
+ 2 files changed, 54 insertions(+), 15 deletions(-)
+item 4 diff (70d4a68bd7..2843a59a16) vs held patch:
+357098ba93dfe3a3
+357098ba93dfe3a3
+357098ba93dfe3a3
+patch-id held vs commit:
+f779e1e523bb3a8b6967a87d151d28e8fe2f926e 0000000000000000000000000000000000000000
+f779e1e523bb3a8b6967a87d151d28e8fe2f926e 0000000000000000000000000000000000000000
+== b1-t b82b932923 over 7e47e51b5d
+b82b932923 piping(T3 B1 SR-TS repair 01): (g) at G8 INVOCATION; C2's precondition codes keyed one-to-one
+ .../src/features/results/retainedPrecision.test.ts | 91 ++++++++++++++++++++++
+ .../src/features/results/retainedPrecision.ts      | 15 +++-
+ 2 files changed, 104 insertions(+), 2 deletions(-)
+== b1-t 6fa6a64658 over b82b932923
+6fa6a64658 piping(T3 B1 SR-TS repair 01): a non-empty combinations list goes to G8 INVOCATION, not G3
+1d9455c714 piping(T3 B1 SR-TS repair 01): the transport header at G2 with Rust's code; metadata stays at G7
+ .../src/features/results/retainedPrecision.test.ts | 58 ++++++++++++++++++++--
+ .../src/features/results/retainedPrecision.ts      | 33 +++++++++---
+ 2 files changed, 79 insertions(+), 12 deletions(-)
+== remote branch tips
+03f55e71786a58ce9ed61863813e2410a9f53827	refs/heads/codex/piping-t3-b1-20261007
+2843a59a16fabb76a8e55cabdb2133b0a3c0ec5f	refs/heads/codex/piping-t3-b1-p-20261007
+6e3e4fe219733652e38c3878f6c63de8acbd9a40	refs/heads/codex/piping-t3-b1-r-20261007
+6fa6a64658f6e94c817d26e0cab28e5087b2cf01	refs/heads/codex/piping-t3-b1-t-20261007

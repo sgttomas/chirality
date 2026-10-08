@@ -1,0 +1,82 @@
+[
+ {
+  "id": "U01",
+  "item": "(g)",
+  "description": "reference_configurations check dropped"
+ },
+ {
+  "id": "U02",
+  "item": "(g)",
+  "description": "pressure_contract back to the falsiness test (false, 0 and '' admitted)"
+ },
+ {
+  "id": "U03",
+  "item": "(g)",
+  "description": "combinations back to the old `!combinations?.length`"
+ },
+ {
+  "id": "U04",
+  "item": "(g)",
+  "description": "components back to the old `!components?.length`"
+ },
+ {
+  "id": "U05",
+  "item": "(g)",
+  "description": "combinations and components may be null"
+ },
+ {
+  "id": "U06",
+  "item": "conjunct",
+  "description": "TS's G3 combinations conjunct restored"
+ },
+ {
+  "id": "U07",
+  "item": "C2",
+  "description": "precondition keying replaced by the old set of four codes"
+ },
+ {
+  "id": "U08",
+  "item": "C2",
+  "description": "source_family keyed to caller_not_qualified"
+ },
+ {
+  "id": "U09",
+  "item": "C2",
+  "description": "precondition phase dropped"
+ },
+ {
+  "id": "U10",
+  "item": "C2",
+  "description": "precondition no-Run dropped"
+ },
+ {
+  "id": "U11",
+  "item": "header",
+  "description": "transport header check dropped"
+ },
+ {
+  "id": "U12",
+  "item": "header",
+  "description": "transport header in Python's order (carrier branch, evidence before recovery)"
+ },
+ {
+  "id": "U13",
+  "item": "header",
+  "description": "transport header refusal reported at G7"
+ },
+ {
+  "id": "U14",
+  "item": "header",
+  "description": "Rust order: contract_evidence before source_block_recovery"
+ },
+ {
+  "id": "U15",
+  "item": "header",
+  "description": "Rust order: the carrier_evidence branch kept"
+ },
+ {
+  "id": "U16",
+  "item": "header",
+  "description": "Rust order: the formulation-basis branch dropped"
+ }
+]

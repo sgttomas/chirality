@@ -1,0 +1,35 @@
+== RR sections after 0b8299e496 (at H): is the heading cited in WG's T3 section? (prefix = first 25 characters of the title)
+RR:14964	cited=1	RV109 passes SP in RV-P round 2; SF-1 and SF-2 go to I3's pinning step; B2-C dispatched as I97
+RR:15004	cited=1	#1112's package corrected twice; RV111 confirms the final head
+RR:15028	cited=1	RV117 passes #1111; #1111 squash-merged; errata E-13 and E-14; the host's name joins the screen
+RR:15060	cited=1	I97's B2-C returned and verified; RV118 (RV-C) reviews it; RV115 checks DEF-C
+RR:15090	cited=1	#1112 merged: T3-SI1c is on main
+RR:15117	cited=0	B2-W and B3-W dispatched as I98 and I99; RV113 asked for status
+RR:15128	cited=0	RV115 (RV-K) accepts DEF-C's numerical content
+RR:15144	cited=1	I99's B3-W verified; B3's witnesses selected; P-2 is required; B3a's exceptions restated
+RR:15176	cited=1	RV113's three returns verified; I3 made at `2ba2f81863`; the three-reader alignment set ruled
+RR:15225	cited=0	I98's B2-W verified; B2's witnesses selected (W-CB1 rebased); the nodal-term ordinal is a producer defect, fixed at I3; 
+RR:15253	cited=1	RV118 (RV-C) accepts B2-C with amendments; B2-C ruled; C-1 to C-16 selected; I97 revises
+RR:15284	cited=1	Owner decision: development jobs may use up to 64 GiB, the product stays at 12 GiB; the host runs three heavy jobs at on
+RR:15316	cited=1	Owner clarification: 64 GiB is T3's own allocation; the machine may run to 100 GiB, and jobs start under 90 GiB
+RR:15329	cited=0	I90's SR-RS repair round 2 verified; RV113 confirms it; I92's SR-TS round dispatched
+RR:15358	cited=0	I91's and I92's rounds verified; the header move's nine transport changes ruled in; TS's G3 combinations conjunct moves 
+RR:15390	cited=0	I92's SR-TS commits and I85's I3 step verified; RV109 confirms SP; RV113 queues SR-TS
+RR:15427	cited=0	I91's item 4 verified and `b1-p` pushed; I97's B2-C revision 01 verified; RV113 queues SR-PY; RV115 and RV118 confirm th
+RR:15450	cited=0	RV115 confirms S-4 (a)'s soundness with SA3-1; the combination's displacement magnitude becomes one exact rounding
+RR:15477	cited=0	RV118 confirms B2-C revision 01; the exact rounding is formed in the kernel's projection (B2-K); I97 writes revision 02
+RR:15498	cited=0	I97's B2-C revision 02 verified; RV115 and RV118 confirm it
+RR:15517	cited=0	Erratum E-16: RV113's SR-PY evidence carried the junit host attribute; redacted on NUM by the owner's decision
+RR:15541	cited=0	RV115 and RV118 confirm B2-C revision 02: B2-C is final for J1; SA4-1 and B-2 go to B2-K's brief, B-1 to SC2's; E-17 and
+
+== WG T3-B1/B6 row: SP text
+**SP:** I85 in `WT/b1` (`BRIEFS/B1_SP.md`). It returned before I3, complete except the post-I3 W-C2 pin, and the headline rule is accepted. **RV109 passed it in RV-P round 2** (0/2/4). At I3, I85 lands W-C2's pins, SF-1 (N-16's build-provenance flags) and SF-2 (the (C, B, A) and (A, A2) pins), by `BRIEFS/B1_SP_I3.md`. **SR-RS
+
+== WG position header
+548:**Position (2026-10-07 UTC):**
+== WG B2/B3 estimate
+About 206–329 h agent, after PR-B1 
+== owner-held list: lines mentioning main's tree, redaction or host names
+       0
+== owner decisions in force: lines mentioning E-16 or redaction
+0

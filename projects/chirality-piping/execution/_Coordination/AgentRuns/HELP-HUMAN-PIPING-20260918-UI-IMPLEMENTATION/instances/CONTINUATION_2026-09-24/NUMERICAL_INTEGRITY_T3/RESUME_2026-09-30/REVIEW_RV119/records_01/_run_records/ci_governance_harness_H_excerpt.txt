@@ -1,0 +1,6 @@
+governance-harness run 37719456554, job 113123501950 (harness), excerpt (paths omitted):
+CHIRALITY_REQUIRE_LIVE_TESTS: 1
+717d220e3865241054503687e3be6bfaf97356ed -> pull/1114/merge
+1161 passed, 48 subtests passed in 95.72s
+merge ref 717d220e38 parents: f4358eb0be, 57f078b4c8; tree 82b9608388
+H tree 82b9608388 (H is M plus one commit, so M+H merges to H's tree)

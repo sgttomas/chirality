@@ -1,0 +1,14 @@
+cwd=WT/rv119 (detached worktree at H2); command: VENV tools/validation/validate_run_record_leaks.py --base f4358eb0be945bc98677d05b526bb4a1b0b1d5cf --head 8568fb2053f6750e4d09aa00d1791f9f3757f7e1
+WARN: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/REVIEW_RV113/rvr_sr_py_01/evidence/probes/probes_v5.json: 8.1 MB run-record file; keep large evidence as CI artifacts
+PASS: 1109 changed run-record file(s) scanned; 0 possible credential(s); 0 machine-local symlink(s).
+exit=0
+
+command: VENV tools/validation/validate_run_record_leaks.py --base 57f078b4c8a87756d3d0985f58a67e15bbeda476 --head 8568fb2053f6750e4d09aa00d1791f9f3757f7e1 (the delta)
+PASS: 55 changed run-record file(s) scanned; 0 possible credential(s); 0 machine-local symlink(s).
+exit=0
+
+command: VENV tools/validation/validate_run_record_leaks.py --base 0e62b8e36b02ee85680e99ab8b313997930c45c7 --head 8568fb2053f6750e4d09aa00d1791f9f3757f7e1 (against main now, 0e62b8e36b; the two-dot diff also counts #1115's App v4 paths that H2 lacks)
+WARN: projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/REVIEW_RV113/rvr_sr_py_01/evidence/probes/probes_v5.json: 8.1 MB run-record file; keep large evidence as CI artifacts
+PASS: 1111 changed run-record file(s) scanned; 0 possible credential(s); 0 machine-local symlink(s).
+exit=0
+App v4 paths in M2..H2 with status A/M/T (two-dot): 32

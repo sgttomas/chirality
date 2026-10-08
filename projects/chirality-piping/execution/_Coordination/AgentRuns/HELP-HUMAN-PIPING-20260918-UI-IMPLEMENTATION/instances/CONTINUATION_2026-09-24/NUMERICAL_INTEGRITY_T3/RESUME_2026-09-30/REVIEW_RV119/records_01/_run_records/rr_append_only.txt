@@ -1,0 +1,12 @@
+main's RR: 1282756 B, 14962 lines, sha256 f20fddef4fa0ca21...
+H's RR:    1349177 B, 15581 lines, sha256 cba01040244f91c4...
+main's RR is an exact byte prefix of H's: True
+H's RR equals N's: True
+appended: 66421 B, 619 lines; sections appended: 22
+WG: main blob 5d0107fce67ba4ad517e1fd0f317f2bb7504ca00, H blob a2ca26598d583627c2a43e6101c763d5d4ecd61c, N blob a2ca26598d583627c2a43e6101c763d5d4ecd61c
+WG main blob = NUM's at 0b8299e496: 5d0107fce67ba4ad517e1fd0f317f2bb7504ca00
+main's last commits touching WG:
+54f1ba1f6d piping(T3): records through B1's phase 2 reviews, B2/B3 phase 0 and SI1c's acceptance (records only) (#1111)
+4f37590bfb piping(T3): records through B6's merge and B1's phase 2 (records only) (#1108)
+47a3bdfcf5 piping(T3): records after #1104 (records only) (#1105)
+41	29	projects/chirality-piping/execution/_Coordination/WorkGraphs/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.md

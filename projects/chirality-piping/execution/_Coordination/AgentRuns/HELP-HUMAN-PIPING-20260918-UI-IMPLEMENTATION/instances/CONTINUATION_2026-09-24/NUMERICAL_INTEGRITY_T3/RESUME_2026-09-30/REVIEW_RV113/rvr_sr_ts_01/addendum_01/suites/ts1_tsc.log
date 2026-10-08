@@ -1,0 +1,4 @@
+# rv113 rsr2 job ts1_tsc (slot) queued 2026-10-08T02:04:02Z dir=rv113/ts1-head/projects/chirality-piping/apps/desktop
+# args: NMS/.bin/tsc --noEmit -p tsconfig.json
+# start 2026-10-08T02:04:02Z
+# end 2026-10-08T02:04:07Z rc=0

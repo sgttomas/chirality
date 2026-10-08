@@ -1,0 +1,25 @@
+Read at 2026-10-08T04:03:48Z. The earlier form is read at run time from RR at H (57f078b4c8) and never printed.
+== repository visibility: PUBLIC
+== origin's NUM branch: refs/heads/codex/piping-numerical-integrity-20260926 = dc4ffdc7c8d8d7adbefe05127c9c8817973e57be
+== origin's PR ref: 8568fb2053f6750e4d09aa00d1791f9f3757f7e1	refs/pull/1114/head
+== #1114's commits (GitHub API):
+   57f078b4c8 piping(T3): records after #1111 (NUM 96cf68289f)
+   8568fb2053 piping(T3): records PR, the S-1 delta (NUM dc4ffdc7c8)
+== does the PR's first commit carry the earlier form (plain)? RR: 1 line(s); B2C_REVISION_02.md: 1 line(s)
+== GitHub serves 57f078b4c8: 57f078b4c8
+== c8e54918cd an ancestor of origin's NUM tip: yes
+== bc37d43a0a an ancestor of origin's NUM tip: yes
+== 592f487abe an ancestor of origin's NUM tip: yes
+== NUM commits on origin's branch that add or remove the earlier form (pickaxe on RR and the brief):
+   dc4ffdc7c8 2026-10-07T21:51:38-06:00 piping(T3): S-1 ruled by the owner; E-18 rewordings; errata to E-16's account
+   592f487abe 2026-10-07T20:20:08-06:00 piping(T3): RV118 confirms B2-C revision 01; revision 02 dispatched
+== E-16's pre-redaction junit files at c8e54918cd: the attribute value equals the network name in 42 of 42 (redactions_e16_check.txt)
+== GitHub activity on the NUM branch (latest 8 pushes):
+   2026-10-08T03:51:41Z push 180314cf18->dc4ffdc7c8
+   2026-10-08T02:51:54Z push 7e6a5ba7ea->180314cf18
+   2026-10-08T02:47:06Z push 96cf68289f->7e6a5ba7ea
+   2026-10-08T02:44:13Z push 7955efb86f->96cf68289f
+   2026-10-08T02:37:51Z push cbdf777d47->7955efb86f
+   2026-10-08T02:36:33Z push c8e54918cd->cbdf777d47
+   2026-10-08T02:33:31Z push 592f487abe->c8e54918cd
+   2026-10-08T02:20:10Z push 827dc41c2e->592f487abe

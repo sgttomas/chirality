@@ -1,0 +1,213 @@
+{
+ "entries": 339,
+ "inputs_differ": [],
+ "verdict_changes": [
+  {
+   "set": "mutation",
+   "id": "g7_not_required_quality_enum_invalid",
+   "verdict": "transport",
+   "i1": {
+    "ok": {
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "standing": "needs_recompute",
+     "publication_sha256": "fc8cadac8b906044ff7827b57f1d6ac5faac3afe08bc6c2df2d1295b03c4c914",
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+   },
+   "head": {
+    "err": {
+     "gate": "G2",
+     "code": "SOURCE_NUMERICAL_CASE_INVALID",
+     "detail": null
+    }
+   }
+  },
+  {
+   "set": "mutation",
+   "id": "g7_selected_quality_enum_invalid",
+   "verdict": "transport",
+   "i1": {
+    "ok": {
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "standing": "needs_recompute",
+     "publication_sha256": "455e6213e193baeadc75ce050d862841b1bd4ee9ad544c761727f23899c45942",
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+   },
+   "head": {
+    "err": {
+     "gate": "G2",
+     "code": "SOURCE_NUMERICAL_CASE_INVALID",
+     "detail": null
+    }
+   }
+  },
+  {
+   "set": "mutation",
+   "id": "g7_unavailable_quality_enum_invalid",
+   "verdict": "transport",
+   "i1": {
+    "ok": {
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "standing": "needs_recompute",
+     "publication_sha256": "618be60167d8c33daebfcd1812cb98a67fd1f9d35969777eed74465682a31adb",
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+   },
+   "head": {
+    "err": {
+     "gate": "G2",
+     "code": "SOURCE_NUMERICAL_CASE_INVALID",
+     "detail": null
+    }
+   }
+  },
+  {
+   "set": "mutation",
+   "id": "g7_quality_case_evidence_ref_empty",
+   "verdict": "transport",
+   "i1": {
+    "ok": {
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "standing": "needs_recompute",
+     "publication_sha256": "4ba30c7503929e23d1054855d8a25119d2c7e62348ff16023ce0990f53180a72",
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+   },
+   "head": {
+    "err": {
+     "gate": "G2",
+     "code": "SOURCE_NUMERICAL_CASE_INVALID",
+     "detail": null
+    }
+   }
+  },
+  {
+   "set": "mutation",
+   "id": "g7_quality_case_extra_member",
+   "verdict": "transport",
+   "i1": {
+    "ok": {
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "standing": "needs_recompute",
+     "publication_sha256": "f893b908c9a509d782215f9c7ba4bd77879e2314c2f0e4808824fbcdb751cd03",
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+   },
+   "head": {
+    "err": {
+     "gate": "G2",
+     "code": "SOURCE_NUMERICAL_CASE_INVALID",
+     "detail": null
+    }
+   }
+  },
+  {
+   "set": "mutation",
+   "id": "g7_quality_status_invalid",
+   "verdict": "transport",
+   "i1": {
+    "ok": {
+     "invocation_bound": false,
+     "numerical_eligible": false,
+     "standing": "needs_recompute",
+     "publication_sha256": "1bbe5bdbcf4cc3bc974ca3f7705dac97c5cb8b186fc301870c13d75932d5af88",
+     "classifications": 0,
+     "classifications_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+   },
+   "head": {
+    "err": {
+     "gate": "G2",
+     "code": "SOURCE_NUMERICAL_QUALITY_INVALID",
+     "detail": null
+    }
+   }
+  },
+  {
+   "set": "mutation",
+   "id": "g7_formulation_limitations_empty",
+   "verdict": "transport",
+   "i1": {
+    "err": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "formulation profile or limitations"
+    }
+   },
+   "head": {
+    "err": {
+     "gate": "G2",
+     "code": "SOURCE_FORMULATION_BASIS_UNSUPPORTED",
+     "detail": null
+    }
+   }
+  },
+  {
+   "set": "mutation",
+   "id": "g7_contract_evidence_null",
+   "verdict": "transport",
+   "i1": {
+    "err": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "transport evidence shape"
+    }
+   },
+   "head": {
+    "err": {
+     "gate": "G2",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_REQUIRED",
+     "detail": null
+    }
+   }
+  },
+  {
+   "set": "mutation",
+   "id": "g7_source_block_recovery_present",
+   "verdict": "transport",
+   "i1": {
+    "err": {
+     "gate": "G7",
+     "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID",
+     "detail": "unsupported source namespace"
+    }
+   },
+   "head": {
+    "err": {
+     "gate": "G2",
+     "code": "SOURCE_BLOCKS_LEGACY_DOWNGRADE_FORBIDDEN",
+     "detail": null
+    }
+   }
+  }
+ ],
+ "expectation_misses": {
+  "i1": [],
+  "head": []
+ },
+ "ts_vs_rs_bound_differences": [
+  {
+   "set": "mutation",
+   "id": "g7_maximum_off_enclosure",
+   "rs_head": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EXTREMA_BOUNDS"
+   },
+   "ts_head": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  }
+ ]
+}

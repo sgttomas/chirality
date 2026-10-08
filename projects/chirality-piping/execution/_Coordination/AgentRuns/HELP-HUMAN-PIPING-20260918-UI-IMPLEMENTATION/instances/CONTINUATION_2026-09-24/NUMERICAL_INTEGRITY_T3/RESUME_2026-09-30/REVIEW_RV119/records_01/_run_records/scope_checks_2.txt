@@ -1,0 +1,19 @@
+== N..H paths outside projects/chirality-app-v4
+== N..H count all
+     209
+== merge-base(M,N)..M paths (main's move since NUM's merge base)
+MB=0b6c5d7362ff21104e078d8168f62e3f38928cf9
+f4358eb0be945bc98677d05b526bb4a1b0b1d5cf Merge pull request #1113 from sgttomas/claude/app-v4-group-a-resume
+ 209 projects/chirality-app-v4
+== main's move touches piping?
+       0
+== N..H count in app-v4
+     209
+== M..H whole diff by status and top folder
+1055 A projects/chirality-piping/execution
+   2 M projects/chirality-piping/execution
+   1 M projects/chirality-piping/validation
+== portability_policy.json at N vs H
+5bff4b249828eb80d7cc0f9782fd20a2a597a7fb
+5bff4b249828eb80d7cc0f9782fd20a2a597a7fb
+9fb269d2a0694db99eadcd9f27a0af143ded914a

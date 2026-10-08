@@ -1,0 +1,29 @@
+== sizes of the 1,058 changed files at H
+total bytes 31373904 files 1058
+largest 8:
+8081676	T3/RESUME_2026-09-30/REVIEW_RV113/rvr_sr_py_01/evidence/probes/probes_v5.json
+1489699	T3/RESUME_2026-09-30/REVIEW_RV113/rvr_sr_ts_01/evidence/suites/vitest_head.log
+1484335	T3/RESUME_2026-09-30/REVIEW_RV113/rvr_sr_ts_01/evidence/suites/vitest_i1.log
+1349177	T3/ROOT_RULINGS_V1.md
+687865	projects/chirality-piping/validation/portability_policy.json
+252646	T3/RESUME_2026-09-30/REVIEW_RV117/records_01/_run_records/changed_paths_name_status.tsv
+240006	T3/RESUME_2026-09-30/REVIEW_RV113/rvr_sr_py_01/evidence/census/py_i1.jsonl
+240006	T3/RESUME_2026-09-30/REVIEW_RV113/rvr_sr_py_01/evidence/census/py_head.jsonl
+files over 50 MB: 0
+files over 2 MB: 1
+== mime types
+ 651 text/plain
+ 156 application/gzip
+ 151 application/json
+  45 text/x-shellscript
+  32 text/x-script.python
+  17 text/x-diff
+   3 text/x-Algol68
+   2 text/x-java
+   1 text/csv
+== build-output paths (target/, node_modules/, dist/, __pycache__, .pyc, .so, .wasm, .dylib, .rlib, .o)
+       0
+== path components named build
+== binary (non-text, non-gzip) files
+== count of numstat binary entries
+     156

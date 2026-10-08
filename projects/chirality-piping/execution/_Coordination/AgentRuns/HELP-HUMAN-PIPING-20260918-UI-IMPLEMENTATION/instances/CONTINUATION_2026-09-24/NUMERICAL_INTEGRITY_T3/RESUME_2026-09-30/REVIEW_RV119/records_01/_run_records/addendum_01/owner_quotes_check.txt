@@ -1,0 +1,12 @@
+WG:602	NOT FOUND	I choose 1
+WG:602	VERBATIM-IN-RR	Redact my two lines
+WG:603	VERBATIM-IN-RR	you can go up to the agreed 64 GB for your tasks (this is desirable when it reduces the development time), but
+WG:605	VERBATIM-IN-RR	D: block at overflow
+WG:605	VERBATIM-IN-RR	Repair within 1.0.0
+WG:606	VERBATIM-IN-RR	use 12 GiB, target is 32 GB workstations but 16 GB workstations still solving within practical timeframes
+WG:607	VERBATIM-IN-RR	if you need to allocated 32 GiB it will be available. If you need more than 64 GiB we should negotiate
+WG:608	VERBATIM-IN-RR	You can raise the memory ceiling to 6.0 GiB without asking
+WG:609	VERBATIM-IN-RR	Go with your recommendation on G10
+quoted phrases 9; verbatim in RR 8
+Owner decision: development jobs may use up to 64 GiB...: owner quote = 338 chars
+Owner clarification: 64 GiB is T3's own allocation...: owner quote = 229 chars

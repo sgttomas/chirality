@@ -1,0 +1,14 @@
+cwd: WT/rv119 (detached worktree of H2 = 8568fb2053f6750e4d09aa00d1791f9f3757f7e1)
+command: WT/tools/t3_slot.sh env TMPDIR=WT/scratch/rv119_records_01/tmp PYTHONDONTWRITEBYTECODE=1 GIT_OPTIONAL_LOCKS=0 VENV -m pytest -q -p no:cacheprovider -rA tools/practitioner_harness/test_live_baseline.py -k gen8
+lock log (WT/guard/cargo_jobs.log), this job:
+2026-10-08T03:54:20Z WAIT pid=82293 cwd=WT/rv119 args: env TMPDIR=WT/scratch/rv119_records_01/tmp PYTHONDONTWRITEBYTECOD
+2026-10-08T03:54:20Z START pid=82315 slot=cargo_job.slot2.lock cwd=WT/rv119 args: env TMPDIR=WT/scratch/rv119_records_01
+2026-10-08T03:54:53Z END rc=0 pid=82315 slot=cargo_job.slot2.lock cwd=WT/rv119
+---- output ----
+start 2026-10-08T03:54:20Z
+.                                                                        [100%]
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tools/practitioner_harness/test_live_baseline.py::test_live_gen8_semantic_portability_invariants
+1 passed, 10 deselected in 32.85s
+exit=0 end 2026-10-08T03:54:53Z

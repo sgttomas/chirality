@@ -1,0 +1,24 @@
+read at 2026-10-08T03:11:01Z
+== GitHub Actions runs on H 57f078b4c8a87756d3d0985f58a67e15bbeda476
+37719456611 Harness Pre-merge Validation pull_request completed success 57f078b4c8
+37719456551 pec-tests pull_request completed success 57f078b4c8
+37719456554 governance-harness pull_request completed success 57f078b4c8
+37719456552 Piping Desktop E2E pull_request completed success 57f078b4c8
+== jobs
+Harness Pre-merge Validation | Select App coverage | success
+Harness Pre-merge Validation | Harness pre-merge | success
+Harness Pre-merge Validation | App Runtime integration | skipped
+Harness Pre-merge Validation | App instruction bundle | skipped
+pec-tests | Select PEC coverage | success
+pec-tests | pec | success
+pec-tests | PEC workspace tests | skipped
+governance-harness | harness | success
+Piping Desktop E2E | Select source coverage | success
+Piping Desktop E2E | Numerical cargo suite | success
+Piping Desktop E2E | Source remainder (${{ matrix.shard }}/4) | skipped
+Piping Desktop E2E | Accessibility barrier and selected coverage | skipped
+Piping Desktop E2E | Desktop E2E (source mode) | success
+== PR state
+state=OPEN draft=false mergeable=MERGEABLE mergeState=CLEAN head=57f078b4c8 base=f4358eb0be
+== origin main
+f4358eb0be

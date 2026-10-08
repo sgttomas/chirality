@@ -1,0 +1,87 @@
+[
+ {
+  "id": "r2x:t_measure_extra_member",
+  "item": "T",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "preview_cases",
+     0,
+     "intensified_measures"
+    ],
+    "op": "set",
+    "value": [
+     {
+      "result_id": "result:rv113:measure",
+      "component_id": "component:rv113",
+      "pipe_id": "pipe:fixture-span",
+      "location": "end_i",
+      "factor_role": "bend",
+      "sif": 1.5,
+      "sif_source_reference": "rv113",
+      "section_modulus_m3": 0.0001,
+      "bending_moment_y_n_m": 1.0,
+      "bending_moment_z_n_m": 2.0,
+      "extra": 1
+     }
+    ]
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "",
+  "set_name": "r2x"
+ },
+ {
+  "id": "r2x:t_gate_extra_member",
+  "item": "T",
+  "base": "ordinary_prepared_synthetic",
+  "edits": [
+   {
+    "path": [
+     "contract_evidence",
+     "combination_gates"
+    ],
+    "op": "set",
+    "value": [
+     {
+      "combination_id": "combination:rv113",
+      "withheld": true,
+      "reason": "NONLINEAR_COMBINATION_REQUIRES_SOLVE",
+      "extra": 1
+     }
+    ]
+   }
+  ],
+  "invocation_edits": [],
+  "rehash": "all",
+  "want": {
+   "bound": {
+    "observe": true
+   },
+   "unbound": {
+    "observe": true
+   },
+   "transport": {
+    "gate": "G7",
+    "code": "SOURCE_PREVIEW_PHYSICS_EVIDENCE_INVALID"
+   }
+  },
+  "note": "",
+  "set_name": "r2x"
+ }
+]
