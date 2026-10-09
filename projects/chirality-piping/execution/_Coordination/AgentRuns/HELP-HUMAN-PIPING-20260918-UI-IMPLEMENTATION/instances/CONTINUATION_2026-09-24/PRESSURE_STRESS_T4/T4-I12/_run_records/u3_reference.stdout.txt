@@ -1,0 +1,769 @@
+load:L-100: connector g = ['253.553038291', '350', '0', '0', '0', '385']
+load:L-100: raw-difference moment imbalance = ['-770', '0', '0']
+load:L-200: connector g = ['130.951341565', '125', '0', '0', '0', '137.5']
+load:L-200: raw-difference moment imbalance = ['-275', '0', '0']
+load:L-300: connector g = ['64.3616568221', '0', '-200', '150', '140', '0']
+load:L-300: raw-difference moment imbalance = ['0', '440', '0']
+ok   U3-J1-LATERAL: Q proper orthonormal
+ok   U3-J1-LATERAL: Q.x follows r
+ok   U3-J1-LATERAL: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-J1-LATERAL: rank B = 6 (exact)
+ok   U3-J1-LATERAL: Ke symmetric
+ok   U3-J1-LATERAL: rigid translation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J1-LATERAL: rigid translation_x: Ke d = 0 exactly
+ok   U3-J1-LATERAL: rigid translation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J1-LATERAL: rigid translation_y: Ke d = 0 exactly
+ok   U3-J1-LATERAL: rigid translation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J1-LATERAL: rigid translation_z: Ke d = 0 exactly
+ok   U3-J1-LATERAL: rigid rotation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J1-LATERAL: rigid rotation_x: Ke d = 0 exactly
+ok   U3-J1-LATERAL: rigid rotation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J1-LATERAL: rigid rotation_y: Ke d = 0 exactly
+ok   U3-J1-LATERAL: rigid rotation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J1-LATERAL: rigid rotation_z: Ke d = 0 exactly
+ok   U3-J1-LATERAL: six rigid modes linearly independent
+ok   U3-J1-LATERAL: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-J1-LATERAL: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-J1-LATERAL: q from B equals q from kinematics
+ok   U3-J1-LATERAL: B^T g equals closed-form end blocks
+ok   U3-J1-LATERAL: Ke d - B^T K q_ref equals B^T g
+ok   U3-J1-LATERAL: end actions balance about ['0', '0', '0']
+ok   U3-J1-LATERAL: end actions balance about ['0', '0', '0']
+ok   U3-J1-LATERAL: end actions balance about ['7', '-3', '5']
+ok   U3-J1-LATERAL: virtual work g.(B dd) = f.dd
+ok   JR agreement: J1 q_y: stated 0.001, derived 1/1000
+ok   JR agreement: J1 g_y: stated 80, derived 80
+ok   JR agreement: J1 U: stated 0.04, derived 1/25
+ok   JR agreement: J1 Fi_y: stated -80, derived -80
+ok   JR agreement: J1 Fj_y: stated 80, derived 80
+ok   JR agreement: J1 Mi_z: stated -12, derived -12
+ok   JR agreement: J1 Mj_z: stated -12, derived -12
+ok   U3-J1-COMMON-ROTATION: Q proper orthonormal
+ok   U3-J1-COMMON-ROTATION: Q.x follows r
+ok   U3-J1-COMMON-ROTATION: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-J1-COMMON-ROTATION: rank B = 6 (exact)
+ok   U3-J1-COMMON-ROTATION: Ke symmetric
+ok   U3-J1-COMMON-ROTATION: rigid translation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J1-COMMON-ROTATION: rigid translation_x: Ke d = 0 exactly
+ok   U3-J1-COMMON-ROTATION: rigid translation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J1-COMMON-ROTATION: rigid translation_y: Ke d = 0 exactly
+ok   U3-J1-COMMON-ROTATION: rigid translation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J1-COMMON-ROTATION: rigid translation_z: Ke d = 0 exactly
+ok   U3-J1-COMMON-ROTATION: rigid rotation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J1-COMMON-ROTATION: rigid rotation_x: Ke d = 0 exactly
+ok   U3-J1-COMMON-ROTATION: rigid rotation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J1-COMMON-ROTATION: rigid rotation_y: Ke d = 0 exactly
+ok   U3-J1-COMMON-ROTATION: rigid rotation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J1-COMMON-ROTATION: rigid rotation_z: Ke d = 0 exactly
+ok   U3-J1-COMMON-ROTATION: six rigid modes linearly independent
+ok   U3-J1-COMMON-ROTATION: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-J1-COMMON-ROTATION: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-J1-COMMON-ROTATION: q from B equals q from kinematics
+ok   U3-J1-COMMON-ROTATION: B^T g equals closed-form end blocks
+ok   U3-J1-COMMON-ROTATION: Ke d - B^T K q_ref equals B^T g
+ok   U3-J1-COMMON-ROTATION: end actions balance about ['0', '0', '0']
+ok   U3-J1-COMMON-ROTATION: end actions balance about ['0', '0', '0']
+ok   U3-J1-COMMON-ROTATION: end actions balance about ['7', '-3', '5']
+ok   U3-J1-COMMON-ROTATION: virtual work g.(B dd) = f.dd
+ok   J1 common rotation: q = 0, U = 0, actions 0
+ok   JR agreement: J1 common-rotation q: stated 0, derived 0
+ok   JR agreement: raw-difference q_y: stated 0.003, derived 3/1000
+ok   JR agreement: raw-difference g_y: stated 240, derived 240
+ok   JR agreement: raw-difference U: stated 0.36, derived 9/25
+ok   U3-J2-ROTATION: Q proper orthonormal
+ok   U3-J2-ROTATION: Q.x follows r
+ok   U3-J2-ROTATION: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-J2-ROTATION: rank B = 6 (exact)
+ok   U3-J2-ROTATION: Ke symmetric
+ok   U3-J2-ROTATION: rigid translation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J2-ROTATION: rigid translation_x: Ke d = 0 exactly
+ok   U3-J2-ROTATION: rigid translation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J2-ROTATION: rigid translation_y: Ke d = 0 exactly
+ok   U3-J2-ROTATION: rigid translation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J2-ROTATION: rigid translation_z: Ke d = 0 exactly
+ok   U3-J2-ROTATION: rigid rotation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J2-ROTATION: rigid rotation_x: Ke d = 0 exactly
+ok   U3-J2-ROTATION: rigid rotation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J2-ROTATION: rigid rotation_y: Ke d = 0 exactly
+ok   U3-J2-ROTATION: rigid rotation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J2-ROTATION: rigid rotation_z: Ke d = 0 exactly
+ok   U3-J2-ROTATION: six rigid modes linearly independent
+ok   U3-J2-ROTATION: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-J2-ROTATION: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-J2-ROTATION: q from B equals q from kinematics
+ok   U3-J2-ROTATION: B^T g equals closed-form end blocks
+ok   U3-J2-ROTATION: Ke d - B^T K q_ref equals B^T g
+ok   U3-J2-ROTATION: end actions balance about ['0', '0', '0']
+ok   U3-J2-ROTATION: end actions balance about ['0', '0', '0']
+ok   U3-J2-ROTATION: end actions balance about ['7', '-3', '5']
+ok   U3-J2-ROTATION: virtual work g.(B dd) = f.dd
+ok   JR agreement: J2 qt: stated 0, derived 0
+ok   JR agreement: J2 qr_z: stated 0.01, derived 1/100
+ok   JR agreement: J2 g_mz: stated 12, derived 12
+ok   JR agreement: J2 U: stated 0.06, derived 3/50
+ok   U3-J2-ROTATION-HELD: Q proper orthonormal
+ok   U3-J2-ROTATION-HELD: Q.x follows r
+ok   U3-J2-ROTATION-HELD: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-J2-ROTATION-HELD: rank B = 6 (exact)
+ok   U3-J2-ROTATION-HELD: Ke symmetric
+ok   U3-J2-ROTATION-HELD: rigid translation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J2-ROTATION-HELD: rigid translation_x: Ke d = 0 exactly
+ok   U3-J2-ROTATION-HELD: rigid translation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J2-ROTATION-HELD: rigid translation_y: Ke d = 0 exactly
+ok   U3-J2-ROTATION-HELD: rigid translation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J2-ROTATION-HELD: rigid translation_z: Ke d = 0 exactly
+ok   U3-J2-ROTATION-HELD: rigid rotation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J2-ROTATION-HELD: rigid rotation_x: Ke d = 0 exactly
+ok   U3-J2-ROTATION-HELD: rigid rotation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J2-ROTATION-HELD: rigid rotation_y: Ke d = 0 exactly
+ok   U3-J2-ROTATION-HELD: rigid rotation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-J2-ROTATION-HELD: rigid rotation_z: Ke d = 0 exactly
+ok   U3-J2-ROTATION-HELD: six rigid modes linearly independent
+ok   U3-J2-ROTATION-HELD: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-J2-ROTATION-HELD: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-J2-ROTATION-HELD: q from B equals q from kinematics
+ok   U3-J2-ROTATION-HELD: B^T g equals closed-form end blocks
+ok   U3-J2-ROTATION-HELD: Ke d - B^T K q_ref equals B^T g
+ok   U3-J2-ROTATION-HELD: end actions balance about ['0', '0', '0']
+ok   U3-J2-ROTATION-HELD: end actions balance about ['0', '0', '0']
+ok   U3-J2-ROTATION-HELD: end actions balance about ['7', '-3', '5']
+ok   U3-J2-ROTATION-HELD: virtual work g.(B dd) = f.dd
+ok   J2 held: Mj_z = (krz + ky L^2/4) phi
+ok   J2 held: Mi_z = (ky L^2/4 - krz) phi
+ok   beam cross-check: ky = 12EI/L^3, krz = EI/L gives the held end-j rate krz + ky L^2/4 = 4EI/L
+ok   JR agreement: J2 held qt_y: stated -0.0015, derived -3/2000
+ok   JR agreement: J2 held g_y: stated -120, derived -120
+ok   JR agreement: J2 held g_mz: stated 12, derived 12
+ok   U3-REF-ENDMOMENT: Q proper orthonormal
+ok   U3-REF-ENDMOMENT: Q.x follows r
+ok   U3-REF-ENDMOMENT: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-REF-ENDMOMENT: rank B = 6 (exact)
+ok   U3-REF-ENDMOMENT: Ke symmetric
+ok   U3-REF-ENDMOMENT: rigid translation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REF-ENDMOMENT: rigid translation_x: Ke d = 0 exactly
+ok   U3-REF-ENDMOMENT: rigid translation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REF-ENDMOMENT: rigid translation_y: Ke d = 0 exactly
+ok   U3-REF-ENDMOMENT: rigid translation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REF-ENDMOMENT: rigid translation_z: Ke d = 0 exactly
+ok   U3-REF-ENDMOMENT: rigid rotation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REF-ENDMOMENT: rigid rotation_x: Ke d = 0 exactly
+ok   U3-REF-ENDMOMENT: rigid rotation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REF-ENDMOMENT: rigid rotation_y: Ke d = 0 exactly
+ok   U3-REF-ENDMOMENT: rigid rotation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REF-ENDMOMENT: rigid rotation_z: Ke d = 0 exactly
+ok   U3-REF-ENDMOMENT: six rigid modes linearly independent
+ok   U3-REF-ENDMOMENT: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-REF-ENDMOMENT: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-REF-ENDMOMENT: q from B equals q from kinematics
+ok   U3-REF-ENDMOMENT: B^T g equals closed-form end blocks
+ok   U3-REF-ENDMOMENT: Ke d - B^T K q_ref equals B^T g
+ok   U3-REF-ENDMOMENT: end actions balance about ['0', '0', '0']
+ok   U3-REF-ENDMOMENT: end actions balance about ['0', '0', '0']
+ok   U3-REF-ENDMOMENT: end actions balance about ['7', '-3', '5']
+ok   U3-REF-ENDMOMENT: virtual work g.(B dd) = f.dd
+ok   JR agreement: refutation Fj_y: stated -0.2, derived -1/5
+ok   JR agreement: refutation Mi_z: stated -0.4, derived -2/5
+ok   JR agreement: refutation Mj_z: stated 0.8, derived 4/5
+ok   JR agreement: refutation energy: stated 0.004, derived 1/250
+ok   U3-REF-PURE-QRZ: Q proper orthonormal
+ok   U3-REF-PURE-QRZ: Q.x follows r
+ok   U3-REF-PURE-QRZ: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-REF-PURE-QRZ: rank B = 6 (exact)
+ok   U3-REF-PURE-QRZ: Ke symmetric
+ok   U3-REF-PURE-QRZ: rigid translation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REF-PURE-QRZ: rigid translation_x: Ke d = 0 exactly
+ok   U3-REF-PURE-QRZ: rigid translation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REF-PURE-QRZ: rigid translation_y: Ke d = 0 exactly
+ok   U3-REF-PURE-QRZ: rigid translation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REF-PURE-QRZ: rigid translation_z: Ke d = 0 exactly
+ok   U3-REF-PURE-QRZ: rigid rotation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REF-PURE-QRZ: rigid rotation_x: Ke d = 0 exactly
+ok   U3-REF-PURE-QRZ: rigid rotation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REF-PURE-QRZ: rigid rotation_y: Ke d = 0 exactly
+ok   U3-REF-PURE-QRZ: rigid rotation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REF-PURE-QRZ: rigid rotation_z: Ke d = 0 exactly
+ok   U3-REF-PURE-QRZ: six rigid modes linearly independent
+ok   U3-REF-PURE-QRZ: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-REF-PURE-QRZ: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-REF-PURE-QRZ: q from B equals q from kinematics
+ok   U3-REF-PURE-QRZ: B^T g equals closed-form end blocks
+ok   U3-REF-PURE-QRZ: Ke d - B^T K q_ref equals B^T g
+ok   U3-REF-PURE-QRZ: end actions balance about ['0', '0', '0']
+ok   U3-REF-PURE-QRZ: end actions balance about ['0', '0', '0']
+ok   U3-REF-PURE-QRZ: end actions balance about ['7', '-3', '5']
+ok   U3-REF-PURE-QRZ: virtual work g.(B dd) = f.dd
+ok   JR agreement: refutation pure-qrz generalized moment: stated 0.6, derived 3/5
+ok   JR agreement: refutation pure-qrz energy: stated 0.003, derived 3/1000
+ok   U3-SIX-tx: Q proper orthonormal
+ok   U3-SIX-tx: Q.x follows r
+ok   U3-SIX-tx: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-SIX-tx: rank B = 6 (exact)
+ok   U3-SIX-tx: Ke symmetric
+ok   U3-SIX-tx: rigid translation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-tx: rigid translation_x: Ke d = 0 exactly
+ok   U3-SIX-tx: rigid translation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-tx: rigid translation_y: Ke d = 0 exactly
+ok   U3-SIX-tx: rigid translation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-tx: rigid translation_z: Ke d = 0 exactly
+ok   U3-SIX-tx: rigid rotation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-tx: rigid rotation_x: Ke d = 0 exactly
+ok   U3-SIX-tx: rigid rotation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-tx: rigid rotation_y: Ke d = 0 exactly
+ok   U3-SIX-tx: rigid rotation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-tx: rigid rotation_z: Ke d = 0 exactly
+ok   U3-SIX-tx: six rigid modes linearly independent
+ok   U3-SIX-tx: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-SIX-tx: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-SIX-tx: q from B equals q from kinematics
+ok   U3-SIX-tx: B^T g equals closed-form end blocks
+ok   U3-SIX-tx: Ke d - B^T K q_ref equals B^T g
+ok   U3-SIX-tx: end actions balance about ['0', '0', '0']
+ok   U3-SIX-tx: end actions balance about ['0', '0', '0']
+ok   U3-SIX-tx: end actions balance about ['7', '-3', '5']
+ok   U3-SIX-tx: virtual work g.(B dd) = f.dd
+ok   six tx: q isolated to one coordinate = 0.01
+ok   JR agreement: historical six-component tx generalized action: stated 0.1, derived 1/10
+ok   JR agreement: historical six-component tx energy: stated 0.0005, derived 1/2000
+ok   U3-SIX-ty: Q proper orthonormal
+ok   U3-SIX-ty: Q.x follows r
+ok   U3-SIX-ty: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-SIX-ty: rank B = 6 (exact)
+ok   U3-SIX-ty: Ke symmetric
+ok   U3-SIX-ty: rigid translation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-ty: rigid translation_x: Ke d = 0 exactly
+ok   U3-SIX-ty: rigid translation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-ty: rigid translation_y: Ke d = 0 exactly
+ok   U3-SIX-ty: rigid translation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-ty: rigid translation_z: Ke d = 0 exactly
+ok   U3-SIX-ty: rigid rotation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-ty: rigid rotation_x: Ke d = 0 exactly
+ok   U3-SIX-ty: rigid rotation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-ty: rigid rotation_y: Ke d = 0 exactly
+ok   U3-SIX-ty: rigid rotation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-ty: rigid rotation_z: Ke d = 0 exactly
+ok   U3-SIX-ty: six rigid modes linearly independent
+ok   U3-SIX-ty: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-SIX-ty: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-SIX-ty: q from B equals q from kinematics
+ok   U3-SIX-ty: B^T g equals closed-form end blocks
+ok   U3-SIX-ty: Ke d - B^T K q_ref equals B^T g
+ok   U3-SIX-ty: end actions balance about ['0', '0', '0']
+ok   U3-SIX-ty: end actions balance about ['0', '0', '0']
+ok   U3-SIX-ty: end actions balance about ['7', '-3', '5']
+ok   U3-SIX-ty: virtual work g.(B dd) = f.dd
+ok   six ty: q isolated to one coordinate = 0.01
+ok   JR agreement: historical six-component ty generalized action: stated 0.2, derived 1/5
+ok   JR agreement: historical six-component ty energy: stated 0.001, derived 1/1000
+ok   U3-SIX-tz: Q proper orthonormal
+ok   U3-SIX-tz: Q.x follows r
+ok   U3-SIX-tz: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-SIX-tz: rank B = 6 (exact)
+ok   U3-SIX-tz: Ke symmetric
+ok   U3-SIX-tz: rigid translation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-tz: rigid translation_x: Ke d = 0 exactly
+ok   U3-SIX-tz: rigid translation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-tz: rigid translation_y: Ke d = 0 exactly
+ok   U3-SIX-tz: rigid translation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-tz: rigid translation_z: Ke d = 0 exactly
+ok   U3-SIX-tz: rigid rotation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-tz: rigid rotation_x: Ke d = 0 exactly
+ok   U3-SIX-tz: rigid rotation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-tz: rigid rotation_y: Ke d = 0 exactly
+ok   U3-SIX-tz: rigid rotation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-tz: rigid rotation_z: Ke d = 0 exactly
+ok   U3-SIX-tz: six rigid modes linearly independent
+ok   U3-SIX-tz: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-SIX-tz: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-SIX-tz: q from B equals q from kinematics
+ok   U3-SIX-tz: B^T g equals closed-form end blocks
+ok   U3-SIX-tz: Ke d - B^T K q_ref equals B^T g
+ok   U3-SIX-tz: end actions balance about ['0', '0', '0']
+ok   U3-SIX-tz: end actions balance about ['0', '0', '0']
+ok   U3-SIX-tz: end actions balance about ['7', '-3', '5']
+ok   U3-SIX-tz: virtual work g.(B dd) = f.dd
+ok   six tz: q isolated to one coordinate = 0.01
+ok   JR agreement: historical six-component tz generalized action: stated 0.3, derived 3/10
+ok   JR agreement: historical six-component tz energy: stated 0.0015, derived 3/2000
+ok   U3-SIX-rx: Q proper orthonormal
+ok   U3-SIX-rx: Q.x follows r
+ok   U3-SIX-rx: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-SIX-rx: rank B = 6 (exact)
+ok   U3-SIX-rx: Ke symmetric
+ok   U3-SIX-rx: rigid translation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-rx: rigid translation_x: Ke d = 0 exactly
+ok   U3-SIX-rx: rigid translation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-rx: rigid translation_y: Ke d = 0 exactly
+ok   U3-SIX-rx: rigid translation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-rx: rigid translation_z: Ke d = 0 exactly
+ok   U3-SIX-rx: rigid rotation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-rx: rigid rotation_x: Ke d = 0 exactly
+ok   U3-SIX-rx: rigid rotation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-rx: rigid rotation_y: Ke d = 0 exactly
+ok   U3-SIX-rx: rigid rotation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-rx: rigid rotation_z: Ke d = 0 exactly
+ok   U3-SIX-rx: six rigid modes linearly independent
+ok   U3-SIX-rx: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-SIX-rx: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-SIX-rx: q from B equals q from kinematics
+ok   U3-SIX-rx: B^T g equals closed-form end blocks
+ok   U3-SIX-rx: Ke d - B^T K q_ref equals B^T g
+ok   U3-SIX-rx: end actions balance about ['0', '0', '0']
+ok   U3-SIX-rx: end actions balance about ['0', '0', '0']
+ok   U3-SIX-rx: end actions balance about ['7', '-3', '5']
+ok   U3-SIX-rx: virtual work g.(B dd) = f.dd
+ok   six rx: q isolated to one coordinate = 0.01
+ok   JR agreement: historical six-component rx generalized action: stated 0.4, derived 2/5
+ok   JR agreement: historical six-component rx energy: stated 0.002, derived 1/500
+ok   U3-SIX-ry: Q proper orthonormal
+ok   U3-SIX-ry: Q.x follows r
+ok   U3-SIX-ry: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-SIX-ry: rank B = 6 (exact)
+ok   U3-SIX-ry: Ke symmetric
+ok   U3-SIX-ry: rigid translation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-ry: rigid translation_x: Ke d = 0 exactly
+ok   U3-SIX-ry: rigid translation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-ry: rigid translation_y: Ke d = 0 exactly
+ok   U3-SIX-ry: rigid translation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-ry: rigid translation_z: Ke d = 0 exactly
+ok   U3-SIX-ry: rigid rotation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-ry: rigid rotation_x: Ke d = 0 exactly
+ok   U3-SIX-ry: rigid rotation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-ry: rigid rotation_y: Ke d = 0 exactly
+ok   U3-SIX-ry: rigid rotation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-ry: rigid rotation_z: Ke d = 0 exactly
+ok   U3-SIX-ry: six rigid modes linearly independent
+ok   U3-SIX-ry: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-SIX-ry: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-SIX-ry: q from B equals q from kinematics
+ok   U3-SIX-ry: B^T g equals closed-form end blocks
+ok   U3-SIX-ry: Ke d - B^T K q_ref equals B^T g
+ok   U3-SIX-ry: end actions balance about ['0', '0', '0']
+ok   U3-SIX-ry: end actions balance about ['0', '0', '0']
+ok   U3-SIX-ry: end actions balance about ['7', '-3', '5']
+ok   U3-SIX-ry: virtual work g.(B dd) = f.dd
+ok   six ry: q isolated to one coordinate = 0.01
+ok   JR agreement: historical six-component ry generalized action: stated 0.5, derived 1/2
+ok   JR agreement: historical six-component ry energy: stated 0.0025, derived 1/400
+ok   U3-SIX-rz: Q proper orthonormal
+ok   U3-SIX-rz: Q.x follows r
+ok   U3-SIX-rz: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-SIX-rz: rank B = 6 (exact)
+ok   U3-SIX-rz: Ke symmetric
+ok   U3-SIX-rz: rigid translation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-rz: rigid translation_x: Ke d = 0 exactly
+ok   U3-SIX-rz: rigid translation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-rz: rigid translation_y: Ke d = 0 exactly
+ok   U3-SIX-rz: rigid translation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-rz: rigid translation_z: Ke d = 0 exactly
+ok   U3-SIX-rz: rigid rotation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-rz: rigid rotation_x: Ke d = 0 exactly
+ok   U3-SIX-rz: rigid rotation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-rz: rigid rotation_y: Ke d = 0 exactly
+ok   U3-SIX-rz: rigid rotation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-SIX-rz: rigid rotation_z: Ke d = 0 exactly
+ok   U3-SIX-rz: six rigid modes linearly independent
+ok   U3-SIX-rz: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-SIX-rz: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-SIX-rz: q from B equals q from kinematics
+ok   U3-SIX-rz: B^T g equals closed-form end blocks
+ok   U3-SIX-rz: Ke d - B^T K q_ref equals B^T g
+ok   U3-SIX-rz: end actions balance about ['0', '0', '0']
+ok   U3-SIX-rz: end actions balance about ['0', '0', '0']
+ok   U3-SIX-rz: end actions balance about ['7', '-3', '5']
+ok   U3-SIX-rz: virtual work g.(B dd) = f.dd
+ok   six rz: q isolated to one coordinate = 0.01
+ok   JR agreement: historical six-component rz generalized action: stated 0.6, derived 3/5
+ok   JR agreement: historical six-component rz energy: stated 0.003, derived 3/1000
+ok   JR agreement: historical ty node moment z (i): stated -0.2, derived -1/5
+ok   JR agreement: historical ty node moment z (j): stated -0.2, derived -1/5
+ok   JR agreement: historical tz node moment y (i): stated 0.3, derived 3/10
+ok   JR agreement: historical tz node moment y (j): stated 0.3, derived 3/10
+ok   B oracle: kinematic B equals closed form
+ok   B oracle: B^T g equals closed-form blocks
+ok   JR agreement: B oracle Fi[0]: stated -2, derived -2
+ok   JR agreement: B oracle Fi[1]: stated 3, derived 3
+ok   JR agreement: B oracle Fi[2]: stated -5, derived -5
+ok   JR agreement: B oracle Mi[0]: stated -42/5, derived -42/5
+ok   JR agreement: B oracle Mi[1]: stated 87/5, derived 87/5
+ok   JR agreement: B oracle Mi[2]: stated -43/5, derived -43/5
+ok   JR agreement: B oracle Fj[0]: stated 2, derived 2
+ok   JR agreement: B oracle Fj[1]: stated -3, derived -3
+ok   JR agreement: B oracle Fj[2]: stated 5, derived 5
+ok   JR agreement: B oracle Mj[0]: stated 10, derived 10
+ok   JR agreement: B oracle Mj[1]: stated -9/2, derived -9/2
+ok   JR agreement: B oracle Mj[2]: stated 157/10, derived 157/10
+ok   JR agreement: B oracle q[0] for d_k=(k-4)/17: stated 73/170, derived 73/170
+ok   JR agreement: B oracle q[1] for d_k=(k-4)/17: stated -26/85, derived -26/85
+ok   JR agreement: B oracle q[2] for d_k=(k-4)/17: stated 29/34, derived 29/34
+ok   JR agreement: B oracle q[3] for d_k=(k-4)/17: stated 6/17, derived 6/17
+ok   JR agreement: B oracle q[4] for d_k=(k-4)/17: stated 6/17, derived 6/17
+ok   JR agreement: B oracle q[5] for d_k=(k-4)/17: stated 6/17, derived 6/17
+ok   JR agreement: B oracle virtual work g.q: stated 1567/170, derived 1567/170
+ok   JR agreement: B oracle virtual work f.d: stated 1567/170, derived 1567/170
+ok   B oracle rigid translation_x about (7,-3,5)
+ok   B oracle rigid translation_y about (7,-3,5)
+ok   B oracle rigid translation_z about (7,-3,5)
+ok   B oracle rigid rotation_x about (7,-3,5)
+ok   B oracle rigid rotation_y about (7,-3,5)
+ok   B oracle rigid rotation_z about (7,-3,5)
+ok   B oracle: force and arbitrary-origin moment sums zero
+ok   generic K is PD (exact pivots)
+ok   generic H decodes back to K (21-entry storage)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: Q proper orthonormal
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: Q.x follows r
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: rank B = 6 (exact)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: Ke symmetric
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: rigid translation_x about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: rigid translation_x: Ke d = 0 exactly
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: rigid translation_y about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: rigid translation_y: Ke d = 0 exactly
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: rigid translation_z about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: rigid translation_z: Ke d = 0 exactly
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: rigid rotation_x about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: rigid rotation_x: Ke d = 0 exactly
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: rigid rotation_y about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: rigid rotation_y: Ke d = 0 exactly
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: rigid rotation_z about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: rigid rotation_z: Ke d = 0 exactly
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: six rigid modes linearly independent
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: q from B equals q from kinematics
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: B^T g equals closed-form end blocks
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: Ke d - B^T K q_ref equals B^T g
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: end actions balance about ['0', '0', '0']
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: end actions balance about ['7', '-3', '5']
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: end actions balance about ['7', '-3', '5']
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: virtual work g.(B dd) = f.dd
+ok   S8: Ke(2^b K) = 2^b Ke(K) exactly (b = 20)
+ok   S8: B^T (2^b K) q_ref = 2^b B^T K q_ref exactly
+ok   U3-PSD-NULL-SPACE: Q proper orthonormal
+ok   U3-PSD-NULL-SPACE: Q.x follows r
+ok   U3-PSD-NULL-SPACE: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-PSD-NULL-SPACE: rank B = 6 (exact)
+ok   U3-PSD-NULL-SPACE: Ke symmetric
+ok   U3-PSD-NULL-SPACE: rigid translation_x about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-PSD-NULL-SPACE: rigid translation_x: Ke d = 0 exactly
+ok   U3-PSD-NULL-SPACE: rigid translation_y about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-PSD-NULL-SPACE: rigid translation_y: Ke d = 0 exactly
+ok   U3-PSD-NULL-SPACE: rigid translation_z about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-PSD-NULL-SPACE: rigid translation_z: Ke d = 0 exactly
+ok   U3-PSD-NULL-SPACE: rigid rotation_x about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-PSD-NULL-SPACE: rigid rotation_x: Ke d = 0 exactly
+ok   U3-PSD-NULL-SPACE: rigid rotation_y about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-PSD-NULL-SPACE: rigid rotation_y: Ke d = 0 exactly
+ok   U3-PSD-NULL-SPACE: rigid rotation_z about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-PSD-NULL-SPACE: rigid rotation_z: Ke d = 0 exactly
+ok   U3-PSD-NULL-SPACE: six rigid modes linearly independent
+ok   U3-PSD-NULL-SPACE: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   PSD: rank Ke = 2, null dimension 10
+ok   PSD: pure qt_y motion lies in null(Ke)
+ok   PSD: a null-coordinate q_ref (qt_y) gives K q_ref = 0: stress-free, no force or energy
+ok   indefinite H: a negative exact pivot exists
+ok   U3-GENERIC-ROTATED: Q proper orthonormal
+ok   U3-GENERIC-ROTATED: Q.x follows r
+ok   U3-GENERIC-ROTATED: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-GENERIC-ROTATED: rank B = 6 (exact)
+ok   U3-GENERIC-ROTATED: Ke symmetric
+ok   U3-GENERIC-ROTATED: rigid translation_x about origin ['10', '4', '10']: B d = 0 exactly
+ok   U3-GENERIC-ROTATED: rigid translation_x: Ke d = 0 exactly
+ok   U3-GENERIC-ROTATED: rigid translation_y about origin ['10', '4', '10']: B d = 0 exactly
+ok   U3-GENERIC-ROTATED: rigid translation_y: Ke d = 0 exactly
+ok   U3-GENERIC-ROTATED: rigid translation_z about origin ['10', '4', '10']: B d = 0 exactly
+ok   U3-GENERIC-ROTATED: rigid translation_z: Ke d = 0 exactly
+ok   U3-GENERIC-ROTATED: rigid rotation_x about origin ['10', '4', '10']: B d = 0 exactly
+ok   U3-GENERIC-ROTATED: rigid rotation_x: Ke d = 0 exactly
+ok   U3-GENERIC-ROTATED: rigid rotation_y about origin ['10', '4', '10']: B d = 0 exactly
+ok   U3-GENERIC-ROTATED: rigid rotation_y: Ke d = 0 exactly
+ok   U3-GENERIC-ROTATED: rigid rotation_z about origin ['10', '4', '10']: B d = 0 exactly
+ok   U3-GENERIC-ROTATED: rigid rotation_z: Ke d = 0 exactly
+ok   U3-GENERIC-ROTATED: six rigid modes linearly independent
+ok   U3-GENERIC-ROTATED: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-GENERIC-ROTATED: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-GENERIC-ROTATED: q from B equals q from kinematics
+ok   U3-GENERIC-ROTATED: B^T g equals closed-form end blocks
+ok   U3-GENERIC-ROTATED: Ke d - B^T K q_ref equals B^T g
+ok   U3-GENERIC-ROTATED: end actions balance about ['0', '0', '0']
+ok   U3-GENERIC-ROTATED: end actions balance about ['10', '4', '10']
+ok   U3-GENERIC-ROTATED: end actions balance about ['7', '-3', '5']
+ok   U3-GENERIC-ROTATED: virtual work g.(B dd) = f.dd
+ok   covariance: q, g, U unchanged under rigid change of coordinates
+ok   covariance: Fi rotates with R
+ok   covariance: Mi rotates with R
+ok   covariance: Fj rotates with R
+ok   covariance: Mj rotates with R
+ok   U3-OFFSETS: Q proper orthonormal
+ok   U3-OFFSETS: Q.x follows r
+ok   U3-OFFSETS: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-OFFSETS: rank B = 6 (exact)
+ok   U3-OFFSETS: Ke symmetric
+ok   U3-OFFSETS: rigid translation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-OFFSETS: rigid translation_x: Ke d = 0 exactly
+ok   U3-OFFSETS: rigid translation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-OFFSETS: rigid translation_y: Ke d = 0 exactly
+ok   U3-OFFSETS: rigid translation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-OFFSETS: rigid translation_z: Ke d = 0 exactly
+ok   U3-OFFSETS: rigid rotation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-OFFSETS: rigid rotation_x: Ke d = 0 exactly
+ok   U3-OFFSETS: rigid rotation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-OFFSETS: rigid rotation_y: Ke d = 0 exactly
+ok   U3-OFFSETS: rigid rotation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-OFFSETS: rigid rotation_z: Ke d = 0 exactly
+ok   U3-OFFSETS: six rigid modes linearly independent
+ok   U3-OFFSETS: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-OFFSETS: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-OFFSETS: q from B equals q from kinematics
+ok   U3-OFFSETS: B^T g equals closed-form end blocks
+ok   U3-OFFSETS: Ke d - B^T K q_ref equals B^T g
+ok   U3-OFFSETS: end actions balance about ['0', '0', '0']
+ok   U3-OFFSETS: end actions balance about ['0', '0', '0']
+ok   U3-OFFSETS: end actions balance about ['7', '-3', '5']
+ok   U3-OFFSETS: virtual work g.(B dd) = f.dd
+ok   U3-COUPLED-H: Q proper orthonormal
+ok   U3-COUPLED-H: Q.x follows r
+ok   U3-COUPLED-H: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-COUPLED-H: rank B = 6 (exact)
+ok   U3-COUPLED-H: Ke symmetric
+ok   U3-COUPLED-H: rigid translation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-COUPLED-H: rigid translation_x: Ke d = 0 exactly
+ok   U3-COUPLED-H: rigid translation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-COUPLED-H: rigid translation_y: Ke d = 0 exactly
+ok   U3-COUPLED-H: rigid translation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-COUPLED-H: rigid translation_z: Ke d = 0 exactly
+ok   U3-COUPLED-H: rigid rotation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-COUPLED-H: rigid rotation_x: Ke d = 0 exactly
+ok   U3-COUPLED-H: rigid rotation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-COUPLED-H: rigid rotation_y: Ke d = 0 exactly
+ok   U3-COUPLED-H: rigid rotation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-COUPLED-H: rigid rotation_z: Ke d = 0 exactly
+ok   U3-COUPLED-H: six rigid modes linearly independent
+ok   U3-COUPLED-H: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-COUPLED-H: q from B equals q from kinematics
+ok   U3-COUPLED-H: B^T g equals closed-form end blocks
+ok   U3-COUPLED-H: Ke d - B^T K q_ref equals B^T g
+ok   U3-COUPLED-H: end actions balance about ['0', '0', '0']
+ok   U3-COUPLED-H: end actions balance about ['0', '0', '0']
+ok   U3-COUPLED-H: end actions balance about ['7', '-3', '5']
+ok   U3-COUPLED-H: virtual work g.(B dd) = f.dd
+ok   coupled H: energy from H and qhat equals energy from K and q
+ok   JR agreement: coupled H energy: stated 0.075, derived 3/40
+ok   JR agreement: coupled H g_tx: stated 0.25, derived 1/4
+ok   JR agreement: coupled H g_rx: stated 1, derived 1
+ok   scale: K unchanged under Ls 2 -> 1 with congruent H
+ok   JR agreement: scale H'00: stated 1, derived 1
+ok   JR agreement: scale H'03: stated 0.5, derived 1/2
+ok   JR agreement: scale H'33: stated 9, derived 9
+ok   U3-PRELOAD-INSTALLED: Q proper orthonormal
+ok   U3-PRELOAD-INSTALLED: Q.x follows r
+ok   U3-PRELOAD-INSTALLED: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-PRELOAD-INSTALLED: rank B = 6 (exact)
+ok   U3-PRELOAD-INSTALLED: Ke symmetric
+ok   U3-PRELOAD-INSTALLED: rigid translation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-PRELOAD-INSTALLED: rigid translation_x: Ke d = 0 exactly
+ok   U3-PRELOAD-INSTALLED: rigid translation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-PRELOAD-INSTALLED: rigid translation_y: Ke d = 0 exactly
+ok   U3-PRELOAD-INSTALLED: rigid translation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-PRELOAD-INSTALLED: rigid translation_z: Ke d = 0 exactly
+ok   U3-PRELOAD-INSTALLED: rigid rotation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-PRELOAD-INSTALLED: rigid rotation_x: Ke d = 0 exactly
+ok   U3-PRELOAD-INSTALLED: rigid rotation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-PRELOAD-INSTALLED: rigid rotation_y: Ke d = 0 exactly
+ok   U3-PRELOAD-INSTALLED: rigid rotation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-PRELOAD-INSTALLED: rigid rotation_z: Ke d = 0 exactly
+ok   U3-PRELOAD-INSTALLED: six rigid modes linearly independent
+ok   U3-PRELOAD-INSTALLED: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-PRELOAD-INSTALLED: q from B equals q from kinematics
+ok   U3-PRELOAD-INSTALLED: B^T g equals closed-form end blocks
+ok   U3-PRELOAD-INSTALLED: Ke d - B^T K q_ref equals B^T g
+ok   U3-PRELOAD-INSTALLED: end actions balance about ['0', '0', '0']
+ok   U3-PRELOAD-INSTALLED: end actions balance about ['0', '0', '0']
+ok   U3-PRELOAD-INSTALLED: end actions balance about ['7', '-3', '5']
+ok   U3-PRELOAD-INSTALLED: virtual work g.(B dd) = f.dd
+ok   JR agreement: preload initial internal force x at i: stated 0.25, derived 1/4
+ok   JR agreement: preload initial internal force x at j: stated -0.25, derived -1/4
+ok   JR agreement: preload initial x-moment at i: stated 1, derived 1
+ok   JR agreement: preload initial x-moment at j: stated -1, derived -1
+ok   JR agreement: preload initial energy: stated 0.075, derived 3/40
+ok   preload PD K is PD
+ok   preload relief: q = q_ref, g = 0
+ok   preload relief: all reactions 0
+ok   preload partial: reaction sums zero
+ok   U3-REVERSAL: Q proper orthonormal
+ok   U3-REVERSAL: Q.x follows r
+ok   U3-REVERSAL: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-REVERSAL: rank B = 6 (exact)
+ok   U3-REVERSAL: Ke symmetric
+ok   U3-REVERSAL: rigid translation_x about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-REVERSAL: rigid translation_x: Ke d = 0 exactly
+ok   U3-REVERSAL: rigid translation_y about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-REVERSAL: rigid translation_y: Ke d = 0 exactly
+ok   U3-REVERSAL: rigid translation_z about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-REVERSAL: rigid translation_z: Ke d = 0 exactly
+ok   U3-REVERSAL: rigid rotation_x about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-REVERSAL: rigid rotation_x: Ke d = 0 exactly
+ok   U3-REVERSAL: rigid rotation_y about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-REVERSAL: rigid rotation_y: Ke d = 0 exactly
+ok   U3-REVERSAL: rigid rotation_z about origin ['7', '-3', '5']: B d = 0 exactly
+ok   U3-REVERSAL: rigid rotation_z: Ke d = 0 exactly
+ok   U3-REVERSAL: six rigid modes linearly independent
+ok   U3-REVERSAL: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-REVERSAL: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-REVERSAL: q from B equals q from kinematics
+ok   U3-REVERSAL: B^T g equals closed-form end blocks
+ok   U3-REVERSAL: Ke d - B^T K q_ref equals B^T g
+ok   U3-REVERSAL: end actions balance about ['0', '0', '0']
+ok   U3-REVERSAL: end actions balance about ['7', '-3', '5']
+ok   U3-REVERSAL: end actions balance about ['7', '-3', '5']
+ok   U3-REVERSAL: virtual work g.(B dd) = f.dd
+ok   reversal: q' = T q
+ok   reversal: g' = T g
+ok   reversal: energy unchanged
+ok   reversal: end-action blocks exchanged
+ok   reversal: H' = T H T^T at unchanged Ls
+ok   U3-REVERSAL-ID-SWAP-ONLY: Q proper orthonormal
+ok   U3-REVERSAL-ID-SWAP-ONLY: Q.x follows r
+ok   U3-REVERSAL-ID-SWAP-ONLY: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-REVERSAL-ID-SWAP-ONLY: rank B = 6 (exact)
+ok   U3-REVERSAL-ID-SWAP-ONLY: Ke symmetric
+ok   U3-REVERSAL-ID-SWAP-ONLY: rigid translation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REVERSAL-ID-SWAP-ONLY: rigid translation_x: Ke d = 0 exactly
+ok   U3-REVERSAL-ID-SWAP-ONLY: rigid translation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REVERSAL-ID-SWAP-ONLY: rigid translation_y: Ke d = 0 exactly
+ok   U3-REVERSAL-ID-SWAP-ONLY: rigid translation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REVERSAL-ID-SWAP-ONLY: rigid translation_z: Ke d = 0 exactly
+ok   U3-REVERSAL-ID-SWAP-ONLY: rigid rotation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REVERSAL-ID-SWAP-ONLY: rigid rotation_x: Ke d = 0 exactly
+ok   U3-REVERSAL-ID-SWAP-ONLY: rigid rotation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REVERSAL-ID-SWAP-ONLY: rigid rotation_y: Ke d = 0 exactly
+ok   U3-REVERSAL-ID-SWAP-ONLY: rigid rotation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-REVERSAL-ID-SWAP-ONLY: rigid rotation_z: Ke d = 0 exactly
+ok   U3-REVERSAL-ID-SWAP-ONLY: six rigid modes linearly independent
+ok   U3-REVERSAL-ID-SWAP-ONLY: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-REVERSAL-ID-SWAP-ONLY: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-REVERSAL-ID-SWAP-ONLY: q from B equals q from kinematics
+ok   U3-REVERSAL-ID-SWAP-ONLY: B^T g equals closed-form end blocks
+ok   U3-REVERSAL-ID-SWAP-ONLY: Ke d - B^T K q_ref equals B^T g
+ok   U3-REVERSAL-ID-SWAP-ONLY: end actions balance about ['0', '0', '0']
+ok   U3-REVERSAL-ID-SWAP-ONLY: end actions balance about ['0', '0', '0']
+ok   U3-REVERSAL-ID-SWAP-ONLY: end actions balance about ['7', '-3', '5']
+ok   U3-REVERSAL-ID-SWAP-ONLY: virtual work g.(B dd) = f.dd
+ok   finite rotation L=2 phi=0.1: refutation's decimals agree to 13 significant digits (|diff| < 2e-16 m)
+ok   finite rotation L=2 phi=0.1: refutation's decimals are NOT the exact values (binary64 cancellation in cos-1 and sin-phi)
+ok   U3-RAW-HISTORICAL: Q proper orthonormal
+ok   U3-RAW-HISTORICAL: Q.x follows r
+ok   U3-RAW-HISTORICAL: closed-form B equals kinematic B (all 72 entries, exact)
+ok   U3-RAW-HISTORICAL: rank B = 6 (exact)
+ok   U3-RAW-HISTORICAL: Ke symmetric
+ok   U3-RAW-HISTORICAL: rigid translation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-RAW-HISTORICAL: rigid translation_x: Ke d = 0 exactly
+ok   U3-RAW-HISTORICAL: rigid translation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-RAW-HISTORICAL: rigid translation_y: Ke d = 0 exactly
+ok   U3-RAW-HISTORICAL: rigid translation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-RAW-HISTORICAL: rigid translation_z: Ke d = 0 exactly
+ok   U3-RAW-HISTORICAL: rigid rotation_x about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-RAW-HISTORICAL: rigid rotation_x: Ke d = 0 exactly
+ok   U3-RAW-HISTORICAL: rigid rotation_y about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-RAW-HISTORICAL: rigid rotation_y: Ke d = 0 exactly
+ok   U3-RAW-HISTORICAL: rigid rotation_z about origin ['0', '0', '0']: B d = 0 exactly
+ok   U3-RAW-HISTORICAL: rigid rotation_z: Ke d = 0 exactly
+ok   U3-RAW-HISTORICAL: six rigid modes linearly independent
+ok   U3-RAW-HISTORICAL: PD K -> rank Ke = 6, null(Ke) = span(rigid modes)
+ok   U3-RAW-HISTORICAL: +B^T K q_ref self-equilibrated (force and moment, exact)
+ok   U3-RAW-HISTORICAL: q from B equals q from kinematics
+ok   U3-RAW-HISTORICAL: B^T g equals closed-form end blocks
+ok   U3-RAW-HISTORICAL: Ke d - B^T K q_ref equals B^T g
+ok   U3-RAW-HISTORICAL: end actions balance about ['0', '0', '0']
+ok   U3-RAW-HISTORICAL: end actions balance about ['0', '0', '0']
+ok   U3-RAW-HISTORICAL: end actions balance about ['7', '-3', '5']
+ok   U3-RAW-HISTORICAL: virtual work g.(B dd) = f.dd
+ok   JR agreement: historical raw mutation g_y: stated 0.4, derived 2/5
+ok   JR agreement: historical raw mutation energy: stated 0.004, derived 1/250
+ok   JR agreement: historical raw mutation correct energy: stated 0, derived 0
+ok   pi (Machin, 125 decimals) begins 3.14159265358979323846264338327950288
+ok   frame self-test: P-110 rigid translation_x in null(K)
+ok   frame self-test: P-110 rigid translation_y in null(K)
+ok   frame self-test: P-110 rigid translation_z in null(K)
+ok   frame self-test: P-110 rigid rotation_x in null(K)
+ok   frame self-test: P-110 rigid rotation_y in null(K)
+ok   frame self-test: P-110 rigid rotation_z in null(K)
+ok   frame self-test: cantilever tip z under unit z load = L^3/(3EI)
+ok   frame self-test: cantilever tip rotation y under unit z load = -L^2/(2EI)
+ok   frame self-test: consistent uniform load tip deflection = w L^4/(8EI)
+ok   frame self-test: consistent uniform load tip rotation = -w L^3/(6EI)
+ok   load:L-100/connector: residual zero at free DOFs
+ok   load:L-100/connector: residual zero at free DOFs
+ok   load:L-100: solution stable to 95 digits under pi truncated at 115 vs 125 decimals
+ok   load:L-100: global force balance (applied + reactions) = 0 to 1e-100
+ok   load:L-100: global moment balance about origin = 0 to 1e-100
+ok   load:L-100: connector B^T g equals closed-form blocks
+ok   load:L-100: connector end actions self-equilibrated
+ok   load:L-100/raw: residual zero at free DOFs
+ok   load:L-100/parallel: residual zero at free DOFs
+ok   load:L-100: parallel retained span changes the reactions
+ok   load:L-100: raw-difference element leaves a global moment imbalance
+ok   load:L-200/connector: residual zero at free DOFs
+ok   load:L-200/connector: residual zero at free DOFs
+ok   load:L-200: solution stable to 95 digits under pi truncated at 115 vs 125 decimals
+ok   load:L-200: global force balance (applied + reactions) = 0 to 1e-100
+ok   load:L-200: global moment balance about origin = 0 to 1e-100
+ok   load:L-200: connector B^T g equals closed-form blocks
+ok   load:L-200: connector end actions self-equilibrated
+ok   load:L-200/raw: residual zero at free DOFs
+ok   load:L-200/parallel: residual zero at free DOFs
+ok   load:L-200: parallel retained span changes the reactions
+ok   load:L-200: raw-difference element leaves a global moment imbalance
+ok   load:L-300/connector: residual zero at free DOFs
+ok   load:L-300/connector: residual zero at free DOFs
+ok   load:L-300: solution stable to 95 digits under pi truncated at 115 vs 125 decimals
+ok   load:L-300: global force balance (applied + reactions) = 0 to 1e-100
+ok   load:L-300: global moment balance about origin = 0 to 1e-100
+ok   load:L-300: connector B^T g equals closed-form blocks
+ok   load:L-300: connector end actions self-equilibrated
+ok   load:L-300/raw: residual zero at free DOFs
+ok   load:L-300/parallel: residual zero at free DOFs
+ok   load:L-300: parallel retained span changes the reactions
+ok   load:L-300: raw-difference element leaves a global moment imbalance
+ok   NI model-validation (old block 150, -50) test 1 (10,-10): 2 iterations, Sliding, both seeds agree, |friction| = 0.3|normal|
+ok   NI model-validation (old block 150, -50) test 1 (10,-10): equilibrium Kxx u = Fx + friction and Ry = Kxy u - Fy
+ok   NI model-validation (old block 150, -50) test 1 (-10,-10): 2 iterations, Sliding, both seeds agree, |friction| = 0.3|normal|
+ok   NI model-validation (old block 150, -50) test 1 (-10,-10): equilibrium Kxx u = Fx + friction and Ry = Kxy u - Fy
+ok   NI model-validation (old block 150, -50) test 2 (10,-1): sign flip at iteration 2, 3 iterations, cap 2 fails on the derived-normal branch
+ok   NI model-validation (old block 150, -50) test 2 (10,-1): equilibrium of the retry and final iterates
+ok   NI model-validation (old block 150, -50) test 2 (-10,1): sign flip at iteration 2, 3 iterations, cap 2 fails on the derived-normal branch
+ok   NI model-validation (old block 150, -50) test 2 (-10,1): equilibrium of the retry and final iterates
+ok   NI model-validation (old block 150, -50) test 4 (mu = 0): converged, no applied force in any iteration
+ok   NI model-validation (old block 150, -50) reproduces the pinned test1_10_-10.u = 7/135
+ok   NI model-validation (old block 150, -50) reproduces the pinned test1_10_-10.normal = 200/27
+ok   NI model-validation (old block 150, -50) reproduces the pinned test1_10_-10.friction = -20/9
+ok   NI model-validation (old block 150, -50) reproduces the pinned test1_-10_-10.u = -7/165
+ok   NI model-validation (old block 150, -50) reproduces the pinned test1_-10_-10.normal = 400/33
+ok   NI model-validation (old block 150, -50) reproduces the pinned test1_-10_-10.friction = 40/11
+ok   NI model-validation (old block 150, -50) reproduces the pinned test2_10_-1.branch_retry_u = 97/1350
+ok   NI model-validation (old block 150, -50) reproduces the pinned test2_10_-1.branch_retry_applied = 7/9
+ok   NI model-validation (old block 150, -50) reproduces the pinned test2_10_-1.branch_retry_Rx = 7/9
+ok   NI model-validation (old block 150, -50) reproduces the pinned test2_10_-1.branch_retry_Ry = -70/27
+ok   NI model-validation (old block 150, -50) reproduces the pinned test2_10_-1.final_u = 103/1650
+ok   NI model-validation (old block 150, -50) reproduces the pinned test2_10_-1.final_friction = -7/11
+ok   NI model-validation (old block 150, -50) reproduces the pinned test2_10_-1.final_normal = -70/33
+ok   NI model-validation (old block 150, -50) reproduces the pinned test2_-10_1.branch_retry_u = -97/1350
+ok   NI model-validation (old block 150, -50) reproduces the pinned test2_-10_1.branch_retry_applied = -7/9
+ok   NI model-validation (old block 150, -50) reproduces the pinned test2_-10_1.branch_retry_Rx = -7/9
+ok   NI model-validation (old block 150, -50) reproduces the pinned test2_-10_1.branch_retry_Ry = 70/27
+ok   NI model-validation (old block 150, -50) reproduces the pinned test2_-10_1.final_u = -103/1650
+ok   NI model-validation (old block 150, -50) reproduces the pinned test2_-10_1.final_friction = 7/11
+ok   NI model-validation (old block 150, -50) reproduces the pinned test2_-10_1.final_normal = 70/33
+ok   NI frame: node-1 Ux/Uy block independent of y_reference (Iy = Iz)
+ok   NI frame: Kxx = (EA/L) c^2 + (12EI/L^3) s^2
+ok   NI frame: Kxy = (EA/L - 12EI/L^3) c s
+ok   NI replacement frame test 1 (10,-10): 2 iterations, Sliding, both seeds agree, |friction| = 0.3|normal|
+ok   NI replacement frame test 1 (10,-10): equilibrium Kxx u = Fx + friction and Ry = Kxy u - Fy
+ok   NI replacement frame test 1 (-10,-10): 2 iterations, Sliding, both seeds agree, |friction| = 0.3|normal|
+ok   NI replacement frame test 1 (-10,-10): equilibrium Kxx u = Fx + friction and Ry = Kxy u - Fy
+ok   NI replacement frame test 2 (10,-1): sign flip at iteration 2, 3 iterations, cap 2 fails on the derived-normal branch
+ok   NI replacement frame test 2 (10,-1): equilibrium of the retry and final iterates
+ok   NI replacement frame test 2 (-10,1): sign flip at iteration 2, 3 iterations, cap 2 fails on the derived-normal branch
+ok   NI replacement frame test 2 (-10,1): equilibrium of the retry and final iterates
+ok   NI replacement frame test 4 (mu = 0): converged, no applied force in any iteration
+JR comparisons: 75/75 agree
+checks: 761/761 pass

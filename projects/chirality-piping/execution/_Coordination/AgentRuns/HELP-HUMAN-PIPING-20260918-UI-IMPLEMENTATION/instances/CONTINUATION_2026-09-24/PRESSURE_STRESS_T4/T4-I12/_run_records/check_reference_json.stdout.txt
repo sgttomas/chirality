@@ -1,0 +1,510 @@
+ok   U3-J1-LATERAL: H with Ls decodes to the recorded physical K
+ok   U3-J1-LATERAL: r
+ok   U3-J1-LATERAL: B column 0 (arm form)
+ok   U3-J1-LATERAL: B column 1 (arm form)
+ok   U3-J1-LATERAL: B column 2 (arm form)
+ok   U3-J1-LATERAL: B column 3 (arm form)
+ok   U3-J1-LATERAL: B column 4 (arm form)
+ok   U3-J1-LATERAL: B column 5 (arm form)
+ok   U3-J1-LATERAL: B column 6 (arm form)
+ok   U3-J1-LATERAL: B column 7 (arm form)
+ok   U3-J1-LATERAL: B column 8 (arm form)
+ok   U3-J1-LATERAL: B column 9 (arm form)
+ok   U3-J1-LATERAL: B column 10 (arm form)
+ok   U3-J1-LATERAL: B column 11 (arm form)
+ok   U3-J1-LATERAL: Ke = B^T K B
+ok   U3-J1-LATERAL: installed RHS = B^T K q_ref
+ok   U3-J1-LATERAL: q
+ok   U3-J1-LATERAL: g
+ok   U3-J1-LATERAL: energy
+ok   U3-J1-LATERAL: end actions (arm transpose)
+ok   U3-J1-LATERAL: decimal q[0] matches exact to 30 digits
+ok   U3-J1-LATERAL: decimal q[1] matches exact to 30 digits
+ok   U3-J1-LATERAL: decimal q[2] matches exact to 30 digits
+ok   U3-J1-LATERAL: decimal q[3] matches exact to 30 digits
+ok   U3-J1-LATERAL: decimal q[4] matches exact to 30 digits
+ok   U3-J1-LATERAL: decimal q[5] matches exact to 30 digits
+ok   U3-J1-COMMON-ROTATION: H with Ls decodes to the recorded physical K
+ok   U3-J1-COMMON-ROTATION: r
+ok   U3-J1-COMMON-ROTATION: B column 0 (arm form)
+ok   U3-J1-COMMON-ROTATION: B column 1 (arm form)
+ok   U3-J1-COMMON-ROTATION: B column 2 (arm form)
+ok   U3-J1-COMMON-ROTATION: B column 3 (arm form)
+ok   U3-J1-COMMON-ROTATION: B column 4 (arm form)
+ok   U3-J1-COMMON-ROTATION: B column 5 (arm form)
+ok   U3-J1-COMMON-ROTATION: B column 6 (arm form)
+ok   U3-J1-COMMON-ROTATION: B column 7 (arm form)
+ok   U3-J1-COMMON-ROTATION: B column 8 (arm form)
+ok   U3-J1-COMMON-ROTATION: B column 9 (arm form)
+ok   U3-J1-COMMON-ROTATION: B column 10 (arm form)
+ok   U3-J1-COMMON-ROTATION: B column 11 (arm form)
+ok   U3-J1-COMMON-ROTATION: Ke = B^T K B
+ok   U3-J1-COMMON-ROTATION: installed RHS = B^T K q_ref
+ok   U3-J1-COMMON-ROTATION: q
+ok   U3-J1-COMMON-ROTATION: g
+ok   U3-J1-COMMON-ROTATION: energy
+ok   U3-J1-COMMON-ROTATION: end actions (arm transpose)
+ok   U3-J1-COMMON-ROTATION: decimal q[0] matches exact to 30 digits
+ok   U3-J1-COMMON-ROTATION: decimal q[1] matches exact to 30 digits
+ok   U3-J1-COMMON-ROTATION: decimal q[2] matches exact to 30 digits
+ok   U3-J1-COMMON-ROTATION: decimal q[3] matches exact to 30 digits
+ok   U3-J1-COMMON-ROTATION: decimal q[4] matches exact to 30 digits
+ok   U3-J1-COMMON-ROTATION: decimal q[5] matches exact to 30 digits
+ok   U3-J2-ROTATION: H with Ls decodes to the recorded physical K
+ok   U3-J2-ROTATION: r
+ok   U3-J2-ROTATION: B column 0 (arm form)
+ok   U3-J2-ROTATION: B column 1 (arm form)
+ok   U3-J2-ROTATION: B column 2 (arm form)
+ok   U3-J2-ROTATION: B column 3 (arm form)
+ok   U3-J2-ROTATION: B column 4 (arm form)
+ok   U3-J2-ROTATION: B column 5 (arm form)
+ok   U3-J2-ROTATION: B column 6 (arm form)
+ok   U3-J2-ROTATION: B column 7 (arm form)
+ok   U3-J2-ROTATION: B column 8 (arm form)
+ok   U3-J2-ROTATION: B column 9 (arm form)
+ok   U3-J2-ROTATION: B column 10 (arm form)
+ok   U3-J2-ROTATION: B column 11 (arm form)
+ok   U3-J2-ROTATION: Ke = B^T K B
+ok   U3-J2-ROTATION: installed RHS = B^T K q_ref
+ok   U3-J2-ROTATION: q
+ok   U3-J2-ROTATION: g
+ok   U3-J2-ROTATION: energy
+ok   U3-J2-ROTATION: end actions (arm transpose)
+ok   U3-J2-ROTATION: decimal q[0] matches exact to 30 digits
+ok   U3-J2-ROTATION: decimal q[1] matches exact to 30 digits
+ok   U3-J2-ROTATION: decimal q[2] matches exact to 30 digits
+ok   U3-J2-ROTATION: decimal q[3] matches exact to 30 digits
+ok   U3-J2-ROTATION: decimal q[4] matches exact to 30 digits
+ok   U3-J2-ROTATION: decimal q[5] matches exact to 30 digits
+ok   U3-J2-ROTATION-HELD: H with Ls decodes to the recorded physical K
+ok   U3-J2-ROTATION-HELD: r
+ok   U3-J2-ROTATION-HELD: B column 0 (arm form)
+ok   U3-J2-ROTATION-HELD: B column 1 (arm form)
+ok   U3-J2-ROTATION-HELD: B column 2 (arm form)
+ok   U3-J2-ROTATION-HELD: B column 3 (arm form)
+ok   U3-J2-ROTATION-HELD: B column 4 (arm form)
+ok   U3-J2-ROTATION-HELD: B column 5 (arm form)
+ok   U3-J2-ROTATION-HELD: B column 6 (arm form)
+ok   U3-J2-ROTATION-HELD: B column 7 (arm form)
+ok   U3-J2-ROTATION-HELD: B column 8 (arm form)
+ok   U3-J2-ROTATION-HELD: B column 9 (arm form)
+ok   U3-J2-ROTATION-HELD: B column 10 (arm form)
+ok   U3-J2-ROTATION-HELD: B column 11 (arm form)
+ok   U3-J2-ROTATION-HELD: Ke = B^T K B
+ok   U3-J2-ROTATION-HELD: installed RHS = B^T K q_ref
+ok   U3-J2-ROTATION-HELD: q
+ok   U3-J2-ROTATION-HELD: g
+ok   U3-J2-ROTATION-HELD: energy
+ok   U3-J2-ROTATION-HELD: end actions (arm transpose)
+ok   U3-J2-ROTATION-HELD: decimal q[0] matches exact to 30 digits
+ok   U3-J2-ROTATION-HELD: decimal q[1] matches exact to 30 digits
+ok   U3-J2-ROTATION-HELD: decimal q[2] matches exact to 30 digits
+ok   U3-J2-ROTATION-HELD: decimal q[3] matches exact to 30 digits
+ok   U3-J2-ROTATION-HELD: decimal q[4] matches exact to 30 digits
+ok   U3-J2-ROTATION-HELD: decimal q[5] matches exact to 30 digits
+ok   U3-REF-ENDMOMENT: H with Ls decodes to the recorded physical K
+ok   U3-REF-ENDMOMENT: r
+ok   U3-REF-ENDMOMENT: B column 0 (arm form)
+ok   U3-REF-ENDMOMENT: B column 1 (arm form)
+ok   U3-REF-ENDMOMENT: B column 2 (arm form)
+ok   U3-REF-ENDMOMENT: B column 3 (arm form)
+ok   U3-REF-ENDMOMENT: B column 4 (arm form)
+ok   U3-REF-ENDMOMENT: B column 5 (arm form)
+ok   U3-REF-ENDMOMENT: B column 6 (arm form)
+ok   U3-REF-ENDMOMENT: B column 7 (arm form)
+ok   U3-REF-ENDMOMENT: B column 8 (arm form)
+ok   U3-REF-ENDMOMENT: B column 9 (arm form)
+ok   U3-REF-ENDMOMENT: B column 10 (arm form)
+ok   U3-REF-ENDMOMENT: B column 11 (arm form)
+ok   U3-REF-ENDMOMENT: Ke = B^T K B
+ok   U3-REF-ENDMOMENT: installed RHS = B^T K q_ref
+ok   U3-REF-ENDMOMENT: q
+ok   U3-REF-ENDMOMENT: g
+ok   U3-REF-ENDMOMENT: energy
+ok   U3-REF-ENDMOMENT: end actions (arm transpose)
+ok   U3-REF-ENDMOMENT: decimal q[0] matches exact to 30 digits
+ok   U3-REF-ENDMOMENT: decimal q[1] matches exact to 30 digits
+ok   U3-REF-ENDMOMENT: decimal q[2] matches exact to 30 digits
+ok   U3-REF-ENDMOMENT: decimal q[3] matches exact to 30 digits
+ok   U3-REF-ENDMOMENT: decimal q[4] matches exact to 30 digits
+ok   U3-REF-ENDMOMENT: decimal q[5] matches exact to 30 digits
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: H with Ls decodes to the recorded physical K
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: r
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: B column 0 (arm form)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: B column 1 (arm form)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: B column 2 (arm form)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: B column 3 (arm form)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: B column 4 (arm form)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: B column 5 (arm form)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: B column 6 (arm form)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: B column 7 (arm form)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: B column 8 (arm form)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: B column 9 (arm form)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: B column 10 (arm form)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: B column 11 (arm form)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: Ke = B^T K B
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: installed RHS = B^T K q_ref
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: q
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: g
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: energy
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: end actions (arm transpose)
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: decimal q[0] matches exact to 30 digits
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: decimal q[1] matches exact to 30 digits
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: decimal q[2] matches exact to 30 digits
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: decimal q[3] matches exact to 30 digits
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: decimal q[4] matches exact to 30 digits
+ok   U3-GENERIC-SKEW-OFFSET-PRESTRESS: decimal q[5] matches exact to 30 digits
+ok   U3-OFFSETS: H with Ls decodes to the recorded physical K
+ok   U3-OFFSETS: a_i = Q_i offset_i
+ok   U3-OFFSETS: a_j = Q_j offset_j
+ok   U3-OFFSETS: r
+ok   U3-OFFSETS: B column 0 (arm form)
+ok   U3-OFFSETS: B column 1 (arm form)
+ok   U3-OFFSETS: B column 2 (arm form)
+ok   U3-OFFSETS: B column 3 (arm form)
+ok   U3-OFFSETS: B column 4 (arm form)
+ok   U3-OFFSETS: B column 5 (arm form)
+ok   U3-OFFSETS: B column 6 (arm form)
+ok   U3-OFFSETS: B column 7 (arm form)
+ok   U3-OFFSETS: B column 8 (arm form)
+ok   U3-OFFSETS: B column 9 (arm form)
+ok   U3-OFFSETS: B column 10 (arm form)
+ok   U3-OFFSETS: B column 11 (arm form)
+ok   U3-OFFSETS: Ke = B^T K B
+ok   U3-OFFSETS: installed RHS = B^T K q_ref
+ok   U3-OFFSETS: q
+ok   U3-OFFSETS: g
+ok   U3-OFFSETS: energy
+ok   U3-OFFSETS: end actions (arm transpose)
+ok   U3-OFFSETS: decimal q[0] matches exact to 30 digits
+ok   U3-OFFSETS: decimal q[1] matches exact to 30 digits
+ok   U3-OFFSETS: decimal q[2] matches exact to 30 digits
+ok   U3-OFFSETS: decimal q[3] matches exact to 30 digits
+ok   U3-OFFSETS: decimal q[4] matches exact to 30 digits
+ok   U3-OFFSETS: decimal q[5] matches exact to 30 digits
+ok   U3-REVERSAL: H with Ls decodes to the recorded physical K
+ok   U3-REVERSAL: r
+ok   U3-REVERSAL: B column 0 (arm form)
+ok   U3-REVERSAL: B column 1 (arm form)
+ok   U3-REVERSAL: B column 2 (arm form)
+ok   U3-REVERSAL: B column 3 (arm form)
+ok   U3-REVERSAL: B column 4 (arm form)
+ok   U3-REVERSAL: B column 5 (arm form)
+ok   U3-REVERSAL: B column 6 (arm form)
+ok   U3-REVERSAL: B column 7 (arm form)
+ok   U3-REVERSAL: B column 8 (arm form)
+ok   U3-REVERSAL: B column 9 (arm form)
+ok   U3-REVERSAL: B column 10 (arm form)
+ok   U3-REVERSAL: B column 11 (arm form)
+ok   U3-REVERSAL: Ke = B^T K B
+ok   U3-REVERSAL: installed RHS = B^T K q_ref
+ok   U3-REVERSAL: q
+ok   U3-REVERSAL: g
+ok   U3-REVERSAL: energy
+ok   U3-REVERSAL: end actions (arm transpose)
+ok   U3-REVERSAL: decimal q[0] matches exact to 30 digits
+ok   U3-REVERSAL: decimal q[1] matches exact to 30 digits
+ok   U3-REVERSAL: decimal q[2] matches exact to 30 digits
+ok   U3-REVERSAL: decimal q[3] matches exact to 30 digits
+ok   U3-REVERSAL: decimal q[4] matches exact to 30 digits
+ok   U3-REVERSAL: decimal q[5] matches exact to 30 digits
+ok   U3-FRAME-COVARIANCE: H with Ls decodes to the recorded physical K
+ok   U3-FRAME-COVARIANCE: r
+ok   U3-FRAME-COVARIANCE: B column 0 (arm form)
+ok   U3-FRAME-COVARIANCE: B column 1 (arm form)
+ok   U3-FRAME-COVARIANCE: B column 2 (arm form)
+ok   U3-FRAME-COVARIANCE: B column 3 (arm form)
+ok   U3-FRAME-COVARIANCE: B column 4 (arm form)
+ok   U3-FRAME-COVARIANCE: B column 5 (arm form)
+ok   U3-FRAME-COVARIANCE: B column 6 (arm form)
+ok   U3-FRAME-COVARIANCE: B column 7 (arm form)
+ok   U3-FRAME-COVARIANCE: B column 8 (arm form)
+ok   U3-FRAME-COVARIANCE: B column 9 (arm form)
+ok   U3-FRAME-COVARIANCE: B column 10 (arm form)
+ok   U3-FRAME-COVARIANCE: B column 11 (arm form)
+ok   U3-FRAME-COVARIANCE: Ke = B^T K B
+ok   U3-FRAME-COVARIANCE: installed RHS = B^T K q_ref
+ok   U3-FRAME-COVARIANCE: q
+ok   U3-FRAME-COVARIANCE: g
+ok   U3-FRAME-COVARIANCE: energy
+ok   U3-FRAME-COVARIANCE: end actions (arm transpose)
+ok   U3-FRAME-COVARIANCE: decimal q[0] matches exact to 30 digits
+ok   U3-FRAME-COVARIANCE: decimal q[1] matches exact to 30 digits
+ok   U3-FRAME-COVARIANCE: decimal q[2] matches exact to 30 digits
+ok   U3-FRAME-COVARIANCE: decimal q[3] matches exact to 30 digits
+ok   U3-FRAME-COVARIANCE: decimal q[4] matches exact to 30 digits
+ok   U3-FRAME-COVARIANCE: decimal q[5] matches exact to 30 digits
+ok   U3-COUPLED-H: H with Ls decodes to the recorded physical K
+ok   U3-COUPLED-H: r
+ok   U3-COUPLED-H: B column 0 (arm form)
+ok   U3-COUPLED-H: B column 1 (arm form)
+ok   U3-COUPLED-H: B column 2 (arm form)
+ok   U3-COUPLED-H: B column 3 (arm form)
+ok   U3-COUPLED-H: B column 4 (arm form)
+ok   U3-COUPLED-H: B column 5 (arm form)
+ok   U3-COUPLED-H: B column 6 (arm form)
+ok   U3-COUPLED-H: B column 7 (arm form)
+ok   U3-COUPLED-H: B column 8 (arm form)
+ok   U3-COUPLED-H: B column 9 (arm form)
+ok   U3-COUPLED-H: B column 10 (arm form)
+ok   U3-COUPLED-H: B column 11 (arm form)
+ok   U3-COUPLED-H: Ke = B^T K B
+ok   U3-COUPLED-H: installed RHS = B^T K q_ref
+ok   U3-COUPLED-H: q
+ok   U3-COUPLED-H: g
+ok   U3-COUPLED-H: energy
+ok   U3-COUPLED-H: end actions (arm transpose)
+ok   U3-COUPLED-H: decimal q[0] matches exact to 30 digits
+ok   U3-COUPLED-H: decimal q[1] matches exact to 30 digits
+ok   U3-COUPLED-H: decimal q[2] matches exact to 30 digits
+ok   U3-COUPLED-H: decimal q[3] matches exact to 30 digits
+ok   U3-COUPLED-H: decimal q[4] matches exact to 30 digits
+ok   U3-COUPLED-H: decimal q[5] matches exact to 30 digits
+ok   U3-PRELOAD-INSTALLED: H with Ls decodes to the recorded physical K
+ok   U3-PRELOAD-INSTALLED: r
+ok   U3-PRELOAD-INSTALLED: B column 0 (arm form)
+ok   U3-PRELOAD-INSTALLED: B column 1 (arm form)
+ok   U3-PRELOAD-INSTALLED: B column 2 (arm form)
+ok   U3-PRELOAD-INSTALLED: B column 3 (arm form)
+ok   U3-PRELOAD-INSTALLED: B column 4 (arm form)
+ok   U3-PRELOAD-INSTALLED: B column 5 (arm form)
+ok   U3-PRELOAD-INSTALLED: B column 6 (arm form)
+ok   U3-PRELOAD-INSTALLED: B column 7 (arm form)
+ok   U3-PRELOAD-INSTALLED: B column 8 (arm form)
+ok   U3-PRELOAD-INSTALLED: B column 9 (arm form)
+ok   U3-PRELOAD-INSTALLED: B column 10 (arm form)
+ok   U3-PRELOAD-INSTALLED: B column 11 (arm form)
+ok   U3-PRELOAD-INSTALLED: Ke = B^T K B
+ok   U3-PRELOAD-INSTALLED: installed RHS = B^T K q_ref
+ok   U3-PRELOAD-INSTALLED: q
+ok   U3-PRELOAD-INSTALLED: g
+ok   U3-PRELOAD-INSTALLED: energy
+ok   U3-PRELOAD-INSTALLED: end actions (arm transpose)
+ok   U3-PRELOAD-INSTALLED: decimal q[0] matches exact to 30 digits
+ok   U3-PRELOAD-INSTALLED: decimal q[1] matches exact to 30 digits
+ok   U3-PRELOAD-INSTALLED: decimal q[2] matches exact to 30 digits
+ok   U3-PRELOAD-INSTALLED: decimal q[3] matches exact to 30 digits
+ok   U3-PRELOAD-INSTALLED: decimal q[4] matches exact to 30 digits
+ok   U3-PRELOAD-INSTALLED: decimal q[5] matches exact to 30 digits
+ok   U3-SIX-tx: H with Ls decodes to the recorded physical K
+ok   U3-SIX-tx: r
+ok   U3-SIX-tx: B column 0 (arm form)
+ok   U3-SIX-tx: B column 1 (arm form)
+ok   U3-SIX-tx: B column 2 (arm form)
+ok   U3-SIX-tx: B column 3 (arm form)
+ok   U3-SIX-tx: B column 4 (arm form)
+ok   U3-SIX-tx: B column 5 (arm form)
+ok   U3-SIX-tx: B column 6 (arm form)
+ok   U3-SIX-tx: B column 7 (arm form)
+ok   U3-SIX-tx: B column 8 (arm form)
+ok   U3-SIX-tx: B column 9 (arm form)
+ok   U3-SIX-tx: B column 10 (arm form)
+ok   U3-SIX-tx: B column 11 (arm form)
+ok   U3-SIX-tx: Ke = B^T K B
+ok   U3-SIX-tx: installed RHS = B^T K q_ref
+ok   U3-SIX-tx: q
+ok   U3-SIX-tx: g
+ok   U3-SIX-tx: energy
+ok   U3-SIX-tx: end actions (arm transpose)
+ok   U3-SIX-tx: decimal q[0] matches exact to 30 digits
+ok   U3-SIX-tx: decimal q[1] matches exact to 30 digits
+ok   U3-SIX-tx: decimal q[2] matches exact to 30 digits
+ok   U3-SIX-tx: decimal q[3] matches exact to 30 digits
+ok   U3-SIX-tx: decimal q[4] matches exact to 30 digits
+ok   U3-SIX-tx: decimal q[5] matches exact to 30 digits
+ok   U3-SIX-ty: H with Ls decodes to the recorded physical K
+ok   U3-SIX-ty: r
+ok   U3-SIX-ty: B column 0 (arm form)
+ok   U3-SIX-ty: B column 1 (arm form)
+ok   U3-SIX-ty: B column 2 (arm form)
+ok   U3-SIX-ty: B column 3 (arm form)
+ok   U3-SIX-ty: B column 4 (arm form)
+ok   U3-SIX-ty: B column 5 (arm form)
+ok   U3-SIX-ty: B column 6 (arm form)
+ok   U3-SIX-ty: B column 7 (arm form)
+ok   U3-SIX-ty: B column 8 (arm form)
+ok   U3-SIX-ty: B column 9 (arm form)
+ok   U3-SIX-ty: B column 10 (arm form)
+ok   U3-SIX-ty: B column 11 (arm form)
+ok   U3-SIX-ty: Ke = B^T K B
+ok   U3-SIX-ty: installed RHS = B^T K q_ref
+ok   U3-SIX-ty: q
+ok   U3-SIX-ty: g
+ok   U3-SIX-ty: energy
+ok   U3-SIX-ty: end actions (arm transpose)
+ok   U3-SIX-ty: decimal q[0] matches exact to 30 digits
+ok   U3-SIX-ty: decimal q[1] matches exact to 30 digits
+ok   U3-SIX-ty: decimal q[2] matches exact to 30 digits
+ok   U3-SIX-ty: decimal q[3] matches exact to 30 digits
+ok   U3-SIX-ty: decimal q[4] matches exact to 30 digits
+ok   U3-SIX-ty: decimal q[5] matches exact to 30 digits
+ok   U3-SIX-tz: H with Ls decodes to the recorded physical K
+ok   U3-SIX-tz: r
+ok   U3-SIX-tz: B column 0 (arm form)
+ok   U3-SIX-tz: B column 1 (arm form)
+ok   U3-SIX-tz: B column 2 (arm form)
+ok   U3-SIX-tz: B column 3 (arm form)
+ok   U3-SIX-tz: B column 4 (arm form)
+ok   U3-SIX-tz: B column 5 (arm form)
+ok   U3-SIX-tz: B column 6 (arm form)
+ok   U3-SIX-tz: B column 7 (arm form)
+ok   U3-SIX-tz: B column 8 (arm form)
+ok   U3-SIX-tz: B column 9 (arm form)
+ok   U3-SIX-tz: B column 10 (arm form)
+ok   U3-SIX-tz: B column 11 (arm form)
+ok   U3-SIX-tz: Ke = B^T K B
+ok   U3-SIX-tz: installed RHS = B^T K q_ref
+ok   U3-SIX-tz: q
+ok   U3-SIX-tz: g
+ok   U3-SIX-tz: energy
+ok   U3-SIX-tz: end actions (arm transpose)
+ok   U3-SIX-tz: decimal q[0] matches exact to 30 digits
+ok   U3-SIX-tz: decimal q[1] matches exact to 30 digits
+ok   U3-SIX-tz: decimal q[2] matches exact to 30 digits
+ok   U3-SIX-tz: decimal q[3] matches exact to 30 digits
+ok   U3-SIX-tz: decimal q[4] matches exact to 30 digits
+ok   U3-SIX-tz: decimal q[5] matches exact to 30 digits
+ok   U3-SIX-rx: H with Ls decodes to the recorded physical K
+ok   U3-SIX-rx: r
+ok   U3-SIX-rx: B column 0 (arm form)
+ok   U3-SIX-rx: B column 1 (arm form)
+ok   U3-SIX-rx: B column 2 (arm form)
+ok   U3-SIX-rx: B column 3 (arm form)
+ok   U3-SIX-rx: B column 4 (arm form)
+ok   U3-SIX-rx: B column 5 (arm form)
+ok   U3-SIX-rx: B column 6 (arm form)
+ok   U3-SIX-rx: B column 7 (arm form)
+ok   U3-SIX-rx: B column 8 (arm form)
+ok   U3-SIX-rx: B column 9 (arm form)
+ok   U3-SIX-rx: B column 10 (arm form)
+ok   U3-SIX-rx: B column 11 (arm form)
+ok   U3-SIX-rx: Ke = B^T K B
+ok   U3-SIX-rx: installed RHS = B^T K q_ref
+ok   U3-SIX-rx: q
+ok   U3-SIX-rx: g
+ok   U3-SIX-rx: energy
+ok   U3-SIX-rx: end actions (arm transpose)
+ok   U3-SIX-rx: decimal q[0] matches exact to 30 digits
+ok   U3-SIX-rx: decimal q[1] matches exact to 30 digits
+ok   U3-SIX-rx: decimal q[2] matches exact to 30 digits
+ok   U3-SIX-rx: decimal q[3] matches exact to 30 digits
+ok   U3-SIX-rx: decimal q[4] matches exact to 30 digits
+ok   U3-SIX-rx: decimal q[5] matches exact to 30 digits
+ok   U3-SIX-ry: H with Ls decodes to the recorded physical K
+ok   U3-SIX-ry: r
+ok   U3-SIX-ry: B column 0 (arm form)
+ok   U3-SIX-ry: B column 1 (arm form)
+ok   U3-SIX-ry: B column 2 (arm form)
+ok   U3-SIX-ry: B column 3 (arm form)
+ok   U3-SIX-ry: B column 4 (arm form)
+ok   U3-SIX-ry: B column 5 (arm form)
+ok   U3-SIX-ry: B column 6 (arm form)
+ok   U3-SIX-ry: B column 7 (arm form)
+ok   U3-SIX-ry: B column 8 (arm form)
+ok   U3-SIX-ry: B column 9 (arm form)
+ok   U3-SIX-ry: B column 10 (arm form)
+ok   U3-SIX-ry: B column 11 (arm form)
+ok   U3-SIX-ry: Ke = B^T K B
+ok   U3-SIX-ry: installed RHS = B^T K q_ref
+ok   U3-SIX-ry: q
+ok   U3-SIX-ry: g
+ok   U3-SIX-ry: energy
+ok   U3-SIX-ry: end actions (arm transpose)
+ok   U3-SIX-ry: decimal q[0] matches exact to 30 digits
+ok   U3-SIX-ry: decimal q[1] matches exact to 30 digits
+ok   U3-SIX-ry: decimal q[2] matches exact to 30 digits
+ok   U3-SIX-ry: decimal q[3] matches exact to 30 digits
+ok   U3-SIX-ry: decimal q[4] matches exact to 30 digits
+ok   U3-SIX-ry: decimal q[5] matches exact to 30 digits
+ok   U3-SIX-rz: H with Ls decodes to the recorded physical K
+ok   U3-SIX-rz: r
+ok   U3-SIX-rz: B column 0 (arm form)
+ok   U3-SIX-rz: B column 1 (arm form)
+ok   U3-SIX-rz: B column 2 (arm form)
+ok   U3-SIX-rz: B column 3 (arm form)
+ok   U3-SIX-rz: B column 4 (arm form)
+ok   U3-SIX-rz: B column 5 (arm form)
+ok   U3-SIX-rz: B column 6 (arm form)
+ok   U3-SIX-rz: B column 7 (arm form)
+ok   U3-SIX-rz: B column 8 (arm form)
+ok   U3-SIX-rz: B column 9 (arm form)
+ok   U3-SIX-rz: B column 10 (arm form)
+ok   U3-SIX-rz: B column 11 (arm form)
+ok   U3-SIX-rz: Ke = B^T K B
+ok   U3-SIX-rz: installed RHS = B^T K q_ref
+ok   U3-SIX-rz: q
+ok   U3-SIX-rz: g
+ok   U3-SIX-rz: energy
+ok   U3-SIX-rz: end actions (arm transpose)
+ok   U3-SIX-rz: decimal q[0] matches exact to 30 digits
+ok   U3-SIX-rz: decimal q[1] matches exact to 30 digits
+ok   U3-SIX-rz: decimal q[2] matches exact to 30 digits
+ok   U3-SIX-rz: decimal q[3] matches exact to 30 digits
+ok   U3-SIX-rz: decimal q[4] matches exact to 30 digits
+ok   U3-SIX-rz: decimal q[5] matches exact to 30 digits
+ok   reversal: q' = T q
+ok   reversal: energy equal
+ok   reversal: Fi' = Fj
+ok   reversal: Mi' = Mj
+ok   reversal: Fj' = Fi
+ok   reversal: Mj' = Mi
+ok   B oracle: r = (2,0,0)
+ok   B oracle: end blocks (arm transpose)
+ok   B oracle: q for d_given
+ok   B oracle: virtual work
+ok   system load:L-100: sum of applied loads and frozen reactions = 0 (force, to 1e-25 of the floor)
+ok   system load:L-100: moment balance about the origin from frozen values (to 1e-25 of floor x 10 m)
+ok   system load:L-100: spring reaction = -42000 u_z
+ok   system load:L-100: connector K diagonal decodes to (3.2e6, 9e5, 9e5, 6.2e5, 4.8e5, 4.8e5)
+ok   system load:L-100: q from frozen displacements matches frozen q (1e-25 of floor)
+ok   system load:L-100: g = K q (frozen values, 1e-22 relative to floor)
+ok   system load:L-100: end actions from frozen g (arm transpose)
+ok   system load:L-100: raw discriminator differs by more than 1e-6 x force floor
+ok   system load:L-100: parallel discriminator differs by more than 1e-6 x force floor
+ok   system load:L-200: sum of applied loads and frozen reactions = 0 (force, to 1e-25 of the floor)
+ok   system load:L-200: moment balance about the origin from frozen values (to 1e-25 of floor x 10 m)
+ok   system load:L-200: spring reaction = -42000 u_z
+ok   system load:L-200: connector K diagonal decodes to (3.2e6, 9e5, 9e5, 6.2e5, 4.8e5, 4.8e5)
+ok   system load:L-200: q from frozen displacements matches frozen q (1e-25 of floor)
+ok   system load:L-200: g = K q (frozen values, 1e-22 relative to floor)
+ok   system load:L-200: end actions from frozen g (arm transpose)
+ok   system load:L-200: raw discriminator differs by more than 1e-6 x force floor
+ok   system load:L-200: parallel discriminator differs by more than 1e-6 x force floor
+ok   system load:L-300: sum of applied loads and frozen reactions = 0 (force, to 1e-25 of the floor)
+ok   system load:L-300: moment balance about the origin from frozen values (to 1e-25 of floor x 10 m)
+ok   system load:L-300: spring reaction = -42000 u_z
+ok   system load:L-300: connector K diagonal decodes to (3.2e6, 9e5, 9e5, 6.2e5, 4.8e5, 4.8e5)
+ok   system load:L-300: q from frozen displacements matches frozen q (1e-25 of floor)
+ok   system load:L-300: g = K q (frozen values, 1e-22 relative to floor)
+ok   system load:L-300: end actions from frozen g (arm transpose)
+ok   system load:L-300: raw discriminator differs by more than 1e-6 x force floor
+ok   system load:L-300: parallel discriminator differs by more than 1e-6 x force floor
+ok   NI: Kxx = 20 (9/25) + (48/5)(16/25)
+ok   NI: Kxy = (20 - 48/5)(3/5)(-4/5)
+ok   NI test1_10_-10: Kxx u = Fx + friction
+ok   NI test1_10_-10: normal = Kxy u - Fy
+ok   NI test1_10_-10: |friction| = 0.3 |normal|, opposing motion
+ok   NI test1_10_-10: binary64 string is the nearest double
+ok   NI test1_-10_-10: Kxx u = Fx + friction
+ok   NI test1_-10_-10: normal = Kxy u - Fy
+ok   NI test1_-10_-10: |friction| = 0.3 |normal|, opposing motion
+ok   NI test1_-10_-10: binary64 string is the nearest double
+ok   NI test2_10_-1: retry iterate equilibrium
+ok   NI test2_10_-1: retry normal changed sign against the sticking trial (-Fy)
+ok   NI test2_10_-1: retry force built on the assumed branch: f = -s mu sigma Ry with sigma = sign(-Fy)
+ok   NI test2_10_-1: final equilibrium and friction law
+ok   NI test2_10_-1: final normal keeps the retry's sign
+ok   NI test2_-10_1: retry iterate equilibrium
+ok   NI test2_-10_1: retry normal changed sign against the sticking trial (-Fy)
+ok   NI test2_-10_1: retry force built on the assumed branch: f = -s mu sigma Ry with sigma = sign(-Fy)
+ok   NI test2_-10_1: final equilibrium and friction law
+ok   NI test2_-10_1: final normal keeps the retry's sign
+ok   NI test4: u = Fx/Kxx with no friction
+ok   finite rotation L=2 phi=0.1: qt_x
+ok   finite rotation L=2 phi=0.1: qt_y
+ok   finite rotation L=0.3 phi=0.01: qt_x
+ok   finite rotation L=0.3 phi=0.01: qt_y
+ok   finite rotation L=2 phi=0.5: qt_x
+ok   finite rotation L=2 phi=0.5: qt_y
+consumer checks: 508 pass, 0 fail
+PASS
