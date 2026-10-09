@@ -1,0 +1,15 @@
+fixture sha256 7e51ecb3c7eca573194ce60222f2e2e7422b817be7aacad9a2a5e79102801ab1
+SHA256SUMS REBUILT_REFERENCE.md OK
+SHA256SUMS RETURN.md OK
+SHA256SUMS _run_records/check_reference_json.py OK
+SHA256SUMS _run_records/check_reference_json.stdout.txt OK
+SHA256SUMS _run_records/derive_rebuilt_references.py OK
+SHA256SUMS _run_records/derive_rebuilt_references.stdout.txt OK
+SHA256SUMS rebuilt_reference_cases.json OK
+SHA256SUMS file digest 8246ea4ec6dbde28606005854bb3b8c9591a274ec7052f718e3a8a8d843d92d6
+derive exit 0 check exit 0
+byte-equal rebuilt_reference_cases.json 6b8b75bba48278c033561ddec1ce61e1f19e57bfcab72942a12766d383c4c511
+byte-equal derive.stdout.txt 4a898ea0159de58add1e2357677fa8360e78fcab7d49e3ab1ce16e7851698476
+byte-equal check.stdout.txt 57cea75d9cf83d88078a8d7c04a8ea713a5ca61f066645f8ddfeb09ac5b11a1d
+python 3.13.14
+RESULT: PASS

@@ -1,0 +1,43 @@
+case1 rows compared: 80 86
+case1 free: Nw 139129/8000*pi^1 sigma_z 278258000/20871*pi^0 hoop_i 598258000/20871 uB 139129/2608875000000
+case1 restrained: Nw 417387/40000*pi^1 sigma_z 55651600/6957*pi^0
+case1 wrong (Ai from authored bore 0.092, As reduced) sigma_z free = 270848000/20871*pi^0 = 12977.241148004408 ; in T4-I8 discriminator list: False
+case2 case:pressure-half rows compared: 222; Nw 9720*pi^1 S -6480*pi^1 sigma_z 97200000/19*pi^0
+case2 case:combined rows compared: 222; Nw -13080*pi^1 S -29280*pi^1 sigma_z -130800000/19*pi^0
+case2 EI 1719500*pi^1 uy(D) -1701/137560*pi^-1 rz(D) -351/137560*pi^-1
+case3 rows compared: 80 ; sh_i 3625/6 sh_o 3025/6 sz 3025/12 ; rel {'inner': '-1/145', 'outer': '23/121', 'mean': '1/11', 'sz': '23/121'}
+twin: 20 fixture values re-derived by a second route; worst relative difference 0.0e+00
+discriminators (separation in units of the 1e-9 criterion; minimum shown first):
+  case1 retired_thin_wall_hoop: correct 28664.558478271287 wrong 28629.62962962963 separation 1.219e+06
+  case3 thin_hoop/lame_inner_hoop: correct 604.1666666666666 wrong 600.0 separation 6.897e+06
+  case1 cap_area_on_nominal_bore: correct 13332.279239135643 wrong 12419.146183699871 separation 6.849e+07
+  case1 retired_thin_wall_longitudinal_free: correct 13332.279239135643 wrong 14314.814814814816 separation 6.864e+07
+  case3 mean_hoop_as_surface/lame_inner_hoop: correct 604.1666666666666 wrong 550.0 separation 8.966e+07
+  case2 full_span_load: correct -0.0039360651090333525 wrong -0.004498360124609546 separation 1.250e+08
+  case3 thin_hoop/lame_outer_hoop: correct 504.1666666666667 wrong 600.0 separation 1.597e+08
+  case3 thin_longitudinal/sigma_z: correct 252.08333333333334 wrong 300.0 separation 1.597e+08
+  case1 mill_tolerance_ignored: correct 28664.558478271287 wrong 24041.666666666668 separation 1.613e+08
+  case1 mill_tolerance_ignored_sigma_z_free: correct 13332.279239135643 wrong 11020.833333333334 separation 1.734e+08
+  case1 allowance_not_folded: correct 28664.558478271287 wrong 21902.894491129784 separation 2.359e+08
+  case2 legacy_same_sign_reaction: correct 91985.83289710914 wrong 122522.11349000194 separation 2.492e+08
+  case1 allowance_not_folded_sigma_z_free: correct 13332.279239135643 wrong 9951.447245564892 separation 2.536e+08
+  case2 poisson_term_omitted: correct -41092.031908954494 wrong -71628.3125018473 separation 4.263e+08
+  case1 retired_thin_wall_longitudinal_restrained: correct 7999.367543481386 wrong 14314.814814814816 separation 4.412e+08
+  case1 longitudinal_pressure_added_free: correct 13332.279239135643 wrong 26664.558478271287 separation 5.000e+08
+  case2 caps_subtracted_in_recovery: correct -41092.031908954494 wrong -91985.83289710914 separation 5.533e+08
+  case2 pressure_as_compression: correct -41092.031908954494 wrong -102164.59309474008 separation 5.978e+08
+  case2 legacy_same_sign_thrust: correct -41092.031908954494 wrong -122522.11349000194 separation 6.646e+08
+  case2 pressure_half_legacy_thrust: correct 30536.280592892792 wrong -50893.80098815465 separation 1.600e+09
+  case2 pressure_half_caps_subtracted: correct 30536.280592892792 wrong -20357.52039526186 separation 1.667e+09
+  case1 poisson_sign_reversed_restrained: correct 32.78149832259707 wrong -32.78149832259707 separation 2.000e+09
+  case2 S_sign_reversed: correct -91985.83289710914 wrong 91985.83289710914 separation 2.000e+09
+  case2 pressure_half_compression: correct 30536.280592892792 wrong -30536.280592892792 separation 2.000e+09
+  case2 station_sign_i_side: correct -2025.0 wrong 2025.0 separation 2.000e+09
+zero-floor audit (tolerance / (eps * largest same-unit value in the case); smallest per load case):
+  milltol_lame_membrane/case:milltol-free: ratio 2.095e+06 at pipe_lame_radial_stress_v2 pipe:A-B lame_outer_radial_stress end_i; tol 1.333e-05; largest same-unit 2.866e+04
+  milltol_lame_membrane/case:milltol-restrained: ratio 2.095e+06 at pipe_lame_radial_stress_v2 pipe:A-B lame_outer_radial_stress end_i; tol 1.333e-05; largest same-unit 2.866e+04
+  tp_phys_pressure_halves/case:pressure-half: ratio 2.015e+06 at pipe_lame_radial_stress_v2 pipe:A-B lame_outer_radial_stress end_i; tol 8.526e-03; largest same-unit 1.905e+07
+  tp_phys_pressure_halves/case:combined: ratio 4.406e+04 at element_local_shear_force_z pipe:A-B shear_force_z end_i; tol 9.000e-07; largest same-unit 9.199e+04
+  pressure_membrane_thin_wall_limit/case:membrane-free: ratio 1.879e+06 at pipe_lame_radial_stress_v2 pipe:A-B lame_outer_radial_stress end_i; tol 2.521e-07; largest same-unit 6.042e+02
+checks: 2139, failures: 0
+RESULT: PASS
