@@ -1196,6 +1196,9 @@ fn full_envelope_sha256(envelope: &MechanicsEnvelope) -> String {
 ///   gate's full-envelope probe; RV17 recorded the same). Platform-independent:
 ///   every magnitude here has one nonzero component (Annex F: hypot(x, +-0) =
 ///   |x|), there is no thermal load, and exact-block's arithmetic is exact.
+///   Re-pinned for the pressure retirement (U3 T2): main's bytes with only the
+///   declared formulation-limitation string replaced and the two receipt
+///   digests recomputed by the product's digest rule (ROOT's mechanical check).
 /// - Typed entry (no capture, so exact-block is not eligible), both modes: W2
 ///   refuses the case by name (`ScaledEvaluation`, no b under c2), where main
 ///   refuses it with the ordinary Range text (the C1 kind).
@@ -1207,11 +1210,11 @@ fn f1b_w2_exact_block_selection_of_a_range_triggered_case_publishes_mains_bytes(
     for (mode, main_sha256) in [
         (
             PreviewSolverMode::SparseInteractive,
-            "d953a68396df615a62a8e9192993e89dd489e1582c6533a117935ce7d3ffbc8c",
+            "aaabc777a0f2f3bff2392fc442eb2fac48c305345b25164ceb9d7cfbb90ecf9c",
         ),
         (
             PreviewSolverMode::DenseScrutiny,
-            "10d312a1f3fc2f7f6293eb078b7e028c9979cab97b2aba212d1f8d3308ecf02d",
+            "7db0edaf667ef1d38fcdfb72da9df313adf2f716c305a5d22219fc64a5400f7f",
         ),
     ] {
         let envelope = run_linear_static_preview_value_with_mode(request.clone(), mode).unwrap();

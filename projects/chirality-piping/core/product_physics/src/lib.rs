@@ -1941,7 +1941,7 @@ pub fn preview_formulation_basis() -> FormulationBasis {
         profile_id: "product_preview_mechanics_v1".to_string(),
         limitations: vec![
             "Small-displacement product-preview mechanics; numerical integrity does not establish physical formulation correctness.".to_string(),
-            "Pressure thrust and pressure stress retain the existing preview formulation and capability qualifications; pressure formulation qualification remains open.".to_string(),
+            "Pressure is not solved on this profile: legacy pressure inputs are refused, and pressure is solved only on the exact straight-pressure profile, under that profile's own qualifications.".to_string(),
             "Component stiffness, flexibility and stress modifiers depend on declared user inputs and supported component families; no general component qualification is provided.".to_string(),
             "Open-formula stress recovery retains its existing section, station and load-basis limitations; no code compliance result is produced.".to_string(),
             "Support, spring-hanger and nonlinear active-state behavior retain their existing capability and convergence qualifications; numerical precision does not qualify their constitutive models.".to_string(),
