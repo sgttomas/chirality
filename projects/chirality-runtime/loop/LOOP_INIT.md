@@ -6,6 +6,8 @@ Paths are project-relative except commands and explicitly repository-relative re
 
 Read shared `../../AGENTS.md` and the actual invoked role. Discover current authority at `execution/_Coordination/MIGRATION_ACCEPTANCE_2026-09-06.md`, then `docs/PRD_AUTHORITY.md`, `docs/PRD.md` and `execution/_Decomposition/_AUTHORITY.md`. Use `execution/_Coordination/HANDOFF_STATE.md` and the newest `loop/LOOP_RECEIPTS.md` entry for continuity; historical payload labels do not override later owner acts.
 
+Read `loop/PROJECT_GUIDANCE.md` for Runtime-specific boundaries before selecting work.
+
 The work surface is the accepted seven-carrier register in `execution/_Decomposition/RUNTIME_DELIVERABLE_REGISTER.csv` and each carrier's `ScopeOfWork.md`, `_STATUS.md` Remaining and `Dependencies.csv`. Discover declared coordination at `execution/_Coordination/_COORDINATION.md` and held gates at `execution/_Decomposition/HOLD_SUCCESSOR_MAP.csv`. No workplan or inferred DAG priority is selected here.
 
 ## Limits

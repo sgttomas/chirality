@@ -4,7 +4,7 @@ Resolve `REPO_ROOT` from the active checkout and set `WORKING_ROOT` to
 `{REPO_ROOT}/projects/pec`. Paths below are relative to `WORKING_ROOT`.
 Enter through `init/dev-loop-init-prompt.md` with the selected role and the
 human's steering. This file owns the recurring development-loop procedure;
-project `AGENTS.md` supplies standing responsibilities, boundaries and checks.
+`loop/PROJECT_GUIDANCE.md` supplies standing responsibilities, boundaries and checks.
 Keep this file evergreen: undertaking selection and graph references come from
 the init steering and subsequent human directions; execution state lives in the
 selected work graph.
@@ -17,7 +17,7 @@ selected work graph.
   with the accepted project relationship basis they reference.
 - Deliverables: relevant `execution/PKG-*/1_Working/DEL-*/` folders and their
   accepted production form, MEMORY.md, dependencies and lifecycle _STATUS.md.
-- Decisions and boundaries: project `AGENTS.md`, applicable entries in
+- Decisions and boundaries: `loop/PROJECT_GUIDANCE.md`, applicable entries in
   `execution/_Coordination/_DECISIONS/_REGISTER.md`, and relevant
   `execution/_Coordination/NOTICE_*` files.
 - Checks: `software-workflow.json` and the applicable project verification rules.

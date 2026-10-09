@@ -193,25 +193,25 @@ def validate(repo_root: Path) -> list[str]:
         project_root = repo_root / "projects" / project_name
         if not project_root.is_dir():
             continue
-        project_agents = project_root / "AGENTS.md"
+        project_guidance = project_root / "loop" / "PROJECT_GUIDANCE.md"
         project_init = project_root / "init" / "dev-loop-init-prompt.md"
         loop_init = project_root / "loop" / "LOOP_INIT.md"
         workplans = sorted((project_root / "loop").glob("WORKPLAN_*.md"))
         current_workplan = workplans[-1] if workplans else None
         profile = project_root / "software-workflow.json"
-        for required in (project_agents, project_init, loop_init, profile):
+        for required in (project_guidance, project_init, loop_init, profile):
             if not required.is_file():
                 findings.append(f"{required.relative_to(repo_root)} is missing")
         # A workplan is an optional narrowing overlay (app-dev D-APP-105 /
         # D-APP-106); its absence is not a finding. When present, the newest
         # one is checked for structural duplication below.
 
-        if project_agents.is_file():
-            text = project_agents.read_text(encoding="utf-8").lower()
+        if project_guidance.is_file():
+            text = project_guidance.read_text(encoding="utf-8").lower()
             for phrase in ("software_workflow_profile.md",):
                 if phrase not in text:
                     findings.append(
-                        f"{project_agents.relative_to(repo_root)} is missing '{phrase}'"
+                        f"{project_guidance.relative_to(repo_root)} is missing '{phrase}'"
                     )
 
         help_human_entry = False

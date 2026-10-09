@@ -134,7 +134,7 @@ agent names map to these role and method pairs in
 ## Write Scopes And Fences
 
 Default writable project-local surfaces are only `execution/_Coordination/**`,
-this `AGENTS.md`, and the one-time `docs/STATUS.md` governance pointer
+`loop/PROJECT_GUIDANCE.md`, and the one-time `docs/STATUS.md` governance pointer
 section (F-PEC-1). Per-tranche `docs/STATUS.md` upkeep beyond that pointer
 requires an explicit packet clause (as `D-PEC-58`/`D-PEC-59` supplied for
 their tranches).
@@ -165,7 +165,7 @@ and interruption (Root CONTRACT K-RUNTIME-1). This file reads `D-T0-23`'s conver
 Root-owned shared runtime as amended by that record; that is an
 interpretation, since `D-GOV-43` does not cite `D-T0-23`. Agents working on PEC in another
 host use that host's actual execution and delegation, recorded as Root
-`AGENTS.md` and `D-GOV-35` require. In every case PEC v2 creates **no second
+`loop/PROJECT_GUIDANCE.md` and `D-GOV-35` require. In every case PEC v2 creates **no second
 execution loop** and holds no session authority.
 
 `D-PEC-56` is **partially superseded** by `D-PEC-58` (behavior 8): its ruled
