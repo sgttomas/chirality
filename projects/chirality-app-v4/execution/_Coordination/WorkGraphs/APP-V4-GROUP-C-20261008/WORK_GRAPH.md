@@ -100,8 +100,8 @@ future entries will be routed through HELP_HUMAN at closeout, not written here.
 
 ## Current state and recovery
 
-The current checked main basis is `f028d12edcd23c8aaf6a1b67e6efc66a3cfda19b`
-(PR #1192 dormant call-custody source proposal merged; no TASK producer).
+The current checked main basis is `b59e08b9a5fa89e065db65d2c4cc2ebabedf9d91`
+(PR #1193 dormant R2 proof merged; no production R2 or TASK producer).
 PR #1170 retains the completed bounded native witness. The prior HELP_HUMAN graph refresh and WORKING_ITEMS assignment are complete.
 HELP_HUMAN now assigns WORKING_ITEMS `/root/group_c_successor` as the sole
 Group C graph maintainer for bounded C3-R2-S W2/R2 impact and source options,
@@ -363,6 +363,12 @@ false-confirmation defect. Maintained red tests reproduced it; repairedceca6e972
 received independent READY and32 default/32 feature passes. Exact failure,
 repair, proportionality and reuse/retirement limits are in
 [C3_R2_PROOF_INDEPENDENT_REVIEW.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_R2_PROOF_INDEPENDENT_REVIEW.md).
-Manager integration99d7c246e9 preserves identical App bytes. Final head review
-and selected CI remain before merge. This is a test-only storage proof, not
+Manager integration99d7c246e9 preserves identical App bytes. Final head review was READY ata676b11b3d; selected CI passed and PR #1193
+mergedb59e08b9a5. The bounded proof is COMPLETE. This is a test-only storage proof, not
 production R2 activation, RS adoption, capacity/retirement selection or PM05 closure.
+
+### R2 resource-envelope receiving checkpoint
+
+PR #1193 merged the dormant constructed-file proof as `b59e08b9a5fa89e065db65d2c4cc2ebabedf9d91`; no production opener or PM05 recovery was released. PR #1194 merged dormant original-call/unavailable-response custody as `52f5f3494b97f0bd7547fd437b656483450a9ae5`; it supplies no TASK admission, managed-session service or authored answer producer. C3-AA-TASK remains held on its named role/initiation/source joins, not on R2 completion.
+
+[R2 resource envelope and evidence retention](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_R2_RESOURCE_ENVELOPE.md) is the next proposed technical decision package. Its constructed byte matrix informs carrier/resource work; product N/S/D/T/Q, terminal retention, platform qualification and separate CAM64 suitability remain open. Real recovery-critical Host/operation carriers and workload/resource measurements are still missing. C2/C4/C5 external holds remain separate; no whole-product90 claim.
