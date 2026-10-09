@@ -10,6 +10,8 @@ instruction_surface_paths:
   - projects/chirality-piping/AGENTS.md
   - projects/chirality-runtime/AGENTS.md
   - projects/pec/AGENTS.md
+  - tools/validation/validate_instruction_entrypoints.py
+  - tools/validation/test_validate_instruction_entrypoints.py
   - docs/governance_harness/tranche_manifests/ROOT-PROJECT-AGENTS-REMOVAL-20261009.yaml
 
 m2_gate:
@@ -17,9 +19,12 @@ m2_gate:
     The human user in the active thread reported manually updating the root
     AGENTS.md, directed its integration with origin, and explicitly requested
     an opened and merged PR for the removal of project-root AGENTS.md files.
-    Scope is the root AGENTS.md update plus deletion of the four project-root
-    overlays listed above. Nested packaged instructions, fixtures, and
-    historical run records are not included.
+    Scope is the root AGENTS.md update and removal of the four project-root
+    overlays listed above. To preserve their project-specific constraints,
+    guidance moves to each loop's PROJECT_GUIDANCE.md; loop entry references
+    and the entrypoint validator are updated to use that location. Nested
+    packaged instructions, fixtures, and historical run records are not
+    included.
   authorized_by: Human user via active Codex thread
   authorization_date: 2026-10-09
   integration_owner: >-
@@ -29,18 +34,22 @@ m2_gate:
   self_merge: true
 
 m6_notice:
-  disposition: pending
-  routed_to: []
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-10-09_ROOT_PROJECT_AGENTS_REMOVAL.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-10-09_ROOT_PROJECT_AGENTS_REMOVAL.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-10-09_ROOT_PROJECT_AGENTS_REMOVAL.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-10-09_ROOT_PROJECT_AGENTS_REMOVAL.md
   rationale: >-
-    The four project-root instruction overlays are being removed. Notice
-    routing and adoption impact for the App Dev, Piping, Runtime, and PEC
-    loops remains pending; this manifest records that work rather than
-    claiming the receiving loops have adopted the root entry.
+    Notices route the removal and guidance relocation to App Dev, Piping,
+    Runtime, and PEC. Each receiving loop decides whether and when to adopt;
+    the notices and this Root PR do not assert downstream adoption.
 
 scope_limits:
   - >-
     The candidate updates root AGENTS.md and deletes only the four project-root
-    AGENTS.md files listed above.
+    AGENTS.md files listed above, moving their active guidance to loop-level
+    PROJECT_GUIDANCE.md files and updating the loop entrypoints and validator.
   - >-
     Nested packaged instructions, fixtures, and historical run-record copies
     remain unchanged.

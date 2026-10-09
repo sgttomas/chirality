@@ -25,7 +25,7 @@ def _write_project(
     *,
     project_name: str = "chirality-app-dev",
     entry_role: str = "HELP_HUMAN",
-    project_agents_text: str = (
+    project_guidance_text: str = (
         "one package-scoped instance\nTerminal fan-out/fan-in\n"
         "supervised many-to-many\nSOFTWARE_WORKFLOW_PROFILE.md\n"
     ),
@@ -37,7 +37,9 @@ def _write_project(
     project = tmp_path / "projects" / project_name
     (project / "init").mkdir(parents=True)
     (project / "loop").mkdir()
-    (project / "AGENTS.md").write_text(project_agents_text, encoding="utf-8")
+    (project / "loop" / "PROJECT_GUIDANCE.md").write_text(
+        project_guidance_text, encoding="utf-8"
+    )
     prompt = (
         "<init-prompt>\n"
         "Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.\n\n"
@@ -74,14 +76,14 @@ def test_accepts_project_without_workplan(tmp_path: Path) -> None:
     assert validator.validate(tmp_path) == []
 
 
-def test_accepts_thin_project_agents_with_canonical_runtime_reference(
+def test_accepts_thin_project_guidance_with_canonical_runtime_reference(
     tmp_path: Path,
 ) -> None:
     _write_project(
         tmp_path,
         project_name="chirality-piping",
         entry_role="WORKING_ITEMS",
-        project_agents_text=(
+        project_guidance_text=(
             "Root `AGENTS.md` and canonical `agents/AGENT_*.md` packages govern "
             "runtime roles, selection, delegation, and orchestration.\n"
             "Software work follows `docs/SOFTWARE_WORKFLOW_PROFILE.md`.\n"
@@ -90,18 +92,18 @@ def test_accepts_thin_project_agents_with_canonical_runtime_reference(
     assert validator.validate(tmp_path) == []
 
 
-def test_rejects_project_agents_without_software_profile_reference(
+def test_rejects_project_guidance_without_software_profile_reference(
     tmp_path: Path,
 ) -> None:
     project = _write_project(
         tmp_path,
-        project_agents_text=(
+        project_guidance_text=(
             "Root `AGENTS.md` and canonical agent packages govern runtime "
             "roles and orchestration.\n"
         ),
     )
     assert validator.validate(tmp_path) == [
-        f"{project.relative_to(tmp_path)}/AGENTS.md is missing "
+        f"{project.relative_to(tmp_path)}/loop/PROJECT_GUIDANCE.md is missing "
         "'software_workflow_profile.md'"
     ]
 
@@ -253,7 +255,7 @@ def test_allows_by_reference_citation(tmp_path: Path) -> None:
         workplan_text=(
             "# Standing workplan\n\n"
             "Runtime hierarchy and delegation are governed by root `AGENTS.md`, "
-            "the project `AGENTS.md`, and the active canonical agent instructions.\n"
+            "the project `loop/PROJECT_GUIDANCE.md`, and the active canonical agent instructions.\n"
         ),
     )
     assert validator.validate(tmp_path) == []
