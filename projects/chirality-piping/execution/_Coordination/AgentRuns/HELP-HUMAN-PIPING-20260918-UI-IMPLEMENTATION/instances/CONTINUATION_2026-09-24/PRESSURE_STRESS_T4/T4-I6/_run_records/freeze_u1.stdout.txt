@@ -1,0 +1,90 @@
+CB toy quarter circle: K identical at origin and X=7.3e6: True
+naive sweep phi 0.1      ms 6.89E-13 diag 8.85E-13
+naive sweep phi 0.03     ms 1.38E-11 diag 1.38E-11
+naive sweep phi 0.01     ms 1.71E-10 diag 2.11E-10
+naive sweep phi 0.005    ms 2.77E-10 diag 2.86E-10
+naive sweep phi 0.003    ms 2.22E-9 diag 2.85E-9
+naive sweep phi 0.002    ms 5.07E-8 diag 6.50E-8
+naive sweep phi 0.001    ms 9.14E-8 diag 1.17E-7
+naive sweep phi 0.0001   ms 3.03E-4 diag 3.88E-4
+naive sweep phi 1e-06    ms 1.00E+0 diag 1.00E+0
+naive sweep phi 1e-08    ms 4.24E+0 diag 1.97E+1
+naive sweep pi-phi 0.001    ms 1.84E-14 diag 1.84E-14
+naive sweep pi-phi 0.0001   ms 2.64E-12 diag 2.64E-12
+naive sweep pi-phi 1e-05    ms 1.15E-11 diag 1.15E-11
+naive sweep pi-phi 1e-06    ms 1.15E-10 diag 1.15E-10
+naive sweep pi-phi 1e-07    ms 3.85E-10 diag 3.85E-10
+T4-I6 freeze_u1: 49 cases, python 3.13.14, decimal prec 110 (check 140)
+case                         phi          digits    trans  null      perm      straight  naive b64 (ms / diag)     
+B90-IP-k1.0-base             1.57080E+0   1.6E-108  True   5.1E-110  0         9.8E-2    6.28E-16 / 1.06E-15       
+B90-IP-k1.0-rotated          1.57080E+0   1.6E-108  True   6.8E-110  2.0E-111  1.0E-1    9.52E-16 / 1.45E-15       
+B90-IP-k2.5-base             1.57080E+0   2.9E-108  True   5.4E-110  0         4.1E-1    2.07E-15 / 2.07E-15       
+B90-IP-k2.5-rotated          1.57080E+0   4.4E-108  True   5.3E-110  2.6E-111  4.3E-1    2.84E-15 / 4.00E-15       
+B90-SK-k1.0-base             1.57080E+0   1.9E-108  True   1.0E-109  6.6E-111  1.3E-1    2.60E-15 / 2.60E-15       
+B90-SK-k1.0-rotated          1.57080E+0   6.4E-109  True   7.5E-110  0         1.1E-1    9.94E-16 / 1.21E-15       
+B90-SK-k2.5-base             1.57080E+0   4.1E-108  True   6.7E-110  5.4E-111  5.7E-1    6.54E-15 / 6.59E-15       
+B90-SK-k2.5-rotated          1.57080E+0   2.7E-109  True   5.0E-110  0         4.6E-1    1.89E-15 / 2.11E-15       
+B45-IP-k1.0-base             7.85398E-1   6.3E-109  True   5.9E-110  0         7.0E-2    8.51E-16 / 9.62E-16       
+B45-IP-k1.0-rotated          7.85398E-1   1.0E-108  True   1.5E-108  1.9E-111  7.5E-2    1.55E-15 / 1.97E-15       
+B45-IP-k2.5-base             7.85398E-1   6.1E-109  True   2.8E-110  0         7.3E-1    1.54E-15 / 1.93E-15       
+B45-IP-k2.5-rotated          7.85398E-1   2.0E-108  True   1.1E-109  2.4E-111  6.6E-1    3.35E-15 / 3.35E-15       
+B45-SK-k1.0-base             7.85398E-1   4.1E-109  True   1.4E-108  2.0E-111  7.2E-2    6.07E-15 / 6.07E-15       
+B45-SK-k1.0-rotated          7.85398E-1   5.5E-109  True   5.2E-109  1.9E-111  7.8E-2    1.16E-15 / 1.37E-15       
+B45-SK-k2.5-base             7.85398E-1   4.8E-109  True   1.0E-109  5.7E-111  8.4E-1    7.47E-15 / 7.47E-15       
+B45-SK-k2.5-rotated          7.85398E-1   1.4E-108  True   7.7E-110  2.0E-111  7.5E-1    1.72E-15 / 1.99E-15       
+B5-IP-k1.0-base              8.72665E-2   1.9E-106  True   5.9E-110  0         3.6E-2    1.79E-13 / 1.79E-13       
+B5-IP-k1.0-rotated           8.72665E-2   2.7E-107  True   1.2E-109  9.7E-112  4.3E-2    3.01E-13 / 3.01E-13       
+B5-IP-k2.5-base              8.72665E-2   9.4E-107  True   4.8E-110  0         1.5E+0    4.98E-14 / 6.71E-14       
+B5-IP-k2.5-rotated           8.72665E-2   2.8E-107  True   1.1E-109  8.0E-112  1.5E+0    8.34E-14 / 8.34E-14       
+B5-SK-k1.0-base              8.72665E-2   3.2E-107  True   9.4E-110  6.4E-112  2.5E-2    1.06E-13 / 1.38E-13       
+B5-SK-k1.0-rotated           8.72665E-2   4.9E-107  True   1.3E-109  1.3E-111  3.5E-2    3.00E-13 / 3.70E-13       
+B5-SK-k2.5-base              8.72665E-2   2.4E-107  True   1.1E-109  7.8E-112  1.5E+0    3.54E-14 / 4.44E-14       
+B5-SK-k2.5-rotated           8.72665E-2   4.1E-107  True   7.5E-110  1.5E-111  1.5E+0    1.52E-13 / 1.89E-13       
+B1E-4-IP-k1.0-base           1.00000E-4   4.3E-98   True   5.6E-110  0         2.4E-6    3.03E-4 / 3.88E-4         
+B1E-4-IP-k1.0-rotated        1.00000E-4   1.0E-98   True   1.1E-109  8.6E-111  2.4E-6    2.87E-4 / 3.28E-4         
+B1E-4-IP-k2.5-base           1.00000E-4   4.8E-98   True   4.5E-110  0         4.5E-1    3.37E-4 / 6.32E-4         
+B1E-4-IP-k2.5-rotated        1.00000E-4   1.2E-98   True   7.4E-110  5.9E-111  4.0E-1    3.28E-4 / 6.02E-4         
+B1E-4-SK-k1.0-base           1.00000E-4   4.5E-98   True   1.1E-109  6.4E-111  1.9E-6    3.59E-4 / 3.59E-4         
+B1E-4-SK-k1.0-rotated        1.00000E-4   8.1E-100  True   1.7E-109  3.0E-111  2.2E-6    3.04E-4 / 3.04E-4         
+B1E-4-SK-k2.5-base           1.00000E-4   6.1E-98   True   8.3E-110  3.0E-111  5.6E-1    4.84E-4 / 4.84E-4         
+B1E-4-SK-k2.5-rotated        1.00000E-4   9.0E-100  True   8.6E-110  3.5E-111  4.6E-1    3.63E-4 / 4.83E-4         
+B1E-8-IP-k1.0-base           1.00000E-8   4.2E-86   True   4.3E-110  0         2.4E-10   4.24E+0 / 1.97E+1         
+B1E-8-IP-k1.0-rotated        1.00000E-8   2.9E-86   True   1.2E-109  2.9E-111  2.4E-10   3.82E+0 / 1.82E+1         
+B1E-8-IP-k2.5-base           1.00000E-8   4.7E-86   True   3.1E-110  0         4.5E-1    1.00E+0 / 2.57E+0         
+B1E-8-IP-k2.5-rotated        1.00000E-8   3.3E-86   True   1.0E-109  3.3E-111  4.0E-1    1.03E+0 / 2.52E+0         
+B1E-8-SK-k1.0-base           1.00000E-8   6.6E-87   True   1.9E-109  6.4E-111  1.9E-10   2.83E+0 / 1.46E+1         
+B1E-8-SK-k1.0-rotated        1.00000E-8   1.7E-86   True   1.1E-109  5.9E-111  2.2E-10   3.15E+0 / 1.44E+1         
+B1E-8-SK-k2.5-base           1.00000E-8   9.0E-87   True   6.8E-110  4.3E-111  5.6E-1    1.25E+0 / 1.82E+0         
+B1E-8-SK-k2.5-rotated        1.00000E-8   2.1E-86   True   6.3E-110  4.6E-111  4.6E-1    1.05E+0 / 2.18E+0         
+BPI-1E-6-IP-k1.0-base        3.14159E+0   1.5E-104  True   8.4E-110  0         2.7E+0    1.15E-10 / 1.15E-10       
+BPI-1E-6-IP-k1.0-rotated     3.14159E+0   3.3E-105  True   1.2E-109  2.0E-110  2.6E+0    4.78E-10 / 4.78E-10       
+BPI-1E-6-IP-k2.5-base        3.14159E+0   1.8E-104  True   1.1E-109  0         7.0E+0    1.31E-10 / 1.31E-10       
+BPI-1E-6-IP-k2.5-rotated     3.14159E+0   3.7E-105  True   3.9E-110  1.1E-110  6.9E+0    5.40E-10 / 5.40E-10       
+BPI-1E-6-SK-k1.0-base        3.14159E+0   1.2E-109  True   4.7E-110  0         2.5E+0    1.46E-10 / 1.51E-10       
+BPI-1E-6-SK-k1.0-rotated     3.14159E+0   2.7E-104  True   4.0E-110  0         2.6E+0    2.02E-10 / 2.02E-10       
+BPI-1E-6-SK-k2.5-base        3.14159E+0   1.1E-109  True   3.4E-110  0         6.3E+0    1.59E-10 / 1.63E-10       
+BPI-1E-6-SK-k2.5-rotated     3.14159E+0   3.0E-104  True   9.3E-110  0         6.8E+0    2.27E-10 / 2.27E-10       
+rotation pair B90-IP-k1.0-base -> B90-IP-k1.0-rotated dev 9.31E-10
+rotation pair B90-IP-k2.5-base -> B90-IP-k2.5-rotated dev 1.04E-9
+rotation pair B90-SK-k1.0-base -> B90-SK-k1.0-rotated dev 2.43E-9
+rotation pair B90-SK-k2.5-base -> B90-SK-k2.5-rotated dev 2.94E-9
+rotation pair B45-IP-k1.0-base -> B45-IP-k1.0-rotated dev 1.49E-9
+rotation pair B45-IP-k2.5-base -> B45-IP-k2.5-rotated dev 1.41E-9
+rotation pair B45-SK-k1.0-base -> B45-SK-k1.0-rotated dev 1.42E-9
+rotation pair B45-SK-k2.5-base -> B45-SK-k2.5-rotated dev 1.93E-9
+rotation pair B5-IP-k1.0-base -> B5-IP-k1.0-rotated dev 1.92E-8
+rotation pair B5-IP-k2.5-base -> B5-IP-k2.5-rotated dev 1.90E-8
+rotation pair B5-SK-k1.0-base -> B5-SK-k1.0-rotated dev 3.71E-8
+rotation pair B5-SK-k2.5-base -> B5-SK-k2.5-rotated dev 3.64E-8
+rotation pair B1E-4-IP-k1.0-base -> B1E-4-IP-k1.0-rotated dev 2.84E-9
+rotation pair B1E-4-IP-k2.5-base -> B1E-4-IP-k2.5-rotated dev 2.48E-9
+rotation pair B1E-4-SK-k1.0-base -> B1E-4-SK-k1.0-rotated dev 2.69E-9
+rotation pair B1E-4-SK-k2.5-base -> B1E-4-SK-k2.5-rotated dev 2.31E-9
+rotation pair B1E-8-IP-k1.0-base -> B1E-8-IP-k1.0-rotated dev 2.84E-9
+rotation pair B1E-8-IP-k2.5-base -> B1E-8-IP-k2.5-rotated dev 2.48E-9
+rotation pair B1E-8-SK-k1.0-base -> B1E-8-SK-k1.0-rotated dev 2.69E-9
+rotation pair B1E-8-SK-k2.5-base -> B1E-8-SK-k2.5-rotated dev 2.31E-9
+rotation pair BPI-1E-6-IP-k1.0-base -> BPI-1E-6-IP-k1.0-rotated dev 6.63E-10
+rotation pair BPI-1E-6-IP-k2.5-base -> BPI-1E-6-IP-k2.5-rotated dev 6.58E-10
+rotation pair BPI-1E-6-SK-k1.0-base -> BPI-1E-6-SK-k1.0-rotated dev 7.54E-10
+rotation pair BPI-1E-6-SK-k2.5-base -> BPI-1E-6-SK-k2.5-rotated dev 7.65E-10

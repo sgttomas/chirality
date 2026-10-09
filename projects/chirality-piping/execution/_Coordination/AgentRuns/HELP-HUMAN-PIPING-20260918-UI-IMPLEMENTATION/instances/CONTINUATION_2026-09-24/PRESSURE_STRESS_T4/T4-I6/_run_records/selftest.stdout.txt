@@ -1,0 +1,8 @@
+phi-pi/2 0 axes [['1.00000', '1E-110', '0'], ['3E-110', '1.00000', '0'], ['0', '0', '1.00000']]
+k 1.0 1.0 max |F - longhand| = 7E-111  max|F| 2.2743E-2
+   quadrature vs closed form max diff 4E-111
+   sym 2.0E-107 rigid residual 3E-107 max|K| 4.85359E+2
+phi-pi/2 0 axes [['1.00000', '1E-110', '0'], ['3E-110', '1.00000', '0'], ['0', '0', '1.00000']]
+k 2.5 1.75 max |F - longhand| = 8E-111  max|F| 3.6652E-2
+   quadrature vs closed form max diff 1.1E-110
+   sym 2.0E-107 rigid residual 1.20E-107 max|K| 2.85155E+2

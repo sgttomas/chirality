@@ -1,0 +1,30 @@
+T4-I6 run record. Standard-library Python 3.13.14 (WT/venv/bin/python -I -B); no numpy, no cargo, no product code run.
+Placeholders as in R4/BRIEFS/T4_WI_COMMON.md. RR = I/NUMERICAL_INTEGRITY_T3, read at NUM 70aa51b0762c.
+
+Inputs (read-only, extracted to WT/scratch/t4_T4-I6/):
+  kd5_models.rs     = git -C NUM4 show ed012c7ccf:P/core/solver/nonlinear_integration/src/structural_adapter/kd5_models.rs
+                      sha256 17a4680c83ff3e940a7dcfd908ef334c8b5a53427b6ff388dafb5888477dca23
+  rv5_models.rs.txt = git -C NUM4 show 3743b7929109:I/NUMERICAL_INTEGRITY_T3/REVIEW/_run_records/kd5_review/m31b/exact_inputs/rv5_models.rs.txt
+                      sha256 9f04d063d1f7a4e81bbe762d4c32d60d6f0f79b39b67e8b79e83dac9263ed4e8
+                      (byte-identical at NUM 70aa51b0762c)
+
+Commands (from R4/T4-I6/_run_records):
+  python -I -B selftest.py                       > selftest.stdout.txt
+  python -I -B p128_closed_form_precision.py     > p128_closed_form_precision.stdout.txt
+  python -I -B freeze_u1.py PART1                > freeze_u1.stdout.txt
+  python -I -B t3_models.py kd5_models.rs rv5_models.rs.txt PART1 ../u1_reference_cases.json > t3_models.stdout.txt
+  (from NUM4) python -I -B R4/T4-I6/_run_records/neg_scan.py ed012c7ccf > neg_scan.stdout.txt
+PART1 is the intermediate element set in WT/scratch/t4_T4-I6/u1_elements_part1.json,
+  sha256 b864c1455b7fde568d5b3b8f778175202e56b68afa7e547aef32a4353ba1214b.
+  The final u1_reference_cases.json contains all of it plus the t3_models sections.
+
+Determinism: a second full run (freeze_u1.py then t3_models.py) reproduced PART1, u1_reference_cases.json
+and both stdout files byte for byte (sha256 equal). Run time under 1 s each.
+
+Library: curved_ref.py (the B1 element in decimal, an independent Gauss-Legendre quadrature, the
+straight Euler-Bernoulli frame, rigid modes). Precision: 110 digits (check 140) for elements,
+80 digits for model solves.
+
+Labelled emulations (not references): freeze_u1.py naive_b64 (this record's formulas in binary64);
+t3_models.py legacy_pp_centre_and_cb_check (today's PP centre and CB radius check, source order);
+formula_chord_b64 (the mutant's binary64 chord, platform libm and correctly rounded variants).
