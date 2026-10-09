@@ -59,7 +59,10 @@ m6_notice:
     the 2026-09-22 manual v7 source record, which inspected TYPES.md for
     checking candidacy, not for pressure. Piping's own DAG and deliverable
     dependency rows name the documents by identity (OPS-TYPES, OPS-SPEC,
-    OPS-VALIDATION-STRATEGY), not by content. Piping owns these documents,
+    OPS-VALIDATION-STRATEGY), not by content. Piping's validation-planning
+    inventory (validation/qualification/capability_inventory.json) binds
+    VALIDATION_STRATEGY.md's old hash to revision eec2855d82 and checks it
+    at that revision only, so it is unaffected. Piping owns these documents,
     and its loop instructions do not bind through them. T4 (pressure
     stress), which may later add pressure capability, cites none of them.
 scope_limits:
