@@ -88,14 +88,13 @@ FULL_CITIZENSHIP_PROJECTS = (
     "chirality-piping",
 )
 
-# Working roots the observation commands (`status`, `drift`) can report on.
-# The root product is observable but NOT a full-citizenship project: it has no
-# DAG pointer surface and no derivable write fence, so the brief-shaped
-# commands refuse it by name (ROOT_COMMAND_REFUSALS below).
+# Root aliases are accepted only to explain their retirement, before loading files.
 RUNTIME_ALIASES = ("runtime", "chirality-runtime")
 OBSERVABLE_PROJECTS = FULL_CITIZENSHIP_PROJECTS + ROOT_ALIASES + RUNTIME_ALIASES
 
 ROOT_COMMAND_REFUSALS: dict[str, str] = {
+    "status": "Root lifecycle observation is retired; use project deliverable sources. No Root adapter is loaded.",
+    "drift": "Root lifecycle observation is retired; use project deliverable sources. No Root adapter is loaded.",
     "brief": (
         "`brief` projects a tranche brief from the working root's DAG pointer "
         "and a write fence under that root. Root has no active adapter or "
@@ -316,11 +315,6 @@ def main(argv: list[str] | None = None) -> int:
                 report = cmd_status.run_status_project(
                     repo_root, _project_root(repo_root, args.project))
         elif args.command == "drift":
-            if args.project in ROOT_ALIASES and args.all:
-                raise HarnessOperationalError(
-                    f"drift --all audits the pilot projects only; --project "
-                    f"{args.project} must be requested on its own. Refusing "
-                    "rather than silently dropping the requested root.")
             if args.project and not args.all:
                 roots = [_project_root(repo_root, args.project)]
             else:

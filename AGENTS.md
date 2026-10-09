@@ -77,7 +77,7 @@ body. Routine role context does not carry full workflow bodies. Legacy
 historical identity.
 
 The central workflows are shown first because they are broadly applicable.
-Use is optional except for the workflow-authoring requirement below:
+Use is optional; select `create-workflow` when creating or revising reusable workflows.
 
 | Undertaking | Workflow |
 |---|---|

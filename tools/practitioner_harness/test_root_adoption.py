@@ -344,15 +344,12 @@ def test_drift_root_fixture_measures_and_cites_the_root_adapter(tmp_path):
     assert "chirality-root: measured 1 mismatch(es) over 2 file(s)" in baseline[0].message
 
 
-def test_cli_status_and_drift_accept_both_root_aliases(tmp_path, capsys):
+def test_cli_root_observation_stays_retired_even_with_legacy_adapter(tmp_path, capsys):
     repo = build_root_repo(tmp_path)
     for alias in harness.ROOT_ALIASES:
-        assert harness.main(["--repo-root", str(repo), "status",
-                             "--project", alias]) == 0
-        assert "| OPEN | 2 |" in capsys.readouterr().out
-        assert harness.main(["--repo-root", str(repo), "drift",
-                             "--project", alias]) == 0
-        assert "| chirality-root | 2 | 2 | 0 " in capsys.readouterr().out
+        for command in ("status", "drift"):
+            assert harness.main(["--repo-root", str(repo), command, "--project", alias]) == 2
+            assert "Root lifecycle observation is retired" in capsys.readouterr().err
 
 
 def test_cli_brief_refuses_root_with_a_named_reason(tmp_path, capsys):
@@ -380,7 +377,7 @@ def test_cli_drift_all_with_root_refuses_rather_than_dropping_it(tmp_path, capsy
     rc = harness.main(["--repo-root", str(repo), "drift", "--project", "root",
                        "--all"])
     assert rc == 2
-    assert "must be requested on its own" in capsys.readouterr().err
+    assert "Root lifecycle observation is retired" in capsys.readouterr().err
 
 
 def test_cli_drift_all_default_scope_excludes_the_root(tmp_path, capsys):
@@ -414,3 +411,17 @@ def test_runtime_aliases_are_ordinary_project_observation_entries(tmp_path):
         assert alias in harness.OBSERVABLE_PROJECTS
         assert alias not in harness.ROOT_ALIASES
     assert harness.PROJECT_ALIASES['runtime']!='.'
+
+
+@pytest.mark.parametrize("command", ["status", "drift"])
+@pytest.mark.parametrize("alias", ["root", "chirality-root"])
+def test_retired_root_commands_refuse_before_adapter_loading(tmp_path, capsys, monkeypatch, command, alias):
+    def unexpected_load(*args, **kwargs):
+        pytest.fail("Retired Root command attempted to load an adapter")
+
+    monkeypatch.setattr(adapter_loader, "load_adapter", unexpected_load)
+    rc = harness.main(["--repo-root", str(tmp_path), command, "--project", alias])
+    assert rc == 2
+    error = capsys.readouterr().err
+    assert "Root lifecycle observation is retired" in error
+    assert "Adapter manifest missing" not in error

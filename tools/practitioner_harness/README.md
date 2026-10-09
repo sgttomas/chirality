@@ -20,9 +20,9 @@ supersede a D-GOV-* record or arrive as PR review — never a new plan document.
 (read + report only). `domains/*` deferred; `projects/chirality-governance/`
 out of scope by construction; `.archive/` trees excluded from every walk.
 
-**Root working root (D-GOV-21):** the root product is additionally observable
-as `--project root` / `chirality-root` — observation only. See
-[Root working root](#root-working-root---project-root-d-gov-21).
+**Root reset:** `--project root` and `--project chirality-root` are retired
+CLI targets. Commands refuse them explicitly without loading an adapter;
+see [Root reset](#root-reset).
 
 ## Commands
 
@@ -530,17 +530,10 @@ Missing this header on a file under the generated root is a BLOCK
 
 ## Tests
 
-Root adoption (`test_root_adoption.py`): alias resolution to the repository
-root and the root's deliberate absence from the brief-fence alias table (with
-the out-of-project fence refusal pinned as a regression), strict
-`root-harness-adapter/v1` validation and normalization (per-required-key and
-per-baseline-key operational errors, non-integer and over-count baselines,
-`working_root` ≠ `.`, location/schema disagreement in both directions,
-ambiguous double registration), the `NOT_APPLICABLE` absent-`dag_pointer`
-fact, `status`/`drift` over a tmp root fixture, the `brief`/`next`/`drift
---all` refusals, and LIVE-tree pins (45 files, 0 mismatches, all OPEN, adapter
-pin 0/45) held to the same conscious-pin discipline as the app-dev 0/53 and
-piping 0/101 pins below.
+Legacy adapter compatibility (`test_root_adoption.py`): strict schema and
+containment checks over temporary fixtures, Root CLI retirement refusals before
+file loading, and exclusion of Root from project write fences. No live Root
+lifecycle census or adapter is required.
 
 Co-located pytest (`python3 -m pytest tools/practitioner_harness -q`):
 read-only guarantee (byte-identical governed files), drift fixtures modeled on
