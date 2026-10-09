@@ -1,0 +1,44 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-CKW-RETURN-ROUTING-20261009
+title: coordinated-knowledge-work - return routing, reserved-choice priority, stable decision refs
+date: 2026-10-09
+basis: 331346602fcfa5d6790e7bb38c3f4207c4b2d530
+
+instruction_surface_paths:
+  - workflows/coordinated-knowledge-work/WORKFLOW.md
+  - workflows/coordinated-knowledge-work/REVIEW-NOTES.md
+  - docs/governance_harness/tranche_manifests/ROOT-CKW-RETURN-ROUTING-20261009.yaml
+
+m2_gate:
+  authorization: >-
+    The human user in the active Claude Code thread directed running the
+    create-workflow changes proposed in that thread. Scope is three sentences in
+    coordinated-knowledge-work WORKFLOW.md (sections 1, 2 and 6) and one
+    read-through in its REVIEW-NOTES.md. The regenerated index is unchanged.
+  authorized_by: Human user via active Claude Code thread
+  authorization_date: 2026-10-09
+  integration_owner: >-
+    HELP_HUMAN (Claude Code) as the serialized integration operator for this
+    PR; human retains responsibility for accepted instruction state.
+  merge_gate: owner-authorized-pr
+  self_merge: true
+
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-10-09_CKW_RETURN_ROUTING.md
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-10-09_CKW_RETURN_ROUTING.md
+    - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-10-09_CKW_RETURN_ROUTING.md
+    - projects/pec/execution/_Coordination/NOTICE_2026-10-09_CKW_RETURN_ROUTING.md
+    - projects/chirality-app-v4/execution/_Coordination/NOTICE_2026-10-09_CKW_RETURN_ROUTING.md
+  rationale: >-
+    The bundled workflow is consumed by every loop. Each receiving loop decides
+    whether and when to adopt; this PR does not assert downstream adoption.
+
+scope_limits:
+  - >-
+    Adds three sentences to WORKFLOW.md and one read-through to REVIEW-NOTES.md.
+    No new gate, form or checklist. The prior revision is preserved in Git history.
+  - >-
+    The PR records Git integration only; it does not establish governed
+    acceptance or downstream adoption.
