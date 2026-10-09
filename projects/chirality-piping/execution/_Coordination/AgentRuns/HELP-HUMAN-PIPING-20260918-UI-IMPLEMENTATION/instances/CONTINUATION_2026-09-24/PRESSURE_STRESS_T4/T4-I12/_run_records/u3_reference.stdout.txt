@@ -765,5 +765,40 @@ ok   NI replacement frame test 2 (10,-1): equilibrium of the retry and final ite
 ok   NI replacement frame test 2 (-10,1): sign flip at iteration 2, 3 iterations, cap 2 fails on the derived-normal branch
 ok   NI replacement frame test 2 (-10,1): equilibrium of the retry and final iterates
 ok   NI replacement frame test 4 (mu = 0): converged, no applied force in any iteration
+ok   round01 load:L-100: 0.3.0 and 0.4.0 forms admit (no replaced-span refusal)
+ok   round01 load:L-100: 0.4.0 resolved eigenstrain on the replaced span is exactly 0; P-120 carries alpha*dT only in L-100
+ok   round01 load:L-100: the document-driven solve of the frozen 0.3.0 document reproduces U3-SYS-DEMO-CONNECTOR-001 (every string)
+ok   round01 load:L-100: the 0.4.0 form gives identical displacements, reactions and connector actions (every string)
+ok   round01 load:L-100: the 0.3.0 E/nu control resolves P-130 to E = 1e11, nu = 0.25
+ok   round01 load:L-100: the 0.3.0 E/nu control changes no displacement, reaction or connector value
+ok   round01 load:L-100: the 0.4.0 E/nu control resolves P-130 to E = 1e11, nu = 0.25
+ok   round01 load:L-100: the 0.4.0 E/nu control changes no displacement, reaction or connector value
+ok   round01 load:L-100: the control discriminates (a retained P-130 makes its E/nu move the reactions)
+ok   round01 load:L-200: 0.3.0 and 0.4.0 forms admit (no replaced-span refusal)
+ok   round01 load:L-200: 0.4.0 resolved eigenstrain on the replaced span is exactly 0; P-120 carries alpha*dT only in L-100
+ok   round01 load:L-200: the document-driven solve of the frozen 0.3.0 document reproduces U3-SYS-DEMO-CONNECTOR-001 (every string)
+ok   round01 load:L-200: the 0.4.0 form gives identical displacements, reactions and connector actions (every string)
+ok   round01 load:L-200: the 0.3.0 E/nu control resolves P-130 to E = 1e11, nu = 0.25
+ok   round01 load:L-200: the 0.3.0 E/nu control changes no displacement, reaction or connector value
+ok   round01 load:L-200: the 0.4.0 E/nu control resolves P-130 to E = 1e11, nu = 0.25
+ok   round01 load:L-200: the 0.4.0 E/nu control changes no displacement, reaction or connector value
+ok   round01 load:L-200: the control discriminates (a retained P-130 makes its E/nu move the reactions)
+ok   round01 load:L-300: 0.3.0 and 0.4.0 forms admit (no replaced-span refusal)
+ok   round01 load:L-300: 0.4.0 resolved eigenstrain on the replaced span is exactly 0; P-120 carries alpha*dT only in L-100
+ok   round01 load:L-300: the document-driven solve of the frozen 0.3.0 document reproduces U3-SYS-DEMO-CONNECTOR-001 (every string)
+ok   round01 load:L-300: the 0.4.0 form gives identical displacements, reactions and connector actions (every string)
+ok   round01 load:L-300: the 0.3.0 E/nu control resolves P-130 to E = 1e11, nu = 0.25
+ok   round01 load:L-300: the 0.3.0 E/nu control changes no displacement, reaction or connector value
+ok   round01 load:L-300: the 0.4.0 E/nu control resolves P-130 to E = 1e11, nu = 0.25
+ok   round01 load:L-300: the 0.4.0 E/nu control changes no displacement, reaction or connector value
+ok   round01 load:L-300: the control discriminates (a retained P-130 makes its E/nu move the reactions)
+ok   round01 refusal a_thermal_on_replaced_span: refused exactly in ['load:L-100']
+ok   round01 refusal b_fit_strain_on_replaced_span: refused exactly in ['load:L-100', 'load:L-200', 'load:L-300']
+ok   round01 refusal c_weight_on_replaced_span: refused exactly in ['load:L-100']
+ok   round01 boundary: an explicit zero interval strain on P-130 resolves to 0 and is not refused under the ruling's 'nonzero'
+ok   round01 boundary: its results equal the cold case U3-SYS-DEMO-CONNECTOR-002-LR1 (every string)
+ok   round01 stored-unapplied: L-100 stores a weight primitive on P-130 that no case lists in load_sources
+ok   round01 stored-unapplied: no case refuses (refusal is decided by what each case applies)
+ok   round01 stored-unapplied: every result equals U3-SYS-DEMO-CONNECTOR-002-LR1 (every string)
 JR comparisons: 75/75 agree
-checks: 761/761 pass
+checks: 796/796 pass

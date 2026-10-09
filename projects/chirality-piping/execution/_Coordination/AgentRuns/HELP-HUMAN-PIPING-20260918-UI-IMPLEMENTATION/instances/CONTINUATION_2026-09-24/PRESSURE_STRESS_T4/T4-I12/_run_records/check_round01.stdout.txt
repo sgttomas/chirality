@@ -1,0 +1,95 @@
+ok   case order: the 18 frozen cases keep indices 0-17
+ok   case order: exactly the four round-01 cases are appended at indices 18-21
+ok   frozen case 0 U3-J1-LATERAL: canonical sha256 unchanged
+ok   frozen case 1 U3-J1-COMMON-ROTATION: canonical sha256 unchanged
+ok   frozen case 2 U3-J2-ROTATION: canonical sha256 unchanged
+ok   frozen case 3 U3-J2-ROTATION-HELD: canonical sha256 unchanged
+ok   frozen case 4 U3-REF-ENDMOMENT: canonical sha256 unchanged
+ok   frozen case 5 U3-SIX-COMPONENTS: canonical sha256 unchanged
+ok   frozen case 6 U3-B-ORACLE: canonical sha256 unchanged
+ok   frozen case 7 U3-GENERIC-SKEW-OFFSET-PRESTRESS: canonical sha256 unchanged
+ok   frozen case 8 U3-W4-LINK-RULE: canonical sha256 unchanged
+ok   frozen case 9 U3-FRAME-COVARIANCE: canonical sha256 unchanged
+ok   frozen case 10 U3-OFFSETS: canonical sha256 unchanged
+ok   frozen case 11 U3-COUPLED-H-SCALE-PRELOAD: canonical sha256 unchanged
+ok   frozen case 12 U3-PRELOAD-RELIEF: canonical sha256 unchanged
+ok   frozen case 13 U3-REVERSAL: canonical sha256 unchanged
+ok   frozen case 14 U3-FINITE-ROTATION-NEGATIVE: canonical sha256 unchanged
+ok   frozen case 15 U3-RAW-DIFFERENCE-NEGATIVE: canonical sha256 unchanged
+ok   frozen case 16 U3-SYS-DEMO-CONNECTOR-001: canonical sha256 unchanged
+ok   frozen case 17 U3-NI-FRICTION-FRAME: canonical sha256 unchanged
+ok   frozen top-level key schema_version: canonical sha256 unchanged
+ok   frozen top-level key status: canonical sha256 unchanged
+ok   frozen top-level key author: canonical sha256 unchanged
+ok   frozen top-level key basis: canonical sha256 unchanged
+ok   frozen top-level key conventions: canonical sha256 unchanged
+ok   frozen top-level key criteria: canonical sha256 unchanged
+ok   frozen top-level key findings: canonical sha256 unchanged
+ok   frozen top-level key jr_comparison_summary: canonical sha256 unchanged
+ok   top-level keys: round-0 keys plus round_01 only
+ok   0.4.0: schema 0.4.0, same contract, nodes, pipes, supports, components and combinations as the 0.3.0 document
+ok   0.4.0: materials equal the 0.3.0 materials without the thermal coefficient
+ok   0.4.0: one reference member per pipe, direct_strain_reference, fit none
+ok   0.4.0 load:L-100: primitives are the 0.3.0 primitives without the thermal primitive
+ok   0.4.0 load:L-100: every stored primitive listed once in load_sources with factor 1
+ok   0.4.0 load:L-100: every support active_model_device
+ok   0.4.0 load:L-100: one element state per pipe naming the pipe's own material
+ok   0.4.0 load:L-100: the replaced span P-130 is cold (unchanged_reference)
+ok   0.4.0 load:L-100: strained members are exactly the 0.3.0 thermal targets
+ok   0.4.0 load:L-100: pipe:P-120 constant_alpha_interval carries the 0.3.0 alpha and dT
+ok   0.4.0 load:L-100: expected values identical to U3-SYS-DEMO-CONNECTOR-001
+ok   0.4.0 load:L-100: load sources plus frozen reactions balance (force and moment, 1e-24 of the floor)
+ok   0.4.0 load:L-200: primitives are the 0.3.0 primitives without the thermal primitive
+ok   0.4.0 load:L-200: every stored primitive listed once in load_sources with factor 1
+ok   0.4.0 load:L-200: every support active_model_device
+ok   0.4.0 load:L-200: one element state per pipe naming the pipe's own material
+ok   0.4.0 load:L-200: the replaced span P-130 is cold (unchanged_reference)
+ok   0.4.0 load:L-200: strained members are exactly the 0.3.0 thermal targets
+ok   0.4.0 load:L-200: expected values identical to U3-SYS-DEMO-CONNECTOR-001
+ok   0.4.0 load:L-200: load sources plus frozen reactions balance (force and moment, 1e-24 of the floor)
+ok   0.4.0 load:L-300: primitives are the 0.3.0 primitives without the thermal primitive
+ok   0.4.0 load:L-300: every stored primitive listed once in load_sources with factor 1
+ok   0.4.0 load:L-300: every support active_model_device
+ok   0.4.0 load:L-300: one element state per pipe naming the pipe's own material
+ok   0.4.0 load:L-300: the replaced span P-130 is cold (unchanged_reference)
+ok   0.4.0 load:L-300: strained members are exactly the 0.3.0 thermal targets
+ok   0.4.0 load:L-300: expected values identical to U3-SYS-DEMO-CONNECTOR-001
+ok   0.4.0 load:L-300: load sources plus frozen reactions balance (force and moment, 1e-24 of the floor)
+ok   refusal a_thermal_on_replaced_span: resolved P-130 eigenstrain per case as stated
+ok   refusal a_thermal_on_replaced_span: code JOINT_REPLACED_SPAN_LOAD_UNOWNED, refused cases ['load:L-100'], refs include C-150 and P-130
+ok   refusal a: P-130 in L-100 is constant_alpha_interval 1.2e-5 x 12.5
+ok   refusal a_thermal_on_replaced_span: the variant differs from the 0.4.0 base only in that change
+ok   refusal b_fit_strain_on_replaced_span: resolved P-130 eigenstrain per case as stated
+ok   refusal b_fit_strain_on_replaced_span: code JOINT_REPLACED_SPAN_LOAD_UNOWNED, refused cases ['load:L-100', 'load:L-200', 'load:L-300'], refs include C-150 and P-130
+ok   refusal b: P-130 fit is fit_strain 1e-4
+ok   refusal b_fit_strain_on_replaced_span: the variant differs from the 0.4.0 base only in that change
+ok   refusal c_weight_on_replaced_span: resolved P-130 eigenstrain per case as stated
+ok   refusal c_weight_on_replaced_span: code JOINT_REPLACED_SPAN_LOAD_UNOWNED, refused cases ['load:L-100'], refs include C-150 and P-130
+ok   refusal c: one weight primitive on P-130, listed in load_sources
+ok   refusal c_weight_on_replaced_span: the variant differs from the 0.4.0 base only in that change
+ok   boundary: zero explicit strain on P-130, otherwise the 0.4.0 base
+ok   boundary: differs from the 0.4.0 base only in P-130's zero strain
+ok   boundary: admitted, every expected value equal to the cold case 002-LR1
+ok   stored-unapplied: exactly one primitive on P-130, stored in load:L-100
+ok   stored-unapplied: no case lists it in load_sources
+ok   stored-unapplied: differs from the 0.4.0 base only by that stored primitive
+ok   stored-unapplied: every expected value equal to 002-LR1
+ok   stored-unapplied: no refusal expected
+ok   control: the added material is E 1e11 Pa, nu 0.25, E/nu basis
+ok   control 0.3.0: P-130 names the other material
+ok   control 0.3.0: the other material is used by no other pipe
+ok   control 0.3.0: differs from its base only in P-130's material
+ok   control 0.4.0: P-130 names the other material
+ok   control 0.4.0: the other material is used by no other pipe
+ok   control 0.4.0 load:L-100: P-130's element state selects the other material
+ok   control 0.4.0 load:L-200: P-130's element state selects the other material
+ok   control 0.4.0 load:L-300: P-130's element state selects the other material
+ok   control 0.4.0: differs from its base only in P-130's material
+ok   control load:L-100: with P-130 retained its E/nu moves the reactions (discriminating), as listed
+ok   control load:L-100: and the parallel reactions differ from the reference
+ok   control load:L-200: with P-130 retained its E/nu moves the reactions (discriminating), as listed
+ok   control load:L-200: and the parallel reactions differ from the reference
+ok   control load:L-300: with P-130 retained its E/nu moves the reactions (discriminating), as listed
+ok   control load:L-300: and the parallel reactions differ from the reference
+round-01 checks: 93 pass, 0 fail
+PASS

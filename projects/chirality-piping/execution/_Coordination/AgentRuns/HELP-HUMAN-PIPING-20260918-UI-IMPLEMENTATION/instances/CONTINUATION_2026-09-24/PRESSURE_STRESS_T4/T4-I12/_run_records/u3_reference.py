@@ -1372,6 +1372,370 @@ add_case("U3-NI-FRICTION-FRAME", 8,
 cases["U3-NI-FRICTION-FRAME"]["model_validation_old_block"] = {k: {kk: (ex(vv) if isinstance(vv, Fr) else vv) for kk, vv in v.items()} for k, v in old.items()}
 
 # =====================================================================================
+# =====================================================================================
+# ROUND 01 (T4 WORKING_ITEMS, after a744c09021). Appended only: the 18 frozen cases above
+# are not touched (check_round01.py proves it). WI ruling: under load-reference-1 the
+# connector does not use the replaced span's resolved element state (E/nu, eigenstrain);
+# a nonzero resolved eigenstrain on the replaced span, self-weight on it or any load it
+# owns refuses with JOINT_REPLACED_SPAN_LOAD_UNOWNED (SLOT_TABLE S20 applied to 0.4.0).
+# =====================================================================================
+OTHER_MAT = {"id": "material:replaced-span-other", "constitutive_basis": "homogeneous_isotropic_E_nu_v1",
+             "elastic_modulus": {"value": 100000000000.0, "unit": "Pa"}, "poisson_ratio": {"value": 0.25, "unit": "1"},
+             "provenance": "T4-I12 round 01 control: a deliberately different E/nu on the replaced span only"}
+R01_PROV = "T4-I12 round 01; " + PROV
+LR1 = "openpipestress.load_reference_state/1.0.0"
+
+
+def deep(o):
+    return json.loads(json.dumps(o))
+
+
+def doc_030_variant(p130_material=None):
+    d0 = deep(demo)
+    if p130_material:
+        d0["model"]["materials"].append(deep(OTHER_MAT))
+        for p in d0["model"]["pipe_segments"]:
+            if p["id"] == "pipe:P-130":
+                p["material"] = OTHER_MAT["id"]
+    return d0
+
+
+def doc_040(p130_material=None, p130_thermal_case=None, p130_fit_strain=None, p130_weight=False, p130_zero_explicit=False, p130_stored_unlisted=False):
+    """The 0.4.0 (load-reference-1) form of U3-SYS-DEMO-CONNECTOR-001, plus round-01 variants."""
+    d0 = deep(demo)
+    m = d0["model"]
+    m["schema_version"] = "0.4.0"
+    for mat in m["materials"]:
+        mat.pop("thermal_expansion_coefficient", None)  # interval thermal states carry their own coefficient
+    if p130_material:
+        m["materials"].append(deep(OTHER_MAT))
+        for p in m["pipe_segments"]:
+            if p["id"] == "pipe:P-130":
+                p["material"] = OTHER_MAT["id"]
+    pipe_mat = {p["id"]: p["material"] for p in m["pipe_segments"]}
+    m["reference_configurations"] = [{
+        "id": "reference:installed", "label": "Installed reference", "geometry_ref": {"kind": "authored_model_geometry"},
+        "member_references": [{"pipe_ref": pid, "basis": {"kind": "direct_strain_reference"},
+                               "fit": ({"kind": "fit_strain", "strain": {"value": p130_fit_strain, "unit": "1"}}
+                                       if (pid == "pipe:P-130" and p130_fit_strain is not None) else {"kind": "none"}),
+                               "provenance": R01_PROV} for pid in pipe_mat],
+        "provenance": R01_PROV}]
+    hot = {"kind": "constant_alpha_interval", "coefficient": {"value": 1.2e-05, "unit": "1/degC"},
+           "temperature_change": {"value": 12.5, "unit": "degC"}, "coefficient_meaning": "engineering_interval", "provenance": R01_PROV}
+    cold = {"kind": "unchanged_reference", "provenance": R01_PROV}
+    for case in m["load_cases"]:
+        case["primitive_loads"] = [ld for ld in case["primitive_loads"] if ld["category"] != "thermal"]
+        if p130_weight and case["id"] == "load:L-100":
+            case["primitive_loads"].append({"id": "load:L-100-Z-130", "category": "weight", "target": {"type": "element", "pipe": "pipe:P-130"},
+                                            "direction": "global_x", "magnitude": {"value": -150.0, "unit": "N/m"}, "dimension": "force_per_length", "provenance": R01_PROV})
+        unlisted = set()
+        if p130_stored_unlisted and case["id"] == "load:L-100":
+            case["primitive_loads"].append({"id": "load:L-100-Z-130-STORED", "category": "weight", "target": {"type": "element", "pipe": "pipe:P-130"},
+                                            "direction": "global_x", "magnitude": {"value": -150.0, "unit": "N/m"}, "dimension": "force_per_length", "provenance": R01_PROV})
+            unlisted.add("load:L-100-Z-130-STORED")
+        states = []
+        for pid in pipe_mat:
+            if pid == "pipe:P-120" and case["id"] == "load:L-100":
+                th = deep(hot)
+            elif pid == "pipe:P-130" and p130_thermal_case == case["id"]:
+                th = deep(hot)
+            elif pid == "pipe:P-130" and p130_zero_explicit:
+                th = {"kind": "explicit_interval_strain", "strain": {"value": 0.0, "unit": "1"}, "interval_reference": "T4-I12 round 01 zero-strain boundary", "provenance": R01_PROV}
+            else:
+                th = deep(cold)
+            states.append({"pipe_ref": pid, "material_selection": {"kind": "explicit_base_properties", "material_ref": pipe_mat[pid],
+                                                                   "applicability_reference": "invented analytical basis declared applicable (T4-I12)"},
+                           "thermal_state": th})
+        case["analysis_state"] = {
+            "contract": LR1, "reference_configuration_ref": "reference:installed", "element_states": states,
+            "support_states": [{"support_ref": s["id"], "participation": {"kind": "active_model_device"}} for s in m["supports"]],
+            "load_sources": [{"source_ref": ld["id"], "factor": 1.0} for ld in case["primitive_loads"] if ld["id"] not in unlisted],
+            "history": {"kind": "independent_equilibrium"}, "provenance": R01_PROV}
+    return d0
+
+
+def interpret(docx):
+    """Read a 0.3.0 or 0.4.0 document of the re-authored demo into solver inputs, applying the
+    replaced-span rules (JR section 3; SLOT_TABLE S20; the WI round-01 ruling)."""
+    m = docx["model"]
+    fr_ = lambda x: Fr(repr(x)) if isinstance(x, float) else Fr(x)
+    nodes = {n["id"]: [fr_(n["position"][c]) for c in "xyz"] for n in m["nodes"]}
+    mats = {mt["id"]: (fr_(mt["elastic_modulus"]["value"]), fr_(mt["poisson_ratio"]["value"]),
+                       fr_(mt["thermal_expansion_coefficient"]["value"]) if "thermal_expansion_coefficient" in mt else None) for mt in m["materials"]}
+    pipes = {p["id"]: {"from": p["from"], "to": p["to"], "OD": fr_(p["section"]["outside_diameter"]["value"]),
+                       "t": fr_(p["section"]["wall_thickness"]["value"]), "mat": p["material"],
+                       "yref": [fr_(p["y_reference"][c]) for c in "xyz"]} for p in m["pipe_segments"]}
+    conn = None
+    for c in m["components"]:
+        oc = c.get("objective_connector")
+        if oc:
+            Ls = fr_(oc["stiffness"]["translation_scale"]["value"])
+            conn = {"i": oc["end_i"]["node_ref"], "j": oc["end_j"]["node_ref"], "Q": [[fr_(x) for x in r] for r in oc["connector_axes_global"]],
+                    "K": K_from_H(from_upper21([fr_(x) for x in oc["stiffness"]["upper_triangle"]]), Ls),
+                    "span": oc["topology"]["span_ref"], "id": c["id"]}
+    sups = []
+    for s in m["supports"]:
+        if s.get("family") == "variable_spring_hanger":
+            sups.append((s["id"], s["node"], "spring", s["hanger"]["stiffness"]["dof"], fr_(s["hanger"]["stiffness"]["value"]["value"])))
+        else:
+            sups.append((s["id"], s["node"], "rigid", s["restraints"], None))
+    cases_ = {}
+    for case in m["load_cases"]:
+        st = case.get("analysis_state")
+        prims = {ld["id"]: ld for ld in case["primitive_loads"]}
+        if st is None:  # 0.3.0: every primitive applies; thermal primitives give member strain alpha*dT
+            applied = [(prims[k], Fr(1)) for k in prims]
+            eig = {pid: Fr(0) for pid in pipes}
+            for ld, _ in applied:
+                if ld["category"] == "thermal":
+                    pid = ld["target"]["pipe"]
+                    eig[pid] += mats[pipes[pid]["mat"]][2] * fr_(ld["magnitude"]["value"])
+            applied = [(ld, f) for ld, f in applied if ld["category"] != "thermal"]
+            emat = {pid: pipes[pid]["mat"] for pid in pipes}
+        else:  # 0.4.0: only load_sources apply (with their factors); strain from element and reference states
+            applied = [(prims[s["source_ref"]], fr_(s["factor"])) for s in st["load_sources"]]
+            refc = {mr["pipe_ref"]: mr for mr in m["reference_configurations"][0]["member_references"]}
+            eig, emat = {}, {}
+            for es in st["element_states"]:
+                pid, th = es["pipe_ref"], es["thermal_state"]
+                if th["kind"] == "unchanged_reference":
+                    eth = Fr(0)
+                elif th["kind"] == "constant_alpha_interval":
+                    eth = fr_(th["coefficient"]["value"]) * fr_(th["temperature_change"]["value"])
+                elif th["kind"] == "explicit_interval_strain":
+                    eth = fr_(th["strain"]["value"])
+                else:
+                    raise ValueError(th["kind"])
+                fit = refc[pid]["fit"]
+                ef = fr_(fit["strain"]["value"]) if fit["kind"] == "fit_strain" else Fr(0)
+                eig[pid] = (1 + ef) * (1 + eth) - 1  # lambda_fit * lambda_thermal - 1
+                emat[pid] = es["material_selection"]["material_ref"]
+        cases_[case["id"]] = {"applied": applied, "eig": eig, "emat": emat}
+    return {"nodes": nodes, "mats": mats, "pipes": pipes, "conn": conn, "sups": sups, "cases": cases_}
+
+
+def replaced_span_refusal(model_i, cid):
+    """SLOT_TABLE S20 / WI ruling: the replaced span may own no load and no nonzero resolved eigenstrain."""
+    span = model_i["conn"]["span"]
+    c = model_i["cases"][cid]
+    owned = [ld["id"] for ld, _ in c["applied"] if ld["target"].get("pipe") == span]
+    if c["eig"].get(span, 0) != 0:
+        owned.append(f"element_state:{span}")
+    return {"blocking_code": "JOINT_REPLACED_SPAN_LOAD_UNOWNED", "affected_refs_include": [model_i["conn"]["id"], span] + owned} if owned else None
+
+
+def solve_doc(model_i, cid, pi_val, keep_span=False):
+    nid = list(model_i["nodes"])
+    nd = 6 * len(nid)
+    dof = lambda n: list(range(6 * nid.index(n), 6 * nid.index(n) + 6))
+    Kg = zeros(nd, nd)
+    f = [Fr(0)] * nd
+    c = model_i["cases"][cid]
+    span = model_i["conn"]["span"]
+    geo = {}
+    for pid, p in model_i["pipes"].items():
+        if pid == span and not keep_span:
+            continue  # replaces_span: removed from every assembly path
+        E, nu, _ = model_i["mats"][c["emat"][pid]]
+        G = E / (2 * (1 + nu))
+        L, Rm = frame_axes(model_i["nodes"][p["from"]], model_i["nodes"][p["to"]], p["yref"])
+        ro_, ri_ = p["OD"] / 2, p["OD"] / 2 - p["t"]
+        A = pi_val * p["t"] * (p["OD"] - p["t"])
+        I_ = A * (ro_ * ro_ + ri_ * ri_) / 4
+        T = blockT(Rm)
+        Ke_ = mm(mm(tr(T), frame_local_k(E, G, A, I_, I_, 2 * I_, L)), T)
+        idx = dof(p["from"]) + dof(p["to"])
+        for a_, ia in enumerate(idx):
+            for b_, ib in enumerate(idx):
+                Kg[ia][ib] += Ke_[a_][b_]
+        geo[pid] = (L, Rm, E, A, idx)
+    cn = model_i["conn"]
+    xi, xj = model_i["nodes"][cn["i"]], model_i["nodes"][cn["j"]]
+    Bm = B_closed([Fr(0)] * 3, [Fr(0)] * 3, vsub(xj, xi), cn["Q"])
+    Kc = mm(mm(tr(Bm), cn["K"]), Bm)
+    idx = dof(cn["i"]) + dof(cn["j"])
+    for a_, ia in enumerate(idx):
+        for b_, ib in enumerate(idx):
+            Kg[ia][ib] += Kc[a_][b_]
+    restrained, springs = [], []
+    for sid, node, kind, dd, k in model_i["sups"]:
+        if kind == "spring":
+            s_ = dof(node)[["UX", "UY", "UZ", "RX", "RY", "RZ"].index(dd)]
+            Kg[s_][s_] += k
+            springs.append((sid, node, s_, k))
+        else:
+            restrained += [dof(node)[["UX", "UY", "UZ", "RX", "RY", "RZ"].index(r)] for r in dd]
+    axis = {"global_x": 0, "global_y": 1, "global_z": 2, "rotation_x": 3, "rotation_y": 4, "rotation_z": 5}
+    for ld, fac in c["applied"]:
+        val = Fr(repr(ld["magnitude"]["value"])) * fac
+        if ld["target"]["type"] == "element":
+            L, Rm, E, A, idx = geo[ld["target"]["pipe"]]
+            wg = [Fr(0)] * 3
+            wg[axis[ld["direction"]]] = val
+            fl = consistent_uniform(Rm, L, wg)
+            for a_, ia in enumerate(idx):
+                f[ia] += fl[a_]
+        else:
+            f[dof(ld["target"]["node"])[axis[ld["direction"]]]] += val
+    for pid, e in c["eig"].items():
+        if e != 0 and pid in geo:
+            L, Rm, E, A, idx = geo[pid]
+            for k in range(3):
+                f[idx[k]] -= E * A * e * Rm[0][k]
+                f[idx[6 + k]] += E * A * e * Rm[0][k]
+    free = [i for i in range(nd) if i not in restrained]
+    df = solve([[Kg[i][j] for j in free] for i in free], [f[i] for i in free])
+    d = [Fr(0)] * nd
+    for k, v in zip(free, df):
+        d[k] = v
+    Kd = mv(Kg, d)
+    reac = {}
+    for sid, node, kind, dd, k in model_i["sups"]:
+        if kind == "spring":
+            s_ = dof(node)[["UX", "UY", "UZ", "RX", "RY", "RZ"].index(dd)]
+            rv = [Fr(0)] * 6
+            rv[["UX", "UY", "UZ", "RX", "RY", "RZ"].index(dd)] = -k * d[s_]
+        else:
+            rset = [["UX", "UY", "UZ", "RX", "RY", "RZ"].index(r) for r in dd]
+            rv = [Kd[dof(node)[q]] - f[dof(node)[q]] if q in rset else Fr(0) for q in range(6)]
+        reac[sid] = rv
+    dc = [d[i] for i in dof(cn["i"]) + dof(cn["j"])]
+    q = mv(Bm, dc)
+    g = mv(cn["K"], q)
+    fc = mv(tr(Bm), g)
+    Fv, Mv, _ = actions_closed(g, [Fr(0)] * 3, [Fr(0)] * 3, vsub(xj, xi), cn["Q"])
+    return {"d": d, "dof": dof, "nid": nid, "reactions": reac, "q": q, "g": g, "U": dot(q, g) / 2, "fc": fc, "F": Fv, "M": Mv}
+
+
+def sys_block(res):
+    """The same layout and formatting as U3-SYS-DEMO-CONNECTOR-001's expected values."""
+    dof, nid, fc = res["dof"], res["nid"], res["fc"]
+    disp = {n: {"u_m": [sysfmt(x) for x in res["d"][dof(n)[0]:dof(n)[0] + 3]], "theta_rad": [sysfmt(x) for x in res["d"][dof(n)[3]:dof(n)[3] + 3]]} for n in nid}
+    reac = {sid: [sysfmt(x) for x in rv] for sid, rv in res["reactions"].items()}
+    Fs = max(max(abs(x) for x in rv[0:3]) for rv in res["reactions"].values())
+    Ms = max(max(abs(x) for x in rv[3:6]) for rv in res["reactions"].values())
+    us = max(abs(x) for n in nid for x in res["d"][dof(n)[0]:dof(n)[0] + 3])
+    ts = max(abs(x) for n in nid for x in res["d"][dof(n)[3]:dof(n)[3] + 3])
+    return {
+        "displacements": disp,
+        "reactions_support_on_pipe_global_Fx_Fy_Fz_Mx_My_Mz": reac,
+        "connector": {"q_local": [sysfmt(x) for x in res["q"]], "g_local": [sysfmt(x) for x in res["g"]], "energy_J": sysfmt(res["U"]),
+                      "F_global": [sysfmt(x) for x in res["F"]], "M_global": [sysfmt(x) for x in res["M"]],
+                      "end_actions_node_on_element": {"Fi_at_N-130": [sysfmt(x) for x in fc[0:3]], "Mi_at_N-130": [sysfmt(x) for x in fc[3:6]],
+                                                      "Fj_at_N-140": [sysfmt(x) for x in fc[6:9]], "Mj_at_N-140": [sysfmt(x) for x in fc[9:12]]}},
+        "global_balance": {"sum_applied_plus_reactions_force_N": "0 (exact; reference residual < 1e-100)", "sum_moment_about_origin_N_m": "0 (exact; reference residual < 1e-100)"},
+        "zero_scale_floors": {"force_N": sysfmt(Fs, 20), "moment_N_m": sysfmt(Ms, 20), "translation_m": sysfmt(us, 20), "rotation_rad": sysfmt(ts, 20),
+                              "q_translation_m": sysfmt(max(abs(x) for x in res["q"][0:3]), 20), "q_rotation_rad": sysfmt(max(abs(x) for x in res["q"][3:6]), 20),
+                              "g_force_N": sysfmt(max(abs(x) for x in res["g"][0:3]), 20), "g_moment_N_m": sysfmt(max(abs(x) for x in res["g"][3:6]), 20),
+                              "rule": "|obs - exp| <= 1e-9 * max(|exp|, floor of the value's family); floors are the case's largest magnitude in that family"},
+    }
+
+
+frozen_sys = cases["U3-SYS-DEMO-CONNECTOR-001"]["expected"]
+d030, d040 = demo, doc_040()
+i030, i040 = interpret(d030), interpret(d040)
+r01_lr1, r01_ctl030, r01_ctl040 = {}, {}, {}
+ctl_disc = {}
+for cid in CASES:
+    check(f"round01 {cid}: 0.3.0 and 0.4.0 forms admit (no replaced-span refusal)", replaced_span_refusal(i030, cid) is None and replaced_span_refusal(i040, cid) is None)
+    check(f"round01 {cid}: 0.4.0 resolved eigenstrain on the replaced span is exactly 0; P-120 carries alpha*dT only in L-100",
+          i040["cases"][cid]["eig"]["pipe:P-130"] == 0 and i040["cases"][cid]["eig"]["pipe:P-120"] == (F("1.2e-5") * F("12.5") if cid == "load:L-100" else 0))
+    b030 = sys_block(solve_doc(i030, cid, PI))
+    check(f"round01 {cid}: the document-driven solve of the frozen 0.3.0 document reproduces U3-SYS-DEMO-CONNECTOR-001 (every string)", b030 == frozen_sys[cid])
+    b040 = sys_block(solve_doc(i040, cid, PI))
+    check(f"round01 {cid}: the 0.4.0 form gives identical displacements, reactions and connector actions (every string)", b040 == frozen_sys[cid])
+    r01_lr1[cid] = b040
+    for form, mk in (("0.3.0", lambda: doc_030_variant(p130_material=True)), ("0.4.0", lambda: doc_040(p130_material=True))):
+        ii = interpret(mk())
+        check(f"round01 {cid}: the {form} E/nu control resolves P-130 to E = 1e11, nu = 0.25", ii["mats"][ii["cases"][cid]["emat"]["pipe:P-130"]][:2] == (F("1e11"), F("0.25")))
+        bb = sys_block(solve_doc(ii, cid, PI))
+        check(f"round01 {cid}: the {form} E/nu control changes no displacement, reaction or connector value", bb == frozen_sys[cid])
+    # discriminating power: with P-130 kept in parallel, its own E/nu would move the results
+    base_par = solve_doc(i040, cid, PI, keep_span=True)
+    ctl_par = solve_doc(interpret(doc_040(p130_material=True)), cid, PI, keep_span=True)
+    comps = ["Fx", "Fy", "Fz", "Mx", "My", "Mz"]
+    Fs = Fr(frozen_sys[cid]["zero_scale_floors"]["force_N"])
+    Ms = Fr(frozen_sys[cid]["zero_scale_floors"]["moment_N_m"])
+    moved = [f"{sid}.{comps[k]}" for sid in base_par["reactions"] for k in range(6)
+             if abs(base_par["reactions"][sid][k] - ctl_par["reactions"][sid][k]) > Fr(1, 10 ** 6) * (Fs if k < 3 else Ms)]
+    gmoved = [k for k in range(6) if abs(base_par["g"][k] - ctl_par["g"][k]) > Fr(1, 10 ** 9) * max(abs(base_par["g"][k]), 1)]
+    check(f"round01 {cid}: the control discriminates (a retained P-130 makes its E/nu move the reactions)", len(moved) > 0)
+    ctl_disc[cid] = {"what": "P-130 kept in parallel (replaces_span not applied): its E/nu then changes the results, so the control would expose it",
+                     "reactions_with_P130_E_2e11_nu_0.3": {sid: [sysfmt(x, 20) for x in rv] for sid, rv in base_par["reactions"].items()},
+                     "reactions_with_P130_E_1e11_nu_0.25": {sid: [sysfmt(x, 20) for x in rv] for sid, rv in ctl_par["reactions"].items()},
+                     "connector_g_with_P130_E_2e11": [sysfmt(x, 20) for x in base_par["g"]],
+                     "connector_g_with_P130_E_1e11": [sysfmt(x, 20) for x in ctl_par["g"]],
+                     "moved_reaction_components": moved, "moved_g_components": gmoved}
+
+# refusal variants under load-reference-1
+ref_variants = {
+    "a_thermal_on_replaced_span": ("pipe:P-130 element_state in load:L-100 is constant_alpha_interval (1.2e-5 /degC, 12.5 degC)", doc_040(p130_thermal_case="load:L-100"), ["load:L-100"]),
+    "b_fit_strain_on_replaced_span": ("pipe:P-130 member reference fit is fit_strain 1e-4 (nonzero resolved eigenstrain in every case)", doc_040(p130_fit_strain=0.0001), list(CASES)),
+    "c_weight_on_replaced_span": ("load:L-100 stores a weight primitive on pipe:P-130 and lists it in load_sources", doc_040(p130_weight=True), ["load:L-100"]),
+}
+r01_ref = {}
+for key, (what, dv, refused_cases) in ref_variants.items():
+    iv = interpret(dv)
+    outcome = {cid: replaced_span_refusal(iv, cid) for cid in CASES}
+    check(f"round01 refusal {key}: refused exactly in {refused_cases}", [cid for cid in CASES if outcome[cid]] == refused_cases)
+    eigv = {cid: ex(iv["cases"][cid]["eig"]["pipe:P-130"]) for cid in CASES}
+    r01_ref[key] = {"what": what, "resolved_eigenstrain_P130_by_case": eigv,
+                    "expected": {"status_mechanics": "MODEL_INCOMPLETE", "results": "none (no case is published, as for any blocking diagnostic)",
+                                 "blocking_code": "JOINT_REPLACED_SPAN_LOAD_UNOWNED",
+                                 "refused_cases": refused_cases,
+                                 "affected_refs_include": sorted({r for cid in refused_cases for r in outcome[cid]["affected_refs_include"]}),
+                                 "fallback": "none: the strain is never moved to the joint, dropped, or turned into a joint thermal law (that comes with T4-U5's J3)"},
+                    "document_v3_0.4.0": dv}
+izero = interpret(doc_040(p130_zero_explicit=True))
+check("round01 boundary: an explicit zero interval strain on P-130 resolves to 0 and is not refused under the ruling's 'nonzero'", izero["cases"]["load:L-100"]["eig"]["pipe:P-130"] == 0
+      and all(replaced_span_refusal(izero, cid) is None for cid in CASES))
+zero_blocks = {cid: sys_block(solve_doc(izero, cid, PI)) for cid in CASES}
+check("round01 boundary: its results equal the cold case U3-SYS-DEMO-CONNECTOR-002-LR1 (every string)", all(zero_blocks[cid] == r01_lr1[cid] for cid in CASES))
+dstored = doc_040(p130_stored_unlisted=True)
+istored = interpret(dstored)
+check("round01 stored-unapplied: L-100 stores a weight primitive on P-130 that no case lists in load_sources",
+      any(ld["target"].get("pipe") == "pipe:P-130" for ld in dstored["model"]["load_cases"][0]["primitive_loads"])
+      and not any(s_["source_ref"] == "load:L-100-Z-130-STORED" for c_ in dstored["model"]["load_cases"] for s_ in c_["analysis_state"]["load_sources"]))
+check("round01 stored-unapplied: no case refuses (refusal is decided by what each case applies)", all(replaced_span_refusal(istored, cid) is None for cid in CASES))
+stored_blocks = {cid: sys_block(solve_doc(istored, cid, PI)) for cid in CASES}
+check("round01 stored-unapplied: every result equals U3-SYS-DEMO-CONNECTOR-002-LR1 (every string)", all(stored_blocks[cid] == r01_lr1[cid] for cid in CASES))
+
+add_case("U3-SYS-DEMO-CONNECTOR-002-LR1", "6 (round 01)",
+         "The 0.4.0 (load-reference-1) form of U3-SYS-DEMO-CONNECTOR-001: the same model, with the thermal on P-120 as its element thermal_state and the replaced span P-130 cold (unchanged_reference, fit none). Every displacement, reaction and connector value equals the 0.3.0 case",
+         {"form": "schema 0.4.0; pressure_contract 3.0.0/exact_pressure_v3 (provisional); materials without alpha (the interval states carry it); one reference configuration (direct_strain_reference, fit none, every pipe including P-130); every case has an analysis_state with one element state per pipe (explicit_base_properties naming the pipe's own material), every support active_model_device, every stored primitive in load_sources with factor 1, history independent_equilibrium",
+          "thermal": "L-100: pipe:P-120 constant_alpha_interval 1.2e-5 /degC x 12.5 degC (engineering interval; resolved eigenstrain 3/20000); every other member and every other case unchanged_reference. No thermal primitive (0.4.0 refuses one)",
+          "replaced_span": "pipe:P-130 keeps a reference member entry and an element state (both required for every pipe), unchanged_reference and fit none, so its resolved eigenstrain is exactly 0. By the WI ruling the connector never reads that state (E/nu or eigenstrain)",
+          "cold_while_others_strained": "admissible: element states are per pipe and per case, so P-130 stays cold while P-120 is strained; no nearer variant was needed",
+          "document_v3_0.4.0": d040},
+         r01_lr1,
+         criterion="as U3-SYS-DEMO-CONNECTOR-001; in addition, in each mode the 0.4.0 run's published displacements, reactions and connector rows equal the 0.3.0 run's (the same operands reach the same assembly: E, nu, As, alpha*dT)",
+         extra={"equality_to_001": "every expected string is identical to U3-SYS-DEMO-CONNECTOR-001's (checked)"})
+add_case("U3-SYS-LR1-REPLACED-SPAN-EIGENSTRAIN-REFUSAL", "7 (round 01)",
+         "A nonzero resolved eigenstrain on the replaced span (thermal state or fit), or a load it owns, refuses with JOINT_REPLACED_SPAN_LOAD_UNOWNED under load-reference-1 (SLOT_TABLE S20; WI round-01 ruling)",
+         {"base": "U3-SYS-DEMO-CONNECTOR-002-LR1; each variant changes only what its 'what' names"},
+         r01_ref,
+         criterion="structural: MODEL_INCOMPLETE, no results, the named blocking code with refs including component:C-150 and pipe:P-130",
+         extra={"boundary_zero_strain": {"what": "pipe:P-130 thermal_state explicit_interval_strain with strain 0 (resolved eigenstrain exactly 0)",
+                                         "expected": "admitted, by the WI round-01 ruling: a state that resolves to exactly zero has no effect on the connector, so T4-U3 admits it; every result equals the cold case U3-SYS-DEMO-CONNECTOR-002-LR1 (checked string for string)",
+                                         "expected_values": zero_blocks,
+                                         "document_v3_0.4.0": doc_040(p130_zero_explicit=True)},
+                "stored_unapplied_rule": "WI round-01 ruling: refusal is decided per case by what that case applies; a case listing a load on the replaced span in load_sources is refused; a load stored but applied by no case is not refused and has no effect (admitted control: U3-SYS-LR1-REPLACED-SPAN-STORED-UNAPPLIED-CONTROL)"})
+add_case("U3-SYS-REPLACED-SPAN-MATERIAL-CONTROL", "6 (round 01)",
+         "The replaced span's own E/nu does not affect any connector result: pipe:P-130 (and, in 0.4.0, its element state) names a different material (E 1e11 Pa, nu 0.25); everything else as 001 / 002-LR1",
+         {"material_added": OTHER_MAT, "document_v3_0.3.0": doc_030_variant(p130_material=True), "document_v3_0.4.0": doc_040(p130_material=True)},
+         {"0.3.0": "every displacement, reaction and connector value identical to U3-SYS-DEMO-CONNECTOR-001 (checked)",
+          "0.4.0": "every displacement, reaction and connector value identical to U3-SYS-DEMO-CONNECTOR-002-LR1 (checked)"},
+         criterion="in each mode, bitwise equality of every published displacement, reaction and connector row with the run of the unmodified document (P-130 is in no assembly or recovery path), and the U3-SYS-DEMO-CONNECTOR-001 reference at its criterion",
+         disc=ctl_disc)
+add_case("U3-SYS-LR1-REPLACED-SPAN-STORED-UNAPPLIED-CONTROL", "7 (round 01)",
+         "Admitted control for the WI round-01 ruling: load:L-100 stores a weight primitive on the replaced span P-130 (load:L-100-Z-130-STORED, -150 N/m in global x) that no case lists in load_sources; it is applied by no case, so nothing is refused and nothing changes",
+         {"base": "U3-SYS-DEMO-CONNECTOR-002-LR1; the only difference is the stored, unlisted primitive", "document_v3_0.4.0": dstored},
+         stored_blocks,
+         criterion="as U3-SYS-DEMO-CONNECTOR-002-LR1 (MECHANICS_SOLVED, no JOINT_REPLACED_SPAN_LOAD_UNOWNED); in each mode every published displacement, reaction and connector row equals the run of the unmodified 0.4.0 document",
+         extra={"equality_to_002": "every expected string is identical to U3-SYS-DEMO-CONNECTOR-002-LR1's (checked)",
+                "contrast": "listing the same primitive in L-100's load_sources is refusal variant c of U3-SYS-LR1-REPLACED-SPAN-EIGENSTRAIN-REFUSAL"})
+
+
 doc = {
     "schema_version": "t4-i12-u3-reference-1",
     "status": "frozen before T4-U3 code; awaiting the refuting TASK; not product evidence",
@@ -1408,6 +1772,13 @@ doc = {
         "NI's replacement keeps the fixture's own frame section (E 100, G 40, A 1, I 1, J 1) and moves node 1 to (3, -4, 0); every structural property of the four call sites (iteration counts, sign flip, cap, zero coefficient) is preserved; the asserted constants change."],
     "jr_comparison_summary": jr_rows,
     "cases": cases,
+    "round_01": {
+        "requested_by": "T4 WORKING_ITEMS, after the round-0 commit a744c09021 (SHA256SUMS 9925375b...)",
+        "ruling_applied": "under load-reference-1 the connector does not use the replaced span's resolved element state (E/nu, eigenstrain); a nonzero resolved eigenstrain on the replaced span, self-weight on it or any load it owns refuses with JOINT_REPLACED_SPAN_LOAD_UNOWNED (SLOT_TABLE S20 applied to 0.4.0); the joint's thermal relation comes with T4-U5's J3",
+        "appended_cases": ["U3-SYS-DEMO-CONNECTOR-002-LR1", "U3-SYS-LR1-REPLACED-SPAN-EIGENSTRAIN-REFUSAL", "U3-SYS-REPLACED-SPAN-MATERIAL-CONTROL", "U3-SYS-LR1-REPLACED-SPAN-STORED-UNAPPLIED-CONTROL"],
+        "further_rulings": ["a state resolving to exactly zero eigenstrain on the replaced span is admitted (no effect on the connector)",
+                            "refusal is decided per case by what that case applies: a load on the replaced span listed in a case's load_sources refuses that case; a load stored but applied by no case is not refused and has no effect"],
+        "frozen": "the 18 round-0 cases and every round-0 top-level key are unchanged (check_round01.py compares canonical hashes taken from a744c09021)"},
 }
 
 with open(sys.argv[1], "w") as fh:

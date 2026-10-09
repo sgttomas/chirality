@@ -23,3 +23,24 @@ One line per integration event, UTC. Brief: `BRIEFS/WORKING_ITEMS_T4.md` (`239f6
 - 2026-10-09 T4-RV4 CONFIRMED T4-I8's repair round 01 (`ADDENDUM_01.md`; RV4 SHA256SUMS `96b6711c…`): all 956 rows re-checked by its own model, 0 failures. **T4-I8's references at `5b07d85cf3` (SHA256SUMS `65bf2f50…`) are accepted as T4-U2's rebuilt straight-case basis.**
 - 2026-10-09 T4-I7 repair round 01 (SHA256SUMS `daada386…`, 16 files OK). Verified: the generator re-run reproduces both JSON files and its stdout byte for byte; `repair01_compare` against `80b1e97e2b` shows all surviving round-00 leaves equal and every control's maximum distance unchanged. B-1 non-discriminating rows moved to `rows_dropped_repair_01`; S-1 chord rows now elastic; S-2 kinks at θ ≈ α_tan/2 plus a refusal control at ≈ 2α_tan; S-3 PTW headline cases added. 80 cases. Sent to RV3 for confirmation.
 - 2026-10-09 **T3 agrees T4-U3's slot table** on RV130's amendments (RV130 PASS WITH AMENDMENTS, 0/9/10; NUM `ccdc6119d2`, REVIEW `8408c97f…`). Items 1–11 decided (one-line `retained_product.rs` hunk; s11f (a)–(c); T8 unchanged, producer near `lib.rs:3897`; M03 and strict-gap texts corrected in T4-U3 as declared changes; `pressure-1` table outside REVIEWED_INPUTS until B7; 3 regenerated files accepted). S-1 to S-9 and notes 2, 3, 6, 9, 10 routed to T4-I10 for revision 01; RV130's S-3 (UTM connector case with offsets, skew Q, coupled K) also sent to T4-I12.
+- 2026-10-09 T4-I12 round 01 committed as it stands (SHA256SUMS `d5045656…`, verified: generator reproduces the JSON and stdout byte for byte; `check_round01.py` against the round-0 file 94/94, the recorded stdout is the run without that argument, 93/93). Adds the 0.4.0 system case, the replaced-span eigenstrain refusals, the material control, the admitted explicit-zero variant and the stored-unapplied control (indices 18–21). RV130's S-3 UTM connector case (offsets, skew Q, coupled K; perturbed-Ke variant) was still being added when the session handed off.
+
+## Resume here (fresh T4 WORKING_ITEMS, handoff 2026-10-09)
+
+Read the brief, `T4_RULINGS.md`, plan 01 and this log. Commit each record below after checking its SHA256SUMS and re-running its scripts. The agents named here will not survive the handoff; collect their output from disk, and re-dispatch any that left nothing complete, using the same brief.
+
+**Units**
+- **T4-U0, T4-U1.** References frozen in `T4-I6/` (`146f734a…`). T4-RV2 is refuting them, attacking K1/K2 under the stable evaluation; partial output only in `T4-RV2/`, no REVIEW.md or SHA256SUMS yet. M31b0 (I6 §B5.3) stays open until ROOT rules on the derivation, T3's RV131 check and T3's view together; T4-U1 does not retire that kill before then. T4-U1's brief must carry: D-B (drop `bend_plane_orientation`), D-I (shared `arc_geometry`/`kink` in CB), the small-angle stable form with its stop rule (log line "Small bends settled"), K1/K2, and O4–O6 as T3 points. Code starts from main after #1168 merges; then cut `WT/t4-u0` and `WT/t4-u1`.
+- **T4-U1b.** Design in `T4-I9/` (`b196aad2…`). T3's RV129 is reviewing it. ROOT's R-1 conditions: the proof and SF-2 reading confirmed; every failed precondition stays CannotBound, with a test; T15's meaning agreed. R-2 asks for a natural failure first. O-10: any re-registration goes to ROOT before code. T3's final and provisional answers are logged above.
+- **T4-U2.** Straight references accepted (`T4-I8/` at `5b07d85cf3`, `65bf2f50…`; RV4 CONFIRMED). Bend references repaired (`T4-I7/` at `fa0b43f3c1`, `daada386…`); T4-RV3 is confirming, output to `T4-RV3/ADDENDUM_01.md`. Authoring design settled (`T4-I11/`; dispositions logged). Code needs T4-U1, T4-U1b and T4-U2a.
+- **T4-U3.** T3 agrees the slot table on RV130's amendments. T4-I10 is writing revision 01 in place (`T4-I10/SLOT_TABLE.md` and `REVISION_01.md`, new SHA256SUMS); send it to T3's WORKING_ITEMS for RV130 to confirm. References in `T4-I12/`: round 0 at `a744c09021` and round 01 at this commit; T4-I12 may still write RV130's S-3 case there, with a new digest. T4-RV5 is refuting round 0, output to `T4-RV5/`; it then confirms round 01 and S-3 in an addendum. Code needs T4-U2a.
+
+**Agents running at handoff, and where their output lands:**
+- T4-RV2 → `R4/T4-RV2/`
+- T4-RV3 → `R4/T4-RV3/ADDENDUM_01.md`
+- T4-RV5 → `R4/T4-RV5/`
+- T4-I10 → `R4/T4-I10/` (revision 01)
+- T4-I12 → `R4/T4-I12/` (the S-3 addition)
+- T3's reviewers (through T3's WORKING_ITEMS, on NUM): RV129 (I9), RV131 (I6 §B5)
+
+**Next IDs:** T4-I13, T4-RV6.
