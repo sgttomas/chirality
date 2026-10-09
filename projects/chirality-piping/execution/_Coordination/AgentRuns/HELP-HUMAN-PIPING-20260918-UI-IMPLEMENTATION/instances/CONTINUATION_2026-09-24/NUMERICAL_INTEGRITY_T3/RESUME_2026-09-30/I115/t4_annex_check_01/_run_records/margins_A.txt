@@ -1,0 +1,6 @@
+apps/desktop/src/services/previewService.ts: T4 hunks 1, b2 hunks 2, nearest gap 208 lines (T4 (340, 383) vs b2 (132, 132), C numbering)
+core/product_physics/src/lib.rs: T4 hunks 253, b2 hunks 13, nearest gap 66 lines (T4 (2110, 2110) vs b2 (2176, 2176), C numbering)
+core/product_physics/src/retained_product.rs: T4 hunks 1, b2 hunks 92, nearest gap 5.5 lines (T4 (1558, 1559) vs b2 (1552.5, 1552.5), C numbering)
+core/product_physics/tests/s11f_site_test.rs: T4 hunks 10, b2 hunks 1, nearest gap 5.5 lines (T4 (506, 538) vs b2 (543.5, 543.5), C numbering)
+core/reporting/result_export/tests/preview_physics_contract.rs: T4 hunks 1, b2 hunks 1, nearest gap 222.5 lines (T4 (604, 608) vs b2 (830.5, 830.5), C numbering)
+core/solver/frame_kernel/src/structural.rs: T4 hunks 1, b2 hunks 3, nearest gap 18 lines (T4 (63, 63) vs b2 (45, 45), C numbering)

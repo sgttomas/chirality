@@ -1,0 +1,10 @@
+projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts
+projects/chirality-piping/apps/desktop/src/services/previewService.ts
+projects/chirality-piping/core/analysis_runs/retained_precision.py
+projects/chirality-piping/core/product_physics/src/lib.rs
+projects/chirality-piping/core/product_physics/src/retained_product.rs
+projects/chirality-piping/core/product_physics/src/retained_product_tests.rs
+projects/chirality-piping/core/product_physics/tests/s11f_site_test.rs
+projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs
+projects/chirality-piping/core/reporting/result_export/tests/preview_physics_contract.rs
+projects/chirality-piping/core/solver/frame_kernel/src/structural.rs

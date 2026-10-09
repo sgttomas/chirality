@@ -1,0 +1,12 @@
+ae3bc07813fb785e4ebe6d48f2289d50d9a948f0
+
+Auto-merging projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts
+Auto-merging projects/chirality-piping/apps/desktop/src/services/previewService.ts
+Auto-merging projects/chirality-piping/core/analysis_runs/retained_precision.py
+Auto-merging projects/chirality-piping/core/product_physics/src/lib.rs
+Auto-merging projects/chirality-piping/core/product_physics/src/retained_product.rs
+Auto-merging projects/chirality-piping/core/product_physics/src/retained_product_tests.rs
+Auto-merging projects/chirality-piping/core/product_physics/tests/s11f_site_test.rs
+Auto-merging projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs
+Auto-merging projects/chirality-piping/core/reporting/result_export/tests/preview_physics_contract.rs
+Auto-merging projects/chirality-piping/core/solver/frame_kernel/src/structural.rs

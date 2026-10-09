@@ -1,0 +1,8 @@
+6d38b99e47b5e91026c178c761090257747932f6
+
+Auto-merging projects/chirality-piping/apps/desktop/src/services/previewService.ts
+Auto-merging projects/chirality-piping/core/product_physics/src/lib.rs
+Auto-merging projects/chirality-piping/core/product_physics/src/retained_product.rs
+Auto-merging projects/chirality-piping/core/product_physics/tests/s11f_site_test.rs
+Auto-merging projects/chirality-piping/core/reporting/result_export/tests/preview_physics_contract.rs
+Auto-merging projects/chirality-piping/core/solver/frame_kernel/src/structural.rs
