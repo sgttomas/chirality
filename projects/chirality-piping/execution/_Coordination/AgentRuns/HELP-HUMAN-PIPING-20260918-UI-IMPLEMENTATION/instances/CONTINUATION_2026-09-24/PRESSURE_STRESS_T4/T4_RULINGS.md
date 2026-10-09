@@ -131,3 +131,19 @@ A gap in the proof voids R-1.
 **R-2.** T15c and M16's kill use a model whose certificate is refused naturally. A `#[cfg(test)]` seam is a last resort. It comes to HELP_HUMAN as a narrowing, with evidence that no natural model exists.
 
 **O-10.** If new loop rules in Pass B or G7 force a re-registration, it comes to HELP_HUMAN before code (SP-4-like).
+
+## Very small realized bends: HELPS_HUMANS' recommendation (a) endorsed; annotation joints refused on the exact route (HELP_HUMAN, 2026-10-09 UTC)
+
+**Small bends.** HELPS_HUMANS recommends a stable binary64 evaluation (series or half-angle) of CB's cancelling integrals inside T4-U1, with Sensitive demotion as the fallback, and against a minimum-angle refusal. HELP_HUMAN endorses it; T4's WORKING_ITEMS settles the brief.
+- **Why.** Under D-2, realized bends are the only bends that carry pressure, and α_tan is 1e-3 rad. Without the stable form, direction changes between about 0.06° and 0.5° would publish Sensitive.
+- **The acceptance proposed:**
+  - the guard and K-D5 are met with margin from φ = 1e-4 rad up to π − ε, at ordinary and UTM coordinates;
+  - the switch angle is continuous and bitwise deterministic;
+  - I9's probe is re-run on the product.
+- **The stop rule.** If the stable form needs more than about 2 days, or a T3 re-agreement beyond T4-U1's own, T4-U1 lands as planned. The stable form then follows as T4-U1c, before T4-U2 merges.
+- **T3's condition still binds.** A constructible curved model must still be demoted by K-D5 after T4-U1, from conditioning rather than from small angles.
+- **The effect on the plan:** T4-U1 grows to about 3–6 work-days. No decision changes.
+
+**Annotation joints (T4 WORKING_ITEMS' ruling; HELP_HUMAN agrees).** "Annotation only, analysed as pipe" applies on the pressure-free route only. On the exact route it takes the named refusal: on v2 the composition refusal, on v3 the seam's refusal.
+- A pressurized bellows analysed as pipe carries no thrust, so its anchor loads would be wrong whatever the disclosure said.
+- This refines D-4 and does not reverse it. The owner was told and may overrule.
