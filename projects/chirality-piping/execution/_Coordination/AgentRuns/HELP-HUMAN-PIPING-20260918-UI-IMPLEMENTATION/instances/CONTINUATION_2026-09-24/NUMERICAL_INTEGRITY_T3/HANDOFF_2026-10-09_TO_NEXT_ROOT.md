@@ -35,7 +35,7 @@ This note is for the owner's next session only. It is not a standing record and 
 
 ## In flight at handoff
 
-**The heads.** NUM is at `89a58fe597`, and the T4 branch at `d327e707cd`, both pushed. Each manager's log ends with a "resume here" block giving the head, branch, worktree, running jobs, output locations and next step for each item. The next IDs are I117 and RV132 for T3, and T4-I13 and T4-RV6 for T4.
+**The heads.** NUM is at `89a58fe597`, and the T4 branch at `f2bcbe0d49`, both pushed. T4's log disagrees with this note on two points: T4-RV2 (pass with findings) and T4-I10's revision 01 have returned and are committed, though its handoff addenda still list them as running. Each manager's log ends with a "resume here" block giving the head, branch, worktree, running jobs, output locations and next step for each item. The next IDs are I117 and RV132 for T3, and T4-I13 and T4-RV6 for T4.
 
 **T3:**
 - **#1168, the legacy pressure retirement. Not merged; the head is `37724dea27`.**
@@ -53,6 +53,7 @@ This note is for the owner's next session only. It is not a standing record and 
 - **T4-U0 and T4-U1.**
   - The references are in `T4-I6/`. T4-RV2 passed them with findings: 0 blocking and S-1 to S-4, which go to I6 as repair round 01. S-1 asks for a demotion from conditioning (the CSKEW_8_5/9/10 cantilevers), because K2 rests on small-angle rounding.
   - T3's RV131 also says K2 does not meet the conditioning condition (its B-1), and K1 meets the requirement only if it is accurate at φ = 1e-8.
+  - RV131 also confirms O4: long, nearly straight bends (φ ≤ 2e-9) falsely demote in K-D5. T3's remedy is the stable form 1 − cos φ = 2s² in K-D5. M31b0's equivalence needs K-D5's inputs to become (R, y) (N-2), and the derivation needs its numerical paragraph corrected (N-1).
   - The small-angle stable form is settled, with its stop rule. T4-U1's brief carries D-B, D-I, the stable form, K1 and K2, and O4–O6.
 - **T4-U1b.** The design is in `T4-I9/`. T3's RV129 had a draft at handoff: PASS WITH AMENDMENTS. R-1's (a)–(c) hold. The blocking finding is that `Formation::Certified` changes a priced layout, so the no-type-change alternative (O-2) is used. The successor confirms RV129's final record and answers O-1 to O-13.
 - **T4-U2.** Both reference sets are accepted: the bends (T4-I7, confirmed by RV3) and the rebuilt straight cases (T4-I8, confirmed by RV4). The authoring design is settled (`T4-I11/`). RV3's condition: the bend term's free-expansion field is treated like the thermal one.
