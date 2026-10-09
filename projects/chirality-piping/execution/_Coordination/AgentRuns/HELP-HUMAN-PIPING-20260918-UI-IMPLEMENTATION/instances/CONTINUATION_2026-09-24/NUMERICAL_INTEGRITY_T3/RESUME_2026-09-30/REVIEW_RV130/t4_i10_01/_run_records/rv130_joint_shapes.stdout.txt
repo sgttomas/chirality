@@ -1,0 +1,13 @@
+360 shapes (version x connector x consumption x pipe_ref x rates); none falls through
+     90  [spec] PREVIEW_CONTRACT_VERSION_MISMATCH
+     60  [spec] LEGACY_FINITE_CONNECTOR_REAUTHOR_REQUIRED [component, pipe?]
+     60  [spec] OBJECTIVE_CONNECTOR_NOT_IMPLEMENTED + EXACT_PRESSURE_COMPOSITION_UNSUPPORTED
+     60  [spec] OBJECTIVE_CONNECTOR_VERSION_UNSUPPORTED
+     55  [spec] OBJECTIVE_CONNECTOR_INPUT_INCOMPLETE / _TOPOLOGY_UNRESOLVED / JOINT_* (named)
+     12  [ruling] LEGACY_FINITE_CONNECTOR_REAUTHOR_REQUIRED [component] (residual)
+      6  [ruling] EXACT_PRESSURE_COMPOSITION_UNSUPPORTED
+      6  [spec] admitted as annotation + EXPANSION_JOINT_ANNOTATION_ONLY
+      6  [ruling] v3 seam's named refusal (code not named in SLOT_TABLE)
+      4  [UNSPECIFIED] admitted as connector (consumption field not stated)
+      1  [spec] admitted (connector)
+unspecified (admitted, consumption semantics not stated): 4, e.g. ('v3 exact', 'v1.0.0 valid', 'not_solver_consumed', False, 'none')

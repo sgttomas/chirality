@@ -1,0 +1,13 @@
+A/B. rank B, B*rigid, PD link and PSD release (exact rationals)
+   60 cases (15 general, 15 r = 0, 15 coincident nodes, 15 binary64 Q): rank B = 6, B * rigid = 0 (6 modes, arbitrary origin), rank(B^T K_pd B) = 6, rank(B^T K_psd B) = 5. PASS
+C. the old element's tie space is not the rigid space
+   rigid rotation wz = 1e-3: relative translation uj - ui = [0.0, 0.0003, 0.0] (nonzero lateral: the old lateral spring is strained by a rigid motion, so its 'tie' u_i = u_j, th_i = th_j is not rigid; W4 represented it by virtual positions)
+   connector q for the same motion: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] (exactly zero: a link)
+D. exact PD decision on binary64 K vs binary64 pivots
+   K[0:2,0:2] = [[3, 1], [1, fl(1/3)]]: exact det block = -5.551e-17; exact LDL^T PD = False; binary64 pivots [3.0, 0.0] (second pivot exactly 0.0: a tolerance test calls it PSD, the exact test finds it indefinite)
+   with K[1][1] = next binary64 above 1/3: exact det block = 1.110e-16; exact PD = True
+E. K-D5 at UTM coordinates: how the binary64 path forms r
+   ordinary: |r err| absolute-position form 2.706e-16 m, node-difference form 2.949e-17 m; K-D5 trigger 2|w|/(1e-9 S) = 1.35e-06 vs 1.01e-06 (demotes when > 1)
+   UTM     : |r err| absolute-position form 2.794e-10 m, node-difference form 2.949e-17 m; K-D5 trigger 2|w|/(1e-9 S) = 1.39 vs 6.5e-07 (demotes when > 1)
+F. S11-G Bounded q_ref term: the r operand under cancellation
+   2000 decimal-authored coincident attachments: |r_hat - r| > gamma_3*|r_hat| in 1083 cases; max |r_hat - r| / (gamma_3*(|xj - xi| + |aj - ai|)) = 0.220 (<= 1 holds)

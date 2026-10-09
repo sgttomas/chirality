@@ -1,0 +1,12 @@
+== core/product_physics/src/retained_product.rs
+   B2U = merge(b2, main, U3): clean
+   merge(T4, ED, B2U): clean
+   T4 replace at ED:1558: nearest B2U change gap 5.5 unchanged ED lines
+   result keeps every T4 hunk: True; keeps every b2 line: True (924 b2-only lines)
+== core/product_physics/tests/s11f_site_test.rs
+   B2U = merge(b2, main, U3): clean
+   merge(T4, ED, B2U): clean
+   T4 insert_after at ED:221: nearest B2U change gap 322.0 unchanged ED lines
+   T4 replace at ED:511: nearest B2U change gap 32.5 unchanged ED lines
+   T4 insert_after at ED:1382: nearest B2U change gap 839.0 unchanged ED lines
+   result keeps every T4 hunk: True; keeps every b2 line: True (2 b2-only lines)

@@ -1,0 +1,451 @@
+# RV130 census at ed012c7ccf: 1086 token hits
+## class plumbing: 200 hits in 43 files
+## class texts: 85 hits in 33 files
+## class row_key: 215 hits in 104 files
+## class legacy_input: 303 hits in 37 files
+## class codes: 84 hits in 30 files
+## class element: 153 hits in 27 files
+## class pp_joint: 19 hits in 4 files
+## class w4: 27 hits in 4 files
+
+# code hits mapped to a slot-table citation (+/-3 lines): 319
+# code hits not mapped: 276
+== apps/desktop/e2e/ui-foundation/full-cohort-controller.spec.ts
+   487 [test] fn=None (legacy_input): components: [{ id: "c", label: "C", geometry: { bend_radius: { value: 1.25, unit: "radiusunit" }, bend_geometry_source_reference: "unique-bend-ref", c
+== apps/desktop/e2e/ui-foundation/full-cohort-controller.ts
+   111 [test] fn=None (legacy_input): component.geometry?.expansion_joint_pipe_ref ?? "",
+   143 [test] fn=None (legacy_input): component.modifiers?.axial_stiffness_user_value
+   144 [test] fn=None (legacy_input): ? `${component.modifiers.axial_stiffness_user_value.value} ${component.modifiers.axial_stiffness_user_value.unit}`
+   146 [test] fn=None (legacy_input): component.modifiers?.lateral_stiffness_user_value
+   147 [test] fn=None (legacy_input): ? `${component.modifiers.lateral_stiffness_user_value.value} ${component.modifiers.lateral_stiffness_user_value.unit}`
+   149 [test] fn=None (legacy_input): component.modifiers?.angular_stiffness_user_value
+   150 [test] fn=None (legacy_input): ? `${component.modifiers.angular_stiffness_user_value.value} ${component.modifiers.angular_stiffness_user_value.unit}`
+   152 [test] fn=None (legacy_input): component.modifiers?.torsional_stiffness_user_value
+   153 [test] fn=None (legacy_input): ? `${component.modifiers.torsional_stiffness_user_value.value} ${component.modifiers.torsional_stiffness_user_value.unit}`
+== apps/desktop/src/App.test.tsx
+   10723 [test] fn=None (texts): // No joint and no legacy pressure: no user-stiffness element and no thrust.
+   10724 [test] fn=None (row_key): expect(exportPacket.component_user_stiffness_macro_element_count).toBe(0);
+   12833 [test] fn=None (legacy_input): expect(preview.textContent).toContain('"expansion_joint_pipe_ref":"pipe:P-110"');
+   12835 [test] fn=None (legacy_input): expect(preview.textContent).toContain('"axial_stiffness_user_value":{"value":3200000,"unit":"N/m"}');
+   12836 [test] fn=None (legacy_input): expect(preview.textContent).toContain('"torsional_stiffness_user_value":{"value":620000,"unit":"N*m/rad"}');
+   12928 [test] fn=None (legacy_input): expect(preview.textContent).toContain('"expansion_joint_pipe_ref":"pipe:P-150"');
+   12934 [test] fn=None (legacy_input): expect(preview.textContent).toContain('"axial_stiffness_user_value":{"value":3200000,"unit":"N/m"}');
+   12935 [test] fn=None (legacy_input): expect(preview.textContent).toContain('"lateral_stiffness_user_value":{"value":900000,"unit":"N/m"}');
+   12936 [test] fn=None (legacy_input): expect(preview.textContent).toContain('"angular_stiffness_user_value":{"value":480000,"unit":"N*m/rad"}');
+   12937 [test] fn=None (legacy_input): expect(preview.textContent).toContain('"torsional_stiffness_user_value":{"value":620000,"unit":"N*m/rad"}');
+== apps/desktop/src/features/model-tree/ModelTree.test.tsx
+   532 [test] fn=None (legacy_input): components: [{ id: "c", label: "Fitting", node: "n/0", kind: "bend", provenance: "component-source-token", geometry: { bend_radius: { value: 123.456, 
+== apps/desktop/src/features/model-tree/ModelTree.tsx
+   517 [prod] fn=None (legacy_input): component.geometry?.expansion_joint_pipe_ref ?? "",
+   549 [prod] fn=None (legacy_input): component.modifiers?.axial_stiffness_user_value
+   550 [prod] fn=None (legacy_input): ? `${component.modifiers.axial_stiffness_user_value.value} ${component.modifiers.axial_stiffness_user_value.unit}`
+   552 [prod] fn=None (legacy_input): component.modifiers?.lateral_stiffness_user_value
+   553 [prod] fn=None (legacy_input): ? `${component.modifiers.lateral_stiffness_user_value.value} ${component.modifiers.lateral_stiffness_user_value.unit}`
+   555 [prod] fn=None (legacy_input): component.modifiers?.angular_stiffness_user_value
+   556 [prod] fn=None (legacy_input): ? `${component.modifiers.angular_stiffness_user_value.value} ${component.modifiers.angular_stiffness_user_value.unit}`
+   558 [prod] fn=None (legacy_input): component.modifiers?.torsional_stiffness_user_value
+   559 [prod] fn=None (legacy_input): ? `${component.modifiers.torsional_stiffness_user_value.value} ${component.modifiers.torsional_stiffness_user_value.unit}`
+   1458 [prod] fn=None (legacy_input): "geometry.expansion_joint_pipe_ref",
+   1495 [prod] fn=None (legacy_input): "modifiers.axial_stiffness_user_value.value",
+   1503 [prod] fn=None (legacy_input): "modifiers.lateral_stiffness_user_value.value",
+   1511 [prod] fn=None (legacy_input): "modifiers.angular_stiffness_user_value.value",
+   1519 [prod] fn=None (legacy_input): "modifiers.torsional_stiffness_user_value.value",
+== apps/desktop/src/features/model-tree/PropertyInspector.tsx
+   1454 [prod] fn=None (legacy_input): geometry?.expansion_joint_pipe_ref?.trim() &&
+   1463 [prod] fn=None (legacy_input): component.modifiers?.axial_stiffness_user_value &&
+   1464 [prod] fn=None (legacy_input): component.modifiers.lateral_stiffness_user_value &&
+   1465 [prod] fn=None (legacy_input): component.modifiers.angular_stiffness_user_value &&
+   1466 [prod] fn=None (legacy_input): component.modifiers.torsional_stiffness_user_value &&
+   1469 [prod] fn=None (codes): if (!geometryComplete) flags.push("EXPANSION_JOINT_GEOMETRY_INCOMPLETE");
+   1470 [prod] fn=None (codes): if (!modifiersComplete) flags.push("EXPANSION_JOINT_STIFFNESS_DATA_MISSING");
+   2027 [prod] fn=None (legacy_input): "geometry.expansion_joint_pipe_ref",
+   2028 [prod] fn=None (legacy_input): component.geometry?.expansion_joint_pipe_ref ?? "TBD",
+   2083 [prod] fn=None (legacy_input): "modifiers.axial_stiffness_user_value.value",
+   2084 [prod] fn=None (legacy_input): component.modifiers?.axial_stiffness_user_value?.value ?? "TBD",
+   2087 [prod] fn=None (legacy_input): component.modifiers?.axial_stiffness_user_value?.unit ?? "N/m",
+   2093 [prod] fn=None (legacy_input): "modifiers.lateral_stiffness_user_value.value",
+   2094 [prod] fn=None (legacy_input): component.modifiers?.lateral_stiffness_user_value?.value ?? "TBD",
+   2097 [prod] fn=None (legacy_input): component.modifiers?.lateral_stiffness_user_value?.unit ?? "N/m",
+   2103 [prod] fn=None (legacy_input): "modifiers.angular_stiffness_user_value.value",
+   2104 [prod] fn=None (legacy_input): component.modifiers?.angular_stiffness_user_value?.value ?? "TBD",
+   2107 [prod] fn=None (legacy_input): component.modifiers?.angular_stiffness_user_value?.unit ?? "N*m/rad",
+   2113 [prod] fn=None (legacy_input): "modifiers.torsional_stiffness_user_value.value",
+   2114 [prod] fn=None (legacy_input): component.modifiers?.torsional_stiffness_user_value?.value ?? "TBD",
+   2117 [prod] fn=None (legacy_input): component.modifiers?.torsional_stiffness_user_value?.unit ?? "N*m/rad",
+== apps/desktop/src/features/model-workspace/modelView.ts
+   210 [prod] fn=None (legacy_input): ["Mapped pipe", component.geometry?.expansion_joint_pipe_ref ?? "TBD"],
+   219 [prod] fn=None (legacy_input): ["Axial stiffness", quantityDisplay(component.modifiers?.axial_stiffness_user_value, "linear_stiffness")],
+   220 [prod] fn=None (legacy_input): ["Lateral stiffness", quantityDisplay(component.modifiers?.lateral_stiffness_user_value, "linear_stiffness")],
+   221 [prod] fn=None (legacy_input): ["Angular stiffness", quantityDisplay(component.modifiers?.angular_stiffness_user_value, "rotational_stiffness")],
+   222 [prod] fn=None (legacy_input): ["Torsional stiffness", quantityDisplay(component.modifiers?.torsional_stiffness_user_value, "rotational_stiffness")],
+== apps/desktop/src/features/native-package/NativePackagePanel.tsx
+   737 [prod] fn=None (legacy_input): fieldPath: "modifiers.axial_stiffness_user_value",
+   738 [prod] fn=None (legacy_input): quantity: component.modifiers?.axial_stiffness_user_value
+   742 [prod] fn=None (legacy_input): fieldPath: "modifiers.lateral_stiffness_user_value",
+   743 [prod] fn=None (legacy_input): quantity: component.modifiers?.lateral_stiffness_user_value
+   747 [prod] fn=None (legacy_input): fieldPath: "modifiers.angular_stiffness_user_value",
+   748 [prod] fn=None (legacy_input): quantity: component.modifiers?.angular_stiffness_user_value
+   752 [prod] fn=None (legacy_input): fieldPath: "modifiers.torsional_stiffness_user_value",
+   753 [prod] fn=None (legacy_input): quantity: component.modifiers?.torsional_stiffness_user_value
+== apps/desktop/src/features/report/ReportPanel.tsx
+   334 [prod] fn=None (row_key): (item) => item.kind === "component_user_stiffness_macro_element_review" && item.entity_ref === component.id
+   360 [prod] fn=None (legacy_input): expansion_joint_pipe_ref: component.geometry?.expansion_joint_pipe_ref ?? null,
+   366 [prod] fn=None (legacy_input): user_entered_axial_stiffness: component.modifiers?.axial_stiffness_user_value ?? null,
+   367 [prod] fn=None (legacy_input): user_entered_lateral_stiffness: component.modifiers?.lateral_stiffness_user_value ?? null,
+   368 [prod] fn=None (legacy_input): user_entered_angular_stiffness: component.modifiers?.angular_stiffness_user_value ?? null,
+   369 [prod] fn=None (legacy_input): user_entered_torsional_stiffness: component.modifiers?.torsional_stiffness_user_value ?? null,
+   405 [prod] fn=None (row_key): .filter((item) => item.kind === "component_user_stiffness_macro_element_review")
+   438 [prod] fn=None (legacy_input): mapped_pipe_ref: component?.geometry?.expansion_joint_pipe_ref ?? item.metadata?.location ?? "not provided",
+   511 [prod] fn=None (legacy_input): .map((item) => `${item.component_ref}->${item.expansion_joint_pipe_ref ?? "TBD"}`)
+   729 [prod] fn=None (row_key): component_user_stiffness_macro_element_count: componentUserStiffnessEvidence.length,
+== apps/desktop/src/features/validation-evidence/ValidationEvidencePanel.tsx
+   329 [prod] fn=None (legacy_input): component.modifiers?.axial_stiffness_user_value,
+   330 [prod] fn=None (legacy_input): component.modifiers?.lateral_stiffness_user_value,
+   331 [prod] fn=None (legacy_input): component.modifiers?.angular_stiffness_user_value,
+   332 [prod] fn=None (legacy_input): component.modifiers?.torsional_stiffness_user_value
+== apps/desktop/src/types.ts
+   38 [prod] fn=None (legacy_input): expansion_joint_pipe_ref?: string;
+   54 [prod] fn=None (legacy_input): axial_stiffness_user_value?: QuantityValue;
+   55 [prod] fn=None (legacy_input): lateral_stiffness_user_value?: QuantityValue;
+   56 [prod] fn=None (legacy_input): angular_stiffness_user_value?: QuantityValue;
+   57 [prod] fn=None (legacy_input): torsional_stiffness_user_value?: QuantityValue;
+== core/model_operations/operation_applier/src/geometry_operations.rs
+   870 [test] fn=reference_guard_matrix_blocks_attached_engineering_data (legacy_input): "expansion_joint_pipe_ref",
+== core/model_operations/operation_applier/src/lib.rs
+   617 [prod] fn=field_rules (legacy_input): field_path: "geometry.expansion_joint_pipe_ref",
+   701 [prod] fn=field_rules (legacy_input): field_path: "modifiers.axial_stiffness_user_value.value",
+   708 [prod] fn=field_rules (legacy_input): field_path: "modifiers.lateral_stiffness_user_value.value",
+   715 [prod] fn=field_rules (legacy_input): field_path: "modifiers.angular_stiffness_user_value.value",
+   722 [prod] fn=field_rules (legacy_input): field_path: "modifiers.torsional_stiffness_user_value.value",
+   2710 [prod] fn=resolve_expansion_joint_creation_geometry (legacy_input): .get("expansion_joint_pipe_ref")
+   2785 [prod] fn=resolve_expansion_joint_creation_geometry (legacy_input): "expansion_joint_pipe_ref": pipe_ref,
+   2801 [prod] fn=resolve_expansion_joint_creation_modifiers (legacy_input): .get("axial_stiffness_user_value")
+   2804 [prod] fn=resolve_expansion_joint_creation_modifiers (legacy_input): .get("lateral_stiffness_user_value")
+   2807 [prod] fn=resolve_expansion_joint_creation_modifiers (legacy_input): .get("angular_stiffness_user_value")
+   2810 [prod] fn=resolve_expansion_joint_creation_modifiers (legacy_input): .get("torsional_stiffness_user_value")
+   2863 [prod] fn=resolve_expansion_joint_creation_modifiers (legacy_input): "axial_stiffness_user_value": { "value": axial.value, "unit": axial.unit },
+   2864 [prod] fn=resolve_expansion_joint_creation_modifiers (legacy_input): "lateral_stiffness_user_value": { "value": lateral.value, "unit": lateral.unit },
+   2865 [prod] fn=resolve_expansion_joint_creation_modifiers (legacy_input): "angular_stiffness_user_value": { "value": angular.value, "unit": angular.unit },
+   2866 [prod] fn=resolve_expansion_joint_creation_modifiers (legacy_input): "torsional_stiffness_user_value": { "value": torsional.value, "unit": torsional.unit },
+   8899 [test] fn=expansion_joint_payload (legacy_input): "expansion_joint_pipe_ref": "pipe:P-1",
+   8908 [test] fn=expansion_joint_payload (legacy_input): "axial_stiffness_user_value": { "value": 3200000.0, "unit": "N/m" },
+   8909 [test] fn=expansion_joint_payload (legacy_input): "lateral_stiffness_user_value": { "value": 900000.0, "unit": "N/m" },
+   8910 [test] fn=expansion_joint_payload (legacy_input): "angular_stiffness_user_value": { "value": 480000.0, "unit": "N*m/rad" },
+   8911 [test] fn=expansion_joint_payload (legacy_input): "torsional_stiffness_user_value": { "value": 620000.0, "unit": "N*m/rad" },
+   13235 [test] fn=explicit_expansion_joint_creation_applies_and_preserves_entered_refs_and_units (legacy_input): applied["components"][1]["geometry"]["expansion_joint_pipe_ref"],
+   13278 [test] fn=expansion_joint_creation_blocks_missing_geometry_or_stiffness_data (legacy_input): .remove("axial_stiffness_user_value");
+   13293 [test] fn=expansion_joint_creation_blocks_unknown_or_nonincident_selected_pipe (legacy_input): unknown_pipe["geometry"]["expansion_joint_pipe_ref"] = json!("pipe:missing");
+   13331 [test] fn=expansion_joint_creation_blocks_unknown_or_nonincident_selected_pipe (legacy_input): nonincident_pipe["geometry"]["expansion_joint_pipe_ref"] = json!("pipe:P-2");
+   13356 [test] fn=expansion_joint_creation_blocks_invalid_dimensions_and_nonpositive_values (legacy_input): invalid_angular_unit["modifiers"]["angular_stiffness_user_value"]["unit"] = json!("N/m");
+   13364 [test] fn=expansion_joint_creation_blocks_invalid_dimensions_and_nonpositive_values (legacy_input): nonpositive_stiffness["modifiers"]["torsional_stiffness_user_value"]["value"] = json!(0.0);
+   13958 [test] fn=expansion_joint_stiffness_edits_apply_and_preserve_entered_units (legacy_input): "axial_stiffness_user_value": { "value": 3200000.0, "unit": "N/m" }
+   13967 [test] fn=expansion_joint_stiffness_edits_apply_and_preserve_entered_units (legacy_input): "modifiers.axial_stiffness_user_value.value",
+   13982 [test] fn=expansion_joint_stiffness_edits_apply_and_preserve_entered_units (legacy_input): applied["components"][0]["modifiers"]["axial_stiffness_user_value"],
+   13993 [test] fn=expansion_joint_stiffness_edits_apply_and_preserve_entered_units (legacy_input): "modifiers.torsional_stiffness_user_value.value",
+   14008 [test] fn=expansion_joint_stiffness_edits_apply_and_preserve_entered_units (legacy_input): ["torsional_stiffness_user_value"],
+   14019 [test] fn=expansion_joint_stiffness_edits_apply_and_preserve_entered_units (legacy_input): "modifiers.axial_stiffness_user_value.value",
+== core/product_physics/src/build_identity.rs
+   2 [prod] fn=None (plumbing): // retained build identity. It has three users and no dependencies:
+== core/product_physics/src/f1b_tests.rs
+   346 [test] fn=main_dense_attempt (element): &built.user_stiffness_elements,
+   378 [test] fn=pattern_attempt (element): &built.user_stiffness_elements,
+   574 [test] fn=f1b_sparse_wiring_is_bit_identical_to_the_dense_assembly_on_the_declared_subset (plumbing): let mut users = 0;
+   582 [test] fn=f1b_sparse_wiring_is_bit_identical_to_the_dense_assembly_on_the_declared_subset (plumbing): users += bases
+   584 [test] fn=f1b_sparse_wiring_is_bit_identical_to_the_dense_assembly_on_the_declared_subset (element): .map(|b| b.built.user_stiffness_elements.len())
+   597 [test] fn=f1b_sparse_wiring_is_bit_identical_to_the_dense_assembly_on_the_declared_subset (plumbing): assert!(users > 0, "user stiffness elements");
+   913 [test] fn=observation_lane_system (element): &basis.built.user_stiffness_elements,
+   1599 [test] fn=pattern_attempt_result (element): &built.user_stiffness_elements,
+   2018 [test] fn=orchestrator_case (plumbing): ) -> ForceScalingCase<'a> {
+   2019 [test] fn=orchestrator_case (plumbing): ForceScalingCase {
+   2022 [test] fn=orchestrator_case (element,plumbing): users: &basis.built.user_stiffness_elements,
+   2220 [test] fn=None (texts): /// user-stiffness element: every realizable one is refused by M07 containment
+== core/product_physics/src/lib.rs
+   51 [prod] fn=None (element,plumbing): assemble_global_stiffness_with_user_elements, element_dof_map, force_scaled_spring_action,
+   53 [prod] fn=None (element): ForceScale, FrameElement, FrameKernelError, FrameNode, Matrix12, UserStiffnessElement,
+   66 [prod] fn=None (plumbing): solve_with_force_scaling, AssemblyEvidence, EvidenceRepresentation, ForceScalingCase,
+   430 [prod] fn=None (legacy_input): pub expansion_joint_pipe_ref: Option<String>,
+   462 [prod] fn=None (legacy_input): pub axial_stiffness_user_value: Option<Quantity>,
+   464 [prod] fn=None (legacy_input): pub lateral_stiffness_user_value: Option<Quantity>,
+   466 [prod] fn=None (legacy_input): pub angular_stiffness_user_value: Option<Quantity>,
+   468 [prod] fn=None (legacy_input): pub torsional_stiffness_user_value: Option<Quantity>,
+   1962 [prod] fn=None (row_key): pub component_user_stiffness_macro_element_count: usize,
+   2050 [prod] fn=None (element): user_stiffness_elements: Vec<UserStiffnessElement>,
+   2843 [prod] fn=run_linear_static_preview_observed (row_key): component_user_stiffness_macro_element_count,
+   3516 [prod] fn=None (plumbing): /// dense assembly's order (frames and users, then the realized curved bends as
+   6486 [prod] fn=None (texts): // frame and user-stiffness elements (the replaced chord element is excluded in
+   7337 [prod] fn=build_model_for_members (element): let user_stiffness_elements =
+   7338 [prod] fn=build_model_for_members (element,pp_joint): build_expansion_joint_user_stiffness_elements(model, &nodes, &node_map, diagnostics);
+   7417 [prod] fn=build_model_for_members (element): user_stiffness_elements,
+   7482 [prod] fn=None (element,pp_joint): fn build_expansion_joint_user_stiffness_elements(
+   7487 [prod] fn=build_expansion_joint_user_stiffness_elements (element): ) -> Vec<UserStiffnessElement> {
+   7498 [prod] fn=build_expansion_joint_user_stiffness_elements (pp_joint): .filter(|component| is_expansion_joint_component(component))
+   7505 [prod] fn=build_expansion_joint_user_stiffness_elements (legacy_input): if solver_consumption != "mechanics_geometry_and_user_flexibility" {
+   7516 [prod] fn=build_expansion_joint_user_stiffness_elements (legacy_input): .expansion_joint_pipe_ref
+   7544 [prod] fn=build_expansion_joint_user_stiffness_elements (legacy_input): let Some(axial) = modifiers.axial_stiffness_user_value.as_ref() else {
+   7547 [prod] fn=build_expansion_joint_user_stiffness_elements (legacy_input): let Some(lateral) = modifiers.lateral_stiffness_user_value.as_ref() else {
+   7550 [prod] fn=build_expansion_joint_user_stiffness_elements (legacy_input): let Some(angular) = modifiers.angular_stiffness_user_value.as_ref() else {
+   7553 [prod] fn=build_expansion_joint_user_stiffness_elements (legacy_input): let Some(torsional) = modifiers.torsional_stiffness_user_value.as_ref() else {
+   7557 [prod] fn=build_expansion_joint_user_stiffness_elements (element): match UserStiffnessElement::new(
+   7567 [prod] fn=build_expansion_joint_user_stiffness_elements (pp_joint): Err(error) => diagnostics.push(expansion_joint_macro_element_diag(
+   7578 [prod] fn=None (pp_joint): fn expansion_joint_macro_element_diag(
+   8778 [prod] fn=normalize_model_units (legacy_input): if let Some(stiffness) = &mut modifiers.axial_stiffness_user_value {
+   8788 [prod] fn=normalize_model_units (legacy_input): "modifiers.axial_stiffness_user_value".to_string(),
+   8793 [prod] fn=normalize_model_units (legacy_input): if let Some(stiffness) = &mut modifiers.lateral_stiffness_user_value {
+   8803 [prod] fn=normalize_model_units (legacy_input): "modifiers.lateral_stiffness_user_value".to_string(),
+   8808 [prod] fn=normalize_model_units (legacy_input): if let Some(stiffness) = &mut modifiers.angular_stiffness_user_value {
+   8818 [prod] fn=normalize_model_units (legacy_input): "modifiers.angular_stiffness_user_value".to_string(),
+   8823 [prod] fn=normalize_model_units (legacy_input): if let Some(stiffness) = &mut modifiers.torsional_stiffness_user_value {
+   8833 [prod] fn=normalize_model_units (legacy_input): "modifiers.torsional_stiffness_user_value".to_string(),
+   12246 [prod] fn=is_expansion_joint_component (pp_joint): fn is_expansion_joint_component(component: &PreviewComponent) -> bool {
+   14322 [test] fn=mechanical_fixture_for_test (codes): // the ordinary route refuses (JOINT_ELEMENT_EQUILIBRIUM_UNQUALIFIED).
+   15224 [test] fn=request (codes,texts): // user-stiffness joint (JOINT_ELEMENT_EQUILIBRIUM_UNQUALIFIED): its
+   22041 [test] fn=curved_bend_macro_element_review_row_states_assembled_consumption (row_key): result.summary.component_user_stiffness_macro_element_count,
+== core/product_physics/src/source_recovery.rs
+   1630 [test] fn=new (element,plumbing): let mut stiffness = super::super::assemble_global_stiffness_with_user_elements(
+   1633 [test] fn=new (element): &built.user_stiffness_elements,
+== core/product_physics/src/validation.rs
+   601 [prod] fn=validate_units (pp_joint): if is_expansion_joint_component(component) {
+   734 [prod] fn=validate_units (pp_joint): if is_expansion_joint_component(component) {
+   736 [prod] fn=validate_units (legacy_input): if let Some(stiffness) = &modifiers.axial_stiffness_user_value {
+   746 [prod] fn=validate_units (legacy_input): "modifiers.axial_stiffness_user_value".to_string(),
+   751 [prod] fn=validate_units (legacy_input): if let Some(stiffness) = &modifiers.lateral_stiffness_user_value {
+   761 [prod] fn=validate_units (legacy_input): "modifiers.lateral_stiffness_user_value".to_string(),
+   766 [prod] fn=validate_units (legacy_input): if let Some(stiffness) = &modifiers.angular_stiffness_user_value {
+   776 [prod] fn=validate_units (legacy_input): "modifiers.angular_stiffness_user_value".to_string(),
+   781 [prod] fn=validate_units (legacy_input): if let Some(stiffness) = &modifiers.torsional_stiffness_user_value {
+   791 [prod] fn=validate_units (legacy_input): "modifiers.torsional_stiffness_user_value".to_string(),
+   1113 [prod] fn=validate_components (pp_joint): && !is_expansion_joint_component(component)
+   1556 [prod] fn=is_expansion_joint_component (pp_joint): fn is_expansion_joint_component(component: &crate::PreviewComponent) -> bool {
+   1776 [prod] fn=expansion_joint_geometry_missing (legacy_input): .expansion_joint_pipe_ref
+   1812 [prod] fn=expansion_joint_mapping_invalid (legacy_input): .expansion_joint_pipe_ref
+   1841 [prod] fn=expansion_joint_modifier_missing (legacy_input): modifiers.axial_stiffness_user_value.is_none()
+   1842 [prod] fn=expansion_joint_modifier_missing (legacy_input): || modifiers.lateral_stiffness_user_value.is_none()
+   1843 [prod] fn=expansion_joint_modifier_missing (legacy_input): || modifiers.angular_stiffness_user_value.is_none()
+   1844 [prod] fn=expansion_joint_modifier_missing (legacy_input): || modifiers.torsional_stiffness_user_value.is_none()
+   1857 [prod] fn=expansion_joint_modifier_invalid (legacy_input): modifiers.axial_stiffness_user_value.as_ref(),
+   1858 [prod] fn=expansion_joint_modifier_invalid (legacy_input): modifiers.lateral_stiffness_user_value.as_ref(),
+   1859 [prod] fn=expansion_joint_modifier_invalid (legacy_input): modifiers.angular_stiffness_user_value.as_ref(),
+   1860 [prod] fn=expansion_joint_modifier_invalid (legacy_input): modifiers.torsional_stiffness_user_value.as_ref(),
+== core/product_physics/tests/f1b_w2_runtime.rs
+   702 [test] fn=None (texts): /// (The user-stiffness element and non-nodal checks are unreachable in the
+== core/runner/headless/src/lib.rs
+   1139 [test] fn=None (texts): // T0R A1: the invented demo keeps a realized user-stiffness joint, which the
+   1140 [test] fn=None (codes): // ordinary route now refuses (JOINT_ELEMENT_EQUILIBRIUM_UNQUALIFIED). These
+== core/runner/headless/src/result_envelope_binding.rs
+   476 [test] fn=qualified_actual_solved_documents_match_explicit_library_and_bind_model_identity (texts): // T0R A1: a realized user-stiffness joint is refused before solving.
+== core/runner/headless/tests/preview_physics_admission.rs
+   249 [test] fn=None (texts): /// T0R A1: the unchanged invented demo keeps its realized user-stiffness joint
+== core/solver/frame_kernel/src/structural/formation_check.rs
+   12 [prod] fn=None (texts): //!   transfer from the actual chord), and user-stiffness elements with zero
+   36 [prod] fn=None (element): use crate::{element_dof_map, FrameElement, UserStiffnessElement, DOF_PER_NODE, ELEMENT_DOF};
+== core/solver/frame_kernel/src/structural/sparse.rs
+   40 [prod] fn=None (element): FrameKernelError, Matrix12, UserStiffnessElement, DOF_PER_NODE, ELEMENT_DOF,
+   576 [prod] fn=None (plumbing): /// stiffness of `frames`, `users`, `blocks` and ground `springs` (global DOF,
+   579 [prod] fn=None (element,plumbing): /// It is the sparse sibling of `assemble_global_stiffness_with_user_elements`
+   585 [prod] fn=None (plumbing): /// - values accumulate in the dense order (frames, users, blocks, springs);
+   586 [prod] fn=None (plumbing): /// - after the frames and users, the first non-finite entry in row-major order
+== core/solver/frame_kernel/src/structural/sparse/tests.rs
+   11 [prod] fn=None (element,plumbing): assemble_global_stiffness_with_user_elements, reduce_assembled_system,
+   32 [prod] fn=None (element,plumbing): users: Vec<UserStiffnessElement>,
+   69 [prod] fn=dense_symmetry (plumbing): for e in &self.users {
+== core/solver/frame_kernel/tests/k2b_force_scaling.rs
+   27 [test] fn=None (element): FrameKernelError, FrameNode, FrameSection, Matrix12, UserStiffnessElement,
+   560 [test] fn=assembly_inputs (element,plumbing): let users = vec![UserStiffnessElement::new(
+   579 [test] fn=assembly_inputs (plumbing): (frames, users, blocks, vec![(5, 3.0e5), (13, 7.0e4)])
+== core/solver/frame_kernel/tests/k5_constrained_bodies.rs
+   12 [test] fn=None (w4): assess_constrained_bodies, assess_rigid_body, objective_sub_bodies, user_element_tie,
+   14 [test] fn=None (w4): TieRefusal, CONSTRAINED_RANK_UNRESOLVED, CONSTRAINED_WITNESS_PARAMETERS_UNREPRESENTABLE,
+   17 [test] fn=None (element): use open_pipe_stress_frame_kernel::{FrameNode, UserStiffnessElement};
+   911 [test] fn=k5_b10_libm_free_source_scan (w4): "user_element_tie",
+== core/solver/nonlinear_integration/src/lib.rs
+   21 [prod] fn=None (element,plumbing): assemble_global_stiffness_with_user_elements, node_dof_index,
+   23 [prod] fn=None (element): FrameDof, FrameElement, FrameKernelError, Matrix12, UserStiffnessElement, DOF_PER_NODE,
+   168 [prod] fn=None (texts): /// and user-stiffness elements. No straight-chord fallback is derived here.
+   1224 [prod] fn=None (texts): /// the frame and user-stiffness assembly for every linearized iteration.
+   4993 [test] fn=strict_gap_budget_and_duplicate_dofs_remain_explicit_without_projection (element): &input.user_stiffness_elements,
+== core/solver/nonlinear_integration/src/s11k_tests.rs
+   1583 [test] fn=function_body (plumbing): "ForceScalingCase",
+   1722 [test] fn=function_body (plumbing): ("lib.rs", "fn force_scaling_attempt", "ForceScalingCase", 1),
+   1726 [test] fn=function_body (plumbing): "ForceScalingCase",
+== core/solver/nonlinear_integration/src/structural_adapter.rs
+   18 [prod] fn=None (element): FrameElement, FrameKernelError, Matrix12, UserStiffnessElement,
+   33 [prod] fn=None (plumbing): formation: FormationPrimitives,
+   406 [prod] fn=None (plumbing): /// source holds the primitives at 2^b (the frames, users and springs this
+   484 [prod] fn=None (plumbing): formation: FormationPrimitives,
+   1077 [prod] fn=None (plumbing): formation: FormationPrimitives,
+   1085 [prod] fn=None (element,plumbing): users: &[UserStiffnessElement],
+   1096 [prod] fn=new (plumbing): formation: FormationPrimitives {
+   1099 [prod] fn=new (plumbing): users: users.to_vec(),
+   1967 [prod] fn=None (plumbing): case: &ForceScalingCase<'_>,
+== core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs
+   23 [test] fn=None (element,plumbing): assemble_global_stiffness_with_user_elements, FrameDof, FrameNode, FrameSection,
+   40 [test] fn=None (element,plumbing): users: Vec<UserStiffnessElement>,
+   487 [test] fn=simple_case (plumbing): users: Vec::new(),
+   1028 [test] fn=None (plumbing): /// The product's dense assembly in a chosen order: frames and users
+   1196 [test] fn=rv8_case (plumbing): users: Vec::new(),
+== core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs
+   269 [test] fn=case (plumbing): ) -> ForceScalingCase<'a> {
+   270 [test] fn=case (plumbing): ForceScalingCase {
+   273 [test] fn=case (plumbing): users: &[],
+== core/solver/nonlinear_integration/src/structural_adapter/k5_tests.rs
+   39 [test] fn=None (element,plumbing): users: Vec<UserStiffnessElement>,
+   62 [test] fn=empty (plumbing): users: Vec::new(),
+   116 [test] fn=sparse_at (plumbing): &self.users,
+   130 [test] fn=dense_evidence_at (plumbing): &self.users,
+   142 [test] fn=sparse_evidence_at (plumbing): &self.users,
+   575 [test] fn=k5_nonlinear_loop_keeps_todays_geometry (element): user_stiffness_elements: vec![],
+== core/solver/nonlinear_integration/src/structural_adapter/kd5_tests.rs
+   54 [test] fn=None (element,plumbing): users: Vec<UserStiffnessElement>,
+   74 [test] fn=from_model (plumbing): users: Vec::new(),
+   148 [test] fn=assembly (plumbing): &self.users,
+== core/solver/sparse_direct/src/structural/k1_tests.rs
+   17 [test] fn=None (element,plumbing): assemble_global_stiffness_with_user_elements, element_dof_map, FrameElement, FrameNode,
+   18 [test] fn=None (element): FrameSection, Matrix12, UserStiffnessElement,
+== tests/product_preview/test_product_preview_service.py
+   69 [prod] fn=None (row_key): assert result["summary"]["component_user_stiffness_macro_element_count"] == 0
+   103 [prod] fn=None (codes): assert "EXPANSION_JOINT_PRESSURE_THRUST_APPLIED" not in {item["code"] for item in result["diagnostics"]}
+== tests/test_component_section_schema.py
+   240 [prod] fn=None (codes): "EXPANSION_JOINT_GEOMETRY_INCOMPLETE",
+   241 [prod] fn=None (codes): "EXPANSION_JOINT_STIFFNESS_DATA_MISSING",
+   242 [prod] fn=None (codes): "EXPANSION_JOINT_EFFECTIVE_AREA_MISSING",
+   243 [prod] fn=None (codes): "EXPANSION_JOINT_MOVEMENT_LIMIT_MISSING",
+   244 [prod] fn=None (codes): "EXPANSION_JOINT_HARDWARE_DATA_MISSING",
+   245 [prod] fn=None (codes): "EXPANSION_JOINT_MANUFACTURER_VALUE_NOT_PUBLIC",
+   372 [prod] fn=None (codes): == "EXPANSION_JOINT_STIFFNESS_DATA_MISSING"
+   376 [prod] fn=None (codes): == "EXPANSION_JOINT_STIFFNESS_DATA_MISSING"
+== tests/test_qualification_physics_structure.py
+   79 [prod] fn=None (row_key): 'component_stress_modifier_count': 0, 'component_user_stiffness_macro_element_count': 0,
+== tools/release/run_release_gate_records.py
+   398 [prod] fn=None (plumbing): "provenance are visible to users."
+== tools/validation/qualification_physics_structure.py
+   439 [prod] fn=None (row_key): 'component_stress_modifier_count': 0, 'component_user_stiffness_macro_element_count': 0,
+== validation/benchmarks/nonlinear/src/lib.rs
+   1794 [prod] fn=assembled_axial_input (element): user_stiffness_elements: Vec::new(),
+   1834 [prod] fn=assembled_xy_tip_input (element): user_stiffness_elements: Vec::new(),
+   1875 [prod] fn=assembled_two_span_xy_input (element): user_stiffness_elements: Vec::new(),
+   1919 [prod] fn=assembled_xyz_tip_input (element): user_stiffness_elements: Vec::new(),
+   1959 [prod] fn=assembled_xyz_rz_tip_input (element): user_stiffness_elements: Vec::new(),
+   1996 [prod] fn=assembled_ux_rz_tip_input (element): user_stiffness_elements: Vec::new(),
+   2034 [prod] fn=assembled_uy_rz_tip_input (element): user_stiffness_elements: Vec::new(),
+
+# non-code files with hits: 120
+   README.md: 1
+   apps/desktop/SMOKE.md: 6
+   core/product_physics/tests/fixtures/preview_physics_invented_model.json: 1
+   core/reporting/result_export/tests/fixtures/load_reference_fallback_uz-dense_scrutiny.raw.json: 1
+   core/reporting/result_export/tests/fixtures/load_reference_fallback_uz-sparse_interactive.raw.json: 1
+   core/reporting/result_export/tests/fixtures/source_blocks_statement_control.json: 1
+   core/solver/curved_bend/README.md: 1
+   core/solver/nonlinear_integration/README.md: 1
+   docs/DIRECTIVE.md: 1
+   docs/INTENT.md: 1
+   docs/IP_AND_DATA_BOUNDARY.md: 1
+   docs/PRD.md: 4
+   docs/README.md: 1
+   docs/RELEASE_QUALITY_GATES.md: 1
+   docs/SPEC.md: 1
+   docs/_Registers/ScopeLedger.csv: 3
+   docs/_ScopeChange/OpenPipeStress_PRD_v0.2_Scope_Change_Brief.md: 2
+   docs/_history/PRD_v0.1.md: 3
+   docs/theory/centerline_analysis.md: 2
+   docs/user_guide/index.md: 1
+   fixtures/component/invented_component_library_valid.json: 6
+   fixtures/component/invented_section_component_library_valid.json: 6
+   fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json: 5
+   fixtures/product_preview/DEMO_FIXTURES.md: 1
+   fixtures/product_preview/invented_demo_model.json: 1
+   fixtures/product_preview/invented_demo_result_legacy_0_1.json: 1
+   fixtures/product_preview/invented_demo_result_preview_physics_1_dense.json: 1
+   fixtures/product_preview/invented_demo_result_preview_physics_1_sparse.json: 1
+   fixtures/product_preview/invented_mechanics_result_preview_physics_1_dense.json: 2
+   fixtures/product_preview/invented_mechanics_result_preview_physics_1_sparse.json: 2
+   fixtures/product_preview/invented_preview_model.json: 7
+   fixtures/product_preview/load_reference/connected-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json: 1
+   fixtures/product_preview/load_reference/pressure-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/load_reference/pressure-sparse_interactive.raw.json: 1
+   fixtures/product_preview/load_reference_source/eigen_motion-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/load_reference_source/eigen_motion-sparse_interactive.raw.json: 1
+   fixtures/product_preview/load_reference_source/fields-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/load_reference_source/fields-sparse_interactive.raw.json: 1
+   fixtures/product_preview/load_reference_source/mixed-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/load_reference_source/mixed-sparse_interactive.raw.json: 1
+   fixtures/product_preview/load_reference_source/n05-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/load_reference_source/n05-sparse_interactive.raw.json: 1
+   fixtures/product_preview/load_reference_source/n06-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/load_reference_source/n06-sparse_interactive.raw.json: 1
+   fixtures/product_preview/physics_source/fields-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/physics_source/fields-sparse_interactive.raw.json: 1
+   fixtures/product_preview/physics_source/mixed-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/physics_source/mixed-sparse_interactive.raw.json: 1
+   fixtures/product_preview/physics_source/mixed_units-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/physics_source/mixed_units-sparse_interactive.raw.json: 1
+   fixtures/product_preview/physics_source/n05-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json: 1
+   fixtures/product_preview/physics_source/n05_unicode-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/physics_source/n05_unicode-sparse_interactive.raw.json: 1
+   fixtures/product_preview/physics_source/n05_units-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/physics_source/n05_units-sparse_interactive.raw.json: 1
+   fixtures/product_preview/physics_source/n06-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/physics_source/n06-sparse_interactive.raw.json: 1
+   fixtures/product_preview/source_blocks/multicase-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/source_blocks/multicase-sparse_interactive.raw.json: 1
+   fixtures/product_preview/source_blocks/n05-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json: 1
+   fixtures/product_preview/source_blocks/n06-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/source_blocks/n06-sparse_interactive.raw.json: 1
+   fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.raw.json: 1
+   fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.raw.json: 1
+   fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.raw.json: 1
+   fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.raw.json: 1
+   fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.raw.json: 1
+   fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.raw.json: 1
+   fixtures/results/invented/result_export_v0_2.json: 36
+   fixtures/results/physics_connected_mechanics_dense.json: 1
+   fixtures/results/physics_connected_mechanics_sparse.json: 1
+   fixtures/results/physics_connected_ui_mechanics_dense.json: 1
+   fixtures/results/physics_connected_ui_mechanics_sparse.json: 1
+   fixtures/results/physics_thermal_ui_mechanics_dense.json: 1
+   fixtures/results/physics_thermal_ui_mechanics_sparse.json: 1
+   fixtures/results/precision_connected_ui_mechanics_dense.json: 1
+   fixtures/results/precision_connected_ui_mechanics_sparse.json: 1
+   fixtures/results/preview_physics_connected_dense.json: 1
+   fixtures/results/preview_physics_connected_sparse.json: 1
+   fixtures/results/preview_physics_invented_dense.json: 1
+   fixtures/results/preview_physics_invented_sparse.json: 1
+   fixtures/results/preview_physics_unicode_ids_sparse.json: 1
+   fixtures/results/retained_precision_cases.json: 26
+   fixtures/results/retained_precision_l0_successor_dense_scrutiny.json: 1
+   fixtures/results/retained_precision_l0_successor_sparse_interactive.json: 1
+   fixtures/results/retained_precision_milestone_successor_dense_scrutiny.json: 1
+   fixtures/results/retained_precision_milestone_successor_sparse_interactive.json: 1
+   fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json: 1
+   fixtures/results/retained_precision_w_c2_successor_sparse_interactive.json: 1
+   fixtures/results/semantic_contract_v0_2.json: 4
+   fixtures/results/semantic_contract_v0_3_load_reference_1.json: 4
+   fixtures/results/semantic_contract_v0_3_load_reference_source_1.json: 4
+   fixtures/results/semantic_contract_v0_3_physics_1.json: 4
+   fixtures/results/semantic_contract_v0_3_physics_source_1.json: 4
+   fixtures/results/semantic_contract_v0_3_precision_1.json: 4
+   fixtures/results/semantic_contract_v0_3_preview_physics_1.json: 4
+   fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json: 4
+   fixtures/results/semantic_contract_v0_3_source_blocks_1.json: 4
+   loop/.archive/2026-09-19-clarifications/loop_LOOP_INIT.pre-clarification.md: 1
+   loop/.archive/2026-09-19-workgraph-transition/AGENTS.pre-transition.md: 1
+   schemas/component.schema.yaml: 7
+   validation/evidence/gates/GATE_GUI_20260711T032542Z_e2ea37194c8a.json: 1
+   validation/evidence/gates/GATE_MIXED_20260711T032542Z_e2ea37194c8a.json: 1
+   validation/evidence/reproduction/REPRO_DEL0904_20260718T215424Z_f14fa77518a/outputs/tp_runner_015_solve.json: 18
+   validation/evidence/reproduction/REPRO_DEL0904_20260718T215424Z_f14fa77518a/stdout/solve.txt: 18
+   validation/evidence/reproduction/REPRO_DEL0904_20260719T033249Z_89a93d7ca21d/outputs/tp_runner_015_solve.json: 18
+   validation/evidence/reproduction/REPRO_DEL0904_20260719T033249Z_89a93d7ca21d/stdout/solve.txt: 18
+   validation/evidence/reproduction/REPRO_DEL0904_20260719T202023Z_23eeaabc9040/outputs/tp_runner_015_solve.json: 18
+   validation/evidence/reproduction/REPRO_DEL0904_20260719T202023Z_23eeaabc9040/stdout/solve.txt: 18
+   validation/evidence/reproduction/REPRO_DEL0904_20260720T074714Z_a5235340aae3/outputs/tp_runner_015_solve.json: 18
+   validation/evidence/reproduction/REPRO_DEL0904_20260720T074714Z_a5235340aae3/stdout/cmd03_solve_case1.txt: 18
+   validation/qualification/fixtures/ordinary_physics_1_semantics.json: 4
+   validation/witness/generated/tp_runner_014_headless_entrypoint_preview_run.json: 18
+   validation/witness/generated/tp_runner_015_final_cli_solve.json: 18
+   validation/witness/inputs/tp_runner_015_final_cli_solve_input.json: 7
