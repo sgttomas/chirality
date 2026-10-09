@@ -1,0 +1,66 @@
+cases: 67
+max global equilibrium residual: force 1.0000000000000000000e-54 N, moment 3.9486190000000000000e-48 N*m
+closed-form growth deviation U2-L-FREE-P-K1 6.8030000000000000000e-60
+closed-form growth deviation U2-L-FREE-PT-K1 6.8300000000000000000e-60
+closed-form growth deviation MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K1 1.4981630948067431237e-61
+closed-form growth deviation U2-L-FREE-P-K2 7.4870000000000000000e-60
+closed-form growth deviation U2-L-FREE-PT-K2 7.4900000000000000000e-60
+closed-form growth deviation MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 2.9963261896134862475e-61
+closed-form growth deviation U2-L-KINK-FREE-P-K2 1.9700000000000000000e-60
+closed-form growth deviation U2-L-FREE-P-K2-SKEW 9.8993000000000000000e-60
+closed-form growth deviation U2-L-FREE-P-K2-X5E6 1.0366664500000000000e-55
+closed-form growth deviation U2-L-FREE-P-K2-X7P3E6 1.0747439930000000000e-54
+closed-form growth deviation U2-L-FREE-P-K2-SKEW-X5E6 6.6654151643000000000e-54
+closed-form growth deviation U2-L-FREE-P-K2-SKEW-X7P3E6 9.5676524328000000000e-54
+closed-form growth deviation U2-L-FREE-P-K2-MM-MPA 7.4870000000000000000e-60
+closed-form growth deviation MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW 6.5734479743185028804e-62
+closed-form growth deviation MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-X5E6 2.1299166121743882763e-55
+closed-form growth deviation MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-X7P3E6 2.1299162070903753687e-55
+closed-form growth deviation MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW-X5E6 5.9983843035018044932e-55
+closed-form growth deviation MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW-X7P3E6 1.6115407091618360120e-55
+closed-form growth deviation MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-MM-MPA 2.9963261896134862475e-61
+polygon U2-L-ANCH-P-K1 [(8, '3.561e-4', None), (16, '8.904e-5', '3.9993'), (32, '2.226e-5', '4.0000'), (64, '5.566e-6', '3.9993'), (128, '1.391e-6', '4.0014')] richardson 8.839e-12
+polygon U2-L-ANCH-ALL-K1 [(8, '2.369e-4', None), (16, '5.926e-5', '3.9976'), (32, '1.482e-5', '3.9987'), (64, '3.704e-6', '4.0011'), (128, '9.260e-7', '4.0000')] richardson 7.923e-12
+polygon U2-L-FREE-ALL-K1 [(8, '2.712e-5', None), (16, '6.785e-6', '3.9971'), (32, '1.697e-6', '3.9982'), (64, '4.242e-7', '4.0005'), (128, '1.060e-7', '4.0019')] richardson 1.916e-12
+polygon U2-U-ANCH-ALL-K1 [(8, '2.454e-4', None), (16, '6.138e-5', '3.9980'), (32, '1.535e-5', '3.9987'), (64, '3.837e-6', '4.0005'), (128, '9.593e-7', '3.9998')] richardson 9.848e-12
+polygon MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K1 [(8, '6.245e-58', None), (16, '3.558e-57', '0.1755'), (32, '6.074e-57', '0.5858'), (64, '1.909e-56', '0.3182'), (128, '4.113e-57', '4.6414')] richardson 1.185e-56
+polygon U2-L-ANCH-P-K2 [(8, '5.754e-4', None), (16, '1.439e-4', '3.9986'), (32, '3.597e-5', '4.0006'), (64, '8.992e-6', '4.0002'), (128, '2.248e-6', '4.0000')] richardson 5.998e-12
+polygon U2-U-ANCH-ALL-K2 [(8, '2.831e-4', None), (16, '7.080e-5', '3.9986'), (32, '1.770e-5', '4.0000'), (64, '4.425e-6', '4.0000'), (128, '1.106e-6', '4.0009')] richardson 5.030e-12
+polygon U2-L-ANCH-ALL-K2-SKEW-X7P3E6 [(8, '2.258e-4', None), (16, '5.647e-5', '3.9986'), (32, '1.412e-5', '3.9993'), (64, '3.530e-6', '4.0000'), (128, '8.825e-7', '4.0000')] richardson 4.029e-12
+control U2-L-FREE-P-K2 bend_term_omitted max distance (tolerances) 4.047e+12
+control U2-L-FREE-P-K2 c_b_added_not_subtracted max distance (tolerances) 8.093e+12
+control U2-L-FREE-P-K2 poisson_term_missing_on_arc max distance (tolerances) 8.824e+7
+control U2-L-FREE-P-K2 caps_subtracted_in_recovery max distance (tolerances) 1.000e+9
+control U2-L-FREE-P-K2 wall_load_double_count_elastic_end_force max distance (tolerances) 1.000e+9
+control U2-L-FREE-P-K2 wall_load_double_count_wall_end_force max distance (tolerances) 1.000e+9
+control U2-L-ANCH-P-K2 bend_term_omitted max distance (tolerances) 7.153e+11
+control U2-L-ANCH-P-K2 c_b_added_not_subtracted max distance (tolerances) 1.431e+12
+control U2-L-ANCH-P-K2 poisson_term_missing_on_arc max distance (tolerances) 1.054e+8
+control U2-L-ANCH-P-K2 caps_subtracted_in_recovery max distance (tolerances) 1.001e+9
+control U2-L-ANCH-P-K2 wall_load_double_count_elastic_end_force max distance (tolerances) 7.168e+11
+control U2-L-ANCH-P-K2 wall_load_double_count_wall_end_force max distance (tolerances) 1.001e+9
+control U2-L-ANCH-ALL-K2 bend_term_omitted max distance (tolerances) 5.708e+10
+control U2-L-ANCH-ALL-K2 c_b_added_not_subtracted max distance (tolerances) 1.142e+11
+control U2-L-ANCH-ALL-K2 poisson_term_missing_on_arc max distance (tolerances) 8.369e+6
+control U2-L-ANCH-ALL-K2 caps_subtracted_in_recovery max distance (tolerances) 1.010e+9
+control U2-L-ANCH-ALL-K2 wall_load_double_count_elastic_end_force max distance (tolerances) 5.719e+10
+control U2-L-ANCH-ALL-K2 wall_load_double_count_wall_end_force max distance (tolerances) 1.010e+9
+control U2-U-ANCH-P-K2 bend_term_omitted max distance (tolerances) 1.941e+12
+control U2-U-ANCH-P-K2 c_b_added_not_subtracted max distance (tolerances) 3.883e+12
+control U2-U-ANCH-P-K2 poisson_term_missing_on_arc max distance (tolerances) 1.906e+8
+control U2-U-ANCH-P-K2 caps_subtracted_in_recovery max distance (tolerances) 1.000e+9
+control U2-U-ANCH-P-K2 wall_load_double_count_elastic_end_force max distance (tolerances) 1.944e+12
+control U2-U-ANCH-P-K2 wall_load_double_count_wall_end_force max distance (tolerances) 1.000e+9
+control MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 bend_term_omitted max distance (tolerances) 1.004e+12
+control MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 c_b_added_not_subtracted max distance (tolerances) 2.007e+12
+control MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 poisson_term_missing_on_arc max distance (tolerances) 1.500e+9
+control MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 caps_subtracted_in_recovery max distance (tolerances) 1.000e+9
+control MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 wall_load_double_count_elastic_end_force max distance (tolerances) 1.000e+9
+control MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 wall_load_double_count_wall_end_force max distance (tolerances) 1.000e+9
+control U2-L-KINK-FREE-P-K2 interior_remainder_omitted max distance (tolerances) 6.638e+8
+control U2-L-KINK-ANCH-P-K2 interior_remainder_omitted max distance (tolerances) 6.859e+8
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K1 support:A {'Fx': '0', 'Fy': '0', 'Fz': '0', 'Mx': '0', 'My': '0', 'Mz': '0'}
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K1 node:B {'ux': '-4.3234461382433996858e-5', 'uy': '4.3234461382433996858e-5', 'uz': '0', 'rx': '0', 'ry': '0', 'rz': '0'}
+U2-L-ANCH-P-K2 support:A {'Fx': '8.1980927267267577685e+1', 'Fy': '1.3308033915692378938e+2', 'Fz': '0', 'Mx': '0', 'My': '0', 'Mz': '2.4602807106207832682e+2'}
+U2-L-ANCH-ALL-K2 support:A {'Fx': '8.9866261909941138141e+2', 'Fy': '1.4588067020455544658e+3', 'Fz': '1.6678750979240192326e+3', 'Mx': '-3.0741779706458139730e+2', 'My': '-2.7073744113368164571e+3', 'Mz': '2.6969227853671792602e+3'}
+U2-U-ANCH-ALL-K2 support:A {'Fx': '5.3801397771256100492e+2', 'Fy': '2.9903972232665451732e+1', 'Fz': '3.2262713250337946065e+3', 'Mx': '2.8517264282335253431e+3', 'My': '-7.6609087434612279591e+3', 'Mz': '-4.1587327590614786593e+2'}

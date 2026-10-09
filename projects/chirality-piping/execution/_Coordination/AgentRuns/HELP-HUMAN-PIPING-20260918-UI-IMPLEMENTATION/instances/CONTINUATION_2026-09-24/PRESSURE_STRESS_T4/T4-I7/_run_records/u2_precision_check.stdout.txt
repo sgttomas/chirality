@@ -1,0 +1,9 @@
+U2-L-FREE-SEPD-K1                                    values  332  max rel diff (90 digits, GL50 vs written) 0.00e+00 at 
+U2-L-ANCH-ALL-K2                                     values  338  max rel diff (90 digits, GL50 vs written) 0.00e+00 at 
+U2-U-ANCH-ALL-K1                                     values  971  max rel diff (90 digits, GL50 vs written) 0.00e+00 at 
+U2-U-ANCH-PW-K2                                      values  968  max rel diff (90 digits, GL50 vs written) 0.00e+00 at 
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW-X7P3E6   values  141  max rel diff (90 digits, GL50 vs written) 0.00e+00 at 
+U2-L-KINK-ANCH-P-K2                                  values  335  max rel diff (90 digits, GL50 vs written) 0.00e+00 at 
+U2-L-ANCH-ALL-K2-REV                                 values  338  max rel diff (90 digits, GL50 vs written) 0.00e+00 at 
+U2-U-ANCH-ALL-K2-SKEW-X5E6                           values  971  max rel diff (90 digits, GL50 vs written) 0.00e+00 at 
+overall max 0.00e+00 (the written 20-digit rounding is 5e-20 relative)
