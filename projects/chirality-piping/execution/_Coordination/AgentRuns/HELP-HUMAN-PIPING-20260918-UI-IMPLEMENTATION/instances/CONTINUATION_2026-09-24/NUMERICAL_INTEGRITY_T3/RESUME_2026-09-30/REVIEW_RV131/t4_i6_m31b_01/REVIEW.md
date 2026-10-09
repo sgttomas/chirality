@@ -43,12 +43,12 @@ The frame is CB's convention (x radial outward at i, y tangent toward j). The ce
 **Emulated at p = 128 (F, `rv_m31b0_attack`, `rv_m31b0_yscale`).** 353 admissible inputs: random, near π to ε = 1e-9, the 1e-9 floor, X up to 7.3e6 with ordinary coordinates, and y with relative y_⊥ down to 1e-9. Two spellings of the formula: 1 − 2s², and cos/sin of φ_p.
 - The maximum |δc|/L is 1.3e-30 at the floor, 1.0e-30 random, 3e-38 near π and 4.4e-30 for nearly parallel y. **EF ≤ 6e-21 of the criterion.**
 - With |y|/|y_⊥| = 1e15 to 1e30, |δc|/L ≤ 2e-21 and EF ≤ 3e-12.
-- **Beyond that** (|y|/|y_⊥| ≳ 1e28 with only n̂ inexact), the two forms can differ at the criterion. But there the binary64 product cannot resolve the plane (u₆₄·|y|/|y_⊥| ≫ 1e-9), so every K-D5 variant demotes and no kill is possible.
+- **Beyond that (I)** (|y|/|y_⊥| ≳ 1e28 with only n̂ inexact; binary64 rounding of y usually caps the effective ratio near 1e16), the two forms could differ at the criterion. But there the binary64 product cannot resolve the plane (u₆₄·|y|/|y_⊥| ≫ 1e-9), so every K-D5 variant demotes and no kill is possible.
 
 **In K-D5 (F, `rv_o4_kd5_emulation`, `rv_k2_emulation`).** M31b0's trigger equals the correct check's to 4+ digits on K1 (both planes; φ from 1e-9 to 5°) and in K2 (12.743 / 12.450).
 
 **Verdict: HOLDS** to RR:1217's standard: derived step by step and independently checked. Conditions and corrections for the narrowing:
-- **N-2:** it holds only once K-D5's `CurvedFormation` carries (R, y) and forms φ and the chord at p from (d, R, y). If any binary64 centre, R or φ survives into K-D5's inputs, M31b0 is killable again, as it was before T4-U1.
+- **N-2:** it holds only once K-D5's `CurvedFormation` carries (R, y) and forms φ and the chord at p from (d, R, y). If any binary64 centre, derived radius or φ survives into K-D5's inputs, M31b0 is killable again, as it was before T4-U1.
 - **N-1:** B5.3's numerical paragraph has three problems:
   - its worst-case wording ("formed as cos φ − 1 by series") is inverted;
   - its bound 2^-127/φ omits the constant term (exceeded 2.5× near φ ~ 1, harmless) and the y-projection term;
@@ -218,7 +218,7 @@ Measured against the arc each centre describes (F, `rv_o6_bow`):
 
 **NOTE**
 - **N-1. B5.3's numerical paragraph needs correcting.** Its worst-case wording is inverted. Its 2^-127/φ bound lacks the constant and y-projection terms. Its evidence is decimal, not p = 128. The conclusion stands.
-- **N-2. The narrowing is conditional.** It requires K-D5 inputs (R, y) with no binary64 centre, R or φ.
+- **N-2. The narrowing is conditional.** It requires K-D5 inputs (R, y) with no binary64 centre, derived radius or φ.
 - **N-3. B5.1's bound is not a bound.** B5.1's "the ratio is at most 1e9·|δc|/L" is exceeded by 1.27× (6.37 at δc/L = 5e-9). Read "about 1.3 × 1e9·|δc|/L".
 - **N-4. A notational slip.** "R(cos φ − 1, R sin φ, 0)" (RR, the brief, the B5.3 claim) means (R(cos φ − 1), R sin φ, 0), as B1's table has it.
 - **N-5. CSKEW_30_N122's y is in another plane.** Its committed y lies in another plane, not on the opposite side. RV5's placeholder is right only by coincidence for some models.
