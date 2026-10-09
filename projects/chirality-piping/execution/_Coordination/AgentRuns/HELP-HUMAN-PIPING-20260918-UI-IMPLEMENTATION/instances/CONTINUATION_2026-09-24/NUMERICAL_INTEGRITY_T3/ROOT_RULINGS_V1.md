@@ -16589,3 +16589,15 @@ The two historical `rejected_stress_range` captures and `ORACLE.json` stay as ca
 - **RV127's addendum 03 passes the repair,** with one SHOULD-FIX: the change record's 133-path row is to be marked superseded, citing the rerun, in a package-only commit before the merge.
 
 **The lesson for later path-set checks:** compare without rename detection.
+
+## U5 (the governance documents): INTENT.md and PRD.md are left unchanged; the pressure-primitive text is left unchanged (ROOT, 2026-10-09 UTC)
+
+**Q1: INTENT.md and PRD.md are left unchanged.**
+- INTENT.md :170–185 lists what the solver should calculate, including "pressure thrust where modeled" and "pressure membrane stresses". PRD.md :658–665 lists an expansion joint's data, including "pressure thrust".
+- Both are statements of intent and requirement, not claims of implemented capability. They stay true and wanted, because T4 is delivering pressure through bends and joints.
+- The authorization named five documents on RV127's A1-N-2, which assumed they all made capability claims. That premise was too broad for these two.
+- The purpose of the authorization, correcting false statements of current capability, is met by the three corrected documents: TYPES.md, SPEC.md and VALIDATION_STRATEGY.md. The PR body says why INTENT.md and PRD.md are unchanged.
+
+**Q2: the pressure-primitive text is left unchanged.** SPEC.md :538 and :540–545 and TYPES.md :169 describe pressure primitive loads. They remain true of the schema and the crate, and they claim no stress or thrust capability.
+
+**Q3: U5 does not wait for the records PR.** Its body says where the cited headings resolve: NUM's RR, and #1168's change record once it is on main.
