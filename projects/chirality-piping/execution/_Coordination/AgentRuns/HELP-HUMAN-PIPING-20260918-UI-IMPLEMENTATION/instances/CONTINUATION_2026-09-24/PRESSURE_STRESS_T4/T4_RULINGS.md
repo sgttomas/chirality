@@ -79,3 +79,26 @@ HELP_HUMAN (Agent 0) rules here for T4. The rulings are append-only and dated.
 - **In B7 the row kind is removed,** not renamed, per the owner's principle.
 - **This depends only on cost and freeze timing,** not on T4 landing.
 - **T4-U4's arc-frame unification on preview-physics-1** is a `LIMITATIONS` change, so it waits for B7. T4-U4's other parts do not.
+
+## Owner decisions: T4 plan 01 approved, D-1 to D-4 as recommended; T4's WORKING_ITEMS commissioned (HELP_HUMAN, 2026-10-09 UTC)
+
+The owner answered each question by selecting the recommended option:
+- **D-1, "Approve":** the order of plan §3.1, with the L line (T4-U2) as the first usable path and the corrected joint (T4-U3) in a parallel lane.
+- **D-2, "Curved bends only":**
+  - Only realized bends, carrying the user's k, carry pressure.
+  - Geometry-only (chord) bends are refused on the exact route with a "realize this bend" message. They stay on the pressure-free route.
+- **D-3, "Leave out now":** these are excluded for now and stated as limits on every bend result and in the v3 approximation text:
+  - steady-flow momentum and transient loads;
+  - bend opening under pressure (Bourdon);
+  - pressure stiffening of k and the SIF;
+  - ovalization.
+
+  T4-U9 adds them later only if the owner selects it.
+- **D-4, "Refuse both, keep annotation":**
+  - Both legacy joint populations are refused with `LEGACY_FINITE_CONNECTOR_REAUTHOR_REQUIRED`: the flexibility joints, and the app-authored joints that today solve as pipe.
+  - The explicit annotation-only choice (`not_solver_consumed`) stays, and every result discloses it.
+  - Nothing is converted automatically.
+
+**Owner-held later:** D-5 (section bases), before T4-U6; D-6 (the shear default), before T4-U8.
+
+**T4's WORKING_ITEMS is commissioned** with `BRIEFS/WORKING_ITEMS_T4.md`. HELPS_HUMANS stays T4's design partner.
