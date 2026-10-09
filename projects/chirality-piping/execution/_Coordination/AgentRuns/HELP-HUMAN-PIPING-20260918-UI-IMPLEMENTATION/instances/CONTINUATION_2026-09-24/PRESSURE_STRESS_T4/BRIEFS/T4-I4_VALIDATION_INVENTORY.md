@@ -1,0 +1,18 @@
+# T4-I4: validation inventory and the cases T4 rebuilds
+
+**Purpose.** T4 must rebuild, under the exact contract, the validation removed with the retired computation, and qualify each unit against independent references (VP-STATIC, VP-PUBLISHED, VP-SOURCES). The plan needs the inventory.
+
+**Questions.**
+1. **Where validation lives.** The VP-STATIC, VP-PUBLISHED and VP-SOURCES programmes: documents, case directories, manifests, harness lanes and CI selection; how a new case is registered; the suite counts after U3 (mechanics 24 cases and 194 values, stress 14 cases, manual 63 pages, as U3 states).
+2. **The removed cases.** From main `ec5d397359` (before U3): `MECH-CURVED-BEND-PRESSURE-THRUST-ARC`, the membrane values of `STRESS-TP-PMM-P3-MILLTOL-EFFECTIVE-WALL-STRESS`, and MECH-TP-PHYS-008/009's pressure halves. For each: the model, the reference derivation and its sources, the values and tolerances, what U3 removes or keeps, and what a rebuild under the exact contract changes (different treatment, different values, a different reference).
+3. **VP-STATIC's Q1.** What "full Q1" is, its cases and status; the missing direct transverse-shear and signed circumferential stress outputs.
+4. **Independent references available in the repository** for pressure on bends, joints and stress: SSLL106 (Code_Aster), Hovgaard, elbow flexibility and pressure-stiffening variants, Lamé, Bourdon effect, bellows thrust; what `I/CORRECTNESS_DESIGN/PRESSURE_REFERENCE_QUALIFICATION.md`, `STRESS_REFERENCE.md`, `SHEAR_REFERENCE/` and `JOINT_REFERENCE/` already qualify, and with which limits. Note any reference that does not match the formulation the product would use.
+5. **Exact-contract validation that exists today** (straight pipe), so T4's new cases follow its pattern.
+
+## Common terms (all T4 research TASKs)
+
+- **Role:** TASK (Type 2), research only. Engaged by T4's HELPS_HUMANS (design manager), who is your return path. You do not delegate.
+- **Placeholders** (expand them yourself; write only placeholders in records): `WT` = the shared T3/T4 host directory; `NUM4` = `WT/t4` (T4's checkout, branch `codex/piping-t4-pressure-stress-20261009`); `P` = `projects/chirality-piping`; `PP` = `P/core/product_physics`; `FK` = `P/core/solver/frame_kernel`; `I` = `NUM4/P/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24`; `R4` = `I/PRESSURE_STRESS_T4`. Never write a home-relative path, an absolute user path, a temporary-directory path or a machine name into a record.
+- **Basis:** main `ec5d397359` (NUM4's base) plus T3's U3 pressure retirement at `70e7f49ced` (branch `codex/piping-t3-pressure-retire-20261008`, not yet on main). Read U3 with `git -C NUM4 show 70e7f49ced:<path>` and `git -C NUM4 diff ec5d397359 70e7f49ced -- <path>`; U3 is the basis where the two differ. Do not touch `WT/t3-pret` or any other worktree; do not modify NUM4's tracked files.
+- **Host:** shared with T3. Prefer reading to building. If a probe truly needs cargo, it goes through `WT/tools/t3_cargo.sh` (`--locked --offline`) with its target dir under `WT/scratch/t4_<your id>`; other heavy jobs through `WT/tools/t3_slot.sh`. No DEC-025 or exclusive jobs; never signal another process; no installs.
+- **Output:** write `R4/<your id>/RETURN.md` (at most about six pages), citing `path:line@commit` for every claim about code, and separating fact from inference. Do not commit. If the host refuses the write, return its full content as text with its intended path. Your final message to the caller: the RETURN path and a summary of at most 25 lines with the findings most likely to change T4's plan.
