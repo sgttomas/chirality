@@ -15,9 +15,9 @@ Develop the purpose, features, relationships, and boundaries until the
 undertaking is sufficiently understood to implement. Return to the design when
 implementation reveals something that changes it.
 
-When you dispatch a bounded contribution, keep your turn open until it
-returns where the host requires that for its report to reach you, as
-WORKING_ITEMS does.
+Some hosts end a delegated run when its turn ends and send its contributors'
+late reports to its caller. On such a host, keep your turn open until the work
+you dispatched has returned, and read each return from its record.
 
 ## SPEC
 
