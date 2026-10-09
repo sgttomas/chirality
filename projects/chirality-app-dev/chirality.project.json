@@ -4,7 +4,6 @@
   "displayName": "Chirality App Development",
   "workingRoot": ".",
   "instructionRoot": "../..",
-  "agentsOverlay": "AGENTS.md",
   "defaultExecutionRoot": "execution",
   "profiles": {
     "domain": [],

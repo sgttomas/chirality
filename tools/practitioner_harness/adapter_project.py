@@ -79,11 +79,6 @@ def collect_status_files(manifest: AdapterManifest) -> list[Path]:
         if _excluded(rel, manifest.exclude_globs):
             continue
         out.append(path)
-    if manifest.historical_root():
-        expected = {row["path"] for row in manifest.governance_state["source_statuses"]}
-        actual = {path.relative_to(root).as_posix() for path in out}
-        if actual != expected:
-            raise HarnessOperationalError("Historical Root census differs from the accepted exact source set.")
     return out
 
 
@@ -113,17 +108,11 @@ def _blocked_on_tokens(text: str) -> tuple[tuple[str, ...], int | None]:
 
 
 def analyze_status_file(path: Path, manifest: AdapterManifest, repo_root: Path) -> StatusFileResult:
-    if manifest.historical_root():
-        from root_historical_status import parse_historical_status
-        doc = parse_historical_status(path, manifest.project_root, manifest.governance_state)
-        text = path.read_text(encoding="utf-8")
-        assertion, trailing = prose_bullet_v1.last_state_assertion(doc.history, [*prose_bullet_v1.STATE_VOCAB, "RETIRED"])
-    else:
-        text = path.read_text(encoding="utf-8")
-        doc = prose_bullet_v1.parse_status_document(text)
-        if doc.current_state == "RETIRED" or any("State set to RETIRED" in h.raw for h in doc.history):
-            raise HarnessOperationalError("RETIRED is reserved for explicit Root historical mode.")
-        assertion, trailing = prose_bullet_v1.last_state_assertion(doc.history, manifest.states)
+    text = path.read_text(encoding="utf-8")
+    doc = prose_bullet_v1.parse_status_document(text)
+    if doc.current_state == "RETIRED" or any("State set to RETIRED" in h.raw for h in doc.history):
+        raise HarnessOperationalError("RETIRED is not an ordinary project lifecycle state.")
+    assertion, trailing = prose_bullet_v1.last_state_assertion(doc.history, manifest.states)
     current = doc.current_state
     unparseable_doc = doc.doc_caveat_class == prose_bullet_v1.UNPARSEABLE
     mismatch = False

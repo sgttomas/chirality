@@ -4,7 +4,6 @@
   "displayName": "Project Execution Coordinator",
   "workingRoot": ".",
   "instructionRoot": "../..",
-  "agentsOverlay": "AGENTS.md",
   "defaultExecutionRoot": "execution",
   "profiles": {
     "domain": [

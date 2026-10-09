@@ -1,11 +1,8 @@
 # Workflow-Component Design Standard
 
-Status: prospective Chirality v3 amendment authorized for Root implementation
-by the owner on 2026-09-09. These candidate bytes do not themselves establish
-final acceptance, downstream qualification, release, or project-loop adoption.
-The D-GOV-14 edition remains the ratified basis until governed closeout;
-historical text remains available at
-`ee35409f5cf3a81ecb29a271527156b991df97b9`.
+> Development procedures in this document are superseded by AGENTS.md (2026-10-09). Current product contracts remain in force; see the list in AGENTS.md.
+
+Interface adoption remains project-specific; this reset does not establish final acceptance, downstream qualification or release of prospective component formats.
 
 ## Components
 

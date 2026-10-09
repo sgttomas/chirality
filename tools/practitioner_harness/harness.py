@@ -25,16 +25,9 @@ diff range: citation resolution, decision-register coverage, named
 precedent presence where packet-shaped records call for it, and
 machine-absolute paths on diff-added lines (HB-10; SPEC §0.2.4).
 
-Working roots: the pilot projects, plus the ROOT product (`--project root` /
-`chirality-root`), whose working root is the repository root itself (D-GOV-21;
-docs/SPEC.md §0.2.2) and whose adapter is `execution/_harness/adapter.yaml`
-(schema `root-harness-adapter/v1`, guarded by
-`tools/validation/validate_root_harness_adapter.py`). Root citizenship is
-OBSERVATION ONLY: `status` and `drift` report on it; `brief` and `next` refuse
-it by name with the reason (no DAG pointer surface, no derivable write fence),
-and the brief-fenced commands (`run-validations`, `scope-check`,
-`evidence-check`, `closeout-digest`) keep resolving projects through the
-project alias table alone, so their existing refusals are unchanged.
+Working roots: the registered project aliases. Root's governance adapter has
+been retired; its legacy observation schema remains readable for existing
+consumers, but no live Root status or drift adapter is maintained.
 
 Exit codes (D-GOV-02): 0 = ran, no BLOCK; 1 = >=1 BLOCK (or >=1 REVIEW under
 --strict); 2 = operational error or refusal.
@@ -105,9 +98,8 @@ OBSERVABLE_PROJECTS = FULL_CITIZENSHIP_PROJECTS + ROOT_ALIASES + RUNTIME_ALIASES
 ROOT_COMMAND_REFUSALS: dict[str, str] = {
     "brief": (
         "`brief` projects a tranche brief from the working root's DAG pointer "
-        "and a write fence under that root. The root adapter "
-        "(root-harness-adapter/v1, execution/_harness/adapter.yaml) declares "
-        "no dag_pointer, and the root working root IS the repository root, so "
+        "and a write fence under that root. Root has no active adapter or "
+        "dag_pointer, and its working root IS the repository root, so "
         "no containing fence can be derived from it. Refusing rather than "
         "emitting a brief with a guessed pointer and a repo-wide fence "
         "(K-INVENT-1)."),
@@ -115,8 +107,8 @@ ROOT_COMMAND_REFUSALS: dict[str, str] = {
         "`next` emits a ready-made `brief` command line per active "
         "deliverable, and `brief` does not support the root working root (run "
         "`brief --project root` for the reason). Refusing rather than "
-        "emitting a pick-list whose commands would not run (K-INVENT-1). Use "
-        "`status --project root` for the root's per-state counts."),
+        "emitting a pick-list whose commands would not run (K-INVENT-1). "
+        "Root governance has no lifecycle state to report."),
 }
 
 

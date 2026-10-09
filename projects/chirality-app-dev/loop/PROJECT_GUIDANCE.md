@@ -5,6 +5,10 @@ status: draft
 created: 2026-06-15
 ---
 
+> Development procedures in this document are superseded by Root `AGENTS.md`
+> and `loop/LOOP_INIT.md` (2026-10-09). Current product contracts and explicit
+> holds remain in force; omission from navigation supersedes nothing.
+
 # AGENTS - Chirality App Dev Agent Index
 
 This file maps the general Chirality agent framework onto Chirality App

@@ -79,8 +79,6 @@ def run_next(repo_root: Path, project_roots: list[Path],
 
     for project_root in project_roots:
         manifest = load_adapter(project_root)
-        if manifest.historical_root():
-            raise HarnessOperationalError("Governance Root historical sources cannot produce a production brief or next recommendation.")
         alias = cli_aliases.get(project_root.resolve())
         rel_root = str(project_root.relative_to(repo_root))
         results = [

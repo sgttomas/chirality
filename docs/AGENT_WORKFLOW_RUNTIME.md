@@ -1,10 +1,8 @@
 # Agent and Workflow Runtime Contract
 
-Status: prospective Chirality v3 interface authorized for Root implementation
-by the owner on 2026-09-09. These bytes do not establish final acceptance,
-downstream qualification, release, or project-loop adoption. App and Runtime
-adoption remains held until their owning loops accept compatible consumers.
-This document describes configuration and loading, not host enforcement.
+> Development procedures in this document are superseded by AGENTS.md (2026-10-09). Current product contracts remain in force; see the list in AGENTS.md.
+
+Interface adoption remains project-specific; this reset does not establish final acceptance, downstream qualification or release of prospective interfaces. This document describes configuration and loading, not host enforcement.
 
 The Runtime project owns production discovery, context supply, session history,
 replay, permissions, and execution. Root Python utilities are authoring,

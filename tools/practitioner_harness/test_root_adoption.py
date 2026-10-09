@@ -11,13 +11,7 @@ Covers the four surfaces the adoption touches:
    double registration refused;
 3. `status` / `drift` against a tmp fixture tree, and the refusals for the
    commands that cannot meaningfully operate on the root;
-4. LIVE-tree pins (53 status files, 0 mismatches, 53 historical RETIRED + 0 active), the
-   same conscious pin discipline `test_live_baseline.py` applies to app-dev
-   0/53 and piping 0/101 — a change here is a conscious pin update in the same
-   PR, never a silent one.
-
-`tools/validation/validate_root_harness_adapter.py` (G1) remains the root
-adapter's authority; nothing here restates or relaxes its checks.
+Root historical census pins and their governance validator are retired.
 """
 
 from __future__ import annotations
@@ -368,7 +362,7 @@ def test_cli_brief_refuses_root_with_a_named_reason(tmp_path, capsys):
     assert rc == 2
     err = capsys.readouterr().err
     assert "brief does not support --project root" in err
-    assert "declares no dag_pointer" in err
+    assert "Root has no active adapter" in err
     assert "Traceback" not in err
 
 
@@ -378,7 +372,7 @@ def test_cli_next_refuses_root_with_a_named_reason(tmp_path, capsys):
     assert rc == 2
     err = capsys.readouterr().err
     assert "next does not support --project root" in err
-    assert "status --project root" in err
+    assert "no lifecycle state to report" in err
 
 
 def test_cli_drift_all_with_root_refuses_rather_than_dropping_it(tmp_path, capsys):
@@ -398,97 +392,20 @@ def test_cli_drift_all_default_scope_excludes_the_root(tmp_path, capsys):
     assert "chirality-root" not in out
 
 
-# --- 4. LIVE-tree pins ----------------------------------------------------------
-
-live_root = pytest.mark.skipif(
-    os.environ.get("CHIRALITY_SKIP_LIVE_TESTS") == "1"
-    or not (LIVE_REPO / "execution" / "_harness" / "adapter.yaml").is_file(),
-    reason="live root adapter absent (or live tests disabled by env)",
-)
-
-
-def _fact(report, fact_id):
-    for f in report.facts:
-        if f.fact_id == fact_id:
-            return f
-    raise AssertionError(f"fact {fact_id} missing: {[f.fact_id for f in report.facts]}")
-
-
-@live_root
-def test_live_root_adapter_pins_53_files_0_mismatch():
-    """Conscious pin after the bounded SCA-004 Phase-3 R7 initialization
-    (2026-08-23): 6 packages / 53 deliverables, all 53 INITIALIZED.
-    A live-root change updates this pin in the same PR — never silently."""
-    manifest = adapter_loader.load_adapter(LIVE_REPO)
-    assert manifest.kind == adapter_loader.KIND_ROOT
-    assert manifest.project == "chirality-root"
-    assert manifest.drift_baseline_files == 53
-    assert manifest.drift_baseline_mismatch == 0
-
-
-@live_root
-def test_live_root_drift_baseline_0_of_53():
-    report = cmd_drift.run_drift(LIVE_REPO, [LIVE_REPO])
-    value = _fact(report, "drift.chirality-root").value
-    assert "files=53" in value
-    assert "matches=53" in value
-    assert "mismatches=0" in value
-    # The seven Phase-3 lifecycle records now carry the minimum parseable
-    # house fields and one state-bearing history entry each.
-    assert "unparseable_docs=0" in value
-    assert "no_state_assertion=0" in value
-    assert report.summary["files_total"] == 53
-    assert report.summary["mismatches_total"] == 0
-    # The measurement agrees with the adapter's recorded pin.
-    baseline = [f for f in report.findings if f.code == "DRIFT_BASELINE_COMPARISON"]
-    assert len(baseline) == 1
-    assert baseline[0].source_path == "execution/_harness/adapter.yaml"
-    assert "measured 0 mismatch(es) over 53 file(s) vs recorded baseline 0/53" \
-        in baseline[0].message
-
-
-@live_root
-def test_live_root_status_reports_53_historical_retired_0_active_and_no_dag_pointer():
-    # Live pin: the 53 accepted SCA-005 historical sources are RETIRED.
-    # Root has no active product carriers; observation grants no activation.
-    # A change to the live root tree updates this pin in the same PR.
-    report = cmd_status.run_status_project(LIVE_REPO, LIVE_REPO)
-    md = report.render_markdown()
-    assert "# Status — chirality-root" in md
-    assert "| RETIRED | 53 |" in md
-    assert "Historical source census (not active workload)" in md
-    assert "Historical sources have no production eligibility" in md
-    assert "| INITIALIZED |" not in md
-    assert "| IN_PROGRESS |" not in md
-    assert "| OPEN |" not in md
-    assert report.summary["status_files"] == 53
-    assert "not declared by this adapter schema (root-harness-adapter/v1)" in md
-
-
-@live_root
-def test_live_root_cli_status_and_drift_exit_zero(capsys):
-    assert harness.main(["--repo-root", str(LIVE_REPO), "status",
-                         "--project", "root"]) == 0
-    capsys.readouterr()
-    assert harness.main(["--repo-root", str(LIVE_REPO), "drift",
-                         "--project", "root"]) == 0
-    capsys.readouterr()
-
-
 def test_explicit_unknown_root_mode_is_refused(tmp_path):
     repo = tmp_path / "root"
     path = repo / "execution/_harness/adapter.yaml"
     path.parent.mkdir(parents=True)
     path.write_text(ROOT_ADAPTER_YAML.format(product="chirality-root", working_root=".",
         status_files=53, status_mismatch=0, pinned_at="fixture") + "mode: unregistered-mode\n")
-    with pytest.raises(HarnessOperationalError, match="Unknown explicit Root mode"):
+    with pytest.raises(HarnessOperationalError, match="Root governance-only mode has been retired"):
         adapter_loader.load_adapter(repo)
 
 def test_root_legacy_shape_cannot_hide_governance_state_without_mode(tmp_path):
     repo=build_root_repo(tmp_path)
     path=repo/'execution/_harness/adapter.yaml'
     with path.open('a') as out:out.write('\ngovernance_state: {path: state.json, sha256: fixture}\n')
-    with pytest.raises(HarnessOperationalError,match='explicit governance-only mode'):
+    with pytest.raises(HarnessOperationalError,match='Root governance-only mode has been retired'):
         adapter_loader.load_adapter(repo)
 
 def test_runtime_aliases_are_ordinary_project_observation_entries(tmp_path):

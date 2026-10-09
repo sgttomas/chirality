@@ -5,6 +5,30 @@ tools, and actual host permissions. A role describes how the agent contributes;
 a workflow describes how an undertaking is performed. The human remains
 accountable for what is accepted or relied upon.
 
+## Operating rules
+
+1. **The principle.** Agents produce the work and the minimum information needed to review, use or recover it. A record needs a concrete consumer, an acceptance requirement or a recovery need.
+2. **Authority.** Previous development procedures are superseded. Current product commitments, explicit holds, reserved decisions and applicable interface contracts remain effective until incorporated into their surviving home. Work from this file, the active role, `coordinated-knowledge-work`, the project's `LOOP_INIT.md`, its PRD, ScopeOfWork and Design, and the contracts below.
+3. **The PR is the change record.** State what changed, why, what was checked and what remains open. Quote the owner's words for a reserved decision. Naming the verification class is optional.
+4. **Decisions edit the current text they govern.** No append registers. Git keeps the history.
+5. **The deliverable folder** holds `ScopeOfWork.md`, `Design/` when useful, and `deliverable.yaml`. Maintain commitments, design and dependency conditions in these sources; do not hand-maintain derived progress or lifecycle state. Existing folders and dependency formats migrate through the approved reset plan.
+6. **Verify in proportion to consequence.** Routine, reversible changes need inspection or direct exercise; ordinary implementation a focused check. Numerical meaning, persistence, permissions and destructive operations need targeted regression tests and independent scrutiny by a separate agent. Releases need checks of the actual product. Changing an expected result to silence a failure needs a stated reason.
+7. **Reserved for the owner:** changes to commitments or acceptance criteria, releases, risk acceptance, and anything an explicit hold names.
+8. **Hard boundaries:** the project's fences in `LOOP_INIT`, nothing private in this public repository, and the secret and private-term checks.
+9. **Models and effort.** Model and effort choices come from per-session steering; repository instructions carry no model or effort doctrine.
+10. **Contracts still in force.** The pointers below identify surviving contracts. Work from this list and the project documents; routine searches of historical documents are unnecessary. Omission does not supersede a current product commitment, applicable interface contract, owner decision or explicit hold. If one is found outside this list, add its pointer or move it into the project document it governs in the same PR. Keep this list short: it is navigation, not an authority register.
+
+## Standing Git grant
+
+For `sgttomas/chirality` only, agents may commit, push, open, update and merge PRs within authorized work. Before merging, verify the change in proportion to its consequences and confirm the required checks pass on the exact head commit. Changes affecting numerical meaning, persistence, permissions, destructive operations or releases also get independent scrutiny from a separate agent. Explicit holds and reserved decisions still apply. The grant does not cover protection bypasses, history rewrites, force pushes, permission changes or releases.
+
+## Contracts still in force
+
+- **Product commitments:** the project's PRD and its named companions, deliverable ScopeOfWork and Design. App v4 starts at [its PRD](projects/chirality-app-v4/docs/PRD.md); retained Runtime commitments start at [its PRD](projects/chirality-runtime/docs/PRD.md) and [publication reference](projects/chirality-runtime/docs/PRD_AUTHORITY.md). Project `LOOP_INIT` supplies the other entry points and hard boundaries.
+- **Professional and domain boundaries:** [DIRECTIVE](docs/DIRECTIVE.md) §2's professional-accountability commitments and [CONTRACT](docs/CONTRACT.md) §1.12's domain truth, protected writes, human acceptance of domain operations, and prohibition on representing validation as professional approval.
+- **Product interfaces:** applicable adopted portions of [AGENT_WORKFLOW_RUNTIME](docs/AGENT_WORKFLOW_RUNTIME.md), [CONTRACT](docs/CONTRACT.md) §1.13, and [SPEC](docs/SPEC.md) §14 retain discovery, permissions, containment, credential custody, process ownership and replay contracts. Their applicability comes from the owning project's adopted basis; this pointer does not accept prospective interfaces or revive development record duties.
+- **Existing product consumers:** [TYPES](docs/TYPES.md), [SPEC](docs/SPEC.md), [WORKFLOW_COMPONENT_STANDARD](docs/WORKFLOW_COMPONENT_STANDARD.md) and [DECOMPOSITION_STANDARD](docs/DECOMPOSITION_STANDARD.md) retain applicable data/interface definitions until their consumers migrate. [CONTRACT](docs/CONTRACT.md) §1.14 retains Task Management product invariants; it creates no obligation to run that product or maintain development registers. Superseded development procedures in these references do not govern this repository's work.
+
 ## Roles
 
 | Role | Type | Contribution |
@@ -20,18 +44,15 @@ context consists of this Root `AGENTS.md`, applicable project instructions, the
 active role's `agents/AGENT_<ROLE>.md`, and available skill names and
 descriptions. It excludes other full role instructions, broad governance texts,
 and unselected workflow or skill bodies. Load selected or needed bodies and
-resources on demand. Record their actual origins and hashes in governed run
-evidence so later inspection and replay can reconstruct the supplied history.
-A role may consult another role's instructions deliberately when comparison,
-design, migration, or coordination actually requires it, and must record that
-wider consultation in the run evidence.
+resources on demand. Consult another role's instructions only when comparison,
+design, migration, or coordination requires it.
 
 HELP_HUMAN may coordinate through Type 1 managers or dispatch bounded Type 2 work
 directly. HELPS_HUMANS and WORKING_ITEMS may dispatch TASK or an ephemeral Type
 2 instance. Type 2 does not delegate. Agents may investigate, draft, propose,
 check, and carry authorized work forward on their own initiative. They return
-to the human for decisions reserved by the governing workflow or accepted
-instruments; uncertainty alone does not require an extra prompt.
+to the human for decisions reserved by these operating rules or explicit owner
+directions; uncertainty alone does not require an extra prompt.
 
 ## Workflows
 
@@ -60,6 +81,7 @@ Use is optional except for the workflow-authoring requirement below:
 
 | Undertaking | Workflow |
 |---|---|
+| Coordinating knowledge work | `coordinated-knowledge-work` |
 | Creating or revising reusable workflows | `create-workflow` |
 | Workspace initialization and setup pipelines | `project-setup` |
 | Project scope decomposition | `project-decomp` |

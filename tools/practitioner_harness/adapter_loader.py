@@ -38,9 +38,8 @@ The root shape is then NORMALIZED into this module's single internal
 `declares_validation_commands()` let a command detect an absent field and
 refuse rather than guess (see `harness.py` for the per-command policy).
 
-Authority note: `tools/validation/validate_root_harness_adapter.py` (G1) is
-the root adapter's authority. This loader neither weakens nor replaces it; it
-validates what the harness needs in order to read the manifest at all.
+Legacy Root manifests remain readable for compatibility; the retired
+governance-only mode is not supported.
 """
 
 from __future__ import annotations
@@ -84,9 +83,7 @@ REQUIRED_KEYS = (
     "drift_baseline_files",
 )
 
-# Mirrors the G1 validator's required-key set (that guard remains the root
-# adapter's authority); the loader additionally requires the two baseline
-# integers it must have to report drift at all.
+# Legacy Root shape: require the baseline integers needed for drift reporting.
 ROOT_REQUIRED_KEYS = (
     "schema",
     "product",
@@ -131,12 +128,6 @@ class AdapterManifest:
     working_root: str = ""
     execution_root: str = ""
     baseline_pinned_at: str = ""
-    mode: str = "legacy"
-    governance_state: dict = field(default_factory=dict)
-
-    def historical_root(self) -> bool:
-        return self.kind == KIND_ROOT and self.mode == "governance-only"
-
     def declares_dag_pointer(self) -> bool:
         """False when the loaded schema registers no DAG pointer surface. A
         command that genuinely needs one refuses; it never guesses a path."""
@@ -240,19 +231,10 @@ def _root_manifest(data: dict, project_root: Path, manifest_path: Path) -> Adapt
             f"Adapter manifest {manifest_path} missing required keys: {missing}"
         )
 
-    if "governance_state" in data and "mode" not in data:
-        raise HarnessOperationalError("Root governance_state requires explicit governance-only mode.")
-    mode = data.get("mode", "legacy")
-    if mode not in ("legacy", "governance-only") or ("mode" in data and mode == "legacy"):
-        raise HarnessOperationalError(f"Unknown explicit Root mode: {mode!r}")
-    governance_state = {}
-    if mode == "governance-only":
-        if data.get("parser_dialect") != "root-historical-v1" or data.get("states") != ["RETIRED"]:
-            raise HarnessOperationalError("Governance Root requires root-historical-v1 and states [RETIRED].")
-        from root_historical_status import resolve_state
-        governance_state = resolve_state(project_root, data)
-    elif data.get("parser_dialect") != "prose-bullet-v1" or "RETIRED" in data.get("states", []):
-        raise HarnessOperationalError("Legacy Root requires the frozen ordinary lifecycle parser.")
+    if "mode" in data or "governance_state" in data:
+        raise HarnessOperationalError("Root governance-only mode has been retired.")
+    if data.get("parser_dialect") != "prose-bullet-v1" or "RETIRED" in data.get("states", []):
+        raise HarnessOperationalError("Legacy Root requires the ordinary lifecycle parser.")
 
     working_root = _nonempty_str(data, "working_root", manifest_path)
     if working_root != ".":
@@ -342,8 +324,6 @@ def _root_manifest(data: dict, project_root: Path, manifest_path: Path) -> Adapt
         working_root=working_root,
         execution_root=execution_root,
         baseline_pinned_at=pinned_at.strip(),
-        mode=mode,
-        governance_state=governance_state,
     )
 
 
