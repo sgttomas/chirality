@@ -1,0 +1,15 @@
+U2-L-FREE-P-K2-SKEW                                remainders dropped: max distance 9.689e-04 tolerances at nodes/node:D/rx
+U2-L-FREE-P-K2-SKEW-X5E6                           remainders dropped: max distance 1.054e+03 tolerances at nodes/node:B/rx
+U2-L-FREE-P-K2-SKEW-X7P3E6                         remainders dropped: max distance 1.054e+03 tolerances at nodes/node:B/rx
+U2-L-FREE-ALL-K2-SKEW                              remainders dropped: max distance 6.029e-07 tolerances at supports/support:A/Fz
+U2-L-FREE-ALL-K2-SKEW-X5E6                         remainders dropped: max distance 9.480e-01 tolerances at supports/support:A/Fy
+U2-L-FREE-ALL-K2-SKEW-X7P3E6                       remainders dropped: max distance 9.480e-01 tolerances at supports/support:A/Fy
+U2-L-ANCH-ALL-K2-SKEW                              remainders dropped: max distance 3.974e-05 tolerances at members/pipe:BEND/stations/quarter_1/S
+U2-L-ANCH-ALL-K2-SKEW-X5E6                         remainders dropped: max distance 4.053e+01 tolerances at members/pipe:S1/stations/end_j/S
+U2-L-ANCH-ALL-K2-SKEW-X7P3E6                       remainders dropped: max distance 4.053e+01 tolerances at members/pipe:S1/stations/end_j/S
+U2-U-ANCH-ALL-K2-SKEW                              remainders dropped: max distance 8.313e-05 tolerances at members/pipe:S1/stations/end_i/M_y
+U2-U-ANCH-ALL-K2-SKEW-X5E6                         remainders dropped: max distance 2.385e+01 tolerances at members/pipe:BEND2/stations/end_j/V_y
+U2-U-ANCH-ALL-K2-SKEW-X7P3E6                       remainders dropped: max distance 2.385e+01 tolerances at members/pipe:BEND2/stations/end_j/V_y
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW        remainders dropped: max distance 5.449e-12 tolerances at terminals/node:A/closure_pressure_load_global/Fz
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW-X5E6   remainders dropped: max distance 7.074e-12 tolerances at terminals/node:A/closure_pressure_load_global/Fx
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW-X7P3E6 remainders dropped: max distance 7.074e-12 tolerances at terminals/node:A/closure_pressure_load_global/Fx

@@ -1,0 +1,50 @@
+== kink controls against alpha_tan = 1e-3 rad (theta <= alpha_tan admitted) ==
+U2-L-KINK-FREE-P-K2 node node:C
+   D.x as binary64        = 3.245999999999999996447286321199499070644378662109375
+   theta (exact, from the binary64 inputs) = 9.999996666668677e-04 rad
+   alpha_tan - theta      = 3.333331e-10 rad (relative 3.333e-07)
+   tan(theta) - alpha_tan = 8.881784e-19   (a 'tan theta <= alpha_tan' test refuses)
+   sin(theta) - alpha_tan = -4.999996e-10
+   (1-cos theta) - (1-cos alpha) = -3.333330e-13
+   tan(theta) - tan(alpha) = -3.333335e-10
+   binary64 atan2 kink    = 9.99999666666867657e-04 ; minus exact 1.025e-19 ; admitted at 1e-3: True
+   remainder |pAi (t_in - t_out)| = 9.539331e+01 N
+U2-L-KINK-ANCH-P-K2 node node:C
+   D.x as binary64        = 3.245999999999999996447286321199499070644378662109375
+   theta (exact, from the binary64 inputs) = 9.999996666668677e-04 rad
+   alpha_tan - theta      = 3.333331e-10 rad (relative 3.333e-07)
+   tan(theta) - alpha_tan = 8.881784e-19   (a 'tan theta <= alpha_tan' test refuses)
+   sin(theta) - alpha_tan = -4.999996e-10
+   (1-cos theta) - (1-cos alpha) = -3.333330e-13
+   tan(theta) - tan(alpha) = -3.333335e-10
+   binary64 atan2 kink    = 9.99999666666867657e-04 ; minus exact 1.025e-19 ; admitted at 1e-3: True
+   remainder |pAi (t_in - t_out)| = 9.539331e+01 N
+== UTM transport ==
+coordinate / y_reference strings that are not round-trip binary64 reprs: 0
+sketch node positions differing from the reference binary64 coordinates: 0
+-- sensitivity: the same cases computed from the short decimal strings taken as exact decimals --
+   U2-L-FREE-P-K2-SKEW                                max normalized diff vs reference 3.39e-16 at members/pipe:BEND/arc/included_angle
+   U2-L-FREE-P-K2-X5E6                                max normalized diff vs reference 1.99e-20 at members/pipe:BEND/arc/included_angle
+   U2-L-FREE-P-K2-X7P3E6                              max normalized diff vs reference 1.99e-20 at members/pipe:BEND/arc/included_angle
+   U2-L-FREE-P-K2-SKEW-X5E6                           max normalized diff vs reference 7.32e-10 at members/pipe:BEND/arc/chord_frame/x/0
+   U2-L-FREE-P-K2-SKEW-X7P3E6                         max normalized diff vs reference 7.32e-10 at members/pipe:BEND/arc/chord_frame/x/0
+   U2-L-FREE-ALL-K2-SKEW                              max normalized diff vs reference 4.37e-16 at members/pipe:BEND/stations/end_j/V_y
+   U2-L-FREE-ALL-K2-X5E6                              max normalized diff vs reference 4.20e-20 at nodes/node:D/ux
+   U2-L-FREE-ALL-K2-X7P3E6                            max normalized diff vs reference 4.20e-20 at nodes/node:D/ux
+   U2-L-FREE-ALL-K2-SKEW-X5E6                         max normalized diff vs reference 7.32e-10 at members/pipe:BEND/arc/chord_frame/x/0
+   U2-L-FREE-ALL-K2-SKEW-X7P3E6                       max normalized diff vs reference 7.32e-10 at members/pipe:BEND/arc/chord_frame/x/0
+   U2-L-ANCH-ALL-K2-SKEW                              max normalized diff vs reference 3.39e-16 at members/pipe:BEND/arc/included_angle
+   U2-L-ANCH-ALL-K2-X5E6                              max normalized diff vs reference 2.75e-20 at nodes/node:C/ry
+   U2-L-ANCH-ALL-K2-X7P3E6                            max normalized diff vs reference 2.75e-20 at nodes/node:C/ry
+   U2-L-ANCH-ALL-K2-SKEW-X5E6                         max normalized diff vs reference 7.32e-10 at members/pipe:BEND/arc/chord_frame/x/0
+   U2-L-ANCH-ALL-K2-SKEW-X7P3E6                       max normalized diff vs reference 7.32e-10 at members/pipe:BEND/arc/chord_frame/x/0
+   U2-U-ANCH-ALL-K2-SKEW                              max normalized diff vs reference 1.91e-15 at members/pipe:BEND2/arc/included_angle
+   U2-U-ANCH-ALL-K2-X5E6                              max normalized diff vs reference 4.54e-20 at nodes/node:B3/rx
+   U2-U-ANCH-ALL-K2-X7P3E6                            max normalized diff vs reference 4.54e-20 at nodes/node:B3/rx
+   U2-U-ANCH-ALL-K2-SKEW-X5E6                         max normalized diff vs reference 7.32e-10 at members/pipe:BEND1/arc/chord_frame/x/0
+   U2-U-ANCH-ALL-K2-SKEW-X7P3E6                       max normalized diff vs reference 7.32e-10 at members/pipe:BEND1/arc/chord_frame/x/0
+   MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW        max normalized diff vs reference 3.40e-17 at members/pipe:ARC/arc/arc_length
+   MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-X5E6        max normalized diff vs reference 2.66e-10 at terminals/node:B/closure_pressure_load_global/Fy
+   MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-X7P3E6      max normalized diff vs reference 2.66e-10 at terminals/node:B/closure_pressure_load_global/Fy
+   MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW-X5E6   max normalized diff vs reference 1.43e-11 at nodes/node:B/ux
+   MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW-X7P3E6 max normalized diff vs reference 1.43e-11 at nodes/node:B/ux

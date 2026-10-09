@@ -1,0 +1,135 @@
+U2-L-FREE-P-K1                                     leaves  314  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-SEPA-K1                                  leaves  317  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-SEPD-K1                                  leaves  317  max_norm_diff 2.29e-20  at members/pipe:BEND/end_rows/end_i/chord_frame/F_y
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-PT-K1                                    leaves  314  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-PW-K1                                    leaves  314  max_norm_diff 3.67e-20  at nodes/node:D/rx
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups ['effective_axial_force']; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-ALL-K1                                   leaves  317  max_norm_diff 2.29e-20  at members/pipe:BEND/end_rows/end_i/chord_frame/F_y
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-ANCH-P-K1                                     leaves  320  max_norm_diff 2.49e-20  at members/pipe:BEND/stations/quarter_1/S
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-ANCH-SEPD-K1                                  leaves  323  max_norm_diff 2.49e-20  at members/pipe:BEND/stations/quarter_1/S
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-ANCH-PT-K1                                    leaves  320  max_norm_diff 2.97e-20  at supports/support:A/Fy
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-ANCH-PW-K1                                    leaves  320  max_norm_diff 2.49e-20  at members/pipe:BEND/stations/quarter_1/S
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-ANCH-ALL-K1                                   leaves  323  max_norm_diff 2.90e-20  at supports/support:A/Fy
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-U-ANCH-P-K1                                     leaves  923  max_norm_diff 4.26e-20  at members/pipe:BEND2/stations/midspan/M_z
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND1/lame_surface:MISSING', 'members/pipe:BEND2/lame_surface:MISSING', 'members/pipe:BEND3/lame_surface:MISSING', 'members/pipe:BEND4/lame_surface:MISSING']
+U2-U-ANCH-SEPD-K1                                  leaves  926  max_norm_diff 4.26e-20  at members/pipe:BEND2/stations/midspan/M_z
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND1/lame_surface:MISSING', 'members/pipe:BEND2/lame_surface:MISSING', 'members/pipe:BEND3/lame_surface:MISSING', 'members/pipe:BEND4/lame_surface:MISSING']
+U2-U-ANCH-PT-K1                                    leaves  923  max_norm_diff 3.87e-20  at members/pipe:BEND2/stations/quarter_3/M_z
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND1/lame_surface:MISSING', 'members/pipe:BEND2/lame_surface:MISSING', 'members/pipe:BEND3/lame_surface:MISSING', 'members/pipe:BEND4/lame_surface:MISSING']
+U2-U-ANCH-PW-K1                                    leaves  923  max_norm_diff 3.16e-20  at nodes/node:C3/rx
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND1/lame_surface:MISSING', 'members/pipe:BEND2/lame_surface:MISSING', 'members/pipe:BEND3/lame_surface:MISSING', 'members/pipe:BEND4/lame_surface:MISSING']
+U2-U-ANCH-ALL-K1                                   leaves  926  max_norm_diff 3.16e-20  at nodes/node:C3/rx
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND1/lame_surface:MISSING', 'members/pipe:BEND2/lame_surface:MISSING', 'members/pipe:BEND3/lame_surface:MISSING', 'members/pipe:BEND4/lame_surface:MISSING']
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K1             leaves  136  max_norm_diff 3.10e-20  at members/pipe:ARC/arc/included_angle
+    max kink 0.000e+00 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:ARC/lame_surface:MISSING']
+U2-L-FREE-P-K2                                     leaves  314  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-SEPA-K2                                  leaves  317  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-SEPD-K2                                  leaves  317  max_norm_diff 4.21e-20  at nodes/node:D/ux
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-PT-K2                                    leaves  314  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-PW-K2                                    leaves  314  max_norm_diff 4.18e-20  at nodes/node:D/rx
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups ['effective_axial_force']; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-ALL-K2                                   leaves  317  max_norm_diff 4.20e-20  at nodes/node:D/ux
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-ANCH-P-K2                                     leaves  320  max_norm_diff 2.74e-20  at members/pipe:BEND/stations/quarter_1/S
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-ANCH-SEPD-K2                                  leaves  323  max_norm_diff 2.74e-20  at members/pipe:BEND/stations/quarter_1/S
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-ANCH-PT-K2                                    leaves  320  max_norm_diff 2.58e-20  at members/pipe:BEND/stations/quarter_3/S
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-ANCH-PW-K2                                    leaves  320  max_norm_diff 2.75e-20  at nodes/node:C/ry
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-ANCH-ALL-K2                                   leaves  323  max_norm_diff 2.75e-20  at nodes/node:C/ry
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-U-ANCH-P-K2                                     leaves  923  max_norm_diff 3.38e-20  at nodes/node:B4/rz
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND1/lame_surface:MISSING', 'members/pipe:BEND2/lame_surface:MISSING', 'members/pipe:BEND3/lame_surface:MISSING', 'members/pipe:BEND4/lame_surface:MISSING']
+U2-U-ANCH-SEPD-K2                                  leaves  926  max_norm_diff 3.38e-20  at nodes/node:B4/rz
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND1/lame_surface:MISSING', 'members/pipe:BEND2/lame_surface:MISSING', 'members/pipe:BEND3/lame_surface:MISSING', 'members/pipe:BEND4/lame_surface:MISSING']
+U2-U-ANCH-PT-K2                                    leaves  923  max_norm_diff 4.68e-20  at members/pipe:S3/stations/quarter_3/M_y
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND1/lame_surface:MISSING', 'members/pipe:BEND2/lame_surface:MISSING', 'members/pipe:BEND3/lame_surface:MISSING', 'members/pipe:BEND4/lame_surface:MISSING']
+U2-U-ANCH-PW-K2                                    leaves  923  max_norm_diff 4.54e-20  at nodes/node:B3/rx
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND1/lame_surface:MISSING', 'members/pipe:BEND2/lame_surface:MISSING', 'members/pipe:BEND3/lame_surface:MISSING', 'members/pipe:BEND4/lame_surface:MISSING']
+U2-U-ANCH-ALL-K2                                   leaves  926  max_norm_diff 4.54e-20  at nodes/node:B3/rx
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND1/lame_surface:MISSING', 'members/pipe:BEND2/lame_surface:MISSING', 'members/pipe:BEND3/lame_surface:MISSING', 'members/pipe:BEND4/lame_surface:MISSING']
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2             leaves  136  max_norm_diff 3.10e-20  at members/pipe:ARC/arc/included_angle
+    max kink 0.000e+00 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:ARC/lame_surface:MISSING']
+U2-L-KINK-FREE-P-K2                                leaves  314  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    max kink 1.000e-03 rad at node:C=9.999996667e-04; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-KINK-ANCH-P-K2                                leaves  320  max_norm_diff 3.43e-20  at supports/support:D/Fy
+    max kink 1.000e-03 rad at node:C=9.999996667e-04; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-ANCH-ALL-K2-REV                               leaves  323  max_norm_diff 2.75e-20  at nodes/node:C/ry
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-P-K2-SKEW                                leaves  314  max_norm_diff 2.79e-20  at members/pipe:BEND/arc/centre/2
+    max kink 4.497e-16 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-P-K2-X5E6                                leaves  314  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-P-K2-X7P3E6                              leaves  314  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-P-K2-SKEW-X5E6                           leaves  314  max_norm_diff 3.05e-20  at members/pipe:BEND/arc/centre/2
+    max kink 6.665e-10 rad at node:B=5.840882193e-10,node:C=6.664674689e-10; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-P-K2-SKEW-X7P3E6                         leaves  314  max_norm_diff 3.05e-20  at members/pipe:BEND/arc/centre/2
+    max kink 6.665e-10 rad at node:B=5.840882193e-10,node:C=6.664674689e-10; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-P-K2-MM-MPA                              leaves  314  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-ALL-K2-SKEW                              leaves  317  max_norm_diff 2.79e-20  at members/pipe:BEND/arc/centre/2
+    max kink 4.497e-16 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-ALL-K2-X5E6                              leaves  317  max_norm_diff 4.20e-20  at nodes/node:D/ux
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-ALL-K2-X7P3E6                            leaves  317  max_norm_diff 4.20e-20  at nodes/node:D/ux
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-ALL-K2-SKEW-X5E6                         leaves  317  max_norm_diff 3.05e-20  at members/pipe:BEND/arc/centre/2
+    max kink 6.665e-10 rad at node:B=5.840882193e-10,node:C=6.664674689e-10; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-ALL-K2-SKEW-X7P3E6                       leaves  317  max_norm_diff 3.05e-20  at members/pipe:BEND/arc/centre/2
+    max kink 6.665e-10 rad at node:B=5.840882193e-10,node:C=6.664674689e-10; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-FREE-ALL-K2-MM-MPA                            leaves  317  max_norm_diff 4.20e-20  at nodes/node:D/ux
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-ANCH-ALL-K2-SKEW                              leaves  323  max_norm_diff 2.79e-20  at members/pipe:BEND/arc/centre/2
+    max kink 4.497e-16 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-ANCH-ALL-K2-X5E6                              leaves  323  max_norm_diff 2.75e-20  at nodes/node:C/ry
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-ANCH-ALL-K2-X7P3E6                            leaves  323  max_norm_diff 2.75e-20  at nodes/node:C/ry
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-ANCH-ALL-K2-SKEW-X5E6                         leaves  323  max_norm_diff 3.05e-20  at members/pipe:BEND/arc/centre/2
+    max kink 6.665e-10 rad at node:B=5.840882193e-10,node:C=6.664674689e-10; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-ANCH-ALL-K2-SKEW-X7P3E6                       leaves  323  max_norm_diff 3.05e-20  at members/pipe:BEND/arc/centre/2
+    max kink 6.665e-10 rad at node:B=5.840882193e-10,node:C=6.664674689e-10; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-L-ANCH-ALL-K2-MM-MPA                            leaves  323  max_norm_diff 2.75e-20  at nodes/node:C/ry
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND/lame_surface:MISSING']
+U2-U-ANCH-ALL-K2-SKEW                              leaves  926  max_norm_diff 4.15e-20  at members/pipe:BEND3/arc/centre/0
+    max kink 1.537e-15 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND1/lame_surface:MISSING', 'members/pipe:BEND2/lame_surface:MISSING', 'members/pipe:BEND3/lame_surface:MISSING', 'members/pipe:BEND4/lame_surface:MISSING']
+U2-U-ANCH-ALL-K2-X5E6                              leaves  926  max_norm_diff 4.54e-20  at nodes/node:B3/rx
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND1/lame_surface:MISSING', 'members/pipe:BEND2/lame_surface:MISSING', 'members/pipe:BEND3/lame_surface:MISSING', 'members/pipe:BEND4/lame_surface:MISSING']
+U2-U-ANCH-ALL-K2-X7P3E6                            leaves  926  max_norm_diff 4.54e-20  at nodes/node:B3/rx
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND1/lame_surface:MISSING', 'members/pipe:BEND2/lame_surface:MISSING', 'members/pipe:BEND3/lame_surface:MISSING', 'members/pipe:BEND4/lame_surface:MISSING']
+U2-U-ANCH-ALL-K2-SKEW-X5E6                         leaves  926  max_norm_diff 2.31e-20  at nodes/node:B2/uz
+    max kink 8.704e-10 rad at node:B1=6.553978118e-10,node:C1=5.936642958e-10,node:B2=5.936659972e-10,node:C2=8.704105666e-10,node:B3=3.449352354e-10,node:C3=2.528807198e-10,node:B4=2.528813102e-10,node:C4=8.975976122e-11; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND1/lame_surface:MISSING', 'members/pipe:BEND2/lame_surface:MISSING', 'members/pipe:BEND3/lame_surface:MISSING', 'members/pipe:BEND4/lame_surface:MISSING']
+U2-U-ANCH-ALL-K2-SKEW-X7P3E6                       leaves  926  max_norm_diff 2.31e-20  at nodes/node:B2/uz
+    max kink 8.704e-10 rad at node:B1=6.553978118e-10,node:C1=5.936642958e-10,node:B2=5.936659972e-10,node:C2=8.704105666e-10,node:B3=3.449352354e-10,node:C3=2.528807198e-10,node:B4=2.528813102e-10,node:C4=8.975976122e-11; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND1/lame_surface:MISSING', 'members/pipe:BEND2/lame_surface:MISSING', 'members/pipe:BEND3/lame_surface:MISSING', 'members/pipe:BEND4/lame_surface:MISSING']
+U2-U-ANCH-ALL-K2-MM-MPA                            leaves  926  max_norm_diff 4.54e-20  at nodes/node:B3/rx
+    max kink 5.291e-50 rad; traversal flags ok; zero_scale ok; identically-zero groups []; MISSING ['members/pipe:BEND1/lame_surface:MISSING', 'members/pipe:BEND2/lame_surface:MISSING', 'members/pipe:BEND3/lame_surface:MISSING', 'members/pipe:BEND4/lame_surface:MISSING']
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW        leaves  136  max_norm_diff 1.50e-20  at members/pipe:ARC/arc/included_angle
+    max kink 0.000e+00 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:ARC/lame_surface:MISSING']
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-X5E6        leaves  136  max_norm_diff 5.81e-21  at members/pipe:ARC/arc/centre/0
+    max kink 0.000e+00 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:ARC/lame_surface:MISSING']
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-X7P3E6      leaves  136  max_norm_diff 4.60e-21  at members/pipe:ARC/arc/tangent_j/0
+    max kink 0.000e+00 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:ARC/lame_surface:MISSING']
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW-X5E6   leaves  136  max_norm_diff 9.96e-21  at members/pipe:ARC/arc/included_angle
+    max kink 0.000e+00 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:ARC/lame_surface:MISSING']
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW-X7P3E6 leaves  136  max_norm_diff 9.96e-21  at members/pipe:ARC/arc/included_angle
+    max kink 0.000e+00 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:ARC/lame_surface:MISSING']
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-MM-MPA      leaves  136  max_norm_diff 3.10e-20  at members/pipe:ARC/arc/included_angle
+    max kink 0.000e+00 rad; traversal flags ok; zero_scale ok; identically-zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress']; MISSING ['members/pipe:ARC/lame_surface:MISSING']
+OVERALL max normalized difference over all cases and leaves: 4.680e-20
