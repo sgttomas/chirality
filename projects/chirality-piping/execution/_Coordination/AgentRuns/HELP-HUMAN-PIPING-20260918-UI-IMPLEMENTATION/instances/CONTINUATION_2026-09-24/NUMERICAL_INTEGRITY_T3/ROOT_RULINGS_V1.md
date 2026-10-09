@@ -16571,3 +16571,21 @@ The two historical `rejected_stress_range` captures and `ORACLE.json` stay as ca
 - That ruling counted the radius of the wider wording as pins only. In fact the seven `LIMITATIONS` strings are reviewed inputs: they appear verbatim in the preview-physics-1 and retained-1 semantic contracts. Changing any of them therefore forces re-registration.
 - At PR-B2 it would also need a declared exception to B2/B3's stop on successor bytes and 07n.
 - **So the wording goes in B7,** together with T4's summary-key rename and the removal of the joint row kind, as one wave. It no longer goes in J0b or in PR-B2's wave.
+
+## #1168: RV127's A2-B-1 (three retired fixtures missing from the PR) and its repair; which gates carry (ROOT, 2026-10-09 UTC)
+
+**The finding.** RV127's addendum 02 failed the PR's code commit `8a12de28db`.
+- **What was missing.** The commit still carried three bundled results that I114 had retired for G10/D-3: `invented_mechanics_result.json` and its precision-1 dense and sparse pair.
+- **Why the checks missed it.** Git's rename detection paired the three files with the new `invented_demo_result_*` files, so the name sets matched, 133 = 133. That hid the deletions from source equality.
+
+**The ruling and the repair.**
+- **The repair.** `ed012c7ccf` deletes exactly the three files. `source_equality.py`'s `names()` now uses `--no-renames`: it fails the unrepaired head and passes 136/136 at the head `3bfcceb4c0`. The package's equality claims are corrected.
+- **Carried to the new head without rerunning:** Pass B (I107 → RV124), and I112's T9 and both-entry gate. Both conditions for this hold:
+  - the delta outside `P/execution` is exactly three `D` lines;
+  - outside agents' records, no reader names the files.
+
+  The suites' evidence was taken without these files.
+- **Rerun on the final head:** CI with the full-SHA dispatch, GEN-8, source equality and citations, and DEC-025 at the exact head.
+- **RV127's addendum 03 passes the repair,** with one SHOULD-FIX: the change record's 133-path row is to be marked superseded, citing the rerun, in a package-only commit before the merge.
+
+**The lesson for later path-set checks:** compare without rename detection.
