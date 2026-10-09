@@ -5,6 +5,8 @@ Resolve `REPO_ROOT` from the active checkout and set `WORKING_ROOT` to
 Enter through `init/dev-loop-init-prompt.md` with the selected role and the
 human's steering. This file owns the recurring development-loop procedure;
 `loop/PROJECT_GUIDANCE.md` supplies standing responsibilities, boundaries and checks.
+Read `loop/PROJECT_GUIDANCE.md` in full before any dispatch, review, fan-in,
+reliance, or write.
 Keep this file evergreen: undertaking selection and graph references come from
 the init steering and subsequent human directions; execution state lives in the
 selected work graph.

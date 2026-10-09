@@ -40,10 +40,12 @@ m6_notice:
     - projects/chirality-piping/execution/_Coordination/NOTICE_2026-10-09_ROOT_PROJECT_AGENTS_REMOVAL.md
     - projects/chirality-runtime/execution/_Coordination/NOTICE_2026-10-09_ROOT_PROJECT_AGENTS_REMOVAL.md
     - projects/pec/execution/_Coordination/NOTICE_2026-10-09_ROOT_PROJECT_AGENTS_REMOVAL.md
+    - projects/chirality-app-v4/execution/_Coordination/NOTICE_2026-10-09_ROOT_PROJECT_AGENTS_REMOVAL.md
   rationale: >-
-    Notices route the removal and guidance relocation to App Dev, Piping,
-    Runtime, and PEC. Each receiving loop decides whether and when to adopt;
-    the notices and this Root PR do not assert downstream adoption.
+    Notices route the Root entry update and project guidance relocation to App
+    Dev, Piping, Runtime, PEC, and App v4 as a consumer of Root instructions.
+    Each receiving loop decides whether and when to adopt; the notices and
+    this Root PR do not assert downstream adoption.
 
 scope_limits:
   - >-

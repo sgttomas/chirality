@@ -55,6 +55,12 @@ def _write_project(
     (tmp_path / "init" / "dev-loop-init-prompt.md").write_text(
         f"# Root launcher catalog\n\n{prompt}", encoding="utf-8"
     )
+    guidance_read = (
+        "Read `loop/PROJECT_GUIDANCE.md` in full before any dispatch, review, "
+        "fan-in, reliance, or write."
+    )
+    if guidance_read not in loop_text:
+        loop_text = f"{guidance_read}\n\n{loop_text}"
     (project / "loop" / "LOOP_INIT.md").write_text(loop_text, encoding="utf-8")
     (project / "loop" / "WORKPLAN_2026-07-18_test.md").write_text(
         workplan_text, encoding="utf-8"
