@@ -119,9 +119,8 @@ T4 cites none of the documents. ROOT may still want to tell T4's row as a courte
   - `validate_private_terms.py --from-host --staged`: PASS, 0 findings, at all three commits.
   - The range screen `--base 7b2715cb0e --head HEAD`: PASS (`screens_and_claims_lint.txt`).
 - **GEN-8** (`pytest tools/practitioner_harness/test_live_baseline.py -k gen8`, through `WT/tools/t3_slot.sh`):
-  - **Pending at the time of writing.** It has been queued since 03:10Z behind the exclusive DEC-025 of U3's exact head. I did not signal any job.
-  - The result is added to `_run_records/gen8.txt`, and to this section in my final report, when it completes.
-  - The four changed files hold no machine-absolute path, and every check above that scans for one passes.
+  - **PASS: 1 passed, 10 deselected, in 42.44 s, exit 0** (`_run_records/gen8.txt`). It ran at the head `f995add7c6`, on a clean tree.
+  - It was queued from 03:10Z behind the exclusive DEC-025 of U3's exact head, and ran 04:33:17–04:34:00Z in slot 3. I did not signal any job.
 
 ## 6. Questions for WORKING_ITEMS
 

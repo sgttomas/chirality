@@ -1,0 +1,8 @@
+# GEN-8 at the U5 branch head f995add7c6d5eb30f2a274a4da7bff7ad75577d5 (clean working tree; cwd WT/u5-docs)
+$ TMPDIR=WT/scratch/i116_u5/tmp WT/tools/t3_slot.sh WT/venv/bin/python -m pytest -q -p no:cacheprovider tools/practitioner_harness/test_live_baseline.py -k gen8
+slot log: WAIT 2026-10-09T03:10:08Z (queued behind the exclusive DEC-025 of U3's exact head); START 04:33:17Z slot3; END 04:34:00Z rc=0
+(the final commit f995add7c6 was made at 03:28:34Z, before the run started)
+
+.                                                                        [100%]
+1 passed, 10 deselected in 42.44s
+exit=0
