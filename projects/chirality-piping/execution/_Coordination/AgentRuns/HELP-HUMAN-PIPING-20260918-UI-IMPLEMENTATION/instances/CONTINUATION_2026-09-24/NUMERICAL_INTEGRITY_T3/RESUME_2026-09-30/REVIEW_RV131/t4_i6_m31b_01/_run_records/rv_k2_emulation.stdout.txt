@@ -1,0 +1,2 @@
+IP K2: correct 12.743 | M31b 3.149e-05 | M31b0 12.743 | M31a (K_int = system element) 1.729e-07
+SK K2: correct 12.450 | M31b 1.392e-05 | M31b0 12.450 | M31a (K_int = system element) 1.636e-07

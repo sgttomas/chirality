@@ -1,0 +1,48 @@
+# I107 round 3: the candidate's identity (read-only Git; GIT_OPTIONAL_LOCKS=0). P = projects/chirality-piping
+candidate (U3 code commit, PR #1168): 8a12de28db5ede85d3df09d5307e795ff39e4373
+parents: ba500defa498a454be182ed46db795fc3e04d627
+main (B1 + PR-N as merged): ba500defa498a454be182ed46db795fc3e04d627
+files changed, main -> candidate: 133; outside P: 0
+status counts:    6 A    6 D  121 M 
+Cargo.lock / Cargo.toml among them: 0
+retained_memory.rs among them: 0
+NUM head read: 3743b7929109b1b76d3518ce90ecb2ff8edf8d99
+P without execution/, candidate vs NUM head (name-status):
+  D	projects/chirality-piping/fixtures/product_preview/invented_mechanics_result.json
+  D	projects/chirality-piping/fixtures/product_preview/invented_mechanics_result_precision_1_dense.json
+  D	projects/chirality-piping/fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json
+  (NUM deleted these three in 180bf9b26d; the candidate keeps them. At the candidate they are named only in docs and records:
+   P/apps/desktop/SMOKE.md
+   P/fixtures/product_preview/DEMO_FIXTURES.md
+   P/plans/PLAN_COMPLETION_LOG.md
+   P/validation/evidence/sweeps/SWEEP_20260621T070045Z_251dbcd8ce97-dirty.json
+   P/validation/evidence/sweeps/SWEEP_20260621T071342Z_251dbcd8ce97-dirty.json
+   P/validation/evidence/sweeps/SWEEP_20260621T085427Z_93a25e03201f-dirty.json
+   P/validation/evidence/sweeps/SWEEP_20260621T092312Z_53b592aee006-dirty.json
+   P/validation/evidence/sweeps/SWEEP_20260621T113918Z_756f319251c0-dirty.json
+   P/validation/evidence/sweeps/SWEEP_20260621T202442Z_4829dea6c2e0-dirty.json
+   P/validation/evidence/sweeps/SWEEP_20260621T205711Z_c771567ed6a8-dirty.json
+   P/validation/evidence/sweeps/SWEEP_20260622T063558Z_d3f658288543-dirty.json
+   P/validation/evidence/sweeps/SWEEP_20260622T065649Z_150b107259dd-dirty.json
+   P/validation/evidence/sweeps/SWEEP_20260622T081626Z_719254ef37f8-dirty.json
+   P/validation/evidence/sweeps/SWEEP_20260622T085210Z_799ebcc0dee5-dirty.json
+   P/validation/evidence/sweeps/SWEEP_20260622T121215Z_3bc51d2b2eed-dirty.json
+   P/validation/evidence/sweeps/SWEEP_20260622T142119Z_1b32c80965d5-dirty.json
+   P/validation/evidence/sweeps/SWEEP_20260623T020002Z_3194bd29f417-dirty.json
+  no code, test or fixture reads them.)
+The entry's 14 reviewed inputs (paths relative to PP), each hashed at the candidate and compared with the entry's pin:
+  Cargo.lock: equal; among the changed files: no
+  ../../schemas/physics_source_recovery.schema.json: equal; among the changed files: no
+  ../../schemas/retained_precision_mp_v2.schema.json: equal; among the changed files: no
+  ../../fixtures/results/retained_precision_prepared_ordinary_v1.json: equal; among the changed files: no
+  ../../fixtures/results/semantic_contract_v0_3_preview_physics_retained_1.json: equal; among the changed files: no
+  ../../fixtures/results/semantic_contract_v0_2.json: equal; among the changed files: no
+  ../../fixtures/results/semantic_contract_v0_3_precision_1.json: equal; among the changed files: no
+  ../../fixtures/results/semantic_contract_v0_3_physics_1.json: equal; among the changed files: no
+  ../../fixtures/results/semantic_contract_v0_3_load_reference_1.json: equal; among the changed files: no
+  ../../fixtures/results/semantic_contract_v0_3_load_reference_source_1.json: equal; among the changed files: no
+  ../../fixtures/results/semantic_contract_v0_3_preview_physics_1.json: equal; among the changed files: no
+  ../../fixtures/results/semantic_contract_v0_3_physics_source_1.json: equal; among the changed files: no
+  ../../fixtures/results/semantic_contract_v0_3_source_blocks_1.json: equal; among the changed files: no
+  ../../schemas/source_block_recovery.schema.json: equal; among the changed files: no
+  14 of 14 equal the pin

@@ -1,0 +1,6 @@
+cases: 353
+random           n=150  max|dc|/L (i) 1.02e-30 at phi 1.322e-09 | (ii) 1.02e-30 at phi 1.322e-09 | max (|dc|/L)*min(phi,pi-phi): (i) 1.46e-38 (ii) 1.46e-38  [2^-127 = 5.88e-39]
+near-pi          n= 63  max|dc|/L (i) 2.87e-38 at phi 3.141e+00 | (ii) 3.11e-38 at phi 3.141e+00 | max (|dc|/L)*min(phi,pi-phi): (i) 8.87e-40 (ii) 9.39e-40  [2^-127 = 5.88e-39]
+floor            n= 80  max|dc|/L (i) 1.34e-30 at phi 1.020e-09 | (ii) 1.34e-30 at phi 1.020e-09 | max (|dc|/L)*min(phi,pi-phi): (i) 1.43e-39 (ii) 1.43e-39  [2^-127 = 5.88e-39]
+y-near-parallel  n= 60  max|dc|/L (i) 4.40e-30 at phi 4.756e-07 | (ii) 4.40e-30 at phi 4.756e-07 | max (|dc|/L)*min(phi,pi-phi): (i) 2.96e-31 (ii) 2.96e-31  [2^-127 = 5.88e-39]
+overall max |dc|/L = 4.40e-30 ; implied EF ratio <= 1.3e9 x that = 5.7e-21 of the criterion (trigger 2x)

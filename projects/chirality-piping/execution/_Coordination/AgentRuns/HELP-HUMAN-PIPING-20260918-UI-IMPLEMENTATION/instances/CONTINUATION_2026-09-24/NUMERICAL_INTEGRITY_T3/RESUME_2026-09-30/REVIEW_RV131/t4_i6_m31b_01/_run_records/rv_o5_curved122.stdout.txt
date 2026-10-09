@@ -1,0 +1,9 @@
+R 1.6    y [1.0, 0.0, 0.0]  k_X 144    phi 2.4308  cond1_eq 2.76e+06  crK 3.880e-02
+R 1.6    y [0.0, 1.0, -1.0] k_X 144    phi 2.4308  cond1_eq 3.00e+06  crK 6.468e-03
+R 3      y [1.0, 0.0, 0.0]  k_X 144    phi 1.0472  cond1_eq 1.56e+07  crK 5.819e-02
+R 3      y [0.0, 1.0, -1.0] k_X 144    phi 1.0472  cond1_eq 1.57e+07  crK 1.617e-01
+R 10     y [1.0, 0.0, 0.0]  k_X 144    phi 0.3011  cond1_eq 4.08e+07  crK 7.695e-01
+R 10     y [0.0, 1.0, -1.0] k_X 144    phi 0.3011  cond1_eq 3.95e+07  crK 3.589e-01
+R 100    y [1.0, 0.0, 0.0]  k_X 144    phi 0.0300  cond1_eq 3.86e+07  crK 4.138e-01
+R 100    y [0.0, 1.0, -1.0] k_X 144    phi 0.0300  cond1_eq 3.97e+07  crK 8.147e-01
+F122 straight (T4-I6 curved_ref.frame_element, labelled cross-check): cond1_eq 3.86e+07  crK 6.402e-01

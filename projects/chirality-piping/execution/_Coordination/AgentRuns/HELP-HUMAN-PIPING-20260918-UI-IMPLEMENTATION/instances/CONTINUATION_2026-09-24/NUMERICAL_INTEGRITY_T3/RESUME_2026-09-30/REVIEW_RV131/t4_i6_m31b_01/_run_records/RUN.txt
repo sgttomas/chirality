@@ -1,0 +1,56 @@
+RV131 run record (T3's check of T4-I6's M31b kills and M31b0's equivalence).
+Placeholders as in R/BRIEFS/RV131_T4_I6_M31B.md. R4 = T4's PRESSURE_STRESS_T4 folder, read at 4a5c65e38a with git show / git archive.
+Python: WT/venv/bin/python 3.13.14, run as `python -I -B`, standard library only (decimal, fractions). No cargo, no product
+code run, no installs, no Git writes. TMPDIR and all scratch under WT/scratch/rv131/. Each script ran in under 2 s.
+
+Inputs (read-only, extracted to WT/scratch/rv131/):
+  R4/T4-I6/ at 4a5c65e38a (git archive); `shasum -a 256 -c SHA256SUMS` OK for all 16 files; SHA256SUMS itself
+    146f734afd64a00b1cba52bfdff9352e73cb73d5ddbddedaa161fc96305a9193; U1_REFERENCE.md 9c1de142d01f639a6a950cb3fa37de3208155d74a5c62c1e4a3bae69167bed5e;
+    u1_reference_cases.json 0527467f082606417c945f59a4c5693f627da3be4c05bae65b03b35092eed2f2
+  kd5_models.rs     = git show ed012c7ccf:P/core/solver/nonlinear_integration/src/structural_adapter/kd5_models.rs
+                      sha256 17a4680c83ff3e940a7dcfd908ef334c8b5a53427b6ff388dafb5888477dca23 (= T4-I6 RUN.txt)
+  rv5_models.rs.txt = git show 3743b7929109:T/REVIEW/_run_records/kd5_review/m31b/exact_inputs/rv5_models.rs.txt
+                      sha256 9f04d063d1f7a4e81bbe762d4c32d60d6f0f79b39b67e8b79e83dac9263ed4e8 (= T4-I6 RUN.txt; same bytes at 70aa51b0762c)
+  code basis files read with git archive ed012c7ccf (formation_check.rs, kd5_tests.rs, kd5_models.rs, formation_check_runtime.rs,
+    curved_bend/src/lib.rs, k1_tests.rs, structural.rs, frame_kernel lib.rs, product_physics lib.rs).
+
+A. Re-run of T4-I6's scripts (check 4), from copies of R4/T4-I6/_run_records/*.py in WT/scratch/rv131/rerun/scripts:
+  python -I -B selftest.py                                         > selftest.stdout.txt
+  python -I -B p128_closed_form_precision.py                       > p128_closed_form_precision.stdout.txt
+  python -I -B freeze_u1.py PART1                                  > freeze_u1.stdout.txt
+  python -I -B t3_models.py kd5_models.rs rv5_models.rs.txt PART1 OUT_JSON > t3_models.stdout.txt
+  Result: byte-identical to T4-I6's records.
+    selftest.stdout.txt                    c0967ac1d5c35441b0a246c020cf5f15a0116743c638cb4acdfb00feabc2a759
+    p128_closed_form_precision.stdout.txt  76464074e22b4be86e41368d4280dfaf69f154ca393ddf170e623af2fa64916f
+    freeze_u1.stdout.txt                   e6ec70ebfd5ff46f7e9e86bd3b8a45e55997deb29d73009d97d00cd38c643eb8
+    t3_models.stdout.txt                   a854177d6f382b310e07ea40567c7b13dadea71882607838d8b09e9379b677fc
+    PART1 (u1_elements_part1.json)         b864c1455b7fde568d5b3b8f778175202e56b68afa7e547aef32a4353ba1214b (= T4-I6 RUN.txt)
+    OUT_JSON (u1_reference_cases.json)     0527467f082606417c945f59a4c5693f627da3be4c05bae65b03b35092eed2f2 (= R4 file)
+  neg_scan.py (Part A, p < 0 scan) was not re-run: it bears on neither B5 nor B7.
+
+B. RV131's own scripts (this folder). Libraries: rv_element.py (an independent B1 element: global-frame Gauss-Legendre
+   quadrature of the complementary energy, actions from vector cross products, global equilibrium transfer with the actual
+   chord; written from the definition, imports nothing of T4-I6's), rv_wide.py (binary p-bit arithmetic emulation with
+   Fractions, round to nearest even; K-D5's curved re-formation in formation_check.rs's operation order with B1's (R, y)
+   inputs; checked bit-equal to hardware binary64 at p = 53 on 2000 random add/mul/div/sqrt pairs).
+  U1 = R4/T4-I6/u1_reference_cases.json; T4I6RR = R4/T4-I6/_run_records (for labelled cross-checks only)
+  python -I -B rv_check_refs.py U1                      > rv_check_refs.stdout.txt       (49 frozen K; K1 u_int and mutant)
+  python -I -B rv_k1_inputs.py U1                       > rv_k1_inputs.stdout.txt        (K1 literals, PP round trips)
+  python -I -B rv_m31b0_attack.py                       > rv_m31b0_attack.stdout.txt     (353 adversarial inputs at p = 128)
+  python -I -B rv_m31b0_yscale.py                       > rv_m31b0_yscale.stdout.txt     (ill-conditioned y)
+  python -I -B rv_o4_kd5_emulation.py                   > rv_o4_kd5_emulation.stdout.txt (K-D5 at p on K1; M31b, M31b0)
+  python -I -B rv_o4_axial.py                           > rv_o4_axial.stdout.txt         (O4 attack: rigid root, axial load)
+  python -I -B rv_o4_diag_cancel.py T4I6RR              > rv_o4_diag_cancel.stdout.txt   (where the u/phi^3 loss sits)
+  python -I -B rv_k2_emulation.py                       > rv_k2_emulation.stdout.txt     (K2 at kernel level)
+  python -I -B rv_o5_floor.py T4I6RR U1 kd5_models.rs   > rv_o5_floor.stdout.txt         (F122 and CSKEW_8_5 floors)
+  python -I -B rv_o5_curved122.py T4I6RR                > rv_o5_curved122.stdout.txt     (122 mechanism with a realized bend)
+  python -I -B rv_o6_bow.py kd5_models.rs rv5_models.rs.txt U1 > rv_o6_bow.stdout.txt    (y_reference side and plane)
+  python -I -B rv_o6_uint.py U1 kd5_models.rs rv5_models.rs.txt > rv_o6_uint.stdout.txt  (u_int_new re-derived)
+  Determinism: every script was run at least twice (a working copy, then from this folder, or twice from this folder);
+  all stdout files compared byte-equal.
+
+Labelled cross-checks (not independent): rv_o4_diag_cancel.py and rv_o5_floor.py / rv_o5_curved122.py (F122 line only)
+import T4-I6's curved_ref.py (its closed form, and its straight frame for F122).
+Emulation limits: rv_wide.py rounds square roots from a 64-bit-extended integer root and the arctangent once from an
+80-digit Decimal value; it emulates the arithmetic class of Wide<2>, not Rust bit for bit. The K-D5 EF uses the exact
+intended reduced matrix in place of the attempt's factor (second-order difference).

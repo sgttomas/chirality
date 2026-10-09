@@ -1,0 +1,12 @@
+|y|/|y_perp| 1e+09  phi 1.571e+00  |y_perp|_p 2.00e-09  |dc|/L (i) 4.23e-30 (ii) 4.23e-30  -> EF <= 5.5e-21 crit
+|y|/|y_perp| 1e+09  phi 1.000e-08  |y_perp|_p 2.00e-09  |dc|/L (i) 4.18e-30 (ii) 4.18e-30  -> EF <= 5.4e-21 crit
+|y|/|y_perp| 1e+15  phi 1.571e+00  |y_perp|_p 1.96e-09  |dc|/L (i) 8.45e-24 (ii) 8.45e-24  -> EF <= 1.1e-14 crit
+|y|/|y_perp| 1e+15  phi 1.000e-08  |y_perp|_p 1.96e-09  |dc|/L (i) 8.45e-24 (ii) 8.45e-24  -> EF <= 1.1e-14 crit
+|y|/|y_perp| 1e+20  phi 1.571e+00  |y_perp|_p 8.23e-06  |dc|/L (i) 9.29e-23 (ii) 9.29e-23  -> EF <= 1.2e-13 crit
+|y|/|y_perp| 1e+20  phi 1.000e-08  |y_perp|_p 8.23e-06  |dc|/L (i) 9.29e-23 (ii) 9.29e-23  -> EF <= 1.2e-13 crit
+|y|/|y_perp| 1e+25  phi 1.571e+00  |y_perp|_p 8.66e-01  |dc|/L (i) 2.09e-23 (ii) 2.09e-23  -> EF <= 2.7e-14 crit
+|y|/|y_perp| 1e+25  phi 1.000e-08  |y_perp|_p 8.66e-01  |dc|/L (i) 2.09e-23 (ii) 2.09e-23  -> EF <= 2.7e-14 crit
+|y|/|y_perp| 1e+28  phi 1.571e+00  |y_perp|_p 1.14e+03  |dc|/L (i) 1.04e-22 (ii) 1.04e-22  -> EF <= 1.4e-13 crit
+|y|/|y_perp| 1e+28  phi 1.000e-08  |y_perp|_p 1.14e+03  |dc|/L (i) 1.04e-22 (ii) 1.04e-22  -> EF <= 1.4e-13 crit
+|y|/|y_perp| 1e+30  phi 1.571e+00  |y_perp|_p 3.79e+03  |dc|/L (i) 2.08e-21 (ii) 2.08e-21  -> EF <= 2.7e-12 crit
+|y|/|y_perp| 1e+30  phi 1.000e-08  |y_perp|_p 3.79e+03  |dc|/L (i) 2.08e-21 (ii) 2.08e-21  -> EF <= 2.7e-12 crit

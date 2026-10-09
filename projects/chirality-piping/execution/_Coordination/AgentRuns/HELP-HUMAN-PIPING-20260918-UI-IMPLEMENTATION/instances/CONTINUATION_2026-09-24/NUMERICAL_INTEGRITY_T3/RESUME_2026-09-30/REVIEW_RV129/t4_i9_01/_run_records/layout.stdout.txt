@@ -1,0 +1,5 @@
+Formation today:    size 32 align 8
+Formation proposed: size 40 align 8
+Option<FormationRecord> today:    size 48
+Option<FormationRecord> proposed: size 56
+rustc 1.97.1 (8bab26f4f 2026-07-14)

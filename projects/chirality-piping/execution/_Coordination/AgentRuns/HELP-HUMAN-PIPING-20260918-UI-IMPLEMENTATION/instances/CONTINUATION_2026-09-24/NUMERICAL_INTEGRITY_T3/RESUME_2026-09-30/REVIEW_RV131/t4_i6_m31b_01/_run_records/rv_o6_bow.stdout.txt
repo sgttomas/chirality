@@ -1,0 +1,23 @@
+E1                         member 4-5  committed y [1.0, -1.0, 0.0]                                     cos(y_perp, bow) +1.000000  OK (same plane, same side) | T4-I6 regenerated y cos +1.000000000000000
+E6                         member 3-4  committed y [1.0, -1.0, 0.0]                                     cos(y_perp, bow) +1.000000  OK (same plane, same side) | T4-I6 regenerated y cos +1.000000000000000
+E6                         member 5-6  committed y [-1.0, 1.0, 0.0]                                     cos(y_perp, bow) +1.000000  OK (same plane, same side) | T4-I6 regenerated y cos +1.000000000000000
+E6                         member 8-9  committed y [1.0, 1.0, 0.0]                                      cos(y_perp, bow) +1.000000  OK (same plane, same side) | T4-I6 regenerated y cos +1.000000000000000
+E6                         member 10-11  committed y [-1.0, -1.0, 0.0]                                    cos(y_perp, bow) +1.000000  OK (same plane, same side) | T4-I6 regenerated y cos +1.000000000000000
+CSKEW_8_5                  member 0-1  committed y [0.3333333333333333, -1.3333333333333333, -0.3333333333333333] cos(y_perp, bow) +1.000000  OK (same plane, same side) | T4-I6 regenerated y cos +1.000000000000000
+CSKEW_30_RADIUS_MISMATCH   member 0-1  committed y [0.3333333333333333, -1.3333333333333333, -0.3333333333333333] cos(y_perp, bow) +1.000000  OK (same plane, same side) | T4-I6 regenerated y cos +1.000000000000000
+CPLANAR_60                 member 0-1  committed y [0.0, 1.0, 0.0]                                      cos(y_perp, bow) -1.000000  OPPOSITE SIDE | T4-I6 regenerated y cos +1.000000000000000
+CSKEW_30_N122              member 0-1  committed y [0.0, 1.0, 0.0]                                      cos(y_perp, bow) -0.744760  DIFFERENT PLANE | T4-I6 regenerated y cos +1.000000000000000
+PP_UTM_2                   member 0-1  committed y [0.0, 1.0, 0.0]                                      cos(y_perp, bow) +1.000000  OK (same plane, same side) | T4-I6 regenerated y cos +1.000000000000000
+RV5_CANT90_PLANAR          member 0-1  committed y [1.0, 0.0, 0.0]                                      cos(y_perp, bow) +1.000000  OK (same plane, same side) | T4-I6 regenerated y cos +1.000000000000000
+RV5_CANT60_PLANAR          member 0-1  committed y [1.0, 0.0, 0.0]                                      cos(y_perp, bow) +1.000000  OK (same plane, same side) | T4-I6 regenerated y cos +1.000000000000000
+RV5_CANT30_SKEW            member 0-1  committed y [1.0, 0.0, 0.0]                                      cos(y_perp, bow) +0.590690  DIFFERENT PLANE | T4-I6 regenerated y cos +1.000000000000000
+RV5_CANT10_SKEW            member 0-1  committed y [1.0, 0.0, 0.0]                                      cos(y_perp, bow) +0.239348  DIFFERENT PLANE | T4-I6 regenerated y cos +1.000000000000000
+RV5_PP_UTM                 member 0-1  committed y [1.0, 0.0, 0.0]                                      cos(y_perp, bow) -1.000000  OPPOSITE SIDE | T4-I6 regenerated y cos +1.000000000000000
+RV5_CSKEW30_K1000          member 0-1  committed y [1.0, 0.0, 0.0]                                      cos(y_perp, bow) +0.333333  DIFFERENT PLANE | T4-I6 regenerated y cos -
+RV5_CSKEW30_K100           member 0-1  committed y [1.0, 0.0, 0.0]                                      cos(y_perp, bow) +0.333333  DIFFERENT PLANE | T4-I6 regenerated y cos -
+RV5_CSKEW30_K60            member 0-1  committed y [1.0, 0.0, 0.0]                                      cos(y_perp, bow) +0.333333  DIFFERENT PLANE | T4-I6 regenerated y cos -
+RV5_CSKEW30_K45            member 0-1  committed y [1.0, 0.0, 0.0]                                      cos(y_perp, bow) +0.333333  DIFFERENT PLANE | T4-I6 regenerated y cos -
+RV5_CSKEW30_K30            member 0-1  committed y [1.0, 0.0, 0.0]                                      cos(y_perp, bow) +0.333333  DIFFERENT PLANE | T4-I6 regenerated y cos +1.000000000000000
+RV5_NEARPI_1E6_MAXMIS      member 0-1  committed y [1.0, 0.0, 0.0]                                      cos(y_perp, bow) +1.000000  OK (same plane, same side) | T4-I6 regenerated y cos -
+RV5_NEARPI_2E9_MAXMIS      member 0-1  committed y [1.0, 0.0, 0.0]                                      cos(y_perp, bow) +1.000000  OK (same plane, same side) | T4-I6 regenerated y cos -
+RV5_NEARPI_2E9_EXACT       member 0-1  committed y [1.0, 0.0, 0.0]                                      cos(y_perp, bow) +1.000000  OK (same plane, same side) | T4-I6 regenerated y cos -

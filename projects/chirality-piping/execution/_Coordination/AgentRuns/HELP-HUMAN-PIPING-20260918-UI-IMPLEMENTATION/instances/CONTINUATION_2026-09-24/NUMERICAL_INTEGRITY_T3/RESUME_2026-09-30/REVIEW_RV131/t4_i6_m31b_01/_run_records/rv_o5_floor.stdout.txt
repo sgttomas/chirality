@@ -1,0 +1,2 @@
+F122 crK (correctly rounded frame entries, exact solve): 6.402e-01 of the criterion; recorded product actual 2.43 (dense) / 1.21 (sparse)
+CSKEW_8_5 crK (RV131 element, correctly rounded): 9.861e-03 (T4-I6: 9.861E-3)

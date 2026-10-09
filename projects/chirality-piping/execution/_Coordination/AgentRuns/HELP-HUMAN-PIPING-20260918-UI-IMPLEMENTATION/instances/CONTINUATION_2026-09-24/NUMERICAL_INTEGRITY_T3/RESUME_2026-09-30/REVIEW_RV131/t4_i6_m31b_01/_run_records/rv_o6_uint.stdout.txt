@@ -1,0 +1,13 @@
+CSKEW_8_5                  y [0.3333333333333333, -1.3333333333333333, -0.3333333333333333] u_int_new vs RV131: 1.17e-11 of the criterion
+CSKEW_30_RADIUS_MISMATCH   y [0.3333333333333333, -1.3333333333333333, -0.3333333333333333] u_int_new vs RV131: 4.29e-11 of the criterion
+CPLANAR_60                 y [0.5000000009999997, -0.8660254032070885, 0.0]               u_int_new vs RV131: 2.83e-11 of the criterion
+CSKEW_30_N122              y [0.24401693767765975, -0.7440169359456088, 0.622008467106779] u_int_new vs RV131: 3.34e-11 of the criterion
+PP_UTM_2                   y [0.0, 1.0, 0.0]                                              u_int_new vs RV131: 4.21e-11 of the criterion
+RV5_CANT90_PLANAR          y [1.0, 0.0, 0.0]                                              u_int_new vs RV131: 1.49e-11 of the criterion
+RV5_CANT60_PLANAR          y [1.0, 0.0, 0.0]                                              u_int_new vs RV131: 2.83e-11 of the criterion
+RV5_CANT30_SKEW            y [0.24401693767765975, -0.7440169359456088, 0.622008467106779] u_int_new vs RV131: 3.34e-11 of the criterion
+RV5_CANT10_SKEW            y [0.08217122769705297, -0.7249588329721179, 0.6838732191235916] u_int_new vs RV131: 3.57e-11 of the criterion
+RV5_PP_UTM                 y [-0.043619384509795286, 0.9990482217065334, 0.0]             u_int_new vs RV131: 4.63e-11 of the criterion
+RV5_CSKEW30_K30            y [0.23570226104551584, -0.9428090415820634, -0.23570225974551584] u_int_new vs RV131: 4.29e-11 of the criterion
+CSKEW_10                   y [0.3333333333333333, -1.3333333333333333, -0.3333333333333333] u_int_new vs RV131: 5.00e-11 of the criterion
+CSKEW_9                    y [0.3333333333333333, -1.3333333333333333, -0.3333333333333333] u_int_new vs RV131: 3.42e-11 of the criterion

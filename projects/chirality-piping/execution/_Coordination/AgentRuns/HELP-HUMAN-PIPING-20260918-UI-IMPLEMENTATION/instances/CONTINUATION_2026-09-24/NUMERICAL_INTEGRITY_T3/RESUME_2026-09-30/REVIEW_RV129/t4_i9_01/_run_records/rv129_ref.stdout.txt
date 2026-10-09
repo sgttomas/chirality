@@ -1,0 +1,44 @@
+RV129 independent enclosure test of T4-I9's ball certificate (python 3.13.14)
+reference: Decimal 120 digits, Gauss-Legendre 56 x 56 nodes, global unit loads, own trig; cross-check at 140 digits / 64 nodes
+columns: certificate | enclosed | max |ref-m|/r | rad=max r/max|f| | refcheck=max|ref-ref2|/max r | probe-ref agreement | binary64 objective defect
+angle 30 deg | certified rho=5.89e-35 | enclosed=True | max|ref-m|/r=8.52e-05 | rad=3.99e-33 | refcheck=3.47e-88 | probe-ref=9.26e-68 | b64 defect=2.39e-14 | phi=0.523599 | 0.6s
+angle 60 deg | certified rho=3.31e-35 | enclosed=True | max|ref-m|/r=8.72e-05 | rad=2.43e-33 | refcheck=7.47e-88 | probe-ref=9.14e-69 | b64 defect=6.92e-15 | phi=1.0472 | 0.6s
+angle 120 deg | certified rho=7.27e-35 | enclosed=True | max|ref-m|/r=1.74e-06 | rad=1.11e-32 | refcheck=1.74e-87 | probe-ref=1.47e-69 | b64 defect=1.23e-16 | phi=2.0944 | 0.6s
+angle 150 deg | certified rho=2.15e-34 | enclosed=True | max|ref-m|/r=1.86e-06 | rad=2.75e-32 | refcheck=1.35e-88 | probe-ref=1.82e-69 | b64 defect=6.25e-16 | phi=2.61799 | 0.6s
+angle 170 deg | certified rho=2.78e-33 | enclosed=True | max|ref-m|/r=1.65e-07 | rad=2.57e-31 | refcheck=1.88e-89 | probe-ref=7.86e-70 | b64 defect=6.38e-16 | phi=2.96706 | 0.5s
+angle 179 deg | certified rho=2.03e-30 | enclosed=True | max|ref-m|/r=4.51e-10 | rad=1.70e-28 | refcheck=8.96e-92 | probe-ref=4.61e-69 | b64 defect=2.42e-15 | phi=3.12414 | 0.5s
+angle 179.9 deg | certified rho=1.97e-27 | enclosed=True | max|ref-m|/r=2.78e-12 | rad=1.63e-25 | refcheck=3.24e-93 | probe-ref=1.33e-68 | b64 defect=2.54e-14 | phi=3.13985 | 0.5s
+angle pi-1e-6 rad | certified rho=1.05e-17 | enclosed=True | max|ref-m|/r=1.63e-18 | rad=8.66e-16 | refcheck=8.03e-100 | probe-ref=3.60e-66 | b64 defect=1.99e-11 | phi=3.14159 | 0.5s
+angle pi-1e-8 rad | certified rho=6.65e-14 | enclosed=True | max|ref-m|/r=1.12e-20 | rad=5.48e-12 | refcheck=1.02e-102 | probe-ref=5.57e-64 | b64 defect=7.52e-10 | phi=3.14159 | 0.5s
+angle 0.5 deg | certified rho=3.05e-31 | enclosed=True | max|ref-m|/r=5.74e-03 | rad=6.76e-28 | refcheck=6.19e-92 | probe-ref=4.52e-61 | b64 defect=1.47e-07 | phi=0.00872665 | 0.3s
+angle 0.05 deg | certified rho=3.02e-28 | enclosed=True | max|ref-m|/r=1.57e-02 | rad=6.65e-24 | refcheck=1.10e-96 | probe-ref=2.51e-56 | b64 defect=3.78e-03 | phi=0.000872665 | 0.3s
+angle 0.0001 rad | certified rho=2.01e-25 | enclosed=True | max|ref-m|/r=3.90e-04 | rad=3.86e-20 | refcheck=2.52e-100 | probe-ref=1.20e-52 | b64 defect=7.44e+00 | phi=0.0001 | 0.3s
+angle 1e-06 rad | certified rho=2.01e-19 | enclosed=True | max|ref-m|/r=3.54e-03 | rad=3.85e-12 | refcheck=1.04e-109 | probe-ref=4.68e-45 | b64 defect=1.71e+09 | phi=1e-06 | 0.2s
+UTM skew 45 deg | certified rho=3.28e-35 | enclosed=True | max|ref-m|/r=1.82e-04 | rad=1.67e-33 | refcheck=1.24e-86 | probe-ref=1.42e-68 | b64 defect=9.72e-15 | phi=0.785398 | 0.6s
+UTM skew 7 deg in-plane | certified rho=8.11e-34 | enclosed=True | max|ref-m|/r=3.13e-04 | rad=2.04e-31 | refcheck=2.01e-88 | probe-ref=1.57e-65 | b64 defect=4.29e-12 | phi=0.122173 | 0.4s
+UTM skew 0.2 deg | certified rho=4.72e-30 | enclosed=True | max|ref-m|/r=2.35e-05 | rad=1.44e-26 | refcheck=3.02e-90 | probe-ref=1.16e-61 | b64 defect=2.36e-07 | phi=0.00349066 | 0.3s
+UTM skew 178 deg | certified rho=2.34e-31 | enclosed=True | max|ref-m|/r=7.62e-09 | rad=1.43e-29 | refcheck=2.34e-90 | probe-ref=1.71e-69 | b64 defect=4.29e-15 | phi=3.10669 | 0.5s
+far offset 5e5/6e6/-12 | certified rho=3.84e-35 | enclosed=True | max|ref-m|/r=4.03e-06 | rad=4.59e-33 | refcheck=3.50e-87 | probe-ref=3.90e-69 | b64 defect=1.62e-15 | phi=1.5708 | 0.4s
+k=0.001 90 deg | certified rho=1.51e-34 | enclosed=True | max|ref-m|/r=3.88e-05 | rad=3.84e-32 | refcheck=3.33e-87 | probe-ref=1.56e-67 | b64 defect=1.48e-14 | phi=1.5708 | 0.5s
+k=30 90 deg | certified rho=2.33e-34 | enclosed=True | max|ref-m|/r=2.38e-06 | rad=1.32e-31 | refcheck=2.93e-88 | probe-ref=1.12e-68 | b64 defect=1.83e-15 | phi=1.5708 | 0.4s
+k=10000 90 deg | certified rho=1.21e-32 | enclosed=True | max|ref-m|/r=7.12e-08 | rad=5.83e-28 | refcheck=1.47e-88 | probe-ref=6.11e-66 | b64 defect=1.39e-12 | phi=1.5708 | 0.4s
+k=1e+08 90 deg | certified rho=1.18e-28 | enclosed=True | max|ref-m|/r=6.87e-12 | rad=5.71e-20 | refcheck=1.93e-92 | probe-ref=1.44e-62 | b64 defect=1.97e-09 | phi=1.5708 | 0.4s
+k=1e+15 90 deg | certified rho=1.18e-21 | enclosed=True | max|ref-m|/r=1.66e-18 | rad=5.72e-06 | refcheck=8.64e-100 | probe-ref=5.15e-55 | b64 defect=1.22e-01 | phi=1.5708 | 0.4s
+k=1e+20 90 deg | certified rho=1.19e-16 | enclosed=True | max|ref-m|/r=1.37e-23 | rad=5.72e+04 | refcheck=1.41e-105 | probe-ref=6.39e-50 | b64 defect=6.03e-01 | phi=1.5708 | 0.4s
+k_in=3 k_out=0.5 60 deg skew | certified rho=7.42e-35 | enclosed=True | max|ref-m|/r=9.85e-06 | rad=1.38e-32 | refcheck=2.47e-87 | probe-ref=7.87e-69 | b64 defect=5.36e-15 | phi=1.0472 | 0.5s
+R=0.05 small bar 90 deg | certified rho=4.44e-34 | enclosed=True | max|ref-m|/r=9.81e-08 | rad=4.58e-31 | refcheck=6.38e-89 | probe-ref=2.49e-69 | b64 defect=1.01e-16 | phi=1.5708 | 0.4s
+R=25 big thin 20 deg | certified rho=1.33e-33 | enclosed=True | max|ref-m|/r=4.67e-05 | rad=1.65e-30 | refcheck=8.14e-89 | probe-ref=1.16e-67 | b64 defect=4.07e-13 | phi=0.349066 | 0.5s
+R=25 big thin 0.3 deg UTM | certified rho=2.64e-31 | enclosed=True | max|ref-m|/r=1.38e-01 | rad=1.21e-28 | refcheck=5.93e-91 | probe-ref=1.13e-60 | b64 defect=5.71e-07 | phi=0.00523599 | 0.3s
+aluminium 75 deg | certified rho=3.56e-35 | enclosed=True | max|ref-m|/r=2.59e-06 | rad=3.63e-33 | refcheck=6.45e-87 | probe-ref=1.54e-69 | b64 defect=5.01e-16 | phi=1.309 | 0.5s
+G<<E 90 deg | certified rho=1.25e-34 | enclosed=True | max|ref-m|/r=2.91e-06 | rad=4.50e-31 | refcheck=6.71e-88 | probe-ref=1.53e-67 | b64 defect=1.06e-14 | phi=1.5708 | 0.4s
+huge w 1e9 skew | certified rho=4.92e-35 | enclosed=True | max|ref-m|/r=1.04e-04 | rad=4.02e-33 | refcheck=4.59e-87 | probe-ref=3.40e-68 | b64 defect=1.56e-14 | phi=0.575959 | 0.5s
+tiny w 1e-6 | certified rho=5.12e-35 | enclosed=True | max|ref-m|/r=1.99e-03 | rad=3.00e-34 | refcheck=3.94e-86 | probe-ref=5.61e-68 | b64 defect=7.92e-15 | phi=0.575959 | 0.5s
+generic w (3 components) | certified rho=4.64e-35 | enclosed=True | max|ref-m|/r=1.11e-05 | rad=7.98e-33 | refcheck=4.58e-87 | probe-ref=6.68e-69 | b64 defect=1.31e-15 | phi=1.74533 | 0.5s
+random 0 (phi=1.8210 rad, R=1.4) | certified rho=1.04e-34 | enclosed=True | max|ref-m|/r=1.50e-05 | rad=7.32e-32 | refcheck=1.32e-87 | probe-ref=2.86e-68 | b64 defect=2.45e-15 | phi=1.82104 | 0.5s
+random 1 (phi=0.3311 rad, R=0.897) | certified rho=6.97e-34 | enclosed=True | max|ref-m|/r=1.95e-04 | rad=7.55e-31 | refcheck=2.03e-88 | probe-ref=6.28e-66 | b64 defect=2.59e-12 | phi=0.331113 | 0.5s
+random 2 (phi=2.1894 rad, R=0.658) | certified rho=7.88e-35 | enclosed=True | max|ref-m|/r=1.66e-05 | rad=1.89e-32 | refcheck=1.18e-87 | probe-ref=8.24e-69 | b64 defect=1.33e-15 | phi=2.18945 | 0.6s
+random 3 (phi=0.6626 rad, R=0.0343) | certified rho=5.45e-34 | enclosed=True | max|ref-m|/r=1.56e-06 | rad=6.16e-31 | refcheck=5.12e-89 | probe-ref=6.82e-68 | b64 defect=4.50e-14 | phi=0.662627 | 0.5s
+random 4 (phi=1.5633 rad, R=0.255) | certified rho=1.29e-34 | enclosed=True | max|ref-m|/r=1.18e-06 | rad=4.50e-32 | refcheck=2.90e-87 | probe-ref=9.06e-69 | b64 defect=7.67e-15 | phi=1.56331 | 0.5s
+random 5 (phi=2.6605 rad, R=10.1) | certified rho=5.40e-34 | enclosed=True | max|ref-m|/r=9.00e-07 | rad=5.18e-30 | refcheck=4.21e-89 | probe-ref=4.97e-68 | b64 defect=3.28e-15 | phi=2.66048 | 0.6s
+
+certified cases: 39; enclosed: 39; refused: 0; worst |ref-m|/r over certified: 1.38e-01

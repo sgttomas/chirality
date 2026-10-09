@@ -1,0 +1,390 @@
+# Run at U5 head f995add7c6d5eb30f2a274a4da7bff7ad75577d5 (cwd WT/u5-docs; WT/venv python)
+### tools/validation/validate_agent_instructions.py --json
+{
+  "files_checked": 4,
+  "errors": 0,
+  "warnings": 0,
+  "findings": []
+}
+exit=0
+### tools/validation/validate_workflow_metadata.py --json
+{
+  "checked_workflow_count": 71,
+  "invalid_workflow_count": 0,
+  "results": [
+    {
+      "workflow": "aggregation",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "audit-agents",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "audit-decomp",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "audit-dep-closure",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "audit-epistemic",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "audit-governance",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "audit-hypergraph-closure",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "audit-scope-closure",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "bounded-reconciliation",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "change",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "construct-local-work-graph",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "content-digest",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "coordinated-knowledge-work",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "create-workflow",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "dbm-concordance-seed",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "dbm-concordance-verify",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "dbm-draft-review",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "dbm-postauthor-concordance",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "dbm-publish",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "dbm-publisher",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "dbm-section-publish",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "decomposition-package-review",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "dependency-extract",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "domain-decomp",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "domain-documents",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "domain-engine",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "domain-hypergraph",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "domain-prose-validate",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "domain-source-atomize",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "drawing-extract",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "drawing-extract-page",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "drawing-titleblock-page",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "equation-audit",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "equation-bbox-detect",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "equation-flag-interpret",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "equipment-costing-extract",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "equipment-extract",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "estimate-prep",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "estimate-snapshot",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "evaluation-protocol",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "evaluation-report",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "four-documents",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "kty-content-remediate",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "kty-metadata-align",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "lens-register",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "pandid-valve-symbol-instance",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "pandid-valve-tile",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "pdf2md",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "pdf2md-folio-extract",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "pdf2md-orchestration",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "pdf2md-page",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "pdf2md-page-assets",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "pdf2md-page-full",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "project-dag",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "project-decomp",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "project-setup",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "reconciliation",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "research-orchestration",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "reverse-engineer-software",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "review",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "scc-resolution-case",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "scope-change",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "scope-change-packet",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "scope-of-work",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "semantic-lensing",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "semantic-matrix-build",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "software-decomp",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "software-prd",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "software-repository-reconnaissance",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "software-test-planning",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "workflow": "task-management",
+      "valid": true,
+      "issues": []
+    }
+  ]
+}
+exit=0
+### tools/validation/validate_conflict_markers.py --base 7b2715cb0e --head HEAD
+PASS: no added unresolved conflict markers.
+exit=0
+### tools/validation/validate_run_record_leaks.py --base 7b2715cb0e --head HEAD
+PASS: 0 changed run-record file(s) scanned; 0 possible credential(s); 0 machine-local symlink(s).
+exit=0
+### tools/validation/validate_root_materialization_fence.py
+G0 PASS: exact governance/historical census validated; stage=effective; no production authorization
+exit=0
+### tools/validation/validate_root_harness_adapter.py
+G1 PASS: governance adapter exact pointers, controls and historical census; stage=effective
+exit=0
+### tools/validation/validate_root_surface_ownership.py
+G2 PASS: accepted successor scopes; historical read custody only
+exit=0
+### tools/validation/validate_root_work_graph_dispatch.py
+G3 PASS (CI mode): work graph work_graph.yaml is schema-valid (root-work-graph/v1); 46 node(s), active: none; declared write targets, disjointness/serialization, and M2 markers check out.
+exit=0

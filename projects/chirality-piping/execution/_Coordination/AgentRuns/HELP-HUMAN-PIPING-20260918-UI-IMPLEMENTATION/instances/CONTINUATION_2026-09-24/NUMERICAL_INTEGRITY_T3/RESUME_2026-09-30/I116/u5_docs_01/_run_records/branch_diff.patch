@@ -1,0 +1,178 @@
+diff --git a/docs/governance_harness/tranche_manifests/PIPING-PRESSURE-RETIREMENT-DOCS-20261009.yaml b/docs/governance_harness/tranche_manifests/PIPING-PRESSURE-RETIREMENT-DOCS-20261009.yaml
+new file mode 100644
+index 0000000000..777e1f1b1a
+--- /dev/null
++++ b/docs/governance_harness/tranche_manifests/PIPING-PRESSURE-RETIREMENT-DOCS-20261009.yaml
+@@ -0,0 +1,91 @@
++schema: instruction-tranche-manifest/v1
++tranche_id: PIPING-PRESSURE-RETIREMENT-DOCS-20261009
++title: Piping's governance documents stop describing the retired legacy pressure capabilities as current
++date: '2026-10-09'
++basis: 7b2715cb0e5efaa69239778b5b3d09582d6c3e91
++instruction_surface_paths:
++  - projects/chirality-piping/docs/TYPES.md
++  - projects/chirality-piping/docs/SPEC.md
++  - projects/chirality-piping/docs/VALIDATION_STRATEGY.md
++  - docs/governance_harness/tranche_manifests/PIPING-PRESSURE-RETIREMENT-DOCS-20261009.yaml
++m2_gate:
++  authorization: >-
++    Ryan Tufts, the repository owner, retired the legacy pressure contract
++    product-wide ("1a, retire it product-wide": 1.0.0/legacy_pressure_v1 is
++    accepted nowhere, and the legacy computation and the oracles that depend
++    on it are removed). He then authorized this documents tranche: "Yes start
++    T4" "…and the governance-documents PR". Both are recorded by HELP_HUMAN,
++    transcribed from the owner's session, in
++    projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/ROOT_RULINGS_V1.md,
++    under "Owner decisions: the legacy pressure contract is retired
++    product-wide; T3 gains a WORKING_ITEMS manager" (2026-10-08 UTC) and
++    "Owner decisions: T4 starts now; the governance-documents PR is
++    authorized" (2026-10-09 UTC). The second sets the scope: a small PR by
++    T3's WORKING_ITEMS that corrects only the piping documents' capability
++    statements on pressure membrane stress and pressure thrust to match the
++    retirement and cites the owner decisions, with this manifest, routed
++    notices to any loop that mirrors those texts, an independent review, and
++    a cut after the retirement PR (#1168) merges. This manifest records the
++    gate and grants no authority (K-AUTH-1).
++  authorized_by: Ryan Tufts (repository owner sgttomas)
++  authorization_date: '2026-10-09'
++  integration_owner: >-
++    T3's WORKING_ITEMS (Agent 1 for piping T3, numerical integrity), the sole
++    serialized integration owner. It merges main into the branch after #1168
++    merges, opens the PR, dispatches the independent review and merges under
++    the standing Git authorization of 2026-09-12. The drafting TASK (I116)
++    commits locally and does not push, open or merge the PR.
++  merge_gate: owner-authorized-pr
++  self_merge: true
++m6_notice:
++  disposition: none-required
++  routed_to: []
++  rationale: >-
++    No project loop pins or mirrors the changed texts. Searched at main
++    7b2715cb0e, which equals #1168 for these three files: (1) every tracked
++    path outside projects/chirality-piping that names piping's docs/TYPES.md,
++    SPEC.md, VALIDATION_STRATEGY.md, INTENT.md or PRD.md; (2) the five files'
++    SHA-256 and Git blob hashes across the whole tree; (3) the changed
++    sentences' own wording across the tree; (4) the App, App v4, Runtime and
++    PEC loops' LOOP_INIT, AGENTS.md, instructions and accepted-basis records;
++    (5) inside Piping, its LOOP_INIT (whose basis is docs/PRD.md, unchanged
++    here), its AGENTS.md, its coordination and decomposition pointers, and
++    the T3 and T4 undertakings' rulings, plans and briefs. Hits are history
++    only: earlier tranche manifests; agent run records and the 2026-09-21
++    deliverable reconciliation snapshot, which pin the old bytes as captured
++    evidence; a 2026-07-28 evaluation script; the 2026-09-05 physics audit's
++    authority bindings; two dated surveys
++    (plans/chirality_piping_solver_maturity_survey_2026-07-31.html and
++    Piping's plans/ASSESSMENT_2026-07-09_physical_model_evaluation.md); and
++    the 2026-09-22 manual v7 source record, which inspected TYPES.md for
++    checking candidacy, not for pressure. Piping's own DAG and deliverable
++    dependency rows name the documents by identity (OPS-TYPES, OPS-SPEC,
++    OPS-VALIDATION-STRATEGY), not by content. Piping's validation-planning
++    inventory (validation/qualification/capability_inventory.json) binds
++    VALIDATION_STRATEGY.md's old hash to revision eec2855d82 and checks it
++    at that revision only, so it is unaffected. Piping owns these documents,
++    and its loop instructions do not bind through them. T4 (pressure
++    stress), which may later add pressure capability, cites none of them.
++scope_limits:
++  - >-
++    Five capability statements change, in three documents. Each describes
++    an implemented slice or suite as having a pressure capability it no
++    longer has: TYPES.md StressRecovery and StressRecoveryBenchmark;
++    SPEC.md section 6, the stress recovery slice and its benchmark suite;
++    and VALIDATION_STRATEGY.md section 2, the DEL-09-02 suite paragraph,
++    which keeps the pressure membrane family as required and states that
++    it has no fixture.
++  - >-
++    Requirement and intent statements are unchanged: PRD.md (the piping
++    loop's basis, amended only through its own decision and scope-change
++    instruments), INTENT.md, SPEC.md section 6's "shall calculate" sentence
++    and VALIDATION_STRATEGY.md section 2's benchmark-family table. They
++    state what the product is to do, not what it does now.
++  - >-
++    The exact straight-pressure contract's standing is not restated: the
++    corrected text says only that pressure is solved through that contract,
++    within its own qualifications. Planned T4 capability is not anticipated.
++  - >-
++    No product source, test, fixture, schema, register, decomposition, DAG,
++    decision record or loop instruction changes. No release, lifecycle
++    promotion, governed acceptance or professional claim follows.
+diff --git a/projects/chirality-piping/docs/SPEC.md b/projects/chirality-piping/docs/SPEC.md
+index 5d4a1c1351..46375f9948 100644
+--- a/projects/chirality-piping/docs/SPEC.md
++++ b/projects/chirality-piping/docs/SPEC.md
+@@ -585,10 +585,16 @@ orientation metadata: their `local_coordinate_system` carries a `y_reference`
+ and may carry provenance. The schema does not add a `local_x_axis` field.
+ 
+ The stress recovery slice is `core/loads/stress_recovery`. It recovers
+-code-neutral mechanics components from explicit element force resultants,
+-section properties, and optional pressure basis inputs: axial normal stress,
+-bending normal stress components, torsional shear stress, and thin-wall
+-pressure membrane components. Missing resultants, missing section or pressure
++code-neutral mechanics components from explicit element force resultants and
++section properties: axial normal stress, bending normal stress components, and
++torsional shear stress. It has no pressure components: its legacy thin-wall
++pressure membrane was removed when the owner retired the legacy pressure
++contract product-wide (owner decision "Owner decisions: the legacy pressure
++contract is retired product-wide; T3 gains a WORKING_ITEMS manager" in
++`execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/ROOT_RULINGS_V1.md`).
++Pressure is solved only through the exact straight-pressure contract
++`2.0.0/exact_straight_pressure_v2`, within that contract's own qualifications.
++Missing resultants, missing section
+ inputs, non-finite values, non-positive properties, incomplete mechanics
+ status, and human-approval status are deterministic findings, not silent
+ defaults. This slice does not provide design-code stress equations, allowables,
+@@ -600,8 +606,11 @@ Stress recovery shall calculate open mechanics quantities such as axial stress,
+ 
+ The stress recovery benchmark suite is `validation/benchmarks/stress`. It
+ contains original invented verification fixtures and hand-calculation notes for
+-axial normal stress, bending normal stress, torsional shear stress, pressure
+-membrane stress, and mechanics-only stress range behavior. The suite compares
++axial normal stress, bending normal stress, torsional shear stress, and
++mechanics-only stress range behavior. Its pressure membrane fixture,
++`STRESS-PRESSURE-MEMBRANE-ORIGINAL`, was an oracle of the retired legacy
++pressure computation and was removed with it (owner decision "Owner decisions:
++the legacy pressure contract is retired product-wide; …"). The suite compares
+ outputs from the governed stress-recovery API without changing production
+ stress-recovery behavior and without introducing code-specific stress
+ equations, allowables, protected standards content, or professional/compliance
+diff --git a/projects/chirality-piping/docs/TYPES.md b/projects/chirality-piping/docs/TYPES.md
+index 2f520a600b..b7c79ee8fc 100644
+--- a/projects/chirality-piping/docs/TYPES.md
++++ b/projects/chirality-piping/docs/TYPES.md
+@@ -169,13 +169,13 @@ claims remain out of scope for this vocabulary.
+ | `PrimitiveLoadCase` | Rust mechanics module for weight, pressure, thermal, imposed-displacement, hydrotest, wind, seismic, and occasional primitive load categories. | It prepares explicit nodal, element-uniform, and imposed-displacement solver-boundary contributions; code-specific combinations, wind/seismic procedures, stress recovery, rule checks, and compliance claims are out of scope. |
+ | `LoadCaseAlgebra` | Rust mechanics-boundary module for user-defined linear combinations, result-state subtraction, and range envelopes over compatible load/result quantities. | It preserves unit/dimension intent and analysis statuses; code-specific public combination defaults, rule expression parsing, stress recovery, and compliance claims are out of scope. |
+ | `UserLoadApplication` | Rust mechanics-boundary module for concentrated forces, concentrated moments, and uniform distributed user loads. | It prepares explicit solver-boundary contributions and result-recovery hooks; code-specific load combinations, default factors, wind/seismic procedures, protected standards content, rule checks, GUI/report/API/CLI behavior, and compliance claims are out of scope. |
+-| `StressRecovery` | Rust mechanics module that recovers axial, bending, torsional, and pressure membrane stress components from explicit resultants and section/pressure inputs. | It does not provide design-code equations, allowables, stress indices, SIF/flexibility factors, protected standards content, public pipe tables, rule checks, or compliance claims. |
++| `StressRecovery` | Rust mechanics module that recovers axial, bending, and torsional stress components from explicit resultants and section inputs. It has no pressure components: its legacy thin-wall pressure membrane was removed when the owner retired the legacy pressure contract product-wide (owner decision "Owner decisions: the legacy pressure contract is retired product-wide; T3 gains a WORKING_ITEMS manager" in `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/ROOT_RULINGS_V1.md`). Pressure is solved only through the exact straight-pressure contract `2.0.0/exact_straight_pressure_v2`, within that contract's own qualifications. | It does not provide design-code equations, allowables, stress indices, SIF/flexibility factors, protected standards content, public pipe tables, rule checks, or compliance claims. |
+ | `RulePack` | User-owned schema-governed artifact defining required inputs, declarative formula slots, user-supplied value slots, user-rule check definitions, provenance, redistribution status, diagnostics, checksums, and professional-boundary flags. | The schema defines structure only; expression grammar, evaluator execution, private storage, public examples, and final result-envelope integration remain downstream work. |
+ | `ExpressionEvaluator` | Rust rule-pack module that evaluates explicit declarative expression trees with variable bindings, dimension metadata, comparisons, and deterministic findings. | It does not parse arbitrary text, execute host-language code, access files/network/processes, select a final expression grammar/library, implement private rule-pack lifecycle, or make code-compliance/professional claims. |
+ | `RulePackLifecycle` | Rust rule-pack module that records lifecycle metadata, privacy/redistribution status, protected-content review state, checksum records, and audit-manifest references for user-owned rule packs. | It hashes caller-supplied canonical payload bytes and emits lifecycle findings; it does not store private rule packs, canonicalize JSON, implement encryption/access control, expose private formulas, or make code-compliance/professional claims. |
+ | `RulePackCompletenessCheck` | Rust rule-pack module that compares required-input declarations with supplied input evidence for values, units, dimensions, provenance, redistribution status, and review state. | It emits deterministic rule-check-blocking findings and `RULE_INPUTS_INCOMPLETE` readiness without evaluating formulas, storing private data, supplying code-specific values, or making code-compliance/professional claims. |
+ | `MechanicsBenchmark` | Rust validation fixture and hand-calculation record for open mechanics behavior such as cantilever response, frame assembly, thermal growth, imposed displacement, and stiffness transforms. | Fixtures must be original/public/permissive with provenance; tolerance policy, release gates, CI thresholds, code-specific acceptance, and professional reliance remain separate human-governed decisions. |
+-| `StressRecoveryBenchmark` | Rust validation fixture and hand-calculation record for code-neutral stress recovery behavior such as axial normal stress, bending normal stress, torsional shear stress, pressure membrane stress, and mechanics-only stress range. | Fixtures must be original/public/permissive with provenance; stress range is not a fatigue check, allowable comparison, code compliance decision, or professional approval (PRD §21.2). |
++| `StressRecoveryBenchmark` | Rust validation fixture and hand-calculation record for code-neutral stress recovery behavior such as axial normal stress, bending normal stress, torsional shear stress, and mechanics-only stress range. Its pressure membrane fixture was an oracle of the retired legacy pressure computation and was removed with it (owner decision "Owner decisions: the legacy pressure contract is retired product-wide; …"). | Fixtures must be original/public/permissive with provenance; stress range is not a fatigue check, allowable comparison, code compliance decision, or professional approval (PRD §21.2). |
+ | `Component` | Piping-specific object such as bend, elbow, branch, reducer, valve, flange, expansion joint, rigid, specialty, or other user-defined component. | User modifiers and code/manufacturer values require provenance and may be private. |
+ | `Material` | User/private or permissively sourced material record with unit-bearing properties, allowable slots, completeness findings, and provenance. | Public schema does not provide protected material allowables, code tables, or proprietary catalog values. |
+ | `Section` | Pipe/section record with unit-bearing properties and provenance. | Protected dimensional tables and proprietary catalog data are not public defaults. |
+diff --git a/projects/chirality-piping/docs/VALIDATION_STRATEGY.md b/projects/chirality-piping/docs/VALIDATION_STRATEGY.md
+index 18d58bda65..9a921bbbb4 100644
+--- a/projects/chirality-piping/docs/VALIDATION_STRATEGY.md
++++ b/projects/chirality-piping/docs/VALIDATION_STRATEGY.md
+@@ -72,7 +72,16 @@ The initial stress recovery benchmark suite for `DEL-09-02` lives under
+ `validation/benchmarks/stress/` with hand-calculation notes under
+ `validation/hand_calcs/stress/`. Its required fixture families are axial
+ normal stress, bending normal stress, torsional shear stress, pressure membrane
+-stress, and mechanics-only stress range. The fixtures use original invented
++stress, and mechanics-only stress range. The pressure membrane family has no
++fixture since the owner retired the legacy pressure contract product-wide:
++`STRESS-PRESSURE-MEMBRANE-ORIGINAL` was an oracle of the retired legacy
++pressure computation and was removed with it (owner decision "Owner decisions:
++the legacy pressure contract is retired product-wide; T3 gains a WORKING_ITEMS
++manager" in
++`execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/ROOT_RULINGS_V1.md`).
++Pressure is solved only through the exact straight-pressure contract
++`2.0.0/exact_straight_pressure_v2`, within that contract's own qualifications.
++The fixtures use original invented
+ values and keep final release tolerances, CI gates, fatigue/allowable
+ criteria, and professional reliance policy as `TBD` until human approval.
+ 

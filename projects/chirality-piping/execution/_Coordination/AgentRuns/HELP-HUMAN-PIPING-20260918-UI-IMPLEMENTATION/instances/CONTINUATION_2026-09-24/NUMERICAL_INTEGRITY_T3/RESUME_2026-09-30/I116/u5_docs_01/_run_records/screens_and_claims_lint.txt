@@ -1,0 +1,19 @@
+# Screens and claims lint, at the U5 branch head f995add7c6d5eb30f2a274a4da7bff7ad75577d5 (cwd: WT/u5-docs)
+
+$ python3 -I WT/tools/t3_host_screen.py . --staged   (before each commit)
+files 4, hits 0, names screened 5   (commit 3b1d870227)
+files 1, hits 0, names screened 5   (commit ca415e282d)
+files 1, hits 0, names screened 5   (commit f995add7c6)
+
+$ WT/venv/bin/python tools/validation/validate_private_terms.py --from-host --terms-file <private terms file> --staged   (before each commit)
+PASS: 4 changed file(s) scanned against 5 private term(s); 0 finding(s).   (commit 3b1d870227)
+PASS: 1 changed file(s) scanned against 5 private term(s); 0 finding(s).   (commit ca415e282d)
+PASS: 1 changed file(s) scanned against 5 private term(s); 0 finding(s).   (commit f995add7c6)
+
+$ WT/venv/bin/python tools/validation/validate_private_terms.py --from-host --terms-file <private terms file> --base 7b2715cb0e --head HEAD
+PASS: 4 changed file(s) scanned against 5 private term(s); 0 finding(s).
+exit=0
+
+$ WT/venv/bin/python -I tools/validation/validate_claims_language.py
+VALID claims-language surfaces: 385 files scanned; DEC-081 registry taxonomy satisfied
+exit=0

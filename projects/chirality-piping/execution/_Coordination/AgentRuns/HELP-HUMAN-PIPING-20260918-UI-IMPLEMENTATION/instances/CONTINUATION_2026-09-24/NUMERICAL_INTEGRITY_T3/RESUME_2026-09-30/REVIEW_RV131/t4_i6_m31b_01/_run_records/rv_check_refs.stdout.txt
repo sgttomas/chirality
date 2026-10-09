@@ -1,0 +1,63 @@
+== frozen K vs RV131 global-quadrature element (max|dK|/max|K|), all cases
+  B90-IP-k1.0-base           phi 1.570796e+00 rel dev 2.10e-20  phi rel dev 1.1e-25
+  B90-IP-k1.0-rotated        phi 1.570796e+00 rel dev 8.76e-21  phi rel dev 2.6e-25
+  B90-IP-k2.5-base           phi 1.570796e+00 rel dev 1.67e-20  phi rel dev 1.1e-25
+  B90-IP-k2.5-rotated        phi 1.570796e+00 rel dev 3.20e-20  phi rel dev 2.6e-25
+  B90-SK-k1.0-base           phi 1.570796e+00 rel dev 3.11e-20  phi rel dev 2.2e-25
+  B90-SK-k1.0-rotated        phi 1.570796e+00 rel dev 1.87e-20  phi rel dev 1.1e-26
+  B90-SK-k2.5-base           phi 1.570796e+00 rel dev 3.04e-20  phi rel dev 2.2e-25
+  B90-SK-k2.5-rotated        phi 1.570796e+00 rel dev 3.28e-20  phi rel dev 1.1e-26
+  B45-IP-k1.0-base           phi 7.853982e-01 rel dev 8.69e-21  phi rel dev 2.6e-26
+  B45-IP-k1.0-rotated        phi 7.853982e-01 rel dev 8.89e-21  phi rel dev 6.3e-26
+  B45-IP-k2.5-base           phi 7.853982e-01 rel dev 9.28e-21  phi rel dev 2.6e-26
+  B45-IP-k2.5-rotated        phi 7.853982e-01 rel dev 1.17e-20  phi rel dev 6.3e-26
+  B45-SK-k1.0-base           phi 7.853982e-01 rel dev 5.63e-21  phi rel dev 2.4e-26
+  B45-SK-k1.0-rotated        phi 7.853982e-01 rel dev 5.38e-21  phi rel dev 4.3e-26
+  B45-SK-k2.5-base           phi 7.853982e-01 rel dev 1.32e-20  phi rel dev 2.4e-26
+  B45-SK-k2.5-rotated        phi 7.853982e-01 rel dev 1.06e-20  phi rel dev 4.3e-26
+  B5-IP-k1.0-base            phi 8.726646e-02 rel dev 5.88e-21  phi rel dev 2.4e-27
+  B5-IP-k1.0-rotated         phi 8.726646e-02 rel dev 1.54e-20  phi rel dev 5.4e-26
+  B5-IP-k2.5-base            phi 8.726646e-02 rel dev 2.39e-20  phi rel dev 2.4e-27
+  B5-IP-k2.5-rotated         phi 8.726646e-02 rel dev 4.00e-21  phi rel dev 5.4e-26
+  B5-SK-k1.0-base            phi 8.726646e-02 rel dev 1.15e-20  phi rel dev 3.9e-26
+  B5-SK-k1.0-rotated         phi 8.726646e-02 rel dev 8.24e-21  phi rel dev 4.9e-26
+  B5-SK-k2.5-base            phi 8.726646e-02 rel dev 1.89e-20  phi rel dev 3.9e-26
+  B5-SK-k2.5-rotated         phi 8.726646e-02 rel dev 3.72e-20  phi rel dev 4.9e-26
+  B1E-4-IP-k1.0-base         phi 1.000000e-04 rel dev 1.02e-20  phi rel dev 4.0e-26
+  B1E-4-IP-k1.0-rotated      phi 1.000000e-04 rel dev 1.42e-20  phi rel dev 5.3e-27
+  B1E-4-IP-k2.5-base         phi 1.000000e-04 rel dev 1.36e-20  phi rel dev 4.0e-26
+  B1E-4-IP-k2.5-rotated      phi 1.000000e-04 rel dev 1.58e-20  phi rel dev 5.3e-27
+  B1E-4-SK-k1.0-base         phi 1.000000e-04 rel dev 9.98e-21  phi rel dev 9.4e-26
+  B1E-4-SK-k1.0-rotated      phi 1.000000e-04 rel dev 4.53e-21  phi rel dev 2.3e-25
+  B1E-4-SK-k2.5-base         phi 1.000000e-04 rel dev 1.97e-20  phi rel dev 9.4e-26
+  B1E-4-SK-k2.5-rotated      phi 1.000000e-04 rel dev 1.48e-20  phi rel dev 2.3e-25
+  B1E-8-IP-k1.0-base         phi 1.000000e-08 rel dev 8.44e-21  phi rel dev 2.6e-25
+  B1E-8-IP-k1.0-rotated      phi 1.000000e-08 rel dev 7.92e-21  phi rel dev 2.6e-25
+  B1E-8-IP-k2.5-base         phi 1.000000e-08 rel dev 8.30e-21  phi rel dev 2.6e-25
+  B1E-8-IP-k2.5-rotated      phi 1.000000e-08 rel dev 1.11e-20  phi rel dev 2.6e-25
+  B1E-8-SK-k1.0-base         phi 1.000000e-08 rel dev 1.35e-20  phi rel dev 3.6e-26
+  B1E-8-SK-k1.0-rotated      phi 1.000000e-08 rel dev 5.12e-21  phi rel dev 2.9e-25
+  B1E-8-SK-k2.5-base         phi 1.000000e-08 rel dev 1.77e-20  phi rel dev 3.6e-26
+  B1E-8-SK-k2.5-rotated      phi 1.000000e-08 rel dev 7.99e-21  phi rel dev 2.9e-25
+  BPI-1E-6-IP-k1.0-base      phi 3.141592e+00 rel dev 9.27e-21  phi rel dev 3.0e-26
+  BPI-1E-6-IP-k1.0-rotated   phi 3.141592e+00 rel dev 1.19e-20  phi rel dev 7.1e-26
+  BPI-1E-6-IP-k2.5-base      phi 3.141592e+00 rel dev 2.43e-21  phi rel dev 3.0e-26
+  BPI-1E-6-IP-k2.5-rotated   phi 3.141592e+00 rel dev 2.58e-20  phi rel dev 7.1e-26
+  BPI-1E-6-SK-k1.0-base      phi 3.141592e+00 rel dev 8.06e-21  phi rel dev 2.1e-27
+  BPI-1E-6-SK-k1.0-rotated   phi 3.141592e+00 rel dev 1.30e-20  phi rel dev 2.7e-26
+  BPI-1E-6-SK-k2.5-base      phi 3.141592e+00 rel dev 2.99e-20  phi rel dev 2.1e-27
+  BPI-1E-6-SK-k2.5-rotated   phi 3.141592e+00 rel dev 1.18e-20  phi rel dev 2.7e-26
+  CB_Q90_TOY-k2.5-1.75       phi 1.570796e+00 rel dev 1.70e-20  phi rel dev 2.0e-25
+worst: 3.72e-20 B5-SK-k2.5-rotated
+
+== K1 kill models (m31b_kill_and_mutant): u_int and the binary64 formula-chord mutant, recomputed
+  K1-IP-1E-8-X0        u_int(T4-I6) vs RV131: 4.20e-11 crit | mutant ratio RV131 6.3716 (T4-I6 6.372E+0) | dc/L 5.000e-09 | cos(phi_b)==1: True
+  K1-IP-1E-8-X5e6      u_int(T4-I6) vs RV131: 4.20e-11 crit | mutant ratio RV131 6.3716 (T4-I6 6.372E+0) | dc/L 5.000e-09 | cos(phi_b)==1: True
+  K1-IP-2E-8-X0        u_int(T4-I6) vs RV131: 3.80e-11 crit | mutant ratio RV131 1.4046 (T4-I6 1.405E+0) | dc/L 1.102e-09 | cos(phi_b)==1: False
+  K1-IP-2E-8-X5e6      u_int(T4-I6) vs RV131: 3.80e-11 crit | mutant ratio RV131 1.4046 (T4-I6 1.405E+0) | dc/L 1.102e-09 | cos(phi_b)==1: False
+  K1-IP-1E-4-X0        u_int(T4-I6) vs RV131: 1.84e-11 crit | mutant ratio RV131 0.0003 (T4-I6 3.342E-4) | dc/L 2.622e-13 | cos(phi_b)==1: False
+  K1-IP-1E-4-X5e6      u_int(T4-I6) vs RV131: 1.84e-11 crit | mutant ratio RV131 0.0003 (T4-I6 3.342E-4) | dc/L 2.622e-13 | cos(phi_b)==1: False
+  K1-SK-1E-8-X0        u_int(T4-I6) vs RV131: 2.10e-11 crit | mutant ratio RV131 6.2249 (T4-I6 6.225E+0) | dc/L 5.000e-09 | cos(phi_b)==1: True
+  K1-SK-1E-8-X5e6      u_int(T4-I6) vs RV131: 2.10e-11 crit | mutant ratio RV131 6.2249 (T4-I6 6.225E+0) | dc/L 5.000e-09 | cos(phi_b)==1: True
+  K1-IP-PI-1E-7-X0     u_int(T4-I6) vs RV131: 3.50e-11 crit | mutant ratio RV131 0.2100 (T4-I6 2.100E-1) | dc/L 1.839e-10 | cos(phi_b)==1: False
+  K1-IP-PI-1E-7-X5e6   u_int(T4-I6) vs RV131: 3.50e-11 crit | mutant ratio RV131 0.2100 (T4-I6 2.100E-1) | dc/L 1.839e-10 | cos(phi_b)==1: False

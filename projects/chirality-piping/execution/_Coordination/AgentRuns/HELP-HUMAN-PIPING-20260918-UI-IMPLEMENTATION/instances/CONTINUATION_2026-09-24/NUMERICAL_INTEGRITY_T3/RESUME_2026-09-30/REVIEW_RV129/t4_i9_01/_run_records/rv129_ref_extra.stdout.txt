@@ -1,0 +1,21 @@
+RV129 independent enclosure test of T4-I9's ball certificate (python 3.13.14)
+reference: Decimal 120 digits, Gauss-Legendre 56 x 56 nodes, global unit loads, own trig; cross-check at 140 digits / 64 nodes
+columns: certificate | enclosed | max |ref-m|/r | rad=max r/max|f| | refcheck=max|ref-ref2|/max r | probe-ref agreement | binary64 objective defect
+k=1e+11 90 deg [b64 inverse err 1.76e-06] | certified rho=1.19e-25 | enclosed=True | max|ref-m|/r=1.30e-15 | rad=5.74e-14 | refcheck=1.47e-96 | probe-ref=1.41e-60 | b64 defect=1.27e-05 | phi=1.570796327 | 0.5s
+k=1e+25 90 deg [b64 inverse err 1.00e+00] | certified rho=1.20e-11 | enclosed=True | max|ref-m|/r=1.92e-28 | rad=5.77e+14 | refcheck=4.42e-110 | probe-ref=6.05e-45 | b64 defect=1.62e+15 | phi=1.570796327 | 0.4s
+k=1e+30 90 deg [b64 inverse err 1.00e+00] | certified rho=1.18e-06 | enclosed=True | max|ref-m|/r=1.78e-34 | rad=5.71e+24 | refcheck=4.07e-115 | probe-ref=4.56e-40 | b64 defect=1.35e+15 | phi=1.570796327 | 0.4s
+k=1e+33 90 deg [b64 inverse err 1.00e+00] | certified rho=1.19e-03 | enclosed=True | max|ref-m|/r=1.55e-36 | rad=5.76e+30 | refcheck=2.62e-118 | probe-ref=6.31e-37 | b64 defect=2.68e-01 | phi=1.570796327 | 0.5s
+k=1e+35 90 deg [b64 inverse err 1.00e+00] | certified rho=1.18e-01 | enclosed=True | max|ref-m|/r=1.05e-38 | rad=6.48e+34 | refcheck=1.78e-123 | probe-ref=6.45e-35 | b64 defect=1.06e+00 | phi=1.570796327 | 0.5s
+k=1e+36 90 deg | REFUSED (flexibility inverse not certified: rho=1.18731) | binary64 objective defect vs reference = 2.88e+14 | binary64 inverse of F: max entry error / max|K| = 1.00e+00 (max|K| = 9.75e+07) | phi=1.570796327
+k=1e+37 90 deg | REFUSED (flexibility inverse not certified: rho=12.0947) | binary64 objective defect vs reference = 1.04e+15 | binary64 inverse of F: max entry error / max|K| = 1.00e+00 (max|K| = 9.75e+07) | phi=1.570796327
+k=1e+38 90 deg | REFUSED (flexibility inverse not certified: rho=87.4751) | binary64 objective defect vs reference = 1.34e+15 | binary64 inverse of F: max entry error / max|K| = 1.00e+00 (max|K| = 9.75e+07) | phi=1.570796327
+k=1e+40 90 deg | REFUSED (flexibility inverse not certified: rho=761.816) | binary64 objective defect vs reference = 1.31e+00 | binary64 inverse of F: max entry error / max|K| = inf (max|K| = 0.00e+00) | phi=1.570796327
+angle pi-3e-09 rad [b64 inverse err 5.15e-16] | certified rho=6.65e-14 | enclosed=True | max|ref-m|/r=1.12e-20 | rad=5.48e-12 | refcheck=1.02e-102 | probe-ref=5.57e-64 | b64 defect=7.52e-10 | phi=3.1415926 | 0.4s
+angle pi-2e-09 rad [b64 inverse err 5.15e-16] | certified rho=6.65e-14 | enclosed=True | max|ref-m|/r=1.12e-20 | rad=5.48e-12 | refcheck=1.02e-102 | probe-ref=5.57e-64 | b64 defect=7.52e-10 | phi=3.1415926 | 0.5s
+angle pi-1.5e-09 rad [b64 inverse err 5.15e-16] | certified rho=6.65e-14 | enclosed=True | max|ref-m|/r=1.12e-20 | rad=5.48e-12 | refcheck=1.02e-102 | probe-ref=5.57e-64 | b64 defect=7.52e-10 | phi=3.1415926 | 0.4s
+angle pi-1.1e-09 rad [b64 inverse err 5.15e-16] | certified rho=6.65e-14 | enclosed=True | max|ref-m|/r=1.12e-20 | rad=5.48e-12 | refcheck=1.02e-102 | probe-ref=5.57e-64 | b64 defect=7.52e-10 | phi=3.1415926 | 0.5s
+angle 1e-07 rad [b64 inverse err 3.67e-16] | certified rho=2.01e-16 | enclosed=True | max|ref-m|/r=7.61e-03 | rad=3.85e-08 | refcheck=1.32e-111 | probe-ref=9.58e-41 | b64 defect=2.60e+13 | phi=1.000000005e-07 | 0.2s
+angle 1e-08 rad [b64 inverse err 1.34e-16] | certified rho=2.01e-13 | enclosed=True | max|ref-m|/r=1.53e-02 | rad=3.85e-04 | refcheck=1.07e-116 | probe-ref=6.05e-37 | b64 defect=7.11e+17 | phi=9.999999273e-09 | 0.2s
+angle 1.01e-09 rad [b64 inverse err 7.32e-16] | certified rho=1.95e-10 | enclosed=True | max|ref-m|/r=1.24e-02 | rad=3.70e+00 | refcheck=8.01e-120 | probe-ref=5.04e-33 | b64 defect=6.97e+19 | phi=1.009999899e-09 | 0.2s
+
+certified cases: 12; enclosed: 12; refused: 4; worst |ref-m|/r over certified: 1.53e-02

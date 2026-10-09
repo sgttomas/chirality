@@ -1,0 +1,5 @@
+add: 48000 exact checks, 0 outside the ball
+mul: 48000 exact checks, 0 outside the ball
+div: 48000 exact checks, 0 outside the ball
+sqrt: 12000 exact checks, 0 outside the ball
+inv: 4320 exact checks, 0 outside the ball

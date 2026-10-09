@@ -1,0 +1,2957 @@
+{
+ "about": "U3 Pass B (I107): entries for the hunks of main ba500defa4 (B1 + PR-N as merged) -> 8a12de28db (U3's code) that need one, keyed by the delta tool's fingerprint, each attributed by mk_delta_reviewed_u3.py's checks (its docstring states them and premise P0).",
+ "dry_run_inventory": {
+  "old": "ba500defa498a454be182ed46db795fc3e04d627",
+  "new": "8a12de28db5ede85d3df09d5307e795ff39e4373",
+  "needing_entries": 129
+ },
+ "by_kind": {
+  "A": 2,
+  "F": 4,
+  "H": 2,
+  "Q": 4,
+  "R": 83,
+  "S": 21,
+  "T": 2,
+  "W": 10,
+  "Z": 1
+ },
+ "entries": [
+  {
+   "fingerprint": "ea13a0648c02b3ecf8f9719be3b9a613a4024aeb591fa0463d16ebc8f7cbddb3",
+   "file": "core/loads/primitive_loads/src/lib.rs",
+   "at_final_basis": "lib.rs:after 1134",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pub internal_area: Option<f64>,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "internal_area"
+   ]
+  },
+  {
+   "fingerprint": "f8df47e3f2c3f7918742c4e0fb90f01acd2bc67b294e02185e8c817af2237cb5",
+   "file": "core/loads/primitive_loads/src/lib.rs",
+   "at_final_basis": "lib.rs:after 1142",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "internal_area: Option<f64>,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "internal_area"
+   ],
+   "enclosing_fn_at_base": "new"
+  },
+  {
+   "fingerprint": "1f9c942894c19062adf58ad89738c09769817828d9be58df86f840e1a07b7de8",
+   "file": "core/loads/primitive_loads/src/lib.rs",
+   "at_final_basis": "lib.rs:after 1148",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "internal_area,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "internal_area"
+   ],
+   "enclosing_fn_at_base": "new"
+  },
+  {
+   "fingerprint": "7bc4dc9e63f502ea616d964ccd66a816114bd9ecd01d09073e9d326aa28b882b",
+   "file": "core/loads/primitive_loads/src/lib.rs",
+   "at_final_basis": "lib.rs:after 2343",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "PrimitiveLoadCategory::Pressure => {",
+    "if magnitude.dimension != LoadDimension::Pressure {",
+    "findings.push(LoadFinding::new(",
+    "FindingCode::InvalidLoadDimension,",
+    "&load.load_id,",
+    "\"pressure thrust axial effect requires Pressure magnitude\","
+   ],
+   "added": [],
+   "removed_lines": 31,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "Pressure",
+    "internal_area"
+   ],
+   "enclosing_fn_at_base": "prepare_straight_pipe_axial_effects"
+  },
+  {
+   "fingerprint": "cbe9d9cb9b582281345d9f04ad37e08d718c650a859bdea71364dd9799350076",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 38",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "MissingPressureInput,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "MissingPressureInput"
+   ]
+  },
+  {
+   "fingerprint": "35616f760f153ec9bbcf1b00cd58f9571e8daf82ef206c309a4eea30a2419d65",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 195",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "#[derive(Debug, Clone, PartialEq)]",
+    "pub struct PressureBasis {",
+    "pub pressure: Option<f64>,",
+    "pub membrane_radius: Option<f64>,",
+    "pub wall_thickness: Option<f64>,",
+    "}"
+   ],
+   "added": [],
+   "removed_lines": 42,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 5 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureBasis",
+    "PressureBasisUnitMetadata",
+    "membrane_radius",
+    "pressure",
+    "wall_thickness"
+   ]
+  },
+  {
+   "fingerprint": "b0065a6675479db06ca5b516c9257322407c4da3896e57ef1441caee9b73a9d0",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 201",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pub pressure_hoop: Option<f64>,",
+    "pub pressure_longitudinal: Option<f64>,"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_hoop",
+    "pressure_longitudinal"
+   ]
+  },
+  {
+   "fingerprint": "1ac1dbfa9c7d6e5b978a0f232e576e1e70e29f7033059ca6e1527f002d6191b2",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 210",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure_hoop: None,",
+    "pressure_longitudinal: None,"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_hoop",
+    "pressure_longitudinal"
+   ],
+   "enclosing_fn_at_base": "empty"
+  },
+  {
+   "fingerprint": "f1a7082b78b47b3d03b8f2cca20d6d61e0edfb6c4107d526a53f4c8464149689",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 240",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "StressComponentKind::PressureHoop => self.pressure_hoop,",
+    "StressComponentKind::PressureLongitudinal => self.pressure_longitudinal,"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 4 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureHoop",
+    "PressureLongitudinal",
+    "pressure_hoop",
+    "pressure_longitudinal"
+   ],
+   "enclosing_fn_at_base": "value_for"
+  },
+  {
+   "fingerprint": "83544c7f987b9793536c29f3cc53fb3ae7074fb9fae963427bc02e3dfa6b835e",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 250",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "PressureHoop,",
+    "PressureLongitudinal,"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureHoop",
+    "PressureLongitudinal"
+   ]
+  },
+  {
+   "fingerprint": "bf4f67c3dec01e70f9ac0f0e012ea4d84cb004a1dc243475e6c98d631214364f",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 265",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pub pressure_hoop_range: Option<f64>,",
+    "pub pressure_longitudinal_range: Option<f64>,"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_hoop_range",
+    "pressure_longitudinal_range"
+   ]
+  },
+  {
+   "fingerprint": "97a8dba77429349625df8c474d69c2a35b58f2b7b05d1cc5ab8c17d9ea9621dd",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 274",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure_hoop_range: None,",
+    "pressure_longitudinal_range: None,"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_hoop_range",
+    "pressure_longitudinal_range"
+   ],
+   "enclosing_fn_at_base": "empty"
+  },
+  {
+   "fingerprint": "6ed3cbdfd6ca4acf66d340cec5b3161e42ca2ccb7df9e70bcb2bf013bdb25a8c",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 282",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pub pressure: Option<PressureBasis>,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureBasis",
+    "pressure"
+   ]
+  },
+  {
+   "fingerprint": "e9beed28bdd44efef338776e99bd695c750a79457617de8c7cb2c9104b994d44",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 289",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pub pressure: Option<PressureBasisUnitMetadata>,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureBasisUnitMetadata",
+    "pressure"
+   ]
+  },
+  {
+   "fingerprint": "010a0e0b0f7664cc47023a457a3d36610aa5cbaab60e89b783ef9c17bebc243f",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 296",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure"
+   ],
+   "enclosing_fn_at_base": "new"
+  },
+  {
+   "fingerprint": "6ed3cbdfd6ca4acf66d340cec5b3161e42ca2ccb7df9e70bcb2bf013bdb25a8c",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 363",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pub pressure: Option<PressureBasis>,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureBasis",
+    "pressure"
+   ]
+  },
+  {
+   "fingerprint": "134dac08f80613f48423de30359252433d4b5aae02ee893bcded5d98535fa6c9",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 371",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure: Option<PressureBasis>,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 3 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureBasis",
+    "pressure",
+    "Option"
+   ],
+   "enclosing_fn_at_base": "from_station_resultants"
+  },
+  {
+   "fingerprint": "010a0e0b0f7664cc47023a457a3d36610aa5cbaab60e89b783ef9c17bebc243f",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 378",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure"
+   ],
+   "enclosing_fn_at_base": "from_station_resultants"
+  },
+  {
+   "fingerprint": "a43f2ccbd39a65c753cacfec52690b06b78cd4701beefcfe275bbfc86c0ec0e1",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 459",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "if let Some(pressure) = &input.pressure {",
+    "let (hoop, longitudinal) = pressure_membrane(pressure, &mut findings);",
+    "components.pressure_hoop = hoop;",
+    "components.pressure_longitudinal = longitudinal;",
+    "}"
+   ],
+   "added": [],
+   "removed_lines": 6,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 6 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "hoop",
+    "pressure",
+    "pressure_hoop",
+    "pressure_longitudinal",
+    "pressure_membrane",
+    "longitudinal"
+   ],
+   "enclosing_fn_at_base": "recover_stresses"
+  },
+  {
+   "fingerprint": "93a28c5c0d22dfc295732fff205325a4bf81eee7a2d468fa281d1f4468f3ad9b",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 481",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure: input.pressure.clone(),"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure"
+   ],
+   "enclosing_fn_at_base": "recover_station_stresses"
+  },
+  {
+   "fingerprint": "134dac08f80613f48423de30359252433d4b5aae02ee893bcded5d98535fa6c9",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 494",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure: Option<PressureBasis>,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 3 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureBasis",
+    "pressure",
+    "Option"
+   ],
+   "enclosing_fn_at_base": "recover_station_stress_sweep"
+  },
+  {
+   "fingerprint": "ad5793cd6c20ccdcebd93471791acc5bfbc1a9856a259d3ffa91e5e663d88dbb",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 505",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure.clone(),"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure"
+   ],
+   "enclosing_fn_at_base": "recover_station_stress_sweep"
+  },
+  {
+   "fingerprint": "17f02a9a8a3a9c23d815321e416f0e6619febc0a94abb442bd0ee41632f1c91a",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 600",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "if let Some(pressure) = &input.pressure {",
+    "let pressure_units = units.pressure.as_ref();",
+    "check_unit_metadata(",
+    "pressure.pressure,",
+    "pressure_units.and_then(|metadata| metadata.pressure.as_ref()),",
+    "\"pressure\","
+   ],
+   "added": [],
+   "removed_lines": 24,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 7 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "Pressure",
+    "membrane_radius",
+    "pressure",
+    "pressure_units",
+    "and_then",
+    "metadata",
+    "wall_thickness"
+   ],
+   "enclosing_fn_at_base": "validate_stress_input_unit_metadata"
+  },
+  {
+   "fingerprint": "80d273a97490e0567c18ce25d57adb90556474ac4cd654d4684d622ced0ce868",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 663",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure_hoop_range: range_optional(",
+    "first_components.pressure_hoop,",
+    "second_components.pressure_hoop,",
+    "\"pressure_hoop_range\",",
+    "&mut findings,",
+    "),"
+   ],
+   "added": [],
+   "removed_lines": 12,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 4 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_hoop",
+    "pressure_hoop_range",
+    "pressure_longitudinal",
+    "pressure_longitudinal_range"
+   ],
+   "enclosing_fn_at_base": "recover_stress_range"
+  },
+  {
+   "fingerprint": "c52ae3fdb0edc6ee471f598a24e407644c9f5f8df2ad861b8e7a04f991b4c549",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 822",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "fn pressure_membrane(",
+    "pressure: &PressureBasis,",
+    "findings: &mut Vec<StressFinding>,",
+    ") -> (Option<f64>, Option<f64>) {",
+    "let pressure_value = require_finite(",
+    "pressure.pressure,"
+   ],
+   "added": [],
+   "removed_lines": 36,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 14 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "MissingPressureInput",
+    "PressureBasis",
+    "hoop",
+    "membrane_radius",
+    "pressure",
+    "pressure_membrane",
+    "pressure_value",
+    "and_then",
+    "longitudinal",
+    "p",
+    "r",
+    "t"
+   ],
+   "enclosing_fn_at_base": "pressure_membrane"
+  },
+  {
+   "fingerprint": "d29c374865f676aed073cc48bb90f57baf78e6f9f42fbee47368ad99d486b781",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:after 903",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "let pressure_longitudinal = components.pressure_longitudinal.unwrap_or(0.0);"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_longitudinal"
+   ],
+   "enclosing_fn_at_base": "summarize_components"
+  },
+  {
+   "fingerprint": "045e98381880cc643e20d2dc2c6dc3b73e3c63365d42ccd71e4f96924cbe6490",
+   "file": "core/loads/stress_recovery/src/lib.rs",
+   "at_final_basis": "lib.rs:906-908",
+   "class": "live",
+   "attribution": "H",
+   "removed": [
+    "let base_normal = axial + pressure_longitudinal;"
+   ],
+   "added": [
+    "let base_normal = axial + 0.0;"
+   ],
+   "removed_lines": 1,
+   "added_lines": 3,
+   "evidence": "H-1: the retired pressure summand becomes the literal `0.0`; premise P0: the summand was +0.0 on every admitted model, so the arithmetic and the published sign of a zero are unchanged",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_longitudinal"
+   ],
+   "enclosing_fn_at_base": "summarize_components",
+   "replaced_tokens": [
+    "pressure_longitudinal  ->  0.0"
+   ]
+  },
+  {
+   "fingerprint": "ff84e933dbc01495d9a4bc68ee4f1271d1642ce4cd74ad42f249dee6f5a5cfda",
+   "file": "core/product_physics/src/historical_pressure_reference.rs",
+   "at_final_basis": "historical_pressure_reference.rs:after 0",
+   "class": "item",
+   "attribution": "T",
+   "removed": [
+    "use crate::{LinearStaticPreviewRequest, MechanicsEnvelope, PreviewSolverMode};",
+    "use std::cell::Cell;",
+    "thread_local! { static ACTIVE: Cell<bool> = const { Cell::new(false) }; }",
+    "pub(super) fn active() -> bool { ACTIVE.with(Cell::get) }",
+    "pub(super) fn with_scope<T>(operation: impl FnOnce() -> T) -> T {",
+    "struct Restore(bool);"
+   ],
+   "added": [],
+   "removed_lines": 30,
+   "added_lines": 0,
+   "evidence": "the deleted file (its 30 lines): declared only as `#[cfg(test)] mod historical_pressure_reference;` (base lib.rs:107-108); compiled into the lib test binary only. It held the named historical tests' scope that suspended the legacy-pressure and joint refusals",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_contract",
+    "pressure_regions",
+    "ACTIVE",
+    "Cell",
+    "Drop",
+    "FnOnce",
+    "LinearStaticPreviewRequest",
+    "MechanicsEnvelope",
+    "PreviewSolverMode",
+    "Restore",
+    "T",
+    "_restore"
+   ]
+  },
+  {
+   "fingerprint": "28ccf64943fbdc863261fd89c687c50e68f3a9b153904bce438aef8e17243519",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:40-40",
+   "class": "item",
+   "attribution": "S",
+   "removed": [
+    "use open_pipe_stress_frame_kernel::exact_sum::{exact_rounded_sum, ExactAccumulator};"
+   ],
+   "added": [
+    "use open_pipe_stress_frame_kernel::exact_sum::ExactAccumulator;"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "exact_rounded_sum"
+   ],
+   "deleted_tokens": [
+    "{ exact_rounded_sum ,",
+    "}"
+   ]
+  },
+  {
+   "fingerprint": "ae5a9c53219937568ed2c7be52e76eac65353742fa027f583b6d0d5ea27865d2",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:96-96",
+   "class": "item",
+   "attribution": "S",
+   "removed": [
+    "recover_stresses, AnalysisStatus, ForceResultants, PressureBasis, StressComponents,"
+   ],
+   "added": [
+    "recover_stresses, AnalysisStatus, ForceResultants, StressComponents,"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureBasis"
+   ],
+   "deleted_tokens": [
+    "PressureBasis ,"
+   ]
+  },
+  {
+   "fingerprint": "d74694de1da48ede453a435fb0048a7d5ce673487164985f49de61322199fa30",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 1423",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure_thrust_loads: &[PressureThrustLoad],"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureThrustLoad",
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "force_scaling_attempt"
+  },
+  {
+   "fingerprint": "002b550f5c9d59c204825dde86db3f90640ee493f2e1b7761380b3638256caf4",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 1480",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure_thrust_loads,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "force_scaling_attempt"
+  },
+  {
+   "fingerprint": "d74694de1da48ede453a435fb0048a7d5ce673487164985f49de61322199fa30",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 1541",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure_thrust_loads: &[PressureThrustLoad],"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureThrustLoad",
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "force_scaling_admission"
+  },
+  {
+   "fingerprint": "778478a2e201290f3782cad08836482ace37de64b776344ae8f619daf1b6cf29",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 1563",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "} else if !pressure_thrust_loads.is_empty() {",
+    "Some(\"pressure_thrust_load\")"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "force_scaling_admission"
+  },
+  {
+   "fingerprint": "22b76bf3774619b66422da7f0d16f481c703e7ab579972dcded4649b7ab8a5f9",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:1946-1946",
+   "class": "live",
+   "attribution": "W",
+   "removed": [
+    "\"Pressure thrust and pressure stress retain the existing preview formulation and capability qualifications; pressure formulation qualification remains open.\".to_string(),"
+   ],
+   "added": [
+    "\"Pressure is not solved on this profile: legacy pressure inputs are refused, and pressure is solved only on the exact straight-pressure profile, under that profile's own qualifications.\".to_string(),"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "wording only: string literals changed, their format placeholders unchanged; no argument, call or control flow changes",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "enclosing_fn_at_base": "preview_formulation_basis",
+   "literals": [
+    {
+     "old": "\"Pressure thrust and pressure stress retain the existing preview formulation and capability qualifications; pressure formulation qualification remains open.\"",
+     "new": "\"Pressure is not solved on this profile: legacy pressure inputs are refused, and pressure is solved only on the exact straight-pressure profile, under that profile's own qualifications.\""
+    }
+   ]
+  },
+  {
+   "fingerprint": "8def53bc146187c398ae81505c05f3b6feebca64eb72bb7cba42d78dce7b76c8",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 2112",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "#[derive(Debug, Clone)]",
+    "struct PressureThrustLoad {",
+    "element_index: usize,",
+    "axial_load: f64,",
+    "source_load_id: String,",
+    "source: PressureThrustSource,"
+   ],
+   "added": [],
+   "removed_lines": 24,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 6 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "ExpansionJointPressureThrustInput",
+    "PressureThrustLoad",
+    "PressureThrustSource",
+    "ExpansionJointEffectiveArea",
+    "PipeInternalArea",
+    "source_load_id"
+   ]
+  },
+  {
+   "fingerprint": "6206ace1196e6dfed18865e9941cd08d48a8cffb7868393845b0d331d605212d",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 2120",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "membrane_radius: f64,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "membrane_radius"
+   ]
+  },
+  {
+   "fingerprint": "d74694de1da48ede453a435fb0048a7d5ce673487164985f49de61322199fa30",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 3848",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure_thrust_loads: &[PressureThrustLoad],"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureThrustLoad",
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "case_force_ledger"
+  },
+  {
+   "fingerprint": "8cc430fc43ddfe064176840f9a4dca6ec82305ca7fb43727ade858457c095a3b",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 3864",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "add_pressure_thrust_loads(",
+    "&mut ledger,",
+    "pressure_thrust_loads,",
+    "&built.pipes,",
+    "curved_bends_by_pipe,",
+    ");"
+   ],
+   "added": [],
+   "removed_lines": 12,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "add_pressure_thrust_loads",
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "case_force_ledger"
+  },
+  {
+   "fingerprint": "277ba1e2aa548ed42a558a8696d27ef7ed9c90057a09c46420ef397ac0fa5ba7",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 4118",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "let pressure_thrust_loads =",
+    "build_pressure_thrust_loads(model, load_case, &pipe_map, &built.sections);"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "build_pressure_thrust_loads",
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed"
+  },
+  {
+   "fingerprint": "13912e923586c9cc9467715f9b3fe0b639edfc0ee9d1f1a3ee191a76438b78cc",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 4138",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "&pressure_thrust_loads,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed"
+  },
+  {
+   "fingerprint": "78dd0df3a3912ea165bb2861a417eb414a60e20a7fc7c5cd4ea58565b0d9089a",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:4146-4146",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "&load_application, &thermal_loads, &pressure_thrust_loads);"
+   ],
+   "added": [
+    "&load_application, &thermal_loads);"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed",
+   "deleted_tokens": [
+    ", & pressure_thrust_loads"
+   ]
+  },
+  {
+   "fingerprint": "04dd5ae6af8d6af1799ab62edcff42a7ca746b39089997f9bbb790b0335d91c3",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:4318-4318",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "thermal_loads: &thermal_loads, pressure_thrust_loads: &pressure_thrust_loads,"
+   ],
+   "added": [
+    "thermal_loads: &thermal_loads,"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed",
+   "deleted_tokens": [
+    "pressure_thrust_loads : & pressure_thrust_loads ,"
+   ]
+  },
+  {
+   "fingerprint": "13912e923586c9cc9467715f9b3fe0b639edfc0ee9d1f1a3ee191a76438b78cc",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 4461",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "&pressure_thrust_loads,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed"
+  },
+  {
+   "fingerprint": "a10e27d189f623636fe8ad7404870c04bca1762d5704f834e9dd445ee922ecb4",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:4732-4733",
+   "class": "live",
+   "attribution": "Z",
+   "removed": [
+    "let component_pressure_thrust_load_count = append_expansion_joint_pressure_thrust_results(",
+    "&mut results,",
+    "diagnostics,",
+    "load_case,",
+    "&pressure_thrust_loads,",
+    ");"
+   ],
+   "added": [
+    "let component_pressure_thrust_load_count = 0;"
+   ],
+   "removed_lines": 6,
+   "added_lines": 2,
+   "evidence": "the count of expansion-joint pressure-thrust results, formerly the number of joints whose exact net thrust was nonzero (a zero net was skipped). Under premise P0 there is no thrust load, so it was 0 on every admitted model; the published summary count is the same constant",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "append_expansion_joint_pressure_thrust_results",
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed"
+  },
+  {
+   "fingerprint": "234c1bb644f8736d700faa4a686869fbb9481b1d54fde38e4a816d119f196141",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 4932",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "let pressure_thrusts = pressure_thrusts_for_pipe(pipe_index, &pressure_thrust_loads);"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 3 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrust_loads",
+    "pressure_thrusts",
+    "pressure_thrusts_for_pipe"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed"
+  },
+  {
+   "fingerprint": "ce4fed23341a661223763eac9981ae96733fd043fe306801f0176ee56d11c1c1",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 4968",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "&pressure_thrusts,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrusts"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed"
+  },
+  {
+   "fingerprint": "92f5cab0e9154bc9755686df7971fc600d30429733d1b37546951f798eb43aa7",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 5021",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "if pressure_runtime::is_exact(model) {",
+    "&[]",
+    "} else {",
+    "&pressure_thrust_loads",
+    "},"
+   ],
+   "added": [],
+   "removed_lines": 5,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed"
+  },
+  {
+   "fingerprint": "ce4fed23341a661223763eac9981ae96733fd043fe306801f0176ee56d11c1c1",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 5087",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "&pressure_thrusts,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrusts"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed"
+  },
+  {
+   "fingerprint": "ce4fed23341a661223763eac9981ae96733fd043fe306801f0176ee56d11c1c1",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 5152",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "&pressure_thrusts,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrusts"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed"
+  },
+  {
+   "fingerprint": "c6fb1aaafa18c3b3d4d7ceda4bee99050f08ad5540f8efdd501d7b72137e127f",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:5243-5244",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "let pressure = pressure_for_pipe(model, load_case, pipe_index, &pipe.element_id);",
+    "let pressure_thrust_active =",
+    "exact_rounded_sum(pressure_thrusts.iter().copied()).map_or(true, |net| net != 0.0);",
+    "let include_pressure_longitudinal = !pressure_thrust_active;",
+    "let end_i_stress = recover_section_stress(&endpoint_resultants[0], section, pressure);",
+    "let end_j_stress = recover_section_stress(&endpoint_resultants[1], section, pressure);"
+   ],
+   "added": [
+    "let end_i_stress = recover_section_stress(&endpoint_resultants[0], section);",
+    "let end_j_stress = recover_section_stress(&endpoint_resultants[1], section);"
+   ],
+   "removed_lines": 7,
+   "added_lines": 2,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure_longitudinal",
+    "pressure",
+    "pressure_for_pipe",
+    "pressure_thrust_active",
+    "pressure_thrusts",
+    "exact_rounded_sum",
+    "net"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed",
+   "deleted_tokens": [
+    "let pressure = pressure_for_pipe ( model , load_case , pipe_index , & pipe . element_id ) ; let pressure_thrust_active = exact_rounded_sum ( pressure_thrusts . iter ( ) . copied ( ) ) . map_or ( true , | net | net != 0.0 ) ; let include_pressure_longitudinal = ! pressure_thrust_active ;",
+    ", pressure",
+    ", pressure"
+   ]
+  },
+  {
+   "fingerprint": "bc047aa56388ca864d3a0645909e9750364e99207b5a8a846c72c0359a37d233",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:5250-5250",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "recover_section_stress(&station.resultants, section, pressure),"
+   ],
+   "added": [
+    "recover_section_stress(&station.resultants, section),"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed",
+   "deleted_tokens": [
+    ", pressure"
+   ]
+  },
+  {
+   "fingerprint": "55181001e51dbc1624ff029c0650f491d3f103b96d73c9f8f7962d30b332cc43",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 5264",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "c.pressure_hoop,",
+    "c.pressure_longitudinal,"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_hoop",
+    "pressure_longitudinal"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed"
+  },
+  {
+   "fingerprint": "64c8f1e735bec7dea9f4b1869f8608ba370460b856f60a22920903c271c9509b",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 5307",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure.is_some(),",
+    "include_pressure_longitudinal,"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure_longitudinal",
+    "pressure"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed"
+  },
+  {
+   "fingerprint": "64c8f1e735bec7dea9f4b1869f8608ba370460b856f60a22920903c271c9509b",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 5320",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure.is_some(),",
+    "include_pressure_longitudinal,"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure_longitudinal",
+    "pressure"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed"
+  },
+  {
+   "fingerprint": "64c8f1e735bec7dea9f4b1869f8608ba370460b856f60a22920903c271c9509b",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 5336",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure.is_some(),",
+    "include_pressure_longitudinal,"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure_longitudinal",
+    "pressure"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed"
+  },
+  {
+   "fingerprint": "55c5b5db5ff7db1348b7439718dc1434f6fa5d68062087a0fe5c1b7b7e31e869",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:5348-5349",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "open_formula_summary_mpa(&end_i_stress, include_pressure_longitudinal),",
+    "open_formula_summary_mpa(&end_j_stress, include_pressure_longitudinal),"
+   ],
+   "added": [
+    "open_formula_summary_mpa(&end_i_stress),",
+    "open_formula_summary_mpa(&end_j_stress),"
+   ],
+   "removed_lines": 2,
+   "added_lines": 2,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure_longitudinal"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed",
+   "deleted_tokens": [
+    ", include_pressure_longitudinal",
+    ", include_pressure_longitudinal"
+   ]
+  },
+  {
+   "fingerprint": "ed4d755563c37b15c4eb2a2d752ca7b91559f92b711f82040f404f32feec6997",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:5355-5355",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "if let Some(value) = open_formula_summary_mpa(stress, include_pressure_longitudinal) {"
+   ],
+   "added": [
+    "if let Some(value) = open_formula_summary_mpa(stress) {"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure_longitudinal"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed",
+   "deleted_tokens": [
+    ", include_pressure_longitudinal"
+   ]
+  },
+  {
+   "fingerprint": "561f76427d1df5671d467a694b2ff231f7737167ecb5243bff1b9e44acc02a49",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 5364",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure,",
+    "include_pressure_longitudinal,"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure_longitudinal",
+    "pressure"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed"
+  },
+  {
+   "fingerprint": "8a048eb010c6b819f17a16bc66d0a3a05f15cc705cc157f8e37d21e516602835",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 5506",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "include_pressure_longitudinal,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure_longitudinal"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed"
+  },
+  {
+   "fingerprint": "502da579c0e230a25994e92db3376f2455b60a57a153f5eb0b1dfd37d8c7751a",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:5644-5644",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "restrained_dofs, spring_entries, &load_application, &thermal_loads,",
+    "&pressure_thrust_loads);"
+   ],
+   "added": [
+    "restrained_dofs, spring_entries, &load_application, &thermal_loads);"
+   ],
+   "removed_lines": 2,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "solve_load_case_observed",
+   "deleted_tokens": [
+    ", & pressure_thrust_loads"
+   ]
+  },
+  {
+   "fingerprint": "0c84abba4f7607b5bac2de35bd5069edae69ba69ea44741e334d46286889124b",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 10241",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "membrane_radius: (od - thickness) / 2.0,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "membrane_radius"
+   ],
+   "enclosing_fn_at_base": "derive_pipe_section"
+  },
+  {
+   "fingerprint": "2248833580a7e6c9f4cf346bde2e8a41f49b74370a3a7da6dd8f586bb8d16e87",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 10441",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure: Option<f64>,",
+    "include_pressure_longitudinal: bool,"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 4 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure_longitudinal",
+    "pressure",
+    "Option",
+    "bool"
+   ],
+   "enclosing_fn_at_base": "straight_summary_extrema"
+  },
+  {
+   "fingerprint": "f8929a1d73c74ff67bbe92730d38708ff63851d226e94ed86c8177ef823ced9a",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:10451-10451",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "let stress = recover_section_stress(&r, section, pressure);"
+   ],
+   "added": [
+    "let stress = recover_section_stress(&r, section);"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure"
+   ],
+   "enclosing_fn_at_base": "straight_summary_extrema",
+   "deleted_tokens": [
+    ", pressure"
+   ]
+  },
+  {
+   "fingerprint": "861495156fd2c3ac4ed8fb4c6107a2848a9f019310aa1add7a8ececde6bb0364",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:10454-10456",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "c.axial_normal.unwrap_or(0.0)",
+    "+ if include_pressure_longitudinal {",
+    "c.pressure_longitudinal.unwrap_or(0.0)",
+    "} else {",
+    "0.0",
+    "},"
+   ],
+   "added": [
+    "c.axial_normal.unwrap_or(0.0) + 0.0,"
+   ],
+   "removed_lines": 6,
+   "added_lines": 3,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure_longitudinal",
+    "pressure_longitudinal"
+   ],
+   "enclosing_fn_at_base": "straight_summary_extrema",
+   "deleted_tokens": [
+    "if include_pressure_longitudinal { c . pressure_longitudinal . unwrap_or (",
+    ") } else { 0.0 }"
+   ]
+  },
+  {
+   "fingerprint": "0fbeecb1ee4f72b6f3e1dd81d9679dbc205789e0201769f6cd0b34d6f02d89cc",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 10719",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "fn build_pressure_thrust_loads(",
+    "model: &PreviewModel,",
+    "load_case: &PreviewLoadCase,",
+    "pipe_map: &HashMap<&str, usize>,",
+    "sections: &HashMap<String, DerivedSection>,",
+    ") -> Vec<PressureThrustLoad> {"
+   ],
+   "added": [],
+   "removed_lines": 236,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 22 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "ExpansionJointPressureThrustInput",
+    "PressureThrustLoad",
+    "PressureThrustSource",
+    "add_curved_bend_pressure_thrust_load",
+    "add_pressure_thrust_loads",
+    "build_pressure_thrust_loads",
+    "consistent_radial_pressure_nodal_loads",
+    "expansion_joint_pressure_thrust_inputs_by_pipe",
+    "genuine_pressure_element_target",
+    "pressure_loads",
+    "ExpansionJointEffectiveArea",
+    "PipeInternalArea"
+   ],
+   "enclosing_fn_at_base": "build_pressure_thrust_loads"
+  },
+  {
+   "fingerprint": "be86569af1ec88e473f9eb21bc8648115cd785dc618995db05afca6c0c1694ad",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 10833",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure_loads: &[PressureThrustLoad],"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureThrustLoad",
+    "pressure_loads"
+   ],
+   "enclosing_fn_at_base": "exact_straight_end_forces"
+  },
+  {
+   "fingerprint": "7e16d2ec7ff2d876ae1679a60973ad5d01ddd968333636a0b2f2d930e9893c99",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 10838",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    ".chain(",
+    "pressure_loads",
+    ".iter()",
+    ".filter(|load| load.element_index == element_index)",
+    ".map(|load| load.axial_load),",
+    ")"
+   ],
+   "added": [],
+   "removed_lines": 6,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_loads",
+    "chain"
+   ],
+   "enclosing_fn_at_base": "exact_straight_end_forces"
+  },
+  {
+   "fingerprint": "4866d038382110f8bacae64a7b5ed15b5f4a05c8ef69a014087e4e77ca8e7435",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 10883",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure_thrusts: &[f64],"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrusts"
+   ],
+   "enclosing_fn_at_base": "recover_curved_bend_local_forces"
+  },
+  {
+   "fingerprint": "40618d4e60be13643976b835fdb4d78ad5aa728644085ef099c9736d789ec542",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 10921",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "for &thrust in pressure_thrusts {",
+    "if thrust != 0.0 {",
+    "equivalents.push(",
+    "bend.macro_element",
+    ".consistent_radial_pressure_nodal_loads(thrust)",
+    ".map_err(|error| error.to_string())?,"
+   ],
+   "added": [],
+   "removed_lines": 9,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 3 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "consistent_radial_pressure_nodal_loads",
+    "pressure_thrusts",
+    "thrust"
+   ],
+   "enclosing_fn_at_base": "recover_curved_bend_local_forces"
+  },
+  {
+   "fingerprint": "4866d038382110f8bacae64a7b5ed15b5f4a05c8ef69a014087e4e77ca8e7435",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 11019",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure_thrusts: &[f64],"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrusts"
+   ],
+   "enclosing_fn_at_base": "curved_bend_section_resultants"
+  },
+  {
+   "fingerprint": "126604ef5e0e83aa95aee54ee4466f765d87ef9f86e03f61dd0b7b565e5f9c83",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 11054",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure_thrusts,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrusts"
+   ],
+   "enclosing_fn_at_base": "curved_bend_section_resultants"
+  },
+  {
+   "fingerprint": "4866d038382110f8bacae64a7b5ed15b5f4a05c8ef69a014087e4e77ca8e7435",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 11063",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure_thrusts: &[f64],"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrusts"
+   ],
+   "enclosing_fn_at_base": "curved_bend_station_resultants"
+  },
+  {
+   "fingerprint": "126604ef5e0e83aa95aee54ee4466f765d87ef9f86e03f61dd0b7b565e5f9c83",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 11087",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure_thrusts,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrusts"
+   ],
+   "enclosing_fn_at_base": "curved_bend_station_resultants"
+  },
+  {
+   "fingerprint": "810f9df26ff94918b5f740ffeb56502c2a6ae393b6287f21e5930f2f0c77ba42",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 11093",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "fn pressure_thrusts_for_pipe(",
+    "element_index: usize,",
+    "pressure_loads: &[PressureThrustLoad],",
+    ") -> Vec<f64> {",
+    "pressure_loads",
+    ".iter()"
+   ],
+   "added": [],
+   "removed_lines": 110,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 14 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "ExpansionJointPressureThrustAggregate",
+    "ExpansionJointPressureThrustInput",
+    "PressureThrustLoad",
+    "PressureThrustSource",
+    "append_expansion_joint_pressure_thrust_results",
+    "pressure_loads",
+    "pressure_thrusts_for_pipe",
+    "ExpansionJointEffectiveArea",
+    "aggregate",
+    "aggregates",
+    "exact_rounded_sum",
+    "or_insert_with"
+   ]
+  },
+  {
+   "fingerprint": "0ef16140972e5beba7dc506e1f72ee90c5f7e95d062d84be80ecba43db4a189b",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 11590",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure: Option<f64>,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure",
+    "Option"
+   ],
+   "enclosing_fn_at_base": "recover_section_stress"
+  },
+  {
+   "fingerprint": "2b30b4a59ed9d5d8b0c264c86398b85ff5d6fa35e33bdf56532ecd3de8638a9b",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 11605",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure: pressure.map(|p| {",
+    "PressureBasis::new(",
+    "Some(p),",
+    "Some(section.membrane_radius),",
+    "Some(section.wall_thickness),",
+    ")"
+   ],
+   "added": [],
+   "removed_lines": 7,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 6 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureBasis",
+    "membrane_radius",
+    "pressure",
+    "map",
+    "p",
+    "wall_thickness"
+   ],
+   "enclosing_fn_at_base": "recover_section_stress"
+  },
+  {
+   "fingerprint": "07b03c6bce2fc9b11014951aef051cd6c03d98657ec2989dc57ccdd2b0111a68",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 11611",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "include_pressure_longitudinal: bool,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure_longitudinal",
+    "bool"
+   ],
+   "enclosing_fn_at_base": "open_formula_summary_mpa"
+  },
+  {
+   "fingerprint": "e1c0d1346d34fcd31b30f90b917778bc523092fe93cda009c8aae1e8d05b4024",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 11617",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "let pressure_longitudinal = if include_pressure_longitudinal {",
+    "components.pressure_longitudinal.unwrap_or(0.0)",
+    "} else {",
+    "0.0",
+    "};"
+   ],
+   "added": [],
+   "removed_lines": 5,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure_longitudinal",
+    "pressure_longitudinal"
+   ],
+   "enclosing_fn_at_base": "open_formula_summary_mpa"
+  },
+  {
+   "fingerprint": "832f86ded99f4eab19412538665e69a6165a6c11f3121ca1fa9975719ee859c5",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:11620-11622",
+   "class": "live",
+   "attribution": "H",
+   "removed": [
+    "let base_normal = axial + pressure_longitudinal;"
+   ],
+   "added": [
+    "let base_normal = axial + 0.0;"
+   ],
+   "removed_lines": 1,
+   "added_lines": 3,
+   "evidence": "H-1: the retired pressure summand becomes the literal `0.0`; premise P0: the summand was +0.0 on every admitted model, so the arithmetic and the published sign of a zero are unchanged",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_longitudinal"
+   ],
+   "enclosing_fn_at_base": "open_formula_summary_mpa",
+   "replaced_tokens": [
+    "pressure_longitudinal  ->  0.0"
+   ]
+  },
+  {
+   "fingerprint": "07b03c6bce2fc9b11014951aef051cd6c03d98657ec2989dc57ccdd2b0111a68",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 11639",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "include_pressure_longitudinal: bool,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure_longitudinal",
+    "bool"
+   ],
+   "enclosing_fn_at_base": "append_component_stress_multiplier_results"
+  },
+  {
+   "fingerprint": "efac862ad464502c5e3b9c117863b54544f50eb9f34d2ac17f0cf5194f924f2b",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:11654-11654",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "let Some(base_value_mpa) = open_formula_summary_mpa(stress, include_pressure_longitudinal)",
+    "else {"
+   ],
+   "added": [
+    "let Some(base_value_mpa) = open_formula_summary_mpa(stress) else {"
+   ],
+   "removed_lines": 2,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure_longitudinal"
+   ],
+   "enclosing_fn_at_base": "append_component_stress_multiplier_results",
+   "deleted_tokens": [
+    ", include_pressure_longitudinal"
+   ]
+  },
+  {
+   "fingerprint": "7ee50f6c0188a599bd6f1e6287fed445b38d6810990b9d5c09bbf72d51fc72c6",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:11990-11990",
+   "class": "live",
+   "attribution": "W",
+   "removed": [
+    "\"component_family=expansion_joint;user_entered_axis={axis};source={source_reference};solver_consumption={solver_consumption};macro_element_solve=assembled_user_stiffness;pressure_thrust_generation=loa"
+   ],
+   "added": [
+    "\"component_family=expansion_joint;user_entered_axis={axis};source={source_reference};solver_consumption={solver_consumption};macro_element_solve=assembled_user_stiffness;pressure_thrust_generation=non"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "wording only: string literals changed, their format placeholders unchanged; no argument, call or control flow changes",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "enclosing_fn_at_base": "append_expansion_joint_user_stiffness_results",
+   "literals": [
+    {
+     "old": "\"component_family=expansion_joint;user_entered_axis={axis};source={source_reference};solver_consumption={solver_consumption};macro_element_solve=assembled_user_stiffness;pressure_thrust_generation=load_side_user_effective_area;pressure_thrust={}\"",
+     "new": "\"component_family=expansion_joint;user_entered_axis={axis};source={source_reference};solver_consumption={solver_consumption};macro_element_solve=assembled_user_stiffness;pressure_thrust_generation=none_pressure_refused_outside_the_exact_straight_contract;user_pressure_thrust_reference={}\""
+    }
+   ]
+  },
+  {
+   "fingerprint": "51800fde239fe09f64fe9c054da0640bc08991e836d27ef2ff71ed23cd0d8212",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:11997-11997",
+   "class": "live",
+   "attribution": "W",
+   "removed": [
+    "\"positive value is user-entered expansion-joint stiffness consumed by the assembled user-stiffness macro-element; pressure-thrust generation is load-side effective-area evidence and no compliance clai"
+   ],
+   "added": [
+    "\"positive value is user-entered expansion-joint stiffness consumed by the assembled user-stiffness macro-element; no joint pressure thrust is generated and no compliance claim is made\""
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "wording only: string literals changed, their format placeholders unchanged; no argument, call or control flow changes",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "enclosing_fn_at_base": "append_expansion_joint_user_stiffness_results",
+   "literals": [
+    {
+     "old": "\"positive value is user-entered expansion-joint stiffness consumed by the assembled user-stiffness macro-element; pressure-thrust generation is load-side effective-area evidence and no compliance claim is made\"",
+     "new": "\"positive value is user-entered expansion-joint stiffness consumed by the assembled user-stiffness macro-element; no joint pressure thrust is generated and no compliance claim is made\""
+    }
+   ]
+  },
+  {
+   "fingerprint": "5885f95f22b8ac450b495e07276b49f90ba0f1703504aba1266139343760256f",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:12030-12030",
+   "class": "live",
+   "attribution": "W",
+   "removed": [
+    "\"component_family=bend;user_entered_flexibility={};flexibility_axis_mapping=single_user_factor_applied_to_in_plane_and_out_of_plane_bending;bend_radius_m={};arc_included_angle_rad={};arc_length_m={};a"
+   ],
+   "added": [
+    "\"component_family=bend;user_entered_flexibility={};flexibility_axis_mapping=single_user_factor_applied_to_in_plane_and_out_of_plane_bending;bend_radius_m={};arc_included_angle_rad={};arc_length_m={};a"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "wording only: string literals changed, their format placeholders unchanged; no argument, call or control flow changes",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "enclosing_fn_at_base": "append_curved_bend_macro_element_results",
+   "literals": [
+    {
+     "old": "\"component_family=bend;user_entered_flexibility={};flexibility_axis_mapping=single_user_factor_applied_to_in_plane_and_out_of_plane_bending;bend_radius_m={};arc_included_angle_rad={};arc_length_m={};arc_plane=chord_and_pipe_y_reference;arc_side=bows_toward_positive_pipe_y_reference;source={};solver_consumption={};macro_element_solve=assembled_curved_bend_stiffness;thermal_load_treatment=exact_free",
+     "new": "\"component_family=bend;user_entered_flexibility={};flexibility_axis_mapping=single_user_factor_applied_to_in_plane_and_out_of_plane_bending;bend_radius_m={};arc_included_angle_rad={};arc_length_m={};arc_plane=chord_and_pipe_y_reference;arc_side=bows_toward_positive_pipe_y_reference;source={};solver_consumption={};macro_element_solve=assembled_curved_bend_stiffness;thermal_load_treatment=exact_free"
+    }
+   ]
+  },
+  {
+   "fingerprint": "c1192001fdceb167a17599c9507069d9ae12405e9ea5b82468165c8aff2e3a38",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 12558",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "include_pressure: bool,",
+    "include_pressure_longitudinal: bool,"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 3 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure",
+    "include_pressure_longitudinal",
+    "bool"
+   ],
+   "enclosing_fn_at_base": "append_endpoint_stress_results"
+  },
+  {
+   "fingerprint": "45e5d06e26881413e0b7a7b15bebd9c8910d9e077c24c616cc4f3937253bdf0e",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 12608",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "if include_pressure {",
+    "if let Some(value) = components.pressure_hoop {",
+    "append_endpoint_stress_result(",
+    "results,",
+    "pipe_id,",
+    "&format!(\"result:stress:{suffix}:{id_location}:pressure-hoop\"),"
+   ],
+   "added": [],
+   "removed_lines": 33,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 4 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure",
+    "include_pressure_longitudinal",
+    "pressure_hoop",
+    "pressure_longitudinal"
+   ],
+   "enclosing_fn_at_base": "append_endpoint_stress_results"
+  },
+  {
+   "fingerprint": "c1192001fdceb167a17599c9507069d9ae12405e9ea5b82468165c8aff2e3a38",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 12615",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "include_pressure: bool,",
+    "include_pressure_longitudinal: bool,"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 3 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure",
+    "include_pressure_longitudinal",
+    "bool"
+   ],
+   "enclosing_fn_at_base": "append_station_stress_results"
+  },
+  {
+   "fingerprint": "63d04a7e793861456aa01154d34db6fe988200f51f9f1554f8a48248299105c0",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 12677",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "if include_pressure {",
+    "if let Some(value) = components.pressure_hoop {",
+    "append_station_stress_result(",
+    "results,",
+    "pipe_id,",
+    "&format!(\"result:stress:{suffix}:{station}:pressure-hoop\"),"
+   ],
+   "added": [],
+   "removed_lines": 33,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 4 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "include_pressure",
+    "include_pressure_longitudinal",
+    "pressure_hoop",
+    "pressure_longitudinal"
+   ],
+   "enclosing_fn_at_base": "append_station_stress_results"
+  },
+  {
+   "fingerprint": "fcddc8703221e85499aa392b3ccc061b52ff8653db9c77f1c518cf3d1961d10d",
+   "file": "core/product_physics/src/lib.rs",
+   "at_final_basis": "lib.rs:after 13354",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "fn pressure_for_pipe(",
+    "model: &PreviewModel,",
+    "load_case: &PreviewLoadCase,",
+    "pipe_index: usize,",
+    "pipe_id: &str,",
+    ") -> Option<f64> {"
+   ],
+   "added": [],
+   "removed_lines": 27,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 6 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "genuine_pressure_element_target",
+    "pressure_for_pipe",
+    "pressures",
+    "exact_rounded_sum",
+    "resolved_pipe_id",
+    "target_pipe_id"
+   ],
+   "enclosing_fn_at_base": "pressure_for_pipe"
+  },
+  {
+   "fingerprint": "78f2cd127f7a3b8102c963cf69a4f93fae6da578f5562e0cc5103526ae49d15b",
+   "file": "core/product_physics/src/pressure_runtime.rs",
+   "at_final_basis": "pressure_runtime.rs:21-23",
+   "class": "item",
+   "attribution": "F",
+   "removed": [],
+   "added": [
+    "const RETIRED_MODE: &str = \"legacy_pressure_v1\";",
+    "const RETIRED_VERSION: &str = \"1.0.0\";"
+   ],
+   "removed_lines": 0,
+   "added_lines": 3,
+   "evidence": "[F1] the retired contract's mode and version as consts, used only to refuse it by name ([F2])",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation"
+  },
+  {
+   "fingerprint": "4db657094c1b4ed752137b9a45fadef6256ae96942ffc3fbbd0e50cd3dcf9766",
+   "file": "core/product_physics/src/pressure_runtime.rs",
+   "at_final_basis": "pressure_runtime.rs:120-120",
+   "class": "live",
+   "attribution": "W",
+   "removed": [
+    "\"pressure contract namespaces require model document 0.3.0; old inputs are not reinterpreted\");"
+   ],
+   "added": [
+    "\"pressure contracts require model document 0.3.0 or 0.4.0, and the supported contract is 2.0.0/exact_straight_pressure_v2 (1.0.0/legacy_pressure_v1 is retired); old inputs are not reinterpreted\");"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "wording only: string literals changed, their format placeholders unchanged; no argument, call or control flow changes",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "enclosing_fn_at_base": "validate_profile",
+   "literals": [
+    {
+     "old": "\"pressure contract namespaces require model document 0.3.0; old inputs are not reinterpreted\"",
+     "new": "\"pressure contracts require model document 0.3.0 or 0.4.0, and the supported contract is 2.0.0/exact_straight_pressure_v2 (1.0.0/legacy_pressure_v1 is retired); old inputs are not reinterpreted\""
+    }
+   ]
+  },
+  {
+   "fingerprint": "00ef69f427427e3dd55487044ae1c8eafd45575e286caa555faa3792837fa3ca",
+   "file": "core/product_physics/src/pressure_runtime.rs",
+   "at_final_basis": "pressure_runtime.rs:137-137",
+   "class": "live",
+   "attribution": "W",
+   "removed": [
+    "\"model document 0.3.0 requires an explicit pressure contract version and mode\","
+   ],
+   "added": [
+    "\"model document 0.3.0 requires the explicit 2.0.0/exact_straight_pressure_v2 pressure contract version and mode\","
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "wording only: string literals changed, their format placeholders unchanged; no argument, call or control flow changes",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "enclosing_fn_at_base": "validate_profile",
+   "literals": [
+    {
+     "old": "\"model document 0.3.0 requires an explicit pressure contract version and mode\"",
+     "new": "\"model document 0.3.0 requires the explicit 2.0.0/exact_straight_pressure_v2 pressure contract version and mode\""
+    }
+   ]
+  },
+  {
+   "fingerprint": "b53e2f533ee57b016a7820723c5d2ff821a39fbd88919c39974471ddca9135a9",
+   "file": "core/product_physics/src/pressure_runtime.rs",
+   "at_final_basis": "pressure_runtime.rs:140-144",
+   "class": "live",
+   "attribution": "F",
+   "removed": [
+    "if !matches!(",
+    "(contract.version.as_deref(), contract.mode.as_deref()),",
+    "(Some(\"1.0.0\"), Some(\"legacy_pressure_v1\"))",
+    "| (Some(EXACT_VERSION), Some(EXACT_MODE))",
+    ") {"
+   ],
+   "added": [
+    "let declared = (contract.version.as_deref(), contract.mode.as_deref());",
+    "if declared == (Some(RETIRED_VERSION), Some(RETIRED_MODE)) {",
+    "problem(diagnostics, \"PRESSURE_MODEL_REAUTHOR_REQUIRED\", &[\"pressure_contract\"],",
+    "\"the 1.0.0/legacy_pressure_v1 pressure contract is retired; re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pressure_regions (an explicit [] for an unpressurized case) and E/nu m",
+    "} else if declared != (Some(EXACT_VERSION), Some(EXACT_MODE)) {"
+   ],
+   "removed_lines": 5,
+   "added_lines": 5,
+   "evidence": "[F2] the retired 1.0.0/legacy_pressure_v1 contract, formerly accepted, is refused by name (PRESSURE_MODEL_REAUTHOR_REQUIRED, blocking through problem()); every other contract keeps the old PRESSURE_CONTRACT_UNSUPPORTED branch, now `declared != exact`",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "enclosing_fn_at_base": "validate_profile"
+  },
+  {
+   "fingerprint": "6b494911c94144ca9c326f73d1501db5333e6ad86efe6371973f3547fe318a03",
+   "file": "core/product_physics/src/pressure_runtime.rs",
+   "at_final_basis": "pressure_runtime.rs:146-146",
+   "class": "live",
+   "attribution": "W",
+   "removed": [
+    "\"supported pressure contracts are 1.0.0/legacy_pressure_v1 and 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back\");"
+   ],
+   "added": [
+    "\"the supported pressure contract is 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back\");"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "wording only: string literals changed, their format placeholders unchanged; no argument, call or control flow changes",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "enclosing_fn_at_base": "validate_profile",
+   "literals": [
+    {
+     "old": "\"supported pressure contracts are 1.0.0/legacy_pressure_v1 and 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back\"",
+     "new": "\"the supported pressure contract is 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back\""
+    }
+   ]
+  },
+  {
+   "fingerprint": "c06871516faa31670890f8d628a886b5b73ceb088e1b243e59b5678c6aa8ad1b",
+   "file": "core/product_physics/src/pressure_runtime.rs",
+   "at_final_basis": "pressure_runtime.rs:220-220",
+   "class": "live",
+   "attribution": "F",
+   "removed": [
+    "if (load.category == \"pressure\" || load.dimension == \"pressure\")",
+    "&& load.magnitude.value != 0.0",
+    "{",
+    "#[cfg(test)]",
+    "if crate::historical_pressure_reference::active() {",
+    "continue;"
+   ],
+   "added": [
+    "if load.category == \"pressure\" || load.dimension == \"pressure\" {"
+   ],
+   "removed_lines": 8,
+   "added_lines": 1,
+   "evidence": "[F3] the legacy-primitive refusal widened: formerly a pressure-category or pressure-dimension primitive with a nonzero value (and not inside the #[cfg(test)] historical scope); now every such primitive, zero values included. It refuses a superset, and establishes premise P0",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "historical_pressure_reference",
+    "active",
+    "cfg",
+    "magnitude",
+    "test"
+   ],
+   "enclosing_fn_at_base": "validate_profile"
+  },
+  {
+   "fingerprint": "34abafb11cfc9485d60468f722ccb7168aef80893273eec3faed4e4dcad4e124",
+   "file": "core/product_physics/src/pressure_runtime.rs",
+   "at_final_basis": "pressure_runtime.rs:222-222",
+   "class": "live",
+   "attribution": "W",
+   "removed": [
+    "\"a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs\");"
+   ],
+   "added": [
+    "\"legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pressure_regions (an explicit [] for an un"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "wording only: string literals changed, their format placeholders unchanged; no argument, call or control flow changes",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "enclosing_fn_at_base": "validate_profile",
+   "literals": [
+    {
+     "old": "\"a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs\"",
+     "new": "\"legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pressure_regions (an explicit [] for an unpressurized case) and E/nu materials\""
+    }
+   ]
+  },
+  {
+   "fingerprint": "964c7bb9165ea670f7cdde57bb1f1c303f73c95daa40f48e0f1be9ec254c058e",
+   "file": "core/product_physics/src/preview_physics.rs",
+   "at_final_basis": "preview_physics.rs:after 113",
+   "class": "item",
+   "attribution": "T",
+   "removed": [
+    "#[cfg(test)]",
+    "if crate::historical_pressure_reference::active() {",
+    "return;",
+    "}"
+   ],
+   "added": [],
+   "removed_lines": 6,
+   "added_lines": 0,
+   "evidence": "a removed #[cfg(test)] statement: the named historical tests' bypass of this refusal (crate::historical_pressure_reference::active(), whose module is deleted); normal builds never compiled it",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "historical_pressure_reference",
+    "active",
+    "cfg",
+    "test"
+   ],
+   "enclosing_fn_at_base": "refuse_unqualified_joint_elements"
+  },
+  {
+   "fingerprint": "1ac8d26837631e9feab1633802f1e631233e02e0ddbd772685d3a6d21b7cc726",
+   "file": "core/product_physics/src/preview_physics.rs",
+   "at_final_basis": "preview_physics.rs:120-187",
+   "class": "live",
+   "attribution": "F",
+   "removed": [],
+   "added": [
+    "let modifiers = component.modifiers.as_ref();",
+    "let missing: Vec<&str> = [",
+    "(\"axial\", modifiers.and_then(|m| m.axial_stiffness_user_value.as_ref())),",
+    "(\"lateral\", modifiers.and_then(|m| m.lateral_stiffness_user_value.as_ref())),",
+    "(\"angular\", modifiers.and_then(|m| m.angular_stiffness_user_value.as_ref())),",
+    "(\"torsional\", modifiers.and_then(|m| m.torsional_stiffness_user_value.as_ref())),"
+   ],
+   "removed_lines": 0,
+   "added_lines": 68,
+   "evidence": "[F4] G11 (I111; extended by ROOT): a user-flexibility expansion joint missing any of its four user stiffness values, or whose pipe or node does not resolve, is refused (blocking) rather than silently skipped by the element builder. The code only reads the model, builds local values and pushes two blocking diagnostics, then `continue`s; its loops and allocations are this pass's item 4",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "writes_outside_locals": []
+  },
+  {
+   "fingerprint": "a1c9f8cf674d1678c88af6617564a70c3cfc34acdd377a1f5eef8d91ac66bc28",
+   "file": "core/product_physics/src/retained_product.rs",
+   "at_final_basis": "retained_product.rs:after 1529",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure: &[PressureThrustLoad],"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from retained_product.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureThrustLoad",
+    "pressure"
+   ],
+   "enclosing_fn_at_base": "case_source"
+  },
+  {
+   "fingerprint": "55fb1bd3a95748ee1feff49cb6915c20a857b8f0d6e39b373b4417fc0fcdc720",
+   "file": "core/product_physics/src/retained_product.rs",
+   "at_final_basis": "retained_product.rs:1537-1537",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "self.capture_case_source(model,built,materials,case,restrained,springs,application,thermal,pressure);"
+   ],
+   "added": [
+    "self.capture_case_source(model,built,materials,case,restrained,springs,application,thermal);"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure"
+   ],
+   "enclosing_fn_at_base": "case_source",
+   "deleted_tokens": [
+    ", pressure"
+   ]
+  },
+  {
+   "fingerprint": "e5a1063ab3010998e239e098052a8f4405b72087cd85343fd46928c233989123",
+   "file": "core/product_physics/src/retained_product.rs",
+   "at_final_basis": "retained_product.rs:1541-1541",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "springs:&[SpringEntry], application:&LoadApplication, thermal:&[ThermalElementLoad],",
+    "pressure:&[PressureThrustLoad]) {"
+   ],
+   "added": [
+    "springs:&[SpringEntry], application:&LoadApplication, thermal:&[ThermalElementLoad]) {"
+   ],
+   "removed_lines": 2,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureThrustLoad",
+    "pressure"
+   ],
+   "enclosing_fn_at_base": "capture_case_source",
+   "deleted_tokens": [
+    ", pressure : & [ PressureThrustLoad ]"
+   ]
+  },
+  {
+   "fingerprint": "d85d8f0c52f9a51c03bf9400fe1c7a1ce20d02cd18ca7f7553d762aa6fa65e6d",
+   "file": "core/product_physics/src/retained_product.rs",
+   "at_final_basis": "retained_product.rs:after 1560",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "|| !pressure.is_empty()"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from retained_product.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure"
+   ],
+   "enclosing_fn_at_base": "capture_case_source"
+  },
+  {
+   "fingerprint": "0cbdc942e05464823d5c12e370012ef333f9267dca914cff7f63385681541802",
+   "file": "core/product_physics/src/retained_product.rs",
+   "at_final_basis": "retained_product.rs:3503-3503",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "springs:&[SpringEntry],application:&LoadApplication,thermal:&[ThermalElementLoad],pressure:&[PressureThrustLoad]) {"
+   ],
+   "added": [
+    "springs:&[SpringEntry],application:&LoadApplication,thermal:&[ThermalElementLoad]) {"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureThrustLoad",
+    "pressure"
+   ],
+   "enclosing_fn_at_base": "prepared_case_source",
+   "deleted_tokens": [
+    ", pressure : & [ PressureThrustLoad ]"
+   ]
+  },
+  {
+   "fingerprint": "55fb1bd3a95748ee1feff49cb6915c20a857b8f0d6e39b373b4417fc0fcdc720",
+   "file": "core/product_physics/src/retained_product.rs",
+   "at_final_basis": "retained_product.rs:3534-3534",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "self.capture_case_source(model,built,materials,case,restrained,springs,application,thermal,pressure);"
+   ],
+   "added": [
+    "self.capture_case_source(model,built,materials,case,restrained,springs,application,thermal);"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure"
+   ],
+   "enclosing_fn_at_base": "prepared_case_source",
+   "deleted_tokens": [
+    ", pressure"
+   ]
+  },
+  {
+   "fingerprint": "122efa55dbc7cb0e10fbc36f2e54fe00132cc59495ed0cb9fe296351b84962bb",
+   "file": "core/product_physics/src/retained_product.rs",
+   "at_final_basis": "retained_product.rs:4274-4274",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "membrane_radius:f.radius,wall_thickness:f.effective_wall};"
+   ],
+   "added": [
+    "wall_thickness:f.effective_wall};"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "membrane_radius"
+   ],
+   "enclosing_fn_at_base": "prepared_maxima",
+   "deleted_tokens": [
+    "membrane_radius : f . radius ,"
+   ]
+  },
+  {
+   "fingerprint": "5f98ba9cfd5abc25f4b6781a856198dace3226067fc6444e7cf21fb5d396d48a",
+   "file": "core/product_physics/src/source_receipt.rs",
+   "at_final_basis": "source_receipt.rs:after 248",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure_thrust_loads: &[],"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from source_receipt.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "check_load_state_input"
+  },
+  {
+   "fingerprint": "5f98ba9cfd5abc25f4b6781a856198dace3226067fc6444e7cf21fb5d396d48a",
+   "file": "core/product_physics/src/source_receipt.rs",
+   "at_final_basis": "source_receipt.rs:after 364",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure_thrust_loads: &[],"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from source_receipt.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "check_input_with_physical"
+  },
+  {
+   "fingerprint": "86942dae33cac06e4c30a3b1963834740ac37d1e4aef7d43448d959867f2732c",
+   "file": "core/product_physics/src/source_receipt.rs",
+   "at_final_basis": "source_receipt.rs:after 669",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure_thrust_loads: input.pressure_thrust_loads,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from source_receipt.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "exact"
+  },
+  {
+   "fingerprint": "d63cbb91dcccad02e7d79feb1daa98d52f2044c8350de30a0157c11670edc4a8",
+   "file": "core/product_physics/src/source_receipt/composite.rs",
+   "at_final_basis": "composite.rs:after 764",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pressure_thrust_loads: input.pressure_thrust_loads,"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from composite.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "composite_exact"
+  },
+  {
+   "fingerprint": "9332956bd9a5dd71f7bae3a155e8dc67b5190c9593d1fd51b42f23756b968f80",
+   "file": "core/product_physics/src/source_receipt/rows.rs",
+   "at_final_basis": "rows.rs:433-433",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "let stress = recover_section_stress(&actions, section, None);"
+   ],
+   "added": [
+    "let stress = recover_section_stress(&actions, section);"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "enclosing_fn_at_base": "derived_for",
+   "literal_arguments_of_removed_parameters": [
+    {
+     "callee": "recover_section_stress",
+     "removed_parameters": [
+      "pressure"
+     ],
+     "arguments": [
+      "None"
+     ]
+    }
+   ],
+   "deleted_tokens": [
+    ", None"
+   ]
+  },
+  {
+   "fingerprint": "83708317cc7b01ee6feab545946bc9761750aa4d4f1e132c02f7a63972ba1e2e",
+   "file": "core/product_physics/src/source_receipt/rows.rs",
+   "at_final_basis": "rows.rs:467-467",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "let local = open_formula_summary_mpa(&stress, false)"
+   ],
+   "added": [
+    "let local = open_formula_summary_mpa(&stress)"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "enclosing_fn_at_base": "derived_for",
+   "literal_arguments_of_removed_parameters": [
+    {
+     "callee": "open_formula_summary_mpa",
+     "removed_parameters": [
+      "include_pressure_longitudinal"
+     ],
+     "arguments": [
+      "false"
+     ]
+    }
+   ],
+   "deleted_tokens": [
+    ", false"
+   ]
+  },
+  {
+   "fingerprint": "983888e3655d5d0393cc265f66517be39e5643ae5665ef4510584d8a9c0598e6",
+   "file": "core/product_physics/src/source_receipt/rows.rs",
+   "at_final_basis": "rows.rs:after 489",
+   "class": "item",
+   "attribution": "A",
+   "removed": [
+    "false,",
+    "false,"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "the two `false` arguments of append_endpoint_stress_results's removed parameters ['include_pressure', 'include_pressure_longitudinal']; with both false the removed pressure rows were never appended from this call",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "enclosing_fn_at_base": "derived_for"
+  },
+  {
+   "fingerprint": "983888e3655d5d0393cc265f66517be39e5643ae5665ef4510584d8a9c0598e6",
+   "file": "core/product_physics/src/source_receipt/rows.rs",
+   "at_final_basis": "rows.rs:after 497",
+   "class": "item",
+   "attribution": "A",
+   "removed": [
+    "false,",
+    "false,"
+   ],
+   "added": [],
+   "removed_lines": 2,
+   "added_lines": 0,
+   "evidence": "the two `false` arguments of append_station_stress_results's removed parameters ['include_pressure', 'include_pressure_longitudinal']; with both false the removed pressure rows were never appended from this call",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "enclosing_fn_at_base": "derived_for"
+  },
+  {
+   "fingerprint": "188e69b7603c42fec6287fcd907c0d40b4a4cde866e700f0d3a2a816cacac8db",
+   "file": "core/product_physics/src/source_recovery.rs",
+   "at_final_basis": "source_recovery.rs:10-10",
+   "class": "item",
+   "attribution": "S",
+   "removed": [
+    "LoadTargetInput, Matrix12, PressureThrustLoad, PreviewLoadCase, PreviewModel,"
+   ],
+   "added": [
+    "LoadTargetInput, Matrix12, PreviewLoadCase, PreviewModel,"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureThrustLoad"
+   ],
+   "deleted_tokens": [
+    ", PressureThrustLoad"
+   ]
+  },
+  {
+   "fingerprint": "962d843c2a026e39e3f83565630b08a8f3691b8972883557bb5aee87fd2c35bb",
+   "file": "core/product_physics/src/source_recovery.rs",
+   "at_final_basis": "source_recovery.rs:after 47",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pub pressure_thrust_loads: &'a [PressureThrustLoad],"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 2 identifier(s) the commit retired from source_recovery.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "PressureThrustLoad",
+    "pressure_thrust_loads"
+   ]
+  },
+  {
+   "fingerprint": "30388ec4082eb1f7b823fe3e39ad3a05585c18ca99d03d162be934fee60929d2",
+   "file": "core/product_physics/src/source_recovery.rs",
+   "at_final_basis": "source_recovery.rs:after 612",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "|| !input.pressure_thrust_loads.is_empty()"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from source_recovery.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "pressure_thrust_loads"
+   ],
+   "enclosing_fn_at_base": "prepare_sources"
+  },
+  {
+   "fingerprint": "965bd691d7d92c771821f9da56c9a1dd8a30437439be554661fd340e61aa19b6",
+   "file": "core/product_physics/src/validation.rs",
+   "at_final_basis": "validation.rs:1159-1159",
+   "class": "live",
+   "attribution": "W",
+   "removed": [
+    "\"expansion joint components require solver_consumption=mechanics_geometry_and_user_flexibility under DEC-045; pressure thrust remains load-side input evidence\","
+   ],
+   "added": [
+    "\"expansion joint components require solver_consumption=mechanics_geometry_and_user_flexibility under DEC-045; no joint pressure thrust is generated\","
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "wording only: string literals changed, their format placeholders unchanged; no argument, call or control flow changes",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "enclosing_fn_at_base": "validate_components",
+   "literals": [
+    {
+     "old": "\"expansion joint components require solver_consumption=mechanics_geometry_and_user_flexibility under DEC-045; pressure thrust remains load-side input evidence\"",
+     "new": "\"expansion joint components require solver_consumption=mechanics_geometry_and_user_flexibility under DEC-045; no joint pressure thrust is generated\""
+    }
+   ]
+  },
+  {
+   "fingerprint": "0d0a4aadd66170edd81b80ceaa3f4073ef1dd377b0973cb39041f8a70df868ff",
+   "file": "core/product_physics/src/validation.rs",
+   "at_final_basis": "validation.rs:1350-1350",
+   "class": "live",
+   "attribution": "W",
+   "removed": [
+    "\"expansion joint effective pressure area and movement limit must be finite positive user-entered values before load-side pressure-thrust evidence can be generated\","
+   ],
+   "added": [
+    "\"expansion joint effective pressure area and movement limit must be finite positive user-entered values; they are recorded as input evidence only, and no joint pressure thrust is generated\","
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "wording only: string literals changed, their format placeholders unchanged; no argument, call or control flow changes",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "enclosing_fn_at_base": "validate_components",
+   "literals": [
+    {
+     "old": "\"expansion joint effective pressure area and movement limit must be finite positive user-entered values before load-side pressure-thrust evidence can be generated\"",
+     "new": "\"expansion joint effective pressure area and movement limit must be finite positive user-entered values; they are recorded as input evidence only, and no joint pressure thrust is generated\""
+    }
+   ]
+  },
+  {
+   "fingerprint": "1b4f89b010d7aaacf4c8cc519733c2f1cc546a7b21a7a550df5cb3ec9beb864e",
+   "file": "core/solver/curved_bend/src/lib.rs",
+   "at_final_basis": "lib.rs:after 470",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "pub fn consistent_radial_pressure_nodal_loads(",
+    "&self,",
+    "thrust: f64,",
+    ") -> Result<[f64; ELEMENT_DOF], CurvedBendError> {",
+    "if !thrust.is_finite() {",
+    "return Err(FrameKernelError::NonFiniteInput {"
+   ],
+   "added": [],
+   "removed_lines": 122,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 5 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "arc_section_resultants_with_radial_pressure",
+    "consistent_radial_pressure_nodal_loads",
+    "radial_pressure_thrust",
+    "thrust",
+    "tip_deflection_under_radial_pressure"
+   ]
+  },
+  {
+   "fingerprint": "0d7c6e878bd182be51afe18b414c269ce43bf7d6bc56774959e683bfe307346e",
+   "file": "core/solver/curved_bend/src/lib.rs",
+   "at_final_basis": "lib.rs:after 480",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "radial_pressure_thrusts: &[f64],"
+   ],
+   "added": [],
+   "removed_lines": 1,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 1 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "radial_pressure_thrusts"
+   ],
+   "enclosing_fn_at_base": "arc_section_resultant_terms"
+  },
+  {
+   "fingerprint": "f45fe01ae6ef93b80286ab7fb58b458925e118901d3e342a669622306004eeb1",
+   "file": "core/solver/curved_bend/src/lib.rs",
+   "at_final_basis": "lib.rs:482-482",
+   "class": "live",
+   "attribution": "S",
+   "removed": [
+    "let mut terms =",
+    "Vec::with_capacity(1 + intensities_global.len() + radial_pressure_thrusts.len());"
+   ],
+   "added": [
+    "let mut terms = Vec::with_capacity(1 + intensities_global.len());"
+   ],
+   "removed_lines": 2,
+   "added_lines": 1,
+   "evidence": "a subtractive edit: only tokens of the retired pressure path are deleted (premise P0: each deleted term was an identity)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "radial_pressure_thrusts"
+   ],
+   "enclosing_fn_at_base": "arc_section_resultant_terms",
+   "deleted_tokens": [
+    "+ radial_pressure_thrusts . len ( )"
+   ]
+  },
+  {
+   "fingerprint": "393e44353d786e5489c6e825970f8f25b64cafdd86710c5fc8763c7cd29b8a2b",
+   "file": "core/solver/curved_bend/src/lib.rs",
+   "at_final_basis": "lib.rs:after 486",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "if !radial_pressure_thrusts.is_empty() {",
+    "let geometry = self.geometry()?;",
+    "let remaining_angle = (1.0 - fraction) * geometry.included_angle;",
+    "for &thrust in radial_pressure_thrusts {",
+    "if !thrust.is_finite() {",
+    "return Err(FrameKernelError::NonFiniteInput {"
+   ],
+   "added": [],
+   "removed_lines": 21,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 12 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "radial_pressure_thrusts",
+    "thrust",
+    "Err",
+    "cos",
+    "geometry",
+    "included_angle",
+    "into",
+    "is_empty",
+    "is_finite",
+    "radius",
+    "remaining_angle",
+    "sin"
+   ],
+   "enclosing_fn_at_base": "arc_section_resultant_terms"
+  },
+  {
+   "fingerprint": "61bd85215ec3d5c7dbb2ee8448abd5a7fc47e7e3c15e3b8f7c64ba40357e5cbe",
+   "file": "core/solver/curved_bend/src/lib.rs",
+   "at_final_basis": "lib.rs:after 511",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "fn tip_deflection_under_radial_pressure(",
+    "&self,",
+    "geometry: &ArcGeometry,",
+    "thrust: f64,",
+    ") -> [f64; DOF_PER_NODE] {",
+    "let gram = trig_gram(geometry.included_angle);"
+   ],
+   "added": [],
+   "removed_lines": 27,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 3 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "radial_pressure_load_actions",
+    "thrust",
+    "tip_deflection_under_radial_pressure"
+   ]
+  },
+  {
+   "fingerprint": "b37338f8d1274ccfdef270a17207e5f6c88a855a5c3aac3f57bfcdd754b10edd",
+   "file": "core/solver/curved_bend/src/lib.rs",
+   "at_final_basis": "lib.rs:after 686",
+   "class": "item",
+   "attribution": "R",
+   "removed": [
+    "struct RadialPressureLoadActions {",
+    "in_plane_moment: TrigSeries,",
+    "axial: TrigSeries,",
+    "}",
+    "fn radial_pressure_load_actions(",
+    "radius: f64,"
+   ],
+   "added": [],
+   "removed_lines": 29,
+   "added_lines": 0,
+   "evidence": "a removal on the retired pressure path; it names 3 identifier(s) the commit retired from lib.rs",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation",
+   "retired_identifiers_named": [
+    "RadialPressureLoadActions",
+    "radial_pressure_load_actions",
+    "thrust"
+   ]
+  },
+  {
+   "fingerprint": "9c6bf345ab095f75e17e336527ee6bf143bd2b95a93775a9439f2efff55d2449",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:1200-1202",
+   "class": "qualification-test",
+   "attribution": "Q",
+   "removed": [],
+   "added": [],
+   "removed_lines": 0,
+   "added_lines": 3,
+   "evidence": "the re-pin's doc comment (no code)",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation"
+  },
+  {
+   "fingerprint": "a95d891fce6ef4d1029a459116ca460d6b65543002f2f2f8388c7919a9226bf8",
+   "file": "core/product_physics/src/retained_memory_law_tests.rs",
+   "at_final_basis": "retained_memory_law_tests.rs:1204-1205",
+   "class": "qualification-test",
+   "attribution": "Q",
+   "removed": [
+    "[5_069_321_390, 5_392_753_352, 9_733_567_302, 9_518_381_725, 5_964_775_312, 8_846_487_786, 5_023_851_824],",
+    "[5_128_452_734, 5_451_884_696, 9_792_698_646, 9_577_513_069, 6_023_906_656, 8_905_619_130, 5_082_983_168],"
+   ],
+   "added": [
+    "[5_069_320_590, 5_392_752_552, 9_733_566_502, 9_518_380_925, 5_964_774_512, 8_846_486_986, 5_023_851_024],",
+    "[5_128_451_934, 5_451_883_896, 9_792_697_846, 9_577_512_269, 6_023_905_856, 8_905_618_330, 5_082_982_368],"
+   ],
+   "removed_lines": 2,
+   "added_lines": 2,
+   "evidence": "the in-build profile re-pin: 14 pinned phase values, each the old less exactly 800 B (9 x 32 B for StressRecoveryResult, 64 x 8 B for DerivedSection; RV127 ADDENDUM_01 checked the atoms); no binding, form or phase changes",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation"
+  },
+  {
+   "fingerprint": "fd7644e8ccfcb1fea838db3e18c60e943f4459e2cf538d2e65dd5c83ff78f7fa",
+   "file": "core/product_physics/tests/retained_memory_challenge.rs",
+   "at_final_basis": "retained_memory_challenge.rs:36-36",
+   "class": "qualification-test",
+   "attribution": "Q",
+   "removed": [
+    "const W1_PHASE_BYTES: [u64; 2] = [5_069_321_390, 5_128_452_734];"
+   ],
+   "added": [
+    "const W1_PHASE_BYTES: [u64; 2] = [5_069_320_590, 5_128_451_934];"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "the in-build profile re-pin: 2 pinned phase values, each the old less exactly 800 B (9 x 32 B for StressRecoveryResult, 64 x 8 B for DerivedSection; RV127 ADDENDUM_01 checked the atoms); no binding, form or phase changes",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation"
+  },
+  {
+   "fingerprint": "4847994561887377f57fc0a7657c6a765827875e98cf4dca2e93a75342447b3e",
+   "file": "core/product_physics/tests/retained_memory_challenge.rs",
+   "at_final_basis": "retained_memory_challenge.rs:39-39",
+   "class": "qualification-test",
+   "attribution": "Q",
+   "removed": [
+    "const MAX_PHASE_BYTES: [u64; 2] = [9_733_567_302, 9_792_698_646];"
+   ],
+   "added": [
+    "const MAX_PHASE_BYTES: [u64; 2] = [9_733_566_502, 9_792_697_846];"
+   ],
+   "removed_lines": 1,
+   "added_lines": 1,
+   "evidence": "the in-build profile re-pin: 2 pinned phase values, each the old less exactly 800 B (9 x 32 B for StressRecoveryResult, 64 x 8 B for DerivedSection; RV127 ADDENDUM_01 checked the atoms); no binding, form or phase changes",
+   "reviewed_by": "attributed by I107 (SB, Pass B round 3) to U3, the legacy pressure retirement (PR #1168; R/I110/pressure_retire_01..06, R/REVIEW_RV127/u3_stage1_01); read hunk by hunk; for RV124's confirmation"
+  }
+ ],
+ "refused": []
+}

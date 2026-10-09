@@ -1,0 +1,13 @@
+K1-IP d: [0.25980762112885714, 0.15000000037252903, 0.0] R 30000000.018065747 phi 1.0000000000000000076E-8
+K1-SK d: [0.09999999962747097, 0.20000000018626451, 0.20000000018626451] R 30000000.012417633 phi 1.0000000000000000466E-8
+IP d literal == JSON: True | R literal == JSON: True
+SK d literal == JSON: True | R literal == JSON: True
+PP x0, x1 (JSON X5e6): [5000000.0, 3500000.0, 0.0] [5000000.259807621, 3500000.1500000004, 0.0]
+PP x1 literal == JSON x1: True
+PP d (binary64 x1 - x0) == X0 d: True
+repr round trip of x1 and R: ['5000000.259807621', '3500000.1500000004', '0.0'] 30000000.018065747
+d on 2^-30 grid: True
+u_int equal at X0 and X5e6 (IP, SK): True True
+mutant libm == correctly rounded (IP, SK): 6.372E+0 6.372E+0 6.225E+0 6.225E+0
+cos(phi_b) binary64 (IP): 1.0  half-ulp below 1 = 2^-54 = 5.551115123125783e-17  phi^2/2 = 5.0000000000000005e-17
+cond1 equilibrated (IP, SK): 2.235E+3 2.434E+3 | crK estimate: 9.417E-6 7.039E-6

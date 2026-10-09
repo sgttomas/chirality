@@ -1,0 +1,5 @@
+phi target | 1-s^2 (exact) | phi | design L5: rad/max|f| | sharpened L5: rad/max|f| | enclosed (both)
+1e-12 | 2.43e-16 | pi - 3.117e-08 | 3.42e-11 | 3.24e-26 | True
+1e-15 | 2.43e-16 | pi - 3.117e-08 | 3.45e-11 | 3.27e-26 | True
+1e-17 | 7.11e-18 | pi - 5.331e-09 | 6.85e-09 | 1.90e-25 | True
+1e-19 | 1.07e-19 | pi - 6.541e-10 | 3.73e-06 | 1.56e-24 | True

@@ -1,0 +1,141 @@
+emulator: p=53 add/mul/div/sqrt bit-equal to hardware binary64 on 2000 random pairs
+IP phi 1.0000e-09 R 3.000000e+08
+   KD5 p128 closed (1-cos from rounded cos)     relK 6.45e-12  trigger 1.2792e-07 at dof 11  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 1.10e-19  trigger 1.2792e-07 at dof 11  
+   KD5 p192 closed                              relK 6.51e-31  trigger 1.2792e-07 at dof 11  
+   M31b0 p128 closed (formula chord at p)       relK 6.45e-12  trigger 1.2792e-07 at dof 11  
+   M31b0 p128 stable                            relK 1.10e-19  trigger 1.2792e-07 at dof 11  
+   M31b p128 (binary64 formula chord)           relK 1.43e-10  trigger 1.2743e+00 at dof 8  DEMOTES
+IP phi 1.5000e-09 R 2.000000e+08
+   KD5 p128 closed (1-cos from rounded cos)     relK 4.12e-12  trigger 1.2793e-07 at dof 11  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 4.14e-20  trigger 1.2793e-07 at dof 11  
+   KD5 p192 closed                              relK 1.25e-31  trigger 1.2793e-07 at dof 11  
+   M31b0 p128 closed (formula chord at p)       relK 4.12e-12  trigger 1.2793e-07 at dof 11  
+   M31b0 p128 stable                            relK 4.14e-20  trigger 1.2793e-07 at dof 11  
+   M31b p128 (binary64 formula chord)           relK 2.16e-10  trigger 1.9115e+00 at dof 8  DEMOTES
+IP phi 2.0000e-09 R 1.500000e+08
+   KD5 p128 closed (1-cos from rounded cos)     relK 1.01e-12  trigger 1.2808e-07 at dof 7  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 3.42e-20  trigger 1.2808e-07 at dof 7  
+   KD5 p192 closed                              relK 9.56e-32  trigger 1.2808e-07 at dof 7  
+   M31b0 p128 closed (formula chord at p)       relK 1.01e-12  trigger 1.2808e-07 at dof 7  
+   M31b0 p128 stable                            relK 3.42e-20  trigger 1.2808e-07 at dof 7  
+   M31b p128 (binary64 formula chord)           relK 2.89e-10  trigger 2.5486e+00 at dof 8  DEMOTES
+IP phi 3.0000e-09 R 1.000000e+08
+   KD5 p128 closed (1-cos from rounded cos)     relK 4.51e-13  trigger 1.5954e-07 at dof 7  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 1.43e-20  trigger 1.5954e-07 at dof 7  
+   KD5 p192 closed                              relK 5.47e-33  trigger 1.5954e-07 at dof 7  
+   M31b0 p128 closed (formula chord at p)       relK 4.51e-13  trigger 1.5954e-07 at dof 7  
+   M31b0 p128 stable                            relK 1.43e-20  trigger 1.5954e-07 at dof 7  
+   M31b p128 (binary64 formula chord)           relK 4.33e-10  trigger 3.8230e+00 at dof 8  DEMOTES
+IP phi 5.0000e-09 R 6.000000e+07
+   KD5 p128 closed (1-cos from rounded cos)     relK 1.24e-13  trigger 1.2802e-07 at dof 11  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 2.67e-21  trigger 1.2802e-07 at dof 11  
+   KD5 p192 closed                              relK 3.30e-33  trigger 1.2802e-07 at dof 11  
+   M31b0 p128 closed (formula chord at p)       relK 1.24e-13  trigger 1.2802e-07 at dof 11  
+   M31b0 p128 stable                            relK 2.67e-21  trigger 1.2802e-07 at dof 11  
+   M31b p128 (binary64 formula chord)           relK 7.21e-10  trigger 6.3716e+00 at dof 8  DEMOTES
+IP phi 1.0000e-08 R 3.000000e+07
+   KD5 p128 closed (1-cos from rounded cos)     relK 5.73e-15  trigger 1.2835e-07 at dof 11  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 1.64e-22  trigger 1.2835e-07 at dof 11  
+   KD5 p192 closed                              relK 1.88e-34  trigger 1.2835e-07 at dof 11  
+   M31b0 p128 closed (formula chord at p)       relK 5.73e-15  trigger 1.2835e-07 at dof 11  
+   M31b0 p128 stable                            relK 1.64e-22  trigger 1.2835e-07 at dof 11  
+   M31b p128 (binary64 formula chord)           relK 1.44e-09  trigger 1.2743e+01 at dof 8  DEMOTES
+IP phi 2.0000e-08 R 1.500000e+07
+   KD5 p128 closed (1-cos from rounded cos)     relK 1.38e-15  trigger 1.2964e-07 at dof 11  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 2.70e-22  trigger 1.2964e-07 at dof 11  
+   KD5 p192 closed                              relK 9.41e-35  trigger 1.2964e-07 at dof 11  
+   M31b0 p128 closed (formula chord at p)       relK 1.38e-15  trigger 1.2964e-07 at dof 11  
+   M31b0 p128 stable                            relK 2.70e-22  trigger 1.2964e-07 at dof 11  
+   M31b p128 (binary64 formula chord)           relK 3.18e-10  trigger 2.8092e+00 at dof 8  DEMOTES
+IP phi 1.0000e-06 R 3.000000e+05
+   KD5 p128 closed (1-cos from rounded cos)     relK 1.54e-20  trigger 1.6360e-07 at dof 9  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 2.17e-25  trigger 1.6360e-07 at dof 9  
+   KD5 p192 closed                              relK 8.23e-40  trigger 1.6360e-07 at dof 9  
+   M31b0 p128 closed (formula chord at p)       relK 1.54e-20  trigger 1.6360e-07 at dof 9  
+   M31b0 p128 stable                            relK 2.17e-25  trigger 1.6360e-07 at dof 9  
+   M31b p128 (binary64 formula chord)           relK 1.28e-11  trigger 1.1329e-01 at dof 8  
+IP phi 1.0000e-04 R 3.000000e+03
+   KD5 p128 closed (1-cos from rounded cos)     relK 9.00e-27  trigger 1.8689e-07 at dof 11  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 2.05e-29  trigger 1.8689e-07 at dof 11  
+   KD5 p192 closed                              relK 3.19e-46  trigger 1.8689e-07 at dof 11  
+   M31b0 p128 closed (formula chord at p)       relK 9.00e-27  trigger 1.8689e-07 at dof 11  
+   M31b0 p128 stable                            relK 2.05e-29  trigger 1.8689e-07 at dof 11  
+   M31b p128 (binary64 formula chord)           relK 7.56e-14  trigger 6.6830e-04 at dof 8  
+IP phi 8.7266e-02 R 3.438838e+00
+   KD5 p128 closed (1-cos from rounded cos)     relK 1.00e-35  trigger 1.6984e-07 at dof 11  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 6.40e-36  trigger 1.6984e-07 at dof 11  
+   KD5 p192 closed                              relK 1.37e-54  trigger 1.6984e-07 at dof 11  
+   M31b0 p128 closed (formula chord at p)       relK 1.00e-35  trigger 1.6984e-07 at dof 11  
+   M31b0 p128 stable                            relK 6.40e-36  trigger 1.6984e-07 at dof 11  
+   M31b p128 (binary64 formula chord)           relK 4.57e-17  trigger 3.5331e-07 at dof 8  
+SK phi 1.0000e-09 R 3.000000e+08
+   KD5 p128 closed (1-cos from rounded cos)     relK 3.14e-12  trigger 1.9674e-07 at dof 11  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 3.37e-20  trigger 1.9674e-07 at dof 11  
+   KD5 p192 closed                              relK 2.15e-31  trigger 1.9674e-07 at dof 11  
+   M31b0 p128 closed (formula chord at p)       relK 3.14e-12  trigger 1.9674e-07 at dof 11  
+   M31b0 p128 stable                            relK 3.37e-20  trigger 1.9674e-07 at dof 11  
+   M31b p128 (binary64 formula chord)           relK 1.11e-10  trigger 1.2450e+00 at dof 8  DEMOTES
+SK phi 1.5000e-09 R 2.000000e+08
+   KD5 p128 closed (1-cos from rounded cos)     relK 1.66e-12  trigger 1.9675e-07 at dof 11  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 7.27e-20  trigger 1.9675e-07 at dof 11  
+   KD5 p192 closed                              relK 1.53e-31  trigger 1.9675e-07 at dof 11  
+   M31b0 p128 closed (formula chord at p)       relK 1.66e-12  trigger 1.9675e-07 at dof 11  
+   M31b0 p128 stable                            relK 7.27e-20  trigger 1.9675e-07 at dof 11  
+   M31b p128 (binary64 formula chord)           relK 1.67e-10  trigger 1.8675e+00 at dof 8  DEMOTES
+SK phi 2.0000e-09 R 1.500000e+08
+   KD5 p128 closed (1-cos from rounded cos)     relK 1.57e-12  trigger 1.9675e-07 at dof 11  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 1.25e-20  trigger 1.9675e-07 at dof 11  
+   KD5 p192 closed                              relK 1.07e-31  trigger 1.9675e-07 at dof 11  
+   M31b0 p128 closed (formula chord at p)       relK 1.57e-12  trigger 1.9675e-07 at dof 11  
+   M31b0 p128 stable                            relK 1.25e-20  trigger 1.9675e-07 at dof 11  
+   M31b p128 (binary64 formula chord)           relK 2.22e-10  trigger 2.4900e+00 at dof 8  DEMOTES
+SK phi 3.0000e-09 R 1.000000e+08
+   KD5 p128 closed (1-cos from rounded cos)     relK 6.57e-13  trigger 1.9677e-07 at dof 11  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 8.78e-21  trigger 1.9677e-07 at dof 11  
+   KD5 p192 closed                              relK 4.13e-33  trigger 1.9677e-07 at dof 11  
+   M31b0 p128 closed (formula chord at p)       relK 6.57e-13  trigger 1.9677e-07 at dof 11  
+   M31b0 p128 stable                            relK 8.78e-21  trigger 1.9677e-07 at dof 11  
+   M31b p128 (binary64 formula chord)           relK 3.34e-10  trigger 3.7350e+00 at dof 8  DEMOTES
+SK phi 5.0000e-09 R 6.000000e+07
+   KD5 p128 closed (1-cos from rounded cos)     relK 4.75e-14  trigger 1.9683e-07 at dof 11  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 3.88e-21  trigger 1.9683e-07 at dof 11  
+   KD5 p192 closed                              relK 5.35e-33  trigger 1.9683e-07 at dof 11  
+   M31b0 p128 closed (formula chord at p)       relK 4.75e-14  trigger 1.9683e-07 at dof 11  
+   M31b0 p128 stable                            relK 3.88e-21  trigger 1.9683e-07 at dof 11  
+   M31b p128 (binary64 formula chord)           relK 5.57e-10  trigger 6.2249e+00 at dof 8  DEMOTES
+SK phi 1.0000e-08 R 3.000000e+07
+   KD5 p128 closed (1-cos from rounded cos)     relK 1.65e-14  trigger 1.9708e-07 at dof 11  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 1.07e-21  trigger 1.9708e-07 at dof 11  
+   KD5 p192 closed                              relK 4.96e-34  trigger 1.9708e-07 at dof 11  
+   M31b0 p128 closed (formula chord at p)       relK 1.65e-14  trigger 1.9708e-07 at dof 11  
+   M31b0 p128 stable                            relK 1.07e-21  trigger 1.9708e-07 at dof 11  
+   M31b p128 (binary64 formula chord)           relK 1.11e-09  trigger 1.2450e+01 at dof 8  DEMOTES
+SK phi 2.0000e-08 R 1.500000e+07
+   KD5 p128 closed (1-cos from rounded cos)     relK 1.82e-15  trigger 1.9766e-07 at dof 10  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 3.41e-22  trigger 1.9766e-07 at dof 10  
+   KD5 p192 closed                              relK 2.43e-35  trigger 1.9766e-07 at dof 10  
+   M31b0 p128 closed (formula chord at p)       relK 1.82e-15  trigger 1.9766e-07 at dof 10  
+   M31b0 p128 stable                            relK 3.41e-22  trigger 1.9766e-07 at dof 10  
+   M31b p128 (binary64 formula chord)           relK 2.45e-10  trigger 2.7445e+00 at dof 8  DEMOTES
+SK phi 1.0000e-06 R 3.000000e+05
+   KD5 p128 closed (1-cos from rounded cos)     relK 1.58e-20  trigger 1.6904e-07 at dof 9  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 4.63e-26  trigger 1.6904e-07 at dof 9  
+   KD5 p192 closed                              relK 8.93e-40  trigger 1.6904e-07 at dof 9  
+   M31b0 p128 closed (formula chord at p)       relK 1.58e-20  trigger 1.6904e-07 at dof 9  
+   M31b0 p128 stable                            relK 4.63e-26  trigger 1.6904e-07 at dof 9  
+   M31b p128 (binary64 formula chord)           relK 9.90e-12  trigger 1.1068e-01 at dof 8  
+SK phi 1.0000e-04 R 3.000000e+03
+   KD5 p128 closed (1-cos from rounded cos)     relK 1.45e-26  trigger 1.8014e-07 at dof 11  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 1.29e-29  trigger 1.8014e-07 at dof 11  
+   KD5 p192 closed                              relK 1.04e-45  trigger 1.8014e-07 at dof 11  
+   M31b0 p128 closed (formula chord at p)       relK 1.45e-26  trigger 1.8014e-07 at dof 11  
+   M31b0 p128 stable                            relK 1.29e-29  trigger 1.8014e-07 at dof 11  
+   M31b p128 (binary64 formula chord)           relK 5.84e-14  trigger 6.5277e-04 at dof 8  
+SK phi 8.7266e-02 R 3.438838e+00
+   KD5 p128 closed (1-cos from rounded cos)     relK 2.83e-35  trigger 1.4254e-07 at dof 9  
+   KD5 p128 stable (1-cos = 2 s^2)              relK 3.65e-36  trigger 1.4254e-07 at dof 9  
+   KD5 p192 closed                              relK 1.07e-54  trigger 1.4254e-07 at dof 9  
+   M31b0 p128 closed (formula chord at p)       relK 2.83e-35  trigger 1.4254e-07 at dof 9  
+   M31b0 p128 stable                            relK 3.65e-36  trigger 1.4254e-07 at dof 9  
+   M31b p128 (binary64 formula chord)           relK 3.66e-17  trigger 3.6009e-07 at dof 8  

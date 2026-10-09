@@ -1,0 +1,133 @@
+# Notice search (M6 / PRD_ROOT D-11): who pins or mirrors the changed texts
+# Tree: main 7b2715cb0e (equal to #1168 for the five documents; blob ids below). cwd: WT/u5-docs. git grep reads the committed tree.
+
+## 0. The five documents at main (sha256 of bytes, then git blob id)
+projects/chirality-piping/docs/TYPES.md 28bc8b6a827b91a28c5e62f2c3b9d1807db136f4da6fb1222c8852176c903c7f 2f520a600bacbac3ce620ea84c902d1373d74b21 (#1168: 2f520a600bacbac3ce620ea84c902d1373d74b21)
+projects/chirality-piping/docs/SPEC.md 461570f14ada321b327451f929cfd77b8aeff9938edf1926bab9aea582f99fe7 5d4a1c13517c9663639ffe1e385bf1ebdaeb9d53 (#1168: 5d4a1c13517c9663639ffe1e385bf1ebdaeb9d53)
+projects/chirality-piping/docs/VALIDATION_STRATEGY.md a9bce923d5ca9656191a4abddad8f9464c2fde6b37c94b3d787e98c00949acda 18d58bda65a4c515895bfd9d09eb1c096ca51f81 (#1168: 18d58bda65a4c515895bfd9d09eb1c096ca51f81)
+projects/chirality-piping/docs/INTENT.md 8e86c8c7d43b9487f2270f1b4314dacd68adac58531d8485ab4154b1b410b1cf ce252f9bf6a7c3303e1781341f66cd26b4b32320 (#1168: ce252f9bf6a7c3303e1781341f66cd26b4b32320)
+projects/chirality-piping/docs/PRD.md cd6297af2ed9588f6da24c0665d32c74ee33d3e7f9115e733b47244fd75b4611 f399024936690ea52db8fd181290897d1a2c260b (#1168: f399024936690ea52db8fd181290897d1a2c260b)
+
+## 1. Path references outside projects/chirality-piping
+$ git grep -n -E "chirality-piping/docs/(TYPES|SPEC|VALIDATION_STRATEGY|INTENT|PRD)\.md" 7b2715cb0e -- ":!projects/chirality-piping"
+docs/governance_harness/tranche_manifests/PIPING-SWBPIPE-A1-CLAIMS-LINT-20260918.yaml:50:  - projects/chirality-piping/docs/PRD.md
+docs/governance_harness/tranche_manifests/ROOT-DEVELOPMENT-LOOP-MEMORY-20260922.yaml:27:  - projects/chirality-piping/docs/TYPES.md
+execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_REMEDIATION_TERMINAL_2026-07-28_058B294C/validate_terminal.py:27:    "projects/chirality-piping/docs/PRD.md":
+plans/evidence/2026-09-22_manual_v7/guide-independent-sources.json:341:      "path": "projects/chirality-piping/docs/TYPES.md",
+plans/evidence/2026-09-22_manual_v7/guide-independent-sources.json:342:      "resolved_path": <a machine-absolute path in that committed file, not reproduced here>,
+plans/evidence/2026-09-22_manual_v7/guide-sources.json:333:      "path": "projects/chirality-piping/docs/TYPES.md",
+plans/evidence/2026-09-22_manual_v7/guide-sources.json:334:      "resolved_path": <a machine-absolute path in that committed file, not reproduced here>,
+projects/pec/execution/_Coordination/REMAINING_RETIREMENT_D-PEC-99_2026-09-26/checks/post_manifest_added.out:87:  INFO: manifest ROOT-DEVELOPMENT-LOOP-MEMORY-20260922.yaml: declared path 'projects/chi
+projects/pec/execution/_Coordination/REMAINING_RETIREMENT_D-PEC-99_2026-09-26/checks/post_manifest_default.out:87:  INFO: manifest ROOT-DEVELOPMENT-LOOP-MEMORY-20260922.yaml: declared path 'projects/c
+
+## 2. Any 'chirality-piping/docs' reference in the other loops and Root instruction surfaces (tranche manifests excluded)
+$ git grep -n "chirality-piping/docs" 7b2715cb0e -- projects/chirality-app-dev projects/chirality-app-v4 projects/chirality-runtime projects/pec docs agents AGENTS.md workflows .agents init | grep -v tranche_manifests/
+docs/CI_SELECTION.md:39:[source-coverage policy](../projects/chirality-piping/docs/CI_STRATEGY.md).
+docs/governance_harness/_DECISIONS/D-GOV-48_every_scope_item_package_home.md:139:ledger (`projects/chirality-piping/docs/_Registers/ScopeLedger.csv`) has 79
+projects/chirality-app-v4/execution/_Coordination/AgentRuns/V4-CONCEPT-20260925/tasks/T11-v3-runtime-frontend.return.md:190:  - SWBPIPE ships unsigned `.app` zi
+projects/pec/execution/_Coordination/REMAINING_RETIREMENT_D-PEC-99_2026-09-26/checks/post_manifest_added.out:85:  INFO: manifest ROOT-DEVELOPMENT-LOOP-MEMORY-20
+projects/pec/execution/_Coordination/REMAINING_RETIREMENT_D-PEC-99_2026-09-26/checks/post_manifest_added.out:86:  INFO: manifest ROOT-DEVELOPMENT-LOOP-MEMORY-20
+projects/pec/execution/_Coordination/REMAINING_RETIREMENT_D-PEC-99_2026-09-26/checks/post_manifest_added.out:87:  INFO: manifest ROOT-DEVELOPMENT-LOOP-MEMORY-20
+projects/pec/execution/_Coordination/REMAINING_RETIREMENT_D-PEC-99_2026-09-26/checks/post_manifest_added.out:152:  INFO: manifest ROOT-SCOPED-PR-CI-20260923.yam
+projects/pec/execution/_Coordination/REMAINING_RETIREMENT_D-PEC-99_2026-09-26/checks/post_manifest_default.out:85:  INFO: manifest ROOT-DEVELOPMENT-LOOP-MEMORY-
+projects/pec/execution/_Coordination/REMAINING_RETIREMENT_D-PEC-99_2026-09-26/checks/post_manifest_default.out:86:  INFO: manifest ROOT-DEVELOPMENT-LOOP-MEMORY-
+projects/pec/execution/_Coordination/REMAINING_RETIREMENT_D-PEC-99_2026-09-26/checks/post_manifest_default.out:87:  INFO: manifest ROOT-DEVELOPMENT-LOOP-MEMORY-
+projects/pec/execution/_Coordination/REMAINING_RETIREMENT_D-PEC-99_2026-09-26/checks/post_manifest_default.out:152:  INFO: manifest ROOT-SCOPED-PR-CI-20260923.y
+projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_LOOP_HOME_2026-09-05/D_RETIREMENT/FINAL_REFERENCE_INVENTORY.csv:549:projects/chirality-piping/docs/AGEN
+projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_LOOP_HOME_2026-09-05/D_RETIREMENT/FINAL_REFERENCE_INVENTORY.csv:550:projects/chirality-piping/docs/READ
+projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_LOOP_HOME_2026-09-05/D_RETIREMENT/FINAL_REFERENCE_INVENTORY.csv:551:projects/chirality-piping/docs/cont
+projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_LOOP_HOME_2026-09-05/D_RETIREMENT/PLAN_REFERENCE_INVENTORY.csv:189:projects/chirality-piping/docs/READM
+projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_LOOP_HOME_2026-09-05/D_RETIREMENT/PLAN_REFERENCE_INVENTORY.csv:225:projects/chirality-piping/docs/contr
+projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_LOOP_HOME_2026-09-05/D_RETIREMENT/PLAN_REFERENCE_INVENTORY.csv:227:projects/chirality-piping/docs/AGENT
+
+## 3. Content hashes (sha256 and blob id) of the five documents anywhere in the tree (file names only; counts per hash)
+### TYPES.md 28bc8b6a827b91a28c5e62f2c3b9d1807db136f4da6fb1222c8852176c903c7f: 2 file(s)
+  1 plans/evidence/2026-09-22_manual_v7/guide-independent-sources.json
+  1 plans/evidence/2026-09-22_manual_v7/guide-sources.json
+### TYPES.md 2f520a600bacbac3ce620ea84c902d1373d74b21: 0 file(s)
+### SPEC.md 461570f14ada321b327451f929cfd77b8aeff9938edf1926bab9aea582f99fe7: 6 file(s)
+  1 projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/R5_RECORD_CONTINUATION_2026-09-22/CHANGED_CLAIM_REEXTRACTION.csv
+  1 projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/R5_RECORD_CONTINUATION_2026-09-22/INTEGRATION_EDITS.json
+  1 projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/R5_RECORD_CONTINUATION_2026-09-22/PKG00_06/SOURCE_HASHES.json
+  1 projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/R5_RECORD_CONTINUATION_2026-09-22/PKG07_12/SOURCE_HASHES.json
+  1 projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/R5_RECORD_CONTINUATION_2026-09-22/SOURCE_BINDINGS.csv
+  1 projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/R5_RECORD_CONTINUATION_2026-09-22/review/SOURCE_HASHES.json
+### SPEC.md 5d4a1c13517c9663639ffe1e385bf1ebdaeb9d53: 0 file(s)
+### VALIDATION_STRATEGY.md a9bce923d5ca9656191a4abddad8f9464c2fde6b37c94b3d787e98c00949acda: 12 file(s)
+  8 projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260913-RESULTS-ENGINEERING-3D/... (agent run record)
+  2 projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/... (agent run record)
+  1 projects/chirality-piping/execution/_Evaluation/PHYSICS_AUDIT_2026-09-05/V1/AUTHORITY_BINDINGS.json
+  1 projects/chirality-piping/validation/qualification/capability_inventory.json
+### VALIDATION_STRATEGY.md 18d58bda65a4c515895bfd9d09eb1c096ca51f81: 0 file(s)
+### INTENT.md 8e86c8c7d43b9487f2270f1b4314dacd68adac58531d8485ab4154b1b410b1cf: 8 file(s)
+  8 projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260913-RESULTS-ENGINEERING-3D/... (agent run record)
+### INTENT.md ce252f9bf6a7c3303e1781341f66cd26b4b32320: 0 file(s)
+### PRD.md cd6297af2ed9588f6da24c0665d32c74ee33d3e7f9115e733b47244fd75b4611: 9 file(s)
+  8 projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/... (agent run record)
+  1 projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/R5_RECORD_CONTINUATION_2026-09-22/PKG13_17/SOURCE_HASHES.json
+### PRD.md f399024936690ea52db8fd181290897d1a2c260b: 3 file(s)
+  2 projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/... (agent run record)
+  1 projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/RUN_BASIS.md
+
+## 4. The changed sentences' wording outside piping's docs/
+### "and pressure membrane stress components"
+### "thin-wall pressure membrane"
+plans/chirality_piping_solver_maturity_survey_2026-07-31.html:115:torsional shear, thin-wall pressure membrane, mechanics-only stress
+projects/chirality-piping/validation/benchmarks/stress/src/lib.rs:580:        description: "Invented thin-wall pressure membrane components from explicit pressu
+### "pressure membrane stress, and mechanics-only stress range"
+### "membrane stress, and mechanics-only"
+
+## 5. Document identities (front-matter doc_id) outside piping's own agent runs
+### OPS-TYPES
+projects/chirality-piping/docs/AGENTIC_DEVELOPMENT_WORKFLOW.md
+projects/chirality-piping/docs/CONTRACT.md
+projects/chirality-piping/docs/SPEC.md
+projects/chirality-piping/docs/TYPES.md
+projects/chirality-piping/execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-01_Project governance baseline/Dependencies.csv
+projects/chirality-piping/execution/PKG-01_Governance, IP Boundary, and Professional Responsibility/1_Working/DEL-01-01_Project governance baseline/_DEPENDENCIES.md
+projects/chirality-piping/execution/_DAG/DAG-007/DependencyEdges.csv
+projects/chirality-piping/execution/_DAG/DAG-008/DependencyEdges.csv
+projects/chirality-piping/execution/_DAG/DAG-009/DependencyEdges.csv
+projects/chirality-piping/execution/_DAG/DAG-010/DependencyEdges.csv
+projects/chirality-piping/execution/_DAG/DAG-011/DependencyEdges.csv
+projects/chirality-piping/execution/_Evaluation/DAG008_CANDIDATE_EVALUATION_2026-07-22_R15/bundle/DAG-008/DependencyEdges.csv
+projects/chirality-piping/execution/_Evaluation/DAG009_CANDIDATE_EVALUATION_2026-08-02_R23/bundle/DAG-009/DependencyEdges.csv
+projects/chirality-piping/execution/_ScopeChange/SCA-011_2026-09-22_OWNERSHIP/application/dependencies/repair_preimages/projects/chirality-piping/execution/_DAG/DAG-011/DependencyEdges.csv
+projects/chirality-piping/execution/_ScopeChange/SCA-011_2026-09-22_OWNERSHIP/dependencies/DependencyEdges.csv
+### OPS-SPEC
+projects/chirality-piping/docs/CONTRACT.md
+projects/chirality-piping/docs/DIRECTIVE.md
+projects/chirality-piping/docs/PROFESSIONAL_BOUNDARY.md
+projects/chirality-piping/docs/SPEC.md
+projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-02_Private data redaction and export controls/Dependencies.csv
+projects/chirality-piping/execution/PKG-12_Security, Privacy, and Private Data Handling/1_Working/DEL-12-02_Private data redaction and export controls/_DEPENDENCIES.md
+projects/chirality-piping/execution/_DAG/DAG-007/DependencyEdges.csv
+projects/chirality-piping/execution/_DAG/DAG-008/DependencyEdges.csv
+projects/chirality-piping/execution/_DAG/DAG-009/DependencyEdges.csv
+projects/chirality-piping/execution/_DAG/DAG-010/DependencyEdges.csv
+projects/chirality-piping/execution/_DAG/DAG-011/DependencyEdges.csv
+projects/chirality-piping/execution/_Evaluation/DAG008_CANDIDATE_EVALUATION_2026-07-22_R15/bundle/DAG-008/DependencyEdges.csv
+projects/chirality-piping/execution/_Evaluation/DAG009_CANDIDATE_EVALUATION_2026-08-02_R23/bundle/DAG-009/DependencyEdges.csv
+projects/chirality-piping/execution/_ScopeChange/SCA-011_2026-09-22_OWNERSHIP/application/dependencies/repair_preimages/projects/chirality-piping/execution/_DAG/DAG-011/DependencyEdges.csv
+projects/chirality-piping/execution/_ScopeChange/SCA-011_2026-09-22_OWNERSHIP/dependencies/DependencyEdges.csv
+### OPS-VALIDATION-STRATEGY
+projects/chirality-piping/docs/RELEASE_QUALITY_GATES.md
+projects/chirality-piping/docs/VALIDATION_STRATEGY.md
+projects/chirality-piping/docs/validation_manual/index.md
+projects/chirality-piping/execution/PKG-11_Documentation, Examples, and Education/1_Working/DEL-11-02_Developer guide for solver and rule packs/_run_records/TASK_RUN_2026-04-30_1215_dependency-extract.md
+
+## 6. Inside Piping: loop instructions, coordination pointers, and the T3 and T4 undertakings
+$ grep -n -E "TYPES|SPEC|VALIDATION_STRATEGY|INTENT|PRD" P/AGENTS.md P/loop/LOOP_INIT.md
+projects/chirality-piping/loop/LOOP_INIT.md:53:- **Basis.** `docs/PRD.md`.
+projects/chirality-piping/loop/LOOP_INIT.md:86:  Assess against those criteria, not against a `docs/PRD.md` §24 milestone
+$ grep -n -E "docs/(TYPES|SPEC|VALIDATION_STRATEGY|INTENT)\.md" P/execution/_Coordination/_COORDINATION.md P/execution/_Decomposition/_LATEST.md
+(T3: NUM's T top-level records name none of the five files; T4: WT/t4 branch, PRESSURE_STRESS_T4/ names none - grep for '(TYPES|SPEC|VALIDATION_STRATEGY|INTENT|PRD)\.md' and 'docs/TYPES|VALIDATION_STRATEGY|A1-N-2|governance doc' returned only an unrelated schema citation in T4-I3/RETURN.md:115.)
+
+## 7. Piping consumers that name the changed files by path
+projects/chirality-piping/apps/desktop/src/features/validation-evidence/ValidationEvidencePanel.tsx:33:  "docs/VALIDATION_STRATEGY.md",
+projects/chirality-piping/apps/desktop/src/features/validation-evidence/ValidationEvidencePanel.tsx:148:      validation_strategy: "docs/VALIDATION_STRATEGY.md"
+projects/chirality-piping/tests/test_ci_e2e_plan.py:149:        for path in ['AGENTS.md', 'docs/SPEC.md', 'workflows/construct-local-work-graph/WORKFLOW.md',
+projects/chirality-piping/tools/release/check_release_readiness.py:22:    "docs/VALIDATION_STRATEGY.md",
+projects/chirality-piping/tools/release/export_public_openpipestress.py:270:    ("docs/TYPES.md", "PROHIBITED_PROFESSIONAL_CLAIM"): (
+projects/chirality-piping/validation/qualification/capability_inventory.json:359:      "path": "projects/chirality-piping/docs/VALIDATION_STRATEGY.md",
+(capability_inventory.json pins VALIDATION_STRATEGY.md's sha256 at revision eec2855d82; check_inventory.py verifies it with 'git show <revision>:<path>', so the edit does not affect it. The others name the path, not the content.)

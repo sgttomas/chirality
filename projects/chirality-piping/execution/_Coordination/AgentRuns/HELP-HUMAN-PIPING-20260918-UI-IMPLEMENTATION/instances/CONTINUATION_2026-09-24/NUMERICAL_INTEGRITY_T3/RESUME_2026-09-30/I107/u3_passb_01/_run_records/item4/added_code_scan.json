@@ -1,0 +1,1421 @@
+{
+ "about": "I107 round 3, item 4: every added production code line (comments dropped) in the Rust files main ba500defa4 -> U3 changes,\noutside #[cfg(test)] modules and test files, with the loop and allocation constructs it names.",
+ "per_file_added_lines_with_loops_with_allocs": {
+  "P/apps/desktop/src-tauri/src/lib.rs": [
+   3,
+   0,
+   0
+  ],
+  "P/core/loads/stress_recovery/src/lib.rs": [
+   2,
+   0,
+   0
+  ],
+  "P/core/model_operations/operation_applier/src/lib.rs": [
+   14,
+   0,
+   3
+  ],
+  "P/core/product_physics/examples/preview_result.rs": [
+   34,
+   3,
+   0
+  ],
+  "P/core/product_physics/src/lib.rs": [
+   20,
+   0,
+   1
+  ],
+  "P/core/product_physics/src/pressure_runtime.rs": [
+   12,
+   0,
+   0
+  ],
+  "P/core/product_physics/src/preview_physics.rs": [
+   59,
+   9,
+   6
+  ],
+  "P/core/product_physics/src/retained_product.rs": [
+   5,
+   0,
+   0
+  ],
+  "P/core/product_physics/src/source_receipt/rows.rs": [
+   2,
+   0,
+   0
+  ],
+  "P/core/product_physics/src/source_recovery.rs": [
+   1,
+   0,
+   0
+  ],
+  "P/core/product_physics/src/validation.rs": [
+   2,
+   0,
+   0
+  ],
+  "P/core/solver/curved_bend/src/lib.rs": [
+   1,
+   0,
+   1
+  ],
+  "P/validation/benchmarks/mechanics/src/lib.rs": [
+   28,
+   0,
+   0
+  ],
+  "P/validation/benchmarks/stress/src/lib.rs": [
+   2,
+   0,
+   0
+  ]
+ },
+ "lines": [
+  {
+   "file": "P/apps/desktop/src-tauri/src/lib.rs",
+   "line": 1539,
+   "loops": [],
+   "allocs": [],
+   "code": "read_fixture(\"\")"
+  },
+  {
+   "file": "P/apps/desktop/src-tauri/src/lib.rs",
+   "line": 1571,
+   "loops": [],
+   "allocs": [],
+   "code": "None => read_fixture(\"\"),"
+  },
+  {
+   "file": "P/apps/desktop/src-tauri/src/lib.rs",
+   "line": 1896,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\": result.get(\"\").cloned().unwrap_or_else(|| json!(\"\")),"
+  },
+  {
+   "file": "P/core/loads/stress_recovery/src/lib.rs",
+   "line": 293,
+   "loops": [],
+   "allocs": [],
+   "code": "pub fn new(resultants: ForceResultantUnitMetadata, section: StressSectionUnitMetadata) -> Self {"
+  },
+  {
+   "file": "P/core/loads/stress_recovery/src/lib.rs",
+   "line": 908,
+   "loops": [],
+   "allocs": [],
+   "code": "let base_normal = axial + 0.0;"
+  },
+  {
+   "file": "P/core/model_operations/operation_applier/src/lib.rs",
+   "line": 4964,
+   "loops": [],
+   "allocs": [],
+   "code": "if category == \"\" {"
+  },
+  {
+   "file": "P/core/model_operations/operation_applier/src/lib.rs",
+   "line": 4965,
+   "loops": [],
+   "allocs": [],
+   "code": "checker.push("
+  },
+  {
+   "file": "P/core/model_operations/operation_applier/src/lib.rs",
+   "line": 4966,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\","
+  },
+  {
+   "file": "P/core/model_operations/operation_applier/src/lib.rs",
+   "line": 4967,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\","
+  },
+  {
+   "file": "P/core/model_operations/operation_applier/src/lib.rs",
+   "line": 4968,
+   "loops": [],
+   "allocs": [
+    "to_string"
+   ],
+   "code": "\"\".to_string(),"
+  },
+  {
+   "file": "P/core/model_operations/operation_applier/src/lib.rs",
+   "line": 4969,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\","
+  },
+  {
+   "file": "P/core/model_operations/operation_applier/src/lib.rs",
+   "line": 4970,
+   "loops": [],
+   "allocs": [
+    "to_string"
+   ],
+   "code": "vec![target_ref.to_string()],"
+  },
+  {
+   "file": "P/core/model_operations/operation_applier/src/lib.rs",
+   "line": 4971,
+   "loops": [],
+   "allocs": [],
+   "code": ");"
+  },
+  {
+   "file": "P/core/model_operations/operation_applier/src/lib.rs",
+   "line": 4972,
+   "loops": [],
+   "allocs": [],
+   "code": "return None;"
+  },
+  {
+   "file": "P/core/model_operations/operation_applier/src/lib.rs",
+   "line": 4973,
+   "loops": [],
+   "allocs": [],
+   "code": "}"
+  },
+  {
+   "file": "P/core/model_operations/operation_applier/src/lib.rs",
+   "line": 4985,
+   "loops": [],
+   "allocs": [
+    "to_string"
+   ],
+   "code": "\"\".to_string(),"
+  },
+  {
+   "file": "P/core/model_operations/operation_applier/src/lib.rs",
+   "line": 5135,
+   "loops": [],
+   "allocs": [],
+   "code": "|| (matches!(category, \"\" | \"\")"
+  },
+  {
+   "file": "P/core/model_operations/operation_applier/src/lib.rs",
+   "line": 5189,
+   "loops": [],
+   "allocs": [],
+   "code": "if matches!(category, \"\" | \"\")"
+  },
+  {
+   "file": "P/core/model_operations/operation_applier/src/lib.rs",
+   "line": 5219,
+   "loops": [],
+   "allocs": [],
+   "code": "} else if matches!(category, \"\" | \"\") {"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 9,
+   "loops": [],
+   "allocs": [],
+   "code": "const MODELS: [(&str, &str); 2] = ["
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 10,
+   "loops": [],
+   "allocs": [],
+   "code": "("
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 11,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\","
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 12,
+   "loops": [],
+   "allocs": [],
+   "code": "include_str!(\"\"),"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 13,
+   "loops": [],
+   "allocs": [],
+   "code": "),"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 14,
+   "loops": [],
+   "allocs": [],
+   "code": "("
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 15,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\","
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 16,
+   "loops": [],
+   "allocs": [],
+   "code": "include_str!(\"\"),"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 17,
+   "loops": [],
+   "allocs": [],
+   "code": "),"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 18,
+   "loops": [],
+   "allocs": [],
+   "code": "];"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 20,
+   "loops": [],
+   "allocs": [],
+   "code": "fn usage() -> ! {"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 21,
+   "loops": [],
+   "allocs": [],
+   "code": "eprintln!("
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 22,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\""
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 23,
+   "loops": [],
+   "allocs": [],
+   "code": ");"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 24,
+   "loops": [],
+   "allocs": [],
+   "code": "std::process::exit(2);"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 25,
+   "loops": [],
+   "allocs": [],
+   "code": "}"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 29,
+   "loops": [],
+   "allocs": [],
+   "code": "let parse_mode = |mode: &str| {"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 30,
+   "loops": [],
+   "allocs": [],
+   "code": "PreviewSolverMode::from_wire(mode).unwrap_or_else(|| {"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 33,
+   "loops": [],
+   "allocs": [],
+   "code": "})"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 35,
+   "loops": [],
+   "allocs": [],
+   "code": "let (mode, model_text) = match arguments.as_slice() {"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 36,
+   "loops": [],
+   "allocs": [],
+   "code": "[] => (PreviewSolverMode::default(), MODELS[0].1),"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 37,
+   "loops": [],
+   "allocs": [],
+   "code": "[mode] => (parse_mode(mode), MODELS[0].1),"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 38,
+   "loops": [],
+   "allocs": [],
+   "code": "[mode, name] => ("
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 39,
+   "loops": [],
+   "allocs": [],
+   "code": "parse_mode(mode),"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 40,
+   "loops": [],
+   "allocs": [],
+   "code": "MODELS"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 41,
+   "loops": [
+    "iter"
+   ],
+   "allocs": [],
+   "code": ".iter()"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 42,
+   "loops": [
+    "find"
+   ],
+   "allocs": [],
+   "code": ".find(|(model, _)| model == name)"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 43,
+   "loops": [
+    "map"
+   ],
+   "allocs": [],
+   "code": ".map(|(_, text)| *text)"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 44,
+   "loops": [],
+   "allocs": [],
+   "code": ".unwrap_or_else(|| usage()),"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 45,
+   "loops": [],
+   "allocs": [],
+   "code": "),"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 46,
+   "loops": [],
+   "allocs": [],
+   "code": "_ => usage(),"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 47,
+   "loops": [],
+   "allocs": [],
+   "code": "};"
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 48,
+   "loops": [],
+   "allocs": [],
+   "code": "let model: PreviewModel ="
+  },
+  {
+   "file": "P/core/product_physics/examples/preview_result.rs",
+   "line": 49,
+   "loops": [],
+   "allocs": [],
+   "code": "serde_json::from_str(model_text).expect(\"\");"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 40,
+   "loops": [],
+   "allocs": [],
+   "code": "use open_pipe_stress_frame_kernel::exact_sum::ExactAccumulator;"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 96,
+   "loops": [],
+   "allocs": [],
+   "code": "recover_stresses, AnalysisStatus, ForceResultants, StressComponents,"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 1946,
+   "loops": [],
+   "allocs": [
+    "to_string"
+   ],
+   "code": "\"\".to_string(),"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 4146,
+   "loops": [],
+   "allocs": [],
+   "code": "&load_application, &thermal_loads);"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 4318,
+   "loops": [],
+   "allocs": [],
+   "code": "thermal_loads: &thermal_loads,"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 4733,
+   "loops": [],
+   "allocs": [],
+   "code": "let component_pressure_thrust_load_count = 0;"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 5243,
+   "loops": [],
+   "allocs": [],
+   "code": "let end_i_stress = recover_section_stress(&endpoint_resultants[0], section);"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 5244,
+   "loops": [],
+   "allocs": [],
+   "code": "let end_j_stress = recover_section_stress(&endpoint_resultants[1], section);"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 5250,
+   "loops": [],
+   "allocs": [],
+   "code": "recover_section_stress(&station.resultants, section),"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 5348,
+   "loops": [],
+   "allocs": [],
+   "code": "open_formula_summary_mpa(&end_i_stress),"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 5349,
+   "loops": [],
+   "allocs": [],
+   "code": "open_formula_summary_mpa(&end_j_stress),"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 5355,
+   "loops": [],
+   "allocs": [],
+   "code": "if let Some(value) = open_formula_summary_mpa(stress) {"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 5644,
+   "loops": [],
+   "allocs": [],
+   "code": "restrained_dofs, spring_entries, &load_application, &thermal_loads);"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 10451,
+   "loops": [],
+   "allocs": [],
+   "code": "let stress = recover_section_stress(&r, section);"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 10456,
+   "loops": [],
+   "allocs": [],
+   "code": "c.axial_normal.unwrap_or(0.0) + 0.0,"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 11622,
+   "loops": [],
+   "allocs": [],
+   "code": "let base_normal = axial + 0.0;"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 11654,
+   "loops": [],
+   "allocs": [],
+   "code": "let Some(base_value_mpa) = open_formula_summary_mpa(stress) else {"
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 11990,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\","
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 11997,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\""
+  },
+  {
+   "file": "P/core/product_physics/src/lib.rs",
+   "line": 12030,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\","
+  },
+  {
+   "file": "P/core/product_physics/src/pressure_runtime.rs",
+   "line": 22,
+   "loops": [],
+   "allocs": [],
+   "code": "const RETIRED_MODE: &str = \"\";"
+  },
+  {
+   "file": "P/core/product_physics/src/pressure_runtime.rs",
+   "line": 23,
+   "loops": [],
+   "allocs": [],
+   "code": "const RETIRED_VERSION: &str = \"\";"
+  },
+  {
+   "file": "P/core/product_physics/src/pressure_runtime.rs",
+   "line": 120,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\");"
+  },
+  {
+   "file": "P/core/product_physics/src/pressure_runtime.rs",
+   "line": 137,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\","
+  },
+  {
+   "file": "P/core/product_physics/src/pressure_runtime.rs",
+   "line": 140,
+   "loops": [],
+   "allocs": [],
+   "code": "let declared = (contract.version.as_deref(), contract.mode.as_deref());"
+  },
+  {
+   "file": "P/core/product_physics/src/pressure_runtime.rs",
+   "line": 141,
+   "loops": [],
+   "allocs": [],
+   "code": "if declared == (Some(RETIRED_VERSION), Some(RETIRED_MODE)) {"
+  },
+  {
+   "file": "P/core/product_physics/src/pressure_runtime.rs",
+   "line": 142,
+   "loops": [],
+   "allocs": [],
+   "code": "problem(diagnostics, \"\", &[\"\"],"
+  },
+  {
+   "file": "P/core/product_physics/src/pressure_runtime.rs",
+   "line": 143,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\");"
+  },
+  {
+   "file": "P/core/product_physics/src/pressure_runtime.rs",
+   "line": 144,
+   "loops": [],
+   "allocs": [],
+   "code": "} else if declared != (Some(EXACT_VERSION), Some(EXACT_MODE)) {"
+  },
+  {
+   "file": "P/core/product_physics/src/pressure_runtime.rs",
+   "line": 146,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\");"
+  },
+  {
+   "file": "P/core/product_physics/src/pressure_runtime.rs",
+   "line": 220,
+   "loops": [],
+   "allocs": [],
+   "code": "if load.category == \"\" || load.dimension == \"\" {"
+  },
+  {
+   "file": "P/core/product_physics/src/pressure_runtime.rs",
+   "line": 222,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\");"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 123,
+   "loops": [],
+   "allocs": [],
+   "code": "let modifiers = component.modifiers.as_ref();"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 124,
+   "loops": [],
+   "allocs": [
+    "Vec"
+   ],
+   "code": "let missing: Vec<&str> = ["
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 125,
+   "loops": [],
+   "allocs": [],
+   "code": "(\"\", modifiers.and_then(|m| m.axial_stiffness_user_value.as_ref())),"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 126,
+   "loops": [],
+   "allocs": [],
+   "code": "(\"\", modifiers.and_then(|m| m.lateral_stiffness_user_value.as_ref())),"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 127,
+   "loops": [],
+   "allocs": [],
+   "code": "(\"\", modifiers.and_then(|m| m.angular_stiffness_user_value.as_ref())),"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 128,
+   "loops": [],
+   "allocs": [],
+   "code": "(\"\", modifiers.and_then(|m| m.torsional_stiffness_user_value.as_ref())),"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 129,
+   "loops": [],
+   "allocs": [],
+   "code": "]"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 130,
+   "loops": [
+    "into_iter"
+   ],
+   "allocs": [],
+   "code": ".into_iter()"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 131,
+   "loops": [
+    "filter_map"
+   ],
+   "allocs": [],
+   "code": ".filter_map(|(axis, value)| value.is_none().then_some(axis))"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 132,
+   "loops": [],
+   "allocs": [
+    "collect"
+   ],
+   "code": ".collect();"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 133,
+   "loops": [],
+   "allocs": [],
+   "code": "if !missing.is_empty() {"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 134,
+   "loops": [],
+   "allocs": [
+    "clone"
+   ],
+   "code": "let mut refs = vec![component.id.clone()];"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 135,
+   "loops": [
+    "extend"
+   ],
+   "allocs": [],
+   "code": "refs.extend("
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 136,
+   "loops": [],
+   "allocs": [],
+   "code": "component"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 137,
+   "loops": [],
+   "allocs": [],
+   "code": ".geometry"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 138,
+   "loops": [],
+   "allocs": [],
+   "code": ".as_ref()"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 139,
+   "loops": [],
+   "allocs": [],
+   "code": ".and_then(|g| g.expansion_joint_pipe_ref.as_deref())"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 140,
+   "loops": [
+    "filter"
+   ],
+   "allocs": [],
+   "code": ".filter(|id| !id.trim().is_empty())"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 141,
+   "loops": [
+    "map"
+   ],
+   "allocs": [],
+   "code": ".map(str::to_string),"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 142,
+   "loops": [],
+   "allocs": [],
+   "code": ");"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 143,
+   "loops": [],
+   "allocs": [],
+   "code": "diagnostics.push(diag("
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 144,
+   "loops": [],
+   "allocs": [],
+   "code": "&format!(\"\", identity(&[&component.id])),"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 145,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\","
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 146,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\","
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 147,
+   "loops": [],
+   "allocs": [
+    "join"
+   ],
+   "code": "format!(\"\", component.id, missing.join(\"\")),"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 148,
+   "loops": [],
+   "allocs": [],
+   "code": "refs,"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 149,
+   "loops": [],
+   "allocs": [],
+   "code": "));"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 150,
+   "loops": [],
+   "allocs": [],
+   "code": "continue;"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 151,
+   "loops": [],
+   "allocs": [],
+   "code": "}"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 158,
+   "loops": [],
+   "allocs": [],
+   "code": "let pipe_ref = component"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 159,
+   "loops": [],
+   "allocs": [],
+   "code": ".geometry"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 160,
+   "loops": [],
+   "allocs": [],
+   "code": ".as_ref()"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 161,
+   "loops": [],
+   "allocs": [],
+   "code": ".and_then(|g| g.expansion_joint_pipe_ref.as_deref())"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 162,
+   "loops": [
+    "filter"
+   ],
+   "allocs": [],
+   "code": ".filter(|id| !id.trim().is_empty());"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 163,
+   "loops": [],
+   "allocs": [],
+   "code": "let unresolved = match pipe_ref {"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 164,
+   "loops": [],
+   "allocs": [
+    "to_string"
+   ],
+   "code": "None => Some(\"\".to_string()),"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 165,
+   "loops": [
+    "find",
+    "iter"
+   ],
+   "allocs": [],
+   "code": "Some(id) => match model.pipe_segments.iter().find(|p| p.id == id) {"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 166,
+   "loops": [],
+   "allocs": [],
+   "code": "None => Some(format!(\"\")),"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 167,
+   "loops": [
+    "any",
+    "iter"
+   ],
+   "allocs": [],
+   "code": "Some(_) if !model.nodes.iter().any(|n| n.id == component.node) => {"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 168,
+   "loops": [],
+   "allocs": [],
+   "code": "Some(format!(\"\", component.node))"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 169,
+   "loops": [],
+   "allocs": [],
+   "code": "}"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 170,
+   "loops": [],
+   "allocs": [],
+   "code": "Some(pipe) if component.node != pipe.from && component.node != pipe.to => {"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 171,
+   "loops": [],
+   "allocs": [],
+   "code": "Some(format!(\"\", component.node))"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 172,
+   "loops": [],
+   "allocs": [],
+   "code": "}"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 173,
+   "loops": [],
+   "allocs": [],
+   "code": "Some(_) => None,"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 174,
+   "loops": [],
+   "allocs": [],
+   "code": "},"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 175,
+   "loops": [],
+   "allocs": [],
+   "code": "};"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 176,
+   "loops": [],
+   "allocs": [],
+   "code": "if let Some(reason) = unresolved {"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 177,
+   "loops": [],
+   "allocs": [
+    "clone"
+   ],
+   "code": "let mut refs = vec![component.id.clone()];"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 178,
+   "loops": [
+    "extend",
+    "map"
+   ],
+   "allocs": [],
+   "code": "refs.extend(pipe_ref.map(str::to_string));"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 179,
+   "loops": [],
+   "allocs": [],
+   "code": "diagnostics.push(diag("
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 180,
+   "loops": [],
+   "allocs": [],
+   "code": "&format!(\"\", identity(&[&component.id])),"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 181,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\","
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 182,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\","
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 183,
+   "loops": [],
+   "allocs": [],
+   "code": "format!(\"\", component.id),"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 184,
+   "loops": [],
+   "allocs": [],
+   "code": "refs,"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 185,
+   "loops": [],
+   "allocs": [],
+   "code": "));"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 186,
+   "loops": [],
+   "allocs": [],
+   "code": "continue;"
+  },
+  {
+   "file": "P/core/product_physics/src/preview_physics.rs",
+   "line": 187,
+   "loops": [],
+   "allocs": [],
+   "code": "}"
+  },
+  {
+   "file": "P/core/product_physics/src/retained_product.rs",
+   "line": 1537,
+   "loops": [],
+   "allocs": [],
+   "code": "self.capture_case_source(model,built,materials,case,restrained,springs,application,thermal);"
+  },
+  {
+   "file": "P/core/product_physics/src/retained_product.rs",
+   "line": 1541,
+   "loops": [],
+   "allocs": [],
+   "code": "springs:&[SpringEntry], application:&LoadApplication, thermal:&[ThermalElementLoad]) {"
+  },
+  {
+   "file": "P/core/product_physics/src/retained_product.rs",
+   "line": 3503,
+   "loops": [],
+   "allocs": [],
+   "code": "springs:&[SpringEntry],application:&LoadApplication,thermal:&[ThermalElementLoad]) {"
+  },
+  {
+   "file": "P/core/product_physics/src/retained_product.rs",
+   "line": 3534,
+   "loops": [],
+   "allocs": [],
+   "code": "self.capture_case_source(model,built,materials,case,restrained,springs,application,thermal);"
+  },
+  {
+   "file": "P/core/product_physics/src/retained_product.rs",
+   "line": 4274,
+   "loops": [],
+   "allocs": [],
+   "code": "wall_thickness:f.effective_wall};"
+  },
+  {
+   "file": "P/core/product_physics/src/source_receipt/rows.rs",
+   "line": 433,
+   "loops": [],
+   "allocs": [],
+   "code": "let stress = recover_section_stress(&actions, section);"
+  },
+  {
+   "file": "P/core/product_physics/src/source_receipt/rows.rs",
+   "line": 467,
+   "loops": [],
+   "allocs": [],
+   "code": "let local = open_formula_summary_mpa(&stress)"
+  },
+  {
+   "file": "P/core/product_physics/src/source_recovery.rs",
+   "line": 10,
+   "loops": [],
+   "allocs": [],
+   "code": "LoadTargetInput, Matrix12, PreviewLoadCase, PreviewModel,"
+  },
+  {
+   "file": "P/core/product_physics/src/validation.rs",
+   "line": 1159,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\","
+  },
+  {
+   "file": "P/core/product_physics/src/validation.rs",
+   "line": 1350,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\","
+  },
+  {
+   "file": "P/core/solver/curved_bend/src/lib.rs",
+   "line": 482,
+   "loops": [],
+   "allocs": [
+    "Vec"
+   ],
+   "code": "let mut terms = Vec::with_capacity(1 + intensities_global.len());"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 1845,
+   "loops": [],
+   "allocs": [],
+   "code": "description: \"\","
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 1917,
+   "loops": [],
+   "allocs": [],
+   "code": "description: \"\","
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 1920,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\","
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 4691,
+   "loops": [],
+   "allocs": [],
+   "code": "let total_axial_effect_force = thermal_axial_force;"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 4780,
+   "loops": [],
+   "allocs": [],
+   "code": "let total_axial_effect_force = thermal_axial_force;"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 5474,
+   "loops": [],
+   "allocs": [],
+   "code": "&& (result.total_axial_effect_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 5475,
+   "loops": [],
+   "allocs": [],
+   "code": "&& (result.equivalent_node_i_axial_load + 3.0).abs() <= INTERNAL_ASSERTION_EPSILON"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 5476,
+   "loops": [],
+   "allocs": [],
+   "code": "&& (result.equivalent_node_j_axial_load - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 5477,
+   "loops": [],
+   "allocs": [],
+   "code": "&& (result.recovered_local_i_axial_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 5478,
+   "loops": [],
+   "allocs": [],
+   "code": "&& (result.recovered_local_j_axial_force + 3.0).abs() <= INTERNAL_ASSERTION_EPSILON"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 5479,
+   "loops": [],
+   "allocs": [],
+   "code": "&& (result.end_i_axial_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 5480,
+   "loops": [],
+   "allocs": [],
+   "code": "&& (result.end_j_axial_force + 3.0).abs() <= INTERNAL_ASSERTION_EPSILON"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 5481,
+   "loops": [],
+   "allocs": [],
+   "code": "&& (result.midspan_axial_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 5529,
+   "loops": [],
+   "allocs": [],
+   "code": "&& (result.total_axial_effect_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 5530,
+   "loops": [],
+   "allocs": [],
+   "code": "&& (result.assembled_node_0_ux_force + 3.0).abs() <= INTERNAL_ASSERTION_EPSILON"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 5533,
+   "loops": [],
+   "allocs": [],
+   "code": "&& (result.assembled_node_1_ux_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 5539,
+   "loops": [],
+   "allocs": [],
+   "code": "&& (result.end_i_axial_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 5542,
+   "loops": [],
+   "allocs": [],
+   "code": "&& (result.midspan_axial_force - 3.0).abs() <= INTERNAL_ASSERTION_EPSILON"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 5546,
+   "loops": [],
+   "allocs": [],
+   "code": "&& result.axial_effect_recovery_hook_count == 1"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 5683,
+   "loops": [],
+   "allocs": [],
+   "code": "ElementAxialEffectProperties::new(0, Some(1000.0), Some(4.0), Some(1.0e-5))"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 5687,
+   "loops": [],
+   "allocs": [],
+   "code": "ElementAxialEffectProperties::new(0, Some(1000.0), Some(4.0), Some(1.0e-5))"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 6441,
+   "loops": [],
+   "allocs": [],
+   "code": "axial_force: 3.0,"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 6447,
+   "loops": [],
+   "allocs": [],
+   "code": "axial_force: 3.0,"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 6453,
+   "loops": [],
+   "allocs": [],
+   "code": "axial_force: 3.0,"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 6464,
+   "loops": [],
+   "allocs": [],
+   "code": "axial_force: 3.0,"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 6470,
+   "loops": [],
+   "allocs": [],
+   "code": "axial_force: 3.0,"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 6476,
+   "loops": [],
+   "allocs": [],
+   "code": "axial_force: 3.0,"
+  },
+  {
+   "file": "P/validation/benchmarks/mechanics/src/lib.rs",
+   "line": 6482,
+   "loops": [],
+   "allocs": [],
+   "code": "axial_force: 3.0,"
+  },
+  {
+   "file": "P/validation/benchmarks/stress/src/lib.rs",
+   "line": 27,
+   "loops": [],
+   "allocs": [],
+   "code": "StationStressRecoveryInput, StationStressRecoveryResult,"
+  },
+  {
+   "file": "P/validation/benchmarks/stress/src/lib.rs",
+   "line": 1621,
+   "loops": [],
+   "allocs": [],
+   "code": "\"\","
+  }
+ ]
+}
