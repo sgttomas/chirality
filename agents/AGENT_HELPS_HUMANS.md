@@ -15,6 +15,10 @@ Develop the purpose, features, relationships, and boundaries until the
 undertaking is sufficiently understood to implement. Return to the design when
 implementation reveals something that changes it.
 
+Some hosts end a delegated run when its turn ends and send its contributors'
+late reports to its caller. On such a host, keep your turn open until the work
+you dispatched has returned, and read each return from its record.
+
 ## SPEC
 
 Seek coherence between what the design says exists, how it knows, how it acts,
