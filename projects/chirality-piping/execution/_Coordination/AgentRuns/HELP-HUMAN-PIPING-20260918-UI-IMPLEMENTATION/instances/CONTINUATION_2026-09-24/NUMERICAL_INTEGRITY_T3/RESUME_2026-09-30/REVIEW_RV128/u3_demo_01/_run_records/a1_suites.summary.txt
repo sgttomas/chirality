@@ -1,0 +1,12 @@
+# RV128 addendum 01: suites on the round 2 head 9744ed7e69 (archive WT/rv128/cand2; node_modules CoW clone, lockfile 0dd1616e...; wasm engines from RV128's own build of the unchanged operation_applier and self_weight_wasm crates)
+## vitest, full (WT/tools/t3_slot.sh)
+ Test Files  141 passed (141)
+      Tests  4248 passed | 1 todo (4249)
+rc=0
+## pytest, the 6 files of round 1 (covers both round 2 Python changes), helper binaries from WT/targets/rv128-pybins
+277 passed in 254.19s (0:04:14)
+rc=0
+## RE --test retained_precision_carriers (the carrier's sha pin moved)
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 35.48s
+re rc=0
+## src-tauri, full: see a1_native_checks.out.txt (118 passed)

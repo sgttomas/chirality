@@ -1,0 +1,19 @@
+// RV128 probe (reviewer scratch, archive copy only): the native default solve
+// against the bundled reference bytes.
+#[cfg(test)]
+mod rv128_probe {
+    use super::*;
+    #[test]
+    fn rv128_default_solve_equals_bundled_reference() {
+        let model = load_preview_model().expect("default model");
+        for (mode, file) in [
+            (PreviewSolverMode::SparseInteractive, "invented_demo_result_preview_physics_1_sparse.json"),
+            (PreviewSolverMode::DenseScrutiny, "invented_demo_result_preview_physics_1_dense.json"),
+        ] {
+            let solved = solve_preview_mechanics_with_mode(model.clone(), mode).expect("solve");
+            let fixture = read_fixture(file).expect("fixture");
+            println!("RV128_PROBE3 {file} equal={}", solved == fixture);
+            assert_eq!(solved, fixture);
+        }
+    }
+}

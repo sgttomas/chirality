@@ -1,0 +1,39 @@
+# RV128 addendum 01: round 2 head 9744ed7e69 regeneration in WT/rv128/regen2 (both recipe modes, exit 0) vs committed blobs
+invented_demo_model.json | 3a600a8b1421d9fe28fca4f8d7a9c3f5fdaa27f68d8d8df7af3f5a651b51cd14 | 3a600a8b1421d9fe28fca4f8d7a9c3f5fdaa27f68d8d8df7af3f5a651b51cd14 | EQUAL
+invented_demo_result_preview_physics_1_sparse.json | e577f491bde93316faa54163943a9c55e98b0340b82a7fc4f7a3115c5353d640 | e577f491bde93316faa54163943a9c55e98b0340b82a7fc4f7a3115c5353d640 | EQUAL
+invented_demo_result_preview_physics_1_dense.json | 1ca7993f05bd3f8f74901b49e3294c80b6ca120f306fd9d56b025fef04c5cf34 | 1ca7993f05bd3f8f74901b49e3294c80b6ca120f306fd9d56b025fef04c5cf34 | EQUAL
+invented_demo_result_legacy_0_1.json | 4d3bc14f1db7bc97ac779bee158acc96612e9c3cf01daae96936a42c5804e051 | 4d3bc14f1db7bc97ac779bee158acc96612e9c3cf01daae96936a42c5804e051 | EQUAL
+invented_mechanics_result_preview_physics_1_sparse.json | 2cb2945391a0dc4ec5a24e56757c6b8b8e1b20a20646fabaf8cd9ccc34837b12 | 2cb2945391a0dc4ec5a24e56757c6b8b8e1b20a20646fabaf8cd9ccc34837b12 | EQUAL
+invented_mechanics_result_preview_physics_1_dense.json | 2cb2945391a0dc4ec5a24e56757c6b8b8e1b20a20646fabaf8cd9ccc34837b12 | 2cb2945391a0dc4ec5a24e56757c6b8b8e1b20a20646fabaf8cd9ccc34837b12 | EQUAL
+demo_fixture_generation.json | 3e0736b102dccbcf2bf4763a7c6bdda5d3440bfe3a3a2b722b994daf05fc3338 | 3e0736b102dccbcf2bf4763a7c6bdda5d3440bfe3a3a2b722b994daf05fc3338 | EQUAL
+preview_physics_fixture_generation.json | 52ef0d93db318cff753e478add176789da52fe3532632853af910634015f4e99 | 52ef0d93db318cff753e478add176789da52fe3532632853af910634015f4e99 | EQUAL
+
+# round 1 -> round 2 changes
+## carrier
+16c16
+<     "component_stress_modifier_count": 8,
+---
+>     "component_stress_modifier_count": null,
+## demo model (labels; description truncated)
+13c13
+<     "description": "Invented demo model for the browser's bundled reference results. It is the invented utility loop w
+---
+>     "description": "Invented demo model: the app's default session model and the model of its bundled reference result
+497c497
+<       "label": "Invented operating gravity and pressure preview",
+---
+>       "label": "Invented operating gravity, occasional and thermal preview",
+551c551
+<       "label": "Invented alternate gravity and pressure preview",
+---
+>       "label": "Invented alternate gravity and occasional preview",
+
+## model_check on the round 2 head (demo vs PP joint-free model)
+== demo vs PP joint-free model
+  /diagnostics[0]/source | fixtures/product_preview/invented_demo_model.json | fixtures/product_preview/invented_preview_model.json
+  /load_cases[0]/label | Invented operating gravity, occasional and thermal preview | Invented operating gravity and pressure preview
+  /load_cases[1]/label | Invented alternate gravity and occasional preview | Invented alternate gravity and pressure preview
+  /project/description | Invented demo model: the app's default session model and the model of its bundled reference results. It is the invented utility loop wi
+  /project/id | project:invented-demo-loop-01 | project:invented-loop-01
+  /project/name | Invented Utility Loop Demo | Invented Utility Loop Preview
+== key order equal? True

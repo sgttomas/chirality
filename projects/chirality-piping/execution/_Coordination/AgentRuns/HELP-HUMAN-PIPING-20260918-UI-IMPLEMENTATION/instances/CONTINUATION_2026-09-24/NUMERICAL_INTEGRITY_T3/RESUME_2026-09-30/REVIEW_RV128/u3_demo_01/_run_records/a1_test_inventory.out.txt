@@ -1,0 +1,22 @@
+# RV128 addendum 01: test titles and expect/assert call counts per changed test file, 180bf9b26d -> 9744ed7e69
+P/apps/desktop/e2e/gui-workflow-validation.spec.ts tests 2->2 expect/assert 121->121
+P/apps/desktop/e2e/r2-smoke.spec.ts tests 12->12 expect/assert 526->526
+P/apps/desktop/e2e/result-compatibility-dist.spec.ts tests 1->1 expect/assert 12->12
+P/apps/desktop/e2e/result-compatibility.spec.ts tests 1->1 expect/assert 12->12
+P/apps/desktop/e2e/ui-foundation-dist.spec.ts tests 24->24 expect/assert 464->464
+P/apps/desktop/e2e/ui-foundation.spec.ts tests 32->32 expect/assert 505->505
+P/apps/desktop/src-tauri/src/lib.rs tests 82->83 expect/assert 904->913
+   + default_session_model_solves_in_both_modes
+P/apps/desktop/src/App.deadControls.test.tsx tests 2->2 expect/assert 17->17
+P/apps/desktop/src/App.shell.test.tsx tests 36->36 expect/assert 227->227
+P/apps/desktop/src/App.test.tsx tests 144->145 expect/assert 3906->3900
+   - keeps the reference's withheld comparison empty through display-unit changes without a Current claim
+   + keeps the reference's withheld comparison empty without a Current claim
+   + converts real comparison deltas through display-unit changes (known gap: T6, results and comparison)
+P/apps/desktop/src/features/report/reportPackageRequest.test.ts tests 18->18 expect/assert 96->96
+P/apps/desktop/src/features/results/ResultsPanel.test.tsx tests 2->3 expect/assert 6->13
+   + details a preview-physics-1 combination row with its recovery basis and every source result
+P/apps/desktop/src/features/results/sourceBlockRecovery.test.ts tests 24->24 expect/assert 111->113
+P/apps/desktop/src/services/inputManifestService.test.ts tests 5->5 expect/assert 24->24
+P/apps/desktop/src/services/previewService.test.ts tests 45->45 expect/assert 175->176
+P/tests/test_preview_physics_consumer_contract.py tests 40->40 expect/assert 93->95

@@ -1,0 +1,38 @@
+# RV128 addendum 01: the 8 B4 wheel-scroll e2e tests
+Selection: e2e/b4-table-editing.spec.ts, project chromium-desktop, --grep 'B4 compact drawer (model|both) (comfortable|compact) 180|B4 classic scrollbar compact (comfortable|compact) (5|160) '; CI=1, PLAYWRIGHT_WORKERS=1, under WT/tools/t3_slot.sh; port 5174 checked free before each run.
+
+## A. base 4c0d5d7c00 (WT/rv128/base), browser chosen by playwright.config.ts on macOS (installed Google Chrome)
+  ✘  1 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer model comfortable 180 @explicit-viewport (12.4s)
+  ✘  2 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer both comfortable 180 @explicit-viewport (12.2s)
+  ✘  3 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer model compact 180 @explicit-viewport (12.0s)
+  ✘  4 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer both compact 180 @explicit-viewport (12.3s)
+  ✘  5 [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact comfortable 5 preserves tra
+  ✘  6 [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact comfortable 160 preserves t
+  ✘  7 [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact compact 5 preserves tracks 
+  ✘  8 [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact compact 160 preserves track
+  8 failed
+rc=1
+    Expected: > 0
+    Received:   0
+    > 704 |     if (drawer === 180) await expect.poll(() => body.evaluate((e) => e.scrollTop)).toBeGreaterThan(0);
+
+## B. base 4c0d5d7c00, PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH = Playwright's bundled chrome-headless-shell 1223 (already in the Playwright cache; nothing installed)
+  ✓  1 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer model comfortable 180 @explicit-viewport (5.7s)
+  ✓  2 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer both comfortable 180 @explicit-viewport (5.6s)
+  ✓  3 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer model compact 180 @explicit-viewport (5.5s)
+  ✓  4 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer both compact 180 @explicit-viewport (5.7s)
+  ✓  5 [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact comfortable 5 preserves tra
+  ✓  6 [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact comfortable 160 preserves t
+  ✓  7 [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact compact 5 preserves tracks 
+  ✓  8 [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact compact 160 preserves track
+  8 passed (38.0s)
+rc=0
+
+## C. round 2 head 9744ed7e69 (WT/rv128/cand2), bundled chrome-headless-shell 1223
+  8 passed (36.9s)
+rc=0
+
+## D. Linux CI on 4c0d5d7c00: GitHub Actions run 37830652481 (piping-desktop-e2e, workflow_dispatch, success), job 113494967954 'Source remainder (1/4)', ubuntu-latest; the same 8 tests:
+  16 [chromium-desktop] b4-table-editing.spec.ts:651:3 B4 compact drawer model comfortable 180: passed
+  19 ... both comfortable 180: passed; 22 ... model compact 180: passed; 25 ... both compact 180: passed
+  63 / 64 / 66 / 67 [chromium-desktop] b4-table-editing.spec.ts:783:3 B4 classic scrollbar compact {comfortable,compact} {5,160}: passed

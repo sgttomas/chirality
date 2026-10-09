@@ -1,0 +1,5 @@
+# RV128 addendum 01: e2e on the round 2 head 9744ed7e69 (WT/rv128/cand2), source lane, both projects (chromium-desktop, chromium-compact), browser per playwright.config.ts on macOS (installed Google Chrome), CI=1, PLAYWRIGHT_WORKERS=1, WT/tools/t3_slot.sh, port 5174 checked free
+specs: e2e/r2-smoke.spec.ts e2e/gui-workflow-validation.spec.ts e2e/result-compatibility.spec.ts e2e/ui-foundation.spec.ts
+Running 118 tests using 1 worker
+  118 passed (4.8m)
+rc=0

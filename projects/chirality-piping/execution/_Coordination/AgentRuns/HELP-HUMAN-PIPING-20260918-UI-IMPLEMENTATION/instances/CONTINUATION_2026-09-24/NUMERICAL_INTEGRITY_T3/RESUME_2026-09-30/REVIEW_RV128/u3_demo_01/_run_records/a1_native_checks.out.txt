@@ -1,0 +1,29 @@
+# RV128 addendum 01: native (src-tauri) checks on the round 2 head, archive WT/rv128/cand2, target WT/targets/rv128-tauri, all cargo via WT/tools/t3_cargo.sh --locked --offline
+## full src-tauri suite (cargo test --locked --offline; frontend dist built with vite for tauri's context)
+test tests::default_session_model_solves_in_both_modes ... ok
+test result: ok. 118 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.68s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+rc=0
+
+## probe 3 (a1_probe3_native_default_vs_reference.rs.txt appended to lib.rs in the archive, then removed): native default solve vs the bundled reference bytes (serde_json Value equality)
+RV128_PROBE3 invented_demo_result_preview_physics_1_sparse.json equal=true
+RV128_PROBE3 invented_demo_result_preview_physics_1_dense.json equal=true
+test rv128_probe::rv128_default_solve_equals_bundled_reference ... ok
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 118 filtered out; finished in 0.12s
+
+## mutant M1: load_preview_model and resolve_solve_model_payload(None) read invented_preview_model.json again
+test tests::default_session_model_solves_in_both_modes ... FAILED
+thread 'tests::default_session_model_solves_in_both_modes' panicked at src/lib.rs:7168:9:
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 117 filtered out; finished in 0.00s
+-> killed at lib.rs:7168 (the default model id assertion)
+
+## mutant M2b: the demo model fixture keeps its id but carries the refused model's load:L-100-P primitive
+test tests::default_session_model_solves_in_both_modes ... FAILED
+thread 'tests::default_session_model_solves_in_both_modes' panicked at src/lib.rs:7157:9:
+  left: String("MODEL_INCOMPLETE")
+ right: String("MECHANICS_SOLVED")
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 117 filtered out; finished in 0.01s
+-> killed at lib.rs:7157 (MECHANICS_SOLVED assertion in assert_bundled_demo_solved)
+
+After each probe or mutant the archive file was restored and compared (cmp) with the head's blob: equal.
