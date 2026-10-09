@@ -1,0 +1,5944 @@
+{
+ "old": "57c92a7b3310229406733a7134e271c29bcc6978",
+ "new": "8a12de28db5ede85d3df09d5307e795ff39e4373",
+ "changed_production_rs": [
+  "core/loads/primitive_loads/src/lib.rs",
+  "core/loads/stress_recovery/src/elastic_section.rs",
+  "core/loads/stress_recovery/src/lib.rs",
+  "core/product_physics/src/case_state/resolve.rs",
+  "core/product_physics/src/historical_pressure_reference.rs",
+  "core/product_physics/src/lib.rs",
+  "core/product_physics/src/pressure_runtime.rs",
+  "core/product_physics/src/preview_physics.rs",
+  "core/product_physics/src/retained_memory.rs",
+  "core/product_physics/src/retained_product.rs",
+  "core/product_physics/src/source_receipt.rs",
+  "core/product_physics/src/source_receipt/composite.rs",
+  "core/product_physics/src/source_receipt/rows.rs",
+  "core/product_physics/src/source_receipt/tests.rs",
+  "core/product_physics/src/source_recovery.rs",
+  "core/product_physics/src/validation.rs",
+  "core/solver/curved_bend/src/lib.rs",
+  "core/solver/frame_kernel/src/correct_norm.rs",
+  "core/solver/frame_kernel/src/lib.rs",
+  "core/solver/frame_kernel/src/rigid_body.rs",
+  "core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs"
+ ],
+ "hunks": {
+  "core/loads/primitive_loads/src/lib.rs": 12,
+  "core/loads/stress_recovery/src/elastic_section.rs": 2,
+  "core/loads/stress_recovery/src/lib.rs": 48,
+  "core/product_physics/src/case_state/resolve.rs": 2,
+  "core/product_physics/src/historical_pressure_reference.rs": 1,
+  "core/product_physics/src/lib.rs": 105,
+  "core/product_physics/src/pressure_runtime.rs": 14,
+  "core/product_physics/src/preview_physics.rs": 6,
+  "core/product_physics/src/retained_memory.rs": 24,
+  "core/product_physics/src/retained_product.rs": 8,
+  "core/product_physics/src/source_receipt.rs": 3,
+  "core/product_physics/src/source_receipt/composite.rs": 1,
+  "core/product_physics/src/source_receipt/rows.rs": 4,
+  "core/product_physics/src/source_receipt/tests.rs": 7,
+  "core/product_physics/src/source_recovery.rs": 5,
+  "core/product_physics/src/validation.rs": 2,
+  "core/solver/curved_bend/src/lib.rs": 9,
+  "core/solver/frame_kernel/src/correct_norm.rs": 1,
+  "core/solver/frame_kernel/src/lib.rs": 1,
+  "core/solver/frame_kernel/src/rigid_body.rs": 5,
+  "core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs": 2
+ },
+ "remapped": 14569,
+ "unmapped": [
+  [
+   "edges.json/edges/key",
+   "core/product_physics/src/historical_pressure_reference.rs:12:active",
+   "line 12 of core/product_physics/src/historical_pressure_reference.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/product_physics/src/historical_pressure_reference.rs:16:with_scope",
+   "line 16 of core/product_physics/src/historical_pressure_reference.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/product_physics/src/historical_pressure_reference.rs:18:drop",
+   "line 18 of core/product_physics/src/historical_pressure_reference.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/product_physics/src/historical_pressure_reference.rs:24:run",
+   "line 24 of core/product_physics/src/historical_pressure_reference.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/core/product_physics/src/historical_pres",
+   "core/product_physics/src/historical_pressure_reference.rs:16:with_scope",
+   "line 16 of core/product_physics/src/historical_pressure_reference.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/core/product_physics/src/lib.rs:3872:cas",
+   "core/product_physics/src/lib.rs:10912:add_pressure_thrust_loads",
+   "line 10912 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/core/product_physics/src/lib.rs:4060:sol",
+   "core/product_physics/src/lib.rs:10801:build_pressure_thrust_loads",
+   "line 10801 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/core/product_physics/src/lib.rs:4060:sol",
+   "core/product_physics/src/lib.rs:11433:pressure_thrusts_for_pipe",
+   "line 11433 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/core/product_physics/src/lib.rs:4060:sol",
+   "core/product_physics/src/lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/core/product_physics/src/lib.rs:4060:sol",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/product_physics/src/lib.rs:10801:build_pressure_thrust_loads",
+   "line 10801 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/core/product_physics/src/lib.rs:10801:bu",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/core/product_physics/src/lib.rs:10801:bu",
+   "core/product_physics/src/lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/product_physics/src/lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/product_physics/src/lib.rs:10912:add_pressure_thrust_loads",
+   "line 10912 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/core/product_physics/src/lib.rs:10912:ad",
+   "core/product_physics/src/lib.rs:10978:add_curved_bend_pressure_thrust_load",
+   "line 10978 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/product_physics/src/lib.rs:10978:add_curved_bend_pressure_thrust_load",
+   "line 10978 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/core/product_physics/src/lib.rs:10978:ad",
+   "core/solver/curved_bend/src/lib.rs:490:consistent_radial_pressure_nodal_loads",
+   "line 490 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/core/product_physics/src/lib.rs:11203:re",
+   "core/solver/curved_bend/src/lib.rs:490:consistent_radial_pressure_nodal_loads",
+   "line 490 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/product_physics/src/lib.rs:11433:pressure_thrusts_for_pipe",
+   "line 11433 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/product_physics/src/lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/core/product_physics/src/lib.rs:12036:re",
+   "core/loads/stress_recovery/src/lib.rs:201:new",
+   "line 201 of core/loads/stress_recovery/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/core/product_physics/src/lib.rs:13887:pr",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/loads/stress_recovery/src/lib.rs:201:new",
+   "line 201 of core/loads/stress_recovery/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/loads/stress_recovery/src/lib.rs:222:new",
+   "line 222 of core/loads/stress_recovery/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/loads/stress_recovery/src/lib.rs:346:new",
+   "line 346 of core/loads/stress_recovery/src/lib.rs lies in a changed hunk",
+   "replaced"
+  ],
+  [
+   "edges.json/edges/core/loads/stress_recovery/src/lib.rs:49",
+   "core/loads/stress_recovery/src/lib.rs:929:pressure_membrane",
+   "line 929 of core/loads/stress_recovery/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/loads/stress_recovery/src/lib.rs:929:pressure_membrane",
+   "line 929 of core/loads/stress_recovery/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/solver/curved_bend/src/lib.rs:490:consistent_radial_pressure_nodal_loads",
+   "line 490 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/core/solver/curved_bend/src/lib.rs:490:c",
+   "core/solver/curved_bend/src/lib.rs:663:tip_deflection_under_radial_pressure",
+   "line 663 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/solver/curved_bend/src/lib.rs:569:arc_section_resultants_with_radial_pressure",
+   "line 569 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/solver/curved_bend/src/lib.rs:663:tip_deflection_under_radial_pressure",
+   "line 663 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/core/solver/curved_bend/src/lib.rs:663:t",
+   "core/solver/curved_bend/src/lib.rs:872:radial_pressure_load_actions",
+   "line 872 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/edges/key",
+   "core/solver/curved_bend/src/lib.rs:872:radial_pressure_load_actions",
+   "line 872 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/historical_pressure_reference.rs:24:run",
+   "line 24 of core/product_physics/src/historical_pressure_reference.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/historical_pressure_reference.rs:16:with_scope",
+   "line 16 of core/product_physics/src/historical_pressure_reference.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/historical_pressure_reference.rs:24:run",
+   "line 24 of core/product_physics/src/historical_pressure_reference.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10912:add_pressure_thrust_loads",
+   "line 10912 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10801:build_pressure_thrust_loads",
+   "line 10801 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:11433:pressure_thrusts_for_pipe",
+   "line 11433 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10801:build_pressure_thrust_loads",
+   "line 10801 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10801:build_pressure_thrust_loads",
+   "line 10801 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10801:build_pressure_thrust_loads",
+   "line 10801 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10801:build_pressure_thrust_loads",
+   "line 10801 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10801:build_pressure_thrust_loads",
+   "line 10801 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10801:build_pressure_thrust_loads",
+   "line 10801 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10801:build_pressure_thrust_loads",
+   "line 10801 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10912:add_pressure_thrust_loads",
+   "line 10912 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10978:add_curved_bend_pressure_thrust_load",
+   "line 10978 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10912:add_pressure_thrust_loads",
+   "line 10912 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10912:add_pressure_thrust_loads",
+   "line 10912 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10912:add_pressure_thrust_loads",
+   "line 10912 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10912:add_pressure_thrust_loads",
+   "line 10912 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10912:add_pressure_thrust_loads",
+   "line 10912 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10978:add_curved_bend_pressure_thrust_load",
+   "line 10978 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10978:add_curved_bend_pressure_thrust_load",
+   "line 10978 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10978:add_curved_bend_pressure_thrust_load",
+   "line 10978 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/solver/curved_bend/src/lib.rs:490:consistent_radial_pressure_nodal_loads",
+   "line 490 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10978:add_curved_bend_pressure_thrust_load",
+   "line 10978 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/solver/curved_bend/src/lib.rs:490:consistent_radial_pressure_nodal_loads",
+   "line 490 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/loads/stress_recovery/src/lib.rs:201:new",
+   "line 201 of core/loads/stress_recovery/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/loads/stress_recovery/src/lib.rs:929:pressure_membrane",
+   "line 929 of core/loads/stress_recovery/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/loads/stress_recovery/src/lib.rs:929:pressure_membrane",
+   "line 929 of core/loads/stress_recovery/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/loads/stress_recovery/src/lib.rs:929:pressure_membrane",
+   "line 929 of core/loads/stress_recovery/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/loads/stress_recovery/src/lib.rs:929:pressure_membrane",
+   "line 929 of core/loads/stress_recovery/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/solver/curved_bend/src/lib.rs:490:consistent_radial_pressure_nodal_loads",
+   "line 490 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/solver/curved_bend/src/lib.rs:490:consistent_radial_pressure_nodal_loads",
+   "line 490 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/solver/curved_bend/src/lib.rs:490:consistent_radial_pressure_nodal_loads",
+   "line 490 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/solver/curved_bend/src/lib.rs:490:consistent_radial_pressure_nodal_loads",
+   "line 490 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/solver/curved_bend/src/lib.rs:490:consistent_radial_pressure_nodal_loads",
+   "line 490 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/solver/curved_bend/src/lib.rs:663:tip_deflection_under_radial_pressure",
+   "line 663 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/solver/curved_bend/src/lib.rs:490:consistent_radial_pressure_nodal_loads",
+   "line 490 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/solver/curved_bend/src/lib.rs:569:arc_section_resultants_with_radial_pressure",
+   "line 569 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/solver/curved_bend/src/lib.rs:569:arc_section_resultants_with_radial_pressure",
+   "line 569 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/solver/curved_bend/src/lib.rs:663:tip_deflection_under_radial_pressure",
+   "line 663 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/solver/curved_bend/src/lib.rs:663:tip_deflection_under_radial_pressure",
+   "line 663 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/solver/curved_bend/src/lib.rs:663:tip_deflection_under_radial_pressure",
+   "line 663 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/solver/curved_bend/src/lib.rs:872:radial_pressure_load_actions",
+   "line 872 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/site_loops",
+   "core/solver/curved_bend/src/lib.rs:663:tip_deflection_under_radial_pressure",
+   "line 663 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/product_physics/src/historical_pressure_reference.rs:12:active",
+   "line 12 of core/product_physics/src/historical_pressure_reference.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/product_physics/src/historical_pressure_reference.rs:16:with_scope",
+   "line 16 of core/product_physics/src/historical_pressure_reference.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/product_physics/src/historical_pressure_reference.rs:18:drop",
+   "line 18 of core/product_physics/src/historical_pressure_reference.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/product_physics/src/historical_pressure_reference.rs:24:run",
+   "line 24 of core/product_physics/src/historical_pressure_reference.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/product_physics/src/lib.rs:10801:build_pressure_thrust_loads",
+   "line 10801 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/product_physics/src/lib.rs:10840:genuine_pressure_element_target",
+   "line 10840 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/product_physics/src/lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/product_physics/src/lib.rs:10912:add_pressure_thrust_loads",
+   "line 10912 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/product_physics/src/lib.rs:10978:add_curved_bend_pressure_thrust_load",
+   "line 10978 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/product_physics/src/lib.rs:11433:pressure_thrusts_for_pipe",
+   "line 11433 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/product_physics/src/lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/product_physics/src/lib.rs:13887:pressure_for_pipe",
+   "line 13887 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/loads/stress_recovery/src/lib.rs:201:new",
+   "line 201 of core/loads/stress_recovery/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/loads/stress_recovery/src/lib.rs:222:new",
+   "line 222 of core/loads/stress_recovery/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/loads/stress_recovery/src/lib.rs:346:new",
+   "line 346 of core/loads/stress_recovery/src/lib.rs lies in a changed hunk",
+   "replaced"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/loads/stress_recovery/src/lib.rs:929:pressure_membrane",
+   "line 929 of core/loads/stress_recovery/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/solver/curved_bend/src/lib.rs:490:consistent_radial_pressure_nodal_loads",
+   "line 490 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/solver/curved_bend/src/lib.rs:569:arc_section_resultants_with_radial_pressure",
+   "line 569 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/solver/curved_bend/src/lib.rs:663:tip_deflection_under_radial_pressure",
+   "line 663 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "edges.json/spans/key",
+   "core/solver/curved_bend/src/lib.rs:872:radial_pressure_load_actions",
+   "line 872 of core/solver/curved_bend/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10912:add_pressure_thrust_loads",
+   "line 10912 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10978:add_curved_bend_pressure_thrust_load",
+   "line 10978 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10912:add_pressure_thrust_loads",
+   "line 10912 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10912:add_pressure_thrust_loads",
+   "line 10912 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10912:add_pressure_thrust_loads",
+   "line 10912 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10912:add_pressure_thrust_loads",
+   "line 10912 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11487",
+   "line 11487 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11500",
+   "line 11500 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11521",
+   "line 11521 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11528",
+   "line 11528 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2520",
+   "ambiguous: core/loads/primitive_loads/src/lib.rs, core/loads/stress_recovery/src/lib.rs, core/product_physics/src/lib.rs, core/solver/curved_bend/src/lib.rs, core/solver/frame_kernel/src/lib.rs"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11520",
+   "line 11520 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:395",
+   "ambiguous: core/loads/primitive_loads/src/lib.rs, core/loads/stress_recovery/src/lib.rs, core/product_physics/src/lib.rs, core/solver/curved_bend/src/lib.rs, core/solver/frame_kernel/src/lib.rs"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10801:build_pressure_thrust_loads",
+   "line 10801 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10821",
+   "line 10821 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10801:build_pressure_thrust_loads",
+   "line 10801 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10821",
+   "line 10821 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10801:build_pressure_thrust_loads",
+   "line 10801 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10833",
+   "line 10833 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10891",
+   "line 10891 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10897",
+   "line 10897 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10898",
+   "line 10898 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10901",
+   "line 10901 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10905",
+   "line 10905 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10850:expansion_joint_pressure_thrust_inputs_by_pipe",
+   "line 10850 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10900",
+   "line 10900 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11252",
+   "line 11252 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11490",
+   "line 11490 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11492",
+   "line 11492 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11497",
+   "line 11497 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11498",
+   "line 11498 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11509",
+   "line 11509 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11465",
+   "line 11465 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11472",
+   "line 11472 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11489",
+   "line 11489 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11493",
+   "line 11493 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11495",
+   "line 11495 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11499",
+   "line 11499 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11513",
+   "line 11513 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11514",
+   "line 11514 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11515",
+   "line 11515 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11453:append_expansion_joint_pressure_thrust_results",
+   "line 11453 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11519",
+   "line 11519 of core/product_physics/src/lib.rs lies in a changed hunk",
+   "deleted"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1702",
+   "ambiguous: core/loads/primitive_loads/src/lib.rs, core/loads/stress_recovery/src/lib.rs, core/product_physics/src/lib.rs, core/solver/curved_bend/src/lib.rs, core/solver/frame_kernel/src/lib.rs"
+  ]
+ ],
+ "resolved_ambiguous": [
+  [
+   "looplog.json",
+   "lib.rs:1061",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1061",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1079",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1124",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1287",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1644",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1660",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1699",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1708",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1721",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1739",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1753",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1753",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1763",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2521",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2592",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:3078",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4091",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4240",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4790",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4905",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4905",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4939",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4948",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5025",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5044",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5149",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5156",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5218",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5224",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5338",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5338",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5338",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5354",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5354",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5354",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5456",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5468",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5488",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5522",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5522",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5530",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5772",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7273",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7294",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7304",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7313",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7326",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7326",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7339",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7350",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7377",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7392",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7438",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7453",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7453",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7521",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7524",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7527",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7862",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7879",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8208",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8208",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8232",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8243",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8255",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8272",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8272",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8285",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8285",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8298",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8298",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8311",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8311",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8327",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8337",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8348",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8360",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8372",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8384",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8396",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8420",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8442",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8460",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8460",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8478",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8478",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8494",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8505",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8520",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8548",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8560",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8574",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8586",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8601",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8616",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8633",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8648",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8660",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8672",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8684",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8701",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8713",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8728",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8741",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8755",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8771",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8785",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8795",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8810",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8825",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8840",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8857",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8872",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8887",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8902",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8926",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8940",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8960",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8976",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8976",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8991",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9002",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9018",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9018",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9018",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9024",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9024",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9024",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9183",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9189",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9198",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9210",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9225",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9241",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9841",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9848",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9859",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9866",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9877",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9884",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9904",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9928",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9935",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9949",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9956",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9984",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9991",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10010",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10017",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10055",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10069",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10076",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10087",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10094",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10108",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10115",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10154",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10241",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10241",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10457",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10457",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10463",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10463",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10477",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11487",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11500",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11521",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11528",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11696",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12438",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12438",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12451",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12451",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12480",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12491",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12549",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12553",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12555",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12595",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12595",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12601",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12601",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12633",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12633",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12639",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12639",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12880",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12886",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12951",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12961",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12962",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12987",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12987",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12993",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12993",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13003",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13003",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13062",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13155",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13166",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13545",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13545",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13959",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4090",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4240",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4938",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4991",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5024",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5043",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5058",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5102",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5148",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5183",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5183",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5217",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5249",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5337",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5337",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5337",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5353",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5353",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5353",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5440",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5468",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5522",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7272",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7293",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7303",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7313",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7326",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7338",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7350",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7376",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7391",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7437",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7452",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7452",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7520",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9182",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9197",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9209",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9224",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9240",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9840",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9858",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9876",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9927",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9948",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9983",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10009",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10068",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10086",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10107",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11520",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12879",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12986",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12986",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:528",
+   "core/solver/linear_supports/src/lib.rs",
+   "the one file with a TEXT row there at the basis (unchanged: left as written)"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10238",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10238",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10246",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10246",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10248",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10248",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10249",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10249",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10251",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10251",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10256",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10256",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10257",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10257",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10262",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10262",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10207",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10207",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10207",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10207",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10252",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10252",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10258",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10258",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10438",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10821",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10821",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10833",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10891",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10897",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10898",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10901",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10905",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10900",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11243",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11252",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11490",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11492",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11497",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11498",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11509",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11465",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11472",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11489",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11493",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11495",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11499",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11513",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11514",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11515",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11519",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11697",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11699",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11700",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11704",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11705",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11706",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11707",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:11708",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1208",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1213",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1218",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12441",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12441",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12443",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12443",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12448",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12448",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12449",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12449",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12450",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12450",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12460",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12460",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12444",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12444",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12481",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12483",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12488",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12489",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12502",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12484",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12490",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12890",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12890",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12952",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12954",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12959",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12960",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12965",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:12955",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13001",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13001",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13002",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13002",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13157",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13548",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13548",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13620",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13620",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13620",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13621",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13621",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13621",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13659",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13659",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13664",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13664",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13548",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13548",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13559",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13559",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13559",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13559",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13591",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13591",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13591",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13591",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13612",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13612",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13612",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13613",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13613",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13613",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13614",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13614",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13614",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13629",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13629",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13629",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13647",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13647",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13647",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13660",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:13660",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1433",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1671",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1701",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1909",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1910",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1916",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:1916",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2776",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2776",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2524",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2525",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2679",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2757",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2758",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2764",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2764",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2766",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2766",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2774",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2774",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2777",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2777",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2790",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:2790",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:3110",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:3111",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:3494",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4803",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4810",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4812",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4949",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4951",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4995",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5047",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5062",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5119",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5187",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5187",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5253",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5444",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5495",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5495",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5496",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5496",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5496",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5496",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5497",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5508",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5538",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5545",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5547",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4906",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4906",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4911",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4911",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4912",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4912",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4912",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4912",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4913",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4913",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5457",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5457",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5458",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5458",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5458",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5458",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5459",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5462",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5341",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5341",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5341",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5357",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5357",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5357",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4094",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4095",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4095",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4241",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4804",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4805",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4813",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4909",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4909",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4920",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4928",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4941",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4941",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4952",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:4996",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5029",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5048",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5063",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5107",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5107",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5127",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5161",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5162",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5163",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5188",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5188",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5229",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5230",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5231",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5254",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5292",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5346",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5346",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5346",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5347",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5347",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5347",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5362",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5362",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5362",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5363",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5363",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5363",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5445",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5457",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5457",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5462",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5462",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5467",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5468",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5468",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5495",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5495",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5509",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5510",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5521",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5522",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5522",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5539",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5540",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5548",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5590",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5743",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5743",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5740",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5740",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:5773",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:6163",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:6310",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:6317",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7276",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7380",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7395",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7277",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7298",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7308",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7313",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7313",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7326",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7335",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7343",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7351",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7381",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7396",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7408",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7442",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7442",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7457",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7457",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7527",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7645",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7947",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7964",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7987",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7971",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:7972",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8212",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8212",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8213",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8213",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8213",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8213",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8236",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8247",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8261",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8331",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8341",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8352",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8364",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8376",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8388",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8400",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8424",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8446",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8465",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8465",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8483",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8483",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8498",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8511",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8524",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8552",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8564",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8578",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8592",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8607",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8622",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8639",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8652",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8664",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8676",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8690",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8705",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8717",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8732",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8747",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8761",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8777",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8789",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8801",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8816",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8831",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8846",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8863",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8878",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8893",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8908",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8930",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8946",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8964",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8980",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8980",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8995",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9006",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8236",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8247",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8260",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8267",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8267",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8277",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8277",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8277",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8277",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8290",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8290",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8290",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8290",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8303",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8303",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8303",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8303",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8316",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8316",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8316",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8316",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8331",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8341",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8352",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8364",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8376",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8388",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8400",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8424",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8446",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8465",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8465",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8483",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8483",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8498",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8510",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8524",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8552",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8564",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8578",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8591",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8606",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8621",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8638",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8652",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8664",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8676",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8689",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8705",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8717",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8732",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8746",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8760",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8776",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8789",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8800",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8815",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8830",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8845",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8862",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8877",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8892",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8907",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8930",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8945",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8954",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8964",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8980",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8980",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:8995",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9006",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9023",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9023",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9023",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9193",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9193",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9202",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9202",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9214",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9214",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9214",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9229",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9229",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9245",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9245",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9852",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9852",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9870",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9870",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9889",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9891",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9939",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9960",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9996",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10022",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10080",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10098",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10119",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9829",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9852",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9870",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9890",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9939",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9960",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9997",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9998",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:9999",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10023",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10024",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10025",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10045",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10049",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10053",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10080",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10098",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10119",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10130",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10133",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ],
+  [
+   "looplog.json",
+   "lib.rs:10137",
+   "core/product_physics/src/lib.rs",
+   "the one file with a TEXT row there at the basis"
+  ]
+ ]
+}

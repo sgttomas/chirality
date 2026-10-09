@@ -7,8 +7,10 @@ equality; these attribute each difference). Each prints one JSON line; exit 0 if
       test present on both sides changes outcome.
   law_u3 <candidate law log> <SQ's registered law log>
       The I65_G5_* lines: every PHASE and PROFILE line equals SQ's with requested, max_without_R and E_mov_plus_R exactly
-      800 lower (moving unchanged; fraction_of_M allowed to move in its last digit); the ATOM lines differ only for
-      s((&str,StressRecoveryResult)) (32 lower) and s((String,DerivedSection)) (8 lower); every other line equal.
+      800 lower (moving unchanged; fraction_of_M allowed to move in its last digit); the ATOM lines (keyed by kind and
+      atom; tab-separated `I65_G5_ATOM <kind> <atom> <bytes> <second column>`) differ only for
+      s((&str,StressRecoveryResult)) (bytes 32 lower) and s((String,DerivedSection)) (8 lower), the second column equal;
+      every other line equal.
   challenge_u3 <chal dir> <SQ dev_table.json>
       Each entry passed; its outcome, rows and bound name equal SQ's; bound_bytes exactly 800 lower; peak_bytes not above
       SQ's (a lower peak is listed); the ratio is peak/bound to 6 places. process_floor: live_bytes - len(argv[0]) equals
@@ -56,7 +58,7 @@ if cmd == "law_u3":
         t = l.split()[0]; d = kv(l)
         if t == "I65_G5_PHASE": return (t, d.get("mode"), d.get("phase"))
         if t == "I65_G5_PROFILE": return (t, d.get("mode"))
-        if t == "I65_G5_ATOM": return (t, l.split()[1] if len(l.split()) > 1 else "")
+        if t == "I65_G5_ATOM": return tuple(l.split()[:3])   # I65_G5_ATOM <kind> <atom> <bytes> <second column>
         return (t, l)
     A = {ident(l): l for l in a}; B = {ident(l): l for l in b}
     rows, bad = [], []
@@ -74,12 +76,11 @@ if cmd == "law_u3":
                  (fr[0] == fr[1] or (fr[0] and fr[1] and abs(float(fr[0]) - float(fr[1])) <= 0.0001))
             rows.append({"line": " ".join(map(str, k)), "sq_minus_mine": moved, "fraction_of_M": fr}); (None if ok else bad.append(rows[-1]))
         elif k[0] == "I65_G5_ATOM":
-            nums = lambda l: [int(v) for v in re.findall(r"=(\d+)", l)]
-            nx, ny = nums(x), nums(y)
-            dn = [p - q for p, q in zip(ny, nx)]
-            atom = k[1]
-            ok = atom in ATOMS and re.sub(r"=\d+", "=N", x) == re.sub(r"=\d+", "=N", y) and dn and all(v in (0, ATOMS[atom]) for v in dn) and any(dn)
-            rows.append({"atom": atom, "mine": x, "sq": y}); (None if ok else bad.append(rows[-1]))
+            nx, ny = x.split()[3:], y.split()[3:]
+            atom = k[2]
+            # the first column is the in-build size; the second (unchanged here) is checked equal
+            ok = (atom in ATOMS and len(nx) == len(ny) >= 1 and int(ny[0]) - int(nx[0]) == ATOMS[atom] and nx[1:] == ny[1:])
+            rows.append({"atom": atom, "kind": k[1], "mine": nx, "sq": ny}); (None if ok else bad.append(rows[-1]))
         else:
             bad.append({"differs": [x, y]})
     done(6 if bad or not a else 0, lines=[len(a), len(b)], changed=rows, unattributed=bad)

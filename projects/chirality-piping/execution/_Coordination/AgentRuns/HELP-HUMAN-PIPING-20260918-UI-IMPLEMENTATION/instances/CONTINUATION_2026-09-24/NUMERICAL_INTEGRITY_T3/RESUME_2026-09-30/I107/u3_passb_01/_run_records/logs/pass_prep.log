@@ -1,0 +1,20 @@
+== gate tree: code 0 {"check": "tree", "code": 0, "result": "listed 2973, mismatched 0, extra 0"} (2026-10-09T02:08:10Z)
+== gate entry: code 0 {"check": "entry", "code": 0, "equal": true, "threshold": "11_274_289_152", "diff": []} (2026-10-09T02:08:10Z)
+== gate entry_code: code 0 {"check": "entry_code", "code": 0, "code_equal": true, "comment_lines_differing": ["-    // M (D-7; RR \"R6a: B1's G5 holds on B1's real code; M = 10.5 GiB, provisional\"; B1 SQ", "-    // QUAL_B1.md): E_mov,max + R <= 0.8745 M in this build (dense W3; sparse 0.8693 M).", "+    // M (D-7; RR \"R6b:  (2026-10-09T02:08:10Z)
+== gate m: code 0 {"check": "m", "code": 0, "threshold": "11_274_289_152", "expected": "11_274_289_152", "registered_profiles": 1} (2026-10-09T02:08:10Z)
+== law: skipped (I107_SKIP_CARGO) (2026-10-09T02:08:10Z)
+== gate statics: code 0 {"check": "statics", "code": 0, "added": [], "removed": []} (2026-10-09T02:08:17Z)
+== gate premise57: code 0 {"check": "premise57", "code": 0, "mine": [["premise_pins.json/pins/key", "core/reporting/result_export/src/retained_precision.rs:4252", "core/reporting/result_export/src/retained_precision.rs:4401"], ["premise_pins.json/pins/key", "core/reporting/result_export/src/retained_precision.rs:4253", "core (2026-10-09T02:08:20Z)
+== prune: exit 0 {"dropped": 5, "still_unmapped": [], "keys": ["core/product_physics/src/lib.rs:10833", "core/product_physics/src/lib.rs:13079", "core/product_physics/src/lib.rs:13094", "core/product_physics/src/lib.rs:13183", "core/product_physics/src/lib.rs:13198"]} (2026-10-09T02:08:21Z)
+== linemap: exit 0 (2026-10-09T02:08:21Z)
+== gate premise: code 0 {"check": "premise", "code": 0, "pins": 3, "bad": []} (2026-10-09T02:08:21Z)
+== TEXT points exit g5=0 n5=0 (2026-10-09T02:09:04Z)
+== D from the run: 41769 (2026-10-09T02:09:04Z)
+Traceback (most recent call last):
+  File "WT/numerics/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/RESUME_2026-09-30/I65/u4_g7_06/_run_records/delta_inventory2.py", line 156, in <module>
+    NL = open(os.path.join(W, rel), encoding="utf-8").read().split("\n")
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'WT/scratch/i107_u3/pass_prep/work/projects/chirality-piping/core/product_physics/src/historical_pressure_reference.rs'
+== delta: exit 6  (2026-10-09T02:09:14Z)
+VERDICT DELTAS TO READ exit=6 basis=8a12de28db5ede85d3df09d5307e795ff39e4373 tag=prep passA=SQ(57c92a7b3310229406733a7134e271c29bcc6978..69002bc862+registration) delta_old=main(ba500defa498a454be182ed46db795fc3e04d627) gates=tree:0 entry:0 entry_code:0 m:0 law:skipped statics:0 premise57:0 linemap:0 premise:0 text_run:0 delta:6 
+CHAIN-DONE rc=6
