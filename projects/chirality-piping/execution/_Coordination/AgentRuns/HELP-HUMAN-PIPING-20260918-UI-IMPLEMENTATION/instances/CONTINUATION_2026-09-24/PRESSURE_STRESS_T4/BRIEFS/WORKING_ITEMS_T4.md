@@ -127,3 +127,12 @@ Report at milestones and decisions, not on every event:
 - any decision for ROOT.
 
 If your context runs low, bring the log current and say where to resume.
+
+
+## Dispatching agents (host rule, tested 2026-10-09; overrides any earlier dispatch guidance here)
+
+**Never end your turn while agents you started are still running.** On this host, ending a turn forces your report-back to ROOT. Reports from agents still running then go to ROOT, not to you, and the Agent 0/1/2 chain breaks.
+- **How to dispatch.** Use blocking calls (`run_in_background: false`). Put independent agents in one message so they run in parallel, then dispatch the next batch.
+- **Where reports arrive.** A blocking call returns only a pointer. The report itself arrives as a separate "[Subagent hand-back]" message, so read that, or the agent's `RETURN.md`, not the tool result.
+- **Records.** Every agent writes its `RETURN.md` before handing back, so a return never depends on routing.
+- **When to report to ROOT.** Do it once, at a milestone, a blocker or a reserved decision, after your agents are in.
