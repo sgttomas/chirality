@@ -1,0 +1,10 @@
+replacement values (mine):
+  :3770 (10,-10)  u, normal, friction = 4375/7404, 4350/617, -1305/617
+  :3770 (-10,-10) u, normal, friction = -4375/9276, 9550/773, 2865/773
+  :3907 (10,-1) retry u, applied, Rx, Ry = 12125/14808, 1143/1234, 1143/1234, -1905/617
+  :3907 (10,-1) final u, friction, normal = 12875/18552, -1143/1546, -1905/773
+  :3907 (-10,1) retry u, applied, Rx, Ry = -12125/14808, -1143/1234, -1143/1234, 1905/617
+  :3907 (-10,1) final u, friction, normal = -12875/18552, 1143/1546, 1905/773
+  :4251 (mu = 0) iterations, u = 2 625/834
+ni checks: 43 run, 0 fail
+PASS

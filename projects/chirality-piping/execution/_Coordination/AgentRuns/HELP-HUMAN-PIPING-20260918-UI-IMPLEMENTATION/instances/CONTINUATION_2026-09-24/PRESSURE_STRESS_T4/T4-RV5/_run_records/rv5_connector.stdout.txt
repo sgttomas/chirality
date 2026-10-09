@@ -1,0 +1,2 @@
+connector checks: 535 run, 0 fail
+PASS

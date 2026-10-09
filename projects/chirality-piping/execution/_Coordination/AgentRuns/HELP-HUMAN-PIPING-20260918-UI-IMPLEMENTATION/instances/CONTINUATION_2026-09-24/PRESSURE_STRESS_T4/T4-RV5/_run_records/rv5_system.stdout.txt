@@ -1,0 +1,18 @@
+load:L-100: worst normalized difference vs JSON over u, theta, reactions, q, g, U, F, M, end actions = 1.38E-30; |balance| = 9.00E-67
+   raw variant: min normalized gap on its discriminating components = 3.152E-02 (criterion 1e-9; ratio 3.2E+07)
+   raw variant: global imbalance (applied + reactions) F = (0.000000, 0.000000, -0.000000), M about origin = (-770.000000, -0.000000, 0.000000)
+   raw imbalance / balance allowance = 1.00E+08
+   parallel variant: min normalized gap on its discriminating components = 5.761E-04 (criterion 1e-9; ratio 5.8E+05)
+load:L-200: worst normalized difference vs JSON over u, theta, reactions, q, g, U, F, M, end actions = 3.30E-30; |balance| = 4.70E-66
+   raw variant: min normalized gap on its discriminating components = 2.478E-02 (criterion 1e-9; ratio 2.5E+07)
+   raw variant: global imbalance (applied + reactions) F = (0.000000, 0.000000, 0.000000), M about origin = (-275.000000, -0.000000, 0.000000)
+   raw imbalance / balance allowance = 7.90E+07
+   parallel variant: min normalized gap on its discriminating components = 6.549E-04 (criterion 1e-9; ratio 6.5E+05)
+load:L-300: worst normalized difference vs JSON over u, theta, reactions, q, g, U, F, M, end actions = 2.38E-30; |balance| = 9.60E-66
+   raw variant: min normalized gap on its discriminating components = 5.019E-02 (criterion 1e-9; ratio 5.0E+07)
+   raw variant: global imbalance (applied + reactions) F = (0.000000, 0.000000, -0.000000), M about origin = (-0.000000, 440.000000, 0.000000)
+   raw imbalance / balance allowance = 2.19E+08
+   parallel variant: min normalized gap on its discriminating components = 5.590E-04 (criterion 1e-9; ratio 5.6E+05)
+worst normalized difference over all three cases: 3.30E-30
+system checks: 30 run, 0 fail
+PASS
