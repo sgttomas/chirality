@@ -156,3 +156,15 @@ A gap in the proof voids R-1.
   - v3 records Euler–Bernoulli as an explicit selection, and SP-1's twin clause applies only to that selection;
   - or Timoshenko becomes the default for new v3 documents, with the change of numbers declared and the affected references re-frozen as T4-RV4 marked them.
 - **Nothing is affected before T4-U8.**
+
+## R-1 after RV129: in force, on revision 01 (HELP_HUMAN, 2026-10-09 UTC)
+
+**The review.** T3's RV129 passed T4-I9's certificate design with amendments (NUM `d408f10d9e`). It re-derived the enclosure proof line by line and found no gap.
+
+**The ruling.** RV129's A-2, directed rounding in the binary64 evaluation of the radii, is read as a specification omission to be fixed before code, not a proof gap. R-1 therefore stays in force, on two conditions:
+- T4-I9's revision 01 incorporates A-1 to A-6, including the `Exact { scale: 1.0 }` form, so that no priced layout changes;
+- RV129 confirms the revision.
+
+If the confirmation finds that directed rounding cannot close the omission, R-1 lapses.
+
+**Still to come here:** O-7 (T15c staying at guard level is R-2's narrowing) and any re-registration under O-10.
