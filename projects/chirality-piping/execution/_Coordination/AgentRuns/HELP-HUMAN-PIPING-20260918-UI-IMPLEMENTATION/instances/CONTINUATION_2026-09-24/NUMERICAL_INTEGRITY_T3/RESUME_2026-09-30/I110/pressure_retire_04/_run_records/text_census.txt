@@ -1,0 +1,18 @@
+# rows (set, output) carrying each declared old or new string at the candidate
+bytes_final_release.jsonl {'F': 364, 'E': 96, 'B1': 64}
+   ('B1', 'document', 'T4 preview-physics limitation', 'old') 30
+   ('B1', 'mechanics', 'T4 preview-physics limitation', 'old') 64
+   ('B1', 'ordinary', 'T4 preview-physics limitation', 'old') 64
+   ('F', 'document', 'T2 formulation limitation', 'old') 26
+   ('F', 'document', 'T4 preview-physics limitation', 'old') 72
+   ('F', 'mechanics', 'T1 curved-bend treatment', 'new') 2
+   ('F', 'mechanics', 'T2 formulation limitation', 'old') 26
+   ('F', 'mechanics', 'T4 preview-physics limitation', 'old') 286
+   ('F', 'ordinary', 'T1 curved-bend treatment', 'new') 2
+   ('F', 'ordinary', 'T2 formulation limitation', 'old') 26
+   ('F', 'ordinary', 'T4 preview-physics limitation', 'old') 316
+bytes_final_w1.jsonl {'B1': 64}
+   ('B1', 'document', 'T4 preview-physics limitation', 'old') 30
+   ('B1', 'mechanics', 'T4 preview-physics limitation', 'old') 64
+   ('B1', 'ordinary', 'T4 preview-physics limitation', 'old') 64
+   ('B1', 'retained', 'T4 preview-physics limitation', 'old') 64

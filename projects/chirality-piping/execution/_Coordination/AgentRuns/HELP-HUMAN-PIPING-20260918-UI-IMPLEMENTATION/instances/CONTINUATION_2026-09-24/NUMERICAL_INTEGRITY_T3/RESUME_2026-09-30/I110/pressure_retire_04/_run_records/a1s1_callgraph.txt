@@ -1,0 +1,26 @@
+# git grep prepare_straight_pipe_axial_effects (after removal), execution excluded
+projects/chirality-piping/core/loads/primitive_loads/src/lib.rs:2242:pub fn prepare_straight_pipe_axial_effects(
+projects/chirality-piping/core/loads/primitive_loads/src/lib.rs:3622:        let prepared = prepare_straight_pipe_axial_effects(1, &loads[..
+projects/chirality-piping/core/loads/primitive_loads/src/lib.rs:3628:        let refused = prepare_straight_pipe_axial_effects(1, &loads, &p
+projects/chirality-piping/core/loads/primitive_loads/src/lib.rs:3698:        let prepared = prepare_straight_pipe_axial_effects(3, &loads, &
+projects/chirality-piping/core/loads/primitive_loads/src/lib.rs:3736:        let prepared = prepare_straight_pipe_axial_effects(1, &[load], 
+projects/chirality-piping/docs/validation_manual/cases/generate_validation_case_pages.py:370:            "(`prepare_straight_pipe_axial_effe
+projects/chirality-piping/docs/validation_manual/cases/mechanics/mech-fixed-fixed-thermal-axial.md:46:(`prepare_straight_pipe_axial_effects`
+projects/chirality-piping/validation/benchmarks/mechanics/src/lib.rs:20:    prepare_lumped_nodal_loads, prepare_straight_pipe_axial_effects,
+projects/chirality-piping/validation/benchmarks/mechanics/src/lib.rs:1684:    let prepared = prepare_straight_pipe_axial_effects(1, &loads, 
+projects/chirality-piping/validation/benchmarks/mechanics/src/lib.rs:4684:    let prepared = prepare_straight_pipe_axial_effects(1, &loads, 
+projects/chirality-piping/validation/benchmarks/mechanics/src/lib.rs:4771:    let prepared_axial = prepare_straight_pipe_axial_effects(1, &p
+projects/chirality-piping/validation/evidence/comparison_measurement/DEL0904_VD_20260811/CAPTURE_STDERR.txt:8:20 |     prepare_lumped_nodal_
+projects/chirality-piping/validation/evidence/reproduction/REPRO_DEL0904_20260718T215424Z_f14fa77518a/checks/evidence-sweep.json:16:      "s
+projects/chirality-piping/validation/evidence/reproduction/REPRO_DEL0904_20260719T033249Z_89a93d7ca21d/checks/evidence-sweep.json:16:      "
+projects/chirality-piping/validation/evidence/reproduction/REPRO_DEL0904_20260719T202023Z_23eeaabc9040/checks/evidence-sweep.json:16:      "
+projects/chirality-piping/validation/evidence/reproduction/REPRO_DEL0904_20260720T074714Z_a5235340aae3/checks/evidence-sweep.json:16:      "
+Binary file projects/chirality-piping/validation/evidence/reproduction/REPRO_DEL0904_20260720T074714Z_a5235340aae3/stderr/cmd03_solve_case1.
+Binary file projects/chirality-piping/validation/evidence/reproduction/REPRO_DEL0904_20260720T074714Z_a5235340aae3/stderr/cmd04_validate_inp
+Binary file projects/chirality-piping/validation/evidence/reproduction/REPRO_DEL0904_20260720T074714Z_a5235340aae3/stderr/cmd05_run_benchmar
+Binary file projects/chirality-piping/validation/evidence/reproduction/REPRO_DEL0904_20260720T074714Z_a5235340aae3/stderr/cmd08_benchmark_si
+Binary file projects/chirality-piping/validation/evidence/reproduction/REPRO_DEL0904_20260720T074714Z_a5235340aae3/stderr/cmd09_benchmark_mu
+Binary file projects/chirality-piping/validation/evidence/reproduction/REPRO_DEL0904_20260720T074714Z_a5235340aae3/stderr/cmd10_regression_f
+Binary file projects/chirality-piping/validation/evidence/reproduction/REPRO_DEL0904_20260720T074714Z_a5235340aae3/stderr/cmd11_benchmark_pa
+Binary file projects/chirality-piping/validation/evidence/reproduction/REPRO_DEL0904_20260720T074714Z_a5235340aae3/stderr/cmd12_regression_p
+Binary file projects/chirality-piping/validation/evidence/reproduction/REPRO_DEL0904_20260720T074714Z_a5235340aae3/stderr/cmd13_cargo_test_h

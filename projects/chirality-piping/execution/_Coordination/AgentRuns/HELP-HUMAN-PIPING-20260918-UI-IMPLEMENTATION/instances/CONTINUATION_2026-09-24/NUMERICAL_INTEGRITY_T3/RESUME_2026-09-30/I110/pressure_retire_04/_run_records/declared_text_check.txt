@@ -1,0 +1,9 @@
+# compare_texts.py, B (round-2 hb rows) vs candidate: per output, equal, or differing only in the declared strings (sha of the output with each new string replaced by its old one equals B), or other
+# release pass (E, F, B1; ordinary + runner)
+{('B1', 'equal'): 64, ('E', 'equal'): 96, ('F', 'declared'): 2, ('F', 'equal'): 362}
+declared-only outputs: 4 ['fixtures/results/invented/result_export_v0_2.json#/producer_cases/1/model']
+other differences: []
+# W1 pass (B1, retained direct entry, debug)
+{('B1', 'equal'): 64}
+declared-only outputs: 0 []
+other differences: []

@@ -1,0 +1,31 @@
+# cargo test --lib flexibility_joint_ ; preview_physics.rs from 9930cfe6db (before the G11 fixes), tests from the head
+running 3 tests
+test tests::flexibility_joint_pipe_without_orientation_or_a_known_end_is_refused_by_the_pipe ... ok
+test tests::flexibility_joint_missing_a_user_stiffness_is_refused_not_dropped ... FAILED
+test tests::flexibility_joint_with_an_unresolved_mapping_is_refused_not_dropped ... FAILED
+
+failures:
+
+---- tests::flexibility_joint_missing_a_user_stiffness_is_refused_not_dropped stdout ----
+
+thread 'tests::flexibility_joint_missing_a_user_stiffness_is_refused_not_dropped' (129067253) panicked at src/lib.rs:17465:9:
+assertion `left == right` failed: (missing value, status, consumed review rows, no results, refused by name)
+  left: [("lateral", "MECHANICS_SOLVED", 3, false, false), ("axial", "MECHANICS_SOLVED", 2, false, false), ("angular", "MECHANICS_SOLVED", 2, false, false), ("torsional", "MECHANICS_SOLVED", 2, false, false)]
+ right: [("lateral", "MODEL_INCOMPLETE", 0, true, true), ("axial", "MODEL_INCOMPLETE", 0, true, true), ("angular", "MODEL_INCOMPLETE", 0, true, true), ("torsional", "MODEL_INCOMPLETE", 0, true, true)]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tests::flexibility_joint_with_an_unresolved_mapping_is_refused_not_dropped stdout ----
+
+thread 'tests::flexibility_joint_with_an_unresolved_mapping_is_refused_not_dropped' (129067255) panicked at src/lib.rs:17537:9:
+assertion `left == right` failed: (case, status, consumed review rows, no results, mapping refusal refs)
+  left: [("no pipe", "MECHANICS_SOLVED", 0, false, None), ("unknown pipe", "MECHANICS_SOLVED", 3, false, None), ("unknown node", "MECHANICS_SOLVED", 3, false, None), ("node not on the pipe", "MECHANICS_SOLVED", 3, false, None)]
+ right: [("no pipe", "MODEL_INCOMPLETE", 0, true, Some(["component:C-150"])), ("unknown pipe", "MODEL_INCOMPLETE", 0, true, Some(["component:C-150", "pipe:missing"])), ("unknown node", "MODEL_INCOMPLETE", 0, true, Some(["component:C-150", "pipe:P-130"])), ("node not on the pipe", "MODEL_INCOMPLETE", 0, true, Some(["component:C-150", "pipe:P-130"]))]
+
+
+failures:
+    tests::flexibility_joint_missing_a_user_stiffness_is_refused_not_dropped
+    tests::flexibility_joint_with_an_unresolved_mapping_is_refused_not_dropped
+
+test result: FAILED. 1 passed; 2 failed; 0 ignored; 0 measured; 618 filtered out; finished in 0.23s
+
+error: test failed, to rerun pass `--lib`

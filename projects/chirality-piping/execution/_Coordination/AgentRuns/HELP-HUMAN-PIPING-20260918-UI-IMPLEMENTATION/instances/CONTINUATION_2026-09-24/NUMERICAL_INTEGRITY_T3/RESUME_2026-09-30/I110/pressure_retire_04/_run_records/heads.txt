@@ -1,0 +1,4 @@
+candidate 5bc6f269da (branch codex/piping-t3-pressure-retire-20261008, WT/t3-pret)
+B 7eae707bb7 (round-2 B-side records reused: R/I110/pressure_retire_02/_run_records)
+harness tree WT/t3-pret-hc detached at 5bc6f269da
+experiment tree WT/t3-pret-hb detached at 5bc6f269da (T2, T4 applied and reverted)

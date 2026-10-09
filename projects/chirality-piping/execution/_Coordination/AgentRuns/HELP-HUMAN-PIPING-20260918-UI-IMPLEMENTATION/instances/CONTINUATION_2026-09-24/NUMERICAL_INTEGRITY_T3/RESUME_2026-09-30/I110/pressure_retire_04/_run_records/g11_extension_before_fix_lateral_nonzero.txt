@@ -1,0 +1,23 @@
+# the extension tests before 16ce82f573's fix, first version (lateral nonzero in the mapping cases)
+running 3 tests
+test tests::flexibility_joint_pipe_without_orientation_or_a_known_end_is_refused_by_the_pipe ... ok
+test tests::flexibility_joint_missing_a_user_stiffness_is_refused_not_dropped ... ok
+test tests::flexibility_joint_with_an_unresolved_mapping_is_refused_not_dropped ... FAILED
+
+failures:
+
+---- tests::flexibility_joint_with_an_unresolved_mapping_is_refused_not_dropped stdout ----
+
+thread 'tests::flexibility_joint_with_an_unresolved_mapping_is_refused_not_dropped' (128770548) panicked at src/lib.rs:17516:9:
+assertion `left == right` failed: (case, status, consumed review rows, no results, mapping refusal refs)
+  left: [("no pipe", "MECHANICS_SOLVED", 0, false, None), ("unknown pipe", "MECHANICS_SOLVED", 4, false, None), ("unknown node", "MODEL_INCOMPLETE", 0, true, None), ("node not on the pipe", "MODEL_INCOMPLETE", 0, true, None)]
+ right: [("no pipe", "MODEL_INCOMPLETE", 0, true, Some(["component:C-150"])), ("unknown pipe", "MODEL_INCOMPLETE", 0, true, Some(["component:C-150", "pipe:missing"])), ("unknown node", "MODEL_INCOMPLETE", 0, true, Some(["component:C-150", "pipe:P-130"])), ("node not on the pipe", "MODEL_INCOMPLETE", 0, true, Some(["component:C-150", "pipe:P-130"]))]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::flexibility_joint_with_an_unresolved_mapping_is_refused_not_dropped
+
+test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 618 filtered out; finished in 0.08s
+
+error: test failed, to rerun pass `--lib`
