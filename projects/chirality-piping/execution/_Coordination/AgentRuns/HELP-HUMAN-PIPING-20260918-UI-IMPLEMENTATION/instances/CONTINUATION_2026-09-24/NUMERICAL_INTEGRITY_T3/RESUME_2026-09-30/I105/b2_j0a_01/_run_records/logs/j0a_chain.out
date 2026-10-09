@@ -1,0 +1,68 @@
+# chain start 2026-10-08T23:29:57Z
+pyh_src: 9f5cfbcd75264a5911e0504ef4e5539efc0b186b; package-lock equal; wasm assets copied
+# helpers rc=0
+h: 9f5cfbcd75264a5911e0504ef4e5539efc0b186b; package-lock equal; wasm assets copied
+h pp rc=101
+h runner rc=0
+h re rc=0
+h vitest rc=0
+h tsc rc=0
+h py files: tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py tests/test_retained_precision_carriers.py tests/test_retained_precision_schema.py tests/test_precision_consumer_contract.py tests/test_load_reference_schema.py tests/test_load_reference_source_schema.py tests/test_source_block_schema_contract.py tests/test_results_dispatcher_v0_3.py tests/test_physics_consumer_contract.py tests/test_preview_physics_consumer_contract.py tests/test_result_export_v0_2.py tests/test_stress_neutral_physics_source.py tests/test_stress_neutral_precision.py tests/test_load_reference_headless_artifacts.py tests/test_analysis_run_schema.py
+h py rc=0
+h 07m corpus c21112fdbfad37dd
+h 07m rs census rc=0
+h 07m ts census rc=0
+h 07m py census rc=0
+h 07n corpus ea113e7b25b96cba
+h 07n rs census rc=0
+h 07n ts census rc=0
+h 07n py census rc=0
+h 07nN corpus 0703ec17402037b0
+h 07nN rs census rc=0
+h 07nN ts census rc=0
+h 07nN py census rc=0
+# head h rc=0
+b: 7cc786285c79690c70fc6633bbf84278b2d64e01; package-lock equal; wasm assets copied
+b pp rc=101
+b runner rc=101
+b re rc=0
+b vitest rc=0
+b tsc rc=0
+b py files: tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py tests/test_retained_precision_carriers.py tests/test_retained_precision_schema.py tests/test_precision_consumer_contract.py tests/test_load_reference_schema.py tests/test_load_reference_source_schema.py tests/test_source_block_schema_contract.py tests/test_results_dispatcher_v0_3.py tests/test_physics_consumer_contract.py tests/test_preview_physics_consumer_contract.py tests/test_result_export_v0_2.py tests/test_stress_neutral_physics_source.py tests/test_stress_neutral_precision.py tests/test_load_reference_headless_artifacts.py tests/test_analysis_run_schema.py
+b py rc=0
+b 07m corpus c21112fdbfad37dd
+b 07m rs census rc=0
+b 07m ts census rc=0
+b 07m py census rc=0
+b 07n corpus ea113e7b25b96cba
+b 07n rs census rc=0
+b 07n ts census rc=0
+b 07n py census rc=0
+b 07nN corpus 0703ec17402037b0
+b 07nN rs census rc=0
+b 07nN ts census rc=0
+b 07nN py census rc=0
+# head b rc=0
+m: ec5d397359c2f00e147254fdc797e437be54b91f; package-lock equal; wasm assets copied
+m pp rc=0
+m runner rc=0
+m re rc=0
+m vitest rc=0
+m tsc rc=0
+m py files: tests/test_retained_precision_contract.py tests/test_retained_precision_carriers.py tests/test_retained_precision_schema.py tests/test_precision_consumer_contract.py tests/test_load_reference_schema.py tests/test_load_reference_source_schema.py tests/test_source_block_schema_contract.py tests/test_results_dispatcher_v0_3.py tests/test_physics_consumer_contract.py tests/test_preview_physics_consumer_contract.py tests/test_result_export_v0_2.py tests/test_stress_neutral_physics_source.py tests/test_stress_neutral_precision.py tests/test_load_reference_headless_artifacts.py tests/test_analysis_run_schema.py
+m py rc=0
+m 07m corpus c21112fdbfad37dd
+m 07m rs census rc=0
+m 07m ts census rc=0
+m 07m py census rc=0
+m 07n corpus ea113e7b25b96cba
+m 07n rs census rc=0
+m 07n ts census rc=0
+m 07n py census rc=0
+m 07nN corpus 0703ec17402037b0
+m 07nN rs census rc=0
+m 07nN ts census rc=0
+m 07nN py census rc=0
+# head m rc=0
+# chain end 2026-10-09T01:24:53Z
+chain exit 0

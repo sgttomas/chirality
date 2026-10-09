@@ -1,0 +1,55 @@
+Auto-merging projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts
+CONFLICT (content): Merge conflict in projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts
+Auto-merging projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts
+CONFLICT (content): Merge conflict in projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts
+Auto-merging projects/chirality-piping/core/analysis_runs/compatibility.py
+Auto-merging projects/chirality-piping/core/analysis_runs/retained_precision.py
+CONFLICT (content): Merge conflict in projects/chirality-piping/core/analysis_runs/retained_precision.py
+Auto-merging projects/chirality-piping/core/product_physics/src/lib.rs
+CONFLICT (content): Merge conflict in projects/chirality-piping/core/product_physics/src/lib.rs
+Auto-merging projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs
+CONFLICT (content): Merge conflict in projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs
+Auto-merging projects/chirality-piping/core/product_physics/src/retained_memory.rs
+CONFLICT (content): Merge conflict in projects/chirality-piping/core/product_physics/src/retained_memory.rs
+Auto-merging projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs
+CONFLICT (content): Merge conflict in projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs
+Auto-merging projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs
+CONFLICT (content): Merge conflict in projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs
+Auto-merging projects/chirality-piping/core/product_physics/src/retained_product.rs
+CONFLICT (content): Merge conflict in projects/chirality-piping/core/product_physics/src/retained_product.rs
+Auto-merging projects/chirality-piping/core/product_physics/src/retained_product_tests.rs
+Auto-merging projects/chirality-piping/core/product_physics/src/retained_tests_hooks/grant2.rs
+CONFLICT (content): Merge conflict in projects/chirality-piping/core/product_physics/src/retained_tests_hooks/grant2.rs
+Auto-merging projects/chirality-piping/core/product_physics/src/retained_wire.rs
+CONFLICT (content): Merge conflict in projects/chirality-piping/core/product_physics/src/retained_wire.rs
+Auto-merging projects/chirality-piping/core/product_physics/src/retained_wire_tests.rs
+Auto-merging projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs
+CONFLICT (content): Merge conflict in projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs
+Auto-merging projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs
+CONFLICT (content): Merge conflict in projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs
+Auto-merging projects/chirality-piping/core/runner/headless/tests/retained_precision_admission.rs
+CONFLICT (content): Merge conflict in projects/chirality-piping/core/runner/headless/tests/retained_precision_admission.rs
+Auto-merging projects/chirality-piping/core/solver/frame_kernel/src/structural/retained/product_certificate/final_case.rs
+Auto-merging projects/chirality-piping/core/solver/frame_kernel/tests/retained_k4/product_final_case_tests.rs
+Auto-merging projects/chirality-piping/fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json
+CONFLICT (add/add): Merge conflict in projects/chirality-piping/fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json
+Auto-merging projects/chirality-piping/tests/test_retained_precision_carriers.py
+Auto-merging projects/chirality-piping/tests/test_retained_precision_contract.py
+CONFLICT (content): Merge conflict in projects/chirality-piping/tests/test_retained_precision_contract.py
+Recorded preimage for 'projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts'
+Recorded preimage for 'projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.ts'
+Recorded preimage for 'projects/chirality-piping/core/analysis_runs/retained_precision.py'
+Recorded preimage for 'projects/chirality-piping/core/product_physics/src/lib.rs'
+Recorded preimage for 'projects/chirality-piping/core/product_physics/src/retained_facade_tests.rs'
+Recorded preimage for 'projects/chirality-piping/core/product_physics/src/retained_memory.rs'
+Recorded preimage for 'projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs'
+Recorded preimage for 'projects/chirality-piping/core/product_physics/src/retained_memory_witness_tests.rs'
+Recorded preimage for 'projects/chirality-piping/core/product_physics/src/retained_product.rs'
+Recorded preimage for 'projects/chirality-piping/core/product_physics/src/retained_tests_hooks/grant2.rs'
+Recorded preimage for 'projects/chirality-piping/core/product_physics/src/retained_wire.rs'
+Recorded preimage for 'projects/chirality-piping/core/reporting/result_export/src/retained_precision.rs'
+Recorded preimage for 'projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs'
+Recorded preimage for 'projects/chirality-piping/core/runner/headless/tests/retained_precision_admission.rs'
+Recorded preimage for 'projects/chirality-piping/fixtures/results/retained_precision_w_c2_successor_dense_scrutiny.json'
+Recorded preimage for 'projects/chirality-piping/tests/test_retained_precision_contract.py'
+Automatic merge failed; fix conflicts and then commit the result.

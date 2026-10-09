@@ -1,0 +1,12 @@
+MOVED w_cb2 dense result:combination:combination-ab:support-action:8:rigid:N0:force_magnitude kind=support_reaction_force_magnitude_v2 basis=combination:combination:ab old=0x1.c9a1856ab3947p-40 new=0x1.c9a1856ab3948p-40 cr_norm=0x1.c9a1856ab3948p-40 new==cr_norm:True old_to_new_ulps=1
+SUMMARY w_cb2 dense moved=1 all_checked=True magnitude_rows=42 ordinary_magnitudes_not_cr=0 []
+MOVED w_cb4a dense result:combination:combination-a-minus-b:support-action:8:rigid:N0:force_magnitude kind=support_reaction_force_magnitude_v2 basis=combination:combination:a-minus-b old=0x1.c9a1856ab3947p-40 new=0x1.c9a1856ab3948p-40 cr_norm=0x1.c9a1856ab3948p-40 new==cr_norm:True old_to_new_ulps=1
+SUMMARY w_cb4a dense moved=1 all_checked=True magnitude_rows=39 ordinary_magnitudes_not_cr=0 []
+MOVED w_cb4b dense result:combination:combination-range-ab:support-action:8:rigid:N0:force_magnitude kind=support_reaction_force_magnitude_v2 basis=combination:combination:range-ab old=0x1.c9a1856ab3947p-40 new=0x1.c9a1856ab3948p-40 cr_norm=0x1.c9a1856ab3948p-40 new==cr_norm:True old_to_new_ulps=1
+SUMMARY w_cb4b dense moved=1 all_checked=True magnitude_rows=39 ordinary_magnitudes_not_cr=0 []
+MOVED c1_range_mechanics dense result:combination:combination-range:support-action:8:rigid:N0:force_magnitude kind=support_reaction_force_magnitude_v2 basis=combination:combination:range old=0x1.c9a1856ab3947p-40 new=0x1.c9a1856ab3948p-40 cr_norm=0x1.c9a1856ab3948p-40 new==cr_norm:True old_to_new_ulps=1
+SUMMARY c1_range_mechanics dense moved=1 all_checked=True magnitude_rows=30 ordinary_magnitudes_not_cr=0 []
+MOVED rv123_c1_two_mechanics sparse_interactive result:combination:combination-m3case:disp:N1 kind=displacement_magnitude basis=combination:combination:m3case old=0x1.2196d7d8f228ep-2 new=0x1.2196d7d8f228fp-2 cr_norm=0x1.2196d7d8f228fp-2 new==cr_norm:True old_to_new_ulps=1
+SUMMARY rv123_c1_two_mechanics sparse_interactive moved=1 all_checked=True magnitude_rows=30 ordinary_magnitudes_not_cr=0 []
+MOVED rv123_c1_two_mechanics dense_scrutiny result:combination:combination-m3case:disp:N1 kind=displacement_magnitude basis=combination:combination:m3case old=0x1.2196d7c7415c8p-2 new=0x1.2196d7c7415c7p-2 cr_norm=0x1.2196d7c7415c7p-2 new==cr_norm:True old_to_new_ulps=1
+SUMMARY rv123_c1_two_mechanics dense_scrutiny moved=1 all_checked=True magnitude_rows=30 ordinary_magnitudes_not_cr=0 []

@@ -1,0 +1,20 @@
+{
+ "h": {
+  "ok": 795,
+  "FAILED": 1,
+  "ignored": 79
+ },
+ "h2": {
+  "ok": 796,
+  "FAILED": 0,
+  "ignored": 79
+ },
+ "changed": {
+  "s11f_site_test.rs::rule_8_every_accumulation_in_the_listed_files_is_in_the_table": [
+   "FAILED",
+   "ok"
+  ]
+ },
+ "added": [],
+ "removed": []
+}
