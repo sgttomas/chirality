@@ -1,0 +1,6 @@
+old element block: Kxx=150, Kxy=-50
+  Fx=10, Fy=-10: u=7/135, N=200/27, friction=-20/9; matches pinned values: True
+  Fx=-10, Fy=-10: u=-7/165, N=400/33, friction=40/11; matches pinned values: True
+illustrative frame block: EA/L=100, 12EIz/L^3=300, Kxx=228, Kxy=-96
+  Fx=10, Fy=-10: (u, N, friction) = (Fraction(35, 996), Fraction(550, 83), Fraction(-165, 83))
+  Fx=-10, Fy=-10: (u, N, friction) = (Fraction(-35, 1284), Fraction(1350, 107), Fraction(405, 107))

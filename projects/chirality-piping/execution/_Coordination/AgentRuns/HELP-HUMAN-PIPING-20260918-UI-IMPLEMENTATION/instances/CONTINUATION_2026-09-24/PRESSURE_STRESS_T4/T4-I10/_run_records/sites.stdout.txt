@@ -1,0 +1,228 @@
+# old-element sites at ed012c7ccf (enclosing fn @line: hit lines)
+== core/product_physics/src/f1b_tests.rs
+   fn main_dense_attempt @334: 346
+   fn pattern_attempt @365: 378
+   fn f1b_sparse_wiring_is_bit_identical_to_the_dense_assembly_on_the_declared_subset @571: 574, 582, 584, 597
+   fn observation_lane_system @909: 913
+   fn pattern_attempt_result @1586: 1599
+   fn orchestrator_case @2012: 2022
+   fn f1b_admission_names_each_family @2227: 2245
+== core/product_physics/src/lib.rs
+   fn None @0: 51, 53
+   fn formation_bodies @1227: 1245
+   fn force_scaling_attempt @1416: 1457
+   fn force_scaling_admission @1536: 1558
+   fn serialize_finite_f64 @1996: 2050
+   fn run_linear_static_preview_observed @2348: 2414, 2780
+   fn load_state_case_record @3494: 3516
+   fn assemble_basis_stiffness @3521: 3541
+   fn assemble_case_stiffness @3759: 3763, 3766
+   fn solve_load_case_observed @4019: 4435
+   fn append_nonlinear_support_loop_results @5711: 5758
+   fn solve_preview_reduced_system @6070: 6104, 6138
+   fn append_sparse_live_path_evidence @6246: 6259
+   fn assemble_reduced_sparse_entry_system @6382: 6385, 6440
+   fn build_model_for_members @7181: 7337, 7338, 7417
+   fn build_expansion_joint_user_stiffness_elements @7482: 7482, 7487, 7557
+   fn expansion_joint_macro_element_diag @7578: 7588
+   fn append_expansion_joint_user_stiffness_results @11906: 11906
+   fn mechanical_fixture_for_test @14253: 14322
+   fn request @15218: 15224
+   fn realized_user_stiffness_joint_is_refused_on_the_ordinary_route @17393: 17404
+   fn flexibility_joint_missing_a_user_stiffness_is_refused_not_dropped @17409: 17450
+   fn flexibility_joint_with_an_unresolved_mapping_is_refused_not_dropped @17471: 17518
+== core/product_physics/src/preview_physics.rs
+   fn refuse_unqualified_joint_elements @113: 113, 145, 181, 207
+== core/product_physics/src/retained_product.rs
+   fn capture_case_source @1539: 1558
+== core/product_physics/src/s11g_tests.rs
+   fn t21_selection_is_declined_for_a_formation_finding @2604: 2609, 2612
+== core/product_physics/src/source_receipt.rs
+   fn check_input_with_physical @269: 312, 315
+== core/product_physics/src/source_receipt/tests.rs
+   fn new @17: 24
+== core/product_physics/src/source_recovery.rs
+   fn prepare_sources @501: 579
+   fn new @1624: 1630, 1633
+== core/product_physics/tests/preview_physics_runtime.rs
+   fn joint_element_without_moment_coupling_is_refused @1045: 1051, 1072, 1074, 1079
+== core/product_physics/tests/s11f_site_test.rs
+   fn None @0: 511
+== core/reporting/result_export/tests/preview_physics_contract.rs
+   fn blocked @598: 606
+== core/runner/headless/src/lib.rs
+   fn request @1117: 1140
+== core/runner/headless/src/result_envelope_binding.rs
+   fn unpressurized_binding_model @458: 480
+== core/runner/headless/tests/preview_physics_admission.rs
+   fn realized_joint_is_refused_as_a_sanitized_blocked_envelope @252: 276
+== core/solver/frame_kernel/src/lib.rs
+   fn global_stiffness @612: 624, 634
+   fn local_stiffness @679: 680
+   fn force_scaled_spring_action @1074: 1101
+   fn user @1198: 1198
+   fn assemble_global_stiffness @1287: 1291
+   fn assemble_global_stiffness_with_user_elements @1294: 1294, 1297, 1315
+   fn user_stiffness_local_matrix @1740: 1740, 1747, 1748, 1749, 1750, 1751, 1752
+   fn add_relative_dof_stiffness @1756: 1756
+   fn user_stiffness_element_local_stiffness_consumes_directional_user_values @2110: 2114
+   fn user_stiffness_element_participates_in_global_solve @2129: 2133, 2136
+== core/solver/frame_kernel/src/rigid_body.rs
+   fn original_rigid_witness @194: 263, 301, 331
+   fn user_element_tie @346: 346, 354, 358
+== core/solver/frame_kernel/src/structural/formation_check.rs
+   fn None @0: 36, 70
+   fn check @155: 169
+   fn evaluate @182: 255
+   fn root @375: 392
+   fn user_matrix @640: 640
+== core/solver/frame_kernel/src/structural/formation_check_tests.rs
+   fn kd5_reformed_elements_have_the_rigid_body_null_space @69: 73
+== core/solver/frame_kernel/src/structural/sparse.rs
+   fn None @0: 40
+   fn force_scale @498: 506
+   fn force_scaled_inputs @514: 516, 525, 552
+   fn check_node @565: 576, 579, 585, 586
+   fn assemble_sparse_stiffness @592: 595, 603, 604, 608, 615, 625
+== core/solver/frame_kernel/src/structural/sparse/tests.rs
+   fn None @0: 11
+   fn section @18: 32
+   fn dense_symmetry @51: 69
+   fn sparse @93: 97, 104, 105
+   fn dense @107: 108, 111
+   fn contributions @129: 150
+   fn chain @198: 218
+   fn tree @238: 261, 272, 293
+   fn k1_assembly_refusals_match_the_dense_assembly @409: 412, 416, 422, 442
+== core/solver/frame_kernel/tests/k1_k2a_interaction.rs
+   fn None @0: 21
+   fn assert_same @82: 83
+== core/solver/frame_kernel/tests/k2b_force_scaling.rs
+   fn None @0: 27
+   fn k2b_elements_scale_e_g_and_user_stiffnesses_only @159: 185
+   fn k2b_the_census_refuses_every_kind_of_subnormal_input @288: 314, 323
+   fn assembly_inputs @536: 538, 560, 579
+   fn k2b_the_sparse_assembly_at_b_is_the_exactly_scaled_assembly @583: 584, 588, 597, 612, 649
+== core/solver/frame_kernel/tests/k5_constrained_bodies.rs
+   fn None @0: 12, 14, 17
+   fn k5_b10_libm_free_source_scan @895: 911
+   fn element @920: 920, 921
+   fn k5_c_user_tie_rule @943: 944, 946, 947, 950, 951, 966, 967, 973, 976, 990
+   fn k5_t4_tripwire_user_tie_space_is_the_represented_null_space @992: 1014, 1029
+== core/solver/frame_kernel/tests/s11_site_table.rs
+   fn None @0: 194
+== core/solver/nonlinear_integration/src/lib.rs
+   fn None @0: 21, 23
+   fn from_macro_element @216: 243
+   fn solve_active_set_frame_with_mode_and_springs @574: 581, 584, 603
+   fn solve_iteration_with_sliding_friction @1297: 1310
+   fn two_node_axial_problem @3116: 3131
+   fn two_explicit_friction_rows_problem @3182: 3205
+   fn coupled_normal_friction_problem @3580: 3590
+   fn two_row_current_normal_problem @3616: 3675
+   fn exact_zero_current_normal_problem @3705: 3727
+   fn both_nonzero_assumed_branches_accept_exact_zero_current_normal @3830: 3848, 3851
+   fn active_signed_zero_branch_rejects_cross_coupled_nonzero_current_normal @4107: 4140, 4143
+   fn strict_gap_budget_and_duplicate_dofs_remain_explicit_without_projection @4971: 4984, 4987, 4993
+   fn curved_bend_slot_matches_linear_arc_path_when_support_stays_released @5420: 5441
+== core/solver/nonlinear_integration/src/s11k_tests.rs
+   fn adjacent_input @14: 32
+   fn option_c_active_set_loop_first_closed_gap_iteration_is_binary64 @861: 868
+   fn kd5_loop_input @1264: 1268
+   fn kd5_friction_probe_input @1354: 1360
+== core/solver/nonlinear_integration/src/structural_adapter.rs
+   fn None @0: 7, 8, 18, 47
+   fn new @63: 66, 74
+   fn new_force_scaled @105: 108, 114, 116, 117, 118
+   fn solve_force_scaled @367: 406
+   fn new @492: 496, 507
+   fn new_force_scaled @534: 538, 544, 546, 547, 548
+   fn new @1082: 1085, 1099, 1136
+   fn geometry @1258: 1345, 1369, 1370
+   fn screen @1387: 1414
+   fn body @1418: 1428, 1438, 1440, 1443, 1447
+   fn formation_source @1546: 1553
+   fn unscaled_evidence @1603: 1615
+   fn force_scaled_primitives @1623: 1625, 1637, 1674, 1677
+   fn force_scaled_formation_source @1685: 1696
+   fn force_scaled_outcome @1755: 1787, 1789
+   fn force_scale_census @1827: 1832, 1833
+   fn evaluate_force_scaled @1850: 1866, 1888, 1909
+   fn scrutinize_gaps @2542: 2570
+   fn adjacent_input @2960: 2978
+   fn ret01_long_id_and_nested_error_are_reserved_before_summary_comparison @3017: 3030
+   fn actual_adapter_retains_adjacent_response_and_separate_ordinary_projected_states @3132: 3166
+== core/solver/nonlinear_integration/src/structural_adapter/k1_tests.rs
+   fn None @0: 23, 40
+   fn sparse @60: 64, 71
+   fn product_dense @73: 74, 77
+   fn dense_evidence @93: 97
+   fn sparse_evidence @103: 108
+   fn from_model @135: 142
+   fn simple_case @477: 487
+   fn k1_relabelled_model_gives_the_same_answers @816: 830, 851
+   fn loop_input @941: 945
+   fn k1_nonlinear_loop_reaches_neither_formation_entry @979: 1028, 1029
+   fn dense_in_order @1032: 1034
+   fn rv8_case @1178: 1196
+   fn i9_skew_m03_accepted_rows_are_identical_through_both_evidences_in_both_modes @1490: 1529
+== core/solver/nonlinear_integration/src/structural_adapter/k2b_tests.rs
+   fn case @264: 273
+   fn k2b_nonlinear_loop_reaches_no_force_scaled_entry @1403: 1414
+== core/solver/nonlinear_integration/src/structural_adapter/k5_tests.rs
+   fn None @0: 39
+   fn empty @58: 62
+   fn sparse_at @112: 116
+   fn dense_evidence_at @126: 130
+   fn sparse_evidence_at @137: 142
+   fn joint_mechanism @233: 243
+   fn k5_nonlinear_loop_keeps_todays_geometry @567: 575
+   fn k5_user_elements_tie_only_with_positive_stiffnesses @937: 942, 944, 975, 976
+== core/solver/nonlinear_integration/src/structural_adapter/kd5_tests.rs
+   fn None @0: 54
+   fn from_model @66: 74
+   fn assembly @144: 148
+   fn joint_model @569: 591, 593, 604
+== core/solver/sparse_direct/src/structural/k1_tests.rs
+   fn None @0: 17, 18
+   fn node @30: 39
+   fn sparse @51: 55
+   fn dense @62: 63, 66
+   fn contributions @82: 103
+   fn symmetry @141: 159
+   fn formation_source @197: 201
+   fn chain @244: 270
+   fn tree @282: 312
+== validation/benchmarks/nonlinear/src/lib.rs
+   fn assembled_axial_input @1779: 1794
+   fn assembled_xy_tip_input @1818: 1834
+   fn assembled_two_span_xy_input @1857: 1875
+   fn assembled_xyz_tip_input @1902: 1919
+   fn assembled_xyz_rz_tip_input @1941: 1959
+   fn assembled_ux_rz_tip_input @1980: 1996
+   fn assembled_uy_rz_tip_input @2019: 2034
+
+# joints in fixtures/results/invented/result_export_v0_2.json producer cases
+   straight-full: MECHANICS_SOLVED 0.1.0 [('component:C-150', 'mechanics_geometry_and_user_flexibility', True, False)]
+   curved-tip-weight-full: MECHANICS_SOLVED 0.1.0 []
+   curved-pressure-full: MECHANICS_SOLVED 0.1.0 []
+   blocked: MODEL_INCOMPLETE 0.1.0 [('component:C-150', 'mechanics_geometry_and_user_flexibility', True, False)]
+   gap-chain-five-active: MODEL_INCOMPLETE 0.1.0 []
+   gap-chain-two-active-control: MECHANICS_SOLVED 0.1.0 []
+   gap-chain-five-inactive-control: MECHANICS_SOLVED 0.1.0 []
+   joint code string at ['producer_cases', 0, 'model', 'components', 4, 'completeness']: EXPANSION_JOINT_STIFFNESS_DATA_MISSING
+   joint code string at ['producer_cases', 3, 'model', 'components', 4, 'completeness']: EXPANSION_JOINT_STIFFNESS_DATA_MISSING
+
+# pins of published texts that name the old element (outside records, plans)
+   [ed012c7ccf] 'bodies containing user/curved elements': ['core/solver/nonlinear_integration/src/structural_adapter.rs:1539', 'core/solver/nonlinear_integration/src/structural_adapter/k5_tests.rs:1226']
+   [e582b61f9e] 'bodies containing user/curved elements': ['core/solver/nonlinear_integration/src/structural_adapter.rs:1539', 'core/solver/nonlinear_integration/src/structural_adapter/k5_tests.rs:1226', 'fixtures/product_preview/invented_mechanics_result_precision_1_dense.json:15911', 'fixtures/product_preview/invented_mechanics_result_precision_1_dense.json:16025', 'fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json:15875', 'fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json:15989']
+   [ed012c7ccf] 'Explicit user-stiffness macro-elements are assembled': ['core/solver/nonlinear_integration/src/lib.rs:1110']
+   [e582b61f9e] 'Explicit user-stiffness macro-elements are assembled': ['core/solver/nonlinear_integration/src/lib.rs:1110']
+   [ed012c7ccf] 'beside frame and user-stiffness elements': ['core/solver/nonlinear_integration/src/lib.rs:1111']
+   [e582b61f9e] 'beside frame and user-stiffness elements': ['core/solver/nonlinear_integration/src/lib.rs:1111']
+   [ed012c7ccf] 'User-stiffness and curved-bend macro-elements consume': ['core/solver/nonlinear_integration/src/lib.rs:1120']
+   [e582b61f9e] 'User-stiffness and curved-bend macro-elements consume': ['core/solver/nonlinear_integration/src/lib.rs:1120']
+   [ed012c7ccf] 'mixed/curved/user/affine': ['core/solver/nonlinear_integration/src/lib.rs:4780', 'core/solver/nonlinear_integration/src/lib.rs:4922', 'core/solver/nonlinear_integration/src/structural_adapter.rs:2577']
+   [e582b61f9e] 'mixed/curved/user/affine': ['core/solver/nonlinear_integration/src/lib.rs:4780', 'core/solver/nonlinear_integration/src/lib.rs:4922', 'core/solver/nonlinear_integration/src/structural_adapter.rs:2577']
+   [ed012c7ccf] 'component, curved, user-matrix or release source family': ['core/product_physics/src/source_recovery.rs:584']
+   [e582b61f9e] 'component, curved, user-matrix or release source family': ['core/product_physics/src/source_recovery.rs:585']

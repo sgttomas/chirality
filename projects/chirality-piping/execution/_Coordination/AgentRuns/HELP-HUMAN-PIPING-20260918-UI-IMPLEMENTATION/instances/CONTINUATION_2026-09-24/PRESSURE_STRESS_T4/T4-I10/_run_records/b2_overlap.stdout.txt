@@ -1,0 +1,32 @@
+== core/product_physics/src/lib.rs: b2 hunks 13
+  site 51-53@U3 -> main 51-53; nearest b2 hunk main 2207-2207 (n=1), gap 2154 lines
+  site 1225-1248@U3 -> main 1226-1249; nearest b2 hunk main 2207-2207 (n=1), gap 958 lines
+  site 1457-1457@U3 -> main 1459-1459; nearest b2 hunk main 2207-2207 (n=1), gap 748 lines
+  site 1558-1559@U3 -> main 1562-1563; nearest b2 hunk main 2207-2207 (n=1), gap 644 lines
+  site 2050-2050@U3 -> main 2056-2056; nearest b2 hunk main 2207-2207 (n=1), gap 151 lines
+  site 2412-2417@U3 -> main 2443-2448; nearest b2 hunk main 2235-2235 (n=0), gap 207.5 lines
+  site 2779-2781@U3 -> main 2810-2812; nearest b2 hunk main 2992-2994 (n=3), gap 180 lines
+  site 3541-3541@U3 -> main 3572-3572; nearest b2 hunk main 3455-3455 (n=0), gap 116.5 lines
+  site 3763-3767@U3 -> main 3794-3798; nearest b2 hunk main 3455-3455 (n=0), gap 338.5 lines
+  site 4435-4435@U3 -> main 4481-4481; nearest b2 hunk main 3455-3455 (n=0), gap 1025.5 lines
+  site 5758-5758@U3 -> main 5835-5835; nearest b2 hunk main 3455-3455 (n=0), gap 2379.5 lines
+  site 6104-6104@U3 -> main 6181-6181; nearest b2 hunk main 3455-3455 (n=0), gap 2725.5 lines
+  site 6138-6138@U3 -> main 6215-6215; nearest b2 hunk main 3455-3455 (n=0), gap 2759.5 lines
+  site 6259-6259@U3 -> main 6336-6336; nearest b2 hunk main 3455-3455 (n=0), gap 2880.5 lines
+  site 6385-6385@U3 -> main 6462-6462; nearest b2 hunk main 3455-3455 (n=0), gap 3006.5 lines
+  site 6440-6450@U3 -> main 6517-6527; nearest b2 hunk main 3455-3455 (n=0), gap 3061.5 lines
+  site 7337-7338@U3 -> main 7414-7415; nearest b2 hunk main 3455-3455 (n=0), gap 3958.5 lines
+  site 7417-7417@U3 -> main 7494-7494; nearest b2 hunk main 3455-3455 (n=0), gap 4038.5 lines
+  site 7482-7593@U3 -> main 7559-7670; nearest b2 hunk main 3455-3455 (n=0), gap 4103.5 lines
+  site 11906-12010@U3 -> main 12370-12474; nearest b2 hunk main 3455-3455 (n=0), gap 8914.5 lines
+  site 17393-17587@U3 -> main 18519-18661; nearest b2 hunk main 3455-3455 (n=0), gap 15063.5 lines
+== core/product_physics/src/retained_product.rs: b2 hunks 92
+  site 1558-1558@U3 -> main 1560-1560; nearest b2 hunk main 1554-1554 (n=0), gap 5.5 lines
+== core/product_physics/tests/s11f_site_test.rs: b2 hunks 1
+  site 215-224@U3 -> main 214-225; nearest b2 hunk main 549-549 (n=0), gap 324.5 lines
+  site 511-511@U3 -> main 513-513; nearest b2 hunk main 549-549 (n=0), gap 36.5 lines
+  site 1377-1383@U3 -> main 1397-1403; nearest b2 hunk main 549-549 (n=0), gap 847.5 lines
+== core/reporting/result_export/tests/preview_physics_contract.rs: b2 hunks 1
+  site 606-606@U3 -> main 606-606; nearest b2 hunk main 830-830 (n=0), gap 224.5 lines
+== core/product_physics/src/retained_product_tests.rs: b2 hunks 3
+  site 2435-2435@U3 -> main 2435-2435; nearest b2 hunk main 2438-2438 (n=0), gap 3.5 lines

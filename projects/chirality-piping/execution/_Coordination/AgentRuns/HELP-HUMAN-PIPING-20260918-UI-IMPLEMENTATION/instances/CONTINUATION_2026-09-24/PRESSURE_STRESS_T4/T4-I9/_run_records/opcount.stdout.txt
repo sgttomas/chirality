@@ -1,0 +1,1 @@
+{'add': 1659, 'mul': 2887, 'div': 116, 'sqrt': 3, 'atan': 1, 'point': 5023} ball ops: 4666 all rounded midpoint ops (incl. point inverse): 5023
