@@ -28,8 +28,15 @@ sow = load_module("evaluation_sow_contract", TOOLS / "scope_of_work/common.py")
 LIFECYCLE_DIRS = ("1_Working", "2_Checking", "3_Issued")
 
 
+def require_legacy_dependencies(root):
+    """Do not report an empty CSV graph for a migrated deliverable project."""
+    if next(Path(root).glob("PKG-*/DEL-*/deliverable.yaml"), None) is not None:
+        raise ValueError("deliverable.yaml project: use tools/deliverables/ CLI instead of legacy CSV audits")
+
+
 def inventory(root, variant=None):
     """Live immediate production units in every lifecycle folder; never recurse into archived copies."""
+    require_legacy_dependencies(root)
     prefixes = (("CAT-", "KTY-"),) if variant == "DOMAIN" else (("PKG-", "DEL-"),)
     if variant is None:
         prefixes = (("PKG-", "DEL-"), ("CAT-", "KTY-"))
@@ -45,6 +52,7 @@ def require_root(root):
     root = root.resolve()
     if not root.is_dir():
         raise ValueError(f"execution root is not a directory: {root}")
+    require_legacy_dependencies(root)
     return root
 
 

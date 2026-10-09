@@ -728,3 +728,13 @@ def test_unterminated_run_history_heading_is_not_joined_to_the_entry() -> None:
     assert "## Run History-" not in first
     assert first.endswith("\n") and not first.endswith("\n\n")
     assert refresh(first, generated="2026-09-27") == first
+
+
+def test_yaml_project_refuses_legacy_materialization_before_writing(tmp_path):
+    import pytest
+    source = tmp_path / 'PKG-01/DEL-01-01/deliverable.yaml'
+    source.parent.mkdir(parents=True)
+    source.write_text('id: DEL-01-01\nneeds: []\n')
+    with pytest.raises(ValueError, match='legacy CSV materialization is retired'):
+        materialize_local_dependencies(tmp_path/'missing-edges.csv', tmp_path/'missing-nodes.csv', tmp_path)
+    assert list(tmp_path.rglob('Dependencies.csv')) == []
