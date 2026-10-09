@@ -1,0 +1,8 @@
+{
+ "rows_by_set_and_worst_class": {
+  "B1/equal": 64
+ },
+ "outputs_by_set_name_class": {},
+ "receipt_rule_failures_on_candidate_outputs": [],
+ "not_equal_outputs": []
+}

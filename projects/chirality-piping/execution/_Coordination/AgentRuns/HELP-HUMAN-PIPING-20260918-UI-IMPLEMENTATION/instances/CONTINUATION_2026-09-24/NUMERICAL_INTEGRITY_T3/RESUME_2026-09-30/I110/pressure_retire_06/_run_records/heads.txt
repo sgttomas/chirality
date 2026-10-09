@@ -1,0 +1,15 @@
+# I110 round 6 heads (placeholders: WT, NUM)
+branch codex/piping-t3-pressure-retire-20261008 in WT/t3-pret (not pushed by I110)
+start 1e9724fb94 (WORKING_ITEMS' merge of I114's demo lane 9744ed7e69)
+11a026b628 T2: the formulation limitation and its re-pins (product)
+fe657e3a68 the two demo generation records, regenerated (product; the final product head)
+1d2ebdcb59 the evidence package IMPLEMENTATION/U3 (records only; the PR head)
+B (evidence base) main 7eae707bb7; current main ec5d397359 (PR-N)
+NUM a31c14e4d3 (codex/piping-numerical-integrity-20260926, pushed)
+scratch heads, never pushed, made in WT/t3-pret-hb with rerere off:
+  6de499ceec  1d2ebdcb59 with main ec5d397359 merged (the PR side for source_equality)
+  0ff3f3bb5c  NUM a31c14e4d3 with 1d2ebdcb59 merged (the integration side)
+  both resolve the one PP/src/lib.rs import conflict to blob eea4538186 (scripts/resolve_lib.py)
+harness worktrees: WT/t3-pret-hc detached at fe657e3a68 (bytes passes); WT/t3-pret-hb detached at 1d2ebdcb59;
+  each clean apart from the untracked probe tests (runner/headless/tests/i110_bytes_harness.rs, i110_t2_repin.rs);
+  the temporary f1b_w2_runtime.rs dump instrumentation is removed from both

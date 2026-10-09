@@ -1,0 +1,5239 @@
+{
+ "manifests_40": {
+  "base": {
+   "ok": 2776,
+   "ignored": 80,
+   "FAILED": 3
+  },
+  "cand": {
+   "ok": 2755,
+   "ignored": 80,
+   "FAILED": 3
+  },
+  "changed": [
+   {
+    "test": "core_loads_primitive_loads_Cargo.toml|src/lib.rs|tests::straight_pipe_axial_effects_prepare_thermal_and_pressure_forces",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_loads_primitive_loads_Cargo.toml|src/lib.rs|tests::straight_pipe_axial_effects_prepare_thermal_force_and_refuse_pressure",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_loads_stress_recovery_Cargo.toml|src/lib.rs|tests::non_finite_pressure_is_reported",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_loads_stress_recovery_Cargo.toml|src/lib.rs|tests::recovers_axial_bending_and_torsion_components",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_loads_stress_recovery_Cargo.toml|src/lib.rs|tests::recovers_axial_bending_torsion_and_pressure_components",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_loads_stress_recovery_Cargo.toml|src/lib.rs|tests::stress_range_blocks_asymmetric_optional_components",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_model_operations_operation_applier_Cargo.toml|src/lib.rs|tests::explicit_create_primitive_load_payload_applies_pressure_and_thermal_only",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_model_operations_operation_applier_Cargo.toml|src/lib.rs|tests::explicit_create_primitive_load_payload_refuses_retired_pressure_and_applies_thermal",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|s11f_tests::f10_pressure_and_joint_thrust_g1e8",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|s11f_tests::f10_pressure_and_joint_thrust_g1e80",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|source_receipt::tests::legacy_model_three_retains_ordinary_route_without_old_source_namespace",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|source_receipt::tests::retired_legacy_pressure_label_is_refused_on_the_ordinary_route",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|source_receipt::tests::retired_legacy_pressure_label_is_refused_on_the_retained_entry",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|source_receipt::tests::zero_legacy_pressure_primitive_is_refused_on_the_ordinary_route_and_the_retained_entry",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|source_recovery::tests::non_exact_source_blocks_gate_refuses_a_later_version_a_contract_or_regions",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::bundled_demo_with_legacy_nonzero_pressure_is_refused_on_the_ordinary_route",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::current_composite_derived_normal_friction_and_reversal",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::curved_bend_macro_span_pressure_reaches_nonlinear_loop_with_same_vector_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::endpoint_section_cut_curved_bend_pressure_shows_membrane_end_and_station_state_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::endpoint_section_cut_curved_endpoints_use_all_six_arc_resultants_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::endpoint_section_cut_fixed_and_free_pressure_thermal_match_uniform_stations_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::endpoint_section_cut_fixed_and_free_thermal_match_uniform_stations",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::endpoint_section_cut_genuine_pressure_preserves_existing_result_leaves_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::endpoint_section_cut_two_genuine_pressures_sum_once_for_thrust_and_stress_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::expansion_joint_pressure_thrust_uses_user_effective_area_as_load_side_evidence_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::expansion_joint_user_stiffness_emits_macro_element_review_rows",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::flexibility_joint_missing_a_user_stiffness_is_refused_not_dropped",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::flexibility_joint_pipe_without_orientation_or_a_known_end_is_refused_by_the_pipe",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::flexibility_joint_with_an_unresolved_mapping_is_refused_not_dropped",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::generated_result_metadata_and_historical_quantization_match_legacy_fixture_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::mixed_units_are_normalized_at_preview_mechanics_boundary_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::pressure_load_direction_does_not_change_thrust_magnitude_or_sign_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::pressure_thrust_applies_axial_fixed_end_correction_without_longitudinal_rows_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::pressure_thrust_on_macro_span_assembles_complete_self_equilibrated_arc_system",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::private_historical_pressure_scope_restores_public_refusal_and_rejects_exact",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::private_historical_scope_restores_after_unwind_and_is_thread_local",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::realized_user_stiffness_joint_is_refused_on_the_ordinary_route",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::valid_invented_model_exposes_endpoint_stress_components_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|src/lib.rs|tests::valid_invented_model_exposes_nonlinear_support_loop_evidence_historical_pressure_premise",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|tests/f1b_w2_runtime.rs|f1b_w2_admission_refuses_a_zero_legacy_pressure_as_pressure_thrust",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_product_physics_Cargo.toml|tests/pressure_runtime.rs|retired_legacy_pressure_is_refused_and_pressure_free_documents_solve",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_runner_headless_Cargo.toml|src/bin/openpipestress-runner.rs|tests::retired_legacy_pressure_label_is_refused_by_a_cli_solve",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_runner_headless_Cargo.toml|src/bin/openpipestress-runner.rs|tests::zero_legacy_pressure_primitive_is_refused_by_a_cli_solve",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_runner_headless_Cargo.toml|src/lib.rs|benchmark_binding::tests::mechanics_whole_suite_is_24_cases_192_values_and_preserves_original_11_91",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "core_runner_headless_Cargo.toml|src/lib.rs|benchmark_binding::tests::mechanics_whole_suite_is_25_cases_206_values_and_preserves_original_11_91",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_solver_curved_bend_Cargo.toml|src/lib.rs|tests::anchored_arc_under_complete_pressure_system_reaches_membrane_state",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_solver_curved_bend_Cargo.toml|src/lib.rs|tests::cap_pair_plus_consistent_radial_load_is_self_equilibrated",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_solver_curved_bend_Cargo.toml|src/lib.rs|tests::consistent_radial_pressure_load_satisfies_rigid_equilibrium",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_solver_curved_bend_Cargo.toml|src/lib.rs|tests::radial_pressure_inputs_rejected_when_non_finite",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_solver_curved_bend_Cargo.toml|src/lib.rs|tests::radial_pressure_system_reduces_to_chord_pair_at_small_angle",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "core_solver_curved_bend_Cargo.toml|src/lib.rs|tests::zero_thrust_station_resultants_match_plain_arc_section_resultants",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "validation_benchmarks_mechanics_Cargo.toml|src/lib.rs|tests::curved_bend_pressure_thrust_complete_system_is_self_equilibrated",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "validation_benchmarks_mechanics_Cargo.toml|src/lib.rs|tests::curved_bend_pressure_thrust_fixture_matches_witness_reference_table",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "validation_benchmarks_mechanics_Cargo.toml|src/lib.rs|tests::suite_observation_api_covers_all_13_cases_and_103_names",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "validation_benchmarks_mechanics_Cargo.toml|src/lib.rs|tests::suite_observation_api_covers_all_14_cases_and_115_names",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "validation_benchmarks_stress_Cargo.toml|src/lib.rs|tests::recovers_pressure_membrane_fixture",
+    "base": "ok",
+    "cand": null
+   },
+   {
+    "test": "validation_benchmarks_stress_Cargo.toml|src/lib.rs|tests::stress_range_blocks_asymmetric_optional_pressure_components",
+    "base": "ok",
+    "cand": null
+   }
+  ]
+ },
+ "src_tauri": {
+  "base": {
+   "ok": 116
+  },
+  "cand": {
+   "ok": 118
+  },
+  "changed": [
+   {
+    "test": "src-tauri|src/lib.rs|tests::default_session_model_solves_in_both_modes",
+    "base": null,
+    "cand": "ok"
+   },
+   {
+    "test": "src-tauri|src/lib.rs|tests::retired_legacy_pressure_label_opens_unchanged_and_its_solve_is_refused",
+    "base": null,
+    "cand": "ok"
+   }
+  ]
+ },
+ "pytest": {
+  "base": {
+   "PASSED": 4353,
+   "SKIPPED": 8
+  },
+  "cand": {
+   "PASSED": 4355,
+   "SKIPPED": 8
+  },
+  "changed": [
+   {
+    "test": "tests/test_preview_physics_consumer_contract.py::test_generated_bundled_demo_output_is_recorded_truthfully[dense]",
+    "base": null,
+    "cand": "PASSED"
+   },
+   {
+    "test": "tests/test_preview_physics_consumer_contract.py::test_generated_bundled_demo_output_is_recorded_truthfully[sparse]",
+    "base": null,
+    "cand": "PASSED"
+   }
+  ]
+ },
+ "vitest": {
+  "base": {
+   "passed": 4244
+  },
+  "cand": {
+   "passed": 4248,
+   "todo": 1
+  },
+  "changed": [
+   {
+    "test": "apps/desktop/src/App.test.tsx|SWBPIPE desktop preview does not offer retired legacy pressure primitives in the manager panel (U3)",
+    "base": null,
+    "cand": "passed"
+   },
+   {
+    "test": "apps/desktop/src/App.test.tsx|SWBPIPE desktop preview preserves the 625-row stress-neutral format as a pure reference projection",
+    "base": null,
+    "cand": "passed"
+   },
+   {
+    "test": "apps/desktop/src/App.test.tsx|SWBPIPE desktop preview preserves the830-row stress-neutral format as a pure reference projection",
+    "base": "passed",
+    "cand": null
+   },
+   {
+    "test": "apps/desktop/src/App.test.tsx|SWBPIPE desktop preview queues and applies a pressure primitive load through the manager panel",
+    "base": "passed",
+    "cand": null
+   },
+   {
+    "test": "apps/desktop/src/App.test.tsx|SWBPIPE desktop preview retains historical component, pressure-thrust, hanger and review-package numeric oracles",
+    "base": "passed",
+    "cand": null
+   },
+   {
+    "test": "apps/desktop/src/App.test.tsx|SWBPIPE desktop preview retains the demo's component, hanger and review-package numeric oracles without the joint or legacy pressure",
+    "base": null,
+    "cand": "passed"
+   },
+   {
+    "test": "apps/desktop/src/App.test.tsx|Tier3 display in the actual application converts real comparison deltas through display-unit changes (known gap: T6, results and comparison)",
+    "base": null,
+    "cand": "todo"
+   },
+   {
+    "test": "apps/desktop/src/App.test.tsx|Tier3 display in the actual application keeps the reference's withheld comparison empty without a Current claim",
+    "base": null,
+    "cand": "passed"
+   },
+   {
+    "test": "apps/desktop/src/App.test.tsx|Tier3 display in the actual application preserves reference comparison rows through display-unit changes without a Current claim",
+    "base": "passed",
+    "cand": null
+   },
+   {
+    "test": "apps/desktop/src/features/pressure-authoring/PressureAuthoringPanel.test.tsx|says when a model without a contract still carries legacy pressure primitives, and when a contract is unsupported (U3, RV127 N-5)",
+    "base": null,
+    "cand": "passed"
+   },
+   {
+    "test": "apps/desktop/src/features/pressure-authoring/PressureAuthoringPanel.test.tsx|shows a model without a pressure contract as pressure-free (U3)",
+    "base": null,
+    "cand": "passed"
+   },
+   {
+    "test": "apps/desktop/src/features/pressure-authoring/PressureAuthoringPanel.test.tsx|shows the retired legacy label and re-authors it to the exact profile (U3)",
+    "base": null,
+    "cand": "passed"
+   },
+   {
+    "test": "apps/desktop/src/features/results/ResultsPanel.test.tsx|details a preview-physics-1 combination row with its recovery basis and every source result",
+    "base": null,
+    "cand": "passed"
+   },
+   {
+    "test": "apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.test.tsx|retains every native-shaped source row and hash while deriving 511 semantic witnesses and two diagnostic-work withholdings",
+    "base": null,
+    "cand": "passed"
+   },
+   {
+    "test": "apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.test.tsx|retains every native-shaped source row and hash while deriving 828 semantic witnesses and two diagnostic-work withholdings",
+    "base": "passed",
+    "cand": null
+   },
+   {
+    "test": "apps/desktop/src/services/previewService.test.ts|previewService explicit reference inspection and browser refusal preserves historical rounded nonlinear fixture evidence without calling it a fresh solve",
+    "base": "passed",
+    "cand": null
+   },
+   {
+    "test": "apps/desktop/src/services/previewService.test.ts|previewService explicit reference inspection and browser refusal preserves the historical-format carrier's nonlinear evidence without calling it a fresh solve",
+    "base": null,
+    "cand": "passed"
+   }
+  ]
+ },
+ "bytes_release": {
+  "by_set": {
+   "F": {
+    "rows": 364,
+    "equal": 332,
+    "runner_export_document": 98,
+    "ordinary_solved": 109,
+    "differ": 32
+   },
+   "E": {
+    "rows": 96,
+    "equal": 96,
+    "runner_export_document": 84,
+    "ordinary_solved": 96
+   },
+   "B1": {
+    "rows": 64,
+    "equal": 64,
+    "runner_export_document": 30,
+    "ordinary_solved": 64
+   }
+  },
+  "differences": [
+   {
+    "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/base_model",
+    "mode": "dense_scrutiny",
+    "base": {
+     "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/base_model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "39a362bd55e6d0084e3981cda5380f468205f6c7f26d485be82156b9ca151365",
+      "status": "MODEL_INCOMPLETE"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": null,
+      "mechanics": "39a362bd55e6d0084e3981cda5380f468205f6c7f26d485be82156b9ca151365",
+      "unavailability": "SOURCE_NOT_SOLVED"
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "ordinary": 0
+     },
+     "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/base_model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "b769acef8f0594ee57ad0fc6db1a9d92c4a201ae1712a23e0720688ccee30796",
+      "status": "MODEL_INCOMPLETE"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": null,
+      "mechanics": "b769acef8f0594ee57ad0fc6db1a9d92c4a201ae1712a23e0720688ccee30796",
+      "unavailability": "SOURCE_NOT_SOLVED"
+     },
+     "set": "F",
+     "texts": {
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "39a362bd55e6d0084e3981cda5380f468205f6c7f26d485be82156b9ca151365"
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "39a362bd55e6d0084e3981cda5380f468205f6c7f26d485be82156b9ca151365"
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/base_model",
+    "mode": "sparse_interactive",
+    "base": {
+     "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/base_model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "39a362bd55e6d0084e3981cda5380f468205f6c7f26d485be82156b9ca151365",
+      "status": "MODEL_INCOMPLETE"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": null,
+      "mechanics": "39a362bd55e6d0084e3981cda5380f468205f6c7f26d485be82156b9ca151365",
+      "unavailability": "SOURCE_NOT_SOLVED"
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "ordinary": 0
+     },
+     "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/base_model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "b769acef8f0594ee57ad0fc6db1a9d92c4a201ae1712a23e0720688ccee30796",
+      "status": "MODEL_INCOMPLETE"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": null,
+      "mechanics": "b769acef8f0594ee57ad0fc6db1a9d92c4a201ae1712a23e0720688ccee30796",
+      "unavailability": "SOURCE_NOT_SOLVED"
+     },
+     "set": "F",
+     "texts": {
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "39a362bd55e6d0084e3981cda5380f468205f6c7f26d485be82156b9ca151365"
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "39a362bd55e6d0084e3981cda5380f468205f6c7f26d485be82156b9ca151365"
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/expected/applied_model",
+    "mode": "dense_scrutiny",
+    "base": {
+     "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/expected/applied_model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "39a362bd55e6d0084e3981cda5380f468205f6c7f26d485be82156b9ca151365",
+      "status": "MODEL_INCOMPLETE"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": null,
+      "mechanics": "39a362bd55e6d0084e3981cda5380f468205f6c7f26d485be82156b9ca151365",
+      "unavailability": "SOURCE_NOT_SOLVED"
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "ordinary": 0
+     },
+     "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/expected/applied_model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "b769acef8f0594ee57ad0fc6db1a9d92c4a201ae1712a23e0720688ccee30796",
+      "status": "MODEL_INCOMPLETE"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": null,
+      "mechanics": "b769acef8f0594ee57ad0fc6db1a9d92c4a201ae1712a23e0720688ccee30796",
+      "unavailability": "SOURCE_NOT_SOLVED"
+     },
+     "set": "F",
+     "texts": {
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "39a362bd55e6d0084e3981cda5380f468205f6c7f26d485be82156b9ca151365"
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "39a362bd55e6d0084e3981cda5380f468205f6c7f26d485be82156b9ca151365"
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/expected/applied_model",
+    "mode": "sparse_interactive",
+    "base": {
+     "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/expected/applied_model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "39a362bd55e6d0084e3981cda5380f468205f6c7f26d485be82156b9ca151365",
+      "status": "MODEL_INCOMPLETE"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": null,
+      "mechanics": "39a362bd55e6d0084e3981cda5380f468205f6c7f26d485be82156b9ca151365",
+      "unavailability": "SOURCE_NOT_SOLVED"
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "ordinary": 0
+     },
+     "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/expected/applied_model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "b769acef8f0594ee57ad0fc6db1a9d92c4a201ae1712a23e0720688ccee30796",
+      "status": "MODEL_INCOMPLETE"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": null,
+      "mechanics": "b769acef8f0594ee57ad0fc6db1a9d92c4a201ae1712a23e0720688ccee30796",
+      "unavailability": "SOURCE_NOT_SOLVED"
+     },
+     "set": "F",
+     "texts": {
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "39a362bd55e6d0084e3981cda5380f468205f6c7f26d485be82156b9ca151365"
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "39a362bd55e6d0084e3981cda5380f468205f6c7f26d485be82156b9ca151365"
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/numerical_sensitive_torsion_model.json#/",
+    "mode": "dense_scrutiny",
+    "base": {
+     "label": "fixtures/product_preview/numerical_sensitive_torsion_model.json#/",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "1a18590765f1dd265a2a00612353ef5dd4e428e44148f358524af7211c4912fd",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "078fb651473896e80cc2c0cc09e040e1758f030eec60bc32fdd64edf2ef15de7",
+      "mechanics": "1a18590765f1dd265a2a00612353ef5dd4e428e44148f358524af7211c4912fd",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 20,
+      "ordinary": 14
+     },
+     "label": "fixtures/product_preview/numerical_sensitive_torsion_model.json#/",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "e509bc6041ea87d62300a3973604f8be9bf48a3b4524b02deaf7f366bfaaf6cd",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "7eee2d320ab856c86cccb880081022b922736a03bfd0d0cf406f8bc3d3f6068c",
+      "mechanics": "e509bc6041ea87d62300a3973604f8be9bf48a3b4524b02deaf7f366bfaaf6cd",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "078fb651473896e80cc2c0cc09e040e1758f030eec60bc32fdd64edf2ef15de7",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "23f1988c78184b46004d2d51d82f5d224b92d475312b8f1eb8e2b1e41372da2f",
+       "norm_receipt": "86a667d4040eee4cb2f00f9b1732638dd6ec5b14d1e70bf97f997d6cccf50f19",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "e3d0bc1b15a088983bc4e846b50c74b72301ce627d330afd84588b500f7fafc3",
+       "norm_receipt": "1a18590765f1dd265a2a00612353ef5dd4e428e44148f358524af7211c4912fd",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "e3d0bc1b15a088983bc4e846b50c74b72301ce627d330afd84588b500f7fafc3",
+       "norm_receipt": "1a18590765f1dd265a2a00612353ef5dd4e428e44148f358524af7211c4912fd",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/numerical_sensitive_torsion_model.json#/",
+    "mode": "sparse_interactive",
+    "base": {
+     "label": "fixtures/product_preview/numerical_sensitive_torsion_model.json#/",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "8596f389bbaa01fa1e29476f77cb97deaaecc6561a52a2218a7b669019729af6",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "01615e9f3f1447ceea8e3119fa325d1e906a1fea65a3568d6e4cb97fb7eb15f7",
+      "mechanics": "8596f389bbaa01fa1e29476f77cb97deaaecc6561a52a2218a7b669019729af6",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 20,
+      "ordinary": 14
+     },
+     "label": "fixtures/product_preview/numerical_sensitive_torsion_model.json#/",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "98b210f6e6fdddc6634227b494e114d172b2451f45ac58d805bb056c7b1e6deb",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "b210640e39da86bdbc9e3e96f105526f6bf24e9b3809adfa74ec1fd515cf6ee2",
+      "mechanics": "98b210f6e6fdddc6634227b494e114d172b2451f45ac58d805bb056c7b1e6deb",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "01615e9f3f1447ceea8e3119fa325d1e906a1fea65a3568d6e4cb97fb7eb15f7",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "02bd189bed0562aa608d2615b2bd33bebf3bdfa7af139c4f2de33d5230bba90c",
+       "norm_receipt": "c200f1a1b6f1fbb87415c9b75f74fe722c1b73e5be204a0b266fc4ef97822f64",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "e49c8a422f14b793e12366e3e22fe9b3039f49e4b62248be3bb36bc957dd3ac8",
+       "norm_receipt": "8596f389bbaa01fa1e29476f77cb97deaaecc6561a52a2218a7b669019729af6",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "e49c8a422f14b793e12366e3e22fe9b3039f49e4b62248be3bb36bc957dd3ac8",
+       "norm_receipt": "8596f389bbaa01fa1e29476f77cb97deaaecc6561a52a2218a7b669019729af6",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json#/model",
+    "mode": "dense_scrutiny",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "5affe0d964692734d8d5a4b4940e84af6be586803fbe96cd27fa544748375adb",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "bea01d5ca2d2f56ddbe4241fc36f576cb84b16550cb6502cf3b3839837365431",
+      "mechanics": "5affe0d964692734d8d5a4b4940e84af6be586803fbe96cd27fa544748375adb",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 35,
+      "ordinary": 25
+     },
+     "label": "fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "d8c49becee74c0ab0303afff87f3b919cef0ffbc9d3bfa0ed09f80083bd70754",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "aa3d264647d3abb2b81813e7b749e026fe7411b2de27807072b7c78d139c8b93",
+      "mechanics": "d8c49becee74c0ab0303afff87f3b919cef0ffbc9d3bfa0ed09f80083bd70754",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "bea01d5ca2d2f56ddbe4241fc36f576cb84b16550cb6502cf3b3839837365431",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "d692c37880b7ffe293264cd1b332706d97f949cf6d660882f68377353c0eaa8b",
+       "norm_receipt": "7c14fb95ddbac07e47e749af0fb67c8107a452e42b16160cf6cc8ed3112cd284",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "1b3c8ceef715b7f2593d9747b319253ef01c9de248a62cf29986fa03c40b9e5c",
+       "norm_receipt": "5affe0d964692734d8d5a4b4940e84af6be586803fbe96cd27fa544748375adb",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "1b3c8ceef715b7f2593d9747b319253ef01c9de248a62cf29986fa03c40b9e5c",
+       "norm_receipt": "5affe0d964692734d8d5a4b4940e84af6be586803fbe96cd27fa544748375adb",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json#/model",
+    "mode": "sparse_interactive",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "38d8e66896d85dfa76a9c5a7530d55f8700e51622cc6dca5eac09125cb43ab4e",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "7611abb99169de261447c4f2377f081ec9ea1fbec2cfab7eb231e80d44955340",
+      "mechanics": "38d8e66896d85dfa76a9c5a7530d55f8700e51622cc6dca5eac09125cb43ab4e",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 35,
+      "ordinary": 25
+     },
+     "label": "fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "62e366ffdcb4a3f610e003ac90c99499c992434fe19ef82cf37e31b3e3067749",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "1cfa52a9c991f32ff9d268cfe4c6f6647055ae341aee985c9c8d533a093ec61e",
+      "mechanics": "62e366ffdcb4a3f610e003ac90c99499c992434fe19ef82cf37e31b3e3067749",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "7611abb99169de261447c4f2377f081ec9ea1fbec2cfab7eb231e80d44955340",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "d096330f9a3d75d1c5287e6b9b1e99180f9131505f35932b1fc32300297cc327",
+       "norm_receipt": "2cd948c2ed9160a9fac20f682f69906f5c1b81f5afefc441e565317e9e2a082b",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "aeac8154eb333bc42da562e68654871d66f4c727d85f9965e6fe69b4351ea196",
+       "norm_receipt": "38d8e66896d85dfa76a9c5a7530d55f8700e51622cc6dca5eac09125cb43ab4e",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "aeac8154eb333bc42da562e68654871d66f4c727d85f9965e6fe69b4351ea196",
+       "norm_receipt": "38d8e66896d85dfa76a9c5a7530d55f8700e51622cc6dca5eac09125cb43ab4e",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json#/model",
+    "mode": "dense_scrutiny",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "5affe0d964692734d8d5a4b4940e84af6be586803fbe96cd27fa544748375adb",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "bea01d5ca2d2f56ddbe4241fc36f576cb84b16550cb6502cf3b3839837365431",
+      "mechanics": "5affe0d964692734d8d5a4b4940e84af6be586803fbe96cd27fa544748375adb",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 35,
+      "ordinary": 25
+     },
+     "label": "fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "d8c49becee74c0ab0303afff87f3b919cef0ffbc9d3bfa0ed09f80083bd70754",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "aa3d264647d3abb2b81813e7b749e026fe7411b2de27807072b7c78d139c8b93",
+      "mechanics": "d8c49becee74c0ab0303afff87f3b919cef0ffbc9d3bfa0ed09f80083bd70754",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "bea01d5ca2d2f56ddbe4241fc36f576cb84b16550cb6502cf3b3839837365431",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "d692c37880b7ffe293264cd1b332706d97f949cf6d660882f68377353c0eaa8b",
+       "norm_receipt": "7c14fb95ddbac07e47e749af0fb67c8107a452e42b16160cf6cc8ed3112cd284",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "1b3c8ceef715b7f2593d9747b319253ef01c9de248a62cf29986fa03c40b9e5c",
+       "norm_receipt": "5affe0d964692734d8d5a4b4940e84af6be586803fbe96cd27fa544748375adb",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "1b3c8ceef715b7f2593d9747b319253ef01c9de248a62cf29986fa03c40b9e5c",
+       "norm_receipt": "5affe0d964692734d8d5a4b4940e84af6be586803fbe96cd27fa544748375adb",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json#/model",
+    "mode": "sparse_interactive",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "38d8e66896d85dfa76a9c5a7530d55f8700e51622cc6dca5eac09125cb43ab4e",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "7611abb99169de261447c4f2377f081ec9ea1fbec2cfab7eb231e80d44955340",
+      "mechanics": "38d8e66896d85dfa76a9c5a7530d55f8700e51622cc6dca5eac09125cb43ab4e",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 35,
+      "ordinary": 25
+     },
+     "label": "fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "62e366ffdcb4a3f610e003ac90c99499c992434fe19ef82cf37e31b3e3067749",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "1cfa52a9c991f32ff9d268cfe4c6f6647055ae341aee985c9c8d533a093ec61e",
+      "mechanics": "62e366ffdcb4a3f610e003ac90c99499c992434fe19ef82cf37e31b3e3067749",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "7611abb99169de261447c4f2377f081ec9ea1fbec2cfab7eb231e80d44955340",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "d096330f9a3d75d1c5287e6b9b1e99180f9131505f35932b1fc32300297cc327",
+       "norm_receipt": "2cd948c2ed9160a9fac20f682f69906f5c1b81f5afefc441e565317e9e2a082b",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "aeac8154eb333bc42da562e68654871d66f4c727d85f9965e6fe69b4351ea196",
+       "norm_receipt": "38d8e66896d85dfa76a9c5a7530d55f8700e51622cc6dca5eac09125cb43ab4e",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "aeac8154eb333bc42da562e68654871d66f4c727d85f9965e6fe69b4351ea196",
+       "norm_receipt": "38d8e66896d85dfa76a9c5a7530d55f8700e51622cc6dca5eac09125cb43ab4e",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json#/model",
+    "mode": "dense_scrutiny",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "e36915e53695c851049904db7ebc5f2abe9a06d394f9eefd2096c592f64bf5b2",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "59d25f0b8a78f25ad7ce2d0a989e92b698c743c1a78617b279ea27a915ce522b",
+      "mechanics": "e36915e53695c851049904db7ebc5f2abe9a06d394f9eefd2096c592f64bf5b2",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 20,
+      "ordinary": 14
+     },
+     "label": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "b1d89b6021f662aa41727b5fb33be4368826c3011e8d29249e9841e33c9a538e",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "e19b4123b673b80e37ab91e51f04f18e34b45090a311d908c8d7ef982d920735",
+      "mechanics": "b1d89b6021f662aa41727b5fb33be4368826c3011e8d29249e9841e33c9a538e",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "59d25f0b8a78f25ad7ce2d0a989e92b698c743c1a78617b279ea27a915ce522b",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "8e81c6e5c104995d95bd9347d58b6cbc565efab8c029deb29f7864749d59d091",
+       "norm_receipt": "5ca6f5e1c21e93eaf06e37138ef0ee1aba7678d197e85e7e75373b938f763410",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "3b788e4ccffb4655610a67fb602b8bc90eeab1f4c9f97d5289a3f7c884115322",
+       "norm_receipt": "e36915e53695c851049904db7ebc5f2abe9a06d394f9eefd2096c592f64bf5b2",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "3b788e4ccffb4655610a67fb602b8bc90eeab1f4c9f97d5289a3f7c884115322",
+       "norm_receipt": "e36915e53695c851049904db7ebc5f2abe9a06d394f9eefd2096c592f64bf5b2",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json#/model",
+    "mode": "sparse_interactive",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "3a98b0b30e7f2a862ecae62d8be166cf44b347bfa068f85df843c46927a03e2d",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "28bc202fa4046c5254e8c1ed4d5cf19088e7a4fefd829b72a9485c10995b46cb",
+      "mechanics": "3a98b0b30e7f2a862ecae62d8be166cf44b347bfa068f85df843c46927a03e2d",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 20,
+      "ordinary": 14
+     },
+     "label": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "5e1ffce6d0dbefb8c1179b7abfa5aa80bacad85a08024d59e6e94186766e9e04",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "42fef265bab5fb8126afd72b94fe030bd912e695d95ba3c197702903c14e96e2",
+      "mechanics": "5e1ffce6d0dbefb8c1179b7abfa5aa80bacad85a08024d59e6e94186766e9e04",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "28bc202fa4046c5254e8c1ed4d5cf19088e7a4fefd829b72a9485c10995b46cb",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "de273b5a0f261e93ad6552fe605f8b8de2341e1d26c0e40a8076c1abb798721c",
+       "norm_receipt": "4fe10d5ebdc0460bd56c55cffd71ec8bf7cdde4ff29b3691d7aa9e64bebbae54",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "d85554dfe5fb62f9005efc9e217438314e32166f179bfe2b437f3776db7ff3a2",
+       "norm_receipt": "3a98b0b30e7f2a862ecae62d8be166cf44b347bfa068f85df843c46927a03e2d",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "d85554dfe5fb62f9005efc9e217438314e32166f179bfe2b437f3776db7ff3a2",
+       "norm_receipt": "3a98b0b30e7f2a862ecae62d8be166cf44b347bfa068f85df843c46927a03e2d",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json#/model",
+    "mode": "dense_scrutiny",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "e36915e53695c851049904db7ebc5f2abe9a06d394f9eefd2096c592f64bf5b2",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "59d25f0b8a78f25ad7ce2d0a989e92b698c743c1a78617b279ea27a915ce522b",
+      "mechanics": "e36915e53695c851049904db7ebc5f2abe9a06d394f9eefd2096c592f64bf5b2",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 20,
+      "ordinary": 14
+     },
+     "label": "fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "b1d89b6021f662aa41727b5fb33be4368826c3011e8d29249e9841e33c9a538e",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "e19b4123b673b80e37ab91e51f04f18e34b45090a311d908c8d7ef982d920735",
+      "mechanics": "b1d89b6021f662aa41727b5fb33be4368826c3011e8d29249e9841e33c9a538e",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "59d25f0b8a78f25ad7ce2d0a989e92b698c743c1a78617b279ea27a915ce522b",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "8e81c6e5c104995d95bd9347d58b6cbc565efab8c029deb29f7864749d59d091",
+       "norm_receipt": "5ca6f5e1c21e93eaf06e37138ef0ee1aba7678d197e85e7e75373b938f763410",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "3b788e4ccffb4655610a67fb602b8bc90eeab1f4c9f97d5289a3f7c884115322",
+       "norm_receipt": "e36915e53695c851049904db7ebc5f2abe9a06d394f9eefd2096c592f64bf5b2",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "3b788e4ccffb4655610a67fb602b8bc90eeab1f4c9f97d5289a3f7c884115322",
+       "norm_receipt": "e36915e53695c851049904db7ebc5f2abe9a06d394f9eefd2096c592f64bf5b2",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json#/model",
+    "mode": "sparse_interactive",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "3a98b0b30e7f2a862ecae62d8be166cf44b347bfa068f85df843c46927a03e2d",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "28bc202fa4046c5254e8c1ed4d5cf19088e7a4fefd829b72a9485c10995b46cb",
+      "mechanics": "3a98b0b30e7f2a862ecae62d8be166cf44b347bfa068f85df843c46927a03e2d",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 20,
+      "ordinary": 14
+     },
+     "label": "fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "5e1ffce6d0dbefb8c1179b7abfa5aa80bacad85a08024d59e6e94186766e9e04",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "42fef265bab5fb8126afd72b94fe030bd912e695d95ba3c197702903c14e96e2",
+      "mechanics": "5e1ffce6d0dbefb8c1179b7abfa5aa80bacad85a08024d59e6e94186766e9e04",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "28bc202fa4046c5254e8c1ed4d5cf19088e7a4fefd829b72a9485c10995b46cb",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "de273b5a0f261e93ad6552fe605f8b8de2341e1d26c0e40a8076c1abb798721c",
+       "norm_receipt": "4fe10d5ebdc0460bd56c55cffd71ec8bf7cdde4ff29b3691d7aa9e64bebbae54",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "d85554dfe5fb62f9005efc9e217438314e32166f179bfe2b437f3776db7ff3a2",
+       "norm_receipt": "3a98b0b30e7f2a862ecae62d8be166cf44b347bfa068f85df843c46927a03e2d",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "d85554dfe5fb62f9005efc9e217438314e32166f179bfe2b437f3776db7ff3a2",
+       "norm_receipt": "3a98b0b30e7f2a862ecae62d8be166cf44b347bfa068f85df843c46927a03e2d",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json#/model",
+    "mode": "dense_scrutiny",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "e28eb03c8bc858a0fe61fadda8f1915dc5a36a20682638ee6df14a409efa3c46",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "7f19e709b913172fd9a3ae9e372dc43a4cad444ce8dce7f1e3ce0be2646f140d",
+      "mechanics": "e28eb03c8bc858a0fe61fadda8f1915dc5a36a20682638ee6df14a409efa3c46",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 9,
+      "ordinary": 3
+     },
+     "label": "fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "34fd570a361a1177ec54902294be5fc85bf5233af1381d065494493aaba783fa",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "34f62494c9ec68f27190204ba0de1928f223acea719f5eb525b81c4fb675c518",
+      "mechanics": "34fd570a361a1177ec54902294be5fc85bf5233af1381d065494493aaba783fa",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "7f19e709b913172fd9a3ae9e372dc43a4cad444ce8dce7f1e3ce0be2646f140d",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "eb954a42f55d1d1d06eb3d8ce46594aa9733d8be4671a09ef2367f55ddb1da09",
+       "norm_receipt": "67be170996d49396d4c2e9b6e055e5e0cc6fd75010a294922defd7969b69171a",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "f60efd226d0beec3299e342e240bbd680bbef4e8c7306d7e41a57264fbe9d327",
+       "norm_receipt": "e28eb03c8bc858a0fe61fadda8f1915dc5a36a20682638ee6df14a409efa3c46",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "f60efd226d0beec3299e342e240bbd680bbef4e8c7306d7e41a57264fbe9d327",
+       "norm_receipt": "e28eb03c8bc858a0fe61fadda8f1915dc5a36a20682638ee6df14a409efa3c46",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json#/model",
+    "mode": "sparse_interactive",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "fd68187c19c8f20fbed0785bb5e9fd036675b82bb37de186ef441da8af7cdb02",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "7d5ca8a9d31828e4d4250c3321a1b84cec4c08768a1db2af90a16a29b85a8188",
+      "mechanics": "fd68187c19c8f20fbed0785bb5e9fd036675b82bb37de186ef441da8af7cdb02",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 9,
+      "ordinary": 3
+     },
+     "label": "fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "000d291cb765e80e3a431a272a196a81c27e6b7405b7be7f2b070fe4ff884228",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "0cf99eb2ae73246e0f896abcaff83a7f2438bf29bd5f930b4c59aa1e89ccfdda",
+      "mechanics": "000d291cb765e80e3a431a272a196a81c27e6b7405b7be7f2b070fe4ff884228",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "7d5ca8a9d31828e4d4250c3321a1b84cec4c08768a1db2af90a16a29b85a8188",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "b60204ae89d69a6c48db3be59340e82af44800630fe8db7ade16183c5dfd945e",
+       "norm_receipt": "1ff237369186af6c9833d3a357d0e27809647e030d096ee092b0a4c3feb4b251",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "b512b75fdc0200de5a91eedc4ac0e3d8bb95a548cf2b22250a038b240c1f6472",
+       "norm_receipt": "fd68187c19c8f20fbed0785bb5e9fd036675b82bb37de186ef441da8af7cdb02",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "b512b75fdc0200de5a91eedc4ac0e3d8bb95a548cf2b22250a038b240c1f6472",
+       "norm_receipt": "fd68187c19c8f20fbed0785bb5e9fd036675b82bb37de186ef441da8af7cdb02",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json#/model",
+    "mode": "dense_scrutiny",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "e28eb03c8bc858a0fe61fadda8f1915dc5a36a20682638ee6df14a409efa3c46",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "7f19e709b913172fd9a3ae9e372dc43a4cad444ce8dce7f1e3ce0be2646f140d",
+      "mechanics": "e28eb03c8bc858a0fe61fadda8f1915dc5a36a20682638ee6df14a409efa3c46",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 9,
+      "ordinary": 3
+     },
+     "label": "fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "34fd570a361a1177ec54902294be5fc85bf5233af1381d065494493aaba783fa",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "34f62494c9ec68f27190204ba0de1928f223acea719f5eb525b81c4fb675c518",
+      "mechanics": "34fd570a361a1177ec54902294be5fc85bf5233af1381d065494493aaba783fa",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "7f19e709b913172fd9a3ae9e372dc43a4cad444ce8dce7f1e3ce0be2646f140d",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "eb954a42f55d1d1d06eb3d8ce46594aa9733d8be4671a09ef2367f55ddb1da09",
+       "norm_receipt": "67be170996d49396d4c2e9b6e055e5e0cc6fd75010a294922defd7969b69171a",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "f60efd226d0beec3299e342e240bbd680bbef4e8c7306d7e41a57264fbe9d327",
+       "norm_receipt": "e28eb03c8bc858a0fe61fadda8f1915dc5a36a20682638ee6df14a409efa3c46",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "f60efd226d0beec3299e342e240bbd680bbef4e8c7306d7e41a57264fbe9d327",
+       "norm_receipt": "e28eb03c8bc858a0fe61fadda8f1915dc5a36a20682638ee6df14a409efa3c46",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json#/model",
+    "mode": "sparse_interactive",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "fd68187c19c8f20fbed0785bb5e9fd036675b82bb37de186ef441da8af7cdb02",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "7d5ca8a9d31828e4d4250c3321a1b84cec4c08768a1db2af90a16a29b85a8188",
+      "mechanics": "fd68187c19c8f20fbed0785bb5e9fd036675b82bb37de186ef441da8af7cdb02",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 9,
+      "ordinary": 3
+     },
+     "label": "fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "000d291cb765e80e3a431a272a196a81c27e6b7405b7be7f2b070fe4ff884228",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "0cf99eb2ae73246e0f896abcaff83a7f2438bf29bd5f930b4c59aa1e89ccfdda",
+      "mechanics": "000d291cb765e80e3a431a272a196a81c27e6b7405b7be7f2b070fe4ff884228",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "7d5ca8a9d31828e4d4250c3321a1b84cec4c08768a1db2af90a16a29b85a8188",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "b60204ae89d69a6c48db3be59340e82af44800630fe8db7ade16183c5dfd945e",
+       "norm_receipt": "1ff237369186af6c9833d3a357d0e27809647e030d096ee092b0a4c3feb4b251",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "b512b75fdc0200de5a91eedc4ac0e3d8bb95a548cf2b22250a038b240c1f6472",
+       "norm_receipt": "fd68187c19c8f20fbed0785bb5e9fd036675b82bb37de186ef441da8af7cdb02",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "b512b75fdc0200de5a91eedc4ac0e3d8bb95a548cf2b22250a038b240c1f6472",
+       "norm_receipt": "fd68187c19c8f20fbed0785bb5e9fd036675b82bb37de186ef441da8af7cdb02",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json#/model",
+    "mode": "dense_scrutiny",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "e2fc5c137d9b9b6f46820c9e9b2dc8a98b5e4a4ed0a8516dedab2f06853cea0e",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "99cf399608ed95cf052ef7a592bcbf91647bc7cbb09544d92c9d3fcd2c9ce38b",
+      "mechanics": "e2fc5c137d9b9b6f46820c9e9b2dc8a98b5e4a4ed0a8516dedab2f06853cea0e",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 35,
+      "ordinary": 25
+     },
+     "label": "fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "bfa6374ca4d31e409390ad2d17f5a1e72d9f389a8a840ac9919a6c68a8510d40",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "400fab5ff93943b9c0e63f00eab02166d2b7c661b04d566418c658582c2fc609",
+      "mechanics": "bfa6374ca4d31e409390ad2d17f5a1e72d9f389a8a840ac9919a6c68a8510d40",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "99cf399608ed95cf052ef7a592bcbf91647bc7cbb09544d92c9d3fcd2c9ce38b",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "4856ebd2f8cb320ed8e6d599cced4de3c74c3574f6c75e44e650f41290f26c8f",
+       "norm_receipt": "508e0a6e7b1082a59907bfa9783a5d89d1aefdf421122ff169d13468aee33192",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "6af844f995e99191a6c1a1f86ce55439a4141be1b28a29f3d2bb87bfdc565a96",
+       "norm_receipt": "e2fc5c137d9b9b6f46820c9e9b2dc8a98b5e4a4ed0a8516dedab2f06853cea0e",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "6af844f995e99191a6c1a1f86ce55439a4141be1b28a29f3d2bb87bfdc565a96",
+       "norm_receipt": "e2fc5c137d9b9b6f46820c9e9b2dc8a98b5e4a4ed0a8516dedab2f06853cea0e",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json#/model",
+    "mode": "sparse_interactive",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "ba1a75edc2ca53162ad90eb84e5b52c7424038b92c4d4d1e090356ab025397fe",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "d4ffd7b0c559b6efc53bb0106de61ed3a972d35b4f0579c00d13013be2cb38c9",
+      "mechanics": "ba1a75edc2ca53162ad90eb84e5b52c7424038b92c4d4d1e090356ab025397fe",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 35,
+      "ordinary": 25
+     },
+     "label": "fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "bbf466019e6824984a8d399df10dc14da827e10db664c6044262fd0769278d62",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "9dc3efe2551db4659d73e15b120d8f89e76dbcdd3bb3217727af99695fc63c1c",
+      "mechanics": "bbf466019e6824984a8d399df10dc14da827e10db664c6044262fd0769278d62",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "d4ffd7b0c559b6efc53bb0106de61ed3a972d35b4f0579c00d13013be2cb38c9",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "1937f9ddbc6d817c401ae3c09f120e2411f53ffb137ff382776c491605f5710b",
+       "norm_receipt": "185e7a61915979ead6a03f9d9918d28850d151a4bbdc8327a7b3e39ac0c1a0b9",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "7fce24d14fe26f6e633e5c97c258f6bc114b149b472f0613451d67a8f4d9d56a",
+       "norm_receipt": "ba1a75edc2ca53162ad90eb84e5b52c7424038b92c4d4d1e090356ab025397fe",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "7fce24d14fe26f6e633e5c97c258f6bc114b149b472f0613451d67a8f4d9d56a",
+       "norm_receipt": "ba1a75edc2ca53162ad90eb84e5b52c7424038b92c4d4d1e090356ab025397fe",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json#/model",
+    "mode": "dense_scrutiny",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "e2fc5c137d9b9b6f46820c9e9b2dc8a98b5e4a4ed0a8516dedab2f06853cea0e",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "99cf399608ed95cf052ef7a592bcbf91647bc7cbb09544d92c9d3fcd2c9ce38b",
+      "mechanics": "e2fc5c137d9b9b6f46820c9e9b2dc8a98b5e4a4ed0a8516dedab2f06853cea0e",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 35,
+      "ordinary": 25
+     },
+     "label": "fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "bfa6374ca4d31e409390ad2d17f5a1e72d9f389a8a840ac9919a6c68a8510d40",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "400fab5ff93943b9c0e63f00eab02166d2b7c661b04d566418c658582c2fc609",
+      "mechanics": "bfa6374ca4d31e409390ad2d17f5a1e72d9f389a8a840ac9919a6c68a8510d40",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "99cf399608ed95cf052ef7a592bcbf91647bc7cbb09544d92c9d3fcd2c9ce38b",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "4856ebd2f8cb320ed8e6d599cced4de3c74c3574f6c75e44e650f41290f26c8f",
+       "norm_receipt": "508e0a6e7b1082a59907bfa9783a5d89d1aefdf421122ff169d13468aee33192",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "6af844f995e99191a6c1a1f86ce55439a4141be1b28a29f3d2bb87bfdc565a96",
+       "norm_receipt": "e2fc5c137d9b9b6f46820c9e9b2dc8a98b5e4a4ed0a8516dedab2f06853cea0e",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "6af844f995e99191a6c1a1f86ce55439a4141be1b28a29f3d2bb87bfdc565a96",
+       "norm_receipt": "e2fc5c137d9b9b6f46820c9e9b2dc8a98b5e4a4ed0a8516dedab2f06853cea0e",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json#/model",
+    "mode": "sparse_interactive",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "ba1a75edc2ca53162ad90eb84e5b52c7424038b92c4d4d1e090356ab025397fe",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "d4ffd7b0c559b6efc53bb0106de61ed3a972d35b4f0579c00d13013be2cb38c9",
+      "mechanics": "ba1a75edc2ca53162ad90eb84e5b52c7424038b92c4d4d1e090356ab025397fe",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 35,
+      "ordinary": 25
+     },
+     "label": "fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "bbf466019e6824984a8d399df10dc14da827e10db664c6044262fd0769278d62",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "9dc3efe2551db4659d73e15b120d8f89e76dbcdd3bb3217727af99695fc63c1c",
+      "mechanics": "bbf466019e6824984a8d399df10dc14da827e10db664c6044262fd0769278d62",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "d4ffd7b0c559b6efc53bb0106de61ed3a972d35b4f0579c00d13013be2cb38c9",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "1937f9ddbc6d817c401ae3c09f120e2411f53ffb137ff382776c491605f5710b",
+       "norm_receipt": "185e7a61915979ead6a03f9d9918d28850d151a4bbdc8327a7b3e39ac0c1a0b9",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "7fce24d14fe26f6e633e5c97c258f6bc114b149b472f0613451d67a8f4d9d56a",
+       "norm_receipt": "ba1a75edc2ca53162ad90eb84e5b52c7424038b92c4d4d1e090356ab025397fe",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "7fce24d14fe26f6e633e5c97c258f6bc114b149b472f0613451d67a8f4d9d56a",
+       "norm_receipt": "ba1a75edc2ca53162ad90eb84e5b52c7424038b92c4d4d1e090356ab025397fe",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json#/model",
+    "mode": "dense_scrutiny",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "35b77c0df08232a71a234934229689f0e477417d319962f12fdd741ec45d715b",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "85e8fd029ffbafdf02f883a70db4551fbe0b8255a0b111566bdb258c61b33fca",
+      "mechanics": "35b77c0df08232a71a234934229689f0e477417d319962f12fdd741ec45d715b",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 20,
+      "ordinary": 14
+     },
+     "label": "fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "2742dee18e3caca480d14702f05ef3cbce6998ed958668d775c845b3b06d98bb",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "fe03846f525c65ef23817eefaa948ade3929ea3a0300655f54cfe349889f1d8e",
+      "mechanics": "2742dee18e3caca480d14702f05ef3cbce6998ed958668d775c845b3b06d98bb",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "85e8fd029ffbafdf02f883a70db4551fbe0b8255a0b111566bdb258c61b33fca",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "e0f49c749242605e96cf231aecc6eeb7c9e28a8ee13830e380e847e9d1fb6f34",
+       "norm_receipt": "7920d62281d2c19faa75fc05d7aa196f0df90e341c903e3c3d84952eff5bb1d7",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "ddc8de96702c19424473a6b9f93a3bda2b3ced2d1d3e5c4800435c9a39996e4a",
+       "norm_receipt": "35b77c0df08232a71a234934229689f0e477417d319962f12fdd741ec45d715b",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "ddc8de96702c19424473a6b9f93a3bda2b3ced2d1d3e5c4800435c9a39996e4a",
+       "norm_receipt": "35b77c0df08232a71a234934229689f0e477417d319962f12fdd741ec45d715b",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json#/model",
+    "mode": "sparse_interactive",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "d911cb8507674084b28953dd561c8c9fb46ee02bb5362b6c7152a0a3261a12b6",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "09a0104594afa6cf34b20d4ab0742fc97b8a6f8b3ccc139cec4fc5bbaf22ff1a",
+      "mechanics": "d911cb8507674084b28953dd561c8c9fb46ee02bb5362b6c7152a0a3261a12b6",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 20,
+      "ordinary": 14
+     },
+     "label": "fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "dfba37ec679f428a879f5d481b5f92f321454f7f8a896999a5fae1c4ca0e3498",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "6055c578395e8c80061ad1e91dc0eb24f6e277bc2a92649009bca837cc21c145",
+      "mechanics": "dfba37ec679f428a879f5d481b5f92f321454f7f8a896999a5fae1c4ca0e3498",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "09a0104594afa6cf34b20d4ab0742fc97b8a6f8b3ccc139cec4fc5bbaf22ff1a",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "1048bbd3d04618e685f4c209d2b7611e822a6f22bb757f269a825e93e746d305",
+       "norm_receipt": "b8e0fa95a972526e8233ebfaa3f3103f481e0f71cc8007d91b8b9e3b03fc6cbb",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "5accda4771447972c03c561635794235d39c41818ddfcce907f06881b17f407c",
+       "norm_receipt": "d911cb8507674084b28953dd561c8c9fb46ee02bb5362b6c7152a0a3261a12b6",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "5accda4771447972c03c561635794235d39c41818ddfcce907f06881b17f407c",
+       "norm_receipt": "d911cb8507674084b28953dd561c8c9fb46ee02bb5362b6c7152a0a3261a12b6",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json#/model",
+    "mode": "dense_scrutiny",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "35b77c0df08232a71a234934229689f0e477417d319962f12fdd741ec45d715b",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "85e8fd029ffbafdf02f883a70db4551fbe0b8255a0b111566bdb258c61b33fca",
+      "mechanics": "35b77c0df08232a71a234934229689f0e477417d319962f12fdd741ec45d715b",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 20,
+      "ordinary": 14
+     },
+     "label": "fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "2742dee18e3caca480d14702f05ef3cbce6998ed958668d775c845b3b06d98bb",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "fe03846f525c65ef23817eefaa948ade3929ea3a0300655f54cfe349889f1d8e",
+      "mechanics": "2742dee18e3caca480d14702f05ef3cbce6998ed958668d775c845b3b06d98bb",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "85e8fd029ffbafdf02f883a70db4551fbe0b8255a0b111566bdb258c61b33fca",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "e0f49c749242605e96cf231aecc6eeb7c9e28a8ee13830e380e847e9d1fb6f34",
+       "norm_receipt": "7920d62281d2c19faa75fc05d7aa196f0df90e341c903e3c3d84952eff5bb1d7",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "ddc8de96702c19424473a6b9f93a3bda2b3ced2d1d3e5c4800435c9a39996e4a",
+       "norm_receipt": "35b77c0df08232a71a234934229689f0e477417d319962f12fdd741ec45d715b",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "ddc8de96702c19424473a6b9f93a3bda2b3ced2d1d3e5c4800435c9a39996e4a",
+       "norm_receipt": "35b77c0df08232a71a234934229689f0e477417d319962f12fdd741ec45d715b",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json#/model",
+    "mode": "sparse_interactive",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "d911cb8507674084b28953dd561c8c9fb46ee02bb5362b6c7152a0a3261a12b6",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "09a0104594afa6cf34b20d4ab0742fc97b8a6f8b3ccc139cec4fc5bbaf22ff1a",
+      "mechanics": "d911cb8507674084b28953dd561c8c9fb46ee02bb5362b6c7152a0a3261a12b6",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 20,
+      "ordinary": 14
+     },
+     "label": "fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "dfba37ec679f428a879f5d481b5f92f321454f7f8a896999a5fae1c4ca0e3498",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "6055c578395e8c80061ad1e91dc0eb24f6e277bc2a92649009bca837cc21c145",
+      "mechanics": "dfba37ec679f428a879f5d481b5f92f321454f7f8a896999a5fae1c4ca0e3498",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "09a0104594afa6cf34b20d4ab0742fc97b8a6f8b3ccc139cec4fc5bbaf22ff1a",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "1048bbd3d04618e685f4c209d2b7611e822a6f22bb757f269a825e93e746d305",
+       "norm_receipt": "b8e0fa95a972526e8233ebfaa3f3103f481e0f71cc8007d91b8b9e3b03fc6cbb",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "5accda4771447972c03c561635794235d39c41818ddfcce907f06881b17f407c",
+       "norm_receipt": "d911cb8507674084b28953dd561c8c9fb46ee02bb5362b6c7152a0a3261a12b6",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "5accda4771447972c03c561635794235d39c41818ddfcce907f06881b17f407c",
+       "norm_receipt": "d911cb8507674084b28953dd561c8c9fb46ee02bb5362b6c7152a0a3261a12b6",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json#/model",
+    "mode": "dense_scrutiny",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "75fdb0913d844a9ac8625586c305cb502aace5bfeb24c133c95d8ed29dfb8d13",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "06bb6168e2594b6564d19c007af1e72ebe729e93d45409eab5bd7e97b13b9332",
+      "mechanics": "75fdb0913d844a9ac8625586c305cb502aace5bfeb24c133c95d8ed29dfb8d13",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 9,
+      "ordinary": 3
+     },
+     "label": "fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "2ab173aaf0e08ee3f6dee56c00f9d6651faf8df728a81efa2bcaba610e54dece",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "891af61a0bb87ceb78edb75fb219ca75575d33e766bd0998bb69ba222b75ad02",
+      "mechanics": "2ab173aaf0e08ee3f6dee56c00f9d6651faf8df728a81efa2bcaba610e54dece",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "06bb6168e2594b6564d19c007af1e72ebe729e93d45409eab5bd7e97b13b9332",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "57e4ff4f91263607171f4f0ecd42e5735d26db1a848c786e260295ef26ed746f",
+       "norm_receipt": "f28355c53f7623ad352d5dfd2b8a61ff23301da70a5eeb770a2618cb0d7cd340",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "c142008862adaf27dbdc2d55bffba62bf8b3dc07bfa68084e209f422290f17d3",
+       "norm_receipt": "75fdb0913d844a9ac8625586c305cb502aace5bfeb24c133c95d8ed29dfb8d13",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "c142008862adaf27dbdc2d55bffba62bf8b3dc07bfa68084e209f422290f17d3",
+       "norm_receipt": "75fdb0913d844a9ac8625586c305cb502aace5bfeb24c133c95d8ed29dfb8d13",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json#/model",
+    "mode": "sparse_interactive",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "b4e81ae48c4f988cd5665510824cb74566203578c145aea2e4819839b01ec4a3",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "e4fbc4eeb0b49c79a52f46929ca35503863103e12f23ab640ec4497697e3e1f1",
+      "mechanics": "b4e81ae48c4f988cd5665510824cb74566203578c145aea2e4819839b01ec4a3",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 9,
+      "ordinary": 3
+     },
+     "label": "fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "4ddea3ac50b9182d9d46de0cbf24accc15d9685c20d22164085d5d616d16c4cf",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "19e308d92c7e744152e0aa6c4f39e4bc7b41de204938aa3f3352c48d62daaef5",
+      "mechanics": "4ddea3ac50b9182d9d46de0cbf24accc15d9685c20d22164085d5d616d16c4cf",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "e4fbc4eeb0b49c79a52f46929ca35503863103e12f23ab640ec4497697e3e1f1",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "8690b2ed4e1f35085f590ca7fcf17108cfdaebbd7f9d1c569b900329970c0582",
+       "norm_receipt": "75464055881c65feed8d8762a7bec60ee04471acd37fb4501fd4fd3f9ed8c6ec",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "eb9e0432052d10e6e0211b975e52c3855541c855816bab86fbc78330f4c8a6bb",
+       "norm_receipt": "b4e81ae48c4f988cd5665510824cb74566203578c145aea2e4819839b01ec4a3",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "eb9e0432052d10e6e0211b975e52c3855541c855816bab86fbc78330f4c8a6bb",
+       "norm_receipt": "b4e81ae48c4f988cd5665510824cb74566203578c145aea2e4819839b01ec4a3",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json#/model",
+    "mode": "dense_scrutiny",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "75fdb0913d844a9ac8625586c305cb502aace5bfeb24c133c95d8ed29dfb8d13",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "06bb6168e2594b6564d19c007af1e72ebe729e93d45409eab5bd7e97b13b9332",
+      "mechanics": "75fdb0913d844a9ac8625586c305cb502aace5bfeb24c133c95d8ed29dfb8d13",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 9,
+      "ordinary": 3
+     },
+     "label": "fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json#/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "2ab173aaf0e08ee3f6dee56c00f9d6651faf8df728a81efa2bcaba610e54dece",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "891af61a0bb87ceb78edb75fb219ca75575d33e766bd0998bb69ba222b75ad02",
+      "mechanics": "2ab173aaf0e08ee3f6dee56c00f9d6651faf8df728a81efa2bcaba610e54dece",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "06bb6168e2594b6564d19c007af1e72ebe729e93d45409eab5bd7e97b13b9332",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "57e4ff4f91263607171f4f0ecd42e5735d26db1a848c786e260295ef26ed746f",
+       "norm_receipt": "f28355c53f7623ad352d5dfd2b8a61ff23301da70a5eeb770a2618cb0d7cd340",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "c142008862adaf27dbdc2d55bffba62bf8b3dc07bfa68084e209f422290f17d3",
+       "norm_receipt": "75fdb0913d844a9ac8625586c305cb502aace5bfeb24c133c95d8ed29dfb8d13",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "c142008862adaf27dbdc2d55bffba62bf8b3dc07bfa68084e209f422290f17d3",
+       "norm_receipt": "75fdb0913d844a9ac8625586c305cb502aace5bfeb24c133c95d8ed29dfb8d13",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json#/model",
+    "mode": "sparse_interactive",
+    "base": {
+     "label": "fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "b4e81ae48c4f988cd5665510824cb74566203578c145aea2e4819839b01ec4a3",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "e4fbc4eeb0b49c79a52f46929ca35503863103e12f23ab640ec4497697e3e1f1",
+      "mechanics": "b4e81ae48c4f988cd5665510824cb74566203578c145aea2e4819839b01ec4a3",
+      "unavailability": null
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "document": 9,
+      "ordinary": 3
+     },
+     "label": "fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json#/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "4ddea3ac50b9182d9d46de0cbf24accc15d9685c20d22164085d5d616d16c4cf",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": "19e308d92c7e744152e0aa6c4f39e4bc7b41de204938aa3f3352c48d62daaef5",
+      "mechanics": "4ddea3ac50b9182d9d46de0cbf24accc15d9685c20d22164085d5d616d16c4cf",
+      "unavailability": null
+     },
+     "set": "F",
+     "texts": {
+      "doc_ext": {
+       "norm_document": "e4fbc4eeb0b49c79a52f46929ca35503863103e12f23ab640ec4497697e3e1f1",
+       "receipts": 1,
+       "rules_hold": true,
+       "source_checksum_occurrences": 4
+      },
+      "document": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "8690b2ed4e1f35085f590ca7fcf17108cfdaebbd7f9d1c569b900329970c0582",
+       "norm_receipt": "75464055881c65feed8d8762a7bec60ee04471acd37fb4501fd4fd3f9ed8c6ec",
+       "receipts": 1,
+       "rule_holds": false
+      },
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "eb9e0432052d10e6e0211b975e52c3855541c855816bab86fbc78330f4c8a6bb",
+       "norm_receipt": "b4e81ae48c4f988cd5665510824cb74566203578c145aea2e4819839b01ec4a3",
+       "receipts": 1,
+       "rule_holds": true
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "eb9e0432052d10e6e0211b975e52c3855541c855816bab86fbc78330f4c8a6bb",
+       "norm_receipt": "b4e81ae48c4f988cd5665510824cb74566203578c145aea2e4819839b01ec4a3",
+       "receipts": 1,
+       "rule_holds": true
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/1/model",
+    "mode": "dense_scrutiny",
+    "base": {
+     "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/1/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "ed6b5541c375a25583aa91424df303809a6763f2ff5c159e6368f0fd190efe2c",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": null,
+      "mechanics": "ed6b5541c375a25583aa91424df303809a6763f2ff5c159e6368f0fd190efe2c",
+      "unavailability": "result-envelope production failed structurally: CURRENT_NUMERICAL_INTEGRITY_NEEDS_RECOMPUTE"
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "ordinary": 0
+     },
+     "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/1/model",
+     "mode": "dense_scrutiny",
+     "ordinary": {
+      "sha": "9badae3b45c1eb3e14064ac42fc1c9703bdaec55e4c3e356ed053416e2d69946",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": null,
+      "mechanics": "9badae3b45c1eb3e14064ac42fc1c9703bdaec55e4c3e356ed053416e2d69946",
+      "unavailability": "result-envelope production failed structurally: CURRENT_NUMERICAL_INTEGRITY_NEEDS_RECOMPUTE"
+     },
+     "set": "F",
+     "texts": {
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "ed6b5541c375a25583aa91424df303809a6763f2ff5c159e6368f0fd190efe2c"
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "ed6b5541c375a25583aa91424df303809a6763f2ff5c159e6368f0fd190efe2c"
+      }
+     }
+    }
+   },
+   {
+    "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/1/model",
+    "mode": "sparse_interactive",
+    "base": {
+     "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/1/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "86de2984f13328ab77e1631a5cfa8faa41cf46565a48d0e0427ffed84bafb8f0",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": null,
+      "mechanics": "86de2984f13328ab77e1631a5cfa8faa41cf46565a48d0e0427ffed84bafb8f0",
+      "unavailability": "result-envelope production failed structurally: CURRENT_NUMERICAL_INTEGRITY_NEEDS_RECOMPUTE"
+     },
+     "set": "F"
+    },
+    "cand": {
+     "h1": {
+      "ordinary": 0
+     },
+     "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/1/model",
+     "mode": "sparse_interactive",
+     "ordinary": {
+      "sha": "d48679739dc39be8c2d03528eb46daed28c1ec92d797918a8647c8bfb73e4b1c",
+      "status": "MECHANICS_SOLVED"
+     },
+     "retained": {
+      "kind": "not_run"
+     },
+     "runner": {
+      "document": null,
+      "mechanics": "d48679739dc39be8c2d03528eb46daed28c1ec92d797918a8647c8bfb73e4b1c",
+      "unavailability": "result-envelope production failed structurally: CURRENT_NUMERICAL_INTEGRITY_NEEDS_RECOMPUTE"
+     },
+     "set": "F",
+     "texts": {
+      "mechanics": {
+       "counts": [
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "86de2984f13328ab77e1631a5cfa8faa41cf46565a48d0e0427ffed84bafb8f0"
+      },
+      "ordinary": {
+       "counts": [
+        [
+         0,
+         1
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         0,
+         0
+        ],
+        [
+         0,
+         0
+        ]
+       ],
+       "norm": "86de2984f13328ab77e1631a5cfa8faa41cf46565a48d0e0427ffed84bafb8f0"
+      }
+     }
+    }
+   }
+  ]
+ },
+ "bytes_w1": {
+  "by_set": {
+   "B1": {
+    "rows": 64,
+    "equal": 64,
+    "w1_ordinary_published": 30,
+    "runner_export_document": 30,
+    "ordinary_solved": 64,
+    "w1_successor_published": 34
+   }
+  },
+  "differences": []
+ }
+}

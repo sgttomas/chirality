@@ -1,0 +1,649 @@
+{
+ "rows_by_set_and_worst_class": {
+  "B1/equal": 64,
+  "E/equal": 96,
+  "F/declared": 6,
+  "F/document": 26,
+  "F/equal": 332
+ },
+ "outputs_by_set_name_class": {
+  "F/document/document": 26,
+  "F/mechanics/declared": 6,
+  "F/mechanics/receipt": 26,
+  "F/ordinary/declared": 6,
+  "F/ordinary/receipt": 26
+ },
+ "receipt_rule_failures_on_candidate_outputs": [],
+ "not_equal_outputs": [
+  {
+   "set": "F",
+   "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/base_model",
+   "mode": "dense_scrutiny",
+   "output": "ordinary",
+   "class": "declared"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/base_model",
+   "mode": "dense_scrutiny",
+   "output": "mechanics",
+   "class": "declared"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/base_model",
+   "mode": "sparse_interactive",
+   "output": "ordinary",
+   "class": "declared"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/base_model",
+   "mode": "sparse_interactive",
+   "output": "mechanics",
+   "class": "declared"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/expected/applied_model",
+   "mode": "dense_scrutiny",
+   "output": "ordinary",
+   "class": "declared"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/expected/applied_model",
+   "mode": "dense_scrutiny",
+   "output": "mechanics",
+   "class": "declared"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/expected/applied_model",
+   "mode": "sparse_interactive",
+   "output": "ordinary",
+   "class": "declared"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/expected/applied_model",
+   "mode": "sparse_interactive",
+   "output": "mechanics",
+   "class": "declared"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/numerical_sensitive_torsion_model.json#/",
+   "mode": "dense_scrutiny",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/numerical_sensitive_torsion_model.json#/",
+   "mode": "dense_scrutiny",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/numerical_sensitive_torsion_model.json#/",
+   "mode": "dense_scrutiny",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/numerical_sensitive_torsion_model.json#/",
+   "mode": "sparse_interactive",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/numerical_sensitive_torsion_model.json#/",
+   "mode": "sparse_interactive",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/numerical_sensitive_torsion_model.json#/",
+   "mode": "sparse_interactive",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "ordinary",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "mechanics",
+   "class": "receipt"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "output": "document",
+   "class": "document"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/1/model",
+   "mode": "dense_scrutiny",
+   "output": "ordinary",
+   "class": "declared"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/1/model",
+   "mode": "dense_scrutiny",
+   "output": "mechanics",
+   "class": "declared"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/1/model",
+   "mode": "sparse_interactive",
+   "output": "ordinary",
+   "class": "declared"
+  },
+  {
+   "set": "F",
+   "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/1/model",
+   "mode": "sparse_interactive",
+   "output": "mechanics",
+   "class": "declared"
+  }
+ ]
+}

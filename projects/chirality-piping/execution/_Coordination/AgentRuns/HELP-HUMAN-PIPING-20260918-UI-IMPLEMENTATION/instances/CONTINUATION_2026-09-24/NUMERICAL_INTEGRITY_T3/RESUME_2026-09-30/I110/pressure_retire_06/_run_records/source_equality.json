@@ -1,0 +1,1235 @@
+{
+ "base": "ec5d397359c2f00e147254fdc797e437be54b91f",
+ "checks": {
+  "check1": {
+   "detail": "PR non-execution paths equal S",
+   "pass": true
+  },
+  "check2": {
+   "detail": "133 paths identical in blob and mode",
+   "pass": true
+  },
+  "check3": {
+   "detail": {
+    "rules_not_needed": [
+     "projects/chirality-piping/core/analysis_runs/compatibility.py"
+    ]
+   },
+   "pass": true
+  },
+  "check4": {
+   "detail": {
+    "execution_files": 4,
+    "outside_package": [],
+    "sha256_mismatch": []
+   },
+   "pass": true
+  },
+  "check5": {
+   "detail": "133 rows; 133 equal; 0 recorded three-way merge(s); unexplained []",
+   "pass": true
+  }
+ },
+ "int": "0ff3f3bb5cb4819879fa2cd95807a06af97258ee",
+ "main": "ec5d397359c2f00e147254fdc797e437be54b91f",
+ "pr": "6de499ceec460f79274b3f753ef20dae5444e240",
+ "table": [
+  {
+   "equal": true,
+   "int_blob": "4fffa73524308ae3d2f5368449388c1666b50efc",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/e2e/gui-workflow-validation.spec.ts",
+   "pr_blob": "4fffa73524308ae3d2f5368449388c1666b50efc",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "e201e606892ca93e63f9f4e036687c20f418506b",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/e2e/r2-smoke.spec.ts",
+   "pr_blob": "e201e606892ca93e63f9f4e036687c20f418506b",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "ee9762c8e9c4ce46a962ca8f617ed48e31f2af38",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/e2e/result-compatibility-dist.spec.ts",
+   "pr_blob": "ee9762c8e9c4ce46a962ca8f617ed48e31f2af38",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "d8e41bd1fb7b2c7cf0e3099eaec4feac0bea274e",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/e2e/result-compatibility.spec.ts",
+   "pr_blob": "d8e41bd1fb7b2c7cf0e3099eaec4feac0bea274e",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "13be44201beff017b2fca617863c82a1eca64f76",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/e2e/ui-foundation-dist.spec.ts",
+   "pr_blob": "13be44201beff017b2fca617863c82a1eca64f76",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "10f7ad971b172ac3c5e3d96f1f9a278c9f27e9d8",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/e2e/ui-foundation.spec.ts",
+   "pr_blob": "10f7ad971b172ac3c5e3d96f1f9a278c9f27e9d8",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "475093dbf0a68345c97f4bffce64a6ba25cdeba2",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/e2e/ui-foundation/README.md",
+   "pr_blob": "475093dbf0a68345c97f4bffce64a6ba25cdeba2",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "c828b38b2922b515867c436bbe6c8767a6c91304",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/e2e/ui-foundation/benchmark-harness.ts",
+   "pr_blob": "c828b38b2922b515867c436bbe6c8767a6c91304",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "4320c85bf0c26b4e71375e8d24d4d45af1acd2a6",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/e2e/ui-foundation/load-availability-diagnostic.mjs",
+   "pr_blob": "4320c85bf0c26b4e71375e8d24d4d45af1acd2a6",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "20a7dd4a11e7e7eb4a46febfb3fa46fb8b93be2c",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src-tauri/src/lib.rs",
+   "pr_blob": "20a7dd4a11e7e7eb4a46febfb3fa46fb8b93be2c",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "b4b66b61df6036d7927d01a6a27ee9127f7895e5",
+   "int_last_commit": "28bc6a25e176b8de72539589ccce197599114103",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src-tauri/src/model_document_migration.rs",
+   "pr_blob": "b4b66b61df6036d7927d01a6a27ee9127f7895e5",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "19b8f8ed203f27a6bb75fd8e66955022a1d848e3",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/App.deadControls.test.tsx",
+   "pr_blob": "19b8f8ed203f27a6bb75fd8e66955022a1d848e3",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "ce0c0fd3484fd7c8d9575e4f1c9f12ac09873588",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/App.shell.test.tsx",
+   "pr_blob": "ce0c0fd3484fd7c8d9575e4f1c9f12ac09873588",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "770f4e8ae4e07dab9a7cc6278c96ec17747388fb",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/App.test.tsx",
+   "pr_blob": "770f4e8ae4e07dab9a7cc6278c96ec17747388fb",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "b215fe97cc0ea96999c3b765982a7d4e7517d1d7",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/display-units/rendererIntegration.test.tsx",
+   "pr_blob": "b215fe97cc0ea96999c3b765982a7d4e7517d1d7",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "79b2c508c420e6c3d9ac8169e8229279bffdd593",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/handoff/HandoffPanel.test.tsx",
+   "pr_blob": "79b2c508c420e6c3d9ac8169e8229279bffdd593",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "2dc591949f817ad3a7a1d73b0b7b31820b9d35cf",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/headless-runner/HeadlessRunnerPanel.test.tsx",
+   "pr_blob": "2dc591949f817ad3a7a1d73b0b7b31820b9d35cf",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "54545af8d1defe1478e7fa578482eb646d3ae4b0",
+   "int_last_commit": "28bc6a25e176b8de72539589ccce197599114103",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/load-cases/LoadCaseManagerPanel.tsx",
+   "pr_blob": "54545af8d1defe1478e7fa578482eb646d3ae4b0",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "5f123f1c665b68ee0e29bf8d3e7cde79bfe895fb",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/local-fea-handoff/LocalFeaHandoffPanel.test.tsx",
+   "pr_blob": "5f123f1c665b68ee0e29bf8d3e7cde79bfe895fb",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "ee962829a8b6118e89fd30519a63b8e44058271e",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/native-package/NativePackagePanel.test.ts",
+   "pr_blob": "ee962829a8b6118e89fd30519a63b8e44058271e",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "c368cabaee5c551d6763a5933f321cfaaf3e12a5",
+   "int_last_commit": "769c109d8241eaecc33b5ae569bd9c838761b2e1",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/pressure-authoring/PressureAuthoringPanel.test.tsx",
+   "pr_blob": "c368cabaee5c551d6763a5933f321cfaaf3e12a5",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "055a4359111cfbdb4a318179e3a44371b43c7ce3",
+   "int_last_commit": "769c109d8241eaecc33b5ae569bd9c838761b2e1",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/pressure-authoring/PressureAuthoringPanel.tsx",
+   "pr_blob": "055a4359111cfbdb4a318179e3a44371b43c7ce3",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "4a847409cbe4045c528cfd9f642bb682654fa20f",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/report/renderedReport.test.tsx",
+   "pr_blob": "4a847409cbe4045c528cfd9f642bb682654fa20f",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "f678ddb6c93eb6d03a3730ef64be4536ad54630c",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/report/reportPackageRequest.test.ts",
+   "pr_blob": "f678ddb6c93eb6d03a3730ef64be4536ad54630c",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "03ebb4a45c876b5313bc33972acdc496738e0a44",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/result-export/ResultExportPanel.test.tsx",
+   "pr_blob": "03ebb4a45c876b5313bc33972acdc496738e0a44",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "ea5c4ab8dadb50396297946750a67f1e0ec203a2",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/result-export/physicsResultExport.test.ts",
+   "pr_blob": "ea5c4ab8dadb50396297946750a67f1e0ec203a2",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "051b0506d1adbf54f61c78bf97c79e46b72a0c8d",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/result-export/resultExportAdapter.test.ts",
+   "pr_blob": "051b0506d1adbf54f61c78bf97c79e46b72a0c8d",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "1281e8b6cf84e21487978fc9d09876547733e384",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/results/HistoricalRunContext.test.tsx",
+   "pr_blob": "1281e8b6cf84e21487978fc9d09876547733e384",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "6c6ec5904136f8da1b6f18083cda249dcf5d6ed6",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/results/KnownSemanticNotices.test.tsx",
+   "pr_blob": "6c6ec5904136f8da1b6f18083cda249dcf5d6ed6",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "a6a8dd27a00372dc1cbee0638a80e00a9ab14323",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/results/ResultsPanel.test.tsx",
+   "pr_blob": "a6a8dd27a00372dc1cbee0638a80e00a9ab14323",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "812dced32e7120968ada8ade60ef2399d95cc98d",
+   "int_last_commit": "4c0d5d7c00e8ef8fea58edad6e91558074a3db53",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/results/retainedPrecision.test.ts",
+   "pr_blob": "812dced32e7120968ada8ade60ef2399d95cc98d",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "d25ef3aa033479d23096e29f4694b42c12b4c1ac",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/results/retainedPrecisionIntegration.test.tsx",
+   "pr_blob": "d25ef3aa033479d23096e29f4694b42c12b4c1ac",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "2bfb7f8b8c8241353dbde64cfff92a442c669769",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/results/sourceBlockRecovery.test.ts",
+   "pr_blob": "2bfb7f8b8c8241353dbde64cfff92a442c669769",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "39eb8bb9f9996e2528f68205e8c2baa713750e3a",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/review-geometry/ReviewGeometryPanel.tsx",
+   "pr_blob": "39eb8bb9f9996e2528f68205e8c2baa713750e3a",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "4e0bd9635229c1d0a8f1c9bb61e1c28d0ce6b533",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/features/stress-neutral/StressNeutralExportPanel.test.tsx",
+   "pr_blob": "4e0bd9635229c1d0a8f1c9bb61e1c28d0ce6b533",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "749b865218bcc7c34a458a3d80f59c350cb29df2",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/services/inputManifestService.test.ts",
+   "pr_blob": "749b865218bcc7c34a458a3d80f59c350cb29df2",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "e0e7195ab67fe355ec1a7bcdec1717c43c81a9af",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/services/previewService.test.ts",
+   "pr_blob": "e0e7195ab67fe355ec1a7bcdec1717c43c81a9af",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "f40d91a74a7d223b7f0677645e1757c29cd390f4",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/services/previewService.ts",
+   "pr_blob": "f40d91a74a7d223b7f0677645e1757c29cd390f4",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "a942b9bc60d4cbbba095aa798f8055cd99e7fbeb",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/apps/desktop/src/services/retainedPrecisionAnalysisRun.test.ts",
+   "pr_blob": "a942b9bc60d4cbbba095aa798f8055cd99e7fbeb",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "9e187adf12a03a18f9e98d002cfb1c3f1f5c7895",
+   "int_last_commit": "5bc6f269da78603a487859c5eec55c1c7117a9c0",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/loads/primitive_loads/src/lib.rs",
+   "pr_blob": "9e187adf12a03a18f9e98d002cfb1c3f1f5c7895",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "f55d893e4074aeecc948b4a838361266d4ceb7ce",
+   "int_last_commit": "7a0873eb5cfa2fe6ff37983a9c9ef7644ffb9372",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/loads/stress_recovery/README.md",
+   "pr_blob": "f55d893e4074aeecc948b4a838361266d4ceb7ce",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "bf0064fe72dc336c2301071274e20e57fa57d72a",
+   "int_last_commit": "0ff3f3bb5cb4819879fa2cd95807a06af97258ee",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/loads/stress_recovery/src/lib.rs",
+   "pr_blob": "bf0064fe72dc336c2301071274e20e57fa57d72a",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "d52fcf12e5ede1cfcc902a5bc82942875efc80dd",
+   "int_last_commit": "28bc6a25e176b8de72539589ccce197599114103",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/model_operations/operation_applier/src/lib.rs",
+   "pr_blob": "d52fcf12e5ede1cfcc902a5bc82942875efc80dd",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "297b505c1fc460f6a7fdeb057421391d0aff0b88",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/examples/preview_result.rs",
+   "pr_blob": "297b505c1fc460f6a7fdeb057421391d0aff0b88",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "2d898f6aa4404730fd056409c3d369d68a3a3f32",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/f1a_tests.rs",
+   "pr_blob": "2d898f6aa4404730fd056409c3d369d68a3a3f32",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "d249a3b629ba955859b85195cd7a2c68f87d44b3",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/f1b_tests.rs",
+   "pr_blob": "d249a3b629ba955859b85195cd7a2c68f87d44b3",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": null,
+   "int_last_commit": "cda85e06d5531e3c0d6e17f437cd2897a6089c8d",
+   "mode": null,
+   "path": "projects/chirality-piping/core/product_physics/src/historical_pressure_reference.rs",
+   "pr_blob": null,
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "eea453818628204758cd83d1de41271a3326faf8",
+   "int_last_commit": "0ff3f3bb5cb4819879fa2cd95807a06af97258ee",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/lib.rs",
+   "pr_blob": "eea453818628204758cd83d1de41271a3326faf8",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "3819ab0095a5ccdc0f8426ee714878c9292b6f6f",
+   "int_last_commit": "0ff3f3bb5cb4819879fa2cd95807a06af97258ee",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/pressure_runtime.rs",
+   "pr_blob": "3819ab0095a5ccdc0f8426ee714878c9292b6f6f",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "d8abec92249fac78e633a2d13129d29adec32f93",
+   "int_last_commit": "0ff3f3bb5cb4819879fa2cd95807a06af97258ee",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/preview_physics.rs",
+   "pr_blob": "d8abec92249fac78e633a2d13129d29adec32f93",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "4033dd80f60c5384d60351c9f0e27c6395a788a4",
+   "int_last_commit": "0ff3f3bb5cb4819879fa2cd95807a06af97258ee",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/retained_memory_law_tests.rs",
+   "pr_blob": "4033dd80f60c5384d60351c9f0e27c6395a788a4",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "d2df6d00149cfcfa7863a3e68582b6ec85f9735c",
+   "int_last_commit": "0ff3f3bb5cb4819879fa2cd95807a06af97258ee",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/retained_product.rs",
+   "pr_blob": "d2df6d00149cfcfa7863a3e68582b6ec85f9735c",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "b67923e6bddcfacb17fe716ca76ad9a440ac3b3f",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/retained_product_tests.rs",
+   "pr_blob": "b67923e6bddcfacb17fe716ca76ad9a440ac3b3f",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "b269f7dab3532de5a99b901c92a09dd790d8fa68",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/s11f_tests.rs",
+   "pr_blob": "b269f7dab3532de5a99b901c92a09dd790d8fa68",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "b1ea779771ed422dde7eac5b3e0c085d8a9b5b84",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/s11g_tests.rs",
+   "pr_blob": "b1ea779771ed422dde7eac5b3e0c085d8a9b5b84",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "8c5fccd31a03ab02e4ca61f083b45f39d4bb8353",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/source_receipt.rs",
+   "pr_blob": "8c5fccd31a03ab02e4ca61f083b45f39d4bb8353",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "fe9ff30fc2b0e08b9e62f65fc7055ba72fb0c1ac",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/source_receipt/composite.rs",
+   "pr_blob": "fe9ff30fc2b0e08b9e62f65fc7055ba72fb0c1ac",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "496ac0c7eb16ad980f622f1939d766d7b35a98fd",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/source_receipt/load_state_join_tests.rs",
+   "pr_blob": "496ac0c7eb16ad980f622f1939d766d7b35a98fd",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "d9003f666043b849472aabb6f8103266a85f1e77",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/source_receipt/load_state_tests.rs",
+   "pr_blob": "d9003f666043b849472aabb6f8103266a85f1e77",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "22de40407c521c8bb7fe055846b39e4739e5e839",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/source_receipt/rows.rs",
+   "pr_blob": "22de40407c521c8bb7fe055846b39e4739e5e839",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "453b9cc9eb8416a26b995736b4fe5e40aac883fd",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/source_receipt/tests.rs",
+   "pr_blob": "453b9cc9eb8416a26b995736b4fe5e40aac883fd",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "1b215fb47fa9e1d1fd9518f92d083e9e0b42cdad",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/source_recovery.rs",
+   "pr_blob": "1b215fb47fa9e1d1fd9518f92d083e9e0b42cdad",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "f33d4d29398172f2e723b4b662ec4e5dcfa0d6c1",
+   "int_last_commit": "5dc62d764c05b75abeffb4bc0650e1c6a316824c",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/src/validation.rs",
+   "pr_blob": "f33d4d29398172f2e723b4b662ec4e5dcfa0d6c1",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "37f20f933bb6cfecc4d52f70122ab7040b7f592c",
+   "int_last_commit": "11a026b6284fed240a9f43ba93caa860dbc77bfe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/tests/f1b_w2_runtime.rs",
+   "pr_blob": "37f20f933bb6cfecc4d52f70122ab7040b7f592c",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "05121124e46ad1d56e6d1f25195d947a3b2594fb",
+   "int_last_commit": "ff9d3b7d6ee0b3027b5f8ce66928933c00409343",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/tests/pressure_runtime.rs",
+   "pr_blob": "05121124e46ad1d56e6d1f25195d947a3b2594fb",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "52e6cc5cff91bf367d0b68b037c51f5cd00befe5",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/tests/retained_memory_challenge.rs",
+   "pr_blob": "52e6cc5cff91bf367d0b68b037c51f5cd00befe5",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "60b1f0108427a74a6f74e7a7d9ad8d770e28e9c6",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_physics/tests/s11f_site_test.rs",
+   "pr_blob": "60b1f0108427a74a6f74e7a7d9ad8d770e28e9c6",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "d7894c2917bd85b8ffe3f104572a7aa0af39664f",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/product_preview/service.py",
+   "pr_blob": "d7894c2917bd85b8ffe3f104572a7aa0af39664f",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "531cd91d969945b10386dbd1835ea7f64b1ab585",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/reporting/result_export/tests/retained_precision_carriers.rs",
+   "pr_blob": "531cd91d969945b10386dbd1835ea7f64b1ab585",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "40333de94504894c2b1d46e6f65dbd1cf8841863",
+   "int_last_commit": "4c0d5d7c00e8ef8fea58edad6e91558074a3db53",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/reporting/result_export/tests/retained_precision_contract.rs",
+   "pr_blob": "40333de94504894c2b1d46e6f65dbd1cf8841863",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "f4d9c951a8f0a2497c4a5b7ac346d74c86a4c8c5",
+   "int_last_commit": "5bc6f269da78603a487859c5eec55c1c7117a9c0",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/runner/headless/src/benchmark_binding.rs",
+   "pr_blob": "f4d9c951a8f0a2497c4a5b7ac346d74c86a4c8c5",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "fde71ee193541f3eb72902b632879a59270ad524",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/runner/headless/src/bin/openpipestress-runner.rs",
+   "pr_blob": "fde71ee193541f3eb72902b632879a59270ad524",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "66249e3531d8e157cb84045ee253a086da81a12f",
+   "int_last_commit": "79a5a7f3162f601ddcde4812be8132b22ec9b4f3",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/runner/headless/src/lib.rs",
+   "pr_blob": "66249e3531d8e157cb84045ee253a086da81a12f",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "2fbe234aaba9b62e6c944a30b9bb3b293584c7e6",
+   "int_last_commit": "79a5a7f3162f601ddcde4812be8132b22ec9b4f3",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/runner/headless/src/result_envelope_binding.rs",
+   "pr_blob": "2fbe234aaba9b62e6c944a30b9bb3b293584c7e6",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "b7c37dc0aacfe5a7b598c7252ccf9af50b4eeb9e",
+   "int_last_commit": "79a5a7f3162f601ddcde4812be8132b22ec9b4f3",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/runner/headless/tests/preview_physics_admission.rs",
+   "pr_blob": "b7c37dc0aacfe5a7b598c7252ccf9af50b4eeb9e",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "2c1b661349c971f995d2b5c325b2d02c2ced536b",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/solver/curved_bend/src/lib.rs",
+   "pr_blob": "2c1b661349c971f995d2b5c325b2d02c2ced536b",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "d3e7a1684f92ab8e80c3132fc87d490951a47420",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/solver/curved_bend/src/s11k_tests.rs",
+   "pr_blob": "d3e7a1684f92ab8e80c3132fc87d490951a47420",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "f7a9d078e9c8dc6a0c084f897583760af6bbf867",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/core/solver/frame_kernel/tests/s11_site_table.rs",
+   "pr_blob": "f7a9d078e9c8dc6a0c084f897583760af6bbf867",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "4f0fabeb07568b8799587cecc35b01f5ef757d92",
+   "int_last_commit": "7a0873eb5cfa2fe6ff37983a9c9ef7644ffb9372",
+   "mode": "100644",
+   "path": "projects/chirality-piping/docs/validation_manual/cases/generate_validation_case_pages.py",
+   "pr_blob": "4f0fabeb07568b8799587cecc35b01f5ef757d92",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "03b17e9c0c425ceff6af4caba81c6bf60413376c",
+   "int_last_commit": "5bc6f269da78603a487859c5eec55c1c7117a9c0",
+   "mode": "100644",
+   "path": "projects/chirality-piping/docs/validation_manual/cases/mechanics/mech-tp-phys-008-thermal-pressure-axial-effects.md",
+   "pr_blob": "03b17e9c0c425ceff6af4caba81c6bf60413376c",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "8b17add16a6b0a945fc0ecb9f938d06e56fb7fb4",
+   "int_last_commit": "5bc6f269da78603a487859c5eec55c1c7117a9c0",
+   "mode": "100644",
+   "path": "projects/chirality-piping/docs/validation_manual/cases/mechanics/mech-tp-phys-009-combined-load-axial-effects.md",
+   "pr_blob": "8b17add16a6b0a945fc0ecb9f938d06e56fb7fb4",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": null,
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": null,
+   "path": "projects/chirality-piping/docs/validation_manual/cases/stress/stress-pressure-membrane-original.md",
+   "pr_blob": null,
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "ff49f29a78fb34558556c16f0d513cf03ad7e5d5",
+   "int_last_commit": "7a0873eb5cfa2fe6ff37983a9c9ef7644ffb9372",
+   "mode": "100644",
+   "path": "projects/chirality-piping/docs/validation_manual/cases/stress/stress-range-mechanics-original.md",
+   "pr_blob": "ff49f29a78fb34558556c16f0d513cf03ad7e5d5",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "38475201d5ba243afab31ec91611dc985c4237f7",
+   "int_last_commit": "70e7f49ced5b423486dc974496dab62e0494a4bc",
+   "mode": "100644",
+   "path": "projects/chirality-piping/docs/validation_manual/headless_runner_reproduction.md",
+   "pr_blob": "38475201d5ba243afab31ec91611dc985c4237f7",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "5f7722dea1eeda9890e66f0edb99e0cc225e6281",
+   "int_last_commit": "1e9724fb94e16460457f12aa58cc33efc29cc00c",
+   "mode": "100644",
+   "path": "projects/chirality-piping/docs/validation_manual/index.md",
+   "pr_blob": "5f7722dea1eeda9890e66f0edb99e0cc225e6281",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "dd8f21d1a65f42857a338e19d99c00637c0d8b77",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/DEMO_FIXTURES.md",
+   "pr_blob": "dd8f21d1a65f42857a338e19d99c00637c0d8b77",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": null,
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": null,
+   "path": "projects/chirality-piping/fixtures/product_preview/PRECISION_FIXTURES.md",
+   "pr_blob": null,
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "111e7088d07b22170016bd43815307dc02220501",
+   "int_last_commit": "fe657e3a681c03a8717c1c0424e23518c6032186",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/demo_fixture_generation.json",
+   "pr_blob": "111e7088d07b22170016bd43815307dc02220501",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "ab3cf5a442a21ed0399110e1cf27d6364cc0689c",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/invented_demo_model.json",
+   "pr_blob": "ab3cf5a442a21ed0399110e1cf27d6364cc0689c",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "818062fa12dd7b6b32076be4665a9dc63e332a50",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/invented_demo_result_legacy_0_1.json",
+   "pr_blob": "818062fa12dd7b6b32076be4665a9dc63e332a50",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "0d3b6c47c873a3557b02ec1f3ce500036418f61b",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/invented_demo_result_preview_physics_1_dense.json",
+   "pr_blob": "0d3b6c47c873a3557b02ec1f3ce500036418f61b",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "13d3d6a5b03c8b1a76da023a4ff70968289a2ff6",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/invented_demo_result_preview_physics_1_sparse.json",
+   "pr_blob": "13d3d6a5b03c8b1a76da023a4ff70968289a2ff6",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "90ced059e1a6a81ed7e5a0bc57b2b6b7c3b0258b",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/invented_mechanics_result_preview_physics_1_dense.json",
+   "pr_blob": "90ced059e1a6a81ed7e5a0bc57b2b6b7c3b0258b",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "90ced059e1a6a81ed7e5a0bc57b2b6b7c3b0258b",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/invented_mechanics_result_preview_physics_1_sparse.json",
+   "pr_blob": "90ced059e1a6a81ed7e5a0bc57b2b6b7c3b0258b",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": null,
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": null,
+   "path": "projects/chirality-piping/fixtures/product_preview/precision_fixture_generation.json",
+   "pr_blob": null,
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "61c02cb0ac2d03bf39cede30565d5d0fbc96df19",
+   "int_last_commit": "fe657e3a681c03a8717c1c0424e23518c6032186",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/preview_physics_fixture_generation.json",
+   "pr_blob": "61c02cb0ac2d03bf39cede30565d5d0fbc96df19",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "eaf191a5d8e6cd84f233281d8c391c3cc61348f5",
+   "int_last_commit": "11a026b6284fed240a9f43ba93caa860dbc77bfe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/generation.json",
+   "pr_blob": "eaf191a5d8e6cd84f233281d8c391c3cc61348f5",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "dc6b94abd6baa889b624cb79672c5489a5339bd7",
+   "int_last_commit": "11a026b6284fed240a9f43ba93caa860dbc77bfe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-dense_scrutiny.raw.json",
+   "pr_blob": "dc6b94abd6baa889b624cb79672c5489a5339bd7",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "b084a47f6a87541d9df9d2d0a81b1dd559c0cba1",
+   "int_last_commit": "11a026b6284fed240a9f43ba93caa860dbc77bfe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/multicase-sparse_interactive.raw.json",
+   "pr_blob": "b084a47f6a87541d9df9d2d0a81b1dd559c0cba1",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "0d30ae935a7fdb70a616b23cf9d0f019d22bdb4c",
+   "int_last_commit": "11a026b6284fed240a9f43ba93caa860dbc77bfe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-dense_scrutiny.raw.json",
+   "pr_blob": "0d30ae935a7fdb70a616b23cf9d0f019d22bdb4c",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "dcf3f9fd6bf53a72a7303807658a1ae0d5899c5e",
+   "int_last_commit": "11a026b6284fed240a9f43ba93caa860dbc77bfe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json",
+   "pr_blob": "dcf3f9fd6bf53a72a7303807658a1ae0d5899c5e",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "ca2db3343d5fe52150be99c37d1db62a96c36a53",
+   "int_last_commit": "11a026b6284fed240a9f43ba93caa860dbc77bfe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-dense_scrutiny.raw.json",
+   "pr_blob": "ca2db3343d5fe52150be99c37d1db62a96c36a53",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "9722a96277bfa07556c185f370af500919db12e3",
+   "int_last_commit": "11a026b6284fed240a9f43ba93caa860dbc77bfe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/n06-sparse_interactive.raw.json",
+   "pr_blob": "9722a96277bfa07556c185f370af500919db12e3",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "fe2a73547b8524ebd17e97a48e60119cb0596a4b",
+   "int_last_commit": "11a026b6284fed240a9f43ba93caa860dbc77bfe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.raw.json",
+   "pr_blob": "fe2a73547b8524ebd17e97a48e60119cb0596a4b",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "3f7b40f129c61381cf520582e0539c1fce357f1a",
+   "int_last_commit": "11a026b6284fed240a9f43ba93caa860dbc77bfe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.raw.json",
+   "pr_blob": "3f7b40f129c61381cf520582e0539c1fce357f1a",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "38de833413ca3b8dcdd9937fd188550ca50afb76",
+   "int_last_commit": "11a026b6284fed240a9f43ba93caa860dbc77bfe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.raw.json",
+   "pr_blob": "38de833413ca3b8dcdd9937fd188550ca50afb76",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "ab6334ca3049394fbb6f6fd1bc49f60917becd5a",
+   "int_last_commit": "11a026b6284fed240a9f43ba93caa860dbc77bfe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.raw.json",
+   "pr_blob": "ab6334ca3049394fbb6f6fd1bc49f60917becd5a",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "2e14fef4a3bf52a382e8a7757d847c8b43334457",
+   "int_last_commit": "11a026b6284fed240a9f43ba93caa860dbc77bfe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.raw.json",
+   "pr_blob": "2e14fef4a3bf52a382e8a7757d847c8b43334457",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "8f685474e611afece257bc661e30568bf830074a",
+   "int_last_commit": "11a026b6284fed240a9f43ba93caa860dbc77bfe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.raw.json",
+   "pr_blob": "8f685474e611afece257bc661e30568bf830074a",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "8f51ef440c7fc76ae0f3ad89a02f478e574ff0b6",
+   "int_last_commit": "11a026b6284fed240a9f43ba93caa860dbc77bfe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/results/precision_connected_ui_mechanics_dense.json",
+   "pr_blob": "8f51ef440c7fc76ae0f3ad89a02f478e574ff0b6",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "09b1f1e49afbf390ca6bee0a12a21973d3a5dc97",
+   "int_last_commit": "11a026b6284fed240a9f43ba93caa860dbc77bfe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/results/precision_connected_ui_mechanics_sparse.json",
+   "pr_blob": "09b1f1e49afbf390ca6bee0a12a21973d3a5dc97",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "ce940dd1c56ffc21a51c44940cdb7f95fe1d0619",
+   "int_last_commit": "11a026b6284fed240a9f43ba93caa860dbc77bfe",
+   "mode": "100644",
+   "path": "projects/chirality-piping/fixtures/results/retained_precision_carrier_cases.json",
+   "pr_blob": "ce940dd1c56ffc21a51c44940cdb7f95fe1d0619",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "ab6f5649c76fa28621441edc89821e6390c23985",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/tests/product_preview/test_product_preview_service.py",
+   "pr_blob": "ab6f5649c76fa28621441edc89821e6390c23985",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "91d5f8278a9158293e9d498b2c725c32dd89db1c",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/tests/test_analysis_run_compatibility.py",
+   "pr_blob": "91d5f8278a9158293e9d498b2c725c32dd89db1c",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "885690faa878cc72f4dc7d1da75e51de50004275",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/tests/test_analysis_run_records.py",
+   "pr_blob": "885690faa878cc72f4dc7d1da75e51de50004275",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "f5778c872c3f516d5f122861b838d71a4d42af72",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/tests/test_preview_physics_consumer_contract.py",
+   "pr_blob": "f5778c872c3f516d5f122861b838d71a4d42af72",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "79c8c67befdd3b5cdfcf8e0ff7b652c6152d0d8d",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/tests/test_results_schema.py",
+   "pr_blob": "79c8c67befdd3b5cdfcf8e0ff7b652c6152d0d8d",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "9a067e174b0365f42624908cb8f8f0195b656c03",
+   "int_last_commit": "180bf9b26df539d217e356e17beeb47bd29f4803",
+   "mode": "100644",
+   "path": "projects/chirality-piping/tests/test_retained_precision_carriers.py",
+   "pr_blob": "9a067e174b0365f42624908cb8f8f0195b656c03",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "7cbc49a3a4ebd0184d0b4611ea1717970c88c19a",
+   "int_last_commit": "0ff3f3bb5cb4819879fa2cd95807a06af97258ee",
+   "mode": "100644",
+   "path": "projects/chirality-piping/tests/test_retained_precision_contract.py",
+   "pr_blob": "7cbc49a3a4ebd0184d0b4611ea1717970c88c19a",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "c2ac3e9c0cedd5003383abe3d1cafd4d72799f5e",
+   "int_last_commit": "9744ed7e69249991657e544afafa9f520a9e7e0f",
+   "mode": "100644",
+   "path": "projects/chirality-piping/tools/serialization/generate_product_preview_mechanics.mjs",
+   "pr_blob": "c2ac3e9c0cedd5003383abe3d1cafd4d72799f5e",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "890e9f862073ca8ec522bc96d7080a8e9711d69d",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/validation/benchmarks/mechanics/README.md",
+   "pr_blob": "890e9f862073ca8ec522bc96d7080a8e9711d69d",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "e795c0772f875ce68d2ce3d0887432b1ead45981",
+   "int_last_commit": "5bc6f269da78603a487859c5eec55c1c7117a9c0",
+   "mode": "100644",
+   "path": "projects/chirality-piping/validation/benchmarks/mechanics/src/lib.rs",
+   "pr_blob": "e795c0772f875ce68d2ce3d0887432b1ead45981",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "e40d235a5f1c0a5fa9794b8295a11444e6a10fd0",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/validation/benchmarks/stress/README.md",
+   "pr_blob": "e40d235a5f1c0a5fa9794b8295a11444e6a10fd0",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "29afd50a820eaec836a907a7a15a3eaefb982b74",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/validation/benchmarks/stress/src/lib.rs",
+   "pr_blob": "29afd50a820eaec836a907a7a15a3eaefb982b74",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "1980775bda895d27eae3cff980cb0b07da5c604d",
+   "int_last_commit": "5bc6f269da78603a487859c5eec55c1c7117a9c0",
+   "mode": "100644",
+   "path": "projects/chirality-piping/validation/hand_calcs/mechanics/README.md",
+   "pr_blob": "1980775bda895d27eae3cff980cb0b07da5c604d",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": null,
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": null,
+   "path": "projects/chirality-piping/validation/hand_calcs/mechanics/curved_bend_pressure_thrust_arc.md",
+   "pr_blob": null,
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "b3b4f66e21183db110f66b17b68295cd86d244d3",
+   "int_last_commit": "5bc6f269da78603a487859c5eec55c1c7117a9c0",
+   "mode": "100644",
+   "path": "projects/chirality-piping/validation/hand_calcs/mechanics/tp_phys_008_thermal_pressure_axial_effects.md",
+   "pr_blob": "b3b4f66e21183db110f66b17b68295cd86d244d3",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "41a52c85ee141a81cb9fa82669029aa55a59b3a5",
+   "int_last_commit": "5bc6f269da78603a487859c5eec55c1c7117a9c0",
+   "mode": "100644",
+   "path": "projects/chirality-piping/validation/hand_calcs/mechanics/tp_phys_009_combined_load_axial_effects.md",
+   "pr_blob": "41a52c85ee141a81cb9fa82669029aa55a59b3a5",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "e8da1c2a034bd2e7d1b72f1496cf80d85e549a2e",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/validation/hand_calcs/stress/README.md",
+   "pr_blob": "e8da1c2a034bd2e7d1b72f1496cf80d85e549a2e",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": null,
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": null,
+   "path": "projects/chirality-piping/validation/hand_calcs/stress/pressure_membrane.md",
+   "pr_blob": null,
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "c75b21ffbc6109d6ad2f86b392786ddadc936ce4",
+   "int_last_commit": "7a0873eb5cfa2fe6ff37983a9c9ef7644ffb9372",
+   "mode": "100644",
+   "path": "projects/chirality-piping/validation/hand_calcs/stress/stress_range.md",
+   "pr_blob": "c75b21ffbc6109d6ad2f86b392786ddadc936ce4",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "9ad29d5a69ea1ba2e8935fe41b4500df3b838677",
+   "int_last_commit": "9930cfe6dbf848981faff406e1bb5d6943c1fb26",
+   "mode": "100644",
+   "path": "projects/chirality-piping/validation/hand_calcs/stress/tp_pmm_p3_milltol_effective_wall_stress.md",
+   "pr_blob": "9ad29d5a69ea1ba2e8935fe41b4500df3b838677",
+   "resolution": null
+  },
+  {
+   "equal": true,
+   "int_blob": "307f1d80faaebf1b3729d0d5bf13b7155e307df3",
+   "int_last_commit": "7a0873eb5cfa2fe6ff37983a9c9ef7644ffb9372",
+   "mode": "100644",
+   "path": "projects/chirality-piping/validation/witness/generated/del1005_payload_binding_benchmark_multi_case.json",
+   "pr_blob": "307f1d80faaebf1b3729d0d5bf13b7155e307df3",
+   "resolution": null
+  }
+ ]
+}

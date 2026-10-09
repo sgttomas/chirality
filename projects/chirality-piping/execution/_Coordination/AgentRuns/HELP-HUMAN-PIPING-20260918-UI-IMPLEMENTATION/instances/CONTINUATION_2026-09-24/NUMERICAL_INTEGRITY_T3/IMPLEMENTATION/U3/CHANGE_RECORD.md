@@ -211,6 +211,8 @@ First, a baseline at the head without T2 confirmed two things for all 12 files: 
 - Without the change, the fixture-integrity assertions in RS, PY and TS fail.
 - It is listed here for ROOT's confirmation (§8).
 
+**T2's radius is complete** (ROOT's condition on the carrier-set hash; RR "U3, T2's re-pin check, option (a)" and its follow-up). `git grep -F` of the 12 old source-block raw hashes and the f1b_w2 pin's 4 old constants finds no file outside `P/execution`; the only hits are agents' records, kept as captured. The command and its output are in `radius_sweep.txt`.
+
 ## 7. The evidence
 
 B is main `7eae707bb7`. The candidate is the product head `fe657e3a68`. All runs are on the Mac, with the B side from round 2 (same commit, host, toolchain and scripts). The records are `R/I110/pressure_retire_06/_run_records/`, and the earlier rounds' are in `pressure_retire_02/` to `_05/`.

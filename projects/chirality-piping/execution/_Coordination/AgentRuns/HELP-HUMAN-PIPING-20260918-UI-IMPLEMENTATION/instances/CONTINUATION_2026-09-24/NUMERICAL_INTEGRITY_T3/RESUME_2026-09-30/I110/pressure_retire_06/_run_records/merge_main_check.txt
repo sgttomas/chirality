@@ -1,0 +1,15 @@
+# The U3 branch against current main ec5d397359 (PR-N), checked in WT/t3-pret-hb (scratch, rerere off)
+git merge-tree --write-tree ec5d397359 fe657e3a68: one conflict, PP/src/lib.rs (imports); every other file auto-merges
+  (stress_recovery/src/lib.rs, PP lib.rs's other hunks, pressure_runtime.rs, preview_physics.rs, retained_memory_law_tests.rs,
+   retained_product.rs, tests/test_retained_precision_contract.py).
+The conflict:
+  main ec5d397359 adds:  // I109: ... correctly rounded norms ...
+                         use open_pipe_stress_frame_kernel::correct_norm::{norm2, norm3};
+                         use open_pipe_stress_frame_kernel::exact_sum::{exact_rounded_sum, ExactAccumulator};
+  the branch has:        use open_pipe_stress_frame_kernel::exact_sum::ExactAccumulator;
+                         (exact_rounded_sum's last use was the legacy pressure path, removed in Stage 2)
+Resolution (scripts/resolve_lib.py): main's comment and correct_norm import, and exact_sum::ExactAccumulator alone.
+  The merged lib.rs has no other exact_rounded_sum use; norm2/norm3 are used at their PR-N call sites. Blob eea4538186.
+cargo check --locked --offline --tests (PP, through t3_cargo.sh) on fe657e3a68 + main with this resolution: Finished, exit 0.
+  Warnings: the same set as main 7eae707bb7's and the branch's own PP build (no unused import).
+The same resolution gives the same blob on both scratch heads (6de499ceec, 0ff3f3bb5c).

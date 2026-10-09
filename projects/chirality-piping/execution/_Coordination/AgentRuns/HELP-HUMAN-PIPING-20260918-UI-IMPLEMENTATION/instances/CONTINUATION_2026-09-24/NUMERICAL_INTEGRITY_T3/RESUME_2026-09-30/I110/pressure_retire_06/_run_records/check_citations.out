@@ -1,0 +1,11 @@
+## base main 7eae707bb7, head the U3 PR head 1d2ebdcb59
+COUNTS resolved 2; ambiguous 0; unresolved 0
+  records/RR: occurrences 2, distinct 1, unresolved 0; documents: 0 citations (0 resolved, 0 ambiguous, 0 unresolved); verification failures 0; unused index entries 0; code lines: 0 (0 pinned in code_anchors, 0 unresolved)
+RESULT PASS
+rc=0
+
+## base main ec5d397359, head the scratch PR head 6de499ceec (1d2ebdcb59 with main merged)
+COUNTS resolved 2; ambiguous 0; unresolved 0
+  records/RR: occurrences 2, distinct 1, unresolved 0; documents: 0 citations (0 resolved, 0 ambiguous, 0 unresolved); verification failures 0; unused index entries 0; code lines: 0 (0 pinned in code_anchors, 0 unresolved)
+RESULT PASS
+rc=0

@@ -1,0 +1,9 @@
+
+ RUN  v4.1.10 WT/t3-pret/projects/chirality-piping/apps/desktop
+
+
+ Test Files  2 passed (2)
+      Tests  38 passed (38)
+   Start at  19:14:04
+   Duration  1.05s (transform 459ms, setup 162ms, import 596ms, tests 572ms, environment 582ms)
+

@@ -1,0 +1,49 @@
+# Byte check at the product head fe657e3a68 against B = main 7eae707bb7 (B rows: round 2's harness records), under ROOT's extended check.
+# Harness: scripts/i110_bytes_harness.rs (round 6); classifier: scripts/compare_ext.py; declared pairs: scripts/text_pairs.json
+# (T4's proposed pair is listed for counting only; its new text occurs nowhere).
+# Classes, per output: equal; declared (only declared strings differ); receipt (declared strings plus the source-block
+# receipt's two digests, recomputed by the product's rule: ROOT's extended check); document (a runner export document:
+# declared strings, the embedded receipt digests and the document's own two source bindings, each recomputed by the
+# product's rule; beyond ROOT's two digests); other.
+
+## Release pass (E, F, B1; ordinary envelope, runner mechanics envelope, export document, unavailability)
+rows by set and worst class: {"B1/equal": 64, "E/equal": 96, "F/declared": 6, "F/document": 26, "F/equal": 332}
+non-equal outputs by set/output/class: {"F/document/document": 26, "F/mechanics/declared": 6, "F/mechanics/receipt": 26, "F/ordinary/declared": 6, "F/ordinary/receipt": 26}
+receipt rule failures on candidate outputs: []
+
+  fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/base_model [dense_scrutiny]: ordinary=declared, mechanics=declared
+  fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/base_model [sparse_interactive]: ordinary=declared, mechanics=declared
+  fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/expected/applied_model [dense_scrutiny]: ordinary=declared, mechanics=declared
+  fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/expected/applied_model [sparse_interactive]: ordinary=declared, mechanics=declared
+  fixtures/product_preview/numerical_sensitive_torsion_model.json#/ [dense_scrutiny]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/numerical_sensitive_torsion_model.json#/ [sparse_interactive]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json#/model [dense_scrutiny]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json#/model [sparse_interactive]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json#/model [dense_scrutiny]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json#/model [sparse_interactive]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json#/model [dense_scrutiny]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json#/model [sparse_interactive]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json#/model [dense_scrutiny]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json#/model [sparse_interactive]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json#/model [dense_scrutiny]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json#/model [sparse_interactive]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json#/model [dense_scrutiny]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json#/model [sparse_interactive]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json#/model [dense_scrutiny]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json#/model [sparse_interactive]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json#/model [dense_scrutiny]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json#/model [sparse_interactive]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json#/model [dense_scrutiny]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json#/model [sparse_interactive]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json#/model [dense_scrutiny]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json#/model [sparse_interactive]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json#/model [dense_scrutiny]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json#/model [sparse_interactive]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json#/model [dense_scrutiny]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json#/model [sparse_interactive]: ordinary=receipt, mechanics=receipt, document=document
+  fixtures/results/invented/result_export_v0_2.json#/producer_cases/1/model [dense_scrutiny]: ordinary=declared, mechanics=declared
+  fixtures/results/invented/result_export_v0_2.json#/producer_cases/1/model [sparse_interactive]: ordinary=declared, mechanics=declared
+
+## W1 pass (B1 through the retained direct entry, debug build)
+rows by set and worst class: {"B1/equal": 64}
+non-equal outputs: {}
