@@ -35,7 +35,7 @@ This note is for the owner's next session only. It is not a standing record and 
 
 ## In flight at handoff
 
-**The heads.** NUM is at `89a58fe597`, and the T4 branch at `ff9d962e8a`, both pushed. Every T4 agent has returned, and its records are committed: T4-RV2, T4-RV5 and T4-I10's revision 01 were committed by ROOT after T4's WORKING_ITEMS stopped, with log lines placed before its resume block. Where the WORKING_ITEMS addenda list them as running, the log lines are right. Each manager's log ends with a "resume here" block giving the head, branch, worktree, running jobs, output locations and next step for each item. The next IDs are I117 and RV132 for T3, and T4-I13 and T4-RV6 for T4.
+**The heads.** NUM is at `89a58fe597`, and the T4 branch at `b9dc7c784f`, both pushed. Every T4 agent has returned, and its records are committed: T4-RV2, T4-RV5 and T4-I10's revision 01 were committed by ROOT after T4's WORKING_ITEMS stopped, with log lines placed before its resume block. Where the WORKING_ITEMS addenda list them as running, the log lines are right. Each manager's log ends with a "resume here" block giving the head, branch, worktree, running jobs, output locations and next step for each item. The next IDs are I117 and RV132 for T3, and T4-I13 and T4-RV6 for T4.
 
 **T3:**
 - **#1168, the legacy pressure retirement. Not merged; the head is `37724dea27`.**
@@ -68,7 +68,7 @@ This note is for the owner's next session only. It is not a standing record and 
 
 - **M31b0's equivalence by construction.** This is a narrowing, and it is ready to rule on. RV131 found that it holds, with conditions N-1 and N-2. T4's WORKING_ITEMS brings T4-I6's corrected derivation, RV131's record and T3's view together. M31b0's kill stays until the ruling.
 - **The conditioning demotion for T3's K-D5 condition.** Neither RV2's S-1 nor RV131's B-1 accepts K2. If no CSKEW-type candidate demotes after T4-U1, "K2 alone" comes to ROOT as a narrowing.
-- **R-1** for T4-U1b's certificate. RV129's final record holds (a)–(c) with amendments, subject to the no-type-change form (O-2), which keeps the priced layouts. Confirm R-1 once T4-I9's revision meets the amendments.
+- **R-1** for T4-U1b's certificate: ruled in `T4_RULINGS.md` ("R-1 after RV129"). It stays in force on T4-I9's revision 01 with A-1 to A-6 and RV129's confirmation. Two items may still come here: O-7 (T15c at guard level, R-2's narrowing) and O-10 (a re-registration, which T3 does not expect).
 - **O-10.** A re-registration forced by T4-U1b's loops comes to ROOT before code, or rides B7.
 
 ## Open items for the owner
