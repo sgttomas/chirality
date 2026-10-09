@@ -19,6 +19,7 @@ steering and live authority.
 
 Steer (this run): Continue as ROOT (Agent 0) for T3, and as coordinator of T4, in `HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION`, under the owner's standing delegation. Production code comes first; keep records short.
 
+- Work in the T3 integration checkout: `chirality-t3/numerics`, in the folder beside the main checkout, on branch `codex/piping-numerical-integrity-20260926` (NUM). The handoff and T3's records exist only there. If `{REPO_ROOT}` is not that checkout, tell the owner before doing anything else.
 - Orient from `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/HANDOFF_2026-10-09_TO_NEXT_ROOT.md`, which points to the rest. Read further only as the work needs.
 - The previous session's agents are gone. Commission fresh T3 and T4 WORKING_ITEMS from their briefs; each resumes from its log's "Resume here". You coordinate and rule, and they implement.
 - Not obvious:
