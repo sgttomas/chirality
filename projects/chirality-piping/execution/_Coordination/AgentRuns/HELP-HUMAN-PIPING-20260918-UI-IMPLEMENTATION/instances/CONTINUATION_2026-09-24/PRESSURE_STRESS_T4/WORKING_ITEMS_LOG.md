@@ -65,3 +65,19 @@ Read the brief, `T4_RULINGS.md`, plan 01 and this log. Commit each record below 
   - (b) holds, but the test plan is incomplete;
   - **one blocking finding:** `Formation::Certified` changes a priced layout, so use O-2's no-type-change alternative.
   The fresh T3 WORKING_ITEMS confirms this and sends T3's decisions on O-1 to O-13. Then T4-I9 revises its design.
+- 2026-10-09 (after the resume block) **T3's RV129 final on T4-I9: PASS WITH AMENDMENTS** (NUM `d408f10d9e`, `R/REVIEW_RV129/t4_i9_01/`, REVIEW `3ba0658b…`); this supersedes the provisional line above. R-1 status:
+  - (a) holds: the proof was re-derived with no gap. A-2 is required before code: directed rounding in the radii's binary64 evaluation (lower-bound denominators, constants rounded up, `sum_upward` by TwoSum/`ExactAccumulator`, +2⁻¹⁰⁷⁴ near subnormals, MU6 extended). RV129 calls this a specification omission, not a proof gap; ROOT may confirm that reading.
+  - (b) holds. A-3: add tests for all nine precondition classes. A-4: the natural refusal window is k ∈ [1e36, 1e39], not 1e40.
+  - (c) holds if non-vacuous. A-5: re-derive T15d and MU2 after the small-bend ruling.
+  - B-1 is removed by A-1: use `Exact { scale: 1.0, scaled_intended: split(m) }` with operand_bound = r plus γ₅ for generated loads. No FK type changes; `PINNED_RECORD` is untouched.
+  - A-6: near-π false fires; use the sharpened L5 bound or reflect the angle.
+
+  T3's decisions on O-1 to O-13:
+  - O-1 yes. O-2 is A-1. O-3: accept Lemma 3, no `CRITERION` change. O-4: `atan_positive` as its first product caller, with N-2's test and A-6.
+  - O-5/O-6 agreed in principle; checked at T4-U2 (N-7).
+  - O-7: try k ∈ {6e35, 1e36, 1e37, 1e38}. If none gives an ordinary Passed report, keep T15c natural at guard level with no seam; the lost end-to-end sentence is R-2's narrowing for ROOT.
+  - O-8 yes. O-9: class text updated in T4-U2's T8 edit, stale text noted in T4-U1b's change record.
+  - O-10: no re-registration expected; run a dry TEXT check before code, and Pass B decides.
+  - O-11 under K1's five conditions. O-12 done. O-13: T3 owns the arc R-b′ analogue, before T4-U2.
+
+  Keep FK `structural.rs`'s new `mod`/`pub use` outside lines 28–47, which `b2` edits. **Next:** T4-I9 revises its design with A-1 to A-6 (revision 01), and RV129 confirms on T3's side. A fresh T3 WORKING_ITEMS resumes from T3's log.
