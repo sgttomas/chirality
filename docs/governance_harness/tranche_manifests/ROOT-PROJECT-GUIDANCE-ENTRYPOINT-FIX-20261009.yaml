@@ -10,6 +10,8 @@ instruction_surface_paths:
   - tools/validation/validate_instruction_entrypoints.py
   - tools/validation/test_validate_instruction_entrypoints.py
   - projects/chirality-app-dev/loop/LOOP_INIT.md
+  - projects/chirality-piping/loop/LOOP_INIT.md
+  - projects/chirality-runtime/loop/LOOP_INIT.md
   - projects/pec/loop/LOOP_INIT.md
 
 m2_gate:
@@ -41,6 +43,7 @@ m6_notice:
 
 scope_limits:
   - >-
-    This follow-up adds explicit reads for relocated App Dev and PEC guidance,
-    enforces those reads in the entrypoint validator, and routes the App v4
-    notice. It changes no project-specific constraints.
+    This follow-up adds explicit reads for relocated guidance before project
+    operations, enforces the App Dev, Piping, and PEC entrypoint contract in the
+    validator, and routes the App v4 notice. It changes no project-specific
+    constraints.

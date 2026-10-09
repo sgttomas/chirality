@@ -251,10 +251,10 @@ def validate(repo_root: Path) -> list[str]:
 
         if loop_init.is_file():
             text = loop_init.read_text(encoding="utf-8")
-            if "Read `loop/PROJECT_GUIDANCE.md` in full before you write anything." not in text:
+            if "Read `loop/PROJECT_GUIDANCE.md` in full before any dispatch, review, fan-in," not in text:
                 findings.append(
                     f"{loop_init.relative_to(repo_root)} must read loop/PROJECT_GUIDANCE.md "
-                    "in full before project work"
+                    "in full before constrained project operations"
                 )
             if "when the managed runtime is active" in text:
                 findings.append(
