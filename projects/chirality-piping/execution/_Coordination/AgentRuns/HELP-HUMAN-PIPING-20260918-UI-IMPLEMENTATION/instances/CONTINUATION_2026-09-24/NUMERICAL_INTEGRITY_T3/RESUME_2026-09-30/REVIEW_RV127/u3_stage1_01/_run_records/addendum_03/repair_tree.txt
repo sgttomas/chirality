@@ -1,0 +1,54 @@
+# RV127 addendum 03: the A2-B-1 repair on PR #1168 (Git reads, GIT_OPTIONAL_LOCKS=0)
+## commits
+8a12de28db parents ba500defa4  piping(T3 U3): retire the legacy pressure contract product-wide
+98733368f9 parents 8a12de28db  piping(T3 U3): the evidence package (change record, PR body, citation index, radius sweep)
+ed012c7ccf parents 98733368f9  piping(T3 U3): remove the three bundled results the demo lane retired (G10, D-3)
+3bfcceb4c0 parents ed012c7ccf  piping(T3 U3): the package corrected for ed012c7ccf (RV127 A2-B-1)
+70aa51b076 parents bc1c8c549d  piping(T3 U3): RV127 A2-B-1 repaired: the three retired fixtures deleted on #1168; source_equality.py path sets without rename detection; package claims corrected
+## git diff --no-renames --name-status 98733368f9 ed012c7ccf (all paths)
+D	P/fixtures/product_preview/invented_mechanics_result.json
+D	P/fixtures/product_preview/invented_mechanics_result_precision_1_dense.json
+D	P/fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json
+## git diff --no-renames --name-status 98733368f9 ed012c7ccf -- . ':!P/execution'
+D	P/fixtures/product_preview/invented_mechanics_result.json
+D	P/fixtures/product_preview/invented_mechanics_result_precision_1_dense.json
+D	P/fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json
+## git diff --no-renames --name-status 8a12de28db ed012c7ccf -- . ':!P/execution'
+D	P/fixtures/product_preview/invented_mechanics_result.json
+D	P/fixtures/product_preview/invented_mechanics_result_precision_1_dense.json
+D	P/fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json
+## git diff --no-renames --name-status ed012c7ccf 3bfcceb4c0 (all paths)
+M	T/IMPLEMENTATION/U3/CHANGE_RECORD.md
+M	T/IMPLEMENTATION/U3/SHA256SUMS
+M	T/IMPLEMENTATION/U3/radius_sweep.txt
+## outside P/execution, --no-renames: line counts of name-status diffs
+3bfcceb4c0..70aa51b076: 0
+ed012c7ccf..70aa51b076: 0
+ed012c7ccf..cfeb5b76fe: 0
+ed012c7ccf..2fd24aedf1: 0
+ed012c7ccf..29710d848e: 0
+## the package at the PR head against NUM: 0 differing paths
+## the PR's maintained paths, ba500defa4..ed012c7ccf outside P/execution
+default (rename detection): 133
+--no-renames: 136
+   6 A
+   9 D
+ 121 M
+## blobs of the three files
+invented_mechanics_result.json ba500defa4 cf0aa1cec2e221d78ef52415089f131e22845570
+invented_mechanics_result.json 98733368f9 cf0aa1cec2e221d78ef52415089f131e22845570
+invented_mechanics_result.json ed012c7ccf 
+invented_mechanics_result.json 3bfcceb4c0 
+invented_mechanics_result.json 70aa51b076 
+invented_mechanics_result_precision_1_dense.json ba500defa4 cb3a655473b23773431f50eab2fb30ffe525d5c7
+invented_mechanics_result_precision_1_dense.json 98733368f9 cb3a655473b23773431f50eab2fb30ffe525d5c7
+invented_mechanics_result_precision_1_dense.json ed012c7ccf 
+invented_mechanics_result_precision_1_dense.json 3bfcceb4c0 
+invented_mechanics_result_precision_1_dense.json 70aa51b076 
+invented_mechanics_result_precision_1_sparse.json ba500defa4 6817e6aa7ae33e4de1cdd81ad7ac1cb67a5cbd73
+invented_mechanics_result_precision_1_sparse.json 98733368f9 6817e6aa7ae33e4de1cdd81ad7ac1cb67a5cbd73
+invented_mechanics_result_precision_1_sparse.json ed012c7ccf 
+invented_mechanics_result_precision_1_sparse.json 3bfcceb4c0 
+invented_mechanics_result_precision_1_sparse.json 70aa51b076 
+## PR #1168 on GitHub (gh pr view, read only)
+head 3bfcceb4c0e6cddf47557a4695c87177998a2c6b base ba500defa498a454be182ed46db795fc3e04d627 OPEN

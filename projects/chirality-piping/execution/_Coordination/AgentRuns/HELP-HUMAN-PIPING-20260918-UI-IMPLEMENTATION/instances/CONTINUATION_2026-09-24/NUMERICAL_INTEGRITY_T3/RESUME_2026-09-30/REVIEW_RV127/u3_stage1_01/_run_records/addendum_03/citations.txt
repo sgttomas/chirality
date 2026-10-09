@@ -1,0 +1,5 @@
+# check_citations.py (main's IMPLEMENTATION/F2A_D1 tool) --base ba500defa4 --head 3bfcceb4c0 --index T/IMPLEMENTATION/U3/citations.json --package T/IMPLEMENTATION/U3
+COUNTS resolved 2; ambiguous 0; unresolved 0
+  records/RR: occurrences 2, distinct 1, unresolved 0; documents: 0 citations (0 resolved, 0 ambiguous, 0 unresolved); verification failures 0; unused index entries 0; code lines: 0 (0 pinned in code_anchors, 0 unresolved)
+RESULT PASS
+exit 0

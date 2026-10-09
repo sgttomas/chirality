@@ -1,0 +1,13 @@
+# source_equality.py (fixed tool: 70aa51b076, names() with --no-renames) --pr 98733368f9 --int 70aa51b076 --main ba500defa4 --package T/IMPLEMENTATION/U3
+PR 98733368f9ab12f298b748c2c9dcb6eecdaedaf2
+INT 70aa51b0762c58f11bc92a5f3cc0f4d29a1bf4ee
+MAIN ba500defa498a454be182ed46db795fc3e04d627
+B ba500defa498a454be182ed46db795fc3e04d627
+|S| = 136
+[FAIL] check 1: {"in_pr_not_S": [], "in_S_not_pr": ["P/fixtures/product_preview/invented_mechanics_result.json", "P/fixtures/product_preview/invented_mechanics_result_precision_1_dense.json", "P/fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json"]}
+[FAIL] check 2: {"differ": ["P/fixtures/product_preview/invented_mechanics_result.json", "P/fixtures/product_preview/invented_mechanics_result_precision_1_dense.json", "P/fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json"]}
+[PASS] check 3: {"rules_not_needed": ["P/core/analysis_runs/compatibility.py"]}
+[PASS] check 4: {"execution_files": 5, "outside_package": [], "sha256_mismatch": []}
+[FAIL] check 5: 136 rows; 133 equal; 0 recorded three-way merge(s); unexplained ['P/fixtures/product_preview/invented_mechanics_result.json', 'P/fixtures/product_preview/invented_mechanics_result_precision_1_dense.json', 'P/fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json']
+RESULT FAIL
+exit 1

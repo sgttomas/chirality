@@ -1,0 +1,41 @@
+# RV127 addendum 03: mentions of the three basenames at 3bfcceb4c0, outside P/execution
+## exact 'invented_mechanics_result.json'
+P/apps/desktop/SMOKE.md:4382:- Canned browser fixture: `invented_mechanics_result.json` regenerated
+P/apps/desktop/SMOKE.md:9655:  - `python3 -m json.tool fixtures/product_preview/invented_mechanics_result.json`
+P/fixtures/product_preview/DEMO_FIXTURES.md:16:The bundled results computed with the flawed joint and the legacy pressure (`invented_mechanics_result.json` and the precision-1 pair) were removed b
+P/plans/PLAN_COMPLETION_LOG.md:694:  regenerated `fixtures/product_preview/invented_mechanics_result.json`.
+P/plans/PLAN_COMPLETION_LOG.md:1006:- `fixtures/product_preview/invented_mechanics_result.json` was regenerated so
+P/plans/PLAN_COMPLETION_LOG.md:1485:- `fixtures/product_preview/invented_mechanics_result.json`: regenerated the
+P/plans/PLAN_COMPLETION_LOG.md:1950:  `fixtures/product_preview/invented_mechanics_result.json`;
+P/plans/PLAN_COMPLETION_LOG.md:1964:- `python3 -m json.tool fixtures/product_preview/invented_mechanics_result.json`
+P/plans/PLAN_COMPLETION_LOG.md:2819:`invented_mechanics_result.json` fixture now exposes 749 result rows and 12
+P/plans/PLAN_COMPLETION_LOG.md:2865:`invented_mechanics_result.json` fixture now exposes 743 result rows, including
+P/validation/evidence/sweeps/SWEEP_20260621T070045Z_251dbcd8ce97-dirty.json:19:      "P/fixtures/product_preview/invented_mechanics_result.json",
+P/validation/evidence/sweeps/SWEEP_20260621T071342Z_251dbcd8ce97-dirty.json:20:      "P/fixtures/product_preview/invented_mechanics_result.json",
+P/validation/evidence/sweeps/SWEEP_20260621T085427Z_93a25e03201f-dirty.json:18:      "P/fixtures/product_preview/invented_mechanics_result.json",
+P/validation/evidence/sweeps/SWEEP_20260621T092312Z_53b592aee006-dirty.json:15:      "P/fixtures/product_preview/invented_mechanics_result.json",
+P/validation/evidence/sweeps/SWEEP_20260621T113918Z_756f319251c0-dirty.json:18:      "P/fixtures/product_preview/invented_mechanics_result.json",
+P/validation/evidence/sweeps/SWEEP_20260621T202442Z_4829dea6c2e0-dirty.json:29:      "P/fixtures/product_preview/invented_mechanics_result.json",
+P/validation/evidence/sweeps/SWEEP_20260621T205711Z_c771567ed6a8-dirty.json:27:      "P/fixtures/product_preview/invented_mechanics_result.json",
+P/validation/evidence/sweeps/SWEEP_20260622T063558Z_d3f658288543-dirty.json:25:      "P/fixtures/product_preview/invented_mechanics_result.json",
+P/validation/evidence/sweeps/SWEEP_20260622T065649Z_150b107259dd-dirty.json:18:      "P/fixtures/product_preview/invented_mechanics_result.json",
+P/validation/evidence/sweeps/SWEEP_20260622T081626Z_719254ef37f8-dirty.json:18:      "P/fixtures/product_preview/invented_mechanics_result.json",
+P/validation/evidence/sweeps/SWEEP_20260622T085210Z_799ebcc0dee5-dirty.json:19:      "P/fixtures/product_preview/invented_mechanics_result.json",
+P/validation/evidence/sweeps/SWEEP_20260622T121215Z_3bc51d2b2eed-dirty.json:15:      "P/fixtures/product_preview/invented_mechanics_result.json",
+P/validation/evidence/sweeps/SWEEP_20260622T142119Z_1b32c80965d5-dirty.json:17:      "P/fixtures/product_preview/invented_mechanics_result.json",
+P/validation/evidence/sweeps/SWEEP_20260623T020002Z_3194bd29f417-dirty.json:34:      "P/fixtures/product_preview/invented_mechanics_result.json",
+## exact 'invented_mechanics_result_precision_1_dense.json'
+## exact 'invented_mechanics_result_precision_1_sparse.json'
+## the stem 'invented_mechanics_result' without an exact basename (other files or build-asset names)
+P/apps/desktop/src/App.test.tsx:5: invented_mechanics_result_preview_physics_1_sparse.json
+P/fixtures/product_preview/DEMO_FIXTURES.md:14: invented_mechanics_result_preview_physics_1_sparse.json
+P/fixtures/product_preview/preview_physics_fixture_generation.json:1037: invented_mechanics_result_preview_physics_1_sparse.json
+P/fixtures/product_preview/preview_physics_fixture_generation.json:1065: invented_mechanics_result_preview_physics_1_dense.json
+P/fixtures/results/preview_physics_tamper_vector.json:5: invented_mechanics_result_preview_physics_1_sparse.json
+P/tests/test_preview_physics_consumer_contract.py:1024: invented_mechanics_result_preview_physics_1_{mode}.json
+P/tools/serialization/generate_product_preview_mechanics.mjs:30: invented_mechanics_result_preview_physics_1_${suffix}.json
+P/validation/evidence/reproduction/REPRO_DEL0904_20260719T033249Z_89a93d7ca21d/checks/evidence-sweep.json:17: invented_mechanics_result-DftuaeNr.js
+P/validation/evidence/reproduction/REPRO_DEL0904_20260719T202023Z_23eeaabc9040/checks/evidence-sweep.json:17: invented_mechanics_result-DftuaeNr.js
+P/validation/evidence/reproduction/REPRO_DEL0904_20260720T074714Z_a5235340aae3/checks/evidence-sweep.json:17: invented_mechanics_result-DftuaeNr.js
+## code reads (include_str!/include_bytes!/import/open) of the three basenames in .rs .ts .tsx .js .mjs .py, outside P/execution
+(end; empty means none)

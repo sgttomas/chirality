@@ -1,0 +1,13 @@
+# source_equality.py (old tool: cfeb5b76fe, names() with rename detection) --pr 98733368f9 --int 70aa51b076 --main ba500defa4 --package T/IMPLEMENTATION/U3
+PR 98733368f9ab12f298b748c2c9dcb6eecdaedaf2
+INT 70aa51b0762c58f11bc92a5f3cc0f4d29a1bf4ee
+MAIN ba500defa498a454be182ed46db795fc3e04d627
+B ba500defa498a454be182ed46db795fc3e04d627
+|S| = 133
+[PASS] check 1: PR non-execution paths equal S
+[PASS] check 2: 133 paths identical in blob and mode
+[PASS] check 3: {"rules_not_needed": ["P/core/analysis_runs/compatibility.py"]}
+[PASS] check 4: {"execution_files": 5, "outside_package": [], "sha256_mismatch": []}
+[PASS] check 5: 133 rows; 133 equal; 0 recorded three-way merge(s); unexplained []
+RESULT PASS
+exit 0

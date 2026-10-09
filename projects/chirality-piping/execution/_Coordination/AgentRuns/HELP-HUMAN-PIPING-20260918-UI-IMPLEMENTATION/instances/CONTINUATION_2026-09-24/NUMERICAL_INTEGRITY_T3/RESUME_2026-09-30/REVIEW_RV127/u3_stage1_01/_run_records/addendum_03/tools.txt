@@ -1,0 +1,7 @@
+# sha256 of the tools as run (scratch copies) and their repo blobs
+9ff2d081ed20a0872156feeb1882aaa4341bc70bb3cb26d86deeaa828c0576a1  WT/scratch/rv127_u3/a3/scripts/source_equality_70aa.py
+18786526ef328375822e2107e67d2e4ea06097d49acaa210e1c697d5869c9227  WT/scratch/rv127_u3/a3/scripts/source_equality_cfeb_renames_on.py
+0ccfaecb82e6f3f532ad273d0297d9ffbd1de4e49885195dc4b5765ecf5ea9bc  WT/scratch/rv127_u3/a3/scripts/check_citations.py
+70aa51b076:T/IMPLEMENTATION/F2A_D1/source_equality.py 9ff2d081ed20a0872156feeb1882aaa4341bc70bb3cb26d86deeaa828c0576a1
+cfeb5b76fe:T/IMPLEMENTATION/F2A_D1/source_equality.py 18786526ef328375822e2107e67d2e4ea06097d49acaa210e1c697d5869c9227
+70aa51b076:T/IMPLEMENTATION/F2A_D1/check_citations.py 0ccfaecb82e6f3f532ad273d0297d9ffbd1de4e49885195dc4b5765ecf5ea9bc

@@ -1,0 +1,87 @@
+# RV127 addendum 03: directory walks in maintained tests, tools and code at 3bfcceb4c0 (could a walk pick up the three files?)
+## git grep -E 'rglob(|os.walk(|WalkDir|walkdir|readdirSync|read_dir(|.glob(|import.meta.glob' over tests, tools, core, apps/desktop/{src,scripts}, validation/*.py
+P/apps/desktop/scripts/build-wasm-engine.mjs:16:import { existsSync, mkdirSync, readdirSync, renameSync, rmSync } from "node:fs";
+P/apps/desktop/scripts/build-wasm-engine.mjs:177:  for (const entry of readdirSync(legacyParent)) {
+P/apps/desktop/scripts/build-wasm-engine.mjs:183:for (const entry of readdirSync(generatedParent)) {
+P/apps/desktop/src/features/results/PhysicsSourceEvidencePanel.test.tsx:8:const fixtureSources = import.meta.glob("../../../../../fixtures/product_preview/physics_source/*.raw.json", { query: "?raw", 
+P/apps/desktop/src/features/results/physicsSourceIntegration.test.tsx:39:const fixtureSources = import.meta.glob("../../../../../fixtures/product_preview/physics_source/*.json", { query: "?raw", impor
+P/apps/desktop/src/features/results/retainedPrecision.test.ts:506:    for (const rel of fs.readdirSync(root, { recursive: true }) as string[]) {
+P/apps/desktop/src/features/solve/LoadReferenceStatesBlock.test.tsx:14:const raws = import.meta.glob<{ default: unknown }>([
+P/apps/desktop/src/features/viewport/viewportColourLiterals.test.ts:1:import { readdirSync, readFileSync } from "node:fs";
+P/apps/desktop/src/features/viewport/viewportColourLiterals.test.ts:19:  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+P/apps/desktop/src/features/workspace/resultsSessionState.test.ts:136:const retainedSourceFixtures = import.meta.glob("../../../../../fixtures/product_preview/{physics_source,source_blocks/ui}/n05*.js
+P/apps/desktop/src/features/workspace/sessionBoundary.test.ts:1:import { readdirSync, readFileSync, statSync } from "node:fs";
+P/apps/desktop/src/features/workspace/sessionBoundary.test.ts:15:  return readdirSync(dir).flatMap((name) => {
+P/apps/desktop/src/services/operationContractCorpus.test.ts:32:import { readdirSync, readFileSync, statSync } from "node:fs";
+P/apps/desktop/src/services/operationContractCorpus.test.ts:118:  const files = readdirSync(corpusDir)
+P/apps/desktop/src/services/operationService.test.ts:10:import { readdirSync, readFileSync } from "node:fs";
+P/apps/desktop/src/services/operationService.test.ts:45:  return readdirSync(corpusDir)
+P/core/model_operations/operation_applier/tests/contract_corpus.rs:102:    let mut paths: Vec<PathBuf> = fs::read_dir(corpus_dir())
+P/core/reporting/result_export/tests/retained_precision_carriers.rs:1110:        for entry in std::fs::read_dir(&dir).unwrap() {
+P/core/rules/expression_evaluator/tests/conformance_corpus.rs:690:    let mut paths: Vec<PathBuf> = fs::read_dir(corpus_dir())
+P/core/rules/rule_pack_document/tests/corpus_parity.rs:19:    let mut case_paths: Vec<PathBuf> = fs::read_dir(corpus_dir())
+P/core/runner/headless/tests/preview_physics_admission.rs:226:        for entry in std::fs::read_dir(root.join(dir)).unwrap() {
+P/core/solver/nonlinear_integration/src/s11k_tests.rs:985:        for entry in std::fs::read_dir(dir).unwrap() {
+P/core/solver/nonlinear_integration/src/structural_adapter/k5_tests.rs:907:        for entry in std::fs::read_dir(&dir).unwrap() {
+P/tests/schema_validation.py:62:    for path in schema_dir.glob("*.schema.*"):
+P/tests/test_adapter_framework_contract.py:838:        for path in root.rglob("*"):
+P/tests/test_ci_numerical.py:87:                         for path in (project / search).rglob('*.rs')
+P/tests/test_evidence_sweep.py:142:    assert list(tmp_path.glob("SWEEP_*.json")) == []
+P/tests/test_evidence_sweep.py:602:    paths = sorted((ROOT / "validation/evidence/sweeps").glob("SWEEP_*.json"))
+P/tests/test_evidence_sweep.py:897:    assert len(list(routed.glob("SWEEP_*-dirty.json"))) == 1
+P/tests/test_evidence_sweep.py:914:    summaries = list((root / sweep.DEFAULT_OUTPUT_DIR).glob("SWEEP_*.json"))
+P/tests/test_evidence_sweep.py:960:    assert len(list(canonical.glob("SWEEP_*-dirty.json"))) == 1
+P/tests/test_evidence_sweep.py:1074:    summaries = list((tmp_path / "summaries").glob("SWEEP_*.json"))
+P/tests/test_evidence_sweep.py:1164:    summaries = list(tmp_path.glob("SWEEP_*.json"))
+P/tests/test_evidence_sweep.py:1201:    summaries = list(Path(tmp_path).glob("SWEEP_*.json"))
+P/tests/test_evidence_sweep.py:1235:    assert list(tmp_path.glob("SWEEP_*.json")) == []
+P/tests/test_export_public_openpipestress.py:327:    before = {p for p in tmp_path.rglob("*")}
+P/tests/test_export_public_openpipestress.py:329:    assert {p for p in tmp_path.rglob("*")} == before
+P/tests/test_export_public_openpipestress.py:382:              for p in (target_one / "staging").rglob("*") if p.is_file()}
+P/tests/test_invented_example_models.py:120:    paths = sorted(EXAMPLE_DIR.glob("*.json"))
+P/tests/test_load_reference_headless_artifacts.py:87:    return {path.name[len(name) + 1:-len(".json")] for path in folder.glob(f"{name}.*.json")}
+P/tests/test_load_reference_headless_artifacts.py:195:    assert {p.name.split(".")[0] for p in lr.glob("*.raw.json")} == expected_lr
+P/tests/test_load_reference_headless_artifacts.py:196:    assert {p.name.split(".")[0] for p in lrs.glob("*.raw.json")} == expected_lrs
+P/tests/test_load_reference_headless_artifacts.py:197:    assert {p.name[4:].split(".")[0] for p in lr.glob("cli-*.output.json")} == expected_lr
+P/tests/test_load_reference_headless_artifacts.py:198:    assert {p.name[4:].split(".")[0] for p in lrs.glob("cli-*.output.json")} == expected_lrs
+P/tests/test_load_reference_headless_artifacts.py:199:    assert not list(lrs.glob("*.document.json"))
+P/tests/test_load_reference_schema.py:84:    paths = sorted(LOAD_REFERENCE.glob("*.raw.json"))
+P/tests/test_load_reference_source_schema.py:112:    for path in SCHEMAS.glob("*.schema.*"):
+P/tests/test_load_reference_source_schema.py:186:    paths = sorted(JOINED.glob("*.raw.json"))
+P/tests/test_load_reference_source_schema.py:196:    paths = sorted(COMPOSITE.glob("*.raw.json"))
+P/tests/test_load_reference_source_schema.py:201:LR_CARRIERS = sorted(RESULTS_FIXTURES.glob("load_reference_[cp]*_*.document.json"))
+P/tests/test_load_reference_source_schema.py:202:READER_OUTPUTS = sorted(RESULTS_FIXTURES.glob("load_reference_source_*.json"))
+P/tests/test_physics_consumer_contract.py:137:    paths = list(Path(folder).glob("*.raw.json"))
+P/tests/test_plugin_manifest_schema.py:190:        for path in root.rglob("*"):
+P/tests/test_precision_consumer_contract.py:86:    paths = list(Path(folder).glob("*.raw.json"))
+P/tests/test_qualification_load_reference.py:331:        before = {p: p.read_bytes() for p in (fixture.candidate / PACKAGE).glob('*.json')}
+P/tests/test_qualification_load_reference.py:334:        self.assertEqual({p: p.read_bytes() for p in (fixture.candidate / PACKAGE).glob('*.json')}, before)
+P/tests/test_release_candidate_scan.py:105:    records = sorted(output_dir.glob("SCAN_*.json"))
+P/tests/test_release_packaging_script.py:510:    zips = list(out_dir.glob("*.zip"))
+P/tests/test_release_packaging_script.py:511:    checksums = list(out_dir.glob("*.zip.sha256"))
+P/tests/test_release_packaging_script.py:512:    records = list(records_dir.glob("RELEASE_ARTIFACT_*.json"))
+P/tests/test_result_export_v0_2.py:15: for path in (ROOT/'schemas').glob('*.schema.*'):
+P/tests/test_result_export_v0_2.py:33: for docpath in sorted(folder.glob('*.document.json')):
+P/tests/test_results_dispatcher_v0_3.py:52:        for path in sorted((ROOT / root).rglob("*.json")):
+P/tests/test_retained_precision_carriers.py:691:    files = [path for path in (ROOT / "core").rglob("*.py")] + [path for path in (ROOT / "tools").rglob("*.py")]
+P/tests/test_source_block_schema_contract.py:201:    paths = sorted(root.glob("*.raw.json"))
+P/tests/test_stress_neutral_physics_source.py:119:    paths = sorted(COMPOSITE_DIR.glob("*.raw.json"))
+P/tools/ci/e2e_plan.py:67:    return sorted(p.relative_to(desktop).as_posix() for p in (desktop / 'e2e').rglob('*')
+P/tools/ci/e2e_plan.py:153:    for file in (directory / 'e2e').rglob('*'):
+P/tools/coordination/dependency_semantic_refresh_fanin.py:16:        for path in (working_root / "execution").rglob("Dependencies.csv")
+P/tools/coordination/dependency_type_rectification.py:339:    return sorted(working_root.glob("execution/PKG-*/1_Working/DEL-*/Dependencies.csv"))
+P/tools/coordination/list_deliverable_status.py:129:    paths = sorted(root.glob("execution/PKG-*/1_Working/DEL-*/_STATUS.md"))
+P/tools/release/check_release_readiness.py:76:        for manifest in sorted(base.rglob("Cargo.toml")):
+P/tools/release/export_public_openpipestress.py:443:        for path in sorted(base.rglob("*")):
+P/tools/release/export_public_openpipestress.py:479:    for path in sorted(staging.rglob("*")):
+P/tools/release/export_public_openpipestress.py:496:    for path in sorted(staging.rglob("*")):
+P/tools/release/export_public_openpipestress.py:545:    for path in sorted(staging.rglob("*")):
+P/tools/release/package_release_artifact.py:210:    for path in sorted(app_path.rglob("*"), key=lambda p: str(p)):
+P/tools/release/run_evidence_sweep.py:365:        for path in search_root.rglob("Cargo.toml")
+P/tools/release/run_release_candidate_scan.py:172:        candidate for candidate in class_root.rglob("*") if candidate.is_file()
+P/tools/release/run_release_gate_records.py:650:    for path in sorted(directory.glob("*.json")):
+P/tools/serialization/generate_product_preview_mechanics.mjs:9:import { readFileSync, writeFileSync, readdirSync, lstatSync, realpathSync,
+P/tools/serialization/generate_product_preview_mechanics.mjs:99:    for (const entry of readdirSync(checkedPath(relative, "directory"), { withFileTypes: true })) {
+P/validation/qualification/fixtures/load_reference/generate_reference_values.py:351:    for path in sorted(PACKAGE.glob('*.selectors.candidate.json')):
+## reading
+No walk lists fixtures/product_preview/ itself: the three import.meta.glob calls name its physics_source/ and source_blocks/ui/ subfolders; the Rust and TS recursive walks keep only .rs or .ts/.tsx files (the RE walk also skips fixtures/); the Python globs name other folders or *.raw.json; generate_product_preview_mechanics.mjs's sourceInventory walks the core/ dependency closure and schemas/ only.
