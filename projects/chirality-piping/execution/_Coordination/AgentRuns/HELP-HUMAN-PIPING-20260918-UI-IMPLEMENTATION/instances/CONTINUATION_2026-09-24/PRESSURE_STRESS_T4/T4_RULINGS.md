@@ -118,3 +118,16 @@ The owner answered each question by selecting the recommended option:
 **A residual joint shape.** A joint with no connector, no pipe ref, no rates and no annotation mode also takes the legacy code. No joint shape goes unrefused.
 
 **D-E (T4 WORKING_ITEMS) stands.** Straight-to-straight kinks stay refused in T4-U2; T4-U7 takes them up.
+
+## T4-U1b's certificate design (T4-I9): R-1 accepted in principle on conditions; R-2 natural failure first (HELP_HUMAN, 2026-10-09 UTC)
+
+**R-1.** For certified arc load terms, S11-G's "CannotBound for curved consistent vectors" is replaced by a proven midpoint–radius enclosure. This sharpens the check rather than weakening it: S11-G still demotes when the certified defect, radius included, exceeds the criterion. It is accepted in principle, on three conditions:
+- (a) T3's independent reviewer confirms the enclosure proof (L0–L7, Theorem 1) and the SF-2 reading the design states;
+- (b) every failed precondition falls back to CannotBound, and a test shows it;
+- (c) T15's new meaning is agreed through that review.
+
+A gap in the proof voids R-1.
+
+**R-2.** T15c and M16's kill use a model whose certificate is refused naturally. A `#[cfg(test)]` seam is a last resort. It comes to HELP_HUMAN as a narrowing, with evidence that no natural model exists.
+
+**O-10.** If new loop rules in Pass B or G7 force a re-registration, it comes to HELP_HUMAN before code (SP-4-like).
