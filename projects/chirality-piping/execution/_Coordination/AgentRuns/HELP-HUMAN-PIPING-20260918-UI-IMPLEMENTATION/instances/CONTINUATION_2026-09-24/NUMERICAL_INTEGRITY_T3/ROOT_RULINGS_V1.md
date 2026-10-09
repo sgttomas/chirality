@@ -16531,3 +16531,11 @@ I110's round 3 is at `6b6543dc1e`. Its evidence: 588/588 bytes equal on exact, i
 - **The scope:** a small PR by T3's WORKING_ITEMS. It corrects only those capability statements to match the retirement and cites the owner decisions.
 - **Its process:** a tranche manifest and routed notices to any loop that mirrors those texts, as instruction-surface changes require (AGENTS.md; `docs/PRD_ROOT.md` on amendments).
 - **Review and timing:** an independent review. It is cut after the U3 PR merges, so the texts never describe something not yet true.
+
+**U3, T2's re-pin check, option (a)** (ROOT, 2026-10-09 UTC). The source-block carriers bind their publication with `publication_sha256` and `receipt_sha256`, which the readers verify, so a string-only edit cannot hold. The check is therefore stated exactly, and each step must hold for every re-pinned carrier:
+1. Take the old bytes and replace only the declared string.
+2. Recompute both digests from the edited content by the product's own rule, then `generation.json`'s raw hashes.
+3. The result must equal the head's own output byte for byte.
+4. The three readers verify it.
+
+The two historical `rejected_stress_range` captures and `ORACLE.json` stay as captured, because the head already does not reproduce them. The two precision UI fixtures take a string-only edit.
