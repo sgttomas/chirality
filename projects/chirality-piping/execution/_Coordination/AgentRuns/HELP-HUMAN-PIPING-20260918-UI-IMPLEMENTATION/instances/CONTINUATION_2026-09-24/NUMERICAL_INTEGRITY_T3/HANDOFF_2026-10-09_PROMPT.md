@@ -23,7 +23,8 @@ Steer (this run): Continue as ROOT (Agent 0) for T3, and as coordinator of T4, i
 - Orient from `{WORKING_ROOT}/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/HANDOFF_2026-10-09_TO_NEXT_ROOT.md`, which points to the rest. Read further only as the work needs.
 - The previous session's agents are gone. Commission fresh T3 and T4 WORKING_ITEMS from their briefs; each resumes from its log's "Resume here". You coordinate and rule, and they implement.
 - Not obvious:
-  - Agents your managers spawn report to you, not to them. Forward each return unchanged.
+  - A manager that ends its turn while its agents run loses their reports to you; the host forces its report-back on turn end. Tested 2026-10-09: managers must dispatch with blocking calls (`run_in_background: false`), several in one message for parallelism, so reports reach them. Put this rule in each manager's brief. Returns also travel by record (`RETURN.md`). If one still reaches you, send its manager a one-line pointer.
+  - Give managers standing assignments, and do not resume them for single steps.
   - Agents here cannot run `gh pr merge`, because the permission classifier blocks it. When a PR is ready, ask the owner to merge it.
   - In the full-SHA dispatch, `target_base` must be the PR's integrated base, not current main.
   - DEC-025 holds the exclusive host lock for about two hours, which stalls every other heavy job, T4's included.
