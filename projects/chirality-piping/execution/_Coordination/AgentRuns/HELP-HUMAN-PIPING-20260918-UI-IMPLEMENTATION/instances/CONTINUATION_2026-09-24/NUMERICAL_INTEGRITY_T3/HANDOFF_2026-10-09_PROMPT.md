@@ -39,7 +39,7 @@ Steer (this run): Continue as ROOT (Agent 0) of the piping undertaking `HELP-HUM
    - Bring the owner only owner-held decisions, as a concrete package with recommendations.
 5. **The next actions:**
    1. **T3:**
-      - #1168 to merge, if it has not. Its remaining gate is a fresh Pass B by `BRIEFS/U3_SB.md` (I107 never returned), with RV124's confirmation, plus DEC-025's ALL-DONE and src-tauri comparison;
+      - #1168 to merge, if it has not. DEC-025 passed and I107's Pass B returned with no stop. What remains is a fresh reviewer in RV124's role to confirm Pass B (reading TEXT), then the merge record and the merge;
       - then NUM absorbs main;
       - U5, the governance documents, with its independent review;
       - J0b (`b2` absorbs U3), then B2's reader lanes, 07o, the J7 freeze, SQ2, SG2/SB2/SK2, RV-X2 and PR-B2;
