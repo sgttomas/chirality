@@ -1,0 +1,160 @@
+U2-L-FREE-P-K1                                     leaves  314  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+U2-L-FREE-SEPA-K1                                  leaves  317  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups ['rotation', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+U2-L-FREE-SEPD-K1                                  leaves  317  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-FREE-PT-K1                                    leaves  314  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+U2-L-FREE-PW-K1                                    leaves  314  max_norm_diff 3.67e-20  at nodes/node:D/rx
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups ['effective_axial_force']
+U2-L-FREE-ALL-K1                                   leaves  317  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-FREE-PTW-K1                                   leaves  314  max_norm_diff 3.67e-20  at nodes/node:D/rx
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups ['effective_axial_force']
+U2-L-ANCH-P-K1                                     leaves  320  max_norm_diff 2.49e-20  at members/pipe:BEND/stations/quarter_1/S
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-ANCH-SEPD-K1                                  leaves  323  max_norm_diff 2.49e-20  at members/pipe:BEND/stations/quarter_1/S
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-ANCH-PT-K1                                    leaves  320  max_norm_diff 2.97e-20  at supports/support:A/Fy
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-ANCH-PW-K1                                    leaves  320  max_norm_diff 2.49e-20  at members/pipe:BEND/stations/quarter_1/S
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-ANCH-ALL-K1                                   leaves  323  max_norm_diff 2.90e-20  at supports/support:A/Fy
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-ANCH-PTW-K1                                   leaves  320  max_norm_diff 2.97e-20  at supports/support:D/Fy
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-U-ANCH-P-K1                                     leaves  923  max_norm_diff 4.26e-20  at members/pipe:BEND2/stations/midspan/M_z
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-U-ANCH-SEPD-K1                                  leaves  926  max_norm_diff 4.26e-20  at members/pipe:BEND2/stations/midspan/M_z
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-U-ANCH-PT-K1                                    leaves  923  max_norm_diff 3.87e-20  at members/pipe:BEND2/stations/quarter_3/M_z
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-U-ANCH-PW-K1                                    leaves  923  max_norm_diff 3.16e-20  at nodes/node:C3/rx
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-U-ANCH-ALL-K1                                   leaves  926  max_norm_diff 3.16e-20  at nodes/node:C3/rx
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-U-ANCH-PTW-K1                                   leaves  923  max_norm_diff 3.16e-20  at nodes/node:C3/rx
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K1             leaves  136  max_norm_diff 3.10e-20  at members/pipe:ARC/arc/included_angle
+    junction angles vs mine: max |diff| 0.0e+00 rad (max theta 0.000e+00); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+U2-L-FREE-P-K2                                     leaves  314  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+U2-L-FREE-SEPA-K2                                  leaves  317  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups ['rotation', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+U2-L-FREE-SEPD-K2                                  leaves  317  max_norm_diff 4.21e-20  at nodes/node:D/ux
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-FREE-PT-K2                                    leaves  314  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+U2-L-FREE-PW-K2                                    leaves  314  max_norm_diff 4.18e-20  at nodes/node:D/rx
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups ['effective_axial_force']
+U2-L-FREE-ALL-K2                                   leaves  317  max_norm_diff 4.20e-20  at nodes/node:D/ux
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-FREE-PTW-K2                                   leaves  314  max_norm_diff 4.18e-20  at nodes/node:D/rx
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups ['effective_axial_force']
+U2-L-ANCH-P-K2                                     leaves  320  max_norm_diff 2.74e-20  at members/pipe:BEND/stations/quarter_1/S
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-ANCH-SEPD-K2                                  leaves  323  max_norm_diff 2.74e-20  at members/pipe:BEND/stations/quarter_1/S
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-ANCH-PT-K2                                    leaves  320  max_norm_diff 2.58e-20  at members/pipe:BEND/stations/quarter_3/S
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-ANCH-PW-K2                                    leaves  320  max_norm_diff 2.75e-20  at nodes/node:C/ry
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-ANCH-ALL-K2                                   leaves  323  max_norm_diff 2.75e-20  at nodes/node:C/ry
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-ANCH-PTW-K2                                   leaves  320  max_norm_diff 2.75e-20  at nodes/node:C/ry
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-U-ANCH-P-K2                                     leaves  923  max_norm_diff 3.38e-20  at nodes/node:B4/rz
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-U-ANCH-SEPD-K2                                  leaves  926  max_norm_diff 3.38e-20  at nodes/node:B4/rz
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-U-ANCH-PT-K2                                    leaves  923  max_norm_diff 4.68e-20  at members/pipe:S3/stations/quarter_3/M_y
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-U-ANCH-PW-K2                                    leaves  923  max_norm_diff 4.54e-20  at nodes/node:B3/rx
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-U-ANCH-ALL-K2                                   leaves  926  max_norm_diff 4.54e-20  at nodes/node:B3/rx
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-U-ANCH-PTW-K2                                   leaves  923  max_norm_diff 4.54e-20  at nodes/node:B3/rx
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2             leaves  136  max_norm_diff 3.10e-20  at members/pipe:ARC/arc/included_angle
+    junction angles vs mine: max |diff| 0.0e+00 rad (max theta 0.000e+00); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+U2-L-KINK-FREE-P-K2                                leaves  314  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    junction angles vs mine: max |diff| 4.0e-24 rad (max theta 5.000e-04); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+U2-L-KINK-ANCH-P-K2                                leaves  320  max_norm_diff 2.65e-20  at supports/support:D/Mz
+    junction angles vs mine: max |diff| 4.0e-24 rad (max theta 5.000e-04); zero_scale ok; zero groups []
+U2-L-MITRE-REFUSED-P-K2                            refusal control: code PRESSURE_REGION_MITRE_UNSUPPORTED; theta at node:C = 1.9999973333397350e-03 rad (ref 1.9999973333397350914e-3); theta - alpha_tan = 1.0000e-03; tan(theta) - alpha_tan = 1.0000e-03; matches ref node: True
+U2-L-ANCH-ALL-K2-REV                               leaves  323  max_norm_diff 2.75e-20  at nodes/node:C/ry
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-FREE-P-K2-SKEW                                leaves  314  max_norm_diff 2.79e-20  at members/pipe:BEND/arc/centre/2
+    junction angles vs mine: max |diff| 3.5e-36 rad (max theta 4.497e-16); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+U2-L-FREE-P-K2-X5E6                                leaves  314  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+U2-L-FREE-P-K2-X7P3E6                              leaves  314  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+U2-L-FREE-P-K2-SKEW-X5E6                           leaves  314  max_norm_diff 3.05e-20  at members/pipe:BEND/arc/centre/2
+    junction angles vs mine: max |diff| 3.4e-30 rad (max theta 6.665e-10); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+U2-L-FREE-P-K2-SKEW-X7P3E6                         leaves  314  max_norm_diff 3.05e-20  at members/pipe:BEND/arc/centre/2
+    junction angles vs mine: max |diff| 3.4e-30 rad (max theta 6.665e-10); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+U2-L-FREE-P-K2-MM-MPA                              leaves  314  max_norm_diff 1.99e-20  at members/pipe:BEND/arc/included_angle
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+U2-L-FREE-ALL-K2-SKEW                              leaves  317  max_norm_diff 2.79e-20  at members/pipe:BEND/arc/centre/2
+    junction angles vs mine: max |diff| 3.5e-36 rad (max theta 4.497e-16); zero_scale ok; zero groups []
+U2-L-FREE-ALL-K2-X5E6                              leaves  317  max_norm_diff 4.20e-20  at nodes/node:D/ux
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-FREE-ALL-K2-X7P3E6                            leaves  317  max_norm_diff 4.20e-20  at nodes/node:D/ux
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-FREE-ALL-K2-SKEW-X5E6                         leaves  317  max_norm_diff 3.05e-20  at members/pipe:BEND/arc/centre/2
+    junction angles vs mine: max |diff| 3.4e-30 rad (max theta 6.665e-10); zero_scale ok; zero groups []
+U2-L-FREE-ALL-K2-SKEW-X7P3E6                       leaves  317  max_norm_diff 3.05e-20  at members/pipe:BEND/arc/centre/2
+    junction angles vs mine: max |diff| 3.4e-30 rad (max theta 6.665e-10); zero_scale ok; zero groups []
+U2-L-FREE-ALL-K2-MM-MPA                            leaves  317  max_norm_diff 4.20e-20  at nodes/node:D/ux
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-ANCH-ALL-K2-SKEW                              leaves  323  max_norm_diff 3.27e-20  at members/pipe:BEND/end_rows/end_i/chord_frame_elastic/F_x
+    junction angles vs mine: max |diff| 3.5e-36 rad (max theta 4.497e-16); zero_scale ok; zero groups []
+U2-L-ANCH-ALL-K2-X5E6                              leaves  323  max_norm_diff 2.75e-20  at nodes/node:C/ry
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-ANCH-ALL-K2-X7P3E6                            leaves  323  max_norm_diff 2.75e-20  at nodes/node:C/ry
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-ANCH-ALL-K2-SKEW-X5E6                         leaves  323  max_norm_diff 3.48e-20  at members/pipe:BEND/end_rows/end_j/chord_frame_elastic/F_x
+    junction angles vs mine: max |diff| 3.4e-30 rad (max theta 6.665e-10); zero_scale ok; zero groups []
+U2-L-ANCH-ALL-K2-SKEW-X7P3E6                       leaves  323  max_norm_diff 3.48e-20  at members/pipe:BEND/end_rows/end_j/chord_frame_elastic/F_x
+    junction angles vs mine: max |diff| 3.4e-30 rad (max theta 6.665e-10); zero_scale ok; zero groups []
+U2-L-ANCH-ALL-K2-MM-MPA                            leaves  323  max_norm_diff 2.75e-20  at nodes/node:C/ry
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-U-ANCH-ALL-K2-SKEW                              leaves  926  max_norm_diff 4.15e-20  at members/pipe:BEND3/arc/centre/0
+    junction angles vs mine: max |diff| 5.0e-35 rad (max theta 1.537e-15); zero_scale ok; zero groups []
+U2-U-ANCH-ALL-K2-X5E6                              leaves  926  max_norm_diff 4.54e-20  at nodes/node:B3/rx
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-U-ANCH-ALL-K2-X7P3E6                            leaves  926  max_norm_diff 4.54e-20  at nodes/node:B3/rx
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-U-ANCH-ALL-K2-SKEW-X5E6                         leaves  926  max_norm_diff 2.31e-20  at nodes/node:B2/uz
+    junction angles vs mine: max |diff| 4.1e-30 rad (max theta 8.704e-10); zero_scale ok; zero groups []
+U2-U-ANCH-ALL-K2-SKEW-X7P3E6                       leaves  926  max_norm_diff 2.31e-20  at nodes/node:B2/uz
+    junction angles vs mine: max |diff| 4.1e-30 rad (max theta 8.704e-10); zero_scale ok; zero groups []
+U2-U-ANCH-ALL-K2-MM-MPA                            leaves  926  max_norm_diff 4.54e-20  at nodes/node:B3/rx
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW        leaves  136  max_norm_diff 1.50e-20  at members/pipe:ARC/arc/included_angle
+    junction angles vs mine: max |diff| 0.0e+00 rad (max theta 0.000e+00); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-X5E6        leaves  136  max_norm_diff 5.81e-21  at members/pipe:ARC/arc/centre/0
+    junction angles vs mine: max |diff| 0.0e+00 rad (max theta 0.000e+00); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-X7P3E6      leaves  136  max_norm_diff 4.60e-21  at members/pipe:ARC/arc/tangent_j/0
+    junction angles vs mine: max |diff| 0.0e+00 rad (max theta 0.000e+00); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW-X5E6   leaves  136  max_norm_diff 9.96e-21  at members/pipe:ARC/arc/included_angle
+    junction angles vs mine: max |diff| 0.0e+00 rad (max theta 0.000e+00); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW-X7P3E6 leaves  136  max_norm_diff 9.96e-21  at members/pipe:ARC/arc/included_angle
+    junction angles vs mine: max |diff| 0.0e+00 rad (max theta 0.000e+00); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-MM-MPA      leaves  136  max_norm_diff 3.10e-20  at members/pipe:ARC/arc/included_angle
+    junction angles vs mine: max |diff| 0.0e+00 rad (max theta 0.000e+00); zero_scale ok; zero groups ['rotation', 'support_force@support:A', 'support_moment@support:A', 'effective_axial_force', 'shear_force', 'section_moment', 'bending_torsion_stress', 'elastic_end_force_chord_frame']
+U2-L-ANCH-PTW-K2-SKEW                              leaves  320  max_norm_diff 3.71e-20  at supports/support:D/Fz
+    junction angles vs mine: max |diff| 3.5e-36 rad (max theta 4.497e-16); zero_scale ok; zero groups []
+U2-L-ANCH-PTW-K2-X5E6                              leaves  320  max_norm_diff 2.75e-20  at nodes/node:C/ry
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-ANCH-PTW-K2-X7P3E6                            leaves  320  max_norm_diff 2.75e-20  at nodes/node:C/ry
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+U2-L-ANCH-PTW-K2-SKEW-X5E6                         leaves  320  max_norm_diff 3.48e-20  at members/pipe:BEND/end_rows/end_j/chord_frame_elastic/F_x
+    junction angles vs mine: max |diff| 3.4e-30 rad (max theta 6.665e-10); zero_scale ok; zero groups []
+U2-L-ANCH-PTW-K2-SKEW-X7P3E6                       leaves  320  max_norm_diff 3.48e-20  at members/pipe:BEND/end_rows/end_j/chord_frame_elastic/F_x
+    junction angles vs mine: max |diff| 3.4e-30 rad (max theta 6.665e-10); zero_scale ok; zero groups []
+U2-L-ANCH-PTW-K2-MM-MPA                            leaves  320  max_norm_diff 2.75e-20  at nodes/node:C/ry
+    junction angles vs mine: max |diff| 5.3e-50 rad (max theta 5.291e-50); zero_scale ok; zero groups []
+TOTAL leaves compared 34599; OVERALL max normalized difference 4.680e-20

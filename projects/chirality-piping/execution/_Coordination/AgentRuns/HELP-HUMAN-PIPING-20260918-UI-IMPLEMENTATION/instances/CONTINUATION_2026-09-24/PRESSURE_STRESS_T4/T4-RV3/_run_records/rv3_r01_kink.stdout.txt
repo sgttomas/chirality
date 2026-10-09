@@ -1,0 +1,9 @@
+U2-L-KINK-FREE-P-K2 node node:C: D.x binary64 3.24800000000000022026824808563105762004852294921875
+   theta 4.9999995833328447e-04 rad; theta - alpha_tan -5.000000e-04; tan(theta) - alpha_tan -5.000000e-04; sin(theta) - alpha_tan -5.000001e-04; (1-cos theta) - (1-cos alpha) -3.750000e-07; tan(theta) - tan(alpha) -5.000003e-04
+   binary64 atan2 kink 4.99999958333284577e-04 (minus exact 6.03e-20); admitted (theta <= 1e-3): True
+U2-L-KINK-ANCH-P-K2 node node:C: D.x binary64 3.24800000000000022026824808563105762004852294921875
+   theta 4.9999995833328447e-04 rad; theta - alpha_tan -5.000000e-04; tan(theta) - alpha_tan -5.000000e-04; sin(theta) - alpha_tan -5.000001e-04; (1-cos theta) - (1-cos alpha) -3.750000e-07; tan(theta) - tan(alpha) -5.000003e-04
+   binary64 atan2 kink 4.99999958333284577e-04 (minus exact 6.03e-20); admitted (theta <= 1e-3): True
+U2-L-MITRE-REFUSED-P-K2 node node:C: D.x binary64 3.24199999999999999289457264239899814128875732421875
+   theta 1.9999973333397350e-03 rad; theta - alpha_tan 9.999973e-04; tan(theta) - alpha_tan 1.000000e-03; sin(theta) - alpha_tan 9.999960e-04; (1-cos theta) - (1-cos alpha) 1.499994e-06; tan(theta) - tan(alpha) 9.999997e-04
+   binary64 atan2 kink 1.99999733333973504e-03 (minus exact -5.06e-20); admitted (theta <= 1e-3): False

@@ -1,0 +1,41 @@
+== T4-I7 negative controls re-derived ==
+U2-L-FREE-P-K2                           bend_term_omitted                          rows 6  max|mine-I7 wrong|/scale 4.3e-17  distance min 6.07e+08 max 4.05e+12
+U2-L-FREE-P-K2                           c_b_added_not_subtracted                   rows 6  max|mine-I7 wrong|/scale 1.1e-16  distance min 1.21e+09 max 8.09e+12
+U2-L-FREE-P-K2                           poisson_term_missing_on_arc                rows 2  max|mine-I7 wrong|/scale 1.9e-20  distance min 8.82e+07 max 8.82e+07
+U2-L-FREE-P-K2                           caps_subtracted_in_recovery                rows 8  max|mine-I7 wrong|/scale 1.3e-49  distance min 1.00e+09 max 1.00e+09
+U2-L-FREE-P-K2                           wall_load_double_count_elastic_end_force   rows 8  max|mine-I7 wrong|/scale 4.1e-20  distance min 7.61e+07 max 1.00e+09
+U2-L-FREE-P-K2                           wall_load_double_count_wall_end_force      rows 5  max|mine-I7 wrong|/scale 4.7e-21  distance min 1.00e+09 max 1.00e+09
+U2-L-ANCH-P-K2                           bend_term_omitted                          rows 8  max|mine-I7 wrong|/scale 2.3e-18  distance min 1.48e+09 max 7.15e+11
+U2-L-ANCH-P-K2                           c_b_added_not_subtracted                   rows 8  max|mine-I7 wrong|/scale 2.6e-17  distance min 2.87e+09 max 1.43e+12
+U2-L-ANCH-P-K2                           poisson_term_missing_on_arc                rows 8  max|mine-I7 wrong|/scale 2.5e-20  distance min 1.19e+07 max 1.05e+08
+U2-L-ANCH-P-K2                           caps_subtracted_in_recovery                rows 8  max|mine-I7 wrong|/scale 4.4e-23  distance min 1.00e+09 max 1.00e+09
+U2-L-ANCH-P-K2                           wall_load_double_count_elastic_end_force   rows 8  max|mine-I7 wrong|/scale 3.6e-18  distance min 7.38e+09 max 7.17e+11
+U2-L-ANCH-P-K2                           wall_load_double_count_wall_end_force      rows 5  max|mine-I7 wrong|/scale 4.8e-20  distance min 1.00e+09 max 1.00e+09
+U2-L-ANCH-ALL-K2                         bend_term_omitted                          rows 8  max|mine-I7 wrong|/scale 2.5e-19  distance min 8.58e+06 max 5.71e+10
+U2-L-ANCH-ALL-K2                         c_b_added_not_subtracted                   rows 8  max|mine-I7 wrong|/scale 2.4e-18  distance min 1.80e+07 max 1.14e+11
+U2-L-ANCH-ALL-K2                         poisson_term_missing_on_arc                rows 8  max|mine-I7 wrong|/scale 1.6e-20  distance min 8.86e+04 max 8.37e+06
+U2-L-ANCH-ALL-K2                         caps_subtracted_in_recovery                rows 8  max|mine-I7 wrong|/scale 2.6e-22  distance min 1.01e+09 max 1.01e+09
+U2-L-ANCH-ALL-K2                         wall_load_double_count_elastic_end_force   rows 8  max|mine-I7 wrong|/scale 2.8e-19  distance min 1.01e+09 max 5.72e+10
+U2-L-ANCH-ALL-K2                         wall_load_double_count_wall_end_force      rows 5  max|mine-I7 wrong|/scale 4.9e-20  distance min 1.01e+09 max 1.01e+09
+U2-L-ANCH-PTW-K2                         bend_term_omitted                          rows 8  max|mine-I7 wrong|/scale 2.5e-19  distance min 1.30e+08 max 6.26e+10
+U2-L-ANCH-PTW-K2                         c_b_added_not_subtracted                   rows 8  max|mine-I7 wrong|/scale 2.4e-18  distance min 2.52e+08 max 1.25e+11
+U2-L-ANCH-PTW-K2                         poisson_term_missing_on_arc                rows 8  max|mine-I7 wrong|/scale 1.8e-20  distance min 6.50e+05 max 8.37e+06
+U2-L-ANCH-PTW-K2                         caps_subtracted_in_recovery                rows 8  max|mine-I7 wrong|/scale 2.6e-22  distance min 1.01e+09 max 1.01e+09
+U2-L-ANCH-PTW-K2                         wall_load_double_count_elastic_end_force   rows 8  max|mine-I7 wrong|/scale 2.8e-19  distance min 1.01e+09 max 5.72e+10
+U2-L-ANCH-PTW-K2                         wall_load_double_count_wall_end_force      rows 5  max|mine-I7 wrong|/scale 4.9e-20  distance min 1.01e+09 max 1.01e+09
+U2-U-ANCH-P-K2                           bend_term_omitted                          rows 8  max|mine-I7 wrong|/scale 6.6e-18  distance min 1.31e+08 max 1.94e+12
+U2-U-ANCH-P-K2                           c_b_added_not_subtracted                   rows 8  max|mine-I7 wrong|/scale 8.4e-17  distance min 2.50e+08 max 3.88e+12
+U2-U-ANCH-P-K2                           poisson_term_missing_on_arc                rows 8  max|mine-I7 wrong|/scale 9.2e-21  distance min 8.34e+06 max 1.91e+08
+U2-U-ANCH-P-K2                           caps_subtracted_in_recovery                rows 8  max|mine-I7 wrong|/scale 4.2e-24  distance min 1.00e+09 max 1.00e+09
+U2-U-ANCH-P-K2                           wall_load_double_count_elastic_end_force   rows 8  max|mine-I7 wrong|/scale 1.0e-17  distance min 1.80e+12 max 1.94e+12
+U2-U-ANCH-P-K2                           wall_load_double_count_wall_end_force      rows 8  max|mine-I7 wrong|/scale 4.1e-20  distance min 1.00e+09 max 1.00e+09
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2   bend_term_omitted                          rows 6  max|mine-I7 wrong|/scale 3.7e-18  distance min 7.07e+08 max 1.00e+12
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2   c_b_added_not_subtracted                   rows 6  max|mine-I7 wrong|/scale 8.7e-18  distance min 1.41e+09 max 2.01e+12
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2   poisson_term_missing_on_arc                rows 2  max|mine-I7 wrong|/scale 1.1e-19  distance min 1.50e+09 max 1.50e+09
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2   caps_subtracted_in_recovery                rows 5  max|mine-I7 wrong|/scale 1.6e-49  distance min 1.00e+09 max 1.00e+09
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2   wall_load_double_count_elastic_end_force   rows 8  max|mine-I7 wrong|/scale 6.4e-20  distance min 3.83e+08 max 1.00e+09
+MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2   wall_load_double_count_wall_end_force      rows 5  max|mine-I7 wrong|/scale 4.0e-21  distance min 1.00e+09 max 1.00e+09
+U2-L-KINK-FREE-P-K2                      interior_remainder_omitted                 rows 5  max|mine-I7 wrong|/scale 1.1e-20  distance min 2.33e+04 max 3.32e+08
+U2-L-KINK-ANCH-P-K2                      interior_remainder_omitted                 rows 8  max|mine-I7 wrong|/scale 3.5e-20  distance min 3.43e+06 max 3.43e+08
+worst agreement with T4-I7's wrong values: 1.09e-16
+rows that do not discriminate (distance < 1e3 tolerances): 0

@@ -1,0 +1,18 @@
+round-00 rows below 1e3 tolerances (RV3 B-1): 23
+header keys changed: ['author', 'criteria', 'polygon_limit_control', 'row_kind_map_today', 'sign_conventions'] added: ['revision', 'tangency_rule'] removed: []
+round-00 polygon entries unchanged and first: True ; added: ['U2-L-ANCH-PTW-K1', 'U2-L-FREE-PTW-K1']
+cases added: ['U2-L-FREE-PTW-K1', 'U2-L-ANCH-PTW-K1', 'U2-U-ANCH-PTW-K1', 'U2-L-FREE-PTW-K2', 'U2-L-ANCH-PTW-K2', 'U2-U-ANCH-PTW-K2', 'U2-L-MITRE-REFUSED-P-K2', 'U2-L-ANCH-PTW-K2-SKEW', 'U2-L-ANCH-PTW-K2-X5E6', 'U2-L-ANCH-PTW-K2-X7P3E6', 'U2-L-ANCH-PTW-K2-SKEW-X5E6', 'U2-L-ANCH-PTW-K2-SKEW-X7P3E6', 'U2-L-ANCH-PTW-K2-MM-MPA']
+cases removed: []
+surviving cases (65, kink cases excluded): round-00 leaves 36463, changed 0, removed 1616
+removed by kind: {'chord_frame(wall)': 1356, 'zero_scale/end_action_force_chord_frame': 260}
+added by kind: {'chord_frame_elastic': 1356, 'zero_scale/elastic_end_force_chord_frame': 260, 'derived/alpha_tan_provisional_rad': 65, 'derived/junction_angles_rad': 210}
+other differences outside expected/zero_scale/derived/controls: []
+B-1 rows dropped and recorded in rows_dropped_repair_01 (surviving cases): 20 of 20
+B-1 rows in the revised kink cases (control regenerated): 3
+round-01 listed rows 263; rows below 1e3 tolerances or with zero printed in exponent form: 0; controls whose listed maximum differs from max_distance: []
+U2-L-KINK-ANCH-P-K2 input differences: [('geometry/node_coordinates_binary64_exact/node:D/0', '3.246', '3.248')]
+U2-L-KINK-FREE-P-K2 input differences: [('geometry/node_coordinates_binary64_exact/node:D/0', '3.246', '3.248')]
+sketches: surviving non-kink cases identical 65 of 65; sketches now 80; new: ['U2-L-ANCH-PTW-K1', 'U2-L-ANCH-PTW-K2', 'U2-L-ANCH-PTW-K2-MM-MPA', 'U2-L-ANCH-PTW-K2-SKEW', 'U2-L-ANCH-PTW-K2-SKEW-X5E6', 'U2-L-ANCH-PTW-K2-SKEW-X7P3E6', 'U2-L-ANCH-PTW-K2-X5E6', 'U2-L-ANCH-PTW-K2-X7P3E6', 'U2-L-FREE-PTW-K1', 'U2-L-FREE-PTW-K2', 'U2-L-MITRE-REFUSED-P-K2', 'U2-U-ANCH-PTW-K1', 'U2-U-ANCH-PTW-K2']
+U2-L-KINK-ANCH-P-K2 sketch differences: [('0.3.0/document/model/nodes/3/position/x', 3.246, 3.248), ('0.4.0/document/model/nodes/3/position/x', 3.246, 3.248)]
+U2-L-KINK-FREE-P-K2 sketch differences: [('0.3.0/document/model/nodes/3/position/x', 3.246, 3.248), ('0.4.0/document/model/nodes/3/position/x', 3.246, 3.248)]
+sketch header unchanged: {'schema_version': True, 'status': True, 'reference_file': True}
