@@ -40,7 +40,7 @@ This note is for the owner's next session only. It is not a standing record and 
 **T3:**
 - **#1168, the legacy pressure retirement. Not merged; the head is `37724dea27`.**
   - Passed: CI; the full-SHA dispatch 37878270521 (target_base `ba500defa4`); source equality, citations and GEN-8; RV127 (after the A2-B-1 repair), RV128 and I112's T9 and both-entry gate.
-  - **Pass B is not done.** I107 never returned, and its partial tools are in `R/I107/u3_passb_01/`. A fresh Pass B by `BRIEFS/U3_SB.md` is next, then RV124's confirmation.
+  - **Pass B is not done.** At handoff I107 was still waiting on its own background job, so it may yet have written its result. Look for a return in `R/I107/u3_passb_01/` and for its running job before dispatching. If there is no complete return, a fresh Pass B by `BRIEFS/U3_SB.md` is next, then RV124's confirmation.
   - **DEC-025** (the chain `U3_37724dea27`) was still running at handoff: the sweep exited 0 at 03:46Z and the suites finished at 04:00Z. Check that `WT/scratch/u9_dec025/U3_37724dea27/meta.txt` ends with ALL-DONE and that src-tauri ran on the head and on main (`WT/scratch/prb1_merge/dec_chain_U3_37724dea27.txt`). Then run cmp_cargo.
   - Main moved to `2759c0f1a1` (App v4). Before the merge, confirm that nothing since `ba500defa4` touches `projects/chirality-piping/`.
   - Then the merge record, `gh pr merge 1168 --merge --match-head-commit 37724dea27a782ad4b889a5e06f8c0e91e2a67ce`, NUM absorbing main, and telling T4.
