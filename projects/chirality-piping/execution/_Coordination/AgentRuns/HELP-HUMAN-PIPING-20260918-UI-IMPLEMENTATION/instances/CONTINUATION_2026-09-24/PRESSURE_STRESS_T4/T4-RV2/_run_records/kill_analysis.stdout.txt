@@ -1,0 +1,155 @@
+K1 family: N0 translations rigid, rotational springs 1e6, tip moment (1,1,1); k = 1; E 2e11, G 8e10, OD 0.2 t 0.01
+columns: product element / solver | actual (criterion units) | K-D5 trigger with: correct, M31b(cos RN), M31b(cos 1ulp low), M31a   [demotes iff trigger > 1]
+-- K1-IP phi_nom 1e-08  X 0  R 30000000.018065747  phi_b 1e-08  fl(cos phi_b) = 1.0
+   correct/GL                 LU  actual 3.040e-05   triggers: correct 6.080e-05  M31b-RN 1.274e+01  M31b-lo 1.555e+01  M31a 2.841e-05
+   correct/GL                 LLT actual 2.265e-05   triggers: correct 4.531e-05  M31b-RN 1.274e+01  M31b-lo 1.555e+01  M31a 1.569e-05
+   correct/CR                 LU  actual 3.040e-05   triggers: correct 6.080e-05  M31b-RN 1.274e+01  M31b-lo 1.555e+01  M31a 2.841e-05
+   correct/CR                 LLT actual 2.397e-05   triggers: correct 4.793e-05  M31b-RN 1.274e+01  M31b-lo 1.555e+01  M31a 4.061e-05
+   mutant RN/GL (K2 system)   LU  actual 6.372e+00   triggers: correct 1.274e+01  M31b-RN 4.317e-05  M31b-lo 2.830e+01  M31a 2.487e-05
+   mutant RN/GL (K2 system)   LLT actual 6.372e+00   triggers: correct 1.274e+01  M31b-RN 5.804e-05  M31b-lo 2.830e+01  M31a 2.640e-05
+   mutant lo/GL               LU  actual 7.776e+00   triggers: correct 1.555e+01  M31b-RN 2.830e+01  M31b-lo 4.531e-05  M31a 1.297e-05
+   mutant lo/GL               LLT actual 7.776e+00   triggers: correct 1.555e+01  M31b-RN 2.830e+01  M31b-lo 7.652e-05  M31a 2.740e-05
+-- K1-IP phi_nom 1e-08  X 5000000  R 30000000.018065747  phi_b 1e-08  fl(cos phi_b) = 1.0
+   correct/GL                 LU  actual 3.040e-05   triggers: correct 6.080e-05  M31b-RN 1.274e+01  M31b-lo 1.555e+01  M31a 2.841e-05
+   correct/GL                 LLT actual 2.265e-05   triggers: correct 4.531e-05  M31b-RN 1.274e+01  M31b-lo 1.555e+01  M31a 1.569e-05
+   correct/CR                 LU  actual 3.040e-05   triggers: correct 6.080e-05  M31b-RN 1.274e+01  M31b-lo 1.555e+01  M31a 2.841e-05
+   correct/CR                 LLT actual 2.397e-05   triggers: correct 4.793e-05  M31b-RN 1.274e+01  M31b-lo 1.555e+01  M31a 4.061e-05
+   mutant RN/GL (K2 system)   LU  actual 6.372e+00   triggers: correct 1.274e+01  M31b-RN 4.317e-05  M31b-lo 2.830e+01  M31a 2.487e-05
+   mutant RN/GL (K2 system)   LLT actual 6.372e+00   triggers: correct 1.274e+01  M31b-RN 5.804e-05  M31b-lo 2.830e+01  M31a 2.640e-05
+   mutant lo/GL               LU  actual 7.776e+00   triggers: correct 1.555e+01  M31b-RN 2.830e+01  M31b-lo 4.531e-05  M31a 1.297e-05
+   mutant lo/GL               LLT actual 7.776e+00   triggers: correct 1.555e+01  M31b-RN 2.830e+01  M31b-lo 7.652e-05  M31a 2.740e-05
+-- K1-IP phi_nom 1.5e-08  X 0  R 20000000.012043834  phi_b 1.4999999999999999e-08  fl(cos phi_b) = 0.9999999999999999
+   correct/GL                 LU  actual 4.596e-05   triggers: correct 9.193e-05  M31b-RN 2.511e-01  M31b-lo 2.511e-01  M31a 1.196e-05
+   correct/GL                 LLT actual 3.826e-05   triggers: correct 7.652e-05  M31b-RN 2.511e-01  M31b-lo 2.511e-01  M31a 2.209e-05
+   correct/CR                 LU  actual 8.468e-05   triggers: correct 1.694e-04  M31b-RN 2.511e-01  M31b-lo 2.511e-01  M31a 4.653e-05
+   correct/CR                 LLT actual 2.265e-05   triggers: correct 4.531e-05  M31b-RN 2.511e-01  M31b-lo 2.511e-01  M31a 7.753e-05
+   mutant RN/GL (K2 system)   LU  actual 1.255e-01   triggers: correct 2.510e-01  M31b-RN 4.541e-05  M31b-lo 4.541e-05  M31a 3.534e-05
+   mutant RN/GL (K2 system)   LLT actual 1.255e-01   triggers: correct 2.511e-01  M31b-RN 7.652e-05  M31b-lo 7.652e-05  M31a 2.023e-05
+   mutant lo/GL               LU  actual 1.255e-01   triggers: correct 2.510e-01  M31b-RN 4.541e-05  M31b-lo 4.541e-05  M31a 3.534e-05
+   mutant lo/GL               LLT actual 1.255e-01   triggers: correct 2.511e-01  M31b-RN 7.652e-05  M31b-lo 7.652e-05  M31a 2.023e-05
+-- K1-IP phi_nom 2e-08  X 0  R 15000000.009032873  phi_b 2e-08  fl(cos phi_b) = 0.9999999999999998
+   correct/GL                 LU  actual 9.144e-06   triggers: correct 1.829e-05  M31b-RN 2.809e+00  M31b-lo 2.809e+00  M31a 3.188e-05
+   correct/GL                 LLT actual 2.882e-05   triggers: correct 5.764e-05  M31b-RN 2.809e+00  M31b-lo 2.809e+00  M31a 4.822e-05
+   correct/CR                 LU  actual 3.806e-05   triggers: correct 7.612e-05  M31b-RN 2.809e+00  M31b-lo 2.809e+00  M31a 4.208e-05
+   correct/CR                 LLT actual 2.397e-05   triggers: correct 4.794e-05  M31b-RN 2.809e+00  M31b-lo 2.809e+00  M31a 8.198e-05
+   mutant RN/GL (K2 system)   LU  actual 1.405e+00   triggers: correct 2.809e+00  M31b-RN 2.994e-05  M31b-lo 2.994e-05  M31a 5.316e-05
+   mutant RN/GL (K2 system)   LLT actual 1.405e+00   triggers: correct 2.809e+00  M31b-RN 6.594e-05  M31b-lo 6.594e-05  M31a 4.140e-05
+   mutant lo/GL               LU  actual 1.405e+00   triggers: correct 2.809e+00  M31b-RN 2.994e-05  M31b-lo 2.994e-05  M31a 5.316e-05
+   mutant lo/GL               LLT actual 1.405e+00   triggers: correct 2.809e+00  M31b-RN 6.594e-05  M31b-lo 6.594e-05  M31a 4.140e-05
+-- K1-IP phi_nom 3e-08  X 0  R 10000000.006021917  phi_b 3.0000000000000004e-08  fl(cos phi_b) = 0.9999999999999996
+   correct/GL                 LU  actual 2.377e-05   triggers: correct 4.754e-05  M31b-RN 5.022e-01  M31b-lo 5.022e-01  M31a 2.135e-05
+   correct/GL                 LLT actual 3.938e-05   triggers: correct 7.875e-05  M31b-RN 5.022e-01  M31b-lo 5.022e-01  M31a 4.271e-05
+   correct/CR                 LU  actual 3.938e-05   triggers: correct 7.875e-05  M31b-RN 5.022e-01  M31b-lo 5.022e-01  M31a 2.416e-05
+   correct/CR                 LLT actual 2.397e-05   triggers: correct 4.794e-05  M31b-RN 5.022e-01  M31b-lo 5.022e-01  M31a 2.159e-05
+   mutant RN/GL (K2 system)   LU  actual 2.511e-01   triggers: correct 5.022e-01  M31b-RN 2.493e-05  M31b-lo 2.493e-05  M31a 3.333e-05
+   mutant RN/GL (K2 system)   LLT actual 2.511e-01   triggers: correct 5.021e-01  M31b-RN 4.794e-05  M31b-lo 4.794e-05  M31a 4.632e-05
+   mutant lo/GL               LU  actual 2.511e-01   triggers: correct 5.022e-01  M31b-RN 2.493e-05  M31b-lo 2.493e-05  M31a 3.333e-05
+   mutant lo/GL               LLT actual 2.511e-01   triggers: correct 5.021e-01  M31b-RN 4.794e-05  M31b-lo 4.794e-05  M31a 4.632e-05
+-- K1-IP phi_nom 5e-08  X 0  R 6000000.0036131507  phi_b 4.9999999999999998e-08  fl(cos phi_b) = 0.9999999999999988
+   correct/GL                 LU  actual 4.596e-05   triggers: correct 9.192e-05  M31b-RN 1.466e+00  M31b-lo 1.466e+00  M31a 1.412e-05
+   correct/GL                 LLT actual 2.506e-05   triggers: correct 5.013e-05  M31b-RN 1.466e+00  M31b-lo 1.466e+00  M31a 6.332e-05
+   correct/CR                 LU  actual 2.863e-05   triggers: correct 5.725e-05  M31b-RN 1.466e+00  M31b-lo 1.466e+00  M31a 3.774e-05
+   correct/CR                 LLT actual 5.366e-05   triggers: correct 1.073e-04  M31b-RN 1.466e+00  M31b-lo 1.466e+00  M31a 3.321e-05
+   mutant RN/GL (K2 system)   LU  actual 7.328e-01   triggers: correct 1.466e+00  M31b-RN 4.432e-05  M31b-lo 4.432e-05  M31a 3.673e-05
+   mutant RN/GL (K2 system)   LLT actual 7.328e-01   triggers: correct 1.466e+00  M31b-RN 2.642e-05  M31b-lo 2.642e-05  M31a 5.174e-05
+   mutant lo/GL               LU  actual 7.328e-01   triggers: correct 1.466e+00  M31b-RN 4.432e-05  M31b-lo 4.432e-05  M31a 3.673e-05
+   mutant lo/GL               LLT actual 7.328e-01   triggers: correct 1.466e+00  M31b-RN 2.642e-05  M31b-lo 2.642e-05  M31a 5.174e-05
+-- K1-IP phi_nom 1e-06  X 0  R 300000.00018067  phi_b 9.9999999999999974e-07  fl(cos phi_b) = 0.9999999999995
+   correct/GL                 LU  actual 3.078e-05   triggers: correct 6.156e-05  M31b-RN 1.133e-01  M31b-lo 1.133e-01  M31a 2.318e-05
+   correct/GL                 LLT actual 4.061e-05   triggers: correct 8.123e-05  M31b-RN 1.134e-01  M31b-lo 1.134e-01  M31a 2.675e-05
+   correct/CR                 LU  actual 5.151e-05   triggers: correct 1.030e-04  M31b-RN 1.133e-01  M31b-lo 1.133e-01  M31a 6.669e-05
+   correct/CR                 LLT actual 1.450e-05   triggers: correct 2.900e-05  M31b-RN 1.133e-01  M31b-lo 1.133e-01  M31a 2.615e-05
+   mutant RN/GL (K2 system)   LU  actual 5.665e-02   triggers: correct 1.133e-01  M31b-RN 3.645e-05  M31b-lo 3.645e-05  M31a 3.569e-05
+   mutant RN/GL (K2 system)   LLT actual 5.663e-02   triggers: correct 1.133e-01  M31b-RN 4.065e-05  M31b-lo 4.065e-05  M31a 1.448e-05
+   mutant lo/GL               LU  actual 5.665e-02   triggers: correct 1.133e-01  M31b-RN 3.645e-05  M31b-lo 3.645e-05  M31a 3.569e-05
+   mutant lo/GL               LLT actual 5.663e-02   triggers: correct 1.133e-01  M31b-RN 4.065e-05  M31b-lo 4.065e-05  M31a 1.448e-05
+-- K1-IP phi_nom 0.0001  X 0  R 3000.0000030565748  phi_b 9.9999999999999991e-05  fl(cos phi_b) = 0.999999995
+   correct/GL                 LU  actual 5.127e-05   triggers: correct 1.025e-04  M31b-RN 7.277e-04  M31b-lo 7.277e-04  M31a 3.940e-05
+   correct/GL                 LLT actual 2.042e-05   triggers: correct 4.083e-05  M31b-RN 7.052e-04  M31b-lo 7.052e-04  M31a 2.263e-05
+   correct/CR                 LU  actual 5.127e-05   triggers: correct 1.025e-04  M31b-RN 7.044e-04  M31b-lo 7.044e-04  M31a 3.940e-05
+   correct/CR                 LLT actual 2.025e-05   triggers: correct 4.051e-05  M31b-RN 6.880e-04  M31b-lo 6.880e-04  M31a 2.263e-05
+   mutant RN/GL (K2 system)   LU  actual 3.184e-04   triggers: correct 6.368e-04  M31b-RN 1.025e-04  M31b-lo 1.025e-04  M31a 1.574e-05
+   mutant RN/GL (K2 system)   LLT actual 3.189e-04   triggers: correct 6.378e-04  M31b-RN 1.029e-04  M31b-lo 1.029e-04  M31a 1.656e-05
+   mutant lo/GL               LU  actual 3.184e-04   triggers: correct 6.368e-04  M31b-RN 1.025e-04  M31b-lo 1.025e-04  M31a 1.574e-05
+   mutant lo/GL               LLT actual 3.189e-04   triggers: correct 6.378e-04  M31b-RN 1.029e-04  M31b-lo 1.029e-04  M31a 1.656e-05
+-- K1-IP phi_nom 0.0873  X 0  R 3.4388378459788416  phi_b 0.087266462599716488  fl(cos phi_b) = 0.9961946980917455
+   correct/GL                 LU  actual 3.446e-05   triggers: correct 6.891e-05  M31b-RN 6.891e-05  M31b-lo 6.891e-05  M31a 2.135e-05
+   correct/GL                 LLT actual 8.858e-05   triggers: correct 1.772e-04  M31b-RN 1.772e-04  M31b-lo 1.772e-04  M31a 1.296e-04
+   correct/CR                 LU  actual 3.446e-05   triggers: correct 6.891e-05  M31b-RN 6.891e-05  M31b-lo 6.891e-05  M31a 1.987e-05
+   correct/CR                 LLT actual 2.133e-05   triggers: correct 4.266e-05  M31b-RN 4.266e-05  M31b-lo 4.266e-05  M31a 7.581e-05
+   mutant RN/GL (K2 system)   LU  actual 8.638e-06   triggers: correct 1.728e-05  M31b-RN 1.704e-05  M31b-lo 1.704e-05  M31a 8.133e-06
+   mutant RN/GL (K2 system)   LLT actual 2.675e-05   triggers: correct 5.351e-05  M31b-RN 5.351e-05  M31b-lo 5.351e-05  M31a 4.916e-05
+   mutant lo/GL               LU  actual 8.638e-06   triggers: correct 1.728e-05  M31b-RN 1.704e-05  M31b-lo 1.704e-05  M31a 8.133e-06
+   mutant lo/GL               LLT actual 2.675e-05   triggers: correct 5.351e-05  M31b-RN 5.351e-05  M31b-lo 5.351e-05  M31a 4.916e-05
+-- K1-SK phi_nom 1e-08  X 0  R 30000000.012417633  phi_b 1.0000000000000002e-08  fl(cos phi_b) = 1.0
+   correct/GL                 LU  actual 2.462e-05   triggers: correct 4.923e-05  M31b-RN 1.245e+01  M31b-lo 1.519e+01  M31a 4.599e-05
+   correct/GL                 LLT actual 2.448e-05   triggers: correct 4.896e-05  M31b-RN 1.245e+01  M31b-lo 1.519e+01  M31a 1.839e-05
+   correct/CR                 LU  actual 1.369e-05   triggers: correct 2.737e-05  M31b-RN 1.245e+01  M31b-lo 1.519e+01  M31a 5.981e-06
+   correct/CR                 LLT actual 2.843e-05   triggers: correct 5.687e-05  M31b-RN 1.245e+01  M31b-lo 1.519e+01  M31a 2.368e-05
+   mutant RN/GL (K2 system)   LU  actual 6.225e+00   triggers: correct 1.245e+01  M31b-RN 6.822e-05  M31b-lo 2.764e+01  M31a 6.147e-05
+   mutant RN/GL (K2 system)   LLT actual 6.225e+00   triggers: correct 1.245e+01  M31b-RN 2.986e-05  M31b-lo 2.764e+01  M31a 4.897e-05
+   mutant lo/GL               LU  actual 7.597e+00   triggers: correct 1.519e+01  M31b-RN 2.764e+01  M31b-lo 7.348e-05  M31a 3.413e-05
+   mutant lo/GL               LLT actual 7.597e+00   triggers: correct 1.519e+01  M31b-RN 2.764e+01  M31b-lo 3.393e-05  M31a 8.933e-06
+-- K1-SK phi_nom 1.5e-08  X 0  R 20000000.008278426  phi_b 1.4999999999999999e-08  fl(cos phi_b) = 0.9999999999999999
+   correct/GL                 LU  actual 1.499e-05   triggers: correct 2.998e-05  M31b-RN 2.453e-01  M31b-lo 2.453e-01  M31a 3.821e-05
+   correct/GL                 LLT actual 9.255e-06   triggers: correct 1.851e-05  M31b-RN 2.453e-01  M31b-lo 2.453e-01  M31a 5.768e-05
+   correct/CR                 LU  actual 7.080e-06   triggers: correct 1.416e-05  M31b-RN 2.453e-01  M31b-lo 2.453e-01  M31a 2.256e-05
+   correct/CR                 LLT actual 1.207e-05   triggers: correct 2.414e-05  M31b-RN 2.453e-01  M31b-lo 2.453e-01  M31a 5.673e-06
+   mutant RN/GL (K2 system)   LU  actual 1.227e-01   triggers: correct 2.454e-01  M31b-RN 9.088e-05  M31b-lo 9.088e-05  M31a 4.674e-05
+   mutant RN/GL (K2 system)   LLT actual 1.226e-01   triggers: correct 2.453e-01  M31b-RN 3.737e-05  M31b-lo 3.737e-05  M31a 6.842e-05
+   mutant lo/GL               LU  actual 1.227e-01   triggers: correct 2.454e-01  M31b-RN 9.088e-05  M31b-lo 9.088e-05  M31a 4.674e-05
+   mutant lo/GL               LLT actual 1.226e-01   triggers: correct 2.453e-01  M31b-RN 3.737e-05  M31b-lo 3.737e-05  M31a 6.842e-05
+-- K1-SK phi_nom 2e-08  X 0  R 15000000.006208817  phi_b 2.0000000000000004e-08  fl(cos phi_b) = 0.9999999999999998
+   correct/GL                 LU  actual 2.179e-05   triggers: correct 4.358e-05  M31b-RN 2.744e+00  M31b-lo 2.744e+00  M31a 4.022e-05
+   correct/GL                 LLT actual 1.849e-05   triggers: correct 3.698e-05  M31b-RN 2.745e+00  M31b-lo 2.745e+00  M31a 3.001e-05
+   correct/CR                 LU  actual 1.317e-05   triggers: correct 2.633e-05  M31b-RN 2.745e+00  M31b-lo 2.745e+00  M31a 1.257e-05
+   correct/CR                 LLT actual 4.374e-05   triggers: correct 8.747e-05  M31b-RN 2.744e+00  M31b-lo 2.744e+00  M31a 4.991e-05
+   mutant RN/GL (K2 system)   LU  actual 1.372e+00   triggers: correct 2.745e+00  M31b-RN 2.024e-05  M31b-lo 2.024e-05  M31a 5.298e-05
+   mutant RN/GL (K2 system)   LLT actual 1.372e+00   triggers: correct 2.745e+00  M31b-RN 2.246e-05  M31b-lo 2.246e-05  M31a 1.071e-05
+   mutant lo/GL               LU  actual 1.372e+00   triggers: correct 2.745e+00  M31b-RN 2.024e-05  M31b-lo 2.024e-05  M31a 5.298e-05
+   mutant lo/GL               LLT actual 1.372e+00   triggers: correct 2.745e+00  M31b-RN 2.246e-05  M31b-lo 2.246e-05  M31a 1.071e-05
+-- K1-SK phi_nom 3e-08  X 0  R 10000000.004139213  phi_b 3.0000000000000004e-08  fl(cos phi_b) = 0.9999999999999996
+   correct/GL                 LU  actual 1.894e-05   triggers: correct 3.789e-05  M31b-RN 4.906e-01  M31b-lo 4.906e-01  M31a 3.492e-05
+   correct/GL                 LLT actual 8.341e-06   triggers: correct 1.668e-05  M31b-RN 4.906e-01  M31b-lo 4.906e-01  M31a 2.403e-05
+   correct/CR                 LU  actual 1.591e-05   triggers: correct 3.181e-05  M31b-RN 4.906e-01  M31b-lo 4.906e-01  M31a 3.966e-05
+   correct/CR                 LLT actual 2.521e-05   triggers: correct 5.042e-05  M31b-RN 4.906e-01  M31b-lo 4.906e-01  M31a 4.314e-05
+   mutant RN/GL (K2 system)   LU  actual 2.453e-01   triggers: correct 4.906e-01  M31b-RN 1.009e-05  M31b-lo 1.009e-05  M31a 1.273e-05
+   mutant RN/GL (K2 system)   LLT actual 2.453e-01   triggers: correct 4.906e-01  M31b-RN 2.557e-05  M31b-lo 2.557e-05  M31a 3.113e-05
+   mutant lo/GL               LU  actual 2.453e-01   triggers: correct 4.906e-01  M31b-RN 1.009e-05  M31b-lo 1.009e-05  M31a 1.273e-05
+   mutant lo/GL               LLT actual 2.453e-01   triggers: correct 4.906e-01  M31b-RN 2.557e-05  M31b-lo 2.557e-05  M31a 3.113e-05
+-- K1-SK phi_nom 5e-08  X 0  R 6000000.0024835281  phi_b 5.0000000000000004e-08  fl(cos phi_b) = 0.9999999999999988
+   correct/GL                 LU  actual 1.467e-05   triggers: correct 2.935e-05  M31b-RN 1.432e+00  M31b-lo 1.432e+00  M31a 2.223e-05
+   correct/GL                 LLT actual 1.492e-05   triggers: correct 2.985e-05  M31b-RN 1.432e+00  M31b-lo 1.432e+00  M31a 1.478e-05
+   correct/CR                 LU  actual 2.274e-05   triggers: correct 4.549e-05  M31b-RN 1.432e+00  M31b-lo 1.432e+00  M31a 3.280e-05
+   correct/CR                 LLT actual 1.889e-05   triggers: correct 3.777e-05  M31b-RN 1.432e+00  M31b-lo 1.432e+00  M31a 4.715e-05
+   mutant RN/GL (K2 system)   LU  actual 7.160e-01   triggers: correct 1.432e+00  M31b-RN 8.812e-05  M31b-lo 8.812e-05  M31a 8.967e-05
+   mutant RN/GL (K2 system)   LLT actual 7.160e-01   triggers: correct 1.432e+00  M31b-RN 3.038e-05  M31b-lo 3.038e-05  M31a 3.194e-05
+   mutant lo/GL               LU  actual 7.160e-01   triggers: correct 1.432e+00  M31b-RN 8.812e-05  M31b-lo 8.812e-05  M31a 8.967e-05
+   mutant lo/GL               LLT actual 7.160e-01   triggers: correct 1.432e+00  M31b-RN 3.038e-05  M31b-lo 3.038e-05  M31a 3.194e-05
+-- K1-SK phi_nom 1e-06  X 0  R 300000.00012418884  phi_b 9.9999999999999995e-07  fl(cos phi_b) = 0.9999999999995
+   correct/GL                 LU  actual 2.392e-05   triggers: correct 4.785e-05  M31b-RN 1.106e-01  M31b-lo 1.106e-01  M31a 5.860e-05
+   correct/GL                 LLT actual 1.147e-05   triggers: correct 2.294e-05  M31b-RN 1.107e-01  M31b-lo 1.107e-01  M31a 5.785e-05
+   correct/CR                 LU  actual 2.282e-05   triggers: correct 4.565e-05  M31b-RN 1.107e-01  M31b-lo 1.107e-01  M31a 1.292e-05
+   correct/CR                 LLT actual 2.875e-05   triggers: correct 5.751e-05  M31b-RN 1.107e-01  M31b-lo 1.107e-01  M31a 3.231e-05
+   mutant RN/GL (K2 system)   LU  actual 5.534e-02   triggers: correct 1.107e-01  M31b-RN 2.316e-05  M31b-lo 2.316e-05  M31a 2.183e-05
+   mutant RN/GL (K2 system)   LLT actual 5.536e-02   triggers: correct 1.107e-01  M31b-RN 5.994e-05  M31b-lo 5.994e-05  M31a 3.724e-05
+   mutant lo/GL               LU  actual 5.534e-02   triggers: correct 1.107e-01  M31b-RN 2.316e-05  M31b-lo 2.316e-05  M31a 2.183e-05
+   mutant lo/GL               LLT actual 5.536e-02   triggers: correct 1.107e-01  M31b-RN 5.994e-05  M31b-lo 5.994e-05  M31a 3.724e-05
+-- K1-SK phi_nom 0.0001  X 0  R 3000.0000024917631  phi_b 0.00010000000000000002  fl(cos phi_b) = 0.999999995
+   correct/GL                 LU  actual 2.575e-05   triggers: correct 5.151e-05  M31b-RN 6.585e-04  M31b-lo 6.585e-04  M31a 3.495e-05
+   correct/GL                 LLT actual 8.974e-06   triggers: correct 1.795e-05  M31b-RN 6.659e-04  M31b-lo 6.659e-04  M31a 2.722e-05
+   correct/CR                 LU  actual 2.859e-05   triggers: correct 5.719e-05  M31b-RN 6.280e-04  M31b-lo 6.280e-04  M31a 4.225e-05
+   correct/CR                 LLT actual 2.475e-05   triggers: correct 4.950e-05  M31b-RN 6.864e-04  M31b-lo 6.864e-04  M31a 4.119e-05
+   mutant RN/GL (K2 system)   LU  actual 3.390e-04   triggers: correct 6.780e-04  M31b-RN 2.895e-05  M31b-lo 2.895e-05  M31a 3.075e-05
+   mutant RN/GL (K2 system)   LLT actual 3.466e-04   triggers: correct 6.933e-04  M31b-RN 6.035e-05  M31b-lo 6.035e-05  M31a 4.478e-05
+   mutant lo/GL               LU  actual 3.390e-04   triggers: correct 6.780e-04  M31b-RN 2.895e-05  M31b-lo 2.895e-05  M31a 3.075e-05
+   mutant lo/GL               LLT actual 3.466e-04   triggers: correct 6.933e-04  M31b-RN 6.035e-05  M31b-lo 6.035e-05  M31a 4.478e-05
+-- K1-SK phi_nom 0.0873  X 0  R 3.4388378453314101  phi_b 0.087266462599716488  fl(cos phi_b) = 0.9961946980917455
+   correct/GL                 LU  actual 3.200e-05   triggers: correct 6.399e-05  M31b-RN 6.399e-05  M31b-lo 6.399e-05  M31a 3.624e-05
+   correct/GL                 LLT actual 3.552e-05   triggers: correct 7.104e-05  M31b-RN 7.104e-05  M31b-lo 7.104e-05  M31a 7.670e-05
+   correct/CR                 LU  actual 1.727e-05   triggers: correct 3.455e-05  M31b-RN 3.455e-05  M31b-lo 3.455e-05  M31a 2.053e-05
+   correct/CR                 LLT actual 1.381e-05   triggers: correct 2.761e-05  M31b-RN 2.761e-05  M31b-lo 2.761e-05  M31a 1.097e-05
+   mutant RN/GL (K2 system)   LU  actual 3.289e-05   triggers: correct 6.579e-05  M31b-RN 6.579e-05  M31b-lo 6.579e-05  M31a 6.255e-05
+   mutant RN/GL (K2 system)   LLT actual 3.750e-05   triggers: correct 7.499e-05  M31b-RN 7.499e-05  M31b-lo 7.499e-05  M31a 7.823e-05
+   mutant lo/GL               LU  actual 3.289e-05   triggers: correct 6.579e-05  M31b-RN 6.579e-05  M31b-lo 6.579e-05  M31a 6.255e-05
+   mutant lo/GL               LLT actual 3.750e-05   triggers: correct 7.499e-05  M31b-RN 7.499e-05  M31b-lo 7.499e-05  M31a 7.823e-05

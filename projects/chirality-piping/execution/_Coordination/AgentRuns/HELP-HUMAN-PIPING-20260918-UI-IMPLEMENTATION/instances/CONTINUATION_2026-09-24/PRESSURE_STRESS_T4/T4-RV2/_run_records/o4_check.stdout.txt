@@ -1,0 +1,10 @@
+K1 (determinate) phi_nom 1e-09     phi 1.0e-09  actual 3.04e-05  trigger exact K_int 6.07e-05  p38: max|dK|/max|K| 4.5e-11 trigger 6.07e-05  p39: max|dK|/max|K| 1.6e-12 trigger 6.07e-05
+indeterminate (tip springs) 1e-09  phi 1.0e-09  actual 1.38e-07  trigger exact K_int 2.76e-07  p38: max|dK|/max|K| 4.5e-11 trigger 5.12e-03  p39: max|dK|/max|K| 1.6e-12 trigger 1.87e-04
+K1 (determinate) phi_nom 3e-09     phi 3.0e-09  actual 6.14e-05  trigger exact K_int 1.23e-04  p38: max|dK|/max|K| 1.9e-13 trigger 1.23e-04  p39: max|dK|/max|K| 1.9e-13 trigger 1.23e-04
+indeterminate (tip springs) 3e-09  phi 3.0e-09  actual 1.04e-07  trigger exact K_int 2.09e-07  p38: max|dK|/max|K| 1.9e-13 trigger 2.13e-05  p39: max|dK|/max|K| 1.9e-13 trigger 2.13e-05
+K1 (determinate) phi_nom 1e-08     phi 1.0e-08  actual 3.04e-05  trigger exact K_int 6.08e-05  p38: max|dK|/max|K| 4.0e-14 trigger 6.08e-05  p39: max|dK|/max|K| 5.7e-15 trigger 6.08e-05
+indeterminate (tip springs) 1e-08  phi 1.0e-08  actual 3.46e-07  trigger exact K_int 6.93e-07  p38: max|dK|/max|K| 4.0e-14 trigger 4.64e-06  p39: max|dK|/max|K| 5.7e-15 trigger 7.03e-07
+K1 (determinate) phi_nom 1e-06     phi 1.0e-06  actual 3.08e-05  trigger exact K_int 6.16e-05  p38: max|dK|/max|K| 9.5e-23 trigger 6.16e-05  p39: max|dK|/max|K| 9.5e-23 trigger 6.16e-05
+indeterminate (tip springs) 1e-06  phi 1.0e-06  actual 5.72e-07  trigger exact K_int 1.14e-06  p38: max|dK|/max|K| 9.5e-23 trigger 1.14e-06  p39: max|dK|/max|K| 9.5e-23 trigger 1.14e-06
+K1 (determinate) phi_nom 1e-04     phi 1.0e-04  actual 5.13e-05  trigger exact K_int 1.03e-04  p38: max|dK|/max|K| 1.8e-26 trigger 1.03e-04  p39: max|dK|/max|K| 4.7e-27 trigger 1.03e-04
+indeterminate (tip springs) 1e-04  phi 1.0e-04  actual 1.62e-07  trigger exact K_int 3.24e-07  p38: max|dK|/max|K| 1.8e-26 trigger 3.24e-07  p39: max|dK|/max|K| 4.7e-27 trigger 3.24e-07

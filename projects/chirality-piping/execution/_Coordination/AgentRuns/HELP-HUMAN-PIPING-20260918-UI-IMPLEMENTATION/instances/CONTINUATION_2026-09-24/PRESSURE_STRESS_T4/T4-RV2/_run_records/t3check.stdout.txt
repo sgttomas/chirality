@@ -1,0 +1,41 @@
+y_reference / bow-side check (O6): cos(angle) between member y_ref and the old arc's bow, both projected normal to d
+  E1                         member 4-5  cos = +1.000000000000000   |ri|-|rj| rel 5.55e-16  mean R - 0.3 = -9.44e-17
+  E6                         member 3-4  cos = +1.000000000000000   |ri|-|rj| rel -2.41e-15  mean R - 0.3 = 3.50e-16
+  E6                         member 5-6  cos = +1.000000000000000   |ri|-|rj| rel -2.96e-15  mean R - 0.3 = -6.22e-16
+  E6                         member 8-9  cos = +1.000000000000000   |ri|-|rj| rel -2.96e-15  mean R - 0.3 = 2.66e-16
+  E6                         member 10-11  cos = +1.000000000000000   |ri|-|rj| rel 2.41e-15  mean R - 0.3 = 3.50e-16
+  CSKEW_8_5                  member 0-1  cos = +1.000000000000000   |ri|-|rj| rel 0.00e+00  mean R - 0.3 = -2.04e-17
+  CSKEW_30_RADIUS_MISMATCH   member 0-1  cos = +1.000000000000000   |ri|-|rj| rel -9.19e-10  mean R - 0.3 = -1.80e-17
+  CPLANAR_60                 member 0-1  cos = -1.000000000000000   |ri|-|rj| rel -1.00e-09  mean R - 0.3 = 9.60e-18
+  CSKEW_30_N122              member 0-1  cos = -0.744759964279738   |ri|-|rj| rel -1.00e-09  mean R - 0.3 = -3.32e-17
+  PP_UTM_2                   member 0-1  cos = +1.000000000000000   |ri|-|rj| rel 1.48e-12  mean R - 0.3 = -1.14e-11
+  RV5_CANT90_PLANAR          member 0-1  cos = +1.000000000000000   |ri|-|rj| rel -1.00e-09  mean R - 0.3 = 2.81e-18
+  RV5_CANT60_PLANAR          member 0-1  cos = +1.000000000000000   |ri|-|rj| rel -1.00e-09  mean R - 0.3 = 9.60e-18
+  RV5_CANT30_SKEW            member 0-1  cos = +0.590690494568872   |ri|-|rj| rel -1.00e-09  mean R - 0.3 = -3.32e-17
+  RV5_CANT10_SKEW            member 0-1  cos = +0.239348436345949   |ri|-|rj| rel -1.00e-09  mean R - 0.3 = -3.15e-17
+  RV5_PP_UTM                 member 0-1  cos = -1.000000000000000   |ri|-|rj| rel -9.48e-11  mean R - 0.3 = -2.00e-10
+
+u_int_new re-derived (rv2_lib) vs T4-I6 (criterion units, model measure) and T3's committed u_int vs mine:
+  E1                                             I6 vs mine: 9.35e-12 criterion  T3 committed vs mine 4.990e-08 (I6 says 4.990E-8)
+  E6                                             I6 vs mine: 1.53e-11 criterion  T3 committed vs mine 6.815e-08 (I6 says 6.815E-8)
+  CSKEW_8_5                                      I6 vs mine: 1.17e-11 criterion  T3 committed vs mine 5.800e-08 (I6 says 5.800E-8)
+  CSKEW_30_RADIUS_MISMATCH                       I6 vs mine: 4.29e-11 criterion  T3 committed vs mine 5.692e-07 (I6 says 5.692E-7)
+  CPLANAR_60                                     I6 vs mine: 2.83e-11 criterion  T3 committed vs mine 3.496e-02 (I6 says 3.496E-2)
+  CSKEW_30_N122                                  I6 vs mine: 3.34e-11 criterion  T3 committed vs mine 2.700e-02 (I6 says 2.700E-2)
+  PP_UTM_2                                       I6 vs mine: 4.21e-11 criterion  T3 committed vs mine 4.116e-05 (I6 says 4.116E-5)
+  RV5_CANT90_PLANAR                              I6 vs mine: 1.49e-11 criterion  T3 committed vs mine 2.918e-02 (I6 says 2.918E-2)
+  RV5_CANT60_PLANAR                              I6 vs mine: 2.83e-11 criterion  T3 committed vs mine 3.496e-02 (I6 says 3.496E-2)
+  RV5_CANT30_SKEW                                I6 vs mine: 3.34e-11 criterion  T3 committed vs mine 2.700e-02 (I6 says 2.700E-2)
+  RV5_CANT10_SKEW                                I6 vs mine: 3.57e-11 criterion  T3 committed vs mine 3.135e-02 (I6 says 3.135E-2)
+  RV5_PP_UTM                                     I6 vs mine: 4.63e-11 criterion  T3 committed vs mine 2.711e-03 (I6 says 2.711E-3)
+  RV5_CSKEW30_K30                                I6 vs mine: 4.29e-11 criterion  T3 committed vs mine 5.692e-07 (I6 says 5.692E-7)
+  CSKEW_10                                       I6 vs mine: 5.00e-11 criterion
+  CSKEW_9                                        I6 vs mine: 3.42e-11 criterion
+  PP_UTM_5E5 (formation_check_runtime.rs:358)    I6 vs mine: 4.21e-11 criterion
+  PP_UTM_5E6 (formation_check_runtime.rs:379)    I6 vs mine: 4.63e-11 criterion
+  review PP-UTM-5e6-phi2                         I6 vs mine: 3.47e-11 criterion
+  review PP-UTM-7.3e6-phi10                      I6 vs mine: 3.10e-11 criterion
+WORST t3_models: 5.00e-11 of the criterion
+
+K1 / sweep kill models: u_int re-derived
+WORST kill models (32): 4.47e-11 of the criterion

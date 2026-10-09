@@ -1,0 +1,8 @@
+k_X   cond1(raw)  cond1(equil)   | element/solver: actual, trigger(exact K_int)
+10      7.11e+08    5.54e+07   |  GL/LU 1.26,2.53  GL/LLT 1.02,2.05  CR/LU 0.37,0.74  CR/LLT 0.28,0.56
+9       7.90e+08    6.15e+07   |  GL/LU 2.30,4.60  GL/LLT 0.02,0.04  CR/LU 1.34,2.69  CR/LLT 1.63,3.27
+8.5     8.36e+08    6.51e+07   |  GL/LU 1.57,3.15  GL/LLT 1.82,3.64  CR/LU 0.36,0.71  CR/LLT 0.95,1.89
+8       8.88e+08    6.92e+07   |  GL/LU 2.85,5.70  GL/LLT 1.60,3.20  CR/LU 0.50,1.00  CR/LLT 1.60,3.20
+7       1.02e+09    7.91e+07   |  GL/LU 1.01,2.02  GL/LLT 1.72,3.44  CR/LU 1.55,3.09  CR/LLT 1.72,3.44
+6       1.18e+09    9.23e+07   |  GL/LU 1.53,3.07  GL/LLT 0.81,1.63  CR/LU 0.54,1.08  CR/LLT 0.81,1.63
+5       1.42e+09    1.11e+08   |  GL/LU 2.27,4.54  GL/LLT 1.26,2.51  CR/LU 0.18,0.37  CR/LLT 0.23,0.47

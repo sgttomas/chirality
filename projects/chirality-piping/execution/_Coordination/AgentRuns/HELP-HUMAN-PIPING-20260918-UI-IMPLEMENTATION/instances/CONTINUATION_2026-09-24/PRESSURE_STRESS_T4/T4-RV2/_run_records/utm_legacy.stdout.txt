@@ -1,0 +1,8 @@
+X 5000000.0 mismatch 3.840e-09 refused True (I6: 3.840e-09)
+X 5000000.0 mismatch 2.332e-09 refused True (I6: 2.332e-09)
+X 5000000.0 mismatch 3.595e-09 refused True (I6: 3.595e-09)
+X 5000000.0 mismatch 2.009e-09 refused True (I6: 2.009e-09)
+X 7300000.0 mismatch 3.101e-09 refused True (I6: 3.101e-09)
+X 7300000.0 mismatch 4.592e-09 refused True (I6: 4.592e-09)
+X 7300000.0 mismatch 2.413e-09 refused True (I6: 2.413e-09)
+X 7300000.0 mismatch 3.134e-09 refused True (I6: 3.134e-09)

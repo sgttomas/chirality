@@ -1,0 +1,36 @@
+T4-RV2 run record. Standard-library Python 3.13.14 (WT/venv/bin/python -I -B); no numpy, no cargo,
+no product code run, no Git writes. Placeholders as in R4/BRIEFS/T4_WI_COMMON.md.
+
+Inputs (read-only, extracted to WT/scratch/t4_T4-RV2/):
+  kd5_models.rs     = git -C NUM4 show ed012c7ccf:NI/src/structural_adapter/kd5_models.rs
+                      sha256 17a4680c83ff3e940a7dcfd908ef334c8b5a53427b6ff388dafb5888477dca23
+  rv5_models.rs.txt = git -C NUM4 show 3743b7929109:I/NUMERICAL_INTEGRITY_T3/REVIEW/_run_records/kd5_review/m31b/exact_inputs/rv5_models.rs.txt
+                      sha256 9f04d063d1f7a4e81bbe762d4c32d60d6f0f79b39b67e8b79e83dac9263ed4e8 (equal at NUM 70aa51b076)
+  R4/T4-I6/u1_reference_cases.json (target set; its SHA256SUMS digest 146f734a... verified, 16 files OK)
+
+T4-I6 re-run (copies of R4/T4-I6/_run_records/*.py in WT/scratch/t4_T4-RV2/i6rerun, commands as in
+T4-I6's RUN.txt): PART1 sha256 b864c1455b7f...; u1_reference_cases.json, selftest, p128,
+freeze_u1, t3_models and neg_scan stdout all byte-identical to R4/T4-I6 (sha256 compared).
+
+Commands (from R4/T4-RV2/_run_records; J = R4/T4-I6/u1_reference_cases.json):
+  python -I -B selfcheck.py                                   > selfcheck.stdout.txt
+  python -I -B compare_k.py J                                 > compare_k.stdout.txt
+  python -I -B t3check.py WT/scratch/t4_T4-RV2/kd5_models.rs WT/scratch/t4_T4-RV2/rv5_models.rs.txt J > t3check.stdout.txt
+  python -I -B kill_analysis.py                               > kill_analysis.stdout.txt
+  python -I -B o4_check.py                                    > o4_check.stdout.txt
+  python -I -B cond_tp.py                                     > cond_tp.stdout.txt
+  python -I -B props_check.py J                               > props_check.stdout.txt
+  python -I -B utm_legacy.py J                                > utm_legacy.stdout.txt
+  python -I -B p4_looseness.py J                              > p4_looseness.stdout.txt
+Each was run twice (scratch copy and this folder); outputs byte-identical.
+
+Library:
+  rv2_lib.py  the independent reference element (global-frame energy quadrature, exact centre at
+              high precision, global compatibility B; own pi, sin/cos, angle and Gauss-Legendre).
+  emu64.py    LABELLED binary64 emulations (not product code): a stable element ('GL': half-angle
+              geometry, 16-point Gauss-Legendre F with cancellation-free arms; 'CR': exact F rounded
+              once), chord variants (actual; formula with cos rounded to nearest or one ulp low),
+              LU and Cholesky solves, and K-D5's estimate (exact residual, product factor, FK body
+              scales, factor 2).
+props_check.py and utm_legacy.py also hold a labelled emulation of today's PP centre + CB element
+(PPL:7766-7846, CB:150-250 as read at ed012c7ccf, source order).

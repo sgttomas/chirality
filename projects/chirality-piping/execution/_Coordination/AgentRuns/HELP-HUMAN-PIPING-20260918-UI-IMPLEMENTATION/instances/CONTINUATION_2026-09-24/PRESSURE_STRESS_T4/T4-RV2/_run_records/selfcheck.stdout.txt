@@ -1,0 +1,8 @@
+pi digits ok: True
+sin1 cos1 0.8414709848078965066525023216 0.5403023058681397174009366074 s^2+c^2-1 = 0.0e+00
+atan(1)*4 - pi = 0.0e+00
+quarter circle F_xx rel err 2.8e-40  F_yy rel err 1.2e-40  phi-pi/2 0.0e+00
+quarter circle out-of-plane F_zz rel err 1.0e-59
+straight limit phi=1e-6: max|K-Kframe|/max|K| = 8.33e-08
+curved element rigid null residual (row-relative): 7.7e-59
+symmetry 8.0e-61
