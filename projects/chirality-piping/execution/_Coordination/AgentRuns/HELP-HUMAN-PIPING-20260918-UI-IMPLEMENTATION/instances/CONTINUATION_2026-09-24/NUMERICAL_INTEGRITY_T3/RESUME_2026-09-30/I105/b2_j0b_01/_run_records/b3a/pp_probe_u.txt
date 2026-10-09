@@ -1,0 +1,8 @@
+I105_J0B_PROBE milestone schema + label SparseInteractive ordinary: status=MODEL_INCOMPLETE results=0 source_blocks=false blocking=[("PREVIEW_CONTRACT_VERSION_MISMATCH", ["pressure_contract"])]
+I105_J0B_PROBE milestone schema + label SparseInteractive direct: G-A domain=Some(Family(Namespace, PressureContract)) refused=true retained=false successor=false envelope_equals_ordinary=true
+I105_J0B_PROBE milestone schema + label DenseScrutiny ordinary: status=MODEL_INCOMPLETE results=0 source_blocks=false blocking=[("PREVIEW_CONTRACT_VERSION_MISMATCH", ["pressure_contract"])]
+I105_J0B_PROBE milestone schema + label DenseScrutiny direct: G-A domain=Some(Family(Namespace, PressureContract)) refused=true retained=false successor=false envelope_equals_ordinary=true
+I105_J0B_PROBE m3l: 0.3.0 + label SparseInteractive ordinary: status=MODEL_INCOMPLETE results=0 source_blocks=false blocking=[("PRESSURE_MODEL_REAUTHOR_REQUIRED", ["pressure_contract"])]
+I105_J0B_PROBE m3l: 0.3.0 + label SparseInteractive direct: G-A domain=Some(Family(Namespace, SchemaVersion)) refused=true retained=false successor=false envelope_equals_ordinary=true
+I105_J0B_PROBE m3l: 0.3.0 + label DenseScrutiny ordinary: status=MODEL_INCOMPLETE results=0 source_blocks=false blocking=[("PRESSURE_MODEL_REAUTHOR_REQUIRED", ["pressure_contract"])]
+I105_J0B_PROBE m3l: 0.3.0 + label DenseScrutiny direct: G-A domain=Some(Family(Namespace, SchemaVersion)) refused=true retained=false successor=false envelope_equals_ordinary=true

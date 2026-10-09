@@ -1,0 +1,16 @@
+# references to the three retired fixtures at the merged head (git grep, outside execution/ and the historical sweeps), and their intersection with b2's 79 files
+projects/chirality-piping/apps/desktop/SMOKE.md:4382:- Canned browser fixture: `invented_mechanics_result.json` regenerated
+projects/chirality-piping/apps/desktop/SMOKE.md:9655:  - `python3 -m json.tool fixtures/product_preview/invented_mechanics_result.json`
+projects/chirality-piping/fixtures/product_preview/DEMO_FIXTURES.md:16:The bundled results computed with the flawed joint and the legacy pressure (`invented_mec
+projects/chirality-piping/plans/PLAN_COMPLETION_LOG.md:694:  regenerated `fixtures/product_preview/invented_mechanics_result.json`.
+projects/chirality-piping/plans/PLAN_COMPLETION_LOG.md:1006:- `fixtures/product_preview/invented_mechanics_result.json` was regenerated so
+projects/chirality-piping/plans/PLAN_COMPLETION_LOG.md:1485:- `fixtures/product_preview/invented_mechanics_result.json`: regenerated the
+projects/chirality-piping/plans/PLAN_COMPLETION_LOG.md:1950:  `fixtures/product_preview/invented_mechanics_result.json`;
+projects/chirality-piping/plans/PLAN_COMPLETION_LOG.md:1964:- `python3 -m json.tool fixtures/product_preview/invented_mechanics_result.json`
+projects/chirality-piping/plans/PLAN_COMPLETION_LOG.md:2819:`invented_mechanics_result.json` fixture now exposes 749 result rows and 12
+projects/chirality-piping/plans/PLAN_COMPLETION_LOG.md:2865:`invented_mechanics_result.json` fixture now exposes 743 result rows, including
+projects/chirality-piping/validation/evidence/reproduction/REPRO_DEL0904_20260719T033249Z_89a93d7ca21d/checks/evidence-sweep.json:17:      "stdout": "OpenPipeSt
+projects/chirality-piping/validation/evidence/reproduction/REPRO_DEL0904_20260719T202023Z_23eeaabc9040/checks/evidence-sweep.json:17:      "stdout": "OpenPipeSt
+projects/chirality-piping/validation/evidence/reproduction/REPRO_DEL0904_20260720T074714Z_a5235340aae3/checks/evidence-sweep.json:17:      "stdout": "OpenPipeSt
+# intersection with b2's files:
+# (end)

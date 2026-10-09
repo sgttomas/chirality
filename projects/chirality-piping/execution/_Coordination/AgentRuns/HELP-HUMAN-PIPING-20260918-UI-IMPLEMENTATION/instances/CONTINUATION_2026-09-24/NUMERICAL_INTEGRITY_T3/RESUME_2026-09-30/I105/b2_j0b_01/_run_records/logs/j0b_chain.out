@@ -1,0 +1,55 @@
+# chain start 2026-10-09T04:34:10Z h=b446fb0cd6
+pyh_src: b446fb0cd61e5be3c2e78573a88fea609f4084f1; package-lock equal; wasm assets copied
+# helpers rc=0
+h: b446fb0cd61e5be3c2e78573a88fea609f4084f1; package-lock equal; wasm assets copied
+h pp rc=0
+h runner rc=0
+h re rc=0
+h vitest rc=0
+h tsc rc=0
+h py files: tests/test_retained_precision_b3.py tests/test_retained_precision_contract.py tests/test_retained_precision_carriers.py tests/test_retained_precision_schema.py tests/test_precision_consumer_contract.py tests/test_load_reference_schema.py tests/test_load_reference_source_schema.py tests/test_source_block_schema_contract.py tests/test_results_dispatcher_v0_3.py tests/test_physics_consumer_contract.py tests/test_preview_physics_consumer_contract.py tests/test_result_export_v0_2.py tests/test_stress_neutral_physics_source.py tests/test_stress_neutral_precision.py tests/test_load_reference_headless_artifacts.py tests/test_analysis_run_schema.py
+h py rc=0
+h 07m corpus c21112fdbfad37dd
+h 07m rs census rc=0
+h 07m ts census rc=0
+h 07m py census rc=0
+h 07n corpus ea113e7b25b96cba
+h 07n rs census rc=0
+h 07n ts census rc=0
+h 07n py census rc=0
+h 07nN corpus 0703ec17402037b0
+h 07nN rs census rc=0
+h 07nN ts census rc=0
+h 07nN py census rc=0
+h rs probes rc=0
+h ts probes rc=0
+h py probes rc=0
+h pp probe rc=0
+# head h rc=0
+u: 37724dea27a782ad4b889a5e06f8c0e91e2a67ce; package-lock equal; wasm assets copied
+u pp rc=0
+u runner rc=0
+u re rc=0
+u vitest rc=0
+u tsc rc=0
+u py files: tests/test_retained_precision_contract.py tests/test_retained_precision_carriers.py tests/test_retained_precision_schema.py tests/test_precision_consumer_contract.py tests/test_load_reference_schema.py tests/test_load_reference_source_schema.py tests/test_source_block_schema_contract.py tests/test_results_dispatcher_v0_3.py tests/test_physics_consumer_contract.py tests/test_preview_physics_consumer_contract.py tests/test_result_export_v0_2.py tests/test_stress_neutral_physics_source.py tests/test_stress_neutral_precision.py tests/test_load_reference_headless_artifacts.py tests/test_analysis_run_schema.py
+u py rc=0
+u 07m corpus c21112fdbfad37dd
+u 07m rs census rc=0
+u 07m ts census rc=0
+u 07m py census rc=0
+u 07n corpus ea113e7b25b96cba
+u 07n rs census rc=0
+u 07n ts census rc=0
+u 07n py census rc=0
+u 07nN corpus 0703ec17402037b0
+u 07nN rs census rc=0
+u 07nN ts census rc=0
+u 07nN py census rc=0
+u rs probes rc=0
+u ts probes rc=0
+u py probes rc=0
+u pp probe rc=0
+# head u rc=0
+# chain end 2026-10-09T05:47:16Z
+chain exit 0

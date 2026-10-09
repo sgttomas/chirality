@@ -1,0 +1,5 @@
+files 137, hits 13, names screened 5
+# hits by file (all equal to #1168's head bytes; main's #1167 app-v4 records):
+   9 projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GROUP-C-20261008/C3_NW_02_ARTIFACT_RECEIPT.json
+   1 projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GROUP-C-20261008/C3_NW_02_FIXTURE.json
+   3 projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GROUP-C-20261008/C3_NW_02_PROPOSAL.md

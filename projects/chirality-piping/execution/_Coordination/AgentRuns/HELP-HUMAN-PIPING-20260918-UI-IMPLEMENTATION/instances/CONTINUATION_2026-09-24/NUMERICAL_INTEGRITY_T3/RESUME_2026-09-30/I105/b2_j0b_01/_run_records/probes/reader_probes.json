@@ -1,0 +1,9 @@
+[
+ {"id": "j0b_legacy_label_on_the_base_schema", "base": "ordinary_prepared_synthetic", "edits": [], "rehash": "all",
+  "invocation_edits": [{"path": ["request", "model", "pressure_contract"], "op": "set", "value": {"version": "1.0.0", "mode": "legacy_pressure_v1"}}],
+  "expected": {"gate": "G8", "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"}},
+ {"id": "j0b_legacy_label_on_0_3_0", "base": "ordinary_prepared_synthetic", "edits": [], "rehash": "all",
+  "invocation_edits": [{"path": ["request", "model", "schema_version"], "op": "set", "value": "0.3.0"},
+                       {"path": ["request", "model", "pressure_contract"], "op": "set", "value": {"version": "1.0.0", "mode": "legacy_pressure_v1"}}],
+  "expected": {"gate": "G8", "code": "RETAINED_PRECISION_INVOCATION_MISMATCH"}}
+]
