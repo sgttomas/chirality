@@ -1,10 +1,11 @@
 twin: fixture sha256 7e51ecb3c7eca573194ce60222f2e2e7422b817be7aacad9a2a5e79102801ab1; 21 values re-derived; worst relative difference 0.000e+00
-checks: 162 passed, 0 failed
-row assertions written: 690
+checks: 177 passed, 0 failed
+row assertions written: 956
 milltol_lame_membrane: EXACT-PRESSURE-MILLTOL-LAME-MEMBRANE-001
 tp_phys_pressure_halves: EXACT-PRESSURE-THERMAL-TRANSVERSE-MIXED-001
 pressure_membrane_thin_wall_limit: EXACT-PRESSURE-LAME-THIN-WALL-LIMIT-001
 v3_straight_twin: EXACT-PRESSURE-V3-STRAIGHT-TWIN-ODWALL-001
+v3_straight_twin_separate_closures: EXACT-PRESSURE-V3-STRAIGHT-TWIN-SEPARATE-CLOSURES-001
   case:pressure-half: Nw=30536.280592892792 S=-20357.52039526186 sigma_z=5115789.47368421 A_Fx=20357.52039526186
   case:combined: Nw=-41092.031908954494 S=-91985.83289710914 sigma_z=-6884210.52631579 A_Fx=91985.83289710914
   combined: D_uy=-0.0039360651090333525 m D_rz=-0.0008122039113878346 rad A_Mz=2700.0 A_Fy=900.0

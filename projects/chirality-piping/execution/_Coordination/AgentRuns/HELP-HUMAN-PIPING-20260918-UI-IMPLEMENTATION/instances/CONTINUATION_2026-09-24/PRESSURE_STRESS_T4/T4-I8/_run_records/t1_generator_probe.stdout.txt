@@ -1,0 +1,4 @@
+rows accepted by T1's generator functions: 803
+rows refused: 3  (symbolic form outside T1's exp pattern)
+rows refused: 150  (unit factor Pa->MPa not in UNIT_FACTORS)
+RESULT: PASS (only the declared refusals)

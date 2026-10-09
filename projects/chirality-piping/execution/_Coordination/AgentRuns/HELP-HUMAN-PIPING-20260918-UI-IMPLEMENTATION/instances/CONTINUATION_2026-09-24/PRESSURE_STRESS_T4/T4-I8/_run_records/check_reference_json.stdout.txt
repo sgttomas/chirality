@@ -1,2 +1,2 @@
-counts: {"discriminators": 24, "documents": 10, "quantities": 235, "rows": 690, "zero_rows": 378}
+counts: {"discriminators": 25, "documents": 12, "frozen_compared": 235, "quantities": 284, "refreeze_rows": 3, "rows": 956, "zero_rows": 582}
 RESULT: PASS

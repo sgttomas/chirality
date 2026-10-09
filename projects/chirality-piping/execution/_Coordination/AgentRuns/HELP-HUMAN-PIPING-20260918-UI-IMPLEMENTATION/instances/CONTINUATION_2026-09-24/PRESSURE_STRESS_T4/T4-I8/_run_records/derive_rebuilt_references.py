@@ -280,17 +280,21 @@ def station_from_i_end(f, q, s):
 
 # ---------------------------------------------------------------- record builders
 CRIT_REL = {"kind": "relative", "relative_tolerance": 1e-9, "absolute_tolerance": 0.0}
+# Exact definitional factors from the reference unit to the published row unit (T1's convention:
+# the reference is converted into the row unit; tolerances are in the row unit).
+UNIT_FACTOR = {("m", "mm"): F(1000), ("Pa", "MPa"): F(1, 1000000)}
 
 
 class Ledger:
-    """Named expected quantities plus a row table for one load case."""
+    """Named expected quantities plus a row table for one load case (T1 selector shape)."""
 
     def __init__(self, case_id):
         self.case_id = case_id
         self.expected = {}
         self.scales = {}
+        self.scale_defs = {}
         self.rows = []
-        self._q = {}
+        self._q = {}        # name -> Q or Decimal (symbolic)
 
     def put(self, name, q, unit):
         if name in self.expected:
@@ -300,34 +304,61 @@ class Ledger:
         self._q[name] = q if isinstance(q, Q) else Q(q)
         return name
 
+    def put_sym(self, name, expression, dvalue, unit, evaluation):
+        self.expected[name] = {"unit": unit, "exact": {"kind": "symbolic", "expression": expression},
+                               "evaluation": evaluation, "decimal": dec85(dvalue), "value": float(dvalue)}
+        self._q[name] = dvalue
+        return name
+
     def scale(self, name, q, unit, definition):
-        self.scales[name] = dict(qty(q, unit), definition=definition)
+        self.scales[name] = qty(q, unit)
+        self.scale_defs[name] = definition
         self._q[name] = q if isinstance(q, Q) else Q(q)
 
-    def row(self, kind, entity, component, location, unit, frame, name, q, scale=None, transform="identity", sign=None):
-        exp_unit = "m" if transform == "m_to_mm" else ("rad" if unit == "rad" else unit)
-        self.put(name, q, exp_unit)
-        qq = self._q[name]
-        if qq.r == 0:
+    def _zero(self, name):
+        v = self._q[name]
+        return v.r == 0 if isinstance(v, Q) else v == 0
+
+    def _mag(self, name):
+        v = self._q[name]
+        return abs(v.dec()) if isinstance(v, Q) else abs(v)
+
+    def row(self, kind, entity, component, location, unit, frame, name, q, scale=None, ref_unit=None, refreeze=None):
+        ref_unit = ref_unit or unit
+        if q is not None:
+            self.put(name, q, ref_unit)
+        assert self.expected[name]["unit"] == ref_unit, (name, ref_unit)
+        factor = UNIT_FACTOR.get((ref_unit, unit), F(1))
+        assert ref_unit == unit or (ref_unit, unit) in UNIT_FACTOR, (ref_unit, unit)
+        origin = {"kind": "analytical", "pointer": name, "reference_unit": ref_unit, "transform": "identity"}
+        if self._zero(name):
             assert scale is not None, (kind, entity, component, location)
-            sc = self._q[scale]
-            crit = {"kind": "zero_scale", "zero_scale_ref": scale,
-                    "absolute_tolerance": 1e-9 * abs(sc.f64()), "relative_tolerance": 0.0}
+            s_unit = self.scales[scale]["unit"]
+            assert s_unit == ref_unit, (scale, s_unit, ref_unit)
+            origin["zero_scale"] = {"tag": scale, "base": {"pointer": scale, "reference_unit": s_unit}, "scale_unit": s_unit}
+            tol = Decimal("1e-9") * self._mag(scale) * Decimal(factor.numerator) / Decimal(factor.denominator)
+            crit = {"kind": "zero_scale", "relative_tolerance": 0.0, "absolute_tolerance": float(tol)}
         else:
             crit = dict(CRIT_REL)
         entry = {"kind": kind, "entity_ref": entity, "component": component, "location": location,
                  "unit": unit, "coordinate_system": frame,
                  "basis_ref": {"ref_type": "load_case", "ref_id": self.case_id},
-                 "expected": name, "transform": transform, "criterion": crit}
-        if sign:
-            entry["sign_convention"] = sign
+                 "expected": name, "reference_origin": origin, "criterion": crit}
+        if refreeze:
+            entry["refreeze"] = refreeze
         self.rows.append(entry)
 
-    def value(self, name):
-        return self._q[name]
-
-    def to_json(self):
-        return {"expected": self.expected, "zero_scales": self.scales, "rows": self.rows}
+    def to_json(self, base):
+        rows = []
+        for r in self.rows:
+            r = json.loads(json.dumps(r))
+            o = r["reference_origin"]
+            o["pointer"] = f"{base}/expected/{o['pointer']}"
+            if "zero_scale" in o:
+                o["zero_scale"]["base"]["pointer"] = f"{base}/zero_scales/{o['zero_scale']['base']['pointer']}"
+            rows.append(r)
+        return {"expected": self.expected, "zero_scales": self.scales,
+                "zero_scale_definitions": self.scale_defs, "rows": rows}
 
 
 SIGN = {
@@ -339,7 +370,9 @@ SIGN = {
     "hoop": "tension-positive circumferential stress at named surface",
     "end_rows": "node-on-element action at the member end, element-local DOF sense",
     "station_rows": "section-cut action on the +x face of the i-side segment (product: j-side cut)",
-    "support": "support-on-pipe; positive global force and right-hand couple about the attached node",
+    "stress_rows": "bending normal stress = section M/Z and torsional shear = T ro/J, from the j-side section action at all five locations (ends included); published in MPa",
+    "maximum": "per member: nonnegative max over the member of |Nw/As| + hypot(My,Mz)/Z; location governing_station; Pa",
+    "support": "support-on-pipe; positive global force and right-hand couple about the attached node; magnitudes are the force and moment norms",
     "disp": "global cartesian; translations in mm, right-hand rotations in rad",
 }
 
@@ -348,6 +381,9 @@ TRANS = [("element_local_shear_force_y", "shear_force_y", "N", 0), ("element_loc
          ("element_local_torsional_moment", "torsional_moment", "N*m", None),
          ("element_local_bending_moment_y", "bending_moment_y", "N*m", None),
          ("element_local_bending_moment_z", "bending_moment_z", "N*m", 1)]
+STRESS = [("element_local_bending_normal_stress_y", "bending_normal_stress_y", None),
+          ("element_local_bending_normal_stress_z", "bending_normal_stress_z", 1),
+          ("element_local_torsional_shear_stress", "torsional_shear_stress", None)]
 
 
 def pressure_rows(led, pipe, st, lm, p, scale_force, scale_stress):
@@ -375,13 +411,56 @@ def transverse_rows(led, pipe, tag, values, scale_force, scale_moment):
             led.row(kind, pipe, comp, loc, unit, "element_local", name, v, sc)
 
 
+def stress_rows(led, pipe, tag, section_m, Z, scale_stress):
+    """section_m[loc] = section-cut Mz (j-side) at loc; bending y and torsion are zero here."""
+    for loc, _ in STATIONS:
+        mz = section_m.get(loc, Q(0))
+        for kind, comp, which in STRESS:
+            v = (mz / Z) if (which == 1 and mz.r != 0) else Q(0)
+            name = f"{tag}_{loc}_{comp}" if v.r != 0 else "zero_stress"
+            led.row(kind, pipe, comp, loc, "MPa", "element_local", name, v, scale_stress, ref_unit="Pa")
+
+
+def maximum_row(led, pipe, tag, membrane, m_abs_max, Z):
+    """|Nw/As| + max|M|/Z for one member; symbolic when both parts are nonzero (mixed pi powers)."""
+    a = Q(abs(membrane.r), membrane.k)
+    if m_abs_max.r == 0:
+        name = f"{tag}_maximum"
+        led.row("pipe_elastic_normal_stress_maximum_v2", pipe, "maximum_absolute_normal_stress", "governing_station", "Pa", "pipe_section", name, a)
+        return
+    b = m_abs_max / Z
+    assert a.k == 0 and b.k == -1
+    name = f"{tag}_maximum"
+    led.put_sym(name, f"{rat_str(a.r)} + ({rat_str(b.r)})/pi", a.dec() + b.dec(), "Pa", "Decimal, pi from numeric_representation, precision 130")
+    led.row("pipe_elastic_normal_stress_maximum_v2", pipe, "maximum_absolute_normal_stress", "governing_station", "Pa", "pipe_section", name, None)
+
+
 def node_rows(led, node, ux, uy, rz, scale_len, scale_rot, tag):
     for axis, val in (("x", ux), ("y", uy), ("z", Q(0))):
         name = f"{tag}_u{axis}" if val.r != 0 else "zero_length"
-        led.row(f"global_nodal_displacement_{axis}", node, f"nodal_displacement_{axis}", "node", "mm", "global", name, val, scale_len, transform="m_to_mm")
+        led.row(f"global_nodal_displacement_{axis}", node, f"nodal_displacement_{axis}", "node", "mm", "global", name, val, scale_len, ref_unit="m")
     for axis, val in (("x", Q(0)), ("y", Q(0)), ("z", rz)):
         name = f"{tag}_r{axis}" if val.r != 0 else "zero_rotation"
         led.row(f"global_nodal_rotation_{axis}", node, f"nodal_rotation_{axis}", "node", "rad", "global", name, val, scale_rot)
+
+
+def magnitude_rows(led, support, fvec, mvec, scale_force, scale_moment, tag):
+    """Force and moment norms. fvec/mvec are lists of Q; a norm mixing pi powers is symbolic (sqrt)."""
+    for kind, comp, vec, unit, sc in (("support_reaction_force_magnitude_v2", "force_magnitude", fvec, "N", scale_force),
+                                      ("support_reaction_moment_magnitude_v2", "moment_magnitude", mvec, "N*m", scale_moment)):
+        nz = [v for v in vec if v.r != 0]
+        name = f"{tag}_{comp}"
+        if not nz:
+            led.row(kind, support, comp, "node", unit, "global", "zero_force" if unit == "N" else "zero_moment", Q(0), sc)
+        elif len(nz) == 1:
+            led.row(kind, support, comp, "node", unit, "global", name, Q(abs(nz[0].r), nz[0].k))
+        else:
+            assert len(nz) == 2 and {v.k for v in nz} == {0, 1}
+            pk = [v for v in nz if v.k == 1][0]
+            rk = [v for v in nz if v.k == 0][0]
+            d = (pk.dec() ** 2 + rk.dec() ** 2).sqrt()
+            led.put_sym(name, f"sqrt(({rat_str(pk.r)}*pi)^2 + ({rat_str(rk.r)})^2)", d, unit, "Decimal.sqrt, pi from numeric_representation, precision 130")
+            led.row(kind, support, comp, "node", unit, "global", name, None)
 
 
 def support_rows(led, support, comps, scale_force, scale_moment, tag):
@@ -390,6 +469,7 @@ def support_rows(led, support, comps, scale_force, scale_moment, tag):
         sc = scale_force if unit == "N" else scale_moment
         name = f"{tag}_{comp}" if val.r != 0 else ("zero_force" if unit == "N" else "zero_moment")
         led.row("support_reaction_component_v2", support, comp, "node", unit, "global", name, val, sc)
+    magnitude_rows(led, support, comps[:3], comps[3:], scale_force, scale_moment, tag)
 
 
 # ---------------------------------------------------------------- document sketches
@@ -491,7 +571,8 @@ V3_PATCH = {"op": "replace", "path": "/model/pressure_contract", "value": {"vers
 def documents(doc030, states040):
     return {"v2_model_0.3.0": doc030, "v2_model_0.4.0": to_040(doc030, states040),
             "v3_patch_for_both": V3_PATCH,
-            "note": "The v2 documents run on today's exact route (straight only). The v3 documents are the v2 documents with V3_PATCH applied; SP-1 requires v3 numbers bit-equal to v2's per mode."}
+            "sp1_pair": "/sp1_pair_scope",
+            "note": "The v2 documents run on today's exact route (straight only). The v3 documents are the v2 documents with V3_PATCH applied. The pair is held to /sp1_pair_scope (all inputs here have p >= 0), separately for 0.3.0 and 0.4.0 and for each mode."}
 
 
 # ================================================================= CASE 1: MILLTOL
@@ -514,7 +595,7 @@ def case_milltol():
            "refreeze": {"unit": "T4-U6", "condition": "re-freeze if D-5 changes any of: the cap-area (Ai) basis, the As basis of the Poisson eigenstrain, the stiffness basis, or the stress basis",
                         "basis_today": "one basis: OD and (authored wall - mill tolerance) for As, I, J, Z, the Lame radii and Ai (reduced bore)",
                         "fold": "the product has no corrosion-allowance input: authored wall_thickness = nominal 0.01 - allowance 0.002 = 0.008 m; mill_tolerance = 0.00125 m stays in its own slot; effective wall 0.00675 m equals the retired t_eff",
-                        "after_D5_as_recommended": "wall 0.01 + a corrosion-allowance input 0.002 + mill 0.00125; stiffness and the eps_p area move to the nominal section; stresses on both sections; Ai stays on the reduced bore. Expected to move: displacements and any nominal-section stress row; expected to stay: Nw, S, and reduced-section sigma_z and Lame rows (inference, not frozen)."},
+                        "after_D5_as_recommended": "wall 0.01 + a corrosion-allowance input 0.002 + mill 0.00125; stiffness and the eps_p area move to the nominal section; stresses on both sections; Ai stays on the reduced bore. Expected to move: displacements and any nominal-section stress row; expected to stay: Nw, S, and reduced-section sigma_z and Lame rows, provided the As of eps_p equals the stiffness As (RV1 N-5), as D-5 recommends (inference, not frozen)."},
            "inputs": {"outside_diameter": qty(od, "m"), "nominal_wall": qty(t_nom, "m"), "corrosion_allowance_retired_input": qty(ca, "m"),
                       "authored_wall_thickness": qty(wall_authored, "m"), "mill_tolerance": qty(mill, "m"),
                       "effective_wall": qty(t_eff, "m"), "pressure": qty(p, "Pa"), "E": qty(E, "Pa"), "nu": qty(nu, "1"),
@@ -544,6 +625,8 @@ def case_milltol():
         led.scale("scale_rotation", free_ext / Q(L), "rad", "free extension / L")
         pressure_rows(led, "pipe:A-B", st, lm, p, "scale_force", "scale_stress")
         transverse_rows(led, "pipe:A-B", "AB", {}, "scale_force", "scale_moment")
+        stress_rows(led, "pipe:A-B", "AB", {}, g["Z"], "scale_stress")
+        maximum_row(led, "pipe:A-B", "AB", st["sigma_z"], Q(0), g["Z"])
         node_rows(led, "node:A", Q(0), Q(0), Q(0), "scale_length", "scale_rotation", "A")
         node_rows(led, "node:B", ext, Q(0), Q(0), "scale_length", "scale_rotation", "B")
         support_rows(led, "support:A", [P - st["Nw"], Q(0), Q(0), Q(0), Q(0), Q(0)], "scale_force", "scale_moment", "A")
@@ -553,7 +636,7 @@ def case_milltol():
             sups.append(support("support:B", "node:B", "anchor", ["UX", "UY", "UZ", "RX", "RY", "RZ"]))
         cases = [{"id": cid, "primitive_loads": [], "pressure_regions": [region("region:milltol", ["pipe:A-B"], p, "node:A", "node:B")], "provenance": PROV}]
         doc = doc_030("project:t4-i8-milltol-" + key, nodes, pipes, sups, mat, cases)
-        out["variants"][key] = {"load_cases": {cid: led.to_json()}, "documents": documents(doc, {})}
+        out["variants"][key] = {"load_cases": {cid: led.to_json(f"/cases/milltol_lame_membrane/variants/{key}/load_cases/{cid}")}, "documents": documents(doc, {})}
     # wrong-result discriminators (values a correct product must not produce)
     def alt(wall_eff, bore_ri=None):
         ga = annulus(od, wall_eff)
@@ -565,15 +648,21 @@ def case_milltol():
     disc.append({"id": "retired_thin_wall_longitudinal_free", "quantity": "sigma_z (free)", "wrong": qty(retired_hoop / 2, "Pa"), "why": "hoop/2 has no exact counterpart; free sigma_z = P/As"})
     disc.append({"id": "retired_thin_wall_longitudinal_restrained", "quantity": "sigma_z (restrained)", "wrong": qty(retired_hoop / 2, "Pa"), "why": "restrained sigma_z = 2 nu P/As"})
     ga, Pq = alt(t_nom - mill)
-    disc.append({"id": "allowance_not_folded", "quantity": "lame_inner_hoop", "wrong": qty(lame(ga, p)["inner_hoop"], "Pa"), "why": "wall 0.01 - 0.00125: corrosion allowance ignored"})
-    disc.append({"id": "allowance_not_folded_sigma_z_free", "quantity": "sigma_z (free)", "wrong": qty(Pq / ga["As"], "Pa"), "why": "corrosion allowance ignored"})
+    disc.append({"id": "allowance_not_folded", "quantity": "lame_inner_hoop", "wrong": qty(lame(ga, p)["inner_hoop"], "Pa"), "why": "wall 0.01 - 0.00125: guards the document's authoring (the fold), not the product"})
+    disc.append({"id": "allowance_not_folded_sigma_z_free", "quantity": "sigma_z (free)", "wrong": qty(Pq / ga["As"], "Pa"), "why": "guards the document's authoring (the fold), not the product"})
     ga, Pq = alt(wall_authored)
     disc.append({"id": "mill_tolerance_ignored", "quantity": "lame_inner_hoop", "wrong": qty(lame(ga, p)["inner_hoop"], "Pa"), "why": "wall 0.008 without the mill-tolerance reduction"})
     disc.append({"id": "mill_tolerance_ignored_sigma_z_free", "quantity": "sigma_z (free)", "wrong": qty(Pq / ga["As"], "Pa"), "why": "mill tolerance ignored"})
     Pnom = Q(p * F(9, 100) ** 2, 1)
-    disc.append({"id": "cap_area_on_nominal_bore", "quantity": "sigma_z (free)", "wrong": qty(Pnom / g["As"], "Pa"), "why": "Ai from the nominal bore (ri 0.09) while As is reduced: today's rule takes Ai from the reduced bore"})
+    disc.append({"id": "cap_area_on_nominal_bore", "quantity": "sigma_z (free)", "wrong": qty(Pnom / g["As"], "Pa"), "producible_today": False, "active_from": "T4-U6",
+                 "why": "kept as the T4-U6 control: Ai from the nominal bore (ri 0.09) with the reduced As. The folded document never carries the 0.01 wall, so today's product cannot produce it; once D-5 adds the nominal wall and an allowance input it becomes producible"})
     disc.append({"id": "longitudinal_pressure_added_free", "quantity": "sigma_z (free)", "wrong": qty(Q(2) * Q(p) * g["Ai"] / g["As"], "Pa"), "why": "Nw/As plus a separate longitudinal P/As counts the cap twice"})
+    Pauth = Q(p * (od / 2 - wall_authored) ** 2, 1)
+    s_auth = Pauth / g["As"]
+    check("S-3: Ai on the authored bore gives sigma_z = 270848000/20871", s_auth == Q(F(270848000, 20871)))
     disc.append({"id": "poisson_sign_reversed_restrained", "quantity": "Nw (restrained)", "wrong": qty(Q(-2 * nu) * Q(p) * g["Ai"], "N"), "why": "pressure Poisson term as compression"})
+    disc.append({"id": "cap_area_on_authored_bore", "quantity": "sigma_z (free)", "wrong": qty(s_auth, "Pa"), "producible_today": True,
+                 "why": "the producible mixed basis: the mill reduction applied to As but Ai taken from the authored bore (ri 0.092); today's rule takes Ai from the reduced bore (ri 0.09325)"})
     out["wrong_result_discriminators"] = disc
     out["limits"] = "Long straight homogeneous isotropic annulus, zero external pressure increment, small strain; tiny invented p (2000 Pa) kept from the retired case. Not a corrosion or code-thickness rule."
     return out
@@ -712,11 +801,13 @@ def case_tp_phys():
             led.scale("scale_transverse_moment", Q(-M(F(0))), "N*m", "|M(0)| root moment")
             led.scale("scale_transverse_length", Q(-EIv(L)) / EI, "m", "|uy(D)|")
             led.scale("scale_rotation", Q(-EItheta(L)) / EI, "rad", "|rz(D)|")
+            led.scale("scale_bending_stress", Q(-M(F(0))) / g["Z"], "Pa", "|M(0)|/Z root bending stress")
         else:
             led.scale("scale_transverse_force", P, "N", "P (no transverse load in this case)")
             led.scale("scale_transverse_moment", P * Q(L), "N*m", "P L")
             led.scale("scale_transverse_length", free_ext, "m", "free closed-line extension")
             led.scale("scale_rotation", free_ext / Q(L), "rad", "free extension / L")
+            led.scale("scale_bending_stress", P / g["As"], "Pa", "P/As (no transverse load in this case)")
         led.put("zero_force", 0, "N")
         for m, pid in enumerate(pipes_id):
             pressure_rows(led, pid, st, lm, p, "scale_force", "scale_stress")
@@ -732,13 +823,24 @@ def case_tp_phys():
                     else:
                         vals[loc] = (Q(V(x)), Q(M(x)))
             transverse_rows(led, pid, pid.replace("pipe:", ""), vals, "scale_transverse_force", "scale_transverse_moment")
+            secm = {}
+            mmax = Q(0)
+            if tr_on:
+                x0, x1 = xs[m], xs[m + 1]
+                for loc, s in STATIONS:
+                    secm[loc] = Q(M(x0 + s * (x1 - x0)))
+                mmax = Q(max(abs(M(x0)), abs(M(x1))))   # |M| is monotone on each member here
+                check(f"{pid}: |M| maximum at a member end", all(abs(M(x0 + F(k, 64) * (x1 - x0))) <= mmax.r for k in range(65)))
+            stress_rows(led, pid, pid.replace("pipe:", ""), secm, g["Z"], "scale_bending_stress")
+            maximum_row(led, pid, pid.replace("pipe:", ""), st["sigma_z"], mmax, g["Z"])
         for i, (nid, x) in enumerate(zip(nodes_id, xs)):
             uy = Q(EIv(x)) / EI if tr_on else Q(0)
             rz = Q(EItheta(x)) / EI if tr_on else Q(0)
             # zero UX: axial scale; transverse zeros: transverse scales
             for axis, val, sc in (("x", Q(0), "scale_axial_length"), ("y", uy, "scale_transverse_length"), ("z", Q(0), "scale_transverse_length")):
                 name = f"{nid[5:]}_u{axis}" if val.r != 0 else "zero_length"
-                led.row(f"global_nodal_displacement_{axis}", nid, f"nodal_displacement_{axis}", "node", "mm", "global", name, val, sc, transform="m_to_mm")
+                led.row(f"global_nodal_displacement_{axis}", nid, f"nodal_displacement_{axis}", "node", "mm", "global", name, val, sc, ref_unit="m",
+                        refreeze=["T4-U8: re-freeze if D-6 makes Timoshenko the exact-route default (Euler-Bernoulli deflection)"] if (axis == "y" and val.r != 0) else None)
             for axis, val in (("x", Q(0)), ("y", Q(0)), ("z", rz)):
                 name = f"{nid[5:]}_r{axis}" if val.r != 0 else "zero_rotation"
                 led.row(f"global_nodal_rotation_{axis}", nid, f"nodal_rotation_{axis}", "node", "rad", "global", name, val, "scale_rotation")
@@ -749,22 +851,18 @@ def case_tp_phys():
             unit = "N" if comp[0] == "F" else "N*m"
             name = f"A_{comp}" if val.r != 0 else ("zero_force" if unit == "N" else "zero_moment")
             led.row("support_reaction_component_v2", "support:A", comp, "node", unit, "global", name, val, sc)
+        magnitude_rows(led, "support:A", [R_A, fy, Q(0)], [Q(0), Q(0), mz], "scale_force", "scale_transverse_moment", "A")
         for comp, val, sc in zip(["Fx", "Fy", "Fz", "Mx", "My", "Mz"], [R_D, Q(0), Q(0), Q(0), Q(0), Q(0)],
                                  ["scale_force", "scale_transverse_force", "scale_transverse_force", "scale_transverse_moment", "scale_transverse_moment", "scale_transverse_moment"]):
             unit = "N" if comp[0] == "F" else "N*m"
             name = f"D_{comp}" if val.r != 0 else ("zero_force" if unit == "N" else "zero_moment")
             led.row("support_reaction_component_v2", "support:D", comp, "node", unit, "global", name, val, sc)
+        magnitude_rows(led, "support:D", [R_D, Q(0), Q(0)], [Q(0), Q(0), Q(0)], "scale_force", "scale_transverse_moment", "D")
         # global balance: reactions + applied (caps cancel; transverse W) == 0
         check(f"{cid}: Fy balance", fy.r + (q * (b - a) if tr_on else 0) == 0)
         check(f"{cid}: Mz balance about A", mz.r + (q * (b * b - a * a) / 2 if tr_on else 0) == 0)
         # magnitudes
-        jd = led.to_json()
-        dA = (R_A.dec() ** 2 + fy.dec() ** 2).sqrt()
-        jd["support_magnitudes"] = {
-            "support:A": {"force_magnitude": sym_qty(f"sqrt(({rat_str(R_A.r)}*pi)^2 + ({rat_str(fy.r)})^2)", dA, "N") if tr_on else qty(Q(abs(R_A.r), 1), "N"),
-                          "moment_magnitude": qty(Q(abs(mz.r)), "N*m") if tr_on else qty(0, "N*m")},
-            "support:D": {"force_magnitude": qty(Q(abs(R_D.r), 1), "N"), "moment_magnitude": qty(0, "N*m")},
-            "rows": "support_reaction_force_magnitude_v2 / support_reaction_moment_magnitude_v2; relative 1e-9, zero moment magnitude with zero scale scale_transverse_moment"}
+        jd = led.to_json(f"/cases/tp_phys_pressure_halves/load_cases/{cid}")
         out["load_cases"][cid] = jd
         out.setdefault("checks", {})[cid] = {"Nw": qty(Nw, "N"), "S": qty(Nw - P, "N"), "pressure_wall_tension_2nuP": qty(Q(2 * nu) * P, "N"),
                                              "thermal_wall_compression": qty(Q(-E * eps_th if th_on else 0) * g["As"], "N")}
@@ -801,7 +899,11 @@ def case_tp_phys():
         {"id": "station_sign_i_side", "case": "case:combined", "quantity": "pipe:A-B midspan bending_moment_z", "wrong": qty(-M(F(3, 4)), "N*m"), "why": "i-side cut convention instead of the product's j-side cut"},
         {"id": "full_span_load", "case": "case:combined", "quantity": "node:D uy", "wrong": qty(Q((q * (b - a) / L) * L ** 4 / 8) / EI, "m"), "why": "the same total load spread over the whole span (same root Fy and Mz, different deflection)"},
     ]
-    out["limits"] = "Long straight annulus, linear statics, Euler-Bernoulli, small displacement; tip line stop restrains UX only. Interior caps cancel (equal bore). No elastic stress maximum is frozen here (T4-U4)."
+    out["refreeze"] = {"unit": "T4-U8", "condition": "re-freeze if D-6 makes Timoshenko (energy-matched annular factor) the exact-route default",
+                       "rows": "global_nodal_displacement_y at node:B, node:C, node:D of case:combined (rows tagged 'refreeze'): Euler-Bernoulli lateral deflections; a shear-deformable cantilever adds the integral of V/(kappa G A) (about 0.3 % at node:D)",
+                       "stay": "statics (V, M, bending stress, maximum), reactions and their norms, every pressure row and all axial values; rz rows stay if the published rotation is the section rotation (theta' = M/EI with theta(0) = 0 is unchanged for this statically determinate cantilever), to be confirmed in T4-U8",
+                       "sp1_note": "v2 stays byte-identical (Euler-Bernoulli); the v3 side of this case's SP-1 pair must then select Euler-Bernoulli explicitly, or SP-1's straight-v3 clause is scoped to Euler-Bernoulli selections (T4-U8 planning point, T4-RV4 S-2)"}
+    out["limits"] = "Long straight annulus, linear statics, Euler-Bernoulli, small displacement; tip line stop restrains UX only. Interior caps cancel (equal bore). The straight elastic maximum is frozen here: it already contains the pressure-coupled |Nw/As| today (PP/src/lib.rs:5399-5446, 10340-10420@ed012c7ccf); T4-U4's maximum is the arc maximum."
     return out
 
 
@@ -841,6 +943,8 @@ def case_membrane():
     led.scale("scale_rotation", ext / Q(L), "rad", "free extension / L")
     pressure_rows(led, "pipe:A-B", st, lm, p, "scale_force", "scale_stress")
     transverse_rows(led, "pipe:A-B", "AB", {}, "scale_force", "scale_moment")
+    stress_rows(led, "pipe:A-B", "AB", {}, g["Z"], "scale_stress")
+    maximum_row(led, "pipe:A-B", "AB", st["sigma_z"], Q(0), g["Z"])
     node_rows(led, "node:A", Q(0), Q(0), Q(0), "scale_length", "scale_rotation", "A")
     node_rows(led, "node:B", ext, Q(0), Q(0), "scale_length", "scale_rotation", "B")
     support_rows(led, "support:A", [Q(0)] * 6, "scale_force", "scale_moment", "A")
@@ -860,7 +964,7 @@ def case_membrane():
             "equations": ["OD = 2 rm + t; ro = OD/2 = 3.25; ri = ro - t = 2.75", "Lame surface values as case 1",
                           "free closed tube (anchor A, B free, both terminals transferring): Nw = P; S = 0; sigma_z = P/As; uB = (1-2nu) P L/(E As)"],
             "thin_wall_comparison": comp,
-            "load_cases": {"case:membrane-free": led.to_json()},
+            "load_cases": {"case:membrane-free": led.to_json("/cases/pressure_membrane_thin_wall_limit/load_cases/case:membrane-free")},
             "documents": documents(doc, {}),
             "wrong_result_discriminators": [
                 {"id": "thin_hoop", "quantity": "lame_inner_hoop and lame_outer_hoop", "wrong": qty(thin_h, "Pa"), "why": "retired thin-wall value"},
@@ -935,18 +1039,102 @@ def case_twin(path):
                         "case_index": 0, "case_id": "ordinary",
                         "v2_consumer": "PP/tests/pressure_section_geometry.rs: fixture(inputs, fixed=false, pressurized=true); test ordinary_source_annulus_properties_and_all_responses; check_response and check_geometry",
                         "why_this_one": "one document exercises every v2 row family at once: extension, bending, torsion, Nw/S/membrane/Lame at five stations, endpoint wall actions, the elastic normal maximum, six-component reactions and the section evidence; its references are already independent and frozen"},
-            "expectation": {"rule": "SP-1: for each solver mode separately, the v3 run's numbers are bit-equal to the v2 run's (f64 bit patterns, including the sign of zero).",
-                            "covered": ["every published result row's value, matched by (kind, entity_ref, metadata.component, metadata.location, basis_ref) after the declared kind correspondence (identity unless T4-U2a renames kinds under pressure-1)",
-                                        "the row set itself: same count and same keys; no row added or dropped other than declared contract-identity rows",
-                                        "summary maxima values and their result_ref targets (as keys)",
-                                        "numeric fields of contract_evidence exact_cases[].pipe_sections[] and pressure[].geometry[] (OD, effective wall, ri, ro, Ai, As, I, J, Z) and the pressure ledger's assembled_force_n values",
-                                        "status MECHANICS_SOLVED in both, the same blocking/failure diagnostics (none), and the same per-case standing and formation-guard verdicts"],
-                            "not_covered": ["contract identity strings (version, mode, result-semantics id), approximation and formulation-evidence text naming admitted families",
-                                            "row ids or evidence keys that embed the contract identity, if T4-U2a introduces any (declared then)",
-                                            "cross-mode equality (sparse vs dense is not claimed bit-equal)", "cross-schema equality (0.3.0 vs 0.4.0 is not claimed)"],
+            "expectation": {"rule": "/sp1_pair_scope (all three clauses), for this document per schema version (0.3.0, 0.4.0) and per mode; p = 2 MPa >= 0",
+                            "refreeze": {"unit": "T4-U8", "condition": "re-freeze if D-6 makes Timoshenko the exact-route default",
+                                         "affected": "the fixture's tip_bending_y_m (Euler-Bernoulli F L^3/(3EI)) as an independent value for the v3 run; the maximum, reactions, rotations (section rotation), torsion and all pressure rows stay",
+                                         "sp1_note": "v2 stays byte-identical (Euler-Bernoulli); the v3 twin must then select Euler-Bernoulli explicitly, or SP-1's straight-v3 clause is scoped to Euler-Bernoulli selections (T4-U8 planning point, T4-RV4 S-2)"},
                             "independent_values": f"the v3 run must also meet the fixture's frozen values at relative 1e-9 with the consumer test's zero scales (check_response: zero targets use the free extension, the membrane stress or P as scale); T4-I8 re-derived {len(vals) + 2} of them in exact arithmetic from the binary64 inputs; worst relative difference from the fixture's binary64 values {max(worst, rel_mx):.1e} (check threshold 1e-14)"},
-            "documents": {"v2_model_0.3.0": doc, "v2_model_0.4.0": to_040(doc, {}), "v3_patch_for_both": V3_PATCH,
+            "documents": {"v2_model_0.3.0": doc, "v2_model_0.4.0": to_040(doc, {}), "v3_patch_for_both": V3_PATCH, "sp1_pair": "/sp1_pair_scope",
                           "note": "the 0.3.0 document is the consumer test's fixture() output for case 0, field for field; bit-equality compares v3 with v2 within one schema version and one mode"}}
+
+
+# ================================================================= CASE 5: second SP-1 twin, separate closures
+def case_twin_separate():
+    """PP/tests/pressure_runtime.rs model(fixed=true, transfer=false, thermal=0.0), state 4 of
+    six_si_pressure_states_through_both_public_solver_modes. No fixture under pressure_reference/ has
+    separately supported closures; this existing v2 document and its frozen values serve."""
+    od, wall = F(12, 100), F(1, 100)
+    g = annulus(od, wall)
+    E, nu, p, L = 200 * 10 ** 9, F(3, 10), 2 * 10 ** 6, F(6)
+    lm = lame(g, p)
+    P = Q(p) * g["Ai"]
+    Nw = Q(2 * nu) * P                      # both ends held, no caps on the wall: Nw = E As (0 - 0) + 2 nu P
+    check("separate-closure twin: Nw equals the restrained compliance state", Nw == axial_state(g, E, nu, p, 0, True)["Nw"])
+    st = {"Nw": Nw, "S": Nw - P, "sigma_z": Nw / g["As"]}
+    R_A, R_B = Q(0) - Nw, Nw                # node free bodies without cap loads
+    # existing frozen oracle values (PP/tests/pressure_runtime.rs:438-446@ed012c7ccf): wall 3000pi, effective -2000pi, root reaction -3000pi
+    check("separate-closure twin agrees with the frozen six-state values", Nw == Q(3000, 1) and st["S"] == Q(-2000, 1) and R_A == Q(-3000, 1))
+    free_wall = Q(-2 * nu * L) * P / (Q(E) * g["As"])   # same document with the tip released: free wall contracts
+    check("free-wall contraction -9/110000 m", free_wall == Q(F(-9, 110000)))
+    cid = "case:pressure-oracle"
+    led = Ledger(cid)
+    led.scale("scale_force", P, "N", "P = p Ai")
+    led.scale("scale_moment", P * Q(L), "N*m", "P L")
+    led.scale("scale_stress", P / g["As"], "Pa", "P/As")
+    led.scale("scale_length", Q(-free_wall.r), "m", "|free-wall contraction| 2 nu P L/(E As) of the same document with the tip released")
+    led.scale("scale_rotation", Q(-free_wall.r) / Q(L), "rad", "that contraction / L")
+    pressure_rows(led, "pipe:A-B", st, lm, p, "scale_force", "scale_stress")
+    transverse_rows(led, "pipe:A-B", "AB", {}, "scale_force", "scale_moment")
+    stress_rows(led, "pipe:A-B", "AB", {}, g["Z"], "scale_stress")
+    maximum_row(led, "pipe:A-B", "AB", st["sigma_z"], Q(0), g["Z"])
+    node_rows(led, "node:A", Q(0), Q(0), Q(0), "scale_length", "scale_rotation", "A")
+    node_rows(led, "node:B", Q(0), Q(0), Q(0), "scale_length", "scale_rotation", "B")
+    support_rows(led, "support:A", [R_A, Q(0), Q(0), Q(0), Q(0), Q(0)], "scale_force", "scale_moment", "A")
+    support_rows(led, "support:B", [R_B, Q(0), Q(0), Q(0), Q(0), Q(0)], "scale_force", "scale_moment", "B")
+    O = "independent_pressure_runtime_oracle"
+    anchor_ = lambda i, n: {"id": i, "node": n, "family": "anchor", "restraints": ["UX", "UY", "UZ", "RX", "RY", "RZ"], "provenance": O}
+    term = lambda n: {"node_ref": n, "closure_transfer": "separately_supported_or_compensated", "provenance": "explicit_independent_pressure_boundary"}
+    doc = {"model": {"schema_version": "0.3.0", "document_kind": "openpipestress.product_preview.model",
+                     "pressure_contract": {"version": "2.0.0", "mode": "exact_straight_pressure_v2"},
+                     "project": {"id": "project:pressure-oracle", "units": UNITS},
+                     "analysis_status": {"mechanics": "ready_for_preview_diagnostics", "rule_check": "not_performed_user_rule_inputs_missing",
+                                         "professional_acceptance": "not_provided"},
+                     "nodes": [{"id": "node:A", "position": {"x": 0.0, "y": 0.0, "z": 0.0}, "provenance": O},
+                               {"id": "node:B", "position": {"x": 6.0, "y": 0.0, "z": 0.0}, "provenance": O}],
+                     "pipe_segments": [{"id": "pipe:A-B", "from": "node:A", "to": "node:B",
+                                        "section": {"outside_diameter": {"value": 0.12, "unit": "m"}, "wall_thickness": {"value": 0.01, "unit": "m"}},
+                                        "material": "material:one", "y_reference": {"x": 0.0, "y": 0.0, "z": 1.0}, "provenance": "synthetic_straight_annulus"}],
+                     "supports": [anchor_("support:A", "node:A"), anchor_("support:B", "node:B")], "components": [],
+                     "materials": [{"id": "material:one", "constitutive_basis": "homogeneous_isotropic_E_nu_v1",
+                                    "elastic_modulus": {"value": 200e9, "unit": "Pa"}, "poisson_ratio": {"value": 0.3, "unit": "1"},
+                                    "thermal_expansion_coefficient": {"value": 0.000012, "unit": "1/degC"}, "temperature_points": [],
+                                    "provenance": "synthetic_isotropic_reference_no_catalog"}],
+                     "load_cases": [{"id": cid, "primitive_loads": [], "pressure_regions": [{
+                         "id": "region:pressure-oracle", "member_pipe_ids": ["pipe:A-B"], "pressure_basis": "internal_differential_zero_external_v1",
+                         "pressure": {"value": 2e6, "unit": "Pa"}, "terminals": [term("node:A"), term("node:B")],
+                         "provenance": "independent_pressure_region"}], "provenance": "synthetic_load_case"}],
+                     "combinations": []}, "materials": []}
+    return {"case_id": "EXACT-PRESSURE-V3-STRAIGHT-TWIN-SEPARATE-CLOSURES-001",
+            "twin_of": {"document": "PP/tests/pressure_runtime.rs model(fixed=true, transfer=false, thermal=0.0) at ed012c7ccf (state 4 of six_si_pressure_states_through_both_public_solver_modes, lines 432-477)",
+                        "why": "SP-1 coverage of separately supported closures (T4-RV4 N-4); no fixture under pressure_reference/ has them",
+                        "frozen_values": "the test's inline frozen values (wall 3000pi N, effective -2000pi N, root Fx -3000pi N, tip Fx +3000pi N, zero extension); independently: PRESSURE_REFERENCE_QUALIFICATION section 3 item 2 (restrained separate closures: Nw = 2 nu P, pipe reactions [-2 nu P, +2 nu P])"},
+            "equations": ["no cap load on the wall (separately supported closures); both ends held: strain 0", "Nw = 2 nu P; S = Nw - P = (2 nu - 1) P; root Fx = -Nw; far Fx = +Nw",
+                          "the remote closure supports carry +-P outside the pipe reaction ledger"],
+            "frame": "y_reference (0,0,1) as in the test: local y = global Z, local z = -global Y (transverse rows are zero)",
+            "load_cases": {cid: led.to_json("/cases/v3_straight_twin_separate_closures/load_cases/case:pressure-oracle")},
+            "expectation": {"rule": "/sp1_pair_scope (all three clauses), per schema version and per mode; p = 2 MPa >= 0",
+                            "independent_values": "the rows above at relative 1e-9 with their zero scales, in both modes"},
+            "documents": {"v2_model_0.3.0": doc, "v2_model_0.4.0": to_040(doc, {}), "v3_patch_for_both": V3_PATCH, "sp1_pair": "/sp1_pair_scope",
+                          "note": "the 0.3.0 document is the test's model(true, false, 0.0) output field for field"},
+            "limits": "Straight annulus; separate closures must be supported elsewhere (their +-P is disclosed outside the pipe ledger)."}
+
+
+SP1_PAIR_SCOPE = {
+    "applies_to": "every v2/v3 document pair in this file (cases 1-3 and both twins); recommended mechanically for every existing v2 exact document in PP's tests with p >= 0, which also covers reversed member and terminal order, unequal-wall chains and mixed closures (T4-RV4 N-4)",
+    "inputs": "v2-admissible inputs only: p >= 0 in every region. v3 admits signed pressure and v2 refuses p < 0 after T4-U0, so a p < 0 v3 document has no v2 twin",
+    "clause_1_v2_anchor": "the candidate's serialized v2 envelope is byte-identical to the base revision's for the same document and mode (base = the PR's merge base on main); T4-U0's declared p < 0 refusal lies outside the p >= 0 scope",
+    "clause_2_v3_equals_v2": "every numeric JSON leaf of the candidate's v3 envelope equals the candidate's v2 leaf at the same path as an f64 bit pattern (sign of zero included); arrays are compared in order; every non-numeric leaf is equal too, except the closed exclusion list",
+    "closed_exclusion_list": [
+        "E1: producer.semantic_contract_id (string)",
+        "E2: formulation_basis.profile_id and formulation_basis.limitations (strings: approximation and limitation text)",
+        "E3: string leaves of contract_evidence that state the pressure contract version and mode, the result-semantics identity or the admitted families; T4-U2a enumerates their paths in the PR that introduces them, and no existing v2 key changes value",
+        "E4: diagnostics[].message text where it names the contract (id, code, severity and affected_refs are compared)",
+        "E5: result-row kind strings, only through a declared one-to-one kind correspondence if T4-U2a renames kinds under pressure-1 (identity otherwise)"],
+    "no_numeric_exclusion": "no numeric leaf is excluded: results values, summary, numerical_quality, source_block_recovery, diagnostics numerics and every numeric contract_evidence leaf, including material E/nu/G/alpha, eigenload_pair_local_n, cap pairs, terminal cap forces, assembly-term coefficients and assembled forces (PP/src/pressure_runtime.rs:642-647, 686-689, 880-883), the exact section evidence, pipe_stress_extrema (PP/src/lib.rs:5569) and 0.4.0 load_reference_states evidence (PP/src/lib.rs:2820), all at ed012c7ccf",
+    "clause_3_scope": "per mode separately and per schema version separately; cross-mode and cross-schema equality are not claimed",
+    "standing": "the same per-case standing and formation-guard verdicts follow from clause 2 (they are leaves of the envelope)",
+    "basis": "plan section 2 SP-1; H-1; T4-RV4 S-4",
+}
 
 
 # ================================================================= main
@@ -954,7 +1142,8 @@ def main():
     fixture_path, out_path = sys.argv[1], sys.argv[2]
     self_test_qualified_tables()
     cases = {"milltol_lame_membrane": case_milltol(), "tp_phys_pressure_halves": case_tp_phys(),
-             "pressure_membrane_thin_wall_limit": case_membrane(), "v3_straight_twin": case_twin(fixture_path)}
+             "pressure_membrane_thin_wall_limit": case_membrane(), "v3_straight_twin": case_twin(fixture_path),
+             "v3_straight_twin_separate_closures": case_twin_separate()}
     doc = {
         "schema_version": "independent.exact_pressure_rebuilt_reference_cases/1.0.0",
         "purpose": "Independent analytical references for T4-U2's rebuilt straight cases (VP-STATIC exact_pressure_1). Frozen before any implementation; not product request DTOs or observed solver outputs.",
@@ -963,7 +1152,8 @@ def main():
                    "brief_sha256": "1f294de53fa8dfbfc0bb63aa9300b4567332cbc884c6cb37353d5c315a7aa134", "records_revision": "0c17c8d352"},
         "conventions_basis": {"code_revision": "ed012c7ccf", "use": "read for conventions only (section rule, row kinds, stations, frames, signs); no value taken from the product"},
         "numbers": "Invented test quantities; decimal inputs are exact rational targets; no material-library, component or code-rule data.",
-        "numeric_representation": {"exact_is_authoritative": True, "kinds": ["rational", "rational_times_pi", "rational_over_pi", "symbolic (sqrt only, support magnitudes)"],
+        "numeric_representation": {"exact_is_authoritative": True, "kinds": ["rational", "rational_times_pi", "rational_over_pi",
+                                   "symbolic: 'sqrt((a*pi)^2 + (b)^2)' (one support force norm) and 'a + (b)/pi' (two elastic maxima); T1's generator needs these two forms added to its SYMBOLIC pattern, or the three rows left out"],
                                    "pi_decimal": PI_STR_100, "pi_method": "Machin, checked against Gauss-Legendre to 1e-125",
                                    "decimal_precision": 85, "value": "binary64 rounding of the exact value; a convenience, never a product observation",
                                    "input_rounding": "authored decimals (0.2, 0.3, 0.00125, ...) are generally not binary64-exact; the 1e-9 criterion absorbs the operand rounding"},
@@ -979,20 +1169,25 @@ def main():
             "global_nodal_displacement_{x,y,z}": "mm, global (PP/src/lib.rs:11182-11260@ed012c7ccf)",
             "global_nodal_rotation_{x,y,z}": "rad, global, right-hand",
             "support_reaction_component_v2/{Fx,Fy,Fz,Mx,My,Mz}": "N and N*m, global, location node, support-on-pipe; all six published for every support, unrestrained DOFs exactly 0 (PP/src/lib.rs:4806-4835, 11400-11422@ed012c7ccf)",
+            "support_reaction_{force,moment}_magnitude_v2/{force,moment}_magnitude": "N and N*m, global, node: the norms of the force and moment components (PP/src/lib.rs:11423-11435@ed012c7ccf)",
+            "element_local_{bending_normal_stress_y,bending_normal_stress_z,torsional_shear_stress}": "MPa (reference in Pa, exact factor 1/1000000), element_local, five locations: M/Z and T ro/J of the j-side section action, the ends included (PP/src/lib.rs:5179-5199, 5243-5345, 12555-12735; stress_recovery/src/lib.rs:431-460@ed012c7ccf)",
+            "pipe_elastic_normal_stress_maximum_v2/maximum_absolute_normal_stress": "Pa, pipe_section, governing_station, one per member: max over the member of |Nw/As| + hypot(My,Mz)/Z, pressure-coupled through Nw today (PP/src/lib.rs:5399-5446, 10340-10420@ed012c7ccf); the arc maximum is T4-U4's",
             "stations": "end_i 0, quarter_1 0.25, midspan 0.5, quarter_3 0.75, end_j 1 of each member (PP/src/lib.rs:11518-11524@ed012c7ccf)",
             "absent_on_pressurized_members": "element_local_axial_force, element_local_axial_normal_stress, pipe_section_pressure_hoop_stress, pipe_section_pressure_longitudinal_stress (PP/src/lib.rs:11462-11471@ed012c7ccf)"},
         "section_rule": "effective wall = wall_thickness - mill_tolerance (absent slot = no reduction); ro = OD/2; ri = ro - effective wall; As = pi t (OD - t); Ai = pi ri^2 (reduced bore); I = As (ro^2+ri^2)/4; J = 2I; Z = I/ro (PP/src/lib.rs:10213-10230, 7244-7258; annulus_geometry.rs:34-45; pressure_exact/source_geometry.rs:28-46@ed012c7ccf)",
         "criteria": {"modes": ["sparse_interactive", "dense_scrutiny"], "same_reference_both_modes": True,
                      "nonzero": "|observed - expected| <= 1e-9 |expected|",
-                     "zero": "|observed| <= 1e-9 * |zero_scale| (zero_scales block of the load case; absolute_tolerance precomputed in the reference unit)",
-                     "applied_in": "the reference unit, after the row's transform is applied to the observation",
-                     "transforms": {"identity": "row unit equals reference unit", "m_to_mm": "displacement rows are published in mm: observed/1000 compared with the metre reference"},
+                     "zero": "|observed| <= 1e-9 * |zero_scale| converted into the row unit; each row's reference_origin.zero_scale is T1's {tag, base: {pointer, reference_unit}, scale_unit}, and criterion.absolute_tolerance is precomputed in the row unit",
+                     "unit_convention": "T1's: every row's reference_origin is {kind: analytical, pointer, reference_unit, transform: identity}; the reference value is converted into the row unit by an exact definitional factor and the comparison is made in the row unit",
+                     "unit_factors": {"m->mm": "1000 (displacement rows; in T1's UNIT_FACTORS)", "Pa->MPa": "1/1000000 (element_local bending and torsional stress rows, published in MPa; T1's UNIT_FACTORS needs this one exact factor added)"},
+                     "zero_scale_definitions": "each load case's zero_scales entries are maintained quantities {unit, exact, decimal, value} only; the definitions are in the sibling map zero_scale_definitions",
                      "negative_assertions": "wrong_result_discriminators: |observed - wrong| > max(abs, 1e-9 max(|observed|,|wrong|))",
                      "no_new_threshold": "the existing protected 1e-9 relative criterion only"},
         "structural_expectations": ["status MECHANICS_SOLVED with no blocking or failure diagnostic, both modes",
                                     "no element_local_axial_force, element_local_axial_normal_stress, pipe_section_pressure_hoop_stress or pipe_section_pressure_longitudinal_stress row on a pressurized member",
                                     "every pressure row is listed in its region's contract_evidence.pressure[].result_ids exactly once",
                                     "pressure rows carry basis_ref {load_case, <case id>}; forces element_local, stresses pipe_section"],
+        "sp1_pair_scope": SP1_PAIR_SCOPE,
         "cases": cases,
     }
     ok = all(c for _, c in CHECKS)

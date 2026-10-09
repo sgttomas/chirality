@@ -1,52 +1,54 @@
-# T4-I8 RETURN: rebuilt straight-case references (frozen)
+# T4-I8 RETURN: rebuilt straight-case references (frozen; repair round 01)
 
 - **Who:** TASK T4-I8 (Type 2), for T4's WORKING_ITEMS. Brief `R4/BRIEFS/T4-I8_U2_STRAIGHT_REBUILT_REFERENCES.md` (sha256 `1f294de5…`); terms `R4/BRIEFS/T4_WI_COMMON.md` (sha256 `7d44afd0…`).
-- **Status:** frozen before code; ready for the refuting TASK.
-- **What was done:** closed forms in exact arithmetic. The product was read for conventions only (`ed012c7ccf`), and the retired cases at `ec5d397359`. There were no builds, runs, cargo or Git writes.
+- **Status:**
+  - Frozen at `61b4e0b460`. T4-RV4 refuted it: PASS WITH FINDINGS, nothing blocking.
+  - This is repair round 01 (`REPAIR_01.md`), which closes S-1 to S-4 and N-2 to N-4.
+  - **No frozen value changed:** all 235 round-00 quantities are identical.
+- **What was done:** closed forms in exact arithmetic. The product was read for conventions only (`ed012c7ccf`), and the retired cases at `ec5d397359`. There were no builds, product runs, cargo or Git writes.
 
 ## Plan, stop rules, T3 conditions
 
-- **No stop rule (SP-1 to SP-4) is triggered, and no T3 condition is touched.** SP-1 is carried by case 4 and by the v2/v3 document pair of every case.
-- **Partial-span loads cannot be authored on the exact route** (extents exist only for the refused `equivalent_static` wind). The 009 rebuild therefore uses a three-member chain that carries a uniform load on its middle member. The reference is exact.
-- **MILLTOL:** the corrosion allowance is folded into the authored wall (0.008 m), with the mill tolerance in its slot (0.00125 m), so t_eff = 0.00675 m as before. The case is marked for re-freeze in T4-U6 if D-5 changes the basis.
-- **Generator:** the combined root support's force magnitude, sqrt((29280π)² + 900²), needs a small extension of T1's generator, or must be left out of the package. The twin's values stay in their own fixture format.
-- **Proposals:** the v3 wire (`3.0.0/exact_pressure_v3` patch) and the case ids are proposals, pending T4-U2a.
+- **No stop rule (SP-1 to SP-4) is triggered, and no T3 condition is touched.**
+- **D-6 against SP-1 (T4-U8 planning point, from S-2).** If Timoshenko becomes the exact-route default, a straight v3 document cannot stay bit-equal to its Euler–Bernoulli v2 twin, unless the v3 side selects Euler–Bernoulli or SP-1's straight-v3 clause is scoped to that selection. Case 2's uy rows and the twin's tip deflection are tagged for re-freeze in T4-U8.
+- **Partial-span loads cannot be authored on the exact route.** The 009 rebuild uses a three-member chain; RV4 confirmed this is forced and sound.
+- **MILLTOL:** the allowance is folded into the authored wall (0.008 m), and the mill tolerance stays in its slot. Re-freeze in T4-U6 if D-5 changes the basis.
+- **Package generator:** T1's generator accepts every row through its own functions except:
+  - 150 MPa stress rows, which need the exact factor Pa→MPa added;
+  - 3 symbolic rows, which need the forms `sqrt((a*pi)^2 + (b)^2)` and `a + (b)/pi`.
+
+  Add these, or leave the rows out.
+- **Proposals:** the v3 wire and the case ids remain proposals, pending T4-U2a.
 
 ## Cases
 
-| New id | Rebuilds | Content | Key reference values |
-|---|---|---|---|
-| `EXACT-PRESSURE-MILLTOL-LAME-MEMBRANE-001` | `STRESS-TP-PMM-P3-MILLTOL-EFFECTIVE-WALL-STRESS` (membrane values) | One member; free and axially restrained; transferring closures | σh 28664.558478271286 / 26664.558478271286 Pa; σz free 13332.279239135643, restrained 7999.3675434813857 Pa |
-| `EXACT-PRESSURE-THERMAL-TRANSVERSE-MIXED-001` | `MECH-TP-PHYS-008/009` pressure halves | OD 0.2 / wall 0.01; anchor and UX line stop; p 2 MPa, ΔT 5 degC, q −300 N/m on [1.5, 4.5] m | Pressure half Nw = +9720π N (tension 2νP); combined Nw = −13080π N, S = −29280π N; uy(D) = −1701/(137560π) m; anchor Fy 900 N, Mz 2700 N·m |
-| `EXACT-PRESSURE-LAME-THIN-WALL-LIMIT-001` | `STRESS-PRESSURE-MEMBRANE-ORIGINAL` | OD 6.5 / wall 0.5, free closed tube | σh 3625/6 and 3025/6, σz 3025/12 Pa. Thin-wall 600 / 300 differ by −1/145 (inner hoop), +23/121 (outer hoop) and +23/121 (σz) |
-| `EXACT-PRESSURE-V3-STRAIGHT-TWIN-ODWALL-001` | — (SP-1 twin) | Twin of `SOURCE_ODWALL_EXPECTATIONS.json` case 0 `ordinary` | Bit-equal per mode: every row value, the row set, the maxima, the section and pressure evidence, the standing |
+| New id | Rebuilds | Key reference values |
+|---|---|---|
+| `EXACT-PRESSURE-MILLTOL-LAME-MEMBRANE-001` | MILLTOL membrane values | σh 28664.558478271286 / 26664.558478271286 Pa; σz (= maximum) 13332.279239135643 free, 7999.3675434813857 restrained |
+| `EXACT-PRESSURE-THERMAL-TRANSVERSE-MIXED-001` | TP-PHYS-008/009 pressure halves | Pressure half Nw = +9720π N; combined Nw = −13080π, S = −29280π N; uy(D) = −1701/(137560π) m; anchor Fy 900 N, Mz 2700 N·m; bending stress M/Z; maxima to 16880566.358781446 Pa |
+| `EXACT-PRESSURE-LAME-THIN-WALL-LIMIT-001` | PRESSURE-MEMBRANE | σh 3625/6, 3025/6; σz 3025/12 Pa; thin-wall differences −1/145, +23/121, +23/121 |
+| `EXACT-PRESSURE-V3-STRAIGHT-TWIN-ODWALL-001` | SP-1 twin (SOURCE_ODWALL case 0) | `/sp1_pair_scope`; the fixture's values |
+| `EXACT-PRESSURE-V3-STRAIGHT-TWIN-SEPARATE-CLOSURES-001` (new) | SP-1 twin with separate closures (six-state document) | Nw = 3000π, S = −2000π N, root Fx −3000π |
 
-**What each case carries:**
-- complete inputs and exact derived section values;
-- five-station rows (Nw, S, σz, Lamé, endpoint actions) and transverse rows, with frames and signs;
-- displacements and six-component reactions;
-- a named zero scale for every zero;
-- wrong-result discriminators;
-- v2 0.3.0 and 0.4.0 documents plus the provisional v3 patch.
-
-The criterion is relative 1e-9 in both modes.
+**`/sp1_pair_scope`** has three clauses, applies to every pair, and is restricted to p ≥ 0:
+1. the v2 envelope is byte-identical to the base revision's;
+2. every numeric leaf of v3 is bit-equal to v2's, with non-numeric leaves equal except the closed list E1–E5;
+3. per mode and per schema version.
 
 ## Checks
 
-- **`derive_rebuilt_references.py`: 162 checks pass.** They include:
-  - the qualified rational table and the 6 m companion, reproduced by the script's own functions;
-  - the general Lamé family against the closed forms;
-  - an exact direct-stiffness solve against the beam closed form, at every node and station;
-  - the retired 009 hand calculation's transverse half (−0.070875 m, −0.014625 rad);
-  - 21 twin values against the fixture, each binary64-identical.
-- **`check_reference_json.py`:** re-evaluates 235 quantities (decimal to 1e-80, value bitwise), checks 690 rows (378 zero rows with valid scales) and 24 distinct discriminators, and cross-checks the 0.3.0 and 0.4.0 documents. Result: PASS.
+| Script | Result |
+|---|---|
+| `derive_rebuilt_references.py` | 177 checks pass |
+| `check_reference_json.py` | 284 quantities, 956 rows (582 zero rows), 25 discriminators, T1 key sets and pointers, re-freeze tags, documents, and the comparison with the frozen file (235 equal); PASS |
+| `t1_generator_probe.py` | 803 rows accepted by T1's functions, with exact values and tolerances; only the declared 153 refusals; PASS |
 
 ## Files (under `R4/T4-I8/`)
 
-`REBUILT_REFERENCE.md`, `rebuilt_reference_cases.json`, `RETURN.md`, `_run_records/derive_rebuilt_references.py` and `.stdout.txt`, `_run_records/check_reference_json.py` and `.stdout.txt`, `SHA256SUMS`.
+- `REBUILT_REFERENCE.md`, `rebuilt_reference_cases.json`, `RETURN.md`, `REPAIR_01.md`, `SHA256SUMS`
+- `_run_records/derive_rebuilt_references.py`, `check_reference_json.py` and `t1_generator_probe.py`, each with its `.stdout.txt`
 
 ## Not done
 
-- No product run. The admission of `line_stop`, `weight` N/m element loads and the 0.4.0 sketches on the exact route is read from code, not exercised.
-- No elastic stress maxima for cases 1–3.
+- No product run. Admission of `line_stop`, `weight` N/m loads and the 0.4.0 sketches is read from code.
 - No bend cases (T4-I7).
