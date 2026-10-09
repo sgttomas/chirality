@@ -1,0 +1,6 @@
+# vitest at the candidate: the full run inside the chain had one failure, App.deadControls.test.tsx "every button is either responsive or disabled with a stated reason" (AssertionError at :274).
+# first full run: numTotalTests=4248 numPassedTests=4247 numFailedTests=1
+# the file passed in two isolated reruns (2/2 tests each), and a second full run passed every test; the comparison uses the second full run.
+# second full run: numTotalTests=4248 numPassedTests=4248 numFailedTests=0
+# isolated rerun 1: Tests  2 passed (2)
+# isolated rerun 2: Tests  2 passed (2)

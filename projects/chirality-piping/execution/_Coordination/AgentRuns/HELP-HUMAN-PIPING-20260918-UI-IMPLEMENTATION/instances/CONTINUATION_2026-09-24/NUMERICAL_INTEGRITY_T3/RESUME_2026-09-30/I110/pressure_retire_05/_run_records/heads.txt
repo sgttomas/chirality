@@ -1,0 +1,3 @@
+candidate 70e7f49ced (branch codex/piping-t3-pressure-retire-20261008, WT/t3-pret)
+B 7eae707bb7 (round-2 B-side records reused)
+harness tree WT/t3-pret-hc detached at 70e7f49ced

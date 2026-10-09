@@ -1,0 +1,30 @@
+[
+ [
+  "pressure_thrust_treatment=arc_end_cap_tangent_pair_plus_consistent_radial_wall_load",
+  "pressure_thrust_treatment=none_pressure_refused_outside_the_exact_straight_contract"
+ ],
+ [
+  "pressure_thrust_generation=load_side_user_effective_area;pressure_thrust=",
+  "pressure_thrust_generation=none_pressure_refused_outside_the_exact_straight_contract;user_pressure_thrust_reference="
+ ],
+ [
+  "; pressure-thrust generation is load-side effective-area evidence and no compliance claim is made",
+  "; no joint pressure thrust is generated and no compliance claim is made"
+ ],
+ [
+  "Pressure thrust and pressure stress retain the existing preview formulation and capability qualifications; pressure formulation qualification remains open.",
+  "Pressure is not solved on this profile: legacy pressure inputs are refused, and pressure is solved only on the exact straight-pressure profile, under that profile's own qualifications."
+ ],
+ [
+  "Nonzero pressure is refused on this route, and so is legacy imposed_displacement.",
+  "Legacy pressure primitives are refused on this route, zero values included, and so is legacy imposed_displacement."
+ ],
+ [
+  "expansion joint components require solver_consumption=mechanics_geometry_and_user_flexibility under DEC-045; pressure thrust remains load-side input evidence",
+  "expansion joint components require solver_consumption=mechanics_geometry_and_user_flexibility under DEC-045; no joint pressure thrust is generated"
+ ],
+ [
+  "expansion joint effective pressure area and movement limit must be finite positive user-entered values before load-side pressure-thrust evidence can be generated",
+  "expansion joint effective pressure area and movement limit must be finite positive user-entered values; they are recorded as input evidence only, and no joint pressure thrust is generated"
+ ]
+]

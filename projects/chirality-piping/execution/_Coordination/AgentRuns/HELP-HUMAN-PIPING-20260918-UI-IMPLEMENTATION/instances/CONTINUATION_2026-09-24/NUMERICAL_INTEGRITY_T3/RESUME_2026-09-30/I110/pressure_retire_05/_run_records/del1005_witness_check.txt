@@ -1,0 +1,7 @@
+# DEL-10-05 witnesses regenerated at the branch head with --explicit-local-private-intent (r5/regen_witness_flag.sh); output payload vs committed file (JSON equality)
+benchmark_single_case: blocked=False payload_equals_committed=True
+benchmark_multi_case: blocked=False payload_equals_committed=True
+regression_full_suite: blocked=False payload_equals_committed=True
+benchmark_payload_missing: blocked=False payload_equals_committed=True
+regression_payload_missing: blocked=False payload_equals_committed=True
+exit codes: benchmark_single_case 0, benchmark_multi_case 0, regression_full_suite 0, benchmark_payload_missing 1, regression_payload_missing 1

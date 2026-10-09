@@ -1,0 +1,52 @@
+# T2 (PP/src/lib.rs:1944) per-file check, NOT applied. For each committed carrier: does the head reproduce it (JSON),
+# and which JSON leaves differ between the committed file and the head's output with T2 applied.
+P/fixtures/product_preview/source_blocks/multicase-dense_scrutiny.raw.json
+  head reproduces it: True
+  leaves differing with T2: 3: ['/formulation_basis/limitations[1]', '/source_block_recovery/body/publication_sha256', '/source_block_recovery/receipt_sha256']
+P/fixtures/product_preview/source_blocks/multicase-sparse_interactive.raw.json
+  head reproduces it: True
+  leaves differing with T2: 3: ['/formulation_basis/limitations[1]', '/source_block_recovery/body/publication_sha256', '/source_block_recovery/receipt_sha256']
+P/fixtures/product_preview/source_blocks/n05-dense_scrutiny.raw.json
+  head reproduces it: True
+  leaves differing with T2: 3: ['/formulation_basis/limitations[1]', '/source_block_recovery/body/publication_sha256', '/source_block_recovery/receipt_sha256']
+P/fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json
+  head reproduces it: True
+  leaves differing with T2: 3: ['/formulation_basis/limitations[1]', '/source_block_recovery/body/publication_sha256', '/source_block_recovery/receipt_sha256']
+P/fixtures/product_preview/source_blocks/n06-dense_scrutiny.raw.json
+  head reproduces it: True
+  leaves differing with T2: 3: ['/formulation_basis/limitations[1]', '/source_block_recovery/body/publication_sha256', '/source_block_recovery/receipt_sha256']
+P/fixtures/product_preview/source_blocks/n06-sparse_interactive.raw.json
+  head reproduces it: True
+  leaves differing with T2: 3: ['/formulation_basis/limitations[1]', '/source_block_recovery/body/publication_sha256', '/source_block_recovery/receipt_sha256']
+P/fixtures/product_preview/source_blocks/rejected_stress_range/dense_scrutiny.raw.json
+  head reproduces it: False
+  leaves differing with T2: 14: ['/contract_evidence', '/diagnostics[3]/affected_refs', '/diagnostics[3]/code', '/diagnostics[3]/id', '...']
+P/fixtures/product_preview/source_blocks/rejected_stress_range/sparse_interactive.raw.json
+  head reproduces it: False
+  leaves differing with T2: 14: ['/contract_evidence', '/diagnostics[3]/affected_refs', '/diagnostics[3]/code', '/diagnostics[3]/id', '...']
+P/fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.raw.json
+  head reproduces it: True
+  leaves differing with T2: 3: ['/formulation_basis/limitations[1]', '/source_block_recovery/body/publication_sha256', '/source_block_recovery/receipt_sha256']
+P/fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.raw.json
+  head reproduces it: True
+  leaves differing with T2: 3: ['/formulation_basis/limitations[1]', '/source_block_recovery/body/publication_sha256', '/source_block_recovery/receipt_sha256']
+P/fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.raw.json
+  head reproduces it: True
+  leaves differing with T2: 3: ['/formulation_basis/limitations[1]', '/source_block_recovery/body/publication_sha256', '/source_block_recovery/receipt_sha256']
+P/fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.raw.json
+  head reproduces it: True
+  leaves differing with T2: 3: ['/formulation_basis/limitations[1]', '/source_block_recovery/body/publication_sha256', '/source_block_recovery/receipt_sha256']
+P/fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.raw.json
+  head reproduces it: True
+  leaves differing with T2: 3: ['/formulation_basis/limitations[1]', '/source_block_recovery/body/publication_sha256', '/source_block_recovery/receipt_sha256']
+P/fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.raw.json
+  head reproduces it: True
+  leaves differing with T2: 3: ['/formulation_basis/limitations[1]', '/source_block_recovery/body/publication_sha256', '/source_block_recovery/receipt_sha256']
+PP/tests/f1b_w2_runtime.rs f1b_w2_exact_block_selection_of_a_range_triggered_case_publishes_mains_bytes (sparse envelope; the test pins its full SHA-256 per mode)
+  leaves differing with T2: ['/formulation_basis/limitations[1]', '/source_block_recovery/body/publication_sha256', '/source_block_recovery/receipt_sha256']
+P/fixtures/results/precision_connected_ui_mechanics_sparse.json
+  digest fields: [] ; a string-only edit would be declared-only (captured precision-1 document, not reproduced by the head)
+P/fixtures/results/precision_connected_ui_mechanics_dense.json
+  digest fields: [] ; a string-only edit would be declared-only (captured precision-1 document, not reproduced by the head)
+P/fixtures/product_preview/source_blocks/generation.json: records the sha256 of each of the 12 reproducible raw files; all 12 entries would change
+P/fixtures/product_preview/source_blocks/rejected_stress_range/ORACLE.json: records raw_sha256 of the two historical captures
