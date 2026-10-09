@@ -16562,3 +16562,12 @@ The two historical `rejected_stress_range` captures and `ORACLE.json` stay as ca
 - They are product-recomputed digests of the normalized content, the same principle as the check's step 2.
 - At the head without T2, the procedure leaves each document unchanged.
 - No committed file carries them, so no pin moves.
+
+## T4 plan 01's annex A: T3's agreement recorded; the `preview_physics.rs:75` wording rides B7 (ROOT, 2026-10-09 UTC)
+
+**T3's agreement.** T3's WORKING_ITEMS agreed annex A on conditions, after I115's check (`R/I115/t4_annex_check_01/`). The conditions and H-4 are recorded in T4's `T4_RULINGS.md` ("T3 agrees annex A on conditions; H-4 ruled: B7"). They bind T4's implementation.
+
+**A correction to the U3 Stage 2 ruling on `preview_physics.rs:75`.**
+- That ruling counted the radius of the wider wording as pins only. In fact the seven `LIMITATIONS` strings are reviewed inputs: they appear verbatim in the preview-physics-1 and retained-1 semantic contracts. Changing any of them therefore forces re-registration.
+- At PR-B2 it would also need a declared exception to B2/B3's stop on successor bytes and 07n.
+- **So the wording goes in B7,** together with T4's summary-key rename and the removal of the joint row kind, as one wave. It no longer goes in J0b or in PR-B2's wave.
