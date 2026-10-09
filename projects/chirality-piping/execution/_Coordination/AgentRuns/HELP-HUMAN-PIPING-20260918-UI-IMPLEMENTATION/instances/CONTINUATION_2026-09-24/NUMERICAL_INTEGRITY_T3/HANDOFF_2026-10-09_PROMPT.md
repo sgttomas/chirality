@@ -25,7 +25,7 @@ Steer (this run): Continue as ROOT (Agent 0) for T3, and as coordinator of T4, i
 - Not obvious:
   - A manager that ends its turn while its agents run loses their reports to you; the host forces its report-back on turn end. Tested 2026-10-09: managers must dispatch with blocking calls (`run_in_background: false`), several in one message for parallelism, so reports reach them. **This is the most important rule for keeping Agent 0/1/2 intact.** Each manager's brief carries it in its "Dispatching agents" section, and a blocking call returns only a pointer, because the report arrives as a separate message. A manager reports to you once, after its agents are in. Returns also travel by record (`RETURN.md`). If one still reaches you, send its manager a one-line pointer.
   - Give managers standing assignments, and do not resume them for single steps.
-  - Agents here cannot run `gh pr merge`, because the permission classifier blocks it. When a PR is ready, ask the owner to merge it.
+  - Merge under the standing Git grant once independent review and CI are recorded on the head. The permission classifier refuses a merge that has no review on record.
   - In the full-SHA dispatch, `target_base` must be the PR's integrated base, not current main.
   - DEC-025 holds the exclusive host lock for about two hours, which stalls every other heavy job, T4's included.
   - Compare path sets without rename detection.
