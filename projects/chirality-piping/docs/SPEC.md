@@ -585,10 +585,16 @@ orientation metadata: their `local_coordinate_system` carries a `y_reference`
 and may carry provenance. The schema does not add a `local_x_axis` field.
 
 The stress recovery slice is `core/loads/stress_recovery`. It recovers
-code-neutral mechanics components from explicit element force resultants,
-section properties, and optional pressure basis inputs: axial normal stress,
-bending normal stress components, torsional shear stress, and thin-wall
-pressure membrane components. Missing resultants, missing section or pressure
+code-neutral mechanics components from explicit element force resultants and
+section properties: axial normal stress, bending normal stress components, and
+torsional shear stress. It has no pressure components: its legacy thin-wall
+pressure membrane was removed when the owner retired the legacy pressure
+contract product-wide (owner decision "Owner decisions: the legacy pressure
+contract is retired product-wide; T3 gains a WORKING_ITEMS manager" in
+`execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/ROOT_RULINGS_V1.md`).
+Pressure is solved only through the exact straight-pressure contract
+`2.0.0/exact_straight_pressure_v2`, within that contract's own qualifications.
+Missing resultants, missing section
 inputs, non-finite values, non-positive properties, incomplete mechanics
 status, and human-approval status are deterministic findings, not silent
 defaults. This slice does not provide design-code stress equations, allowables,
@@ -600,8 +606,11 @@ Stress recovery shall calculate open mechanics quantities such as axial stress, 
 
 The stress recovery benchmark suite is `validation/benchmarks/stress`. It
 contains original invented verification fixtures and hand-calculation notes for
-axial normal stress, bending normal stress, torsional shear stress, pressure
-membrane stress, and mechanics-only stress range behavior. The suite compares
+axial normal stress, bending normal stress, torsional shear stress, and
+mechanics-only stress range behavior. Its pressure membrane fixture,
+`STRESS-PRESSURE-MEMBRANE-ORIGINAL`, was an oracle of the retired legacy
+pressure computation and was removed with it (owner decision "Owner decisions:
+the legacy pressure contract is retired product-wide; …"). The suite compares
 outputs from the governed stress-recovery API without changing production
 stress-recovery behavior and without introducing code-specific stress
 equations, allowables, protected standards content, or professional/compliance

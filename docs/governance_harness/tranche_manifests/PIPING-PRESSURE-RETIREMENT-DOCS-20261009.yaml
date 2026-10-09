@@ -1,0 +1,87 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: PIPING-PRESSURE-RETIREMENT-DOCS-20261009
+title: Piping's governance documents stop describing the retired legacy pressure capabilities as current
+date: '2026-10-09'
+basis: 7b2715cb0e5efaa69239778b5b3d09582d6c3e91
+instruction_surface_paths:
+  - projects/chirality-piping/docs/TYPES.md
+  - projects/chirality-piping/docs/SPEC.md
+  - projects/chirality-piping/docs/VALIDATION_STRATEGY.md
+  - docs/governance_harness/tranche_manifests/PIPING-PRESSURE-RETIREMENT-DOCS-20261009.yaml
+m2_gate:
+  authorization: >-
+    Ryan Tufts, the repository owner, retired the legacy pressure contract
+    product-wide ("1a, retire it product-wide": 1.0.0/legacy_pressure_v1 is
+    accepted nowhere, and the legacy computation and the oracles that depend
+    on it are removed). He then authorized this documents tranche: "Yes start
+    T4" "…and the governance-documents PR". Both are recorded by HELP_HUMAN,
+    transcribed from the owner's session, in
+    projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/ROOT_RULINGS_V1.md,
+    under "Owner decisions: the legacy pressure contract is retired
+    product-wide; T3 gains a WORKING_ITEMS manager" (2026-10-08 UTC) and
+    "Owner decisions: T4 starts now; the governance-documents PR is
+    authorized" (2026-10-09 UTC). The second sets the scope: a small PR by
+    T3's WORKING_ITEMS that corrects only the piping documents' capability
+    statements on pressure membrane stress and pressure thrust to match the
+    retirement and cites the owner decisions, with this manifest, routed
+    notices to any loop that mirrors those texts, an independent review, and
+    a cut after the retirement PR (#1168) merges. This manifest records the
+    gate and grants no authority (K-AUTH-1).
+  authorized_by: Ryan Tufts (repository owner sgttomas)
+  authorization_date: '2026-10-09'
+  integration_owner: >-
+    T3's WORKING_ITEMS (Agent 1 for piping T3, numerical integrity), the sole
+    serialized integration owner. It merges main into the branch after #1168
+    merges, opens the PR, dispatches the independent review and merges under
+    the standing Git authorization of 2026-09-12. The drafting TASK (I116)
+    commits locally and does not push, open or merge the PR.
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: none-required
+  routed_to: []
+  rationale: >-
+    No project loop pins or mirrors the changed texts. Searched at main
+    7b2715cb0e, which equals #1168 for these three files: (1) every tracked
+    path outside projects/chirality-piping that names piping's docs/TYPES.md,
+    SPEC.md, VALIDATION_STRATEGY.md, INTENT.md or PRD.md; (2) the five files'
+    SHA-256 and Git blob hashes across the whole tree; (3) the changed
+    sentences' own wording across the tree; (4) the App, App v4, Runtime and
+    PEC loops' LOOP_INIT, AGENTS.md, instructions and accepted-basis records;
+    (5) inside Piping, its LOOP_INIT (whose basis is docs/PRD.md, unchanged
+    here), its AGENTS.md, its coordination and decomposition pointers, and
+    the T3 and T4 undertakings' rulings, plans and briefs. Hits are history
+    only: earlier tranche manifests; agent run records and the 2026-09-21
+    deliverable reconciliation snapshot, which pin the old bytes as captured
+    evidence; a 2026-07-28 evaluation script; two dated surveys
+    (plans/chirality_piping_solver_maturity_survey_2026-07-31.html and
+    Piping's plans/ASSESSMENT_2026-07-09_physical_model_evaluation.md); and
+    the 2026-09-22 manual v7 source record, which inspected TYPES.md for
+    checking candidacy, not for pressure. Piping's own DAG and deliverable
+    dependency rows name the documents by identity (OPS-TYPES, OPS-SPEC,
+    OPS-VALIDATION-STRATEGY), not by content. Piping owns these documents,
+    and its loop instructions do not bind through them. T4 (pressure
+    stress), which may later add pressure capability, cites none of them.
+scope_limits:
+  - >-
+    Five capability statements change, in three documents. Each describes
+    an implemented slice or suite as having a pressure capability it no
+    longer has: TYPES.md StressRecovery and StressRecoveryBenchmark;
+    SPEC.md section 6, the stress recovery slice and its benchmark suite;
+    and VALIDATION_STRATEGY.md section 2, the DEL-09-02 suite paragraph,
+    which keeps the pressure membrane family as required and states that
+    it has no fixture.
+  - >-
+    Requirement and intent statements are unchanged: PRD.md (the piping
+    loop's basis, amended only through its own decision and scope-change
+    instruments), INTENT.md, SPEC.md section 6's "shall calculate" sentence
+    and VALIDATION_STRATEGY.md section 2's benchmark-family table. They
+    state what the product is to do, not what it does now.
+  - >-
+    The exact straight-pressure contract's standing is not restated: the
+    corrected text says only that pressure is solved through that contract,
+    within its own qualifications. Planned T4 capability is not anticipated.
+  - >-
+    No product source, test, fixture, schema, register, decomposition, DAG,
+    decision record or loop instruction changes. No release, lifecycle
+    promotion, governed acceptance or professional claim follows.

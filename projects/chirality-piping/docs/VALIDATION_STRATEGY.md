@@ -72,7 +72,16 @@ The initial stress recovery benchmark suite for `DEL-09-02` lives under
 `validation/benchmarks/stress/` with hand-calculation notes under
 `validation/hand_calcs/stress/`. Its required fixture families are axial
 normal stress, bending normal stress, torsional shear stress, pressure membrane
-stress, and mechanics-only stress range. The fixtures use original invented
+stress, and mechanics-only stress range. The pressure membrane family has no
+fixture since the owner retired the legacy pressure contract product-wide:
+`STRESS-PRESSURE-MEMBRANE-ORIGINAL` was an oracle of the retired legacy
+pressure computation and was removed with it (owner decision "Owner decisions:
+the legacy pressure contract is retired product-wide; T3 gains a WORKING_ITEMS
+manager" in
+`execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/CONTINUATION_2026-09-24/NUMERICAL_INTEGRITY_T3/ROOT_RULINGS_V1.md`).
+Pressure is solved only through the exact straight-pressure contract
+`2.0.0/exact_straight_pressure_v2`, within that contract's own qualifications.
+The fixtures use original invented
 values and keep final release tolerances, CI gates, fatigue/allowable
 criteria, and professional reliance policy as `TBD` until human approval.
 
