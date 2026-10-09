@@ -1,0 +1,18 @@
+index columns differing [full_envelope_sha256]: 16 runs
+    FX-N05__dense_scrutiny__captured
+    FX-N05__sparse_interactive__captured
+    FX-N06__dense_scrutiny__captured
+    FX-N06__sparse_interactive__captured
+    FX-NP-A-ulp-.25__dense_scrutiny__captured
+    FX-NP-A-ulp-.25__sparse_interactive__captured
+    FX-NP-A-ulp-.5__dense_scrutiny__captured
+    FX-NP-A-ulp-.5__sparse_interactive__captured
+    FX-NP-A-ulp-.75__dense_scrutiny__captured
+    FX-NP-A-ulp-.75__sparse_interactive__captured
+    FX-NP-A-ulp-1__dense_scrutiny__captured
+    FX-NP-A-ulp-1__sparse_interactive__captured
+    FX-NP-A-ulp-1.5__dense_scrutiny__captured
+    FX-NP-A-ulp-1.5__sparse_interactive__captured
+    FX-NP-A-ulp-2__dense_scrutiny__captured
+    FX-NP-A-ulp-2__sparse_interactive__captured
+gate_check rows: 764 per side; rows differing in outcome, quality, standing, trusted or breaches: 0

@@ -1,0 +1,39 @@
+I112 round 2 script provenance. Scratch copies under WT/scratch/i112_u3/; round 1's under WT/scratch/i112_gates/ (recorded in R/I112/pr_n_gates_01/gate/script_provenance.txt).
+A. Preserved method scripts and inputs, unchanged (sha256 equal to round 1's and to the preserved copies listed there):
+  ec089c1d4a2a46dda689aad3ac55948cf858537ed5c986726c7accdd63cade53  t9/harness_base/src/main.rs  equal to round 1
+  cd1052f7a4ac4cb8f3a13b38c899081cb2cd39f099991944157226be6939f232  gate/probe_base/src/main.rs  equal to round 1
+  1c91b6c687fa1009dbbc9b28b9ee241fcfbab220d020203d003513f686c4318c  gate/scripts/compare.py  equal to round 1
+  08e6bf45ae2de60114cf3518ef0fafd8a41d0f4b9d6465cebb6c44edf98b2c17  gate/scripts/compare_gate_kf2.py  equal to round 1
+  8ad89fca7641d3e1d947772c2b9e24e2bf43f40a6b7e4ab3130a40f12c6ee96b  gate/scripts/gate_check.py  equal to round 1
+  8cf952aedb600c4812a6967c75474b932495603d20592b6540283f24c03718d6  gate/scripts/gate_run_base_full.py  equal to round 1
+  c515ec63f8828addb88e82aa92bc4c5c0060764046bf9cbd6a82dfcd06909b5b  gate/scripts/gen.py  equal to round 1
+  8d9a32a34bc0602f5ba24b72c999068ca8e6ee2c770a1cbdbc217629983816f6  gate/scripts/run.py  equal to round 1
+  e43c662b84a23de335e388b98c3fcd08a209e1ed17488d39578c3be96d057391  gate/scripts/gate_part2.py  equal to round 1
+  09e467498da19de0f6c127de02bfe2f14392381b44a7ddc6f95cfcfc2b22b55e  gate/overlap.py  equal to round 1
+  b9f2799f67e8ae5a13a6537dfec2402cdd65f335eb369fe334afe9c18bcc52c6  gate/part2_combined.py  equal to round 1
+  0e110b4b50415797c835b451f3ceab1597b940fa5fd652fba4e6b15a2538babd  gate/inputs/FORMATION_EXCEPTIONS.json  equal to round 1
+  138515b3e1f95f969a297d629c1ac0b50c63c3eb546df8a89049b71fda66fe61  gate/inputs/S11_EXCEPTIONS.json  equal to round 1
+  c061d73481d2ad137f7cef988475721681131789ec222e3e93c5ed3836b2910e  gate/inputs/fixtures.json  equal to round 1
+  7b176dbbf2296be02d8bca19c698ee56d0d5753751150a9175e0d3ad4cf89cc9  gate/inputs/references.json  equal to round 1
+  80d473a7351e92a2a903d233b9e633aac794aeff07f3ac41e40d25a0d94fc8a8  gate/inputs/references.py  equal to round 1
+  the 8 extra-corpus requests: equal to KF2's t9/extra_corpus_inputs_sha256.txt; gen_out: round 1's 223 files, equal to the calibration list
+B. Round 1's rebuilt scripts, reused; each differs from round 1's only in paths (i112_u3, i112-u3-t9, i112-u3-gate), the worktree (WT/u3-pr) and the revisions:
+  687d882ac82ecbeb2606cdf159ec1f4c554cc9264efc9ae7e3a98b6895dcb04f  setup_trees.sh  (round 1 78b2087876e35f97...; 5 lines changed)
+  0bcf66fe1d25693a1eda564fc46ca4b5cd322d58b30cb33caafc8ba4e4bba24f  verify_trees.sh  (round 1 8d995e175dcbc711...; 1 lines changed)
+  c4208392d7951319ec476afa3d18e5db3d2f14e3c4256fb11c674a794c6463f8  t9/run_t9.sh  (round 1 a35bd92d18cd6773...; 6 lines changed)
+  504bad317ab37e7d22920bd1081fdcc12832fcbc4ede19fe6d9693280ae6a3de  t9/run_t9_runs.sh  (round 1 fee8c1686d6087a5...; 3 lines changed)
+  8c275868b29ce3c530051c3c3c5b89e3ddc2bf722c3dfa3d6d457c016da9d4ae  gate/build_probes.sh  (round 1 230be6839577ee50...; 6 lines changed)
+  21e9850d13913e090d44e446e88e57829be34565551bedf229e29b51404ba8dc  gate/run_part1.sh  (round 1 527fd8c15d923f88...; 4 lines changed)
+  02a1cccacf82de5f6f7e1666664a8d69de7e4fb954d7cdd40c8a5bcccfd45dae  gate/run_part2.sh  (round 1 1b67b42b65e4847d...; 4 lines changed)
+  23caed9891b9d3721b4ca279e59721e6fe0257544700e1cb02ed523f949b2269  gate/foreign_jobs.sh  (round 1 419a00860071b490...; 3 lines changed)
+  fc3fbddbf4f7870d37a20396d0a156556ea5775e342507db3c210442bdea5934  gate/gate_rows_compare.py  (round 1 fc3fbddbf4f7870d...; 0 lines changed)
+  973bb95633040073b3d3469932822b4173c1bb9257ed3da3a87cd211b07a80bb  normdiff.py  (round 1 973bb95633040073...; 0 lines changed)
+C. New in round 2:
+  7e82a987abb008434a2ea05695ba27aac7a0ba5235d85524fb2cde8e79508ca8  u3diff.py
+  223135a6329a2cb4a99c628848522ef5584ca0454861e07f30d694c3ba98e3ff  t9/t9_u3_compare.py
+  5e9605c2a74d48b5b671a460494e9f12c6b7ca7bc2f8d3487a9e4e472512bf27  gate/part1_u3_compare.py
+  811f2b67a1ae3f4468b4613bcb76290bf61475d6fa4cb54e2cb306c3367dda41  digest_cand/src/main.rs
+  0c4ea87232475e35f0e70eda1be4a9c8a2b4813d222f3b7a3e3949d397cf8f82  digest_cand/Cargo.toml
+  gate/part1_u3_compare.py is derived from round 1's gate/part1_norm_compare.py (the record and stdout checks unchanged; the envelope
+  classifier is u3diff.classify). The digest helper i112_receipt_digests builds against the candidate tree's canonical_json crate
+  (identical in B and C), with PP's lock copied (cargo adds only the helper and drops unused entries; no version changes).

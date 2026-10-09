@@ -1,0 +1,14 @@
+Uncommitted gate files, kept in WT/scratch/i112_u3/gate/ (part 1 is indexed by part1/index_*.tsv):
+part1_base/runs.jsonl  c0aa1fc099bce82b52e51e12dbdeb540b2bdd9f2e23e0c3d53d337fc0868c317  605711599 bytes, 884 records
+part1_base/full/  818 files; sha256 of the sorted per-file sha256 list: 0b478a78fcee490b2a5b450ad596b2a81d3fbee970b1011e05392b2ff5049c85
+part1_base/envelopes/  818 files; sha256 of the sorted per-file sha256 list: c3113bff631042b0a9fb4b0e61e0c19850e09e8ecb60e71887df56fa097a309c
+part1_base/stdout/  884 files; sha256 of the sorted per-file sha256 list: 20e4b12ed622e8962d3833fc6e2e291b066893df81e617f90817c30d88d577cd
+part1_base/stderr/  884 files; sha256 of the sorted per-file sha256 list: 2606975467d98d0c4ca6fbdb91d5330de34d636350fdf9f3cc0e322b3b5761f1
+part1_cand/runs.jsonl  52b6cf2709d5f17ebcabcba870a7cbfc9b94cfc0b2da8e713a8e13041de228de  605711663 bytes, 884 records
+part1_cand/full/  818 files; sha256 of the sorted per-file sha256 list: 9468940949d2bc68555f600e407d1ab0e0e900cac6e29e1019d18165853af86b
+part1_cand/envelopes/  818 files; sha256 of the sorted per-file sha256 list: c3113bff631042b0a9fb4b0e61e0c19850e09e8ecb60e71887df56fa097a309c
+part1_cand/stdout/  884 files; sha256 of the sorted per-file sha256 list: 548b5c1b3d7aca2b9e0f9fe54e2b3ad502d497d35cec7fa68e37f605e6ca6087
+part1_cand/stderr/  884 files; sha256 of the sorted per-file sha256 list: 2606975467d98d0c4ca6fbdb91d5330de34d636350fdf9f3cc0e322b3b5761f1
+part2_run1/base/runs.jsonl  ed75b04041df5b91b66cae69ce0daf1ea701e333629528cec40767c5072581ff  592709 bytes, 4 records; full/ list sha256 5780a71265069fb91d7ed9ca4193bff06ea68b6e33353b96721b86fb36263001
+part2_run1/cand/runs.jsonl  0bdb08d3d84bb03b9ad358d3a105a44592972b2ea07fe7971ad297f21812faf8  592708 bytes, 4 records; full/ list sha256 5780a71265069fb91d7ed9ca4193bff06ea68b6e33353b96721b86fb36263001
+gen_out/: 223 files (gen_out_sha256.txt). Trees: WT/scratch/i112_u3/tree_{base,cand} (2,973 files each; trees_check.txt). T9 outputs: WT/scratch/i112_u3/t9/{out,extra}_{base,cand}/ (t9/sha_*.txt).

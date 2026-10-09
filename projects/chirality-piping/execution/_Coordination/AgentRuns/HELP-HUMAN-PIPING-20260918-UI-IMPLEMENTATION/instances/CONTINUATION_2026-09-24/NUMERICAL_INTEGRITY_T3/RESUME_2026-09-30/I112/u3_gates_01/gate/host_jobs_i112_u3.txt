@@ -1,0 +1,19 @@
+2026-10-09T02:06:53Z START pid=8107 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_u3/t9/harness_base args: %CRG% build --release --offline --target-dir WT/targets/i112-u3-t9/base
+2026-10-09T02:07:22Z END rc=0 pid=8107 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_u3/t9/harness_base
+2026-10-09T02:07:22Z START pid=8673 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_u3/t9/harness_cand args: %CRG% build --release --offline --target-dir WT/targets/i112-u3-t9/cand
+2026-10-09T02:07:50Z END rc=0 pid=8673 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_u3/t9/harness_cand
+2026-10-09T02:07:50Z START pid=9221 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_u3/t9 args: /bin/bash WT/scratch/i112_u3/t9/run_t9_runs.sh
+2026-10-09T02:07:52Z END rc=0 pid=9221 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_u3/t9
+2026-10-09T02:09:16Z START pid=10457 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_u3/digest_cand args: %CRG% build --release --offline --target-dir WT/targets/i112-u3-digest
+2026-10-09T02:09:20Z END rc=0 pid=10457 slot=cargo_job.slot3.lock cwd=WT/scratch/i112_u3/digest_cand
+2026-10-09T02:12:41Z START pid=15235 slot=cargo_job.lock cwd=WT/scratch/i112_u3/gate/probe_base args: %CRG% build --release --offline --target-dir WT/targets/i112-u3-gate/base
+2026-10-09T02:13:11Z END rc=0 pid=15235 slot=cargo_job.lock cwd=WT/scratch/i112_u3/gate/probe_base
+2026-10-09T02:13:11Z START pid=15845 slot=cargo_job.lock cwd=WT/scratch/i112_u3/gate/probe_cand args: %CRG% build --release --offline --target-dir WT/targets/i112-u3-gate/cand
+2026-10-09T02:13:39Z END rc=0 pid=15845 slot=cargo_job.lock cwd=WT/scratch/i112_u3/gate/probe_cand
+2026-10-09T02:13:46Z START pid=16429 slot=cargo_job.slot2.lock cwd=WT/scratch/i112_u3/gate args: WT/venv/bin/python -B scripts/gate_run_base_full.py WT/targets/i112-u3-gate/base/release/t3_p1_probe ge
+2026-10-09T02:16:57Z END rc=0 pid=16429 slot=cargo_job.slot2.lock cwd=WT/scratch/i112_u3/gate
+2026-10-09T02:17:02Z START pid=20841 slot=cargo_job.slot2.lock cwd=WT/scratch/i112_u3/gate args: WT/venv/bin/python -B scripts/gate_run_base_full.py WT/targets/i112-u3-gate/cand/release/t3_p1_probe ge
+2026-10-09T02:20:18Z END rc=0 pid=20841 slot=cargo_job.slot2.lock cwd=WT/scratch/i112_u3/gate
+2026-10-09T02:21:17Z WAIT-EXCLUSIVE pid=25545 cwd=WT/scratch/i112_u3/gate args: /bin/bash WT/scratch/i112_u3/gate/run_part2.sh part2_run1
+2026-10-09T02:21:17Z START-EXCLUSIVE pid=25554 cwd=WT/scratch/i112_u3/gate args: /bin/bash WT/scratch/i112_u3/gate/run_part2.sh part2_run1
+2026-10-09T02:29:36Z END-EXCLUSIVE rc=0 pid=25554 cwd=WT/scratch/i112_u3/gate

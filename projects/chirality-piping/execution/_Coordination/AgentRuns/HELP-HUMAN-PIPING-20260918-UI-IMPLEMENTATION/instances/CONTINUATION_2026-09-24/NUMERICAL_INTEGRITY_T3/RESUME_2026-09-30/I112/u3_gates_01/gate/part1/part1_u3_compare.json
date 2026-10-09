@@ -1,0 +1,448 @@
+{
+ "runs_base": 884,
+ "runs_cand": 884,
+ "missing": [],
+ "differing_runs": [
+  {
+   "run": "FX-N05__dense_scrutiny__captured",
+   "within_rule": true,
+   "full_class": "declared_t2",
+   "summary_class": "identical",
+   "issues": [],
+   "full_info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "9abb17c15e6a84e95d85c49b1f95a87d77a0113c6cb6cb68b9179a7c53f3d049",
+     "a3119ac969492f23fcbaf52dac310c0883240a21d0695e16e47ac1e53da30f65"
+    ],
+    "rule_on_cand": [
+     "9abb17c15e6a84e95d85c49b1f95a87d77a0113c6cb6cb68b9179a7c53f3d049",
+     "a3119ac969492f23fcbaf52dac310c0883240a21d0695e16e47ac1e53da30f65"
+    ],
+    "rule_on_normalized": [
+     "f28de566fe6a0e646e941ccc4169447108a545ff065f128f27e0ad5ac4c757fa",
+     "23c15c3df03335c5632a10bdf95ba8053356b13b331fc0ff1f0140808d150bbe"
+    ]
+   },
+   "summary_info": {},
+   "full_sha256_base": "ebc586bd29942d4609db2fa40bc701cdd382367ea261daf7ee25f18a1f0d4c1d",
+   "full_sha256_cand": "b5de531e722c7fbb0b0ba74657ef39b94917571841f3f65a71965b80de0595c5"
+  },
+  {
+   "run": "FX-N05__sparse_interactive__captured",
+   "within_rule": true,
+   "full_class": "declared_t2",
+   "summary_class": "identical",
+   "issues": [],
+   "full_info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "1328a2201e51fc6207bb99a0342b9bf4b26ca5f316f4b3fe547ab18814ded55d",
+     "898a0687038153bed4b902e8306de8194b2d0b5c31320b47c91b714c69176e63"
+    ],
+    "rule_on_cand": [
+     "1328a2201e51fc6207bb99a0342b9bf4b26ca5f316f4b3fe547ab18814ded55d",
+     "898a0687038153bed4b902e8306de8194b2d0b5c31320b47c91b714c69176e63"
+    ],
+    "rule_on_normalized": [
+     "23f165d9a485cf34c5e2ea0ff098becba2ef890138ceb1036f213e7da7349956",
+     "42959416c3f372cbf0bd850818d4c90626d692ff5a5a9a2853a79ca43ea1504b"
+    ]
+   },
+   "summary_info": {},
+   "full_sha256_base": "eb157c8865752eee2a4364bf8c4b668d35d1ebb53bd586a5f6b7edf6ce1f06f7",
+   "full_sha256_cand": "d7c9700aee0127b614030da88013e01cd5173f904f00beda1cd11c1cf1356f7a"
+  },
+  {
+   "run": "FX-N06__dense_scrutiny__captured",
+   "within_rule": true,
+   "full_class": "declared_t2",
+   "summary_class": "identical",
+   "issues": [],
+   "full_info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "9f1b7c7ba2d9b8b8e587ead3c4c08e62ebe420181677350652fb91c4544825e8",
+     "a63a200a318349ce0f3f95bd5297c5677e48ed9b336e03044c6d37a3657e3f13"
+    ],
+    "rule_on_cand": [
+     "9f1b7c7ba2d9b8b8e587ead3c4c08e62ebe420181677350652fb91c4544825e8",
+     "a63a200a318349ce0f3f95bd5297c5677e48ed9b336e03044c6d37a3657e3f13"
+    ],
+    "rule_on_normalized": [
+     "da2eb2daf4780bdc592846bbe291539ecfd80161765f4e34693ef19971d8266d",
+     "3f06b525a02948a2b245b14e21e5209dfbb8031040098b2c2bded748c8c93fd8"
+    ]
+   },
+   "summary_info": {},
+   "full_sha256_base": "1c80ffd028403ed3688e18a1ab056f1145c304142b24db5919e4778e5ffffc82",
+   "full_sha256_cand": "e7422e0eafa59bcb07b0056b94196184959ff9cc6d08627017da0609b6c0eb91"
+  },
+  {
+   "run": "FX-N06__sparse_interactive__captured",
+   "within_rule": true,
+   "full_class": "declared_t2",
+   "summary_class": "identical",
+   "issues": [],
+   "full_info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "8b3ac65e528a4ff2777bfdca3e578ff95ef0218d07a185a5a53efc25ca4b649d",
+     "c048ceca22ec17b9305e3539e96e6ad18b9e4bea54dabf0269ebbf3f076d724e"
+    ],
+    "rule_on_cand": [
+     "8b3ac65e528a4ff2777bfdca3e578ff95ef0218d07a185a5a53efc25ca4b649d",
+     "c048ceca22ec17b9305e3539e96e6ad18b9e4bea54dabf0269ebbf3f076d724e"
+    ],
+    "rule_on_normalized": [
+     "43fbdc0f0f5ef5cf99f703fb28ca2e62cba47122b1010461e8bd5b53dfbff16d",
+     "53aaa03ea834dc2031ac2d01626a1f8ce0459ebbdaf3544138153bda799281ea"
+    ]
+   },
+   "summary_info": {},
+   "full_sha256_base": "dc8b68d09e36176011c9a9c4706ebaeccaf25a217ab85f14328f2717843f939b",
+   "full_sha256_cand": "0018f79c5a5f272376ac9995478ca2ec1fc081b6f177d7efcf66ebebfd10c0a9"
+  },
+  {
+   "run": "FX-NP-A-ulp-.25__dense_scrutiny__captured",
+   "within_rule": true,
+   "full_class": "declared_t2",
+   "summary_class": "identical",
+   "issues": [],
+   "full_info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "de4ec26d44f3bd19613e1c3a3cdd65b4fd29642a05968330209b2dfd1575f1c6",
+     "0d7ac9536487c003da31d45d6116def6381a682972cb3c8965ebd1fd2b6e6fdb"
+    ],
+    "rule_on_cand": [
+     "de4ec26d44f3bd19613e1c3a3cdd65b4fd29642a05968330209b2dfd1575f1c6",
+     "0d7ac9536487c003da31d45d6116def6381a682972cb3c8965ebd1fd2b6e6fdb"
+    ],
+    "rule_on_normalized": [
+     "bd4543a169484733dfc6e4c4f1ba94baf5be330f0af66abb10a220d786d7cc52",
+     "06fd4607031979266eed25ae3a15e871a1dc0589aafd05cbc0844235c8b86c29"
+    ]
+   },
+   "summary_info": {},
+   "full_sha256_base": "5e7b7c0dc4ed2424f7f3948f3712647a21dc15a3d80fcf3d0c19d2ce77ee230b",
+   "full_sha256_cand": "e6aaa83c4ccbf4d8b3144238fe2e4df82e2564e40ec3a56dc438d973ef6b8f54"
+  },
+  {
+   "run": "FX-NP-A-ulp-.25__sparse_interactive__captured",
+   "within_rule": true,
+   "full_class": "declared_t2",
+   "summary_class": "identical",
+   "issues": [],
+   "full_info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "1c45a6eb1a4e83f89338b75467d64ea184df851300f6cdd2590672a9c0f3a693",
+     "ea89f4d92a8a266e43fa53a0326d460f45792848ae8a9c783a1d4e2e244fc5c0"
+    ],
+    "rule_on_cand": [
+     "1c45a6eb1a4e83f89338b75467d64ea184df851300f6cdd2590672a9c0f3a693",
+     "ea89f4d92a8a266e43fa53a0326d460f45792848ae8a9c783a1d4e2e244fc5c0"
+    ],
+    "rule_on_normalized": [
+     "e68609e0b6270f62f61a10e62eabc7d414f25f0313d9b56854f6b5c4bf75d76b",
+     "aee9ebfccf00dea664b40b2188a483342f4aef155abc403b90985a85c07e2226"
+    ]
+   },
+   "summary_info": {},
+   "full_sha256_base": "9483adbabedd4aba68d0a270a6e2f92bb30bf02ec650e6b3fa9ca71b52dcd522",
+   "full_sha256_cand": "d78fabbba7a4e5e77ceb8a615204032701a325bc12127eb1ca725ece9de0fe5c"
+  },
+  {
+   "run": "FX-NP-A-ulp-.5__dense_scrutiny__captured",
+   "within_rule": true,
+   "full_class": "declared_t2",
+   "summary_class": "identical",
+   "issues": [],
+   "full_info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "86ba948d3cd8cd9d722a07ee9c30d786d26745e66812755bae84a65bfba44942",
+     "7254f61508ac0f10a0422c00ca59d6c9d9c0953ffd421a43270ac2797d8d6db4"
+    ],
+    "rule_on_cand": [
+     "86ba948d3cd8cd9d722a07ee9c30d786d26745e66812755bae84a65bfba44942",
+     "7254f61508ac0f10a0422c00ca59d6c9d9c0953ffd421a43270ac2797d8d6db4"
+    ],
+    "rule_on_normalized": [
+     "32923106c44c165ecd4091ef518b5c9c54352055eb114ee7f22342174d1ba7fb",
+     "6e9fa36c7c955a2e3497ddd50fa17172471db03b8b3bb7a47012d1b9ffe426de"
+    ]
+   },
+   "summary_info": {},
+   "full_sha256_base": "c5bafdfc96b0b380bc00a19bd0f778b4ac8fd90c43329dd6a46e5fbc63158ec3",
+   "full_sha256_cand": "fe3ed1bc9c5aff2e8c06be598cd38409f2b7cc22747d70f46522aea733106c1b"
+  },
+  {
+   "run": "FX-NP-A-ulp-.5__sparse_interactive__captured",
+   "within_rule": true,
+   "full_class": "declared_t2",
+   "summary_class": "identical",
+   "issues": [],
+   "full_info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "398a27ab5df6d955477d11eb94bef53b67f7a1ec067f8dba1d2c55bb5c2c42e9",
+     "5ec33839fa4887ae4e01da0e9aee376678fb003ec81707873e92e729dcb3f65b"
+    ],
+    "rule_on_cand": [
+     "398a27ab5df6d955477d11eb94bef53b67f7a1ec067f8dba1d2c55bb5c2c42e9",
+     "5ec33839fa4887ae4e01da0e9aee376678fb003ec81707873e92e729dcb3f65b"
+    ],
+    "rule_on_normalized": [
+     "381e21363baac7b76921cff717248b8fdcfefbcc445282df3a6cea765dc8ab13",
+     "90f99f99092862f31c79fa3314c46f53e9bf7d30e8e9542da2e74dbbab7a26cc"
+    ]
+   },
+   "summary_info": {},
+   "full_sha256_base": "064b4738ea43d91cfacb350fed493a4ed43c009e1924c6fdcb838e7cac03986a",
+   "full_sha256_cand": "7953855500e947661e26f4e1038dc17e1cbf00b570da163f6a2c43226be1c7a1"
+  },
+  {
+   "run": "FX-NP-A-ulp-.75__dense_scrutiny__captured",
+   "within_rule": true,
+   "full_class": "declared_t2",
+   "summary_class": "identical",
+   "issues": [],
+   "full_info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "c88e64df6ec8e120500283c0843274d2a810c8dd09bd31431cbb37889c31dba8",
+     "8424f4d69cf600e6bb433e81a54685d5fdce83b0f076ba0438c9c8a7f8ab004c"
+    ],
+    "rule_on_cand": [
+     "c88e64df6ec8e120500283c0843274d2a810c8dd09bd31431cbb37889c31dba8",
+     "8424f4d69cf600e6bb433e81a54685d5fdce83b0f076ba0438c9c8a7f8ab004c"
+    ],
+    "rule_on_normalized": [
+     "5043f1aea2ebc0a892906ea38f88761636a596034e9d1fa7cc31fc7ad577d2c6",
+     "bce3ba16b8dd32fc7dd5f55069609b35ea7b90f12c0e445f40301bbedada85a5"
+    ]
+   },
+   "summary_info": {},
+   "full_sha256_base": "cc579bfc0ec157ac2b3c2c17e037e4a6d31819b76916128f76988221bcf3b9de",
+   "full_sha256_cand": "4b7365bb8b5f205274ad2f312723cc20c601cae5e612d3f1f82844d9eb4778f9"
+  },
+  {
+   "run": "FX-NP-A-ulp-.75__sparse_interactive__captured",
+   "within_rule": true,
+   "full_class": "declared_t2",
+   "summary_class": "identical",
+   "issues": [],
+   "full_info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "ce54533793f36598d5f2eb51860d6c5be2c2d3eb7fad0508c7091bcb7e505d27",
+     "64051f2918033e17e791a69930bdd6e47a28f6d618cc973b59f281b0a111989d"
+    ],
+    "rule_on_cand": [
+     "ce54533793f36598d5f2eb51860d6c5be2c2d3eb7fad0508c7091bcb7e505d27",
+     "64051f2918033e17e791a69930bdd6e47a28f6d618cc973b59f281b0a111989d"
+    ],
+    "rule_on_normalized": [
+     "170136f6d22fbe526281801f7bed6c5d571240fee7b55d29121c7d12f86cdce0",
+     "fee4512822ce88d86fdbf7291be1b78717fb389142c98ded1f1ccd83debe6328"
+    ]
+   },
+   "summary_info": {},
+   "full_sha256_base": "f05afbed38241900801cbd78b87dc346ad1b6fa3e12b7e88f6e7d2ed847f6919",
+   "full_sha256_cand": "6ba67826ab45721e62a8d94e270ef10503486a7c62049695b306e3dcaf181681"
+  },
+  {
+   "run": "FX-NP-A-ulp-1__dense_scrutiny__captured",
+   "within_rule": true,
+   "full_class": "declared_t2",
+   "summary_class": "identical",
+   "issues": [],
+   "full_info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "8bd3280c2670b94eff95dfcea8431e8a32ee33def57a05dcba7e4a0dfd146413",
+     "9feb727254a6e99d0c74400a661f8def0355c8c954f3ccfa588da6acaa8661c0"
+    ],
+    "rule_on_cand": [
+     "8bd3280c2670b94eff95dfcea8431e8a32ee33def57a05dcba7e4a0dfd146413",
+     "9feb727254a6e99d0c74400a661f8def0355c8c954f3ccfa588da6acaa8661c0"
+    ],
+    "rule_on_normalized": [
+     "707a774725a996077b2207e9998de5b3d23c54aa7454fb150e23b86f72932b73",
+     "43b8b3c541fbb3e0637fe02d467756d8b8669d79f3cad1afcab10d531c0db0c7"
+    ]
+   },
+   "summary_info": {},
+   "full_sha256_base": "400bd0a2356a8b7cbc729a80dd0c55f240e5495c9fb5047e58a6b8e2fb91bd17",
+   "full_sha256_cand": "47a3badfaf66970270e2c0a4cb531bdf3c4c988436a0dbf36785e74df131a214"
+  },
+  {
+   "run": "FX-NP-A-ulp-1__sparse_interactive__captured",
+   "within_rule": true,
+   "full_class": "declared_t2",
+   "summary_class": "identical",
+   "issues": [],
+   "full_info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "4807089429fa6754ae0482990f4a8a8a1279146f7a8b796543030f5c5f0f5b4f",
+     "b8972d6d2249200f73e4b992b1a9baef513b9a25d76d7c0d17d06fc4aa6dc70e"
+    ],
+    "rule_on_cand": [
+     "4807089429fa6754ae0482990f4a8a8a1279146f7a8b796543030f5c5f0f5b4f",
+     "b8972d6d2249200f73e4b992b1a9baef513b9a25d76d7c0d17d06fc4aa6dc70e"
+    ],
+    "rule_on_normalized": [
+     "f47b34edb03290de8108ca75aea90341abbe940d6c3236b1195b40ae39ff7121",
+     "77052a7f3e3c40a7a07f3b81e2fe43dcdd0bb86b6a825f712f258f5397d25d99"
+    ]
+   },
+   "summary_info": {},
+   "full_sha256_base": "c217beed1ee670f3ffb5c924d7991a60d2fcb2cfc7dd95c2a2b66cfbb6b26fec",
+   "full_sha256_cand": "4082f81fb106bdd5a89f29fcf1c20ee1ae2d53597271092823e4eb4618247821"
+  },
+  {
+   "run": "FX-NP-A-ulp-1.5__dense_scrutiny__captured",
+   "within_rule": true,
+   "full_class": "declared_t2",
+   "summary_class": "identical",
+   "issues": [],
+   "full_info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "ded11cee0b6bbc8472123915eb28fe79661aca0630ccba5d106f6da3149064c8",
+     "ef8afc7e1f6792c150f4987f139d11e83f338c79b043653d311eb5dd19ac1191"
+    ],
+    "rule_on_cand": [
+     "ded11cee0b6bbc8472123915eb28fe79661aca0630ccba5d106f6da3149064c8",
+     "ef8afc7e1f6792c150f4987f139d11e83f338c79b043653d311eb5dd19ac1191"
+    ],
+    "rule_on_normalized": [
+     "e41e35612aa7db6f9ddd97a461e0baebfe768b1d0a472214ced0effd24b5b085",
+     "bdddbdb90967f4c7c9756d2b10d65573e3c8f69b8a47c2d12b423c0e31d3c9ae"
+    ]
+   },
+   "summary_info": {},
+   "full_sha256_base": "827459531bdfe93f59a7f479994faed22c7d107dec891b67916ad3d1070306e5",
+   "full_sha256_cand": "65747983c4c8adb1dc35cea4165c000e75e6f730660d18020f1ce9b81f82e7d6"
+  },
+  {
+   "run": "FX-NP-A-ulp-1.5__sparse_interactive__captured",
+   "within_rule": true,
+   "full_class": "declared_t2",
+   "summary_class": "identical",
+   "issues": [],
+   "full_info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "0a43c2a7ef0cb9e40454984f6884ee1d77f5b705e6c0c05598056566e1722174",
+     "8c3d3e9de7a19bbc1f454595c1f8bba85da882722c6a3a5a71926fab5be8e0d4"
+    ],
+    "rule_on_cand": [
+     "0a43c2a7ef0cb9e40454984f6884ee1d77f5b705e6c0c05598056566e1722174",
+     "8c3d3e9de7a19bbc1f454595c1f8bba85da882722c6a3a5a71926fab5be8e0d4"
+    ],
+    "rule_on_normalized": [
+     "06c9272863c83941d6053f5d18ee5378bb8067513d5b19e012baf891e47d7104",
+     "155f71116c5067e3e914db95662f5ae6c173509a8a0cab8b52908156e5a3e354"
+    ]
+   },
+   "summary_info": {},
+   "full_sha256_base": "886b4a4a896b0c0873a09eff1fdde2d7d058fea1df35679aa1e8408553565c5c",
+   "full_sha256_cand": "20a2d1b8f6bba50198a2edd05d000e40b315139bcff1b64bde38612b3d8bbcbd"
+  },
+  {
+   "run": "FX-NP-A-ulp-2__dense_scrutiny__captured",
+   "within_rule": true,
+   "full_class": "declared_t2",
+   "summary_class": "identical",
+   "issues": [],
+   "full_info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "6dcd09163c9493f4c5e31284c30cd2e963fde28ba8a59f66103afc6812b4d99b",
+     "646140d0429cc26965dd9a55f19a23fbcb6ed1aa4b43694b8eead191d2f37145"
+    ],
+    "rule_on_cand": [
+     "6dcd09163c9493f4c5e31284c30cd2e963fde28ba8a59f66103afc6812b4d99b",
+     "646140d0429cc26965dd9a55f19a23fbcb6ed1aa4b43694b8eead191d2f37145"
+    ],
+    "rule_on_normalized": [
+     "b5e0db5aa3afd7e9fb67fe056650f5f46a769982b2474cd30b7068c1ee581d15",
+     "b6ab844594a8cb84765cd2e8ee50bf3b7628593b309852ba2cd7091024b335a4"
+    ]
+   },
+   "summary_info": {},
+   "full_sha256_base": "811961df90da6ef43b9eab071eb839a955603627245acce75a1c5ed715c270b0",
+   "full_sha256_cand": "ef338666b4616cbcf4cf8e9def6032b093b6f2d63f250cab75f70427912af6ed"
+  },
+  {
+   "run": "FX-NP-A-ulp-2__sparse_interactive__captured",
+   "within_rule": true,
+   "full_class": "declared_t2",
+   "summary_class": "identical",
+   "issues": [],
+   "full_info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "cd905077eb48bcf01a318a996a92e9275a4f4cdcaf08f198eef7ccef0c6073f0",
+     "9cb99a7bae8b0b6ea9857a7a02d320677b1852f0ae0dc4afb1ed9b2bef8281c6"
+    ],
+    "rule_on_cand": [
+     "cd905077eb48bcf01a318a996a92e9275a4f4cdcaf08f198eef7ccef0c6073f0",
+     "9cb99a7bae8b0b6ea9857a7a02d320677b1852f0ae0dc4afb1ed9b2bef8281c6"
+    ],
+    "rule_on_normalized": [
+     "8e8ac5c13347909bfe99608e8f3b23929fc7d64d2e593e0649b80f9b482b0215",
+     "3485c4a0e9795b755f7f0cb2e54f56be276fa58d3ab9549cc25ae1c237e77d3c"
+    ]
+   },
+   "summary_info": {},
+   "full_sha256_base": "984d00a86e714415eef4acccf05bb23d76f445ece7187a0170ff7c618560734d",
+   "full_sha256_cand": "02ffbac6b6339d4cb00f83c0860a9574c307bc76a8153f3d060b1817594638c3"
+  }
+ ],
+ "counts": {
+  "full_identical": 802,
+  "summary_identical": 818,
+  "runs_within_rule": 884,
+  "full_declared_t2": 16,
+  "full_none": 66,
+  "summary_none": 66
+ },
+ "RESULT": "PASS"
+}

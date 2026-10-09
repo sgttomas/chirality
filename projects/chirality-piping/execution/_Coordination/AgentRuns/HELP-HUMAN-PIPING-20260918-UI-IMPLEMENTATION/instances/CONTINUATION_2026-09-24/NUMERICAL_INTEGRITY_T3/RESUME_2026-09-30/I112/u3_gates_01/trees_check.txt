@@ -1,0 +1,24 @@
+I112 round 2 trees: git archive of projects/chirality-piping with ':(exclude)projects/chirality-piping/execution', read through the U3 PR
+worktree WT/u3-pr (shared object store; no Git writes), extracted into WT/scratch/i112_u3/tree_{base,cand}.
+  base B = ba500defa498a454be182ed46db795fc3e04d627 (main: PR-B1 and PR-N merged)
+  cand C = 8a12de28db5ede85d3df09d5307e795ff39e4373 (the U3 PR's code commit; its parent is B)
+At extraction (setup_trees.sh, 2026-10-09T02:06Z):
+  base expected 2973 extracted 2973 pathset_diff 0; blob mismatches 0 of 2973; 2973 100644 blob
+  cand expected 2973 extracted 2973 pathset_diff 0; blob mismatches 0 of 2973; 2973 100644 blob
+After the builds (verify_trees.sh):
+base: 2973 blobs (modes: 2973 100644;) path-set differences 0, blob mismatches 0
+cand: 2973 blobs (modes: 2973 100644;) path-set differences 0, blob mismatches 0
+B to C outside execution/:  133 files changed, 37627 insertions(+), 6408 deletions(-)
+  added/deleted files:
+    D	projects/chirality-piping/core/product_physics/src/historical_pressure_reference.rs
+    D	projects/chirality-piping/docs/validation_manual/cases/stress/stress-pressure-membrane-original.md
+    A	projects/chirality-piping/fixtures/product_preview/DEMO_FIXTURES.md
+    D	projects/chirality-piping/fixtures/product_preview/PRECISION_FIXTURES.md
+    A	projects/chirality-piping/fixtures/product_preview/demo_fixture_generation.json
+    A	projects/chirality-piping/fixtures/product_preview/invented_demo_model.json
+    A	projects/chirality-piping/fixtures/product_preview/invented_demo_result_legacy_0_1.json
+    A	projects/chirality-piping/fixtures/product_preview/invented_demo_result_preview_physics_1_dense.json
+    A	projects/chirality-piping/fixtures/product_preview/invented_demo_result_preview_physics_1_sparse.json
+    D	projects/chirality-piping/fixtures/product_preview/precision_fixture_generation.json
+    D	projects/chirality-piping/validation/hand_calcs/mechanics/curved_bend_pressure_thrust_arc.md
+    D	projects/chirality-piping/validation/hand_calcs/stress/pressure_membrane.md

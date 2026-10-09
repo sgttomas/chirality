@@ -1,0 +1,25 @@
+formula check: skipped (no envelope_sha256.tsv in the base directory; both sides indexed by index())
+runs with run.envelope_sha256 (base): 818
+gate_check rows compared: 764
+runs with run.envelope_sha256 (candidate): 818
+runs: base 884 candidate 884 missing either side 0
+candidate outcomes {'refused_blocked': 142, 'refused_capture': 64, 'refused_error': 2, 'solved': 676}
+heap-cap runs compared (stderr tails): 0
+differences: 16
+  DIFF (('FX-N05', 'dense_scrutiny', 'captured'), 'full', 'ebc586bd29942d4609db2fa40bc701cdd382367ea261daf7ee25f18a1f0d4c1d', 'b5de531e722c7fbb0b0ba74657ef39b94917571841f3f65a71965b80de0595c5')
+  DIFF (('FX-N05', 'sparse_interactive', 'captured'), 'full', 'eb157c8865752eee2a4364bf8c4b668d35d1ebb53bd586a5f6b7edf6ce1f06f7', 'd7c9700aee0127b614030da88013e01cd5173f904f00beda1cd11c1cf1356f7a')
+  DIFF (('FX-N06', 'dense_scrutiny', 'captured'), 'full', '1c80ffd028403ed3688e18a1ab056f1145c304142b24db5919e4778e5ffffc82', 'e7422e0eafa59bcb07b0056b94196184959ff9cc6d08627017da0609b6c0eb91')
+  DIFF (('FX-N06', 'sparse_interactive', 'captured'), 'full', 'dc8b68d09e36176011c9a9c4706ebaeccaf25a217ab85f14328f2717843f939b', '0018f79c5a5f272376ac9995478ca2ec1fc081b6f177d7efcf66ebebfd10c0a9')
+  DIFF (('FX-NP-A-ulp-.25', 'dense_scrutiny', 'captured'), 'full', '5e7b7c0dc4ed2424f7f3948f3712647a21dc15a3d80fcf3d0c19d2ce77ee230b', 'e6aaa83c4ccbf4d8b3144238fe2e4df82e2564e40ec3a56dc438d973ef6b8f54')
+  DIFF (('FX-NP-A-ulp-.25', 'sparse_interactive', 'captured'), 'full', '9483adbabedd4aba68d0a270a6e2f92bb30bf02ec650e6b3fa9ca71b52dcd522', 'd78fabbba7a4e5e77ceb8a615204032701a325bc12127eb1ca725ece9de0fe5c')
+  DIFF (('FX-NP-A-ulp-.5', 'dense_scrutiny', 'captured'), 'full', 'c5bafdfc96b0b380bc00a19bd0f778b4ac8fd90c43329dd6a46e5fbc63158ec3', 'fe3ed1bc9c5aff2e8c06be598cd38409f2b7cc22747d70f46522aea733106c1b')
+  DIFF (('FX-NP-A-ulp-.5', 'sparse_interactive', 'captured'), 'full', '064b4738ea43d91cfacb350fed493a4ed43c009e1924c6fdcb838e7cac03986a', '7953855500e947661e26f4e1038dc17e1cbf00b570da163f6a2c43226be1c7a1')
+  DIFF (('FX-NP-A-ulp-.75', 'dense_scrutiny', 'captured'), 'full', 'cc579bfc0ec157ac2b3c2c17e037e4a6d31819b76916128f76988221bcf3b9de', '4b7365bb8b5f205274ad2f312723cc20c601cae5e612d3f1f82844d9eb4778f9')
+  DIFF (('FX-NP-A-ulp-.75', 'sparse_interactive', 'captured'), 'full', 'f05afbed38241900801cbd78b87dc346ad1b6fa3e12b7e88f6e7d2ed847f6919', '6ba67826ab45721e62a8d94e270ef10503486a7c62049695b306e3dcaf181681')
+  DIFF (('FX-NP-A-ulp-1', 'dense_scrutiny', 'captured'), 'full', '400bd0a2356a8b7cbc729a80dd0c55f240e5495c9fb5047e58a6b8e2fb91bd17', '47a3badfaf66970270e2c0a4cb531bdf3c4c988436a0dbf36785e74df131a214')
+  DIFF (('FX-NP-A-ulp-1', 'sparse_interactive', 'captured'), 'full', 'c217beed1ee670f3ffb5c924d7991a60d2fcb2cfc7dd95c2a2b66cfbb6b26fec', '4082f81fb106bdd5a89f29fcf1c20ee1ae2d53597271092823e4eb4618247821')
+  DIFF (('FX-NP-A-ulp-1.5', 'dense_scrutiny', 'captured'), 'full', '827459531bdfe93f59a7f479994faed22c7d107dec891b67916ad3d1070306e5', '65747983c4c8adb1dc35cea4165c000e75e6f730660d18020f1ce9b81f82e7d6')
+  DIFF (('FX-NP-A-ulp-1.5', 'sparse_interactive', 'captured'), 'full', '886b4a4a896b0c0873a09eff1fdde2d7d058fea1df35679aa1e8408553565c5c', '20a2d1b8f6bba50198a2edd05d000e40b315139bcff1b64bde38612b3d8bbcbd')
+  DIFF (('FX-NP-A-ulp-2', 'dense_scrutiny', 'captured'), 'full', '811961df90da6ef43b9eab071eb839a955603627245acce75a1c5ed715c270b0', 'ef338666b4616cbcf4cf8e9def6032b093b6f2d63f250cab75f70427912af6ed')
+  DIFF (('FX-NP-A-ulp-2', 'sparse_interactive', 'captured'), 'full', '984d00a86e714415eef4acccf05bb23d76f445ece7187a0170ff7c618560734d', '02ffbac6b6339d4cb00f83c0860a9574c307bc76a8153f3d060b1817594638c3')
+RESULT FAIL

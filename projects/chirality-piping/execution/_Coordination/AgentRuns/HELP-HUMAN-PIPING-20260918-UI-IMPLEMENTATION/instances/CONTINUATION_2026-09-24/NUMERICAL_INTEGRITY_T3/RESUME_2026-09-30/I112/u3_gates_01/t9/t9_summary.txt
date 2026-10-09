@@ -1,0 +1,17 @@
+== build base start 2026-10-09T02:06:53Z
+== build base exit=0 2026-10-09T02:07:22Z
+lock diff lines 9
+PP lock base unchanged after build (blob 833cbda45ad04a2e4b58cab299a846ed1b32dab4)
+db2498a00da8ebcf76961f163fb7158c700276e27f072f449abea4885e3a458c  WT/targets/i112-u3-t9/base/release/calib_fixdiff_native
+== build cand start 2026-10-09T02:07:22Z
+== build cand exit=0 2026-10-09T02:07:50Z
+lock diff lines 9
+PP lock cand unchanged after build (blob 833cbda45ad04a2e4b58cab299a846ed1b32dab4)
+7bcd13358b914e0c2b1fa5ecca4d693d912f2eda939ac2055e53c464e1999f5a  WT/targets/i112-u3-t9/cand/release/calib_fixdiff_native
+== runs start 2026-10-09T02:07:50Z
+== run base start 2026-10-09T02:07:50Z
+== run base end 2026-10-09T02:07:51Z
+== run cand start 2026-10-09T02:07:51Z
+== run cand end 2026-10-09T02:07:52Z
+== runs exit=0 2026-10-09T02:07:52Z
+T9-DONE 2026-10-09T02:07:52Z

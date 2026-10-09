@@ -1,0 +1,1089 @@
+{
+ "sets": {
+  "main": {
+   "base": 114,
+   "cand": 116,
+   "identical": 86,
+   "differing": 28,
+   "removed": [],
+   "added": [
+    "fixtures/product_preview__invented_demo_model.json.dense_scrutiny.out",
+    "fixtures/product_preview__invented_demo_model.json.sparse_interactive.out"
+   ]
+  },
+  "extra": {
+   "base": 16,
+   "cand": 16,
+   "identical": 16,
+   "differing": 0,
+   "removed": [],
+   "added": []
+  }
+ },
+ "differing": [
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__invented_preview_model.json.dense_scrutiny.out",
+   "input": "fixtures/product_preview/invented_preview_model.json",
+   "mode": "dense_scrutiny",
+   "input_same_in_both_trees": true,
+   "cls": "refusal",
+   "info": {
+    "declared": {},
+    "refusal": [
+     [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      [
+       "load:L-100",
+       "load:L-100-P"
+      ],
+      "legacy pressure primitive load:L-100-P in load:L-100 (value None)"
+     ],
+     [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      [
+       "load:L-100",
+       "load:L-100-P-EJ"
+      ],
+      "legacy pressure primitive load:L-100-P-EJ in load:L-100 (value None)"
+     ],
+     [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      [
+       "load:L-200",
+       "load:L-200-P"
+      ],
+      "legacy pressure primitive load:L-200-P in load:L-200 (value None)"
+     ],
+     [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      [
+       "load:L-200",
+       "load:L-200-P-EJ"
+      ],
+      "legacy pressure primitive load:L-200-P-EJ in load:L-200 (value None)"
+     ]
+    ],
+    "base_status": "MODEL_INCOMPLETE",
+    "base_results": 0,
+    "base_blocking_codes": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ]
+   },
+   "leaves_differing": [
+    "diagnostics/0/message",
+    "diagnostics/1/message",
+    "diagnostics/2/message",
+    "diagnostics/3/message"
+   ]
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__invented_preview_model.json.sparse_interactive.out",
+   "input": "fixtures/product_preview/invented_preview_model.json",
+   "mode": "sparse_interactive",
+   "input_same_in_both_trees": true,
+   "cls": "refusal",
+   "info": {
+    "declared": {},
+    "refusal": [
+     [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      [
+       "load:L-100",
+       "load:L-100-P"
+      ],
+      "legacy pressure primitive load:L-100-P in load:L-100 (value None)"
+     ],
+     [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      [
+       "load:L-100",
+       "load:L-100-P-EJ"
+      ],
+      "legacy pressure primitive load:L-100-P-EJ in load:L-100 (value None)"
+     ],
+     [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      [
+       "load:L-200",
+       "load:L-200-P"
+      ],
+      "legacy pressure primitive load:L-200-P in load:L-200 (value None)"
+     ],
+     [
+      "PRESSURE_MODEL_REAUTHOR_REQUIRED",
+      [
+       "load:L-200",
+       "load:L-200-P-EJ"
+      ],
+      "legacy pressure primitive load:L-200-P-EJ in load:L-200 (value None)"
+     ]
+    ],
+    "base_status": "MODEL_INCOMPLETE",
+    "base_results": 0,
+    "base_blocking_codes": [
+     "PRESSURE_MODEL_REAUTHOR_REQUIRED"
+    ]
+   },
+   "leaves_differing": [
+    "diagnostics/0/message",
+    "diagnostics/1/message",
+    "diagnostics/2/message",
+    "diagnostics/3/message"
+   ]
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__numerical_sensitive_torsion_model.json.dense_scrutiny.out",
+   "input": "fixtures/product_preview/numerical_sensitive_torsion_model.json",
+   "mode": "dense_scrutiny",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "8f3232d2e7b732df90e4e5da0ecb69b4710cd88df55a6bea8400c8ff1b460dc3",
+     "0c17cf6a80b96ae50203dbb77c5e65c739e3758eddb96a6c540b22518ab60bdb"
+    ],
+    "rule_on_cand": [
+     "8f3232d2e7b732df90e4e5da0ecb69b4710cd88df55a6bea8400c8ff1b460dc3",
+     "0c17cf6a80b96ae50203dbb77c5e65c739e3758eddb96a6c540b22518ab60bdb"
+    ],
+    "rule_on_normalized": [
+     "95f8a0cd88360588d960beb37bf7d3111e3d14e49aa8627f992203df83055c66",
+     "f9f8e12b875b0bdced3f82b785f6e81c6845aa2d70371af8ed48bbd382e99dda"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__numerical_sensitive_torsion_model.json.sparse_interactive.out",
+   "input": "fixtures/product_preview/numerical_sensitive_torsion_model.json",
+   "mode": "sparse_interactive",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "8602825387ab3d94a483a16c4baad0c1dcc54372a8b9462bdcba781ff7464d89",
+     "1f099d8d5b82626db7cd4f9edc4b7e318229602548a0153cbfb4c085cb7bcdbd"
+    ],
+    "rule_on_cand": [
+     "8602825387ab3d94a483a16c4baad0c1dcc54372a8b9462bdcba781ff7464d89",
+     "1f099d8d5b82626db7cd4f9edc4b7e318229602548a0153cbfb4c085cb7bcdbd"
+    ],
+    "rule_on_normalized": [
+     "df421fcdfda1e53de83ad55178033fbb7f1d3ea576608806cff690fcaeb9cad9",
+     "5fe173327c371260b45dd8cf36e438f9bd2160b214101ae6f75e1bbb4ec2f927"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__multicase-dense_scrutiny.request.json.dense_scrutiny.out",
+   "input": "fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json",
+   "mode": "dense_scrutiny",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "21ea7573426924a483ca2ae6c58c2225b1196ee676467cc55e2100fd161cc96d",
+     "28ff5f172cb2cadaaddcb91b7bee14072739f72af200596ce6a30486a265a0d1"
+    ],
+    "rule_on_cand": [
+     "21ea7573426924a483ca2ae6c58c2225b1196ee676467cc55e2100fd161cc96d",
+     "28ff5f172cb2cadaaddcb91b7bee14072739f72af200596ce6a30486a265a0d1"
+    ],
+    "rule_on_normalized": [
+     "134283261399aa2257c41a3e5927f1d5d351fc8da7406ebef704d68fb4b4e21f",
+     "a71532386f4ec7afbc0b72a0806ce2b53fd2b9239d5d4f837069076b5c8e9bf5"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__multicase-dense_scrutiny.request.json.sparse_interactive.out",
+   "input": "fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json",
+   "mode": "sparse_interactive",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "c76bf4207e53e8de12d044cdec58b51e450272648f879bbd5c658e1bd8e9fd0f",
+     "d4c0b70ee7fff0720e0a792ccea755629013439c4b0a3a0649453ba2fac15531"
+    ],
+    "rule_on_cand": [
+     "c76bf4207e53e8de12d044cdec58b51e450272648f879bbd5c658e1bd8e9fd0f",
+     "d4c0b70ee7fff0720e0a792ccea755629013439c4b0a3a0649453ba2fac15531"
+    ],
+    "rule_on_normalized": [
+     "b845249e956b7585ffe95d4c3c886c26da68451b63d657849e774ce8a93be209",
+     "0826c9fab046b92cc1ae1bd5539518e935c02992944e8453dc53c58debef224b"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__multicase-sparse_interactive.request.json.dense_scrutiny.out",
+   "input": "fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json",
+   "mode": "dense_scrutiny",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "21ea7573426924a483ca2ae6c58c2225b1196ee676467cc55e2100fd161cc96d",
+     "28ff5f172cb2cadaaddcb91b7bee14072739f72af200596ce6a30486a265a0d1"
+    ],
+    "rule_on_cand": [
+     "21ea7573426924a483ca2ae6c58c2225b1196ee676467cc55e2100fd161cc96d",
+     "28ff5f172cb2cadaaddcb91b7bee14072739f72af200596ce6a30486a265a0d1"
+    ],
+    "rule_on_normalized": [
+     "134283261399aa2257c41a3e5927f1d5d351fc8da7406ebef704d68fb4b4e21f",
+     "a71532386f4ec7afbc0b72a0806ce2b53fd2b9239d5d4f837069076b5c8e9bf5"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__multicase-sparse_interactive.request.json.sparse_interactive.out",
+   "input": "fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json",
+   "mode": "sparse_interactive",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "c76bf4207e53e8de12d044cdec58b51e450272648f879bbd5c658e1bd8e9fd0f",
+     "d4c0b70ee7fff0720e0a792ccea755629013439c4b0a3a0649453ba2fac15531"
+    ],
+    "rule_on_cand": [
+     "c76bf4207e53e8de12d044cdec58b51e450272648f879bbd5c658e1bd8e9fd0f",
+     "d4c0b70ee7fff0720e0a792ccea755629013439c4b0a3a0649453ba2fac15531"
+    ],
+    "rule_on_normalized": [
+     "b845249e956b7585ffe95d4c3c886c26da68451b63d657849e774ce8a93be209",
+     "0826c9fab046b92cc1ae1bd5539518e935c02992944e8453dc53c58debef224b"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__n05-dense_scrutiny.request.json.dense_scrutiny.out",
+   "input": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json",
+   "mode": "dense_scrutiny",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "81e1df0270cd71d1187011da6eb50628a3975f2b1593985deaf3d2587a8ec0be",
+     "4318896882c04a8af4269666b9f4bd407849a2dee26ca9c8e66cf24886b6558c"
+    ],
+    "rule_on_cand": [
+     "81e1df0270cd71d1187011da6eb50628a3975f2b1593985deaf3d2587a8ec0be",
+     "4318896882c04a8af4269666b9f4bd407849a2dee26ca9c8e66cf24886b6558c"
+    ],
+    "rule_on_normalized": [
+     "2ad9960fd02b0b2c2b98906ddcf7622d48e0882f8d032f3382ccf59f0eb7d03a",
+     "6125aa4b96c4219bae7f16353c8d8e15e93533ca3b555fcdbef3dca852cf3992"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__n05-dense_scrutiny.request.json.sparse_interactive.out",
+   "input": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json",
+   "mode": "sparse_interactive",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "5403d5d860d6536bb866d3444e57808e381b5361ae2c64e412ca38519b05144f",
+     "f7743dbcb70cbb6d5b263cd6693beb7d6e12c931fc58120e57c6e1f4137ed37d"
+    ],
+    "rule_on_cand": [
+     "5403d5d860d6536bb866d3444e57808e381b5361ae2c64e412ca38519b05144f",
+     "f7743dbcb70cbb6d5b263cd6693beb7d6e12c931fc58120e57c6e1f4137ed37d"
+    ],
+    "rule_on_normalized": [
+     "88d833dd945a582dd3747dc0f799ace3f0c269860a095db049a289a8759a596b",
+     "c69f5f64d43e274affbd717306bb7a3d9fa0b7e1f0ede8dcfa5c24c272001060"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__n05-sparse_interactive.request.json.dense_scrutiny.out",
+   "input": "fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json",
+   "mode": "dense_scrutiny",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "81e1df0270cd71d1187011da6eb50628a3975f2b1593985deaf3d2587a8ec0be",
+     "4318896882c04a8af4269666b9f4bd407849a2dee26ca9c8e66cf24886b6558c"
+    ],
+    "rule_on_cand": [
+     "81e1df0270cd71d1187011da6eb50628a3975f2b1593985deaf3d2587a8ec0be",
+     "4318896882c04a8af4269666b9f4bd407849a2dee26ca9c8e66cf24886b6558c"
+    ],
+    "rule_on_normalized": [
+     "2ad9960fd02b0b2c2b98906ddcf7622d48e0882f8d032f3382ccf59f0eb7d03a",
+     "6125aa4b96c4219bae7f16353c8d8e15e93533ca3b555fcdbef3dca852cf3992"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__n05-sparse_interactive.request.json.sparse_interactive.out",
+   "input": "fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json",
+   "mode": "sparse_interactive",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "5403d5d860d6536bb866d3444e57808e381b5361ae2c64e412ca38519b05144f",
+     "f7743dbcb70cbb6d5b263cd6693beb7d6e12c931fc58120e57c6e1f4137ed37d"
+    ],
+    "rule_on_cand": [
+     "5403d5d860d6536bb866d3444e57808e381b5361ae2c64e412ca38519b05144f",
+     "f7743dbcb70cbb6d5b263cd6693beb7d6e12c931fc58120e57c6e1f4137ed37d"
+    ],
+    "rule_on_normalized": [
+     "88d833dd945a582dd3747dc0f799ace3f0c269860a095db049a289a8759a596b",
+     "c69f5f64d43e274affbd717306bb7a3d9fa0b7e1f0ede8dcfa5c24c272001060"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__n06-dense_scrutiny.request.json.dense_scrutiny.out",
+   "input": "fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json",
+   "mode": "dense_scrutiny",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "0d16d27a5bfa2a012bd419c2c6b155c02ea0dfc321c8a82fd44b41e01de6e3f6",
+     "7dee46dc538ab8625249ccd9a76c5df899d6bae6a0229537fb441467c13763a0"
+    ],
+    "rule_on_cand": [
+     "0d16d27a5bfa2a012bd419c2c6b155c02ea0dfc321c8a82fd44b41e01de6e3f6",
+     "7dee46dc538ab8625249ccd9a76c5df899d6bae6a0229537fb441467c13763a0"
+    ],
+    "rule_on_normalized": [
+     "79e1b6e7fe8d0b0ad9d185dbc2a0791e9f10358c100d45a8c959ea6d74f9eba7",
+     "fdf4938973aaeef4e156005376703872ce7a33100031f94790412498fab0ac6c"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__n06-dense_scrutiny.request.json.sparse_interactive.out",
+   "input": "fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json",
+   "mode": "sparse_interactive",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "b9d452dd57786e19df3e50cadb0b6ee2313e63912eaedc934be060a7a8995030",
+     "b69aef597e0b028de9bb920f7ad902763925d8c7eb110d30e35c2c4ceb46d667"
+    ],
+    "rule_on_cand": [
+     "b9d452dd57786e19df3e50cadb0b6ee2313e63912eaedc934be060a7a8995030",
+     "b69aef597e0b028de9bb920f7ad902763925d8c7eb110d30e35c2c4ceb46d667"
+    ],
+    "rule_on_normalized": [
+     "0df8f27f40dd2be4f0f97ba06144829dc00a293f399ddd81d4d910e12d3169eb",
+     "d302d57cb7d696ce15b82dbd8056ddd2b69a488142293b1481602d6aa509e7f3"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__n06-sparse_interactive.request.json.dense_scrutiny.out",
+   "input": "fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json",
+   "mode": "dense_scrutiny",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "0d16d27a5bfa2a012bd419c2c6b155c02ea0dfc321c8a82fd44b41e01de6e3f6",
+     "7dee46dc538ab8625249ccd9a76c5df899d6bae6a0229537fb441467c13763a0"
+    ],
+    "rule_on_cand": [
+     "0d16d27a5bfa2a012bd419c2c6b155c02ea0dfc321c8a82fd44b41e01de6e3f6",
+     "7dee46dc538ab8625249ccd9a76c5df899d6bae6a0229537fb441467c13763a0"
+    ],
+    "rule_on_normalized": [
+     "79e1b6e7fe8d0b0ad9d185dbc2a0791e9f10358c100d45a8c959ea6d74f9eba7",
+     "fdf4938973aaeef4e156005376703872ce7a33100031f94790412498fab0ac6c"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__n06-sparse_interactive.request.json.sparse_interactive.out",
+   "input": "fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json",
+   "mode": "sparse_interactive",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "b9d452dd57786e19df3e50cadb0b6ee2313e63912eaedc934be060a7a8995030",
+     "b69aef597e0b028de9bb920f7ad902763925d8c7eb110d30e35c2c4ceb46d667"
+    ],
+    "rule_on_cand": [
+     "b9d452dd57786e19df3e50cadb0b6ee2313e63912eaedc934be060a7a8995030",
+     "b69aef597e0b028de9bb920f7ad902763925d8c7eb110d30e35c2c4ceb46d667"
+    ],
+    "rule_on_normalized": [
+     "0df8f27f40dd2be4f0f97ba06144829dc00a293f399ddd81d4d910e12d3169eb",
+     "d302d57cb7d696ce15b82dbd8056ddd2b69a488142293b1481602d6aa509e7f3"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__ui__multicase-dense_scrutiny.request.json.dense_scrutiny.out",
+   "input": "fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json",
+   "mode": "dense_scrutiny",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "21ea7573426924a483ca2ae6c58c2225b1196ee676467cc55e2100fd161cc96d",
+     "38417fafff741dd9d699b49153f6b8228a233d9273e262f03945759b12cae421"
+    ],
+    "rule_on_cand": [
+     "21ea7573426924a483ca2ae6c58c2225b1196ee676467cc55e2100fd161cc96d",
+     "38417fafff741dd9d699b49153f6b8228a233d9273e262f03945759b12cae421"
+    ],
+    "rule_on_normalized": [
+     "134283261399aa2257c41a3e5927f1d5d351fc8da7406ebef704d68fb4b4e21f",
+     "6ec7acdc0833ada84558774a8945263dd2fdbde05036c666b05960ca0fa5ddf1"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__ui__multicase-dense_scrutiny.request.json.sparse_interactive.out",
+   "input": "fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json",
+   "mode": "sparse_interactive",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "c76bf4207e53e8de12d044cdec58b51e450272648f879bbd5c658e1bd8e9fd0f",
+     "55d4eeb135af47a577c14ed7889aba10115d44236136cc02dd481cd8c3929f2d"
+    ],
+    "rule_on_cand": [
+     "c76bf4207e53e8de12d044cdec58b51e450272648f879bbd5c658e1bd8e9fd0f",
+     "55d4eeb135af47a577c14ed7889aba10115d44236136cc02dd481cd8c3929f2d"
+    ],
+    "rule_on_normalized": [
+     "b845249e956b7585ffe95d4c3c886c26da68451b63d657849e774ce8a93be209",
+     "757ea28db9ab2948841102d5a77e44f9a7a53aabedbaa35474f59f227f26671c"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__ui__multicase-sparse_interactive.request.json.dense_scrutiny.out",
+   "input": "fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json",
+   "mode": "dense_scrutiny",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "21ea7573426924a483ca2ae6c58c2225b1196ee676467cc55e2100fd161cc96d",
+     "38417fafff741dd9d699b49153f6b8228a233d9273e262f03945759b12cae421"
+    ],
+    "rule_on_cand": [
+     "21ea7573426924a483ca2ae6c58c2225b1196ee676467cc55e2100fd161cc96d",
+     "38417fafff741dd9d699b49153f6b8228a233d9273e262f03945759b12cae421"
+    ],
+    "rule_on_normalized": [
+     "134283261399aa2257c41a3e5927f1d5d351fc8da7406ebef704d68fb4b4e21f",
+     "6ec7acdc0833ada84558774a8945263dd2fdbde05036c666b05960ca0fa5ddf1"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__ui__multicase-sparse_interactive.request.json.sparse_interactive.out",
+   "input": "fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json",
+   "mode": "sparse_interactive",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "c76bf4207e53e8de12d044cdec58b51e450272648f879bbd5c658e1bd8e9fd0f",
+     "55d4eeb135af47a577c14ed7889aba10115d44236136cc02dd481cd8c3929f2d"
+    ],
+    "rule_on_cand": [
+     "c76bf4207e53e8de12d044cdec58b51e450272648f879bbd5c658e1bd8e9fd0f",
+     "55d4eeb135af47a577c14ed7889aba10115d44236136cc02dd481cd8c3929f2d"
+    ],
+    "rule_on_normalized": [
+     "b845249e956b7585ffe95d4c3c886c26da68451b63d657849e774ce8a93be209",
+     "757ea28db9ab2948841102d5a77e44f9a7a53aabedbaa35474f59f227f26671c"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__ui__n05-dense_scrutiny.request.json.dense_scrutiny.out",
+   "input": "fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json",
+   "mode": "dense_scrutiny",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "81e1df0270cd71d1187011da6eb50628a3975f2b1593985deaf3d2587a8ec0be",
+     "23c5a4ae5e5eb0ec692061e98ffca52de061aba23922c3deebdf222ea530f853"
+    ],
+    "rule_on_cand": [
+     "81e1df0270cd71d1187011da6eb50628a3975f2b1593985deaf3d2587a8ec0be",
+     "23c5a4ae5e5eb0ec692061e98ffca52de061aba23922c3deebdf222ea530f853"
+    ],
+    "rule_on_normalized": [
+     "2ad9960fd02b0b2c2b98906ddcf7622d48e0882f8d032f3382ccf59f0eb7d03a",
+     "1b3099718dfa76c7a7c8e6abc425e699a2b79af0b19ba2594419666d979c89f8"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__ui__n05-dense_scrutiny.request.json.sparse_interactive.out",
+   "input": "fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json",
+   "mode": "sparse_interactive",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "5403d5d860d6536bb866d3444e57808e381b5361ae2c64e412ca38519b05144f",
+     "9ecb760c20bd61de834e65f6cbfe2c3484600efc1f36d43405ed4e2eeb935e5e"
+    ],
+    "rule_on_cand": [
+     "5403d5d860d6536bb866d3444e57808e381b5361ae2c64e412ca38519b05144f",
+     "9ecb760c20bd61de834e65f6cbfe2c3484600efc1f36d43405ed4e2eeb935e5e"
+    ],
+    "rule_on_normalized": [
+     "88d833dd945a582dd3747dc0f799ace3f0c269860a095db049a289a8759a596b",
+     "3f7dde565a8de882d6c04f5290d928de5757f326b61c0a96c2ecc507e123c1ad"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__ui__n05-sparse_interactive.request.json.dense_scrutiny.out",
+   "input": "fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json",
+   "mode": "dense_scrutiny",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "81e1df0270cd71d1187011da6eb50628a3975f2b1593985deaf3d2587a8ec0be",
+     "23c5a4ae5e5eb0ec692061e98ffca52de061aba23922c3deebdf222ea530f853"
+    ],
+    "rule_on_cand": [
+     "81e1df0270cd71d1187011da6eb50628a3975f2b1593985deaf3d2587a8ec0be",
+     "23c5a4ae5e5eb0ec692061e98ffca52de061aba23922c3deebdf222ea530f853"
+    ],
+    "rule_on_normalized": [
+     "2ad9960fd02b0b2c2b98906ddcf7622d48e0882f8d032f3382ccf59f0eb7d03a",
+     "1b3099718dfa76c7a7c8e6abc425e699a2b79af0b19ba2594419666d979c89f8"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__ui__n05-sparse_interactive.request.json.sparse_interactive.out",
+   "input": "fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json",
+   "mode": "sparse_interactive",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "5403d5d860d6536bb866d3444e57808e381b5361ae2c64e412ca38519b05144f",
+     "9ecb760c20bd61de834e65f6cbfe2c3484600efc1f36d43405ed4e2eeb935e5e"
+    ],
+    "rule_on_cand": [
+     "5403d5d860d6536bb866d3444e57808e381b5361ae2c64e412ca38519b05144f",
+     "9ecb760c20bd61de834e65f6cbfe2c3484600efc1f36d43405ed4e2eeb935e5e"
+    ],
+    "rule_on_normalized": [
+     "88d833dd945a582dd3747dc0f799ace3f0c269860a095db049a289a8759a596b",
+     "3f7dde565a8de882d6c04f5290d928de5757f326b61c0a96c2ecc507e123c1ad"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__ui__n06-dense_scrutiny.request.json.dense_scrutiny.out",
+   "input": "fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json",
+   "mode": "dense_scrutiny",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "0d16d27a5bfa2a012bd419c2c6b155c02ea0dfc321c8a82fd44b41e01de6e3f6",
+     "7e85ab4f444f82b512fa9ce651fdbc8291c71984b213a9a18a14d7b463d51ad8"
+    ],
+    "rule_on_cand": [
+     "0d16d27a5bfa2a012bd419c2c6b155c02ea0dfc321c8a82fd44b41e01de6e3f6",
+     "7e85ab4f444f82b512fa9ce651fdbc8291c71984b213a9a18a14d7b463d51ad8"
+    ],
+    "rule_on_normalized": [
+     "79e1b6e7fe8d0b0ad9d185dbc2a0791e9f10358c100d45a8c959ea6d74f9eba7",
+     "cb6d8d8dbb95ccc36f5bf89f34ab34017ca3a0742695e3db4d1c03809d6147c9"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__ui__n06-dense_scrutiny.request.json.sparse_interactive.out",
+   "input": "fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json",
+   "mode": "sparse_interactive",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "b9d452dd57786e19df3e50cadb0b6ee2313e63912eaedc934be060a7a8995030",
+     "1676a050f69c43a8cf05a8d330c05626140bca3ba95502a4d795724acf07fabb"
+    ],
+    "rule_on_cand": [
+     "b9d452dd57786e19df3e50cadb0b6ee2313e63912eaedc934be060a7a8995030",
+     "1676a050f69c43a8cf05a8d330c05626140bca3ba95502a4d795724acf07fabb"
+    ],
+    "rule_on_normalized": [
+     "0df8f27f40dd2be4f0f97ba06144829dc00a293f399ddd81d4d910e12d3169eb",
+     "34b6e231c96d9fe5005f718e6285dcff798d80871c23ef659b2049c900e628fc"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__ui__n06-sparse_interactive.request.json.dense_scrutiny.out",
+   "input": "fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json",
+   "mode": "dense_scrutiny",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "0d16d27a5bfa2a012bd419c2c6b155c02ea0dfc321c8a82fd44b41e01de6e3f6",
+     "7e85ab4f444f82b512fa9ce651fdbc8291c71984b213a9a18a14d7b463d51ad8"
+    ],
+    "rule_on_cand": [
+     "0d16d27a5bfa2a012bd419c2c6b155c02ea0dfc321c8a82fd44b41e01de6e3f6",
+     "7e85ab4f444f82b512fa9ce651fdbc8291c71984b213a9a18a14d7b463d51ad8"
+    ],
+    "rule_on_normalized": [
+     "79e1b6e7fe8d0b0ad9d185dbc2a0791e9f10358c100d45a8c959ea6d74f9eba7",
+     "cb6d8d8dbb95ccc36f5bf89f34ab34017ca3a0742695e3db4d1c03809d6147c9"
+    ]
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__source_blocks__ui__n06-sparse_interactive.request.json.sparse_interactive.out",
+   "input": "fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json",
+   "mode": "sparse_interactive",
+   "input_same_in_both_trees": true,
+   "cls": "declared_t2",
+   "info": {
+    "declared": {
+     "T2": 1
+    },
+    "cand_digests": [
+     "b9d452dd57786e19df3e50cadb0b6ee2313e63912eaedc934be060a7a8995030",
+     "1676a050f69c43a8cf05a8d330c05626140bca3ba95502a4d795724acf07fabb"
+    ],
+    "rule_on_cand": [
+     "b9d452dd57786e19df3e50cadb0b6ee2313e63912eaedc934be060a7a8995030",
+     "1676a050f69c43a8cf05a8d330c05626140bca3ba95502a4d795724acf07fabb"
+    ],
+    "rule_on_normalized": [
+     "0df8f27f40dd2be4f0f97ba06144829dc00a293f399ddd81d4d910e12d3169eb",
+     "34b6e231c96d9fe5005f718e6285dcff798d80871c23ef659b2049c900e628fc"
+    ]
+   }
+  }
+ ],
+ "removed": [],
+ "added": [
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__invented_demo_model.json.dense_scrutiny.out",
+   "input": "fixtures/product_preview/invented_demo_model.json",
+   "in_base_tree": false,
+   "in_cand_tree": true,
+   "outcome": {
+    "status": "MECHANICS_SOLVED",
+    "quality": "checks_passed",
+    "results": 627,
+    "blocking": []
+   },
+   "tie": {
+    "committed": "fixtures/product_preview/invented_demo_result_preview_physics_1_dense.json",
+    "output_plus_newline_equals_committed": true
+   }
+  },
+  {
+   "set": "main",
+   "output": "fixtures/product_preview__invented_demo_model.json.sparse_interactive.out",
+   "input": "fixtures/product_preview/invented_demo_model.json",
+   "in_base_tree": false,
+   "in_cand_tree": true,
+   "outcome": {
+    "status": "MECHANICS_SOLVED",
+    "quality": "checks_passed",
+    "results": 625,
+    "blocking": []
+   },
+   "tie": {
+    "committed": "fixtures/product_preview/invented_demo_result_preview_physics_1_sparse.json",
+    "output_plus_newline_equals_committed": true
+   }
+  }
+ ],
+ "raw_fixtures": [
+  {
+   "fixture": "core/reporting/result_export/tests/fixtures/load_reference_fallback_uz-sparse_interactive.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "core/reporting/result_export/tests/fixtures/load_reference_fallback_uz-dense_scrutiny.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/eigen_motion-sparse_interactive.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/eigen_motion-dense_scrutiny.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/fields-sparse_interactive.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/fields-dense_scrutiny.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/mixed-sparse_interactive.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/mixed-dense_scrutiny.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/n05-sparse_interactive.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/n05-dense_scrutiny.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/n06-sparse_interactive.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference_source/n06-dense_scrutiny.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference/connected-dense_scrutiny.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference/pressure-sparse_interactive.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/load_reference/pressure-dense_scrutiny.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/fields-sparse_interactive.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/fields-dense_scrutiny.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/mixed-sparse_interactive.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/mixed-dense_scrutiny.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/mixed_units-sparse_interactive.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/mixed_units-dense_scrutiny.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05-sparse_interactive.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05-dense_scrutiny.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05_unicode-sparse_interactive.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05_unicode-dense_scrutiny.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05_units-sparse_interactive.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n05_units-dense_scrutiny.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n06-sparse_interactive.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/physics_source/n06-dense_scrutiny.raw.json",
+   "raw_changed_by_c": false,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/source_blocks/multicase-dense_scrutiny.raw.json",
+   "raw_changed_by_c": true,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/source_blocks/multicase-sparse_interactive.raw.json",
+   "raw_changed_by_c": true,
+   "base_reproduces_base_tree": "bytes",
+   "cand_reproduces_cand_tree": "bytes"
+  },
+  {
+   "fixture": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.raw.json",
+   "raw_changed_by_c": true,
+   "base_reproduces_base_tree": "parsed",
+   "cand_reproduces_cand_tree": "parsed"
+  },
+  {
+   "fixture": "fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json",
+   "raw_changed_by_c": true,
+   "base_reproduces_base_tree": "parsed",
+   "cand_reproduces_cand_tree": "parsed"
+  },
+  {
+   "fixture": "fixtures/product_preview/source_blocks/n06-dense_scrutiny.raw.json",
+   "raw_changed_by_c": true,
+   "base_reproduces_base_tree": "parsed",
+   "cand_reproduces_cand_tree": "parsed"
+  },
+  {
+   "fixture": "fixtures/product_preview/source_blocks/n06-sparse_interactive.raw.json",
+   "raw_changed_by_c": true,
+   "base_reproduces_base_tree": "parsed",
+   "cand_reproduces_cand_tree": "parsed"
+  },
+  {
+   "fixture": "fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.raw.json",
+   "raw_changed_by_c": true,
+   "base_reproduces_base_tree": "parsed",
+   "cand_reproduces_cand_tree": "parsed"
+  },
+  {
+   "fixture": "fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.raw.json",
+   "raw_changed_by_c": true,
+   "base_reproduces_base_tree": "parsed",
+   "cand_reproduces_cand_tree": "parsed"
+  },
+  {
+   "fixture": "fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.raw.json",
+   "raw_changed_by_c": true,
+   "base_reproduces_base_tree": "parsed",
+   "cand_reproduces_cand_tree": "parsed"
+  },
+  {
+   "fixture": "fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.raw.json",
+   "raw_changed_by_c": true,
+   "base_reproduces_base_tree": "parsed",
+   "cand_reproduces_cand_tree": "parsed"
+  },
+  {
+   "fixture": "fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.raw.json",
+   "raw_changed_by_c": true,
+   "base_reproduces_base_tree": "parsed",
+   "cand_reproduces_cand_tree": "parsed"
+  },
+  {
+   "fixture": "fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.raw.json",
+   "raw_changed_by_c": true,
+   "base_reproduces_base_tree": "parsed",
+   "cand_reproduces_cand_tree": "parsed"
+  }
+ ],
+ "raw_summary": {
+  "fixtures": 42,
+  "changed_by_c": 12,
+  "base_reproduces": 42,
+  "cand_reproduces": 42,
+  "by_form": {
+   "parsed/parsed": 10,
+   "bytes/bytes": 32
+  }
+ },
+ "RESULT_DIFFERING": "PASS"
+}

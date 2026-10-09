@@ -1,0 +1,27 @@
+I112 round 2, the U3 PR's both-entry gate, part 1 (Mac; both entries, both modes; 884 runs per side, the 4 known dense timeouts excluded).
+
+Method: round 1's, itself I61's (KF2 B's): the full-envelope t3_p1_probe (main.rs cd1052f7..., 6 GiB heap cap), built --release --offline
+through WT/tools/t3_cargo.sh from git-archive trees of base B = ba500defa4 (main) and candidate C = 8a12de28db (U3 PR #1168's code
+commit); lock: each tree's PP lock (blob 833cbda4..., unchanged in B, C and after the builds) extended with t3_p1_probe only. Requests:
+round 1's gen_out (223/223 equal to PLATFORM_CALIBRATION_MAC/gate/gen_out_sha256.txt; gen.py's inputs are unchanged in B and C).
+G1's driver, run.py and compare.py, K-D5's gate_check.py (empty exception lists) and KF2's compare_gate_kf2.py, unchanged; each side's
+driver as one WT/tools/t3_slot.sh job: base 2026-10-09T02:13:46Z-02:16:57Z, candidate 02:17:02Z-02:20:18Z.
+
+gate_check, B and C: PASS, 764 evaluated, 332 trusted, 0 trusted breach triples; the 764 rows identical (gate_rows_compare.txt).
+Outcomes on both sides: solved 676, refused_blocked 142, refused_capture 64, refused_error 2; 0 heap-cap aborts, 0 timeouts, every exit 0.
+Identity comparison (compare_gate_kf2.py): 16 differences, all full_envelope_sha256; no outcome, ok, exit, error-text or summary-envelope
+difference. stderr 884/884 identical; summary envelopes 818/818 identical.
+
+The U3 rule, run by run (part1_u3_compare.py with u3diff.py; part1_u3_compare.txt and .json):
+- full envelopes: 802 identical, 66 runs without one, 16 declared_t2; summary envelopes: 818 identical, 66 none.
+- runs.jsonl and stdout: no residue beyond the timing fields, run.envelope_sha256 (each equal to its side's full-envelope sha256).
+- runs within the rule: 884 of 884.
+- The 16 runs: FX-N05, FX-N06 and FX-NP-A-ulp-{.25,.5,.75,1,1.5,2}, captured entry, both modes. Each full envelope differs from B only
+  in T2 (formulation_basis limitation [1] of product_preview_mechanics_v1) and the two digests that bind it: the candidate's
+  publication_sha256 and receipt_sha256 equal the product's rule over the candidate's content, and the candidate with T2 replaced by
+  its old text and both digests recomputed by the rule from that normalized content equals B byte for byte. The typed entry's
+  envelopes (no source-block recovery) are identical.
+- No designed refusal, removed case or other difference occurs in this corpus.
+
+B publishes the envelopes round 1's PR-N candidate published (full/ list 0b478a78..., envelopes/ list c3113bff...), as main now carries PR-N.
+Bulk: WT/scratch/i112_u3/gate/part1_{base,cand}/ (runs.jsonl about 606 MB each); hashes and sizes in ../uncommitted_sha256.txt.

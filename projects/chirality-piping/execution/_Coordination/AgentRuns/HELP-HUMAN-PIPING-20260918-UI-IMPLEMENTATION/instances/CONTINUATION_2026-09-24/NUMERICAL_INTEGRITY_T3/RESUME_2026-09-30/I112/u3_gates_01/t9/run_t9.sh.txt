@@ -1,0 +1,23 @@
+#!/bin/bash
+# I112 U3 T9: S11-K's fixdiff harness (ec089c1d..., release) on git-archive trees of base B = main ba500defa4 and
+# candidate C = the U3 PR 8a12de28db (projects/chirality-piping, execution/ excluded), plus F1b's extra corpus (8 requests, 16 outputs).
+# Derived from I61's run_t9.sh (U9 G5). Differences: paths (WT/scratch/i112_u3, WT/targets/i112-u3-t9); each build goes
+# through WT/tools/t3_cargo.sh (host rule) instead of a bare cargo; the run phase is one t3_slot.sh job (run_t9_runs.sh);
+# the lock diff and the PP-lock check are taken here rather than by hand.
+set -u
+WT=WT
+S=$WT/scratch/i112_u3
+B=$S/t9
+pgrep -f memguard.sh >/dev/null || { echo "MEMGUARD NOT RUNNING"; exit 9; }
+for n in base cand; do
+  echo "== build $n start $(date -u +%FT%TZ)"
+  ( cd $B/harness_$n && env -u RUSTFLAGS CARGO_BUILD_JOBS=4 $WT/tools/t3_cargo.sh build --release --offline --target-dir $WT/targets/i112-u3-t9/$n > $B/logs/build_$n.log 2>&1 ); echo "== build $n exit=$? $(date -u +%FT%TZ)"
+  diff $B/harness_${n}_Cargo.lock.before $B/harness_$n/Cargo.lock > $B/lock_diff_$n.txt; echo "lock diff lines $(wc -l < $B/lock_diff_$n.txt | tr -d ' ')"
+  want=$(awk -F'\t' '$2=="projects/chirality-piping/core/product_physics/Cargo.lock"{split($1,a," "); print a[3]}' $S/tree_${n}_expected.txt)
+  have=$(git hash-object --no-filters $S/tree_$n/projects/chirality-piping/core/product_physics/Cargo.lock)
+  [ "$want" = "$have" ] && echo "PP lock $n unchanged after build (blob $have)" || echo "PP lock $n CHANGED ($want vs $have)"
+  shasum -a 256 $WT/targets/i112-u3-t9/$n/release/calib_fixdiff_native | sed "s#$WT#WT#"
+done
+echo "== runs start $(date -u +%FT%TZ)"
+$WT/tools/t3_slot.sh /bin/bash $B/run_t9_runs.sh; echo "== runs exit=$? $(date -u +%FT%TZ)"
+echo T9-DONE $(date -u +%FT%TZ)

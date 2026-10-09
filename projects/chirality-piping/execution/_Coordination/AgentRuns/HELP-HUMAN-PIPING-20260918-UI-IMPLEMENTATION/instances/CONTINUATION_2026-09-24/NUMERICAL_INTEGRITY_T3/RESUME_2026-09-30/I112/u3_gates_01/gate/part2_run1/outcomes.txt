@@ -1,0 +1,13 @@
+I112 round 2 (U3) part 2, execution part2_run1 (the only execution: 0 of 75 watcher samples saw a foreign job, so no rerun was needed).
+Held WT/tools/t3_exclusive.sh from 2026-10-09T02:21:17Z (START-EXCLUSIVE) to 02:29:36Z (END-EXCLUSIVE rc=0); quiet wait 02:21:17Z-02:23:18Z
+(8 polls); runs 02:23:18Z-02:29:36Z; no load wait.
+Base B ba500defa4 probe 7bda41f5..., candidate C 8a12de28db probe 430c4005...; gate_part2.py e43c662b... unchanged; TIMEOUT_LARGE 1800 s;
+rlimit_as_bytes 6,442,450,944 in every record (the probe's own 6 GiB heap cap).
+run (dense_scrutiny)                       base wall_s  cand wall_s  outcome (both)                                full envelope (base = cand)
+RF-LARGE-CHAIN-n01000-ROT captured         46.7934      47.1461      refused_blocked, NUMERICAL_INTEGRITY_UNRESOLVED  68cf1929c6767787f831b4cb56cb2090b9e4597f062791542626809b361e1fc7
+RF-LARGE-CHAIN-n01000-ROT typed            47.4573      47.2237      refused_blocked, NUMERICAL_INTEGRITY_UNRESOLVED  cb6112105d0a2521ae5ca5632193b70f9bb99ef63e18d3a50b4dd19363557150
+RF-LARGE-TREE-n01000-AX captured           46.4188      46.8760      refused_blocked, NUMERICAL_INTEGRITY_UNRESOLVED  7a3d32b4570986266abf284f8fe1f64d884a46eb5b7d58207bca3316b8696f42
+RF-LARGE-TREE-n01000-AX typed              47.5210      47.4203      refused_blocked, NUMERICAL_INTEGRITY_UNRESOLVED  9384c225dc88e5285ed194647ef5ae84dc163ca5f1ffda12d5e141cc883b68cb
+Every run: timed_out False, exit 0, full_check equal. The four full envelopes equal round 1's, I61's and KF2 B's (full/ list sha256
+5780a712... on both sides). envelopes/ and stderr/ identical base vs candidate; stdout/ identical except the probe's timing field
+run.solve_seconds.

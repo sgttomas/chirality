@@ -1,0 +1,11 @@
+== probe base start 2026-10-09T02:12:41Z
+== probe base exit=0 2026-10-09T02:13:11Z
+lock diff lines 11
+PP lock base unchanged after build (blob 833cbda45ad04a2e4b58cab299a846ed1b32dab4)
+7bda41f5aae836a93c9ce74499c0fb729f05f2ecaae9bad2885af2877ddc60d0  WT/targets/i112-u3-gate/base/release/t3_p1_probe
+== probe cand start 2026-10-09T02:13:11Z
+== probe cand exit=0 2026-10-09T02:13:39Z
+lock diff lines 11
+PP lock cand unchanged after build (blob 833cbda45ad04a2e4b58cab299a846ed1b32dab4)
+430c40055a558c112961ac485052ff3649a6216d32eede5ea9c7bb0c0efe49d1  WT/targets/i112-u3-gate/cand/release/t3_p1_probe
+PROBES-DONE 2026-10-09T02:13:39Z

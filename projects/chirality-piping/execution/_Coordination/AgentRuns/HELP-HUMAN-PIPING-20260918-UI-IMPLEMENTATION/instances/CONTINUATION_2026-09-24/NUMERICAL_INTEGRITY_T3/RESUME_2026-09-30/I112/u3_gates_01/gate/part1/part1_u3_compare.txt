@@ -1,0 +1,21 @@
+runs: base 884 cand 884 missing either side 0
+full envelopes: {'declared_t2': 16, 'identical': 802, 'none': 66}
+summary envelopes: {'identical': 818, 'none': 66}
+runs within the rule: 884; outside: 0
+  FX-N05__dense_scrutiny__captured: full declared_t2 {'T2': 1}; summary identical 
+  FX-N05__sparse_interactive__captured: full declared_t2 {'T2': 1}; summary identical 
+  FX-N06__dense_scrutiny__captured: full declared_t2 {'T2': 1}; summary identical 
+  FX-N06__sparse_interactive__captured: full declared_t2 {'T2': 1}; summary identical 
+  FX-NP-A-ulp-.25__dense_scrutiny__captured: full declared_t2 {'T2': 1}; summary identical 
+  FX-NP-A-ulp-.25__sparse_interactive__captured: full declared_t2 {'T2': 1}; summary identical 
+  FX-NP-A-ulp-.5__dense_scrutiny__captured: full declared_t2 {'T2': 1}; summary identical 
+  FX-NP-A-ulp-.5__sparse_interactive__captured: full declared_t2 {'T2': 1}; summary identical 
+  FX-NP-A-ulp-.75__dense_scrutiny__captured: full declared_t2 {'T2': 1}; summary identical 
+  FX-NP-A-ulp-.75__sparse_interactive__captured: full declared_t2 {'T2': 1}; summary identical 
+  FX-NP-A-ulp-1__dense_scrutiny__captured: full declared_t2 {'T2': 1}; summary identical 
+  FX-NP-A-ulp-1__sparse_interactive__captured: full declared_t2 {'T2': 1}; summary identical 
+  FX-NP-A-ulp-1.5__dense_scrutiny__captured: full declared_t2 {'T2': 1}; summary identical 
+  FX-NP-A-ulp-1.5__sparse_interactive__captured: full declared_t2 {'T2': 1}; summary identical 
+  FX-NP-A-ulp-2__dense_scrutiny__captured: full declared_t2 {'T2': 1}; summary identical 
+  FX-NP-A-ulp-2__sparse_interactive__captured: full declared_t2 {'T2': 1}; summary identical 
+RESULT PASS

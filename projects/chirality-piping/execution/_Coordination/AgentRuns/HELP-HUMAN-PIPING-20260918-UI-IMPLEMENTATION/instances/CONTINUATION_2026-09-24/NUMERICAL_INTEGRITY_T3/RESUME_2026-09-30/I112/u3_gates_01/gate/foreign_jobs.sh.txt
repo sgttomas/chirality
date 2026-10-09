@@ -1,0 +1,11 @@
+#!/bin/bash
+# Print the foreign build/solver/test processes on the host (anything but this gate's own i112-u3-gate probes).
+# I112: I61's fixed foreign_jobs.sh with two changes.
+# 1. Its own-probe filter names targets/i112-u3-gate/ instead of targets/i61-u9g6/.
+# 2. Shell and lock wrappers are not counted: a process whose executable is bash, sh, zsh, /usr/bin/lockf or sleep.
+#    Since 2026-10-07 (after I61), T3 jobs queue in wrapper scripts (t3_slot.sh, t3_cargo.sh, lane scripts) whose
+#    command lines carry the job's words (cargo, pytest, vitest, run_suites...). While this gate holds t3_exclusive.sh
+#    they can only be waiting, and counting them would keep the quiet wait from ever ending. A job that is actually
+#    running is still seen through its worker process (cargo, rustc, python -m pytest, node ... vitest, test binaries),
+#    whose executable is not a wrapper.
+ps -axo pid=,command= | grep -E 'cargo |/rustc |pytest|vitest|t3_p1_probe|calib_fixdiff|open_pipe_stress|/deps/[a-z_]+-[0-9a-f]{16}|cargo_run|run_cargo|run_suites|run_sweeps' | grep -v -E 'grep -E|foreign_jobs|targets/i112-u3-gate/|[(]t3_p1_probe[)]' | awk '{x=$2; sub(".*/","",x); if (x!="bash" && x!="sh" && x!="zsh" && x!="-bash" && x!="-zsh" && x!="lockf" && x!="sleep") print}' | cut -c1-160

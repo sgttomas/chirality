@@ -1,0 +1,34 @@
+#!/bin/bash
+# I112: git-archive trees of projects/chirality-piping (execution/ excluded) for base B = main ba500defa4
+# and candidate C = the U3 PR 8a12de28db, then check every extracted file against its revision's blob
+# (git hash-object without -w; no Git writes; GIT_OPTIONAL_LOCKS=0).
+set -u
+export GIT_OPTIONAL_LOCKS=0
+WT=WT
+S=$WT/scratch/i112_u3
+REPO=$WT/u3-pr
+for pair in base:ba500defa498a454be182ed46db795fc3e04d627 cand:8a12de28db5ede85d3df09d5307e795ff39e4373; do
+  n=${pair%%:*}; rev=${pair#*:}
+  T=$S/tree_$n
+  rm -rf "$T"; mkdir -p "$T"
+  git -C "$REPO" archive --format=tar "$rev" -- projects/chirality-piping ':(exclude)projects/chirality-piping/execution' | tar -x -C "$T"
+  # expected list: every blob under projects/chirality-piping outside execution/
+  git -C "$REPO" ls-tree -r -z "$rev" -- projects/chirality-piping | python3 -c '
+import sys
+data=sys.stdin.buffer.read().split(b"\0")
+for e in data:
+    if not e: continue
+    meta,path=e.split(b"\t",1)
+    mode,typ,sha=meta.split(b" ")
+    if path.startswith(b"projects/chirality-piping/execution/"): continue
+    sys.stdout.buffer.write(mode+b" "+typ+b" "+sha+b"\t"+path+b"\n")
+' > $S/tree_${n}_expected.txt
+  # extracted file list
+  ( cd "$T" && find . -type f -o -type l | sed 's#^\./##' | LC_ALL=C sort ) > $S/tree_${n}_files.txt
+  cut -f2 $S/tree_${n}_expected.txt | LC_ALL=C sort > $S/tree_${n}_expected_paths.txt
+  echo "$n $rev expected $(wc -l < $S/tree_${n}_expected.txt | tr -d ' ') extracted $(wc -l < $S/tree_${n}_files.txt | tr -d ' ') pathset_diff $(diff $S/tree_${n}_expected_paths.txt $S/tree_${n}_files.txt | grep -c '^[<>]')"
+  # blob check: hash-object of each extracted file equals the recorded blob; modes 100644/100755 only
+  ( cd "$T" && cut -f2 $S/tree_${n}_expected.txt | tr '\n' '\0' | xargs -0 git hash-object --no-filters -- ) > $S/tree_${n}_hashobj.txt
+  paste -d' ' <(awk '{print $3}' $S/tree_${n}_expected.txt) $S/tree_${n}_hashobj.txt | awk '$1!=$2{m++} END{print "blob mismatches", m+0, "of", NR}'
+  awk '{print $1, $2}' $S/tree_${n}_expected.txt | sort | uniq -c
+done
