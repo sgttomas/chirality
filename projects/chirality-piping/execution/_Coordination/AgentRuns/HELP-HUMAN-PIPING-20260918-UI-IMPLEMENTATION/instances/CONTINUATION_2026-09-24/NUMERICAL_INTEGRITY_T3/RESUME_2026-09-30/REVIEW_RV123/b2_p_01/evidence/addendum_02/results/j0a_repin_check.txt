@@ -1,0 +1,30 @@
+c1_range_mechanics.dense_scrutiny: moved 1; receipt beyond hashes identical: True; publication hash changed: True
+    result:combination:combination-range:support-action:8:rigid:N0:force_magnitude [support_reaction_force_magnitude_v2, combination:range, recovery_method=False] 0x1.c9a1856ab3947p-40 -> 0x1.c9a1856ab3948p-40 (1 ulp) new==CR norm:True old==CR:False components unchanged:True
+c1_range_mechanics.sparse_interactive: moved 0; receipt beyond hashes identical: True; publication hash changed: False
+rv123_c1_two_mechanics.dense_scrutiny: moved 1; receipt beyond hashes identical: True; publication hash changed: True
+    result:combination:combination-m3case:disp:N1 [displacement_magnitude, combination:m3case, recovery_method=False] 0x1.2196d7c7415c8p-2 -> 0x1.2196d7c7415c7p-2 (1 ulp) new==CR norm:True old==CR:False components unchanged:True
+rv123_c1_two_mechanics.sparse_interactive: moved 1; receipt beyond hashes identical: True; publication hash changed: True
+    result:combination:combination-m3case:disp:N1 [displacement_magnitude, combination:m3case, recovery_method=False] 0x1.2196d7d8f228ep-2 -> 0x1.2196d7d8f228fp-2 (1 ulp) new==CR norm:True old==CR:False components unchanged:True
+rv123_w_cb3_b_half_a.dense_scrutiny: moved 0; receipt beyond hashes identical: True; publication hash changed: False
+rv123_w_cb3_b_half_a.sparse_interactive: moved 0; receipt beyond hashes identical: True; publication hash changed: False
+rv123_w_cb3_ba.dense_scrutiny: moved 0; receipt beyond hashes identical: True; publication hash changed: False
+rv123_w_cb3_ba.sparse_interactive: moved 0; receipt beyond hashes identical: True; publication hash changed: False
+w_cb1.dense_scrutiny: moved 0; receipt beyond hashes identical: True; publication hash changed: False
+w_cb1.sparse_interactive: moved 0; receipt beyond hashes identical: True; publication hash changed: False
+w_cb1z.dense_scrutiny: moved 0; receipt beyond hashes identical: True; publication hash changed: False
+w_cb1z.sparse_interactive: moved 0; receipt beyond hashes identical: True; publication hash changed: False
+w_cb2.dense_scrutiny: moved 1; receipt beyond hashes identical: True; publication hash changed: True
+    result:combination:combination-ab:support-action:8:rigid:N0:force_magnitude [support_reaction_force_magnitude_v2, combination:ab, recovery_method=False] 0x1.c9a1856ab3947p-40 -> 0x1.c9a1856ab3948p-40 (1 ulp) new==CR norm:True old==CR:False components unchanged:True
+w_cb2.sparse_interactive: moved 0; receipt beyond hashes identical: True; publication hash changed: False
+w_cb3.dense_scrutiny: moved 0; receipt beyond hashes identical: True; publication hash changed: False
+w_cb3.sparse_interactive: moved 0; receipt beyond hashes identical: True; publication hash changed: False
+w_cb4a.dense_scrutiny: moved 1; receipt beyond hashes identical: True; publication hash changed: True
+    result:combination:combination-a-minus-b:support-action:8:rigid:N0:force_magnitude [support_reaction_force_magnitude_v2, combination:a-minus-b, recovery_method=False] 0x1.c9a1856ab3947p-40 -> 0x1.c9a1856ab3948p-40 (1 ulp) new==CR norm:True old==CR:False components unchanged:True
+w_cb4a.sparse_interactive: moved 0; receipt beyond hashes identical: True; publication hash changed: False
+w_cb4b.dense_scrutiny: moved 1; receipt beyond hashes identical: True; publication hash changed: True
+    result:combination:combination-range-ab:support-action:8:rigid:N0:force_magnitude [support_reaction_force_magnitude_v2, combination:range-ab, recovery_method=False] 0x1.c9a1856ab3947p-40 -> 0x1.c9a1856ab3948p-40 (1 ulp) new==CR norm:True old==CR:False components unchanged:True
+w_cb4b.sparse_interactive: moved 0; receipt beyond hashes identical: True; publication hash changed: False
+w_cb5.dense_scrutiny: moved 0; receipt beyond hashes identical: True; publication hash changed: False
+w_cb5.sparse_interactive: moved 0; receipt beyond hashes identical: True; publication hash changed: False
+TOTAL moved rows 6
+PROBLEMS 0

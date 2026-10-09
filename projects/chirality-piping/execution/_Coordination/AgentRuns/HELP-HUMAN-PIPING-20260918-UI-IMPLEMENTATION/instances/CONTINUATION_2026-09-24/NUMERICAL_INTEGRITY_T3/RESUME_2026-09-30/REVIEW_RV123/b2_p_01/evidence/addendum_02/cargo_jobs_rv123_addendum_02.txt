@@ -1,0 +1,15 @@
+2026-10-09T01:51:47Z WAIT pid=87648 cwd=WT/rv123/j0achk/projects/chirality-piping/core/product_physics args: %CRG% test --locked --offline --no-fail-fast --lib rv123_r2_dump -- --nocapture --test-threads=1
+2026-10-09T01:51:47Z START pid=87662 slot=cargo_job.slot3.lock cwd=WT/rv123/j0achk/projects/chirality-piping/core/product_physics args: %CRG% test --locked --offline --no-fail-fast --lib rv123_r2_dump -- --nocapture --test-threads=1
+2026-10-09T01:55:57Z END rc=0 pid=87662 slot=cargo_job.slot3.lock cwd=WT/rv123/j0achk/projects/chirality-piping/core/product_physics
+2026-10-09T01:55:57Z WAIT pid=96116 cwd=WT/rv123/j0achk/projects/chirality-piping/core/product_physics args: %CRG% test --locked --offline --no-fail-fast --test rv123_bytes -- --nocapture
+2026-10-09T01:55:57Z START pid=96128 slot=cargo_job.slot2.lock cwd=WT/rv123/j0achk/projects/chirality-piping/core/product_physics args: %CRG% test --locked --offline --no-fail-fast --test rv123_bytes -- --nocapture
+2026-10-09T01:59:54Z END rc=0 pid=96128 slot=cargo_job.slot2.lock cwd=WT/rv123/j0achk/projects/chirality-piping/core/product_physics
+2026-10-09T01:59:54Z WAIT pid=98503 cwd=WT/rv123/mainchk/projects/chirality-piping/core/product_physics args: %CRG% test --locked --offline --no-fail-fast --test rv123_bytes -- --nocapture
+2026-10-09T01:59:54Z START pid=98515 slot=cargo_job.slot2.lock cwd=WT/rv123/mainchk/projects/chirality-piping/core/product_physics args: %CRG% test --locked --offline --no-fail-fast --test rv123_bytes -- --nocapture
+2026-10-09T02:00:26Z END rc=0 pid=98515 slot=cargo_job.slot2.lock cwd=WT/rv123/mainchk/projects/chirality-piping/core/product_physics
+2026-10-09T02:00:26Z WAIT pid=99107 cwd=WT/rv123/j0a/projects/chirality-piping/core/product_physics args: %CRG% test --locked --offline --no-fail-fast
+2026-10-09T02:00:26Z START pid=99119 slot=cargo_job.slot2.lock cwd=WT/rv123/j0a/projects/chirality-piping/core/product_physics args: %CRG% test --locked --offline --no-fail-fast
+2026-10-09T02:09:21Z END rc=0 pid=99119 slot=cargo_job.slot2.lock cwd=WT/rv123/j0a/projects/chirality-piping/core/product_physics
+2026-10-09T02:09:26Z WAIT pid=10743 cwd=WT/rv123/bchk/projects/chirality-piping/core/product_physics args: %CRG% test --locked --offline --no-fail-fast --test rv123_bytes -- --nocapture
+2026-10-09T02:09:26Z START pid=10755 slot=cargo_job.slot2.lock cwd=WT/rv123/bchk/projects/chirality-piping/core/product_physics args: %CRG% test --locked --offline --no-fail-fast --test rv123_bytes -- --nocapture
+2026-10-09T02:13:40Z END rc=0 pid=10755 slot=cargo_job.slot2.lock cwd=WT/rv123/bchk/projects/chirality-piping/core/product_physics

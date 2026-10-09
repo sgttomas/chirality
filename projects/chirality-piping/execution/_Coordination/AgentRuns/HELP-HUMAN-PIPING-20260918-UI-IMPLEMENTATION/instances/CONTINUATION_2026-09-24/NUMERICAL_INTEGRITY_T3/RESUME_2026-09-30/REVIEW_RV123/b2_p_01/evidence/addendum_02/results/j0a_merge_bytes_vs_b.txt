@@ -1,0 +1,75 @@
+i99_fields               sparse_interactive identical
+i99_fields               dense_scrutiny     identical
+i99_m1_twin_anchor       sparse_interactive identical
+i99_m1_twin_anchor       dense_scrutiny     identical
+i99_m1_twin_axial        sparse_interactive identical
+i99_m1_twin_axial        dense_scrutiny     identical
+i99_m1_twin_lateral      sparse_interactive identical
+i99_m1_twin_lateral      dense_scrutiny     identical
+i99_m3l                  sparse_interactive identical
+i99_m3l                  dense_scrutiny     differs: ordinary rows inherited 1, retained rows changed 0; 
+i99_m3x                  sparse_interactive identical
+i99_m3x                  dense_scrutiny     identical
+i99_m3x_mix_anchor       sparse_interactive identical
+i99_m3x_mix_anchor       dense_scrutiny     identical
+i99_m3x_mix_axial        sparse_interactive identical
+i99_m3x_mix_axial        dense_scrutiny     identical
+i99_m3x_mix_lateral      sparse_interactive identical
+i99_m3x_mix_lateral      dense_scrutiny     identical
+i99_n05                  sparse_interactive identical
+i99_n05                  dense_scrutiny     identical
+i99_n06                  sparse_interactive identical
+i99_n06                  dense_scrutiny     identical
+milestone                sparse_interactive identical
+milestone                dense_scrutiny     identical
+ps_fields                sparse_interactive identical
+ps_fields                dense_scrutiny     identical
+ps_mixed                 sparse_interactive identical
+ps_mixed                 dense_scrutiny     identical
+ps_mixed_units           sparse_interactive identical
+ps_mixed_units           dense_scrutiny     identical
+ps_n05                   sparse_interactive identical
+ps_n05                   dense_scrutiny     identical
+ps_n05_unicode           sparse_interactive identical
+ps_n05_unicode           dense_scrutiny     identical
+ps_n05_units             sparse_interactive identical
+ps_n05_units             dense_scrutiny     identical
+ps_n06                   sparse_interactive identical
+ps_n06                   dense_scrutiny     identical
+x_builtin_case_c         sparse_interactive identical
+x_builtin_case_c         dense_scrutiny     differs: ordinary rows inherited 1, retained rows changed 0; 
+x_builtin_l0_isolated_node sparse_interactive identical
+x_builtin_l0_isolated_node dense_scrutiny     identical
+x_builtin_milestone      sparse_interactive identical
+x_builtin_milestone      dense_scrutiny     identical
+x_builtin_two_body_case_a sparse_interactive identical
+x_builtin_two_body_case_a dense_scrutiny     identical
+x_builtin_two_body_case_b sparse_interactive identical
+x_builtin_two_body_case_b dense_scrutiny     identical
+x_cause_milestone_reversed sparse_interactive identical
+x_cause_milestone_reversed dense_scrutiny     identical
+x_cb1_a_halfb_canonical  sparse_interactive identical
+x_cb1_a_halfb_canonical  dense_scrutiny     differs: ordinary rows inherited 7, retained rows changed 0; 
+x_cb1_ab                 sparse_interactive identical
+x_cb1_ab                 dense_scrutiny     identical
+x_cb1_ab_canonical       sparse_interactive identical
+x_cb1_ab_canonical       dense_scrutiny     identical
+x_cb1_ac_canonical       sparse_interactive differs: ordinary rows inherited 6, retained rows changed 0; 
+x_cb1_ac_canonical       dense_scrutiny     differs: ordinary rows inherited 3, retained rows changed 0; 
+x_cb2_case_c             sparse_interactive identical
+x_cb2_case_c             dense_scrutiny     differs: ordinary rows inherited 1, retained rows changed 0; 
+x_cb3_a                  sparse_interactive identical
+x_cb3_a                  dense_scrutiny     identical
+x_cb3_v1_ab              sparse_interactive identical
+x_cb3_v1_ab              dense_scrutiny     identical
+x_cb3_v1_b               sparse_interactive identical
+x_cb3_v1_b               dense_scrutiny     identical
+x_r7_cb1                 sparse_interactive identical
+x_r7_cb1                 dense_scrutiny     differs: ordinary rows inherited 14, retained rows changed 0; 
+x_r7_cb1_halfb           sparse_interactive identical
+x_r7_cb1_halfb           dense_scrutiny     differs: ordinary rows inherited 21, retained rows changed 0; 
+x_r7_cb2                 sparse_interactive identical
+x_r7_cb2                 dense_scrutiny     differs: ordinary rows inherited 2, retained rows changed 0; 
+x_r7_cb3_v1              sparse_interactive identical
+x_r7_cb3_v1              dense_scrutiny     differs: ordinary rows inherited 2, retained rows changed 0; 
+NOT EXPLAINED 0
