@@ -1,0 +1,16 @@
+     Running unittests src/lib.rs (WT/targets/rv127-a2-pr-pp/debug/deps/open_pipe_stress_product_physics)
+test retained_memory::law_tests::challenge_bounds_are_the_profile ... ok
+test retained_memory::law_tests::profile_in_build_record ... ok
+test tests::bundled_demo_with_legacy_nonzero_pressure_is_refused_on_the_ordinary_route ... ok
+test tests::realized_user_stiffness_joint_is_refused_on_the_ordinary_route ... ok
+test tests::flexibility_joint_pipe_without_orientation_or_a_known_end_is_refused_by_the_pipe ... ok
+test source_receipt::tests::retired_legacy_pressure_label_is_refused_on_the_ordinary_route ... ok
+test pressure_runtime::tests::profile_dispatch_requires_explicit_regions_and_refuses_legacy_pressure ... ok
+test tests::flexibility_joint_with_an_unresolved_mapping_is_refused_not_dropped ... ok
+test tests::flexibility_joint_missing_a_user_stiffness_is_refused_not_dropped ... ok
+test source_recovery::tests::non_exact_source_blocks_gate_refuses_a_later_version_a_contract_or_regions ... ok
+test source_receipt::tests::zero_legacy_pressure_primitive_is_refused_on_the_ordinary_route_and_the_retained_entry ... ok
+test source_receipt::tests::retired_legacy_pressure_label_is_refused_on_the_retained_entry ... ok
+test tests::endpoint_section_cut_fixed_and_free_thermal_match_uniform_stations ... ok
+test tests::curved_bend_macro_element_emits_arc_interior_station_results ... ok
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 607 filtered out; finished in 0.05s

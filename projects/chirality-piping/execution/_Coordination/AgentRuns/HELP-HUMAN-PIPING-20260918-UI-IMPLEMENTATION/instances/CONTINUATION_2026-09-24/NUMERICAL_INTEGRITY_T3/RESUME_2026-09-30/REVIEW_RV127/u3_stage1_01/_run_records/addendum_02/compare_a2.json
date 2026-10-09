@@ -1,0 +1,4230 @@
+{
+ "by_set": {
+  "E": {
+   "rows": 32,
+   "equal": 32,
+   "declared_or_digest_only": 0,
+   "other": 0
+  },
+  "F": {
+   "rows": 74,
+   "equal": 42,
+   "declared_or_digest_only": 32,
+   "other": 0
+  },
+  "B1": {
+   "rows": 16,
+   "equal": 16,
+   "declared_or_digest_only": 0,
+   "other": 0
+  },
+  "P": {
+   "rows": 10,
+   "equal": 0,
+   "declared_or_digest_only": 0,
+   "other": 10
+  },
+  "R": {
+   "rows": 26,
+   "equal": 0,
+   "declared_or_digest_only": 0,
+   "other": 26
+  }
+ },
+ "rows": [
+  {
+   "set": "F",
+   "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/base_model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "declared": 1
+    },
+    "mechanics": {
+     "declared": 1
+    },
+    "output": {
+     "digest": 1,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/base_model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "declared": 1
+    },
+    "mechanics": {
+     "declared": 1
+    },
+    "output": {
+     "digest": 1,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/numerical_sensitive_torsion_model.json#/",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/numerical_sensitive_torsion_model.json#/",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/multicase-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/1/model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "declared": 1
+    },
+    "mechanics": {
+     "declared": 1
+    },
+    "output": {
+     "digest": 1,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/1/model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "declared": 1
+    },
+    "mechanics": {
+     "declared": 1
+    },
+    "output": {
+     "digest": 1,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "P",
+   "label": "fixtures/product_preview/invented_preview_model.json#/",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 4
+    },
+    "mechanics": {
+     "other": 4
+    },
+    "output": {
+     "digest": 1,
+     "other": 4
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ]
+   ]
+  },
+  {
+   "set": "P",
+   "label": "fixtures/product_preview/invented_preview_model.json#/",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 4
+    },
+    "mechanics": {
+     "other": 4
+    },
+    "output": {
+     "digest": 1,
+     "other": 4
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ]
+   ]
+  },
+  {
+   "set": "P",
+   "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/0/model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 4
+    },
+    "mechanics": {
+     "other": 4
+    },
+    "output": {
+     "digest": 1,
+     "other": 4
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ]
+   ]
+  },
+  {
+   "set": "P",
+   "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/0/model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 4
+    },
+    "mechanics": {
+     "other": 4
+    },
+    "output": {
+     "digest": 1,
+     "other": 4
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ]
+   ]
+  },
+  {
+   "set": "P",
+   "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/2/model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ]
+   ]
+  },
+  {
+   "set": "P",
+   "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/2/model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ]
+   ]
+  },
+  {
+   "set": "P",
+   "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/3/model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 4
+    },
+    "mechanics": {
+     "other": 4
+    },
+    "output": {
+     "digest": 1,
+     "other": 4
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ]
+   ]
+  },
+  {
+   "set": "P",
+   "label": "fixtures/results/invented/result_export_v0_2.json#/producer_cases/3/model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 4
+    },
+    "mechanics": {
+     "other": 4
+    },
+    "output": {
+     "digest": 1,
+     "other": 4
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ]
+   ]
+  },
+  {
+   "set": "P",
+   "label": "validation/witness/inputs/tp_runner_015_final_cli_solve_input.json#/solve/preview_model/model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 4
+    },
+    "mechanics": {
+     "other": 4
+    },
+    "output": {
+     "digest": 1,
+     "other": 4
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ]
+   ]
+  },
+  {
+   "set": "P",
+   "label": "validation/witness/inputs/tp_runner_015_final_cli_solve_input.json#/solve/preview_model/model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 4
+    },
+    "mechanics": {
+     "other": 4
+    },
+    "output": {
+     "digest": 1,
+     "other": 4
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "ordinary",
+     "/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/1/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/2/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/3/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ]
+   ]
+  },
+  {
+   "set": "F",
+   "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/expected/applied_model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "declared": 1
+    },
+    "mechanics": {
+     "declared": 1
+    },
+    "output": {
+     "digest": 1,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/model_operations/contract_corpus/case_67_accept_set_field_component_expansion_joint_stiffness.json#/expected/applied_model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "declared": 1
+    },
+    "mechanics": {
+     "declared": 1
+    },
+    "output": {
+     "digest": 1,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/multicase-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n05-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n06-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/n06-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/multicase-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/multicase-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n05-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n05-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json#/model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n06-dense_scrutiny.request.json#/model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json#/model",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "F",
+   "label": "fixtures/product_preview/source_blocks/ui/n06-sparse_interactive.request.json#/model",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "digest": 2,
+     "declared": 1
+    },
+    "mechanics": {
+     "digest": 2,
+     "declared": 1
+    },
+    "document": {
+     "declared": 1,
+     "digest": 7
+    },
+    "output": {
+     "digest": 3,
+     "declared": 1
+    }
+   },
+   "other": []
+  },
+  {
+   "set": "R",
+   "label": "R1 label on n05 (regions removed)",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.unavailability",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 12
+    },
+    "mechanics": {
+     "other": 12
+    },
+    "output": {
+     "other": 14,
+     "digest": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/contract_evidence/preview_cases[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/status",
+     "sensitive",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/solve_quality",
+     "sensitive",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/run_id",
+     "run:preview-linear-static-001",
+     "run:preview-linear-static-blocked"
+    ],
+    [
+     "ordinary",
+     "/status/mechanics",
+     "MECHANICS_SOLVED",
+     "MODEL_INCOMPLETE"
+    ],
+    [
+     "ordinary",
+     "/summary/max_displacement",
+     {
+      "value": 0.0,
+      "unit": "mm",
+      "location_ref": "independent-root",
+      "result_ref": "result:disp:independent-root"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/summary/max_open_formula_stress",
+     {
+      "value": 0.0,
+      "unit": "Pa",
+      "location_ref": "independent-member",
+      "result_ref": "result:elastic-maximum:4:case:18:independent-member"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/results[len]",
+     82,
+     0
+    ],
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     4,
+     1
+    ],
+    [
+     "mechanics",
+     "/contract_evidence/preview_cases[len]",
+     1,
+     0
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/status",
+     "sensitive",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/solve_quality",
+     "sensitive",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "mechanics",
+     "/run_id",
+     "run:preview-linear-static-001",
+     "run:preview-linear-static-blocked"
+    ],
+    [
+     "mechanics",
+     "/status/mechanics",
+     "MECHANICS_SOLVED",
+     "MODEL_INCOMPLETE"
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R1 label on n05 (regions removed)",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.unavailability",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 12
+    },
+    "mechanics": {
+     "other": 12
+    },
+    "output": {
+     "other": 14,
+     "digest": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/contract_evidence/preview_cases[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/status",
+     "sensitive",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/solve_quality",
+     "sensitive",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/run_id",
+     "run:preview-linear-static-001",
+     "run:preview-linear-static-blocked"
+    ],
+    [
+     "ordinary",
+     "/status/mechanics",
+     "MECHANICS_SOLVED",
+     "MODEL_INCOMPLETE"
+    ],
+    [
+     "ordinary",
+     "/summary/max_displacement",
+     {
+      "value": 0.0,
+      "unit": "mm",
+      "location_ref": "independent-root",
+      "result_ref": "result:disp:independent-root"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/summary/max_open_formula_stress",
+     {
+      "value": 0.0,
+      "unit": "Pa",
+      "location_ref": "independent-member",
+      "result_ref": "result:elastic-maximum:4:case:18:independent-member"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/results[len]",
+     83,
+     0
+    ],
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     4,
+     1
+    ],
+    [
+     "mechanics",
+     "/contract_evidence/preview_cases[len]",
+     1,
+     0
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/status",
+     "sensitive",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/solve_quality",
+     "sensitive",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "mechanics",
+     "/run_id",
+     "run:preview-linear-static-001",
+     "run:preview-linear-static-blocked"
+    ],
+    [
+     "mechanics",
+     "/status/mechanics",
+     "MECHANICS_SOLVED",
+     "MODEL_INCOMPLETE"
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R2 label plus nonzero legacy primitive",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     1,
+     2
+    ],
+    [
+     "mechanics",
+     "/diagnostics[len]",
+     1,
+     2
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics[len]",
+     1,
+     2
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R2 label plus nonzero legacy primitive",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     1,
+     2
+    ],
+    [
+     "mechanics",
+     "/diagnostics[len]",
+     1,
+     2
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics[len]",
+     1,
+     2
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R3 unknown contract 1.0.1/legacy (UNSUPPORTED)",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics/0/message",
+     "supported pressure contracts are 1.0.0/legacy_pressure_v1 and 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back",
+     "the supported pressure contract is 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/0/message",
+     "supported pressure contracts are 1.0.0/legacy_pressure_v1 and 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back",
+     "the supported pressure contract is 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/0/message",
+     "supported pressure contracts are 1.0.0/legacy_pressure_v1 and 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back",
+     "the supported pressure contract is 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back"
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R3 unknown contract 1.0.1/legacy (UNSUPPORTED)",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics/0/message",
+     "supported pressure contracts are 1.0.0/legacy_pressure_v1 and 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back",
+     "the supported pressure contract is 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/0/message",
+     "supported pressure contracts are 1.0.0/legacy_pressure_v1 and 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back",
+     "the supported pressure contract is 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/0/message",
+     "supported pressure contracts are 1.0.0/legacy_pressure_v1 and 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back",
+     "the supported pressure contract is 2.0.0/exact_straight_pressure_v2; incomplete or unknown contracts never fall back"
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R4 zero pressure primitive on B1#0",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner.unavailability",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 12
+    },
+    "mechanics": {
+     "other": 12
+    },
+    "document": {
+     "other": 1
+    },
+    "output": {
+     "other": 14,
+     "digest": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/contract_evidence/preview_cases[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/status",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/solve_quality",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/run_id",
+     "run:preview-linear-static-001",
+     "run:preview-linear-static-blocked"
+    ],
+    [
+     "ordinary",
+     "/status/mechanics",
+     "MECHANICS_SOLVED",
+     "MODEL_INCOMPLETE"
+    ],
+    [
+     "ordinary",
+     "/summary/max_displacement",
+     {
+      "value": 1.1608090399600846,
+      "unit": "mm",
+      "location_ref": "node:fixture-tip",
+      "result_ref": "result:disp:node-fixture-tip"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/summary/max_open_formula_stress",
+     {
+      "value": 41354908.75465694,
+      "unit": "Pa",
+      "location_ref": "pipe:fixture-span",
+      "result_ref": "result:elastic-maximum:23:case:six-component-load:17:pipe:fixture-span"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/results[len]",
+     84,
+     0
+    ],
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     8,
+     1
+    ],
+    [
+     "mechanics",
+     "/contract_evidence/preview_cases[len]",
+     1,
+     0
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/status",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/solve_quality",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "mechanics",
+     "/run_id",
+     "run:preview-linear-static-001",
+     "run:preview-linear-static-blocked"
+    ],
+    [
+     "mechanics",
+     "/status/mechanics",
+     "MECHANICS_SOLVED",
+     "MODEL_INCOMPLETE"
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R4 zero pressure primitive on B1#0",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner.unavailability",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 12
+    },
+    "mechanics": {
+     "other": 12
+    },
+    "document": {
+     "other": 1
+    },
+    "output": {
+     "other": 14,
+     "digest": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/contract_evidence/preview_cases[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/status",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/solve_quality",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/run_id",
+     "run:preview-linear-static-001",
+     "run:preview-linear-static-blocked"
+    ],
+    [
+     "ordinary",
+     "/status/mechanics",
+     "MECHANICS_SOLVED",
+     "MODEL_INCOMPLETE"
+    ],
+    [
+     "ordinary",
+     "/summary/max_displacement",
+     {
+      "value": 1.1608090399600843,
+      "unit": "mm",
+      "location_ref": "node:fixture-tip",
+      "result_ref": "result:disp:node-fixture-tip"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/summary/max_open_formula_stress",
+     {
+      "value": 41354908.75465693,
+      "unit": "Pa",
+      "location_ref": "pipe:fixture-span",
+      "result_ref": "result:elastic-maximum:23:case:six-component-load:17:pipe:fixture-span"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/results[len]",
+     85,
+     0
+    ],
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     8,
+     1
+    ],
+    [
+     "mechanics",
+     "/contract_evidence/preview_cases[len]",
+     1,
+     0
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/status",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/solve_quality",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "mechanics",
+     "/run_id",
+     "run:preview-linear-static-001",
+     "run:preview-linear-static-blocked"
+    ],
+    [
+     "mechanics",
+     "/status/mechanics",
+     "MECHANICS_SOLVED",
+     "MODEL_INCOMPLETE"
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R4 zero pressure primitive on F invented",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner.unavailability",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 19
+    },
+    "mechanics": {
+     "other": 19
+    },
+    "document": {
+     "other": 1
+    },
+    "output": {
+     "other": 21,
+     "digest": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/contract_evidence/combination_gates[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/contract_evidence/preview_cases[len]",
+     2,
+     0
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/status",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/solve_quality",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/1/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/1/solve_quality",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/1/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/1/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/run_id",
+     "run:preview-linear-static-001",
+     "run:preview-linear-static-blocked"
+    ],
+    [
+     "ordinary",
+     "/status/mechanics",
+     "MECHANICS_SOLVED",
+     "MODEL_INCOMPLETE"
+    ],
+    [
+     "ordinary",
+     "/summary/component_stress_modifier_count",
+     8,
+     0
+    ],
+    [
+     "ordinary",
+     "/summary/spring_hanger_user_input_count",
+     7,
+     0
+    ],
+    [
+     "ordinary",
+     "/summary/max_displacement",
+     {
+      "value": 7.63538426164911,
+      "unit": "mm",
+      "location_ref": "node:N-140",
+      "result_ref": "result:disp:node-N-140"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/summary/max_open_formula_stress",
+     {
+      "value": 4452714.4251926,
+      "unit": "Pa",
+      "location_ref": "pipe:P-120",
+      "result_ref": "result:elastic-maximum:10:load:L-100:10:pipe:P-120"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/results[len]",
+     635,
+     0
+    ],
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     25,
+     4
+    ],
+    [
+     "mechanics",
+     "/contract_evidence/combination_gates[len]",
+     1,
+     0
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R4 zero pressure primitive on F invented",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner.unavailability",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 19
+    },
+    "mechanics": {
+     "other": 19
+    },
+    "document": {
+     "other": 1
+    },
+    "output": {
+     "other": 21,
+     "digest": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/contract_evidence/combination_gates[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/contract_evidence/preview_cases[len]",
+     2,
+     0
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/status",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/solve_quality",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/1/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/1/solve_quality",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/1/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/1/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/run_id",
+     "run:preview-linear-static-001",
+     "run:preview-linear-static-blocked"
+    ],
+    [
+     "ordinary",
+     "/status/mechanics",
+     "MECHANICS_SOLVED",
+     "MODEL_INCOMPLETE"
+    ],
+    [
+     "ordinary",
+     "/summary/component_stress_modifier_count",
+     8,
+     0
+    ],
+    [
+     "ordinary",
+     "/summary/spring_hanger_user_input_count",
+     7,
+     0
+    ],
+    [
+     "ordinary",
+     "/summary/max_displacement",
+     {
+      "value": 7.635384261662011,
+      "unit": "mm",
+      "location_ref": "node:N-140",
+      "result_ref": "result:disp:node-N-140"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/summary/max_open_formula_stress",
+     {
+      "value": 4452714.425198931,
+      "unit": "Pa",
+      "location_ref": "pipe:P-100",
+      "result_ref": "result:elastic-maximum:10:load:L-100:10:pipe:P-100"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/results[len]",
+     637,
+     0
+    ],
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     25,
+     4
+    ],
+    [
+     "mechanics",
+     "/contract_evidence/combination_gates[len]",
+     1,
+     0
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R5 negative-zero pressure primitive on B1#0",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner.unavailability",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 12
+    },
+    "mechanics": {
+     "other": 12
+    },
+    "document": {
+     "other": 1
+    },
+    "output": {
+     "other": 14,
+     "digest": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/contract_evidence/preview_cases[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/status",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/solve_quality",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/run_id",
+     "run:preview-linear-static-001",
+     "run:preview-linear-static-blocked"
+    ],
+    [
+     "ordinary",
+     "/status/mechanics",
+     "MECHANICS_SOLVED",
+     "MODEL_INCOMPLETE"
+    ],
+    [
+     "ordinary",
+     "/summary/max_displacement",
+     {
+      "value": 1.1608090399600846,
+      "unit": "mm",
+      "location_ref": "node:fixture-tip",
+      "result_ref": "result:disp:node-fixture-tip"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/summary/max_open_formula_stress",
+     {
+      "value": 41354908.75465694,
+      "unit": "Pa",
+      "location_ref": "pipe:fixture-span",
+      "result_ref": "result:elastic-maximum:23:case:six-component-load:17:pipe:fixture-span"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/results[len]",
+     84,
+     0
+    ],
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     8,
+     1
+    ],
+    [
+     "mechanics",
+     "/contract_evidence/preview_cases[len]",
+     1,
+     0
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/status",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/solve_quality",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "mechanics",
+     "/run_id",
+     "run:preview-linear-static-001",
+     "run:preview-linear-static-blocked"
+    ],
+    [
+     "mechanics",
+     "/status/mechanics",
+     "MECHANICS_SOLVED",
+     "MODEL_INCOMPLETE"
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R5 negative-zero pressure primitive on B1#0",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner.unavailability",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 12
+    },
+    "mechanics": {
+     "other": 12
+    },
+    "document": {
+     "other": 1
+    },
+    "output": {
+     "other": 14,
+     "digest": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/contract_evidence/preview_cases[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/status",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/solve_quality",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/run_id",
+     "run:preview-linear-static-001",
+     "run:preview-linear-static-blocked"
+    ],
+    [
+     "ordinary",
+     "/status/mechanics",
+     "MECHANICS_SOLVED",
+     "MODEL_INCOMPLETE"
+    ],
+    [
+     "ordinary",
+     "/summary/max_displacement",
+     {
+      "value": 1.1608090399600843,
+      "unit": "mm",
+      "location_ref": "node:fixture-tip",
+      "result_ref": "result:disp:node-fixture-tip"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/summary/max_open_formula_stress",
+     {
+      "value": 41354908.75465693,
+      "unit": "Pa",
+      "location_ref": "pipe:fixture-span",
+      "result_ref": "result:elastic-maximum:23:case:six-component-load:17:pipe:fixture-span"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/results[len]",
+     85,
+     0
+    ],
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     8,
+     1
+    ],
+    [
+     "mechanics",
+     "/contract_evidence/preview_cases[len]",
+     1,
+     0
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/status",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/solve_quality",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "mechanics",
+     "/numerical_quality/cases/0/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "mechanics",
+     "/run_id",
+     "run:preview-linear-static-001",
+     "run:preview-linear-static-blocked"
+    ],
+    [
+     "mechanics",
+     "/status/mechanics",
+     "MECHANICS_SOLVED",
+     "MODEL_INCOMPLETE"
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R5 negative-zero pressure primitive on F invented",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner.unavailability",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 19
+    },
+    "mechanics": {
+     "other": 19
+    },
+    "document": {
+     "other": 1
+    },
+    "output": {
+     "other": 21,
+     "digest": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/contract_evidence/combination_gates[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/contract_evidence/preview_cases[len]",
+     2,
+     0
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/status",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/solve_quality",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/1/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/1/solve_quality",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/1/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/1/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/run_id",
+     "run:preview-linear-static-001",
+     "run:preview-linear-static-blocked"
+    ],
+    [
+     "ordinary",
+     "/status/mechanics",
+     "MECHANICS_SOLVED",
+     "MODEL_INCOMPLETE"
+    ],
+    [
+     "ordinary",
+     "/summary/component_stress_modifier_count",
+     8,
+     0
+    ],
+    [
+     "ordinary",
+     "/summary/spring_hanger_user_input_count",
+     7,
+     0
+    ],
+    [
+     "ordinary",
+     "/summary/max_displacement",
+     {
+      "value": 7.63538426164911,
+      "unit": "mm",
+      "location_ref": "node:N-140",
+      "result_ref": "result:disp:node-N-140"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/summary/max_open_formula_stress",
+     {
+      "value": 4452714.4251926,
+      "unit": "Pa",
+      "location_ref": "pipe:P-120",
+      "result_ref": "result:elastic-maximum:10:load:L-100:10:pipe:P-120"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/results[len]",
+     635,
+     0
+    ],
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     25,
+     4
+    ],
+    [
+     "mechanics",
+     "/contract_evidence/combination_gates[len]",
+     1,
+     0
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R5 negative-zero pressure primitive on F invented",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner.document",
+    "runner.unavailability",
+    "runner_retained_headless.output",
+    "runner_retained_headless.document"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 19
+    },
+    "mechanics": {
+     "other": 19
+    },
+    "document": {
+     "other": 1
+    },
+    "output": {
+     "other": 21,
+     "digest": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/contract_evidence/combination_gates[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/contract_evidence/preview_cases[len]",
+     2,
+     0
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/status",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/solve_quality",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/0/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/1/structural_status",
+     "passive_model_basis",
+     "numerically_unresolved"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/1/solve_quality",
+     "checks_passed",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/1/model_matrix_fidelity",
+     "represented_equations_retained",
+     "not_assessed"
+    ],
+    [
+     "ordinary",
+     "/numerical_quality/cases/1/evidence_refs[len]",
+     1,
+     0
+    ],
+    [
+     "ordinary",
+     "/run_id",
+     "run:preview-linear-static-001",
+     "run:preview-linear-static-blocked"
+    ],
+    [
+     "ordinary",
+     "/status/mechanics",
+     "MECHANICS_SOLVED",
+     "MODEL_INCOMPLETE"
+    ],
+    [
+     "ordinary",
+     "/summary/component_stress_modifier_count",
+     8,
+     0
+    ],
+    [
+     "ordinary",
+     "/summary/spring_hanger_user_input_count",
+     7,
+     0
+    ],
+    [
+     "ordinary",
+     "/summary/max_displacement",
+     {
+      "value": 7.635384261662011,
+      "unit": "mm",
+      "location_ref": "node:N-140",
+      "result_ref": "result:disp:node-N-140"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/summary/max_open_formula_stress",
+     {
+      "value": 4452714.425198931,
+      "unit": "Pa",
+      "location_ref": "pipe:P-100",
+      "result_ref": "result:elastic-maximum:10:load:L-100:10:pipe:P-100"
+     },
+     null
+    ],
+    [
+     "ordinary",
+     "/results[len]",
+     637,
+     0
+    ],
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     25,
+     4
+    ],
+    [
+     "mechanics",
+     "/contract_evidence/combination_gates[len]",
+     1,
+     0
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R6 category pressure, dimension force, zero on B1#0",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     1,
+     2
+    ],
+    [
+     "mechanics",
+     "/diagnostics[len]",
+     1,
+     2
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics[len]",
+     1,
+     2
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R6 category pressure, dimension force, zero on B1#0",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     1,
+     2
+    ],
+    [
+     "mechanics",
+     "/diagnostics[len]",
+     1,
+     2
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics[len]",
+     1,
+     2
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R6 category pressure, dimension force, zero on F invented",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     4,
+     5
+    ],
+    [
+     "mechanics",
+     "/diagnostics[len]",
+     4,
+     5
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics[len]",
+     4,
+     5
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R6 category pressure, dimension force, zero on F invented",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     4,
+     5
+    ],
+    [
+     "mechanics",
+     "/diagnostics[len]",
+     4,
+     5
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics[len]",
+     4,
+     5
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R7 hydrotest category, pressure dimension, zero on B1#0",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     1,
+     2
+    ],
+    [
+     "mechanics",
+     "/diagnostics[len]",
+     1,
+     2
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics[len]",
+     1,
+     2
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R7 hydrotest category, pressure dimension, zero on B1#0",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     1,
+     2
+    ],
+    [
+     "mechanics",
+     "/diagnostics[len]",
+     1,
+     2
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics[len]",
+     1,
+     2
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R7 hydrotest category, pressure dimension, zero on F invented",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     4,
+     5
+    ],
+    [
+     "mechanics",
+     "/diagnostics[len]",
+     4,
+     5
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics[len]",
+     4,
+     5
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R7 hydrotest category, pressure dimension, zero on F invented",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics[len]",
+     4,
+     5
+    ],
+    [
+     "mechanics",
+     "/diagnostics[len]",
+     4,
+     5
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics[len]",
+     4,
+     5
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R8 nonzero pressure primitive on B1#0",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R8 nonzero pressure primitive on B1#0",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R8 nonzero pressure primitive on F invented",
+   "mode": "sparse_interactive",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ]
+   ]
+  },
+  {
+   "set": "R",
+   "label": "R8 nonzero pressure primitive on F invented",
+   "mode": "dense_scrutiny",
+   "fields": [
+    "ordinary.sha",
+    "retained_direct.sha",
+    "runner.output",
+    "runner.mechanics",
+    "runner_retained_headless.output"
+   ],
+   "classes": {
+    "ordinary": {
+     "other": 1
+    },
+    "mechanics": {
+     "other": 1
+    },
+    "output": {
+     "digest": 1,
+     "other": 1
+    }
+   },
+   "other": [
+    [
+     "ordinary",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "mechanics",
+     "/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ],
+    [
+     "output",
+     "/mechanics_envelope/diagnostics/0/message",
+     "a fresh solve cannot publish the legacy nonzero pressure model; explicitly author exact pressure regions, closure paths and E/nu material inputs",
+     "legacy pressure primitives are retired, zero values included; remove the primitive, or re-author the model to 2.0.0/exact_straight_pressure_v2 with explicit pre"
+    ]
+   ]
+  }
+ ]
+}

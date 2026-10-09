@@ -62,7 +62,9 @@ def rev(x): return git("rev-parse", "--verify", x + "^{commit}").strip()
 PR, INT = rev(a.pr), rev(a.integ)
 MAIN = rev(a.main) if a.main else git("merge-base", PR, "origin/main").strip()
 B = git("merge-base", INT, MAIN).strip()
-def names(x, y, *spec): return sorted(n for n in git("diff", "--name-only", x, y, "--", *spec).split("\n") if n)
+# 2026-10-09 (RV127 A2-B-1): --no-renames, so a deletion paired with an added file by rename detection
+# still counts as a changed path on both sides; with renames on, a missed deletion passed checks 1 and 2.
+def names(x, y, *spec): return sorted(n for n in git("diff", "--no-renames", "--name-only", x, y, "--", *spec).split("\n") if n)
 NONEXEC = [".", *EXCLUDE]
 S = names(B, INT, *NONEXEC)
 results, ok_all = {}, True

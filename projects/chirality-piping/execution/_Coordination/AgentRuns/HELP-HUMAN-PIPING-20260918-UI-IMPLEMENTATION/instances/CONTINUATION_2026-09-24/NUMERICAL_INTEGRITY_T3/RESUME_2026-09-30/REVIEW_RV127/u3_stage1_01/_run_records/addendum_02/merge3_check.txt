@@ -1,0 +1,19 @@
+# RV127 addendum 02: three-way merge of the 7 paths both main (since 7eae707bb7) and the retirement (fe657e3a68) changed, against the PR code commit 8a12de28db
+core_loads_stress_recovery_src_lib.rs: clean merge == PR
+core_product_physics_src_lib.rs: differs (conflict hunk below)
+38,42d37
+< <<<<<<< WT/scratch/rv127_u3/a2/merge3/core_product_physics_src_lib.rs.ours
+< use open_pipe_stress_frame_kernel::exact_sum::ExactAccumulator;
+< ||||||| WT/scratch/rv127_u3/a2/merge3/core_product_physics_src_lib.rs.base
+< use open_pipe_stress_frame_kernel::exact_sum::{exact_rounded_sum, ExactAccumulator};
+< =======
+45,46c40
+< use open_pipe_stress_frame_kernel::exact_sum::{exact_rounded_sum, ExactAccumulator};
+< >>>>>>> WT/scratch/rv127_u3/a2/merge3/core_product_physics_src_lib.rs.theirs
+---
+> use open_pipe_stress_frame_kernel::exact_sum::ExactAccumulator;
+core_product_physics_src_pressure_runtime.rs: clean merge == PR
+core_product_physics_src_preview_physics.rs: clean merge == PR
+core_product_physics_src_retained_memory_law_tests.rs: clean merge == PR
+core_product_physics_src_retained_product.rs: clean merge == PR
+tests_test_retained_precision_contract.py: clean merge == PR

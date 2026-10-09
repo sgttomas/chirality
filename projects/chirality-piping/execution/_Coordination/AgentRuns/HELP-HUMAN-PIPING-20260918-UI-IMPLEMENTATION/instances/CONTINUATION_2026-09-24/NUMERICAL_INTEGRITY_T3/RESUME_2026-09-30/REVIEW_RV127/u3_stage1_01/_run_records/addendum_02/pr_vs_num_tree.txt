@@ -1,0 +1,35 @@
+# RV127 addendum 02: the PR code commit against NUM's U3 merge, and why path-set checks missed it (all Git reads, GIT_OPTIONAL_LOCKS=0)
+## git diff --name-status 8a12de28db cfeb5b76fe -- . ':!P/execution'
+D	projects/chirality-piping/fixtures/product_preview/invented_mechanics_result.json
+D	projects/chirality-piping/fixtures/product_preview/invented_mechanics_result_precision_1_dense.json
+D	projects/chirality-piping/fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json
+## git diff --name-status 8a12de28db 2fd24aedf1 -- . ':!P/execution'
+D	projects/chirality-piping/fixtures/product_preview/invented_mechanics_result.json
+D	projects/chirality-piping/fixtures/product_preview/invented_mechanics_result_precision_1_dense.json
+D	projects/chirality-piping/fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json
+## renames in the retirement, 7eae707bb7..fe657e3a68 (default rename detection)
+R052	projects/chirality-piping/fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json	projects/chirality-piping/fixtures/product_preview/invented_demo_result_legacy_0_1.json
+R055	projects/chirality-piping/fixtures/product_preview/invented_mechanics_result_precision_1_dense.json	projects/chirality-piping/fixtures/product_preview/invented_demo_result_preview_physics_1_dense.json
+R060	projects/chirality-piping/fixtures/product_preview/invented_mechanics_result.json	projects/chirality-piping/fixtures/product_preview/invented_demo_result_preview_physics_1_sparse.json
+## path sets, default (as F2A_D1 source_equality.py's names()): retirement 7eae707bb7..fe657e3a68 vs PR ba500defa4..8a12de28db
+retirement 133 paths; PR 133 paths; symmetric difference:
+(none)
+## path sets with --no-renames: symmetric difference
+projects/chirality-piping/fixtures/product_preview/invented_mechanics_result.json
+projects/chirality-piping/fixtures/product_preview/invented_mechanics_result_precision_1_dense.json
+projects/chirality-piping/fixtures/product_preview/invented_mechanics_result_precision_1_sparse.json
+## blobs of the three files
+invented_mechanics_result.json ba500defa4 cf0aa1cec2e221d78ef52415089f131e22845570
+invented_mechanics_result.json 8a12de28db cf0aa1cec2e221d78ef52415089f131e22845570
+invented_mechanics_result.json fe657e3a68 
+invented_mechanics_result.json cfeb5b76fe 
+invented_mechanics_result_precision_1_dense.json ba500defa4 cb3a655473b23773431f50eab2fb30ffe525d5c7
+invented_mechanics_result_precision_1_dense.json 8a12de28db cb3a655473b23773431f50eab2fb30ffe525d5c7
+invented_mechanics_result_precision_1_dense.json fe657e3a68 
+invented_mechanics_result_precision_1_dense.json cfeb5b76fe 
+invented_mechanics_result_precision_1_sparse.json ba500defa4 6817e6aa7ae33e4de1cdd81ad7ac1cb67a5cbd73
+invented_mechanics_result_precision_1_sparse.json 8a12de28db 6817e6aa7ae33e4de1cdd81ad7ac1cb67a5cbd73
+invented_mechanics_result_precision_1_sparse.json fe657e3a68 
+invented_mechanics_result_precision_1_sparse.json cfeb5b76fe 
+## the deleting commit
+180bf9b26d piping(T3 U3, G10, D-3): the app's demo results come from a valid demo model
