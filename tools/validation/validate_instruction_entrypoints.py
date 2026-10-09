@@ -251,7 +251,12 @@ def validate(repo_root: Path) -> list[str]:
 
         if loop_init.is_file():
             text = loop_init.read_text(encoding="utf-8")
-            if "Read `loop/PROJECT_GUIDANCE.md` in full before any dispatch, review, fan-in," not in text:
+            normalized = " ".join(text.split())
+            guidance_read = (
+                "Read `loop/PROJECT_GUIDANCE.md` in full before any dispatch, review, "
+                "fan-in, reliance, or write."
+            )
+            if guidance_read not in normalized:
                 findings.append(
                     f"{loop_init.relative_to(repo_root)} must read loop/PROJECT_GUIDANCE.md "
                     "in full before constrained project operations"
