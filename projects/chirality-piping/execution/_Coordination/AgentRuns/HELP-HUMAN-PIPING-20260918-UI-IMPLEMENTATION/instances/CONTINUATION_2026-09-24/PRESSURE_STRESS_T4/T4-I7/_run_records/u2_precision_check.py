@@ -22,7 +22,7 @@ E.GL_STRAIGHT = 6
 cases = {c["id"]: c for c in G.case_list()}
 sel = ["U2-L-FREE-SEPD-K1", "U2-L-ANCH-ALL-K2", "U2-U-ANCH-ALL-K1", "U2-U-ANCH-PW-K2",
        "MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW-X7P3E6", "U2-L-KINK-ANCH-P-K2", "U2-L-ANCH-ALL-K2-REV",
-       "U2-U-ANCH-ALL-K2-SKEW-X5E6"]
+       "U2-U-ANCH-ALL-K2-SKEW-X5E6", "U2-L-ANCH-PTW-K2-SKEW-X7P3E6", "U2-L-FREE-PTW-K1"]
 
 
 def walk(a, b, zs, path, worst):

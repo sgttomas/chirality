@@ -1,0 +1,36 @@
+round 00 u2_reference_cases.json sha256 be5596b69b510a97466d2c544701797e70d6a00b262ceff3137f57d9bd689f82
+round 00 u2_document_sketches.json sha256 5e8f419dd65653980290bdc25382eb242b0cf314d46d213618cda317092af0db
+round 01 u2_reference_cases.json sha256 a91bfbc86f071ca415edce360935af66489152899600e3d29dfeee9c23052828
+round 01 u2_document_sketches.json sha256 9ccb690f91a9f243330075f75ca622075392efc42bf13cca7810e6419d52f1ef
+header keys changed: ['author', 'criteria', 'sign_conventions', 'row_kind_map_today'] added: ['revision', 'tangency_rule']
+case U2-L-KINK-FREE-P-K2: revised in repair 01 (S-2), excluded from the unchanged comparison
+case U2-L-KINK-ANCH-P-K2: revised in repair 01 (S-2), excluded from the unchanged comparison
+round-00 leaves compared (all cases except the two revised kink cases, controls handled below): 40415; unchanged 40415; changed 0
+round-00 wall-basis chord-frame leaves removed by S-1 (replaced by chord_frame_elastic): 1616
+leaves added to surviving cases: {"derived/alpha_tan_provisional_rad": 65, "derived/node:B": 41, "derived/node:B1": 16, "derived/node:B2": 16, "derived/node:B3": 16, "derived/node:B4": 16, "derived/node:C": 41, "derived/node:C1": 16, "derived/node:C2": 16, "derived/node:C3": 16, "derived/node:C4": 16, "expected/.../chord_frame_elastic": 1356, "zero_scale": 260}
+cases added (13): U2-L-FREE-PTW-K1, U2-L-ANCH-PTW-K1, U2-U-ANCH-PTW-K1, U2-L-FREE-PTW-K2, U2-L-ANCH-PTW-K2, U2-U-ANCH-PTW-K2, U2-L-MITRE-REFUSED-P-K2, U2-L-ANCH-PTW-K2-SKEW, U2-L-ANCH-PTW-K2-X5E6, U2-L-ANCH-PTW-K2-X7P3E6, U2-L-ANCH-PTW-K2-SKEW-X5E6, U2-L-ANCH-PTW-K2-SKEW-X7P3E6, U2-L-ANCH-PTW-K2-MM-MPA
+dropped U2-L-FREE-P-K2 bend_term_omitted supports/support:A/Fz: round-00 wrong 0, distance 0.000e-504; now 0 (wrong value equals the reference)
+dropped U2-L-FREE-P-K2 bend_term_omitted supports/support:A/Mx: round-00 wrong 0, distance 0.000e-626; now 0 (wrong value equals the reference)
+dropped U2-L-FREE-P-K2 c_b_added_not_subtracted supports/support:A/Fz: round-00 wrong 0, distance 0.000e-504; now 0 (wrong value equals the reference)
+dropped U2-L-FREE-P-K2 c_b_added_not_subtracted supports/support:A/Mx: round-00 wrong 0, distance 0.000e-806; now 0 (wrong value equals the reference)
+dropped U2-L-FREE-P-K2 poisson_term_missing_on_arc nodes/node:D/rz: round-00 wrong -1.7689071179875675823e-60, distance 2.937e-47; now 0 (wrong value differed from the reference only by computation noise below 1e-40 of the group scale; it is exact zero, equal to the reference)
+dropped U2-L-FREE-P-K2 poisson_term_missing_on_arc supports/support:A/Mz: round-00 wrong 1.0000000000000000000e-54, distance 1.959e-51; now 0 (wrong value differed from the reference only by computation noise below 1e-40 of the group scale; it is exact zero, equal to the reference)
+dropped U2-L-FREE-P-K2 poisson_term_missing_on_arc supports/support:A/Fx: round-00 wrong 0, distance 0.000e-28; now 0 (wrong value equals the reference)
+dropped U2-L-FREE-P-K2 poisson_term_missing_on_arc supports/support:A/Fy: round-00 wrong 0, distance 0.000e-88; now 0 (wrong value equals the reference)
+dropped U2-L-FREE-P-K2 poisson_term_missing_on_arc supports/support:A/Fz: round-00 wrong 0, distance 0.000e-504; now 0 (wrong value equals the reference)
+dropped U2-L-FREE-P-K2 poisson_term_missing_on_arc supports/support:A/Mx: round-00 wrong 0, distance 0.000e-806; now 0 (wrong value equals the reference)
+dropped MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 bend_term_omitted supports/support:A/Fz: round-00 wrong 0, distance 0.000e-539; now 0 (wrong value equals the reference)
+dropped MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 bend_term_omitted supports/support:A/Mx: round-00 wrong 0, distance 0.000e-616; now 0 (wrong value equals the reference)
+dropped MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 c_b_added_not_subtracted supports/support:A/Fz: round-00 wrong 0, distance 0.000e-539; now 0 (wrong value equals the reference)
+dropped MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 c_b_added_not_subtracted supports/support:A/Mx: round-00 wrong 0, distance 0.000e-616; now 0 (wrong value equals the reference)
+dropped MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 poisson_term_missing_on_arc nodes/node:B/rz: round-00 wrong 2.9963261896134862475e-61, distance 9.703e-48; now 0 (wrong value differed from the reference only by computation noise below 1e-40 of the group scale; it is exact zero, equal to the reference)
+dropped MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 poisson_term_missing_on_arc supports/support:A/Fy: round-00 wrong -1.0000000000000000000e-55, distance 1.237e-51; now 0 (wrong value differed from the reference only by computation noise below 1e-40 of the group scale; it is exact zero, equal to the reference)
+dropped MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 poisson_term_missing_on_arc supports/support:A/Fx: round-00 wrong -4.5822506098839400000e-56, distance 5.669e-52; now 0 (wrong value differed from the reference only by computation noise below 1e-40 of the group scale; it is exact zero, equal to the reference)
+dropped MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 poisson_term_missing_on_arc supports/support:A/Fz: round-00 wrong 0, distance 0.000e-539; now 0 (wrong value equals the reference)
+dropped MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 poisson_term_missing_on_arc supports/support:A/Mx: round-00 wrong 0, distance 0.000e-616; now 0 (wrong value equals the reference)
+dropped MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 poisson_term_missing_on_arc supports/support:A/My: round-00 wrong 0, distance 0.000e-599; now 0 (wrong value equals the reference)
+controls: every max distance unchanged; round-00 rows kept byte-identical 205, dropped 20
+revised U2-L-KINK-ANCH-P-K2 interior_remainder_omitted: max distance 3.428e+8; rows dropped 0
+revised U2-L-KINK-FREE-P-K2 interior_remainder_omitted: max distance 3.324e+8; rows dropped 3
+polygon entries of round 00 unchanged: True (8); added: U2-L-ANCH-PTW-K1, U2-L-FREE-PTW-K1
+document sketches of surviving round-00 cases unchanged: 65 of 65; sketches now 80

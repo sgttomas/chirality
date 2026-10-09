@@ -1,10 +1,13 @@
 # T4-I7: independent VP-STATIC references for T4-U2 (pressure through realized bends)
 
-**Status.** Frozen by T4-I7 (TASK, Type 2) for T4's WORKING_ITEMS, before any T4-U2 code exists. A second TASK refutes it. It is not accepted until then.
+**Status.** Frozen by T4-I7 (TASK, Type 2) for T4's WORKING_ITEMS, before any T4-U2 code exists.
+- T4-RV3 refuted round 00 (`80b1e97e2b`). It found every value correct and blocked on B-1.
+- **Repair round 01** applies B-1 and S-1 to S-3; `REPAIR_01.md` maps each change.
+- The file is not accepted until RV3 confirms the repair.
 
 **Brief.** `R4/BRIEFS/T4-I7_U2_BEND_REFERENCES.md` (`cee2f2dd…`), common terms `R4/BRIEFS/T4_WI_COMMON.md` (`7d44afd0…`), at `0c17c8d352`.
 
-**Basis.** The product was read at `ed012c7ccf` for conventions only: DOF order, frames, station names, the section rule, how a document states self-weight and gravity. No value was taken from it. The values come from `_run_records/u2_engine.py` and `u2_generate.py`. They are written to `u2_reference_cases.json` (67 cases) and `u2_document_sketches.json`.
+**Basis.** The product was read at `ed012c7ccf` for conventions only: DOF order, frames, station names, the section rule, how a document states self-weight and gravity. No value was taken from it. The values come from `_run_records/u2_engine.py` and `u2_generate.py`. They are written to `u2_reference_cases.json` (80 cases: 79 with values and one refusal control) and `u2_document_sketches.json`.
 
 **Marks.** **F** is a fact read from cited bytes (`path:line@ed012c7ccf`, with `CB` = `P/core/solver/curved_bend/src/lib.rs` and `PPL` = `PP/src/lib.rs`). **I** is my inference or derivation.
 
@@ -83,7 +86,12 @@ Here k = 1 on straights. Because the section is circular, M·m − Tt is the ben
   - It also carries σ_b,y = M_y/Z, σ_b,z = M_z/Z and τ_t = T·r_o/J: today's stress rows (`P/core/loads/stress_recovery/src/lib.rs:432-466,793`).
 - **End rows** are node-on-element actions. At end_i the row is −(the j-side action at fraction 0); at end_j it is +(the j-side action at fraction 1).
   - On straights they are in the element-local frame, and `wall_axial_end_action` is today's `pipe_wall_endpoint_action_v2` (`PPL:11516`).
-  - On arcs they are in the tangent frame at that end (RV1 S-7), with the chord frame added for information.
+  - On arcs the asserted wall rows are in the tangent frame at that end (RV1 S-7).
+  - **Arcs also carry `chord_frame_elastic`** (repair 01, S-1). This is the elastic node-on-element action K·d − p of the curved element, in the chord frame: x along the chord, y = `y_reference` projected, z = x × y.
+    - It equals the wall action minus the bend's own cap pair c_b = [−pAi·t_i, +pAi·t_j] (H-2). The moments are the wall moments.
+    - These are today's chord-frame component end rows on arcs (I1 §5.3 #8; I2 §3.4), which are not wall actions.
+    - Example (U2-L-ANCH-ALL-K2, BEND end_i): F_y = −396.08167949273772476 N elastic, against −67,849 N on the wall basis.
+    - The round-00 wall-basis chord block is removed.
 - **Lamé surface values,** on straights only: radial −p (inner) and 0 (outer); hoop 2P/As + p (inner) and 2P/As (outer). They are withheld on arcs (plan §2 and §4.3 item 1).
 - **Supports** are support-on-pipe, in global axes, with moments about the attached node (`PPL:11412`).
 - **Terminals.** For each terminal the file carries `closure_pressure_load_global` (the outward cap), `pipe_cap_transfer_global`, and `remote_closure_support_reaction_global` = −cap where the closure is separately supported. These match the product's evidence fields (`pressure_runtime.rs:687-690`).
@@ -119,7 +127,8 @@ Here k = 1 on straights. Because the section is circular, M·m − Tt is the ben
 | L | A(0,0,0), B(3,0,0), C(3.25,0.25,0), D(3.25,4.25,0) | S1 A→B, BEND B→C (90°), S2 C→D | (1,−1,0) |
 | U | A(0,0), B1(4,0), C1(4.25,0.25), B2(4.25,2.75), C2(4.5,3), B3(6.5,3), C3(6.75,2.75), B4(6.75,0.25), C4(7,0), D(10,0), all at z = 0 | S1–S5 and BEND1–4: left, right, right, left turns | (1,−1,0), (−1,1,0), (1,1,0), (−1,−1,0) |
 | CBPT | A(1.4,0,0), B(0,1.4,0); R = 1.4, centre at the origin | ARC A→B (90°) | (1,1,0) |
-| L kink | As L, but D = (3.246, 4.25, 0): S2 is kinked at C by atan(0.001) = 9.99999667e-4 rad | — | — |
+| L kink (repair 01, S-2) | As L, but D = (3.248, 4.25, 0): S2 is kinked at C by atan(5e-4) = 4.9999995833e-4 rad, about α_tan/2 | — | — |
+| L mitre (refusal) | As L, but D = (3.242, 4.25, 0): kinked by atan(2e-3) = 1.9999973333e-3 rad, about 2α_tan | — | — |
 | L reversed | As L, with BEND authored C→B and S2 authored D→C | — | — |
 
 Straights use `y_reference` (0,0,1). Supports are anchors at A, and at D in the "ANCH" cases. One pressure region covers every member, with terminals at A and D.
@@ -128,10 +137,11 @@ Straights use `y_reference` (0,0,1). Supports are anchors at A, and at D in the 
 
 | Family | Variants |
 |---|---|
-| `U2-L-FREE-*` | P, SEPA, SEPD, PT, PW, ALL |
-| `U2-L-ANCH-*` and `U2-U-ANCH-*` | P, SEPD, PT, PW, ALL |
+| `U2-L-FREE-*` | P, SEPA, SEPD, PT, PW, ALL, PTW |
+| `U2-L-ANCH-*` and `U2-U-ANCH-*` | P, SEPD, PT, PW, ALL, PTW |
 | `MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K1/K2` | — |
 | `U2-L-KINK-FREE-P-K2`, `U2-L-KINK-ANCH-P-K2` | k = 2 only |
+| `U2-L-MITRE-REFUSED-P-K2` | k = 2 only; a refusal control |
 | `U2-L-ANCH-ALL-K2-REV` | k = 2 only |
 
 The variants are:
@@ -140,8 +150,17 @@ The variants are:
 - **PT:** plus thermal.
 - **PW:** plus self-weight.
 - **ALL:** SEPD plus thermal plus self-weight.
+- **PTW** (repair 01, S-3): both terminals `transfers_to_wall`, with pressure, thermal and self-weight in one case. This is plan §2's headline case.
 
-**Transforms.** The core cases are U2-L-FREE-P-K2, U2-L-FREE-ALL-K2, U2-L-ANCH-ALL-K2, U2-U-ANCH-ALL-K2 and the CBPT at k = 2. Each also comes as -SKEW, -X5E6, -X7P3E6, -SKEW-X5E6, -SKEW-X7P3E6 and -MM-MPA. In total there are 67 cases.
+**The refusal control** `U2-L-MITRE-REFUSED-P-K2` has `expected: null`. Its `expected_refusal` states:
+- the blocking code `PRESSURE_REGION_MITRE_UNSUPPORTED` (provisional, T4-I11 D-D);
+- refs `[region, node:C, pipe:BEND, pipe:S2]`;
+- θ under the rule θ = atan2(|t_in × t_out|, t_in·t_out), against α_tan = 1e-3 rad (provisional);
+- that no values may be published.
+
+Every case records θ per bend-adjacent node in `derived.junction_angles_rad`.
+
+**Transforms.** The core cases are U2-L-FREE-P-K2, U2-L-FREE-ALL-K2, U2-L-ANCH-ALL-K2, U2-U-ANCH-ALL-K2, the CBPT at k = 2, and (repair 01) U2-L-ANCH-PTW-K2. Each also comes as -SKEW, -X5E6, -X7P3E6, -SKEW-X5E6, -SKEW-X7P3E6 and -MM-MPA. In total there are 80 cases.
 - **SKEW** rotates by the exact rational matrix (1/25)[[9,−12,20],[20,15,0],[−12,16,15]]. That is the quaternion (4,1,2,2)/5, a rotation of 73.74° about (1,2,2)/3.
 - **X…** translates by +5e6 or +7.3e6 m along X.
 - **Rounding.** Transformed node coordinates and `y_reference` components are rounded once to binary64. These binary64 values, written as round-trip decimal strings, are exact inputs, and the reference is computed from them.
@@ -200,8 +219,10 @@ The table gives the normwise difference against the reference, over R_A, R_D and
 | U2-U-ANCH-ALL-K2 | 1.11e-6 | 3.999–4.001 | 5.0e-12 |
 | U2-L-ANCH-ALL-K2-SKEW-X7P3E6 | 8.83e-7 | 3.999–4.000 | 4.0e-12 |
 | CBPT-K1 (membrane, exact for any n) | 4e-57 | — | — |
+| U2-L-ANCH-PTW-K1 (repair 01) | 1.36e-6 | 3.999–4.002 | 8.6e-12 |
+| U2-L-FREE-PTW-K1 (repair 01) | 6.04e-7 | 3.998–4.000 | 5.2e-12 |
 
-**Cross-checks only** (`u2_crosscheck.stdout.txt`). The curved-element stiffness is formed from the same arc flexibility and inverted, with H taken from the actual chord. Each check is compared with all 67 cases; the maximum normwise difference is 4.7e-20, the 20-digit rounding of the file.
+**Cross-checks only** (`u2_crosscheck.stdout.txt`). The curved-element stiffness is formed from the same arc flexibility and inverted, with H taken from the actual chord. Each check is compared with all 79 cases that carry values; the maximum normwise difference is 4.7e-20, the 20-digit rounding of the file.
 - **F1, the plan's H-2 ledger:**
   - the straights' Poisson pairs;
   - the bend term K_b·u_free(ε_p) − c_b;
@@ -210,6 +231,7 @@ The table gives the normwise difference against the reference, over R_A, R_D and
   - with recovery N_w = N_el + P on arcs and the station membrane +P.
 
   F1 is checked on displacements, reactions, end rows (straight, and arc in the tangent frame) and stations.
+- **The elastic chord-frame rows** are computed directly as K_b(d − u_free(ε_p + ε_th)) − p_uniform from the stiffness solution, not as wall − c_b. They agree to 4.6e-20.
 - **F2, Σ K_m·u_free(ε_p):** checked on displacements and reactions.
 - **The thermal analogue:** reactions of the ε_p thermal problem against the anchored pressure-only cases, 2.3e-20.
 
@@ -217,7 +239,15 @@ The table gives the normwise difference against the reference, over R_A, R_D and
 
 ## 7. Negative controls (`wrong_result_discriminators`)
 
-Each control gives its wrong values at JSON pointers into the case, with the distance in units of the case's tolerance. The cases are U2-L-FREE-P-K2, U2-L-ANCH-P-K2, U2-L-ANCH-ALL-K2, U2-U-ANCH-P-K2, CBPT-K2, and the two kink cases.
+Each control gives its wrong values at JSON pointers into the case, with the distance in units of the case's tolerance. The cases are U2-L-FREE-P-K2, U2-L-ANCH-P-K2, U2-L-ANCH-ALL-K2, U2-U-ANCH-P-K2, CBPT-K2, U2-L-ANCH-PTW-K2 (repair 01), and the two kink cases.
+
+**Listing rule (repair 01, B-1).**
+- A control lists only rows at ≥ 1e3 tolerances from the reference: at most 8, ordered by distance as in round 00.
+- A computed wrong value below 1e-40 of its group's zero scale is written as exact 0.
+- `max_distance_in_tolerances` is the maximum over every row the control evaluated, and it is unchanged.
+- The 23 round-00 rows that failed the rule are kept with their reasons in `rows_dropped_repair_01`. These are not assertions:
+  - 20 rows in U2-L-FREE-P-K2 and CBPT-K2, where the wrong value equals the reference or differs from it only by 1e-54-level noise;
+  - 3 rows in the kink case, where a 0 equals the reference or the Fy distance falls below 1e3 tolerances.
 
 | Control (how it was emulated) | Maximum distance (tolerances) | Example (case: pointer, wrong vs reference) |
 |---|---|---|
@@ -227,7 +257,7 @@ Each control gives its wrong values at JSON pointers into the case, with the dis
 | Poisson term missing on the arc | 8.4e6 to 1.5e9 | CBPT: tip ux −1.0808615e-4 (the legacy value) vs −4.3234461e-5 m |
 | Wall load double count (a): elastic end force, with the wall load in the station statics, plus P | 1.0e9 to 1.9e12 | L-ANCH-P: BEND end_i V_y −95526.43 vs −133.08 N |
 | Wall load double count (b): wall end force, with the wall load in the statics, plus P again | 1.0e9 | N_w + P at every arc station |
-| Non-tangent bend, remainder omitted at C | 6.6e8 to 6.9e8 | L-KINK-FREE-P: D ux 2.56e-5 vs 1.955e-4 m; remainder (95.393, 0.0477, 0) N |
+| Non-tangent bend at atan(5e-4) rad, remainder omitted at C | 3.3e8 to 3.4e8 | L-KINK-FREE-P: D ux 1.1053e-4 vs 1.9563e-4 m; remainder (47.697, 0.01192, 0) N |
 
 With the remainder in place, the kinked free L stays balanced, with zero reactions and the self-similar growth. This is the control the brief requires.
 
@@ -236,9 +266,9 @@ With the remainder in place, the kinked free L stays balanced, with zero reactio
 **The criterion.**
 - In both solver modes: |observed − expected| ≤ 1e-9·max(|expected|, zero_scale).
 - zero_scale is set per case and per group, and every case lists it with its floor.
-- The groups are displacement, rotation, support force and moment per support, wall axial force, effective force, membrane stress, shear, section moment, bending and torsion stress, Lamé, and chord-frame end force.
+- The groups are displacement, rotation, support force and moment per support, wall axial force, effective force, membrane stress, shear, section moment, bending and torsion stress, Lamé, and the elastic chord-frame end force.
 - zero_scale is the group's maximum |expected| in the case. Where the group is identically zero, a characteristic scale is used instead: P (or W_total), P·L_c, |ε_p + ε_th|·L_c, |ε_p + ε_th|, or P/As.
-- Every mutant lies at ≥ 8e6 tolerances.
+- Each control's maximum distance is between 8.4e6 and 8.1e12 tolerances. Every listed row lies at ≥ 1e3 tolerances (B-1).
 - The floors exceed binary64 noise in the product by an estimated three orders of magnitude or more (I).
 
 **`u2_reference_cases.json`** (schema `independent.exact_pressure_bend_examples/1.0.0`).
@@ -258,7 +288,9 @@ With the remainder in place, the kinked free L stays balanced, with zero reactio
 ## 9. Limits and points for the refuter
 
 1. **Linear and small-displacement.** U2-L-FREE-SEPD and -ALL give tip motions of about 1 m and 0.24 rad. That is valid linear algebra, but not physical. Keep the cases or scale p down; the values are linear in each load.
-2. **The tangency tolerance.** The kink controls need T4-U2 to admit atan(0.001) rad as a small kink (plan N-2). If T4-U2 sets a tighter tolerance, regenerate them with a smaller kink: change D.x in `geom_L` to keep tan δ in range.
+2. **The tangency tolerance** (repair 01). The kinks sit near α_tan/2 and the refusal control near 2α_tan, under the WI's rule with α_tan = 1e-3 rad (provisional).
+   - If α_tan changes, edit `ALPHA_TAN` and `KINK_DX` in `u2_generate.py` and regenerate.
+   - T4-U2 must not snap sub-tolerance kinks to tangency (RV3 N-4).
 3. **Not covered here:**
    - guides, springs, nonlinear supports;
    - an S-shaped (out-of-plane) chain;

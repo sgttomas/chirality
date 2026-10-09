@@ -1,12 +1,15 @@
-cases: 67
+cases: 80
 max global equilibrium residual: force 1.0000000000000000000e-54 N, moment 3.9486190000000000000e-48 N*m
+junction angle U2-L-KINK-FREE-P-K2 4.9999995833328451628e-4 alpha_tan 1.0e-3
+junction angle U2-L-KINK-ANCH-P-K2 4.9999995833328451628e-4 alpha_tan 1.0e-3
+junction angle U2-L-MITRE-REFUSED-P-K2 1.9999973333397350914e-3 alpha_tan 1.0e-3
 closed-form growth deviation U2-L-FREE-P-K1 6.8030000000000000000e-60
 closed-form growth deviation U2-L-FREE-PT-K1 6.8300000000000000000e-60
 closed-form growth deviation MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K1 1.4981630948067431237e-61
 closed-form growth deviation U2-L-FREE-P-K2 7.4870000000000000000e-60
 closed-form growth deviation U2-L-FREE-PT-K2 7.4900000000000000000e-60
 closed-form growth deviation MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 2.9963261896134862475e-61
-closed-form growth deviation U2-L-KINK-FREE-P-K2 1.9700000000000000000e-60
+closed-form growth deviation U2-L-KINK-FREE-P-K2 9.0910000000000000000e-60
 closed-form growth deviation U2-L-FREE-P-K2-SKEW 9.8993000000000000000e-60
 closed-form growth deviation U2-L-FREE-P-K2-X5E6 1.0366664500000000000e-55
 closed-form growth deviation U2-L-FREE-P-K2-X7P3E6 1.0747439930000000000e-54
@@ -27,6 +30,8 @@ polygon MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K1 [(8, '6.245e-58', None), (16, '3.
 polygon U2-L-ANCH-P-K2 [(8, '5.754e-4', None), (16, '1.439e-4', '3.9986'), (32, '3.597e-5', '4.0006'), (64, '8.992e-6', '4.0002'), (128, '2.248e-6', '4.0000')] richardson 5.998e-12
 polygon U2-U-ANCH-ALL-K2 [(8, '2.831e-4', None), (16, '7.080e-5', '3.9986'), (32, '1.770e-5', '4.0000'), (64, '4.425e-6', '4.0000'), (128, '1.106e-6', '4.0009')] richardson 5.030e-12
 polygon U2-L-ANCH-ALL-K2-SKEW-X7P3E6 [(8, '2.258e-4', None), (16, '5.647e-5', '3.9986'), (32, '1.412e-5', '3.9993'), (64, '3.530e-6', '4.0000'), (128, '8.825e-7', '4.0000')] richardson 4.029e-12
+polygon U2-L-ANCH-PTW-K1 [(8, '3.479e-4', None), (16, '8.700e-5', '3.9989'), (32, '2.175e-5', '4.0000'), (64, '5.438e-6', '3.9996'), (128, '1.359e-6', '4.0015')] richardson 8.636e-12
+polygon U2-L-FREE-PTW-K1 [(8, '1.545e-4', None), (16, '3.864e-5', '3.9984'), (32, '9.660e-6', '4.0000'), (64, '2.415e-6', '4.0000'), (128, '6.038e-7', '3.9997')] richardson 5.178e-12
 control U2-L-FREE-P-K2 bend_term_omitted max distance (tolerances) 4.047e+12
 control U2-L-FREE-P-K2 c_b_added_not_subtracted max distance (tolerances) 8.093e+12
 control U2-L-FREE-P-K2 poisson_term_missing_on_arc max distance (tolerances) 8.824e+7
@@ -57,8 +62,14 @@ control MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 poisson_term_missing_on_arc max d
 control MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 caps_subtracted_in_recovery max distance (tolerances) 1.000e+9
 control MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 wall_load_double_count_elastic_end_force max distance (tolerances) 1.000e+9
 control MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2 wall_load_double_count_wall_end_force max distance (tolerances) 1.000e+9
-control U2-L-KINK-FREE-P-K2 interior_remainder_omitted max distance (tolerances) 6.638e+8
-control U2-L-KINK-ANCH-P-K2 interior_remainder_omitted max distance (tolerances) 6.859e+8
+control U2-L-ANCH-PTW-K2 bend_term_omitted max distance (tolerances) 6.263e+10
+control U2-L-ANCH-PTW-K2 c_b_added_not_subtracted max distance (tolerances) 1.253e+11
+control U2-L-ANCH-PTW-K2 poisson_term_missing_on_arc max distance (tolerances) 8.369e+6
+control U2-L-ANCH-PTW-K2 caps_subtracted_in_recovery max distance (tolerances) 1.010e+9
+control U2-L-ANCH-PTW-K2 wall_load_double_count_elastic_end_force max distance (tolerances) 5.719e+10
+control U2-L-ANCH-PTW-K2 wall_load_double_count_wall_end_force max distance (tolerances) 1.010e+9
+control U2-L-KINK-FREE-P-K2 interior_remainder_omitted max distance (tolerances) 3.324e+8
+control U2-L-KINK-ANCH-P-K2 interior_remainder_omitted max distance (tolerances) 3.428e+8
 MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K1 support:A {'Fx': '0', 'Fy': '0', 'Fz': '0', 'Mx': '0', 'My': '0', 'Mz': '0'}
 MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K1 node:B {'ux': '-4.3234461382433996858e-5', 'uy': '4.3234461382433996858e-5', 'uz': '0', 'rx': '0', 'ry': '0', 'rz': '0'}
 U2-L-ANCH-P-K2 support:A {'Fx': '8.1980927267267577685e+1', 'Fy': '1.3308033915692378938e+2', 'Fz': '0', 'Mx': '0', 'My': '0', 'Mz': '2.4602807106207832682e+2'}

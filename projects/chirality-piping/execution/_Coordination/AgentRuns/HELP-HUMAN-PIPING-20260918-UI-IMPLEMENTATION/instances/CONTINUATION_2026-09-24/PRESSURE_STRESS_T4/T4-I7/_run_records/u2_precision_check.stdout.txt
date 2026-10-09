@@ -6,4 +6,6 @@ MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2-SKEW-X7P3E6   values  141  max rel diff (
 U2-L-KINK-ANCH-P-K2                                  values  335  max rel diff (90 digits, GL50 vs written) 0.00e+00 at 
 U2-L-ANCH-ALL-K2-REV                                 values  338  max rel diff (90 digits, GL50 vs written) 0.00e+00 at 
 U2-U-ANCH-ALL-K2-SKEW-X5E6                           values  971  max rel diff (90 digits, GL50 vs written) 0.00e+00 at 
+U2-L-ANCH-PTW-K2-SKEW-X7P3E6                         values  335  max rel diff (90 digits, GL50 vs written) 0.00e+00 at 
+U2-L-FREE-PTW-K1                                     values  329  max rel diff (90 digits, GL50 vs written) 0.00e+00 at 
 overall max 0.00e+00 (the written 20-digit rounding is 5e-20 relative)

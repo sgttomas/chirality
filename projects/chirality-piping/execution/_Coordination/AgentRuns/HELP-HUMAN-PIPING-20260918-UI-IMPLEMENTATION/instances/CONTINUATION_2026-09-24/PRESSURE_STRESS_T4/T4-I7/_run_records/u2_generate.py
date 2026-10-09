@@ -29,6 +29,12 @@ SEC_C = dict(od="0.2191", wall="0.0081", mill="0")
 MAT_C = dict(E="1.95e11", nu="0.3", alpha="1.2e-5")
 P_C = "2.5e6"
 
+# tangency rule T4-U2 implements (WI, repair 01 S-2; T4-I11 D-D): theta = atan2(|t_in x t_out|, t_in . t_out)
+# <= ALPHA_TAN at bend-adjacent junctions; ALPHA_TAN is provisional
+ALPHA_TAN = "1.0e-3"
+MITRE_CODE = "PRESSURE_REGION_MITRE_UNSUPPORTED"
+KINK_DX = {"admitted": 3.248, "refused": 3.242}  # D.x: tan(theta) = (3.25 - D.x)/4 = 5e-4 and 2e-3
+
 # skew rotation from the unit quaternion (4, 1, 2, 2)/5: exact rational matrix /25
 Q25 = [[9, -12, 20], [20, 15, 0], [-12, 16, 15]]
 
@@ -65,9 +71,9 @@ W_L = self_weight_w()
 
 
 # ------------------------------------------------------------------ geometries (authored, SI, local)
-def geom_L(kink=False, reverse=False):
+def geom_L(kink=None, reverse=False):
     nodes = [("node:A", (0.0, 0.0, 0.0)), ("node:B", (3.0, 0.0, 0.0)), ("node:C", (3.25, 0.25, 0.0)),
-             ("node:D", ((3.246 if kink else 3.25), 4.25, 0.0))]
+             ("node:D", ((KINK_DX[kink] if kink else 3.25), 4.25, 0.0))]
     mem = [dict(pid="pipe:S1", kind="straight", i="node:A", j="node:B", yref=(0.0, 0.0, 1.0)),
            dict(pid="pipe:BEND", kind="arc", i="node:B", j="node:C", yref=(1.0, -1.0, 0.0), R="0.25",
                 comp="component:bend-1"),
@@ -137,6 +143,8 @@ def case_list():
         ("PT", dict(dT=DT_L), "pressure plus thermal strain"),
         ("PW", dict(weight=True), "pressure plus self-weight"),
         ("ALL", dict(tD=False, dT=DT_L, weight=True), "D closure separately supported, thermal and self-weight"),
+        ("PTW", dict(dT=DT_L, weight=True), "both terminals transferring; pressure, thermal and self-weight in one "
+                                            "case (plan section 2 headline case; repair 01 S-3)"),
     ]
     variants_anch = [v_ for v_ in variants_free if v_[0] != "SEPA"]
     for k in ("1", "2"):
@@ -152,15 +160,20 @@ def case_list():
         add_case("MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K%s" % k, geom_CBPT(), k, p=P_C,
                  desc="rebuilt CBPT: anchored-free quarter bend, closed transferring terminals, E/nu",
                  rebuilds="MECH-CURVED-BEND-PRESSURE-THRUST-ARC", family="CBPT")
-    add_case("U2-L-KINK-FREE-P-K2", geom_L(kink=True), "2", p=P_L,
-             desc="L line with S2 kinked by atan(0.001) rad at C; free; pressure only", family="KINK")
-    add_case("U2-L-KINK-ANCH-P-K2", geom_L(kink=True), "2", p=P_L, anchorD=True,
-             desc="L line with S2 kinked by atan(0.001) rad at C; anchored at A and D; pressure only", family="KINK")
+    add_case("U2-L-KINK-FREE-P-K2", geom_L(kink="admitted"), "2", p=P_L,
+             desc="L line with S2 kinked by atan(5e-4) rad at C (about alpha_tan/2); free; pressure only",
+             family="KINK")
+    add_case("U2-L-KINK-ANCH-P-K2", geom_L(kink="admitted"), "2", p=P_L, anchorD=True,
+             desc="L line with S2 kinked by atan(5e-4) rad at C (about alpha_tan/2); anchored at A and D; pressure "
+                  "only", family="KINK")
+    add_case("U2-L-MITRE-REFUSED-P-K2", geom_L(kink="refused"), "2", p=P_L, anchorD=True,
+             desc="L line with S2 kinked by atan(2e-3) rad at C (about 2 alpha_tan); a refusal control: no values",
+             family="MITRE-REFUSAL")
     add_case("U2-L-ANCH-ALL-K2-REV", geom_L(reverse=True), "2", p=P_L, anchorD=True, tD=False, dT=DT_L, weight=True,
              desc="as U2-L-ANCH-ALL-K2 with the bend and S2 authored against the traversal (orientation control)",
              family="L-ANCH")
     cores = ["U2-L-FREE-P-K2", "U2-L-FREE-ALL-K2", "U2-L-ANCH-ALL-K2", "U2-U-ANCH-ALL-K2",
-             "MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2"]
+             "MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2", "U2-L-ANCH-PTW-K2"]
     base = {c["id"]: c for c in cases}
     tforms = [("SKEW", dict(skew=True)), ("X5E6", dict(x0="5e6")), ("X7P3E6", dict(x0="7.3e6")),
               ("SKEW-X5E6", dict(skew=True, x0="5e6")), ("SKEW-X7P3E6", dict(skew=True, x0="7.3e6")),
@@ -268,7 +281,7 @@ UNIT_OF_GROUP = {
     "displacement": "m", "rotation": "rad", "support_force": "N", "support_moment": "N*m",
     "remote_closure_force": "N", "wall_axial_force": "N", "effective_axial_force": "N", "membrane_stress": "Pa",
     "shear_force": "N", "section_moment": "N*m", "bending_torsion_stress": "Pa",
-    "end_action_force_chord_frame": "N", "lame_stress": "Pa",
+    "elastic_end_force_chord_frame": "N", "lame_stress": "Pa",
 }
 
 
@@ -307,7 +320,7 @@ def record_case(case):
         "support_force": F0, "support_moment": F0 * Lc, "remote_closure_force": F0,
         "wall_axial_force": F0, "effective_axial_force": F0, "membrane_stress": F0 / sec.As,
         "shear_force": F0, "section_moment": F0 * Lc, "bending_torsion_stress": F0 * Lc / sec.Z,
-        "end_action_force_chord_frame": F0, "lame_stress": lc.p if lc.p else ONE,
+        "elastic_end_force_chord_frame": F0, "lame_stress": lc.p if lc.p else ONE,
     }
     chars["rotation"] = chars["displacement"] / Lc
     raw = []  # (group, setter) for snapping/zero-scale
@@ -377,14 +390,23 @@ def record_case(case):
                 md["end_rows"][name] = {"element_local": d}
             else:
                 dd = {}
-                for fname, frame in (("tangent_frame", mem.frame_at_authored(f)), ("chord_frame", mem.chord_frame)):
-                    er = end_rows(F, M, frame, sign)
-                    d = {}
-                    for key, val in er.items():
-                        if key == "wall_axial_end_action" and fname == "chord_frame":
-                            continue
-                        put(d, key, val, end_group(key, fname))
-                    dd[fname] = d
+                er = end_rows(F, M, mem.frame_at_authored(f), sign)
+                d = {}
+                for key, val in er.items():
+                    put(d, key, val, end_group(key, "tangent_frame"))
+                dd["tangent_frame"] = d
+                # elastic chord-frame rows (repair 01 S-1): node-on-element wall action minus the bend's own cap
+                # pair c_b = [-pAi t_i, +pAi t_j] (H-2), i.e. K d - p of the curved element; moments unchanged
+                cb = scl(-P, mem.authored_tangent("0")) if name == "end_i" else scl(P, mem.authored_tangent("1"))
+                Fn = scl(sign, F)
+                Mn = scl(sign, M)
+                Fe = sub(Fn, cb)
+                d = {}
+                for a, key in enumerate(["F_x", "F_y", "F_z"]):
+                    put(d, key, dot(Fe, mem.chord_frame[a]), "elastic_end_force_chord_frame")
+                for a, key in enumerate(["M_x", "M_y", "M_z"]):
+                    put(d, key, dot(Mn, mem.chord_frame[a]), "section_moment")
+                dd["chord_frame_elastic"] = d
                 md["end_rows"][name] = dd
         if mem.kind == "straight" and lc.p != 0:
             lame = {}
@@ -409,7 +431,7 @@ def record_case(case):
                 "support_force": F0, "support_moment": F0 * Lc, "remote_closure_force": F0,
                 "wall_axial_force": F0, "effective_axial_force": F0, "membrane_stress": F0 / sec.As,
                 "shear_force": F0, "section_moment": F0 * Lc, "bending_torsion_stress": F0 / sec.As,
-                "end_action_force_chord_frame": F0, "lame_stress": abs(lc.p) or ONE}
+                "elastic_end_force_chord_frame": F0, "lame_stress": abs(lc.p) or ONE}
     zero_scale = {}
     for grp in gmax:
         zs = gmax[grp] if gmax[grp] != 0 else fallback[grp.split("@")[0]]
@@ -423,6 +445,8 @@ def record_case(case):
                    I=fmt(sec.I), J=fmt(sec.J), Z=fmt(sec.Z), G=fmt(mat.G), P_pAi=fmt(P), eps_poisson=fmt(eps_nu),
                    eps_p=fmt(eps_p), eps_thermal=fmt(eps_th), w_self_weight=fmt(wv),
                    total_centreline_length=fmt(total_len), W_total=fmt(wv * total_len), L_c=fmt(Lc))
+    derived["alpha_tan_provisional_rad"] = ALPHA_TAN
+    derived["junction_angles_rad"] = junction_angles(chain)
     checks = dict(global_equilibrium_residual_force=fmt(max(abs(c) for c in res[0])),
                   global_equilibrium_residual_moment=fmt(max(abs(c) for c in res[1])))
     if not lc.anchor_D and lc.transfer_A and lc.transfer_D and lc.w == 0:
@@ -436,6 +460,19 @@ def record_case(case):
                 dev = max(dev, abs(sol.disp[ni][a]))
         checks["closed_form_self_similar_growth_max_abs_deviation_m"] = fmt(dev)
     return out, derived, zero_scale, checks, (chain, sec, mat, lc, sol)
+
+
+def junction_angles(chain):
+    """theta = atan2(|t_in x t_out|, t_in . t_out) at every interior node next to a bend (the T4-U2 rule)."""
+    tans = chain.trav_tangents()
+    out = {}
+    for m in range(len(chain.members) - 1):
+        if chain.members[m].kind == "arc" or chain.members[m + 1].kind == "arc":
+            a, b = tans[m][1], tans[m + 1][0]
+            c = norm(cross(a, b))
+            th = ZERO if c < SNAP else E.atan2(c, dot(a, b))
+            out[chain.node_ids[m + 1]] = fmt(th)
+    return out
 
 
 # ------------------------------------------------------------------ negative controls
@@ -465,21 +502,51 @@ def get_ptr(out, ptr):
     return D(cur)
 
 
+MIN_LISTED_DISTANCE = D("1e3")  # repair 01 B-1: a listed row sits at least 1e3 tolerances from the reference
+LISTED_ROWS = 8
+
+
+def fmt_dist(x):
+    return "0" if x == 0 else format(x, ".3e")
+
+
 def discriminators(items, ref_out, zs, label, desc):
     rows = []
     best = None
     for ptr, wrong, grp in items:
         ref = get_ptr(ref_out, ptr)
         zscale = D(zs[grp]["zero_scale"]) if grp in zs else ONE
+        raw = D(wrong)
+        w = ZERO if abs(raw) < SNAP * zscale else raw  # computation noise is exact zero
         tol = D("1e-9") * max(abs(ref), zscale)
-        dist = abs(D(wrong) - ref) / tol
-        rows.append(dict(pointer=ptr, wrong_value=fmt(wrong), reference_value=fmt(ref),
-                         distance_in_tolerances=format(dist, ".3e")))
+        dist = abs(w - ref) / tol
+        rank = D(format(abs(raw - ref) / tol, ".3e"))  # round 00's ranking key (unsnapped, 4 digits)
+        if dist == 0:
+            reason = ("wrong value equals the reference" if raw == ref else
+                      "wrong value differed from the reference only by computation noise below 1e-40 of the group "
+                      "scale; it is exact zero, equal to the reference")
+        elif dist < MIN_LISTED_DISTANCE:
+            reason = "distance below 1e3 tolerances"
+        else:
+            reason = None
+        rows.append((rank, dict(pointer=ptr, wrong_value=fmt(w), reference_value=fmt(ref),
+                                distance_in_tolerances=fmt_dist(dist)), reason))
         if best is None or dist > best:
             best = dist
-    rows.sort(key=lambda r: -D(r["distance_in_tolerances"]))
+    # rank as round 00 did, so that the listing keeps round 00's order and rows_dropped_repair_01 names exactly
+    # the round-00 rows that fail the >= 1e3 rule
+    order = sorted(range(len(rows)), key=lambda i: -rows[i][0])  # stable: equal keys keep item order
+    ranked = [rows[i] for i in order]
+    listed = [r for d_, r, why in ranked if why is None][:LISTED_ROWS]
+    dropped = []
+    for d_, r, why in ranked[:LISTED_ROWS]:
+        if why is not None:
+            x = dict(r)
+            x["reason"] = why
+            dropped.append(x)
     return dict(id=label, description=desc, max_distance_in_tolerances=format(best, ".3e"),
-                discriminating_values=rows[:8])
+                listing_rule="rows at >= 1e3 tolerances from the reference, at most 8, by distance",
+                discriminating_values=listed, rows_dropped_repair_01=dropped)
 
 
 def recovery_mutants(case, rec, ref_out, zs):
@@ -806,6 +873,23 @@ def main(outdir):
     summary = []
     rec_cache = {}
     for case in cases:
+        if case["family"] == "MITRE-REFUSAL":
+            chain, sec, mat = build_chain(case)
+            ja = junction_angles(chain)
+            chain_info = {m.pid: f64(m.Phi) for m in chain.members if m.kind == "arc"}
+            records[case["id"]] = dict(
+                description=case["desc"], family=case["family"], k=case["k"], core_case=False, transform_of=None,
+                transform=None, inputs=case_inputs(case),
+                derived=dict(alpha_tan_provisional_rad=ALPHA_TAN, junction_angles_rad=ja),
+                expected=None,
+                expected_refusal=dict(
+                    refused=True, severity="blocking", code=MITRE_CODE, code_status="provisional (T4-I11 D-D)",
+                    refs=["region:u2", "node:C", "pipe:BEND", "pipe:S2"],
+                    rule="theta = atan2(|t_in x t_out|, t_in . t_out) > alpha_tan at a bend-adjacent junction",
+                    node="node:C", theta_rad=ja["node:C"], alpha_tan_rad=ALPHA_TAN,
+                    no_values="the case must not publish displacements, reactions or member rows"))
+            sketches[case["id"]] = {"0.3.0": doc_030(case, chain_info), "0.4.0": doc_040(case, chain_info)}
+            continue
         out, derived, zs, checks, rec = record_case(case)
         rec_cache[case["id"]] = (out, zs, rec)
         chain = rec[0]
@@ -821,7 +905,7 @@ def main(outdir):
         summary.append((case["id"], checks))
     # negative controls
     ctrl_cases = ["U2-L-FREE-P-K2", "U2-L-ANCH-P-K2", "U2-L-ANCH-ALL-K2", "U2-U-ANCH-P-K2",
-                  "MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2"]
+                  "MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K2", "U2-L-ANCH-PTW-K2"]
     by_id = {c["id"]: c for c in cases}
     for cid in ctrl_cases:
         out, zs, rec = rec_cache[cid]
@@ -833,7 +917,7 @@ def main(outdir):
     poly = []
     for cid in ("U2-L-ANCH-P-K1", "U2-L-ANCH-ALL-K1", "U2-L-FREE-ALL-K1", "U2-U-ANCH-ALL-K1",
                 "MECH-CURVED-BEND-EXACT-PRESSURE-ARC-K1", "U2-L-ANCH-P-K2", "U2-U-ANCH-ALL-K2",
-                "U2-L-ANCH-ALL-K2-SKEW-X7P3E6"):
+                "U2-L-ANCH-ALL-K2-SKEW-X7P3E6", "U2-L-ANCH-PTW-K1", "U2-L-FREE-PTW-K1"):
         poly.append(polygon_control(by_id[cid]))
     doc = header()
     doc["polygon_limit_control"] = poly
@@ -855,6 +939,9 @@ def main(outdir):
     worst_f = max(D(c["global_equilibrium_residual_force"]) for _, c in summary)
     worst_m = max(D(c["global_equilibrium_residual_moment"]) for _, c in summary)
     print("max global equilibrium residual: force %s N, moment %s N*m" % (fmt(worst_f), fmt(worst_m)))
+    for cid, r in records.items():
+        if r["family"] in ("KINK", "MITRE-REFUSAL"):
+            print("junction angle", cid, r["derived"]["junction_angles_rad"]["node:C"], "alpha_tan", ALPHA_TAN)
     for cid, c in summary:
         if "closed_form_self_similar_growth_max_abs_deviation_m" in c:
             print("closed-form growth deviation", cid, c["closed_form_self_similar_growth_max_abs_deviation_m"])
@@ -878,7 +965,9 @@ def header():
         "purpose": "Frozen independent VP-STATIC references for T4-U2 (pressure through realized bends), derived "
                    "before any implementation by the direct unit-load (flexibility) method; not product request DTOs "
                    "and not observed solver outputs.",
-        "author": "T4-I7 (TASK, Type 2) for T4's WORKING_ITEMS; refutation by a second TASK is pending",
+        "author": "T4-I7 (TASK, Type 2) for T4's WORKING_ITEMS; refuted by T4-RV3 (values pass); repair round 01 "
+                  "applies RV3's B-1 and S-1 to S-3 (REPAIR_01.md)",
+        "revision": "repair 01",
         "code_basis_for_conventions": "ed012c7ccf (read for conventions only, never for values)",
         "target_contract": {"model": "3.0.0/exact_pressure_v3 (H-1; provisional spelling, T4-U2a)",
                             "result_semantics": "pressure-1 (reserved; provisional)",
@@ -906,7 +995,17 @@ def header():
                                "mm (x1000); compare after exact unit conversion",
             "no_relaxation": "this file allocates no new or relaxed threshold beyond the per-group floor the brief "
                              "requires (I4 section 5)",
+            "negative_controls": "each control lists only rows at >= 1e3 tolerances from the reference (at most 8, by "
+                                 "distance); max_distance_in_tolerances is over every row the control evaluated; rows "
+                                 "removed from round 00's listing are kept, with their reason, in "
+                                 "rows_dropped_repair_01 (not assertions)",
         },
+        "tangency_rule": {"rule": "theta = atan2(|t_in x t_out|, t_in . t_out) <= alpha_tan at every bend-adjacent "
+                                  "junction; admitted kinks carry the remainder pAi(t_in - t_out) exactly (H-2); "
+                                  "larger kinks are refused as mitres",
+                          "alpha_tan_rad": ALPHA_TAN, "status": "provisional (T4-I11 D-D; WI repair 01 S-2)",
+                          "refusal_code": MITRE_CODE + " (provisional)",
+                          "junction_angles": "each case's derived.junction_angles_rad gives theta per node"},
         "formulation_matched": [
             "Euler-Bernoulli straights: axial, torsion and bending energy; no shear",
             "arcs: axial and torsion energy plus in-plane and out-of-plane bending energy scaled by the user's k; "
@@ -947,8 +1046,13 @@ def header():
                             "+y_reference (product rule)",
             "end_rows": "node-on-element action: end_i = -(j-side action at fraction 0), end_j = +(j-side action at "
                         "fraction 1); straights in the element-local frame (wall_axial_end_action is today's "
-                        "pipe_wall_endpoint_action_v2); arcs in the tangent frame at that end (RV1 S-7) and, for "
-                        "information, in the chord frame (x chord, y y_reference projected, z = x cross y)",
+                        "pipe_wall_endpoint_action_v2); arcs in the tangent frame at that end (RV1 S-7): wall "
+                        "(physical) node-on-element actions",
+            "chord_frame_elastic": "arcs only: the elastic node-on-element end action K d - p of the curved element in "
+                                   "the chord frame (x chord, y y_reference projected, z = x cross y), i.e. the wall "
+                                   "action minus the bend's own cap pair c_b = [-pAi t_i, +pAi t_j] (H-2); moments "
+                                   "equal the wall moments. These are today's chord-frame component end rows on arcs "
+                                   "(I1 section 5.3 #8; I2 section 3.4); they are not wall actions (repair 01 S-1)",
             "derived_rows": "S = N_w - pAi; sigma_m = N_w/As; sigma_b_y = M_y/Z; sigma_b_z = M_z/Z; tau_t = T*r_o/J",
             "lame_surface": "straights only: inner radial -p, outer radial 0, inner hoop 2pAi/As + p, outer hoop "
                             "2pAi/As; withheld on arcs (plan section 2 and 4.3 item 1)",
@@ -975,6 +1079,9 @@ def header():
             "lame_surface": "pipe_lame_radial_stress_v2 / pipe_lame_hoop_stress_v2 (inner, outer)",
             "arcs": "row kinds for arc rows under pressure-1 are defined by T4-U2 (provisional); the values here "
                     "are frame- and sign-exact",
+            "chord_frame_elastic": "element_local_axial_force (if T4-U2 keeps it on arcs), element_local_shear_force_"
+                                   "y/_z, element_local_torsional_moment, element_local_bending_moment_y/_z at end_i "
+                                   "and end_j, coordinate_system arc_chord_frame, node-on-element",
         },
     }
 

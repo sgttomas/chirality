@@ -131,7 +131,7 @@ def stiffness_solution(case, form):
             Fg[idx[a]] += pe[a]
             for b in range(12):
                 Kg[idx[a]][idx[b]] += K[a][b]
-        elem.append((K, pe, idx))
+        elem.append((K, pe, idx, pw, r))
     # nodal pressure terms
     if form == "F1":
         if lc.transfer_A:
@@ -164,11 +164,15 @@ def stiffness_solution(case, form):
     if lc.anchor_D:
         reac["support:D"] = [Kd[i] - Fg[i] for i in range(6 * (nn - 1), 6 * nn)]
     ends = []
-    for (K, pe, idx), mem in zip(elem, chain.members):
+    elastic = []
+    for (K, pe, idx, pw, r), mem in zip(elem, chain.members):
         de = [d[i] for i in idx]
         q = [a - b for a, b in zip(kvec(K, de), pe)]
         ends.append(q)
-    return chain, sec, mat, lc, P, d, reac, ends
+        # today's elastic end action of the curved element: K (d - u_free(eps_p + eps_th)) - p_uniform
+        uf = ufree(r, eps_p + eps_th)
+        elastic.append([a - b for a, b in zip(kvec(K, [x - y for x, y in zip(de, uf)]), pw)])
+    return chain, sec, mat, lc, P, d, reac, ends, elastic
 
 
 def rel(x, ref, scale):
@@ -176,7 +180,7 @@ def rel(x, ref, scale):
 
 
 def compare(case, rec, form):
-    chain, sec, mat, lc, P, d, reac, ends = stiffness_solution(case, form)
+    chain, sec, mat, lc, P, d, reac, ends, elastic = stiffness_solution(case, form)
     exp = rec["expected"]
     zs = rec["zero_scale"]
     worst = {}
@@ -197,6 +201,18 @@ def compare(case, rec, form):
         return worst  # F2's member end forces are not wall actions; solution-level comparison only
     for mi, mem in enumerate(chain.members):
         q = ends[mi]
+        if mem.kind == "arc":
+            qe = elastic[mi]
+            qet = (qe[0:6], qe[6:12])
+            for name in ("end_i", "end_j"):
+                src = qet[0] if (name == "end_i") == mem.forward else qet[1]
+                ref = exp["members"][mem.pid]["end_rows"][name]["chord_frame_elastic"]
+                for a, k in enumerate(["F_x", "F_y", "F_z"]):
+                    upd("chord_frame_elastic_arc", dot(tuple(src[0:3]), mem.chord_frame[a]), ref[k],
+                        "elastic_end_force_chord_frame")
+                for a, k in enumerate(["M_x", "M_y", "M_z"]):
+                    upd("chord_frame_elastic_arc", dot(tuple(src[3:6]), mem.chord_frame[a]), ref[k],
+                        "section_moment")
         qt = (q[0:6], q[6:12])  # traversal start, end (node-on-element)
         auth = {"end_i": qt[0] if mem.forward else qt[1], "end_j": qt[1] if mem.forward else qt[0]}
         for name, f in (("end_i", "0"), ("end_j", "1")):
@@ -270,6 +286,8 @@ def main(d):
     print("F1 = plan H-2 ledger; F2 = Sigma K_m u_free(eps_p); both with curved-element stiffness from the same "
           "unit-load flexibility (cross-checks only)")
     for cid, rec in ref["cases"].items():
+        if rec["expected"] is None:
+            continue  # the mitre refusal control carries no values
         for form in ("F1", "F2"):
             w = compare(cases[cid], rec, form)
             for k, x in w.items():
@@ -280,7 +298,7 @@ def main(d):
         print("max normwise rel diff %-26s %s  (worst case %s)" % (k, format(overall[k][0], ".3e"), overall[k][1]))
     worst = (ZERO, "")
     for cid, c in cases.items():
-        if c["anchorD"] and c["tA"] and c["tD"] and D(c["dT"]) == 0 and not c["weight"] and "KINK" not in cid:
+        if c["anchorD"] and c["tA"] and c["tD"] and D(c["dT"]) == 0 and not c["weight"] and c["family"] not in ("KINK", "MITRE-REFUSAL"):
             x = thermal_analogue(c, ref["cases"][cid])
             if x > worst[0]:
                 worst = (x, cid)
