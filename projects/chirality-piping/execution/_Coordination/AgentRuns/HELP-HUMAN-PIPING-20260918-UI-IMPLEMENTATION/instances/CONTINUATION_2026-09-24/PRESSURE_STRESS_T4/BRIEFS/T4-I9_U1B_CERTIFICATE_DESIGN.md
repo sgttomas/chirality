@@ -1,0 +1,18 @@
+# T4-I9: T4-U1b's arc load-vector certificate, design for T3's agreement
+
+**Terms:** `R4/BRIEFS/T4_WI_COMMON.md`. Your ID is T4-I9.
+
+**Purpose.** Any uniform load on a realized arc (self-weight above all) is `CannotBound` in S11-G today, which demotes the case to Sensitive (`PP/src/formation_guard.rs:21,233-236`; test T15 at `PP/src/s11g_tests.rs:1747`). T3 accepted that loss because realized bends were opt-in; D-2 now makes them the only bend that carries pressure, so T4-U1b must give S11-G a certified formation defect for the arc's consistent load vectors (plan §3.1 "T4-U1b in detail"; RV1 B-1). T3 must agree the design before any code (T3's item 4 in `R4/T4_RULINGS.md`). You write that design.
+
+**Read:** plan §2 (P-D, SP-2), §3.1 (T4-U1, T4-U1b, T4-U2's bend-pressure bullet), §3.3, §5 (the T4-U1b row); RV1 B-1 and N-3; `R4/T4-RV1/ADDENDUM_01.md` (the re-formation's own error); I2 §1.1, §1.5, §1.6; T3's S11-G design `I/NUMERICAL_INTEGRITY_T3/DESIGN_NUMERICS/S11G_GUARD.md` and, in RR, "S11-G after V1's S11G_CHECK", "S11-G note revision 2: rulings…", "S11-G revision 2 after V1's delta check", "Selection: the S11-G design" and the K-D5 rulings (including "K-D5 mutation M31b…"); the code: `PP/src/formation_guard.rs`, FK's `load_ledger` (formation rows and term bounds), where PP forms arc load terms (CB's uniform-load equivalents and PP's curved thermal identity), and K-D5's Wide re-formation (`FK/src/structural/formation_check.rs`, `curved_matrix`, and `FK/src/structural/retained/wide.rs`).
+
+**The design must state:**
+1. **Scope.** Which arc load terms it certifies: uniform element loads (self-weight and other distributed loads) on arcs, and T4-U2's bend pressure term K_b·u_free(ε_p) − c_b, including ε_p's own rounding (RV1 N-3). Say how the already-bounded curved thermal identity relates.
+2. **The element it re-forms.** T4-U1's objective definition (from d, R, the plane normal; H from the actual chord; plan §3.1, I2 §1.6), not today's absolute centre and formula chord.
+3. **The method.** Re-form each certified vector from its inputs in Wide precision with the machinery K-D5 already uses; take the exact difference from the product's binary64 vector; add an upper bound on the re-formation's own error; that sum is the term's bound. Show it meets SF-2: cond(F) of the flexibility inversion, cancellation, and libm (the product's sin, cos, atan2 and sqrt; whether T4-U1 removes libm from the binary64 element, I2 §1.6). Give the bound's derivation, not just its form; say where an input defeats it and what then happens (it must stay `CannotBound`, never silently pass).
+4. **Where it plugs in.** The exact interface into the ledger's formation rows and `formation_guard`, without changing T3's priced layouts (`formation_guard::RecoveryRecord`, `preview_physics::MemberRecord`, the `Preview*` inputs), PP's `Cargo.lock`, or `preview_physics::LIMITATIONS` (T3's conditions). State its memory and run-time cost against the product's 12 GiB bound.
+5. **T15's new meaning** and every T3-owned test or site table it changes (the S11 site tables; Pass B, T9 and the both-entry gates apply to T4-U1b).
+6. **Validation** (plan §5): self-weight and other uniform loads on arcs at ordinary and UTM coordinates publish Passed with the defect within criterion; a perturbed vector is demoted; a vector without a certificate stays `CannotBound`; the mutants that must be killed.
+7. **SP-2 risk.** Any reason a pressurized bend with weight at ordinary coordinates might still not reach Passed after T4-U1 and T4-U1b; say so plainly.
+
+**Output.** `DESIGN.md` (at most about six pages, written for T3's WORKING_ITEMS and its reviewer) and a one-page `RETURN.md` with the open questions for T3.
