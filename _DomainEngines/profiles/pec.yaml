@@ -36,7 +36,7 @@ domain_profile:
     - "projects/pec/v2/**"
     - "projects/pec/software-workflow.json"
     - "projects/pec/chirality.project.json"
-    - "projects/pec/AGENTS.md"
+    - "projects/pec/loop/LOOP_INIT.md"
     - "projects/pec/docs/**"
     - "projects/pec/execution/_Decomposition/**"
     - "projects/pec/execution/_ScopeChange/**"

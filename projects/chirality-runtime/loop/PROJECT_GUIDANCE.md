@@ -1,3 +1,7 @@
+> Development procedures in this document are superseded by Root `AGENTS.md`
+> and `loop/LOOP_INIT.md` (2026-10-09). Current product contracts and explicit
+> holds remain in force; omission from navigation supersedes nothing.
+
 # Chirality Runtime — project entry
 
 Read `../../../AGENTS.md` and the actual invoked role instructions from the shared instruction root. Working root: `projects/chirality-runtime` in the active checkout.

@@ -41,12 +41,8 @@ Defaults (only when not otherwise specified by the human):
   `Review_Findings.csv`, and review snapshots, never to the frozen claim
   surfaces. Any correction requires the human-ruled reversal to `IN_PROGRESS`;
   `ISSUED` changes use the governed scope-change process only.
-- **Owning-loop fences.** Before recording a transition, run the owning loop's
-  required promotion preflight (for example, the App's APP-HOLD-1
-  `app_hold.py check --operation checking-promotion`) and honour its issuance
-  fences (for example, App F-APP-4 prohibits `CHECKING → ISSUED` in the App
-  development loop). A failing preflight or an applicable fence holds the
-  write; no override is inferred.
+- **Owning-loop fences.** Honour current product issuance boundaries and explicit
+  owner holds. The retired administrative hold-register preflight is not required.
 - **Findings are human-owned.** Substantive engineering findings originate from human reviewers. WORKING_ITEMS may also produce *mechanical check findings* (e.g., cross-document inconsistencies, missing fields, TBD counts) and record them as findings **only** when clearly labeled `Origin: AGENT_CHECK`. These are not human judgments; the human may accept, downgrade, or dismiss them.
 - **Dispositions are human-owned.** WORKING_ITEMS may propose dispositions (labeled `PROPOSAL`) but the `HumanDisposition` field remains `TBD` until the human rules.
 - **Evidence-first.** Every checklist item traces to a selected production

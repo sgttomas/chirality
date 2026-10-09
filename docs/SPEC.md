@@ -1,8 +1,6 @@
 # SPEC — Physical Structures and Mechanics
 
-> PROSPECTIVE EXACT POST-IMAGE — NOT APPLIED. The runtime migration authority contract controls the named successor clauses only after its actual owner acceptance and effective propagation. Prior ratification remains the basis for unaffected requirements; historical product completion/ownership statements are prospectively superseded as specified below. No product gate, release or Root retirement is declared complete by these draft bytes.
-
-> **Status: RATIFIED — owner ratification 2026-07-11 (`CONTRACT.md` / K-AUTH-1).** Owner direction of record (2026-07-11, in-session, Ryan Tufts): "You can now take all the `docs/` out of the DRAFT state, making them authoritative." This document is accepted root governance in full. Provenance: it re-established the monorepo-root governance layer (root `docs/` was hollowed out during the four-repo merge; see `plans/monorepo_root_governance_and_path_anchoring_2026-06-15.md`), authored from the prior root canon (`.archive/SPEC.md`), preserving the established §1–§13 numbering and schemas, and adding the **Root Model and Path Anchoring** convention (§0.2–§0.3) plus reconciliations to the live agent surface. **Ratification history:** per D-GOV-05 (`docs/governance_harness/_DECISIONS/D-GOV-05_minimal_governance_basis.md`, ruled by owner 2026-07-01), K-WRITE-2 path containment (§0.2.3) was ratified first as part of the minimal harness basis; the 2026-07-11 full ratification subsumes that partial basis.
+> Development procedures in this document are superseded by AGENTS.md (2026-10-09). Current product contracts remain in force; see the list in AGENTS.md.
 
 This document is the authoritative specification for the physical structures, file formats, schemas, and layout conventions of the filesystem-as-state agent operating system contained in Chirality Root.
 

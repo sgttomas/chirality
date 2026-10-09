@@ -1,28 +1,6 @@
 # Decomposition Standard
 
-> **Status: PROSPECTIVE CHIRALITY V3 AMENDMENT — implementation authorized by
-> the owner on 2026-09-09.** The owner approved implementing the named grouped
-> checkpoint design. These candidate bytes do not themselves constitute final
-> acceptance, downstream qualification, release, or project-loop adoption. Until
-> the prospective amendment is accepted through its governing closeout, the
-> D-GOV-14 edition at commit `ee35409f5cf3a81ecb29a271527156b991df97b9`
-> remains the ratified decomposition protocol.
->
-> **Owner-directed amendment D-GOV-47 (2026-09-26).** PROJECT and SOFTWARE
-> Package homes are required for IN atomic units only (OUT and TBD units stay
-> in the ledger with their `SourceRef` and no partition), and a small,
-> reversible PROJECT or SOFTWARE undertaking may present its three checkpoint
-> groups in one sitting under the conditions in PROTOCOL. In-flight
-> decompositions keep the edition they adopted; nothing is retrofitted.
-> The Package-home ruling (D-GOV-47 item 1) is superseded by D-GOV-48; the
-> combined review sitting stands.
->
-> **Owner-directed amendment D-GOV-48 (2026-09-26).** In PROJECT and SOFTWARE,
-> every atomic unit, whether IN, OUT or TBD, has exactly one Package home, as
-> the management manual states. Only IN units map to Deliverables; OUT and TBD
-> units keep their home for accountability and traceability. DOMAIN is
-> unchanged. In-flight decompositions keep the edition they adopted; nothing
-> is retrofitted.
+> Development procedures in this document are superseded by AGENTS.md (2026-10-09). Current product contracts remain in force; see the list in AGENTS.md.
 
 This normative document defines the invariant protocol, validity requirements,
 entity schemas, and required output sections shared by decomposition workflows

@@ -1,8 +1,6 @@
 # CONTRACT — Invariant Catalog
 
-> **Status: RATIFIED — owner ratification 2026-07-11 (K-AUTH-1).** Owner direction of record (2026-07-11, in-session, Ryan Tufts): "You can now take all the `docs/` out of the DRAFT state, making them authoritative." This document is accepted root governance in full. Provenance: it re-established the monorepo-root governance layer (root `docs/` was hollowed out during the four-repo merge; see `plans/monorepo_root_governance_and_path_anchoring_2026-06-15.md`), authored from the prior root canon (`.archive/CONTRACT.md`), reproducing the 21 established invariants verbatim and adding six: **K-WRITE-2** (ScopePath containment), **K-AGENTS-1** (the Chirality `AGENTS.md` contract), and **K-DOMAIN-1..4** (domain engine integration).
->
-> **Ratification history.** Per D-GOV-05 (docs/governance_harness/_DECISIONS/), ruled by the owner 2026-07-01, the **minimal harness basis** was ratified first: the source-of-truth rule, K-AUTH-1, K-AUTH-2, the generated-output rule, K-WRITE-2, K-PROV-1, K-STATUS-1, and the D-GOV-02 finding-severity taxonomy. The 2026-07-11 full ratification subsumes that partial basis; D-GOV-05 remains the ruling of record for the earlier partial state.
+> Development procedures in this document are superseded by AGENTS.md (2026-10-09). Current product contracts remain in force; see the list in AGENTS.md.
 
 This document is the authoritative catalog of binding invariants for Chirality Root and the agent operating system it contains.
 

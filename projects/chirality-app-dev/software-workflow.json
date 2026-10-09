@@ -3,42 +3,114 @@
   "project_root": ".",
   "workspace_root": "../..",
   "checks": {
-    "frontend-build": {"cwd": "frontend", "command": ["npm", "run", "build"]},
+    "frontend-build": {
+      "cwd": "frontend",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ]
+    },
     "frontend-premerge": {
       "cwd": "frontend",
-      "command": ["npm", "run", "harness:validate:premerge"],
+      "command": [
+        "npm",
+        "run",
+        "harness:validate:premerge"
+      ],
       "service": {
         "cwd": "frontend",
-        "command": ["node", "node_modules/next/dist/bin/next", "dev", "--port", "{port}"],
+        "command": [
+          "node",
+          "node_modules/next/dist/bin/next",
+          "dev",
+          "--port",
+          "{port}"
+        ],
         "port": "auto",
         "ready_url": "http://127.0.0.1:{port}",
         "env": {
           "CHIRALITY_HARNESS_PROVIDER": "stub",
           "NEXT_TELEMETRY_DISABLED": "1"
         },
-        "check_env": {"HARNESS_BASE_URL": "http://127.0.0.1:{port}"},
+        "check_env": {
+          "HARNESS_BASE_URL": "http://127.0.0.1:{port}"
+        },
         "startup_timeout_seconds": 90,
         "shutdown_timeout_seconds": 10
       }
     },
-    "frontend-test": {"cwd": "frontend", "command": ["npm", "test"]},
-    "frontend-typecheck": {"cwd": "frontend", "command": ["npm", "run", "typecheck"]},
-    "harness-pytest": {"cwd": "../..", "command": ["python3", "-m", "pytest", "-q", "tools/practitioner_harness"]},
-    "harness-self-check": {"cwd": "../..", "command": ["python3", "tools/practitioner_harness/harness.py", "self-check"]},
-    "app-hold-integrity": {
-      "cwd": ".",
+    "frontend-test": {
+      "cwd": "frontend",
+      "command": [
+        "npm",
+        "test"
+      ]
+    },
+    "frontend-typecheck": {
+      "cwd": "frontend",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ]
+    },
+    "harness-pytest": {
+      "cwd": "../..",
       "command": [
         "python3",
-        "execution/_Scripts/app_hold.py",
-        "scan",
-        "--require-register-match"
+        "-m",
+        "pytest",
+        "-q",
+        "tools/practitioner_harness"
+      ]
+    },
+    "harness-self-check": {
+      "cwd": "../..",
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
       ]
     }
   },
-  "always_checks": ["harness-self-check", "app-hold-integrity"],
+  "always_checks": [
+    "harness-self-check"
+  ],
   "path_rules": [
-    {"paths": ["frontend/src/**", "frontend/electron/**", "frontend/packages/**"], "checks": ["frontend-test", "frontend-typecheck"]},
-    {"paths": ["frontend/package.json", "frontend/package-lock.json", "frontend/next.config.mjs", "frontend/tsconfig*.json"], "checks": ["frontend-build", "frontend-typecheck"]},
-    {"paths": ["execution/**", "docs/**", "AGENTS.md", "loop/**"], "checks": ["harness-pytest"]}
+    {
+      "paths": [
+        "frontend/src/**",
+        "frontend/electron/**",
+        "frontend/packages/**"
+      ],
+      "checks": [
+        "frontend-test",
+        "frontend-typecheck"
+      ]
+    },
+    {
+      "paths": [
+        "frontend/package.json",
+        "frontend/package-lock.json",
+        "frontend/next.config.mjs",
+        "frontend/tsconfig*.json"
+      ],
+      "checks": [
+        "frontend-build",
+        "frontend-typecheck"
+      ]
+    },
+    {
+      "paths": [
+        "execution/**",
+        "docs/**",
+        "AGENTS.md",
+        "loop/**"
+      ],
+      "checks": [
+        "harness-pytest"
+      ]
+    }
   ]
 }

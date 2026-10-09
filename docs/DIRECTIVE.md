@@ -1,8 +1,6 @@
 # DIRECTIVE — Founding Intent, Scope, and Constraints
 
-> PROSPECTIVE EXACT POST-IMAGE — NOT APPLIED. The runtime migration authority contract controls the named successor clauses only after its actual owner acceptance and effective propagation. Prior ratification remains the basis for unaffected requirements; historical product completion/ownership statements are prospectively superseded as specified below. No product gate, release or Root retirement is declared complete by these draft bytes.
-
-> **Status: RATIFIED — owner ratification 2026-07-11 (`CONTRACT.md` / K-AUTH-1).** Owner direction of record (2026-07-11, in-session, Ryan Tufts): "You can now take all the `docs/` out of the DRAFT state, making them authoritative." This document is accepted root governance in full. Provenance: it re-established the monorepo-root governance layer (root `docs/` was hollowed out during the four-repo merge; see `plans/monorepo_root_governance_and_path_anchoring_2026-06-15.md`), authored from the prior root canon (`.archive/DIRECTIVE.md`), updated to the current merged-monorepo topology and the live instruction surface (`AGENTS.md`, `agents/`). **Ratification history:** per D-GOV-05 (`docs/governance_harness/_DECISIONS/D-GOV-05_minimal_governance_basis.md`, ruled by owner 2026-07-01), the source-of-truth and human-authority rules this directive expresses (§2.1, §2.3) were ratified first as the minimal harness basis; the 2026-07-11 full ratification subsumes that partial basis.
+> Development procedures in this document are superseded by AGENTS.md (2026-10-09). Current product contracts remain in force; see the list in AGENTS.md.
 
 This document captures the founding intent, design philosophy, and structural constraints of Chirality Root and the filesystem-native agent operating system it contains. It is the "why" document — the principles that govern all other governance documents, agent instructions, and operational decisions.
 

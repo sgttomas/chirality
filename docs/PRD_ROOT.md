@@ -1,95 +1,6 @@
 # Governance Requirements Charter — Chirality Root (retained PRD lineage)
 
-> **Owner merge-policy amendment — 2026-09-12.** D-8 and §5.3.1 below now
-> record standing Git authorization for `sgttomas/chirality`, approved by Ryan
-> Tufts in the HELP_HUMAN session and applied through this PR. This specific
-> amendment supersedes the earlier merge defaults and K-MERGE-1 wording;
-> it does not adopt the unrelated prospective migration clauses in this file.
-> Revision 8 control and earlier candidate records below describe their
-> historical bases, not the current merge-execution policy.
-
-> **Owner O-8 amendment — 2026-09-26.** O-8 in §5.2 below is revised to match
-> D-GOV-49 at the owner's direction ("PRD_ROOT item O-8 should be revised to
-> match D-GOV-49"), and N-5 carries the D-GOV-49 working-records exception
-> ("yes, approve the exception, including N-5"); no other requirement in this
-> file changes.
-
-> PROSPECTIVE EXACT POST-IMAGE — NOT APPLIED. The runtime migration authority contract controls the named successor clauses only after its actual owner acceptance and effective propagation. Prior ratification remains the basis for unaffected requirements; historical product completion/ownership statements are prospectively superseded as specified below. No product gate, release or Root retirement is declared complete by these draft bytes.
-
-> **Current status: ACCEPTED — Revision 8 is the current Root product
-> basis.** D-GOV-31 adopted the exact Revision 7 candidate on 2026-07-29;
-> the owner then simplified its merge-execution policy by direction recorded
-> in `execution/_Coordination/LOOP_RECEIPTS.md` Receipt 64, arriving through
-> PR review under the terminal-artifact rule (D-1). The Revision 8 policy
-> became effective at
-> `main@602dd71b8c123d8a47a36644db1453f515c0f778`.
->
-> **Revision 8 reconciliation limit (historical).** That status layer and
-> §10.5 reconciled document control only. They do not change any stable
-> commitment, provenance-origin label, scope item, objective, count, or
-> substantive requirement at that time. The 2026-09-12 amendment above now
-> supersedes D-8 and annex §5.3.1 for merge execution.
->
-> **Historical control preserved.** The following Revision 7 candidate-control
-> block is retained as proposal history. Its references to “this candidate,”
-> “current accepted product basis,” and pending adoption describe the state at
-> Revision 7 candidate drafting; they do not override the current Revision 8
-> status above or §10.5.
->
-> **Status: `ADOPTION-READY — adopted only by the instrument named below`.
-> Revision 7 amendment candidate (Candidate B — shared-CHANGE merge-gate scope).**
->
-> **Current accepted product basis.** Revision 6 was adopted by D-GOV-28.
-> Its placement copy is `docs/PRD_ROOT.md` at
-> `main@4f7808acb2802443370d045efa198152934c1674` (sha256
-> `0e36a03abc16b86f99024aa2a17c467ae7f4303f9740be3a6ba2e9dd1dfb2f2d`).
-> That accepted basis remains in force unless a later owner act adopts this
-> candidate.
->
-> **The adopting instrument** is D-GOV-31 using the exact-candidate-SHA
-> pattern. Per the D-GOV-28 precedent, the D-GOV-31 decision record is
-> created at adoption and carries any adopted status; this file never does.
-> File creation, validation, commit, Git transport, review, or an owner
-> selection between the two prepared candidates is not adoption. No
-> SCOPE_CHANGE gate is approved by this candidate.
->
-> **Minimal change envelope.** This candidate supersedes exactly one stable
-> commitment: the §5.3 D-8 row ("never self-merge") is replaced by a
-> successor merge-gate policy carried in the new annex §5.3.1, scoped
-> to the shared change-management (CHANGE) role across all registered loops, with the M6 notice obligation stated in the annex. Document control is reconciled to Rev 7. Every other
-> passage is byte-identical to the adopted Rev 6 placement copy; the exact
-> changed-line set is declared in this candidate's `POLICY_DELTA.md`.
->
-> **Authority and provenance.** This file confers no authority of its own
-> (K-AUTH-1). The successor D-8 policy alone is new; it is labeled PROPOSED
-> and takes effect only through an owner ruling in D-GOV-31 against this
-> exact candidate. Inherited Rev 5 and Rev 6 provenance labels are retained
-> without retroactive relabeling; TRANSCRIBED passages remain warranted only
-> by their cited sources. Nothing here claims retroactive cure of any
-> historical act.
->
-> **InheritedSourceCorpusBasis:** `main@7ac718c7e` — the Rev 5 source corpus
-> against which its inherited provenance labels were authored and reviewed.
-> **Rev6AmendmentBasis:**
-> `main@918bb48b8fcee66c031d0d6d4040a46089f96067` — retained basis for every
-> sentence introduced or textually changed by Rev 6.
-> **Rev7AmendmentBasis:**
-> `main@4f7808acb2802443370d045efa198152934c1674` — the basis for every
-> sentence introduced or textually changed by this amendment.
-> **SourceCorpusBasis (composite):**
-> `Inherited=main@7ac718c7e; Rev6Amendment=main@918bb48b8fcee66c031d0d6d4040a46089f96067; Rev7Amendment=main@4f7808acb2802443370d045efa198152934c1674`.
-> This named composite is the Rev 7 D-14 source basis paired with the
-> containing candidate commit; the component fields preserve which
-> population was checked where.
-> **Revision history:** Rev 1 `f15d51277`; Rev 2 `a72c2cd06`; Rev 3
-> `f9d33fcd9`; Rev 4 `ae5a476f4`; Rev 5 adopted by D-GOV-22, candidate
-> `d9ea86f88504cb8d859a4cf3f042bac00d38fe57`, accepted-candidate
-> `90fae458bf485412e9c3a6295df193eb323c9774`; Rev 6 adopted by D-GOV-28,
-> accepted-candidate `f78a83621cbd679e6af2c41199845aca74073480`, subject
-> sha256 `0e36a03abc16b86f99024aa2a17c467ae7f4303f9740be3a6ba2e9dd1dfb2f2d`.
-> This Rev 7 candidate is attributable to its eventual containing commit; it
-> asserts no SHA for itself.
-> **Date:** 2026-07-29
+> Development procedures in this document are superseded by AGENTS.md (2026-10-09). Current product contracts remain in force; see the list in AGENTS.md.
 
 ---
 
@@ -470,7 +381,7 @@ owner as a new proposal.
 | **D-5** | Validation is deterministic and severity-typed (BLOCK / REVIEW / WARN / INFO / NOT_APPLICABLE, with exit-code semantics and human-only recorded BLOCK override); "BLOCK" never means globally proven safe or unsafe; and a validator finding may **never** mechanically reject content the owner has ruled — where ruled text trips a validator, the validator is defective. | TRANSCRIBED — D-GOV-02; D-GOV-17; `docs/CONTRACT.md` §1.7 note |
 | **D-6** | Phase-crossing work is bound by the governance integration rules — derivative-package, snapshot, handoff-state, closure, sequencing, cycle-resolution, and change-notice routing. **Incorporated by reference** to `AGENTS.md` §Governance Integration Rules. | TRANSCRIBED — `AGENTS.md`; `docs/DIRECTIVE.md` §2.7 |
 | **D-7** | Root governance runs through its session-init contract, deterministic intent-plan pointer and append-only receipts. Coordination records do not acquire authority from existence. Current owner steers and accepted instruments govern; discrepancies are recorded. The runtime project maintains its own accepted product entry and evidence. | PROSPECTIVE — exact runtime migration successor; inactive until accepted effect |
-| **D-8** | Current and subsequent agents may commit, push, open/update PRs, and merge authorized work under the owner's standing Git grant in §5.3.1 and K-MERGE-1. Required CI and independent review cover the actual candidate; explicit holds and later directions prevail. Git integration grants no governed acceptance or product release. | Owner amendment 2026-09-12; supersedes earlier per-merge defaults across registered loops; prior D-GOV-31/Revision 8 records remain historical. |
+| **D-8** | Git operations and merge conditions follow [Root AGENTS.md's standing Git grant](../AGENTS.md#standing-git-grant), including verification proportionate to consequence, required checks on the actual head, and independent scrutiny where specified. Explicit holds and reserved decisions prevail. | Superseded by the owner-approved efficiency reset (2026-10-09); §5.3.1 points to the same grant. |
 | **D-9** | The decomposition pipeline is not waivable: packages and deliverables come only from an accepted decomposition. Nothing authorizes inventing packages from discussion. | TRANSCRIBED — D-GOV-21 packet §4 |
 | **D-10** | The public-export boundary is an explicit allowlist profile that copies allowlisted content, sanitizes private absolute paths, writes a manifest and report, and fails on forbidden paths or leaks. **The profile is the boundary contract and is incorporated by reference**; membership is not restated here. | TRANSCRIBED — `exports/chirality-app/export_public.py`; K-EXPORT-1 |
 | **D-11** | A tranche changing surfaces that downstream loops pin or mirror ships a routed coordination notice to each affected loop in the same tranche. The notice is coordination, not authority: the receiving loop adopts, amends, or declines under its own instruments. | TRANSCRIBED — `AGENTS.md` change-notice rule; D-GOV-21 M6 |
@@ -489,51 +400,7 @@ and this run's record stays valid, and no future commitment may reuse `D-3`.
 
 #### 5.3.1 Merge-gate policy — the D-8 successor
 
-**Owner standing authorization, 2026-09-12.** Ryan Tufts approved the
-following policy in the HELP_HUMAN session and directed its implementation,
-independent review, applicable checks, and PR merge under this authorization.
-The owner's approving message was: "I approve this. Will you carry out the
-changes and open a PR and merge as now intended?" The policy and ordinary PR
-history are the durable record; no separate approval registry is required.
-
-For `sgttomas/chirality`, current and subsequent agents have standing
-authorization to commit, push, create and update pull requests, and merge work
-within the scope the owner has authorized, without requesting separate approval
-for each Git operation. This replaces earlier per-merge approval defaults in
-Root and project-local instructions across the repository. Existing explicit
-holds and later owner directions take precedence. It does not authorize work
-outside the assigned scope.
-
-**Candidate and review.** Merge when required CI passes and independent review
-has no unresolved blocking findings. The reviewer must be separate from the
-author. Review and validation must cover the actual candidate revision;
-changes after review require reassessment of the affected checks. Verify the
-source HEAD when merging. A passing rerun does not establish that a previously
-identified defect was repaired. Preserve the review, check results, source
-revision, and resulting merge in ordinary PR/Git history rather than another
-receipt chain or approval-token scheme.
-
-**Acting on the owner's behalf.** Use the owner's configured Git and GitHub
-credentials. Push through the configured SSH remote where available; merge PRs
-through GitHub using the owner's authenticated account, ordinarily via the
-GitHub CLI or API. This grants no authority to change repository protections
-or account permissions. Preserve truthful commit authorship and agent
-attribution. Acting as the owner's authorized agent does not mean the owner
-personally reviewed the changes; do not describe agent review as personal
-owner approval.
-
-**Boundaries.** This is conditional standing authorization for Git integration,
-not acceptance of future governed content. K-AUTH-1/2 continue to govern human
-acceptance and its binding to the accepted content. The grant permits no scope
-expansion, bypass of repository protections, acceptance of governed deliverables
-on the owner's behalf, product release or publishing, force push, or history
-rewrite. Required semantic decisions remain with their owning workflows and
-the human. Ordinary implementation and Git closeout within authorized scope do
-not require another owner confirmation.
-
-Historical exact-action approvals and their records remain valid for the acts
-they describe. Their SHA fields and token conventions are not a required format
-for future execution under this standing grant.
+The current standing Git grant is [AGENTS.md §Standing Git grant](../AGENTS.md#standing-git-grant). It supersedes the earlier D-8 merge defaults, including blanket independent review. Verification is proportionate to consequences; required checks still cover the exact head. Git integration does not imply owner review, acceptance of a deliverable, or product release.
 
 ### 5.4 Evidence
 

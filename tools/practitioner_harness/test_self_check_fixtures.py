@@ -390,62 +390,6 @@ def test_gen2_backtick_quoted_tbd_is_not_a_finding(tmp_path):
     assert hits[0].severity is Severity.REVIEW
 
 
-def test_gen10_latest_receipt_requires_canonical_labels(tmp_path):
-    repo = build_mini_repo(tmp_path)
-    receipts = repo / "_DomainEngines" / "bridge" / "LOOP_RECEIPTS.md"
-    _write(
-        receipts,
-        "# Bridge Loop Receipts\n\n"
-        "## Receipts\n\n"
-        "- **2026-07-03 - Receipt 1**\n"
-        "  - Owner directions of record: pluralized fixture direction.\n"
-        "  - Gate outcome: fixture gate.\n"
-        "  - Parked lanes: PR #42.\n",
-    )
-
-    report, refusal = cmd_self_check.run_self_check(repo)
-
-    assert refusal is None
-    hit = _has(
-        report,
-        "RECEIPT_STRUCTURE_LABEL_MISSING",
-        "_DomainEngines/bridge/LOOP_RECEIPTS.md",
-        5,
-        Severity.WARN,
-    )
-    assert "Owner direction of record" in hit.message
-
-
-def test_gen10_receipt_only_lane_without_carry_forward_or_retirement(tmp_path):
-    repo = build_mini_repo(tmp_path)
-    receipts = repo / "_DomainEngines" / "bridge" / "LOOP_RECEIPTS.md"
-    _write(
-        receipts,
-        "# Bridge Loop Receipts\n\n"
-        "## Receipts\n\n"
-        "- **2026-07-02 - Receipt 0**\n"
-        "  - Owner direction of record: fixture direction.\n"
-        "  - Gate outcome: fixture gate.\n"
-        "  - Parked lanes: PR #41.\n"
-        "- **2026-07-03 - Receipt 1**\n"
-        "  - Owner direction of record: fixture direction.\n"
-        "  - Gate outcome: fixture gate.\n"
-        "  - Parked lanes: unanchored fixture lane.\n",
-    )
-
-    report, refusal = cmd_self_check.run_self_check(repo)
-
-    assert refusal is None
-    hit = _has(
-        report,
-        "PARKED_LANE_RECEIPT_ONLY",
-        "_DomainEngines/bridge/LOOP_RECEIPTS.md",
-        12,
-        Severity.REVIEW,
-    )
-    assert "unanchored fixture lane" in hit.message
-
-
 def test_de_live_binding_gate_line_reports_resolved_named_gates(tmp_path):
     repo = build_mini_repo(tmp_path)
     profile = repo / "_DomainEngines" / "profiles" / "open_pipe_stress.DRAFT.yaml"
@@ -582,37 +526,3 @@ def test_gen5_pec_project_relative_refs_resolve(tmp_path):
             if f.source_path.endswith("_REGISTER.md")]
 
     assert all("docs/STATUS.md" not in hit.message for hit in hits)
-
-
-def test_gen11_piping_receipt_validator_failure_is_blocking(tmp_path):
-    repo = tmp_path / "repo"
-    piping = repo / "projects" / "chirality-piping"
-    _write(piping / "loop" / "LOOP_RECEIPTS.md", "# fixture ledger\n")
-    _write(
-        repo / "tools" / "validation" / "validate_piping_loop_receipts.py",
-        "print('INVALID FIXTURE: receipt contract failed')\n"
-        "raise SystemExit(1)\n",
-    )
-
-    report, _ = cmd_self_check.run_self_check(repo, root_filter=piping)
-    hits = _findings(report, "PIPING_RECEIPT_CONTRACT")
-    assert len(hits) == 1
-    assert hits[0].severity == Severity.BLOCK
-    assert "INVALID FIXTURE" in hits[0].message
-
-
-def test_gen12_app_dev_receipt_validator_failure_is_blocking(tmp_path):
-    repo = tmp_path / "repo"
-    app_dev = repo / "projects" / "chirality-app-dev"
-    _write(app_dev / "loop" / "LOOP_RECEIPTS.md", "# fixture ledger\n")
-    _write(
-        repo / "tools" / "validation" / "validate_app_dev_loop_receipts.py",
-        "print('INVALID FIXTURE: app-dev receipt contract failed')\n"
-        "raise SystemExit(1)\n",
-    )
-
-    report, _ = cmd_self_check.run_self_check(repo, root_filter=app_dev)
-    hits = _findings(report, "APP_DEV_RECEIPT_CONTRACT")
-    assert len(hits) == 1
-    assert hits[0].severity == Severity.BLOCK
-    assert "INVALID FIXTURE" in hits[0].message

@@ -16,10 +16,7 @@ date-in-filename where the naming convention allows the comparison),
 (i) project-tree machine-absolute-path lint (SPEC §0.2.4: per-file findings
 on instruction-class project surfaces; detect, never rewrite), and
 (j) agent-registry currency (K-AGENTS-1: `AGENTS.md` file tokens vs live
-`agents/` files, both directions), (k) bridge-receipt structure /
-parked-lane carry-forward checks for the bridge loop (GEN-10), and (l) the
-D-44 / DEC-075 piping-loop receipt contract (GEN-11), and (m) the D-APP-57
-app-dev-loop receipt contract (GEN-12).
+`agents/` files, both directions), and claims-language checks. Receipt validation has been retired.
 
 All checks are read-only observations. Which surface is right is a human
 call; findings are REVIEW/WARN/INFO by these checks' own severity design
@@ -39,10 +36,6 @@ Scope notes (v1):
 - GEN-9 observation boundary (v1): file tokens only (backticked
   `AGENT_*.md` spans in `AGENTS.md`); role-name narrative mentions (e.g. a
   bare DELIVERABLE_TASK word in prose) are outside the boundary.
-- GEN-10 observation boundary (v1): latest bridge receipt only, with the
-  prior receipt used only for parked-lane carry-forward comparison. Detects
-  canonical bullet labels and whether parked-lane tokens carry forward,
-  resolve to a structural home, or self-retire in the latest receipt.
 - Nothing under `_harness_generated/` is read as input, except the GEN-3
   labeling check of that directory itself.
 """
@@ -77,7 +70,6 @@ from harness_common import (
     identity_refusal_message,
     load_human_actors,
     make_finding,
-    ratification_labels_map,
 )
 
 STALE_ANNOTATION_RE = re.compile(r"PROPOSAL; HumanRuling\s*[:=]\s*TBD")
@@ -237,7 +229,6 @@ def run_self_check(
 
     identity_refusal: str | None = None
 
-    _add_loop_receipt_contract_findings(report, repo_root, scope)
     _add_claims_language_findings(report, repo_root, scope)
 
     # ----- Domain-engine control-area checks (DE-1..7) -----
@@ -472,7 +463,6 @@ def run_self_check(
                         _rel(rec, repo_root), idx, invariant="K-STALE-2"))
 
         _add_live_binding_gate_findings(report, repo_root)
-        _add_bridge_receipt_findings(report, repo_root)
 
     # ----- GEN-1 absolute-path leak (control areas; SPEC §0.2.4) -----
     for croot in control_roots:
@@ -541,8 +531,8 @@ def run_self_check(
                     _rel(path, repo_root), None, invariant="GENERATED_OUTPUT",
                     local_technical=True))
 
-    # ----- GEN-4 root governance status (INFO facts, not findings) -----
-    report.md("## Root governance status (self-declared; INFO facts)")
+    # ----- GEN-4 Root document headers (INFO facts, not authority) -----
+    report.md("## Root document headers (observed; INFO facts)")
     report.md("")
     for name in ("DIRECTIVE.md", "CONTRACT.md", "SPEC.md", "TYPES.md"):
         path = repo_root / "docs" / name
@@ -555,7 +545,9 @@ def run_self_check(
         quoted = ""
         line_no = None
         for idx, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
-            if re.search(r"\*\*Status:", line) or re.match(r"^>?\s*Status:", line):
+            if ("Development procedures in this document are superseded" in line
+                    or "Reference and history; not binding" in line
+                    or re.search(r"\*\*Status:", line) or re.match(r"^>?\s*Status:", line)):
                 quoted = line.strip()
                 line_no = idx
                 break
@@ -563,23 +555,14 @@ def run_self_check(
             quoted = quoted[:220] + " …[truncated]"
         report.md(f"- `docs/{name}`"
                   + (f" (line {line_no})" if line_no else "")
-                  + f": {quoted or 'no self-declared Status line found'}")
+                  + f": {quoted or 'no current header or legacy Status line found'}")
         report.add_fact(SourcedFact(
             fact_id=f"root_governance.{name}",
-            value=quoted or "no self-declared Status line found",
+            value=quoted or "no current header or legacy Status line found",
             source_path=f"docs/{name}",
             source_hint=f"line {line_no}" if line_no else "",
             authority_status="self-declared", parse_status="PARSED" if quoted else "UNPARSEABLE",
             caveat="Quoted verbatim (truncated); the source file governs."))
-    report.add_fact(SourcedFact(
-        fact_id="root_governance.ratification_map",
-        value="; ".join(f"{k}={v}" for k, v in sorted(ratification_labels_map().items())),
-        source_path="docs/CONTRACT.md",
-        source_hint="status block (owner ratification 2026-07-11)",
-        authority_status="governed_committed", parse_status="PARSED",
-        caveat="D-GOV-05 (ruled 2026-07-01) is the record of the earlier "
-               "partial basis, subsumed by the 2026-07-11 full ratification."))
-
     # ----- GEN-5 unresolved source refs (control files only in v1) -----
     gen5_files: list[Path] = []
     for croot in control_roots:
@@ -918,101 +901,10 @@ def run_self_check(
         "historical exceptions + semantic invariants), "
         "GEN-9 (agent-registry currency: AGENTS.md file tokens vs live "
         "agents/ files, both directions), "
-        "GEN-10 (bridge receipt labels + parked-lane carry-forward), "
-        "GEN-11 (D-44 piping receipt contract), "
-        "GEN-12 (D-APP-57 app-dev receipt contract), "
         "GEN-13 (claims-language DEC-081)")
     if identity_refusal:
         report.summary["identity_refusal"] = identity_refusal
     return report, identity_refusal
-
-
-def _add_loop_receipt_contract_findings(
-    report: Report,
-    repo_root: Path,
-    scope: list[Path],
-) -> None:
-    contracts = (
-        {
-            "project_root": repo_root / "projects" / "chirality-piping",
-            "validator": "validate_piping_loop_receipts.py",
-            "missing_code": "PIPING_RECEIPT_VALIDATOR_MISSING",
-            "invalid_code": "PIPING_RECEIPT_CONTRACT",
-            "operational_code": "PIPING_RECEIPT_VALIDATOR_OPERATIONAL",
-            "basis": "D-44 / DEC-075",
-            "invariant": "DEC-075",
-        },
-        {
-            "project_root": repo_root / "projects" / "chirality-app-dev",
-            "validator": "validate_app_dev_loop_receipts.py",
-            "missing_code": "APP_DEV_RECEIPT_VALIDATOR_MISSING",
-            "invalid_code": "APP_DEV_RECEIPT_CONTRACT",
-            "operational_code": "APP_DEV_RECEIPT_VALIDATOR_OPERATIONAL",
-            "basis": "D-APP-57",
-            "invariant": "D-APP-57",
-        },
-    )
-
-    for config in contracts:
-        project_root = config["project_root"]
-        receipts = project_root / "loop" / "LOOP_RECEIPTS.md"
-        if not receipts.is_file() or _narrow(project_root, scope) is None:
-            continue
-
-        validator = (
-            repo_root / "tools" / "validation" / config["validator"]
-        )
-        rel_receipts = _rel(receipts, repo_root)
-        if not validator.is_file():
-            report.add_finding(make_finding(
-                Severity.BLOCK,
-                config["missing_code"],
-                "receipt-contract",
-                f"{config['basis']} receipt ledger exists but its "
-                "deterministic validator is absent.",
-                rel_receipts,
-                None,
-                invariant=config["invariant"],
-            ))
-            continue
-
-        completed = subprocess.run(
-            [
-                sys.executable,
-                str(validator),
-                "--repo-root",
-                str(repo_root),
-                "--receipts",
-                str(receipts),
-            ],
-            capture_output=True,
-            text=True,
-            check=False,
-        )
-        if completed.returncode == 0:
-            continue
-
-        output = " ".join(
-            part.strip()
-            for part in (completed.stdout, completed.stderr)
-            if part.strip()
-        )
-        if len(output) > 1200:
-            output = output[:1200] + " …[truncated]"
-        code = (
-            config["invalid_code"]
-            if completed.returncode == 1
-            else config["operational_code"]
-        )
-        report.add_finding(make_finding(
-            Severity.BLOCK,
-            code,
-            "receipt-contract",
-            output or f"receipt validator exited {completed.returncode}",
-            rel_receipts,
-            None,
-            invariant=config["invariant"],
-        ))
 
 
 def _add_claims_language_findings(
@@ -1104,76 +996,6 @@ def _add_live_binding_gate_findings(report: Report, repo_root: Path) -> None:
         profile.live_binding_line_no,
         invariant="K-STALE-2",
     ))
-
-
-def _add_bridge_receipt_findings(report: Report, repo_root: Path) -> None:
-    receipts = cmd_bridge_status._receipt_summaries(repo_root)
-    if not receipts:
-        return
-    latest = receipts[-1]
-    missing = cmd_bridge_status._receipt_missing_labels(latest)
-    if missing:
-        report.add_finding(make_finding(
-            Severity.WARN,
-            "RECEIPT_STRUCTURE_LABEL_MISSING",
-            "staleness",
-            "Latest bridge receipt lacks canonical bullet label(s): "
-            + ", ".join(missing)
-            + ". Exact labels are part of the bridge handoff protocol because "
-              "generated views parse them mechanically.",
-            latest.source_path,
-            latest.line,
-            invariant="K-STALE-2",
-        ))
-
-    rows = cmd_bridge_status._all_register_rows(repo_root)
-    briefs, refusal = cmd_bridge_status._brief_records(repo_root)
-    if refusal is not None:
-        briefs = []
-    latest_lanes = cmd_bridge_status._parked_lane_records(repo_root, latest, rows, briefs)
-    previous_lanes = (
-        cmd_bridge_status._parked_lane_records(repo_root, receipts[-2], rows, briefs)
-        if len(receipts) >= 2 else []
-    )
-    previous_text = {lane.lane.lower() for lane in previous_lanes}
-    latest_receipt_text = " ".join(b.text for b in latest.bullets).lower()
-    retired_re = re.compile(r"\b(retired|closed|done|executed|merged|superseded)\b")
-    for lane in latest_lanes:
-        if lane.anchor_status == "anchored":
-            continue
-        if lane.lane.lower() in previous_text:
-            continue
-        if retired_re.search(lane.lane.lower()):
-            continue
-        report.add_finding(make_finding(
-            Severity.REVIEW,
-            "PARKED_LANE_RECEIPT_ONLY",
-            "staleness",
-            "Latest parked-lane token is receipt-only: "
-            f"{lane.lane!r}. It does not recur verbatim from the previous "
-            "receipt, resolve to a parsed register/brief/PR pointer, or state "
-            "a retirement reason; human review required.",
-            lane.source_path,
-            lane.line,
-            invariant="K-STALE-2",
-        ))
-    for lane in previous_lanes:
-        if lane.anchor_status == "anchored":
-            continue
-        token = lane.lane.lower()
-        if token in latest_receipt_text:
-            continue
-        report.add_finding(make_finding(
-            Severity.REVIEW,
-            "PARKED_LANE_DROPPED",
-            "staleness",
-            "Previous receipt-only parked-lane token is absent from the latest "
-            f"receipt without a parsed structural home or retirement note: "
-            f"{lane.lane!r}. Human review required.",
-            latest.source_path,
-            latest.line,
-            invariant="K-STALE-2",
-        ))
 
 
 def _search_outside_backticks(

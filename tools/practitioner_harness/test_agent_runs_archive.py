@@ -37,9 +37,9 @@ def test_index_entries_outside_run_records_never_resolve(tmp_path):
     index.parent.mkdir(parents=True)
     index.write_text(json.dumps({'archives': [{'tag': 'archive/t', 'runs': [
         'docs', 'execution/PKG-01', 'execution/_Coordination/AgentRuns/../../PKG-01', 'execution/_Coordination/AgentRuns/'],
-        'files': ['execution/_harness/root_guards.yaml', 'execution/_Coordination/AgentRuns/R/t.zip']}]}))
+        'files': ['tools/config/example.yaml', 'execution/_Coordination/AgentRuns/R/t.zip']}]}))
     agent_runs_archive._entries.cache_clear()
-    for path in ['docs/SPEC.md', 'execution/PKG-01/x.md', 'execution/_harness/root_guards.yaml',
+    for path in ['docs/SPEC.md', 'execution/PKG-01/x.md', 'tools/config/example.yaml',
                  'execution/_Coordination/AgentRuns/OTHER/x.md']:
         assert archive_tag(tmp_path, path) is None, path
     assert archive_tag(tmp_path, 'execution/_Coordination/AgentRuns/R/t.zip') == 'archive/t'

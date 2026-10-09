@@ -6,6 +6,10 @@ created: 2026-07-04
 amended: 2026-09-26 (Remaining retirement under D-PEC-99; earlier, SCA-006 operational-reliance instruction tranche and shared development-loop adoption under D-PEC-94)
 ---
 
+> Development procedures in this document are superseded by Root `AGENTS.md`
+> and `loop/LOOP_INIT.md` (2026-10-09). Current product contracts and explicit
+> holds remain in force; omission from navigation supersedes nothing.
+
 # AGENTS - PEC Agent Index
 
 This file maps the root Chirality agent framework onto PEC work. It does not

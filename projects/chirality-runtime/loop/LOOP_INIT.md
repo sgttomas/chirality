@@ -1,36 +1,14 @@
-# Runtime project — loop entry
+# chirality-runtime development entry
 
-Paths are project-relative except commands and explicitly repository-relative references.
+Work in `projects/chirality-runtime` relative to the repository root. Read Root
+`AGENTS.md`, the assigned role and `docs/PRD_AUTHORITY.md` and `docs/PRD.md`. The current objective comes from
+the init prompt and owner steering; this entry selects no standing backlog.
+Consult only affected ScopeOfWork, Design, dependencies and code. Existing
+folder structure and dependency formats remain until a separately authorized
+migration. Use `coordinated-knowledge-work` for coordination when useful.
 
-## Map
+Runtime owns its product scope; shared instructions and tools belong to Root, and client integration to its project. Operational registration, credentials, acceptance and release require their actual owner decisions.
 
-Read shared `../../AGENTS.md` and the actual invoked role. Discover current authority at `execution/_Coordination/MIGRATION_ACCEPTANCE_2026-09-06.md`, then `docs/PRD_AUTHORITY.md`, `docs/PRD.md` and `execution/_Decomposition/_AUTHORITY.md`. Use `execution/_Coordination/HANDOFF_STATE.md` and the newest `loop/LOOP_RECEIPTS.md` entry for continuity; historical payload labels do not override later owner acts.
-
-Read `loop/PROJECT_GUIDANCE.md` in full before any project operation.
-
-The work surface is the accepted seven-carrier register in `execution/_Decomposition/RUNTIME_DELIVERABLE_REGISTER.csv` and each carrier's `ScopeOfWork.md`, `_STATUS.md` Remaining and `Dependencies.csv`. Discover declared coordination at `execution/_Coordination/_COORDINATION.md` and held gates at `execution/_Decomposition/HOLD_SUCCESSOR_MAP.csv`. No workplan or inferred DAG priority is selected here.
-
-## Limits
-
-Use only the current brief's authorized scope. Read the deliverable's activation requirements before production dispatch. A migration, initialized status or passing test does not activate work or release a hold. Preserve accepted historical evidence, `root-runtime-1` epoch 1 and the separate R16-B disposition. Shared instruction/tool changes route to Root; sibling changes route to their owning sessions. No operational account/state or release act is implied.
-
-## Step 0 and first return
-
-From the checkout, refresh remote references and run discovery:
-
-```sh
-REPO_ROOT=$(git rev-parse --show-toplevel)
-cd "$REPO_ROOT"
-git fetch origin
-git status --short --branch
-git rev-parse HEAD origin/main
-git rev-list --left-right --count HEAD...origin/main
-python3 tools/practitioner_harness/harness.py status --project runtime
-python3 tools/practitioner_harness/harness.py drift --project runtime
-rg -n '^#|^##|^###' projects/chirality-runtime/loop/LOOP_RECEIPTS.md
-rg -n 'Current State|Remaining|Depends|HELD' projects/chirality-runtime/execution/PKG-*/1_Working/DEL-*/_STATUS.md
-```
-
-First return: branch/main divergence and local changes; accepted authority and effective-state evidence; current lifecycle/holds; the exact authorized task and its read/write limits; available checks and unresolved prerequisites; next lawful manager action. If no applicable activation exists, distinguish authorized readiness preparation from blocked production rather than inventing an execution queue.
-
-Record actual checks and a durable project handoff under the governing run's closeout contract, with truthful model and role attribution. Human acceptance remains an owner act; agents may execute Git merges under Root `docs/PRD_ROOT.md` §5.3.1's standing owner authorization after required CI and independent review cover the actual candidate with no blocking findings. Explicit holds and later owner directions prevail. Receipt prose is evidence; no Runtime receipt validator or automatic receipt-format enforcement is claimed.
+No routine run records, receipts, notices, handoff chains, MEMORY entries or
+lifecycle updates are required. Decisions edit their current source; the PR is
+the change record. Explicit holds and reserved decisions remain effective.
