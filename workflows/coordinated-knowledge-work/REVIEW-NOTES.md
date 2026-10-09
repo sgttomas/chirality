@@ -67,12 +67,12 @@ A source correction invalidates one argument but leaves another's independent wa
 
 ## Read-through: returns routed past the coordinator
 
-In a 2026-10-09 numerical-integrity undertaking, Agent 0 commissioned two WORKING_ITEMS managers as background subagents on a host that ends a delegated run when its turn ends. Reports from contributors that finished after their manager's turn had ended went to Agent 0 instead (7 of 11 such cases). When the manager was still mid-turn, the report reached it in 33 of 34. Agent 0 then relayed each return in full, becoming the approval-style stop the method warns against. In trials, blocking dispatch, batched for parallelism, kept every report with its manager across chained batches. The method's guidance now covers this; the role files carry the host rule.
+In a 2026-10-09 numerical-integrity undertaking, Agent 0 commissioned two WORKING_ITEMS managers as background subagents on a host that ends a delegated run when its turn ends. Reports from contributors that finished after their manager's turn had ended went to Agent 0 instead (7 of 11 such cases). When the manager was still mid-turn, the report reached it in 33 of 34. Agent 0 then relayed each return in full, becoming an intermediate stop in every exchange, which the method warns against. In trials, blocking dispatch, batched for parallelism, kept every report with its manager across chained batches. The method's guidance now covers this; the role files carry the host rule.
 
 The same undertaking supplied three application lessons the method already covered:
 - **Coordination.** Agent 0 held integration until the human pointed it out. The roles paragraph's test ("while it can sustain both") was not applied.
 - **Consumption.** Reference fixtures were frozen and refuted by reading code. An independent refutation then found that the product's own validation refused one of them outright. A cheap admission run through the actual consumer (§1) would have exposed it at once.
-- **Diagnosis.** A contributor waiting behind a two-hour exclusive host lock was reported as lost (§4.2).
+- **Diagnosis.** A contributor waiting behind a two-hour exclusive host lock was reported as lost (§4, question 2).
 
 ## What would validate the method further
 
