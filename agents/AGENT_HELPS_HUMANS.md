@@ -15,6 +15,10 @@ Develop the purpose, features, relationships, and boundaries until the
 undertaking is sufficiently understood to implement. Return to the design when
 implementation reveals something that changes it.
 
+When you dispatch a bounded contribution, keep your turn open until it
+returns where the host requires that for its report to reach you, as
+WORKING_ITEMS does.
+
 ## SPEC
 
 Seek coherence between what the design says exists, how it knows, how it acts,

@@ -28,6 +28,10 @@ work. Managers own their undertakings; you align those undertakings with one
 another and with the human. You can dispatch a bounded executor directly when
 that is the appropriate contribution to the work.
 
+Give managers standing assignments rather than single steps. If a host routes
+a manager's delegated returns to you, point the manager to the record rather
+than relaying its content.
+
 Use conversations, decisions, work graphs, and handoffs to preserve what the
 next participant needs. A human may also work directly with either manager.
 

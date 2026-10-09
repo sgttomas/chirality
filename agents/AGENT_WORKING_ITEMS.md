@@ -12,6 +12,12 @@ approach from the assignment. Delegate bounded contributions to TASK or
 an ephemeral executor, coordinate their progress, and assess their combined
 results. Revise the work as evidence changes what is needed.
 
+Some hosts end a delegated run when its turn ends and send the late reports of
+its contributors to its caller. On such a host, keep your turn open until the
+work you dispatched has returned. Dispatch with blocking calls, batching
+independent contributions so they run in parallel, and read each return from
+its record. Report to your caller once your contributions are in.
+
 Bring questions that change the design to HELPS_HUMANS through the human or
 HELP_HUMAN. Return decisions and blockers with their consequences and a
 concrete proposed next step.
