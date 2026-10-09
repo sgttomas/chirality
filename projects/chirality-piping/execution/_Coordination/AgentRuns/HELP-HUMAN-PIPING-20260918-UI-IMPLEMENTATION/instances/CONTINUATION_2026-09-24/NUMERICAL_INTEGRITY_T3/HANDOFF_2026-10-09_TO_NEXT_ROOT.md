@@ -55,7 +55,7 @@ This note is for the owner's next session only. It is not a standing record and 
   - T3's RV131 also says K2 does not meet the conditioning condition (its B-1), and K1 meets the requirement only if it is accurate at φ = 1e-8.
   - RV131 also confirms O4: long, nearly straight bends (φ ≤ 2e-9) falsely demote in K-D5. T3's remedy is the stable form 1 − cos φ = 2s² in K-D5. M31b0's equivalence needs K-D5's inputs to become (R, y) (N-2), and the derivation needs its numerical paragraph corrected (N-1).
   - The small-angle stable form is settled, with its stop rule. T4-U1's brief carries D-B, D-I, the stable form, K1 and K2, and O4–O6.
-- **T4-U1b.** The design is in `T4-I9/`. T3's RV129 had a draft at handoff: PASS WITH AMENDMENTS. R-1's (a)–(c) hold. The blocking finding is that `Formation::Certified` changes a priced layout, so the no-type-change alternative (O-2) is used. The successor confirms RV129's final record and answers O-1 to O-13.
+- **T4-U1b.** The design is in `T4-I9/`. T3's RV129 returned after the handoff; its final record is committed in NUM (`REVIEW_RV129/t4_i9_01/`). The verdict is PASS WITH AMENDMENTS, and T15c needs a different natural candidate (k between 6e35 and 1e39, not 1e40). R-1's (a)–(c) hold. The blocking finding is that `Formation::Certified` changes a priced layout, so the no-type-change alternative (O-2) is used. The successor sends RV129's amendments and T3's answers on O-1 to O-13 to T4-I9 for revision.
 - **T4-U2.** Both reference sets are accepted: the bends (T4-I7, confirmed by RV3) and the rebuilt straight cases (T4-I8, confirmed by RV4). The authoring design is settled (`T4-I11/`). RV3's condition: the bend term's free-expansion field is treated like the thermal one.
 - **T4-U3.**
   - The slot table's revision 01 (`T4-I10/REVISION_01.md`) folds in RV130's nine amendments. It goes back to T3 for RV130 to confirm.
@@ -68,7 +68,7 @@ This note is for the owner's next session only. It is not a standing record and 
 
 - **M31b0's equivalence by construction.** This is a narrowing, and it is ready to rule on. RV131 found that it holds, with conditions N-1 and N-2. T4's WORKING_ITEMS brings T4-I6's corrected derivation, RV131's record and T3's view together. M31b0's kill stays until the ruling.
 - **The conditioning demotion for T3's K-D5 condition.** Neither RV2's S-1 nor RV131's B-1 accepts K2. If no CSKEW-type candidate demotes after T4-U1, "K2 alone" comes to ROOT as a narrowing.
-- **R-1** for T4-U1b's certificate. RV129's draft holds (a)–(c), subject to the no-type-change form (O-2), which keeps the priced layouts. Confirm it on RV129's final record.
+- **R-1** for T4-U1b's certificate. RV129's final record holds (a)–(c) with amendments, subject to the no-type-change form (O-2), which keeps the priced layouts. Confirm R-1 once T4-I9's revision meets the amendments.
 - **O-10.** A re-registration forced by T4-U1b's loops comes to ROOT before code, or rides B7.
 
 ## Open items for the owner
