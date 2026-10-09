@@ -35,7 +35,7 @@ This note is for the owner's next session only. It is not a standing record and 
 
 ## In flight at handoff
 
-**The heads.** NUM is at `12511084b8` or later, and the T4 branch at `b9dc7c784f`, both pushed. Every T4 agent has returned, and its records are committed: T4-RV2, T4-RV5 and T4-I10's revision 01 were committed by ROOT after T4's WORKING_ITEMS stopped, with log lines placed before its resume block. Where the WORKING_ITEMS addenda list them as running, the log lines are right. Each manager's log ends with a "resume here" block giving the head, branch, worktree, running jobs, output locations and next step for each item. The next IDs are I117 and RV132 for T3, and T4-I13 and T4-RV6 for T4.
+**The heads.** NUM is at `4aedfeadca` or later, and the T4 branch at `b9dc7c784f`, both pushed. Every T4 agent has returned, and its records are committed: T4-RV2, T4-RV5 and T4-I10's revision 01 were committed by ROOT after T4's WORKING_ITEMS stopped, with log lines placed before its resume block. Where the WORKING_ITEMS addenda list them as running, the log lines are right. Each manager's log ends with a "resume here" block giving the head, branch, worktree, running jobs, output locations and next step for each item. The next IDs are I117 and RV132 for T3, and T4-I13 and T4-RV6 for T4.
 
 **T3:**
 - **#1168, the legacy pressure retirement. Not merged; the head is `37724dea27`.**
@@ -45,7 +45,12 @@ This note is for the owner's next session only. It is not a standing record and 
   - **DEC-025 passed:** ALL-DONE at 04:33Z, with 0 changed outcomes across the 40 manifests. The 39 removed tests are U3's retired tests, and 18 were added. src-tauri gives 118 at the head against 116 on main. The records are in `IMPLEMENTATION/U3_MERGE/dec025/`. The merge record classifies the removed and added tests against U3's change record.
   - Main moved to `2759c0f1a1` (App v4). Before the merge, confirm that nothing since `ba500defa4` touches `projects/chirality-piping/`.
   - Then the merge record, `gh pr merge 1168 --merge --match-head-commit 37724dea27a782ad4b889a5e06f8c0e91e2a67ce`, NUM absorbing main, and telling T4.
-- **J0b.** It is in `WT/b2-j0b` on `codex/piping-t3-b2-j0b-20261009` at `b446fb0cd6`, unpushed: #1168's head merged into `b2`, plus one arity-test fix. I105's checks are unfinished. A fresh TASK finishes `BRIEFS/B2_J0B.md` items 2–4 and merges main after #1168. Then come Linux CI and an independent confirmation, and `b2` fast-forwards.
+- **J0b step 1 is done** (I105, `R/I105/b2_j0b_01/`, NUM `4aedfeadca`). #1168's head is merged into `b2` on `codex/piping-t3-b2-j0b-20261009` at `b446fb0cd6` (`WT/b2-j0b`), pushed by ROOT, with one arity-test fix. Every suite passes, no outcome changes, and the census shows 0 changes in all 18 comparisons. U3 and the B3a drop agree, and T2 needs no re-pin in `b2`'s files. **Next:**
+  - Linux CI on `b446fb0cd6`, not yet dispatched;
+  - an independent confirmation, as RV123 gave for J0a;
+  - after #1168 merges, step 2: merge main.
+
+  Then `b2` fast-forwards.
 - **B2's readers.** `BRIEFS/B2_READERS.md` is ready to dispatch after J0b: three fresh lanes plus RV-R2. Then 07o, the J7 freeze, SQ2 (its brief is not yet written), SG2/SB2/SK2, RV-X2 and PR-B2.
 - **U5, the governance documents.** It is in `WT/u5-docs` on `codex/piping-t3-u5-governance-docs-20261009` at `f995add7c6`, unpushed, with Q1–Q3 ruled. GEN-8 passed on the draft (I116's record is final). After #1168: merge main, run the light harness, push and open the PR. Then an independent reviewer on the actual head, CI and the merge.
 - **After U3:** O1's friction-reversal re-author (A1-N-3), and a records PR carrying RR.
