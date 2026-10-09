@@ -35,27 +35,27 @@ This note is for the owner's next session only. It is not a standing record and 
 
 ## In flight at handoff
 
-**The heads.** NUM is at `4aedfeadca` or later, and the T4 branch at `b9dc7c784f`, both pushed. Every T4 agent has returned, and its records are committed: T4-RV2, T4-RV5 and T4-I10's revision 01 were committed by ROOT after T4's WORKING_ITEMS stopped, with log lines placed before its resume block. Where the WORKING_ITEMS addenda list them as running, the log lines are right. Each manager's log ends with a "resume here" block giving the head, branch, worktree, running jobs, output locations and next step for each item. The next IDs are I117 and RV132 for T3, and T4-I13 and T4-RV6 for T4.
+**The heads.** NUM is at `6044ac1321` or later, and main at `c821391459` or later, and the T4 branch at `b9dc7c784f`, both pushed. Every T4 agent has returned, and its records are committed: T4-RV2, T4-RV5 and T4-I10's revision 01 were committed by ROOT after T4's WORKING_ITEMS stopped, with log lines placed before its resume block. Where the WORKING_ITEMS addenda list them as running, the log lines are right. Each manager's log ends with a "resume here" block giving the head, branch, worktree, running jobs, output locations and next step for each item. The next IDs are I117 and RV132 for T3, and T4-I13 and T4-RV6 for T4.
 
 **T3:**
-- **#1168, the legacy pressure retirement. Not merged; the head is `37724dea27`.**
-  - Passed: CI; the full-SHA dispatch 37878270521 (target_base `ba500defa4`); source equality, citations and GEN-8; RV127 (after the A2-B-1 repair), RV128 and I112's T9 and both-entry gate.
-  - **Pass B returned with no stop** (I107, `R/I107/u3_passb_01/`, NUM `12511084b8`). Its verdict is DELTAS TO READ, and every traced delta reads 0. Entry and registration are unchanged, M is 11,274,289,152, and every phase is exactly 800 B lower. TEXT is left to read: T2's text adds 116 B requested. It ran on code commit `8a12de28db`. Under the A2-B-1 ruling it carries to `37724dea27`, because the only difference is `ed012c7ccf`, the three-fixture deletion.
-  - **Next: the confirmation in RV124's role.** RV124 cannot be resumed, so this is a fresh reviewer on the PR-N precedent (`R/REVIEW_RV124/pr_n_passb_01/`). It reads TEXT and carries Pass B to the head.
-  - **DEC-025 passed:** ALL-DONE at 04:33Z, with 0 changed outcomes across the 40 manifests. The 39 removed tests are U3's retired tests, and 18 were added. src-tauri gives 118 at the head against 116 on main. The records are in `IMPLEMENTATION/U3_MERGE/dec025/`. The merge record classifies the removed and added tests against U3's change record.
-  - **Checked at about 12:00Z on 2026-10-09:** CI is green on `37724dea27` and the PR is MERGEABLE. Main had moved 149 commits past `ba500defa4`, to `c56d1514d9`, none touching `projects/chirality-piping/` or `.github/`, and `git merge-tree` with main is clean. Repeat this check just before the merge.
-  - Then the merge record, `gh pr merge 1168 --merge --match-head-commit 37724dea27a782ad4b889a5e06f8c0e91e2a67ce`, NUM absorbing main, and telling T4.
+- **#1168, the legacy pressure retirement: MERGED.** The owner merged it at 17:11Z on 2026-10-09; the merge commit on main is `c821391459`. ROOT confirmed Pass B by its own reading, on the owner's direction (RR "#1168: Pass B confirmed by ROOT's reading …"), so the RV132 brief at `37de3e6e5f` is unused.
+  - **The merge record is unfinished.** T3's WORKING_ITEMS left an untracked draft in `IMPLEMENTATION/U3_MERGE/`: `RECORD.md`, `_run_records/CI_RUNS.txt` and three `dec025/` tails. Check and complete it, classifying DEC-025's 39 removed and 18 added tests, then commit it. **Never commit `dec025/surfaces.txt`:** the host screen found a machine path in it.
+  - **Next:**
+    - NUM absorbs main;
+    - T4's code can start;
+    - J0b step 2 and U5 merge main;
+    - the records-only PR carries RR.
 - **J0b step 1 is done** (I105, `R/I105/b2_j0b_01/`, NUM `4aedfeadca`). #1168's head is merged into `b2` on `codex/piping-t3-b2-j0b-20261009` at `b446fb0cd6` (`WT/b2-j0b`), pushed by ROOT, with one arity-test fix. Every suite passes, no outcome changes, and the census shows 0 changes in all 18 comparisons. U3 and the B3a drop agree, and T2 needs no re-pin in `b2`'s files. **Next:**
   - Linux CI on `b446fb0cd6`, not yet dispatched;
   - an independent confirmation, as RV123 gave for J0a;
-  - after #1168 merges, step 2: merge main.
+  - step 2: merge main, which now includes #1168.
 
   Then `b2` fast-forwards.
 - **B2's readers.** `BRIEFS/B2_READERS.md` is ready to dispatch after J0b: three fresh lanes plus RV-R2. Then 07o, the J7 freeze, SQ2 (its brief is not yet written), SG2/SB2/SK2, RV-X2 and PR-B2.
 - **U5, the governance documents.** It is in `WT/u5-docs` on `codex/piping-t3-u5-governance-docs-20261009` at `f995add7c6`, unpushed, with Q1–Q3 ruled. GEN-8 passed on the draft (I116's record is final). After #1168: merge main, run the light harness, push and open the PR. Then an independent reviewer on the actual head, CI and the merge.
 - **After U3:** O1's friction-reversal re-author (A1-N-3), and a records PR carrying RR.
 
-**T4** (plan 01; all code waits for #1168):
+**T4** (plan 01; #1168 is merged, so code can start from main):
 - **T4-U0 and T4-U1.**
   - The references are in `T4-I6/`. T4-RV2 passed them with findings: 0 blocking and S-1 to S-4, which go to I6 as repair round 01. S-1 asks for a demotion from conditioning (the CSKEW_8_5/9/10 cantilevers), because K2 rests on small-angle rounding.
   - T3's RV131 also says K2 does not meet the conditioning condition (its B-1), and K1 meets the requirement only if it is accurate at φ = 1e-8.
@@ -85,7 +85,7 @@ This note is for the owner's next session only. It is not a standing record and 
 - **G10,** the native witness, needs the owner's Mac.
 - **Carried from 2026-10-08:** decision 22's machine-adaptive memory budget (a design study after PR-B1, not yet started).
 - **Home-directory paths in App v4 on main** (about 4,000, in 728 files). A suggestion chip was offered; it is not T3's.
-- **Records.** NUM's records are not yet on main. A records-only PR is due after #1168 merges; the owner's production-first direction allows it to wait.
+- **Records.** NUM's records are not yet on main. A records-only PR is now due; the owner's production-first direction allows it to wait.
 
 ## The host (machine-local; check it)
 

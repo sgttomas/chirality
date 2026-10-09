@@ -29,7 +29,7 @@ Steer (this run): Continue as ROOT (Agent 0) of the piping undertaking `HELP-HUM
 3. **First, verify the host and the work in flight:**
    - the memory guard is running, and the lock slots are free or held by live jobs;
    - the worktrees and heads the note lists;
-   - whether #1168 merged, and whether main moved;
+   - whether main moved since #1168's merge (`c821391459`);
    - the outputs of jobs that finished after the handoff (paths in the logs).
 
    Then give the owner a short status.
@@ -39,13 +39,13 @@ Steer (this run): Continue as ROOT (Agent 0) of the piping undertaking `HELP-HUM
    - Bring the owner only owner-held decisions, as a concrete package with recommendations.
 5. **The next actions:**
    1. **T3:**
-      - #1168 to merge, if it has not. DEC-025 passed and I107's Pass B returned with no stop. What remains is a fresh reviewer in RV124's role to confirm Pass B (reading TEXT), then the merge record and the merge;
+      - #1168 is merged (`c821391459`). Complete its merge record in `IMPLEMENTATION/U3_MERGE/` (a draft is on disk), then have NUM absorb main;
       - then NUM absorbs main;
       - U5, the governance documents, with its independent review;
       - J0b (`b2` absorbs U3), then B2's reader lanes, 07o, the J7 freeze, SQ2, SG2/SB2/SK2, RV-X2 and PR-B2;
       - then B7 (which carries H-4's renames and the `:75` wording) and B8.
    2. **T4:**
-      - after #1168 merges, T4-U0 and T4-U1 code from main, against the refuted references;
+      - T4-U0 and T4-U1 code from main, now that #1168 has merged, against the refuted references (after the I6 repair round);
       - T4-U1b and T4-U3 once T3's reviews (RV129, RV130 revision 01, RV131) close;
       - then T4-U2a and T4-U2, the first usable path.
    3. **Your pending rulings:** M31b0 (RV131 has returned; T4's WORKING_ITEMS brings the package), K2 versus a conditioning demotion if it comes to you, and R-1 on RV129's final record.
