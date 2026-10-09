@@ -46,3 +46,4 @@ Read the brief, `T4_RULINGS.md`, plan 01 and this log. Commit each record below 
 - T3's reviewers (through T3's WORKING_ITEMS, on NUM): RV129 (I9), RV131 (I6 §B5)
 
 **Next IDs:** T4-I13, T4-RV6.
+- 2026-10-09 (after the resume block) T4-I12's RV130 S-3 addition landed and is committed: case 22 `U3-KD5-UTM-SKEW-OFFSET-COUPLED` (exact binary64 inputs at X0 = 0, 5e6, 7.3e6; nonzero offsets, skew Q, coupled K; perturbed-Ke variant K-D5 must demote). SHA256SUMS `ee4b411f…`, verified (generator reproduces JSON and stdout byte for byte). T4-I12 is complete; T4-RV5 confirms round 01 (indices 18–22) in its addendum.

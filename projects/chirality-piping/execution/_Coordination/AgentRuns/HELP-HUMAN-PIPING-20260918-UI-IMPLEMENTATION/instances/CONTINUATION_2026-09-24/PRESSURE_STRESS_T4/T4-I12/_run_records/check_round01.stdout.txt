@@ -1,5 +1,5 @@
 ok   case order: the 18 frozen cases keep indices 0-17
-ok   case order: exactly the four round-01 cases are appended at indices 18-21
+ok   case order: exactly the five round-01 cases are appended at indices 18-22
 ok   frozen case 0 U3-J1-LATERAL: canonical sha256 unchanged
 ok   frozen case 1 U3-J1-COMMON-ROTATION: canonical sha256 unchanged
 ok   frozen case 2 U3-J2-ROTATION: canonical sha256 unchanged
@@ -18,6 +18,10 @@ ok   frozen case 14 U3-FINITE-ROTATION-NEGATIVE: canonical sha256 unchanged
 ok   frozen case 15 U3-RAW-DIFFERENCE-NEGATIVE: canonical sha256 unchanged
 ok   frozen case 16 U3-SYS-DEMO-CONNECTOR-001: canonical sha256 unchanged
 ok   frozen case 17 U3-NI-FRICTION-FRAME: canonical sha256 unchanged
+ok   committed round-01 case 18 U3-SYS-DEMO-CONNECTOR-002-LR1: canonical sha256 unchanged since 2e79cf469e
+ok   committed round-01 case 19 U3-SYS-LR1-REPLACED-SPAN-EIGENSTRAIN-REFUSAL: canonical sha256 unchanged since 2e79cf469e
+ok   committed round-01 case 20 U3-SYS-REPLACED-SPAN-MATERIAL-CONTROL: canonical sha256 unchanged since 2e79cf469e
+ok   committed round-01 case 21 U3-SYS-LR1-REPLACED-SPAN-STORED-UNAPPLIED-CONTROL: canonical sha256 unchanged since 2e79cf469e
 ok   frozen top-level key schema_version: canonical sha256 unchanged
 ok   frozen top-level key status: canonical sha256 unchanged
 ok   frozen top-level key author: canonical sha256 unchanged
@@ -91,5 +95,38 @@ ok   control load:L-200: with P-130 retained its E/nu moves the reactions (discr
 ok   control load:L-200: and the parallel reactions differ from the reference
 ok   control load:L-300: with P-130 retained its E/nu moves the reactions (discriminating), as listed
 ok   control load:L-300: and the parallel reactions differ from the reference
-round-01 checks: 93 pass, 0 fail
+ok   KD5: every shared input is an exact binary64 value (round-trip string, hex and rational agree)
+ok   KD5: Q entries are the binary64 roundings of (1,2,2)/3, (2,1,-2)/3, (-2,2,-1)/3 as columns
+ok   KD5: x offsets have binary64 tails finer than 2^-30
+ok   KD5: offsets nonzero
+ok   KD5: K coupled (nonzero off-diagonal) and recorded consistently
+ok   KD5 ORDINARY: node coordinates exact binary64
+ok   KD5 ORDINARY: x_j,x - x_i,x = 1.3125 exactly and X0 as stated
+ok   KD5 ORDINARY: r = (x_j - x_i) + (a_j - a_i) equals the recorded r and is parallel to (1, 2, 2)
+ok   KD5 ORDINARY: B (all 12 columns) from the rigid-arm form with the binary64 Q
+ok   KD5 ORDINARY: Ke = B^T K B
+ok   KD5 ORDINARY: q and g
+ok   KD5 ORDINARY: end actions (arm transpose)
+ok   KD5 ORDINARY: end actions balance about the origin at this location
+ok   KD5 X5E6: node coordinates exact binary64
+ok   KD5 X5E6: x_j,x - x_i,x = 1.3125 exactly and X0 as stated
+ok   KD5 X5E6: r = (x_j - x_i) + (a_j - a_i) equals the recorded r and is parallel to (1, 2, 2)
+ok   KD5 X5E6: B (all 12 columns) from the rigid-arm form with the binary64 Q
+ok   KD5 X5E6: Ke = B^T K B
+ok   KD5 X5E6: q and g
+ok   KD5 X5E6: end actions (arm transpose)
+ok   KD5 X5E6: end actions balance about the origin at this location
+ok   KD5 X5E6: illustration shows the absolute form's r defect above 1e-12 and the difference form's below 1e-15
+ok   KD5 X7P3E6: node coordinates exact binary64
+ok   KD5 X7P3E6: x_j,x - x_i,x = 1.3125 exactly and X0 as stated
+ok   KD5 X7P3E6: r = (x_j - x_i) + (a_j - a_i) equals the recorded r and is parallel to (1, 2, 2)
+ok   KD5 X7P3E6: B (all 12 columns) from the rigid-arm form with the binary64 Q
+ok   KD5 X7P3E6: Ke = B^T K B
+ok   KD5 X7P3E6: q and g
+ok   KD5 X7P3E6: end actions (arm transpose)
+ok   KD5 X7P3E6: end actions balance about the origin at this location
+ok   KD5 X7P3E6: illustration shows the absolute form's r defect above 1e-12 and the difference form's below 1e-15
+ok   KD5 perturbed: delta = 2^-20 max|Ke|, on the largest diagonal entry
+ok   KD5 perturbed: delta exceeds the absolute-form Ke defect at UTM by more than 1000x
+round-01 checks: 130 pass, 0 fail
 PASS

@@ -1735,6 +1735,133 @@ add_case("U3-SYS-LR1-REPLACED-SPAN-STORED-UNAPPLIED-CONTROL", "7 (round 01)",
          extra={"equality_to_002": "every expected string is identical to U3-SYS-DEMO-CONNECTOR-002-LR1's (checked)",
                 "contrast": "listing the same primitive in L-100's load_sources is refusal variant c of U3-SYS-LR1-REPLACED-SPAN-EIGENSTRAIN-REFUSAL"})
 
+# ---- round 01, item from T3's slot-table review (RV130, S-3): K-D5's undemoted connector case with
+# nonzero offsets, a skew Q and a coupled K, at ordinary and UTM coordinates (X0 = 0, 5e6, 7.3e6 m).
+# Every input is an exact binary64 value; the reference is exact for those values.
+def b64(x):
+    return {"binary64": repr(float(x)), "hex": float(x).hex(), "exact": ex(Fr(float(x)))}
+
+
+def b64v(v):
+    return [b64(x) for x in v]
+
+
+QK_rat = [[Fr(1, 3), Fr(2, 3), Fr(-2, 3)], [Fr(2, 3), Fr(1, 3), Fr(2, 3)], [Fr(2, 3), Fr(-2, 3), Fr(-1, 3)]]  # columns (1,2,2)/3, (2,1,-2)/3, (-2,2,-1)/3
+QK = [[Fr(float(x)) for x in row] for row in QK_rat]  # the binary64 values, as given (not exactly orthonormal)
+aiK = [Fr(0.2), Fr(0.4), Fr(-0.2)]
+DXK = Fr(21, 16)  # x_j,x - x_i,x = 1.3125 m, exact at every location
+ajKx = Fr(-0.1)
+rxK = DXK + ajKx - aiK[0]  # r = rxK * (1, 2, 2) exactly
+xiK0 = [Fr(1, 2), Fr(-5, 4), Fr(2)]
+xjK_yz = [Fr(13, 16), Fr(27, 8)]
+ajK = [ajKx, (xiK0[1] - xjK_yz[0]) + 2 * rxK + aiK[1], (xiK0[2] - xjK_yz[1]) + 2 * rxK + aiK[2]]
+check("KD5-UTM: a_j is exactly representable in binary64 (chosen so that r is exactly parallel to (1,2,2))", all(Fr(float(x)) == x for x in ajK))
+check("KD5-UTM: the x offsets carry binary64 tails finer than 2^-30 (so an absolute-position form rounds at UTM scale)",
+      all((x * 2 ** 30).denominator != 1 for x in (aiK[0], ajK[0])))
+dK = [Fr(x) for x in (2 ** -10, -2 ** -9, 3 * 2 ** -10, 2 ** -8, -2 ** -9, 2 ** -10, -2 ** -10, 2 ** -8, 2 ** -9, -2 ** -8, 2 ** -9, 3 * 2 ** -10)]
+qrefK = [Fr(x) for x in (2 ** -10, -2 ** -11, 2 ** -12, 2 ** -9, 0, -2 ** -10)]
+LsK = Fr(1, 4)
+kd5_locs = {}
+kd5_ref = None
+for tag, X0 in (("ORDINARY", 0.0), ("X5E6", 5e6), ("X7P3E6", 7.3e6)):
+    xi = [Fr(X0 + 0.5), xiK0[1], xiK0[2]]
+    xj = [Fr(X0 + 1.8125), xjK_yz[0], xjK_yz[1]]
+    check(f"KD5-UTM {tag}: node coordinates are exact binary64 values (X0 + 0.5, X0 + 1.8125)", xi[0] == Fr(X0) + Fr(1, 2) and xj[0] == Fr(X0) + Fr(29, 16))
+    r = vsub(vadd(xj, ajK), vadd(xi, aiK))
+    check(f"KD5-UTM {tag}: exact r = (x_j - x_i) + (a_j - a_i) = rx (1, 2, 2), identical at every location", r == [rxK, 2 * rxK, 2 * rxK])
+    B = B_closed(aiK, ajK, r, QK)
+    check(f"KD5-UTM {tag}: closed-form B equals kinematic B (with the binary64 Q as given)", B == B_kinematic(aiK, ajK, r, QK))
+    check(f"KD5-UTM {tag}: rank B = 6", rank(B) == 6)
+    Ke = mm(mm(tr(B), KS), B)
+    for oname, o in (("origin 0", [Fr(0)] * 3), ("x_i", xi)):
+        for name, mvec in rigid_modes(xi, xj, o):
+            check(f"KD5-UTM {tag}: rigid {name} about {oname} in null(B) and null(Ke), exactly", mv(B, mvec) == [0] * 6 and mv(Ke, mvec) == [0] * 12)
+    q = mv(B, dK)
+    check(f"KD5-UTM {tag}: q from B equals q from kinematics", q == q_kinematic(dK, aiK, ajK, r, QK))
+    g = mv(KS, vsub(q, qrefK))
+    f = mv(tr(B), g)
+    Fv, Mv, fcc = actions_closed(g, aiK, ajK, r, QK)
+    check(f"KD5-UTM {tag}: B^T g equals the closed-form blocks", f == fcc)
+    fs = vadd(f[0:3], f[6:9])
+    ms = vadd(vadd(vadd(cross(xi, f[0:3]), f[3:6]), cross(xj, f[6:9])), f[9:12])
+    check(f"KD5-UTM {tag}: end actions balance about the origin, exactly", fs == [0] * 3 and ms == [0] * 3)
+    rhs = mv(tr(B), mv(KS, qrefK))
+    this = {"B": exm(B), "Ke": exm(Ke), "q": bothv(q), "g": bothv(g), "energy": both(dot(vsub(q, qrefK), g) / 2),
+            "end_actions_node_on_element": {"Fi": bothv(f[0:3]), "Mi": bothv(f[3:6]), "Fj": bothv(f[6:9]), "Mj": bothv(f[9:12])},
+            "installed_rhs_BT_K_qref": exv(rhs)}
+    if kd5_ref is None:
+        kd5_ref = this
+    check(f"KD5-UTM {tag}: B, Ke, q, g, energy, end actions and RHS identical to the ordinary location (translation invariance)", this == kd5_ref)
+
+    # binary64 formation illustration (naive, informational): r by difference form vs absolute-position form
+    def form64(r64):
+        Qf = [[float(x) for x in row] for row in QK]
+        ai_, aj_ = [float(x) for x in aiK], [float(x) for x in ajK]
+        def S(v):
+            return [[0.0, -v[2], v[1]], [v[2], 0.0, -v[0]], [-v[1], v[0], 0.0]]
+        hr = [x / 2 for x in r64]
+        Sai, Saj, Shr = S(ai_), S(aj_), S(hr)
+        I3f = [[1.0 if i == j else 0.0 for j in range(3)] for i in range(3)]
+        blk = [[-I3f[i][j] for j in range(3)] for i in range(3)], [[Sai[i][j] + Shr[i][j] for j in range(3)] for i in range(3)], I3f, [[-Saj[i][j] + Shr[i][j] for j in range(3)] for i in range(3)]
+        rowsT = [sum((list(b_[i]) for b_ in blk), []) for i in range(3)]
+        Bt = [[sum(Qf[k][i] * rowsT[k][c] for k in range(3)) for c in range(12)] for i in range(3)]
+        rowsR = [[0.0] * 3 + [-I3f[i][j] for j in range(3)] + [0.0] * 3 + [I3f[i][j] for j in range(3)] for i in range(3)]
+        Br = [[sum(Qf[k][i] * rowsR[k][c] for k in range(3)) for c in range(12)] for i in range(3)]
+        Bf = Bt + Br
+        Kf = [[float(x) for x in row] for row in KS]
+        KB = [[sum(Kf[a][b_] * Bf[b_][c] for b_ in range(6)) for c in range(12)] for a in range(6)]
+        return [[sum(Bf[a][i] * KB[a][j] for a in range(6)) for j in range(12)] for i in range(12)]
+    xi64, xj64 = [float(x) for x in xi], [float(x) for x in xj]
+    ai64, aj64 = [float(x) for x in aiK], [float(x) for x in ajK]
+    r_diff = [(xj64[k] - xi64[k]) + (aj64[k] - ai64[k]) for k in range(3)]
+    r_abs = [(xj64[k] + aj64[k]) - (xi64[k] + ai64[k]) for k in range(3)]
+    kmax = max(abs(x) for row in Ke for x in row)
+    dev = lambda K64: max(abs(Fr(K64[i][j]) - Ke[i][j]) for i in range(12) for j in range(12)) / kmax
+    rdev = lambda r64: max(abs(Fr(r64[k]) - r[k]) for k in range(3)) / (3 * rxK)
+    kd5_locs[tag] = {
+        "X0_m": repr(X0),
+        "x_i": b64v(xi), "x_j": b64v(xj),
+        "p_i_exact": exv(vadd(xi, aiK)), "p_j_exact": exv(vadd(xj, ajK)),
+        "binary64_formation_illustration": {
+            "r_difference_form_rel_error": f"{float(rdev(r_diff)):.3e}", "r_absolute_form_rel_error": f"{float(rdev(r_abs)):.3e}",
+            "Ke_difference_form_max_dev_over_max_Ke": f"{float(dev(form64(r_diff))):.3e}",
+            "Ke_absolute_form_max_dev_over_max_Ke": f"{float(dev(form64(r_abs))):.3e}"},
+    }
+    if tag != "ORDINARY":
+        check(f"KD5-UTM {tag}: the absolute-position form is visibly worse than the difference form (r error > 1e-12 relative)", rdev(r_abs) > Fr(1, 10 ** 12) and rdev(r_diff) < Fr(1, 10 ** 15))
+    print(f"KD5-UTM {tag}: binary64 r rel error diff/abs = {kd5_locs[tag]['binary64_formation_illustration']['r_difference_form_rel_error']} / "
+          f"{kd5_locs[tag]['binary64_formation_illustration']['r_absolute_form_rel_error']}; Ke dev diff/abs = "
+          f"{kd5_locs[tag]['binary64_formation_illustration']['Ke_difference_form_max_dev_over_max_Ke']} / {kd5_locs[tag]['binary64_formation_illustration']['Ke_absolute_form_max_dev_over_max_Ke']}")
+KeK = [[Fr(x) for x in row] for row in kd5_ref["Ke"]]
+kmaxK = max(abs(x) for row in KeK for x in row)
+kdiag = max(range(12), key=lambda k: abs(KeK[k][k]))
+deltaK = kmaxK / 2 ** 20
+check("KD5-UTM perturbed: delta = 2^-20 max|Ke| exceeds the absolute-form defect at 7.3e6 m by more than 1000x",
+      deltaK / kmaxK > 1000 * Fr(kd5_locs["X7P3E6"]["binary64_formation_illustration"]["Ke_absolute_form_max_dev_over_max_Ke"]))
+add_case("U3-KD5-UTM-SKEW-OFFSET-COUPLED", "3, 4 (round 01; RV130 S-3)",
+         "K-D5's undemoted connector case (T3 slot-table review RV130, S-3): nonzero offsets whose x components carry binary64 tails finer than the 2^-30 m grid at 5e6-7.3e6 m, a skew Q (binary64 values of a rational rotation), the fully coupled PD K of U3-GENERIC, a dyadic q_ref and d; at X0 = 0, 5e6 and 7.3e6 m. Every input is an exact binary64 value; the reference is exact for those values and identical at the three locations",
+         {"shared": {
+             "a_i_global": b64v(aiK), "a_j_global": b64v(ajK),
+             "Q_row_major_columns_are_axes": [[b64(x) for x in row] for row in QK],
+             "Q_note": "the binary64 roundings of the rational rotation with columns (1,2,2)/3, (2,1,-2)/3, (-2,2,-1)/3; B and the end actions use these values exactly as given; |Q^T Q - I| and |det Q - 1| are at binary64 rounding level (" + f"{float(max(abs(x) for row in madd(mm(tr(QK), QK), mscale(-1, eye(3))) for x in row)):.1e}" + ")",
+             "translation_scale_Ls_m": ex(LsK), "H_upper_triangle_21_N_m": exv(upper21(H_from_K(KS, LsK))), "K_physical": exm(KS),
+             "q_ref": b64v(qrefK), "d": b64v(dK),
+             "r_exact": exv([rxK, 2 * rxK, 2 * rxK]), "r_formula": "r = (x_j - x_i) + (a_j - a_i); x_j,x - x_i,x = 1.3125 exactly at every location (Sterbenz in binary64)"},
+          "locations": kd5_locs},
+         {"identical_at_every_location": kd5_ref,
+          "rigid_modes": "the six rigid motions of the actual nodes, about the origin and about x_i, lie in null(B) and null(Ke) exactly at every location",
+          "perturbed_variant": {
+              "what": "Ke' = Ke_formed + delta e_k e_k^T with k = " + str(kdiag) + " (the largest diagonal entry, 0-based DOF index in [u_i, theta_i, u_j, theta_j]) and delta = 2^-20 max_ij|Ke_ij| (an exact power-of-two scaling of the formed maximum), applied to the formed matrix only, never to K-D5's Wide<2> re-formation",
+              "Ke_kk_exact": ex(KeK[kdiag][kdiag]), "max_abs_Ke_exact": ex(kmaxK), "delta_exact": ex(deltaK),
+              "delta_over_max_Ke": "2^-20 = 9.5367431640625e-07",
+              "expected": "demoted (formation check fails) at all three locations"},
+          "kd5_expectations": {
+              "unperturbed, difference form": "not demoted at X0 = 0, 5e6 and 7.3e6 m (T3 reports 6.5e-7 of the criterion at UTM)",
+              "perturbed": "demoted at all three locations",
+              "absolute-position form (a defect, not a case to build)": "T3 reports demotion at 1.39x the criterion at UTM; the illustration above shows its r and Ke defects; the reference values do not depend on the form"}},
+         criterion="FK unit level: B, Ke (exact rationals of the binary64 inputs) compared at relative 1e-12 per entry against max|Ke|; q, g and end actions at relative 1e-12; K-D5's own criterion decides demotion",
+         extra={"binary64_illustration_note": "the illustration is a naive binary64 formation in this script (not the product): it shows the size of the absolute-form defect at UTM scale, not K-D5's judgment"})
+
 
 doc = {
     "schema_version": "t4-i12-u3-reference-1",
@@ -1775,7 +1902,8 @@ doc = {
     "round_01": {
         "requested_by": "T4 WORKING_ITEMS, after the round-0 commit a744c09021 (SHA256SUMS 9925375b...)",
         "ruling_applied": "under load-reference-1 the connector does not use the replaced span's resolved element state (E/nu, eigenstrain); a nonzero resolved eigenstrain on the replaced span, self-weight on it or any load it owns refuses with JOINT_REPLACED_SPAN_LOAD_UNOWNED (SLOT_TABLE S20 applied to 0.4.0); the joint's thermal relation comes with T4-U5's J3",
-        "appended_cases": ["U3-SYS-DEMO-CONNECTOR-002-LR1", "U3-SYS-LR1-REPLACED-SPAN-EIGENSTRAIN-REFUSAL", "U3-SYS-REPLACED-SPAN-MATERIAL-CONTROL", "U3-SYS-LR1-REPLACED-SPAN-STORED-UNAPPLIED-CONTROL"],
+        "appended_cases": ["U3-SYS-DEMO-CONNECTOR-002-LR1", "U3-SYS-LR1-REPLACED-SPAN-EIGENSTRAIN-REFUSAL", "U3-SYS-REPLACED-SPAN-MATERIAL-CONTROL", "U3-SYS-LR1-REPLACED-SPAN-STORED-UNAPPLIED-CONTROL", "U3-KD5-UTM-SKEW-OFFSET-COUPLED"],
+        "rv130_s3": "K-D5's undemoted connector case with nonzero offsets, a skew Q and a coupled K at X0 = 0, 5e6 and 7.3e6 m, with a perturbed-Ke variant that K-D5 must demote (U3-KD5-UTM-SKEW-OFFSET-COUPLED)",
         "further_rulings": ["a state resolving to exactly zero eigenstrain on the replaced span is admitted (no effect on the connector)",
                             "refusal is decided per case by what that case applies: a load on the replaced span listed in a case's load_sources refuses that case; a load stored but applied by no case is not refused and has no effect"],
         "frozen": "the 18 round-0 cases and every round-0 top-level key are unchanged (check_round01.py compares canonical hashes taken from a744c09021)"},

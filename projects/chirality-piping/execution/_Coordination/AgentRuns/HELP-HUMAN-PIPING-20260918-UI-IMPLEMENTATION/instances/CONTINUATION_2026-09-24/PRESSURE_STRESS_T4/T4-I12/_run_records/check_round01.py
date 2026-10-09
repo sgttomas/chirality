@@ -1,5 +1,6 @@
 """T4-I12 round 01: consumer-side check of the appended cases, and proof that the 18 frozen
-round-0 cases and every round-0 top-level key are unchanged.
+round-0 cases, every round-0 top-level key and the four round-01 cases committed at
+2e79cf469e are unchanged.
 
 The FROZEN hashes are SHA-256 of json.dumps(obj, sort_keys=True, separators=(",", ":"),
 ensure_ascii=False) for each round-0 case and top-level key, taken from
@@ -60,15 +61,23 @@ FROZEN_CASES = [
     ("U3-SYS-DEMO-CONNECTOR-001", "42b36d2a9b5f58ac296022aa16bdbc9206c48481aa1e523d887eae7e6aa1a3f7"),
     ("U3-NI-FRICTION-FRAME", "2a159ac0e02d83b7888049c303a83f4be3e8edd38c1d27b250ed3fb0be4954c4"),
 ]
+ROUND01_COMMITTED = [  # canonical sha256 of each case at commit 2e79cf469e (file sha256 42896cca...2d28c)
+    ("U3-SYS-DEMO-CONNECTOR-002-LR1", "d1b0a2df8785296dcdd14901171bffd2fb033040dc72711b13d7cb68c6a751e4"),
+    ("U3-SYS-LR1-REPLACED-SPAN-EIGENSTRAIN-REFUSAL", "206075c5265c1c9b04c2b8d5c2a31e8eedd9abd543b0d3e487f91487809b8cfa"),
+    ("U3-SYS-REPLACED-SPAN-MATERIAL-CONTROL", "ac66b77bda38059f786c27df2746c56ce8918d3e8a50fa39cf894886395310bf"),
+    ("U3-SYS-LR1-REPLACED-SPAN-STORED-UNAPPLIED-CONTROL", "4cbf1512fc6bbf945bd7a5454a98681dfa0a939ff49f9335657a5c3aabd80c96"),
+]
 APPENDED = ["U3-SYS-DEMO-CONNECTOR-002-LR1", "U3-SYS-LR1-REPLACED-SPAN-EIGENSTRAIN-REFUSAL", "U3-SYS-REPLACED-SPAN-MATERIAL-CONTROL",
-            "U3-SYS-LR1-REPLACED-SPAN-STORED-UNAPPLIED-CONTROL"]
+            "U3-SYS-LR1-REPLACED-SPAN-STORED-UNAPPLIED-CONTROL", "U3-KD5-UTM-SKEW-OFFSET-COUPLED"]
 
 # ---- 1. the frozen part is unchanged
 ids = list(doc["cases"])
 ok("case order: the 18 frozen cases keep indices 0-17", ids[:18] == [c for c, _ in FROZEN_CASES])
-ok("case order: exactly the four round-01 cases are appended at indices 18-21", ids[18:] == APPENDED)
+ok("case order: exactly the five round-01 cases are appended at indices 18-22", ids[18:] == APPENDED)
 for k, (cid, h) in enumerate(FROZEN_CASES):
     ok(f"frozen case {k} {cid}: canonical sha256 unchanged", canon(doc["cases"][cid]) == h)
+for k, (cid, h) in enumerate(ROUND01_COMMITTED):
+    ok(f"committed round-01 case {18 + k} {cid}: canonical sha256 unchanged since 2e79cf469e", canon(doc["cases"][cid]) == h)
 for key, h in FROZEN_TOP.items():
     ok(f"frozen top-level key {key}: canonical sha256 unchanged", canon(doc[key]) == h)
 ok("top-level keys: round-0 keys plus round_01 only", list(doc) == list(FROZEN_TOP)[:8] + ["cases", "round_01"])
@@ -239,6 +248,128 @@ for cid, dsc in ctl["wrong_result_discriminators"].items():
     moved = [f"{sid}.{['Fx', 'Fy', 'Fz', 'Mx', 'My', 'Mz'][k]}" for sid in a for k in range(6) if abs(Decimal(a[sid][k]) - Decimal(b[sid][k])) > Decimal("1e-6") * fl]
     ok(f"control {cid}: with P-130 retained its E/nu moves the reactions (discriminating), as listed", len(moved) > 0 and set(moved) <= set(dsc["moved_reaction_components"]))
     ok(f"control {cid}: and the parallel reactions differ from the reference", any(abs(Decimal(a[sid][k]) - Decimal(c001["expected"][cid]["reactions_support_on_pipe_global_Fx_Fy_Fz_Mx_My_Mz"][sid][k])) > Decimal("1e-6") * fl for sid in a for k in range(6)))
+
+# ---- 5. K-D5 at ordinary and UTM coordinates (RV130 S-3), re-derived with the rigid-arm form
+from fractions import Fraction as Fr
+
+
+def P(x):
+    return Fr(x)
+
+
+def Pv(v):
+    return [Fr(x) for x in v]
+
+
+def Pm(m):
+    return [[Fr(x) for x in r] for r in m]
+
+
+def add(a, b):
+    return [x + y for x, y in zip(a, b)]
+
+
+def sub(a, b):
+    return [x - y for x, y in zip(a, b)]
+
+
+def mv(m, v):
+    return [sum(x * y for x, y in zip(r, v)) for r in m]
+
+
+def cross(a, b):
+    return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]
+
+
+def arm_q(d, ai_, aj_, r_, Q):
+    """q from rigid arms to the common midpoint (a formulation distinct from the generator's B)."""
+    h = [x / 2 for x in r_]
+    bi, bj = add(ai_, h), sub(aj_, h)
+    mi = add(d[0:3], cross(d[3:6], bi))
+    mj = add(d[6:9], cross(d[9:12], bj))
+    QT = [list(c) for c in zip(*Q)]
+    return mv(QT, sub(mj, mi)) + mv(QT, sub(d[9:12], d[3:6]))
+
+
+def arm_f(g, ai_, aj_, r_, Q):
+    h = [x / 2 for x in r_]
+    bi, bj = add(ai_, h), sub(aj_, h)
+    Fv, Mv = mv(Q, g[0:3]), mv(Q, g[3:6])
+    return [-x for x in Fv] + [-x for x in add(cross(bi, Fv), Mv)] + Fv + add(cross(bj, Fv), Mv)
+
+
+def K_from(inp):
+    Ls = Fr(inp["translation_scale_Ls_m"])
+    u = [Fr(x) for x in inp["H_upper_triangle_21_N_m"]]
+    H = [[Fr(0)] * 6 for _ in range(6)]
+    k = 0
+    for i in range(6):
+        for j in range(i, 6):
+            H[i][j] = H[j][i] = u[k]
+            k += 1
+    D = [Ls] * 3 + [Fr(1)] * 3
+    return [[H[i][j] / (D[i] * D[j]) for j in range(6)] for i in range(6)]
+
+
+def b64ok(e):
+    v = float(e["binary64"])
+    return Fr(v) == P(e["exact"]) and float.fromhex(e["hex"]) == v
+
+
+def cr(a, b):
+    return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]
+
+
+kd = doc["cases"]["U3-KD5-UTM-SKEW-OFFSET-COUPLED"]
+sh = kd["inputs"]["shared"]
+ok("KD5: every shared input is an exact binary64 value (round-trip string, hex and rational agree)",
+   all(b64ok(e) for key in ("a_i_global", "a_j_global", "q_ref", "d") for e in sh[key]) and all(b64ok(e) for row in sh["Q_row_major_columns_are_axes"] for e in row))
+ai = [P(e["exact"]) for e in sh["a_i_global"]]
+aj = [P(e["exact"]) for e in sh["a_j_global"]]
+Qk = [[P(e["exact"]) for e in row] for row in sh["Q_row_major_columns_are_axes"]]
+ok("KD5: Q entries are the binary64 roundings of (1,2,2)/3, (2,1,-2)/3, (-2,2,-1)/3 as columns",
+   Qk == [[Fr(float(Fr(n, 3))) for n in row] for row in ((1, 2, -2), (2, 1, 2), (2, -2, -1))])
+ok("KD5: x offsets have binary64 tails finer than 2^-30", all((x * 2 ** 30).denominator != 1 for x in (ai[0], aj[0])))
+ok("KD5: offsets nonzero", any(x != 0 for x in ai) and any(x != 0 for x in aj))
+Kk = K_from(sh)
+ok("KD5: K coupled (nonzero off-diagonal) and recorded consistently", any(Kk[i][j] != 0 for i in range(6) for j in range(6) if i != j) and Kk == Pm(sh["K_physical"]))
+exp = kd["expected"]["identical_at_every_location"]
+qref = [P(e["exact"]) for e in sh["q_ref"]]
+dd = [P(e["exact"]) for e in sh["d"]]
+for tag, loc in kd["inputs"]["locations"].items():
+    ok(f"KD5 {tag}: node coordinates exact binary64", all(b64ok(e) for e in loc["x_i"] + loc["x_j"]))
+    xi = [P(e["exact"]) for e in loc["x_i"]]
+    xj = [P(e["exact"]) for e in loc["x_j"]]
+    ok(f"KD5 {tag}: x_j,x - x_i,x = 1.3125 exactly and X0 as stated", xj[0] - xi[0] == Fr(21, 16) and xi[0] == Fr(float(loc["X0_m"])) + Fr(1, 2))
+    r = add(sub(xj, xi), sub(aj, ai))
+    ok(f"KD5 {tag}: r = (x_j - x_i) + (a_j - a_i) equals the recorded r and is parallel to (1, 2, 2)", r == Pv(sh["r_exact"]) and cross(r, [1, 2, 2]) == [0, 0, 0])
+    B = Pm(exp["B"])
+    allcols = True
+    for k in range(12):
+        e = [Fr(0)] * 12
+        e[k] = Fr(1)
+        allcols &= arm_q(e, ai, aj, r, Qk) == [B[i][k] for i in range(6)]
+    ok(f"KD5 {tag}: B (all 12 columns) from the rigid-arm form with the binary64 Q", allcols)
+    ok(f"KD5 {tag}: Ke = B^T K B", Pm(exp["Ke"]) == [[sum(B[a][i] * Kk[a][b] * B[b][j] for a in range(6) for b in range(6)) for j in range(12)] for i in range(12)])
+    q = arm_q(dd, ai, aj, r, Qk)
+    g = mv(Kk, sub(q, qref))
+    ok(f"KD5 {tag}: q and g", q == Pv(exp["q"]["exact"]) and g == Pv(exp["g"]["exact"]))
+    f = arm_f(g, ai, aj, r, Qk)
+    ea = exp["end_actions_node_on_element"]
+    ok(f"KD5 {tag}: end actions (arm transpose)", f == Pv(ea["Fi"]["exact"]) + Pv(ea["Mi"]["exact"]) + Pv(ea["Fj"]["exact"]) + Pv(ea["Mj"]["exact"]))
+    ms = add(add(add(cr(xi, f[0:3]), f[3:6]), cr(xj, f[6:9])), f[9:12])
+    ok(f"KD5 {tag}: end actions balance about the origin at this location", add(f[0:3], f[6:9]) == [0, 0, 0] and ms == [0, 0, 0])
+    ill = loc["binary64_formation_illustration"]
+    if tag != "ORDINARY":
+        ok(f"KD5 {tag}: illustration shows the absolute form's r defect above 1e-12 and the difference form's below 1e-15",
+           float(ill["r_absolute_form_rel_error"]) > 1e-12 and float(ill["r_difference_form_rel_error"]) < 1e-15)
+pv = kd["expected"]["perturbed_variant"]
+Ke = Pm(exp["Ke"])
+kmax = max(abs(x) for row in Ke for x in row)
+ok("KD5 perturbed: delta = 2^-20 max|Ke|, on the largest diagonal entry", P(pv["delta_exact"]) == kmax / 2 ** 20 and P(pv["max_abs_Ke_exact"]) == kmax
+   and max(abs(Ke[k][k]) for k in range(12)) == P(pv["Ke_kk_exact"]))
+ok("KD5 perturbed: delta exceeds the absolute-form Ke defect at UTM by more than 1000x",
+   2 ** -20 > 1000 * float(kd["inputs"]["locations"]["X7P3E6"]["binary64_formation_illustration"]["Ke_absolute_form_max_dev_over_max_Ke"]))
 
 print(f"round-01 checks: {N_OK} pass, {len(FAILS)} fail")
 for f_ in FAILS:

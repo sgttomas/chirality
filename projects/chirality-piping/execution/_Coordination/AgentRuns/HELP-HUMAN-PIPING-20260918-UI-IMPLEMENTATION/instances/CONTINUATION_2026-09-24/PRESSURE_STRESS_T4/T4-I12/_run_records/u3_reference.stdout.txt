@@ -4,6 +4,9 @@ load:L-200: connector g = ['130.951341565', '125', '0', '0', '0', '137.5']
 load:L-200: raw-difference moment imbalance = ['-275', '0', '0']
 load:L-300: connector g = ['64.3616568221', '0', '-200', '150', '140', '0']
 load:L-300: raw-difference moment imbalance = ['0', '440', '0']
+KD5-UTM ORDINARY: binary64 r rel error diff/abs = 1.828e-17 / 1.279e-16; Ke dev diff/abs = 9.437e-17 / 2.352e-16
+KD5-UTM X5E6: binary64 r rel error diff/abs = 1.828e-17 / 6.132e-11; Ke dev diff/abs = 9.437e-17 / 5.305e-11
+KD5-UTM X7P3E6: binary64 r rel error diff/abs = 1.828e-17 / 6.132e-11; Ke dev diff/abs = 9.437e-17 / 5.305e-11
 ok   U3-J1-LATERAL: Q proper orthonormal
 ok   U3-J1-LATERAL: Q.x follows r
 ok   U3-J1-LATERAL: closed-form B equals kinematic B (all 72 entries, exact)
@@ -800,5 +803,70 @@ ok   round01 boundary: its results equal the cold case U3-SYS-DEMO-CONNECTOR-002
 ok   round01 stored-unapplied: L-100 stores a weight primitive on P-130 that no case lists in load_sources
 ok   round01 stored-unapplied: no case refuses (refusal is decided by what each case applies)
 ok   round01 stored-unapplied: every result equals U3-SYS-DEMO-CONNECTOR-002-LR1 (every string)
+ok   KD5-UTM: a_j is exactly representable in binary64 (chosen so that r is exactly parallel to (1,2,2))
+ok   KD5-UTM: the x offsets carry binary64 tails finer than 2^-30 (so an absolute-position form rounds at UTM scale)
+ok   KD5-UTM ORDINARY: node coordinates are exact binary64 values (X0 + 0.5, X0 + 1.8125)
+ok   KD5-UTM ORDINARY: exact r = (x_j - x_i) + (a_j - a_i) = rx (1, 2, 2), identical at every location
+ok   KD5-UTM ORDINARY: closed-form B equals kinematic B (with the binary64 Q as given)
+ok   KD5-UTM ORDINARY: rank B = 6
+ok   KD5-UTM ORDINARY: rigid translation_x about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM ORDINARY: rigid translation_y about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM ORDINARY: rigid translation_z about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM ORDINARY: rigid rotation_x about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM ORDINARY: rigid rotation_y about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM ORDINARY: rigid rotation_z about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM ORDINARY: rigid translation_x about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM ORDINARY: rigid translation_y about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM ORDINARY: rigid translation_z about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM ORDINARY: rigid rotation_x about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM ORDINARY: rigid rotation_y about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM ORDINARY: rigid rotation_z about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM ORDINARY: q from B equals q from kinematics
+ok   KD5-UTM ORDINARY: B^T g equals the closed-form blocks
+ok   KD5-UTM ORDINARY: end actions balance about the origin, exactly
+ok   KD5-UTM ORDINARY: B, Ke, q, g, energy, end actions and RHS identical to the ordinary location (translation invariance)
+ok   KD5-UTM X5E6: node coordinates are exact binary64 values (X0 + 0.5, X0 + 1.8125)
+ok   KD5-UTM X5E6: exact r = (x_j - x_i) + (a_j - a_i) = rx (1, 2, 2), identical at every location
+ok   KD5-UTM X5E6: closed-form B equals kinematic B (with the binary64 Q as given)
+ok   KD5-UTM X5E6: rank B = 6
+ok   KD5-UTM X5E6: rigid translation_x about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM X5E6: rigid translation_y about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM X5E6: rigid translation_z about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM X5E6: rigid rotation_x about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM X5E6: rigid rotation_y about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM X5E6: rigid rotation_z about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM X5E6: rigid translation_x about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM X5E6: rigid translation_y about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM X5E6: rigid translation_z about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM X5E6: rigid rotation_x about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM X5E6: rigid rotation_y about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM X5E6: rigid rotation_z about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM X5E6: q from B equals q from kinematics
+ok   KD5-UTM X5E6: B^T g equals the closed-form blocks
+ok   KD5-UTM X5E6: end actions balance about the origin, exactly
+ok   KD5-UTM X5E6: B, Ke, q, g, energy, end actions and RHS identical to the ordinary location (translation invariance)
+ok   KD5-UTM X5E6: the absolute-position form is visibly worse than the difference form (r error > 1e-12 relative)
+ok   KD5-UTM X7P3E6: node coordinates are exact binary64 values (X0 + 0.5, X0 + 1.8125)
+ok   KD5-UTM X7P3E6: exact r = (x_j - x_i) + (a_j - a_i) = rx (1, 2, 2), identical at every location
+ok   KD5-UTM X7P3E6: closed-form B equals kinematic B (with the binary64 Q as given)
+ok   KD5-UTM X7P3E6: rank B = 6
+ok   KD5-UTM X7P3E6: rigid translation_x about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM X7P3E6: rigid translation_y about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM X7P3E6: rigid translation_z about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM X7P3E6: rigid rotation_x about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM X7P3E6: rigid rotation_y about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM X7P3E6: rigid rotation_z about origin 0 in null(B) and null(Ke), exactly
+ok   KD5-UTM X7P3E6: rigid translation_x about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM X7P3E6: rigid translation_y about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM X7P3E6: rigid translation_z about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM X7P3E6: rigid rotation_x about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM X7P3E6: rigid rotation_y about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM X7P3E6: rigid rotation_z about x_i in null(B) and null(Ke), exactly
+ok   KD5-UTM X7P3E6: q from B equals q from kinematics
+ok   KD5-UTM X7P3E6: B^T g equals the closed-form blocks
+ok   KD5-UTM X7P3E6: end actions balance about the origin, exactly
+ok   KD5-UTM X7P3E6: B, Ke, q, g, energy, end actions and RHS identical to the ordinary location (translation invariance)
+ok   KD5-UTM X7P3E6: the absolute-position form is visibly worse than the difference form (r error > 1e-12 relative)
+ok   KD5-UTM perturbed: delta = 2^-20 max|Ke| exceeds the absolute-form defect at 7.3e6 m by more than 1000x
 JR comparisons: 75/75 agree
-checks: 796/796 pass
+checks: 861/861 pass

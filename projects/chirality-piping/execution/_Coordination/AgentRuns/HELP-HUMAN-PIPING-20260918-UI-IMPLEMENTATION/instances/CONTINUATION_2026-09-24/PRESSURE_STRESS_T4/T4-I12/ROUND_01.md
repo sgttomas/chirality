@@ -1,17 +1,20 @@
-# T4-I12 round 01: the 0.4.0 form, the eigenstrain refusal, the replaced-span controls
+# T4-I12 round 01: the 0.4.0 form, the eigenstrain refusal, the replaced-span controls, K-D5 at UTM scale
 
 - **Asked by:** T4's WORKING_ITEMS, after the round-0 commit `a744c09021` (SHA256SUMS `9925375b…`), while T4-RV5 refutes round 0.
 - **WI ruling applied:** under load-reference-1 the connector does not use the replaced span's resolved element state (E/ν and eigenstrain). Three things refuse with `JOINT_REPLACED_SPAN_LOAD_UNOWNED` (SLOT_TABLE S20 applied to 0.4.0): a nonzero resolved eigenstrain on the replaced span, self-weight on it, or any load it owns.
 - **WI's follow-up rulings, folded in:**
   - a state that resolves to exactly zero eigenstrain has no effect on the connector and is admitted;
   - refusal is decided per case, by what that case applies. A case listing a load on the replaced span in `load_sources` is refused; a load stored but applied by no case is not refused and has no effect.
+- **Also asked (after WI committed round 01 at `2e79cf469e`):** T3's slot-table review RV130, S-3, which K-D5's undemoted connector case serves. Addition 5 below.
 - **Status:** appended and frozen; no product run; no Git write.
 
 ## What changed
 
-- **`u3_reference_cases.json`:** four cases appended at indices 18–21, and a top-level `round_01` note. The round-0 text is a byte prefix of the new file. The git diff is 8746 insertions and 0 deletions.
-- **`_run_records/u3_reference.py`:** one block inserted before the document is assembled (371 lines added, 0 removed); 796 of 796 checks pass, the first 761 as in round 0.
-- **`_run_records/check_round01.py` (new):** 94 of 94 pass. It shows the 18 frozen cases unchanged:
+- **`u3_reference_cases.json`:** five cases appended at indices 18–22, and a top-level `round_01` note.
+  - Against round 0 (`a744c09021`) the git diff is 9560 insertions and 0 deletions; the round-0 text is a byte prefix of the new file.
+  - Against the round-01 commit `2e79cf469e`, cases 0–21 are unchanged. The only other change is the `round_01` note, which gains the new case id and an `rv130_s3` line.
+- **`_run_records/u3_reference.py`:** blocks inserted before the document is assembled (499 lines added against round 0, 0 removed); 861 of 861 checks pass, the first 761 as in round 0.
+- **`_run_records/check_round01.py` (new):** 130 of 130 pass. It also proves the four round-01 cases committed at `2e79cf469e` unchanged, by canonical hash. It shows the 18 frozen cases unchanged:
   - their order (indices 0–17);
   - each case's canonical SHA-256, against constants taken from the round-0 file (sha256 `46816c84…`);
   - every round-0 top-level key.
@@ -43,6 +46,25 @@
    - Every displacement, reaction and connector value equals 002-LR1, string for string.
    - The document differs from 002-LR1's only by that stored primitive.
    - Listing the same primitive in L-100's `load_sources` is refusal variant (c).
+
+5. **`U3-KD5-UTM-SKEW-OFFSET-COUPLED` (index 22; RV130 S-3).** No frozen case met S-3: U3-GENERIC has offsets, a skew Q and a coupled K, but only at ordinary coordinates and with decimal (not binary64-exact) inputs.
+   - **Inputs (all exact binary64, given as round-trip strings, hex and rationals):**
+     - Q is the binary64 rounding of the rational rotation with columns (1,2,2)/3, (2,1,−2)/3, (−2,2,−1)/3, used exactly as given;
+     - K is U3-GENERIC's coupled PD K, with Ls = 0.25;
+     - aᵢ = (0.2, 0.4, −0.2), aⱼ = (−0.1, 0.3625, 0.44999999999999996);
+     - q_ref and d are dyadic.
+   - **Locations:** xᵢ = (X0 + 0.5, −1.25, 2) and xⱼ = (X0 + 1.8125, 0.8125, 3.375), for X0 = 0, 5e6 and 7.3e6 m.
+   - **Geometry:** xⱼ,ₓ − xᵢ,ₓ = 1.3125 exactly. aⱼ was solved for so that the exact r = (xⱼ − xᵢ) + (aⱼ − aᵢ) is exactly parallel to (1, 2, 2) = Q.x. The x offsets carry binary64 tails finer than the 2⁻³⁰ m grid at 5e6–7.3e6 m, so the absolute-position form must round there.
+   - **Reference:** B, Ke, q, g, energy, end actions and BᵀKq_ref, exact for those binary64 values and identical at all three locations. The six rigid motions about the origin and about xᵢ lie in null(B) and null(Ke) exactly. The end actions balance at each location.
+   - **Illustration (a naive binary64 formation in this script, not the product):**
+
+     | Form | Relative error in r | Relative error in Ke |
+     |---|---|---|
+     | Difference, all locations | 1.8e-17 | 9.4e-17 |
+     | Absolute-position, at UTM | 6.1e-11 | 5.3e-11 |
+
+     T3 reports 1.39× and 6.5e-7× of K-D5's criterion for the two forms at UTM. K-D5's own criterion decides demotion.
+   - **Perturbed variant:** Ke′ = Ke_formed + δ e₃e₃ᵀ on the largest diagonal entry (DOF index 3), with δ = 2⁻²⁰ max|Ke|. It is applied to the formed matrix only, never to K-D5's re-formation. δ is about 18000× the absolute-form defect. Expected: demoted at all three locations, while the unperturbed difference-form case is not demoted.
 
 ## Admission (inferred from code at `ed012c7ccf`, not run)
 
