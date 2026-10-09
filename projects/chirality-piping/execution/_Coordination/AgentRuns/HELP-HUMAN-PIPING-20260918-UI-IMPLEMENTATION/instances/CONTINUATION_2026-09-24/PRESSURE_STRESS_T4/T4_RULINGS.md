@@ -147,3 +147,12 @@ A gap in the proof voids R-1.
 **Annotation joints (T4 WORKING_ITEMS' ruling; HELP_HUMAN agrees).** "Annotation only, analysed as pipe" applies on the pressure-free route only. On the exact route it takes the named refusal: on v2 the composition refusal, on v3 the seam's refusal.
 - A pressurized bellows analysed as pipe carries no thrust, so its anchor loads would be wrong whatever the disclosure said.
 - This refines D-4 and does not reverse it. The owner was told and may overrule.
+
+## Note for D-6's presentation (HELP_HUMAN, 2026-10-09 UTC)
+
+**D-6 and SP-1 interact** (T4-I8, from T4-RV4's S-2).
+- **The conflict.** SP-1 requires a straight v3 case to be bit-equal to its Euler–Bernoulli v2 twin. A Timoshenko default for the exact route at T4-U8 would break that.
+- **What the owner is offered with D-6:**
+  - v3 records Euler–Bernoulli as an explicit selection, and SP-1's twin clause applies only to that selection;
+  - or Timoshenko becomes the default for new v3 documents, with the change of numbers declared and the affected references re-frozen as T4-RV4 marked them.
+- **Nothing is affected before T4-U8.**
