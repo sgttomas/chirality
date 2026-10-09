@@ -1,0 +1,23 @@
+fixture sha256 7e51ecb3c7eca573194ce60222f2e2e7422b817be7aacad9a2a5e79102801ab1
+frozen round-00 json sha256 6b8b75bba48278c033561ddec1ce61e1f19e57bfcab72942a12766d383c4c511
+T1 generator sha256 ead121195bd3149dbc3eed0a9bac1cc4e7e3ea22d6097d0162ef4e74e4effa67
+SHA256SUMS REBUILT_REFERENCE.md OK
+SHA256SUMS REPAIR_01.md OK
+SHA256SUMS RETURN.md OK
+SHA256SUMS _run_records/check_reference_json.py OK
+SHA256SUMS _run_records/check_reference_json.stdout.txt OK
+SHA256SUMS _run_records/derive_rebuilt_references.py OK
+SHA256SUMS _run_records/derive_rebuilt_references.stdout.txt OK
+SHA256SUMS _run_records/t1_generator_probe.py OK
+SHA256SUMS _run_records/t1_generator_probe.stdout.txt OK
+SHA256SUMS rebuilt_reference_cases.json OK
+SHA256SUMS file digest 65bf2f50d6526e6a143773de006a5540943deefffd58fdbe560f0eab6ff15509
+derive exit 0
+check exit 0
+probe exit 0
+byte-equal rebuilt_reference_cases.json 838578ab059f310536afaac115c6e84e40ac53842800ef79030800432220724b
+byte-equal derive.stdout.txt 696f513c4dbff03609b1ba0ff7fb75c2d9637f8026a0818654b71b97aace931d
+byte-equal check.stdout.txt 6f2aad4902349859c61648e8b9ce5e3b51df76d2a2a9c72f06ca76b1ea6caaf1
+byte-equal probe.stdout.txt 792b3b6230d896a0080f2b63098518a5f875660722d0c4cbd16a7cb175586892
+python 3.13.14
+RESULT: PASS
