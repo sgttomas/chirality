@@ -16601,3 +16601,24 @@ The two historical `rejected_stress_range` captures and `ORACLE.json` stay as ca
 **Q2: the pressure-primitive text is left unchanged.** SPEC.md :538 and :540–545 and TYPES.md :169 describe pressure primitive loads. They remain true of the schema and the crate, and they claim no stress or thrust capability.
 
 **Q3: U5 does not wait for the records PR.** Its body says where the cited headings resolve: NUM's RR, and #1168's change record once it is on main.
+
+## #1168: Pass B confirmed by ROOT's reading on the owner's direction to merge (ROOT, 2026-10-09 UTC)
+
+**The direction.** The owner directed: "If you're almost ready to merge then merge." This record replaces the separate RV124-role confirmation of I107's Pass B for #1168. That replacement holds for this PR only.
+
+**ROOT's reading** of I107's record (`R/I107/u3_passb_01/`, RETURN.md `8fd9fc5d…`; 88 sums verified):
+- **Verdict:** DELTAS TO READ, with no stop.
+- **The equality gates:** each one that reads 6 against SQ's records or main is attributed by a reading of 0.
+- **TEXT's increase:** T2's corrected limitation text, +116 B requested, which is the text ruled in "T2(a)". The other grown row requests nothing.
+- **M and the bound:** M is unchanged at 11,274,289,152, the 14 reviewed inputs equal their pins, and every phase is exactly 800 B lower. The bound does not worsen.
+- **The carry-over:** `8a12de28db..37724dea27` outside execution records is exactly `ed012c7ccf`'s deletion of the three retired fixtures, which RV127 found no reader of. So Pass B carries to the head under A2-B-1.
+
+**The other gates on `37724dea27`, at about 12:00Z:**
+- **Reviews:** RV127 (through addendum 03), RV128, and I112's T9 and both-entry gate.
+- **Package checks:** source equality, citations and GEN-8.
+- **CI:** green.
+- **The full-SHA dispatch:** 37878270521.
+- **DEC-025:** ALL-DONE, with 0 changed outcomes, and src-tauri at 118 tests against main's 116.
+- **Main and the merge:** main moved 149 commits, none touching `projects/chirality-piping/` or `.github/`. `merge-tree` is clean, and the PR is CLEAN and MERGEABLE.
+
+**The merge record.** The next session completes `IMPLEMENTATION/U3_MERGE/`, classifying DEC-025's 39 removed and 18 added tests.
