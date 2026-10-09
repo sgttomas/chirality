@@ -16517,3 +16517,17 @@ I110's round 3 is at `6b6543dc1e`. Its evidence: 588/588 bytes equal on exact, i
 - **T2, `PP/src/lib.rs:1944`, is corrected.** "Pressure thrust and pressure stress retain the existing preview formulation…" describes the retired treatment. The replacement is I110's text. The radius is accepted: 26 source-block rows, one retained-source pin, 14 source-block fixtures, two UI fixtures and I114's precision-1 pair. It reaches no retained-precision successor or reader corpus. The re-pin is under the mechanical check.
 - **T4, `preview_physics.rs:75`, is unchanged.** "Nonzero pressure is refused on this route" is true; the refusal is merely broader, and covers zero too. Incomplete is not false, and the radius is the whole retained-precision and reader corpus (28 pins, 8 successors, all of 07n, the schema's const arrays). The wider wording waits for the next scheduled corpus generation: J0b or PR-B2's re-pin wave if cheap there, otherwise B7.
 - **`validation.rs:1159` and `:1350`** get the same test, small radius or noted for T4. **MECH-TP-PHYS-008's id** stays, since ids are stable keys.
+
+## Owner decisions: T4 starts now; the governance-documents PR is authorized (ROOT, 2026-10-09 UTC)
+
+**"Yes start T4"** (the recommendation followed the work-graph check after the pressure retirement).
+- T4 runs in parallel with T3, on its own branch `codex/piping-t4-pressure-stress-20261009` from main `ec5d397359` (worktree `WT/t4`).
+- Its records are under `CONTINUATION_2026-09-24/PRESSURE_STRESS_T4/` (`T4_RULINGS.md`).
+- **The arrangement:** HELPS_HUMANS (the design manager) writes T4's plan for the owner's approval; T4's WORKING_ITEMS implements the approved plan; HELP_HUMAN keeps alignment and rulings.
+- **The host is shared** under the same locks.
+
+**"…and the governance-documents PR"** (RV127's A1-N-2).
+- **The documents:** the piping project's `docs/TYPES.md`, `SPEC.md`, `VALIDATION_STRATEGY.md`, `INTENT.md` and `PRD.md` list pressure membrane stress and pressure thrust as current capabilities.
+- **The scope:** a small PR by T3's WORKING_ITEMS. It corrects only those capability statements to match the retirement and cites the owner decisions.
+- **Its process:** a tranche manifest and routed notices to any loop that mirrors those texts, as instruction-surface changes require (AGENTS.md; `docs/PRD_ROOT.md` on amendments).
+- **Review and timing:** an independent review. It is cut after the U3 PR merges, so the texts never describe something not yet true.
