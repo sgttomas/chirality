@@ -1,0 +1,22 @@
+case | offset | Phi(deg) | chord(m) | kink centre-based (rad) | kink node-relative (rad) | kink 1mm grid | kink 0.1mm grid
+L90 R0.3 | origin | 90.0000 | 0.424264 | 1.570e-16 | 6.106e-16 | 6.106e-16 | 6.106e-16
+L90 R0.3 | UTM | 90.0000 | 0.424264 | 3.104e-09 | 6.209e-10 | 6.209e-10 | 6.209e-10
+skew3D R0.45 | origin | 32.3703 | 0.250868 | 4.079e-16 | 8.093e-16 | 5.467e-03 | 9.052e-05
+skew3D R0.45 | UTM | 32.3703 | 0.250868 | 6.642e-10 | 7.050e-10 | 5.467e-03 | 9.052e-05
+small Phi~5deg R0.05 | origin | 5.0000 | 0.00436194 | 2.223e-15 | 1.409e-15 | degenerate (refused) | 2.224e-03
+small Phi~5deg R0.05 | UTM | 5.0000 | 0.00436194 | 5.588e-08 | 5.568e-08 | degenerate (refused) | 2.224e-03
+tiny Phi~1deg R0.05 | origin | 1.0000 | 0.000872655 | 1.332e-14 | 8.379e-16 | degenerate (refused) | 1.746e-02
+tiny Phi~1deg R0.05 | UTM | 1.0000 | 0.000872655 | 1.898e-07 | 1.742e-07 | degenerate (refused) | degenerate (refused)
+L90 R1.5 | origin | 90.0000 | 2.12132 | 1.570e-16 | 2.776e-16 | 2.776e-16 | 2.776e-16
+L90 R1.5 | UTM | 90.0000 | 2.12132 | 0.000e+00 | 2.776e-16 | 2.776e-16 | 2.776e-16
+
+y_reference = u_in gives the corner-side normal: max |n - unit(u_in - u_out)| over cases at origin
+(unit(u_in - u_out) is the analytic direction from the chord midpoint to the corner)
+1.230e-14
+
+Kink resultant pAi*alpha relative to the bend's own wall resultant pAi*2*sin(Phi/2), alpha = 1e-3 rad
+Phi= 90.0 deg: 7.071e-04
+Phi= 45.0 deg: 1.307e-03
+Phi= 30.0 deg: 1.932e-03
+Phi= 10.0 deg: 5.737e-03
+Phi=  5.0 deg: 1.146e-02
