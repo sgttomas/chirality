@@ -35,7 +35,7 @@ This note is for the owner's next session only. It is not a standing record and 
 
 ## In flight at handoff
 
-**The heads.** NUM is at `89a58fe597`, and the T4 branch at `f2bcbe0d49`, both pushed. T4's log disagrees with this note on two points: T4-RV2 (pass with findings) and T4-I10's revision 01 have returned and are committed, though its handoff addenda still list them as running. Each manager's log ends with a "resume here" block giving the head, branch, worktree, running jobs, output locations and next step for each item. The next IDs are I117 and RV132 for T3, and T4-I13 and T4-RV6 for T4.
+**The heads.** NUM is at `89a58fe597`, and the T4 branch at `ff9d962e8a`, both pushed. Every T4 agent has returned, and its records are committed: T4-RV2, T4-RV5 and T4-I10's revision 01 were committed by ROOT after T4's WORKING_ITEMS stopped, with log lines placed before its resume block. Where the WORKING_ITEMS addenda list them as running, the log lines are right. Each manager's log ends with a "resume here" block giving the head, branch, worktree, running jobs, output locations and next step for each item. The next IDs are I117 and RV132 for T3, and T4-I13 and T4-RV6 for T4.
 
 **T3:**
 - **#1168, the legacy pressure retirement. Not merged; the head is `37724dea27`.**
@@ -59,7 +59,9 @@ This note is for the owner's next session only. It is not a standing record and 
 - **T4-U2.** Both reference sets are accepted: the bends (T4-I7, confirmed by RV3) and the rebuilt straight cases (T4-I8, confirmed by RV4). The authoring design is settled (`T4-I11/`). RV3's condition: the bend term's free-expansion field is treated like the thermal one.
 - **T4-U3.**
   - The slot table's revision 01 (`T4-I10/REVISION_01.md`) folds in RV130's nine amendments. It goes back to T3 for RV130 to confirm.
-  - The references are frozen through round 01 (`T4-I12/`, indices 0–22). T4-RV5 was still refuting round 0 at handoff, with output in `T4-RV5/`; it then confirms round 01 in an addendum.
+  - The references are frozen through round 01 (`T4-I12/`, indices 0–22).
+  - T4-RV5 refuted round 0: every value passes, and it is BLOCKING on B-1. The system document's spring hanger lacks its load and travel metadata, so validation refuses it before the connector runs; the fix restores the demo's values, and no frozen value changes.
+  - Next: T4-I12's repair round 02 (B-1, S-1 to S-3), which RV5 confirms with round 01 in an addendum.
   - The log notes how S20's "presence" is to be read against I12's cases.
 
 ## Decisions waiting for ROOT
