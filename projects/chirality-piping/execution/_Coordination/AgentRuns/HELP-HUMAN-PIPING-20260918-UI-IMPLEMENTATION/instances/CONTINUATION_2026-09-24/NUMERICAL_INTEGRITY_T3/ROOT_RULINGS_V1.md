@@ -16539,3 +16539,26 @@ I110's round 3 is at `6b6543dc1e`. Its evidence: 588/588 bytes equal on exact, i
 4. The three readers verify it.
 
 The two historical `rejected_stress_range` captures and `ORACLE.json` stay as captured, because the head already does not reproduce them. The two precision UI fixtures take a string-only edit.
+
+## U3, T2's outcome under the extended check; two items beyond its radius ruled (ROOT, 2026-10-09 UTC)
+
+**The outcome: T2 is corrected, and the extended check held.** This is I110 round 6, `R/I110/pressure_retire_06/`.
+- **The correction.** The text of `preview_formulation_basis` limitation [1] is corrected, in `11a026b628`.
+- **The check:**
+  - Steps (i) to (iii) hold for all 12 re-pinned source-block raws and for the Rust pin's 2 constants.
+  - `generation.json`'s 12 hashes are recomputed from the resulting files.
+  - In step (iv), all three readers verify.
+  - A baseline confirms the method: the product rule reproduces both committed digests on all 12 raws before the edit.
+- **The demo records** are regenerated in `fe657e3a68`, and all 5 outputs are byte-identical. A rerun with every cargo call routed through `t3_cargo.sh` reproduced them.
+
+**Item 1: the carrier set's file hash for `n05-sparse_interactive.raw.json` is confirmed, on a condition.** The hash is in `P/fixtures/results/retained_precision_carrier_cases.json`.
+- **Why it is confirmed.** It is a file hash of a raw already re-pinned under the check, the same kind of pin as `generation.json`'s raw hashes, and it was recomputed by the same rule. The file is the carriers' parity scenario set, not the reader corpus, and nothing else in it changes.
+- **The condition.** Round 5's radius missed this pin, so the U3 package carries a sweep:
+  - At the head, every old raw hash is searched for across the tree, together with the Rust pin's old constants where they appear as text.
+  - Hits are allowed only in the historical captures and records that the check keeps as captured.
+  - Any other hit comes to ROOT before the merge.
+
+**Item 2: the export documents' `derivative::digest` (4 places) and `derivative_hash` are accepted, as an evidence method only.**
+- They are product-recomputed digests of the normalized content, the same principle as the check's step 2.
+- At the head without T2, the procedure leaves each document unchanged.
+- No committed file carries them, so no pin moves.
