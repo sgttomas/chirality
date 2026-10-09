@@ -3,7 +3,7 @@
 //! Handles constrain which directories receive writes, not their mutable location.
 //! Even matching pre/post observations cannot exclude a transient external rename.
 use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use serde_json::{json, Value};
 use std::{
     collections::BTreeMap,
     path::{Path, PathBuf},
@@ -87,6 +87,8 @@ pub enum ErrorKind {
     UnsupportedCapability,
     InvalidInput,
     UnsupportedFormat,
+    UnsupportedSubset,
+    UnresolvedReference,
     InvalidAccount,
     Io,
     Missing,
@@ -160,7 +162,10 @@ pub fn validate_account(account: &Value) -> Result<()> {
         crate::connector_materialization::validate_cold(account)
             .map_err(|e| StoreError::new(ErrorKind::InvalidAccount, e))?;
     }
-    if index == 3 { crate::connector_reconstruction::validate_cold(account).map_err(|e|StoreError::new(ErrorKind::InvalidAccount,e))?; }
+    if index == 3 {
+        crate::connector_reconstruction::validate_cold(account)
+            .map_err(|e| StoreError::new(ErrorKind::InvalidAccount, e))?;
+    }
     Ok(())
 }
 /// A cold observation of claimed file content. Its binding does not establish
@@ -169,6 +174,10 @@ pub fn validate_account(account: &Value) -> Result<()> {
 pub struct ObservedAccount {
     pub reference: BoundReference,
     pub account: Value,
+    #[serde(skip)]
+    pub(crate) byte_length: usize,
+    #[serde(skip)]
+    pub(crate) answer_only: Option<Value>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DiscoveryIssue {
@@ -227,6 +236,8 @@ mod platform {
         },
     };
 
+    #[cfg(test)] thread_local!{static INSPECTION_AUDIT:std::cell::RefCell<Option<Vec<String>>>=const{std::cell::RefCell::new(None)};}
+    #[cfg(test)] pub(super) fn audit_inspection<T>(f:impl FnOnce()->T)->(T,Vec<String>){INSPECTION_AUDIT.with(|a|*a.borrow_mut()=Some(Vec::new()));let value=f();let audit=INSPECTION_AUDIT.with(|a|a.borrow_mut().take().unwrap());(value,audit)}
     fn ioerr(context: &str, e: std::io::Error) -> StoreError {
         let kind = match e.raw_os_error() {
             Some(libc::ENOENT) => ErrorKind::Missing,
@@ -244,6 +255,7 @@ mod platform {
         })
     }
     fn open_at(parent: &File, name: &OsStr, flags: i32) -> Result<File> {
+        #[cfg(test)] INSPECTION_AUDIT.with(|a|{if let Some(v)=a.borrow_mut().as_mut(){v.push(format!("open:{}",name.to_string_lossy()));}});
         let name = CString::new(name.as_bytes())
             .map_err(|_| StoreError::new(ErrorKind::InvalidInput, "NUL in component"))?;
         // SAFETY: valid parent descriptor and NUL-terminated single component;
@@ -385,6 +397,16 @@ mod platform {
         path: &str,
         dirs: Vec<FileIdentity>,
     ) -> Result<ObservedAccount> {
+        read_account_mode(dir, name, path, dirs, None, || {})
+    }
+    pub(super) fn read_account_mode(
+        dir: &File,
+        name: &str,
+        path: &str,
+        dirs: Vec<FileIdentity>,
+        known: Option<&str>,
+        before_read: impl FnOnce(),
+    ) -> Result<ObservedAccount> {
         let mut file = open_at(dir, OsStr::new(name), libc::O_RDONLY)?;
         let before = file.metadata().map_err(|e| ioerr("account metadata", e))?;
         if !before.is_file() || before.nlink() != 1 {
@@ -393,9 +415,16 @@ mod platform {
                 "account must be regular and not hard-linked",
             ));
         }
-        let mut bytes = Vec::new();
-        file.read_to_end(&mut bytes)
-            .map_err(|e| ioerr("read account", e))?;
+        before_read();
+        let bytes = if known.is_some() {
+            crate::connector_answer_only::bounded_read(&mut file)
+                .map_err(|e| StoreError::new(ErrorKind::InvalidAccount, e))?
+        } else {
+            let mut bytes = Vec::new();
+            file.read_to_end(&mut bytes)
+                .map_err(|e| ioerr("read account", e))?;
+            bytes
+        };
         let after = file
             .metadata()
             .map_err(|e| ioerr("account post-read metadata", e))?;
@@ -415,18 +444,42 @@ mod platform {
                 "account changed during read",
             ));
         }
-        let account: Value = serde_json::from_slice(&bytes).map_err(|e| {
+        let mut account: Value = serde_json::from_slice(&bytes).map_err(|e| {
             StoreError::new(ErrorKind::InvalidAccount, format!("malformed account: {e}"))
         })?;
-        if matches!(account["formatVersion"].as_str(), Some("0.3" | "0.4"))
-            && bytes.len() > crate::connector_materialization::BYTE_LIMIT
-        {
-            return Err(StoreError::new(
-                ErrorKind::InvalidAccount,
-                "Identified format0.3/0.4 exceeds1MiB original bytes; acquisition already occurred",
-            ));
+        if let Some(version) = known {
+            if account["formatVersion"] != version {
+                return Err(StoreError::new(
+                    ErrorKind::ChangedContent,
+                    "known reference version changed; no wider fallback",
+                ));
+            }
         }
-        validate_account(&account)?;
+        let is_answer = account["formatVersion"] == "0.5";
+        if matches!(
+            account["formatVersion"].as_str(),
+            Some("0.3" | "0.4" | "0.5")
+        ) && bytes.len() > crate::connector_answer_only::LIMIT
+        {
+            return Err(StoreError::new(ErrorKind::InvalidAccount,"Identified format0.3/0.4/0.5 exceeds1MiB original bytes; acquisition already occurred"));
+        }
+        if is_answer || known == Some("0.4") {
+            account = crate::connector_answer_only::parse(&bytes)
+                .map_err(|e| StoreError::new(ErrorKind::InvalidAccount, e))?;
+        }
+        let answer_only = if is_answer {
+            crate::connector_answer_only::shape(&account)
+                .map_err(|e| StoreError::new(ErrorKind::InvalidAccount, e))?;
+            if !crate::connector_answer_only::selected(&account) {
+                return Err(StoreError::new(ErrorKind::UnsupportedSubset,"Recognized format0.5 outside ANSWER-ONLY subset: review, plan, integration and integration_attempt must be null"));
+            }
+            Some(
+                json!({"rawAccountText":String::from_utf8(bytes.clone()).map_err(|e|StoreError::new(ErrorKind::InvalidAccount,e.to_string()))?}),
+            )
+        } else {
+            validate_account(&account)?;
+            None
+        };
         Ok(ObservedAccount {
             reference: BoundReference {
                 relative_path: path.to_owned(),
@@ -437,6 +490,8 @@ mod platform {
                 file: identity(&file)?,
             },
             account,
+            byte_length: bytes.len(),
+            answer_only,
         })
     }
     struct Chain {
@@ -463,6 +518,24 @@ mod platform {
         TempChecked,
         Published,
         Verified,
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, Eq)]
+    pub(crate) enum InspectionStep {
+        BeforeRead,
+        AfterRead,
+        BeforePostcheck,
+    }
+    fn inspection_failure(e: StoreError) -> Value {
+        let status = match e.kind {
+            ErrorKind::Missing => "missing",
+            ErrorKind::UnsafeEntry | ErrorKind::InvalidInput => "unsafe",
+            ErrorKind::ChangedContent
+            | ErrorKind::LocationMismatch
+            | ErrorKind::InvalidAccount
+            | ErrorKind::UnsupportedFormat => "changed",
+            _ => "unavailable",
+        };
+        json!({"status":status,"detail":e.detail.chars().take(512).collect::<String>(),"limit":"Direct exact-file observation only; namespace uniqueness not checked; original publication outcome unchanged"})
     }
     impl ProjectRouteStore {
         pub fn open(explicit_project: &Path) -> Result<Self> {
@@ -535,6 +608,210 @@ mod platform {
                 ));
             }
             Ok(())
+        }
+        fn inspection_chain(&self, expected: &[FileIdentity]) -> Result<Chain> {
+            let mut handles = vec![self
+                .directory
+                .try_clone()
+                .map_err(|e| ioerr("duplicate inspection root", e))?];
+            let mut ids = vec![self.root_identity.clone()];
+            for (index, part) in PARTS.iter().enumerate() {
+                let dir = child(handles.last().unwrap(), part, false)?;
+                let id = identity(&dir)?;
+                if expected.get(index + 1) != Some(&id) {
+                    return Err(StoreError::new(
+                        ErrorKind::ChangedContent,
+                        "Original directory identity changed",
+                    ));
+                }
+                ids.push(id);
+                handles.push(dir);
+            }
+            Ok(Chain { handles, ids })
+        }
+        #[cfg(test)]
+        pub(crate) fn retained_size(&self) -> usize {
+            std::mem::size_of::<Self>() + self.root.capacity()
+        }
+        /// A direct, bounded comparison, deliberately not full unique reference resolution.
+        pub(crate) fn inspect_published(&self, reference: &BoundReference, project: &Path) -> Value {
+            self.inspect_published_with(reference, project, |_| Ok(()))
+        }
+        pub(super) fn inspect_published_with(
+            &self,
+            reference: &BoundReference,
+            project: &Path,
+            mut hook: impl FnMut(InspectionStep) -> std::io::Result<()>,
+        ) -> Value {
+            let run = (|| -> Result<Value> {
+                if !matches!(reference.format_version.as_str(), "0.3" | "0.4") {
+                    return Err(StoreError::new(
+                        ErrorKind::UnsupportedCapability,
+                        "Direct published inspection supports only known0.3/0.4",
+                    ));
+                }
+                let parts = relative_parts(&reference.relative_path)?;
+                let (name, ancestors) = parts.split_last().unwrap();
+                if ancestors != PARTS
+                    || !canonical_name(name)
+                    || reference.directories.len() != PARTS.len() + 1
+                    || reference.directories.first() != Some(&self.root_identity)
+                {
+                    return Err(StoreError::new(
+                        ErrorKind::InvalidInput,
+                        "Original canonical path/root binding required",
+                    ));
+                }
+                let check_project = || -> Result<()> {
+                    // Keep original errors, unlike the legacy compare wrapper.
+                    let current = open_path(&self.root)?;
+                    if identity(&current)? != self.root_identity {
+                        return Err(StoreError::new(
+                            ErrorKind::ChangedContent,
+                            "Original project root was replaced",
+                        ));
+                    }
+                    let resolved = project
+                        .canonicalize()
+                        .map_err(|e| ioerr("current explicit project", e))?;
+                    if resolved != self.root {
+                        return Err(StoreError::new(
+                            ErrorKind::ChangedContent,
+                            "Current project association differs from original store",
+                        ));
+                    }
+                    Ok(())
+                };
+                check_project()?;
+                let chain = self.inspection_chain(&reference.directories)?;
+                if chain.ids != reference.directories {
+                    return Err(StoreError::new(
+                        ErrorKind::ChangedContent,
+                        "Original directory identities changed",
+                    ));
+                }
+                let mut file = open_at(chain.last(), OsStr::new(name), libc::O_RDONLY)?;
+                let before = file
+                    .metadata()
+                    .map_err(|e| ioerr("inspection metadata", e))?;
+                if !before.is_file() || before.nlink() != 1 {
+                    return Err(StoreError::new(
+                        ErrorKind::UnsafeEntry,
+                        "Inspection target must be regular and single-link",
+                    ));
+                }
+                if identity(&file)? != reference.file {
+                    return Err(StoreError::new(
+                        ErrorKind::ChangedContent,
+                        "Original file identity changed",
+                    ));
+                }
+                hook(InspectionStep::BeforeRead).map_err(|e| ioerr("inspection read", e))?;
+                let mut bytes = Vec::new();
+                (&mut file)
+                    .take((crate::connector_materialization::BYTE_LIMIT + 1) as u64)
+                    .read_to_end(&mut bytes)
+                    .map_err(|e| ioerr("bounded inspection read", e))?;
+                if bytes.len() > crate::connector_materialization::BYTE_LIMIT {
+                    return Err(StoreError::new(
+                        ErrorKind::UnsupportedCapability,
+                        "Exact-file inspection exceeded1MiB sentinel; no wider read",
+                    ));
+                }
+                #[cfg(test)]
+                INSPECTION_AUDIT.with(|a| {
+                    if let Some(v) = a.borrow_mut().as_mut() {
+                        v.push(format!(
+                            "raw-bytes:{};raw-capacity:{}",
+                            bytes.len(),
+                            bytes.capacity()
+                        ));
+                    }
+                });
+                hook(InspectionStep::AfterRead).map_err(|e| ioerr("inspection readback", e))?;
+                let digest = crate::util::sha256_hex(&bytes);
+                if digest != reference.sha256 {
+                    return Err(StoreError::new(
+                        ErrorKind::ChangedContent,
+                        "Original raw account hash changed",
+                    ));
+                }
+                let account = crate::connector_answer_only::parse(&bytes).map_err(|_| {
+                    StoreError::new(
+                        ErrorKind::InvalidAccount,
+                        "Strict JSON/UTF8/depth validation failed",
+                    )
+                })?;
+                if account["formatVersion"] != reference.format_version
+                    || account["account_id"] != reference.account_id
+                {
+                    return Err(StoreError::new(
+                        ErrorKind::ChangedContent,
+                        "Original account ID/version changed",
+                    ));
+                }
+                validate_account(&account).map_err(|_| {
+                    StoreError::new(
+                        ErrorKind::InvalidAccount,
+                        "Owning account semantic/schema validation failed",
+                    )
+                })?;
+                // No parsed content is retained or returned by this method.
+                drop(account);
+                let byte_length = bytes.len();
+                drop(bytes);
+                hook(InspectionStep::BeforePostcheck).map_err(|e| ioerr("inspection postcheck", e))?;
+                let after = file
+                    .metadata()
+                    .map_err(|e| ioerr("inspection post-read metadata", e))?;
+                if !after.is_file() || after.nlink() != 1 {
+                    return Err(StoreError::new(
+                        ErrorKind::UnsafeEntry,
+                        "Inspection target no longer regular/single-link",
+                    ));
+                }
+                if before.len() != after.len()
+                    || before.mtime() != after.mtime()
+                    || before.mtime_nsec() != after.mtime_nsec()
+                    || before.ctime() != after.ctime()
+                    || before.ctime_nsec() != after.ctime_nsec()
+                {
+                    return Err(StoreError::new(
+                        ErrorKind::ChangedContent,
+                        "Account metadata changed during inspection",
+                    ));
+                }
+                {
+                    let named = open_at(chain.last(), OsStr::new(name), libc::O_RDONLY)?;
+                    let m = named
+                        .metadata()
+                        .map_err(|e| ioerr("reopened inspection metadata", e))?;
+                    if !m.is_file() || m.nlink() != 1 {
+                        return Err(StoreError::new(
+                            ErrorKind::UnsafeEntry,
+                            "Reopened inspection target unsafe",
+                        ));
+                    }
+                    if identity(&named)? != reference.file {
+                        return Err(StoreError::new(
+                            ErrorKind::ChangedContent,
+                            "Named account replaced during inspection",
+                        ));
+                    }
+                }
+                check_project()?;
+                let after_chain = self.inspection_chain(&reference.directories)?;
+                if after_chain.ids != chain.ids {
+                    return Err(StoreError::new(
+                        ErrorKind::ChangedContent,
+                        "Directory chain changed during inspection",
+                    ));
+                }
+                Ok(
+                    json!({"status":"current_match","observed":{"accountId":reference.account_id,"formatVersion":reference.format_version,"sha256":digest,"byteLength":byte_length,"fileIdentity":{"device":reference.file.device.to_string(),"inode":reference.file.inode.to_string()}},"limit":"Direct exact-file observation only; namespace uniqueness not checked; no continuous pathname guarantee, source truth, duty or new publication proof"}),
+                )
+            })();
+            run.unwrap_or_else(inspection_failure)
         }
         /// One explicit attempt; a collision or uncertain outcome is never retried.
         #[cfg(test)]
@@ -702,6 +979,13 @@ mod platform {
         /// Discovery is observational, not a filesystem snapshot. Re-resolve a
         /// held binding at use; never interpret absence as no outstanding work.
         pub fn discover(&self) -> Discovery {
+            self.discover_using(None, |_| {})
+        }
+        pub(super) fn discover_using(
+            &self,
+            known: Option<&BoundReference>,
+            mut before_base: impl FnMut(&str),
+        ) -> Discovery {
             let mut out = Discovery {
                 resolved_project: self.root.clone(),
                 accounts: vec![],
@@ -732,9 +1016,14 @@ mod platform {
                                 "interrupted temporary file; not an account",
                             ))
                         }
-                        Some(s) if canonical_name(s) => {
-                            read_account(chain.last(), s, &path, chain.ids.clone())
-                        }
+                        Some(s) if canonical_name(s) => read_account_mode(
+                            chain.last(),
+                            s,
+                            &path,
+                            chain.ids.clone(),
+                            known.filter(|r| r.relative_path == path).map(|_| "0.5"),
+                            || {},
+                        ),
                         _ => Err(StoreError::new(
                             ErrorKind::InvalidName,
                             "noncanonical entry; not an account",
@@ -778,11 +1067,191 @@ mod platform {
                     });
                 }
             }
+            // Move the existing observations, not a second cloned account cache.
+            let observations = std::mem::take(&mut out.accounts);
+            let index = &out.by_account_id;
+            let base_bindings: Vec<_> = observations
+                .iter()
+                .filter(|a| a.reference.format_version == "0.4")
+                .map(|a| &a.reference)
+                .collect();
+            let uncertain_index = !out.enumeration_complete
+                || out.issues.iter().any(|i| {
+                    !matches!(
+                        i.kind,
+                        ErrorKind::TemporaryLeftover
+                            | ErrorKind::InvalidName
+                            | ErrorKind::DuplicateIdentity
+                    )
+                });
+            // Resolve each base independently from bounded original bytes. No0.5 recursion.
+            let mut results = Vec::new();
+            for a in &observations {
+                if a.reference.format_version != "0.5" {
+                    results.push(None);
+                    continue;
+                }
+                before_base(&a.reference.relative_path);
+                let result = (|| -> Result<Value> {
+                    if uncertain_index {
+                        return Err(StoreError::new(
+                            ErrorKind::UnresolvedReference,
+                            "Incomplete canonical identity index; exact base unresolved",
+                        ));
+                    }
+                    let base = &a.account["base_account"];
+                    let id = base["account_id"].as_str().unwrap();
+                    let path = base["relative_path"].as_str().unwrap();
+                    if index.get(id).map(|p| p.as_slice()) != Some(&[path.to_owned()][..]) {
+                        return Err(StoreError::new(
+                            ErrorKind::UnresolvedReference,
+                            "Missing or ambiguous exact base identity/path; no alternate chosen",
+                        ));
+                    }
+                    let recorded = base_bindings
+                        .iter()
+                        .find(|r| r.relative_path == path)
+                        .ok_or_else(|| {
+                            StoreError::new(
+                                ErrorKind::UnresolvedReference,
+                                "Exact base is not an observed0.4 record",
+                            )
+                        })?;
+                    let b = self.read_base(base).map_err(|e| {
+                        StoreError::new(
+                            ErrorKind::UnresolvedReference,
+                            format!("Exact base unresolved: {e}"),
+                        )
+                    })?;
+                    if b.reference != **recorded {
+                        return Err(StoreError::new(
+                            ErrorKind::UnresolvedReference,
+                            "Base identity changed since discovery",
+                        ));
+                    }
+                    let answer = crate::connector_answer_only::validate(&a.account, &b.account)
+                        .map_err(|e| StoreError::new(ErrorKind::InvalidAccount, e))?;
+                    let parts = relative_parts(&a.reference.relative_path)?;
+                    let (name, ancestors) = parts.split_last().unwrap();
+                    let chain = self.chain(ancestors, false)?;
+                    let again = read_account_mode(
+                        chain.last(),
+                        name,
+                        &a.reference.relative_path,
+                        chain.ids.clone(),
+                        Some("0.5"),
+                        || {},
+                    )?;
+                    self.compare(ancestors, &a.reference.directories)?;
+                    if again.reference != a.reference {
+                        return Err(StoreError::new(
+                            ErrorKind::ChangedContent,
+                            "Answer changed during base resolution",
+                        ));
+                    }
+                    Ok(
+                        json!({"answer":answer,"baseResolution":"exact0.4 bytes resolved at this read; no continuous snapshot guarantee","baseBindingText":serde_json::to_string_pretty(&b.reference).unwrap(),"baseQuestion":b.account["question"],"baseGaps":b.account["gaps"],"baseContradictions":b.account["contradictions"],"limit":"Cold recorded-content consistency only; receipt strings do not authenticate original authorship, role emission, permission or performed duties"}),
+                    )
+                })();
+                results.push(Some(result));
+            }
+            drop(base_bindings);
+            for (mut a, result) in observations.into_iter().zip(results) {
+                match result {
+                    None => out.accounts.push(a),
+                    Some(Ok(mut evidence)) => {
+                        evidence["rawAccountText"] =
+                            a.answer_only.take().unwrap()["rawAccountText"].take();
+                        a.answer_only = Some(evidence);
+                        out.accounts.push(a);
+                    }
+                    Some(Err(e)) => out.issues.push(DiscoveryIssue {
+                        relative_path: a.reference.relative_path,
+                        kind: e.kind,
+                        detail: e.detail,
+                    }),
+                }
+            }
             out
+        }
+        fn read_base(&self, base: &Value) -> Result<ObservedAccount> {
+            let identity = &base["project_identity"];
+            if identity["device"] != self.root_identity.device.to_string()
+                || identity["inode"] != self.root_identity.inode.to_string()
+            {
+                return Err(StoreError::new(
+                    ErrorKind::LocationMismatch,
+                    "Base recorded project identity differs from opened root",
+                ));
+            }
+            let path = base["relative_path"]
+                .as_str()
+                .ok_or_else(|| StoreError::new(ErrorKind::InvalidInput, "Missing base path"))?;
+            let parts = relative_parts(path)?;
+            let (name, ancestors) = parts.split_last().unwrap();
+            if ancestors != PARTS || !canonical_name(name) {
+                return Err(StoreError::new(
+                    ErrorKind::InvalidInput,
+                    "Base must use canonical UUID account path",
+                ));
+            }
+            let chain = self.chain(ancestors, false)?;
+            self.compare(ancestors, &chain.ids)?;
+            let observed = read_account_mode(
+                chain.last(),
+                name,
+                path,
+                chain.ids.clone(),
+                Some("0.4"),
+                || {},
+            )?;
+            self.compare(ancestors, &chain.ids)?;
+            if observed.reference.account_id != base["account_id"]
+                || observed.reference.sha256 != base["sha256"]
+                || base["byte_length"].as_f64() != Some(observed.byte_length as f64)
+            {
+                return Err(StoreError::new(
+                    ErrorKind::ChangedContent,
+                    "Base original hash/length/ID differs",
+                ));
+            }
+            Ok(observed)
         }
         /// Resolve the complete held binding in this explicit project. An explicit
         /// legacy relative binding uses the same checks; there is no legacy crawl.
         pub fn resolve(&self, reference: &BoundReference) -> Result<ObservedAccount> {
+            if reference.format_version == "0.5" {
+                let parts = relative_parts(&reference.relative_path)?;
+                let (name, ancestors) = parts.split_last().unwrap();
+                if ancestors != PARTS || !canonical_name(name) {
+                    return Err(StoreError::new(
+                        ErrorKind::InvalidInput,
+                        "Known0.5 binding requires canonical path",
+                    ));
+                }
+                self.compare(ancestors, &reference.directories)?;
+                let mut discovery = self.discover_using(Some(reference), |_| {});
+                if let Some(index) = discovery
+                    .accounts
+                    .iter()
+                    .position(|a| &a.reference == reference)
+                {
+                    if discovery
+                        .by_account_id
+                        .get(&reference.account_id)
+                        .is_some_and(|p| p.len() == 1)
+                    {
+                        return Ok(discovery.accounts.remove(index));
+                    }
+                }
+                return Err(StoreError::new(
+                    ErrorKind::UnresolvedReference,
+                    format!(
+                        "Known0.5 reference unresolved or ambiguous: {:?}",
+                        discovery.issues
+                    ),
+                ));
+            }
             let parts = relative_parts(&reference.relative_path)?;
             let (name, ancestors) = parts.split_last().unwrap();
             if reference.directories.len() != ancestors.len() + 1 {
@@ -867,6 +1336,7 @@ mod platform {
     /// Independent open file description, so concurrent enumerations do not share
     /// an offset. errno distinguishes an interrupted/failed readdir from EOF.
     fn names(dir: &File) -> Result<(Vec<std::ffi::OsString>, Option<StoreError>)> {
+        #[cfg(test)] INSPECTION_AUDIT.with(|a|{if let Some(v)=a.borrow_mut().as_mut(){v.push("enumerate".into());}});
         use std::os::fd::IntoRawFd;
         let scan = open_at(dir, OsStr::new("."), libc::O_RDONLY | libc::O_DIRECTORY)?;
         let fd = scan.into_raw_fd();
@@ -930,3 +1400,7 @@ impl ProjectRouteStore {
 #[cfg(all(test, any(target_os = "macos", target_os = "linux")))]
 #[path = "connector_route_store_tests.rs"]
 mod tests;
+
+#[cfg(all(test, any(target_os = "macos", target_os = "linux")))]
+#[path = "connector_answer_only_tests.rs"]
+mod answer_only_tests;

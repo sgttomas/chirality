@@ -44,8 +44,11 @@ interrupted-work recovery and provider adapters remain separate obligations.
 | C3 source-file recovery and visible route | App receiving owner; DEL-07-02 backend/view/tests | C1; placement, source custody and exact Git inputs | Same question reconstructed with source identities/gaps and agent/manager/person duties; no inferred authority; independent review and connected checks | ACTIVE: bounded backend/view/source producers and format-0.4 comparison merged through PR #1155; C3-NW-03 native synthetic witness recorded in PR #1170. Full answer/review/integration and actual duties remain unfinished; source and policy decisions below precede graph-write code |
 | C3-D1 ordinary graph work and observation | HELP_HUMAN owner-decision custody; Group C and affected interface owners assess consequences | Merged C3-OD-01, accepted App/host basis and CCE evidence distinctions | Ordinary Codex file work under actual host permissions; App reports observed effects without pre-dispatch confinement or inferred authority | SELECTED direction in PR #1175; W1 App-owned graph insert/default per-edit preview is not selected. W2 source/parity impact assessment independently reviewed and merged PR #1177; exact interface adoption remains outstanding |
 | C3-D2 interrupted-work recovery and capacity | Group C with PM05 and storage/source owners | Merged C3-OD-02 and comparative assessment | Recoverable current status with exact recovery-critical evidence; older full intermediate snapshots replaceable only when required facts survive | SELECTED R2 source-design/proof target in PR #1175; finite quota, storage/retirement and separate final CAM64 product treatment remain open |
-| C3-R2-S source successor and receiving adoption | Group C manager and affected Design owners; no graph target write | C3-OD-01/02; reviewed CCE-A2; exact Host/RS and applicable policy interfaces | Named W2/CCE and R2/PM05 source changes, consumer consequences and negatives independently reviewed; no authority from text | ACTIVE positive content-only review message source CCR-v0.1, independently READY as a source-only proposal; PR integration pending. CCE-A2 and W2/R2 proposals merged PR #1174/#1177. HELP_HUMAN subsequently chose W2-M and R2-S as source/proof sequencing targets, not adopted mechanisms; its durable selection record merged PR #1178 |
+| C3-R2-S source successor and receiving adoption | Group C manager and affected Design owners; no graph target write | C3-OD-01/02; reviewed CCE-A2; exact Host/RS and applicable policy interfaces | Named W2/CCE and R2/PM05 source changes, consumer consequences and negatives independently reviewed; no authority from text | ACTIVE staged authored-answer source route; bounded development cold consumer complete in PR #1186; answer-only candidate merged PR #1181; positive content-only message source merged PR #1179, not implementation release. CCE-A2 and W2/R2 proposals merged PR #1174/#1177. HELP_HUMAN subsequently chose W2-M and R2-S as source/proof sequencing targets, not adopted mechanisms; its durable selection record merged PR #1178 |
 | C3-R2-I implementation and connected witness | Bounded implementers only after release; later native/supplier tests point-authorized | Reviewed selected C3-R2-S contracts, genuine Host sources and actual permissions, applicable recovery/product choices | Actual authored answer, separate manager contribution and supported ordinary-write observations; independent code/connected checks | PLANNED, not released; no W1 writer or universal A5/A12/grant prerequisite introduced by W2 direction |
+| C3-AA-CAP private Host capture core | Host owner and independent reviewer; source-selected dormant core only | Exact core hook/cut/equality/budget and test-only activation review | Provisional request/event consistency, no role mint/public producer or artifact | COMPLETE bounded dormant AA-CAP core in PR #1190; borrowed predicates only, no full native schema validation or authorship mint |
+| C3-AA-TASK genuine answer-only producer | C3, role, EXEC/WR, Host and RS owners | Actual initiating/delegated TASK admission, combined WR/role/Host ordering and selected0.5 producer | Original request/emission→guarded mint→one-use0.5 publication→cold view, with synthetic/live proof limits separate | HELD on named source adoption, not on R2/W2 completion; current cold reader supplies no authorship |
+| C3-AA-REVIEW separate manager content review | C3 and role/Host/RS owners | Genuine separate manager source, exact answer binding, selected message0.2 and new carrier | Content review remains distinct from integration and human acts | LATER source/consumer work; no old0.5 reinterpretation |
 | C4 Domains contract and receiving | App receiving owner with external owners; DEL-08-01 | OI-023 terms and admission inputs; OI-026 allocation before provider production/integration | Identified contract/admitted-source cases, freshness and unsuitable/absent behavior, exact decision custody | BLOCKED at dependent implementation; no provider allocation inferred |
 | C5 later research-to-design contribution and witness | App method/receiving owner; DEL-08-02; host work remains SWBPIPE | Owner activation of later increment; C4; portable workflow, shared act row, actual host integration and human act | Source → context → candidate → actual decision witness, plus limitations; preparation/rehearsal separate | BLOCKED at activation/input points; no activation inferred from Group C resume |
 | C6 final bounded reconciliation and receipt | Manager; four deliverables and this run, no MEMORY writes | Intended production and required evidence integrated or explicitly qualified by the owner | Commitment↔result comparison under bounded-reconciliation; missing work returns to execution; conditional intake only without a home | PLANNED; C3 full reconstruction and C2/C4/C5 input holds prevent whole-Group-C completion now |
@@ -97,12 +100,12 @@ future entries will be routed through HELP_HUMAN at closeout, not written here.
 
 ## Current state and recovery
 
-The current checked main basis is `2254d6b2806158211411aa05f74001465ce829b4`
-(PR #1177 impact/source options merged; OD-01/02 remain the owner direction).
+The current checked main basis is `b59e08b9a5fa89e065db65d2c4cc2ebabedf9d91`
+(PR #1193 dormant R2 proof merged; no production R2 or TASK producer).
 PR #1170 retains the completed bounded native witness. The prior HELP_HUMAN graph refresh and WORKING_ITEMS assignment are complete.
 HELP_HUMAN now assigns WORKING_ITEMS `/root/group_c_successor` as the sole
 Group C graph maintainer for bounded C3-R2-S W2/R2 impact and source options,
-on `codex/group-c-content-review-source`. CCE-A2 source proposal merged as PR #1174
+on `codex/group-c-r2-proof-manager`. CCE-A2 source proposal merged as PR #1174
 `fb61e741b7dbd5975b9830988ada607face73772`; it does not release code. No child is commissioned and no native process is
 carried by this assignment. Prior historical returns remain in the run; changes
 are integrated against then-current main by this one maintainer.
@@ -247,3 +250,141 @@ not another owner ruling or selection of quota, retirement, CAM policy or
 implementation. Exact technical sequencing is retained in
 [C3_SOURCE_TARGET_SELECTION_20261008.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_SOURCE_TARGET_SELECTION_20261008.md),
 merged PR #1178. It does not adopt the proposed interfaces.
+
+## First usable answer-only implementation route — selection candidate
+
+[C3_ANSWER_ONLY_SELECTION_CANDIDATE.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_ANSWER_ONLY_SELECTION_CANDIDATE.md)
+proposes only existing0.5 answer-only production/reading, with explicit absent
+review/plan/integration/attempt. Host/role source adoption, exact0.5 semantic
+reader/CRP-CAM/view receiving and independent selection remain before code.
+Merged PR #1180 is a Host interface proposal, not an adopted capability.
+R2 journal and W2-M graph implementation are not blanket gates for this bounded
+answer-only increment; lifecycle-A/PM05 and capacity limits remain product gaps.
+No code release, supplier/native act or source truth is inferred.
+
+## Development cold-consumer brief and resource residual
+
+[C3_AO_COLD_CONSUMER_IMPLEMENTATION_BRIEF.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_AO_COLD_CONSUMER_IMPLEMENTATION_BRIEF.md)
+limits prospective code to read-only0.5 answer-only semantic intake/view, refusing
+schema-valid unselected review/integration shapes and preserving write barriers.
+HELP_HUMAN technically selected the gap-limited first development route: generic
+discovery keeps its existing acquisition behavior;0.5 size is checked after
+acquisition. Exact independently known0.5 references and base0.4 use actual
+bounded reads. No production resource-sufficiency claim follows.
+
+| Residual | Accountable owner and proof condition | Standing |
+|---|---|---|
+| C3-AO-ALLOC generic cold format dispatch/acquisition | DEL-07-02 store/reader owner with legacy consumer owner; independently reviewed pre-read/streaming or other bounded strategy must demonstrate oversized/late-version/malformed/racing input bounds and0.1/0.2 compatibility before product90 sufficiency | OPEN product residual; no unreviewed global legacy cap/prefix parser; first development reader gap explicitly selected |
+| C3-AO-TASK actual delegated TASK source | Role/Host owners supply reviewed original delegated admission/RoleSourceLease and genuine request/emission join before authored production | OPEN new A→C interface; ordinary primary TASK is refused and public binding/history is insufficient; no retroactive Group A deficiency |
+
+HELP_HUMAN released only the merged brief's bounded development cold-consumer
+code after independent review and PR #1183. Actual assignment and fence are in
+[C3_AO_COLD_IMPLEMENTATION_RELEASE.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_AO_COLD_IMPLEMENTATION_RELEASE.md).
+Existing route_persistence returned5f184ee52b; independent exact-code review
+READY and unchanged manager integration be5cd2b are retained in
+[C3_AO_COLD_IMPLEMENTATION_REVIEW.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_AO_COLD_IMPLEMENTATION_REVIEW.md).
+Final combined backcheck was READY atdd63e028d6; selected CI passed and
+PR #1186 merged6b904385a96f. Only the bounded read-only consumer is complete. R2 journal/W2 integration are not blanket reader gates.
+
+## Received A→C delegated role source proposal
+
+PR #1184 merged `2e5c32e72d1ecdc4f81be98ebbfe8f7a740cf18a`, retaining
+[the role-owner return](../../AgentRuns/APP-V4-GROUP-C-20261008/role_source_proposal/RETURN.md)
+and named CCE_ROLE_SOURCE_LEASE_PROPOSAL. This is a new A-owned source interface
+for C3, not implemented TASK admission or retroactive deficiency in completed A
+work. Actual C3 initiating boundary, SL-4 fresh-child interpretation and combined
+WR/role/Host ordering remain source prerequisites before authored answer code.
+The current read-only0.5 consumer is independent and cannot mint that evidence.
+
+## Cold-consumer candidate and R2 receiving
+
+C3-AO-COLD-01 is COMPLETE at its bounded development scope, merged PR #1186: actual
+constructed files through read backend/view, full0.5 unselected subsets refused,
+shared write/freeze0.5 still unsupported. Author frontend checks passed; reviewer
+frontend execution lacked dependencies and is not claimed, with static review
+and independent84 default/84 feature connector tests separately recorded.
+No actual authored producer or generic pre-acquisition memory bound is supplied.
+
+PR #1185 retains R2_S_STORAGE_INTERFACE_PROPOSAL and34 designed cases. C3's
+owning semantic review concurred with ordinary-operation intent/unknown outcome,
+reference survival and separate confirmed account versus uncertain journal
+standing after a wording repair. Physical storage/runtime review remains its
+own evidence; no N/caps/retirement/CAM64 policy or journal implementation is
+adopted by receipt of this source/proof hypothesis.
+
+## Staged authored-answer source route
+
+[C3_AUTHORED_ANSWER_ROUTE_20261008.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_AUTHORED_ANSWER_ROUTE_20261008.md)
+separates private dormant Host facts from actual TASK admission/mint/publication
+and later manager review. Its exact
+[basis](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_AUTHORED_ANSWER_ROUTE_BASIS.json)
+retains merged source pins and explicitly unmerged owning-context observations.
+Distribution initiation/SL-4/WR ordering source assessment is pending; no actual
+entry/tool/lease or Fleet child-dispatch equivalence is inferred. Parent may
+release a reviewed private core independently, but this route itself releases
+no code or Type2 assignment. Existing source owners retain their interfaces.
+
+## R2 first bounded proof candidate
+
+[R2-PROOF-01](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_R2_FIRST_PROOF_SELECTION.md)
+proposes a dormant private current-status snapshot/descriptor core with test-only
+activation, embedded exact critical evidence and no retirement. Explicit small
+TestBudget constants exercise bounds; they are not product N/S/D/T/Q selections.
+[Designed cases](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_R2_FIRST_PROOF_CASES.json)
+are not executed tests. Source/owning and independent review precedes technical
+release; no code, real journal, policy, new owner decision or CAM change occurs.
+Production shared quota, physical Q/support/threat model, retirement and final
+CAM64 suitability remain open before product90. R2-L stays comparator.
+
+Initiation/ordering proposal PR #1188 is received as options only: actual manager
+receiver/managed-session or native TASK role carrier, SL-4, post-cut WR meaning
+and combined lock proof remain unresolved. It does not release AA-TASK. Parent
+reports AA-CAP narrowed to borrowed bounded join-field predicates; full native
+schema validation is not performed by that core and belongs to a future issuer
+outside Inner plus guarded recheck. Provisional consistency is not schema-qualified
+native success or authorship. The core's exact boundary remains with Host owning
+review. No shared Host/lib code is being edited by this R2 source assignment.
+
+## Released R2 dormant test-only proof
+
+PR #1191 merged04b06eb2f7 retains the first proof selection. The exact B2
+implementation brief is independently READY and storage-owner CONCUR after the
+retained B1 bootstrap correction. HELP_HUMAN explicitly released only this
+dormant test-only code; actual assignment and serial build fence are in
+[C3_R2_PROOF_CODE_RELEASE.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_R2_PROOF_CODE_RELEASE.md).
+Existing route_persistence executes; independent exact-code review precedes
+fan-in. No production constructor, RS carrier, quota/retirement or CAM policy
+is selected. Parent RS receiving assessment is not RS source-owner adoption.
+
+## R2 dormant proof candidate reviewed
+
+Author7e1105579c had an independently found post-replacement admission-binding
+false-confirmation defect. Maintained red tests reproduced it; repairedceca6e972f
+received independent READY and32 default/32 feature passes. Exact failure,
+repair, proportionality and reuse/retirement limits are in
+[C3_R2_PROOF_INDEPENDENT_REVIEW.md](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_R2_PROOF_INDEPENDENT_REVIEW.md).
+Manager integration99d7c246e9 preserves identical App bytes. Final head review was READY ata676b11b3d; selected CI passed and PR #1193
+mergedb59e08b9a5. The bounded proof is COMPLETE. This is a test-only storage proof, not
+production R2 activation, RS adoption, capacity/retirement selection or PM05 closure.
+
+### R2 resource-envelope receiving checkpoint
+
+PR #1193 merged the dormant constructed-file proof as `b59e08b9a5fa89e065db65d2c4cc2ebabedf9d91`; no production opener or PM05 recovery was released. PR #1194 merged dormant original-call/unavailable-response custody as `52f5f3494b97f0bd7547fd437b656483450a9ae5`; it supplies no TASK admission, managed-session service or authored answer producer. C3-AA-TASK remains held on its named role/initiation/source joins, not on R2 completion.
+
+[R2 resource envelope and evidence retention](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_R2_RESOURCE_ENVELOPE.md) is the next proposed technical decision package. Its constructed byte matrix informs carrier/resource work; product N/S/D/T/Q, terminal retention, platform qualification and separate CAM64 suitability remain open. Real recovery-critical Host/operation carriers and workload/resource measurements are still missing. C2/C4/C5 external holds remain separate; no whole-product90 claim.
+
+The resource-envelope package merged in PR #1195 as `9031b63ef62282145bfd6949bad2e7b35348773d`, source/measurement basis only. The [constructed carrier comparison](../../AgentRuns/APP-V4-GROUP-C-20261008/C3_R2_CARRIER_COMPARISON.md) now compares six source-valid cases across three illustrative encodings with referenced bytes counted. It does not qualify an immutable store, full critical-set quota, memory, physical disk or production carrier. Next source reviews concern C3 critical-set closure, Host/role facts, RS resolution, storage retention and CRP/CAM final-reference survival; product policies remain open.
+
+The constructed carrier comparison merged in PR #1196 as `fef109a510dafa400c2f1e839e21cdbd3c84d5f8`. The next [complete critical-set/reference source proposal](../../AgentRuns/APP-V4-GROUP-C-20261008/critical_set_reference_source/CRITICAL_SET_REFERENCE_CARRIER_v0.1_PROPOSAL.md) has independent source READY, conditional CRP/CAM implementation-owner receiving input and conditional Host/role/storage source concurrence; actual RS owner adoption is absent. Its future carrier-linked final-account rule does not gate existing publication. No carrier/schema, product caps, storage implementation or PM05/90 completion is selected.
+
+### Critical-set grammar source checkpoint
+
+[Exact grammar and cold-reader invariants](../../AgentRuns/APP-V4-GROUP-C-20261008/critical_set_grammar_source/GRAMMAR_v0.1_PROPOSAL.md) refine the merged PR #1197 proposal without adopting a carrier, route-account0.6 or production reader. Final2a348713 has independent source READY, conditional Host/storage and CRP/CAM receiving, and new bounded DEL-04-03 receiving concurrence; this is not historical RS owner approval or executable adoption. PR #1199's attributed RS assessment is received. The83 cases are designed, not executed reader tests. Next source obligations are exact method/export mapping, bounded acquisition/traversal/retention and explicit consumer adoption; no new large proof code or product N/S/D/T/Q is released. Existing publication remains ungated, and C2/C4/C5 external holds remain separate.
+
+### Connected published-entry recheck source candidate
+
+The grammar source merged in PR #1202 as `9a82cbcf29c46bb6f722c074b5854de7ef470450`. [C3-PUB-RECHECK-01](../../AgentRuns/APP-V4-GROUP-C-20261008/published_recheck_source/C3_PUB_RECHECK_01.md) is the next proposed joined contribution: existing confirmed0.3/0.4 writer result→new typed same-entry store custody→token-only bounded direct read→existing draft UI. Independent source READY and Host/storage/CRP receiving cover exacta10db615, with24 designed cases. HELP_HUMAN subsequently technically released this exact route; the frozen implementation brief at `a6b9c3286ef94012ffcc1daadd99b830d5dc7475` passed independent backcheck and existing route_persistence is assigned the seven-file isolated implementation. Author code `3b99b5718426510fcf9da792f5f5b084efbd09cc` passed independent exact-code review and65+65 replay; unchanged manager fan-in is `4011e649479df98dea4bc9455be04817636fb75a`, with final integration READY at `16b5864782fa4860c611e6fa10018a7cb79f9375` and all selected/required CI passed; PR #1205 merged as `f8660a8906c6cb8c85d681e4037c1f50f1882e01`. This closes only the bounded live published-file recheck slice. [Implementation evidence](../../AgentRuns/APP-V4-GROUP-C-20261008/published_recheck_implementation/INDEPENDENT_REVIEW.md) preserves actual test scopes and limits. No namespace uniqueness, cold token import, TASK authority, R2 store or product-capacity choice is implied; the Host exporter remains a separate unselected connected alternative.
+
+### Original-request inspector source disposition
+
+[The joined Host/C3 assessment](../../AgentRuns/APP-V4-GROUP-C-20261008/request_observation_assessment/ASSESSMENT_AND_REVIEW.md) is independently READY for source retention only. Host87034/consumerfe6fa5 preserve the textBytes repair and bounded RS/Host/CRP receiving, but implementation is DEFERRED: active-home observations lack original initiation-bound project/question association and do not evidence the selected C3 question. A collapsed metadata-only GLOBAL diagnostics alternative remains unselected; no exporter, inspector, association producer or prototype is released. Original-association source design is the precise preferred dependency, not current-context/REC/cwd backfill. NW04 remains HELD at its unchanged local74dd package and owner-linked manager path, with no native action or approval transfer. C2/C4/C5 external holds remain separate.
