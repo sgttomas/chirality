@@ -183,7 +183,7 @@ governed `DEC-046` policy records committed beside the crate
 | Load and stress recovery verification | Mechanics verification | [section 3.2 cases](#32-stress-recovery-cases-del-09-02) | Axial, bending, torsion, stress range, load-case algebra, documented tolerances |
 | Nonlinear support verification | Mechanics verification | [section 3.3 cases](#33-nonlinear-support-cases-del-09-03) | Active-set behavior, gap/lift-off/friction cases, convergence and non-convergence diagnostics |
 | Rule-pack evaluator verification | User rule check | rule schemas, evaluator tests, invented rule packs | Required inputs, unit awareness, sandboxing, deterministic pass/fail status, checksum/provenance |
-| GUI workflow validation | Workflow validation | `apps/desktop/e2e/gui-workflow-validation.spec.ts`; `fixtures/product_preview/invented_preview_model.json`; `fixtures/product_preview/invented_mechanics_result.json` | Missing-data behavior, warning visibility, assumptions, solve status, result state transitions |
+| GUI workflow validation | Workflow validation | `apps/desktop/e2e/gui-workflow-validation.spec.ts`; `fixtures/product_preview/invented_demo_model.json`; `fixtures/product_preview/invented_demo_result_preview_physics_1_sparse.json` | Missing-data behavior, warning visibility, assumptions, solve status, result state transitions |
 | Report reproducibility validation | Workflow validation | report generator, audit manifest, protected-content linter | Stable output, checksums, warning inclusion, provenance disclosure, professional-boundary notice |
 | Known limitations and open issues | Cross-cutting | issue records, release notes, `TBD` queue | Missing evidence, unapproved thresholds, source restrictions, model limitations, accepted risks |
 

@@ -865,6 +865,23 @@ fn retired_legacy_pressure_is_refused_and_pressure_free_documents_solve() {
             "dimension":"pressure","magnitude":{"value":0.0,"unit":"Pa"},
             "provenance":"retired_legacy_zero_pressure"}));
     only(&zero, "PRESSURE_MODEL_REAUTHOR_REQUIRED", &[CASE, "load:zero-pressure"]);
+    // RV127 S-1: a nonzero primitive gets the same re-author text, naming the exact contract.
+    let mut nonzero = zero.clone();
+    nonzero["model"]["load_cases"][0]["primitive_loads"]
+        .as_array_mut()
+        .unwrap()
+        .last_mut()
+        .unwrap()["magnitude"]["value"] = json!(1.2e6);
+    only(&nonzero, "PRESSURE_MODEL_REAUTHOR_REQUIRED", &[CASE, "load:zero-pressure"]);
+    let message = |input: &Value| {
+        solve(input.clone(), MODES[0])
+            .diagnostics
+            .into_iter()
+            .find(|d| d.code == "PRESSURE_MODEL_REAUTHOR_REQUIRED")
+            .unwrap()
+            .message
+    };
+    assert_eq!(message(&nonzero), message(&zero));
     for mode in MODES {
         solved(&solve(free.clone(), mode));
     }
