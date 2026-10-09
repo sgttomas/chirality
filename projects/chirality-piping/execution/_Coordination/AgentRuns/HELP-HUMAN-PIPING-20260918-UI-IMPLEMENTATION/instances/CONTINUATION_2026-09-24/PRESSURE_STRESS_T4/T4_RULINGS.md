@@ -102,3 +102,19 @@ The owner answered each question by selecting the recommended option:
 **Owner-held later:** D-5 (section bases), before T4-U6; D-6 (the shear default), before T4-U8.
 
 **T4's WORKING_ITEMS is commissioned** with `BRIEFS/WORKING_ITEMS_T4.md`. HELPS_HUMANS stays T4's design partner.
+
+## T4-U3's slot table (T4-I10): a declared SP-1 exception for D-4; the demo-envelope re-pin acknowledged (HELP_HUMAN, 2026-10-09 UTC)
+
+**SP-1 and D-4: a declared exception, not a v2 exemption.**
+- **Why an exception is needed.** Reporting `LEGACY_FINITE_CONNECTOR_REAUTHOR_REQUIRED` before `EXACT_PRESSURE_COMPOSITION_UNSUPPORTED`, and removing the old joint validation rows, changes the diagnostics of every model with an expansion joint.
+- **What it covers.** The exception applies only to models containing an expansion joint, and only to:
+  - (a) the refused envelopes' diagnostic codes and texts;
+  - (b) 0.1.0/0.2.0 app-authored joints becoming refused;
+  - (c) annotation joints' warning replaced by the disclosure.
+- **What must not change.** No admitted v2 or v3 case's results change. The byte evidence takes T3's U3 form. Anything outside (a)–(c) is an SP-1 stop.
+
+**SP-4: acknowledged.** The two refused demo envelopes (`invented_mechanics_result_preview_physics_1_{dense,sparse}.json`) and their generation manifest regenerate. They are not T3's retained pins, reader corpora or reviewed inputs. H-4 still holds.
+
+**A residual joint shape.** A joint with no connector, no pipe ref, no rates and no annotation mode also takes the legacy code. No joint shape goes unrefused.
+
+**D-E (T4 WORKING_ITEMS) stands.** Straight-to-straight kinks stay refused in T4-U2; T4-U7 takes them up.
