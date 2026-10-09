@@ -1,0 +1,141 @@
+
+ RUN  v4.1.10 P/apps/desktop
+
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (P/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (P/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (P/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at getContext (file://P/node_modules/three/build/three.module.js:15443:18)
+    at new WebGLRenderer (file://P/node_modules/three/build/three.module.js:15472:11)
+    at new ViewportResource (P/apps/desktop/src/features/viewport/viewportResource.ts:509:21)
+    at P/apps/desktop/src/features/viewport/PipeViewport.tsx:909:18
+    at Object.react_stack_bottom_frame (P/node_modules/react-dom/cjs/react-dom-client.development.js:25989:20)
+    at runWithFiberInDEV (P/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+    at commitHookEffectListMount (P/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29) undefined
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (P/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (P/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (P/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at getContext (file://P/node_modules/three/build/three.module.js:15443:18)
+    at new WebGLRenderer (file://P/node_modules/three/build/three.module.js:15476:11)
+    at new ViewportResource (P/apps/desktop/src/features/viewport/viewportResource.ts:509:21)
+    at P/apps/desktop/src/features/viewport/PipeViewport.tsx:909:18
+    at Object.react_stack_bottom_frame (P/node_modules/react-dom/cjs/react-dom-client.development.js:25989:20)
+    at runWithFiberInDEV (P/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+    at commitHookEffectListMount (P/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29) undefined
+ ❯ src/App.test.tsx (226 tests | 1 failed | 225 skipped) 4503ms
+     × renders the engineering workspace from invented local fixtures 4501ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/App.test.tsx > SWBPIPE desktop preview > renders the engineering workspace from invented local fixtures
+AssertionError: expected 'available; editors=6; surfaces=7; dia…' to contain 'editors=7'
+
+Expected: "editors=7"
+Received: "available; editors=6; surfaces=7; diagnostics=3; private_payload=false"
+
+ ❯ src/App.test.tsx:2804:7
+    2802|     expect.soft(
+    2803|       within(editorContract).getByTestId("editor-contract-summary").te…
+    2804|     ).toContain("editors=7");
+       |       ^
+    2805|     expect.soft(
+    2806|       within(editorContract).getByTestId("editor-contract-summary").te…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  src/App.test.tsx > SWBPIPE desktop preview > renders the engineering workspace from invented local fixtures
+AssertionError: expected 'Validationready=5; blocked=1; queued=0' to contain 'ready=6'
+
+Expected: "ready=6"
+Received: "Validationready=5; blocked=1; queued=0"
+
+ ❯ src/App.test.tsx:2829:7
+    2827|       within(editorContract).getByTestId("editor-contract-validation")
+    2828|         .textContent,
+    2829|     ).toContain("ready=6");
+       |       ^
+    2830|     expect.soft(
+    2831|       within(editorContract).getByTestId("editor-contract-validation")
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  src/App.test.tsx > SWBPIPE desktop preview > renders the engineering workspace from invented local fixtures
+AssertionError: expected 6 to be 7 // Object.is equality
+
+- Expected
++ Received
+
+- 7
++ 6
+
+ ❯ src/App.test.tsx:2886:60
+    2884|     expect.soft(editorContractPacket.scope_item).toBe("SOW-021");
+    2885|     expect.soft(editorContractPacket.objectives).toContain("OBJ-006");
+    2886|     expect.soft(editorContractPacket.summary.editor_count).toBe(7);
+       |                                                            ^
+    2887|     expect.soft(editorContractPacket.summary.surface_count).toBe(7);
+    2888|     expect.soft(editorContractPacket.summary.ready_editor_count).toBe(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  src/App.test.tsx > SWBPIPE desktop preview > renders the engineering workspace from invented local fixtures
+AssertionError: expected 5 to be 6 // Object.is equality
+
+- Expected
++ Received
+
+- 6
++ 5
+
+ ❯ src/App.test.tsx:2888:66
+    2886|     expect.soft(editorContractPacket.summary.editor_count).toBe(7);
+    2887|     expect.soft(editorContractPacket.summary.surface_count).toBe(7);
+    2888|     expect.soft(editorContractPacket.summary.ready_editor_count).toBe(…
+       |                                                                  ^
+    2889|     expect.soft(editorContractPacket.summary.blocked_editor_count).toB…
+    2890|     expect.soft(editorContractPacket.summary.diagnostic_count).toBe(3);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  src/App.test.tsx > SWBPIPE desktop preview > renders the engineering workspace from invented local fixtures
+AssertionError: expected 'Unit policymodel=angle=rad,force=N,le…' to contain 'records=45'
+
+Expected: "records=45"
+Received: "Unit policymodel=angle=rad,force=N,length=m,pressure=Pa,stress=MPa,temperature=degC; records=41; round_trip=not_persisted_this_session; conversion=false"
+
+ ❯ src/App.test.tsx:3902:7
+    3900|       within(projectValidation).getByTestId("project-validation-unit-p…
+    3901|         .textContent,
+    3902|     ).toContain("records=45");
+       |       ^
+    3903|     expect.soft(
+    3904|       within(projectValidation).getByTestId("project-validation-unit-p…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  src/App.test.tsx > SWBPIPE desktop preview > renders the engineering workspace from invented local fixtures
+AssertionError: expected 41 to be 45 // Object.is equality
+
+- Expected
++ Received
+
+- 45
++ 41
+
+ ❯ src/App.test.tsx:3985:7
+    3983|     expect.soft(
+    3984|       validationPacket.unit_policy_evidence.unit_bearing_record_count,
+    3985|     ).toBe(45);
+       |       ^
+    3986|     expect.soft(validationPacket.unit_policy_evidence.unit_round_trip_…
+    3987|       "not_persisted_this_session",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 225 skipped (226)
+   Start at  17:49:49
+   Duration  6.28s (transform 1.29s, setup 51ms, import 1.53s, tests 4.50s, environment 129ms)
+

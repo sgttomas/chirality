@@ -1,0 +1,297 @@
+
+Running 50 tests using 1 worker
+
+  ✓   1 [chromium-desktop] › e2e/b4-table-editing.spec.ts:7:1 › B4 node coordinates apply through one operation with keyboard, history and saved-state ownership (2.4s)
+  ✓   2 [chromium-desktop] › e2e/b4-table-editing.spec.ts:51:1 › B4 virtualized invalid editor survives scrolling and a filter threshold without changing the model (1.7s)
+  ✓   3 [chromium-desktop] › e2e/b4-table-editing.spec.ts:81:1 › B4 Both with Inspector keeps pointer horizontal scrolling inside the coordinate table (1.1s)
+  ✓   4 [chromium-desktop] › e2e/b4-table-editing.spec.ts:176:1 › B4 short Grid keeps vertical chrome fixed and retains alternate review drafts (2.1s)
+  ✓   5 [chromium-desktop] › e2e/b4-table-editing.spec.ts:209:1 › B4 virtual Grid confines body scrolling and boundary wheel without moving chrome (3.9s)
+  ✓   6 [chromium-desktop] › e2e/b4-table-editing.spec.ts:261:1 › B4 text fields apply, recover filtered focus, preserve text Undo and retain review drafts through pointer Queue and Clear (2.9s)
+  ✓   7 [chromium-desktop] › e2e/b4-table-editing.spec.ts:324:5 › B4 character-start direct label appends ordinary keys and preserves intentional selection (1.2s)
+  ✓   8 [chromium-desktop] › e2e/b4-table-editing.spec.ts:324:5 › B4 character-start direct x appends ordinary keys and preserves intentional selection (1.2s)
+  ✓   9 [chromium-desktop] › e2e/b4-table-editing.spec.ts:324:5 › B4 character-start review label appends ordinary keys and preserves intentional selection (1.0s)
+  ✓  10 [chromium-desktop] › e2e/b4-table-editing.spec.ts:324:5 › B4 character-start review x appends ordinary keys and preserves intentional selection (1.0s)
+  ✓  11 [chromium-desktop] › e2e/b4-table-editing.spec.ts:363:1 › B4 Materials preserve mixed-unit editing, delayed review sort, history and saved ownership (4.1s)
+  ✓  12 [chromium-desktop] › e2e/b4-table-editing.spec.ts:454:1 › B4 Materials stable editor owns character starts, virtual scrolling, filtering and resize (1.9s)
+  ✓  13 [chromium-desktop] › e2e/b4-table-editing.spec.ts:507:1 › B4 Materials Apply Tab keeps the first Shear character while another quantity reconverts (1.3s)
+  ✓  14 [chromium-desktop] › e2e/b4-table-editing.spec.ts:554:1 › B4 diagnostic Node sorted review preserves text Undo after an active row crosses downward (1.6s)
+  ✓  15 [chromium-desktop] › e2e/b4-table-editing.spec.ts:618:1 › B4 Node review retained editor stays contained through hidden families and page resize (1.8s)
+  ✘  16 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer model comfortable 180 @explicit-viewport (11.9s)
+  ✓  17 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer model comfortable 280 @explicit-viewport (4.2s)
+  ✓  18 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer model comfortable 500 @explicit-viewport (3.5s)
+  ✘  19 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer both comfortable 180 @explicit-viewport (12.2s)
+  ✓  20 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer both comfortable 280 @explicit-viewport (3.6s)
+  ✓  21 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer both comfortable 500 @explicit-viewport (3.3s)
+  ✘  22 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer model compact 180 @explicit-viewport (11.9s)
+  ✓  23 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer model compact 280 @explicit-viewport (3.6s)
+  ✓  24 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer model compact 500 @explicit-viewport (3.6s)
+  ✘  25 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer both compact 180 @explicit-viewport (12.8s)
+  ✓  26 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer both compact 280 @explicit-viewport (3.2s)
+  ✓  27 [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer both compact 500 @explicit-viewport (3.1s)
+  ✓  28 [chromium-desktop] › e2e/b4-table-editing.spec.ts:717:3 › B4 Details owns traversed Escape and preserves editor ownership in model @explicit-viewport (2.9s)
+  ✓  29 [chromium-desktop] › e2e/b4-table-editing.spec.ts:717:3 › B4 Details owns traversed Escape and preserves editor ownership in both @explicit-viewport (3.0s)
+  ✓  30 [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact comfortable 1 preserves tracks and nonmutating pans @explicit-viewport (2.8s)
+  ✘  31 [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact comfortable 5 preserves tracks and nonmutating pans @explicit-viewport (12.0s)
+  ✘  32 [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact comfortable 160 preserves tracks and nonmutating pans @explicit-viewport (11.6s)
+  ✓  33 [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact compact 1 preserves tracks and nonmutating pans @explicit-viewport (2.9s)
+  ✘  34 [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact compact 5 preserves tracks and nonmutating pans @explicit-viewport (11.0s)
+  ✘  35 [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact compact 160 preserves tracks and nonmutating pans @explicit-viewport (11.5s)
+  ✓  36 [chromium-compact] › e2e/b4-table-editing.spec.ts:7:1 › B4 node coordinates apply through one operation with keyboard, history and saved-state ownership (2.4s)
+  ✓  37 [chromium-compact] › e2e/b4-table-editing.spec.ts:51:1 › B4 virtualized invalid editor survives scrolling and a filter threshold without changing the model (2.0s)
+  ✓  38 [chromium-compact] › e2e/b4-table-editing.spec.ts:81:1 › B4 Both with Inspector keeps pointer horizontal scrolling inside the coordinate table (1.5s)
+  ✓  39 [chromium-compact] › e2e/b4-table-editing.spec.ts:176:1 › B4 short Grid keeps vertical chrome fixed and retains alternate review drafts (2.5s)
+  ✓  40 [chromium-compact] › e2e/b4-table-editing.spec.ts:209:1 › B4 virtual Grid confines body scrolling and boundary wheel without moving chrome (4.2s)
+  ✓  41 [chromium-compact] › e2e/b4-table-editing.spec.ts:261:1 › B4 text fields apply, recover filtered focus, preserve text Undo and retain review drafts through pointer Queue and Clear (3.7s)
+  ✓  42 [chromium-compact] › e2e/b4-table-editing.spec.ts:324:5 › B4 character-start direct label appends ordinary keys and preserves intentional selection (1.6s)
+  ✓  43 [chromium-compact] › e2e/b4-table-editing.spec.ts:324:5 › B4 character-start direct x appends ordinary keys and preserves intentional selection (1.5s)
+  ✓  44 [chromium-compact] › e2e/b4-table-editing.spec.ts:324:5 › B4 character-start review label appends ordinary keys and preserves intentional selection (1.2s)
+  ✓  45 [chromium-compact] › e2e/b4-table-editing.spec.ts:324:5 › B4 character-start review x appends ordinary keys and preserves intentional selection (1.2s)
+  ✓  46 [chromium-compact] › e2e/b4-table-editing.spec.ts:363:1 › B4 Materials preserve mixed-unit editing, delayed review sort, history and saved ownership (4.3s)
+  ✓  47 [chromium-compact] › e2e/b4-table-editing.spec.ts:454:1 › B4 Materials stable editor owns character starts, virtual scrolling, filtering and resize (2.2s)
+  ✓  48 [chromium-compact] › e2e/b4-table-editing.spec.ts:507:1 › B4 Materials Apply Tab keeps the first Shear character while another quantity reconverts (1.4s)
+  ✓  49 [chromium-compact] › e2e/b4-table-editing.spec.ts:554:1 › B4 diagnostic Node sorted review preserves text Undo after an active row crosses downward (1.8s)
+  ✓  50 [chromium-compact] › e2e/b4-table-editing.spec.ts:618:1 › B4 Node review retained editor stays contained through hidden families and page resize (2.0s)
+
+
+  1) [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer model comfortable 180 @explicit-viewport 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+    Call Log:
+    - Timeout 10000ms exceeded while waiting on the predicate
+
+      702 |     await expect(page.getByTestId("workspace-undo")).toBeDisabled(); await page.getByTestId("node-grid-review-disclosure").click(); await expect(cell).toHaveText("0");
+      703 |     const body = table.getByRole("rowgroup"), b = await body.boundingBox(); await page.mouse.move(b!.x + 80, b!.y + 15); await page.mouse.wheel(0, 500);
+    > 704 |     if (drawer === 180) await expect.poll(() => body.evaluate((e) => e.scrollTop)).toBeGreaterThan(0);
+          |                                                                                    ^
+      705 |     expect(await host.evaluate((e) => e.scrollTop)).toBe(0);
+      706 |     await page.getByTestId("model-tree-filter-input").fill("N-100"); await expect(cell).toHaveText("0");
+      707 |     await page.getByTestId("toggle-tree").click(); await expect(table).toBeHidden(); await page.getByTestId("toggle-tree").click(); await expect(table).toBeVisible();
+        at WT/scratch/i114_demo/base180/projects/chirality-piping/apps/desktop/e2e/b4-table-editing.spec.ts:704:84
+
+    Error Context: ../../../../../pw-base-b4/b4-table-editing-B4-compac-3abeb-table-180-explicit-viewport-chromium-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../pw-base-b4/b4-table-editing-B4-compac-3abeb-table-180-explicit-viewport-chromium-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../pw-base-b4/b4-table-editing-B4-compac-3abeb-table-180-explicit-viewport-chromium-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer both comfortable 180 @explicit-viewport 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+    Call Log:
+    - Timeout 10000ms exceeded while waiting on the predicate
+
+      702 |     await expect(page.getByTestId("workspace-undo")).toBeDisabled(); await page.getByTestId("node-grid-review-disclosure").click(); await expect(cell).toHaveText("0");
+      703 |     const body = table.getByRole("rowgroup"), b = await body.boundingBox(); await page.mouse.move(b!.x + 80, b!.y + 15); await page.mouse.wheel(0, 500);
+    > 704 |     if (drawer === 180) await expect.poll(() => body.evaluate((e) => e.scrollTop)).toBeGreaterThan(0);
+          |                                                                                    ^
+      705 |     expect(await host.evaluate((e) => e.scrollTop)).toBe(0);
+      706 |     await page.getByTestId("model-tree-filter-input").fill("N-100"); await expect(cell).toHaveText("0");
+      707 |     await page.getByTestId("toggle-tree").click(); await expect(table).toBeHidden(); await page.getByTestId("toggle-tree").click(); await expect(table).toBeVisible();
+        at WT/scratch/i114_demo/base180/projects/chirality-piping/apps/desktop/e2e/b4-table-editing.spec.ts:704:84
+
+    Error Context: ../../../../../pw-base-b4/b4-table-editing-B4-compac-8ea77-table-180-explicit-viewport-chromium-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../pw-base-b4/b4-table-editing-B4-compac-8ea77-table-180-explicit-viewport-chromium-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../pw-base-b4/b4-table-editing-B4-compac-8ea77-table-180-explicit-viewport-chromium-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer model compact 180 @explicit-viewport 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+    Call Log:
+    - Timeout 10000ms exceeded while waiting on the predicate
+
+      702 |     await expect(page.getByTestId("workspace-undo")).toBeDisabled(); await page.getByTestId("node-grid-review-disclosure").click(); await expect(cell).toHaveText("0");
+      703 |     const body = table.getByRole("rowgroup"), b = await body.boundingBox(); await page.mouse.move(b!.x + 80, b!.y + 15); await page.mouse.wheel(0, 500);
+    > 704 |     if (drawer === 180) await expect.poll(() => body.evaluate((e) => e.scrollTop)).toBeGreaterThan(0);
+          |                                                                                    ^
+      705 |     expect(await host.evaluate((e) => e.scrollTop)).toBe(0);
+      706 |     await page.getByTestId("model-tree-filter-input").fill("N-100"); await expect(cell).toHaveText("0");
+      707 |     await page.getByTestId("toggle-tree").click(); await expect(table).toBeHidden(); await page.getByTestId("toggle-tree").click(); await expect(table).toBeVisible();
+        at WT/scratch/i114_demo/base180/projects/chirality-piping/apps/desktop/e2e/b4-table-editing.spec.ts:704:84
+
+    Error Context: ../../../../../pw-base-b4/b4-table-editing-B4-compac-fb9e1-mpact-180-explicit-viewport-chromium-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../pw-base-b4/b4-table-editing-B4-compac-fb9e1-mpact-180-explicit-viewport-chromium-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../pw-base-b4/b4-table-editing-B4-compac-fb9e1-mpact-180-explicit-viewport-chromium-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer both compact 180 @explicit-viewport 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+    Call Log:
+    - Timeout 10000ms exceeded while waiting on the predicate
+
+      702 |     await expect(page.getByTestId("workspace-undo")).toBeDisabled(); await page.getByTestId("node-grid-review-disclosure").click(); await expect(cell).toHaveText("0");
+      703 |     const body = table.getByRole("rowgroup"), b = await body.boundingBox(); await page.mouse.move(b!.x + 80, b!.y + 15); await page.mouse.wheel(0, 500);
+    > 704 |     if (drawer === 180) await expect.poll(() => body.evaluate((e) => e.scrollTop)).toBeGreaterThan(0);
+          |                                                                                    ^
+      705 |     expect(await host.evaluate((e) => e.scrollTop)).toBe(0);
+      706 |     await page.getByTestId("model-tree-filter-input").fill("N-100"); await expect(cell).toHaveText("0");
+      707 |     await page.getByTestId("toggle-tree").click(); await expect(table).toBeHidden(); await page.getByTestId("toggle-tree").click(); await expect(table).toBeVisible();
+        at WT/scratch/i114_demo/base180/projects/chirality-piping/apps/desktop/e2e/b4-table-editing.spec.ts:704:84
+
+    Error Context: ../../../../../pw-base-b4/b4-table-editing-B4-compac-38279-mpact-180-explicit-viewport-chromium-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../pw-base-b4/b4-table-editing-B4-compac-38279-mpact-180-explicit-viewport-chromium-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../pw-base-b4/b4-table-editing-B4-compac-38279-mpact-180-explicit-viewport-chromium-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact comfortable 5 preserves tracks and nonmutating pans @explicit-viewport 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+    Call Log:
+    - Timeout 10000ms exceeded while waiting on the predicate
+
+      841 |     const firstCell = table.getByTestId(`table-cell-${firstId}-label`); await firstCell.focus(); geometry = await measure(); expect(geometry.cells[1].x).toBeGreaterThanOrEqual(geometry.body.x - 1);
+      842 |     await last.focus(); geometry = await measure(); expect(geometry.cells.at(-1)!.right).toBeLessThanOrEqual(geometry.body.x + geometry.clientWidth + 1);
+    > 843 |     if (count > 1) { const r = await rows.boundingBox(); await page.mouse.move(r!.x + 40, r!.y + 12); await page.mouse.wheel(0, 100000); await expect.poll(() => rows.evaluate((e) => e.scrollTop)).toBeGreaterThan(0); await expect(table.getByRole("rowheader").getByRole("button", { name: `material:scroll-${count - 1}`, exact: true })).toBeVisible(); }
+          |                                                                                                                                                                                                     ^
+      844 |     await page.getByTestId("model-tree-filter-input").fill("scroll-0"); geometry = await measure(); expect(geometry.gutter).toBe(0);
+      845 |     await page.getByTestId("model-tree-filter-input").fill("no matching invented entity"); await expect(rows.locator('[role="row"]')).toHaveCount(0); await expect(page.getByRole("group", { name: "Pan columns", exact: true })).toHaveCount(1);
+      846 |     await page.getByTestId("model-tree-filter-input").fill(""); await family.selectOption("sections"); const section = page.getByTestId("section-engineering-table"); await measure(section); await expect(page.getByRole("group", { name: "Pan columns", exact: true })).toHaveCount(1);
+        at WT/scratch/i114_demo/base180/projects/chirality-piping/apps/desktop/e2e/b4-table-editing.spec.ts:843:197
+
+    Error Context: ../../../../../pw-base-b4/b4-table-editing-classic-s-646b0-ting-pans-explicit-viewport-chromium-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../pw-base-b4/b4-table-editing-classic-s-646b0-ting-pans-explicit-viewport-chromium-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../pw-base-b4/b4-table-editing-classic-s-646b0-ting-pans-explicit-viewport-chromium-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact comfortable 160 preserves tracks and nonmutating pans @explicit-viewport 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+    Call Log:
+    - Timeout 10000ms exceeded while waiting on the predicate
+
+      841 |     const firstCell = table.getByTestId(`table-cell-${firstId}-label`); await firstCell.focus(); geometry = await measure(); expect(geometry.cells[1].x).toBeGreaterThanOrEqual(geometry.body.x - 1);
+      842 |     await last.focus(); geometry = await measure(); expect(geometry.cells.at(-1)!.right).toBeLessThanOrEqual(geometry.body.x + geometry.clientWidth + 1);
+    > 843 |     if (count > 1) { const r = await rows.boundingBox(); await page.mouse.move(r!.x + 40, r!.y + 12); await page.mouse.wheel(0, 100000); await expect.poll(() => rows.evaluate((e) => e.scrollTop)).toBeGreaterThan(0); await expect(table.getByRole("rowheader").getByRole("button", { name: `material:scroll-${count - 1}`, exact: true })).toBeVisible(); }
+          |                                                                                                                                                                                                     ^
+      844 |     await page.getByTestId("model-tree-filter-input").fill("scroll-0"); geometry = await measure(); expect(geometry.gutter).toBe(0);
+      845 |     await page.getByTestId("model-tree-filter-input").fill("no matching invented entity"); await expect(rows.locator('[role="row"]')).toHaveCount(0); await expect(page.getByRole("group", { name: "Pan columns", exact: true })).toHaveCount(1);
+      846 |     await page.getByTestId("model-tree-filter-input").fill(""); await family.selectOption("sections"); const section = page.getByTestId("section-engineering-table"); await measure(section); await expect(page.getByRole("group", { name: "Pan columns", exact: true })).toHaveCount(1);
+        at WT/scratch/i114_demo/base180/projects/chirality-piping/apps/desktop/e2e/b4-table-editing.spec.ts:843:197
+
+    Error Context: ../../../../../pw-base-b4/b4-table-editing-classic-s-153f1-ting-pans-explicit-viewport-chromium-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../pw-base-b4/b4-table-editing-classic-s-153f1-ting-pans-explicit-viewport-chromium-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../pw-base-b4/b4-table-editing-classic-s-153f1-ting-pans-explicit-viewport-chromium-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact compact 5 preserves tracks and nonmutating pans @explicit-viewport 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+    Call Log:
+    - Timeout 10000ms exceeded while waiting on the predicate
+
+      841 |     const firstCell = table.getByTestId(`table-cell-${firstId}-label`); await firstCell.focus(); geometry = await measure(); expect(geometry.cells[1].x).toBeGreaterThanOrEqual(geometry.body.x - 1);
+      842 |     await last.focus(); geometry = await measure(); expect(geometry.cells.at(-1)!.right).toBeLessThanOrEqual(geometry.body.x + geometry.clientWidth + 1);
+    > 843 |     if (count > 1) { const r = await rows.boundingBox(); await page.mouse.move(r!.x + 40, r!.y + 12); await page.mouse.wheel(0, 100000); await expect.poll(() => rows.evaluate((e) => e.scrollTop)).toBeGreaterThan(0); await expect(table.getByRole("rowheader").getByRole("button", { name: `material:scroll-${count - 1}`, exact: true })).toBeVisible(); }
+          |                                                                                                                                                                                                     ^
+      844 |     await page.getByTestId("model-tree-filter-input").fill("scroll-0"); geometry = await measure(); expect(geometry.gutter).toBe(0);
+      845 |     await page.getByTestId("model-tree-filter-input").fill("no matching invented entity"); await expect(rows.locator('[role="row"]')).toHaveCount(0); await expect(page.getByRole("group", { name: "Pan columns", exact: true })).toHaveCount(1);
+      846 |     await page.getByTestId("model-tree-filter-input").fill(""); await family.selectOption("sections"); const section = page.getByTestId("section-engineering-table"); await measure(section); await expect(page.getByRole("group", { name: "Pan columns", exact: true })).toHaveCount(1);
+        at WT/scratch/i114_demo/base180/projects/chirality-piping/apps/desktop/e2e/b4-table-editing.spec.ts:843:197
+
+    Error Context: ../../../../../pw-base-b4/b4-table-editing-classic-s-17215-ting-pans-explicit-viewport-chromium-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../pw-base-b4/b4-table-editing-classic-s-17215-ting-pans-explicit-viewport-chromium-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../pw-base-b4/b4-table-editing-classic-s-17215-ting-pans-explicit-viewport-chromium-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact compact 160 preserves tracks and nonmutating pans @explicit-viewport 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+    Call Log:
+    - Timeout 10000ms exceeded while waiting on the predicate
+
+      841 |     const firstCell = table.getByTestId(`table-cell-${firstId}-label`); await firstCell.focus(); geometry = await measure(); expect(geometry.cells[1].x).toBeGreaterThanOrEqual(geometry.body.x - 1);
+      842 |     await last.focus(); geometry = await measure(); expect(geometry.cells.at(-1)!.right).toBeLessThanOrEqual(geometry.body.x + geometry.clientWidth + 1);
+    > 843 |     if (count > 1) { const r = await rows.boundingBox(); await page.mouse.move(r!.x + 40, r!.y + 12); await page.mouse.wheel(0, 100000); await expect.poll(() => rows.evaluate((e) => e.scrollTop)).toBeGreaterThan(0); await expect(table.getByRole("rowheader").getByRole("button", { name: `material:scroll-${count - 1}`, exact: true })).toBeVisible(); }
+          |                                                                                                                                                                                                     ^
+      844 |     await page.getByTestId("model-tree-filter-input").fill("scroll-0"); geometry = await measure(); expect(geometry.gutter).toBe(0);
+      845 |     await page.getByTestId("model-tree-filter-input").fill("no matching invented entity"); await expect(rows.locator('[role="row"]')).toHaveCount(0); await expect(page.getByRole("group", { name: "Pan columns", exact: true })).toHaveCount(1);
+      846 |     await page.getByTestId("model-tree-filter-input").fill(""); await family.selectOption("sections"); const section = page.getByTestId("section-engineering-table"); await measure(section); await expect(page.getByRole("group", { name: "Pan columns", exact: true })).toHaveCount(1);
+        at WT/scratch/i114_demo/base180/projects/chirality-piping/apps/desktop/e2e/b4-table-editing.spec.ts:843:197
+
+    Error Context: ../../../../../pw-base-b4/b4-table-editing-classic-s-8f329-ting-pans-explicit-viewport-chromium-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../pw-base-b4/b4-table-editing-classic-s-8f329-ting-pans-explicit-viewport-chromium-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../../../../pw-base-b4/b4-table-editing-classic-s-8f329-ting-pans-explicit-viewport-chromium-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8 failed
+    [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer model comfortable 180 @explicit-viewport 
+    [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer both comfortable 180 @explicit-viewport 
+    [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer model compact 180 @explicit-viewport 
+    [chromium-desktop] › e2e/b4-table-editing.spec.ts:651:3 › B4 compact drawer both compact 180 @explicit-viewport 
+    [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact comfortable 5 preserves tracks and nonmutating pans @explicit-viewport 
+    [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact comfortable 160 preserves tracks and nonmutating pans @explicit-viewport 
+    [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact compact 5 preserves tracks and nonmutating pans @explicit-viewport 
+    [chromium-desktop] › e2e/b4-table-editing.spec.ts:783:3 › classic scrollbar allocation › B4 classic scrollbar compact compact 160 preserves tracks and nonmutating pans @explicit-viewport 
+  42 passed (4.8m)
