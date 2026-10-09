@@ -245,8 +245,11 @@ describe('actual invocation boundary using mocked IPC and genuine received fixtu
     const session=await loadPreviewModel();
     await expect(runPreviewMechanics(session)).rejects.toThrow('BROWSER_SOLVE_BACKEND_REQUIRED_REFERENCE_ONLY');
     await expect(startPreviewMechanicsJob(session)).rejects.toThrow('BROWSER_SOLVE_BACKEND_REQUIRED_REFERENCE_ONLY');
-    // The reference's own demo model is not the session model, so a browser solve of it is refused as an edited model.
-    await expect(runPreviewMechanics(reference.model)).rejects.toThrow('BROWSER_SOLVE_BACKEND_REQUIRED_FOR_EDITED_MODEL');
+    // The reference's own demo model is also the default session model, so a browser solve of it is reference-only; an edited copy is refused as an edited model.
+    expect(reference.model).toEqual(session);
+    await expect(runPreviewMechanics(reference.model)).rejects.toThrow('BROWSER_SOLVE_BACKEND_REQUIRED_REFERENCE_ONLY');
+    const edited=structuredClone(reference.model) as PreviewModel;edited.nodes[0].position.y+=0.5;
+    await expect(runPreviewMechanics(edited)).rejects.toThrow('BROWSER_SOLVE_BACKEND_REQUIRED_FOR_EDITED_MODEL');
   });
   it('invalidates method registration after actual context mutation or signed-zero mutation',async ()=>{
     const {raw,request,mode}=genuinePairs[0];const source=structuredClone(raw) as MechanicsResult;const invocation={request:structuredClone(request),solver_mode:mode};

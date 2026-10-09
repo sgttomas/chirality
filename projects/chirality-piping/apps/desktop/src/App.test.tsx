@@ -1,7 +1,8 @@
 import { solverDisplayWithToken } from "./features/workspace/statusLabels";
 import { statusChipInputsFromCells, statusChips, statusChipText } from "./features/workspace/shellLayout";
 import historicalMechanicsFixture from "../../../fixtures/product_preview/invented_demo_result_legacy_0_1.json";
-import refusedDemoSparse from "../../../fixtures/product_preview/invented_mechanics_result_preview_physics_1_sparse.json";
+import refusedPreviewModel from "../../../fixtures/product_preview/invented_preview_model.json";
+import refusedPreviewSparse from "../../../fixtures/product_preview/invented_mechanics_result_preview_physics_1_sparse.json";
 import { PREVIEW_PHYSICS_CONTRACT_ID, PREVIEW_PHYSICS_CONTRACT_SHA256 } from "./features/results/numericalResultQuality";
 import { createNativeMechanicsReplay, nativeMechanicsReplayPair } from "./test/nativeMechanicsReplay";
 import { N_REPORT } from "./features/results/knownSemanticLimitations";
@@ -1124,7 +1125,7 @@ describe("SWBPIPE desktop preview", () => {
     fireEvent.click(within(operationsSection).getByTestId("operation-tab-agent"));
     expect(within(operationsSection).getByTestId("agent-workbench-panel")).toBeInTheDocument();
     expect(within(operationsSection).getByTestId("agent-focus-selection")).toHaveTextContent(
-      "project: project:invented-loop-01",
+      "project: project:invented-demo-loop-01",
     );
     expect(within(operationsSection).getByTestId("agent-proposal-summary")).toHaveTextContent(
       "review_only_local_preview",
@@ -1756,7 +1757,7 @@ describe("SWBPIPE desktop preview", () => {
     ).toContain("nodes=5");
     expect(
       within(reviewGeometry).getByTestId("review-geometry-summary").textContent,
-    ).toContain("stable_ids=26");
+    ).toContain("stable_ids=25");
     expect(
       within(reviewGeometry).getByTestId("review-geometry-format").textContent,
     ).toContain("asset=2.0");
@@ -1790,7 +1791,7 @@ describe("SWBPIPE desktop preview", () => {
     expect(
       within(reviewGeometry).getByTestId("review-geometry-unit-witnesses")
         .textContent,
-    ).toContain("count=75");
+    ).toContain("count=72");
     expect(
       within(reviewGeometry).getByTestId("review-geometry-unit-witnesses")
         .textContent,
@@ -2674,7 +2675,7 @@ describe("SWBPIPE desktop preview", () => {
     expect(
       within(validationEvidence).getByTestId("validation-evidence-unit-policy")
         .textContent,
-    ).toContain("records=44");
+    ).toContain("records=34");
     expect(
       within(validationEvidence).getByTestId("validation-evidence-unit-policy")
         .textContent,
@@ -2724,7 +2725,7 @@ describe("SWBPIPE desktop preview", () => {
       7,
     );
     expect(validationEvidencePacket.summary.skeleton_check_count).toBe(2);
-    expect(validationEvidencePacket.summary.unit_bearing_record_count).toBe(44);
+    expect(validationEvidencePacket.summary.unit_bearing_record_count).toBe(34);
     expect(
       validationEvidencePacket.validation_manual
         .professional_reliance_outside_software_authority,
@@ -2751,7 +2752,7 @@ describe("SWBPIPE desktop preview", () => {
     });
     expect(
       validationEvidencePacket.unit_policy_evidence.unit_bearing_record_count,
-    ).toBe(44);
+    ).toBe(34);
     expect(
       validationEvidencePacket.unit_policy_evidence
         .unit_and_schema_manual_section,
@@ -2800,7 +2801,7 @@ describe("SWBPIPE desktop preview", () => {
     );
     expect(
       within(editorContract).getByTestId("editor-contract-summary").textContent,
-    ).toContain("editors=7");
+    ).toContain("editors=6");
     expect(
       within(editorContract).getByTestId("editor-contract-summary").textContent,
     ).toContain("surfaces=7");
@@ -2825,7 +2826,7 @@ describe("SWBPIPE desktop preview", () => {
     expect(
       within(editorContract).getByTestId("editor-contract-validation")
         .textContent,
-    ).toContain("ready=6");
+    ).toContain("ready=5");
     expect(
       within(editorContract).getByTestId("editor-contract-validation")
         .textContent,
@@ -2882,9 +2883,9 @@ describe("SWBPIPE desktop preview", () => {
     expect(editorContractPacket.package_id).toBe("PKG-07");
     expect(editorContractPacket.scope_item).toBe("SOW-021");
     expect(editorContractPacket.objectives).toContain("OBJ-006");
-    expect(editorContractPacket.summary.editor_count).toBe(7);
+    expect(editorContractPacket.summary.editor_count).toBe(6);
     expect(editorContractPacket.summary.surface_count).toBe(7);
-    expect(editorContractPacket.summary.ready_editor_count).toBe(6);
+    expect(editorContractPacket.summary.ready_editor_count).toBe(5);
     expect(editorContractPacket.summary.blocked_editor_count).toBe(1);
     expect(editorContractPacket.summary.diagnostic_count).toBe(3);
     expect(editorContractPacket.summary.queued_intent_count).toBe(0);
@@ -3898,7 +3899,7 @@ describe("SWBPIPE desktop preview", () => {
     expect(
       within(projectValidation).getByTestId("project-validation-unit-policy")
         .textContent,
-    ).toContain("records=45");
+    ).toContain("records=41");
     expect(
       within(projectValidation).getByTestId("project-validation-unit-policy")
         .textContent,
@@ -3981,7 +3982,7 @@ describe("SWBPIPE desktop preview", () => {
     });
     expect(
       validationPacket.unit_policy_evidence.unit_bearing_record_count,
-    ).toBe(45);
+    ).toBe(41);
     expect(validationPacket.unit_policy_evidence.unit_round_trip_status).toBe(
       "not_persisted_this_session",
     );
@@ -4896,7 +4897,7 @@ describe("SWBPIPE desktop preview", () => {
     const tree = await screen.findByLabelText("Model tree");
     const inspector = screen.getByLabelText("Property inspector");
 
-    expect(within(viewportSelection).getAllByRole("button")).toHaveLength(21);
+    expect(within(viewportSelection).getAllByRole("button")).toHaveLength(20);
 
     fireEvent.click(
       within(viewportSelection).getByTestId("viewport-select-pipe:P-120"),
@@ -4969,24 +4970,10 @@ describe("SWBPIPE desktop preview", () => {
       "active",
     );
 
-    fireEvent.click(
-      within(viewportSelection).getByTestId("viewport-select-component:C-150"),
-    );
+    // The default session model is the valid demo, which carries no expansion joint.
     expect(
-      within(inspector).getByRole("heading", {
-        name: /Invented expansion joint marker/,
-      }),
-    ).toBeInTheDocument();
-    expect(inspector.textContent).toContain("component:C-150");
-    expect(inspector.textContent).toContain("expansion_joint");
-    expect(inspector.textContent).toContain("pipe:P-130");
-    expect(inspector.textContent).toContain("3200000 N/m");
-    expect(inspector.textContent).toContain(
-      "mechanics_geometry_and_user_flexibility",
-    );
-    expect(within(tree).getByTestId(typedTreeRowTestId("component", "component:C-150"))).toHaveClass(
-      "active",
-    );
+      within(viewportSelection).queryByTestId("viewport-select-component:C-150"),
+    ).not.toBeInTheDocument();
 
     fireEvent.click(
       within(viewportSelection).getByTestId("viewport-select-node:N-140"),
@@ -5011,14 +4998,14 @@ describe("SWBPIPE desktop preview", () => {
     expect(within(tree).getByText("Combinations")).toBeInTheDocument();
     expect(
       within(tree).getByTestId("model-tree-filter-summary").textContent,
-    ).toContain("27 of 27 model entities visible");
+    ).toContain("26 of 26 model entities visible");
 
     fireEvent.change(within(tree).getByTestId("model-tree-filter-input"), {
       target: { value: "component:C-110" },
     });
     expect(
       within(tree).getByTestId("model-tree-filter-summary").textContent,
-    ).toContain("1 of 27 model entities visible");
+    ).toContain("1 of 26 model entities visible");
     expect(
       within(tree).getByTestId(typedTreeRowTestId("component", "component:C-110")),
     ).toBeInTheDocument();
@@ -5039,7 +5026,7 @@ describe("SWBPIPE desktop preview", () => {
     });
     expect(
       within(tree).getByTestId("model-tree-filter-summary").textContent,
-    ).toContain("1 of 27 model entities visible");
+    ).toContain("1 of 26 model entities visible");
     expect(
       within(tree).getByTestId(typedTreeRowTestId("material", "material:invented-carbon-steel")),
     ).toBeInTheDocument();
@@ -5161,7 +5148,7 @@ describe("SWBPIPE desktop preview", () => {
     });
     expect(
       within(tree).getByTestId("model-tree-filter-summary").textContent,
-    ).toContain("0 of 27 model entities visible");
+    ).toContain("0 of 26 model entities visible");
     expect(
       within(tree).getByTestId("model-tree-filter-empty").textContent,
     ).toContain("No model entities match this filter");
@@ -5174,7 +5161,7 @@ describe("SWBPIPE desktop preview", () => {
     fireEvent.click(within(tree).getByTestId("clear-model-tree-filter"));
     expect(
       within(tree).getByTestId("model-tree-filter-summary").textContent,
-    ).toContain("27 of 27 model entities visible");
+    ).toContain("26 of 26 model entities visible");
     expect(within(tree).getByText("Load Cases")).toBeInTheDocument();
 
     // The queued material Task remains frozen and active. Return to the
@@ -5205,14 +5192,14 @@ describe("SWBPIPE desktop preview", () => {
     selectTreeRow("load", "load:L-100");
     expect(
       within(inspector).getByRole("heading", {
-        name: /Invented operating gravity and pressure preview/,
+        name: /Invented operating gravity, occasional and thermal preview/,
       }),
     ).toBeInTheDocument();
     expect(inspector.textContent).toContain("load:L-100");
     expect(inspector.textContent).toContain("primitive_user_load");
     expect(inspector.textContent).toContain("preview_only");
     expect(inspector.textContent).toContain(
-      "weight, occasional, pressure, pressure, thermal",
+      "weight, occasional, thermal",
     );
     expect(inspector.textContent).toContain("element:pipe:P-120");
     expect(inspector.textContent).toContain("node:node:N-140");
@@ -5293,7 +5280,7 @@ describe("SWBPIPE desktop preview", () => {
     const manager = await loadCaseManager();
     expect(
       within(manager).getByTestId("load-case-manager-summary").textContent,
-    ).toContain("2 load cases; 9 primitive loads; 1 combinations");
+    ).toContain("2 load cases; 5 primitive loads; 1 combinations");
     expect(
       within(manager).getByTestId("load-case-manager-boundary").textContent,
     ).toContain("structured operations");
@@ -5304,38 +5291,38 @@ describe("SWBPIPE desktop preview", () => {
     ).toContain("load:L-100 x 1");
 
     fireEvent.click(
-      within(manager).getByTestId("load-manager-primitive-load:L-100-P"),
+      within(manager).getByTestId("load-manager-primitive-load:L-100-T"),
     );
     expect(
       within(manager).getByTestId("load-manager-selected-primitive")
         .textContent,
-    ).toContain("load:L-100-P");
+    ).toContain("load:L-100-T");
     expect(
       within(manager).getByTestId("load-manager-selected-primitive")
         .textContent,
     ).toContain("primitive_loads.2.magnitude.value");
     expect(
       within(manager).getByTestId("load-manager-edit-preview").textContent,
-    ).toContain("current=1200000 Pa");
+    ).toContain("current=12.5 degC");
     expect(
       within(manager).getByTestId("load-manager-magnitude-unit"),
-    ).toHaveValue("Pa");
+    ).toHaveValue("degC");
     expect(
-      await within(manager).findByText("Magnitude (Pa, model metadata)"),
+      await within(manager).findByText("Magnitude (degC, model metadata)"),
     ).toBeInTheDocument();
 
     fireEvent.change(
       within(manager).getByTestId("load-manager-magnitude-value"),
       {
-        target: { value: "1500000" },
+        target: { value: "20" },
       },
     );
     expect(
       within(manager).getByTestId("load-manager-edit-preview").textContent,
-    ).toContain("op:load-manager-load:L-100-load:L-100-P-magnitude");
+    ).toContain("op:load-manager-load:L-100-load:L-100-T-magnitude");
     expect(
       within(manager).getByTestId("load-manager-edit-preview").textContent,
-    ).toContain('before=1200000; after={"value":1500000,"unit":"Pa"}');
+    ).toContain('before=12.5; after={"value":20,"unit":"degC"}');
     expect(
       within(manager).getByTestId("load-manager-edit-preview").textContent,
     ).toContain(
@@ -5370,13 +5357,13 @@ describe("SWBPIPE desktop preview", () => {
     await waitFor(() =>
       expect(
         within(applyPanel).getByTestId("operation-apply-message").textContent,
-      ).toContain("Applied op:load-manager-load:L-100-load:L-100-P-magnitude"),
+      ).toContain("Applied op:load-manager-load:L-100-load:L-100-T-magnitude"),
     );
 
     expect(
-      within(manager).getByTestId("load-manager-primitive-load:L-100-P")
+      within(manager).getByTestId("load-manager-primitive-load:L-100-T")
         .textContent,
-    ).toContain("pressure; 1500000 Pa");
+    ).toContain("thermal; 20 degC");
     expect(
       within(applyPanel).getByTestId(
         "applied-operation-route-applied-1-editor-intent-1",
@@ -5447,7 +5434,7 @@ describe("SWBPIPE desktop preview", () => {
 
     expect(
       within(manager).getByTestId("load-case-manager-summary").textContent,
-    ).toContain("3 load cases; 9 primitive loads; 1 combinations");
+    ).toContain("3 load cases; 5 primitive loads; 1 combinations");
     expect(
       within(manager).getByTestId("load-manager-case-load:L-300").textContent,
     ).toContain("load:L-300; primitive_user_load; draft; primitives=0");
@@ -5534,7 +5521,7 @@ describe("SWBPIPE desktop preview", () => {
     expect(screen.queryByTestId("load-manager-case-load:L-300")).toBeNull();
     expect(
       within(manager).getByTestId("load-case-manager-summary").textContent,
-    ).toContain("2 load cases; 9 primitive loads; 1 combinations");
+    ).toContain("2 load cases; 5 primitive loads; 1 combinations");
     expect(
       within(applyPanel).getByTestId(
         "applied-operation-route-applied-2-editor-intent-2",
@@ -5566,7 +5553,7 @@ describe("SWBPIPE desktop preview", () => {
       within(manager).getByTestId("load-manager-load-case-delete-preview")
         .textContent,
     ).toContain(
-      "before=load:L-100; Invented operating gravity and pressure preview; primitive_user_load; preview_only; primitives=5",
+      "before=load:L-100; Invented operating gravity, occasional and thermal preview; primitive_user_load; preview_only; primitives=3",
     );
     fireEvent.click(
       within(manager).getByTestId("queue-delete-load-case-intent"),
@@ -5591,7 +5578,7 @@ describe("SWBPIPE desktop preview", () => {
     ).toContain("combination:C-OPER-ALT.terms.0");
     expect(
       within(manager).getByTestId("load-manager-case-load:L-100").textContent,
-    ).toContain("load:L-100; primitive_user_load; preview_only; primitives=5");
+    ).toContain("load:L-100; primitive_user_load; preview_only; primitives=3");
     expect(
       screen.getByTestId("local-project-review-context").textContent,
     ).toContain("1 pending operation");
@@ -5656,10 +5643,10 @@ describe("SWBPIPE desktop preview", () => {
 
     expect(
       within(manager).getByTestId("load-case-manager-summary").textContent,
-    ).toContain("2 load cases; 10 primitive loads; 1 combinations");
+    ).toContain("2 load cases; 6 primitive loads; 1 combinations");
     expect(
       within(manager).getByTestId("load-manager-case-load:L-100").textContent,
-    ).toContain("load:L-100; primitive_user_load; preview_only; primitives=6");
+    ).toContain("load:L-100; primitive_user_load; preview_only; primitives=4");
     expect(
       within(manager).getByTestId("load-manager-primitive-load:L-100-F300")
         .textContent,
@@ -5740,10 +5727,10 @@ describe("SWBPIPE desktop preview", () => {
 
     expect(
       within(manager).getByTestId("load-case-manager-summary").textContent,
-    ).toContain("2 load cases; 10 primitive loads; 1 combinations");
+    ).toContain("2 load cases; 6 primitive loads; 1 combinations");
     expect(
       within(manager).getByTestId("load-manager-case-load:L-100").textContent,
-    ).toContain("load:L-100; primitive_user_load; preview_only; primitives=6");
+    ).toContain("load:L-100; primitive_user_load; preview_only; primitives=4");
     expect(
       within(manager).getByTestId("load-manager-primitive-load:L-100-D300")
         .textContent,
@@ -5827,10 +5814,10 @@ describe("SWBPIPE desktop preview", () => {
 
     expect(
       within(manager).getByTestId("load-case-manager-summary").textContent,
-    ).toContain("2 load cases; 10 primitive loads; 1 combinations");
+    ).toContain("2 load cases; 6 primitive loads; 1 combinations");
     expect(
       within(manager).getByTestId("load-manager-case-load:L-100").textContent,
-    ).toContain("load:L-100; primitive_user_load; preview_only; primitives=6");
+    ).toContain("load:L-100; primitive_user_load; preview_only; primitives=4");
     expect(
       within(manager).getByTestId("load-manager-primitive-load:L-100-M300")
         .textContent,
@@ -5940,10 +5927,10 @@ describe("SWBPIPE desktop preview", () => {
 
     expect(
       within(manager).getByTestId("load-case-manager-summary").textContent,
-    ).toContain("2 load cases; 10 primitive loads; 1 combinations");
+    ).toContain("2 load cases; 6 primitive loads; 1 combinations");
     expect(
       within(manager).getByTestId("load-manager-case-load:L-100").textContent,
-    ).toContain("load:L-100; primitive_user_load; preview_only; primitives=6");
+    ).toContain("load:L-100; primitive_user_load; preview_only; primitives=4");
     expect(
       within(manager).getByTestId("load-manager-primitive-load:L-100-T300")
         .textContent,
@@ -6027,10 +6014,10 @@ describe("SWBPIPE desktop preview", () => {
 
     expect(
       within(manager).getByTestId("load-case-manager-summary").textContent,
-    ).toContain("2 load cases; 10 primitive loads; 1 combinations");
+    ).toContain("2 load cases; 6 primitive loads; 1 combinations");
     expect(
       within(manager).getByTestId("load-manager-case-load:L-100").textContent,
-    ).toContain("load:L-100; primitive_user_load; preview_only; primitives=6");
+    ).toContain("load:L-100; primitive_user_load; preview_only; primitives=4");
     expect(
       within(manager).getByTestId("load-manager-primitive-load:L-100-I300")
         .textContent,
@@ -6126,10 +6113,10 @@ describe("SWBPIPE desktop preview", () => {
     ).toBeNull();
     expect(
       within(manager).getByTestId("load-case-manager-summary").textContent,
-    ).toContain("2 load cases; 8 primitive loads; 1 combinations");
+    ).toContain("2 load cases; 4 primitive loads; 1 combinations");
     expect(
       within(manager).getByTestId("load-manager-case-load:L-100").textContent,
-    ).toContain("load:L-100; primitive_user_load; preview_only; primitives=4");
+    ).toContain("load:L-100; primitive_user_load; preview_only; primitives=2");
     expect(
       screen.getByTestId("local-project-review-context").textContent,
     ).toContain("0 pending operations");
@@ -6208,7 +6195,7 @@ describe("SWBPIPE desktop preview", () => {
 
     expect(
       within(manager).getByTestId("load-manager-case-load:L-100").textContent,
-    ).toContain("load:L-100; primitive_user_load; TBD; primitives=5");
+    ).toContain("load:L-100; primitive_user_load; TBD; primitives=3");
     expect(screen.getByLabelText("Property inspector").textContent).toContain(
       "TBD",
     );
@@ -6449,7 +6436,7 @@ describe("SWBPIPE desktop preview", () => {
 
     expect(
       within(manager).getByTestId("load-case-manager-summary").textContent,
-    ).toContain("3 load cases; 9 primitive loads; 1 combinations");
+    ).toContain("3 load cases; 5 primitive loads; 1 combinations");
     chooseVirtualTarget(
       manager,
       "load-manager-create-combination-term-load-case",
@@ -6585,7 +6572,7 @@ describe("SWBPIPE desktop preview", () => {
 
     expect(
       within(manager).getByTestId("load-case-manager-summary").textContent,
-    ).toContain("2 load cases; 9 primitive loads; 2 combinations");
+    ).toContain("2 load cases; 5 primitive loads; 2 combinations");
     const newCombination = within(manager).getByTestId(
       "load-manager-combination-combination:C-300",
     );
@@ -6678,7 +6665,7 @@ describe("SWBPIPE desktop preview", () => {
 
     expect(
       within(manager).getByTestId("load-case-manager-summary").textContent,
-    ).toContain("2 load cases; 9 primitive loads; 2 combinations");
+    ).toContain("2 load cases; 5 primitive loads; 2 combinations");
     const newCombination = within(manager).getByTestId(
       "load-manager-combination-combination:C-300",
     );
@@ -6787,7 +6774,7 @@ describe("SWBPIPE desktop preview", () => {
 
     expect(
       within(manager).getByTestId("load-case-manager-summary").textContent,
-    ).toContain("2 load cases; 9 primitive loads; 2 combinations");
+    ).toContain("2 load cases; 5 primitive loads; 2 combinations");
     const newCombination = within(manager).getByTestId(
       "load-manager-combination-combination:C-300",
     );
@@ -6938,7 +6925,7 @@ describe("SWBPIPE desktop preview", () => {
     ).toBeNull();
     expect(
       within(manager).getByTestId("load-case-manager-summary").textContent,
-    ).toContain("2 load cases; 9 primitive loads; 0 combinations");
+    ).toContain("2 load cases; 5 primitive loads; 0 combinations");
     expect(
       within(applyPanel).getByTestId(
         "applied-operation-route-applied-1-editor-intent-1",
@@ -8694,7 +8681,7 @@ describe("SWBPIPE desktop preview", () => {
     storageAudit = projectStorageAudit();
     expect(screen.getByTestId("retained-context-summary")).toHaveTextContent("1 retained operation records");
     expect(
-      screen.getByText("Invented Utility Loop Preview", { selector: ".titlebar p" }),
+      screen.getByText("Invented Utility Loop Demo", { selector: ".titlebar p" }),
     ).toBeInTheDocument();
     await waitFor(() =>
       expect(
@@ -8768,7 +8755,7 @@ describe("SWBPIPE desktop preview", () => {
     expect(auditPacket.deliverable_refs).toContain("DEL-12-02");
     expect(auditPacket.scope_items).toContain("SOW-050");
     expect(auditPacket.scope_items).toContain("SOW-040");
-    expect(auditPacket.project_ref).toBe("project:invented-loop-01");
+    expect(auditPacket.project_ref).toBe("project:invented-demo-loop-01");
     expect(auditPacket.summary.last_operation).toBe("open");
     expect(auditPacket.summary.storage_engine).toBe("Browser memory preview");
     expect(auditPacket.summary.storage_mode).toBe("browser_memory_preview");
@@ -8933,7 +8920,7 @@ describe("SWBPIPE desktop preview", () => {
     expect(validationPacket.document_kind).toBe(
       "openpipestress.technical_preview.project_validation_preflight",
     );
-    expect(validationPacket.project_ref).toBe("project:invented-loop-01");
+    expect(validationPacket.project_ref).toBe("project:invented-demo-loop-01");
     expect(validationPacket.summary.validation_status).toBe("preview_current");
     expect(validationPacket.summary.last_operation).toBe("open");
     expect(validationPacket.summary.storage_mode).toBe(
@@ -11698,13 +11685,13 @@ describe("SWBPIPE desktop preview", () => {
     );
 
     expect(screen.queryByTestId(typedTreeRowTestId("node", "node:N-150"))).toBeNull();
-    expect(screen.getByTestId(typedTreeRowTestId("project", "project:invented-loop-01"))).toHaveAttribute(
+    expect(screen.getByTestId(typedTreeRowTestId("project", "project:invented-demo-loop-01"))).toHaveAttribute(
       "aria-selected",
       "false",
     );
-    expect(screen.getByTestId(typedTreeRowTestId("project", "project:invented-loop-01"))).toHaveClass("focused");
+    expect(screen.getByTestId(typedTreeRowTestId("project", "project:invented-demo-loop-01"))).toHaveClass("focused");
     expect(screen.getByLabelText("Property inspector").textContent).toContain(
-      "project:invented-loop-01",
+      "project:invented-demo-loop-01",
     );
     expect(
       screen.getByTestId("local-project-review-context").textContent,
@@ -11826,13 +11813,13 @@ describe("SWBPIPE desktop preview", () => {
     );
 
     expect(screen.queryByTestId(typedTreeRowTestId("pipe", "pipe:P-100"))).toBeNull();
-    expect(screen.getByTestId(typedTreeRowTestId("project", "project:invented-loop-01"))).toHaveAttribute(
+    expect(screen.getByTestId(typedTreeRowTestId("project", "project:invented-demo-loop-01"))).toHaveAttribute(
       "aria-selected",
       "false",
     );
-    expect(screen.getByTestId(typedTreeRowTestId("project", "project:invented-loop-01"))).toHaveClass("focused");
+    expect(screen.getByTestId(typedTreeRowTestId("project", "project:invented-demo-loop-01"))).toHaveClass("focused");
     expect(screen.getByLabelText("Property inspector").textContent).toContain(
-      "project:invented-loop-01",
+      "project:invented-demo-loop-01",
     );
     expect(
       screen.getByTestId("local-project-review-context").textContent,
@@ -13948,24 +13935,26 @@ describe("Tier3 adversarial batch publication", () => {
 });
 
 describe("Tier3 display in the actual application", () => {
-  it("keeps the reference's withheld comparison empty through display-unit changes without a Current claim", async () => {
+  it("keeps the reference's withheld comparison empty without a Current claim", async () => {
     const { result, analysisRun } = await referenceAnalysis();
     const before = JSON.stringify(result), comparison = buildPreviewComparison({ result, analysisRun });
     // The demo's mechanics combination is withheld for its nonlinear supports, so
-    // the reference has no comparable pairs. Display conversion of comparison
-    // deltas stays covered by rendererIntegration.test.tsx.
+    // the reference has no comparable pairs: this pins the empty state and the gate.
     expect(comparison.summary.comparable_result_pairs).toBe(0);
     expect(comparison.summary.unmatched_left_results).toBe(309);
     render(<DisplayUnitsProvider><DisplayUnitSelector /><ComparisonPanel comparison={comparison} result={result} onSelectResult={vi.fn()} /></DisplayUnitsProvider>);
     expect(screen.getByTestId("comparison-summary")).toHaveTextContent("0 comparable pairs; 309 reference-only; 0 target-only");
     expect(screen.getByTestId("comparison-notice-combination-gate:combination:C-OPER-ALT")).toHaveTextContent("Combination withheld");
-    const deltas = screen.getByTestId("comparison-delta-table");
-    const entered = deltas.textContent;
-    fireEvent.change(screen.getByLabelText("Display units"), { target: { value: "US" } });
-    expect(deltas.querySelector('[data-display-status="converted"]')).toBeNull();
-    expect(deltas.textContent).toBe(entered);
     expect(JSON.stringify(result)).toBe(before);
   });
+
+  // KNOWN GAP, routed to T6 (results and comparison) by ROOT's ruling "U3, I114's demo
+  // lane and WORKING_ITEMS' three items", item 2. No current product output gives
+  // buildPreviewComparison a real non-empty comparison: the demo's combination is
+  // withheld, and on the unicode-ids output's published combination the builder throws
+  // ANALYSIS-RUN-RESULT-DIMENSION-UNDECLARED. Display conversion of comparison deltas is
+  // covered only on hand-built comparisons (rendererIntegration.test.tsx) until T6 repairs it.
+  it.todo("converts real comparison deltas through display-unit changes (known gap: T6, results and comparison)");
 });
 
 
@@ -14697,10 +14686,15 @@ describe("workflow current and historical result boundaries", () => {
 
   it("keeps registered MODEL_INCOMPLETE diagnostics while barring fresh solved-only consumers", async () => {
     const mechanics = "MODEL_INCOMPLETE";
-    const model = await loadPreviewModel();
-    // The product's actual outcome for the session model: its legacy pressure
+    // The default session model solves, so this opens the invented preview model
+    // (with its legacy pressure primitives) as the session model through the
+    // native load path. The product's actual outcome for it: the legacy pressure
     // primitives are refused, so the envelope is MODEL_INCOMPLETE with no rows.
-    const output = structuredClone(refusedDemoSparse) as unknown as MechanicsResult;
+    const storage = await getLocalStorageCapability();
+    const knowledge = await loadDesignKnowledge();
+    const model = structuredClone(refusedPreviewModel) as unknown as PreviewModel;
+    expect(model.project.id).not.toBe((await loadPreviewModel()).project.id);
+    const output = structuredClone(refusedPreviewSparse) as unknown as MechanicsResult;
     expect(output.model_ref).toBe(model.project.id);
     expect(output.status.mechanics).toBe(mechanics);
     expect(output.results).toHaveLength(0);
@@ -14710,13 +14704,18 @@ describe("workflow current and historical result boundaries", () => {
     expect(overlay.summary).toBe(failedSummary);
     expect(overlay.nodePositions.size).toBe(0);
     invokeMock.mockImplementation((command: string) => {
+      if (command === "get_local_storage_capability") return Promise.resolve(storage);
+      if (command === "load_design_knowledge") return Promise.resolve(knowledge);
+      if (command === "sync_native_shell_state") return Promise.resolve(null);
+      if (command === "load_preview_model") return Promise.resolve(structuredClone(model));
       if (command === "start_preview_mechanics_job_with_solver_mode") return Promise.resolve({ job_id: "workflow-outcome", backend_cancellation_token: "workflow-outcome-token", state: "queued", cancellation_scope: "synthetic" });
       if (command === "poll_preview_mechanics_job") return Promise.resolve({ job_id: "workflow-outcome", state: "completed", cancellation_requested: false, cancellation_status: "not_requested", cancellation_scope: "synthetic", result: output, error_message: null });
       return Promise.reject(new Error(`Unexpected command ${command}`));
     });
+    (window as unknown as Record<string, unknown>).__TAURI_INTERNALS__ = {};
     render(<App />);
     await screen.findByTestId("desktop-preview-shell");
-    (window as unknown as Record<string, unknown>).__TAURI_INTERNALS__ = {};
+    await waitFor(() => expect(screen.getByText(model.project.name, { selector: ".titlebar p" })).toBeInTheDocument());
     act(() => nativeMenuCommand("analyze.run"));
     // Fresh connected admission uses a registered mechanics status. Unknown
     // recorded-token display is covered separately without weakening V03.

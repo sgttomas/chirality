@@ -1,6 +1,7 @@
 import historicalMechanicsFixture from "../../../../fixtures/product_preview/invented_demo_result_legacy_0_1.json";
 import sparseMechanicsFixture from "../../../../fixtures/product_preview/invented_demo_result_preview_physics_1_sparse.json";
 import denseMechanicsFixture from "../../../../fixtures/product_preview/invented_demo_result_preview_physics_1_dense.json";
+import inventedPreviewModel from "../../../../fixtures/product_preview/invented_preview_model.json";
 import { createNativeMechanicsReplay, nativeMechanicsReplayPair } from "../test/nativeMechanicsReplay";
 import { buildAnalysisRunV02 } from "./analysisRunCompatibility";
 import { numericalResultStanding, sourceContract, PRECISION_CONTRACT_ID } from "../features/results/numericalResultQuality";
@@ -227,7 +228,7 @@ describe("previewService explicit reference inspection and browser refusal", () 
     edited.materials![0].elastic_modulus.value = 195_000_000_000;
     await expect(runPreviewMechanics(edited)).rejects.toThrow("BROWSER_SOLVE_BACKEND_REQUIRED_FOR_EDITED_MODEL");
     expect(invokeMock).not.toHaveBeenCalled();
-    expect(original.project.id).toBe("project:invented-loop-01");
+    expect(original.project.id).toBe("project:invented-demo-loop-01");
     expect(original.materials![0].elastic_modulus.value).toBe(200_000_000_000);
   });
 
@@ -290,10 +291,12 @@ describe("previewService explicit reference inspection and browser refusal", () 
   });
 
   it("rejects crossed, missing and ambiguous actual mode evidence", async () => {
-    // The bundled results bind the demo model, never the session model.
-    const model = (await loadBundledMechanicsReference()).model, session = await loadPreviewModel();
+    // The bundled results bind the demo model (also the default session model),
+    // never another model such as the invented preview model.
+    const model = (await loadBundledMechanicsReference()).model, other = structuredClone(inventedPreviewModel) as unknown as PreviewModel;
+    expect(model).toEqual(await loadPreviewModel());
     const sparse = structuredClone(sparseMechanicsFixture) as MechanicsResult;
-    expect(() => validateBrowserMechanicsFixture(sparse, "sparse_interactive", session)).toThrow("BROWSER_FIXTURE_MODEL_BINDING_MISMATCH");
+    expect(() => validateBrowserMechanicsFixture(sparse, "sparse_interactive", other)).toThrow("BROWSER_FIXTURE_MODEL_BINDING_MISMATCH");
     expect(() => validateBrowserMechanicsFixture(sparse, "dense_scrutiny", model)).toThrow("BROWSER_FIXTURE_SOLVER_MODE_BINDING_MISMATCH");
     const modeRow = sparse.results.find(row => row.kind === "linear_solver_mode_basis");
     expect(modeRow).toBeDefined();
@@ -463,7 +466,7 @@ describe("reference analysis-run input-manifest and source-dimension binding", (
     const result = await referenceFixtureSource();
     const manifest = await manifestFor(result);
     for (const refValue of [
-      `result-envelope:project-invented-loop-01:${manifest.manifest_sha256}`,
+      `result-envelope:project-invented-demo-loop-01:${manifest.manifest_sha256}`,
       `input-manifest:project-different:${manifest.manifest_sha256}`,
     ]) {
       const invalid = structuredClone(manifest);

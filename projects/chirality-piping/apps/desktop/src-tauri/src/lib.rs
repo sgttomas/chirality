@@ -1532,9 +1532,11 @@ fn render_calculation_report(input: Value) -> Result<Value, String> {
     Ok(payload)
 }
 
+/// The default session model: the valid demo (no retired legacy pressure, no
+/// refused joint), which the product solves.
 #[tauri::command]
 fn load_preview_model() -> Result<Value, String> {
-    read_fixture("invented_preview_model.json")
+    read_fixture("invented_demo_model.json")
 }
 
 #[tauri::command]
@@ -1566,7 +1568,7 @@ fn solve_preview_mechanics_with_mode(
 fn resolve_solve_model_payload(model: Option<Value>) -> Result<Value, String> {
     match model {
         Some(value) => Ok(value),
-        None => read_fixture("invented_preview_model.json"),
+        None => read_fixture("invented_demo_model.json"),
     }
 }
 
@@ -1891,7 +1893,7 @@ fn build_sample_agent_proposal(
         "schema_version": "0.1.0",
         "document_kind": "openpipestress.product_preview.agent_proposal",
         "proposal_id": "proposal:physics-diagnostic-review",
-        "model_ref": result.get("model_ref").cloned().unwrap_or_else(|| json!("project:invented-loop-01")),
+        "model_ref": result.get("model_ref").cloned().unwrap_or_else(|| json!("project:invented-demo-loop-01")),
         "prompt": "Review current computed mechanics diagnostics and suggest a non-mutating follow-up.",
         "operation": {
             "operation_id": "op:review-computed-diagnostic",
@@ -6847,10 +6849,10 @@ mod tests {
             Ok(derived_invented_model()),
             PreviewSolverMode::default(),
         );
-        // The default payload is the bundled demo, which is refused with its blocking code.
-        assert_bundled_demo_refused(
+        // The default payload is the bundled demo, which solves.
+        assert_bundled_demo_solved(
             &solve_preview_mechanics(resolve_solve_model_payload(None).expect("bundled demo loads"))
-                .expect("refusal is a published envelope"),
+                .expect("bundled demo solves"),
         );
 
         let status = solve_job_status(&registry.jobs, &receipt.job_id).expect("status available");
@@ -6870,8 +6872,8 @@ mod tests {
 
     #[test]
     fn run_preview_mechanics_uses_supplied_model_payload() {
-        // Without a payload the command solves the bundled demo, which is refused.
-        assert_bundled_demo_refused(&run_preview_mechanics(None).expect("refusal is a published envelope"));
+        // Without a payload the command solves the bundled demo.
+        assert_bundled_demo_solved(&run_preview_mechanics(None).expect("bundled demo solves"));
         let mut model = derived_invented_model();
         model["project"]["id"] = json!("project:edited-solve-command");
         model["materials"][0]["elastic_modulus"]["value"] = json!(195000000000.0);
@@ -7141,9 +7143,8 @@ mod tests {
         assert!(status.error_message.is_some());
     }
 
-    // T0R (ROOT ruling): the bundled demo keeps nonzero legacy pressure and a
-    // realized user-stiffness joint, so the ordinary route refuses it. Tests that
-    // need a solved invented model use the derived pressure-free, joint-free model.
+    // PP's derived pressure-free, joint-free invented model. The bundled default
+    // (`invented_demo_model.json`) is the same model under its own project identity.
     fn derived_invented_model() -> Value {
         serde_json::from_str(include_str!(
             "../../../../core/product_physics/tests/fixtures/preview_physics_invented_model.json"
@@ -7151,12 +7152,30 @@ mod tests {
         .expect("derived invented model parses")
     }
 
-    fn assert_bundled_demo_refused(solved: &Value) {
-        assert_eq!(solved["status"]["mechanics"], json!("MODEL_INCOMPLETE"));
-        assert!(solved["diagnostics"].as_array().expect("diagnostics").iter().any(|d| {
-            d["code"] == json!("PRESSURE_MODEL_REAUTHOR_REQUIRED") && d["severity"] == json!("blocking")
-        }));
-        assert!(solved["results"].as_array().expect("result rows").is_empty());
+    fn assert_bundled_demo_solved(solved: &Value) {
+        assert_eq!(solved["model_ref"], json!("project:invented-demo-loop-01"));
+        assert_eq!(solved["status"]["mechanics"], json!("MECHANICS_SOLVED"));
+        assert_eq!(solved["numerical_quality"]["status"], json!("checks_passed"));
+        assert!(!solved["diagnostics"].as_array().expect("diagnostics").iter().any(|d| d["severity"] == json!("blocking")));
+        assert!(!solved["results"].as_array().expect("result rows").is_empty());
+    }
+
+    /// U3 (ROOT, I114 round 2): the app's default session model solves out of the
+    /// box, in both solver modes, through the native load and default-solve seams.
+    #[test]
+    fn default_session_model_solves_in_both_modes() {
+        let model = load_preview_model().expect("default session model loads");
+        assert_eq!(model["project"]["id"], json!("project:invented-demo-loop-01"));
+        assert_eq!(resolve_solve_model_payload(None).expect("default payload loads"), model);
+        for mode in [PreviewSolverMode::SparseInteractive, PreviewSolverMode::DenseScrutiny] {
+            let solved = solve_preview_mechanics_with_mode(model.clone(), mode).expect("default model solves");
+            assert_bundled_demo_solved(&solved);
+            assert_eq!(
+                solved["producer"]["semantic_contract_id"],
+                json!("openpipestress.result_semantics/0.3.0/preview-physics-1")
+            );
+        }
+        assert_bundled_demo_solved(&run_preview_mechanics(None).expect("default solve command"));
     }
 
     fn fixture_inspector_intent(before: &str, after: &str) -> Value {
@@ -7258,7 +7277,7 @@ mod tests {
     #[test]
     fn apply_model_operation_command_applies_inspector_intent_to_bundled_fixture_model() {
         let model =
-            read_fixture("invented_preview_model.json").expect("bundled preview model loads");
+            read_fixture("invented_demo_model.json").expect("bundled preview model loads");
         let intent = fixture_inspector_intent("200000000000", "195000000000");
         let outcome =
             apply_model_operation(model.clone(), intent, None).expect("command returns outcome");
@@ -7285,20 +7304,10 @@ mod tests {
             model["materials"][0]["elastic_modulus"]["value"],
             json!(200000000000_i64)
         );
-        // The edited bundled demo is still refused (legacy pressure); the same
-        // intent applied to the derived model solves through the preview path.
-        assert_bundled_demo_refused(
-            &run_preview_mechanics(Some(outcome["applied_model"].clone()))
-                .expect("refusal is a published envelope"),
-        );
-        let derived = apply_model_operation(
-            derived_invented_model(),
-            fixture_inspector_intent("200000000000", "195000000000"),
-            None,
-        )
-        .expect("command returns outcome");
-        let solved = run_preview_mechanics(Some(derived["applied_model"].clone()))
+        // The edited bundled demo still solves through the preview mechanics path.
+        let solved = run_preview_mechanics(Some(outcome["applied_model"].clone()))
             .expect("edited model still solves through the preview mechanics path");
+        assert_eq!(solved["status"]["mechanics"], json!("MECHANICS_SOLVED"));
         assert!(solved["results"]
             .as_array()
             .map(|rows| !rows.is_empty())
@@ -7670,7 +7679,7 @@ mod tests {
     #[test]
     fn validate_model_operation_command_blocks_stale_intent_without_mutation() {
         let model =
-            read_fixture("invented_preview_model.json").expect("bundled preview model loads");
+            read_fixture("invented_demo_model.json").expect("bundled preview model loads");
         let intent = fixture_inspector_intent("123", "195000000000");
         let outcome =
             validate_model_operation(model, intent, None).expect("command returns outcome");

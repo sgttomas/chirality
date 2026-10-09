@@ -15,7 +15,7 @@
     },
     "legacy_preview_0_1": {
       "path": "fixtures/product_preview/invented_demo_result_legacy_0_1.json",
-      "sha256": "ca3ecdb517401741de5d2c8ba098390402d2f8b451edb988d32ed48c9c0a97ae",
+      "sha256": "4d3bc14f1db7bc97ac779bee158acc96612e9c3cf01daae96936a42c5804e051",
       "shape": "raw"
     },
     "preview_physics_1_invented_sparse": {

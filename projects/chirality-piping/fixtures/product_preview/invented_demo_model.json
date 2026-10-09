@@ -10,7 +10,7 @@
   "project": {
     "id": "project:invented-demo-loop-01",
     "name": "Invented Utility Loop Demo",
-    "description": "Invented demo model for the browser's bundled reference results. It is the invented utility loop without its legacy pressure primitives (retired product-wide: PRESSURE_MODEL_REAUTHOR_REQUIRED) and without the expansion joint component:C-150 (its user-stiffness element is refused). Derived from core/product_physics/tests/fixtures/preview_physics_invented_model.json; only the project id, name and description and the model diagnostic's source path differ.",
+    "description": "Invented demo model: the app's default session model and the model of its bundled reference results. It is the invented utility loop without its legacy pressure primitives (retired product-wide: PRESSURE_MODEL_REAUTHOR_REQUIRED) and without the expansion joint component:C-150 (its user-stiffness element is refused). Derived from core/product_physics/tests/fixtures/preview_physics_invented_model.json; only the project id, name and description, the load-case labels (which named the removed pressure) and the model diagnostic's source path differ.",
     "units": {
       "length": "m",
       "force": "N",
@@ -494,7 +494,7 @@
   "load_cases": [
     {
       "id": "load:L-100",
-      "label": "Invented operating gravity and pressure preview",
+      "label": "Invented operating gravity, occasional and thermal preview",
       "kind": "primitive_user_load",
       "status": "preview_only",
       "primitive_loads": [
@@ -548,7 +548,7 @@
     },
     {
       "id": "load:L-200",
-      "label": "Invented alternate gravity and pressure preview",
+      "label": "Invented alternate gravity and occasional preview",
       "kind": "primitive_user_load",
       "status": "preview_only",
       "primitive_loads": [

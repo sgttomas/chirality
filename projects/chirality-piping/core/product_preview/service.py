@@ -60,10 +60,14 @@ def load_design_knowledge(path: Path | None = None) -> dict[str, Any]:
 def run_preview_mechanics(model: Mapping[str, Any] | None = None) -> dict[str, Any]:
     """Return a deterministic mechanics/status envelope for the preview.
 
-    The current technical preview consumes an invented result fixture: the
-    product's sparse output for the demo model, in the historical 0.1.0 result
-    format this service has always returned (``invented_demo_result_legacy_0_1.json``).
-    It does not perform external solver/prover execution or rule-pack checking.
+    The current technical preview returns a frozen invented result fixture,
+    ``invented_demo_result_legacy_0_1.json``: a carrier derived from the product's
+    sparse output for the demo model in the historical 0.1.0 result format this
+    service has always returned. Rows of kinds the 0.1.0 semantics do not define
+    are removed, and the summary members that describe them are withheld (see
+    ``fixtures/product_preview/DEMO_FIXTURES.md``). It is not a solve of the given
+    model, and it does not perform external solver/prover execution or rule-pack
+    checking.
     """
 
     model_record = deepcopy(dict(model or load_preview_model()))

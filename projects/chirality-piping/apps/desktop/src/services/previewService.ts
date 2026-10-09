@@ -624,16 +624,10 @@ export async function loadSampleProposal(
   );
 }
 
+/** The default session model and the model of the bundled reference results:
+ * the valid demo, the invented loop without the retired legacy pressure
+ * primitives and the refused expansion joint, which the product solves. */
 async function loadModelFixture(): Promise<PreviewModel> {
-  return structuredClone((
-    await import("../../../../fixtures/product_preview/invented_preview_model.json")
-  ).default) as PreviewModel;
-}
-
-/** The valid demo model behind the bundled reference results: the invented loop
- * without its legacy pressure primitives and expansion joint. The default
- * session model above stays the invented preview model. */
-async function loadDemoModelFixture(): Promise<PreviewModel> {
   return structuredClone((
     await import("../../../../fixtures/product_preview/invented_demo_model.json")
   ).default) as PreviewModel;
@@ -722,7 +716,7 @@ export async function loadBundledMechanicsReference(
   solverMode: PreviewSolverMode = "sparse_interactive",
 ): Promise<BundledMechanicsReference> {
   assertPreviewSolverMode(solverMode);
-  const model = await loadDemoModelFixture();
+  const model = await loadModelFixture();
   const source = validateBrowserMechanicsFixture(await loadMechanicsFixture(solverMode), solverMode, model);
   return {
     standing: "reference_only",

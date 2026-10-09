@@ -3,7 +3,7 @@
   "path_base": "projects/chirality-piping",
   "recipe": {
     "path": "tools/serialization/generate_product_preview_mechanics.mjs",
-    "sha256": "49f4e70012109b5d086f11f041ea8f10500f78fa98b7cef177756a1598e5eb53"
+    "sha256": "75a25caf12d3bd1154e10b898a197a0ec80e3193a9676d7dd697d5ead8fda703"
   },
   "generator": {
     "path": "core/product_physics/examples/preview_result.rs",
@@ -361,7 +361,7 @@
     "core/units/schema_vocabulary.py": "4e95f6e327beb96869656dad3b0191c1feec3d2523534f77c7570823f1fe5cd3",
     "core/units/src/bin/openpipestress_units.rs": "b470f2cb8aa0d9b7faaac76671034fab5d43cbb72933e7a85b9416c8c76086f2",
     "core/units/src/lib.rs": "521717eb4cac8114b5c1bbeef3f8caebd57eb3021c7743860f9be8f1078b710c",
-    "fixtures/product_preview/invented_demo_model.json": "797a40122b5bbc77441852161079b335ed8776b37a6155149d5cd1434875c111",
+    "fixtures/product_preview/invented_demo_model.json": "3a600a8b1421d9fe28fca4f8d7a9c3f5fdaa27f68d8d8df7af3f5a651b51cd14",
     "fixtures/product_preview/invented_preview_model.json": "986c055944776ca8d0d849d552678e1f2bfb6c4559bbb9ff8a1928157a4f871c",
     "fixtures/results/semantic_contract_v0_2.json": "4d6886d19e304db897e5e9f8f0054cbee91ba7795868f9698e2bbe070bde94da",
     "package.json": "ae2274d2078a378387a82d99af3fd49d58232d62aa4c383d2511cff02bff2a63",
@@ -418,7 +418,7 @@
     "schemas/target_mapping.schema.json": "126fc0f111912ab6fd4f8cc475bb2ce96fd723799765aed1b1e74370bded4e17",
     "schemas/units.schema.yaml": "53233e2b586db0e63eb48c1d7c1a2f47e04a7c7de1fdb89f121a8eb8a96f32c4",
     "schemas/viewport_editor.schema.yaml": "d23ce086b82ff6196edec81319257515bf5aa12dee3e2b79ae0c17246a56fcb3",
-    "tools/serialization/generate_product_preview_mechanics.mjs": "49f4e70012109b5d086f11f041ea8f10500f78fa98b7cef177756a1598e5eb53"
+    "tools/serialization/generate_product_preview_mechanics.mjs": "75a25caf12d3bd1154e10b898a197a0ec80e3193a9676d7dd697d5ead8fda703"
   },
   "source_input_files_after": {
     "core/loads/load_case_algebra/.gitignore": "9cc2c8cc102e0b2a0a177c8f594abc9b9776300a04473c24b45d52c1007a4119",
@@ -766,7 +766,7 @@
     "core/units/schema_vocabulary.py": "4e95f6e327beb96869656dad3b0191c1feec3d2523534f77c7570823f1fe5cd3",
     "core/units/src/bin/openpipestress_units.rs": "b470f2cb8aa0d9b7faaac76671034fab5d43cbb72933e7a85b9416c8c76086f2",
     "core/units/src/lib.rs": "521717eb4cac8114b5c1bbeef3f8caebd57eb3021c7743860f9be8f1078b710c",
-    "fixtures/product_preview/invented_demo_model.json": "797a40122b5bbc77441852161079b335ed8776b37a6155149d5cd1434875c111",
+    "fixtures/product_preview/invented_demo_model.json": "3a600a8b1421d9fe28fca4f8d7a9c3f5fdaa27f68d8d8df7af3f5a651b51cd14",
     "fixtures/product_preview/invented_preview_model.json": "986c055944776ca8d0d849d552678e1f2bfb6c4559bbb9ff8a1928157a4f871c",
     "fixtures/results/semantic_contract_v0_2.json": "4d6886d19e304db897e5e9f8f0054cbee91ba7795868f9698e2bbe070bde94da",
     "package.json": "ae2274d2078a378387a82d99af3fd49d58232d62aa4c383d2511cff02bff2a63",
@@ -823,9 +823,9 @@
     "schemas/target_mapping.schema.json": "126fc0f111912ab6fd4f8cc475bb2ce96fd723799765aed1b1e74370bded4e17",
     "schemas/units.schema.yaml": "53233e2b586db0e63eb48c1d7c1a2f47e04a7c7de1fdb89f121a8eb8a96f32c4",
     "schemas/viewport_editor.schema.yaml": "d23ce086b82ff6196edec81319257515bf5aa12dee3e2b79ae0c17246a56fcb3",
-    "tools/serialization/generate_product_preview_mechanics.mjs": "49f4e70012109b5d086f11f041ea8f10500f78fa98b7cef177756a1598e5eb53"
+    "tools/serialization/generate_product_preview_mechanics.mjs": "75a25caf12d3bd1154e10b898a197a0ec80e3193a9676d7dd697d5ead8fda703"
   },
-  "inventory_json_sha256": "097a38aace2e83a6b18034c1333106802e46cde06cebe8291046d1b1dcc5d997",
+  "inventory_json_sha256": "95a13611e6b36d0966a5ab0d6e92abe57cf2a9cd93c7118b0d63ebc7dfd0e630",
   "dependencies": [
     {
       "name": "block-buffer",
@@ -1052,7 +1052,6 @@
         "sparse_interactive",
         "invented_preview_model"
       ],
-      "stderr_sha256": "cc15cd559765ba249584d369709f8dbb629d91c406a212eab3c66daae9cd00e3",
       "exit_code": 0,
       "model_ref": "project:invented-loop-01",
       "mechanics_status": "MODEL_INCOMPLETE",
@@ -1081,7 +1080,6 @@
         "dense_scrutiny",
         "invented_preview_model"
       ],
-      "stderr_sha256": "cc15cd559765ba249584d369709f8dbb629d91c406a212eab3c66daae9cd00e3",
       "exit_code": 0,
       "model_ref": "project:invented-loop-01",
       "mechanics_status": "MODEL_INCOMPLETE",

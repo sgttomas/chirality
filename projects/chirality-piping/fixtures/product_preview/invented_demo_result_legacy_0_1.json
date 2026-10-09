@@ -13,7 +13,7 @@
     "segment_count": 4,
     "support_count": 7,
     "load_case_count": 2,
-    "component_stress_modifier_count": 8,
+    "component_stress_modifier_count": null,
     "component_user_stiffness_macro_element_count": 0,
     "component_pressure_thrust_load_count": 0,
     "spring_hanger_user_input_count": 7,

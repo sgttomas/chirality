@@ -3,11 +3,12 @@ import { createNativeMechanicsReplay, nativeMechanicsReplayPair } from "../../te
 const invokeMock = vi.hoisted(() => vi.fn());
 vi.mock("@tauri-apps/api/core", () => ({ invoke: invokeMock }));
 afterEach(() => { invokeMock.mockReset(); delete (window as unknown as Record<string, unknown>).__TAURI_INTERNALS__; });
-import { buildAnalysisRunPreview, buildPreviewComparison, loadPreviewModel, runPreviewMechanics } from "../../services/previewService";
+import { buildAnalysisRunPreview, buildPreviewComparison, runPreviewMechanics } from "../../services/previewService";
 import { canonicalSha256Hex, canonicalSha256HexCheckedV1 } from "../../services/hashService";
 import { buildCurrentSessionInputManifest } from "../../services/inputManifestService";
 import historicalResult from "../../../../../fixtures/product_preview/invented_demo_result_legacy_0_1.json";
 import demoModel from "../../../../../fixtures/product_preview/invented_demo_model.json";
+import inventedPreviewModel from "../../../../../fixtures/product_preview/invented_preview_model.json";
 import { analysisRecordProjection, buildAnalysisRunV02, verifyAnalysisRunRecord } from "../../services/analysisRunCompatibility";
 import type { MechanicsResult, PreviewModel } from "../../types";
 import {resultSemantics} from "../results/resultSemantics";
@@ -91,9 +92,10 @@ async function legacyProvenanceSession(model: PreviewModel) {
 
 describe("report-package current-session request", () => {
   it("preserves the legacy component-provenance oracle through pure report projection", async () => {
-    // The cross-layer oracle is pinned on the session (invented preview) model's
-    // components; the projection reads only the model's component provenance.
-    const modelWithMissingProvenance = structuredClone(await loadPreviewModel());
+    // The cross-layer oracle is pinned on the invented preview model (not the
+    // default session model, which is the demo); the projection reads only the
+    // model's component provenance.
+    const modelWithMissingProvenance = structuredClone(inventedPreviewModel) as unknown as PreviewModel;
     const missingComponent = modelWithMissingProvenance.components.find(
       (component) => component.id === "component:C-140"
     );
@@ -408,7 +410,7 @@ describe("report-package current-session request", () => {
     ).rejects.toThrow("INPUT-MANIFEST-HASH-MISMATCH");
 
     for (const ref of [
-      `result-envelope:project-invented-loop-01:${inputManifest.manifest_sha256}`,
+      `result-envelope:project-invented-demo-loop-01:${inputManifest.manifest_sha256}`,
       `input-manifest:project-different:${inputManifest.manifest_sha256}`
     ]) {
       const wrongIdentity = structuredClone(inputManifest);

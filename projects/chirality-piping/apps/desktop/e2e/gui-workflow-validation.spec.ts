@@ -36,10 +36,11 @@ type WorkflowResultFixture = {
   results: unknown[];
 };
 
+// The default session model: the valid demo, which the product solves.
 const modelFixturePath = fileURLToPath(
-  new URL("../../../fixtures/product_preview/invented_preview_model.json", import.meta.url)
+  new URL("../../../fixtures/product_preview/invented_demo_model.json", import.meta.url)
 );
-// The bundled reference: the demo model's actual sparse output (its own model, not the session's).
+// The bundled reference: the demo model's actual sparse output.
 const resultFixturePath = fileURLToPath(
   new URL("../../../fixtures/product_preview/invented_demo_result_preview_physics_1_sparse.json", import.meta.url)
 );
@@ -272,9 +273,9 @@ test("DEL-09-04 invented fixture exposes warnings, boundaries, and honest solve/
   );
   await setDisclosure(page.getByLabel("Project summary"));
   await expect(page.getByTestId("project-index-picker")).toBeVisible();
-  await page.getByTestId("project-index-open-project:invented-loop-01").click();
+  await page.getByTestId("project-index-open-project:invented-demo-loop-01").click();
   await expect(page.getByTestId("local-project-message")).toContainText(
-    "Opened local browser-preview project snapshot by id project:invented-loop-01."
+    "Opened local browser-preview project snapshot by id project:invented-demo-loop-01."
   );
 
   // Slice B3: opening a project returns to the Model stage's surfaces, which closes the Project

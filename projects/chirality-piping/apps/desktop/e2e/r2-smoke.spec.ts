@@ -38,10 +38,10 @@ const rehearsal = JSON.parse(
 
 // Immutable recorded-source oracles are separate from browser freshness.
 // No fixture headers, model references, quality flags or values are rewritten.
-const referenceModel = JSON.parse(readFileSync(new URL("../../../fixtures/product_preview/invented_preview_model.json", import.meta.url), "utf8"));
 // The bundled reference: the valid demo model (the invented loop without its legacy
-// pressure and its joint), its actual sparse output, and that output's
-// historical-format (0.1.0) carrier. Each source is read with its own semantics.
+// pressure and its joint; also the default session model), its actual sparse output,
+// and that output's historical-format (0.1.0) carrier. Each source is read with its
+// own semantics.
 const demoModel = JSON.parse(readFileSync(new URL("../../../fixtures/product_preview/invented_demo_model.json", import.meta.url), "utf8"));
 const referenceSource = JSON.parse(readFileSync(new URL("../../../fixtures/product_preview/invented_demo_result_preview_physics_1_sparse.json", import.meta.url), "utf8"));
 const historicalSource = JSON.parse(readFileSync(new URL("../../../fixtures/product_preview/invented_demo_result_legacy_0_1.json", import.meta.url), "utf8"));
@@ -269,7 +269,7 @@ test("guided workbench shell keeps journey steps, details, and compact status re
   await expect(page.getByTestId("agent-workbench-panel")).toBeHidden();
   await openReviewTab(page, "agent");
   await expect(page.getByTestId("agent-workbench-panel")).toBeVisible();
-  await expect(page.getByTestId("agent-focus-selection")).toContainText("project:invented-loop-01");
+  await expect(page.getByTestId("agent-focus-selection")).toContainText("project:invented-demo-loop-01");
   await expect(page.getByTestId("agent-proposal-summary")).toContainText("review_only_local_preview");
   await expect(page.getByTestId("workspace-status-bar")).toBeVisible();
   // Slice B3, specification §5.4 rule 4: Human · Human review required is a chip of the Review
@@ -458,7 +458,7 @@ test("R2 browser smoke covers authoring, explicit reference results, and qualifi
   await page.getByTestId("audit-boundary-drawer").getByRole("button", { name: /Close/i }).click();
   await openWorkspaceSection(page, "loads");
   await expect(page.getByTestId("load-case-manager-summary")).toContainText(
-    "2 load cases; 9 primitive loads; 1 combinations"
+    "2 load cases; 5 primitive loads; 1 combinations"
   );
   await expect(page.getByTestId("load-manager-create-load-id")).toHaveValue("load:L-300");
   await expect(page.getByTestId("load-manager-create-load-preview")).toContainText(
@@ -533,7 +533,7 @@ test("R2 browser smoke covers authoring, explicit reference results, and qualifi
   await expect(page.getByTestId("load-manager-create-combination-preview")).toContainText(
     "before=not_present; after=combination:C-300; term=load:L-100 x 0.5; unit=none; dimensionless"
   );
-  await page.getByTestId("load-manager-primitive-load:L-100-P").click();
+  await page.getByTestId("load-manager-primitive-load:L-100-T").click();
   await expect(page.getByTestId("load-manager-selected-primitive")).toContainText(
     "primitive_loads.2.magnitude.value"
   );
@@ -555,7 +555,7 @@ test("R2 browser smoke covers authoring, explicit reference results, and qualifi
     "op:load-manager-load:L-100-delete"
   );
   await expect(page.getByTestId("load-manager-load-case-delete-preview")).toContainText(
-    "before=load:L-100; Invented operating gravity and pressure preview; primitive_user_load; preview_only; primitives=5; after=not_present; unit=none; dimensionless"
+    "before=load:L-100; Invented operating gravity, occasional and thermal preview; primitive_user_load; preview_only; primitives=3; after=not_present; unit=none; dimensionless"
   );
   await expect(page.getByTestId("load-manager-selected-combination")).toContainText(
     "field=basis; current=mechanics"
@@ -834,7 +834,7 @@ test("R2 browser smoke covers authoring, explicit reference results, and qualifi
   // The unchanged raw rows and their qualified dimension witnesses remain
   // checked by the recorded-source and pure stress-neutral contract tests.
   const reviewGeometryExport = page.getByLabel("Review geometry export");
-  await expect(reviewGeometryExport.getByTestId("review-geometry-unit-witnesses")).toContainText("count=75");
+  await expect(reviewGeometryExport.getByTestId("review-geometry-unit-witnesses")).toContainText("count=72");
   await expect(reviewGeometryExport.getByTestId("review-geometry-unit-witnesses")).toContainText(
     "target=m"
   );
@@ -898,7 +898,7 @@ test("R2 browser smoke covers authoring, explicit reference results, and qualifi
   await expect(applyPanel.getByTestId("operation-apply-summary")).toContainText("0 queued; 2 applied");
   await openWorkspaceSection(page, "loads");
   await expect(page.getByTestId("load-case-manager-summary")).toContainText(
-    "2 load cases; 9 primitive loads; 2 combinations"
+    "2 load cases; 5 primitive loads; 2 combinations"
   );
   await expect(page.getByTestId("load-manager-combination-combination:C-300")).toContainText(
     "basis=result_state_subtraction"
@@ -1754,7 +1754,7 @@ test("R3 guided flow routes private library, rule-pack, solve, binding, and bloc
   // missing and the rule check blocked. A bundled reference never lends its recorded status.
   const issues = page.getByTestId("issues-home");
   await expect(issues.getByTestId("missing-data-status-separation")).toContainText(
-    `rule_check=${referenceModel.analysis_status.rule_check}`
+    `rule_check=${demoModel.analysis_status.rule_check}`
   );
   await expect(issues.getByTestId("missing-data-summary")).toContainText("rule_blocked=true");
   await expect(issues.getByTestId("missing-data-warning-rule-check-required-inputs")).toContainText("RULE_CHECK_BLOCKING");

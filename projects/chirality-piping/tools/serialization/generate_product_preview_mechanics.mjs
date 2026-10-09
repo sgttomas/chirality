@@ -182,12 +182,17 @@ function validate(result, mode, value, model, config) {
 //   (`legacySemantics`) do not define removed, since a 0.1.0 reader has no
 //   meaning for it;
 // - a summary headline whose result row was removed set to null (withheld), so
-//   no reference dangles.
+//   no reference dangles, and a nonzero summary count of a removed kind's rows
+//   (`carrierCountedKinds`) set to null, so the summary describes only the rows
+//   the carrier carries.
 // Every remaining byte is the producer's; no kept row, value, other summary
 // member or diagnostic is changed. It is a format carrier for readers' tests,
 // not a producer output and not a legacy computation.
 const carrierRemoved = ["producer", "numerical_quality", "formulation_basis", "contract_evidence"];
 const legacySemantics = "fixtures/results/semantic_contract_v0_2.json";
+// Summary counts and the row kind each counts (the producer sets
+// component_stress_modifier_count to the number of intensified bending rows).
+const carrierCountedKinds = { component_stress_modifier_count: "component_equal_factor_intensified_bending_stress_v1" };
 function legacyKinds() {
   const kinds = new Set((parse(bytes(legacySemantics)).rows ?? []).map(row => row.kind));
   if (!kinds.size || [...kinds].some(kind => typeof kind !== "string" || !kind)) fail("legacy carrier: no historical result kinds");
@@ -238,7 +243,15 @@ function legacyCarrier(raw) {
   for (let index = summaryOpen + 1; index < summaryEnd;) {
     const member = /^    "([^"]+)": (.*)$/.exec(carried[index]);
     if (!member) fail("legacy carrier: summary member");
-    if (member[2] !== "{") { summary.push(carried[index]); index += 1; continue; }
+    if (member[2] !== "{") {
+      const counted = carrierCountedKinds[member[1]];
+      if (counted && !kinds.has(counted) && JSON.parse(member[2].replace(/,$/, "")) !== 0) {
+        nulled.push(member[1]);
+        summary.push(`    "${member[1]}": null${member[2].endsWith(",") ? "," : ""}`);
+      } else summary.push(carried[index]);
+      index += 1;
+      continue;
+    }
     const stop = carried.findIndex((line, at) => at > index && /^    \},?$/.test(line));
     if (stop < 0) fail("legacy carrier: summary member end");
     const block = carried.slice(index, stop + 1);
@@ -363,8 +376,10 @@ try {
     validate(result, mode, value, model, config);
     const outputPath = config.output(suffix);
     fixtureWrites.push([outputPath, captured.stdout]); // exact raw stdout, no reserialization
+    // stderr is passed through, not recorded: cargo's warnings carry the checkout's
+    // absolute paths, so a hash of it would differ in every checkout.
     outputs.push({ mode, path: outputPath, sha256: sha(captured.stdout), command: ["cargo", ...args],
-      stderr_sha256: sha(captured.stderr), exit_code: 0, model_ref: result.model_ref,
+      exit_code: 0, model_ref: result.model_ref,
       mechanics_status: result.status.mechanics, numerical_status: result.numerical_quality.status,
       row_count: result.results.length, load_case_ids: result.numerical_quality.cases.map(c => c.basis_ref.ref_id) });
   }
@@ -377,7 +392,7 @@ try {
       schema_version: "0.1.0", removed_members: carrierRemoved,
       historical_kinds: { path: legacySemantics, sha256: before[legacySemantics] }, removed_row_kinds: removedKinds, removed_row_count: removedRows,
       row_count: parse(payload).results.length, nulled_summary_members: nulledSummary,
-      derivation: "The derived_from file's exact bytes with the removed top-level members deleted, schema_version set to 0.1.0, the rows of the removed_row_kinds (kinds the historical_kinds file does not define) deleted, and each nulled_summary_members headline, whose row was deleted, set to null. No kept row, value, other summary member or diagnostic changed. A historical-format carrier for legacy-format readers' tests, not producer output." });
+      derivation: "The derived_from file's exact bytes with the removed top-level members deleted, schema_version set to 0.1.0, the rows of the removed_row_kinds (kinds the historical_kinds file does not define) deleted, and each nulled_summary_members member set to null: a headline whose row was deleted, or a nonzero count of a removed kind's rows. No kept row, value, other summary member or diagnostic changed. A historical-format carrier for legacy-format readers' tests, not producer output." });
   }
   const afterMeta = metadata();
   exact(JSON.stringify(dependencyInventory(afterMeta)), JSON.stringify(dependencyInventory(meta)), "dependency resolution changed during generation");

@@ -1060,9 +1060,13 @@ def test_generated_bundled_demo_output_is_recorded_truthfully(mode):
         del sparse[key]
     sparse["schema_version"] = "0.1.0"
     sparse["results"] = [row for row in sparse["results"] if row["kind"] not in carrier["removed_row_kinds"]]
+    # The summary members that describe removed rows are withheld (RV128 N-4).
+    assert carrier["nulled_summary_members"] == ["component_stress_modifier_count", "max_open_formula_stress"]
     for key in carrier["nulled_summary_members"]:
         sparse["summary"][key] = None
     assert carried == sparse
+    # The record is portable: no hash of cargo's checkout-dependent stderr (RV128 N-7).
+    assert all("stderr_sha256" not in item for item in record["outputs"])
     ids = {row["id"] for row in carried["results"]}
     assert all(value["result_ref"] in ids for value in carried["summary"].values() if isinstance(value, dict) and "result_ref" in value)
 
