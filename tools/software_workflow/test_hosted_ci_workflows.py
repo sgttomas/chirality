@@ -19,16 +19,35 @@ def test_changes_to_hosted_workflows_select_their_structural_tests():
         assert "software_workflow" in selection["checks"]
 
 
-def test_every_pr_change_reaches_selection_and_full_dispatch_is_available():
-    for name in ["harness-premerge.yml", "pec-tests.yml"]:
+def test_every_pr_reaches_single_required_aggregate_and_reusable_products():
+    root = workflow('governance-harness.yml')
+    assert 'pull_request' in root['on']
+    assert not root['on']['pull_request']
+    assert 'schedule' not in root['on']
+    assert 'push' not in root['on']  # no duplicate post-merge product run
+    jobs = root['jobs']
+    assert jobs['harness']['if'] == 'always()'
+    assert set(jobs['harness']['needs']) == {'repository-checks', 'app-v4', 'piping', 'runtime', 'pec'}
+    for job, name in [('app-v4', 'app-v4.yml'), ('piping', 'piping-desktop-e2e.yml'),
+                      ('runtime', 'harness-premerge.yml'), ('pec', 'pec-tests.yml')]:
         config = workflow(name)
-        trigger = config["on"]["pull_request"]
-        assert set(trigger["types"]) >= {"opened", "synchronize", "reopened"}
-        # Instruction/doc/record changes must reach the selector, even when no
-        # product job is required. Outer path/branch filters would hide them.
-        assert not set(trigger) & {"paths", "paths-ignore", "branches", "branches-ignore"}
-        assert "workflow_dispatch" in config["on"]
-        assert "if" not in config["jobs"]["selection"]
+        assert 'workflow_call' in config['on']
+        assert 'workflow_dispatch' in config['on']
+        assert 'pull_request' not in config['on']
+        assert 'schedule' not in config['on']
+        assert jobs[job]['uses'] == f'./.github/workflows/{name}'
+        assert 'if' not in config['jobs']['selection']
+
+
+def test_single_required_result_fails_for_any_unsuccessful_child(tmp_path):
+    import os
+    import subprocess
+    step = workflow('governance-harness.yml')['jobs']['harness']['steps'][0]
+    for state in ['success', 'failure', 'cancelled', 'skipped']:
+        results = {name: {'result': 'success'} for name in ['repository-checks', 'app-v4', 'piping', 'runtime', 'pec']}
+        results['piping']['result'] = state
+        process = subprocess.run(['bash', '-c', step['run']], env={**os.environ, 'RESULTS': json.dumps(results)}, capture_output=True)
+        assert (process.returncode == 0) == (state == 'success')
 
 
 def test_stable_result_waits_for_all_routes_even_when_a_required_route_fails():

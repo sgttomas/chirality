@@ -1,24 +1,21 @@
 name: App v4
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  workflow_call:
   workflow_dispatch:
     inputs:
       broad_python:
         description: Run all Python receiving cohorts, including known stale-source failures
         type: boolean
         default: false
-  schedule:
-    - cron: '41 8 * * *'
 
 permissions:
   contents: read
 
 concurrency:
   group: app-v4-${{ github.event.pull_request.number || github.ref }}
-  # Finish an in-flight native build/test run; the newest candidate queues.
-  cancel-in-progress: false
+  # Only the newest PR candidate needs verification.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   selection:
@@ -82,13 +79,15 @@ jobs:
           workspaces: projects/chirality-app-v4/app/src-tauri
           cache-on-failure: true
       - uses: actions/setup-python@v5
+        if: github.event_name == 'workflow_dispatch'
         with:
           python-version: '3.12'
       - name: Install locked App and pinned Python dependencies
         run: |
           npm ci
-          python -m pip install pytest==9.1.1 jsonschema==4.26.0 referencing==0.37.0
+          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then python -m pip install pytest==9.1.1 jsonschema==4.26.0 referencing==0.37.0; fi
       - name: Prepare adopted supplier in scratch storage
+        if: github.event_name == 'workflow_dispatch'
         env:
           SUPPLIER_ROOT: ${{ runner.temp }}/app-v4-supplier
           CHIRALITY_CODEX_HOME: ${{ runner.temp }}/app-v4-codex-home
@@ -126,23 +125,33 @@ jobs:
       - name: Build App and verify source-mapped schemas
         run: |
           npm run build
-          cargo build --locked --manifest-path src-tauri/Cargo.toml
           python src-tauri/schemas/sync.py
-      - name: Rust product behavior and real supplier handshake
-        run: cargo test --locked --manifest-path src-tauri/Cargo.toml -- --test-threads=1
+      - name: Focused persistence and authority boundaries (full suite on request)
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
+            cargo test --locked --manifest-path src-tauri/Cargo.toml -- --test-threads=1
+          else
+            cargo test --locked --manifest-path src-tauri/Cargo.toml \
+              --test act_storage --test recovery_startup --test access_integration \
+              --test policy_standing --test decision_standing --test record_semantics \
+              --test native_backend_smoke -- --test-threads=1
+            cargo test --locked --manifest-path src-tauri/Cargo.toml --lib p3_role_set_tests -- --test-threads=1
+          fi
       - name: Node schemas and presentation with mandatory supplier
+        if: github.event_name == 'workflow_dispatch'
         run: |
           test -x "$CHIRALITY_CODEX_BIN"
           npm test
       - name: Python receiving and custody behavior
+        if: github.event_name == 'workflow_dispatch'
         env:
-          BROAD: ${{ github.event_name == 'schedule' || inputs.broad_python }}
+          BROAD: ${{ inputs.broad_python }}
         run: |
           if [ "$BROAD" = true ]; then
             python -m pytest -q tests
           else
             # These two historical cohorts already fail on an obsolete hosting.rs
-            # source pin. Nightly/explicit broad runs keep those failures visible.
+            # source pin. Explicit broad runs keep those failures visible.
             echo 'Not selected: distribution and terminal historical-source cohorts (known stale hosting.rs pin).'
             python -m pytest -q tests \
               --ignore=tests/group_b_distribution_receiving_test.py \

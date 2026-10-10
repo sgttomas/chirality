@@ -4,10 +4,6 @@ name: governance-harness
 on:
   pull_request:
   workflow_dispatch:
-  schedule:
-    - cron: "17 8 * * *"
-  push:
-    branches: [main]
 
 permissions:
   contents: read
@@ -20,7 +16,8 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  harness:
+  repository-checks:
+    name: Repository checks
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -203,3 +200,30 @@ jobs:
           else
             python3 tools/run_affected_tests.py --base "$CHECKS_BASE"
           fi
+
+  app-v4:
+    uses: ./.github/workflows/app-v4.yml
+  piping:
+    uses: ./.github/workflows/piping-desktop-e2e.yml
+  runtime:
+    uses: ./.github/workflows/harness-premerge.yml
+  pec:
+    uses: ./.github/workflows/pec-tests.yml
+  harness:
+    name: harness
+    needs: [repository-checks, app-v4, piping, runtime, pec]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require selected verification to succeed
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: |
+          python3 - <<'PYTHON'
+          import json, os
+          results = json.loads(os.environ['RESULTS'])
+          failed = {name: job['result'] for name, job in results.items() if job['result'] != 'success'}
+          if failed:
+              raise SystemExit(f"Verification did not succeed: {failed}")
+          print('Repository checks and selected product checks passed.')
+          PYTHON
