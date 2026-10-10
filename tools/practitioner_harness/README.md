@@ -350,25 +350,12 @@ BLOCK appears in the digest downgraded to REVIEW with a caveat naming the
 gating command to run for the gating exit code. The human decides; the
 digest only collects.
 
-## Drift baseline
+## Historical lifecycle readers
 
-Measured and verified 2026-07-01: **92 of 154** `_STATUS.md` files under the
-two pilot `execution/` trees disagree with their own last parsed history
-assertion — all 92 in chirality-piping (101 files), app-dev 0/53 clean. The
-shared signature: history records an approved advance to CHECKING while the
-frontmatter `Current State:` line still reads IN_PROGRESS. `drift` reports
-run-over-run counts against this baseline, split by project and caveat class
-(`PARSED` / `PARSED_WITH_ASSUMPTIONS` / `UNPARSEABLE`; unparseable histories
-are labeled, never guessed). Success is this number trending down; failure is
-this tool becoming a cleaner-looking second source of truth.
-
-**Resolved to 0/154 on 2026-07-02**: the owner ruled the class-wide
-K-CONFLICT-1 conflict ("all shall be IN_PROGRESS" — header authoritative;
-the 2026-06-16 header reversals were affirmed and the missing reversal
-history entries authored, one parser-verified line per file). Ruling record:
-`projects/chirality-piping/execution/_Reconciliation/LifecycleCorrection/LIFECYCLE_CORRECTION_2026-07-02_2050/Decision_Log.md`.
-The recorded adapter baseline was re-measured to 0/101 in the same act; the
-live pin in `test_live_baseline.py` carries the matching conscious update.
+The drift command remains for legacy project consumers. App v4 and Piping use
+`tools/deliverables` instead; their deliverables have no lifecycle status.
+The former live-record drift baselines and reconciliation packets are history,
+recoverable through the pre-reset archive tags, not ongoing verification inputs.
 
 ## Root reset
 

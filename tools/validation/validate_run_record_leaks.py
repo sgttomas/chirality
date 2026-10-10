@@ -1,23 +1,12 @@
 #!/usr/bin/env python3
-"""Leak check for the run records a change adds or modifies (D-GOV-45).
+"""Scan added or modified committed files for credential leaks and escaping links.
 
-Run records are history and are not otherwise tested. This check scans only
-the run-record files changed in `--base..--head` (a PR's complete diff, or the
-commits a push added), because the repository is public: a credential in a
-new run record is published the moment it merges.
-
-- BLOCK (exit 1): a credential pattern in a changed text run record. Values
-  that are self-evidently fake (containing EXAMPLE, DUMMY, FAKE, PLACEHOLDER,
-  TEST) are ignored.
-- BLOCK (exit 1): a changed run-record symlink whose target is absolute or
-  resolves outside the repository. Such a link points into one machine's
-  filesystem: it dangles everywhere else and carries no evidence bytes.
-  Commit the bytes themselves. Links that stay inside the repository pass.
-- WARN (exit 0): a changed run-record file larger than 5 MB. Keep traces,
-  screenshots and archives as CI artifacts rather than committing them.
-
-Reads file bytes from Git, so it works in sparse checkouts. Exit 2 on
-operational errors (refs unresolvable).
+The historical command name remains compatible with CI callers. The scope is
+all changed files, including maintained source, fixtures and documentation now
+that routine run records are retired. Unchanged history is not re-scanned.
+Binary formats are skipped; large files receive a non-blocking artifact warning.
+Reads bytes from Git for sparse-checkout compatibility. Exit 2 means the input
+revision could not be read; exit 1 means a credential or escaping link was found.
 """
 from __future__ import annotations
 
@@ -27,7 +16,6 @@ import re
 import subprocess
 import sys
 
-RUN_RECORD_RE = re.compile(r'(^|/)(_Coordination/AgentRuns|_run_records)/')
 BINARY_EXTENSIONS = ('.zip', '.png', '.jpg', '.jpeg', '.gif', '.webp', '.webm', '.gz', '.sqlite3', '.bin', '.pdf')
 LARGE_BYTES = 5_000_000
 SYMLINK_MODE = '120000'
@@ -56,12 +44,11 @@ def git(*args: str) -> bytes:
     return subprocess.check_output(['git', *args])
 
 
-def changed_run_records(base: str, head: str) -> list[tuple[str, str]]:
-    """(path, head mode) for each run record added, modified or retyped."""
+def changed_files(base: str, head: str) -> list[tuple[str, str]]:
+    """(path, head mode) for each file added, modified or retyped."""
     fields = git('diff', '--raw', '--no-renames', '--diff-filter=AMT', '-z', base, head, '--').decode().split('\0')
     # --raw -z alternates ':<old mode> <new mode> <old oid> <new oid> <status>' and the path.
-    return [(path, meta.split()[1]) for meta, path in zip(fields[0::2], fields[1::2])
-            if RUN_RECORD_RE.search(path)]
+    return [(path, meta.split()[1]) for meta, path in zip(fields[0::2], fields[1::2])]
 
 
 def escapes_repository(path: str, target: str) -> bool:
@@ -80,7 +67,7 @@ def findings(path: str, data: bytes, mode: str = '100644') -> list[tuple[str, st
                                      'commit the evidence bytes, not a link'))
         return results
     if len(data) > LARGE_BYTES:
-        results.append(('WARN', f'{path}: {len(data) / 1e6:.1f} MB run-record file; keep large evidence as CI artifacts'))
+        results.append(('WARN', f'{path}: {len(data) / 1e6:.1f} MB committed file; keep large evidence as CI artifacts'))
     if path.lower().endswith(BINARY_EXTENSIONS):
         return results
     text = data.decode('utf-8', errors='ignore')
@@ -99,7 +86,7 @@ def main() -> int:
     parser.add_argument('--head', default='HEAD')
     args = parser.parse_args()
     try:
-        paths = changed_run_records(args.base, args.head)
+        paths = changed_files(args.base, args.head)
         results = [f for p, mode in paths for f in findings(p, git('show', f'{args.head}:{p}'), mode)]
     except subprocess.CalledProcessError as exc:
         print(f'ERROR: cannot read {args.base}..{args.head}: {exc}', file=sys.stderr)
@@ -108,7 +95,7 @@ def main() -> int:
         print(f'{severity}: {message}')
     blocks = sum(severity == 'BLOCK' for severity, _ in results)
     links = sum(severity == 'BLOCK' and 'symlink to' in message for severity, message in results)
-    print(f'{"BLOCK" if blocks else "PASS"}: {len(paths)} changed run-record file(s) scanned; '
+    print(f'{"BLOCK" if blocks else "PASS"}: {len(paths)} changed file(s) scanned; '
           f'{blocks - links} possible credential(s); {links} machine-local symlink(s).')
     return 1 if blocks else 0
 

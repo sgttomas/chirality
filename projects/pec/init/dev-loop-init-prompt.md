@@ -1,14 +1,5 @@
-<init-prompt>
-Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
+# PEC maintenance prompt
 
-Set `WORKING_ROOT` to `{REPO_ROOT}/projects/pec`.
-
-Read `{REPO_ROOT}/AGENTS.md`.
-Read `{REPO_ROOT}/agents/AGENT_HELP_HUMAN.md`.
-
-Act as `HELP_HUMAN` for `{WORKING_ROOT}`.
-
-Read `{WORKING_ROOT}/loop/LOOP_INIT.md` and follow it.
-
-Steer (this run): <none>
-</init-prompt>
+PEC has no active development loop. For owner-requested maintenance, read Root
+`AGENTS.md` and `projects/pec/loop/LOOP_INIT.md`, then work only the requested
+source or compatibility issue. Do not restart the historical backlog.

@@ -155,70 +155,8 @@ def test_live_self_check_live_binding_gate_drift_is_detected(live_self_check):
     assert hits == []
 
 
-@live
-def test_live_self_check_draft_basis_pins(live_self_check):
-    from harness_common import Severity
-    report, _ = live_self_check
-    assert [f for f in report.findings if f.code == "DRAFT_BASIS_AS_BINDING"] == []
-    info = [f for f in report.findings if f.code == "DRAFT_BASIS_RULED_CLOSED"]
-    # The seven D-GOV records' `FramedBy: governance_harness_plan_v3` lines:
-    # the plan HTML self-declares "PROPOSAL, pending D-GOV-01"; D-GOV-01 is
-    # RULED -> closure recorded as INFO (conditional per the D-GOV-02 model).
-    assert len(info) == 7
-    assert all(f.severity is Severity.INFO for f in info)
-    assert {(f.source_path, f.source_line) for f in info} == {
-        (f"docs/governance_harness/_DECISIONS/{name}", 7)
-        for name in (
-            "D-GOV-01_substrate_authority.md",
-            "D-GOV-02_verifier_severity_and_override.md",
-            "D-GOV-03_pilot_scope.md",
-            "D-GOV-04_human_actor_identity.md",
-            "D-GOV-05_minimal_governance_basis.md",
-            "D-GOV-06_domain_profile_current_truth.md",
-            "D-GOV-07_domain_gate_sha_binding.md",
-        )}
 
 
-@live
-def test_live_pointer_currency_first_detection_target(live_self_check):
-    # The 2026-07-01 consistency audit's live reproduction case: the piping
-    # reconciliation pointer designated the 2026-05-09 DEV001 run summary,
-    # retired to .archive/ on 2026-06-03 (349a2ab33). The owner ruled the
-    # disposition REPOINT (piping D-28, applied on main at d74b991db), so this
-    # test is disposition-aware: on a tree predating the repoint the check
-    # MUST fire (the check's first detection target); on the repointed tree
-    # the pointer resolves to the newest surviving sibling and MUST be quiet.
-    pointer = (LIVE_REPO / "projects" / "chirality-piping" / "execution"
-               / "_Reconciliation" / "_LATEST.md")
-    first_line = pointer.read_text(encoding="utf-8").splitlines()[0]
-    report, _ = live_self_check
-    hits = [f for f in report.findings if f.code == "POINTER_TARGET_UNRESOLVED"]
-    if "2026-05-09_DEV001" in first_line:  # pre-disposition tree
-        assert [(f.source_path, f.source_line) for f in hits] == [
-            ("projects/chirality-piping/execution/_Reconciliation/_LATEST.md", 1)]
-        msg = hits[0].message
-        assert ("Reconciliation_Run_Summary_2026-05-09_DEV001_REV05_CANDIDATE_"
-                "EDGE_RECONCILIATION.md") in msg
-        # Newest surviving same-class sibling cited as triage context.
-        assert ("Reconciliation_Run_Summary_2026-05-03_SCA002_REV05_"
-                "COMPATIBILITY_PLANNING.md") in msg
-    else:  # repointed per the D-28 ruling
-        assert ("Reconciliation_Run_Summary_2026-05-03_SCA002_REV05_"
-                "COMPATIBILITY_PLANNING.md") in first_line
-        assert hits == []
-    # Every other live pointer resolves and is the newest of its class.
-    assert [f for f in report.findings
-            if f.code == "POINTER_TARGET_NOT_NEWEST"] == []
-    # docs/governance_harness carries no pointer files -> NOT_APPLICABLE.
-    # Conscious pin update 2026-07-24 (was: projects/pec listed here too):
-    # the D-PEC-60 decomposition session created
-    # projects/pec/execution/_Decomposition/_LATEST.md (Gate 7 accepted same
-    # day), so pec entered pointer-currency scope and its pointer must
-    # resolve quietly (asserted by the zero-findings checks above).
-    from harness_common import Severity
-    na = [f for f in report.findings if f.code == "POINTER_CHECK_NOT_APPLICABLE"]
-    assert {f.source_path for f in na} == {"docs/governance_harness"}
-    assert all(f.severity is Severity.NOT_APPLICABLE for f in na)
 
 
 @live

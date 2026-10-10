@@ -55,12 +55,12 @@ def test_more_credential_formats_block(repo, secret):
     assert result.returncode == 1, result.stdout
 
 
-def test_history_other_paths_and_fake_values_pass(repo):
-    result = run(repo, {'docs/notes.md': f'{GITHUB_TOKEN}\n',
+def test_history_and_fake_values_pass(repo):
+    result = run(repo, {'docs/notes.md': 'ordinary notes\n',
                         RUN + 'fixture.txt': 'AKIAIOSFODNN7EXAMPLE sk-ant-dummy-value-for-tests-0123456789abcdef\n',
                         'projects/x/execution/PKG-1/_run_records/r.json': '{"ok": true}\n'})
     assert result.returncode == 0, result.stdout
-    assert '2 changed run-record file(s) scanned' in result.stdout
+    assert '3 changed file(s) scanned' in result.stdout
 
 
 def test_large_or_binary_evidence_warns_without_blocking(repo):
@@ -112,4 +112,11 @@ def test_file_retyped_to_symlink_blocks(repo):
 def test_symlink_inside_repository_passes(repo):
     result = link(repo, {RUN + 'fixture/lib.rs': '../../../../../../../docs/lib.rs'})
     assert result.returncode == 0, result.stdout
-    assert '1 changed run-record file(s) scanned' in result.stdout
+    assert '1 changed file(s) scanned' in result.stdout
+
+
+@pytest.mark.parametrize("path", ["docs/notes.md", "fixtures/response.json", "tools/helper.py"])
+def test_credential_outside_retired_record_paths_blocks(repo, path):
+    result = run(repo, {path: f"token={GITHUB_TOKEN}\n"})
+    assert result.returncode == 1
+    assert "possible github-token" in result.stdout
