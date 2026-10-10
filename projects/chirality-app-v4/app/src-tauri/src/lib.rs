@@ -52,6 +52,8 @@ pub(crate) mod run_offers;
 pub mod runtime_session;
 pub(crate) mod workflow_declaration;
 pub(crate) mod workflow_workspace;
+pub(crate) mod workflow_trial_transcript;
+pub(crate) mod host_tick;
 pub(crate) mod execution_compatibility;
 pub(crate) mod a15_native;
 pub mod schema_validation;
@@ -208,17 +210,10 @@ fn host_status(state: State<'_, AppState>) -> Value {
     s["homeResources"]["sourceInputs"] = state.root_home_inputs.clone();
     s["homeRouting"] = state.homes.lock().unwrap().snapshot();
     s["homeAccess"] = home.account_view();
-    // EXEC §2.4: the checkpoint recorder reads this home's view for its open
-    // runs before the run panel is read (runtime -> attachments -> Root -> run).
-    runtime_session::record_run_observations(&state.workflows, &s["nativeView"]);
-    {
-        let root = state.workflows.lock().unwrap();
-        s["workflowRoot"] = root.snapshot();
-        // RN-3…RN-7: offers from agent messages observed live; display data only.
-        s["workflowRoot"]["offers"] = root.offers(&s["nativeView"]);
-        // WR §3: the explicit App project can be opened as its own project library.
-        s["workflowRoot"]["projectLibraryAvailable"] = json!(state.workspace.is_some());
-    }
+    // OI-008: host_status presents; it records nothing. The checkpoint recorder
+    // and the trial reads run on the host's own tick (`host_tick`).
+    s["hostTicks"] = host_tick::tick_state();
+    s["workflowRoot"] = host_tick::workflow_status(&state.workflows, &s["nativeView"], state.workspace.is_some());
     s["homeOAuth"] = runtime_session::native_oauth_observation(&home);
     s["continueAs"] = state.continue_as.lock().unwrap().view(&s);
     s["codexStops"] = json!({"outcomes":state.codex_stops.lock().unwrap().clone(),"stopWaitLimitSeconds":codex_stop::STOP_WAIT_LIMIT.as_secs(),"records":codex_stop::RECORDS_LIMIT});
@@ -505,6 +500,7 @@ fn refused_role_entry(role: Option<role_supply::Role>, reason: &str) -> Value {
 }
 
 #[tauri::command(async)]
+#[allow(clippy::too_many_arguments)]
 fn thread_start(
     app: tauri::AppHandle,
     state: State<'_, AppState>,
@@ -515,7 +511,22 @@ fn thread_start(
     role: Option<role_supply::Role>,
     continue_as: Option<String>,
 ) -> Result<Value, String> {
-    let home = state.homes.lock().unwrap().entry(home_class(&mode_home_class)?)?;
+    start_conversation(&app, &state, model, model_provider, entry_id, &mode_home_class, role, continue_as)
+}
+/// A new conversation as `thread_start` starts it (ROLE T-2): also the start of
+/// a clean trial's conversation (WR FT-4), which passes no `continue_as`.
+#[allow(clippy::too_many_arguments)]
+fn start_conversation(
+    app: &tauri::AppHandle,
+    state: &AppState,
+    model: String,
+    model_provider: String,
+    entry_id: String,
+    mode_home_class: &str,
+    role: Option<role_supply::Role>,
+    continue_as: Option<String>,
+) -> Result<Value, String> {
+    let home = state.homes.lock().unwrap().entry(home_class(mode_home_class)?)?;
     // NIR CA-1/CA-3, ROLE CA-3: a "Continue as" start is an ordinary new start
     // with its own role composition; it only records its relation to the source.
     let continued_from = conversation_roles::continuation_for_start(&state.continue_as, &home, continue_as.as_deref(), role)?;
@@ -588,6 +599,9 @@ fn thread_start(
         result
     };
     conversation_roles::mark_started(&state.continue_as, continue_as.as_deref(), &result, &generation);
+    // The start's own generation, for a caller that continues in the new
+    // conversation (a clean trial's first turn, WR FT-4).
+    let result = result.map(|mut response| { response["startGeneration"] = generation.clone(); response });
     if let Ok(response) = &result {
         if let Some(thread) = response["result"]["thread"]["id"].as_str() {
             if let Some(home_kind) = recovery_home { home.thread_home_kinds.lock().unwrap().insert(serde_json::to_string(&json!([generation,thread])).unwrap(),home_kind); }
@@ -734,7 +748,12 @@ fn continue_as_dismiss(state: State<'_, AppState>, id: String) -> Result<(), Str
 /// NIR CA-4, ROLE F-1: "Fork (same role)".
 #[tauri::command(async)]
 fn conversation_fork(state: State<'_, AppState>, generation: Value, thread_id: String) -> Result<Value, String> {
-    conversation_roles::fork_command(&state.homes, &generation, &thread_id, std::time::Duration::from_secs(20))
+    let forked = conversation_roles::fork_command(&state.homes, &generation, &thread_id, std::time::Duration::from_secs(20))?;
+    // WR TT-3b: a fork of a trial conversation is labelled and offers no run.
+    if let Some(fork) = forked["thread"]["threadId"].as_str() {
+        state.workflows.lock().unwrap().mark_fork(&thread_id, fork);
+    }
+    Ok(forked)
 }
 
 /// Paths come exclusively from native file selection; no path/origin is an IPC argument.
@@ -744,7 +763,7 @@ fn submit_attachments(state:State<'_,AppState>,owner_ref:String,list_revision:u6
     let context=state.project_context.clone();
     let recovery_home=home.thread_home_kinds.lock().unwrap().get(&serde_json::to_string(&json!([generation,thread_id])).unwrap()).copied();
     let custody=home.attachment_custody.lock().unwrap().clone();
-    runtime_session::submit_attachments_with_draft_trials(&state.attachment_selection,&state.workflows,&home.host,custody,&owner_ref,list_revision,&selection_refs,&generation,&thread_id,expected_turn_id.as_deref(),&text,context,recovery_home)
+    runtime_session::submit_attachments_with_pending_notice(&state.attachment_selection,&state.workflows,&home.host,custody,&owner_ref,list_revision,&selection_refs,&generation,&thread_id,expected_turn_id.as_deref(),&text,context,recovery_home)
 }
 
 /// The native selector is the only attachment path/body authority. JS carries
@@ -986,13 +1005,112 @@ fn workflow_observe_drafts(state:State<'_,AppState>)->Result<Value,String>{
     let view=active_native_view(&state);
     state.workflows.lock().unwrap().observe_drafts(&view["items"])
 }
-/// WR TT-3 / NIR AT-8: pre-fill the attachment list with a listed draft's files.
-/// Never sends; the person sends with the ordinary attachment-bearing control.
+/// WR TT-3, TT-3a, TT-3b (SQ-DT DT-1…DT-3, SQ-FT FT-1…FT-3): Try pressed on a
+/// listed draft. The host takes the trial snapshot, composes the trial text and
+/// keeps the pre-filled message; nothing is sent or recorded. `thread_id` is
+/// the conversation selected when Try was pressed (the authoring conversation).
 #[tauri::command(async)]
-fn workflow_try_draft(state:State<'_,AppState>,owner_ref:String,list_revision:u64,name:String)->Result<Value,String>{
-    let sources=state.workflows.lock().unwrap().draft_trial_sources(&name)?;
-    let mut selection=state.attachment_selection.lock().unwrap();
-    selection.as_mut().map_err(|error|error.clone())?.prefill_draft(&owner_ref,list_revision,sources)
+fn workflow_trial_prepare(state:State<'_,AppState>,name:String,kind:String,generation:Option<Value>,thread_id:Option<String>)->Result<Value,String>{
+    let home=match &generation{Some(g)=>Some(state.homes.lock().unwrap().for_generation(g)?),None=>None};
+    let authoring=generation.as_ref().zip(thread_id.as_deref());
+    state.workflows.lock().unwrap().prepare_trial(&kind,&name,authoring,home.as_deref(),state.workspace.as_deref())
+}
+/// WR TT-11 Try again: a new trial of the draft's current version.
+#[tauri::command(async)]
+fn workflow_trial_again(state:State<'_,AppState>,reference:String)->Result<Value,String>{
+    let home=trial_home(&state,&reference).unwrap_or_else(|_|state.homes.lock().unwrap().active());
+    state.workflows.lock().unwrap().trial_again(&reference,Some(&home),state.workspace.as_deref())
+}
+/// WR §5.5: removing the trial card cancels the trial; nothing is recorded.
+#[tauri::command]
+fn workflow_trial_cancel(state:State<'_,AppState>,reference:String)->Result<Value,String>{state.workflows.lock().unwrap().cancel_trial(&reference)}
+/// WR DT-4 (and a clean trial's retry in its started conversation): the person
+/// sends the pre-filled trial message; the trial link is written on Codex's
+/// acknowledgment (TT-4).
+#[tauri::command(async)]
+fn workflow_trial_send(state:State<'_,AppState>,reference:String,generation:Value,thread_id:String,person_text:String)->Result<Value,String>{
+    let home=state.homes.lock().unwrap().for_generation(&generation)?;
+    runtime_session::trial_flows::send_trial(&state.workflows,&home,&reference,&generation,&thread_id,&person_text)
+}
+/// WR FT-3, FT-4: the person sends a clean trial: a new conversation starts
+/// with the role and model the person chose (no handoff, no `continuedFrom`),
+/// then its first turn carries the trial text first and the person's text.
+#[tauri::command(async)]
+fn workflow_trial_start_clean(app:tauri::AppHandle,state:State<'_,AppState>,reference:String,model:String,model_provider:String,entry_id:String,mode_home_class:String,role:Option<role_supply::Role>,person_text:String)->Result<Value,String>{
+    let home=state.homes.lock().unwrap().entry(home_class(&mode_home_class)?)?;
+    state.workflows.lock().unwrap().begin_clean_start(&reference)?;
+    // From here every outcome releases or withdraws the pre-fill (H-2).
+    let started=match start_conversation(&app,&state,model,model_provider,entry_id,&mode_home_class,role,None){
+        Ok(started)=>started,
+        Err(error)=>{
+            // The start may have reached Codex: the pre-fill is withdrawn so a
+            // second press cannot start a second conversation; Try again makes a new trial.
+            state.workflows.lock().unwrap().withdraw_clean_start(&reference);
+            return Err(format!("{error}. The trial conversation was not started (or its start was not acknowledged); the pre-filled trial was withdrawn and nothing was recorded; press Try again"));
+        }
+    };
+    let generation=started["startGeneration"].clone();
+    let Some(thread)=started["result"]["thread"]["id"].as_str().map(str::to_owned) else {
+        state.workflows.lock().unwrap().withdraw_clean_start(&reference);
+        return Err("The new conversation's identity was not reported; the pre-filled trial was withdrawn and nothing was sent or recorded; press Try again".into());
+    };
+    state.workflows.lock().unwrap().mark_clean_started(&reference,&generation,&thread);
+    let sent=runtime_session::trial_flows::send_trial(&state.workflows,&home,&reference,&generation,&thread,&person_text);
+    match sent {
+        Ok(mut value)=>{value["conversation"]=json!({"generation":generation,"threadId":thread});value["thread"]=value["conversation"].clone();Ok(value)}
+        Err(error)=>Err(format!("The trial conversation {thread} started (it stays trial-only), but the trial message was not acknowledged: {error}")),
+    }
+}
+/// WR TT-9, H-5: the Codex home holding `thread` now (the trial's own home).
+fn home_of_thread(state:&AppState,thread:&str)->Option<Arc<runtime_session::HomeSession>>{
+    state.homes.lock().unwrap().entries().into_iter().find(|home|{
+        let snapshot=home.host.snapshot();
+        snapshot["threads"].as_array().into_iter().flatten().any(|t|t["threadId"]==thread&&t["generation"]==snapshot["generation"])
+    })
+}
+fn trial_home(state:&AppState,reference:&str)->Result<Arc<runtime_session::HomeSession>,String>{
+    let thread=state.workflows.lock().unwrap().trial_home_thread(reference).ok_or_else(||format!("No trial link {reference}"))?;
+    home_of_thread(state,&thread).ok_or_else(||format!("The trial's conversation {thread} is not loaded in a Codex home now; nothing read or recorded"))
+}
+/// WR TT-9: Link as trial ‹n› / unlink, by the person.
+#[tauri::command]
+fn workflow_trial_link(state:State<'_,AppState>,reference:String,child_thread:String)->Result<Value,String>{
+    let view=trial_home(&state,&reference)?.runtime.lock().unwrap().native_view();
+    state.workflows.lock().unwrap().link_trial_child(&reference,&child_thread,true,&view)
+}
+#[tauri::command]
+fn workflow_trial_unlink(state:State<'_,AppState>,reference:String,child_thread:String)->Result<Value,String>{state.workflows.lock().unwrap().link_trial_child(&reference,&child_thread,false,&Value::Null)}
+/// WR TT-9: the person opened the trial and asks to read it again.
+#[tauri::command(async)]
+fn workflow_trial_read(state:State<'_,AppState>,reference:String)->Result<Value,String>{
+    let home=trial_home(&state,&reference)?;
+    let view=home.runtime.lock().unwrap().native_view();
+    runtime_session::trial_flows::read_trial_again(&state.workflows,&home,&reference,&view)
+}
+/// WR TT-10 Bring trial back to authoring (SQ-BB BB-1…BB-4): pre-filled, unsent.
+#[tauri::command(async)]
+fn workflow_trial_bring_back(state:State<'_,AppState>,reference:String,generation:Value,thread_id:String,include_native:bool)->Result<Value,String>{
+    let home=state.homes.lock().unwrap().for_generation(&generation)?;
+    runtime_session::trial_flows::bring_back(&state.workflows,&home,Some(&reference),None,&generation,&thread_id,include_native)
+}
+/// WR TT-10 Bring a real run back to authoring: pre-filled, unsent.
+#[tauri::command(async)]
+fn workflow_run_bring_back(state:State<'_,AppState>,run_ref:String,generation:Value,thread_id:String,include_native:bool)->Result<Value,String>{
+    let home=state.homes.lock().unwrap().for_generation(&generation)?;
+    runtime_session::trial_flows::bring_back(&state.workflows,&home,None,Some(&run_ref),&generation,&thread_id,include_native)
+}
+#[tauri::command]
+fn workflow_bring_back_cancel(state:State<'_,AppState>,id:String)->Result<Value,String>{runtime_session::trial_flows::cancel_bring_back(&state.workflows,&id)}
+/// WR SQ-BB BB-5: the person sends the transcript; *brought back* on acknowledgment.
+#[tauri::command(async)]
+fn workflow_bring_back_send(state:State<'_,AppState>,id:String,generation:Value,thread_id:String,person_text:String)->Result<Value,String>{
+    let home=state.homes.lock().unwrap().for_generation(&generation)?;
+    runtime_session::trial_flows::send_bring_back(&state.workflows,&home,&id,&generation,&thread_id,&person_text)
+}
+/// WR TT-11 Compare: side by side, with the version difference; records nothing.
+#[tauri::command(async)]
+fn workflow_trial_compare(state:State<'_,AppState>,left:Value,right:Value)->Result<Value,String>{
+    runtime_session::trial_flows::compare(&state.workflows,&|thread|home_of_thread(&state,thread),&left,&right)
 }
 /// WR RB-1: review a draft chosen from the host's list, bound to the listed content.
 #[tauri::command(async)]
@@ -1441,6 +1559,23 @@ pub fn run() {
                 Ok(root)
             });
             *state.instructions_root.lock().unwrap() = root;
+            // OI-008: the host keeps its own records on its own tick, whether or
+            // not the web view polls host_status.
+            {
+                let handle = app.handle().clone();
+                std::thread::Builder::new().name("chirality-host-tick".into()).spawn(move || loop {
+                    std::thread::sleep(host_tick::INTERVAL);
+                    let state = handle.state::<AppState>();
+                    host_tick::guarded("record", || host_tick::tick(&state.homes, &state.workflows));
+                }).map_err(|e| format!("host tick thread not started: {e}"))?;
+                // TT-9 reads wait on Codex; their own thread never delays the record tick.
+                let handle = app.handle().clone();
+                std::thread::Builder::new().name("chirality-trial-tick".into()).spawn(move || loop {
+                    std::thread::sleep(host_tick::INTERVAL);
+                    let state = handle.state::<AppState>();
+                    host_tick::guarded("trial", || host_tick::trial_tick(&state.homes, &state.workflows));
+                }).map_err(|e| format!("trial tick thread not started: {e}"))?;
+            }
             // App start-up starts the supplier (HOSTING §4.6 start, actor `app-startup`).
             if let Ok(cfg) = host_config {
                 let h = Arc::clone(&host);
@@ -1494,7 +1629,7 @@ pub fn run() {
             continue_as_dismiss,
             conversation_fork,
             set_person_name,
-            workflow_select_development,workflow_select_production_bundle,workflow_select_production_copy,workflow_open_library,workflow_open_project_library,workflow_observe_drafts,workflow_try_draft,workflow_review_draft,workflow_select_registered,workflow_create_draft,workflow_refine_registered,workflow_review,workflow_register_native,workflow_continue_registration,workflow_prepare_run,workflow_send_run,workflow_check_supply,workflow_retry_records,workflow_read_records,workflow_end_run,workflow_start_proposed,workflow_end_and_start,workflow_check_notice,workflow_skip_notice,workflow_reopen,workflow_end_recorded,workflow_review_digest,native_confirmation_content,
+            workflow_select_development,workflow_select_production_bundle,workflow_select_production_copy,workflow_open_library,workflow_open_project_library,workflow_observe_drafts,workflow_trial_prepare,workflow_trial_again,workflow_trial_cancel,workflow_trial_send,workflow_trial_start_clean,workflow_trial_link,workflow_trial_unlink,workflow_trial_read,workflow_trial_bring_back,workflow_run_bring_back,workflow_bring_back_cancel,workflow_bring_back_send,workflow_trial_compare,workflow_review_draft,workflow_select_registered,workflow_create_draft,workflow_refine_registered,workflow_review,workflow_register_native,workflow_continue_registration,workflow_prepare_run,workflow_send_run,workflow_check_supply,workflow_retry_records,workflow_read_records,workflow_end_run,workflow_start_proposed,workflow_end_and_start,workflow_check_notice,workflow_skip_notice,workflow_reopen,workflow_end_recorded,workflow_review_digest,native_confirmation_content,
             decision_view,
             continue_decision_recording,
             compose_offer,

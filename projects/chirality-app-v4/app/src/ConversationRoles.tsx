@@ -45,7 +45,9 @@ export function RoleLimits({ limits, role }: { limits: Json; role: string | null
 
 /** ST-5: the start display's role choice, readable. The default is shown as a
  * preselection the person can change or clear before starting. */
-export function RoleChoice({ roleSet, limits, role, setRole, preselected }: { roleSet: Json; limits: Json; role: string; setRole: (role: string) => void; preselected: boolean }) {
+// `group` is the radio group's name: each instance on screen needs its own (the
+// start display's picker and a clean trial's picker must not share one group).
+export function RoleChoice({ roleSet, limits, role, setRole, preselected, group }: { roleSet: Json; limits: Json; role: string; setRole: (role: string) => void; preselected: boolean; group: string }) {
   if (!roleSet?.available) return <p>Role set unavailable: {text(roleSet?.reason)}. Only “No role” can be chosen.</p>;
   const offered: string[] = Array.isArray(roleSet.conversationRoles) ? roleSet.conversationRoles.map(text) : CONVERSATION_ROLES;
   const roles = list(roleSet.roles).filter((r: Json) => offered.includes(text(r.name)));
@@ -54,11 +56,11 @@ export function RoleChoice({ roleSet, limits, role, setRole, preselected }: { ro
     {roles.map((r: Json) => {
       const name = text(r.name);
       return <div key={name}>
-        <label><input type="radio" name="conversation-role" value={name} checked={role === name} onChange={() => setRole(name)} /> <b>{name}</b>: {text(r.meaning)}{r.default_for_new_chat ? (role === name && preselected ? " (preselected; change or clear it before starting)" : " (the default for a new conversation)") : ""}</label>
+        <label><input type="radio" name={group} value={name} checked={role === name} onChange={() => setRole(name)} /> <b>{name}</b>: {text(r.meaning)}{r.default_for_new_chat ? (role === name && preselected ? " (preselected; change or clear it before starting)" : " (the default for a new conversation)") : ""}</label>
         {role === name && <RoleLimits limits={limits} role={name} />}
       </div>;
     })}
-    <label><input type="radio" name="conversation-role" value="" checked={role === ""} onChange={() => setRole("")} /> <b>No role</b>: product guidance only.</label>
+    <label><input type="radio" name={group} value="" checked={role === ""} onChange={() => setRole("")} /> <b>No role</b>: product guidance only.</label>
     <p><small>{text(limits?.standing)}</small></p>
     <p><small>TASK is not a conversation role: a manager assigns bounded work to it, and its guidance is supplied for that delegation.</small></p>
   </fieldset>;
@@ -78,7 +80,19 @@ export function SupplyStatus({ supply }: { supply: Json }) {
 
 /** ST-6 and §5.8: the conversation header's role line, its relation, the
  * guidance-changed flag and the two ways to go on in another conversation. */
-export function RoleHeader({ thread, limits, busy, ready, continueAs, fork }: { thread: Json; limits: Json; busy: boolean; ready: boolean; continueAs: (role: string | null) => void; fork: () => void }) {
+/** WR TT-3b, TT-4: the trial line beside the role header, worded by the host.
+ * A clean trial conversation (or a fork of one) shows the host's header; an
+ * authoring conversation lists the trials started here. Display only. */
+export function TrialHeader({ trialConversation, trialsStartedHere }: { trialConversation?: Json; trialsStartedHere?: Json }) {
+  const started = list(trialsStartedHere?.trials);
+  if (!trialConversation && started.length === 0) return null;
+  return <div aria-label="Trial header">
+    {trialConversation && <p role="note"><b>{text(trialConversation.header)}</b></p>}
+    {started.length > 0 && <p><small>Trials started here: {started.map((t: Json) => `trial ${text(t.sequence)} of draft ${text(t.draftName)} (${t.kind === "clean" ? "clean" : "delegated"})`).join("; ")}.</small></p>}
+  </div>;
+}
+
+export function RoleHeader({ thread, limits, busy, ready, continueAs, fork, trialConversation, trialsStartedHere }: { thread: Json; limits: Json; busy: boolean; ready: boolean; continueAs: (role: string | null) => void; fork: () => void; trialConversation?: Json; trialsStartedHere?: Json }) {
   const appRole = thread?.appRole;
   const own: string | null | undefined = appRole?.standing === "app-observed" ? (appRole.role ?? null) : undefined;
   // The choice starts at this conversation's own role (Continue as the same role takes up new guidance).
@@ -87,6 +101,7 @@ export function RoleHeader({ thread, limits, busy, ready, continueAs, fork }: { 
   const { changed, notRead } = guidanceChange(thread?.futureGuidanceNotices);
   return <div aria-label="Conversation role">
     <p>Role: <b>{roleName(appRole)}</b>. It is fixed for this conversation's life; native role hints do not set it.</p>
+    <TrialHeader trialConversation={trialConversation} trialsStartedHere={trialsStartedHere} />
     {relation?.kind === "continued-from" && <p><small>Continues conversation {text(relation.from?.sourceThread)} (its role: {roleName(relation.from?.sourceRole)}); a relation only: no history was carried.</small></p>}
     {(relation?.kind === "inherited-fork" || thread?.forkedFrom) && <p><small>Fork of conversation {text(relation?.sourceThread ?? thread?.forkedFrom?.threadId)} (same role): the fork was sent no instructions, so it keeps the source's guidance.</small></p>}
     {own !== undefined && <RoleLimits limits={limits} role={own} />}
@@ -118,7 +133,7 @@ export function ModelProviderFields({ model, modelProvider, setModel, setModelPr
 
 /** The handoff message's send state. "sent" only after the send resolved
  * with a result; a refusal or error keeps the draft and allows another try. */
-export type SendState = { state: "unsent" | "sending" | "sent" | "failed"; failure?: string };
+export type SendState = { state: "unsent" | "sending" | "sent" | "failed"; failure?: string; detail?: string };
 export async function attemptSend(send: (text: string) => Promise<boolean>, draft: string): Promise<SendState> {
   try {
     return (await send(draft)) ? { state: "sent" } : { state: "failed", failure: "The message was not accepted; see the App message below." };
