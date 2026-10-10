@@ -1,7 +1,7 @@
 # review — method
 
 Apply the [contract](contract.md)'s transitions table and its single severity
-and disposition rule throughout. Governing text: `docs/SPEC.md` §3.2–3.4.
+and disposition rule throughout. Governing text: `docs/COMPATIBILITY_FORMATS.md#historical-specification` §3.2–3.4.
 
 ## Method
 
@@ -151,7 +151,7 @@ Ask: "Proceed with review, or resolve precondition issues first?"
      Axiology; confirm every `OUT-*`, `AC-*`, and `VER-*` closes through the
      output/evaluation matrix.
 
-5) **Dependency Satisfaction** (per the tracking mode, `docs/SPEC.md` §5.3):
+5) **Dependency Satisfaction** (per the tracking mode, `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3):
    - `NOT_TRACKED`: record that dependencies are coordinated outside the
      files and give no computed ready/blocked judgment; skip the rows below.
    - `DECLARED`: read the recorded register and state that it is a partial

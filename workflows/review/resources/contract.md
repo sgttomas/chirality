@@ -22,7 +22,7 @@ Defaults (only when not otherwise specified by the human):
   selected by the accepted basis for checklist derivation and consistency.
 - **Writes only review artifacts.** WORKING_ITEMS writes `_REVIEW.md`, `Review_Findings.csv` (deliverable-local), and `_STATUS.md` (lifecycle transition only, through the guarded tool with a human decision). It writes review snapshots to `_Evaluation/Reviews/` and updates `_LATEST.md`.
 - **Human-gated transitions.** Lifecycle state changes (`IN_PROGRESS → CHECKING`, `CHECKING → ISSUED`, and the reversal `CHECKING → IN_PROGRESS`) require an explicit human decision at Gate 5, recorded through a committed ruling. WORKING_ITEMS does not auto-advance or auto-reverse.
-- **No deferral into CHECKING.** Entry to `CHECKING` follows `docs/SPEC.md`
+- **No deferral into CHECKING.** Entry to `CHECKING` follows `docs/COMPATIBILITY_FORMATS.md#historical-specification`
   §3.4: a current candidate-bound account showing no unfulfilled production
   obligation in the proposed checking scope, a declared checking basis, and the
   human declaration that freezes the candidate at a recorded commit. There are

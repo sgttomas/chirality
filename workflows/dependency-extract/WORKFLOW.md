@@ -256,7 +256,7 @@ Normalize legacy values on write:
 - In `MODE=CANONICALIZE_EXISTING`, do not extract new rows from prose. Read the existing register, normalize all core enum fields to canonical write form, preserve legacy values in `Notes`, and move any non-gating candidate relationship to a non-authoritative candidate worklist or mark the register row `RETIRED` with a candidate-disposition note.
 - Ensure `FromDeliverableID` matches the host deliverable identity.
 - Ensure `DependencyID` uniqueness within the deliverable register.
-- Assign new `DependencyID`s in the `docs/SPEC.md` §6.8 form `DEP-{PKG}-{DEL}-{SEQ}` (e.g. `DEP-01-01-001` for `DEL-01-01`): the prefix repeats the numeric segments of `FromDeliverableID` and `SEQ` is a zero-padded three-digit sequence within the register. A mismatched prefix is reported by `validate_decomposition_registers.py` as `DRB-006`; preserve existing IDs rather than renumbering them.
+- Assign new `DependencyID`s in the `docs/COMPATIBILITY_FORMATS.md#stable-dependency-identities` form `DEP-{PKG}-{DEL}-{SEQ}` (e.g. `DEP-01-01-001` for `DEL-01-01`): the prefix repeats the numeric segments of `FromDeliverableID` and `SEQ` is a zero-padded three-digit sequence within the register. A mismatched prefix is reported by `validate_decomposition_registers.py` as `DRB-006`; preserve existing IDs rather than renumbering them.
 - Normalize target ID placement on write:
   - For non-deliverable targets (e.g., `WBS_NODE`, `REQUIREMENT`, `DOCUMENT`, `EXTERNAL`), `TargetDeliverableID` MUST be empty; use `TargetRefID` (if a stable ID exists) and `TargetName`.
   - For `TargetType=DELIVERABLE`, `TargetDeliverableID` MUST contain the deliverable stable ID.
@@ -270,7 +270,7 @@ An extracted row that duplicates a declared edge (same `Direction` and target) i
 
 #### Mirror declared entries (every `MODE`)
 
-`docs/SPEC.md` §5.3 reads the recorded register as the declared sections of `_DEPENDENCIES.md` together with `Dependencies.csv`. So that a reader of the CSV alone does not miss a declaration, mirror each declared entry into one `Origin=DECLARED` row. This reads the human-owned sections and never edits them.
+`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3 reads the recorded register as the declared sections of `_DEPENDENCIES.md` together with `Dependencies.csv`. So that a reader of the CSV alone does not miss a declaration, mirror each declared entry into one `Origin=DECLARED` row. This reads the human-owned sections and never edits them.
 
 - **Entries.** Read the Declared Upstream and Declared Downstream sections, or their legacy equivalents in the SPEC §5.2 table, and take each entry in the §5.2 form: `- {DEL-ID} {Name} — Reason: {reason}` with optional `Required maturity:` and `Location:` sub-lines. Skip `TBD` entries, template placeholders and the `NOT_TRACKED` text "Dependencies coordinated externally by humans." In a combined legacy section, take the direction from the entry's own upstream/downstream label. If an entry's direction or target cannot be read, do not mirror it; record it in Run Notes as `[WARNING] DECLARED_ENTRY_UNREAD` with the raw line.
 - **Row fields.** Copy only what the entry states:
@@ -293,7 +293,7 @@ Record the counts of mirror rows added, refreshed, retired, and entries skipped 
 
 ### Function 4 — Update `_DEPENDENCIES.md` index
 
-`docs/SPEC.md` §5.2 is the heading schema for `_DEPENDENCIES.md`. Keep the declared sections (`## Dependency Tracking Mode`, `## Declared Upstream (I need these before I can proceed)`, `## Declared Downstream (These need me)`) and add/refresh, in this order:
+`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.2 is the heading schema for `_DEPENDENCIES.md`. Keep the declared sections (`## Dependency Tracking Mode`, `## Declared Upstream (I need these before I can proceed)`, `## Declared Downstream (These need me)`) and add/refresh, in this order:
 - `## Extracted Dependency Register` (counts + compact table)
 - `## Lifecycle Summary` (ACTIVE/RETIRED counts + closure-state breakdown)
 - `## Run Notes` (defaults + assumptions + paths used + warnings)
@@ -318,7 +318,7 @@ Before finalizing files, run these checks using deterministic tools where availa
 
 **ID format validation**
 - Validate all ID fields: `bash tools/validation/validate_id_format.sh DEL {FromDeliverableID}`, `bash tools/validation/validate_id_format.sh PKG {FromPackageID}`, `bash tools/validation/validate_id_format.sh DEP {DependencyID}`, etc.
-- `DependencyID` follows `DEP-{PKG}-{DEL}-{SEQ}` (`docs/SPEC.md` §6.8) and its prefix agrees with `FromDeliverableID`.
+- `DependencyID` follows `DEP-{PKG}-{DEL}-{SEQ}` (`docs/COMPATIBILITY_FORMATS.md#stable-dependency-identities`) and its prefix agrees with `FromDeliverableID`.
 
 **Evidence & provenance checks**
 - ACTIVE rows contain `EvidenceFile` and `SourceRef` (or explicit `location TBD`).
@@ -431,7 +431,7 @@ Estimating-oriented guidance (when `CONSUMER_CONTEXT=TASK_ESTIMATING`):
 
 ### `_DEPENDENCIES.md`
 
-Follows the `docs/SPEC.md` §5.2 schema (legacy headings in existing files preserved). Must contain:
+Follows the `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.2 schema (legacy headings in existing files preserved). Must contain:
 - dependency tracking mode and declared upstream/downstream lists (human-owned)
 - extracted register summary
 - lifecycle summary

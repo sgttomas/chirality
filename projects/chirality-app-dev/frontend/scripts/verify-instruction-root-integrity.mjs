@@ -206,7 +206,8 @@ function hasMonolithicInstructionRootShape(candidateRoot) {
   return (
     existsSync(path.join(candidateRoot, 'agents')) &&
     existsSync(path.join(candidateRoot, 'AGENTS.md')) &&
-    existsSync(path.join(candidateRoot, 'docs', 'DIRECTIVE.md'))
+    (existsSync(path.join(candidateRoot, 'docs', 'PRODUCT_BOUNDARIES.md')) ||
+      existsSync(path.join(candidateRoot, 'docs', 'DIRECTIVE.md')))
   );
 }
 
@@ -214,7 +215,7 @@ function hasSplitInstructionRootShape({ rootFilesRoot, agentsRoot, docsRoot }) {
   return (
     REQUIRED_ROOT_FILES.every((fileName) => existsSync(path.join(rootFilesRoot, fileName))) &&
     existsSync(agentsRoot) &&
-    REQUIRED_DOC_FILES.every((fileName) => existsSync(path.join(docsRoot, fileName)))
+    (existsSync(path.join(docsRoot, 'PRODUCT_BOUNDARIES.md')) ? DOC_FILES : REQUIRED_DOC_FILES).every((fileName) => existsSync(path.join(docsRoot, fileName)))
   );
 }
 

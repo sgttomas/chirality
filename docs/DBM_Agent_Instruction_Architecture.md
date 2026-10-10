@@ -1,5 +1,7 @@
 # Agent Instruction Architecture
 
+> Archive candidate: development procedure is superseded. Current product boundaries are in [PRODUCT_BOUNDARIES.md](PRODUCT_BOUNDARIES.md); loading interfaces in [AGENT_WORKFLOW_RUNTIME.md](AGENT_WORKFLOW_RUNTIME.md); retained formats in [COMPATIBILITY_FORMATS.md](COMPATIBILITY_FORMATS.md). Original text below is retained for review, not routine context.
+
 Design basis for the D-GOV-41 four-role replacement. The runtime contract is
 `AGENT_WORKFLOW_RUNTIME.md`; the component standard is
 `WORKFLOW_COMPONENT_STANDARD.md`.

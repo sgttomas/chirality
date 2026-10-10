@@ -1,5 +1,7 @@
 # Cycle-Driven Resolution — Dependency Graph Doctrine
 
+> Archive candidate: development procedure is superseded. Current product boundaries are in [PRODUCT_BOUNDARIES.md](PRODUCT_BOUNDARIES.md); loading interfaces in [AGENT_WORKFLOW_RUNTIME.md](AGENT_WORKFLOW_RUNTIME.md); retained formats in [COMPATIBILITY_FORMATS.md](COMPATIBILITY_FORMATS.md). Original text below is retained for review, not routine context.
+
 Chirality AI Ltd.
 Date: 2026-06-15, Revision 0, Issued for Use
 

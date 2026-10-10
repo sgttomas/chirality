@@ -1,46 +1,8 @@
-# Software Workflow Activation Profile
+# Software check profile
 
-> **Status: RATIFIED — D-GOV-14 item 3, owner ruling 2026-07-12.** The exact
-> text at commit `ee35409f5cf3a81ecb29a271527156b991df97b9` is the activation
-> profile contract for WORKING_ITEMS software packages.
->
-> **Backward-compatible extension, 2026-07-13:** owner-directed runtime
-> hardening permits a registered check to declare one bounded managed service
-> as specified below. Existing profiles and commands are unchanged.
-
-> **Four-role amendment, D-GOV-41:** role and workflow references below adopt
-> the Root replacement vocabulary. Profile schema and check semantics are unchanged.
-
-## Purpose
-
-Software development is a specialization of package work, not a separate
-manager role in this tranche. Use:
-
-```text
-WORKING_ITEMS Agent 1
-+ one project-local software-workflow.json
-+ software-* workflows executed by TASK
-+ deterministic tools/software_workflow helpers
-```
-
-The profile freezes project-specific check commands and path-to-check mappings.
-It does not authorize work, expand a brief, or replace accepted project and
-decomposition state.
-
-## Activation
-
-A WORKING_ITEMS package activation identifies:
-
-- the package and selected deliverables;
-- the accepted project/decomposition basis;
-- the project-local `software-workflow.json`;
-- changed or expected paths;
-- applicable software workflows;
-- write ownership and fan-in gates;
-- human decision points.
-
-Novel stacks may use a sealed ephemeral generalist Agent 2. HELPS_HUMANS helps turn repeated methods into workflows and tools.
-WORKING_ITEMS retains implementation ownership while the selected methods vary.
+Technical reference for existing `software-workflow.json` consumers.
+Use checks proportionate to the change; this profile does not require a workflow,
+activation packet or duplicate local execution of checks already run by CI.
 
 ## Profile schema
 

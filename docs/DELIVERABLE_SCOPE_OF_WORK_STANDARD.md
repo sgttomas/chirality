@@ -1,5 +1,7 @@
 # Deliverable Scope-of-Work Standard
 
+> Archive candidate: development procedure is superseded. Current product boundaries are in [PRODUCT_BOUNDARIES.md](PRODUCT_BOUNDARIES.md); loading interfaces in [AGENT_WORKFLOW_RUNTIME.md](AGENT_WORKFLOW_RUNTIME.md); retained formats in [COMPATIBILITY_FORMATS.md](COMPATIBILITY_FORMATS.md). Original text below is retained for review, not routine context.
+
 > **Status: RATIFIED IF AND ONLY IF D-GOV-16 IS RULED APPROVED.** Before that
 > owner ruling, these exact bytes are an inactive proposal and have no
 > operational or normative effect.

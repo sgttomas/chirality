@@ -1,5 +1,7 @@
 # Deliverable Concordance Method
 
+> Archive candidate: development procedure is superseded. Current product boundaries are in [PRODUCT_BOUNDARIES.md](PRODUCT_BOUNDARIES.md); loading interfaces in [AGENT_WORKFLOW_RUNTIME.md](AGENT_WORKFLOW_RUNTIME.md); retained formats in [COMPATIBILITY_FORMATS.md](COMPATIBILITY_FORMATS.md). Original text below is retained for review, not routine context.
+
 Chirality AI Ltd. Date: 2026-07-11. Revision 2 (2026-09-22; §3.1 added by
 owner act, D-GOV-44).
 

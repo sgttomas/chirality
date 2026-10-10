@@ -14,7 +14,7 @@ candidate layer, exclusions, evidence provenance, audit results, and the
 human's acceptance record. It then hands the accepted version to
 `construct-local-work-graph` and keeps it current.
 
-Under `docs/CONTRACT.md` K-DEP-1 and `docs/SPEC.md` §5.4 (D-GOV-49), neither
+Under `docs/COMPATIBILITY_FORMATS.md#historical-invariants` K-DEP-1 and `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4 (D-GOV-49), neither
 the DAG nor the local files is self-authorizing. The deliverable-local
 `_DEPENDENCIES.md` and `Dependencies.csv` files are the dependency evidence and
 may change at any time. An accepted version is a snapshot of that evidence that

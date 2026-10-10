@@ -1,5 +1,7 @@
 # DIRECTIVE — Founding Intent, Scope, and Constraints
 
+> Archive candidate: development procedure is superseded. Current product boundaries are in [PRODUCT_BOUNDARIES.md](PRODUCT_BOUNDARIES.md); loading interfaces in [AGENT_WORKFLOW_RUNTIME.md](AGENT_WORKFLOW_RUNTIME.md); retained formats in [COMPATIBILITY_FORMATS.md](COMPATIBILITY_FORMATS.md). Original text below is retained for review, not routine context.
+
 > Development procedures in this document are superseded by AGENTS.md (2026-10-09). Current product contracts remain in force; see the list in AGENTS.md.
 
 This document captures the founding intent, design philosophy, and structural constraints of Chirality Root and the filesystem-native agent operating system it contains. It is the "why" document — the principles that govern all other governance documents, agent instructions, and operational decisions.

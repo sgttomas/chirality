@@ -534,7 +534,9 @@ def run_self_check(
     # ----- GEN-4 Root document headers (INFO facts, not authority) -----
     report.md("## Root document headers (observed; INFO facts)")
     report.md("")
-    for name in ("DIRECTIVE.md", "CONTRACT.md", "SPEC.md", "TYPES.md"):
+    for name in (("PRODUCT_BOUNDARIES.md", "AGENT_WORKFLOW_RUNTIME.md", "COMPATIBILITY_FORMATS.md")
+                 if (repo_root / "docs/PRODUCT_BOUNDARIES.md").exists()
+                 else ("DIRECTIVE.md", "CONTRACT.md", "SPEC.md", "TYPES.md")):
         path = repo_root / "docs" / name
         if not path.is_file():
             report.add_fact(SourcedFact(
@@ -545,7 +547,8 @@ def run_self_check(
         quoted = ""
         line_no = None
         for idx, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
-            if ("Development procedures in this document are superseded" in line
+            if ((name in {"PRODUCT_BOUNDARIES.md", "AGENT_WORKFLOW_RUNTIME.md", "COMPATIBILITY_FORMATS.md"} and line.startswith("# "))
+                    or "Development procedures in this document are superseded" in line
                     or "Reference and history; not binding" in line
                     or re.search(r"\*\*Status:", line) or re.match(r"^>?\s*Status:", line)):
                 quoted = line.strip()

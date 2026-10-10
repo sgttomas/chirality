@@ -61,6 +61,20 @@ describe('instruction-root helpers', () => {
     });
   });
 
+  it('accepts the current references without the retired governance files', async () => {
+    for (const name of ['DIRECTIVE.md', 'CONTRACT.md', 'SPEC.md', 'TYPES.md', 'PLAN.md']) {
+      await rm(path.join(instructionRoot, 'docs', name));
+    }
+    for (const name of ['PRODUCT_BOUNDARIES.md', 'AGENT_WORKFLOW_RUNTIME.md', 'COMPATIBILITY_FORMATS.md']) {
+      await writeFile(path.join(instructionRoot, 'docs', name), '# reference\n');
+    }
+    await expect(assertInstructionRootReadable()).resolves.toBe(path.resolve(instructionRoot));
+    await rm(path.join(instructionRoot, 'docs', 'COMPATIBILITY_FORMATS.md'));
+    await expect(assertInstructionRootReadable()).rejects.toMatchObject({
+      type: 'INSTRUCTION_ROOT_INVALID'
+    });
+  });
+
   it('detects whether a path overlaps instruction root', () => {
     const nested = path.join(instructionRoot, 'execution', 'PKG-01');
     const sibling = path.join(tmpRoot, 'outside-root');

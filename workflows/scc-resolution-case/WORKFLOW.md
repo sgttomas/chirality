@@ -14,10 +14,10 @@ This workflow does not resolve an SCC by itself. It records and organizes the ev
 
 ## Case Home
 
-- **Default:** `{EXECUTION_ROOT}/_DAG/cases/<CASE-ID>/`, in the `_DAG/` tool root registered in `docs/SPEC.md` §1.2 (D-GOV-49). Every project uses this home from D-GOV-49 onward.
+- **Default:** `{EXECUTION_ROOT}/_DAG/cases/<CASE-ID>/`, in the `_DAG/` tool root registered in `docs/COMPATIBILITY_FORMATS.md#historical-specification` §1.2 (D-GOV-49). Every project uses this home from D-GOV-49 onward.
 - **Legacy:** a project whose cases are already held in a PKG-00 control deliverable (for example `PKG-00_DAG_Closure_and_Project_Control/.../scc-cases/`) may keep using it. Existing cases stay where they are and are not migrated.
 - Each project uses one home for its cases; do not split them. Retiring the legacy PKG-00 home is a later decision, once no active project uses it.
-- A case under `_DAG/cases/` is a working record, updated in place under this workflow's brief, with Git history as its revision record (`docs/CONTRACT.md` K-SNAP-1; `docs/SPEC.md` §1.2, §11.1). It is not a snapshot folder.
+- A case under `_DAG/cases/` is a working record, updated in place under this workflow's brief, with Git history as its revision record (`docs/COMPATIBILITY_FORMATS.md#historical-invariants` K-SNAP-1; `docs/COMPATIBILITY_FORMATS.md#historical-specification` §1.2, §11.1). It is not a snapshot folder.
 
 ## Case Identity
 

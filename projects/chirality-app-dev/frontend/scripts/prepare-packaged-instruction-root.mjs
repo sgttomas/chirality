@@ -11,18 +11,10 @@ export const ROLE_IDS = ['HELP_HUMAN', 'HELPS_HUMANS', 'WORKING_ITEMS', 'TASK'];
 export const ROOT_FILES = ['AGENTS.md', 'CLAUDE.md', 'README.md'];
 export const PRODUCT_AGENTS_SOURCE = 'projects/chirality-app-dev/instructions/AGENTS.md';
 export const DOC_FILES = [
-  'DIRECTIVE.md',
-  'CONTRACT.md',
-  'SPEC.md',
-  'TYPES.md',
-  'WORKFLOW_COMPONENT_STANDARD.md',
+  'PRODUCT_BOUNDARIES.md',
   'AGENT_WORKFLOW_RUNTIME.md',
-  'DECOMPOSITION_STANDARD.md',
-  'DELIVERABLE_SCOPE_OF_WORK_STANDARD.md',
-  'PRD_ROOT.md',
-  'SOFTWARE_WORKFLOW_PROFILE.md',
-  'rubrics/AUDIT_AGENT.md',
-  'templates/MEMORY_TEMPLATE.md'
+  'COMPATIBILITY_FORMATS.md',
+  'SOFTWARE_WORKFLOW_PROFILE.md'
 ];
 export const WORKFLOW_METADATA_FILES = [
   'catalog.yaml',

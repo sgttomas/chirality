@@ -1,5 +1,7 @@
 # PLAN — Active Roadmap
 
+> Archive candidate: development procedure is superseded. Current product boundaries are in [PRODUCT_BOUNDARIES.md](PRODUCT_BOUNDARIES.md); loading interfaces in [AGENT_WORKFLOW_RUNTIME.md](AGENT_WORKFLOW_RUNTIME.md); retained formats in [COMPATIBILITY_FORMATS.md](COMPATIBILITY_FORMATS.md). Original text below is retained for review, not routine context.
+
 > **Status: ACTIVE — maintainer-adopted 2026-07-01** (supersedes the
 > 2026-06-15 DRAFT skeleton). §2–§4 record ruled direction and measured
 > findings only, prepared at the owner's explicit request following the

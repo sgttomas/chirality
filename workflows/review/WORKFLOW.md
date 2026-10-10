@@ -13,7 +13,7 @@ procedures below. Select this formal product-review method only when the
 assignment calls for it; it does not require development status files.
 
 Guide evidence review and human disposition for one deliverable's lifecycle
-transition under `docs/SPEC.md` §3.3–3.4: a candidacy check for entry to
+transition under `docs/COMPATIBILITY_FORMATS.md#historical-specification` §3.3–3.4: a candidacy check for entry to
 `CHECKING`, the check of a frozen `CHECKING` candidate toward `ISSUED`, and
 the human-ruled reversal `CHECKING → IN_PROGRESS` for an unsuccessful or
 withdrawn check.

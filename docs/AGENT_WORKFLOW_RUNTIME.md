@@ -1,6 +1,6 @@
 # Agent and Workflow Runtime Contract
 
-> Development procedures in this document are superseded by AGENTS.md (2026-10-09). Current product contracts remain in force; see the list in AGENTS.md.
+Technical reference for existing host integrations. Development instructions live in [AGENTS.md](../AGENTS.md).
 
 Interface adoption remains project-specific; this reset does not establish final acceptance, downstream qualification or release of prospective interfaces. This document describes configuration and loading, not host enforcement.
 
@@ -31,8 +31,7 @@ selectable Type 1 roles and may dispatch TASK. These three roles may also use
 bounded ephemeral Type 2 instances. TASK is Type 2, has no direct-entry or
 delegation eligibility, and cannot launch another executor.
 
-Native descendant creation and role assignment are distinct. The native
-facility remains available under D-GOV-35; this registry states role conduct
+Native descendant creation and role assignment are distinct. The registry states role conduct
 and managed eligibility. A host must report the actual enforcement boundary.
 The registry never grants a filesystem path or bypasses host permission checks.
 
@@ -298,32 +297,88 @@ success establishes reference input processing, not production catalog parity,
 downstream adoption, context delivery, compatibility, coordination, execution,
 model delivery, or replay fidelity.
 
-## Coordination and evidence
+## Role authoring shape
 
-Record actual parentage, objective, accepted source basis, write ownership,
-dependencies, expected returns, and human decisions before dispatch. Actual
-child execution is required for a multi-agent claim. Shared reads are allowed;
-concurrent writes are disjoint or serialized through one integration owner.
-Relay relevant information through the parent. A material scope or basis change
-requires a versioned brief amendment under existing decision rights.
+A role instruction has a title and four ordered sections: PROTOCOL (conduct),
+SPEC (standards), STRUCTURE (relationships), RATIONALE (purpose). Machine metadata
+belongs in agents/registry.json. Workflow authoring follows create-workflow;
+format schemas remain in workflows/catalog.schema.json and the catalog index.
+Historical R-identifiers are in [the compatibility reference](COMPATIBILITY_FORMATS.md).
 
-For governed phase boundaries preserve accepted source snapshots, derivative
-status, closure verdict, rerun requirements, and blockers. Read-only executors
-return evidence to an authorized recorder rather than writing outside their
-scope. PARTIAL, blocked, and failed returns remain distinct from complete work;
-an audit executing successfully does not establish that its subject passes.
+## Retained Runtime process interface
 
-## Adoption and compatibility
+The `projects/chirality-runtime/` project owns versioned contracts, provider-neutral
+orchestration, the Runtime service, a Unix-socket client, a CLI, and safe
+engine/provider adapters. It is an independent Node workspace with its own
+lockfile. Project applications consume its public packages; private project
+adapters do not become generic runtime dependencies. The service composition
+stays independent of Electron and Next so a later Chirality application can
+run it as its own sidecar (D-GOV-43 A2 supplement).
 
-The new format has no prose metadata envelope for legacy parsers. Consumers that
-parse the former frontmatter, Agent Type table, or retired role roster must keep
-their accepted instruction basis until they adopt the registry, new loader,
-workflow resources, and compatibility adapter together. Export staging includes
-these surfaces and records the hold; staging is not publication or release.
+### 14.1 Application-owned Runtime service and Codex child
 
-Root publishes the replacement contract and routes affected-loop notices.
-Each owning loop adopts, amends, or declines on its own authority and updates
-its own pins and mirrors. Existing accepted snapshots and historical decisions
-are preserved. The receiving loop must verify role discovery, direct entry,
-capability intersection, selected-context loading, and generated brief handling
-before clearing its adoption hold.
+The Chirality App starts one Runtime service as a child process at launch,
+owns it for the life of the App instance, and stops it deliberately on quit.
+There is no per-user LaunchAgent, installer, or headless daemon mode. The
+service reports readiness with one ready line on its standard output; the App
+waits for that line before routing any request. If the service exits
+unexpectedly the App restarts it with bounded backoff and shows the outage;
+it never presents unexpected termination as completion.
+
+The service's only control listener is one Unix-domain socket beneath the
+application user-data directory, with a `0700` parent directory and a `0600`
+socket. Stale-socket recovery verifies current-user ownership and absence of a
+live recorded process before removal. The App issues a per-launch client
+token, stored under user data and private to the application, and presents it
+on every request; the token is not exposed to the renderer. No second socket
+and no TCP listener exist under any configuration. The service's HTTP/1.1
+JSON and SSE routes cover health, project registration and status, thread
+create, list, resume, turn, interrupt, and server-request answers, and
+Codex-managed login and logout.
+
+The service owns the stock, version-pinned `codex app-server` child from the
+official `@openai/codex` distribution, launched over stdio against Chirality's
+effective Codex home, which shares the user's configuration, skills, plugins,
+MCP definitions, instruction caches, and sessions store by reference and
+keeps `auth.json` and the models cache private. The service forwards the
+complete notification and server-request stream; every server request
+receives an answer, and an unfamiliar request receives an explicit error
+response rather than silence.
+
+Execution, observation, interruption, and shutdown are distinct. The Runtime
+owns the active turn. The renderer observes it through loopback HTTP and SSE
+served by the in-process Next server; a renderer subscription that drops does
+not stop the turn, and reopening recovers current state, missed activity, and
+outstanding decisions without re-sending the prompt or executing twice.
+Explicit Stop is the interrupt. Quit stops the owned Runtime and Codex
+processes deliberately and leaves an accurate continuation record; no
+unattended execution after quit is promised.
+
+The App keeps a thread index keyed by Codex thread id in its operational
+user-data state (title, project, role, plan revisions, workflow selections,
+evidence pointers). On relaunch the App resumes an indexed thread through
+`thread/resume`; the sidebar shows the App's index, not every thread in the
+shared store.
+
+### 14.2 Project manifests and sessions
+
+Each registered checkout supplies `chirality.project.json`. Schema
+`chirality.project/v1` remains supported for in-tree manifests with relative
+working and instruction references. Schema `chirality.project/v2` declares
+`instructionRoot: {"mode":"runtime"}` so an external writable checkout can
+consume the read-only `CHIRALITY_INSTRUCTION_ROOT`. V2 registration requires
+that root to be readable and disjoint from the working root. Both schemas carry
+a stable project ID and display name, execution and profile references, enabled
+adapter IDs, and an embedded-UI declaration. Registration containment-checks
+the resolved paths and records the manifest hash and approval outside the
+checkout. Privileged execution stops on manifest drift until re-registration.
+
+Threads are ordinary Codex threads in the shared Codex sessions store of
+Chirality's effective home; the App keeps its own index and metadata keyed by
+Codex thread id under user data (§14.1). Both are operational,
+non-authoritative state. Daemon-era session records beneath
+`{userData}/runtime/projects/<projectId>/sessions` are preserved unchanged in
+place as a readable archive; no import is a release prerequisite, and their
+continuation as Codex threads is not promised. Chirality evidence required by
+a governing workflow is written to checkout-contained project evidence in
+JSON/JSONL.
