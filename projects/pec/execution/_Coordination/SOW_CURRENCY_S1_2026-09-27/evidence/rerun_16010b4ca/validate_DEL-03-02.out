@@ -1,2 +1,0 @@
-PASS format=SOW_V1 target=projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta
-exit=0

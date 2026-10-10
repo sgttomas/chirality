@@ -1,6 +1,0 @@
-$ date -u
-Sun Sep 27 17:45:51 UTC 2026
-Before: captured at HEAD c5d852c4a before add-on L (row6_*_before_L.out). After: HEAD 26b27b2b0655c084fbe8b665b38264fcefba363b after the act (row6_*_after_act.out). Commands (cwd repo root): python3 tools/validation/validate_decomposition_registers.py --strict projects/pec/execution; PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check; python3 tools/validation/validate_pec_loop_receipts.py --repo-root .
-PASS strict identical before/after (exit=1)
-PASS harness identical before/after (exit=0)
-PASS receipts identical before/after (exit=0)

@@ -1,3 +1,0 @@
-# Hash-bound preparation evidence for D-PEC-96 (listed in SHA256SUMS).
-# Unified diffs and check reports keep their exact bytes.
-evidence/** -whitespace

@@ -1,2 +1,0 @@
-$ python3 tools/scope_of_work/derive_review_checklist.py --output projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/checklist_DEL-03-04.json projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff
-exit=0

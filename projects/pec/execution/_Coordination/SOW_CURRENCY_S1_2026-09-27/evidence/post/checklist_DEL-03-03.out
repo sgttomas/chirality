@@ -1,2 +1,0 @@
-$ python3 tools/scope_of_work/derive_review_checklist.py --output projects/pec/execution/_Coordination/SOW_CURRENCY_S1_2026-09-27/checklist_DEL-03-03.json projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification
-exit=0

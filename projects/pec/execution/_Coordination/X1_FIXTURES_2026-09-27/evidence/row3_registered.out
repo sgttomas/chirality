@@ -1,6 +1,0 @@
-$ date -u
-Sun Sep 27 17:43:49 UTC 2026
-cwd: projects/pec; HEAD 26b27b2b0655c084fbe8b665b38264fcefba363b; Python 3.13.7 at /Library/Frameworks/Python.framework/Versions/3.13/bin/python3
-$ PYTHONDONTWRITEBYTECODE=1 python3 ../../tools/software_workflow/run_registered_checks.py software-workflow.json --check v2-parsers --check v2-core-posture --check v2-api-contract --check v2-loop-registry --check v2-store-guard --check harness-self-check --output projects/pec/execution/_Coordination/X1_FIXTURES_2026-09-27/evidence/row3_registered.json
-{"status": "PASS", "output": "/Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d106-act/projects/pec/execution/_Coordination/X1_FIXTURES_2026-09-27/evidence/row3_registered.json", "checks": ["v2-parsers", "v2-core-posture", "v2-api-contract", "v2-loop-registry", "v2-store-guard", "harness-self-check"]}
-exit=0

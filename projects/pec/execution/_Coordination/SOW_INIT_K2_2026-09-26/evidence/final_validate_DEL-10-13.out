@@ -1,4 +1,0 @@
-# head c0d4098ca128b3d332101c107e8999599155f6c5, origin/main 3e861f53cca8e4d94622fadfb1054420a8349cc1 (after merging 3e861f53c)
-$ python3 tools/scope_of_work/validate_scope_of_work.py projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate   (cwd: repository root)
-PASS format=SOW_V1 target=projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate
-exit=0
