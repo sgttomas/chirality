@@ -1,4 +1,0 @@
-RENDER projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface/ScopeOfWork.md
-RENDER projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-13_Reliance_advertisement_gate/ScopeOfWork.md
-CHECK preflight passed; planned write set 2 creates, 0 modifies, 0 removes (the inventory check runs in apply mode); nothing written
-exit=0

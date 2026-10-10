@@ -1,7 +1,0 @@
-MODE A+P: 4 selected target(s), 0 held at preimage
-RENDER DEL-00-03_SPEC projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md
-RENDER DEL-00-03_SOW projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md
-RENDER DEL-00-01_ADR projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md
-RENDER DEL-00-01_SOW projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md
-CHECK preflight passed; mode A+P; planned write set 4 modifies, 0 creates, 0 removes (inventory of 6387 files taken; the write-set check runs in apply mode); nothing written
-exit=0

@@ -1,5 +1,0 @@
-$ python3 projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/scan_s2_quotes.py --tree . --gitdir . --prior-commit ce934ac33 --candidates projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26
-KEPT DEL-04-01 quotes DEL-01-01: "The act of attaching citations to an orientation response is `DEL-04-03`'s under `SOW-007` (CLM-012);"
-KEPT DEL-04-03 quotes DEL-01-01: "The act of attaching citations to an orientation response is `DEL-04-03`'s under `SOW-007` (CLM-012);"
-SUMMARY stale=0 kept=2
-exit=0

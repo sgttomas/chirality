@@ -1,8 +1,0 @@
-$ date -u
-Sun Sep 27 17:42:36 UTC 2026
-$ python3 projects/pec/execution/_Coordination/X1_FIXTURES_2026-09-27/evidence/check_addon_L_slots.py c5d852c4a 2026-09-27
-PASS DEL-02-03_Receipts_ledger_parser_per_loop_grammars: preimage as tabled; expected postimage 84b238d263c6272f9e4845ad7c2804cf871bd417e40b161026e0fc91bf4c9b5e actual 84b238d263c6272f9e4845ad7c2804cf871bd417e40b161026e0fc91bf4c9b5e
-PASS DEL-02-08_Work_graph_parser: preimage as tabled; expected postimage bfc995867fa2c87fb7c94acaf95c64fbc42aade174ac77c5c92ace14e3451ff6 actual bfc995867fa2c87fb7c94acaf95c64fbc42aade174ac77c5c92ace14e3451ff6
-PASS DEL-02-09_MEMORY_run_index_parser: preimage as tabled; expected postimage 50bc10f4135b49e669921ee7d733b5e2bda0c4bcf541c7b2f8fb5ce8f034372a actual 50bc10f4135b49e669921ee7d733b5e2bda0c4bcf541c7b2f8fb5ce8f034372a
-RESULT PASS 3/3
-exit=0

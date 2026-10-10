@@ -1,5 +1,0 @@
-# comparison with the pre-act baselines at c5d852c4a (evidence/*_pre.out); each file's first line (the date -u / HEAD header) is skipped
-strict: IDENTICAL (exit=1)
-harness: IDENTICAL (exit=0)
-receipts: IDENTICAL (exit=0)
-quote_currency: IDENTICAL (exit=0)

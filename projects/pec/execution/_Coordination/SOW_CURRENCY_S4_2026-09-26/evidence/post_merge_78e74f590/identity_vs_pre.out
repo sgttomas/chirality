@@ -1,4 +1,0 @@
-strict: IDENTICAL to pre-act (exit=1)
-harness: IDENTICAL to pre-act (exit=0)
-receipts: IDENTICAL to pre-act (exit=0)
-quote_currency: IDENTICAL to pre-act (exit=0)

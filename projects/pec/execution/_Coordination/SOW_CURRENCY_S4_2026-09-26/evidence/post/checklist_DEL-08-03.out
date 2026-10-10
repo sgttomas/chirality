@@ -1,2 +1,0 @@
-$ python3 tools/scope_of_work/derive_review_checklist.py --output projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/checklist_DEL-08-03.json projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format
-exit=0

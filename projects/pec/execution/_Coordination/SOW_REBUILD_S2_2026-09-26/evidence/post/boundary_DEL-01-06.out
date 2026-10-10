@@ -1,4 +1,0 @@
-$ (cwd repo root, HEAD 23e065e4f) python3 tools/scope_of_work/check_boundary_owner_resolution.py --json projects/pec/execution/_Coordination/SOW_REBUILD_S2_2026-09-26/boundary_DEL-01-06.json --show-not-checkable projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md
-
-Contracts: 1 (0 out-of-grammar) | boundary requirements checked: 1 | per-act exclusions for skill QA: 0 | boundary requirements citing no claim: 0 | contracts failing: 0
-exit=0

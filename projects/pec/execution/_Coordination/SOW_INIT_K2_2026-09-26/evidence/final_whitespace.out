@@ -1,3 +1,0 @@
-# head 3cc19b058423d44d584374b63660921d1aa66b3d, origin/main 3e861f53cca8e4d94622fadfb1054420a8349cc1
-$ git diff --check origin/main...HEAD
-exit=0

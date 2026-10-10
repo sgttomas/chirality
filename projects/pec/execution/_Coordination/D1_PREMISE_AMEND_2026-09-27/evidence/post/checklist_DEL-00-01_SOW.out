@@ -1,3 +1,0 @@
-# 2026-09-27T17:39:14Z (date -u); cwd repo root; HEAD 7c250e370015b118a4fabea5abe34e13e190e419
-$ python3 tools/scope_of_work/derive_review_checklist.py --output projects/pec/execution/_Coordination/D1_PREMISE_AMEND_2026-09-27/checklist_DEL-00-01_SOW.json projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures
-exit=0

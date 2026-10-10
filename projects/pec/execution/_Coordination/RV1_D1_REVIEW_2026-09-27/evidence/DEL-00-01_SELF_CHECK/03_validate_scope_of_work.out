@@ -1,4 +1,0 @@
-# cwd: {REPO_ROOT} ; interpreter: python3 (Python 3.13.7); PYTHONDONTWRITEBYTECODE=1
-$ python3 tools/scope_of_work/validate_scope_of_work.py projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures
-PASS format=SOW_V1 target=projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures
-exit=0

@@ -1,3 +1,0 @@
-$ (cwd repo root, HEAD 23e065e4f) python3 tools/scope_of_work/validate_scope_of_work.py projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default
-PASS format=SOW_V1 target=projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default
-exit=0

@@ -1,9 +1,0 @@
-# 2026-09-27T18:04:05Z (date -u); cwd repo root; HEAD 8d85a9b6eed168040d723f073e7542bdeeafa639; origin/main 0adfbc7476df33521883ce1573781237cd24d384
-$ python3 projects/pec/execution/_Coordination/D1_PREMISE_AMEND_2026-09-27/apply_d1p.py --repo <export of 0adfbc747 (projects/pec only)> --candidates projects/pec/execution/_Coordination/D1_PREMISE_AMEND_2026-09-27/candidates --with-addon-p --check-only
-MODE A+P: 4 selected target(s), 0 held at preimage
-RENDER DEL-00-03_SPEC projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md
-RENDER DEL-00-03_SOW projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md
-RENDER DEL-00-01_ADR projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md
-RENDER DEL-00-01_SOW projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md
-CHECK preflight passed; mode A+P; planned write set 4 modifies, 0 creates, 0 removes (inventory of 6787 files taken; the write-set check runs in apply mode); nothing written
-exit=0

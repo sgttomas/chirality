@@ -1,8 +1,0 @@
-cwd: {REPO_ROOT} (repository root; branch claude/pec-rv1-d1-review, HEAD a1735cc3b)
-interpreter: python3 (CPython 3.13.7, as reported by python3 --version); shell bash
-env: TMPDIR=<review scratch dir>, PYTHONDONTWRITEBYTECODE=1
-command: shasum -a 256 docs/SPEC.md; grep -n "no disclosed-deferral carve-outs" docs/SPEC.md
----- output ----
-feb5e79c0b60b5156ea9ad2b00e32e338ab42c4351da0b0cbca6f30df5f3109e  docs/SPEC.md
-388:There are no disclosed-deferral carve-outs: an unfulfilled production obligation keeps the deliverable `IN_PROGRESS`. Rescope through the owning decision before freeze. A failed formal check returns through the prescribed reversal; its required correction is accounted for in authorized work. Planned formal review remains distinct from missing production verification. Earlier pinned Remaining-based entry criteria retain their applicability until the owning loop adopts this replacement.
----- exit code: 0 ----

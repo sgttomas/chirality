@@ -1,3 +1,0 @@
-$ python3 -c 'import importlib.util,hashlib,sys;s=importlib.util.spec_from_file_location("a","projects/pec/execution/_Coordination/SOW_CURRENCY_S1_2026-09-27/apply_s1p.py");m=importlib.util.module_from_spec(s);s.loader.exec_module(m);r=[(p,h==hashlib.sha256(open(p,"rb").read()).hexdigest()) for p,h in m.PINNED.items()];t=[(p,v[1]==hashlib.sha256(open(p,"rb").read()).hexdigest()) for p,v in m.TARGETS.items()];[print(("MISMATCH ")+p) for p,ok in r+t if not ok];print(f"pins {sum(ok for _,ok in r)}/{len(r)} postimages {sum(ok for _,ok in t)}/{len(t)}");sys.exit(0 if all(ok for _,ok in r+t) else 1)'
-pins 35/35 postimages 12/12
-exit=0

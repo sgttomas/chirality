@@ -1,7 +1,0 @@
-add-on S prototype on a scratch export of 125cfacc1 (projects/pec + tools), git-initialized; write_status.sh sha256 0bf835f54f4bb9a78a51d0b56392a8686d1f255f06d3c2bcaf7e8665f77bece3; date 2026-09-26
-$ zsh tools/scaffolding/write_status.sh <DEL-08-06 folder> INITIALIZED "TASK+status-advance"  -> exit 0
-73e21846186b3ab46d4d11042ecb2bb00d0c69a0d7b4fa70734c75e65a892511  preimage DEL-08-06
-75366b6b8a0050c520ab583be927da3960d21df0b8cd3011668b2047db89a127  postimage DEL-08-06
-$ zsh tools/scaffolding/write_status.sh <DEL-10-13 folder> INITIALIZED "TASK+status-advance"  -> exit 0
-c7a5705d7203a26f525317e85fa068d29cfeb49b8686eab1b5cd3e782e22543b  preimage DEL-10-13
-3771d5262b8f9044a3dbed81af0032a155ec12e876ec90c1f8253a8e5237e567  postimage DEL-10-13
