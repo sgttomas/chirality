@@ -38,7 +38,6 @@ live = pytest.mark.skipif(
     os.environ.get("CHIRALITY_REQUIRE_LIVE_TESTS") != "1" and (
     os.environ.get("CHIRALITY_SKIP_LIVE_TESTS") == "1"
     or not (LIVE_REPO / "projects" / "chirality-piping" / "_harness" / "adapter.yaml").is_file()
-    or not (LIVE_REPO / "projects" / "chirality-app-dev" / "_harness" / "adapter.yaml").is_file()
     or not (LIVE_REPO / "_DomainEngines").is_dir()),
     reason="live pilot roots/manifests absent (or live tests disabled by env)",
 )
@@ -61,16 +60,9 @@ def live_self_check():
 
 @live
 def test_live_drift_excludes_migrated_piping_lifecycle():
-    report = cmd_drift.run_drift(LIVE_REPO, [
-        LIVE_REPO / "projects" / "chirality-app-dev",
-        LIVE_REPO / "projects" / "chirality-piping",
-    ])
+    report = cmd_drift.run_drift(LIVE_REPO, [LIVE_REPO / "projects" / "chirality-piping"])
     assert not any(f.fact_id == "drift.chirality-piping" for f in report.facts)
-    app_dev = _fact(report, "drift.chirality-app-dev").value
-    assert "files=54" in app_dev
-    assert "mismatches=0" in app_dev
-    assert report.summary["files_total"] == 54
-    assert report.summary["mismatches_total"] == 0
+    assert report.summary["files_total"] == 0
 
 
 @live
@@ -119,17 +111,6 @@ def test_live_self_check_abs_path_in_evidence_reports_are_pinned(live_self_check
     }
 
 
-@live
-def test_live_bridge_status_reports_pec_adopted_read_only_profile():
-    # Conscious live-pin update: D-T0-27 O-A materializes the exact PEC v2
-    # profile as ADOPTED / READ_ONLY; application effectiveness remains governed.
-    report = cmd_bridge_status.run_bridge_status(LIVE_REPO)
-    assert _fact(report, "bridge_status.profile.pec.profile_status").value == "ADOPTED"
-    assert _fact(report, "bridge_status.profile.pec.gate_posture").value == (
-        "Gate 2 adopted"
-    )
-    md = report.render_markdown()
-    assert "| `pec` | `ADOPTED` | Gate 2 adopted | `READ_ONLY` |" in md
 
 
 @live
@@ -208,3 +189,26 @@ def test_live_self_check_reports_root_headers_and_exits_clean(live_self_check):
     from harness_common import Severity, compute_exit_code
     assert compute_exit_code(report.findings) == 0
     assert not any(f.severity is Severity.BLOCK for f in report.findings)
+
+
+@live
+def test_archived_project_selection_refuses_with_recovery_pointer():
+    import subprocess
+    import sys
+    proc = subprocess.run([sys.executable, str(LIVE_REPO / 'tools/practitioner_harness/harness.py'),
+                           'status', '--project', 'app-dev', '--repo-root', str(LIVE_REPO)],
+                          capture_output=True, text=True)
+    assert proc.returncode == 2
+    assert 'projects/FROZEN.md' in proc.stderr
+    assert 'Traceback' not in proc.stderr
+
+
+@live
+def test_default_drift_skips_archived_project_roots():
+    import subprocess
+    import sys
+    proc = subprocess.run([sys.executable, str(LIVE_REPO / 'tools/practitioner_harness/harness.py'),
+                           'drift', '--all', '--repo-root', str(LIVE_REPO)],
+                          capture_output=True, text=True)
+    assert proc.returncode == 0, proc.stderr
+    assert 'Project root absent' not in proc.stderr

@@ -11,7 +11,7 @@ remains accountable for acceptance and reliance.
 | Root: shared instructions, workflows, skills, tools and CI | `execution/_Coordination/LOOP_INIT.md` | Work as steered |
 | App v4: Chirality within applications and the workflow-authoring exemplar | `projects/chirality-app-v4/loop/LOOP_INIT.md` | Active |
 | SWBPIPE: piping design and stress-model authoring | `projects/chirality-piping/loop/LOOP_INIT.md` | Active |
-| App v3, Runtime, PEC | `archive/pre-docs-cleanup-1` | Frozen; no development or verification without explicit reactivation |
+| App v3, Runtime, PEC | [Recovery](projects/FROZEN.md) | Frozen; no development or verification without explicit reactivation |
 | `_DomainEngines/` | Owning project's instructions | Write only under a steer for that work |
 
 ## Working cycle

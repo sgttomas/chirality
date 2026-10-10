@@ -304,6 +304,9 @@ def main(argv: list[str] | None = None) -> int:
         repo_root = resolve_repo_root(getattr(args, "repo_root", None))
         out_dir = Path(getattr(args, "out_dir", repo_root / GENERATED_ROOT_NAME))
         _refuse_root(args.command, getattr(args, "project", None))
+        selected = getattr(args, "project", None)
+        if selected in ("app-dev", "chirality-app-dev", "runtime", "chirality-runtime", "pec", "chirality-pec") and not (repo_root / PROJECT_ALIASES[selected]).is_dir():
+            raise HarnessOperationalError("Frozen product archived; see projects/FROZEN.md. No live adapter is loaded.")
 
         if args.command == "brief" and getattr(args, "project", None):
             project_root = _project_root(repo_root, args.project)
@@ -322,8 +325,8 @@ def main(argv: list[str] | None = None) -> int:
             if args.project and not args.all:
                 roots = [_project_root(repo_root, args.project)]
             else:
-                roots = [_project_root(repo_root, "app-dev"),
-                         _project_root(repo_root, "piping")]
+                roots = [root for name in ("app-dev", "piping")
+                         if (root := repo_root / PROJECT_ALIASES[name]).is_dir()]
             report = cmd_drift.run_drift(
                 repo_root, roots,
                 include_domain_engines=getattr(args, "include_domain_engines", False))
@@ -374,8 +377,8 @@ def main(argv: list[str] | None = None) -> int:
             if getattr(args, "project", None):
                 roots = [_project_root(repo_root, args.project)]
             else:
-                roots = [_project_root(repo_root, "app-dev"),
-                         _project_root(repo_root, "piping")]
+                roots = [root for name in ("app-dev", "piping")
+                         if (root := repo_root / PROJECT_ALIASES[name]).is_dir()]
             report = cmd_next.run_next(repo_root, roots, _alias_by_root(repo_root))
         elif args.command == "run-validations":
             brief_path = Path(args.brief)

@@ -1,4 +1,0 @@
-status null signal SIGKILL error ETIMEDOUT
-stdout: ready; calling safeStorage.isEncryptionAvailable()
-
-stderr: 

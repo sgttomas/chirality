@@ -1,5 +1,7 @@
 # Agent and Workflow Runtime Contract
 
+> Historical App v3 and Runtime implementation paths in this reference resolve through [Frozen products](../projects/FROZEN.md), not the current working tree. Their contracts apply only upon explicit reactivation.
+
 Technical reference for existing host integrations. Development instructions live in [AGENTS.md](../AGENTS.md).
 
 Interface adoption remains project-specific; this reset does not establish final acceptance, downstream qualification or release of prospective interfaces. This document describes configuration and loading, not host enforcement.
