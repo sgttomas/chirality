@@ -754,7 +754,7 @@
       "name": "coordinated-knowledge-work",
       "source": "bundled",
       "sourceRootId": "chirality-root",
-      "description": "Use when related contributions must become one usable knowledge-work result and the team needs sustained ownership, independent assurance, and control of handoffs, shared changes, and completion.",
+      "description": "Use when related contributions must become one usable knowledge-work result and the team needs sustained ownership, independent assurance, shared changes, and completion.",
       "central": false,
       "compatibility": "canonical",
       "executionRoleIds": [

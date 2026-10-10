@@ -204,3 +204,57 @@ def test_legacy_agent_routes_retired_workflow_to_recorded_successor(root):
         resolve(root,'TASK',legacy_agent='RETIRED',task_skill='other-skill')
     ordered=resolve(root,'TASK',legacy_agent='RETIRED',methods=['fixture-bundle:bundled:skill:other-skill'])
     assert [m['name'] for m in ordered['methods']]==['other-skill','converted-skill']
+
+
+def test_help_human_assignment_write_authority_boundaries(tmp_path):
+    """Exercise the real CLI, registry and normalized brief together."""
+    import subprocess
+    import sys
+    repo = Path(__file__).resolve().parents[2]
+    script = Path(__file__).with_name('resolve_workflow.py')
+    work = tmp_path / 'work'
+    work.mkdir()
+    brief_file = tmp_path / 'brief.json'
+    policy_file = tmp_path / 'policy.json'
+
+    def run(brief=None, capabilities=('read', 'write', 'bash')):
+        policy_file.write_text(json.dumps({'host': {'capabilities': list(capabilities)}}))
+        command = [sys.executable, str(script), '--root', str(repo), '--role', 'HELP_HUMAN',
+                   '--policy', str(policy_file)]
+        if brief is not None:
+            brief_file.write_text(json.dumps({'ScopePath': str(work), **brief}))
+            command += ['--repo-root', str(work), '--brief', str(brief_file)]
+        return subprocess.run(command, capture_output=True, text=True)
+
+    target = str(work / 'result.md')
+    authorized = {'ApplyEdits': True, 'AllowedWriteTargets': [target]}
+    result = json.loads(run(authorized).stdout)
+    assert result['brief']['AllowedWriteTargets'] == [target]
+    assert result['allowed_write_targets'] == [target]
+    assert 'write' in result['effective_tools']['capabilities']
+
+    for brief in (None, {}, {'ApplyEdits': True}, {**authorized, 'ApplyEdits': False}):
+        result = json.loads(run(brief).stdout)
+        assert result['allowed_write_targets'] == []
+        assert 'write' not in result['effective_tools']['capabilities']
+
+    result = json.loads(run(authorized, capabilities=('read',)).stdout)
+    assert result['brief']['AllowedWriteTargets'] == []
+    assert result['effective_tools']['capabilities'] == ['read']
+
+    for escaping in (str(tmp_path / 'outside.md'), str(work / '../outside.md')):
+        result = run({'ApplyEdits': True, 'AllowedWriteTargets': [escaping]})
+        assert result.returncode == 2
+        assert 'WRITE_TARGET_OUTSIDE_WORKTREE' in result.stderr
+    (work / 'escape').symlink_to(tmp_path, target_is_directory=True)
+    result = run({'ApplyEdits': True, 'AllowedWriteTargets': [str(work / 'escape/out.md')]})
+    assert result.returncode == 2
+    assert 'WRITE_TARGET_OUTSIDE_WORKTREE' in result.stderr
+
+
+def test_task_still_cannot_delegate_under_broader_host_policy():
+    repo = Path(__file__).resolve().parents[2]
+    result = resolve(repo, 'TASK', policy={'host': {'capabilities': ['read', 'write', 'delegate_agent']}})
+    assert result['role_configuration']['delegates_to'] == []
+    assert not result['role_configuration']['allow_generalist_agent2']
+    assert 'delegate_agent' not in result['effective_tools']['capabilities']

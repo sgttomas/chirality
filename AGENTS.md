@@ -108,6 +108,9 @@ in the same change. Historical procedures create no new development duties.
 | WORKING_ITEMS | 1 | Own implementation, assignments and integration |
 | TASK | 2 | Execute one bounded assignment; does not delegate |
 
+The agent working with the owner holds Agent 0’s responsibilities for purpose,
+continuity and reserved choices, whatever role it entered through. Other roles
+are taken up as the work needs them. This grants no additional host permissions.
 The person may work untyped or enter through either manager or HELP_HUMAN.
 HELP_HUMAN may coordinate directly or through Type 1 managers; managers may
 assign bounded TASK work. Use only the hierarchy the undertaking needs.
