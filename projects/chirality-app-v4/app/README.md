@@ -59,7 +59,11 @@ performed an act.
     source list. Explicit attachment-bearing send or steering uses that whole
     list, durable metadata and the actual Host request; failures do not fall back
     to text-only sending or automatic retry. A native acknowledgment is separate
-    from provider uptake or completion.
+    from provider uptake or completion. While a run-end notice is pending in the
+    conversation (item 18), an attachment-bearing new turn is refused with
+    "send ordinary text first. Nothing sent"; an attachment steer is not
+    affected. The App does not yet put the notice and attachments into one turn
+    (NIR TC-2 allows it).
 13. Explicit App project association comes from configured `CHIRALITY_WORKSPACE`,
     separately from native thread cwd, Codex home and workflow run. Unknown context
     produces no canonical project row. Historical project P remains intact when
@@ -80,6 +84,151 @@ performed an act.
     registration are connected to prepared input and source-owned native page
     comparison. Code and synthetic checks do not establish a native person's
     registration, provider uptake or completed workflow execution.
+17. The selected conversation shows its native activity readably: messages,
+    reasoning summaries, plan items and checklist revisions, tool rows and
+    descendants, grouped by turn in native start order and, within a turn, in
+    the order this App first received each item. Each row keeps the native item
+    and status beside its display reading; unknown, not-completed and
+    result-not-supplied stay distinct, and no act, return or integration is
+    inferred. Agent text, reasoning summaries, plans and command output stream
+    as labelled previews that the completed native item replaces. Stored-history
+    pages the person reads (turns, items, thread read) are added as
+    recovered-from-supplier rows; nothing is rebuilt automatically. Only a plan
+    observed live shows a revision number in this conversation. A row the view
+    cannot read shows its JSON instead of breaking the view.
+18. Plan mode (experimental) is offered only when this Codex connection declared
+    the experimental API and Codex lists a `plan` preset. Sending in plan or
+    default mode puts `collaborationMode` on `turn/start` with the conversation's
+    reported model and null developer instructions; it is ordinary input, never
+    a recorded act. Codex keeps the mode until another is sent; the App shows
+    the last mode it requested. A pending run-end notice still goes with the
+    next ordinary turn, so a mode send waits for it.
+19. Codex's requests are shown readably beside the conversation they belong to:
+    tool permissions (command, file change, extra permissions, legacy forms),
+    questions and input requests. A card names what is asked (command, working
+    folder, reason, proposed rules, changes, requested permissions), states the
+    register's state in words and offers the native forms with App words beside
+    the verbatim native value; a tool-permission card says it is tool permission
+    only and its words never say accept or approve. Classification, answer values
+    and register checks are unchanged. A card and its activity row link to each
+    other; the row never answers. The top of the App counts requests waiting for
+    the person, per conversation; opening one answers nothing. Requests of other
+    conversations stay listed under Native requests.
+20. Workflow run offers come only from agent messages this App observed complete
+    live. On the exact `Workflow finished: ‹origin›:‹name›` line naming the run in
+    force, the message offers **End run**; the host re-reads the message and
+    records cause *completed*. Any other end is "ended by the person"; no command
+    can record *completed* without that observed report. On the exact
+    `Next workflow: ‹origin›:‹name›` line naming one registered workflow held in
+    this session, the message offers **Start ‹workflow› (proposed by the agent)**,
+    or **End ‹A› and start ‹B›** while a run is in force (*completed* when the same
+    message reports A finished). The proposal selects nothing until the person
+    presses; the selection is then recorded as "agent proposal confirmed by the
+    person". Unresolved proposals show their notice. The activity view marks run
+    starts and ends from the App's run records and folds the supplied run text.
+21. **Save a workflow** starts from a draft list. Under the owner's OI-008 ruling for
+    the draft workspace ("A, proceed with the Rust host."), the Rust host observes
+    the open library's `.chirality/workflow-drafts/` folders. **Open this App
+    project's workflow library** opens the explicit `CHIRALITY_WORKSPACE`; the
+    folder pickers still open other libraries. For each draft the host reports
+    its content identity, the hygiene findings (HY-1…HY-5, HY-7), its WR §5.1
+    state and its App-recorded base, or that it has none. Attribution names a
+    Codex file-change item or an App action, or reads "not observed". Sizes are
+    bounded from metadata before any file is read and again by a running read
+    budget. Package files are opened no-follow and non-blocking relative to their
+    opened folder: links, FIFOs and devices are refused. Transitions are
+    observed only when the list is read; the folder is not watched.
+    **Try in a conversation** adds the draft's text files, as listed, each with
+    its draft reference (NIR AT-8), to the attachment list. It sends nothing. A
+    pre-filled draft file cannot be re-confirmed as an ordinary source. The person
+    chooses an ordinary conversation and sends. Draft files are refused for a
+    conversation with a workflow run in force. An acknowledged send keeps one
+    App-kept trial pointer per draft (TT-4), which survives a relaunch.
+    *Pending owner decision (WR U-WR-24):* TT-3 as confirmed opens a new
+    not-started conversation and names non-text files (AT-10). The App does
+    neither yet: non-text files are listed "not attached". **Review for
+    registration…** opens the existing review for the listed content, refused
+    as DS-6 if the draft changed since listing.
+    Registration stays the person's A15 act at the native confirmation. A trial
+    is not a run, registration, checking or acceptance.
+22. **Stop Codex…** and **Restart Codex…** always ask first (DEL-01-04 §5.2,
+    C-12). A native question lists the live turns, waiting requests, delegated
+    agents and workflow runs in force in that home, or says none were observed,
+    and waits with no time limit. **Keep Codex running** is the default; it and
+    Cancel change nothing. On **Stop Codex** or **Restart Codex**, the host
+    stops sending new turns and steers (text, mode, workflow or attachment) to
+    that Codex process. It then assesses the live work again; if the list
+    changed since it was shown, the host reopens and asks again with the
+    current list. The App writes `turn/interrupt` for every observed live turn
+    before waiting. It then waits on one shared deadline for the
+    acknowledgments and for Codex to report those turns ended, then stops the
+    process (HOSTING §4.5). All of this stays within the stop wait limit of
+    10 s (U-R4 test value). Each turn then shows one of the four TO-4 labels:
+    "interrupted by Stop Codex", "completed (Stop Codex requested)",
+    "failed (Stop Codex requested)" or "interrupted by Stop Codex (final status
+    not observed)". The label comes from the observed `turn/completed`, never
+    from the interrupt acknowledgment. Codex's own status is shown beside it. A
+    refused stop is reported as a refusal; its turns get no label and new turns
+    are allowed again. Interrupts go only to a `ready` process (DEL-01-02
+    §4.1). A process in another state (for example a stuck handshake) is
+    reported and may still be stopped, as HOSTING §4.6's stop operation allows.
+    Waiting requests are not answered, and no workflow run ends. Restart then
+    starts Codex as Start Codex does.
+    It continues no conversation until the person chooses
+    **Continue selected conversation** (R-6). A stop is the person's
+    operational choice, not a recorded act. *Limit:* the App writes no REC
+    stop-request (SR) record and no ledger `codex_stop` record. The outcome is
+    kept in App process memory, so after a relaunch the App cannot say that a
+    turn was interrupted by Stop Codex. Quitting the App does not ask first yet
+    (K-4, SQ-Q Q-2): it stops each home's Codex on exit, as before.
+23. **Run panel** (NIR §9 PD-1…PD-7, AS §4, §8, §9). The selected workflow and
+    each run show the declared part readably, as the host read it from the
+    revision's own bytes: inputs, tools, checkpoints, outputs, returned
+    evidence, written-for roles and tool ceiling, each with its reading and
+    findings; the JSON stays in a fold. A checkpoint is plan guidance (OV-1,
+    SD-1): act label (DS-1), actor, subject, when it is reached, purpose,
+    scope, where the act is performed (SD-3), declared held actions and
+    decision paths. `governed` is shown and changes nothing (OV-7); an invalid
+    declaration is a finding. No hold, block, pause or hold-support value is
+    shown (PD-6, OV-3). The App records no checkpoint arrivals yet, so each
+    checkpoint says "no arrival recorded", and the missing `checkpoint_listed`
+    entry is shown as missing in record (PD-7). Each declared output shows its
+    promise apart from its standing facets (AS §8), which come only from the
+    run record: with nothing recorded they read none reported, not recorded or
+    missing; record entries this view does not read make them unknown. The
+    advisory compatibility (DEL-02-03 CK-1/CK-2) is shown readably; a role
+    outside the written-for roles names both and points to Continue as
+    (U-R10, chosen display).
+24. **Conversation roles** (NIR §5.4, §5.8; ROLE §3.2, §3.3, §4.4, §6.2). The
+    start display lists the role set readably, with the `default_for_new_chat`
+    role labelled as a preselection (the bundled set marks none today, U-R11),
+    "No role", and each role's limits as the limit account hands them (TASK
+    "A task agent does not delegate: Stated, not enforced"; a modified copy
+    reads not known). TASK is listed but not offered as a conversation role,
+    as before; ROLE SL-1/CA-1 and NIR ST-5 name all four, so whether TASK may
+    start a conversation is an open owner choice. The conversation header shows the role, fixed for the
+    conversation's life, and its relation (its own start, continued from, or
+    fork of). **Guidance changed since this conversation started** appears
+    only when a file the conversation started with now differs or is missing;
+    a store that cannot be read is said to be not compared. **Continue as
+    ‹role›…** sends one visible ordinary turn to the source conversation asking
+    its agent for a handoff summary. It is refused, with nothing opened or
+    sent, while a run-end notice is pending (as for attachments) or when the
+    source is not a current conversation of a ready Codex; a request refused
+    before any write closes the handoff. The completed agent message observed
+    live is placed under an App header naming the source and its role,
+    editable and unsent; a written request whose turn failed, was interrupted
+    or has an unknown outcome leaves the header only. The new
+    conversation starts with no model chosen and records `continuedFrom`
+    {source thread, source start record}; its first message is sent only when
+    the person sends it, and it reads sent only once the send succeeded.
+    **Fork (same role)** sends `thread/fork` with the thread id, no
+    instructions or settings, and `deferGoalContinuation: true` so that a
+    source goal starts no automatic turn in the fork that the person did not
+    start. It admits the fork only when Codex reports a new thread
+    forked from the source; the fork inherits the source's role binding. Neither
+    changes the source conversation's role or record. Handoffs are kept in App
+    process memory.
 
 ## Modules
 
@@ -100,6 +249,13 @@ performed an act.
 | `trace_receiving.rs`, `record_relations.rs` | Independent unverified trace imports and general record correction claims; neither verifies native origin |
 | `native_history.rs`, `role_lifecycle.rs` | Read-only native history, scoped Continue receiving and immutable original guidance bindings; cold role-source custody remains unfinished |
 | `connector_standing.rs`, `connector_route_store.rs`, `connector_route_view.rs`, `src/ConnectorRoutePanel.tsx` | Provider-independent standing, caller-account persistence and read-only inspection; saved claims do not verify source truth or actor duties |
+| `src/RequestCards.tsx` | Readable DEL-01-04 request cards, item anchors and the waiting-request indicator; answer values come unchanged from the host's register |
+| `src-tauri/src/codex_stop.rs`, `src/CodexControls.tsx` | Stop/Restart Codex (DEL-01-02 §4.1 C-12 with the DEL-01-04 §5.2 question): live-work assessment with runs in force, ask-first sequence, interrupts before the stop within the stop wait limit, TO-4 labels and the in-memory outcome |
+| `src-tauri/src/run_offers.rs`, `src/RunOffers.tsx` | Exact run-offer line forms (WR §16.5 PR/FN), the finished-report proof for a *completed* end, and their presentation beneath the message |
+| `src-tauri/src/workflow_drafts.rs`, `src/WorkflowDrafts.tsx` | DEL-02-02 draft workspace in the Rust host (SQ-D D-2…D-4 observation, hygiene, §5.1 states, TT-3 composer sources, TT-4 trial pointers) and its list presentation in NIR §7 words; nothing here registers, reviews or runs |
+| `src/RunPanel.tsx` | Run panel and selected-workflow view (NIR §9 PD-1…PD-7): readable declared part, checkpoints as guidance with run-record limits, output standing facets from the record only (AS §8), readable advisory compatibility |
+| `src-tauri/src/conversation_roles.rs`, `src/ConversationRoles.tsx` | Continue as ‹role› handoffs and same-role Fork through the Host (NIR §5.8, ROLE §3.3), the role limit account (ROLE §6.2), the readable start display, role header and guidance-changed flag (ROLE §4.4) |
+| `src/NativeActivity.tsx`, `src/PlanMode.tsx` | Readable per-thread native activity from the `native_items.rs` view (DEL-01-03 plans/tools/delegation with the DEL-01-04 message part) and the experimental plan-mode element |
 | `src-tauri/src/lib.rs`, `src/App.tsx` | Native command boundary and presentation; the webview cannot confirm a capture itself |
 
 ## Offline build and checks
@@ -233,7 +389,9 @@ Unwritable or incomplete targets report limits without silent relocation.
 
 Attachment metadata arrays and pointer-only client request records live under
 the App user-data `runtime/nir/attachment-supplies/` and
-`runtime/hosting/client-requests/` directories. They contain no selected text,
+`runtime/hosting/client-requests/` directories. App-kept draft bases and draft
+trial pointers live under `runtime/wr/draft-bases/` and
+`runtime/wr/trial-pointers/` there (WR §3). They contain no selected text,
 native transcript or generated supplier prompt cache. REC owns project/context
 tags through the existing pointer ledger; no competing ledger is opened.
 
@@ -243,6 +401,16 @@ Native authenticity, real process-kill/fsync failure witnesses, durable history 
 retain generation/terminal limits. Transport and receiving tests do not prove a
 provider prediction. A separately frozen controlled live backend greeting passed;
 its exact source pins and limits are recorded in the run. An approved no-supplier native window inspection establishes tool/window reachability only; corrected UI/storage, browser/device/auth/provider and capture journeys remain separate unfinished witnesses. Host joins stay deferred to their owning sessions.
+
+The run panel (item 23) cannot show checkpoint arrivals or output records
+until the App records them (EXEC Wave B); conversation roles (item 24) keep
+handoffs in process memory and write no persistent role-supply log; delete or
+archive beside Fork waits on U-R13.
+
+Stop and Restart Codex (item 22) still lack three things: the REC stop-request
+(SR) and ledger `codex_stop` records, an ask-first App quit (K-4), and a native
+witness of the question. The question's readable text and the default-safe
+buttons are tested in code only.
 
 See `CONTRACT_ISSUES.md`, `EVIDENCE.md` and the current Group A `WORK_GRAPH.md`.
 
