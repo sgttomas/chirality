@@ -51,10 +51,12 @@ edge changes do not acquire a new acceptance gate from this historical reference
 
 *Note:* Per the D-GOV-01 ([archived decisions](https://github.com/sgttomas/chirality/tree/archive/pre-efficiency-cleanup-2026-10-09/docs/governance_harness/_DECISIONS)) scope note, ruled 2026-07-01, engine-owned domain stores are sanctioned authoritative domain truth under K-DOMAIN-1 and are exempt from the governance rebuildable-cache rule.
 
-## Runtime compatibility
+## Frozen Runtime reference
 
-These contracts describe the retained Runtime product, not App v4's architecture.
-Its current commitments and publication basis are in
+Runtime is retired and not verified. It is reproducible from
+`archive/pre-docs-cleanup-1`, alongside frozen App v3 and PEC. The contracts below
+apply only if Runtime is explicitly reactivated; they do not describe App v4's
+architecture or current development obligations. Its historical basis is in
 [Runtime PRD](../projects/chirality-runtime/docs/PRD.md) and
 [PRD authority](../projects/chirality-runtime/docs/PRD_AUTHORITY.md).
 

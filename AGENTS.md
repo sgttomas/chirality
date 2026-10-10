@@ -24,9 +24,10 @@ For `sgttomas/chirality` only, agents may commit, push, open, update and merge P
 
 ## Contracts still in force
 
-- **Product commitments:** the project's PRD and its named companions, deliverable ScopeOfWork and Design. App v4 starts at [its PRD](projects/chirality-app-v4/docs/PRD.md); retained Runtime commitments start at [its PRD](projects/chirality-runtime/docs/PRD.md) and [publication reference](projects/chirality-runtime/docs/PRD_AUTHORITY.md). Project `LOOP_INIT` supplies the other entry points and hard boundaries.
-- **Professional, domain and retained product boundaries:** [Product boundaries](docs/PRODUCT_BOUNDARIES.md). These preserve professional accountability, protected domain writes, human acceptance and the applicable Runtime/optional Task Management contracts without creating development record duties.
+- **Product commitments:** the project's PRD and its named companions, deliverable ScopeOfWork and Design. App v4 starts at [its PRD](projects/chirality-app-v4/docs/PRD.md). Project `LOOP_INIT` supplies the other entry points and hard boundaries.
+- **Professional, domain and retained product boundaries:** [Product boundaries](docs/PRODUCT_BOUNDARIES.md). These preserve professional accountability, protected domain writes, human acceptance and the applicable optional Task Management contracts without creating development record duties.
 - **Product interfaces:** [Agent and workflow runtime](docs/AGENT_WORKFLOW_RUNTIME.md) retains discovery, permissions, containment, credential custody, process ownership and replay contracts. Applicability follows the owning project's adopted basis; prospective interfaces are not thereby accepted.
+- **Frozen products:** App v3, Runtime and PEC are retired and not verified. They are reproducible from `archive/pre-docs-cleanup-1`; Runtime’s [PRD](projects/chirality-runtime/docs/PRD.md), [publication reference](projects/chirality-runtime/docs/PRD_AUTHORITY.md) and retained contracts apply only if Runtime is explicitly reactivated.
 - **Existing format consumers:** [Compatibility formats](docs/COMPATIBILITY_FORMATS.md) documents retained path, dependency CSV, ScopeOfWork and decomposition data contracts until their consumers migrate. It does not reintroduce lifecycle or approval procedures.
 
 ## Roles
