@@ -188,9 +188,7 @@ def build_parser() -> argparse.ArgumentParser:
                              help="Current State vs history-assertion drift audit")
     p_drift.add_argument("--project", choices=OBSERVABLE_PROJECTS)
     p_drift.add_argument("--all", action="store_true",
-                         help="Audit both pilot projects (default; the root "
-                              "working root is never folded into --all — "
-                              "request it with --project root)")
+                         help="Audit both pilot projects (default); Root lifecycle observation is retired")
     p_drift.add_argument("--include-domain-engines", action="store_true",
                          help="Fold in the domain-engine control-area surface audit")
 

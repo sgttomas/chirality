@@ -610,6 +610,8 @@ def materialize_local_dependencies(
     deliverable_ids: set[str] | None = None,
     canonical_output: bool = False,
 ) -> dict[str, object]:
+    if next(Path(execution_root).glob("PKG-*/DEL-*/deliverable.yaml"), None) is not None:
+        raise ValueError("deliverable.yaml project: use tools/deliverables/ CLI; legacy CSV materialization is retired")
     header, edge_rows, edge_width_issues = read_csv_rows(edges_path)
     _node_header, node_rows, node_width_issues = read_csv_rows(nodes_path)
     generated = generated_date or date.today().isoformat()

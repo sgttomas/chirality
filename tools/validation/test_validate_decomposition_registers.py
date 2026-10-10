@@ -1301,3 +1301,11 @@ def test_strict_promotes_warnings_to_a_failing_exit(tmp_path: Path) -> None:
         capture_output=True, text=True,
     )
     assert strict.returncode == 1
+
+
+def test_yaml_project_directs_to_deliverable_cli(tmp_path):
+    source = tmp_path / 'PKG-01/DEL-01-01/deliverable.yaml'
+    source.parent.mkdir(parents=True)
+    source.write_text('id: DEL-01-01\nneeds: []\n')
+    with pytest.raises(vdr.OperationalError, match='tools/deliverables/'):
+        vdr.run(tmp_path)

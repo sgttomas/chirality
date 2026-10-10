@@ -101,12 +101,23 @@
       "pytest_paths": [
         "tools/scaffolding"
       ]
+    },
+    "deliverables": {
+      "pytest_paths": [
+        "tools/deliverables"
+      ]
     }
   },
   "path_rules": [
     {
-      "paths": ["tools/hosted-ci-routing.json", ".github/workflows/harness-premerge.yml", ".github/workflows/pec-tests.yml"],
-      "checks": ["software_workflow"]
+      "paths": [
+        "tools/hosted-ci-routing.json",
+        ".github/workflows/harness-premerge.yml",
+        ".github/workflows/pec-tests.yml"
+      ],
+      "checks": [
+        "software_workflow"
+      ]
     },
     {
       "paths": [
@@ -247,7 +258,8 @@
         "validation",
         "workflow_runtime",
         "evaluation",
-        "scaffolding"
+        "scaffolding",
+        "deliverables"
       ]
     },
     {
@@ -274,6 +286,15 @@
       ],
       "checks": [
         "scaffolding"
+      ]
+    },
+    {
+      "paths": [
+        "tools/deliverables/*",
+        "projects/chirality-app-v4/execution/PKG-*/DEL-*/deliverable.yaml"
+      ],
+      "checks": [
+        "deliverables"
       ]
     }
   ]

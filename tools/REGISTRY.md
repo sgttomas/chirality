@@ -24,6 +24,12 @@ Deterministic tools for the Chirality agent operating system. These tools codify
 | `count_workspace_state.sh` | zsh | Count packages, deliverables, lifecycle states, tool roots | EXECUTION_ROOT | Summary table |
 | `scan_next_amendment_id.sh` | zsh | Scan _ScopeChange/ for next available SCA-{NNN} or SCA-{PREFIX}-{NNN} ID | SCOPE_CHANGE_ROOT [PREFIX] | Next ID string (stdout) |
 
+Deliverable dependency views: `python3 -m tools.deliverables --project <project>
+{neighborhood ID|impact ID|touches DIFF|dag-diff TAG|check}`. Reads current
+`deliverable.yaml` sources and returns revision-bound JSON facts and unknowns;
+no generated register or completion state is written. See
+[deliverable queries](deliverables/README.md).
+
 ## Software Workflow
 
 Profile-driven deterministic support for WORKING_ITEMS software activations. The canonical profile contract is `docs/SOFTWARE_WORKFLOW_PROFILE.md`.
