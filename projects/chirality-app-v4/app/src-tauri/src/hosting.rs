@@ -188,6 +188,10 @@ struct Inner {
     version_identity: Option<Value>,
     verification: Option<Value>,
     declared_capabilities: Option<Value>,
+    /// Last `collaborationMode/list` result read for a generation (EX-2/EX-3).
+    collaboration_modes: Value,
+    /// Collaboration modes this App requested on `turn/start`, per generation/thread.
+    requested_modes: Vec<Value>,
     configuration_identity: Option<Value>,
     stop_record: Option<Value>,
     threads: Vec<Value>,
@@ -195,6 +199,9 @@ struct Inner {
     execution_custody: execution_custody::ExecutionCustody,
     turn_request_threads: HashMap<String, (Value, String, u64)>,
     interrupt_requests: Vec<Value>,
+    /// The generation for which the person confirmed Stop/Restart Codex:
+    /// from then on no new turn or steer is sent in it (only interrupts).
+    stop_confirmed: Option<Value>,
     stderr_bytes: u64,
     child_pid: Option<i32>,
 }
@@ -651,6 +658,35 @@ impl Host {
         }
     }
     pub fn snapshot(&self) -> Value {let i=self.inner.0.lock().unwrap();Self::snapshot_inner(&i)}
+    /// Stop/Restart Codex confirmed for `generation`: from now on this Host
+    /// sends no new `turn/start` or `turn/steer` there (text, mode, workflow or
+    /// attachment), so no work begins that the stop would end unlabelled.
+    /// Interrupts and request answers stay possible. Only the generation must
+    /// match: a crashed, halted or verifying source (its generation already
+    /// closed) can still be stopped, and no send begins there anyway, since
+    /// every request requires `ready` (HOSTING §4.6 stop; CR-03).
+    pub fn close_to_new_turns(&self, generation: &Value) -> Result<(), String> {
+        let mut i=self.inner.0.lock().unwrap();
+        if i.generation!=*generation{return Err("The Codex process in this view is no longer the current one; refresh and choose again. Nothing stopped".into());}
+        i.stop_confirmed=Some(generation.clone());Ok(())
+    }
+    /// Reopens `generation` to new turns when its confirmed stop was refused.
+    pub fn reopen_to_new_turns(&self, generation: &Value) {
+        let mut i=self.inner.0.lock().unwrap();
+        if i.stop_confirmed.as_ref()==Some(generation){i.stop_confirmed=None;}
+    }
+    fn check_send_admitted(i: &Inner, method: &str) -> Result<(), String> {
+        if matches!(method,"turn/start"|"turn/steer")&&i.stop_confirmed.as_ref()==Some(&i.generation) {
+            return Err(format!("refused-not-sent: Stop Codex was confirmed for this Codex process; no {method} is sent"));
+        }
+        Ok(())
+    }
+    /// This App's receiving reading of one turn, without a whole snapshot
+    /// (Stop Codex polls it while waiting for interrupted turns to end).
+    pub fn conversation_turn(&self, generation: &Value, thread_id: &str, turn_id: &str) -> Option<Value> {
+        let i=self.inner.0.lock().unwrap();
+        i.conversation_turns.iter().find(|t|t["generation"]==*generation&&t["threadId"]==thread_id&&t["turnId"]==turn_id).cloned()
+    }
     fn snapshot_inner(i: &Inner) -> Value {
         json!({
             "state": i.state,
@@ -673,6 +709,8 @@ impl Host {
             "journal": i.journal,
             "malformedFrames": i.malformed,
             "threads": i.threads,
+            "planMode": Self::plan_mode_availability(&i),
+            "requestedModes": i.requested_modes,
             "conversationTurns": i.conversation_turns,
             "turnInterruptRequests": i.interrupt_requests.iter().map(|entry| {
                 let request = i.client_requests.iter().find(|r| r["generation"] == entry["generation"] && r["requestIdentity"] == entry["requestIdentity"]);
@@ -1361,6 +1399,7 @@ impl Host {
             return Err(format!("refused-not-sent(not-ready): state {}",i.state));
         }
         if expected_generation.map(|g|g!=&i.generation||i.server_requests.is_closed(g)).unwrap_or(false) {return Err(format!("refused-not-sent: {method} generation changed before request registration"));}
+        Self::check_send_admitted(&i,method)?;
         if expected_generation.is_some()&&matches!(method,"turn/start"|"turn/interrupt"|"turn/steer") {Self::check_conversation_request(&i,method,&params)?;}
         let oauth_mode=if method=="account/login/start" {match params["type"].as_str(){Some("chatgpt")=>Some(oauth_control::OAuthMode::Chatgpt),Some("chatgptDeviceCode")=>Some(oauth_control::OAuthMode::DeviceCode),_=>None}}else{None};
         if oauth_mode.is_some(){
@@ -1408,6 +1447,7 @@ impl Host {
         }else{self.frame_write.lock().unwrap()};
             {let _gate=self.attachment_gate.lock().unwrap();let mut i=self.inner.0.lock().unwrap();self.check_bound(&i,&bound)?;
                 if !i.pending.contains_key(&id.to_string()){return Err("request no longer pending before actual source write".into());}
+                Self::check_send_admitted(&i,method)?;
                 if expected_generation.is_some()&&matches!(method,"turn/start"|"turn/interrupt"|"turn/steer"){Self::check_conversation_request_excluding(&i,method,&frame["params"],Some(&json!(id)))?;}
                 if let Some(original)=oauth_cancel{
                     let state=Self::oauth_scope(&i,original)?;
@@ -1762,7 +1802,7 @@ impl Host {
         if history.generation()!=generation||history.home()!=dispatch.query.home()||i.generation!=*generation||i.state!="ready"||i.server_requests.is_closed(generation) {return Err("Continue admission belongs to foreign/stale/closed generation".into());}
         let native=&candidate["native"];if !matches!(native["status"]["type"].as_str(),Some("idle"|"active"))||native["canAcceptDirectInput"]==false||native["id"]!=dispatch.query.params()["threadId"] {return Err("native thread cannot accept direct input".into());}
         if i.threads.iter().any(|t|t["generation"]==*generation&&t["threadId"]==native["id"]) {return Err("thread already operationally admitted in generation".into());}
-        let result=&response["result"];let row=json!({"generation":generation,"threadId":native["id"],"status":native["status"],"model":result.get("model"),"modelProvider":result.get("modelProvider"),"cwd":result.get("cwd"),"supplierStanding":i.supplier_standing,"resumeRequestRef":dispatch.source.request_ref,"nativeResumeObserved":true,"appRole":{"standing":"unknown"},"networkDisclosure":network_disclosure()});i.threads.push(row.clone());Ok(row)
+        let result=&response["result"];let row=json!({"generation":generation,"threadId":native["id"],"status":native["status"],"model":result.get("model"),"modelProvider":result.get("modelProvider"),"reasoningEffort":result.get("reasoningEffort"),"cwd":result.get("cwd"),"supplierStanding":i.supplier_standing,"resumeRequestRef":dispatch.source.request_ref,"nativeResumeObserved":true,"appRole":{"standing":"unknown"},"networkDisclosure":network_disclosure()});i.threads.push(row.clone());Ok(row)
     }
 
     pub fn thread_start_with_guidance_dispatch(&self, generation: &Value, cwd: &str, model: &str, model_provider: &str, guidance: &str) -> Result<SourceRequest,String> {
@@ -1780,6 +1820,45 @@ impl Host {
         self.insert_start_response(request.generation(),&request.frame["params"],&response,true)?;
         {let mut i=self.inner.0.lock().unwrap();if i.generation==request.generation&&!i.server_requests.is_closed(&request.generation){if let Some(offer)=i.cce_offer.as_mut(){if let Some(thread)=response["result"]["thread"]["id"].as_str(){offer.native_admitted(request,thread);}}}}
         Ok(response)
+    }
+    /// ROLE §3.3 F-1 / NIR CA-4: a same-role copy. `thread/fork` carries the
+    /// thread id and no instructions, model or settings (ROLE §5.2; B-16), so
+    /// the fork keeps the source's guidance and the source is unchanged. It also
+    /// sets `deferGoalContinuation` (0.160.0 ThreadForkParams): a source with an
+    /// active goal would otherwise start an automatic continuation turn in the
+    /// fork that the person did not start, per the 0.160.0 generated schema
+    /// description; not observed. This suppresses that turn only; it is not
+    /// guidance.
+    pub fn thread_fork_dispatch(&self, generation: &Value, source_thread: &str) -> Result<SourceRequest,String> {
+        crate::recovery::generation_ref(generation)?;
+        {
+            let i=self.inner.0.lock().unwrap();
+            if i.generation!=*generation||i.state!="ready"||i.server_requests.is_closed(generation) {return Err("refused-not-sent: the conversation belongs to a closed, replaced or not-ready Codex generation".into());}
+            if !i.threads.iter().any(|t|t["generation"]==*generation&&t["threadId"]==source_thread) {return Err("refused-not-sent: choose a current conversation of this Codex generation to fork".into());}
+        }
+        let params=json!({"threadId":source_thread,"deferGoalContinuation":true});
+        crate::role_supply::check_role_inputs("thread/fork",&params)?;
+        Self::validate_native_result("ThreadForkParams",&params)?;
+        self.request_begin_scoped("thread/fork",params,json!({"kind":"person-directed"}),false,Some(generation))
+    }
+    /// Admits the forked conversation operationally from the correlated
+    /// `thread/fork` result only. The fork must be a new thread reporting the
+    /// source as `forkedFromId`; otherwise nothing is admitted.
+    pub fn thread_fork_finish(&self, request: &SourceRequest) -> Result<Value,String> {
+        self.check_source(request)?;let evidence=request.evidence();
+        if request.frame["method"]!="thread/fork"||evidence["writeResult"]!="written"||evidence["outcome"]!="response-observed-result"||evidence["sentFrame"].is_null() {return Err(format!("thread/fork has no successful write and correlated result (outcome {}); nothing admitted, no automatic retry",evidence["outcome"]));}
+        let response=evidence["response"].clone();
+        if response.get("id")!=Some(request.request_id())||response.get("error").is_some()||response.get("result").is_none() {return Err("thread/fork response is uncorrelated or failed; nothing admitted".into());}
+        Self::validate_native_result("ThreadForkResponse",&response["result"])?;
+        let source=&request.frame["params"]["threadId"];let t=&response["result"]["thread"];
+        if t["id"]==*source||t["forkedFromId"]!=*source {return Err("thread/fork did not report a new thread forked from the source; nothing admitted".into());}
+        let generation=request.generation();
+        let mut i=self.inner.0.lock().unwrap();
+        if i.generation!=*generation||i.state!="ready"||i.server_requests.is_closed(generation) {return Err("thread/fork result belongs to a closed or replaced generation; native response retained".into());}
+        if i.threads.iter().any(|e|e["generation"]==*generation&&e["threadId"]==t["id"]) {return Err("forked thread already operationally admitted in generation".into());}
+        let standing=i.supplier_standing.clone();let result=&response["result"];
+        let row=json!({"generation":generation,"threadId":t.get("id"),"status":t.get("status"),"model":result.get("model"),"modelProvider":result.get("modelProvider"),"reasoningEffort":result.get("reasoningEffort"),"cwd":result.get("cwd"),"supplierStanding":standing,"forkedFrom":{"threadId":source,"forkRequestRef":request.request_ref,"reportedForkedFromId":t.get("forkedFromId")},"requestedDestination":{"source":"inherited from the forked conversation; none chosen at fork"},"reportedDestination":{"scope":"thread","model":result.get("model"),"modelProvider":result.get("modelProvider")},"networkDisclosure":network_disclosure()});
+        i.threads.push(row.clone());Ok(row)
     }
     #[cfg(test)]
     fn cce_thread_start(&self,generation:&Value,cwd:&str,composition:&crate::role_supply::Composition,supply_ref:&str)->Result<SourceRequest,String>{
@@ -1864,7 +1943,7 @@ impl Host {
         Self::validate_native_result(if expected_turn.is_some(){"TurnSteerParams"}else{"TurnStartParams"},&params)?;
         let(tx,rx)=channel();let(source,client,pipe_identity,pipe_epoch)={
             let mut i=self.inner.0.lock().unwrap();if i.generation!=*generation||i.state!="ready"||i.server_requests.is_closed(generation){return Err("attachment preparation scope is stale/closed/non-ready".into());}
-            Self::check_conversation_request(&i,method,&params)?;let pipe=self.stdin.lock().unwrap();let identity=Self::pipe_identity(pipe.as_ref().ok_or("actual source pipe unavailable; nothing reserved")?)?;drop(pipe);
+            Self::check_send_admitted(&i,method)?;Self::check_conversation_request(&i,method,&params)?;let pipe=self.stdin.lock().unwrap();let identity=Self::pipe_identity(pipe.as_ref().ok_or("actual source pipe unavailable; nothing reserved")?)?;drop(pipe);
             i.next_id+=1;let id=i.next_id;let frame=json!({"jsonrpc":"2.0","id":id,"method":method,"params":params});
             let source=SourceRequest{source:Arc::downgrade(&self.inner),generation:generation.clone(),frame,request_ref:opaque_id("host-attachment-request:")?,receiver:Arc::new(Mutex::new(rx))};
             let mut association=json!({"submissionRef":submission,"threadId":thread,"supplyRefs":list.supply_refs()});if let Some(turn)=expected_turn{association["expectedTurnId"]=json!(turn);}
@@ -1894,6 +1973,7 @@ impl Host {
             prepared.custody.check_prepared_leased(&namespace_lease,&prepared.list.supply_records(),&prepared.client)?;
             let gate=self.attachment_gate.lock().unwrap();let mut state=prepared.state.lock().unwrap();if *state!="validating"{return Err("attachment cancelled before commit; nothing sent".into());}
             let mut i=self.inner.0.lock().unwrap();let generation=prepared.source.generation();if i.generation!=*generation||i.state!="ready"||i.server_requests.is_closed(generation)||i.attachment_pipe_epoch!=prepared.pipe_epoch{return Err("attachment generation/pipe drift before commit; nothing sent".into());}
+            Self::check_send_admitted(&i,frame["method"].as_str().unwrap())?;
             Self::check_conversation_request(&i,frame["method"].as_str().unwrap(),&frame["params"])?;
             let mut bound=self.capture_pipe(&i)?;if bound.identity!=prepared.pipe_identity{return Err("actual source pipe changed; nothing sent".into());}
             let key=prepared.source.request_id().to_string();let index=i.source_requests[&key].index;let sender=i.source_requests.get_mut(&key).unwrap().reserved_sender.take().ok_or("reserved RPC already consumed")?;
@@ -1991,7 +2071,7 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
         if i.generation!=*generation||i.server_requests.is_closed(generation) {return Err("thread/start response belongs to a closed or replaced generation; native response retained in journal".into());}
         if no_duplicate&&i.state!="ready" {return Err("thread/start result is not ready for operational admission".into());}
         if no_duplicate&&i.threads.iter().any(|e|e["generation"]==*generation&&e["threadId"]==t["id"]) {return Err("thread already operationally admitted in generation".into());}
-        let standing=i.supplier_standing.clone();i.threads.push(json!({"generation":generation,"threadId":t.get("id"),"status":t.get("status"),"model":response["result"].get("model"),"modelProvider":response["result"].get("modelProvider"),"cwd":response["result"].get("cwd"),"supplierStanding":standing,"requestedDestination":{"source":"person-selected","model":params["model"],"modelProvider":params["modelProvider"]},"reportedDestination":{"scope":"thread","model":response["result"].get("model"),"modelProvider":response["result"].get("modelProvider")},"networkDisclosure":network_disclosure()}));Ok(())
+        let standing=i.supplier_standing.clone();i.threads.push(json!({"generation":generation,"threadId":t.get("id"),"status":t.get("status"),"model":response["result"].get("model"),"modelProvider":response["result"].get("modelProvider"),"reasoningEffort":response["result"].get("reasoningEffort"),"cwd":response["result"].get("cwd"),"supplierStanding":standing,"requestedDestination":{"source":"person-selected","model":params["model"],"modelProvider":params["modelProvider"]},"reportedDestination":{"scope":"thread","model":response["result"].get("model"),"modelProvider":response["result"].get("modelProvider")},"networkDisclosure":network_disclosure()}));Ok(())
     }
 
     /// Plain text only, with complete native text input; all thread settings
@@ -2063,6 +2143,28 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
         self.conversation_operation("turn/interrupt", generation,
             json!({"threadId":thread_id,"turnId":turn_id}), Duration::from_secs(20))
     }
+    /// The same request, written without waiting for its acknowledgment, so
+    /// Stop Codex can write every interrupt before waiting on one shared
+    /// deadline (RECOVERY SR-01, SR-10).
+    pub fn turn_interrupt_begin(&self, generation: &Value, thread_id: &str, turn_id: &str) -> Result<SourceRequest, String> {
+        if thread_id.is_empty() || turn_id.is_empty() { return Err("thread and turn identity required".into()); }
+        crate::recovery::generation_ref(generation)?;
+        self.request_begin_scoped("turn/interrupt", json!({"threadId":thread_id,"turnId":turn_id}), json!({"kind":"person-directed"}), false, Some(generation))
+    }
+    /// Waits up to `wait` for that interrupt's acknowledgment, read as
+    /// `turn_interrupt` reads it. When the wait ends the request stays
+    /// pending; nothing is resent. An acknowledgment is not the turn's end.
+    pub fn turn_interrupt_acknowledgment(&self, source: &SourceRequest, wait: Duration) -> Result<Value, String> {
+        if source.frame["method"] != "turn/interrupt" { return Err("not an interrupt request".into()); }
+        let response = self.wait_source_response(source, wait)?;
+        let i = self.inner.0.lock().unwrap();
+        if i.generation != source.generation || i.server_requests.is_closed(&source.generation) || i.state != "ready" {
+            return Err("turn/interrupt response belongs to closed/replaced generation; native response retained in journal".into());
+        }
+        if let Some(error) = response.get("error") { return Err(format!("turn/interrupt native error: {error}")); }
+        if !response.get("result").map(Value::is_object).unwrap_or(false) { return Err("turn/interrupt has no native acknowledgment object".into()); }
+        Ok(response)
+    }
 
     /// Native expected-turn precondition, never a fallback start or settings edit.
     pub fn turn_steer_text(&self, generation: &Value, thread_id: &str, expected_live_turn: &str, text: &str) -> Result<Value, String> {
@@ -2074,6 +2176,70 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
         let mut params = Self::text_turn_params(thread_id, text)?;
         params["expectedTurnId"] = json!(expected_turn);
         Ok(params)
+    }
+
+    /// EX-3: the plan-mode element is offered only when this generation declared
+    /// `experimentalApi` and Codex listed a `plan` preset for it. Experimental.
+    fn plan_mode_availability(i: &Inner) -> Value {
+        let declared = i.declared_capabilities.as_ref().and_then(|c| c["experimentalApi"].as_bool()) == Some(true);
+        let read = &i.collaboration_modes;
+        let current = !read.is_null() && read["generation"] == i.generation;
+        let plan = current && read["result"]["data"].as_array().into_iter().flatten().any(|m| m["mode"] == "plan");
+        let (state, reason) = if !declared { ("not-offered", "experimental API not declared for this Codex connection") }
+            else if !current { ("not-checked", "collaboration modes not read for this Codex generation") }
+            else if !plan { ("not-offered", "Codex listed no plan preset") }
+            else { ("offered", "Codex listed a plan preset; experimental") };
+        json!({"state":state,"reason":reason,"experimental":true,"presets":if current {read["result"]["data"].clone()} else {Value::Null}})
+    }
+
+    /// Reads Codex's collaboration-mode presets for the current generation.
+    /// A read only; it sets no mode and changes no thread.
+    pub fn collaboration_modes_read(&self, generation: &Value) -> Result<Value, String> {
+        crate::recovery::generation_ref(generation)?;
+        let response = self.request_inner_scoped("collaborationMode/list", json!({}), json!({"kind":"person-directed"}), Duration::from_secs(10), false, Some(generation))?;
+        let mut i = self.inner.0.lock().unwrap();
+        if i.generation != *generation || i.server_requests.is_closed(generation) { return Err("collaborationMode/list response belongs to a closed or replaced generation".into()); }
+        if let Some(error) = response.get("error") { return Err(format!("collaborationMode/list native error: {error}")); }
+        let result = response.get("result").cloned().ok_or("collaborationMode/list has no result")?;
+        Self::validate_native_result("CollaborationModeListResponse", &result)?;
+        i.collaboration_modes = json!({"generation":generation,"result":result});
+        Ok(Self::plan_mode_availability(&i))
+    }
+
+    /// PS-1/PS-2/PS-5: plain text with an explicit collaboration mode. The mode
+    /// settings carry the conversation's reported model and reasoning effort
+    /// (null when Codex reported none) and null developer instructions, so
+    /// Codex's built-in mode text applies and role guidance is not set aside.
+    /// Codex keeps the mode on later turns until another is sent.
+    pub fn turn_start_text_mode(&self, generation: &Value, thread_id: &str, text: &str, mode: &str) -> Result<Value, String> {
+        if !matches!(mode, "plan" | "default") { return Err("unknown collaboration mode".into()); }
+        let params = {
+            let i = self.inner.0.lock().unwrap();
+            if i.generation != *generation { return Err("refused-not-sent: generation changed".into()); }
+            if Self::plan_mode_availability(&i)["state"] != "offered" { return Err(format!("not started — plan mode not offered ({})", Self::plan_mode_availability(&i)["reason"].as_str().unwrap_or(""))); }
+            let thread = i.threads.iter().find(|t| t["generation"] == *generation && t["threadId"] == thread_id);
+            let model = thread.and_then(|t| t["model"].as_str()).filter(|m| !m.is_empty()).map(str::to_owned);
+            let Some(model) = model else { return Err("not started — no model selected".into()); };
+            let effort = thread.map(|t| t["reasoningEffort"].clone()).filter(|e| e.as_str().is_some_and(|s| !s.is_empty())).unwrap_or(Value::Null);
+            let mut params = Self::text_turn_params(thread_id, text)?;
+            params["collaborationMode"] = json!({"mode":mode,"settings":{"model":model,"reasoning_effort":effort,"developer_instructions":null}});
+            Self::validate_native_result("TurnStartParams", &params)?;
+            params
+        };
+        let settings = params["collaborationMode"]["settings"].clone();
+        let response = self.conversation_operation("turn/start", generation, params, Duration::from_secs(20));
+        if let Err(e) = &response {
+            // Refused before any write: no mode was requested.
+            if e.contains("refused-not-sent") || e.contains("conversation-not-loaded") { return response; }
+        }
+        let mut i = self.inner.0.lock().unwrap();
+        let outcome = match &response {
+            Ok(_) => "turn/start result received; Codex keeps this mode on later turns until another mode is sent".to_string(),
+            Err(e) => format!("outcome not established ({e}); the conversation's current mode is unknown"),
+        };
+        i.requested_modes.retain(|r| !(r["generation"] == *generation && r["threadId"] == thread_id));
+        i.requested_modes.push(json!({"generation":generation,"threadId":thread_id,"mode":mode,"settings":settings,"standing":outcome}));
+        response
     }
 
     fn text_turn_params(thread_id: &str, text: &str) -> Result<Value, String> {
@@ -2769,6 +2935,43 @@ mod conversation_transport_tests {
         assert!(Host::text_turn_params("",text).is_err());assert!(Host::text_turn_params("thread","").is_err());
     }
     #[test]
+    fn plan_mode_is_offered_only_after_a_plan_preset_and_sends_the_conversation_model() {
+        let host=host();
+        assert_eq!(host.snapshot()["planMode"]["state"],"not-offered");
+        assert!(host.turn_start_text_mode(&g(),"thread","plan it","plan").unwrap_err().contains("not offered"));
+        assert!(host.client_requests().is_empty(),"refused before any send");
+        host.inner.0.lock().unwrap().declared_capabilities=Some(json!({"experimentalApi":true}));
+        assert_eq!(host.snapshot()["planMode"]["state"],"not-checked");
+        let (no_plan,outbound)=exchange(&host,Some(json!({"result":{"data":[{"name":"Default","mode":"default"}]}})),vec![],||host.collaboration_modes_read(&g()));
+        assert_eq!(outbound["method"],"collaborationMode/list");assert_eq!(outbound["params"],json!({}));
+        assert_eq!(no_plan.unwrap()["state"],"not-offered");
+        let (offered,_)=exchange(&host,Some(json!({"result":{"data":[{"name":"Plan","mode":"plan"},{"name":"Default","mode":"default"}]}})),vec![],||host.collaboration_modes_read(&g()));
+        assert_eq!(offered.unwrap()["state"],"offered");
+        assert!(host.turn_start_text_mode(&g(),"thread","x","other").is_err());
+        let (sent,outbound)=exchange(&host,Some(json!({"result":{"turn":turn("inProgress")}})),vec![],||host.turn_start_text_mode(&g(),"thread","plan it","plan"));
+        assert!(sent.is_ok());
+        assert_eq!(outbound["method"],"turn/start");
+        assert_eq!(outbound["params"]["input"],Host::text_turn_params("thread","plan it").unwrap()["input"]);
+        assert_eq!(outbound["params"]["collaborationMode"],json!({"mode":"plan","settings":{"model":"selected","reasoning_effort":null,"developer_instructions":null}}));
+        assert_eq!(host.snapshot()["requestedModes"][0]["mode"],"plan");
+        event(&host,"completed");
+        let (_,outbound)=exchange(&host,Some(json!({"result":{"turn":{"id":"turn2","status":"inProgress","items":[],"itemsView":"full"}}})),vec![],||host.turn_start_text_mode(&g(),"thread","carry it out","default"));
+        assert_eq!(outbound["params"]["collaborationMode"]["mode"],"default");
+        assert_eq!(host.snapshot()["requestedModes"].as_array().unwrap().len(),1,"one current requested mode per conversation");
+        assert_eq!(host.snapshot()["requestedModes"][0]["mode"],"default");
+        host.inner.0.lock().unwrap().threads.push(json!({"generation":g(),"threadId":"no-model"}));
+        assert!(host.turn_start_text_mode(&g(),"no-model","x","plan").unwrap_err().contains("no model selected"));
+        // The conversation's reported effort is kept, not reset.
+        host.inner.0.lock().unwrap().threads.push(json!({"generation":g(),"threadId":"effort","model":"m","reasoningEffort":"high"}));
+        let (refused,outbound)=exchange(&host,Some(json!({"error":{"code":-32600,"message":"invented refusal"}})),vec![],||host.turn_start_text_mode(&g(),"effort","x","plan"));
+        assert_eq!(outbound["params"]["collaborationMode"]["settings"]["reasoning_effort"],"high");
+        assert!(refused.is_err());
+        let requested=host.snapshot()["requestedModes"].as_array().unwrap().iter().find(|r|r["threadId"]=="effort").unwrap().clone();
+        assert!(requested["standing"].as_str().unwrap().contains("current mode is unknown"),"a failed mode send never shows the mode as in force");
+        assert!(host.turn_start_text_mode(&g(),"unknown-thread","x","plan").is_err());
+        assert!(host.snapshot()["requestedModes"].as_array().unwrap().iter().all(|r|r["threadId"]!="unknown-thread"));
+    }
+    #[test]
     fn actual_text_pipe_response_and_interrupt_ack_do_not_invent_turn_end_or_model_witness() {
         let host=host();let text="exact text\n\né / 家";
         let (result,outbound)=exchange(&host,Some(json!({"result":{"turn":turn("inProgress")}})),vec![],||host.turn_start_text(&g(),"thread",text));assert_eq!(result.unwrap()["result"]["turn"],turn("inProgress"));assert_eq!(outbound["method"],"turn/start");assert_eq!(outbound["params"],Host::text_turn_params("thread",text).unwrap());let snapshot=host.snapshot();assert_eq!(snapshot["conversationTurns"][0]["nativeTurn"]["status"],"inProgress");assert_eq!(snapshot["modelTurnExercised"],Value::Null);assert_eq!(snapshot["modelTurnEvidence"]["protocolRequests"][0]["outcome"],"response-observed-result");
@@ -3061,6 +3264,39 @@ mod conversation_transport_tests {
     #[test]
     fn shared_attachment_submit_actual_context_and_capabilities(){
         use crate::recovery::{ExplicitAppProjectContext as Context,AppProjectSource};for known in [false,true]{let(host,g,root,custody,_)=context_fixture();let(state,owner,revision,order)=shared_attachment_selected(&root);let context=if known{host.observe_conversation_project(&g,"thread",Some("H-acct"),&Context::known("explicit App P",AppProjectSource::ConfiguredDirectory).unwrap()).unwrap();Context::known("frozen current Root Q",AppProjectSource::OpenedDirectory).unwrap()}else{Context::unknown()};let home=if known{Some("H-acct")}else{None};let result=shared_attachment_exchange(&host,&g,json!({"result":{"turn":complete_turn()}}),||crate::runtime_session::submit_selected_attachments(&state,&host,Arc::clone(&custody),&owner,revision,&order,&g,"thread",None,"explicit ordinary text without WR prefix",context.clone(),home)).unwrap();assert_eq!(result["sourceWriteConfirmed"],true);assert_eq!(result["nativeTurnRef"]["threadId"],"thread");let view=state.lock().unwrap().as_ref().unwrap().snapshot();assert_eq!(view["submissions"].as_array().unwrap().len(),1);let binding=&view["submissions"][0]["contextBinding"];if known{assert_eq!(binding["historicalProject"],"explicit App P");assert_eq!(binding["currentSubmissionProject"],"frozen current Root Q");assert_eq!(binding["persistence"],"durable App metadata");}else{assert!(binding["indexSnapshot"].is_null());assert_eq!(binding["persistence"],"memory-only");assert!(binding["limit"].as_str().unwrap().contains("cold lookup unavailable"));}let count=host.client_requests().len();state.lock().unwrap().as_mut().unwrap().refresh_submissions(&host,&custody);assert_eq!(host.client_requests().len(),count);std::fs::remove_dir_all(root).unwrap();}
+    }
+    /// WR TT-4 through the real attachment submit path: a trial pointer only
+    /// after an acknowledged send, none after a native refusal.
+    #[test]
+    fn draft_trial_pointer_is_kept_only_after_an_acknowledged_attachment_send(){
+        use crate::recovery::ExplicitAppProjectContext as Context;
+        for acknowledged in [true,false]{
+            let(host,g,root,custody,_)=context_fixture();
+            let library=root.join("lib");let draft=library.join(".chirality/workflow-drafts/solo-draft");std::fs::create_dir_all(&draft).unwrap();
+            std::fs::write(draft.join("WORKFLOW.md"),"---\nname: solo-draft\n---\n# Solo\n").unwrap();
+            let workflows=Mutex::new(crate::runtime_session::WorkflowRootSession::default());
+            {let mut w=workflows.lock().unwrap();w.set_app_user_data(root.join("app-data"));w.open_library(library.clone(),"project",None,Arc::new(Mutex::new(None))).unwrap();w.observe_drafts(&json!([])).unwrap();}
+            let state=Mutex::new(crate::runtime_session::AttachmentSelectionSession::new(None));
+            let owner=state.lock().unwrap().as_ref().unwrap().snapshot()["ownerRef"].as_str().unwrap().to_owned();
+            let sources=workflows.lock().unwrap().draft_trial_sources("solo-draft").unwrap();
+            let view=state.lock().unwrap().as_mut().unwrap().prefill_draft(&owner,0,sources).unwrap();
+            let order:Vec<String>=view["selections"].as_array().unwrap().iter().map(|r|r["selection"]["selectionRef"].as_str().unwrap().to_owned()).collect();
+            assert_eq!(order.len(),1);
+            let response=if acknowledged{json!({"result":{"turn":complete_turn()}})}else{json!({"error":{"code":-32600,"message":"synthetic refusal"}})};
+            let result=shared_attachment_exchange(&host,&g,response,||crate::runtime_session::submit_attachments_with_draft_trials(&state,&workflows,&host,Ok(Arc::clone(&custody)),&owner,1,&order,&g,"thread",None,"please try this method",Context::unknown(),None));
+            let pointers=crate::workflow_workspace::registration::drafts::TrialPointers::open(&root.join("app-data"));
+            let key=json!({"draft_location":"project","draft_root":library.join(".chirality/workflow-drafts").display().to_string(),"name":"solo-draft"});
+            if acknowledged{
+                let result=result.unwrap();assert_eq!(result["trialPointers"][0]["conversation"],"thread");
+                let kept=pointers.for_draft(&key);assert_eq!(kept.len(),1,"one pointer, kept in the App data folder");
+                assert_eq!(kept[0]["standing"],"draft tried in conversation; not a run of any workflow identity");
+                assert_eq!(kept[0]["content"]["value"],crate::workflow_workspace::Snapshot::capture(&draft).unwrap().revision());
+                assert!(workflows.lock().unwrap().snapshot()["runs"].as_array().unwrap().is_empty(),"a trial opens no run");
+            }else{
+                assert!(result.is_err());assert!(pointers.for_draft(&key).is_empty(),"no pointer after a refused send");
+            }
+            std::fs::remove_dir_all(root).unwrap();
+        }
     }
     #[test]
     fn shared_attachment_submit_drift_stale_source_and_native_error_preserve_no_retry(){

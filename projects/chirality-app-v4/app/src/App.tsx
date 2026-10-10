@@ -5,77 +5,19 @@ import { ConnectorRoutePanel, emptyRouteRead, routeReadTransition, type RouteRea
 // confirmation is the host's (AAC §6.2 P-2). Views per DECISION_VIEW.md §4.
 import { useCallback, useEffect, useRef, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
+import { CodexProcessControls, stopLabel } from "./CodexControls";
+import { ContinueAsPanel, RoleChoice, RoleHeader, SupplyStatus } from "./ConversationRoles";
+import { RunPanel, SelectedWorkflow } from "./RunPanel";
 import { FileActPanel } from "./FileActPanel";
+import { NativeActivityView } from "./NativeActivity";
+import { PlanModeControl } from "./PlanMode";
+import { NativeRequestCard, WaitingRequestsIndicator, answerable, requestThread } from "./RequestCards";
+import { RunOffer, type RunAct } from "./RunOffers";
 import { RecoveryCustodyPanel } from "./RecoveryCustodyPanel";
+import { WorkflowDraftsView } from "./WorkflowDrafts";
 import { DIGEST_LIMIT, digestComparison, readablePaths, reviewDigest, suppliedSummary, type ReviewDigestView } from "./presentation";
 
 type Json = any; // eslint-disable-line @typescript-eslint/no-explicit-any
-
-// Request-local drafts are disposable. Secret content is never echoed or saved.
-function NativeRequestCard({ request, answer }: { request: Json; answer: (r: Json, a: Json) => Promise<void> }) {
-  const [drafts, setDrafts] = useState<Record<string, string>>({});
-  const [scope, setScope] = useState("turn");
-  const [content, setContent] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
-  const p = request.nativeParameters ?? {};
-  const method = request.method;
-  const send = async (value: Json) => {
-    setBusy(true); setError("");
-    // Remove drafts from the rendered control before crossing the IPC boundary.
-    setDrafts({}); setContent("");
-    try { await answer(request, value); } catch (e) { setError(String(e)); }
-    finally { setBusy(false); }
-  };
-  const button = (label: string, value: Json) => <button key={JSON.stringify(value)} disabled={busy} onClick={() => send(value)}>{label}</button>;
-  const modern = method === "item/commandExecution/requestApproval" || method === "item/fileChange/requestApproval";
-  const legacy = method === "execCommandApproval" || method === "applyPatchApproval";
-  const formMode = ["form", "openai/form", "openaiForm"].includes(p.mode);
-  const elicitationAcceptSupported = formMode || p.mode === "url";
-  let decisions: Json[] = p.availableDecisions ?? ["accept", "acceptForSession", "decline", "cancel"];
-  if (modern && !p.availableDecisions && method === "item/commandExecution/requestApproval") {
-    if (p.proposedExecpolicyAmendment) decisions = [...decisions, { acceptWithExecpolicyAmendment: { execpolicy_amendment: p.proposedExecpolicyAmendment } }];
-    for (const amendment of p.proposedNetworkPolicyAmendments ?? []) decisions = [...decisions, { applyNetworkPolicyAmendment: { network_policy_amendment: amendment } }];
-  }
-  return <article style={{ borderTop: "1px solid #ccc", padding: 8 }}>
-    <h3>{method} · {JSON.stringify(request.requestIdentity)}</h3>
-    <a href="#file-acts">Open standing App-file act facility (no request answer or prefilled act)</a>
-    <p>State: {request.state} · reply: {request.replyWriteResult} · acknowledgment: {request.acknowledgmentObservation?.status ?? "not-observed"}</p>
-    {request.supplierResolution && <p>Supplier resolution: {JSON.stringify(request.supplierResolution)}</p>}
-    {request.settlement && <p>Settlement origin: {JSON.stringify(request.settlement.origin)} · {request.settlement.kind}</p>}
-    <details><summary>Native request parameters and owning generation</summary><pre>{JSON.stringify({ generation: request.generation, parameters: p }, null, 2)}</pre></details>
-    {request.state === "outstanding" && request.classification === "known-answerable" && request.originClass !== "named-service" && <div>
-      {modern && decisions.map((decision: Json) => button(JSON.stringify(decision), { decision }))}
-      {legacy && <>{["approved", "approved_for_session", "abort"].map(decision => button(decision, { decision }))}{button("denied", { decision: { denied: { rejection: "" } } })}</>}
-      {method === "item/permissions/requestApproval" && <>
-        <label>Grant scope <select value={scope} onChange={e => setScope(e.target.value)}><option value="turn">turn</option><option value="session">session</option></select></label>
-        {button("Grant requested permissions", { permissions: p.permissions, scope })}{button("Grant nothing", { permissions: {}, scope })}
-        <label>Partial permissions (native JSON) <input value={content} onChange={e => setContent(e.target.value)} /></label>
-        <button disabled={busy || !content} onClick={() => { try { void send({ permissions: JSON.parse(content), scope }); } catch { setError("Invalid permission JSON"); } }}>Send partial grant…</button>
-      </>}
-      {method === "item/tool/requestUserInput" && <>
-        {(p.questions ?? []).map((q: Json) => <div key={q.id}><p>{q.header}: {q.question}</p>
-          {(q.options ?? []).map((o: Json) => <button disabled={busy} key={o.label} onClick={() => setDrafts(d => ({ ...d, [q.id]: o.label }))}>{o.label} · {o.description}</button>)}
-          {q.isOther && <label>Answer <input autoComplete="off" type={q.isSecret ? "password" : "text"} value={drafts[q.id] ?? ""} onChange={e => setDrafts(d => ({ ...d, [q.id]: e.target.value }))} /></label>}
-          <button disabled={busy} onClick={() => setDrafts(d => { const next = { ...d }; delete next[q.id]; return next; })}>Leave unanswered</button>
-          {!q.isOther && <p>Selected: {q.isSecret ? (drafts[q.id] ? "[masked]" : "—") : drafts[q.id] ?? "—"}</p>}
-        </div>)}
-        <button disabled={busy} onClick={() => send({ answers: Object.fromEntries(Object.entries(drafts).map(([id, value]) => [id, { answers: [value] }])) })}>Send current question answers…</button>
-        <p>Unanswered questions are omitted; entered empty answers are preserved.</p>
-        {button("Decline question input", { answers: {} })}
-      </>}
-      {method === "mcpServer/elicitation/request" && <>
-        <p>Native elicitation mode: {p.mode}. Requested schema is available above.</p>
-        {formMode && <label>Native form content (JSON, masked) <input type="password" autoComplete="off" value={content} onChange={e => setContent(e.target.value)} /></label>}
-        {elicitationAcceptSupported && <button disabled={busy || (formMode && !content)} onClick={() => { try { void send({ action: "accept", content: formMode ? JSON.parse(content) : null, _meta: null }); } catch { setError("Invalid native form JSON"); } }}>accept…</button>}
-        {!elicitationAcceptSupported && <p>Acceptance is not supported for this mode in this App path. Device verification requires actual device proof; this App supplies none.</p>}
-        {button("decline", { action: "decline", content: null, _meta: null })}{button("cancel", { action: "cancel", content: null, _meta: null })}
-      </>}
-      <p>Sending opens a native confirmation. Closing this card leaves the request waiting.</p>
-    </div>}
-    {error && <p role="alert">{error}</p>}
-  </article>;
-}
 
 export function SteeringControl({ target, reason, ready, busy, text, submit }: { target: Json; reason?: string; ready: boolean; busy: boolean; text: string; submit: () => void }) {
   return <div>
@@ -86,11 +28,19 @@ export function SteeringControl({ target, reason, ready, busy, text, submit }: {
   </div>;
 }
 
-function ConversationPanel({ host, send, steer, submitAttachments, interrupt }: { host: Json; submitAttachments: (generation: Json, thread: string, expected: string | null, text: string, owner: string, revision: number, refs: string[]) => Promise<void>; send: (generation: Json, thread: string, text: string) => Promise<void>; steer: (generation: Json, thread: string, expected: string, text: string) => Promise<void>; interrupt: (generation: Json, thread: string, turn: string) => Promise<void> }) {
-  const [threadKey, setThreadKey] = useState<string>("");
+// The access entries a new conversation may use in the active home.
+const startEntries = (host: Json) => host?.homeRouting?.activeModeHomeClass === "api-key"
+  ? [{ value: "api-key", label: "API key in separate configured key home" }]
+  : [{ value: "chatgpt-account", label: "ChatGPT account in configured account home" }, { value: "local-provider", label: "Configured local provider" }];
+
+function ConversationPanel({ host, threadKey, setThreadKey, answer, runAct, send, steer, submitAttachments, interrupt, checkPlanMode, codexBusy }: { codexBusy: boolean; host: Json; threadKey: string; setThreadKey: (key: string) => void; answer: (r: Json, a: Json) => Promise<void>; runAct: RunAct; checkPlanMode: (generation: Json) => Promise<void>; submitAttachments: (generation: Json, thread: string, expected: string | null, text: string, owner: string, revision: number, refs: string[]) => Promise<void>; send: (generation: Json, thread: string, text: string, mode?: "plan" | "default") => Promise<void>; steer: (generation: Json, thread: string, expected: string, text: string) => Promise<void>; interrupt: (generation: Json, thread: string, turn: string) => Promise<void> }) {
   const [turnId, setTurnId] = useState<string>("");
+  const [offerBusy, setOfferBusy] = useState(false);
   const [text, setText] = useState<string>("");
-  const [busy, setBusy] = useState<string>("");
+  const [ownBusy, setBusy] = useState<string>("");
+  // While Start/Stop/Restart Codex runs, no text, steer or attachment send is offered
+  // (the host also refuses new turns once a stop is confirmed).
+  const busy = ownBusy || (codexBusy ? "Stop or Restart Codex in progress" : "");
   const [error, setError] = useState<string>("");
   const generationKey = JSON.stringify(host?.generation);
   const currentThreads = (host?.threads ?? []).filter((thread: Json) => JSON.stringify(thread.generation) === generationKey);
@@ -100,10 +50,10 @@ function ConversationPanel({ host, send, steer, submitAttachments, interrupt }: 
   const steering = (host?.steeringTargets ?? []).find((row: Json) => selected && JSON.stringify(row.generation) === generationKey && row.threadId === selected.threadId);
   const steeringTarget = steering?.target && JSON.stringify(steering.target.generation) === generationKey && steering.target.threadId === selected?.threadId ? steering.target : null;
   const alreadyRequested = (host?.turnInterruptRequests ?? []).some((request: Json) => live && JSON.stringify(request.binding?.generation) === generationKey && request.binding?.threadId === live.threadId && request.binding?.turnId === live.turnId && (request.clientRequest?.outcome === "response-observed-result" || (request.clientRequest?.outcome === "pending" && request.clientRequest?.writeResult === "written")));
-  const sendText = async () => {
+  const sendText = async (mode?: "plan" | "default") => {
     if (!selected || !text || busy) return;
-    setBusy("sending"); setError("");
-    try { await send(selected.generation, selected.threadId, text); setText(""); }
+    setBusy(mode ? `sending in ${mode} mode` : "sending"); setError("");
+    try { await send(selected.generation, selected.threadId, text, mode); setText(""); }
     catch (e) { setError(String(e)); }
     finally { setBusy(""); }
   };
@@ -125,23 +75,56 @@ function ConversationPanel({ host, send, steer, submitAttachments, interrupt }: 
     finally { setBusy(""); }
   };
   const interruptTurn = async () => {
-    if (!selected || !live || busy || alreadyRequested) return;
+    if (!selected || !live || ownBusy || alreadyRequested) return;
     setBusy("interrupting"); setError("");
     try { await interrupt(live.generation, live.threadId, live.turnId); }
     catch (e) { setError(String(e)); }
     finally { setBusy(""); }
   };
-  return <section>
+  // NIR §4.1/§4.8: this conversation's request cards sit beside its activity, waiting ones first.
+  const requests: Json[] = (host?.serverRequests ?? []).filter((request: Json) => selected && requestThread(request) === selected.threadId);
+  const ordered = [...requests.filter(answerable), ...requests.filter((request: Json) => !answerable(request))];
+  const offers: Json[] = (host?.workflowRoot?.offers ?? []).filter((offer: Json) => selected && offer?.message?.threadId === selected.threadId);
+  const runs: Json[] = (host?.workflowRoot?.runs ?? []).filter((run: Json) => selected && run?.conversation === selected.threadId && run?.home === selected.generation?.home);
+  const offerAct: RunAct = async (command, args) => { setOfferBusy(true); try { return await runAct(command, args); } finally { setOfferBusy(false); } };
+  // NIR §5.8: Continue as and Fork go through the host; neither changes this conversation's role.
+  // Resolves to the host's result, or undefined when the command failed (runAct shows the error).
+  const roleAct = async (label: string, command: string, args: Record<string, unknown>, after?: (result: Json) => void): Promise<Json> => {
+    setBusy(label); setError("");
+    try { const result = await runAct(command, args); if (result === undefined) setError(`${label} did not complete; see the message below.`); else after?.(result); return result; }
+    finally { setBusy(""); }
+  };
+  const handoffs: Json[] = host?.continueAs ?? [];
+  return <section id="conversation">
     <h2>Conversation text and turn control</h2>
-    <label>Current-generation conversation <select disabled={!!busy} value={threadKey} onChange={e => { setThreadKey(e.target.value); setTurnId(""); setError(""); }}>
+    <label>Current-generation conversation <select disabled={!!ownBusy} value={threadKey} onChange={e => { setThreadKey(e.target.value); setTurnId(""); setError(""); }}>
       <option value="">Select a conversation</option>
       {currentThreads.map((thread: Json) => <option key={JSON.stringify([thread.generation, thread.threadId])} value={JSON.stringify([thread.generation, thread.threadId])}>{thread.threadId} · {thread.model ?? "model not reported"} via {thread.modelProvider ?? "provider not reported"}</option>)}
     </select></label>
-    {selected && <p>Original App role: {JSON.stringify(selected.appRole ?? { standing: "unknown", reason: "original App supply binding not established" })}. Native role hints do not establish an App role.</p>}
-    {(selected?.futureGuidanceNotices ?? []).map((notice: Json) => <p key={notice.path}>{notice.path}: {notice.reason}; applies to future conversations.</p>)}
+    {selected && <RoleHeader key={selected.threadId} thread={selected} limits={host?.roleLimits} busy={!!busy} ready={host?.state === "ready"}
+      continueAs={role => { void roleAct("asking for a handoff summary", "continue_as_begin", { generation: selected.generation, threadId: selected.threadId, role }); }}
+      fork={() => { void roleAct("forking", "conversation_fork", { generation: selected.generation, threadId: selected.threadId }, result => {
+        if (result?.thread?.threadId) setThreadKey(JSON.stringify([result.thread.generation, result.thread.threadId]));
+      }); }} />}
     {threadKey && !selected && <p>Selected conversation is no longer available in this generation; choose a current conversation.</p>}
+    {handoffs.map((handoff: Json) => <ContinueAsPanel key={handoff.id} handoff={handoff} entries={startEntries(host)} busy={!!busy} ready={host?.state === "ready"}
+      start={choice => { void roleAct("starting the new conversation", "thread_start", { ...choice, modeHomeClass: host?.homeRouting?.activeModeHomeClass, role: handoff.targetRole ?? null, continueAs: handoff.id }); }}
+      send={async draft => { const started = handoff.started; if (!started) return false; return (await roleAct("sending the handoff message", "conversation_send_text", { generation: started.generation, threadId: started.threadId, text: draft, mode: null })) !== undefined; }}
+      open={() => { const started = handoff.started; if (started) setThreadKey(JSON.stringify([started.generation, started.threadId])); }}
+      dismiss={() => { void roleAct("closing the handoff", "continue_as_dismiss", { id: handoff.id }); }} />)}
+    <NativeActivityView key={selected?.threadId ?? ""} view={host?.nativeView} threadId={selected?.threadId} runs={runs} offers={offers}
+      stopLabelFor={(thread, turn) => stopLabel(host?.codexStops, thread, turn)}
+      renderOffer={offer => <RunOffer offer={offer} generation={host?.generation} ready={host?.state === "ready"} busy={offerBusy} act={offerAct} />} />
+    {selected && <div aria-label="Requests from Codex in this conversation">
+      <h3>Requests from Codex in this conversation ({requests.filter(answerable).length} waiting)</h3>
+      {ordered.length === 0 && <p>No requests from Codex in this conversation.</p>}
+      {ordered.map((request: Json) => <NativeRequestCard key={JSON.stringify([request.generation, request.requestIdentity])} request={request} view={host?.nativeView} answer={answer} />)}
+    </div>}
     <p><label>Text <textarea disabled={!!busy} value={text} onChange={e => setText(e.target.value)} rows={4} style={{ display: "block", width: "100%" }} /></label></p>
-    <button disabled={host?.state !== "ready" || !selected || !text || !!busy} onClick={sendText}>{(host?.attachmentSelections?.selections ?? []).length > 0 ? "Send text only" : "Send text"}</button>
+    <button disabled={host?.state !== "ready" || !selected || !text || !!busy} onClick={() => { void sendText(); }}>{(host?.attachmentSelections?.selections ?? []).length > 0 ? "Send text only" : "Send text"}</button>
+    {selected && <PlanModeControl planMode={host?.planMode} requested={(host?.requestedModes ?? []).find((r: Json) => JSON.stringify(r.generation) === generationKey && r.threadId === selected.threadId) ?? null}
+      ready={host?.state === "ready"} busy={!!busy} hasText={!!text}
+      check={() => { setError(""); checkPlanMode(selected.generation).catch(e => setError(String(e))); }} send={mode => { void sendText(mode); }} />}
     {(host?.attachmentSelections?.selections ?? []).length > 0 && <p>This plain-text action excludes the selected attachments. Use the explicit ordered-attachment action to include the entire private selection.</p>}
     <p>Text is sent unchanged to the selected native conversation. Its role, model and provider remain the conversation's existing settings.</p>
     {(host?.attachmentSelections?.selections ?? []).length > 0 && <div>
@@ -151,16 +134,17 @@ function ConversationPanel({ host, send, steer, submitAttachments, interrupt }: 
       {host?.attachmentCustody?.state !== "opened" && <p>Attachment custody unavailable: {host?.attachmentCustody?.error}. Plain-text controls remain available.</p>}
     </div>}
     <SteeringControl target={steeringTarget} reason={steering?.reason} ready={host?.state === "ready" && !!selected} busy={!!busy} text={text} submit={() => { void steerText(); }} />
-    <label>Observed live turn <select disabled={!!busy} value={turnId} onChange={e => setTurnId(e.target.value)}><option value="">Select a live turn</option>{liveTurns.map((turn: Json) => <option key={turn.turnId} value={turn.turnId}>{turn.turnId} · {turn.nativeTurn.status}</option>)}</select></label>{" "}
-    <button disabled={host?.state !== "ready" || !live || !!busy || alreadyRequested} onClick={interruptTurn}>Interrupt selected live turn</button>
+    <label>Observed live turn <select disabled={!!ownBusy} value={turnId} onChange={e => setTurnId(e.target.value)}><option value="">Select a live turn</option>{liveTurns.map((turn: Json) => <option key={turn.turnId} value={turn.turnId}>{turn.turnId} · {turn.nativeTurn.status}</option>)}</select></label>{" "}
+    <button disabled={host?.state !== "ready" || !live || !!ownBusy || alreadyRequested} onClick={interruptTurn}>Interrupt selected live turn</button>
     <p>An interrupt acknowledgment does not establish turn end or rollback. Turn status comes from native observations.</p>
     {(host?.conversationTurns ?? []).filter((turn: Json) => turn.terminalEventObserved && turn.nativeTurn?.status === "inProgress").map((turn: Json) => <p key={JSON.stringify([turn.generation, turn.threadId, turn.turnId])}>Native turn inconsistency: {turn.threadId}/{turn.turnId} has a terminal event observation and contradictory progress status; interruption is unavailable.</p>)}
     {(host?.conversationTurns ?? []).flatMap((turn: Json) => (turn.inconsistencyLimits ?? []).map((limit: Json, index: number) => <p key={JSON.stringify([turn.generation, turn.threadId, turn.turnId, index])}>Native lifecycle limit for {JSON.stringify(turn.generation)} · {turn.threadId}/{turn.turnId}: {JSON.stringify(limit)}</p>))}
     {alreadyRequested && <p>Interrupt already requested; awaiting native turn status.</p>}
-    {busy && <p>{busy}: waiting for protocol response; no automatic retry.</p>}
+    {ownBusy && <p>{ownBusy}: waiting for protocol response; no automatic retry.</p>}
+    {!ownBusy && codexBusy && <p>Stop or Restart Codex is in progress: sending text, steering and attachments is paused; interrupting a live turn stays available.</p>}
     {error && <p role="alert">{error} No automatic retry.</p>}
     <p>Text-turn protocol requests: {host?.modelTurnEvidence?.protocolRequests?.length ?? 0}. {host?.modelTurnEvidence?.standing ?? "Provider/model execution is not established by this view."}</p>
-    <details open><summary>Observed native turns, steering and interrupt request state</summary><pre style={{ whiteSpace: "pre-wrap" }}>{JSON.stringify({ turns: host?.conversationTurns, steeringTargets: host?.steeringTargets, steeringRequests: (host?.clientRequests ?? []).filter((request: Json) => request.method === "turn/steer"), interrupts: host?.turnInterruptRequests, protocolEvidence: host?.modelTurnEvidence }, null, 2)}</pre></details>
+    <details><summary>Observed native turns, steering and interrupt request state</summary><pre style={{ whiteSpace: "pre-wrap" }}>{JSON.stringify({ turns: host?.conversationTurns, steeringTargets: host?.steeringTargets, steeringRequests: (host?.clientRequests ?? []).filter((request: Json) => request.method === "turn/steer"), interrupts: host?.turnInterruptRequests, protocolEvidence: host?.modelTurnEvidence }, null, 2)}</pre></details>
   </section>;
 }
 
@@ -199,7 +183,7 @@ export function HistoryPanel({ host, refresh }: { host: Json; refresh: () => Pro
     <p><label>Stored conversation <select value={selected?.threadId ?? ""} disabled={!available || busy} onChange={e => select(e.target.value)}><option value="">Select a received conversation</option>{(history?.threads ?? []).map((row: Json) => <option key={row.native.id} value={row.native.id}>{row.native.id} · {row.native.status?.type ?? "status not reported"} · {row.native.preview || "empty preview"}</option>)}</select></label></p>
     {selected && <>
       <p>History state: {selected.state}. App role in force: {JSON.stringify(selected.appRole)}. Native agentRole: {JSON.stringify(selected.metadata?.thread?.agentRole === undefined ? { state: "not reported" } : selected.metadata.thread.agentRole)}.</p>
-      {(selected.futureGuidanceNotices ?? []).map((notice: Json) => <p key={notice.path}>{notice.path}: {notice.reason}; applies to future conversations. This conversation retains its original role.</p>)}
+      {(selected.futureGuidanceNotices ?? []).map((notice: Json) => <p key={notice.path}>{notice.path}: {notice.kind === "not-read" ? `current guidance not compared (${notice.reason})` : notice.reason}; new conversations use the current guidance. This conversation retains its original role.</p>)}
       <button disabled={!available || busy} onClick={() => run("metadata")}>Read metadata</button>{" "}
       <button disabled={!available || busy} onClick={() => run("turns")}>Read turns</button>{" "}
       <button disabled={!available || busy} onClick={() => run("goal")}>Read goal</button>{" "}
@@ -298,13 +282,15 @@ function NativeConfirmationContent() {
 
 export function WorkflowRootPanel({ data, host, act }:{ data: Json; host: Json; act: (command:string,args:Record<string,unknown>)=>Promise<Json> }) {
   const [name,setName]=useState("coordinated-knowledge-work");
-  const [inPlace,setInPlace]=useState(false);
   const [revision,setRevision]=useState("");
   const [thread,setThread]=useState("");
   const [text,setText]=useState("");
   const [busy,setBusy]=useState(false);
   const [message,setMessage]=useState("");
-  const action=async(command:string,args:Record<string,unknown>)=>{setBusy(true);try{const result=await act(command,args);setMessage(JSON.stringify(result));}catch(e){setMessage(String(e));}finally{setBusy(false);}};
+  const action=async(command:string,args:Record<string,unknown>)=>{setBusy(true);try{const result=await act(command,args);setMessage(JSON.stringify(result));
+    // An App-made draft is listed again by the host (WR SQ-D D-2).
+    if(command==="workflow_create_draft"||command==="workflow_refine_registered"){await act("workflow_observe_drafts",{}).catch(()=>undefined);}
+  }catch(e){setMessage(String(e));}finally{setBusy(false);}};
   const entries:Json[]=data?.reviews??[];
   // J6 D-1 / V14 F2, F8: the digest of each complete review as the host
   // reports it (the native A15 statement names the same value), and this
@@ -340,15 +326,17 @@ export function WorkflowRootPanel({ data, host, act }:{ data: Json; host: Json; 
     <button disabled={busy} onClick={()=>action("workflow_select_development",{})}>Select exact development workflow holding copy…</button>
     <button disabled={busy} onClick={()=>action("workflow_open_library",{origin:"project"})}>Open project workflow library…</button>
     <button disabled={busy} onClick={()=>action("workflow_open_library",{origin:"user"})}>Open user workflow library…</button>
-    <p>Paths are shown as text (display only: identities keep their exact bytes; a path that is not valid UTF-8 is marked).</p>
-    <pre style={{whiteSpace:"pre-wrap"}}>{JSON.stringify(readablePaths({selection:data?.selection,libraries:data?.libraries,activeLibrary:data?.activeLibrary}),null,2)}</pre>
-    <label>Draft or entry name <input value={name} onChange={e=>setName(e.target.value)} disabled={busy}/></label>
+    <SelectedWorkflow selection={data?.selection}/>
+    <details><summary>Selection and libraries as the host reports them (paths shown as text; identities keep their exact bytes; a path that is not valid UTF-8 is marked)</summary>
+    <pre style={{whiteSpace:"pre-wrap"}}>{JSON.stringify(readablePaths({selection:data?.selection,libraries:data?.libraries,activeLibrary:data?.activeLibrary}),null,2)}</pre></details>
+    <WorkflowDraftsView data={data?.drafts} attachments={host?.attachmentSelections} workspace={data?.projectLibraryAvailable===true} pointerLimits={data?.trialPointerLimits} busy={busy} act={action}/>
+    <label>New draft name, or in-place library entry name <input value={name} onChange={e=>setName(e.target.value)} disabled={busy}/></label>
     <button disabled={busy||!data?.selection||!data?.activeLibrary} onClick={()=>action("workflow_create_draft",{name})}>Create draft from selected content</button>
     {(data?.libraries??[]).filter((l:Json)=>l.reference===data?.activeLibrary&&Array.isArray(l.registered)).map((l:Json)=><ul key={l.reference} aria-label="Registered revisions in the active library">{l.registered.map((row:Json)=><li key={`${row.name}@${row.revision}`}>{row.name} · revision {row.sequence} · {row.label} <button disabled={busy} onClick={()=>action("workflow_refine_registered",{name:row.name,revision:row.revision})}>Refine from the revision store…</button></li>)}</ul>)}
     <label>Registered revision (content identity) <input value={revision} onChange={e=>setRevision(e.target.value)} disabled={busy}/></label>
     <button disabled={busy||!data?.activeLibrary||!name||!revision} onClick={()=>action("workflow_refine_registered",{name,revision})}>Refine registered revision from the revision store (no selection)</button>
-    <label><input type="checkbox" checked={inPlace} onChange={e=>setInPlace(e.target.checked)} disabled={busy}/> Review existing unregistered in-place entry</label>
-    <button disabled={busy||!data?.activeLibrary||!name} onClick={()=>action("workflow_review",{names:[name],inPlace})}>Read actual library entry for review</button>
+    <button disabled={busy||!data?.activeLibrary||!name} onClick={()=>action("workflow_review",{names:[name],inPlace:true})}>Review this unregistered in-place library entry</button>
+    <small> Drafts are reviewed from the draft list above.</small>
     {entries.map(review=><article key={review.reference}>
       <h3>{review.reference}</h3>
       {digests[review.reference]&&<p>{digestComparison(digests[review.reference])}{review.status?.presentation?"":" (as last shown with the review; while the native confirmation is open, the review it names is shown under \"Content named by an open native confirmation\")"}. Read the complete review below before choosing {review.status?.presentation?.entries?.[0]?.disposition==="re-confirmation"?"Re-confirm":"Register"}: the native confirmation shows the act statement and this digest, not the review itself.</p>}
@@ -376,18 +364,17 @@ export function WorkflowRootPanel({ data, host, act }:{ data: Json; host: Json; 
         <button disabled={busy} onClick={()=>action("workflow_retry_records",{runRef:run.reference})}>Retry the end-notice record</button>
         {run.noticeRecordFailure&&<button disabled={busy} onClick={()=>action("workflow_skip_notice",{runRef:run.reference})}>Send without the end notice (recorded as not supplied)</button>}</p>}
       <ul>{[...(run.checks??[]),...(run.noticeChecks??[])].map((check:Json)=><li key={check.reference}>{check.readAt}: {check.state} ({check.supplyReading}); check record {check.published?"recorded":`pending${check.publicationLimit?` — ${check.publicationLimit}`:""}`}; R3 {check.r3?.state}{check.r3?.limit?` — ${check.r3.limit}`:""}</li>)}</ul>
-      <ul>{(run.compatibility??[]).map((c:Json,i:number)=><li key={i}>{c.occasion} (advisory, never gates a start): {c.statement??c.state??c.checkResult??"evaluated"}; publication {c.publication?.state}; {c.r14}</li>)}</ul>
+      <RunPanel run={run}/>
       <details><summary>Complete run evidence (paths shown as text)</summary><pre style={{whiteSpace:"pre-wrap"}}>{JSON.stringify(readablePaths(run),null,2)}</pre></details>
       <button disabled={busy||!!run.source||host?.state!=="ready"} onClick={()=>action("workflow_send_run",{runRef:run.reference})}>Record, then send original prepared text once</button>
       <button disabled={busy||!run.turn||host?.state!=="ready"} onClick={()=>action("workflow_check_supply",{runRef:run.reference})}>Check original native supplied text pages (new check)</button>
       <button disabled={busy||!run.pendingRecords} onClick={()=>action("workflow_retry_records",{runRef:run.reference})}>Retry pending records (never sends)</button>
       {run.lifecycle?.state?.startsWith("open")&&<>
-        <button disabled={busy} onClick={()=>action("workflow_end_run",{runRef:run.reference,completed:false})}>End run</button>
-        <button disabled={busy} onClick={()=>action("workflow_end_run",{runRef:run.reference,completed:true})}>End run (the workflow is finished)</button>
+        <button disabled={busy} onClick={()=>action("workflow_end_run",{runRef:run.reference,finishedReport:null})}>End run</button>
         <button disabled={busy||host?.state!=="ready"||data?.selection?.runnable!==true} onClick={()=>action("workflow_end_and_start",{runRef:run.reference,generation:host.generation,threadId:run.conversation,personText:text})}>End this run and start {data?.selection?.identity?.name??"the selected workflow"}</button>
       </>}
       {run.endNotice?.state?.startsWith("sent")&&<button disabled={busy||host?.state!=="ready"} onClick={()=>action("workflow_check_notice",{runRef:run.reference})}>Check the end notice in native history (new check)</button>}
-      <p>Selection and run text are recorded before sending; if recording fails nothing is sent. A run opens when its start turn is observed and ends only when the person ends it: an interrupt, stop, quit, failed or completed turn, or an agent's "finished" line does not end it. After an end, the next ordinary message in this conversation carries the end notice once. Load/select this conversation and its received turn in native History before checking.</p>
+      <p>Selection and run text are recorded before sending; if recording fails nothing is sent. A run opens when its start turn is observed and ends only when the person ends it: an interrupt, stop, quit, failed or completed turn, or an agent's "Workflow finished" line does not end it. Ending here records "ended by the person"; when the agent writes its "Workflow finished" line, the conversation offers End run beneath that message, which records cause "completed". After an end, the next ordinary message in this conversation carries the end notice once. Load/select this conversation and its received turn in native History before checking.</p>
     </article>)}
     {message&&<p role="status" style={{whiteSpace:"pre-wrap"}}>{message}</p>}
   </section>;
@@ -441,14 +428,18 @@ export function AttachmentSelectionPanel({ data, act }: { data: Json; act: (comm
     <button disabled={busy || !data?.ownerRef} onClick={() => invokeAction("select_attachment")}>Select text attachment…</button>
     <p>List revision: {data?.listRevision ?? "unavailable"} · operation: {data?.operation?.state ?? data?.state ?? "not initialized"}.</p>
     {data?.reason && <p>{data.reason}</p>}{data?.operation?.message && <p role="alert">{data.operation.message}</p>}{error && <p role="alert">{error}</p>}
+    {data?.operation?.state === "draft-prefilled-not-sent" && <div role="status"><p>Draft {data.operation.draft?.name} added ({data.operation.added} files). {data.operation.standing}</p>
+      {(data.operation.notAttached ?? []).length > 0 && <ul role="alert" aria-label="Draft files not attached">{data.operation.notAttached.map((f: Json) => <li key={f.path}>Not attached: {f.path} ({f.bytes} bytes) — {f.reason}</li>)}</ul>}</div>}
     {rows.map((row, index) => <article key={row.selection.selectionRef} style={{ borderTop: "1px solid #ccc", paddingTop: 8 }}>
       <h3>{index + 1}. {row.selection.displayName} · {row.selection.standing}</h3>
+      {row.selection.draft && <p>draft {row.selection.draft.name} at content {String(row.selection.draft.content?.value ?? "").slice(0, 12)} — not a registered workflow; this conversation is not a workflow run.</p>}
       <p>{row.selection.displayPath} · carrier: {row.selection.carrier}.</p>
       <pre>{JSON.stringify(readablePaths({ selectionRef: row.selection.selectionRef, nativePath: row.selection.nativePath, identityAtSelection: row.selection.identityAtSelection, draft: row.selection.draft }), null, 2)}</pre>
       <button disabled={busy || index === 0} onClick={() => move(index, -1)}>Move earlier</button>{" "}
       <button disabled={busy || index === rows.length - 1} onClick={() => move(index, 1)}>Move later</button>{" "}
       <button disabled={busy} onClick={() => invokeAction("remove_attachment", { selectionRef: row.selection.selectionRef })}>Remove</button>{" "}
-      <button disabled={busy} onClick={() => invokeAction("reconfirm_attachment", { selectionRef: row.selection.selectionRef })}>Confirm current source…</button>
+      <button disabled={busy || !!row.selection.draft} onClick={() => invokeAction("reconfirm_attachment", { selectionRef: row.selection.selectionRef })}>Confirm current source…</button>
+      {row.selection.draft && <small> A pre-filled draft file keeps the content it was read with; if the draft changed, remove its files and Try again.</small>}
     </article>)}
     <details><summary>Explicit App project observation and source limits</summary><pre>{JSON.stringify(data?.launchAppProjectObservation, null, 2)}</pre></details>
     <p>{data?.workflowRun}</p><p>{data?.submissionStanding}</p><p>{data?.custody}</p>
@@ -562,6 +553,8 @@ export function App() {
   const [modelProvider, setModelProvider] = useState<string>("");
   const [entryId, setEntryId] = useState<string>("");
   const [role, setRole] = useState<string>("");
+  const [roleTouched, setRoleTouched] = useState(false);
+  const [threadKey, setThreadKey] = useState<string>("");
   const roleInitialized = useRef(false);
   useEffect(() => {
     if (!roleInitialized.current && host?.roleSet?.available) {
@@ -595,6 +588,20 @@ export function App() {
     }
     await refresh();
   };
+  // Start / Stop / Restart Codex: one at a time; the host asks first for Stop and Restart.
+  const [processBusy, setProcessBusy] = useState(false);
+  const processAct = async (cmd: string, args: Record<string, unknown>) => {
+    setProcessBusy(true);
+    try {
+      const r: Json = await invoke(cmd, args);
+      setMessage(r?.state === "cancelled" ? `${r.action}: ${r.reading}` : cmd === "codex_stop" ? `${r?.action}: see the outcome under Codex host.` : `${cmd}: ${JSON.stringify(r).slice(0, 300)}`);
+    } catch (e) {
+      setMessage(`${cmd}: ${String(e)}`);
+    } finally {
+      setProcessBusy(false);
+      await refresh();
+    }
+  };
 
   const conversationAction = async (command: "conversation_send_text" | "conversation_steer_text" | "conversation_interrupt", args: Record<string, unknown>) => {
     let failed = false;
@@ -607,6 +614,29 @@ export function App() {
     catch (e) { setMessage(`${command}: ${failed ? "request failed" : "native response received"}; view refresh failed: ${String(e)}`); }
     if (failed) throw failure;
   };
+
+  const answerRequest = async (r: Json, answer: Json) => {
+    try {
+      const result = await invoke("answer_native_request", { generation: r.generation, requestId: r.requestIdentity, answer });
+      setMessage(`Native answer: ${JSON.stringify(result)}`);
+    } finally { await refresh(); }
+  };
+  // WI-3: opening a conversation from the indicator shows its cards; it answers nothing.
+  const openRequests = (thread: string | null) => {
+    const current = (host?.threads ?? []).find((t: Json) => t.threadId === thread && JSON.stringify(t.generation) === JSON.stringify(host?.generation));
+    if (current) setThreadKey(JSON.stringify([current.generation, current.threadId]));
+    document.getElementById(current ? "conversation" : "other-requests")?.scrollIntoView();
+  };
+  const runAct: RunAct = async (command, args) => {
+    try {
+      const result = await invoke(command, args);
+      setMessage(`${command}: ${JSON.stringify(result).slice(0, 600)}`);
+      return result;
+    } catch (e) { setMessage(`${command}: ${String(e)}`); }
+    finally { await refresh(); }
+  };
+  // The conversation the panel actually shows (current generation only), so no request is hidden.
+  const selectedThread: string | null = (host?.threads ?? []).find((t: Json) => JSON.stringify([t.generation, t.threadId]) === threadKey && JSON.stringify(t.generation) === JSON.stringify(host?.generation))?.threadId ?? null;
 
   const openControl = async (requestRef: string) => {
     try {
@@ -626,6 +656,7 @@ export function App() {
   return (
     <main style={{ fontFamily: "system-ui, sans-serif", padding: 16 }}>
       <h1>Chirality App v4 — walking skeleton</h1>
+      <WaitingRequestsIndicator requests={host?.serverRequests ?? []} open={openRequests} />
       <NativeConfirmationContent />
       <ConnectorSourcePanel availability={host?.connectorRouteAvailability} command={(name,args)=>invoke(name,args)} />
       <ConnectorRoutePanel availability={host?.connectorRouteAvailability} state={routeRead} onRead={readRoutes} />
@@ -647,18 +678,19 @@ export function App() {
           <label>Model <input value={model} onChange={(e) => setModel(e.target.value)} /></label>{" "}
           <label>Configured Codex provider <input value={modelProvider} onChange={(e) => setModelProvider(e.target.value)} /></label>
         </p>
-        <p><label>Access entry <select value={entryId} onChange={e => setEntryId(e.target.value)}><option value="">No entry selected</option>{host?.homeRouting?.activeModeHomeClass === "api-key" ? <option value="api-key">API key in separate configured key home</option> : <><option value="chatgpt-account">ChatGPT account in configured account home</option><option value="local-provider">Configured local provider</option></>}</select></label></p>
+        <p><label>Access entry <select value={entryId} onChange={e => setEntryId(e.target.value)}><option value="">No entry selected</option>{startEntries(host).map(entry => <option key={entry.value} value={entry.value}>{entry.label}</option>)}</select></label></p>
         <p>Choose a model, provider and entry for this new conversation in the selected home. Switching homes never transfers an existing conversation.</p>
-        <p><label>Conversation role <select value={role} onChange={e => { roleInitialized.current = true; setRole(e.target.value); }}><option value="">No role selected</option>{(host?.roleSet?.roles??[]).filter((entry:Json)=>entry.name!=="TASK").map((entry:Json)=><option key={entry.name} value={entry.name}>{entry.name}</option>)}</select></label></p>
-        <p>Role set: {host?.roleSet?.standing ?? host?.roleSet?.reason ?? "unavailable"}</p>
-        <p>Role guidance: {JSON.stringify(host?.roleSupply)} {host?.instructionsProblem}</p>
+        <RoleChoice roleSet={host?.roleSet} limits={host?.roleLimits} role={role} preselected={!roleTouched && !!role && role === host?.roleSet?.defaultRole}
+          setRole={next => { roleInitialized.current = true; setRoleTouched(true); setRole(next); }} />
+        <p><small>Role set: {host?.roleSet?.standing ?? host?.roleSet?.reason ?? "unavailable"}.</small></p>
+        <SupplyStatus supply={host?.roleSupply} />
+        {host?.instructionsProblem && <p role="alert">Role guidance store: {host.instructionsProblem}</p>}
         <p>Selection: {host?.accessSelection ? JSON.stringify(host.accessSelection) : "No model selected"}</p>
         <p>Account (App-observed, identity not verified): {JSON.stringify(host?.accountObservation ?? { state: "unknown" })}</p>
         <p>
-          <button onClick={() => act("thread_start", { model, modelProvider, entryId, modeHomeClass: host?.homeRouting?.activeModeHomeClass, role: role || null })} disabled={host?.state !== "ready" || !model.trim() || !modelProvider.trim() || !entryId}>Start thread</button>{" "}
-          <button onClick={() => act("host_start", {modeHomeClass:host?.homeRouting?.activeModeHomeClass})}>Start Codex</button>{" "}
-          <button onClick={() => act("host_stop", {generation:host?.generation})}>Stop Codex</button>
+          <button onClick={() => act("thread_start", { model, modelProvider, entryId, modeHomeClass: host?.homeRouting?.activeModeHomeClass, role: role || null })} disabled={host?.state !== "ready" || !model.trim() || !modelProvider.trim() || !entryId}>Start thread</button>
         </p>
+        <CodexProcessControls host={host} busy={processBusy} act={(command, args) => { void processAct(command, args); }} />
         <p>Threads: {(host?.threads ?? []).map((t: Json) => `${t.threadId} (${t.status?.type ?? "?"}, gen ${JSON.stringify(t.generation)})`).join(", ") || "none"}</p>
 
         <h3>Expected network contacts</h3>
@@ -680,8 +712,10 @@ export function App() {
         read={() => invoke("read_recovery_custody", { modeHomeClass: host?.homeRouting?.activeModeHomeClass, generation: host?.generation ?? null })} />
       <HistoryPanel host={host} refresh={refresh} />
 
-      <ConversationPanel host={host} send={async (generation, threadId, text) => {
-        await conversationAction("conversation_send_text", { generation, threadId, text });
+      <ConversationPanel codexBusy={processBusy} host={host} threadKey={threadKey} setThreadKey={setThreadKey} answer={answerRequest} runAct={runAct} send={async (generation, threadId, text, mode) => {
+        await conversationAction("conversation_send_text", { generation, threadId, text, mode: mode ?? null });
+      }} checkPlanMode={async generation => {
+        try { await invoke("collaboration_modes_read", { generation }); } finally { setHost(await invoke("host_status")); }
       }} steer={async (generation, threadId, expectedTurnId, text) => {
         await conversationAction("conversation_steer_text", { generation, threadId, expectedTurnId, text });
       }} submitAttachments={async (generation, threadId, expectedTurnId, text, ownerRef, listRevision, selectionRefs) => {
@@ -702,14 +736,13 @@ export function App() {
         <details><summary>Recovery initialization and historical pointer state</summary><pre>{JSON.stringify({ initialization: host?.recoveryInitialization, recovery: host?.recovery }, null, 2)}</pre></details>
         <p>Observer: {JSON.stringify(host?.observerCursor)} · gap: {String(host?.observerGap ?? true)}</p>
         {(host?.nativeViewLimits ?? []).map((limit: string, i: number) => <p key={i}>{limit}</p>)}
-        {(host?.serverRequests ?? []).map((request: Json) => <NativeRequestCard key={JSON.stringify([request.generation, request.requestIdentity])} request={request} answer={async (r, answer) => {
-          try {
-            const result = await invoke("answer_native_request", { generation: r.generation, requestId: r.requestIdentity, answer });
-            setMessage(`Native answer: ${JSON.stringify(result)}`);
-          } finally { await refresh(); }
-        }} />)}
+        <div id="other-requests">
+          <h3>Requests outside the selected conversation</h3>
+          <p>Requests of the selected conversation are shown beside it above. Select another conversation to answer its requests there.</p>
+          {(host?.serverRequests ?? []).filter((request: Json) => requestThread(request) === null || requestThread(request) !== selectedThread).map((request: Json) => <NativeRequestCard key={JSON.stringify([request.generation, request.requestIdentity])} request={request} view={host?.nativeView} answer={answerRequest} />)}
+        </div>
         <a href="#file-acts">Act on a saved App-side output file (select it explicitly)</a>
-        <details><summary>Native plans, tools, goals, turns and descendants</summary><pre>{JSON.stringify({ current: host?.nativeView, observationEnded: host?.nativeViewObservationEnded, priorObservations: host?.priorNativeViews, recovery: host?.observerRecovery }, null, 2)}</pre></details>
+        <details><summary>Native plans, tools, goals, turns and descendants as received (JSON)</summary><pre>{JSON.stringify({ current: host?.nativeView, observationEnded: host?.nativeViewObservationEnded, priorObservations: host?.priorNativeViews, recovery: host?.observerRecovery }, null, 2)}</pre></details>
         <details><summary>Raw native envelopes (including unknown fields)</summary><pre>{JSON.stringify(host?.journal, null, 2)}</pre></details>
       </section>
 
