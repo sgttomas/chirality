@@ -46,8 +46,8 @@ jobs:
     name: App v4 product
     needs: selection
     if: needs.selection.outputs.mode == 'full'
-    # Standard macos-14 is arm64: the adopted supplier binary is arm64 only.
-    runs-on: macos-14
+    # Match the tested arm64 environment and system Git no-lazy-fetch contract.
+    runs-on: macos-26
     timeout-minutes: 45
     env:
       RUST_TEST_THREADS: '1'
@@ -92,6 +92,7 @@ jobs:
           CHIRALITY_CODEX_HOME: ${{ runner.temp }}/app-v4-codex-home
         run: |
           test "$(uname -m)" = arm64
+          /usr/bin/git --no-lazy-fetch --version
           mkdir -p "$SUPPLIER_ROOT" "$CHIRALITY_CODEX_HOME"
           curl --fail --location --retry 2 \
             https://registry.npmjs.org/@openai/codex/-/codex-0.160.0-darwin-arm64.tgz \
