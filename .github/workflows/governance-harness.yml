@@ -4,6 +4,8 @@ name: governance-harness
 on:
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: "17 8 * * *"
   push:
     branches: [main]
 
@@ -60,11 +62,23 @@ jobs:
           python-version: "3.12"
           cache: pip
           cache-dependency-path: .github/workflows/governance-harness.yml
+      - name: Select tool checks
+        id: selection
+        env:
+          CHECKS_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = schedule ] || [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
+            python3 tools/run_affected_tests.py --all --dry-run
+          else
+            python3 tools/run_affected_tests.py --base "$CHECKS_BASE" --dry-run
+          fi
       - name: Install harness dependencies
+        if: steps.selection.outputs.has_tests == 'true'
         # numpy: tools/retrieval imports it; installed so those tests stay
         # gated here rather than skipping (coverage ruling 2026-07-31)
         run: python3 -m pip install --quiet pyyaml pytest pytest-xdist numpy
       - name: Configure canonical Ubuntu package sources
+        if: steps.selection.outputs.has_tests == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -91,14 +105,17 @@ jobs:
       # re-saves an exact key hit, so bump -v1 if a cached pair goes bad.
       # Filling the cache is best-effort and can never fail the job.
       - name: Resolve Ubuntu release
+        if: steps.selection.outputs.has_tests == 'true'
         id: ubuntu
         run: echo "codename=$(. /etc/os-release && echo "${VERSION_CODENAME}")" >> "${GITHUB_OUTPUT}"
       - name: Restore cached zsh packages
+        if: steps.selection.outputs.has_tests == 'true'
         uses: actions/cache@v4
         with:
           path: ~/zsh-debs
           key: zsh-debs-${{ runner.arch }}-${{ steps.ubuntu.outputs.codename }}-v1
       - name: Install zsh (write_status.sh guard is a zsh script)
+        if: steps.selection.outputs.has_tests == 'true'
         timeout-minutes: 3
         shell: bash
         run: |
@@ -113,6 +130,11 @@ jobs:
           sudo apt-get install -y -qq zsh
           rm -rf "${HOME}/zsh-debs" && mkdir -p "${HOME}/zsh-debs"
           (cd "${HOME}/zsh-debs" && apt-get download zsh zsh-common) || rm -rf "${HOME}/zsh-debs"
+      - name: Consumed role and workflow package contracts
+        if: steps.selection.outputs.instructions == 'true'
+        run: |
+          python3 tools/validation/validate_agent_instructions.py --json
+          python3 tools/validation/validate_workflow_metadata.py --json
       - name: Unresolved conflict markers
         env:
           CONFLICT_BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
@@ -153,27 +175,14 @@ jobs:
           REQUIRE=()
           if [ "${TERMS_REQUIRED}" = "true" ]; then REQUIRE=(--require-terms); fi
           python3 tools/validation/validate_private_terms.py --base "${TERMS_BASE_REF}" --head HEAD "${REQUIRE[@]}"
-      # The tools/ test estate. PRs run only the suites the change set
-      # touches, selected deterministically by tools/run_affected_tests.py
-      # from tools/tools-test-routing.json (live-tree gate suites —
-      # practitioner_harness, validation — always run; per-tool suites run
-      # when their paths changed; the selection JSON with per-suite reasons
-      # is printed into this log). Pushes to main always run the FULL
-      # estate, so the routing is an economy, never the authority: a
-      # mis-routed rule is caught at merge, not silently skipped. Needs
-      # only pytest/pyyaml/numpy; optional-dep suites skip cleanly.
-      # practitioner_harness always runs, and its test_live_baseline module is
-      # the self-check gate: one live self-check whose report must carry no
-      # identity refusal and no BLOCK finding (the CLI's exit-0 contract).
-      # A separate `harness.py self-check` step repeated that ~30s scan.
-      - name: Tools test suite and self-check (routed on PRs; full on main pushes)
+      - name: Selected tool behavior tests
+        if: steps.selection.outputs.has_tests == 'true'
         env:
-          ROUTING_BASE: ${{ github.event.pull_request.base.sha || '' }}
+          CHECKS_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
           CHIRALITY_REQUIRE_LIVE_TESTS: "1"
         run: |
-          if [ "${GITHUB_EVENT_NAME}" = "pull_request" ] \
-            && git rev-parse --verify --quiet "${ROUTING_BASE}^{commit}" >/dev/null; then
-            python3 tools/run_affected_tests.py --base "${ROUTING_BASE}"
+          if [ "$GITHUB_EVENT_NAME" = schedule ] || [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
+            python3 tools/run_affected_tests.py --all
           else
-            python3 -m pytest -q -n auto --dist loadscope tools/
+            python3 tools/run_affected_tests.py --base "$CHECKS_BASE"
           fi

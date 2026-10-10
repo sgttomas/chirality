@@ -48,7 +48,7 @@ def test_profile_schema_loads_via_ratified_loader():
         sys.path.pop(0)
     project_root, data = ratified_load(PROFILE_PATH)
     assert project_root == REPO_ROOT
-    assert data["always_checks"]
+    assert data["always_checks"] == []
 
 
 def test_every_test_bearing_dir_is_routed():
@@ -111,10 +111,10 @@ def _dry_run(*args: str) -> dict:
     return json.loads(payload)
 
 
-def test_runner_isolated_change_selects_core_plus_owner():
+def test_runner_isolated_change_selects_owner():
     selection = _dry_run("--paths", "tools/pdf2md/render_table_xlsx.py")
     assert set(selection["checks"]) == {
-        "practitioner_harness", "validation", "pdf2md",
+        "pdf2md",
     }
 
 
@@ -145,3 +145,16 @@ def test_runner_streams_path_sets_larger_than_linux_argmax():
     selection = runner.select_checks(paths)
     assert selection["paths"] == paths
     assert set(selection["checks"]) == set(load_profile()["always_checks"])
+
+
+def test_no_selected_suites_does_not_invoke_pytest(monkeypatch):
+    runner = load_runner()
+    def forbidden(*args, **kwargs):
+        raise AssertionError('No selection must not run pytest on the whole repository')
+    monkeypatch.setattr(runner.subprocess, 'run', forbidden)
+    assert runner.run_pytest([]) == 0
+
+
+def test_unknown_tool_source_selects_full_estate():
+    selection = _dry_run('--paths', 'tools/new-tool/implementation.py')
+    assert set(selection['checks']) == set(load_profile()['checks'])

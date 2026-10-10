@@ -1,29 +1,17 @@
 name: Piping Desktop E2E
 
-# A cheap selector runs on every PR so the stable check can report a validated
-# not-applicable result for unrelated monorepo changes.
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-  # Metadata edits/labels do not launch a run or a competing stable check.
-  # After retargeting a PR, deliberately dispatch full coverage with the new
-  # target base SHA, or update/reopen the PR to validate its current event base.
   workflow_dispatch:
-    inputs:
-      target_base:
-        description: "Target base commit SHA for a retarget/integration proof (optional)"
-        required: false
-        type: string
+  schedule:
+    - cron: "23 4 * * *"
 
 permissions:
   contents: read
-
-# Keep only the current run for a pull request while allowing manually
-# dispatched branch proofs to finish independently.
 concurrency:
   group: piping-desktop-e2e-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
-
 env:
   CI: "true"
   PLAYWRIGHT_HTML_OPEN: never
@@ -31,100 +19,138 @@ env:
 
 jobs:
   selection:
-    name: Select source coverage
+    name: Select consequential checks
     runs-on: ubuntu-latest
     outputs:
       mode: ${{ steps.plan.outputs.mode }}
-      numerical_required: ${{ steps.plan.outputs.numerical_required }}
+      numerical_mode: ${{ steps.numeric.outputs.mode }}
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
-          # Keep ancestry checks without downloading all historical evidence blobs.
           filter: blob:none
-          # Run evidence under execution/ is ~2.8 GB of the ~3 GB tree and is
-          # never a Piping selection, build or test input; skip checking it out.
           sparse-checkout: |
             /*
             !/execution/
             !/projects/*/execution/
           sparse-checkout-cone-mode: false
-      - name: Test selection policy
-        run: python3 -m unittest discover -s projects/chirality-piping/tests -p 'test_ci_*.py' -v
-      - name: Plan complete PR diff
+      - name: Select from the complete PR diff
         id: plan
         env:
           EVENT: ${{ github.event_name }}
-          BASE: ${{ github.event.pull_request.base.sha || inputs.target_base }}
+          BASE: ${{ github.event.pull_request.base.sha }}
           HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
-          PR: ${{ github.event.pull_request.number }}
-        run: >-
-          python3 projects/chirality-piping/tools/ci/e2e_plan.py plan
-          --event "$EVENT" --base "$BASE" --head "$HEAD" --pr "$PR"
-          --output piping-e2e-plan.json
+        run: python3 tools/software_workflow/hosted_ci.py plan --suite piping --event "$EVENT" --base "$BASE" --head "$HEAD" --output piping-ci-plan.json
+      - name: Read numerical selection
+        id: numeric
+        run: |
+          python3 - <<'PYTHON'
+          import json, os
+          mode = json.load(open('piping-ci-plan.json'))['modes']['piping-numerical']
+          if mode not in {'full', 'not-applicable'}:
+              raise SystemExit('Invalid numerical selection')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+              out.write(f'mode={mode}\n')
+          PYTHON
       - uses: actions/upload-artifact@v4
-        if: always()
         with:
-          name: piping-e2e-selection
-          path: piping-e2e-plan.json
-          if-no-files-found: error
-          retention-days: 14
+          name: piping-ci-selection
+          path: piping-ci-plan.json
+          retention-days: 7
 
-  # Partial modes only: full runs balance accessibility into the four shards.
-  barrier:
-    name: Accessibility barrier and selected coverage
-    needs: selection
-    if: needs.selection.outputs.mode != 'not-applicable' && needs.selection.outputs.mode != 'full'
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-          fetch-depth: 0
-          # Keep ancestry checks without downloading all historical evidence blobs.
-          filter: blob:none
-          # Run evidence under execution/ is ~2.8 GB of the ~3 GB tree and is
-          # never a Piping selection, build or test input; skip checking it out.
-          sparse-checkout: |
-            /*
-            !/execution/
-            !/projects/*/execution/
-          sparse-checkout-cone-mode: false
-      - uses: actions/download-artifact@v4
-        with:
-          name: piping-e2e-selection
-      - uses: ./.github/actions/setup-piping-e2e
-      - name: Run accessibility first, then any reduced selection
-        run: python3 projects/chirality-piping/tools/ci/e2e_plan.py run --plan piping-e2e-plan.json --stage barrier --evidence-dir piping-e2e-collection/barrier
-      - name: Retain candidate collection
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: piping-e2e-collection-barrier-${{ github.run_id }}-${{ github.run_attempt }}
-          path: piping-e2e-collection/barrier
-          if-no-files-found: error
-          retention-days: 14
-      - name: Upload failure artifacts
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: piping-desktop-e2e-barrier-failure-${{ github.run_id }}-${{ github.run_attempt }}
-          path: |
-            projects/chirality-piping/apps/desktop/playwright-report
-            projects/chirality-piping/apps/desktop/test-results
-          if-no-files-found: warn
-          retention-days: 14
-
-  remainder:
-    name: Source remainder (${{ matrix.shard }}/4)
+  product:
+    name: Build, behaviour and core browser journey
     needs: selection
     if: needs.selection.outputs.mode == 'full'
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout: |
+            /*
+            !/execution/
+            !/projects/*/execution/
+          sparse-checkout-cone-mode: false
+      - uses: ./.github/actions/setup-piping-e2e
+      - name: Desktop behaviour (including persistence and undo)
+        run: npm run test:desktop
+        working-directory: projects/chirality-piping
+      - name: Production build
+        run: npm run build:desktop
+        working-directory: projects/chirality-piping
+      - name: Core browser journey and save/reopen
+        run: npm run test:e2e:desktop -- --project=chromium-desktop r2-smoke.spec.ts b3b-project-persistence.spec.ts
+        working-directory: projects/chirality-piping
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: piping-browser-failure
+          path: |
+            projects/chirality-piping/apps/desktop/playwright-report
+            projects/chirality-piping/apps/desktop/test-results
+          if-no-files-found: warn
+          retention-days: 7
+
+  numerical:
+    name: Numerical oracles and product Python contracts
+    needs: selection
+    if: needs.selection.outputs.numerical_mode == 'full'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout: |
+            /*
+            !/execution/
+            !/projects/*/execution/
+          sparse-checkout-cone-mode: false
+      - uses: dtolnay/rust-toolchain@1.97.1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install Python check dependencies
+        run: python3 -m pip install -r projects/chirality-piping/requirements-dev.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: piping-ci-selection
+      - name: Locked Cargo numerical suite
+        run: python3 projects/chirality-piping/tools/ci/numerical_ci.py --plan piping-ci-plan.json --evidence-dir piping-numerical-evidence
+      - name: Python product contracts and qualification oracles
+        working-directory: projects/chirality-piping
+        run: >-
+          python3 -m pytest -q tests/product_preview tests/security
+          tests/test_*schema.py tests/test_*schemas.py
+          tests/test_qualification*.py tests/test_*canonical_json_adapter.py
+          tests/test_constraint_validation.py tests/test_source_blocks_validation.py
+          tests/test_operation_validation_preview.py tests/test_analytical_solver_boundary_adapter.py
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: piping-numerical-failure
+          path: |
+            piping-numerical-evidence/numerical.json
+            piping-numerical-evidence/*.log
+            piping-numerical-evidence/cargo-logs/*.log
+          if-no-files-found: warn
+          retention-days: 7
+
+  browser-matrix:
+    name: Broad browser matrix (${{ matrix.shard }}/4)
+    needs: selection
+    if: github.event_name != 'pull_request' && needs.selection.outputs.mode == 'full'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         shard: [1, 2, 3, 4]
     steps:
@@ -132,99 +158,46 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
-          # Keep ancestry checks without downloading all historical evidence blobs.
           filter: blob:none
-          # Run evidence under execution/ is ~2.8 GB of the ~3 GB tree and is
-          # never a Piping selection, build or test input; skip checking it out.
           sparse-checkout: |
             /*
             !/execution/
             !/projects/*/execution/
           sparse-checkout-cone-mode: false
-      - uses: actions/download-artifact@v4
-        with:
-          name: piping-e2e-selection
       - uses: ./.github/actions/setup-piping-e2e
-      - name: Run isolated source remainder shard
-        env:
-          SHARD: ${{ matrix.shard }}
-        run: python3 projects/chirality-piping/tools/ci/e2e_plan.py run --plan piping-e2e-plan.json --stage remainder --shard "$SHARD" --evidence-dir "piping-e2e-collection/shard-$SHARD"
-      - name: Retain candidate shard collection
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: piping-e2e-collection-shard-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
-          path: piping-e2e-collection/shard-${{ matrix.shard }}
-          if-no-files-found: error
-          retention-days: 14
-      - name: Upload failure artifacts
+      - run: npm run test:e2e:desktop -- --shard=${{ matrix.shard }}/4
+        working-directory: projects/chirality-piping
+      - uses: actions/upload-artifact@v4
         if: failure()
-        uses: actions/upload-artifact@v4
         with:
-          name: piping-desktop-e2e-shard-${{ matrix.shard }}-failure-${{ github.run_id }}-${{ github.run_attempt }}
-          path: |
-            projects/chirality-piping/apps/desktop/playwright-report
-            projects/chirality-piping/apps/desktop/test-results
+          name: piping-matrix-failure-${{ matrix.shard }}
+          path: projects/chirality-piping/apps/desktop/test-results
           if-no-files-found: warn
-          retention-days: 14
-
-  numerical:
-    name: Numerical cargo suite
-    needs: selection
-    if: needs.selection.outputs.numerical_required == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-          fetch-depth: 0
-          filter: blob:none
-          # Run evidence under execution/ is ~2.8 GB of the ~3 GB tree and is
-          # never a Piping selection, build or test input; skip checking it out.
-          sparse-checkout: |
-            /*
-            !/execution/
-            !/projects/*/execution/
-          sparse-checkout-cone-mode: false
-      - uses: actions/download-artifact@v4
-        with:
-          name: piping-e2e-selection
-      - uses: dtolnay/rust-toolchain@1.97.1
-      - name: Fetch locked dependencies and run offline numerical tests
-        run: python3 projects/chirality-piping/tools/ci/numerical_ci.py --plan piping-e2e-plan.json --evidence-dir piping-numerical-evidence
-      - name: Retain numerical candidate evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: piping-numerical-${{ github.run_id }}-${{ github.run_attempt }}
-          path: |
-            piping-numerical-evidence/numerical.json
-            piping-numerical-evidence/*.log
-            piping-numerical-evidence/cargo-logs/*.log
-          if-no-files-found: error
-          retention-days: 14
+          retention-days: 7
 
   desktop-e2e:
     name: Desktop E2E (source mode)
-    needs: [selection, barrier, remainder, numerical]
+    needs: [selection, product, numerical]
     if: always()
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
           filter: blob:none
-          sparse-checkout: projects/chirality-piping/tools/ci
-      - name: Require all planned coverage
+          sparse-checkout: |
+            /*
+            !/execution/
+            !/projects/*/execution/
+          sparse-checkout-cone-mode: false
+      - name: Report selected checks without treating skipped work as passed
         env:
           MODE: ${{ needs.selection.outputs.mode }}
+          NUMERICAL_MODE: ${{ needs.selection.outputs.numerical_mode }}
           SELECTION: ${{ needs.selection.result }}
-          BARRIER: ${{ needs.barrier.result }}
-          REMAINDER: ${{ needs.remainder.result }}
-          NUMERICAL_REQUIRED: ${{ needs.selection.outputs.numerical_required }}
+          PRODUCT: ${{ needs.product.result }}
           NUMERICAL: ${{ needs.numerical.result }}
-        run: >-
-          python3 projects/chirality-piping/tools/ci/e2e_plan.py aggregate
-          --mode "$MODE" --selection "$SELECTION" --barrier "$BARRIER" --remainder "$REMAINDER"
-          --numerical-required "$NUMERICAL_REQUIRED" --numerical "$NUMERICAL"
+        run: |
+          python3 tools/software_workflow/hosted_ci.py aggregate --suite piping --mode "$MODE" --selection "$SELECTION" --product "$PRODUCT"
+          python3 tools/software_workflow/hosted_ci.py aggregate --suite piping-numerical --mode "$NUMERICAL_MODE" --selection "$SELECTION" --product "$NUMERICAL"

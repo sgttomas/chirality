@@ -13,6 +13,7 @@ from software_workflow_common import load_profile, matches
 
 ROOT = Path(__file__).resolve().parents[2]
 PROFILE = ROOT / "tools/hosted-ci-routing.json"
+SUITES = ("app", "pec", "app-v4", "piping", "piping-numerical")
 
 
 def git(root: Path, *args: str) -> str:
@@ -25,14 +26,17 @@ def select_paths(paths: list[str], profile: dict) -> dict:
     unmatched = [p for p in paths if not any(matches(p, rule["paths"]) for rule in profile["path_rules"])]
     for path in unmatched:
         owners = (["app"] if path.startswith("projects/chirality-app-dev/") else
-                  ["pec"] if path.startswith("projects/pec/") else ["app", "pec"])
+                  ["pec"] if path.startswith("projects/pec/") else
+                  ["app-v4"] if path.startswith("projects/chirality-app-v4/") else
+                  ["piping", "piping-numerical"] if path.startswith("projects/chirality-piping/") else
+                  ["app", "pec"] if path.startswith("projects/chirality-runtime/") else list(SUITES))
         checks.update(owners)
         for owner in owners:
             selection["reasons"].setdefault(owner, []).append(path)
     selection.update(checks=sorted(checks), unmatched_paths=unmatched)
     selection["modes"] = {
         "app": "full" if "app" in checks else "instructions" if "instructions" in checks else "not-applicable",
-        "pec": "full" if "pec" in checks else "not-applicable",
+        **{suite: "full" if suite in checks else "not-applicable" for suite in SUITES if suite != "app"},
     }
     return selection
 
@@ -41,8 +45,8 @@ def make_plan(root: Path, profile: dict, event: str, base: str, head: str) -> di
     resolved_head = git(root, "rev-parse", "--verify", head + "^{commit}").strip()
     plan = {"schema": "chirality-hosted-ci/v1", "event": event,
             "target_base": base, "head": resolved_head, "base": None,
-            "paths": [], "checks": ["app", "pec"], "reasons": {}, "unmatched_paths": [],
-            "modes": {"app": "full", "pec": "full"}, "selection_reason": "Explicit full workflow dispatch"}
+            "paths": [], "checks": list(SUITES), "reasons": {}, "unmatched_paths": [],
+            "modes": {suite: "full" for suite in SUITES}, "selection_reason": "Explicit full workflow dispatch"}
     if event != "pull_request":
         return plan
     try:
@@ -78,10 +82,10 @@ def main() -> int:
     plan_parser.add_argument("--event", required=True)
     plan_parser.add_argument("--base", default="")
     plan_parser.add_argument("--head", default="HEAD")
-    plan_parser.add_argument("--suite", choices=["app", "pec"], required=True)
+    plan_parser.add_argument("--suite", choices=SUITES, required=True)
     plan_parser.add_argument("--output", required=True)
     result_parser = commands.add_parser("aggregate")
-    result_parser.add_argument("--suite", choices=["app", "pec"], required=True)
+    result_parser.add_argument("--suite", choices=SUITES, required=True)
     result_parser.add_argument("--mode", required=True)
     result_parser.add_argument("--selection", required=True)
     result_parser.add_argument("--product", required=True)
@@ -92,6 +96,8 @@ def main() -> int:
         print(f"{args.suite}: mode={args.mode}, selection={args.selection}, product={args.product}, instructions={args.instructions}")
         if passed and args.mode == "not-applicable":
             print("No product inputs changed; product suites were not run.")
+        elif not passed and product in ("skipped", "", "cancelled"):
+            print("Selected coverage did not complete; this is not a pass.")
         return 0 if passed else 1
     _, profile = load_profile(PROFILE)
     plan = make_plan(ROOT, profile, args.event, args.base, args.head)

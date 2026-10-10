@@ -3,9 +3,8 @@
 
 Selection is delegated to the ratified selector
 (tools/software_workflow/select_affected_checks.py) driven by the routing
-profile tools/tools-test-routing.json: live-tree gate suites
-(always_checks) run on any change; per-tool suites run only when their
-own paths changed. The selection JSON (checks + per-check matched paths)
+profile tools/tools-test-routing.json: suites run when their inputs change;
+unknown tool inputs conservatively run the full estate. The selection JSON (checks + per-check matched paths)
 is printed before the run so every invocation records why each suite ran.
 
 Change set = committed diff against --base (three-dot merge-base diff)
@@ -24,6 +23,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+from fnmatch import fnmatchcase
 import subprocess
 import sys
 from importlib.util import find_spec
@@ -47,16 +48,12 @@ def changed_paths(base: str) -> list[str] | None:
         # --no-renames: both halves of a rename select their suites, and Git
         # never reads deleted content for similarity (a blob-less CI clone
         # would otherwise download it, e.g. after a run-record archive).
-        committed = _git("diff", "--name-only", "--no-renames", f"{base}...HEAD")
+        committed = _git("diff", "--name-only", "--no-renames", "-z", f"{base}...HEAD", "--")
     except subprocess.CalledProcessError:
         return None
-    paths = {line for line in committed.splitlines() if line}
-    for line in _git("status", "--porcelain=v1", "-uall").splitlines():
-        entry = line[3:]
-        if " -> " in entry:
-            entry = entry.split(" -> ", 1)[1]
-        if entry:
-            paths.add(entry)
+    paths = set(filter(None, committed.split('\0')))
+    paths.update(filter(None, _git('diff', '--name-only', '--no-renames', '-z', 'HEAD', '--').split('\0')))
+    paths.update(filter(None, _git('ls-files', '--others', '--exclude-standard', '-z').split('\0')))
     return sorted(paths)
 
 
@@ -77,7 +74,13 @@ def select_checks(paths: list[str]) -> dict:
         [sys.executable, str(SELECTOR), str(PROFILE), "--paths-json-stdin"],
         input=json.dumps(paths), capture_output=True, text=True, check=True,
     )
-    return json.loads(result.stdout)
+    selected = json.loads(result.stdout)
+    unknown = [p for p in paths if p.startswith('tools/') and not any(
+        fnmatchcase(p, pattern) for rule in profile['path_rules'] for pattern in rule['paths'])]
+    if unknown:
+        selected['checks'] = sorted(profile['checks'])
+        selected['reasons']['unknown-tool-inputs'] = unknown
+    return selected
 
 
 def pytest_dirs(check_ids: list[str]) -> list[str]:
@@ -89,6 +92,9 @@ def pytest_dirs(check_ids: list[str]) -> list[str]:
 
 
 def run_pytest(dirs: list[str]) -> int:
+    if not dirs:
+        print('[run-affected] not selected: no tool inputs changed', flush=True)
+        return 0
     cmd = [sys.executable, "-m", "pytest", "-q"]
     if find_spec("xdist") is not None:
         cmd += ["-n", "auto", "--dist", "loadscope"]
@@ -128,6 +134,13 @@ def main() -> int:
     skipped = sorted(set(load_profile()["checks"]) - set(selection["checks"]))
     print(f"[run-affected] running {len(selection['checks'])} suite(s); "
           f"skipping {len(skipped)}: {', '.join(skipped) or '(none)'}", flush=True)
+    if os.getenv('GITHUB_OUTPUT'):
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+            output.write(f"has_tests={'true' if dirs else 'false'}\n")
+            instruction_inputs = any(p in ('--all','AGENTS.md','agents/registry.json') or p.startswith(('workflows/','agents/','tools/validation/')) for p in selection.get('paths', []))
+            if selection.get('reasons', {}).get('*') == ['base-unresolvable']:
+                instruction_inputs = True
+            output.write(f"instructions={'true' if instruction_inputs else 'false'}\n")
     if args.dry_run:
         return 0
     return run_pytest(dirs)
