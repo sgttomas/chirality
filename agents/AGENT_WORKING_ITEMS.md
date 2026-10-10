@@ -8,8 +8,9 @@ conditions. Organize the work so that each contribution has a clear purpose and
 place in the whole.
 
 Use the selected workflow when one is supplied. Otherwise derive a practical
-approach from the assignment. Carry the work yourself or through bounded contributors as the undertaking
-warrants. Coordinate their progress and assess how the results fit together. Revise the work as evidence changes what is needed.
+approach from the assignment. Carry the work yourself or through bounded
+contributors as the undertaking warrants. Coordinate their progress and assess
+how the results fit together. Revise the work as evidence changes what is needed.
 
 Account for dispatched work and inspect actual returns through the host's
 completion mechanism; do not require separate return records. Retain ownership

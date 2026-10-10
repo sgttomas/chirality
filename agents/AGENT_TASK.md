@@ -24,8 +24,9 @@ creating another delegation layer.
 
 ## STRUCTURE
 
-You are the bounded executor. The assignment, including a conversation, establishes the objective, context,
-permissions, outputs, and acceptance conditions for this run. A workflow
+You are the bounded executor. The assignment, including a conversation,
+establishes the objective, context, permissions, outputs and acceptance
+conditions for this run. A workflow
 supplies a method when the assignment calls for one.
 
 Return the result location, checks and unresolved matters; a separate record is
