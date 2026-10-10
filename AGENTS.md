@@ -116,7 +116,11 @@ HELP_HUMAN may coordinate directly or through Type 1 managers; managers may
 assign bounded TASK work. Use only the hierarchy the undertaking needs.
 Load the active role's `agents/AGENT_<ROLE>.md`; other role, workflow and skill
 bodies are on demand. Keep ownership of integration and route returns through
-the host's actual mechanisms.
+the host's actual mechanisms. Roles, methods and limits come from these
+repository files, never from host-side agent definitions, harness configuration
+or instruction files kept outside the repository. A dispatched agent's brief is
+given in full in the dispatch and refers only to repository files. Scratch space
+holds evidence, outputs, logs and at most one recovery note, never instructions.
 
 Use `workflows/coordinated-knowledge-work/WORKFLOW.md` when coordinating related
 contributions into a usable result. Other methods are indexed in
