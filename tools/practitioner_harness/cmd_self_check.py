@@ -115,11 +115,9 @@ MD_STATUS_DECL_RE = re.compile(r"Status:?\s*(?:\*\*)?\s*(.+)")
 DRAFT_STATUS_RE = re.compile(r"\bDRAFT\b|\bPROPOSAL\b")
 # Known named bases (token -> repo-relative target). Extend as new named
 # bases appear in basis/authority lines.
-KNOWN_BASIS_TARGETS: dict[str, str] = {
-    "governance_harness_plan_v3":
-        "plans/governance_harness_proposal-B_2026-07-01/"
-        "governance_harness_plan_v3_2026-07-01.html",
-}
+# Legacy aliases may be supplied by compatibility callers; retired development
+# plans are no longer live basis targets.
+KNOWN_BASIS_TARGETS: dict[str, str] = {}
 
 # GEN-7 _LATEST pointer currency (K-PROV-1 / K-STALE-2).
 # A "designation line" is one that names the pointer's current target:
