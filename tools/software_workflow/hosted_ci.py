@@ -96,7 +96,7 @@ def main() -> int:
         print(f"{args.suite}: mode={args.mode}, selection={args.selection}, product={args.product}, instructions={args.instructions}")
         if passed and args.mode == "not-applicable":
             print("No product inputs changed; product suites were not run.")
-        elif not passed and product in ("skipped", "", "cancelled"):
+        elif not passed and args.product in ("skipped", "", "cancelled"):
             print("Selected coverage did not complete; this is not a pass.")
         return 0 if passed else 1
     _, profile = load_profile(PROFILE)
@@ -113,7 +113,7 @@ def main() -> int:
         with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as stream:
             stream.write(f"### {args.suite} CI selection: {mode}\n\n{plan['selection_reason']}. "
                          f"Candidate `{plan['head']}`; {len(plan['paths'])} changed paths.\n\n"
-                         f"Selection and reasons are retained in `{args.output}`.\n")
+                         "Selection and reasons are printed in this job’s log.\n")
     return 0
 
 

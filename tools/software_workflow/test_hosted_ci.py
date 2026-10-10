@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import subprocess
 import tempfile
+import sys
 import unittest
 
 from hosted_ci import aggregate, make_plan, select_paths, SUITES
@@ -152,6 +153,14 @@ class HostedCITests(unittest.TestCase):
             self.assertFalse(aggregate(suite,'not-applicable','failure','skipped'))
             self.assertTrue(aggregate(suite,'not-applicable','success','skipped'))
             self.assertTrue(aggregate(suite,'full','success','success'))
+
+    def test_aggregate_cli_failure_returns_failure_without_traceback(self):
+        completed = subprocess.run([sys.executable, str(Path(__file__).with_name('hosted_ci.py')),
+            'aggregate', '--suite', 'app-v4', '--mode', 'full', '--selection', 'success',
+            '--product', 'skipped'], capture_output=True, text=True)
+        self.assertEqual(completed.returncode, 1)
+        self.assertIn('did not complete', completed.stdout)
+        self.assertNotIn('Traceback', completed.stderr)
 
     def test_required_selected_job_failure_cancellation_or_skip_blocks_result(self):
         for state in ["failure", "cancelled", "skipped", ""]:
