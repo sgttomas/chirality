@@ -1,6 +1,0 @@
-{
-  "Command": "git diff --check -- <six assigned ScopeOfWork.md paths>",
-  "ExitCode": 0,
-  "Stdout": "",
-  "Stderr": ""
-}
