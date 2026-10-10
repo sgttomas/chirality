@@ -171,20 +171,24 @@ the workflow workspace, review and registration (DEL-02-02); policy and act
 meanings (DEL-04-01); display component meanings (DEL-04-02); the record
 format, writer and reader (DEL-04-03). §11 traces each exclusion.
 
-### 1.1 Process placement (R17-5; CC-P-A selects act capture/writing)
+### 1.1 Process placement (OI-008 decided by the owner; CC-P-A selects act capture/writing)
 
-The requirements below hold whatever placement implements them. R17-5's
-historical proposed division remains the basis of the placement column.
-CC-P-A, under this run's separate owner native-confirmation decision, selects
-PL-3's Rust-host offer/native capture and authoritative record-writing path for
-Group A: the webview proposes selection, while the native surface shows the
-full immutable selected statement/consequences and only its actual confirmation
-captures (AAC §4.1a/§6.2). Other allocation questions are not silently selected
-by that decision. AAC §5.2b records the separately selected project/library
-capture roots and visible refusal/discovery rules. Neither decision closes
-external OI-013 or remaining OI-014 work, and native qualification is still ahead.
+The requirements below hold whatever placement implements them. On 2026-10-10
+the owner decided OI-008 for the whole App: "The Rust host owns everything
+that writes the person's files or the App's records, talks to Codex, or
+captures a person's act. The web view presents, and sends only what the person
+initiates. It never writes records or operates the act control." The placement
+column below follows that ruling; it was R17-5's proposed division and agrees
+with it. CC-P-A, under this run's separate owner native-confirmation decision,
+selects PL-3's Rust-host offer/native capture and authoritative record-writing
+path for Group A: the webview proposes selection, while the native surface
+shows the full immutable selected statement/consequences and only its actual
+confirmation captures (AAC §4.1a/§6.2). AAC §5.2b records the separately
+selected project/library capture roots and visible refusal/discovery rules.
+Neither decision closes external OI-013 or remaining OI-014 work, and native
+qualification is still ahead.
 
-| # | Requirement (holds for any placement) | PROPOSED placement (R17-5) |
+| # | Requirement (holds for any placement) | Placement (OI-008 ruling) |
 |---|---|---|
 | PL-1 | The register, the answer write path and the state a card shows have one authoritative source that survives a window reload (HOSTING H2, H3; V4-EXE-01) | Rust host: register and write path; the interface renders cards from it |
 | PL-2 | A card never holds an answer as authoritative; closing or reloading a view loses no request and answers none (REQ-001, REQ-002) | Interface state is disposable; cards are rebuilt from "list outstanding" (HOSTING §6.4) |
@@ -496,7 +500,7 @@ show nothing of the kind.
 | ST-2 | Where DEL-01-05 reports a last explicit choice for this project, the start display offers it as a button reading "Use ‹model› via ‹provider› (your last choice for this project, ‹date›)". It is applied only when the person presses it |
 | ST-3 | Sending with no model chosen sends nothing to Codex; the message stays in the composer. **An ordinary conversation** reads "not started — no model selected"; **a workflow run** that cannot start reads "run not started — no model selected" (R15-1's wording) (R18-2, C-09) |
 | ST-4 | The chosen model, provider and access mode are shown in the conversation header as DEL-01-05 reports them; the observed destination per turn is DEL-01-01's (HOSTING §8.3) and DEL-04-03's to record |
-| ST-5 | **Role (C-15).** The start display offers the roles DEL-02-04 lists, plus **"no role"** (R17-9: untyped conversations are allowed). The role whose registry entry has `default_for_new_chat` true (HELP_HUMAN in Root's `agents/registry.json` today) is shown **preselected**, labelled as a preselection, and the person can change it or clear it to "no role" before the first send |
+| ST-5 | **Role (C-15).** The start display offers the conversation roles DEL-02-04 lists (HELP_HUMAN, HELPS_HUMANS and WORKING_ITEMS; TASK is not a conversation role, ROLE SL-1, owner ruling 2026-10-10: "TASK is not a conversational role"), plus **"no role"** (R17-9: untyped conversations are allowed). The role whose registry entry has `default_for_new_chat` true (HELP_HUMAN in Root's `agents/registry.json` today) is shown **preselected**, labelled as a preselection, and the person can change it or clear it to "no role" before the first send |
 | ST-6 | The role is **fixed for the conversation's life** (DECISION-L L-2). The header shows it; where DEL-02-04 reports that the role's guidance was edited after this conversation started, the header says "guidance changed since this conversation started" (R19-3), and offers "Continue as ‹role›" (§5.8) |
 
 The selection states and the last-choice store are DEL-01-05's (IF-10; NR-3
@@ -531,7 +535,7 @@ committed 0.158.0 `TurnStartParams`.
 | # | Rule |
 |---|---|
 | TC-1 | No model chosen → nothing is sent (ST-3) |
-| TC-2 | The `input` list holds, in order: the run-start text element when the turn starts a run (TC-3), or, when a run has ended and no run starts with this turn, DEL-02-02's run-end line as its own text element (R20-3; WR-v0.2 §16.2 TX-5; once); then the person's text; then the attachments (§6: text elements, image inputs, and the text element naming paths) |
+| TC-2 | The `input` list holds, in order: the run-start text element when the turn starts a run (TC-3), or, when a run has ended and no run starts with this turn, DEL-02-02's run-end line as its own text element (R20-3; WR-v0.2 §16.2 TX-5; once); then the person's text; then the attachments (§6: text elements, image inputs, and the text element naming paths). A trial text (AT-8; WR TT-3) takes the run-start text's place in a clean trial's first turn (trial text, the person's text, then attachments) and follows the person's text in a delegated trial's message (the person's text, the trial text, then attachments); it is never a run-start text |
 | TC-3 | **Run start (R19-7).** The run-start text is DEL-02-02's composition (the registered revision's exact bytes between App-written lines naming the workflow and revision and, when chaining, saying the previous run ended). This file places it as its own text element and changes nothing in it; DEL-02-02 records the bytes and DEL-02-03 starts the run |
 | TC-4 | **Plan mode (NPTD §5.4).** When the person chooses Plan (labelled "experimental", C-05), the turn carries NPTD's plan-mode element as `collaborationMode`; when NPTD says "not offered (‹reason›)", the Plan control is absent |
 | TC-5 | **Leaving plan mode.** Once a conversation has used plan mode, every later turn carries `collaborationMode` with mode `default` (model the conversation's, `developer_instructions` null) explicitly, because plan mode persists until the default mode is sent (OBS-2 O-8) |
@@ -553,7 +557,7 @@ committed 0.158.0 `TurnStartParams`.
 
 | # | Rule |
 |---|---|
-| CA-1 | "Continue as ‹role›" opens a **new conversation** with that role (fixed for its life, L-2) and the role's guidance composed by DEL-02-04 at start. It does not fork: at 0.158.0 `thread/fork` ignores new instructions, so a fork keeps the source's role (OBS-3 W-6; R19-8) |
+| CA-1 | "Continue as ‹role›" (a conversation role or no role; not TASK, ROLE SL-1) opens a **new conversation** with that role (fixed for its life, L-2) and the role's guidance composed by DEL-02-04 at start. It does not fork: at 0.158.0 `thread/fork` ignores new instructions, so a fork keeps the source's role (OBS-3 W-6; R19-8) |
 | CA-2 | **Handoff summary (R20-6).** When the person chooses "Continue as ‹role›", the App asks the **source conversation's agent**, in a visible turn of that conversation, to draft a handoff summary (the request names what it should cover: the person's last request, the last workflow run and how it ended, and the attachments supplied there by name and content identity). The draft is placed in the new conversation's composer under one App-written header naming the source conversation and its role; the header names and does not instruct, and the summary carries no instructions beyond the person's own text. The person edits it before sending; nothing is sent to the new conversation until the person sends it. If the source turn fails or is interrupted, the composer holds the header only and the person writes the summary (PROPOSED) |
 | CA-3 | The new conversation starts with no model chosen (ST-1); the project's last explicit choice is offered exactly as ST-2 defines it, as for any new conversation (K-3). The source conversation's model is not offered as such |
 | CA-4 | "Fork" stays available as a same-role copy of a conversation (`thread/fork`), labelled "same role" |
@@ -611,7 +615,7 @@ tool item that shows a read.
 | AT-5 | A URL or supplier `fileId` is recorded as given, with identity "not obtainable (the App does not fetch it)" |
 | AT-6 | A later check (the person opens the item, or the view re-checks on display) records "unchanged since supplied" or "changed after it was supplied; what Codex read is not observed"; it never rewrites the supply record's earlier identities |
 | AT-7 | `thread/attachment/*` is not used by this design: its semantics are not observed and no requirement needs it (UNRESOLVED U-NIR-4) |
-| AT-8 | A draft reaches a trial conversation (K-7) only as a message or attachment the person sends; the App may pre-fill the composer, never sends it (C-14; WR TT-2, TT-3). Its `WORKFLOW.md` and other text files go as text elements (AT-9) and any other file is named (AT-10), exactly as for any attachment (R21-2); each supply record carries the `draft` element {location, name, content} and is shown as "draft ‹name› at content ‹id› — not a registered workflow; this conversation is not a workflow run". No guidance carries a draft, and `skill` is never used for it |
+| AT-8 | **Draft trials (WR TT-2…TT-13, revised by the owner's direction of 2026-10-10 on WR U-WR-24).** A draft reaches a trial (K-7) through its **trial text**, DEL-02-02's composition (WR TT-3), which this file places as its own text element and changes nothing in: in a **delegated trial**, after the person's text in the authoring conversation's composer; in a **clean trial**, first in a new conversation's composer, where a run text would be (TC-2). The App pre-fills, never sends (C-14 still holds for this): the person's text stays editable and the trial text is shown as a card "trial ‹n› of draft ‹name› at content ‹id› — not registered; not a workflow run", openable and removable, not edited in place. A clean trial's conversation is a **new** conversation opened in draft as for "Continue as" (§5.8 CA-1, CA-3: role chosen by the person, no model until chosen), without a handoff turn. The trial text is neither an attachment nor a run text and opens no run; it carries its draft reference and trial reference, and DEL-02-02 writes the trial link only on the host's acknowledgment of the send. Other files of the draft are named by the trial text's files line, as a registered run's are (WR §16.2 line 4; TT-8), not attached; AT-10 is not used for drafts. Proposal and finished lines written in a clean trial conversation or a trial's sub-agent show no button (RN-3…RN-7 do not apply), and a clean trial conversation (and a fork of it) offers no workflow start. In an authoring conversation with a run in force, the turn that carries a trial message is labelled as the trial's, its proposal and finished lines show no button, and after a trial of a draft of the run's own workflow RN-7 offers no End run for that run (WR TT-2). The bring-back transcript (WR TT-10) is placed the same way, after an editable prompt. A draft's files that the person attaches as ordinary files are ordinary attachments (AT-1…AT-7, AT-9, AT-10) with no draft standing. No guidance carries a draft, and `skill` is never used for it |
 | AT-9 | **Text element (PROPOSED wording).** A file that decodes as UTF-8, has no NUL byte and is within the App implementation-disposed bound (262144 original file bytes inclusive, before adding the naming line; CC-NIR-ATTACHMENT-REF; U-NIR-10 model-context concurrence) goes as its own text element: `[Chirality] Attached file "‹name›" (‹path›; content ‹12 hex›). Its bytes follow this line.`, a line feed, then the bytes exactly. The line names; it instructs nothing |
 | AT-10 | **Named path (PROPOSED wording).** Any other file is named in one App-written text element after the person's text: `[Chirality] File named, not supplied: "‹name›" at ‹path› (content ‹12 hex› when attached). Read it with your tools if you need it.` A later tool item of the conversation that names the path (a command or file read) is recorded in `toolReads` (App-observed); the record stays "named": which bytes were read then is not observed |
 
@@ -763,7 +767,7 @@ gives the A15 record and the revision;
 completed* without the recorded act; any local UI action that would make a
 draft reviewed or registered (REQ-004: no local transition invents review or
 registration). K-7: a draft is never shown as running a workflow; trying it
-is an ordinary conversation (AT-8).
+is a trial, never a run (AT-8; WR TT-2, TT-3).
 
 **Where the complete journey is verified.** DEL-02-02 owns the create, try,
 review, register, reuse and refine journey and its witness (CLM-004); this
@@ -845,7 +849,7 @@ by head and grep in `projects/chirality-app-dev/frontend/src`.
 | Record format, writer, reader | DEL-04-03 (CLM-005) | IF-7; the act control writes through the writer |
 | Unresolved policy decisions; OI-021 additions | Owner with App/SWB contract owners | §12 |
 | Every human act (A4–A7, A10, A12, A13, A15), professional reliance | The person; the accountable professional | Presented (§8) and offered (AAC); never performed or inferred |
-| OI-008 placement, OI-014 shared placement | App implementation owner; App/shared contract owners | §1.1, §9 state requirements only |
+| OI-014 shared placement (OI-008 placement is decided by the owner, §1.1) | App/shared contract owners | §9 states requirements only |
 
 No row promotes a presenter or recorder into a decision actor.
 
@@ -855,7 +859,7 @@ No row promotes a presenter or recorder into a decision actor.
 |---|---|---|---|
 | TBD-001 OI-001 residue, OI-021 additions | Owner with App/SWB contract owners | Before operation-policy production contracts | Labels come from ACT V-07; additions fill slots |
 | TBD-002 OI-002 | Ruled (D3) | — | NR-9; LB-3 |
-| TBD-003 OI-008 process division; attachment storage | App implementation owner | Before architecture production contracts | §1.1 placement PROPOSED; AO-1/AO-2 open |
+| TBD-003 OI-008 process division; attachment storage | Process division decided by the owner (2026-10-10); attachment storage: App implementation owner | Before architecture production contracts | §1.1 placement follows the ruling; AO-1/AO-2 open |
 | TBD-004 OI-012 implementation/qualification pin | App implementation owner | Before protocol generation and qualification | Designed at 0.158.0 only |
 | TBD-005 OI-014 shared placement | App/shared contract owners | Before structural/production allocation | §9 places App surfaces; code placement open |
 | U-NIR-1 Effect of the PROPOSED empty-answer and empty-grant declines (DM-4, DM-5) | App implementation owner with DEL-01-01 (U-20) | Before card implementation | Not observed; not in OBS-2's list |
@@ -977,6 +981,7 @@ RS's own schema.
 
 ## Changes
 
+- CC-WR-TRIALS (2026-10-10; in place, no version step): AT-8, TC-2 and §7's K-7 sentence follow WR TT-2…TT-13 as revised by the owner's direction on WR U-WR-24 (trial text in place of the draft attachment pre-fill; AT-10 not used for drafts).
 - G (closeout node G, 2026-10-02; in place, no version step): R22-3, the stop control in several windows (§4.8 WI-5); row "G" in "Changes from v0.1" at the top.
 - RV21 (repairs from V21, 2026-10-02; in place, no version step): R21-2, R21-3 (IF-5), V21-A MINOR 4–9 and 14, V21-B's Stop Codex label; row "RV21" in "Changes from v0.1" at the top.
 - RX2 (design pass 3 residual sweep 2, 2026-10-02; in place, no version step): R20-11 and R20-6, row "RX2" in "Changes from v0.1" at the top.

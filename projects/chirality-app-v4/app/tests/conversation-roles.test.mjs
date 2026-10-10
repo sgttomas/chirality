@@ -5,8 +5,9 @@ import {createRequire} from 'node:module';
 import ts from 'typescript';
 import React from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
-const load=name=>{const url=new URL(`../src/${name}`,import.meta.url);const compiled=ts.transpileModule(readFileSync(url,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX}});const exports={};new Function('require','exports',compiled.outputText)(createRequire(url),exports);return exports;};
-const {RoleHeader,RoleChoice,RoleLimits,ContinueAsPanel,SupplyStatus,guidanceChange,roleName,attemptSend,SendOutcome}=load('ConversationRoles.tsx');
+import {localRequire} from './support/load-src.mjs';
+const load=name=>{const url=new URL(`../src/${name}`,import.meta.url);const compiled=ts.transpileModule(readFileSync(url,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX}});const exports={};new Function('require','exports',compiled.outputText)(localRequire(createRequire(url)),exports);return exports;};
+const {RoleHeader,RoleChoice,RoleLimits,ContinueAsPanel,SupplyStatus,ModelProviderFields,guidanceChange,roleName,attemptSend,SendOutcome}=load('ConversationRoles.tsx');
 const h=(c,p)=>renderToStaticMarkup(React.createElement(c,p));
 const noop=()=>{};
 
@@ -63,7 +64,16 @@ test('the start display is readable: preselection, no role, TASK not offered, li
   const html=h(RoleChoice,{roleSet,limits,role:roleSet.defaultRole,setRole:noop,preselected:true});
   assert.ok(html.includes(`<b>${roleSet.defaultRole}</b>`)&&html.includes('(preselected; change or clear it before starting)'));
   assert.ok(html.includes('<b>No role</b>: product guidance only.'));
-  assert.ok(/<input[^>]*disabled=""[^>]*value="TASK"/.test(html)&&html.includes('Not offered as a conversation role here'));
+  // ROLE SL-1 (owner ruling 2026-10-10): TASK is not listed as a conversation role, only explained.
+  assert.ok(!/value="TASK"/.test(html)&&!html.includes('<b>TASK</b>'),'TASK is not a choice');
+  assert.equal((html.match(/name="conversation-role"/g)??[]).length,4,'three conversation roles and No role');
+  assert.ok(html.includes('TASK is not a conversation role: a manager assigns bounded work to it'));
+  // The host's list governs when it is handed.
+  const hostList=h(RoleChoice,{roleSet:{...roleSet,conversationRoles:['HELP_HUMAN','WORKING_ITEMS']},limits,role:'',setRole:noop,preselected:false});
+  assert.ok(hostList.includes('value="WORKING_ITEMS"')&&!hostList.includes('value="HELPS_HUMANS"')&&!hostList.includes('value="TASK"'));
+  // Continue as offers the same three and No role, never TASK.
+  const cont=header(thread());
+  assert.ok(!/<option[^>]*value="TASK"/.test(cont)&&/<option[^>]*value="WORKING_ITEMS"/.test(cont));
   assert.ok(html.includes('Stated, not enforced'));
   assert.ok(!html.includes('"standing"'),'no JSON in the start display');
   const changed=h(RoleChoice,{roleSet,limits,role:'',setRole:noop,preselected:false});
@@ -118,4 +128,23 @@ test('the handoff message reads sent only after the send resolved; a refusal kee
   assert.ok(source.includes('void attemptSend(send, draft).then(setSending)')&&!/setSent\(true\)/.test(source));
   const app=readFileSync(new URL('../src/App.tsx',import.meta.url),'utf8');
   assert.ok(app.includes('mode: null })) !== undefined'),'the App reports a failed send as not sent');
+});
+
+test('model and provider are exact strings: no capitalisation, autocorrect, spell-check or autofill (witness D-2)',()=>{
+  const inputs=html=>html.match(/<input[^>]*>/g)??[];
+  const exact=tag=>tag.includes('autoCapitalize="off"')&&tag.includes('autoCorrect="off"')&&tag.includes('spellCheck="false"')&&tag.includes('autoComplete="off"');
+  const pair=inputs(h(ModelProviderFields,{model:'gpt-6-luna',modelProvider:'openai',setModel:noop,setModelProvider:noop}));
+  assert.equal(pair.length,2);
+  assert.ok(pair[0].includes('value="gpt-6-luna"')&&pair[1].includes('value="openai"'));
+  assert.ok(pair.every(exact),pair.join('\n'));
+  // Continue as asks for the new conversation's model and provider through the same fields.
+  const handoff={id:'continue-as:1',sourceThread:'thread',sourceRoleLabel:'no role',targetRole:'HELPS_HUMANS',requestText:'r',request:{state:'sent'},draft:{state:'drafted',reading:'d'},draftText:'t',started:null};
+  const panel=inputs(h(ContinueAsPanel,{handoff,entries:[],busy:false,ready:true,start:noop,send:noop,open:noop,dismiss:noop}));
+  assert.equal(panel.length,2);
+  assert.ok(panel.every(exact),panel.join('\n'));
+  // The start display uses the same fields; no other model or provider input exists.
+  const app=readFileSync(new URL('../src/App.tsx',import.meta.url),'utf8');
+  const roles=readFileSync(new URL('../src/ConversationRoles.tsx',import.meta.url),'utf8');
+  assert.ok(app.includes('<ModelProviderFields model={model} modelProvider={modelProvider}'));
+  assert.equal(((app+roles).match(/<input [^>]*value=\{(model|modelProvider)\}/g)??[]).length,2,'only the shared fields bind model and provider');
 });

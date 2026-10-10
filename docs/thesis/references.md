@@ -1,6 +1,6 @@
 # References
 
-References are organized by category. A bibliographic verification pass was applied 2026-07-02 against primary sources. Symbolic keys (`[Key]`) are the citation targets for the `[CITE:Key]` markers used in the chapters.
+References are organized by category. The original bibliographic verification pass was applied on 2026-07-02. The October revision adds identified engineering reports and research, and corrects the NSPE revision date against its official page. This is not an exhaustive currency review of every source. Symbolic keys (`[Key]`) are citation targets for `[CITE:Key]` markers. A citation supports the associated bounded claim, not every inference drawn in this thesis.
 
 ---
 
@@ -24,7 +24,7 @@ References are organized by category. A bibliographic verification pass was appl
 
 [EGBC2024] Engineers and Geoscientists British Columbia (EGBC), "Use of Artificial Intelligence (AI) in Professional Practice," Practice Advisory, Burnaby, BC: EGBC, Nov. 22, 2024.
 
-[NSPE_AI] National Society of Professional Engineers (NSPE), "Artificial Intelligence," Position Statement No. 03-1774, Alexandria, VA: NSPE, adopted Sep. 2023, latest revision Feb. 2025. [Online]. Available: https://www.nspe.org/nspe-advocacy/explore-issues/professional-policies-and-position-statements/artificial-intelligence
+[NSPE_AI] National Society of Professional Engineers (NSPE), "Artificial Intelligence," Position Statement No. 03-1774, Alexandria, VA: NSPE, adopted Sep. 2023, latest revision Feb. 2026 (official page checked 2026-10-10). [Online]. Available: https://www.nspe.org/nspe-advocacy/explore-issues/professional-policies-and-position-statements/artificial-intelligence
 
 [NIST_AI_RMF2023] National Institute of Standards and Technology (NIST), "Artificial Intelligence Risk Management Framework (AI RMF 1.0)," NIST AI 100-1, Gaithersburg, MD, USA, Jan. 2023. [Online]. Available: https://doi.org/10.6028/NIST.AI.100-1
 
@@ -49,6 +49,16 @@ References are organized by category. A bibliographic verification pass was appl
 [HuangJT2024] J. Huang, J. Zhou, T. Jin, X. Zhou, Z. Chen, W. Wang, Y. Yuan, M. R. Lyu, and M. Sap, "On the Resilience of LLM-Based Multi-Agent Collaboration with Faulty Agents," *arXiv preprint arXiv:2408.00989*, 2024. [Online]. Available: https://arxiv.org/abs/2408.00989
 
 [Xu2025] Q. Xu, X. Wen, C. Xu, Z. Li, and J. Zhong, "From Craft to Constitution: A Governance-First Paradigm for Principled Agent Engineering," *arXiv preprint arXiv:2510.13857*, Oct. 2025. [Online]. Available: https://arxiv.org/abs/2510.13857
+
+---
+
+## Agent Engineering and Evaluation, 2026
+
+[OpenAI2026Prompts] E. Provencher, "Rethinking skills and prompts for GPT-6 Astra," OpenAI Developers, Sep. 11, 2026. https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra. Engineering guidance, not a controlled evaluation of Chirality.
+
+[Anthropic2026Managed] Anthropic, "Scaling Managed Agents: Decoupling the brain from the hands," Apr. 8, 2026. https://www.anthropic.com/engineering/managed-agents. Engineering report describing model-dependent harness assumptions and infrastructure boundaries.
+
+[Kim2026Scaling] Y. Kim et al., "Towards a Science of Scaling Agent Systems," arXiv:2512.08296v3, Apr. 8, 2026. https://arxiv.org/abs/2512.08296v3. Controlled benchmark comparisons of 260 configurations across six benchmarks; not evidence for a universal orchestration topology or Chirality's productivity.
 
 ---
 
@@ -164,13 +174,12 @@ assumptions; not an experimental demonstration.)
 
 ## Chirality Project Documents (Internal)
 
-The following are internal project documents filed under the Chirality project repository. They are cited as design authority documents and primary sources for system specifications described in this thesis. Paths are relative to the chirality monorepo root.
+These sources document the case. Historical instruments establish what an earlier implementation prescribed; they create no present duties. Unless a specific revision is supplied, retired Root governance paths are recoverable through `archive/pre-docs-cleanup-1` or the earlier commit recorded in Git. The pre-revision thesis is available at `510f4a9abccc0ac291872c72253eb2aef908c8c5`. Current authority is the conversation, repository instructions and adopted product commitments, not a bibliography entry. Paths are repository-relative.
 
 [Chirality_DIRECTIVE] Chirality Project, "docs/DIRECTIVE.md — Founding Intent, Design Philosophy, and Four-Pillar Framework," Internal Document, Chirality Repository, 2024–2026.
 
 [Chirality_FRAMEWORK] Chirality Project, "docs/thesis/CHIRALITY_FRAMEWORK.md —
-The Chirality Framework," Internal Document, Chirality Repository, Revision 3
-candidate, 2026 (relocated from the repository root, 2026-08-02).
+The Chirality Framework," Internal Document, Chirality Repository, maintained explanatory revision, Oct. 2026 (Revision 3 candidate is preserved in the pre-revision Git basis; relocated from Root in Aug. 2026).
 
 [Chirality_SPEC] Chirality Project, "docs/SPEC.md — Physical Structures, Schemas, and Folder Layouts," Internal Document, Chirality Repository, 2024–2026.
 
@@ -187,3 +196,12 @@ candidate, 2026 (relocated from the repository root, 2026-08-02).
 [Chirality_R1R9] Chirality Project, "docs/WORKFLOW_COMPONENT_STANDARD.md — Workflow-Component Standard," Internal Document, Chirality Repository, 2024–2026.
 
 [Chirality_I1I10] Chirality Project, "docs/DECOMPOSITION_STANDARD.md — Decomposition Protocol Standard (I1–I10)," Internal Document, Chirality Repository, 2024–2026.
+
+
+[Chirality_CURRENT] Chirality Project, "AGENTS.md," "tools/deliverables/README.md," and "workflows/coordinated-knowledge-work/WORKFLOW.md," repository operating sources observed at `510f4a9abccc0ac291872c72253eb2aef908c8c5`, Oct. 10, 2026. These establish prescribed behaviour at that basis, not universal effectiveness.
+
+[Chirality_RESET] Chirality Project, efficiency reset and subsequent owner-authorized changes, PRs [1211](https://github.com/sgttomas/chirality/pull/1211), [1212](https://github.com/sgttomas/chirality/pull/1212), [1213](https://github.com/sgttomas/chirality/pull/1213), [1214](https://github.com/sgttomas/chirality/pull/1214), [1216](https://github.com/sgttomas/chirality/pull/1216), [1223](https://github.com/sgttomas/chirality/pull/1223), and [1224](https://github.com/sgttomas/chirality/pull/1224), Oct. 2026. Later owner decisions qualify the initial plan; the final implementations are the evidence for what changed.
+
+[Chirality_APPV4] Chirality Project, "projects/chirality-app-v4/docs/PRD.md," "ARCHITECTURE.md," and "HOST_INTEGRATION.md," observed at `510f4a9abccc0ac291872c72253eb2aef908c8c5`. Product commitments and design; delivery must be established separately.
+
+[Chirality_SWBPIPE] Chirality Project, "projects/chirality-piping/docs/PRD.md" and "docs/architecture/adr/ADR-0001_operation_seam_engine_unification.md," observed at `510f4a9abccc0ac291872c72253eb2aef908c8c5`. Domain requirements and an identified historical implementation decision; no claim of professional acceptance is inferred.

@@ -4,18 +4,34 @@
 
 ## 3.1 Introduction
 
-This chapter presents the philosophical framework that governs the Chirality
-architecture [CITE:Chirality_FRAMEWORK]. Where Chapter 4 describes what the
-architecture is—its structures, mechanisms, and constraints—this chapter
-explains why those structures take the form they do. The argument is that the
-architecture rests on four foundational pillars, that these pillars form a
-coherent basis and evaluative lens for professional engineering governance of
-AI agent systems, and that one pillar—epistemology—is load-bearing in the
-operational sense defined below.
+This chapter explains the philosophical commitments and design questions of the
+Chirality Framework [CITE:Chirality_FRAMEWORK]. Chapter 4 examines their
+architectural expressions. The distinction matters: an enduring responsibility
+does not uniquely determine a gate, document format, agent hierarchy or runtime.
 
-The four pillars are not a taxonomy imposed after construction. They are the structural logic the architecture was built from, and they appear at every level of the system — from the governance documents that define the rules, through the agent instructions that enforce them, to the production documents that agents create for every deliverable. This self-similar property, termed the fractal property, is itself a sign of architectural coherence: the system practices what it produces.
+The framework developed in dialogue with practice. Earlier versions organised
+work through document kits, lifecycle records and prescribed delegation. Later
+revisions removed much of that machinery while retaining explicit purpose,
+evidence, integration responsibility and human authority. That experience is a
+reason to distinguish commitments from the mechanisms chosen to serve them.
+It is not, by itself, evidence that the replacement is best in every setting.
 
-The framework draws on established philosophical traditions. Ontology, the study of what exists, has a long history in information systems through Bunge's ontological framework as applied by Wand and Weber [CITE:Wand_Weber_ontology]. Epistemology, the study of knowledge and justification, has been operationalized in knowledge engineering through provenance models such as W3C PROV [CITE:W3C_PROV2013]. Praxiology, the study of human action and practical reasoning, finds expression in SE through workflow engineering and process modeling [CITE:INCOSE2023]. Axiology, the study of value, manifests in engineering through professional codes of ethics and standards of care [CITE:APEGA_RWO2021]. What is distinctive about Chirality is not the use of any single pillar, but the claim that all four must be addressed in any governance architecture that aims to support professional reliance, and that omitting one introduces a specific governance failure mode.
+Ontology asks what exists and how it is represented. Bunge and Wand and Weber
+provide a source for assessing representations in information systems
+[CITE:Bunge_ontology] [CITE:Wand_Weber_ontology]. Epistemology concerns knowledge
+and its grounds; provenance models provide one operational vocabulary
+[CITE:W3C_PROV2013]. Praxeology concerns action and practical reasoning, for
+which systems engineering offers methods [CITE:INCOSE2023]. Axiology concerns
+values, purposes and consequences, including professional obligations
+[CITE:APEGA_RWO2021]. These are related questions, not a sequence of mandatory
+forms.
+
+This chapter distinguishes three kinds of claim. **Normative commitments** state
+what the framework values or what an applicable obligation requires. **Design
+hypotheses** propose how a mechanism could serve those commitments. **Empirical
+findings** report what examination establishes in actual use. Philosophical
+coherence can support a design argument; it cannot substitute for evidence of
+performance, compliance or transfer to another domain.
 
 ---
 
@@ -23,291 +39,281 @@ The framework draws on established philosophical traditions. Ontology, the study
 
 ### 3.2.1 Ontology — What Exists in the System
 
-The ontological commitment of the Chirality architecture is that project state is defined entirely through filesystem structures. Deliverable folders are nodes. Dependency rows in CSV registers are edges. Markdown files carry properties — identity (`_CONTEXT.md`), lifecycle state (`_STATUS.md`), dependency summaries (`_DEPENDENCIES.md`), source references (`_REFERENCES.md`), and working memory (`_MEMORY.md`). The entity hierarchy — packages containing deliverables in a flat, non-nested structure — stable identifiers assigned once and persistent across renames, enumerated types with canonical values, and the lifecycle state machine form the ontological layer.
+The ontological commitment is to preserve distinctions that matter to the work.
+A requirement, an assumption, a physical model, a proposed operation, a result
+and an acceptance are different things. Confusing them can authorize an action
+that nobody intended or make a result appear better supported than it is.
 
-This ontology is not a schema imposed on a database. It IS the filesystem. There is no separate representation, no translation layer, no synchronization discipline. The folder structure is the project structure. The file contents are the project state. A human, an agent, and a static analysis tool all observe the same structures and parse the same files.
+Three levels must remain distinct:
 
-The ontological commitment is formalized in `TYPES.md`, which defines the canonical vocabulary; `SPEC.md`, which defines the physical structures and file formats; and the structural invariants K-HIER-1 (flat package-to-deliverable hierarchy) and K-ID-1 (stable identifiers). The entity model is described in detail in Chapter 4, §4.3.
+| Level | Example | What examination must establish |
+|---|---|---|
+| Work or domain entity | A support, an intended deliverable, a required input | What it is, how it relates to the purpose, and which constraints apply |
+| Representation | A model object, ScopeOfWork, dependency declaration or graph view | What it denotes, what it omits, and whether it remains faithful |
+| Implementation convenience | A lock, cache, index or temporary file | What operation it supports and whether its failure affects the work |
 
-In philosophical terms, the Chirality ontology follows the principle that Bunge [CITE:Bunge_ontology] and Wand and Weber [CITE:Wand_Weber_ontology] applied to information systems: the representational model should reflect the real-world domain it serves, and every construct in the model should correspond to a thing in the domain. In Chirality, every folder corresponds to a real work item. Every dependency row corresponds to a real relationship. Every status file corresponds to a real lifecycle state. There are no constructs that exist only for system convenience.
+Bunge and Wand and Weber inform the examination of domain representations
+[CITE:Bunge_ontology] [CITE:Wand_Weber_ontology]. Their use here does not justify
+the earlier claim that every software construct must correspond directly to a
+thing in the domain. Locks and caches can be legitimate implementation objects.
+They must not silently become sources of domain truth or authority.
 
-One distinction within this ontology deserves explicit statement, because
-the rest of the chapter depends on it. The filesystem carries two kinds of
-record. Most records *describe* facts that exist independently of them — a
-claim about a pipe's stress state is answerable to the pipe, and the record
-can be wrong. Some records *constitute* the facts they carry — a ruling, an
-approval, a lifecycle status. There is no fact of a deliverable being ISSUED
-apart from the governed record of its issuance; for this kind of record, the
-maxim that what is not in a versioned file does not exist for purposes of
-reliance is not an evidentiary policy but a literal truth. The seam between
-the two kinds runs exactly along the epistemic primitives of the next
-section: a `Claim` is a descriptive record, answerable to the world and
-warrantable; a `Ruling` is a constitutive record, an act performed in the
-record itself. Keeping the two kinds distinct is what allows the
-architecture to be simultaneously deflationary about institutional facts and
-realist about engineering ones.
+The filesystem is a shared working medium, not the ontology itself. In current
+repository practice, a deliverable folder brings together commitments, design
+and declared needs. Tools derive relationships from those sources. The folder
+can misrepresent the work; the graph can omit a dependency. A query must report
+its basis and unresolved inputs rather than treat successful parsing as proof
+of suitability. Product engines may own domain state under their applicable
+contracts, so not every authoritative fact is a Markdown file.
+
+The tree answers what belongs within a larger undertaking. The dependency graph
+answers what one contribution needs from another. A network can expose other
+relevant connections, such as a common source or decision. These are views of
+the work and need not be separately authored stores. Attention is the activity
+through which participants relate these views to the undertaking. A missing
+edge cannot establish independence: shared writes, resources and interfaces may
+still connect apparently separate tasks.
+
+The distinction between descriptive and constitutive records also requires
+care. A stress result describes a state of affairs and can be wrong. An approval
+record may be part of an institutional act if the applicable process gives it
+that role. Its formal presence alone does not establish that the actor had
+authority, adequately examined the subject or engaged with its consequences.
+A recorded decision and a well-founded decision remain different claims.
 
 ### 3.2.2 Epistemology — What Can Be Known, and How
 
-This is the system's most distinctive and load-bearing contribution, and the section that this chapter develops most fully.
+Fluent output is not self-certifying. A numerical value and plausible citation
+can look credible while being unsupported. Retrieval and other techniques can
+improve grounding, but the presence of a source does not establish that it
+supports every inference made from it [CITE:Ji2023].
 
-The fundamental problem of using large language models in professional
-practice is not only that they produce bad outputs. It is that incorrect and
-correct outputs may be indistinguishable by surface inspection alone. LLM
-outputs are plausible by construction—the model optimizes for producing text
-that reads as though it were written by a competent author. A well-formed
-sentence with a specific numerical value and a plausible-sounding source
-citation may be fabricated without a reliable surface signal. The model's
-output therefore carries no intrinsic epistemic warrant. It is not
-self-certifying and cannot be assumed grounded merely because it reads that
-way.
-
-Most approaches to this problem focus on improving the model: reinforcement learning from human feedback (RLHF), retrieval-augmented generation (RAG), fine-tuning on domain-specific corpora, or post-hoc factuality checking [CITE:Ji2023]. These are valuable but insufficient for professional practice. They reduce the probability of error without eliminating it, and — critically — they do not make the epistemic status of any particular claim transparent to the reviewer. A RAG-augmented model that retrieves a relevant document and generates a summary does not, by that fact alone, tell the reviewer which parts of the summary are grounded in the retrieved document and which are interpolated by the model.
-
-Chirality takes a different approach. Rather than relying on a guarantee of
-model reliability for a specific output, the architecture requires
-represented claim states and grounds to be inspectable and auditable so that
-a qualified professional can determine what to rely on.
-
-Four architectural mechanisms enforce this:
-
-**Mandatory provenance (K-PROV-1).** Every extracted or aggregated claim must
-cite its source file and section reference, or carry an explicit `location
-TBD` marker. A represented claim without provenance is detectable as
-ungrounded. This is not a style guideline; it is a declared invariant with
-specified enforcement layers. The provenance fields in `Dependencies.csv`
-(`EvidenceFile`, `SourceRef`, `EvidenceQuote`) are required columns in the
-schema, not optional metadata. A reviewer can trace a conforming represented
-claim to its source or observe the missing source.
-
-**No invention (K-INVENT-1).** When required information is missing, agents label it `TBD` and surface the gap as an open issue. They do not guess, default-fill, or silently infer. Missing data is a finding, not a problem to solve. This rule eliminates the most dangerous failure mode of LLM-assisted work: the generation of plausible-sounding values for quantities that are actually unknown. An engineer reviewing an agent's output will see `TBD` where information is missing, not a confident-looking number that happens to be fabricated.
-
-**Conflict surfacing (K-CONFLICT-1).** When a conflict is detected, agents
-produce a Conflict Table with the competing claims, pointers to their sources,
-a proposed resolution marked as `PROPOSAL`, and a `HumanRuling = TBD` column.
-The conforming path does not silently resolve contradictions; the human owns
-the ruling. The declared controls are designed to route detected disagreements
-to the decision-maker, without claiming that every conflict will necessarily
-be found.
-
-**Epistemic labeling.** Every non-trivial claim is classified with one of four labels: FACT (directly observed in source text with citation), ASSUMPTION (reasonable inference not directly stated, requiring validation), PROPOSAL (agent suggestion requiring human decision), or TBD (unknown, placeholder requiring resolution). These labels are defined in `TYPES.md` §10 as a specified convention across the suite; per D-GOV-08 (ruled 2026-07-01) the labeling act is assessed at audit time, bounded by K-CLAIM-1, with the warranting function carried by the citation, SHA-binding, and attribution mechanisms. The licensed professional does not need to guess whether a value is grounded or inferred — the label tells them.
-
-Together, these four mechanisms mean that gaps in evidence are findings, not hidden failures. The system does not try to prevent hallucination — it requires provenance, making unsupported claims structurally visible. This is the architectural response to the epistemic limitation of LLMs: since the model's output carries no intrinsic warrant, the architecture imposes an extrinsic warrant requirement and makes its absence detectable.
-
-Two additional epistemic commitments complete the architecture:
-
-**Filesystem as single source of governed project state.** If a decision,
-approval, or state change is not recorded in a versioned file, it does not
-exist for purposes of governed reliance. There is no hidden memory, transient
-chat context, or external database that may silently substitute for the
-filesystem record. This commitment, stated in `DIRECTIVE.md` §2.1 and §2.5
-and enforced by agent instruction invariants, makes the recorded epistemic
-state of the project inspectable. It is a rule about authoritative project
-state, not a claim that files establish metaphysical truth or exhaust what a
-person may know.
-
-**Content-addressed approval (K-AUTH-2).** Approvals bind to a specific git SHA. If the content changes after approval, the approval is void. This makes the integrity of the approval relationship mechanically verifiable — not dependent on trust or process discipline alone. The reviewer does not need to believe that the document has not changed since approval; they can verify it computationally.
+The framework therefore asks that material grounds and their limits be
+inspectable. A source can support a definition without supporting a numerical
+formula extracted from it. A test can establish specified behaviour without
+establishing fitness for every use. Agreement among agents can show consistency
+with a shared premise while leaving that premise unexamined.
 
 #### The Ontology of the Epistemology
 
-The epistemology itself has an ontology — the set of entities that the epistemic mechanisms operate on. Six primitives constitute this layer:
+The framework uses six concepts to expose these distinctions. They are tools
+for inquiry, not an exhaustive state space of knowledge.
 
-| Primitive | Definition |
-|---|---|
-| **Claim** | An assertion that something is the case. The atomic unit of the epistemology. Every non-trivial assertion produced by an agent in a governed workflow is a claim. |
-| **Warrant** | The justification for believing a claim. Always extrinsic — a source citation (file + section + quote) — never intrinsic (model confidence or plausibility). |
-| **Status** | The epistemic classification of a claim's certainty, expressed as one of the four labels: FACT, ASSUMPTION, PROPOSAL, TBD. |
-| **Gap** | The explicit, positive assertion that a warrant has not been found. A gap is not the absence of information — it is an entity representing that absence, making it visible and actionable. |
-| **Conflict** | Two or more claims with incompatible warrants about the same key. The existence of a conflict is itself an epistemic entity that must be resolved before the deliverable can advance. |
-| **Ruling** | A human decision that resolves a gap or conflict, transforming epistemic status. Rulings are binding and recorded in versioned files. |
+| Concept | Meaning | Limit |
+|---|---|---|
+| Claim | An assertion about a subject | A clear assertion may still be false |
+| Warrant | Relevant grounds: a source, observation, calculation, test or argument | Confidence and fluency alone do not establish adequacy |
+| Status | A scoped classification useful to examination | A label is not its supporting evidence |
+| Gap | Missing information or grounds whose consequence matters | Recording a gap does not resolve it |
+| Conflict | Incompatible claims requiring examination of sources, scope or meaning | Some conflicts can be resolved by inquiry; others require a choice |
+| Ruling | A decision by the relevant authority | Authority can settle a choice, not manufacture factual support |
 
-These primitives are not documentation constructs. They are the things that the invariants K-PROV-1, K-INVENT-1, K-CONFLICT-1, and K-AUTH-1 govern:
+FACT, ASSUMPTION, PROPOSAL and TBD are useful conventions where a consumer needs
+them. They must not imply that a cited statement is universally true or that
+an adopted assumption has become an observation. Nor does every routine
+implementation proposal require a new owner decision. Its authority depends on
+the assignment, commitments and reserved choices.
 
-| Invariant | Epistemic Primitive Governed |
-|---|---|
-| K-PROV-1 (mandatory provenance) | Warrant — every claim must have an extrinsic warrant or explicit `location TBD` |
-| K-INVENT-1 (no invention) | Gap — missing data must be represented as a gap, not filled with a fabrication |
-| K-CONFLICT-1 (conflict surfacing) | Conflict — disagreements must be exposed, not silently resolved |
-| K-AUTH-1 (human authority) | Ruling — only humans may author binding rulings and approval records |
-| K-AUTH-2 (SHA-bound approval) | The warrant-to-content binding is mechanically verifiable |
+Provenance, explicit uncertainty, conflict surfacing and examination can make
+unsupported claims easier to find. The early system enforced these through
+required CSV fields, labels and review tables. Those historical mechanisms
+must be assessed separately from their purpose. A source-field validator detects
+a missing field; it does not determine whether the source is faithful, relevant
+or sufficient. An instruction against invention is not a guarantee that an agent
+will never fabricate content.
 
-The relationships between primitives are formal: a claim HAS a status; a claim MAY HAVE a warrant; a claim WITHOUT a warrant has status TBD or ASSUMPTION; two claims may be IN CONFLICT; a conflict REQUIRES a ruling; a ruling TRANSFORMS the status of claims. These relationships are formalized in `TYPES.md` §10.
+Current product commitments may retain specific provenance, authority and
+content-binding requirements. This philosophical account neither removes those
+requirements nor extends them to consumers that did not adopt them. Current
+repository practice instead maintains relevant grounds with the work and queries
+the needed context. Conversation supplies present intent, while source documents
+and existing change records preserve what later use requires.
 
 #### The Warrant Lifecycle
 
-The epistemic primitives give rise to a lifecycle that is distinct from, but interleaved with, the deliverable production lifecycle. Where the deliverable lifecycle (OPEN → INITIALIZED → SEMANTIC_READY → IN_PROGRESS → CHECKING → ISSUED) tracks the production state of a work product, the **warrant lifecycle** tracks the epistemic state of the claims within it:
+Earlier versions represented warrant development as:
 
 ```
 UNWARRANTED → CITED → REVIEWED → AUTHENTICATED
 ```
 
-| Warrant State | Meaning | Transition Mechanism |
-|---|---|---|
-| UNWARRANTED | Claim exists but has no source citation; status is TBD or PROPOSAL | Agent produces claim; K-INVENT-1 requires TBD marking for unknowns |
-| CITED | Claim has a source citation; status is FACT or ASSUMPTION | Agent attaches provenance; K-PROV-1 enforces |
-| REVIEWED | Claim has been examined by a licensed professional; findings dispositioned | REVIEW gates; human rules on findings |
-| AUTHENTICATED | Claim is part of an authenticated PWP; the professional warrants it under duty of care | Authentication binds to git SHA; K-AUTH-2 enforces |
+The notation is retained here to explain the historical design. It is not a
+required deliverable lifecycle. It combines different relationships:
 
-The two lifecycles are correlated but not identical. A deliverable in IN_PROGRESS contains a mixture of warranted and unwarranted claims. The transition to CHECKING requires that critical claims have been warranted — all CRITICAL findings must have non-TBD human disposition. The transition to ISSUED requires that the professional has authenticated the work: the act of declaring that the epistemic state of the claims is sufficient for reliance under professional responsibility.
+| Question | Relevant relation |
+|---|---|
+| What supports this claim? | Claim to evidence, with scope and limits |
+| What examination has occurred? | A subject and revision to a review method, examiner and findings |
+| What reliance has been accepted? | An accountable person to identified content, purpose and conditions |
 
-The warrant lifecycle expresses thorough review (APEGA §3.1.2) operationally
-as auditing warrant sufficiency. The professional examines represented
-claims, checks their warrants, resolves surfaced gaps and conflicts through
-rulings, and decides whether the aggregate state supports authentication. The
-architecture makes represented warrant states inspectable within its declared
-coverage; it does not guarantee complete claim capture.
+These relationships can change independently. A claim can acquire contrary
+evidence after review. A technically supported result may have no accepted use.
+A person can accept reliance under stated uncertainty without converting that
+uncertainty into a fact. Authentication changes normative standing; it does not
+add another experimental observation.
 
-One feature of the lifecycle should be flagged, because the uniform notation
-can obscure it. The first transitions mark changes in evidential standing: a
-claim gains a citation, then survives professional examination. The final
-transition marks a change in normative standing: nothing about the claim's
-evidence changes at authentication — what changes is that an accountable
-person has bound themselves to it under duty of care. The arrow from
-REVIEWED to AUTHENTICATED is therefore not one more step of the same kind
-but the point where the epistemology hands off to the axiology — the
-accountability gap of §3.6 traversed by an act rather than closed by
-evidence. Appendix D offers an interpretive reading of this crossing — an
-inner act of assessed assertion and an outer act of binding oneself to that
-stance — as an analogue of, not a definition of, REVIEWED and AUTHENTICATED.
+Review is therefore inquiry into adequacy for a purpose, not completion of a
+universal sequence. A content hash can identify what was examined or accepted
+where that binding is required. It cannot establish the meaning, quality or
+sufficiency of the examination. Nor does a review record prove the person's
+committed engagement. Appendix D offers an interpretation of commitment, not a
+formal definition of review or authentication.
 
-The epistemic architecture is the subject of Chapter 5, which develops the argument in full with worked examples and comparison to alternative approaches. The purpose of this section is to establish that the epistemology is a coherent philosophical commitment with its own formal ontology — not merely a collection of quality rules — and that it addresses a specific, identifiable limitation of LLM-based systems that other approaches do not address at the architectural level.
+Chapter 5 develops the epistemic mechanisms. Their value depends on whether they
+help expose a consequential uncertainty and whether actual examination can act
+on it. More recorded state is not automatically more knowledge.
 
-### 3.2.3 Praxiology — How Work Is Done
+### 3.2.3 Praxeology — How Work Is Done
 
-The praxiological commitment of the Chirality architecture is that work must be bounded, gate-controlled, and auditable. Three structural decisions implement this:
+The praxeological question is how intention becomes a usable result through
+investigation, production, examination, repair and integration. Responsibility
+must persist across these activities. It need not be divided among agents at
+every boundary.
 
-**The Agent 0/1/2 runtime hierarchy.** Standards define the rules from outside the runtime hierarchy. Agent 0 is the Supervising Architect, Agent 1 is the Manager, and Agent 2 is the Specialist. Agent 0 delegates only to Agent 1; Agent 1 delegates bounded work to Agent 2; Agent 2 does not delegate. Authority and capability do not increase through delegation, escalation flows upward, and no agent may bypass a human gate or approve professional reliance. The hierarchy is described in detail in Chapter 4, §4.5.
+The current roles describe contributions. Agent 0 holds purpose and continuity
+with the owner. HELPS_HUMANS contributes design. WORKING_ITEMS owns an
+implementation undertaking and integration. TASK executes a bounded assignment
+and does not delegate. Except for Agent 0's continuing responsibilities, the
+undertaking determines which roles are useful. One session may carry the work
+without delegation.
 
-**Gate-controlled workflows.** Type 1 agents operate through multi-phase workflows with explicit gate questions at each phase. Each gate pauses for human confirmation. No gate may be skipped. The gate question makes the decision explicit and recorded. Type 2 agents operate in straight-through mode — they receive a structured brief, execute without mid-run human decisions, and return a structured report. The distinction between interactive and straight-through execution is a formal classification property (`AGENT_CLASS: PERSONA | TASK`) declared in every agent's header block.
+Responsibility, staffing and permissions are different. A role identifies a
+contribution; an assignment identifies the present objective and limits; a host
+supplies actual tools and enforces some permissions. The role name alone cannot
+grant tools or impose a universal read-only rule. Written boundaries and
+mechanical containment must be described according to what they actually enforce.
 
-**Write quarantine.** Every agent declares an explicit write scope. Tool roots — where derived outputs are written — are isolated from source truth — where human-accepted deliverables live. No agent writes outside its declared scope. This separation — declared per agent under K-WRITE-1 and checked in diff review, with deterministic path containment for bounded task writes under K-WRITE-2 — creates formal fault containment zones: under the sanctioned workflow, a Type 2 agent failure is contained away from source truth. Cross-deliverable operations (reconciliation, aggregation, closure analysis) are explicit, opt-in, and write to isolated tool roots — never to deliverable folders.
+One coordinator owns a shared result. Independent work need not wait behind an
+unresolved branch. Shared writes, interfaces, resource limits and review capacity
+can nevertheless justify sequencing. The graph identifies declared relationships;
+participants must examine whether apparent independence is real.
 
-The operational model also separates the instruction root (release-managed agent operating system bundled with the application) from the working root (user-controlled project state). This ensures that the rules governing agent behavior are stable across projects and releases while execution remains fully filesystem-native.
+Owners continue through ordinary repairs. A finding changes the relevant action,
+not necessarily the staffing. Existing evidence remains useful unless a change,
+contradiction or uncovered concern invalidates it. An uncertain outcome requires
+inspection before an action is repeated. A separate approval is needed only
+where authority or an applicable condition requires it.
+
+This practice preserves explicit holds and owner-reserved commitments. It removes
+the inference that accountable work must have a gate at every phase or a separate
+record at every handoff. The method must support progress, correction and recovery
+within authority, with costs proportionate to the undertaking.
 
 ### 3.2.4 Axiology — What the System Values
 
-The axiological commitment of the Chirality architecture is that professional responsibility is non-negotiable, non-delegable, and architecturally enforced.
+Professional responsibility and public welfare remain central commitments. Agent
+capability does not authorize an agent to certify, seal or issue professional
+work for reliance. Applicable professional obligations remain with the person
+who undertakes them; Chapter 6 examines that setting.
 
-**Public welfare is the first constraint.** When tradeoffs exist between safety and commercial pressure, schedule, or convenience, safety prevails. This obligation is stated in `DIRECTIVE.md` §3.1 and operationalized in `PROFESSIONAL_ENGINEERING.md` §3.1.
+The axiology also includes useful attention, maintainability, user agency and
+timely delivery. These are not costs external to accountability. A register can
+bury a consequential decision. A repeated approval can train a person to respond
+mechanically. Unnecessary checking can displace examination of a more consequential
+uncertainty. Removing such a control can improve both throughput and responsible
+engagement.
 
-**Professional responsibility is personal and non-transferable.** A licensed
-professional retains decision rights for scope boundaries, governing codes
-and standards, hazard and risk acceptance, conflict adjudication, and
-approval for reliance. No AI system may claim to certify, approve, sign,
-seal, or issue engineering work for reliance. This is enforced by K-AUTH-1.
-AI agent outputs are drafts and structured assistance. A licensed
-professional determines whether a completed output is a PWP and, where
-required, authenticates that PWP for accountable reliance.
+A control is justified when its contribution to understanding, reliability or
+appropriate authority warrants its attention, delay and complexity. That is not
+permission to disregard a required condition. It is a basis for choosing and
+revising the mechanisms that meet the condition. Silent numerical error warrants
+a different examination from a reversible wording change.
 
-**Evidence is required, not plausibility.** The hierarchy of authority in technical matters — laws and regulations, codes and standards, project specifications, verified engineering analysis, professional judgment — governs all technical decisions. Agent outputs carry no professional authority. This hierarchy is stated in `DIRECTIVE.md` §3.4 and enforced through agent instruction invariants.
-
-These values are not aspirational. They are enforced as architectural invariants (K-AUTH-1, K-AUTH-2, K-BIND-1) and as structural properties of the system (write quarantine, gate control, provenance requirements). A system that merely recommends these values would be a guideline. A system that enforces them architecturally is a governance framework. The distinction matters: guidelines can be ignored under pressure; architectural constraints resist it, because the sanctioned workflow offers no conforming path to the prohibited action and the surrounding layers — write quarantine, gate control, audit — are positioned to catch deviations (the enforcement model and its limits are stated in Chapter 8, §8.6).
-
-A reader will notice that this pillar receives a thinner formal treatment
-than the other three: the ontology has schemas, the epistemology has a
-lifecycle, the praxiology has a hierarchy, while the axiology largely defers
-to the professional code and the person who holds it. The thinness is
-deliberate, not neglect. The axiology is the one pillar that cannot be
-proceduralized without contradicting itself: a mechanized value system would
-relocate commitment into the machinery, which is precisely what the
-architecture exists to refuse. Its architectural expression is therefore
-negative and structural — prohibitions on agent authentication, the human
-gate that no automation may close — while its positive content lives where
-it must: in the professional obligations of Chapter 6 and in the person who
-bears them. The axiology is thin in the document because it is thick in the
-knower.
+Values can be expressed in requirements, defaults, interfaces and prohibitions.
+Those expressions can guide action without becoming the person's commitment.
+The framework cannot mechanize the person's answerability by encoding a value
+function. It can make tradeoffs visible, preserve their consequences and help the
+person respond to them.
 
 ---
 
 ## 3.3 The Fractal Property
 
-The four-document kit that agents produce for every deliverable mirrors the philosophical structure of the system itself:
+The *fractal property* names the recurrence of the four questions at different
+scales. A numerical result, a deliverable, an application and the framework itself
+can each be examined for their entities, grounds, course of action and values.
+The term describes this recurrence rather than a mathematical fractal.
 
-| Philosophical Pillar | Document Kit Instantiation |
+Earlier document kits assigned Datasheet, Specification, Guidance and Procedure
+to the four pillars. Governance texts used a similar division. These were
+historical implementations, not necessary consequences of the questions. The
+current deliverable model can answer several questions in one ScopeOfWork or
+Design document and derive other information through tools.
+
+| Scale | Example of a useful distinction |
 |---|---|
-| Ontology — what is this thing? | **Datasheet** — key parameters, identification, structured metadata |
-| Epistemology — what must be true? how do we verify? | **Specification** — technical requirements, acceptance criteria, scope definition |
-| Axiology — why these choices? what principles govern? | **Guidance** — design rationale, best practices, contextual direction |
-| Praxiology — how do we execute? | **Procedure** — step-by-step workflow, sequencing, checklists |
+| Numerical result | A passing example does not establish accuracy outside its tested range |
+| Deliverable | Implementation completion does not establish owner acceptance |
+| Application | An available operation does not establish authority to apply it |
+| Framework | A coherent mechanism does not establish that its benefit exceeds its cost |
 
-This correspondence is not a retrospective classification. It arises because both the governance structure and the production format answer the same question: what does a professional need in order to take responsibility for work?
-
-To take responsibility, the professional needs to know what the thing is (ontology / datasheet), what must be true about it and how that can be verified (epistemology / specification), why it was designed this way and what values governed the decisions (axiology / guidance), and how to execute, maintain, and reproduce it (praxiology / procedure). These four needs are invariant across scale: they apply whether the "thing" is a single deliverable or the entire agent system.
-
-The governance documents follow the same structure at the system level:
-
-| Pillar | System-Level Document |
-|---|---|
-| Ontology | `TYPES.md` (vocabulary, entities), `SPEC.md` (physical structures) |
-| Epistemology | `CONTRACT.md` (invariants, enforcement), `SE_Design_Analysis.md` (verification) |
-| Axiology | `DIRECTIVE.md` (founding intent, values), `PROFESSIONAL_ENGINEERING.md` (professional responsibility) |
-| Praxiology | `DBM_Agent_Instruction_Architecture.md` (orchestration, workflows), agent PROTOCOL sections |
-
-This self-similarity is what the thesis calls the fractal property: the same
-four accountability questions are asked at the governance level, the agent
-instruction level, and the production-document level. It is evidence of
-architectural coherence, not recurrence of a chiral duality and not proof
-that the four questions exhaust every possible knowing of the work.
+Repeating the questions can expose a neglected relationship. Repeating the
+forms without that purpose can create administrative work. Recurrence is a design
+resource, not proof of completeness or a requirement for four documents.
 
 ---
 
 ## 3.4 The Load-Bearing Pillar
 
-The four pillars are not equally weighted. The ontology, praxiology, and axiology exist to serve the epistemology. This claim requires formalization.
+Earlier revisions called epistemology the load-bearing pillar and argued that
+the other three existed to serve it. The concern motivating that emphasis remains:
+plausible agent output can conceal weak grounds. But the proposed thought
+experiment did not establish a hierarchy among the pillars.
 
-A pillar is **load-bearing** if removing it causes the system to lose its ability to support the primary use case — in this instance, professional reliance on AI-assisted work products. The test is a thought experiment: if we remove the pillar while keeping the other three, does the system still support professional authentication?
+Removing prescribed gates does not remove praxeology. Replacing a filesystem
+schema does not remove ontology. The October transformation changed those
+mechanisms while preserving distinctions and responsibilities. It is evidence
+against treating the earlier mechanisms as necessary, not a demonstration that
+one pillar can be omitted.
 
-**Remove the ontology** (no stable entities, identifiers, or filesystem-native state). The epistemic controls have nothing to attach provenance to. You cannot cite the source of a claim if there is no stable identifier for the claim or the source. The system collapses.
+The four perspectives constrain one another:
 
-**Remove the praxiology** (no gate-controlled workflows, no write quarantine, no type hierarchy). The epistemic controls exist as rules but cannot be enforced. An agent could bypass provenance requirements, write outside its scope, or advance a workflow without human approval. The system collapses.
+- Purpose and consequences determine which uncertainty is worth investigating.
+- Ontological distinctions identify the subject of a claim or operation.
+- Evidence can expose a flawed distinction, assumption or intended use.
+- Practice determines whether inquiry, correction and acceptance can affect the
+  actual result.
+- Experience of control costs can require a different method of examination.
 
-**Remove the axiology** (no professional responsibility commitment, no public welfare constraint, no hierarchy of authority). The epistemic controls produce evidence, but there is no value framework that requires anyone to act on it. The evidence trail becomes a data warehouse rather than a governance mechanism. The system does not collapse mechanically, but it loses its purpose: there is no one accountable for relying on the evidence, and no constraint that requires evidence to be relied upon rather than ignored. The system ceases to serve professional practice.
+Epistemology thus has a particular emphasis in this study, while adequacy depends
+on all four. Inspectable warrant is valuable because of what people need to do
+and stand behind. It must be connected to a subject and a workable course of
+action. No pillar alone establishes suitability for professional practice.
 
-**Remove the epistemology** (no mandatory provenance, no invention allowed, conflicts silently resolved, no epistemic labeling). The ontology still defines entities. The praxiology still gates workflows. The axiology still declares values. But the professional cannot determine which claims are grounded and which are fabricated. The evidence trail does not exist. The system produces outputs that look authoritative but carry no epistemic warrant. The licensed professional cannot conduct thorough review as defined in APEGA §3.1.2 because there is no evidence to review — only plausible-sounding text.
-
-This thought experiment reveals that the epistemology is the pillar whose removal most completely defeats the purpose of the system. The other three pillars are necessary — the system cannot function without them — but they are necessary in service of the epistemology. The ontology gives the epistemic architecture something to operate on. The praxiology enforces it through gates and write quarantine. The axiology anchors it in professional responsibility.
-
-Two senses of priority should be kept distinct here, because the axiology
-case above already hints at the second. The priority this thought experiment
-establishes is architectural: within the design, the other pillars serve the
-epistemology, because the system's product is inspectable warrant. The
-priority of the axiology is justificatory: the reason the design exists at
-all — the reason inspectable warrant matters — is duty of care and the
-public-welfare obligation (Chapter 6). The two orderings answer different
-questions — what organizes the system, and what obligates it — and no
-circularity results: the axiology motivates the epistemology from outside
-the architecture, while inside the architecture everything is arranged so
-that the epistemology can do its work.
-
-The thesis-level claim, then, is:
-
-> *Productivity tools optimize for output quality. Professional engineering tools optimize for knowing what you can rely on.*
-
-The epistemology is what distinguishes an agent system that produces deliverables from an agent system that produces deliverables whose epistemic status is transparent and auditable. The former may be useful. The latter is suitable for professional practice.
+Productivity and accountable reliance can support each other. Redundant records
+can impede both; useful checks can improve both. The design question is which
+arrangement enables useful work with adequate evidence and appropriate authority,
+not how much administrative structure demonstrates concern for accountability.
 
 ---
 
 ## 3.5 The Pillars as the Ontology of Professional Accountability
 
-The four pillars are situated within a higher-order accountability structure. In this thesis they are proposed as a compact and practically useful ontology for professional accountability rather than as the only possible classification scheme for every domain. At every level where accountability exists, analogous questions must be answered:
+The four pillars offer a compact evaluative framework. They are not an exhaustive
+ontology of everything a professional can perceive or a proof that every
+accountable system must adopt Chirality's vocabulary.
 
-- What exists? (ontology)
-- What is warranted? (epistemology)
-- How was the work done? (praxiology)
-- What values governed the decisions? (axiology)
-
-Missing any one creates a specific, identifiable accountability failure:
-
-| Missing Pillar | Accountability Failure |
+| Question | A failure it can expose |
 |---|---|
-| Ontology | The professional does not know what they are responsible for |
-| Epistemology | The professional does not know what to believe |
-| Praxiology | The professional does not know how the work was performed |
-| Axiology | The professional does not know why the decisions were made the way they were |
+| What kind of thing is this? | Treating a proposed model change as an applied result |
+| What supports the claim? | Relying on a passing check beyond the claim it tested |
+| How does this become usable work? | Leaving completed contributions without integration |
+| What matters and to whom? | Improving a local metric while reducing user control or safety |
 
-This is the deeper reason the fractal property exists within Chirality. The four pillars appear at the governance level, at the agent instruction level, and at the document kit level not because the design was made to repeat itself, but because the architecture reuses the same accountability questions at each level of abstraction. The fractal property is therefore an architectural consequence of this framework rather than a proof that all accountable systems must instantiate the same structure in the same way.
+Consider an agent proposing a support change in SWBPIPE. The physical model,
+proposal, applied operation, analysis result and acceptance must remain distinct.
+The result depends on identified inputs, methods and assumptions. The operation
+needs an actual route through validation and application, including refusal of
+stale inputs and recovery where supported. The person retains applicable
+engineering and reliance decisions. These questions guide the design without
+selecting a unique API, file format or process topology.
 
-This insight has a practical consequence: the four pillars serve as an evaluation framework for any governance architecture, not only Chirality's. For any system in which professionals delegate work to AI agents, one can ask: does the system define a complete ontology? does it enforce epistemic transparency? does it bound agent praxis through formal constraints? does it articulate and enforce values? A system missing any pillar has a specific, identifiable governance gap. The four pillars are not prescriptive about how each pillar should be implemented — only that each must be addressed.
+Systems engineering supplies methods that can serve those questions
+[CITE:INCOSE2023]. Their selection is a design hypothesis to examine in use.
+A failed recovery can reveal that the outcome model was incomplete. A new risk
+can require a different test. A more capable agent can make an old supervision
+step unnecessary. These revisions can improve coherence because the framework
+is mutually corrective, rather than a one-way derivation from philosophy to code.
 
 ---
 
@@ -351,9 +357,9 @@ the resulting knowing universal.
 
 The operational primitive `Gap` has a narrower meaning. It records that a
 warrant has not been found for a claim. An operational `Gap` is remediable:
-a source may be located, a claim revised, or a human ruling recorded. The
-accountability gap is not missing evidence and cannot be closed by another
-citation. Keeping the terms separate prevents a permanent feature of knowing
+a source may be located or a claim revised. A ruling may authorize action
+under uncertainty without supplying the missing warrant. The accountability
+gap is not missing evidence and cannot be closed by another citation. Keeping the terms separate prevents a permanent feature of knowing
 from being mistaken for a workflow defect.
 
 ### 3.6.3 Configurational Multiplicity
@@ -369,9 +375,9 @@ Chirality's schemas, Knowledge Types, semantic lenses, and knowledge graphs
 are therefore scaffolding rather than exhaustive categorizations. They make
 important questions and relationships inspectable, support comparison, and
 focus professional review. They do not define a closed state space containing
-everything any knower can perceive in the information. The semantic algebra
-organizes a work product for a stated purpose; it does not legislate the
-limits of knowledge.
+everything any knower can perceive in the information. A semantic model can
+organize a work product for a stated purpose; it does not legislate the limits
+of knowledge.
 
 Authentication stabilizes one accountable relation within this multiplicity.
 An identifiable actor binds acceptance to identified content or SHA, scope,
@@ -402,9 +408,32 @@ information. The framework does not claim to formalize Polanyi exactly.
 reckoning and judgment [CITE:Smith2019], provides a principal resource for
 the accountability gap. Registration is an achievement of a situated
 subject, and judgment involves answerability not supplied by formal
-calculation alone. The framework uses this to distinguish organized
-information from the accountable act of relying on it, without treating
+calculation alone. The framework uses this distinction without treating
 Smith's metaphysics as an architectural specification.
+
+**Reckoning can be extensive.** In this framework, agents can investigate,
+infer, compare, propose, assess, plan, check and act within granted authority.
+Those activities can involve sophisticated reasoning and adaptation. Calling
+them reckoning does not reduce them to trivial calculation or imply a need for
+rigid procedures.
+
+**Judgment is situated and committed.** It is the person's world-involving
+engagement with what the work means, what matters and what they will stand
+behind. It shapes purpose, framing, interpretation and action throughout the
+undertaking. Final acceptance is one expression of judgment; an approval record
+neither exhausts it nor proves sufficient engagement.
+
+**Responsibility is distinct from capability.** The present professional
+allocation places accountable judgment and duty of care with the person. Greater
+agent capability can change delegation, supervision and verification without
+itself transferring that responsibility. This is not a metaphysical proof of
+what every future machine could or could not become. It also prescribes no
+read-only Agent 0, mandatory manager layer or repeated approval of ordinary work.
+
+For clarity, this thesis uses *assessment*, *evaluation*, *interpretation* and
+*selection* for agent activities when *judgment* would confuse this distinction.
+Ordinary operational uses of the word elsewhere do not confer professional
+authority.
 
 **Wilfrid Sellars' space of reasons** [CITE:Sellars1956] clarifies that
 justification is not reducible to causal description. In Chirality this
@@ -444,18 +473,17 @@ Polanyi's account of tacit integration gives this limit a positive structure
 *from* subsidiary particulars *to* a focal whole, and particulars scrutinized
 in themselves lose the joint meaning they subtend. The governed record is
 designed to occupy the subsidiary position: the practitioner attends from
-claims, warrants, labels, and lifecycle states to the engineering reality
-that remains focal. On this reading, the architecture's program of
-explicitation does not compete with integrated understanding; it fails only
-when the record itself becomes the focal object — a failure mode this thesis
-names directly (§6.9.4, §9.2.6). Several architectural disciplines serve this
-orientation: generated harness output may not claim acceptance in its own
-voice (§6.8.3), and review effort is proportioned to represented uncertainty
-(§5.7), so that the record remains an instrument looked through rather than
-an artifact looked at.
+claims, grounds, models and their relationships to the engineering reality
+that remains focal. On this reading, explicit representation can support
+integrated understanding. A failure occurs when recording displaces attention
+to the work — a failure mode this thesis names directly (§6.9.4, §9.2.6).
+Several disciplines serve the intended orientation: generated output must not
+claim acceptance in its own voice (§6.8.3), and examination responds to the
+consequence and detectability of error (§5.7). A record is useful through what
+it lets participants examine and do, not merely because it exists.
 
-This contribution is narrower than the earlier formulations of the
-framework. `Claim` and `Warrant`, meaning and commitment, and the four
+This contribution is narrower than an architectural prescription. `Claim` and
+`Warrant`, meaning and commitment, and the four
 accountability pillars remain important distinctions, but they are not
 independent chiral structures. The primary chirality is only the
 accountability gap. The value of the metaphor is explanatory economy, not
@@ -489,9 +517,10 @@ act.
 Authentication, as used here, binds an accountable actor to identified
 content, scope, and purpose. It confers accountable-reliance status; it does
 not turn information into knowledge, guarantee correctness, or determine what
-another knower must know. That interpretation preserves the governed warrant
-lifecycle while locating professional responsibility where the regulatory
-framework places it.
+another knower must know. That interpretation distinguishes evidence and
+examination from accountable commitment. It does not require the historical warrant lifecycle
+or establish that a particular repository process satisfies a professional
+standard.
 
 Other frameworks address supporting parts of the architecture. Bunge and
 Wand and Weber [CITE:Bunge_ontology] [CITE:Wand_Weber_ontology] inform the
@@ -506,20 +535,17 @@ the primary chirality.
 
 ## 3.7 Summary
 
-The Chirality architecture implements an explicit epistemic layer alongside
-its ontology, praxiology, and axiology. Its distinctive move is to require
-extrinsic warrants and make their absence visible rather than treating fluent
-model output as self-certifying. Chapter 5 develops that operational account.
+The four pillars provide enduring, mutually corrective questions about work.
+They direct attention to relevant distinctions, grounds, courses of action and
+values. They do not uniquely derive a document kit, gate sequence, staffing
+arrangement or runtime.
 
-The framework is named for one narrower claim: externalizable information is
-not identical with the situated knowing of an accountable person. That
-permanent accountability gap permits configurational multiplicity—the same
-information may occasion different, revisable knowledge—while authentication
-records one attributable relation of accountable reliance. The metaphor adds
-a memorable orientation, not a geometry or a universal theory of duality.
+The reckoning/judgment distinction preserves both sophisticated agent capability
+and the person's situated commitment. Agents can carry substantial authorized
+work. The person remains responsible for the professional reliance they accept,
+and that engagement begins before the final approval.
 
-The fractal property is correspondingly modest. It is the recurrence of four
-accountability questions across governance, agent instructions, and
-production documents. Together, the four pillars provide the generative logic
-of this architecture without claiming to exhaust every category through
-which a knower may understand the work.
+The primary chirality remains the non-identity between externalizable information
+and accountable knowing. Evidence and records can support that relation without
+performing it. The recurring four questions apply to Chirality itself: its
+mechanisms require examination for adequacy, cost and limits of transfer.

@@ -1,88 +1,111 @@
 # Glossary
 
-Terms are maintained in the table below. Where a term has a specific meaning
-in the APEGA regulatory context, that meaning is noted.
+These definitions explain the thesis. They create no new repository procedures
+or product permissions. Current instructions and adopted product contracts govern
+their consumers. Historical terms are retained in the second table so older
+architecture descriptions remain readable without reinstating their mechanisms.
+
+## Current conceptual and operational terms
 
 | Term | Definition | Source |
-|------|-----------|--------|
-| Accountability gap | The permanent non-identity between externalizable information and accountable knowing. Distinct from `Gap` (epistemic primitive), which records a missing warrant and may be resolved. | Chapter 3 §3.6.2; Appendix D |
-| Anchor (dependency class) | A tree edge connecting a deliverable to a definition or traceability node (e.g., parent WBS, requirement); provides vertical structure to the knowledge graph. | TYPES.md §3.1 |
-| Artifact | A tangible output produced within a deliverable folder, including the standard document kit (Datasheet, Specification, Guidance, Procedure) and any additional outputs appropriate to the deliverable type. | TYPES.md §1.3 |
-| Assumption | An epistemic label designating a claim that represents a reasonable inference not directly stated in source text and that requires validation before it may be relied upon. | TYPES.md §10 |
-| Authentication | An attributable act by which a Licensed Professional binds acceptance to identified content or SHA, scope, and purpose, conferring accountable-reliance status within that relation. Authentication does not create knowledge, guarantee correctness, or establish metaphysical truth. | Chapter 3 §3.6; DIRECTIVE.md §3.2 |
-| Axiology | The philosophical pillar governing what the system values: public welfare as the first constraint, professional responsibility as personal and non-transferable, and evidence as the standard of authority over plausibility. | DIRECTIVE.md §2 |
-| Brief-driven pipeline | A task agent execution pattern in which all required inputs are provided up front in a structured brief (INIT-TASK format), enabling straight-through execution with no mid-run human decisions. | AGENT_HELPS_HUMANS.md §Step 6 |
-| Chirality (of knowledge) | The permanent accountability gap between externalizable information and accountable knowing. This is the sole primary use of the metaphor; it does not make every distinction or duality in the architecture independently chiral. | Chapter 3 §3.6; CHIRALITY_FRAMEWORK.md §2.4 |
-| Claim (epistemic primitive) | An assertion that something is the case; the atomic unit of the epistemic ontology. Every non-trivial assertion produced by an agent in a governed workflow is a claim. | TYPES.md §10.1 |
-| Conflict (epistemic primitive) | Two or more claims with incompatible warrants about the same key; the existence of a conflict is itself an epistemic entity requiring resolution through a ruling. | TYPES.md §10.1 |
-| Configurational multiplicity | The openness by which identical information may occasion different knowledge across knowers, contexts, purposes, or times. Schemas and semantic lenses scaffold this knowing but do not exhaust it. | Chapter 3 §3.6.3 |
-| Content-addressed approval | An approval mechanism in which a human sign-off binds to a specific git SHA, such that any subsequent change to the content automatically voids the approval. | DIRECTIVE.md §2 |
-| Coordination representation | The project-level choice of how teams sequence work: `SCHEDULE_FIRST` (Gantt-driven), `DEPENDENCY_TRACKED` (graph-driven), or `HYBRID` (combination); recorded in `_COORDINATION.md`. | TYPES.md §6 |
-| Coverage and telemetry | A summary section produced by PROJECT_DECOMP reporting counts, gaps, and open issues that make decomposition quality measurable. | TYPES.md §8 |
-| Datasheet | The document kit artifact capturing key parameters, identification, and structured metadata for a deliverable; the ontological instantiation of the four-document kit. | TYPES.md §7 |
-| Decision capture | The practice of recording a human decision or a logged default selection in a durable, versioned file so that it is retrievable for audit. | AGENT_HELPS_HUMANS.md §Definitions |
-| Decision right | A consequential choice that must be made by a human authority — including acceptance, conflict ruling, scope boundary change, and publication approval — and that cannot be delegated to an agent. | AGENT_HELPS_HUMANS.md §Definitions |
-| Deliverable | A unit of production within a package, belonging to exactly one package, having a responsible party and type, and producing one or more anticipated artifacts within its folder. | TYPES.md §1.2 |
-| Dependency | A relationship between deliverables, definition nodes, or external entities captured in a deliverable-local `Dependencies.csv` register and assigned a stable `DEP-XX-YY-NNN` identifier. | TYPES.md §3 |
-| Direct supervision and control | The standard of professional oversight under which a Licensed Professional takes personal responsibility for work performed by others or by automated tools, implying the ability to independently verify the outputs. | DIRECTIVE.md §3.3 |
-| Document kit | The standard four-artifact set (Datasheet, Specification, Guidance, Procedure) produced for every deliverable, whose structure mirrors the four philosophical pillars. | TYPES.md §7 |
-| Downstream (direction) | A dependency direction value indicating that the host deliverable produces information for the target deliverable. | TYPES.md §3.3 |
-| Epistemology | The philosophical pillar governing what can be known and how: every claim must carry provenance, missing information becomes TBD rather than a guess, conflicts are surfaced for human ruling, and every non-trivial claim carries an epistemic label. | DIRECTIVE.md §2 |
-| Epistemic label | One of four classification tags — FACT, ASSUMPTION, PROPOSAL, TBD — applied to claims in agent outputs to make the certainty status of each claim transparent and auditable. | TYPES.md §10 |
-| Execution (dependency class) | A DAG edge capturing information flow, prerequisites, handoffs, and constraints between work items; the horizontal dimension of the knowledge graph. | TYPES.md §3.1 |
-| Fact | An epistemic label designating a claim directly observed in source text and supported by a citation. | TYPES.md §10 |
-| Filesystem-as-state | The architectural principle that project state lives entirely in git-tracked plain files, with no separate database, server state, or configuration that could diverge; the filesystem is the single source of truth. | DIRECTIVE.md §2.1 |
-| Gap (epistemic primitive) | The explicit, positive assertion that a warrant has not been found; a gap is not the absence of information but an entity representing that absence, making it visible and actionable. | TYPES.md §10.1 |
-| Gate | A defined decision junction at which human approval is required before work may proceed to the next stage; no agent of any type may bypass a gate. | DIRECTIVE.md §2 |
-| Guidance | The document kit artifact containing design rationale, best practices, and contextual direction; the axiological instantiation of the four-document kit. | TYPES.md §7 |
-| Hybrid posture | An agent execution pattern combining a persona interface (interactive steering) with an internal bounded pipeline, allowing human steering without requiring human decisions at each pipeline step. | AGENT_HELPS_HUMANS.md §Definitions |
-| INITIALIZED | The deliverable lifecycle state in which the document kit (Datasheet, Specification, Guidance, Procedure) has been drafted. | TYPES.md §5.1 |
-| IN_PROGRESS | The deliverable lifecycle state in which active human and agent work is underway. | TYPES.md §5.1 |
-| Information | An externalizable substrate that can be recorded, transmitted, copied, cited, compared, and organized. Information may occasion knowledge but is not itself the situated knowledge of a knower. | Chapter 3 §3.6.1; CHIRALITY_FRAMEWORK.md §2.1 |
-| Instruction root | The release-managed app bundle containing agent instruction files and framework documents; physically separated from the working root to ensure stable agent governance across projects. | DIRECTIVE.md §2.6 |
-| Invariant | A formally stated, catalogued architectural constraint — such as K-PROV-1 (mandatory provenance), K-INVENT-1 (no invention), K-CONFLICT-1 (conflict surfacing), K-CLAIM-1 (claim discipline), K-AUTH-1/2 and K-BIND-1 (authority limits), and K-WRITE-1/2 (write scope and path containment) — enforced across a layered map (agent instructions, runtime checks, human gates, audits, tooling) that makes epistemic and authority controls structural rather than advisory. The catalog is maintained in CONTRACT.md. | DIRECTIVE.md §2; CONTRACT.md |
-| ISSUED | The deliverable lifecycle state in which the deliverable has been released for use. | TYPES.md §5.1 |
-| Judgment | Committed, world-involving thought that takes responsibility for its objects; contrasted with reckoning. In the architecture, judgment is reserved to accountable humans and is exercised at gates and in the REVIEWED → AUTHENTICATED transition. | Smith, *The Promise of Artificial Intelligence* (2019); Chapter 3 §3.6.4 |
-| Knowledge decomposition marker | A signal in a decomposition document (e.g., headings containing "Knowledge Categories" or "Knowledge Types") that enables knowledge-type scope selection in TASK pipeline selectors. | TYPES.md §9.3 |
-| Knowledge | A situated achievement of a knower. Knowledge may be mistaken, incomplete, provisional, or revised; it is not a property conferred on information by authentication. | Chapter 3 §3.6.1; CHIRALITY_FRAMEWORK.md §2.1 |
-| Knowledge graph | The combined structure formed by ANCHOR (tree) edges and EXECUTION (DAG) edges, in which the tree preserves stable intent and the DAG captures execution couplings. | TYPES.md §3.1 |
-| Knowledge type option | A canonical file-type bucket (Datasheet, Specification, Guidance, Procedure, Dependencies, References, Context, Status, Semantic, Memory) selectable in TASK scope mode. | TYPES.md §9.3 |
-| Licensed professional | A regulated professional holding a licence to practise (e.g., a Professional Engineer) who bears personal, non-transferable responsibility for engineering work product issued for reliance. | DIRECTIVE.md §3.2 |
-| Objective | A success criterion (`OBJ-NNN`) derived from project scope and mapped to supporting deliverables; assigned by PROJECT_DECOMP. | TYPES.md §8 |
-| Ontology | The philosophical pillar governing what exists in the system: the filesystem-native domain model comprising deliverable folders as nodes, dependency rows as edges, and markdown files as properties, all structured through stable identifiers, enumerated types, and the lifecycle state machine. | DIRECTIVE.md §2 |
-| OPEN | The initial deliverable lifecycle state in which a folder exists with the minimum viable fileset but no content has yet been produced. | TYPES.md §5.1 |
-| Package | A flat, non-nesting partition of project scope (`PKG-XX`) in which every scope item belongs to exactly one package with no overlaps and no gaps. | TYPES.md §1.1 |
-| Permit Holder | The organization or entity holding the regulatory permit to perform engineering work; responsible for ensuring that work performed under the permit meets applicable codes, standards, and regulatory requirements. | DIRECTIVE.md §3 |
-| Persona agent | A conversational interface agent that helps the human steer, interpret, and commit decisions; must preserve human authority and may generate briefs or propose actions but may not make binding decisions autonomously. | AGENT_HELPS_HUMANS.md §Definitions |
-| Pointer file | A mutable file (e.g., `_LATEST.md`) that references the most recent snapshot; may be overwritten on each run while the snapshot itself remains immutable. | AGENT_HELPS_HUMANS.md §Definitions |
-| Ruling (epistemic primitive) | A human decision that resolves a gap or conflict, transforming epistemic status; rulings are binding and recorded in versioned files. | TYPES.md §10.1 |
-| Praxiology | The philosophical pillar governing how work is done: the 0-1-2 agent authority model, gate-controlled workflows, brief-driven bounded pipelines, write quarantine, and physical separation of instruction root from working root. | DIRECTIVE.md §2 |
-| PROPOSAL | An epistemic label designating an agent suggestion that requires an explicit human decision before it becomes binding project truth. | TYPES.md §10 |
-| Provenance | File and location references (SourcePath, SectionRef) that substantiate any extracted or aggregated claim; mandatory for all agent outputs under invariant K-PROV-1. | AGENT_HELPS_HUMANS.md §Definitions; DIRECTIVE.md §2 |
-| PWP (Professional Work Product) | A complete and final output of professional services containing technical information on which others rely to make decisions or take actions. A licensed professional determines whether an output is a PWP and applies authentication to that PWP where required; authentication does not create the PWP. | APEGA *Authenticating Professional Work Products*; DIRECTIVE.md §3.2 |
-| Reckoning | Formal, calculative symbol manipulation — what computational systems do; contrasted with judgment. Reckoning can generate and check candidate content but cannot supply commitment or accountability. | Smith, *The Promise of Artificial Intelligence* (2019); Chapter 3 §3.6.4 |
-| Responsible member | The Licensed Professional who has accepted personal responsibility for a specific piece of engineering work product and whose seal or signature constitutes the act of authentication. | DIRECTIVE.md §3.2 |
-| Scope item | An atomic, testable scope statement (`SOW-NNN`) from the Structured Scope of Work, assigned by PROJECT_DECOMP and traceable through the dependency model. | TYPES.md §8 |
-| Scope ledger | A machine-checkable mapping table correlating every scope item to its corresponding packages and deliverables, ensuring full coverage with no gaps or overlaps. | TYPES.md §8 |
-| SEMANTIC_READY | The deliverable lifecycle state in which the semantic lens (`_SEMANTIC.md`) has been generated, enabling knowledge-type routing and enrichment. | TYPES.md §5.1 |
-| Snapshot | An immutable output bundle produced by a task agent per run and stored under a tool root; reruns produce new snapshots rather than overwriting prior outputs, preserving the historical execution record. | AGENT_HELPS_HUMANS.md §Definitions |
-| Stable identifier | An identifier (Package: `PKG-XX`; Deliverable: `DEL-XX-YY`; Dependency: `DEP-XX-YY-NNN`; Scope Item: `SOW-NNN`; Objective: `OBJ-NNN`) assigned once and persisting across renames, path changes, and restructuring. | TYPES.md §2 |
-| Stage gate | A human-managed project-level milestone (e.g., 30%, 60%, 90%, IFC) tracked separately from deliverable lifecycle states in coordination records. | TYPES.md §5.2 |
-| Task agent | An execution agent that runs straight-through on a bounded scope and produces auditable artifacts without requiring human decisions mid-run. | AGENT_HELPS_HUMANS.md §Definitions |
-| TBD | An epistemic label designating an unknown value or missing information that serves as a placeholder requiring resolution; agents must not substitute a guess for a TBD value. | TYPES.md §10 |
-| Thorough review | The standard of professional scrutiny applied to engineering work product, requiring that the reviewing Licensed Professional independently assess the work to the degree necessary to accept responsibility for it. | DIRECTIVE.md §3.3 |
-| Tool root | A filesystem area reserved for derived outputs (snapshots, reports, registers) and isolated from source truth, enforcing write quarantine by preventing agents from contaminating authoritative project files with analytical artifacts. | AGENT_HELPS_HUMANS.md §Definitions |
-| Agent 0 (Supervising Architect) | The sole canonical runtime role that aligns with the human, supervises Agent 1 managers, returns decision requests and records the human's rulings, and performs validated cross-manager fan-in. Standards remain external. | TYPES.md §4.1 |
-| Agent 1 (Manager) | A directly invokable or Agent-0-supervised manager that owns a bounded management scope, derives or applies work graphs, delegates to Agent 2, validates fan-in, and escalates human decisions. | TYPES.md §4.1 |
-| Agent 2 (Specialist) | A narrow-scope agent that executes a sealed bounded brief, returns outputs with evidence, and does not delegate. | TYPES.md §4.1 |
-| Terminal fan-out/fan-in | A parent dispatches independent children, waits for terminal returns, validates fan-in, and then releases dependent work. | TYPES.md §4.4 |
-| Supervised many-to-many agency | Active children report coordination information to their parent, which selectively relays or amends affected sibling workflows without permitting direct sibling delegation. | TYPES.md §4.4 |
-| Work graph | The recorded agent-instance nodes, dependencies, concurrency eligibility, ownership, returns, and gates that govern an orchestration run; posture labels are descriptive only. | TYPES.md §4.4 |
-| Upstream (direction) | A dependency direction value indicating that the host deliverable requires information from the target deliverable. | TYPES.md §3.3 |
-| Validation | The process of confirming that a deliverable or artifact satisfies its stated requirements and acceptance criteria; distinct from authentication in that it addresses fitness for purpose rather than professional attestation. | DIRECTIVE.md §3.2 |
-| Vocabulary map | A table of canonical terms and synonyms produced by PROJECT_DECOMP to prevent semantic drift across agents, documents, and stakeholders. | TYPES.md §8 |
-| Warrant (epistemic primitive) | The justification for believing a claim; always extrinsic (a source citation: file + section + quote), never intrinsic (model confidence or plausibility). | TYPES.md §10.1 |
-| Warrant lifecycle | The four-state progression tracking the epistemic status of claims within a deliverable: UNWARRANTED → CITED → REVIEWED → AUTHENTICATED; interleaved with the deliverable production lifecycle. | TYPES.md §10.4 |
-| Working root | The user-selected filesystem location where agents execute and create or update deliverable state; physically separated from the instruction root so that project execution remains fully filesystem-native in user-controlled folders. | DIRECTIVE.md §2.6 |
-| WRITE_SCOPE | An enumerated property in every agent header block declaring the filesystem zones the agent is permitted to write to (base values per TYPES.md §4.2: `repo-wide`, `project-level`, `package-level`, `deliverable-local`, `tool-root-only`, `workspace-scaffold-only`, `repo-metadata-only`, `bounded-task-brief`, `none`). | TYPES.md §4.2 |
-| Write quarantine | The architectural pattern by which every agent is assigned an explicit write scope and tool roots are isolated from source truth, containing failures within declared zones and preventing agents from writing outside their designated areas. | DIRECTIVE.md §2; AGENT_HELPS_HUMANS.md §Step 5 |
+|---|---|---|
+| Accountability gap | The non-identity between externalizable information and accountable knowing. It is not the operational `Gap` that further evidence can address. | Chapter 3 §3.6.2 |
+| Agent 0 | Responsibility for purpose, alignment, continuity and reserved choices with the owner, held by the agent working with that person regardless of its entry role. Other roles are engaged as useful. | AGENTS.md; Chapter 3 §3.2.3 |
+| Agent 1 | A manager contribution: HELPS_HUMANS develops intent and design; WORKING_ITEMS owns implementation and integration. The type does not require a separate session or universal delegation stage. | AGENTS.md; agents/AGENT_HELPS_HUMANS.md; agents/AGENT_WORKING_ITEMS.md |
+| Agent 2 | TASK, a bounded executor that carries an assignment through ordinary repairs and does not delegate. Its caller owns integration. | agents/AGENT_TASK.md |
+| Artifact | A work product or representation available for use or examination. Its form follows the undertaking; no universal four-document kit is required. | Chapter 3 §3.2.1 |
+| Assumption | A provisional basis for reasoning. It remains distinct from observation even when use of it is authorized. Its grounds, limits and effect on the work must be considered. | Chapter 3 §3.2.2 |
+| Authentication | An attributable professional act accepting responsibility for reliance on identified content within a scope and purpose. It does not create knowledge, establish truth or make a record proof of adequate engagement. Applicable professional requirements determine when and how authentication is required. | Chapter 3 §§3.6.1, 3.6.7; Chapter 6 |
+| Axiology | Inquiry into purposes, values and consequences. Public welfare and professional responsibility are central in this setting; attention, maintainability, agency and delay are also relevant to evaluating controls. | Chapter 3 §3.2.4 |
+| Brief | The assignment establishing an objective, context, authority, limits and expected result. It may be supplied in the conversation; a separate record is not inherently required. | agents/AGENT_TASK.md |
+| Chirality (of knowledge) | The framework's bounded metaphor for the accountability gap. It supplies no geometry of knowledge and does not make every architectural distinction independently chiral. | Chapter 3 §3.6 |
+| Claim | An assertion about a subject. A clear statement or plausible output is not self-certifying. | Chapter 3 §3.2.2 |
+| Commitment | An adopted obligation or a person's engagement with what they will stand behind. The subject and authority must be clear; a candidate mechanism is not automatically a commitment. | Chapter 3 §§3.2.2, 3.6.4 |
+| Conflict | Incompatible claims requiring examination of their sources, scope or meaning. Inquiry can resolve some conflicts; a reserved choice must reach its decision owner. | Chapter 3 §3.2.2 |
+| Configurational multiplicity | The openness by which identical information can occasion different knowledge across people, purposes, contexts or times. It does not make interpretations equally well supported. | Chapter 3 §3.6.3 |
+| Content-addressed approval | An approval tied to identified content, such as a Git SHA. For consumers that adopt K-AUTH-2, changing that content voids its approval. A hash establishes identity, not correctness or engagement; it creates no general reapproval gate for authorized development. | docs/PRODUCT_BOUNDARIES.md; Chapter 3 §3.2.2 |
+| Decision capture | Preserving an attributable decision where it governs work and retaining the reason in the existing change record. It does not require an append register. | AGENTS.md |
+| Decision right | Authority to make a particular choice. Current repository commitments, acceptance criteria, releases, risk acceptance and explicit holds retain owner-reserved choices; ordinary work proceeds within existing authorization. | AGENTS.md |
+| Deliverable | An intended work product within an undertaking. In active repository projects its folder holds ScopeOfWork, useful Design and declared needs. The folder is a representation and working home, not proof of completion or acceptance. | AGENTS.md; Chapter 3 §3.2.1 |
+| Dependency | A consumer's need for a contribution or condition. Current `deliverable.yaml` files state needs; tools derive reverse links and graph views. A missing edge does not establish independence. | AGENTS.md; tools/deliverables/README.md |
+| Design hypothesis | A proposed mechanism for supporting a commitment. Its coherence does not establish its performance, adequacy or comparative value. | Chapter 3 §3.1 |
+| Direct supervision and control | A professional oversight obligation discussed in Chapter 6. Its satisfaction depends on applicable standards and actual practice, not the presence of a particular agent hierarchy or approval form. | Chapter 6; APEGA, *Relying on the Work of Others and Outsourcing* |
+| Downstream | A consumer of a contribution or result. In the current dependency model the consumer states the need and tools derive the reverse relationship. | tools/deliverables/README.md |
+| Empirical finding | An observation or result under identified conditions. It supports claims within those conditions and its evidential limits. | Chapter 3 §3.1; Chapter 8 |
+| Epistemology | Inquiry into knowing, grounds, uncertainty and the limits of claims. Evidence, examination and accountable reliance remain different relationships. | Chapter 3 §3.2.2 |
+| Epistemic label | A classification such as FACT, ASSUMPTION, PROPOSAL or TBD where useful or required by a consumer. Its presence cannot establish the adequacy of its grounds or exhaust the person's knowing. | Chapter 3 §3.2.2 |
+| Fact | In the historical labeling convention, a directly observed and cited claim. Observation has a source and scope; the label itself is no guarantee of truth. | Chapter 3 §3.2.2 |
+| Gap | Missing grounds or information whose effect on the work matters. Evidence can address it; a decision can authorize action under uncertainty without manufacturing the missing grounds. | Chapter 3 §§3.2.2, 3.6.2 |
+| Gate | A decision boundary imposed by applicable authority or a requirement. An agent may not bypass it, but responsible work does not imply a gate at every phase. | AGENTS.md; Chapter 3 §3.2.3 |
+| Information | An externalizable substrate that can be recorded, transmitted, copied, cited, compared and organized. It may occasion knowing without being identical with the knower's achievement. | Chapter 3 §3.6.1 |
+| Integration | Bringing related contributions into a usable result, including their interfaces and unresolved matters. It requires an owner but not necessarily a separate agent. | workflows/coordinated-knowledge-work/WORKFLOW.md |
+| Invariant | A constraint intended to hold within a specified system or operation. Its scope and actual enforcement must be stated. A written invariant is not itself a mechanical guarantee; retained product identifiers apply only to adopted consumers. | docs/PRODUCT_BOUNDARIES.md; Chapter 7 |
+| Judgment | The person's situated, committed, world-involving engagement with what the work means, what matters and what they will stand behind. It shapes purpose, framing and action throughout the undertaking. Final approval is one expression, not its definition. | Smith, *The Promise of Artificial Intelligence* (2019); Chapter 3 §3.6.4 |
+| Knowledge | A situated achievement of a knower. In this framework's deliberately non-factive usage, knowledge may be mistaken, incomplete, provisional or revised. Authentication does not confer it on information. | Chapter 3 §3.6.1 |
+| Knowledge graph | A representation of selected entities and relationships useful to inquiry. It is a view with a basis and limits, not an exhaustive model of knowing or an independent authority source. | Chapter 3 §§3.2.1, 3.6.3 |
+| Licensed professional | A person holding an applicable professional licence and subject to its obligations. Agent output does not transfer the responsibility the professional accepts for reliance. | Chapter 6 |
+| Normative commitment | A value, responsibility boundary or obligation the undertaking adopts or must meet. It is distinct from the claim that a chosen mechanism successfully serves it. | Chapter 3 §3.1 |
+| Objective | The intended result or purpose of the current undertaking, established through the relevant authority. Archived plans do not create a standing backlog. | AGENTS.md |
+| Ontology | Inquiry into what kinds of things and relationships matter. Domain entities, their representations and implementation conveniences must remain distinguishable. | Chapter 3 §3.2.1 |
+| Package | An organizing partition of scope. Current repository deliverables use package folders; this organization does not exhaust domain relationships. | AGENTS.md |
+| Permit Holder | An organization or entity holding an applicable professional permit, with responsibilities determined by that regulatory context. | Chapter 6 |
+| Praxeology (also praxiology) | Inquiry into how intention becomes usable work through investigation, production, examination, repair and integration. It does not prescribe fixed staffing or a universal gate sequence. | Chapter 3 §3.2.3 |
+| PROPOSAL | A candidate interpretation or action. Its adoption depends on the assignment and applicable decision rights; not every ordinary implementation proposal requires renewed owner approval. | Chapter 3 §3.2.2 |
+| Provenance | Identification of relevant sources, transformations and attribution. The detail required depends on the claim and its consumer; source presence alone does not establish fidelity or support. | Chapter 3 §3.2.2 |
+| PWP (Professional Work Product) | A professional-practice category discussed in Chapter 6 for outputs on which others rely. The licensed professional determines the applicable standing and authentication requirements; neither agent completion nor a passing check confers professional approval. | Chapter 6; APEGA, *Authenticating Professional Work Products* |
+| Reckoning | Computational activity that can include sophisticated investigation, inference, assessment, planning, comparison, checking and adaptive action within authority. Greater capability does not itself supply the person's committed judgment or transfer professional responsibility. | Smith, *The Promise of Artificial Intelligence* (2019); Chapter 3 §3.6.4 |
+| Responsible member | A role under the applicable professional permit and practice requirements. Its obligations must be read in that context, rather than inferred from an agent-role label. | Chapter 6 |
+| Role | A description of a contribution and responsibilities. The assignment and host permissions determine current capabilities and write authority; role choice does not require a separate session. | AGENTS.md; agents/AGENT_HELP_HUMAN.md |
+| Ruling | An attributable decision within the issuer's authority. It can settle a choice or authorize action under uncertainty without making an uncertain premise true. | Chapter 3 §3.2.2 |
+| Scope item | A stated part of the intended work or commitment. Its identity and traceability should support actual production and examination. | Chapter 4 |
+| Stable identifier | An identity preserved where needed across changes of name, path or representation. Stability aids traceability without establishing content equivalence. | Chapter 4 |
+| Stage gate | A specifically adopted milestone or reserved decision, whose subject and acceptance authority are defined. It is not implied by routine development or a lifecycle label. | AGENTS.md; Chapter 6 |
+| Task agent | TASK, a bounded executor that stays with its assignment through ordinary repairs, reports blockers accurately and does not delegate. Its assignment may be the conversation. | agents/AGENT_TASK.md |
+| TBD | A marker for missing information or grounds. It must not be replaced by an invented value merely to complete a representation. | Chapter 3 §3.2.2 |
+| Thorough review | Professional examination sufficient for the reliance under consideration, subject to applicable standards. A record of review does not by itself establish that the examination was adequate. | Chapter 6 |
+| Upstream | A supplier or input required by a consumer under a stated condition. Presence does not establish suitability. | tools/deliverables/README.md |
+| Validation | Examination of whether something meets the requirements or intended use within the check's scope. Structural validation alone does not establish engineering correctness or professional acceptance. | docs/PRODUCT_BOUNDARIES.md; Chapter 7 |
+| Warrant | Grounds relevant to a claim, such as sources, observations, calculations, tests or arguments. Model confidence alone is not a warrant; evidence must be assessed for scope and adequacy. | Chapter 3 §3.2.2 |
+| Work graph | A view used to coordinate contributions and dependencies. Current repository practice derives relationships from the work and tools rather than requiring a hand-maintained progress register. | AGENTS.md; workflows/coordinated-knowledge-work/WORKFLOW.md |
+| Write scope | The targets permitted by the assignment, applicable requirements and host permissions. A declaration and a mechanically enforced boundary are different claims. | AGENTS.md; tools/workflow_runtime/resolve_workflow.py |
+
+## Historical mechanism terms
+
+These terms explain earlier designs. References to `TYPES.md`, `DIRECTIVE.md`
+and similar removed documents refer to their archived versions, recoverable
+from `archive/pre-docs-cleanup-1`. They impose no new current development duty.
+A retained product contract may still adopt a specific legacy format; consult
+`docs/COMPATIBILITY_FORMATS.md` for those consumers.
+
+| Term | Historical meaning | Current interpretation |
+|---|---|---|
+| Anchor (dependency class) | A dependency row linking a deliverable to a definition or traceability node | One historical way to represent vertical context; useful references now remain with their current source |
+| Brief-driven pipeline | A structured INIT-TASK brief followed by straight-through execution | An assignment can supply the necessary boundaries without a new form or a prohibition on ordinary repair |
+| Coordination representation | `SCHEDULE_FIRST`, `DEPENDENCY_TRACKED` or `HYBRID` in `_COORDINATION.md` | Historical orchestration choices, not a required project classification |
+| Coverage and telemetry | A decomposition summary of counts, gaps and open issues | Evidence should answer an actual completeness or performance question |
+| Datasheet | The parameters and identity member of the four-document kit | A useful document form where needed, not the mandatory embodiment of ontology |
+| Document kit | Datasheet, Specification, Guidance and Procedure for every deliverable | Replaced as a universal repository requirement; the four questions need not have four files |
+| Execution (dependency class) | Dependency rows for prerequisites, information flow and constraints | Current needs preserve their conditions without requiring the legacy row model |
+| Filesystem-as-state | The claim that all governed project state exists in versioned files | Current sources remain inspectable, but conversation can establish intent and authority, and product engines can own domain state |
+| Guidance | The rationale and context member of the document kit | Useful reasoning belongs in the artifact where it governs the work |
+| Hybrid posture | An interactive persona over a bounded pipeline | A historical execution pattern, not an exhaustive classification of sessions |
+| INITIALIZED | A lifecycle state indicating that a document kit was drafted | Retired lifecycle label in active repository development |
+| IN_PROGRESS | A lifecycle state indicating ongoing work | Retired lifecycle label; queries and actual work provide relevant facts |
+| Instruction root | A release-managed App bundle of instruction resources | A product arrangement where adopted; it does not establish a universal runtime or repository authority hierarchy |
+| ISSUED | A lifecycle label for released work | Release remains an attributable act under applicable authority; active development uses no universal issuance status file |
+| Knowledge decomposition marker | Text enabling knowledge-type scope selection in older tools | A historical routing convention, not a condition of knowing |
+| Knowledge type option | A file-type selector including Context, Status, Semantic and Memory | Legacy selector categories, not an exhaustive ontology |
+| OPEN | A lifecycle state for a minimum folder set | Retired lifecycle label in active repository development |
+| Persona agent | A conversational role contrasted with straight-through tasks | Current roles describe contributions; the host and assignment govern execution |
+| Pointer file | A mutable reference such as `_LATEST.md` to an immutable snapshot | A useful mechanism only where a consumer needs it |
+| Scope ledger | A table mapping scope items to packages and deliverables | Historical completeness mechanism; current work does not require another register |
+| SEMANTIC_READY | A lifecycle state indicating a semantic lens existed | Retired lifecycle label; a lens can still assist inquiry without establishing readiness |
+| Snapshot | An immutable per-run output bundle under a tool root | Preserve exact versions when needed for review, reliance or recovery; no universal per-run packet is required |
+| Supervised many-to-many agency | Parent-mediated coordination between active children | One historical coordination pattern; it does not mandate relay chains |
+| Terminal fan-out/fan-in | Dispatch children, await terminal returns, then release dependent work | Actual returns still require inspection; independent work need not wait for unrelated contributions |
+| Tool root | An isolated directory for derived outputs and reports | Isolation can support a bounded operation; agents may also edit authorized current deliverable sources |
+| Vocabulary map | A decomposition table of canonical terms and synonyms | A tool for resolving actual ambiguity, not a compulsory artifact |
+| Warrant lifecycle | `UNWARRANTED → CITED → REVIEWED → AUTHENTICATED` | A historical mnemonic that combines evidential, review and normative relationships; not a universal progression |
+| Working root | A user-selected project folder separated from bundled instructions | A product location distinction where adopted, not proof that all state lives there |
+| WRITE_SCOPE | An enumerated property formerly required in agent headers | Current repository authority derives from assignment and host, not a role-name restriction |
+| Write quarantine | Separation of tool outputs from accepted source material | A candidate containment mechanism, not a universal prohibition on agent edits to current work |

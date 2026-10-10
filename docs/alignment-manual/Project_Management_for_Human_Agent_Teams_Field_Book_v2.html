@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
+<meta name="source-sha256" content="f27798775f65564063e91ae448671757804083c48a72b844ab8c598279f434fe">
+<meta name="source-basis-date" content="2026-10-10">
+<meta name="source-basis-revision" content="22dd62a7f04b6f4f4f9cab3cd3183d57c06cd569">
+<title>Project Management for Human Agent Teams · Chirality</title>
+<style>
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --canvas: #eeeeee;
+  --ink: #111111;
+  --muted: #505050;
+  --line: #cccccc;
+  --accent: #111111;
+  --tint: #eeeeee;
+  font-family: "Liberation Serif", "Times New Roman", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 2rem; }
+body { margin: 0; color: var(--ink); background: var(--canvas); }
+a { color: var(--accent); text-underline-offset: .17em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #111111;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.skip-link {
+  position: fixed; top: .6rem; left: .6rem; z-index: 100;
+  padding: .6rem 1rem; background: var(--paper); border: 2px solid var(--accent);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+.masthead { border-bottom: 1px solid var(--ink); background: var(--paper); }
+.masthead-inner {
+  max-width: 70rem; margin: auto; padding: 1.05rem 2.5rem;
+  display: flex; flex-wrap: wrap; gap: .35rem 1.2rem;
+  align-items: baseline; justify-content: center; text-align: center;
+}
+.brand { font-size: .92rem; font-weight: 700; letter-spacing: .12em; }
+.masthead-label { color: var(--ink); font-size: .77rem; text-transform: uppercase; letter-spacing: .025em; }
+.layout {
+  max-width: 70rem; margin: auto; padding: 0 2.5rem;
+  display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2.5rem;
+}
+.sidebar {
+  position: sticky; top: 0; align-self: start; max-height: 100vh;
+  overflow-y: auto; padding: 2rem .8rem 2rem 0;
+  scrollbar-width: thin;
+}
+.nav-label, .eyebrow {
+  margin: 0 0 .85rem; color: var(--muted); font-size: .73rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+}
+.contents { list-style: none; padding: 0; margin: 0; }
+.contents li { margin: .15rem 0; }
+.contents a {
+  display: block; padding: .34rem .65rem; border-left: 2px solid transparent;
+  color: var(--muted); text-decoration: none; font-size: .86rem; line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.contents a:hover, .contents a:focus-visible {
+  color: var(--accent); background: var(--tint); border-left-color: var(--accent);
+}
+.nav-help { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.3rem; }
+.nav-help p, .nav-help a { font-size: .75rem; color: var(--muted); }
+.nav-help p { margin: .5rem 0; }
+kbd { font: inherit; padding: .05rem .25rem; border: 1px solid var(--line); border-radius: .2rem; }
+main { min-width: 0; max-width: 48.5rem; padding: 2rem 0 3rem; }
+.document-meta {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem 1.5rem; margin: 0 0 1.5rem;
+  font-size: .73rem; color: var(--muted);
+}
+.document-meta div { min-width: 0; }
+.document-meta dt { font-weight: 700; letter-spacing: .025em; }
+.document-meta dd { margin: .15rem 0 0; overflow-wrap: anywhere; }
+.document-meta code { font-size: .9em; background: none; padding: 0; }
+.fingerprint { grid-column: 1 / -1; }
+.paper {
+  min-width: 0; padding: 3.4rem 3rem 3rem;
+  background: var(--paper); border: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgb(0 0 0 / .04);
+}
+article { max-width: 68ch; margin: auto; overflow-wrap: anywhere; }
+article > :first-child { margin-top: 0; }
+h1, h2, h3, h4, h5, h6 { color: #000000; line-height: 1.22; text-wrap: balance; scroll-margin-top: 2rem; }
+h1 {
+  max-width: 19ch; margin: 0 auto 1.65rem; font-size: clamp(2.05rem, 3.8vw, 2.8rem);
+  text-align: center; text-transform: uppercase; letter-spacing: .015em;
+}
+article > h1 + p { margin-bottom: 2.4rem; text-align: center; font-size: .82rem; line-height: 1.45; }
+h2 { font-size: 1.5rem; margin: 3.4rem 0 1.1rem; }
+h3 { font-size: 1.13rem; margin: 2rem 0 .7rem; }
+h4, h5, h6 { font-size: 1.02rem; margin: 1.65rem 0 .6rem; }
+p { margin: 0 0 .78rem; }
+article p { text-align: justify; text-justify: inter-word; hyphens: auto; }
+ul, ol { padding-left: 1.5rem; }
+li { padding-left: .2rem; margin: .35rem 0; }
+li > p { margin: .6rem 0; }
+hr { max-width: 75%; border: 0; border-top: 1px solid var(--ink); margin: 2.5rem auto; }
+blockquote {
+  margin: 1.4rem 1.25rem; padding: 0; background: none; border: 0;
+}
+blockquote > :last-child { margin-bottom: 0; }
+code, pre { font-family: "Liberation Mono", "SFMono-Regular", Consolas, monospace; font-size: .83em; hyphens: none; }
+code { background: #f1f1f1; padding: .08em .2em; overflow-wrap: anywhere; }
+pre {
+  max-width: 100%; overflow-x: auto; padding: 1rem 1.15rem; margin: 1.4rem 0;
+  color: #111111; background: #f6f6f6; border: 1px solid var(--line);
+  line-height: 1.5; tab-size: 4;
+}
+pre code { background: none; padding: 0; border-radius: 0; font-size: 1em; overflow-wrap: normal; }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 1.5rem 0; }
+table { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: .87rem; line-height: 1.4; }
+th, td { padding: .65rem .75rem; text-align: left; vertical-align: top; border: 1px solid #b8b8b8; }
+th { color: #000000; background: #eeeeee; font-weight: 700; }
+tbody tr { background: #ffffff; }
+img, svg { max-width: 100%; height: auto; }
+a[id], a[name] { scroll-margin-top: 2rem; }
+p:has(> a[id]:only-child):empty { margin: 0; }
+p:has(> a[id]:only-child) { margin: 0; }
+h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-color: #777777; text-decoration-thickness: .08em; text-underline-offset: .2em; }
+.mobile-toc { display: none; }
+.document-footer { margin-top: 1.5rem; color: var(--muted); font-size: .73rem; }
+.document-footer p { margin: .4rem 0; }
+@media (max-width: 65rem) {
+  .layout { padding: 0 1.5rem; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 1.5rem; }
+  .masthead-inner { padding: 1rem 1.5rem; }
+  .paper { padding: 2.6rem 2rem; }
+}
+@media (max-width: 54rem) {
+  html { scroll-padding-top: 4.5rem; }
+  .layout { display: block; padding: 0 1rem; }
+  .sidebar { display: none; }
+  .masthead-inner { padding: .85rem 1rem; gap: .2rem 1rem; }
+  .mobile-toc {
+    display: block; position: sticky; top: 0; z-index: 10;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .mobile-toc summary { padding: .75rem 1rem; cursor: pointer; color: var(--accent); font-weight: 700; font-size: .85rem; }
+  .mobile-toc nav { max-height: 65vh; overflow-y: auto; padding: 0 .5rem 1rem; }
+  .mobile-toc .contents a { padding: .55rem; }
+  main { padding-top: 1.25rem; }
+  .paper { padding: 2.2rem 1.4rem; }
+  article p { text-align: left; }
+  article > h1 + p { text-align: center; }
+  h2, h3, h4, h5, h6, a[id], a[name] { scroll-margin-top: 4.5rem; }
+  h2 { margin-top: 2.7rem; font-size: 1.4rem; }
+  .document-meta { gap: .75rem 1rem; }
+}
+@media (max-width: 25rem) {
+  :root { font-size: 17px; }
+  .layout { padding: 0 .5rem; }
+  .paper { padding: 1.4rem 1rem; }
+  .document-meta { padding: 0 .5rem; }
+}
+@media print {
+  @page { size: 6.75in 9.25in; margin: .68in .65in .67in .72in; }
+  :root { font-size: 10.5pt; line-height: 1.2; color-scheme: light; }
+  body, .paper { color: #111; background: white; }
+  .masthead, .sidebar, .mobile-toc, .skip-link, .back-top { display: none; }
+  .layout { display: block; max-width: none; padding: 0; }
+  main { max-width: none; padding: 0; }
+  .paper { padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+  article { max-width: none; }
+  article p { margin-bottom: 4.6pt; text-align: justify; }
+  .document-meta { padding: 0 0 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #bbb; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 18pt; margin-top: 1.8rem; }
+  h3 { font-size: 12pt; }
+  h4, h5, h6 { font-size: 11pt; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  a { color: inherit; text-decoration: underline; }
+  .table-scroll { overflow: visible; border: 0; }
+  table { min-width: 0; table-layout: auto; font-size: 9pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  th, td { padding: .45rem; }
+  pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; border-color: #bbb; font-size: 8pt; line-height: 1.3; }
+  pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  blockquote { break-inside: avoid; background: white; }
+  .document-footer { border-top: 1px solid #bbb; padding-top: .75rem; }
+}
+</style>
+</head>
+<body id="manual-top">
+<a class="skip-link" href="#manual-content">Skip to manual</a>
+<header class="masthead">
+  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Field book · offline reading edition</span></div>
+</header>
+<details class="mobile-toc">
+  <summary>Contents · 10 sections</summary>
+  <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#field-book">Field Book</a></li>
+<li><a href="#1-start-from-the-intended-result">1. Start from the intended result</a></li>
+<li><a href="#2-keep-responsibility-clear">2. Keep responsibility clear</a></li>
+<li><a href="#3-establish-a-sufficient-basis">3. Establish a sufficient basis</a></li>
+<li><a href="#4-define-contributions-and-relationships">4. Define contributions and relationships</a></li>
+<li><a href="#5-arrange-useful-progress">5. Arrange useful progress</a></li>
+<li><a href="#6-examine-the-claim-that-matters">6. Examine the claim that matters</a></li>
+<li><a href="#7-keep-current-information-not-an-activity-history">7. Keep current information, not an activity history</a></li>
+<li><a href="#8-use-development-positions-as-questions">8. Use development positions as questions</a></li>
+<li><a href="#9-finish-and-transfer-responsibility">9. Finish and transfer responsibility</a></li></ol></nav>
+</details>
+<div class="layout">
+<aside class="sidebar">
+  <nav aria-label="Sections">
+    <p class="nav-label">In this manual</p>
+    <ol class="contents"><li><a href="#field-book">Field Book</a></li>
+<li><a href="#1-start-from-the-intended-result">1. Start from the intended result</a></li>
+<li><a href="#2-keep-responsibility-clear">2. Keep responsibility clear</a></li>
+<li><a href="#3-establish-a-sufficient-basis">3. Establish a sufficient basis</a></li>
+<li><a href="#4-define-contributions-and-relationships">4. Define contributions and relationships</a></li>
+<li><a href="#5-arrange-useful-progress">5. Arrange useful progress</a></li>
+<li><a href="#6-examine-the-claim-that-matters">6. Examine the claim that matters</a></li>
+<li><a href="#7-keep-current-information-not-an-activity-history">7. Keep current information, not an activity history</a></li>
+<li><a href="#8-use-development-positions-as-questions">8. Use development positions as questions</a></li>
+<li><a href="#9-finish-and-transfer-responsibility">9. Finish and transfer responsibility</a></li></ol>
+  </nav>
+  <div class="nav-help">
+    <p>Find a term with <kbd>⌘ F</kbd> or <kbd>Ctrl F</kbd>. Use your browser’s print command for a paper copy.</p>
+    <p><a href="Project_Management_for_Human_Agent_Teams_Field_Book_v2.md">Markdown source</a> · <a href="#manual-top">Back to start ↑</a></p>
+  </div>
+</aside>
+<main id="manual-content" tabindex="-1">
+  <div class="paper">
+    <article aria-labelledby="project-management-for-human-agent-teams">
+<!-- BEGIN MARKDOWN CONTENT -->
+<h1 id="project-management-for-human-agent-teams">Project Management for Human Agent Teams</h1>
+<h2 id="field-book">Field Book</h2>
+<p>Edition 2</p>
+<p>This field book helps a person direct work with agents. It identifies the next useful question, action or decision. It does not prescribe a fixed team, a universal approval sequence or a set of administrative records.</p>
+<p>The <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v9.md">management manual</a> explains the reasoning and develops examples. The <a href="CHIRALITY_AGENT_USER_MANUAL_v4.md">operational guide</a> applies the method in the Chirality repository. The <a href="README.md">manual index</a> identifies current editions. An edition used for an accepted decision remains identifiable even when the current edition changes.</p>
+<h2 id="1-start-from-the-intended-result">1. Start from the intended result</h2>
+<p>Establish what the person needs to be able to do, for whom, and under which conditions. Distinguish the desired result from a proposed implementation. Ask which observations would support a conclusion that the result is usable.</p>
+<p>For existing work, recover the relevant current basis before replacing it. Read the current artifacts and inspect the actual candidate. Use history to resolve a specific uncertainty, not to reconstruct every earlier activity.</p>
+<p>A useful opening account contains the result, authorized scope, current position, next useful work and material unknowns. It may be a few sentences in the conversation. It need not become a separate brief file.</p>
+<p>The recurring course is:</p>
+<pre><code class="language-text">Understand the result and current basis
+                 |
+Locate affected work, required inputs and consumers
+                 |
+Work directly or arrange useful contributions
+                 |
+Produce -&gt; examine -&gt; repair -&gt; integrate
+                 |
+Update current commitments or conditions when their meaning changes
+                 |
+Establish the usable result and any reserved decision
+</code></pre>
+<p>Move through this course as the work requires. A missing input holds only work that depends on it. A completed step does not create a duty to write another record.</p>
+<h2 id="2-keep-responsibility-clear">2. Keep responsibility clear</h2>
+<p>The agent working with the person carries Agent 0's responsibilities: purpose, continuity and preparation of reserved choices. Other roles are available contributions.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 1; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HELP_HUMAN</td>
+<td>Maintains the relationship between the person's purpose and the work.</td>
+</tr>
+<tr>
+<td>HELPS_HUMANS</td>
+<td>Develops conception, design, alternatives and their implications.</td>
+</tr>
+<tr>
+<td>WORKING_ITEMS</td>
+<td>Carries implementation through repair and integration.</td>
+</tr>
+<tr>
+<td>TASK</td>
+<td>Completes one bounded contribution and does not delegate.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>One session can perform substantial work without delegation. A role is not a required staffing position. The assignment and host permissions determine allowed actions; a role does not grant tools or write access.</p>
+<p>When delegating, give a contributor a coherent result to own through ordinary repairs. Identify the relevant basis, write boundary, checks, return location and matters requiring another decision. Use the conversation or existing assignment rather than a mandatory form.</p>
+<p>Keep one integration responsibility for a shared result. This does not require one agent to perform every operation. It identifies who will examine how the contributions fit and carry the combined result to use.</p>
+<h2 id="3-establish-a-sufficient-basis">3. Establish a sufficient basis</h2>
+<p>A useful basis states the intended result, requirements, constraints, interfaces, exclusions and acceptance responsibilities. It distinguishes commitments from proposals and assumptions.</p>
+<p>Preserve the four perspectives:</p>
+<ul>
+<li><strong>Ontology:</strong> what the work contains and how its parts relate.</li>
+<li><strong>Epistemology:</strong> what supports its claims and where support is missing.</li>
+<li><strong>Praxeology:</strong> how contributions become a usable result.</li>
+<li><strong>Axiology:</strong> which purposes, values and consequences matter to the choices.</li>
+</ul>
+<p>These are questions for understanding. They do not require four separate documents or four approval rounds.</p>
+<p>Record a settled commitment where it governs the work. Keep an unresolved matter with its consequence, required input and point of need. A decision to proceed with uncertainty does not convert an assumption into a fact.</p>
+<p>A scope change, reliance decision or release can require the person's judgment. Routine implementation choices within granted authority do not need renewed approval. Present a reserved choice with its alternatives, consequence and recommendation; prepare the actual candidate before asking for its acceptance.</p>
+<h2 id="4-define-contributions-and-relationships">4. Define contributions and relationships</h2>
+<p>Give each deliverable a stable identity and a complete responsibility. Avoid splitting work merely to create more assignments. Distinguish the deliverable, the working unit and the integration batch.</p>
+<p>A production contract identifies the contribution, outputs, governing constraints, acceptance criteria, interfaces and methods of examination. The representation can vary. It must let a producer and a receiver establish what is required without inventing missing commitments.</p>
+<p>The consumer states what it needs from another contribution and when it needs it. State the condition, not only the supplier's name. A path match, present file or merged PR does not prove the input is suitable.</p>
+<p>Tools can derive upstream and downstream relationships from those declarations. Use the relevant neighbourhood to find inputs, consumers and opportunities for concurrent work. Missing edges do not prove independence. Check shared interfaces, write targets and resources where they matter.</p>
+<p>Cycles require interpretation. Mutual design can proceed through coordinated iterations. An execution cycle may require a staged contract, changed boundary or owner decision. Do not remove a necessary relationship merely to make a diagram acyclic.</p>
+<p>Keep finer implementation relationships where their consumers can use them. Add machine-readable detail when an actual query needs it. Do not maintain a second progress graph merely to repeat the source state.</p>
+<h2 id="5-arrange-useful-progress">5. Arrange useful progress</h2>
+<p>Independence is an opportunity for concurrent progress. Do not hold independent work behind an unresolved branch. Consider shared writes, memory, review capacity and integration cost when choosing concurrency.</p>
+<p>Test a consequential premise through a usable path before expanding work that depends on it. Independent work can continue. An early path should exercise a difficult interface or assumption, not only an easy isolated component.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 2; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>If this is uncertain</th>
+<th>Establish this next</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What the person wants</td>
+<td>A concrete interpretation or alternative the person can inspect.</td>
+</tr>
+<tr>
+<td>Whether an input is suitable</td>
+<td>The relevant condition and evidence from the input or its consumer.</td>
+</tr>
+<tr>
+<td>Whether components work together</td>
+<td>An actual connecting operation and its resulting state.</td>
+</tr>
+<tr>
+<td>Whether a contributor is progressing</td>
+<td>The last actual operation, partial result or host completion state.</td>
+</tr>
+<tr>
+<td>Why work is waiting</td>
+<td>The specific input, decision, resource or integration step that releases it.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Use host mechanisms for dispatch and returns. A queued message does not prove execution. A completed turn does not prove all assigned work was delivered. Account for dispatched work without requiring separate return files.</p>
+<p>Keep owners with their work through findings. Transfer ownership at a clear boundary when continuation is not possible. Preserve valid output and inspect uncertain operations before repeating them.</p>
+<h2 id="6-examine-the-claim-that-matters">6. Examine the claim that matters</h2>
+<p>Verification asks whether the result meets specified requirements. Validation asks whether it serves the intended use. Different claims require different evidence.</p>
+<p>A schema check can establish structure. A source comparison can establish fidelity. A numerical oracle can test a defined calculation. A user exercise can reveal whether an interaction is usable. None automatically establishes the others.</p>
+<p>Match assurance to consequence and detectability. Routine reversible work may need inspection or direct exercise. Numerical meaning, persistence, permissions and destructive operations commonly need targeted regression checks and independent scrutiny. Applicable professional, contractual and project requirements still govern.</p>
+<p>Do not change an expected result solely to obtain a pass. Establish whether the requirement, test or implementation is wrong. Escalate a reserved change while continuing unaffected work.</p>
+<p>Identify the actual candidate and the conditions examined. Reuse valid evidence when those conditions still apply. Repeat affected checks when a change or unresolved concern warrants it, not because another stage or agent now handles the work.</p>
+<p>Before completion, examine three questions:</p>
+<ol>
+<li>Does the result cover the applicable commitments?</li>
+<li>Do the required relationships and interfaces work together?</li>
+<li>Does the evidence support the claim and proposed use?</li>
+</ol>
+<p>An empty task list is not an answer. A separate closeout stage is unnecessary when current work and evidence already establish the answers.</p>
+<h2 id="7-keep-current-information-not-an-activity-history">7. Keep current information, not an activity history</h2>
+<p>Maintain the authoritative artifacts when a commitment, design or dependency condition changes. The change record explains the reason and identifies unresolved consequences. Version control preserves earlier text.</p>
+<p>A record needs a concrete consumer, an acceptance requirement or a recovery need. A useful record can be a required test result, a decision with material conditions, or the identity of a candidate proposed for release. Its form follows its purpose.</p>
+<p>Do not prescribe routine receipts, memory rows, reading logs, copied source or handoff chains. Product records required by the application or its users are a different matter; reducing development administration does not remove those requirements.</p>
+<p>At an interruption, keep one replaceable recovery note if current artifacts and the conversation are insufficient. Identify prepared versus executed work, pending checks, active operations, local-only work and the next useful action. Do not repeat an operation whose completion is uncertain until its actual state has been inspected.</p>
+<h2 id="8-use-development-positions-as-questions">8. Use development positions as questions</h2>
+<p>Conceptual, FEED, 30%, 60%, 90% and delivery positions can help explain how work changes. They are not measurements of tasks, code or effort completed.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 3; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Position</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Conceptual</td>
+<td>Is the intended outcome understood well enough to choose a basis?</td>
+</tr>
+<tr>
+<td>FEED</td>
+<td>Are scope, contribution boundaries and principal interfaces sufficiently defined?</td>
+</tr>
+<tr>
+<td>30%</td>
+<td>Are production commitments, required inputs and examination methods usable?</td>
+</tr>
+<tr>
+<td>60%</td>
+<td>Are the consequential design and integration premises established well enough to expand dependent work?</td>
+</tr>
+<tr>
+<td>90%</td>
+<td>Is the assembled result ready for its remaining concentrated examination?</td>
+</tr>
+<tr>
+<td>Delivery</td>
+<td>Are acceptance, release and continuing responsibilities established for the identified result?</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>An undertaking can combine positions or revisit an affected part. This guide neither creates stage gates nor cancels adopted ones. A project that has a human gate still brings that gate to its decision owner.</p>
+<p>At a 60% assessment, explain developed interfaces, unresolved coupling, proposed work grouping and residual risks. Do not weaken designs to eliminate cycles. Do not continue analysis indefinitely when a usable integration path can answer the consequential question. The applicable owner decides qualifications or changes to commitments.</p>
+<h2 id="9-finish-and-transfer-responsibility">9. Finish and transfer responsibility</h2>
+<p>Completion concerns the agreed result and its applicable evidence. Acceptance and release remain distinct acts. State what is usable, which conditions were checked and what remains unresolved.</p>
+<p>For delivery, identify the actual artifact, revision, permitted use, limitations and continuing owner. Exercise the package or transfer path the receiver will use where that is necessary to establish delivery.</p>
+<p>A handover needs enough information for the receiver's work. It does not require a fresh narrative of the project. Keep necessary operational instructions, recovery information and accepted limitations with the delivered result.</p>
+<p>Continue improving the method from actual work. Look for repeated discovery, avoidable waiting, duplicate checks, delayed integration and defects that escape. Use existing evidence to assess comparable completed work. Do not create another reporting system merely to demonstrate efficiency.</p>
+<!-- END MARKDOWN CONTENT -->
+    </article>
+  </div>
+  <footer class="document-footer">
+  <dl class="document-meta">
+    <div><dt>Source basis dated</dt><dd>10 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>22dd62a7f04b6f4f4f9cab3cd3183d57c06cd569</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="Project_Management_for_Human_Agent_Teams_Field_Book_v2.md">Project_Management_for_Human_Agent_Teams_Field_Book_v2.md</a><br><code>f27798775f65564063e91ae448671757804083c48a72b844ab8c598279f434fe</code></dd></div>
+  </dl>
+    <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
+    <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
+    <p class="back-top"><a href="#manual-top">Back to start ↑</a></p>
+  </footer>
+</main>
+</div>
+<script>
+const mobileContents = document.querySelector('.mobile-toc');
+mobileContents.addEventListener('click', (event) => {
+  if (event.target.closest('a[href^="#"]')) mobileContents.open = false;
+});
+</script>
+</body>
+</html>

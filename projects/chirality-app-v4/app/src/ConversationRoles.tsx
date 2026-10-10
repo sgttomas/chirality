@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { EXACT_TEXT } from "./exactText";
 type Json = any; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 // Conversation roles (DEL-01-04 NIR §5.4 ST-5/ST-6, §5.8 CA-1…CA-4; DEL-02-04
@@ -10,8 +11,10 @@ type Json = any; // eslint-disable-line @typescript-eslint/no-explicit-any
 const list = (value: Json): Json[] => (Array.isArray(value) ? value : []);
 const text = (value: Json): string => value === null || value === undefined ? "" : typeof value === "string" ? value : JSON.stringify(value);
 
-/** Roles a person may start a conversation with here. TASK is a bounded
- * executor for delegated work, not a conversation entry. */
+/** Roles a person may start a conversation with (ROLE SL-1; owner ruling
+ * 2026-10-10: "TASK is not a conversational role"). TASK stays one of the four
+ * standing roles: a manager assigns bounded work to it, and its guidance is
+ * supplied for that delegation. The host's role set names the same list. */
 export const CONVERSATION_ROLES = ["HELP_HUMAN", "HELPS_HUMANS", "WORKING_ITEMS"];
 
 export function roleName(appRole: Json): string {
@@ -44,20 +47,20 @@ export function RoleLimits({ limits, role }: { limits: Json; role: string | null
  * preselection the person can change or clear before starting. */
 export function RoleChoice({ roleSet, limits, role, setRole, preselected }: { roleSet: Json; limits: Json; role: string; setRole: (role: string) => void; preselected: boolean }) {
   if (!roleSet?.available) return <p>Role set unavailable: {text(roleSet?.reason)}. Only “No role” can be chosen.</p>;
-  const roles = list(roleSet.roles);
+  const offered: string[] = Array.isArray(roleSet.conversationRoles) ? roleSet.conversationRoles.map(text) : CONVERSATION_ROLES;
+  const roles = list(roleSet.roles).filter((r: Json) => offered.includes(text(r.name)));
   return <fieldset>
     <legend>Conversation role (fixed for the conversation's life)</legend>
     {roles.map((r: Json) => {
       const name = text(r.name);
-      const offered = CONVERSATION_ROLES.includes(name);
       return <div key={name}>
-        <label><input type="radio" name="conversation-role" value={name} checked={role === name} disabled={!offered} onChange={() => setRole(name)} /> <b>{name}</b>: {text(r.meaning)}{r.default_for_new_chat ? (role === name && preselected ? " (preselected; change or clear it before starting)" : " (the default for a new conversation)") : ""}</label>
-        {!offered && <small> Not offered as a conversation role here: a bounded executor for delegated work.</small>}
+        <label><input type="radio" name="conversation-role" value={name} checked={role === name} onChange={() => setRole(name)} /> <b>{name}</b>: {text(r.meaning)}{r.default_for_new_chat ? (role === name && preselected ? " (preselected; change or clear it before starting)" : " (the default for a new conversation)") : ""}</label>
         {role === name && <RoleLimits limits={limits} role={name} />}
       </div>;
     })}
     <label><input type="radio" name="conversation-role" value="" checked={role === ""} onChange={() => setRole("")} /> <b>No role</b>: product guidance only.</label>
     <p><small>{text(limits?.standing)}</small></p>
+    <p><small>TASK is not a conversation role: a manager assigns bounded work to it, and its guidance is supplied for that delegation.</small></p>
   </fieldset>;
 }
 
@@ -103,6 +106,16 @@ export function RoleHeader({ thread, limits, busy, ready, continueAs, fork }: { 
 
 export type StartChoice = { model: string; modelProvider: string; entryId: string };
 
+/** The model and the configured provider are exact Codex identifiers, sent as
+ * typed; the webview must not capitalise or correct them (EXACT_TEXT). Used by
+ * the start display and by Continue as. */
+export function ModelProviderFields({ model, modelProvider, setModel, setModelProvider }: { model: string; modelProvider: string; setModel: (model: string) => void; setModelProvider: (provider: string) => void }) {
+  return <>
+    <label>Model <input {...EXACT_TEXT} value={model} onChange={e => setModel(e.target.value)} /></label>{" "}
+    <label>Configured Codex provider <input {...EXACT_TEXT} value={modelProvider} onChange={e => setModelProvider(e.target.value)} /></label>
+  </>;
+}
+
 /** The handoff message's send state. "sent" only after the send resolved
  * with a result; a refusal or error keeps the draft and allows another try. */
 export type SendState = { state: "unsent" | "sending" | "sent" | "failed"; failure?: string };
@@ -146,8 +159,8 @@ export function ContinueAsPanel({ handoff, entries, busy, ready, start, send, op
     <label>Handoff message (editable; not sent) <textarea value={draft} disabled={busy || sent || text(handoff?.draft?.state) === "waiting"} onChange={e => setDraft(e.target.value)} rows={6} style={{ display: "block", width: "100%" }} /></label>
     {!started && <div>
       <p>The new conversation starts with no model selected; choose one.</p>
-      <label>Model <input value={choice.model} onChange={e => setChoice({ ...choice, model: e.target.value })} /></label>{" "}
-      <label>Configured Codex provider <input value={choice.modelProvider} onChange={e => setChoice({ ...choice, modelProvider: e.target.value })} /></label>{" "}
+      <ModelProviderFields model={choice.model} modelProvider={choice.modelProvider}
+        setModel={model => setChoice({ ...choice, model })} setModelProvider={modelProvider => setChoice({ ...choice, modelProvider })} />{" "}
       <label>Access entry <select value={choice.entryId} onChange={e => setChoice({ ...choice, entryId: e.target.value })}><option value="">No entry selected</option>{entries.map(e => <option key={e.value} value={e.value}>{e.label}</option>)}</select></label>
       <p><button disabled={busy || !ready || !choice.model.trim() || !choice.modelProvider.trim() || !choice.entryId} onClick={() => start(choice)}>Start new conversation as {target}</button>{" "}
         <button disabled={busy} onClick={dismiss}>Close without starting</button></p>
