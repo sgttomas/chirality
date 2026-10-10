@@ -29,7 +29,7 @@ except ImportError:
 
 PARSER_VERSION = "4.2.0"
 MDURL_VERSION = "0.1.2"
-DEFAULT_SOURCE = Path(__file__).with_name("CHIRALITY_AGENT_USER_MANUAL_v1.md")
+DEFAULT_SOURCE = Path(__file__).with_name("CHIRALITY_AGENT_USER_MANUAL_v3.md")
 
 CSS = """
 :root {
