@@ -1,18 +1,9 @@
 # Plans
 
-This folder is an active planning surface for forward-looking work that has not
-yet been promoted into a governed roadmap, project execution package, or final
-authority document.
+Keep plans here while they guide authorized work. Current commitments and
+constraints belong in the relevant deliverable ScopeOfWork and Design files;
+a plan does not supersede them without an owner-authorized change.
 
-Use this folder for migration-phase plans, roadmap seeds, implementation-plan
-drafts, and planning records that need repo-local visibility before their final
-governance destination is settled.
-
-Planning documents in this folder are active when they explicitly identify their
-scope, owner, status, and target workspace. They do not automatically supersede
-governed authority documents such as `docs/PLAN.md`, project execution records,
-accepted snapshots, or handoff states. If a plan conflicts with a governed
-authority, follow the governed authority unless the plan explicitly records an
-approved transition or supersession path.
-
-When documents are no longer relevant in that manner they are moved to `plans/.archive/`.
+Historical plans, steers and reviews are recovered from Git and archive tags,
+not copied into a new `.archive` tree. The efficiency-reset plan remains while
+its implementation and follow-up measurement are active.
