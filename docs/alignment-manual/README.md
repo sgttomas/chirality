@@ -1,82 +1,93 @@
-# Alignment manual and agent guide
+# Manuals for human agent work
 
-Current development instructions are in Root `AGENTS.md` and the project entry points; these editions are references and do not restore retired procedures. Superseded editions are recoverable from `archive/pre-manuals-2026-10-09`.
+These documents explain the management method and its repository application.
+Current development follows Root `AGENTS.md`, the active project entry, owner
+steering and applicable product commitments. A manual does not create authority
+merely because it is the latest edition.
 
-This directory contains a field book, a general project-management reference, and the Chirality Agent User Manual. The field book gives humans working with agents the route, responsibilities, records, and conditions for proceeding. The full manual supplies explanation and examples; the agent guide provides operational guidance for this repository. Applicable instructions, accepted decisions, and current source records govern actual project work.
+## Project Management Manual
 
-## Retained latest editions
+**Current edition: Consolidated v9.** [Read HTML](Project_Management_for_Human_Agent_Teams_Consolidated_v9.html) · [Markdown source](Project_Management_for_Human_Agent_Teams_Consolidated_v9.md)
 
-| Document | Use |
-| --- | --- |
-| [Project Management for Human–Agent Teams — Field Book](Project_Management_for_Human_Agent_Teams_Field_Book_v1.html) · [Markdown](Project_Management_for_Human_Agent_Teams_Field_Book_v1.md) | Abbreviated human reference: eight sections following the work from intent to delivery, with a recurring execution loop and links to the full treatment. |
-| [Project Management for Human–Agent Teams](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md) · [Word](Project_Management_for_Human_Agent_Teams_Consolidated_v8.docx) · [PDF](Project_Management_for_Human_Agent_Teams_Consolidated_v8.pdf) | General management practice from conception through delivery, written as a technical reference. |
-| [Chirality Agent User Manual v3 — HTML](CHIRALITY_AGENT_USER_MANUAL_v3.html) · [Markdown](CHIRALITY_AGENT_USER_MANUAL_v3.md) | Operational guidance for entry, coordination, project development, checking, continuity, and closeout across App, App v4, Piping, Runtime, and PEC. The HTML is the offline reading edition. |
+The general management reference explains purpose, accountable reliance,
+production contracts, dependencies, coordinated work, evidence and delivery.
+It does not impose Chirality repository paths or a fixed staffing arrangement.
 
-The companion describes the management manual’s current methods and identifies where adopted project instructions still differ. Reading either manual does not amend those instructions or adopt a new execution basis.
+Stable discovery link: `docs/alignment-manual/README.md#project-management-manual`.
 
-## Read offline
+## Field Book
 
-Each HTML edition is a complete rendering of its Markdown source. Open the HTML file directly in a browser. It has chapter navigation, a compact contents menu on small screens, browser-find support, accessible table scrolling, and print styles. Reading requires no network connection, downloaded fonts, or external assets. Links to repository source files work when this directory remains inside the repository checkout; external reference links need a connection when followed.
+**Current edition: v2.** [Read HTML](Project_Management_for_Human_Agent_Teams_Field_Book_v2.html) · [Markdown source](Project_Management_for_Human_Agent_Teams_Field_Book_v2.md)
 
-The HTML follows the supplied manuscript’s book style: black serif type, white paper, restrained headings, and gray table headers. Its type size and spacing are adapted for screen reading, with local Liberation Serif, Times New Roman, or Georgia fonts. Print styles use the manuscript’s 6.75 × 9.25 inch page size.
+A short decision and navigation aid for the person directing work. It preserves
+the method's distinctions without requiring a universal sequence of records.
 
-The visible source date and repository revision describe the edition’s basis. The SHA-256 fingerprint identifies the exact Markdown bytes used for the HTML. They do not establish current project status or human acceptance.
+Stable discovery link: `docs/alignment-manual/README.md#field-book`.
 
-## Maintain the management-manual formats
+## Agent User Manual
 
-The Word and PDF editions follow the retained technical-reference book layout. The retained layout's preparation is recorded in the [v7 preparation and review evidence](https://github.com/sgttomas/chirality/blob/archive/pre-efficiency-cleanup-2026-10-09/plans/evidence/2026-09-22_manual_v7/). The v8 text revisions are recorded in the [App v4 manual change summary](https://github.com/sgttomas/chirality/blob/archive/pre-efficiency-cleanup-2026-10-09/projects/chirality-app-v4/execution/_Coordination/AgentRuns/APP-V4-GRAPH-CLOSURE-20261004/MANUAL_CHANGES.md), and the 2026-10-05 revision of three §4.2 sentences in its [production note](https://github.com/sgttomas/chirality/blob/archive/pre-efficiency-cleanup-2026-10-09/plans/evidence/2026-10-05_manual_v8_loopinit/production-note.md). For a later revision, carry the authorized Markdown changes into the retained layout, preserve its typography and page setup, then regenerate and visually inspect the Word/PDF output. The renderer below generates the agent guide and field book HTML editions.
+**Current edition: v4.** [Read HTML](CHIRALITY_AGENT_USER_MANUAL_v4.html) · [Markdown source](CHIRALITY_AGENT_USER_MANUAL_v4.md)
 
-## Maintain the HTML edition
+Operational guidance for people and agents working in the current Chirality
+repository: Root, App v4 and SWBPIPE. This is not the App product's user guide.
 
-Edit the Markdown source and regenerate the HTML; do not edit the generated HTML directly. The renderer uses Python 3.10 or newer and the two exact dependency versions in [requirements.txt](requirements.txt). It uses the installed `markdown-it-py` parser for CommonMark, tables, and strikethrough. It does not fetch resources. Rendering preserves supported semantic HTML, including explicit anchors, and adds unique stable IDs to all headings.
+Stable discovery link: `docs/alignment-manual/README.md#agent-user-manual`.
 
-From the repository root, install the dependencies once in a local environment outside tracked content:
+## Discovery and reliance
+
+The anchors above are versionless pointers. They reduce stale entry links and
+let readers find the current edition without maintaining a second registry.
+Their targets can change; that is their purpose and their limitation.
+
+Use the stable link for discovery. Where a decision, requirement or comparison
+depends on exact content, identify the resolved edition and source revision in
+its existing basis or change record. Git preserves the bytes. Add a content hash
+only where a consumer needs one. Changing this index does not silently amend
+an accepted requirement or rebind a historical fixture.
+
+The alternatives have different costs. Versionless content would make every
+link follow edits but hide edition changes from readers. Fully pinned links
+preserve reproducibility but require deliberate updates. This index combines
+stable discovery with named editions; current consumers still assess substantive
+changes before adopting them. No read receipt or automatic adoption gate is added.
+
+## Read and render
+
+The HTML editions are self-contained, use local fonts and support print and
+narrow screens. Edit Markdown and regenerate HTML rather than editing both.
+The renderer requires the pinned versions in `requirements.txt`; it fetches no
+resources. Use an existing suitable environment or install those dependencies
+within the applicable project/host authorization.
+
+For each edition, use its explicit source and output path:
 
 ```sh
-python3 -m venv /tmp/chirality-manual-renderer
-/tmp/chirality-manual-renderer/bin/python -m pip install -r docs/alignment-manual/requirements.txt
+python3 docs/alignment-manual/render_manual.py \
+  --source docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v4.md \
+  --output docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v4.html \
+  --basis-date 2026-10-10 --basis-revision 22dd62a7f04b6f4f4f9cab3cd3183d57c06cd569 \
+  --edition-label 'Operational guide' --metadata-at-end
 ```
 
-Render this edition with its explicit source basis:
+Use the corresponding filenames and labels `Management manual` or `Field book`
+for the other editions.
+Add `--check` to verify without writing. The displayed revision identifies the
+source used for rendering, not human acceptance. Check links and inspect the
+result at desktop and narrow widths. Review content before preparing revised
+Word/PDF publication layouts; retained earlier print editions remain historical.
 
-```sh
-/tmp/chirality-manual-renderer/bin/python docs/alignment-manual/render_manual.py \
-  --source docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.md \
-  --output docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v3.html \
-  --basis-date 2026-10-05 \
-  --basis-revision 7ba1181d43d063a0b11365697412df9bdbe2b2e6
-```
+## Earlier editions
 
-Render the field book with its reading label and source metadata at the end:
+Earlier editions retain their identities for historical consumers. Their old
+procedures do not override current instructions. In particular, App v4's original
+project-definition basis named Consolidated v7, Field Book v1 and User Manual v3.
+The current App v4 basis states its forward selection separately.
 
-```sh
-/tmp/chirality-manual-renderer/bin/python docs/alignment-manual/render_manual.py \
-  --source docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v1.md \
-  --output docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v1.html \
-  --basis-date 2026-10-04 \
-  --basis-revision 1cb9fd536e0bd21dc1ae949cc0533434c23258e1 \
-  --edition-label 'Field book' --metadata-at-end
-```
+- [Consolidated v8 Markdown](Project_Management_for_Human_Agent_Teams_Consolidated_v8.md), [Word](Project_Management_for_Human_Agent_Teams_Consolidated_v8.docx), [PDF](Project_Management_for_Human_Agent_Teams_Consolidated_v8.pdf).
+- [Consolidated v7 Markdown](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md).
+- [Field Book v1](Project_Management_for_Human_Agent_Teams_Field_Book_v1.html).
+- [Agent User Manual v3](CHIRALITY_AGENT_USER_MANUAL_v3.html).
 
-Add `--check` to verify that the committed HTML matches the source and renderer without writing. Use explicit `--source` and `--output` paths as shown for the current edition; the renderer’s unqualified default remains v1. Keep the HTML beside its Markdown source so that repository-relative source links retain their meaning. Archived editions retain their own source date and revision.
-
-The date and revision are required arguments rather than the current clock or `HEAD`, so identical inputs produce identical output. Update those arguments deliberately when the guide’s source basis changes. The renderer rejects duplicate IDs, missing in-page link targets, and non-embedded image or media assets. Raw source HTML is limited to a passive semantic tag and attribute subset; style, script, embedded application, and unsupported resource markup fail clearly without being stripped. This is an authoring constraint for trusted repository documentation, not a general HTML sanitizer. Ordinary browser links are preserved as authored.
-
-After regeneration, check source links and inspect the HTML at desktop and narrow mobile widths, including a table and code block. Check print preview for clipped content. The renderer verifies document structure and staleness; it does not replace editorial or visual review.
-
-## Archive
-
-Earlier files and review records remain available for repository continuity.
-
-| Document | Files |
-| --- | --- |
-| Project Management for Human–Agent Teams — Consolidated v7 | [Markdown](Project_Management_for_Human_Agent_Teams_Consolidated_v7.md) · [Word](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v7.docx) · [PDF](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v7.pdf) · [Preparation and review evidence](https://github.com/sgttomas/chirality/blob/archive/pre-efficiency-cleanup-2026-10-09/plans/evidence/2026-09-22_manual_v7/) |
-| Project Management for Human–Agent Teams — Consolidated v5 | [Markdown](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v5.md) · [Word](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v5.docx) · [PDF](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v5.pdf) · [Preparation evidence](https://github.com/sgttomas/chirality/blob/archive/pre-efficiency-cleanup-2026-10-09/plans/evidence/2026-09-22_manual_authorship_frontmatter/) |
-| Chirality Agent User Manual v2 | [HTML](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.html) · [Markdown](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.md) |
-| Project Management for Human–Agent Teams — Consolidated v4 | [Markdown](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.md) · [Word](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.docx) · [PDF](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.pdf) · [Publication evidence](https://github.com/sgttomas/chirality/blob/archive/pre-efficiency-cleanup-2026-10-09/plans/evidence/2026-09-22_manual_publication_edit/) |
-| Chirality Agent User Manual v1 | [HTML](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.html) · [Markdown](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md) |
-| Project Management for Human–Agent Teams — Consolidated v2 | [Markdown](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.md) · [Word](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.docx) · [PDF](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.pdf) · [Format-production evidence](https://github.com/sgttomas/chirality/blob/archive/pre-efficiency-cleanup-2026-10-09/plans/evidence/2026-09-22_manual_formats/) |
-| Project Management for Human–Agent Teams — Consolidated v1 | Preserved original [Markdown](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md) · [Word](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx) · [PDF](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.pdf) |
-| Manual review v1 | [Repository applicability review](https://github.com/sgttomas/chirality/blob/archive/pre-manuals-2026-10-09/docs/alignment-manual/MANUAL_REVIEW_v1.md) |
-
-Consolidated v7 Markdown remains here because App v4 DEL-10-01 still binds its bytes. Its superseded Word/PDF editions are archived; this does not substitute v8 for that deliverable's source.
+Still earlier files and review evidence are recoverable from
+`archive/pre-manuals-2026-10-09` and `archive/pre-efficiency-cleanup-2026-10-09`.
+No old edition is removed or rewritten by the current revision.
