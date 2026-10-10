@@ -16,6 +16,30 @@ Laws/regulations, applicable codes/standards and approved project specifications
 precede analysis and professional judgment; agent output carries no independent
 professional authority.
 
+## Retained invariant identifiers
+
+The following original definitions remain references for adopted product consumers.
+They do not restore repository procedures superseded by AGENTS.md. In particular,
+K-WRITE-1 describes the legacy product's declared write scope, not a requirement
+for new development header records. K-PROV-1's legacy CSV fields are documented
+in [Compatibility formats](COMPATIBILITY_FORMATS.md#legacy-dependency-csv).
+
+| ID | Invariant | Enforcement |
+|---|---|---|
+| **K-AUTH-1** | Only **humans** author binding approval records. No agent may claim to certify, approve, sign, seal, or issue work for reliance. | Agent instruction constraints; human review |
+| **K-AUTH-2** | Approvals bind to a **specific git SHA**. Content change after approval voids the approval. | Human review; future tooling (SHA comparison) |
+| **K-CLAIM-1** | Claims, conclusions, and characterizations must not **overstate what the available warrant supports**. Statements of necessity, sufficiency, universality, completeness, exclusivity, or direct regulatory conclusiveness may be used only when the cited evidence supports that strength; otherwise they must be framed as interpretation, implementation-specific design, or proposal. | Agent instruction constraints; governance audits (AUDIT_GOVERNANCE); human review |
+| **K-PROV-1** | Every non-trivial governed claim must cite evidence with a source path and best-effort section reference, or carry explicit `location TBD`. Dependency rows are a schema-specific instance of this rule and use **`EvidenceFile` + `SourceRef`** per `SPEC.md` §6.5. | Agent instruction constraints; TASK+dependency-extract row validation; governance audits; human review |
+| **K-INVENT-1** | Unknown values become **`TBD`**, not guessed. Agents must not invent scope items, dependency targets, parameter values, or engineering content. | All agent instruction invariants; human review |
+| **K-CONFLICT-1** | Conflicts between sources must be **surfaced, not silently resolved**. Agents expose disagreements with pointers to the conflicting sources. | Workflow-component standard R7; agent instruction invariants; human adjudication |
+| **K-WRITE-1** | Every agent has an **explicit write scope** declared in its header block. No agent writes outside its declared zone. | Agent Type table (WRITE_SCOPE property); human review of diffs |
+
+K-DEP-1 combines the acceptance principle with superseded DAG-currency and
+register procedures. Its complete original definition remains in the
+[archived CONTRACT](https://github.com/sgttomas/chirality/blob/archive/pre-docs-cleanup-1/docs/CONTRACT.md#14-dependencies).
+Current dependency handling follows AGENTS.md and the deliverable CLI; ordinary
+edge changes do not acquire a new acceptance gate from this historical reference.
+
 ## Domain integration
 
 | ID | Invariant | Enforcement |
@@ -25,7 +49,7 @@ professional authority.
 | **K-DOMAIN-3** | **Domain operations require an OperationProposal record and explicit human acceptance.** A proposal is `proposal_only` until validated by a declared deterministic tool and accepted by a human; application occurs only through a domain-engine-controlled apply. | DOMAIN_ENGINE Gate 5; profile; K-AUTH-1/K-AUTH-2; human review |
 | **K-DOMAIN-4** | **Domain-engine outputs must not be represented as professional approval.** A green validation/PASS is structural evidence only - never code-compliance, certification, sealing, authentication, or external-prover validation absent a cited human authoritative record. Validation-passed is necessary, not sufficient, for engineering correctness. | DOMAIN_ENGINE professional_boundary; K-CLAIM-1; K-AUTH-1; AUDIT_GOVERNANCE; human review |
 
-*Note:* Per the D-GOV-01 (docs/governance_harness/_DECISIONS/) scope note, ruled 2026-07-01, engine-owned domain stores are sanctioned authoritative domain truth under K-DOMAIN-1 and are exempt from the governance rebuildable-cache rule.
+*Note:* Per the D-GOV-01 ([archived decisions](https://github.com/sgttomas/chirality/tree/archive/pre-efficiency-cleanup-2026-10-09/docs/governance_harness/_DECISIONS)) scope note, ruled 2026-07-01, engine-owned domain stores are sanctioned authoritative domain truth under K-DOMAIN-1 and are exempt from the governance rebuildable-cache rule.
 
 ## Runtime compatibility
 

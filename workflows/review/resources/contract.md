@@ -133,7 +133,7 @@ This is the single rule for how findings affect each transition.
   correction is either `DEFERRED` as above or, if the human chooses, corrected
   through the same reversal.
 
-The issuance judgment itself remains human (K-GATE-1); this rule states what
+The issuance judgment itself remains human ([K-GATE-1 (historical)](https://github.com/sgttomas/chirality/blob/archive/pre-docs-cleanup-1/docs/CONTRACT.md)); this rule states what
 the review evidence must show, not a machine block.
 
 ---
