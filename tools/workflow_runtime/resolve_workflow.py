@@ -353,6 +353,23 @@ def resolve(root: Path, role: str, workflow=None, task_skill=None, resources=(),
             'enforcement':'instruction-asserted; host must enforce effective restrictions'}
 
 
+def bind_write_authority(result, brief):
+    """Intersect normalized assignment targets with effective host/tool policy.
+
+    Role capability lists are ceilings, not a grant to edit. Missing assignment
+    authorization remains empty; the host still enforces the resulting targets.
+    """
+    capabilities = result['effective_tools']['capabilities']
+    targets = brief.get('AllowedWriteTargets', []) if brief else []
+    if capabilities is None or 'write' not in capabilities:
+        targets = []
+    if brief is not None:
+        brief['AllowedWriteTargets'] = targets
+    if not targets and capabilities is not None:
+        result['effective_tools']['capabilities'] = [c for c in capabilities if c != 'write']
+    result['allowed_write_targets'] = targets
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[2])
@@ -389,9 +406,8 @@ def main():
         result=resolve(args.root,args.role,args.workflow,args.task_skill,args.resource,None,policy,args.legacy_agent,methods)
         if args.policy:
             result['configuration_basis'].append(fingerprint(args.policy.resolve(),args.policy.resolve().parent))
+        bind_write_authority(result, brief)
         if brief:
-            if result['role_configuration'].get('write_scope') == 'none':
-                brief['AllowedWriteTargets'] = []
             result['brief']=brief
             result['configuration_basis'].append(fingerprint(args.brief.resolve(),args.brief.resolve().parent))
             if brief.get('file_brief'):
