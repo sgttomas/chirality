@@ -429,8 +429,7 @@ function resolveInstructionRootForProcess(): string {
     (candidate) =>
       existsSync(path.join(candidate, 'agents')) &&
       existsSync(path.join(candidate, 'AGENTS.md')) &&
-      (existsSync(path.join(candidate, 'docs', 'PRODUCT_BOUNDARIES.md')) ||
-       existsSync(path.join(candidate, 'docs', 'DIRECTIVE.md')))
+      existsSync(path.join(candidate, 'docs', 'DIRECTIVE.md'))
   );
   if (resolved === undefined) {
     throw new Error('Unable to resolve the Chirality instruction root');

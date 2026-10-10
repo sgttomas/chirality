@@ -3,7 +3,7 @@ import { access, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { HarnessError } from '@chirality/runtime-contracts/errors';
 
-const LEGACY_FILE_ENTRIES = [
+const REQUIRED_FILE_ENTRIES = [
   'AGENTS.md',
   'README.md',
   path.join('docs', 'DIRECTIVE.md'),
@@ -12,19 +12,6 @@ const LEGACY_FILE_ENTRIES = [
   path.join('docs', 'TYPES.md'),
   path.join('docs', 'PLAN.md')
 ] as const;
-
-// Historical packaged roots remain readable; current roots no longer require
-// the retired governance stack merely to be discovered.
-const CURRENT_FILE_ENTRIES = [
-  'AGENTS.md', 'README.md',
-  path.join('docs', 'AGENT_WORKFLOW_RUNTIME.md'),
-  path.join('docs', 'PRODUCT_BOUNDARIES.md'),
-  path.join('docs', 'COMPATIBILITY_FORMATS.md')
-];
-function requiredFileEntries(root: string): readonly string[] {
-  return existsSync(path.join(root, 'docs', 'PRODUCT_BOUNDARIES.md'))
-    ? CURRENT_FILE_ENTRIES : LEGACY_FILE_ENTRIES;
-}
 
 const REQUIRED_DIRECTORY_ENTRIES = ['agents', 'docs'] as const;
 
@@ -39,7 +26,7 @@ function resolveInstructionRootFromEnv(): string | undefined {
 function hasRequiredInstructionRootEntries(candidateRoot: string): boolean {
   return (
     REQUIRED_DIRECTORY_ENTRIES.every((entry) => existsSync(path.join(candidateRoot, entry))) &&
-    requiredFileEntries(candidateRoot).every((entry) => existsSync(path.join(candidateRoot, entry)))
+    REQUIRED_FILE_ENTRIES.every((entry) => existsSync(path.join(candidateRoot, entry)))
   );
 }
 
@@ -85,7 +72,7 @@ export async function assertInstructionRootReadable(): Promise<string> {
     }
   }
 
-  for (const relativeEntry of requiredFileEntries(instructionRoot)) {
+  for (const relativeEntry of REQUIRED_FILE_ENTRIES) {
     const absoluteEntry = path.join(instructionRoot, relativeEntry);
     try {
       const entryStat = await stat(absoluteEntry);

@@ -1,7 +1,7 @@
 # Development verification
 
 `harness` is the single required GitHub result. It combines repository checks
-with the selected App v4, Piping, Runtime/App and PEC compatibility workflows.
+with the selected App v4 and Piping workflows.
 Branch protection does not require an up-to-date branch merely because main
 advanced; checks still apply to the candidate head.
 
@@ -12,7 +12,7 @@ Missing or unknown inputs select conservative coverage. Each job reports its
 selection and reasons; unrelated product jobs are explicitly skipped. Failed,
 cancelled or missing selected work fails the aggregate result.
 
-Routine PRs use focused checks of consequential behaviour. Full App suites,
+Routine PRs use focused checks of consequential behaviour. Full App v4 suites,
 broad browser matrices and other expanded checks are available through manual
 workflow dispatch or release preparation. There is no blanket local sweep,
 nightly duplicate or post-merge duplicate requirement. Do not repeat a passing
@@ -33,3 +33,8 @@ separate and do not themselves establish a passing result.
 
 Verification is proportional to consequence under Root `AGENTS.md`. CI success
 is not product acceptance, engineering approval or release authorization.
+
+App v3, Runtime and PEC are retired and have no verification jobs or dependency
+builds. Historical App packaging and instruction-root reproduction use a checkout
+of `archive/pre-docs-cleanup-1`. Their source remains available without an ongoing
+CI maintenance obligation.

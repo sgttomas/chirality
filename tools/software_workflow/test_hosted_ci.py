@@ -53,20 +53,20 @@ class HostedCITests(unittest.TestCase):
         for path in paths:
             self.write(path)
         self.commit()
-        self.assertEqual(self.plan()["modes"], modes(app="instructions", **{"app-v4": "full"}))
+        self.assertEqual(self.plan()["modes"], modes(**{"app-v4": "full"}))
 
     def test_project_records_including_json_do_not_run_product_suites(self):
         paths = [f"projects/{project}/{folder}/{filename}" for project in
                  ["chirality-app-dev", "chirality-runtime", "pec"] for folder in
                  ["docs", "execution", "loop", "plans"] for filename in ["note.md", "state.json"]]
-        self.assertEqual(select_paths(paths, PROFILE)["modes"], modes(app="not-applicable", pec="not-applicable"))
+        self.assertEqual(select_paths(paths, PROFILE)["modes"], modes())
 
     def test_app_v4_records_and_prose_do_not_run_product_suites(self):
         paths = [f"projects/chirality-app-v4/{folder}/{filename}" for folder in
                  ["execution/_Coordination/AgentRuns/RUN", "docs", "conceptual", "foundation", "reference", "loop", "init"]
                  for filename in ["note.md", "state.json"]]
         paths += ["projects/chirality-app-v4/AGENTS.md", "projects/chirality-app-v4/README.md"]
-        self.assertEqual(select_paths(paths, PROFILE)["modes"], modes(app="not-applicable", pec="not-applicable"))
+        self.assertEqual(select_paths(paths, PROFILE)["modes"], modes())
         # Its application source selects App v4, not unrelated legacy products.
         self.assertEqual(select_paths(["projects/chirality-app-v4/app/src/main.rs"], PROFILE)["modes"],
                          modes(**{"app-v4": "full"}))
@@ -76,63 +76,63 @@ class HostedCITests(unittest.TestCase):
             "projects/chirality-app-v4/execution/PKG-02/DEL-02-04/ScopeOfWork.md"
         ], PROFILE)["modes"], modes(**{"app-v4": "full"}))
 
-    def test_owned_product_and_shared_runtime_dependencies_select_consumers(self):
+    def test_retired_products_do_not_select_product_checks(self):
         for path, expected_modes in [
-            ("projects/chirality-app-dev/frontend/src/a.tsx", modes(app="full", pec="not-applicable")),
-            ("projects/pec/server/src/a.ts", modes(app="not-applicable", pec="full")),
-            ("projects/chirality-runtime/packages/client/src/a.ts", modes(app="full", pec="full")),
-            ("projects/chirality-runtime/package-lock.json", modes(app="full", pec="full")),
-            ("projects/chirality-app-dev/instructions/AGENTS.md", modes(app="instructions", pec="not-applicable")),
+            ("projects/chirality-app-dev/frontend/src/a.tsx", modes()),
+            ("projects/pec/server/src/a.ts", modes()),
+            ("projects/chirality-runtime/packages/client/src/a.ts", modes()),
+            ("projects/chirality-runtime/package-lock.json", modes()),
+            ("projects/chirality-app-dev/instructions/AGENTS.md", modes()),
         ]:
             with self.subTest(path=path):
                 self.assertEqual(select_paths([path], PROFILE)["modes"], expected_modes)
 
     def test_earlier_source_commit_is_not_hidden_by_later_docs(self):
-        self.write("projects/chirality-app-dev/frontend/src/a.tsx")
+        self.write("projects/chirality-app-v4/app/src/a.tsx")
         self.commit()
         self.write("docs/notes.md")
         self.commit()
         plan = self.plan()
-        self.assertEqual(plan["modes"]["app"], "full")
+        self.assertEqual(plan["modes"]["app-v4"], "full")
         self.assertEqual(len(plan["paths"]), 2)
 
     def test_consumed_doc_deletion_keeps_its_executable_app_checks(self):
-        path = "projects/chirality-app-dev/docs/harness/reliance_boundary_register.md"
+        path = "projects/chirality-app-v4/execution/PKG-02/DEL-02-04/ScopeOfWork.md"
         self.write(path)
         base = self.commit()
         (self.root / path).unlink()
         self.commit()
-        self.assertEqual(self.plan(base)["modes"]["app"], "full")
+        self.assertEqual(self.plan(base)["modes"]["app-v4"], "full")
 
     def test_move_from_product_to_records_still_checks_removed_product(self):
-        original = "projects/pec/server/src/a.ts"
+        original = "projects/chirality-app-v4/app/src/a.ts"
         self.write(original)
         base = self.commit()
-        self.write("projects/pec/docs/a.ts")
+        self.write("projects/chirality-app-v4/docs/a.ts")
         (self.root / original).unlink()
         self.commit()
         plan = self.plan(base)
         self.assertIn(original, plan["paths"])
-        self.assertEqual(plan["modes"]["pec"], "full")
+        self.assertEqual(plan["modes"]["app-v4"], "full")
 
     def test_newline_in_filename_cannot_hide_product_path(self):
-        path = "projects/chirality-app-dev/frontend/src/odd\nname.ts"
+        path = "projects/chirality-app-v4/app/src/odd\nname.ts"
         self.write(path)
         self.commit()
         self.assertIn(path, self.plan()["paths"])
-        self.assertEqual(self.plan()["modes"]["app"], "full")
+        self.assertEqual(self.plan()["modes"]["app-v4"], "full")
 
     def test_unknown_inputs_fall_back_to_owner_or_both_products(self):
         for path, expected in [
-            ("projects/chirality-app-dev/new-input.bin", modes(app="full", pec="not-applicable")),
-            ("projects/chirality-app-dev/new-runtime/docs/input.json", modes(app="full", pec="not-applicable")),
-            ("projects/pec/new-input.bin", modes(app="not-applicable", pec="full")),
+            ("projects/chirality-app-dev/new-input.bin", modes()),
+            ("projects/chirality-app-dev/new-runtime/docs/input.json", modes()),
+            ("projects/pec/new-input.bin", modes()),
             ("unknown-root-input.bin", dict.fromkeys(SUITES, "full")),
             ("projects/chirality-app-v4/unmapped/new-code.bin", modes(**{"app-v4": "full"})),
             ("projects/chirality-piping/new-code.bin", modes(piping="full", **{"piping-numerical": "full"})),
         ]:
             selection = select_paths([path], PROFILE)
-            self.assertEqual(selection["unmatched_paths"], [path])
+            self.assertEqual(selection["unmatched_paths"], [] if path.startswith(("projects/chirality-app-dev/", "projects/pec/")) else [path])
             self.assertEqual(selection["modes"], expected)
 
     def test_policy_changes_require_full_consumer_checks(self):
@@ -175,15 +175,6 @@ class HostedCITests(unittest.TestCase):
         self.assertIn('did not complete', completed.stdout)
         self.assertNotIn('Traceback', completed.stderr)
 
-    def test_required_selected_job_failure_cancellation_or_skip_blocks_result(self):
-        for state in ["failure", "cancelled", "skipped", ""]:
-            self.assertFalse(aggregate("app", "full", "success", state))
-            self.assertFalse(aggregate("app", "instructions", "success", "skipped", state))
-        self.assertFalse(aggregate("pec", "not-applicable", "failure", "skipped"))
-        self.assertFalse(aggregate("app", "typo", "success", "skipped"))
-        self.assertTrue(aggregate("app", "instructions", "success", "skipped", "success"))
-        self.assertTrue(aggregate("pec", "not-applicable", "success", "skipped"))
-        self.assertTrue(aggregate("app", "full", "success", "success"))
 
 
 if __name__ == "__main__":

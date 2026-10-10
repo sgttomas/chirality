@@ -3,17 +3,8 @@
   "project_root": "..",
   "description": "Hosted product selection from direct source, resource and configuration paths. Unknown inputs select conservative product coverage; deliverable code mappings are advisory and never suppress checks.",
   "checks": {
-    "app": {
-      "description": "Complete App/Runtime pre-merge integration suite"
-    },
-    "instructions": {
-      "description": "Build and verify the App's packaged instruction root"
-    },
-    "pec": {
-      "description": "Complete PEC workspace suite with its Runtime dependency"
-    },
     "records": {
-      "description": "No App/PEC product input; governance validation still applies"
+      "description": "No active product input; repository checks still apply"
     },
     "app-v4": {
       "description": "App v4 native/frontend build and behavioral checks"
@@ -29,6 +20,26 @@
   "path_rules": [
     {
       "paths": [
+        "projects/pec/**",
+        "projects/chirality-runtime/**",
+        ".github/workflows/pec-tests.yml"
+      ],
+      "checks": [
+        "records"
+      ]
+    },
+    {
+      "paths": [
+        "projects/chirality-app-dev/**",
+        ".github/workflows/harness-premerge.yml",
+        ".github/workflows/desktop-release-template.yml"
+      ],
+      "checks": [
+        "records"
+      ]
+    },
+    {
+      "paths": [
         "AGENTS.md",
         "CLAUDE.md",
         "README.md",
@@ -41,7 +52,7 @@
         "projects/chirality-app-dev/instructions/**"
       ],
       "checks": [
-        "instructions"
+        "records"
       ]
     },
     {
@@ -58,7 +69,7 @@
         ".github/workflows/desktop-release-template.yml"
       ],
       "checks": [
-        "app"
+        "records"
       ]
     },
     {
@@ -76,8 +87,7 @@
         "projects/chirality-runtime/.gitattributes"
       ],
       "checks": [
-        "app",
-        "pec"
+        "records"
       ]
     },
     {
@@ -98,7 +108,7 @@
         ".github/workflows/pec-tests.yml"
       ],
       "checks": [
-        "pec"
+        "records"
       ]
     },
     {
@@ -109,8 +119,6 @@
         "tools/software_workflow/software_workflow_common.py"
       ],
       "checks": [
-        "app",
-        "pec",
         "app-v4",
         "piping",
         "piping-numerical"
