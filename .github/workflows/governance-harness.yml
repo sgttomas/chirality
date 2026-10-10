@@ -77,6 +77,23 @@ jobs:
         # numpy: tools/retrieval imports it; installed so those tests stay
         # gated here rather than skipping (coverage ruling 2026-07-31)
         run: python3 -m pip install --quiet pyyaml pytest pytest-xdist numpy
+      - name: Deliverable dependency structure
+        if: steps.selection.outputs.deliverables == 'true'
+        run: |
+          python3 -m pip install --quiet pyyaml
+          python3 - <<'PYTHON'
+          import subprocess
+          import sys
+          from pathlib import PurePosixPath
+          paths = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          projects = set()
+          for path in paths:
+              parts = PurePosixPath(path).parts
+              if parts and parts[-1] == 'deliverable.yaml' and 'execution' in parts:
+                  projects.add('/'.join(parts[:parts.index('execution')]) or '.')
+          for project in sorted(projects):
+              subprocess.run([sys.executable, '-m', 'tools.deliverables', '--project', project, 'check'], check=True)
+          PYTHON
       - name: Configure canonical Ubuntu package sources
         if: steps.selection.outputs.has_tests == 'true'
         shell: bash

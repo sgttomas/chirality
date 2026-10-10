@@ -71,6 +71,11 @@ class HostedCITests(unittest.TestCase):
         self.assertEqual(select_paths(["projects/chirality-app-v4/app/src/main.rs"], PROFILE)["modes"],
                          modes(**{"app-v4": "full"}))
 
+    def test_hash_bound_scope_selects_app_v4(self):
+        self.assertEqual(select_paths([
+            "projects/chirality-app-v4/execution/PKG-02/DEL-02-04/ScopeOfWork.md"
+        ], PROFILE)["modes"], modes(**{"app-v4": "full"}))
+
     def test_owned_product_and_shared_runtime_dependencies_select_consumers(self):
         for path, expected_modes in [
             ("projects/chirality-app-dev/frontend/src/a.tsx", modes(app="full", pec="not-applicable")),

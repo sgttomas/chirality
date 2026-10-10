@@ -140,6 +140,10 @@ def main() -> int:
             instruction_inputs = any(p in ('--all','AGENTS.md','agents/registry.json') or p.startswith(('workflows/','agents/','tools/validation/')) for p in selection.get('paths', []))
             if selection.get('reasons', {}).get('*') == ['base-unresolvable']:
                 instruction_inputs = True
+            dependency_inputs = any(p == '--all' or p.endswith('/deliverable.yaml') or p.startswith('tools/deliverables/') or p == '.github/workflows/governance-harness.yml' for p in selection.get('paths', []))
+            if selection.get('reasons', {}).get('*') == ['base-unresolvable']:
+                dependency_inputs = True
+            output.write(f"deliverables={'true' if dependency_inputs else 'false'}\n")
             output.write(f"instructions={'true' if instruction_inputs else 'false'}\n")
     if args.dry_run:
         return 0

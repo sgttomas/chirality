@@ -158,3 +158,17 @@ def test_no_selected_suites_does_not_invoke_pytest(monkeypatch):
 def test_unknown_tool_source_selects_full_estate():
     selection = _dry_run('--paths', 'tools/new-tool/implementation.py')
     assert set(selection['checks']) == set(load_profile()['checks'])
+
+
+def test_dependency_edits_select_structure_check_without_product_tests(tmp_path, monkeypatch):
+    output = tmp_path / 'outputs'
+    monkeypatch.setenv('GITHUB_OUTPUT', str(output))
+    for path, expected in [
+        ('projects/chirality-app-v4/execution/PKG-01/DEL-01-01/deliverable.yaml', True),
+        ('plans/example.md', False),
+        ('tools/deliverables/cli.py', True),
+    ]:
+        output.write_text('')
+        subprocess.run([sys.executable, str(RUNNER), '--dry-run', '--paths', path],
+                       cwd=REPO_ROOT, check=True, capture_output=True)
+        assert f"deliverables={str(expected).lower()}" in output.read_text()
