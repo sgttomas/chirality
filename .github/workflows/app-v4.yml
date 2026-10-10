@@ -54,7 +54,6 @@ jobs:
       CARGO_INCREMENTAL: '0'
       CARGO_BUILD_JOBS: '2'
       CHIRALITY_CODEX_EXPECTED_SHA256: 112fae7a5a1223e673c8a1791d32338f37df8b527ff1159bb8adac6c4dbf1b4b
-      CHIRALITY_CODEX_HOME: ${{ runner.temp }}/app-v4-codex-home
     defaults:
       run:
         working-directory: projects/chirality-app-v4/app
@@ -90,6 +89,7 @@ jobs:
       - name: Prepare adopted supplier in scratch storage
         env:
           SUPPLIER_ROOT: ${{ runner.temp }}/app-v4-supplier
+          CHIRALITY_CODEX_HOME: ${{ runner.temp }}/app-v4-codex-home
         run: |
           test "$(uname -m)" = arm64
           mkdir -p "$SUPPLIER_ROOT" "$CHIRALITY_CODEX_HOME"
