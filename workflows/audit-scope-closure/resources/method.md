@@ -61,7 +61,7 @@ For each row in `Amendment_Actions.csv`, verify the action was executed:
 **REMOVE actions:**
 - Confirm the decomposition document's deliverable row is annotated with `[RETIRED — {AMENDMENT_ID}]`.
 - Confirm `_STATUS.md` history contains an appended line recording the retirement under the amendment ID.
-- Confirm the retirement left the lifecycle state unchanged: RETIRED is not a project lifecycle value (`docs/SPEC.md` §3.2 lists no such state, and its historical-product extension says RETIRED is never an active project lifecycle value). If a historical run's accepted group-2 decision explicitly authorized a hand-authored `RETIRED` current state, verify against that decision and cite it rather than reporting a discrepancy.
+- Confirm the retirement left the lifecycle state unchanged: RETIRED is not a project lifecycle value (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §3.2 lists no such state, and its historical-product extension says RETIRED is never an active project lifecycle value). If a historical run's accepted group-2 decision explicitly authorized a hand-authored `RETIRED` current state, verify against that decision and cite it rather than reporting a discrepancy.
 - Confirm the deliverable folder still exists (non-destructive removal).
 
 **MODIFY actions:**

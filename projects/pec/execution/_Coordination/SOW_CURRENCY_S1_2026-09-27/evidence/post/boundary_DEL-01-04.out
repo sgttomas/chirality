@@ -1,4 +1,0 @@
-$ python3 tools/scope_of_work/check_boundary_owner_resolution.py --json projects/pec/execution/_Coordination/SOW_CURRENCY_S1_2026-09-27/boundary_DEL-01-04.json --show-not-checkable projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/ScopeOfWork.md
-
-Contracts: 1 (0 out-of-grammar) | boundary requirements checked: 0 | per-act exclusions for skill QA: 0 | boundary requirements citing no claim: 0 | contracts failing: 0
-exit=0

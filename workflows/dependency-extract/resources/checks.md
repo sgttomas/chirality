@@ -38,7 +38,7 @@ This file enumerates the mandatory invariants and local quality checks that must
 ### ID format validation
 
 - Validate all ID fields: `bash tools/validation/validate_id_format.sh DEL {FromDeliverableID}`, `bash tools/validation/validate_id_format.sh PKG {FromPackageID}`, `bash tools/validation/validate_id_format.sh DEP {DependencyID}`, etc.
-- `DependencyID` follows `DEP-{PKG}-{DEL}-{SEQ}` (`docs/SPEC.md` §6.8, e.g. `DEP-01-01-001`) and its prefix agrees with `FromDeliverableID`.
+- `DependencyID` follows `DEP-{PKG}-{DEL}-{SEQ}` (`docs/COMPATIBILITY_FORMATS.md#stable-dependency-identities`, e.g. `DEP-01-01-001`) and its prefix agrees with `FromDeliverableID`.
 
 ### Evidence & provenance checks
 

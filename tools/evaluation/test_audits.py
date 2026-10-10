@@ -152,3 +152,14 @@ def test_inventory_scans_all_lifecycle_folders(tmp_path):
     result = dependencies(tmp_path)
     assert result["summary"]["production_units"] == 3
     assert sum("missing register" in issue for issue in result["issues"]) == 2
+
+
+def test_migrated_project_refuses_legacy_empty_graph(tmp_path):
+    import pytest
+    from audit_common import inventory, require_root
+    source = tmp_path / 'PKG-01/DEL-01-01/deliverable.yaml'
+    source.parent.mkdir(parents=True)
+    source.write_text('id: DEL-01-01\nneeds: []\n')
+    for operation in (inventory, require_root, dependencies):
+        with pytest.raises(ValueError, match='tools/deliverables/'):
+            operation(tmp_path)

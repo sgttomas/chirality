@@ -8,7 +8,7 @@ Chirality helps professional knowledge workers turn complex tasks into methods t
 
 ## Use the App
 
-**Version 3.0.0 is available.** It runs on Apple Silicon Macs with macOS 15 or newer and uses Codex through your ChatGPT account. Local-model support is planned for a later release.
+**App v3 is frozen and no longer developed or verified here.** Historical downloads remain in the release repository; source recovery is documented in [Frozen products](projects/FROZEN.md). It runs on Apple Silicon Macs with macOS 15 or newer and uses Codex through your ChatGPT account. Local-model support is planned for a later release.
 
 Bring a task such as a monthly update, a proposal, an investigation, or a review. Help Human can organize references, prepare work, and help you check it. You can select a workflow from the library or ask it to turn your plan into one. Return to the conversation to reuse and refine the method as your work changes.
 
@@ -24,12 +24,12 @@ Chirality makes more of that understanding available for reuse: the method, its 
 
 ## This repository
 
-This is the main source and development repository for Chirality App, its Runtime, agent instructions, reusable methods, and related projects. Downloads and user issue reports live in [chirality-app](https://github.com/sgttomas/chirality-app).
+This is the source and development repository for App v4, SWBPIPE, shared agent instructions and reusable methods. App v3, Runtime and PEC are archived. Downloads and user issue reports live in [chirality-app](https://github.com/sgttomas/chirality-app).
 
 | Location | Purpose |
 | --- | --- |
-| [App development](projects/chirality-app-dev/README.md) | Desktop source, local setup, and development documentation |
-| [Runtime](projects/chirality-runtime/README.md) | The App-owned service and Codex integration |
+| [App v4 development](projects/chirality-app-v4/loop/LOOP_INIT.md) | Current App and embedded-harness development |
+| [Frozen products](projects/FROZEN.md) | Recovery of App v3, Runtime and PEC |
 | [Agents](agents/) | Four roles: HELP_HUMAN, HELPS_HUMANS, WORKING_ITEMS, and TASK |
 | [Workflows](workflows/README.md) | Reusable instructions for coordinating and completing work |
 | [Skills](.agents/skills/) | Bounded methods used by agents during their work |
@@ -41,7 +41,7 @@ A role describes how an agent participates. A workflow describes how work is org
 
 ## Develop and contribute
 
-For application development, start with the [App README](projects/chirality-app-dev/README.md). For agent-assisted work in this repository, read [AGENTS.md](AGENTS.md) and the instructions in the project you are changing.
+For application development, start with the [App v4 entry](projects/chirality-app-v4/loop/LOOP_INIT.md). For agent-assisted work in this repository, read [AGENTS.md](AGENTS.md) and the instructions in the project you are changing.
 
 The [alignment manual and agent guide](docs/alignment-manual/README.md) explain how to organize, check, and carry work forward across Chirality projects.
 

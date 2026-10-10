@@ -1,1 +1,0 @@
-Fresh review corrected INIT versus CONVERT evidence semantics. Prior reviewed files and seal preserved here; current INIT_TASKS and output scopes use INIT validation/checklist evidence only. No scope or approval changed.

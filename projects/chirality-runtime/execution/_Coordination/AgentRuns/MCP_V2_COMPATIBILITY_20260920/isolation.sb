@@ -1,6 +1,0 @@
-(version 1)
-(allow default)
-(deny network*)
-(deny file-read* file-write* (subpath "/Users/ryan/.codex"))
-(deny file-read* file-write* (subpath "/Users/ryan/Library/Keychains"))
-(deny file-read* file-write* (subpath "/Users/ryan/Library/Application Support"))

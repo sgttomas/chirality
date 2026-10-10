@@ -24,6 +24,10 @@
 
 #[path = "execution_custody.rs"]
 mod execution_custody;
+#[path = "hosting_request_event_join.rs"]
+mod request_event_join;
+#[path = "hosting_call_custody.rs"]
+pub(crate) mod call_custody;
 #[path = "hosting_successor.rs"]
 pub(crate) mod successor;
 #[path = "attachment_custody.rs"]
@@ -140,6 +144,9 @@ impl HostConfig {
 
 #[derive(Default)]
 struct Inner {
+    cce_offer: Option<call_custody::Offer>,
+    aa_capture: Option<request_event_join::Core>,
+    aa_epoch: u64,
     state: String,
     start_attempt: u64,
     start_admission: Option<StartAdmission>,
@@ -485,6 +492,24 @@ pub struct Host {
     stdin: Mutex<Option<ChildStdin>>,
     child: Mutex<Option<Child>>,
     #[cfg(test)]
+    aa_before_write: Mutex<Option<Box<dyn FnOnce(&Host, &SourceRequest) + Send>>>,
+    #[cfg(test)]
+    cce_before_prepare: Mutex<Option<Box<dyn FnOnce(&Host,&call_custody::IncomingCall)+Send>>>,
+    #[cfg(test)]
+    cce_before_cut: Mutex<Option<Box<dyn FnOnce(&Host,&call_custody::IncomingCall)+Send>>>,
+    #[cfg(test)]
+    cce_after_cut: Mutex<Option<Box<dyn FnOnce(&Host,&call_custody::IncomingCall)+Send>>>,
+    #[cfg(test)]
+    cce_after_write: Mutex<Option<Box<dyn FnOnce(&Host,&call_custody::IncomingCall)+Send>>>,
+    #[cfg(test)]
+    cce_simulated_write: Mutex<Option<&'static str>>,
+    #[cfg(test)]
+    cce_start_simulated_write: Mutex<Option<&'static str>>,
+    #[cfg(test)]
+    aa_after_write: Mutex<Option<Box<dyn FnOnce(&Host, &SourceRequest) + Send>>>,
+    #[cfg(test)]
+    aa_simulated_write: Mutex<Option<&'static str>>,
+    #[cfg(test)]
     before_thread_insert: Mutex<Option<Box<dyn FnOnce() + Send>>>,
     #[cfg(test)]
     before_turn_result: Mutex<Option<Box<dyn FnOnce() + Send>>>,
@@ -533,6 +558,18 @@ impl Host {
             inner: Arc::new((Mutex::new(inner), Condvar::new())),
             stdin: Mutex::new(None),
             child: Mutex::new(None),
+            #[cfg(test)]
+            aa_before_write: Mutex::new(None),
+            #[cfg(test)] cce_before_prepare: Mutex::new(None),
+            #[cfg(test)] cce_before_cut: Mutex::new(None),
+            #[cfg(test)] cce_after_cut: Mutex::new(None),
+            #[cfg(test)] cce_after_write: Mutex::new(None),
+            #[cfg(test)] cce_simulated_write: Mutex::new(None),
+            #[cfg(test)] cce_start_simulated_write: Mutex::new(None),
+            #[cfg(test)]
+            aa_after_write: Mutex::new(None),
+            #[cfg(test)]
+            aa_simulated_write: Mutex::new(None),
             #[cfg(test)]
             before_thread_insert: Mutex::new(None),
             #[cfg(test)]
@@ -1077,6 +1114,8 @@ impl Host {
             // recreated Hosts within this same genuine App custody.
             if prospective.is_none() { self.allocate_home_spawn(&mut i,home_identity)?; }
             i.attachment_pipe_epoch += 1;
+            i.aa_capture=None;
+            i.cce_offer=None;
             i.generation = json!({"appSession": i.app_session, "home": i.home, "spawnCounter": i.spawn_counter});
             i.start_admission=Some(StartAdmission::Installed{attempt,generation:i.generation.clone()});
             i.receipt_position = 0;
@@ -1218,6 +1257,8 @@ impl Host {
 
     /// H10: every pending client request of the closing generation becomes unknown.
     fn close_generation(i: &mut Inner) -> Value {
+        if let Some(c)=i.aa_capture.as_mut(){c.retire();}
+        if let Some(o)=i.cce_offer.as_mut(){o.retire();}
         let mut unknown = 0;
         for (_, (idx, _)) in i.pending.drain() {
             if let Some(r) = i.client_requests.get_mut(idx) {
@@ -1303,12 +1344,17 @@ impl Host {
     fn request_begin_scoped(&self, method: &str, params: Value, initiator: Value,
         handshake: bool, expected_generation: Option<&Value>) -> Result<SourceRequest, String> {
         auth_rpc::generic_guard(method,&params)?;
-        self.request_begin_scoped_private(method,params,initiator,handshake,expected_generation,false,None)
+        self.request_begin_scoped_private(method,params,initiator,handshake,expected_generation,false,None,None)
     }
     fn request_begin_scoped_private(&self, method: &str, params: Value, initiator: Value,
-        handshake: bool, expected_generation: Option<&Value>, private_credential: bool, oauth_cancel:Option<&SourceRequest>) -> Result<SourceRequest, String> {
+        handshake: bool, expected_generation: Option<&Value>, private_credential: bool, oauth_cancel:Option<&SourceRequest>, aa_reservation:Option<request_event_join::CaptureReservation>) -> Result<SourceRequest, String> {
+        self.request_begin_with_offer(method,params,initiator,handshake,expected_generation,private_credential,oauth_cancel,aa_reservation,None)
+    }
+    fn request_begin_with_offer(&self,method:&str,params:Value,initiator:Value,handshake:bool,expected_generation:Option<&Value>,private_credential:bool,oauth_cancel:Option<&SourceRequest>,aa_reservation:Option<request_event_join::CaptureReservation>,cce_intent:Option<call_custody::OfferIntent>)->Result<SourceRequest,String>{
+        #[cfg(test)] let cce_selected=cce_intent.is_some();
         let (tx, rx) = channel();
         let mut i = self.inner.0.lock().unwrap();
+        if cce_intent.is_some() && i.cce_offer.is_some(){return Err("one offered start per generation; no replacement".into())}
         let ok_state = if handshake {i.state=="handshaking"} else {i.state=="ready"};
         if !ok_state {
             let gen=i.generation.clone();i.client_requests.push(json!({"recordKind":"client-request","generation":gen,"requestIdentity":null,"method":method,"initiator":initiator,"writeResult":"not-attempted","outcome":"refused-not-sent","refusalReason":"not-ready"}));
@@ -1331,6 +1377,7 @@ impl Host {
         let bytes=Self::frame_bytes(&raw_frame)?;drop(raw_frame);drop(params);
         if auth_rpc::account_method(method)&&!i.account_channels.contains(&i.generation){let g=i.generation.clone();i.account_channels.push(g);}
         let request=SourceRequest {source:Arc::downgrade(&self.inner),generation:i.generation.clone(),frame:frame.clone(),request_ref:format!("{}:client:{id}",opaque_id("host-request")?),receiver:Arc::new(Mutex::new(rx))};
+        let cce_bound=cce_intent.map(|intent|call_custody::Offer::bind(intent,&self.inner,&request)).transpose().map_err(|e|e.message())?;
         // This private receipt account is separate from the published client
         // record schema; only completion of the actual write sets sentFrame.
         let rec=json!({"recordKind":"client-request","generation":i.generation,"requestIdentity":id,"method":method,"initiator":initiator});
@@ -1348,7 +1395,14 @@ impl Host {
         if expected_generation.is_some()&&method=="turn/start" {let gen=i.generation.clone();let pos=i.receipt_position;i.turn_request_threads.insert(id.to_string(),(gen,frame["params"]["threadId"].as_str().unwrap().into(),pos));}
         if expected_generation.is_some()&&method=="turn/interrupt" {let gen=i.generation.clone();i.interrupt_requests.push(json!({"generation":gen,"threadId":frame["params"]["threadId"],"turnId":frame["params"]["turnId"],"requestIdentity":id,"initiator":"person-directed"}));}
         let captured=self.capture_pipe(&i);
-        i.source_requests.get_mut(&id.to_string()).unwrap().source_pipe=captured.as_ref().ok().map(|bound|(bound.epoch,bound.identity));drop(i);
+        i.source_requests.get_mut(&id.to_string()).unwrap().source_pipe=captured.as_ref().ok().map(|bound|(bound.epoch,bound.identity));
+        if let Some(offer)=cce_bound{i.cce_offer=Some(offer);}
+        #[cfg(test)] let aa_selected=aa_reservation.is_some();
+        if let Some(reservation)=aa_reservation {
+            let core=request_event_join::Core::bind(reservation,&self.inner,i.aa_epoch,&i.generation,request.request_ref(),&request.frame,captured.as_ref().ok().map(|b|(b.epoch,b.identity)));
+            i.aa_capture=Some(core);
+        }
+        drop(i);
         let write_result=(||->Result<(),String>{let mut bound=captured?;let serial=if private_credential{
             let deadline=std::time::Instant::now()+Duration::from_secs(20);loop{match self.frame_write.try_lock(){Ok(serial)=>break serial,Err(std::sync::TryLockError::Poisoned(_))=>return Err("frame writer unavailable; transient input released".into()),Err(std::sync::TryLockError::WouldBlock)=>{let i=self.inner.0.lock().unwrap();if i.generation!=request.generation||i.server_requests.is_closed(&request.generation)||i.state!="ready"||std::time::Instant::now()>=deadline{return Err("credential source lost/cancelled/queue limit; transient input released, no retry".into());}drop(i);std::thread::sleep(Duration::from_millis(2));}}}
         }else{self.frame_write.lock().unwrap()};
@@ -1359,8 +1413,15 @@ impl Host {
                     let state=Self::oauth_scope(&i,original)?;
                     if state.controller.observation().phase!=oauth_control::Phase::Cancelling||state.cancel_request.as_ref()!=Some(&json!(id)){return Err("original OAuth cancel control ended before final dispatch; no replacement write".into());}
                 }
-                i.send_position+=1;let position=i.send_position;let e=i.source_requests.get_mut(&id.to_string()).unwrap();e.write_attempt_in_progress=true;e.attempt_position=Some(position);}
-            let result=Self::write_complete(&mut bound.file,&bytes);drop(serial);result})();
+                i.send_position+=1;let position=i.send_position;let e=i.source_requests.get_mut(&id.to_string()).unwrap();e.write_attempt_in_progress=true;e.attempt_position=Some(position);
+                let epoch=i.aa_epoch;let cut=i.receipt_position;
+                if let Some(c)=i.aa_capture.as_mut(){c.prewrite(&request.generation,epoch,request.request_ref(),(bound.epoch,bound.identity),cut);}}
+            #[cfg(test)] if aa_selected {let hook=self.aa_before_write.lock().unwrap().take();if let Some(h)=hook{h(self,&request);}}
+            #[cfg(test)] let simulated=if aa_selected{self.aa_simulated_write.lock().unwrap().take()}else if cce_selected{self.cce_start_simulated_write.lock().unwrap().take()}else{None};
+            #[cfg(test)] let result=match simulated{Some(reason)=>Err(format!("simulated write settlement: {reason}")),None=>Self::write_complete(&mut bound.file,&bytes)};
+            #[cfg(not(test))] let result=Self::write_complete(&mut bound.file,&bytes);
+            #[cfg(test)] if aa_selected {let hook=self.aa_after_write.lock().unwrap().take();if let Some(h)=hook{h(self,&request);}}
+            drop(serial);result})();
         drop(bytes);
         let mut i=self.inner.0.lock().unwrap();let key=id.to_string();let closed=i.generation!=request.generation||i.server_requests.is_closed(&request.generation)||!matches!(i.state.as_str(),"ready"|"handshaking");
         let e=i.source_requests.get_mut(&key).unwrap();e.write_attempt_in_progress=false;let mut record=e.observation_base.clone();let response=e.response.clone();let response_position=e.response_position;if let Some(position)=e.attempt_position{record["sendPosition"]=json!(position);}
@@ -1382,6 +1443,12 @@ impl Host {
             if write!=oauth_control::WriteFinish::Written{state.controller.cancel_completed(&state.pin,oauth_control::CancelFinish::Unknown);}
             else if let Some(finish)=state.cancel_finish.take(){state.controller.cancel_completed(&state.pin,finish);}
         }
+        if i.aa_capture.is_some() {
+            let e=i.source_requests.get(&key).unwrap();let pipe=e.source_pipe;
+            let written=e.written&&!e.write_attempt_in_progress&&e.write_error.is_none()&&e.source_limit.is_none()&&!closed&&pipe.is_some_and(|(epoch,_)|epoch==i.attachment_pipe_epoch);
+            let epoch=i.aa_epoch;
+            if let Some(c)=i.aa_capture.as_mut(){c.settle(&request.generation,epoch,request.request_ref(),pipe,written);}
+        }
         Ok(request)
     }
 
@@ -1398,7 +1465,7 @@ impl Host {
     pub(crate) fn account_login_api_key(&self,generation:&Value,input:auth_rpc::TransientApiKey,policy:Option<&SourceRequest>)->Result<SourceRequest,String>{
         let policy_standing=self.account_key_policy_standing(generation,policy)?;
         let params=input.into_params();Self::validate_native_result("LoginAccountParams",&params).map_err(|_|"native API-key input shape invalid; sensitive diagnostic withheld".to_string())?;
-        let source=self.request_begin_scoped_private("account/login/start",params,json!({"kind":"person-directed"}),false,Some(generation),true,None)?;
+        let source=self.request_begin_scoped_private("account/login/start",params,json!({"kind":"person-directed"}),false,Some(generation),true,None,None)?;
         let mut i=self.inner.0.lock().unwrap();if let Some(e)=i.source_requests.get_mut(&source.request_id().to_string()){e.auth_policy_standing=Some(format!("{policy_standing}; Unit A transport only, native secure-entry/H-key owner not qualified; validity unknown until actual use"));}Ok(source)
     }
     fn account_key_policy_standing(&self,generation:&Value,policy:Option<&SourceRequest>)->Result<&'static str,String>{
@@ -1505,7 +1572,7 @@ impl Host {
         let mut params=None;
         permit.with_login_id(||self.check_oauth_source(&login.source).map_err(|_|()),|id|params=Some(json!({"loginId":id}))).map_err(|e|format!("OAuth cancel source unavailable: {e:?}"))?;
         let params=params.ok_or("OAuth cancel serialization unavailable")?;
-        let result=self.request_begin_scoped_private("account/login/cancel",params,json!({"kind":"person-directed"}),false,Some(&login.source.generation),true,Some(&login.source));
+        let result=self.request_begin_scoped_private("account/login/cancel",params,json!({"kind":"person-directed"}),false,Some(&login.source.generation),true,Some(&login.source),None);
         if result.is_err(){if let Some(state)=self.inner.0.lock().unwrap().oauth.get_mut(login.source.request_ref()){state.controller.cancel_completed(&state.pin,oauth_control::CancelFinish::Unknown);}}
         result
     }
@@ -1710,7 +1777,72 @@ impl Host {
             return Err("start response envelope is uncorrelated or failed; raw native evidence retained, no operational admission".into());
         }
         Self::validate_native_result("ThreadStartResponse",&response["result"])?;
-        self.insert_start_response(request.generation(),&request.frame["params"],&response,true)?;Ok(response)
+        self.insert_start_response(request.generation(),&request.frame["params"],&response,true)?;
+        {let mut i=self.inner.0.lock().unwrap();if i.generation==request.generation&&!i.server_requests.is_closed(&request.generation){if let Some(offer)=i.cce_offer.as_mut(){if let Some(thread)=response["result"]["thread"]["id"].as_str(){offer.native_admitted(request,thread);}}}}
+        Ok(response)
+    }
+    #[cfg(test)]
+    fn cce_thread_start(&self,generation:&Value,cwd:&str,composition:&crate::role_supply::Composition,supply_ref:&str)->Result<SourceRequest,String>{
+        let intent=call_custody::OfferIntent::new(composition,supply_ref).map_err(|e|e.message())?;
+        let mut params=Self::thread_start_params(cwd,"synthetic","synthetic",Some(&composition.text))?;
+        params["dynamicTools"]=json!([call_custody::definition()]);
+        call_custody::bounded(&params,65536,65536).map_err(|e|e.message())?;
+        self.request_begin_with_offer("thread/start",params,json!({"kind":"synthetic-offered-start"}),false,Some(generation),false,None,None,Some(intent))
+    }
+    pub(crate) fn cce_original_start_pin(&self,request:&SourceRequest)->Result<Option<call_custody::StartPin>,String>{
+        let i=self.inner.0.lock().unwrap();let Some(offer)=i.cce_offer.as_ref() else{return Ok(None)};
+        if !offer.request_matches(request){return Ok(None)}
+        if i.generation!=request.generation||i.state!="ready"||i.server_requests.is_closed(&request.generation){return Err("offered start source ended".into())}
+        let e=i.source_requests.get(&request.request_id().to_string()).ok_or("original start source absent")?;
+        if e.request.request_ref!=request.request_ref||!e.written||e.write_attempt_in_progress||e.write_error.is_some()||e.source_limit.is_some()||i.client_requests[e.index]["outcome"]!="response-observed-result"{return Err("offered start lacks original complete written result".into())}
+        offer.start_pin(request).map(Some).map_err(|e|e.message().into())
+    }
+    pub(crate) fn cce_adopt_manager(&self,owner:&call_custody::ManagerOwner)->Result<(),String>{
+        let _gate=self.attachment_gate.lock().unwrap();let mut i=self.inner.0.lock().unwrap();
+        if i.state!="ready"||i.server_requests.is_closed(&i.generation){return Err("manager handoff source ended".into())}
+        if !i.cce_offer.as_ref().is_some_and(|o|o.scope_matches(&i.generation)){return Err("offered manager handoff generation changed".into())}
+        i.cce_offer.as_mut().ok_or("original offer absent")?.adopt(owner).map_err(|e|e.message().into())
+    }
+    fn cce_check_call(i:&Inner,call:&call_custody::IncomingCall)->Result<(),String>{
+        let f=&call.facts;
+        if !f.generation.matches(&i.generation)||i.state!="ready"||i.server_requests.is_closed(&i.generation)||!i.cce_offer.as_ref().is_some_and(|o|o.original(call)){return Err("original offered call source/manager ended".into())}
+        let e=i.server_requests.original_offered(f.index,&i.generation,&f.rpc.view()).ok_or("original offered entry absent")?;
+        if e["receiptPosition"]!=f.receipt{return Err("original call receipt changed".into())}
+        call_custody::bounded(&e["nativeParameters"],call_custody::FRAME_LIMIT,8192).map_err(|r|r.message())?;
+        if call_custody::digest(&e["nativeParameters"]).map_err(|r|r.message())?!=f.params{return Err("original call parameters changed".into())}Ok(())
+    }
+    fn cce_reply_unavailable(&self,call:&call_custody::IncomingCall)->Result<(),String>{
+        use std::sync::atomic::Ordering;
+        if !call.belongs(&self.inner){return Err("foreign original-call handle".into())}
+        #[cfg(test)] {let hook=self.cce_before_prepare.lock().unwrap().take();if let Some(h)=hook{h(self,call);}}
+        let f=&call.facts;
+        let mut owns_preparation=false;
+        let result=(||{
+            let (mut bound,frame)={let _gate=self.attachment_gate.lock().unwrap();let mut i=self.inner.0.lock().unwrap();Self::cce_check_call(&i,call)?;
+                if f.resolution.load(Ordering::SeqCst)!=0{return Err("original call resolved before prepare".into())}
+                f.state.compare_exchange(0,1,Ordering::SeqCst,Ordering::SeqCst).map_err(|_|"original call already attempted")?;
+                owns_preparation=true;
+                let generation=i.generation.clone();let reply=i.server_requests.prepare_offered_unavailable(f.index,&generation,&f.rpc.view())?;let bound=self.capture_pipe(&i)?;(bound,reply)};
+            let bytes=Self::frame_bytes(&frame)?;if bytes.len()>2048{return Err("offered response frame limit".into())}
+            let serial=self.frame_write.lock().unwrap();
+            #[cfg(test)] {let hook=self.cce_before_cut.lock().unwrap().take();if let Some(h)=hook{h(self,call);}}
+            {let _gate=self.attachment_gate.lock().unwrap();let i=self.inner.0.lock().unwrap();self.check_bound(&i,&bound)?;Self::cce_check_call(&i,call)?;
+                let e=i.server_requests.original_offered(f.index,&i.generation,&f.rpc.view()).ok_or("original offered entry absent")?;
+                if e["state"]!="settling"||e["replyWriteResult"]!="not-attempted"||f.resolution.load(Ordering::SeqCst)!=0{return Err("original offered reply no longer eligible".into())}
+                f.cut.store(i.receipt_position,Ordering::SeqCst);f.state.compare_exchange(1,2,Ordering::SeqCst,Ordering::SeqCst).map_err(|_|"offered attempt no longer preparable")?;}
+            #[cfg(test)] {let hook=self.cce_after_cut.lock().unwrap().take();if let Some(h)=hook{h(self,call);}}
+            #[cfg(test)] let write=match self.cce_simulated_write.lock().unwrap().take(){Some(reason)=>Err(format!("simulated offered write settlement: {reason}")),None=>Self::write_complete(&mut bound.file,&bytes)};
+            #[cfg(not(test))] let write=Self::write_complete(&mut bound.file,&bytes);
+            f.state.store(if write.is_ok(){3}else{4},Ordering::SeqCst);
+            #[cfg(test)] {let hook=self.cce_after_write.lock().unwrap().take();if let Some(h)=hook{h(self,call);}}
+            drop(serial);
+            let mut i=self.inner.0.lock().unwrap();
+            if !f.generation.matches(&i.generation)||i.server_requests.is_closed(&i.generation){return Err("offered local IO completed after closure; private original outcome retained, canonical settlement unavailable".into())}
+            if i.server_requests.original_offered(f.index,&i.generation,&f.rpc.view()).is_none_or(|e|e["state"]!="settling"){return Err("offered local IO observed; original canonical settlement unavailable".into())}
+            let generation=i.generation.clone();i.server_requests.written(&generation,&f.rpc.view(),write.is_ok());f.canonical.store(true,Ordering::SeqCst);Self::persist_requests(&mut i);drop(i);self.flush_recovery_observations();write
+        })();
+        if result.is_err()&&owns_preparation{let _=f.state.compare_exchange(1,5,Ordering::SeqCst,Ordering::SeqCst);}
+        result
     }
     fn validate_native_result(target: &str, result: &Value) -> Result<(),String> {
         let mut schema:Value=serde_json::from_str(include_str!("../resources/supplier/0.160.0/codex_app_server_protocol.schemas.json")).map_err(|e|e.to_string())?;schema["$ref"]=json!(format!("#/definitions/v2/{target}"));
@@ -2092,12 +2224,19 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
             i.journal.push(json!({"generation":generation,"class":"closed-generation-frame","frame":frame,"sourceProjection":if projected{Some("sensitive account projection; not original bytes")}else{None}}));return;
         }
         i.receipt_position+=1;let pos=i.receipt_position;let gen=i.generation.clone();
+        let epoch=i.aa_epoch;let pipe_epoch=i.attachment_pipe_epoch;
+        if let Some(c)=i.aa_capture.as_mut(){c.observe(&gen,epoch,pipe_epoch,pos,&frame);}
         let class=if frame.is_object()&&frame.get("observation").is_none(){let has_id=frame.get("id").is_some();let has_method=frame.get("method").is_some();if has_method&&has_id{"server-request"}else if has_method{"notification"}else if has_id&&(frame.get("result").is_some()||frame.get("error").is_some()){"response"}else{"malformed"}}else{"malformed"};
         let mut automatic_reply=None;
+        let mut cce_call=None;
         let private_auth_reply=if let Some((id,token_refresh))=private_auth_id{Some((self.capture_pipe(&i),id,token_refresh))}else{None};
         if class == "server-request" && private_auth_reply.is_none() {
             let capabilities = i.declared_capabilities.clone().unwrap_or(Value::Null);
-            match i.server_requests.receive(&gen, pos, &frame, &capabilities) {
+            let offered=if frame["method"]=="item/tool/call"{i.cce_offer.as_ref().and_then(|o|o.classify(&gen,&frame))}else{None};
+            let received=match offered.as_ref(){Some(Ok(a))=>i.server_requests.receive_offered(&gen,pos,&frame,&capabilities,Ok(a)),Some(Err(e))=>i.server_requests.receive_offered(&gen,pos,&frame,&capabilities,Err(*e)),None=>i.server_requests.receive(&gen,pos,&frame,&capabilities)};
+            let accepted=received.is_ok();
+            if accepted {if let Some(Ok(a))=offered {if let Some(index)=i.server_requests.original_offered_index(&gen,&frame["id"],pos){if let Some(offer)=i.cce_offer.as_mut(){offer.received(&gen,pos,index,&frame,a);cce_call=offer.take();}}}}
+            match received {
                 Ok(Some(reply)) => {
                     match self.capture_pipe(&i){Ok(bound)=>automatic_reply=Some((bound,reply)),Err(_)=>i.server_requests.written(&gen,&frame["id"],false)}
                 }
@@ -2116,6 +2255,7 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
             }
         } else if class == "notification" && frame["method"] == "serverRequest/resolved" {
             i.server_requests.resolved(&gen, &frame["params"]);
+            if let Some(offer)=i.cce_offer.as_ref(){offer.resolution(&gen,pos,&frame["params"]);}
         }
         if (class == "server-request"&&private_auth_reply.is_none()) || (class == "notification" && frame["method"] == "serverRequest/resolved") {
             Self::persist_requests(&mut i);
@@ -2173,6 +2313,7 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
             i.journal.push(entry);
         }
         drop(i);
+        if let Some(call)=cce_call {let _=self.cce_reply_unavailable(&call);}
         if let Some((bound,id,token_refresh))=private_auth_reply{
             let result=bound.and_then(|bound|self.write_private_auth_rejection(bound,id,token_refresh));
             let mut i=self.inner.0.lock().unwrap();

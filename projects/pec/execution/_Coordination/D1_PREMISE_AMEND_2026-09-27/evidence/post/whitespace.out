@@ -1,3 +1,0 @@
-# 2026-09-27T17:40:06Z (date -u); cwd repo root; HEAD 7c250e370015b118a4fabea5abe34e13e190e419
-$ git diff --check origin/main...HEAD
-exit=0

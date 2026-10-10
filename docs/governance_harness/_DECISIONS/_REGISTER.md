@@ -1,5 +1,8 @@
 # D-GOV Register — Governance Harness Decisions (**RULED 2026-07-01**; published, SHA-bound)
 
+> Reference and history; not binding. See AGENTS.md.
+
+
 All seven decisions were ruled by the owner in-session on 2026-07-01
 ("All as recommended") and published by CHANGE in commit `82a35c545`
 (2026-07-01; the Ruling SHA was backfilled into the records by `f1549afb1`).

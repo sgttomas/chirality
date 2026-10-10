@@ -1,3 +1,0 @@
-PASS strict identical before/after (byte-for-byte, same checkout path; exit=1)
-PASS harness identical before/after (byte-for-byte, same checkout path; exit=0)
-PASS receipts identical before/after (byte-for-byte, same checkout path; exit=0)

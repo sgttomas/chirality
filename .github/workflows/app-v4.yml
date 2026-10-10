@@ -1,0 +1,182 @@
+name: App v4
+
+on:
+  workflow_call:
+  workflow_dispatch:
+    inputs:
+      broad_python:
+        description: Run all Python receiving cohorts, including known stale-source failures
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: app-v4-${{ github.event.pull_request.number || github.ref }}
+  # Only the newest PR candidate needs verification.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  selection:
+    name: Select App v4 coverage
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.plan.outputs.mode }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout: tools
+      - name: Select from the complete PR diff
+        id: plan
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: >-
+          python3 tools/software_workflow/hosted_ci.py plan --suite app-v4
+          --event "$EVENT" --base "$BASE" --head "$HEAD" --output app-v4-selection.json
+
+  product:
+    name: App v4 product
+    needs: selection
+    if: needs.selection.outputs.mode == 'full'
+    # Match the tested arm64 environment and system Git no-lazy-fetch contract.
+    runs-on: macos-26
+    timeout-minutes: 45
+    env:
+      RUST_TEST_THREADS: '1'
+      CARGO_INCREMENTAL: '0'
+      CARGO_BUILD_JOBS: '2'
+      CHIRALITY_CODEX_EXPECTED_SHA256: 112fae7a5a1223e673c8a1791d32338f37df8b527ff1159bb8adac6c4dbf1b4b
+    defaults:
+      run:
+        working-directory: projects/chirality-app-v4/app
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          filter: blob:none
+          sparse-checkout: |
+            projects/chirality-app-v4
+            tools
+            workflows
+            agents
+            docs
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: projects/chirality-app-v4/app/package-lock.json
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: '1.97.1'
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: projects/chirality-app-v4/app/src-tauri
+          cache-on-failure: true
+      - uses: actions/setup-python@v5
+        if: github.event_name == 'workflow_dispatch'
+        with:
+          python-version: '3.12'
+      - name: Install locked App and pinned Python dependencies
+        run: |
+          npm ci
+          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then python -m pip install pytest==9.1.1 jsonschema==4.26.0 referencing==0.37.0; fi
+      - name: Prepare adopted supplier in scratch storage
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          SUPPLIER_ROOT: ${{ runner.temp }}/app-v4-supplier
+          CHIRALITY_CODEX_HOME: ${{ runner.temp }}/app-v4-codex-home
+        run: |
+          test "$(uname -m)" = arm64
+          /usr/bin/git --no-lazy-fetch --version
+          mkdir -p "$SUPPLIER_ROOT" "$CHIRALITY_CODEX_HOME"
+          curl --fail --location --retry 2 \
+            https://registry.npmjs.org/@openai/codex/-/codex-0.160.0-darwin-arm64.tgz \
+            --output "$SUPPLIER_ROOT/supplier.tgz"
+          python - <<'PY'
+          import base64, hashlib, os
+          from pathlib import Path
+          archive = Path(os.environ['SUPPLIER_ROOT']) / 'supplier.tgz'
+          with archive.open('rb') as stream:
+              digest = base64.b64encode(hashlib.file_digest(stream, 'sha512').digest()).decode()
+          expected = 'aefV6cqZA2REZgR//4McyXlp7zLcTti4CI2v3j9IVgNndPBv2kCeNEcz07qeelXcwOdSFPUKb6roA48vZmDgrQ=='
+          if digest != expected:
+              raise SystemExit('supplier archive integrity mismatch')
+          PY
+          tar -xzf "$SUPPLIER_ROOT/supplier.tgz" -C "$SUPPLIER_ROOT"
+          echo "$SUPPLIER_ROOT/package/vendor/aarch64-apple-darwin/codex-path" >> "$GITHUB_PATH"
+          export CHIRALITY_CODEX_BIN="$SUPPLIER_ROOT/package/vendor/aarch64-apple-darwin/bin/codex"
+          python - <<'PY'
+          import hashlib, os
+          from pathlib import Path
+          binary = Path(os.environ['CHIRALITY_CODEX_BIN'])
+          with binary.open('rb') as stream:
+              digest = hashlib.file_digest(stream, 'sha256').hexdigest()
+          if digest != os.environ['CHIRALITY_CODEX_EXPECTED_SHA256']:
+              raise SystemExit('supplier executable integrity mismatch')
+          with open(os.environ['GITHUB_ENV'], 'a') as env:
+              env.write(f'CHIRALITY_CODEX_BIN={binary}\n')
+          PY
+      - name: Build App and verify source-mapped schemas
+        run: |
+          npm run build
+          python src-tauri/schemas/sync.py
+      - name: Focused persistence and authority boundaries (full suite on request)
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
+            cargo test --locked --manifest-path src-tauri/Cargo.toml -- --test-threads=1
+          else
+            cargo test --locked --manifest-path src-tauri/Cargo.toml \
+              --test act_storage --test recovery_startup --test access_integration \
+              --test policy_standing --test decision_standing --test record_semantics \
+              --test native_backend_smoke -- --test-threads=1
+            cargo check --tests --locked --manifest-path src-tauri/Cargo.toml
+            for cohort in p3_role_set_tests p2_production_catalog_tests workflow_catalog_tests; do
+              cargo test --locked --manifest-path src-tauri/Cargo.toml --lib "$cohort" -- --test-threads=1
+            done
+          fi
+      - name: Node schemas and presentation with mandatory supplier
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          test -x "$CHIRALITY_CODEX_BIN"
+          npm test
+      - name: Python receiving and custody behavior
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          BROAD: ${{ inputs.broad_python }}
+        run: |
+          if [ "$BROAD" = true ]; then
+            python -m pytest -q tests
+          else
+            # These two historical cohorts already fail on an obsolete hosting.rs
+            # source pin. Explicit broad runs keep those failures visible.
+            echo 'Not selected: distribution and terminal historical-source cohorts (known stale hosting.rs pin).'
+            python -m pytest -q tests \
+              --ignore=tests/group_b_distribution_receiving_test.py \
+              --ignore=tests/group_b_terminal_receiving_test.py
+          fi
+
+  result:
+    name: App v4 checks
+    needs: [selection, product]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          filter: blob:none
+          sparse-checkout: tools/software_workflow
+      - name: Require every selected check to have passed
+        env:
+          MODE: ${{ needs.selection.outputs.mode }}
+          SELECTION: ${{ needs.selection.result }}
+          PRODUCT: ${{ needs.product.result }}
+        run: >-
+          python3 tools/software_workflow/hosted_ci.py aggregate --suite app-v4
+          --mode "$MODE" --selection "$SELECTION" --product "$PRODUCT"

@@ -251,7 +251,7 @@ Based on the approved amendment, produce a propagation plan **limited to the app
 2) **For `REMOVE` actions**
    - `PROJECT/SOFTWARE`:
      - Annotate the decomposition row `[RETIRED — {AMENDMENT_ID}]`.
-     - Read the deliverable `_STATUS.md` and sibling `_MEMORY.md` / `MEMORY.md` when present, then plan one appended `_STATUS.md` history line recording the retirement under the amendment, for example `- {YYYY-MM-DD} — Retired under {AMENDMENT_ID}; lifecycle state remains {CURRENT_STATE} ({ACTOR})`. Leave `**Current State:**` unchanged (`docs/SPEC.md` §3.2 lists no such state, and its historical-product extension says RETIRED is never an active project lifecycle value), and `tools/scaffolding/write_status.sh` is not used for retirement.
+     - Read the deliverable `_STATUS.md` and sibling `_MEMORY.md` / `MEMORY.md` when present, then plan one appended `_STATUS.md` history line recording the retirement under the amendment, for example `- {YYYY-MM-DD} — Retired under {AMENDMENT_ID}; lifecycle state remains {CURRENT_STATE} ({ACTOR})`. Leave `**Current State:**` unchanged (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §3.2 lists no such state, and its historical-product extension says RETIRED is never an active project lifecycle value), and `tools/scaffolding/write_status.sh` is not used for retirement.
      - Do **not** delete the folder or any files
      - If a `PACKAGE` is being retired, enumerate every child deliverable and Scope Ledger row being retired or remapped in the same amendment
    - `DOMAIN`:
@@ -261,7 +261,7 @@ Based on the approved amendment, produce a propagation plan **limited to the app
      - List any downstream generated knowledge artifacts that should be marked review-needed / retired by their owning workflow
 
 3) **For `MODIFY` actions**
-   - `PROJECT/SOFTWARE`: list specific `_CONTEXT.md` edits per affected deliverable, and record each deliverable's lifecycle state. For an `ISSUED` deliverable, state in the plan that this amendment, once accepted at checkpoint group 3, is the record that authorizes its reopening (`ISSUED → IN_PROGRESS`, `docs/SPEC.md` §3.3): the human records the transition after acceptance, citing the accepted snapshot (with `write_status.sh --amendment`, which checks the committed record at the approval SHA), and `project-setup` in `INCREMENTAL` mode then routes the contract revision. For a `CHECKING` deliverable, state that the revision waits for a human reversal to `IN_PROGRESS`
+   - `PROJECT/SOFTWARE`: list specific `_CONTEXT.md` edits per affected deliverable, and record each deliverable's lifecycle state. For an `ISSUED` deliverable, state in the plan that this amendment, once accepted at checkpoint group 3, is the record that authorizes its reopening (`ISSUED → IN_PROGRESS`, `docs/COMPATIBILITY_FORMATS.md#historical-specification` §3.3): the human records the transition after acceptance, citing the accepted snapshot (with `write_status.sh --amendment`, which checks the committed record at the approval SHA), and `project-setup` in `INCREMENTAL` mode then routes the contract revision. For a `CHECKING` deliverable, state that the revision waits for a human reversal to `IN_PROGRESS`
    - `DOMAIN`: list exact edits to the decomposition document and affected annex CSVs, and list any downstream KTY-local artifacts or terminology indexes that should be refreshed by their owning workflow
 
 4) **For `RECLASSIFY` actions**

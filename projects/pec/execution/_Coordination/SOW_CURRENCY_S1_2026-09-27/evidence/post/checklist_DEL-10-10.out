@@ -1,2 +1,0 @@
-$ python3 tools/scope_of_work/derive_review_checklist.py --output projects/pec/execution/_Coordination/SOW_CURRENCY_S1_2026-09-27/checklist_DEL-10-10.json projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation
-exit=0

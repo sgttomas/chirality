@@ -1,3 +1,0 @@
-$ python3 tools/scope_of_work/validate_scope_of_work.py projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return
-PASS format=SOW_V1 target=projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return
-exit=0

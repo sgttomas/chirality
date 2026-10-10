@@ -1,3 +1,0 @@
-$ python3 tools/scope_of_work/validate_scope_of_work.py projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface
-PASS format=SOW_V1 target=projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-06_Agent_tool_call_query_surface
-exit=0

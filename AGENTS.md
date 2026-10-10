@@ -1,247 +1,127 @@
-# AGENTS — Runtime Doctrine and Entry
+# Chirality repository instructions
 
-An agent is an LLM operating with instructions, supplied context, available
-tools, and actual host permissions. A role describes how the agent contributes;
-a workflow describes how an undertaking is performed. The human remains
-accountable for what is accepted or relied upon.
+Work toward the owner's intended result within the authority given in the
+conversation. Roles describe contributions; workflows supply methods. The owner
+remains accountable for acceptance and reliance.
 
-## Roles
+## Where work happens
+
+| Scope | Entry | Standing |
+|---|---|---|
+| Root: shared instructions, workflows, skills, tools and CI | `execution/_Coordination/LOOP_INIT.md` | Work as steered |
+| App v4: Chirality within applications and the workflow-authoring exemplar | `projects/chirality-app-v4/loop/LOOP_INIT.md` | Active |
+| SWBPIPE: piping design and stress-model authoring | `projects/chirality-piping/loop/LOOP_INIT.md` | Active |
+| App v3, Runtime, PEC | [Recovery](projects/FROZEN.md) | Frozen; no development or verification without explicit reactivation |
+| `_DomainEngines/` | Owning project's instructions | Write only under a steer for that work |
+
+## Working cycle
+
+1. Take the objective, limits and authorization from the conversation. Do not
+   reconstruct a standing backlog from archived plans or records.
+2. Locate the affected deliverable or shared Root component. Read its current
+   commitments and design; consult the PRD and companions for the requirements
+   and interfaces this work involves.
+3. Query the relevant inputs, consumers and changes. Read what this slice needs;
+   do not perform a global state census. Resolve whether an input meets its
+   condition from evidence and judgment, not file existence or merge status.
+4. Carry authorized work through implementation, proportionate verification and
+   integration. Use one coordinator for a shared result, disjoint concurrent
+   writes, and owners who stay with their work through repairs.
+5. Update the current ScopeOfWork, Design or dependency condition when its meaning
+   changes. Apply already-authorized decisions without asking again. Leave
+   unchanged declarations alone; Git preserves their history.
+6. Return the usable result, checks, material findings and reserved choices.
+   Stop when the agreed result is established; do not invent closeout work.
+
+## Deliverables and records
+
+Active project deliverables live in `execution/PKG-nn/DEL-nn-nn/`:
+`ScopeOfWork.md` holds commitments and acceptance criteria, `Design/` holds useful
+technical detail, and `deliverable.yaml` holds needs, conditions and code/check
+pointers. The consumer states its needs; tools derive reverse links and graphs.
+
+From the repository root, use `python3 -m tools.deliverables --project <project>`
+with `neighborhood <DEL>`, `impact <DEL>`, `touches <rev|PR:n>` or
+`dag-diff <tag>`. `check` reports structural errors and unresolved references.
+See `tools/deliverables/README.md` for arguments and limits. Results are facts
+and unknowns, not completion or acceptance claims; code paths indicate relevance,
+not exclusive ownership. Never hand-maintain derived progress or lifecycle state.
+
+Produce the work and the minimum information needed to review, use or recover
+it. A record needs a concrete consumer, acceptance requirement or recovery need.
+The PR states what changed, why, what was checked and what remains open; quote
+the owner's words for reserved decisions. Decisions edit the text they govern,
+not append registers. No routine receipts, notices, run records or handoff
+chains. Keep one replaceable recovery note only where continuity needs it.
+
+## Verification and authority
+
+- Routine, reversible changes: inspect or exercise the result.
+- Ordinary implementation: run a focused check.
+- Numerical meaning, persistence, permissions or destructive operations: use
+  targeted regression checks and independent scrutiny by a separate agent.
+- Releases: check the actual product; release remains an owner act.
+
+Changing an expected result to silence a failure needs a substantive reason.
+Reuse applicable passing evidence; repeat checks when a change or unresolved
+concern warrants it, not because work moved between agents or into a PR.
+
+Changes to commitments or acceptance criteria, releases, risk acceptance and
+explicit holds are reserved for the owner. Present an unresolved reserved choice
+with its consequence. Otherwise continue authorized work; uncertainty alone does
+not require another approval. Honor project fences and keep private data out of
+this public repository. Required secret and private-term checks still apply.
+Model and effort choices come from session steering, not repository doctrine.
+
+### Standing Git grant
+
+For `sgttomas/chirality` only, agents may commit, push, open, update and merge PRs
+within authorized work after the verification above and required checks pass on
+the exact head. Explicit holds and reserved decisions apply. This grant excludes
+protection bypasses, history rewrites, force pushes, permission changes and
+releases. Use `.agents/skills/chirality-change/SKILL.md` for Git conventions.
+
+## Current contracts
+
+Product commitments live in the project's PRD and named companions, ScopeOfWork
+and Design. Consult these shared references where applicable:
+
+- [Product boundaries](docs/PRODUCT_BOUNDARIES.md): professional accountability,
+  domain ownership, protected writes and human acceptance. Frozen Runtime
+  contracts apply only upon explicit reactivation.
+- [Agent and workflow runtime](docs/AGENT_WORKFLOW_RUNTIME.md): product interface
+  reference, only where adopted by the current product; it imports no retired
+  Runtime obligations into App v4 or repository development.
+- [Compatibility formats](docs/COMPATIBILITY_FORMATS.md): containment and legacy
+  formats still consumed by tools.
+
+Omission from these pointers does not supersede a live commitment or hold. If
+one is found elsewhere, move it into its current home or add a relevant pointer
+in the same change. Historical procedures create no new development duties.
+
+## Roles and workflows
 
 | Role | Type | Contribution |
 |---|---|---|
-| HELP_HUMAN | 0 | Work with the human on alignment, continuity, and coordination |
-| HELPS_HUMANS | 1 | Conceive and design workflows, tools, and projects with the human |
-| WORKING_ITEMS | 1 | Organize implementation, assign bounded work, and integrate results |
-| TASK | 2 | Execute one bounded assignment, using a workflow when selected |
+| HELP_HUMAN | 0 | Purpose, alignment and continuity with the owner |
+| HELPS_HUMANS | 1 | Design workflows, tools and projects with the owner |
+| WORKING_ITEMS | 1 | Own implementation, assignments and integration |
+| TASK | 2 | Execute one bounded assignment; does not delegate |
 
-The human may enter through an untyped session or directly select HELP_HUMAN,
-HELPS_HUMANS, or WORKING_ITEMS. TASK is a delegated executor. Ordinary selective
-context consists of this Root `AGENTS.md`, applicable project instructions, the
-active role's `agents/AGENT_<ROLE>.md`, and available skill names and
-descriptions. It excludes other full role instructions, broad governance texts,
-and unselected workflow or skill bodies. Load selected or needed bodies and
-resources on demand. Record their actual origins and hashes in governed run
-evidence so later inspection and replay can reconstruct the supplied history.
-A role may consult another role's instructions deliberately when comparison,
-design, migration, or coordination actually requires it, and must record that
-wider consultation in the run evidence.
+The agent working with the owner holds Agent 0’s responsibilities for purpose,
+continuity and reserved choices, whatever role it entered through. Other roles
+are taken up as the work needs them. This grants no additional host permissions.
+The person may work untyped or enter through either manager or HELP_HUMAN.
+HELP_HUMAN may coordinate directly or through Type 1 managers; managers may
+assign bounded TASK work. Use only the hierarchy the undertaking needs.
+Load the active role's `agents/AGENT_<ROLE>.md`; other role, workflow and skill
+bodies are on demand. Keep ownership of integration and route returns through
+the host's actual mechanisms.
 
-HELP_HUMAN may coordinate the two managers or dispatch bounded Type 2 work
-directly. HELPS_HUMANS and WORKING_ITEMS may dispatch TASK or an ephemeral Type
-2 instance. Type 2 does not delegate. Agents may investigate, draft, propose,
-check, and carry authorized work forward on their own initiative. They return
-to the human for decisions reserved by the governing workflow or accepted
-instruments; uncertainty alone does not require an extra prompt.
-
-## Reading project information
-
-Project information is carried by files, folder structure, and Git
-revisions and working state. The same work can be read through four
-complementary views:
-
-- Tree: composition, scope and local context in the project hierarchy
-  and its work-unit files.
-- Production graph: dependencies, interfaces and sequencing expressed
-  in registers, project graphs and session work graphs.
-- Network: sources, decisions, constraints, provenance and supersession
-  connecting material across folders and packages.
-- Attention: relevant material brought together through comparison,
-  decomposition and synthesis, with traces in briefs, decisions and outputs.
-
-Choose and combine the views useful to the task. Discover relationships
-from existing records, follow relevant references and revisions, and expand
-context as needed. Git ancestry alone does not establish production
-dependencies. Search results and derived graphs help locate evidence;
-reliance remains grounded in the source records and their authority.
-
-Use this orientation proportionately. It does not require constructing all
-four graphs, scanning the whole repository or rebuilding an accepted DAG.
-
-## Skills and workflows
-
-A skill is reusable bounded contextual instruction with a canonical `SKILL.md`;
-it may contain a simple method or a complex set of supporting resources. A
-workflow is reusable coordination or method guidance for an undertaking; it
-may also be simple or complex, and selecting one is optional unless an accepted
-instrument requires it. Neither creates a role, expands authority, or proves
-that a tool is available.
-
-Root and standalone compatibility interfaces may discover project skills at
-`.agents/skills/<name>/SKILL.md` and user skills at
-`~/.agents/skills/<name>/SKILL.md`. In the App, skill availability follows
-Codex's native discovery of project, user, and bundled skills. Runtime retains
-Codex's effective skill set and each skill's origin; the App hides skill browsing
-for v3.0.0 while preserving background skill use.
-Read-only replay may render preserved historical bytes and origin without
-activating a skill for a new turn, and a historical selection is never
-silently rebound to a same-named definition from another origin.
-
-Project workflows live at `.chirality/workflows/<name>/WORKFLOW.md`; user
-workflows at `~/.chirality/workflows/<name>/WORKFLOW.md`; the App may also
-supply bundled, reviewed workflows. Root's `workflows/` packages are the
-current bundled source tree. Workflow lookup order for an unqualified name is
-project, then user, then bundled. Selection retains the source-qualified
-identity. Expose every colliding workflow origin, and never let later discovery
-silently replace an already selected workflow.
-
-Ordinary App context may include the names and descriptions of the skills
-Codex reports as available. Load a skill body and its resources only when
-selected or needed. Select a workflow
-with `Workflow: <name>` or its source-qualified identity and load only its
-entrypoint and resources needed for the current stage. Consult the generated
-Root `workflows/index.json`, or Runtime's effective catalog when available,
-when a reusable established method may help and the correct method is not
-already known. Inspect the chosen descriptor and source before loading its
-body. Routine role context does not carry full workflow bodies. Legacy
-`TaskSkill` input is resolved by the compatibility adapter without erasing its
-historical identity.
-
-The central workflows are shown first because they are broadly applicable.
-Use is optional except for the workflow-authoring requirement below:
-
-| Undertaking | Workflow |
-|---|---|
-| Creating or revising reusable workflows | `create-workflow` |
-| Workspace initialization and setup pipelines | `project-setup` |
-| Project scope decomposition | `project-decomp` |
-| Software decomposition | `software-decomp` |
-| Domain and knowledge decomposition | `domain-decomp` |
-| Research stream orchestration and synthesis | `research-orchestration` |
-| Amendment and consequence propagation | `scope-change` |
-
-Other workflows remain available through deliberate discovery. A workflow may
-compose deterministic tools and bounded TASK assignments while preserving its
-own human checkpoints and output contract.
-
-Before creating or revising a reusable workflow, including ordinary
-conversational requests, load the core `create-workflow` workflow from the
-selected library basis and follow it. Preserve its source-qualified identity;
-do not silently substitute a same-named package from another library.
-
-A user may ask in the active chat to create, save, or revise a workflow. For
-creation in the App, prepare a valid package under
-`.chirality/workflow-drafts/<name>/WORKFLOW.md` in the project or home directory,
-with only the resources the method needs. The human inspects the draft, gives
-feedback in chat, and registers the reviewed version through the Workflows
-panel. Registration makes it available in the corresponding
-`.chirality/workflows` catalog without running it or overwriting an existing
-workflow. Follow `create-workflow` for revisions and other hosts. This
-conversational path is the ordinary authoring experience; the App does not
-require or provide a separate workflow editor.
-
-## Tools, briefs, and ad hoc plans
-
-A tool performs a deterministic operation. Documentation states how it should
-be used; actual availability and enforcement come from the running host. An
-agent should use an available tool when it can perform an authorized operation
-reliably, and should report the real execution boundary rather than infer one
-from prose or metadata.
-
-Run-specific instructions, including an ordinary conversational request, form
-the brief. Structured briefs additionally record purpose, accepted basis,
-context, permissions, write targets, outputs, acceptance checks, and return
-path when the undertaking needs those fields. The effective boundary is the
-intersection of actual host permissions, the role ceiling, any selected
-method restrictions, and the brief. A declared capability or path never
-grants access the host did not provide.
-
-An active role may create an ad hoc plan whenever planning helps, whether or
-not a named workflow exists. Plans are optional and may invoke workflows,
-skills, tools, and authorized delegation. Keep a plan proportionate, record
-material decisions and checks when the work needs durable evidence, and do not
-present an ad hoc plan as a reusable or accepted workflow. Repeated ad hoc
-methods are candidates for HELPS_HUMANS to develop into a workflow.
-
-## Execution and governance
-
-For `sgttomas/chirality`, the owner's standing Git authorization of 2026-09-12
-permits current and subsequent agents to commit, push, open/update PRs, and merge
-within authorized work without a separate approval for each Git operation.
-Merge when required CI passes and independent review has no unresolved blocking
-findings, with review and validation covering the actual candidate revision.
-Reassess affected checks after changes; a passing rerun does not establish that
-a known defect was repaired. Use the owner's configured Git/GitHub identity
-(SSH for pushes where configured; authenticated GitHub CLI/API for PR merges),
-preserve truthful authorship and agent attribution, and never imply personal
-owner review. This grants no scope expansion, protection bypass, account or
-repository permission changes, governed acceptance, or product release.
-Explicit holds and later owner directions take precedence. The grant replaces
-earlier per-merge approval defaults across this repository's project loops;
-see [the merge policy](docs/PRD_ROOT.md#531-merge-gate-policy--the-d-8-successor)
-and `.agents/skills/chirality-change/SKILL.md` for application and ordinary PR
-records. Historical instructions and accepted evidence remain historical.
-
-Executable delegation uses either Chirality-managed `delegate_agent` sessions
-or delegated-harness-native descendants under D-GOV-35. Record the actual
-mechanism, parentage, supplied basis, scopes, enforcement limits, and returns.
-An executing child and a written launch brief are different facts.
-
-For the App MVP, Codex is the sole engine qualification and release target.
-Model choice within Codex does not create another engine. Historical sessions,
-standalone compatibility records, and retained compatibility surfaces may name
-other engines or providers, but they do not establish qualified MVP support and
-never substitute for required Codex capability.
-
-The App hosts a stock Codex App Server owned by the App's own host process,
-speaking the published protocol in full, against the user's shared Codex
-configuration and resources, with authentication separated for Chirality and
-custodied by Codex (D-GOV-43). Chirality supplies roles, workflows, and
-project context through supported additive instruction inputs that preserve
-Codex's own base instructions, and records evidence from the complete event
-stream. It does not filter Codex's notifications, leave a server request
-unanswered, veto the user's Codex configuration, pin approval or sandbox
-policy, or run a patched supplier. A setting the App passes only to Codex
-processes it owns, such as turning off Codex's analytics, is not a veto: it is
-shown and recorded, and the user's configuration file is unchanged. Approval
-and sandbox policy are the user's choice per project and per turn; changing
-them grants nothing beyond what the host enforces. Local models are Codex
-model providers, not a second engine.
-
-The App's shared behavioral guidance is maintained at
-`projects/chirality-app-dev/instructions/AGENTS.md` and packaged as its default
-`AGENTS.md`. The App seeds an editable copy in its own user-data instructions
-folder and supplies that common guidance plus the active role automatically.
-This repository entry remains guidance for work in the Chirality repository;
-the distinction is applicability, not confidentiality. Codex owns native global
-and project instruction discovery. Fresh named children receive the shared
-product guidance and their intended full role. Instruction changes take effect
-at a verified idle boundary or, where the App fixes a conversation's role
-guidance for its life, in new conversations only, preserving prior supplied
-content and conversation history. A full-history fork alone does not establish
-a different role.
-
-The shared governance is in `docs/DIRECTIVE.md`, `docs/CONTRACT.md`,
-`docs/SPEC.md`, and `docs/TYPES.md`, with accepted amendments. Component design
-is specified in `docs/WORKFLOW_COMPONENT_STANDARD.md`; runtime configuration,
-loading, coordination, and adoption are specified in
-`docs/AGENT_WORKFLOW_RUNTIME.md`. Applicable decomposition work also follows
-`docs/DECOMPOSITION_STANDARD.md`.
-
-Project and user instruction roots, path anchoring, and containment follow
-`docs/SPEC.md` §0.2–0.3 and `docs/AGENT_WORKFLOW_RUNTIME.md`. Applicable project
-instructions may specialize shared instructions but may not weaken Root
-governance. The library lookup and source-qualified identity rules above govern
-skill and workflow collisions.
-
-Preserve authoritative identity, coverage, provenance, independent checking,
-and closure across every workflow. Agents prepare proposals, comparisons, and
-checks before a human checkpoint so the human decides a concrete reviewable
-package. Mechanical or asset-quality evidence may route repair work but does
-not itself create a new human prompt. When an accepted material basis changes,
-reopen only the decisions whose warrants or consequences are affected, then
-regenerate dependent evidence as required.
-
-Instruction changes require their own authorized scope and tranche manifest.
-Updating an authorized undertaking's work graph is execution-state maintenance,
-not an instruction amendment. Changing loop behavior or constraints remains an
-instruction change.
-Notify each affected project loop whose authority corpus or contract mirrors pin
-changed instructions. Notices communicate changes; each receiving loop decides
-its adoption and updates its own accepted basis.
-
-This interface is a prospective Root implementation of the user-approved
-Chirality v3 design. These bytes do not themselves establish final acceptance,
-downstream qualification, public release, or adoption by another project loop.
-Incompatible App and Runtime consumers remain on their accepted instruction
-basis until their owning loops adopt a compatible interface. Root `CLAUDE.md`
-imports this file.
+Use `workflows/coordinated-knowledge-work/WORKFLOW.md` when coordinating related
+contributions into a usable result. Other methods are indexed in
+`workflows/index.json`; load only a selected method and the resources needed for
+the stage in hand. Select with `Workflow: <name>` or a source-qualified identity;
+retain the selected origin and expose collisions rather than silently switching.
+Before creating or revising a reusable workflow, follow `create-workflow`.
+Product discovery and registration mechanics live in the interface reference.

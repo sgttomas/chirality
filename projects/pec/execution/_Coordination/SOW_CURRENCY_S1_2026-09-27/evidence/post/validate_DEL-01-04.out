@@ -1,3 +1,0 @@
-$ python3 tools/scope_of_work/validate_scope_of_work.py projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging
-PASS format=SOW_V1 target=projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging
-exit=0

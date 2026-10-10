@@ -20,10 +20,12 @@
       "allow_generalist_agent2": true,
       "tools": [
         "read",
+        "write",
+        "bash",
         "delegate_agent",
         "send_agent_update"
       ],
-      "write_scope": "none"
+      "write_scope": "explicit brief targets within authorized working root"
     },
     "HELPS_HUMANS": {
       "description": "Design and maintain workflows, tools, agents, and runtime interfaces.",

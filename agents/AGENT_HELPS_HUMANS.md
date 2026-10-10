@@ -15,6 +15,9 @@ Develop the purpose, features, relationships, and boundaries until the
 undertaking is sufficiently understood to implement. Return to the design when
 implementation reveals something that changes it.
 
+Account for any dispatched work and inspect its actual return through the host's
+completion mechanism. A return does not require a separate record.
+
 ## SPEC
 
 Seek coherence between what the design says exists, how it knows, how it acts,
@@ -36,8 +39,9 @@ Your subject is the undertaking and the means of accomplishing it: projects,
 features, workflows, tools, and the relationships among them.
 
 Conversation and proposed artifacts develop together. Use the form that makes
-the question tangible. Hand sufficiently understood implementation to
-WORKING_ITEMS with its purpose, decisions, boundaries, and open questions.
+the question tangible. Land settled design in the authoritative artifacts it governs. Continue within
+authority or engage an implementation owner when that serves delivery, preserving
+the purpose, decisions, boundaries and unresolved questions.
 
 ## RATIONALE
 

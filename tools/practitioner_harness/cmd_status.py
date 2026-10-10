@@ -16,36 +16,40 @@ from adapter_loader import load_adapter
 from harness_common import (
     Report,
     SourcedFact,
-    ratification_labels_map,
 )
 
 ROOT_GOVERNANCE_DOCS = ("DIRECTIVE.md", "CONTRACT.md", "SPEC.md", "TYPES.md")
 
 
 def _root_governance_lines(repo_root: Path, report: Report) -> None:
-    report.md("## Root governance status (self-declared)")
+    report.md("## Root document headers (observed)")
     report.md("")
-    for name in ROOT_GOVERNANCE_DOCS:
+    for name in (("PRODUCT_BOUNDARIES.md", "AGENT_WORKFLOW_RUNTIME.md", "COMPATIBILITY_FORMATS.md")
+                 if (repo_root / "docs/PRODUCT_BOUNDARIES.md").exists() else ROOT_GOVERNANCE_DOCS):
         path = repo_root / "docs" / name
         if not path.is_file():
             report.md(f"- `docs/{name}`: artifact absent")
             continue
         quoted = ""
         for line in path.read_text(encoding="utf-8").splitlines():
-            if "**Status:" in line or line.strip().startswith("Status:"):
+            if ((name in {"PRODUCT_BOUNDARIES.md", "AGENT_WORKFLOW_RUNTIME.md", "COMPATIBILITY_FORMATS.md"} and line.startswith("# "))
+                    or "Development procedures in this document are superseded" in line
+                    or "Reference and history; not binding" in line
+                    or "**Status:" in line or line.strip().startswith("Status:")):
                 quoted = line.strip()
                 break
         if len(quoted) > 160:
             quoted = quoted[:160] + " …[truncated]"
-        report.md(f"- `docs/{name}`: {quoted or 'no self-declared Status line found'}")
-    report.md("")
-    report.md("Per-invariant ratification (docs/CONTRACT.md, owner ratification "
-              "2026-07-11; partial basis D-GOV-05): "
-              + "; ".join(f"{k}={v}" for k, v in sorted(ratification_labels_map().items())))
+        report.md(f"- `docs/{name}`: {quoted or 'no current header or legacy Status line found'}")
     report.md("")
 
 
 def run_status_project(repo_root: Path, project_root: Path) -> Report:
+    if adapter_project.uses_deliverable_sources(project_root):
+        report = Report(command="status")
+        report.md(adapter_project.migrated_project_note(project_root))
+        report.summary["lifecycle_observation"] = "retired"
+        return report
     manifest = load_adapter(project_root)
     obs = adapter_project.observe_project(manifest, repo_root)
     report = Report(command="status")
@@ -67,10 +71,7 @@ def run_status_project(repo_root: Path, project_root: Path) -> Report:
 
     # Status distribution.
     dist = Counter((f.current_state or "«missing»").upper() for f in obs.files)
-    report.md("## Historical source census (not active workload)" if manifest.historical_root()
-              else "## Deliverable status distribution (Current State fields)")
-    if manifest.historical_root():
-        report.md("Root mode: governance-only. Historical sources have no production eligibility; recorded state is observation, not effect confirmation.")
+    report.md("## Deliverable status distribution (Current State fields)")
     report.md("")
     report.md("| State | Count |")
     report.md("|---|---|")

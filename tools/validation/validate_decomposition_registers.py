@@ -873,6 +873,8 @@ def run(
     `EvidenceFile`.
     """
     execution_root = Path(execution_root)
+    if next(execution_root.glob("PKG-*/DEL-*/deliverable.yaml"), None) is not None:
+        raise OperationalError("deliverable.yaml project: use tools/deliverables/ CLI instead of legacy register validation")
     if not execution_root.is_dir():
         raise OperationalError(f"EXECUTION_ROOT is not a directory: {execution_root}")
     if registers_dir is not None and not Path(registers_dir).is_dir():

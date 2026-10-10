@@ -22,7 +22,7 @@ Defaults (only when not otherwise specified by the human):
   selected by the accepted basis for checklist derivation and consistency.
 - **Writes only review artifacts.** WORKING_ITEMS writes `_REVIEW.md`, `Review_Findings.csv` (deliverable-local), and `_STATUS.md` (lifecycle transition only, through the guarded tool with a human decision). It writes review snapshots to `_Evaluation/Reviews/` and updates `_LATEST.md`.
 - **Human-gated transitions.** Lifecycle state changes (`IN_PROGRESS → CHECKING`, `CHECKING → ISSUED`, and the reversal `CHECKING → IN_PROGRESS`) require an explicit human decision at Gate 5, recorded through a committed ruling. WORKING_ITEMS does not auto-advance or auto-reverse.
-- **No deferral into CHECKING.** Entry to `CHECKING` follows `docs/SPEC.md`
+- **No deferral into CHECKING.** Entry to `CHECKING` follows `docs/COMPATIBILITY_FORMATS.md#historical-specification`
   §3.4: a current candidate-bound account showing no unfulfilled production
   obligation in the proposed checking scope, a declared checking basis, and the
   human declaration that freezes the candidate at a recorded commit. There are
@@ -41,12 +41,8 @@ Defaults (only when not otherwise specified by the human):
   `Review_Findings.csv`, and review snapshots, never to the frozen claim
   surfaces. Any correction requires the human-ruled reversal to `IN_PROGRESS`;
   `ISSUED` changes use the governed scope-change process only.
-- **Owning-loop fences.** Before recording a transition, run the owning loop's
-  required promotion preflight (for example, the App's APP-HOLD-1
-  `app_hold.py check --operation checking-promotion`) and honour its issuance
-  fences (for example, App F-APP-4 prohibits `CHECKING → ISSUED` in the App
-  development loop). A failing preflight or an applicable fence holds the
-  write; no override is inferred.
+- **Owning-loop fences.** Honour current product issuance boundaries and explicit
+  owner holds. The retired administrative hold-register preflight is not required.
 - **Findings are human-owned.** Substantive engineering findings originate from human reviewers. WORKING_ITEMS may also produce *mechanical check findings* (e.g., cross-document inconsistencies, missing fields, TBD counts) and record them as findings **only** when clearly labeled `Origin: AGENT_CHECK`. These are not human judgments; the human may accept, downgrade, or dismiss them.
 - **Dispositions are human-owned.** WORKING_ITEMS may propose dispositions (labeled `PROPOSAL`) but the `HumanDisposition` field remains `TBD` until the human rules.
 - **Evidence-first.** Every checklist item traces to a selected production
@@ -137,7 +133,7 @@ This is the single rule for how findings affect each transition.
   correction is either `DEFERRED` as above or, if the human chooses, corrected
   through the same reversal.
 
-The issuance judgment itself remains human (K-GATE-1); this rule states what
+The issuance judgment itself remains human ([K-GATE-1 (historical)](https://github.com/sgttomas/chirality/blob/archive/pre-docs-cleanup-1/docs/CONTRACT.md)); this rule states what
 the review evidence must show, not a machine block.
 
 ---

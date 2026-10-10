@@ -1,3 +1,11 @@
+> App v3, Runtime and PEC are archived; see `projects/FROZEN.md`. Their aliases apply only in historical checkouts containing their adapters. Current commands skip absent roots and explicitly refuse archived project selections. Use `tools.deliverables` for active App v4 and Piping dependencies.
+
+> Migrated projects (including Piping) use `tools/deliverables` for current dependency facts.
+> Lifecycle `status`, `drift`, and `next` views explicitly omit them; legacy adapter
+> syntax remains supported for unmigrated and dormant product consumers.
+
+> Legacy tool reference. Administrative procedures described here are superseded by Root `AGENTS.md`; commands are optional, not recording duties.
+
 # tools/practitioner_harness — Charter
 
 A practitioner bench tool over the Chirality governance corpus: it reads
@@ -18,9 +26,9 @@ supersede a D-GOV-* record or arrive as PR review — never a new plan document.
 (read + report only). `domains/*` deferred; `projects/chirality-governance/`
 out of scope by construction; `.archive/` trees excluded from every walk.
 
-**Root working root (D-GOV-21):** the root product is additionally observable
-as `--project root` / `chirality-root` — observation only. See
-[Root working root](#root-working-root---project-root-d-gov-21).
+**Root reset:** `--project root` and `--project chirality-root` are retired
+CLI targets. Commands refuse them explicitly without loading an adapter;
+see [Root reset](#root-reset).
 
 ## Commands
 
@@ -28,8 +36,6 @@ as `--project root` / `chirality-root` — observation only. See
 python3 tools/practitioner_harness/harness.py status --project app-dev
 python3 tools/practitioner_harness/harness.py status --project piping
 python3 tools/practitioner_harness/harness.py status --domain-engines
-python3 tools/practitioner_harness/harness.py status --project root  # the ROOT working root (observation only)
-python3 tools/practitioner_harness/harness.py drift --project root
 python3 tools/practitioner_harness/harness.py drift --all            # status-vs-history vs the recorded baseline (pilot projects only)
 python3 tools/practitioner_harness/harness.py self-check             # restated-state surface audit
 python3 tools/practitioner_harness/harness.py bridge-status          # bridge owner-shaped act pick-list (the tool never selects)
@@ -346,78 +352,20 @@ BLOCK appears in the digest downgraded to REVIEW with a caveat naming the
 gating command to run for the gating exit code. The human decides; the
 digest only collects.
 
-## Drift baseline
+## Historical lifecycle readers
 
-Measured and verified 2026-07-01: **92 of 154** `_STATUS.md` files under the
-two pilot `execution/` trees disagree with their own last parsed history
-assertion — all 92 in chirality-piping (101 files), app-dev 0/53 clean. The
-shared signature: history records an approved advance to CHECKING while the
-frontmatter `Current State:` line still reads IN_PROGRESS. `drift` reports
-run-over-run counts against this baseline, split by project and caveat class
-(`PARSED` / `PARSED_WITH_ASSUMPTIONS` / `UNPARSEABLE`; unparseable histories
-are labeled, never guessed). Success is this number trending down; failure is
-this tool becoming a cleaner-looking second source of truth.
+The drift command remains for legacy project consumers. App v4 and Piping use
+`tools/deliverables` instead; their deliverables have no lifecycle status.
+The former live-record drift baselines and reconciliation packets are history,
+recoverable through the pre-reset archive tags, not ongoing verification inputs.
 
-**Resolved to 0/154 on 2026-07-02**: the owner ruled the class-wide
-K-CONFLICT-1 conflict ("all shall be IN_PROGRESS" — header authoritative;
-the 2026-06-16 header reversals were affirmed and the missing reversal
-history entries authored, one parser-verified line per file). Ruling record:
-`projects/chirality-piping/execution/_Reconciliation/LifecycleCorrection/LIFECYCLE_CORRECTION_2026-07-02_2050/Decision_Log.md`.
-The recorded adapter baseline was re-measured to 0/101 in the same act; the
-live pin in `test_live_baseline.py` carries the matching conscious update.
+## Root reset
 
-## Root working root (`--project root`, D-GOV-21)
-
-The root product's working root IS the repository root (`WORKING_ROOT ==
-REPO_ROOT`, `docs/SPEC.md` §0.2.2), so it registers its adapter at
-`execution/_harness/adapter.yaml` with schema `root-harness-adapter/v1` —
-co-located with the root guard registration surface, and outside the public
-export boundary. `tools/validation/validate_root_harness_adapter.py` (G1) is
-that manifest's authority; the loader neither weakens nor duplicates its
-checks, and is stricter only about what the harness itself must have to read
-the manifest at all (baseline integers, non-empty declared pointers).
-
-**Two locations, two schemas, no fallback.** `adapter_loader` probes both
-registered locations under a working root and requires exactly one to carry a
-manifest (both present = ambiguous = exit 2, never a choice). Location and
-schema must agree: a `practitioner-harness-adapter/v1` document at the root
-relpath — or a `root-harness-adapter/v1` document at the project relpath — is
-an operational error, not an invitation to try the other validator.
-
-**Normalization (equivalence, not duplication).** The root shape is mapped
-into the single internal `AdapterManifest` every command already reads:
-
-| `root-harness-adapter/v1` | internal field | note |
-|---|---|---|
-| `product` | `project` | working-root identity string |
-| `prd` | `plan` | the PRD fills the role `plan` serves for a project |
-| `coordination`, `decision_register`, `status_glob`, `states`, `parser_dialect`, `exclude_globs` | same names | same meaning |
-| `baselines.status_files` | `drift_baseline_files` | pinned drift denominator |
-| `baselines.status_mismatch` | `drift_baseline_mismatch` | pinned drift numerator |
-| `baselines.pinned_at` | `baseline_pinned_at` | pin provenance (root only) |
-| `working_root`, `execution_root` | same names | declared explicitly by root only |
-| *(not declared)* | `dag_pointer = ""` | root registers no DAG pointer surface |
-| *(not declared)* | `validation_commands = []` | root declares no validation surfaces |
-
-`manifest.kind` records which shape was loaded; `declares_dag_pointer()` /
-`declares_validation_commands()` are how a command detects an absent field.
-An absent field is never joined onto the working root and never rendered as
-"artifact absent": `status` reports `dag.pointer: not declared by this adapter
-schema (root-harness-adapter/v1)` at `NOT_APPLICABLE`, citing the manifest.
-
-**Observation only — what root supports, and what refuses.**
-
-| Command | `--project root` | Why |
-|---|---|---|
-| `status` | supported | posture, per-state counts, PRD/coordination status lines |
-| `drift` | supported (alone; never folded into `--all`) | pinned baseline lives in `baselines.*` |
-| `brief` | **refuses, exit 2** | no `dag_pointer` to project from, and no fence narrower than the whole repository can be derived — a guessed pointer and a repo-wide fence are worse than a refusal (K-INVENT-1) |
-| `next` | **refuses, exit 2** | its rows carry ready-made `brief` command lines that would not run; `status --project root` gives the per-state counts |
-| `run-validations`, `scope-check`, `evidence-check`, `closeout-digest` | unchanged | these resolve the project from the brief's write fence, and the root is deliberately absent from that reverse alias table: the repository root would prefix-match every write_scope entry and turn "no registered pilot project root" into a wrong answer |
-| `self-check` | unchanged | its scope is the pilot roots + control areas and it prints that scope; it makes no claim about the root `execution/` tree |
-
-Refusals name the command, the alias, and the reason, and exit 2 — never a
-stack trace, never a silently different answer.
+Root's governance adapter, guards, receipt validation and historical lifecycle
+parser are retired. There is no live Root status/drift census to maintain.
+Legacy adapter syntax remains readable for consumers still being migrated;
+ordinary project parsers and path-containment checks remain in place.
+The operating instructions in Root `AGENTS.md` govern current development.
 
 ## Project-tree abs-path lint (GEN-8) and agent-registry currency (GEN-9)
 
@@ -575,17 +523,10 @@ Missing this header on a file under the generated root is a BLOCK
 
 ## Tests
 
-Root adoption (`test_root_adoption.py`): alias resolution to the repository
-root and the root's deliberate absence from the brief-fence alias table (with
-the out-of-project fence refusal pinned as a regression), strict
-`root-harness-adapter/v1` validation and normalization (per-required-key and
-per-baseline-key operational errors, non-integer and over-count baselines,
-`working_root` ≠ `.`, location/schema disagreement in both directions,
-ambiguous double registration), the `NOT_APPLICABLE` absent-`dag_pointer`
-fact, `status`/`drift` over a tmp root fixture, the `brief`/`next`/`drift
---all` refusals, and LIVE-tree pins (45 files, 0 mismatches, all OPEN, adapter
-pin 0/45) held to the same conscious-pin discipline as the app-dev 0/53 and
-piping 0/101 pins below.
+Legacy adapter compatibility (`test_root_adoption.py`): strict schema and
+containment checks over temporary fixtures, Root CLI retirement refusals before
+file loading, and exclusion of Root from project write fences. No live Root
+lifecycle census or adapter is required.
 
 Co-located pytest (`python3 -m pytest tools/practitioner_harness -q`):
 read-only guarantee (byte-identical governed files), drift fixtures modeled on

@@ -1,3 +1,0 @@
-# 2026-09-27T17:39:15Z (date -u); cwd repo root; HEAD 7c250e370015b118a4fabea5abe34e13e190e419
-$ git diff --name-status origin/main...HEAD -- '**/_STATUS.md' '**/_REVIEW.md' '**/Review_Findings.csv' '**/MEMORY.md' '**/REV_*'
-exit=0

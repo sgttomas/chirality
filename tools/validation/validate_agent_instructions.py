@@ -398,7 +398,10 @@ def main() -> int:
     args = parse_args()
     repo_root = Path(args.repo_root).resolve() if args.repo_root else Path(__file__).resolve().parents[2]
     try:
-        valid_r_ids = canonical_r_ids(repo_root / "docs" / "WORKFLOW_COMPONENT_STANDARD.md")
+        reference = repo_root / "docs" / "COMPATIBILITY_FORMATS.md"
+        if not reference.exists():
+            reference = repo_root / "docs" / "WORKFLOW_COMPONENT_STANDARD.md"
+        valid_r_ids = canonical_r_ids(reference)
         paths = resolve_paths(args, repo_root)
         if (repo_root / 'agents/registry.json').exists():
             findings = validate_registry(repo_root)

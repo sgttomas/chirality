@@ -1,2 +1,0 @@
-$ (cwd repo root, HEAD 23e065e4f) git diff --name-status origin/main...HEAD -- **/_STATUS.md
-exit=0

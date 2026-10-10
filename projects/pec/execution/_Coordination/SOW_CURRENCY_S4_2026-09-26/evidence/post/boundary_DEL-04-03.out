@@ -1,7 +1,0 @@
-$ python3 tools/scope_of_work/check_boundary_owner_resolution.py --json projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/boundary_DEL-04-03.json --show-not-checkable projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md
-NOT_CHECKABLE: projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md REQ-006: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
-NOT_CHECKABLE: projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md REQ-008: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
-NOT_CHECKABLE: projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md REQ-021: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
-
-Contracts: 1 (0 out-of-grammar) | boundary requirements checked: 2 | per-act exclusions for skill QA: 3 | boundary requirements citing no claim: 0 | contracts failing: 0
-exit=0

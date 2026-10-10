@@ -121,11 +121,8 @@ host cannot expose the catalog, report that verification as outstanding.
 
 For an authorized Root bundled-library edit, present the exact candidate as a
 committed proposal or pull-request diff; Root's `.chirality/` is ignored by Git,
-so a draft there is not a reviewable bundled candidate. A bundled edit is an
-instruction change: it needs a G4 tranche manifest under
-`docs/governance_harness/tranche_manifests/`, checked with
-`python3 tools/validation/validate_instruction_tranche_manifest.py`, and notices
-to the project loops that consume the changed workflow. Register the package in
+so a draft there is not a reviewable bundled candidate. Review the bundled edit under Root `AGENTS.md`; the PR is its change record.
+Register the package in
 `workflows/catalog.yaml` navigation, regenerate `workflows/index.json` with
 `python3 tools/validation/build_workflow_index.py` from that source root, and
 run `python3 -m pytest tools/validation/test_workflow_catalog.py`, updating its

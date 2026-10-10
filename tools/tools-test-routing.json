@@ -1,11 +1,8 @@
 {
   "schema": "chirality-software-workflow/v1",
   "project_root": "..",
-  "description": "Path-routing profile for the tools/ test estate. Consumed by tools/run_affected_tests.py (locally and in governance-harness PR runs) via tools/software_workflow/select_affected_checks.py. always_checks are live-tree gates that any change can trip and therefore always run; path_rules route the isolated per-tool suites. Pushes to main always run the full estate regardless of this profile (the routing is a PR/session economy, never the authority).",
-  "always_checks": [
-    "practitioner_harness",
-    "validation"
-  ],
+  "description": "Path-selected tool regression tests. Repository hygiene checks run separately. Unknown tool inputs and unavailable diffs select the full estate; unrelated prose selects none.",
+  "always_checks": [],
   "checks": {
     "analysis": {
       "pytest_paths": [
@@ -101,12 +98,23 @@
       "pytest_paths": [
         "tools/scaffolding"
       ]
+    },
+    "deliverables": {
+      "pytest_paths": [
+        "tools/deliverables"
+      ]
     }
   },
   "path_rules": [
     {
-      "paths": ["tools/hosted-ci-routing.json", ".github/workflows/harness-premerge.yml", ".github/workflows/pec-tests.yml"],
-      "checks": ["software_workflow"]
+      "paths": [
+        "tools/hosted-ci-routing.json",
+        ".github/workflows/harness-premerge.yml",
+        ".github/workflows/pec-tests.yml"
+      ],
+      "checks": [
+        "software_workflow"
+      ]
     },
     {
       "paths": [
@@ -247,7 +255,8 @@
         "validation",
         "workflow_runtime",
         "evaluation",
-        "scaffolding"
+        "scaffolding",
+        "deliverables"
       ]
     },
     {
@@ -274,6 +283,45 @@
       ],
       "checks": [
         "scaffolding"
+      ]
+    },
+    {
+      "paths": [
+        "tools/deliverables/*",
+        "projects/chirality-app-v4/execution/PKG-*/DEL-*/deliverable.yaml"
+      ],
+      "checks": [
+        "deliverables"
+      ]
+    },
+    {
+      "paths": [
+        "tools/practitioner_harness/**",
+        "projects/chirality-piping/_harness/**",
+        "projects/chirality-app-dev/_harness/**"
+      ],
+      "checks": [
+        "practitioner_harness"
+      ]
+    },
+    {
+      "paths": [
+        "tools/validation/**",
+        "AGENTS.md",
+        "agents/**",
+        "workflows/**"
+      ],
+      "checks": [
+        "validation"
+      ]
+    },
+    {
+      "paths": [
+        ".github/workflows/app-v4.yml",
+        ".github/workflows/piping-desktop-e2e.yml"
+      ],
+      "checks": [
+        "software_workflow"
       ]
     }
   ]

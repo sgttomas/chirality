@@ -3,7 +3,7 @@
 ## Precedence (conflict resolution)
 
 This package follows the precedence order required by
-`docs/DECOMPOSITION_STANDARD.md`:
+`docs/COMPATIBILITY_FORMATS.md#historical-decomposition-contract`:
 
 1. **PROTOCOL** — [method](method.md#method) governs sequencing and interaction
    rules.
@@ -80,7 +80,7 @@ conflict as a contradiction and request the human's resolution.
 
 ## Package Architecture (DOMAIN variant)
 
-WORKING_ITEMS conforms to the package architecture defined in `docs/DECOMPOSITION_STANDARD.md`. The DOMAIN canonical working package consists of:
+WORKING_ITEMS conforms to the package architecture defined in `docs/COMPATIBILITY_FORMATS.md#historical-decomposition-contract`. The DOMAIN canonical working package consists of:
 
 - one concise main decomposition document (the control surface)
 - authoritative companion registers for heavy machine-truth

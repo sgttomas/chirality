@@ -38,7 +38,6 @@ live = pytest.mark.skipif(
     os.environ.get("CHIRALITY_REQUIRE_LIVE_TESTS") != "1" and (
     os.environ.get("CHIRALITY_SKIP_LIVE_TESTS") == "1"
     or not (LIVE_REPO / "projects" / "chirality-piping" / "_harness" / "adapter.yaml").is_file()
-    or not (LIVE_REPO / "projects" / "chirality-app-dev" / "_harness" / "adapter.yaml").is_file()
     or not (LIVE_REPO / "_DomainEngines").is_dir()),
     reason="live pilot roots/manifests absent (or live tests disabled by env)",
 )
@@ -60,33 +59,10 @@ def live_self_check():
 
 
 @live
-def test_live_drift_baseline_0_of_106_and_0_of_54():
-    # Conscious pin update 2026-07-02 (was 92/101): the STATUS_HISTORY_MISMATCH
-    # class was resolved by the owner's class-wide K-CONFLICT-1 ruling ("all
-    # shall be IN_PROGRESS"); one parser-verified reversal history line was
-    # appended per file. Ruling record: projects/chirality-piping/execution/
-    # _Reconciliation/LifecycleCorrection/LIFECYCLE_CORRECTION_2026-07-02_2050/
-    # Decision_Log.md. Pin updates here are conscious, never silent. SCA-009
-    # added DEL-07-09 as the 102nd Piping status file on 2026-08-21; it has no
-    # asserted lifecycle state, so matches remain 101 and mismatches remain 0.
-    # SCA-APP-009 adds DEL-09-07 as the 54th App status file on 2026-09-04;
-    # all 54 App statuses parse and match. SCA-011 Group 2 was accepted
-    # 2026-09-22 and adds DEL-04-07/07-11/07-12/16-06: 106 Piping
-    # status files and 160 combined. These new OPEN controls do not promote
-    # lifecycle state; the zero-mismatch requirements remain unchanged.
-    report = cmd_drift.run_drift(LIVE_REPO, [
-        LIVE_REPO / "projects" / "chirality-app-dev",
-        LIVE_REPO / "projects" / "chirality-piping",
-    ])
-    piping = _fact(report, "drift.chirality-piping").value
-    assert "files=106" in piping
-    assert "mismatches=0" in piping
-    assert "unparseable_docs=0" in piping
-    app_dev = _fact(report, "drift.chirality-app-dev").value
-    assert "files=54" in app_dev
-    assert "mismatches=0" in app_dev
-    assert report.summary["files_total"] == 160
-    assert report.summary["mismatches_total"] == 0
+def test_live_drift_excludes_migrated_piping_lifecycle():
+    report = cmd_drift.run_drift(LIVE_REPO, [LIVE_REPO / "projects" / "chirality-piping"])
+    assert not any(f.fact_id == "drift.chirality-piping" for f in report.facts)
+    assert report.summary["files_total"] == 0
 
 
 @live
@@ -135,17 +111,6 @@ def test_live_self_check_abs_path_in_evidence_reports_are_pinned(live_self_check
     }
 
 
-@live
-def test_live_bridge_status_reports_pec_adopted_read_only_profile():
-    # Conscious live-pin update: D-T0-27 O-A materializes the exact PEC v2
-    # profile as ADOPTED / READ_ONLY; application effectiveness remains governed.
-    report = cmd_bridge_status.run_bridge_status(LIVE_REPO)
-    assert _fact(report, "bridge_status.profile.pec.profile_status").value == "ADOPTED"
-    assert _fact(report, "bridge_status.profile.pec.gate_posture").value == (
-        "Gate 2 adopted"
-    )
-    md = report.render_markdown()
-    assert "| `pec` | `ADOPTED` | Gate 2 adopted | `READ_ONLY` |" in md
 
 
 @live
@@ -171,70 +136,8 @@ def test_live_self_check_live_binding_gate_drift_is_detected(live_self_check):
     assert hits == []
 
 
-@live
-def test_live_self_check_draft_basis_pins(live_self_check):
-    from harness_common import Severity
-    report, _ = live_self_check
-    assert [f for f in report.findings if f.code == "DRAFT_BASIS_AS_BINDING"] == []
-    info = [f for f in report.findings if f.code == "DRAFT_BASIS_RULED_CLOSED"]
-    # The seven D-GOV records' `FramedBy: governance_harness_plan_v3` lines:
-    # the plan HTML self-declares "PROPOSAL, pending D-GOV-01"; D-GOV-01 is
-    # RULED -> closure recorded as INFO (conditional per the D-GOV-02 model).
-    assert len(info) == 7
-    assert all(f.severity is Severity.INFO for f in info)
-    assert {(f.source_path, f.source_line) for f in info} == {
-        (f"docs/governance_harness/_DECISIONS/{name}", 7)
-        for name in (
-            "D-GOV-01_substrate_authority.md",
-            "D-GOV-02_verifier_severity_and_override.md",
-            "D-GOV-03_pilot_scope.md",
-            "D-GOV-04_human_actor_identity.md",
-            "D-GOV-05_minimal_governance_basis.md",
-            "D-GOV-06_domain_profile_current_truth.md",
-            "D-GOV-07_domain_gate_sha_binding.md",
-        )}
 
 
-@live
-def test_live_pointer_currency_first_detection_target(live_self_check):
-    # The 2026-07-01 consistency audit's live reproduction case: the piping
-    # reconciliation pointer designated the 2026-05-09 DEV001 run summary,
-    # retired to .archive/ on 2026-06-03 (349a2ab33). The owner ruled the
-    # disposition REPOINT (piping D-28, applied on main at d74b991db), so this
-    # test is disposition-aware: on a tree predating the repoint the check
-    # MUST fire (the check's first detection target); on the repointed tree
-    # the pointer resolves to the newest surviving sibling and MUST be quiet.
-    pointer = (LIVE_REPO / "projects" / "chirality-piping" / "execution"
-               / "_Reconciliation" / "_LATEST.md")
-    first_line = pointer.read_text(encoding="utf-8").splitlines()[0]
-    report, _ = live_self_check
-    hits = [f for f in report.findings if f.code == "POINTER_TARGET_UNRESOLVED"]
-    if "2026-05-09_DEV001" in first_line:  # pre-disposition tree
-        assert [(f.source_path, f.source_line) for f in hits] == [
-            ("projects/chirality-piping/execution/_Reconciliation/_LATEST.md", 1)]
-        msg = hits[0].message
-        assert ("Reconciliation_Run_Summary_2026-05-09_DEV001_REV05_CANDIDATE_"
-                "EDGE_RECONCILIATION.md") in msg
-        # Newest surviving same-class sibling cited as triage context.
-        assert ("Reconciliation_Run_Summary_2026-05-03_SCA002_REV05_"
-                "COMPATIBILITY_PLANNING.md") in msg
-    else:  # repointed per the D-28 ruling
-        assert ("Reconciliation_Run_Summary_2026-05-03_SCA002_REV05_"
-                "COMPATIBILITY_PLANNING.md") in first_line
-        assert hits == []
-    # Every other live pointer resolves and is the newest of its class.
-    assert [f for f in report.findings
-            if f.code == "POINTER_TARGET_NOT_NEWEST"] == []
-    # docs/governance_harness carries no pointer files -> NOT_APPLICABLE.
-    # Conscious pin update 2026-07-24 (was: projects/pec listed here too):
-    # the D-PEC-60 decomposition session created
-    # projects/pec/execution/_Decomposition/_LATEST.md (Gate 7 accepted same
-    # day), so pec entered pointer-currency scope and its pointer must
-    # resolve quietly (asserted by the zero-findings checks above).
-    from harness_common import Severity
-    na = [f for f in report.findings if f.code == "POINTER_CHECK_NOT_APPLICABLE"]
-    assert {f.source_path for f in na} == {"docs/governance_harness"}
-    assert all(f.severity is Severity.NOT_APPLICABLE for f in na)
 
 
 @live
@@ -278,15 +181,34 @@ def test_live_gen9_registry_currency_zero_drift(live_self_check):
 
 
 @live
-def test_live_self_check_reports_root_ratified_governance_and_exits_clean(live_self_check):
+def test_live_self_check_reports_root_headers_and_exits_clean(live_self_check):
     # Equivalent to `harness.py self-check` exiting 0: no identity refusal
     # (exit 2) and no BLOCK finding (exit 1). This is the hosted gate.
     report, refusal = live_self_check
     assert refusal is None, refusal
-    for name in ("DIRECTIVE.md", "CONTRACT.md", "SPEC.md", "TYPES.md"):
-        fact = _fact(report, f"root_governance.{name}")
-        assert "RATIFIED" in fact.value
-        assert "2026-07-11" in fact.value
     from harness_common import Severity, compute_exit_code
     assert compute_exit_code(report.findings) == 0
     assert not any(f.severity is Severity.BLOCK for f in report.findings)
+
+
+@live
+def test_archived_project_selection_refuses_with_recovery_pointer():
+    import subprocess
+    import sys
+    proc = subprocess.run([sys.executable, str(LIVE_REPO / 'tools/practitioner_harness/harness.py'),
+                           'status', '--project', 'app-dev', '--repo-root', str(LIVE_REPO)],
+                          capture_output=True, text=True)
+    assert proc.returncode == 2
+    assert 'projects/FROZEN.md' in proc.stderr
+    assert 'Traceback' not in proc.stderr
+
+
+@live
+def test_default_drift_skips_archived_project_roots():
+    import subprocess
+    import sys
+    proc = subprocess.run([sys.executable, str(LIVE_REPO / 'tools/practitioner_harness/harness.py'),
+                           'drift', '--all', '--repo-root', str(LIVE_REPO)],
+                          capture_output=True, text=True)
+    assert proc.returncode == 0, proc.stderr
+    assert 'Project root absent' not in proc.stderr

@@ -3,12 +3,12 @@
 An accepted version is a snapshot of identified local evidence that the human
 accepted. The local files keep changing as work proceeds: satisfaction
 advances, extraction reruns, declarations are added, and scope changes add or
-retire relationships. Under `docs/SPEC.md` §5.4 the version carries authority
+retire relationships. Under `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4 the version carries authority
 only while it is current with that evidence. A currency audit determines
 whether it still is. When a local file has departed from it, neither side
 silently wins: the affected deliverables are held `DAG pending` until the human
 accepts a successor or rejects the change. Under
-`docs/CYCLE_DRIVEN_RESOLUTION.md` §4, a new version is event-driven, not
+`docs/COMPATIBILITY_FORMATS.md#historical-cycle-method` §4, a new version is event-driven, not
 periodic.
 
 ## When to audit

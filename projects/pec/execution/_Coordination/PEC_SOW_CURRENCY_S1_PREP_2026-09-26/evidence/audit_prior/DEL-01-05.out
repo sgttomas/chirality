@@ -1,6 +1,0 @@
-=== DEL-01-05 projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md
-L63 SELF: "Own text: 'Automated assertion' ..."
-L66 OTHER-SOW DEL-08-01: "The service binds local-only, Unix socket by default, with token-scoped access; any loopback TCP listener is a §16 open decision in light of D-GOV-20's no-TCP-c"
-L73 OTHER-SOW DEL-08-01: 'Event-contract home ... and API transport (Unix socket only vs additional loopback listener)'
-L73 SELF: 'are not resolved by this decomposition; where one materially affects architecture the affected work is fenced or flagged, never guessed.'
---- DEL-01-05 counts {'UPSTREAM': 23, 'SELF': 2, 'OTHER-SOW': 2}

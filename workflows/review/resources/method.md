@@ -1,7 +1,7 @@
 # review — method
 
 Apply the [contract](contract.md)'s transitions table and its single severity
-and disposition rule throughout. Governing text: `docs/SPEC.md` §3.2–3.4.
+and disposition rule throughout. Governing text: `docs/COMPATIBILITY_FORMATS.md#historical-specification` §3.2–3.4.
 
 ## Method
 
@@ -46,8 +46,7 @@ intended transition (or withdrawal of a current check).
    states.
 4) Identify the owning loop's lifecycle instruments from its instructions and
    `_harness/adapter.yaml`: the required ruling instrument, approval-SHA
-   schema, promotion preflight (for example, the App's APP-HOLD-1
-   `app_hold.py check --operation checking-promotion`), issuance fences (for
+   schema where applicable, current owner holds, issuance fences (for
    example, App F-APP-4: no `CHECKING → ISSUED`), and whether the loop has
    adopted SPEC §3.4 candidacy or still pins an earlier Remaining-based entry
    criterion. When a fence prohibits the intended transition, say so now; the
@@ -152,7 +151,7 @@ Ask: "Proceed with review, or resolve precondition issues first?"
      Axiology; confirm every `OUT-*`, `AC-*`, and `VER-*` closes through the
      output/evaluation matrix.
 
-5) **Dependency Satisfaction** (per the tracking mode, `docs/SPEC.md` §5.3):
+5) **Dependency Satisfaction** (per the tracking mode, `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3):
    - `NOT_TRACKED`: record that dependencies are coordinated outside the
      files and give no computed ready/blocked judgment; skip the rows below.
    - `DECLARED`: read the recorded register and state that it is a partial
@@ -341,14 +340,9 @@ Present the review summary and transition readiness assessment. Ask: "Are all di
    - Present: `RECOMMEND_ADVANCE`, `RECOMMEND_HOLD` (continue checking), or
      `RECOMMEND_REVERSAL` (unsuccessful check) with reasons.
 
-2) For entry to `CHECKING` and for issuance only (the reversal is a demotion
-   and needs neither), run the owning loop's required promotion preflight for
-   the intended transition (for example, from the App working root:
-   `python3 execution/_Scripts/app_hold.py check --operation checking-promotion --entry-path {declared-entry-path} --target {DeliverableID}`)
-   and check its issuance fences. A failing preflight or an applicable fence
-   (for example, App F-APP-4 for `CHECKING → ISSUED`) holds the transition:
-   record the hold, do not ask for or record that transition, and continue at
-   the decline branch.
+2) Check current product issuance boundaries and explicit owner holds. Do not
+   infer authorization from this workflow or a passing check. An applicable hold
+   prevents the transition until its decision owner resolves it.
 
 3) Present the recommendation with evidence summary. Ask the question for the
    transition:

@@ -1,7 +1,0 @@
-# Run-root evidence for D-PEC-101 (K1, K4 with add-on C, add-on V).
-# Generator reports, validator and verifier outputs and closure CSVs keep their
-# exact bytes, including empty trailing fields and CRLF closure output.
-*.tsv -whitespace
-checks/** -whitespace
-closure/** -whitespace
-closure_pre/** -whitespace

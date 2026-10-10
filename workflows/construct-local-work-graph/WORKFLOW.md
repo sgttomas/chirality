@@ -1,136 +1,41 @@
 ---
 name: construct-local-work-graph
-description: Work with the user to establish the intended outcome and route through a project's DAG, then turn the relevant deliverables and current work into an executable local graph.
+description: Derive the relevant dependency neighbourhood and plan a route from the user's intended result to usable work.
 ---
 # Construct a local work graph
 
-Build the route from the human's intended result to examined, integrated work.
-HELP_HUMAN develops that understanding and coordinates construction; a manager
-can develop a selected portion, and TASK can inspect or draft a bounded part
-without delegating. One graph carries the undertaking across sessions.
-The human's steering selects the undertaking; `LOOP_INIT.md` supplies, or
-points to, the evergreen procedure for recovering, constructing and following
-its graph.
+Use this method when connected work needs a sequencing decision. A work graph
+is an optional, generated view, not an authored progress record or a prerequisite
+to ordinary work. The human's steering supplies the objective; deliverable files
+supply current commitments, design and dependency conditions.
 
-## 1. Establish the intended result
+Read the affected scope and design, then query the relevant upstream and
+downstream needs with the project's deliverable tool when available. Until that
+tool is available, inspect the relevant dependency sources directly. Follow only
+connections needed to understand this undertaking. Preserve non-gating links and
+report cycles; a mutual design relationship need not be an impossible execution
+order. A missing input or unclear mapping stays unknown.
 
-Read the init steering, subsequent human directions and relevant decisions.
-Establish the result, priorities, approach, limits and conditions for completion.
-Recover a continuing undertaking through the current graph and compare its
-position with actual work before planning it again. A missing target requires
-recovery; a previous proposal or paused assignment is not new authorization.
+Compare those needs with code, artifacts, checks and in-flight PRs at the actual
+revision. Existence or a merged PR does not establish fulfilment. Evaluate a
+condition automatically only where a reliable executable check establishes it;
+otherwise assess suitability from the evidence. Identify the specific unresolved
+condition before blocking dependent work.
 
-State the reading of the undertaking briefly, distinguishing direction from
-interpretation. Proceed where intent is clear. Investigate enough to make a
-material scope or sequencing question concrete, then bring it to the human.
-The user need not provide node IDs or a finished plan. Preserve the source of
-steering and account for work displaced by a later change.
+Plan the smallest useful route to the intended result. Name outcomes, relevant
+deliverables, required inputs, write boundaries and meaningful checks in the
+assignment. Use one integration owner and disjoint concurrent writes. Apply
+`coordinated-knowledge-work` where contributions need coordination. Verification
+and independent scrutiny follow the consequences under Root `AGENTS.md`.
 
-## 2. Find the work and its grounds
+Update scope, design or dependency conditions in their source files when the
+work changes them, obtaining owner decisions for reserved commitments or
+criteria. Regenerate a graph when needed; do not commit the generated view or
+maintain a second status table. Code-path matches identify relevance, not
+exclusive ownership or completion. PRs hold the change and verification account.
 
-Use the project entry to locate relevant sources, then follow their references
-for the selected outcome. Read each source for the question it can answer:
-
-| Source | Why look here? |
-|---|---|
-| Current graph, branch/worktree, open or merged PRs and their evidence | Establish what has actually happened, what is unmerged, and what can continue without repeating earlier work. |
-| Accepted project DAG/decomposition | Locate the intended contribution, required upstream inputs and affected downstream consumers. Work within the accepted current version of the project DAG, found through the project's accepted pointer (`_DAG/_LATEST.md` when accepted with `project-dag`) and its handoff; audit its currency when the dependency records may have changed since its basis. Respect `DAG pending`: give a deliverable the latest currency audit lists as pending no ready or blocked verdict from dependencies until the human decides its departure, and route that decision instead. Read satisfaction from the dependency records and treat held candidate edges as non-gating. A project without an accepted DAG uses its recorded registers (SPEC §5.3). A diagram alone does not establish input readiness or grant scope. |
-| Affected Scope of Work or another accepted production form | Identify the commitment served, expected outputs, criteria, interfaces and governing references. Keep an uncertain mapping visible rather than forcing it into an unrelated deliverable. |
-| Deliverable dependency records and their cited evidence | Determine what a contribution needs, who supplies it and whether the needed condition is met. Ownership and informational relationships are not automatically prerequisites. |
-| Implementation, tests and actual verification/validation results | Compare the intended result with what exists; distinguish missing behavior, missing evidence, defects and unresolved design. |
-| Relevant decisions, scope changes, holds and MEMORY run pointers | Find controlling choices and prior results. Follow memory to its central sources; local summaries neither make decisions nor assign future work. |
-
-Use the current source and candidate identity when sources disagree. Follow only
-relationships material to the undertaking, far enough to understand their
-consequences. Preserve accepted scope and explicit holds. If the desired route
-has no deliverable home or contains an unresolved dependency cycle, identify the
-necessary mapping/design decision before making dependent work executable.
-
-Choose the route that serves the human's outcome. Explain the necessary enabling
-work and what remains outside the undertaking; unrelated ready work is not
-selected merely because it appears in a DAG. A design or diagnosis can be a node
-whose question must be answered before its resulting implementation is defined.
-
-## 3. Express an executable route
-
-Give each node a meaningful result, stable ID, deliverable binding, prerequisites,
-write boundary and owner, completion check, and actual state or evidence. State
-provisional mappings and owner-held choices explicitly. Dependencies identify the
-specific result or condition the next contribution needs. Arrange independent
-work around actual inputs, shared writes and test resources, with one owner for
-integration. A label such as "work on package" is not an assessable result.
-
-An implementation node is a bounded TASK assignment. Its brief carries the
-objective, accepted basis, write fence, exclusions, acceptance criteria and the
-registered checks it authorizes, and says whether edits may be applied;
-without edit authority the executor returns a proposed diff. The
-executor makes the smallest coherent change with proportionate tests, runs only
-authorized checks, validates changed paths against the fence, and returns the
-diff, evidence, residual risks and blockers. It never silently changes scope,
-public contracts, migrations, shared ownership or acceptance criteria, and never
-weakens or removes adopted tests, oracles or tolerances; it returns those needs
-to the graph.
-
-Include the implementation, investigation, verification, validation where
-applicable, independent review, repairs and integration needed for the result.
-Plan substantive PRs, each carrying the documentation, reconciliation and
-conditional Task Management consequences its slice needs. A PR boundary alone
-requires neither a formal reconciliation pass nor a Task Management intake.
-
-After the intended implementation/evidence PRs, plan one final bounded
-closeout stage. It includes documentation/governance reconciliation through
-`chirality-root:bundled:workflow:bounded-reconciliation`, conditional Task
-Management, the invoking loop's central receipt, terse MEMORY run entries, and
-the final PR. For a loop that adopts this method (currently App, App v4, Piping and PEC),
-use the graph's stable run ID for one receipt at
-`execution/_Coordination/AgentRuns/<RunID>/RECEIPT.md`; affected MEMORY entries
-point to it. Other loops retain their adopted recording rules. MEMORY and
-closeout writes remain subject to the project's write fences; where a needed
-grant is missing, record the entry in the graph or receipt and route the grant.
-Divide deliverable comparisons into bounded assignments as needed. Missing required production
-returns to the graph for repair and an affected backcheck, not transfer-based
-completion. Central decisions and intake outcomes retain their actual status.
-
-Check the proposed route from its first contributions to the intended result:
-required work and checks are represented, dependent inputs can be obtained,
-executable dependencies are acyclic, and shared writes have an integration owner.
-Keep blockers and uncertainty truthful while independent authorized work proceeds.
-The final PR merge is the terminal condition after the promised work and required
-review, checks and human decisions. Its candidate records readiness and the PR
-URL; later Git/PR evidence establishes the actual merge.
-
-## 4. Save and maintain the current graph
-
-Use the [graph template](resources/work-graph-template.md). For local
-development in a loop that adopts this method, save the current graph exactly at
-`execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md`, relative to the
-project. It is Git-tracked project state: include it early in the undertaking's
-PR sequence for handoff, then update it in later PRs. Return its path so the
-continuing session can locate it through its steering or project records.
-Keep undertaking-specific paths and state out of reusable loop instructions.
-
-Keep one current account of the ready work, holds and next safe action, bound to
-the checked candidate. Replace superseded state in place: move a dated checkpoint
-into the run's AgentRuns record and link it rather than keeping it in the graph.
-When the graph advances on an unmerged branch, record that branch or ref where
-the successor's steering will find it; one designated graph ref is current at a
-time. Link PRs, evidence, active operations and shared-resource
-ownership needed to continue. Keep detailed launch histories, child attribution,
-source hashes and old pauses in their owning run records rather than repeatedly
-appending them to the current graph. Required execution provenance remains
-recoverable through those links. One maintainer integrates changes against the
-latest graph revision.
-
-Preserve historical graphs at their original paths. A still-pinned undertaking
-adopts this method through its actual owning authorization. On that explicit
-adoption, carry its current scope/state into the required location and cite the
-predecessor without maintaining another current copy. Carry every open deferral,
-follow-up and evidence limitation, linked to its historical locus. Keep the stable run identity that
-relates the graph, central receipt/evidence, PRs and affected MEMORY rows. Preserve
-needed evidence before a temporary worktree retires. Do not require a later
-commit solely to write the final merge result back into its own candidate.
-
-Return the saved graph's path, selected route, material assumptions,
-unresolved decisions and first ready work. Then resume the loop within the
-human's direction. Graph construction changes no scope, hold, lifecycle or
-release authority by itself.
+Finish when the authorized result and its required checks are established.
+Return the result location, checks, findings and open decisions. If interruption
+creates a real recovery need, keep one short current-state note and replace it
+in place. No compulsory closeout PR, receipt, MEMORY update or handoff chain is
+part of this method.

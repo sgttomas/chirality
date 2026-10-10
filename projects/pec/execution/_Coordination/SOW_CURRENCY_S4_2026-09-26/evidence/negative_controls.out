@@ -1,9 +1,0 @@
-$ TMPDIR=<session scratchpad>/s4a/tmp zsh projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26/negative_controls.sh /Users/ryan/ai-env/projects/chirality/.claude/worktrees/pec-d102-act 4c2a7768f projects/pec/execution/_Coordination/SOW_CURRENCY_S4_2026-09-26   # 2026-09-27T04:59:05Z
-PASS control tripped: DEL-04-01 Gate line altered -> quote check (RESULT FAIL 150/151)
-PASS control tripped: DEL-08-01 OUT-001 altered -> DEP-08-04-006/DEP-08-05-005 raw quotes (RESULT FAIL 34/36)
-PASS control tripped: DEL-04-02 Part B replacement (4) altered -> quote check (RESULT FAIL 100/101)
-PASS control tripped: DEL-10-03 sha256 claim value wrong -> state-claim check (RESULT FAIL 127/128)
-PASS control tripped: DEL-04-02 cites undefined DEL-04-03/REQ-099 -> sibling check (RESULT FAIL 49/50)
-PASS control tripped: DEL-08-01 last matrix row removed -> validator ()
-RESULT PASS negative controls
-exit=0

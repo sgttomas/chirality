@@ -78,7 +78,12 @@ writes. For prose briefs, the caller first makes authorized targets explicit.
 `AllowedTools`, when supplied to the structured adapter, uses full command
 expressions and narrows the brief policy. Native capability restrictions are
 provided separately in `--policy`. Hosts must also enforce explicit write
-targets and the role's write ceiling. HELP_HUMAN remains read-only.
+targets. HELP_HUMAN can write when the normalized assignment authorizes targets
+and effective host/tool policy permits `write`. The CLI emits
+`allowed_write_targets`; without a write-authorized brief this is empty and
+`write` is removed from the effective capabilities. An explicitly read-only
+host or assignment remains read-only. Resolution does not itself grant or
+enforce host permissions.
 
 ## Returns and source basis
 
