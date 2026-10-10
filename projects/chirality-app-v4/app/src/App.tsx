@@ -8,14 +8,15 @@ import { invoke } from "@tauri-apps/api/core";
 import { appHome, CodexProcessControls, stopLabel } from "./CodexControls";
 import { ContinueAsPanel, ModelProviderFields, RoleChoice, RoleHeader, SupplyStatus } from "./ConversationRoles";
 import { EXACT_TEXT } from "./exactText";
-import { RunPanel, SelectedWorkflow } from "./RunPanel";
+import { RunPanel, SelectedWorkflow, runBringBackDefault } from "./RunPanel";
 import { FileActPanel } from "./FileActPanel";
 import { NativeActivityView } from "./NativeActivity";
 import { PlanModeControl } from "./PlanMode";
 import { NativeRequestCard, WaitingRequestsIndicator, answerable, requestThread } from "./RequestCards";
 import { RunOffer, type RunAct } from "./RunOffers";
 import { RecoveryCustodyPanel } from "./RecoveryCustodyPanel";
-import { WorkflowDraftsView } from "./WorkflowDrafts";
+import { LastCleanTrialLine, WorkflowDraftsView } from "./WorkflowDrafts";
+import { BringBackComposer, CleanTrialPanel, DelegatedTrialComposer, composersFor } from "./TrialComposer";
 import { DIGEST_LIMIT, digestComparison, readablePaths, reviewDigest, suppliedSummary, type ReviewDigestView } from "./presentation";
 
 type Json = any; // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -34,7 +35,7 @@ const startEntries = (host: Json) => host?.homeRouting?.activeModeHomeClass === 
   ? [{ value: "api-key", label: "API key in separate configured key home" }]
   : [{ value: "chatgpt-account", label: "ChatGPT account in configured account home" }, { value: "local-provider", label: "Configured local provider" }];
 
-export function ConversationPanel({ host, threadKey, setThreadKey, answer, runAct, send, steer, submitAttachments, interrupt, checkPlanMode, codexBusy }: { codexBusy: boolean; host: Json; threadKey: string; setThreadKey: (key: string) => void; answer: (r: Json, a: Json) => Promise<void>; runAct: RunAct; checkPlanMode: (generation: Json) => Promise<void>; submitAttachments: (generation: Json, thread: string, expected: string | null, text: string, owner: string, revision: number, refs: string[]) => Promise<void>; send: (generation: Json, thread: string, text: string, mode?: "plan" | "default") => Promise<void>; steer: (generation: Json, thread: string, expected: string, text: string) => Promise<void>; interrupt: (generation: Json, thread: string, turn: string) => Promise<void> }) {
+export function ConversationPanel({ host, threadKey, setThreadKey, answer, runAct, trialRunAct, send, steer, submitAttachments, interrupt, checkPlanMode, codexBusy }: { codexBusy: boolean; host: Json; threadKey: string; setThreadKey: (key: string) => void; trialRunAct?: RunAct; answer: (r: Json, a: Json) => Promise<void>; runAct: RunAct; checkPlanMode: (generation: Json) => Promise<void>; submitAttachments: (generation: Json, thread: string, expected: string | null, text: string, owner: string, revision: number, refs: string[]) => Promise<void>; send: (generation: Json, thread: string, text: string, mode?: "plan" | "default") => Promise<void>; steer: (generation: Json, thread: string, expected: string, text: string) => Promise<void>; interrupt: (generation: Json, thread: string, turn: string) => Promise<void> }) {
   const [turnId, setTurnId] = useState<string>("");
   const [offerBusy, setOfferBusy] = useState(false);
   const [text, setText] = useState<string>("");
@@ -96,6 +97,26 @@ export function ConversationPanel({ host, threadKey, setThreadKey, answer, runAc
     finally { setBusy(""); }
   };
   const handoffs: Json[] = host?.continueAs ?? [];
+  // WR TT-3a, TT-3b, TT-10: what the host pre-filled for the person to send.
+  // Every send below happens only on the person's Send press.
+  // A trial or bring-back command rejects with the host's message as given, so
+  // the composer can show it (the host says whether the message stays
+  // pre-filled or was withdrawn); it is also shown in this panel's alert.
+  const trialAct = async (command: string, args: Record<string, unknown>): Promise<Json> => {
+    const label = `trial: ${command}`;
+    setBusy(label); setError("");
+    try {
+      const result: Json = await (trialRunAct ?? runAct)(command, args);
+      if (result === undefined) setError(`${label} did not complete; see the message below.`);
+      else if (command === "workflow_trial_start_clean" && result?.thread?.threadId) setThreadKey(JSON.stringify([result.thread.generation, result.thread.threadId]));
+      return result;
+    } catch (e) { setError(`${label}: ${String(e)}`); throw e; }
+    finally { setBusy(""); }
+  };
+  const workflowRoot = host?.workflowRoot;
+  const composers = composersFor(workflowRoot, selected);
+  const trialConversation = (workflowRoot?.trialConversations ?? []).find((row: Json) => selected && row?.threadId === selected.threadId);
+  const trialsStartedHere = (workflowRoot?.trialsStartedHere ?? []).find((row: Json) => selected && row?.threadId === selected.threadId);
   // Keys of this section's direct children must differ from each other: the role
   // header and the activity view once shared the thread ID as key, and React then
   // left the previous conversation's header mounted on every switch (witness
@@ -106,7 +127,7 @@ export function ConversationPanel({ host, threadKey, setThreadKey, answer, runAc
       <option value="">Select a conversation</option>
       {currentThreads.map((thread: Json) => <option key={JSON.stringify([thread.generation, thread.threadId])} value={JSON.stringify([thread.generation, thread.threadId])}>{thread.threadId} · {thread.model ?? "model not reported"} via {thread.modelProvider ?? "provider not reported"}</option>)}
     </select></label>
-    {selected && <RoleHeader key={`role-header:${selected.threadId}`} thread={selected} limits={host?.roleLimits} busy={!!busy} ready={host?.state === "ready"}
+    {selected && <RoleHeader key={`role-header:${selected.threadId}`} thread={selected} limits={host?.roleLimits} busy={!!busy} ready={host?.state === "ready"} trialConversation={trialConversation} trialsStartedHere={trialsStartedHere}
       continueAs={role => { void roleAct("asking for a handoff summary", "continue_as_begin", { generation: selected.generation, threadId: selected.threadId, role }); }}
       fork={() => { void roleAct("forking", "conversation_fork", { generation: selected.generation, threadId: selected.threadId }, result => {
         if (result?.thread?.threadId) setThreadKey(JSON.stringify([result.thread.generation, result.thread.threadId]));
@@ -117,7 +138,12 @@ export function ConversationPanel({ host, threadKey, setThreadKey, answer, runAc
       send={async draft => { const started = handoff.started; if (!started) return false; return (await roleAct("sending the handoff message", "conversation_send_text", { generation: started.generation, threadId: started.threadId, text: draft, mode: null })) !== undefined; }}
       open={() => { const started = handoff.started; if (started) setThreadKey(JSON.stringify([started.generation, started.threadId])); }}
       dismiss={() => { void roleAct("closing the handoff", "continue_as_dismiss", { id: handoff.id }); }} />)}
+    {composers.clean.map((pending: Json) => <CleanTrialPanel key={`clean-trial:${pending.reference}`} pending={pending} roleSet={host?.roleSet} limits={host?.roleLimits} entries={startEntries(host)}
+      modeHomeClass={host?.homeRouting?.activeModeHomeClass} busy={!!busy} ready={host?.state === "ready"} act={trialAct} />)}
+    {composers.delegated.map((pending: Json) => <DelegatedTrialComposer key={`trial:${selected?.threadId}:${pending.reference}`} pending={pending} conversations={currentThreads} busy={!!busy} ready={host?.state === "ready"} act={trialAct} />)}
+    {composers.bringBacks.map((pending: Json) => <BringBackComposer key={`bring-back:${selected?.threadId}:${pending.id}`} pending={pending} conversations={currentThreads} busy={!!busy} ready={host?.state === "ready"} act={trialAct} />)}
     <NativeActivityView key={`activity:${selected?.threadId ?? ""}`} view={host?.nativeView} threadId={selected?.threadId} runs={runs} offers={offers}
+      trialTurns={workflowRoot?.trialTurns} trialChildren={workflowRoot?.trialChildren}
       stopLabelFor={(thread, turn) => stopLabel(host?.codexStops, thread, turn, host?.stopRequests, appHome(host?.homeRouting?.activeModeHomeClass))}
       renderOffer={offer => <RunOffer offer={offer} generation={host?.generation} ready={host?.state === "ready"} busy={offerBusy} act={offerAct} />} />
     {selected && <div aria-label="Requests from Codex in this conversation">
@@ -292,10 +318,13 @@ export function WorkflowRootPanel({ data, host, act }:{ data: Json; host: Json; 
   const [text,setText]=useState("");
   const [busy,setBusy]=useState(false);
   const [message,setMessage]=useState("");
-  const action=async(command:string,args:Record<string,unknown>)=>{setBusy(true);try{const result=await act(command,args);setMessage(JSON.stringify(result));
+  // Resolves to the host's result, or undefined when the command failed (the message shows why).
+  const action=async(command:string,args:Record<string,unknown>):Promise<Json>=>{setBusy(true);try{const result=await act(command,args);setMessage(JSON.stringify(result));
     // An App-made draft is listed again by the host (WR SQ-D D-2).
     if(command==="workflow_create_draft"||command==="workflow_refine_registered"){await act("workflow_observe_drafts",{}).catch(()=>undefined);}
-  }catch(e){setMessage(String(e));}finally{setBusy(false);}};
+    return result;
+  }catch(e){setMessage(String(e));return undefined;}finally{setBusy(false);}};
+  const conversations:Json[]=(host?.threads??[]).filter((entry:Json)=>JSON.stringify(entry.generation)===JSON.stringify(host?.generation));
   const entries:Json[]=data?.reviews??[];
   // J6 D-1 / V14 F2, F8: the digest of each complete review as the host
   // reports it (the native A15 statement names the same value), and this
@@ -334,7 +363,8 @@ export function WorkflowRootPanel({ data, host, act }:{ data: Json; host: Json; 
     <SelectedWorkflow selection={data?.selection}/>
     <details><summary>Selection and libraries as the host reports them (paths shown as text; identities keep their exact bytes; a path that is not valid UTF-8 is marked)</summary>
     <pre style={{whiteSpace:"pre-wrap"}}>{JSON.stringify(readablePaths({selection:data?.selection,libraries:data?.libraries,activeLibrary:data?.activeLibrary}),null,2)}</pre></details>
-    <WorkflowDraftsView data={data?.drafts} attachments={host?.attachmentSelections} workspace={data?.projectLibraryAvailable===true} pointerLimits={data?.trialPointerLimits} busy={busy} act={action}/>
+    <WorkflowDraftsView data={data?.drafts} workspace={data?.projectLibraryAvailable===true} pointerLimits={data?.trialPointerLimits} conversations={conversations}
+      runs={[...(data?.runs??[]),...(data?.reopened?.runs??[])]} pending={data?.pendingTrials} busy={busy} act={action}/>
     <label>New draft name, or in-place library entry name <input {...EXACT_TEXT} value={name} onChange={e=>setName(e.target.value)} disabled={busy}/></label>
     <button disabled={busy||!data?.selection||!data?.activeLibrary} onClick={()=>action("workflow_create_draft",{name})}>Create draft from selected content</button>
     {(data?.libraries??[]).filter((l:Json)=>l.reference===data?.activeLibrary&&Array.isArray(l.registered)).map((l:Json)=><ul key={l.reference} aria-label="Registered revisions in the active library">{l.registered.map((row:Json)=><li key={`${row.name}@${row.revision}`}>{row.name} · revision {row.sequence} · {row.label} <button disabled={busy} onClick={()=>action("workflow_refine_registered",{name:row.name,revision:row.revision})}>Refine from the revision store…</button></li>)}</ul>)}
@@ -347,6 +377,7 @@ export function WorkflowRootPanel({ data, host, act }:{ data: Json; host: Json; 
       {digests[review.reference]&&<p>{digestComparison(digests[review.reference])}{review.status?.presentation?"":" (as last shown with the review; while the native confirmation is open, the review it names is shown under \"Content named by an open native confirmation\")"}. Read the complete review below before choosing {review.status?.presentation?.entries?.[0]?.disposition==="re-confirmation"?"Re-confirm":"Register"}: the native confirmation shows the act statement and this digest, not the review itself.</p>}
       {review.status?.presentation?.entries?.[0]?.disposition==="re-confirmation"&&<p role="note">{review.status.presentation.entries[0].message}. {review.status.presentation.entries[0].reconfirmation?.statement}</p>}
       <pre style={{whiteSpace:"pre-wrap"}}>{JSON.stringify(readablePaths(review.status??review),null,2)}</pre>
+      <LastCleanTrialLine line={review.lastCleanTrial} busy={busy} act={action}/>
       <button disabled={busy||review.reference!==data?.activeReview} onClick={()=>action("workflow_register_native",{reviewRef:review.reference})}>{review.status?.presentation?.entries?.[0]?.disposition==="re-confirmation"?"Re-confirm this revision for use in this App session through native A15 confirmation…":"Register this review through native A15 confirmation…"}</button>
       <button disabled={busy} onClick={()=>action("workflow_continue_registration",{reviewRef:review.reference})}>Continue original captured registration</button>
       {(review.status?.entries??[]).filter((entry:Json)=>entry.state==="registered"||entry.state==="re-confirmed").map((entry:Json)=><button key={entry.identity.revision} disabled={busy} onClick={()=>action("workflow_select_registered",{reviewRef:review.reference,revision:entry.identity.revision})}>Select hot {entry.state} {entry.identity.name} holding copy…</button>)}
@@ -369,7 +400,7 @@ export function WorkflowRootPanel({ data, host, act }:{ data: Json; host: Json; 
         <button disabled={busy} onClick={()=>action("workflow_retry_records",{runRef:run.reference})}>Retry the end-notice record</button>
         {run.noticeRecordFailure&&<button disabled={busy} onClick={()=>action("workflow_skip_notice",{runRef:run.reference})}>Send without the end notice (recorded as not supplied)</button>}</p>}
       <ul>{[...(run.checks??[]),...(run.noticeChecks??[])].map((check:Json)=><li key={check.reference}>{check.readAt}: {check.state} ({check.supplyReading}); check record {check.published?"recorded":`pending${check.publicationLimit?` — ${check.publicationLimit}`:""}`}; R3 {check.r3?.state}{check.r3?.limit?` — ${check.r3.limit}`:""}</li>)}</ul>
-      <RunPanel run={run}/>
+      <RunPanel run={run} conversations={conversations} bringBackDefault={runBringBackDefault(data,run.reference)} busy={busy} act={action}/>
       <details><summary>Complete run evidence (paths shown as text)</summary><pre style={{whiteSpace:"pre-wrap"}}>{JSON.stringify(readablePaths(run),null,2)}</pre></details>
       <button disabled={busy||!!run.source||host?.state!=="ready"} onClick={()=>action("workflow_send_run",{runRef:run.reference})}>Record, then send original prepared text once</button>
       <button disabled={busy||!run.turn||host?.state!=="ready"} onClick={()=>action("workflow_check_supply",{runRef:run.reference})}>Check original native supplied text pages (new check)</button>
@@ -640,6 +671,15 @@ export function App() {
     } catch (e) { setMessage(`${command}: ${String(e)}`); }
     finally { await refresh(); }
   };
+  // As runAct, but a host error rejects with the host's message (trial sends show it as given).
+  const trialRunAct: RunAct = async (command, args) => {
+    try {
+      const result = await invoke(command, args);
+      setMessage(`${command}: ${JSON.stringify(result).slice(0, 600)}`);
+      return result;
+    } catch (e) { setMessage(`${command}: ${String(e)}`); throw e; }
+    finally { await refresh(); }
+  };
   // The conversation the panel actually shows (current generation only), so no request is hidden.
   const selectedThread: string | null = (host?.threads ?? []).find((t: Json) => JSON.stringify([t.generation, t.threadId]) === threadKey && JSON.stringify(t.generation) === JSON.stringify(host?.generation))?.threadId ?? null;
 
@@ -684,7 +724,7 @@ export function App() {
         </p>
         <p><label>Access entry <select value={entryId} onChange={e => setEntryId(e.target.value)}><option value="">No entry selected</option>{startEntries(host).map(entry => <option key={entry.value} value={entry.value}>{entry.label}</option>)}</select></label></p>
         <p>Choose a model, provider and entry for this new conversation in the selected home. Switching homes never transfers an existing conversation.</p>
-        <RoleChoice roleSet={host?.roleSet} limits={host?.roleLimits} role={role} preselected={!roleTouched && !!role && role === host?.roleSet?.defaultRole}
+        <RoleChoice group="start-thread-role" roleSet={host?.roleSet} limits={host?.roleLimits} role={role} preselected={!roleTouched && !!role && role === host?.roleSet?.defaultRole}
           setRole={next => { roleInitialized.current = true; setRoleTouched(true); setRole(next); }} />
         <p><small>Role set: {host?.roleSet?.standing ?? host?.roleSet?.reason ?? "unavailable"}.</small></p>
         <SupplyStatus supply={host?.roleSupply} />
@@ -716,7 +756,7 @@ export function App() {
         read={() => invoke("read_recovery_custody", { modeHomeClass: host?.homeRouting?.activeModeHomeClass, generation: host?.generation ?? null })} />
       <HistoryPanel host={host} refresh={refresh} />
 
-      <ConversationPanel codexBusy={processBusy} host={host} threadKey={threadKey} setThreadKey={setThreadKey} answer={answerRequest} runAct={runAct} send={async (generation, threadId, text, mode) => {
+      <ConversationPanel codexBusy={processBusy} host={host} threadKey={threadKey} setThreadKey={setThreadKey} answer={answerRequest} runAct={runAct} trialRunAct={trialRunAct} send={async (generation, threadId, text, mode) => {
         await conversationAction("conversation_send_text", { generation, threadId, text, mode: mode ?? null });
       }} checkPlanMode={async generation => {
         try { await invoke("collaboration_modes_read", { generation }); } finally { setHost(await invoke("host_status")); }

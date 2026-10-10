@@ -1709,10 +1709,15 @@ impl Host {
     }
 
     pub fn history_dispatch(&self, query: &HistoryQuery) -> Result<HistoryDispatch,String> {
+        self.history_dispatch_by(query, json!({"kind":"person-directed"}))
+    }
+    /// As `history_dispatch`, journalled with `initiator`: an App rule's read
+    /// (WR TT-9's linking read on the host tick) names itself, not the person.
+    pub(crate) fn history_dispatch_by(&self, query: &HistoryQuery, initiator: Value) -> Result<HistoryDispatch,String> {
         crate::recovery::generation_ref(query.generation())?;
         if query.generation()["home"]!=query.home() {return Err("history home and full generation differ".into());}
         if !matches!(query.method(),"thread/list"|"thread/read"|"thread/turns/list"|"thread/items/list"|"thread/goal/get"|"thread/resume") {return Err("unsupported history factory method".into());}
-        let source=self.request_begin_scoped(query.method(),query.params().clone(),json!({"kind":"person-directed"}),false,Some(query.generation()))?;
+        let source=self.request_begin_scoped(query.method(),query.params().clone(),initiator,false,Some(query.generation()))?;
         Ok(HistoryDispatch {query:query.clone(),source})
     }
     pub fn history_wait(&self, dispatch: &HistoryDispatch, wait: Duration) -> Result<Value,String> {self.source_request_wait(&dispatch.source,wait)}
@@ -2116,6 +2121,23 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
     pub fn turn_start_text(&self, generation: &Value, thread_id: &str, text: &str) -> Result<Value, String> {
         self.conversation_operation("turn/start", generation,
             Self::text_turn_params(thread_id, text)?, Duration::from_secs(20))
+    }
+
+    /// WR TT-3a, TT-3b and TT-10 (NIR TC-2, AT-8): one new turn whose input is
+    /// the given text elements, in order, exactly as given (a trial message:
+    /// the person's text then the trial text, or for a clean trial the trial
+    /// text then the person's text; a bring-back: the prompt then the
+    /// transcript). `client_id` is sent as `clientUserMessageId` so the turn's
+    /// first user message can be found in Codex's history (SC-3). A trial text
+    /// is never a run text: nothing here opens or records a run.
+    pub(crate) fn turn_start_texts(&self, generation: &Value, thread_id: &str, elements: &[&str], client_id: &str) -> Result<Value, String> {
+        if thread_id.is_empty() || client_id.is_empty() || elements.is_empty() || elements.iter().any(|e| e.is_empty()) {
+            return Err("refused-not-sent: thread, client message identity and non-empty text elements required".into());
+        }
+        let input: Vec<Value> = elements.iter().map(|text| json!({"type":"text","text":text,"text_elements":[]})).collect();
+        let params = json!({"threadId":thread_id,"input":input,"clientUserMessageId":client_id});
+        Self::validate_native_result("TurnStartParams", &params).map_err(|e| format!("refused-not-sent: {e}"))?;
+        self.conversation_operation("turn/start", generation, params, Duration::from_secs(20))
     }
 
     fn prepared_run_turn_params(generation:&Value,prepared:&crate::workflow_workspace::PreparedRunText,person_text:&str,client_id:&str,mode:Option<&Value>)->Result<Value,String>{
@@ -3530,39 +3552,39 @@ mod conversation_transport_tests {
     fn shared_attachment_submit_actual_context_and_capabilities(){
         use crate::recovery::{ExplicitAppProjectContext as Context,AppProjectSource};for known in [false,true]{let(host,g,root,custody,_)=context_fixture();let(state,owner,revision,order)=shared_attachment_selected(&root);let context=if known{host.observe_conversation_project(&g,"thread",Some("H-acct"),&Context::known("explicit App P",AppProjectSource::ConfiguredDirectory).unwrap()).unwrap();Context::known("frozen current Root Q",AppProjectSource::OpenedDirectory).unwrap()}else{Context::unknown()};let home=if known{Some("H-acct")}else{None};let result=shared_attachment_exchange(&host,&g,json!({"result":{"turn":complete_turn()}}),||crate::runtime_session::submit_selected_attachments(&state,&host,Arc::clone(&custody),&owner,revision,&order,&g,"thread",None,"explicit ordinary text without WR prefix",context.clone(),home)).unwrap();assert_eq!(result["sourceWriteConfirmed"],true);assert_eq!(result["nativeTurnRef"]["threadId"],"thread");let view=state.lock().unwrap().as_ref().unwrap().snapshot();assert_eq!(view["submissions"].as_array().unwrap().len(),1);let binding=&view["submissions"][0]["contextBinding"];if known{assert_eq!(binding["historicalProject"],"explicit App P");assert_eq!(binding["currentSubmissionProject"],"frozen current Root Q");assert_eq!(binding["persistence"],"durable App metadata");}else{assert!(binding["indexSnapshot"].is_null());assert_eq!(binding["persistence"],"memory-only");assert!(binding["limit"].as_str().unwrap().contains("cold lookup unavailable"));}let count=host.client_requests().len();state.lock().unwrap().as_mut().unwrap().refresh_submissions(&host,&custody);assert_eq!(host.client_requests().len(),count);std::fs::remove_dir_all(root).unwrap();}
     }
-    /// WR TT-4 through the real attachment submit path: a trial pointer only
-    /// after an acknowledged send, none after a native refusal.
+    /// WR TT-4 (§17 step 4, with the send paths of steps 5 and 6) through the
+    /// real Host: a trial link only after Codex acknowledged the trial
+    /// message's turn/start; none after a native refusal, and the trial stays
+    /// pre-filled. The frame carries the person's text then the trial text.
     #[test]
-    fn draft_trial_pointer_is_kept_only_after_an_acknowledged_attachment_send(){
-        use crate::recovery::ExplicitAppProjectContext as Context;
+    fn trial_link_is_written_only_after_an_acknowledged_trial_send(){
         for acknowledged in [true,false]{
-            let(host,g,root,custody,_)=context_fixture();
+            let(host,g,root,_custody,_)=context_fixture();
             let library=root.join("lib");let draft=library.join(".chirality/workflow-drafts/solo-draft");std::fs::create_dir_all(&draft).unwrap();
             std::fs::write(draft.join("WORKFLOW.md"),"---\nname: solo-draft\n---\n# Solo\n").unwrap();
+            let home=crate::runtime_session::HomeSession::new(crate::home_resources::HomeClass::Account,Arc::clone(&host),Err("fixture: no configuration".into())).unwrap();
             let workflows=Mutex::new(crate::runtime_session::WorkflowRootSession::default());
-            {let mut w=workflows.lock().unwrap();w.set_app_user_data(root.join("app-data"));w.open_library(library.clone(),"project",None,Arc::new(Mutex::new(None))).unwrap();w.observe_drafts(&json!([])).unwrap();}
-            let state=Mutex::new(crate::runtime_session::AttachmentSelectionSession::new(None));
-            let owner=state.lock().unwrap().as_ref().unwrap().snapshot()["ownerRef"].as_str().unwrap().to_owned();
-            let sources=workflows.lock().unwrap().draft_trial_sources("solo-draft").unwrap();
-            let view=state.lock().unwrap().as_mut().unwrap().prefill_draft(&owner,0,sources).unwrap();
-            let order:Vec<String>=view["selections"].as_array().unwrap().iter().map(|r|r["selection"]["selectionRef"].as_str().unwrap().to_owned()).collect();
-            assert_eq!(order.len(),1);
+            let reference={let mut w=workflows.lock().unwrap();w.set_app_user_data(root.join("app-data"));w.open_library(library.clone(),"project",None,Arc::new(Mutex::new(None))).unwrap();w.observe_drafts(&json!([])).unwrap();
+                w.prepare_trial("delegated","solo-draft",Some((&g,"thread")),Some(&home),Some(&library)).unwrap()["reference"].as_str().unwrap().to_owned()};
             let response=if acknowledged{json!({"result":{"turn":complete_turn()}})}else{json!({"error":{"code":-32600,"message":"synthetic refusal"}})};
-            let result=shared_attachment_exchange(&host,&g,response,||crate::runtime_session::submit_attachments_with_draft_trials(&state,&workflows,&host,Ok(Arc::clone(&custody)),&owner,1,&order,&g,"thread",None,"please try this method",Context::unknown(),None));
-            let pointers=crate::workflow_workspace::registration::drafts::TrialPointers::open(&root.join("app-data"));
-            let key=json!({"draft_location":"project","draft_root":library.join(".chirality/workflow-drafts").display().to_string(),"name":"solo-draft"});
+            let (result,outbound)=shared_text_exchange(&host,&g,response,||crate::runtime_session::trial_flows::send_trial(&workflows,&home,&reference,&g,"thread","please try this draft"));
+            assert_eq!(outbound["params"]["input"][0]["text"],"please try this draft");
+            assert!(outbound["params"]["input"][1]["text"].as_str().unwrap().starts_with("[Chirality] Workflow trial 1 of draft project:solo-draft"));
+            let links=crate::workflow_workspace::registration::drafts::TrialLinks::open(&root.join("app-data"));
             if acknowledged{
-                let result=result.unwrap();assert_eq!(result["trialPointers"][0]["conversation"],"thread");
-                let kept=pointers.for_draft(&key);assert_eq!(kept.len(),1,"one pointer, kept in the App data folder");
-                assert_eq!(kept[0]["standing"],"draft tried in conversation; not a run of any workflow identity");
-                assert_eq!(kept[0]["content"]["value"],crate::workflow_workspace::Snapshot::capture(&draft).unwrap().revision());
+                let result=result.unwrap();assert_eq!(result["link"]["trial"]["reference"],reference.as_str());
+                let kept=links.link(&reference).unwrap();assert_eq!(kept["trial"]["client_message"],outbound["params"]["clientUserMessageId"]);
+                assert_eq!(kept["standing"],"trial of a draft; not a run of any workflow identity; not registration, checking or acceptance");
                 assert!(workflows.lock().unwrap().snapshot()["runs"].as_array().unwrap().is_empty(),"a trial opens no run");
             }else{
-                assert!(result.is_err());assert!(pointers.for_draft(&key).is_empty(),"no pointer after a refused send");
+                assert!(result.unwrap_err().contains("stays pre-filled"));assert!(links.all_links().is_empty(),"no link after a refused send");
+                let mut status=workflows.lock().unwrap().snapshot();workflows.lock().unwrap().decorate_status(&mut status,&json!({}));
+                assert_eq!(status["pendingTrials"][0]["reference"],reference.as_str(),"still pre-filled");
             }
             std::fs::remove_dir_all(root).unwrap();
         }
     }
+    fn shared_text_exchange<F>(host:&Arc<Host>,generation:&Value,response:Value,operation:F)->(Result<Value,String>,Value)where F:FnOnce()->Result<Value,String>{let mut child=Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).spawn().unwrap();*host.stdin.lock().unwrap()=child.stdin.take();let stdout=child.stdout.take().unwrap();let source=Arc::clone(host);let generation=generation.clone();let worker=std::thread::spawn(move||{let mut line=String::new();BufReader::new(stdout).read_line(&mut line).unwrap();let outbound:Value=serde_json::from_str(&line).unwrap();let mut response=response;response["id"]=outbound["id"].clone();source.on_line(&serde_json::to_vec(&response).unwrap(),&generation);outbound});let result=operation();let outbound=worker.join().unwrap();*host.stdin.lock().unwrap()=None;assert!(child.wait().unwrap().success());(result,outbound)}
     #[test]
     fn shared_attachment_submit_drift_stale_source_and_native_error_preserve_no_retry(){
         use crate::recovery::ExplicitAppProjectContext as Context;for stale in [false,true]{let(host,g,root,custody,_)=context_fixture();let(state,owner,revision,order)=shared_attachment_selected(&root);if stale{host.inner.0.lock().unwrap().generation["spawnCounter"]=json!(2);}else{std::fs::write(root.join("first.txt"),"changed since native selection").unwrap();}no_attachment_write(&host,||{assert!(crate::runtime_session::submit_selected_attachments(&state,&host,Arc::clone(&custody),&owner,revision,&order,&g,"thread",None,"person text",Context::unknown(),None).is_err());});assert_eq!(host.inner.0.lock().unwrap().send_position,0);assert_eq!(state.lock().unwrap().as_ref().unwrap().snapshot()["selections"].as_array().unwrap().len(),1);std::fs::remove_dir_all(root).unwrap();}
