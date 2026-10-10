@@ -79,6 +79,7 @@ jobs:
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: projects/chirality-app-v4/app/src-tauri
+          cache-on-failure: true
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
