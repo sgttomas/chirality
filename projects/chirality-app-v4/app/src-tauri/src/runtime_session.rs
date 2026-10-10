@@ -16,6 +16,7 @@ pub struct RuntimeSession {
     account_revision: u64,
     prior_views: Vec<Value>,
     closed_generations: Vec<Value>,
+    history_pages: u64,
 }
 impl RuntimeSession {
     pub fn cursor(&self) -> (&Value, u64) {
@@ -47,10 +48,11 @@ impl RuntimeSession {
             self.account = None;
             self.account_revision = self.account_revision.saturating_add(1);
             self.position = 0;
+            self.history_pages = 0;
             self.closed = self.closed_generations.contains(generation);
             self.limits = losses;
             if !self.prior_views.is_empty() {
-                self.limits.push("Observation lost across generation boundary; Codex history has not been read or rebuilt by this App path".into());
+                self.limits.push("Observation lost across generation boundary; earlier activity returns only as the person reads Codex history pages".into());
             }
             if self.closed {
                 self.limits
@@ -153,7 +155,34 @@ impl RuntimeSession {
             "accountObservation":self.account.as_ref().map(AccountObservation::snapshot),
             "nativeViewLimits":self.limits,"observerCursor":{"generation":self.generation,"position":self.position},
             "observerGap":observation["gap"],"priorNativeViews":self.prior_views,"nativeViewObservationEnded":self.closed,
-            "observerRecovery":{"historyRebuilt":false,"historyRead":"not implemented in this App path","standing":"App-observed receiving state; not recovered Codex history"}})
+            "observerRecovery":{"historyRebuilt":false,"historyPagesRead":self.history_pages,"historyRead":"pages the person reads in stored history are added to the native view as recovered-from-supplier rows; no automatic rebuild","standing":"App-observed receiving state plus explicitly read Codex history pages"}})
+    }
+    /// A person-requested native history page of this open generation, read into
+    /// the native view as `recovered-from-supplier` rows. Other generations,
+    /// closed views and methods the view does not read are left out.
+    pub fn receive_history(&mut self, generation: &Value, home: &str, method: &str, params: &Value, result: &Value) {
+        if !matches!(method, "thread/read" | "thread/turns/list" | "thread/items/list" | "thread/goal/get") {
+            return;
+        }
+        // Repeated page reads report each distinct refusal once.
+        let refused = if *generation != self.generation || self.closed {
+            Some(format!("{method} page not read into the native view: its generation is not the open receiving generation"))
+        } else if let Some(view) = self.view.as_mut() {
+            match view.history(home, method, params, result) {
+                Ok(()) => {
+                    self.history_pages += 1;
+                    None
+                }
+                Err(e) => Some(format!("{method} page not read into the native view: {e}")),
+            }
+        } else {
+            None
+        };
+        if let Some(limit) = refused {
+            if !self.limits.contains(&limit) {
+                self.limits.push(limit);
+            }
+        }
     }
     /// Consume the current atomic Host observation before freezing attribution.
     /// Revisions also detect an account change followed by a same-email reread.
@@ -4582,6 +4611,19 @@ pub(crate) fn start_workflow_run(
 /// SQ-END / TX-5: the person's next ordinary turn in a conversation whose run
 /// ended without a successor carries the end notice first, exactly once. Returns
 /// None when no notice is pending (ordinary sending applies unchanged).
+/// A plan/default mode turn never carries or skips a pending run-end notice
+/// (TX-5): while one is pending, the mode send is refused before anything is sent.
+pub(crate) fn mode_send_blocked_by_notice(
+    root: &std::sync::Mutex<WorkflowRootSession>,
+    generation: &Value,
+    thread: &str,
+) -> Result<(), String> {
+    let home = generation["home"].as_str().ok_or("generation home required")?;
+    if root.lock().unwrap().pending_notice_for(home, thread)?.is_some() {
+        return Err("A run in this conversation ended and its end notice goes with the next ordinary turn; send ordinary text first. Nothing sent".into());
+    }
+    Ok(())
+}
 pub(crate) fn send_with_pending_notice(
     root: &std::sync::Mutex<WorkflowRootSession>,
     generation: &Value,
