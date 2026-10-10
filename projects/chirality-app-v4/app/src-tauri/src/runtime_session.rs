@@ -1991,7 +1991,7 @@ struct ClaimedNotice<'a> {
 }
 impl ClaimedNotice<'_> {
     fn write_attempted(&self) -> bool {
-        self.source.as_ref().is_some_and(|source| source.evidence()["actualWriteAttemptObserved"] == true)
+        self.source.as_ref().and_then(|source| source.write_attempt_observed()).unwrap_or(false)
     }
     fn settle(mut self, result: Result<Value, String>) -> Result<Value, String> {
         let carriage = if self.write_attempted() {
@@ -2014,7 +2014,14 @@ impl Drop for ClaimedNotice<'_> {
             return;
         };
         let cause = "the attachment-bearing turn's send path ended abnormally";
-        let carriage = if self.write_attempted() {
+        // Never panics while unwinding: the Host's write facts are read through
+        // a poisoned lock; a prepared frame whose facts cannot be read at all is
+        // taken as written, outcome unknown, so the notice is not resent.
+        let attempted = match &self.source {
+            Some(source) => source.write_attempt_observed().unwrap_or(true),
+            None => false,
+        };
+        let carriage = if attempted {
             NoticeCarriage::Written {
                 turn: None,
                 outcome: json!({"state":"attachment-bearing turn written; outcome unknown; not resent","carrier":"attachment-bearing turn","limit":cause}),
@@ -4685,10 +4692,24 @@ impl WorkflowRootSession {
             selection_ref: selected.reference.clone(),
             revision_store: selected.package.clone(),
         };
+        // WR §16.2 TX-7 (CI-32): the files line names the holding folder relative
+        // to the project or the home folder, or a content-addressed supply copy
+        // written into the project; the run does not start when that fails.
+        let home_folder = std::env::var_os("HOME")
+            .map(std::path::PathBuf::from)
+            .filter(|p| p.is_absolute());
+        let files = crate::workflow_workspace::files_folder(
+            selected.selection.snapshot(),
+            selected.selection.identity(),
+            &selected.package,
+            &project_root,
+            home_folder.as_deref(),
+        )
+        .map_err(|e| format!("{e}; the workflow run is not prepared or sent"))?;
         let prepared = crate::workflow_workspace::PreparedRunText::start(
             &selected.selection,
             scope,
-            "selected native workflow holding copy",
+            &files.label,
             prior.as_ref().map(|(_, end)| end),
         )?;
         // WR PR-4: a start confirmed from an agent proposal says so in its records.
@@ -4718,7 +4739,7 @@ impl WorkflowRootSession {
             source: None,
             attempted: false,
             turn_id: None,
-            status: json!({"state":"prepared; WR records pending; not sent","recorded":false,"sent":false,"supplied":"not supplied","adoption":"unknown","runStanding":"not opened: a run opens when its start turn is observed"}),
+            status: json!({"state":"prepared; WR records pending; not sent","recorded":false,"sent":false,"supplied":"not supplied","adoption":"unknown","runStanding":"not opened: a run opens when its start turn is observed","otherFiles":files.describe()}),
             supply: Value::Null,
             checks: Vec::new(),
             follows: prior.map(|(run, _)| run),
@@ -5270,7 +5291,7 @@ pub(crate) fn start_workflow_run(
 ) -> Result<Value, String> {
     // V10 R-2: the call that claims B's hold (under the Root lock, once) owns A's
     // held end and releases it on every outcome, including a failure before send.
-    let (run, others, predecessor, reserved) = {
+    let (shared_run, others, predecessor, reserved) = {
         let mut root = root.lock().unwrap();
         let run = root.conversation_run(reference)?;
         let predecessor = root
@@ -5289,10 +5310,15 @@ pub(crate) fn start_workflow_run(
             Some(e) => Err(format!("{e}. Nothing sent")),
             None => hold_notices_for_start(&others, reference),
         };
-        let mut run = run.lock().unwrap();
-        let (result, held) = match checked {
-            Ok(held) => (run.send(), held),
-            Err(e) => (Err(e), vec![]),
+        // The holds are released even if the send path panics (StartHolds).
+        let (holds, refusal) = match checked {
+            Ok(held) => (StartHolds::new(held, reference, None), None),
+            Err(e) => (StartHolds::new(vec![], reference, None), Some(e)),
+        };
+        let mut run = shared_run.lock().unwrap();
+        let result = match refusal {
+            None => run.send(),
+            Some(e) => Err(e),
         };
         // V10 G-2: A's held end is written first, then B's run_opened (RE-7 order).
         let started = run.lifecycle == RunLifecycle::Open;
@@ -5305,22 +5331,73 @@ pub(crate) fn start_workflow_run(
         }
         drop(run);
         // As before on this path, other runs' notices are released, not superseded.
-        release_start_holds(&held, reference, false);
+        holds.release(false);
         return result;
     }
     if let Some(e) = reserved {
         return Err(format!("{e}. Nothing sent"));
     }
-    let mut run = run.try_lock().map_err(|_| "Original run operation pending")?;
+    // Declared before the run guard so that, on a panic in `run.send()`, the
+    // guard drops first (poisoning the run's lock) and the holds' Drop then
+    // reads the starting run's `attempted` through the Poisoned branch.
+    let holds: StartHolds;
+    let mut run = shared_run.try_lock().map_err(|_| "Original run operation pending")?;
     if run.hold_open_for.is_some() {
         return Err("This successor's start is already in progress; nothing sent".into());
     }
-    let held = hold_notices_for_start(&others, reference)?;
+    holds = StartHolds::new(hold_notices_for_start(&others, reference)?, reference, Some(&shared_run));
     let result = run.send();
     let attempted = run.attempted;
     drop(run);
-    release_start_holds(&held, reference, attempted);
+    holds.release(attempted);
     result
+}
+#[cfg(test)]
+thread_local! {
+    /// Test hook: the next `WorkflowRun::send` panics while its lock is held,
+    /// before (`Some(false)`) or after (`Some(true)`) its write is attempted.
+    static PANIC_IN_SEND: std::cell::Cell<Option<bool>> = const { std::cell::Cell::new(None) };
+}
+/// A start's notice holds (TX-5), released exactly once: by `release` with the
+/// start's outcome on the normal path, or on drop if the start's send path
+/// ended abnormally (a panic in the send, or a poisoned lock after it), so a
+/// held notice never refuses every later turn until relaunch. On drop the
+/// starting run's `attempted` is used when its lock can be read now (held by
+/// nobody, or poisoned); otherwise the notice is pending again. A successor
+/// start ("End ‹A› and start ‹B›") passes no starting run: on that path the
+/// other runs' notices are always released, not superseded, as on its normal
+/// path.
+struct StartHolds<'a> {
+    held: Vec<std::sync::Arc<std::sync::Mutex<WorkflowRun>>>,
+    reference: &'a str,
+    starting: Option<&'a std::sync::Arc<std::sync::Mutex<WorkflowRun>>>,
+    released: bool,
+}
+impl<'a> StartHolds<'a> {
+    fn new(
+        held: Vec<std::sync::Arc<std::sync::Mutex<WorkflowRun>>>,
+        reference: &'a str,
+        starting: Option<&'a std::sync::Arc<std::sync::Mutex<WorkflowRun>>>,
+    ) -> Self {
+        Self { held, reference, starting, released: false }
+    }
+    fn release(mut self, attempted: bool) {
+        self.released = true;
+        release_start_holds(&self.held, self.reference, attempted);
+    }
+}
+impl Drop for StartHolds<'_> {
+    fn drop(&mut self) {
+        if self.released {
+            return;
+        }
+        let attempted = match self.starting.map(|run| run.try_lock()) {
+            Some(Ok(run)) => run.attempted,
+            Some(Err(std::sync::TryLockError::Poisoned(poisoned))) => poisoned.into_inner().attempted,
+            Some(Err(std::sync::TryLockError::WouldBlock)) | None => false,
+        };
+        release_start_holds(&self.held, self.reference, attempted);
+    }
 }
 /// RE-7 / CH-1 live check of the conversation's other runs before `reference`
 /// starts, each under its own lock. A pending end notice found there is held
@@ -5432,7 +5509,7 @@ fn pending_notice_run(
 }
 const NOTICE_RUN_BUSY: &str = "The end notice of a run in this conversation must go first, and that run is busy (for example checking history); nothing sent. Try again shortly";
 const NOTICE_HELD_BY_START: &str = "A workflow run is starting in this conversation; its chain line says the earlier run ended, so that run's end notice waits for the start's outcome. Nothing sent. Try again shortly";
-const NOTICE_IN_FLIGHT: &str ="The end notice of a run in this conversation is going first in another new turn now; nothing sent. Try again shortly";
+const NOTICE_IN_FLIGHT: &str = "The end notice of a run in this conversation is going first in another new turn now; nothing sent. Try again shortly";
 /// One new turn's claim on a pending end notice (TC-2): the notice's exact
 /// published text scoped to the current generation, and the client message
 /// identity its turn carries (the supply check locates the turn by it).
@@ -6067,7 +6144,17 @@ impl WorkflowRun {
         self.evaluate_compatibility(
             crate::execution_compatibility::report::Occasion::BeforeFirstAction,
         );
+        #[cfg(test)]
+        if PANIC_IN_SEND.with(|p| p.get()) == Some(false) {
+            PANIC_IN_SEND.with(|p| p.set(None));
+            panic!("fixture: the start's send path panicked before its write was attempted");
+        }
         self.attempted = true;
+        #[cfg(test)]
+        if PANIC_IN_SEND.with(|p| p.get()) == Some(true) {
+            PANIC_IN_SEND.with(|p| p.set(None));
+            panic!("fixture: the start's send path panicked after its write was attempted");
+        }
         let prepared = self.publication.prepared().clone();
         let source = match self.home.host.turn_start_prepared_run_text(
             &prepared.scope().generation,
@@ -7611,6 +7698,94 @@ for line in sys.stdin:
                 assert_eq!(notice_frames(&peer),0);
             }else{
                 assert!(notice_state(&root,&a).starts_with("pending"));
+                assert!(send_with_pending_notice(&root,&peer.generation,"thread","hello").expect("pending").is_ok());
+                assert_eq!(notice_frames(&peer),1);
+            }
+        }
+    }
+    // #1236 recheck minor (a): a panic in the start's send path (or a poisoned lock after it)
+    // still releases the start's holds, so the notice does not refuse every later turn until
+    // relaunch. With the starting run readable, its `attempted` decides; otherwise pending again.
+    #[test]
+    fn tc2_a_start_whose_send_path_panics_releases_its_holds(){
+        for attempted in [false,true]{
+            let peer=Peer::new();let (root,a)=ended_run(&peer);
+            let b={let mut r=root.lock().unwrap();r.prepare_run(peer.home.clone(),&peer.generation,"thread","next".into(),peer.project()).unwrap()};
+            let run=root.lock().unwrap().runs[&a].clone();
+            let starting=root.lock().unwrap().runs[&b].clone();
+            starting.lock().unwrap().attempted=attempted;
+            let held=hold_notices_for_start(std::slice::from_ref(&run),&b).unwrap();
+            let unwound=std::panic::catch_unwind(std::panic::AssertUnwindSafe(||{
+                let _holds=StartHolds::new(held,&b,Some(&starting));
+                panic!("fixture: the start's send path panicked");
+            }));
+            assert!(unwound.is_err());
+            assert!(run.lock().unwrap().notice_held_by_start.is_none(),"released on unwind");
+            if attempted{
+                assert!(notice_state(&root,&a).starts_with("not sent: the successor run's chain line"));
+            }else{
+                assert!(notice_state(&root,&a).starts_with("pending"));
+                assert!(send_with_pending_notice(&root,&peer.generation,"thread","hello").expect("pending").is_ok());
+                assert_eq!(notice_frames(&peer),1);
+            }
+        }
+    }
+    // CI-32 / WR TX-7 on the real run start: the shipped coordinated-knowledge-work has
+    // REVIEW-NOTES.md, so the files line names a folder. Held inside the project, it is the
+    // project-relative holding folder (never the old placeholder label). Held outside the run's
+    // project, a content-addressed supply copy is written into the project and named; when that
+    // copy cannot be written the run is not prepared, recorded or sent.
+    #[test]
+    fn run_start_files_line_names_a_usable_folder_or_refuses_the_start(){
+        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let a=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
+        let text=root.runs[&a].lock().unwrap().prepared().text().to_owned();
+        assert!(text.contains("[Chirality] Other files of this revision, in the folder \".chirality/workflows/coordinated-knowledge-work\": REVIEW-NOTES.md (sha256 "),"{text}");
+        assert!(!text.contains("selected native workflow holding copy"));
+        assert_eq!(root.runs[&a].lock().unwrap().status["otherFiles"]["basis"],"holding folder inside the project");
+        // Another explicit project: the holding copy is outside it.
+        let other=std::fs::canonicalize(std::env::temp_dir()).unwrap().join(crate::util::opaque_id("workflow-supply-project-").unwrap());
+        std::fs::create_dir(&other).unwrap();
+        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let b=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),Some(&other)).unwrap();
+        let (text,revision)={let run=root.runs[&b].lock().unwrap();(run.prepared().text().to_owned(),run.prepared().workflow().revision.clone())};
+        let label=format!(".chirality/workflow-supply/coordinated-knowledge-work/{}/coordinated-knowledge-work",crate::storage::key(&revision));
+        assert!(text.contains(&format!("in the folder \"{label}\": REVIEW-NOTES.md (sha256 ")),"{text}");
+        let copy=crate::workflow_workspace::Snapshot::capture(&other.join(&label)).unwrap();
+        assert_eq!(copy.revision(),revision,"the supply copy recomputes to the selected revision");
+        // A third project whose supply area cannot be written: refused with the cause, nothing prepared.
+        let blocked=std::fs::canonicalize(std::env::temp_dir()).unwrap().join(crate::util::opaque_id("workflow-supply-blocked-").unwrap());
+        std::fs::create_dir_all(blocked.join(".chirality")).unwrap();std::fs::write(blocked.join(".chirality/workflow-supply"),b"x").unwrap();
+        let peer=Peer::new();let mut root=peer.fixture.registered();
+        let runs=root.runs.len();
+        let refused=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),Some(&blocked)).unwrap_err();
+        assert!(refused.contains("other files of this revision could not be supplied")&&refused.contains("not prepared or sent"),"{refused}");
+        assert_eq!(root.runs.len(),runs,"no run prepared");
+        assert!(!blocked.join(".chirality/records/workflow").exists(),"nothing recorded");
+        let _=std::fs::remove_dir_all(&other);let _=std::fs::remove_dir_all(&blocked);
+    }
+    // PR #1239 recheck: on the real path the start's send panics while the starting run's lock
+    // is held. The run guard drops first (declared after the holds), so the holds' Drop reads
+    // `attempted` through the Poisoned branch: an attempted write supersedes the held notice;
+    // a panic before the write leaves it pending for the next turn.
+    #[test]
+    fn tc2_a_start_that_panics_holding_its_run_lock_reads_attempted_on_unwind(){
+        for attempted in [true,false]{
+            let peer=Peer::new();let (root,a)=ended_run(&peer);
+            let b={let mut r=root.lock().unwrap();r.prepare_run(peer.home.clone(),&peer.generation,"thread","next".into(),peer.project()).unwrap()};
+            let run=root.lock().unwrap().runs[&a].clone();
+            let starting=root.lock().unwrap().runs[&b].clone();
+            PANIC_IN_SEND.with(|p|p.set(Some(attempted)));
+            let unwound=std::panic::catch_unwind(std::panic::AssertUnwindSafe(||start_workflow_run(&root,&b)));
+            PANIC_IN_SEND.with(|p|p.set(None));
+            assert!(unwound.is_err(),"the fixture panic propagates");
+            assert!(starting.is_poisoned(),"the panic happened while the starting run's lock was held");
+            assert_eq!(starting.lock().unwrap_or_else(std::sync::PoisonError::into_inner).attempted,attempted);
+            assert!(run.lock().unwrap().notice_held_by_start.is_none(),"released on unwind");
+            if attempted{
+                assert!(notice_state(&root,&a).starts_with("not sent: the successor run's chain line"),"{}",notice_state(&root,&a));
+            }else{
+                assert!(notice_state(&root,&a).starts_with("pending"),"{}",notice_state(&root,&a));
                 assert!(send_with_pending_notice(&root,&peer.generation,"thread","hello").expect("pending").is_ok());
                 assert_eq!(notice_frames(&peer),1);
             }

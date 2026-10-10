@@ -93,8 +93,8 @@ changes marked):
 
 Left out, and why: any fifth role or host role picker (V4-HOST-05; CLM-003);
 enforcement of the task limit (K-10); changing a started conversation's role
-(L-2); consumer adoption and retirement (OI-024, DEP-006); placement beyond
-R17-5 (OI-008, OI-014).
+(L-2); consumer adoption and retirement (OI-024, DEP-006); shared-component
+placement (OI-014). Process placement follows the owner's OI-008 ruling (§8).
 
 ## 2. Historical facts and decisions (Codex 0.158.0; current account §2.1)
 
@@ -163,9 +163,16 @@ are read from the actual acting route, never inferred from0.160.0 or this sample
 
 ### 3.1 Rules
 
-- **SL-1 Four roles.** HELP_HUMAN, HELPS_HUMANS, WORKING_ITEMS and TASK with
-  their WD §5.1 meanings, from the bundled role set (§4.1). Both schemas
-  enumerate the four.
+- **SL-1 Four roles; three conversation roles.** HELP_HUMAN, HELPS_HUMANS,
+  WORKING_ITEMS and TASK with their WD §5.1 meanings, from the bundled role
+  set (§4.1). Both schemas enumerate the four. A conversation is started
+  with HELP_HUMAN, HELPS_HUMANS or WORKING_ITEMS, or with no role (SL-2).
+  TASK is not a conversation role: it is the role a manager assigns bounded
+  work to, and its guidance is supplied for that delegation (§5.3; owner
+  ruling 2026-10-10: "That scope is wrong. TASK is not a conversational
+  role. Fix the scope of work as recommended."). The start display does not
+  list TASK as a choice; a TASK start that reaches composition anyway is
+  refused before anything is sent (`refused-before-send`).
 - **SL-2 No role.** A conversation may have no role (R17-9); it is supplied
   the product guidance alone, shown as "No role", never as a fifth role.
 - **SL-3 Preselection.** A new conversation preselects the role whose
@@ -215,7 +222,8 @@ cases RC-01, RC-07, RC-15…RC-17, RC-19.
 ### 3.3 Another role, and forks (R19-3, R19-8)
 
 - **CA-1 "Continue as ‹role›".** From a started conversation the person may
-  choose "Continue as ‹role›" (any of the four, or no role). The App opens a
+  choose "Continue as ‹role›" (HELP_HUMAN, HELPS_HUMANS or WORKING_ITEMS, or
+  no role; not TASK, SL-1). The App opens a
   **new** conversation in *draft* with that role and pre-fills its first
   message with a **handoff summary**, which the person sees and can edit; it
   is not sent until the person sends it. The source conversation is unchanged.
@@ -621,7 +629,13 @@ C-6 (DEL-02-02's registered revision) is withdrawn (R19-7).
   mirror is C1-B's R3-02-04-c. v0.2 had O-8 as a runtime value with no row;
   R22-1 replaces that.
 
-## 8. Placement (R17-5; PROPOSED, OI-008)
+## 8. Placement (R17-5; SETTLED by the owner's OI-008 ruling)
+
+On 2026-10-10 the owner decided OI-008 for the whole App: "The Rust host owns
+everything that writes the person's files or the App's records, talks to
+Codex, or captures a person's act. The web view presents, and sends only what
+the person initiates. It never writes records or operates the act control."
+The placement below, first proposed under R17-5, follows it.
 
 Composition, store reading, child-role files, the request check and
 supply-record writing are in the Rust host, which owns the Codex process and
@@ -760,7 +774,7 @@ amendments are marked "(v0.2)".
 | U-R2 *Closed* (route A/B): L-2, B-8 | — | — | — |
 | U-R3 Current0.160.0 child-role carrier (per-thread `config` or `-c` session flags; CR-1a; historical0.158.0 adapter mechanism retained) | App implementation owner; a later observation | Before native child supply | Carrier open; currently not-supplied; primary sample is not child evidence |
 | U-R4 Composition size bound | App implementation owner | Before implementation | Length recorded |
-| U-R5 `UNRESOLVED{OI-008}` placement | App implementation owner | Before architecture contracts | §8 PROPOSED |
+| U-R5 *Closed* by the owner's OI-008 ruling (2026-10-10) | — | — | §8 SETTLED |
 | U-R6 `UNRESOLVED{OI-014}` role identity set placement | App/shared contract owners | Before allocation | Role set is the App's own |
 | U-R7 Host seat mapping; host distribution | DEL-02-01 with SWB owner | Deferred (DECISION-3) | Not designed |
 | U-R8 Consumer adoption evidence (OI-024; DEP-006) | Owner with consumers | Before adoption | VC-R5 positive waits |

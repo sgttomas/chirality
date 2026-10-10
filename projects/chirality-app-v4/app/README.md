@@ -12,6 +12,13 @@ Tests use the maintained invented `tests/fixtures/FX-DP1` content. Native
 confirmation tests are explicit stand-ins; they do not establish that a person
 performed an act.
 
+Process placement follows the owner's OI-008 ruling of 2026-10-10
+(`docs/ARCHITECTURE.md` §3): "The Rust host owns everything that writes the
+person's files or the App's records, talks to Codex, or captures a person's
+act. The web view presents, and sends only what the person initiates. It never
+writes records or operates the act control." `src-tauri/` holds that host;
+`src/` holds the web view.
+
 ## Current path
 
 1. The Rust host starts the stock App Server, completes its handshake and keeps
@@ -129,8 +136,8 @@ performed an act.
     presses; the selection is then recorded as "agent proposal confirmed by the
     person". Unresolved proposals show their notice. The activity view marks run
     starts and ends from the App's run records and folds the supplied run text.
-21. **Save a workflow** starts from a draft list. Under the owner's OI-008 ruling for
-    the draft workspace ("A, proceed with the Rust host."), the Rust host observes
+21. **Save a workflow** starts from a draft list. Under the owner's OI-008 ruling
+    (first given for the draft workspace as "A, proceed with the Rust host."), the Rust host observes
     the open library's `.chirality/workflow-drafts/` folders. **Open this App
     project's workflow library** opens the explicit `CHIRALITY_WORKSPACE`; the
     folder pickers still open other libraries. For each draft the host reports
@@ -147,11 +154,17 @@ performed an act.
     chooses an ordinary conversation and sends. Draft files are refused for a
     conversation with a workflow run in force. An acknowledged send keeps one
     App-kept trial pointer per draft (TT-4), which survives a relaunch.
-    *Pending owner decision (WR U-WR-24):* TT-3 as confirmed opens a new
-    not-started conversation and names non-text files (AT-10). The App does
-    neither yet: non-text files are listed "not attached". **Review for
-    registration…** opens the existing review for the listed content, refused
-    as DS-6 if the draft changed since listing.
+    Non-text files are listed "not attached". *Owner decision (WR U-WR-24,
+    2026-10-10), not yet implemented:* WR §4.2 replaces this pre-fill with a
+    trial that mirrors a real run. **Try with the authoring agent** pre-fills a
+    message asking the authoring conversation's agent to run the draft's trial
+    text through one sub-agent and report. **Try in a fresh conversation** is
+    optional and opens a new conversation with the trial text pre-filled; its
+    transcript can be brought back to the authoring conversation. Supporting
+    files are named as a registered run names them. WR §17 is the
+    implementation plan; until it lands the App behaves as described above.
+    **Review for registration…** opens the existing review for the listed
+    content, refused as DS-6 if the draft changed since listing.
     Registration stays the person's A15 act at the native confirmation. A trial
     is not a run, registration, checking or acceptance.
 22. **Stop Codex…** and **Restart Codex…** always ask first (DEL-01-04 §5.2,
@@ -250,9 +263,13 @@ performed an act.
     role labelled as a preselection (the bundled set marks none today, U-R11),
     "No role", and each role's limits as the limit account hands them (TASK
     "A task agent does not delegate: Stated, not enforced"; a modified copy
-    reads not known). TASK is listed but not offered as a conversation role,
-    as before; ROLE SL-1/CA-1 and NIR ST-5 name all four, so whether TASK may
-    start a conversation is an open owner choice. The conversation header shows the role, fixed for the
+    reads not known). The start display and Continue as offer HELP_HUMAN,
+    HELPS_HUMANS and WORKING_ITEMS (the host's `roleSet.conversationRoles`)
+    and No role. TASK is not listed as a choice: it is the role a manager
+    assigns bounded work to, and its guidance is supplied for that delegation
+    (ROLE SL-1, CA-1; NIR ST-5; owner ruling 2026-10-10, "TASK is not a
+    conversational role"). A TASK start that reaches composition anyway is
+    refused before anything is sent. The conversation header shows the role, fixed for the
     conversation's life, and its relation (its own start, continued from, or
     fork of). **Guidance changed since this conversation started** appears
     only when a file the conversation started with now differs or is missing;
@@ -302,6 +319,7 @@ performed an act.
 | `src-tauri/src/checkpoint_recorder.rs` | EXEC §2.4 first slice: CE-1 listing, CE-3 arrivals from observed AW-6/AW-7 native items, CE-11/CE-12, CE-17 waiting arrivals; written through the run's RS writer with CE-19 late-write limits; never reacts (RC-4) |
 | `src-tauri/src/run_offers.rs`, `src/RunOffers.tsx` | Exact run-offer line forms (WR §16.5 PR/FN), the finished-report proof for a *completed* end, and their presentation beneath the message |
 | `src-tauri/src/workflow_drafts.rs`, `src/WorkflowDrafts.tsx` | DEL-02-02 draft workspace in the Rust host (SQ-D D-2…D-4 observation, hygiene, §5.1 states, TT-3 composer sources, TT-4 trial pointers) and its list presentation in NIR §7 words; nothing here registers, reviews or runs |
+| `src-tauri/src/workflow_trials.rs`, `workflow_package_copy.rs`, `workflow_workspace.rs` (`compose_run_text`, `TrialText`, `files_folder`) | DEL-02-02 trial core (WR §17 steps 1–4): one composer for run texts and trial texts (TT-3), TX-7's files-line folder with content-addressed supply copies, TT-8 trial snapshots, and the create-once TT-4 trial links and observations; the trial flows and their interface are not built yet, so drafts are still tried by the attachment pre-fill |
 | `src/RunPanel.tsx` | Run panel and selected-workflow view (NIR §9 PD-1…PD-7): readable declared part, checkpoints as guidance with their recorded listing and arrivals, the run-record write notice, output standing facets from the record only (AS §8), readable advisory compatibility |
 | `src-tauri/src/conversation_roles.rs`, `src/ConversationRoles.tsx` | Continue as ‹role› handoffs and same-role Fork through the Host (NIR §5.8, ROLE §3.3), the role limit account (ROLE §6.2), the readable start display, role header and guidance-changed flag (ROLE §4.4) |
 | `src/NativeActivity.tsx`, `src/PlanMode.tsx` | Readable per-thread native activity from the `native_items.rs` view (DEL-01-03 plans/tools/delegation with the DEL-01-04 message part) and the experimental plan-mode element |
@@ -432,17 +450,32 @@ Project run logs use `.chirality/records/runs/<safe-run-key>/<safe-writer-key>.j
 outside-run acts use `.chirality/records/acts/<safe-writer-key>.jsonl` with captures
 in `.chirality/captures/`. Library A15 allocation uses the library's
 `.chirality/records/acts.jsonl` and `.chirality/captures/`; its native registration
-witness remains unfinished. Storage keys are separate from governed identities.
+witness remains unfinished. There is no registration attempt journal (owner
+ruling 2026-10-10): when a library is opened, SQ-X finds A15 records that no
+ledger line cites and decides from the record and the revision store (WR §6
+X-1, X-2; CI-24 (b)). Each open review holds
+`.chirality/workflow-registration.live.lock` shared until its attempt is
+closed, and X-2 runs only when it can hold that file exclusively, so a live
+attempt is not closed as lost while its review holds the lock (tested with
+separate owners in one process; release at process death is `flock`'s, not
+tested). A
+`.chirality/.workflow-staging/attempts/` folder left by an earlier build is
+no longer read. Storage keys are separate from governed identities.
 Explicitly discovered legacy `records/coordination.rs.jsonl` stays intact.
 Unwritable or incomplete targets report limits without silent relocation.
 
 Attachment metadata arrays and pointer-only client request records live under
 the App user-data `runtime/nir/attachment-supplies/` and
 `runtime/hosting/client-requests/` directories. App-kept draft bases and draft
-trial pointers live under `runtime/wr/draft-bases/` and
-`runtime/wr/trial-pointers/` there (WR §3). They contain no selected text,
-native transcript or generated supplier prompt cache. REC owns project/context
-tags through the existing pointer ledger; no competing ledger is opened.
+trial pointers (and the trial links and observations of WR TT-4) live under
+`runtime/wr/draft-bases/` and `runtime/wr/trial-pointers/` there (WR §3). They
+contain no selected text, native transcript or generated supplier prompt cache.
+REC owns project/context tags through the existing pointer ledger; no competing
+ledger is opened. In the project, `.chirality/workflow-supply/` holds
+content-addressed copies of workflow package files named by a run text's files
+line (WR TX-7) and `.chirality/workflow-trials/` trial snapshots (TT-8); the
+App never rewrites or removes either, and recreates a deleted one when it is
+next needed.
 
 Trustworthy persistent cold replay and SEAL-2 remain unfinished under CI-10 and
 I3-CUST. Current code refuses unverified replay while preserving evidence.
