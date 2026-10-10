@@ -65,10 +65,12 @@ For each edition, use its explicit source and output path:
 python3 docs/alignment-manual/render_manual.py \
   --source docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v4.md \
   --output docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v4.html \
-  --basis-date 2026-10-10 --basis-revision <source-commit>
+  --basis-date 2026-10-10 --basis-revision 22dd62a7f04b6f4f4f9cab3cd3183d57c06cd569 \
+  --edition-label 'Operational guide' --metadata-at-end
 ```
 
-Use the corresponding management or Field Book filenames for the other editions.
+Use the corresponding filenames and labels `Management manual` or `Field book`
+for the other editions.
 Add `--check` to verify without writing. The displayed revision identifies the
 source used for rendering, not human acceptance. Check links and inspect the
 result at desktop and narrow widths. Review content before preparing revised
