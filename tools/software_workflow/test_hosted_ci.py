@@ -146,6 +146,14 @@ class HostedCITests(unittest.TestCase):
         self.assertEqual(selection['modes'], modes(piping='full', **{'piping-numerical':'full'}))
         self.assertEqual(select_paths(['projects/chirality-piping/docs/note.md'], PROFILE)['modes'], modes())
 
+    def test_piping_python_implementation_and_tests_select_python_lane(self):
+        for path in ('projects/chirality-piping/tools/product_preview/validate.py',
+                     'projects/chirality-piping/tests/product_preview/test_contract.py',
+                     'projects/chirality-piping/tests/security/test_permissions.py'):
+            selection = select_paths([path], PROFILE)
+            self.assertEqual(selection['modes']['piping-numerical'], 'full')
+            self.assertEqual(selection['modes']['piping'], 'full')
+
     def test_new_required_results_never_launder_missing_failed_or_cancelled_checks(self):
         for suite in ('app-v4','piping','piping-numerical'):
             for state in ('failure','cancelled','skipped',''):

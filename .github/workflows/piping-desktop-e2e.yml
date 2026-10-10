@@ -98,7 +98,7 @@ jobs:
           retention-days: 7
 
   numerical:
-    name: Numerical oracles and product Python contracts
+    name: Numerical Cargo oracles
     needs: selection
     if: needs.selection.outputs.numerical_mode == 'full'
     runs-on: ubuntu-latest
@@ -127,21 +127,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
-      - name: Install Python check dependencies
-        run: python3 -m pip install -r projects/chirality-piping/requirements-dev.txt
       - uses: actions/download-artifact@v4
         with:
           name: piping-ci-selection
       - name: Locked Cargo numerical suite
         run: python3 projects/chirality-piping/tools/ci/numerical_ci.py --plan piping-ci-plan.json --evidence-dir piping-numerical-evidence
-      - name: Python product contracts and qualification oracles
-        working-directory: projects/chirality-piping
-        run: >-
-          python3 -m pytest -q tests/product_preview tests/security
-          tests/test_*schema.py tests/test_*schemas.py
-          tests/test_qualification*.py tests/test_*canonical_json_adapter.py
-          tests/test_constraint_validation.py tests/test_source_blocks_validation.py
-          tests/test_operation_validation_preview.py tests/test_analytical_solver_boundary_adapter.py
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
@@ -152,6 +142,37 @@ jobs:
             piping-numerical-evidence/cargo-logs/*.log
           if-no-files-found: warn
           retention-days: 7
+
+  python-product:
+    name: Python product contracts
+    needs: selection
+    if: needs.selection.outputs.numerical_mode == 'full'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout: |
+            /*
+            !/execution/
+            !/projects/*/execution/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install Python check dependencies
+        run: python3 -m pip install -r projects/chirality-piping/requirements-dev.txt
+      - name: Python product contracts and qualification oracles
+        working-directory: projects/chirality-piping
+        run: >-
+          python3 -m pytest -q tests/product_preview tests/security
+          tests/test_*schema.py tests/test_*schemas.py
+          tests/test_qualification*.py tests/test_*canonical_json_adapter.py
+          tests/test_constraint_validation.py tests/test_source_blocks_validation.py
+          tests/test_operation_validation_preview.py tests/test_analytical_solver_boundary_adapter.py
 
   browser-matrix:
     name: Broad browser matrix (${{ matrix.shard }}/4)
@@ -187,7 +208,7 @@ jobs:
 
   desktop-e2e:
     name: Desktop E2E (source mode)
-    needs: [selection, product, numerical]
+    needs: [selection, product, numerical, python-product]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -208,6 +229,8 @@ jobs:
           SELECTION: ${{ needs.selection.result }}
           PRODUCT: ${{ needs.product.result }}
           NUMERICAL: ${{ needs.numerical.result }}
+          PYTHON_PRODUCT_RESULT: ${{ needs.python-product.result }}
         run: |
           python3 tools/software_workflow/hosted_ci.py aggregate --suite piping --mode "$MODE" --selection "$SELECTION" --product "$PRODUCT"
           python3 tools/software_workflow/hosted_ci.py aggregate --suite piping-numerical --mode "$NUMERICAL_MODE" --selection "$SELECTION" --product "$NUMERICAL"
+          python3 tools/software_workflow/hosted_ci.py aggregate --suite piping-numerical --mode "$NUMERICAL_MODE" --selection "$SELECTION" --product "$PYTHON_PRODUCT_RESULT"

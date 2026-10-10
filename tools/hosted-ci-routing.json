@@ -222,7 +222,9 @@
         "projects/chirality-piping/apps/desktop/src-tauri/src/lib.rs",
         "projects/chirality-piping/tests/test_ci_*.py",
         "projects/chirality-piping/tests/test_numerical*.py",
-        ".github/workflows/piping-desktop-e2e.yml"
+        ".github/workflows/piping-desktop-e2e.yml",
+        "projects/chirality-piping/tests/**",
+        "projects/chirality-piping/tools/**"
       ],
       "checks": [
         "piping-numerical"
