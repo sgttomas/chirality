@@ -163,19 +163,11 @@ jobs:
           python-version: "3.13"
       - name: Install Python check dependencies
         run: python3 -m pip install -r projects/chirality-piping/requirements-dev.txt
-      - name: Python product contracts and qualification oracles
-        working-directory: projects/chirality-piping
-        run: |
-          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
-            python3 -m pytest -q tests/product_preview tests/security \
-              tests/test_*schema.py tests/test_*schemas.py \
-              tests/test_qualification*.py tests/test_*canonical_json_adapter.py \
-              tests/test_constraint_validation.py tests/test_source_blocks_validation.py \
-              tests/test_operation_validation_preview.py tests/test_analytical_solver_boundary_adapter.py
-          else
-            python3 -m pytest -q tests/security \
-              tests/test_constraint_validation.py tests/test_source_blocks_validation.py
-          fi
+      - uses: actions/download-artifact@v4
+        with:
+          name: piping-ci-selection
+      - name: Selected Python product contracts and qualification oracles
+        run: python3 projects/chirality-piping/tools/ci/python_ci.py --plan piping-ci-plan.json
 
   browser-matrix:
     name: Broad browser matrix (${{ matrix.shard }}/4)
