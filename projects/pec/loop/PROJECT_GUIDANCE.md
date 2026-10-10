@@ -25,7 +25,11 @@ Prompts and TASK briefs must derive paths from the active checkout:
 - Use `{REPO_ROOT}` and `{WORKING_ROOT}` in project-local instructions and
   briefs instead of machine-specific absolute paths.
 
-## Product Posture
+## Historical product posture
+
+PEC is retired as an active product programme. The following describes its
+previous design and retained-code boundaries, not a delivery commitment.
+Use `LOOP_INIT.md` for explicitly requested maintenance.
 
 PEC is the Chirality **coordination plane**: a deterministic, rebuildable
 projection of governed file truth plus an ephemeral presence layer, embodying

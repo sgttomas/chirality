@@ -1,14 +1,14 @@
-# pec development entry
+# PEC maintenance entry
 
-Work in `projects/pec` relative to the repository root. Read Root
-`AGENTS.md`, the assigned role and `docs/PRD.md`. The current objective comes from
-the init prompt and owner steering; this entry selects no standing backlog.
-Consult only affected ScopeOfWork, Design, dependencies and code. Existing
-folder structure and dependency formats remain until a separately authorized
-migration. Use `coordinated-knowledge-work` for coordination when useful.
+PEC is retired as an active product programme. There is no standing loop or
+implementation backlog. Read Root `AGENTS.md` and `docs/PRD.md` when explicitly
+asked to maintain retained source or compatibility interfaces.
 
-PEC remains content-minimal and non-authoritative, with no second execution loop. Its frozen reference corpus and product fences remain effective; see Product Posture, Frozen Reference Corpus, Shared Runtime Boundary and Data And Residency in `loop/PROJECT_GUIDANCE.md`. Its product future is not decided by this reset.
+Existing code remains optional and non-authoritative: files govern; PEC never
+dispatches work, grants permissions or makes merge decisions. Preserve the
+applicable containment, credential and data-residency boundaries of existing
+interfaces. No private material belongs in this public repository.
 
-No routine run records, receipts, notices, handoff chains, MEMORY entries or
-lifecycle updates are required. Decisions edit their current source; the PR is
-the change record. Explicit holds and reserved decisions remain effective.
+Use current source and focused checks. Do not recreate receipts, decision
+registers, lifecycle records or a successor service. New product development
+requires a new owner direction; retirement itself authorizes none.

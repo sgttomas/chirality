@@ -1,3 +1,0 @@
-FindingID,OriginalVerdict,BackcheckVerdict,Evidence
-V001,CORRECTION_REQUIRED,RESOLVED,VALIDATION.json exact two residual-ID cells; selected full reciprocity
-V002,CORRECTION_REQUIRED,RESOLVED,VALIDATION.json exact CON001 ClaimClass cell; held meaning preserved

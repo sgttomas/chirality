@@ -1,5 +1,13 @@
 # PEC — Product Requirements Document
 
+PEC is retired as an active product programme by the owner's 2026-10-09
+instruction: “I agree with your assessment and recommendation to retire it.”
+The specification below describes the retained implementation and historical
+design; it creates no remaining delivery, qualification or consumer-adoption
+commitment. Existing source and compatibility interfaces remain available.
+No successor service, MCP server or Decisions API integration is authorized
+by this retirement. The pre-retirement basis is commit `24e9117b9c`.
+
 | | |
 |---|---|
 | **Version** | 2.4 |

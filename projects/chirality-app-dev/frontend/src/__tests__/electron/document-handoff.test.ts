@@ -1,12 +1,12 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { mkdir, mkdtemp, writeFile, symlink, rm } from 'node:fs/promises';
 import path from 'node:path';
+import { tmpdir } from 'node:os';
 import { createDocumentHandoffHandler } from '../../app/api/working-root/file/file-policy';
 import { isAuthorizedSender, type IpcSenderEvent } from '../../../electron/ipc-sender-policy';
 let base: string, root: string, instruction: string;
 beforeEach(async () => {
-  const dir = path.resolve('../execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-04/instances/pkg02_t3/author/fixtures');
-  await mkdir(dir, { recursive: true }); base = await mkdtemp(path.join(dir, 'ipc-')); root = path.join(base, 'root'); instruction = path.join(base, 'instruction');
+  base = await mkdtemp(path.join(tmpdir(), 'chirality-document-handoff-')); root = path.join(base, 'root'); instruction = path.join(base, 'instruction');
   await Promise.all([mkdir(root), mkdir(instruction)]); await writeFile(path.join(root, 'report.docx'), 'office');
 });
 afterEach(async () => { await rm(base, { recursive: true, force: true }); });

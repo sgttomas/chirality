@@ -25,26 +25,6 @@
   "containers": [
     "runtime"
   ],
-  "keep": [
-    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07",
-    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_EFFECTIVE_2026-09-06",
-    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05",
-    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06",
-    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07",
-    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07",
-    "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07",
-    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_APPLICATION_2026-09-07",
-    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_PREPARATION_2026-09-07"
-  ],
-  "keep_reasons": {
-    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_ACCOUNT_AUTHORITY_ADOPTION_2026-09-07": "Retained until the planned archive batch verifies all remaining consumers; the former Root governance checks are retired.",
-    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_EFFECTIVE_2026-09-06": "Retained until the planned archive batch verifies all remaining consumers; the former Root governance checks are retired.",
-    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05": "Retained until the planned archive batch verifies all remaining consumers; the former Root governance checks are retired.",
-    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_GATE5_2026-09-06": "Retained until the planned archive batch verifies all remaining consumers; the former Root governance checks are retired.",
-    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_SOW_SUCCESSOR_ADOPTION_2026-09-07": "Retained until the planned archive batch verifies all remaining consumers; the former Root governance checks are retired.",
-    "execution/_Coordination/AgentRuns/ROOT_RUNTIME_STAGE2_ADOPTION_2026-09-07": "Retained until the planned archive batch verifies all remaining consumers; the former Root governance checks are retired.",
-    "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07": "Retained until the planned archive batch verifies all remaining consumers; the former Root governance checks are retired.",
-    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_APPLICATION_2026-09-07": "Retained until the planned archive batch verifies all remaining consumers; the former Root governance checks are retired.",
-    "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_STAGE2_PREPARATION_2026-09-07": "Retained until the planned archive batch verifies all remaining consumers; the former Root governance checks are retired."
-  }
+  "keep": [],
+  "keep_reasons": {}
 }
