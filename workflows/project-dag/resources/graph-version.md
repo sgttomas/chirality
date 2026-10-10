@@ -14,7 +14,7 @@ case file.
 |---|---|
 | `GRAPH_BASIS.md` | Identity (`DAG-NNN`, trigger, predecessor, and for a successor the currency audit and departures it decides); objective; edge semantics; direction convention; tracking mode and completeness; inventory source, count, exemptions, and evidence states; case home; Git revision, manifest, and closure snapshot(s); selection rules as applied, with the checkpoint-1 decision reference; cut and merge rulings; candidate-layer summary; exclusions by disposition; findings routed to owners; limitations and open questions; how to reproduce the version. |
 | `DeliverableNodes.csv` | One row per included inventory unit: `DeliverableID,PackageID,DeliverableName,ExecutionPath,DependenciesPath,RegisterState,TrackingMode,InventorySource`. `RegisterState` is `PRESENT`, `MISSING`, `UNREADABLE`, `SCHEMA_INVALID`, or `DECLARED_ONLY`. Exempt units are listed in `GRAPH_BASIS.md`, not here. Nodes with no edges remain. |
-| `DependencyEdges.csv` | Admitted rows: the 29 core v3.1 columns in `docs/SPEC.md` §6.2 order, copied exactly, followed by the provenance columns `SourceRegister` (path relative to `EXECUTION_ROOT`), `SourceRegisterSHA256`, `SourceRecord` (1-based data-record ordinal in the source file), and `SelectionRule`. Source extension columns stay in the register. |
+| `DependencyEdges.csv` | Admitted rows: the 29 core v3.1 columns in `docs/COMPATIBILITY_FORMATS.md#62-column-specification` order, copied exactly, followed by the provenance columns `SourceRegister` (path relative to `EXECUTION_ROOT`), `SourceRegisterSHA256`, `SourceRecord` (1-based data-record ordinal in the source file), and `SelectionRule`. Source extension columns stay in the register. |
 | `CandidateEdges.csv` | Non-gating candidate rows in the same columns, plus `CandidateReason` (`SCC_UNRESOLVED`, `SELF_LOOP`, or `CONFIRMATION_PENDING`), `SCCRef` (the SCC ID in the version's closure snapshot), `CaseRef` (the stable case folder in the project's case home; required for `SCC_UNRESOLVED`), and `OpenQuestion`. |
 | `ExcludedRows.csv` | `SourceRegister,SourceRegisterSHA256,SourceRecord,DependencyID,FromDeliverableID,Direction,DependencyType,TargetType,TargetDeliverableID,TargetRefID,Disposition,RuleOrRuling,RepresentedBy,Notes`. |
 | `SOURCE_MANIFEST.sha256` | `sha256sum` lines, relative to `EXECUTION_ROOT`, for every in-scope `Dependencies.csv` and `_DEPENDENCIES.md` and the accepted decomposition registers used for the inventory. |
@@ -22,14 +22,14 @@ case file.
 | `Evidence/` | `admissible_audit.json`, `dag_audit.json`, optional `candidate_audit.json`, `Tool_Run.json`, `Accounting.md`, any assembly script used (preserved for rerun), and an optional `TopologicalOrder.md`. |
 
 `Status=CANDIDATE` is not a valid register or edge status
-(`docs/SPEC.md` §6.7). The candidate layer is therefore a separate file whose
+(`docs/COMPATIBILITY_FORMATS.md#historical-specification` §6.7). The candidate layer is therefore a separate file whose
 rows keep their source `Status=ACTIVE`; placement in that file is what makes
 them non-gating.
 
 ## Required fields
 
 Every row in `DependencyEdges.csv` and `CandidateEdges.csv` carries the 29 core
-v3.1 columns. `docs/SPEC.md` §5.4 makes three fields that §6.2 marks SHOULD
+v3.1 columns. `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4 makes three fields that §6.2 marks SHOULD
 REQUIRED in an accepted version: `Explicitness`, `SatisfactionStatus`, and
 `Confidence`. Each holds a canonical §6.3 value. `audit_dag.py --canonical`
 reports a blank or non-canonical value as a canonical finding, and `--strict`

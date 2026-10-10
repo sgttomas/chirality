@@ -37,7 +37,7 @@ An accepted scope-change amendment does not re-run Functions 1 and 2; its amende
 
 **Action:**
 - Ask the human how they intend to coordinate work across packages/deliverables.
-- Offer the coordination representations (`docs/TYPES.md` §6), which differ in what drives sequencing:
+- Offer the coordination representations (`docs/COMPATIBILITY_FORMATS.md#historical-vocabulary` §6), which differ in what drives sequencing:
 
 | Representation | What it means | When it fits |
 |---|---|---|
@@ -45,7 +45,7 @@ An accepted scope-change amendment does not re-run Functions 1 and 2; its amende
 | `DEPENDENCY_TRACKED` | The dependency graph drives sequencing | Smaller programs or teams committed to maintaining the graph |
 | `HYBRID` | A combination of schedule-first and dependency-tracked | When a schedule drives some sequencing and recorded dependencies drive the rest |
 
-- Separately, offer the dependency tracking modes (`docs/SPEC.md` §5.3; see the contract glossary): `NOT_TRACKED` (coordination outside the files; lifecycle state only), `DECLARED` (only interface-critical dependencies recorded; humans manage the rest), or `FULL_GRAPH` (dependencies intended to be complete and acyclic; blockers can be computed). The representation does not change what a mode means.
+- Separately, offer the dependency tracking modes (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3; see the contract glossary): `NOT_TRACKED` (coordination outside the files; lifecycle state only), `DECLARED` (only interface-critical dependencies recorded; humans manage the rest), or `FULL_GRAPH` (dependencies intended to be complete and acyclic; blockers can be computed). The representation does not change what a mode means.
 - Record both choices in `{COORDINATION_ROOT}/_COORDINATION.md`.
 - Bootstrap coordination root: `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT} _Coordination`
 
@@ -114,7 +114,7 @@ Run this phase **only if** the human selects `DECLARED` or `FULL_GRAPH`.
   - Folder labels follow the project's recorded label rule where one exists; the `preparation` skill's sanitization rule is the default for new workspaces.
 - `PREPARATION_ACTOR` uses the language model only to populate metadata text from the decomposition and any human-confirmed declarations:
   - `_CONTEXT.md`
-  - `_DEPENDENCIES.md` (the `docs/SPEC.md` §5.2 skeleton given in the `preparation` skill's scaffold contract, carrying the recorded dependency tracking mode)
+  - `_DEPENDENCIES.md` (the `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.2 skeleton given in the `preparation` skill's scaffold contract, carrying the recorded dependency tracking mode)
   - `_REFERENCES.md`
 - `PREPARATION_ACTOR` validates each newly created deliverable or knowledge-type folder with:
   - `tools/validation/check_min_viable_fileset.sh {folder}`
@@ -213,7 +213,7 @@ Run this phase only when the recorded dependency tracking mode is `DECLARED` or 
 1. After the production contracts from Phase 2.2 exist, dispatch **TASK + `dependency-extract`** once per deliverable (one deliverable per brief), with `SCOPE`, `DECOMPOSITION_PATH`, and the write boundary of `workflows/dependency-extract/resources/brief.md`. The default `DOC_ROLE_MAP` reads `ScopeOfWork.md`.
 2. After all extraction runs report, dispatch **TASK + `audit-dep-closure`** over the accepted scope inventory, with any declared exemptions and `UPDATE_LATEST_POINTER` set by the brief.
 3. Route each non-trivial SCC in the closure result to **`scc-resolution-case`** in the project's case home (`_DAG/cases/<CASE-ID>/`, or a legacy PKG-00 control deliverable that already holds its cases). Cycle-participating edges stay non-gating and are reported as held until the owning decisions resolve them (see Phase 3.1).
-4. Where the project needs an accepted DAG, hand off to the **`project-dag`** workflow with the closure snapshot, the frozen scope inventory, and the SCC cases. It constructs a version from this dependency evidence and ends in explicit human acceptance (`docs/SPEC.md` §5.4). Do not present the closure snapshot or its `_LATEST.md` observation pointer as the accepted DAG.
+4. Where the project needs an accepted DAG, hand off to the **`project-dag`** workflow with the closure snapshot, the frozen scope inventory, and the SCC cases. It constructs a version from this dependency evidence and ends in explicit human acceptance (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4). Do not present the closure snapshot or its `_LATEST.md` observation pointer as the accepted DAG.
 
 **Gate question:** “Dependency registers extracted for [N] deliverables; closure audit [status] with [K] SCCs routed to resolution cases. Proceed to semantic lensing (if used), or first construct and accept the project DAG (`project-dag`)?”
 
@@ -372,12 +372,12 @@ for the method contracts.
 
 Dependencies:
 - If dependency tracking mode is `DECLARED` or `FULL_GRAPH`:
-  - Where the project has **no accepted project DAG**, compute `BLOCKED/UNBLOCKED` only from the recorded register (`docs/SPEC.md` §5.3). That register is the union of the declared entries in `_DEPENDENCIES.md` and the rows of `Dependencies.csv` when present. Do not rely on the CSV alone: a declaration not yet mirrored as an `Origin=DECLARED` row still counts.
+  - Where the project has **no accepted project DAG**, compute `BLOCKED/UNBLOCKED` only from the recorded register (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3). That register is the union of the declared entries in `_DEPENDENCIES.md` and the rows of `Dependencies.csv` when present. Do not rely on the CSV alone: a declaration not yet mirrored as an `Origin=DECLARED` row still counts.
     - Treat a declared entry and a row for the same direction and target as one edge, counted once. Where they disagree, use the declared entry and report the disagreement.
     - For an entry without a CSV row, compare its `Required maturity` with the upstream deliverable's `_STATUS.md` state. Use the Phase 1.3 default threshold when the entry states none.
     - Under `FULL_GRAPH`, compute blockers only after the closure audit and cycle treatment (Phase 2.2b).
-  - Where the project has an accepted project DAG, compute them instead from its accepted current version (resolved through `_DAG/_LATEST.md`), with satisfaction read from the local files. Report deliverables the latest currency audit lists as `DAG pending`, or whose local evidence departs from the version, as pending, not blocked or unblocked (`docs/SPEC.md` §5.4).
-  - Edges that participate in an unresolved cycle (SCC) are non-gating: exclude them from blocker computation and report them separately as **HELD** pending resolution (`docs/CYCLE_DRIVEN_RESOLUTION.md` §2 rule 4; `scc-resolution-case`). Do not label a deliverable blocked, or withhold independent work, solely because of a held edge.
+  - Where the project has an accepted project DAG, compute them instead from its accepted current version (resolved through `_DAG/_LATEST.md`), with satisfaction read from the local files. Report deliverables the latest currency audit lists as `DAG pending`, or whose local evidence departs from the version, as pending, not blocked or unblocked (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4).
+  - Edges that participate in an unresolved cycle (SCC) are non-gating: exclude them from blocker computation and report them separately as **HELD** pending resolution (`docs/COMPATIBILITY_FORMATS.md#historical-cycle-method` §2 rule 4; `scc-resolution-case`). Do not label a deliverable blocked, or withhold independent work, solely because of a held edge.
 - If dependency tracking mode is `NOT_TRACKED`:
   - Do not label items as blocked/available.
 
@@ -397,9 +397,9 @@ Additionally, if dependency tracking mode is enabled, provide an **advisory** se
 - UNBLOCKED (recorded or accepted-version dependencies met)
 - BLOCKED (recorded or accepted-version dependencies not met)
 - HELD (edges in unresolved cycles; non-gating and excluded from BLOCKED)
-- DAG PENDING (accepted project DAG only: deliverables affected by an undecided departure, each with the departure and the decision awaited; no ready or blocked verdict, `docs/SPEC.md` §5.4)
+- DAG PENDING (accepted project DAG only: deliverables affected by an undecided departure, each with the departure and the decision awaited; no ready or blocked verdict, `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4)
 
-Under `DECLARED`, label this section a partial view of the recorded critical edges (`docs/SPEC.md` §5.3).
+Under `DECLARED`, label this section a partial view of the recorded critical edges (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3).
 
 WORKING_ITEMS does not assign or recommend priorities.
 
@@ -509,8 +509,8 @@ Run this phase when `SETUP_LOG.md` has no `BASELINE` line: a project set up befo
 - Resolve the accepted snapshot from `{EXECUTION_ROOT}/_ScopeChange/_LATEST.md`. List any earlier accepted `SCA-*` snapshots not covered by the `SETUP_LOG.md` baseline whose setup hand-back has no `COMPLETE` line there, and take them in amendment order in the same plan. Where later amendments act on the same entity, the latest accepted state governs; show such cases in the plan. An amendment covered by the baseline never enters the plan.
 - Resolve the accepted action register through the snapshot's group-2 `ACCEPTED_MANIFEST.csv` (`Amendment_Actions.csv` or its bound distinct name) and verify its hash. Read `Propagation_Plan.md` and `Handoff_State.md` for the hand-back, deferred items and blockers.
 - Read each affected entity's row in the amended decomposition, and the recorded representation, dependency tracking mode and threshold in `_COORDINATION.md`. Do not re-run Phases 1.2–1.3.
-- For each affected deliverable, resolve its production format (`docs/SPEC.md` §2.2) and lifecycle state. Derive the neighbours (contract, *`INCREMENTAL` action treatment*).
-- Prepare the incremental plan: each entity with its action, treatment, stages, write targets and actor; the dependency stages for the recorded mode (Phase 5.6); semantic or DOMAIN stages the project uses; derivatives made stale (estimates, schedules, hypergraph, semantic artifacts) with their owners; where the project has an accepted project DAG, the deliverables for which it becomes stale, to be confirmed by the Phase 5.6 currency audit (`docs/SPEC.md` §5.4); and any decisions the stages reserve for the human.
+- For each affected deliverable, resolve its production format (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §2.2) and lifecycle state. Derive the neighbours (contract, *`INCREMENTAL` action treatment*).
+- Prepare the incremental plan: each entity with its action, treatment, stages, write targets and actor; the dependency stages for the recorded mode (Phase 5.6); semantic or DOMAIN stages the project uses; derivatives made stale (estimates, schedules, hypergraph, semantic artifacts) with their owners; where the project has an accepted project DAG, the deliverables for which it becomes stale, to be confirmed by the Phase 5.6 currency audit (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4); and any decisions the stages reserve for the human.
 
 **Gate question:** "Accepted amendment [ID] (register hash [H]): [a] to scaffold, [r] retired, [m] modified ([h] held at `CHECKING` or `ISSUED`), [n] neighbours for dependency refresh under [mode]. Confirm this incremental plan?"
 
@@ -556,8 +556,8 @@ Run this phase when `SETUP_LOG.md` has no `BASELINE` line: a project set up befo
 | `OPEN`, no production contract | Nothing to update. The amended `_CONTEXT.md` is the basis for a later `MODE=INIT`. |
 | `SOW_V1` at `INITIALIZED`, `SEMANTIC_READY` or `IN_PROGRESS` | If the accepted group-2 write boundary named `ScopeOfWork.md`, the amendment already changed it: dispatch `scope-of-work` `MODE=VERIFY`. Otherwise dispatch `scope-of-work` `MODE=REVISE` (`STATUS_POLICY: NO_STATUS_TOUCH`) with the amendment reference, the accepted action rows naming the deliverable, the register hash, the `REVISION_SCOPE` the amendment names and the prior contract hash; it ends with `MODE=VERIFY`. |
 | `LEGACY_FOUR_DOC` | `four-documents` with `RUN_PASSES: P1_P2`, only when the resolver confirms a complete legacy-only kit. Conversion remains a separate `MODE=CONVERT` undertaking. |
-| `CHECKING` | Frozen and held for the human. Report it; the update waits for a human reversal to `IN_PROGRESS` (`docs/SPEC.md` §3.3), after which the `SOW_V1` route above applies. |
-| `ISSUED` | Held for the human; do not edit. This amendment's accepted action register names the deliverable with `MODIFY` (or `RECLASSIFY` with `ScopeChanging` `YES`), so it is the record that authorizes reopening under `docs/SPEC.md` §3.3. Present the reopening as a human decision: the human records `ISSUED → IN_PROGRESS` in `_STATUS.md`, citing the accepted amendment snapshot, with `tools/scaffolding/write_status.sh <DEL_PATH> IN_PROGRESS human --amendment {AMENDMENT_ID} --approval-sha <commit that holds the committed amendment records and is an ancestor of HEAD>`. The tool first runs `tools/validation/check_amendment_reopen.py` on the amendment records as committed at that SHA; uncommitted records do not count. Where it refuses a lawful reopening (a `RECLASSIFY` in a legacy register without `ScopeChanging`, a run without hash-bound decision snapshots, or a further reopening under an amendment already recorded in `_STATUS.md`), report the refusal; the human records the transition directly. After that, the `SOW_V1` route above applies. No agent writes it. |
+| `CHECKING` | Frozen and held for the human. Report it; the update waits for a human reversal to `IN_PROGRESS` (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §3.3), after which the `SOW_V1` route above applies. |
+| `ISSUED` | Held for the human; do not edit. This amendment's accepted action register names the deliverable with `MODIFY` (or `RECLASSIFY` with `ScopeChanging` `YES`), so it is the record that authorizes reopening under `docs/COMPATIBILITY_FORMATS.md#historical-specification` §3.3. Present the reopening as a human decision: the human records `ISSUED → IN_PROGRESS` in `_STATUS.md`, citing the accepted amendment snapshot, with `tools/scaffolding/write_status.sh <DEL_PATH> IN_PROGRESS human --amendment {AMENDMENT_ID} --approval-sha <commit that holds the committed amendment records and is an ancestor of HEAD>`. The tool first runs `tools/validation/check_amendment_reopen.py` on the amendment records as committed at that SHA; uncommitted records do not count. Where it refuses a lawful reopening (a `RECLASSIFY` in a legacy register without `ScopeChanging`, a run without hash-bound decision snapshots, or a further reopening under an amendment already recorded in `_STATUS.md`), report the refusal; the human records the transition directly. After that, the `SOW_V1` route above applies. No agent writes it. |
 
 - Report existing `_SEMANTIC.md` or `_SEMANTIC_LENSING.md` of a modified deliverable as stale; rerun them only where the project uses semantic lensing.
 - **DOMAIN:** modified KTY content goes through the amendment's KTY remediation lanes (`REGENERATE_CONTENT`, `VERIFY_ONLY`). Report rows that are not `COMPLETE`.
@@ -566,12 +566,12 @@ Run this phase when `SETUP_LOG.md` has no `BASELINE` line: a project set up befo
 
 #### Phase 5.6: Refresh dependency stages for the affected scope
 
-Follow the recorded tracking mode (`docs/SPEC.md` §5.3) and Phase 2.2b's briefs, limited to the affected deliverables and their neighbours:
+Follow the recorded tracking mode (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3) and Phase 2.2b's briefs, limited to the affected deliverables and their neighbours:
 
 - **`NOT_TRACKED`:** skip extraction and closure audit, and record the skip.
 - **`DECLARED`:** where the Phase 1.3 rules call for extracted registers, dispatch `dependency-extract` (`MODE: UPDATE`, one deliverable per brief) for each affected deliverable that has a production contract and each neighbour; then `audit-dep-closure` with an explicit `SCOPE` list of those deliverables and the retired exemptions. Report the result as a partial view.
 - **`FULL_GRAPH`:** dispatch `dependency-extract` for the same deliverables as above, then run `audit-dep-closure` over the accepted inventory (its `SCOPE: ALL` rules, with retired exemptions): a new cycle through a changed edge can pass through unaffected deliverables. The audit reads existing registers; it does not re-extract them. Route new SCCs to `scc-resolution-case`.
-- **Accepted project DAG (`DECLARED` or `FULL_GRAPH`):** where the project has an accepted project DAG (`_DAG/_LATEST.md`), hand off to `project-dag` after extraction and closure for a currency audit (`project-dag` `resources/currency.md`, `docs/SPEC.md` §5.4) naming the accepted amendment. An accepted inventory change or a changed arc is a departure: the affected deliverables it lists are `DAG pending` until the human accepts the candidate successor or rejects the change, and they get no ready or blocked verdict from dependencies meanwhile. Unaffected deliverables continue on the accepted version. This function does not edit the accepted version, prepare or accept its successor, or clear the flag; `project-dag` owns those steps and their human checkpoint.
+- **Accepted project DAG (`DECLARED` or `FULL_GRAPH`):** where the project has an accepted project DAG (`_DAG/_LATEST.md`), hand off to `project-dag` after extraction and closure for a currency audit (`project-dag` `resources/currency.md`, `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4) naming the accepted amendment. An accepted inventory change or a changed arc is a departure: the affected deliverables it lists are `DAG pending` until the human accepts the candidate successor or rejects the change, and they get no ready or blocked verdict from dependencies meanwhile. Unaffected deliverables continue on the accepted version. This function does not edit the accepted version, prepare or accept its successor, or clear the flag; `project-dag` owns those steps and their human checkpoint.
 - A new deliverable whose production contract does not yet exist is extracted after Phase 5.3 completes for it; record the wait. Where an accepted project DAG exists, the currency audit follows that extraction or records the deliverable's evidence as not yet comparable.
 
 ---

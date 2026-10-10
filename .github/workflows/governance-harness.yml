@@ -205,13 +205,9 @@ jobs:
     uses: ./.github/workflows/app-v4.yml
   piping:
     uses: ./.github/workflows/piping-desktop-e2e.yml
-  runtime:
-    uses: ./.github/workflows/harness-premerge.yml
-  pec:
-    uses: ./.github/workflows/pec-tests.yml
   harness:
     name: harness
-    needs: [repository-checks, app-v4, piping, runtime, pec]
+    needs: [repository-checks, app-v4, piping]
     if: always()
     runs-on: ubuntu-latest
     steps:

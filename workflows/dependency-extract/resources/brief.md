@@ -79,7 +79,7 @@ AllowedWriteTargets:
 
 Per in-scope deliverable:
 - `{deliverable}/Dependencies.csv` (v3.1 schema, 29 required columns)
-- `{deliverable}/_DEPENDENCIES.md` (declared lists + extracted summary + lifecycle summary + run notes + run history, in the `docs/SPEC.md` §5.2 schema; legacy headings in an existing file are preserved)
+- `{deliverable}/_DEPENDENCIES.md` (declared lists + extracted summary + lifecycle summary + run notes + run history, in the `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.2 schema; legacy headings in an existing file are preserved)
 
 ## Defaults are recorded
 

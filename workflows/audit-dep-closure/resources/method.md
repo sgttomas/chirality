@@ -17,7 +17,7 @@
 
 ### Step 1 — Locate dependency registers
 
-The graph source is each deliverable's recorded register (`docs/SPEC.md` §5.3): the union of the declared entries in `_DEPENDENCIES.md` and the rows of `Dependencies.csv`. `INCLUDE_DECLARED=false` (analyzer `--include-declared false`) reads `Dependencies.csv` alone, the prior reading.
+The graph source is each deliverable's recorded register (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3): the union of the declared entries in `_DEPENDENCIES.md` and the rows of `Dependencies.csv`. `INCLUDE_DECLARED=false` (analyzer `--include-declared false`) reads `Dependencies.csv` alone, the prior reading.
 
 For each deliverable in scope:
 - Locate `{deliverable}/Dependencies.csv`.
@@ -34,7 +34,7 @@ For each deliverable in scope:
 ### Step 2 — Parse and validate schema
 
 For each readable `Dependencies.csv`:
-- Verify required columns for the declared `RegisterSchemaVersion` (default expected: `v3.1` as specified by `docs/SPEC.md` §6 and `workflows/dependency-extract/`).
+- Verify required columns for the declared `RegisterSchemaVersion` (default expected: `v3.1` as specified by `docs/COMPATIBILITY_FORMATS.md#historical-specification` §6 and `workflows/dependency-extract/`).
 - If schema is invalid:
   - record `SCHEMA_INVALID` for that deliverable,
   - exclude its edges from the graph (do not guess missing columns),

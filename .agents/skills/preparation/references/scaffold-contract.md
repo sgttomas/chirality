@@ -34,14 +34,14 @@ Do not normalize or embellish accepted field values. Use `TBD` only when the acc
 
 ## Dependency file
 
-`_DEPENDENCIES.md` is a durable container whose single heading schema is `docs/SPEC.md` §5.2 (D-GOV-46). Humans or the coordinating workflow own the three declared sections; `dependency-extract` later fills the extracted sections, keeps the declared sections and their headings unchanged, and adds any missing section under its §5.2 heading. When the file is newly created, including an empty stub from the scaffolder, write exactly this skeleton, using `KTY`/category labels for a knowledge type. Take the mode from the coordination record (`NOT_TRACKED`, `DECLARED` or `FULL_GRAPH`; SPEC §5.3). Do not infer dependency edges. Do not rewrite an existing file to this skeleton.
+`_DEPENDENCIES.md` is a durable container whose single heading schema is `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.2 (D-GOV-46). Humans or the coordinating workflow own the three declared sections; `dependency-extract` later fills the extracted sections, keeps the declared sections and their headings unchanged, and adds any missing section under its §5.2 heading. When the file is newly created, including an empty stub from the scaffolder, write exactly this skeleton, using `KTY`/category labels for a knowledge type. Take the mode from the coordination record (`NOT_TRACKED`, `DECLARED` or `FULL_GRAPH`; SPEC §5.3). Do not infer dependency edges. Do not rewrite an existing file to this skeleton.
 
 ```markdown
 # Dependencies: [DEL-ID] [Deliverable Name]
 
 ## Dependency Tracking Mode
 - **Mode:** [NOT_TRACKED | DECLARED | FULL_GRAPH]
-- **Register:** the declared sections of this file together with Dependencies.csv (schema v3.1) when present (docs/SPEC.md §5.3)
+- **Register:** the declared sections of this file together with Dependencies.csv (schema v3.1) when present (docs/COMPATIBILITY_FORMATS.md#historical-specification §5.3)
 - **Notes:** [pointer to coordination record or external system, or "TBD"]
 
 ---

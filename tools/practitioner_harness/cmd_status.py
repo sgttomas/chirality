@@ -24,14 +24,16 @@ ROOT_GOVERNANCE_DOCS = ("DIRECTIVE.md", "CONTRACT.md", "SPEC.md", "TYPES.md")
 def _root_governance_lines(repo_root: Path, report: Report) -> None:
     report.md("## Root document headers (observed)")
     report.md("")
-    for name in ROOT_GOVERNANCE_DOCS:
+    for name in (("PRODUCT_BOUNDARIES.md", "AGENT_WORKFLOW_RUNTIME.md", "COMPATIBILITY_FORMATS.md")
+                 if (repo_root / "docs/PRODUCT_BOUNDARIES.md").exists() else ROOT_GOVERNANCE_DOCS):
         path = repo_root / "docs" / name
         if not path.is_file():
             report.md(f"- `docs/{name}`: artifact absent")
             continue
         quoted = ""
         for line in path.read_text(encoding="utf-8").splitlines():
-            if ("Development procedures in this document are superseded" in line
+            if ((name in {"PRODUCT_BOUNDARIES.md", "AGENT_WORKFLOW_RUNTIME.md", "COMPATIBILITY_FORMATS.md"} and line.startswith("# "))
+                    or "Development procedures in this document are superseded" in line
                     or "Reference and history; not binding" in line
                     or "**Status:" in line or line.strip().startswith("Status:")):
                 quoted = line.strip()

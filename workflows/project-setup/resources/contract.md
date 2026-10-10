@@ -106,9 +106,9 @@ Functions 3 (Scan & report) and 4 (Estimating) apply in either mode on request.
 | Accepted action register | `Amendment_Actions.csv` in the snapshot, or the distinct register its group-2 `ACCEPTED_MANIFEST.csv` names (for example `Amendment_Actions_CP2.csv`) | Resolve through the accepted manifest; `Intake_Actions.csv` is group-1 evidence only. Verify the recorded hash. |
 | `Propagation_Plan.md`, `Handoff_State.md` | The same snapshot | Name the hand-back, derivative state, deferred items and blockers. |
 | Amended decomposition | `{DECOMP_ROOT}/`, as applied by the amendment | Source of IDs, names, parent bindings and metadata for added entities. |
-| Coordination record | `{COORDINATION_ROOT}/_COORDINATION.md` | Representation, dependency tracking mode (`docs/SPEC.md` §5.3) and threshold are reused, not re-asked. Read only; this workflow does not write the human-owned record in `INCREMENTAL` mode. |
+| Coordination record | `{COORDINATION_ROOT}/_COORDINATION.md` | Representation, dependency tracking mode (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3) and threshold are reused, not re-asked. Read only; this workflow does not write the human-owned record in `INCREMENTAL` mode. |
 | Setup log | `{COORDINATION_ROOT}/SETUP_LOG.md` | Agent-owned and append-only (see [Setup log](#setup_logmd-project-level-agent-owned-append-only)). Holds the adoption baseline and one line per incremental run. Created at the end of `INITIAL` setup (method Phase 2.7), or by the adoption step (Phase 5.0) in a project set up before incremental setup existed. |
-| Production format | Each affected deliverable, resolved per `docs/SPEC.md` §2.2 | Selects the update path for `MODIFY`. |
+| Production format | Each affected deliverable, resolved per `docs/COMPATIBILITY_FORMATS.md#historical-specification` §2.2 | Selects the update path for `MODIFY`. |
 
 If any input is missing, unaccepted or inconsistent with the workspace (for example a `REMOVE` without its decomposition annotation), report the discrepancy and return it to `scope-change` rather than repairing decomposition truth here.
 
@@ -118,15 +118,15 @@ If any input is missing, unaccepted or inconsistent with the workspace (for exam
 |---|---|
 | `ADD` (and successor entities of `MERGE`/`SPLIT`) | Scaffold only the new package, deliverable, category or knowledge type with the source-qualified `preparation` skill (Phase 2.1 rules), then initialize production with the project's contract (`SOW_V1` via `scope-of-work`, `MODE=INIT`; DOMAIN via `domain-documents` with `AUTHORITY_MODE: SCA_DRIVEN` as the amendment's hand-off) and create its dependency and status records. |
 | `REMOVE` (and sources retired by `MERGE`/`SPLIT`) | No deletion of folders or files. Confirm the `scope-change` retirement rule was applied: the `[RETIRED — {AMENDMENT_ID}]` decomposition annotation and one appended `_STATUS.md` history line, lifecycle state unchanged, `write_status.sh` not used. Append the history line only where the accepted poststate lacks it. |
-| `MODIFY` | No re-scaffolding. Route the deliverable to its production contract's update path (Function 5, Phase 5.5): for `SOW_V1`, `scope-of-work` `MODE=REVISE` ending in `MODE=VERIFY`. A `CHECKING` or `ISSUED` deliverable is held for the human; an `ISSUED` deliverable reopens only as `docs/SPEC.md` §3.3 allows. `_CONTEXT.md` edits belong to the amendment itself. |
-| `RECLASSIFY` | Routed as `MODIFY` (Phase 5.5). An `ISSUED` deliverable reopens only for a scope-changing `RECLASSIFY` (`docs/SPEC.md` §3.3). Move a folder only when the accepted propagation plan names the relocation and the human confirms it in the incremental plan; move it whole, keeping content and `_STATUS.md`. |
+| `MODIFY` | No re-scaffolding. Route the deliverable to its production contract's update path (Function 5, Phase 5.5): for `SOW_V1`, `scope-of-work` `MODE=REVISE` ending in `MODE=VERIFY`. A `CHECKING` or `ISSUED` deliverable is held for the human; an `ISSUED` deliverable reopens only as `docs/COMPATIBILITY_FORMATS.md#historical-specification` §3.3 allows. `_CONTEXT.md` edits belong to the amendment itself. |
+| `RECLASSIFY` | Routed as `MODIFY` (Phase 5.5). An `ISSUED` deliverable reopens only for a scope-changing `RECLASSIFY` (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §3.3). Move a folder only when the accepted propagation plan names the relocation and the human confirms it in the incremental plan; move it whole, keeping content and `_STATUS.md`. |
 
 The affected set is the deliverables named by the accepted actions. Their
 neighbours are the deliverables with a recorded edge to or from an affected
 deliverable (declared sections, `Dependencies.csv`) and any the accepted
 impact assessment names for dependency review.
 
-Where the project has an accepted project DAG (`docs/SPEC.md` §5.4), the
+Where the project has an accepted project DAG (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4), the
 incremental dependency stage ends with a `project-dag` currency audit. The
 deliverables a departure affects are `DAG pending` until the human accepts the
 candidate successor or rejects the change; unaffected work continues on the
@@ -139,17 +139,17 @@ accepted version. This workflow reports the flag and does not clear it.
 - **Package**: A top-level scope grouping in the decomposition (`PKG-…`).
 - **Deliverable / Working item**: A scoped unit of work (`DEL-…`) represented by one deliverable folder.
 - **Lifecycle state**: `OPEN | INITIALIZED | SEMANTIC_READY | IN_PROGRESS | CHECKING | ISSUED` (local to the deliverable folder).
-- **Coordination representation** (`docs/TYPES.md` §6, `docs/SPEC.md` §13): The human’s chosen way to coordinate across packages/deliverables, recorded separately from the dependency tracking mode:
+- **Coordination representation** (`docs/COMPATIBILITY_FORMATS.md#historical-vocabulary` §6, `docs/COMPATIBILITY_FORMATS.md#historical-specification` §13): The human’s chosen way to coordinate across packages/deliverables, recorded separately from the dependency tracking mode:
   - `SCHEDULE_FIRST` — a schedule (Gantt) drives sequencing; recorded dependencies, unless the mode is `NOT_TRACKED`, support blocker detection and audit.
   - `DEPENDENCY_TRACKED` — the dependency graph drives sequencing.
   - `HYBRID` — a combination of schedule-first and dependency-tracked.
   - Earlier records may carry the former option labels (`Schedule-first`; `Declared deps` or `Declared critical dependencies`; `Full graph` or `Full dependency graph (DAG)`); they remain readable as written. `Schedule-first` corresponds to `SCHEDULE_FIRST`; the declared and full-graph labels named a tracking mode (`DECLARED`, `FULL_GRAPH`) rather than a representation, so confirm the representation with the human when the record is next updated.
-- **Dependency tracking mode** (`docs/SPEC.md` §5.3):
+- **Dependency tracking mode** (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3):
   - `NOT_TRACKED` — dependency coordination occurs outside the files (humans or an external schedule); do not compute blockers or report a ready/blocked judgment from dependencies.
   - `DECLARED` — only critical dependencies are recorded (partial, human-curated); the recorded edges are a partial view. Compute blockers only from the recorded register (see **Dependency register**). Dependency extraction may add `Dependencies.csv` rows when the Phase 1.3 rules call for it; it does not make the view complete.
   - `FULL_GRAPH` — dependency declarations are intended to form a complete DAG; compute blockers only from the declared graph in the recorded register, after closure audit and cycle treatment (see Validity).
   - A legacy `TRACKED` value in an existing record is read as `FULL_GRAPH`; new records write `FULL_GRAPH`.
-- **Dependency register**: deliverable-local dependency artifacts: `_DEPENDENCIES.md`, with the `docs/SPEC.md` §5.2 headings, and `Dependencies.csv` when present. They are the dependency evidence (`docs/SPEC.md` §5.4). In a project without an accepted project DAG, the recorded register used for blockers is the union of the declared entries in `_DEPENDENCIES.md` and the CSV rows (`docs/SPEC.md` §5.3). `dependency-extract` mirrors each declared entry into the CSV as an `Origin=DECLARED` row, but a file not yet refreshed may hold a declaration only in the markdown, so never compute blockers from the CSV alone. A declared entry and a row for the same direction and target are one edge, counted once; where they disagree, the declared section governs and the disagreement is reported. In a project with an accepted project DAG, blockers come instead from the accepted current version named by `_DAG/_LATEST.md`, and a deliverable whose local evidence departs from it is `DAG pending` until the human decides (`docs/SPEC.md` §5.4; `project-dag`).
+- **Dependency register**: deliverable-local dependency artifacts: `_DEPENDENCIES.md`, with the `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.2 headings, and `Dependencies.csv` when present. They are the dependency evidence (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4). In a project without an accepted project DAG, the recorded register used for blockers is the union of the declared entries in `_DEPENDENCIES.md` and the CSV rows (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3). `dependency-extract` mirrors each declared entry into the CSV as an `Origin=DECLARED` row, but a file not yet refreshed may hold a declaration only in the markdown, so never compute blockers from the CSV alone. A declared entry and a row for the same direction and target are one edge, counted once; where they disagree, the declared section governs and the disagreement is reported. In a project with an accepted project DAG, blockers come instead from the accepted current version named by `_DAG/_LATEST.md`, and a deliverable whose local evidence departs from it is `DAG pending` until the human decides (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4; `project-dag`).
 - **Semantic lens artifacts**:
   - `_SEMANTIC.md` is a lens scaffold (question-shaping), not an authority.
   - `_SEMANTIC_LENSING.md` is an enrichment register, not an authority.
@@ -170,7 +170,7 @@ A workspace is valid when:
 
 - Representation and dependency mode were explicitly confirmed by the human.
 - If mode is `NOT_TRACKED`, reports must not label deliverables as blocked/available based on dependencies.
-- If mode is `DECLARED` or `FULL_GRAPH`, blockers are computed, in a project without an accepted project DAG, from the recorded register, which is the union of the declared entries in `_DEPENDENCIES.md` and `Dependencies.csv` (see **Dependency register**); in a project with one, from its accepted current version, with `DAG pending` deliverables given no verdict. In either case they are computed only from edges outside unresolved cycles. Edges that participate in an unresolved SCC are non-gating: they are excluded from blocker computation and reported as held pending resolution through `scc-resolution-case` and the owning decisions (`docs/CYCLE_DRIVEN_RESOLUTION.md` §2 rule 4). A cycle does not by itself invalidate the coordination record or block independent work.
+- If mode is `DECLARED` or `FULL_GRAPH`, blockers are computed, in a project without an accepted project DAG, from the recorded register, which is the union of the declared entries in `_DEPENDENCIES.md` and `Dependencies.csv` (see **Dependency register**); in a project with one, from its accepted current version, with `DAG pending` deliverables given no verdict. In either case they are computed only from edges outside unresolved cycles. Edges that participate in an unresolved SCC are non-gating: they are excluded from blocker computation and reported as held pending resolution through `scc-resolution-case` and the owning decisions (`docs/COMPATIBILITY_FORMATS.md#historical-cycle-method` §2 rule 4). A cycle does not by itself invalidate the coordination record or block independent work.
 
 ### S-EST — Estimating pipeline validity
 
@@ -243,7 +243,7 @@ Every deliverable folder should be seeded with:
 | `_CONTEXT.md` | Identity and scope | Must contain stable IDs from decomposition |
 | `_STATUS.md` | Lifecycle state | Authoritative lifecycle indicator |
 | `_REFERENCES.md` | Sources index | Pointers to package references and other materials |
-| `_DEPENDENCIES.md` | Human-readable dependency view | Created with the `docs/SPEC.md` §5.2 skeleton; TASK+dependency-extract refreshes only its agent-owned sections |
+| `_DEPENDENCIES.md` | Human-readable dependency view | Created with the `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.2 skeleton; TASK+dependency-extract refreshes only its agent-owned sections |
 | `Dependencies.csv` | Structured dependency edges | Optional; created by TASK+dependency-extract when run |
 | `_SEMANTIC.md` | Semantic lens scaffold | Required placeholder at scaffold time; lens content optional and created/overwritten by TASK+semantic-matrix-build |
 | `_SEMANTIC_LENSING.md` | Enrichment register | Optional; created by TASK+lens-register |
@@ -317,7 +317,7 @@ The selected setup phases produce these durable artifacts:
 - Package and deliverable folders (via the actual eligible actor using the
   selected source-qualified `preparation` skill)
 - Bounded contribution outputs, including TASK outputs when dispatch was used
-- For `INCREMENTAL` mode, a run record under `{COORDINATION_ROOT}/AgentRuns/<RunID>/` (`docs/SPEC.md` §9.8) holding the confirmed incremental plan, the amendment snapshot path and register hash, briefs, returns, created and skipped paths, dependency-stage evidence and the final report
+- For `INCREMENTAL` mode, a run record under `{COORDINATION_ROOT}/AgentRuns/<RunID>/` (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §9.8) holding the confirmed incremental plan, the amendment snapshot path and register hash, briefs, returns, created and skipped paths, dependency-stage evidence and the final report
 
 These artifacts persist in the filesystem and are git-tracked. Phase-boundary evidence and any accepted snapshot references are recorded in the undertaking’s handoff.
 

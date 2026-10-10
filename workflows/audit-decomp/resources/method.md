@@ -5,7 +5,7 @@
 ### Step 0 — Preconditions and scope resolution
 
 1) Resolve `EXECUTION_ROOT` and `DECOMPOSITION_PATH`.
-2) Parse the decomposition document and bind its companion registers. Resolve the main document's companion inventory section; when it names authoritative companion registers (for example `Deliverables.csv`, `ScopeLedger.csv`, an objectives register, or the DOMAIN ledger/annex CSVs), parse those registers as the authoritative machine-truth for the matching semantic sections (`docs/DECOMPOSITION_STANDARD.md`: a companion register is authoritative unless explicitly documented otherwise) and treat main-document tables as summaries to compare against them. Record every bound register path and hash in `QA_Report.md`. Extract:
+2) Parse the decomposition document and bind its companion registers. Resolve the main document's companion inventory section; when it names authoritative companion registers (for example `Deliverables.csv`, `ScopeLedger.csv`, an objectives register, or the DOMAIN ledger/annex CSVs), parse those registers as the authoritative machine-truth for the matching semantic sections (`docs/COMPATIBILITY_FORMATS.md#historical-decomposition-contract`: a companion register is authoritative unless explicitly documented otherwise) and treat main-document tables as summaries to compare against them. Record every bound register path and hash in `QA_Report.md`. Extract:
    - Partitions section (per Variant Section Binding) → list of `{PartitionID, PartitionName}`
    - Production Units section (per Variant Section Binding) → list of `{ProductionUnitID, ParentPartitionID, Name, Type, ResponsibleParty, AnticipatedArtifacts, CoversAtomicUnits, SupportsObjectives}` (for WORKING_ITEMS (workflow: domain-decomp), `AnticipatedArtifacts` maps to the Knowledge Type's anticipated Knowledge Subjects)
    - Objectives → list of `{ObjectiveID, Statement}` (from dedicated section or Ledger `ObjectiveID(s)` column, per variant binding)
@@ -123,7 +123,7 @@ For each Objective:
 
 Resolve the Ledger per DECOMP_VARIANT (Scope Ledger for PROJECT/SOFTWARE; Domain Ledger for DOMAIN).
 
-Basis: `docs/DECOMPOSITION_STANDARD.md` invariant I9 (every decomposition carries a machine-checkable ledger) and its companion-register rule. Parse the ledger from the bound companion ledger register when one is named (for example `ScopeLedger.csv` or the DOMAIN ledger); otherwise from the main document's Ledger section. Unresolved references are WARNING because they break machine-checkable coverage without by themselves disproving the partition.
+Basis: `docs/COMPATIBILITY_FORMATS.md#historical-decomposition-contract` invariant I9 (every decomposition carries a machine-checkable ledger) and its companion-register rule. Parse the ledger from the bound companion ledger register when one is named (for example `ScopeLedger.csv` or the DOMAIN ledger); otherwise from the main document's Ledger section. Unresolved references are WARNING because they break machine-checkable coverage without by themselves disproving the partition.
 
 If the decomposition contains a Ledger (table with AtomicUnitID → PartitionID → ProductionUnitID mappings):
 - For each atomic unit with `InOutStatus = IN`:
@@ -169,7 +169,7 @@ report's "Other derivative-currency observations" section. It does not change a
 
 ### Step 9b — Package-Shape Conformance (Check 9b)
 
-Assess whether the decomposition package conforms to the preferred modular package shape defined in `docs/DECOMPOSITION_STANDARD.md`:
+Assess whether the decomposition package conforms to the preferred modular package shape defined in `docs/COMPATIBILITY_FORMATS.md#historical-decomposition-contract`:
 
 1. **Package-role labeling.** Does the package clearly label authoritative vs derived surfaces? Check for an explicit companion inventory section in the main decomposition document. If absent: issue `WARNING` — "Main decomposition document lacks a companion inventory section; package roles are not discoverable for downstream agents"
 

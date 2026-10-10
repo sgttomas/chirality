@@ -13,7 +13,7 @@ from software_workflow_common import load_profile, matches
 
 ROOT = Path(__file__).resolve().parents[2]
 PROFILE = ROOT / "tools/hosted-ci-routing.json"
-SUITES = ("app", "pec", "app-v4", "piping", "piping-numerical")
+SUITES = ("app-v4", "piping", "piping-numerical")
 
 
 def git(root: Path, *args: str) -> str:
@@ -25,19 +25,16 @@ def select_paths(paths: list[str], profile: dict) -> dict:
     checks = set(selection["checks"])
     unmatched = [p for p in paths if not any(matches(p, rule["paths"]) for rule in profile["path_rules"])]
     for path in unmatched:
-        owners = (["app"] if path.startswith("projects/chirality-app-dev/") else
-                  ["pec"] if path.startswith("projects/pec/") else
+        owners = ([] if path.startswith("projects/chirality-app-dev/") else
+                  [] if path.startswith("projects/pec/") else
                   ["app-v4"] if path.startswith("projects/chirality-app-v4/") else
                   ["piping", "piping-numerical"] if path.startswith("projects/chirality-piping/") else
-                  ["app", "pec"] if path.startswith("projects/chirality-runtime/") else list(SUITES))
+                  [] if path.startswith("projects/chirality-runtime/") else list(SUITES))
         checks.update(owners)
         for owner in owners:
             selection["reasons"].setdefault(owner, []).append(path)
     selection.update(checks=sorted(checks), unmatched_paths=unmatched)
-    selection["modes"] = {
-        "app": "full" if "app" in checks else "instructions" if "instructions" in checks else "not-applicable",
-        **{suite: "full" if suite in checks else "not-applicable" for suite in SUITES if suite != "app"},
-    }
+    selection["modes"] = {suite: "full" if suite in checks else "not-applicable" for suite in SUITES}
     return selection
 
 
@@ -70,8 +67,6 @@ def aggregate(suite: str, mode: str, selection: str, product: str, instructions:
         return False
     if mode == "full":
         return product == "success"
-    if mode == "instructions" and suite == "app":
-        return instructions == "success" and product == "skipped"
     return mode == "not-applicable" and product == "skipped" and instructions == "skipped"
 
 

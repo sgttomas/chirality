@@ -2,7 +2,7 @@
 
 ## Authority
 
-`docs/CONTRACT.md` K-DEP-1 and `docs/SPEC.md` §5.4, as amended by D-GOV-49,
+`docs/COMPATIBILITY_FORMATS.md#historical-invariants` K-DEP-1 and `docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.4, as amended by D-GOV-49,
 govern this workflow:
 
 - **Neither side is self-authorizing.** Authority comes from the human's
@@ -59,7 +59,7 @@ stay human-owned. Agent-owned content is changed only through
 ## Tracking-mode precondition
 
 The project's tracking mode is recorded in `_COORDINATION.md` and in each
-deliverable's Dependency Tracking Mode section (`docs/SPEC.md` §5.3, §13).
+deliverable's Dependency Tracking Mode section (`docs/COMPATIBILITY_FORMATS.md#historical-specification` §5.3, §13).
 
 | Mode | Treatment |
 |---|---|
@@ -81,7 +81,7 @@ Markdown inside the graph.
 
 Required:
 
-- `EXECUTION_ROOT` — the execution instance root (`docs/SPEC.md` §0.3).
+- `EXECUTION_ROOT` — the execution instance root (`docs/COMPATIBILITY_FORMATS.md#legacy-path-tokens`).
 - `TRIGGER` — `INITIAL` (first graph, normally toward 30%), `SUCCESSOR` (a
   departure found by a currency audit, a decomposition revision, or an
   accepted scope change), or `CURRENCY_AUDIT` (audit an accepted version only).
@@ -93,7 +93,7 @@ Required:
 Optional (defaults shown):
 
 - `DAG_ROOT` — `{EXECUTION_ROOT}/_DAG/`, the tool root registered in
-  `docs/SPEC.md` §0.3 and §1.2. A project with an earlier adopted DAG location
+  `docs/COMPATIBILITY_FORMATS.md#legacy-path-tokens` and §1.2. A project with an earlier adopted DAG location
   or pointer name keeps it; record which it uses.
 - `CASE_HOME` — `{DAG_ROOT}/cases/`. A project that already holds its SCC
   cases in a PKG-00 control deliverable may keep that legacy home. Use one home
@@ -162,7 +162,7 @@ closure snapshot, or an audit. Closure observations stay under
 `_Evaluation/DepClosure/` with their own `_LATEST.md`, and currency audits under
 `_Evaluation/DAGCurrency/` with theirs.
 
-The accepted pointer follows `docs/SPEC.md` §11.2:
+The accepted pointer follows `docs/COMPATIBILITY_FORMATS.md#historical-specification` §11.2:
 
 ```markdown
 Latest: DAG-NNN
@@ -197,7 +197,7 @@ The latest currency audit lists the deliverables that are `DAG pending`.
   or `ExcludedRows.csv`.
 - Candidate edges are non-gating. They cannot drive blocker queues, wave
   placement, schedules, dispatch readiness, or readiness claims
-  (`docs/CYCLE_DRIVEN_RESOLUTION.md` §2 rule 4). Holding a candidate does not
+  (`docs/COMPATIBILITY_FORMATS.md#historical-cycle-method` §2 rule 4). Holding a candidate does not
   make the affected work ready. Every candidate held for an unresolved SCC
   cites its case in the project's case home.
 - A departure makes the affected deliverables `DAG pending` until the human

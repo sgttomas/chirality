@@ -34,9 +34,9 @@ Required:
 Optional:
 - `TASK_BRIEF_FILE`: optional markdown brief path (if manager wants file-based briefing)
 - `RUN_LABEL`: short label for this run (default `AGENTS`)
-- `CANON_FILE`: ratified standard path (default: `docs/WORKFLOW_COMPONENT_STANDARD.md`); ratified K-* governance controls conflicts
+- `CANON_FILE`: ratified standard path (default: `docs/COMPATIBILITY_FORMATS.md#historical-component-contract`); ratified K-* governance controls conflicts
 - `ROLE_REGISTRY`: default `agents/registry.json`; binds machine-readable role configuration
-- `GOVERNING_FILES`: default `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, and `AGENTS.md`
+- `GOVERNING_FILES`: default `docs/COMPATIBILITY_FORMATS.md#historical-founding-direction`, `docs/COMPATIBILITY_FORMATS.md#historical-invariants`, `docs/COMPATIBILITY_FORMATS.md#historical-specification`, `docs/COMPATIBILITY_FORMATS.md#historical-vocabulary`, and `AGENTS.md`
 - `RUBRIC_FILE`: default `docs/rubrics/AUDIT_AGENT.md`
 - `VERBOSITY`: `LOW` (default) | `MED` | `HIGH`
 - `OUTPUT_FORMAT`: `RUBRIC_MARKDOWN` (default) | `RUBRIC+CSV`
