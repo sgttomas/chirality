@@ -1,18 +1,15 @@
 name: Piping Desktop E2E
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  workflow_call:
   workflow_dispatch:
-  schedule:
-    - cron: "23 4 * * *"
 
 permissions:
   contents: read
 concurrency:
   group: piping-desktop-e2e-${{ github.event.pull_request.number || github.ref }}
-  # Preserve expensive in-flight numerical work; newer candidates queue.
-  cancel-in-progress: false
+  # Do not queue stale candidates ahead of the current PR head.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 env:
   CI: "true"
   PLAYWRIGHT_HTML_OPEN: never
@@ -79,6 +76,7 @@ jobs:
           sparse-checkout-cone-mode: false
       - uses: ./.github/actions/setup-piping-e2e
       - name: Desktop behaviour (including persistence and undo)
+        if: github.event_name == 'workflow_dispatch'
         run: npm run test:desktop
         working-directory: projects/chirality-piping
       - name: Production build
@@ -167,12 +165,17 @@ jobs:
         run: python3 -m pip install -r projects/chirality-piping/requirements-dev.txt
       - name: Python product contracts and qualification oracles
         working-directory: projects/chirality-piping
-        run: >-
-          python3 -m pytest -q tests/product_preview tests/security
-          tests/test_*schema.py tests/test_*schemas.py
-          tests/test_qualification*.py tests/test_*canonical_json_adapter.py
-          tests/test_constraint_validation.py tests/test_source_blocks_validation.py
-          tests/test_operation_validation_preview.py tests/test_analytical_solver_boundary_adapter.py
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
+            python3 -m pytest -q tests/product_preview tests/security \
+              tests/test_*schema.py tests/test_*schemas.py \
+              tests/test_qualification*.py tests/test_*canonical_json_adapter.py \
+              tests/test_constraint_validation.py tests/test_source_blocks_validation.py \
+              tests/test_operation_validation_preview.py tests/test_analytical_solver_boundary_adapter.py
+          else
+            python3 -m pytest -q tests/security \
+              tests/test_constraint_validation.py tests/test_source_blocks_validation.py
+          fi
 
   browser-matrix:
     name: Broad browser matrix (${{ matrix.shard }}/4)

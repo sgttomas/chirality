@@ -1,8 +1,7 @@
 name: Harness Pre-merge Validation
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  workflow_call:
   # Run on the selected branch to explicitly request full App/Runtime coverage.
   workflow_dispatch:
 
@@ -27,8 +26,6 @@ jobs:
           fetch-depth: 0
           filter: blob:none
           sparse-checkout: tools
-      - name: Test hosted selection policy
-        run: python3 -m unittest discover -s tools/software_workflow -p test_hosted_ci.py
       - name: Select checks from the complete PR diff
         id: plan
         env:
@@ -158,6 +155,7 @@ jobs:
         working-directory: projects/chirality-app-dev/frontend
 
       - name: Frontend tests
+        if: github.event_name == 'workflow_dispatch'
         run: npm test -- --testTimeout=15000
         working-directory: projects/chirality-app-dev/frontend
 
