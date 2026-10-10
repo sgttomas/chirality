@@ -110,3 +110,11 @@ history starts with a migrated May snapshot. Chapter 8 distinguishes these
 evidence types. Historical PRs, source differences and delivered behaviour
 provide case evidence, not a controlled productivity experiment or proof of
 transfer to other professionals.
+
+## Particular applications
+
+The shared kernel is expressed at three scopes: this Root thesis, the
+[App v4 thesis](../../projects/chirality-app-v4/docs/thesis/README.md), and the
+[SWBPIPE thesis](../../projects/chirality-piping/docs/thesis/README.md).
+The application theses develop their own implementation and evidence; they do
+not replace their product requirements or the App's frozen source basis.

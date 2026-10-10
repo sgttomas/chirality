@@ -31,12 +31,12 @@ The framework uses formal notation to express existential relationships. It is n
 | Symbol | Meaning |
 |--------|---------|
 | S | The Self — existential, structural, relational |
-| M | Meaning |
+| M | Meaning. In this argument, the necessary meaning at issue is S's recognition of the necessity of contingency. |
 | E | An event occurs |
-| C | Contingency |
+| C | Contingency — the dependence inherent in temporal succession: everything in time changes state, dependent upon what preceded it. |
 | □ | Modal necessity operator |
 | □M | "It is necessary that Meaning obtains" (modal status) |
-| N | S's existential affirmation that M is necessary (commitment, not modal) |
+| N | S's existential affirmation that M is necessary — commitment, not modal necessity. |
 | ⊢ | Existential affirmation (commitment), not logical entailment |
 | G | Undefined — may emerge only relationally and existentially from S's engagement with M, C, and N |
 | ¬ | Negation |
@@ -44,6 +44,11 @@ The framework uses formal notation to express existential relationships. It is n
 | ∨ | Disjunction |
 | → | Conditional (not causation) |
 | ↔ | Biconditional |
+
+C names temporal dependence. The necessary meaning concerns recognizing the
+necessity of that contingency. N names S's affirmation of that meaning; the
+turnstiles express the commitments developed in the argument. G remains
+undefined.
 
 ---
 
@@ -87,7 +92,7 @@ architecture is not a formal implementation of its symbols.
 | Framework element | Limited interpretive comparison |
 |---|---|
 | M (meaning) | Meaning as encountered by S in information; not the information alone |
-| C (contingency) | The underdetermination of the stance S may take toward what is encountered |
+| C (contingency) | Dependence inherent in temporal succession; each change of state depends upon what preceded it |
 | The fork (premise 3) | The possibility of withholding or undertaking a commitment toward the encountered meaning |
 | N (commitment) | S's situated affirmation; in professional practice, commitment may concern warranted reliance |
 | Inner ⊢ | A person takes a stance toward meaning; this can inform inquiry and action as well as review |
