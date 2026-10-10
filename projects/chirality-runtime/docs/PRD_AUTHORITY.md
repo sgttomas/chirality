@@ -37,9 +37,8 @@ The table above remains the identity record of the Gate3 payload as
 published. Under Root D-GOV-43 (A2 supplement) and SCA-004, the files below
 were amended once and are re-hashed once here; every other listed file is
 unchanged. `docs/PRD.md` is unchanged (Root-pinned); its D-GOV-43 reading is
-`../execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/PRD_REVISION.md`. DEL-02-07 through DEL-02-12 are RETIRED; DEL-02-06 is revised by
-notes recorded in the hold-closure packet
-(`../execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/`);
+[PRD revision](PRD_REVISION.md). DEL-02-07 through DEL-02-12 are RETIRED; DEL-02-06 is revised by
+its [current contract revision](../execution/PKG-02_Runtime_Product/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/Design/contract-revision.md);
 its `ScopeOfWork.md` bytes are unchanged. Actual state:
 `../execution/_Coordination/HANDOFF_STATE.md`. README self-hash machinery is retired
 by ruling item 11 and is not maintained.
@@ -48,3 +47,5 @@ by ruling item 11 and is not maintained.
 |---|---|
 | `execution/_Decomposition/HOLD_SUCCESSOR_MAP.csv` | `0bcae8529209aa0de46dfbecbc181048b02d4f0a1511db120feade202abc8c8f` |
 | `execution/_Decomposition/GATE_READINESS.md` | `11ef70c412ffc0ee3541983c6cc0fce293c856a8fa4e7562fdde271d966bafa5` |
+
+The relocated PRD revision is byte-identical to its source at `archive/pre-efficiency-cleanup-2026-10-09`; references to its original packet resolve there. The DEL-02-06 note preserves that packet's substantive carrier amendments.
