@@ -250,9 +250,13 @@ performed an act.
     role labelled as a preselection (the bundled set marks none today, U-R11),
     "No role", and each role's limits as the limit account hands them (TASK
     "A task agent does not delegate: Stated, not enforced"; a modified copy
-    reads not known). TASK is listed but not offered as a conversation role,
-    as before; ROLE SL-1/CA-1 and NIR ST-5 name all four, so whether TASK may
-    start a conversation is an open owner choice. The conversation header shows the role, fixed for the
+    reads not known). The start display and Continue as offer HELP_HUMAN,
+    HELPS_HUMANS and WORKING_ITEMS (the host's `roleSet.conversationRoles`)
+    and No role. TASK is not listed as a choice: it is the role a manager
+    assigns bounded work to, and its guidance is supplied for that delegation
+    (ROLE SL-1, CA-1; NIR ST-5; owner ruling 2026-10-10, "TASK is not a
+    conversational role"). A TASK start that reaches composition anyway is
+    refused before anything is sent. The conversation header shows the role, fixed for the
     conversation's life, and its relation (its own start, continued from, or
     fork of). **Guidance changed since this conversation started** appears
     only when a file the conversation started with now differs or is missing;
@@ -432,7 +436,17 @@ Project run logs use `.chirality/records/runs/<safe-run-key>/<safe-writer-key>.j
 outside-run acts use `.chirality/records/acts/<safe-writer-key>.jsonl` with captures
 in `.chirality/captures/`. Library A15 allocation uses the library's
 `.chirality/records/acts.jsonl` and `.chirality/captures/`; its native registration
-witness remains unfinished. Storage keys are separate from governed identities.
+witness remains unfinished. There is no registration attempt journal (owner
+ruling 2026-10-10): when a library is opened, SQ-X finds A15 records that no
+ledger line cites and decides from the record and the revision store (WR §6
+X-1, X-2; CI-24 (b)). Each open review holds
+`.chirality/workflow-registration.live.lock` shared until its attempt is
+closed, and X-2 runs only when it can hold that file exclusively, so a live
+attempt is not closed as lost while its review holds the lock (tested with
+separate owners in one process; release at process death is `flock`'s, not
+tested). A
+`.chirality/.workflow-staging/attempts/` folder left by an earlier build is
+no longer read. Storage keys are separate from governed identities.
 Explicitly discovered legacy `records/coordination.rs.jsonl` stays intact.
 Unwritable or incomplete targets report limits without silent relocation.
 
