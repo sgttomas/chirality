@@ -10,9 +10,8 @@ from historical workplans or receipts.
 | Root | repository root | `execution/_Coordination/LOOP_INIT.md` |
 | App v4 | `projects/chirality-app-v4` | `projects/chirality-app-v4/loop/LOOP_INIT.md` |
 | Piping | `projects/chirality-piping` | `projects/chirality-piping/loop/LOOP_INIT.md` |
-| App v3 | `projects/chirality-app-dev` | `projects/chirality-app-dev/loop/LOOP_INIT.md` |
-| Runtime | `projects/chirality-runtime` | `projects/chirality-runtime/loop/LOOP_INIT.md` |
-| PEC | `projects/pec` | `projects/pec/loop/LOOP_INIT.md` |
+
+App v3, Runtime and PEC are frozen references, not development entries.
 
 Project-local `init/dev-loop-init-prompt.md` files are equivalent launchers where
 present. These entries grant no new project activation, product acceptance or
