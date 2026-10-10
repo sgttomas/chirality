@@ -17,7 +17,8 @@ permissions:
 
 concurrency:
   group: app-v4-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  # Finish an in-flight native build/test run; the newest candidate queues.
+  cancel-in-progress: false
 
 jobs:
   selection:
