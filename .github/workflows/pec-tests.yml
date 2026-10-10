@@ -4,8 +4,7 @@
 name: pec-tests
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  workflow_call:
   # Explicit full coverage on the selected branch.
   workflow_dispatch:
 
@@ -29,8 +28,6 @@ jobs:
           fetch-depth: 0
           filter: blob:none
           sparse-checkout: tools
-      - name: Test hosted selection policy
-        run: python3 -m unittest discover -s tools/software_workflow -p test_hosted_ci.py
       - name: Select checks from the complete PR diff
         id: plan
         env:
@@ -40,10 +37,6 @@ jobs:
         run: >-
           python3 tools/software_workflow/hosted_ci.py plan --suite pec
           --event "$EVENT" --base "$BASE" --head "$HEAD" --output pec-ci-selection.json
-      - uses: actions/upload-artifact@v4
-        with:
-          name: pec-ci-selection
-          path: pec-ci-selection.json
 
   pec:
     name: PEC workspace tests

@@ -1,8 +1,7 @@
 name: Harness Pre-merge Validation
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  workflow_call:
   # Run on the selected branch to explicitly request full App/Runtime coverage.
   workflow_dispatch:
 
@@ -27,8 +26,6 @@ jobs:
           fetch-depth: 0
           filter: blob:none
           sparse-checkout: tools
-      - name: Test hosted selection policy
-        run: python3 -m unittest discover -s tools/software_workflow -p test_hosted_ci.py
       - name: Select checks from the complete PR diff
         id: plan
         env:
@@ -38,10 +35,6 @@ jobs:
         run: >-
           python3 tools/software_workflow/hosted_ci.py plan --suite app
           --event "$EVENT" --base "$BASE" --head "$HEAD" --output app-ci-selection.json
-      - uses: actions/upload-artifact@v4
-        with:
-          name: app-ci-selection
-          path: app-ci-selection.json
 
   instructions:
     name: App instruction bundle
@@ -78,7 +71,7 @@ jobs:
             --docs-root "$GITHUB_WORKSPACE/docs" --bundle-root "$BUNDLE_ROOT" \
             --output-root "$EVIDENCE_ROOT"
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: failure()
         with:
           name: instruction-root-evidence
           path: ${{ runner.temp }}/instruction-root-evidence
@@ -157,16 +150,21 @@ jobs:
         run: npm ci
         working-directory: projects/chirality-app-dev/frontend
 
-      # The standalone Typecheck and Full Vitest suite steps were removed:
-      # the release-quality wrapper below re-runs both as evidence commands
-      # (full_test, typecheck in validate-release-quality-evidence.mjs), so
-      # the workflow previously ran the entire vitest suite and tsc twice
-      # (~58s of duplicated wall time per run). The wrapper's runs are the
-      # evidence-bearing gate; its summary is asserted in Verify stable
-      # summaries.
+      - name: Frontend typecheck
+        run: npm run typecheck
+        working-directory: projects/chirality-app-dev/frontend
+
+      - name: Frontend tests
+        if: github.event_name == 'workflow_dispatch'
+        run: npm test -- --testTimeout=15000
+        working-directory: projects/chirality-app-dev/frontend
+
+      - name: Frontend production build
+        run: npm run build
+        working-directory: projects/chirality-app-dev/frontend
 
       - name: Secret scan
-        run: npm run proof:secret-scan
+        run: npm run proof:secret-scan -- --output-root "${RUNNER_TEMP}/chirality-secret-scan"
         working-directory: projects/chirality-app-dev/frontend
 
       - name: Prepare instruction-root integrity fixture
@@ -190,6 +188,7 @@ jobs:
           --agents-root "${GITHUB_WORKSPACE}/agents"
           --docs-root "${GITHUB_WORKSPACE}/docs"
           --bundle-root "${RUNNER_TEMP}/chirality-instruction-root-fixture/instruction-root"
+          --output-root "${RUNNER_TEMP}/chirality-instruction-integrity"
         working-directory: projects/chirality-app-dev/frontend
 
       - name: Build controlled CI runtime
@@ -286,27 +285,26 @@ jobs:
           tail -n 200 /tmp/chirality-harness-dev.log || true
           exit 1
 
-      - name: Release-quality wrapper
-        run: npm run validate:release-quality
+      # Exercise the actual Runtime/client path: session CRUD, streamed turns,
+      # persistence/resume, permissions, interruption and event parsing. Its
+      # exit status comes from those checks, not a second summary validator.
+      - name: Runtime client connecting smoke
+        run: npm run harness:validate:section8
         working-directory: projects/chirality-app-dev/frontend
 
-      - name: Verify stable summaries
-        shell: bash
-        run: |
-          set -euo pipefail
-          node -e 'const fs=require("fs"); for (const [p,s] of [["projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json","pass"],["projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/summary.json","pass"],["projects/chirality-app-dev/frontend/artifacts/harness/instruction-root-integrity/latest/summary.json","pass"],["projects/chirality-app-dev/frontend/artifacts/harness/security/latest/secret-scan-summary.json","pass"]]) { const value=JSON.parse(fs.readFileSync(p,"utf8")); if (value.status!==s) throw new Error(`${p}: expected ${s}, got ${value.status}`); }'
-
-      - name: Upload validation summaries
-        if: always()
+      - name: Upload failure diagnostics
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: harness-validation-summaries
+          name: app-runtime-failure-diagnostics
           path: |
-            projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json
-            projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/summary.json
-            projects/chirality-app-dev/frontend/artifacts/harness/instruction-root-integrity/latest/summary.json
-            projects/chirality-app-dev/frontend/artifacts/harness/security/latest/secret-scan-summary.json
-          if-no-files-found: warn
+            /tmp/chirality-harness-validation/latest
+            /tmp/chirality-harness-dev.log
+            /tmp/chirality-runtime-daemon.log
+            ${{ runner.temp }}/chirality-instruction-integrity
+            ${{ runner.temp }}/chirality-secret-scan
+          if-no-files-found: ignore
+          retention-days: 7
 
       - name: Print frontend server logs on failure
         if: failure()

@@ -1,7 +1,7 @@
 {
   "schema": "chirality-software-workflow/v1",
   "project_root": "..",
-  "description": "Hosted App/Runtime and PEC job routing through the existing affected-check selector. Unmatched paths conservatively select the owning product suites. Piping retains its own source coverage planner; governance checks always run separately.",
+  "description": "Hosted product selection from direct source, resource and configuration paths. Unknown inputs select conservative product coverage; deliverable code mappings are advisory and never suppress checks.",
   "checks": {
     "app": {
       "description": "Complete App/Runtime pre-merge integration suite"
@@ -14,6 +14,15 @@
     },
     "records": {
       "description": "No App/PEC product input; governance validation still applies"
+    },
+    "app-v4": {
+      "description": "App v4 native/frontend build and behavioral checks"
+    },
+    "piping": {
+      "description": "Piping build, unit tests and core workflow smoke"
+    },
+    "piping-numerical": {
+      "description": "Piping numerical oracle and kernel checks"
     }
   },
   "always_checks": [],
@@ -101,7 +110,10 @@
       ],
       "checks": [
         "app",
-        "pec"
+        "pec",
+        "app-v4",
+        "piping",
+        "piping-numerical"
       ]
     },
     {
@@ -139,17 +151,84 @@
         "projects/chirality-app-v4/init/**",
         "projects/chirality-app-v4/AGENTS.md",
         "projects/chirality-app-v4/README.md",
-        "projects/chirality-piping/**",
         "plans/**",
         "execution/**",
         "init/**",
         ".github/workflows/governance-harness.yml",
         ".github/workflows/piping-desktop-e2e.yml",
         ".github/workflows/piping-e2e-cache.yml",
-        ".github/actions/setup-piping-e2e/**"
+        ".github/actions/setup-piping-e2e/**",
+        "projects/chirality-piping/docs/**",
+        "projects/chirality-piping/execution/**",
+        "projects/chirality-piping/loop/**",
+        "projects/chirality-piping/init/**",
+        "projects/chirality-piping/plans/**",
+        "projects/chirality-piping/AGENTS.md",
+        "projects/chirality-piping/README.md"
       ],
       "checks": [
         "records"
+      ]
+    },
+    {
+      "paths": [
+        "projects/chirality-app-v4/app/**",
+        "projects/chirality-app-v4/execution/PKG-*/DEL-*/Design/**",
+        "projects/chirality-app-v4/execution/PKG-02/DEL-02-04/ScopeOfWork.md",
+        "AGENTS.md",
+        "agents/**",
+        "workflows/**",
+        "docs/AGENT_WORKFLOW_RUNTIME.md",
+        ".github/workflows/app-v4.yml"
+      ],
+      "checks": [
+        "app-v4"
+      ]
+    },
+    {
+      "paths": [
+        "projects/chirality-piping/apps/**",
+        "projects/chirality-piping/core/**",
+        "projects/chirality-piping/validation/**",
+        "projects/chirality-piping/fixtures/**",
+        "projects/chirality-piping/schemas/**",
+        "projects/chirality-piping/examples/**",
+        "projects/chirality-piping/tests/**",
+        "projects/chirality-piping/tools/**",
+        "projects/chirality-piping/package.json",
+        "projects/chirality-piping/package-lock.json",
+        "projects/chirality-piping/software-workflow.json",
+        "projects/chirality-piping/Cargo.toml",
+        "projects/chirality-piping/Cargo.lock",
+        "projects/chirality-piping/.cargo/**",
+        ".github/workflows/piping-desktop-e2e.yml",
+        ".github/actions/setup-piping-e2e/**"
+      ],
+      "checks": [
+        "piping"
+      ]
+    },
+    {
+      "paths": [
+        "projects/chirality-piping/core/**",
+        "projects/chirality-piping/validation/**",
+        "projects/chirality-piping/fixtures/**",
+        "projects/chirality-piping/schemas/**",
+        "projects/chirality-piping/examples/**",
+        "projects/chirality-piping/Cargo.toml",
+        "projects/chirality-piping/Cargo.lock",
+        "projects/chirality-piping/.cargo/**",
+        "projects/chirality-piping/tools/ci/**",
+        "projects/chirality-piping/tools/release/check_release_readiness.py",
+        "projects/chirality-piping/apps/desktop/src-tauri/src/lib.rs",
+        "projects/chirality-piping/tests/test_ci_*.py",
+        "projects/chirality-piping/tests/test_numerical*.py",
+        ".github/workflows/piping-desktop-e2e.yml",
+        "projects/chirality-piping/tests/**",
+        "projects/chirality-piping/tools/**"
+      ],
+      "checks": [
+        "piping-numerical"
       ]
     }
   ]

@@ -105,13 +105,7 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
         kind: 'contains',
         value: '--bundle-root "${RUNNER_TEMP}/chirality-instruction-root-fixture/instruction-root"'
       },
-      { kind: 'contains', value: 'run: npm run validate:release-quality' },
-      { kind: 'contains', value: 'artifacts/harness/section8/latest/summary.json' },
-      { kind: 'contains', value: 'artifacts/harness/release-quality/latest/summary.json' },
-      {
-        kind: 'contains',
-        value: 'artifacts/harness/instruction-root-integrity/latest/summary.json'
-      },
+      // Product checks run directly; retired wrapper/report paths are not contracts.
       { kind: 'notContains', value: 'secrets.ANTHROPIC_API_KEY' },
       { kind: 'notContains', value: 'command -v claude' }
     ]
