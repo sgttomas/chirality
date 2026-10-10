@@ -5,6 +5,7 @@ import { ConnectorRoutePanel, emptyRouteRead, routeReadTransition, type RouteRea
 // confirmation is the host's (AAC §6.2 P-2). Views per DECISION_VIEW.md §4.
 import { useCallback, useEffect, useRef, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
+import { CodexProcessControls, stopLabel } from "./CodexControls";
 import { FileActPanel } from "./FileActPanel";
 import { NativeActivityView } from "./NativeActivity";
 import { PlanModeControl } from "./PlanMode";
@@ -25,11 +26,14 @@ export function SteeringControl({ target, reason, ready, busy, text, submit }: {
   </div>;
 }
 
-function ConversationPanel({ host, threadKey, setThreadKey, answer, runAct, send, steer, submitAttachments, interrupt, checkPlanMode }: { host: Json; threadKey: string; setThreadKey: (key: string) => void; answer: (r: Json, a: Json) => Promise<void>; runAct: RunAct; checkPlanMode: (generation: Json) => Promise<void>; submitAttachments: (generation: Json, thread: string, expected: string | null, text: string, owner: string, revision: number, refs: string[]) => Promise<void>; send: (generation: Json, thread: string, text: string, mode?: "plan" | "default") => Promise<void>; steer: (generation: Json, thread: string, expected: string, text: string) => Promise<void>; interrupt: (generation: Json, thread: string, turn: string) => Promise<void> }) {
+function ConversationPanel({ host, threadKey, setThreadKey, answer, runAct, send, steer, submitAttachments, interrupt, checkPlanMode, codexBusy }: { codexBusy: boolean; host: Json; threadKey: string; setThreadKey: (key: string) => void; answer: (r: Json, a: Json) => Promise<void>; runAct: RunAct; checkPlanMode: (generation: Json) => Promise<void>; submitAttachments: (generation: Json, thread: string, expected: string | null, text: string, owner: string, revision: number, refs: string[]) => Promise<void>; send: (generation: Json, thread: string, text: string, mode?: "plan" | "default") => Promise<void>; steer: (generation: Json, thread: string, expected: string, text: string) => Promise<void>; interrupt: (generation: Json, thread: string, turn: string) => Promise<void> }) {
   const [turnId, setTurnId] = useState<string>("");
   const [offerBusy, setOfferBusy] = useState(false);
   const [text, setText] = useState<string>("");
-  const [busy, setBusy] = useState<string>("");
+  const [ownBusy, setBusy] = useState<string>("");
+  // While Start/Stop/Restart Codex runs, no text, steer or attachment send is offered
+  // (the host also refuses new turns once a stop is confirmed).
+  const busy = ownBusy || (codexBusy ? "Stop or Restart Codex in progress" : "");
   const [error, setError] = useState<string>("");
   const generationKey = JSON.stringify(host?.generation);
   const currentThreads = (host?.threads ?? []).filter((thread: Json) => JSON.stringify(thread.generation) === generationKey);
@@ -64,7 +68,7 @@ function ConversationPanel({ host, threadKey, setThreadKey, answer, runAct, send
     finally { setBusy(""); }
   };
   const interruptTurn = async () => {
-    if (!selected || !live || busy || alreadyRequested) return;
+    if (!selected || !live || ownBusy || alreadyRequested) return;
     setBusy("interrupting"); setError("");
     try { await interrupt(live.generation, live.threadId, live.turnId); }
     catch (e) { setError(String(e)); }
@@ -78,7 +82,7 @@ function ConversationPanel({ host, threadKey, setThreadKey, answer, runAct, send
   const offerAct: RunAct = async (command, args) => { setOfferBusy(true); try { return await runAct(command, args); } finally { setOfferBusy(false); } };
   return <section id="conversation">
     <h2>Conversation text and turn control</h2>
-    <label>Current-generation conversation <select disabled={!!busy} value={threadKey} onChange={e => { setThreadKey(e.target.value); setTurnId(""); setError(""); }}>
+    <label>Current-generation conversation <select disabled={!!ownBusy} value={threadKey} onChange={e => { setThreadKey(e.target.value); setTurnId(""); setError(""); }}>
       <option value="">Select a conversation</option>
       {currentThreads.map((thread: Json) => <option key={JSON.stringify([thread.generation, thread.threadId])} value={JSON.stringify([thread.generation, thread.threadId])}>{thread.threadId} · {thread.model ?? "model not reported"} via {thread.modelProvider ?? "provider not reported"}</option>)}
     </select></label>
@@ -86,6 +90,7 @@ function ConversationPanel({ host, threadKey, setThreadKey, answer, runAct, send
     {(selected?.futureGuidanceNotices ?? []).map((notice: Json) => <p key={notice.path}>{notice.path}: {notice.reason}; applies to future conversations.</p>)}
     {threadKey && !selected && <p>Selected conversation is no longer available in this generation; choose a current conversation.</p>}
     <NativeActivityView key={selected?.threadId ?? ""} view={host?.nativeView} threadId={selected?.threadId} runs={runs} offers={offers}
+      stopLabelFor={(thread, turn) => stopLabel(host?.codexStops, thread, turn)}
       renderOffer={offer => <RunOffer offer={offer} generation={host?.generation} ready={host?.state === "ready"} busy={offerBusy} act={offerAct} />} />
     {selected && <div aria-label="Requests from Codex in this conversation">
       <h3>Requests from Codex in this conversation ({requests.filter(answerable).length} waiting)</h3>
@@ -106,13 +111,14 @@ function ConversationPanel({ host, threadKey, setThreadKey, answer, runAct, send
       {host?.attachmentCustody?.state !== "opened" && <p>Attachment custody unavailable: {host?.attachmentCustody?.error}. Plain-text controls remain available.</p>}
     </div>}
     <SteeringControl target={steeringTarget} reason={steering?.reason} ready={host?.state === "ready" && !!selected} busy={!!busy} text={text} submit={() => { void steerText(); }} />
-    <label>Observed live turn <select disabled={!!busy} value={turnId} onChange={e => setTurnId(e.target.value)}><option value="">Select a live turn</option>{liveTurns.map((turn: Json) => <option key={turn.turnId} value={turn.turnId}>{turn.turnId} · {turn.nativeTurn.status}</option>)}</select></label>{" "}
-    <button disabled={host?.state !== "ready" || !live || !!busy || alreadyRequested} onClick={interruptTurn}>Interrupt selected live turn</button>
+    <label>Observed live turn <select disabled={!!ownBusy} value={turnId} onChange={e => setTurnId(e.target.value)}><option value="">Select a live turn</option>{liveTurns.map((turn: Json) => <option key={turn.turnId} value={turn.turnId}>{turn.turnId} · {turn.nativeTurn.status}</option>)}</select></label>{" "}
+    <button disabled={host?.state !== "ready" || !live || !!ownBusy || alreadyRequested} onClick={interruptTurn}>Interrupt selected live turn</button>
     <p>An interrupt acknowledgment does not establish turn end or rollback. Turn status comes from native observations.</p>
     {(host?.conversationTurns ?? []).filter((turn: Json) => turn.terminalEventObserved && turn.nativeTurn?.status === "inProgress").map((turn: Json) => <p key={JSON.stringify([turn.generation, turn.threadId, turn.turnId])}>Native turn inconsistency: {turn.threadId}/{turn.turnId} has a terminal event observation and contradictory progress status; interruption is unavailable.</p>)}
     {(host?.conversationTurns ?? []).flatMap((turn: Json) => (turn.inconsistencyLimits ?? []).map((limit: Json, index: number) => <p key={JSON.stringify([turn.generation, turn.threadId, turn.turnId, index])}>Native lifecycle limit for {JSON.stringify(turn.generation)} · {turn.threadId}/{turn.turnId}: {JSON.stringify(limit)}</p>))}
     {alreadyRequested && <p>Interrupt already requested; awaiting native turn status.</p>}
-    {busy && <p>{busy}: waiting for protocol response; no automatic retry.</p>}
+    {ownBusy && <p>{ownBusy}: waiting for protocol response; no automatic retry.</p>}
+    {!ownBusy && codexBusy && <p>Stop or Restart Codex is in progress: sending text, steering and attachments is paused; interrupting a live turn stays available.</p>}
     {error && <p role="alert">{error} No automatic retry.</p>}
     <p>Text-turn protocol requests: {host?.modelTurnEvidence?.protocolRequests?.length ?? 0}. {host?.modelTurnEvidence?.standing ?? "Provider/model execution is not established by this view."}</p>
     <details><summary>Observed native turns, steering and interrupt request state</summary><pre style={{ whiteSpace: "pre-wrap" }}>{JSON.stringify({ turns: host?.conversationTurns, steeringTargets: host?.steeringTargets, steeringRequests: (host?.clientRequests ?? []).filter((request: Json) => request.method === "turn/steer"), interrupts: host?.turnInterruptRequests, protocolEvidence: host?.modelTurnEvidence }, null, 2)}</pre></details>
@@ -557,6 +563,20 @@ export function App() {
     }
     await refresh();
   };
+  // Start / Stop / Restart Codex: one at a time; the host asks first for Stop and Restart.
+  const [processBusy, setProcessBusy] = useState(false);
+  const processAct = async (cmd: string, args: Record<string, unknown>) => {
+    setProcessBusy(true);
+    try {
+      const r: Json = await invoke(cmd, args);
+      setMessage(r?.state === "cancelled" ? `${r.action}: ${r.reading}` : cmd === "codex_stop" ? `${r?.action}: see the outcome under Codex host.` : `${cmd}: ${JSON.stringify(r).slice(0, 300)}`);
+    } catch (e) {
+      setMessage(`${cmd}: ${String(e)}`);
+    } finally {
+      setProcessBusy(false);
+      await refresh();
+    }
+  };
 
   const conversationAction = async (command: "conversation_send_text" | "conversation_steer_text" | "conversation_interrupt", args: Record<string, unknown>) => {
     let failed = false;
@@ -641,10 +661,9 @@ export function App() {
         <p>Selection: {host?.accessSelection ? JSON.stringify(host.accessSelection) : "No model selected"}</p>
         <p>Account (App-observed, identity not verified): {JSON.stringify(host?.accountObservation ?? { state: "unknown" })}</p>
         <p>
-          <button onClick={() => act("thread_start", { model, modelProvider, entryId, modeHomeClass: host?.homeRouting?.activeModeHomeClass, role: role || null })} disabled={host?.state !== "ready" || !model.trim() || !modelProvider.trim() || !entryId}>Start thread</button>{" "}
-          <button onClick={() => act("host_start", {modeHomeClass:host?.homeRouting?.activeModeHomeClass})}>Start Codex</button>{" "}
-          <button onClick={() => act("host_stop", {generation:host?.generation})}>Stop Codex</button>
+          <button onClick={() => act("thread_start", { model, modelProvider, entryId, modeHomeClass: host?.homeRouting?.activeModeHomeClass, role: role || null })} disabled={host?.state !== "ready" || !model.trim() || !modelProvider.trim() || !entryId}>Start thread</button>
         </p>
+        <CodexProcessControls host={host} busy={processBusy} act={(command, args) => { void processAct(command, args); }} />
         <p>Threads: {(host?.threads ?? []).map((t: Json) => `${t.threadId} (${t.status?.type ?? "?"}, gen ${JSON.stringify(t.generation)})`).join(", ") || "none"}</p>
 
         <h3>Expected network contacts</h3>
@@ -666,7 +685,7 @@ export function App() {
         read={() => invoke("read_recovery_custody", { modeHomeClass: host?.homeRouting?.activeModeHomeClass, generation: host?.generation ?? null })} />
       <HistoryPanel host={host} refresh={refresh} />
 
-      <ConversationPanel host={host} threadKey={threadKey} setThreadKey={setThreadKey} answer={answerRequest} runAct={runAct} send={async (generation, threadId, text, mode) => {
+      <ConversationPanel codexBusy={processBusy} host={host} threadKey={threadKey} setThreadKey={setThreadKey} answer={answerRequest} runAct={runAct} send={async (generation, threadId, text, mode) => {
         await conversationAction("conversation_send_text", { generation, threadId, text, mode: mode ?? null });
       }} checkPlanMode={async generation => {
         try { await invoke("collaboration_modes_read", { generation }); } finally { setHost(await invoke("host_status")); }
