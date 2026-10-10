@@ -1,9 +1,0 @@
-# Status: DEL-03-06
-
-**Current State:** INITIALIZED
-**Last Updated:** 2026-09-26
-
-## History
-- 2026-07-25 — State set to OPEN (PREPARATION)
-- 2026-07-25 — State set to INITIALIZED (TASK+status-advance)
-- 2026-09-26 — `## Remaining` section retired under D-PEC-99 by WORKING_ITEMS (PEC Remaining retirement). Its items, with their original text, are accounted for in `execution/_Coordination/_TaskManagement/TM_PEC_REMAINING_RETIREMENT_2026-09-26/`; each was moved verbatim, with its gate, or closed: DEL-03-06-REM-001 → the `D-PEC-83` E evidence-inquiry set in the D-PEC-99 exhibit (still unselected); DEL-03-06-REM-004 → the D-PEC-99 exhibit, for exact carry-forward into this deliverable's `ScopeOfWork.md` by work-graph node S1. Exhibit: `execution/_Coordination/_DECISIONS/D-PEC-99_REMAINING_RETIREMENT_2026-09-26/EXHIBIT_MOVED_ITEMS.md`. No lifecycle change: no CHECKING, ISSUED or artifact acceptance is implied.

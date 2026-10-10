@@ -709,21 +709,6 @@ def test_non_git_dir_actor_gate_still_enforced(tmp_path):
 # ---------------------------------------------------------------------------
 
 
-def test_canonical_and_staging_guard_byte_identity(tmp_path):
-    exporter_path = REPO_ROOT / "exports" / "chirality-app" / "export_public.py"
-    if not exporter_path.exists():
-        pytest.skip("public export intentionally excludes the private export profile")
-    spec = importlib.util.spec_from_file_location("chirality_public_export_guard", exporter_path)
-    assert spec and spec.loader
-    exporter = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(exporter)
-    stage = tmp_path / "public-stage"
-    exporter.build_stage(stage)
-    staged_script = stage / "tools" / "scaffolding" / "write_status.sh"
-    canonical = SCRIPT.read_bytes()
-    staged = staged_script.read_bytes()
-    assert canonical == staged
-
 
 # ---------------------------------------------------------------------------
 # Metacharacter safety + anchor fallback (adversarial-review findings)

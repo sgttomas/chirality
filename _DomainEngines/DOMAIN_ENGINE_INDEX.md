@@ -1,3 +1,5 @@
+> PEC is retired and archived at `archive/pre-frozen-products-2026-10-10`. Its historical adoption below creates no live registration or invocation.
+
 # Domain Engine Integration — Control Area Index
 
 **Owner persona:** DOMAIN_ENGINE (`agents/AGENT_DOMAIN_ENGINE.md`), Type-1 manager subordinate to Type-0 `AGENT_HELPS_HUMANS`.
@@ -13,7 +15,7 @@
 | DOMAIN_ENGINE_ID | Engine | Profile | ProfileStatus | Integration level (today) |
 |---|---|---|---|---|
 | `open_pipe_stress` | OpenPipeStress piping-stress engine (`projects/chirality-piping/`) | `profiles/open_pipe_stress.yaml` | **ADOPTED** (validated + Gate-2 adopted 2026-06-21) | `MANUAL_BRIDGE` (L0) |
-| `pec` | PEC v2 coordination plane (`projects/pec/`) | `profiles/pec.yaml` | **ADOPTED / EFFECTIVE** (D-T0-27 O-A; PublicationSHA `0e47c218c...`, EffectiveSHA `d9dc65804...`) | `READ_ONLY`; declared boundary only, with no invocation created by profile adoption |
+| `pec` | Frozen PEC | `archive/pre-frozen-products-2026-10-10:_DomainEngines/profiles/pec.yaml` | **ARCHIVED** | No live registration |
 
 ## Layout
 

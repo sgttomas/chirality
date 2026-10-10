@@ -57,8 +57,8 @@ Runtime is retired and not verified. It is reproducible from
 `archive/pre-docs-cleanup-1`, alongside frozen App v3 and PEC. The contracts below
 apply only if Runtime is explicitly reactivated; they do not describe App v4's
 architecture or current development obligations. Its historical basis is in
-[Runtime PRD](../projects/chirality-runtime/docs/PRD.md) and
-[PRD authority](../projects/chirality-runtime/docs/PRD_AUTHORITY.md).
+[Runtime PRD](https://github.com/sgttomas/chirality/blob/archive/pre-frozen-products-2026-10-10/projects/chirality-runtime/docs/PRD.md) and
+[PRD authority](https://github.com/sgttomas/chirality/blob/archive/pre-frozen-products-2026-10-10/projects/chirality-runtime/docs/PRD_AUTHORITY.md).
 
 | ID | Invariant | Enforcement |
 |---|---|---|

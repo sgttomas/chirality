@@ -1,3 +1,5 @@
+> App v3, Runtime and PEC are archived; see `projects/FROZEN.md`. Their aliases apply only in historical checkouts containing their adapters. Current commands skip absent roots and explicitly refuse archived project selections. Use `tools.deliverables` for active App v4 and Piping dependencies.
+
 > Migrated projects (including Piping) use `tools/deliverables` for current dependency facts.
 > Lifecycle `status`, `drift`, and `next` views explicitly omit them; legacy adapter
 > syntax remains supported for unmigrated and dormant product consumers.
