@@ -78,6 +78,9 @@ def run_next(repo_root: Path, project_roots: list[Path],
     precedence = {state: idx for idx, state in enumerate(ACTIVE_STATES)}
 
     for project_root in project_roots:
+        if adapter_project.uses_deliverable_sources(project_root):
+            report.md(adapter_project.migrated_project_note(project_root))
+            continue
         manifest = load_adapter(project_root)
         alias = cli_aliases.get(project_root.resolve())
         rel_root = str(project_root.relative_to(repo_root))

@@ -43,6 +43,11 @@ def _root_governance_lines(repo_root: Path, report: Report) -> None:
 
 
 def run_status_project(repo_root: Path, project_root: Path) -> Report:
+    if adapter_project.uses_deliverable_sources(project_root):
+        report = Report(command="status")
+        report.md(adapter_project.migrated_project_note(project_root))
+        report.summary["lifecycle_observation"] = "retired"
+        return report
     manifest = load_adapter(project_root)
     obs = adapter_project.observe_project(manifest, repo_root)
     report = Report(command="status")

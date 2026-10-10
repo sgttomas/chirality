@@ -58,3 +58,14 @@ Unknown targets and differing old maturity descriptions remain evidence for
 judgment, not new blockers. Row IDs occur in the migration output, not in the
 ongoing deliverable format. Source Notes are retained where restrictions and
 rationale cannot safely be separated mechanically.
+
+Piping's DAG-011 is a snapshot (active/retired/anchor rows in one CSV), not
+App v4's admitted/held layers. Its reproducible migration command is:
+
+```sh
+python3 tools/deliverables/migrate_dependencies.py --project projects/chirality-piping --source-ref 6228147ac5 --dag _DAG/DAG-011 --dag-format snapshot --retire-metadata --apply
+```
+
+The snapshot option filters active execution relationships and preserves empty
+architecture nodes. `--retire-metadata` omits optional pointers to removed admin
+files; their source content remains in Git. It does not remove need conditions.

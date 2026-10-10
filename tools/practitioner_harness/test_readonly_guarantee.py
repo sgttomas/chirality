@@ -21,7 +21,7 @@ requires_git = pytest.mark.skipif(shutil.which("git") is None,
                                   reason="git not available")
 
 LIVE_REPO = Path(__file__).resolve().parents[2]
-LIVE_SAMPLE_GLOB = "projects/chirality-piping/execution/PKG-0*/1_Working/*/_STATUS.md"
+LIVE_SAMPLE_GLOB = "projects/chirality-app-dev/execution/PKG-0*/1_Working/*/_STATUS.md"
 
 
 def _hash_tree(root: Path) -> dict[str, str]:

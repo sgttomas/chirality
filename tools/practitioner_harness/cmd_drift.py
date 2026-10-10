@@ -47,6 +47,9 @@ def run_drift(
     per_project_rows: list[str] = []
 
     for project_root in project_roots:
+        if adapter_project.uses_deliverable_sources(project_root):
+            report.md(adapter_project.migrated_project_note(project_root))
+            continue
         obs = observe_for_drift(repo_root, project_root)
         manifest = obs.manifest
         files = obs.files

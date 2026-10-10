@@ -74,15 +74,36 @@ jobs:
             !/execution/
             !/projects/*/execution/
           sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Fingerprint browser verification inputs
+        id: result-key
+        run: python3 tools/software_workflow/result_cache.py key --suite browser --record "${{ runner.temp }}/verified-browser/result.json"
+      - name: Restore exact successful verification
+        id: verified
+        if: github.event_name == 'pull_request'
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/verified-browser/result.json
+          key: ${{ steps.result-key.outputs.key }}
+      - name: Report reused verification
+        if: steps.verified.outputs.cache-hit == 'true'
+        env:
+          RESULT_KEY: ${{ steps.result-key.outputs.key }}
+        run: python3 tools/software_workflow/result_cache.py reuse --suite browser --record "${{ runner.temp }}/verified-browser/result.json"
       - uses: ./.github/actions/setup-piping-e2e
+        if: steps.verified.outputs.cache-hit != 'true'
       - name: Desktop behaviour (including persistence and undo)
         if: github.event_name == 'workflow_dispatch'
         run: npm run test:desktop
         working-directory: projects/chirality-piping
       - name: Production build
+        if: steps.verified.outputs.cache-hit != 'true'
         run: npm run build:desktop
         working-directory: projects/chirality-piping
       - name: Core browser journey and save/reopen
+        if: steps.verified.outputs.cache-hit != 'true'
         run: npm run test:e2e:desktop -- --project=chromium-desktop r2-smoke.spec.ts b3b-project-persistence.spec.ts
         working-directory: projects/chirality-piping
       - uses: actions/upload-artifact@v4
@@ -94,6 +115,18 @@ jobs:
             projects/chirality-piping/apps/desktop/test-results
           if-no-files-found: warn
           retention-days: 7
+
+      - name: Record successful browser verification
+        if: success() && github.event_name == 'pull_request' && steps.verified.outputs.cache-hit != 'true'
+        env:
+          RESULT_KEY: ${{ steps.result-key.outputs.key }}
+        run: python3 tools/software_workflow/result_cache.py save --suite browser --record "${{ runner.temp }}/verified-browser/result.json"
+      - name: Save successful verification
+        if: success() && github.event_name == 'pull_request' && steps.verified.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/verified-browser/result.json
+          key: ${{ steps.result-key.outputs.key }}
 
   numerical:
     name: Numerical Cargo oracles
@@ -112,8 +145,31 @@ jobs:
             !/execution/
             !/projects/*/execution/
           sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: actions/download-artifact@v4
+        with:
+          name: piping-ci-selection
+      - name: Fingerprint numerical verification inputs
+        id: result-key
+        run: python3 tools/software_workflow/result_cache.py key --suite numerical --plan piping-ci-plan.json --record "${{ runner.temp }}/verified-numerical/result.json"
+      - name: Restore exact successful verification
+        id: verified
+        if: github.event_name == 'pull_request'
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/verified-numerical/result.json
+          key: ${{ steps.result-key.outputs.key }}
+      - name: Report reused verification
+        if: steps.verified.outputs.cache-hit == 'true'
+        env:
+          RESULT_KEY: ${{ steps.result-key.outputs.key }}
+        run: python3 tools/software_workflow/result_cache.py reuse --suite numerical --record "${{ runner.temp }}/verified-numerical/result.json"
       - uses: dtolnay/rust-toolchain@1.97.1
+        if: steps.verified.outputs.cache-hit != 'true'
       - name: Cache numerical dependencies and build outputs
+        if: steps.verified.outputs.cache-hit != 'true'
         uses: actions/cache@v4
         with:
           path: |
@@ -122,13 +178,8 @@ jobs:
             piping-numerical-evidence/target
           key: ${{ runner.os }}-piping-numerical-rust1971-${{ hashFiles('projects/chirality-piping/**/Cargo.lock') }}
           restore-keys: ${{ runner.os }}-piping-numerical-rust1971-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-      - uses: actions/download-artifact@v4
-        with:
-          name: piping-ci-selection
       - name: Locked Cargo numerical suite
+        if: steps.verified.outputs.cache-hit != 'true'
         run: python3 projects/chirality-piping/tools/ci/numerical_ci.py --plan piping-ci-plan.json --evidence-dir piping-numerical-evidence
       - uses: actions/upload-artifact@v4
         if: failure()
@@ -140,6 +191,18 @@ jobs:
             piping-numerical-evidence/cargo-logs/*.log
           if-no-files-found: warn
           retention-days: 7
+
+      - name: Record successful numerical verification
+        if: success() && github.event_name == 'pull_request' && steps.verified.outputs.cache-hit != 'true'
+        env:
+          RESULT_KEY: ${{ steps.result-key.outputs.key }}
+        run: python3 tools/software_workflow/result_cache.py save --suite numerical --record "${{ runner.temp }}/verified-numerical/result.json"
+      - name: Save successful verification
+        if: success() && github.event_name == 'pull_request' && steps.verified.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/verified-numerical/result.json
+          key: ${{ steps.result-key.outputs.key }}
 
   python-product:
     name: Python product contracts

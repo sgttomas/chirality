@@ -149,6 +149,31 @@ class MigrationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "escapes project"):
             m.write_documents(self.root, self.project, docs, True)
 
+    def test_snapshot_dag_filters_retired_anchors_and_keeps_empty_nodes(self):
+        active = row('active', EvidenceFile='execution/PKG-01/DEL-01-01/_CONTEXT.md')
+        self.csv(self.folders['DEL-01-01'] / 'Dependencies.csv', [active])
+        self.csv(self.dag / 'DependencyEdges.csv', [active, active,
+            row('retired', Status='RETIRED'), row('anchor', DependencyClass='ANCHOR')])
+        with (self.dag / 'DeliverableNodes.csv').open('w') as f:
+            f.write('DeliverableID,DeliverableName\nDEL-01-01,First\nDEL-01-02,Empty\n')
+        docs, report = m.migrate(m.Sources(self.root, self.project), dag_format='snapshot')
+        self.assertEqual(report['dag']['admitted_pairs'], 1)
+        self.assertEqual(docs['DEL-01-02']['needs'], [])
+        self.assertEqual(docs['DEL-01-01']['needs'][0]['evidence'], 'execution/PKG-01/DEL-01-01/_CONTEXT.md')
+        m.write_documents(self.root, self.project, docs, True, True)
+        saved = yaml.safe_load((self.folders['DEL-01-01'] / 'deliverable.yaml').read_text())
+        self.assertNotIn('evidence', saved['needs'][0])
+        self.assertEqual(m.write_documents(self.root, self.project, docs, True, True), [])
+
+    def test_historical_nested_execution_copies_are_not_inputs(self):
+        source = m.Sources(self.root, self.project)
+        historical = self.root / self.project / 'execution/_History/execution/PKG-01/DEL-01-01/Dependencies.csv'
+        historical.parent.mkdir(parents=True)
+        self.csv(historical, [row('historical')])
+        source.paths.append(historical.relative_to(self.root).as_posix())
+        docs, report = m.migrate(source)
+        self.assertEqual(report['summary']['total'], 0)
+
 
 if __name__ == "__main__":
     unittest.main()

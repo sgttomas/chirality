@@ -128,10 +128,10 @@ def destination_folders(root, project):
     return result
 
 
-def migrate(source, dag="_DAG/DAG-004"):
+def migrate(source, dag="_DAG/DAG-004", dag_format="layers"):
     rows, identities, per_file = [], {}, {}
     report = {"source_revision": source.ref or "working-tree", "accounting": [], "flags": [], "per_deliverable": {}, "dag": {}}
-    csv_paths = sorted(p for p in source.paths if SOURCE.search("/" + p) and p.endswith("Dependencies.csv"))
+    csv_paths = sorted(p for p in source.paths if p.startswith(source.project + "/execution/PKG") and SOURCE.search("/" + p) and p.endswith("Dependencies.csv"))
     if not csv_paths:
         raise ValueError("No canonical dependency CSVs found; use --source-ref after migration")
     for path in csv_paths:
@@ -166,15 +166,30 @@ def migrate(source, dag="_DAG/DAG-004"):
         identities.setdefault(folder_id, "")
         per_file[folder_id] = counts
     layers = {}
-    for filename, gating in (("DependencyEdges.csv", True), ("CandidateEdges.csv", False)):
-        path = f"{source.project}/execution/{dag}/{filename}"
-        if not source.exists(path):
-            raise ValueError(f"Missing DAG layer: {path}; specify --dag for this project")
+    if dag_format == 'snapshot':
+        node_path = f"{source.project}/execution/{dag}/DeliverableNodes.csv"
+        for node in parse_csv(source.read(node_path), node_path):
+            identities.setdefault(node['DeliverableID'], node.get('DeliverableName', ''))
+        path = f"{source.project}/execution/{dag}/DependencyEdges.csv"
         for row in parse_csv(source.read(path), path):
+            if row.get('DependencyClass') != 'EXECUTION' or row.get('TargetType') != 'DELIVERABLE' or row.get('Status') not in ('ACTIVE', 'CANDIDATE'):
+                continue
             arc = pair(row)
-            if arc in layers:
-                raise ValueError(f"DAG pair appears twice: {arc}")
+            gating = row['Status'] == 'ACTIVE'
+            if arc in layers and layers[arc] != gating:
+                raise ValueError(f"DAG pair has conflicting active/candidate standing: {arc}")
             layers[arc] = gating
+        report['dag_format'] = 'snapshot: ACTIVE EXECUTION deliverable rows, retired/anchor rows excluded, pairs deduplicated'
+    else:
+        for filename, gating in (("DependencyEdges.csv", True), ("CandidateEdges.csv", False)):
+            path = f"{source.project}/execution/{dag}/{filename}"
+            if not source.exists(path):
+                raise ValueError(f"Missing DAG layer: {path}; specify --dag for this project")
+            for row in parse_csv(source.read(path), path):
+                arc = pair(row)
+                if arc in layers:
+                    raise ValueError(f"DAG pair appears twice: {arc}")
+                layers[arc] = gating
     docs = {identifier: {"id": identifier, **({"name": name} if name else {}), "needs": []} for identifier, name in sorted(identities.items())}
     exact, migrated_pairs = {}, set()
     groups = defaultdict(list)
@@ -213,7 +228,9 @@ def migrate(source, dag="_DAG/DAG-004"):
         evidence = meaningful(row.get("EvidenceFile", ""))
         if evidence:
             original = Path(row["_source"]).parent
-            if not evidence.startswith(("/", "projects/")):
+            if evidence.startswith("execution/"):
+                evidence = source.project + "/" + evidence
+            elif not evidence.startswith(("/", "projects/")):
                 evidence = (original / evidence).as_posix()
             if evidence.startswith(source.project + "/"):
                 evidence = evidence[len(source.project) + 1:]
@@ -237,7 +254,7 @@ def migrate(source, dag="_DAG/DAG-004"):
         maturities = {r.get("RequiredMaturity", "") for r in members}
         if len(maturities) > 1:
             report["flags"].append({"kind": "maturity_difference", "pair": list(arc), "ids": [r["DependencyID"] for r in members], "values": sorted(maturities)})
-    for path in sorted(p for p in source.paths if SOURCE.search("/" + p) and p.endswith("_DEPENDENCIES.md")):
+    for path in sorted(p for p in source.paths if p.startswith(source.project + "/execution/PKG") and SOURCE.search("/" + p) and p.endswith("_DEPENDENCIES.md")):
         for line, direction, text in declared_lines(source.read(path)):
             # Only a direct row-ID citation or identical statement establishes coverage.
             local = [r for r in rows if Path(r["_source"]).parent == Path(path).parent and r["Direction"] == direction]
@@ -252,7 +269,7 @@ def migrate(source, dag="_DAG/DAG-004"):
     return docs, report
 
 
-def write_documents(root, project, docs, apply=False):
+def write_documents(root, project, docs, apply=False, retire_metadata=False):
     folders = destination_folders(root, project)
     missing = sorted(set(docs) - folders.keys())
     if missing:
@@ -271,6 +288,13 @@ def write_documents(root, project, docs, apply=False):
         # Relocate machine-readable references as well as evidence. Section
         # prose remains in the condition's original Target description.
         for need in document["needs"]:
+            if retire_metadata and Path(need.get('evidence', '')).name in {
+                '_CONTEXT.md', '_DEPENDENCIES.md', '_STATUS.md', 'MEMORY.md',
+                '_REFERENCES.md', '_SEMANTIC.md', '_SEMANTIC_LENSING.md',
+            }:
+                # Optional administrative provenance stays recoverable at source-ref;
+                # current commitments are preserved in ScopeOfWork/Design by migration.
+                need.pop('evidence', None)
             fields = ['evidence'] if 'evidence' in need else []
             if need['from'].startswith('doc:'):
                 fields.append('from')
@@ -299,6 +323,8 @@ def main(argv=None):
     parser.add_argument("--project", default="projects/chirality-app-v4")
     parser.add_argument("--source-ref")
     parser.add_argument("--dag", default="_DAG/DAG-004", help="DAG path relative to execution")
+    parser.add_argument("--dag-format", choices=("layers", "snapshot"), default="layers")
+    parser.add_argument("--retire-metadata", action="store_true", help="Omit optional evidence pointers to retired administrative files")
     parser.add_argument("--apply", action="store_true")
     parser.add_argument("--summary", action="store_true", help="Print counts and flags only; default includes full accounting")
     args = parser.parse_args(argv)
@@ -308,8 +334,8 @@ def main(argv=None):
         if project.is_absolute() or not (root / project).resolve().is_relative_to(root):
             raise ValueError("Project must be a repository-relative contained path")
         source = Sources(root, project, args.source_ref)
-        docs, report = migrate(source, args.dag)
-        report["changed_files"] = write_documents(root, project, docs, args.apply)
+        docs, report = migrate(source, args.dag, args.dag_format)
+        report["changed_files"] = write_documents(root, project, docs, args.apply, args.retire_metadata)
         report["applied"] = args.apply
         if args.summary:
             report.pop("accounting")

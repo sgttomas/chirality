@@ -70,9 +70,21 @@ def _excluded(rel: PurePosixPath, exclude_globs: list[str]) -> bool:
     return False
 
 
+def uses_deliverable_sources(project_root: Path) -> bool:
+    return next((project_root / "execution").glob("PKG-*/DEL-*/deliverable.yaml"), None) is not None
+
+
+def migrated_project_note(project_root: Path) -> str:
+    return (f"{project_root.name}: lifecycle observation is retired for this migrated project. "
+            "Use python3 -m tools.deliverables --project " + project_root.as_posix()
+            + " neighborhood <DEL> for current dependency facts; no completion state is inferred.")
+
+
 def collect_status_files(manifest: AdapterManifest) -> list[Path]:
     root = manifest.project_root
     assert root is not None
+    if uses_deliverable_sources(root):
+        return []
     out: list[Path] = []
     for path in sorted(root.glob(manifest.status_glob)):
         rel = PurePosixPath(path.relative_to(root).as_posix())

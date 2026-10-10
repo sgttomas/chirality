@@ -932,6 +932,10 @@ def run_bridge_status(repo_root: Path) -> Report:
     report.md("## Deliverable blocked-on links")
     report.md("")
     report.md(BLOCKED_ON_NOTE)
+    for relroot in BLOCKED_ON_PROJECT_RELPATHS:
+        project_root = repo_root / relroot
+        if adapter_project.uses_deliverable_sources(project_root):
+            report.md(adapter_project.migrated_project_note(project_root))
     report.md("")
     if not blocked_on:
         report.md("- no `blocked-on` tokens parsed from configured deliverable `_STATUS.md` files")
