@@ -4,13 +4,32 @@
 
 ## 6.1 Introduction
 
-The preceding chapters established the philosophical framework, architectural design, and epistemic architecture of the Chirality agent governance system. This chapter examines the regulatory dimension of that architecture: specifically, how a licensed professional engineer in Alberta can direct AI agents within the Chirality framework while satisfying professional obligations under the *Engineering and Geoscience Professions Act* (EGP Act) and APEGA practice standards.
+This chapter examines how an agent-assisted work environment can support
+professional practice. It uses the Alberta engineering context to identify
+concrete questions about supervision, examination, competence, documentation
+and accountable reliance.
 
-The central argument is precise and bears stating at the outset. The APEGA practice standard *Relying on the Work of Others and Outsourcing* (May 2021, v4.0) defines obligations on the licensed professional when that professional relies on work prepared by others. These obligations — direct supervision and control (§3.1.1) and thorough review (§3.1.2) — are specified entirely in terms of what the professional must do. They are not conditioned on what the worker must be. Therefore, the question of whether a worker is a human subordinate or an AI agent is, from the regulatory standpoint, irrelevant to the professional's obligations. What matters is whether the governance architecture through which the professional directs the work satisfies those obligations in substance.
+**Scope of the regulatory analysis.** The mapping retains the source editions
+and interpretation used in the thesis as of **2026-07-02**. The October
+revision reassesses the architectural argument; it does not establish the
+currency of those regulatory sources, amend the firm's practice management
+plan or certify legal compliance. The mapping is the author's interpretation,
+not a determination or endorsement by APEGA. Appendix C carries the detailed
+relationship between review topics and proposed support.
 
-This chapter argues that the Chirality architecture can satisfy them in substance. Section 6.2 establishes the regulatory framework. Section 6.3 develops the central argument as a logical chain. Sections 6.4 and 6.5 map specific APEGA requirements to Chirality mechanisms for direct supervision and control and for thorough review, respectively. Section 6.6 addresses the professional obligations that remain invariantly human. Section 6.7 examines the quality control and assurance framework. Section 6.8 articulates the human-AI contract that the architecture enforces. Section 6.9 identifies the genuine limitations of the regulatory mapping. Section 6.10 summarizes the contribution.
+Three kinds of claim must be distinguished:
 
-The APEGA regulatory mapping is developed in detail in Appendix C. This chapter presents the argument and synthesizes the evidence; Appendix C provides the full compliance trace from regulatory text to architectural implementation.
+- **Normative commitment:** Chirality reserves accountable professional
+  commitment to the person and requires claims to remain within their support.
+- **Design hypothesis:** discoverable grounds, scoped operations and faithful
+  capture of relevant decisions can support competent direction and review.
+- **Empirical finding:** a particular arrangement actually detected a material
+  error, preserved a decision or enabled satisfactory examination. The existence
+  of instructions does not establish this result.
+
+The chapter develops the first two and identifies evidence needed for the
+third. It does not deduce a fixed agent hierarchy, document kit or series of
+human gates from professional accountability.
 
 ---
 
@@ -18,37 +37,62 @@ The APEGA regulatory mapping is developed in detail in Appendix C. This chapter 
 
 ### 6.2.1 Governing Legislation and Standards
 
-The professional practice of engineering in Alberta is governed by the *Engineering and Geoscience Professions Act* (EGP Act), specifically Sections 1(q), 1(r), 2(1), 3(2), 3(3), 5(1), 6(2), and 6(3), and by the *General Regulation*, Part 7 (Professional Practice Management Plans), Part 8 (Practice Standards), and Sections 49 and 54 (Authentication). These instruments establish the conditions under which engineering work may be performed, authenticated, and issued for reliance.
+The original analysis situated the work under Alberta's *Engineering and
+Geoscience Professions Act*, its *General Regulation* and three APEGA practice
+standards:
 
-APEGA practice standards operationalize these legislative requirements. Three standards are directly engaged by AI-assisted professional practice:
+- *Relying on the Work of Others and Outsourcing*, May 2021, v4.0
+  [CITE:APEGA_RWO2021];
+- *Authenticating Professional Work Products*, November 2024, v8.6
+  [CITE:APEGA_Auth];
+- *Professional Practice Management Plan*, November 2022, v1.1
+  [CITE:APEGA_PPMP].
 
-- *Relying on the Work of Others and Outsourcing* (May 2021, v4.0), which defines the professional's obligations when any portion of a professional work product (PWP) is prepared by others — including the obligations of direct supervision and control (§3.1.1) and thorough review (§3.1.2)
-- *Authenticating Professional Work Products*, which governs the final act by which a licensed professional accepts professional responsibility for a PWP
-- The *Professional Practice Management Plan* practice standard (v1.1, November 2022; in effect May 1, 2022, with enforcement from May 1, 2023 — superseding the 2013 PPMP Guideline), which requires permit holders to describe their QC/QA processes, including processes for relying on the work of others, in a documented PPMP
+These are the historical source basis for the section references below. The
+first provided the supervision and review topics, the second the discussion
+of authentication, and the third the relationship to a firm's practice
+system. This chapter is not a substitute for determining the applicable
+requirements and source editions for an actual undertaking.
 
-These three instruments form a coherent framework. The PPMP defines the firm's practice system. The relying-on-others standard defines the professional's obligations when others contribute to PWPs. The authentication standard defines the act that completes the professional's assumption of responsibility. Together, they establish what a licensed professional must do to lawfully issue an AI-assisted engineering work product for reliance.
-
-The Chirality AI Ltd. professional practice standard (`PROFESSIONAL_ENGINEERING.md`, Revision 1, 2026-03-29), referenced by the firm's PPMP, documents how each of these obligations is satisfied when licensed professionals use the Chirality agent system.
+The firm's *Professional Engineering with Agentic AI in Regulated Practice*
+was a further source for the earlier interpretation. Its prior repository
+form, `PROFESSIONAL_ENGINEERING.md`, is historical; its maintained home is the
+firm's quality management system [CITE:Chirality_PE]. The changes to this
+thesis neither revise that document nor infer the firm's present practice
+from archived repository mechanisms.
 
 ### 6.2.2 Professional Work Products and Reliance
 
-The EGP Act and APEGA define a professional work product (PWP) as an output of professional services containing technical information that others rely upon to make decisions or take actions. In the Chirality system, PWPs correspond to authenticated deliverables that have reached the ISSUED lifecycle state — the final and irreversible state in the deliverable lifecycle state machine. The lifecycle state machine is defined in `docs/SPEC.md` §3 and `docs/TYPES.md` §5.
+In the cited practice context, a professional work product (PWP) concerns
+technical information on which others rely to make decisions or take action.
+Its character is not created by a repository status field. Nor does an
+unauthenticated work product become a PWP only when someone authenticates it.
 
-It is important to distinguish work-in-progress outputs from PWPs and
-unauthenticated PWPs from authenticated PWPs. Agent-produced drafts in the
-IN_PROGRESS or CHECKING states are not complete and final PWPs. A licensed
-professional determines when an output meets the definition of a PWP and,
-where authentication is required, applies authentication to that existing PWP
-before issuance. Authentication does not create the PWP. This distinction is
-architecturally enforced in the authority allocation: no agent may advance a
-deliverable to the ISSUED state or claim to authenticate work (K-AUTH-1,
-`docs/CONTRACT.md` §1.2).
+The earlier mapping equated PWPs with deliverables in an ISSUED state. That
+confused a practice concept with one implementation's workflow label. The
+relevant distinctions are the work's content, purpose, intended reliance,
+state of examination and applicable professional acts. A draft can still
+contain consequential technical information, and a completed software change
+is not automatically an authenticated engineering work product.
+
+Git integration, an owner accepting a development slice and professional
+authentication are different acts. Their subjects and authority must be
+identified separately.
 
 ### 6.2.3 Applicability to AI-Assisted Work
 
-APEGA has issued conduct-level guidance on AI tools: *Guidance for Registrants Regarding the Use of Artificial Intelligence Tools* (first published July 2025; updated March 23, 2026). It holds that licensed professionals remain professionally responsible for work generated by or including AI results, must demonstrate due diligence in confirming those results are accurate and appropriate, are directed to treat AI results "no differently than results from software, calculators, or lookup tables," and should not use AI tools they cannot competently assess. The guidance defines what the registrant must do; it does not address AI agents or LLM-based agent systems specifically, does not prescribe how AI systems should be architected to make the required due diligence tractable, and does not address the application of the *Relying on the Work of Others* standard to AI-assisted work. [RATIONALE: The architectural question therefore remains a genuine regulatory gap; the analysis in this chapter represents an interpretation by the firm and the author, not a regulatory determination by APEGA — a conservative structure that complements and exceeds the conduct obligations of the AI guidance.] The question of how existing practice standards apply to AI-agent-assisted work therefore still requires an interpretive analysis — which the Chirality professional practice standard provides by grounding the analysis in the regulatory text itself.
+The earlier analysis also cited APEGA's *Guidance for Registrants Regarding
+the Use of Artificial Intelligence Tools*, updated March 23, 2026
+[CITE:APEGA_AI2026]. It read that guidance as placing responsibility for
+appropriate use and examination of AI results with the registrant, while
+comparing AI results to those of other technical tools.
 
-The interpretive move is straightforward: the standard *Relying on the Work of Others and Outsourcing* does not limit its application to human workers. Its obligations are defined by reference to what the licensed professional must do, not by reference to the nature or legal status of the entity performing the work. This interpretation is examined in detail in §6.3.
+The thesis proposed using the supervision and review topics from the
+reliance standard to structure AI-assisted practice. That proposal remains
+useful as a design inquiry. It does not settle whether an AI agent is an
+“other” in the standard's legal meaning. The ability to map a mechanism to a
+professional concern establishes neither direct legal applicability nor
+sufficient performance of the obligation.
 
 ---
 
@@ -56,40 +100,63 @@ The interpretive move is straightforward: the standard *Relying on the Work of O
 
 ### 6.3.1 Structure of the Argument
 
-The central argument of this chapter can be expressed as a logical chain. The premises are drawn directly from the regulatory text and the architectural record; the conclusion follows from them. The chain is:
+The original chapter argued that because the cited obligations described the
+professional's conduct, they necessarily applied to AI agents as “others.”
+That conclusion was stronger than the premises supported. Language about
+conduct does not by itself resolve the scope of a legal term.
 
-1. APEGA §3.0 (*Relying on the Work of Others*) imposes obligations on the licensed professional when that professional relies on work prepared by others.
-2. These obligations — direct supervision and control (§3.1.1) and thorough review (§3.1.2) — are specified in terms of what the professional must do: how thoroughly the professional must supervise, how rigorously the professional must review, and how the professional must document that supervision or review.
-3. The regulatory text does not condition these obligations on the nature, legal status, or professional standing of the entity that prepared the work. The obligations are the same whether the work was prepared by a licensed professional, an engineering intern, an unlicensed technologist, or a contractor operating under direct supervision.
-4. AI agents that produce work under the direction of a licensed professional assume no professional responsibility. The entire chain of responsibility flows to the licensed professional who authenticates the resulting PWP.
-5. This makes the AI agent case structurally identical to the case of an unlicensed individual working under direct supervision and control: the supervising professional bears full responsibility for the work, and the obligations of §3.1.1 apply.
-6. Therefore, this thesis argues that the existing APEGA framework can be read to apply directly to AI-assisted professional practice, because AI agents are "others" within the meaning of §3.0 and the obligations are defined by what the professional must do.
-7. The relevant regulatory question is then: can the Chirality governance architecture satisfy the obligations of §3.1.1 (direct supervision and control) and §3.1.2 (thorough review) in substance?
-8. This chapter and Appendix C provide the argument and evidence for answering that question in the affirmative, while recognizing that the result remains an interpretive position rather than a regulatory ruling.
+The narrower argument is:
 
-This argument is the structural foundation of the firm's professional practice standard (`PROFESSIONAL_ENGINEERING.md` §1.3) and is the thesis position advanced in this chapter.
+1. Professional use of agent-produced work raises concrete questions about
+   scope, competence, evidence, examination and responsibility.
+2. The cited supervision and review topics offer a disciplined way to examine
+   those questions.
+3. Agent instructions, tools and records can support some of the required
+   activities, subject to their actual operation and limitations.
+4. The architecture cannot establish that the professional performed those
+   activities adequately or that the arrangement satisfies applicable law.
 
-### 6.3.2 Why the Framework Applies Directly, Not by Analogy
+This argument supports a candidate practice arrangement without depending on
+a settled classification of the agent as a worker or tool.
 
-The distinction between "applies directly" and "applies by analogy" is not merely rhetorical. An analogical application would suggest that AI agents are *like* unlicensed human workers in relevant respects, and that the professional's obligations are *similar* to those that would apply in the human case. A direct application holds that the obligations are the *same*, because the regulatory text makes no distinction that would produce a different result.
+<a id="632-why-the-framework-applies-directly-not-by-analogy"></a>
+### 6.3.2 Direct Application and Analogy: An Interpretive Limit
 
-The relevant provision of the APEGA practice standard is §3.1, which requires that a licensed professional who relies on work prepared by others satisfy either the direct supervision and control standard or the thorough review standard before authenticating the resulting PWP. The standard defines "direct supervision and control" as directing, monitoring, and controlling engineering work throughout its lifespan, including making all decisions related to the practice of engineering. The standard defines "thorough review" as an evaluation of outputs sufficient to verify their reliability, validity, and technical accuracy, and to accept professional responsibility for them.
+The “others” interpretation was adopted in the earlier analysis as a
+conservative position. The alternative treats AI as a technical tool whose
+results the professional must be competent to assess. Neither interpretation
+can be resolved simply by naming the system an agent or observing that it
+performs complicated work.
 
-Neither definition references the nature of the entity that performed the work. Both are defined entirely in terms of the professional's conduct. An AI agent that drafts a deliverable section, extracts dependencies from source documents, and returns a structured output is performing work that the licensed professional relies upon. The professional's obligation is to have either directed that work through the mechanisms that constitute direct supervision and control, or to have reviewed it through the mechanisms that constitute thorough review — and then to authenticate the result.
+A tool classification does not imply that casual review is adequate. A
+worker analogy does not prove that extra records or approvals improve
+protection. The appropriate examination depends on the work's consequences,
+the nature of possible error and the applicable professional requirements.
 
-There is a potential objection: that "others" in APEGA §3.0 contemplates natural persons capable of bearing some measure of professional responsibility, and that AI agents, being incapable of professional responsibility, are better understood as tools rather than as workers. This objection would support the view that using an AI agent is more like using calculation software than like relying on a subordinate's work — and APEGA's AI guidance lends it real support, since the guidance analogizes AI results to "software, calculators, or lookup tables" (quoted in §6.2.3). The provincial landscape is surveyed in Chapter 2 (§2.4.2–2.4.3: the EGBC advisory and PEO's reliance on it).
-
-The firm resolves this question conservatively, in favor of the "others" interpretation, for two reasons. First, the conservative interpretation places more rigorous obligations on the professional — the full supervision and review requirements of §3.1 — rather than treating AI agent outputs as merely tool outputs requiring whatever review the professional deems appropriate. Second, the firm's position is that the distinction between "tool" and "worker" is best understood by reference to the complexity, discretion, and consequentiality of what the system does. An AI agent that interprets ambiguous source documents, proposes decompositions, drafts design rationale, and surfaces conflicts is exercising a form of judgment, even if it bears no responsibility for that judgment. The appropriate regulatory response is not to classify such outputs as mere tool outputs but to require that the professional supervise and review them with the rigor that §3.1 demands.
-
-This conservative interpretation aligns with the regulatory purpose of the APEGA framework: the protection of the public through the accountability of licensed professionals for the work they issue for reliance.
+Agents can interpret requirements, compare alternatives, criticize designs
+and take authorized action. This is sophisticated **reckoning** in the
+thesis's terminology. **Judgment** is the person's situated, committed and
+world-involving answerability for the undertaking. The distinction does not
+restrict agents to clerical production, and it does not make their legal
+classification a consequence of their capability.
 
 ### 6.3.3 The Technology Provider Distinction
 
-The argument requires one further clarification. The LLM technology provider — currently Anthropic — is not providing professional services and does not assume professional responsibility under the EGP Act. The technology provider is a vendor supplying a technology component: a large language model that serves as the cognitive engine within the agent system. This is analogous to the relationship between a firm and the provider of structural analysis software. The software vendor does not bear professional responsibility for the engineer's analysis; the engineer does.
+A model supplier, the host application, the agent's assignment and the
+professional work are distinct objects of examination. Supplier capability
+claims do not establish that a particular output is suitable for reliance.
+Similarly, an instruction framework does not make the supplier component safe
+by definition.
 
-The firm's agents are not the LLM itself but the controlled system architecture — instruction file, tool access, write scope, governance constraints, and runtime context — that the firm has engineered around the LLM. It is this architecture that constitutes the "agent" for purposes of the professional practice standard. The technology provider supplies a cognitive component; the firm supplies the governance architecture that makes that component safe to rely upon in professional practice. The professional's obligations under §3.1 run to the work produced by that governed architecture, not to the underlying technology.
+The practical agent system includes the model, instructions, context, tools,
+permissions and execution environment. Investigating a failure may require
+examining any of these. A model update can alter behaviour; a tool can return
+wrong units; a permission defect can allow an unintended operation.
 
-This distinction matters because it clarifies what the firm's due diligence obligations are. The firm must assess the LLM as a technology component — its capabilities, limitations, failure modes, and the impact of model updates on agent behavior (addressed in §6.7) — but the professional's obligations of supervision and review run to the agent outputs, not to the LLM's internal mechanisms, which are not accessible for inspection.
+The thesis allocates accountable professional commitment to the person using
+the work. It makes no general legal determination here about suppliers' or
+firms' liabilities. Those questions cannot be settled by the architecture's
+responsibility model.
 
 ---
 
@@ -97,59 +164,81 @@ This distinction matters because it clarifies what the firm's due diligence obli
 
 ### 6.4.1 The APEGA Standard
 
-APEGA §3.1.1 requires that a licensed professional who relies on the work of others provide direct supervision and control over that work. The standard defines direct supervision and control as directing, monitoring, and controlling engineering work throughout its lifespan, including making all decisions related to the practice of engineering. Two sets of specific obligations follow from this definition: active involvement obligations (§3.1.1.1) and responsibility-in-decision-making obligations (§3.1.1.2). The standard also requires that the process and record keeping for direct supervision and control be described in the PPMP (§3.1.1 record keeping requirement). The reliance standard is itself capability-invariant: it never conditions the professional's obligations on the competence of the "other" whose work is relied upon, only on what the relying professional did to satisfy themselves — a property whose implications are developed in Chapter 9 (§9.3.5).
+The historical mapping used §3.1.1 of the cited reliance standard to examine
+active involvement, responsibility in decision making and documentation.
+These topics direct attention to what the professional does throughout an
+undertaking. They do not demonstrate that a particular number of agents,
+levels or approval stops is necessary.
 
-The Chirality architecture satisfies each of these obligations through mechanisms that are architectural — that is, structurally enforced — rather than merely procedural recommendations. The following subsections present the argument for each obligation.
+Chirality's contribution is proposed support for that conduct. Actual
+supervision cannot be inferred from a passed validator, an available dashboard
+or an agent's instruction to ask when uncertain.
 
 ### 6.4.2 Active Involvement (APEGA §3.1.1.1)
 
-APEGA §3.1.1.1 identifies five specific obligations constituting active involvement. For each, the Chirality mechanism is identified and the governing document cited. Appendix C, Table C.1.1, provides the full compliance trace.
+The five topics in the prior mapping remain useful:
 
-**Directing, monitoring, and controlling work throughout its lifespan.** The licensed professional directs, monitors, and controls AI agent work through the gate-controlled orchestration model. Agent 0 and Agent 1 frame consequential decisions for the human; Agent 2 executes only bounded briefs under an approved run. Human authority is the halting condition for scope, risk, authority, shared-write, acceptance, lifecycle, and reliance decisions. Runtime metadata checks support but do not authenticate the human approval act. The orchestration architecture is defined in `docs/DBM_Agent_Instruction_Architecture.md` §6.
+| Topic | Proposed support | What still requires examination |
+|---|---|---|
+| Direct, monitor and control the work | An objective and authority from the person; visible material findings and opportunities to intervene | Whether the person remains meaningfully engaged at the required points |
+| Establish scope, duties, responsibilities, authority and limits | Current commitments, role responsibilities, assignment boundaries and host permissions | Whether scope and permissions fit the work and are actually enforced |
+| Maintain ongoing communication | Conversation, actual contributor returns and relevant product state | Whether important changes reached the person in time |
+| Identify competence gaps | Examine results and failure modes; obtain suitable expertise or a different method | Whether the available participants and tools can address the problem |
+| Conduct periodic review | Review at points where errors or changes have material consequences | Whether the examination covered the relevant risks and work |
 
-The runtime hierarchy (Agent 0 Supervising Architect / Agent 1 Manager / Agent
-2 Specialist) is directly relevant here. Standards constrain every layer;
-capabilities are explicit rather than inherited; Agent 2 does not delegate;
-and no agent may approve deliverables for external reliance. The human
-professional remains accountable and authorizes consequential gates.
-
-**Establishing and documenting scope, duties, responsibilities, authorities, and limitations.** Every agent instruction file (`agents/AGENT_*.md`) declares the agent's type, class, interaction surface, write scope, blocking behavior, primary outputs, and non-negotiable invariants. These declarations are the formal record of scope, duties, responsibilities, authorities, and limitations for each agent — equivalent, in structural terms, to a position description for a human subordinate, but with the significant difference that the declarations are versioned, auditable, and identical for every run. Write scope enforcement is carried by the declared contract plus diff review under invariant K-WRITE-1 (`docs/CONTRACT.md` §1.10), with bounded task writes additionally path-contained by a deterministic TASK-shell check (K-WRITE-2). The authority model is defined in `docs/TYPES.md` §4.3.
-
-**Maintaining regular and ongoing communication.** Agent 0 and Agent 1 maintain interactive sessions with the licensed professional, presenting structured outputs and awaiting human decisions at gates before proceeding. Agent 2 receives sealed briefs and returns structured reports with status and evidence. Session continuity is maintained through versioned orchestration plans, launch briefs, notices, returns, and handoff state rather than hidden context. Working memory per deliverable is maintained in `_MEMORY.md` (defined in `docs/SPEC.md` §8). Runtime persistence is defined in `docs/DBM_Agent_Instruction_Architecture.md` §§8–9.
-
-This "regular and ongoing communication" requirement deserves comment in the AI context. Managed runs make consequential briefs, notices, amendments, returns, gates, and handoffs durable in runtime records or governed project artifacts. Git records accepted publication and integration state; not every transient message is committed, and a commit is never itself semantic acceptance.
-
-**Identifying and rectifying gaps in competencies.** AUDIT_AGENTS evaluates
-instruction files against ratified K-* governance and the ratified
-workflow-component standard. The evaluation framework assesses output quality;
-versioning and review prevent silent instruction changes. Conformance results
-are evidence for remediation and do not themselves approve consequential
-changes.
-
-**Completing periodic reviews to ensure PWPs are accurate and reliable.** The REVIEW agent (`agents/AGENT_REVIEW.md`) implements a formal 5-gate review process for lifecycle transitions. EVALUATION performs generic cross-deliverable coherence analysis; RECONCILIATION separately aligns deliverable-local and project-wide truth during an activated corpus-concordance run. Accepted project artifacts are git-versioned, and managed run records preserve delegated-work evidence. The review protocol is addressed in detail in §6.5.
+Agent 0 maintains continuity; managers and bounded contributors are used
+where they serve the undertaking. Roles do not grant permissions. Write
+access follows the assignment and host limits, and TASK does not delegate in
+the repository's chosen role framework. That arrangement is one current
+implementation, not a deduction from the professional topics above.
 
 ### 6.4.3 Responsibility in Decision Making (APEGA §3.1.1.2)
 
-APEGA §3.1.1.2 requires that the licensed professional be responsible for all technical engineering decisions. The Chirality architecture satisfies this requirement through four mechanisms:
+In the cited May 2021 standard, §3.1.1.2 assigns the licensed professional
+responsibility for **all technical engineering or geoscience decisions**
+related to the work. It also requires consideration and documentation of
+relevant issues, technical direction with attention to applicable requirements,
+and availability to answer questions and review and approve decisions made by
+those doing the work [CITE:APEGA_RWO2021] (p. 11). The source does not limit
+these obligations to a repository's reserved decisions.
 
-**Structured context documentation.** Every deliverable has a required set of context files: `_CONTEXT.md` (scope items, objectives, and decomposition reference), `_DEPENDENCIES.md` (dependency summary), and `_REFERENCES.md` (source document pointers). These files are required structural elements of the project filesystem — not optional documents that a professional may or may not produce. They constitute the documented record of what the licensed professional considered in directing the work (defined in `docs/SPEC.md` §4, §5, §7).
+The repository separately permits standing authorization for investigation,
+implementation and repair. Ordinary action need not return to the owner
+merely because a procedural stage has changed, while changes to reserved
+commitments, acceptance criteria, reliance purposes or risk decisions require
+the appropriate person. These are repository arrangements, not a narrower
+interpretation of the cited professional obligation. Where that obligation
+applies, operational selections and standing authorization remain subject to
+it; calling a choice ordinary implementation does not remove professional
+responsibility for a technical engineering or geoscience decision.
 
-**Technical direction through formal mechanisms.** Technical direction is provided through agent briefs, explicit gate decisions, and conflict adjudication at human gates. Agents propose; humans approve. Agents surface conflicts; humans rule. The licensed professional is the mandatory decision authority at every gate — no agent may bypass a gate or autonomously declare an outcome (K-GATE-1, K-SEAL-1).
+An agent can present a choice and its consequences, resolve an implementation
+question within actual authority, or apply an already-authorized decision
+without pretending to exercise the person's judgment. The required professional
+involvement must still be established for the actual practice context.
 
-**Availability to review and approve.** The gate-controlled workflow structure requires the licensed professional at every defined consequential decision. Agent 2 launch cites prior human run approval, and no output advances lifecycle state without human authorization.
-
-**Decision records in durable project record.** Every decision must be recorded in versioned files: Decision Logs, `_MEMORY.md` (per `docs/SPEC.md` §8), and `_STATUS.md` lifecycle history (per `docs/SPEC.md` §3). Invariant K-STATUS-1 designates `_STATUS.md` as the canonical, human-readable lifecycle state file for each deliverable. Agents are prohibited from maintaining hidden state that diverges from the filesystem (`docs/DIRECTIVE.md` §2.5). As the firm's founding design principle states: if a decision is not in a versioned file, it does not exist for purposes of reliance.
+The decision changes the artifact it governs. Its reason and scope are
+preserved where the undertaking needs them, using its existing change record
+when adequate. Removing an administrative ledger does not remove an actual
+professional documentation requirement.
 
 ### 6.4.4 Documentation of Due Diligence
 
-APEGA §3.1.1 requires that the process for direct supervision and control and the associated record keeping be described in the PPMP. The Chirality professional practice standard (`PROFESSIONAL_ENGINEERING.md` §4.3) identifies four components of the documentation of due diligence:
+Documentation should let a relevant reader reconstruct what was directed,
+examined and relied upon. The amount and form depend on the practice context
+and applicable requirements. Current source documents, identified outputs,
+conversation capture and version history may supply that evidence; a special
+record is justified where these are insufficient.
 
-- Agent instruction files (`agents/AGENT_*.md`) providing documented scope, duties, authorities, and constraints for each agent
-- Governance documents (`docs/`) containing the complete governance framework: design philosophy, physical specifications, domain vocabulary, invariant contracts, and architectural design basis
-- Git history providing the complete development record of all project state, including every agent output, human decision, and lifecycle transition
-- Immutable snapshots providing a timestamped, append-only audit trail for all analysis outputs (enforced by K-SNAP-1, `docs/CONTRACT.md` §1.10)
+Git preserves committed content and its changes. It does not automatically
+capture every conversation, action, input, human decision or external event.
+Nor does a versioned instruction prove that it was followed. A practice claim
+must state its actual evidentiary coverage.
 
-The significance of the git history and immutable snapshot trail deserves emphasis. The audit trail for AI-assisted professional practice must be sufficient to enable a regulator, reviewer, or court to reconstruct what happened: what the agent was instructed to do, what it produced, what the professional reviewed, and what the professional decided at each gate. The Chirality architecture generates this record as an intrinsic byproduct of normal operation — not as a separate documentation burden imposed on the professional.
+The person can perform an authorized act through a host that captures the
+result. A machine-written record of that act is not a machine-originated
+acceptance. Conversely, a generated statement that approval occurred cannot
+create an approval that never happened.
 
 ---
 
@@ -157,117 +246,156 @@ The significance of the git history and immutable snapshot trail deserves emphas
 
 ### 6.5.1 Applicability
 
-Thorough review applies to all AI agent outputs that will be incorporated into PWPs. The Chirality professional practice standard requires that thorough review be conducted before authentication even when the licensed professional has provided direct supervision and control throughout the work (`PROFESSIONAL_ENGINEERING.md` §5.1). This requirement reflects the additional risk created by LLM failure modes — specifically, the risk that plausible-sounding outputs may contain errors, omissions, or hallucinations that a professional exercising due diligence would identify and resolve (the hallucination literature is surveyed in Chapter 2, §2.2).
+The earlier analysis used §3.1.2 of the cited reliance standard to organize
+examination before professional reliance. Review in this sense is more than
+format checking: it examines whether the work and its grounds support the
+intended purpose.
 
-In terms of the epistemic ontology formalized in Chapter 3 (§3.2.2) and
-developed in Chapter 5 (§5.5), thorough review audits warrant sufficiency:
-the professional examines represented claims, checks warrants, resolves
-surfaced gaps and conflicts through rulings, and determines whether the
-aggregate warrant state (UNWARRANTED → CITED → REVIEWED → AUTHENTICATED)
-supports authentication. The architecture makes represented claim states
-inspectable within its declared coverage, enabling targeted review without
-claiming exhaustive capture.
+No mandatory claim lifecycle follows. Cited, reviewed and authenticated
+identify different relationships, as Chapter 5 explains. They are not
+increasing truth values. The appropriate review must consider material claims
+that labels or dependency metadata may have missed.
 
 ### 6.5.2 Reliability, Accuracy, and Validity (APEGA §3.1.2.1)
 
-APEGA §3.1.2.1 specifies ten substantive areas that thorough review must address. The Chirality REVIEW agent (`agents/AGENT_REVIEW.md`) implements a 5-gate protocol that structures the professional's review across each of these areas. The gates are:
+The earlier five-gate REVIEW protocol is no longer the required repository
+method. Its useful review subjects survive independently of its staffing and
+status transitions:
 
-| Gate | Function | Authority |
-|------|----------|-----------|
-| Gate 1 | Precondition check (lifecycle state validity, context completeness) | Agent validates; human confirms scope |
-| Gate 2 | Checklist generation from specifications, decomposition records, and declared dependencies | Agent derives; human confirms completeness |
-| Gate 3 | Findings capture (iterative, severity-classified) | Human provides findings; agent records with evidence |
-| Gate 4 | Disposition review (human ruling on all findings) | Human rules; agent records |
-| Gate 5 | Lifecycle transition decision | Agent recommends; human approves |
+| Review subject from the historical mapping | Application to agent-assisted work |
+|---|---|
+| Scope, including contributed work | Examine the intended result, contribution boundaries and omissions |
+| Design and operational conditions, risks and mitigations | Examine loads, operating cases, environmental conditions and failure consequences |
+| Assumptions, limitations and caveats | Test material premises; make unresolved limits visible at the point of use |
+| Intended purpose and local conditions | Assess whether the analysis and inputs apply to the actual situation |
+| Health, safety and environment | Examine relevant hazards and whether proposed controls address them |
+| Integrity and consistency across work products | Check units, interfaces, revisions and consequential dependencies |
+| Calculations, analyses, evaluations and interpretations | Inspect actual inputs, transformations, outputs and their claimed meaning |
+| Materials and methods for construction, inspection, maintenance or operation | Examine domain-specific suitability beyond document completeness |
+| Tools and technologies | Assess algorithms, software behaviour, model limitations and the validity of the checks themselves |
+| Interdisciplinary work | Obtain appropriate examination where no one participant covers the relevant expertise |
 
-The 5-gate protocol maps to the ten APEGA §3.1.2.1 areas as follows.
-
-**Scope of the work, including work done by any agent.** Scope is formally captured in `_CONTEXT.md` per deliverable and confirmed at Gate 1. The scope record is a required structural element that must be present before a review may proceed.
-
-**Relevant design and operational conditions, including risk assessments and mitigation strategies.** Risk and operational conditions are captured as governed deliverable content. Findings related to risk adequacy are surfaced during Gate 3 with severity classification per the review finding-severity enum (CRITICAL | MAJOR | MINOR | OBSERVATION; registered as `docs/TYPES.md` §10.6 per D-GOV-08). CRITICAL findings must have human-resolved dispositions before a deliverable may advance from IN_PROGRESS to CHECKING.
-
-**Assumptions, limitations, and expressed caveats.** The epistemic labeling framework (Chapter 5) ensures that assumptions are structurally visible — not buried in prose — at the point of review. Every non-trivial claim is classified as FACT (directly observed in source with citation), ASSUMPTION (reasonable inference requiring validation), PROPOSAL (agent suggestion requiring human decision), or TBD (unknown, requiring resolution). The licensed professional reviewing a deliverable can directly identify which claims are grounded and which require validation, without needing to infer epistemic status from context. Epistemic labels are defined in `docs/TYPES.md` §10; the underlying warrant obligations are enforced by K-PROV-1 and K-INVENT-1 (`docs/CONTRACT.md` §1.9), and the labeling act itself is assessed at audit time per D-GOV-08.
-
-**Suitability for intended purpose and compliance with local conditions.** Suitability and local compliance are confirmed through the Gate 2 checklist, which derives review items from the deliverable's specifications, decomposition records, and declared dependencies. The licensed professional confirms checklist completeness at Gate 2 before the substantive review proceeds.
-
-**Health, safety, and environmental implications.** HSE findings are classified as CRITICAL severity in the review protocol. CRITICAL findings must be resolved — not merely deferred — before a deliverable may advance to CHECKING status. The hierarchy of authority (`docs/DIRECTIVE.md` §3.4; `PROFESSIONAL_ENGINEERING.md` §3.5) places laws and regulations, including HSE requirements, as the first constraint, overriding all other considerations.
-
-**Integrity and validity of all work products, including cross-deliverable consistency.** EVALUATION performs generic cross-deliverable coherence and dependency assessment. An activated RECONCILIATION run performs the broader concordance of objectives, claims, artifacts, implementation evidence, lifecycle state, and remaining work. Dependency registers (`Dependencies.csv`) remain authoritative, deliverable-local records with provenance (K-DEP-1, K-DEP-2, `docs/CONTRACT.md` §1.4).
-
-**Applicable tasks related to the work (calculations, analyses, evaluations, interpretations).** Task-level agent outputs are captured in immutable snapshot folders with structured run summaries (`RUN_SUMMARY.md`, `QA_Report.md`), forming the traceable evidence base for the review (K-SNAP-1, `docs/CONTRACT.md` §1.10; `docs/SPEC.md` §11).
-
-**Applicable materials and methods of construction, inspection, maintenance, or operation.** Materials and methods are documented within deliverable document kits (Datasheet, Specification, Guidance, Procedure). The structured format ensures that all relevant technical content is documented and traceable (`docs/SPEC.md` §2).
-
-**Relevancy and accuracy of the applicable tools used in PWP preparation, including software, hardware, firmware, applications, and other technologies.** This requirement is particularly significant for AI-assisted work. APEGA §3.1.2.1 explicitly names software, hardware, firmware, applications, and other technologies as tools subject to thorough review. The Chirality professional practice standard interprets this as requiring the licensed professional to understand what each agent is instructed to do, what its outputs represent (drafts requiring verification, not authoritative conclusions), how to verify agent outputs against source materials and engineering judgment, and the failure modes of LLM-based systems — specifically hallucination, omission, and plausible-sounding error (`PROFESSIONAL_ENGINEERING.md` §3.3). The deterministic/probabilistic boundary (§6.7) further addresses tool accuracy by ensuring that tasks admitting algorithmic validation are implemented as validated deterministic tools rather than left to LLM probabilistic reasoning.
-
-**Interdisciplinary reviews where the work crosses discipline boundaries.** Interdisciplinary review obligations are surfaced through the Gate 2 checklist when cross-discipline dependencies are declared in the deliverable's `_DEPENDENCIES.md`. EVALUATION identifies interface conflicts across discipline boundaries; an activated RECONCILIATION run determines how accepted findings affect corpus-wide truth (`docs/CONTRACT.md` §1.4, K-DEP-1).
+An agent can discover discrepancies, prepare a focused comparison and carry
+repairs through the authorized work. Independent scrutiny is particularly
+valuable where contributors may share an undetected premise. It can involve
+another competent person, another agent or a different technical method as
+appropriate to the claim; an agent reviewer does not substitute for a
+required professional reviewer.
 
 ### 6.5.3 Adherence to Regulatory Requirements (APEGA §3.1.2.2)
 
-APEGA §3.1.2.2 requires that thorough review verify compliance with the EGP Act, the General Regulation, applicable APEGA practice standards, and any contractual requirements for regulatory approvals or permits. The Chirality architecture satisfies this requirement through the hierarchy of authority, which places laws and regulations as the first constraint binding on both agents and professionals. Agents cannot override applicable legislation — this is enforced through agent instruction invariants. Project-specific regulatory requirements are captured in `_CONTEXT.md` and `_REFERENCES.md` and appear as mandatory Gate 2 checklist items.
+The historical mapping included legislation, practice standards and
+project-specific approvals or permits. A current undertaking must identify
+its applicable requirements and authoritative source editions. An instruction
+to obey them is behavioural guidance, not a compliance check. A checker can
+establish a bounded property only if its rule correctly represents the
+applicable requirement and its coverage is adequate.
 
 ### 6.5.4 Adherence to Quality Control and Assurance (APEGA §3.1.2.3)
 
-APEGA §3.1.2.3 requires that thorough review verify compliance with QC/QA processes defined in the PPMP and confirm that deliverables are clear, readable, consistent, and complete. The QC/QA architecture is addressed in §6.7. Clarity and completeness are structural properties enforced through the document kit format, required metadata files, and the Gate 2 review checklist. Epistemic labeling ensures that all assumptions and TBD items are conspicuously identified rather than hidden in prose.
+The mapping also included the practice management plan and the clarity,
+consistency and completeness of work. No document kit can ensure these
+properties by its presence. A short current basis can be clearer than a
+complete set of contradictory templates.
+
+A changed repository procedure does not automatically amend an external
+practice obligation. Any applicable practice-system requirement must be
+addressed in its actual home by the responsible person. This chapter neither
+adds such an obligation nor declares it discharged.
 
 ### 6.5.5 Authentication
 
-Authentication of a PWP is the act by which a licensed professional represents that they have satisfied the direct supervision and control standard or the thorough review standard, and accepts professional responsibility for the work. The Chirality architecture implements authentication as a controlled gate — the final and irreversible human action in the deliverable lifecycle.
+The cited authentication discussion concerns a professional act relating a
+person to identified work and responsibility for its use. This framework
+reserves that act to the appropriate person. A PR merge, successful analysis
+or generated receipt does not perform it.
 
-Authentication binds to a specific git SHA. This means that a licensed professional's seal and signature apply to a precisely identified version of the work. Content change after authentication voids the authentication (K-AUTH-2, `docs/CONTRACT.md` §1.2). A deliverable is considered dirty — requiring renewed review before any reliance — if any governed input has changed since its last approved SHA (K-VAL-1, `docs/CONTRACT.md` §1.6). Git integration follows the owner's standing authorization, required CI and independent review of the actual candidate (K-MERGE-1, `docs/CONTRACT.md` §1.8). It does not constitute professional authentication or acceptance for reliance.
+Content addressing can identify the bytes associated with the act. Reliable
+attribution, scope and purpose remain separately necessary. A fingerprint
+alone proves neither who approved the work nor whether the examination was
+adequate. These limits apply whether the record is typed by the person or
+captured by an authorized host interaction.
 
-The status is relational: it identifies the accountable actor, the content or
-SHA, the scope, and the reliance purpose. It confers accountable-reliance
-status within that relation. It does not create knowledge, guarantee that the
-professional is correct, establish metaphysical truth, or determine what
-another knower must know from the same information.
+A later change leaves the historical act attached to its original subject.
+Whether a prior acceptance remains applicable to changed work requires an
+assessment of the affected content and reliance conditions. A universal rule
+that any repository edit voids all earlier acceptance is not warranted.
 
-The content-addressed authentication mechanism is a significant architectural contribution to professional practice governance. Traditional professional authentication — seal and signature on a paper or PDF document — binds the professional's approval to a specific physical artifact, but provides limited assurance that the artifact being approved is identical to the artifact being relied upon, particularly after transmittal or electronic distribution. SHA-based authentication provides a mechanically verifiable binding: any change to the authenticated content is detectable, and the integrity of the approval relationship does not depend on process discipline or trust. (the binding uses git's content-addressed object model)
+Authentication does not create knowledge, establish truth or exhaust
+judgment. The person's committed engagement also shapes purpose, framing,
+interpretation and action before this particular act occurs.
 
 ---
 
 ## 6.6 Professional Obligations
 
-The preceding sections address how the architecture satisfies the APEGA obligations that govern the professional's use of AI agents. This section addresses the professional obligations that the architecture enforces as invariant: obligations that cannot be delegated, modified, or bypassed by any agent or process, regardless of circumstances.
+This section states the framework's adopted commitments. Their legal
+application remains subject to the historical-source and interpretive limits
+in §6.1; software does not guarantee their fulfilment.
 
 ### 6.6.1 Public Welfare as First Constraint
 
-The protection of the public, property, and the environment is the overriding obligation in professional engineering. The hierarchy of authority places laws and regulations — including safety regulations — as the first constraint binding on technical decisions. When tradeoffs exist between public safety and commercial pressure, schedule, or convenience, safety prevails. This obligation is non-delegable to AI systems (`PROFESSIONAL_ENGINEERING.md` §3.1; `docs/DIRECTIVE.md` §2 — Axiology).
+The framework gives public safety and protection of people, property and the
+environment priority over schedule or convenience. Material hazards require
+appropriate examination and decision. A severity label can help attention;
+it cannot guarantee that hazards were found or effectively controlled.
 
-The architecture enforces this obligation through the CRITICAL severity classification in the REVIEW agent protocol. A finding classified as CRITICAL must be resolved — not deferred — before a deliverable may advance. HSE implications are identified in APEGA §3.1.2.1 as a mandatory review item, and the review protocol ensures they are addressed with the most stringent transition criteria. No agent may bypass this requirement.
+Delay, excessive paperwork and diversion of expert attention also have
+consequences. Their costs belong in the design assessment. Removing a
+low-value check can improve practice when it frees attention for an important
+failure mode; removing a numerical oracle can worsen it when wrong results
+would otherwise remain plausible.
 
 ### 6.6.2 Responsible Charge Remains Human
 
-Professional liability is personal and non-transferable. Invariant K-AUTH-1 (`docs/CONTRACT.md` §1.2) states: "Only humans author binding approval records. No agent may claim to certify, approve, sign, seal, or issue work for reliance." This is not a policy recommendation — it is an architectural invariant enforced through agent instruction constraints and the gate-controlled workflow.
+Chirality locates accountable professional commitment with the person. Agents
+may perform extensive reckoning and act within granted authority. They do not
+thereby acquire the person's responsibility or authority to authenticate.
+This is the framework's allocation for the systems examined here, not a
+metaphysical proof about every possible future machine.
 
-The licensed professional retains decision rights for scope and boundary decisions, selection of governing codes and standards, hazard and risk acceptance including residual risk statements, conflict adjudication where engineering judgment is required, and approval, issuance, signature, seal, and transmittal for reliance (`PROFESSIONAL_ENGINEERING.md` §3.2; `docs/DIRECTIVE.md` §3.2). These are not merely functions that the architecture routes to humans — they are functions that agents are positively prohibited from performing or claiming to perform.
-
-This prohibition preserves the distinction between draft production and
-professional reliance. An agent-produced deliverable in the IN_PROGRESS state
-is work in progress, not a complete and final PWP. A licensed professional
-determines whether the completed output is a PWP and, after satisfying direct
-supervision and control or thorough review requirements, authenticates that
-PWP where required. Under the sanctioned workflow, only the human may perform
-that authentication and approve issuance; the SHA-bound record supports later
-verification of the act.
+Judgment is exercised throughout the undertaking. Reducing it to the last
+signature would make an unattended approval ritual appear sufficient. A
+person's decision needs engagement with what the work means and what they
+will stand behind; a record can evidence an act but cannot guarantee that
+engagement.
 
 ### 6.6.3 Competence Includes Tool Competence
 
-A licensed professional must not use an AI agent to perform work that the professional is not competent to verify manually. Using AI to produce work that the professional cannot adequately review is a competence failure under the EGP Act — not merely a process failure (`PROFESSIONAL_ENGINEERING.md` §3.3; `docs/DIRECTIVE.md` §3.3). APEGA's AI guidance states this directly: a licensed professional who lacks the training or experience to competently understand the risks and limitations of AI tools and the validity of AI results "should not use AI tools in their practice" (*Guidance for Registrants Regarding the Use of Artificial Intelligence Tools*, 2025/2026).
+The professional needs a defensible basis for assessing the tools and work
+used for the intended purpose. This includes knowing what a check establishes,
+where a model or calculation may fail and when further expertise is needed.
+It does not mean that every computation must be repeated manually.
 
-The APEGA requirement that professionals review the "relevancy and accuracy of applicable tools used in the PWPs preparation" (§3.1.2.1) implies a specific competence requirement for AI-assisted practice: the licensed professional must understand the agent instruction architecture sufficiently to know what an agent is constrained to do and what it is not; must be able to detect LLM failure modes — hallucination, omission, plausible-sounding error, silent conflict resolution — in agent outputs; and must be able to exercise independent engineering judgment when AI outputs conflict with professional experience.
-
-The architecture supports this obligation through epistemic labeling, mandatory provenance, and conflict surfacing (Chapter 5), which make the epistemological status of agent claims transparent and therefore verifiable by a competent professional. However, the architecture cannot substitute for competence — it can only make the evidence available for a competent professional to evaluate. The professional's competence obligation is irreducible.
+Useful evidence can include analytical solutions, validated benchmarks,
+independent methods, input inspection and observed behaviour. Competence
+cannot be inferred from possession of a checklist, tool catalog or instruction
+file. The architecture can make evidence accessible; the person must be able
+to understand its relevance and limits.
 
 ### 6.6.4 Evidence Over Plausibility
 
-The firm's practice requires that engineering decisions be based on evidence, not plausibility. This is enforced through three invariants: K-PROV-1 (mandatory provenance for every extracted claim, `docs/CONTRACT.md` §1.9), K-INVENT-1 (unknown values become TBD, not guessed, `docs/CONTRACT.md` §1.9), and K-CONFLICT-1 (conflicts between sources must be surfaced, not silently resolved, `docs/CONTRACT.md` §1.9). Together, these invariants ensure that an agent cannot substitute apparent confidence for documented evidence.
+Material claims need suitable grounds. An extracted number must not quietly
+become an inferred estimate; an accepted assumption must not be presented as
+an observation. A source citation needs to support the actual claim, and a
+passing test needs a stated scope.
 
-The epistemic architecture described in Chapter 5 is the primary implementation of this principle. Its regulatory significance is that it makes thorough review tractable: because the evidence trail is the workflow, not a byproduct of it, the professional reviewing an agent-produced deliverable has direct access to the evidence basis for every claim, the identity of every assumption, and the location of every unresolved conflict.
+This is a commitment implemented through instructions, useful data structures
+and focused checks. It is not proof that invention or omission cannot occur.
+Chapter 5 develops the distinctions and their practical limits.
 
 ### 6.6.5 Hierarchy of Authority
 
-In technical matters, agents and professionals follow the hierarchy of authority defined in `docs/DIRECTIVE.md` §3.4 and `PROFESSIONAL_ENGINEERING.md` §3.5: (1) laws and regulations; (2) codes and standards; (3) project specifications and design basis (approved for use); (4) verified engineering analysis and published literature; (5) professional judgment. Agent outputs carry no professional authority — they are decision support unless explicitly accepted and issued by a licensed professional. The hierarchy is enforced through agent instruction invariants that prohibit agents from overriding codes, standards, or project specifications.
+Authority, evidential strength and task responsibility are different orders.
+An applicable law or contract constrains action; it is not a scientific
+observation. Strong evidence can disclose that a chosen model is wrong
+without authorizing an agent to alter a reserved commitment. Professional
+judgment interprets applicability and acts within constraints; it is not a
+last-place evidence source below every published document.
+
+Current instructions and assignments identify where decisions belong. Roles
+help organize contributions without creating professional authority by their
+names or numerical types.
 
 ---
 
@@ -275,183 +403,185 @@ In technical matters, agents and professionals follow the hierarchy of authority
 
 ### 6.7.1 Architectural Controls
 
-The firm's QC/QA framework for AI-assisted work is implemented through the agent instruction architecture (`PROFESSIONAL_ENGINEERING.md` §6.1). This is a significant architectural choice: quality control is not a separate process overlay imposed on agent outputs but an integral property of the architecture that governs agent behavior. Six governance documents constitute the QC/QA framework:
+A proposed control should identify the failure it addresses, the evidence it
+produces and its cost. Schema validation can reject malformed inputs. Path
+containment can refuse an escaping write. A numerical oracle can detect a
+particular class of calculation error. Each has a bounded claim.
 
-| Document | QC/QA Function |
-|----------|----------------|
-| `docs/DIRECTIVE.md` | Founding constraints: filesystem-as-state, human authority, evidence-first, no hidden memory |
-| `docs/CONTRACT.md` | The binding K-* invariant catalog with its enforcement map |
-| `docs/SPEC.md` | Physical structures, file formats, schema validation |
-| `docs/TYPES.md` | Controlled vocabulary, enumerated types, lifecycle state machine |
-| `docs/WORKFLOW_COMPONENT_STANDARD.md` | Ratified workflow design requirements (R1–R17), D-GOV-14 |
-| `docs/DECOMPOSITION_STANDARD.md` | Decomposition invariants (I1–I10) binding on all decomposition agents |
+The earlier DIRECTIVE/CONTRACT/SPEC/TYPES and R/I/K catalogs described one
+control arrangement. Many of their administrative duties were retired in
+October. Their removal challenges the claim that these duties follow necessarily
+from accountability and provides a candidate alternative. Whether the
+replacement preserves adequate support for professional reliance or performs
+better requires evaluation in actual practice.
 
-The three-layer model combines the ratified R1–R17 workflow requirements,
-the ratified I1–I10 decomposition invariants, and the ratified K-* catalog.
-Compliance evidence comes from instruction review, managed runtime controls,
-human gates, and deterministic validation; candidate requirements do not
-become authoritative merely through this mapping.
+Current assurance selects checks according to consequence, detectability,
+overlap and cost. Reuse applicable evidence and repeat a check when a relevant
+change or unresolved concern warrants it. A requirement to demonstrate a
+specific property still applies even when the general process becomes lighter.
 
 ### 6.7.2 Instruction Governance as Release Engineering
 
-Agent instruction files are part of the firm's controlled quality system. They
-are versioned, reviewed, and subject to no silent behavior changes. AUDIT_AGENTS
-checks ratified invariants and reports provisional conformance to candidate
-standards; structural validation is defined in `docs/SPEC.md` §9.
+Instruction changes can alter behaviour and deserve versioned, reviewable
+changes. The depth of examination depends on the affected behaviour. A
+permission change warrants different scrutiny from a clarified entry point.
 
-This approach addresses a quality risk specific to AI-assisted practice: the risk that changes to agent behavior go undetected and affect the quality of work products without the professional's awareness. By treating agent instruction files as controlled documents subject to formal release engineering, the firm ensures that material behavior changes are visible, reviewed, and documented — and that the professional is informed of changes that may affect the validity of prior review or supervision work.
+Instructions must also agree with their enforcement. Removing a read-only
+sentence while a resolver still discards authorized write targets does not
+change the effective policy. Conversely, broader tool availability must not
+silently become broader authorization. The relevant consumer and enforcement
+path belong in the same change.
 
 ### 6.7.3 The Deterministic and Probabilistic Boundary
 
-A central QC/QA mechanism is the enforced boundary between deterministic operations and probabilistic (LLM-based) operations (`PROFESSIONAL_ENGINEERING.md` §6.3). If a task can be validated by a schema or algorithm — file format validation, structural completeness checking, ID resolution, SHA comparison — it is implemented as a deterministic tool, not left to LLM reasoning. LLM-based agents are reserved for work that genuinely requires inference under uncertainty: interpreting ambiguous text, proposing decompositions, reconciling tradeoffs, drafting content.
+Use reliable tools for operations they perform well: resolving identities,
+comparing revisions, applying a structured operation or evaluating a defined
+formula. Agents can then investigate, interpret, propose and coordinate
+around those results.
 
-This boundary is significant for professional practice for two reasons. First, it limits the domain of probabilistic outputs that require thorough review — the professional can rely on deterministic tool outputs without the same level of scrutiny that LLM-based outputs require. Second, it prevents LLM reasoning from being applied to tasks where deterministic validation is available, reducing the risk that a plausible but incorrect LLM output substitutes for a verifiably correct deterministic result. The tool registry (`tools/REGISTRY.md`) indexes all deterministic tools.
+Deterministic does not mean correct. A repeatable calculation can use a
+wrong formula, precision rule, unit conversion or design basis. The strength
+of its evidence depends on validated behaviour and applicability. Agents may
+also make useful observations about a deterministic tool's failure.
+
+The division of labour is revisable. A reusable tool is worthwhile where it
+improves reliability or effort enough to justify building and maintaining it.
+The existence of an algorithmic possibility does not require a new tool for
+every one-off action.
 
 ### 6.7.4 Technology Provider Due Diligence
 
-The firm uses LLMs provided by technology vendors as the cognitive engine within the agent system. As established in §6.3.3, the technology provider is not providing professional services. The firm's licensed professionals bear full responsibility for all work produced using the technology. Consistent with the APEGA §3.1.2.1 requirement to review the relevancy and accuracy of tools used in PWP preparation, the firm's due diligence on LLM technology includes:
+The provider and model affect the system's behaviour. Useful evaluation asks
+whether the available capability, failure modes and execution conditions fit
+the work, including privacy, permission and recovery needs. Supplier claims
+and general benchmarks cannot settle those questions for a particular
+application.
 
-- Evaluation of model capabilities and limitations for the professional services the firm provides
-- Assessment of model safety practices, alignment research, and responsible deployment policies
-- Testing of agent behavior within the firm's instruction architecture before adopting model updates
-- Documented assessment of material model changes and their impact on agent behavior
-
-Critically, the firm does not rely solely on the technology provider's safety
-measures. Ratified K-* invariants, accepted instructions, write-scope
-quarantine, human gates, and deterministic validation supply independent
-controls. Candidate R/I standards strengthen that structure if accepted.
+As models improve, a control added for an earlier limitation can become
+unnecessary overhead. Reassess the control against observed behaviour and
+remaining risk. Stronger output does not by itself transfer accountable
+judgment or remove the need to inspect consequential results.
 
 ### 6.7.5 Evidence and Auditability
 
-The firm's evidence and auditability framework (`PROFESSIONAL_ENGINEERING.md` §6.5) rests on five architectural mechanisms addressed in Chapter 5 (Epistemic Architecture) and revisited here for their QC/QA significance:
+A usable evidence arrangement makes relevant inputs, results, changes and acts
+retrievable by an appropriate reader. It states what was captured and what
+was not. Source history, product logs and existing review records may be
+sufficient; routine copies of the same information can obscure rather than
+improve inspection.
 
-- **Filesystem as state.** All project truth lives in git-tracked plain files. There is no external database or hidden state. If a decision is not in a versioned file, it does not exist for purposes of reliance.
-- **Git as development record.** Version control provides meaningful diffs for review, reproducibility, rollback, and audits that do not depend on vendor systems or transient context.
-- **Immutable snapshots.** Task agent analysis outputs are written to timestamped, append-only snapshot folders. The snapshot trail is the audit trail, enforced by K-SNAP-1 (`docs/CONTRACT.md` §1.10).
-- **Provenance tracking.** Every extracted claim cites its source file and section reference, or carries an explicit `location TBD` marker, enforced by K-PROV-1 (`docs/CONTRACT.md` §1.9).
-- **Epistemic labeling.** All claims are labeled — FACT, ASSUMPTION, PROPOSAL, or TBD — ensuring that the professional does not need to infer epistemic status from context.
-
-The evidentiary completeness of this trail is the foundation on which the claim that "the architecture IS the compliance mechanism" rests. A regulator, auditor, or reviewing professional can, at any point in or after the project, inspect the git history to identify every agent output, every human decision, every gate transition, and every version of every deliverable. This is not a retrospective documentation exercise — it is the normal operational record of every project conducted under the architecture.
+Three questions guide assessment: can a reviewer identify what supports the
+claim, can a participant recover the state needed to continue, and can an
+appropriate reader reconstruct a consequential act? These require evidence
+from actual use. An exhaustive-looking register is not a substitute.
 
 ---
 
 ## 6.8 The Human-AI Contract
 
-The Chirality architecture encodes a contract between licensed professionals and AI agents that is not merely described in policy documents but enforced by the architecture itself (`PROFESSIONAL_ENGINEERING.md` §9). This section articulates the contract and traces each element to its governing invariant or mechanism.
+The contract here is the framework's allocation of responsibility. It is not
+a new grant of product permissions or a claim that every instruction is
+mechanically enforceable.
 
 ### 6.8.1 Human Responsibilities
 
-Licensed professionals operating under the Chirality framework bear the following responsibilities:
+The person establishes or accepts the undertaking's purpose, material
+commitments, limits and reliance conditions. They provide or arrange the
+competence needed for consequential decisions, determine reserved risk
+acceptance and perform any required professional act. They can authorize
+agents to continue ordinary work without repeated approval.
 
-- **Define intent, scope, and acceptance criteria.** The professional defines what the work is, what standards it must meet, and what conditions must be satisfied for the work to be acceptable. Agents cannot define their own scope.
-- **Choose codes, standards, and key assumptions.** Selection of governing codes, standards, and design basis is a human decision right (K-AUTH-1; `docs/DIRECTIVE.md` §3.2).
-- **Decide what "done" means.** The professional defines the completion criteria for each deliverable and makes the final determination of whether a deliverable is ready for issuance.
-- **Approve changes that affect deliverables.** Change impacts are assessed through the CHANGE agent, but approval of changes affecting issued or checked deliverables is a human decision. Staleness propagation (K-STALE-1) and stale triage (K-STALE-2) ensure that the human is presented with all downstream implications before approval.
-- **Perform or commission independent review where required.** For work of sufficient consequence, independent review beyond the REVIEW agent protocol may be required. This is a professional judgment call that the architecture supports but cannot make.
-- **Accept residual risk.** Residual risk statements — for hazards that have been identified but cannot be fully mitigated — are a human responsibility that no agent may assume.
-- **Authenticate PWPs for reliance.** The professional determines whether a
-  completed agent-assisted output is a PWP and, where required, authenticates
-  that existing PWP. Authentication is an exclusively human, attributable act
-  under K-AUTH-1 and K-AUTH-2; it confers authenticated
-  accountable-reliance status rather than creating the PWP.
+Agent 0 supports continuity with that person. It does not replace their
+judgment. Meaningful engagement includes framing and revising the undertaking,
+not merely approving an output prepared elsewhere.
 
 ### 6.8.2 AI Agent Permitted Actions
 
-Within the constraints of their instruction files, AI agents may:
+Within the actual assignment and host permissions, agents can investigate,
+extract, infer, plan, evaluate, criticize, propose, implement, check, repair and
+integrate. They can select ordinary implementation details and apply decisions
+already authorized. These activities may involve substantial initiative.
 
-- Draft and format deliverables under explicit templates
-- Extract, normalize, cross-reference, and summarize evidence from source documents
-- Generate candidate alternatives and tradeoff tables for professional consideration
-- Surface gaps, inconsistencies, and interface conflicts for human resolution
-- Run bounded, checkable transformations with deterministic validators
-- Maintain structured records: dependency registers, status files, working memory
-
-The common thread is that agents prepare information and structure for professional decision-making — they do not make decisions. Agents widen the field of consideration; professionals narrow, accept, and issue.
+The statement in the earlier chapter that agents “do not make decisions” was
+too broad. They make operational selections within their authority. What they
+do not acquire through that capability is the person's accountable judgment
+or a reserved professional decision right.
 
 ### 6.8.3 AI Agent Prohibitions
 
-AI agents operating under the Chirality framework are positively prohibited from the following actions. Each prohibition is traced to its governing invariant:
+The framework prohibits agents from inventing a human act of acceptance,
+claiming professional authority they do not possess, concealing a material
+conflict, presenting fabricated evidence as observation or exceeding the
+assignment and host permissions.
 
-| Prohibited Action | Governing Invariant |
-|---|---|
-| Claim to certify, approve, sign, seal, or issue work for reliance | K-AUTH-1 (`docs/CONTRACT.md` §1.2) |
-| Silently resolve conflicts between sources | K-CONFLICT-1 (`docs/CONTRACT.md` §1.9) |
-| Invent scope items, parameters, or engineering content; unknowns become TBD | K-INVENT-1 (`docs/CONTRACT.md` §1.9) |
-| Write outside declared write scope | K-WRITE-1 (`docs/CONTRACT.md` §1.10) |
-| Maintain hidden state that diverges from the filesystem | `docs/DIRECTIVE.md` §2.5 (No Hidden Memory) |
-| Bypass human gates or autonomously advance workflow stages | K-GATE-1 (`docs/CONTRACT.md` §1.7); K-SEAL-1 (`docs/CONTRACT.md` §1.3) |
-
-The architecture does not merely recommend that agents avoid these actions — it enforces the prohibitions through the invariant contract system, the orchestrator, and the write scope constraints. An agent that attempts to authenticate work violates K-AUTH-1 at the agent instruction level; an agent that writes outside its declared scope violates K-WRITE-1 at the orchestration level. The enforcement map in `docs/CONTRACT.md` §2 identifies the specific enforcement point for each invariant.
-
-This catalogue of prohibitions is the architectural expression of the professional practice principle that AI outputs are drafts and structured assistance, not authoritative engineering judgment. Professional acceptance — through either direct supervision and control or thorough review, followed by authentication — is what makes agent-produced outputs into professional work products.
+Enforcement must be described accurately. A host can refuse an out-of-scope
+operation; an instruction requests behaviour; review can detect some
+violations. None alone guarantees all the others. The prohibition and the
+mechanism that attempts to enforce it are separate claims.
 
 ---
 
 ## 6.9 Limitations of the Regulatory Mapping
 
-The analysis presented in this chapter is honest about what it claims and what it does not. This section identifies the substantive limitations of the regulatory mapping.
-
 ### 6.9.1 The Mapping Is an Interpretation, Not a Regulatory Ruling
 
-[RATIONALE: The following limitation is acknowledged explicitly because the regulatory analysis in this chapter represents the firm's interpretation of existing APEGA standards, not a determination by APEGA itself.]
-
-The APEGA mapping presented in this chapter and in Appendix C represents an interpretation — by the firm and the author — of how existing practice standards apply to AI-assisted professional practice. APEGA's AI guidance (2025, updated 2026) addresses registrant conduct and analogizes AI results to software and calculator outputs; it does not address AI agents as "others," the *Relying on the Work of Others* standard, or system architecture. There is no regulatory ruling that validates or endorses the interpretation offered here.
-
-The interpretation is grounded in the regulatory text — the obligations of APEGA §3.1 are specified in terms of professional conduct, not worker nature — and the analysis is presented as a structured logical argument from regulatory premises. However, a regulatory body, a reviewing court, or a professional discipline tribunal might interpret the same provisions differently. In particular, APEGA might conclude that the "others" in §3.0 contemplates natural persons capable of bearing professional responsibility, and that AI agents are better classified as tools than as workers, with correspondingly different professional obligations.
-
-If APEGA were to adopt this alternative interpretation, the Chirality architecture would still satisfy the professional's obligations — the architecture's controls on agent outputs are more rigorous than what typical tool use requires — but the specific regulatory mapping presented here would need revision. The substantive practice protections would remain; only the regulatory framing would change.
+The mapping is an argument by the author using the cited historical sources.
+It has not been established here as endorsed by APEGA or accepted by a court,
+tribunal or professional reviewer. Its architectural examples are candidates
+for support, not certificates of compliance.
 
 ### 6.9.2 Jurisdiction Specificity
 
-The regulatory analysis in this chapter is specific to Alberta, under the EGP Act and APEGA practice standards. The legal and regulatory framework governing professional engineering varies significantly across Canadian provinces, across national jurisdictions, and between engineering and other regulated professions (the comparative landscape — Engineers Canada's 2026 national position statement, NSPE Position Statement No. 03-1774, and the UK's sector-agnostic approach — is surveyed in Chapter 2, §2.4).
-
-The structural argument — that the obligations of a professional who relies on the work of others are defined by what the professional must do, not by what the worker must be — is likely to generalize across regulatory regimes that share the same functional structure. The specific mechanism mapping, however, depends on the precise language of the applicable standards in each jurisdiction. Practitioners in other jurisdictions should conduct their own mapping analysis rather than assuming that the APEGA analysis transfers without modification.
+The sources concern Alberta engineering practice. Similar practical questions
+may arise elsewhere, but their legal meaning and required conduct cannot be
+transferred merely by replacing the regulator's name. This chapter establishes
+no cross-jurisdiction compliance claim.
 
 ### 6.9.3 The "Relying on the Work of Others" and "Using a Tool" Distinction
 
-The firm's interpretation resolves the distinction between "relying on the work of others" and "using a tool" conservatively: AI agents are treated as "others" whose work the professional relies on, triggering the full rigour of APEGA §3.1. As noted in §6.3.2, this is a judgment call. The regulatory text does not explicitly resolve it.
+Both classifications deserve consideration. The original “others” argument
+does not follow necessarily from the text's emphasis on professional conduct.
+A more demanding internal practice policy also does not prove compliance with
+a different legal interpretation. The support offered by discoverable evidence
+and controlled operations can remain useful while that classification is
+unresolved.
 
-A reasonable contrary argument holds that the "tool" classification is more appropriate — a reading APEGA's AI guidance leans toward, directing registrants to treat AI results "no differently than results from software, calculators, or lookup tables" — particularly for narrowly scoped AI agents performing tasks with limited discretion — for example, extracting structured data from a document according to an explicit schema. The "others" classification may be most appropriate for AI agents performing tasks that involve genuine inference: interpreting ambiguous requirements, proposing design decompositions, surfacing and characterizing conflicts.
+<a id="694-the-architecture-is-necessary-but-not-sufficient"></a>
+### 6.9.4 The Architecture Is One Candidate, Not a Necessary or Sufficient Condition
 
-The firm's conservative choice to apply the "others" classification across the board has a practical consequence: the professional is required to satisfy the full supervision and review requirements of §3.1 for all AI agent outputs, including those that might arguably qualify as tool outputs. This is protective from a professional responsibility standpoint — it errs on the side of more rigorous oversight — but it places a heavier documentation burden on the professional than a "tool" classification would. Practitioners who wish to argue for a more graduated approach — applying the "others" standards to high-discretion agent work and a lighter tool-use standard to low-discretion agent tasks — would need to develop that argument in consultation with their regulatory body.
+The thesis has not shown that Chirality is required for competent practice.
+Other arrangements can preserve evidence and responsibility. Nor has it shown
+that installing Chirality is sufficient: inadequate examination, wrong
+assumptions, misunderstood tools and mechanical approval can still occur.
 
-### 6.9.4 The Architecture Is Necessary but Not Sufficient
-
-The Chirality architecture establishes the conditions under which thorough review is tractable and direct supervision is verifiable. It is a necessary condition for reliance that can be demonstrated to satisfy those standards — professionals may of course rely on AI outputs without any of this, but not demonstrably within the obligations this chapter maps — and it is not a sufficient one. The sufficiency condition is the licensed professional's competent exercise of judgment at every gate. An architecture that makes evidence available cannot guarantee that the professional uses it well. A professional who treats gates as boxes to check, reviews epistemic labels without engaging their content, or authenticates work they cannot adequately evaluate violates the professional obligations this chapter describes — regardless of what the architecture provides. Each of these failures has the same shape: attention redirected onto the record — the gate, the label, the checklist — instead of through it to the work the record is about.
-
-This limitation is structural, not correctable by further architectural development. The APEGA framework places the accountability burden on the licensed professional precisely because professional judgment cannot be mechanized — where "cannot" is an institutional claim, not a speculation about machine cognition: the judgment that concludes review is an act of accountable commitment, and it requires an actor who can be held to account, a status that no degree of capability confers (§9.3.5). The architecture can structure the professional's task, surface the evidence, eliminate hidden information, and prevent unauthorized actions — but it cannot exercise the professional's judgment on the professional's behalf.
+The appropriate test is how an actual arrangement performs, including its
+failures and the attention, delay and complexity it imposes.
 
 ### 6.9.5 Evolving Regulatory Context
 
-The regulatory context for AI in professional practice is evolving rapidly. Since this chapter was first drafted, APEGA has issued its AI-tools guidance (July 2025; updated March 2026) and Engineers Canada has issued the national position statement *Artificial Intelligence, Machine Learning, and Data Science* (March 2026) — both conduct-level instruments consistent with, and now cited in, the analysis above (Chapter 2, §2.4). The specific interpretations offered in this chapter reflect the regulatory environment as of the last revision (2026-07-02) and may require updating as further regulatory guidance is issued.
-
-The structural argument presented in §6.3 — that existing obligations apply to AI agents because the obligations are defined by professional conduct, not worker nature — may prove more durable than the specific mapping, because it rests on the logic of the existing regulatory text rather than on interpretations that may be superseded. However, the overall regulatory analysis should be treated as a living document subject to revision as the regulatory context develops.
+The section references and interpretive mapping retain their 2026-07-02
+source basis. This revision has not refreshed their currency. A current
+professional application requires a separate examination of the applicable
+sources and practice requirements. Repository development experience can
+inform that examination but cannot determine its legal outcome.
 
 ---
 
 ## 6.10 Summary
 
-This chapter has established that the Chirality architecture provides a framework within which a licensed professional engineer in Alberta can direct AI agents while satisfying professional obligations under the EGP Act and APEGA practice standards. The argument rests on four related claims.
+The professional-practice analysis supplies concrete questions for the design
+of agent-assisted work: what was directed, what supports the result, what was
+examined, which limits remain and who stands behind reliance.
 
-First, the thesis argues that the APEGA practice standard *Relying on the Work of Others and Outsourcing* can be interpreted to apply directly — rather than merely by analogy — to AI-assisted professional practice, because AI agents are "others" within the meaning of §3.0 and the obligations that standard imposes are defined by what the licensed professional must do, not by the nature of the entity that prepared the work.
+Chirality proposes ways to make those questions answerable. Continuing
+ownership, discoverable current artifacts, useful checks and attributable
+acts can support practice without a fixed hierarchy or routine record chain.
+Their effectiveness remains an empirical question. Instructions, content
+hashes and passed tests each establish only bounded facts.
 
-Second, the Chirality architecture provides a strong candidate mechanism for satisfying the direct supervision and control standard (APEGA §3.1.1) through its gate-controlled orchestration model, its three-type agent hierarchy with non-overridable authority boundaries, its structured documentation of agent scope and duties, its interactive session model for ongoing communication, its structured record-keeping in versioned files, and its git-based audit trail. The full compliance trace is in Appendix C, Table C.1.
-
-Third, the architecture provides a strong candidate mechanism for satisfying
-the thorough review standard (APEGA §3.1.2) through the REVIEW agent's
-5-gate protocol, epistemic labels for represented assumptions,
-content-addressed authentication binding (K-AUTH-2, K-VAL-1, K-MERGE-1), and
-provenance and conflict-surfacing mechanisms that make represented grounds
-inspectable and verifiable within their declared coverage.
-
-Fourth, the professional obligations that remain invariantly human — public welfare as first constraint, responsible charge, competence, evidence over plausibility, hierarchy of authority — are enforced as architectural invariants, not merely recommended in policy. K-AUTH-1 prohibits any agent from authenticating work. K-INVENT-1 prohibits invention. K-CONFLICT-1 prohibits silent conflict resolution. These prohibitions are the architectural expression of the principle that professional responsibility cannot be delegated to an AI system.
-
-The central contribution of this analysis to the thesis is the argument that the Chirality architecture is not merely consistent with existing regulatory requirements but can serve as a compliance mechanism. The architecture does not add professional compliance obligations to an otherwise unconstrained AI system; rather, it attempts to encode the structure of direct supervision and control, the infrastructure of thorough review, and the enforcement of professional prohibitions as properties of the system itself.
-
-The limitations identified in §6.9 are genuine. The mapping is an interpretation, not a ruling; the jurisdiction is Alberta; the firm has resolved the tool-versus-worker classification conservatively; and the architecture is necessary but not sufficient — only competent professional judgment exercised at every gate can fully satisfy the obligations the regulatory framework imposes. These limitations do not undermine the central argument; they define its scope.
-
-Together, Chapters 3 through 6 establish the philosophical, architectural, epistemic, and regulatory foundations of the thesis claim: that the Chirality architecture is one rigorous and professionally grounded way for a licensed professional to direct AI agents under the existing APEGA regulatory framework, without requiring new AI-specific regulation, because the architecture is designed around the obligations that framework imposes. It is a defensible answer to the research question, not the only conceivable one.
-
----
-
-*Chapter 7 examines the Chirality architecture through a systems engineering design analysis lens, assessing the degree to which it satisfies formal systems engineering design principles and identifying the engineering tradeoffs embedded in its major design decisions.*
+The enduring commitment is to distinguish extensive agent reckoning from the
+person's situated judgment throughout the work. Greater capability can change
+the appropriate supervision and verification arrangements without itself
+transferring that accountable engagement. The revised mapping preserves this
+commitment while withdrawing the claim that one architecture guarantees—or
+is necessary for—professional compliance.
