@@ -116,7 +116,7 @@ mod preview_physics;
 mod retained_product;
 mod retained_receipt;
 mod retained_memory;
-// I61 U1: the private serializer (production-unreachable until U3).
+// The private retained-precision serializer (reached only through the W1 transaction).
 mod retained_wire;
 pub use retained_memory::{
     borrowed_request_census, borrowed_value_census, AllowanceStatus, BorrowedRequestFacts,
@@ -2694,16 +2694,8 @@ fn run_linear_static_preview_observed(
     let preview = (!pressure_runtime::is_exact(&model) && !source_selected).then(|| {
         preview_physics::render(&model, built, &boundary.restrained_dofs, &mut load_case_solves, &mut diagnostics)
     });
-    let max_displacement = if pressure_runtime::is_exact(&model) || source_selected || preview.is_some() {
-        maximum_across_cases(&load_case_solves, false)
-    } else {
-        load_case_solves.first().and_then(|solve| solve.max_displacement.clone())
-    };
-    let max_stress = if pressure_runtime::is_exact(&model) || source_selected || preview.is_some() {
-        maximum_across_cases(&load_case_solves, true)
-    } else {
-        load_case_solves.first().and_then(|solve| solve.max_stress.clone())
-    };
+    let max_displacement = maximum_across_cases(&load_case_solves, false);
+    let max_stress = maximum_across_cases(&load_case_solves, true);
     let component_stress_modifier_count = load_case_solves
         .iter()
         .map(|solve| solve.component_stress_modifier_count)
@@ -2897,7 +2889,7 @@ fn run_linear_static_preview_observed(
 /// one scoped thread with the permit's reserved stack (STACK_PLAN §1, D-3 = S1):
 /// the single observed ordinary run, G-B (inside the capture), G-C and every W1
 /// phase. A spawn failure runs the unchanged ordinary route on this thread.
-/// The permit is linear (U3 grant 1b): it moves onto the reserved-stack thread and
+/// The permit is linear: it moves onto the reserved-stack thread and
 /// into the observer, and drops with the work, or unrun with it on a spawn failure.
 /// Only D1 Direct calls in the registered dev/test build reach it (M = 4,026,531,840 B, D-7).
 fn permitted_dispatch(
@@ -2939,7 +2931,7 @@ fn on_reserved_stack<T: Send>(bytes: usize, work: impl FnOnce() -> T + Send) -> 
 
 /// Production: the work itself. Test builds: the caller thread's armed fault hooks
 /// (thread-local) move with the work onto the reserved-stack thread, so a committed
-/// fault test cannot pass vacuously there (ROOT's flag on grant 1). Faults that did
+/// fault test cannot pass vacuously there. Faults that did
 /// not fire there are handed back to the caller (RV85 U2): after the work, or as the
 /// unrun work drops on a spawn failure; the caller re-arms them with
 /// `reclaim_handed_back`.
@@ -3011,7 +3003,7 @@ fn w1_route(model: &PreviewModel) -> Option<retained_product::W1Route> {
         return None;
     }
     match retained_memory::namespace_branch(model) {
-        Ok(B::Legacy) => Some(retained_product::W1Route::Preview),
+        Ok(B::Preview) => Some(retained_product::W1Route::Preview),
         Ok(B::Exact) => Some(retained_product::W1Route::Exact),
         Err(_) => None,
     }
@@ -3433,8 +3425,10 @@ pub(crate) mod retained_tests_hooks {
         operand_preparation_of_case: Option<usize>,
         combination_call: Option<usize>,
         combination_freeze: bool,
-        /// RV123 S-2: the request index of the case whose freeze refuses (its maxima stage).
-        freeze_of_case: Option<usize>,
+        /// RV123 S-2: the request index of one case and the private driver's trace fault that
+        /// case alone takes: at its preparation (`SourceConstruction`) or its freeze (`Maxima`,
+        /// `ValuesCompletion`).
+        trace_fault_of_case: Option<(usize, super::retained_receipt::TraceFault)>,
         /// B2-P: the serializer's meter-chain check reads the next pair of Calls as unchained.
         meter_chain: bool,
         /// RV123 (B2-P round 2) S-1: the request index of the case whose batch Run reads as
