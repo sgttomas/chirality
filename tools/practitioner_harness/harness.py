@@ -305,6 +305,12 @@ def main(argv: list[str] | None = None) -> int:
         out_dir = Path(getattr(args, "out_dir", repo_root / GENERATED_ROOT_NAME))
         _refuse_root(args.command, getattr(args, "project", None))
 
+        if args.command == "brief" and getattr(args, "project", None):
+            project_root = _project_root(repo_root, args.project)
+            import adapter_project
+            if adapter_project.uses_deliverable_sources(project_root):
+                raise HarnessOperationalError(adapter_project.migrated_project_note(project_root))
+
         report: Report
         if args.command == "status":
             if getattr(args, "domain_engines", False):

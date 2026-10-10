@@ -128,3 +128,25 @@ def test_drift_denominator_covers_all_projects(tmp_path):
     assert report.summary["mismatches_total"] == 1
     md = report.render_markdown()
     assert "Denominator: 6 status file(s) audited" in md
+
+
+def test_migrated_project_does_not_report_empty_lifecycle_or_dispatch(tmp_path):
+    import cmd_status
+    import cmd_next
+    import harness
+
+    repo = build_mini_repo(tmp_path)
+    piping = repo / "projects/chirality-piping"
+    marker = piping / "execution/PKG-01/DEL-01-01/deliverable.yaml"
+    marker.parent.mkdir(parents=True)
+    marker.write_text("id: DEL-01-01\nneeds: []\n")
+    status = cmd_status.run_status_project(repo, piping)
+    assert status.summary["lifecycle_observation"] == "retired"
+    for report in (status, cmd_drift.run_drift(repo, [piping]),
+                   cmd_next.run_next(repo, [piping], {piping.resolve(): "piping"})):
+        assert "lifecycle observation is retired" in report.render_markdown()
+        assert "tools.deliverables" in report.render_markdown()
+        assert not any(f.fact_id.startswith(("drift.chirality-piping", "next.chirality-piping"))
+                       for f in report.facts)
+    assert harness.main(["brief", "--project", "piping", "--repo-root", str(repo),
+                         "--deliverable", "DEL-01-01"]) == 2

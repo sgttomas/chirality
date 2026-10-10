@@ -1,3 +1,7 @@
+> Migrated projects (including Piping) use `tools/deliverables` for current dependency facts.
+> Lifecycle `status`, `drift`, and `next` views explicitly omit them; legacy adapter
+> syntax remains supported for unmigrated and dormant product consumers.
+
 > Legacy tool reference. Administrative procedures described here are superseded by Root `AGENTS.md`; commands are optional, not recording duties.
 
 # tools/practitioner_harness — Charter
