@@ -83,6 +83,9 @@ def test_touches_shared_relevance_and_unmapped_paths(repo, capsys):
     git(repo, 'commit', '-qm', 'code')
     (repo / 'project' / 'src' / 'a.py').write_text('new')
     (repo / '.keep').write_text('unmapped')
+    git(repo, 'add', '.')
+    git(repo, 'commit', '-qm', 'selected change')
+    (repo / 'later.txt').write_text('not part of the commit')
     code, result = query(capsys, 'touches', 'HEAD')
     assert code == 0
     assert sorted(result['relevant']) == ['DEL-01-01', 'DEL-01-02']
@@ -151,3 +154,20 @@ def test_missing_project_or_identity_is_explicit(repo, capsys):
     code = cli.main(['--project', '../outside', 'check'])
     result = json.loads(capsys.readouterr().out)
     assert code == 2 and result['errors']
+
+
+def test_touches_single_revision_ranges_and_root_commit_ignore_worktree(repo):
+    initial = git(repo, 'rev-parse', 'HEAD')
+    assert cli.changed_paths(repo, initial)[0] == ['.keep']
+    (repo / 'first.txt').write_text('first')
+    git(repo, 'add', '.')
+    git(repo, 'commit', '-qm', 'first')
+    first = git(repo, 'rev-parse', 'HEAD')
+    (repo / 'second.txt').write_text('second')
+    git(repo, 'add', '.')
+    git(repo, 'commit', '-qm', 'second')
+    assert cli.changed_paths(repo, 'HEAD')[0] == ['second.txt']
+    (repo / '.keep').write_text('dirty unrelated content')
+    assert cli.changed_paths(repo, first)[0] == ['first.txt']
+    assert cli.changed_paths(repo, 'HEAD')[0] == ['second.txt']
+    assert cli.changed_paths(repo, initial + '..HEAD')[0] == ['first.txt', 'second.txt']

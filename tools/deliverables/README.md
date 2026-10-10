@@ -30,7 +30,9 @@ not required inputs.
 `neighborhood` shows direct inputs and consumers. `impact` follows consumers
 transitively, including non-gating relationships. `touches` matches Git diff
 paths against relevant code paths; a path can match several deliverables.
-Use a Git revision/range or `PR:number`/GitHub PR URL (requires authenticated
+A single revision selects that commit’s change (against its first parent, or
+the empty tree for a root commit), regardless of working-tree edits. Explicit
+ranges are used as supplied. Use a Git revision/range or `PR:number`/GitHub PR URL (requires authenticated
 `gh`). Unmapped paths and deliverables without mappings remain visible.
 
 `check` rejects malformed YAML, duplicate IDs/keys, invalid identities and

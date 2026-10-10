@@ -268,13 +268,21 @@ def write_documents(root, project, docs, apply=False):
             raise ValueError(f"Existing YAML identity mismatch: {destination}")
         # Metadata seeded by the caller is preserved on reruns; migration owns needs.
         document = {**(existing or {}), **migrated}
-        # Rewrite legacy evidence paths through the current destination mapping.
+        # Relocate machine-readable references as well as evidence. Section
+        # prose remains in the condition's original Target description.
         for need in document["needs"]:
-            evidence = need.get("evidence", "")
-            match = re.search(r"(?:^|/)(DEL-\d{2,3}-\d{2,3})(?:_[^/]*)?/", evidence)
-            if match and match[1] in folders:
-                suffix = evidence[match.end():]
-                need["evidence"] = (folders[match[1]].relative_to(root / project) / suffix).as_posix()
+            fields = ['evidence'] if 'evidence' in need else []
+            if need['from'].startswith('doc:'):
+                fields.append('from')
+            for field in fields:
+                value = need[field][4:] if field == 'from' else need[field]
+                if field == 'from':
+                    value = value.split(' §', 1)[0]
+                match = re.search(r"(?:^|/)(DEL-\d{2,3}-\d{2,3})(?:_[^/]*)?(?:/|$)", value)
+                if match and match[1] in folders:
+                    suffix = value[match.end():]
+                    value = (folders[match[1]].relative_to(root / project) / suffix).as_posix()
+                need[field] = ('doc:' if field == 'from' else '') + value
         text = yaml.safe_dump(document, allow_unicode=True, sort_keys=False, width=100)
         if not destination.exists() or destination.read_text() != text:
             changes.append(destination.relative_to(root).as_posix())

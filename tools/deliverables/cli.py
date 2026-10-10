@@ -184,9 +184,20 @@ def changed_paths(repo, value):
         return [item['path'] for item in data['files']], {'pr': data['url'], 'head': data['headRefOid'], 'base': data['baseRefOid']}
     if value.startswith('-'):
         raise Invalid('diff must be a revision or revision range')
-    # Disable rename detection to retain both old and new paths for relevance.
-    paths = run(['git', 'diff', '--no-renames', '--name-only', '-z', value, '--'], repo).split('\0')
-    return sorted(filter(None, paths)), {'diff': value}
+    # A single revision means that commit's change, never the working tree.
+    if '..' not in value and not value.endswith(('^!', '^@')):
+        commit = revision(repo, value)
+        parents = run(['git', 'rev-list', '--parents', '-n', '1', commit], repo).split()[1:]
+        if parents:
+            args = ['git', 'diff', '--no-renames', '--name-only', '-z', parents[0], commit, '--']
+        else:
+            args = ['git', 'diff-tree', '--root', '--no-commit-id', '-r', '--no-renames', '--name-only', '-z', commit, '--']
+        selection = {'commit': commit, 'parent': parents[0] if parents else None}
+    else:
+        args = ['git', 'diff', '--no-renames', '--name-only', '-z', value, '--']
+        selection = {'diff': value}
+    paths = run(args, repo).split('\0')
+    return sorted(filter(None, paths)), selection
 
 
 def main(argv=None):

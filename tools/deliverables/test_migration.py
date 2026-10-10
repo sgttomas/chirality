@@ -129,6 +129,18 @@ class MigrationTests(unittest.TestCase):
         self.assertEqual(need["when"], "When: after interface choice")
         self.assertEqual(report["dag"]["new_pairs"], [["DEL-01-01", "DEL-01-02"]])
 
+    def test_document_suppliers_relocate_and_preserve_section_in_condition(self):
+        old = 'execution/PKG-01_Old/1_Working/DEL-01-01_Old/Design/contract.md §10 (draft)'
+        self.csv(self.folders['DEL-01-01'] / 'Dependencies.csv', [row('doc', TargetType='DOCUMENT', TargetLocation=old)])
+        docs, _ = self.run_migration()
+        m.write_documents(self.root, self.project, docs, True)
+        path = self.folders['DEL-01-01'] / 'deliverable.yaml'
+        need = yaml.safe_load(path.read_text())['needs'][0]
+        self.assertEqual(need['from'], 'doc:execution/PKG-01/DEL-01-01/Design/contract.md')
+        self.assertIn('§10 (draft)', need['condition'])
+        docs, _ = self.run_migration()
+        self.assertEqual(m.write_documents(self.root, self.project, docs, True), [])
+
     def test_symlink_destination_cannot_escape(self):
         docs, _ = self.run_migration()
         outside = self.root / "elsewhere"
