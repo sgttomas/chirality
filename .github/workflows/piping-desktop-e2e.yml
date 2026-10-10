@@ -114,6 +114,15 @@ jobs:
             !/projects/*/execution/
           sparse-checkout-cone-mode: false
       - uses: dtolnay/rust-toolchain@1.97.1
+      - name: Cache numerical dependencies and build outputs
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            piping-numerical-evidence/target
+          key: ${{ runner.os }}-piping-numerical-rust1971-${{ hashFiles('projects/chirality-piping/**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-piping-numerical-rust1971-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
