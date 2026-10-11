@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
+<meta name="source-sha256" content="ac6dc25edfb061230f63fa5f92a3cfe8734fbfd380948e759c66cda35dc1b4b4">
+<meta name="source-basis-date" content="2026-10-10">
+<meta name="source-basis-revision" content="22dd62a7f04b6f4f4f9cab3cd3183d57c06cd569">
+<title>Chirality Agent User Manual · Chirality</title>
+<style>
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --canvas: #eeeeee;
+  --ink: #111111;
+  --muted: #505050;
+  --line: #cccccc;
+  --accent: #111111;
+  --tint: #eeeeee;
+  font-family: "Liberation Serif", "Times New Roman", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 2rem; }
+body { margin: 0; color: var(--ink); background: var(--canvas); }
+a { color: var(--accent); text-underline-offset: .17em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #111111;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.skip-link {
+  position: fixed; top: .6rem; left: .6rem; z-index: 100;
+  padding: .6rem 1rem; background: var(--paper); border: 2px solid var(--accent);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+.masthead { border-bottom: 1px solid var(--ink); background: var(--paper); }
+.masthead-inner {
+  max-width: 70rem; margin: auto; padding: 1.05rem 2.5rem;
+  display: flex; flex-wrap: wrap; gap: .35rem 1.2rem;
+  align-items: baseline; justify-content: center; text-align: center;
+}
+.brand { font-size: .92rem; font-weight: 700; letter-spacing: .12em; }
+.masthead-label { color: var(--ink); font-size: .77rem; text-transform: uppercase; letter-spacing: .025em; }
+.layout {
+  max-width: 70rem; margin: auto; padding: 0 2.5rem;
+  display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2.5rem;
+}
+.sidebar {
+  position: sticky; top: 0; align-self: start; max-height: 100vh;
+  overflow-y: auto; padding: 2rem .8rem 2rem 0;
+  scrollbar-width: thin;
+}
+.nav-label, .eyebrow {
+  margin: 0 0 .85rem; color: var(--muted); font-size: .73rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+}
+.contents { list-style: none; padding: 0; margin: 0; }
+.contents li { margin: .15rem 0; }
+.contents a {
+  display: block; padding: .34rem .65rem; border-left: 2px solid transparent;
+  color: var(--muted); text-decoration: none; font-size: .86rem; line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.contents a:hover, .contents a:focus-visible {
+  color: var(--accent); background: var(--tint); border-left-color: var(--accent);
+}
+.nav-help { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.3rem; }
+.nav-help p, .nav-help a { font-size: .75rem; color: var(--muted); }
+.nav-help p { margin: .5rem 0; }
+kbd { font: inherit; padding: .05rem .25rem; border: 1px solid var(--line); border-radius: .2rem; }
+main { min-width: 0; max-width: 48.5rem; padding: 2rem 0 3rem; }
+.document-meta {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem 1.5rem; margin: 0 0 1.5rem;
+  font-size: .73rem; color: var(--muted);
+}
+.document-meta div { min-width: 0; }
+.document-meta dt { font-weight: 700; letter-spacing: .025em; }
+.document-meta dd { margin: .15rem 0 0; overflow-wrap: anywhere; }
+.document-meta code { font-size: .9em; background: none; padding: 0; }
+.fingerprint { grid-column: 1 / -1; }
+.paper {
+  min-width: 0; padding: 3.4rem 3rem 3rem;
+  background: var(--paper); border: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgb(0 0 0 / .04);
+}
+article { max-width: 68ch; margin: auto; overflow-wrap: anywhere; }
+article > :first-child { margin-top: 0; }
+h1, h2, h3, h4, h5, h6 { color: #000000; line-height: 1.22; text-wrap: balance; scroll-margin-top: 2rem; }
+h1 {
+  max-width: 19ch; margin: 0 auto 1.65rem; font-size: clamp(2.05rem, 3.8vw, 2.8rem);
+  text-align: center; text-transform: uppercase; letter-spacing: .015em;
+}
+article > h1 + p { margin-bottom: 2.4rem; text-align: center; font-size: .82rem; line-height: 1.45; }
+h2 { font-size: 1.5rem; margin: 3.4rem 0 1.1rem; }
+h3 { font-size: 1.13rem; margin: 2rem 0 .7rem; }
+h4, h5, h6 { font-size: 1.02rem; margin: 1.65rem 0 .6rem; }
+p { margin: 0 0 .78rem; }
+article p { text-align: justify; text-justify: inter-word; hyphens: auto; }
+ul, ol { padding-left: 1.5rem; }
+li { padding-left: .2rem; margin: .35rem 0; }
+li > p { margin: .6rem 0; }
+hr { max-width: 75%; border: 0; border-top: 1px solid var(--ink); margin: 2.5rem auto; }
+blockquote {
+  margin: 1.4rem 1.25rem; padding: 0; background: none; border: 0;
+}
+blockquote > :last-child { margin-bottom: 0; }
+code, pre { font-family: "Liberation Mono", "SFMono-Regular", Consolas, monospace; font-size: .83em; hyphens: none; }
+code { background: #f1f1f1; padding: .08em .2em; overflow-wrap: anywhere; }
+pre {
+  max-width: 100%; overflow-x: auto; padding: 1rem 1.15rem; margin: 1.4rem 0;
+  color: #111111; background: #f6f6f6; border: 1px solid var(--line);
+  line-height: 1.5; tab-size: 4;
+}
+pre code { background: none; padding: 0; border-radius: 0; font-size: 1em; overflow-wrap: normal; }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 1.5rem 0; }
+table { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: .87rem; line-height: 1.4; }
+th, td { padding: .65rem .75rem; text-align: left; vertical-align: top; border: 1px solid #b8b8b8; }
+th { color: #000000; background: #eeeeee; font-weight: 700; }
+tbody tr { background: #ffffff; }
+img, svg { max-width: 100%; height: auto; }
+a[id], a[name] { scroll-margin-top: 2rem; }
+p:has(> a[id]:only-child):empty { margin: 0; }
+p:has(> a[id]:only-child) { margin: 0; }
+h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-color: #777777; text-decoration-thickness: .08em; text-underline-offset: .2em; }
+.mobile-toc { display: none; }
+.document-footer { margin-top: 1.5rem; color: var(--muted); font-size: .73rem; }
+.document-footer p { margin: .4rem 0; }
+@media (max-width: 65rem) {
+  .layout { padding: 0 1.5rem; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 1.5rem; }
+  .masthead-inner { padding: 1rem 1.5rem; }
+  .paper { padding: 2.6rem 2rem; }
+}
+@media (max-width: 54rem) {
+  html { scroll-padding-top: 4.5rem; }
+  .layout { display: block; padding: 0 1rem; }
+  .sidebar { display: none; }
+  .masthead-inner { padding: .85rem 1rem; gap: .2rem 1rem; }
+  .mobile-toc {
+    display: block; position: sticky; top: 0; z-index: 10;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .mobile-toc summary { padding: .75rem 1rem; cursor: pointer; color: var(--accent); font-weight: 700; font-size: .85rem; }
+  .mobile-toc nav { max-height: 65vh; overflow-y: auto; padding: 0 .5rem 1rem; }
+  .mobile-toc .contents a { padding: .55rem; }
+  main { padding-top: 1.25rem; }
+  .paper { padding: 2.2rem 1.4rem; }
+  article p { text-align: left; }
+  article > h1 + p { text-align: center; }
+  h2, h3, h4, h5, h6, a[id], a[name] { scroll-margin-top: 4.5rem; }
+  h2 { margin-top: 2.7rem; font-size: 1.4rem; }
+  .document-meta { gap: .75rem 1rem; }
+}
+@media (max-width: 25rem) {
+  :root { font-size: 17px; }
+  .layout { padding: 0 .5rem; }
+  .paper { padding: 1.4rem 1rem; }
+  .document-meta { padding: 0 .5rem; }
+}
+@media print {
+  @page { size: 6.75in 9.25in; margin: .68in .65in .67in .72in; }
+  :root { font-size: 10.5pt; line-height: 1.2; color-scheme: light; }
+  body, .paper { color: #111; background: white; }
+  .masthead, .sidebar, .mobile-toc, .skip-link, .back-top { display: none; }
+  .layout { display: block; max-width: none; padding: 0; }
+  main { max-width: none; padding: 0; }
+  .paper { padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+  article { max-width: none; }
+  article p { margin-bottom: 4.6pt; text-align: justify; }
+  .document-meta { padding: 0 0 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #bbb; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 18pt; margin-top: 1.8rem; }
+  h3 { font-size: 12pt; }
+  h4, h5, h6 { font-size: 11pt; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  a { color: inherit; text-decoration: underline; }
+  .table-scroll { overflow: visible; border: 0; }
+  table { min-width: 0; table-layout: auto; font-size: 9pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  th, td { padding: .45rem; }
+  pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; border-color: #bbb; font-size: 8pt; line-height: 1.3; }
+  pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  blockquote { break-inside: avoid; background: white; }
+  .document-footer { border-top: 1px solid #bbb; padding-top: .75rem; }
+}
+</style>
+</head>
+<body id="manual-top">
+<a class="skip-link" href="#manual-content">Skip to manual</a>
+<header class="masthead">
+  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Operational guide · offline reading edition</span></div>
+</header>
+<details class="mobile-toc">
+  <summary>Contents · 13 sections</summary>
+  <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#working-in-the-current-repository">Working in the current repository</a></li>
+<li><a href="#1-select-the-active-work">1. Select the active work</a></li>
+<li><a href="#2-use-roles-as-contributions">2. Use roles as contributions</a></li>
+<li><a href="#3-work-from-the-deliverable">3. Work from the deliverable</a></li>
+<li><a href="#4-query-dependencies">4. Query dependencies</a></li>
+<li><a href="#5-carry-the-work-through">5. Carry the work through</a></li>
+<li><a href="#6-select-proportionate-verification">6. Select proportionate verification</a></li>
+<li><a href="#7-integrate-under-the-standing-grant">7. Integrate under the standing grant</a></li>
+<li><a href="#8-enter-app-v4-and-swbpipe-correctly">8. Enter App v4 and SWBPIPE correctly</a></li>
+<li><a href="#9-preserve-continuity-without-rebuilding-history">9. Preserve continuity without rebuilding history</a></li>
+<li><a href="#10-create-and-select-methods">10. Create and select methods</a></li>
+<li><a href="#11-use-current-pointers-without-losing-source-identity">11. Use current pointers without losing source identity</a></li>
+<li><a href="#12-three-practical-cases">12. Three practical cases</a></li></ol></nav>
+</details>
+<div class="layout">
+<aside class="sidebar">
+  <nav aria-label="Sections">
+    <p class="nav-label">In this manual</p>
+    <ol class="contents"><li><a href="#working-in-the-current-repository">Working in the current repository</a></li>
+<li><a href="#1-select-the-active-work">1. Select the active work</a></li>
+<li><a href="#2-use-roles-as-contributions">2. Use roles as contributions</a></li>
+<li><a href="#3-work-from-the-deliverable">3. Work from the deliverable</a></li>
+<li><a href="#4-query-dependencies">4. Query dependencies</a></li>
+<li><a href="#5-carry-the-work-through">5. Carry the work through</a></li>
+<li><a href="#6-select-proportionate-verification">6. Select proportionate verification</a></li>
+<li><a href="#7-integrate-under-the-standing-grant">7. Integrate under the standing grant</a></li>
+<li><a href="#8-enter-app-v4-and-swbpipe-correctly">8. Enter App v4 and SWBPIPE correctly</a></li>
+<li><a href="#9-preserve-continuity-without-rebuilding-history">9. Preserve continuity without rebuilding history</a></li>
+<li><a href="#10-create-and-select-methods">10. Create and select methods</a></li>
+<li><a href="#11-use-current-pointers-without-losing-source-identity">11. Use current pointers without losing source identity</a></li>
+<li><a href="#12-three-practical-cases">12. Three practical cases</a></li></ol>
+  </nav>
+  <div class="nav-help">
+    <p>Find a term with <kbd>⌘ F</kbd> or <kbd>Ctrl F</kbd>. Use your browser’s print command for a paper copy.</p>
+    <p><a href="CHIRALITY_AGENT_USER_MANUAL_v4.md">Markdown source</a> · <a href="#manual-top">Back to start ↑</a></p>
+  </div>
+</aside>
+<main id="manual-content" tabindex="-1">
+  <div class="paper">
+    <article aria-labelledby="chirality-agent-user-manual">
+<!-- BEGIN MARKDOWN CONTENT -->
+<h1 id="chirality-agent-user-manual">Chirality Agent User Manual</h1>
+<h2 id="working-in-the-current-repository">Working in the current repository</h2>
+<p>Edition 4</p>
+<p>This guide is for people directing agents and agents carrying out authorized development in <code>sgttomas/chirality</code>. It applies the general management method to current repository files and tools. It is not the user manual for the App product, a release authorization or an additional instruction layer.</p>
+<p>Root <code>AGENTS.md</code>, the active project's <code>LOOP_INIT.md</code>, the conversation and applicable current product commitments govern the work. This guide explains their use. If it conflicts with them, identify the conflict and repair the guide; do not reinstate an obsolete procedure.</p>
+<p>The <a href="Project_Management_for_Human_Agent_Teams_Field_Book_v2.md">Field Book</a> is the short management reference. The <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v9.md">management manual</a> explains the method and its reasons. Use the stable <a href="README.md">manual index</a> to discover current editions. Record a specific edition when the exact source matters.</p>
+<h2 id="1-select-the-active-work">1. Select the active work</h2>
+<p>The conversation supplies the intended result, scope and authorization. A new session does not cancel prior direction or prove that earlier work is complete. Recover the relevant unfinished work before replacing it.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 1; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Repository-relative entry</th>
+<th>Current use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Root</td>
+<td><code>execution/_Coordination/LOOP_INIT.md</code></td>
+<td>Shared instructions, workflows, skills, tools, CI and reference documents, as steered.</td>
+</tr>
+<tr>
+<td>App v4</td>
+<td><code>projects/chirality-app-v4/loop/LOOP_INIT.md</code></td>
+<td>The current App and application-host integration work.</td>
+</tr>
+<tr>
+<td>SWBPIPE</td>
+<td><code>projects/chirality-piping/loop/LOOP_INIT.md</code></td>
+<td>Piping design and stress-model authoring.</td>
+</tr>
+<tr>
+<td>Frozen products</td>
+<td><code>projects/FROZEN.md</code></td>
+<td>Historical recovery of App v3, Runtime and PEC; no development or verification without explicit reactivation.</td>
+</tr>
+<tr>
+<td>Domain engines</td>
+<td>Owning instructions under <code>_DomainEngines/</code></td>
+<td>Work only under a steer covering that scope.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Resolve the checkout before using paths. A linked worktree has its own root. The following observations do not change files:</p>
+<pre><code class="language-sh">git rev-parse --show-toplevel
+git status --short --branch
+git rev-parse HEAD
+</code></pre>
+<p>Read Root <code>AGENTS.md</code>, the project entry and the active role when a role is selected. Then locate the affected deliverable or shared component. Read the PRD and companions for the requirements and interfaces involved, rather than reading the entire governance history.</p>
+<p>A useful first return identifies the work already available, the next authorized step and any specific missing input. Do not reconstruct a standing backlog from archived plans.</p>
+<h2 id="2-use-roles-as-contributions">2. Use roles as contributions</h2>
+<p>Agent 0's responsibilities stay with the agent working with the owner: purpose, continuity and reserved choices. Other roles are opportunities to contribute, not mandatory stops.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 2; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Useful contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HELP_HUMAN</td>
+<td>Align the undertaking with the owner and maintain continuity.</td>
+</tr>
+<tr>
+<td>HELPS_HUMANS</td>
+<td>Develop conception, design and concrete alternatives.</td>
+</tr>
+<tr>
+<td>WORKING_ITEMS</td>
+<td>Carry implementation through repair and integration.</td>
+</tr>
+<tr>
+<td>TASK</td>
+<td>Complete a bounded assignment; does not delegate.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>One session may work directly across alignment, design and implementation. Delegate where independent contributions or a separation of concerns help. Give each contribution enough context and authority to continue through ordinary repairs.</p>
+<p>HELP_HUMAN is no longer inherently read-only. In Root's resolver, write targets come from an explicit normalized assignment and effective tool policy. Missing write authorization grants no targets. A read-only host still wins. A role never grants actual host permissions.</p>
+<p>TASK remains non-delegating even when a host offers delegation tools. It returns opportunities for further decomposition to its caller. Its assignment may be the conversation; a separate brief file is not inherently required.</p>
+<p>Use the host's actual dispatch and return mechanism. Do not equate a prepared prompt, queued message or completed turn with delivered work. Return result locations, checks and unresolved matters without creating a separate record unless one is needed.</p>
+<h2 id="3-work-from-the-deliverable">3. Work from the deliverable</h2>
+<p>Active project deliverables use <code>execution/PKG-nn/DEL-nn-nn/</code>.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 3; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ScopeOfWork.md</code></td>
+<td>Contribution, commitments and acceptance criteria.</td>
+</tr>
+<tr>
+<td><code>Design/</code></td>
+<td>Useful technical detail, interfaces and current technical decisions.</td>
+</tr>
+<tr>
+<td><code>deliverable.yaml</code></td>
+<td>Required inputs and conditions, relevant code paths and check references.</td>
+</tr>
+<tr>
+<td>Code, fixtures and tests</td>
+<td>Implementation and executable examination. Their maintained location need not be the deliverable folder.</td>
+</tr>
+<tr>
+<td>PR and Git history</td>
+<td>What changed, why, what was checked and what remains open.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>There is no routine deliverable lifecycle file or Working/Issued split. Do not recreate <code>_STATUS.md</code>, MEMORY rows, dependency mirrors or progress registers. Existing historical files remain evidence of earlier arrangements, not templates for new work.</p>
+<p>Edit the current source when its meaning changes. A new commitment or changed acceptance criterion remains reserved for the owner unless already authorized. Apply an authorized decision without asking for the same approval again. A factual repair should not silently narrow a commitment.</p>
+<p>The deliverable is the unit of responsibility, not an exclusive code ownership boundary. Several deliverables can use the same code. State those relationships where useful without inventing exclusive ownership.</p>
+<h2 id="4-query-dependencies">4. Query dependencies</h2>
+<p>Run the deliverable CLI from the repository root. It requires Python 3 and PyYAML. The CLI reports JSON and does not maintain a generated register.</p>
+<pre><code class="language-sh">python3 -m tools.deliverables --project projects/chirality-app-v4 neighborhood DEL-07-02
+python3 -m tools.deliverables --project projects/chirality-piping neighborhood DEL-04-01
+</code></pre>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 4; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it establishes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>neighborhood &lt;DEL&gt;</code></td>
+<td>Declared direct inputs and consumers.</td>
+</tr>
+<tr>
+<td><code>impact &lt;DEL&gt;</code></td>
+<td>Declared downstream reach, including non-gating relationships.</td>
+</tr>
+<tr>
+<td><code>touches &lt;rev or PR:n&gt;</code></td>
+<td>Relevant deliverables for changed code paths; missing mappings remain visible.</td>
+</tr>
+<tr>
+<td><code>dag-diff &lt;tag&gt;</code></td>
+<td>Declaration changes against a baseline revision.</td>
+</tr>
+<tr>
+<td><code>check</code></td>
+<td>Structural errors, unresolved references and reported cycles.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A single Git revision supplied to <code>touches</code> means that commit's changes, not the difference between that revision and the working tree. A PR reference requires authenticated <code>gh</code> access. The <a href="../../tools/deliverables/README.md">CLI README</a> defines the supported forms and current limits.</p>
+<p>Each need identifies a supplier and a condition. Optional fields describe timing, gating and evidence. The consumer maintains its needs; reverse links are derived. Update unchanged rows only when their meaning actually changes.</p>
+<p>A present file proves presence, not suitability. A merge proves integration, not acceptance or fulfillment. The agent must inspect the relevant condition and evidence. The tool does not infer that a test passed or a deliverable is complete.</p>
+<p><code>check</code> rejects malformed metadata and escaping paths. It reports unresolved suppliers, planned paths and cycles without treating them as automatic failures. Missing edges do not prove independence. Examine shared interfaces, code and resources before dividing work.</p>
+<p>A baseline tag supports comparison and recovery. It does not approve every future dependency change. Ordinary changes do not require a new tag or a currency packet. Preserve actual owner holds and specific adopted acceptance requirements.</p>
+<h2 id="5-carry-the-work-through">5. Carry the work through</h2>
+<p>The common working cycle is:</p>
+<ol>
+<li>Establish the objective, scope and actual starting state.</li>
+<li>Locate affected commitments, inputs and consumers.</li>
+<li>Work directly or arrange useful bounded contributions.</li>
+<li>Produce, examine, repair and integrate the result.</li>
+<li>Update current sources when meaning changes.</li>
+<li>Return the usable result and unresolved reserved choices.</li>
+</ol>
+<p>Use <a href="../../workflows/coordinated-knowledge-work/WORKFLOW.md">coordinated knowledge work</a> when related contributions must become one result. It supports direct work as well as delegation. It does not prescribe a fixed staffing diagram.</p>
+<p>Keep one integration responsibility for a shared result and disjoint concurrent writes. Independent work need not wait for an unrelated branch. Shared memory, tools, application state, review capacity and integration cost can still require sequencing.</p>
+<p>Prove a consequential interface through its consumer before expanding work that depends on it. Continue independent work while that premise is examined. Component agreement does not prove the common basis is correct.</p>
+<p>Resolve ordinary implementation refinements within authority. Escalate changes to commitments, consequential shared assumptions, interfaces outside the assignment or reserved choices. Identify the affected work and the consequence of each choice.</p>
+<p>A final documentation stage is not compulsory. Keep documents current as their meaning changes. Before completion, establish coverage of commitments, relationships and applicable examination. Add work only where a required claim remains unsupported.</p>
+<h2 id="6-select-proportionate-verification">6. Select proportionate verification</h2>
+<p>Root's rule is consequence-based:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 5; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th>Typical verification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Routine and reversible</td>
+<td>Inspection or direct exercise.</td>
+</tr>
+<tr>
+<td>Ordinary implementation</td>
+<td>A focused check of the affected behavior.</td>
+</tr>
+<tr>
+<td>Numerical meaning, persistence, permissions or destructive operations</td>
+<td>Targeted regression checks and independent scrutiny by a separate agent.</td>
+</tr>
+<tr>
+<td>Release</td>
+<td>Examination of the actual product; release remains reserved.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Do not alter a criterion merely to obtain a pass. Establish whether the source requirement, test or implementation is wrong. Preserve protected oracles and meaningful limits unless their owner authorizes a substantive change.</p>
+<p>The single required GitHub result is <code>harness</code>. It combines repository checks and selected App v4 and Piping jobs. App v3, Runtime and PEC have no verification jobs. See <a href="../CI_SELECTION.md">CI selection</a> for the maintained policy.</p>
+<p>The aggregate fails when selected work fails, is cancelled or does not run. Unselected work is reported as unselected. A reused result names its earlier run and candidate; it does not claim new tests ran.</p>
+<p>Do not repeat a passing hosted suite locally without a new change or unresolved concern. Check selection must cover actual consumers; an empty selection is not proof of safety.</p>
+<p>For Root tools, inspect and then run the affected suite selection:</p>
+<pre><code class="language-sh">python3 tools/run_affected_tests.py --dry-run
+python3 tools/run_affected_tests.py
+</code></pre>
+<p>For Piping, the profile selector accepts project-relative paths:</p>
+<pre><code class="language-sh">python3 tools/software_workflow/select_affected_checks.py projects/chirality-piping/software-workflow.json core/model_transform/physical_to_analytical/_solver_boundary_adapter.py
+</code></pre>
+<p>This command selects checks; it does not execute them. Piping's <a href="../../projects/chirality-piping/docs/CI_STRATEGY.md">CI strategy</a> explains its current numerical, browser and Python coverage. DEC-025's blanket local sweep is not a merge requirement. The release sweep remains a separate optional release-preparation tool.</p>
+<h2 id="7-integrate-under-the-standing-grant">7. Integrate under the standing grant</h2>
+<p>For <code>sgttomas/chirality</code>, Root's standing Git grant covers commit, push, PR creation/update and merge within authorized work. It requires proportionate verification and passing required checks on the exact head. Independent scrutiny applies where consequence requires it.</p>
+<p>The grant excludes protection bypasses, history rewrites, force pushes, permission changes and releases. Explicit holds remain effective. Use the <a href="../../.agents/skills/chirality-change/SKILL.md">chirality-change skill</a> for branch and PR conventions.</p>
+<p>The PR is the change record. State the problem, resulting behavior, checks and open matters. Quote the owner's words for a reserved decision without implying that the owner reviewed bytes they did not inspect.</p>
+<p>Reassess affected checks after candidate changes. A review of an earlier revision does not automatically cover later edits. A passing rerun does not establish that a known defect was repaired.</p>
+<p>Merge is a source-control operation. It does not issue a deliverable, approve engineering reliance or release a product. The actual integration must be confirmed before it is reported as complete.</p>
+<h2 id="8-enter-app-v4-and-swbpipe-correctly">8. Enter App v4 and SWBPIPE correctly</h2>
+<h3 id="app-v4">App v4</h3>
+<p>Start at the <a href="../../projects/chirality-app-v4/loop/LOOP_INIT.md">App v4 loop</a>, then the affected deliverable. The App is a workflow-authoring exemplar and a basis for agent functions inside host applications.</p>
+<p>Use <a href="../../projects/chirality-app-v4/app/README.md">app/README.md</a> for current build and test entry points. Product role guidance and embedded workflows are separate consumers of Root sources; changes require an applicability assessment and valid source binding, not automatic copying.</p>
+<p>The project entry defines scratch Codex homes, credential restrictions, download permissions and thesis protection. This guide does not relax them. An existing documented exception applies only within its actual authorization.</p>
+<h3 id="swbpipe">SWBPIPE</h3>
+<p>Start at the <a href="../../projects/chirality-piping/loop/LOOP_INIT.md">Piping loop</a>, then current ScopeOfWork, Design and needs. The product is an analysis-grade piping design engine and stress-model authoring environment.</p>
+<p>The loop carries F-PIP-1–4 and DEC-043. Those project boundaries remain authoritative. This guide does not restate or amend their held wording. In particular, the external corpus's extracted equation artifacts must not become authoritative physics references.</p>
+<p>Frozen numerical references live in <code>validation/references/t3_r1/</code>. Their generators and consumers remain maintained. Do not modify reference results to make an implementation pass.</p>
+<p>Product operations, professional acceptance and repository development are different activities. Removing development records does not remove a required product event, model history, stop/checkpoint record or user decision.</p>
+<h2 id="9-preserve-continuity-without-rebuilding-history">9. Preserve continuity without rebuilding history</h2>
+<p>Use current artifacts, tool queries, the conversation and PRs first. Keep one replaceable recovery note only when they cannot support continuation.</p>
+<p>A useful recovery note distinguishes prepared work from executed changes, known results from pending checks, active operations from stopped ones, and local-only work from integrated work. It identifies the next useful action and material holds.</p>
+<p>Inspect actual state before replaying an operation whose confirmation was lost. A new session does not release another worker's files or resources. Transfer ownership or confirm the operation stopped before assigning overlapping work.</p>
+<p>Historical material remains available through Git and archive tags. <a href="../../projects/FROZEN.md">Frozen products</a> explains recovery of retired product trees. Restoring files does not reactivate a product or its old procedures.</p>
+<p>When removing a worktree, establish that its commits are preserved and that no unique local work or active operation will be lost. Ignored files are not protected by commit history. Keep necessary recovery material outside the active project; do not publish private session data.</p>
+<h2 id="10-create-and-select-methods">10. Create and select methods</h2>
+<p>Use the role needed for the contribution, not a new permanent specialist for each subject. Select relevant workflows and load resources as needed. Root's <code>workflows/index.json</code> supports discovery.</p>
+<p>Follow <a href="../../workflows/create-workflow/WORKFLOW.md">create-workflow</a> when creating or revising a reusable method. A workflow describes a reusable approach; the current assignment supplies scope and authority. A workflow does not grant permissions or require an orchestration hierarchy.</p>
+<p>For a Root package change, rebuild the index and check the affected behavior:</p>
+<pre><code class="language-sh">python3 tools/validation/build_workflow_index.py
+python3 tools/validation/build_workflow_index.py --check
+</code></pre>
+<p>The first command writes the generated index. The second checks its currency. Product discovery and registration behavior is defined by adopted product contracts, not by this repository guide.</p>
+<h2 id="11-use-current-pointers-without-losing-source-identity">11. Use current pointers without losing source identity</h2>
+<p>The manual index has stable anchors for the management manual, Field Book and this guide. Those links answer “where is the current edition?” They do not answer “which edition supported this earlier decision?”</p>
+<p>For ordinary discovery, use the stable index. When a requirement, comparison or accepted result depends on exact wording, identify the resolved edition and source revision. Existing Git provides the bytes; add a content hash only when a consumer requires one.</p>
+<p>A changed index does not automatically amend App v4's product requirements or historical test fixtures. Update affected current consumers deliberately. Preserve the earlier edition while a live consumer still requires its bytes.</p>
+<p>A source update can change language without changing meaning, or change the actual method. Compare the relevant sections and consequences. Do not substitute a new edition merely because its version number is higher.</p>
+<h2 id="12-three-practical-cases">12. Three practical cases</h2>
+<h3 id="a-small-reversible-correction">A small reversible correction</h3>
+<p>The owner asks for a clearer message in the App. The agent finds the actual interface and its requirement, changes the text and exercises the affected state. It checks whether wording could misrepresent a permission or data operation. If not, ordinary proportionate verification is sufficient. It does not create a graph, run record or new management assignment.</p>
+<h3 id="a-consequential-numerical-change">A consequential numerical change</h3>
+<p>The owner authorizes a bounded numerical repair. The owner of that work reads the current Design conditions and queries affected consumers. It checks the independent numerical reference and keeps parallel writers disjoint. An independent reviewer examines the substantive change. The agent runs affected checks, updates any changed condition in its current source, and integrates the reviewed candidate under the grant. A changed accepted tolerance goes to the owner instead of being silently adopted.</p>
+<h3 id="recovery-after-interruption">Recovery after interruption</h3>
+<p>A check was started, but its final response was lost. The next session inspects the actual process and result location before running it again. It checks the working tree and current PR head. Valid completed work remains usable. A short recovery note is replaced with the current situation if one is still needed; no new handoff chain is created.</p>
+<!-- END MARKDOWN CONTENT -->
+    </article>
+  </div>
+  <footer class="document-footer">
+  <dl class="document-meta">
+    <div><dt>Source basis dated</dt><dd>10 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>22dd62a7f04b6f4f4f9cab3cd3183d57c06cd569</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="CHIRALITY_AGENT_USER_MANUAL_v4.md">CHIRALITY_AGENT_USER_MANUAL_v4.md</a><br><code>ac6dc25edfb061230f63fa5f92a3cfe8734fbfd380948e759c66cda35dc1b4b4</code></dd></div>
+  </dl>
+    <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
+    <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
+    <p class="back-top"><a href="#manual-top">Back to start ↑</a></p>
+  </footer>
+</main>
+</div>
+<script>
+const mobileContents = document.querySelector('.mobile-toc');
+mobileContents.addEventListener('click', (event) => {
+  if (event.target.closest('a[href^="#"]')) mobileContents.open = false;
+});
+</script>
+</body>
+</html>

@@ -84,15 +84,15 @@ The conjecture offers one way to interpret a professional's situated
 engagement with information. It does not define knowledge, and the
 architecture is not a formal implementation of its symbols.
 
-| Framework Element | Architectural Implementation |
+| Framework element | Limited interpretive comparison |
 |---|---|
 | M (meaning) | Meaning as encountered by S in information; not the information alone |
 | C (contingency) | The underdetermination of the stance S may take toward what is encountered |
 | The fork (premise 3) | The possibility of withholding or undertaking a commitment toward the encountered meaning |
 | N (commitment) | S's situated affirmation; in professional practice, commitment may concern warranted reliance |
-| Inner ⊢ | An interpretive analogue of review and assessment, not a definition of `REVIEWED` |
-| Outer ⊢ | An interpretive analogue of binding oneself to a stance, not a definition of `AUTHENTICATED` |
-| G | What emerges through consistent practice — not provable from within the architecture, but recognizable in the evidence trail of a project executed with integrity |
+| Inner ⊢ | A person takes a stance toward meaning; this can inform inquiry and action as well as review |
+| Outer ⊢ | A person affirms themselves as bound to that stance; no approval field or execution state performs this commitment |
+| G | Intentionally undefined; neither an evidence trail nor a successful project establishes it |
 | Premise 4 (facts cannot enact N) | A reminder that more information does not itself perform a person's commitment |
 | Premise 5 (¬G without S) | Without S there is no knowing by S, although information may remain available |
 
@@ -100,7 +100,13 @@ The accountability gap identified in Chapter 3 (§3.6.2) is not identical to
 the formal fork in premise 3. The connection is analogical: information can
 be externalized and inspected, while knowing and commitment remain situated
 in a self. The project's operational `Gap` remains the narrower, remediable
-record of a missing warrant.
+record of missing grounds. A ruling can authorize action under uncertainty
+without supplying those grounds.
+
+No mapping in this table prescribes a lifecycle, gate or division of agent roles.
+A person's engagement shapes purpose and framing throughout the undertaking.
+Review and acceptance are particular expressions of it, not an exhaustive
+sequence that the notation requires.
 
 The axiom — *to know what you know, why you know it, and why you know why* —
 can be illuminated by thesis 6, but is not a translation of it. The axiom
@@ -135,7 +141,12 @@ than this binary notation, and the comparison does not claim that all knowing
 passes through one formal fork. It highlights only that evidence does not
 perform the person's commitment for them.
 
-**The double ⊢ and the fiduciary program.** Polanyi's fiduciary program holds that the person who makes a knowledge claim is not merely asserting a proposition but committing to a way of being — accepting responsibility for the claim and its consequences. The inner ⊢ (S affirms M ∧ N) is the assertion. The outer ⊢ (S affirms itself as bound to that stance) is the fiduciary commitment. Polanyi describes this across hundreds of pages of *Personal Knowledge* and *Meaning*. The conjecture encodes it in one line: S ⊢ (S ⊢ (M ∧ N)).
+**The double ⊢ and the fiduciary program.** Polanyi's account associates a
+knowledge claim with personal commitment and responsibility. In the author's
+conjecture, the inner ⊢ expresses a stance and the outer ⊢ expresses being bound
+to it. This is a selective analogy to that fiduciary theme. The notation does
+not compress Polanyi's account into an equivalent formula or establish a test
+for the sincerity or adequacy of a person's commitment.
 
 **G and the achievement of meaning.** In *Meaning*, achievements such as art,
 scientific discovery, and religious understanding cannot be specified
@@ -184,12 +195,18 @@ a stance participates in the stabilization of a self; it does not formalize
 Smith's subject.
 
 **Reckoning and judgment.** In *The Promise of Artificial Intelligence*
-[CITE:Smith2019], Smith distinguishes formal, calculative reckoning from
-committed, world-involving judgment and warns against accepting one as the
-other. The conjecture offers a limited analogy to that boundary: its
-distinction between encountered meaning and commitment can help a reader
-notice why generated information is not an accountable stance. It does not
-attribute M, N, or the turnstiles to Smith.
+[CITE:Smith2019], Smith distinguishes reckoning from committed, world-involving
+judgment. In Chirality's application, sophisticated agent reckoning can include
+investigation, inference, assessment, planning, checking and adaptive action.
+Judgment names the person's situated engagement and answerability throughout
+the undertaking, not merely its final approval. An approval record can evidence
+an act but cannot establish the quality of that engagement.
+
+The conjecture offers a limited analogy: encountered information is not itself
+the person's commitment. It attributes none of M, N or the turnstiles to Smith.
+It neither proves the incapacity of all possible future machines nor dictates
+how much work an agent may perform. The present professional allocation of
+responsibility is a separate, explicit commitment.
 
 **Where the conjecture diverges.** Smith's principal axis is subject–object:
 registration co-constitutes the registering subject and registered world. The
@@ -204,9 +221,9 @@ them.
 
 This framework clarifies existential conditions and possibilities. It is
 presented as a conjecture, not as a theorem. The Chirality Framework's
-architectural commitments do not depend on accepting it; the architecture is
-justified by professional obligations and the practical need for epistemic
-transparency when relying on AI-produced work.
+practical distinctions do not depend on accepting it. Professional obligations
+and the need to examine grounds motivate architectural choices; the adequacy
+and cost of those choices still require examination in use.
 
 ### A Bounded Configurational Analogy
 
@@ -252,4 +269,9 @@ a response to meaning, not its manufacture. In architectural terms, machine
 output may offer information that a person registers as meaningful; it is not
 thereby the person's judgment.
 
-The conviction behind this ordering preceded the project. The author's originating insight — formed early in his first work with large language models, before the Chirality project existed, in reflection on Ayat al-Kursi (Qur'an 2:255) — is that meaning is not self-grounding: it is given and sustained, and the one who receives it encompasses only part of it. The main thesis neither depends on this conviction nor asks the reader to share it; Chapters 1 through 10 stand on regulatory, philosophical, and systems-engineering warrant. It is recorded here because it explains the architecture's most consistent refusal: at every level, the system declines to let computation manufacture warrant. That refusal was a commitment before it was a design.
+The conviction behind this ordering preceded the project. The author's originating insight — formed early in his first work with large language models, before the Chirality project existed, in reflection on Ayat al-Kursi (Qur'an 2:255) — is that meaning is not self-grounding: it is given and sustained, and the one who receives it encompasses only part of it. The main thesis neither depends on this conviction nor asks the reader to
+share it. Its practical arguments must stand on their stated grounds and limits.
+This origin explains a continuing commitment: computation and its records must
+not be treated as the person's judgment. Calculations and tests can supply
+relevant evidence; they do not perform the commitment of the person who relies
+on them. That boundary was a commitment before it was a design.

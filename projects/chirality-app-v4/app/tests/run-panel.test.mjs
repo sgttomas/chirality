@@ -5,8 +5,9 @@ import {createRequire} from 'node:module';
 import ts from 'typescript';
 import React from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
-const load=name=>{const url=new URL(`../src/${name}`,import.meta.url);const compiled=ts.transpileModule(readFileSync(url,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX}});const exports={};new Function('require','exports',compiled.outputText)(createRequire(url),exports);return exports;};
-const {RunPanel,DeclaredPart,SelectedWorkflow,CompatibilityAdvisory,outputStanding,StandingFacets,arrivalLabel,actLabel}=load('RunPanel.tsx');
+import {localRequire} from './support/load-src.mjs';
+const load=name=>{const url=new URL(`../src/${name}`,import.meta.url);const compiled=ts.transpileModule(readFileSync(url,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX}});const exports={};new Function('require','exports',compiled.outputText)(localRequire(createRequire(url)),exports);return exports;};
+const {RunBringBackView,RunPanel,runBringBackDefault,DeclaredPart,SelectedWorkflow,CompatibilityAdvisory,outputStanding,StandingFacets,arrivalLabel,actLabel,RecordWriteNotice}=load('RunPanel.tsx');
 const h=(c,p)=>renderToStaticMarkup(React.createElement(c,p));
 
 // The host's reading of the maintained valid example (workflow_declaration::read's shape).
@@ -45,14 +46,72 @@ test('a checkpoint is guidance: never a hold or block, governed changes nothing,
   const html=h(RunPanel,{run:run({compatibility:[{...run().compatibility[0],preparation:{...run().compatibility[0].preparation,declaration:d}}]})});
   assert.ok(html.includes('Declared governed. In this phase that changes nothing'));
   assert.ok(html.includes('<b>Declaration finding: invalid</b> (FB-03'));
-  assert.ok(html.includes('no arrival recorded. This App does not yet record checkpoint arrivals'));
-  assert.ok(html.includes('missing in record (no checkpoint_listed entry)'),'PD-7: what the record lacks is shown');
+  assert.ok(html.includes('this checkpoint is missing in record (no checkpoint_listed entry for it)'),'PD-7: what the record lacks is shown');
+  assert.ok(html.includes('not listed: the run record lists only the checkpoints the App recognizes (CE-1)'),'an invalid checkpoint is not listed');
+  assert.ok(!html.includes('No arrival recorded in this run'),'no arrival reading without a listing');
   assert.ok(html.includes('the act is recorded only when you perform it'));
   assert.ok(html.includes('present, currently unavailable: host reported unavailable'),'a runtime unavailability is a requirement outcome, not a hold');
   assert.ok(!FORBIDDEN.test(html),html.match(FORBIDDEN)?.[0]);
   assert.equal(arrivalLabel('waiting'),'reached; act not yet recorded');
   assert.equal(arrivalLabel('held'),'not a recorded disposition (held)');
   assert.deepEqual(['A4','A5','A6','A7','A12'].map(actLabel),['mark checked','accept','approve','rely','set grant']);
+});
+
+// The run view's records as the host reports them (runtime_session WorkflowRun::view), with bodies.
+const entry=(kind,body,over={})=>({kind,recordId:`${kind}-${JSON.stringify(body).length}`,observedAt:'t',written:true,limit:null,body,...over});
+const listedCheck=entry('checkpoint_listed',{checkpoint:'CP-check',requiredAct:'A4',reachedWhenKind:'output_produced',subjectClass:'objects changed by named outcome',governed:false,purpose:'p',scope:'s',
+  evaluability:{status:'evaluable with limit',reason:'AW-6: a completed agent message whose first non-empty line is exactly "## Examination report — supports-adjust".'}});
+const listedAccept=entry('checkpoint_listed',{checkpoint:'CP-accept',requiredAct:'A5',reachedWhenKind:'host_outcome',subjectClass:'change items of named proposal',governed:false,purpose:'p',scope:'s',
+  evaluability:{status:'not evaluable',reason:'Host outcomes (AW-8…AW-10) need a host-supplied mapping or host reads this App does not have. No arrival will be recorded.'}});
+const arrival=(checkpoint,ordinal,ref,subject,over={})=>entry('checkpoint_arrival',{checkpoint,requiredAct:'A4',subjectClass:'named output',governed:false,arrivalOrdinal:ordinal,
+  event:{source:'native_item',ref,evidencedTime:{value:'2026-09-21T14:13:20.123Z',source:'supplier_item_time'}},
+  referents:[{subject,content:{method:'chirality.app.exact-bytes.sha256/v1',value:'0123456789abcdef0123',scope:'text'}}],purpose:'p',scope:'s',
+  limits:['The designating line marks where the agent put the output; it does not show that the content is what the declaration describes (AW-6).'],requestObservation:{state:'not yet observed'}},over);
+const disposition=(checkpoint,ordinal,d)=>entry('disposition_change',{arrival:{checkpoint,arrivalOrdinal:ordinal},disposition:d,annotations:[]});
+
+test('recorded arrivals are shown from the run record, as information that holds nothing (CE-1, CE-3, CE-12, SD-2)',()=>{
+  const a=arrival('CP-check',1,'item:thread/turn/m1','objects changed by named outcome (examination-report)');
+  const records=[entry('run_opened',{}),listedAccept,listedCheck,a,disposition('CP-check',1,'waiting'),
+    entry('continued_past',{arrival:{checkpoint:'CP-check',arrivalOrdinal:1},actionRef:'item:thread/turn/c1',actKind:'A4'},{written:false,limit:'run record write failed: Not a directory'})];
+  const html=h(RunPanel,{run:run({lifecycle:{state:'open',records}})});
+  assert.ok(html.includes('aria-label="Recorded arrivals of CP-check"'));
+  assert.ok(html.includes('Arrival 1: reached; act not yet recorded. Observed item:thread/turn/m1 at 2026-09-21T14:13:20.123Z (time Codex gave for the item).'));
+  assert.ok(html.includes('Request for the act: no request from the agent observed.'));
+  assert.ok(html.includes('The agent went on with item:thread/turn/c1 with no act recorded against this arrival. This is a record, not a finding against the agent.'));
+  assert.ok(html.includes('Limit: The designating line marks where the agent put the output'));
+  assert.ok(html.includes('listed. The App records an arrival only from what it observes in the conversation: AW-6'));
+  assert.ok(html.includes('listed. The App does not record arrivals for it: Host outcomes (AW-8…AW-10)'),'a non-evaluable checkpoint says so');
+  // A-12 / CE-19: the entry that could not be written is visible on the run.
+  assert.ok(html.includes('role="alert">1 run record entry is not yet written (continued_past): run record write failed: Not a directory.'));
+  assert.ok(html.includes('If the App quits first they are lost.'));
+  assert.ok(!FORBIDDEN.test(html),html.match(FORBIDDEN)?.[0]);
+  const shown=html.slice(html.indexOf('aria-label="Recorded arrivals of CP-check"'));const list=shown.slice(0,shown.indexOf('</ul>'));
+  assert.ok(list.includes('Arrival 1')&&!/\bchecked\b|verified|approved|accepted|relied|performed|passed/i.test(list),`an arrival infers no act: ${list}`);
+  assert.equal(h(RecordWriteNotice,{run:run()}),'','no notice while everything is written');
+  // An arrival written late carries its CE-19 limit.
+  const late=[...records.slice(0,5),entry('evidence_limit',{label:'record write failed',subjectRef:a.recordId})];
+  assert.ok(h(RunPanel,{run:run({lifecycle:{state:'open',records:late}})}).includes('Written late; the run record carries a “record write failed” limit for it.'));
+  // On the live run the host marks the entry itself (the limit entry is not in its view).
+  const live=[...records.slice(0,3),{...a,writtenLate:true,limit:'run record write failed: Not a directory'},disposition('CP-check',1,'waiting')];
+  assert.ok(h(RunPanel,{run:run({lifecycle:{state:'open',records:live}})}).includes('Written late; the run record carries a “record write failed” limit for it.'));
+  // Listed with no arrival yet.
+  const quiet=h(RunPanel,{run:run({lifecycle:{state:'open',records:[entry('run_opened',{}),listedAccept,listedCheck]}})});
+  assert.ok(quiet.includes('No arrival recorded in this run.'));
+});
+
+test('an arrival bound to an output is evidence of where it was put, never a standing',()=>{
+  const output={name:'summary',promised_standing:[]};
+  const bound=[entry('run_opened',{}),listedCheck,arrival('CP-sum',1,'item:thread/turn/m2','output summary: agentMessage m2'),disposition('CP-sum',1,'waiting')];
+  const facets=outputStanding(output,run({lifecycle:{state:'open',records:bound}}));
+  assert.equal(facets.evidence,'observed in the conversation only: item:thread/turn/m2 (arrival of CP-sum). That marks where the agent put the output; it does not show that its content meets the declaration');
+  assert.equal(facets.humanActs,'none recorded in this run (acts on App files are in their own act log)');
+  assert.equal(facets.hostChecks,'none reported');
+  // Another output keeps "missing"; a disposition other than waiting, or an unreadable body, reads unknown.
+  assert.ok(outputStanding({name:'examination-report'},run({lifecycle:{state:'open',records:bound}})).evidence.startsWith('missing'));
+  const performed=outputStanding(output,run({lifecycle:{state:'open',records:[...bound,disposition('CP-sum',1,'performed')]}}));
+  assert.ok(Object.values(performed).every(v=>v.startsWith('unknown')),JSON.stringify(performed));
+  const bodiless=outputStanding(output,run({lifecycle:{state:'open',records:record(['run_opened','checkpoint_arrival'])}}));
+  assert.ok(Object.values(bodiless).every(v=>v.startsWith('unknown')));
 });
 
 test('standing facets show only what the run record supports',()=>{
@@ -103,5 +162,55 @@ test('the selected workflow shows its declared part instead of a JSON dump',()=>
   const undeclared=h(DeclaredPart,{declaration:{raw:null,reading:'undeclared',categories:Object.fromEntries(cats.map(c=>[c,'undeclared'])),elements:{},findings:[]}});
   assert.ok(undeclared.includes('declares no requirements part')&&undeclared.includes('Not declared.'));
   const app=readFileSync(new URL('../src/App.tsx',import.meta.url),'utf8');
-  assert.ok(app.includes('<SelectedWorkflow selection={data?.selection}/>')&&app.includes('<RunPanel run={run}/>'));
+  assert.ok(app.includes('<SelectedWorkflow selection={data?.selection}/>')&&app.includes('<RunPanel run={run} conversations={conversations} bringBackDefault={runBringBackDefault(data,run.reference)} busy={busy} act={action}/>'));
+});
+
+test('Bring a real run back to authoring calls the host only on the press, with the chosen conversation (TT-10, TT-11)',()=>{
+  const g={appSession:'s',home:'h',spawnCounter:1};
+  const conversations=[{generation:g,threadId:'auth'},{generation:g,threadId:'other'}];
+  const calls=[];const act=async(c,a)=>{calls.push([c,a]);};
+  const find=(node,found=[])=>{if(Array.isArray(node)){for(const n of node)find(n,found);return found;}if(!node||typeof node!=='object')return found;if(typeof node.type==='function')return find(node.type(node.props),found);if(node.type==='button')found.push(node);find(node.props?.children,found);return found;};
+  const view=(target,includeNative=false)=>RunBringBackView({run:run(),conversations,target,setTarget:()=>{},includeNative,setIncludeNative:()=>{},busy:false,act});
+  assert.equal(find(view(''))[0].props.disabled,true,'no conversation chosen, no bring back');
+  assert.deepEqual(calls,[]);
+  find(view(JSON.stringify([g,'other']),true))[0].props.onClick();
+  assert.deepEqual(calls,[['workflow_run_bring_back',{runRef:'run-1',generation:g,threadId:'other',includeNative:true}]]);
+  assert.ok(h(RunPanel,{run:run(),conversations,act}).includes('Bring a real run back to authoring'));
+  assert.ok(!h(RunPanel,{run:run()}).includes('Bring a real run back'),'offered only where the host can be asked');
+});
+
+test('Bring a real run back defaults to the host’s default conversation for that run, still changeable; none without one (I-8, TT-10)',async()=>{
+  const g={appSession:'s',home:'h',spawnCounter:1};
+  const conversations=[{generation:g,threadId:'auth'},{generation:g,threadId:'other'}];
+  const root={runBringBackDefaults:[{run:'run-1',threadId:'other'},{run:'run-2',threadId:'auth'}]};
+  assert.equal(runBringBackDefault(root,'run-1'),'other');
+  assert.equal(runBringBackDefault(root,'run-9'),null);
+  assert.equal(runBringBackDefault({},'run-1'),null);
+  assert.equal(runBringBackDefault(undefined,'run-1'),null);
+  const selected=html=>html.match(/<option value="([^"]*)" selected="">/)?.[1]??null;
+  const panel=defaultThread=>h(RunPanel,{run:run(),conversations,bringBackDefault:defaultThread,act:async()=>{}});
+  assert.equal(selected(panel(runBringBackDefault(root,'run-1'))),JSON.stringify([g,'other']).replace(/"/g,'&quot;'),'defaults to the host-named conversation');
+  assert.equal(selected(panel(null)),'','no default: none chosen');
+  assert.equal(selected(panel('gone')),'','a default that is not a started conversation here is not chosen');
+  // Mounted: the default is used, sends nothing by itself, and the person can change it.
+  const {installMiniDom}=await import('./support/mini-dom.mjs');
+  const document=installMiniDom();
+  const {createRoot}=await import('react-dom/client');
+  const calls=[];const act=async(c,a)=>{calls.push([c,a]);};
+  const container=document.createElement('div');document.body.appendChild(container);
+  const rootEl=createRoot(container);
+  await React.act(()=>rootEl.render(React.createElement(RunPanel,{run:run(),conversations,bringBackDefault:'other',act})));
+  assert.deepEqual(calls,[],'mounting sends nothing');
+  // React keeps each element's current props on its node; the mini document has no events.
+  const props=node=>node[Object.keys(node).find(k=>k.startsWith('__reactProps$'))];
+  const press=async()=>{const b=container.querySelectorAll(n=>n.localName==='button'&&n.textContent==='Bring a real run back to authoring')[0];await React.act(()=>props(b).onClick());};
+  await press();
+  assert.deepEqual(calls.at(-1),['workflow_run_bring_back',{runRef:'run-1',generation:g,threadId:'other',includeNative:false}]);
+  const select=container.querySelectorAll(n=>n.localName==='select')[0];
+  await React.act(()=>props(select).onChange({target:{value:JSON.stringify([g,'auth'])}}));
+  await press();
+  assert.deepEqual(calls.at(-1),['workflow_run_bring_back',{runRef:'run-1',generation:g,threadId:'auth',includeNative:false}],'the person’s choice replaces the default');
+  await React.act(()=>props(select).onChange({target:{value:''}}));
+  assert.equal(props(container.querySelectorAll(n=>n.localName==='button'&&n.textContent==='Bring a real run back to authoring')[0]).disabled,true,'the person may clear it');
+  await React.act(()=>rootEl.unmount());
 });

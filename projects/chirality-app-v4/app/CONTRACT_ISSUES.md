@@ -235,12 +235,14 @@ consumer/native/qualification work. CI-10 custody and CI-11 native supplier rece
 - **OH-1 affected privacy continuation (2026-10-05):** [OAuth Host receiving review](../execution/_Coordination/AgentRuns/APP-V4-GROUP-A-20261004/reviews/V3-I1-OAUTH-HOST-RECEIVING.md) reproduced two retained-evidence canary failures while admission correctly stayed Pending/unmatched: private material echoed in a known completion's unexpected top-level `id`, and unexpected-key-only echo in a wrong-typed original RPC reply. The same genuine synthetic SourceRequest/cat controls also failed on immutable merged e2/196 baseline Host6c48/auth566. These are pre-existing known-auth reflection gaps preserved by the new OAuth projection, not newly introduced admission/cancel defects or real credential exposure. Original Unit A and candidate116 passes remain valid for their recorded vectors; only this framing/weak-association privacy scope is reopened.
 - **OH-1 bounded repair:** exact original controls now pass unchanged; source-warranted typed public framing and privacy-only weak association preserve unmatched standing, while mandatory malformed-auth replies retain raw IDs only on the private original pipe. Host84/controller15 pass99 distinct checks and independent original-vector/preservation backcheck is READYdabb7e40. Prior baseline0/2 and successor0/2 failures remain historical; no generic filtering/DLP over unrelated notifications was adopted.
 - **Remaining:** actual native UI/authentication/browser/device/model/provider qualification still needs its own actual witnesses. No real credential/home content, authentication, native key operation or provider model execution is authorized by this issue.
+- **Native witness, 2026-10-10:** [first native App witness](../execution/PKG-01/DEL-01-02/Design/NATIVE_WITNESS_2026-10-10.md). The owner signed in with a ChatGPT account through the App on an unverified-development 0.160.0 build. `account/read` reported the account type without details, and the App showed the identity as not verified. Model turns ran with `gpt-6-luna` via `openai`. This is development evidence for one account home. It is not access qualification, and API-key, device and logout journeys remain unwitnessed.
 
 ## CI-15 Native child-role collision discovery and shared-resource fit
 
 - **Found:** 2026-10-05 through Parent's isolated stock 0.160.0 probe, [carrier and collision evidence](../execution/_Coordination/AgentRuns/APP-V4-GROUP-A-20261004/probes/ROLE_0160_THREAD_CARRIER_AND_COLLISION.json). Per-thread agent definitions appear only in that thread, but a same-name definition shadows a synthetic standalone user agent. `config/read` reports `agents:null` without those origins. The complete published package repeats the result; no child or real model was executed.
 - **Contract fit:** ROLE CR2's `config/read` route cannot establish complete collision exclusion from this response. ACCESS/HOST's current M-A boundary explicitly shares `config.toml`, `AGENTS.md` and `skills`, with other home files not linked; native `agents/` definitions are not covered. [CC-ROLE-ACCESS-0160-FIT](../execution/_Coordination/AgentRuns/APP-V4-GROUP-A-20261004/changes/CC-ROLE-ACCESS-0160-FIT.md) preserves both clauses and the required discovery, namespace-protection and receiving consequences.
 - **Standing:** open named source/Design fit, with no fourth target, process-wide fallback, user-configuration edit or governance change adopted. Current child supply remains not supplied. Complete discovery/collision exclusion, additive child content/base preservation and actual child association require their own inputs; ordinary workflow and native operations continue.
+- **Native witness, 2026-10-10:** a [delegated child](../execution/PKG-01/DEL-01-02/Design/NATIVE_WITNESS_2026-10-10.md) (items 11–12) ran from a HELPS_HUMANS conversation on stock 0.160.0. The App showed its guidance as "not known". This observes delegation, not child role supply, which stays not supplied.
 
 ## CI-16 WR supplier records and RS native supply receiving
 
@@ -274,7 +276,10 @@ No native content, new recorder, liveTurn inference or automatic resume is added
 The adopted source is implemented with cold-tuple tests (cold03); the final V6
 custody review records RC1-COLD as repaired for the core scope. Root consumer
 integration is in the combined checkpoint. Actual native quit/relaunch evidence
-and external PI-6 mapping remain open. Exact source pins are in the Group A run's
+and external PI-6 mapping remain open.
+The [native witness of 2026-10-10](../execution/PKG-01/DEL-01-02/Design/NATIVE_WITNESS_2026-10-10.md) covered Restart Codex with nothing live,
+followed by a history read and resume. It covered no quit, relaunch or open item
+across a restart. Exact source pins are in the Group A run's
 CC-REC-ITEM-TURN-SOURCE-ADOPTION.json; review status in V6-RECOVERY-CUSTODY-CORE.md.
 
 ## CI-18 Development workflow selections were composed and sent as runs
@@ -494,9 +499,21 @@ owner or the owner. No Design file was changed.
     run's own home and thread after the run's generation is checked as
     current. A missing binding stays `Unknown`.
   - No catalog edition is ever observed, so CK-3 is never evaluated.
-- **(h) `run_ended.waitingArrivals` (J3).** The App has no checkpoint recorder
-  (EXEC §2.4). `run_ended` writes `waitingArrivals: []`, meaning only that the
-  App recorded no arrivals. It is not evidence that none were reached.
+- **(h) `run_ended.waitingArrivals` (J3). Partially addressed 2026-10-10; open
+  with the EXEC design owner.** The App now has a first-slice checkpoint
+  recorder (EXEC §2.4, `checkpoint_recorder.rs`; EXEC is DRAFT/PROPOSED text).
+  `run_ended` lists every recorded arrival whose latest disposition is
+  *waiting* (CE-17). The list is read from the run's own entries, so an end
+  after relaunch (`end_recorded_run`) lists them too. Residual:
+  - **Acts are not counted** (CE-5/CE-6 absent). An arrival therefore stays
+    *waiting* after the person performed the act, and `waitingArrivals` can
+    durably list as waiting an arrival whose act was done. Each
+    `checkpoint_arrival` carries this limit. The `run_ended` body cannot:
+    `runEnded` admits no further properties.
+  - **Only output arrivals AW-6 (message) and AW-7 (file) are evaluated.**
+    Every other checkpoint's `checkpoint_listed` entry says *not evaluable*,
+    with its reason. An empty list therefore means only that no evaluated
+    arrival is recorded as waiting, not that no checkpoint was reached.
 - **(i) Notice dispatch is counted once (J3; corrected by V10 G-1).** TX-5 says
   "once".
   - When consumed: only when the Host observed a write attempt of the
@@ -506,6 +523,20 @@ owner or the owner. No Design file was changed.
     refused request, or a record that could not be written. A pending notice is
     re-scoped to the current generation of the same home, so a Codex relaunch
     does not strand it. Its record identity and bytes are unchanged.
+  - Which turn carries it (NIR TC-2): any new turn of the conversation, as its
+    first element. That is ordinary text, a plan or default mode turn (its
+    `collaborationMode` unchanged), the Continue-as summary request, or an
+    attachment-bearing turn (run-end line, the person's text, then the
+    attachments). A steer is not a new turn. One turn claims the notice at a
+    time. An attachment-bearing turn holds that claim without the run's lock,
+    because the attachment list's lock comes first (`host_status` order).
+    While it is held, every other new turn in the conversation, a run start
+    included, is refused before anything is written. If that send path ends
+    abnormally, the claim is settled from the Host's write facts.
+  - A run start holds a pending notice from its live check until its send
+    outcome; no turn can claim it meanwhile. Once the start's frame was
+    attempted, its chain line supersedes the notice; otherwise the notice is
+    pending again (TX-5: no separate notice).
   - After its frame was written: if Codex then refuses the turn, or the outcome
     is unknown, the notice is not resent, and the model may not have received
     it. The panel shows the outcome. A *native* fork
@@ -549,7 +580,8 @@ in the same library). No Design file was changed. SEAL-2 stays deferred: no old
   `<App user-data>/runtime/wr/draft-bases/<sha256 of the draft key JSON>.json`.
   It validates the record against the WR schema before writing and again when
   reading, and replaces it atomically. WR names only "App data folder" (§3 is
-  PROPOSED; OI-008 open), so the sub-path and file name are this
+  PROPOSED; the owner's OI-008 ruling places the writer in the Rust host but
+  names no sub-path), so the sub-path and file name are this
   implementation's choice. For the WR owner: confirm or name the location.
   **Trust assumption (V11 J5-1).** The record is a claim, not proof. Any
   process running as the user can write it, including an agent whose Codex
@@ -783,52 +815,84 @@ record's "App implementation items". No Design or schema file was changed.
   from disk. DS-4 "select it instead" and RC-5 (d) read the owner's set. LS-1
   "as read" (ledger line, A15 record with the same bound content, store
   recompute) only gates the DS-8 offer (V13 R2-N2).
-- **(b) Attempt journal placement (X-1, X-2).** WR §5.2 names an "attempt
-  journal (App-kept)" without a location, and X-1 reads "each library's
-  attempt journal". The App writes one journal file per *stored*
-  re-confirmation at
-  `<library>/.chirality/.workflow-staging/attempts/<sha256 of the A15 record id>.json`.
-  This is inside §3's App-written, temporary staging area. The file is
-  removed when the attempt closes. X-2 runs when a library owner is opened (in
-  Root, once per library per process). It takes the ledger lock, then lists
-  the journal directory and treats a journal that has gone as already closed
-  (V15 F8). It rereads the ledger for a line citing the A15. If one exists it
-  writes nothing; otherwise it writes *not completed* "process lost before
-  re-confirmation committed", but only if the App's RC-9 reader would accept
-  that line. If not, it writes nothing, keeps the journal and reports
-  "X-2 pending" with the exact cause (V15 F1). It never completes a
-  re-confirmation. Its outcomes appear in the Root snapshot's
-  `libraries[].reconciliation`. For the WR owner: name the journal location.
-
-  **Second App process (corrected after V15 F1; the earlier text understated
-  it).** A journal is visible outside the lock only when the attempt is
-  pending: the append failed or was uncertain, or the journal's own
-  publication failed after the file was visible.
-  - If a second App process opens the library then, its X-2 closes the
-    attempt as lost and writes *not completed* citing the A15.
-  - When the first process continues, G-1R finds the ledger already citing its
-    A15. It appends nothing and ends the attempt *not completed* in that
-    process, naming the line ("already has ledger line ‹n›"). ‹k› is not held.
-  - So one act keeps one ledger line (RC-7, RB-8), and the ledger stays
-    readable.
-  - The person's act had no effect and they review again; a second review and
-    A15 re-confirms.
-  - Tested: `v15_p2_second_process_x2_then_continue_keeps_one_line_per_act`,
-    through the `storage::fail_directory_for_test` hook.
-  - **Exception (V15-R1 R1-1, open).** The ending above holds only when the
-    first process's attempt is not in *Intended*. If its append failed
-    without writing anything, the attempt is *Intended*. On every Continue
-    it then takes the intended-line path, is refused on `ledger_seq`, and
-    reports "registration ledger durability uncertain; same hot attempt
-    retained" for as long as the process runs. This is safe: there is still
-    one ledger line for the act, the ledger stays readable, and ‹k› is not
-    held. But it never shows the definite *not completed* line already in
-    the ledger. The repair is to fail on the intended path with the same
-    "already has ledger line ‹n›" reason, with the reviewer's probe P6 as a
-    test. It is open as a follow-up.
-- **(c) Registration X-2 is still absent.** The App keeps no attempt journal
-  for a *registration* (F15). A registration lost after G-3 and before G-4
-  leaves its store folder and no ledger line, as before J8.
+- **(b) No attempt journal (X-1, X-2; owner ruling 2026-10-10).** The journal
+  location question is moot. The owner ruled: "For the matter with the attempt
+  journal, yes instead recover as you recommended." WR §5.2, RC-7 and SQ-X now
+  say so, and the App keeps no journal.
+  - **What X-2 reads.** When a library owner is opened (in Root, once per
+    library per process), X-1 reads the library act log and the ledger and
+    finds the A15 entries no ledger line cites (one line per single-descriptor
+    act, one per entry of a multi-entry act). The persisted A15 record holds
+    what X-2 needs: the subject tuple (slot and revision), the bound content,
+    the reviewed draft or entry, the prior revision it bound (for a
+    registration, the slot's latest at review) and, by its purpose, whether it
+    is a re-confirmation. A registration completes G-4 and G-5 citing the same
+    A15 when the store folder recomputes and the slot's latest registered
+    revision is still that prior; otherwise it is *not completed*. A
+    re-confirmation is always *not completed* "process lost before
+    re-confirmation committed". A line already citing the act: nothing is
+    written. Outcomes appear in the Root snapshot's
+    `libraries[].reconciliation`.
+  - **One gap, read from disk.** The A15 record does not say whether a draft
+    with no prior was DS-1 (*new workflow*) or DS-7 (*in place*: a published
+    copy equal to the draft). X-2 reads it as SP-4 would at relaunch (a
+    published copy equal to the revision gives *in place*) and says so in the
+    line's `evidence_limits`. Only that label depends on it: the decision to
+    complete does not, and nothing reads the label for standing or selection.
+    This is a known limit. The owner decided on 2026-10-10 to leave it as is,
+    with no schema change.
+  - **What X-2 completes that the live process might not have.** X-2
+    completes a registration whenever its A15 record, its store folder and
+    the slot's latest agree, as WR X-2 says ("the act bound this content and
+    this prior revision, and nothing changed"). This includes cases the live
+    process might have refused or never finished: an A15 recorded but whose
+    receipt did not bind the review (`begin_hot_registration` refused it and
+    the attempt was dropped), and a store folder with the same bytes left by
+    an earlier attempt that ended *not completed*. X-2 does not repeat G-1's
+    App-kept base check or ME-5's in-place entry recheck.
+  - **Live or lost, without a journal.** Each open review holds the library's
+    `.chirality/workflow-registration.live.lock` shared (`flock`), from before
+    its A15 can be recorded until its attempt has a durable line for every
+    entry. X-2 runs only if it can take that file exclusively without waiting,
+    and then takes the ledger lock. Otherwise it is deferred, writes nothing,
+    and runs at the next open. A live attempt, including one left pending by a
+    failed or uncertain append, is therefore not closed as lost while its
+    review holds the lock. The lock is released when its holder drops it or
+    its process ends, so a lost attempt is closed at the next open after that.
+    The tests use separate `LibraryOwner` instances in one test process; BSD
+    `flock` locks belong to each open file description, so those instances
+    conflict as two processes would. That the OS releases a dead process's
+    lock is assumed from `flock`'s documented behaviour, not tested here.
+  - **Each entry against the ledger as it is (review B1).** X-2 rereads the
+    ledger before each uncited entry. It stops when the ledger no longer
+    reads (for example, a torn line from a failed append), and it skips an
+    entry that a line now cites (same A15 and entry name). An append that
+    failed after writing its line therefore never makes the next entry reuse
+    its `ledger_seq`.
+  - **One act, one line (RC-7, RB-8, RC-9).** Both writers append only under
+    the exclusive ledger lock (G-4), after rereading the ledger for a line
+    citing the act. The live attempt also checks this on its first pass and on
+    the intended-line path (V15-R1 R1-1, kept). It now applies to registrations
+    too: a *not completed* line ends the attempt with "already has ledger line
+    ‹n›", and a *registered* line for that entry is finished as the commit of
+    the act captured there. X-2 never appends a line the App's RC-9 reader
+    refuses; it reports the cause instead.
+  - **Tests.** `wr_vc_19_process_loss_and_x2`,
+    `sqx_registration_lost_after_store_completes_citing_the_same_a15`,
+    `sqx_registration_slot_moved_on_is_not_completed`,
+    `sqx_registration_without_a_recomputing_store_is_not_completed`,
+    `sqx_line_already_present_writes_nothing`,
+    `sqx_two_uncited_entries_in_one_open_take_successive_lines`,
+    `sqx_uncertain_append_in_x2_keeps_the_ledger_readable` (the reviewer's
+    B1 probe), `sqx_torn_append_in_x2_stops_and_appends_nothing_more`,
+    `sqx_multi_entry_act_partly_lost_closes_only_the_unlined_entry`,
+    `sqx_live_attempt_in_another_process_is_not_closed_as_lost`,
+    `v15_p1_x2_writes_nothing_it_cannot_establish` and
+    `v15_r1_p6_intended_attempt_ends_with_the_other_process_x2_line` (the
+    defence, with the liveness lock released by hand).
+  - A `.chirality/.workflow-staging/attempts/` folder written by an earlier
+    build is no longer read; the A15 records it named are recovered as above.
+- **(c) Registration X-2: implemented** (was "still absent"), as in (b).
 - **(d) F14, rollback and version skew.** G-1, G-1R and RB-3 (b) now compare
   the slot's latest *registered* revision, not the whole slot. *Re-confirmed*
   and *not completed* lines therefore never fail a concurrent attempt or stale
@@ -955,10 +1019,11 @@ changed.
   - A change that still leaves ‹k›'s line reading as registered for its tuple
     and sequence (for example a changed `written_at`) is written *not
     completed* as WR says.
-  - X-2 likewise keeps a journal whose *not completed* line would breach RC-9,
-    reporting "X-2 pending" with the cause.
+  - X-2 likewise appends no line that would breach RC-9, and a re-confirmation
+    A15 whose ‹k› no registered line records gets no line; it reports
+    "X-2 pending" with the cause (there is no journal, CI-24 (b)).
   - Tests: `v15_p5_g1r_line_no_longer_registered_appends_nothing`,
-    `v15_p1_x2_never_appends_a_line_its_reader_refuses` and
+    `v15_p1_x2_writes_nothing_it_cannot_establish` and
     `v15_f2_g1r_registered_line_changed_is_not_completed`.
 - **For the WR owner.** Rule on the case, for example:
   - G-1R ends the attempt without a ledger line when RC-9 cannot be met (the
@@ -1045,6 +1110,19 @@ changed.
   CI-27 remains OPEN: Group B graph A-IN-S1…S5 assigns versioned contracts,
   connected implementation, reference qualification, consumer joins and final
   packaged witness. Staging satisfies none of those successor obligations.
+- **A-IN-S3 reference authored and attested, 2026-10-10:** DEL-01-01 now holds an
+  `expected-reference.s1` record for stock Codex 0.160.0 macOS arm64 at
+  `execution/PKG-01/DEL-01-01/Design/distribution-s1/references/codex-0.160.0-macos-arm64/`
+  (`expected.json` SHA-256 `754eebae…2a37`, bundle root DEL-01-01/Design). It
+  binds owner-authorized acquisition and custody, a recomputed full vendor-tree
+  inventory, an isolated H-probe label `codex-cli 0.160.0`, and the maintained
+  generated-output identity with its R23-22 version-advance basis. Independent
+  review READY at `b616fe3db0` (`review.md`) and HELP_HUMAN's technical adoption
+  for the App implementation owner (`adoption.json`) are bound in
+  `attestation.json` (`adoption-attestation.s1`, SHA-256 `09e1fae9…3fe9`). A-IN-S3
+  is supplied. No App build selects it yet. CI-27 stays OPEN for build selection
+  and connected production verification (S2), receiving joins (S4) and the
+  packaged witness (S5).
 
 ## CI-28 SQ J-2 omitted its already required ST-4 stimulus
 
@@ -1148,3 +1226,102 @@ changed.
   prerequisite is added to native_development. DEL-11-03 handoff rights and
   DEL-01-06 conditional package contract are unchanged. Exact source/custody
   records: AgentRuns/APP-V4-GROUP-B-20261008/sq-result-receiver-adoption.
+
+## CI-31 App bundle resources: the default configuration carries none
+
+- **Found:** the [native witness of 2026-10-10](../execution/PKG-01/DEL-01-02/Design/NATIVE_WITNESS_2026-10-10.md), item 1. A bundle built
+  with `tauri build --debug --bundles app` and `bundle.active` overridden to
+  true had no `Contents/Resources/instructions` or `workflows`. A non-dev build
+  reads role guidance from `resource_dir()/instructions`, so every start was
+  refused before sending: "role-set-invalid: packaged instruction missing,
+  linked or unreadable". The start succeeded after the resources were copied
+  in by hand.
+- **Cause:** `src-tauri/tauri.conf.json` declares no `bundle.resources`. Only
+  the [unsigned development overlay](packaging/unsigned/README.md)
+  (`packaging/unsigned/tauri.development.conf.json`) maps
+  `resources/instructions/` and `resources/production_workflows/`, so a bundle
+  built without that overlay carries neither. The refusal is the designed
+  fail-closed result; the gap is in packaging.
+- **Open (DEL-01-06 packaging; Group B B4 package preparation):** the product
+  bundle must carry the instruction and workflow resources. Either the default
+  configuration declares them, or a bundle build without them fails instead of
+  producing an App that refuses every start. Not fixed in this change.
+
+## CI-32 WR §16.2 files line: run start names a placeholder folder
+
+- **Found:** 2026-10-10, while revising WR trials (CC-WR-TRIALS, U-WR-24), by
+  checking how a registered run's supporting files reach the agent.
+- **Design text** (`DEL-02-02 …/Design/WORKSPACE_AND_REGISTRATION.md` §16.2
+  line 4): the files line names "the folder" of the revision's other files,
+  where "‹folder› is project-relative for a project library and `~`-relative
+  for the user library".
+- **Code:** `runtime_session.rs` starts a run with
+  `PreparedRunText::start(…, "selected native workflow holding copy", …)`, so a
+  revision with files besides `WORKFLOW.md` gets a files line naming that fixed
+  label rather than the holding folder. The agent is told the files' names and
+  digests but not where they are. Revisions with `WORKFLOW.md` only are not
+  affected.
+- **Consequence:** supporting files of a registered run are named but not
+  locatable. §16.2 line 4 also covered only project and user libraries, while
+  bundled revisions (LS-5; for example the shipped `coordinated-knowledge-work`,
+  which has `REVIEW-NOTES.md`), and holding copies the person picked outside the
+  project, have no relative folder, and the composer refuses absolute labels.
+- **Design:** WR §16.2 TX-7 (CC-WR-TRIALS) now names a project- or
+  `~`-relative folder, or a content-addressed supply copy under
+  `.chirality/workflow-supply/` for any other holding copy, and refuses the run
+  start when that copy fails. A trial names its snapshot the same way (TT-8).
+- **State:** CLOSED for the App's run start by WR §17 step 2 (CC-WR-TRIALS
+  phase 1). `runtime_session.rs` names the folder through
+  `workflow_workspace::files_folder` (TX-7): a holding folder inside the
+  explicit project is named project-relative (in the test fixture, the
+  registered `coordinated-knowledge-work` holding copy picked at
+  `.chirality/workflows/coordinated-knowledge-work` is named so, beside
+  `REVIEW-NOTES.md`), one inside the home folder `~/`-relative, and any
+  other gets a content-addressed supply copy under
+  `.chirality/workflow-supply/`, recomputed before it is named; a copy that
+  cannot be written refuses the start with the cause. The composer refuses
+  absolute and malformed labels. Bundled (LS-5) and other non-registered
+  selections still do not run (`run_admission`, CI-18); when they do, TX-7's
+  case (c) already covers them. Tests: `workflow_trials_tests.rs`
+  (`files_folder_…`, `copy_destinations_…`) and `runtime_session.rs`
+  (`run_start_files_line_names_a_usable_folder_or_refuses_the_start`).
+  WR §17 steps 5–9 (CC-WR-TRIALS phase 2) send the trial text that names
+  its snapshot through the same composer, so trials and runs name their
+  other files alike; nothing of CI-32 remains open.
+
+## CI-33 Examination source pins need re-freezing
+
+- The WR and NIR Design pins (and DEL-09-02's `STANDALONE_QUALIFICATION.md`
+  and `sq.step-map.json`, whose J-4 should add WR-VC-21…WR-VC-25) in
+  `app/examination/standalone/{sources.json,pre_run_inputs.pins.json}` and
+  `app/examination/sq_receiving/pins.json` need a reviewed re-freeze before the
+  next examination dispatch run; the WR pin was already stale on `main`.
+- Pinned text that went stale with CC-WR-TRIALS (#1241) and is left unedited
+  until that re-freeze: `execution/PKG-01/DEL-01-02/Design/EXECUTION_AND_RECOVERY.md`
+  line 757 still speaks of "AT-8 trial attachments" retaining WR's draft/source
+  handle. Since CC-WR-TRIALS a trial reaches its agent as the trial text (WR
+  TT-3, TT-8), not as draft attachments, and WR §17 step 8 (phase 2) removed
+  the attachment pre-fill. Reword it with the re-freeze. Phase 2 also edited
+  WR TT-3a, TT-3b, TT-9, TT-10, §5.5, §11, §12 and §17, so the WR pin moves
+  further from the frozen hash. The WR Design itself
+  changed again with CC-WR-TRIALS phase 1 (TX-7 retention and destination
+  handling, the §3 supply-copy row, §8, §12, §17), so its pin moves further
+  from the frozen hash.
+- **OI-008 ruling (2026-10-10).** The owner decided process placement for the
+  whole App (`docs/ARCHITECTURE.md` §3). The unpinned texts now state it. WR
+  §11 and NIR §1.1 were also edited, since their pins were already stale. Five
+  texts that still match these pins were left unchanged, so they still read
+  OI-008 as open or proposed. Apply the ruling to each at the re-freeze:
+  - DEL-01-01 `HOSTING_BOUNDARY.md`: §1's note "Everything further is the
+    OI-008 proposal in §12", the §7 mention, the §11 row "Decide Rust/TS
+    allocation", §12 (its label and heading; OUT-003 should record the ruling,
+    REQ-004), U-02 and VC-11.
+  - DEL-01-02 `EXECUTION_AND_RECOVERY.md`: §0 ("a different OI-008 answer
+    moves code"), §4 "Placement (R17-5, PROPOSED)", the owners-table row that
+    names OI-008, and U-R8.
+  - DEL-01-03 `NATIVE_PLANS_TOOLS_DELEGATION.md`: §1 "Placement (PROPOSED
+    under R17-5; OI-008 option O-1 …)" and U-P7.
+  - DEL-01-04 `APP_ACT_CONTROL.md`: "R17-5 (process division, PROPOSED)" in
+    its changes from v0.1.
+  - DEL-09-02 `ScopeOfWork.md` TBD-002 ("OI-008 remains OPEN"). Its
+    `deliverable.yaml` already records the ruling.
