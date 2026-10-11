@@ -44,7 +44,7 @@ Unit R has two stages, both ahead of the join: **R1**, the retained reader (this
 **The arrangement (R1).** One product reader replaces the three retained readers held at parity:
 - **Rust, the only product reader.** `core/reporting/result_export/src/retained_precision.rs` reads retained-precision successors natively, and compiled to wasm for the desktop.
 - **TypeScript, deleted.** `apps/desktop/src/features/results/retainedPrecision.ts` goes.
-- **Python, a test-only verifier.** `core/analysis_runs/retained_precision.py` becomes an independent verifier that only tests use, never a product path.
+- **Python, a test-only verifier.** `core/analysis_runs/retained_precision.py` becomes `tests/verifiers/retained_precision.py`, an independent verifier that only tests use, never a product path.
 
 After R1 and R2, B7's table, schema and reader changes are made in two places, not three: the Rust reader and the Python verifier.
 
@@ -54,11 +54,14 @@ After R1 and R2, B7's table, schema and reader changes are made in two places, n
 - **The defect.** The desktop's solve commands re-encode the producer's envelope. `solve_preview_mechanics_with_mode` in `apps/desktop/src-tauri/src/lib.rs` returns `serde_json::to_value(envelope)`, and the desktop's `serde_json` has no `preserve_order`, so the value carries sorted keys. It serves `run_preview_mechanics`, `run_preview_mechanics_with_solver_mode`, and the job path (`start_preview_mechanics_job`, `start_preview_mechanics_job_with_solver_mode` → `publish_solve_outcome` → `poll_preview_mechanics_job`). The webview then re-serializes: `ResultExportPanel.tsx`'s `jsonDataHref` writes `JSON.stringify` of the parsed object, which `save_local_result_json` saves. So IPC and exported bytes differ from the pinned producer bytes, and the hash identity of anything exported from the desktop is at risk.
 - **The fix.** The native side hands over the producer's exact serialized bytes, and the Rust reader in the desktop reads those bytes. Exports write the received bytes, never a re-serialization of a parsed object.
 - **What moves.** Desktop IPC payloads and exported result bytes, which become the producer's bytes. The IPC shape tests move with them (`services/previewService.test.ts` replays, `features/result-export/nativeResultSave.test.ts`, `App.test.tsx`, and the native tests in `src-tauri/src/lib.rs`). No producer byte moves.
+- **As built (R1).** `run_preview_mechanics`, `run_preview_mechanics_with_solver_mode` and a completed job's `result` return the producer's bytes (`serde_json::to_string` of the envelope) as a string. `previewService` reads the result from them once and keeps them beside it (`receivedResultBytes`, while the result is unchanged); a retained successor's registration reads those bytes. For the G10 milestone model, `solves_hand_the_desktop_the_producers_exact_bytes` (`src-tauri`) and `services/exactResultBytes.test.ts` check them against PP's pins, through the committed copies `fixtures/product_preview/rf_skew_t_cant_off_122_r1e-04.desktop_result_{mode}.json`; the native save writes received bytes unchanged.
+- **Open.** The result-export panel's download is DEL-08-04's result envelope, which the desktop derives from the parsed result (`deriveResultDocument`); it is not the received result, so its bytes cannot be the producer's. Writing the received bytes there would replace that envelope, a DEL-08-04 commitment, so R1 leaves it unchanged.
 
 **Wasm.**
-- **Where the bindings go.** They are added to the desktop's existing wasm engine crate, `core/model_operations/operation_applier` (`npm run build:wasm`). That crate already resolves `open_pipe_stress_result_export` through product_physics.
+- **Where the bindings go.** They are added to the desktop's existing wasm engine crate, `core/model_operations/operation_applier` (`npm run build:wasm`). That crate already resolves `open_pipe_stress_result_export` through product_physics, which re-exports it as `result_export`.
   - result_export gains no dependency, so PP's `Cargo.lock`, a reviewed input, does not move.
 - **What they expose.** `retained_precision::validate` and `validate_transport_metadata`, JSON in. Out comes the `Validation`, or the error's gate, code and detail.
+  - As built: `validate_retained_precision_json(source, invocation?)` and `validate_retained_precision_transport_json(source)` return `retained_precision::outcome_json`: `{"ok":true,"validation":{…}}` with each row's binary64 words as 16 hex digits, or `{"ok":false,"error":{"gate","code","detail"}}`. Text that is not JSON throws `WASM-ENGINE-INPUT-JSON-INVALID`. Their native twins are `retained_precision_outcome_json` and `retained_precision_transport_outcome_json`.
 - **How the desktop loads them.** Through `services/wasmEngine/loadWasmEngine`.
 
 **TypeScript call sites that change** (under `apps/desktop/src/`):
@@ -70,9 +73,10 @@ After R1 and R2, B7's table, schema and reader changes are made in two places, n
   - `services/analysisRunCompatibility.ts`;
   - `features/stress-neutral/StressNeutralExportPanel.tsx`.
 - `knownSemanticLimitations.ts` and the modules above import `decodeBinary64`, `binary64Bits` and the reader's types. These move to a small module that holds no validation.
+- As built: the binding is `features/results/retainedPrecisionReader.ts`, and the module without validation is `retainedPrecisionTypes.ts`. A parsed value is written to the reader as JSON text that keeps its negative zeros.
 
 **Vitest tests that change.**
-- **Deleted:** `features/results/retainedPrecision.test.ts`, the reader-internal tests (`phi512`, `eHat`, `stopFeasible`, `nativeSchedule`, `accountingRules`, …). The Rust tests and the verifier cover these.
+- **Deleted:** `features/results/retainedPrecision.test.ts`, the reader-internal tests (`phi512`, `eHat`, `stopFeasible`, `nativeSchedule`, `accountingRules`, …). The Rust tests and the verifier cover these. Its one carrier test (the exact route's dispatch, binding, standing, table and notices) moves to `retainedPhysicsRoute.test.ts`, on lane P's m3x successor.
 - **Re-pointed at the wasm reader:**
   - `retainedPrecisionIntegration.test.tsx`;
   - `retainedPrecisionOutputRefusal.test.tsx`;
@@ -83,13 +87,15 @@ After R1 and R2, B7's table, schema and reader changes are made in two places, n
   - `services/retainedPrecisionAnalysisRun.test.ts`.
 
 **The Python verifier.**
-- **Location.** It moves under `tests/`. A test asserts that no module outside `tests/` imports it.
-- **Product callers.** `core/analysis_runs/compatibility.py`'s `_retained_validation` and `_retained_transport` stop importing it.
-  - Python product code that meets a retained successor takes the Rust reader's verdict. It gets it through an `openpipestress-runner` subcommand that R adds over the same two functions.
-  - It never re-derives a verdict.
-- **Independence.** It shares no code with the producer.
-  - Today it hashes through `core/serialization/canonical_json/adapter.py` and converts units through `core/units/adapter.py`. Both are subprocess bridges to crates the producer links.
-  - R replaces both with Python implementations under `tests/`. These are checked against those crates' committed vectors, not by calling them.
+- **Location.** `tests/verifiers/retained_precision.py`, in the test-only package `tests/verifiers/`. `tests/test_verifier_independence.py` asserts that no module outside `tests/` imports it, by package or by path.
+- **Product callers.** `core/analysis_runs/compatibility.py`'s `_retained_validation` and `_retained_transport` no longer import it.
+  - Python product code that meets a retained successor takes the Rust reader's verdict through `core/analysis_runs/rust_reader.py`. It runs `openpipestress-runner read retained-precision` (`validate`; `{"source", "invocation"?}` in) or `read retained-precision-transport` (`validate_transport_metadata`; `{"source"}` in), with the runner at `OPENPIPESTRESS_RUNNER_BIN`. Out comes the reader's own `retained_precision::outcome_json`, the wasm bindings' shape, as `outcome` in the envelope `{"artifact", "schema_version", "reader", "outcome"}`: `{"ok": true, "validation"}` with exit 0, or `{"ok": false, "error": {gate, code, detail}}` with exit 1; an unusable input exits 2. R2 adds its readers to the same `read` table.
+  - It never re-derives a verdict. Every other product path reaches the retained reader only through those two functions: `compatibility.py`'s dispatch, standing, classification summary and rule binding, its analysis-run builder and validator, and the stress-neutral 0.3 packager. The product preview service (whose 0.1.0 wrapper refuses a receipt-carrying source by name, unread) and the qualification tools do not reach it.
+  - The product takes Rust's text. A product refusal reads differently only in the declared G7 class, where Rust reports finer base codes: Rust's code on raw reads, and on transport reads the same code with Rust's detail. On the corpus that is its 47 declared entries (23 of them on transport); two test-built statements of the same class (in `test_retained_precision_b3.py` and `test_retained_precision_carriers.py`) read the same way. Every pass or refusal, every refusal outside that class, every passing validation, standing and classification summary, and every analysis-run record built is unchanged.
+- **Independence.** It shares no code with the producer and spawns no process.
+  - It hashes through `tests/verifiers/canonical_json.py` and converts units through `tests/verifiers/units.py`, in place of the subprocess bridges `core/serialization/canonical_json/adapter.py` and `core/units/adapter.py`.
+  - These are checked against the crates' committed vectors, read from their files: `fixtures/canonical_hash/cases.json` and `fixtures/results/precision_transport_v0_3.json` for canonical JSON, and, for units, `core/units/src/lib.rs`'s catalog (every entry's symbol, dimension, factor and offset bits, and each dimension's canonical unit) and its witness tables. The verifier's replay of the producer-solved successors and of the mixed-unit physics-source statements matches the producer's hashes and converted bits.
+  - Its base step (G7) and the exact route's G8 materials still run the Python base readers in `core/analysis_runs/`, which R2 moves under `tests/`.
 
 **The shared conformance corpus.** These become the conformance corpus shared by the Rust reader and the Python verifier:
 - the 07m/07n/07o corpora;
@@ -101,8 +107,10 @@ Both run every entry unmodified. `expected_by_reader` and `expected_unbound_by_r
 
 **What is gated, and how equivalence is shown.** Deleting the TS reader is gated on an equivalence test. It runs on R's head while both readers are still present.
 1. **Wasm matches native Rust.** This covers every corpus entry, including its mutation, must-pass, transport (`expected_transport`) and unbound (`expected_unbound`) forms. Through wasm, each gives the same outcome as the native Rust reader: a pass with an identical `Validation`, or the same gate, code and detail.
-2. **Wasm matches the TS reader, except where declared.** The exceptions are 47 entries (46 in 07m/07n, 1 in 07o) with 92 expectations, where the TypeScript expectation differs from Rust's: Rust reports finer base codes at G7. There the desktop takes Rust's outcome, and the change is declared.
+2. **Wasm matches the TS reader, except where declared.** The exceptions are 47 entries (46 in 07m/07n, 1 in 07o) with 92 expectations, where the TypeScript expectation differs from Rust's: Rust reports finer base codes at G7. As run, 14 more readings differ in the same way (below); they are declared in this class, 106 readings in all. There the desktop takes Rust's outcome, and the change is declared.
 3. **Every desktop gate code gives the same outcome through wasm.** These are the codes the standing, disclosure, quality, analysis-run, historical-run, result-export and stress-neutral consumers receive, run in the vitest suites above. The only changes allowed are item 2's.
+
+As run (R1). Item 1: 835 reader inputs (the corpus's 45 bases, 603 mutations and 97 must-pass entries, the 20 B2 probes, RV120's 12 inputs, the 12 successor fixtures and the carrier file's 46 forms), 2,483 readings, all equal to the native outcomes committed in `fixtures/results/retained_precision_reader_outcomes.json` (result_export's `r1_native_reader_outcomes`; `retainedPrecisionWasmEquivalence.test.ts` keeps reading them). Item 2: the 92 corpus expectations (47 entries) differ as stated, and 14 more readings differ in the same way, G7 in both readers with Rust's own code: the unbound readings of two of those entries, which the corpus does not state, and three readings of each of four RV120 probes, whose TypeScript codes the TypeScript reader's own tests pinned. No other outcome differs; G7 details differ on 38 readings. Item 3: the suites above pass with only their imports re-pointed; the exact-bytes change then moves their mocked IPC to bytes.
 
 A difference outside item 2 stops the deletion.
 
@@ -141,9 +149,9 @@ A difference outside item 2 stops the deletion.
 **What moves.** Desktop outcomes only where item 2 declares a difference, and the desktop bundle. No producer byte, reviewed input or table moves. Rust reader layouts and statics are unchanged unless R2 changes a Rust entry point; if it does, R2 joins the batch and re-registers under D3.
 
 **The Python verifier's dependencies to cut (R1 and R2).**
-- **Subprocess bridges to producer crates.** `core/serialization/canonical_json/adapter.py` (used by `compatibility.py`, `source_blocks.py` and `retained_precision.py`) and `core/units/adapter.py` (used by `physics_source.py` and `retained_precision.py`). They are replaced by Python implementations under `tests/`, checked against the crates' committed vectors rather than by calling them.
-- **Product-path calls.** `compatibility.py`'s reader half (`_source_contract`, the dispatch into the evidence modules, `_retained_validation`, `_retained_transport`) is called on product paths by its own analysis-run builder (`build_analysis_run_v0_3`, `validate_analysis_run_v0_3`), by `core/handoff/stress_neutral/package_v0_3.py` and by `core/product_preview/service.py`; `tools/validation/qualification_*` call it too. After R2 those callers take the Rust reader's verdict through the `openpipestress-runner` reader subcommand (R1 adds the retained entry, R2 the base dispatch); the qualification tools may call the verifier only from tests.
-- **Moved under `tests/`:** `preview_physics_evidence.py`, `physics_evidence.py`, `physics_source.py`, `load_reference_evidence.py`, `load_reference_source.py`, `source_blocks.py`, `retained_precision.py`, and `compatibility.py`'s reader half. `core/analysis_runs/__init__.py` stops re-exporting them. The record builder stays in `compatibility.py` (DEL-14-02).
+- **Subprocess bridges to producer crates.** `core/serialization/canonical_json/adapter.py` (used by `compatibility.py` and `source_blocks.py`) and `core/units/adapter.py` (used by `physics_source.py`). R1 cut the retained verifier's use of both. They are replaced by Python implementations under `tests/`, checked against the crates' committed vectors rather than by calling them.
+- **Product-path calls.** `compatibility.py`'s reader half (`_source_contract` and the dispatch into the evidence modules; `_retained_validation` and `_retained_transport` take the Rust verdict since R1) is called on product paths by its own analysis-run builder (`build_analysis_run_v0_3`, `validate_analysis_run_v0_3`), by `core/handoff/stress_neutral/package_v0_3.py` and by `core/product_preview/service.py`; `tools/validation/qualification_*` call it too. After R2 those callers take the Rust reader's verdict through the `openpipestress-runner` reader subcommand (R1 adds the retained entry, R2 the base dispatch); the qualification tools may call the verifier only from tests.
+- **Moved under `tests/`:** `preview_physics_evidence.py`, `physics_evidence.py`, `physics_source.py`, `load_reference_evidence.py`, `load_reference_source.py`, `source_blocks.py`, and `compatibility.py`'s reader half (`retained_precision.py` moved in R1). `core/analysis_runs/__init__.py` stops re-exporting them. The record builder stays in `compatibility.py` (DEL-14-02).
 
 ## The join: `pressure-source-1`
 
