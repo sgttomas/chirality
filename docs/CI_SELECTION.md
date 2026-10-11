@@ -8,7 +8,21 @@ advanced; checks still apply to the candidate head.
 Selection uses the complete PR diff, including both sides of renamed paths.
 The executable mapping is [hosted-ci-routing.json](../tools/hosted-ci-routing.json),
 interpreted by [hosted_ci.py](../tools/software_workflow/hosted_ci.py).
-Missing or unknown inputs select conservative coverage. Each job reports its
+Missing or unknown inputs select conservative coverage. Piping Cargo selection
+seeds the owning crate for changed Rust/Cargo files and the readers of each exact
+changed resource, then follows reverse Cargo path dependencies (including dev,
+build and target dependencies and resolved workspace inheritance). Fixture reads
+do not create a dependency on the fixture supplier's whole crate. Dynamic Rust
+reads use source-grounded declarations in the routing file: exact files, literal
+anchors and checked source/caller boundaries. Unknown paths, stale declarations,
+unresolved local dependencies or shared execution controls retain the full suite.
+Nonrepository reads require an `audited-external-inputs` declaration and concrete
+reason. Its source/caller binding invalidates stale audits; independent review
+establishes the external-input claim.
+Python coverage has its own mode, including when no Cargo crate is selected.
+The plan retains classification, reasons and exact selected manifests; execution
+and successful-result reuse recompute them against the candidate's complete diff.
+Each job reports its
 selection and reasons; unrelated product jobs are explicitly skipped. Failed,
 cancelled or missing selected work fails the aggregate result.
 
