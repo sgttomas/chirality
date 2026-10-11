@@ -45,6 +45,16 @@ runner/language environment. A reused pass names its original run and says no
 tests executed. Manual runs bypass result reuse. Dependency/build caches are
 separate and do not themselves establish a passing result.
 
+`shared-build-cache.yml` warms Piping numerical and App v4 Cargo dependencies
+on main pushes without executing tests. Piping uses `numerical_ci.py
+--build-only`, derived from the numerical job's own selected profiles. App v4
+compiles its test and check profiles. Only registry/Git dependencies and their
+compiled artifacts are saved; local path crates, test executables and incremental
+output are removed. Product jobs restore these main-scoped caches without saving
+PR build caches. Small exact-result verification records retain their existing
+save/reuse rules. Cargo logs report build and harness execution durations separately. Piping
+also emits timing totals, retaining its original command order; a cache miss still builds and verifies normally.
+
 Verification is proportional to consequence under Root `AGENTS.md`. CI success
 is not product acceptance, engineering approval or release authorization.
 

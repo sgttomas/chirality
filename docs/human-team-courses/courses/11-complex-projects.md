@@ -96,6 +96,8 @@ Delay also has consequences. Compare the cost of waiting with the consequences o
 
 Do not label every unresolved matter as an acceptable risk. Some conditions are requirements that the proposed activity must satisfy.
 
+A decision owner can accept tradeoffs within their remit. Risk acceptance does not expand that authority or establish unexamined technical performance.
+
 A budget approval cannot excuse an unresolved legal requirement. A commercial reservation cannot establish technical suitability.
 
 For a consequential decision, prepare:

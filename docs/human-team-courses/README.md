@@ -84,7 +84,7 @@ for source in sorted(root.rglob('*.md')):
         'docs/alignment-manual/render_manual.py',
         '--source', str(source), '--output', str(output),
         '--basis-date', '2026-10-11',
-        '--basis-revision', '10b70036ef791374685291371a651ec9492a612c',
+        '--basis-revision', '26d04270617c405fc3ca131d2ea6c86120ecc5ed',
         '--edition-label', 'Human team courses', '--metadata-at-end',
     ], check=True)
 PY

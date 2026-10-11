@@ -254,6 +254,17 @@
         "piping-numerical",
         "piping-python"
       ]
+    },
+    {
+      "paths": [
+        ".github/workflows/shared-build-cache.yml",
+        ".github/actions/restore-build-cache/**",
+        "tools/software_workflow/build_cache.py"
+      ],
+      "checks": [
+        "app-v4",
+        "piping-numerical"
+      ]
     }
   ],
   "piping_runtime_reads": {

@@ -137,6 +137,8 @@ jobs:
     if: needs.selection.outputs.numerical_mode == 'full'
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    env:
+      CARGO_INCREMENTAL: '0'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -171,16 +173,11 @@ jobs:
         run: python3 tools/software_workflow/result_cache.py reuse --suite numerical --record "${{ runner.temp }}/verified-numerical/result.json"
       - uses: dtolnay/rust-toolchain@1.97.1
         if: steps.verified.outputs.cache-hit != 'true'
-      - name: Cache numerical dependencies and build outputs
+      - name: Restore main-scoped numerical build dependencies
         if: steps.verified.outputs.cache-hit != 'true'
-        uses: actions/cache@v4
+        uses: ./.github/actions/restore-build-cache
         with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            piping-numerical-evidence/target
-          key: ${{ runner.os }}-piping-numerical-rust1971-${{ hashFiles('projects/chirality-piping/**/Cargo.lock') }}
-          restore-keys: ${{ runner.os }}-piping-numerical-rust1971-
+          suite: piping-numerical
       - name: Locked Cargo numerical suite
         if: steps.verified.outputs.cache-hit != 'true'
         run: python3 projects/chirality-piping/tools/ci/numerical_ci.py --plan piping-ci-plan.json --evidence-dir piping-numerical-evidence

@@ -2,7 +2,7 @@
 
 [Series](../index.html) · [Case](../case-study.html) · [Glossary](../glossary.html) · [References](../references.html)
 
-A retrieved statement needs interpretation before it can govern work. You must establish its authority, applicability, meaning, and conditions. You must also recognize where the available sources cannot support a conclusion.
+Interpret a retrieved statement to understand whether and how it governs work. You must establish its authority, applicability, meaning, and conditions. You must also recognize where the available sources cannot support a conclusion.
 
 This course teaches a method for interpreting project requirements and organizing an external-requirements enquiry. The offline exercise uses Northbank Packet A. It does not assign Northbank a real jurisdiction or code edition.
 
@@ -23,6 +23,8 @@ By the end, you can:
 Sources enter a project through different relationships. Legislation can impose obligations within its jurisdiction and scope. Contracts can establish obligations between identified parties. Approved project decisions can define the assignment. A technical reference can inform analysis without itself governing the assignment.
 
 Establish the relationship for the actual source. Do not infer it from a familiar title or an organization's reputation. A standard can be technically useful without being adopted into the governing requirements. Its role may also follow a contract or another applicable instrument.
+
+An applicable obligation can govern before the team recognizes it. Interpretation identifies that obligation. It does not create project authority to waive it.
 
 The National Research Council explains that Canadian model construction codes acquire legal authority through government adoption. Adoption can include amendments. This example shows why a publication's existence does not establish its applicability. It does not identify the requirements for Northbank. [NRC model-code context](https://nrc.canada.ca/en/certifications-evaluations-standards/codes-canada/canadas-construction-system-context-model-codes)
 
@@ -110,7 +112,9 @@ Use this memorandum method:
 6. Identify the clarification or decision still required.
 7. Name affected work and receiving participants.
 
-If clarification changes the project basis, connect the decision to change control. Preserve the earlier reasoning. Notify affected owners and examine adoption in their work.
+An interpretation can reveal an existing obligation missing from the project basis. Record that obligation and assess the affected work. The obligation does not await sponsor adoption.
+
+Any resulting scope, resource, or commitment change still needs its proper authority. Connect that decision to change control. Preserve the earlier reasoning. Notify affected owners and examine adoption in their work.
 
 ## Northbank worked example — Flow and changeover
 

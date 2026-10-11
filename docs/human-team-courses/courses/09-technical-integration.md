@@ -122,13 +122,15 @@ For Northbank, trace standby behavior from operations' definition through equipm
 
 Set the review purpose and competence before the session. Include independent examination where the project or consequences require it. Identify the exact candidate and source revisions.
 
-Raise findings as definite observations. State the affected claim, evidence, consequence, owner, and closure evidence. “Please coordinate” does not identify a repairable defect.
+State findings as observations or conclusions, with their supporting grounds. Distinguish an observed discrepancy from its interpretation. State the affected claim, evidence, consequence, owner, and closure evidence. “Please coordinate” does not identify a repairable defect.
 
 After a change, inspect affected dependencies. Update the technical basis where meaning changes. Notify consumers through the controlled issue process. Confirm adoption in their actual work.
 
 Re-examine the changed behavior and connected evidence. Preserve valid earlier checks where their basis remains unchanged. Do not repeat every check solely because a document received a new revision.
 
-The integration owner closes a finding on evidence or an authorized disposition. Moving it to another list does not satisfy the requirement.
+The integration owner closes a finding on evidence or a decision within the decision owner's authority. State whether the response corrects the result, changes the requirement, or limits the proposed reliance.
+
+A disposition does not establish unexamined behavior. It cannot waive an obligation outside that authority. Moving a finding to another list does not satisfy the requirement.
 
 ## Worked Northbank example
 

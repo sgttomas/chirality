@@ -6,11 +6,11 @@ Use these meanings within the courses. A governing law, contract, or standard ca
 
 | Term | Meaning in this series |
 | --- | --- |
-| Acceptance | An authorized decision that an identified result satisfies stated conditions for a stated purpose. |
-| Accountability | The obligation to explain and answer for an assigned responsibility or decision. |
+| Acceptance | An authorized decision, based on examination, that an identified result satisfies stated conditions for a stated purpose. |
+| Accountability | The obligation to explain and answer for a responsibility or decision. |
 | Actual expenditure | Cost recorded as incurred. It is distinct from a commitment or forecast. |
 | Applicability | The relationship that makes a requirement govern the work under its stated conditions. |
-| Approved basis | The identified requirements and decisions authorized to govern a stated scope of work. |
+| Approved basis | The identified requirements, decisions, and limits approved as a reference for stated work. Applicable external obligations retain their standing. |
 | Assumption | A proposition used in reasoning while its truth remains unconfirmed. |
 | Assurance | Activities that provide justified confidence in the work and its intended result. |
 | Authority | The right to make a stated decision or perform a stated act. |
@@ -46,6 +46,7 @@ Use these meanings within the courses. A governing law, contract, or standard ca
 | Provenance | The origin and history needed to understand where information came from. |
 | Readiness | Satisfaction of the conditions required to start a stated activity or rely on a stated contribution. |
 | Requirement | A needed result or constraint under an applicable authority or accepted assignment. |
+| Responsibility | The work, decision, or duty that a person or organization must carry under the applicable arrangement. |
 | Review | Examination of the work, its basis, and its conclusions by a person with suitable competence and assigned purpose. |
 | Revision | An identified version of a document or other controlled item. |
 | Risk | The relationship between uncertainty and its possible effects on objectives or affected parties. |
@@ -55,5 +56,7 @@ Use these meanings within the courses. A governing law, contract, or standard ca
 | Validation | Examination of whether the result is fit for its intended use under the relevant conditions. |
 | Verification | Examination of conformity to specified requirements. |
 | Warrant | The grounds that justify a claim for the proposed reliance. |
+
+An authorized decision can establish or change commitments, permissions, and assigned responsibilities. It does not establish unexamined physical behavior or performance. A declared status needs supporting evidence for the proposed reliance.
 
 [Return to the series](index.html). [Open the case](case-study.html).

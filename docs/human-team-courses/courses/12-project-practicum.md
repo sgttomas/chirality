@@ -59,6 +59,8 @@ Retain valid work. Repeat examination when a change affects its grounds. Record 
 
 The reviewer examines an identified revision for a stated purpose. The reviewer must have suitable competence and independence from its production.
 
+Consider shared interests, assumptions, and relationships that could impair the review. Nonparticipation in production alone does not establish suitable scrutiny.
+
 Examine consequences for operators, site personnel, other affected people, and the environment. State where evidence is needed to assess those effects.
 
 Report readiness truthfully. Identify incentive conflicts and the grounds of dissent. Apply assigned information-sharing conditions when providing evidence to reviewers.
@@ -119,7 +121,7 @@ Maintain the source and decision index. Preserve output identity, revision, stat
 
 Independently examine assigned outputs that you did not produce. Record findings against specific claims and requirements.
 
-Check whether the revised outputs address the findings. Keep unsupported claims open until evidence or a valid disposition establishes their status.
+Check whether the revised outputs address the findings. Record closure on evidence or a decision within the decision owner's authority. Identify any factual claim that remains unestablished.
 
 ## Rotate responsibilities
 
@@ -261,7 +263,7 @@ The team lists the result as evidence for that condition. It then compares the p
 
 A required failure response has no test evidence. The team records a finding and prepares the missing examination plan.
 
-The authorized authority can consider a bounded decision using the available evidence. The team preserves the unexamined condition and its consequences.
+The relevant authority can consider a bounded decision where the applicable requirements permit it. The team preserves the unexamined condition and its consequences.
 
 The report therefore remains useful without carrying an unsupported claim of complete acceptance.
 
