@@ -22,20 +22,8 @@ commitments. A change to a representation does not settle what its subject
 means. Root must support adaptation without letting its ability to edit its own
 machinery become a claim to define its own purpose.
 
-The design can be read through three relations: the work and its representation;
-responsibility and permission; and a contribution and the result that consumes
-it. The sections below examine why those distinctions matter and how the current
-implementation attempts to preserve them. Particular filenames and commands are
-evidence of one implementation, not necessary constituents of the framework.
-
-The source basis comprises [AGENTS.md](../../AGENTS.md), the
-[Root entry](../../execution/_Coordination/LOOP_INIT.md), the
-[deliverable-query contract](../../tools/deliverables/README.md), role files and
-selected methods. The [App thesis](../../projects/chirality-app-v4/docs/thesis/README.md)
-and [SWBPIPE thesis](../../projects/chirality-piping/docs/thesis/README.md) examine
-what receiving applications adopt. Root is not their mandatory runtime layer.
-Historical mechanisms in [Appendix A](appendix_a_invariant_catalog.md) inform
-comparison without creating current duties.
+Three relations organize the architecture: work and its representation,
+responsibility and permission, and a contribution and the result that consumes it.
 
 ## 4.2 The Foundational Decision: Current Artifacts and Derived Views
 
@@ -276,7 +264,7 @@ one artifact can have different grounds and limits.
 
 The operative questions are what supports the claim, whether that support is
 appropriate here, what remains uncertain, and who accepts which reliance.
-Chapter 5 develops these questions. They require inspectable grounds, not a
+They require inspectable grounds, not a
 second obligatory lifecycle register.
 
 ## 4.5 Roles and Responsibility

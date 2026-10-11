@@ -14,54 +14,39 @@ Chirality AI Ltd. (APEGA P17007)
 ## Abstract
 
 Agent capability becomes useful through a relation to purpose, a body of work
-and a person who can answer for its use. Increasing capability does not settle
-what deserves to be done, which distinctions matter or what a result means in
-its situation. This thesis argues that Root's purpose is to sustain that relation
-while making the means of work available for examination and improvement.
+and a person who can answer for its use. Chirality Root sustains that relation
+through shared roles, methods, tools and artifacts, while keeping those means
+open to examination and improvement.
 
-The four perspectives of ontology, epistemology, praxeology and axiology ask
-what the undertaking consists of, what supports understanding, how intent becomes
-a result, and what makes the result worth pursuing. They are ways to attend to
-work, not a scheme from which a single organization or architecture follows.
-Agents can extend reckoning through substantial inquiry and action. Judgment is
-the person's situated, committed engagement throughout that work. Greater agent
-capability increases what the person can undertake without itself deciding what
-they should stand behind.
+Ontology, epistemology, praxeology and axiology ask what the undertaking consists
+of, what supports understanding, how intent becomes a result and what makes that
+result worth pursuing. Agents extend reckoning through inquiry and action.
+Human judgment shapes what matters and what the person will stand behind.
+Greater capability expands the work without itself settling its purposes.
 
-Root gives this relation a practical form through roles, methods, tools and
-artifacts. Roles make contributions intelligible without requiring a fixed
-staffing pattern. Methods carry experience without determining every next step.
-Artifacts let work persist and remain open to examination. Tools help participants
-find and act upon what matters. Their value lies in serving the undertaking;
-maintaining these means can otherwise displace the purpose they were built to
-support. The repository's history provides examples of both outcomes.
+Roles make responsibilities intelligible. Methods carry experience. Artifacts
+let work persist and remain open to examination. Tools make operations
+repeatable and relevant information accessible. Their value depends on serving
+the undertaking; maintaining them can otherwise displace the work they support.
 
-Root also permits the means themselves to become work. A useful method can be
-developed through conversation, tried in a particular undertaking and revised
-through what happens. An application can be re-derived from clarified purposes,
-current requirements and accumulated learning. This is a route to proliferation
-through situated adaptation, rather than a claim that one template can generate
-every domain application.
+The repository's history shows both possibilities. Agent-led development produced
+applications and revised the means used to build them. It also accumulated
+records and controls whose costs became substantial. The October reset removed
+many duties and their enforcement. That experience supports further examination
+of simpler arrangements, without establishing a general productivity effect.
 
-The App thesis examines the first exemplar: why workflow authoring and agent
-participation belong together within an application. The SWBPIPE thesis examines
-why the same approach matters when the objects are engineering models and the
-consequences include plausible but wrong numerical results. Those applications
-supply tests of Root's claim; their existence alone does not prove it.
+The App is the workflow-authoring exemplar. SWBPIPE tests the approach in an
+engineering domain through models, operations, calculations and handoff. Their
+development asks whether shared meanings can support different practices without
+prescribing a universal execution system.
 
-The argument distinguishes commitments, design hypotheses and observations. Its
-practical case is not a controlled demonstration of productivity or professional
-adequacy. The shared philosophical kernel remains in Appendix D, with its formal
-argument intact, with clarified definitions and concise interpretive commentary. Root's
-particular thesis asks why its means are worth building, using implementation as
-evidence and counterexample rather than restating a product specification.
+The argument distinguishes adopted commitments, design hypotheses and observed
+findings. Its adequacy remains open to sustained use and another practitioner's
+experience. Appendix D carries the shared philosophical kernel.
 
 **Keywords:** human–agent work, purpose, meaning, roles, methods, artifacts,
 ontology, epistemology, praxeology, axiology, reckoning, judgment, application
 derivation, proliferation, accountable reliance
-
-This explanatory revision follows the owner's direction of 10 October 2026.
-Its [standing](README.md#warrant-status) is nonbinding research.
 
 ---
 

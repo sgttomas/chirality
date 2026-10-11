@@ -4,85 +4,36 @@
 
 ## 10.1 Research Question
 
-The Root thesis asks: **what makes agent capability into purposeful, accountable
-work, and why should its supporting environment develop through revisable roles,
-methods, tools and artifacts? Why can those means support different applications
-without prescribing one way of organizing every undertaking?**
-
 Capability becomes useful through a working relation among the person, the
-purpose, the subject and its consequences. Agents can extend what is investigated
-and performed; the environment makes context and action accessible; human
-judgment shapes what matters and what the person will stand behind. None alone
-fully determines the undertaking.
+purpose, the subject and its consequences. Agents extend what can be investigated
+and performed. The environment makes context and action accessible. Human
+judgment shapes what matters and what the person will stand behind.
 
-Root's central proposition is therefore:
-
-> A shared environment can support purposeful human–agent work when its means
-> preserve the relations needed to understand, act, examine and commit, while
-> remaining revisable through the work they enable.
-
-Roles make responsibility intelligible. Artifacts provide current objects of
-shared attention. Methods preserve usable learning. Tools make selected actions
-repeatable and facts accessible. These functions justify the means. Their
-particular implementation remains a design hypothesis that must answer to use.
-
-The case does not prove that every agent undertaking needs Chirality Root. It
-examines why these shared means may become valuable as related work develops,
-and why retaining them without regard to their effects can defeat their purpose.
+Root supports that relation by making the means of work available for use and
+revision. Roles preserve responsibility, artifacts sustain shared attention,
+methods carry learning, and tools make selected actions repeatable. Their value
+lies in these contributions.
 
 ---
 
 ## 10.2 Contributions
 
-**1. A generative environment with a bounded subject.** Root concerns the shared
-means of work because those means shape what participants can perceive and do.
-Keeping them examinable permits learning to change the working environment as
-well as the output. It is neither every receiving application's runtime nor an
-independent authority over its domain. Its components have concrete consumers:
-roles inform responsibility, workflows supply selected methods, tools expose
-facts or perform operations, and verification routes examine affected behaviour.
-A component earns its place through that contribution.
+Current artifacts and derived relationships reduce the effort of reconstructing
+what governs a change. Continuing ownership carries contributions through repair
+and integration. Roles make those responsibilities explicit without requiring a
+separate agent for each one. Authority comes from the assignment and host, while
+the person retains judgment throughout the undertaking [CITE:Smith2019].
 
-**2. Current meaning and derived relationships.** Commitments, technical design
-and consumer-stated needs remain in current authoritative artifacts. Tools
-identify relevant relationships and observed facts. Participants still assess
-whether those facts meet the need. Presence, successful execution, semantic
-suitability and acceptance remain distinct. Git and PRs retain change history;
-routine second accounts of progress are not necessary where the current sources
-serve the undertaking.
+Examination must reach the actual result. Correct source, valid representation
+and successful integration support different claims. A shared correction has to
+reach its consumers; announcing it is insufficient. Existing evidence can be
+reused where its grounds remain applicable.
 
-**3. Roles as contributions within granted authority.** Agent 0 maintains purpose
-and continuity with the owner. Design, implementation, bounded execution and
-independent scrutiny can be arranged according to the undertaking. TASK remains
-non-delegating. Role identity does not grant tools or write scope. Assignment and
-host limits remain effective, while authorized work can continue through
-ordinary refinement, repairs and integration.
-
-Agents extend reckoning through investigation, inference, criticism, planning
-and adaptive action. Judgment is the person's situated, committed engagement
-with meaning, value and what they will stand behind [CITE:Smith2019]. It shapes
-the undertaking throughout; a final approval or record cannot substitute for
-that engagement.
-
-**4. Examination of the connecting path.** Source correctness, representation
-behaviour and preservation through integration support different claims. A
-reviewer needs the actual candidate and its applicable basis. Changed shared
-instructions must reach actual consumers; an announcement is not adoption.
-Useful prior evidence remains valid unless change or a concrete concern
-invalidates it. This directs effort toward missing grounds rather than repeated
-process conformance.
-
-**5. A longitudinal case of revisable means.** Earlier mechanisms addressed real
-problems and later accumulated costs. October's changes retired duties together
-with enforcement, relocated still-live material and removed obsolete products
-from the working surface. The resulting work demonstrates concrete production,
-review and repair. It challenges claims that the removed mechanisms were
-universally necessary. It does not isolate the reset's causal productivity
-effect or establish transfer to other practitioners.
-
-Normative commitments, design hypotheses and empirical findings remain separate
-throughout these contributions. Each needs the kind of support appropriate to
-its claim.
+The repository's history shows why the means themselves need examination.
+Controls introduced for real difficulties accumulated costs and sometimes
+outlived their purpose. October's reset changed the duties and their enforcement
+together. It provides a candidate alternative whose productivity and reliability
+must be assessed through continued work.
 
 ---
 
@@ -107,11 +58,6 @@ praxeology asks how it becomes effective action; axiology asks what warrants tha
 action and its costs. They remain connected in the particular undertaking.
 Their value lies in exposing partial accounts and supporting correction, rather
 than proving a universal architecture.
-
-The shared conjecture in Appendix D retains its formal argument and concise
-definitions. The practical thesis develops through implementation and experience;
-it does not require an exhaustive exposition of the conjecture or treat its
-notation as a software specification.
 
 ---
 
@@ -145,27 +91,16 @@ qualify the argument. Activity counts and internal consistency alone cannot.
 
 ## 10.5 Closing
 
-The three theses instantiate a shared orientation at different levels. Root is
-the environment for producing and revising methods and applications. The
-[App thesis](../../projects/chirality-app-v4/docs/thesis/README.md) examines the
-workflow-authoring exemplar and agent participation inside an application. The
-[SWBPIPE thesis](../../projects/chirality-piping/docs/thesis/README.md) examines
-that participation in piping design and stress-model authoring. Proliferation
-means useful transfer into such specific application categories, with their
-meaning and evidence intact.
+Root, the App and SWBPIPE express the approach at different scales. Root develops
+the means of work. The App makes method authoring and agent participation usable.
+SWBPIPE brings them into a practice with physical objects, numerical consequences
+and professional commitments. Each must earn its usefulness in that setting.
 
-The sequence does not establish a universal platform in advance. App behaviour
-must work for its users. SWBPIPE numerical and engineering claims need their own
-grounds. Root's support for building them must be evaluated by their actual
-consuming paths and the costs of that support.
+Re-derivation from a PRD can preserve purpose while changing an implementation.
+It succeeds when current requirements, prior experience and evidence inform what
+is retained and what is replaced. Generating another codebase quickly is not the
+same achievement as carrying learning forward.
 
-PRD-led re-derivation remains an interpretive design activity. Current
-requirements, prior implementations, observed failures and owner judgment inform
-what should be preserved and what can be replaced. Rebuilding well means carrying
-learning forward, not merely generating another implementation quickly.
-
-The repository's strongest result is thus a practical capacity for revising its
-means while preserving purpose and responsibility. Sustained use, another
-practitioner and further applications will test how far that capacity transfers.
-Root must remain willing to correct its own methods, claims and representations
-by the same standards it brings to the work they help produce.
+The continuing task is to improve the means without allowing them to consume
+the undertaking. Their grounds remain open to examination, their costs matter,
+and their form must answer to the work.

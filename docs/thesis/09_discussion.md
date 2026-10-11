@@ -22,12 +22,6 @@ a query for an assessment, a record for understanding, or a completed contributo
 for an integrated result. The framework does not prevent those confusions merely
 by naming them. Its adequacy must be examined on actual connecting paths.
 
-Normative commitments, design hypotheses and empirical findings remain separate.
-The owner retaining judgment is an adopted responsibility boundary. Source-based
-review is a proposed means of supporting useful examination. A repair found by
-that review is bounded evidence about one use. None establishes universal
-self-correction or a uniquely necessary architecture.
-
 ---
 
 ## 9.2 Limitations
@@ -56,11 +50,9 @@ work.
 
 ### 9.2.2 Regulatory Interpretation, Not Endorsement
 
-Chapter 6 examines professional supervision, review and reliance through a
-particular reading of APEGA materials [CITE:APEGA_RWO2021]. That reading is
-an argument to examine, not endorsement by the regulator and not a finding
-of compliance. The description of an agent as a relied-upon contributor or
-as a tool does not discharge the person's actual duties.
+The APEGA mapping is an interpretation of professional supervision, review and
+reliance [CITE:APEGA_RWO2021]. Describing an agent as a contributor or a tool
+does not discharge the professional's duties.
 
 An implementation can preserve identified inputs, actions and decisions.
 It cannot establish that a professional was competent, performed sufficient
@@ -124,10 +116,8 @@ changes could never justify an amendment to any invariant. Retaining a
 responsibility boundary does not preserve every mechanism formerly used to
 support it.
 
-This revision concerns means, not an automatic transfer of authority.
-An agent's increased capability can warrant a revised assignment. It does
-not itself perform the person's committed judgment or grant institutional
-standing. Section 9.3.5 develops that distinction.
+Greater capability can warrant a revised assignment. It does not itself
+perform the person's judgment or grant institutional standing.
 
 ### 9.2.6 Over-Proceduralization and the Displacement of Attention
 
@@ -255,10 +245,9 @@ a knower brings to the work.
 
 ### 9.3.5 Capability-Invariance of the Authority Boundary
 
-The heading identifies the narrower claim retained from the earlier thesis:
-**greater agent capability does not by itself transfer accountable judgment.**
-It does not mean that write scopes, role arrangements, gates or the historical
-invariant catalog must remain unchanged.
+**Greater agent capability does not itself transfer accountable judgment.**
+Write scopes, role arrangements and controls can change while that distinction
+holds.
 
 Smith's distinction between reckoning and judgment supplies the philosophical
 vocabulary [CITE:Smith2019]. Reckoning can be extensive and sophisticated:

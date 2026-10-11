@@ -2,28 +2,18 @@
 
 ## 7.1 Introduction and Method
 
-This chapter examines Chirality through eight systems engineering disciplines:
-architecture, configuration management, verification and validation, safety and
-reliability, requirements engineering, control, formal methods and human factors.
-The INCOSE handbook supplies the general disciplinary vocabulary
-[CITE:INCOSE2023]. The repository supplies a case, not a demonstration that the
-chosen mechanisms follow necessarily from those disciplines or from the four
-pillars.
+Systems engineering offers methods for architecture, configuration management,
+verification, safety, requirements, control, formal analysis and human factors
+[CITE:INCOSE2023]. Their value depends on the problems they help resolve.
 
-The analysis compares the current operating model described in Chapter 4 with
-the earlier instruction architecture. It distinguishes normative commitments,
-design hypotheses and observed implementation properties. Current sources include
-[AGENTS.md](../../AGENTS.md), the [deliverable CLI](../../tools/deliverables/README.md),
-[CI selection](../CI_SELECTION.md) and the active products' definitions. Historical
-R-, I- and K-series rules are examined in Appendix A. Their presence in an earlier
-catalog establishes that they were specified, not that they were effectively
-enforced or necessary.
+Current practice can be compared with earlier mechanisms through repository
+instructions, the [deliverable CLI](../../tools/deliverables/README.md) and
+[CI selection](../CI_SELECTION.md). A rule's historical presence establishes
+that it was specified, not that it worked.
 
-This distinction changes the earlier analysis substantially. Natural-language
-rules are not formal verification. A review checklist is not evidence of complete
-review coverage. Several layers of controls do not establish independence of
-failure. A mapping from the four pillars to useful SE concerns is an interpretive
-design argument, not a causal proof or a unique derivation of an architecture.
+Instructions are not formal verification. A completed checklist does not
+establish complete review coverage, and several controls may share the same
+failure. Each mechanism needs evidence appropriate to the claim made for it.
 
 ## 7.2 Architecture and Structural Design
 
