@@ -153,12 +153,8 @@ jobs:
           if [ "$BROAD" = true ]; then
             python -m pytest -q tests
           else
-            # These two historical cohorts already fail on an obsolete hosting.rs
-            # source pin. Explicit broad runs keep those failures visible.
-            echo 'Not selected: distribution and terminal historical-source cohorts (known stale hosting.rs pin).'
-            python -m pytest -q tests \
-              --ignore=tests/group_b_distribution_receiving_test.py \
-              --ignore=tests/group_b_terminal_receiving_test.py
+            # The current S4 source renewal restores both receiving cohorts.
+            python -m pytest -q tests
           fi
 
   result:
