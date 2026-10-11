@@ -4,8 +4,12 @@
 //! from the synthetic bases. Reading them establishes no execution; no native Current evidence.
 use open_pipe_stress_result_export::retained_precision as rp;
 use serde_json::Value;
+use std::sync::OnceLock;
+#[path = "support/retained_precision_corpus.rs"]
+mod retained_precision_corpus;
 /// The shared corpus is one logical document stored as ordered snapshot files
-/// (07m + 07n, then 07o), each kept under 50 MB: a new snapshot is a new file,
+/// (07m + 07n, then 07o), stored as lossless DAG definitions under 50 MB.
+/// The immutable expanded document is parsed once per test binary. A new snapshot is a new file,
 /// listed here, in PY's `tests/retained_precision_corpus.py` and in TS's
 /// `src/test-support/retainedPrecisionCorpus.ts`. `cases`, `mutations` and
 /// `must_pass` concatenate in file order; any other member appears once or
@@ -14,28 +18,31 @@ const CORPUS_FILES: [&str; 2] = [
     include_str!("../../../../fixtures/results/retained_precision_cases.json"),
     include_str!("../../../../fixtures/results/retained_precision_cases_07o.json"),
 ];
-fn corpus() -> Value {
-    let mut merged = serde_json::Map::new();
-    for text in CORPUS_FILES {
-        let Value::Object(part) = serde_json::from_str::<Value>(text).unwrap() else {
-            panic!("a corpus file is a JSON object")
-        };
-        for (key, value) in part {
-            let list = matches!(key.as_str(), "cases" | "mutations" | "must_pass");
-            if let Some(existing) = merged.get_mut(&key) {
-                match (list, existing, value) {
-                    (true, Value::Array(entries), Value::Array(more)) => entries.extend(more),
-                    (false, existing, value) => {
-                        assert_eq!(*existing, value, "corpus member {key} differs between files")
+fn corpus() -> &'static Value {
+    static CORPUS: OnceLock<Value> = OnceLock::new();
+    CORPUS.get_or_init(|| {
+        let mut merged = serde_json::Map::new();
+        for text in CORPUS_FILES {
+            let Value::Object(part) = retained_precision_corpus::expand(serde_json::from_str::<Value>(text).unwrap()) else {
+                panic!("a corpus file is a JSON object")
+            };
+            for (key, value) in part {
+                let list = matches!(key.as_str(), "cases" | "mutations" | "must_pass");
+                if let Some(existing) = merged.get_mut(&key) {
+                    match (list, existing, value) {
+                        (true, Value::Array(entries), Value::Array(more)) => entries.extend(more),
+                        (false, existing, value) => {
+                            assert_eq!(*existing, value, "corpus member {key} differs between files")
+                        }
+                        _ => panic!("corpus member {key} is not an array in every file"),
                     }
-                    _ => panic!("corpus member {key} is not an array in every file"),
+                } else {
+                    merged.insert(key, value);
                 }
-            } else {
-                merged.insert(key, value);
             }
         }
-    }
-    Value::Object(merged)
+        Value::Object(merged)
+    })
 }
 fn decode(v: &Value) -> f64 {
     f64::from_bits(u64::from_str_radix(v.as_str().unwrap(), 16).unwrap())
@@ -7696,4 +7703,98 @@ fn r1_native_reader_outcomes() {
     let committed = std::fs::read_to_string(format!("{}/../../../{R1_OUTCOMES_PATH}", env!("CARGO_MANIFEST_DIR"))).unwrap();
     let differing: Vec<_> = text.lines().zip(committed.lines()).filter(|(a, b)| a != b).map(|(a, _)| a.chars().take(160).collect::<String>()).collect();
     assert!(differing.is_empty() && text == committed, "{} lines differ:\n{}", differing.len(), differing.join("\n"));
+}
+
+/// b7-plan R2 A2: the JCS form of a value (`canonical_json`, the form every
+/// hash-by-value copy has) and the `JSON.stringify` form (ECMAScript numbers; an
+/// integer beyond 2^53 is a binary64 there).
+fn a2_jcs_form(value: &Value) -> Value {
+    serde_json::from_str(&open_pipe_stress_canonical_json::canonical_json(value)).unwrap()
+}
+fn a2_stringify_form(value: &Value) -> Value {
+    match value {
+        Value::Number(n) => {
+            let safe = n.as_u64().map(|u| u <= 1 << 53).or(n.as_i64().map(|i| i.unsigned_abs() <= 1 << 53));
+            if safe == Some(true) {
+                return value.clone();
+            }
+            serde_json::from_str(&open_pipe_stress_canonical_json::ecma_number_to_string(n.as_f64().unwrap())).unwrap()
+        }
+        Value::Array(items) => Value::Array(items.iter().map(a2_stringify_form).collect()),
+        Value::Object(map) => Value::Object(map.iter().map(|(k, v)| (k.clone(), a2_stringify_form(v))).collect()),
+        other => other.clone(),
+    }
+}
+/// Whether a re-serialized value holds the same binary64 values, bit for bit, as
+/// the original: false where it wrote `-0` as `0` or rounded an integer beyond 2^53.
+fn a2_same_bits(a: &Value, b: &Value) -> bool {
+    fn integer(n: &serde_json::Number) -> Option<i128> {
+        n.as_i64().map(i128::from).or_else(|| n.as_u64().map(i128::from))
+    }
+    fn exact(f: f64, i: i128) -> bool {
+        f.fract() == 0.0 && !(f == 0.0 && f.is_sign_negative()) && f.abs() < 1.7e38 && f as i128 == i
+    }
+    match (a, b) {
+        (Value::Number(x), Value::Number(y)) => match (integer(x), integer(y)) {
+            (Some(i), Some(j)) => i == j,
+            (Some(i), None) => exact(y.as_f64().unwrap(), i),
+            (None, Some(j)) => exact(x.as_f64().unwrap(), j),
+            (None, None) => x.as_f64().unwrap().to_bits() == y.as_f64().unwrap().to_bits(),
+        },
+        (Value::Array(x), Value::Array(y)) => x.len() == y.len() && x.iter().zip(y).all(|(x, y)| a2_same_bits(x, y)),
+        (Value::Object(x), Value::Object(y)) => x.len() == y.len() && x.iter().all(|(k, v)| y.get(k).is_some_and(|w| a2_same_bits(v, w))),
+        _ => a == b,
+    }
+}
+
+/// A2: every retained reader input, re-serialized in either form, reads as the
+/// input as committed: the bound, unbound and transport readings are unchanged.
+#[test]
+fn r1_reader_inputs_read_by_value() {
+    let (mut differing, mut changed) = (Vec::new(), Vec::new());
+    for (key, source, invocation) in r1_reader_inputs() {
+        let readings = |s: &Value, i: Option<&Value>| {
+            let mut r = vec![r1_reading(rp::validate(s, None)), r1_reading(rp::validate_transport_metadata(s))];
+            if let Some(i) = i {
+                r.push(r1_reading(rp::validate(s, Some(i))));
+            }
+            r
+        };
+        let want = readings(&source, invocation.as_ref());
+        let forms: [(&str, fn(&Value) -> Value, fn(&Value) -> Value); 4] = [
+            ("jcs", a2_jcs_form, a2_jcs_form),
+            ("stringify", a2_stringify_form, a2_stringify_form),
+            ("source-only", a2_stringify_form, |v| v.clone()),
+            ("invocation-only", |v| v.clone(), a2_stringify_form),
+        ];
+        for (form, f, g) in forms {
+            let (moved, moved_invocation) = (f(&source), invocation.as_ref().map(g));
+            let got = readings(&moved, moved_invocation.as_ref());
+            let preserved = a2_same_bits(&source, &moved)
+                && invocation.as_ref().zip(moved_invocation.as_ref()).is_none_or(|(a, b)| a2_same_bits(a, b));
+            if !preserved {
+                // The form wrote a `-0` as `0`: the readings may report other bits, and a
+                // mutation whose tamper is that `-0` is erased. Every other statement's
+                // verdicts (pass, eligibility, gate and code) are unchanged.
+                let verdicts = |r: &[Value]| r.iter().map(|x| x[1].clone()).collect::<Vec<_>>();
+                if verdicts(&got) != verdicts(&want) {
+                    changed.push(format!("{key} [{form}]"));
+                }
+                continue;
+            }
+            if got != want {
+                differing.push(format!("{key} [{form}]: {} -> {}", serde_json::to_string(&want).unwrap(), serde_json::to_string(&got).unwrap()));
+            }
+        }
+    }
+    if let Ok(path) = std::env::var("A2_BY_VALUE_OUT") {
+        std::fs::write(format!("{path}/retained.txt"), differing.join("\n")).unwrap();
+        std::fs::write(format!("{path}/retained_value_changed.txt"), changed.join("\n")).unwrap();
+    }
+    // The mutations whose tamper is a `-0` in the receipt, which the forms erase: the
+    // only verdicts that change.
+    let mut erased: Vec<&str> = changed.iter().map(|c| c.split(' ').next().unwrap()).collect();
+    erased.dedup();
+    assert_eq!(erased, ["corpus:mutation:shape_then_encoding", "corpus:mutation:negative_zero_counter", "corpus:mutation:coverage_body_negative_zero", "corpus:mutation:coverage_encoding_then_duplicate"], "{changed:?}");
+    assert!(differing.is_empty(), "{} readings differ:\n{}", differing.len(), differing.iter().take(40).cloned().collect::<Vec<_>>().join("\n"));
 }

@@ -8,7 +8,21 @@ advanced; checks still apply to the candidate head.
 Selection uses the complete PR diff, including both sides of renamed paths.
 The executable mapping is [hosted-ci-routing.json](../tools/hosted-ci-routing.json),
 interpreted by [hosted_ci.py](../tools/software_workflow/hosted_ci.py).
-Missing or unknown inputs select conservative coverage. Each job reports its
+Missing or unknown inputs select conservative coverage. Piping Cargo selection
+seeds the owning crate for changed Rust/Cargo files and the readers of each exact
+changed resource, then follows reverse Cargo path dependencies (including dev,
+build and target dependencies and resolved workspace inheritance). Fixture reads
+do not create a dependency on the fixture supplier's whole crate. Dynamic Rust
+reads use source-grounded declarations in the routing file: exact files, literal
+anchors and checked source/caller boundaries. Unknown paths, stale declarations,
+unresolved local dependencies or shared execution controls retain the full suite.
+Nonrepository reads require an `audited-external-inputs` declaration and concrete
+reason. Its source/caller binding invalidates stale audits; independent review
+establishes the external-input claim.
+Python coverage has its own mode, including when no Cargo crate is selected.
+The plan retains classification, reasons and exact selected manifests; execution
+and successful-result reuse recompute them against the candidate's complete diff.
+Each job reports its
 selection and reasons; unrelated product jobs are explicitly skipped. Failed,
 cancelled or missing selected work fails the aggregate result.
 
@@ -30,6 +44,16 @@ results can be reused only for identical tracked inputs, selected commands and
 runner/language environment. A reused pass names its original run and says no
 tests executed. Manual runs bypass result reuse. Dependency/build caches are
 separate and do not themselves establish a passing result.
+
+`shared-build-cache.yml` warms Piping numerical and App v4 Cargo dependencies
+on main pushes without executing tests. Piping uses `numerical_ci.py
+--build-only`, derived from the numerical job's own selected profiles. App v4
+compiles its test and check profiles. Only registry/Git dependencies and their
+compiled artifacts are saved; local path crates, test executables and incremental
+output are removed. Product jobs restore these main-scoped caches without saving
+PR build caches. Small exact-result verification records retain their existing
+save/reuse rules. Cargo logs report build and harness execution durations separately. Piping
+also emits timing totals, retaining its original command order; a cache miss still builds and verifies normally.
 
 Verification is proportional to consequence under Root `AGENTS.md`. CI success
 is not product acceptance, engineering approval or release authorization.
