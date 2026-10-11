@@ -877,7 +877,17 @@ and its own run records (the run opened last with no `run_ended`), because
 DEL-01-02 stores tags without interpreting them and does not know which run
 is current (R17-10). If the tag could not be stored, the lookup returns nothing after a
 relaunch and RE-4's fallback applies. The recorder only reads what is
-delivered. This use is the consumer side of a proposed row, DEL-02-03 →
+delivered. **In the App (CI-20 (d)):** the run starter's tag owner token is
+`DEL-02-03`, and the value is the run reference. The tag is written when the
+App writer takes up `run_opened` for writing, before the write itself; a
+`run_opened` never written leaves a tag naming no recorded run, and the
+startup writer then writes no limit ("current run not established"). A tag that cannot be stored stays in the
+run's memory only and never blocks the run. At startup the Rust host writes
+RS's "App-restart interruption" limit for each `app_restart_interruption` on
+the run picked as above, once per run and restart fact. When no tag is
+stored it finds the run by `run_opened.conversationRef` and says so in the
+limit. RE-4's automatic run-owner end "interruption not recovered" is not
+written. This use is the consumer side of a proposed row, DEL-02-03 →
 DEL-01-02 (D1's NR-D1-1, no SCC by D1's check), which the register owner
 decides.
 
