@@ -49,6 +49,8 @@ Release the specified case records. Give learners the practice assignment and it
 
 Assign a producer and a reviewer. The reviewer must have enough context to examine the work. The producer explains the basis and answers questions.
 
+Check competence, production involvement, and interests that could impair scrutiny. Use additional scrutiny where those limits warrant it.
+
 The reviewer identifies defects with evidence. The producer repairs confirmed defects. Ask both participants to explain what changed and why.
 
 ### Assess and continue
@@ -117,6 +119,8 @@ Check the following recurring defects:
 - A document count substitutes for technical readiness.
 - A concern is closed without evidence or an authorized disposition.
 - A handover records file transfer but leaves responsibility unassigned.
+
+A disposition states what a decision changes. It does not supply missing evidence of performance or conformity. Check its authority and applicable limits.
 
 Require repairs to preserve valid evidence. A corrected submission must not conceal what the learner changed or the assumption still unresolved.
 

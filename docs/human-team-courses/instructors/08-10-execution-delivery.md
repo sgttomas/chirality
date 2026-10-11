@@ -163,6 +163,8 @@ Do not require a particular substitute voltage or design. The assignment assesse
 
 Use the course's five criteria. Confirm that both the proposed supplier and consumer can explain the interface's required contribution.
 
+A disposition can change a requirement or limit reliance only within the decision owner's authority. It does not establish unexamined behavior.
+
 Common defects include:
 
 - Giving only discipline names as interface definitions.
@@ -225,6 +227,8 @@ Operations needs applicable instructions, training, defined operating conditions
 The sponsor's request does not establish complete handover. A01 identifies sponsor, technical, and receiving responsibilities. The proposed account must route each decision to the appropriate authority.
 
 Accept a properly bounded proposal for further examination or qualified delivery only when it preserves every unmet condition and required decision. Do not accept unsupported routine-operation permission.
+
+Identify any authorized change to a requirement. It does not prove that the original result met the earlier requirement. Qualified delivery must remain within applicable duties.
 
 ### Assessment guidance and common defects
 
