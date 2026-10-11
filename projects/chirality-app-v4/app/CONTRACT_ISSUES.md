@@ -605,9 +605,14 @@ owner or the owner. No Design file was changed then. On 2026-10-10 items (c),
   the run's own record first. While an arrival waits and the act records
   cannot be read, the person's end still ends the run (A-11): an
   "unresolvable reference" limit naming the unread act records and why is
-  written before `run_ended`, live and after a relaunch. (After a relaunch an
-  incomplete record set still refuses the end as before, since nothing can
-  be appended to it, RS W-1.) Readings where EXEC is silent, chosen in
+  written before `run_ended`, live and after a relaunch. After a relaunch the
+  end is refused when the run's own log is incomplete, since `run_ended`
+  cannot be appended to it (RS W-1, §13.7), or when that log holds no
+  `run_opened` (a start never confirmed has nothing to end). Other incomplete
+  project logs do not refuse it. The writer checks the new identities against
+  the readable entries (CC-ID): every readable entry when the logs can be
+  discovered, and only the run's own log when discovery itself fails. While an
+  arrival waits, the limit above names the unread records. Readings where EXEC is silent, chosen in
   implementation:
   - An App-content act is on an arrival's subject when its bound subject
     names the arrival's file; that binding is taken as covering the referent
@@ -617,8 +622,8 @@ owner or the owner. No Design file was changed then. On 2026-10-10 items (c),
     "after arrival" (both App-written RFC 3339 times; equal times are "after
     arrival"; a record with another time form is not counted).
   - Before the arrival, the latest decision of the required kind on the
-    current content governs (an implementation reading where the Design is
-    silent, chosen as the more cautious one): an act makes the arrival *performed* "by earlier act"
+    current content governs (owner decision 2026-10-11, "Latest decision
+    wins (Recommended)", amending K1-2 in DEL-04-01 §4.5): an act makes the arrival *performed* "by earlier act"
     (SP-6), a decline resolves it negatively (CE-8), and earlier decisions of
     that kind on that content are superseded. A decline counts only on the
     arrival's current content (its capture's content), before or after the
