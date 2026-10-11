@@ -5,6 +5,9 @@ Work from the repository root. Root maintains `AGENTS.md`, `agents/`,
 technical references in `docs/`. The conversation supplies the undertaking;
 Root is not a standing project-wide audit or backlog.
 
+Find the current manuals through the [manual index](../../docs/alignment-manual/README.md).
+Consult the relevant sections when the work needs them; no full-manual reading is required.
+
 Locate the shared component and its affected consumers. Change those consumers
 in the same PR and check the actual connecting path, including App v4 resources
 when they consume the changed source. Do not send propagation notices or update
