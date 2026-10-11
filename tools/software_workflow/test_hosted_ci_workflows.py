@@ -60,3 +60,14 @@ def test_runner_context_is_not_evaluated_in_job_level_environment():
     for name in ["app-v4.yml", "piping-desktop-e2e.yml"]:
         for job in workflow(name)["jobs"].values():
             assert all("${{ runner." not in str(value) for value in job.get("env", {}).values())
+
+
+def test_python_gate_and_result_are_independent_of_cargo():
+    jobs = workflow('piping-desktop-e2e.yml')['jobs']
+    assert jobs['numerical']['if'] == "needs.selection.outputs.numerical_mode == 'full'"
+    assert jobs['python-product']['if'] == "needs.selection.outputs.python_mode == 'full'"
+    assert jobs['selection']['outputs']['python_mode'] == '${{ steps.numeric.outputs.python_mode }}'
+    aggregate = jobs['desktop-e2e']['steps'][-1]
+    assert aggregate['env']['PYTHON_MODE'] == '${{ needs.selection.outputs.python_mode }}'
+    assert 'aggregate --suite piping-python --mode "$PYTHON_MODE"' in aggregate['run']
+    assert set(jobs['desktop-e2e']['needs']) == {'selection', 'product', 'numerical', 'python-product'}

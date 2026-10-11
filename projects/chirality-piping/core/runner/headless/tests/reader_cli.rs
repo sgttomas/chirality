@@ -5,7 +5,10 @@
 //! the corpus's Rust expectation.
 use open_pipe_stress_result_export::retained_precision as rp;
 use serde_json::{json, Value};
+#[path = "../../../reporting/result_export/tests/support/retained_precision_corpus.rs"]
+mod retained_precision_corpus;
 use std::io::Write;
+use std::sync::OnceLock;
 use std::process::{Command, Stdio};
 
 const CORPUS_FILES: [&str; 2] = [
@@ -25,14 +28,15 @@ const SUCCESSORS: [&str; 10] = [
     include_str!("../../../../fixtures/results/retained_precision_exact_successor_dense_scrutiny.json"),
 ];
 
-fn cases() -> Vec<Value> {
-    CORPUS_FILES
+fn cases() -> &'static [Value] {
+    static CASES: OnceLock<Vec<Value>> = OnceLock::new();
+    CASES.get_or_init(|| CORPUS_FILES
         .iter()
         .flat_map(|text| {
-            let file: Value = serde_json::from_str(text).unwrap();
+            let file = retained_precision_corpus::expand(serde_json::from_str(text).unwrap());
             file["cases"].as_array().unwrap().clone()
         })
-        .collect()
+        .collect())
 }
 
 /// Run `read <reader>` with `input` on stdin: (exit code, stdout JSON or Null, stderr).
@@ -110,7 +114,7 @@ fn read_three_ways(source: &Value, invocation: &Value) -> [(i32, Value); 3] {
 fn corpus_bases_read_through_the_cli_as_the_reader_and_the_corpus_state() {
     let cases = cases();
     assert_eq!(cases.len(), 45);
-    for case in &cases {
+    for case in cases {
         let [bound, unbound, transport] = read_three_ways(&case["source"], &case["invocation"]);
         let id = &case["id"];
         if case["expected"].get("gate").is_some() {
@@ -212,4 +216,60 @@ fn the_cli_reads_the_input_bytes_as_given_and_refuses_unusable_input_with_exit_2
         assert_eq!((code, verdict), (2, Value::Null), "{args:?}");
         assert!(!stderr.is_empty(), "{args:?}");
     }
+}
+
+/// R2: the base readers (`reader_verdict`) through the CLI: the dispatch entry,
+/// each reader's validation and transport, and row semantics, over genuine
+/// statements, as the in-process verdict.
+#[test]
+fn base_readers_read_through_the_cli_as_reader_verdict() {
+    use open_pipe_stress_result_export::reader_verdict as rv;
+    let blocks: Value = serde_json::from_str(include_str!(
+        "../../../../fixtures/product_preview/source_blocks/n05-sparse_interactive.raw.json"
+    ))
+    .unwrap();
+    let request: Value = serde_json::from_str(include_str!(
+        "../../../../fixtures/product_preview/source_blocks/n05-sparse_interactive.request.json"
+    ))
+    .unwrap();
+    let invocation = json!({"request": request, "solver_mode": "sparse_interactive"});
+    let lr: Value = serde_json::from_str(include_str!(
+        "../../../../fixtures/product_preview/load_reference/connected-sparse_interactive.raw.json"
+    ))
+    .unwrap();
+    let lr_model = serde_json::from_str::<Value>(include_str!(
+        "../../../../fixtures/product_preview/load_reference/connected.request.json"
+    ))
+    .unwrap()["model"]
+        .clone();
+    let physics: Value = serde_json::from_str(include_str!(
+        "../../../../fixtures/results/physics_connected_mechanics_sparse.json"
+    ))
+    .unwrap();
+    let mut fewer = lr_model.clone();
+    fewer["load_cases"].as_array_mut().unwrap().remove(0);
+    let reads = [
+        ("dispatch", json!({"source": blocks, "model": request["model"], "invocation": invocation}),
+            rv::dispatch(&blocks, Some(&request["model"]), Some(&invocation))),
+        ("dispatch", json!({"source": lr, "model": lr_model}), rv::dispatch(&lr, Some(&lr_model), None)),
+        ("dispatch", json!({"source": {"carrier_evidence": {}}}), rv::dispatch(&json!({"carrier_evidence": {}}), None, None)),
+        ("source-blocks", json!({"source": blocks, "invocation": invocation}), rv::validate("source-blocks", &blocks, None, Some(&invocation))),
+        ("load-reference", json!({"source": lr, "model": fewer}), rv::validate("load-reference", &lr, Some(&fewer), None)),
+        ("load-reference-transport", json!({"source": lr}), rv::transport("load-reference", &lr)),
+        ("physics", json!({"source": physics}), rv::validate("physics", &physics, None, None)),
+        ("physics-transport", json!({"source": physics}), rv::transport("physics", &physics)),
+        ("row-semantics", json!({"row": lr["results"][0], "source": lr}), rv::row_semantics(&lr["results"][0], Some(&lr))),
+    ];
+    let mut codes = Vec::new();
+    for (reader, input, outcome) in reads {
+        let (code, verdict, stderr) = run(&["read", reader], &input.to_string());
+        assert!(stderr.is_empty(), "{stderr}");
+        let want = json!({"artifact": "openpipestress.result_reader_verdict", "schema_version": "1.0.0",
+            "reader": reader, "outcome": outcome});
+        assert_eq!(verdict, want, "{reader}");
+        assert_eq!(code, if verdict["outcome"]["ok"] == true { 0 } else { 1 }, "{reader}");
+        codes.push(code);
+    }
+    // Admitted, admitted, refused; then the readers: pass, refuse (G2), pass, pass, pass, pass.
+    assert_eq!(codes, [0, 0, 1, 0, 1, 0, 0, 0, 0]);
 }

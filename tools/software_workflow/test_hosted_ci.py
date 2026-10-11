@@ -5,8 +5,9 @@ import subprocess
 import tempfile
 import sys
 import unittest
+from unittest.mock import patch
 
-from hosted_ci import aggregate, make_plan, select_paths, SUITES
+from hosted_ci import aggregate, make_plan, select_paths, validate_plan, numerical_plan, ROOT as SOURCE_ROOT, SUITES
 
 PROFILE = json.loads((Path(__file__).resolve().parents[1] / "hosted-ci-routing.json").read_text())
 
@@ -53,7 +54,10 @@ class HostedCITests(unittest.TestCase):
         for path in paths:
             self.write(path)
         self.commit()
-        self.assertEqual(self.plan()["modes"], modes(**{"app-v4": "full"}))
+        # This temporary Git fixture models a diff, not a product checkout.
+        # Supply the actual repository source graph for its records-only paths.
+        with patch('hosted_ci.numerical_plan', side_effect=lambda root, paths, profile: numerical_plan(SOURCE_ROOT, paths, profile)):
+            self.assertEqual(self.plan()["modes"], modes(**{"app-v4": "full"}))
 
     def test_project_records_including_json_do_not_run_product_suites(self):
         paths = [f"projects/{project}/{folder}/{filename}" for project in
@@ -129,7 +133,7 @@ class HostedCITests(unittest.TestCase):
             ("projects/pec/new-input.bin", modes()),
             ("unknown-root-input.bin", dict.fromkeys(SUITES, "full")),
             ("projects/chirality-app-v4/unmapped/new-code.bin", modes(**{"app-v4": "full"})),
-            ("projects/chirality-piping/new-code.bin", modes(piping="full", **{"piping-numerical": "full"})),
+            ("projects/chirality-piping/new-code.bin", modes(piping="full", **{"piping-numerical": "full", "piping-python": "full"})),
         ]:
             selection = select_paths([path], PROFILE)
             self.assertEqual(selection["unmatched_paths"], [] if path.startswith(("projects/chirality-app-dev/", "projects/pec/")) else [path])
@@ -148,7 +152,7 @@ class HostedCITests(unittest.TestCase):
                      'projects/chirality-app-v4/execution/PKG-04/DEL-04-03/Design/RS_RECORD.schema.json'):
             self.assertEqual(select_paths([path], PROFILE)['modes'], modes(**{'app-v4':'full'}))
         selection = select_paths(['projects/chirality-piping/core/solver/src/lib.rs'], PROFILE)
-        self.assertEqual(selection['modes'], modes(piping='full', **{'piping-numerical':'full'}))
+        self.assertEqual(selection['modes'], modes(piping='full', **{'piping-numerical':'full','piping-python':'full'}))
         self.assertEqual(select_paths(['projects/chirality-piping/docs/note.md'], PROFILE)['modes'], modes())
 
     def test_piping_python_implementation_and_tests_select_python_lane(self):
@@ -156,11 +160,12 @@ class HostedCITests(unittest.TestCase):
                      'projects/chirality-piping/tests/product_preview/test_contract.py',
                      'projects/chirality-piping/tests/security/test_permissions.py'):
             selection = select_paths([path], PROFILE)
-            self.assertEqual(selection['modes']['piping-numerical'], 'full')
+            self.assertEqual(selection['modes']['piping-python'], 'full')
+            self.assertEqual(selection['modes']['piping-numerical'], 'full' if '/tools/' in path else 'not-applicable')
             self.assertEqual(selection['modes']['piping'], 'full')
 
     def test_new_required_results_never_launder_missing_failed_or_cancelled_checks(self):
-        for suite in ('app-v4','piping','piping-numerical'):
+        for suite in SUITES:
             for state in ('failure','cancelled','skipped',''):
                 self.assertFalse(aggregate(suite,'full','success',state))
             self.assertFalse(aggregate(suite,'not-applicable','failure','skipped'))
@@ -174,6 +179,62 @@ class HostedCITests(unittest.TestCase):
         self.assertEqual(completed.returncode, 1)
         self.assertIn('did not complete', completed.stdout)
         self.assertNotIn('Traceback', completed.stderr)
+
+    def test_merge_base_excludes_changes_unique_to_advanced_base(self):
+        self.git('checkout', '-qb', 'candidate')
+        self.write('projects/chirality-app-v4/app/src/candidate.ts')
+        head = self.commit()
+        self.git('checkout', '-qb', 'advanced-base', self.base)
+        self.write('unknown-root-input.bin')
+        advanced = self.commit()
+        self.git('checkout', 'candidate')
+        plan = make_plan(self.root, PROFILE, 'pull_request', advanced, head)
+        self.assertEqual(plan['base'], self.base)
+        self.assertEqual(plan['paths'], ['projects/chirality-app-v4/app/src/candidate.ts'])
+        self.assertEqual(plan['modes'], modes(**{'app-v4': 'full'}))
+
+    def test_renamed_fixture_keeps_old_and_new_paths(self):
+        original = 'projects/chirality-piping/fixtures/old.json'
+        self.write(original)
+        base = self.commit()
+        self.write('projects/chirality-piping/fixtures/new.json')
+        (self.root / original).unlink()
+        self.commit()
+        plan = self.plan(base)
+        self.assertEqual(plan['paths'], ['projects/chirality-piping/fixtures/new.json', original])
+        self.assertEqual(plan['modes']['piping-numerical'], 'full')
+        self.assertEqual(plan['piping_numerical_selection']['classification'], 'full-fallback')
+
+    def test_execution_recomputes_exact_selection_identity(self):
+        self.write('projects/chirality-app-v4/app/src/candidate.ts')
+        self.commit()
+        target = self.root / 'tools/hosted-ci-routing.json'
+        target.parent.mkdir()
+        target.write_text(json.dumps(PROFILE))
+        plan = self.plan()
+        validate_plan(self.root, plan)
+        for key, value in [('classification', 'reachability'), ('manifests', ['core/unregistered/Cargo.toml']),
+                           ('reasons', [{'kind': 'forged'}])]:
+            modified = json.loads(json.dumps(plan))
+            modified['piping_numerical_selection'][key] = value
+            with self.assertRaisesRegex(ValueError, 'Selection differs'):
+                validate_plan(self.root, modified)
+        changed = dict(plan, paths=['projects/chirality-app-v4/docs/candidate.ts'])
+        with self.assertRaisesRegex(ValueError, 'Selection differs'):
+            validate_plan(self.root, changed)
+
+    def test_piping_cache_control_does_not_expand_unrelated_app_coverage(self):
+        self.assertEqual(select_paths(['tools/software_workflow/result_cache.py'], PROFILE)['modes'],
+                         modes(piping='full', **{'piping-numerical': 'full', 'piping-python': 'full'}))
+
+    def test_desktop_resource_table_cannot_hide_new_unknown_fixture(self):
+        profile = json.loads(json.dumps(PROFILE))
+        profile['piping_desktop_resources']['files'].append('fixtures/new-unreviewed.json')
+        selection = select_paths(['projects/chirality-piping/fixtures/new-unreviewed.json'], profile)
+        numerical = selection['piping_numerical_selection']
+        self.assertEqual(numerical['classification'], 'full-fallback')
+        self.assertEqual(len(numerical['manifests']), 40)
+        self.assertIn('Stale desktop resource declaration', numerical['fallback_reasons'][0])
 
 
 

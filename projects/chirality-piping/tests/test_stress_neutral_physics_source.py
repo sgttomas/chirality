@@ -15,6 +15,8 @@ from pathlib import Path
 
 import pytest
 
+from checked_json_fixture_cache import checked_json_fixture_cache
+
 from core.analysis_runs.compatibility import (
     _source_contract, build_analysis_run_v0_3, PHYSICS_CONTRACT_ID,
     SOURCE_BLOCKS_CONTRACT_ID, PHYSICS_SOURCE_CONTRACT_ID,
@@ -56,13 +58,13 @@ def arguments(raw, analysis):
 
 @lru_cache(maxsize=None)
 def captured(path):
-    raw = json.loads(Path(path).read_text())
-    before = deepcopy(raw)
-    analysis = build_analysis_run_v0_3(raw, input_manifest_ref={"object_type": "InputManifest", "ref": "manifest:pure-projection-test"}, input_manifest_hash="1" * 64)
-    packet = sn.build_stress_neutral_export_package_v0_3(source_envelope=raw, analysis_record=analysis, **arguments(raw, analysis))
-    assert raw == before
-    return raw, analysis, packet
-
+    with checked_json_fixture_cache():
+        raw = json.loads(Path(path).read_text())
+        before = deepcopy(raw)
+        analysis = build_analysis_run_v0_3(raw, input_manifest_ref={"object_type": "InputManifest", "ref": "manifest:pure-projection-test"}, input_manifest_hash="1" * 64)
+        packet = sn.build_stress_neutral_export_package_v0_3(source_envelope=raw, analysis_record=analysis, **arguments(raw, analysis))
+        assert raw == before
+        return raw, analysis, packet
 
 @pytest.mark.parametrize("path", ACTUAL_PATHS, ids=lambda path: path.stem)
 def test_actual_physical_and_source_methods_roundtrip_all_nine_members(path, tmp_path):
@@ -385,7 +387,7 @@ def test_utf8_actual_unicode_source_roundtrips_exact_nine_members_and_value_bits
     assert path.exists(), "Requires actual Unicode producer capture, not relabelled source headers"
     raw, analysis, packet = captured(path)
     original_request = json.loads((COMPOSITE_DIR / "n05_unicode.request.json").read_text())
-    from core.analysis_runs.source_blocks import domain_hash
+    from tests.verifiers.source_blocks import domain_hash
     assert original_request["model"]["project"]["id"] == raw["model_ref"]
     assert raw["source_block_recovery"]["body"]["invocation"]["value"] == domain_hash("source_blocks_invocation_v1", {"request": original_request, "solver_mode": mode})
     assert any(not row["id"].isascii() for row in raw["results"])
