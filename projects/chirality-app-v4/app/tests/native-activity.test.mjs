@@ -102,6 +102,29 @@ test('a completed parent turn says nothing about a running descendant',()=>{
   assert.ok(html.includes('<option value="C">descendant C</option>'));
 });
 
+test('the delegation view follows the host’s NPTD §7.1 reading, and arrived descendants are always shown',()=>{
+  const empty={...view(),descendants:[]};
+  const withReading=(v,delegation)=>renderToStaticMarkup(React.createElement(NativeActivityView,{view:v,threadId:'T',delegation}));
+  const present={reading:'present',reason:null,readAt:'2026-10-10T00:00:00Z'};
+  const missing={reading:'missing',reason:'the effective configuration sets features.multi_agent = false (NPTD §7.1 (2))',readAt:'2026-10-10T00:00:00Z'};
+  const unread={reading:'not established',reason:'namespaceTools not read: no response (NPTD §7.1 (4))'};
+  // Present: shown, empty or not.
+  assert.match(withReading(empty,present),/Delegation available \(read 2026-10-10T00:00:00Z\); no descendants observed\./);
+  assert.ok(withReading(view(),present).includes('<h4>Descendants</h4>'));
+  // Missing: absent, with the first reason; descendants that arrive anyway are shown.
+  const hidden=withReading(empty,missing);
+  assert.match(hidden,/Delegation not available: the effective configuration sets features\.multi_agent = false \(NPTD §7\.1 \(2\)\)/);
+  assert.doesNotMatch(hidden,/<h4>Descendants<\/h4>|no descendants observed/);
+  const arrived=withReading(view(),missing);
+  assert.ok(arrived.includes('<h4>Descendants</h4>')&&arrived.includes('Descendants that arrived anyway are shown below.'));
+  // Not established: shown only when delegation items arrive.
+  const quiet=withReading(empty,unread);
+  assert.doesNotMatch(quiet,/Delegation availab|Delegation not available|<h4>Descendants/);
+  const shown=withReading(view(),unread);
+  assert.ok(shown.includes('<h4>Descendants</h4>')&&shown.includes('Delegation availability not established: namespaceTools not read'));
+  assert.doesNotMatch(withReading(empty,undefined),/Delegation availab|Delegation not available|<h4>Descendants/,'no reading: nothing claimed');
+});
+
 test('empty and unselected states stay explicit',()=>{
   assert.ok(render(view(),null).includes('Select a conversation'));
   assert.ok(render({items:[],turns:[],revisions:[],descendants:[],goals:{},checklistGaps:[]},'T').includes('No activity observed'));
@@ -204,4 +227,16 @@ test('a row that cannot be shown falls back to its raw native JSON and resets on
   assert.ok(fallback.includes('This native item could not be shown readably'));assert.ok(fallback.includes('&quot;text&quot;: &quot;raw &lt;text&gt;&quot;'));
   assert.equal(RowBoundary.getDerivedStateFromProps({value:native,row},boundary.state),null,'the same row stays on its fallback');
   assert.deepEqual(RowBoundary.getDerivedStateFromProps({value:native,row:{native}},boundary.state),{failed:false,row:{native}},'a new row is tried again');
+});
+
+test('the host’s trial labels show on the trial turn and the linked sub-agent row (TT-2, TT-4)',()=>{
+  const trialTurns=[{threadId:'T',turnId:'turn-2',label:'trial 4 of draft load-check; not a step of resolve-spacing’s run'},{threadId:'OTHER',turnId:'turn-1',label:'elsewhere'}];
+  const trialChildren=[{threadId:'C',label:'sub-agent of trial 4 of draft load-check'}];
+  const html=renderToStaticMarkup(React.createElement(NativeActivityView,{view:view(),threadId:'T',trialTurns,trialChildren}));
+  const turn2=html.indexOf('Turn turn-2'),label=html.indexOf('trial 4 of draft load-check; not a step');
+  assert.ok(label>turn2&&label<html.indexOf('Second answer'),'the label sits on turn-2’s row');
+  assert.equal(html.match(/not a step of/g).length,1,'only the labelled turn');
+  assert.ok(!html.includes('elsewhere'));
+  assert.ok(html.includes('<b>sub-agent of trial 4 of draft load-check</b> · C · last observed'));
+  assert.ok(!render().includes('trial 4'),'no labels without the host’s');
 });

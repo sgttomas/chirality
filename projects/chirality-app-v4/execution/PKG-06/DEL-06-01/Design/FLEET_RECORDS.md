@@ -87,10 +87,25 @@ DEL-06-02's views, and not human-act records (DEL-04-03).
   Markdown work graphs (Root SPEC §9.8) are a practice DEL-10-02 owns, not a
   format with identified versions; this format does not change them, and
   their adoption of it would be a separate instruction change.
-- **FR-D3 Location.** The records live with the user's project (V4-REC-02;
-  RS OF-9). No path is selected (OI-013, OI-014). The prototype uses
-  `briefs/`, `graphs/<undertaking>/` and `coordination.fleet.jsonl` under one
-  folder.
+- **FR-D3 Location and placement (settled, owner 2026-10-10).** The records
+  live with the user's project (V4-REC-02; RS OF-9), in one fixed default
+  folder, `<project>/.chirality/fleet/`: `briefs/`, `graphs/<undertaking>/`
+  and `coordination.fleet.jsonl`, the layout the prototype uses. It sits
+  beside the App's other project folders (`.chirality/workflow-drafts/`,
+  `.chirality/records/`; WR §3). v4.0 has no folder picker. The Rust host
+  reads and writes the records, as for the draft workspace (WR §11, the
+  owner's "A, proceed with the Rust host"): file writes stay out of the
+  webview, and the TypeScript interface lists and presents what the host
+  hands it. Files written there with
+  ordinary tools stay valid input (FR-D1). The owner agreed with this
+  recommendation: "For the Fleet workspace I agree with the approach you laid
+  out and your recommendations for what the Design leaves open." This settled
+  the records' placement and selected their path. The owner's general OI-008
+  ruling of the same day extends that placement to the whole App: "The Rust host owns everything that
+  writes the person's files or the App's records, talks to Codex, or captures a
+  person's act. The web view presents, and sends only what the person
+  initiates. It never writes records or operates the act control." Neither
+  decides OI-013 or OI-014.
 - **FR-D4 Child index (R23-4).** DEL-06-01 holds the durable index of native
   children: every `dispatch_observed`, associated with a brief or not.
   RECOVERY's ledger is unchanged.
@@ -190,6 +205,18 @@ per VC):
   client-writable tag to put a brief's identity on a thread.
 - **Observed on the stock pairing.** Stock LM Studio 0.4.16 drops the
   delegation namespace, so no child exists there (OBS-2 §6.1).
+- **Observed natively at 0.160.0, with limits** ([native witness
+  2026-10-10](../../../PKG-01/DEL-01-02/Design/NATIVE_WITNESS_2026-10-10.md) items 11–12). The route was stock Codex through the App
+  Server, with a ChatGPT account and `gpt-6-luna`, in one run.
+  - Spawn, wait, follow-up and close worked.
+  - Only `wait` appeared as a `collabAgentToolCall` item. No spawn item was
+    shown, so the spawn prompt was not available from the parent's items.
+  - The child was known from `subAgentActivity`, with its parent inferred and
+    its status not reported.
+  - An agent reached only its own spawn tree: `send_message` to another
+    conversation's ID returned "not found".
+  - Until a spawn item is observed on a stock route, AS-2's input and AS-1's
+    carriage are not observable from the parent (§11).
 
 **Association rule (PROPOSED).** The App cannot tag a thread, so the brief
 travels in the spawn:
@@ -432,6 +459,6 @@ revision r3 and the vendored EU-D1 v0.2 records (hash-checked):
 |---|---|---|
 | AS-1 is guidance, not enforcement: a manager may spawn without the reference | O-A, with DEL-02-04 (guidance text) | Before the App's guidance is written |
 | PEC envelope (OI-022) | App consumer owner and PEC owner | Before operational consumer reliance |
-| Process placement of reader and writer (OI-008) | Owner, at the phase review | Before allocation |
+| Process placement of reader and writer (OI-008) | *Settled 2026-10-10 by the owner (FR-D3), now under the general OI-008 ruling:* the Rust host reads and writes; fixed folder `<project>/.chirality/fleet/`; no folder picker in v4.0 | — |
 | Content-identity method: the prototype uses sha-256 of file bytes as a TEST VALUE (RS U-04) | Owner with DEL-04-03 | Before reliance |
-| Delegation on any stock route is unobserved (adapter only) | A later observation | Before VER-003 on a candidate |
+| Delegation on a stock route: observed natively at 0.160.0 with limits (§4; one run). No spawn `collabAgentToolCall` item was shown, so AS-2's spawn item and spawn-prompt identity, and AS-1's carriage, are not observable from the parent there; the child came from `subAgentActivity`. Whether another supplier surface (a child-thread read) supplies the prompt is open | A later observation | Before VER-003 on a candidate |

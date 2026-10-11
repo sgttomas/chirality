@@ -1,169 +1,218 @@
-# Appendix A — Invariant Catalog
+# Appendix A — Historical Invariant Catalog and Current Interpretation
 
-This appendix consolidates the three layers of formally stated invariants that govern the Chirality agent instruction architecture. The invariants are organized by their layer of origin and scope of application: workflow design requirements (R1–R17) apply universally to workflow-component designs; decomposition invariants (I1–I10) govern decomposition; and system-wide invariants (K-*) are enforced across the full agent suite.
+This appendix explains the R-, I- and K-series catalogs discussed in earlier
+versions of the thesis. It is a historical crosswalk, **not a live inventory of
+binding development duties**. It does not reinstate retired lifecycle status,
+run approval, receipts, registers, agent personas or snapshot requirements.
 
-The R-series is reproduced from the ratified
-`docs/WORKFLOW_COMPONENT_STANDARD.md`; the I-series is reproduced from the
-ratified `docs/DECOMPOSITION_STANDARD.md` (both ratified under D-GOV-14,
-owner ruling 2026-07-12). The ratified K-* catalog in `docs/CONTRACT.md`
-governs on divergence.
+The original definitions are recoverable at `archive/pre-docs-cleanup-1` in the
+[workflow-component standard](https://github.com/sgttomas/chirality/blob/archive/pre-docs-cleanup-1/docs/WORKFLOW_COMPONENT_STANDARD.md),
+[decomposition standard](https://github.com/sgttomas/chirality/blob/archive/pre-docs-cleanup-1/docs/DECOMPOSITION_STANDARD.md)
+and [CONTRACT.md](https://github.com/sgttomas/chirality/blob/archive/pre-docs-cleanup-1/docs/CONTRACT.md).
+These sources contain different historical amendments; the table below explains
+the families rather than claiming to reproduce one simultaneous original catalog.
 
----
+Current repository authority comes from [AGENTS.md](../../AGENTS.md), the
+conversation and applicable project commitments. Some historical identifiers
+remain in [Product boundaries](../PRODUCT_BOUNDARIES.md) for adopted consumers;
+[Compatibility formats](../COMPATIBILITY_FORMATS.md) preserves formats still
+read by tools. Those sources determine applicability. This appendix neither
+widens nor retires their contracts.
+
+The analytical distinction is between a commitment, a proposed mechanism and
+evidence that the mechanism does its job. The historical word “invariant” was
+used for all three, often without a mathematical specification. Identifying that
+mixture is part of the revision, not a reason to discard every concern the
+catalog expressed.
 
 ## A.1 Workflow Design Requirements (R1–R17)
 
-Defined in the ratified workflow-component standard. Apply to workflow
-component designs together with the ratified K-* invariants.
+| Historical IDs | Concern and former mechanism | Current interpretation |
+|---|---|---|
+| R1 | Explicit human decision rights | Preserve reserved commitments and the person's judgment throughout work; no mandatory gate at every iteration follows |
+| R2 | Straight-through task execution | TASK owns a bounded assignment through ordinary repairs, reports blockers and continues unaffected work; no delegation |
+| R3, R16 | Declared write quarantine and checkout containment | Scope comes from assignment and host; actual checks must cover the execution path, not merely a role header |
+| R4 | An immutable snapshot folder for each run | Routine copies are retired; preserve records when a consumer, acceptance or recovery requires them |
+| R5 | Mandatory provenance fields | Make relevant grounds inspectable; fields alone do not establish warrant |
+| R6 | Unknowns represented rather than invented | Distinguish evidence, assumptions and proposals; legitimate design creation is not prohibited |
+| R7 | Expose conflicts and duplicates | Resolve ordinary implementation matters within authority; surface material conflicts and reserved choices |
+| R8 | Structured briefs and deterministic outputs | Assignments can be conversational; tool inputs can be strict; equivalent model outputs are not guaranteed |
+| R9 | Reviewable, non-destructive publication | Current Git authority and product release boundaries apply |
+| R10, R11 | Skill tool policy and explicit deterministic tool contracts | Methods and tools need clear applicability, inputs, effects and limits appropriate to their use |
+| R12 | Separation of skills, tools and design roles | Distinguish method from execution mechanism without prescribing a manager for every tool change |
+| R13 | Claim-strength calibration | Claims must remain within their supporting evidence; this thesis is subject to the same constraint |
+| R14 | Multi-phase integration rules | Own integration and corrections; no compulsory derivative packets or handoff chain |
+| R15 | Explicit registry membership and retirement | Identify active sources and consumers; a registry is useful only where something consumes it |
+| R17 | Proportional design evidence | Include the evidence needed for consequences and recovery; count the attention and maintenance costs of control |
 
-| ID | Requirement | Rule |
-|----|-------------|------|
-| R1 | Human decision rights are explicit | Human-owned decisions are enumerated and preserved. |
-| R2 | Task agents are straight-through | Task agents run without requiring mid-run human decisions. |
-| R3 | Write quarantine is enforced | Every agent has an explicit write scope. Tool roots are isolated from source truth. |
-| R4 | Snapshots are immutable | Each run produces a new snapshot folder. Pointer files may be overwritten; snapshots may not. |
-| R5 | Provenance is mandatory | Aggregated/extracted data includes `SourcePath` and best-effort `SectionRef`. |
-| R6 | No invention behavior is defined | Missing data becomes `TBD` with assumptions captured. |
-| R7 | Conflicts/duplicates are surfaced | The system does not hide or silently resolve discrepancies unless explicitly directed. |
-| R8 | Brief-driven execution exists | Pipelines have a defined brief format (INIT-TASK-style) and deterministic outputs. |
-| R9 | Publication is hygienic | Version control publishing is reviewable and non-destructive by default. |
-| R10 | Skill tool policy is explicit | Every skill declares its tool policy — preferred, optional, and disallowed tools, and the conditions for falling back from tool execution to direct LLM reasoning. When present, `allowed-tools` in skill frontmatter is authoritative. |
-| R11 | Tool contract is explicit | Every deterministic tool declares its input/output contract, scope boundary, and idempotence posture. Tools fail fast with explicit exit codes and never write outside their declared scope. |
-| R12 | Skill/tool boundary is preserved | Skills identify tool needs; HELPS_HUMANS implements deterministic helpers; HELPS_HUMANS integrates the result. Skills do not embed inline deterministic logic; tools do not carry method-level guidance. |
-| R13 | Claim strength is calibrated | Governed claims do not exceed their warrant under K-CLAIM-1. |
-| R14 | Multi-phase integration rules are explicit | Derivative, snapshot, handoff, closure, sequencing, and cycle rules are implemented where applicable. |
-| R15 | Registry lifecycle is explicit | Live membership, compatibility, deprecation, and retirement are mechanically visible. |
-| R16 | Active-checkout containment is enforced | Task writes remain inside the active checkout under K-WRITE-2. |
-| R17 | Design evidence is proportional and complete | Applicable authority, execution, QA, handoff, and retirement concerns are covered without unnecessary structure. |
-
----
+These are interpretations of concerns, not replacement R-series instructions.
+The role files, workflows and tool contracts are the operational sources.
 
 ## A.2 Decomposition Invariants (I1–I10)
 
-Defined in `docs/DECOMPOSITION_STANDARD.md`. Apply to all decomposition agents (PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP). Verified by AUDIT_DECOMP. These invariants MUST hold across all conforming decomposition agents, regardless of domain.
+| Historical IDs | Concern and former mechanism | Current interpretation |
+|---|---|---|
+| I1 | Human confirmation at each decomposition gate | Preserve owner decisions about commitments and accepted baselines; routine refinement can proceed within authorization |
+| I2 | Source-faithful scope allocation | Do not present unsupported scope as accepted; proposals and unknowns remain distinguishable |
+| I3, I4 | Flat, gap-free, non-overlapping partitions | A useful repository convention and a coverage question, not a universal ontology or proof of complete scope |
+| I5, I6 | Stable IDs with deterministic parent coupling | Support navigation and machine joins; identity does not by itself establish unchanged meaning |
+| I7 | Best-effort objective mapping | Expose missing mappings without manufacturing precision or blocking unrelated work |
+| I8 | Recorded assignment rationale | Put non-obvious current reasoning where it governs the work and use existing change history |
+| I9 | Required ledger and coverage telemetry | Generate an accounting view when a real consumer needs it; a populated ledger does not prove requirement adequacy |
+| I10 | Required vocabulary map | Preserve meaningful distinctions and resolve ambiguity; use a separate map only when it helps its consumer |
 
-| ID | Invariant | Rule |
-|----|-----------|------|
-| I1 | Human-validated decomposition | The structured outline and decomposition MUST be confirmed by the human at defined gates. No gate may be skipped. |
-| I2 | No invention | Do not create atomic units, objectives, partitions, production units, or artifacts beyond what the source material and user intent support. If unknown, mark `TBD` and surface as an open issue. |
-| I3 | Partitions are flat | Do not create nested partitions. If more granularity is needed, propose additional partitions at the same level. |
-| I4 | No overlap / no gaps at the partition level | Every IN-scope atomic unit MUST be assigned to exactly one partition. Forced decision if ambiguous; human resolves at gates. |
-| I5 | Stable identifiers | Once assigned, IDs MUST remain stable across revisions unless the human explicitly requests renumbering. |
-| I6 | Deterministic production-unit ID ↔ partition ID coupling | The production unit ID MUST be mechanically derived from its parent partition ID. The coupling format is domain-specific (defined by the conforming agent) but the coupling itself is invariant. |
-| I7 | Objective mapping is best-effort | Objectives are derived from the source material. Unmapped objectives MUST be surfaced as open issues. |
-| I8 | Traceable rationale | Non-trivial assignment decisions MUST be recorded as explicit decisions in the decomposition output. |
-| I9 | Ledger + telemetry | Every decomposition MUST include a machine-checkable ledger and a Coverage & Telemetry summary. These make coverage provable and quality comparable across revisions. |
-| I10 | Vocabulary discipline | Every decomposition MUST include a Vocabulary Map. Canonical terms are used consistently; synonyms are mapped; semantic drift is prevented. |
-
----
+The old decomposition protocol made every family compulsory for every conforming
+run. The current interpretation preserves the questions while leaving their
+representation and examination to the undertaking. Current accepted project
+commitments still govern any particular decomposition change.
 
 ## A.3 System-Wide Invariants (K-*)
 
-Defined in `docs/CONTRACT.md` (reproduced here as of 2026-07-02; 27 invariants, with K-MERGE-1 updated for the owner amendment of 2026-09-12). Enforced across the full agent suite. Invariant IDs are stable and never reused; retired invariants are relocated to the retired section of CONTRACT.md with retirement rationale (as of this reproduction, none have been retired).
+### A.3.1 Hierarchy and Identity
 
-### A.3.1 Hierarchy and Identity (CONTRACT §1.1)
+**K-HIER-1** prescribed flat packages containing deliverables. **K-ID-1**
+distinguished stable identity from changing paths. The active project layout
+retains a predictable package/deliverable structure, but this does not make the
+folder tree an exhaustive ontology or every path move a scope change. See the
+[deliverable-query contract](../../tools/deliverables/README.md).
 
-| ID | Invariant | Enforcement |
-|----|-----------|-------------|
-| **K-HIER-1** | Projects are decomposed as **packages containing deliverables** (flat; no nesting; no phases layer). | PROJECT_DECOMP gates; PREPARATION folder creation; human review |
-| **K-ID-1** | Deliverable IDs are **stable** and persist across path changes. Path is a physical projection of decomposition, not identity. | PROJECT_DECOMP (ID assignment); all agents (ID referencing) |
+### A.3.2 Authority and Approval
 
-### A.3.2 Authority and Approval (CONTRACT §1.2)
+**K-AUTH-1**, **K-AUTH-2** and **K-BIND-1** concerned human approval, identified
+subjects and the distinction between binding acceptance and guidance. Adopted
+product consumers retain the applicable definitions in
+[Product boundaries](../PRODUCT_BOUNDARIES.md#retained-invariant-identifiers).
+Their scope must be respected rather than inferred from this historical account.
 
-| ID | Invariant | Enforcement |
-|----|-----------|-------------|
-| **K-AUTH-1** | Only **humans** author binding approval records. No agent may claim to certify, approve, sign, seal, or issue work for reliance. | Agent instruction constraints; human review |
-| **K-AUTH-2** | Approvals bind to a **specific git SHA**. Content change after approval voids the approval. | Human review; future tooling (SHA comparison) |
-| **K-BIND-1** | Approvals are **always binding and only binding**. Non-binding guidance is allowed outside approval records. | Human process discipline |
+A content binding makes an acceptance's subject identifiable; it neither performs
+the human act nor makes the subject correct. Judgment shapes the purpose,
+questions and reliance throughout the undertaking. An acceptance record is one
+expression of it, not its exhaustive definition.
 
-### A.3.3 Sealing and Context (CONTRACT §1.3)
+### A.3.3 Sealing and Context
 
-| ID | Invariant | Enforcement |
-|----|-----------|-------------|
-| **K-SEAL-1** | No Agent 2 execution before context is sealed, the run is approved at the applicable human gate, and the launch cites that approval record. Runtime presence checks do not manufacture the human act. | Human approval record; ManagedDelegationService structural checks |
-| **K-GHOST-1** | Agent 2 context is limited to declared files/references and sealed brief content. No ghost inputs. | Managed declared context; agent instruction constraints; human review |
+**K-SEAL-1** required sealed context, run approval and a cited approval record.
+**K-GHOST-1** limited a delegated agent to declared sources and its sealed brief.
+These former development procedures are not current universal duties.
 
-### A.3.4 Dependencies (CONTRACT §1.4)
+The continuing concern is an intelligible assignment and result basis, together
+with real privacy and access boundaries. A metadata check cannot authenticate a
+human decision or erase the model's learned priors. Current assignments and host
+permissions replace no applicable product-specific restriction by implication.
 
-| ID | Invariant | Enforcement |
-|----|-----------|-------------|
-| **K-DEP-1** | Deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` are **authoritative** for dependencies. There is no central dependency graph; generic read-only aggregation is on-demand via `_Evaluation/`; a calibrated corpus-concordance run may also inventory dependencies under `_Reconciliation/DeliverableConcordance/`. | TASK+dependency-extract (local writes only); EVALUATION (generic audit); RECONCILIATION (activated corpus concordance) |
-| **K-DEP-2** | Dependency references to deliverables must **resolve to existing deliverable IDs**. Unresolvable targets use `TargetType=UNKNOWN`. | TASK+dependency-extract (Function 2); validation checks |
+### A.3.4 Dependencies
 
-### A.3.5 Status and Lifecycle (CONTRACT §1.5)
+**K-DEP-1** made local dependency registers authoritative and prescribed
+aggregation surfaces. **K-DEP-2** required resolvable deliverable targets or an
+explicit unknown representation. The active source is now the consumer's
+`deliverable.yaml`; reverse links and graphs are generated on demand.
 
-| ID | Invariant | Enforcement |
-|----|-----------|-------------|
-| **K-STATUS-1** | `_STATUS.md` is the **canonical, human-readable lifecycle state file** for each deliverable. No other file determines deliverable state. | All agents (read _STATUS.md for state); transition rules in SPEC.md Section 3.3 |
+The checker rejects malformed input but reports well-formed unresolved needs,
+planned paths and cycles. A declared or present supplier is not automatically
+suitable. Ordinary edge changes do not inherit a new approval gate from the
+historical catalog; reserved changes remain reserved.
 
-### A.3.6 Staleness and Change Propagation (CONTRACT §1.6)
+### A.3.5 Status and Lifecycle
 
-| ID | Invariant | Enforcement |
-|----|-----------|-------------|
-| **K-STALE-1** | Upstream changes **propagate staleness** to all transitive dependent deliverables. | Future tooling (staleness calculation); human triage |
-| **K-STALE-2** | Stale items must be **triaged by a human** before being considered current. Resolution modes: no impact (clear flag), needs rework, or needs review. | Human triage queue |
-| **K-VAL-1** | A deliverable is **dirty** if any governed input has changed since its last approved SHA. | Future tooling (SHA comparison); human review |
+**K-STATUS-1** designated `_STATUS.md` as the canonical deliverable lifecycle
+indicator. The active development model retired that file and its lifecycle.
+The work's condition is assessed from current artifacts and evidence. Acceptance
+and release remain attributable acts rather than labels inferred from progress
+or a merge.
 
-### A.3.7 Gates (CONTRACT §1.7)
+### A.3.6 Staleness and Change Propagation
 
-| ID | Invariant | Enforcement |
-|----|-----------|-------------|
-| **K-GATE-1** | Gates are **dynamic per project instance**. Minimum required gates: seal transition + pipeline run approval. Additional gates are project-configurable. | ORCHESTRATOR (gate map); human configuration |
+**K-STALE-1**, **K-STALE-2** and **K-VAL-1** prescribed transitive staleness,
+human triage and comparison with an approved SHA. Current impact queries identify
+potential consumers; the meaning of the change determines what must be revisited.
+A graph edge alone cannot establish that a result has become invalid.
 
-*Note (per CONTRACT §1.7):* D-GOV-02, ruled 2026-07-01, derives from K-GATE-1 that no machine BLOCK on the CHECKING→ISSUED judgment may be non-overridable — BLOCKs apply to objective preconditions and hygiene only, and BLOCK override is human-only and recorded.
+Specific version-binding contracts still apply to their adopted product subjects.
+Retiring a general stale-flag workflow does not remove those contracts.
 
-### A.3.8 Merge and Publication (CONTRACT §1.8)
+### A.3.7 Gates
 
-| ID | Invariant | Enforcement |
-|----|-----------|-------------|
-| **K-MERGE-1** | Git integration follows owner-authorized scope, required CI and independent review of the actual candidate under K-MERGE-1 and PRD_ROOT §5.3.1; it is not human acceptance for reliance. | Independent review; required CI; source-HEAD verification |
+**K-GATE-1** prescribed minimum sealing and run-approval gates while allowing
+project variation. The current repository instead distinguishes standing authority
+from reserved decisions. A gate is justified by the actual commitment, operation
+or consequence it protects; the historical minimum does not govern every new
+undertaking.
 
-### A.3.9 Provenance and Epistemic Integrity (CONTRACT §1.9)
+### A.3.8 Merge and Publication
 
-| ID | Invariant | Enforcement |
-|----|-----------|-------------|
-| **K-PROV-1** | Every non-trivial governed claim must cite evidence with a source path and best-effort section reference, or carry explicit `location TBD`. Dependency rows are a schema-specific instance of this rule and use **`EvidenceFile` + `SourceRef`** per `SPEC.md` §6.5. | Agent instruction constraints; TASK+dependency-extract row validation; governance audits; human review |
-| **K-INVENT-1** | Unknown values become **`TBD`**, not guessed. Agents must not invent scope items, dependency targets, parameter values, or engineering content. | All agent instruction invariants; human review |
-| **K-CONFLICT-1** | Conflicts between sources must be **surfaced, not silently resolved**. Agents expose disagreements with pointers to the conflicting sources. | Agent instruction invariants (HELPS_HUMANS R7); human adjudication |
-| **K-CLAIM-1** | Claims, conclusions, and characterizations must not **overstate what the available warrant supports**. Statements of necessity, sufficiency, universality, completeness, exclusivity, or direct regulatory conclusiveness may be used only when the cited evidence supports that strength; otherwise they must be framed as interpretation, implementation-specific design, or proposal. | Agent instruction constraints; governance audits (AUDIT_GOVERNANCE); human review |
+**K-MERGE-1** underwent historical amendments governing integration and review.
+The active repository's standing Git grant and consequence-based verification
+rule are in [AGENTS.md](../../AGENTS.md). Required checks concern the exact
+candidate. Authorized integration is distinct from acceptance for professional
+reliance, and releases remain owner acts.
 
-### A.3.10 Write Scope and Snapshots (CONTRACT §1.10)
+### A.3.9 Provenance and Epistemic Integrity
 
-| ID | Invariant | Enforcement |
-|----|-----------|-------------|
-| **K-WRITE-1** | Every agent has an **explicit write scope** declared in its header block. No agent writes outside its declared zone. | Agent Type table (WRITE_SCOPE property); human review of diffs |
-| **K-WRITE-2** | Agent writes must be **path-contained within the active checkout**. Every `ScopePath` and `AllowedWriteTarget` must normalize to an absolute path that resolves under `git rev-parse --show-toplevel` (`REPO_ROOT`); a target resolving outside it — including via symlink or `..` traversal — is rejected (`SCOPE_OUTSIDE_WORKTREE`) and the task stops. This confines a task's effects to its working root and makes per-working-root and git-worktree isolation safe. | TASK shell (ScopePath normalization, `SPEC.md` §0.2.3); tool path policy; human review of diffs |
-| **K-SNAP-1** | Task agent outputs to tool roots are **immutable snapshots**. Pointer files (`_LATEST.md`) may be overwritten; snapshot folders must not. | Agent instruction constraints; SPEC.md Section 11 |
+**K-PROV-1**, **K-INVENT-1**, **K-CONFLICT-1** and **K-CLAIM-1** addressed sources,
+unknowns, disagreements and claim strength. Their retained adopted-product wording
+is in [Product boundaries](../PRODUCT_BOUNDARIES.md#retained-invariant-identifiers).
 
-### A.3.11 Agent Index and Governance Surface (CONTRACT §1.11)
+The important limitation is that a citation can be wrong or irrelevant, an unknown
+can remain undetected, and several reviewers can share a mistaken premise. These
+rules direct attention and support examination; their existence does not guarantee
+that unsupported output is always found. The chapter's earlier universal assurance
+claims therefore exceeded what the catalog established.
 
-| ID | Invariant | Enforcement |
-|----|-----------|-------------|
-| **K-AGENTS-1** | Root `AGENTS.md` carries the Agent 0/1/2 runtime hierarchy and live index, governance integration and multi-agent orchestration rules, and canonical TASK-skill dispatch relationships. Workspace overlays may specialize but not weaken that governance. UI matrices are deployment routing views, not runtime authority classes. Registry/narrative disagreement is surfaced and the live registry governs. | `AGENTS.md`; D-GOV-11; AUDIT_GOVERNANCE; AUDIT_AGENTS; human review |
+### A.3.10 Write Scope and Snapshots
 
-### A.3.12 Domain Engine Integration (CONTRACT §1.12)
+**K-WRITE-1** prescribed role-header scopes, **K-WRITE-2** specified checkout
+path containment, and **K-SNAP-1** required immutable tool-root outputs. The
+current repository derives write authority from assignment and host, not a role's
+fixed directory category. Explicit read-only conditions remain effective.
 
-| ID | Invariant | Enforcement |
-|----|-----------|-------------|
-| **K-DOMAIN-1** | **Domain engines own authoritative domain truth.** Canonical model files, model states, analysis runs, comparisons, solver outputs, and handoff internals are owned by the domain engine. Chirality governs the work around it (profiles, manifests, proposals, review notes, gates); it is not the solver and is never the source of accepted engineering truth. | DOMAIN_ENGINE persona; profile `protected_write_paths`; human review |
-| **K-DOMAIN-2** | **Protected domain paths are write-quarantined.** Agents must not directly write protected domain artifacts. Domain-controlled writes occur only through declared deterministic tools under the active profile. | DOMAIN_ENGINE; TASK ScopePath/AllowedWriteTargets; profile; human review |
-| **K-DOMAIN-3** | **Domain operations require an OperationProposal record and explicit human acceptance.** A proposal is `proposal_only` until validated by a declared deterministic tool and accepted by a human; application occurs only through a domain-engine-controlled apply. | DOMAIN_ENGINE Gate 5; profile; K-AUTH-1/K-AUTH-2; human review |
-| **K-DOMAIN-4** | **Domain-engine outputs must not be represented as professional approval.** A green validation/PASS is structural evidence only — never code-compliance, certification, sealing, authentication, or external-prover validation absent a cited human authoritative record. Validation-passed is necessary, not sufficient, for engineering correctness. | DOMAIN_ENGINE professional_boundary; K-CLAIM-1; K-AUTH-1; AUDIT_GOVERNANCE; human review |
+The [resolver](../../tools/workflow_runtime/resolve_workflow.py) reports policy
+and performs checks on declared inputs; it is not itself a sandbox. Applicable
+containment formats remain described in
+[Compatibility formats](../COMPATIBILITY_FORMATS.md#paths-and-containment).
+Historical snapshot duties do not require new run folders. Evidence needed for a
+particular consumer or recovery still requires appropriate preservation.
 
-*Note (per CONTRACT §1.12):* Per the D-GOV-01 scope note, ruled 2026-07-01, engine-owned domain stores are sanctioned authoritative domain truth under K-DOMAIN-1 and are exempt from the governance rebuildable-cache rule.
+### A.3.11 Agent Index and Governance Surface
 
----
+**K-AGENTS-1** coupled the entry file, registry and former runtime hierarchy.
+The current four roles describe contributions. Agent 0's continuity is the given;
+other contributions are engaged as useful. TASK's no-delegation boundary remains.
+A registry cannot grant host permissions or silently override the authorized
+assignment. The active entry and role files, rather than an archived index, govern
+repository work.
 
-## A.4 Enforcement Map Summary
+### A.3.12 Domain Engine Integration
 
-The following table is reproduced from CONTRACT.md §2 (as of 2026-07-02) and maps each enforcement point to the invariants it is responsible for checking.
+**K-DOMAIN-1** through **K-DOMAIN-4** distinguish engine-owned state, protected
+writes, controlled proposal/application and professional acceptance. The adopted
+definitions remain in [Product boundaries](../PRODUCT_BOUNDARIES.md#domain-integration).
+They are not retired by the removal of administrative development records.
 
-| Enforcement Point | Invariants Checked |
-|-------------------|-------------------|
-| **Agent instructions** (design-time; constrains intent, not guaranteed behavior) | K-GHOST-1, K-WRITE-1, K-WRITE-2, K-SNAP-1, K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-CLAIM-1, K-DEP-1, K-DEP-2, K-AGENTS-1, K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4 |
-| **TASK shell / tool path policy** (runtime) | K-WRITE-2 (ScopePath containment, `SPEC.md` §0.2.3) |
-| **DOMAIN_ENGINE** (profile and operation governance) | K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4 |
-| **ORCHESTRATOR** (runtime) | K-SEAL-1, K-GATE-1, K-HIER-1 |
-| **Human review** (gate) | K-AUTH-1, K-AUTH-2, K-BIND-1, K-STALE-2, K-MERGE-1, K-VAL-1, K-STATUS-1, K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4 |
-| **Governance audit** (AUDIT_GOVERNANCE / AUDIT_AGENTS) | K-CLAIM-1, K-PROV-1, K-AGENTS-1, K-DOMAIN-4 |
-| **Future tooling** (automated) | K-STALE-1, K-VAL-1, K-MERGE-1, K-AUTH-2, K-DEP-2 |
-| **PROJECT_DECOMP** (decomposition) | K-HIER-1, K-ID-1 |
+The phrase “authoritative domain truth” in the historical definition is read as
+canonical domain state under the engine's control, not a claim of guaranteed
+physical truth. A proposed operation, a validation result, an applied model change
+and human reliance are different things. Current product contracts determine the
+required path between them. This appendix does not create or remove an approval
+requirement for a particular product operation.
+
+## A.4 Enforcement Map: Analytical Limits
+
+The old map assigned IDs to instruction, runtime, human-review and future-tooling
+layers. That allocation was a design proposal and documentation of some mechanisms;
+it did not establish full implementation, independent failures or a comprehensive
+assurance argument.
+
+| Kind of mechanism | Evidence it can supply | Limit that remains |
+|---|---|---|
+| Prose instruction | An explicit expected behaviour and responsibility | Compliance is not guaranteed by reading it |
+| Schema or resolver | Rejection of particular malformed or disallowed declarations | Effects outside the checked representation require host enforcement |
+| Host permission or protected operation | Restricted behaviour on covered execution paths | Coverage and bypass resistance must be examined |
+| Regression or numerical check | Observed behaviour for the tested case and basis | Untested cases and incorrect shared expectations remain possible |
+| Independent examination | Criticism from a separate contribution | Independence of assumptions and complete detection are not guaranteed |
+| Human decision record | An inspectable representation of a decision and subject | The record does not supply the person's situated judgment or guarantee truth |
+
+The current thesis therefore uses the catalog as evidence of architectural
+learning. Some concerns survived in simpler forms; some product boundaries remain
+explicit contracts; several general mechanisms were retired. This supports a
+revisable relation between principles and design, not the claim that every named
+invariant was necessary or that its removal is automatically safe in every domain.

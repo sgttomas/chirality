@@ -190,6 +190,12 @@ struct Inner {
     declared_capabilities: Option<Value>,
     /// Last `collaborationMode/list` result read for a generation (EX-2/EX-3).
     collaboration_modes: Value,
+    /// NPTD §7.1 delegation readings of this home: one per generation, model,
+    /// provider and working folder (`delegation_availability::key`).
+    delegation_readings: Vec<Value>,
+    /// The app-server process's own working folder (its `current_dir`), for
+    /// the provider it resolves for the parameterless reads (NPTD §7.1).
+    server_cwd: Option<String>,
     /// Collaboration modes this App requested on `turn/start`, per generation/thread.
     requested_modes: Vec<Value>,
     configuration_identity: Option<Value>,
@@ -199,6 +205,11 @@ struct Inner {
     execution_custody: execution_custody::ExecutionCustody,
     turn_request_threads: HashMap<String, (Value, String, u64)>,
     interrupt_requests: Vec<Value>,
+    /// REC stop requests (DEL-01-02 §3.4) of this Host, each with its latest
+    /// record; their ledger entries go through `pending_recovery`.
+    stop_requests: Vec<crate::stop_records::StopRequest>,
+    /// The ledger's stop requests, indexed incrementally for the view.
+    stop_ledger_index: Mutex<crate::stop_records::LedgerIndex>,
     /// The generation for which the person confirmed Stop/Restart Codex:
     /// from then on no new turn or steer is sent in it (only interrupts).
     stop_confirmed: Option<Value>,
@@ -238,6 +249,14 @@ impl SourceRequest {
     pub fn request_id(&self) -> &Value { &self.frame["id"] }
     pub fn request_ref(&self) -> &str { &self.request_ref }
     pub fn attempted_frame(&self) -> &Value { &self.frame }
+    /// Whether an actual write attempt of this frame was observed, read without
+    /// panicking (a poisoned Host lock is read through). `None` when the source
+    /// Host or its record is gone. Safe to call while unwinding.
+    pub fn write_attempt_observed(&self) -> Option<bool> {
+        let source = self.source.upgrade()?;
+        let i = source.0.lock().unwrap_or_else(std::sync::PoisonError::into_inner);
+        i.source_requests.get(&self.frame["id"].to_string()).map(|e| e.attempt_position.is_some())
+    }
     pub fn evidence(&self) -> Value {
         let Some(source) = self.source.upgrade() else {return json!({"outcome":"source-host-unavailable"});};
         let i = source.0.lock().unwrap();
@@ -483,6 +502,23 @@ impl AppRuntimeCustody {
     }
 }
 
+/// One delegation reading's whole wait (NPTD §7.1; the trial tick's reads
+/// of later homes wait behind it).
+pub const DELEGATION_READ_BUDGET: Duration = Duration::from_secs(15);
+/// The reads delegation availability makes (NPTD §7.1). No other part of the
+/// App sends them. Their result bodies are neither journalled nor kept as
+/// request evidence once the reading has taken its fields.
+const DELEGATION_READ_METHODS: [&str; 3] = ["model/list", "config/read", "modelProvider/capabilities/read"];
+/// What is kept of a delegation read's reply: its id and outcome, and an
+/// error as Codex sent it; never the result body.
+fn delegation_withheld(frame: &Value) -> Value {
+    json!({"id":frame.get("id"),"outcome":if frame.get("error").is_some(){"error"}else if frame.get("result").is_some(){"result"}else{"other"},
+        "error":frame.get("error"),"resultWithheld":"delegation-availability read (NPTD §7.1): the result body is not kept; the reading keeps only the fields it uses"})
+}
+/// Wall-clock milliseconds, for a delegation reading's age.
+fn delegation_now_ms() -> u64 {
+    std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_millis() as u64).unwrap_or(0)
+}
 pub struct Host {
     recovery_writer: Arc<Mutex<()>>,
     runtime_custody:Mutex<Option<Arc<AppRuntimeCustody>>>,
@@ -490,6 +526,10 @@ pub struct Host {
     submission_contexts:Arc<Mutex<Vec<Value>>>,
     frame_write: Mutex<()>,
     attachment_gate: Mutex<()>,
+    /// One stop request at a time for this Host (SR-11): its guard, SR-01 and
+    /// its send are not interleaved with another. Per Host, so a home whose
+    /// Codex stops reading holds up only its own interrupts.
+    interrupt_gate: Mutex<()>,
     #[cfg(test)]
     after_attachment_namespace_write:Mutex<Option<Box<dyn FnOnce()+Send>>>,
     #[cfg(test)]
@@ -500,6 +540,10 @@ pub struct Host {
     child: Mutex<Option<Child>>,
     #[cfg(test)]
     aa_before_write: Mutex<Option<Box<dyn FnOnce(&Host, &SourceRequest) + Send>>>,
+    #[cfg(test)]
+    before_interrupt_send: Mutex<Option<Box<dyn FnOnce() + Send>>>,
+    #[cfg(test)]
+    after_interrupt_send: Mutex<Option<Box<dyn FnOnce() + Send>>>,
     #[cfg(test)]
     cce_before_prepare: Mutex<Option<Box<dyn FnOnce(&Host,&call_custody::IncomingCall)+Send>>>,
     #[cfg(test)]
@@ -557,6 +601,7 @@ impl Host {
             submission_contexts:Arc::new(Mutex::new(Vec::new())),
             frame_write: Mutex::new(()),
             attachment_gate: Mutex::new(()),
+            interrupt_gate: Mutex::new(()),
             #[cfg(test)]
             after_attachment_namespace_write:Mutex::new(None),
             #[cfg(test)]
@@ -567,6 +612,10 @@ impl Host {
             child: Mutex::new(None),
             #[cfg(test)]
             aa_before_write: Mutex::new(None),
+            #[cfg(test)]
+            before_interrupt_send: Mutex::new(None),
+            #[cfg(test)]
+            after_interrupt_send: Mutex::new(None),
             #[cfg(test)] cce_before_prepare: Mutex::new(None),
             #[cfg(test)] cce_before_cut: Mutex::new(None),
             #[cfg(test)] cce_after_cut: Mutex::new(None),
@@ -716,6 +765,7 @@ impl Host {
                 let request = i.client_requests.iter().find(|r| r["generation"] == entry["generation"] && r["requestIdentity"] == entry["requestIdentity"]);
                 json!({"binding":entry,"clientRequest":request,"turnOutcome":"determined by native turn events, not interrupt acknowledgment"})
             }).collect::<Vec<_>>(),
+            "stopRequests": Self::stop_request_view(i),
             "modelTurnExercised": if i.source_requests.values().any(|e|e.request.frame["method"]=="turn/start")||i.client_requests.iter().any(|r| r["method"] == "turn/start") { Value::Null } else { json!(false) },
             "modelTurnEvidence": {"standing":"provider/model execution not established by request or mock result", "protocolRequests":i.client_requests.iter().filter(|r| r["method"] == "turn/start").collect::<Vec<_>>()},
         })
@@ -1160,6 +1210,7 @@ impl Host {
             i.held.clear();
             i.child_pid = Some(pid);
             i.stop_record = None;
+            i.server_cwd = Some(cfg.cwd.to_string_lossy().into_owned());
             let conf = json!({
                 "launcher": executable.display().to_string(),
                 "arguments": args,
@@ -1308,6 +1359,7 @@ impl Host {
         let cause=if i.stop_record.is_some() {if i.stop_record.as_ref().is_some_and(|s|s["reason"]=="App quit") {"app-quit"} else {"supplier-stop"}} else {"supplier-exit"};
         i.execution_custody.close(&generation,cause,&i.server_requests.entries(),&now_rfc3339());
         Self::persist_execution(i);
+        Self::stop_requests_generation_closed(i,&generation);
         Self::oauth_lost(i,&generation);
         let ended = i.server_requests.close(&generation);
         Self::persist_requests(i);
@@ -1681,10 +1733,15 @@ impl Host {
     }
 
     pub fn history_dispatch(&self, query: &HistoryQuery) -> Result<HistoryDispatch,String> {
+        self.history_dispatch_by(query, json!({"kind":"person-directed"}))
+    }
+    /// As `history_dispatch`, journalled with `initiator`: an App rule's read
+    /// (WR TT-9's linking read on the host tick) names itself, not the person.
+    pub(crate) fn history_dispatch_by(&self, query: &HistoryQuery, initiator: Value) -> Result<HistoryDispatch,String> {
         crate::recovery::generation_ref(query.generation())?;
         if query.generation()["home"]!=query.home() {return Err("history home and full generation differ".into());}
         if !matches!(query.method(),"thread/list"|"thread/read"|"thread/turns/list"|"thread/items/list"|"thread/goal/get"|"thread/resume") {return Err("unsupported history factory method".into());}
-        let source=self.request_begin_scoped(query.method(),query.params().clone(),json!({"kind":"person-directed"}),false,Some(query.generation()))?;
+        let source=self.request_begin_scoped(query.method(),query.params().clone(),initiator,false,Some(query.generation()))?;
         Ok(HistoryDispatch {query:query.clone(),source})
     }
     pub fn history_wait(&self, dispatch: &HistoryDispatch, wait: Duration) -> Result<Value,String> {self.source_request_wait(&dispatch.source,wait)}
@@ -1936,10 +1993,19 @@ impl Host {
     }
     /// Caller supplies the explicit native App-data owner and private picker selections.
     pub fn prepare_attachment_turn(&self,custody:Arc<AttachmentCustody>,generation:&Value,thread:&str,expected_turn:Option<&str>,text:&str,selections:&[SelectedTextAttachment])->Result<PreparedAttachmentDispatch,String>{
+        self.prepare_attachment_turn_led(custody,generation,thread,expected_turn,text,selections,None)
+    }
+    /// As `prepare_attachment_turn`, for a new turn led by an App-written text
+    /// element (`lead` = (text, clientUserMessageId)): NIR TC-2's order, the
+    /// run-end line, then the person's text, then the attachments. The lead is
+    /// not an attachment: the ordered supply records and `supplyRefs` name the
+    /// attachments only, exactly as without it. A steer takes no lead.
+    pub(crate) fn prepare_attachment_turn_led(&self,custody:Arc<AttachmentCustody>,generation:&Value,thread:&str,expected_turn:Option<&str>,text:&str,selections:&[SelectedTextAttachment],lead:Option<(&str,&str)>)->Result<PreparedAttachmentDispatch,String>{
         crate::recovery::generation_ref(generation)?;if thread.is_empty()||expected_turn.is_some_and(str::is_empty){return Err("native thread/expected-turn identity required".into());}
+        if lead.is_some_and(|(text,client)|text.is_empty()||client.is_empty()||expected_turn.is_some()){return Err("a leading App text element needs its text and client message identity, and only a new turn takes one".into());}
         let submission=attachments::new_submission_ref()?;let list=attachments::prepare_ordered(selections,&submission,&now_rfc3339()).map_err(|e|e.message)?;
-        let mut input=vec![];if !text.is_empty(){input.push(json!({"type":"text","text":text,"text_elements":[]}));}input.extend(list.native_inputs());
-        let method=if expected_turn.is_some(){"turn/steer"}else{"turn/start"};let mut params=json!({"threadId":thread,"input":input});if let Some(turn)=expected_turn{params["expectedTurnId"]=json!(turn);}
+        let mut input=vec![];if let Some((lead,_))=lead{input.push(json!({"type":"text","text":lead,"text_elements":[]}));}if !text.is_empty(){input.push(json!({"type":"text","text":text,"text_elements":[]}));}input.extend(list.native_inputs());
+        let method=if expected_turn.is_some(){"turn/steer"}else{"turn/start"};let mut params=json!({"threadId":thread,"input":input});if let Some(turn)=expected_turn{params["expectedTurnId"]=json!(turn);}if let Some((_,client))=lead{params["clientUserMessageId"]=json!(client);}
         Self::validate_native_result(if expected_turn.is_some(){"TurnSteerParams"}else{"TurnStartParams"},&params)?;
         let(tx,rx)=channel();let(source,client,pipe_identity,pipe_epoch)={
             let mut i=self.inner.0.lock().unwrap();if i.generation!=*generation||i.state!="ready"||i.server_requests.is_closed(generation){return Err("attachment preparation scope is stale/closed/non-ready".into());}
@@ -2081,24 +2147,51 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
             Self::text_turn_params(thread_id, text)?, Duration::from_secs(20))
     }
 
-    fn prepared_run_turn_params(generation:&Value,prepared:&crate::workflow_workspace::PreparedRunText,person_text:&str,client_id:&str)->Result<Value,String>{
+    /// WR TT-3a, TT-3b and TT-10 (NIR TC-2, AT-8): one new turn whose input is
+    /// the given text elements, in order, exactly as given (a trial message:
+    /// the person's text then the trial text, or for a clean trial the trial
+    /// text then the person's text; a bring-back: the prompt then the
+    /// transcript). `client_id` is sent as `clientUserMessageId` so the turn's
+    /// first user message can be found in Codex's history (SC-3). A trial text
+    /// is never a run text: nothing here opens or records a run.
+    pub(crate) fn turn_start_texts(&self, generation: &Value, thread_id: &str, elements: &[&str], client_id: &str) -> Result<Value, String> {
+        if thread_id.is_empty() || client_id.is_empty() || elements.is_empty() || elements.iter().any(|e| e.is_empty()) {
+            return Err("refused-not-sent: thread, client message identity and non-empty text elements required".into());
+        }
+        let input: Vec<Value> = elements.iter().map(|text| json!({"type":"text","text":text,"text_elements":[]})).collect();
+        let params = json!({"threadId":thread_id,"input":input,"clientUserMessageId":client_id});
+        Self::validate_native_result("TurnStartParams", &params).map_err(|e| format!("refused-not-sent: {e}"))?;
+        self.conversation_operation("turn/start", generation, params, Duration::from_secs(20))
+    }
+
+    fn prepared_run_turn_params(generation:&Value,prepared:&crate::workflow_workspace::PreparedRunText,person_text:&str,client_id:&str,mode:Option<&Value>)->Result<Value,String>{
         crate::recovery::generation_ref(generation)?;
         if &prepared.scope().generation!=generation||generation["home"]!=prepared.scope().home{return Err("prepared turn full generation/home differs from original run scope".into());}
-        let params=prepared.turn_params(person_text,client_id)?;
+        let mut params=prepared.turn_params(person_text,client_id)?;
+        if let Some(mode)=mode{params["collaborationMode"]=mode.clone();}
         Self::validate_native_result("TurnStartParams",&params)?;
         Ok(params)
     }
     /// Owning native sender for production-prepared exact ordered workflow/person text.
     /// PreparedRunText proves neither an active run nor an act/model qualification here.
     pub(crate) fn turn_start_prepared_run_text(&self,generation:&Value,prepared:&crate::workflow_workspace::PreparedRunText,person_text:&str,client_id:&str)->Result<SourceRequest,String>{
-        let params=Self::prepared_run_turn_params(generation,prepared,person_text,client_id)?;
+        self.turn_start_prepared_run_text_mode(generation,prepared,person_text,client_id,None)
+    }
+    /// As `turn_start_prepared_run_text`, with the collaboration-mode element a
+    /// plan/default mode turn carries (NIR TC-4, TC-5), from
+    /// `collaboration_mode_element`, unchanged.
+    pub(crate) fn turn_start_prepared_run_text_mode(&self,generation:&Value,prepared:&crate::workflow_workspace::PreparedRunText,person_text:&str,client_id:&str,mode:Option<&Value>)->Result<SourceRequest,String>{
+        let params=Self::prepared_run_turn_params(generation,prepared,person_text,client_id,mode)?;
         self.request_begin_scoped("turn/start",params,json!({"kind":"person-directed"}),false,Some(generation))
     }
     /// Root retains the original prepared/person/client tuple and genuine source on every
     /// error/unknown result. No generic evidence JSON can admit a native turn through this API.
     pub(crate) fn turn_start_prepared_finish<'a>(&self,source:&'a SourceRequest,prepared:&crate::workflow_workspace::PreparedRunText,person_text:&str,client_id:&str,wait:Duration)->Result<PreparedNativeTurnStart<'a>,String>{
+        self.turn_start_prepared_finish_mode(source,prepared,person_text,client_id,None,wait)
+    }
+    pub(crate) fn turn_start_prepared_finish_mode<'a>(&self,source:&'a SourceRequest,prepared:&crate::workflow_workspace::PreparedRunText,person_text:&str,client_id:&str,mode:Option<&Value>,wait:Duration)->Result<PreparedNativeTurnStart<'a>,String>{
         self.check_source(source)?;
-        let expected=Self::prepared_run_turn_params(source.generation(),prepared,person_text,client_id)?;
+        let expected=Self::prepared_run_turn_params(source.generation(),prepared,person_text,client_id,mode)?;
         if source.frame["method"]!="turn/start"||source.frame["params"]!=expected{return Err("original prepared turn sender/ordered text/client identity differs".into());}
         self.wait_source_response(source,wait)?;
         let i=self.inner.0.lock().unwrap();
@@ -2137,26 +2230,228 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
         Some(NativeTurnRefusal{request_ref:source.request_ref.clone(),thread:source.frame["params"]["threadId"].as_str()?.into(),client_id:source.frame["params"]["clientUserMessageId"].as_str()?.into(),error,response_position:e.response_position?})
     }
 
-    /// Native interrupt acknowledgment is distinct from turn completion.
-    pub fn turn_interrupt(&self, generation: &Value, thread_id: &str, turn_id: &str) -> Result<Value, String> {
-        if thread_id.is_empty() || turn_id.is_empty() { return Err("thread and turn identity required".into()); }
-        self.conversation_operation("turn/interrupt", generation,
-            json!({"threadId":thread_id,"turnId":turn_id}), Duration::from_secs(20))
+    /// The person's Interrupt (DEF-3, cause *person-interrupt*): the stop
+    /// request is recorded before the write (SR-01), then the request is sent
+    /// and its acknowledgment awaited. An acknowledgment is not the turn's end.
+    /// `home` is the App-owned home (H-acct or H-key); `person` is the person
+    /// as the App observes them (identity not verified).
+    pub fn turn_interrupt(&self, generation: &Value, thread_id: &str, turn_id: &str, home: &str, person: &Value) -> Result<Value, String> {
+        let source = self.turn_interrupt_begin(generation, thread_id, turn_id, crate::stop_records::Cause::PersonInterrupt, home, person)?;
+        self.turn_interrupt_acknowledgment(&source, Duration::from_secs(20))
     }
-    /// The same request, written without waiting for its acknowledgment, so
-    /// Stop Codex can write every interrupt before waiting on one shared
-    /// deadline (RECOVERY SR-01, SR-10).
-    pub fn turn_interrupt_begin(&self, generation: &Value, thread_id: &str, turn_id: &str) -> Result<SourceRequest, String> {
+    /// One stop request (RECOVERY §3.4): the request's own guards are checked
+    /// first, and a refusal there writes no record (SQ-I I-1). Then SR-01 is
+    /// queued and written to the ledger before the request is written to
+    /// Codex; a ledger that does not accept it keeps it queued in this process
+    /// and the stop still proceeds (I-2). The send then gives SR-02 or SR-03.
+    /// The request is not awaited, so Stop Codex can write every interrupt
+    /// before waiting on one shared deadline (SR-10).
+    pub fn turn_interrupt_begin(&self, generation: &Value, thread_id: &str, turn_id: &str, cause: crate::stop_records::Cause, home: &str, person: &Value) -> Result<SourceRequest, String> {
         if thread_id.is_empty() || turn_id.is_empty() { return Err("thread and turn identity required".into()); }
         crate::recovery::generation_ref(generation)?;
-        self.request_begin_scoped("turn/interrupt", json!({"threadId":thread_id,"turnId":turn_id}), json!({"kind":"person-directed"}), false, Some(generation))
+        let params = json!({"threadId":thread_id,"turnId":turn_id});
+        // The guard, SR-01 and the send are not interleaved with another stop
+        // request of this Host, so a second press is refused (SR-11). Lock
+        // order: interrupt gate, then the App's recovery writer, then Inner.
+        let _gate = self.interrupt_gate.lock().unwrap();
+        let writer = self.recovery_writer.lock().unwrap();
+        let id = {
+            let mut i = self.inner.0.lock().unwrap();
+            if i.state != "ready" { return Err(format!("refused-not-sent(not-ready): state {}", i.state)); }
+            if i.generation != *generation || i.server_requests.is_closed(generation) { return Err("refused-not-sent: turn/interrupt generation changed before request registration".into()); }
+            Self::check_conversation_request(&i, "turn/interrupt", &params)?;
+            match crate::stop_records::StopRequest::requested(generation, home, thread_id, turn_id, cause, person) {
+                Ok(request) => {
+                    let id = request.id().to_owned();
+                    i.stop_requests.push(request);
+                    Self::queue_stop_record(&mut i, &id);
+                    Some(id)
+                }
+                Err(error) => {
+                    // Bookkeeping never blocks the person's stop (I-2); the gap is shown.
+                    i.recovery_projection_errors.push(json!({"generation":generation,"threadId":thread_id,"turnId":turn_id,"limit":format!("stop request not recorded: {error}"),"standing":"the interrupt is still sent; no stop-request record exists for it"}));
+                    None
+                }
+            }
+        };
+        // SR-01 is durable (or visibly queued) before the send. The App-wide
+        // writer is released before the pipe write, which can block on a
+        // Codex that stops reading, so other homes' records are not held up.
+        self.drain_recovery_owned();
+        drop(writer);
+        #[cfg(test)]
+        if let Some(hook) = self.before_interrupt_send.lock().unwrap().take() { hook(); }
+        let begun = self.request_begin_scoped("turn/interrupt", params, json!({"kind":"person-directed"}), false, Some(generation));
+        let evidence = begun.as_ref().ok().map(SourceRequest::evidence);
+        #[cfg(test)]
+        if let Some(hook) = self.after_interrupt_send.lock().unwrap().take() { hook(); }
+        if let Some(id) = id {
+            let mut i = self.inner.0.lock().unwrap();
+            match (&begun, &evidence) {
+                (Ok(source), Some(evidence)) if evidence["writeResult"] == "written" => Self::stop_request_sent(&mut i, &id, source),
+                (Ok(_), Some(evidence)) if evidence["writeResult"] == "write-failed" => { Self::stop_request_update(&mut i, &id, |r| r.not_sent(true, evidence["writeError"].as_str().unwrap_or("write failed")).map(Some)); }
+                (Ok(_), evidence) => {
+                    let reason = evidence.as_ref().and_then(|e| e["noAttemptCause"].as_str()).unwrap_or("no complete write of the request was observed").to_owned();
+                    Self::stop_request_update(&mut i, &id, |r| r.not_sent(false, &format!("refused before sending: {reason}")).map(Some));
+                }
+                (Err(error), _) => { Self::stop_request_update(&mut i, &id, |r| r.not_sent(false, &format!("refused before sending: {error}")).map(Some)); }
+            }
+        }
+        // SR-02/03 go through the deferred flush: written now if the writer is
+        // free, otherwise kept queued in order and written by the next flush.
+        self.flush_recovery_observations();
+        begun
     }
-    /// Waits up to `wait` for that interrupt's acknowledgment, read as
-    /// `turn_interrupt` reads it. When the wait ends the request stays
-    /// pending; nothing is resent. An acknowledgment is not the turn's end.
+    /// SR-02, then any response or turn end the reader observed before the
+    /// request was linked, in receipt order (SR-04/05, SR-06/07, SR-12).
+    fn stop_request_sent(i: &mut Inner, id: &str, source: &SourceRequest) {
+        let key = source.request_id().to_string();
+        let response = i.source_requests.get(&key).and_then(|e| e.response.clone().map(|r| (r, e.response_position.unwrap_or(u64::MAX))));
+        let (generation, thread, turn) = match i.stop_requests.iter().find(|r| r.id() == id) {
+            Some(r) => (r.generation().clone(), r.record()["threadId"].as_str().unwrap_or_default().to_owned(), r.record()["turnId"].as_str().unwrap_or_default().to_owned()),
+            None => return,
+        };
+        let ended = i.conversation_turns.iter().find(|t| t["generation"] == generation && t["threadId"] == thread && t["turnId"] == turn && t["terminalEventObserved"] == true)
+            .map(|t| (t["nativeTurn"]["status"].as_str().unwrap_or_default().to_owned(), t["receiptPosition"].as_u64().unwrap_or(u64::MAX)));
+        Self::stop_request_update(i, id, |r| r.sent(source.request_ref(), source.request_id()).map(Some));
+        let mut later: Vec<(u64, bool)> = Vec::new();
+        if let Some((_, position)) = &response { later.push((*position, true)); }
+        if let Some((_, position)) = &ended { later.push((*position, false)); }
+        later.sort();
+        for (_, is_response) in later {
+            if is_response {
+                let frame = response.as_ref().unwrap().0.clone();
+                Self::stop_request_update(i, id, |r| r.response(&frame));
+            } else {
+                let status = ended.as_ref().unwrap().0.clone();
+                Self::stop_request_update(i, id, |r| r.turn_completed(&status));
+            }
+        }
+        // The generation may have closed after the frame was written and
+        // before this link: its SR-08 then found the request not yet sent.
+        // Apply it now so the request does not stay sent forever.
+        if i.server_requests.is_closed(&generation) {
+            Self::stop_request_update(i, id, |r| r.generation_closed());
+        }
+    }
+    /// Applies one transition to a stop request and queues its record.
+    fn stop_request_update(i: &mut Inner, id: &str, change: impl FnOnce(&mut crate::stop_records::StopRequest) -> Result<Option<Value>, String>) -> bool {
+        let Some(request) = i.stop_requests.iter_mut().find(|r| r.id() == id) else { return false };
+        match change(request) {
+            Ok(Some(_)) => { Self::queue_stop_record(i, id); true }
+            Ok(None) => false,
+            Err(error) => { request.set_note(format!("a transition was not recorded: {error}")); false }
+        }
+    }
+    /// Queues the stop request's current record for the ledger, validated as
+    /// a ledger entry. Without a ledger it is kept in this process only.
+    fn queue_stop_record(i: &mut Inner, id: &str) {
+        let session = if i.app_session.is_empty() { i.generation["appSession"].as_str().unwrap_or_default().to_owned() } else { i.app_session.clone() };
+        let ledger = i.recovery.is_some();
+        let queue = Arc::clone(&i.pending_recovery);
+        let Some(request) = i.stop_requests.iter_mut().find(|r| r.id() == id) else { return };
+        if !ledger {
+            request.set_note("App ledger unavailable: kept in this App process only; not readable after a relaunch");
+            return;
+        }
+        let entry = crate::stop_records::ledger_entry(&session, request.record());
+        match RecoveryLedger::validate_pointer_entry(&entry) {
+            Ok(()) => { queue.facts.lock().unwrap().push_back(entry.clone()); request.queued(entry); }
+            Err(error) => request.set_note(format!("not recorded: {error}")),
+        }
+    }
+    /// SR-04 / SR-05 / SR-12 for the stop request this response answers.
+    fn stop_request_response(i: &mut Inner, generation: &Value, frame: &Value) {
+        let ids: Vec<String> = i.stop_requests.iter().filter(|r| r.generation() == generation && r.request_identity() == frame.get("id")).map(|r| r.id().to_owned()).collect();
+        for id in ids { Self::stop_request_update(i, &id, |r| r.response(frame)); }
+    }
+    /// SR-06 / SR-07 when `turn/completed` is observed for a stopped turn.
+    fn stop_request_turn_end(i: &mut Inner, generation: &Value, thread: &str, native: &Value) {
+        let (Some(turn), Some(status)) = (native["id"].as_str(), native["status"].as_str()) else { return };
+        let ids: Vec<String> = i.stop_requests.iter().filter(|r| r.is_for(generation, thread, turn)).map(|r| r.id().to_owned()).collect();
+        for id in ids { Self::stop_request_update(i, &id, |r| r.turn_completed(status)); }
+    }
+    /// SR-08 for every stop request of a closing generation with no final status.
+    fn stop_requests_generation_closed(i: &mut Inner, generation: &Value) {
+        let ids: Vec<String> = i.stop_requests.iter().filter(|r| r.generation() == generation).map(|r| r.id().to_owned()).collect();
+        for id in ids { Self::stop_request_update(i, &id, |r| r.generation_closed()); }
+    }
+    /// SR-10: the caller's wait for this interrupt's response ended.
+    fn stop_request_wait_ended(&self, source: &SourceRequest) {
+        {
+            let mut i = self.inner.0.lock().unwrap();
+            let ids: Vec<String> = i.stop_requests.iter().filter(|r| r.generation() == source.generation() && r.request_identity() == Some(source.request_id())).map(|r| r.id().to_owned()).collect();
+            for id in ids { Self::stop_request_update(&mut i, &id, |r| r.waiting_ended()); }
+        }
+        self.flush_recovery_observations();
+    }
+    /// The stop requests the person can see: the ledger's (every App session)
+    /// and this process's, each with whether its latest record is in the
+    /// ledger (§3.4; R-2 reading).
+    fn stop_request_view(i: &Inner) -> Value {
+        let queued = i.pending_recovery.facts.lock().unwrap();
+        let queue_limit = i.pending_recovery.limit.lock().unwrap().clone();
+        let mut index = i.stop_ledger_index.lock().unwrap();
+        index.update(i.recovery_snapshot.as_ref());
+        let recorded = |entry: &Value| index.contains(entry);
+        let live: Vec<(Value, String)> = i.stop_requests.iter().map(|r| {
+            // A note (a transition or an earlier record that was not
+            // recorded) is always shown: the latest record being in the ledger
+            // does not make the request's record complete.
+            let latest = match r.last_entry() {
+                Some(entry) if recorded(entry) => "recorded in the App ledger".to_owned(),
+                Some(entry) if queued.contains(entry) => format!("not yet written to the App ledger; kept in this App process{}", queue_limit.as_ref().map(|l| format!(" ({l})")).unwrap_or_default()),
+                _ => "not recorded".to_owned(),
+            };
+            let persistence = match (r.note(), r.last_entry()) {
+                (Some(note), Some(_)) => format!("{note}; its latest queued record is {latest}"),
+                (Some(note), None) => note.to_owned(),
+                (None, _) => latest,
+            };
+            (r.record().clone(), persistence)
+        }).collect();
+        let current = if i.app_session.is_empty() { i.generation["appSession"].as_str().unwrap_or_default() } else { i.app_session.as_str() };
+        crate::stop_records::outcomes_indexed(&index, &live, current)
+    }
+    /// C-12: the ledger `codex_stop` entry for the person's confirmed Stop or
+    /// Restart Codex, written before any interrupt is sent (§3.1). Returns
+    /// whether it is in the ledger; a ledger that does not accept it keeps it
+    /// queued in this process.
+    pub fn record_codex_stop(&self, actor: &Value, home: &str, restart: bool, material: &Value) -> Value {
+        let _writer = self.recovery_writer.lock().unwrap();
+        let entry = {
+            let i = self.inner.0.lock().unwrap();
+            if i.recovery.is_none() {
+                return json!({"state":"not recorded","reading":"App ledger unavailable: the Stop Codex record is kept in this App process only and is not readable after a relaunch"});
+            }
+            match crate::stop_records::codex_stop_entry(&i.app_session, actor, home, restart, material) {
+                Ok(entry) => { i.pending_recovery.facts.lock().unwrap().push_back(entry.clone()); entry }
+                Err(error) => return json!({"state":"not recorded","reading":format!("The Stop Codex record could not be formed: {error}")}),
+            }
+        };
+        self.drain_recovery_owned();
+        let i = self.inner.0.lock().unwrap();
+        if i.pending_recovery.facts.lock().unwrap().contains(&entry) {
+            let limit = i.pending_recovery.limit.lock().unwrap().clone().unwrap_or_else(|| "writer busy".into());
+            json!({"state":"not yet recorded","reading":format!("The App ledger did not accept the Stop Codex record ({limit}); it stays queued in this App process"),"entry":entry})
+        } else {
+            json!({"state":"recorded","reading":"Recorded in the App ledger before any interrupt was sent","entry":entry})
+        }
+    }
+    /// Waits up to `wait` for that interrupt's acknowledgment. When the wait
+    /// ends the request stays pending and its stop request records SR-10;
+    /// nothing is resent. An acknowledgment is not the turn's end.
     pub fn turn_interrupt_acknowledgment(&self, source: &SourceRequest, wait: Duration) -> Result<Value, String> {
         if source.frame["method"] != "turn/interrupt" { return Err("not an interrupt request".into()); }
-        let response = self.wait_source_response(source, wait)?;
+        let response = match self.wait_source_response(source, wait) {
+            Ok(response) => response,
+            Err(error) => {
+                if error.contains("within the wait limit") { self.stop_request_wait_ended(source); }
+                return Err(error);
+            }
+        };
+        #[cfg(test)]
+        if let Some(hook) = self.before_turn_result.lock().unwrap().take() { hook(); }
         let i = self.inner.0.lock().unwrap();
         if i.generation != source.generation || i.server_requests.is_closed(&source.generation) || i.state != "ready" {
             return Err("turn/interrupt response belongs to closed/replaced generation; native response retained in journal".into());
@@ -2206,40 +2501,202 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
         Ok(Self::plan_mode_availability(&i))
     }
 
+    /// NPTD §7.1 (R19-5): reads the delegation signals for one loaded
+    /// conversation of `generation` and keeps the reading for its model,
+    /// provider and folder. `config/read` is read with the conversation's
+    /// working folder (`features.multi_agent` as the conversation sees it) and
+    /// twice more for the provider the app-server resolves for itself: with
+    /// no folder and with its own working folder. `model/list` and
+    /// `modelProvider/capabilities/read` take no provider and answer for that
+    /// server provider, so `delegation_availability::signals` counts them only
+    /// when it is the conversation's provider. Reads only. One reading waits
+    /// at most `DELEGATION_READ_BUDGET` in all (each request at most ten
+    /// seconds); after a request gets no response nothing further is sent. A
+    /// signal not read is never guessed.
+    pub fn delegation_signals_read(&self, generation: &Value, thread_id: &str, initiator: Value) -> Value {
+        self.delegation_signals_read_within(generation, thread_id, initiator, DELEGATION_READ_BUDGET)
+    }
+    pub(crate) fn delegation_signals_read_within(&self, generation: &Value, thread_id: &str, initiator: Value, budget: Duration) -> Value {
+        const WAIT: Duration = Duration::from_secs(10);
+        const MODEL_PAGES: usize = 20;
+        let (conversation, server_cwd) = {
+            let i = self.inner.0.lock().unwrap();
+            (i.threads.iter().rev().find(|t| t["generation"] == *generation && t["threadId"] == thread_id).cloned(), i.server_cwd.clone())
+        };
+        let Some(conversation) = conversation else {
+            let cause = || Err::<Value, String>("the conversation is not loaded in this Codex generation".into());
+            let mut signals = crate::delegation_availability::signals(&json!({"threadId":thread_id}), cause(), cause(), cause(), cause());
+            signals["readAt"] = json!(crate::util::now_rfc3339());
+            signals["readAtMs"] = json!(delegation_now_ms());
+            return signals;
+        };
+        let deadline = std::time::Instant::now() + budget;
+        let silent = std::cell::Cell::new(false);
+        let sent = std::cell::RefCell::new(Vec::<String>::new());
+        let read = |method: &str, params: Value, schema: &str| -> Result<Value, String> {
+            if silent.get() { return Err(format!("{method} not sent: an earlier read of this reading got no response")); }
+            let wait = deadline.saturating_duration_since(std::time::Instant::now()).min(WAIT);
+            if wait.is_zero() { return Err(format!("{method} not sent: the reading's time limit was reached")); }
+            let request = self.request_begin_scoped(method, params, initiator.clone(), false, Some(generation))?;
+            sent.borrow_mut().push(request.request_id().to_string());
+            let response = self.wait_source_response(&request, wait).map_err(|e| {
+                if e.contains("within the wait limit") { silent.set(true); }
+                e
+            })?;
+            if let Some(error) = response.get("error") { return Err(format!("{method} answered with an error: {error}")); }
+            let result = response.get("result").cloned().ok_or_else(|| format!("{method} returned no result"))?;
+            Self::validate_native_result(schema, &result)?;
+            Ok(result)
+        };
+        let model = match conversation["model"].as_str() {
+            None => Err("the conversation's model was not reported".to_owned()),
+            Some(model) => (|| {
+                let mut cursor: Option<String> = None;
+                for _ in 0..MODEL_PAGES {
+                    let mut params = json!({"includeHidden":true});
+                    if let Some(c) = &cursor { params["cursor"] = json!(c); }
+                    let page = read("model/list", params, "ModelListResponse")?;
+                    if let Some(entry) = page["data"].as_array().into_iter().flatten().find(|m| m["model"] == model || m["id"] == model) {
+                        return Ok(entry.clone());
+                    }
+                    match page["nextCursor"].as_str() {
+                        Some("") => return Err("model/list returned an empty page cursor".to_owned()),
+                        Some(next) if cursor.as_deref() == Some(next) => return Err("model/list repeated a page cursor".to_owned()),
+                        Some(next) => cursor = Some(next.to_owned()),
+                        None => return Ok(Value::Null),
+                    }
+                }
+                Err(format!("model/list did not end within {MODEL_PAGES} pages"))
+            })(),
+        };
+        let config_at = |cwd: Option<&str>| {
+            let mut params = json!({"includeLayers":false});
+            if let Some(cwd) = cwd { params["cwd"] = json!(cwd); }
+            read("config/read", params, "ConfigReadResponse")
+        };
+        let config = config_at(conversation["cwd"].as_str());
+        // The provider the server resolves for its parameterless reads: its
+        // configuration without a folder and at its own folder must agree.
+        let server = match server_cwd.as_deref() {
+            None => Err("the app-server's working folder is not known to this App".to_owned()),
+            Some(server_cwd) => match (config_at(None), config_at(Some(server_cwd))) {
+                (Ok(bare), Ok(own)) if bare["config"]["model_provider"] == own["config"]["model_provider"] => Ok(bare["config"]["model_provider"].clone()),
+                (Ok(bare), Ok(own)) => Err(format!(
+                    "the app-server's configuration names provider {} without a folder and {} at its own folder",
+                    bare["config"]["model_provider"].as_str().unwrap_or("none"),
+                    own["config"]["model_provider"].as_str().unwrap_or("none")
+                )),
+                (Err(cause), _) | (_, Err(cause)) => Err(cause),
+            },
+        };
+        let capabilities = read("modelProvider/capabilities/read", json!({}), "ModelProviderCapabilitiesReadResponse");
+        let mut signals = crate::delegation_availability::signals(&conversation, model, config, server, capabilities);
+        signals["readAt"] = json!(crate::util::now_rfc3339());
+        signals["readAtMs"] = json!(delegation_now_ms());
+        let key = crate::delegation_availability::key(&conversation);
+        let mut i = self.inner.0.lock().unwrap();
+        // The reading has taken its fields: the request evidence keeps the
+        // reply's outcome only (a reply arriving after the reading stopped
+        // waiting is kept as its outcome on arrival, in `on_line`).
+        for id in sent.borrow().iter() {
+            if let Some(e) = i.source_requests.get_mut(id) {
+                if let Some(frame) = e.response.as_ref() { e.response = Some(delegation_withheld(frame)); }
+            }
+        }
+        // A reading of a generation no longer current is not kept: keeping it
+        // would replace the current generation's readings.
+        if i.generation == *generation {
+            i.delegation_readings.retain(|r| r["key"] != key && r["key"]["generation"] == *generation);
+            i.delegation_readings.push(json!({"key":key,"signals":signals}));
+        }
+        signals
+    }
+    /// The loaded conversations of the current generation the host tick reads
+    /// (at most `limit`): those whose model, provider and folder have no
+    /// reading yet (read once, when the conversation's model is known), and
+    /// those whose reading is *missing* and older than `missing_age`
+    /// (*missing* hides the press that would read it again). A present or not
+    /// established reading is read again only at the person's press.
+    pub fn delegation_reads_due(&self, limit: usize, missing_age: Duration) -> Vec<(Value, String)> {
+        let i = self.inner.0.lock().unwrap();
+        if i.state != "ready" { return vec![]; }
+        let now = delegation_now_ms();
+        let fresh = |key: &Value| i.delegation_readings.iter().any(|r| r["key"] == *key && {
+            let missing = crate::delegation_availability::evaluate(Some(&r["signals"]))["reading"] == "missing";
+            let young = r["signals"]["readAtMs"].as_u64().is_some_and(|at| now.saturating_sub(at) < missing_age.as_millis() as u64);
+            !missing || young
+        });
+        let mut keys = vec![];
+        let mut due = vec![];
+        for t in i.threads.iter().filter(|t| t["generation"] == i.generation) {
+            let key = crate::delegation_availability::key(t);
+            if due.len() >= limit || keys.contains(&key) || fresh(&key) { continue; }
+            if let Some(thread) = t["threadId"].as_str() {
+                keys.push(key);
+                due.push((i.generation.clone(), thread.to_owned()));
+            }
+        }
+        due
+    }
+    /// Test view: every reply body the request evidence keeps, and its count.
+    #[cfg(test)]
+    pub(crate) fn kept_replies(&self) -> (usize, String) {
+        let i = self.inner.0.lock().unwrap();
+        let replies: Vec<&Value> = i.source_requests.values().filter_map(|e| e.response.as_ref()).collect();
+        (i.source_requests.len(), serde_json::to_string(&replies).unwrap_or_default())
+    }
+    /// The delegation readings kept for the current generation.
+    pub fn delegation_readings(&self) -> Vec<Value> {
+        let i = self.inner.0.lock().unwrap();
+        i.delegation_readings.iter().filter(|r| r["key"]["generation"] == i.generation).cloned().collect()
+    }
+
     /// PS-1/PS-2/PS-5: plain text with an explicit collaboration mode. The mode
     /// settings carry the conversation's reported model and reasoning effort
     /// (null when Codex reported none) and null developer instructions, so
     /// Codex's built-in mode text applies and role guidance is not set aside.
     /// Codex keeps the mode on later turns until another is sent.
     pub fn turn_start_text_mode(&self, generation: &Value, thread_id: &str, text: &str, mode: &str) -> Result<Value, String> {
-        if !matches!(mode, "plan" | "default") { return Err("unknown collaboration mode".into()); }
-        let params = {
-            let i = self.inner.0.lock().unwrap();
-            if i.generation != *generation { return Err("refused-not-sent: generation changed".into()); }
-            if Self::plan_mode_availability(&i)["state"] != "offered" { return Err(format!("not started — plan mode not offered ({})", Self::plan_mode_availability(&i)["reason"].as_str().unwrap_or(""))); }
-            let thread = i.threads.iter().find(|t| t["generation"] == *generation && t["threadId"] == thread_id);
-            let model = thread.and_then(|t| t["model"].as_str()).filter(|m| !m.is_empty()).map(str::to_owned);
-            let Some(model) = model else { return Err("not started — no model selected".into()); };
-            let effort = thread.map(|t| t["reasoningEffort"].clone()).filter(|e| e.as_str().is_some_and(|s| !s.is_empty())).unwrap_or(Value::Null);
-            let mut params = Self::text_turn_params(thread_id, text)?;
-            params["collaborationMode"] = json!({"mode":mode,"settings":{"model":model,"reasoning_effort":effort,"developer_instructions":null}});
-            Self::validate_native_result("TurnStartParams", &params)?;
-            params
-        };
-        let settings = params["collaborationMode"]["settings"].clone();
+        let element = self.collaboration_mode_element(generation, thread_id, mode)?;
+        let mut params = Self::text_turn_params(thread_id, text)?;
+        params["collaborationMode"] = element.clone();
+        Self::validate_native_result("TurnStartParams", &params)?;
         let response = self.conversation_operation("turn/start", generation, params, Duration::from_secs(20));
         if let Err(e) = &response {
             // Refused before any write: no mode was requested.
             if e.contains("refused-not-sent") || e.contains("conversation-not-loaded") { return response; }
         }
+        self.record_requested_mode(generation, thread_id, &element, response.as_ref().map(|_| ()).map_err(Clone::clone));
+        response
+    }
+
+    /// TC-4/TC-5: the `collaborationMode` element a plan/default mode turn of
+    /// this conversation carries: the conversation's reported model and
+    /// reasoning effort (null when Codex reported none) and null developer
+    /// instructions. Refused, before anything is sent, when plan mode is not
+    /// offered or the conversation has no model.
+    pub(crate) fn collaboration_mode_element(&self, generation: &Value, thread_id: &str, mode: &str) -> Result<Value, String> {
+        if !matches!(mode, "plan" | "default") { return Err("unknown collaboration mode".into()); }
+        let i = self.inner.0.lock().unwrap();
+        if i.generation != *generation { return Err("refused-not-sent: generation changed".into()); }
+        if Self::plan_mode_availability(&i)["state"] != "offered" { return Err(format!("not started — plan mode not offered ({})", Self::plan_mode_availability(&i)["reason"].as_str().unwrap_or(""))); }
+        let thread = i.threads.iter().find(|t| t["generation"] == *generation && t["threadId"] == thread_id);
+        let model = thread.and_then(|t| t["model"].as_str()).filter(|m| !m.is_empty()).map(str::to_owned);
+        let Some(model) = model else { return Err("not started — no model selected".into()); };
+        let effort = thread.map(|t| t["reasoningEffort"].clone()).filter(|e| e.as_str().is_some_and(|s| !s.is_empty())).unwrap_or(Value::Null);
+        Ok(json!({"mode":mode,"settings":{"model":model,"reasoning_effort":effort,"developer_instructions":null}}))
+    }
+
+    /// The mode the App last requested for a conversation, recorded once a turn
+    /// carrying `element` was written: in force on a result, unknown otherwise.
+    pub(crate) fn record_requested_mode(&self, generation: &Value, thread_id: &str, element: &Value, outcome: Result<(), String>) {
         let mut i = self.inner.0.lock().unwrap();
-        let outcome = match &response {
-            Ok(_) => "turn/start result received; Codex keeps this mode on later turns until another mode is sent".to_string(),
+        let outcome = match outcome {
+            Ok(()) => "turn/start result received; Codex keeps this mode on later turns until another mode is sent".to_string(),
             Err(e) => format!("outcome not established ({e}); the conversation's current mode is unknown"),
         };
         i.requested_modes.retain(|r| !(r["generation"] == *generation && r["threadId"] == thread_id));
-        i.requested_modes.push(json!({"generation":generation,"threadId":thread_id,"mode":mode,"settings":settings,"standing":outcome}));
-        response
+        i.requested_modes.push(json!({"generation":generation,"threadId":thread_id,"mode":element["mode"],"settings":element["settings"],"standing":outcome}));
     }
 
     fn text_turn_params(thread_id: &str, text: &str) -> Result<Value, String> {
@@ -2297,6 +2754,7 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
         }
         i.execution_custody.turn(generation,thread,native,source=="turn/completed",&now_rfc3339());
         Self::persist_execution(i);
+        if source == "turn/completed" { Self::stop_request_turn_end(i, generation, thread, native); }
     }
 
     fn check_conversation_request(i: &Inner, method: &str, params: &Value) -> Result<(), String> { Self::check_conversation_request_excluding(i,method,params,None) }
@@ -2386,8 +2844,12 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
         let (frame,projected)=match parsed{Some(frame)if frame.is_object()&&(!known_account_channel||auth_rpc::protocol_envelope(&frame))=>{
             auth_rpc::project_received_frame(&frame,correlated_method.as_deref(),safe_reply_id.as_ref(),possible_original_account,known_account_channel)
         },_ if known_account_channel=>(json!({"observation":"nonprotocol or unparseable diagnostic from known original account source withheld; unattributed, no RPC/method invented"}),true),_ =>(json!(text),false)};
+        // NPTD §7.1 delegation reads: their result bodies (whole model
+        // catalogues, whole configurations) are never journalled.
+        let delegation_reply = correlated_method.as_deref().is_some_and(|m| DELEGATION_READ_METHODS.contains(&m)) && frame.get("method").is_none();
         if &i.generation != generation || i.server_requests.is_closed(generation) {
-            i.journal.push(json!({"generation":generation,"class":"closed-generation-frame","frame":frame,"sourceProjection":if projected{Some("sensitive account projection; not original bytes")}else{None}}));return;
+            let journalled = if delegation_reply { delegation_withheld(&frame) } else { frame };
+            i.journal.push(json!({"generation":generation,"class":"closed-generation-frame","frame":journalled,"sourceProjection":if projected{Some("sensitive account projection; not original bytes")}else{None}}));return;
         }
         i.receipt_position+=1;let pos=i.receipt_position;let gen=i.generation.clone();
         let epoch=i.aa_epoch;let pipe_epoch=i.attachment_pipe_epoch;
@@ -2456,10 +2918,17 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
                         }
                     }
                 }
-                if let Some(e) = i.source_requests.get_mut(&key) { e.response = Some(frame.clone()); e.response_position=Some(pos); e.auth_response_shape=auth_shape; }
+                // A delegation read's reply after its reading stopped waiting is
+                // kept as its outcome only; a reply still awaited is kept whole
+                // until the reading takes its fields (`delegation_signals_read`).
+                let waiting_ended = i.client_requests[idx]["waitingEnded"] == true || i.source_requests.get(&key).is_some_and(|e| e.observation_base["waitingEnded"] == true);
+                let kept = if delegation_reply && waiting_ended { delegation_withheld(&frame) } else { frame.clone() };
+                if let Some(e) = i.source_requests.get_mut(&key) { e.response = Some(kept); e.response_position=Some(pos); e.auth_response_shape=auth_shape; }
+                Self::stop_request_response(&mut i, &gen, &frame);
                 let _ = tx.send(frame.clone());
                 // Responses are also journaled, with their metadata beside the native frame (H6).
-                let entry = json!({"generation": gen, "position": pos, "class": class, "frame": frame,"sourceProjection":if projected{Some("sensitive account projection; not original bytes")}else{None}});
+                let journalled = if delegation_reply { delegation_withheld(&frame) } else { frame.clone() };
+                let entry = json!({"generation": gen, "position": pos, "class": class, "frame": journalled,"sourceProjection":if projected{Some("sensitive account projection; not original bytes")}else{None}});
                 if i.state == "handshaking" { i.held.push(entry); } else { i.journal.push(entry); }
                 let attachment_source = i.source_requests.get(&key).filter(|e|e.attachment.is_some()).map(|e|e.request.clone());
                 drop(i);
@@ -2717,12 +3186,14 @@ fn generated_outputs_match() -> bool {
     ].iter().all(|(bytes, expected)| sha256_hex(bytes) == *expected)
 }
 
+/// Returns the replaced input, so a caller with a live child can keep the
+/// child's stdin open (the child is not ended by the swap).
 #[cfg(test)]
-fn install_broken_test_input(host:&Host){
+pub(crate) fn install_broken_test_input(host:&Host)->Option<ChildStdin>{
     // A killed child can leave transient inherited pipe readers in concurrent
     // spawns. A read-only descriptor guarantees an actual OS write failure.
     let input:std::os::fd::OwnedFd=std::fs::File::open("/dev/null").unwrap().into();
-    *host.stdin.lock().unwrap()=Some(ChildStdin::from(input));
+    host.stdin.lock().unwrap().replace(ChildStdin::from(input))
 }
 
 #[cfg(test)]
@@ -2975,13 +3446,13 @@ mod conversation_transport_tests {
     fn actual_text_pipe_response_and_interrupt_ack_do_not_invent_turn_end_or_model_witness() {
         let host=host();let text="exact text\n\né / 家";
         let (result,outbound)=exchange(&host,Some(json!({"result":{"turn":turn("inProgress")}})),vec![],||host.turn_start_text(&g(),"thread",text));assert_eq!(result.unwrap()["result"]["turn"],turn("inProgress"));assert_eq!(outbound["method"],"turn/start");assert_eq!(outbound["params"],Host::text_turn_params("thread",text).unwrap());let snapshot=host.snapshot();assert_eq!(snapshot["conversationTurns"][0]["nativeTurn"]["status"],"inProgress");assert_eq!(snapshot["modelTurnExercised"],Value::Null);assert_eq!(snapshot["modelTurnEvidence"]["protocolRequests"][0]["outcome"],"response-observed-result");
-        let (ack,outbound)=exchange(&host,Some(json!({"result":{}})),vec![],||host.turn_interrupt(&g(),"thread","turn"));assert_eq!(ack.unwrap()["result"],json!({}));assert_eq!(outbound["params"],json!({"threadId":"thread","turnId":"turn"}));assert_eq!(host.snapshot()["conversationTurns"][0]["nativeTurn"]["status"],"inProgress");
-        let count=host.client_requests().len();assert_eq!(host.turn_interrupt(&g(),"thread","turn").unwrap_err(),"stop-already-requested");assert_eq!(host.client_requests().len(),count);event(&host,"interrupted");assert_eq!(host.snapshot()["conversationTurns"][0]["nativeTurn"]["status"],"interrupted");assert_eq!(host.turn_interrupt(&g(),"thread","turn").unwrap_err(),"no-live-turn");
+        let (ack,outbound)=exchange(&host,Some(json!({"result":{}})),vec![],||host.turn_interrupt(&g(),"thread","turn","H-acct",&crate::stop_records::person("")));assert_eq!(ack.unwrap()["result"],json!({}));assert_eq!(outbound["params"],json!({"threadId":"thread","turnId":"turn"}));assert_eq!(host.snapshot()["conversationTurns"][0]["nativeTurn"]["status"],"inProgress");
+        let count=host.client_requests().len();assert_eq!(host.turn_interrupt(&g(),"thread","turn","H-acct",&crate::stop_records::person("")).unwrap_err(),"stop-already-requested");assert_eq!(host.client_requests().len(),count);event(&host,"interrupted");assert_eq!(host.snapshot()["conversationTurns"][0]["nativeTurn"]["status"],"interrupted");assert_eq!(host.turn_interrupt(&g(),"thread","turn","H-acct",&crate::stop_records::person("")).unwrap_err(),"no-live-turn");
     }
     #[test]
     fn foreign_closed_unknown_thread_and_unknown_turn_are_not_registered_or_written() {
         let host=host();for foreign in [json!(1),json!({"appSession":"other","home":"conversation-home","spawnCounter":1}),json!({"appSession":"conversation-session","home":"other","spawnCounter":1}),json!({"appSession":"conversation-session","home":"conversation-home","spawnCounter":2})] {assert!(host.turn_start_text(&foreign,"thread","text").is_err());}
-        assert!(host.turn_start_text(&g(),"unknown","text").unwrap_err().contains("conversation-not-loaded"));assert_eq!(host.turn_interrupt(&g(),"thread","unknown").unwrap_err(),"no-live-turn");assert_eq!(host.inner.0.lock().unwrap().send_position,0);assert!(host.client_requests().is_empty());Host::close_generation(&mut host.inner.0.lock().unwrap());assert!(host.turn_start_text(&g(),"thread","text").is_err());assert_eq!(host.inner.0.lock().unwrap().send_position,0);
+        assert!(host.turn_start_text(&g(),"unknown","text").unwrap_err().contains("conversation-not-loaded"));assert_eq!(host.turn_interrupt(&g(),"thread","unknown","H-acct",&crate::stop_records::person("")).unwrap_err(),"no-live-turn");assert_eq!(host.inner.0.lock().unwrap().send_position,0);assert!(host.client_requests().is_empty());Host::close_generation(&mut host.inner.0.lock().unwrap());assert!(host.turn_start_text(&g(),"thread","text").is_err());assert_eq!(host.inner.0.lock().unwrap().send_position,0);
     }
     #[test]
     fn native_error_failed_write_and_wait_limit_keep_distinct_evidence_and_late_response() {
@@ -2996,8 +3467,8 @@ mod conversation_transport_tests {
     }
     #[test]
     fn interrupt_error_timeout_and_closure_do_not_claim_effect_or_automatic_retry() {
-        let host=host();event(&host,"inProgress");let (result,_)=exchange(&host,Some(json!({"error":{"code":-32600,"message":"interrupt refused"}})),vec![],||host.turn_interrupt(&g(),"thread","turn"));assert!(result.unwrap_err().contains("native error"));assert_eq!(host.snapshot()["conversationTurns"][0]["nativeTurn"]["status"],"inProgress");
-        let (result,_)=exchange(&host,None,vec![],||host.conversation_operation("turn/interrupt",&g(),json!({"threadId":"thread","turnId":"turn"}),Duration::from_millis(15)));assert!(result.is_err());assert_eq!(host.turn_interrupt(&g(),"thread","turn").unwrap_err(),"stop-already-requested");let count=host.client_requests().len();Host::close_generation(&mut host.inner.0.lock().unwrap());assert_eq!(host.client_requests().len(),count);assert_eq!(host.client_requests().last().unwrap()["outcome"],"unknown-no-response");let turn=&host.snapshot()["conversationTurns"][0];assert_eq!(turn["nativeTurn"]["status"],"inProgress");assert_eq!(turn["observationEnded"],true);
+        let host=host();event(&host,"inProgress");let (result,_)=exchange(&host,Some(json!({"error":{"code":-32600,"message":"interrupt refused"}})),vec![],||host.turn_interrupt(&g(),"thread","turn","H-acct",&crate::stop_records::person("")));assert!(result.unwrap_err().contains("native error"));assert_eq!(host.snapshot()["conversationTurns"][0]["nativeTurn"]["status"],"inProgress");
+        let (result,_)=exchange(&host,None,vec![],||host.conversation_operation("turn/interrupt",&g(),json!({"threadId":"thread","turnId":"turn"}),Duration::from_millis(15)));assert!(result.is_err());assert_eq!(host.turn_interrupt(&g(),"thread","turn","H-acct",&crate::stop_records::person("")).unwrap_err(),"stop-already-requested");let count=host.client_requests().len();Host::close_generation(&mut host.inner.0.lock().unwrap());assert_eq!(host.client_requests().len(),count);assert_eq!(host.client_requests().last().unwrap()["outcome"],"unknown-no-response");let turn=&host.snapshot()["conversationTurns"][0];assert_eq!(turn["nativeTurn"]["status"],"inProgress");assert_eq!(turn["observationEnded"],true);
     }
     #[test]
     fn exact_completed_then_started_repro_preserves_terminal_and_raw_inconsistency() {
@@ -3005,16 +3476,16 @@ mod conversation_transport_tests {
         let late=json!({"method":"turn/started","params":{"threadId":"thread","turn":turn("inProgress")},"nativeExtra":"contradictory source preserved"});
         host.on_line(&serde_json::to_vec(&late).unwrap(),&g());let snapshot=host.snapshot();let record=&snapshot["conversationTurns"][0];
         assert_eq!(record["nativeTurn"],before["nativeTurn"]);assert_eq!(record["source"],before["source"]);assert_eq!(record["receiptPosition"],before["receiptPosition"]);assert_eq!(record["terminalEventObserved"],true);assert_eq!(record["inconsistencyLimits"][0]["source"],"turn/started");assert_eq!(record["inconsistencyLimits"][0]["reportedStatus"],"inProgress");assert_eq!(host.journal().last().unwrap()["frame"],late);
-        assert_eq!(Host::check_conversation_request(&host.inner.0.lock().unwrap(),"turn/interrupt",&json!({"threadId":"thread","turnId":"turn"})).unwrap_err(),"no-live-turn");assert_eq!(host.turn_interrupt(&g(),"thread","turn").unwrap_err(),"no-live-turn");assert_eq!(host.inner.0.lock().unwrap().send_position,0);
+        assert_eq!(Host::check_conversation_request(&host.inner.0.lock().unwrap(),"turn/interrupt",&json!({"threadId":"thread","turnId":"turn"})).unwrap_err(),"no-live-turn");assert_eq!(host.turn_interrupt(&g(),"thread","turn","H-acct",&crate::stop_records::person("")).unwrap_err(),"no-live-turn");assert_eq!(host.inner.0.lock().unwrap().send_position,0);
         // Terminal guard is independent of raw-payload status, even if a
         // future reading accidentally supplies an active-looking payload.
-        host.inner.0.lock().unwrap().conversation_turns[0]["nativeTurn"]["status"]=json!("inProgress");assert_eq!(host.turn_interrupt(&g(),"thread","turn").unwrap_err(),"no-live-turn");
+        host.inner.0.lock().unwrap().conversation_turns[0]["nativeTurn"]["status"]=json!("inProgress");assert_eq!(host.turn_interrupt(&g(),"thread","turn","H-acct",&crate::stop_records::person("")).unwrap_err(),"no-live-turn");
     }
     #[test]
     fn all_processed_active_like_sources_and_late_start_response_stay_non_live() {
         let host=host();event(&host,"interrupted");let terminal=host.snapshot()["conversationTurns"][0]["nativeTurn"].clone();
         let active_completed=json!({"method":"turn/completed","params":{"threadId":"thread","turn":turn("inProgress")}});host.on_line(&serde_json::to_vec(&active_completed).unwrap(),&g());assert_eq!(host.snapshot()["conversationTurns"][0]["nativeTurn"],terminal);
-        let (response,_)=exchange(&host,Some(json!({"result":{"turn":turn("inProgress")}})),vec![],||host.turn_start_text(&g(),"thread","exact text"));assert_eq!(response.unwrap()["result"]["turn"]["status"],"inProgress");let record=host.snapshot()["conversationTurns"][0].clone();assert_eq!(record["nativeTurn"],terminal);assert_eq!(record["inconsistencyLimits"].as_array().unwrap().len(),2);assert_eq!(host.turn_interrupt(&g(),"thread","turn").unwrap_err(),"no-live-turn");
+        let (response,_)=exchange(&host,Some(json!({"result":{"turn":turn("inProgress")}})),vec![],||host.turn_start_text(&g(),"thread","exact text"));assert_eq!(response.unwrap()["result"]["turn"]["status"],"inProgress");let record=host.snapshot()["conversationTurns"][0].clone();assert_eq!(record["nativeTurn"],terminal);assert_eq!(record["inconsistencyLimits"].as_array().unwrap().len(),2);assert_eq!(host.turn_interrupt(&g(),"thread","turn","H-acct",&crate::stop_records::person("")).unwrap_err(),"no-live-turn");
         // A distinct native turn ID in the same thread is an ordinary new turn,
         // not revival of the completed tuple.
         let mut next=turn("inProgress");next["id"]=json!("next-turn");host.on_line(&serde_json::to_vec(&json!({"method":"turn/started","params":{"threadId":"thread","turn":next}})).unwrap(),&g());assert!(Host::check_conversation_request(&host.inner.0.lock().unwrap(),"turn/interrupt",&json!({"threadId":"thread","turnId":"next-turn"})).is_ok());
@@ -3023,7 +3494,7 @@ mod conversation_transport_tests {
     fn full_tuple_transition_after_response_cannot_mutate_successor_turn_state() {
         for method in ["turn/start","turn/interrupt"] {for successor in [json!({"appSession":"conversation-session","home":"conversation-home","spawnCounter":2}),json!({"appSession":"other","home":"conversation-home","spawnCounter":1}),json!({"appSession":"conversation-session","home":"other","spawnCounter":1})] {
             let host=host();if method=="turn/interrupt" {event(&host,"inProgress");}let me=Arc::clone(&host);let next=successor.clone();*host.before_turn_result.lock().unwrap()=Some(Box::new(move||{let mut i=me.inner.0.lock().unwrap();Host::close_generation(&mut i);i.generation=next;i.state="ready".into();}));
-            let response=if method=="turn/start" {json!({"result":{"turn":turn("inProgress")}})}else{json!({"result":{}})};let (result,outbound)=exchange(&host,Some(response.clone()),vec![],||if method=="turn/start" {host.turn_start_text(&g(),"thread","exact text")}else{host.turn_interrupt(&g(),"thread","turn")});assert!(result.unwrap_err().contains("closed/replaced generation"));let snapshot=host.snapshot();assert_eq!(snapshot["generation"],successor);assert!(snapshot["conversationTurns"].as_array().unwrap().iter().all(|t|t["generation"]==g()));assert_eq!(snapshot["clientRequests"][0]["generation"],g());let mut expected=response;expected["id"]=outbound["id"].clone();assert_eq!(host.journal().last().unwrap()["frame"],expected);
+            let response=if method=="turn/start" {json!({"result":{"turn":turn("inProgress")}})}else{json!({"result":{}})};let (result,outbound)=exchange(&host,Some(response.clone()),vec![],||if method=="turn/start" {host.turn_start_text(&g(),"thread","exact text")}else{host.turn_interrupt(&g(),"thread","turn","H-acct",&crate::stop_records::person(""))});assert!(result.unwrap_err().contains("closed/replaced generation"));let snapshot=host.snapshot();assert_eq!(snapshot["generation"],successor);assert!(snapshot["conversationTurns"].as_array().unwrap().iter().all(|t|t["generation"]==g()));assert_eq!(snapshot["clientRequests"][0]["generation"],g());let mut expected=response;expected["id"]=outbound["id"].clone();assert_eq!(host.journal().last().unwrap()["frame"],expected);
         }}
     }
 
@@ -3265,39 +3736,39 @@ mod conversation_transport_tests {
     fn shared_attachment_submit_actual_context_and_capabilities(){
         use crate::recovery::{ExplicitAppProjectContext as Context,AppProjectSource};for known in [false,true]{let(host,g,root,custody,_)=context_fixture();let(state,owner,revision,order)=shared_attachment_selected(&root);let context=if known{host.observe_conversation_project(&g,"thread",Some("H-acct"),&Context::known("explicit App P",AppProjectSource::ConfiguredDirectory).unwrap()).unwrap();Context::known("frozen current Root Q",AppProjectSource::OpenedDirectory).unwrap()}else{Context::unknown()};let home=if known{Some("H-acct")}else{None};let result=shared_attachment_exchange(&host,&g,json!({"result":{"turn":complete_turn()}}),||crate::runtime_session::submit_selected_attachments(&state,&host,Arc::clone(&custody),&owner,revision,&order,&g,"thread",None,"explicit ordinary text without WR prefix",context.clone(),home)).unwrap();assert_eq!(result["sourceWriteConfirmed"],true);assert_eq!(result["nativeTurnRef"]["threadId"],"thread");let view=state.lock().unwrap().as_ref().unwrap().snapshot();assert_eq!(view["submissions"].as_array().unwrap().len(),1);let binding=&view["submissions"][0]["contextBinding"];if known{assert_eq!(binding["historicalProject"],"explicit App P");assert_eq!(binding["currentSubmissionProject"],"frozen current Root Q");assert_eq!(binding["persistence"],"durable App metadata");}else{assert!(binding["indexSnapshot"].is_null());assert_eq!(binding["persistence"],"memory-only");assert!(binding["limit"].as_str().unwrap().contains("cold lookup unavailable"));}let count=host.client_requests().len();state.lock().unwrap().as_mut().unwrap().refresh_submissions(&host,&custody);assert_eq!(host.client_requests().len(),count);std::fs::remove_dir_all(root).unwrap();}
     }
-    /// WR TT-4 through the real attachment submit path: a trial pointer only
-    /// after an acknowledged send, none after a native refusal.
+    /// WR TT-4 (§17 step 4, with the send paths of steps 5 and 6) through the
+    /// real Host: a trial link only after Codex acknowledged the trial
+    /// message's turn/start; none after a native refusal, and the trial stays
+    /// pre-filled. The frame carries the person's text then the trial text.
     #[test]
-    fn draft_trial_pointer_is_kept_only_after_an_acknowledged_attachment_send(){
-        use crate::recovery::ExplicitAppProjectContext as Context;
+    fn trial_link_is_written_only_after_an_acknowledged_trial_send(){
         for acknowledged in [true,false]{
-            let(host,g,root,custody,_)=context_fixture();
+            let(host,g,root,_custody,_)=context_fixture();
             let library=root.join("lib");let draft=library.join(".chirality/workflow-drafts/solo-draft");std::fs::create_dir_all(&draft).unwrap();
             std::fs::write(draft.join("WORKFLOW.md"),"---\nname: solo-draft\n---\n# Solo\n").unwrap();
+            let home=crate::runtime_session::HomeSession::new(crate::home_resources::HomeClass::Account,Arc::clone(&host),Err("fixture: no configuration".into())).unwrap();
             let workflows=Mutex::new(crate::runtime_session::WorkflowRootSession::default());
-            {let mut w=workflows.lock().unwrap();w.set_app_user_data(root.join("app-data"));w.open_library(library.clone(),"project",None,Arc::new(Mutex::new(None))).unwrap();w.observe_drafts(&json!([])).unwrap();}
-            let state=Mutex::new(crate::runtime_session::AttachmentSelectionSession::new(None));
-            let owner=state.lock().unwrap().as_ref().unwrap().snapshot()["ownerRef"].as_str().unwrap().to_owned();
-            let sources=workflows.lock().unwrap().draft_trial_sources("solo-draft").unwrap();
-            let view=state.lock().unwrap().as_mut().unwrap().prefill_draft(&owner,0,sources).unwrap();
-            let order:Vec<String>=view["selections"].as_array().unwrap().iter().map(|r|r["selection"]["selectionRef"].as_str().unwrap().to_owned()).collect();
-            assert_eq!(order.len(),1);
+            let reference={let mut w=workflows.lock().unwrap();w.set_app_user_data(root.join("app-data"));w.open_library(library.clone(),"project",None,Arc::new(Mutex::new(None))).unwrap();w.observe_drafts(&json!([])).unwrap();
+                w.prepare_trial("delegated","solo-draft",Some((&g,"thread")),Some(&home),Some(&library)).unwrap()["reference"].as_str().unwrap().to_owned()};
             let response=if acknowledged{json!({"result":{"turn":complete_turn()}})}else{json!({"error":{"code":-32600,"message":"synthetic refusal"}})};
-            let result=shared_attachment_exchange(&host,&g,response,||crate::runtime_session::submit_attachments_with_draft_trials(&state,&workflows,&host,Ok(Arc::clone(&custody)),&owner,1,&order,&g,"thread",None,"please try this method",Context::unknown(),None));
-            let pointers=crate::workflow_workspace::registration::drafts::TrialPointers::open(&root.join("app-data"));
-            let key=json!({"draft_location":"project","draft_root":library.join(".chirality/workflow-drafts").display().to_string(),"name":"solo-draft"});
+            let (result,outbound)=shared_text_exchange(&host,&g,response,||crate::runtime_session::trial_flows::send_trial(&workflows,&home,&reference,&g,"thread","please try this draft").map_err(|e|e.message));
+            assert_eq!(outbound["params"]["input"][0]["text"],"please try this draft");
+            assert!(outbound["params"]["input"][1]["text"].as_str().unwrap().starts_with("[Chirality] Workflow trial 1 of draft project:solo-draft"));
+            let links=crate::workflow_workspace::registration::drafts::TrialLinks::open(&root.join("app-data"));
             if acknowledged{
-                let result=result.unwrap();assert_eq!(result["trialPointers"][0]["conversation"],"thread");
-                let kept=pointers.for_draft(&key);assert_eq!(kept.len(),1,"one pointer, kept in the App data folder");
-                assert_eq!(kept[0]["standing"],"draft tried in conversation; not a run of any workflow identity");
-                assert_eq!(kept[0]["content"]["value"],crate::workflow_workspace::Snapshot::capture(&draft).unwrap().revision());
+                let result=result.unwrap();assert_eq!(result["link"]["trial"]["reference"],reference.as_str());
+                let kept=links.link(&reference).unwrap();assert_eq!(kept["trial"]["client_message"],outbound["params"]["clientUserMessageId"]);
+                assert_eq!(kept["standing"],"trial of a draft; not a run of any workflow identity; not registration, checking or acceptance");
                 assert!(workflows.lock().unwrap().snapshot()["runs"].as_array().unwrap().is_empty(),"a trial opens no run");
             }else{
-                assert!(result.is_err());assert!(pointers.for_draft(&key).is_empty(),"no pointer after a refused send");
+                assert!(result.unwrap_err().contains("stays pre-filled"));assert!(links.all_links().is_empty(),"no link after a refused send");
+                let mut status=workflows.lock().unwrap().snapshot();workflows.lock().unwrap().decorate_status(&mut status,&json!({}));
+                assert_eq!(status["pendingTrials"][0]["reference"],reference.as_str(),"still pre-filled");
             }
             std::fs::remove_dir_all(root).unwrap();
         }
     }
+    fn shared_text_exchange<F>(host:&Arc<Host>,generation:&Value,response:Value,operation:F)->(Result<Value,String>,Value)where F:FnOnce()->Result<Value,String>{let mut child=Command::new("/bin/cat").env_clear().stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null()).spawn().unwrap();*host.stdin.lock().unwrap()=child.stdin.take();let stdout=child.stdout.take().unwrap();let source=Arc::clone(host);let generation=generation.clone();let worker=std::thread::spawn(move||{let mut line=String::new();BufReader::new(stdout).read_line(&mut line).unwrap();let outbound:Value=serde_json::from_str(&line).unwrap();let mut response=response;response["id"]=outbound["id"].clone();source.on_line(&serde_json::to_vec(&response).unwrap(),&generation);outbound});let result=operation();let outbound=worker.join().unwrap();*host.stdin.lock().unwrap()=None;assert!(child.wait().unwrap().success());(result,outbound)}
     #[test]
     fn shared_attachment_submit_drift_stale_source_and_native_error_preserve_no_retry(){
         use crate::recovery::ExplicitAppProjectContext as Context;for stale in [false,true]{let(host,g,root,custody,_)=context_fixture();let(state,owner,revision,order)=shared_attachment_selected(&root);if stale{host.inner.0.lock().unwrap().generation["spawnCounter"]=json!(2);}else{std::fs::write(root.join("first.txt"),"changed since native selection").unwrap();}no_attachment_write(&host,||{assert!(crate::runtime_session::submit_selected_attachments(&state,&host,Arc::clone(&custody),&owner,revision,&order,&g,"thread",None,"person text",Context::unknown(),None).is_err());});assert_eq!(host.inner.0.lock().unwrap().send_position,0);assert_eq!(state.lock().unwrap().as_ref().unwrap().snapshot()["selections"].as_array().unwrap().len(),1);std::fs::remove_dir_all(root).unwrap();}
@@ -3817,3 +4288,7 @@ mod execution_custody_tests;
 #[cfg(test)]
 #[path = "recovery_root_tests.rs"]
 mod recovery_root_tests;
+
+#[cfg(test)]
+#[path = "stop_records_host_tests.rs"]
+mod stop_records_host_tests;
