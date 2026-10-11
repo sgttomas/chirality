@@ -22,6 +22,7 @@ jobs:
     outputs:
       mode: ${{ steps.plan.outputs.mode }}
       numerical_mode: ${{ steps.numeric.outputs.mode }}
+      python_mode: ${{ steps.numeric.outputs.python_mode }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -45,11 +46,13 @@ jobs:
         run: |
           python3 - <<'PYTHON'
           import json, os
-          mode = json.load(open('piping-ci-plan.json'))['modes']['piping-numerical']
-          if mode not in {'full', 'not-applicable'}:
-              raise SystemExit('Invalid numerical selection')
+          modes = json.load(open('piping-ci-plan.json'))['modes']
           with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
-              out.write(f'mode={mode}\n')
+              for suite, output in [('piping-numerical', 'mode'), ('piping-python', 'python_mode')]:
+                  mode = modes[suite]
+                  if mode not in {'full', 'not-applicable'}:
+                      raise SystemExit(f'Invalid {suite} selection')
+                  out.write(f'{output}={mode}\n')
           PYTHON
       - uses: actions/upload-artifact@v4
         with:
@@ -133,7 +136,7 @@ jobs:
     needs: selection
     if: needs.selection.outputs.numerical_mode == 'full'
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 45
     env:
       CARGO_INCREMENTAL: '0'
     steps:
@@ -204,7 +207,7 @@ jobs:
   python-product:
     name: Python product contracts
     needs: selection
-    if: needs.selection.outputs.numerical_mode == 'full'
+    if: needs.selection.outputs.python_mode == 'full'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -281,6 +284,7 @@ jobs:
         env:
           MODE: ${{ needs.selection.outputs.mode }}
           NUMERICAL_MODE: ${{ needs.selection.outputs.numerical_mode }}
+          PYTHON_MODE: ${{ needs.selection.outputs.python_mode }}
           SELECTION: ${{ needs.selection.result }}
           PRODUCT: ${{ needs.product.result }}
           NUMERICAL: ${{ needs.numerical.result }}
@@ -288,4 +292,4 @@ jobs:
         run: |
           python3 tools/software_workflow/hosted_ci.py aggregate --suite piping --mode "$MODE" --selection "$SELECTION" --product "$PRODUCT"
           python3 tools/software_workflow/hosted_ci.py aggregate --suite piping-numerical --mode "$NUMERICAL_MODE" --selection "$SELECTION" --product "$NUMERICAL"
-          python3 tools/software_workflow/hosted_ci.py aggregate --suite piping-numerical --mode "$NUMERICAL_MODE" --selection "$SELECTION" --product "$PYTHON_PRODUCT_RESULT"
+          python3 tools/software_workflow/hosted_ci.py aggregate --suite piping-python --mode "$PYTHON_MODE" --selection "$SELECTION" --product "$PYTHON_PRODUCT_RESULT"
