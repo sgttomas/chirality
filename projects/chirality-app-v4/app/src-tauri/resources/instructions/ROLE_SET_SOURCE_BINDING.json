@@ -1,6 +1,6 @@
 {
   "format": "chirality.app.roles.source-binding/1",
-  "basisCommit": "015f9763ead9294b3857038e5d9cbaf2f9816244",
+  "basisCommit": "6dfa1ea1e4f4d97f710a4385943cd681d7c4a5de",
   "standing": "Production candidate; independent review pending; no release, supplier adoption or shared allocation claim",
   "roleSet": {
     "path": "roles.json",
@@ -9,7 +9,7 @@
   "sources": [
     {
       "repositoryPath": "projects/chirality-app-v4/execution/PKG-02/DEL-02-04/Design/ROLE_SUPPLY.md",
-      "sha256": "9b1852f58c02fc6de1b09451fb7c07fce26ed0d84c90706db7bf01302fe9fb44",
+      "sha256": "7e37f028887f668e9e87adcaff89760591c423f0a6e9453d73b0ce384a6bd291",
       "readExtent": "4.1; GS-1 through GS-7; 6.1; U-R6/U-R11"
     },
     {

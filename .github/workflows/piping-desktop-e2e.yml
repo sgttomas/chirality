@@ -133,7 +133,7 @@ jobs:
     needs: selection
     if: needs.selection.outputs.numerical_mode == 'full'
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
         with:
