@@ -2,32 +2,39 @@
 
 ## 4.1 Overview
 
-Chirality's architecture is a set of revisable responses to the four questions
-established in Chapter 3: what the work concerns, what supports its claims, how
-it becomes usable, and what matters in its conduct and consequences. Those
-questions motivate design choices; they do not uniquely determine a filesystem,
-role hierarchy, approval protocol or execution topology.
+The architecture begins with a relation: a person pursues a purpose through work
+whose meaning, grounds and consequences must remain intelligible as agents
+contribute. The environment mediates that relation. It shapes what participants
+can find, what they can do and which differences become visible. For that reason,
+an environment is consequential even when it appears to consist only of prompts,
+files and ordinary tools.
 
-This chapter describes the repository's operating architecture after the October
-2026 reset and distinguishes it from the earlier architecture. The comparison
-matters because the earlier thesis treated several subsequently retired
-mechanisms as necessary conditions of accountability. Their removal while the
-accountability commitments remain is evidence against that necessity claim. It
-is not proof that the replacement is universally better.
+Root's architectural proposition is to make those mediating means available as
+shared, revisable artifacts and operations. Participants can examine a method,
+challenge an instruction, repair a query or retire a duty using the same
+practices through which they produce applications. This is a generative capacity:
+work can improve its own means without requiring a predetermined orchestration
+for every undertaking.
 
-The current source basis is [AGENTS.md](../../AGENTS.md), the
-[deliverable-query contract](../../tools/deliverables/README.md), the four
-[role files](../../agents/), and the active products' adopted definitions.
-These are different kinds of source: instructions state expected conduct, tool
-contracts describe bounded behaviour, and product requirements describe intended
-capabilities. This chapter does not turn a requirement into evidence that its
-implementation has been qualified. The historical invariant families are
-examined in [Appendix A](appendix_a_invariant_catalog.md); that appendix is not a
-second source of repository instructions.
+Revision remains bounded by authority and evidence. An agent that discovers a
+burdensome rule does not thereby acquire the right to change the owner's
+commitments. A change to a representation does not settle what its subject
+means. Root must support adaptation without letting its ability to edit its own
+machinery become a claim to define its own purpose.
+
+Three relations organize the architecture: work and its representation,
+responsibility and permission, and a contribution and the result that consumes it.
 
 ## 4.2 The Foundational Decision: Current Artifacts and Derived Views
 
 ### 4.2.1 The Graph Model
+
+A representation is useful when it makes a relation available to the next
+participant without pretending to replace that participant's assessment. A need
+is especially important: it states why one contribution matters to another.
+Recording only that two objects are linked loses the condition that gives the
+link practical meaning. Recording a global completion label can conceal that
+one consumer's need is met while another's is not.
 
 Active project work is organized around deliverable folders. A deliverable's
 `ScopeOfWork.md` holds commitments and acceptance criteria. `Design/` holds useful
@@ -50,6 +57,12 @@ consumer declarations remain the sources; no generated progress register is
 committed as a competing representation.
 
 ### 4.2.2 Why the Artifact Choice Matters
+
+The artifact is a shared object around which disagreement can become specific.
+Participants can point to a condition, compare a revision, or identify a missing
+source. This does not externalize all understanding. It supplies a sufficiently
+stable subject for continued interpretation and action across time and between
+participants.
 
 Plain, versioned artifacts support direct inspection, meaningful diffs, stable
 references and recovery of committed versions. They also let agents use ordinary
@@ -93,7 +106,12 @@ presence of a repository.
 
 ### 4.3.1 Project Hierarchy
 
-The active repository convention is:
+Root owns shared components in their functional locations: `agents/`,
+`workflows/`, `.agents/skills/`, `tools/`, `.github/workflows/` and shared
+references. The conversation defines the current Root undertaking. There is no
+standing requirement to generate a product decomposition for every shared edit.
+
+Active project deliverables use the following repository convention:
 
 ```text
 projects/<project>/execution/
@@ -144,6 +162,14 @@ files. A record is justified by a concrete consumer, acceptance requirement or
 recovery need.
 
 ### 4.3.4 Structural and Dependency Views
+
+A concrete traversal starts with an affected project deliverable and its
+`neighborhood`. Each returned need identifies a source file and index. The agent
+reads the condition and the relevant supplier material, rather than treating the
+supplier's presence on main as fulfilment. If the work changes that condition,
+the consumer declaration changes; reverse links are derived again. An `impact`
+query then selects downstream relationships for investigation. This sequence
+maintains one declaration while supporting several useful views.
 
 The package tree supports composition and navigation. The dependency graph
 supports investigation of inputs and consumers. Neither view alone determines
@@ -238,12 +264,18 @@ one artifact can have different grounds and limits.
 
 The operative questions are what supports the claim, whether that support is
 appropriate here, what remains uncertain, and who accepts which reliance.
-Chapter 5 develops these questions. They require inspectable grounds, not a
+They require inspectable grounds, not a
 second obligatory lifecycle register.
 
 ## 4.5 Roles and Responsibility
 
 ### 4.5.1 Structural Overview
+
+Roles answer a risk in collective work: a needed responsibility can disappear
+between individually completed assignments. Someone must preserve purpose,
+someone must make intent concrete, and someone must connect contributions into
+a result. Naming those responsibilities makes the gap discussable. It does not
+follow that each needs a separate person or process.
 
 The current role definitions offer four contributions:
 
@@ -273,6 +305,12 @@ consequential shared assumptions, interfaces outside the assignment or a reserve
 choice.
 
 ### 4.5.3 Classification and Capability
+
+Root separates responsibility, method selection and authorization. The role file
+states what contribution is being undertaken. The selected workflow supplies a
+method. The assignment identifies the authorized work, and the host supplies
+actual capabilities. None can silently stand in for another: a workflow name
+cannot grant writes, and a broad host capability cannot widen the assignment.
 
 Type numbers identify responsibilities, not model assignments or levels of
 intelligence. Skills and workflows are methods selected for the work. A host's
@@ -357,6 +395,13 @@ comparison and points to adopted product contracts where they still apply.
 
 ### 4.7.2 Assurance and the Limits of Layering
 
+Examination is justified by the claim that matters to a consumer. Its purpose is
+to expose a consequential mistake or establish a missing ground, not to certify
+that work has traversed enough reviewers. A contribution can be consistent with
+its test suite and still inherit a mistaken premise shared by every test author.
+The basis of agreement sometimes needs examination more than another instance
+of agreement does.
+
 Instructions, deterministic checks, host enforcement and human examination can
 complement one another. They can also share the same mistaken premise. Merely
 counting layers provides no assurance that one failure cannot compromise the
@@ -378,6 +423,12 @@ a consequential failure that would otherwise remain silent.
 
 ### 4.8.1 Contributions Rather Than a Spawning Chart
 
+Ownership through repair connects production to consequences. An author who
+leaves at the first return can transfer interpretive work to a reviewer or
+coordinator without making that transfer visible. Continuing ownership preserves
+context while another perspective examines the result. The relevant division is
+between contribution and scrutiny, not necessarily between every production step.
+
 The [coordinated-knowledge-work workflow](../../workflows/coordinated-knowledge-work/WORKFLOW.md)
 organizes purpose, integration, production and independent examination. An agent
 can carry several responsibilities when the work permits. Separate contributors
@@ -391,6 +442,11 @@ parallel defaults.
 
 ### 4.8.2 Continuity and Recovery
 
+Continuity concerns the intelligibility of what remains to be done. Exhaustive
+transcription cannot guarantee it: a large history may leave the next participant
+unable to identify the current question. A current source and a precise unresolved
+condition can preserve more useful continuity than a chronology of every action.
+
 Continuity comes primarily from current artifacts, the conversation, tool queries
 and the existing change history. A replaceable recovery note is useful when
 those sources do not suffice across an interruption. It is not a routine second
@@ -402,6 +458,19 @@ can the participant identify the current objective, basis, unresolved matters an
 next authorized action without repeating or losing consequential work?
 
 ### 4.8.3 The Working Cycle
+
+Consider a change to a reusable workflow. The producer locates its package and
+actual consumers, follows `create-workflow`, edits the method and rebuilds the
+workflow index when its consumed metadata changes. An affected App bundle is
+updated only where the product actually adopts the changed source. Examination
+then follows that connecting path. Merely posting a notice neither updates the
+consumer nor establishes what it will execute.
+
+The same principle governs review. A reviewer needs the actual candidate,
+applicable source basis and existing evidence. A stale synopsis, a prior preview
+or an inherited statement that a test passed cannot replace inspection of the
+claim at issue. A source correction reaches the governed text and affected
+implementation; valid unrelated evidence remains usable.
 
 The current repository cycle is to establish the objective and authorization,
 locate affected artifacts, query inputs and consumers, perform and examine the
@@ -416,25 +485,33 @@ affected action, while independent authorized work can continue.
 
 ### 4.8.4 App Exemplar and Domain Application
 
-App v4 develops the human-agent relationship through workflow authoring, trial,
-conversation, requests and recovery. Its [PRD](../../projects/chirality-app-v4/docs/PRD.md)
-and [architecture](../../projects/chirality-app-v4/docs/ARCHITECTURE.md) preserve
-useful native supplier capabilities while rejecting the former Runtime service
-as its required topology. Shared semantics do not imply a universal shared
-service. App v3, Runtime and PEC are frozen; their recovery is described in
-[projects/FROZEN.md](../../projects/FROZEN.md).
+Root produces and revises reusable meanings and methods. The App expresses
+Chirality inside an application: workflow authoring lets people develop, try,
+inspect and improve methods through the human–agent relationship. It provides
+a first exemplar whose subject is close to Root's own work. That does not make
+Root the App's executable runtime or oblige every product to adopt the same
+process arrangement.
 
-SWBPIPE supplies a demanding domain realization. Its [PRD](../../projects/chirality-piping/docs/PRD.md)
-distinguishes physical models, analytical models, analysis results, comparisons
-and downstream handoff. Human and agent requests are intended to use meaningful
-operations through common validation and application. The numerical engine must
-be examined on its own terms; it cannot inherit adequacy from the agent framework.
+SWBPIPE instantiates the approach at the level of a particular application
+category. Physical and analytical models, operations, numerical results and
+engineering interpretation introduce meanings that a general authoring App
+cannot supply. Human and agent entry points are intended to reach common domain
+operations. Their correctness belongs to the application, not to Root's method
+library.
 
-Re-deriving an application from a current PRD is an interpretive design activity,
-not deterministic compilation. Requirements, retained lessons, native-use
-findings and implementation evidence inform what is reused and what is replaced.
-The value of repeated derivation depends on preserving learning and useful
-behaviour, not merely producing a new codebase quickly.
+The transfer therefore preserves selected relationships rather than a complete
+software topology. The [App thesis](../../projects/chirality-app-v4/docs/thesis/README.md)
+examines hosting and workflow authoring; the
+[SWBPIPE thesis](../../projects/chirality-piping/docs/thesis/README.md) examines
+piping-domain instantiation. A shared kernel gives them an orientation. It does
+not discharge either application's evidence obligations.
+
+Successive App versions illustrate re-derivation from a current PRD. Requirements
+constrain the result; prior implementation, failures, useful interactions and
+supplier changes inform the design. Root helps make those sources accessible.
+It does not mechanically compile them into one correct application. Earlier
+Apps, Runtime and PEC remain recoverable through
+[projects/FROZEN.md](../../projects/FROZEN.md), without current development duties.
 
 ## 4.9 Assignment and Result Interfaces
 
@@ -478,20 +555,21 @@ not permission to erase evidence required for a specific reliance or recovery.
 
 ## 4.10 Summary
 
-The current architecture makes relevant objects and relationships accessible,
-claims and limits inspectable, action and correction practicable, and reserved
-commitments attributable. Files, queries, roles, permissions and review are
-particular means toward those ends. They are not jointly sufficient to guarantee
-truth, professional adequacy or accountable human engagement.
+The Root architecture joins current artifacts, selective method access, bounded
+tools, continuing ownership and appropriate examination. Its immediate result is
+a usable environment for producing work and revising that environment itself.
+The architecture preserves distinctions among need, availability, suitability,
+execution, outcome and acceptance without requiring a separate status system to
+stand for each.
 
-Agents can exercise extensive reckoning: investigate, infer, compare, propose,
-check and act within authority. Human judgment remains situated and committed
-engagement with what matters and what the person will stand behind. Greater agent
-capability can alter the appropriate delegation and verification arrangements
-without itself transferring that judgment. This account does not require a claim
-that every possible future machine must lack it.
+The four perspectives become practical questions along these paths: what object
+or commitment changes, what supports the change, how it reaches its consumer,
+and whether its benefits justify its consequences and costs. Agent reckoning
+can perform substantial work within this arrangement; human judgment remains
+situated commitment throughout the undertaking.
 
-October's transformation is therefore an architectural result worth examining:
-some mechanisms formerly presented as necessary were removed while the guiding
-commitments remained. Whether the replacement improves throughput, recovery and
-quality over sustained development remains an empirical question.
+The App and SWBPIPE test different receiving contexts. Root's success does not
+establish their usability, numerical adequacy or professional suitability.
+Likewise, a productive application does not prove every shared procedure useful.
+The relation supports mutual examination while leaving each claim with its
+actual subject and evidence.

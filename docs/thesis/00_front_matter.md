@@ -1,6 +1,6 @@
-# Systems Engineering of LLM Agent Governance for Regulated Professional Engineering Practice
+# Chirality at the Root: A Generative Environment for Human–Agent Work
 
-**The Chirality Thesis**
+**The Root Thesis — shared means, methods and accountable development**
 
 ---
 
@@ -13,51 +13,40 @@ Chirality AI Ltd. (APEGA P17007)
 
 ## Abstract
 
-Chirality studies how capable agents can contribute to professional work while
-its objects, evidence, actions and consequential commitments remain intelligible.
-The framework uses ontology, epistemology, praxeology and axiology as enduring,
-mutually corrective questions. It treats the architecture as a revisable answer
-to those questions, rather than deriving a fixed hierarchy, document kit or
-approval sequence from them.
+Agent capability becomes useful through a relation to purpose, a body of work
+and a person who can answer for its use. Chirality Root sustains that relation
+through shared roles, methods, tools and artifacts, while keeping those means
+open to examination and improvement.
 
-Agents extend reckoning through investigation, inference, comparison, planning,
-criticism, checks and adaptive action. Judgment is the person's situated,
-committed engagement with what the work means, what matters and what they will
-stand behind. It shapes the undertaking throughout. Authentication records a
-particular relation of accountable reliance; it does not establish truth,
-create knowledge or guarantee adequate human engagement. This distinction does
-not depend on settling the cognition of every possible artificial system.
+Ontology, epistemology, praxeology and axiology ask what the undertaking consists
+of, what supports understanding, how intent becomes a result and what makes that
+result worth pursuing. Agents extend reckoning through inquiry and action.
+Human judgment shapes what matters and what the person will stand behind.
+Greater capability expands the work without itself settling its purposes.
 
-The thesis separates normative commitments, design hypotheses and empirical
-findings. It examines current artifacts and derived queries, responsibility
-without mandatory staffing, actual host boundaries, proportionate verification
-and recovery. Costs in attention, delay and maintenance count in evaluating
-controls. Relevant grounds must be inspectable; repeated records are justified
-only by a consumer, acceptance requirement or recovery need.
+Roles make responsibilities intelligible. Methods carry experience. Artifacts
+let work persist and remain open to examination. Tools make operations
+repeatable and relevant information accessible. Their value depends on serving
+the undertaking; maintaining them can otherwise displace the work they support.
 
-The repository supplies a longitudinal case. Earlier implementations used
-specialist roles, fixed delegation routes, lifecycle records and extensive
-procedural controls. The October 2026 reset removed many duties and their
-enforcement while preserving purpose, evidence and human authority. That change
-challenges the necessity of the earlier mechanisms. It does not, by itself,
-establish a causal productivity improvement or generalisation to other
-practitioners. App v4 provides a workflow-authoring exemplar; SWBPIPE supplies a
-demanding domain application. Re-derivation from current requirements remains
-an interpretive design process that must preserve accumulated learning.
+The repository's history shows both possibilities. Agent-led development produced
+applications and revised the means used to build them. It also accumulated
+records and controls whose costs became substantial. The October reset removed
+many duties and their enforcement. That experience supports further examination
+of simpler arrangements, without establishing a general productivity effect.
 
-The professional-practice mapping is a bounded interpretation of cited
-instruments, not regulatory endorsement or proof of compliance. Instructions,
-schemas and tests establish limited properties. The case has no controlled
-validation of professional reliance. The thesis therefore offers a conceptual
-framework, an architectural pattern and an evolving implementation account,
-with their different forms of warrant kept explicit.
+The App is the workflow-authoring exemplar. SWBPIPE tests the approach in an
+engineering domain through models, operations, calculations and handoff. Their
+development asks whether shared meanings can support different practices without
+prescribing a universal execution system.
 
-**Keywords:** human–agent work, systems engineering, ontology, epistemology,
-praxeology, axiology, reckoning, judgment, accountable reliance, context,
-professional practice, evidence, agent development
+The argument distinguishes adopted commitments, design hypotheses and observed
+findings. Its adequacy remains open to sustained use and another practitioner's
+experience. Appendix D carries the shared philosophical kernel.
 
-This explanatory revision was authorized on 10 October 2026. Its
-[status](README.md#warrant-status) remains nonbinding research.
+**Keywords:** human–agent work, purpose, meaning, roles, methods, artifacts,
+ontology, epistemology, praxeology, axiology, reckoning, judgment, application
+derivation, proliferation, accountable reliance
 
 ---
 
