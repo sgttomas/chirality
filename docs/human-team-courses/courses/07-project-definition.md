@@ -68,7 +68,7 @@ Organize the basis around these subjects:
 
 Identify the revision and status of each governing source. Explain whether a newer record supplements, replaces, or merely proposes to change the basis.
 
-Keep accepted requirements separate from proposed technical interpretations. A useful interpretation can become a constraint only through the appropriate authority.
+Identify accepted requirements and proposed technical interpretations separately. An interpretation can explain an existing obligation. Adopting a new project constraint requires the appropriate authority.
 
 Reconcile conflicting sources at the relevant subject. Do not solve a discrepancy by deleting the record that exposes it.
 
