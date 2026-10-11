@@ -51,6 +51,8 @@ HELP_HUMAN is no longer inherently read-only. In Root's resolver, write targets 
 
 TASK remains non-delegating even when a host offers delegation tools. It returns opportunities for further decomposition to its caller. Its assignment may be the conversation; a separate brief file is not inherently required.
 
+Take role and method instructions from the repository, not hidden host-side definitions or out-of-repository instruction files; give the complete assignment in the dispatch and refer only to repository files.
+
 Use the host's actual dispatch and return mechanism. Do not equate a prepared prompt, queued message or completed turn with delivered work. Return result locations, checks and unresolved matters without creating a separate record unless one is needed.
 
 ## 3. Work from the deliverable
