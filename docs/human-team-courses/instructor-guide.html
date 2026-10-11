@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
+<meta name="source-sha256" content="44e96b35d5822ebdd976841d976f3fc40978ea6a6cb4160c5e46a49378c43372">
+<meta name="source-basis-date" content="2026-10-11">
+<meta name="source-basis-revision" content="10b70036ef791374685291371a651ec9492a612c">
+<title>Teaching Project Practice for Human Teams · Chirality</title>
+<style>
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --canvas: #eeeeee;
+  --ink: #111111;
+  --muted: #505050;
+  --line: #cccccc;
+  --accent: #111111;
+  --tint: #eeeeee;
+  font-family: "Liberation Serif", "Times New Roman", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 2rem; }
+body { margin: 0; color: var(--ink); background: var(--canvas); }
+a { color: var(--accent); text-underline-offset: .17em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #111111;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.skip-link {
+  position: fixed; top: .6rem; left: .6rem; z-index: 100;
+  padding: .6rem 1rem; background: var(--paper); border: 2px solid var(--accent);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+.masthead { border-bottom: 1px solid var(--ink); background: var(--paper); }
+.masthead-inner {
+  max-width: 70rem; margin: auto; padding: 1.05rem 2.5rem;
+  display: flex; flex-wrap: wrap; gap: .35rem 1.2rem;
+  align-items: baseline; justify-content: center; text-align: center;
+}
+.brand { font-size: .92rem; font-weight: 700; letter-spacing: .12em; }
+.masthead-label { color: var(--ink); font-size: .77rem; text-transform: uppercase; letter-spacing: .025em; }
+.layout {
+  max-width: 70rem; margin: auto; padding: 0 2.5rem;
+  display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2.5rem;
+}
+.sidebar {
+  position: sticky; top: 0; align-self: start; max-height: 100vh;
+  overflow-y: auto; padding: 2rem .8rem 2rem 0;
+  scrollbar-width: thin;
+}
+.nav-label, .eyebrow {
+  margin: 0 0 .85rem; color: var(--muted); font-size: .73rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+}
+.contents { list-style: none; padding: 0; margin: 0; }
+.contents li { margin: .15rem 0; }
+.contents a {
+  display: block; padding: .34rem .65rem; border-left: 2px solid transparent;
+  color: var(--muted); text-decoration: none; font-size: .86rem; line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.contents a:hover, .contents a:focus-visible {
+  color: var(--accent); background: var(--tint); border-left-color: var(--accent);
+}
+.nav-help { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.3rem; }
+.nav-help p, .nav-help a { font-size: .75rem; color: var(--muted); }
+.nav-help p { margin: .5rem 0; }
+kbd { font: inherit; padding: .05rem .25rem; border: 1px solid var(--line); border-radius: .2rem; }
+main { min-width: 0; max-width: 48.5rem; padding: 2rem 0 3rem; }
+.document-meta {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem 1.5rem; margin: 0 0 1.5rem;
+  font-size: .73rem; color: var(--muted);
+}
+.document-meta div { min-width: 0; }
+.document-meta dt { font-weight: 700; letter-spacing: .025em; }
+.document-meta dd { margin: .15rem 0 0; overflow-wrap: anywhere; }
+.document-meta code { font-size: .9em; background: none; padding: 0; }
+.fingerprint { grid-column: 1 / -1; }
+.paper {
+  min-width: 0; padding: 3.4rem 3rem 3rem;
+  background: var(--paper); border: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgb(0 0 0 / .04);
+}
+article { max-width: 68ch; margin: auto; overflow-wrap: anywhere; }
+article > :first-child { margin-top: 0; }
+h1, h2, h3, h4, h5, h6 { color: #000000; line-height: 1.22; text-wrap: balance; scroll-margin-top: 2rem; }
+h1 {
+  max-width: 19ch; margin: 0 auto 1.65rem; font-size: clamp(2.05rem, 3.8vw, 2.8rem);
+  text-align: center; text-transform: uppercase; letter-spacing: .015em;
+}
+article > h1 + p { margin-bottom: 2.4rem; text-align: center; font-size: .82rem; line-height: 1.45; }
+h2 { font-size: 1.5rem; margin: 3.4rem 0 1.1rem; }
+h3 { font-size: 1.13rem; margin: 2rem 0 .7rem; }
+h4, h5, h6 { font-size: 1.02rem; margin: 1.65rem 0 .6rem; }
+p { margin: 0 0 .78rem; }
+article p { text-align: justify; text-justify: inter-word; hyphens: auto; }
+ul, ol { padding-left: 1.5rem; }
+li { padding-left: .2rem; margin: .35rem 0; }
+li > p { margin: .6rem 0; }
+hr { max-width: 75%; border: 0; border-top: 1px solid var(--ink); margin: 2.5rem auto; }
+blockquote {
+  margin: 1.4rem 1.25rem; padding: 0; background: none; border: 0;
+}
+blockquote > :last-child { margin-bottom: 0; }
+code, pre { font-family: "Liberation Mono", "SFMono-Regular", Consolas, monospace; font-size: .83em; hyphens: none; }
+code { background: #f1f1f1; padding: .08em .2em; overflow-wrap: anywhere; }
+pre {
+  max-width: 100%; overflow-x: auto; padding: 1rem 1.15rem; margin: 1.4rem 0;
+  color: #111111; background: #f6f6f6; border: 1px solid var(--line);
+  line-height: 1.5; tab-size: 4;
+}
+pre code { background: none; padding: 0; border-radius: 0; font-size: 1em; overflow-wrap: normal; }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 1.5rem 0; }
+table { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: .87rem; line-height: 1.4; }
+th, td { padding: .65rem .75rem; text-align: left; vertical-align: top; border: 1px solid #b8b8b8; }
+th { color: #000000; background: #eeeeee; font-weight: 700; }
+tbody tr { background: #ffffff; }
+img, svg { max-width: 100%; height: auto; }
+a[id], a[name] { scroll-margin-top: 2rem; }
+p:has(> a[id]:only-child):empty { margin: 0; }
+p:has(> a[id]:only-child) { margin: 0; }
+h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-color: #777777; text-decoration-thickness: .08em; text-underline-offset: .2em; }
+.mobile-toc { display: none; }
+.document-footer { margin-top: 1.5rem; color: var(--muted); font-size: .73rem; }
+.document-footer p { margin: .4rem 0; }
+@media (max-width: 65rem) {
+  .layout { padding: 0 1.5rem; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 1.5rem; }
+  .masthead-inner { padding: 1rem 1.5rem; }
+  .paper { padding: 2.6rem 2rem; }
+}
+@media (max-width: 54rem) {
+  html { scroll-padding-top: 4.5rem; }
+  .layout { display: block; padding: 0 1rem; }
+  .sidebar { display: none; }
+  .masthead-inner { padding: .85rem 1rem; gap: .2rem 1rem; }
+  .mobile-toc {
+    display: block; position: sticky; top: 0; z-index: 10;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .mobile-toc summary { padding: .75rem 1rem; cursor: pointer; color: var(--accent); font-weight: 700; font-size: .85rem; }
+  .mobile-toc nav { max-height: 65vh; overflow-y: auto; padding: 0 .5rem 1rem; }
+  .mobile-toc .contents a { padding: .55rem; }
+  main { padding-top: 1.25rem; }
+  .paper { padding: 2.2rem 1.4rem; }
+  article p { text-align: left; }
+  article > h1 + p { text-align: center; }
+  h2, h3, h4, h5, h6, a[id], a[name] { scroll-margin-top: 4.5rem; }
+  h2 { margin-top: 2.7rem; font-size: 1.4rem; }
+  .document-meta { gap: .75rem 1rem; }
+}
+@media (max-width: 25rem) {
+  :root { font-size: 17px; }
+  .layout { padding: 0 .5rem; }
+  .paper { padding: 1.4rem 1rem; }
+  .document-meta { padding: 0 .5rem; }
+}
+@media print {
+  @page { size: 6.75in 9.25in; margin: .68in .65in .67in .72in; }
+  :root { font-size: 10.5pt; line-height: 1.2; color-scheme: light; }
+  body, .paper { color: #111; background: white; }
+  .masthead, .sidebar, .mobile-toc, .skip-link, .back-top { display: none; }
+  .layout { display: block; max-width: none; padding: 0; }
+  main { max-width: none; padding: 0; }
+  .paper { padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+  article { max-width: none; }
+  article p { margin-bottom: 4.6pt; text-align: justify; }
+  .document-meta { padding: 0 0 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #bbb; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 18pt; margin-top: 1.8rem; }
+  h3 { font-size: 12pt; }
+  h4, h5, h6 { font-size: 11pt; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  a { color: inherit; text-decoration: underline; }
+  .table-scroll { overflow: visible; border: 0; }
+  table { min-width: 0; table-layout: auto; font-size: 9pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  th, td { padding: .45rem; }
+  pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; border-color: #bbb; font-size: 8pt; line-height: 1.3; }
+  pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  blockquote { break-inside: avoid; background: white; }
+  .document-footer { border-top: 1px solid #bbb; padding-top: .75rem; }
+}
+</style>
+</head>
+<body id="manual-top">
+<a class="skip-link" href="#manual-content">Skip to manual</a>
+<header class="masthead">
+  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Human team courses · offline reading edition</span></div>
+</header>
+<details class="mobile-toc">
+  <summary>Contents · 9 sections</summary>
+  <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#prepare-the-teaching-group">Prepare the teaching group</a></li>
+<li><a href="#teaching-materials">Teaching materials</a></li>
+<li><a href="#run-a-course">Run a course</a></li>
+<li><a href="#use-the-case-in-stages">Use the case in stages</a></li>
+<li><a href="#prepare-the-requirements-exercise">Prepare the requirements exercise</a></li>
+<li><a href="#calibrate-assessment">Calibrate assessment</a></li>
+<li><a href="#build-a-learning-portfolio">Build a learning portfolio</a></li>
+<li><a href="#transfer-the-learning">Transfer the learning</a></li>
+<li><a href="#teach-clear-technical-prose">Teach clear technical prose</a></li></ol></nav>
+</details>
+<div class="layout">
+<aside class="sidebar">
+  <nav aria-label="Sections">
+    <p class="nav-label">In this manual</p>
+    <ol class="contents"><li><a href="#prepare-the-teaching-group">Prepare the teaching group</a></li>
+<li><a href="#teaching-materials">Teaching materials</a></li>
+<li><a href="#run-a-course">Run a course</a></li>
+<li><a href="#use-the-case-in-stages">Use the case in stages</a></li>
+<li><a href="#prepare-the-requirements-exercise">Prepare the requirements exercise</a></li>
+<li><a href="#calibrate-assessment">Calibrate assessment</a></li>
+<li><a href="#build-a-learning-portfolio">Build a learning portfolio</a></li>
+<li><a href="#transfer-the-learning">Transfer the learning</a></li>
+<li><a href="#teach-clear-technical-prose">Teach clear technical prose</a></li></ol>
+  </nav>
+  <div class="nav-help">
+    <p>Find a term with <kbd>⌘ F</kbd> or <kbd>Ctrl F</kbd>. Use your browser’s print command for a paper copy.</p>
+    <p><a href="instructor-guide.md">Markdown source</a> · <a href="#manual-top">Back to start ↑</a></p>
+  </div>
+</aside>
+<main id="manual-content" tabindex="-1">
+  <div class="paper">
+    <article aria-labelledby="teaching-project-practice-for-human-teams">
+<!-- BEGIN MARKDOWN CONTENT -->
+<h1 id="teaching-project-practice-for-human-teams">Teaching Project Practice for Human Teams</h1>
+<p>This guide helps an instructor run the twelve-course series. Use it with the learner courses, the Northbank case, and the course answer guides.</p>
+<p>The aim is competent practice that another person can examine. Ask learners to explain their basis, their actions, and the consequences of relying on their work.</p>
+<h2 id="prepare-the-teaching-group">Prepare the teaching group</h2>
+<p>Identify the learners' work, experience, and professional context. Include project managers, engineers, designers, coordinators, and other participants where possible.</p>
+<p>Agree on the learning purpose. A new participant may need reliable individual practice. An experienced group may need stronger coordination or better change decisions.</p>
+<p>Use actual discipline specialists when a discussion requires technical knowledge beyond the supplied case. The Northbank records support project reasoning. They do not provide a complete pump design.</p>
+<p>Select a mentor for an individual learner. The mentor can act as reviewer, sponsor, or receiving party in different sessions.</p>
+<h2 id="teaching-materials">Teaching materials</h2>
+<p>Use the <a href="index.html">series index</a> for learner navigation. Use the <a href="case-study.html">case packet</a> for exercise inputs. Use the <a href="glossary.html">glossary</a> for shared meanings.</p>
+<p>Keep the following guides available to instructors:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 1; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Courses</th>
+<th>Instructor guide</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01 to 04</td>
+<td><a href="instructors/01-04-foundations.html">Professional and information foundations</a></td>
+</tr>
+<tr>
+<td>05 to 07</td>
+<td><a href="instructors/05-07-judgment-definition.html">Judgment and project definition</a></td>
+</tr>
+<tr>
+<td>08 to 10</td>
+<td><a href="instructors/08-10-execution-delivery.html">Execution and delivery</a></td>
+</tr>
+<tr>
+<td>11 and 12</td>
+<td><a href="instructors/11-12-leadership-practicum.html">Leadership and practicum</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Instructor guides contain answer guidance. Do not distribute their answers before an assessed exercise when that would defeat the exercise.</p>
+<p>Provide accessible copies of the source records. Allow paper, a text editor, or an organization's approved document system. Assess the work's meaning and usability.</p>
+<h2 id="run-a-course">Run a course</h2>
+<p>Use three teaching blocks. Adjust their length to the group and the work.</p>
+<h3 id="explain-and-examine">Explain and examine</h3>
+<p>State the course's learning outcomes. Ask learners to identify a related problem from their experience.</p>
+<p>Teach the lessons in order. Discuss the worked example. Ask what the source supports and what remains unestablished.</p>
+<p>Have learners answer the knowledge check. Use the answers to identify misunderstanding. Revisit a lesson when the misunderstanding affects later work.</p>
+<h3 id="practice-and-review">Practice and review</h3>
+<p>Release the specified case records. Give learners the practice assignment and its requested outputs.</p>
+<p>Assign a producer and a reviewer. The reviewer must have enough context to examine the work. The producer explains the basis and answers questions.</p>
+<p>The reviewer identifies defects with evidence. The producer repairs confirmed defects. Ask both participants to explain what changed and why.</p>
+<h3 id="assess-and-continue">Assess and continue</h3>
+<p>Use the assessed assignment and its five criteria. Examine the learner's actual output. Ask follow-up questions where the output leaves their understanding unclear.</p>
+<p>Rate each criterion separately. Use the following meanings:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 2; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Rating</th>
+<th>Meaning</th>
+<th>Next action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Meets the criterion</td>
+<td>The output and explanation demonstrate the required practice.</td>
+<td>Retain the output as a portfolio contribution.</td>
+</tr>
+<tr>
+<td>Needs repair</td>
+<td>The evidence identifies a defect in the practice or result.</td>
+<td>Identify the defect and ask for a focused repair.</td>
+</tr>
+<tr>
+<td>Insufficient evidence</td>
+<td>The available work does not establish whether the criterion is met.</td>
+<td>Ask for the missing demonstration or explanation.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Close the assignment when each criterion is met. Do not average away a failed criterion with unrelated strengths.</p>
+<p>Allow different defensible solutions. Compare each solution with its actual source basis, authority, reasoning, uncertainty, and consequences.</p>
+<p>A classroom assessment establishes the learning result demonstrated in that exercise. It does not approve an actual engineering design or grant a professional appointment.</p>
+<h2 id="use-the-case-in-stages">Use the case in stages</h2>
+<p>Release Packet A for Courses 01 to 04. It introduces the assignment, document status, conflicting sources, proposals, and unresolved applicability.</p>
+<p>Release Packet B for Courses 05 to 07. It adds supplier pressure, a coordination problem, and incomplete interfaces.</p>
+<p>Release Packet C for Courses 08 to 10. It adds cost and schedule forecasts, limited test observations, and incomplete operating readiness.</p>
+<p>Release Packet D for Courses 11 and 12. It adds leadership choices, distorted incentives, weak reporting, and staged practicum events.</p>
+<p>Packet C includes a later installation observation. It does not prove that earlier design and authority gaps were resolved. Require evidence for each claimed resolution.</p>
+<p>In Course 12, use the event sequence in its instructor guide. Record each simulated decision as a new event. Preserve its authority, scope, conditions, and consequences.</p>
+<p>Avoid coaching learners toward a hidden single answer. Give them sufficient inputs and a clear question. Challenge their grounds for the proposed decision.</p>
+<h2 id="prepare-the-requirements-exercise">Prepare the requirements exercise</h2>
+<p>The offline exercise uses A06. Learners identify missing applicability inputs and the work those gaps prevent. This exercise needs no internet connection.</p>
+<p>For an optional real-jurisdiction exercise, select one actual jurisdiction. Identify the facility classification and assignment boundary. Obtain current official instruments before the session.</p>
+<p>Supply the adoption instrument, relevant amendments, and the applicable project or contract excerpt. Include enough context to interpret each extract.</p>
+<p>Distinguish legislation, regulator standards, national guidance, and project requirements. A current publication date does not by itself establish adoption.</p>
+<p>Ask learners to show the applicability chain. Ask them to state where an interpretation requires another authority or specialist.</p>
+<p>Do not introduce invented legal clauses as real law. Do not treat the Northbank case's omission as permission to infer a jurisdiction.</p>
+<h2 id="calibrate-assessment">Calibrate assessment</h2>
+<p>Before assessment, examine one practice submission with another instructor or experienced reviewer. Compare your findings against the course criteria.</p>
+<p>Discuss disagreements about the evidence and criterion. Resolve the teaching interpretation before assessing the rest of the group.</p>
+<p>Retain enough explanation for the learner to understand a finding. A score without its grounds gives little help with repair.</p>
+<p>Check the following recurring defects:</p>
+<ul>
+<li>A proposal appears as an approved requirement.</li>
+<li>A recent file appears as the governing revision without evidence.</li>
+<li>A survey observation supports a conclusion beyond its scope.</li>
+<li>A forecast appears as an amended budget or target.</li>
+<li>A review or test claim exceeds the examination performed.</li>
+<li>A document count substitutes for technical readiness.</li>
+<li>A concern is closed without evidence or an authorized disposition.</li>
+<li>A handover records file transfer but leaves responsibility unassigned.</li>
+</ul>
+<p>Require repairs to preserve valid evidence. A corrected submission must not conceal what the learner changed or the assumption still unresolved.</p>
+<h2 id="build-a-learning-portfolio">Build a learning portfolio</h2>
+<p>The portfolio develops one connected case. Course outputs may revise or extend earlier outputs.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 3; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Courses</th>
+<th>Portfolio contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01 to 04</td>
+<td>Responsibilities, controlled source index, evidence, applicability account</td>
+</tr>
+<tr>
+<td>05 to 07</td>
+<td>Decision reasoning, communication results, project basis, divided scope</td>
+</tr>
+<tr>
+<td>08 to 10</td>
+<td>Execution plan, forecasts, interface treatment, assurance and handover basis</td>
+</tr>
+<tr>
+<td>11 and 12</td>
+<td>Continuation decision, integrated result, review findings, individual defense</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ask learners to identify the revision used by each later activity. When a source changes, follow the effect through dependent work.</p>
+<p>Do not require a separate record for every classroom action. Keep what another learner, reviewer, or instructor needs to understand the work.</p>
+<h2 id="transfer-the-learning">Transfer the learning</h2>
+<p>After each course, ask learners to compare the practice with another industry or project type. Preserve the responsibility while adapting the method.</p>
+<p>For example, an equipment configuration can become a software release configuration. A commissioning test can become a product validation scenario. Their governing conditions will differ.</p>
+<p>Ask learners which parts of the Northbank method their workplace already provides. Identify a concrete gap before proposing another form or approval step.</p>
+<p>Use participant experience as evidence to investigate. Check whether an earlier event supports the explanation given for it.</p>
+<h2 id="teach-clear-technical-prose">Teach clear technical prose</h2>
+<p>Use short sentences and active verbs. Give one action in each instruction. Use one defined term for one meaning.</p>
+<p>Prefer a concrete subject. Write who acts, what they do, and which condition matters.</p>
+<p>Keep explanation with the related action. Short wording must preserve technical qualifications and uncertainty.</p>
+<p>For example, write: &quot;A04 identifies a 600 V connection. It does not establish spare capacity.&quot; Both sentences matter to the decision.</p>
+<p>Use lists for separate actions. Use tables for repeated fields or comparisons. Use paragraphs to explain a relationship or reason.</p>
+<p>The learner should understand the lesson without the presenter supplying missing connections. Read a sample lesson aloud to check that condition.</p>
+<!-- END MARKDOWN CONTENT -->
+    </article>
+  </div>
+  <footer class="document-footer">
+  <dl class="document-meta">
+    <div><dt>Source basis dated</dt><dd>11 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>10b70036ef791374685291371a651ec9492a612c</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="instructor-guide.md">instructor-guide.md</a><br><code>44e96b35d5822ebdd976841d976f3fc40978ea6a6cb4160c5e46a49378c43372</code></dd></div>
+  </dl>
+    <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
+    <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
+    <p class="back-top"><a href="#manual-top">Back to start ↑</a></p>
+  </footer>
+</main>
+</div>
+<script>
+const mobileContents = document.querySelector('.mobile-toc');
+mobileContents.addEventListener('click', (event) => {
+  if (event.target.closest('a[href^="#"]')) mobileContents.open = false;
+});
+</script>
+</body>
+</html>

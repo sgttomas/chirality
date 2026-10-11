@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
+<meta name="source-sha256" content="07b08afa568de0f2c2f118cb79faa4f24e3fe95e05bd80df34ac850a2cbc1058">
+<meta name="source-basis-date" content="2026-10-11">
+<meta name="source-basis-revision" content="10b70036ef791374685291371a651ec9492a612c">
+<title>Instructor Guide: Courses 08 to 10 · Chirality</title>
+<style>
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --canvas: #eeeeee;
+  --ink: #111111;
+  --muted: #505050;
+  --line: #cccccc;
+  --accent: #111111;
+  --tint: #eeeeee;
+  font-family: "Liberation Serif", "Times New Roman", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 2rem; }
+body { margin: 0; color: var(--ink); background: var(--canvas); }
+a { color: var(--accent); text-underline-offset: .17em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #111111;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.skip-link {
+  position: fixed; top: .6rem; left: .6rem; z-index: 100;
+  padding: .6rem 1rem; background: var(--paper); border: 2px solid var(--accent);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+.masthead { border-bottom: 1px solid var(--ink); background: var(--paper); }
+.masthead-inner {
+  max-width: 70rem; margin: auto; padding: 1.05rem 2.5rem;
+  display: flex; flex-wrap: wrap; gap: .35rem 1.2rem;
+  align-items: baseline; justify-content: center; text-align: center;
+}
+.brand { font-size: .92rem; font-weight: 700; letter-spacing: .12em; }
+.masthead-label { color: var(--ink); font-size: .77rem; text-transform: uppercase; letter-spacing: .025em; }
+.layout {
+  max-width: 70rem; margin: auto; padding: 0 2.5rem;
+  display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2.5rem;
+}
+.sidebar {
+  position: sticky; top: 0; align-self: start; max-height: 100vh;
+  overflow-y: auto; padding: 2rem .8rem 2rem 0;
+  scrollbar-width: thin;
+}
+.nav-label, .eyebrow {
+  margin: 0 0 .85rem; color: var(--muted); font-size: .73rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+}
+.contents { list-style: none; padding: 0; margin: 0; }
+.contents li { margin: .15rem 0; }
+.contents a {
+  display: block; padding: .34rem .65rem; border-left: 2px solid transparent;
+  color: var(--muted); text-decoration: none; font-size: .86rem; line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.contents a:hover, .contents a:focus-visible {
+  color: var(--accent); background: var(--tint); border-left-color: var(--accent);
+}
+.nav-help { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.3rem; }
+.nav-help p, .nav-help a { font-size: .75rem; color: var(--muted); }
+.nav-help p { margin: .5rem 0; }
+kbd { font: inherit; padding: .05rem .25rem; border: 1px solid var(--line); border-radius: .2rem; }
+main { min-width: 0; max-width: 48.5rem; padding: 2rem 0 3rem; }
+.document-meta {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem 1.5rem; margin: 0 0 1.5rem;
+  font-size: .73rem; color: var(--muted);
+}
+.document-meta div { min-width: 0; }
+.document-meta dt { font-weight: 700; letter-spacing: .025em; }
+.document-meta dd { margin: .15rem 0 0; overflow-wrap: anywhere; }
+.document-meta code { font-size: .9em; background: none; padding: 0; }
+.fingerprint { grid-column: 1 / -1; }
+.paper {
+  min-width: 0; padding: 3.4rem 3rem 3rem;
+  background: var(--paper); border: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgb(0 0 0 / .04);
+}
+article { max-width: 68ch; margin: auto; overflow-wrap: anywhere; }
+article > :first-child { margin-top: 0; }
+h1, h2, h3, h4, h5, h6 { color: #000000; line-height: 1.22; text-wrap: balance; scroll-margin-top: 2rem; }
+h1 {
+  max-width: 19ch; margin: 0 auto 1.65rem; font-size: clamp(2.05rem, 3.8vw, 2.8rem);
+  text-align: center; text-transform: uppercase; letter-spacing: .015em;
+}
+article > h1 + p { margin-bottom: 2.4rem; text-align: center; font-size: .82rem; line-height: 1.45; }
+h2 { font-size: 1.5rem; margin: 3.4rem 0 1.1rem; }
+h3 { font-size: 1.13rem; margin: 2rem 0 .7rem; }
+h4, h5, h6 { font-size: 1.02rem; margin: 1.65rem 0 .6rem; }
+p { margin: 0 0 .78rem; }
+article p { text-align: justify; text-justify: inter-word; hyphens: auto; }
+ul, ol { padding-left: 1.5rem; }
+li { padding-left: .2rem; margin: .35rem 0; }
+li > p { margin: .6rem 0; }
+hr { max-width: 75%; border: 0; border-top: 1px solid var(--ink); margin: 2.5rem auto; }
+blockquote {
+  margin: 1.4rem 1.25rem; padding: 0; background: none; border: 0;
+}
+blockquote > :last-child { margin-bottom: 0; }
+code, pre { font-family: "Liberation Mono", "SFMono-Regular", Consolas, monospace; font-size: .83em; hyphens: none; }
+code { background: #f1f1f1; padding: .08em .2em; overflow-wrap: anywhere; }
+pre {
+  max-width: 100%; overflow-x: auto; padding: 1rem 1.15rem; margin: 1.4rem 0;
+  color: #111111; background: #f6f6f6; border: 1px solid var(--line);
+  line-height: 1.5; tab-size: 4;
+}
+pre code { background: none; padding: 0; border-radius: 0; font-size: 1em; overflow-wrap: normal; }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 1.5rem 0; }
+table { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: .87rem; line-height: 1.4; }
+th, td { padding: .65rem .75rem; text-align: left; vertical-align: top; border: 1px solid #b8b8b8; }
+th { color: #000000; background: #eeeeee; font-weight: 700; }
+tbody tr { background: #ffffff; }
+img, svg { max-width: 100%; height: auto; }
+a[id], a[name] { scroll-margin-top: 2rem; }
+p:has(> a[id]:only-child):empty { margin: 0; }
+p:has(> a[id]:only-child) { margin: 0; }
+h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-color: #777777; text-decoration-thickness: .08em; text-underline-offset: .2em; }
+.mobile-toc { display: none; }
+.document-footer { margin-top: 1.5rem; color: var(--muted); font-size: .73rem; }
+.document-footer p { margin: .4rem 0; }
+@media (max-width: 65rem) {
+  .layout { padding: 0 1.5rem; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 1.5rem; }
+  .masthead-inner { padding: 1rem 1.5rem; }
+  .paper { padding: 2.6rem 2rem; }
+}
+@media (max-width: 54rem) {
+  html { scroll-padding-top: 4.5rem; }
+  .layout { display: block; padding: 0 1rem; }
+  .sidebar { display: none; }
+  .masthead-inner { padding: .85rem 1rem; gap: .2rem 1rem; }
+  .mobile-toc {
+    display: block; position: sticky; top: 0; z-index: 10;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .mobile-toc summary { padding: .75rem 1rem; cursor: pointer; color: var(--accent); font-weight: 700; font-size: .85rem; }
+  .mobile-toc nav { max-height: 65vh; overflow-y: auto; padding: 0 .5rem 1rem; }
+  .mobile-toc .contents a { padding: .55rem; }
+  main { padding-top: 1.25rem; }
+  .paper { padding: 2.2rem 1.4rem; }
+  article p { text-align: left; }
+  article > h1 + p { text-align: center; }
+  h2, h3, h4, h5, h6, a[id], a[name] { scroll-margin-top: 4.5rem; }
+  h2 { margin-top: 2.7rem; font-size: 1.4rem; }
+  .document-meta { gap: .75rem 1rem; }
+}
+@media (max-width: 25rem) {
+  :root { font-size: 17px; }
+  .layout { padding: 0 .5rem; }
+  .paper { padding: 1.4rem 1rem; }
+  .document-meta { padding: 0 .5rem; }
+}
+@media print {
+  @page { size: 6.75in 9.25in; margin: .68in .65in .67in .72in; }
+  :root { font-size: 10.5pt; line-height: 1.2; color-scheme: light; }
+  body, .paper { color: #111; background: white; }
+  .masthead, .sidebar, .mobile-toc, .skip-link, .back-top { display: none; }
+  .layout { display: block; max-width: none; padding: 0; }
+  main { max-width: none; padding: 0; }
+  .paper { padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+  article { max-width: none; }
+  article p { margin-bottom: 4.6pt; text-align: justify; }
+  .document-meta { padding: 0 0 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #bbb; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 18pt; margin-top: 1.8rem; }
+  h3 { font-size: 12pt; }
+  h4, h5, h6 { font-size: 11pt; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  a { color: inherit; text-decoration: underline; }
+  .table-scroll { overflow: visible; border: 0; }
+  table { min-width: 0; table-layout: auto; font-size: 9pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  th, td { padding: .45rem; }
+  pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; border-color: #bbb; font-size: 8pt; line-height: 1.3; }
+  pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  blockquote { break-inside: avoid; background: white; }
+  .document-footer { border-top: 1px solid #bbb; padding-top: .75rem; }
+}
+</style>
+</head>
+<body id="manual-top">
+<a class="skip-link" href="#manual-content">Skip to manual</a>
+<header class="masthead">
+  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Human team courses · offline reading edition</span></div>
+</header>
+<details class="mobile-toc">
+  <summary>Contents · 4 sections</summary>
+  <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#course-08-planning-and-managing-project-execution">Course 08: Planning and Managing Project Execution</a></li>
+<li><a href="#course-09-project-engineering-and-technical-integration">Course 09: Project Engineering and Technical Integration</a></li>
+<li><a href="#course-10-assurance-delivery-and-handover">Course 10: Assurance, Delivery, and Handover</a></li>
+<li><a href="#continue-the-learning-portfolio">Continue the learning portfolio</a></li></ol></nav>
+</details>
+<div class="layout">
+<aside class="sidebar">
+  <nav aria-label="Sections">
+    <p class="nav-label">In this manual</p>
+    <ol class="contents"><li><a href="#course-08-planning-and-managing-project-execution">Course 08: Planning and Managing Project Execution</a></li>
+<li><a href="#course-09-project-engineering-and-technical-integration">Course 09: Project Engineering and Technical Integration</a></li>
+<li><a href="#course-10-assurance-delivery-and-handover">Course 10: Assurance, Delivery, and Handover</a></li>
+<li><a href="#continue-the-learning-portfolio">Continue the learning portfolio</a></li></ol>
+  </nav>
+  <div class="nav-help">
+    <p>Find a term with <kbd>⌘ F</kbd> or <kbd>Ctrl F</kbd>. Use your browser’s print command for a paper copy.</p>
+    <p><a href="08-10-execution-delivery.md">Markdown source</a> · <a href="#manual-top">Back to start ↑</a></p>
+  </div>
+</aside>
+<main id="manual-content" tabindex="-1">
+  <div class="paper">
+    <article aria-labelledby="instructor-guide-courses-08-to-10">
+<!-- BEGIN MARKDOWN CONTENT -->
+<h1 id="instructor-guide-courses-08-to-10">Instructor Guide: Courses 08 to 10</h1>
+<p><a href="../index.html">Series</a> · <a href="../case-study.html">Northbank case</a> · <a href="../glossary.html">Glossary</a> · <a href="../references.html">References</a></p>
+<p>Use this guide after learners attempt the practice. It supplies answer guidance, discussion methods, and assessment examples. Accept different defensible solutions that meet the stated criteria.</p>
+<p>Use Packets A, B, and C. Keep Packet D for the later courses unless you declare an additional exercise. Preserve each source's identity, revision, and status.</p>
+<h2 id="course-08-planning-and-managing-project-execution">Course 08: Planning and Managing Project Execution</h2>
+<h3 id="session-sequence">Session sequence</h3>
+<ol>
+<li>Ask learners to distinguish a target from a forecast.</li>
+<li>Examine the order-release prerequisite with the group.</li>
+<li>Draw C02's dependency sequence.</li>
+<li>Calculate C03's sequence independently.</li>
+<li>Compare the baseline and forecast costs.</li>
+<li>Discuss supplier timing and decision authority.</li>
+<li>Assign the four practice outputs.</li>
+<li>Examine the cost mini-example.</li>
+<li>Review the sponsor briefings in pairs.</li>
+<li>Assess and repair the execution packages.</li>
+</ol>
+<p>A session can be divided around Steps 5 and 8. Preserve one project basis across the sessions. Avoid introducing unrecorded approvals to make the problem easier.</p>
+<h3 id="six-keyed-knowledge-check-answers">Six keyed knowledge-check answers</h3>
+<ol>
+<li><strong>Readiness and schedule.</strong> A date places an activity on a calendar. Readiness requires the inputs, resources, competence, access, and authority needed for its stated work. Evidence must establish their required conditions.</li>
+<li><strong>Resource conflict.</strong> Independent activities can require the same unavailable person or resource. The calculated dependency sequence then overstates possible concurrency. Revise capacity, sequence, or scope within authority.</li>
+<li><strong>Budget and forecast.</strong> A01 gives the sponsor authority over budget changes. C03 is expressly a forecast. It assesses a 265,000 outcome but does not authorize that expenditure or amend A02.</li>
+<li><strong>Double counting.</strong> Adding actual expenditure duplicates cost when the forecast already includes it. C03 states that each forecast item includes recorded actual expenditure. An actual-plus-remaining model is valid only with non-overlapping amounts.</li>
+<li><strong>Equipment release.</strong> Northbank needs the reviewed technical purchase package and required expenditure authorization. Technical work must address the configuration, voltage discrepancy, operating basis, and relevant requirements. Supplier timing is an input to planning, not approval.</li>
+<li><strong>Overlap.</strong> Define the activity boundaries, prerequisites, resource capacity, safety and technical consequences, authorization, and affected examination. Calculate savings only after the proposed overlap has a supported basis.</li>
+</ol>
+<h3 id="calculation-guidance">Calculation guidance</h3>
+<p>Check both totals independently:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 1; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Cost item</th>
+<th style="text-align:right">C01 baseline</th>
+<th style="text-align:right">C03 forecast</th>
+<th style="text-align:right">Difference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pump equipment</td>
+<td style="text-align:right">70,000</td>
+<td style="text-align:right">80,000</td>
+<td style="text-align:right">10,000</td>
+</tr>
+<tr>
+<td>Mechanical installation</td>
+<td style="text-align:right">50,000</td>
+<td style="text-align:right">55,000</td>
+<td style="text-align:right">5,000</td>
+</tr>
+<tr>
+<td>Civil work</td>
+<td style="text-align:right">30,000</td>
+<td style="text-align:right">30,000</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td>Electrical and controls</td>
+<td style="text-align:right">40,000</td>
+<td style="text-align:right">45,000</td>
+<td style="text-align:right">5,000</td>
+</tr>
+<tr>
+<td>Engineering</td>
+<td style="text-align:right">20,000</td>
+<td style="text-align:right">23,000</td>
+<td style="text-align:right">3,000</td>
+</tr>
+<tr>
+<td>Commissioning</td>
+<td style="text-align:right">10,000</td>
+<td style="text-align:right">12,000</td>
+<td style="text-align:right">2,000</td>
+</tr>
+<tr>
+<td>Contingency</td>
+<td style="text-align:right">20,000</td>
+<td style="text-align:right">20,000</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td>Total</td>
+<td style="text-align:right">240,000</td>
+<td style="text-align:right">265,000</td>
+<td style="text-align:right">25,000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The difference is approximately 10.4 percent of the baseline:</p>
+<blockquote>
+<p>25,000 ÷ 240,000 × 100 = 10.4167 percent.</p>
+</blockquote>
+<p>This percentage describes forecast cost growth against the baseline. It does not establish the cause of each increase beyond the supplied figures.</p>
+<p>C02's sequence gives end Week 4 release, end Week 8 delivery, Weeks 9–10 installation, Week 11 commissioning, and Week 12 handover.</p>
+<p>C03's sequence gives end Week 6 release, end Week 11 delivery, Weeks 12–13 installation, Week 14 commissioning, and Week 15 handover.</p>
+<p>The forecast handover is three weeks beyond the target. The sequence assumes ready site works and no overlap. Neither assumption establishes technical purchase readiness.</p>
+<p>For the separate cost example:</p>
+<blockquote>
+<p>Actual 90,000 + remaining 175,000 = expected final cost 265,000.</p>
+</blockquote>
+<p>Adding actual 90,000 to C03's inclusive total gives 355,000. That result contains a duplicate 90,000. Learners should explain the error rather than merely give the corrected total.</p>
+<h3 id="sample-practice-reasoning">Sample practice reasoning</h3>
+<p>A useful purchase-release table separates technical package review, expenditure authorization, and supplier delivery confirmation. It identifies the responsible contributor and evidence for each condition.</p>
+<p>The technical review can identify B01's missing selected curve and configuration. It can identify A04's capacity and protection limits. It must not claim those matters were resolved by C03.</p>
+<p>A credible sponsor briefing states the 18 litres per second scope, 265,000 forecast, and end-Week-15 finish. It identifies the budget and target decisions without implying approval.</p>
+<p>An option can request investigation of an alternative supplier slot or a bounded overlap. The learner must state what remains unconfirmed. Accept other options with comparable evidence and consequence treatment.</p>
+<p>The briefing should exclude A05's proposed increase from the stated forecast. An alternative addressing 22 litres per second needs a separate impact assessment and scope decision.</p>
+<h3 id="assessment-guidance-and-common-defects">Assessment guidance and common defects</h3>
+<p>Use the course's five criteria. Rate each as meets the criterion, needs repair, or has insufficient evidence.</p>
+<p>Return arithmetic errors for repair. Return unsupported schedule savings for a prerequisite analysis. Require clear authority when a proposal changes budget, target, or scope.</p>
+<p>Common defects include:</p>
+<ul>
+<li>Adding actual expenditure to C03 a second time.</li>
+<li>Dropping contingency without stating a supported change.</li>
+<li>Treating a forecast as a budget approval.</li>
+<li>Counting delivery weeks from the wrong release date.</li>
+<li>Reporting a supplier promise as technical readiness.</li>
+<li>Using document counts as complete evidence of progress.</li>
+</ul>
+<p>Ask the learner to show the affected equation or dependency. A rewritten conclusion alone does not establish that the underlying error is repaired.</p>
+<h2 id="course-09-project-engineering-and-technical-integration">Course 09: Project Engineering and Technical Integration</h2>
+<h3 id="session-sequence-1">Session sequence</h3>
+<ol>
+<li>Ask each discipline role to state its needed inputs.</li>
+<li>Examine the difference between A03 and A04.</li>
+<li>Build the technical basis table together.</li>
+<li>Allocate two B03 interfaces with supplier and consumer roles.</li>
+<li>Review B01 as a project submission.</li>
+<li>Trace one construction activity, one operating activity, and one maintenance activity across disciplines.</li>
+<li>Assign the practice outputs.</li>
+<li>Conduct a peer review of the proposed interface assignments.</li>
+<li>Trace the substitution through affected work.</li>
+<li>Assess and repair the coordination package.</li>
+</ol>
+<p>Require learners to read the consumer's needs before proposing the supplier's return. This reveals missing conditions that a discipline-only discussion can overlook.</p>
+<h3 id="six-keyed-knowledge-check-answers-1">Six keyed knowledge-check answers</h3>
+<ol>
+<li><strong>Pump selection.</strong> The 18 litres per second value lacks the established suction conditions, pressure, water properties, and operating cases. A02 expressly leaves these unresolved. A selected configuration and competent technical assessment are also needed.</li>
+<li><strong>Electrical survey.</strong> A04 records a checked 600 V, three-phase, 60 Hz connection observation. It does not establish spare capacity, protection coordination, or equipment compatibility. Those matters need electrical assessment.</li>
+<li><strong>Interface assignments.</strong> Add supplier and consumer owners, required contribution, conditions, point of need, examination, and closure evidence. B03 supplies needs but no assigned owners or required dates.</li>
+<li><strong>Brochure limits.</strong> A product-family description may omit the selected model, ratings, accessories, materials, operating cases, and settings. A project review needs the identified configuration and relevant performance data.</li>
+<li><strong>Operating and maintenance review.</strong> Participants can expose access, isolation, alarms, restart, removal, and spare-part needs. Early examination permits these needs to affect design before procurement or construction constrains the response.</li>
+<li><strong>Substitution propagation.</strong> Assess affected interfaces and authority. Record the actual decision. Update configuration and dependent work. Confirm consumers adopted the change. Repeat affected examination and retain valid unaffected evidence.</li>
+</ol>
+<h3 id="sample-basis-and-interface-reasoning">Sample basis and interface reasoning</h3>
+<p>An acceptable basis table states A02's 18 litres per second requirement and unresolved conditions. It preserves A05 as a 22 litres per second proposal.</p>
+<p>It cites A04 for the observed connection and its limitations. It identifies B01 as an unaccepted submission. It treats A06 as open applicability work.</p>
+<p>The learner must not turn the observed 600 V connection into an assumed approved motor arrangement. The actual compatibility solution requires competent assessment.</p>
+<p>Possible interface assignments include:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 2; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Contribution</th>
+<th>Proposed supplier</th>
+<th>Proposed consumer</th>
+<th>Point of need</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Operating conditions</td>
+<td>Operations and relevant technical investigation owners</td>
+<td>Mechanical</td>
+<td>Before selection-dependent design</td>
+</tr>
+<tr>
+<td>Selected motor and starting data</td>
+<td>Mechanical with supplier</td>
+<td>Electrical</td>
+<td>Before final electrical design and purchase release</td>
+</tr>
+<tr>
+<td>Loads and dimensions</td>
+<td>Mechanical with supplier</td>
+<td>Civil</td>
+<td>Before dependent foundation and support design</td>
+</tr>
+<tr>
+<td>Required changeover behavior</td>
+<td>Operations with project engineer coordination</td>
+<td>Controls and mechanical</td>
+<td>Before control design and acceptance planning</td>
+</tr>
+<tr>
+<td>Isolation and restart information</td>
+<td>Relevant disciplines</td>
+<td>Operations</td>
+<td>Before instruction completion and operating readiness</td>
+</tr>
+<tr>
+<td>Removal and spare-parts needs</td>
+<td>Mechanical with supplier</td>
+<td>Maintenance</td>
+<td>Before configuration acceptance and handover</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>These are teaching proposals. Accept a different allocation when it covers the needed contribution and preserves competence and decision authority.</p>
+<p>Required dates can use points of need because the packet supplies no detailed interface calendar. Do not require learners to invent exact dates.</p>
+<h3 id="supplier-questions-and-change-example">Supplier questions and change example</h3>
+<p>Useful supplier questions request:</p>
+<ul>
+<li>The selected configuration and its revision identity.</li>
+<li>Performance data for the established operating cases.</li>
+<li>Motor and starting data for electrical review.</li>
+<li>Loads, dimensions, and access data for dependent design.</li>
+<li>Applicable maintenance and spare-part information.</li>
+</ul>
+<p>A question can expose that the operating cases are not yet established. The learner should name the project's required contribution before requesting supplier evidence against it.</p>
+<p>For a proposed motor substitution, trace electrical supply compatibility, capacity, protection, controls, dimensions, supporting arrangements, operating information, and affected tests.</p>
+<p>Do not require a particular substitute voltage or design. The assignment assesses the impact route, not an invented equipment solution.</p>
+<h3 id="assessment-guidance-and-common-defects-1">Assessment guidance and common defects</h3>
+<p>Use the course's five criteria. Confirm that both the proposed supplier and consumer can explain the interface's required contribution.</p>
+<p>Common defects include:</p>
+<ul>
+<li>Giving only discipline names as interface definitions.</li>
+<li>Treating receipt as evidence of suitability.</li>
+<li>Omitting the consumer's examination responsibility.</li>
+<li>Using C03 as a corrected technical submission.</li>
+<li>Assuming automatic changeover is already approved.</li>
+<li>Closing integration findings with a meeting label alone.</li>
+</ul>
+<p>Ask learners to review one construction activity, one operating activity, and one maintenance activity. Each review must trace the activity's requirements, interfaces, and examination. A collection of separate discipline documents cannot substitute for that account.</p>
+<h2 id="course-10-assurance-delivery-and-handover">Course 10: Assurance, Delivery, and Handover</h2>
+<h3 id="session-sequence-2">Session sequence</h3>
+<ol>
+<li>Ask learners what C04 actually observes.</li>
+<li>Compare that observation with its cover-sheet claim.</li>
+<li>Distinguish verification and validation using one example.</li>
+<li>Build a coverage table from the project basis.</li>
+<li>Identify commissioning prerequisites.</li>
+<li>Examine C05 from the receiving party's perspective.</li>
+<li>Assign the four practice outputs.</li>
+<li>Conduct a receiving-operations role exercise.</li>
+<li>Review the residual-obligation account.</li>
+<li>Assess and repair the proposed handover package.</li>
+</ol>
+<p>Keep the exercise at planning and evidence-account level. It supplies no authority or procedure for physical equipment operation.</p>
+<h3 id="six-keyed-knowledge-check-answers-2">Six keyed knowledge-check answers</h3>
+<ol>
+<li><strong>Early examination.</strong> Production can conceal features or make correction expensive. Some decisions need examination before purchasing or irreversible work. Plan evidence, competence, independence, and repair time with the work.</li>
+<li><strong>Verification and validation.</strong> Verification asks whether specified requirements are satisfied. Validation asks whether the result is fit for intended use under relevant conditions. A method supports only the questions its basis and coverage can answer.</li>
+<li><strong>C04 observation.</strong> It records 18 litres per second in one normal condition with incomplete hydraulic details. It does not establish performance across the required operating cases or unexercised behavior. It cannot support complete acceptance.</li>
+<li><strong>Evidence identity.</strong> Identify configuration, revision, starting state, conditions, method, instruments where relevant, observer, expected behavior, actual observation, and limitations. Preserve the source records needed to interpret the conclusion.</li>
+<li><strong>Commissioning and handover.</strong> Commissioning examines readiness and behavior under defined conditions. Handover transfers the identified result and responsibilities. Receiving information, training, maintenance arrangements, and the relevant decisions remain distinct considerations.</li>
+<li><strong>Qualified transfer.</strong> The actual requirements and authorized decision must permit the qualification. Preserve the unmet obligation, use limitation, receiving owner, resources, closure condition, and authority. Transfer does not prove fulfilment.</li>
+</ol>
+<h3 id="sample-findings-and-coverage">Sample findings and coverage</h3>
+<p>A useful finding cites C04 Rev 0's complete-acceptance cover-sheet claim. It identifies the single observation, missing hydraulic conditions, unexercised scenarios, and incomplete configuration evidence.</p>
+<p>Its consequence is that complete acceptance lacks a supporting basis. Its response includes correcting the claim and arranging the missing definition, examination, and decisions.</p>
+<p>Do not accept a finding that declares all untested behavior failed. The report supplies absence of examination, not observed failure in each scenario.</p>
+<p>A useful coverage table can include flow, changeover, electrical compatibility, installed configuration, operating instructions, training, and maintenance arrangements. Learners need six identified requirements or readiness conditions.</p>
+<p>Flow evidence needs the configuration, suction and discharge conditions, water properties, relevant operating case, measurement method, and other conditions needed by competent assessment. Do not demand invented technical values.</p>
+<p>Changeover and abnormal responses need their required behavior established before defining expected test results. A05's automatic-changeover proposal has not amended A02.</p>
+<p>A06's open applicability remains visible. The teaching packet cannot establish legal conformity for an unidentified jurisdiction.</p>
+<h3 id="sample-handover-reasoning">Sample handover reasoning</h3>
+<p>The configuration package should reconcile the installed equipment and defining records. It should connect instructions to that configuration. The earlier 480 V reference requires examination and correction.</p>
+<p>Operations needs applicable instructions, training, defined operating conditions, and receiving arrangements. Maintenance needs applicable equipment information and confirmed spare-parts arrangements.</p>
+<p>The sponsor's request does not establish complete handover. A01 identifies sponsor, technical, and receiving responsibilities. The proposed account must route each decision to the appropriate authority.</p>
+<p>Accept a properly bounded proposal for further examination or qualified delivery only when it preserves every unmet condition and required decision. Do not accept unsupported routine-operation permission.</p>
+<h3 id="assessment-guidance-and-common-defects-2">Assessment guidance and common defects</h3>
+<p>Use the course's five criteria. Ask the receiving role to explain what they receive, what they can rely on, and what remains their responsibility.</p>
+<p>Common defects include:</p>
+<ul>
+<li>Treating one witnessed measurement as full acceptance.</li>
+<li>Inferring earlier design-gap closure from later observed flow.</li>
+<li>Claiming every untested function failed.</li>
+<li>Omitting the installed configuration from the evidence account.</li>
+<li>Equating uploaded documents with operational readiness.</li>
+<li>Transferring an unmet obligation without its consequences or owner.</li>
+</ul>
+<p>Require repair of the relevant claim, coverage, or responsibility. Preserve valid C04 observations with their limited scope. Do not erase the original evidence while correcting its interpretation.</p>
+<h2 id="continue-the-learning-portfolio">Continue the learning portfolio</h2>
+<p>Courses 08 to 10 should produce connected packages. Schedule readiness must use the technical interface conditions. Assurance must examine the identified configuration and requirements.</p>
+<p>Carry remaining matters into Course 11 without declaring them completed. Retain calculations, decisions, observations, and repaired assignments with their relevant revisions.</p>
+<!-- END MARKDOWN CONTENT -->
+    </article>
+  </div>
+  <footer class="document-footer">
+  <dl class="document-meta">
+    <div><dt>Source basis dated</dt><dd>11 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>10b70036ef791374685291371a651ec9492a612c</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="08-10-execution-delivery.md">08-10-execution-delivery.md</a><br><code>07b08afa568de0f2c2f118cb79faa4f24e3fe95e05bd80df34ac850a2cbc1058</code></dd></div>
+  </dl>
+    <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
+    <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
+    <p class="back-top"><a href="#manual-top">Back to start ↑</a></p>
+  </footer>
+</main>
+</div>
+<script>
+const mobileContents = document.querySelector('.mobile-toc');
+mobileContents.addEventListener('click', (event) => {
+  if (event.target.closest('a[href^="#"]')) mobileContents.open = false;
+});
+</script>
+</body>
+</html>

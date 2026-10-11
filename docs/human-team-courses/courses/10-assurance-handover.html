@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
+<meta name="source-sha256" content="87947c34be582e5370acf5c217b6865926796d9aa066c51bf0575490a4b89039">
+<meta name="source-basis-date" content="2026-10-11">
+<meta name="source-basis-revision" content="10b70036ef791374685291371a651ec9492a612c">
+<title>Course 10: Assurance, Delivery, and Handover · Chirality</title>
+<style>
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --canvas: #eeeeee;
+  --ink: #111111;
+  --muted: #505050;
+  --line: #cccccc;
+  --accent: #111111;
+  --tint: #eeeeee;
+  font-family: "Liberation Serif", "Times New Roman", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 2rem; }
+body { margin: 0; color: var(--ink); background: var(--canvas); }
+a { color: var(--accent); text-underline-offset: .17em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #111111;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.skip-link {
+  position: fixed; top: .6rem; left: .6rem; z-index: 100;
+  padding: .6rem 1rem; background: var(--paper); border: 2px solid var(--accent);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+.masthead { border-bottom: 1px solid var(--ink); background: var(--paper); }
+.masthead-inner {
+  max-width: 70rem; margin: auto; padding: 1.05rem 2.5rem;
+  display: flex; flex-wrap: wrap; gap: .35rem 1.2rem;
+  align-items: baseline; justify-content: center; text-align: center;
+}
+.brand { font-size: .92rem; font-weight: 700; letter-spacing: .12em; }
+.masthead-label { color: var(--ink); font-size: .77rem; text-transform: uppercase; letter-spacing: .025em; }
+.layout {
+  max-width: 70rem; margin: auto; padding: 0 2.5rem;
+  display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2.5rem;
+}
+.sidebar {
+  position: sticky; top: 0; align-self: start; max-height: 100vh;
+  overflow-y: auto; padding: 2rem .8rem 2rem 0;
+  scrollbar-width: thin;
+}
+.nav-label, .eyebrow {
+  margin: 0 0 .85rem; color: var(--muted); font-size: .73rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+}
+.contents { list-style: none; padding: 0; margin: 0; }
+.contents li { margin: .15rem 0; }
+.contents a {
+  display: block; padding: .34rem .65rem; border-left: 2px solid transparent;
+  color: var(--muted); text-decoration: none; font-size: .86rem; line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.contents a:hover, .contents a:focus-visible {
+  color: var(--accent); background: var(--tint); border-left-color: var(--accent);
+}
+.nav-help { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.3rem; }
+.nav-help p, .nav-help a { font-size: .75rem; color: var(--muted); }
+.nav-help p { margin: .5rem 0; }
+kbd { font: inherit; padding: .05rem .25rem; border: 1px solid var(--line); border-radius: .2rem; }
+main { min-width: 0; max-width: 48.5rem; padding: 2rem 0 3rem; }
+.document-meta {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem 1.5rem; margin: 0 0 1.5rem;
+  font-size: .73rem; color: var(--muted);
+}
+.document-meta div { min-width: 0; }
+.document-meta dt { font-weight: 700; letter-spacing: .025em; }
+.document-meta dd { margin: .15rem 0 0; overflow-wrap: anywhere; }
+.document-meta code { font-size: .9em; background: none; padding: 0; }
+.fingerprint { grid-column: 1 / -1; }
+.paper {
+  min-width: 0; padding: 3.4rem 3rem 3rem;
+  background: var(--paper); border: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgb(0 0 0 / .04);
+}
+article { max-width: 68ch; margin: auto; overflow-wrap: anywhere; }
+article > :first-child { margin-top: 0; }
+h1, h2, h3, h4, h5, h6 { color: #000000; line-height: 1.22; text-wrap: balance; scroll-margin-top: 2rem; }
+h1 {
+  max-width: 19ch; margin: 0 auto 1.65rem; font-size: clamp(2.05rem, 3.8vw, 2.8rem);
+  text-align: center; text-transform: uppercase; letter-spacing: .015em;
+}
+article > h1 + p { margin-bottom: 2.4rem; text-align: center; font-size: .82rem; line-height: 1.45; }
+h2 { font-size: 1.5rem; margin: 3.4rem 0 1.1rem; }
+h3 { font-size: 1.13rem; margin: 2rem 0 .7rem; }
+h4, h5, h6 { font-size: 1.02rem; margin: 1.65rem 0 .6rem; }
+p { margin: 0 0 .78rem; }
+article p { text-align: justify; text-justify: inter-word; hyphens: auto; }
+ul, ol { padding-left: 1.5rem; }
+li { padding-left: .2rem; margin: .35rem 0; }
+li > p { margin: .6rem 0; }
+hr { max-width: 75%; border: 0; border-top: 1px solid var(--ink); margin: 2.5rem auto; }
+blockquote {
+  margin: 1.4rem 1.25rem; padding: 0; background: none; border: 0;
+}
+blockquote > :last-child { margin-bottom: 0; }
+code, pre { font-family: "Liberation Mono", "SFMono-Regular", Consolas, monospace; font-size: .83em; hyphens: none; }
+code { background: #f1f1f1; padding: .08em .2em; overflow-wrap: anywhere; }
+pre {
+  max-width: 100%; overflow-x: auto; padding: 1rem 1.15rem; margin: 1.4rem 0;
+  color: #111111; background: #f6f6f6; border: 1px solid var(--line);
+  line-height: 1.5; tab-size: 4;
+}
+pre code { background: none; padding: 0; border-radius: 0; font-size: 1em; overflow-wrap: normal; }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 1.5rem 0; }
+table { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: .87rem; line-height: 1.4; }
+th, td { padding: .65rem .75rem; text-align: left; vertical-align: top; border: 1px solid #b8b8b8; }
+th { color: #000000; background: #eeeeee; font-weight: 700; }
+tbody tr { background: #ffffff; }
+img, svg { max-width: 100%; height: auto; }
+a[id], a[name] { scroll-margin-top: 2rem; }
+p:has(> a[id]:only-child):empty { margin: 0; }
+p:has(> a[id]:only-child) { margin: 0; }
+h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-color: #777777; text-decoration-thickness: .08em; text-underline-offset: .2em; }
+.mobile-toc { display: none; }
+.document-footer { margin-top: 1.5rem; color: var(--muted); font-size: .73rem; }
+.document-footer p { margin: .4rem 0; }
+@media (max-width: 65rem) {
+  .layout { padding: 0 1.5rem; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 1.5rem; }
+  .masthead-inner { padding: 1rem 1.5rem; }
+  .paper { padding: 2.6rem 2rem; }
+}
+@media (max-width: 54rem) {
+  html { scroll-padding-top: 4.5rem; }
+  .layout { display: block; padding: 0 1rem; }
+  .sidebar { display: none; }
+  .masthead-inner { padding: .85rem 1rem; gap: .2rem 1rem; }
+  .mobile-toc {
+    display: block; position: sticky; top: 0; z-index: 10;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .mobile-toc summary { padding: .75rem 1rem; cursor: pointer; color: var(--accent); font-weight: 700; font-size: .85rem; }
+  .mobile-toc nav { max-height: 65vh; overflow-y: auto; padding: 0 .5rem 1rem; }
+  .mobile-toc .contents a { padding: .55rem; }
+  main { padding-top: 1.25rem; }
+  .paper { padding: 2.2rem 1.4rem; }
+  article p { text-align: left; }
+  article > h1 + p { text-align: center; }
+  h2, h3, h4, h5, h6, a[id], a[name] { scroll-margin-top: 4.5rem; }
+  h2 { margin-top: 2.7rem; font-size: 1.4rem; }
+  .document-meta { gap: .75rem 1rem; }
+}
+@media (max-width: 25rem) {
+  :root { font-size: 17px; }
+  .layout { padding: 0 .5rem; }
+  .paper { padding: 1.4rem 1rem; }
+  .document-meta { padding: 0 .5rem; }
+}
+@media print {
+  @page { size: 6.75in 9.25in; margin: .68in .65in .67in .72in; }
+  :root { font-size: 10.5pt; line-height: 1.2; color-scheme: light; }
+  body, .paper { color: #111; background: white; }
+  .masthead, .sidebar, .mobile-toc, .skip-link, .back-top { display: none; }
+  .layout { display: block; max-width: none; padding: 0; }
+  main { max-width: none; padding: 0; }
+  .paper { padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+  article { max-width: none; }
+  article p { margin-bottom: 4.6pt; text-align: justify; }
+  .document-meta { padding: 0 0 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #bbb; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 18pt; margin-top: 1.8rem; }
+  h3 { font-size: 12pt; }
+  h4, h5, h6 { font-size: 11pt; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  a { color: inherit; text-decoration: underline; }
+  .table-scroll { overflow: visible; border: 0; }
+  table { min-width: 0; table-layout: auto; font-size: 9pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  th, td { padding: .45rem; }
+  pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; border-color: #bbb; font-size: 8pt; line-height: 1.3; }
+  pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  blockquote { break-inside: avoid; background: white; }
+  .document-footer { border-top: 1px solid #bbb; padding-top: .75rem; }
+}
+</style>
+</head>
+<body id="manual-top">
+<a class="skip-link" href="#manual-content">Skip to manual</a>
+<header class="masthead">
+  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Human team courses · offline reading edition</span></div>
+</header>
+<details class="mobile-toc">
+  <summary>Contents · 12 sections</summary>
+  <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#purpose-and-preparation">Purpose and preparation</a></li>
+<li><a href="#lesson-1-plan-quality-with-the-work">Lesson 1: Plan quality with the work</a></li>
+<li><a href="#lesson-2-choose-examinations-for-the-claim">Lesson 2: Choose examinations for the claim</a></li>
+<li><a href="#lesson-3-preserve-the-scope-of-evidence">Lesson 3: Preserve the scope of evidence</a></li>
+<li><a href="#lesson-4-establish-commissioning-readiness">Lesson 4: Establish commissioning readiness</a></li>
+<li><a href="#lesson-5-deliver-an-identified-result-and-responsibility">Lesson 5: Deliver an identified result and responsibility</a></li>
+<li><a href="#worked-northbank-example">Worked Northbank example</a></li>
+<li><a href="#transfer-example-business-system-migration">Transfer example: business-system migration</a></li>
+<li><a href="#practice">Practice</a></li>
+<li><a href="#knowledge-check">Knowledge check</a></li>
+<li><a href="#assessed-assignment">Assessed assignment</a></li>
+<li><a href="#portfolio-continuation-and-reading">Portfolio continuation and reading</a></li></ol></nav>
+</details>
+<div class="layout">
+<aside class="sidebar">
+  <nav aria-label="Sections">
+    <p class="nav-label">In this manual</p>
+    <ol class="contents"><li><a href="#purpose-and-preparation">Purpose and preparation</a></li>
+<li><a href="#lesson-1-plan-quality-with-the-work">Lesson 1: Plan quality with the work</a></li>
+<li><a href="#lesson-2-choose-examinations-for-the-claim">Lesson 2: Choose examinations for the claim</a></li>
+<li><a href="#lesson-3-preserve-the-scope-of-evidence">Lesson 3: Preserve the scope of evidence</a></li>
+<li><a href="#lesson-4-establish-commissioning-readiness">Lesson 4: Establish commissioning readiness</a></li>
+<li><a href="#lesson-5-deliver-an-identified-result-and-responsibility">Lesson 5: Deliver an identified result and responsibility</a></li>
+<li><a href="#worked-northbank-example">Worked Northbank example</a></li>
+<li><a href="#transfer-example-business-system-migration">Transfer example: business-system migration</a></li>
+<li><a href="#practice">Practice</a></li>
+<li><a href="#knowledge-check">Knowledge check</a></li>
+<li><a href="#assessed-assignment">Assessed assignment</a></li>
+<li><a href="#portfolio-continuation-and-reading">Portfolio continuation and reading</a></li></ol>
+  </nav>
+  <div class="nav-help">
+    <p>Find a term with <kbd>⌘ F</kbd> or <kbd>Ctrl F</kbd>. Use your browser’s print command for a paper copy.</p>
+    <p><a href="10-assurance-handover.md">Markdown source</a> · <a href="#manual-top">Back to start ↑</a></p>
+  </div>
+</aside>
+<main id="manual-content" tabindex="-1">
+  <div class="paper">
+    <article aria-labelledby="course-10-assurance-delivery-and-handover">
+<!-- BEGIN MARKDOWN CONTENT -->
+<h1 id="course-10-assurance-delivery-and-handover">Course 10: Assurance, Delivery, and Handover</h1>
+<p><a href="../index.html">Series</a> · <a href="../case-study.html">Northbank case</a> · <a href="../glossary.html">Glossary</a> · <a href="../references.html">References</a></p>
+<h2 id="purpose-and-preparation">Purpose and preparation</h2>
+<p>Assurance provides justified confidence in an identified result. It connects the requirements, produced configuration, examinations, evidence, and proposed reliance.</p>
+<p>Delivery provides the result to its recipient. Handover transfers continuing responsibilities with the information needed to carry them.</p>
+<p>Complete Courses 01 to 09. Bring your project basis, execution package, and technical interface account. Read Northbank Packets A, B, and C.</p>
+<p>After this course, you can:</p>
+<ul>
+<li>Plan examination when defining the work.</li>
+<li>Select suitable checks, reviews, inspections, and tests.</li>
+<li>Limit conclusions to the evidence obtained.</li>
+<li>Establish commissioning and handover prerequisites.</li>
+<li>Transfer identified responsibilities and preserve unfinished obligations.</li>
+</ul>
+<h2 id="lesson-1-plan-quality-with-the-work">Lesson 1: Plan quality with the work</h2>
+<p>A final inspection cannot recover every opportunity lost during production. Some features become concealed. Some decisions need review before ordering or construction. Plan their examination while the work remains accessible.</p>
+<p>Start from each applicable requirement. Identify its output, examination method, evidence, examiner, and decision. State the point when examination becomes necessary.</p>
+<p>Use a coverage table:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 1; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Requirement or needed condition</th>
+<th>Identified result</th>
+<th>Examination</th>
+<th>Expected evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Required flow under established conditions</td>
+<td>Selected and installed configuration</td>
+<td>Competent technical assessment and defined performance examination</td>
+<td>Conditions, measurements, configuration, and interpretation</td>
+</tr>
+<tr>
+<td>Required changeover behavior</td>
+<td>Equipment and controls together</td>
+<td>Review and defined functional test</td>
+<td>Starting state, event, response, and observed result</td>
+</tr>
+<tr>
+<td>Operating readiness</td>
+<td>Instructions and trained receiving team</td>
+<td>Document examination and readiness demonstration</td>
+<td>Applicable records and receiving decision</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This table proposes an examination route. It does not claim Northbank has completed the route or approved the methods.</p>
+<p>Set independence according to the requirement and consequences. A competent producer's check and an independent review answer related but different questions. Assign the reviewer a clear purpose and sufficient context.</p>
+<p>Allow time for correction and re-examination. A plan that schedules review immediately before an irreversible action may leave no workable response to findings.</p>
+<p>Agree the required records with their users. Retain enough evidence to understand and challenge the conclusion. Avoid collecting forms that nobody uses.</p>
+<h2 id="lesson-2-choose-examinations-for-the-claim">Lesson 2: Choose examinations for the claim</h2>
+<p>Verification examines conformity to specified requirements. Validation examines fitness for intended use under relevant conditions. The same test can contribute to both when its basis supports both questions.</p>
+<p>A calculation checks predicted behavior under its model and inputs. A review examines reasoning, assumptions, coverage, and conclusions. An inspection examines observable features. A test exercises behavior under defined conditions.</p>
+<p>Choose a method that can answer the actual question. Reading a drawing cannot establish an installed dimension. Observing one operating condition cannot establish all operating cases.</p>
+<p>Component checks matter. Connected behavior also needs examination. A standby pump, controller, and power system can each pass separate checks while their changeover interaction remains untested.</p>
+<p>Define a test before treating its result as a pass:</p>
+<ol>
+<li>Identify the governing requirement.</li>
+<li>Identify the configuration and starting state.</li>
+<li>State the test conditions.</li>
+<li>State the justified expected behavior.</li>
+<li>Identify measurement and observation methods.</li>
+<li>Define the decision and finding route.</li>
+</ol>
+<p>A real test plan also needs the relevant safety, access, operational, and authorization arrangements. This course prepares examination plans. It does not supply instructions to energize or operate equipment.</p>
+<p>Protect acceptance criteria during repair. If the result fails, investigate the cause. A defective test can require correction, but that correction needs a substantive basis and the proper authority.</p>
+<p>Changing an expected value only to obtain a pass removes the meaning of the check.</p>
+<h2 id="lesson-3-preserve-the-scope-of-evidence">Lesson 3: Preserve the scope of evidence</h2>
+<p>Evidence belongs to an identified result, conditions, method, and observation. Retain those relationships. An unqualified statement such as “tested successfully” omits too much to support reliance.</p>
+<p>Distinguish observation from interpretation and decision. A witness can confirm that a measurement occurred. The measurement's adequacy for acceptance remains a further question.</p>
+<p>Read evidence in both directions. For each obligation, find the relevant result and examination. For each acceptance claim, locate its actual supporting evidence.</p>
+<p>Record limits openly. An incomplete configuration list limits traceability. Missing test conditions limit interpretation. Unperformed scenarios leave their behavior unestablished.</p>
+<p>A later observation does not prove earlier design gaps were resolved. It can establish observed behavior within its own scope. Other gaps still require their own evidence or disposition.</p>
+<p>After a repair, assess affected evidence. A setting change can invalidate a functional test. A corrected spelling in an unrelated instruction may leave that test valid. Re-examine according to the actual relationship.</p>
+<p>Use a finding that supports action:</p>
+<ul>
+<li>Observation and source.</li>
+<li>Affected requirement or claim.</li>
+<li>Consequence for the proposed reliance.</li>
+<li>Responsible owner.</li>
+<li>Required closure evidence or authorized disposition.</li>
+</ul>
+<p>Keep unresolved findings visible until their closure basis exists. A meeting record's “closed” label does not create missing evidence.</p>
+<h2 id="lesson-4-establish-commissioning-readiness">Lesson 4: Establish commissioning readiness</h2>
+<p>Commissioning establishes readiness and behavior under defined conditions before the relevant operating handover. Its scope depends on the installation and governing arrangements.</p>
+<p>Define prerequisites for each commissioning activity. These can include complete installation, configuration records, prerequisite checks, approved procedures, suitable instruments, competent participants, and operating coordination.</p>
+<p>Allocate boundaries where work continues nearby. Identify what is ready, what remains under construction, and which activities can affect each other. Assess these relationships before overlapping installation and commissioning.</p>
+<p>Build the commissioning plan from required operating activities. Include normal use and relevant abnormal or recovery behavior. Select cases through competent technical assessment.</p>
+<p>For Northbank, C04 identifies unexercised changeover, power interruption, alarm response, and maintenance isolation. These gaps need assessment against the established requirements and operating basis.</p>
+<p>Do not invent expected responses where the design basis leaves them open. Resolve the required behavior first. Then prepare its examination.</p>
+<p>Arrange operators' participation where their understanding or performance matters. A commissioning team's demonstration does not establish that receiving operators understand the instructions.</p>
+<p>Separate readiness to perform a test from readiness for operational use. A controlled examination can proceed under conditions that do not permit routine service. Define and authorize those conditions through the actual project arrangements.</p>
+<p>The commissioning account should state completed examinations, findings, configuration, limits, and the next decision. It should permit the recipient to distinguish proven behavior from work still ahead.</p>
+<h2 id="lesson-5-deliver-an-identified-result-and-responsibility">Lesson 5: Deliver an identified result and responsibility</h2>
+<p>Acceptance is an authorized decision for an identified result, purpose, and conditions. A contractual acceptance, technical approval, authorization to operate, and operational handover can have different decision owners.</p>
+<p>Identify those arrangements from the appointment and governing requirements. Do not infer an authority merely because someone requests a completion date.</p>
+<p>A useful handover package identifies:</p>
+<ul>
+<li>The delivered configuration and defining records.</li>
+<li>The requirements and decisions governing its use.</li>
+<li>The relevant examination evidence.</li>
+<li>The applicable operating and maintenance information.</li>
+<li>The receiving owners and continuing obligations.</li>
+<li>Known limits and the means to obtain support or correction.</li>
+</ul>
+<p>Check that instructions apply to the actual installation. An instruction copied from an earlier supplier submission can direct the recipient to the wrong configuration.</p>
+<p>Confirm training, information access, maintenance arrangements, and receipt of responsibility. Placing files in a folder establishes availability. It does not establish that the receiving team can use them.</p>
+<p>Account for residual work explicitly. Some minor work may accompany a qualified handover where the authorized conditions permit it. Required technical evidence cannot become optional through a renamed list.</p>
+<p>State the unfinished obligation, effect on use, owner, resources, due condition, and decision. If a necessary condition remains unmet, the proposed reliance remains unsupported.</p>
+<p>Close the project account against the actual outcome. Preserve original and amended commitments. A useful reduced result can still fall short of the original scope.</p>
+<h2 id="worked-northbank-example">Worked Northbank example</h2>
+<p>The project engineer receives C04 Rev 0 and C05 Rev 0 in a later exercise. C04 records observed flow of 18 litres per second during one normal transfer condition.</p>
+<p>It does not record the full hydraulic conditions. It does not establish performance across A02's unresolved operating cases. It also leaves several interactions unexercised.</p>
+<p>The draft cover sheet claims complete acceptance. That claim exceeds the report's evidence. The team must correct the claim and establish the remaining examination and decision basis.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 2; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Supplied observation</th>
+<th>Consequence for handover</th>
+<th>Needed response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One normal-condition flow observation</td>
+<td>Limited performance evidence</td>
+<td>Establish conditions and assess required operating-case coverage</td>
+</tr>
+<tr>
+<td>Changeover and abnormal scenarios unexercised</td>
+<td>Connected behavior remains unestablished</td>
+<td>Resolve required behavior and plan the relevant examination</td>
+</tr>
+<tr>
+<td>Configuration list incomplete</td>
+<td>Evidence and instructions lack a complete configuration basis</td>
+<td>Reconcile and approve the installed configuration records</td>
+</tr>
+<tr>
+<td>Instruction cites earlier 480 V submission</td>
+<td>Instruction applicability is doubtful</td>
+<td>Examine and correct it against the actual configuration</td>
+</tr>
+<tr>
+<td>Training and spare-parts arrangements incomplete</td>
+<td>Receiving readiness remains incomplete</td>
+<td>Complete or obtain authorized dispositions for the arrangements</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This table does not assert equipment failure in the untested cases. It states that the supplied evidence does not establish their behavior.</p>
+<p>A defensible response to the sponsor is:</p>
+<blockquote>
+<p>The supplied records do not establish complete handover. One flow observation is available, but its hydraulic conditions are incomplete. Required behavior, configuration records, applicable instructions, training, and maintenance arrangements need further work. The team will identify owners and closure evidence for each gap before proposing the applicable acceptance and receiving decisions.</p>
+</blockquote>
+<p>A06's legal applicability inquiry also remains open in the supplied case. No course record supplies legal approval for Northbank.</p>
+<h2 id="transfer-example-business-system-migration">Transfer example: business-system migration</h2>
+<p>A migrated database can pass a record-count check while user permissions, recovery, and reporting remain unexamined. The count provides useful evidence for one claim.</p>
+<p>Build acceptance around the intended activities. Identify the software configuration, data state, test conditions, user participation, and recovery arrangements.</p>
+<p>Transfer support and administration responsibility with usable instructions. Record any retained source system and unresolved obligations. Apply the organization's actual security and delivery requirements.</p>
+<h2 id="practice">Practice</h2>
+<p>Use A01, A02, A06, B03, C04, and C05 with their supplied revisions.</p>
+<p>Prepare four outputs:</p>
+<ol>
+<li>Prepare an assurance coverage table for six identified requirements or readiness conditions.</li>
+<li>Write a finding against C04's complete-acceptance claim.</li>
+<li>Prepare a commissioning prerequisite list without inventing technical responses.</li>
+<li>Prepare a proposed handover package and receiving-responsibility table.</li>
+</ol>
+<p>Include the information needed to examine the flow observation. Identify the missing configuration and instruction relationships. State which decision each proposed record supports.</p>
+<p>Do not execute equipment tests. This exercise develops the plan and evidence account from supplied records.</p>
+<h2 id="knowledge-check">Knowledge check</h2>
+<ol>
+<li>Why must quality examination be planned before final inspection?</li>
+<li>How do verification and validation ask different questions?</li>
+<li>What does C04's flow observation support, and what does it leave unestablished?</li>
+<li>What information binds a test result to the configuration examined?</li>
+<li>Why do commissioning completion and operational handover require distinct consideration?</li>
+<li>When can transferring an open obligation support a qualified handover?</li>
+</ol>
+<h2 id="assessed-assignment">Assessed assignment</h2>
+<p>Prepare Northbank's proposed assurance and handover account. Include coverage, findings, commissioning prerequisites, recipient information, responsibilities, and a sponsor recommendation.</p>
+<p>Use these five observable criteria:</p>
+<ol>
+<li>The coverage table connects requirements, configurations, methods, evidence, and decisions.</li>
+<li>The account limits C04's conclusions to its actual observations and missing conditions.</li>
+<li>The commissioning plan preserves unresolved behavior and prerequisite conditions.</li>
+<li>The handover package identifies the actual recipient needs and receiving responsibilities.</li>
+<li>Residual obligations retain owners, consequences, closure evidence, and required authority.</li>
+</ol>
+<p>Ask a peer to act as the receiving operations lead. Repair any gap that prevents that person from understanding the proposed responsibility.</p>
+<h2 id="portfolio-continuation-and-reading">Portfolio continuation and reading</h2>
+<p>Connect your account to the Course 09 configuration and interface package. Retain C04's original observation separately from your corrected conclusion.</p>
+<p>Carry the remaining decisions into Course 11. They will become part of the project's continuation decision and the final practicum.</p>
+<p>Read Field Book §§6–8 and Consolidated v8 §§5.9–5.14 and chapter 6 in <a href="../references.html">References</a>. They explain evidence limits, product examination, and transfer of continuing responsibility.</p>
+<p>The optional NASA readings deepen verification and validation methods. All core exercises can use the supplied offline records.</p>
+<!-- END MARKDOWN CONTENT -->
+    </article>
+  </div>
+  <footer class="document-footer">
+  <dl class="document-meta">
+    <div><dt>Source basis dated</dt><dd>11 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>10b70036ef791374685291371a651ec9492a612c</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="10-assurance-handover.md">10-assurance-handover.md</a><br><code>87947c34be582e5370acf5c217b6865926796d9aa066c51bf0575490a4b89039</code></dd></div>
+  </dl>
+    <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
+    <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
+    <p class="back-top"><a href="#manual-top">Back to start ↑</a></p>
+  </footer>
+</main>
+</div>
+<script>
+const mobileContents = document.querySelector('.mobile-toc');
+mobileContents.addEventListener('click', (event) => {
+  if (event.target.closest('a[href^="#"]')) mobileContents.open = false;
+});
+</script>
+</body>
+</html>
