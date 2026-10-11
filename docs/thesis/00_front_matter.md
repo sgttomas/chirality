@@ -52,7 +52,7 @@ supply tests of Root's claim; their existence alone does not prove it.
 The argument distinguishes commitments, design hypotheses and observations. Its
 practical case is not a controlled demonstration of productivity or professional
 adequacy. The shared philosophical kernel remains in Appendix D, with its formal
-argument and interpretation intact and only light definitional commentary. Root's
+argument intact, with clarified definitions and concise interpretive commentary. Root's
 particular thesis asks why its means are worth building, using implementation as
 evidence and counterexample rather than restating a product specification.
 

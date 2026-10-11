@@ -121,7 +121,8 @@ transfer to other professionals.
 | [SWBPIPE](../../projects/chirality-piping/docs/thesis/README.md) | Engineering objects, operations, numerical evidence and professional use |
 
 All three preserve the same [kernel](appendix_d_framework_s.md#d1-framework-relationships-with-respect-to-s),
-including its formal argument and interpretation prose. Definitions identify C
+including its unchanged formal argument and shared, revised interpretation.
+Definitions identify C
 as temporal dependence, M's necessary meaning as S's recognition of the necessity
 of contingency, and N as affirmation rather than modal necessity. G remains
 undefined. These few clarifications do not entail an architecture.
