@@ -1877,7 +1877,7 @@ pub(crate) fn submit_attachments_with_pending_notice(
     };
     match pending {
         None => submit_selected_attachments(state, host, custody, owner, revision, order, generation, thread, expected_turn, text, context, home),
-        Some(run) => submit_attachments_with_notice(&run, state, host, custody, owner, revision, order, generation, thread, text, context, home),
+        Some(pending) => submit_attachments_with_notice(&pending, state, host, custody, owner, revision, order, generation, thread, text, context, home),
     }
 }
 
@@ -1889,7 +1889,7 @@ pub(crate) fn submit_attachments_with_pending_notice(
 /// and no other turn can claim it. It is marked sent only when the frame
 /// write was attempted; otherwise it stays pending.
 fn submit_attachments_with_notice(
-    run: &std::sync::Arc<std::sync::Mutex<WorkflowRun>>,
+    run: &PendingNotice,
     state: &std::sync::Mutex<Result<AttachmentSelectionSession, String>>,
     host: &crate::hosting::Host,
     custody: std::sync::Arc<crate::hosting::attachment_custody::AttachmentCustody>,
@@ -1902,10 +1902,7 @@ fn submit_attachments_with_notice(
     context: crate::recovery::ExplicitAppProjectContext,
     home: Option<&str>,
 ) -> Result<Value, String> {
-    let claim = run
-        .try_lock()
-        .map_err(|_| NOTICE_RUN_BUSY.to_string())?
-        .claim_end_notice(generation, thread)?;
+    let claim = run.try_claim(generation, thread)?;
     let mut claimed = ClaimedNotice { run, claim: Some(claim), source: None };
     let lead = claimed.claim.as_ref().map(NoticeClaim::lead);
     let result = submit_selected_inner(state, host, custody, owner, revision, order, generation, thread, None, text, context, home, lead, &mut claimed.source);
@@ -1918,7 +1915,7 @@ fn submit_attachments_with_notice(
 /// Whether the frame's write was attempted is read from the Host's own facts
 /// for the prepared frame.
 struct ClaimedNotice<'a> {
-    run: &'a std::sync::Arc<std::sync::Mutex<WorkflowRun>>,
+    run: &'a PendingNotice,
     claim: Option<NoticeClaim>,
     /// The prepared frame's source, once prepared (before any write).
     source: Option<crate::hosting::SourceRequest>,
@@ -1939,7 +1936,7 @@ impl ClaimedNotice<'_> {
             NoticeCarriage::NotWritten(result.err().unwrap_or_else(|| "attachment-bearing turn: no write attempt observed".into()))
         };
         let claim = self.claim.take().expect("a claimed notice is settled once");
-        self.run.lock().unwrap_or_else(std::sync::PoisonError::into_inner).settle_end_notice(claim, carriage)
+        self.run.settle(claim, carriage)
     }
 }
 impl Drop for ClaimedNotice<'_> {
@@ -1964,7 +1961,7 @@ impl Drop for ClaimedNotice<'_> {
         } else {
             NoticeCarriage::NotWritten(format!("{cause} before any write"))
         };
-        let _ = self.run.lock().unwrap_or_else(std::sync::PoisonError::into_inner).settle_end_notice(claim, carriage);
+        let _ = self.run.settle(claim, carriage);
     }
 }
 
@@ -4160,6 +4157,13 @@ pub(crate) struct WorkflowRootSession {
     /// WR §4.2 trial flows: pre-filled trials and bring-backs, sent trials'
     /// linking state (process memory; the records are `trials`).
     trial_desk: trial_flows::TrialDesk,
+    /// CI-20 (d): the startup writer's outcome for this session's REC restart facts.
+    restart_limits: Value,
+    /// CI-20 (c): runs the person ended after a relaunch whose end notice waits,
+    /// in this process only, for the conversation's next ordinary turn (TX-5).
+    reopened_ends: std::collections::HashMap<String, std::sync::Arc<std::sync::Mutex<ReopenedEnd>>>,
+    /// (home, conversation) -> runs in `reopened_ends`, in order.
+    reopened_conversations: std::collections::HashMap<(String, String), Vec<String>>,
 }
 /// One library's latest draft observation and the transitions observed so far
 /// in this process (D-4), newest last and bounded.
@@ -4188,6 +4192,9 @@ impl Default for WorkflowRootSession {
             app_made: Default::default(),
             trials: Default::default(),
             trial_desk: Default::default(),
+            restart_limits: Value::Null,
+            reopened_ends: Default::default(),
+            reopened_conversations: Default::default(),
         }
     }
 }
@@ -4212,6 +4219,8 @@ impl WorkflowRootSession {
             "reviews":self.reviews.iter().map(|(id,review)|match review.try_lock(){Ok(review)=>json!({"reference":id,"status":review.status}),Err(_)=>json!({"reference":id,"state":"original native review interaction pending"})}).collect::<Vec<_>>(),
             "runs":self.runs.iter().map(|(id,run)|match run.try_lock(){Ok(run)=>run.view(id),Err(_)=>json!({"reference":id,"state":"original run operation pending"})}).collect::<Vec<_>>(),
             "reopened":self.reopened,
+            "restartLimits":self.restart_limits,
+            "endedAfterRelaunch":self.reopened_ends_view(),
             "drafts":self.active_library.as_deref().map(|l|self.drafts_view(l)),
             "trialPointerLimits":self.trials.limits().iter().cloned().chain(self.trial_mark_limits()).collect::<Vec<_>>(),
             "limit":"actual hot registrations may run; development and production bundle candidate selections are shown, never run (TT-1/TX-1); runs open and end only by their recorded lifecycle; compatibility is advisory; no cold file authority or model adoption claim"})
@@ -4674,6 +4683,8 @@ impl WorkflowRootSession {
             ended_after_turn: None,
             finished_report: None,
             checkpoints: None,
+            act_cache: None,
+            run_tag: Value::Null,
         };
         // EXEC §3.1 CK-1: the selection is now bound to this conversation for a run.
         workflow_run.evaluate_compatibility(crate::execution_compatibility::report::Occasion::Selection);
@@ -4706,6 +4717,9 @@ impl WorkflowRootSession {
             .unwrap_or_default();
         // V10 R-5: a held successor and its held predecessor reserve the conversation.
         if let Some(e) = self.held_step_in(&hot) {
+            return Err(format!("{e}. Nothing prepared"));
+        }
+        if let Some(e) = self.reopened_notice_blocks(home, thread) {
             return Err(format!("{e}. Nothing prepared"));
         }
         for reference in &hot {
@@ -4753,23 +4767,53 @@ impl WorkflowRootSession {
         &self,
         home: &str,
         thread: &str,
-    ) -> Result<Option<std::sync::Arc<std::sync::Mutex<WorkflowRun>>>, String> {
-        for reference in self
-            .conversations
-            .get(&(home.to_owned(), thread.to_owned()))
-            .into_iter()
-            .flatten()
-        {
-            // V10 G-5: read the flag, not the run, so a busy run never blocks ordinary text.
-            let pending = self
-                .notice_flags
+    ) -> Result<Option<PendingNotice>, String> {
+        let key = (home.to_owned(), thread.to_owned());
+        // V10 G-5: read the flag, not the run, so a busy run never blocks ordinary text.
+        let pending = |reference: &String| {
+            self.notice_flags
                 .get(reference)
-                .is_some_and(|f| f.load(std::sync::atomic::Ordering::SeqCst));
-            if pending {
-                return Ok(Some(self.conversation_run(reference)?));
+                .is_some_and(|f| f.load(std::sync::atomic::Ordering::SeqCst))
+        };
+        for reference in self.conversations.get(&key).into_iter().flatten() {
+            if pending(reference) {
+                return Ok(Some(PendingNotice::Run(self.conversation_run(reference)?)));
+            }
+        }
+        // CI-20 (c): an end the person made after a relaunch.
+        for reference in self.reopened_conversations.get(&key).into_iter().flatten() {
+            if pending(reference) {
+                let end = self.reopened_ends.get(reference).cloned().ok_or("reopened end index inconsistent")?;
+                return Ok(Some(PendingNotice::Reopened(end)));
             }
         }
         Ok(None)
+    }
+    /// CI-20 (c): a pending end notice of a run ended after a relaunch holds back
+    /// a run start in its conversation. A later run cannot cite that run across
+    /// the relaunch (CI-20 (f)), so its chain line would not say it ended; the
+    /// notice goes first with an ordinary message.
+    fn reopened_notice_blocks(&self, home: &str, thread: &str) -> Option<String> {
+        self.reopened_conversations
+            .get(&(home.to_owned(), thread.to_owned()))
+            .into_iter()
+            .flatten()
+            .find(|r| self.notice_flags.get(*r).is_some_and(|f| f.load(std::sync::atomic::Ordering::SeqCst)))
+            .map(|r| format!("Run {r}, ended after the relaunch, has its end notice pending in this conversation; a new run's chain line cannot say that run ended (CI-20 (f)), so send an ordinary message first: it carries the end notice (WR TX-5)"))
+    }
+    fn reopened_ends_view(&self) -> Value {
+        json!(self.reopened_ends.values().map(|end| match end.try_lock() {
+            Ok(end) => end.view(),
+            Err(_) => json!({"state":"operation pending"}),
+        }).collect::<Vec<_>>())
+    }
+    /// CI-20 (d): the startup writer's outcome (lib.rs setup; host-owned).
+    pub fn set_restart_limits(&mut self, outcome: Value) {
+        self.restart_limits = outcome;
+    }
+    /// The reopened end of `run`, if the person ended it after a relaunch in this process.
+    pub fn reopened_end(&self, run: &str) -> Option<std::sync::Arc<std::sync::Mutex<ReopenedEnd>>> {
+        self.reopened_ends.get(run).cloned()
     }
     /// V10 R-5 (RE-7, CH-1): an "End and start" step whose successor's start outcome
     /// is not yet known, among these runs of one conversation.
@@ -4899,14 +4943,20 @@ impl WorkflowRootSession {
         }
     }
     /// After relaunch: the person's explicit end (DEF-4) of a run the project's
-    /// records show open and interrupted. Writes run_ended only. A cold record
-    /// cannot compose a sendable end notice (CI-20 (c)).
+    /// records show open and interrupted. Writes run_ended. CI-20 (c): the end is
+    /// the person's live act in this process, so its TX-5 end notice is composed
+    /// from that end plus the run's own recorded identity facts (its recorded
+    /// run-start run_text, checked against its run_opened) and is pending for the
+    /// conversation's next ordinary turn, in this process only. If the recorded
+    /// text cannot be read, does not validate or does not match, no notice is sent
+    /// and the reason is returned. `home` is the Codex home of the conversation.
     pub fn end_recorded_run(
         &mut self,
         project: &std::path::Path,
         run: &str,
         thread: &str,
         completed: bool,
+        home: Option<std::sync::Arc<HomeSession>>,
     ) -> Result<Value, String> {
         if self.runs.contains_key(run) {
             return Err("This run is held by this process; end it from its run".into());
@@ -4927,7 +4977,17 @@ impl WorkflowRootSession {
         if !limits.is_empty() {
             return Err(format!("The run record is incomplete, so its waiting arrivals cannot be read; nothing recorded: {limits:?}"));
         }
-        let run_entries: Vec<Value> = recorded.into_iter().filter(|e| e["runId"] == run).collect();
+        let mut run_entries: Vec<Value> = recorded.into_iter().filter(|e| e["runId"] == run).collect();
+        let opened_workflow = run_entries.iter().find(|e| e["kind"] == "run_opened").map(|e| e["body"]["workflow"].clone()).unwrap_or(Value::Null);
+        // CE-5/CE-6/CE-8 from the run's own record (RC-10): acts recorded while the
+        // run was interrupted are counted before its waiting arrivals are listed. As
+        // for a live end, unreadable act records give a limit, not a refusal (A-11).
+        for (kind, body) in end_counting(&run_entries, project) {
+            let mut entry = crate::records::supply::PendingRunEntry::new(kind, body.clone(), crate::util::now_rfc3339())?;
+            crate::records::supply::append_run_entry(project, run, &mut entry)
+                .map_err(|e| format!("A counted act could not be recorded, so the run was not ended: {e}"))?;
+            run_entries.push(json!({"kind":kind,"body":body}));
+        }
         let waiting = crate::checkpoint_recorder::waiting_arrivals(&run_entries);
         let mut entry = crate::records::supply::PendingRunEntry::new(
             "run_ended",
@@ -4935,8 +4995,54 @@ impl WorkflowRootSession {
             crate::util::now_rfc3339(),
         )?;
         crate::records::supply::append_run_entry(project, run, &mut entry)?;
-        let view = json!({"run":run,"state":"ended by the person","cause":cause,"endNotice":"not composed: a reopened record cannot compose a sendable notice (CI-20 (c))"});
+        let notice = match home {
+            None => json!({"state":"not composed: no Codex home for this conversation in this process; no end notice is sent for this end"}),
+            Some(home) => match self.hold_reopened_notice(&records, run, thread, &opened_workflow, home) {
+                Ok(view) => view,
+                Err(e) => json!({"state":format!("not composed: {e}; no end notice is sent for this end (CI-20 (c))")}),
+            },
+        };
+        let view = json!({"run":run,"state":"ended by the person","cause":cause,"endNotice":notice});
         self.reopen(project, &[]).ok();
+        Ok(view)
+    }
+    /// CI-20 (c): compose and hold the end notice of a run the person just ended
+    /// after a relaunch.
+    fn hold_reopened_notice(
+        &mut self,
+        records: &crate::workflow_workspace::publication::ProjectRecords,
+        run: &str,
+        thread: &str,
+        opened_workflow: &Value,
+        home: std::sync::Arc<HomeSession>,
+    ) -> Result<Value, String> {
+        let generation = home.host.snapshot()["generation"].clone();
+        let home_key = generation["home"].as_str().filter(|h| !h.is_empty()).ok_or("Codex is not running for this conversation's home, so its generation is not established")?.to_owned();
+        let publication = crate::workflow_workspace::publication::PreparedEndPublication::after_relaunch(
+            records,
+            run,
+            thread,
+            opened_workflow,
+            &crate::workflow_workspace::RunEndReason::ByPerson,
+            WR_WRITER,
+            &crate::util::now_rfc3339(),
+            &generation,
+        )?;
+        let end = ReopenedEnd {
+            home,
+            project: crate::workflow_workspace::publication::ProjectRecords::open(records.root())?,
+            run: run.to_owned(),
+            conversation: thread.to_owned(),
+            notice: NoticeState::Prepared(publication),
+            notice_record_failure: None,
+            notice_flag: std::sync::Arc::new(std::sync::atomic::AtomicBool::new(false)),
+            status: json!({"state":"run ended by the person after a relaunch; its end notice is pending"}),
+        };
+        end.sync_notice_flag();
+        let view = end.notice.view();
+        self.notice_flags.insert(run.to_owned(), end.notice_flag.clone());
+        self.reopened_ends.insert(run.to_owned(), std::sync::Arc::new(std::sync::Mutex::new(end)));
+        self.reopened_conversations.entry((home_key, thread.to_owned())).or_default().push(run.to_owned());
         Ok(view)
     }
     /// RE-7: the run in force (open) among this process's runs of a conversation.
@@ -5193,9 +5299,24 @@ impl WorkflowRootSession {
     /// Durable reopen for display: the explicit project's records only.
     pub fn reopen(&mut self, project: &std::path::Path, restart_events: &[Value]) -> Result<Value, String> {
         let records = crate::workflow_workspace::publication::ProjectRecords::open(project)?;
-        let view = crate::records::supply::read_project_runs(&records, restart_events).view();
+        let mut view = crate::records::supply::read_project_runs(&records, restart_events).view();
+        // CI-20 (d): what the host's startup writer did with this session's restart facts.
+        view["restartLimits"] = self.restart_limits.clone();
+        view["endedAfterRelaunch"] = self.reopened_ends_view();
         self.reopened = Some(view.clone());
         Ok(view)
+    }
+}
+/// CE-5/CE-6/CE-8 at an end after relaunch: the acts counted from the run's own
+/// record or, while an arrival waits and the act records cannot be read, the
+/// limit naming them (A-11: the end is not refused).
+fn end_counting(run_entries: &[Value], project: &std::path::Path) -> Vec<crate::checkpoint_recorder::Output> {
+    if crate::checkpoint_recorder::waiting_arrivals(run_entries).is_empty() {
+        return vec![];
+    }
+    match crate::checkpoint_recorder::project_act_records(project) {
+        Ok(acts) => crate::checkpoint_recorder::count_acts(run_entries, &acts, project),
+        Err(e) => vec![crate::checkpoint_recorder::acts_unread_limit(&e)],
     }
 }
 /// Starts a prepared run (CH-1 rechecked at dispatch). The Root lock is not held
@@ -5235,7 +5356,10 @@ pub(crate) fn start_workflow_run(
             .remove(reference)
             .and_then(|a| root.runs.get(&a).cloned());
         // V10 R-5: another "End and start" step in progress reserves the conversation.
-        let reserved = root.held_step_in(&root.conversation_of(reference));
+        let reserved = root.held_step_in(&root.conversation_of(reference)).or_else(|| {
+            let scope = run.try_lock().ok().map(|r| r.prepared().scope().clone());
+            scope.and_then(|scope| root.reopened_notice_blocks(&scope.home, &scope.conversation))
+        });
         (run, root.superseded_notices(reference), predecessor, reserved)
     };
     if let Some(predecessor) = predecessor {
@@ -5417,11 +5541,7 @@ pub(crate) fn send_with_pending_notice_in_mode(
         Ok(run) => run,
         Err(e) => return Some(NoticeSend { result: Err(e), written: false }),
     };
-    let mut run = match pending.try_lock() {
-        Ok(run) => run,
-        Err(_) => return Some(NoticeSend { result: Err(NOTICE_RUN_BUSY.into()), written: false }),
-    };
-    Some(run.send_end_notice_in_mode(generation, person_text, mode))
+    Some(pending.send_text(generation, person_text, mode))
 }
 /// Ordinary text without a mode (the tests' shorthand for `conversation_send_text`).
 #[cfg(test)]
@@ -5439,9 +5559,222 @@ fn pending_notice_run(
     root: &std::sync::Mutex<WorkflowRootSession>,
     generation: &Value,
     thread: &str,
-) -> Option<Result<std::sync::Arc<std::sync::Mutex<WorkflowRun>>, String>> {
+) -> Option<Result<PendingNotice, String>> {
     let home = generation["home"].as_str()?;
     root.lock().unwrap().pending_notice_for(home, thread).transpose()
+}
+/// The owner of a pending end notice (TX-5): a run held by this process, or a
+/// run the person ended after a relaunch (CI-20 (c)). Both follow the same
+/// claim, carriage and settlement rules (TC-2, CI-20 (i)).
+#[derive(Clone)]
+pub(crate) enum PendingNotice {
+    Run(std::sync::Arc<std::sync::Mutex<WorkflowRun>>),
+    Reopened(std::sync::Arc<std::sync::Mutex<ReopenedEnd>>),
+}
+impl PendingNotice {
+    fn send_text(&self, generation: &Value, person_text: &str, mode: Option<&str>) -> NoticeSend {
+        let busy = || NoticeSend { result: Err(NOTICE_RUN_BUSY.into()), written: false };
+        match self {
+            Self::Run(run) => match run.try_lock() {
+                Ok(mut run) => run.send_end_notice_in_mode(generation, person_text, mode),
+                Err(_) => busy(),
+            },
+            Self::Reopened(end) => match end.try_lock() {
+                Ok(mut end) => end.send_end_notice_in_mode(generation, person_text, mode),
+                Err(_) => busy(),
+            },
+        }
+    }
+    fn try_claim(&self, generation: &Value, thread: &str) -> Result<NoticeClaim, String> {
+        match self {
+            Self::Run(run) => run.try_lock().map_err(|_| NOTICE_RUN_BUSY.to_string())?.claim_end_notice(generation, thread),
+            Self::Reopened(end) => end.try_lock().map_err(|_| NOTICE_RUN_BUSY.to_string())?.claim_end_notice(generation, thread),
+        }
+    }
+    fn settle(&self, claim: NoticeClaim, carriage: NoticeCarriage) -> Result<Value, String> {
+        match self {
+            Self::Run(run) => run.lock().unwrap_or_else(std::sync::PoisonError::into_inner).settle_end_notice(claim, carriage),
+            Self::Reopened(end) => end.lock().unwrap_or_else(std::sync::PoisonError::into_inner).settle_end_notice(claim, carriage),
+        }
+    }
+}
+/// TX-5 claim after composition: publish the prepared notice record (a failure
+/// sends nothing and keeps the original pending bytes), then the notice is
+/// `Carrying` for exactly one new turn.
+fn claim_prepared_notice(
+    notice: &mut NoticeState,
+    record_failure: &mut Option<String>,
+    status: &mut Value,
+    project: &crate::workflow_workspace::publication::ProjectRecords,
+    generation: &Value,
+) -> Result<NoticeClaim, String> {
+    let NoticeState::Prepared(publication) = &*notice else {
+        return Err("No end notice is pending for this run; nothing sent".into());
+    };
+    let published = match publication.publish(project) {
+        Ok(p) => {
+            *record_failure = None;
+            p
+        }
+        Err(e) => {
+            *record_failure = Some(e.clone());
+            *status = json!({"state":"end notice not recorded; nothing sent","limit":e,"choices":["Retry the end-notice record","Send without the end notice (recorded as not supplied)"]});
+            return Err(format!("End notice not durably recorded; nothing sent: {e}. Retry the end-notice record, or choose \"Send without the end notice\" (recorded as not supplied)"));
+        }
+    };
+    let client_id = crate::util::opaque_id("workflow-message:")?;
+    // V10 G-1: the record and text do not depend on the generation; a notice
+    // left pending across a Codex relaunch is re-scoped to the current one.
+    let text = crate::workflow_workspace::publication::PublishedText::prepared(&published)
+        .with_generation(generation)?;
+    let NoticeState::Prepared(publication) = std::mem::replace(notice, NoticeState::None) else {
+        unreachable!()
+    };
+    *notice = NoticeState::Carrying { publication, published, client_id: client_id.clone() };
+    Ok(NoticeClaim { notice: text, client_id, generation: generation.clone() })
+}
+/// Second half: `Sent` exactly when a frame carrying the notice was written
+/// (never resent, whatever the outcome); otherwise pending again, same record.
+fn settle_claimed_notice(
+    notice: &mut NoticeState,
+    status: &mut Value,
+    claim: NoticeClaim,
+    carriage: NoticeCarriage,
+) -> Result<Value, String> {
+    if !matches!(&*notice, NoticeState::Carrying { client_id, .. } if *client_id == claim.client_id) {
+        return Err("This end-notice claim is no longer held; its state is unchanged".into());
+    }
+    let NoticeState::Carrying { publication, published, client_id } = std::mem::replace(notice, NoticeState::None) else {
+        unreachable!()
+    };
+    match carriage {
+        NoticeCarriage::NotWritten(limit) => {
+            *notice = NoticeState::Prepared(publication);
+            *status = json!({"state":"end notice not sent; it stays pending for the next ordinary turn","limit":limit});
+            Err(format!("End notice not sent (no frame written); it stays pending: {limit}"))
+        }
+        NoticeCarriage::Written { turn, outcome, result } => {
+            *notice = NoticeState::Sent { published, client_id, turn, generation: claim.generation, outcome };
+            let view = notice.view();
+            result.map(|mut value| {
+                value["endNotice"] = view;
+                value
+            })
+        }
+    }
+}
+/// CI-20 (c), WR TX-5 / SQ-END: the person's end, made in this process after a
+/// relaunch, of a run the record showed open and interrupted. The end is the
+/// person's live act here; the notice is composed from it plus the run's own
+/// recorded identity facts (its recorded run-start `run_text`, checked against
+/// its `run_opened`), never from Codex history. It is pending for the
+/// conversation's next ordinary turn under the same claim and consumption rules
+/// as a live end's notice. It lives in this process only: a further relaunch
+/// before that turn loses it.
+pub(crate) struct ReopenedEnd {
+    home: std::sync::Arc<HomeSession>,
+    project: crate::workflow_workspace::publication::ProjectRecords,
+    run: String,
+    conversation: String,
+    notice: NoticeState,
+    notice_record_failure: Option<String>,
+    notice_flag: std::sync::Arc<std::sync::atomic::AtomicBool>,
+    status: Value,
+}
+impl ReopenedEnd {
+    pub(crate) fn view(&self) -> Value {
+        json!({"run":self.run,"conversation":self.conversation,"state":"ended by the person after a relaunch","endNotice":self.notice.view(),
+            "noticeRecordFailure":self.notice_record_failure,"status":self.status,
+            "limit":"this end notice is held in this App process only; a further relaunch before the next turn in this conversation loses it"})
+    }
+    fn sync_notice_flag(&self) {
+        self.notice_flag
+            .store(self.notice.holds_new_turns(), std::sync::atomic::Ordering::SeqCst);
+    }
+    pub(crate) fn claim_end_notice(&mut self, generation: &Value, thread: &str) -> Result<NoticeClaim, String> {
+        if matches!(self.notice, NoticeState::Carrying { .. }) {
+            return Err(NOTICE_IN_FLIGHT.into());
+        }
+        if self.conversation != thread {
+            return Err("This end notice belongs to another conversation; nothing sent".into());
+        }
+        current_conversation(&self.home.host.snapshot(), generation, thread)?;
+        let claim = claim_prepared_notice(&mut self.notice, &mut self.notice_record_failure, &mut self.status, &self.project, generation);
+        self.sync_notice_flag();
+        claim
+    }
+    pub(crate) fn settle_end_notice(&mut self, claim: NoticeClaim, carriage: NoticeCarriage) -> Result<Value, String> {
+        let result = settle_claimed_notice(&mut self.notice, &mut self.status, claim, carriage);
+        self.sync_notice_flag();
+        result
+    }
+    pub(crate) fn send_end_notice_in_mode(&mut self, generation: &Value, person_text: &str, mode: Option<&str>) -> NoticeSend {
+        let claimed = (|| {
+            if person_text.is_empty() {
+                return Err("text required".to_string());
+            }
+            current_conversation(&self.home.host.snapshot(), generation, &self.conversation)?;
+            let element = mode
+                .map(|mode| self.home.host.collaboration_mode_element(generation, &self.conversation, mode))
+                .transpose()?;
+            let thread = self.conversation.clone();
+            let claim = self.claim_end_notice(generation, &thread)?;
+            let carriage = carry_notice_text(&self.home.host, &claim, person_text, element.as_ref());
+            Ok((claim, carriage))
+        })();
+        match claimed {
+            Err(e) => {
+                self.sync_notice_flag();
+                NoticeSend { result: Err(e), written: false }
+            }
+            Ok((claim, carriage)) => {
+                let written = matches!(carriage, NoticeCarriage::Written { .. });
+                NoticeSend { result: self.settle_end_notice(claim, carriage), written }
+            }
+        }
+    }
+    /// V10 G-5/R-4 for this end: after an actual failure to write the notice
+    /// record, the person may send without it; the choice is recorded in the
+    /// run's log first (a choice that cannot be recorded is refused).
+    pub fn skip_end_notice(&mut self) -> Result<Value, String> {
+        if !self.notice.awaiting_turn() {
+            return Err("No end notice is pending for this run".into());
+        }
+        let Some(failure) = self.notice_record_failure.clone() else {
+            return Err("The end-notice record has not failed to be written; the next ordinary turn carries the notice. Nothing recorded".into());
+        };
+        let NoticeState::Prepared(publication) = &self.notice else {
+            return Err("No end notice is pending for this run".into());
+        };
+        let mut entry = crate::records::supply::PendingRunEntry::new(
+            "evidence_limit",
+            json!({"label":"record write failed","subjectRef":publication.reference(),"detail":format!("end notice not supplied: its record could not be written ({failure}) and the person chose to send without it; the App did not tell the model that this run ended (WR TX-5)")}),
+            crate::util::now_rfc3339(),
+        )?;
+        crate::records::supply::append_run_entry(self.project.root(), &self.run, &mut entry)
+            .map_err(|e| format!("The choice to send without the end notice could not be recorded, so the notice stays pending: {e}"))?;
+        self.notice = NoticeState::Skipped;
+        self.sync_notice_flag();
+        self.status = json!({"state":"end notice not supplied by the person's choice; recorded","endNotice":self.notice.view()});
+        Ok(self.status.clone())
+    }
+    /// "Retry the end-notice record": publish the pending record (same identity
+    /// and bytes) without sending.
+    pub fn retry_notice_record(&mut self) -> Result<Value, String> {
+        let NoticeState::Prepared(publication) = &self.notice else {
+            return Ok(json!({"endNotice":self.notice.view()}));
+        };
+        match publication.publish(&self.project) {
+            Ok(p) => {
+                self.notice_record_failure = None;
+                Ok(json!({"state":"recorded; not sent; the next ordinary turn carries it","record":p.run_text_record().reference()}))
+            }
+            Err(e) => {
+                self.notice_record_failure = Some(e.clone());
+                Ok(json!({"state":"still not recorded","limit":e,"choices":["Retry the end-notice record","Send without the end notice (recorded as not supplied)"]}))
+            }
+        }
+    }
 }
 const NOTICE_RUN_BUSY: &str = "The end notice of a run in this conversation must go first, and that run is busy (for example checking history); nothing sent. Try again shortly";
 const NOTICE_HELD_BY_START: &str = "A workflow run is starting in this conversation; its chain line says the earlier run ended, so that run's end notice waits for the start's outcome. Nothing sent. Try again shortly";
@@ -5643,11 +5976,13 @@ impl WorkflowCheckSlot {
     /// Never re-reads native history and never sends.
     /// `record_ready`: the lifecycle entry this R3 follows in the run log is
     /// written (run_opened for the start text, run_ended for the end notice).
+    /// CI-20 (j): returns the "record write failed" limit when the writer refuses
+    /// this R3 permanently; the R3 is then settled as never written.
     fn advance(
         &mut self,
         project: &crate::workflow_workspace::publication::ProjectRecords,
         record_ready: bool,
-    ) {
+    ) -> Option<crate::records::supply::PendingRunEntry> {
         if self.published.is_none() {
             match self.pending.publish(project) {
                 Ok(p) => {
@@ -5656,7 +5991,7 @@ impl WorkflowCheckSlot {
                 }
                 Err(e) => {
                     self.publication_failure = Some(e);
-                    return;
+                    return None;
                 }
             }
         }
@@ -5668,13 +6003,23 @@ impl WorkflowCheckSlot {
             };
         }
         if !record_ready {
-            return;
+            return None;
         }
         if let WorkflowR3::Pending(pending) = &mut self.r3 {
-            if let Ok(entry) = crate::records::supply::append_live(project, published, pending) {
-                self.r3 = WorkflowR3::Recorded(entry);
+            match crate::records::supply::append_live(project, published, pending) {
+                Ok(entry) => self.r3 = WorkflowR3::Recorded(entry),
+                Err(_) => {
+                    let (id, body) = (pending.record_id().to_owned(), pending.body().clone());
+                    let refusal = crate::records::supply::permanent_refusal(project.root(), pending.run(), "supplied_guidance", &id, &body, pending.observed_at())
+                        .and_then(|reason| crate::records::supply::never_written_limit("supplied_guidance", &id, &reason, pending.observed_at()).ok().map(|limit| (reason, limit)));
+                    if let Some((reason, limit)) = refusal {
+                        self.r3 = WorkflowR3::Unavailable(format!("never written: {reason}; a \"record write failed\" limit names {id} (CI-20 (j))"));
+                        return Some(limit);
+                    }
+                }
             }
         }
+        None
     }
     /// Published, and its R3 either recorded or established as unavailable.
     fn settled(&self) -> bool {
@@ -5743,6 +6088,12 @@ pub(crate) struct WorkflowRun {
     finished_report: Option<crate::run_offers::FinishedReport>,
     /// EXEC §2.4 checkpoint recorder, from the run's opening (CE-1) on.
     checkpoints: Option<crate::checkpoint_recorder::CheckpointRecorder>,
+    /// The project's verified act records with the fingerprint of the logs and
+    /// capture store they were read from; read again only when it changes.
+    act_cache: Option<(Vec<(String, u64, i64, i64)>, crate::checkpoint_recorder::ActRead)>,
+    /// EXEC A-2 / RECOVERY §4.1: the REC run tag written at `run_opened` (durable,
+    /// or held in this run's memory only, with the reason).
+    run_tag: Value,
 }
 impl WorkflowReviewContext {
     pub fn accept_result(
@@ -5826,6 +6177,7 @@ impl WorkflowRun {
             "checkpointRecorder":self.checkpoints.as_ref().map(crate::checkpoint_recorder::CheckpointRecorder::view),
             "workflow":{"origin":self.prepared().workflow().origin,"name":self.prepared().workflow().name,"revision":self.prepared().workflow().revision,"sourceRoot":self.prepared().workflow().source_root},
             "home":self.prepared().scope().home,"generation":self.prepared().scope().generation,
+            "runTag":self.run_tag,
             "endedAfterTurn":self.ended_after_turn,"finishedReport":self.finished_report.as_ref().map(crate::run_offers::FinishedReport::view),
             "adoption":"unknown","runStanding":"lifecycle as recorded below; completion is never inferred from a native turn"})
     }
@@ -5864,14 +6216,14 @@ impl WorkflowRun {
         json!({"state":state,"follows":self.follows,"end":self.end.as_ref().map(|e|json!({"run":e.run,"cause":run_end_cause(&e.reason)})),
             // CE-19: an entry is marked written only after its "record write failed"
             // limit is in the log, so `writtenLate` shows that limit on the live run.
-            "records":self.entries.iter().map(|e|json!({"kind":e.kind,"recordId":e.record_id,"observedAt":e.observed_at,"written":e.written.is_some(),"writtenLate":e.written.is_some()&&e.failure.is_some(),"limit":e.failure,"body":e.body})).collect::<Vec<_>>()})
+            "records":self.entries.iter().map(|e|json!({"kind":e.kind,"recordId":e.record_id,"observedAt":e.observed_at,"written":e.written.is_some(),"writtenLate":e.written.is_some()&&e.failure.is_some(),"limit":e.failure,"neverWritten":e.refused,"body":e.body})).collect::<Vec<_>>()})
     }
     pub fn has_pending_records(&self) -> bool {
         let pending_check = |c: &WorkflowCheckSlot| {
             c.published.is_none() || matches!(c.r3, WorkflowR3::Pending(_) | WorkflowR3::AwaitingCheck)
         };
         self.published.is_none()
-            || self.entries.iter().any(|e| e.written.is_none())
+            || self.entries.iter().any(|e| e.pending())
             || self.checks.iter().any(pending_check)
             || self.notice_checks.iter().any(pending_check)
     }
@@ -5880,12 +6232,27 @@ impl WorkflowRun {
             .iter()
             .any(|e| e.kind == kind && e.written.is_some())
     }
+    /// The lifecycle entry an R3 follows is settled: written, or permanently
+    /// refused with its "record write failed" limit (CI-20 (j)).
+    fn entry_settled(&self, kind: &str) -> bool {
+        self.entries.iter().any(|e| e.kind == kind && !e.pending())
+    }
+    /// CI-20 (j): the "record write failed" limit for a record the writer refuses
+    /// permanently joins the ordered entries where the next pending entry stands.
+    fn insert_never_written_limit(&mut self, limit: crate::records::supply::PendingRunEntry) {
+        let at = self.entries.iter().position(|e| e.pending()).unwrap_or(self.entries.len());
+        self.entries.insert(at, limit);
+    }
     /// RS W-2 / WR WP-5 (V9 F-2, V10 G-4): every record of this run's log — the
     /// lifecycle entries and each check's R3 — is written in observation order.
     /// The first item that cannot be written stops the flush. Everything behind
     /// it is marked held, so when it is written late its "record write failed"
     /// limit follows it. An R3 also waits for its lifecycle entry (run_opened for
     /// the start text, run_ended for the end notice).
+    /// CI-20 (j): strict order holds for failures that may succeed later. A record
+    /// the writer refuses permanently (nonconformant, or its reserved identity held
+    /// by a different entry) is not held: a "record write failed" limit names it as
+    /// never written, and later entries proceed in order.
     fn flush_records(&mut self) {
         if self.held_end || self.hold_open_for.is_some() {
             return; // V10 G-2: written when the successor's start outcome is known
@@ -5895,7 +6262,7 @@ impl WorkflowRun {
         let read_at = |slot: &WorkflowCheckSlot| slot.pending.body()["read_at"].as_str().unwrap_or("").to_owned();
         let mut stalled = false;
         loop {
-            let entry = self.entries.iter().position(|e| e.written.is_none());
+            let entry = self.entries.iter().position(|e| e.pending());
             let check = self.checks.iter().position(|s| !s.settled());
             let notice = self.notice_checks.iter().position(|s| !s.settled());
             // Earliest observation first; on a tie a lifecycle entry precedes an R3.
@@ -5914,15 +6281,34 @@ impl WorkflowRun {
             }
             let Some((kind, index, _)) = next else { break };
             let progressed = match kind {
-                0 => crate::records::supply::append_run_entry(&self.project_root, &run, &mut self.entries[index]).is_ok(),
+                0 => match crate::records::supply::append_run_entry(&self.project_root, &run, &mut self.entries[index]) {
+                    Ok(_) => true,
+                    Err(_) => {
+                        let e = &self.entries[index];
+                        let refusal = crate::records::supply::permanent_refusal(&self.project_root, &run, e.kind, &e.record_id, &e.body, &e.observed_at)
+                            .and_then(|reason| crate::records::supply::never_written_limit(e.kind, &e.record_id, &reason, &e.observed_at).ok().map(|limit| (reason, limit)));
+                        match refusal {
+                            Some((reason, limit)) => {
+                                self.entries[index].refused = Some(reason);
+                                self.insert_never_written_limit(limit);
+                                true
+                            }
+                            None => false,
+                        }
+                    }
+                },
                 1 => {
-                    let ready = self.entry_written("run_opened");
-                    self.checks[index].advance(&self.project, ready);
+                    let ready = self.entry_settled("run_opened");
+                    if let Some(limit) = self.checks[index].advance(&self.project, ready) {
+                        self.insert_never_written_limit(limit);
+                    }
                     self.checks[index].settled()
                 }
                 _ => {
-                    let ready = self.entry_written("run_ended");
-                    self.notice_checks[index].advance(&self.project, ready);
+                    let ready = self.entry_settled("run_ended");
+                    if let Some(limit) = self.notice_checks[index].advance(&self.project, ready) {
+                        self.insert_never_written_limit(limit);
+                    }
                     self.notice_checks[index].settled()
                 }
             };
@@ -5932,14 +6318,14 @@ impl WorkflowRun {
             }
         }
         if stalled {
-            for entry in self.entries.iter_mut().filter(|e| e.written.is_none()) {
+            for entry in self.entries.iter_mut().filter(|e| e.pending()) {
                 entry.failure.get_or_insert_with(|| HELD.to_owned());
             }
             for slot in self.checks.iter_mut().chain(self.notice_checks.iter_mut()) {
                 if !slot.settled() {
                     if slot.published.is_none() {
                         // WR publication of a later check does not wait for RS.
-                        slot.advance(&self.project, false);
+                        let _ = slot.advance(&self.project, false);
                     }
                     if let WorkflowR3::Pending(pending) = &mut slot.r3 {
                         pending.hold(HELD);
@@ -6192,6 +6578,10 @@ impl WorkflowRun {
             Ok(entry) => self.entries.push(entry),
             Err(e) => self.status["recordLimit"] = json!(format!("run_opened identity unavailable: {e}")),
         }
+        // EXEC A-2, §2.7: the run starter tags the conversation with the run
+        // reference through REC (RECOVERY §4.1). A tag that cannot be stored lives
+        // in this run's memory only; it never blocks the run.
+        self.run_tag = crate::run_restart::tag_run(&self.home, &scope);
         // EXEC A-2 / CE-1: the recorder lists the resolved revision's checkpoints (RP-5).
         let (recorder, listed) = crate::checkpoint_recorder::CheckpointRecorder::start(self.selection.snapshot().declaration());
         self.checkpoints = Some(recorder);
@@ -6203,7 +6593,19 @@ impl WorkflowRun {
     fn push_recorder_outputs(&mut self, outputs: Vec<crate::checkpoint_recorder::Output>, observed_at: &str) {
         for (kind, body) in outputs {
             match crate::records::supply::PendingRunEntry::new(kind, body, observed_at.to_owned()) {
-                Ok(entry) => self.entries.push(entry),
+                Ok(entry) => {
+                    // CC-R CI-3: a request whose requester identity is not observed
+                    // carries RS's separate limit, citing the request's record.
+                    let limit = (kind == "act_request").then(|| json!({"label":"requester identity not established","subjectRef":entry.record_id,
+                        "detail":"supplier request observed; the agent or MCP server that authored it is not identified"}));
+                    self.entries.push(entry);
+                    if let Some(limit) = limit {
+                        match crate::records::supply::PendingRunEntry::new("evidence_limit", limit, observed_at.to_owned()) {
+                            Ok(entry) => self.entries.push(entry),
+                            Err(e) => self.status["recordLimit"] = json!(format!("evidence_limit identity unavailable: {e}")),
+                        }
+                    }
+                }
                 Err(e) => self.status["recordLimit"] = json!(format!("{kind} identity unavailable: {e}")),
             }
         }
@@ -6222,9 +6624,22 @@ impl WorkflowRun {
         let scope = self.prepared().scope().clone();
         let start = self.start_in(view);
         let entries = self.recorded_bodies();
-        let outputs = recorder.observe(view, &crate::checkpoint_recorder::RunScope { home: &scope.home, conversation: &scope.conversation, start, project_root: &self.project_root }, &entries);
+        let root = self.project_root.clone();
+        let cache = &mut self.act_cache;
+        let mut acts = || {
+            let fingerprint = crate::checkpoint_recorder::act_records_fingerprint(&root);
+            if let (Some(now), Some((then, read))) = (&fingerprint, cache.as_ref()) {
+                if now == then {
+                    return Ok(read.clone());
+                }
+            }
+            let read = crate::checkpoint_recorder::project_act_records(&root)?;
+            *cache = fingerprint.map(|f| (f, read.clone()));
+            Ok(read)
+        };
+        let outputs = recorder.observe(view, &crate::checkpoint_recorder::RunScope { home: &scope.home, conversation: &scope.conversation, start, project_root: &self.project_root }, &entries, &mut acts);
         self.checkpoints = Some(recorder);
-        let held = self.entries.iter().any(|e| e.written.is_none());
+        let held = self.entries.iter().any(|e| e.pending());
         let recorded = !outputs.is_empty();
         if recorded {
             self.push_recorder_outputs(outputs, &crate::util::now_rfc3339());
@@ -6256,7 +6671,17 @@ impl WorkflowRun {
         if successor.is_some_and(|name| !crate::workflow_workspace::valid_name(name)) || cause == "invalid" {
             return Err("successor workflow name invalid; nothing ended".into());
         }
-        // CE-17 (CI-20 (h), partly): the arrivals whose recorded disposition is *waiting*; acts are not counted, so one may be listed after its act.
+        // CE-5/CE-6/CE-8 for acts recorded since the last observation, then CE-17:
+        // the arrivals whose recorded disposition is still *waiting*. The person's
+        // end is never refused for unreadable act records (A-11): a limit naming
+        // them and why is written before run_ended.
+        if !crate::checkpoint_recorder::waiting_arrivals(&self.recorded_bodies()).is_empty() {
+            let outputs = match crate::checkpoint_recorder::project_act_records(&self.project_root) {
+                Ok(acts) => crate::checkpoint_recorder::count_acts(&self.recorded_bodies(), &acts, &self.project_root),
+                Err(e) => vec![crate::checkpoint_recorder::acts_unread_limit(&e)],
+            };
+            self.push_recorder_outputs(outputs, &crate::util::now_rfc3339());
+        }
         let waiting = crate::checkpoint_recorder::waiting_arrivals(&self.recorded_bodies());
         let entry = crate::records::supply::PendingRunEntry::new(
             "run_ended",
@@ -6309,7 +6734,7 @@ impl WorkflowRun {
             if let Some(entry) = self
                 .entries
                 .iter_mut()
-                .find(|e| e.kind == "run_ended" && e.written.is_none())
+                .find(|e| e.kind == "run_ended" && e.pending())
             {
                 entry.body["cause"] = json!(cause);
             }
@@ -6388,57 +6813,15 @@ impl WorkflowRun {
             )?;
             self.notice = NoticeState::Prepared(publication);
         }
-        let NoticeState::Prepared(publication) = &self.notice else {
-            unreachable!()
-        };
-        let published = match publication.publish(&self.project) {
-            Ok(p) => {
-                self.notice_record_failure = None;
-                p
-            }
-            Err(e) => {
-                self.notice_record_failure = Some(e.clone());
-                self.status = json!({"state":"end notice not recorded; nothing sent","limit":e,"choices":["Retry the end-notice record","Send without the end notice (recorded as not supplied)"]});
-                return Err(format!("End notice not durably recorded; nothing sent: {e}. Retry the end-notice record, or choose \"Send without the end notice\" (recorded as not supplied)"));
-            }
-        };
-        let client_id = crate::util::opaque_id("workflow-message:")?;
-        // V10 G-1: the record and text do not depend on the generation; a notice
-        // left pending across a relaunch is re-scoped to the current one.
-        let notice = crate::workflow_workspace::publication::PublishedText::prepared(&published)
-            .with_generation(generation)?;
-        let NoticeState::Prepared(publication) = std::mem::replace(&mut self.notice, NoticeState::None) else {
-            unreachable!()
-        };
-        self.notice = NoticeState::Carrying { publication, published, client_id: client_id.clone() };
+        let claim = claim_prepared_notice(&mut self.notice, &mut self.notice_record_failure, &mut self.status, &self.project, generation);
         self.sync_notice_flag();
-        Ok(NoticeClaim { notice, client_id, generation: generation.clone() })
+        claim
     }
     /// Second half: the notice is `Sent` exactly when a frame carrying it was
     /// written (never resent, whatever the outcome); otherwise it is pending
     /// again with the same record.
     pub(crate) fn settle_end_notice(&mut self, claim: NoticeClaim, carriage: NoticeCarriage) -> Result<Value, String> {
-        if !matches!(&self.notice, NoticeState::Carrying { client_id, .. } if *client_id == claim.client_id) {
-            return Err("This end-notice claim is no longer held; its state is unchanged".into());
-        }
-        let NoticeState::Carrying { publication, published, client_id } = std::mem::replace(&mut self.notice, NoticeState::None) else {
-            unreachable!()
-        };
-        let result = match carriage {
-            NoticeCarriage::NotWritten(limit) => {
-                self.notice = NoticeState::Prepared(publication);
-                self.status = json!({"state":"end notice not sent; it stays pending for the next ordinary turn","limit":limit});
-                Err(format!("End notice not sent (no frame written); it stays pending: {limit}"))
-            }
-            NoticeCarriage::Written { turn, outcome, result } => {
-                self.notice = NoticeState::Sent { published, client_id, turn, generation: claim.generation, outcome };
-                let view = self.notice.view();
-                result.map(|mut value| {
-                    value["endNotice"] = view;
-                    value
-                })
-            }
-        };
+        let result = settle_claimed_notice(&mut self.notice, &mut self.status, claim, carriage);
         self.sync_notice_flag();
         result
     }
@@ -6797,7 +7180,11 @@ mod workflow_root_tests {
     }
     struct Peer { fixture:Fixture,home:Arc<HomeSession>,generation:Value }
     impl Peer {
-        fn new()->Self {
+        fn new()->Self{Self::build(false)}
+        /// CI-20 (d): with the App's REC ledger configured and the conversation indexed
+        /// for a known App project (H-acct), so the run tag can be stored.
+        fn with_recovery()->Self{Self::build(true)}
+        fn build(recovery:bool)->Self {
             use std::os::unix::fs::PermissionsExt;
             let fixture=Fixture::new();for name in ["account","probe"]{std::fs::create_dir(fixture.root.join(name)).unwrap();}
             let script=fixture.root.join("owned-peer.py");
@@ -6894,7 +7281,12 @@ for line in sys.stdin:
   if m=='other':given='an unrelated task'
   if m=='body':given=given.replace(' begin>>>\n',' begin>>>\nan added line\n',1)
   if m=='framing':given=given.replace('[Chirality] Workflow run start:','[Chirality] Workflow run started:',1)
-  result={'data':[{'turnId':'child-turn','item':{'type':'userMessage','id':'child-message','content':[{'type':'text','text':'Your task, from the authoring agent:'},{'type':'text','text':given}]}},{'turnId':'child-turn','item':{'type':'agentMessage','id':'child-reply','text':'Done.'}}],'nextCursor':None}
+  first={'type':'userMessage','id':'child-message','content':[{'type':'text','text':'Your task, from the authoring agent:'},{'type':'text','text':given}]}
+  # TT-9 at Codex 0.160.0: the task arrives as an inter-agent message whose payload is encrypted (encrypted), or no user message is reported at all (nouser).
+  if m=='encrypted':first={'type':'agentMessage','id':'child-task','author':'/root','recipient':'/root/summarize_trial','content':[{'type':'input_text','text':'Message Type: NEW_TASK\nTask name: summarize_trial\nSender: /root\nPayload:'},{'type':'encrypted_content','encrypted_content':'gAAAAfixture'}]}
+  data=[{'turnId':'child-turn','item':{'type':'agentMessage','id':'child-reply','text':'Done.'}}]
+  if m!='nouser':data.insert(0,{'turnId':'child-turn','item':first})
+  result={'data':data,'nextCursor':None}
  elif method=='thread/turns/list':result={'data':[turn()],'nextCursor':None}
  elif method=='thread/items/list':
   m=mode('items-mode');seen=text;cid=client
@@ -6905,6 +7297,7 @@ for line in sys.stdin:
   if m=='noclient':cid='other-client'
   message={'type':'userMessage','id':'message','clientId':cid,'content':[{'type':'text','text':seen}]+[{'type':'text','text':t} for t in inputs[1:]]}
   data=[] if m=='absent' else [{'turnId':'turn','item':message}]
+  if m=='nouser':data=[{'turnId':'turn','item':{'type':'agentMessage','id':'reply','text':'Working.'}}]
   if m=='finished':data.append({'turnId':'turn','item':{'type':'agentMessage','id':'reply','text':'Done.\nWorkflow finished: project:coordinated-knowledge-work\nNext workflow: project:coordinated-knowledge-work'}})
   if m=='paged' and f['params'].get('cursor') is None:result={'data':[],'nextCursor':'page-2'}
   else:result={'data':data,'nextCursor':None}
@@ -6912,8 +7305,11 @@ for line in sys.stdin:
  emit({'id':f['id'],'result':result})
 "#).unwrap();std::fs::set_permissions(&script,std::fs::Permissions::from_mode(0o700)).unwrap();
             let mut cfg=crate::hosting::HostConfig::new(script,fixture.root.join("account"),fixture.root.join("probe"),fixture.root.clone());cfg.allow_unverified_dev=true;cfg.wait_limit=Duration::from_secs(2);
-            let host=Arc::new(crate::hosting::Host::new());host.start(&cfg,"owned workflow source fixture").unwrap();assert_eq!(host.snapshot()["supplierStanding"],"unverified-development");
+            let host=Arc::new(crate::hosting::Host::new());
+            if recovery{std::fs::create_dir_all(fixture.root.join("app-data/runtime")).unwrap();host.configure_recovery(fixture.root.join("app-data/runtime/recovery.ledger.jsonl")).unwrap();}
+            host.start(&cfg,"owned workflow source fixture").unwrap();assert_eq!(host.snapshot()["supplierStanding"],"unverified-development");
             let generation=host.snapshot()["generation"].clone();host.thread_start_with_guidance(&cfg.cwd.to_string_lossy(),"fixture-model","fixture-provider","existing role unchanged").unwrap();
+            if recovery{let project=crate::recovery::ExplicitAppProjectContext::known("fixture App project",crate::recovery::AppProjectSource::ConfiguredDirectory).unwrap();assert!(host.observe_conversation_project(&generation,"thread",Some("H-acct"),&project).unwrap()["indexSnapshot"].is_object());}
             let home=Arc::new(HomeSession::new(crate::home_resources::HomeClass::Account,host,Ok(cfg)).unwrap());Self{fixture,home,generation}
         }
         fn wire(&self)->Vec<Value>{std::fs::read_to_string(self.fixture.root.join("wire.jsonl")).unwrap().lines().map(|line|serde_json::from_str(line).unwrap()).collect()}
@@ -7157,7 +7553,7 @@ for line in sys.stdin:
     fn host_tick_records_checkpoints_without_host_status_and_status_is_a_read(){
         let peer=Peer::new();peer.set_mode("notify-mode","checkpoint");
         let mut root=declared(&peer);let a=open_run(&peer,&mut root,"thread");
-        let before=kinds_for(&peer,&a);assert_eq!(before,["run_opened","checkpoint_listed","checkpoint_listed","checkpoint_listed"]);
+        let before=kinds_for(&peer,&a);assert_eq!(before,["run_opened","checkpoint_listed","checkpoint_listed","checkpoint_listed","declaration_finding"]);
         let workflows=Mutex::new(root);
         // The status read, with a native view that shows the arrival, writes nothing.
         let deadline=std::time::Instant::now()+Duration::from_secs(5);
@@ -7165,6 +7561,7 @@ for line in sys.stdin:
             if view["items"].as_array().is_some_and(|i|i.iter().any(|r|r["native"]["id"]=="m1"&&r["displayState"]=="completed"))||std::time::Instant::now()>deadline{break view;}
             std::thread::sleep(Duration::from_millis(20));};
         assert!(view["items"].as_array().unwrap().iter().any(|r|r["native"]["id"]=="m1"),"the fixture's arrival reached the native view: {view}");
+        assert!(view["serverRequests"].is_array(),"the record tick's view carries the server-request register (CE-4)");
         let status=crate::host_tick::workflow_status(&workflows,&view,true);
         assert!(status["runs"].is_array());
         assert_eq!(kinds_for(&peer,&a),before,"host_status's workflow part records nothing");
@@ -7172,7 +7569,7 @@ for line in sys.stdin:
         let homes=Mutex::new(HomeRouter::new(peer.home.clone()).unwrap());
         crate::host_tick::tick(&homes,&workflows);
         let after=kinds_for(&peer,&a);
-        assert_eq!(&after[4..],["checkpoint_arrival","disposition_change"],"{after:?}");
+        assert_eq!(&after[5..],["checkpoint_arrival","disposition_change"],"{after:?}");
         crate::host_tick::tick(&homes,&workflows);
         assert_eq!(kinds_for(&peer,&a).len(),after.len(),"recorded once");
         // host_status itself no longer drives the recorder.
@@ -7263,6 +7660,124 @@ for line in sys.stdin:
         root.lock().unwrap().link_trial_child(&reference,"child-d",false,&Value::Null).unwrap();
         assert_eq!(trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]))[0]["subAgent"]["state"],"sub-agent not linked","the latest link or unlink stands");
     }
+    /// A web-view test fixture built by the host (`app/tests/fixtures/<name>`),
+    /// compared as JSON; `CHIRALITY_REGENERATE_FIXTURES=1` writes it instead
+    /// (review the diff, then run again without the variable).
+    fn web_view_fixture(name:&str,value:&Value){
+        let path=std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../tests/fixtures").join(name);
+        if std::env::var("CHIRALITY_REGENERATE_FIXTURES").as_deref()==Ok("1"){std::fs::write(&path,format!("{}\n",serde_json::to_string_pretty(value).unwrap())).unwrap();return;}
+        let committed:Value=serde_json::from_str(&std::fs::read_to_string(&path).expect("fixture present")).expect("fixture is JSON");
+        assert_eq!(&committed,value,"regenerate {name} with CHIRALITY_REGENERATE_FIXTURES=1 after a deliberate change");
+    }
+    // Trial witness 2026-10-10 (a): once the person links a sub-agent, it is no
+    // longer offered "Link as trial ‹n›" for that trial.
+    #[test]
+    fn a_sub_agent_linked_by_the_person_is_not_offered_again_for_its_trial(){
+        let peer=Peer::new();let mut root=trial_root(&peer);let g=peer.generation.clone();
+        let reference=root.prepare_trial("delegated",DRAFT,Some((&g,"thread")),Some(&peer.home),peer.project()).unwrap()["reference"].as_str().unwrap().to_owned();
+        let root=Mutex::new(root);trial_flows::send_trial(&root,&peer.home,&reference,&g,"thread","").unwrap();
+        peer.set_mode("child-mode","error");
+        tick_reads(&peer,&root,&descendant_view(&peer,&["child-d","child-e"]));
+        let rows=trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]));
+        assert_eq!(rows[0]["subAgent"]["unread"],json!(["child-d","child-e"]));
+        assert!(rows[0]["subAgent"]["unreadReasons"].as_array().unwrap().iter().any(|r|r["thread"]=="child-e"&&r["reason"].as_str().unwrap().contains("fixture unreadable child")),"the reason a read failed is reported");
+        root.lock().unwrap().link_trial_child(&reference,"child-d",true,&descendant_view(&peer,&["child-d","child-e"])).unwrap();
+        let rows=trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]));
+        assert_eq!(rows[0]["subAgent"]["state"],"linked");assert_eq!(rows[0]["subAgent"]["thread"],"child-d");
+        assert_eq!(rows[0]["subAgent"]["unread"],json!(["child-e"]),"the linked sub-agent is not a candidate for its own trial");
+        root.lock().unwrap().link_trial_child(&reference,"child-d",false,&Value::Null).unwrap();
+        assert_eq!(trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]))[0]["subAgent"]["unread"],json!(["child-d","child-e"]),"unlinked, it is offered again");
+    }
+    // TT-9 at Codex 0.160.0 (trial witness 2026-10-10): a spawned sub-agent's
+    // task arrives as an encrypted inter-agent message, so its input cannot be
+    // read. Detected from the child's first turn as read, not from a version
+    // string. An inter-agent task item with encrypted content is final: the
+    // child stays offered for the person to link, fidelity reads "not
+    // checkable" and Read again is not offered. A first turn with items but no
+    // user message reads "not checkable" too, but stays open: it is read again
+    // on new activity and Read again stays offered, so a user message listed
+    // later is still read. The user-message shape links by the begin marker
+    // (the test above).
+    #[test]
+    fn a_sub_agent_whose_task_is_not_a_user_message_reads_not_checkable_and_stays_linkable(){
+        for (mode,reading,last) in [("encrypted",trial_flows::INPUT_ENCRYPTED,true),("nouser",trial_flows::INPUT_NOT_A_USER_MESSAGE,false)]{
+            let peer=Peer::new();let mut root=trial_root(&peer);let g=peer.generation.clone();
+            let reference=root.prepare_trial("delegated",DRAFT,Some((&g,"thread")),Some(&peer.home),peer.project()).unwrap()["reference"].as_str().unwrap().to_owned();
+            let root=Mutex::new(root);trial_flows::send_trial(&root,&peer.home,&reference,&g,"thread","").unwrap();
+            peer.set_mode("child-mode",mode);
+            let mut fixture=json!({});
+            // The fields the web view reads from a delegated trial row, with the reference fixed.
+            let shown=|row:&Value|{let mut out=json!({"reference":"trial:fixture"});for k in ["kind","sequence","subAgent","fidelity","readAgain"]{out[k]=row[k].clone();}out};
+            assert!(tick_reads(&peer,&root,&descendant_view(&peer,&["child-s"])).is_empty(),"{mode}: nothing linked or recorded automatically");
+            let reads=item_reads(&peer);
+            let mut view=descendant_view(&peer,&["child-s"]);view["items"]=json!([{"threadId":"child-s","turnId":"child-turn","native":{"id":"x","type":"agentMessage"}}]);
+            tick_reads(&peer,&root,&view);
+            if last{assert_eq!(item_reads(&peer),reads,"{mode}: a final not-checkable read is not repeated on new activity");}
+            else{assert!(item_reads(&peer)>reads,"{mode}: read again on new activity");}
+            let rows=trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]));
+            assert_eq!(rows[0]["subAgent"]["state"],"sub-agent not linked");
+            assert_eq!(rows[0]["subAgent"]["unread"],json!([]),"{mode}: not listed as unread");
+            assert_eq!(rows[0]["subAgent"]["notCheckable"],json!([{"thread":"child-s","reading":reading,"final":last}]));
+            assert_eq!(rows[0]["readAgain"]["offered"],!last,"{mode}");
+            fixture["candidate"]=shown(&rows[0]);
+            // The person links it: fidelity reads not checkable with the reason; the child is no longer a candidate.
+            root.lock().unwrap().link_trial_child(&reference,"child-s",true,&descendant_view(&peer,&["child-s"])).unwrap();
+            let rows=trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]));
+            assert_eq!(rows[0]["subAgent"]["state"],"linked");assert_eq!(rows[0]["subAgent"]["notCheckable"],json!([]));
+            assert_eq!((&rows[0]["fidelity"]["state"],&rows[0]["fidelity"]["checkable"],&rows[0]["fidelity"]["reading"]),(&json!("not checked"),&json!(false),&json!(reading)));
+            assert_eq!(rows[0]["readAgain"]["offered"],!last,"{mode}");
+            fixture["linked"]=shown(&rows[0]);
+            if mode=="encrypted"{web_view_fixture("trial-not-checkable.json",&fixture);}
+            // Read again, if pressed, records the reason itself, not a read failure.
+            let again=trial_flows::read_trial_again(&root,&peer.home,&reference,&descendant_view(&peer,&[])).unwrap();
+            let limits=again["recorded"][0]["fidelity"]["limits"].as_array().unwrap().clone();
+            assert!(limits.iter().any(|l|l==reading)&&!limits.iter().any(|l|l.as_str().unwrap().contains("could not be read")),"{again}");
+            let row=trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]))[0].clone();
+            assert_eq!(row["fidelity"]["checkable"],false,"{mode}: the recorded reading reads not checkable too (after a relaunch)");
+            assert_eq!(row["readAgain"]["offered"],!last,"{mode}");
+            if !last{
+                // A user message listed later is read: the open verdict is not a dead end.
+                peer.set_mode("child-mode","given");
+                let again=trial_flows::read_trial_again(&root,&peer.home,&reference,&descendant_view(&peer,&[])).unwrap();
+                assert_eq!(again["recorded"][0]["fidelity"]["state"],"verbatim","{again}");
+                let row=trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]))[0].clone();
+                assert!(row["fidelity"]["checkable"].is_null()&&row["readAgain"]["offered"]==true,"{row}");
+            }
+        }
+        // Not linked yet, the open verdict also gives way to a user message seen on new activity.
+        let peer=Peer::new();let mut root=trial_root(&peer);let g=peer.generation.clone();
+        let reference=root.prepare_trial("delegated",DRAFT,Some((&g,"thread")),Some(&peer.home),peer.project()).unwrap()["reference"].as_str().unwrap().to_owned();
+        let root=Mutex::new(root);trial_flows::send_trial(&root,&peer.home,&reference,&g,"thread","").unwrap();
+        peer.set_mode("child-mode","nouser");
+        tick_reads(&peer,&root,&descendant_view(&peer,&["child-s"]));
+        peer.set_mode("child-mode","given");
+        let mut view=descendant_view(&peer,&["child-s"]);view["items"]=json!([{"threadId":"child-s","turnId":"child-turn","native":{"id":"x","type":"agentMessage"}}]);
+        let recorded=tick_reads(&peer,&root,&view);
+        assert_eq!(recorded[0]["observation"],"sub-agent linked","{recorded:?}");
+    }
+    // Review of #1260 (5): the sub-agent's not-checkable reading is the child
+    // read's only; a clean trial's first turn with items but no user message
+    // reads "not yet", never a sub-agent sentence.
+    #[test]
+    fn a_clean_trial_turn_without_a_user_message_is_not_worded_as_a_sub_agent(){
+        let peer=Peer::new();let mut root=trial_root(&peer);let g=peer.generation.clone();
+        let reference=root.prepare_trial("clean",DRAFT,Some((&g,"thread")),Some(&peer.home),peer.project()).unwrap()["reference"].as_str().unwrap().to_owned();
+        root.begin_clean_start(&reference).unwrap();
+        let thread=peer.second_thread();root.mark_clean_started(&reference,&g,&thread);
+        let root=Mutex::new(root);
+        trial_flows::send_trial(&root,&peer.home,&reference,&g,&thread,"Inputs for this trial: the fixture.").unwrap();
+        peer.set_mode("items-mode","nouser");
+        let ended=json!({"home":g["home"],"generation":g,"items":[],"descendants":[],"turns":[{"threadId":thread,"id":"turn","status":"completed"}]});
+        let recorded=tick_reads(&peer,&root,&ended);
+        assert_eq!(recorded[0]["fidelity"]["state"],"not checked","{recorded:?}");
+        let words=recorded[0]["fidelity"]["limits"].to_string();
+        assert!(!words.contains("sub-agent")&&!words.contains("not checkable"),"automatic read: {words}");
+        let again=trial_flows::read_trial_again(&root,&peer.home,&reference,&json!({})).unwrap();
+        let fidelity=&again["recorded"][0]["fidelity"];
+        assert_eq!(fidelity["state"],"not checked","{again}");
+        let words=fidelity["limits"].to_string();
+        assert!(!words.contains("sub-agent")&&!words.contains("not checkable"),"{words}");
+    }
     #[test]
     fn a_trial_in_a_conversation_with_a_run_keeps_the_run_and_its_lines_offer_nothing(){
         let peer=Peer::new();let mut root=trial_root(&peer);let g=peer.generation.clone();
@@ -7352,6 +7867,8 @@ for line in sys.stdin:
         let id=pending["id"].as_str().unwrap().to_owned();
         let mut status=root.lock().unwrap().snapshot();root.lock().unwrap().decorate_status(&mut status,&json!({}));
         let transcript=status["pendingBringBacks"][0]["transcript"].as_str().unwrap().to_owned();
+        // Trial witness 2026-10-10 (b): the composer names the trial by its sequence and draft, not its reference.
+        assert_eq!((&status["pendingBringBacks"][0]["sequence"],&status["pendingBringBacks"][0]["draftName"]),(&json!(1),&json!(DRAFT)));
         assert!(transcript.starts_with(&format!("[Chirality] Trial 1 of draft {DRAFT} @ ")));
         assert!(!transcript.contains("<<<chirality-workflow"),"the trial text is shown as one line");
         assert!(transcript.contains("[trial text of trial 1: identity "));
@@ -8056,23 +8573,8 @@ for line in sys.stdin:
         let limit=log.iter().find(|e|e["kind"]=="evidence_limit"&&e["body"]["subjectRef"]==first["r3"]["recordId"]).expect("W-2 limit names the late entry");
         assert!(limit["seq"].as_u64()>r3[0]["seq"].as_u64()&&limit["seq"].as_u64()<r3[1]["seq"].as_u64(),"W-2: late entries, then the limit, then later entries");
     }
-    // V9 F-2: if an earlier R3 still cannot be written, the later R3 is held pending, never
-    // appended ahead of it.
-    #[test]
-    fn workflow_root_unwritable_earlier_r3_holds_later_r3_pending(){
-        let peer=Peer::new();let mut root=peer.fixture.registered();
-        let reference=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
-        let run=root.runs[&reference].clone();let mut run=run.lock().unwrap();run.send().unwrap();peer.select_history();
-        let runs=peer.fixture.root.join(".chirality/records/runs");let aside=peer.fixture.root.join("runs-aside");
-        std::fs::rename(&runs,&aside).unwrap();std::fs::write(&runs,b"blocked").unwrap();
-        let first=run.check_native_supply().unwrap()["check"].clone();let reserved=first["r3"]["recordId"].as_str().unwrap().to_owned();
-        std::fs::remove_file(&runs).unwrap();std::fs::rename(&aside,&runs).unwrap();
-        // Another log already holds the reserved identity with other content: the earlier R3 stays unwritable.
-        crate::records::append_with_id(&crate::storage::project_log(&peer.fixture.root,None,"conflict-fixture"),"evidence_limit",&crate::records::APP_WRITER,json!({"label":"unresolvable reference"}),&reserved).unwrap();
-        let second=run.check_native_supply().unwrap()["check"].clone();
-        assert_eq!(second["published"],true);assert_eq!(second["r3"]["state"],"pending write; missing in record","the later R3 waits for the earlier one");
-        assert!(peer.fixture.rs_entries().iter().all(|e|!(e["runId"]==reference.as_str()&&e["kind"]=="supplied_guidance")),"nothing appended ahead of the earlier pending R3");
-    }
+    // V9 F-2 (a later R3 held behind an earlier R3 that can never be written) was superseded
+    // by CI-20 (j): see ci20j_permanently_refused_r3_gets_its_limit_and_later_records_proceed.
     // V9 F-3: the pages used to mint a check must be the Host's custody pages of the sealed
     // traversal, byte for byte; count alone is not a binding.
     #[test]
@@ -8192,9 +8694,9 @@ for line in sys.stdin:
         let second=fresh.prepare_run(peer.home.clone(),&generation,"thread","again".into(),peer.project());
         assert!(second.as_ref().is_err_and(|e|e.contains("interrupted")&&e.contains(&a)),"an interrupted run is still live (RE-7): {second:?}");
         // The person ends the recorded run explicitly (DEF-4); then a new start is allowed.
-        let ended=fresh.end_recorded_run(&peer.fixture.root,&a,"thread",false).unwrap();assert_eq!(ended["state"],"ended by the person");
+        let ended=fresh.end_recorded_run(&peer.fixture.root,&a,"thread",false,None).unwrap();assert_eq!(ended["state"],"ended by the person");
         let end=rs_for(&peer,&a).into_iter().find(|e|e["kind"]=="run_ended").unwrap();assert_eq!(end["body"]["stoppedBy"],"the person");assert_eq!(end["body"]["cause"],"ended by the person");
-        assert!(fresh.end_recorded_run(&peer.fixture.root,&a,"thread",false).is_err(),"an ended run cannot be ended again");
+        assert!(fresh.end_recorded_run(&peer.fixture.root,&a,"thread",false,None).is_err(),"an ended run cannot be ended again");
         assert!(fresh.prepare_run(peer.home.clone(),&generation,"thread","again".into(),peer.project()).is_ok());
     }
     // VC-E-17 (ii), TX-5, SQ-END: the person's End writes run_ended; exactly the next ordinary
@@ -8340,7 +8842,7 @@ for line in sys.stdin:
         let run=root.lock().unwrap().runs[&a].clone();
         let claim=run.lock().unwrap().claim_end_notice(&peer.generation,"thread").unwrap();
         let unwound=std::panic::catch_unwind(std::panic::AssertUnwindSafe(||{
-            let _claimed=ClaimedNotice{run:&run,claim:Some(claim),source:None};
+            let _claimed=ClaimedNotice{run:&PendingNotice::Run(run.clone()),claim:Some(claim),source:None};
             panic!("fixture: the send path panicked after the claim");
         }));
         assert!(unwound.is_err());
@@ -8538,24 +9040,24 @@ for line in sys.stdin:
     #[test]
     fn recorder_lists_records_arrivals_without_reacting_and_ends_with_waiting_arrivals(){
         let peer=Peer::new();let mut root=declared(&peer);let a=open_run(&peer,&mut root,"thread");
-        let kinds=kinds_for(&peer,&a);assert_eq!(kinds,["run_opened","checkpoint_listed","checkpoint_listed","checkpoint_listed"],"CE-1 follows run_opened");
+        let kinds=kinds_for(&peer,&a);assert_eq!(kinds,["run_opened","checkpoint_listed","checkpoint_listed","checkpoint_listed","declaration_finding"],"CE-1 and CE-2 follow run_opened");
         let wire=peer.wire().len();let requests=peer.home.host.client_requests().len();
         let run=root.runs[&a].clone();
         // A non-matching message and the person's own command record nothing.
         let quiet=recorder_view(&peer,&[json!({"id":"m0","type":"agentMessage","text":"Working on it.\nSpacing report"}),json!({"id":"c0","type":"commandExecution","source":"userShell","command":"ls","status":"completed"})]);
         run.lock().unwrap().observe_checkpoints(&quiet);
-        assert_eq!(kinds_for(&peer,&a).len(),4,"no arrival from a message whose first line is not the designating line");
+        assert_eq!(kinds_for(&peer,&a).len(),5,"no arrival from a message whose first line is not the designating line");
         let items=[json!({"id":"m0","type":"agentMessage","text":"Working on it.\nSpacing report"}),json!({"id":"c0","type":"commandExecution","source":"userShell","command":"ls","status":"completed"}),
             json!({"id":"m1","type":"agentMessage","text":"Spacing report\nAll within the limit."}),json!({"id":"c1","type":"commandExecution","source":"agent","command":"ls","status":"inProgress"})];
         run.lock().unwrap().observe_checkpoints(&recorder_view(&peer,&items));
         let log=rs_for(&peer,&a);let kinds:Vec<&str>=log.iter().map(|e|e["kind"].as_str().unwrap()).collect();
-        assert_eq!(&kinds[4..],["checkpoint_arrival","disposition_change","continued_past"]);
-        assert_eq!(log[4]["body"]["event"]["ref"],"item:thread/turn/m1");assert_eq!(log[6]["body"]["actionRef"],"item:thread/turn/c1");
+        assert_eq!(&kinds[5..],["checkpoint_arrival","disposition_change","continued_past"]);
+        assert_eq!(log[5]["body"]["event"]["ref"],"item:thread/turn/m1");assert_eq!(log[7]["body"]["actionRef"],"item:thread/turn/c1");
         assert_eq!(peer.wire().len(),wire,"an arrival sends nothing (RC-4)");assert_eq!(peer.home.host.client_requests().len(),requests);
         assert_eq!(run.lock().unwrap().lifecycle,RunLifecycle::Open,"an arrival pauses or ends nothing");
         // The run view carries the recorded bodies for the run panel.
         let shown=run.lock().unwrap().view(&a);let records=shown["lifecycle"]["records"].as_array().unwrap().clone();
-        assert_eq!(records[4]["body"]["checkpoint"],"CP-check");assert_eq!(records[4]["written"],true);
+        assert_eq!(records[5]["body"]["checkpoint"],"CP-check");assert_eq!(records[5]["written"],true);
         run.lock().unwrap().end_run(None,None).unwrap();
         let end=rs_for(&peer,&a).into_iter().find(|e|e["kind"]=="run_ended").unwrap();
         assert_eq!(end["body"]["waitingArrivals"],json!([{"checkpoint":"CP-check","arrivalOrdinal":1}]),"CE-17 lists the arrival still waiting (CI-20 (h))");
@@ -8589,9 +9091,126 @@ for line in sys.stdin:
         let peer=Peer::new();let mut root=declared(&peer);let a=open_run(&peer,&mut root,"thread");
         root.runs[&a].lock().unwrap().observe_checkpoints(&recorder_view(&peer,&[json!({"id":"m1","type":"agentMessage","text":"Spacing report"})]));
         let mut fresh=WorkflowRootSession::default();drop(root);
-        fresh.end_recorded_run(&peer.fixture.root,&a,"thread",false).unwrap();
+        fresh.end_recorded_run(&peer.fixture.root,&a,"thread",false,None).unwrap();
         let end=rs_for(&peer,&a).into_iter().find(|e|e["kind"]=="run_ended").unwrap();
         assert_eq!(end["body"]["waitingArrivals"],json!([{"checkpoint":"CP-check","arrivalOrdinal":1}]));
+    }
+    /// A file act as the App act control leaves it: its capture object in the
+    /// capture store and its record, written by the capturing surface (RS §6).
+    fn record_file_act(peer:&Peer,rel:&str,kind:&str,content:&[u8],time:&str)->String{
+        let root=&peer.fixture.root;let path=std::fs::canonicalize(root.join(rel)).unwrap();let id=crate::util::opaque_id("cap:").unwrap();
+        let capture=json!({"format":"chirality.aac.capture-evidence","formatVersion":"0.3","captureId":id,"offerId":format!("offer:{id}"),
+            "offerDigest":{"method":"aac-offer-digest/0.1","value":"0".repeat(64)},"choice":"act","actKind":kind,"actor":{"osAccount":"fixture","identityVerified":false},
+            "boundSubject":[path.to_str().unwrap()],"boundContent":[{"method":crate::util::FILE_IDENTITY_METHOD,"value":crate::util::sha256_hex(content)}],
+            "scope":"The summary file.","purpose":"You decide to rely on the summary.","capturedAt":time,"surface":"App interface","inputSource":"host-native-confirmation",
+            "answers":{"standing":"no arrival: a standing act (RC-6)"},"evidenceLimits":["identity not verified"]});
+        crate::schema_validation::validate_capture(&capture).unwrap();
+        let store=crate::storage::capture_path(root,&id);std::fs::create_dir_all(store.parent().unwrap()).unwrap();std::fs::write(store,serde_json::to_vec(&capture).unwrap()).unwrap();
+        crate::records::append(&root.join(crate::recorder::LOG),"human_act",&crate::records::APP_INTERFACE,crate::act_control::act_body(&capture)).unwrap()["recordId"].as_str().unwrap().to_owned()
+    }
+    fn summary_items()->[Value;2]{
+        [json!({"id":"m1","type":"agentMessage","text":"Spacing report"}),json!({"id":"f1","type":"fileChange","status":"completed","changes":[{"path":"out/summary.md","kind":{"type":"add"},"diff":""}]})]
+    }
+    // CE-5 through the actual run and RS writer (CI-20 (h)): the person's act on the file
+    // output is counted, so run_ended lists only the arrival whose act was not recorded.
+    #[test]
+    fn end_counts_recorded_acts_so_waiting_arrivals_exclude_performed_ones(){
+        let peer=Peer::new();let mut root=declared(&peer);let a=open_run(&peer,&mut root,"thread");let run=root.runs[&a].clone();
+        std::fs::create_dir_all(peer.fixture.root.join("out")).unwrap();std::fs::write(peer.fixture.root.join("out/summary.md"),b"v1").unwrap();
+        run.lock().unwrap().observe_checkpoints(&recorder_view(&peer,&summary_items()));
+        let act=record_file_act(&peer,"out/summary.md","A7",b"v1",&crate::util::now_rfc3339());
+        run.lock().unwrap().end_run(None,None).unwrap();
+        let log=rs_for(&peer,&a);let kinds:Vec<&str>=log.iter().map(|e|e["kind"].as_str().unwrap()).collect();
+        let counted=log.iter().find(|e|e["kind"]=="act_counted").expect("CE-5 written");
+        assert_eq!((counted["body"]["act"]["recordId"].as_str(),counted["body"]["relation"].as_str()),(Some(act.as_str()),Some("after arrival")));
+        assert!(kinds.iter().position(|k|*k=="act_counted")<kinds.iter().position(|k|*k=="run_ended"),"counted before the end: {kinds:?}");
+        let end=log.iter().find(|e|e["kind"]=="run_ended").unwrap();
+        assert_eq!(end["body"]["waitingArrivals"],json!([{"checkpoint":"CP-check","arrivalOrdinal":1}]),"the performed file arrival is not listed; the message arrival, with no act, is");
+    }
+    // m-5: a live observation reads the act records again once the logs change, so an act
+    // recorded after the arrival is counted at the next observation.
+    #[test]
+    fn a_later_observation_counts_an_act_recorded_after_the_arrival(){
+        let peer=Peer::new();let mut root=declared(&peer);let a=open_run(&peer,&mut root,"thread");let run=root.runs[&a].clone();
+        std::fs::create_dir_all(peer.fixture.root.join("out")).unwrap();std::fs::write(peer.fixture.root.join("out/summary.md"),b"v1").unwrap();
+        let view=recorder_view(&peer,&summary_items()[1..]);
+        run.lock().unwrap().observe_checkpoints(&view);
+        let unchanged=crate::checkpoint_recorder::act_records_fingerprint(&peer.fixture.root);
+        run.lock().unwrap().observe_checkpoints(&view);
+        assert!(!rs_for(&peer,&a).iter().any(|e|e["kind"]=="act_counted"));
+        record_file_act(&peer,"out/summary.md","A7",b"v1",&crate::util::now_rfc3339());
+        assert_ne!(crate::checkpoint_recorder::act_records_fingerprint(&peer.fixture.root),unchanged,"a new record changes the fingerprint");
+        run.lock().unwrap().observe_checkpoints(&view);
+        assert!(rs_for(&peer,&a).iter().any(|e|e["kind"]=="act_counted"),"counted at the next observation");
+    }
+    /// Appends a partial line to the act log; returns the log and its bytes before.
+    fn break_act_log(peer:&Peer)->(std::path::PathBuf,Vec<u8>){
+        let log=peer.fixture.root.join(crate::recorder::LOG);std::fs::create_dir_all(log.parent().unwrap()).unwrap();
+        let before=std::fs::read(&log).unwrap_or_default();
+        let mut f=std::fs::OpenOptions::new().create(true).append(true).open(&log).unwrap();std::io::Write::write_all(&mut f,b"{\"partial\":").unwrap();
+        (log,before)
+    }
+    // m-b (EXEC A-11): while an arrival waits and the act records cannot be read, the person's
+    // end still ends the run; a limit naming the unread act records is recorded before run_ended.
+    #[test]
+    fn end_with_unreadable_act_records_ends_the_run_with_a_limit(){
+        let peer=Peer::new();let mut root=declared(&peer);let a=open_run(&peer,&mut root,"thread");let run=root.runs[&a].clone();
+        std::fs::create_dir_all(peer.fixture.root.join("out")).unwrap();std::fs::write(peer.fixture.root.join("out/summary.md"),b"v1").unwrap();
+        run.lock().unwrap().observe_checkpoints(&recorder_view(&peer,&summary_items()[1..]));
+        let (log,before)=break_act_log(&peer);
+        run.lock().unwrap().end_run(None,None).expect("the person's end is not refused");
+        assert_eq!(run.lock().unwrap().lifecycle,RunLifecycle::Ended);
+        // The broken record set holds the entries back (RS W-1/W-2); once repaired they are written in order.
+        std::fs::write(&log,before).unwrap();
+        run.lock().unwrap().flush_records();
+        let log=rs_for(&peer,&a);
+        let limit=log.iter().position(|e|e["kind"]=="evidence_limit"&&e["body"]["subjectRef"]=="the project's act records").expect("the unread act records are named");
+        let end=log.iter().position(|e|e["kind"]=="run_ended").expect("run_ended written");
+        assert!(limit<end,"the limit precedes run_ended");
+        assert!(log[limit]["body"]["detail"].as_str().unwrap().contains("could not be read"));
+        assert_eq!(log[end]["body"]["waitingArrivals"],json!([{"checkpoint":"CP-rely","arrivalOrdinal":1}]));
+    }
+    // m-b after relaunch: the relaunch end's counting gives the same limit, not a refusal, when
+    // the act records cannot be read while an arrival waits; with nothing waiting it reads nothing.
+    #[test]
+    fn end_after_relaunch_counting_gives_the_limit_for_unreadable_act_records(){
+        let peer=Peer::new();let mut root=declared(&peer);let a=open_run(&peer,&mut root,"thread");
+        std::fs::create_dir_all(peer.fixture.root.join("out")).unwrap();std::fs::write(peer.fixture.root.join("out/summary.md"),b"v1").unwrap();
+        root.runs[&a].lock().unwrap().observe_checkpoints(&recorder_view(&peer,&summary_items()[1..]));
+        let run_entries=rs_for(&peer,&a);
+        let (log,before)=break_act_log(&peer);
+        let outputs=end_counting(&run_entries,&peer.fixture.root);
+        assert_eq!(outputs,vec![crate::checkpoint_recorder::acts_unread_limit(&crate::checkpoint_recorder::project_act_records(&peer.fixture.root).unwrap_err())]);
+        let none:Vec<Value>=run_entries.iter().filter(|e|e["kind"]!="checkpoint_arrival").cloned().collect();
+        assert!(end_counting(&none,&peer.fixture.root).is_empty(),"nothing waits, nothing is read");
+        std::fs::write(&log,before).unwrap();
+    }
+    // RC-10 after relaunch: an act recorded while the run was interrupted is counted from the
+    // run's own record before its end lists the waiting arrivals.
+    #[test]
+    fn recorded_end_after_relaunch_counts_acts_recorded_meanwhile(){
+        let peer=Peer::new();let mut root=declared(&peer);let a=open_run(&peer,&mut root,"thread");
+        std::fs::create_dir_all(peer.fixture.root.join("out")).unwrap();std::fs::write(peer.fixture.root.join("out/summary.md"),b"v1").unwrap();
+        root.runs[&a].lock().unwrap().observe_checkpoints(&recorder_view(&peer,&summary_items()[1..]));
+        let mut fresh=WorkflowRootSession::default();drop(root);
+        record_file_act(&peer,"out/summary.md","A7",b"v1",&crate::util::now_rfc3339());
+        fresh.end_recorded_run(&peer.fixture.root,&a,"thread",false,None).unwrap();
+        let log=rs_for(&peer,&a);
+        assert!(log.iter().any(|e|e["kind"]=="disposition_change"&&e["body"]["disposition"]=="performed"));
+        assert_eq!(log.iter().find(|e|e["kind"]=="run_ended").unwrap()["body"]["waitingArrivals"],json!([]));
+    }
+    // CE-4 through the actual run and RS writer: a person-input request while an arrival waits
+    // is written with RS's separate "requester identity not established" limit (CC-R CI-3).
+    #[test]
+    fn a_request_while_an_arrival_waits_is_recorded_with_its_requester_limit(){
+        let peer=Peer::new();let mut root=declared(&peer);let a=open_run(&peer,&mut root,"thread");let run=root.runs[&a].clone();
+        let mut view=recorder_view(&peer,&summary_items()[..1]);
+        view["serverRequests"]=json!([{"requestIdentity":7,"generation":peer.generation,"method":"item/tool/requestUserInput","nativeParameters":{"threadId":"thread","turnId":"turn","itemId":"q"},"receiptPosition":30,"state":"outstanding"}]);
+        run.lock().unwrap().observe_checkpoints(&view);
+        let log=rs_for(&peer,&a);let request=log.iter().position(|e|e["kind"]=="act_request").expect("CE-4 written");
+        assert_eq!(log[request]["body"]["association"],"associated with the current arrival");
+        assert_eq!((log[request+1]["kind"].as_str(),log[request+1]["body"]["subjectRef"].as_str()),(Some("evidence_limit"),log[request]["recordId"].as_str()));
+        assert_eq!(log[request+1]["body"]["label"],"requester identity not established");
     }
     /// A native view as the receiver would hold it for the fixture conversation:
     /// the run's start turn ("turn") and the given live agent messages.
@@ -9073,9 +9692,9 @@ for line in sys.stdin:
         let refused=fresh.prepare_run(peer.home.clone(),&peer.generation,"thread","B".into(),peer.project());
         assert!(refused.as_ref().is_err_and(|e|e.contains("unknown")&&e.contains(&a)&&e.contains("End")),"{refused:?}");
         // The end route: it names the incomplete record while the record stays incomplete...
-        let blocked=fresh.end_recorded_run(&peer.fixture.root,&a,"thread",false);assert!(blocked.as_ref().is_err_and(|e|e.contains("incomplete")),"{blocked:?}");
+        let blocked=fresh.end_recorded_run(&peer.fixture.root,&a,"thread",false,None);assert!(blocked.as_ref().is_err_and(|e|e.contains("incomplete")),"{blocked:?}");
         // ...and, once the record is complete, the person's explicit end permits a new start.
-        std::fs::remove_dir_all(&torn).unwrap();fresh.end_recorded_run(&peer.fixture.root,&a,"thread",false).unwrap();
+        std::fs::remove_dir_all(&torn).unwrap();fresh.end_recorded_run(&peer.fixture.root,&a,"thread",false,None).unwrap();
         assert!(fresh.prepare_run(peer.home.clone(),&peer.generation,"thread","B".into(),peer.project()).is_ok());
     }
     fn log_order(peer:&Peer,run:&str)->Vec<String>{
@@ -9205,9 +9824,9 @@ for line in sys.stdin:
     fn v10_g7_reopened_run_cannot_be_ended_as_completed(){
         let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
         let mut fresh=WorkflowRootSession::default();fresh.selected=root.selected.take();drop(root);
-        assert!(fresh.end_recorded_run(&peer.fixture.root,&a,"thread",true).is_err());
+        assert!(fresh.end_recorded_run(&peer.fixture.root,&a,"thread",true,None).is_err());
         assert!(!rs_for(&peer,&a).iter().any(|e|e["kind"]=="run_ended"),"nothing written");
-        assert_eq!(fresh.end_recorded_run(&peer.fixture.root,&a,"thread",false).unwrap()["cause"],"ended by the person");
+        assert_eq!(fresh.end_recorded_run(&peer.fixture.root,&a,"thread",false,None).unwrap()["cause"],"ended by the person");
     }
     #[test]
     fn workflow_root_wrc1_busy_capture_owner_refuses_without_blocking_observer_root(){
@@ -9233,7 +9852,8 @@ for line in sys.stdin:
         started_rx.recv_timeout(Duration::from_secs(2)).unwrap();let outcome=done_rx.recv_timeout(Duration::from_millis(200));let observer_root_available=root.try_lock().is_ok();drop(held);worker.join().unwrap();
         assert_eq!(outcome.ok(),Some(true),"busy original review must return pending, not block workflow root");assert!(observer_root_available);
     }
-
+    // CI-20 (c), (d), (j): restart residuals.
+    include!("run_restart_tests.rs");
 }
 #[cfg(test)] #[path = "workflow_journey_tests.rs"] mod workflow_journey_tests;
 

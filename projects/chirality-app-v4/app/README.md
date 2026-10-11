@@ -175,7 +175,10 @@ writes records or operates the act control." `src-tauri/` holds that host;
     sub-agent's first input once and links it when it carries the trial's
     begin marker, with a fidelity reading ("workflow given verbatim", "the
     sub-agent's input differs from the run text" or "not checked"); the person
-    can link, unlink or read again. Each draft lists its trials newest first,
+    can link, unlink or read again. At Codex 0.160.0 a sub-agent's task
+    arrives as an encrypted inter-agent message, not a user message, so the
+    row reads "not checkable" with that reason, the sub-agent stays offered for
+    the person to link, and Read again is not offered when an encrypted inter-agent task is seen; a first turn that merely shows no user message stays open to reading again (WR TT-9). Each draft lists its trials newest first,
     with **Try again**, **Bring trial back** (a transcript read from Codex's
     history, pre-filled unsent in the authoring conversation; *brought back*
     is recorded on acknowledgment) and **Compare** (two trials, or a trial and
@@ -236,9 +239,33 @@ writes records or operates the act control." `src-tauri/` holds that host;
     reads *outcome unknown*, marked "(derived; not written)". *Limits:* SR records do
     not list the items or delegated agents at the outcome. A turn that ended
     after SR-01 but before the send is recorded as SR-03 *not-sent (not-ready)*
-    with the reason, a gap in the Design's send values. Quitting the App does
-    not ask first yet (K-4, SQ-Q Q-2): it stops each home's Codex on exit, as
-    before, and writes no quit stop requests.
+    with the reason, a gap in the Design's send values. At the next start the
+    App writes SR-08 for each stop request an earlier session left sent with
+    no final status (AS-02, R-2); RQ-06 for its listed requests is not written.
+22a. **Quit asks first** (DEL-01-02 DEF-6, K-4, SQ-Q; DEL-01-04 §5.2). Quit is
+    the App's own menu item (Cmd/Ctrl+Q). The host assesses live work across
+    every App-owned home and records `quit_requested` with the lists. With
+    nothing live it quits without asking. Otherwise a native question lists
+    the live turns, waiting requests, delegated agents and workflow runs in
+    force, with no time limit; **Keep running** is the default, and it and
+    Cancel record `quit_answered` *cancelled* and change nothing. On **Quit**
+    every ready home is closed to new turns and assessed again (a changed list
+    is recorded and asked again); then `quit_answered` *confirmed*, each live
+    turn's stop request (SR-01, cause *quit*) and its interrupt; the App waits
+    up to the stop wait limit for those turns to end, exits, stops each home's
+    Codex and writes `session_ended` *quit* with each quit stop request's
+    state. A relaunch reads *quit-with-live-work* and "interrupted by quit".
+    An exit nobody decided is held and asked as Quit. **Closing the window is
+    not quit** (DEF-1, SQ-W): it hides the window (macOS; the Dock icon shows
+    it again) or minimizes it; work and requests continue, and the view
+    re-reads the host's snapshot when shown. The Dock icon shows the number of
+    supplier requests waiting for the person (C-24; macOS only). Quit and
+    Stop/Restart Codex refuse each other while one is under way. *Limits:* on macOS the
+    Dock's Quit, logout and shutdown reach the App as `terminate:` and cannot
+    be held; they are recorded as `session_ended` *system-terminated* with no
+    question. The indicator gives a count only; the conversations are listed
+    in the window's request cards, and clicking the Dock icon opens the App,
+    not a particular conversation (WI-3). Quit has not been witnessed natively.
 23. **Run panel** (NIR §9 PD-1…PD-7, AS §4, §8, §9). The selected workflow and
     each run show the declared part readably, as the host read it from the
     revision's own bytes: inputs, tools, checkpoints, outputs, returned
@@ -251,26 +278,52 @@ writes records or operates the act control." `src-tauri/` holds that host;
     shown (PD-6, OV-3). **Checkpoint records (EXEC §2.4 first slice;
     DRAFT/PROPOSED Design text).** When a run opens, the App writes one
     `checkpoint_listed` (CE-1) per recognized checkpoint, saying whether it can
-    observe its arrival. Arrivals come only from native items observed live in
-    the run's conversation and turns: a completed agent message whose first
-    non-empty line is exactly the output's designating line (AW-6), or a
-    completed file change that adds or updates the declared path, or moves a
-    file onto it (AW-7 as this App reads it; a delete or a move away is not a
-    production). Each arrival
-    is written as `checkpoint_arrival` (CE-3), with the item, its time,
-    the bound subject and its limits, then a *waiting* `disposition_change`.
-    The agent's next own action (RC-9) records `continued_past` once (CE-12);
-    `run_resumed` (CE-11) is implemented but cannot occur until acts are
-    counted. Recording never sends, opens, pauses or ends anything (RC-4).
-    `run_ended` lists the arrivals still waiting (CE-17). Acts are not counted
-    yet, so an arrival stays waiting after its act, and `run_ended` can list it
-    (CI-20 (h), partly addressed). Each checkpoint
-    shows its listing, its arrivals with their labels and limits, and "no
-    request from the agent observed". A run record entry that cannot be
+    observe its arrival, and one `declaration_finding` (CE-2) per WD code of an
+    invalid or not-established checkpoint, which never arrives. Arrivals come
+    only from native items observed live in the run's conversation and turns:
+    a completed agent message whose first non-empty line is exactly the
+    output's designating line (AW-6); a completed file change that adds or
+    updates the declared path, or moves a file onto it (AW-7 as this App reads
+    it; a delete or a move away is not a production), bound to the file's
+    exact bytes as the App reads them when it observes the change; or the
+    start of each agent item of a harness capability's own kind for a kind (a)
+    checkpoint on that capability (AW-3; a name with no active presence rule,
+    and every host operation, stay not evaluable, AW-1, AW-2, AW-4). Each
+    arrival is written as `checkpoint_arrival` (CE-3), with the item, its
+    time, the bound subject and its limits, then a *waiting*
+    `disposition_change`. **Acts are counted** (CE-5, CE-6, CE-8) from the
+    App-file act and decline records in the project's record set, each only
+    through the one capture object it cites: current after correction,
+    written by the capturing surface, its capture resolved, valid and saying
+    what the record says, one record per capture (SP-3, RS R-8). Any other
+    record naming the arrival's file adds an "unresolvable reference" limit
+    and is never an act. An act of the required kind on the arrival's file and
+    current content makes the arrival *performed*; before the arrival the
+    latest decision of that kind on that content governs ("by earlier act",
+    or a decline resolving it negatively); after it, a decline of that kind on
+    that content resolves it negatively; another kind, older content or
+    other content is `act_not_counted` with its reason, and another content
+    method is neither. The first deciding act decides; later acts are not
+    recorded against a decided arrival. A message arrival, or a subject the App cannot identify (a call's targets,
+    the objects an output concerns), binds no act and stays waiting. A
+    supplier person-input request or MCP elicitation received in the run while
+    an arrival waits is written as `act_request` (CE-4), associated only when
+    exactly one waits, with RS's "requester identity not established" limit.
+    The agent's next own action (RC-9) records `continued_past` once (CE-12),
+    and the first action evidenced as started after the deciding act records
+    `run_resumed` (CE-11; with no supplier start time none is claimed, A-9).
+    Recording never sends, opens, pauses or ends anything (RC-4). When the
+    person ends the run, acts recorded since the last observation are counted
+    first, also for a run ended after a relaunch (when the act records cannot
+    be read, the end still ends the run and a limit naming them is written
+    first), and `run_ended` lists the arrivals still waiting (CE-17). Each checkpoint shows its listing or
+    finding, its arrivals with their labels, requests, counted and not-counted
+    acts and limits. A run record entry that cannot be
     written is shown on the run (A-12). It is written later, in order, with a
     "record write failed" limit (CE-19), and is never written elsewhere. The
-    App writes no tool-call, host-outcome or act-counting entries
-    (AW-1…AW-4, AW-8…AW-10, CE-2, CE-4…CE-7). A path is compared as text
+    App writes no host-outcome, A5 item or A12 entries (AW-8…AW-10, CE-7,
+    CE-9), and no lapse, observation-loss or after-end entries (CE-10,
+    CE-13…CE-16). A path is compared as text
     (U-E26). Recording follows the active home's view while the App
     refreshes, and when the person ends the run. Each declared output shows its
     promise apart from its standing facets (AS §8), which come only from the
@@ -280,6 +333,28 @@ writes records or operates the act control." `src-tauri/` holds that host;
     advisory compatibility (DEL-02-03 CK-1/CK-2) is shown readably; a role
     outside the written-for roles names both and points to Continue as
     (U-R10, chosen display).
+    **Across a relaunch (CI-20 (c), (d), (j)).** When a run opens, the host
+    tags its conversation in the App's recovery ledger with the run reference
+    (owner `DEL-02-03`). A tag that cannot be stored is kept in memory only and
+    shown on the run; the run goes on. At startup the host writes one "App-restart
+    interruption" limit for each recovery restart fact. The limit goes on the run
+    opened last in that conversation with no `run_ended`, found by the tag, or by
+    `run_opened.conversationRef` when no tag is stored (the limit says which). It
+    is written once per run and fact, and earlier ended runs are untouched.
+    **Reopen** shows what the startup writer did. Nothing ends a run
+    automatically: there is no "interruption not recovered" end. When the person
+    ends an interrupted run from the record, that end gets its end notice. The
+    notice is composed from the run's recorded run-start text, checked against
+    its `run_opened`, and the next message in that conversation carries it
+    once. Until then a new run cannot start there. If the record is missing or
+    does not match, no notice is sent and the reason is shown. The pending
+    notice is held in this process only. Reopen lists it, with "Retry the
+    end-notice record" and "Send without the end notice" when its record cannot
+    be written. A record the writer refuses permanently is not held: it is
+    nonconformant, or its reserved identity is held by a different entry. A
+    "record write failed" limit names it as never written, and later records,
+    including the person's `run_ended`, are written in order. I/O failures still
+    hold strict order.
 24. **Conversation roles** (NIR §5.4, §5.8; ROLE §3.2, §3.3, §4.4, §6.2). The
     start display lists the role set readably, with the `default_for_new_chat`
     role labelled as a preselection (the bundled set marks none today, U-R11),
@@ -337,8 +412,10 @@ writes records or operates the act control." `src-tauri/` holds that host;
 | `connector_standing.rs`, `connector_route_store.rs`, `connector_route_view.rs`, `src/ConnectorRoutePanel.tsx` | Provider-independent standing, caller-account persistence and read-only inspection; saved claims do not verify source truth or actor duties |
 | `src/RequestCards.tsx` | Readable DEL-01-04 request cards, item anchors and the waiting-request indicator; answer values come unchanged from the host's register |
 | `src-tauri/src/codex_stop.rs`, `src/CodexControls.tsx` | Stop/Restart Codex (DEL-01-02 §4.1 C-12 with the DEL-01-04 §5.2 question): live-work assessment with runs in force, ask-first sequence, the ledger `codex_stop` record, interrupts before the stop within the stop wait limit, TO-4 labels and the in-process outcome panel |
+| `src-tauri/src/app_quit.rs` | App quit asked first (DEL-01-02 DEF-6, K-4, SQ-Q; DEL-01-04 §5.2): assessment across homes, `quit_requested`/`quit_answered`, quit interrupts (cause *quit*), the exit's process stops and `session_ended` (AS-09, AS-10); the DEF-1 exit rule; the C-24 waiting count |
 | `src-tauri/src/stop_records.rs`, `resources/runtime_core/recovery.stop-request.schema.json` | REC stop-request records (DEL-01-02 §3.4 SR-01…SR-12): validated transitions and outcome labels, the `codex_stop` ledger entry, and the read-back after a relaunch; the Host writes them through its recovery writer before each interrupt send |
 | `src-tauri/src/checkpoint_recorder.rs` | EXEC §2.4 first slice: CE-1 listing, CE-3 arrivals from observed AW-6/AW-7 native items, CE-11/CE-12, CE-17 waiting arrivals; written through the run's RS writer with CE-19 late-write limits; never reacts (RC-4) |
+| `src-tauri/src/run_restart.rs`, `run_restart_tests.rs` | CI-20 (d): the REC run tag at `run_opened` (owner `DEL-02-03`) and the host's startup writer of RS "App-restart interruption" limits; tests also cover CI-20 (c) end notices after relaunch and (j) permanent refusals |
 | `src-tauri/src/run_offers.rs`, `src/RunOffers.tsx` | Exact run-offer line forms (WR §16.5 PR/FN), the finished-report proof for a *completed* end, and their presentation beneath the message |
 | `src-tauri/src/workflow_drafts.rs`, `src/WorkflowDrafts.tsx` | DEL-02-02 draft workspace in the Rust host (SQ-D D-2…D-4 observation, hygiene, §5.1 states) and its list presentation in NIR §7 words, with the two Try buttons and each draft's trial list; nothing here registers, reviews or runs |
 | `src-tauri/src/workflow_trials.rs`, `workflow_package_copy.rs`, `workflow_workspace.rs` (`compose_run_text`, `TrialText`, `files_folder`) | DEL-02-02 trial core (WR §17 steps 1–4): one composer for run texts and trial texts (TT-3), TX-7's files-line folder with content-addressed supply copies, TT-8 trial snapshots, and the create-once TT-4 trial links and observations |
@@ -518,9 +595,8 @@ dispositions (CE-2, CE-4…CE-7), or output records. Conversation roles (item 24
 keep handoffs in process memory and write no persistent role-supply log;
 delete or archive beside Fork waits on U-R13.
 
-Stop and Restart Codex (item 22) still lack an ask-first App quit with its
-quit stop-request records (K-4) and the startup SR-08 write for an earlier
-session's open requests (shown derived for now). The Restart Codex question
+The ask-first App quit (item 22a) and the startup SR-08 write are
+implemented but not witnessed natively; RQ-06 at startup is not written. The Restart Codex question
 was witnessed natively once, on 2026-10-10, with nothing live: it listed nothing
 in force and showed its three buttons with Keep Codex running as the default.
 Restart Codex was pressed, and Cancel and Keep Codex running were not. The

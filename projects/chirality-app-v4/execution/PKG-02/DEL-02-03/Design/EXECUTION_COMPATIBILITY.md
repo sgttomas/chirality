@@ -877,7 +877,17 @@ and its own run records (the run opened last with no `run_ended`), because
 DEL-01-02 stores tags without interpreting them and does not know which run
 is current (R17-10). If the tag could not be stored, the lookup returns nothing after a
 relaunch and RE-4's fallback applies. The recorder only reads what is
-delivered. This use is the consumer side of a proposed row, DEL-02-03 →
+delivered. **In the App (CI-20 (d)):** the run starter's tag owner token is
+`DEL-02-03`, and the value is the run reference. The tag is written when the
+App writer takes up `run_opened` for writing, before the write itself; a
+`run_opened` never written leaves a tag naming no recorded run, and the
+startup writer then writes no limit ("current run not established"). A tag that cannot be stored stays in the
+run's memory only and never blocks the run. At startup the Rust host writes
+RS's "App-restart interruption" limit for each `app_restart_interruption` on
+the run picked as above, once per run and restart fact. When no tag is
+stored it finds the run by `run_opened.conversationRef` and says so in the
+limit. RE-4's automatic run-owner end "interruption not recovered" is not
+written. This use is the consumer side of a proposed row, DEL-02-03 →
 DEL-01-02 (D1's NR-D1-1, no SCC by D1's check), which the register owner
 decides.
 
@@ -990,6 +1000,21 @@ also with other signals not read; each signal not read; the present case
 with all three read); `namespaceTools` false now reads *missing*, as in
 NPTD-v0.2 §7.1, where v0.7 gave *not established* with a delegation limit
 (§7.4).
+
+**Delegation availability at the 0.160.0 pin.** At the Codex 0.160.0 pin
+(2026-10-10) `model/list` and `modelProvider/capabilities/read` take no
+provider and answer for the provider the app-server resolves for itself, read
+as `config/read`'s `model_provider` with no folder and with the app-server's
+own working folder. `multiAgentVersion` and `namespaceTools` count for a
+conversation only when those two agree and name the conversation's reported
+`modelProvider`; otherwise both read *not read*, so the reading is never
+*present* (or *missing* from another provider's answers) and is *not
+established* unless the conversation's own `features.multi_agent = false`
+reads *missing*. `features.multi_agent` is read with the conversation's `cwd`.
+With no `model_provider` configured (the common case, and the App's own homes)
+the reading is *not established* for every conversation; the trial witness
+observed this natively at 0.160.0 (DEL-02-02 `TRIAL_WITNESS_2026-10-10.md`).
+NPTD §7.1 holds the full rules.
 
 **Role part of the check in App runs (v0.7; FE-19; ROLE-v0.2 SL-7; U-R10;
 the "no role" reading INTEGRATION by R20-4, F-40 closed; the rest

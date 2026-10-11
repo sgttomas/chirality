@@ -21,6 +21,26 @@ qualification and later Group A consumers remain separate obligations.
 | CI-12 | Bounded current reader/control repair addressed through reviewed RS/DV change; incomparable claims remain explicit, public reads are pure, and request binding is rechecked. Downstream adoption remains open. |
 | CI-13 | Explicit App project/submission context uses the reviewed REC owning join; native cwd/home/run cannot supply it by inference. Reviewed known/unknown association and bounded native attachment consumer adopted; native/cold/other-home witnesses remain. |
 | CI-14 | Generic request/frame/response retention is unsafe for credential-bearing native account RPC; synthetic-only method-aware transient/redacted repair is underway. |
+| CI-15 | Open source/Design fit: `config/read` cannot establish child-role collision exclusion, and native `agents/` lies outside the M-A shared set (CC-ROLE-ACCESS-0160-FIT). Child supply remains not supplied; the 2026-10-10 native witness observed delegation only. |
+| CI-16 | WR §16.8 supplier envelopes and the RS opaque native-turn form are technically adopted after V6 review; consumer propagation, actual publication and the Root/R3 join remain in progress. |
+| CI-17 | CC-REC-ITEM-TURN-CUSTODY adopted (ledger schema 0.3, optional actual `turnId`) and implemented with cold-tuple tests; actual native quit/relaunch evidence and PI-6 mapping remain open. |
+| CI-18 | Corrected in code, no Design change: Root `prepare_run` refuses development selections under TT-1/TX-1. A development standing would need a named WR change; a registered-selection native witness is still needed. |
+| CI-19 | Open Design questions on EXEC report representation (unrecognized elements, revision method, App-only host facts, R14 without a report, strictness); the code refuses publication rather than inventing facts. |
+| CI-20 | Open items (a)–(j) for the design owner or the owner on run supply and lifecycle (unknown start outcome, App-minted run identity, end notice and predecessor after relaunch, a held `run_ended`); (h) acts counted 2026-10-11, residuals open. |
+| CI-21 | App-kept draft bases implemented in the App data folder with exact ledger causes; (b) closed by CC-WR-RECONFIRM adoption. The base location and base freshness under RB-3 await WR owner confirmation. |
+| CI-22 | Bounded A15 statement, digest-named App display and the owner's three-button layout are implemented ahead of AAC adoption; the AAC adoption text is still needed. |
+| CI-23 | RS `if` stops the DEL-04-03 and WR prototypes under `minischema`; the App's `jsonschema` is unaffected. Open with DEL-04-03 (RS). |
+| CI-24 | CC-WR-RECONFIRM and RF-1 implemented; X-2 implemented without an attempt journal (owner ruling 2026-10-10). Questions for the AAC and WR owners remain. |
+| CI-25 | The App appends no re-confirmation line its RC-9 reader would refuse and keeps the attempt pending; a WR owner ruling on G-1R against RC-9 is still needed. |
+| CI-26 | CC-EXP-SUPPORT-IDENTITY-01 merge closes the representational gap for its named consumer cohort; M1 qualification and other receivers keep their partial basis. |
+| CI-27 | OPEN. The A-IN-S3 expected reference for stock 0.160.0 is supplied and attested (2026-10-10); build selection and verification (S2), receiving joins (S4) and the packaged witness (S5) remain. |
+| CI-28 | CC-SQ-J2-ST4 reviewed and integrated: J-2 carries ST-4 with counts, order and semantics unchanged; DEL-11-03 receiving assessment remains. |
+| CI-29 | CFB-v0.3 route-account 0.2 (PR #1130) and the C3-P persistence backend (PR #1137) merged; no source truth, provider wiring or connected witness is claimed. |
+| CI-30 | CC-SQ-EXP-RECEIVING-01 Design and bounded connected receiver independently READY and merged (PR #1161); no actual examination, native witness or qualification is closed. |
+| CI-31 | Fixed 2026-10-10: the default `bundle.resources` maps instructions and workflows, guarded by `bundle_resources_tests`; a default-configuration bundle start is not yet witnessed natively. |
+| CI-32 | CLOSED for the App's run start by WR §17 step 2 (CC-WR-TRIALS). |
+| CI-33 | Pins re-frozen on `codex/app-v4-ci33-refreeze`; basis labels, NPTD §7/§14.1, SQ-1, RECOVERY DEF-2 and the attested generation correspondence wait for the next reviewed re-freeze. |
+| CI-34 | OPEN. ST-5 and NV-04 recorded at 0.160.0 as development evidence; the candidate-pin missing inputs stay; SQ's ST-4 "none exists yet" wording waits for the SQ owner. |
 
 Canonical review and command evidence lives in this run's `changes/`,
 `reviews/` and `validation/`. The Group A work graph carries incomplete
@@ -383,7 +403,9 @@ CC-REC-ITEM-TURN-SOURCE-ADOPTION.json; review status in V6-RECOVERY-CUSTODY-CORE
 Found 2026-10-07 by the J1/J3 TASK of `APP-V4-GROUP-A-20261004`, partly through
 independent review V9 (`reviews/V9-J1-PUBLICATION.md`). Each item states what
 the accepted text says, what the code does, and what remains for the design
-owner or the owner. No Design file was changed.
+owner or the owner. No Design file was changed then. On 2026-10-10 items (c),
+(d) and (j) were resolved, and WR §16.2, EXEC §2.7, RECOVERY §4.1 and RS
+§14.1/§14.3 were edited for them.
 
 - **(a) Unknown `turn/start` outcome (V9 F-1).** WR §16.4 ("`turn/start` refused
   or fails before the item is recorded" → `supply_check` *not found*) and RN-4
@@ -411,30 +433,67 @@ owner or the owner. No Design file was changed.
   only on the person's explicit end (AE-7). The identity itself stays
   App-minted until the EXEC owner supplies or adopts one; a later EXEC identity
   must not relabel runs already recorded under this id.
-- **(c) No end notice after relaunch (J3).** TX-5 and SQ-END require the
-  end notice on the person's next turn after a run ends with no successor.
-  After relaunch, the person can end a run that the record shows open and
-  interrupted (`end_recorded_run`; `run_ended`, *the person*). But the notice is
-  composed only from the typed `PreparedRunText` that the run's own process
-  held. `PreparedEndPublication` deliberately refuses cold evidence ("cold
-  evidence does not create a lifecycle event or a new sendable notice"). So no
-  notice is sent for such an end, and the panel says so. For the WR owner:
-  either permit composing the notice from the resolved run-start `run_text`
-  (name, revision, run) plus the recorded end, or rule that an end after
-  relaunch carries no notice.
+- **(c) End notice after relaunch (J3). Chosen and implemented 2026-10-10.**
+  TX-5 and SQ-END require the end notice on the person's next turn after a
+  run ends with no successor. After relaunch, the person can end a run that
+  the record shows open and interrupted (`end_recorded_run`; `run_ended`, *the
+  person*). Earlier, no notice was sent for such an end.
+  - **Choice (the design owner, written into WR §16.2 TX-5 and SQ-END).**
+    Such an end gets its TX-5 notice. The notice is composed from the
+    person's end, made live in this process, plus the run's recorded identity
+    facts (name, origin, revision, run). These come from the run's recorded
+    run-start `run_text`, checked against its `run_opened`, never from Codex
+    history. The end is the person's fresh act, so cold evidence still
+    creates no lifecycle event.
+  - **Implementation.** `PreparedEndPublication::after_relaunch` composes the
+    notice and refuses, with the reason, when the recorded run text is
+    missing, ambiguous, invalid, names another conversation or does not
+    match `run_opened`. Then no notice is sent and the panel shows the
+    reason.
+  - **Claim and consumption.** A composed notice is held as a `ReopenedEnd`
+    in this process. It is pending for the conversation's next ordinary turn
+    under the same claim and consumption rules as a live end's notice ((i)):
+    text, mode, Continue-as and attachment-bearing turns. Retry and "Send
+    without the end notice" are offered after a record failure, and the skip
+    is recorded in the run's log first.
+  - **Run starts wait.** A run start in that conversation is refused until
+    the notice has gone, because the new run's chain line cannot cite a run
+    ended in an earlier process ((f)).
+  - **Limits.** The pending notice lives in this process only; a further
+    relaunch before the next turn loses it. EN-3 (the notice's supply check)
+    is not offered for such a notice.
 - **(d) REC run tag and restart limit (J3).** EXEC A-2 and §2.7 have the run
   starter tag the conversation with the run reference through REC
   `tag / look up / tags of` (RECOVERY §4.1). On relaunch, RS writes the
-  "App-restart interruption" `evidence_limit` on the run that was current. The
-  ledger's tag write is owned by the Host (`hosting.rs`), which supplies only
-  the NIR submission-context tag. J3's fence did not include a run-tag write or
-  a startup RS writer. The App therefore stores no run tag. The record writes
-  no restart limit, and records no automatic RE-4 "interruption not
-  recovered" run-owner end. Reopen instead finds runs and conversations from
-  the project's own RS `run_opened.conversationRef`, and shows the REC
-  `app_restart_interruption` facts that name each conversation. Needed: the
-  Host or REC owner adds a run-tag owner and lookup, and a startup writer for
-  the restart limit.
+  "App-restart interruption" `evidence_limit` on the run that was current.
+  **Implemented 2026-10-10:**
+  - **Run tag.** When the App writer takes up `run_opened` for writing (before
+    the write itself), the host appends
+    the conversation's REC `conversation_index` with a tag `{owner
+    "DEL-02-03", value <run ref>, seq}` (`Host::tag_conversation`, the same
+    mechanism as the NIR context tag). Tags are ordered, and an earlier run's
+    tag is kept. `recovery::tags_of` and `recovery::look_up` read them.
+  - **Tag not stored.** The tag stays in the run's memory only, shown as the
+    run's `runTag` with the reason, and the run goes on. Reasons: no index row
+    (no known App project when the conversation started), no ledger, or the
+    append is refused.
+  - **Startup writer.** `run_restart::startup` runs in the host from the
+    `setup` closure, never on a web-view request. For each
+    `app_restart_interruption` fact in a home's REC projection, it picks the
+    run opened last in that conversation with no `run_ended`, using `tags of`
+    plus the project's RS records. It writes one `evidence_limit` "App-restart
+    interruption" on that run's log. `subjectRef` is the fact's eventId, and
+    the detail names the prior session and its end. It is idempotent per run
+    and fact (the log is re-read first). Earlier ended runs are untouched.
+  - **No tag stored.** The run is found by `run_opened.conversationRef`, and
+    the limit's detail says so.
+  - **Reopen** shows each outcome (written, already written, or not written
+    with the reason). It now also reads the restart facts from the Host's
+    custody projection, where they are derived.
+  - **Still open:** no automatic RE-4 run-owner `run_ended` "interruption not
+    recovered" is written. The writer runs once at startup, so a write that
+    fails then is retried only at the next startup. Homes bound after startup
+    (a key home) are not covered.
 - **(e) Start not confirmed, and liveness (J3).** EXEC A-3 says a turn that is
   not started leaves the run not opened. A refused or unknown start therefore
   records no `run_opened`, and is not live. A new start in the conversation is
@@ -499,21 +558,75 @@ owner or the owner. No Design file was changed.
     run's own home and thread after the run's generation is checked as
     current. A missing binding stays `Unknown`.
   - No catalog edition is ever observed, so CK-3 is never evaluated.
-- **(h) `run_ended.waitingArrivals` (J3). Partially addressed 2026-10-10; open
-  with the EXEC design owner.** The App now has a first-slice checkpoint
-  recorder (EXEC §2.4, `checkpoint_recorder.rs`; EXEC is DRAFT/PROPOSED text).
+- **(h) `run_ended.waitingArrivals` (J3). Addressed for App-content acts
+  2026-10-11; residuals open with the EXEC design owner.** The checkpoint
+  recorder (EXEC §2.4, `checkpoint_recorder.rs`; EXEC is DRAFT/PROPOSED text,
+  adopted as written for the parts implemented) now counts acts: CE-5, CE-6
+  and CE-8 from the App-file act and decline records (A4, A6, A7) in the
+  project's record set, with CE-2, CE-4 and AW-3. A record counts only
+  through the one capture object it cites (SP-3, RS R-8): current after RS
+  correction relations, written by the App's capturing surface, its capture
+  resolved from the capture store, schema-valid and corresponding in kind,
+  choice, actor, subject, content, scope, purpose and time, and one record
+  per capture. Any other record that names an arrival's file is an
+  "unresolvable reference" limit, never an act (RS §13.7). A capture file is
+  a readable claim; native origin is not verified (as `file_act_view`), and
+  each arrival's limits say so. Anyone who can write `.chirality/` could
+  forge a record together with its capture; the owner accepted this risk for
+  now (2026-10-11: "Merge, track the fix (Recommended)"), with the limit
+  written on every arrival. The fix is the next slice: keep captures and act
+  records out of reach of agents, or authenticate them with a key the host
+  holds.
   `run_ended` lists every recorded arrival whose latest disposition is
-  *waiting* (CE-17). The list is read from the run's own entries, so an end
-  after relaunch (`end_recorded_run`) lists them too. Residual:
-  - **Acts are not counted** (CE-5/CE-6 absent). An arrival therefore stays
-    *waiting* after the person performed the act, and `waitingArrivals` can
-    durably list as waiting an arrival whose act was done. Each
-    `checkpoint_arrival` carries this limit. The `run_ended` body cannot:
-    `runEnded` admits no further properties.
-  - **Only output arrivals AW-6 (message) and AW-7 (file) are evaluated.**
-    Every other checkpoint's `checkpoint_listed` entry says *not evaluable*,
-    with its reason. An empty list therefore means only that no evaluated
-    arrival is recorded as waiting, not that no checkpoint was reached.
+  *waiting* (CE-17), after counting the acts recorded since the last
+  observation; after a relaunch (`end_recorded_run`) the acts are counted from
+  the run's own record first. While an arrival waits and the act records
+  cannot be read, the person's end still ends the run (A-11): an
+  "unresolvable reference" limit naming the unread act records and why is
+  written before `run_ended`, live and after a relaunch. (After a relaunch an
+  incomplete record set still refuses the end as before, since nothing can
+  be appended to it, RS W-1.) Readings where EXEC is silent, chosen in
+  implementation:
+  - An App-content act is on an arrival's subject when its bound subject
+    names the arrival's file; that binding is taken as covering the referent
+    (SP-5), since the declared scope is prose. AW-7's content identity is
+    read when the App observes the completed change, with that limit.
+  - The arrival's time and the act's capture time order "earlier act" against
+    "after arrival" (both App-written RFC 3339 times; equal times are "after
+    arrival"; a record with another time form is not counted).
+  - Before the arrival, the latest decision of the required kind on the
+    current content governs (an implementation reading where the Design is
+    silent, chosen as the more cautious one): an act makes the arrival *performed* "by earlier act"
+    (SP-6), a decline resolves it negatively (CE-8), and earlier decisions of
+    that kind on that content are superseded. A decline counts only on the
+    arrival's current content (its capture's content), before or after the
+    arrival.
+  - Content is compared only under the same method (SB-1): an act whose
+    content identity has another method is neither counted nor recorded as
+    "act on other content".
+  - Declared and reported paths are normalized the same way (`.` segments,
+    repeated separators; `..` never matches) and the arrival's file is
+    resolved in the project as the act control resolves its subjects, so a
+    linked directory binds the file it names. AW-7's content is read as one
+    non-blocking regular-file snapshot of at most 256 MiB.
+  - CE-4's `time` is the App's observation time and its evidence a
+    "conversation item" reference to the server request; a person-input
+    request names no act kind, subject or purpose as structured elements.
+  - AW-3 takes `collabAgentToolCall` (not `subAgentActivity`) for
+    `agent-delegation`, and only agent items (RC-9).
+  Residual:
+  - **No App act binds an agent message.** An AW-6 arrival therefore stays
+    *waiting* and is listed at the end even when the person checked the
+    report elsewhere; each such arrival says so. EXEC CAP-1 binds App files;
+    whether an act on a reported message is wanted is the design owner's.
+  - Later acts on a decided arrival are not recorded (§4.6 says they are
+    recorded and shown); acts after the run end (CE-16), lapses (CE-10) and
+    observation loss (CE-13, CE-14) are not recorded.
+  - The act records are read again only when the record logs or the capture
+    store change (paths, sizes, modification times).
+  - Arrivals for host operations and host outcomes stay not evaluable (no
+    host mapping, ADAPTER NM-2), so CE-7 never arises. An empty list still
+    means only that no evaluated arrival is waiting.
 - **(i) Notice dispatch is counted once (J3; corrected by V10 G-1).** TX-5 says
   "once".
   - When consumed: only when the Host observed a write attempt of the
@@ -542,8 +655,25 @@ owner or the owner. No Design file was changed.
     it. The panel shows the outcome. A *native* fork
   is not observed by the App, which has no `thread/fork` route. A run belongs to
   its (home, thread), so any other thread, a fork included, has no live run.
-- **(j) An earlier record that can never be written holds `run_ended` (V10
-  R-3).** RS W-2 has a run's log written in observation order.
+- **(j) An earlier record that can never be written held `run_ended` (V10
+  R-3). Chosen and implemented 2026-10-10** (option 2 below; written into RS
+  §14.1 "Permanent refusals", W-1 and FC-7).
+  - **Choice.** W-2 keeps strict order for failures that may succeed later
+    (I/O). A record the writer refuses permanently is not held as pending.
+    Permanent means nonconformant (W-1 (a)), or its reserved identity is held
+    by a different entry in a complete record set. The writer records an
+    `evidence_limit` "record write failed" whose `subjectRef` is that record's
+    reserved identity, with a detail saying it can never be written, why, and
+    that it is not in the record. Later pending entries then proceed in order,
+    the person's `run_ended` included. No schema change.
+  - **Code.** `records::supply::permanent_refusal` classifies conservatively:
+    anything not definite (I/O, an incomplete record set, validation
+    unavailable) stays held. `flush_records` applies the choice to lifecycle
+    entries and R3s. A refused R3 reads *unavailable*, "never written".
+  - **Superseded test.** The V9 F-2 test that held a later R3 behind such an
+    R3 is replaced by the CI-20 (j) tests.
+
+  The original finding follows. RS W-2 has a run's log written in observation order.
   `flush_records` stops at the first record that cannot be written and holds
   every later one; each gets its "record write failed" limit when it is
   written late. W-2 gives no way past a record that can *never* be written,
@@ -560,10 +690,9 @@ owner or the owner. No Design file was changed.
        the person ends the run again.
     2. Define a terminal *not writable* state for such an entry. Record an
        `evidence_limit` naming the record and why it can never be written,
-       then let later entries proceed.
+       then let later entries proceed. (Chosen.)
     3. Let lifecycle entries (`run_ended`) pass a stuck R3, with a limit
        naming the R3 they passed.
-  - No code change was made for this item.
 
 ## CI-21 (J5) App-kept draft bases and re-registration after relaunch
 
@@ -1300,80 +1429,115 @@ changed.
   its snapshot through the same composer, so trials and runs name their
   other files alike; nothing of CI-32 remains open.
 
-## CI-33 Examination source pins need re-freezing
+## CI-33 Examination source pins need re-freezing (re-frozen)
 
-- The WR and NIR Design pins (and DEL-09-02's `STANDALONE_QUALIFICATION.md`
-  and `sq.step-map.json`, whose J-4 should add WR-VC-21…WR-VC-25) in
-  `app/examination/standalone/{sources.json,pre_run_inputs.pins.json}` and
-  `app/examination/sq_receiving/pins.json` need a reviewed re-freeze before the
-  next examination dispatch run; the WR pin was already stale on `main`.
-- Pinned text that went stale with CC-WR-TRIALS (#1241) and is left unedited
-  until that re-freeze: `execution/PKG-01/DEL-01-02/Design/EXECUTION_AND_RECOVERY.md`
-  line 757 still speaks of "AT-8 trial attachments" retaining WR's draft/source
-  handle. Since CC-WR-TRIALS a trial reaches its agent as the trial text (WR
-  TT-3, TT-8), not as draft attachments, and WR §17 step 8 (phase 2) removed
-  the attachment pre-fill. Reword it with the re-freeze. Phase 2 also edited
-  WR §3, TT-2, TT-3a, TT-3b, TT-9, TT-10, TT-11, §5.5, §11, §12 and §17, so the WR pin moves
-  further from the frozen hash. The WR Design itself
-  changed again with CC-WR-TRIALS phase 1 (TX-7 retention and destination
-  handling, the §3 supply-copy row, §8, §12, §17), so its pin moves further
-  from the frozen hash.
-- **Delegation availability read at the 0.160.0 pin (2026-10-10).** The App
-  now reads NPTD §7.1's signals in the Rust host (WR TT-3a and §17 state how).
-  Three readings at the pin are not in the pinned texts, which still match
-  their pins and were left unchanged. Add them at the re-freeze to DEL-01-03
-  `NATIVE_PLANS_TOOLS_DELEGATION.md` §7.1 (and its §18 row), DEL-02-03
-  `EXECUTION_COMPATIBILITY.md` §3.4 EV-3a `agent-delegation`, and DEL-02-01
-  `WORKFLOW_DECLARATION.md` §4.2.5 `agent-delegation`:
-  - `modelProvider/capabilities/read` and `model/list` take no provider and
-    answer for the provider the app-server resolves for itself, which a
-    conversation's project-folder configuration or start may differ from.
-    The host reads that server provider as `config/read`'s `model_provider`
-    with no folder and with the app-server's own working folder. Only when
-    the two agree and name the conversation's reported `modelProvider` do
-    `namespaceTools` and `multiAgentVersion` count for the conversation;
-    otherwise both read *not read*, so the reading is *not established*
-    (never *present* or *missing* from another provider's answers).
-    `features.multi_agent` is read with the conversation's `cwd`.
-  - With no `model_provider` configured (the common case, and the App's own
-    homes) both server-provider reads name no provider, so the reading is
-    *not established* for every conversation, even for a `disabled` model.
-    The App does not infer Codex's default provider from that absence (it is
-    not in the 0.160.0 types; OBS-2's observation is of 0.158.0). This holds
-    until the native witness observes what 0.160.0's `config/read` and
-    capabilities report for an unconfigured home; the witness run settles it.
-  - Not verifiable from the App: a `config.toml` edited after the app-server
-    started may make `config/read` (read from the files now) and the
-    parameterless reads (the server's loaded configuration) diverge. The
-    reading then rests on `config/read` and may be wrong until the server is
-    restarted.
-  - The generated `Config` types no `features` field. `features.multi_agent`
-    is read as an additional property of `config/read`'s `config`, with the
-    conversation's `cwd`. A configuration that was read and has no such
-    property sets nothing, so it is read, not unread.
-  - `Model.multiAgentVersion` is that of the `model/list` entry whose `model`
-    or `id` is the conversation's reported model, read over every page with
-    hidden models included. A model that is not listed reads *not read*.
-  - The reads made when the person presses Try with the authoring agent or
-    Try again are journalled `person-directed`, as `collaborationMode/list`
-    reads are; NPTD §5.1 names the receiver DEL-01-03. Say which at the
-    re-freeze. The tick's reads are journalled as the App rule
-    `delegation-availability-read`.
-- **OI-008 ruling (2026-10-10).** The owner decided process placement for the
-  whole App (`docs/ARCHITECTURE.md` §3). The unpinned texts now state it. WR
-  §11 and NIR §1.1 were also edited, since their pins were already stale. Five
-  texts that still match these pins were left unchanged, so they still read
-  OI-008 as open or proposed. Apply the ruling to each at the re-freeze:
-  - DEL-01-01 `HOSTING_BOUNDARY.md`: §1's note "Everything further is the
-    OI-008 proposal in §12", the §7 mention, the §11 row "Decide Rust/TS
-    allocation", §12 (its label and heading; OUT-003 should record the ruling,
-    REQ-004), U-02 and VC-11.
-  - DEL-01-02 `EXECUTION_AND_RECOVERY.md`: §0 ("a different OI-008 answer
-    moves code"), §4 "Placement (R17-5, PROPOSED)", the owners-table row that
-    names OI-008, and U-R8.
-  - DEL-01-03 `NATIVE_PLANS_TOOLS_DELEGATION.md`: §1 "Placement (PROPOSED
-    under R17-5; OI-008 option O-1 …)" and U-P7.
-  - DEL-01-04 `APP_ACT_CONTROL.md`: "R17-5 (process division, PROPOSED)" in
-    its changes from v0.1.
-  - DEL-09-02 `ScopeOfWork.md` TBD-002 ("OI-008 remains OPEN"). Its
-    `deliverable.yaml` already records the ruling.
+- **Done (branch `codex/app-v4-ci33-refreeze`).** The pinned texts this issue
+  listed were brought current, and the pins re-frozen from the new bytes:
+  - OI-008 ruling (owner, 2026-10-10; `docs/ARCHITECTURE.md` §3) applied to
+    DEL-01-01 `HOSTING_BOUNDARY.md` (§1, §7, §11, §12 with OUT-003, U-02,
+    VC-11), DEL-01-02 `EXECUTION_AND_RECOVERY.md` (§0, §4.1 "Placement", §12
+    owners, U-R8), DEL-01-03 `NATIVE_PLANS_TOOLS_DELEGATION.md` (§1, U-P7),
+    DEL-01-04 `APP_ACT_CONTROL.md` and DEL-09-02 `ScopeOfWork.md` TBD-002
+    (wording of the decided ruling only; no commitment or criterion changed).
+  - RECOVERY §7.1's "AT-8 trial attachments" reworded for the trial text (WR
+    TT-3, TT-8, §17 step 8).
+  - Delegation availability at the 0.160.0 pin in NPTD §7.1 and §18, EXEC
+    §3.4 EV-3a and WD §4.2.5; the journal kinds in NPTD §2 now match the code
+    (`person-directed` for reads the person's press causes, App rules
+    `delegation-availability-read` and `trial-linking-read` otherwise).
+  - NPTD §7.2 parent inference, with the `started` source, the
+    correct-only-inferred rule, the ancestor and `agentPath` guards and the
+    residual limits. `native_items.rs` now drops an inverted inference only
+    where the correction takes effect, so a forked `started` row naming a set
+    parent no longer drops the descendant (regression tests for that and the
+    `agentPath` guard).
+  - Interrupting a turn does not stop its running command (native witness
+    2026-10-10 item 8): RECOVERY §3.4, §9; NPTD §6.1, TI-15, §18, F-8; HOSTING
+    §6.2, HP-2, OB2-2.
+  - RECOVERY §4.1 and HOSTING §4.6 agree on the stop precondition
+    (`codex_stop.rs`); NPTD RV-1 ordinals describe the code's numbering;
+    FLEET §4 AS-2 states what is observable at 0.160.0.
+  - SQ J-4 (`sq.step-map.json`, `STANDALONE_QUALIFICATION.md`) adds
+    WR-VC-21…WR-VC-25 and describes the delegated and clean trials.
+  - Re-frozen: `examination/standalone/{sources.json,pre_run_inputs.pins.json}`
+    and `pre_run_inputs.py`'s pin digest, `examination/native_forms/{sources.json,pre_run_form.pins.json}`
+    and `pre_run_form.py`'s pin digest, `examination/sq_receiving/pins.json`
+    and `receive.py`'s pin digest; the WD hash in
+    `src-tauri/resources/instructions/{SOURCE_MAP.json,ROLE_SET_SOURCE_BINDING.json}`.
+- **Still open.**
+  - The `source_basis_revision`, `basis_revision`, `basis` and
+    `source_revision` labels in those pin files were not moved (as at the
+    flat-deliverable migration). They name the revision first inspected, not
+    the revision whose bytes are now pinned.
+  - NPTD §7 and §14.1 still describe delegation as observed through the
+    adapter only; the native witness of 2026-10-10 adds a stock observation
+    with limits. NPTD SQ-1's reads on opening a conversation were not checked
+    against the code's on-demand reads. RECOVERY DEF-2 still names "the O-1
+    arrangement". Editing any of these moves its pin again, so they wait for
+    the next reviewed re-freeze.
+  - The distribution and terminal receiving cohorts still fail on their
+    historical `hosting.rs` pins; that is separate from this issue (CI runs
+    them only on a broad Python run).
+  - DEL-01-01 `distribution-s1/references/codex-0.160.0-macos-arm64/generation-correspondence.json`
+    (U-SQ-1) still names `STANDALONE_QUALIFICATION.md` at its earlier hash
+    `9f88209d…`. It sits inside an attested reference, so it was not
+    rewritten; a later reference refresh carries the current bytes.
+
+## CI-34 ST-5 and ST-4 counterparts after the 0.160.0 development captures
+
+- **Found (2026-10-10).** DEL-01-01 now holds development recordings made
+  with the stock Codex 0.160.0 supplier: ST-5's condition in X-09 form with
+  the X-10 recovery read, and NPTD NV-04
+  (`execution/PKG-01/DEL-01-01/Design/CAPTURE_ST5_NV04_0.160.0.md`). Codex
+  behaved as RECOVERY RQ-05 and HOSTING §6.2.1 assume. No App candidate
+  exists and OI-012 is open, so neither recording is at a candidate's pin.
+- **Kept.** The `st5_recording` and `st4_route_or_recording` entries stay in
+  `examination/standalone/missing-inputs.json`, because both require the
+  candidate's pin.
+- **Stale wording.** SQ §3.4's ST-4 row and `sq.step-map.json` J-2
+  `replay_counterpart` say that no delegation recording "exists yet". A
+  development one now exists, but not at a candidate pin. The same applies
+  to DEL-01-03 `NATIVE_PLANS_TOOLS_DELEGATION.md`: its NV-04 verification row
+  still reads "not observed", and U-P4 still waits for "a later
+  observation". These sources are pinned and were left unedited; they are
+  for the next re-freeze.
+- **Open (SQ owner).**
+  - Should SQ cite the development recordings?
+  - Once a candidate names its pin, does rerunning
+    `prototype/st5/st5_harness.py` against that candidate meet U-SQ-6 and the
+    ST-4 counterpart?
+- **Re-frozen in the same change.** The HOSTING §9.4 pointer and the
+  DEL-09-02 TBD-002 wording moved
+  `examination/standalone/{sources.json,pre_run_inputs.pins.json}` and
+  `pre_run_inputs.py`'s pin digest,
+  `examination/native_forms/{sources.json,pre_run_form.pins.json}` and
+  `pre_run_form.py`'s pin digest, and `examination/sq_receiving/pins.json`
+  and `receive.py`'s pin digest.
+
+## CI-35 App quit and window close: what the platform does not let the App hold
+
+Found 2026-10-10 while implementing DEL-01-02 DEF-6/SQ-Q and SQ-W (RECOVERY
+§5 "In the App" readings). The sequences are implemented as written; these
+are the remaining limits, for the DEL-01-02 and DEL-01-04 design owners.
+
+- **(a) macOS `terminate:`.** The App replaces the predefined Quit menu item
+  with its own, so Cmd+Q asks first. The Dock's Quit, logout and shutdown send
+  `terminate:` straight to the application delegate (Tauri 2.11 / tao 0.35
+  implement no `applicationShouldTerminate:`), so the App gets only a final
+  notice: it records AS-10 *system-terminated* and stops each home's Codex,
+  with no question. Holding them would need a delegate hook outside the
+  vendored crates.
+- **(b) Closing the window.** The close control hides the window on macOS and
+  minimizes it elsewhere, so a closed window can always be reopened without a
+  Dock. REQ-001 is kept (work and requests continue); the web view is not
+  torn down, so W-4's re-attachment is the view re-reading the host snapshot
+  when shown (and on reload).
+- **(c) C-24 indicator.** The Dock badge gives the count of supplier requests
+  waiting (WI-1, WI-2). It is shown only where the platform badges the App
+  icon (the macOS Dock); elsewhere there is no indicator outside the window. It does not name the conversations outside the window,
+  and clicking the Dock icon opens the App window, not a particular
+  conversation (WI-3). The badge is set through the window, which always
+  exists because closing only hides it.
+- **(d) RQ-06 at startup.** AS-02 now writes SR-08 for an earlier session's
+  unsettled stop requests; RQ-06 (*ended-unanswered*, context
+  *app-ended-without-record*) for its listed requests is still not written.

@@ -311,6 +311,17 @@ function NativeConfirmationContent() {
   </section>;
 }
 
+/** The status line under the workflow panel after a press. The result of
+ * pre-filling a trial or a trial bring-back is not echoed: its pre-filled or
+ * sent state is shown, current, by the conversation panel and the draft list,
+ * and a copy here would go stale (trial witness 2026-10-10 (d)). Every other
+ * result, including Read again and a real run brought back, is shown as before. */
+const PREFILL_RESULTS = new Set(["workflow_trial_prepare", "workflow_trial_again", "workflow_trial_bring_back"]);
+export function workflowActionMessage(command: string, result: Json): string {
+  if (PREFILL_RESULTS.has(command)) return "";
+  return JSON.stringify(result);
+}
+
 export function WorkflowRootPanel({ data, host, act }:{ data: Json; host: Json; act: (command:string,args:Record<string,unknown>)=>Promise<Json> }) {
   const [name,setName]=useState("coordinated-knowledge-work");
   const [revision,setRevision]=useState("");
@@ -319,7 +330,7 @@ export function WorkflowRootPanel({ data, host, act }:{ data: Json; host: Json; 
   const [busy,setBusy]=useState(false);
   const [message,setMessage]=useState("");
   // Resolves to the host's result, or undefined when the command failed (the message shows why).
-  const action=async(command:string,args:Record<string,unknown>):Promise<Json>=>{setBusy(true);try{const result=await act(command,args);setMessage(JSON.stringify(result));
+  const action=async(command:string,args:Record<string,unknown>):Promise<Json>=>{setBusy(true);try{const result=await act(command,args);setMessage(workflowActionMessage(command,result));
     // An App-made draft is listed again by the host (WR SQ-D D-2).
     if(command==="workflow_create_draft"||command==="workflow_refine_registered"){await act("workflow_observe_drafts",{}).catch(()=>undefined);}
     return result;
@@ -392,7 +403,14 @@ export function WorkflowRootPanel({ data, host, act }:{ data: Json; host: Json; 
     {data?.reopened&&<article><h3>Recorded runs (reopened from project records)</h3><p>{data.reopened.standing}</p>
       <ul>{(data.reopened.runs??[]).map((r:Json)=><li key={r.run}>{r.run} · conversation {r.conversation??"unknown"} · {r.state}{r.detail?` (${typeof r.detail==="string"?r.detail:JSON.stringify(r.detail)})`:""}{r.follows?` · follows ${r.follows}`:""}{(r.restartInterruptions??[]).length?` · App restart interruptions: ${r.restartInterruptions.length}`:""}
         {r.state?.startsWith("open")&&!(data?.runs??[]).some((h:Json)=>h.reference===r.run)&&<button disabled={busy} onClick={()=>action("workflow_end_recorded",{runId:r.run,threadId:r.conversation??null})}>End this interrupted run</button>}</li>)}</ul>
-      {(data.reopened.limits??[]).length>0&&<p>Record limits: {JSON.stringify(data.reopened.limits)}</p>}</article>}
+      {(data.reopened.limits??[]).length>0&&<p>Record limits: {JSON.stringify(data.reopened.limits)}</p>}
+      {data.reopened.restartLimits&&<p>App-restart interruption limits (written by the host at startup): {(data.reopened.restartLimits.outcomes??[]).map((o:Json)=>`${o.threadId}: ${o.outcome}${o.run?` on ${o.run}`:""}${typeof o.detail==="string"?` (${o.detail})`:""}`).join("; ")||data.reopened.restartLimits.reason||"no restart facts"}</p>}</article>}
+    {(data?.endedAfterRelaunch??[]).map((end:Json)=><article key={end.run}><h3>{end.run} (ended after the relaunch)</h3>
+      <p>End notice: {end.endNotice?.state??"none"}. {end.limit}</p>
+      {end.endNotice?.state?.startsWith("pending")&&<p role="status">The next message in conversation {end.conversation} carries this end notice first, once.
+        <button disabled={busy} onClick={()=>action("workflow_reopened_notice",{runId:end.run,action:"retry"})}>Retry the end-notice record</button>
+        {end.noticeRecordFailure&&<button disabled={busy} onClick={()=>action("workflow_reopened_notice",{runId:end.run,action:"skip"})}>Send without the end notice (recorded as not supplied)</button>}</p>}
+    </article>)}
     {(data?.runs??[]).map((run:Json)=><article key={run.reference}><h3>{run.reference}</h3>
       <p>Run: {run.lifecycle?.state}{run.lifecycle?.follows?` · follows ${run.lifecycle.follows}`:""}{run.lifecycle?.end?` · ${run.lifecycle.end.cause}`:""}. Records: {run.publication?.state}. Send: {run.status?.state}{run.status?.limit?` (${run.status.limit})`:""}. Supplied: {suppliedSummary(run)}. Adoption: unknown.</p>
       {run.endNotice&&<p>End notice: {run.endNotice.state}</p>}
@@ -612,7 +630,12 @@ export function App() {
   useEffect(() => {
     refresh();
     const t = setInterval(() => invoke("host_status").then(setHost).catch(e => setMessage(String(e))), 1000);
-    return () => clearInterval(t);
+    // RECOVERY SQ-W W-4, W-5: when the window is shown again after it was
+    // closed (hidden; DEF-1), the view replaces what it rendered with the
+    // host's current snapshot at once. Nothing is sent to Codex.
+    const shown = () => { if (document.visibilityState === "visible") refresh(); };
+    document.addEventListener("visibilitychange", shown);
+    return () => { clearInterval(t); document.removeEventListener("visibilitychange", shown); };
   }, [refresh]);
 
   const act = async (cmd: string, args?: Record<string, unknown>) => {
