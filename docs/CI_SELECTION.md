@@ -38,8 +38,8 @@ compiles its test and check profiles. Only registry/Git dependencies and their
 compiled artifacts are saved; local path crates, test executables and incremental
 output are removed. Product jobs restore these main-scoped caches without saving
 PR build caches. Small exact-result verification records retain their existing
-save/reuse rules. The explicit compile steps report build time separately from
-the subsequent test steps; a cache miss still builds and verifies normally.
+save/reuse rules. Cargo logs report build and harness execution durations separately. Piping
+also emits timing totals, retaining its original command order; a cache miss still builds and verifies normally.
 
 Verification is proportional to consequence under Root `AGENTS.md`. CI success
 is not product acceptance, engineering approval or release authorization.

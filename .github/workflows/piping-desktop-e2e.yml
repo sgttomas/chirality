@@ -175,9 +175,6 @@ jobs:
         uses: ./.github/actions/restore-build-cache
         with:
           suite: piping-numerical
-      - name: Compile selected numerical profiles (no tests)
-        if: steps.verified.outputs.cache-hit != 'true'
-        run: python3 projects/chirality-piping/tools/ci/numerical_ci.py --plan piping-ci-plan.json --evidence-dir piping-numerical-evidence --build-only
       - name: Locked Cargo numerical suite
         if: steps.verified.outputs.cache-hit != 'true'
         run: python3 projects/chirality-piping/tools/ci/numerical_ci.py --plan piping-ci-plan.json --evidence-dir piping-numerical-evidence

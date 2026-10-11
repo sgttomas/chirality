@@ -127,10 +127,6 @@ jobs:
         run: |
           npm run build
           python src-tauri/schemas/sync.py
-      - name: Compile App v4 product profiles (no tests)
-        run: |
-          cargo test --no-run --locked --manifest-path src-tauri/Cargo.toml
-          cargo check --tests --locked --manifest-path src-tauri/Cargo.toml
       - name: Focused persistence and authority boundaries (full suite on request)
         run: |
           if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
