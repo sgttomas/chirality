@@ -4,18 +4,6 @@
 
 ## 3.1 Introduction
 
-This chapter explains the philosophical commitments and design questions of the
-Chirality Framework [CITE:Chirality_FRAMEWORK]. Chapter 4 examines their
-architectural expressions. The distinction matters: an enduring responsibility
-does not uniquely determine a gate, document format, agent hierarchy or runtime.
-
-The framework developed in dialogue with practice. Earlier versions organised
-work through document kits, lifecycle records and prescribed delegation. Later
-revisions removed much of that machinery while retaining explicit purpose,
-evidence, integration responsibility and human authority. That experience is a
-reason to distinguish commitments from the mechanisms chosen to serve them.
-It is not, by itself, evidence that the replacement is best in every setting.
-
 Ontology asks what exists and how it is represented. Bunge and Wand and Weber
 provide a source for assessing representations in information systems
 [CITE:Bunge_ontology] [CITE:Wand_Weber_ontology]. Epistemology concerns knowledge
@@ -26,12 +14,9 @@ values, purposes and consequences, including professional obligations
 [CITE:APEGA_RWO2021]. These are related questions, not a sequence of mandatory
 forms.
 
-This chapter distinguishes three kinds of claim. **Normative commitments** state
-what the framework values or what an applicable obligation requires. **Design
-hypotheses** propose how a mechanism could serve those commitments. **Empirical
-findings** report what examination establishes in actual use. Philosophical
-coherence can support a design argument; it cannot substitute for evidence of
-performance, compliance or transfer to another domain.
+**Normative commitments** state values or obligations. **Design hypotheses**
+propose means of serving them. **Empirical findings** report what examination
+establishes. A coherent design still needs evidence of its performance.
 
 ---
 
@@ -52,11 +37,9 @@ Three levels must remain distinct:
 | Representation | A model object, ScopeOfWork, dependency declaration or graph view | What it denotes, what it omits, and whether it remains faithful |
 | Implementation convenience | A lock, cache, index or temporary file | What operation it supports and whether its failure affects the work |
 
-Bunge and Wand and Weber inform the examination of domain representations
-[CITE:Bunge_ontology] [CITE:Wand_Weber_ontology]. Their use here does not justify
-the earlier claim that every software construct must correspond directly to a
-thing in the domain. Locks and caches can be legitimate implementation objects.
-They must not silently become sources of domain truth or authority.
+Domain representations should express the work faithfully [CITE:Bunge_ontology]
+[CITE:Wand_Weber_ontology]. Locks and caches serve implementation needs; their
+presence does not give them authority over domain meaning.
 
 The filesystem is a shared working medium, not the ontology itself. In current
 repository practice, a deliverable folder brings together commitments, design
@@ -122,13 +105,6 @@ a missing field; it does not determine whether the source is faithful, relevant
 or sufficient. An instruction against invention is not a guarantee that an agent
 will never fabricate content.
 
-Current product commitments may retain specific provenance, authority and
-content-binding requirements. This philosophical account neither removes those
-requirements nor extends them to consumers that did not adopt them. Current
-repository practice instead maintains relevant grounds with the work and queries
-the needed context. Conversation supplies present intent, while source documents
-and existing change records preserve what later use requires.
-
 #### The Warrant Lifecycle
 
 Earlier versions represented warrant development as:
@@ -155,13 +131,8 @@ add another experimental observation.
 Review is therefore inquiry into adequacy for a purpose, not completion of a
 universal sequence. A content hash can identify what was examined or accepted
 where that binding is required. It cannot establish the meaning, quality or
-sufficiency of the examination. Nor does a review record prove the person's
-committed engagement. Appendix D offers an interpretation of commitment, not a
-formal definition of review or authentication.
-
-Chapter 5 develops the epistemic mechanisms. Their value depends on whether they
-help expose a consequential uncertainty and whether actual examination can act
-on it. More recorded state is not automatically more knowledge.
+sufficiency of the examination. Nor does a review record establish the
+person's committed engagement.
 
 ### 3.2.3 Praxeology — How Work Is Done
 
@@ -204,7 +175,7 @@ within authority, with costs proportionate to the undertaking.
 Professional responsibility and public welfare remain central commitments. Agent
 capability does not authorize an agent to certify, seal or issue professional
 work for reliance. Applicable professional obligations remain with the person
-who undertakes them; Chapter 6 examines that setting.
+who undertakes them.
 
 The axiology also includes useful attention, maintainability, user agency and
 timely delivery. These are not costs external to accountability. A register can
@@ -532,14 +503,6 @@ Chapter 7. These relationships support the architecture without multiplying
 the primary chirality.
 
 ---
-
-The three current theses share the same Appendix D kernel. Root examines the
-means of purposeful human–agent work, App v4 the application relationship and
-workflow authoring, and SWBPIPE the domain operations and evidence. These are
-particular expressions to examine, not deductions from the conjecture's symbols.
-Its definitions and light commentary carry the owner's temporal-contingency
-clarification. The formal argument stays intact; its concise interpretation
-reflects the owner's directions.
 
 ## 3.7 Summary
 

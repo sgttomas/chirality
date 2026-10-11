@@ -1,15 +1,7 @@
 # Systems Engineering Design Analysis — Agent Instruction Architecture
 
-This standalone companion summarizes [Chapter 7](07_se_design_analysis.md).
-The detailed analysis lives there so that the thesis does not maintain two full
-accounts of the same architecture. Section numbers are retained for existing
-references, including the `FindingSeverity` compatibility reference in §7.3.
-
-The current operating basis is [AGENTS.md](../../AGENTS.md), current project
-commitments and executable tool contracts. This document is explanatory. It
-neither reinstates the retired R-, I- and K-series development procedures nor
-amends adopted product contracts. [Appendix A](appendix_a_invariant_catalog.md)
-provides the historical comparison.
+A concise systems-engineering analysis; see [Chapter 7](07_se_design_analysis.md)
+for the developed argument.
 
 ## 1. Architecture & Structural Design
 

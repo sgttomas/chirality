@@ -4,32 +4,16 @@
 
 ## 5.1 Introduction
 
-Chapter 3 distinguishes claims, grounds, gaps, conflicts and accountable
-commitments. These distinctions help participants examine work; they do not
-require a particular register or lifecycle. Ontology, epistemology,
-praxeology and axiology constrain one another. This chapter concentrates on
-what supports a claim and what its support permits a participant to conclude.
-
 Three questions must remain separate:
 
 1. What evidence or argument supports the claim?
 2. What does that claim mean in the situation and for the intended purpose?
 3. Who authorizes reliance on it, within what scope?
 
-A citation can help answer the first question without settling the second or
-third. Authentication records an accountable act; it does not make the
-content true or prove that the person engaged adequately with it. Judgment,
-in the sense developed in Chapter 3, is the person's situated, committed and
-world-involving engagement throughout the undertaking. It is not confined to
-an approval at the end. Agents extend reckoning through investigation,
-inference, evaluation, criticism, planning and action within granted
-authority.
-
-The design hypothesis is that accessible grounds, visible limitations and
-attributable decisions improve the conditions for professional examination.
-Whether they actually improve detection, understanding or efficiency must be
-established through use. The architecture cannot guarantee complete claim
-capture, disclose every uncertainty or substitute for competence.
+A citation can support a claim while leaving its relevance and intended use
+unsettled. Authentication records an accountable act; it does not make the
+content true or establish adequate engagement. Judgment shapes the undertaking
+throughout, while agents extend reckoning through inquiry and action.
 
 ---
 
@@ -73,8 +57,7 @@ serve an actual reader, check or reliance decision.
 
 **The enduring requirement.** A consequential extracted claim must be
 traceable to the source said to support it, or its missing support must be
-clear. The title preserves the historical terminology. Provenance need not
-mean mandatory columns in a separate dependency register.
+clear. Provenance need not require a separate register.
 
 **Current application.** Keep the source reference with the claim or its
 current technical basis. Identify a revision when changes in that source
@@ -295,11 +278,6 @@ assumption that one makes the other unnecessary.
 ---
 
 ## 5.7 Enabling Professional Reliance
-
-Chapter 6 and Appendix C examine professional-practice themes using the
-historical APEGA source editions identified there. They are interpretive
-mappings, not evidence that Chirality has received regulatory endorsement or
-that using it satisfies a professional obligation.
 
 The potential contribution is practical: a reviewer can inspect a calculation's
 basis, an input's revision, a material unresolved conflict and the claimed

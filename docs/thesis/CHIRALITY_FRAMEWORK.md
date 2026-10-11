@@ -4,11 +4,6 @@ Chirality AI Ltd. — explanatory research, revised October 2026.
 
 **An account of professional accountability in agent-assisted work.**
 
-This document explains the framework and its design hypotheses. It creates no
-repository duty or product permission. Current work follows `AGENTS.md` and
-applicable product commitments. Approval of this revision's approach does not
-authenticate the thesis or imply acceptance of every claim made in it.
-
 ---
 
 ## 1. Purpose
@@ -18,17 +13,8 @@ intelligible, the grounds and limits of claims inspectable, action and correctio
 practicable, and consequential commitments attributable. The mechanisms that
 provide these conditions remain open to revision through use.
 
-The framework concerns professional accountability within knowledge work: what
-may be relied on, by whom, on what grounds, and under what commitment. It is
-broader than a technical definition of an agent and narrower than a complete
-metaphysics of human action. A practitioner can use its operational distinctions
-without accepting every philosophical interpretation offered here.
-
-The framework developed alongside practice. It helped explain an architecture
-shaped by observed failures; it did not uniquely derive that architecture.
-Later experience also exposed costs and limits in the selected mechanisms.
-Removing a gate, register or role restriction can improve the implementation
-without abandoning the responsibility it was intended to support.
+Professional accountability concerns what may be relied on, by whom, on what
+grounds and under what commitment.
 
 Three kinds of statement must remain distinct:
 
@@ -42,20 +28,6 @@ A coherent design is not evidence that it works. A successful check supports
 its tested claim, not every claim about the design.
 
 ---
-
-## Three practical expressions
-
-Root develops shared roles, methods, tools and the artifact/query environment
-through which people and agents produce work. The App makes that approach
-available within an application, with workflow authoring as its exemplar.
-SWBPIPE expresses it in a particular engineering domain. Their theses share a
-kernel while examining different objects, operations and evidence.
-
-The [conjecture](appendix_d_framework_s.md#d1-framework-relationships-with-respect-to-s)
-retains its formal argument. C names temporal dependence; the necessary meaning
-at issue is S's recognition of the necessity of contingency; N is existential
-affirmation. G remains undefined. The practical accounts need no further
-metaphysical expansion to make their particular claims examinable.
 
 ## 2. The Nature of Knowledge in Professional Practice
 
@@ -104,8 +76,6 @@ or committed engagement occurred.
 
 Judgment also shapes the question, intended use, relevant distinctions and
 choice of evidence before acceptance. It is not exhausted by a final approval.
-Appendix D offers a non-foundational interpretation of commitment; the
-architecture does not depend on accepting that conjecture.
 
 ### 2.4 The Chirality of Knowledge
 
@@ -133,7 +103,7 @@ The framework describes these capabilities as **reckoning**, following Smith's
 distinction from **judgment**. Judgment is the person's situated, committed,
 world-involving engagement with what the work means, what matters and what they
 will stand behind. It operates throughout purpose, framing and action, not only
-at approval. Chapter 3 §3.6.4 develops the philosophical relationship.
+at approval.
 
 The allocation of professional responsibility concerns a different question
 from capability. An agent may perform extensive authorized work without
@@ -261,11 +231,6 @@ are useful mechanisms. Their implementations vary by consumer and consequence.
 Some are instructions; others are schema or runtime checks. A check for a source
 field establishes that a field exists, not that the source supports the claim.
 A prohibition on invention does not ensure that fabrication never occurs.
-
-Current adopted product commitments retain specific requirements where they
-apply. This explanatory account neither cancels them nor extends a particular
-consumer's requirements to every repository activity. Architecture must state
-which failures its checks detect and which still depend on examination.
 
 #### 3.3.3 Evidence and Acceptance
 

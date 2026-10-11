@@ -4,19 +4,8 @@
 
 ## 8.1 Introduction
 
-The implementation examined here is Root's generative environment: the shared
-instructions, roles, methods, queries, authority handling and integration paths
-used to produce Chirality's applications and revise the means of production.
-The case is bounded by repository commit
-`a602024416ace9652f61bb2043889c307fd4e09d`. Later work has its own candidate and
-evidence. This is not a status report on every App or SWBPIPE capability.
-
-| Claim type | Root example | Limit |
-|---|---|---|
-| Normative commitment | The owner retains reserved decisions and accountable judgment | A declared boundary does not establish its enforcement |
-| Design hypothesis | Consumer-stated needs and queries reduce conflicting accounts of work | Missing or misleading declarations can still obstruct interpretation |
-| Observed mechanism | The CLI traverses declared needs and exposes their source locations | Traversal does not determine suitability or completion |
-| Reported outcome | A review found a missing live condition during an archive migration | One repair does not prove exhaustive preservation |
+Root's shared instructions, roles, methods, queries and integration paths are
+examined at repository revision `a602024416ace9652f61bb2043889c307fd4e09d`.
 
 The historical record has a boundary. Original January–April repositories were
 deleted during migration. The owner's account describes January–March as a move
@@ -31,10 +20,6 @@ September reduced specialist roles and supplier wrappers. October removed
 administrative duties and their enforcement together. These changes matter to
 Root because its artifacts shape the conditions under which later artifacts
 are produced.
-
-The following sections examine actual source and consumer paths. Application
-observations illustrate the effects and limits of Root's work; their domain
-arguments belong in the two project theses.
 
 ---
 

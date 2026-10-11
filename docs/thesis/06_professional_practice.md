@@ -4,10 +4,9 @@
 
 ## 6.1 Introduction
 
-This chapter examines how an agent-assisted work environment can support
-professional practice. It uses the Alberta engineering context to identify
-concrete questions about supervision, examination, competence, documentation
-and accountable reliance.
+Professional use of agents raises questions about supervision, competence,
+examination, documentation and reliance. The Alberta engineering setting gives
+these questions concrete obligations.
 
 **Scope of the regulatory analysis.** The mapping retains the source editions
 and interpretation used in the thesis as of **2026-07-02**. The October
@@ -16,20 +15,6 @@ currency of those regulatory sources, amend the firm's practice management
 plan or certify legal compliance. The mapping is the author's interpretation,
 not a determination or endorsement by APEGA. Appendix C carries the detailed
 relationship between review topics and proposed support.
-
-Three kinds of claim must be distinguished:
-
-- **Normative commitment:** Chirality reserves accountable professional
-  commitment to the person and requires claims to remain within their support.
-- **Design hypothesis:** discoverable grounds, scoped operations and faithful
-  capture of relevant decisions can support competent direction and review.
-- **Empirical finding:** a particular arrangement actually detected a material
-  error, preserved a decision or enabled satisfactory examination. The existence
-  of instructions does not establish this result.
-
-The chapter develops the first two and identifies evidence needed for the
-third. It does not deduce a fixed agent hierarchy, document kit or series of
-human gates from professional accountability.
 
 ---
 
@@ -48,18 +33,11 @@ standards:
 - *Professional Practice Management Plan*, November 2022, v1.1
   [CITE:APEGA_PPMP].
 
-These are the historical source basis for the section references below. The
-first provided the supervision and review topics, the second the discussion
-of authentication, and the third the relationship to a firm's practice
-system. This chapter is not a substitute for determining the applicable
-requirements and source editions for an actual undertaking.
+The cited editions supply the section references below. Their applicability
+and currency must be established for an actual undertaking.
 
 The firm's *Professional Engineering with Agentic AI in Regulated Practice*
-was a further source for the earlier interpretation. Its prior repository
-form, `PROFESSIONAL_ENGINEERING.md`, is historical; its maintained home is the
-firm's quality management system [CITE:Chirality_PE]. The changes to this
-thesis neither revise that document nor infer the firm's present practice
-from archived repository mechanisms.
+is maintained in its quality management system [CITE:Chirality_PE].
 
 ### 6.2.2 Professional Work Products and Reliance
 
@@ -252,8 +230,7 @@ format checking: it examines whether the work and its grounds support the
 intended purpose.
 
 No mandatory claim lifecycle follows. Cited, reviewed and authenticated
-identify different relationships, as Chapter 5 explains. They are not
-increasing truth values. The appropriate review must consider material claims
+identify different relationships. They are not increasing truth values. The appropriate review must consider material claims
 that labels or dependency metadata may have missed.
 
 ### 6.5.2 Reliability, Accuracy, and Validity (APEGA §3.1.2.1)
@@ -382,7 +359,6 @@ passing test needs a stated scope.
 
 This is a commitment implemented through instructions, useful data structures
 and focused checks. It is not proof that invention or omission cannot occur.
-Chapter 5 develops the distinctions and their practical limits.
 
 ### 6.6.5 Hierarchy of Authority
 
