@@ -68,7 +68,7 @@ Organize the basis around these subjects:
 
 Identify the revision and status of each governing source. Explain whether a newer record supplements, replaces, or merely proposes to change the basis.
 
-Identify accepted requirements and proposed technical interpretations separately. An interpretation can explain an existing obligation. Adopting a new project constraint requires the appropriate authority.
+Distinguish existing obligations, proposed interpretations, and proposed new project constraints. A supported interpretation can explain an obligation that already governs. The obligation does not await sponsor adoption. A new project constraint requires the appropriate decision.
 
 Reconcile conflicting sources at the relevant subject. Do not solve a discrepancy by deleting the record that exposes it.
 
@@ -117,6 +117,8 @@ Choose boundaries around related work that someone can understand and carry thro
 Preserve discipline responsibility where it applies. Identify the person who coordinates the combined technical result across those discipline contributions.
 
 Give each obligation one accountable home. Several people may contribute to it. Their inputs and interfaces must remain explicit.
+
+That home coordinates fulfillment. It does not erase the duties of contributors, reviewers, or other appointed authorities.
 
 Do not allocate the same whole obligation to two groups without explaining their distinct contributions. This can conceal both duplication and gaps.
 

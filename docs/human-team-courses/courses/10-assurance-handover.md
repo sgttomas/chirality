@@ -75,7 +75,7 @@ Read evidence in both directions. For each obligation, find the relevant result 
 
 Record limits openly. An incomplete configuration list limits traceability. Missing test conditions limit interpretation. Unperformed scenarios leave their behavior unestablished.
 
-A later observation does not prove earlier design gaps were resolved. It can establish observed behavior within its own scope. Other gaps still require their own evidence or disposition.
+A later observation does not prove earlier design gaps were resolved. It can establish observed behavior within its own scope. Resolve other gaps through evidence or a decision within the decision owner's authority. A disposition can limit reliance; it cannot establish unexamined behavior.
 
 After a repair, assess affected evidence. A setting change can invalidate a functional test. A corrected spelling in an unrelated instruction may leave that test valid. Re-examine according to the actual relationship.
 
@@ -113,6 +113,8 @@ The commissioning account should state completed examinations, findings, configu
 
 Acceptance is an authorized decision for an identified result, purpose, and conditions. A contractual acceptance, technical approval, authorization to operate, and operational handover can have different decision owners.
 
+Base each decision on evidence suited to its stated purpose. An acceptance decision establishes its authorized disposition. It does not establish physical performance beyond the supporting evidence.
+
 Identify those arrangements from the appointment and governing requirements. Do not infer an authority merely because someone requests a completion date.
 
 A useful handover package identifies:
@@ -129,6 +131,8 @@ Check that instructions apply to the actual installation. An instruction copied 
 Confirm training, information access, maintenance arrangements, and receipt of responsibility. Placing files in a folder establishes availability. It does not establish that the receiving team can use them.
 
 Account for residual work explicitly. Some minor work may accompany a qualified handover where the authorized conditions permit it. Required technical evidence cannot become optional through a renamed list.
+
+A qualified handover must respect applicable duties. Risk acceptance does not supply authority to waive a duty.
 
 State the unfinished obligation, effect on use, owner, resources, due condition, and decision. If a necessary condition remains unmet, the proposed reliance remains unsupported.
 

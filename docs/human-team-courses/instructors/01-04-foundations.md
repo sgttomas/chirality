@@ -27,7 +27,7 @@ Use the opening discussion to find differences between appointment and actual pr
 3. A05 is a proposal. No scope amendment is recorded. A02 Rev 1 remains the approved project-development basis.
 4. A04 records 600 V, three phase, 60 Hz at the surveyed connection. It leaves capacity, protection coordination, and compatibility unresolved.
 5. Decline the unsupported statement. State what the evidence establishes and leaves open. Explain the consequences and obtain the required response. Follow actual professional obligations for real work.
-6. Review adds examination. It does not transfer the producer's responsibility to the reviewer. The producer must carry repairs and explain the result.
+6. Review adds examination. It does not transfer the producer's responsibility to the reviewer. The producer must carry repairs and explain the result. The reviewer remains responsible for the assigned examination and its conclusions.
 
 ### Practice reasoning
 
@@ -83,7 +83,7 @@ Use a simple document list for the session. Do not introduce a specialist contro
 2. The highest revision may be a draft or have an unsuitable issue purpose. The activity needs the authorized revision and relevant approval scope.
 3. A02 Rev 1 permits project development under the recorded scope. It leaves hydraulic conditions, changeover definition, and external requirements unresolved.
 4. Distribution establishes that information was sent. Adoption requires the affected owner to examine and apply the change in the relevant work.
-5. Document control manages defining information. Configuration control connects the actual product, defining information, authorized changes, and examination evidence.
+5. Document control manages document identity, revision, status, access, distribution, and retention. Configuration control connects the actual product, defining information, authorized changes, and examination evidence.
 6. Identify the affected work, assess its consequences, repair it, and examine the repair. Preserve the earlier basis and defect where recovery requires them.
 
 ### Practice reasoning
@@ -192,7 +192,7 @@ For optional legal practice, select a real jurisdiction. Supply the current offi
 3. Retain the distribution-header location and the operating conditions that the project must establish. The available requirement does not define a complete test envelope.
 4. A02 requires confirmation of the needed changeover function. A05 proposes automatic changeover. No recorded amendment makes that proposal an approved scope requirement.
 5. Obtain jurisdiction, facility classification, asset boundary, permits, adoption instruments, and contract references. Compare their conditions with the actual assignment before concluding applicability.
-6. Interpretation explains meaning or application. An authorized decision permits a stated act within authority. A controlled change amends the baseline through the governing process.
+6. Interpretation explains meaning or application. An existing applicable obligation does not await sponsor adoption. An authorized decision permits a stated act within authority. A controlled change amends the baseline through the governing process.
 
 ### Practice reasoning
 
@@ -213,6 +213,8 @@ Ask the learner to compare their restatement with A02 sentence by sentence. Chec
 Rate the enquiry on its specific missing inputs, owners, and needed results. A general instruction to “check codes” is insufficient. Do not demand a real legal conclusion from the offline packet.
 
 Reject universal precedence rules. Accept a source-grounded relationship or an explicit unresolved conflict. A contractual clarification process does not itself settle external professional or legal obligations.
+
+Distinguish recognizing an existing obligation from adopting a new project constraint. Its consequences can require scope or resource decisions. Those decisions must respect the source authority of the existing obligation.
 
 ### Common defects
 

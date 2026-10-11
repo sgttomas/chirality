@@ -333,6 +333,8 @@ The reviewer did not produce the affected work and has suitable competence for t
 
 Rotation or a new title alone does not establish independence. Assign another reviewer when production creates a conflict.
 
+Consider shared assumptions, incentives, and relationships that could impair scrutiny. Arrange examination that addresses those limits. Agreement between reviewers does not establish a shared premise's correctness.
+
 **12.3 — How must the team treat a facilitator's conditional decision?**
 
 Record it as an identified simulated event. Apply only its authorized scope. Carry its conditions into affected work and keep unapproved matters open.
@@ -378,7 +380,7 @@ Use a focused written response or another brief examination for individual repai
 | Added actuals inflate C03 | “Read the forecast inclusion statement before calculating.” |
 | Week 12 is recovered by naming overlap | “Show prerequisites, boundaries, resources, and a credible revised sequence.” |
 | Test observation becomes complete acceptance | “List the claims and identify evidence for each.” |
-| Concern is closed by meeting status | “Show examination or authorized disposition evidence.” |
+| Concern is closed by meeting status | “Show examination evidence, or state what an authorized disposition changes and leaves unestablished.” |
 | Confidentiality conceals a material concern | “Identify the authorized recipient and appropriate reporting route.” |
 | Incentive conflict becomes an accusation | “Separate the reporting arrangement from evidence about personal conduct.” |
 | Suspension erases responsibilities | “Identify preservation, recipient, contract, and site obligations.” |
