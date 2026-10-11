@@ -43,6 +43,20 @@ its tested claim, not every claim about the design.
 
 ---
 
+## Three practical expressions
+
+Root develops shared roles, methods, tools and the artifact/query environment
+through which people and agents produce work. The App makes that approach
+available within an application, with workflow authoring as its exemplar.
+SWBPIPE expresses it in a particular engineering domain. Their theses share a
+kernel while examining different objects, operations and evidence.
+
+The [conjecture](appendix_d_framework_s.md#d1-framework-relationships-with-respect-to-s)
+retains its formal argument. C names temporal dependence; the necessary meaning
+at issue is S's recognition of the necessity of contingency; N is existential
+affirmation. G remains undefined. The practical accounts need no further
+metaphysical expansion to make their particular claims examinable.
+
 ## 2. The Nature of Knowledge in Professional Practice
 
 ### 2.1 Knowledge Belongs to a Knower

@@ -4,18 +4,29 @@
 
 ## 9.1 Introduction
 
-The thesis offers a framework and a developing case, not a proof that one
-architecture is necessary for accountable agent-assisted work. Its enduring
-questions concern what the work is, what supports its claims, how it is
-carried into use, and what values and responsibilities govern it. The
-implementation is a revisable response to those questions.
+Root is both a means of producing agent-assisted work and a subject of that
+work. Participants use its instructions, methods and tools to examine and change
+those same surfaces. This gives the case its generative character and its main
+risk: the environment can improve itself, but it can also reproduce its own
+assumptions across producers, tools and reviewers.
 
-This chapter distinguishes normative commitments, design hypotheses and
-empirical findings. The allocation of accountable judgment to people is a
-commitment of the present system. The proposition that a particular
-interface or record helps a person exercise that judgment is a design
-hypothesis. Observations of its use can support, qualify or challenge that
-hypothesis. Success at one level does not settle the others.
+The strongest case for Root is not that capable agents cannot work without a
+framework. They often can, and ordinary conversation, files and tools may be
+enough. Its case is that repeated undertakings expose relationships whose
+neglect becomes expensive: lost intent, hidden assumptions, disconnected results
+and unclear authority. Shared means are justified where they preserve useful
+learning about those relationships at less cost than repeatedly rebuilding it.
+
+The four perspectives help expose that risk. A label may be mistaken for an act,
+a query for an assessment, a record for understanding, or a completed contributor
+for an integrated result. The framework does not prevent those confusions merely
+by naming them. Its adequacy must be examined on actual connecting paths.
+
+Normative commitments, design hypotheses and empirical findings remain separate.
+The owner retaining judgment is an adopted responsibility boundary. Source-based
+review is a proposed means of supporting useful examination. A repair found by
+that review is bounded evidence about one use. None establishes universal
+self-correction or a uniquely necessary architecture.
 
 ---
 
@@ -23,9 +34,10 @@ hypothesis. Success at one level does not settle the others.
 
 ### 9.2.1 No Controlled Empirical Validation
 
-The architecture has not been validated through a controlled study with
-practising engineers. The repository demonstrates substantial agent-assisted
-production, examination and repair. It does not establish that Chirality:
+Root has not been assessed in a controlled comparison of development
+arrangements or in a controlled study with practising engineers. The repository
+demonstrates substantial agent-assisted production, examination and repair.
+It does not establish that Chirality:
 
 - improves detection of consequential errors compared with other workable
   arrangements;
@@ -71,6 +83,12 @@ requires a separate, current assessment. The four philosophical questions
 are not a regulatory checklist that certifies its answer.
 
 ### 9.2.4 Instruction-Level Enforcement
+
+Making the means explicit has a limit. No finite set of instructions can specify
+all situated work, and a longer instruction stack can conceal conflicts rather
+than resolve them. The architectural aim is to make the relevant purpose,
+constraints and sources available for competent reckoning. It must avoid equating
+that guidance with either complete understanding or mechanical prohibition.
 
 Instructions guide agent behaviour; they do not mechanically prevent every
 prohibited action. A resolver, sandbox, schema validator or operation engine
@@ -147,21 +165,29 @@ understands what they accept.
 
 ### 9.3.1 Across Engineering Domains
 
-The four questions are plausible across domains: distinguish the objects and
-relationships; expose relevant grounds and limits; make action, correction
-and integration practicable; and locate values and responsibility. They do
-not prescribe the same artifacts or controls everywhere.
+Root's immediate subject is a development environment. The App's subject is
+agent participation inside an application, first through workflow authoring.
+SWBPIPE's subject is that participation in piping design and stress-model
+authoring. Keeping these questions distinct prevents success in one from being
+reported as proof of the others.
 
-App v4 and SWBPIPE provide different tests of the approach. Workflow authoring
-exposes intent, assignments, interaction and returned work. Piping introduces
-numerical meaning, domain state, units, persistence and consequential
-engineering interpretation. The common human/agent operation interface is a
-design hypothesis being developed, not an already demonstrated general
-platform for every professional application.
+The [App thesis](../../projects/chirality-app-v4/docs/thesis/README.md) can test
+whether discoverable operations, host authority and interaction support useful
+workflow work. The [SWBPIPE thesis](../../projects/chirality-piping/docs/thesis/README.md)
+can test whether domain meaning and numerical evidence remain faithful through
+human and agent entry points. Neither needs to reproduce Root's filesystem or
+all its methods to preserve the common orientation.
 
-Portability would be supported by another useful application adopting the
-pattern with manageable adaptation, and by its actual performance. A shared
-schema alone does not establish that result.
+Proliferation requires an economically useful transfer. Another application must
+adopt capabilities without rebuilding a large custom governance stack, and its
+users must understand the resulting operations. Shared schemas alone establish
+compatibility claims at most. Integration effort, preserved meaning, recovery
+and usefulness provide stronger evidence.
+
+The same kernel can orient all three theses while their architectural arguments
+remain practical and separately examinable. Appendix D supplies the concise
+conjecture; elaborating it further cannot substitute for evidence at a receiving
+application.
 
 ### 9.3.2 Across Regulatory Jurisdictions
 
@@ -177,8 +203,18 @@ than necessarily a failure of the framework.
 
 ### 9.3.3 The Four-Pillar Framework as an Evaluation Lens
 
-The framework is useful when it exposes a missing distinction or an
-unsupported architectural claim:
+The framework's value is discriminating attention. Ontology prevents a change in
+representation from passing unnoticed as a change in the work. Epistemology asks
+whether an available source supports the present claim. Praxeology asks whether
+local success reaches an intended use. Axiology asks whether that use and the
+means chosen remain worth pursuing. These relations help explain a failure that
+no single component's specification necessarily captures.
+
+At Root, the framework is useful when it exposes a missing distinction or an
+unsupported claim about how work is produced. An instruction has its own
+consumer, a dependency query its basis, a review its candidate and an acceptance
+its subject. These relations can be examined without inventing another
+administrative lifecycle:
 
 | Perspective | Question for an implementation |
 |---|---|
@@ -280,6 +316,14 @@ instruction can enforce all professional conduct.
 
 ### 9.3.7 Convergent Practice: Large-Project Delivery as Prior Art
 
+Root does not need a claim that these concerns are unique to agents. People have
+long managed dependencies, uncertainty and collective responsibility. Agents
+change the scale, pace and cost of producing candidates, and can make some
+intermediate structures themselves. That shifts which constraints dominate; it
+does not erase the need for interpretation and integration. The relevant novelty
+claim is therefore bounded by the implemented relation among these capabilities,
+not the invention of coordination or accountability.
+
 The owner proposed that Chirality's structural views reflect recurring needs
 of complex knowledge work, familiar from large-project delivery. That is a
 useful comparative hypothesis. The earlier version of this subsection
@@ -324,8 +368,10 @@ informative than further elaboration of the analogy by its author.
 
 ### 9.4.1 Empirical Validation
 
-The first aim is to assess comparable usable results, consequential escaped
-errors, recovery, and total effort. Existing PR, CI and session evidence can
+The Root question calls for assessment of comparable usable results,
+consequential escaped errors, recovery and total effort across the full
+production path. Time shifted from an agent to the owner, reviewer or next
+undertaking must not disappear from the account. Existing PR, CI and session evidence can
 support bounded observation without a new administrative register. Measures
 must account for work begun earlier, generated content, task mix and the
 owner's time.
@@ -350,14 +396,21 @@ implementation backlog.
 
 ### 9.4.3 Empirical Validation of Epistemic Representation
 
-Compare representations by whether people can find grounds, recognize
-uncertainty, identify conflicting assumptions and understand what changed.
-Useful studies could examine source-linked results, short contextual
-qualifications and existing current documents. Counts of CITED or REVIEWED
-labels are not adequate proxies for quality.
+A focused Root test can ask a fresh participant to locate the current condition
+for a real slice, inspect its supplier, identify the relevant consumers and
+continue within authorization. Observe whether the participant finds an actual
+source, relies on an obsolete summary, mistakes availability for suitability or
+initiates an unnecessary global search.
 
-The inquiry is whether the representation supports judgment, not whether a
-historical warrant lifecycle can be made universal.
+This examines the value of deliverable sources and queries without treating
+metadata completeness as the outcome. A missing declaration can be corrected
+where useful; a sound inference may still require reading code or consulting the
+person. Counts of edges, citations or REVIEWED labels are not adequate proxies.
+
+Review has a parallel question: can the reviewer identify the candidate and the
+basis actually used, preserve valid evidence and detect a consequential shared
+premise error? The inquiry is whether the representation supports reckoning and
+human judgment, not whether a historical warrant lifecycle can be made universal.
 
 ### 9.4.4 Formal Analysis of Specific Properties
 
@@ -392,16 +445,30 @@ coordination topology solves both mechanical and human problems.
 
 ### 9.4.7 Extension to Other Applications and Agent Platforms
 
-The current design separates useful interface meanings from a mandatory
-shared service. A practical transfer test is one domain operation available
-through human and agent entry points with common validation, meaningful
-refusal, inspectable outcomes and recovery.
+The strongest objection to proliferation is that each domain may require so
+much interpretation and custom integration that little of the shared framework
+reduces the work. That outcome would not make SWBPIPE useless; it would limit the
+broader architectural claim. The test is whether something valuable transfers
+while each application keeps its distinctive meanings, rather than whether both
+can use the same vocabulary.
 
-The cost of adding another operation or application matters. A large adapter
-and record burden would qualify the claim of useful proliferation even if
-the interfaces were technically compatible. Native supplier capability
-should be preserved where it serves the work; portability is not a reason
-to recreate an unused general platform.
+The App and SWBPIPE supply the first distinct receiving contexts. Root should be
+examined for what it enables them to reuse: current sources, selected methods,
+meaningful capability descriptions and an intelligible allocation of authority.
+The transfer need not include a common daemon, provider wrapper or record store.
+Native supplier capability can remain valuable precisely because Root avoids
+reimplementing it without a consumer.
+
+Successive application derivations add a longitudinal test. Does a new PRD-led
+implementation preserve relevant lessons, observed defects and useful behaviour,
+while removing obsolete topology? A new codebase or faster generation is not
+sufficient. Repeatedly rediscovering the same failure would qualify the claim of
+learning even if each rewrite satisfied its textual requirements.
+
+One human/agent domain operation can test common validation, meaningful refusal,
+inspectable outcomes and recovery. Broader proliferation should be inferred only
+as such paths accumulate in distinct applications, with their adaptation costs
+and remaining limitations visible.
 
 ### 9.4.8 A Second Accountable Professional, Outside Software
 
@@ -421,13 +488,17 @@ vocabulary or organization.
 
 ## 9.5 Summary
 
-Chirality offers a coherent framework and an evolving implementation case.
-Its strongest result is a practical separation of work, evidence, action and
-accountable commitment while agents perform substantial reckoning. Its
-mechanisms remain hypotheses to be examined in use.
+Root supplies a coherent, revisable environment for human–agent production. Its
+strongest case is the connection between current artifacts, selective methods,
+queryable relationships, authority and continuing ownership through repairs.
+Its central danger is self-confirmation: producers and examiners can inherit the
+same framing, and a polished system of records can obscure the absent result.
 
-The October transformation strengthens the case by making earlier controls
-revisable, not by proving the current arrangement final. Professional
-reliance, generality, productivity and transfer to other practitioners remain
-bounded empirical questions. The framework should expose the limits of its
-own claims with the same care it asks of the work it supports.
+The October transformation provides evidence that some earlier means were
+replaceable. It does not establish a final architecture or isolate a
+productivity gain. The App and SWBPIPE extend the inquiry at different levels;
+neither inherits adequacy merely by sharing the framework.
+
+The useful trajectory is continued production with discriminating examination
+of the means. Root must make its own claims as accessible to correction as the
+claims in the work it helps generate.

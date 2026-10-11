@@ -533,6 +533,13 @@ the primary chirality.
 
 ---
 
+The three current theses share the same Appendix D kernel. Root examines the
+means of purposeful human–agent work, App v4 the application relationship and
+workflow authoring, and SWBPIPE the domain operations and evidence. These are
+particular expressions to examine, not deductions from the conjecture's symbols.
+Its definitions and light commentary carry the owner's temporal-contingency
+clarification; the formal argument and its interpretation prose stay intact.
+
 ## 3.7 Summary
 
 The four pillars provide enduring, mutually corrective questions about work.
