@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
+<meta name="source-sha256" content="a8c7610750f9af8a6af8b88fe1b94c6a7a2663d1c3b736439d7c6a2937bec0b8">
+<meta name="source-basis-date" content="2026-10-11">
+<meta name="source-basis-revision" content="10b70036ef791374685291371a651ec9492a612c">
+<title>Course 08: Planning and Managing Project Execution · Chirality</title>
+<style>
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --canvas: #eeeeee;
+  --ink: #111111;
+  --muted: #505050;
+  --line: #cccccc;
+  --accent: #111111;
+  --tint: #eeeeee;
+  font-family: "Liberation Serif", "Times New Roman", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 2rem; }
+body { margin: 0; color: var(--ink); background: var(--canvas); }
+a { color: var(--accent); text-underline-offset: .17em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #111111;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.skip-link {
+  position: fixed; top: .6rem; left: .6rem; z-index: 100;
+  padding: .6rem 1rem; background: var(--paper); border: 2px solid var(--accent);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+.masthead { border-bottom: 1px solid var(--ink); background: var(--paper); }
+.masthead-inner {
+  max-width: 70rem; margin: auto; padding: 1.05rem 2.5rem;
+  display: flex; flex-wrap: wrap; gap: .35rem 1.2rem;
+  align-items: baseline; justify-content: center; text-align: center;
+}
+.brand { font-size: .92rem; font-weight: 700; letter-spacing: .12em; }
+.masthead-label { color: var(--ink); font-size: .77rem; text-transform: uppercase; letter-spacing: .025em; }
+.layout {
+  max-width: 70rem; margin: auto; padding: 0 2.5rem;
+  display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2.5rem;
+}
+.sidebar {
+  position: sticky; top: 0; align-self: start; max-height: 100vh;
+  overflow-y: auto; padding: 2rem .8rem 2rem 0;
+  scrollbar-width: thin;
+}
+.nav-label, .eyebrow {
+  margin: 0 0 .85rem; color: var(--muted); font-size: .73rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+}
+.contents { list-style: none; padding: 0; margin: 0; }
+.contents li { margin: .15rem 0; }
+.contents a {
+  display: block; padding: .34rem .65rem; border-left: 2px solid transparent;
+  color: var(--muted); text-decoration: none; font-size: .86rem; line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.contents a:hover, .contents a:focus-visible {
+  color: var(--accent); background: var(--tint); border-left-color: var(--accent);
+}
+.nav-help { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.3rem; }
+.nav-help p, .nav-help a { font-size: .75rem; color: var(--muted); }
+.nav-help p { margin: .5rem 0; }
+kbd { font: inherit; padding: .05rem .25rem; border: 1px solid var(--line); border-radius: .2rem; }
+main { min-width: 0; max-width: 48.5rem; padding: 2rem 0 3rem; }
+.document-meta {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem 1.5rem; margin: 0 0 1.5rem;
+  font-size: .73rem; color: var(--muted);
+}
+.document-meta div { min-width: 0; }
+.document-meta dt { font-weight: 700; letter-spacing: .025em; }
+.document-meta dd { margin: .15rem 0 0; overflow-wrap: anywhere; }
+.document-meta code { font-size: .9em; background: none; padding: 0; }
+.fingerprint { grid-column: 1 / -1; }
+.paper {
+  min-width: 0; padding: 3.4rem 3rem 3rem;
+  background: var(--paper); border: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgb(0 0 0 / .04);
+}
+article { max-width: 68ch; margin: auto; overflow-wrap: anywhere; }
+article > :first-child { margin-top: 0; }
+h1, h2, h3, h4, h5, h6 { color: #000000; line-height: 1.22; text-wrap: balance; scroll-margin-top: 2rem; }
+h1 {
+  max-width: 19ch; margin: 0 auto 1.65rem; font-size: clamp(2.05rem, 3.8vw, 2.8rem);
+  text-align: center; text-transform: uppercase; letter-spacing: .015em;
+}
+article > h1 + p { margin-bottom: 2.4rem; text-align: center; font-size: .82rem; line-height: 1.45; }
+h2 { font-size: 1.5rem; margin: 3.4rem 0 1.1rem; }
+h3 { font-size: 1.13rem; margin: 2rem 0 .7rem; }
+h4, h5, h6 { font-size: 1.02rem; margin: 1.65rem 0 .6rem; }
+p { margin: 0 0 .78rem; }
+article p { text-align: justify; text-justify: inter-word; hyphens: auto; }
+ul, ol { padding-left: 1.5rem; }
+li { padding-left: .2rem; margin: .35rem 0; }
+li > p { margin: .6rem 0; }
+hr { max-width: 75%; border: 0; border-top: 1px solid var(--ink); margin: 2.5rem auto; }
+blockquote {
+  margin: 1.4rem 1.25rem; padding: 0; background: none; border: 0;
+}
+blockquote > :last-child { margin-bottom: 0; }
+code, pre { font-family: "Liberation Mono", "SFMono-Regular", Consolas, monospace; font-size: .83em; hyphens: none; }
+code { background: #f1f1f1; padding: .08em .2em; overflow-wrap: anywhere; }
+pre {
+  max-width: 100%; overflow-x: auto; padding: 1rem 1.15rem; margin: 1.4rem 0;
+  color: #111111; background: #f6f6f6; border: 1px solid var(--line);
+  line-height: 1.5; tab-size: 4;
+}
+pre code { background: none; padding: 0; border-radius: 0; font-size: 1em; overflow-wrap: normal; }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 1.5rem 0; }
+table { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: .87rem; line-height: 1.4; }
+th, td { padding: .65rem .75rem; text-align: left; vertical-align: top; border: 1px solid #b8b8b8; }
+th { color: #000000; background: #eeeeee; font-weight: 700; }
+tbody tr { background: #ffffff; }
+img, svg { max-width: 100%; height: auto; }
+a[id], a[name] { scroll-margin-top: 2rem; }
+p:has(> a[id]:only-child):empty { margin: 0; }
+p:has(> a[id]:only-child) { margin: 0; }
+h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-color: #777777; text-decoration-thickness: .08em; text-underline-offset: .2em; }
+.mobile-toc { display: none; }
+.document-footer { margin-top: 1.5rem; color: var(--muted); font-size: .73rem; }
+.document-footer p { margin: .4rem 0; }
+@media (max-width: 65rem) {
+  .layout { padding: 0 1.5rem; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 1.5rem; }
+  .masthead-inner { padding: 1rem 1.5rem; }
+  .paper { padding: 2.6rem 2rem; }
+}
+@media (max-width: 54rem) {
+  html { scroll-padding-top: 4.5rem; }
+  .layout { display: block; padding: 0 1rem; }
+  .sidebar { display: none; }
+  .masthead-inner { padding: .85rem 1rem; gap: .2rem 1rem; }
+  .mobile-toc {
+    display: block; position: sticky; top: 0; z-index: 10;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .mobile-toc summary { padding: .75rem 1rem; cursor: pointer; color: var(--accent); font-weight: 700; font-size: .85rem; }
+  .mobile-toc nav { max-height: 65vh; overflow-y: auto; padding: 0 .5rem 1rem; }
+  .mobile-toc .contents a { padding: .55rem; }
+  main { padding-top: 1.25rem; }
+  .paper { padding: 2.2rem 1.4rem; }
+  article p { text-align: left; }
+  article > h1 + p { text-align: center; }
+  h2, h3, h4, h5, h6, a[id], a[name] { scroll-margin-top: 4.5rem; }
+  h2 { margin-top: 2.7rem; font-size: 1.4rem; }
+  .document-meta { gap: .75rem 1rem; }
+}
+@media (max-width: 25rem) {
+  :root { font-size: 17px; }
+  .layout { padding: 0 .5rem; }
+  .paper { padding: 1.4rem 1rem; }
+  .document-meta { padding: 0 .5rem; }
+}
+@media print {
+  @page { size: 6.75in 9.25in; margin: .68in .65in .67in .72in; }
+  :root { font-size: 10.5pt; line-height: 1.2; color-scheme: light; }
+  body, .paper { color: #111; background: white; }
+  .masthead, .sidebar, .mobile-toc, .skip-link, .back-top { display: none; }
+  .layout { display: block; max-width: none; padding: 0; }
+  main { max-width: none; padding: 0; }
+  .paper { padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+  article { max-width: none; }
+  article p { margin-bottom: 4.6pt; text-align: justify; }
+  .document-meta { padding: 0 0 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #bbb; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 18pt; margin-top: 1.8rem; }
+  h3 { font-size: 12pt; }
+  h4, h5, h6 { font-size: 11pt; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  a { color: inherit; text-decoration: underline; }
+  .table-scroll { overflow: visible; border: 0; }
+  table { min-width: 0; table-layout: auto; font-size: 9pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  th, td { padding: .45rem; }
+  pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; border-color: #bbb; font-size: 8pt; line-height: 1.3; }
+  pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  blockquote { break-inside: avoid; background: white; }
+  .document-footer { border-top: 1px solid #bbb; padding-top: .75rem; }
+}
+</style>
+</head>
+<body id="manual-top">
+<a class="skip-link" href="#manual-content">Skip to manual</a>
+<header class="masthead">
+  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Human team courses · offline reading edition</span></div>
+</header>
+<details class="mobile-toc">
+  <summary>Contents · 12 sections</summary>
+  <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#purpose-and-preparation">Purpose and preparation</a></li>
+<li><a href="#lesson-1-plan-from-conditions-for-work">Lesson 1: Plan from conditions for work</a></li>
+<li><a href="#lesson-2-connect-the-schedule-to-people-and-resources">Lesson 2: Connect the schedule to people and resources</a></li>
+<li><a href="#lesson-3-maintain-a-credible-cost-account">Lesson 3: Maintain a credible cost account</a></li>
+<li><a href="#lesson-4-connect-purchasing-risk-and-change">Lesson 4: Connect purchasing, risk, and change</a></li>
+<li><a href="#lesson-5-measure-progress-by-usable-results">Lesson 5: Measure progress by usable results</a></li>
+<li><a href="#worked-northbank-example">Worked Northbank example</a></li>
+<li><a href="#transfer-example-laboratory-instrument-replacement">Transfer example: laboratory instrument replacement</a></li>
+<li><a href="#practice">Practice</a></li>
+<li><a href="#knowledge-check">Knowledge check</a></li>
+<li><a href="#assessed-assignment">Assessed assignment</a></li>
+<li><a href="#portfolio-continuation-and-reading">Portfolio continuation and reading</a></li></ol></nav>
+</details>
+<div class="layout">
+<aside class="sidebar">
+  <nav aria-label="Sections">
+    <p class="nav-label">In this manual</p>
+    <ol class="contents"><li><a href="#purpose-and-preparation">Purpose and preparation</a></li>
+<li><a href="#lesson-1-plan-from-conditions-for-work">Lesson 1: Plan from conditions for work</a></li>
+<li><a href="#lesson-2-connect-the-schedule-to-people-and-resources">Lesson 2: Connect the schedule to people and resources</a></li>
+<li><a href="#lesson-3-maintain-a-credible-cost-account">Lesson 3: Maintain a credible cost account</a></li>
+<li><a href="#lesson-4-connect-purchasing-risk-and-change">Lesson 4: Connect purchasing, risk, and change</a></li>
+<li><a href="#lesson-5-measure-progress-by-usable-results">Lesson 5: Measure progress by usable results</a></li>
+<li><a href="#worked-northbank-example">Worked Northbank example</a></li>
+<li><a href="#transfer-example-laboratory-instrument-replacement">Transfer example: laboratory instrument replacement</a></li>
+<li><a href="#practice">Practice</a></li>
+<li><a href="#knowledge-check">Knowledge check</a></li>
+<li><a href="#assessed-assignment">Assessed assignment</a></li>
+<li><a href="#portfolio-continuation-and-reading">Portfolio continuation and reading</a></li></ol>
+  </nav>
+  <div class="nav-help">
+    <p>Find a term with <kbd>⌘ F</kbd> or <kbd>Ctrl F</kbd>. Use your browser’s print command for a paper copy.</p>
+    <p><a href="08-project-execution.md">Markdown source</a> · <a href="#manual-top">Back to start ↑</a></p>
+  </div>
+</aside>
+<main id="manual-content" tabindex="-1">
+  <div class="paper">
+    <article aria-labelledby="course-08-planning-and-managing-project-execution">
+<!-- BEGIN MARKDOWN CONTENT -->
+<h1 id="course-08-planning-and-managing-project-execution">Course 08: Planning and Managing Project Execution</h1>
+<p><a href="../index.html">Series</a> · <a href="../case-study.html">Northbank case</a> · <a href="../glossary.html">Glossary</a> · <a href="../references.html">References</a></p>
+<h2 id="purpose-and-preparation">Purpose and preparation</h2>
+<p>A plan connects the intended result to work, people, resources, and decisions. It becomes useful when the team can act on it.</p>
+<p>This course teaches how to maintain that connection as conditions change. Use the project basis from Course 07. Apply the reasoning and communication methods from Courses 05 and 06.</p>
+<p>Read Northbank Packets A, B, and C. Keep each record's revision and status visible. All prices and durations are teaching inputs.</p>
+<p>After this course, you can:</p>
+<ul>
+<li>Define readiness conditions for an activity.</li>
+<li>Build a schedule from dependencies and available resources.</li>
+<li>Distinguish a budget, estimate, commitment, actual expenditure, and forecast.</li>
+<li>Connect procurement and contracts to the technical basis.</li>
+<li>Assess change and report progress with its consequences.</li>
+</ul>
+<h2 id="lesson-1-plan-from-conditions-for-work">Lesson 1: Plan from conditions for work</h2>
+<p>An activity needs more than a date. It needs usable inputs, competent people, access, resources, and authority. These conditions determine readiness.</p>
+<p>For example, equipment installation needs delivered equipment and ready site works. An equipment order needs a reviewed technical package and expenditure authorization. A supplier's requested date does not establish either condition.</p>
+<p>Define the output before estimating the activity. State the required input and its condition. Name the owner who supplies it. Name the person who checks its suitability.</p>
+<p>Use a small dependency table:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 1; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Required condition</th>
+<th>Supplier</th>
+<th>Readiness evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Release equipment order</td>
+<td>Reviewed package and expenditure authorization</td>
+<td>Engineering and authorized expenditure approver</td>
+<td>Identified decisions for the purchase package</td>
+</tr>
+<tr>
+<td>Install equipment</td>
+<td>Delivered equipment and ready site works</td>
+<td>Supplier and site team</td>
+<td>Delivery check and site readiness confirmation</td>
+</tr>
+<tr>
+<td>Commission installation</td>
+<td>Completed installation and prerequisite checks</td>
+<td>Installation and assurance teams</td>
+<td>Records for the identified configuration</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The table records needed relationships. It does not assert that Northbank has satisfied them.</p>
+<p>Some activities can proceed while others wait. The team can prepare a review plan while equipment selection remains open. It cannot complete selection-dependent checks without the selection data.</p>
+<p>Avoid making every open question a project-wide stop. Locate the question's dependent work. Continue work with sufficient inputs and authority.</p>
+<p>Build the schedule in this order:</p>
+<ol>
+<li>Identify the required outputs.</li>
+<li>Identify each activity's prerequisites.</li>
+<li>Estimate each activity's duration.</li>
+<li>Assign available resources.</li>
+<li>Calculate the earliest supported sequence.</li>
+<li>Compare the result with the target.</li>
+</ol>
+<p>A dependency calculation can expose impossible dates. It cannot establish that the durations are reliable. State their basis and uncertainty.</p>
+<h2 id="lesson-2-connect-the-schedule-to-people-and-resources">Lesson 2: Connect the schedule to people and resources</h2>
+<p>Two activities can have independent inputs and still compete for one person. A calendar that assigns both simultaneously may be impossible.</p>
+<p>Consider a clearly invented teaching example, separate from Northbank. Two four-hour reviews need the same reviewer during one four-hour shift. Their inputs are ready. Their resource plan still needs another shift or another competent reviewer.</p>
+<p>Check resource demand at the level that supports decisions. Include review, coordination, repair, travel, site access, and required operating support. These activities consume capacity even when they produce few documents.</p>
+<p>Estimate remaining work with the people who will perform it. Ask what conditions the duration assumes. Identify access windows, interruptions, and decisions that can extend it.</p>
+<p>Adding people can increase output when work has suitable boundaries. It can also increase coordination and review demand. Assess the limiting activity before changing staffing.</p>
+<p>A critical path is a sequence that controls the calculated finish under stated assumptions. The controlling sequence can change after a delay or resource adjustment. Recalculate it when the relevant basis changes.</p>
+<p>An earlier start is useful only when the activity can produce a usable result. Premature work can create rework or unsafe exposure. Define an authorized, bounded activity if partial inputs permit partial progress.</p>
+<p>Keep the baseline schedule as the comparison reference. Maintain a current forecast beside it. Record changed assumptions and decisions. A revised forecast reports the present outlook; it does not silently change the approved target.</p>
+<h2 id="lesson-3-maintain-a-credible-cost-account">Lesson 3: Maintain a credible cost account</h2>
+<p>A budget is an authorized amount for a defined scope. An estimate assesses expected cost. A commitment records an obligation, such as an order. Actual expenditure records incurred cost. A forecast assesses the expected final outcome.</p>
+<p>These amounts answer different questions. Spending below the budget does not show that enough money remains to finish. A forecast must include the work still required.</p>
+<p>Use a consistent cost structure. State the date, currency, scope, price basis, and treatment of taxes or escalation when relevant. Match the cost structure to the team's accounting arrangements.</p>
+<p>An elementary forecast can use:</p>
+<blockquote>
+<p>Expected final cost = recorded actual expenditure + estimated remaining cost.</p>
+</blockquote>
+<p>This equation requires non-overlapping amounts. A forecast item that already includes actual expenditure must not receive the actual expenditure again.</p>
+<p>Treat commitments with the same care. An unpaid order can form part of remaining cost. Adding the entire order to a forecast that already includes it creates duplication.</p>
+<p>Contingency is an identified allowance for uncertainty under the project's rules. It is not permission to expand scope. Explain whether a forecast includes the allowance and how approved use affects its balance.</p>
+<p>Report a forecast excess promptly. Identify its scope and evidence. Present options with their technical, delivery, and commercial effects. Obtain the decision from the person with the required authority.</p>
+<p>Do not repair a cost forecast by removing necessary checks or hiding unfinished work. A reduced scope needs an authorized decision and an assessment of its consequences.</p>
+<h2 id="lesson-4-connect-purchasing-risk-and-change">Lesson 4: Connect purchasing, risk, and change</h2>
+<p>Procurement translates an authorized need into a commercial transaction. The purchase package must identify the required configuration, technical conditions, submission requirements, delivery terms, and examination arrangements.</p>
+<p>Separate technical review from expenditure approval. Procurement must know both dispositions before release. A price quotation or delivery promise cannot approve a technical substitution.</p>
+<p>Contracts allocate duties and commercial consequences. Read the actual contract before asserting rights, penalties, warranties, or notice obligations. Northbank supplies no contract terms that establish such rights.</p>
+<p>Coordinate the supplier's information dates with engineering's point of need. A vendor drawing received after foundation construction may create avoidable rework. Include review and repair time in the procurement sequence.</p>
+<p>A risk concerns uncertainty and its possible effects. An issue is a present condition requiring attention. Northbank's voltage discrepancy is a present issue. An uncertain future delivery slot presents a different problem.</p>
+<p>For each material risk or issue, state its affected objective, evidence, owner, response, and point of reconsideration. Use estimates with their basis. Do not invent precise probabilities to fill a form.</p>
+<p>Assess a proposed change through the whole project:</p>
+<ol>
+<li>Identify the departure from the approved basis.</li>
+<li>Explain the reason for the departure.</li>
+<li>Assess technical and operating effects.</li>
+<li>Assess cost, schedule, resources, and contractual effects.</li>
+<li>Identify the required decisions.</li>
+<li>Propagate the actual disposition to affected work.</li>
+</ol>
+<p>A proposal remains a proposal until its authorized decision. A correction within existing scope can still change cost and schedule. It needs the appropriate spending and commitment decisions.</p>
+<h2 id="lesson-5-measure-progress-by-usable-results">Lesson 5: Measure progress by usable results</h2>
+<p>Document counts are useful for some workload questions. They provide weak evidence about technical readiness. Ten completed drawings may still contain one unresolved interface that prevents construction.</p>
+<p>Report completed outputs with their examination and remaining conditions. Distinguish production complete, review complete, accepted, and available for dependent use. Use the project's actual status definitions.</p>
+<p>A weekly account should help someone decide or act. Include achieved results, unresolved conditions, forecast changes, decisions needed, and the next ready work. Identify the basis date.</p>
+<p>Compare the present forecast with both the baseline and the previous forecast. Explain meaningful departures. Avoid repeating an unchanged issue without a response or decision route.</p>
+<p>When the target is threatened, present credible options. Assess expedited delivery, resequencing, overlap, additional resources, or scope change where relevant. Each option needs supported prerequisites and consequences.</p>
+<p>Overlap can reduce time when activities have suitable boundaries. It can also expose people or invalidate tests. Define those boundaries before counting a schedule saving.</p>
+<h2 id="worked-northbank-example">Worked Northbank example</h2>
+<p>The project manager receives C03 Rev 0. Its forecast covers the existing 18 litres per second scope. A05 Rev 0 remains a proposal for 22 litres per second.</p>
+<p>C03 assumes order release at the end of Week 6. Five delivery weeks place delivery at the end of Week 11. Installation occupies Weeks 12 and 13. Commissioning occupies Week 14. Handover occupies Week 15.</p>
+<p>The resulting finish is the end of Week 15. It is three weeks beyond A02's end-of-Week-12 target. This calculation assumes ready site works and no overlap.</p>
+<p>The forecast total is:</p>
+<blockquote>
+<p>80,000 + 55,000 + 30,000 + 45,000 + 23,000 + 12,000 + 20,000 = 265,000.</p>
+</blockquote>
+<p>The authorized budget is 240,000. The forecast exceeds it by 25,000, or approximately 10.4 percent. C03 already includes actual expenditure in each item.</p>
+<p>This is a forecast, not an approval to spend 265,000. It also provides no conclusion about pump suitability. B01's submission and A02's unresolved operating conditions still need technical resolution.</p>
+<p>A useful manager's account states:</p>
+<blockquote>
+<p>The current 18 litres per second scope forecasts 265,000 and handover at the end of Week 15. These estimates retain C03's assumptions. Technical release remains dependent on the reviewed purchase package. The 22 litres per second proposal is excluded. The sponsor must decide any change to budget or target.</p>
+</blockquote>
+<p>The team can investigate alternatives before requesting a decision. It must not describe an unconfirmed saving as achieved progress.</p>
+<h2 id="transfer-example-laboratory-instrument-replacement">Transfer example: laboratory instrument replacement</h2>
+<p>A laboratory needs an installed, calibrated instrument. The order requires a selected instrument and an approved acquisition package. Installation needs delivered equipment, a suitable room, and utilities.</p>
+<p>Calibration depends on installation. Staff training depends on the identified operating configuration. A shipment date alone cannot forecast usable service.</p>
+<p>Use the same dependency and cost methods. Add the laboratory's actual accreditation, safety, and purchasing requirements. Establish those requirements from their governing sources.</p>
+<h2 id="practice">Practice</h2>
+<p>Use A01 Rev 0, A02 Rev 1, A05 Rev 0, B01 to B03 Rev 0, and C01 to C03. Do not use Packet D.</p>
+<p>Prepare four outputs:</p>
+<ol>
+<li>Draw the baseline and corrected delivery sequences.</li>
+<li>Compare each C03 cost item with C01.</li>
+<li>Prepare a purchase-release readiness table.</li>
+<li>Write a sponsor briefing of no more than 250 words.</li>
+</ol>
+<p>Include the supported forecast, unresolved prerequisites, decision authority, and one option requiring investigation. State what evidence would make that option usable.</p>
+<p>For a separate cost exercise, use invented actual expenditure of 90,000. The remaining-cost estimate is 175,000. A colleague proposes adding 90,000 to C03's 265,000 total. Explain the two calculation bases and the colleague's error.</p>
+<h2 id="knowledge-check">Knowledge check</h2>
+<ol>
+<li>What conditions distinguish a ready activity from a scheduled activity?</li>
+<li>How can a resource conflict invalidate a dependency schedule?</li>
+<li>Why does C03's forecast not change the authorized budget?</li>
+<li>When would adding actual expenditure to a forecast duplicate cost?</li>
+<li>What decisions and evidence does Northbank need before equipment order release?</li>
+<li>What must the team establish before reporting a schedule saving from overlap?</li>
+</ol>
+<h2 id="assessed-assignment">Assessed assignment</h2>
+<p>Prepare an execution control package for Northbank's existing scope. Include the schedule, cost comparison, procurement conditions, response priorities, and sponsor decision request.</p>
+<p>Use these five observable criteria:</p>
+<ol>
+<li>The schedule reproduces the stated durations, prerequisites, and no-overlap assumptions.</li>
+<li>The cost account reconciles totals without duplicating actual expenditure or contingency.</li>
+<li>Purchase readiness distinguishes technical suitability, expenditure authority, and supplier timing.</li>
+<li>Proposed responses preserve the existing scope until the authorized decision changes it.</li>
+<li>The briefing identifies supported progress, forecast departures, uncertainty, and decision owners.</li>
+</ol>
+<p>Explain your package to a peer. Repair defects found during the examination. Retain the previous revision and the repair basis.</p>
+<h2 id="portfolio-continuation-and-reading">Portfolio continuation and reading</h2>
+<p>Add the package to your Course 07 project basis. Carry unresolved technical conditions into Course 09. Carry examination and handover prerequisites into Course 10.</p>
+<p>Read Field Book §§4–5 and 7 in <a href="../references.html">References</a>. They connect dependencies, ready work, and change propagation. Consolidated v8 §§5.2–5.8 explain completion and integration. Adapt these principles to human responsibilities.</p>
+<p>The optional APM readings provide a wider project management account. The supplied case contains all inputs for this course's core exercises.</p>
+<!-- END MARKDOWN CONTENT -->
+    </article>
+  </div>
+  <footer class="document-footer">
+  <dl class="document-meta">
+    <div><dt>Source basis dated</dt><dd>11 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>10b70036ef791374685291371a651ec9492a612c</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="08-project-execution.md">08-project-execution.md</a><br><code>a8c7610750f9af8a6af8b88fe1b94c6a7a2663d1c3b736439d7c6a2937bec0b8</code></dd></div>
+  </dl>
+    <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
+    <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
+    <p class="back-top"><a href="#manual-top">Back to start ↑</a></p>
+  </footer>
+</main>
+</div>
+<script>
+const mobileContents = document.querySelector('.mobile-toc');
+mobileContents.addEventListener('click', (event) => {
+  if (event.target.closest('a[href^="#"]')) mobileContents.open = false;
+});
+</script>
+</body>
+</html>

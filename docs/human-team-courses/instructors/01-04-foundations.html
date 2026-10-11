@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
+<meta name="source-sha256" content="890c9a2008ee2b811671a1258e79afdb2fa5085c01c8d58397909d20db9516ef">
+<meta name="source-basis-date" content="2026-10-11">
+<meta name="source-basis-revision" content="10b70036ef791374685291371a651ec9492a612c">
+<title>Instructor Guide — Courses 01 to 04 · Chirality</title>
+<style>
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --canvas: #eeeeee;
+  --ink: #111111;
+  --muted: #505050;
+  --line: #cccccc;
+  --accent: #111111;
+  --tint: #eeeeee;
+  font-family: "Liberation Serif", "Times New Roman", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 2rem; }
+body { margin: 0; color: var(--ink); background: var(--canvas); }
+a { color: var(--accent); text-underline-offset: .17em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #111111;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.skip-link {
+  position: fixed; top: .6rem; left: .6rem; z-index: 100;
+  padding: .6rem 1rem; background: var(--paper); border: 2px solid var(--accent);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+.masthead { border-bottom: 1px solid var(--ink); background: var(--paper); }
+.masthead-inner {
+  max-width: 70rem; margin: auto; padding: 1.05rem 2.5rem;
+  display: flex; flex-wrap: wrap; gap: .35rem 1.2rem;
+  align-items: baseline; justify-content: center; text-align: center;
+}
+.brand { font-size: .92rem; font-weight: 700; letter-spacing: .12em; }
+.masthead-label { color: var(--ink); font-size: .77rem; text-transform: uppercase; letter-spacing: .025em; }
+.layout {
+  max-width: 70rem; margin: auto; padding: 0 2.5rem;
+  display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2.5rem;
+}
+.sidebar {
+  position: sticky; top: 0; align-self: start; max-height: 100vh;
+  overflow-y: auto; padding: 2rem .8rem 2rem 0;
+  scrollbar-width: thin;
+}
+.nav-label, .eyebrow {
+  margin: 0 0 .85rem; color: var(--muted); font-size: .73rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+}
+.contents { list-style: none; padding: 0; margin: 0; }
+.contents li { margin: .15rem 0; }
+.contents a {
+  display: block; padding: .34rem .65rem; border-left: 2px solid transparent;
+  color: var(--muted); text-decoration: none; font-size: .86rem; line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.contents a:hover, .contents a:focus-visible {
+  color: var(--accent); background: var(--tint); border-left-color: var(--accent);
+}
+.nav-help { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.3rem; }
+.nav-help p, .nav-help a { font-size: .75rem; color: var(--muted); }
+.nav-help p { margin: .5rem 0; }
+kbd { font: inherit; padding: .05rem .25rem; border: 1px solid var(--line); border-radius: .2rem; }
+main { min-width: 0; max-width: 48.5rem; padding: 2rem 0 3rem; }
+.document-meta {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem 1.5rem; margin: 0 0 1.5rem;
+  font-size: .73rem; color: var(--muted);
+}
+.document-meta div { min-width: 0; }
+.document-meta dt { font-weight: 700; letter-spacing: .025em; }
+.document-meta dd { margin: .15rem 0 0; overflow-wrap: anywhere; }
+.document-meta code { font-size: .9em; background: none; padding: 0; }
+.fingerprint { grid-column: 1 / -1; }
+.paper {
+  min-width: 0; padding: 3.4rem 3rem 3rem;
+  background: var(--paper); border: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgb(0 0 0 / .04);
+}
+article { max-width: 68ch; margin: auto; overflow-wrap: anywhere; }
+article > :first-child { margin-top: 0; }
+h1, h2, h3, h4, h5, h6 { color: #000000; line-height: 1.22; text-wrap: balance; scroll-margin-top: 2rem; }
+h1 {
+  max-width: 19ch; margin: 0 auto 1.65rem; font-size: clamp(2.05rem, 3.8vw, 2.8rem);
+  text-align: center; text-transform: uppercase; letter-spacing: .015em;
+}
+article > h1 + p { margin-bottom: 2.4rem; text-align: center; font-size: .82rem; line-height: 1.45; }
+h2 { font-size: 1.5rem; margin: 3.4rem 0 1.1rem; }
+h3 { font-size: 1.13rem; margin: 2rem 0 .7rem; }
+h4, h5, h6 { font-size: 1.02rem; margin: 1.65rem 0 .6rem; }
+p { margin: 0 0 .78rem; }
+article p { text-align: justify; text-justify: inter-word; hyphens: auto; }
+ul, ol { padding-left: 1.5rem; }
+li { padding-left: .2rem; margin: .35rem 0; }
+li > p { margin: .6rem 0; }
+hr { max-width: 75%; border: 0; border-top: 1px solid var(--ink); margin: 2.5rem auto; }
+blockquote {
+  margin: 1.4rem 1.25rem; padding: 0; background: none; border: 0;
+}
+blockquote > :last-child { margin-bottom: 0; }
+code, pre { font-family: "Liberation Mono", "SFMono-Regular", Consolas, monospace; font-size: .83em; hyphens: none; }
+code { background: #f1f1f1; padding: .08em .2em; overflow-wrap: anywhere; }
+pre {
+  max-width: 100%; overflow-x: auto; padding: 1rem 1.15rem; margin: 1.4rem 0;
+  color: #111111; background: #f6f6f6; border: 1px solid var(--line);
+  line-height: 1.5; tab-size: 4;
+}
+pre code { background: none; padding: 0; border-radius: 0; font-size: 1em; overflow-wrap: normal; }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 1.5rem 0; }
+table { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: .87rem; line-height: 1.4; }
+th, td { padding: .65rem .75rem; text-align: left; vertical-align: top; border: 1px solid #b8b8b8; }
+th { color: #000000; background: #eeeeee; font-weight: 700; }
+tbody tr { background: #ffffff; }
+img, svg { max-width: 100%; height: auto; }
+a[id], a[name] { scroll-margin-top: 2rem; }
+p:has(> a[id]:only-child):empty { margin: 0; }
+p:has(> a[id]:only-child) { margin: 0; }
+h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-color: #777777; text-decoration-thickness: .08em; text-underline-offset: .2em; }
+.mobile-toc { display: none; }
+.document-footer { margin-top: 1.5rem; color: var(--muted); font-size: .73rem; }
+.document-footer p { margin: .4rem 0; }
+@media (max-width: 65rem) {
+  .layout { padding: 0 1.5rem; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 1.5rem; }
+  .masthead-inner { padding: 1rem 1.5rem; }
+  .paper { padding: 2.6rem 2rem; }
+}
+@media (max-width: 54rem) {
+  html { scroll-padding-top: 4.5rem; }
+  .layout { display: block; padding: 0 1rem; }
+  .sidebar { display: none; }
+  .masthead-inner { padding: .85rem 1rem; gap: .2rem 1rem; }
+  .mobile-toc {
+    display: block; position: sticky; top: 0; z-index: 10;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .mobile-toc summary { padding: .75rem 1rem; cursor: pointer; color: var(--accent); font-weight: 700; font-size: .85rem; }
+  .mobile-toc nav { max-height: 65vh; overflow-y: auto; padding: 0 .5rem 1rem; }
+  .mobile-toc .contents a { padding: .55rem; }
+  main { padding-top: 1.25rem; }
+  .paper { padding: 2.2rem 1.4rem; }
+  article p { text-align: left; }
+  article > h1 + p { text-align: center; }
+  h2, h3, h4, h5, h6, a[id], a[name] { scroll-margin-top: 4.5rem; }
+  h2 { margin-top: 2.7rem; font-size: 1.4rem; }
+  .document-meta { gap: .75rem 1rem; }
+}
+@media (max-width: 25rem) {
+  :root { font-size: 17px; }
+  .layout { padding: 0 .5rem; }
+  .paper { padding: 1.4rem 1rem; }
+  .document-meta { padding: 0 .5rem; }
+}
+@media print {
+  @page { size: 6.75in 9.25in; margin: .68in .65in .67in .72in; }
+  :root { font-size: 10.5pt; line-height: 1.2; color-scheme: light; }
+  body, .paper { color: #111; background: white; }
+  .masthead, .sidebar, .mobile-toc, .skip-link, .back-top { display: none; }
+  .layout { display: block; max-width: none; padding: 0; }
+  main { max-width: none; padding: 0; }
+  .paper { padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+  article { max-width: none; }
+  article p { margin-bottom: 4.6pt; text-align: justify; }
+  .document-meta { padding: 0 0 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #bbb; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 18pt; margin-top: 1.8rem; }
+  h3 { font-size: 12pt; }
+  h4, h5, h6 { font-size: 11pt; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  a { color: inherit; text-decoration: underline; }
+  .table-scroll { overflow: visible; border: 0; }
+  table { min-width: 0; table-layout: auto; font-size: 9pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  th, td { padding: .45rem; }
+  pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; border-color: #bbb; font-size: 8pt; line-height: 1.3; }
+  pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  blockquote { break-inside: avoid; background: white; }
+  .document-footer { border-top: 1px solid #bbb; padding-top: .75rem; }
+}
+</style>
+</head>
+<body id="manual-top">
+<a class="skip-link" href="#manual-content">Skip to manual</a>
+<header class="masthead">
+  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Human team courses · offline reading edition</span></div>
+</header>
+<details class="mobile-toc">
+  <summary>Contents · 4 sections</summary>
+  <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#course-01--professional-practice-and-responsibility">Course 01 — Professional Practice and Responsibility</a></li>
+<li><a href="#course-02--document-and-configuration-control">Course 02 — Document and Configuration Control</a></li>
+<li><a href="#course-03--information-research-and-evidence">Course 03 — Information Research and Evidence</a></li>
+<li><a href="#course-04--interpreting-requirements-and-obligations">Course 04 — Interpreting Requirements and Obligations</a></li></ol></nav>
+</details>
+<div class="layout">
+<aside class="sidebar">
+  <nav aria-label="Sections">
+    <p class="nav-label">In this manual</p>
+    <ol class="contents"><li><a href="#course-01--professional-practice-and-responsibility">Course 01 — Professional Practice and Responsibility</a></li>
+<li><a href="#course-02--document-and-configuration-control">Course 02 — Document and Configuration Control</a></li>
+<li><a href="#course-03--information-research-and-evidence">Course 03 — Information Research and Evidence</a></li>
+<li><a href="#course-04--interpreting-requirements-and-obligations">Course 04 — Interpreting Requirements and Obligations</a></li></ol>
+  </nav>
+  <div class="nav-help">
+    <p>Find a term with <kbd>⌘ F</kbd> or <kbd>Ctrl F</kbd>. Use your browser’s print command for a paper copy.</p>
+    <p><a href="01-04-foundations.md">Markdown source</a> · <a href="#manual-top">Back to start ↑</a></p>
+  </div>
+</aside>
+<main id="manual-content" tabindex="-1">
+  <div class="paper">
+    <article aria-labelledby="instructor-guide--courses-01-to-04">
+<!-- BEGIN MARKDOWN CONTENT -->
+<h1 id="instructor-guide--courses-01-to-04">Instructor Guide — Courses 01 to 04</h1>
+<p><a href="../index.html">Series</a> · <a href="../case-study.html">Case</a> · <a href="../glossary.html">Glossary</a> · <a href="../references.html">References</a></p>
+<p>Keep this guide separate from learner assessments. Use the shared case as the exercise basis. External readings are optional unless you supply the required source text.</p>
+<p>Assess each stated criterion as <strong>meets</strong>, <strong>needs repair</strong>, or <strong>insufficient evidence</strong>. A correct conclusion needs a source and a defensible explanation. A polished form cannot supply missing grounds.</p>
+<h2 id="course-01--professional-practice-and-responsibility">Course 01 — Professional Practice and Responsibility</h2>
+<h3 id="session-sequence">Session sequence</h3>
+<ol>
+<li>Ask learners to describe an assignment that affected people outside their team.</li>
+<li>Read A01 and A02 together.</li>
+<li>Discuss the four lessons using the decision map and ethical-pressure event.</li>
+<li>Examine the worked example's division of contributions.</li>
+<li>Run the paired practice with Packet A only.</li>
+<li>Examine each appointment response against its five criteria.</li>
+<li>Require repairs where a conclusion exceeds its evidence or authority.</li>
+</ol>
+<p>Use the opening discussion to find differences between appointment and actual practice. Do not require learners to disclose confidential information.</p>
+<h3 id="knowledge-check-answers">Knowledge-check answers</h3>
+<ol>
+<li>Responsibility concerns assigned work or a decision. Authority permits a stated act. Accountability requires explanation and an answer for the responsibility.</li>
+<li>The manager organizes execution, expenditure, contracts, and forecasts. The project engineer coordinates the technical basis and interfaces. Discipline engineers retain technical responsibilities.</li>
+<li>A05 is a proposal. No scope amendment is recorded. A02 Rev 1 remains the approved project-development basis.</li>
+<li>A04 records 600 V, three phase, 60 Hz at the surveyed connection. It leaves capacity, protection coordination, and compatibility unresolved.</li>
+<li>Decline the unsupported statement. State what the evidence establishes and leaves open. Explain the consequences and obtain the required response. Follow actual professional obligations for real work.</li>
+<li>Review adds examination. It does not transfer the producer's responsibility to the reviewer. The producer must carry repairs and explain the result.</li>
+</ol>
+<h3 id="practice-reasoning">Practice reasoning</h3>
+<p>A valid brief may select hydraulic-input definition and electrical-capacity investigation as its next activities. Learners must identify the specialist contributions and limits. They may instead select external-requirements inquiry if they explain its effect on selection.</p>
+<p>The sponsor decides changes to scope, budget, and target. A competent technical authority decides a technical deviation within its remit. Procurement needs an authorized package. Operations accepts operating information and readiness arrangements.</p>
+<p>The activity plan should not claim that the project engineer can independently establish every discipline conclusion. It should not treat approval for development as proof of a complete design basis.</p>
+<p>For a competence limit, accept a specific unfamiliar method or responsibility. The learner must request suitable assistance. A vague statement such as “ask someone experienced” needs repair.</p>
+<p>In the invented pressure event, a truthful alternative states that A04 establishes the observed connection characteristics. Capacity, protection coordination, and compatibility remain unresolved. Accept wording that preserves those limits. Require learners to explain how a false confirmation could affect funding and later equipment decisions. They need not allege a statutory violation. A06 leaves the jurisdiction unresolved.</p>
+<p>Use the ethical discussion to distinguish general guidance from binding requirements. Discuss public welfare, truthful statements, confidentiality, and interests that can impair impartial judgment. The course does not supply a universal reporting procedure. Learners must identify the need for actual professional guidance where obligations conflict.</p>
+<h3 id="assessment-decision-guidance">Assessment decision guidance</h3>
+<p>Match each observed statement to the five course criteria. Ask the learner to name the source for one numerical value and the authority for one proposed act.</p>
+<p>The first criterion requires both affected-person reasoning and a truthful response to the invented pressure event. A promise to confirm compatibility later does not justify claiming confirmation now.</p>
+<p>Accept different activity sequences when their conditions are clear. Require repair if final selection proceeds without the unresolved hydraulic and external basis. Do not require invented technical calculations.</p>
+<p>Training acceptance concerns the demonstrated learning result. It does not grant a real professional appointment or determine licensing eligibility.</p>
+<h3 id="common-defects">Common defects</h3>
+<ul>
+<li>The learner gives all decisions to the sponsor without preserving technical responsibilities.</li>
+<li>The learner gives all approvals to the project engineer by title alone.</li>
+<li>The learner treats the newest request as the approved scope.</li>
+<li>The learner treats a checked observation as a complete electrical conclusion.</li>
+<li>The learner stops every activity when only dependent decisions lack a basis.</li>
+<li>The learner treats review as transfer of responsibility.</li>
+<li>The learner removes an important qualification to improve the commercial presentation.</li>
+</ul>
+<h2 id="course-02--document-and-configuration-control">Course 02 — Document and Configuration Control</h2>
+<h3 id="session-sequence-1">Session sequence</h3>
+<ol>
+<li>Ask learners to retrieve A02 Rev 1 from their Portfolio 01 references.</li>
+<li>Compare identity, revision, status, and purpose.</li>
+<li>Discuss why approval for development can coexist with unresolved inputs.</li>
+<li>Examine the worked example's control and technical responses separately.</li>
+<li>Run the retrieval test in pairs.</li>
+<li>Examine the controlled-basis packages against the five criteria.</li>
+<li>Require repairs to ambiguous issue status or missing impact treatment.</li>
+</ol>
+<p>Use a simple document list for the session. Do not introduce a specialist control system unless it helps the learners' actual context.</p>
+<h3 id="knowledge-check-answers-1">Knowledge-check answers</h3>
+<ol>
+<li>A stable identity identifies the document across copies, locations, and revisions. A filename locates a file but can change or conceal its identity.</li>
+<li>The highest revision may be a draft or have an unsuitable issue purpose. The activity needs the authorized revision and relevant approval scope.</li>
+<li>A02 Rev 1 permits project development under the recorded scope. It leaves hydraulic conditions, changeover definition, and external requirements unresolved.</li>
+<li>Distribution establishes that information was sent. Adoption requires the affected owner to examine and apply the change in the relevant work.</li>
+<li>Document control manages defining information. Configuration control connects the actual product, defining information, authorized changes, and examination evidence.</li>
+<li>Identify the affected work, assess its consequences, repair it, and examine the repair. Preserve the earlier basis and defect where recovery requires them.</li>
+</ol>
+<h3 id="practice-reasoning-1">Practice reasoning</h3>
+<p>A source-control list should identify A02 Rev 1 as approved for project development. It should distinguish A02 Rev 0 as an earlier draft. It should preserve A03's archived status and copied-estimate origin.</p>
+<p>A04 should be present as a checked observation with explicit limits. A05 remains a proposal. A06 remains an open external-requirements enquiry. A07 describes the inventory defects; it does not approve the other documents.</p>
+<p>Packet A supplies no actual folder path or recipient list. Accept references to the stable case records. Learners may mark access and distribution details as open. They must not invent a completed issue transaction.</p>
+<p>The issue note should state its purpose: project development under A02 Rev 1. It should identify the unresolved conditions. A valid distribution list can include the project manager, project engineer, relevant disciplines, operations, and procurement. Its exact extent needs the actual affected activities.</p>
+<p>The impact enquiry should ask each affected owner to identify work that used the draft flow or legacy electrical value. It should request the conclusion and required repair. An enquiry is not evidence that the repair is complete.</p>
+<p>The future configuration checklist can request selected equipment identities, motor characteristics, pump data, and control definition. These are comparison headings. Packet A does not contain a complete selection or an installed product.</p>
+<h3 id="assessment-decision-guidance-1">Assessment decision guidance</h3>
+<p>Ask a reviewer to retrieve two records without additional oral directions. Rate identity and retrieval from that actual attempt. Then ask the learner what work could remain wrong after the document list was corrected.</p>
+<p>Accept a small list and short issue note when they satisfy the criteria. Require repair if the package treats a brochure as a selected configuration. Require repair if a change method stops at notification.</p>
+<p>Avoid prescribing retention periods. The exercise teaches preservation of identity and history; actual retention follows the governing arrangement.</p>
+<h3 id="common-defects-1">Common defects</h3>
+<ul>
+<li>The learner relies on a filename ending in “final.”</li>
+<li>The learner defines current solely as the highest revision.</li>
+<li>The learner expands development approval into purchase authorization.</li>
+<li>The learner deletes the draft before examining work that used it.</li>
+<li>The learner treats the controller as the authority for technical impact.</li>
+<li>The learner reports adoption from a distribution message alone.</li>
+</ul>
+<h2 id="course-03--information-research-and-evidence">Course 03 — Information Research and Evidence</h2>
+<h3 id="session-sequence-2">Session sequence</h3>
+<ol>
+<li>Compare a broad research request with a bounded question.</li>
+<li>Ask learners to retrieve A04 through subject terms.</li>
+<li>Discuss the evidential roles of A02, A03, A04, and A05.</li>
+<li>Examine the worked claim-and-evidence table.</li>
+<li>Prepare the two practice packets.</li>
+<li>Run the partner reconstruction and challenge.</li>
+<li>Examine the assessed packet and require supported repairs.</li>
+</ol>
+<p>If the group uses digital searching, also provide a printed packet. Retrieval and interpretation must remain possible without an external connection.</p>
+<h3 id="knowledge-check-answers-2">Knowledge-check answers</h3>
+<ol>
+<li>The decision or activity defines the consumer, relevant scope, needed evidence, and useful form of the answer. It prevents an unbounded collection.</li>
+<li>Subject terms support discovery by a project question. Identities support exact retrieval. A good index also preserves relationships and relevant qualifications.</li>
+<li>A02 governs project-development scope but does not measure plant conditions. A04 supplies an observation but does not approve a scope change or electrical design.</li>
+<li>A03 is an archived schedule. Its values were copied from an earlier planning estimate. It has no field survey reference.</li>
+<li>A02 Rev 1 supplies the approved 18 litres per second requirement. Rev 0 was a draft. A03 is legacy information. A05 proposes 22 litres per second without amendment.</li>
+<li>The packet needs the question, source index, claim entries, conflict treatment, conclusion, and unresolved matters. Sources and qualifications must remain retrievable.</li>
+</ol>
+<h3 id="practice-reasoning-2">Practice reasoning</h3>
+<p>For the flow question, the conclusion is 18 litres per second for project development under A02 Rev 1. The operating conditions remain unresolved. The packet must distinguish the approved value from both the earlier 15 value and proposed 22 value.</p>
+<p>For the electrical question, A04 supports the observed 600 V, three-phase, 60 Hz connection. A03's 480 V value has a copied-estimate origin. The comparison supports further investigation using the checked observation. It does not prove capacity or compatibility.</p>
+<p>Useful subjects include scope, transfer flow, proposed expansion, electrical connection, survey, and legacy estimate. Accept equivalent terms if the partner can retrieve the right source and its qualifications.</p>
+<p>An index should flag the design note's incomplete citation. The learner may request the full note and its affected claims. Packet A does not contain the complete note, so the learner cannot claim a completed correction of every conclusion.</p>
+<p>The scope of the remaining enquiries can include operating conditions, electrical capacity, protection, compatibility, and external requirements. A strong packet explains which decision needs each result. A list with no consumer or consequence needs repair.</p>
+<h3 id="assessment-decision-guidance-2">Assessment decision guidance</h3>
+<p>Ask the learner to defend one source choice against another. Then ask which claim the chosen source cannot establish. This tests evidential understanding beyond copying values.</p>
+<p>Use the partner's retrieval result for the retrieval criterion. Accept different index layouts that preserve identity, role, and limits. Require repair if sources are ranked by reputation alone.</p>
+<p>An external source may inform a method, but it cannot establish an unrecorded Northbank site fact. Do not reward unsupported gap filling.</p>
+<h3 id="common-defects-2">Common defects</h3>
+<ul>
+<li>The learner collects information without a question or consumer.</li>
+<li>The learner omits A04 because the existing library index omitted it.</li>
+<li>The learner quotes A03 without its origin note.</li>
+<li>The learner treats an observation as an authorization.</li>
+<li>The learner gives a conclusion broader than the source conditions.</li>
+<li>The learner hides discrepancies by removing older source entries.</li>
+</ul>
+<h2 id="course-04--interpreting-requirements-and-obligations">Course 04 — Interpreting Requirements and Obligations</h2>
+<h3 id="session-sequence-3">Session sequence</h3>
+<ol>
+<li>Read A06 aloud before discussing external requirements.</li>
+<li>Distinguish technical relevance, project authority, and legal applicability.</li>
+<li>Parse A02 into actor, result, conditions, and unresolved definition.</li>
+<li>Compare A02 with A05 using the worked example.</li>
+<li>Prepare the offline interpretation and applicability enquiry.</li>
+<li>Challenge one claimed obligation in each memorandum.</li>
+<li>Examine the five assessed criteria and require supported repairs.</li>
+</ol>
+<p>The offline exercise needs no statute or code text. It teaches what the missing applicability basis prevents. Do not invent legal instruments to make the exercise easier.</p>
+<p>For optional legal practice, select a real jurisdiction. Supply the current official adoption instruments and relevant amendments. Identify the exercise selection separately from Northbank's core packet. Give learners the exact source text needed for the task. Arrange suitably competent interpretation of the answer.</p>
+<h3 id="knowledge-check-answers-3">Knowledge-check answers</h3>
+<ol>
+<li>Technical relevance means information can help address the problem. Applicability means a requirement governs the work through an identified authority and satisfied conditions.</li>
+<li>Publication does not establish adoption, specified edition, effective date, amendments, or project classification. The actual instrument and project conditions need examination.</li>
+<li>Retain the distribution-header location and the operating conditions that the project must establish. The available requirement does not define a complete test envelope.</li>
+<li>A02 requires confirmation of the needed changeover function. A05 proposes automatic changeover. No recorded amendment makes that proposal an approved scope requirement.</li>
+<li>Obtain jurisdiction, facility classification, asset boundary, permits, adoption instruments, and contract references. Compare their conditions with the actual assignment before concluding applicability.</li>
+<li>Interpretation explains meaning or application. An authorized decision permits a stated act within authority. A controlled change amends the baseline through the governing process.</li>
+</ol>
+<h3 id="practice-reasoning-3">Practice reasoning</h3>
+<p>A valid memorandum retains 18 litres per second for approved development and the one-operating, one-standby arrangement. It assigns the missing operating conditions and changeover definition. It treats the 22 litres per second request as impact-assessment work.</p>
+<p>The inquiry should explain why each missing input matters. Jurisdiction identifies possible authorities and instruments. Classification and asset boundary help match their conditions. Permits may add relevant conditions. Adoption instruments identify edition, amendments, and effective provisions. Contract references identify assignment obligations and clarification routes.</p>
+<p>Learners must not conclude that a building, pressure, electrical, or plumbing code actually governs Northbank from its name or water description. Accept candidate subjects for investigation if clearly labeled. Require repair to any invented clause, exemption, or regulator determination.</p>
+<p>The project manager can arrange the enquiry within approved work. The project engineer coordinates its technical effects. The actual authority for a legal interpretation remains outside the fictional packet's demonstrated detail.</p>
+<p>For proposed examinations, accept checking the two-unit arrangement against the identified configuration. For flow, require the operating conditions before claiming a complete performance examination. For changeover, require the function definition before asserting a complete behavioral test.</p>
+<h3 id="assessment-decision-guidance-3">Assessment decision guidance</h3>
+<p>Ask the learner to compare their restatement with A02 sentence by sentence. Check whether the operating conditions and confirmation duty survived. Then ask which dependent decision A06 currently prevents.</p>
+<p>Rate the enquiry on its specific missing inputs, owners, and needed results. A general instruction to “check codes” is insufficient. Do not demand a real legal conclusion from the offline packet.</p>
+<p>Reject universal precedence rules. Accept a source-grounded relationship or an explicit unresolved conflict. A contractual clarification process does not itself settle external professional or legal obligations.</p>
+<h3 id="common-defects-3">Common defects</h3>
+<ul>
+<li>The learner applies a familiar code without an adoption or assignment basis.</li>
+<li>The learner selects the newest published edition by default.</li>
+<li>The learner treats non-potable water as a complete legal classification.</li>
+<li>The learner replaces the changeover confirmation duty with automatic changeover.</li>
+<li>The learner removes operating conditions from the flow requirement.</li>
+<li>The learner treats sponsor approval as a regulator determination.</li>
+<li>The learner invents a legal clause to close the enquiry.</li>
+</ul>
+<!-- END MARKDOWN CONTENT -->
+    </article>
+  </div>
+  <footer class="document-footer">
+  <dl class="document-meta">
+    <div><dt>Source basis dated</dt><dd>11 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>10b70036ef791374685291371a651ec9492a612c</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="01-04-foundations.md">01-04-foundations.md</a><br><code>890c9a2008ee2b811671a1258e79afdb2fa5085c01c8d58397909d20db9516ef</code></dd></div>
+  </dl>
+    <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
+    <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
+    <p class="back-top"><a href="#manual-top">Back to start ↑</a></p>
+  </footer>
+</main>
+</div>
+<script>
+const mobileContents = document.querySelector('.mobile-toc');
+mobileContents.addEventListener('click', (event) => {
+  if (event.target.closest('a[href^="#"]')) mobileContents.open = false;
+});
+</script>
+</body>
+</html>

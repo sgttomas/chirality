@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
+<meta name="source-sha256" content="e0d895e3d8e2252b2c3ea08371592c907ad931e8c9c229748c423502372a372e">
+<meta name="source-basis-date" content="2026-10-11">
+<meta name="source-basis-revision" content="10b70036ef791374685291371a651ec9492a612c">
+<title>Course 06 — Communication and Working Relationships · Chirality</title>
+<style>
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --canvas: #eeeeee;
+  --ink: #111111;
+  --muted: #505050;
+  --line: #cccccc;
+  --accent: #111111;
+  --tint: #eeeeee;
+  font-family: "Liberation Serif", "Times New Roman", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 2rem; }
+body { margin: 0; color: var(--ink); background: var(--canvas); }
+a { color: var(--accent); text-underline-offset: .17em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #111111;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.skip-link {
+  position: fixed; top: .6rem; left: .6rem; z-index: 100;
+  padding: .6rem 1rem; background: var(--paper); border: 2px solid var(--accent);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+.masthead { border-bottom: 1px solid var(--ink); background: var(--paper); }
+.masthead-inner {
+  max-width: 70rem; margin: auto; padding: 1.05rem 2.5rem;
+  display: flex; flex-wrap: wrap; gap: .35rem 1.2rem;
+  align-items: baseline; justify-content: center; text-align: center;
+}
+.brand { font-size: .92rem; font-weight: 700; letter-spacing: .12em; }
+.masthead-label { color: var(--ink); font-size: .77rem; text-transform: uppercase; letter-spacing: .025em; }
+.layout {
+  max-width: 70rem; margin: auto; padding: 0 2.5rem;
+  display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2.5rem;
+}
+.sidebar {
+  position: sticky; top: 0; align-self: start; max-height: 100vh;
+  overflow-y: auto; padding: 2rem .8rem 2rem 0;
+  scrollbar-width: thin;
+}
+.nav-label, .eyebrow {
+  margin: 0 0 .85rem; color: var(--muted); font-size: .73rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+}
+.contents { list-style: none; padding: 0; margin: 0; }
+.contents li { margin: .15rem 0; }
+.contents a {
+  display: block; padding: .34rem .65rem; border-left: 2px solid transparent;
+  color: var(--muted); text-decoration: none; font-size: .86rem; line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.contents a:hover, .contents a:focus-visible {
+  color: var(--accent); background: var(--tint); border-left-color: var(--accent);
+}
+.nav-help { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.3rem; }
+.nav-help p, .nav-help a { font-size: .75rem; color: var(--muted); }
+.nav-help p { margin: .5rem 0; }
+kbd { font: inherit; padding: .05rem .25rem; border: 1px solid var(--line); border-radius: .2rem; }
+main { min-width: 0; max-width: 48.5rem; padding: 2rem 0 3rem; }
+.document-meta {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem 1.5rem; margin: 0 0 1.5rem;
+  font-size: .73rem; color: var(--muted);
+}
+.document-meta div { min-width: 0; }
+.document-meta dt { font-weight: 700; letter-spacing: .025em; }
+.document-meta dd { margin: .15rem 0 0; overflow-wrap: anywhere; }
+.document-meta code { font-size: .9em; background: none; padding: 0; }
+.fingerprint { grid-column: 1 / -1; }
+.paper {
+  min-width: 0; padding: 3.4rem 3rem 3rem;
+  background: var(--paper); border: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgb(0 0 0 / .04);
+}
+article { max-width: 68ch; margin: auto; overflow-wrap: anywhere; }
+article > :first-child { margin-top: 0; }
+h1, h2, h3, h4, h5, h6 { color: #000000; line-height: 1.22; text-wrap: balance; scroll-margin-top: 2rem; }
+h1 {
+  max-width: 19ch; margin: 0 auto 1.65rem; font-size: clamp(2.05rem, 3.8vw, 2.8rem);
+  text-align: center; text-transform: uppercase; letter-spacing: .015em;
+}
+article > h1 + p { margin-bottom: 2.4rem; text-align: center; font-size: .82rem; line-height: 1.45; }
+h2 { font-size: 1.5rem; margin: 3.4rem 0 1.1rem; }
+h3 { font-size: 1.13rem; margin: 2rem 0 .7rem; }
+h4, h5, h6 { font-size: 1.02rem; margin: 1.65rem 0 .6rem; }
+p { margin: 0 0 .78rem; }
+article p { text-align: justify; text-justify: inter-word; hyphens: auto; }
+ul, ol { padding-left: 1.5rem; }
+li { padding-left: .2rem; margin: .35rem 0; }
+li > p { margin: .6rem 0; }
+hr { max-width: 75%; border: 0; border-top: 1px solid var(--ink); margin: 2.5rem auto; }
+blockquote {
+  margin: 1.4rem 1.25rem; padding: 0; background: none; border: 0;
+}
+blockquote > :last-child { margin-bottom: 0; }
+code, pre { font-family: "Liberation Mono", "SFMono-Regular", Consolas, monospace; font-size: .83em; hyphens: none; }
+code { background: #f1f1f1; padding: .08em .2em; overflow-wrap: anywhere; }
+pre {
+  max-width: 100%; overflow-x: auto; padding: 1rem 1.15rem; margin: 1.4rem 0;
+  color: #111111; background: #f6f6f6; border: 1px solid var(--line);
+  line-height: 1.5; tab-size: 4;
+}
+pre code { background: none; padding: 0; border-radius: 0; font-size: 1em; overflow-wrap: normal; }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 1.5rem 0; }
+table { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: .87rem; line-height: 1.4; }
+th, td { padding: .65rem .75rem; text-align: left; vertical-align: top; border: 1px solid #b8b8b8; }
+th { color: #000000; background: #eeeeee; font-weight: 700; }
+tbody tr { background: #ffffff; }
+img, svg { max-width: 100%; height: auto; }
+a[id], a[name] { scroll-margin-top: 2rem; }
+p:has(> a[id]:only-child):empty { margin: 0; }
+p:has(> a[id]:only-child) { margin: 0; }
+h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-color: #777777; text-decoration-thickness: .08em; text-underline-offset: .2em; }
+.mobile-toc { display: none; }
+.document-footer { margin-top: 1.5rem; color: var(--muted); font-size: .73rem; }
+.document-footer p { margin: .4rem 0; }
+@media (max-width: 65rem) {
+  .layout { padding: 0 1.5rem; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 1.5rem; }
+  .masthead-inner { padding: 1rem 1.5rem; }
+  .paper { padding: 2.6rem 2rem; }
+}
+@media (max-width: 54rem) {
+  html { scroll-padding-top: 4.5rem; }
+  .layout { display: block; padding: 0 1rem; }
+  .sidebar { display: none; }
+  .masthead-inner { padding: .85rem 1rem; gap: .2rem 1rem; }
+  .mobile-toc {
+    display: block; position: sticky; top: 0; z-index: 10;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .mobile-toc summary { padding: .75rem 1rem; cursor: pointer; color: var(--accent); font-weight: 700; font-size: .85rem; }
+  .mobile-toc nav { max-height: 65vh; overflow-y: auto; padding: 0 .5rem 1rem; }
+  .mobile-toc .contents a { padding: .55rem; }
+  main { padding-top: 1.25rem; }
+  .paper { padding: 2.2rem 1.4rem; }
+  article p { text-align: left; }
+  article > h1 + p { text-align: center; }
+  h2, h3, h4, h5, h6, a[id], a[name] { scroll-margin-top: 4.5rem; }
+  h2 { margin-top: 2.7rem; font-size: 1.4rem; }
+  .document-meta { gap: .75rem 1rem; }
+}
+@media (max-width: 25rem) {
+  :root { font-size: 17px; }
+  .layout { padding: 0 .5rem; }
+  .paper { padding: 1.4rem 1rem; }
+  .document-meta { padding: 0 .5rem; }
+}
+@media print {
+  @page { size: 6.75in 9.25in; margin: .68in .65in .67in .72in; }
+  :root { font-size: 10.5pt; line-height: 1.2; color-scheme: light; }
+  body, .paper { color: #111; background: white; }
+  .masthead, .sidebar, .mobile-toc, .skip-link, .back-top { display: none; }
+  .layout { display: block; max-width: none; padding: 0; }
+  main { max-width: none; padding: 0; }
+  .paper { padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+  article { max-width: none; }
+  article p { margin-bottom: 4.6pt; text-align: justify; }
+  .document-meta { padding: 0 0 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #bbb; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 18pt; margin-top: 1.8rem; }
+  h3 { font-size: 12pt; }
+  h4, h5, h6 { font-size: 11pt; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  a { color: inherit; text-decoration: underline; }
+  .table-scroll { overflow: visible; border: 0; }
+  table { min-width: 0; table-layout: auto; font-size: 9pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  th, td { padding: .45rem; }
+  pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; border-color: #bbb; font-size: 8pt; line-height: 1.3; }
+  pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  blockquote { break-inside: avoid; background: white; }
+  .document-footer { border-top: 1px solid #bbb; padding-top: .75rem; }
+}
+</style>
+</head>
+<body id="manual-top">
+<a class="skip-link" href="#manual-content">Skip to manual</a>
+<header class="masthead">
+  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Human team courses · offline reading edition</span></div>
+</header>
+<details class="mobile-toc">
+  <summary>Contents · 12 sections</summary>
+  <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#prerequisites-and-outcomes">Prerequisites and outcomes</a></li>
+<li><a href="#lesson-1--establish-a-shared-picture">Lesson 1 — Establish a shared picture</a></li>
+<li><a href="#lesson-2--understand-interests-and-authority">Lesson 2 — Understand interests and authority</a></li>
+<li><a href="#lesson-3--explain-and-persuade-credibly">Lesson 3 — Explain and persuade credibly</a></li>
+<li><a href="#lesson-4--handle-disagreement-and-negotiation">Lesson 4 — Handle disagreement and negotiation</a></li>
+<li><a href="#lesson-5--support-reliable-contributions">Lesson 5 — Support reliable contributions</a></li>
+<li><a href="#worked-example--a-northbank-coordination-meeting">Worked example — A Northbank coordination meeting</a></li>
+<li><a href="#transfer-example--a-hospital-refurbishment">Transfer example — A hospital refurbishment</a></li>
+<li><a href="#practice--conduct-a-decision-meeting">Practice — Conduct a decision meeting</a></li>
+<li><a href="#knowledge-check">Knowledge check</a></li>
+<li><a href="#portfolio-continuation-and-references">Portfolio continuation and references</a></li>
+<li><a href="#assessed-assignment--establish-an-actionable-common-understanding">Assessed assignment — Establish an actionable common understanding</a></li></ol></nav>
+</details>
+<div class="layout">
+<aside class="sidebar">
+  <nav aria-label="Sections">
+    <p class="nav-label">In this manual</p>
+    <ol class="contents"><li><a href="#prerequisites-and-outcomes">Prerequisites and outcomes</a></li>
+<li><a href="#lesson-1--establish-a-shared-picture">Lesson 1 — Establish a shared picture</a></li>
+<li><a href="#lesson-2--understand-interests-and-authority">Lesson 2 — Understand interests and authority</a></li>
+<li><a href="#lesson-3--explain-and-persuade-credibly">Lesson 3 — Explain and persuade credibly</a></li>
+<li><a href="#lesson-4--handle-disagreement-and-negotiation">Lesson 4 — Handle disagreement and negotiation</a></li>
+<li><a href="#lesson-5--support-reliable-contributions">Lesson 5 — Support reliable contributions</a></li>
+<li><a href="#worked-example--a-northbank-coordination-meeting">Worked example — A Northbank coordination meeting</a></li>
+<li><a href="#transfer-example--a-hospital-refurbishment">Transfer example — A hospital refurbishment</a></li>
+<li><a href="#practice--conduct-a-decision-meeting">Practice — Conduct a decision meeting</a></li>
+<li><a href="#knowledge-check">Knowledge check</a></li>
+<li><a href="#portfolio-continuation-and-references">Portfolio continuation and references</a></li>
+<li><a href="#assessed-assignment--establish-an-actionable-common-understanding">Assessed assignment — Establish an actionable common understanding</a></li></ol>
+  </nav>
+  <div class="nav-help">
+    <p>Find a term with <kbd>⌘ F</kbd> or <kbd>Ctrl F</kbd>. Use your browser’s print command for a paper copy.</p>
+    <p><a href="06-working-relationships.md">Markdown source</a> · <a href="#manual-top">Back to start ↑</a></p>
+  </div>
+</aside>
+<main id="manual-content" tabindex="-1">
+  <div class="paper">
+    <article aria-labelledby="course-06--communication-and-working-relationships">
+<!-- BEGIN MARKDOWN CONTENT -->
+<h1 id="course-06--communication-and-working-relationships">Course 06 — Communication and Working Relationships</h1>
+<p>Project participants hold different knowledge, interests, and responsibilities. Their contributions must become a common understanding that supports coordinated action.</p>
+<p>Good communication makes evidence, disagreement, decisions, and obligations clear. It also gives people a practical way to correct that understanding.</p>
+<p>This course teaches communication, persuasion, negotiation, and supervision within a human team. Each participant remains responsible for the work and decisions assigned to them.</p>
+<p><a href="../index.html">Series</a> · <a href="../case-study.html">Northbank case</a> · <a href="../glossary.html">Glossary</a> · <a href="../references.html">References</a></p>
+<h2 id="prerequisites-and-outcomes">Prerequisites and outcomes</h2>
+<p>Complete Courses 01 to 05. Bring your decision memorandum from Course 05.</p>
+<p>After this course, you can:</p>
+<ul>
+<li>Establish shared understanding through explanation and listening.</li>
+<li>Identify stakeholder interests and decision rights.</li>
+<li>Explain a recommendation without overstating its grounds.</li>
+<li>Handle disagreement and route unresolved concerns.</li>
+<li>Assign work with clear inputs, outputs, and support.</li>
+</ul>
+<p>Use Northbank Packets A and B. Do not use later events as evidence of what participants already knew.</p>
+<h2 id="lesson-1--establish-a-shared-picture">Lesson 1 — Establish a shared picture</h2>
+<p>People can use the same words and mean different things. “Approved” might concern scope, expenditure, a drawing, or technical suitability.</p>
+<p>Start by naming the activity and the decision under discussion. Explain the terms that change its meaning.</p>
+<p>Ask participants what they understand and what they need. Their answers may reveal an omitted operating condition or a misunderstood boundary.</p>
+<p>Listening requires more than waiting to speak. Identify the speaker's concern before proposing a solution.</p>
+<p>Use this sequence:</p>
+<ol>
+<li>State your understanding of the situation.</li>
+<li>Ask the other person to explain their concern.</li>
+<li>Restate the concern in concrete terms.</li>
+<li>Invite correction.</li>
+<li>Identify the decision or information now needed.</li>
+</ol>
+<p>Check understanding through consequences. Ask what the participant expects to happen after the proposed decision.</p>
+<p>An acknowledgment proves that a message was received. It may leave important differences in interpretation unresolved.</p>
+<p>Select the communication method to suit the question. A short conversation can resolve wording quickly. A consequential decision needs an identifiable record.</p>
+<p>Prepare the record from the decision actually made. Include unresolved disagreement when it affects later work.</p>
+<h2 id="lesson-2--understand-interests-and-authority">Lesson 2 — Understand interests and authority</h2>
+<p>A <strong>stakeholder</strong> affects the undertaking or is affected by it. Stakeholders can hold legitimate but competing interests.</p>
+<p>Operations may value reliability and access. Procurement may need a complete purchase package. A sponsor may need a credible investment and delivery outlook.</p>
+<p>An interest explains why a participant cares. Authority identifies which decisions the participant can make. Expertise concerns what they can assess competently.</p>
+<p>Do not infer one from another. A persuasive participant may lack the relevant authority. A quiet specialist may hold decisive technical knowledge.</p>
+<p>Prepare a small stakeholder table:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 1; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Useful content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Participant</td>
+<td>Person or role involved</td>
+</tr>
+<tr>
+<td>Interest</td>
+<td>Outcome or consequence important to them</td>
+</tr>
+<tr>
+<td>Contribution</td>
+<td>Evidence, knowledge, work, or decision needed</td>
+</tr>
+<tr>
+<td>Authority</td>
+<td>Identified decision right</td>
+</tr>
+<tr>
+<td>Constraint</td>
+<td>Obligation or limit that affects the discussion</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Use the appointment as evidence for decision rights. Check applicable professional and legal obligations separately.</p>
+<p>Consider who is absent from the discussion. Maintenance, construction, and affected users may reveal consequences that design participants overlook.</p>
+<p>Ask about interests instead of attributing motives without evidence. Schedule pressure can reflect a real operating need.</p>
+<p>Explain conflicts as consequences to resolve. Avoid treating a person as the problem when requirements or responsibilities conflict.</p>
+<h2 id="lesson-3--explain-and-persuade-credibly">Lesson 3 — Explain and persuade credibly</h2>
+<p>A useful technical explanation connects a proposed action to its grounds and consequences. The listener should know what decision you seek.</p>
+<p>Lead with the recommendation. Then identify the governing requirement, evidence, uncertainty, and effects on the listener's responsibilities.</p>
+<p>Distinguish observed facts, interpretations, forecasts, and proposals. This helps the reader determine how each statement can be used.</p>
+<p>Use plain words for the intended audience. Define necessary technical terms. Preserve conditions and units when shortening an explanation.</p>
+<p>Explain uncertainty through the decision it limits. “The hydraulic basis is incomplete” becomes useful when you identify the missing conditions and dependent selection.</p>
+<p>Use this message structure:</p>
+<ol>
+<li>State the requested decision or action.</li>
+<li>Identify the relevant basis.</li>
+<li>Explain the important finding.</li>
+<li>State the consequence.</li>
+<li>Propose the response and required owner.</li>
+</ol>
+<p>Persuasion helps people understand why action matters. It must remain open to evidence that challenges the recommendation.</p>
+<p>Avoid concealing a weakness because it makes agreement harder. A decision made without a material limitation can expose others to consequences they did not understand.</p>
+<p>Protect confidential information through the authorized communication route. Share enough permitted evidence for the recipient to examine the proposed reliance.</p>
+<p>Identify a conflict of interest when it could affect a contribution. Use the actual appointment and professional obligations to determine its treatment.</p>
+<p>Do not treat confidentiality as a reason to issue a misleading conclusion. Seek an appropriate route for the necessary concern.</p>
+<p>Tailor detail without changing substance. A sponsor may need the decision and commitment effects. A specialist may also need the technical derivation.</p>
+<p>Ask the recipient to state the expected next action. Correct any misunderstanding before connected work relies on it.</p>
+<h2 id="lesson-4--handle-disagreement-and-negotiation">Lesson 4 — Handle disagreement and negotiation</h2>
+<p>Disagreement can concern facts, interpretation, objectives, acceptable consequences, or authority. These differences require different responses.</p>
+<p>A disputed measurement may need another observation. A disputed scope choice may need the sponsor's decision. A technical deviation needs competent technical assessment.</p>
+<p>First establish which kind of disagreement exists. Separate a shared observation from the conclusions participants draw from it.</p>
+<p>Use a fair account of the other person's reasoning. Ask what evidence or condition could change each participant's position.</p>
+<p>Compare options against shared requirements and constraints. Name differences in objectives where a common criterion cannot resolve them.</p>
+<p>Negotiation seeks an arrangement that participants can carry out within their obligations. Agree on an action only when its effects and authority are understood.</p>
+<p>Do not trade an unsupported technical acceptance for schedule agreement. Examine scheduling or commercial alternatives through their own consequences.</p>
+<p>If the issue remains unresolved:</p>
+<ol>
+<li>State the disputed proposition.</li>
+<li>Record the evidence and positions.</li>
+<li>Identify the work that depends on resolution.</li>
+<li>Refer the question to the appropriate decision owner.</li>
+<li>Continue independent authorized work.</li>
+</ol>
+<p>Give participants a route to raise concerns outside the immediate meeting. Use the actual organization and professional obligations for consequential escalation.</p>
+<p>A meeting can end while disagreement remains. Its record must distinguish the resulting decision from unresolved technical concerns.</p>
+<h2 id="lesson-5--support-reliable-contributions">Lesson 5 — Support reliable contributions</h2>
+<p>Human performance depends on competence, workload, available information, and working conditions. A clear assignment must account for those conditions.</p>
+<p>Give the contributor a result they can understand and examine. Identify the purpose, inputs, interfaces, constraints, and required return.</p>
+<p>Confirm that the person has enough competence and capacity. Arrange supervision or specialist support where the work needs it.</p>
+<p>Agree on when the contribution is needed. Explain which activity depends on it. Ask the contributor to identify missing inputs and likely difficulties.</p>
+<p>Use a review suited to the result's consequences. State what the review examines and who receives findings.</p>
+<p>Maintain ownership through repair. A producer should understand the defect and its effect on the intended result.</p>
+<p>Check actual progress through usable outputs and unresolved conditions. Document counts alone may conceal missing interfaces or unexamined conclusions.</p>
+<p>Support truthful reporting through your response to bad news. Ask about the finding and the needed action before seeking someone to blame.</p>
+<p>Distinguish an isolated error from a repeated competence, workload, or process problem. Correct the cause that evidence supports.</p>
+<p>Mentoring should develop independent reasoning. Ask contributors to explain their basis and alternatives before supplying your preferred answer.</p>
+<h2 id="worked-example--a-northbank-coordination-meeting">Worked example — A Northbank coordination meeting</h2>
+<p>B02 records pressure to retain Week 12. B01 requests rapid acceptance. Operations also asks about the proposed 22 litres per second duty.</p>
+<p>The project engineer opens the meeting with the decision question: “What must be established before procurement can release an authorized purchase package?”</p>
+<p>The engineer identifies A02 as the approved 18 litres per second basis. A05's 22 litres per second request remains a separate proposal.</p>
+<p>The electrical engineer explains the 480 V offer and A04's observed 600 V connection. Capacity, protection, and compatibility remain to be assessed.</p>
+<p>The mechanical engineer identifies the incomplete hydraulic basis and missing selected curve. The team does not turn those gaps into a pump selection.</p>
+<p>The project manager explains the delivery concern. Procurement is asked to clarify the slot conditions and available commercial responses.</p>
+<p>Operations is asked to define the required changeover behavior. Automatic changeover has been proposed, while A02 leaves the function for confirmation.</p>
+<p>The team prepares proposed actions for the relevant roles. It identifies the technical information needed before acceptance and the scope decision needed for A05.</p>
+<p>The meeting record preserves Week 12 as the target. It also preserves the unresolved technical conditions and absence of procurement release.</p>
+<p>The participants check the record's meaning before relying on it. Any new decision is recorded as an exercise decision, separate from the supplied case records.</p>
+<h2 id="transfer-example--a-hospital-refurbishment">Transfer example — A hospital refurbishment</h2>
+<p>A contractor wants immediate ceiling closure. A facilities engineer needs access to inspect services. Both participants have a legitimate delivery concern.</p>
+<p>They identify the inspection requirement, affected area, evidence needed, and closure authority. They can then examine a staged response without concealing the inspection condition.</p>
+<h2 id="practice--conduct-a-decision-meeting">Practice — Conduct a decision meeting</h2>
+<p>Use A01, A02, A04 to A06, and B01 to B03. Assign the sponsor, project manager, project engineer, operations, and procurement roles.</p>
+<p>Prepare a brief for each role using only its supplied interests, duties, and concerns. Record any added exercise preference as an assumption.</p>
+<p>Conduct a meeting about B01's acceptance request and A05's proposal. A mentor can play several roles for individual study.</p>
+<p>Produce a stakeholder table, opening explanation, meeting record, and unresolved-concern route. Identify decision owners separately from action owners.</p>
+<p>After the meeting, each participant explains the next authorized action. Compare those explanations with the record.</p>
+<p>Discuss how you would disclose an interest that could affect your recommendation. Identify a permitted route for confidential supporting information.</p>
+<h2 id="knowledge-check">Knowledge check</h2>
+<ol>
+<li>Why does receiving a message leave understanding unestablished?</li>
+<li>How do interest, expertise, and authority differ?</li>
+<li>What must a credible recommendation disclose about uncertainty?</li>
+<li>How should a team distinguish factual disagreement from a scope disagreement?</li>
+<li>What must the record show when a meeting ends with unresolved technical concerns?</li>
+<li>How can a manager support truthful reporting and competent contributions?</li>
+</ol>
+<h2 id="portfolio-continuation-and-references">Portfolio continuation and references</h2>
+<p>Keep your stakeholder table and corrected meeting record. Link each consequential finding to its source or exercise decision.</p>
+<p>Carry the unresolved input owners into Course 07. Retain your explanation of the difference between scope authority and technical responsibility.</p>
+<p>Source adaptation: Consolidated v8 §§1.1, 1.6, 3.3, 4.5, and 4.7. These sections address decision rights, shared basis, assignments, and consequential choices.</p>
+<p>Use the shared <a href="../references.html">references</a> for professional communication and collaboration competencies. The core practice requires no external reading.</p>
+<h2 id="assessed-assignment--establish-an-actionable-common-understanding">Assessed assignment — Establish an actionable common understanding</h2>
+<p>Prepare and conduct a review of your Course 05 memorandum. Use Packets A and B as the information available to participants.</p>
+<p>Explain the technical findings, proposed flow change, procurement needs, and delivery concern. Seek decisions only within the authority stated in A01.</p>
+<p>Explain how you would handle confidential evidence or a conflicting personal interest. Treat these as transfer questions, separate from Northbank facts.</p>
+<p>Submit the stakeholder table, speaking brief, meeting record, participant understanding check, and any corrected wording.</p>
+<p>The instructor assesses these five observable criteria:</p>
+<ol>
+<li>The explanation preserves source status, uncertainty, scope, and technical limits, including a truthful response to pressure.</li>
+<li>The stakeholder table distinguishes interests, expertise, contributions, and authority.</li>
+<li>The discussion fairly represents different positions and identifies appropriate routes for conflicting interests and confidential evidence.</li>
+<li>The record identifies decisions, conditions, action owners, and unresolved concerns accurately.</li>
+<li>Participant explanations establish a common next action or expose differences for repair.</li>
+</ol>
+<!-- END MARKDOWN CONTENT -->
+    </article>
+  </div>
+  <footer class="document-footer">
+  <dl class="document-meta">
+    <div><dt>Source basis dated</dt><dd>11 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>10b70036ef791374685291371a651ec9492a612c</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="06-working-relationships.md">06-working-relationships.md</a><br><code>e0d895e3d8e2252b2c3ea08371592c907ad931e8c9c229748c423502372a372e</code></dd></div>
+  </dl>
+    <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
+    <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
+    <p class="back-top"><a href="#manual-top">Back to start ↑</a></p>
+  </footer>
+</main>
+</div>
+<script>
+const mobileContents = document.querySelector('.mobile-toc');
+mobileContents.addEventListener('click', (event) => {
+  if (event.target.closest('a[href^="#"]')) mobileContents.open = false;
+});
+</script>
+</body>
+</html>

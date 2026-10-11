@@ -1,0 +1,65 @@
+# References for Project Practice
+
+Use a reference for the question it can answer. Identify its jurisdiction, purpose, edition, and limits before relying on it.
+
+## Chirality source materials
+
+The course series adapts these project principles: establish the basis, allocate work, define dependencies, examine results, control change, integrate, and transfer responsibility.
+
+- [Project Management for Human–Agent Teams Field Book](../alignment-manual/Project_Management_for_Human_Agent_Teams_Field_Book_v1.html).
+- [Project Management for Human–Agent Teams Consolidated v8](../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v8.md).
+
+The human-team courses use human professional and organizational responsibilities. They do not import the manuals' agent hierarchy, repository commands, or fixed stage labels.
+
+The [Root thesis](../thesis/README.md) provides background on evidence, judgment, and professional reliance. Its architecture and regulatory interpretations are arguments to examine. They are not regulator determinations.
+
+## Professional practice
+
+- [APEGA Engineering and Geoscience Professions Act and Code of Ethics](https://www.apega.ca/about-apega/publications/engineering-and-geoscience-professions-act).
+- [APEGA Professional Practice Management Plan](https://www.apega.ca/about-apega/publications/standards-guidelines/ppmp).
+- [Engineers Canada admission guideline and engineering competencies](https://engineerscanada.ca/guidelines-and-papers/public-guideline-on-admission-to-the-practice-of-engineering-in-canada).
+- [Engineers Canada ethics guideline](https://engineerscanada.ca/guidelines-and-papers/public-guideline-on-the-code-of-ethics).
+
+APEGA materials describe Alberta professional practice. Check the actual legislation, regulator requirements, and appointment for another jurisdiction.
+
+Engineers Canada guidelines provide national guidance. They do not replace the requirements of a provincial or territorial regulator.
+
+## Codes and applicability
+
+- [National Research Council explanation of model codes and their regulatory context](https://www.nrc.canada.ca/en/certifications-evaluations-standards/codes-canada/canadas-construction-system-context-model-codes).
+- [National Research Council code publications](https://nrc.canada.ca/en/certifications-evaluations-standards/codes-canada/codes-canada-publications).
+
+These references concern Canadian construction codes. The model-code example shows why adoption matters. It does not establish which code governs the Northbank case.
+
+For a real applicability exercise, obtain the relevant adoption instrument and its amendments. Match its conditions to the actual facility and assignment.
+
+## Project and technical management
+
+- [Association for Project Management description of project management](https://www.apm.org.uk/resources/what-is-project-management/).
+- [Association for Project Management description of governance](https://www.apm.org.uk/resources/what-is-project-management/what-is-governance/).
+- [NASA Systems Engineering Handbook fundamentals](https://www.nasa.gov/reference/2-0-fundamentals-of-systems-engineering/).
+- [NASA crosscutting technical management](https://www.nasa.gov/reference/6-0-crosscutting-technical-management/).
+
+APM provides a professional account of project management. NASA supplies a useful account of technical planning, requirements, interfaces, risk, configuration, assessment, and decisions.
+
+Adapt methods to the work and its consequences. NASA's agency processes do not govern an unrelated industrial project.
+
+## Prose style
+
+- [ASD Simplified Technical English official explanation](https://www.asd-ste100.org/STE_faq.html).
+- [ASD-STE100 Issue 9](https://www.asd-ste100.org/assets/files/ASD-STE100_ISSUE9.pdf).
+
+The course prose follows an STE100-like approach. It uses short sentences, active verbs, stable terms, and one action per instruction. Formal dictionary compliance is not claimed.
+
+## Use the readings
+
+1. State the question that the reference must answer.
+2. Open the full source.
+3. Identify the passage and its conditions.
+4. Record the edition or update available when you read it.
+5. Explain what the passage supports.
+6. State what still needs another source or decision.
+
+External readings support further study. The core offline exercises use the supplied Northbank records.
+
+[Return to the series](index.html).
