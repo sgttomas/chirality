@@ -67,6 +67,8 @@ jobs:
             agents
             docs
             .github/actions/restore-build-cache
+      - name: Provision fixed examination source objects
+        run: python3 examination/support_identity/provision_ci_objects.py --fetch
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
