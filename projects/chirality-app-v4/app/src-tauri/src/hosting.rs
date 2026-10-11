@@ -488,10 +488,13 @@ impl AppRuntimeCustody {
     }
     /// Called by Root only on actual App termination after owned-home accounting.
     /// This records metadata; it does not stop native sources or prove a human act.
-    pub fn record_app_session_end(&self,stop_requests:&[Value])->Result<Value,String>{
+    pub fn record_app_session_end(&self,stop_requests:&[Value])->Result<Value,String>{self.record_app_session_end_as("quit",stop_requests)}
+    /// RECOVERY §3.1 AS-09 (`how` *quit*, with each quit stop request's
+    /// state) or AS-10 (*system-terminated*). Written once per App session.
+    pub fn record_app_session_end_as(&self,how:&str,stop_requests:&[Value])->Result<Value,String>{
         self.close_distribution_publication();
         let _writer=self.writer.lock().unwrap();let mut ended=self.end_observation.lock().unwrap();if let Some(observed)=ended.as_ref(){return Ok(observed.clone());}
-        let entry=RecoveryLedger::session_end_entry(&self.session,stop_requests)?;
+        let entry=RecoveryLedger::session_end_entry(&self.session,how,stop_requests)?;
         // Keep each source's captured order; this chosen append interleaving is
         // deliberately not asserted to be a cross-home capture chronology.
         let sources=self.sources.lock().unwrap().iter().map(|s|(s.inner.clone(),Arc::clone(&s.queue))).collect::<Vec<_>>();
@@ -732,19 +735,24 @@ impl Host {
     /// match: a crashed, halted or verifying source (its generation already
     /// closed) can still be stopped, and no send begins there anyway, since
     /// every request requires `ready` (HOSTING §4.6 stop; CR-03).
-    pub fn close_to_new_turns(&self, generation: &Value) -> Result<(), String> {
+    /// Returns `true` only when this call closed it, `false` when it was
+    /// already closed (by a Stop/Restart or a quit under way): only the party
+    /// that closed a process may reopen it.
+    pub fn close_to_new_turns(&self, generation: &Value) -> Result<bool, String> {
         let mut i=self.inner.0.lock().unwrap();
         if i.generation!=*generation{return Err("The Codex process in this view is no longer the current one; refresh and choose again. Nothing stopped".into());}
-        i.stop_confirmed=Some(generation.clone());Ok(())
+        if i.stop_confirmed.as_ref()==Some(generation){return Ok(false);}
+        i.stop_confirmed=Some(generation.clone());Ok(true)
     }
     /// Reopens `generation` to new turns when its confirmed stop was refused.
+    /// Callers reopen only what their own `close_to_new_turns` closed.
     pub fn reopen_to_new_turns(&self, generation: &Value) {
         let mut i=self.inner.0.lock().unwrap();
         if i.stop_confirmed.as_ref()==Some(generation){i.stop_confirmed=None;}
     }
     fn check_send_admitted(i: &Inner, method: &str) -> Result<(), String> {
         if matches!(method,"turn/start"|"turn/steer")&&i.stop_confirmed.as_ref()==Some(&i.generation) {
-            return Err(format!("refused-not-sent: Stop Codex was confirmed for this Codex process; no {method} is sent"));
+            return Err(format!("refused-not-sent: Stop Codex or Quit was confirmed for this Codex process; no {method} is sent"));
         }
         Ok(())
     }
@@ -940,6 +948,41 @@ impl Host {
         let(appended,snapshot)={let mut ledger=ledger.lock().unwrap();let appended=ledger.append(entry.clone());(appended,ledger.snapshot())};let mut i=self.inner.0.lock().unwrap();i.recovery_snapshot=Some(snapshot);result["scopeChangedDuringIO"]=json!(i.generation!=*generation||i.server_requests.is_closed(generation));
         match appended{Ok(())=>{result["indexSnapshot"]=entry;result["persistence"]=json!("durable App metadata");result["durableBindingObserved"]=json!(true);},Err(error)=>{i.recovery_error=Some(error.clone());result["persistence"]=json!("memory-only");result["limit"]=json!(format!("context append unavailable: {error}; hot binding retained, cold lookup unavailable"));}}
         Ok(result)
+    }
+    /// RECOVERY §4.1 `tag` for a receiver's opaque value (EXEC A-2, §2.7: DEL-02-03's
+    /// run starter tags the conversation with the run reference when `run_opened` is
+    /// recorded). Appends the conversation's latest REC index row with one more tag
+    /// `{owner, value, seq}`, exactly as the NIR submission-context tag is appended:
+    /// ordered, several per owner and conversation, an earlier tag never replaced.
+    /// Stored without interpretation (R17-10). Any failure (no index row for this
+    /// home class and thread, ledger unavailable or append refused) leaves the tag
+    /// in the caller's memory only (RECOVERY §4.1 failure column); it never blocks.
+    pub fn tag_conversation(&self,generation:&Value,thread:&str,home:Option<&str>,owner:&str,value:&str)->Value{
+        let memory=|limit:String|json!({"persistence":"memory-only","owner":owner,"value":value,"limit":limit,"standing":"the tag lives in memory only; after a relaunch `tags of` returns nothing for it and the receiver falls back (EXEC RE-4)"});
+        if owner.is_empty()||value.is_empty(){return memory("tag owner and value required".into());}
+        if let Err(e)={let i=self.inner.0.lock().unwrap();Self::context_scope(&i,generation,thread,home)}{return memory(format!("tag scope not current: {e}"));}
+        let _writer=self.recovery_writer.lock().unwrap();self.drain_recovery_owned();self.refresh_recovery_observation();
+        let(ledger,rows)={let i=self.inner.0.lock().unwrap();(i.recovery.clone(),Self::context_rows(i.recovery_snapshot.as_ref()))};
+        let Some(home)=home else{return memory("REC home class absent: no conversation index row".into());};
+        let Some(index)=rows.iter().rev().find(|e|e["home"]==home&&e["threadId"]==thread).cloned() else{return memory("no REC conversation index row for this home class and thread (no known App project when the conversation started)".into());};
+        if let Some(tag)=index["tags"].as_array().into_iter().flatten().find(|t|t["owner"]==owner&&t["value"]==value){return json!({"persistence":"durable App metadata","tag":tag,"idempotent":true});}
+        let Some(ledger)=ledger else{return memory("App ledger unavailable".into());};
+        let seq=match rows.iter().flat_map(|e|e["tags"].as_array().into_iter().flatten()).filter_map(|t|t["seq"].as_u64()).max().unwrap_or(0).checked_add(1){Some(seq)=>seq,None=>return memory("tag sequence exhausted".into())};
+        let tag=json!({"owner":owner,"value":value,"seq":seq});
+        let mut entry=index;entry["session"]=generation["appSession"].clone();entry["at"]=json!(now_rfc3339());
+        match entry["tags"].as_array_mut(){Some(tags)=>tags.push(tag.clone()),None=>return memory("REC index tags absent".into())}
+        let(appended,snapshot)={let mut ledger=ledger.lock().unwrap();let appended=ledger.append(entry);(appended,ledger.snapshot())};
+        let mut i=self.inner.0.lock().unwrap();i.recovery_snapshot=Some(snapshot);
+        match appended{Ok(())=>json!({"persistence":"durable App metadata","tag":tag,"idempotent":false}),Err(error)=>{i.recovery_error=Some(error.clone());drop(i);memory(format!("tag append unavailable: {error}"))}}
+    }
+    /// RECOVERY §4.1 `tags of` over this Host's current ledger observation.
+    pub fn tags_of(&self,home:&str,thread:&str,owner:&str)->Vec<Value>{
+        let rows=self.inner.0.lock().unwrap().recovery_snapshot.as_ref().and_then(|s|s["entries"].as_array().cloned()).unwrap_or_default();
+        crate::recovery::tags_of(&rows,home,thread,owner)
+    }
+    /// The REC ledger entries this Host currently observes (read-only).
+    pub fn recovery_entries(&self)->Vec<Value>{
+        self.inner.0.lock().unwrap().recovery_snapshot.as_ref().and_then(|s|s["entries"].as_array().cloned()).unwrap_or_default()
     }
 
     /// The child's process id, which is also its process-group id (H11).
@@ -1374,7 +1417,7 @@ impl Host {
             }
         }
         let generation = i.generation.clone();
-        let cause=if i.stop_record.is_some() {if i.stop_record.as_ref().is_some_and(|s|s["reason"]=="App quit") {"app-quit"} else {"supplier-stop"}} else {"supplier-exit"};
+        let cause=if i.stop_record.is_some() {if i.stop_record.as_ref().is_some_and(|s|s["reason"]=="App quit"||s["reason"]==crate::app_quit::QUIT_STOP_REASON) {"app-quit"} else {"supplier-stop"}} else {"supplier-exit"};
         i.execution_custody.close(&generation,cause,&i.server_requests.entries(),&now_rfc3339());
         Self::persist_execution(i);
         Self::stop_requests_generation_closed(i,&generation);
@@ -2436,24 +2479,41 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
     /// whether it is in the ledger; a ledger that does not accept it keeps it
     /// queued in this process.
     pub fn record_codex_stop(&self, actor: &Value, home: &str, restart: bool, material: &Value) -> Value {
+        self.record_app_entry("Stop Codex", "Recorded in the App ledger before any interrupt was sent", |session| crate::stop_records::codex_stop_entry(session, actor, home, restart, material))
+    }
+    /// K-4: the ledger `quit_requested` entry with the lists shown (§3.1 AS-03,
+    /// AS-04, AS-07). A ledger that does not accept it never blocks the quit
+    /// question (SQ-Q Q-1).
+    pub fn record_quit_requested(&self, actor: &Value, material: &Value) -> Value {
+        self.record_app_entry("quit request", "Recorded in the App ledger", |session| crate::stop_records::quit_requested_entry(session, actor, material))
+    }
+    /// K-4: the ledger `quit_answered` entry (§3.1 AS-05, AS-06), written
+    /// before any quit interrupt is sent.
+    pub fn record_quit_answered(&self, actor: &Value, confirmed: bool) -> Value {
+        self.record_app_entry("quit answer", "Recorded in the App ledger before anything was sent", |session| crate::stop_records::quit_answered_entry(session, actor, confirmed))
+    }
+    /// One App ledger entry formed for this App session, queued and drained in
+    /// order with the stop-request records. Returns whether it is in the
+    /// ledger; one the ledger does not accept stays queued in this process.
+    fn record_app_entry(&self, what: &str, recorded: &str, form: impl FnOnce(&str) -> Result<Value, String>) -> Value {
         let _writer = self.recovery_writer.lock().unwrap();
         let entry = {
             let i = self.inner.0.lock().unwrap();
             if i.recovery.is_none() {
-                return json!({"state":"not recorded","reading":"App ledger unavailable: the Stop Codex record is kept in this App process only and is not readable after a relaunch"});
+                return json!({"state":"not recorded","reading":format!("App ledger unavailable: the {what} record is kept in this App process only and is not readable after a relaunch")});
             }
-            match crate::stop_records::codex_stop_entry(&i.app_session, actor, home, restart, material) {
+            match form(&i.app_session) {
                 Ok(entry) => { i.pending_recovery.facts.lock().unwrap().push_back(entry.clone()); entry }
-                Err(error) => return json!({"state":"not recorded","reading":format!("The Stop Codex record could not be formed: {error}")}),
+                Err(error) => return json!({"state":"not recorded","reading":format!("The {what} record could not be formed: {error}")}),
             }
         };
         self.drain_recovery_owned();
         let i = self.inner.0.lock().unwrap();
         if i.pending_recovery.facts.lock().unwrap().contains(&entry) {
             let limit = i.pending_recovery.limit.lock().unwrap().clone().unwrap_or_else(|| "writer busy".into());
-            json!({"state":"not yet recorded","reading":format!("The App ledger did not accept the Stop Codex record ({limit}); it stays queued in this App process"),"entry":entry})
+            json!({"state":"not yet recorded","reading":format!("The App ledger did not accept the {what} record ({limit}); it stays queued in this App process"),"entry":entry})
         } else {
-            json!({"state":"recorded","reading":"Recorded in the App ledger before any interrupt was sent","entry":entry})
+            json!({"state":"recorded","reading":recorded,"entry":entry})
         }
     }
     /// Waits up to `wait` for that interrupt's acknowledgment. When the wait

@@ -403,7 +403,9 @@ CC-REC-ITEM-TURN-SOURCE-ADOPTION.json; review status in V6-RECOVERY-CUSTODY-CORE
 Found 2026-10-07 by the J1/J3 TASK of `APP-V4-GROUP-A-20261004`, partly through
 independent review V9 (`reviews/V9-J1-PUBLICATION.md`). Each item states what
 the accepted text says, what the code does, and what remains for the design
-owner or the owner. No Design file was changed.
+owner or the owner. No Design file was changed then. On 2026-10-10 items (c),
+(d) and (j) were resolved, and WR §16.2, EXEC §2.7, RECOVERY §4.1 and RS
+§14.1/§14.3 were edited for them.
 
 - **(a) Unknown `turn/start` outcome (V9 F-1).** WR §16.4 ("`turn/start` refused
   or fails before the item is recorded" → `supply_check` *not found*) and RN-4
@@ -431,30 +433,67 @@ owner or the owner. No Design file was changed.
   only on the person's explicit end (AE-7). The identity itself stays
   App-minted until the EXEC owner supplies or adopts one; a later EXEC identity
   must not relabel runs already recorded under this id.
-- **(c) No end notice after relaunch (J3).** TX-5 and SQ-END require the
-  end notice on the person's next turn after a run ends with no successor.
-  After relaunch, the person can end a run that the record shows open and
-  interrupted (`end_recorded_run`; `run_ended`, *the person*). But the notice is
-  composed only from the typed `PreparedRunText` that the run's own process
-  held. `PreparedEndPublication` deliberately refuses cold evidence ("cold
-  evidence does not create a lifecycle event or a new sendable notice"). So no
-  notice is sent for such an end, and the panel says so. For the WR owner:
-  either permit composing the notice from the resolved run-start `run_text`
-  (name, revision, run) plus the recorded end, or rule that an end after
-  relaunch carries no notice.
+- **(c) End notice after relaunch (J3). Chosen and implemented 2026-10-10.**
+  TX-5 and SQ-END require the end notice on the person's next turn after a
+  run ends with no successor. After relaunch, the person can end a run that
+  the record shows open and interrupted (`end_recorded_run`; `run_ended`, *the
+  person*). Earlier, no notice was sent for such an end.
+  - **Choice (the design owner, written into WR §16.2 TX-5 and SQ-END).**
+    Such an end gets its TX-5 notice. The notice is composed from the
+    person's end, made live in this process, plus the run's recorded identity
+    facts (name, origin, revision, run). These come from the run's recorded
+    run-start `run_text`, checked against its `run_opened`, never from Codex
+    history. The end is the person's fresh act, so cold evidence still
+    creates no lifecycle event.
+  - **Implementation.** `PreparedEndPublication::after_relaunch` composes the
+    notice and refuses, with the reason, when the recorded run text is
+    missing, ambiguous, invalid, names another conversation or does not
+    match `run_opened`. Then no notice is sent and the panel shows the
+    reason.
+  - **Claim and consumption.** A composed notice is held as a `ReopenedEnd`
+    in this process. It is pending for the conversation's next ordinary turn
+    under the same claim and consumption rules as a live end's notice ((i)):
+    text, mode, Continue-as and attachment-bearing turns. Retry and "Send
+    without the end notice" are offered after a record failure, and the skip
+    is recorded in the run's log first.
+  - **Run starts wait.** A run start in that conversation is refused until
+    the notice has gone, because the new run's chain line cannot cite a run
+    ended in an earlier process ((f)).
+  - **Limits.** The pending notice lives in this process only; a further
+    relaunch before the next turn loses it. EN-3 (the notice's supply check)
+    is not offered for such a notice.
 - **(d) REC run tag and restart limit (J3).** EXEC A-2 and §2.7 have the run
   starter tag the conversation with the run reference through REC
   `tag / look up / tags of` (RECOVERY §4.1). On relaunch, RS writes the
-  "App-restart interruption" `evidence_limit` on the run that was current. The
-  ledger's tag write is owned by the Host (`hosting.rs`), which supplies only
-  the NIR submission-context tag. J3's fence did not include a run-tag write or
-  a startup RS writer. The App therefore stores no run tag. The record writes
-  no restart limit, and records no automatic RE-4 "interruption not
-  recovered" run-owner end. Reopen instead finds runs and conversations from
-  the project's own RS `run_opened.conversationRef`, and shows the REC
-  `app_restart_interruption` facts that name each conversation. Needed: the
-  Host or REC owner adds a run-tag owner and lookup, and a startup writer for
-  the restart limit.
+  "App-restart interruption" `evidence_limit` on the run that was current.
+  **Implemented 2026-10-10:**
+  - **Run tag.** When the App writer takes up `run_opened` for writing (before
+    the write itself), the host appends
+    the conversation's REC `conversation_index` with a tag `{owner
+    "DEL-02-03", value <run ref>, seq}` (`Host::tag_conversation`, the same
+    mechanism as the NIR context tag). Tags are ordered, and an earlier run's
+    tag is kept. `recovery::tags_of` and `recovery::look_up` read them.
+  - **Tag not stored.** The tag stays in the run's memory only, shown as the
+    run's `runTag` with the reason, and the run goes on. Reasons: no index row
+    (no known App project when the conversation started), no ledger, or the
+    append is refused.
+  - **Startup writer.** `run_restart::startup` runs in the host from the
+    `setup` closure, never on a web-view request. For each
+    `app_restart_interruption` fact in a home's REC projection, it picks the
+    run opened last in that conversation with no `run_ended`, using `tags of`
+    plus the project's RS records. It writes one `evidence_limit` "App-restart
+    interruption" on that run's log. `subjectRef` is the fact's eventId, and
+    the detail names the prior session and its end. It is idempotent per run
+    and fact (the log is re-read first). Earlier ended runs are untouched.
+  - **No tag stored.** The run is found by `run_opened.conversationRef`, and
+    the limit's detail says so.
+  - **Reopen** shows each outcome (written, already written, or not written
+    with the reason). It now also reads the restart facts from the Host's
+    custody projection, where they are derived.
+  - **Still open:** no automatic RE-4 run-owner `run_ended` "interruption not
+    recovered" is written. The writer runs once at startup, so a write that
+    fails then is retried only at the next startup. Homes bound after startup
+    (a key home) are not covered.
 - **(e) Start not confirmed, and liveness (J3).** EXEC A-3 says a turn that is
   not started leaves the run not opened. A refused or unknown start therefore
   records no `run_opened`, and is not live. A new start in the conversation is
@@ -562,8 +601,25 @@ owner or the owner. No Design file was changed.
     it. The panel shows the outcome. A *native* fork
   is not observed by the App, which has no `thread/fork` route. A run belongs to
   its (home, thread), so any other thread, a fork included, has no live run.
-- **(j) An earlier record that can never be written holds `run_ended` (V10
-  R-3).** RS W-2 has a run's log written in observation order.
+- **(j) An earlier record that can never be written held `run_ended` (V10
+  R-3). Chosen and implemented 2026-10-10** (option 2 below; written into RS
+  §14.1 "Permanent refusals", W-1 and FC-7).
+  - **Choice.** W-2 keeps strict order for failures that may succeed later
+    (I/O). A record the writer refuses permanently is not held as pending.
+    Permanent means nonconformant (W-1 (a)), or its reserved identity is held
+    by a different entry in a complete record set. The writer records an
+    `evidence_limit` "record write failed" whose `subjectRef` is that record's
+    reserved identity, with a detail saying it can never be written, why, and
+    that it is not in the record. Later pending entries then proceed in order,
+    the person's `run_ended` included. No schema change.
+  - **Code.** `records::supply::permanent_refusal` classifies conservatively:
+    anything not definite (I/O, an incomplete record set, validation
+    unavailable) stays held. `flush_records` applies the choice to lifecycle
+    entries and R3s. A refused R3 reads *unavailable*, "never written".
+  - **Superseded test.** The V9 F-2 test that held a later R3 behind such an
+    R3 is replaced by the CI-20 (j) tests.
+
+  The original finding follows. RS W-2 has a run's log written in observation order.
   `flush_records` stops at the first record that cannot be written and holds
   every later one; each gets its "record write failed" limit when it is
   written late. W-2 gives no way past a record that can *never* be written,
@@ -580,10 +636,9 @@ owner or the owner. No Design file was changed.
        the person ends the run again.
     2. Define a terminal *not writable* state for such an entry. Record an
        `evidence_limit` naming the record and why it can never be written,
-       then let later entries proceed.
+       then let later entries proceed. (Chosen.)
     3. Let lifecycle entries (`run_ended`) pass a stuck R3, with a limit
        naming the R3 they passed.
-  - No code change was made for this item.
 
 ## CI-21 (J5) App-kept draft bases and re-registration after relaunch
 
@@ -1404,3 +1459,31 @@ changed.
   `examination/native_forms/{sources.json,pre_run_form.pins.json}` and
   `pre_run_form.py`'s pin digest, and `examination/sq_receiving/pins.json`
   and `receive.py`'s pin digest.
+
+## CI-35 App quit and window close: what the platform does not let the App hold
+
+Found 2026-10-10 while implementing DEL-01-02 DEF-6/SQ-Q and SQ-W (RECOVERY
+§5 "In the App" readings). The sequences are implemented as written; these
+are the remaining limits, for the DEL-01-02 and DEL-01-04 design owners.
+
+- **(a) macOS `terminate:`.** The App replaces the predefined Quit menu item
+  with its own, so Cmd+Q asks first. The Dock's Quit, logout and shutdown send
+  `terminate:` straight to the application delegate (Tauri 2.11 / tao 0.35
+  implement no `applicationShouldTerminate:`), so the App gets only a final
+  notice: it records AS-10 *system-terminated* and stops each home's Codex,
+  with no question. Holding them would need a delegate hook outside the
+  vendored crates.
+- **(b) Closing the window.** The close control hides the window on macOS and
+  minimizes it elsewhere, so a closed window can always be reopened without a
+  Dock. REQ-001 is kept (work and requests continue); the web view is not
+  torn down, so W-4's re-attachment is the view re-reading the host snapshot
+  when shown (and on reload).
+- **(c) C-24 indicator.** The Dock badge gives the count of supplier requests
+  waiting (WI-1, WI-2). It is shown only where the platform badges the App
+  icon (the macOS Dock); elsewhere there is no indicator outside the window. It does not name the conversations outside the window,
+  and clicking the Dock icon opens the App window, not a particular
+  conversation (WI-3). The badge is set through the window, which always
+  exists because closing only hides it.
+- **(d) RQ-06 at startup.** AS-02 now writes SR-08 for an earlier session's
+  unsettled stop requests; RQ-06 (*ended-unanswered*, context
+  *app-ended-without-record*) for its listed requests is still not written.
