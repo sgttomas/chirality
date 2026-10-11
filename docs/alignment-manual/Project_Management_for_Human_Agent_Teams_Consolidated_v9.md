@@ -55,7 +55,7 @@ It also creates a need for examination. The person may not know which sources th
 
 A person can rely on a bounded contribution without redoing every operation. A traceable calculation, a meaningful test or an independent source comparison may supply the needed warrant. Conversely, a polished report may leave the essential claim unsupported.
 
-This manual uses **reckoning** for the agent's interpretation, comparison, inference and selection. It reserves **accountable judgment** for decisions for which a person accepts responsibility. These terms distinguish responsibility; they do not deny agents substantial reasoning or initiative.
+Agents extend **reckoning** through interpretation, comparison, inference and selection. **Judgment** is the person's situated, committed engagement with what the work means, what matters and what they will stand behind. It shapes the undertaking throughout, not only its final acceptance.
 
 Human accountability does not require human approval of every action. The person can authorize coherent work, ordinary choices and defined operations in advance. Reserved choices remain visible at their actual points of need.
 
@@ -363,7 +363,7 @@ Earlier evidence can remain valid when its relevant conditions have not changed.
 
 Mechanical result reuse needs a trustworthy identity for the inputs that affect the result. A cache hit must identify the earlier result and must not claim that new tests ran. Near matches are not equivalent merely because they are convenient.
 
-Human or agent judgment may still be needed where the relationship cannot be captured by a reliable executable condition. A tool should report facts and uncertainty rather than infer unsupported completion.
+Human or agent assessment may still be needed where the relationship cannot be captured by a reliable executable condition. A tool should report facts and uncertainty rather than infer unsupported completion.
 
 Repeated checking is justified by a changed or unresolved claim. It is not justified solely because another stage, agent or PR now carries the work. This distinction reduces cost while preserving the meaning of evidence.
 
@@ -699,7 +699,7 @@ The case shows why concurrency and shared-basis examination belong together. Mor
 | Deliverable | A stable, coherent responsibility for a useful contribution. |
 | Evidence | Observations or reasoning that support an identified claim under stated conditions. |
 | Integration | Bringing contributions into the actual receiving result and examining their relationships. |
-| Judgment | Accountable human determination of what is accepted or relied upon. |
+| Judgment | The person's situated, committed engagement with what the work means, what matters and what they will stand behind; exercised throughout the undertaking. |
 | Method | A reusable approach, selected and adapted within the assignment's authority. |
 | Package | An accountable grouping of scope around a meaningful objective. |
 | Production contract | The deliverable's required contribution, criteria, interfaces and examination basis. |
