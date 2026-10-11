@@ -4,40 +4,22 @@
 
 ## 8.1 Introduction
 
-Chirality is a developing family of implementations, not one completed agent
-operating system. This chapter examines what the repository demonstrates,
-which mechanisms changed, and what remains a design intention. The account
-is bounded by the repository at `510f4a9abc` on 2026-10-10. Later product work
-must be assessed on its own candidate and evidence.
+Root's shared instructions, roles, methods, queries and integration paths are
+examined at repository revision `a602024416ace9652f61bb2043889c307fd4e09d`.
 
-Three kinds of statement must remain distinct:
+The historical record has a boundary. Original January–April repositories were
+deleted during migration. The owner's account describes January–March as a move
+from controlling LLM outputs to having agents build code, and April as largely
+quiet. Surviving migrated Git history starts with the May 18 snapshot. The
+account of earlier intent is testimony, not reconstructed commit evidence.
 
-| Kind | Example | What would support it |
-|---|---|---|
-| Normative commitment | A person retains responsibility for acceptance and reliance | The declared allocation of authority and its justification |
-| Design hypothesis | Current artifacts and on-demand queries reduce contradictory descriptions of work | An implemented arrangement and examination of its failure modes |
-| Empirical finding | A particular native-use exercise exposed a particular interface defect | The identified exercise, result and repair |
-
-Implementation establishes that a mechanism can be built. A passing test
-supports a bounded claim about its behaviour. Neither establishes that the
-whole framework improves professional practice or satisfies a regulator.
-
-The development history also has an evidential boundary. The original
-January–April repositories were deleted during migration. The owner's
-retrospective account describes January–March as a move from building code
-to control LLM outputs toward having agents build code, with April largely
-quiet. Surviving migrated Git history begins with the May 18 snapshot. The
-earlier account is testimony about intent and sequence, not reconstructed
-commit evidence.
-
-The surviving history shows successive revisions rather than a steady
-accumulation of controls: July separated standards, roles, methods and tools;
-August reconsidered delegation authority and the separation of private
-domain knowledge from public mechanics; September simplified roles and
-supplier integration and established the App v4 direction; October retired
-administrative duties together with the mechanisms enforcing them. The
-current implementation therefore differs materially from the historical
-mechanisms catalogued in Appendix A.
+From that basis the case shows repeated adjustment of production means. July
+separated roles, methods, tools and deliverable content. August reconsidered
+delegation and the separation of private knowledge from public mechanics.
+September reduced specialist roles and supplier wrappers. October removed
+administrative duties and their enforcement together. These changes matter to
+Root because its artifacts shape the conditions under which later artifacts
+are produced.
 
 ---
 
@@ -81,6 +63,12 @@ operating-system sandbox has its own coverage. None should be reported as
 another merely because all concern write boundaries.
 
 ### 8.2.3 Navigation and the Historical Matrix
+
+The [Root entry](../../execution/_Coordination/LOOP_INIT.md) starts from the
+shared component and its affected consumers. It does not require a global census
+or a product deliverable for each tooling change. An active project entry instead
+locates the affected product commitments. This division keeps shared production
+work and project scope from becoming competing authorities.
 
 Earlier App versions offered a 3×4 matrix of epistemic postures and functions.
 That matrix was a navigation design, not evidence that work requires twelve
@@ -150,14 +138,24 @@ reliance.
 
 ### 8.2.7 Methods and Skills
 
-Reusable methods are indexed in `workflows/index.json`; repository skills
-have their own selected entry points. Roles do not have to reproduce the
-method library. The separation lets one bounded executor use different
-methods, and lets a manager work directly when delegation adds no value.
+Reusable methods are indexed in `workflows/index.json`; skills supply additional
+selected methods. Role files do not reproduce the library. The Root
+[resolver contract](../../tools/workflow_runtime/README.md) describes ordered
+method selection, explicit resources and source identities. Missing or escaping
+selected resources fail resolution. Omitted resources are not read.
 
-This is an implemented information-access arrangement, not evidence that
-all methods are useful or that every agent selects them correctly. Their
-value must be examined in the undertakings that consume them.
+The resolver returns hashes for the inputs it read. Those hashes identify tool
+inputs; they do not prove that a host delivered that context to an agent. This
+is an important Root boundary: resolving a source, delivering it, interpreting
+it and applying its method are different events.
+
+A workflow edit also has a concrete consumer path. The package supplies index
+metadata; [the index builder](../../tools/validation/build_workflow_index.py)
+rebuilds the catalog. Adopted App resources can be affected separately. Root's
+instructions require updating actual consumers of a changed source, not sending
+notices to every project or automatically synchronizing independent product text.
+The useful evidence is the saved source, selected identity, affected consumer and
+appropriate check of that connection.
 
 ---
 
@@ -207,27 +205,30 @@ maintenance and attention costs.
 
 ---
 
-## 8.4 Desktop Application
+## 8.4 Root Consumers and Successive Derivation
 
 ### 8.4.1 Architecture and Successive Derivation
 
-App v4 is the workflow-authoring exemplar for Chirality within applications.
-Its current [PRD](../../projects/chirality-app-v4/docs/PRD.md) and
-[architecture](../../projects/chirality-app-v4/docs/ARCHITECTURE.md) select
-Tauri/React and direct App-owned hosting of a pinned stock Codex App Server.
-They distinguish shared interface meanings from shared process topology.
+The App is Root's first workflow-authoring exemplar. It provides a concrete
+setting for working with conversations, requests, methods and returned work.
+Its [PRD](../../projects/chirality-app-v4/docs/PRD.md) and
+[architecture](../../projects/chirality-app-v4/docs/ARCHITECTURE.md) define the
+current adoption; Root's instructions do not automatically become its product
+behaviour. The [App thesis](../../projects/chirality-app-v4/docs/thesis/README.md)
+examines that application-specific argument.
 
-Earlier Apps and Runtime remain recoverable through
-[the frozen-product references](../../projects/FROZEN.md). They are not
-current validation targets.
-[PR #1224](https://github.com/sgttomas/chirality/pull/1224) removed the
-App v3, Runtime and PEC working trees after accounting for active consumers.
+Earlier Apps and Runtime are recoverable through
+[the frozen-product references](../../projects/FROZEN.md), not current
+verification targets. [PR #1224](https://github.com/sgttomas/chirality/pull/1224)
+removed App v3, Runtime and PEC from the working tree after accounting for
+active consumers.
 
-The succession illustrates re-derivation from requirements and accumulated
-learning. It is not deterministic compilation from a PRD. The histories of
-v2 and v3 include both redesign and evolution; v4 also identifies reuse
-candidates. Requirements, observed behaviour, supplier capabilities and
-owner interpretation jointly inform each implementation.
+This is a concrete test of re-derivation. Root must permit authors to revisit
+implementation while preserving current commitments and useful lessons. The
+histories of v2 and v3 include both evolution and redesign; v4 also identifies
+reuse candidates. A new PRD and version number do not prove that learning was
+retained. Existing tests, native-use findings, interfaces and owner decisions
+must be examined for their current relevance.
 
 ### 8.4.2 Application Actions and Navigation
 
@@ -242,18 +243,22 @@ It does not establish general usability or the absence of other defects.
 
 ### 8.4.3 The Domain Application: SWBPIPE
 
-SWBPIPE is an analysis-grade piping design engine and stress-model
-authoring environment. Its
-[PRD](../../projects/chirality-piping/docs/PRD.md) distinguishes the physical
-model, analytical model, analysis run, comparison and handoff. Human and
-agent routes are intended to reach common validated operations.
+SWBPIPE supplies a domain consumer with substantially different demands. Its
+[PRD](../../projects/chirality-piping/docs/PRD.md) distinguishes physical models,
+analytical models, analysis runs, comparison and handoff. Those objects are not
+created by assigning a Root role or applying a generic workflow. They require
+piping-domain definitions, numerical implementation and domain evidence.
 
-This is a stronger domain test than workflow authoring alone. Numerical
-meaning, units, geometry, persistence and private data introduce concrete
-constraints. A common operation engine can reduce divergence between human
-and agent paths; the receiving interfaces and connected activity must still
-be implemented and examined. Product development is not evidence of
-professional qualification or code-compliance certification.
+The [SWBPIPE thesis](../../projects/chirality-piping/docs/thesis/README.md)
+examines that instantiation. The relevance to Root is the transfer question:
+can useful methods, discovery and human–agent responsibility relationships be
+adopted while the application owns its domain operations and validation? Shared
+schemas and repository residence establish neither successful integration nor
+professional suitability.
+
+SWBPIPE is therefore a candidate instance of proliferation at the application
+category, rather than evidence that a general-purpose Root engine can supply
+all domain meaning. Its results must be assessed independently.
 
 ### 8.4.4 Host Integration and Human Acts
 
@@ -306,24 +311,33 @@ a dependency/build cache. A reused result states that no new tests executed.
 Manual runs can obtain fresh evidence. These are bounded evidence-management
 mechanisms, not a general exemption from examination after change.
 
-### 8.5.3 Project Evidence and Its Limits
+### 8.5.3 Connecting Evidence and Its Limits
 
-The repository contains substantial App and SWBPIPE implementation,
-independent reviews, regression checks and repairs. Three observations are
-especially informative:
+Three source paths illustrate what Root's evidence can establish:
 
-1. The role/write-policy change in PR #1223 coupled instructions with the
-   resolver and tested both useful authorization and refusal boundaries.
-2. The native App exercise in PR #1240 found defects through use of the
-   assembled product.
-3. [PR #1245](https://github.com/sgttomas/chirality/pull/1245) implemented
-   the first phase of workflow-trial support; it did not establish delivery
-   of every remaining trial interaction.
+1. **Role and permission change.** PR #1223 coupled HELP_HUMAN's authorized-write
+   interpretation with the resolver and boundary tests. It removed one role-name
+   restriction without treating absent authorization as unrestricted access.
+2. **Dependency migration.** PRs #1213 and #1216 compared source rows with
+   migrated conditions and accepted graph bases. Independent review examined
+   meaning, not merely the migrator's own counts. This supports preservation on
+   the examined basis; it does not turn `check` into a semantic validator.
+3. **Archive integration.** Reviews of the archive batches identified live
+   technical references and contracts among intended removals. Relocation and
+   consumer repair were necessary even though the generated product results were
+   already committed. A green product test alone would not establish that the
+   next generator invocation remained usable.
 
-These observations demonstrate concrete production and correction. Earlier
-example project trees similarly demonstrate that methods were exercised.
-Neither type of evidence establishes comparative professional review
-quality, regulatory compliance, portability or sustained productivity gains.
+App native-use findings in
+[PR #1240](https://github.com/sgttomas/chirality/pull/1240) provide a further
+limit: Root's production method can yield an assembled product that still
+contains defects revealed by actual interaction. The appropriate response was
+product repair, not another generic governance layer.
+
+These observations support concrete production and correction. They do not
+establish comparative productivity, professional review quality, regulatory
+compliance or portability. Their value lies in the identified claim and
+consumer, not the volume of artifacts produced.
 
 ---
 
@@ -358,14 +372,21 @@ compels genuine judgment.
 
 ### 8.6.3 Candidate Investigations
 
-Useful next investigations follow observed needs: complete product
-activities; reliable discovery of current conditions; recovery from actual
-interruptions; avoidable build and numerical-check waits; and one connected
-SWBPIPE operation through human and agent routes. Domain retrieval should
-be examined against a concrete engineering question and its source limits.
+Root's most relevant investigations concern its connecting paths: whether an
+agent finds the governing condition without reconstructing global history;
+whether an instruction change reaches the actual resolver or selected method;
+whether a reviewer receives the candidate and relevant basis; and whether an
+interrupted undertaking resumes without losing work or repeating an uncertain
+write.
 
-These are research and development candidates, not a standing backlog
-created by this thesis. Current product authorization remains elsewhere.
+The outcomes should be assessed against usable work, consequential errors and
+total effort, including owner attention. Expanded metadata, another catalog or
+another validator is only one possible response to a finding. Retiring an
+unnecessary duty or clarifying the current source may be better.
+
+Application-specific product activities and numerical investigations belong to
+the App and SWBPIPE research questions. These examples create no standing backlog
+or new authority for Root.
 
 ### 8.6.4 Summary Assessment
 
@@ -385,13 +406,19 @@ measures of repository activity or size, not productivity estimates.
 
 ## 8.7 Summary
 
-The case demonstrates a revisable implementation of the framework's four
-questions. Relevant objects and relationships are represented in current
-artifacts; tools expose bounded facts; agents perform substantial reckoning
-and action within authority; people retain situated judgment and reserved
-commitments. Continuing ownership connects production to repair and use.
+The case demonstrates a Root environment that can help produce work and revise
+its own production means. Current source documents, queryable needs, selected
+methods, assignment-specific authority and continuing integration ownership
+replace several earlier repeated representations. Their operation is traceable
+to maintained sources and examined changes.
 
-The historical mechanisms are useful evidence about design, including its
-costs and failed assumptions. Their retirement does not erase the learning.
-It shows why a framework for accountable work must permit its own means to
-be examined and replaced.
+The reset did not make Root an autonomous authority over its applications.
+Owners retain judgment and reserved commitments; host permissions remain real
+limits; products adopt shared methods according to their own contracts. The
+App and SWBPIPE expose different tests of whether the environment serves useful
+work.
+
+Historical mechanisms remain evidence about learning, including mistaken claims
+of necessity. Root's own method is credible to the extent that contrary findings
+can change the current means without erasing the distinctions and responsibilities
+that justified them.

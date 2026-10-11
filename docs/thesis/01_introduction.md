@@ -2,151 +2,96 @@
 
 ## 1.1 The problem
 
-Capable agents can investigate sources, write software, compare alternatives,
-prepare engineering material and repair their work. Useful output can still be
-wrong, incomplete or unsuitable for the purpose at hand. Fluency, a valid schema,
-a successful operation and agreement among agents each establish less than a
-person may be tempted to infer from them.
+Work has a purpose, a history and consequences. A technically correct
+contribution can answer the wrong question; an impressive implementation can
+leave its intended user unable to act. Agent capability becomes useful through
+its relation to the undertaking.
 
-The practical question concerns the whole situation of use. What is being
-changed? What evidence supports the result? Which assumptions remain? How does
-the contribution reach a usable whole? Who may commit to reliance, and for what
-purpose? Better model performance can improve the answers without making those
-questions disappear.
+That relation develops through inquiry. The person may discover what matters
+while investigating. An agent may expose an assumption, produce an alternative
+or make a previously impractical action possible. Purpose guides the exchange
+without specifying every step. The person's judgment and the agent's reckoning
+contribute differently to the same work.
 
-The Chirality framework addresses professional work in which a person remains
-answerable for consequential commitments. It distinguishes an agent's operative
-capability from that person's accountable judgment. This is a stated allocation
-of responsibility, not a measurement of model intelligence or a claim to settle
-all possible machine cognition.
+**What makes agent capability into purposeful, accountable work? Why should its
+supporting environment develop through revisable roles, methods, tools and
+artifacts?**
 
-The research question is: **how can an application environment support useful
-agent work and informed, accountable human reliance, while permitting its
-mechanisms to change as capabilities, circumstances and experience change?**
+Chirality Root is one response. It provides shared means for making context
+accessible, action possible and consequences open to examination. Those means
+also become objects of work when experience reveals their limits.
 
-Professional engineering provides the motivating case. Chapter 6's regulatory
-mapping is an identified interpretation of cited instruments, not an endorsement
-or determination of compliance. The design question also concerns software,
-research and other knowledge work where evidence, authority and consequence
-must remain distinguishable.
+Shared structure can preserve distinctions and learning. It can also displace
+attention from the undertaking to its own categories. Prescribing every route
+can frustrate initiative; leaving every relation implicit can lose purpose,
+evidence and responsibility as work expands.
 
 ## 1.2 The approach
 
-Chirality uses four connected perspectives:
+Four perspectives help examine this tension:
 
-- **Ontology:** identify relevant objects, acts and relationships; distinguish
-  them from their representations and implementation machinery.
-- **Epistemology:** expose grounds, assumptions, conflicts and limits so claims
-  can be examined in their actual context.
-- **Praxeology:** make investigation, production, examination, repair, recovery
-  and integration practicable within granted authority.
-- **Axiology:** make purposes, consequences and commitments matter in design,
-  including the attention, delay and maintenance costs of control.
+- **Ontology:** what the work consists of and how its parts relate.
+- **Epistemology:** what supports a claim, and where its grounds end.
+- **Praxeology:** how intent becomes usable work through action and correction.
+- **Axiology:** what matters, to whom, and with what consequences.
 
-These are mutually corrective questions. They do not uniquely determine
-software. A failed recovery path may reveal confusion about outcome states.
-A new consequence may require stronger examination. An unnecessary gate may
-consume attention needed for a more important decision. The questions remain
-useful when the mechanism changes.
+They concern one undertaking. An object matters through its relationships; a
+claim matters because someone may act upon it; action exposes what the prior
+understanding missed; values determine which consequences demand attention.
+Each perspective can correct a partial account supplied by another.
 
-The current repository keeps commitments, technical design and dependency
-conditions with deliverables. Tools derive views and report observable facts
-and unknowns. Agents interpret suitability, carry work through ordinary repairs
-and update sources when meaning changes. Git and PRs preserve changes and their
-reasons. This is a concrete implementation; neither a filesystem nor particular
-filenames are universal conditions of accountable work.
+A failed operation may reveal confusion between intention and outcome. A new
+consequence may change the evidence needed for reliance. A control may obscure
+the question it was meant to clarify. The means must remain revisable because
+experience can change the understanding that justified them.
 
-Agent 0 holds continuity with the owner. Design partners, implementation owners
-and bounded executors contribute when the undertaking benefits. TASK remains
-non-delegating by the owner's choice. Assignments and actual host permissions
-bound action; adopting a role does not grant access. Integration must be owned,
-but each responsibility need not be staffed by a separate agent. Current
-instructions are in [AGENTS.md](../../AGENTS.md).
+Artifacts provide shared objects of attention across conversations and
+interruptions. Roles name responsibilities that might otherwise disappear
+between contributors. Methods preserve learning about how to proceed. Tools
+make useful operations repeatable. Each earns its place through what it enables.
 
-The vocabulary of **reckoning and judgment** is central. Reckoning can include
-sophisticated inference, criticism, planning and adaptive action. Judgment is
-the person's situated and committed engagement with what the work means, what
-matters and what they will stand behind. It shapes questions, methods and choices
-throughout an undertaking; a final acceptance is one expression of it. An
-acceptance record makes an act inspectable but cannot establish truth or the
-adequacy of the person's engagement. Chapter 3 develops this distinction and its
-philosophical limits.
-
-Three expressions make the case concrete. Root supplies shared instructions,
-methods and tools. App v4 develops workflow authoring and the human–agent
-relationship as an exemplar. SWBPIPE develops a piping design and stress-model
-authoring environment where people and agents are intended to use meaningful
-domain operations and common validation. A host-integration design does not
-establish delivery of every connected activity or authorize professional reliance.
+Agents extend **reckoning** through analysis, criticism, planning and adaptive
+action. **Judgment** is the person's situated, committed engagement with what the
+work means, what matters and what they will stand behind. It shapes the
+undertaking throughout; a final acceptance is one expression of it.
 
 ## 1.3 Contributions and their standing
 
-This thesis offers five connected contributions. The literature supplies
-precedents and comparisons; it does not establish historical priority for the
-whole arrangement.
+Root makes the means of production available to the same inquiry as their
+outputs. A role, method or tool can be examined and changed when it no longer
+serves its purpose. Learning can improve the working environment as well as the
+product.
 
-1. **A conceptual account of accountable human–agent work.** Four perspectives
-   connect purpose, intelligibility, evidence and action while preserving
-   situated judgment and allowing different execution arrangements.
-2. **A separation of claim types.** Normative commitments state adopted values
-   and responsibility boundaries. Design hypotheses propose ways to serve them.
-   Empirical findings report observations with limits. Coherence at one level
-   does not prove a claim at another.
-3. **An architectural pattern for inspectable work.** Current artifacts, useful
-   queries, explicit authority and recoverable operations support sustained
-   ownership. Adequacy depends on actual consuming paths and failure conditions;
-   instructions and schemas do not provide universal enforcement.
-4. **A professional-practice interpretation.** The cited account of supervision,
-   review and reliance motivates evidence and human engagement. Its regulatory
-   reading is bounded, dated and open to correction, not a professional approval.
-5. **An evolving implementation case.** The repository records agent-built
-   products and revisions of the machinery used to produce them. October's
-   reset removed mechanisms while retaining purposes they had served. This
-   challenges their claimed necessity, without establishing a general
-   productivity effect or transfer to other practitioners.
+The repository gives this idea concrete form. Commitments, design and needs
+remain in current artifacts. Queries expose relevant relationships. Participants
+assess whether the available evidence meets the need. Continuing ownership
+carries findings into repairs and contributions into a usable whole. Changes to
+shared instructions must reach the tools and products that consume them.
 
-The App revisions illustrate re-derivation from current requirements. A PRD
-constrains a product without determining a unique implementation. Prior code,
-tests, observed failures and owner interpretation contribute learning the next
-implementation must examine. A rewrite is useful where it preserves that
-learning and improves the result or its maintainability.
+The history also exposes the cost of losing that relation. Records intended to
+support continuity accumulated into a competing body of work. Removing duties
+together with their enforcement reopened space for production. Whether the
+replacement improves total effort and reliability requires sustained observation.
 
 ## 1.4 Thesis structure
 
-- **Chapter 2:** relevant agent, reliability, systems-engineering,
-  professional-practice and philosophical literature, with limits to coverage.
-- **Chapter 3:** the four perspectives, situated knowing, reckoning and judgment.
-- **Chapter 4:** current architecture and historical mechanisms.
-- **Chapter 5:** evidence, interpretation and accountable reliance.
-- **Chapter 6:** the bounded professional-practice mapping.
-- **Chapter 7:** systems-engineering methods and what they establish.
-- **Chapter 8:** implementation and historical evidence.
-- **Chapter 9:** tensions, alternatives, generalisation and evaluation.
-- **Chapter 10:** conclusions and unresolved questions.
+Root supplies shared means for developing work, methods and applications. The
+App makes method itself a subject of work: people can express an intention, try
+a way of acting and revise it through what happens. Workflow authoring is
+therefore the first exemplar.
 
-Appendix A interprets historical controls; it is not a live invariant registry.
-Appendix C preserves the scope of the regulatory mapping. Appendix D develops
-an optional conjecture. The role inventory remains in repository instructions.
+SWBPIPE poses the domain question. Agent participation must preserve the
+meaning of an engineering model, the grounds of a calculation and the conditions
+of its use. Proliferation succeeds when shared means enable useful work in such
+a practice. A common protocol alone cannot establish it.
 
 ## 1.5 Scope and limitations
 
-This is an architectural argument and a longitudinal case account, not a
-controlled study of professional review, an exhaustive literature review, a
-formal safety proof or a regulatory endorsement. Instructions can be disobeyed.
-Tests can omit a consequential case. Sources can be misapplied. Acceptance can
-be mistaken or perfunctory. Architecture can expose and constrain particular
-conditions; it cannot guarantee informed judgment.
+This is a longitudinal case centred on one owner's direction and experience.
+Another application tests architectural transfer; another practitioner tests
+whether the approach remains useful without its author's continuing
+interpretation. Neither follows from code volume or internal consistency.
 
-The owner is an active part of the case, supplying domain experience, correcting
-interpretations and resolving consequential choices. Transfer to another
-professional without this continuing translation is unproved. A second
-application can test architectural transfer; another practitioner can test
-whether the method is intelligible and useful beyond its author. Neither
-follows from code volume, file reduction or PR count.
-
-Earlier texts treated gates, status records and fixed write hierarchies as
-necessary consequences of accountability. This revision examines that inference
-rather than preserving it by renaming the mechanisms. Development authority
-comes from the conversation and adopted instructions. The thesis's
-[status and source basis](README.md#warrant-status) explain what this revision
-does and does not authorize.
+The practical argument concerns inspectable work and its consequences. The
+philosophical conjecture in Appendix D preserves its deeper origin without
+requiring assent to it. Source basis and standing are given in the thesis index.

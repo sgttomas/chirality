@@ -1,63 +1,23 @@
-# The Chirality Thesis
+# Chirality at the Root
 
-**Systems engineering of accountable human–agent work**
+**A generative environment for human–agent work**
 
-This maintained explanatory thesis examines how capable agents can contribute
-to professional work while its objects, evidence, actions and consequential
-commitments remain intelligible. It studies Chirality as an evolving case,
-including the October 2026 removal of controls once presented as essential
-parts of its architecture.
+Root develops the shared means through which people and agents turn capability
+into purposeful work. Roles, methods, tools and artifacts carry experience while
+remaining open to revision.
 
 ## Research question
 
-How can an application environment support useful agent work and informed,
-accountable human reliance, and how can its mechanisms change without losing
-the distinctions and responsibilities that justify them?
+What makes agent capability into purposeful, accountable work, and why should
+its supporting environment develop through revisable roles, methods, tools and
+artifacts?
 
 ## Warrant status
 
-The thesis is agent-drafted research under the owner's direction. It is
-explanatory and nonbinding. On 10 October 2026 the owner accepted the revision
-approach and the interpretation of reckoning and judgment developed in the
-conversation. That authorization does not assert that the owner reviewed every
-resulting sentence, authenticated a professional work product, or that an
-independent study established the conclusions.
-
-Earlier editions described themselves as CITED/REVIEWED, not AUTHENTICATED.
-Those labels identify historical standing; they are not a required lifecycle
-for this revision. The relevant questions are which claims have grounds, what
-has actually been examined, and what remains unestablished. Current repository
-instructions and adopted product commitments govern development. This thesis
-creates no new gate, record duty or permission.
-
-## Central argument
-
-Chirality supports purposeful work by making relevant objects and relationships
-intelligible, the grounds and limits of claims inspectable, action and correction
-practicable, and consequential commitments attributable. Ontology, epistemology,
-praxeology and axiology supply mutually corrective questions. They do not uniquely
-derive a document kit, delegation hierarchy, storage format or approval sequence.
-
-Agents extend **reckoning** through investigation, inference, comparison,
-planning, criticism, checks and adaptive action within authority. **Judgment**
-means the person's situated, committed engagement with what the work means,
-what matters and what they will stand behind. It shapes an undertaking
-throughout and is not exhausted by a final approval or its record. Increasing
-agent capability can change supervision, delegation and verification without
-itself transferring accountable judgment. The argument does not need a verdict
-on every possible future machine's cognition.
-
-Three kinds of claim remain distinct:
-
-| Kind | Standing in this thesis |
-|---|---|
-| Normative commitment | A value or responsibility boundary adopted for this system of use |
-| Design hypothesis | A proposed mechanism expected to support that commitment |
-| Empirical finding | An observation with an identified basis and limits |
-
-An internally coherent design is not empirical proof. A recorded act is not
-proof of truth or adequate human engagement. Costs in attention, delay and
-maintenance count when evaluating a control.
+This is explanatory, agent-drafted research under the owner's direction. It is
+nonbinding and does not establish regulatory endorsement, professional
+acceptance or a controlled productivity result. Development remains governed by
+the conversation, repository instructions and adopted product commitments.
 
 ## Reading the thesis
 
@@ -86,27 +46,24 @@ instructions are indexed in [AGENTS.md](../../AGENTS.md).
 
 ## Source basis and historical editions
 
-The revision began from repository commit
-`510f4a9abccc0ac291872c72253eb2aef908c8c5`. Current development is described by
-[AGENTS.md](../../AGENTS.md), [deliverable queries](../../tools/deliverables/README.md),
-[coordinated knowledge work](../../workflows/coordinated-knowledge-work/WORKFLOW.md),
-and the active projects' documents. The thesis reports them; it does not replace
-them. Later development can exceed this account's observed basis.
-
-The complete pre-revision thesis remains in Git at that commit. Older governance
-documents can be inspected through `archive/pre-docs-cleanup-1` or the earlier
-revision named by their source; [Frozen products](../../projects/FROZEN.md)
-explains retired-application recovery. A historical source describes an earlier
-system; it is not a current instruction.
+Product and implementation observations use repository revision
+`a602024416ace9652f61bb2043889c307fd4e09d`. Later development may change their
+standing. Older editions remain in Git; retired governance sources are recoverable
+through `archive/pre-docs-cleanup-1` or their cited revision. See
+[Frozen products](../../projects/FROZEN.md) for retired applications.
 
 App v4's [foundation copy](../../projects/chirality-app-v4/foundation/thesis/README.md)
-is a separate frozen source basis. This revision leaves it byte-identical and
-does not silently replace App v4's adopted references. Current explanatory
-reading starts here; product adoption follows the product's actual decisions.
+retains its historical source basis unchanged. January–April history comes from
+the owner's account; surviving Git history begins with the migrated May snapshot.
 
-January–March development and the quiet April interval are known here through
-the owner's account; their original repositories were deleted. Surviving Git
-history starts with a migrated May snapshot. Chapter 8 distinguishes these
-evidence types. Historical PRs, source differences and delivered behaviour
-provide case evidence, not a controlled productivity experiment or proof of
-transfer to other professionals.
+## Particular applications
+
+| Thesis | Subject |
+|---|---|
+| Root — this set | Shared means for developing work, methods and applications |
+| [App v4](../../projects/chirality-app-v4/docs/thesis/README.md) | Workflow authoring and agent participation within applications |
+| [SWBPIPE](../../projects/chirality-piping/docs/thesis/README.md) | Engineering design, numerical evidence and professional use |
+
+All three carry the same [kernel](appendix_d_framework_s.md#d1-framework-relationships-with-respect-to-s).
+Its formulas and approved definitions are unchanged; the interpretation follows
+the owner's clarification of temporal contingency. G remains undefined.
