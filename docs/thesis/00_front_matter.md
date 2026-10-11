@@ -1,6 +1,6 @@
-# Systems Engineering of LLM Agent Governance for Regulated Professional Engineering Practice
+# Chirality at the Root: A Generative Environment for Human–Agent Work
 
-**The Chirality Thesis**
+**The Root Thesis — shared means, methods and accountable development**
 
 ---
 
@@ -13,51 +13,55 @@ Chirality AI Ltd. (APEGA P17007)
 
 ## Abstract
 
-Chirality studies how capable agents can contribute to professional work while
-its objects, evidence, actions and consequential commitments remain intelligible.
-The framework uses ontology, epistemology, praxeology and axiology as enduring,
-mutually corrective questions. It treats the architecture as a revisable answer
-to those questions, rather than deriving a fixed hierarchy, document kit or
-approval sequence from them.
+Agent capability becomes useful through a relation to purpose, a body of work
+and a person who can answer for its use. Increasing capability does not settle
+what deserves to be done, which distinctions matter or what a result means in
+its situation. This thesis argues that Root's purpose is to sustain that relation
+while making the means of work available for examination and improvement.
 
-Agents extend reckoning through investigation, inference, comparison, planning,
-criticism, checks and adaptive action. Judgment is the person's situated,
-committed engagement with what the work means, what matters and what they will
-stand behind. It shapes the undertaking throughout. Authentication records a
-particular relation of accountable reliance; it does not establish truth,
-create knowledge or guarantee adequate human engagement. This distinction does
-not depend on settling the cognition of every possible artificial system.
+The four perspectives of ontology, epistemology, praxeology and axiology ask
+what the undertaking consists of, what supports understanding, how intent becomes
+a result, and what makes the result worth pursuing. They are ways to attend to
+work, not a scheme from which a single organization or architecture follows.
+Agents can extend reckoning through substantial inquiry and action. Judgment is
+the person's situated, committed engagement throughout that work. Greater agent
+capability increases what the person can undertake without itself deciding what
+they should stand behind.
 
-The thesis separates normative commitments, design hypotheses and empirical
-findings. It examines current artifacts and derived queries, responsibility
-without mandatory staffing, actual host boundaries, proportionate verification
-and recovery. Costs in attention, delay and maintenance count in evaluating
-controls. Relevant grounds must be inspectable; repeated records are justified
-only by a consumer, acceptance requirement or recovery need.
+Root gives this relation a practical form through roles, methods, tools and
+artifacts. Roles make contributions intelligible without requiring a fixed
+staffing pattern. Methods carry experience without determining every next step.
+Artifacts let work persist and remain open to examination. Tools help participants
+find and act upon what matters. Their value lies in serving the undertaking;
+maintaining these means can otherwise displace the purpose they were built to
+support. The repository's history provides examples of both outcomes.
 
-The repository supplies a longitudinal case. Earlier implementations used
-specialist roles, fixed delegation routes, lifecycle records and extensive
-procedural controls. The October 2026 reset removed many duties and their
-enforcement while preserving purpose, evidence and human authority. That change
-challenges the necessity of the earlier mechanisms. It does not, by itself,
-establish a causal productivity improvement or generalisation to other
-practitioners. App v4 provides a workflow-authoring exemplar; SWBPIPE supplies a
-demanding domain application. Re-derivation from current requirements remains
-an interpretive design process that must preserve accumulated learning.
+Root also permits the means themselves to become work. A useful method can be
+developed through conversation, tried in a particular undertaking and revised
+through what happens. An application can be re-derived from clarified purposes,
+current requirements and accumulated learning. This is a route to proliferation
+through situated adaptation, rather than a claim that one template can generate
+every domain application.
 
-The professional-practice mapping is a bounded interpretation of cited
-instruments, not regulatory endorsement or proof of compliance. Instructions,
-schemas and tests establish limited properties. The case has no controlled
-validation of professional reliance. The thesis therefore offers a conceptual
-framework, an architectural pattern and an evolving implementation account,
-with their different forms of warrant kept explicit.
+The App thesis examines the first exemplar: why workflow authoring and agent
+participation belong together within an application. The SWBPIPE thesis examines
+why the same approach matters when the objects are engineering models and the
+consequences include plausible but wrong numerical results. Those applications
+supply tests of Root's claim; their existence alone does not prove it.
 
-**Keywords:** human–agent work, systems engineering, ontology, epistemology,
-praxeology, axiology, reckoning, judgment, accountable reliance, context,
-professional practice, evidence, agent development
+The argument distinguishes commitments, design hypotheses and observations. Its
+practical case is not a controlled demonstration of productivity or professional
+adequacy. The shared philosophical kernel remains in Appendix D, with its formal
+argument intact, with clarified definitions and concise interpretive commentary. Root's
+particular thesis asks why its means are worth building, using implementation as
+evidence and counterexample rather than restating a product specification.
 
-This explanatory revision was authorized on 10 October 2026. Its
-[status](README.md#warrant-status) remains nonbinding research.
+**Keywords:** human–agent work, purpose, meaning, roles, methods, artifacts,
+ontology, epistemology, praxeology, axiology, reckoning, judgment, application
+derivation, proliferation, accountable reliance
+
+This explanatory revision follows the owner's direction of 10 October 2026.
+Its [standing](README.md#warrant-status) is nonbinding research.
 
 ---
 
