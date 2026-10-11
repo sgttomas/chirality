@@ -6894,7 +6894,12 @@ for line in sys.stdin:
   if m=='other':given='an unrelated task'
   if m=='body':given=given.replace(' begin>>>\n',' begin>>>\nan added line\n',1)
   if m=='framing':given=given.replace('[Chirality] Workflow run start:','[Chirality] Workflow run started:',1)
-  result={'data':[{'turnId':'child-turn','item':{'type':'userMessage','id':'child-message','content':[{'type':'text','text':'Your task, from the authoring agent:'},{'type':'text','text':given}]}},{'turnId':'child-turn','item':{'type':'agentMessage','id':'child-reply','text':'Done.'}}],'nextCursor':None}
+  first={'type':'userMessage','id':'child-message','content':[{'type':'text','text':'Your task, from the authoring agent:'},{'type':'text','text':given}]}
+  # TT-9 at Codex 0.160.0: the task arrives as an inter-agent message whose payload is encrypted (encrypted), or no user message is reported at all (nouser).
+  if m=='encrypted':first={'type':'agentMessage','id':'child-task','author':'/root','recipient':'/root/summarize_trial','content':[{'type':'input_text','text':'Message Type: NEW_TASK\nTask name: summarize_trial\nSender: /root\nPayload:'},{'type':'encrypted_content','encrypted_content':'gAAAAfixture'}]}
+  data=[{'turnId':'child-turn','item':{'type':'agentMessage','id':'child-reply','text':'Done.'}}]
+  if m!='nouser':data.insert(0,{'turnId':'child-turn','item':first})
+  result={'data':data,'nextCursor':None}
  elif method=='thread/turns/list':result={'data':[turn()],'nextCursor':None}
  elif method=='thread/items/list':
   m=mode('items-mode');seen=text;cid=client
@@ -6905,6 +6910,7 @@ for line in sys.stdin:
   if m=='noclient':cid='other-client'
   message={'type':'userMessage','id':'message','clientId':cid,'content':[{'type':'text','text':seen}]+[{'type':'text','text':t} for t in inputs[1:]]}
   data=[] if m=='absent' else [{'turnId':'turn','item':message}]
+  if m=='nouser':data=[{'turnId':'turn','item':{'type':'agentMessage','id':'reply','text':'Working.'}}]
   if m=='finished':data.append({'turnId':'turn','item':{'type':'agentMessage','id':'reply','text':'Done.\nWorkflow finished: project:coordinated-knowledge-work\nNext workflow: project:coordinated-knowledge-work'}})
   if m=='paged' and f['params'].get('cursor') is None:result={'data':[],'nextCursor':'page-2'}
   else:result={'data':data,'nextCursor':None}
@@ -7263,6 +7269,124 @@ for line in sys.stdin:
         root.lock().unwrap().link_trial_child(&reference,"child-d",false,&Value::Null).unwrap();
         assert_eq!(trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]))[0]["subAgent"]["state"],"sub-agent not linked","the latest link or unlink stands");
     }
+    /// A web-view test fixture built by the host (`app/tests/fixtures/<name>`),
+    /// compared as JSON; `CHIRALITY_REGENERATE_FIXTURES=1` writes it instead
+    /// (review the diff, then run again without the variable).
+    fn web_view_fixture(name:&str,value:&Value){
+        let path=std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../tests/fixtures").join(name);
+        if std::env::var("CHIRALITY_REGENERATE_FIXTURES").as_deref()==Ok("1"){std::fs::write(&path,format!("{}\n",serde_json::to_string_pretty(value).unwrap())).unwrap();return;}
+        let committed:Value=serde_json::from_str(&std::fs::read_to_string(&path).expect("fixture present")).expect("fixture is JSON");
+        assert_eq!(&committed,value,"regenerate {name} with CHIRALITY_REGENERATE_FIXTURES=1 after a deliberate change");
+    }
+    // Trial witness 2026-10-10 (a): once the person links a sub-agent, it is no
+    // longer offered "Link as trial ‹n›" for that trial.
+    #[test]
+    fn a_sub_agent_linked_by_the_person_is_not_offered_again_for_its_trial(){
+        let peer=Peer::new();let mut root=trial_root(&peer);let g=peer.generation.clone();
+        let reference=root.prepare_trial("delegated",DRAFT,Some((&g,"thread")),Some(&peer.home),peer.project()).unwrap()["reference"].as_str().unwrap().to_owned();
+        let root=Mutex::new(root);trial_flows::send_trial(&root,&peer.home,&reference,&g,"thread","").unwrap();
+        peer.set_mode("child-mode","error");
+        tick_reads(&peer,&root,&descendant_view(&peer,&["child-d","child-e"]));
+        let rows=trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]));
+        assert_eq!(rows[0]["subAgent"]["unread"],json!(["child-d","child-e"]));
+        assert!(rows[0]["subAgent"]["unreadReasons"].as_array().unwrap().iter().any(|r|r["thread"]=="child-e"&&r["reason"].as_str().unwrap().contains("fixture unreadable child")),"the reason a read failed is reported");
+        root.lock().unwrap().link_trial_child(&reference,"child-d",true,&descendant_view(&peer,&["child-d","child-e"])).unwrap();
+        let rows=trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]));
+        assert_eq!(rows[0]["subAgent"]["state"],"linked");assert_eq!(rows[0]["subAgent"]["thread"],"child-d");
+        assert_eq!(rows[0]["subAgent"]["unread"],json!(["child-e"]),"the linked sub-agent is not a candidate for its own trial");
+        root.lock().unwrap().link_trial_child(&reference,"child-d",false,&Value::Null).unwrap();
+        assert_eq!(trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]))[0]["subAgent"]["unread"],json!(["child-d","child-e"]),"unlinked, it is offered again");
+    }
+    // TT-9 at Codex 0.160.0 (trial witness 2026-10-10): a spawned sub-agent's
+    // task arrives as an encrypted inter-agent message, so its input cannot be
+    // read. Detected from the child's first turn as read, not from a version
+    // string. An inter-agent task item with encrypted content is final: the
+    // child stays offered for the person to link, fidelity reads "not
+    // checkable" and Read again is not offered. A first turn with items but no
+    // user message reads "not checkable" too, but stays open: it is read again
+    // on new activity and Read again stays offered, so a user message listed
+    // later is still read. The user-message shape links by the begin marker
+    // (the test above).
+    #[test]
+    fn a_sub_agent_whose_task_is_not_a_user_message_reads_not_checkable_and_stays_linkable(){
+        for (mode,reading,last) in [("encrypted",trial_flows::INPUT_ENCRYPTED,true),("nouser",trial_flows::INPUT_NOT_A_USER_MESSAGE,false)]{
+            let peer=Peer::new();let mut root=trial_root(&peer);let g=peer.generation.clone();
+            let reference=root.prepare_trial("delegated",DRAFT,Some((&g,"thread")),Some(&peer.home),peer.project()).unwrap()["reference"].as_str().unwrap().to_owned();
+            let root=Mutex::new(root);trial_flows::send_trial(&root,&peer.home,&reference,&g,"thread","").unwrap();
+            peer.set_mode("child-mode",mode);
+            let mut fixture=json!({});
+            // The fields the web view reads from a delegated trial row, with the reference fixed.
+            let shown=|row:&Value|{let mut out=json!({"reference":"trial:fixture"});for k in ["kind","sequence","subAgent","fidelity","readAgain"]{out[k]=row[k].clone();}out};
+            assert!(tick_reads(&peer,&root,&descendant_view(&peer,&["child-s"])).is_empty(),"{mode}: nothing linked or recorded automatically");
+            let reads=item_reads(&peer);
+            let mut view=descendant_view(&peer,&["child-s"]);view["items"]=json!([{"threadId":"child-s","turnId":"child-turn","native":{"id":"x","type":"agentMessage"}}]);
+            tick_reads(&peer,&root,&view);
+            if last{assert_eq!(item_reads(&peer),reads,"{mode}: a final not-checkable read is not repeated on new activity");}
+            else{assert!(item_reads(&peer)>reads,"{mode}: read again on new activity");}
+            let rows=trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]));
+            assert_eq!(rows[0]["subAgent"]["state"],"sub-agent not linked");
+            assert_eq!(rows[0]["subAgent"]["unread"],json!([]),"{mode}: not listed as unread");
+            assert_eq!(rows[0]["subAgent"]["notCheckable"],json!([{"thread":"child-s","reading":reading,"final":last}]));
+            assert_eq!(rows[0]["readAgain"]["offered"],!last,"{mode}");
+            fixture["candidate"]=shown(&rows[0]);
+            // The person links it: fidelity reads not checkable with the reason; the child is no longer a candidate.
+            root.lock().unwrap().link_trial_child(&reference,"child-s",true,&descendant_view(&peer,&["child-s"])).unwrap();
+            let rows=trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]));
+            assert_eq!(rows[0]["subAgent"]["state"],"linked");assert_eq!(rows[0]["subAgent"]["notCheckable"],json!([]));
+            assert_eq!((&rows[0]["fidelity"]["state"],&rows[0]["fidelity"]["checkable"],&rows[0]["fidelity"]["reading"]),(&json!("not checked"),&json!(false),&json!(reading)));
+            assert_eq!(rows[0]["readAgain"]["offered"],!last,"{mode}");
+            fixture["linked"]=shown(&rows[0]);
+            if mode=="encrypted"{web_view_fixture("trial-not-checkable.json",&fixture);}
+            // Read again, if pressed, records the reason itself, not a read failure.
+            let again=trial_flows::read_trial_again(&root,&peer.home,&reference,&descendant_view(&peer,&[])).unwrap();
+            let limits=again["recorded"][0]["fidelity"]["limits"].as_array().unwrap().clone();
+            assert!(limits.iter().any(|l|l==reading)&&!limits.iter().any(|l|l.as_str().unwrap().contains("could not be read")),"{again}");
+            let row=trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]))[0].clone();
+            assert_eq!(row["fidelity"]["checkable"],false,"{mode}: the recorded reading reads not checkable too (after a relaunch)");
+            assert_eq!(row["readAgain"]["offered"],!last,"{mode}");
+            if !last{
+                // A user message listed later is read: the open verdict is not a dead end.
+                peer.set_mode("child-mode","given");
+                let again=trial_flows::read_trial_again(&root,&peer.home,&reference,&descendant_view(&peer,&[])).unwrap();
+                assert_eq!(again["recorded"][0]["fidelity"]["state"],"verbatim","{again}");
+                let row=trial_rows(&root.lock().unwrap(),&descendant_view(&peer,&[]))[0].clone();
+                assert!(row["fidelity"]["checkable"].is_null()&&row["readAgain"]["offered"]==true,"{row}");
+            }
+        }
+        // Not linked yet, the open verdict also gives way to a user message seen on new activity.
+        let peer=Peer::new();let mut root=trial_root(&peer);let g=peer.generation.clone();
+        let reference=root.prepare_trial("delegated",DRAFT,Some((&g,"thread")),Some(&peer.home),peer.project()).unwrap()["reference"].as_str().unwrap().to_owned();
+        let root=Mutex::new(root);trial_flows::send_trial(&root,&peer.home,&reference,&g,"thread","").unwrap();
+        peer.set_mode("child-mode","nouser");
+        tick_reads(&peer,&root,&descendant_view(&peer,&["child-s"]));
+        peer.set_mode("child-mode","given");
+        let mut view=descendant_view(&peer,&["child-s"]);view["items"]=json!([{"threadId":"child-s","turnId":"child-turn","native":{"id":"x","type":"agentMessage"}}]);
+        let recorded=tick_reads(&peer,&root,&view);
+        assert_eq!(recorded[0]["observation"],"sub-agent linked","{recorded:?}");
+    }
+    // Review of #1260 (5): the sub-agent's not-checkable reading is the child
+    // read's only; a clean trial's first turn with items but no user message
+    // reads "not yet", never a sub-agent sentence.
+    #[test]
+    fn a_clean_trial_turn_without_a_user_message_is_not_worded_as_a_sub_agent(){
+        let peer=Peer::new();let mut root=trial_root(&peer);let g=peer.generation.clone();
+        let reference=root.prepare_trial("clean",DRAFT,Some((&g,"thread")),Some(&peer.home),peer.project()).unwrap()["reference"].as_str().unwrap().to_owned();
+        root.begin_clean_start(&reference).unwrap();
+        let thread=peer.second_thread();root.mark_clean_started(&reference,&g,&thread);
+        let root=Mutex::new(root);
+        trial_flows::send_trial(&root,&peer.home,&reference,&g,&thread,"Inputs for this trial: the fixture.").unwrap();
+        peer.set_mode("items-mode","nouser");
+        let ended=json!({"home":g["home"],"generation":g,"items":[],"descendants":[],"turns":[{"threadId":thread,"id":"turn","status":"completed"}]});
+        let recorded=tick_reads(&peer,&root,&ended);
+        assert_eq!(recorded[0]["fidelity"]["state"],"not checked","{recorded:?}");
+        let words=recorded[0]["fidelity"]["limits"].to_string();
+        assert!(!words.contains("sub-agent")&&!words.contains("not checkable"),"automatic read: {words}");
+        let again=trial_flows::read_trial_again(&root,&peer.home,&reference,&json!({})).unwrap();
+        let fidelity=&again["recorded"][0]["fidelity"];
+        assert_eq!(fidelity["state"],"not checked","{again}");
+        let words=fidelity["limits"].to_string();
+        assert!(!words.contains("sub-agent")&&!words.contains("not checkable"),"{words}");
+    }
     #[test]
     fn a_trial_in_a_conversation_with_a_run_keeps_the_run_and_its_lines_offer_nothing(){
         let peer=Peer::new();let mut root=trial_root(&peer);let g=peer.generation.clone();
@@ -7352,6 +7476,8 @@ for line in sys.stdin:
         let id=pending["id"].as_str().unwrap().to_owned();
         let mut status=root.lock().unwrap().snapshot();root.lock().unwrap().decorate_status(&mut status,&json!({}));
         let transcript=status["pendingBringBacks"][0]["transcript"].as_str().unwrap().to_owned();
+        // Trial witness 2026-10-10 (b): the composer names the trial by its sequence and draft, not its reference.
+        assert_eq!((&status["pendingBringBacks"][0]["sequence"],&status["pendingBringBacks"][0]["draftName"]),(&json!(1),&json!(DRAFT)));
         assert!(transcript.starts_with(&format!("[Chirality] Trial 1 of draft {DRAFT} @ ")));
         assert!(!transcript.contains("<<<chirality-workflow"),"the trial text is shown as one line");
         assert!(transcript.contains("[trial text of trial 1: identity "));

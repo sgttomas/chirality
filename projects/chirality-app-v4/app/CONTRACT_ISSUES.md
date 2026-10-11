@@ -1339,9 +1339,11 @@ changed.
     homes) both server-provider reads name no provider, so the reading is
     *not established* for every conversation, even for a `disabled` model.
     The App does not infer Codex's default provider from that absence (it is
-    not in the 0.160.0 types; OBS-2's observation is of 0.158.0). This holds
-    until the native witness observes what 0.160.0's `config/read` and
-    capabilities report for an unconfigured home; the witness run settles it.
+    not in the 0.160.0 types; OBS-2's observation is of 0.158.0). The trial
+    witness of 2026-10-10 observed this natively at 0.160.0 in an App-only
+    home: the app-server's configuration named no provider, both signals read
+    *not read*, the reading was *not established*, and Try with the authoring
+    agent stayed offered.
   - Not verifiable from the App: a `config.toml` edited after the app-server
     started may make `config/read` (read from the files now) and the
     parameterless reads (the server's loaded configuration) diverge. The
@@ -1359,6 +1361,35 @@ changed.
     reads are; NPTD §5.1 names the receiver DEL-01-03. Say which at the
     re-freeze. The tick's reads are journalled as the App rule
     `delegation-availability-read`.
+- **Trial witness (2026-10-10 evening;
+  `execution/PKG-02/DEL-02-02/Design/TRIAL_WITNESS_2026-10-10.md`).** WR TT-3a,
+  TT-9, TT-12, DT-5, §12 WR-VC-22, §15 U-WR-25 and §17 were edited, so the WR
+  pin moves further from the frozen hash. Pinned texts that still match their
+  pins were left unchanged; apply this at the re-freeze:
+  - DEL-01-03 `NATIVE_PLANS_TOOLS_DELEGATION.md` §7.2, the `parentThreadId`
+    row ("else the thread of a `subAgentActivity` item (inference)"): a
+    child's own history can carry `subAgentActivity` naming its parent. The
+    App no longer infers a parent from an item that names the containing
+    thread itself, the root agent (`agentPath` "/root"), or a known ancestor
+    of the containing thread, or whose `agentPath` is an ancestor of the
+    containing thread's known path. A `subAgentActivity` of kind `started`
+    names the thread the containing thread spawned. Its parent gets its own
+    `parentSource` ("subAgentActivity started (spawning thread)"). It corrects
+    only a purely inferred parent: it drops an inverted inference and
+    re-parents an inferred node, at any depth, under the same ancestor guard.
+    A parent set by a `started` row or by `collabAgentToolCall.senderThreadId`
+    is never removed or moved. A descendant's own `started` row naming an
+    ancestor (forked context can copy its spawner's rows) changes nothing.
+    Add that qualification. Limits:
+    - Without a `started` row (for example, a history read that has not
+      reached the parent's spawn turn), an inference made from a descendant's
+      activity seen first still stands.
+    - `NativeActivity.tsx` hides a "Descendant of" line that names one of the
+      conversation's own descendants. Where the data still holds such a cycle
+      (C under P beside an inverted P under C that no `started` row
+      corrected), P shows no inverted line, but C's real "Descendant of P"
+      line is hidden too. The `started` correction removes the cycle once that
+      row is seen.
 - **OI-008 ruling (2026-10-10).** The owner decided process placement for the
   whole App (`docs/ARCHITECTURE.md` §3). The unpinned texts now state it. WR
   §11 and NIR §1.1 were also edited, since their pins were already stale. Five
