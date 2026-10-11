@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
+<meta name="source-sha256" content="29d4e5f5eb129d5df35a5f7dd0795a138293be91ca48875ba683cde14c50f521">
+<meta name="source-basis-date" content="2026-10-11">
+<meta name="source-basis-revision" content="26d04270617c405fc3ca131d2ea6c86120ecc5ed">
+<title>Course 12 — Integrated Project Practicum · Chirality</title>
+<style>
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --canvas: #eeeeee;
+  --ink: #111111;
+  --muted: #505050;
+  --line: #cccccc;
+  --accent: #111111;
+  --tint: #eeeeee;
+  font-family: "Liberation Serif", "Times New Roman", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 2rem; }
+body { margin: 0; color: var(--ink); background: var(--canvas); }
+a { color: var(--accent); text-underline-offset: .17em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #111111;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.skip-link {
+  position: fixed; top: .6rem; left: .6rem; z-index: 100;
+  padding: .6rem 1rem; background: var(--paper); border: 2px solid var(--accent);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+.masthead { border-bottom: 1px solid var(--ink); background: var(--paper); }
+.masthead-inner {
+  max-width: 70rem; margin: auto; padding: 1.05rem 2.5rem;
+  display: flex; flex-wrap: wrap; gap: .35rem 1.2rem;
+  align-items: baseline; justify-content: center; text-align: center;
+}
+.brand { font-size: .92rem; font-weight: 700; letter-spacing: .12em; }
+.masthead-label { color: var(--ink); font-size: .77rem; text-transform: uppercase; letter-spacing: .025em; }
+.layout {
+  max-width: 70rem; margin: auto; padding: 0 2.5rem;
+  display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2.5rem;
+}
+.sidebar {
+  position: sticky; top: 0; align-self: start; max-height: 100vh;
+  overflow-y: auto; padding: 2rem .8rem 2rem 0;
+  scrollbar-width: thin;
+}
+.nav-label, .eyebrow {
+  margin: 0 0 .85rem; color: var(--muted); font-size: .73rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+}
+.contents { list-style: none; padding: 0; margin: 0; }
+.contents li { margin: .15rem 0; }
+.contents a {
+  display: block; padding: .34rem .65rem; border-left: 2px solid transparent;
+  color: var(--muted); text-decoration: none; font-size: .86rem; line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.contents a:hover, .contents a:focus-visible {
+  color: var(--accent); background: var(--tint); border-left-color: var(--accent);
+}
+.nav-help { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.3rem; }
+.nav-help p, .nav-help a { font-size: .75rem; color: var(--muted); }
+.nav-help p { margin: .5rem 0; }
+kbd { font: inherit; padding: .05rem .25rem; border: 1px solid var(--line); border-radius: .2rem; }
+main { min-width: 0; max-width: 48.5rem; padding: 2rem 0 3rem; }
+.document-meta {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem 1.5rem; margin: 0 0 1.5rem;
+  font-size: .73rem; color: var(--muted);
+}
+.document-meta div { min-width: 0; }
+.document-meta dt { font-weight: 700; letter-spacing: .025em; }
+.document-meta dd { margin: .15rem 0 0; overflow-wrap: anywhere; }
+.document-meta code { font-size: .9em; background: none; padding: 0; }
+.fingerprint { grid-column: 1 / -1; }
+.paper {
+  min-width: 0; padding: 3.4rem 3rem 3rem;
+  background: var(--paper); border: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgb(0 0 0 / .04);
+}
+article { max-width: 68ch; margin: auto; overflow-wrap: anywhere; }
+article > :first-child { margin-top: 0; }
+h1, h2, h3, h4, h5, h6 { color: #000000; line-height: 1.22; text-wrap: balance; scroll-margin-top: 2rem; }
+h1 {
+  max-width: 19ch; margin: 0 auto 1.65rem; font-size: clamp(2.05rem, 3.8vw, 2.8rem);
+  text-align: center; text-transform: uppercase; letter-spacing: .015em;
+}
+article > h1 + p { margin-bottom: 2.4rem; text-align: center; font-size: .82rem; line-height: 1.45; }
+h2 { font-size: 1.5rem; margin: 3.4rem 0 1.1rem; }
+h3 { font-size: 1.13rem; margin: 2rem 0 .7rem; }
+h4, h5, h6 { font-size: 1.02rem; margin: 1.65rem 0 .6rem; }
+p { margin: 0 0 .78rem; }
+article p { text-align: justify; text-justify: inter-word; hyphens: auto; }
+ul, ol { padding-left: 1.5rem; }
+li { padding-left: .2rem; margin: .35rem 0; }
+li > p { margin: .6rem 0; }
+hr { max-width: 75%; border: 0; border-top: 1px solid var(--ink); margin: 2.5rem auto; }
+blockquote {
+  margin: 1.4rem 1.25rem; padding: 0; background: none; border: 0;
+}
+blockquote > :last-child { margin-bottom: 0; }
+code, pre { font-family: "Liberation Mono", "SFMono-Regular", Consolas, monospace; font-size: .83em; hyphens: none; }
+code { background: #f1f1f1; padding: .08em .2em; overflow-wrap: anywhere; }
+pre {
+  max-width: 100%; overflow-x: auto; padding: 1rem 1.15rem; margin: 1.4rem 0;
+  color: #111111; background: #f6f6f6; border: 1px solid var(--line);
+  line-height: 1.5; tab-size: 4;
+}
+pre code { background: none; padding: 0; border-radius: 0; font-size: 1em; overflow-wrap: normal; }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 1.5rem 0; }
+table { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: .87rem; line-height: 1.4; }
+th, td { padding: .65rem .75rem; text-align: left; vertical-align: top; border: 1px solid #b8b8b8; }
+th { color: #000000; background: #eeeeee; font-weight: 700; }
+tbody tr { background: #ffffff; }
+img, svg { max-width: 100%; height: auto; }
+a[id], a[name] { scroll-margin-top: 2rem; }
+p:has(> a[id]:only-child):empty { margin: 0; }
+p:has(> a[id]:only-child) { margin: 0; }
+h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-color: #777777; text-decoration-thickness: .08em; text-underline-offset: .2em; }
+.mobile-toc { display: none; }
+.document-footer { margin-top: 1.5rem; color: var(--muted); font-size: .73rem; }
+.document-footer p { margin: .4rem 0; }
+@media (max-width: 65rem) {
+  .layout { padding: 0 1.5rem; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 1.5rem; }
+  .masthead-inner { padding: 1rem 1.5rem; }
+  .paper { padding: 2.6rem 2rem; }
+}
+@media (max-width: 54rem) {
+  html { scroll-padding-top: 4.5rem; }
+  .layout { display: block; padding: 0 1rem; }
+  .sidebar { display: none; }
+  .masthead-inner { padding: .85rem 1rem; gap: .2rem 1rem; }
+  .mobile-toc {
+    display: block; position: sticky; top: 0; z-index: 10;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .mobile-toc summary { padding: .75rem 1rem; cursor: pointer; color: var(--accent); font-weight: 700; font-size: .85rem; }
+  .mobile-toc nav { max-height: 65vh; overflow-y: auto; padding: 0 .5rem 1rem; }
+  .mobile-toc .contents a { padding: .55rem; }
+  main { padding-top: 1.25rem; }
+  .paper { padding: 2.2rem 1.4rem; }
+  article p { text-align: left; }
+  article > h1 + p { text-align: center; }
+  h2, h3, h4, h5, h6, a[id], a[name] { scroll-margin-top: 4.5rem; }
+  h2 { margin-top: 2.7rem; font-size: 1.4rem; }
+  .document-meta { gap: .75rem 1rem; }
+}
+@media (max-width: 25rem) {
+  :root { font-size: 17px; }
+  .layout { padding: 0 .5rem; }
+  .paper { padding: 1.4rem 1rem; }
+  .document-meta { padding: 0 .5rem; }
+}
+@media print {
+  @page { size: 6.75in 9.25in; margin: .68in .65in .67in .72in; }
+  :root { font-size: 10.5pt; line-height: 1.2; color-scheme: light; }
+  body, .paper { color: #111; background: white; }
+  .masthead, .sidebar, .mobile-toc, .skip-link, .back-top { display: none; }
+  .layout { display: block; max-width: none; padding: 0; }
+  main { max-width: none; padding: 0; }
+  .paper { padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+  article { max-width: none; }
+  article p { margin-bottom: 4.6pt; text-align: justify; }
+  .document-meta { padding: 0 0 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #bbb; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 18pt; margin-top: 1.8rem; }
+  h3 { font-size: 12pt; }
+  h4, h5, h6 { font-size: 11pt; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  a { color: inherit; text-decoration: underline; }
+  .table-scroll { overflow: visible; border: 0; }
+  table { min-width: 0; table-layout: auto; font-size: 9pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  th, td { padding: .45rem; }
+  pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; border-color: #bbb; font-size: 8pt; line-height: 1.3; }
+  pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  blockquote { break-inside: avoid; background: white; }
+  .document-footer { border-top: 1px solid #bbb; padding-top: .75rem; }
+}
+</style>
+</head>
+<body id="manual-top">
+<a class="skip-link" href="#manual-content">Skip to manual</a>
+<header class="masthead">
+  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Human team courses · offline reading edition</span></div>
+</header>
+<details class="mobile-toc">
+  <summary>Contents · 19 sections</summary>
+  <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#prerequisites-and-working-arrangements">Prerequisites and working arrangements</a></li>
+<li><a href="#learning-outcomes">Learning outcomes</a></li>
+<li><a href="#lesson--work-from-evidence-to-a-combined-result">Lesson — Work from evidence to a combined result</a></li>
+<li><a href="#role-cards">Role cards</a></li>
+<li><a href="#rotate-responsibilities">Rotate responsibilities</a></li>
+<li><a href="#phase-0--establish-the-working-basis">Phase 0 — Establish the working basis</a></li>
+<li><a href="#phase-1--respond-to-the-supplier">Phase 1 — Respond to the supplier</a></li>
+<li><a href="#phase-2--respond-to-the-requested-scope-change">Phase 2 — Respond to the requested scope change</a></li>
+<li><a href="#phase-3--respond-to-the-forecast">Phase 3 — Respond to the forecast</a></li>
+<li><a href="#phase-4--respond-to-the-acceptance-claim">Phase 4 — Respond to the acceptance claim</a></li>
+<li><a href="#phase-5--respond-to-incentives-and-adverse-evidence">Phase 5 — Respond to incentives and adverse evidence</a></li>
+<li><a href="#decision-requests-and-adverse-findings">Decision requests and adverse findings</a></li>
+<li><a href="#worked-example--separate-an-observation-from-acceptance">Worked example — Separate an observation from acceptance</a></li>
+<li><a href="#transfer-example">Transfer example</a></li>
+<li><a href="#practice--rehearse-an-event-response">Practice — Rehearse an event response</a></li>
+<li><a href="#knowledge-check">Knowledge check</a></li>
+<li><a href="#assessed-assignment--integrated-package-and-defense">Assessed assignment — Integrated package and defense</a></li>
+<li><a href="#individual-study-adaptation">Individual-study adaptation</a></li>
+<li><a href="#portfolio-and-references">Portfolio and references</a></li></ol></nav>
+</details>
+<div class="layout">
+<aside class="sidebar">
+  <nav aria-label="Sections">
+    <p class="nav-label">In this manual</p>
+    <ol class="contents"><li><a href="#prerequisites-and-working-arrangements">Prerequisites and working arrangements</a></li>
+<li><a href="#learning-outcomes">Learning outcomes</a></li>
+<li><a href="#lesson--work-from-evidence-to-a-combined-result">Lesson — Work from evidence to a combined result</a></li>
+<li><a href="#role-cards">Role cards</a></li>
+<li><a href="#rotate-responsibilities">Rotate responsibilities</a></li>
+<li><a href="#phase-0--establish-the-working-basis">Phase 0 — Establish the working basis</a></li>
+<li><a href="#phase-1--respond-to-the-supplier">Phase 1 — Respond to the supplier</a></li>
+<li><a href="#phase-2--respond-to-the-requested-scope-change">Phase 2 — Respond to the requested scope change</a></li>
+<li><a href="#phase-3--respond-to-the-forecast">Phase 3 — Respond to the forecast</a></li>
+<li><a href="#phase-4--respond-to-the-acceptance-claim">Phase 4 — Respond to the acceptance claim</a></li>
+<li><a href="#phase-5--respond-to-incentives-and-adverse-evidence">Phase 5 — Respond to incentives and adverse evidence</a></li>
+<li><a href="#decision-requests-and-adverse-findings">Decision requests and adverse findings</a></li>
+<li><a href="#worked-example--separate-an-observation-from-acceptance">Worked example — Separate an observation from acceptance</a></li>
+<li><a href="#transfer-example">Transfer example</a></li>
+<li><a href="#practice--rehearse-an-event-response">Practice — Rehearse an event response</a></li>
+<li><a href="#knowledge-check">Knowledge check</a></li>
+<li><a href="#assessed-assignment--integrated-package-and-defense">Assessed assignment — Integrated package and defense</a></li>
+<li><a href="#individual-study-adaptation">Individual-study adaptation</a></li>
+<li><a href="#portfolio-and-references">Portfolio and references</a></li></ol>
+  </nav>
+  <div class="nav-help">
+    <p>Find a term with <kbd>⌘ F</kbd> or <kbd>Ctrl F</kbd>. Use your browser’s print command for a paper copy.</p>
+    <p><a href="12-project-practicum.md">Markdown source</a> · <a href="#manual-top">Back to start ↑</a></p>
+  </div>
+</aside>
+<main id="manual-content" tabindex="-1">
+  <div class="paper">
+    <article aria-labelledby="course-12--integrated-project-practicum">
+<!-- BEGIN MARKDOWN CONTENT -->
+<h1 id="course-12--integrated-project-practicum">Course 12 — Integrated Project Practicum</h1>
+<p><a href="../index.html">Series</a> · <a href="../case-study.html">Northbank case</a> · <a href="../glossary.html">Glossary</a> · <a href="../references.html">References</a></p>
+<p>This practicum brings the series together. Your team must establish a common basis, produce connected work, examine it, and defend its recommendation.</p>
+<p>The project changes during the exercise. New information will challenge the scope, forecast, technical basis, and delivery claim.</p>
+<p>Your work product is an examined project decision package. Its conclusions must fit the evidence and authority available at each event.</p>
+<h2 id="prerequisites-and-working-arrangements">Prerequisites and working arrangements</h2>
+<p>Complete Courses 01 to 11. Bring the earlier portfolio as working material. Check its revision and source basis before reuse.</p>
+<p>Use six participants and one facilitator. Four participants can combine compatible roles. Arrange an independent reviewer for each assessed output.</p>
+<p>The facilitator represents the sponsor and the relevant technical authorities. The facilitator records simulated decisions under the limits in A01.</p>
+<p>Read the role cards before starting. Use Packets A to D from the <a href="../case-study.html">case</a>. The facilitator releases events in D03 order.</p>
+<p>Participants may already know the case. At each event, use only the released record set for that decision. Identify later evidence separately.</p>
+<p>Allow twelve working hours. Hold several sessions if necessary. Preserve the working revision when a session ends.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 1; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Activity</th>
+<th style="text-align:right">Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Establish the working basis</td>
+<td style="text-align:right">1 hour</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Supplier acceptance request</td>
+<td style="text-align:right">1.5 hours</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Operations scope request</td>
+<td style="text-align:right">1.5 hours</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Cost and schedule forecast</td>
+<td style="text-align:right">1.5 hours</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Draft acceptance claim</td>
+<td style="text-align:right">1.5 hours</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Incentives and adverse evidence</td>
+<td style="text-align:right">1.5 hours</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Integrated defense and repair</td>
+<td style="text-align:right">2 hours</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Individual examination</td>
+<td style="text-align:right">1.5 hours</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="learning-outcomes">Learning outcomes</h2>
+<p>After this practicum, you can:</p>
+<ul>
+<li>Establish and maintain a shared decision basis.</li>
+<li>Coordinate project management and project engineering contributions.</li>
+<li>Assess changes without creating unsupported approvals.</li>
+<li>Produce and independently examine an integrated recommendation.</li>
+<li>Explain your own reasoning, limits, and responsibility.</li>
+</ul>
+<h2 id="lesson--work-from-evidence-to-a-combined-result">Lesson — Work from evidence to a combined result</h2>
+<p>A team's result needs more than several competent documents. Their requirements, configuration, assumptions, forecasts, and conclusions must agree where they interact.</p>
+<p>Allocate each output to a producer. Give that producer its inputs, intended use, boundaries, and examination conditions.</p>
+<p>State dependencies as conditions. “Procurement needs engineering” is incomplete. Procurement needs an identified, technically reviewed purchase package and expenditure authority.</p>
+<p>Keep decisions specific. Approval of an investigation permits that investigation. It does not approve the future design or operating result.</p>
+<p>A later event can invalidate a conclusion or expose an omitted condition. Identify the affected outputs before repairing them.</p>
+<p>Retain valid work. Repeat examination when a change affects its grounds. Record the new decision without silently replacing the earlier decision basis.</p>
+<p>The reviewer examines an identified revision for a stated purpose. The reviewer must have suitable competence and independence from its production.</p>
+<p>Consider shared interests, assumptions, and relationships that could impair the review. Nonparticipation in production alone does not establish suitable scrutiny.</p>
+<p>Examine consequences for operators, site personnel, other affected people, and the environment. State where evidence is needed to assess those effects.</p>
+<p>Report readiness truthfully. Identify incentive conflicts and the grounds of dissent. Apply assigned information-sharing conditions when providing evidence to reviewers.</p>
+<p>Northbank supplies no confidentiality clause or legal determination. Identify any needed condition without inventing it. Use an appropriate route for significant concerns.</p>
+<p>Review findings belong with the claim they affect. The producer repairs the work. The reviewer confirms the affected repair.</p>
+<p>If the reviewer previously produced the affected item, obtain another reviewer. The facilitator can arrange a mentor or a reviewer from another team.</p>
+<h2 id="role-cards">Role cards</h2>
+<p>The cards describe exercise responsibilities. Use A01 for decision rights. Each participant must question unsupported conclusions, including those outside their current card.</p>
+<h3 id="project-manager">Project manager</h3>
+<p>Coordinate the undertaking's scope, resources, expenditure, schedule, contracts, and forecast. Prepare sponsor decisions when commitments need amendment.</p>
+<p>Maintain the integrated action plan. Explain the difference between the authorized budget and the current forecast.</p>
+<p>Do not treat schedule pressure as technical approval. Give technical and operating conditions a visible place in the plan.</p>
+<h3 id="project-engineer">Project engineer</h3>
+<p>Coordinate the technical basis, requirements, operating cases, discipline inputs, and interfaces. Identify the conditions that dependent work needs.</p>
+<p>Prepare technical decision requests within the assigned remits. Explain the effect of proposed changes on the combined result.</p>
+<p>Keep legal applicability visible under A06. Identify which design or release decisions require that missing basis.</p>
+<h3 id="discipline-representative">Discipline representative</h3>
+<p>Examine the mechanical, electrical, civil, or controls question assigned in the phase. State your competence limits within the simulation.</p>
+<p>Use the supplied facts to identify missing inputs and necessary checks. Prepare an interface or examination plan for the assigned contribution.</p>
+<p>Do not invent calculations, selected equipment data, field observations, or technical approval. Identify the competent examination that a real project would need.</p>
+<h3 id="procurement-and-contracts-coordinator">Procurement and contracts coordinator</h3>
+<p>Identify the purchase package, proposed configuration, price basis, delivery conditions, and required authorizations.</p>
+<p>Check whether the proposed supplier response supports a commitment. Record exclusions and conditions that affect other team members.</p>
+<p>Return technical substitutions to the relevant technical authority. Separate a supplier proposal from an accepted project requirement.</p>
+<h3 id="operations-representative">Operations representative</h3>
+<p>Explain the need behind the requested capacity and changeover function. Identify operating, maintenance, training, and receiving conditions.</p>
+<p>Examine the proposed result from its intended use. Prepare a bounded receiving recommendation with remaining obligations.</p>
+<p>Do not treat an operating preference as an approved scope amendment. Ask the sponsor to decide any proposed departure from A02.</p>
+<h3 id="independent-reviewer-and-information-controller">Independent reviewer and information controller</h3>
+<p>Maintain the source and decision index. Preserve output identity, revision, status, and the source set used in each phase.</p>
+<p>Independently examine assigned outputs that you did not produce. Record findings against specific claims and requirements.</p>
+<p>Check whether the revised outputs address the findings. Record closure on evidence or a decision within the decision owner's authority. Identify any factual claim that remains unestablished.</p>
+<h2 id="rotate-responsibilities">Rotate responsibilities</h2>
+<p>Number participants 1 to 6. Assign the six cards in the order above during Phase 0.</p>
+<p>Move each participant to the next card at each phase from Phase 1 to Phase 5. Move the sixth card to the first.</p>
+<p>For Phase 6, assign roles to preserve independent examination of the final package. Record each person's production and review contributions.</p>
+<p>Transfer the current revision, open findings, decisions, and next action at each rotation. The next participant must inspect the actual output.</p>
+<p>For a four-person team, combine project engineering with discipline representation. Combine procurement with information control. Keep production and independent examination separate.</p>
+<p>Use the facilitator or another team for conflicted reviews. Role rotation alone does not establish independence or technical competence.</p>
+<h2 id="phase-0--establish-the-working-basis">Phase 0 — Establish the working basis</h2>
+<p>Use A01 to A07 and B03. Treat B03 as an initial coordination input. Preserve its missing owners and dates as open matters.</p>
+<ol>
+<li>Establish a source index.</li>
+<li>Identify the approved scope and commitments.</li>
+<li>Identify the authority for each decision type.</li>
+<li>Assign owners to the unresolved interfaces.</li>
+<li>Define the conditions for the next dependent activity.</li>
+<li>Select a reviewer for the first purchase-package recommendation.</li>
+</ol>
+<p>Produce a one-page project basis, a source index, and an interface table. Include the missing hydraulic and legal basis.</p>
+<p>Record proposed owners and timing as your team's planning decisions. Do not report them as original source facts.</p>
+<h2 id="phase-1--respond-to-the-supplier">Phase 1 — Respond to the supplier</h2>
+<p><strong>Event prompt:</strong> The supplier requests acceptance of B01 within two working days. It wants to preserve its proposed delivery slot.</p>
+<p>Release B01 and B02. The supplied motors are rated for 480 V. A04 records a 600 V site observation.</p>
+<ol>
+<li>Compare the submission with the governing project basis.</li>
+<li>Identify the unresolved technical and procurement conditions.</li>
+<li>Prepare a purchase-package recommendation.</li>
+<li>Request the applicable technical disposition from the facilitator.</li>
+<li>Examine the recommendation independently.</li>
+<li>Record the facilitator's decision.</li>
+</ol>
+<p>Produce a supplier response, interface actions, and a decision request. Identify the evidence needed for any later equipment acceptance.</p>
+<p>Give procurement a usable instruction. State which commitment, if any, the decision authorizes. Preserve the decision's conditions in the current working basis.</p>
+<h2 id="phase-2--respond-to-the-requested-scope-change">Phase 2 — Respond to the requested scope change</h2>
+<p><strong>Event prompt:</strong> Operations asks the team to adopt 22 litres per second and automatic changeover under A05.</p>
+<p>Release A05 as the current request. A02 still requires 18 litres per second. The sponsor has requested an impact assessment.</p>
+<ol>
+<li>Explain the operational need stated in A05.</li>
+<li>Assess the affected requirements and interfaces.</li>
+<li>Identify missing evidence for the impact assessment.</li>
+<li>Compare the proposed change with retaining the approved scope.</li>
+<li>Prepare a sponsor decision request.</li>
+<li>Record the facilitator's disposition.</li>
+</ol>
+<p>Produce a change assessment and revised action plan. Distinguish automatic changeover from the changeover function that A02 requires the project to confirm.</p>
+<p>Identify any forecast exclusions. Carry the earlier voltage issue into the revised interface account.</p>
+<h2 id="phase-3--respond-to-the-forecast">Phase 3 — Respond to the forecast</h2>
+<p><strong>Event prompt:</strong> C03 arrives for the existing 18 litres per second scope. The sponsor asks whether the original commitments remain credible.</p>
+<p>Release C01 to C03. Treat cost and duration values as exercise assumptions. Use the sequential calculation before considering alternatives.</p>
+<ol>
+<li>Calculate the difference between the forecast and budget.</li>
+<li>Calculate the sequential delivery and handover weeks.</li>
+<li>Identify the technical limits of the forecast.</li>
+<li>Prepare options for the commitment decision.</li>
+<li>Request the sponsor's disposition.</li>
+<li>Update the forecast without silently changing the approved commitments.</li>
+</ol>
+<p>Produce a cost comparison, schedule calculation, and commitment decision request. Explain the conditions needed before proposed recovery could become credible.</p>
+<p>Do not add recorded actual expenditure to C03 again. Its item totals already include that expenditure.</p>
+<h2 id="phase-4--respond-to-the-acceptance-claim">Phase 4 — Respond to the acceptance claim</h2>
+<p><strong>Event prompt:</strong> The simulation moves to a later installation scenario. C04 arrives with a cover sheet claiming complete acceptance.</p>
+<p>Release C04 and C05. This time change supplies the reported observations. It does not establish that earlier design gaps were resolved.</p>
+<p>The reported test observed 18 litres per second during one normal condition. It leaves several scenarios unexercised and lacks complete configuration information.</p>
+<p>Establish intended behavior and examination coverage before calling a specific test mandatory. Distinguish untested behavior from observed failure.</p>
+<ol>
+<li>Compare each acceptance claim with its evidence.</li>
+<li>Identify the unresolved configuration and readiness conditions.</li>
+<li>Prepare an assurance finding.</li>
+<li>Define the additional examination needed for proposed reliance.</li>
+<li>Request the applicable technical and receiving decisions.</li>
+<li>Prepare a bounded handover recommendation.</li>
+</ol>
+<p>Produce a claim-to-evidence table, examination plan, and handover recommendation. Identify the responsible recipients for continuing obligations.</p>
+<p>Keep the observed result available. Correct any broader conclusion that the observation cannot support.</p>
+<h2 id="phase-5--respond-to-incentives-and-adverse-evidence">Phase 5 — Respond to incentives and adverse evidence</h2>
+<p><strong>Event prompt:</strong> D02 reveals the handover bonus, document-count reporting, and closure of the junior engineer's changeover concern.</p>
+<p>Release D01 and D02. The sponsor requests a credible continuation decision. None of the recovery proposals has confirmed supporting conditions.</p>
+<ol>
+<li>Examine the recorded closure of the concern.</li>
+<li>Compare the reported progress with the readiness evidence.</li>
+<li>Draw one evidence-based feedback explanation.</li>
+<li>Prepare a corrected project status.</li>
+<li>Compare continuation, reduction, and suspension.</li>
+<li>Submit the recommended direction for the appropriate decisions.</li>
+</ol>
+<p>Produce a leadership memorandum and revised decision table. Include conditions for supplier alternatives, activity overlap, and any proposed temporary use.</p>
+<p>Explain who could be affected by premature reliance. Identify the consequences that require further examination and the responsible reporting route.</p>
+<p>Address the reporting arrangement without assuming personal motives. Preserve the concern's technical basis and route it to competent examination.</p>
+<h2 id="decision-requests-and-adverse-findings">Decision requests and adverse findings</h2>
+<p>Use one table for each consequential request. Name the decision question, authority, options, evidence, uncertainties, recommendation, conditions, and affected outputs.</p>
+<p>The facilitator can grant, qualify, or reject the request. A decision becomes a new simulated case event with an identity and exact scope.</p>
+<p>An unanswered request remains open. A conditional decision authorizes only the work within its stated conditions.</p>
+<p>Identify each adverse finding by the affected claim, source evidence, consequence, responsible producer, and required closure evidence.</p>
+<p>The producer must either repair the defect or defend the original account with adequate evidence. Record the reviewer’s confirmed disposition.</p>
+<h2 id="worked-example--separate-an-observation-from-acceptance">Worked example — Separate an observation from acceptance</h2>
+<p>A team receives a witnessed test from another project. It establishes one performance result under stated conditions.</p>
+<p>The team lists the result as evidence for that condition. It then compares the proposed acceptance claim with the full examination requirements.</p>
+<p>A required failure response has no test evidence. The team records a finding and prepares the missing examination plan.</p>
+<p>The relevant authority can consider a bounded decision where the applicable requirements permit it. The team preserves the unexamined condition and its consequences.</p>
+<p>The report therefore remains useful without carrying an unsupported claim of complete acceptance.</p>
+<h2 id="transfer-example">Transfer example</h2>
+<p>A transport project receives a bridge inspection report. The report covers visible surfaces during one inspection.</p>
+<p>The receiving team identifies what the inspection establishes and which proposed uses need other evidence. It preserves those distinctions in its recommendation.</p>
+<p>The same practice applies to software tests, factory inspections, training records, and supplier certificates.</p>
+<h2 id="practice--rehearse-an-event-response">Practice — Rehearse an event response</h2>
+<p>Before the timed phases, use A03, A04, and a blank supplier-response page. One participant presents the legacy schedule as current evidence.</p>
+<ol>
+<li>Ask which source establishes the current condition.</li>
+<li>Explain the source's limits.</li>
+<li>Identify the required next contribution.</li>
+<li>State the authority needed for the proposed decision.</li>
+</ol>
+<p>Change roles. Repeat the exchange with a different claim. Use the same source set without inventing a new approval.</p>
+<h2 id="knowledge-check">Knowledge check</h2>
+<ol>
+<li>What must an incoming participant inspect during role rotation?</li>
+<li>What makes a reviewer independent for an assigned output?</li>
+<li>How must the team treat a facilitator's conditional decision?</li>
+<li>What does the Phase 4 time change establish about earlier technical gaps?</li>
+<li>Why must C03 remain separate from the 22 litres per second proposal?</li>
+<li>How can the team finish this practicum while project acceptance remains unsupported?</li>
+</ol>
+<h2 id="assessed-assignment--integrated-package-and-defense">Assessed assignment — Integrated package and defense</h2>
+<p>Assemble one coherent decision package. Use the repaired phase outputs and their decision history.</p>
+<p>Include the project basis, source index, interface account, purchase recommendation, change assessment, forecast, assurance findings, handover recommendation, and continuation memorandum.</p>
+<p>Use links or record identifiers to avoid unnecessary duplication. Include a short cover that states the requested decisions and proposed reliance.</p>
+<p>During Phase 6, present a twenty-minute team defense. The facilitator and reviewer question the evidence, authority, consequences, and connected outputs.</p>
+<p>Complete the required repairs within the remaining phase time. If required evidence remains unavailable, state its effect on the recommendation.</p>
+<p>During Phase 7, each participant writes a two-page individual explanation. Identify one personal contribution, one changed judgment, and one unresolved consequential condition.</p>
+<p>Each participant then receives a ten-minute examination. Explain a decision outside your final role and respond to one adverse finding.</p>
+<p>The assessment uses five observable criteria:</p>
+<ol>
+<li>The basis identifies source revisions, statuses, governing commitments, and simulated decisions without unsupported authority.</li>
+<li>The integrated plan gives usable owners, interfaces, prerequisites, forecasts, and consequences of change.</li>
+<li>The decision requests distinguish sponsor, technical, procurement, and operating authority with explicit conditions.</li>
+<li>The assurance and handover conclusions match the evidence and preserve unresolved obligations.</li>
+<li>Each participant defends the reasoning, addresses findings and ethical consequences, and shows the affected repairs within the team's integrated result.</li>
+</ol>
+<p>Meet all five criteria. A team result does not establish each participant's understanding. An unsupported individual explanation requires individual repair.</p>
+<h2 id="individual-study-adaptation">Individual-study adaptation</h2>
+<p>Use a mentor as facilitator, sponsor, technical authority, and reviewer. Keep separate output pages for each role you perform.</p>
+<p>Complete the phases in order. Before each event, give the mentor the current source set and working revision.</p>
+<p>Ask the mentor to roleplay the requesting party. Prepare your response before reading the instructor guidance.</p>
+<p>Use a fresh output revision for each repaired conclusion. Ask the mentor to examine independence limits when you occupy several producer roles.</p>
+<p>Complete the same written package and individual defense. Label the result as a facilitated individual practicum in your portfolio.</p>
+<h2 id="portfolio-and-references">Portfolio and references</h2>
+<p>Keep the final package, phase decisions, review findings, repaired versions, and individual explanation. Keep an index that makes their relationships retrievable.</p>
+<p>Use the <a href="../references.html">references</a> for further study. Compare the source manuals' basis, dependency, examination, and integration principles with your experience.</p>
+<p>Identify one practice to improve on your next project. State the evidence that would show whether it helps the intended result.</p>
+<!-- END MARKDOWN CONTENT -->
+    </article>
+  </div>
+  <footer class="document-footer">
+  <dl class="document-meta">
+    <div><dt>Source basis dated</dt><dd>11 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>26d04270617c405fc3ca131d2ea6c86120ecc5ed</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="12-project-practicum.md">12-project-practicum.md</a><br><code>29d4e5f5eb129d5df35a5f7dd0795a138293be91ca48875ba683cde14c50f521</code></dd></div>
+  </dl>
+    <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
+    <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
+    <p class="back-top"><a href="#manual-top">Back to start ↑</a></p>
+  </footer>
+</main>
+</div>
+<script>
+const mobileContents = document.querySelector('.mobile-toc');
+mobileContents.addEventListener('click', (event) => {
+  if (event.target.closest('a[href^="#"]')) mobileContents.open = false;
+});
+</script>
+</body>
+</html>

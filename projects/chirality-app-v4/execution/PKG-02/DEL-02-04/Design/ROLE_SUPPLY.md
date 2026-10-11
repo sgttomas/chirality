@@ -293,20 +293,6 @@ authoring convention, not a supply condition).
   reason (RC-08, RC-09); the App never substitutes the shipped default
   without the person's restore.
 
-  The App reader opens the instruction root and role folder as no-follow
-  directory descriptors, then opens the selected file relative to that folder
-  with no-follow and non-blocking flags. It accepts regular files only; FIFOs,
-  directories and devices cannot supply guidance or make it wait for a writer.
-  Reading is bounded by the opened file's observed length plus one detection
-  byte. It checks file mutation/replacement and root/role-folder replacement
-  before accepting the exact buffer. Relative roots and existing ancestor
-  aliases retain their prior meaning; static root, role-folder and leaf links
-  refuse. Ordinary hard-linked regular files remain readable. The focused
-  `role_guidance_reads_tests.rs` cases and public `role_lifecycle` FIFO case
-  exercise this boundary; they establish no native supplier uptake or cold
-  provenance. Metadata and name rechecks expose persistent changes; they do
-  not establish an atomic snapshot of a hostile filesystem. No new guidance
-  size policy or fallback is introduced.
 - **GS-6 New release.** For each file: if the copy still equals the default
   that was seeded, it takes the new default (`release-default-applied`); if
   the person modified it, it is kept and flagged "a new default is available"
@@ -455,6 +441,17 @@ there is no need to choose session flags for the observed per-thread route.
   (`config/read`) and supplies no child role whose name the person's
   configuration defines; if it cannot read it, none
   (`user-configuration-not-read`). It enables, disables and limits nothing.
+**Open discovery and receiving condition.** Stock 0.160.0 `config/read`
+  returning `agents:null` does not establish complete collision exclusion:
+  per-thread definitions can shadow a person's standalone `agents/` definition
+  without those origins appearing in that response. ACCESS/HOST M-A shares
+  `config.toml`, `AGENTS.md` and `skills`; native `agents/` is outside that set.
+  The controlled native carrier witness in `CHILD_ROLE_CARRIER_0.160.0.md`
+  supplies bounded collision/carrier evidence, not complete configuration-layer
+  discovery or actual App child supply. Complete discovery/exclusion, additive
+  child content and base preservation, App publication and actual association
+  remain open; no process-wide fallback or user configuration edit is selected.
+
 - **CR-3** TASK offers no child roles. That is not enforcement (K-10).
 - **CR-4 A child without a role type.** A child spawned with a built-in type
   (`default`, `explorer`, `worker`) or none has **unknown** guidance: not
@@ -690,6 +687,42 @@ requires, since the role file replaces the parent's text. v3's pins of
 `key=value` override strings (`codexNativeRoleConfigOverrides`), which reads as
 `-c` overrides at process start (inference from the code); for v4 that is
 CR-1a's fallback carrier, unobserved at 0.158.0.
+
+### 9.1 Guidance reader implementation observations
+
+The App reader opens the instruction root and role folder as no-follow
+directory descriptors, then opens the selected file relative to that folder
+with no-follow and non-blocking flags. It accepts regular files only; FIFOs,
+directories and devices cannot supply guidance or make it wait for a writer.
+Reading is bounded by the opened file's observed length plus one detection
+byte. It checks file mutation/replacement and root/role-folder replacement
+before accepting the exact buffer. Relative roots and existing ancestor
+aliases retain their prior meaning; static root, role-folder and leaf links
+refuse. Ordinary hard-linked regular files remain readable. The focused
+`role_guidance_reads_tests.rs` cases and public `role_lifecycle` FIFO case
+exercise this boundary; they establish no native supplier uptake or cold
+provenance. Metadata and name rechecks expose persistent changes; they do
+not establish an atomic snapshot of a hostile filesystem. No new guidance
+size policy or fallback is introduced.
+
+### 9.2 Initial-copy writes
+
+The current initial-copy implementation retains the selected existing
+ancestor and each created parent/root/role-folder descriptor before creating
+leaves. Managed entries use no-follow directory-relative creates and exclusive
+file creates, with file/directory sync and directory identity rechecks. A
+store for which root creation returns AlreadyExists is validated without
+adding copies; known existing stores are never repaired. A racing regular
+copy is preserved and checked. Failures can leave partial copies in the
+originally opened store; they remain explicit and are not silently repaired
+on a later start. These are bounded filesystem observations, not an atomic
+hostile-filesystem snapshot, a seed-history custody warrant or native uptake.
+Directory creation and descriptor acquisition are separate operations. A
+normal directory replacing a newly made entry before `openat` can be acquired
+as that entry; the rechecks do not establish its creation custody. Protection
+against redirection begins with the retained objects and does not make that
+acquisition atomic. The separate seed-record obligation above is not completed
+by these copies.
 
 ## 10. Prototype (R17-1)
 

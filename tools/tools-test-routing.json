@@ -318,7 +318,9 @@
     {
       "paths": [
         ".github/workflows/app-v4.yml",
-        ".github/workflows/piping-desktop-e2e.yml"
+        ".github/workflows/piping-desktop-e2e.yml",
+        ".github/workflows/shared-build-cache.yml",
+        ".github/actions/restore-build-cache/**"
       ],
       "checks": [
         "software_workflow"

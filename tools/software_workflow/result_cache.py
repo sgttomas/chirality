@@ -23,10 +23,10 @@ def included(path):
     return True
 
 
-def fingerprint(root, suite, commands, environment):
+def fingerprint(root, suite, commands, environment, selection=None):
     tree = subprocess.check_output(['git', '-C', str(root), 'ls-tree', '-r', '-z', 'HEAD'])
     entries = [entry.decode() for entry in tree.split(b'\0') if entry and included(entry.split(b'\t', 1)[1].decode())]
-    payload = dict(version=1, suite=suite, tree=entries, commands=commands, environment=environment)
+    payload = dict(version=2, suite=suite, tree=entries, commands=commands, environment=environment, selection=selection)
     return hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
 
 
@@ -39,13 +39,16 @@ def main():
     args = parser.parse_args()
     if args.action == 'key':
         commands = ['production-build', 'chromium-desktop:r2-smoke,b3b-project-persistence']
+        selection = None
         if args.suite == 'numerical':
             path = ROOT / 'projects/chirality-piping/tools/ci/numerical_ci.py'
             spec = importlib.util.spec_from_file_location('numerical_cache_plan', path)
             module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(module)
             plan = json.loads(args.plan.read_text())
-            _, commands = module.cargo_plan(ROOT / 'projects/chirality-piping', plan.get('paths'))
+            module.validate_plan(ROOT, plan)
+            selection = plan['piping_numerical_selection']
+            _, commands = module.cargo_plan(ROOT / 'projects/chirality-piping', selection=selection)
         environment = {key: os.environ.get(key, '') for key in ['ImageOS', 'ImageVersion', 'RUNNER_OS', 'RUNNER_ARCH']}
         # Missing runner identity cannot establish equivalent execution conditions.
         if not all(environment.values()):
@@ -53,7 +56,7 @@ def main():
         environment['python'] = platform.python_version()
         if args.suite == 'browser':
             environment['node'] = subprocess.check_output(['node', '--version'], text=True).strip()
-        key = 'verified-v1-' + args.suite + '-' + fingerprint(ROOT, args.suite, commands, environment)
+        key = 'verified-v2-' + args.suite + '-' + fingerprint(ROOT, args.suite, commands, environment, selection)
         with open(os.environ['GITHUB_OUTPUT'], 'a') as stream:
             stream.write('key=' + key + '\n')
         print(key)
