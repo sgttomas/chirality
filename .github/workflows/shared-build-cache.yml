@@ -1,0 +1,111 @@
+name: Shared build dependency caches
+
+# Main is a cache scope every new PR can read. No product tests run here.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shared-build-dependency-cache-main
+  cancel-in-progress: false
+
+jobs:
+  piping-numerical:
+    name: Warm Piping numerical dependencies (no tests)
+    if: github.repository == 'sgttomas/chirality' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CARGO_INCREMENTAL: '0'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /*
+            !/execution/
+            !/projects/*/execution/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: dtolnay/rust-toolchain@1.97.1
+      - name: Restore main-scoped numerical build dependencies
+        id: cache
+        uses: ./.github/actions/restore-build-cache
+        with:
+          suite: piping-numerical
+      - name: Plan the full numerical build
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: python3 tools/software_workflow/hosted_ci.py plan --suite piping --event workflow_dispatch --head "$GITHUB_SHA" --output piping-ci-plan.json
+      - name: Compile the numerical job's profiles without tests
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: python3 projects/chirality-piping/tools/ci/numerical_ci.py --plan piping-ci-plan.json --evidence-dir piping-numerical-evidence --build-only
+      - name: Remove local crate outputs before saving
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: python3 tools/software_workflow/build_cache.py trim --suite piping-numerical
+      - name: Save main-scoped numerical dependencies
+        if: success() && steps.cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ steps.cache.outputs.paths }}
+          key: ${{ steps.cache.outputs.key }}
+
+  app-v4:
+    name: Warm App v4 product dependencies (no tests)
+    if: github.repository == 'sgttomas/chirality' && github.ref == 'refs/heads/main'
+    runs-on: macos-26
+    timeout-minutes: 30
+    env:
+      RUST_TEST_THREADS: '1'
+      CARGO_INCREMENTAL: '0'
+      CARGO_BUILD_JOBS: '2'
+    defaults:
+      run:
+        working-directory: projects/chirality-app-v4/app
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            projects/chirality-app-v4
+            tools
+            workflows
+            agents
+            docs
+            .github/actions/restore-build-cache
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: '1.97.1'
+      - name: Restore main-scoped App v4 build dependencies
+        id: cache
+        uses: ./.github/actions/restore-build-cache
+        with:
+          suite: app-v4
+      - name: Build App resources (no tests)
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          npm ci
+          npm run build
+      - name: Compile the product job's profiles without tests
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          cargo test --no-run --locked --manifest-path src-tauri/Cargo.toml
+          cargo check --tests --locked --manifest-path src-tauri/Cargo.toml
+      - name: Remove local crate outputs before saving
+        if: steps.cache.outputs.cache-hit != 'true'
+        working-directory: ${{ github.workspace }}
+        run: python3 tools/software_workflow/build_cache.py trim --suite app-v4
+      - name: Save main-scoped App v4 dependencies
+        if: success() && steps.cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ steps.cache.outputs.paths }}
+          key: ${{ steps.cache.outputs.key }}

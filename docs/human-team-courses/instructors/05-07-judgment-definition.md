@@ -40,7 +40,7 @@ For a shorter session, assign the lessons and memorandum as preparation. Retain 
 ### Knowledge-check answers
 
 1. Evidence provides relevant information. A warrant explains why that information supports a particular claim and intended reliance.
-2. Both calculations can inherit the same mistaken input, method, or omitted condition. Agreement establishes consistency with their shared basis.
+2. Both calculations can inherit the same mistaken input, method, or omitted condition. Agreement alone does not establish correctness of the shared basis or its use.
 3. Identify the proposition, source, uncertainty, affected decision, resolution owner, required evidence, and point of need.
 4. Verification examines conformity to specified requirements. Validation examines fitness for intended use under relevant conditions.
 5. A01 gives the sponsor scope-amendment authority. Discipline engineers retain technical responsibility; that authority does not transfer to the sponsor.
@@ -162,7 +162,7 @@ Open [Course 07](../courses/07-project-definition.html).
 1. The product is the resulting installation or other intended result. The project organizes its development and delivery, including continuing-responsibility transfer.
 2. Establish purpose, users, requirements, scope, boundaries, constraints, sources, decisions, acceptance responsibilities, interfaces, and unresolved treatment.
 3. The conditions define the intended obligation. Removing them can create a different claim and an inadequate examination.
-4. One participant accounts for the whole obligation. Explicit supporting contributions and interfaces establish how others help fulfill it.
+4. One participant accounts for the whole obligation. Explicit supporting contributions and interfaces establish how others help fulfill it. Contributors and reviewers retain their assigned and professional duties.
 5. Allocation establishes who must supply the work. Satisfaction requires produced results and evidence against the obligation.
 6. State the uncertain input, authorized interim basis, consequences, resolution owner, evidence needed, point of need, and limits on proceeding.
 
@@ -173,6 +173,8 @@ The weak statement leaves the equipment requirement, selected configuration, vol
 A suitable replacement asks for an identified equipment requirement under A02 Rev 1. It assigns operating, mechanical, electrical, and controls contributions.
 
 It requires the unresolved hydraulic inputs and legal-applicability inquiry to be treated before dependent technical decisions. It preserves A05 as proposal work.
+
+A supported interpretation can identify an existing obligation. That obligation does not await sponsor adoption. New project constraints and resulting commitment changes need their appropriate decisions.
 
 The work division can vary. A useful proposal includes these contributions:
 

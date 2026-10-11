@@ -149,6 +149,8 @@ Give the reviewer the decision question, source basis, calculation or argument, 
 
 Ask for a challenge to the grounds. A review of formatting cannot establish technical adequacy.
 
+Consider shared assumptions and interests that could impair scrutiny. A reviewer can miss the same defect as a producer. Challenge a consequential shared basis instead of relying only on agreement.
+
 When someone challenges your reasoning, separate the observation from the proposed explanation. Check the actual source or result before choosing a repair.
 
 Treat a finding through these actions:

@@ -82,6 +82,8 @@ Time pressure can conceal a competence gap. Familiarity with a supplier brochure
 
 Review adds scrutiny, but it does not transfer the producer's responsibility. A reviewer needs suitable competence, a defined purpose, and access to the relevant basis. The producer must correct defects and explain the result.
 
+The reviewer remains responsible for the assigned examination and its conclusions. Those duties coexist with the producer's responsibility.
+
 Use a competence check before beginning consequential work:
 
 1. List the judgments the assignment requires.

@@ -85,6 +85,28 @@ class NumericalTests(unittest.TestCase):
             self.assertIn('--doc', tests[2])
             self.assertNotIn('--config', tests[2])
 
+    def test_build_only_retains_profiles_without_executing_tests_or_doctests(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            project = Path(tmp)
+            source = self.fixture(project)
+            destination = project / 'core/solver/frame_kernel'
+            destination.parent.mkdir(parents=True)
+            source.rename(destination)
+            _, commands = ci.cargo_plan(project)
+            build = ci.build_commands(commands)
+            self.assertEqual(build[0], commands[0])
+            self.assertEqual(len(build), 3)
+            self.assertIn('profile.test.opt-level=2', build[1])
+            self.assertNotIn('--config', build[2])
+            self.assertTrue(all('--no-run' in argv for argv in build[1:]))
+            self.assertTrue(all('--doc' not in argv for argv in build))
+
+    def test_cargo_timing_separates_compile_test_and_ignores_ansi(self):
+        timings = ci.cargo_timings('\x1b[32mFinished `test` profile [unoptimized] target(s) in 1m 02.5s\x1b[0m\n'
+            'test result: ok. 3 passed; finished in 9.75s\n'
+            'test result: ok. 2 passed; finished in 1.25s\n')
+        self.assertEqual(timings, {'compile_seconds': 62.5, 'test_seconds': 11.0})
+
     def test_subprocess_failure_is_recorded_and_stops(self):
         with tempfile.TemporaryDirectory() as tmp:
             evidence = {'commands': []}
