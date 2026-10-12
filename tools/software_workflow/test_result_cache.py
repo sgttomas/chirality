@@ -62,3 +62,17 @@ def test_workflow_saves_only_success_and_never_restores_partial_keys():
         for name in ['Locked Cargo numerical suite'] if job == 'numerical' else ['Production build', 'Core browser journey and save/reopen']:
             step = next(s for s in steps if s.get('name') == name)
             assert step['if'] == "steps.verified.outputs.cache-hit != 'true'"
+
+
+def test_selection_identity_changes_reuse_key_even_with_identical_commands(tmp_path):
+    for argv in [('init', '-q'), ('config', 'user.email', 'test@example.invalid'), ('config', 'user.name', 'Fixture')]:
+        subprocess.run(['git', '-C', str(tmp_path), *argv], check=True, capture_output=True)
+    (tmp_path / 'input').write_text('fixture')
+    subprocess.run(['git', '-C', str(tmp_path), 'add', '.'], check=True, capture_output=True)
+    subprocess.run(['git', '-C', str(tmp_path), 'commit', '-qm', 'fixture'], check=True, capture_output=True)
+    selection = {'classification': 'reachability', 'manifests': ['core/a/Cargo.toml'], 'reasons': [{'kind': 'cargo-owner'}]}
+    def key(value):
+        return cache.fingerprint(tmp_path, 'numerical', ['same command'], {'image': 'v1'}, value)
+    first = key(selection)
+    for field, value in [('classification', 'full-fallback'), ('manifests', ['core/b/Cargo.toml']), ('reasons', [{'kind': 'exact-file-reader'}])]:
+        assert key({**selection, field: value}) != first

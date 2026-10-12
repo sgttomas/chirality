@@ -50,7 +50,7 @@ writes records or operates the act control." `src-tauri/` holds that host;
 7. Native request controls keep the full generation and source identity; question
    answers may be partial, form aliases validate their content, and changed
    confirmation context refuses. User-verification acceptance remains unsupported
-   under CI-11. Ended/replaced observations keep explicit checklist/history limits.
+   under NIR §4.1 FO-6. Ended/replaced observations keep explicit checklist/history limits.
 8. The person can select catalog/read JSON and an optional counterpart through
    native selectors. Rust retains exact bytes in memory; the panel shows complete
    reported content, unverified host origin and comparison/path-display limits.
@@ -245,7 +245,8 @@ writes records or operates the act control." `src-tauri/` holds that host;
     after SR-01 but before the send is recorded as SR-03 *not-sent (not-ready)*
     with the reason, a gap in the Design's send values. At the next start the
     App writes SR-08 for each stop request an earlier session left sent with
-    no final status (AS-02, R-2); RQ-06 for its listed requests is not written.
+    no final status (AS-02, R-2), and RQ-06 for the requests such a session left
+    listed (*app-ended-without-record*; no reply is sent).
 22a. **Quit asks first** (DEL-01-02 DEF-6, K-4, SQ-Q; DEL-01-04 §5.2). Quit is
     the App's own menu item (Cmd/Ctrl+Q). The host assesses live work across
     every App-owned home and records `quit_requested` with the lists. With
@@ -338,7 +339,7 @@ writes records or operates the act control." `src-tauri/` holds that host;
     advisory compatibility (DEL-02-03 CK-1/CK-2) is shown readably; a role
     outside the written-for roles names both and points to Continue as
     (U-R10, chosen display).
-    **Across a relaunch (CI-20 (c), (d), (j)).** When a run opens, the host
+    **Across a relaunch (WR TX-5 / SQ-END, (d), (j)).** When a run opens, the host
     tags its conversation in the App's recovery ledger with the run reference
     (owner `DEL-02-03`). A tag that cannot be stored is kept in memory only and
     shown on the run; the run goes on. At startup the host writes one "App-restart
@@ -420,7 +421,7 @@ writes records or operates the act control." `src-tauri/` holds that host;
 | `src-tauri/src/app_quit.rs` | App quit asked first (DEL-01-02 DEF-6, K-4, SQ-Q; DEL-01-04 §5.2): assessment across homes, `quit_requested`/`quit_answered`, quit interrupts (cause *quit*), the exit's process stops and `session_ended` (AS-09, AS-10); the DEF-1 exit rule; the C-24 waiting count |
 | `src-tauri/src/stop_records.rs`, `resources/runtime_core/recovery.stop-request.schema.json` | REC stop-request records (DEL-01-02 §3.4 SR-01…SR-12): validated transitions and outcome labels, the `codex_stop` ledger entry, and the read-back after a relaunch; the Host writes them through its recovery writer before each interrupt send |
 | `src-tauri/src/checkpoint_recorder.rs` | EXEC §2.4 first slice: CE-1 listing, CE-3 arrivals from observed AW-6/AW-7 native items, CE-11/CE-12, CE-17 waiting arrivals; written through the run's RS writer with CE-19 late-write limits; never reacts (RC-4) |
-| `src-tauri/src/run_restart.rs`, `run_restart_tests.rs` | CI-20 (d): the REC run tag at `run_opened` (owner `DEL-02-03`) and the host's startup writer of RS "App-restart interruption" limits; tests also cover CI-20 (c) end notices after relaunch and (j) permanent refusals |
+| `src-tauri/src/run_restart.rs`, `run_restart_tests.rs` | EXEC §2.7 / RECOVERY §4.1: the REC run tag at `run_opened` (owner `DEL-02-03`) and the host's startup writer of RS "App-restart interruption" limits; tests also cover WR TX-5 / SQ-END end notices after relaunch and (j) permanent refusals |
 | `src-tauri/src/run_offers.rs`, `src/RunOffers.tsx` | Exact run-offer line forms (WR §16.5 PR/FN), the finished-report proof for a *completed* end, and their presentation beneath the message |
 | `src-tauri/src/workflow_drafts.rs`, `src/WorkflowDrafts.tsx` | DEL-02-02 draft workspace in the Rust host (SQ-D D-2…D-4 observation, hygiene, §5.1 states) and its list presentation in NIR §7 words, with the two Try buttons and each draft's trial list; nothing here registers, reviews or runs |
 | `src-tauri/src/workflow_trials.rs`, `workflow_package_copy.rs`, `workflow_workspace.rs` (`compose_run_text`, `TrialText`, `files_folder`) | DEL-02-02 trial core (WR §17 steps 1–4): one composer for run texts and trial texts (TT-3), TX-7's files-line folder with content-addressed supply copies, TT-8 trial snapshots, and the create-once TT-4 trial links and observations |
@@ -559,7 +560,7 @@ in `.chirality/captures/`. Library A15 allocation uses the library's
 witness remains unfinished. There is no registration attempt journal (owner
 ruling 2026-10-10): when a library is opened, SQ-X finds A15 records that no
 ledger line cites and decides from the record and the revision store (WR §6
-X-1, X-2; CI-24 (b)). Each open review holds
+X-1, X-2; WR §4.8 / SQ-X (b)). Each open review holds
 `.chirality/workflow-registration.live.lock` shared until its attempt is
 closed, and X-2 runs only when it can hold that file exclusively, so a live
 attempt is not closed as lost while its review holds the lock (tested with
@@ -585,10 +586,10 @@ next needed.
 
 App-file act and decline captures are sealed with this installation's key,
 kept in the App user-data `capture-seal/keys.json` (owner-only), and only a
-capture whose seal verifies there counts (AAC §6.3 SEAL-C; CI-20 (h)). This
+capture whose seal verifies there counts (AAC §6.3 SEAL-C; AAC §6.3 / EXEC §2.4–2.5). This
 narrows R-1 but does not close it: anything that can read that file, including
 an agent under Codex's default read access, can seal. Trustworthy persistent
-cold replay remains unfinished under CI-10 and I3-CUST, and SEAL-2 stays
+cold replay remains unfinished under AAC §6.3 U-AAC-3 and I3-CUST, and SEAL-2 stays
 deferred. Current code refuses unverified replay while preserving evidence.
 Native authenticity, real process-kill/fsync failure witnesses, durable history rebuild and cold role-source reconciliation, child role supply, native A15/registered-library and file-act witnesses, and remaining policy/standing/control journeys remain in the Group A graph. Per-home configuration/resource linking is implemented with observed ownership limits. CommonMark parsing and one closed, explicitly development-candidate workflow catalog are supplied; the production native-page supply path and hot registration transaction are implemented, while their actual native consumer witnesses remain separate. General file/arrival entry surfaces and complete file-act lapse-history evidence also remain unfinished. External dispatch and host qualification remain unsupplied. Native text-turn and interrupt controls use the selected native thread and
 retain generation/terminal limits. Transport and receiving tests do not prove a
@@ -599,14 +600,14 @@ REC stop-request records and the ledger `codex_stop` entry (item 22) are
 appended to the existing pointer ledger. Checkpoint entries (item 23) go to the
 run's own RS log. Neither opens a new store.
 
-The run panel (item 23) records only output arrivals (AW-6, AW-7). It does not
-yet record tool-call or host-outcome arrivals, act counting and its
-dispositions (CE-2, CE-4…CE-7), or output records. Conversation roles (item 24)
+The run panel (item 23) records the arrivals and act counting item 23
+describes (CE-1…CE-6, CE-8, CE-11, CE-12, CE-17, CE-18). It does not record
+host-outcome arrivals (AW-8…AW-10, CE-7, CE-9) or output records. Conversation roles (item 24)
 keep handoffs in process memory and write no persistent role-supply log;
 delete or archive beside Fork waits on U-R13.
 
 The ask-first App quit (item 22a) and the startup SR-08 write are
-implemented but not witnessed natively; RQ-06 at startup is not written. The Restart Codex question
+implemented but not witnessed natively, as are the startup RQ-06 endings. The Restart Codex question
 was witnessed natively once, on 2026-10-10, with nothing live: it listed nothing
 in force and showed its three buttons with Keep Codex running as the default.
 Restart Codex was pressed, and Cancel and Keep Codex running were not. The
@@ -628,11 +629,14 @@ debug bundle of `3a29171a44`, stock Codex 0.160.0 (unverified-development), and
 It qualifies nothing. Attachments and the run-end notice, workflow runs and A15,
 approval cards, delegation beyond that run, quit, the WebKit/Chromium matrix and a packaged
 build remain unwitnessed. It also found that an interrupted turn's running
-command can still complete (see the note), and the bundle gap CI-31 (since
+command can still complete (see the note), and the bundle gap PKG §4.1 P-2/P-3 (since
 fixed: the default configuration declares the instruction and workflow
 resources).
 
-See `CONTRACT_ISSUES.md`, `EVIDENCE.md` and the current Group A `WORK_GRAPH.md`.
+Open contract conditions live beside their governing clauses in each
+deliverable's `Design/`. Implementation discoveries are added there; the PR
+describes the repair and its verification. Retain a witness or capture in
+Design only while a current requirement, test or ruling uses it.
 
 ## Recorded connector route accounts
 
