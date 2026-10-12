@@ -77,6 +77,7 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: '1.97.1'
+      # Shared dependency cache contract: docs/CI_SELECTION.md.
       - name: Restore main-scoped App v4 build dependencies
         uses: ./.github/actions/restore-build-cache
         with:
@@ -139,10 +140,10 @@ jobs:
             cargo test --locked --manifest-path src-tauri/Cargo.toml \
               --test act_storage --test recovery_startup --test access_integration \
               --test policy_standing --test decision_standing --test record_semantics \
-              --test native_backend_smoke --test attested_reference_packaging -- --test-threads=1
+              --test native_backend_smoke --test role_lifecycle --test attested_reference_packaging -- --test-threads=1
             cargo check --tests --locked --manifest-path src-tauri/Cargo.toml
             cargo test --locked --manifest-path src-tauri/Cargo.toml --features distribution-successor --lib s2_ -- --test-threads=1
-            for cohort in instruction_seed_tests p3_role_set_tests p2_production_catalog_tests workflow_catalog_tests; do
+            for cohort in role_supply conversation_roles::tests workflow_role_tests startup_request_tests instruction_seed_tests p3_role_set_tests p2_production_catalog_tests workflow_catalog_tests; do
               cargo test --locked --manifest-path src-tauri/Cargo.toml --lib "$cohort" -- --test-threads=1
             done
           fi
