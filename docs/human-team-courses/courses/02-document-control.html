@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
+<meta name="source-sha256" content="c96f163f624c3c82973e232091ec87b79e6a4c4c99bf8de91fa322c533e519f3">
+<meta name="source-basis-date" content="2026-10-11">
+<meta name="source-basis-revision" content="26d04270617c405fc3ca131d2ea6c86120ecc5ed">
+<title>Course 02 — Document and Configuration Control · Chirality</title>
+<style>
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --canvas: #eeeeee;
+  --ink: #111111;
+  --muted: #505050;
+  --line: #cccccc;
+  --accent: #111111;
+  --tint: #eeeeee;
+  font-family: "Liberation Serif", "Times New Roman", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 2rem; }
+body { margin: 0; color: var(--ink); background: var(--canvas); }
+a { color: var(--accent); text-underline-offset: .17em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #111111;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.skip-link {
+  position: fixed; top: .6rem; left: .6rem; z-index: 100;
+  padding: .6rem 1rem; background: var(--paper); border: 2px solid var(--accent);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+.masthead { border-bottom: 1px solid var(--ink); background: var(--paper); }
+.masthead-inner {
+  max-width: 70rem; margin: auto; padding: 1.05rem 2.5rem;
+  display: flex; flex-wrap: wrap; gap: .35rem 1.2rem;
+  align-items: baseline; justify-content: center; text-align: center;
+}
+.brand { font-size: .92rem; font-weight: 700; letter-spacing: .12em; }
+.masthead-label { color: var(--ink); font-size: .77rem; text-transform: uppercase; letter-spacing: .025em; }
+.layout {
+  max-width: 70rem; margin: auto; padding: 0 2.5rem;
+  display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2.5rem;
+}
+.sidebar {
+  position: sticky; top: 0; align-self: start; max-height: 100vh;
+  overflow-y: auto; padding: 2rem .8rem 2rem 0;
+  scrollbar-width: thin;
+}
+.nav-label, .eyebrow {
+  margin: 0 0 .85rem; color: var(--muted); font-size: .73rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+}
+.contents { list-style: none; padding: 0; margin: 0; }
+.contents li { margin: .15rem 0; }
+.contents a {
+  display: block; padding: .34rem .65rem; border-left: 2px solid transparent;
+  color: var(--muted); text-decoration: none; font-size: .86rem; line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.contents a:hover, .contents a:focus-visible {
+  color: var(--accent); background: var(--tint); border-left-color: var(--accent);
+}
+.nav-help { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.3rem; }
+.nav-help p, .nav-help a { font-size: .75rem; color: var(--muted); }
+.nav-help p { margin: .5rem 0; }
+kbd { font: inherit; padding: .05rem .25rem; border: 1px solid var(--line); border-radius: .2rem; }
+main { min-width: 0; max-width: 48.5rem; padding: 2rem 0 3rem; }
+.document-meta {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem 1.5rem; margin: 0 0 1.5rem;
+  font-size: .73rem; color: var(--muted);
+}
+.document-meta div { min-width: 0; }
+.document-meta dt { font-weight: 700; letter-spacing: .025em; }
+.document-meta dd { margin: .15rem 0 0; overflow-wrap: anywhere; }
+.document-meta code { font-size: .9em; background: none; padding: 0; }
+.fingerprint { grid-column: 1 / -1; }
+.paper {
+  min-width: 0; padding: 3.4rem 3rem 3rem;
+  background: var(--paper); border: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgb(0 0 0 / .04);
+}
+article { max-width: 68ch; margin: auto; overflow-wrap: anywhere; }
+article > :first-child { margin-top: 0; }
+h1, h2, h3, h4, h5, h6 { color: #000000; line-height: 1.22; text-wrap: balance; scroll-margin-top: 2rem; }
+h1 {
+  max-width: 19ch; margin: 0 auto 1.65rem; font-size: clamp(2.05rem, 3.8vw, 2.8rem);
+  text-align: center; text-transform: uppercase; letter-spacing: .015em;
+}
+article > h1 + p { margin-bottom: 2.4rem; text-align: center; font-size: .82rem; line-height: 1.45; }
+h2 { font-size: 1.5rem; margin: 3.4rem 0 1.1rem; }
+h3 { font-size: 1.13rem; margin: 2rem 0 .7rem; }
+h4, h5, h6 { font-size: 1.02rem; margin: 1.65rem 0 .6rem; }
+p { margin: 0 0 .78rem; }
+article p { text-align: justify; text-justify: inter-word; hyphens: auto; }
+ul, ol { padding-left: 1.5rem; }
+li { padding-left: .2rem; margin: .35rem 0; }
+li > p { margin: .6rem 0; }
+hr { max-width: 75%; border: 0; border-top: 1px solid var(--ink); margin: 2.5rem auto; }
+blockquote {
+  margin: 1.4rem 1.25rem; padding: 0; background: none; border: 0;
+}
+blockquote > :last-child { margin-bottom: 0; }
+code, pre { font-family: "Liberation Mono", "SFMono-Regular", Consolas, monospace; font-size: .83em; hyphens: none; }
+code { background: #f1f1f1; padding: .08em .2em; overflow-wrap: anywhere; }
+pre {
+  max-width: 100%; overflow-x: auto; padding: 1rem 1.15rem; margin: 1.4rem 0;
+  color: #111111; background: #f6f6f6; border: 1px solid var(--line);
+  line-height: 1.5; tab-size: 4;
+}
+pre code { background: none; padding: 0; border-radius: 0; font-size: 1em; overflow-wrap: normal; }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 1.5rem 0; }
+table { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: .87rem; line-height: 1.4; }
+th, td { padding: .65rem .75rem; text-align: left; vertical-align: top; border: 1px solid #b8b8b8; }
+th { color: #000000; background: #eeeeee; font-weight: 700; }
+tbody tr { background: #ffffff; }
+img, svg { max-width: 100%; height: auto; }
+a[id], a[name] { scroll-margin-top: 2rem; }
+p:has(> a[id]:only-child):empty { margin: 0; }
+p:has(> a[id]:only-child) { margin: 0; }
+h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-color: #777777; text-decoration-thickness: .08em; text-underline-offset: .2em; }
+.mobile-toc { display: none; }
+.document-footer { margin-top: 1.5rem; color: var(--muted); font-size: .73rem; }
+.document-footer p { margin: .4rem 0; }
+@media (max-width: 65rem) {
+  .layout { padding: 0 1.5rem; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 1.5rem; }
+  .masthead-inner { padding: 1rem 1.5rem; }
+  .paper { padding: 2.6rem 2rem; }
+}
+@media (max-width: 54rem) {
+  html { scroll-padding-top: 4.5rem; }
+  .layout { display: block; padding: 0 1rem; }
+  .sidebar { display: none; }
+  .masthead-inner { padding: .85rem 1rem; gap: .2rem 1rem; }
+  .mobile-toc {
+    display: block; position: sticky; top: 0; z-index: 10;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .mobile-toc summary { padding: .75rem 1rem; cursor: pointer; color: var(--accent); font-weight: 700; font-size: .85rem; }
+  .mobile-toc nav { max-height: 65vh; overflow-y: auto; padding: 0 .5rem 1rem; }
+  .mobile-toc .contents a { padding: .55rem; }
+  main { padding-top: 1.25rem; }
+  .paper { padding: 2.2rem 1.4rem; }
+  article p { text-align: left; }
+  article > h1 + p { text-align: center; }
+  h2, h3, h4, h5, h6, a[id], a[name] { scroll-margin-top: 4.5rem; }
+  h2 { margin-top: 2.7rem; font-size: 1.4rem; }
+  .document-meta { gap: .75rem 1rem; }
+}
+@media (max-width: 25rem) {
+  :root { font-size: 17px; }
+  .layout { padding: 0 .5rem; }
+  .paper { padding: 1.4rem 1rem; }
+  .document-meta { padding: 0 .5rem; }
+}
+@media print {
+  @page { size: 6.75in 9.25in; margin: .68in .65in .67in .72in; }
+  :root { font-size: 10.5pt; line-height: 1.2; color-scheme: light; }
+  body, .paper { color: #111; background: white; }
+  .masthead, .sidebar, .mobile-toc, .skip-link, .back-top { display: none; }
+  .layout { display: block; max-width: none; padding: 0; }
+  main { max-width: none; padding: 0; }
+  .paper { padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+  article { max-width: none; }
+  article p { margin-bottom: 4.6pt; text-align: justify; }
+  .document-meta { padding: 0 0 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #bbb; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 18pt; margin-top: 1.8rem; }
+  h3 { font-size: 12pt; }
+  h4, h5, h6 { font-size: 11pt; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  a { color: inherit; text-decoration: underline; }
+  .table-scroll { overflow: visible; border: 0; }
+  table { min-width: 0; table-layout: auto; font-size: 9pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  th, td { padding: .45rem; }
+  pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; border-color: #bbb; font-size: 8pt; line-height: 1.3; }
+  pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  blockquote { break-inside: avoid; background: white; }
+  .document-footer { border-top: 1px solid #bbb; padding-top: .75rem; }
+}
+</style>
+</head>
+<body id="manual-top">
+<a class="skip-link" href="#manual-content">Skip to manual</a>
+<header class="masthead">
+  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Human team courses · offline reading edition</span></div>
+</header>
+<details class="mobile-toc">
+  <summary>Contents · 11 sections</summary>
+  <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#prerequisites-and-outcomes">Prerequisites and outcomes</a></li>
+<li><a href="#lesson-1--give-information-a-stable-identity">Lesson 1 — Give information a stable identity</a></li>
+<li><a href="#lesson-2--distinguish-revision-status-and-purpose">Lesson 2 — Distinguish revision, status, and purpose</a></li>
+<li><a href="#lesson-3--control-a-change-through-its-consequences">Lesson 3 — Control a change through its consequences</a></li>
+<li><a href="#lesson-4--connect-the-records-to-the-product">Lesson 4 — Connect the records to the product</a></li>
+<li><a href="#northbank-worked-example--two-basis-revisions">Northbank worked example — Two basis revisions</a></li>
+<li><a href="#transfer-example--a-manufactured-product-drawing">Transfer example — A manufactured product drawing</a></li>
+<li><a href="#practice--recover-a-controlled-working-basis">Practice — Recover a controlled working basis</a></li>
+<li><a href="#knowledge-check">Knowledge check</a></li>
+<li><a href="#assessed-assignment--issue-a-controlled-basis">Assessed assignment — Issue a controlled basis</a></li>
+<li><a href="#portfolio-continuation-and-references">Portfolio continuation and references</a></li></ol></nav>
+</details>
+<div class="layout">
+<aside class="sidebar">
+  <nav aria-label="Sections">
+    <p class="nav-label">In this manual</p>
+    <ol class="contents"><li><a href="#prerequisites-and-outcomes">Prerequisites and outcomes</a></li>
+<li><a href="#lesson-1--give-information-a-stable-identity">Lesson 1 — Give information a stable identity</a></li>
+<li><a href="#lesson-2--distinguish-revision-status-and-purpose">Lesson 2 — Distinguish revision, status, and purpose</a></li>
+<li><a href="#lesson-3--control-a-change-through-its-consequences">Lesson 3 — Control a change through its consequences</a></li>
+<li><a href="#lesson-4--connect-the-records-to-the-product">Lesson 4 — Connect the records to the product</a></li>
+<li><a href="#northbank-worked-example--two-basis-revisions">Northbank worked example — Two basis revisions</a></li>
+<li><a href="#transfer-example--a-manufactured-product-drawing">Transfer example — A manufactured product drawing</a></li>
+<li><a href="#practice--recover-a-controlled-working-basis">Practice — Recover a controlled working basis</a></li>
+<li><a href="#knowledge-check">Knowledge check</a></li>
+<li><a href="#assessed-assignment--issue-a-controlled-basis">Assessed assignment — Issue a controlled basis</a></li>
+<li><a href="#portfolio-continuation-and-references">Portfolio continuation and references</a></li></ol>
+  </nav>
+  <div class="nav-help">
+    <p>Find a term with <kbd>⌘ F</kbd> or <kbd>Ctrl F</kbd>. Use your browser’s print command for a paper copy.</p>
+    <p><a href="02-document-control.md">Markdown source</a> · <a href="#manual-top">Back to start ↑</a></p>
+  </div>
+</aside>
+<main id="manual-content" tabindex="-1">
+  <div class="paper">
+    <article aria-labelledby="course-02--document-and-configuration-control">
+<!-- BEGIN MARKDOWN CONTENT -->
+<h1 id="course-02--document-and-configuration-control">Course 02 — Document and Configuration Control</h1>
+<p><a href="../index.html">Series</a> · <a href="../case-study.html">Case</a> · <a href="../glossary.html">Glossary</a> · <a href="../references.html">References</a></p>
+<p>People need to know which information governs their work. They also need to know whether the information describes the actual product. Document control and configuration control establish these relationships.</p>
+<p>This course teaches a practical control method for a small project. You will identify records, establish their permitted use, distribute changes, and trace effects. You will preserve earlier information so another person can understand a decision's basis.</p>
+<h2 id="prerequisites-and-outcomes">Prerequisites and outcomes</h2>
+<p>Complete Course 01. Read Northbank Packet A. Keep your appointment response available.</p>
+<p>By the end, you can:</p>
+<ul>
+<li>Assign stable identities to project information.</li>
+<li>Distinguish revision, status, and authorized use.</li>
+<li>Establish a baseline for a stated purpose.</li>
+<li>Trace a change to its affected users and work.</li>
+<li>Identify differences between defining records and the actual configuration.</li>
+</ul>
+<h2 id="lesson-1--give-information-a-stable-identity">Lesson 1 — Give information a stable identity</h2>
+<p>A filename helps locate a document. It may not identify the document reliably. People copy files, rename them, and attach extracts to messages. Similar filenames can contain different revisions.</p>
+<p>Use a stable identity that survives those movements. Northbank uses A02 for the project basis. Rev 0 and Rev 1 are different revisions of that identified document. A reference to “the basis file” leaves the reader uncertain.</p>
+<p>Record enough information to retrieve the exact item. Useful fields include identity, title, revision, status, origin, location, and issue date. Add subject and use limits where they matter. An attachment copied into another folder should retain its identity and revision.</p>
+<p>An extract also needs identity. State its parent source and the extent of the extract. A table copied without its source note can change the reader's understanding. At Northbank, the legacy schedule's planning-estimate note is essential to its evidential value.</p>
+<p>Use one authoritative location for a controlled item when the working system permits it. Other copies should identify their origin and controlled status. Arrange access so the people doing the work can retrieve the required revision.</p>
+<p>Apply this identification method:</p>
+<ol>
+<li>Assign the item a stable identity.</li>
+<li>Record its revision and title.</li>
+<li>Identify its origin and retrievable location.</li>
+<li>Record its status and permitted use.</li>
+<li>Identify any parent source or attached evidence.</li>
+<li>Check that the intended user can retrieve it.</li>
+</ol>
+<p>Preserve earlier revisions according to the actual retention requirements. They help reconstruct a decision and explain a later change. Control access to sensitive information under the applicable arrangements.</p>
+<h2 id="lesson-2--distinguish-revision-status-and-purpose">Lesson 2 — Distinguish revision, status, and purpose</h2>
+<p>A revision identifies a version. Status describes its condition under the control process. Purpose describes the use for which the item was issued. These three fields answer different questions.</p>
+<p>The highest revision may be a draft. An older revision may remain the approved basis for a particular activity. A document issued for review may support comments but lack authorization for purchase or construction.</p>
+<p>Approval also has scope. A02 Rev 1 is approved for project development. It states unresolved inputs. Its approval does not establish that equipment selection is complete. A04 is a checked observation with explicit limits.</p>
+<p>Create a baseline when a group of identified information must serve as a controlled reference. State its purpose and change process. Include the relevant revisions, decisions, and unresolved conditions. A baseline can contain open matters if their treatment is explicit and suitable for its purpose.</p>
+<p>Before relying on an item, ask:</p>
+<ul>
+<li>Is this the identified revision needed for the activity?</li>
+<li>Does its status permit this use?</li>
+<li>Does its approval cover this content and scope?</li>
+<li>Are its unresolved conditions compatible with the activity?</li>
+<li>Has a later decision changed its permitted use?</li>
+</ul>
+<p>Use an issue check:</p>
+<ol>
+<li>Identify the receiving activity.</li>
+<li>State the permitted use.</li>
+<li>Check the required review and approval evidence.</li>
+<li>List unresolved conditions that affect the use.</li>
+<li>Identify the issued revisions.</li>
+<li>Notify the intended recipients.</li>
+</ol>
+<p>Do not use a “current” label without defining current for what purpose. When several activities use different baselines, make their relationships explicit. Otherwise, people can combine individually valid information into an inconsistent result.</p>
+<h2 id="lesson-3--control-a-change-through-its-consequences">Lesson 3 — Control a change through its consequences</h2>
+<p>A changed document can affect work already completed. It can also change inputs that another person is using. Revision control preserves the versions; change control addresses these consequences.</p>
+<p>Begin with the proposed departure from the approved basis. Identify its reason, affected requirements, technical effects, resource effects, and decision authority. Seek the necessary decision before implementing a reserved change.</p>
+<p>After approval, update the defining information and notify the affected people. Ask each receiving owner to examine the effect on their work. A message sent is evidence of distribution. It does not establish that the recipient applied the change correctly.</p>
+<p>Different owners may need different actions. A flow change can affect pump selection, piping, electrical loads, controls, supports, tests, and operating information. The exact effects require competent examination. Do not assume the list is complete merely because it is long.</p>
+<p>Keep the original proposal and decision basis available. Identify which revisions the new decision changes. Record any conditions on implementation. This allows a successor to distinguish an authorized change from an unexplained document difference.</p>
+<p>Apply a controlled-change method:</p>
+<ol>
+<li>State the proposed departure.</li>
+<li>Identify the affected baseline.</li>
+<li>Assess the effects with the affected owners.</li>
+<li>Obtain the required decision.</li>
+<li>Revise the defining information.</li>
+<li>Distribute the identified revision.</li>
+<li>Check adoption in affected work.</li>
+<li>Preserve the decision and earlier basis.</li>
+</ol>
+<p>Where an input defect is found, correct its distribution promptly. Assess the work that already used it. Preserve the defect and repair evidence when later examination needs them. A silent file replacement prevents that examination.</p>
+<h2 id="lesson-4--connect-the-records-to-the-product">Lesson 4 — Connect the records to the product</h2>
+<p>Configuration means the arrangement and characteristics of the product or system. Its defining information can include drawings, specifications, software versions, equipment lists, settings, and selected vendor data.</p>
+<p>Document control alone cannot show what was installed. A revised drawing may be approved but unapplied. A field change may exist without an updated drawing. A test may concern a configuration different from the delivered one.</p>
+<p>Configuration control connects the product, its defining records, authorized changes, and examination evidence. For each important item, identify the actual configuration and the records that define it. Match observations to that configuration.</p>
+<p>At early Northbank development, the project has no selected pump configuration. The product-family brochure cannot fill that gap. It may support investigation, but it does not identify a selected motor, curve, materials, or control arrangement.</p>
+<p>Use a configuration comparison at a meaningful transition:</p>
+<ol>
+<li>Identify the product or system under examination.</li>
+<li>List the records that define its relevant characteristics.</li>
+<li>Identify the actual configuration from suitable observations.</li>
+<li>Compare the defining records with those observations.</li>
+<li>Record discrepancies and affected evidence.</li>
+<li>Assign each discrepancy a required response.</li>
+</ol>
+<p>Use detail that serves a decision, dependency, examination, or recovery need. A small project can use a simple list. Complex products may need specialized systems. The control must make the relationship understandable to the people who rely on it.</p>
+<h2 id="northbank-worked-example--two-basis-revisions">Northbank worked example — Two basis revisions</h2>
+<p>A07 reports that the shared folder contains A02 Rev 0 and Rev 1 under similar filenames. A designer has opened Rev 0. Its draft flow is 15 litres per second.</p>
+<p>The document controller identifies A02 Rev 1 and its approval record. Its required flow is 18 litres per second. The controller preserves Rev 0 as an earlier draft and removes its ambiguity as the working basis.</p>
+<p>The project engineer then examines affected work. The controller cannot determine technical impact merely by relabeling the file. The designer must identify calculations, sketches, and selection notes that used Rev 0.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 1; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Control response</th>
+<th>Further examination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A02 Rev 0</td>
+<td>Identify as an earlier draft; preserve its history.</td>
+<td>Find work that used its 15 litres per second value.</td>
+</tr>
+<tr>
+<td>A02 Rev 1</td>
+<td>Identify as approved for project development.</td>
+<td>Preserve its unresolved operating conditions.</td>
+</tr>
+<tr>
+<td>A03 Rev 0</td>
+<td>Preserve the archived status and planning-estimate note.</td>
+<td>Examine any design conclusion that treated it as a site survey.</td>
+</tr>
+<tr>
+<td>A04 Rev 1</td>
+<td>Add its checked observation and location to the working index.</td>
+<td>Keep capacity, protection, and compatibility unresolved.</td>
+</tr>
+<tr>
+<td>A05 Rev 0</td>
+<td>Retain as a proposal.</td>
+<td>Prepare the sponsor's requested impact assessment.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The correction does not create a new scope decision. It restores the working use of the already approved A02 Rev 1. Any affected technical work still needs examination and repair.</p>
+<h2 id="transfer-example--a-manufactured-product-drawing">Transfer example — A manufactured product drawing</h2>
+<p>A workshop holds Drawing D17 Rev 2, issued for manufacture. Engineering later creates Rev 3 as a review draft. A technician finds Rev 3 in a message.</p>
+<p>The revision number alone does not authorize manufacture to Rev 3. The technician checks the issued purpose and approval. If a physical part already follows Rev 3, the team examines that discrepancy before describing the part as conforming.</p>
+<p>Preserve the draft and the manufactured-part identity. The technical owner determines the consequence. Document control supports that determination through reliable records.</p>
+<h2 id="practice--recover-a-controlled-working-basis">Practice — Recover a controlled working basis</h2>
+<p>Use A02 to A07 and Portfolio 01. The supplied condition is the A07 folder discrepancy. No additional approval or technical result is available.</p>
+<p>Supply these outputs:</p>
+<ol>
+<li>A source-control list with identity, revision, status, permitted use, and limits.</li>
+<li>A short issue note identifying the project-development basis.</li>
+<li>A distribution list based on affected activities.</li>
+<li>An impact enquiry for work that may have used A02 Rev 0 or A03.</li>
+<li>A comparison checklist for a future selected equipment configuration.</li>
+</ol>
+<p>State which entries come from Packet A. Identify any missing location or distribution information. Do not fabricate a completed impact assessment. Ask a partner to retrieve the basis using your list.</p>
+<h2 id="knowledge-check">Knowledge check</h2>
+<ol>
+<li>How does a stable document identity differ from a filename?</li>
+<li>Why can the highest revision be unsuitable for an activity?</li>
+<li>What does the approval of A02 Rev 1 permit and leave unresolved?</li>
+<li>Why does sending a revised document not establish adoption?</li>
+<li>What distinguishes document control from configuration control?</li>
+<li>What response is needed after work used the wrong basis revision?</li>
+</ol>
+<h2 id="assessed-assignment--issue-a-controlled-basis">Assessed assignment — Issue a controlled basis</h2>
+<p>Prepare a controlled-basis package for Northbank project development. Use Packet A only. Include a revision list, issue note, affected-work enquiry, and change method.</p>
+<p>An instructor assesses five observable criteria:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 2; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Evidence required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identity and retrieval</td>
+<td>Each relevant item has an exact identity, revision, and retrievable source reference.</td>
+</tr>
+<tr>
+<td>Status and use</td>
+<td>The package distinguishes drafts, approved development information, observations, proposals, and open inquiries.</td>
+</tr>
+<tr>
+<td>History</td>
+<td>Earlier information remains identifiable without ambiguity about its permitted use.</td>
+</tr>
+<tr>
+<td>Change consequences</td>
+<td>The method assigns impact examination, decision, distribution, and adoption checks.</td>
+</tr>
+<tr>
+<td>Configuration relationship</td>
+<td>The package identifies missing product definition and limits the proposed comparison accordingly.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Demonstrate retrieval to a reviewer. Explain one impact enquiry. Repair any ambiguous basis or unsupported configuration claim. Training acceptance grants no authority to release a real purchase or construction package.</p>
+<h2 id="portfolio-continuation-and-references">Portfolio continuation and references</h2>
+<p>Keep the package as Portfolio 02. Link it to Portfolio 01. Course 03 will improve its subject index and assess the evidence behind selected claims.</p>
+<p>The <a href="../../alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v8.md">Consolidated manual</a>, section 7.4, explains why records must help people establish what applies and what exists. This course adapts that principle.</p>
+<p>For optional study, compare your organization’s actual document and configuration procedures with the <a href="../glossary.html">series glossary</a>. Use the <a href="../references.html">reference guide</a> to distinguish source purpose and authority.</p>
+<!-- END MARKDOWN CONTENT -->
+    </article>
+  </div>
+  <footer class="document-footer">
+  <dl class="document-meta">
+    <div><dt>Source basis dated</dt><dd>11 October 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>26d04270617c405fc3ca131d2ea6c86120ecc5ed</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="02-document-control.md">02-document-control.md</a><br><code>c96f163f624c3c82973e232091ec87b79e6a4c4c99bf8de91fa322c533e519f3</code></dd></div>
+  </dl>
+    <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
+    <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
+    <p class="back-top"><a href="#manual-top">Back to start ↑</a></p>
+  </footer>
+</main>
+</div>
+<script>
+const mobileContents = document.querySelector('.mobile-toc');
+mobileContents.addEventListener('click', (event) => {
+  if (event.target.closest('a[href^="#"]')) mobileContents.open = false;
+});
+</script>
+</body>
+</html>
