@@ -169,17 +169,102 @@ export const OUTPUT_NEUTRAL_KINDS = ["run_opened", "supplied_guidance", "compati
 // Checkpoint entries whose bodies this view reads (EXEC CE-3, CE-12): an arrival,
 // its "waiting" disposition and a continuation record no act, check or result,
 // so they leave the facets as they are; an arrival bound to an output adds an
-// evidence note. The same kinds without a readable body, or with another
-// disposition, read as unknown like any other entry.
+// evidence note. The act entries at an arrival (CE-5, CE-6, CE-8, CE-10, CE-11
+// and every CE-18 label) are read into the human-act facet only. The same kinds
+// without a readable body read as unknown like any other entry; so do
+// observation losses and recoveries, whose effect on a facet AS §8 does not map.
 const readCheckpointEntry = (r: Json): boolean => {
   const b = r?.body;
   switch (r?.kind) {
     case "checkpoint_arrival": return typeof b?.checkpoint === "string" && b?.event?.source === "native_item";
-    case "disposition_change": return b?.disposition === "waiting";
+    case "disposition_change": return b?.disposition === "waiting" || readActEntry(r);
     case "continued_past": return typeof b?.arrival?.checkpoint === "string";
-    default: return false;
+    default: return readActEntry(r);
   }
 };
+// AS §8 "Human acts" (source: the record): the checkpoint entries about acts at an
+// arrival, which this view reads into that facet only. They say nothing about the
+// other facets (no result, host check, limitation, examination or route).
+const ACT_ENTRY_KINDS = ["act_counted", "act_not_counted", "act_lapsed", "arrival_declined", "run_resumed"];
+const DISPOSITIONS = ["waiting", "performed", "resolved negatively", "lapsed", "not reached", "unknown"];
+// Each kind's required body fields (EXEC `checkpoint-record-entries.schema.json`
+// $defs); a body missing one is unreadable and makes every facet unknown.
+const str = (v: Json) => typeof v === "string" && v.length > 0;
+const actRef = (a: Json) => str(a?.recordId) && str(a?.actKind) && str(a?.capturedAt) && str(a?.capturingSurface);
+const READABLE: Record<string, (b: Json) => boolean> = {
+  act_counted: b => actRef(b?.act) && ["after arrival", "earlier act"].includes(b?.relation) && Array.isArray(b?.referents),
+  act_not_counted: b => actRef(b?.act) && str(b?.reason) && typeof b?.capturedBeforeArrival === "boolean",
+  act_lapsed: b => actRef(b?.act) && str(b?.state) && Array.isArray(b?.referents) && b?.c0 !== null && typeof b?.c0 === "object" && b?.c1 !== undefined && b?.c1 !== null && str(b?.time),
+  arrival_declined: b => str(b?.declinedEventRef),
+  run_resumed: b => str(b?.firstActionRef) && str(b?.time),
+  disposition_change: b => DISPOSITIONS.includes(text(b?.disposition))
+    && (b?.performanceOrdinal === undefined || (Number.isInteger(b.performanceOrdinal) && b.performanceOrdinal >= 1))
+    && (b?.answeredBy === undefined || (Array.isArray(b.answeredBy) && b.answeredBy.every(str)))
+    && (b?.annotations === undefined || Array.isArray(b.annotations)),
+};
+const readActEntry = (r: Json): boolean => typeof r?.body?.arrival?.checkpoint === "string" && Number.isInteger(r?.body?.arrival?.arrivalOrdinal)
+  && (r?.kind === "disposition_change" || ACT_ENTRY_KINDS.includes(text(r?.kind))) && READABLE[text(r?.kind)](r.body);
+const LAPSE_FACET: Record<string, string> = {
+  lapsed: "lapsed",
+  "lapsed (subject absent)": "lapsed (subject absent)",
+  "matches c0 again after observed lapse": "matches c₀ again after observed lapse",
+  "unknown (incomparable)": "unknown (incomparable)",
+  "unknown (unavailable)": "unknown (unavailable)",
+};
+const actCited = (act: Json) => `${text(act?.actKind)} ${text(act?.recordId)}, captured ${text(act?.capturedAt)}`;
+// AS §8 Human acts for an output that names its gating checkpoint (WD §4.4;
+// AS OV-5): read from the record's entries for that checkpoint's latest
+// arrival only, never computed from files (R8-4). Lapse states are the
+// recorder's own act_lapsed observations; with none, no lapse is recorded,
+// which is not "not lapsed" (AS §8: not yet evaluated is never shown as not lapsed).
+function gatedHumanActs(gate: string, all: Json[]): string {
+  const arrivals = all.filter((r: Json) => r?.kind === "checkpoint_arrival" && text(r?.body?.checkpoint) === gate);
+  if (!arrivals.length) return `none recorded in this run: checkpoint ${gate}, which gates this output, has no recorded arrival`;
+  const ordinal = Math.max(...arrivals.map((r: Json) => Number(r?.body?.arrivalOrdinal) || 0));
+  const at = (r: Json) => text(r?.body?.arrival?.checkpoint) === gate && r?.body?.arrival?.arrivalOrdinal === ordinal;
+  const of = (kind: string) => all.filter((r: Json) => r?.kind === kind && at(r));
+  const labels = of("disposition_change");
+  const latest = labels.length ? labels[labels.length - 1].body : undefined;
+  const where = `checkpoint ${gate}, arrival ${ordinal}`;
+  const notCounted = of("act_not_counted").map((r: Json) => `${actCited(r.body?.act)}: ${r.body?.capturedBeforeArrival === true ? "prior act not counted" : "act not counted"} — ${text(r.body?.reason)}`);
+  const also = notCounted.length ? ` Not counted: ${notCounted.join("; ")}.` : "";
+  const disposition = text(latest?.disposition);
+  if (!latest) return `unknown: ${where} has no recorded disposition`;
+  if (disposition === "unknown") return `unknown: ${where} is recorded unknown`;
+  if (disposition === "resolved negatively") {
+    const declined = of("arrival_declined").map((r: Json) => text(r.body?.declinedEventRef));
+    return `${where}: resolved negatively — declined (${declined.join(", ") || "the declining record is not named"}); no act counts for it.${also}`;
+  }
+  // The latest performance and the acts that answer it.
+  const performances = labels.filter((b: Json) => b?.body?.disposition === "performed" && typeof b?.body?.performanceOrdinal === "number");
+  const top = performances.length ? Math.max(...performances.map((b: Json) => b.body.performanceOrdinal)) : 0;
+  const performance = performances.find((b: Json) => b.body.performanceOrdinal === top)?.body;
+  if (!performance) {
+    if (disposition === "waiting") return `${where}: reached; no act recorded for it.${also}`;
+    return `unknown: ${where} is recorded ${disposition} with no recorded performance`;
+  }
+  const counted = of("act_counted");
+  // PH-4 / RC-2: never *performed* without the act: every act the label cites
+  // needs its act_counted entry at this arrival.
+  const answeredBy = list(performance.answeredBy);
+  const missing = answeredBy.filter((id: Json) => !counted.some((r: Json) => r.body?.act?.recordId === id));
+  if (!answeredBy.length) return `unknown: ${where} is labelled performed but the label names no act`;
+  if (missing.length) return `unknown: ${where} is labelled performed but no act_counted entry at this arrival cites ${missing.map(text).join(", ")}`;
+  const acts = answeredBy.map((id: Json) => {
+    const c = counted.find((r: Json) => r.body?.act?.recordId === id);
+    const cited = actCited(c.body.act);
+    const earlier = c?.body?.relation === "earlier act" ? ` — by earlier act ${text(id)} at ${text(c.body.act.capturedAt)}` : "";
+    const observations = of("act_lapsed").filter((r: Json) => r.body?.act?.recordId === id);
+    const last = observations.length ? observations[observations.length - 1].body : undefined;
+    const state = !last ? "lapse: not yet evaluated (no lapse observation recorded; not shown as not lapsed)"
+      : LAPSE_FACET[text(last.state)] === undefined ? `lapse: unknown (state ${text(last.state)} not read by this view)`
+      : `lapse: ${LAPSE_FACET[text(last.state)]} (observed ${text(last.time)}${last.state === "lapsed" || last.state === "lapsed (subject absent)" || last.state === "matches c0 again after observed lapse" ? `; c₀ ${text(last.c0?.method)} ${text(last.c0?.value).slice(0, 12)}` : ""})`;
+    return `${cited}${earlier}; ${state}`;
+  });
+  const answered = acts.length > 1 ? `answered by ${acts.length} acts: ` : "";
+  const now = disposition === "performed" ? "performed" : disposition === "waiting" ? "reached again; the act on its current content is not yet recorded" : `recorded ${disposition}`;
+  return `${where}: ${now} (performance ${top}); ${answered}${acts.join(" | ")}. Actor, recorder and recording mode are in the act record, not in the run record.${also}`;
+}
 // An arrival whose bound subject is this output: what the record observed, and no more.
 function arrivalEvidence(output: Json, run: Json): string | undefined {
   const name = text(output?.name);
@@ -193,11 +278,24 @@ export function outputStanding(output: Json, run: Json): Facets {
     const unknown = `unknown: the run record holds ${unread.join(", ")} entries whose bodies this view does not read, so their relation to ${text(output?.name)} is not shown`;
     return { temporal: unknown, hostChecks: unknown, limitations: unknown, humanActs: unknown, examination: unknown, evidence: `unknown (record entries not read by this view)`, route: unknown };
   }
+  const all = records(run);
+  const gate = text(output?.gating_checkpoint);
+  // With no gating checkpoint declared, acts recorded at an arrival bound to this
+  // output are not this output's declared act standing: unknown, never "none".
+  const name = text(output?.name);
+  const boundActs = all.filter((r: Json) => readActEntry(r) && !(r?.kind === "disposition_change" && r?.body?.disposition === "waiting"))
+    .filter((r: Json) => all.some((a: Json) => a?.kind === "checkpoint_arrival" && text(a?.body?.checkpoint) === text(r?.body?.arrival?.checkpoint)
+      && a?.body?.arrivalOrdinal === r?.body?.arrival?.arrivalOrdinal && list(a?.body?.referents).some((x: Json) => text(x?.subject).startsWith(`output ${name}:`))));
+  const humanActs = gate ? gatedHumanActs(gate, all)
+    : boundActs.length ? `unknown: acts are recorded at an arrival bound to ${name}, which declares no gating checkpoint, so they are not shown as its standing`
+    : all.some((a: Json) => a?.kind === "checkpoint_arrival" && list(a?.body?.referents).some((x: Json) => text(x?.subject).startsWith(`output ${name}:`)))
+      ? "none recorded in this run (acts on App files are in their own act log)"
+      : "none recorded for this output (acts on App files are in their own act log)";
   return {
     temporal: "unknown: no result for this output is recorded",
     hostChecks: "none reported",
     limitations: "none reported",
-    humanActs: "none recorded in this run (acts on App files are in their own act log)",
+    humanActs,
     examination: "none recorded",
     evidence: arrivalEvidence(output, run) ?? `missing: no record of ${text(output?.name) || "this output"} in the run record`,
     route: "not recorded",
