@@ -721,8 +721,53 @@ Directory creation and descriptor acquisition are separate operations. A
 normal directory replacing a newly made entry before `openat` can be acquired
 as that entry; the rechecks do not establish its creation custody. Protection
 against redirection begins with the retained objects and does not make that
-acquisition atomic. The separate seed-record obligation above is not completed
-by these copies.
+acquisition atomic.
+
+### 9.3 Initial seed history and remaining source attribution
+
+After the copies are synced and current guidance validation succeeds, the App
+creates `.seed-record.json` exclusively through the retained instruction root.
+`chirality.instruction-seed-record/1` names the compiled release and the exact
+default content identities of files this call created. Preserved racing paths,
+even when byte-equal to a default, are separate with origin *unknown*. The two
+lists partition the five guidance paths; the App never rewrites this record.
+A store whose creation was preempted is validation-only and gets no invented
+history.
+
+Record creation is a direct exclusive write, not an atomic transaction. A
+write/sync failure can leave partial record bytes and partial guidance copies;
+the call reports failure. A colliding record is preserved and refused. Later
+known-store calls validate guidance only and never repair or recreate history.
+This record is mutable by anyone with file access and supplies no authenticated
+creation custody, native uptake or adoption.
+
+### 9.4 Receiving declared seed history
+
+Current production file reads use the `editable-copy` source variant. Its
+`reviewedDefault` names the current compiled release/content comparison used by
+GS-3 and LA-2. The guidance's default/modified classification still compares
+against those reviewed bytes. A mutable or older seed record cannot turn changed
+guidance into the reviewed default or establish its delegation statements.
+The historical `seeded-copy` source shape remains admitted unchanged.
+
+`seedHistory` separately reports either the captured record's declaration or
+unestablished history. A declared result names the exact record content identity,
+its release/default identity for this created path and equality with the supplied
+bytes. It explicitly supplies no authenticated creation custody. A preserved
+path, missing, invalid, unreadable or changed history invents no seed release or
+default identity. This uncertainty changes no supplied guidance bytes and is not
+a fallback to the shipped default. Existing guidance failures still refuse.
+
+The reader retains one instruction-root descriptor for both inputs, opens history
+no-follow/non-blocking, accepts only a regular record of at most 16 KiB and
+rechecks mutation/replacement before reporting its declaration. This bound is for
+internal seed metadata, not a guidance composition limit. The record must have
+the exact format, five-path partition, unique paths and content identities;
+duplicate/unexpected JSON fields refuse its declaration. These are bounded
+filesystem observations, not an atomic snapshot. The App never repairs or
+recreates history during this read. Source inspection carries the history
+alongside the same exact guidance buffer; it makes no native-uptake claim and
+selects no GS-6/U-R9 release-update behavior.
 
 ## 10. Prototype (R17-1)
 

@@ -233,7 +233,8 @@ class HostedCITests(unittest.TestCase):
         selection = select_paths(['projects/chirality-piping/fixtures/new-unreviewed.json'], profile)
         numerical = selection['piping_numerical_selection']
         self.assertEqual(numerical['classification'], 'full-fallback')
-        self.assertEqual(len(numerical['manifests']), 40)
+        # 41 discovered crates since the pressure-source join added core/numerics/correct_norm.
+        self.assertEqual(len(numerical['manifests']), 41)
         self.assertIn('Stale desktop resource declaration', numerical['fallback_reasons'][0])
 
 

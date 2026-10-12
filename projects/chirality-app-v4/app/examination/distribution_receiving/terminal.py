@@ -14,6 +14,13 @@ PROJECT = HERE.parents[2]
 PINS_SHA256 = '828dd8c40a93d01606df58ebc4228c9fb80248e79025f72226c9a673813662e5'
 FORMAT = 'group-b-s1-terminal-reader-exchange.v1'
 ADOPTION = 'B-S4-STOP-ADMISSION-TERMINAL-v1'
+COHORTS = {
+    'stop-admission': ('pins.stop-admission-terminal-v1.json', PINS_SHA256,
+                       'pins.lt12-combined-terminal-v1.json'),
+    'build-selection': ('pins.build-selection-terminal-v1.json',
+                        'db04fa8c7ffb1df41c5868f082e5a86e6215a34b8bcb7106a3b4366b364886c8',
+                        'pins.stop-admission-terminal-v1.json'),
+}
 LIMITS = [
     'Exported LT09/LT23 pair file correspondence only; no native semantic reader reexecution.',
     'Pre-spawn observation is unchanged, not renewed terminal integrity, custody or descendant proof.',
@@ -32,7 +39,7 @@ def load(name, path, raw=None):
 
 
 # Verify the captured helper bytes before executing their definitions.
-HELPER_SHA256 = 'e44b14764962129c27c4a2a2164f4a5e0a43232ca7def745287c8390a1a159bd'
+HELPER_SHA256 = '64fcfe4c61e64bc5441749315485a811089012afb3870b7aefca53226ac6d045'
 helper_raw = (HERE / 'receive.py').read_bytes()
 if hashlib.sha256(helper_raw).hexdigest() != HELPER_SHA256:
     raise ValueError('frozen predecessor engine changed')
@@ -56,10 +63,14 @@ class PredecessorReceiver(base.Receiver):
 
 
 class TerminalReceiver:
-    def __init__(self):
-        raw = base.read_file(HERE / 'pins.stop-admission-terminal-v1.json')
-        base.require(base.sha(raw) == PINS_SHA256, 'terminal pins changed')
+    def __init__(self, cohort='stop-admission'):
+        base.require(cohort in COHORTS, 'unsupported receiving cohort')
+        pins_name, pins_sha, predecessor_name = COHORTS[cohort]
+        raw = base.read_file(HERE / pins_name)
+        base.require(base.sha(raw) == pins_sha, 'terminal pins changed')
         self.pins = base.parse(raw)
+        base.require(base.sha(base.read_file(HERE / predecessor_name)) == self.pins['predecessor_pins_sha256'],
+                     'historical predecessor pins changed')
         current_inputs = base.current_inputs()
         self.predecessor = PredecessorReceiver(self.pins, current_inputs)
         self.canonical = self.predecessor.canonical
@@ -148,7 +159,7 @@ class TerminalReceiver:
         excluded_after = {ref[k]['path'] for k in ('lifecycle', 'transport')}
         base.require({p:b for p,b in before.items() if p not in excluded_before} ==
                      {p:b for p,b in after.items() if p not in excluded_after}, 'terminal shared closure bytes differ')
-        return {'terminal_pair_file_correspondence_passed': True, 'receiving_adoption': ADOPTION,
+        return {'terminal_pair_file_correspondence_passed': True, 'receiving_adoption': self.pins['adoption'],
                 'exchange_sha256': expected_sha, 'selection_sha256': selection_sha,
                 'exported_event_pair': ['LT-09', 'LT-23'], 'case': exchange['case'],
                 'producer': exchange['producer'], 'application_candidate': exchange['applicationCandidate'],
@@ -163,9 +174,10 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('exchange'); parser.add_argument('--exchange-sha256', required=True)
     parser.add_argument('--selection', required=True); parser.add_argument('--selection-sha256', required=True)
+    parser.add_argument('--cohort', choices=tuple(COHORTS), default='stop-admission')
     args = parser.parse_args(argv)
     try:
-        report = TerminalReceiver().check(args.exchange, args.exchange_sha256, args.selection, args.selection_sha256)
+        report = TerminalReceiver(args.cohort).check(args.exchange, args.exchange_sha256, args.selection, args.selection_sha256)
         print(json.dumps(report, indent=2)); return 0
     except (OSError, ValueError, TypeError, KeyError, AttributeError, subprocess.TimeoutExpired) as error:
         print(json.dumps({'terminal_pair_file_correspondence_passed': False, 'input_error': str(error),

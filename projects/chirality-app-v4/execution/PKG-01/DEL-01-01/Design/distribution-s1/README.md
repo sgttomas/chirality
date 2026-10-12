@@ -98,9 +98,10 @@ selects the actual eligible pin; fixture 9.9.9 and historical 0.160.0 are not ch
 **Open production and packaged receiving conditions.** The stock Codex
 0.160.0 macOS arm64 expected reference under
 `references/codex-0.160.0-macos-arm64/` is supplied with its separate attestation
-(S3). Main has not supplied the production build selection and connected runtime
-verification (S2), complete receiving joins (S4) or actual packaged native witness
-(S5). A prepared tree, equal main-binary digest, static reference-equality result
+(S3). The compiled build-selection and preflight implementation (S2) is supplied
+below. Installed custody and verified production runtime, complete receiving joins
+(S4) and the actual packaged native witness (S5) remain open. A prepared tree,
+equal main-binary digest, static reference-equality result
 or development bundle does not establish these. Signature/build integrity and
 installed custody remain required by the selected method. The attested
 `generation-correspondence.json` still cites its earlier SQ Design identity;
@@ -164,3 +165,21 @@ notice names exact current inputs and remaining receiving work.
 Run the Design oracle offline with `PYTHONDONTWRITEBYTECODE=1 python3 test_model.py`
 in this directory. Passing synthetic checks establishes representation and rules,
 not any of the excluded operational or authority facts.
+
+## Compiled build-selection implementation and open production conditions
+
+The opt-in successor selects `build-selection.s2.json`'s exact attested stock
+closure. It compares the full no-follow tree, declared pin, generated identity
+and launcher before the isolated label probe, then rechecks the selected
+closure. Contradictions and configured or required Store failures refuse before
+supplier execution (`hosting_build_selection_tests.rs`). Matching development
+trees retain custody-missing, unverifiable/unverified-development standing.
+Production compares and refuses before execution without an installed issuer.
+
+The resource copies correspond byte for byte through `schemas/sync.py`. The
+production `distribution-reference/` overlay remains DEL-01-06's contribution;
+installed custody and the actual packaged native witness remain open under
+S5/OI-011. Historical S4 packets remain correspondence evidence for their own
+producer identities. A new compiled cohort needs its actual executable/candidate
+and packet identities; unrelated current Host/Design bytes do not renew those
+historical packets.

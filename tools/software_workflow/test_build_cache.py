@@ -84,4 +84,5 @@ def test_warmer_and_consumer_compiler_environment_match():
     for suite, filename, job in [('piping-numerical', 'piping-desktop-e2e.yml', 'numerical'), ('app-v4', 'app-v4.yml', 'product')]:
         consumer = load(filename)['jobs'][job]
         assert warmer['jobs'][suite]['runs-on'] == consumer['runs-on']
-        assert all(consumer['env'][key] == value for key, value in warmer['jobs'][suite]['env'].items())
+        compiler_env = lambda env: {key: value for key, value in env.items() if key.startswith(('CARGO', 'RUST'))}
+        assert compiler_env(consumer['env']) == compiler_env(warmer['jobs'][suite]['env'])

@@ -24,6 +24,15 @@ stdout: exit 0 for consistent or explicitly incomplete support reports, 1 for
 mismatch, 2 for refusal. Exit 0 is
 never qualification, release registration, or runtime verification.
 
+## Build-selection scanner compatibility
+
+The opt-in build-selection preflight adds the compiled S3 selection and
+mismatch explanation helper. The consumed `scan`/`equal` algorithms and
+`distribution-static` CLI remain the same. Static support checks the selected
+scanner executable's exact bytes and its actual operational inputs; unread
+Rust source and Design text are not reader inputs. The connected fixture suite
+uses the built scanner and preserves the canonical S1 comparison behavior.
+
 ## Exact input contract
 
 The request is a closed JSON object with `format: "static-distribution-input/1"`:

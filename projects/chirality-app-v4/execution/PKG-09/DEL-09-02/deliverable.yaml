@@ -441,3 +441,5 @@ needs:
   evidence: execution/PKG-09/DEL-09-01/ScopeOfWork.md
 checks:
 - execution/PKG-09/DEL-09-02/Design/prototype/check_sq.py
+- app/tests/group_b_distribution_receiving_test.py
+- app/tests/group_b_terminal_receiving_test.py
