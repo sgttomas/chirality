@@ -8,7 +8,7 @@ Chirality helps professional knowledge workers turn complex tasks into methods t
 
 ## Use the App
 
-**App v3 is frozen and no longer developed or verified here.** Historical downloads remain in the release repository; source recovery is documented in [Frozen products](projects/FROZEN.md). It runs on Apple Silicon Macs with macOS 15 or newer and uses Codex through your ChatGPT account. Local-model support is planned for a later release.
+**The published App remains v3.0.1 while App v4 is in development.** The v3 fallback runs on Apple Silicon Macs with macOS 15 or newer and uses Codex through your ChatGPT account. App v3 is frozen and no longer developed or verified here; [Frozen products](projects/FROZEN.md) explains source recovery. Local-model support is planned for a later release.
 
 Bring a task such as a monthly update, a proposal, an investigation, or a review. Help Human can organize references, prepare work, and help you check it. You can select a workflow from the library or ask it to turn your plan into one. Return to the conversation to reuse and refine the method as your work changes.
 
@@ -29,6 +29,8 @@ This is the source and development repository for App v4, SWBPIPE, shared agent 
 | Location | Purpose |
 | --- | --- |
 | [App v4 development](projects/chirality-app-v4/loop/LOOP_INIT.md) | Current App and embedded-harness development |
+| [App v4 setup and checks](projects/chirality-app-v4/app/README.md#developer-start) | Toolchain, build, supplier setup and development launch |
+| [SWBPIPE](projects/chirality-piping/README.md) | Piping workbench source, documentation and development entry |
 | [Frozen products](projects/FROZEN.md) | Recovery of App v3, Runtime and PEC |
 | [Agents](agents/) | Four roles: HELP_HUMAN, HELPS_HUMANS, WORKING_ITEMS, and TASK |
 | [Workflows](workflows/README.md) | Reusable instructions for coordinating and completing work |
@@ -41,7 +43,7 @@ A role describes how an agent participates. A workflow describes how work is org
 
 ## Develop and contribute
 
-For application development, start with the [App v4 entry](projects/chirality-app-v4/loop/LOOP_INIT.md). For agent-assisted work in this repository, read [AGENTS.md](AGENTS.md) and the instructions in the project you are changing.
+For application setup, start with the [App v4 developer start](projects/chirality-app-v4/app/README.md#developer-start). The [App v4 loop](projects/chirality-app-v4/loop/LOOP_INIT.md) provides its development context; [SWBPIPE](projects/chirality-piping/README.md) has a separate entry. For agent-assisted work in this repository, read [AGENTS.md](AGENTS.md) and the instructions in the project you are changing.
 
 The [alignment manual and agent guide](docs/alignment-manual/README.md) explain how to organize, check, and carry work forward across Chirality projects.
 
