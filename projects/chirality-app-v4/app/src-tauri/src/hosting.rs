@@ -19,11 +19,14 @@
 //!
 //! Runtime core adds §6 request custody and native answer/error paths, atomic
 //! cursor re-attachment snapshots and optional durable summary recording.
-//! Still outstanding: automatic restart rules (§4.4), native recovery reads,
-//! quit/relaunch integration and the per-home configuration link.
+//! Recovery reads after a restart are `hosting_recovery_reads.rs`. Still
+//! outstanding: automatic restart rules (§4.4), quit/relaunch integration and
+//! the per-home configuration link.
 
 #[path = "execution_custody.rs"]
 mod execution_custody;
+#[path = "hosting_recovery_reads.rs"]
+pub(crate) mod recovery_reads;
 #[path = "hosting_request_event_join.rs"]
 mod request_event_join;
 #[path = "hosting_call_custody.rs"]
@@ -779,6 +782,8 @@ impl Host {
             "reservedNativeRequests": i.source_requests.values().filter(|e|!i.client_requests[e.index].is_object()).map(|e|json!({"generation":e.request.generation,"requestIdentity":e.request.request_id(),"method":e.request.frame["method"],"effectiveOutcome":"unknown/reserved; no complete write proof","writeAttemptInProgress":e.write_attempt_in_progress,"waitingEnded":e.observation_base.get("waitingEnded").and_then(Value::as_bool).unwrap_or(false)})).collect::<Vec<_>>(),
             "inFlightNativeWrites": i.source_requests.values().filter(|e|e.write_attempt_in_progress).map(|e|json!({"generation":e.request.generation,"requestIdentity":e.request.request_id(),"attemptPosition":e.attempt_position,"effectiveOutcome":"unknown/in-progress","lastClientObservationOnly":true})).collect::<Vec<_>>(),
             "serverRequests": i.server_requests.records(),
+            // NIR CS-7: why the process ended for each request it ended unanswered.
+            "serverRequestEndContexts": i.server_requests.end_contexts(),
             "recovery": i.recovery_snapshot,"recoveryPendingObservations":i.pending_recovery.facts.lock().unwrap().iter().cloned().collect::<Vec<_>>(),"recoveryProjectionLimits":i.recovery_projection_errors,
             "recoveryPersistenceError": i.recovery_error,"recoveryInitializationError":i.recovery_initialization_error,
             "journal": i.journal,
@@ -847,6 +852,12 @@ impl Host {
         let mut snapshot = snapshot;
         snapshot["distributionEvidence"] = evidence;
         json!({"snapshot":snapshot,"generation":current_generation,"position":position,"gap":gap,"frames":frames})
+    }
+    /// DEL-01-02's custody events held in this process (`observation_lost`,
+    /// `observation_recovered`, `turn_outcome`), in order, for receivers that
+    /// map them (RECOVERY §8.2; EXEC AE-6). A read; it changes nothing.
+    pub fn custody_events(&self) -> Vec<Value> {
+        self.inner.0.lock().unwrap().execution_custody.events().to_vec()
     }
     /// Read-only App metadata, never admission to native/act/dispatch authority.
     pub fn recovery_custody(&self) -> crate::recovery::RecoveryCustodyView {
@@ -1430,12 +1441,13 @@ impl Host {
             }
         }
         let generation = i.generation.clone();
-        let cause=if i.stop_record.is_some() {if i.stop_record.as_ref().is_some_and(|s|s["reason"]=="App quit"||s["reason"]==crate::app_quit::QUIT_STOP_REASON) {"app-quit"} else {"supplier-stop"}} else {"supplier-exit"};
+        let cause=if i.stop_record.is_some() {if i.stop_record.as_ref().is_some_and(|s|s["reason"]=="App quit"||s["reason"]==crate::app_quit::QUIT_STOP_REASON) {"app-quit"} else if i.stop_record.as_ref().is_some_and(|s|s["reason"]=="system termination") {"system-termination"} else {"supplier-stop"}} else {"supplier-exit"};
         i.execution_custody.close(&generation,cause,&i.server_requests.entries(),&now_rfc3339());
         Self::persist_execution(i);
+        Self::persist_recovery(i);
         Self::stop_requests_generation_closed(i,&generation);
         Self::oauth_lost(i,&generation);
-        let ended = i.server_requests.close(&generation);
+        let ended = i.server_requests.close_for(&generation, cause);
         Self::persist_requests(i);
         for turn in &mut i.conversation_turns {
             if turn["generation"] == generation { turn["observationEnded"] = json!(true); }
@@ -1594,7 +1606,7 @@ impl Host {
         match write_result {
             Ok(())=> {i.source_requests.get_mut(&key).unwrap().written=true;record["writeResult"]=json!("written");record["outcome"]=json!(if closed{"unknown-no-response"}else{"pending"});
                 match Self::completed_client_response(&mut record,response.as_ref(),response_position){Ok(())=>i.client_requests[idx]=record,Err(error)=>i.source_requests.get_mut(&key).unwrap().source_limit=Some(error)}
-                if !closed&&method=="turn/start"&&response.is_some(){if let Some((source_gen,thread,sent_after_receipt))=i.turn_request_threads.remove(&key){if source_gen==i.generation{if let Some(turn)=response.as_ref().and_then(|r|r.get("result")).and_then(|r|r.get("turn")){let position=response_position.unwrap_or(i.receipt_position);Self::remember_turn(&mut i,&source_gen,&thread,turn,"turn/start response",position);if let Some(e)=i.conversation_turns.iter_mut().find(|e|e["generation"]==source_gen&&e["threadId"]==thread&&e["turnId"]==turn["id"]&&e["source"]=="turn/start response"&&e["receiptPosition"]==position){e["startResponseIssuedAfterReceipt"]=json!(sent_after_receipt);}}}}}
+                if !closed&&method=="turn/start"&&response.is_some(){if let Some((source_gen,thread,sent_after_receipt))=i.turn_request_threads.remove(&key){if source_gen==i.generation{if let Some(turn)=response.as_ref().and_then(|r|r.get("result")).and_then(|r|r.get("turn")){let position=response_position.unwrap_or(i.receipt_position);Self::remember_turn(&mut i,&source_gen,&thread,turn,"turn/start response",position);Self::note_turn_request(&mut i,&key,&source_gen,&thread,&turn["id"]);if let Some(e)=i.conversation_turns.iter_mut().find(|e|e["generation"]==source_gen&&e["threadId"]==thread&&e["turnId"]==turn["id"]&&e["source"]=="turn/start response"&&e["receiptPosition"]==position){e["startResponseIssuedAfterReceipt"]=json!(sent_after_receipt);}}}}}
             }
             Err(error)=> {i.pending.remove(&key);i.turn_request_threads.remove(&key);let e=i.source_requests.get_mut(&key).unwrap();
                 if e.attempt_position.is_none(){e.source_limit=Some(format!("No actual write attempt: reserved source invalidated/refused before pipe commit: {error}; native reply facts retained if present"));}
@@ -2851,6 +2863,16 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
             && matches!(turn["status"].as_str(), Some("inProgress" | "completed" | "interrupted" | "failed"))
     }
 
+    /// HOSTING §8.3 / RS R5: what the App's own `turn/start` for this turn
+    /// asked for, from the request it sent (read only): a `collaborationMode`
+    /// turn carries that mode's model; a plain turn carries none.
+    fn note_turn_request(i: &mut Inner, key: &str, generation: &Value, thread: &str, turn: &Value) {
+        let Some(mode) = i.source_requests.get(key).map(|e| e.request.frame["params"]["collaborationMode"].clone()) else { return };
+        let sent = if mode.is_object() { json!({"collaborationMode":true,"model":mode["settings"]["model"]}) } else { json!({"collaborationMode":false}) };
+        if let Some(entry) = i.conversation_turns.iter_mut().find(|e| e["generation"] == *generation && e["threadId"] == thread && e["turnId"] == *turn) {
+            entry["appTurnStart"] = sent;
+        }
+    }
     fn remember_turn(i: &mut Inner, generation: &Value, thread: &str, native: &Value, source: &str, position: u64) {
         if !Self::native_turn_shape(native) { return; }
         if let Some(entry) = i.conversation_turns.iter_mut().find(|t| t["generation"] == *generation && t["threadId"] == thread && t["turnId"] == native["id"]) {
@@ -3029,6 +3051,7 @@ view["sourceObservation"]=e.request.frame["method"].clone();view["sourceWriteCon
                         if source_gen == gen {
                             if let Some(turn) = frame.get("result").and_then(|r| r.get("turn")) {
                                 Self::remember_turn(&mut i, &gen, &thread, turn, "turn/start response", pos);
+                                Self::note_turn_request(&mut i, &key, &gen, &thread, &turn["id"]);
                                 if let Some(entry) = i.conversation_turns.iter_mut().find(|e| e["generation"] == gen && e["threadId"] == thread && e["turnId"] == turn["id"] && e["source"] == "turn/start response" && e["receiptPosition"] == pos) { entry["startResponseIssuedAfterReceipt"] = json!(sent_after_receipt); }
                             }
                         }
@@ -3552,6 +3575,14 @@ mod conversation_transport_tests {
         assert_eq!(outbound["params"]["collaborationMode"]["mode"],"default");
         assert_eq!(host.snapshot()["requestedModes"].as_array().unwrap().len(),1,"one current requested mode per conversation");
         assert_eq!(host.snapshot()["requestedModes"][0]["mode"],"default");
+        // RS R5 requested per turn (review finding on #1302): each turn the App
+        // started records whether its turn/start carried a mode's model.
+        let started=|id:&str|host.snapshot()["conversationTurns"].as_array().unwrap().iter().find(|t|t["turnId"]==id).unwrap()["appTurnStart"].clone();
+        assert_eq!(started("turn"),json!({"collaborationMode":true,"model":"selected"}));
+        assert_eq!(started("turn2"),json!({"collaborationMode":true,"model":"selected"}));
+        let (_,outbound)=exchange(&host,Some(json!({"result":{"turn":{"id":"turn3","status":"inProgress","items":[],"itemsView":"full"}}})),vec![],||host.turn_start_text(&g(),"thread","plain"));
+        assert!(outbound["params"].get("collaborationMode").is_none(),"a plain turn carries no model");
+        assert_eq!(started("turn3"),json!({"collaborationMode":false}));
         host.inner.0.lock().unwrap().threads.push(json!({"generation":g(),"threadId":"no-model"}));
         assert!(host.turn_start_text_mode(&g(),"no-model","x","plan").unwrap_err().contains("no model selected"));
         // The conversation's reported effort is kept, not reset.

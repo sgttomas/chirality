@@ -19,6 +19,32 @@ act. The web view presents, and sends only what the person initiates. It never
 writes records or operates the act control." `src-tauri/` holds that host;
 `src/` holds the web view.
 
+## Developer start
+
+This is the development App; the published fallback remains v3.0.1 in
+[chirality-app](https://github.com/sgttomas/chirality-app). Build commands below
+run from `projects/chirality-app-v4/app/` in the Chirality repository.
+
+Use Rust **1.97.1**, Node **24** and Python **3**. These Rust and Node versions
+match [App v4 CI](../../../.github/workflows/app-v4.yml). Install dependencies
+with `npm ci` when downloads are authorized, or use the prepared-cache route in
+[Offline build and checks](#offline-build-and-checks).
+
+```sh
+npm ci
+npm run build
+(cd src-tauri && cargo build --locked)
+(cd src-tauri && python3 schemas/sync.py)
+```
+
+Before running supplier-dependent checks, prepare the complete stock Codex
+0.160.0 platform package and set the binary path and expected hash as described
+in [Offline build and checks](#offline-build-and-checks). For a development
+launch, follow [Run the development App](#run-the-development-app), including
+its scratch workspace and Codex home. The offline stand-in does not run a model
+turn. [Storage and remaining work](#storage-and-remaining-work) states the
+implemented behavior and qualification limits.
+
 ## Current path
 
 1. The Rust host starts the stock App Server, completes its handshake and keeps
@@ -97,6 +123,35 @@ writes records or operates the act control." `src-tauri/` holds that host;
     registration are connected to prepared input and source-owned native page
     comparison. Code and synthetic checks do not establish a native person's
     registration, provider uptake or completed workflow execution.
+    **Reuse (WR §4.4, §4.6).** The active library's list of registered revisions
+    offers **Select revision ‹n›** on a revision whose registration or
+    re-confirmation result this App process holds (RC-2) and whose revision
+    store still recomputes when the list is read (a row that does not says
+    so, LS-4); the press names its library, and a press after another library
+    became active selects nothing. The host resolves the selection from the
+    revision store, never the published copy, and verifies its bytes there
+    again (SL-1, SL-4). Every registered selection resolves from the revision
+    store this way: from the list, from a retained review's **Select revision
+    ‹n›** (the revision that review registered or re-confirmed; no folder is
+    picked), from "newer revision ‹n› available", and from a confirmed agent
+    proposal (item 20). An edited published copy or an identical copy
+    elsewhere is never used, and a store that does not recompute refuses with
+    the selection unchanged. A run's files line (WR TX-7) therefore names the
+    revision's store folder, project- or `~`-relative, and the selection's
+    holding library is recorded as that folder's parent. Other rows keep Refine and re-confirmation through a
+    draft; selecting one, a draft or an unregistered library entry is refused
+    with its standing and route (SL-5). Beside a registered selection the view
+    shows "newer revision ‹n› available" when the slot's ledger has a newer
+    registered revision; the selection stays where it is (SL-2, SL-4). Its
+    **Select revision ‹n›** is offered only when this process holds that
+    revision; following it is a new selection whose `selection_record` cites
+    the one it replaces (`replaces`). Any person's selection of a registered
+    revision replacing another registered selection cites it the same way
+    (§5.4); a candidate selection that cannot run is not cited. The selection
+    stays App-wide, not per conversation as WR §5.4 is headed. A selection is
+    recorded when a run of it is prepared, since the record names the run's
+    conversation, so a replaced selection no run used has no record of its
+    own. Bundled (LS-5) entries remain inspect-only candidates.
 17. The selected conversation shows its native activity readably: messages,
     reasoning summaries, plan items and checklist revisions, tool rows and
     descendants, grouped by turn in native start order and, within a turn, in
@@ -106,9 +161,17 @@ writes records or operates the act control." `src-tauri/` holds that host;
     inferred. Agent text, reasoning summaries, plans and command output stream
     as labelled previews that the completed native item replaces. Stored-history
     pages the person reads (turns, items, thread read) are added as
-    recovered-from-supplier rows; nothing is rebuilt automatically. Only a plan
-    observed live shows a revision number in this conversation. A row the view
-    cannot read shows its JSON instead of breaking the view.
+    recovered-from-supplier rows, as are the pages the host's recovery reads
+    return after a restart (item 22b); items are added only as their pages
+    are read. Only a plan
+    observed live shows a revision number in this conversation; a later run
+    does not reset it. Each plan revision, checklist and tool row in a turn a
+    workflow run was in force at, as the App's run markers place it (from
+    its start turn to the turn it ended after), carries "During the run of
+    ‹workflow› ‹revision›" (NPTD §5.7). Messages carry none, and so does a row
+    outside any run, between runs, or past the start turn of a run whose end
+    this view cannot place; nothing says which run caused an item. A row the
+    view cannot read shows its JSON instead of breaking the view.
 18. Plan mode (experimental) is offered only when this Codex connection declared
     the experimental API and Codex lists a `plan` preset. Sending in plan or
     default mode puts `collaborationMode` on `turn/start` with the conversation's
@@ -138,7 +201,10 @@ writes records or operates the act control." `src-tauri/` holds that host;
     or **End ‹A› and start ‹B›** while a run is in force (*completed* when the same
     message reports A finished). The proposal selects nothing until the person
     presses; the selection is then recorded as "agent proposal confirmed by the
-    person". Unresolved proposals show their notice. The activity view marks run
+    person". The press resolves the proposed revision from the revision store
+    and verifies it there, as a selection from the library list does (SL-4); an
+    edited published copy is not used, and a store that does not recompute
+    refuses with nothing selected or started. Unresolved proposals show their notice. The activity view marks run
     starts and ends from the App's run records and folds the supplied run text.
 21. **Save a workflow** starts from a draft list. Under the owner's OI-008 ruling
     (first given for the draft workspace as "A, proceed with the Rust host."), the Rust host observes
@@ -194,8 +260,10 @@ writes records or operates the act control." `src-tauri/` holds that host;
     the person attaches are ordinary attachments.
     **Review for registration…** opens the existing review for the listed
     content, refused as DS-6 if the draft changed since listing.
-    Registration stays the person's A15 act at the native confirmation. A trial
-    is not a run, registration, checking or acceptance.
+    Registration stays the person's A15 act at the native confirmation; once
+    it registers or re-confirms, the review offers **Select revision ‹n›**,
+    resolved from the revision store like every registered selection (item 16).
+    A trial is not a run, registration, checking or acceptance.
 22. **Stop Codex…** and **Restart Codex…** always ask first (DEL-01-04 §5.2,
     C-12). A native question lists the live turns, waiting requests, delegated
     agents and workflow runs in force in that home, or says none were observed,
@@ -271,6 +339,38 @@ writes records or operates the act control." `src-tauri/` holds that host;
     question. The indicator gives a count only; the conversations are listed
     in the window's request cards, and clicking the Dock icon opens the App,
     not a particular conversation (WI-3). Quit has not been witnessed natively.
+22b. **Recovery after a restart** (DEL-01-02 §3.2 CV-11…CV-15, CV-19, CV-22;
+    §3.4 SR-09; §5 R-4, X-3…X-5). When a home's Codex is ready again (Start or
+    Restart Codex, or the App's start after a relaunch), the host reads, on
+    that process, each conversation of that home whose process ended while it
+    was loaded, or that an earlier App session left unsettled: `thread/read`
+    (metadata only), then `thread/turns/list` newest first, page by page
+    until the turn last seen live is found. The reads run on the host's trial
+    tick, are journalled as `app-rule:recovery-read`, and change nothing in
+    Codex: nothing is resumed and no prompt is re-sent. The App then records
+    `observation_recovered` *accessible* and, for the turn last seen live,
+    `turn_outcome` with Codex's final status (*recovered-from-supplier*), or
+    *unknown* when history reports it in progress or does not have it; its
+    items seen open read "not completed (turn ended)" only when Codex reports
+    the turn ended. Codex's status is shown beside the App's reading, and a
+    turn live when the App stopped Codex carries the graceful-stop note. A
+    stop request of that turn whose outcome was unknown records SR-09 with
+    that status. A failed read leaves the conversation *unavailable* with the
+    reason; it is read again when the person chooses **Read this conversation
+    from Codex again** in the recovery panel, or at the next ready. If Codex
+    ends or is stopped during the reads, the conversation waits for the next
+    ready. The pages are added
+    to the activity view (item 17). *Limits:* a conversation with no App index
+    (no home recorded) is not read; a turn not found within 20 pages is
+    *unavailable*, not absent; a read Codex does not answer within 20 s ends
+    that pass, leaving the conversations not yet read *unavailable*; the
+    graceful-stop note is inferred from the App's stop, not from whether the
+    stop had to force the process to end; after a relaunch only each
+    conversation's latest persisted state is read, so a loss not yet
+    recovered when the conversation was loaded again before the App ended is
+    not read; the events are kept in this App process, and
+    the ledger keeps the conversation's recovery states. Not witnessed
+    natively.
 23. **Run panel** (NIR §9 PD-1…PD-7, AS §4, §8, §9). The selected workflow and
     each run show the declared part readably, as the host read it from the
     revision's own bytes: inputs, tools, checkpoints, outputs, returned
@@ -318,24 +418,99 @@ writes records or operates the act control." `src-tauri/` holds that host;
     The agent's next own action (RC-9) records `continued_past` once (CE-12),
     and the first action evidenced as started after the deciding act records
     `run_resumed` (CE-11; with no supplier start time none is claimed, A-9).
+    **Lapses (CE-10).** While the run is live, at each observation (after the
+    items it delivered for a *performed* arrival, before counting acts for one
+    waiting again after a lapse), the App reads the file each act answering an arrival's latest performance is
+    bound to (rehashing it only when its metadata changes) and compares it
+    with the act's bound content as the file-act view does. A changed identity
+    is written as `act_lapsed` *lapsed*, a missing file *lapsed (subject
+    absent)*, with the observation's own time and the act record unchanged.
+    Before the recorded resume point the arrival becomes *waiting* "waiting —
+    lapsed at ‹t›" (and "subject absent"), and an act on the content now
+    current performs it again with the next ordinal; after it, the arrival
+    stays *performed* with "act lapsed at ‹t›" and nothing re-holds (RC-8,
+    PH-8); then an act of the required kind on the content now current,
+    whatever its capture time (SP-6), performs it again with the next ordinal
+    and answers it alone (one referent, JA-1), and the first agent action
+    started after both that act's capture and the lapse observation is a new
+    resume point. Other acts and declines are
+    not recorded against the still *performed* arrival. A file that cannot be read is *unknown (unavailable)*, and content
+    back at the acted content "matches c0 again after observed lapse"; both
+    are written without changing the label (A-10; RS U-12). A repeated
+    observation is not written again; a lapse whose label was not written
+    gets it at the next observation. The file-act view reads these entries
+    as the act's lapse history.
+    **Observation lost and recovered (CE-13, CE-14).** The record tick and
+    the End run paths receive DEL-01-02's custody events with the native
+    view. Each `observation_lost` of this App session that names the run's
+    conversation, from the Codex generation the run opened in on, is written
+    once as `observation_lost` with its cause (DEF-5, or DEF-6 for a quit).
+    It is *deciding* when an item it left in flight may be a listed
+    checkpoint's named event: a message whose streamed text has not settled
+    on another first line, or a file change whose received changes do not
+    exclude the declared path (AW-12). A deciding loss names no arrival and
+    writes no *unknown* label. A later recovery read *accessible* of that
+    conversation, matched to the loss by the live turn it reports, is written
+    once as `observation_recovered` with its own time; it reads turns only,
+    so it recovers no item and changes no label (RP-1). An unavailable read
+    writes nothing. A conversation with no App index gets no custody loss, so
+    its run records none.
+    **Tool-permission settlements (RS R13, R11).** Each A14 request of the
+    run (an approval request in the register: the run's App session and
+    conversation, a turn of the run, from the generation it opened in) is
+    written once as `tool_permission_settlement` when the register shows it
+    settled: answered or declined by the person, declined by a named App
+    rule, errored explicitly or by a named rule, resolved by Codex, or ended
+    unanswered with the context its process ended in (supplier exit, supplier
+    stop, App quit, system termination) and DEL-01-02's
+    `request_ended_unanswered` event (RECOVERY RQ-04, written at the
+    generation's close). A reply written to Codex and never acknowledged
+    before the close is RS's "lost acknowledgement" limit, from
+    `acknowledgment_not_observed` (RQ-05). A request still open, or whose
+    reply could not be written, is not written; nor is a reply still being
+    written when the process ended, whose write result the host does not
+    record after the close (no transition is designed for it). A settlement inside Codex by
+    the user's own Codex mode never reaches the App and is not recorded. None
+    is a human act. The request card says "when you quit" for a request
+    ended at a quit (NIR CS-7).
     Recording never sends, opens, pauses or ends anything (RC-4). When the
-    person ends the run, acts recorded since the last observation are counted
-    first, also for a run ended after a relaunch (when the act records cannot
-    be read, the end still ends the run and a limit naming them is written
-    first), and `run_ended` lists the arrivals still waiting (CE-17). Each checkpoint shows its listing or
+    person ends the run, lapses since the last observation and then acts
+    recorded since are written first, also for a run ended after a relaunch
+    (when the act records cannot be read, the end still ends the run and, if
+    an arrival waits, a limit naming them is written first), and `run_ended`
+    lists the arrivals still waiting (CE-17). Each checkpoint shows its listing or
     finding, its arrivals with their labels, requests, counted and not-counted
-    acts and limits. A run record entry that cannot be
+    acts, lapses and limits. A run record entry that cannot be
     written is shown on the run (A-12). It is written later, in order, with a
     "record write failed" limit (CE-19), and is never written elsewhere. The
     App writes no host-outcome, A5 item or A12 entries (AW-8…AW-10, CE-7,
-    CE-9), and no lapse, observation-loss or after-end entries (CE-10,
-    CE-13…CE-16). A path is compared as text
+    CE-9), no observation loss or recovery of an earlier App session (after a
+    relaunch the custody events of the session that ended are gone, and the
+    run gets RS's "App-restart interruption" limit instead) and, since it observes
+    no run after its end, no after-end lapse or act (CE-10 *after run end*,
+    CE-16). A path is compared as text
     (U-E26). Recording follows the active home's view while the App
     refreshes, and when the person ends the run. Each declared output shows its
     promise apart from its standing facets (AS §8), which come only from the
     run record: with nothing recorded they read none reported, not recorded or
     missing. An arrival bound to the output adds only where the agent put it.
-    Record entries this view does not read make the facets unknown. The
+    An output that declares a gating checkpoint shows, in its human-act facet
+    only, the record's act standing for that checkpoint's latest arrival: the
+    counted act (with "by earlier act" and "answered by ‹n› acts"), "prior act
+    not counted" and other not-counted acts with their reasons, a decline, and
+    the latest recorded lapse observation (lapsed, with c₀; lapsed (subject
+    absent); matches c₀ again; unknown (incomparable / unavailable)). With no
+    lapse recorded it reads *not yet evaluated*, never *not lapsed*; a performed
+    label without its counted act reads unknown. An output with no gating
+    checkpoint reads acts unknown once an act entry concerns an arrival bound
+    to it. A tool-permission settlement (R13) changes no facet: AS §8 names
+    no source for it and an A14 settlement is never an act (DS-3); nor does
+    a model turn (R5 `model_turn`), whose destination AS §2 shows in the
+    channel status, "not here". A "lost
+    acknowledgement" limit (R11) adds an *unknown* note to Evidence
+    completeness only, the facet AS §8 gives record-out evidence limits.
+    Other record entries this view does not read, other limits and an
+    observation loss or recovery among them, make the facets unknown. The
     advisory compatibility (DEL-02-03 CK-1/CK-2) is shown readably; a role
     outside the written-for roles names both and points to Continue as
     (U-R10, chosen display).
@@ -420,7 +595,9 @@ writes records or operates the act control." `src-tauri/` holds that host;
 | `src-tauri/src/codex_stop.rs`, `src/CodexControls.tsx` | Stop/Restart Codex (DEL-01-02 §4.1 C-12 with the DEL-01-04 §5.2 question): live-work assessment with runs in force, ask-first sequence, the ledger `codex_stop` record, interrupts before the stop within the stop wait limit, TO-4 labels and the in-process outcome panel |
 | `src-tauri/src/app_quit.rs` | App quit asked first (DEL-01-02 DEF-6, K-4, SQ-Q; DEL-01-04 §5.2): assessment across homes, `quit_requested`/`quit_answered`, quit interrupts (cause *quit*), the exit's process stops and `session_ended` (AS-09, AS-10); the DEF-1 exit rule; the C-24 waiting count |
 | `src-tauri/src/stop_records.rs`, `resources/runtime_core/recovery.stop-request.schema.json` | REC stop-request records (DEL-01-02 §3.4 SR-01…SR-12): validated transitions and outcome labels, the `codex_stop` ledger entry, and the read-back after a relaunch; the Host writes them through its recovery writer before each interrupt send |
+| `src-tauri/src/hosting_recovery_reads.rs`, `execution_custody.rs` | Recovery after a restart (DEL-01-02 §3.2 CV-11…CV-15, CV-19, CV-22; SR-09): the reads on the home's ready process, `observation_lost`/`observation_recovered`/`turn_outcome`, and the conversations' recovery states in the ledger; run on the host's trial tick or on the person's retry |
 | `src-tauri/src/checkpoint_recorder.rs` | EXEC §2.4 first slice: CE-1 listing, CE-3 arrivals from observed AW-6/AW-7 native items, CE-11/CE-12, CE-17 waiting arrivals; written through the run's RS writer with CE-19 late-write limits; never reacts (RC-4) |
+| `src-tauri/src/model_turn_recorder.rs` | RS R5 `model_turn` entries (HOSTING §8.3): thread-scope reports and one entry per run turn, effective only from a `model/rerouted` naming the turn; observes `native_items.rs`'s `modelReroutes` and the host's thread rows; never reacts |
 | `src-tauri/src/run_restart.rs`, `run_restart_tests.rs` | EXEC §2.7 / RECOVERY §4.1: the REC run tag at `run_opened` (owner `DEL-02-03`) and the host's startup writer of RS "App-restart interruption" limits; tests also cover WR TX-5 / SQ-END end notices after relaunch and (j) permanent refusals |
 | `src-tauri/src/run_offers.rs`, `src/RunOffers.tsx` | Exact run-offer line forms (WR §16.5 PR/FN), the finished-report proof for a *completed* end, and their presentation beneath the message |
 | `src-tauri/src/workflow_drafts.rs`, `src/WorkflowDrafts.tsx` | DEL-02-02 draft workspace in the Rust host (SQ-D D-2…D-4 observation, hygiene, §5.1 states) and its list presentation in NIR §7 words, with the two Try buttons and each draft's trial list; nothing here registers, reviews or runs |
@@ -434,9 +611,11 @@ writes records or operates the act control." `src-tauri/` holds that host;
 
 ## Offline build and checks
 
-Use Rust 1.92, Node 24 and prepared Cargo/npm caches. Set `CARGO_HOME` if the
-approved dependency cache is isolated; its machine-local recovery path is in
-this run's evidence. Package downloads require the owner's authorization.
+Use Rust 1.97.1, Node 24, Python 3 and prepared Cargo/npm caches. Set
+`CARGO_HOME` to the dependency cache you prepared if it is isolated. The offline
+commands require those caches to contain the locked dependencies; use the
+[developer start](#developer-start) to prepare dependencies when downloads are
+authorized.
 
 ```sh
 npm install --offline --no-audit --no-fund --ignore-scripts
@@ -591,18 +770,64 @@ narrows R-1 but does not close it: anything that can read that file, including
 an agent under Codex's default read access, can seal. Trustworthy persistent
 cold replay remains unfinished under AAC §6.3 U-AAC-3 and I3-CUST, and SEAL-2 stays
 deferred. Current code refuses unverified replay while preserving evidence.
-Native authenticity, real process-kill/fsync failure witnesses, durable history rebuild and cold role-source reconciliation, child role supply, native A15/registered-library and file-act witnesses, and remaining policy/standing/control journeys remain in the Group A graph. Per-home configuration/resource linking is implemented with observed ownership limits. CommonMark parsing and one closed, explicitly development-candidate workflow catalog are supplied; the production native-page supply path and hot registration transaction are implemented, while their actual native consumer witnesses remain separate. General file/arrival entry surfaces and complete file-act lapse-history evidence also remain unfinished. External dispatch and host qualification remain unsupplied. Native text-turn and interrupt controls use the selected native thread and
+Native authenticity, real process-kill/fsync failure witnesses, durable history rebuild (the recovery reads after a restart, item 22b, read metadata and turn summaries only), native witnesses of those reads and cold role-source reconciliation, child role supply, native A15/registered-library and file-act witnesses, and remaining policy/standing/control journeys remain in the Group A graph. Per-home configuration/resource linking is implemented with observed ownership limits. CommonMark parsing and one closed, explicitly development-candidate workflow catalog are supplied; the production native-page supply path and hot registration transaction are implemented, while their actual native consumer witnesses remain separate. General file/arrival entry surfaces and complete file-act lapse-history evidence also remain unfinished: lapses are recorded only for acts that answer an arrival of a live run. External dispatch and host qualification remain unsupplied. Native text-turn and interrupt controls use the selected native thread and
 retain generation/terminal limits. Transport and receiving tests do not prove a
 provider prediction. A separately frozen controlled live backend greeting passed;
 its exact source pins and limits are recorded in the run. An approved no-supplier native window inspection establishes tool/window reachability only; corrected UI/storage, browser/device/auth/provider and capture journeys remain separate unfinished witnesses. Host joins stay deferred to their owning sessions.
 
 REC stop-request records and the ledger `codex_stop` entry (item 22) are
-appended to the existing pointer ledger. Checkpoint entries (item 23) go to the
+appended to the existing pointer ledger, as are the conversations' recovery
+states (item 22b, `conversation_index` rows). Checkpoint entries (item 23) go to the
 run's own RS log. Neither opens a new store.
 
-The run panel (item 23) records the arrivals and act counting item 23
-describes (CE-1…CE-6, CE-8, CE-11, CE-12, CE-17, CE-18). It does not record
-host-outcome arrivals (AW-8…AW-10, CE-7, CE-9) or output records. Conversation roles (item 24)
+The run panel (item 23) records output arrivals (AW-6, AW-7), harness-capability
+call starts (AW-3), requests, counted App-file acts and, while the run is live,
+their lapses, with their labels and recording gaps, and the Codex observation
+losses and recovery reads of its conversation in this App session (CE-1…CE-6,
+CE-8, CE-10…CE-14, CE-17…CE-19). It does not yet record host-operation or
+host-outcome arrivals, A5 items or A12 relations (CE-7, CE-9), the *unknown*
+label of a deciding loss, losses or recoveries of an earlier App session,
+replaced arrivals (CE-15, which follows only from A5
+items), anything after the run's end (CE-10 *after run end*, CE-16), or output
+records. An output gated by a checkpoint shows that checkpoint's recorded act
+standing, *lapsed* included; an observation loss or recovery still makes an
+output's facets unknown.
+
+Each run also records RS R5 `model_turn` entries (HOSTING §8.3), through the
+same writer and the host's record tick. The host keeps `model/rerouted`
+notifications as observations; it changes nothing it sends. Every thread-level
+report of the run's conversation (thread start, resume or fork, from the run's
+generation on) is written with scope *thread* and no turn. Each turn of the
+run (the conversation's turns from the start turn on, observed live while the
+run is open) gets an entry with its ordinal in the run, written when the turn
+is observed to end, or at the run's end before `run_ended` for a turn still
+live. `requested` and `effective` are written as "‹provider›/‹model›",
+as "‹model›" when no provider is known, or as *unknown*. A turn's `requested`
+is the App's request in force for it, from the App's own `turn/start` as the
+host correlated the response. A plan- or default-mode turn carries
+`collaborationMode.settings.model` (the conversation's reported model) and
+asked for that. A plain text, run or attachment turn carries no model, so its
+`requested` is the latest request the App sent for this conversation in this
+Codex process: the latest mode's model, or else the provider and model the
+App asked for at thread start. That Codex keeps a mode for later turns is its
+documented behaviour (item 18); it has not been observed, and no witness has
+shown which model a later plain turn actually ran under. A mode turn's
+`requested`, and a plain turn's that inherits it, is "‹model›" with no
+provider, because the mode element carries only the conversation's reported
+model. A turn the App did not start, a plain turn after a mode sent in an
+earlier Codex process, and a conversation the App did not start in this
+session have *unknown*. `effective` comes only from a `model/rerouted`
+naming that turn, otherwise *unknown*, never from the thread or an earlier
+turn. Each re-route is recorded with its turn, `reroute` true: a turn
+re-routed twice gets two entries, and a re-route received after its turn's
+entry was written is a further entry for that turn. With no re-route observed
+`reroute` is omitted, since `model/rerouted` has not been observed live
+(HOSTING U-19) and its absence shows nothing. The destination class is DEL-01-05's mapping of the access entry,
+known only for the conversation the home last started (otherwise *unknown*).
+The re-route's reason and the native turn identity have no place in the entry
+body. Nothing is recorded after the run's end.
+
+Conversation roles (item 24)
 keep handoffs in process memory and write no persistent role-supply log;
 delete or archive beside Fork waits on U-R13.
 

@@ -740,6 +740,17 @@ facts. The App resolves its own user-data root from the host; tests supply an
 explicit scratch ledger path instead. No common service or host persistence
 allocation follows from this local choice (bounded U-R7/TBD-002 only).
 
+**Approved recommendation (owner, 2026-10-12: "I approve your
+recommendations. Proceed accordingly."; PRD R-STORE).** The approved
+recommendations included this change. The ledger is App-private operational
+state, not a record. It moves to a SQLite database in App user
+data, which records its entries without rewriting or deleting any of them.
+Entries that must stand together are recorded in one transaction, for
+example a startup batch of RQ-06 endings or a session marker with its
+endings. The JSON Lines ledger stays readable as legacy history and is
+imported, never rewritten. This is PROPOSED and not yet implemented; until
+then the App writes the JSON Lines file described here.
+
 Validate complete entries against the existing ledger schema before append,
 append without rewriting prior facts and establish durable file/directory
 publication before reporting an entry persisted. On recovery, incomplete,
@@ -1176,7 +1187,7 @@ qualified.
 | U-R4 Numbers: quit wait limit, stop wait limit, journal size, overlap wait (with HOSTING U-05) | App implementation owner | Before implementation | TEST VALUES in the prototype only |
 | U-R5 *Closed at G (R22-3):* more than one App window on one conversation. Each window is an observer and shows the interrupt control; the first press settles it, another window's press is refused and its control shows the turn's state (§3.3, SR-11; NIR-v0.2 §4.8 WI-5, beside WI-4) | — | — | — |
 | U-R6 *Closed at G (C1-A G-A1):* RS does not record a turn interrupt in format 0.1 (RS-v0.9 §10, DEL-01-02 row; §3, "Run-ended event" row) | — | — | §8.2 cites it |
-| U-R7 TBD-002 persistence technology and location — bounded choice selected (CC-REC-LEDGER) | App execution/recovery owner with the supplier-integration owner | Independent review and product adoption | §7 selects App-local UTF-8 JSON Lines pointer ledger under App-own user-data runtime; failure visible, no relocation. Retention/deletion U-R3 remains open; no product evidence claimed |
+| U-R7 TBD-002 persistence technology and location — bounded choice selected (CC-REC-LEDGER) | App execution/recovery owner with the supplier-integration owner | Independent review and product adoption | §7 selects App-local UTF-8 JSON Lines pointer ledger under App-own user-data runtime; failure visible, no relocation. SQLite in App user data is proposed (§7; PRD R-STORE). Retention/deletion U-R3 remains open; no product evidence claimed |
 | U-R8 *Closed 2026-10-10 (owner ruling on OI-008, `docs/ARCHITECTURE.md` §3):* the process division. The Rust host owns record writing, every request to Codex and the capture of a person's act; the web view presents and sends only what the person initiates (§0, §4.1 "Placement") | — | — | Requirements still stated apart from placement |
 | U-R12 Deleting or archiving a conversation that has forks: at 0.158.0 a fork's history is referenced from the source's rollout (OBS-3 W-6, UNRESOLVED), so the App may need to warn or keep the source (with U-R3) | App execution/recovery owner | Before deletion is offered | `forkedFrom` recorded |
 | U-R13 Version advance (R19-5): every supplier statement here is about 0.158.0; a version-advance check (regenerate types, diff, rerun the OBS harnesses and this prototype's variants, list affected statements) is proposed as a later node, its scheduling open | Integrator / owner | Before relying on another version | Statements name 0.158.0 |
@@ -1188,3 +1199,81 @@ qualified.
 DEF-2 predates the owner's OI-008 Rust-host allocation (§0 and §4.1). Its pipe
 and observer-loss distinctions remain; the allocation wording has not yet been
 brought into correspondence with that ruling.
+
+**Recovery reads (CV-11…CV-15, CV-19, CV-22, SR-09; R-4, X-3…X-5).**
+Implemented in the Rust host (`hosting_recovery_reads.rs`,
+`execution_custody.rs`); not witnessed natively. The reads run on the host's
+own Codex-read tick once the home's process is `ready`, and on the person's
+retry; each conversation is read once per ready generation, with the reads
+grouped per thread. `thread/turns/list` pages descending until the turn last
+seen live is found. Readings this file leaves open, as implemented:
+- `turn_outcome` names a `cause` and `stopRequest` only from a stop request
+  that was sent for that turn (the latest one). A turn live at a stop or quit
+  with no such request has no cause ("cause not observed"); its `appReading`
+  names the loss (the prototype instead derives *quit* or *codex-stop* from
+  the loss cause). SR-09 is recorded for every outcome-unknown stop request
+  of that turn, never over a recorded final status.
+- `historyNote` is given for a turn live when the App stopped the process
+  (loss cause *supplier-stop* or *app-quit*), inferred from that loss cause in
+  the App's own record; whether the stop escalated to a forced end is not
+  consulted (`abortNoteExpected` is not written). The schema's constant text
+  names 0.158.0.
+- A turn not found within 20 pages makes the conversation *unavailable* with
+  that reason; *absent* is reported only after the last page. A read with no
+  answer within its wait (20 s) ends the pass: the conversations not yet
+  read are *unavailable* with that reason. A read that fails while the
+  process is leaving `ready` (a Stop or Restart Codex under way, before its
+  generation's close) is CV-22, not CV-14.
+- `observation_recovered` and `turn_outcome` are held in this App process, as
+  `observation_lost` is; the ledger keeps each conversation's recovery states
+  as `conversation_index` rows (*recovering*, *unavailable*,
+  *recovery-pending*, *indexed*, keeping the last loaded generation) and SR-09
+  as `stop_request` records. A conversation with no App index (no home) is
+  not read.
+- CV-19 takes each conversation's latest persisted row only. A loss in one
+  generation that was not yet recovered when the conversation was loaded in a
+  later generation, before the App ended, is not read after the relaunch;
+  only the later generation's state is.
+- `app_restart_interruption` is derived from the rows earlier App sessions
+  wrote, so a recovery read in this session does not remove it.
+
+**App ledger durability and scale, measured (2026-10-12; release build,
+macOS, one machine; `records::durability_tests`, and the ignored
+`records_scale_report`).**
+- *Crash.* 200 SIGKILLs at random points of a child process appending
+  in a loop left only complete, schema-valid lines and no torn tail;
+  each reopened ledger read every line and appended again. A short write
+  (`RLIMIT_FSIZE`, part of the line landed, then EFBIG) is reported as
+  "append not confirmed" and is not kept in memory. The same writer's
+  next append refuses ("unclosed final record; bytes preserved"). The
+  reader then refuses the whole file ("final ledger record is not
+  newline-closed; bytes preserved"): the bytes are left in place, but
+  every earlier entry becomes unavailable to recovery. §7 asks instead
+  for an explicit limit that preserves the old evidence that can still
+  be read. Not shown: whether data the OS acknowledged survives a power
+  failure. `sync_data` is called, but a killed process leaves the page
+  cache intact, so this cannot be simulated. A full device (ENOSPC) was
+  not produced; the file-size limit stands in for it.
+- *Scale.* Rows estimated at about 340 a run: an index row as each item
+  opens and as it closes (`persist_execution`), at about 15 items a turn
+  and 10 turns a run, plus register summaries. That gives about 340,000
+  rows in a first year of 1,000 runs (an estimate from the code, not from
+  a live run).
+
+  | Rows (≈ years) | File | Open | Resident after open | Host snapshot (clone) | Host status JSON | One fact (append + snapshot) | Startup (`configure_recovery`) |
+  |---|---|---|---|---|---|---|---|
+  | 34,000 (0.1) | 14 MB | 44 ms | 97 MB | 24 ms | 14 MB | 34 ms | 78 ms |
+  | 340,000 (1) | 142 MB | 469 ms | 821 MB | 240 ms | 142 MB | 327 ms | 872 ms |
+  | 1,000,000 (3) | 419 MB | 1.25 s | 2.4 GB | 677 ms | 419 MB | 928 ms | 2.3 s |
+
+  Every cost grows linearly with the whole ledger. The host keeps every
+  row in memory, about 2.4 KB per row. Its snapshot carries all of them
+  (`recovery.entries`), so each tick and each 1 s `host_status` poll
+  clones the ledger and sends it to the web view. Each item start or
+  completion, and each request change, clones the history again under
+  the host lock (`persist_execution`, `persist_requests`). Peak resident
+  size in the measuring process was 0.26, 2.4 and 7.0 GB. What to bound
+  first: the snapshot's `entries` and the per-fact history clone. The
+  live readers seen (`persist_execution`, `persist_requests`, tags) search
+  them for the latest row of one conversation or request. Next: the
+  startup read.
