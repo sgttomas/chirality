@@ -173,6 +173,7 @@ jobs:
         run: python3 tools/software_workflow/result_cache.py reuse --suite numerical --record "${{ runner.temp }}/verified-numerical/result.json"
       - uses: dtolnay/rust-toolchain@1.97.1
         if: steps.verified.outputs.cache-hit != 'true'
+      # Shared dependency cache contract: docs/CI_SELECTION.md.
       - name: Restore main-scoped numerical build dependencies
         if: steps.verified.outputs.cache-hit != 'true'
         uses: ./.github/actions/restore-build-cache
