@@ -208,7 +208,7 @@ impl RequestRegister {
     pub fn records(&self) -> Vec<Value> {
         self.entries.iter().map(|e| {
             let method=e["method"].as_str().unwrap_or("");
-            let class=if e["classification"]!="known-answerable" {"none"}else if method=="currentTime/read" || (method=="item/tool/call" && e["cceOfferedProvenance"]==true) {"named-service"}else if matches!(method,"item/tool/requestUserInput"|"mcpServer/elicitation/request") {"person-input"}else{"a14"};
+            let class=if e["classification"]!="known-answerable" {"none"}else if method=="currentTime/read" || (method=="item/tool/call" && (e["cceOfferedProvenance"]==true || e["namedTool"].is_string())) {"named-service"}else if matches!(method,"item/tool/requestUserInput"|"mcpServer/elicitation/request") {"person-input"}else{"a14"};
             let mut record=json!({"recordKind":"server-request-entry","requestIdentity":e["requestId"],"generation":e["generation"],"method":method,
                 "classification":e["classification"],"originClass":class,"nativeParameters":e["nativeParameters"],"receiptPosition":e["receiptPosition"],
                 "state":if class=="none"&&e["state"]=="settling" {json!("received")}else{e["state"].clone()},"replyWriteResult":e["replyWriteResult"],
@@ -225,6 +225,9 @@ impl RequestRegister {
                 let kind=if settlement.get("error").is_some(){"error"}else if e["negative"]==true{"decline"}else{"answer"};
                 let mut result=json!({"kind":kind,"origin":origin});
                 if let Some(redaction)=settlement.get("contentRedacted") {result["secretValuesPresent"]=json!(true);result["redaction"]=json!({"marker":"secret-answer-values-removed","questionIds":redaction["questionIds"]});}
+                // A named tool's answer (RS §13.9): no nativeContent; the read log
+                // accounts for what was returned (joined by generation and request).
+                else if settlement.get("contentRef").is_some() {}
                 else {result["nativeContent"]=settlement.get("error").or_else(||settlement.get("content")).cloned().unwrap_or(Value::Null);}
                 record["settlement"]=result;
             }
@@ -243,6 +246,50 @@ impl RequestRegister {
     }
     pub(crate) fn receive_offered(&mut self,generation:&Value,position:u64,frame:&Value,capabilities:&Value,admission:Result<&crate::hosting::call_custody::Admission,crate::hosting::call_custody::Refusal>)->Result<Option<Value>,String>{
         self.receive_scoped(generation,position,frame,capabilities,Some(admission))
+    }
+    /// RS §13.9: a call of a tool the App offered on this thread, answered by
+    /// the named App rule `rule` (the records capability). Known-answerable and
+    /// outstanding until [`Self::prepare_named_tool`] settles it.
+    pub(crate) fn receive_named_tool(&mut self,generation:&Value,position:u64,frame:&Value,rule:&str)->Result<(),String>{
+        self.admissible(generation,frame)?;
+        if frame["method"]!="item/tool/call"||!rule.starts_with("app-rule:"){return Err("malformed-request".into());}
+        self.entries.push(json!({"generation":generation,"requestId":frame["id"],"method":"item/tool/call","classification":"known-answerable",
+            "nativeParameters":frame.get("params").cloned().unwrap_or(Value::Null),"receiptPosition":position,
+            "state":"outstanding","replyWriteResult":"not-attempted","acknowledgment":"not-observed","namedTool":rule}));
+        Ok(())
+    }
+    /// The named rule's answer to a call [`Self::receive_named_tool`] admitted.
+    /// The returned content is kept by reference only (`contentRef`), never in
+    /// this register: it may be large and is the read log's to account for.
+    pub(crate) fn prepare_named_tool(&mut self,generation:&Value,id:&Value,answer:&Value,rule:&str,content_ref:Value)->Result<Value,String>{
+        let idx=self.index(generation,id)?;
+        if self.closed.contains(generation){return Err("generation-closed".into());}
+        let e=&mut self.entries[idx];
+        if e["namedTool"]!=rule{return Err("origin-not-permitted".into());}
+        if e["state"]=="resolved-by-supplier"{return Err("already-resolved".into());}
+        if e["state"]!="outstanding"{return Err("already-settled".into());}
+        // A refusal is the rule's answer (success false), not a decline.
+        e["settlement"]=json!({"origin":rule,"contentRef":content_ref});
+        e["negative"]=json!(false);
+        e["state"]=json!("settling");
+        Ok(json!({"id":id,"result":answer}))
+    }
+    fn admissible(&self,generation:&Value,frame:&Value)->Result<(),String>{
+        if generation.as_object().map(|o| o.len() != 3).unwrap_or(true)
+            || generation["appSession"].as_str().map(str::is_empty).unwrap_or(true)
+            || generation["home"].as_str().map(str::is_empty).unwrap_or(true)
+            || generation["spawnCounter"].as_u64().unwrap_or(0) == 0
+            || !(frame["id"].is_string() || frame["id"].as_i64().is_some() || frame["id"].as_u64().is_some())
+        {
+            return Err("malformed-request-identity".into());
+        }
+        if self.closed.contains(generation) {
+            return Err("generation-closed".into());
+        }
+        if self.entries.iter().any(|e| e["generation"] == *generation && e["requestId"] == frame["id"]) {
+            return Err("duplicate-request-identity".into());
+        }
+        Ok(())
     }
     fn receive_scoped(&mut self,generation:&Value,position:u64,frame:&Value,capabilities:&Value,offered:Option<Result<&crate::hosting::call_custody::Admission,crate::hosting::call_custody::Refusal>>)->Result<Option<Value>,String>{
         if generation.as_object().map(|o| o.len() != 3).unwrap_or(true)
@@ -839,6 +886,31 @@ mod review_repair_tests {
                 "serverRequest/resolved"
             );
             assert_eq!(record["supplierResolution"]["cause"], "supplier-native");
+        }
+    }
+    /// RS §13.9: the records capability's calls, answered (success or refusal)
+    /// by its named rule, written or not, export as the adopted schema allows,
+    /// with no content and no field the schema lacks.
+    #[test]
+    fn records_capability_entries_match_adopted_hosting_schema() {
+        let schema: Value = serde_json::from_str(include_str!("../resources/runtime_core/hosting.server-request-entry.schema.json")).unwrap();
+        let validator = jsonschema::options().offline().build(&schema).unwrap();
+        let g = json!({"appSession":"s","home":"h","spawnCounter":1});
+        for (success, written) in [(true, true), (false, true), (true, false)] {
+            let mut r = RequestRegister::default();
+            let frame = json!({"id":7,"method":"item/tool/call","params":{"threadId":"t","turnId":"u","callId":"c","tool":"chirality_records_read_v1","namespace":null,"arguments":{"operation":"list_runs"}}});
+            r.receive_named_tool(&g, 1, &frame, "app-rule:records-read").unwrap();
+            for record in r.records() { validator.validate(&record).unwrap_or_else(|e| panic!("outstanding: {e}: {record}")); }
+            assert!(r.prepare_named_tool(&g, &json!(7), &json!({"success":success,"contentItems":[]}), "app-rule:other", json!({})).is_err(), "only its own rule");
+            r.prepare_named_tool(&g, &json!(7), &json!({"success":success,"contentItems":[{"type":"inputText","text":"RETURNED"}]}), "app-rule:records-read", json!({"readId":"rread:x"})).unwrap();
+            for record in r.records() { validator.validate(&record).unwrap_or_else(|e| panic!("settling: {e}: {record}")); }
+            r.written(&g, &json!(7), written);
+            let record = &r.records()[0];
+            validator.validate(record).unwrap_or_else(|e| panic!("{success} {written}: {e}: {record}"));
+            assert_eq!(record["originClass"], "named-service");
+            assert_eq!(record["state"], if written { "answered" } else { "settle-write-failed" });
+            assert_eq!(record["settlement"], json!({"kind":"answer","origin":{"class":"app-rule","ruleName":"records-read"}}));
+            assert!(!record.to_string().contains("RETURNED"));
         }
     }
     #[test]
