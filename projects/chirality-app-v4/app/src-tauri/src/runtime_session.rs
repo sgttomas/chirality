@@ -547,7 +547,9 @@ impl RecoveryStartup {
         if !self.attempted {
             self.attempted = true;
             let observed = host.shared_recovery_observation();
-            self.status = json!({"state":if observed["configured"]==true{"shared-source-configured"}else{"shared-source-unavailable"},"sourceObservation":observed,"blocksSupplierStart":false,"standing":"same actual App custody; no new ledger/session or cold live reconstruction"});
+            // The shared ledger's history limits, shown as this home's own (App.tsx).
+            let limits = observed["recovery"]["historyLimits"].clone();
+            self.status = json!({"state":if observed["configured"]==true{"shared-source-configured"}else{"shared-source-unavailable"},"historyLimits":if limits.is_array(){limits}else{json!([])},"sourceObservation":observed,"blocksSupplierStart":false,"standing":"same actual App custody; no new ledger/session or cold live reconstruction"});
         }
         self.snapshot()
     }
@@ -635,7 +637,8 @@ impl RecoveryStartup {
                 }
             }
             // Reject redirection of the App-owned root/runtime/file, preserving it.
-            for target in [root.to_path_buf(), root.join("runtime"), path.clone()] {
+            let database = crate::recovery::database_path(&path);
+            for target in [root.to_path_buf(), root.join("runtime"), path.clone(), database.clone()] {
                 match std::fs::symlink_metadata(&target) {
                     Ok(meta) if meta.file_type().is_symlink() => {
                         return Err(format!(
@@ -643,7 +646,7 @@ impl RecoveryStartup {
                             target.display()
                         ))
                     }
-                    Ok(_) if target == path => existing = true,
+                    Ok(_) if target == path || target == database => existing = true,
                     Ok(_) => {}
                     Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
                     Err(e) => return Err(e.to_string()),
@@ -680,12 +683,17 @@ impl RecoveryStartup {
             }
             Ok(())
         })();
+        let database = selected_path.as_ref().map(|p| crate::recovery::database_path(p).to_string_lossy().into_owned());
         let path = selected_path.as_ref().map(|p|json!({"displayPath":p.to_string_lossy(),
             "nativePath":{"encoding":"native_encoded_bytes","platform":std::env::consts::OS,"bytes":p.as_os_str().as_encoded_bytes()},
             "pathDisplayLimit":if p.to_str().is_some(){None}else{Some("native path is not Unicode; display is lossy")}}));
         let succeeded = result.is_ok();
-        self.status = json!({"state":if succeeded{"configured"}else{"initialization-failed"},
-            "hostConfigured":configured,"path":path,"historyFile":if existing{"existing"}else if configured{"new"}else{"not-established"},
+        // The ledger's history limits (its import's) are shown with the
+        // initialization: configured, but not as complete history.
+        let limits = host.shared_recovery_observation()["recovery"]["historyLimits"].clone();
+        let limited = limits.as_array().is_some_and(|l| !l.is_empty());
+        self.status = json!({"state":if !succeeded{"initialization-failed"}else if limited{"configured-with-limits"}else{"configured"},"historyLimits":if limited{limits}else{json!([])},
+            "hostConfigured":configured,"path":path,"database":database,"historyFile":if existing{"existing"}else if configured{"new"}else{"not-established"},
             "configurationError":result.err(),"directoryPublication":if succeeded{"sync-calls-succeeded"}else{"not-confirmed"},
             "blocksSupplierStart":false,"standing":"App-observed recovery pointers; no native human-act proof"});
         self.snapshot()
@@ -4814,7 +4822,6 @@ impl WorkflowRootSession {
             ended_after_turn: None,
             finished_report: None,
             checkpoints: None,
-            act_cache: None,
             run_tag: Value::Null,
             model_turns: Default::default(),
         };
@@ -6228,9 +6235,6 @@ pub(crate) struct WorkflowRun {
     finished_report: Option<crate::run_offers::FinishedReport>,
     /// EXEC §2.4 checkpoint recorder, from the run's opening (CE-1) on.
     checkpoints: Option<crate::checkpoint_recorder::CheckpointRecorder>,
-    /// The project's verified act records with the fingerprint of the logs and
-    /// capture store they were read from; read again only when it changes.
-    act_cache: Option<(Vec<(String, u64, i64, i64)>, crate::checkpoint_recorder::ActRead)>,
     /// EXEC A-2 / RECOVERY §4.1: the REC run tag written at `run_opened` (durable,
     /// or held in this run's memory only, with the reason).
     run_tag: Value,
@@ -6794,18 +6798,9 @@ impl WorkflowRun {
         let start = self.start_in(view);
         let entries = self.recorded_bodies();
         let root = self.project_root.clone();
-        let cache = &mut self.act_cache;
-        let mut acts = || {
-            let fingerprint = crate::checkpoint_recorder::act_records_fingerprint(&root);
-            if let (Some(now), Some((then, read))) = (&fingerprint, cache.as_ref()) {
-                if now == then {
-                    return Ok(read.clone());
-                }
-            }
-            let read = crate::checkpoint_recorder::project_act_records(&root)?;
-            *cache = fingerprint.map(|f| (f, read.clone()));
-            Ok(read)
-        };
+        // The act read keeps its own result while no act record, capture or
+        // seal key it depends on has changed (`project_act_records`).
+        let mut acts = || crate::checkpoint_recorder::project_act_records(&root);
         let outputs = recorder.observe(view, &crate::checkpoint_recorder::RunScope { home: &scope.home, conversation: &scope.conversation, start, project_root: &self.project_root, start_spawn: scope.generation["spawnCounter"].as_u64().unwrap_or(0) }, &entries, &mut acts);
         self.checkpoints = Some(recorder);
         let held = self.entries.iter().any(|e| e.pending());
@@ -9540,11 +9535,14 @@ for line in sys.stdin:
         assert!(lapse["time"].as_str().unwrap()>=before.as_str(),"observed at the end, not back-dated");
         assert_eq!(log.last().unwrap()["body"]["waitingArrivals"],json!([{"checkpoint":"CP-rely","arrivalOrdinal":1}]));
     }
-    /// Appends a partial line to the act log; returns the log and its bytes before.
+    /// Appends an unreadable (terminated) line to the act log, which leaves the
+    /// record set incomplete; returns the log and its bytes before. (A torn
+    /// final line alone is a partial, never an entry, recovered by its own
+    /// writer's W-0; it leaves the set complete for other writers.)
     fn break_act_log(peer:&Peer)->(std::path::PathBuf,Vec<u8>){
         let log=peer.fixture.root.join(crate::recorder::LOG);std::fs::create_dir_all(log.parent().unwrap()).unwrap();
         let before=std::fs::read(&log).unwrap_or_default();
-        let mut f=std::fs::OpenOptions::new().create(true).append(true).open(&log).unwrap();std::io::Write::write_all(&mut f,b"{\"partial\":").unwrap();
+        let mut f=std::fs::OpenOptions::new().create(true).append(true).open(&log).unwrap();std::io::Write::write_all(&mut f,b"{\"partial\":\n").unwrap();
         (log,before)
     }
     // m-b (EXEC A-11): while an arrival waits and the act records cannot be read, the person's
@@ -9634,7 +9632,7 @@ for line in sys.stdin:
         let end=log.iter().position(|e|e["kind"]=="run_ended").expect("run_ended written");
         assert!(limit<end,"the limit precedes run_ended");
         let detail=log[limit]["body"]["detail"].as_str().unwrap();
-        assert!(detail.contains("could not be read")&&detail.contains("partial entry at end"),"{detail}");
+        assert!(detail.contains("could not be read")&&detail.contains("unreadable line"),"{detail}");
         assert!(detail.contains(&*act_log.file_name().unwrap().to_string_lossy()),"the unread log is named: {detail}");
         assert_eq!(log[end]["body"]["waitingArrivals"],json!([{"checkpoint":"CP-rely","arrivalOrdinal":1}]));
         std::fs::write(&act_log,before).unwrap();
