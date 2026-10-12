@@ -234,6 +234,25 @@ impl StopRequest {
         }
         Ok(Some(self.advance(json!({"waitingEnded":true,"transition":"SR-10"}))?))
     }
+    /// SR-09: a recovery read after a restart found the turn's final status in
+    /// Codex history. Only from *outcome-unknown*; the source is
+    /// *recovered-from-supplier*, and the label is the cause's for that status
+    /// (Codex's own status is shown beside it by the recovery event).
+    pub(crate) fn recovered(&mut self, status: &str) -> Result<Option<Value>, String> {
+        if self.state() != "outcome-unknown" || !matches!(status, "interrupted" | "completed" | "failed") {
+            return Ok(None);
+        }
+        let label = label(self.record["cause"].as_str().unwrap_or_default(), status).ok_or("stop request cause unknown")?;
+        Ok(Some(self.advance(json!({"turnOutcome":status,"outcomeSource":"recovered-from-supplier","outcomeLabel":label,"state":"outcome-recovered","transition":"SR-09"}))?))
+    }
+    /// A request of an earlier App session, from its latest ledger record, so
+    /// that its later transitions (SR-08 at startup, SR-09 after a recovery
+    /// read) are written through the same path. Its generation is closed.
+    pub(crate) fn from_record(record: &Value) -> Result<Self, String> {
+        validate(record)?;
+        let generation = record["generation"].as_str().and_then(|g| crate::recovery::generation_from_ref(g).ok()).unwrap_or(Value::Null);
+        Ok(Self { record: record.clone(), generation, request_identity: None, last_entry: None, note: None })
+    }
 }
 
 /// AS-02 / SQ-R R-2: SR-08 for a stop request an earlier App session left
@@ -242,9 +261,7 @@ impl StopRequest {
 /// *unknown*. `None` when the record needs no closing (already settled,
 /// outcome unknown, not sent, or only requested).
 pub(crate) fn closed_at_restart(record: &Value) -> Result<Option<Value>, String> {
-    validate(record)?;
-    let mut request = StopRequest { record: record.clone(), generation: Value::Null, request_identity: None, last_entry: None, note: None };
-    request.generation_closed()
+    StopRequest::from_record(record)?.generation_closed()
 }
 
 /// K-4 (§3.1 AS-03, AS-04, AS-07; §7): the ledger `quit_requested` entry with
@@ -343,9 +360,10 @@ fn reading(record: &Value, earlier: bool) -> (Option<String>, String, bool) {
 }
 
 /// The ledger's stop-request entries, indexed once as they are appended
-/// (a snapshot does not re-validate or re-scan the whole ledger). The ledger
-/// is append-only; if the snapshot no longer continues the indexed prefix
-/// (another ledger, or a shorter one) the index is rebuilt.
+/// (an update does not re-validate them). Every stop-request entry stays
+/// among the ledger's held entries (DEL-01-02 §7), in order; if those no
+/// longer continue the indexed prefix (another ledger, or a shorter one) the
+/// index is rebuilt.
 #[derive(Debug, Default)]
 pub(crate) struct LedgerIndex {
     seen: usize,
@@ -356,13 +374,14 @@ pub(crate) struct LedgerIndex {
     limits: Vec<String>,
 }
 impl LedgerIndex {
-    pub(crate) fn update(&mut self, ledger: Option<&Value>) {
-        let rows: &[Value] = ledger.and_then(|l| l["entries"].as_array()).map(Vec::as_slice).unwrap_or(&[]);
-        let continues = self.seen <= rows.len() && (self.seen == 0 || rows.get(self.seen - 1) == self.last.as_ref());
+    /// `held`: the ledger's held entries ([`crate::recovery::LedgerObservation`]).
+    pub(crate) fn update(&mut self, held: &[Value]) {
+        let rows: Vec<&Value> = held.iter().filter(|e| e["kind"] == "stop_request").collect();
+        let continues = self.seen <= rows.len() && (self.seen == 0 || rows.get(self.seen - 1).copied() == self.last.as_ref());
         if !continues {
             *self = Self::default();
         }
-        for entry in rows[self.seen..].iter().filter(|e| e["kind"] == "stop_request") {
+        for entry in rows[self.seen..].iter().copied() {
             let record = &entry["record"];
             if let Err(error) = validate(record) {
                 self.limits.push(format!("a stop_request ledger entry is not a valid stop-request record and is not shown: {error}"));
@@ -376,7 +395,15 @@ impl LedgerIndex {
             self.entries.entry(id).or_default().push(entry.clone());
         }
         self.seen = rows.len();
-        self.last = rows.last().cloned();
+        self.last = rows.last().map(|e| (*e).clone());
+    }
+    /// Every recorded stop request for one turn of one generation, each by its
+    /// latest record and its last ledger entry, in request order (SR-09 after
+    /// a relaunch).
+    pub(crate) fn all_for(&self, generation: &str, thread: &str, turn: &str) -> Vec<(Value, Option<Value>)> {
+        self.order.iter().filter_map(|id| Some((self.latest.get(id)?, self.entries.get(id).and_then(|e| e.last()))))
+            .filter(|(r, _)| r["generation"] == generation && r["threadId"] == thread && r["turnId"] == turn)
+            .map(|(r, e)| (r.clone(), e.cloned())).collect()
     }
     /// Whether this exact ledger entry is in the ledger (compared only with
     /// the entries of its own stop request).
@@ -389,9 +416,9 @@ impl LedgerIndex {
 /// record per request, every App session) and this process's requests, each
 /// with this process's own persistence reading. `current` names this App
 /// session. Pointer facts only; Codex's own history is read separately.
-pub(crate) fn outcomes(ledger: Option<&Value>, live: &[(Value, String)], current: &str) -> Value {
+pub(crate) fn outcomes(held: &[Value], live: &[(Value, String)], current: &str) -> Value {
     let mut index = LedgerIndex::default();
-    index.update(ledger);
+    index.update(held);
     outcomes_indexed(&index, live, current)
 }
 pub(crate) fn outcomes_indexed(index: &LedgerIndex, live: &[(Value, String)], current: &str) -> Value {
