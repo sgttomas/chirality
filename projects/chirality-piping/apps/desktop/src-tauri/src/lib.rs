@@ -1,10 +1,18 @@
 mod atomic_report_package_save;
+mod host_memory;
+mod ingress;
+mod memory_pool;
 mod model_document_file;
 mod model_document_migration;
 #[cfg(feature = "native-smoke")]
 mod native_smoke;
 mod native_result_download;
 mod report_package_bridge;
+mod solve_jobs;
+mod solve_worker;
+mod worker_alloc;
+
+pub use solve_worker::{run_solve_worker, WORKER_FLAG as SOLVE_WORKER_FLAG};
 
 use model_document_migration::{
     evaluate_model_document, migration_ledger_record, model_document_migrations,
@@ -22,10 +30,10 @@ use rusqlite::{params, Connection, OptionalExtension};
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use std::{
-    collections::{HashMap, HashSet},
+    collections::HashSet,
     fs,
     path::{Path, PathBuf},
-    sync::{Arc, Mutex, MutexGuard},
+    sync::Arc,
     time::{SystemTime, UNIX_EPOCH},
 };
 use tauri::menu::{CheckMenuItemBuilder, MenuBuilder, MenuItemKind, SubmenuBuilder};
@@ -1759,14 +1767,6 @@ fn solve_preview_mechanics(model_payload: Value) -> Result<Value, String> {
     solve_preview_mechanics_value_with_mode(model_payload, PreviewSolverMode::default())
 }
 
-fn parse_preview_solver_mode(solver_mode: Option<String>) -> Result<PreviewSolverMode, String> {
-    match solver_mode {
-        Some(value) => PreviewSolverMode::from_wire(&value)
-            .ok_or_else(|| format!("unsupported preview solver mode: {value}")),
-        None => Ok(PreviewSolverMode::default()),
-    }
-}
-
 /// The producer's exact serialized bytes for the desktop's solve request
 /// (`{"model": <model>, "materials": []}`): what the solve commands and jobs hand
 /// the desktop, which reads its result and registers it from these bytes (b7-plan
@@ -1775,7 +1775,8 @@ fn solve_preview_mechanics_with_mode(
     model_payload: Value,
     solver_mode: PreviewSolverMode,
 ) -> Result<String, String> {
-    let request = json!({"model":model_payload,"materials":[]});
+    // The model moves into the request (no deep copy); `ingress` prices this wrapper.
+    let request = ingress::native_request(model_payload);
     serde_json::to_string(&open_pipe_stress_product_physics::run_linear_static_preview_value_with_mode(request, solver_mode)?)
         .map_err(|error| error.to_string())
 }
@@ -1790,278 +1791,78 @@ fn solve_preview_mechanics_value_with_mode(
 }
 
 /// A solve always carries the session's model document; there is no implicit model.
+#[cfg(test)]
 fn resolve_solve_model_payload(model: Option<Value>) -> Result<Value, String> {
     model.ok_or_else(|| "PREVIEW-SOLVE-MODEL-REQUIRED: a solve carries the session's model document.".to_string())
 }
 
+use solve_jobs::{
+    SolveJobCancellationReceipt, SolveJobError, SolveJobRegistry, SolveJobStartReceipt, SolveJobStatusReport,
+    SolveResultDisposal, SolveResultsDisposal,
+};
+
+/// Starts a preview solve job (the desktop's one solve path). The body is the
+/// raw UTF-8 JSON of the model document (`Uint8Array`/`ArrayBuffer`, sent as
+/// `application/octet-stream`); header `x-swbpipe-solver-mode` selects
+/// `sparse_interactive` or `dense_scrutiny` (absent: the default). The body is
+/// prescanned and its ingress lease admitted before it is copied; the model is
+/// materialized and solved only in the job's capped worker process. A JSON
+/// body is refused: Tauri would already have materialized it unpriced.
 #[tauri::command]
-fn run_preview_mechanics(model: Option<Value>) -> Result<String, String> {
-    solve_preview_mechanics_with_mode(resolve_solve_model_payload(model)?, PreviewSolverMode::default())
-}
-
-#[tauri::command]
-fn run_preview_mechanics_with_solver_mode(
-    model: Option<Value>,
-    solver_mode: Option<String>,
-) -> Result<String, String> {
-    let mode = parse_preview_solver_mode(solver_mode)?;
-    solve_preview_mechanics_with_mode(resolve_solve_model_payload(model)?, mode)
-}
-
-const SOLVE_JOB_CANCELLATION_SCOPE: &str = "cooperative_checkpoints_not_preemptive";
-
-#[derive(Debug, Clone, Serialize)]
-struct SolveJobStartReceipt {
-    job_id: String,
-    backend_cancellation_token: String,
-    state: String,
-    cancellation_scope: &'static str,
-}
-
-#[derive(Debug, Clone, Serialize)]
-struct SolveJobStatusReport {
-    job_id: String,
-    state: String,
-    cancellation_requested: bool,
-    cancellation_status: String,
-    cancellation_scope: &'static str,
-    /// The producer's exact serialized bytes of a completed solve.
-    result: Option<String>,
-    error_message: Option<String>,
-}
-
-#[derive(Debug, Clone, Serialize)]
-struct SolveJobCancellationReceipt {
-    job_id: String,
-    accepted: bool,
-    cancellation_status: String,
-    job_state: String,
-    cancellation_scope: &'static str,
-    cancellation_success_claimed: bool,
-}
-
-#[derive(Debug, Clone)]
-struct SolveJobRecord {
-    cancellation_token: String,
-    state: String,
-    cancellation_requested: bool,
-    cancellation_status: String,
-    result: Option<String>,
-    error_message: Option<String>,
-}
-
-#[derive(Debug, Default)]
-struct SolveJobTable {
-    next_job_number: u64,
-    records: HashMap<String, SolveJobRecord>,
-}
-
-#[derive(Debug, Default)]
-struct SolveJobRegistry {
-    jobs: Arc<Mutex<SolveJobTable>>,
-}
-
-fn lock_solve_jobs(
-    jobs: &Arc<Mutex<SolveJobTable>>,
-) -> Result<MutexGuard<'_, SolveJobTable>, String> {
-    jobs.lock()
-        .map_err(|_| "solve job registry lock poisoned".to_string())
-}
-
-fn start_solve_job(jobs: &Arc<Mutex<SolveJobTable>>) -> Result<SolveJobStartReceipt, String> {
-    let mut table = lock_solve_jobs(jobs)?;
-    table.next_job_number += 1;
-    let job_number = table.next_job_number;
-    let nanos = SystemTime::now()
-        .duration_since(UNIX_EPOCH)
-        .map_err(|error| error.to_string())?
-        .as_nanos();
-    let job_id = format!("backend-solve-job-{job_number}");
-    let cancellation_token = format!("solve-cancel-token-{job_number}-{nanos:x}");
-    table.records.insert(
-        job_id.clone(),
-        SolveJobRecord {
-            cancellation_token: cancellation_token.clone(),
-            state: "queued".to_string(),
-            cancellation_requested: false,
-            cancellation_status: "not_requested".to_string(),
-            result: None,
-            error_message: None,
-        },
-    );
-    Ok(SolveJobStartReceipt {
-        job_id,
-        backend_cancellation_token: cancellation_token,
-        state: "queued".to_string(),
-        cancellation_scope: SOLVE_JOB_CANCELLATION_SCOPE,
-    })
-}
-
-fn execute_solve_job(
-    jobs: &Arc<Mutex<SolveJobTable>>,
-    job_id: &str,
-    model_payload: Result<Value, String>,
-    solver_mode: PreviewSolverMode,
-) {
-    {
-        let Ok(mut table) = lock_solve_jobs(jobs) else {
-            return;
-        };
-        let Some(record) = table.records.get_mut(job_id) else {
-            return;
-        };
-        if record.cancellation_requested {
-            record.state = "cancelled".to_string();
-            record.cancellation_status = "cancelled_before_solver_start".to_string();
-            return;
-        }
-        record.state = "running".to_string();
-    }
-    let outcome =
-        model_payload.and_then(|payload| solve_preview_mechanics_with_mode(payload, solver_mode));
-    publish_solve_outcome(jobs, job_id, outcome);
-}
-
-fn publish_solve_outcome(
-    jobs: &Arc<Mutex<SolveJobTable>>,
-    job_id: &str,
-    outcome: Result<String, String>,
-) {
-    let Ok(mut table) = lock_solve_jobs(jobs) else {
-        return;
-    };
-    let Some(record) = table.records.get_mut(job_id) else {
-        return;
-    };
-    if record.cancellation_requested {
-        record.state = "cancelled".to_string();
-        record.cancellation_status =
-            "cancelled_before_result_publication_result_discarded".to_string();
-        record.result = None;
-        record.error_message = outcome.err();
-        return;
-    }
-    match outcome {
-        Ok(result) => {
-            record.state = "completed".to_string();
-            record.result = Some(result);
-            record.error_message = None;
-        }
-        Err(error) => {
-            record.state = "failed".to_string();
-            record.result = None;
-            record.error_message = Some(error);
-        }
-    }
-}
-
-fn solve_job_status(
-    jobs: &Arc<Mutex<SolveJobTable>>,
-    job_id: &str,
-) -> Result<SolveJobStatusReport, String> {
-    let table = lock_solve_jobs(jobs)?;
-    let record = table
-        .records
-        .get(job_id)
-        .ok_or_else(|| format!("unknown solve job: {job_id}"))?;
-    Ok(SolveJobStatusReport {
-        job_id: job_id.to_string(),
-        state: record.state.clone(),
-        cancellation_requested: record.cancellation_requested,
-        cancellation_status: record.cancellation_status.clone(),
-        cancellation_scope: SOLVE_JOB_CANCELLATION_SCOPE,
-        result: record.result.clone(),
-        error_message: record.error_message.clone(),
-    })
-}
-
-fn cancel_solve_job(
-    jobs: &Arc<Mutex<SolveJobTable>>,
-    job_id: &str,
-    cancellation_token: &str,
-) -> Result<SolveJobCancellationReceipt, String> {
-    let mut table = lock_solve_jobs(jobs)?;
-    let record = table
-        .records
-        .get_mut(job_id)
-        .ok_or_else(|| format!("unknown solve job: {job_id}"))?;
-    if record.cancellation_token != cancellation_token {
-        return Ok(SolveJobCancellationReceipt {
-            job_id: job_id.to_string(),
-            accepted: false,
-            cancellation_status: "rejected_invalid_cancellation_token".to_string(),
-            job_state: record.state.clone(),
-            cancellation_scope: SOLVE_JOB_CANCELLATION_SCOPE,
-            cancellation_success_claimed: false,
-        });
-    }
-    if matches!(record.state.as_str(), "completed" | "failed" | "cancelled") {
-        return Ok(SolveJobCancellationReceipt {
-            job_id: job_id.to_string(),
-            accepted: false,
-            cancellation_status: format!(
-                "request_after_terminal_state_{}_no_cancellation_performed",
-                record.state
-            ),
-            job_state: record.state.clone(),
-            cancellation_scope: SOLVE_JOB_CANCELLATION_SCOPE,
-            cancellation_success_claimed: false,
-        });
-    }
-    record.cancellation_requested = true;
-    record.cancellation_status =
-        "cancellation_requested_awaiting_cooperative_checkpoint".to_string();
-    Ok(SolveJobCancellationReceipt {
-        job_id: job_id.to_string(),
-        accepted: true,
-        cancellation_status: record.cancellation_status.clone(),
-        job_state: record.state.clone(),
-        cancellation_scope: SOLVE_JOB_CANCELLATION_SCOPE,
-        cancellation_success_claimed: false,
-    })
-}
-
-#[tauri::command]
-fn start_preview_mechanics_job(
+async fn start_preview_mechanics_job(
+    request: tauri::ipc::Request<'_>,
     state: tauri::State<'_, SolveJobRegistry>,
-    model: Option<Value>,
-) -> Result<SolveJobStartReceipt, String> {
-    let receipt = start_solve_job(&state.jobs)?;
-    let jobs = Arc::clone(&state.jobs);
-    let job_id = receipt.job_id.clone();
-    std::thread::spawn(move || {
-        execute_solve_job(
-            &jobs,
-            &job_id,
-            resolve_solve_model_payload(model),
-            PreviewSolverMode::default(),
-        );
-    });
-    Ok(receipt)
-}
-
-#[tauri::command]
-fn start_preview_mechanics_job_with_solver_mode(
-    state: tauri::State<'_, SolveJobRegistry>,
-    model: Option<Value>,
-    solver_mode: Option<String>,
-) -> Result<SolveJobStartReceipt, String> {
-    let mode = parse_preview_solver_mode(solver_mode)?;
-    let receipt = start_solve_job(&state.jobs)?;
-    let jobs = Arc::clone(&state.jobs);
-    let job_id = receipt.job_id.clone();
-    std::thread::spawn(move || {
-        execute_solve_job(&jobs, &job_id, resolve_solve_model_payload(model), mode);
-    });
-    Ok(receipt)
+) -> Result<SolveJobStartReceipt, SolveJobError> {
+    let tauri::ipc::InvokeBody::Raw(body) = request.body() else {
+        return Err(SolveJobError::InvalidRequest {
+            message: "PREVIEW-SOLVE-RAW-BODY-REQUIRED: send the model document as raw UTF-8 JSON bytes.".into(),
+        });
+    };
+    let mode = match request.headers().get(solve_jobs::SOLVER_MODE_HEADER) {
+        None => None,
+        Some(value) => Some(value.to_str().map_err(|_| SolveJobError::InvalidRequest {
+            message: "unsupported preview solver mode header".into(),
+        })?),
+    };
+    state.start(body, mode)
 }
 
 #[tauri::command]
 fn poll_preview_mechanics_job(
     state: tauri::State<'_, SolveJobRegistry>,
     job_id: String,
-) -> Result<SolveJobStatusReport, String> {
-    solve_job_status(&state.jobs, &job_id)
+) -> Result<SolveJobStatusReport, SolveJobError> {
+    state.status(&job_id)
+}
+
+/// The producer's exact result bytes as a raw response (an `ArrayBuffer` in
+/// the webview). The job's result lease grows to 2R first; the webview must
+/// call `dispose_preview_mechanics_result` once it has dropped its copy.
+#[tauri::command]
+fn take_preview_mechanics_job_result(
+    state: tauri::State<'_, SolveJobRegistry>,
+    job_id: String,
+) -> Result<tauri::ipc::Response, SolveJobError> {
+    state.take_result(&job_id).map(tauri::ipc::Response::new)
+}
+
+#[tauri::command]
+fn dispose_preview_mechanics_result(
+    state: tauri::State<'_, SolveJobRegistry>,
+    job_id: String,
+) -> Result<SolveResultDisposal, SolveJobError> {
+    state.dispose_result(&job_id)
+}
+
+/// Session reset: releases every retained-but-untaken result and every webview
+/// custody lease, and abandons every queued or running job (a running job's
+/// worker process is killed; it never publishes a result, and its supervisor
+/// releases its owners after reaping the worker). The frontend calls it on page load, when a fresh webview provably
+/// holds no result copy and no handle on the previous page's jobs. Returns
+/// `{released_results, released_bytes, abandoned_jobs}`.
+#[tauri::command]
+fn dispose_all_preview_mechanics_results(state: tauri::State<'_, SolveJobRegistry>) -> SolveResultsDisposal {
+    state.dispose_all_results()
 }
 
 #[tauri::command]
@@ -2070,7 +1871,22 @@ fn cancel_preview_mechanics_job(
     job_id: String,
     cancellation_token: String,
 ) -> Result<SolveJobCancellationReceipt, String> {
-    cancel_solve_job(&state.jobs, &job_id, &cancellation_token)
+    state.cancel(&job_id, &cancellation_token)
+}
+
+#[tauri::command]
+fn get_memory_pool_status(state: tauri::State<'_, SolveJobRegistry>) -> memory_pool::PoolStatus {
+    state.pool_status()
+}
+
+#[tauri::command]
+fn configure_memory_pool(
+    state: tauri::State<'_, SolveJobRegistry>,
+    pool_bytes: u64,
+    invocation_budget_bytes: u64,
+    acknowledge_above_recommended: bool,
+) -> Result<memory_pool::PoolStatus, SolveJobError> {
+    state.configure_pool(pool_bytes, invocation_budget_bytes, acknowledge_above_recommended)
 }
 
 fn build_sample_agent_proposal(
@@ -2989,8 +2805,8 @@ fn validate_rule_pack(
 /// outcomes (completion plan C4). The pack is validated first; a pack with
 /// blocking validation findings is reported as `RULE_INPUTS_INCOMPLETE` without
 /// running checks. Solver values are resolved from the solved mechanics
-/// envelope (supplied directly via `solved_envelope`, or solved here as
-/// `run_preview_mechanics` solves) using the caller's `{input_id, result_id}`
+/// envelope supplied via `solved_envelope` (a solve-job result; this command
+/// does not solve) using the caller's `{input_id, result_id}`
 /// selectors; user values and value-slot limits come from
 /// `supplied_value_bindings`. This emits only the automatic rule-check statuses
 /// and makes no professional, certification, sealing, authentication, approval,
@@ -3009,15 +2825,13 @@ fn run_rule_checks(
     let supplied_model = model.as_ref().ok_or(
         "RULE_NUMERICAL_CASE_COVERAGE_UNAVAILABLE: supply the current model with explicit load cases and recompute mechanics",
     )?;
-    let (envelope, invocation) = match solved_envelope {
-        Some(value) => (value, source_block_invocation),
-        None => (
-            solve_preview_mechanics(supplied_model.clone())?,
-            Some(json!({"request":{"model":supplied_model,"materials":[]},"solver_mode":PreviewSolverMode::default().as_str()})),
-        ),
-    };
+    // Every solve is admitted through the solve-job path and its memory pool;
+    // this command never runs an unadmitted solve of its own.
+    let envelope = solved_envelope.ok_or(
+        "RULE_CHECK_SOLVED_ENVELOPE_REQUIRED: run the solve job and supply its result",
+    )?;
+    let invocation = source_block_invocation;
     qualify_rule_mechanics_with_context(supplied_model, &envelope, invocation.as_ref())?;
-    let solved_envelope = Some(envelope);
     // Resolve `private_library_value` inputs from the local private-library
     // store (C3 rule-pack <-> library reference wiring). Library values are read
     // at run time and never embedded in the rule pack (IP boundary). A reference
@@ -3026,7 +2840,7 @@ fn run_rule_checks(
     let resolved_project = resolve_rule_check_project_id(
         project_id.as_deref(),
         model.as_ref(),
-        solved_envelope.as_ref(),
+        Some(&envelope),
     );
     let library_value_bindings = match resolved_project {
         Some(project) => Some(resolve_library_value_bindings(
@@ -3038,8 +2852,7 @@ fn run_rule_checks(
     };
     run_rule_checks_core(
         rule_pack_document,
-        model,
-        solved_envelope,
+        envelope,
         solver_result_bindings,
         supplied_value_bindings,
         library_value_bindings,
@@ -3099,11 +2912,11 @@ fn qualify_rule_mechanics_with_context(model: &Value, envelope: &Value, invocati
 
 /// Store-free rule-check orchestration. The Tauri command resolves library
 /// references from the local store into `library_value_bindings`, then calls
-/// this; tests target it directly with already-resolved bindings.
+/// this; tests target it directly with already-resolved bindings. It requires
+/// the solved envelope: it never solves (every solve runs in the pool's slot).
 fn run_rule_checks_core(
     rule_pack_document: Value,
-    model: Option<Value>,
-    solved_envelope: Option<Value>,
+    envelope: Value,
     solver_result_bindings: Option<Value>,
     supplied_value_bindings: Option<Value>,
     library_value_bindings: Option<Value>,
@@ -3126,11 +2939,6 @@ fn run_rule_checks_core(
             "professional_boundary_notice": rule_check_runner::PROFESSIONAL_BOUNDARY_NOTICE,
         }));
     }
-
-    let envelope = match solved_envelope {
-        Some(value) => value,
-        None => solve_preview_mechanics(resolve_solve_model_payload(model)?)?,
-    };
 
     // Solver values for `solver_result` inputs come from two sources: an
     // authored in-pack `solver_result_ref` (the additive solver-result-selector
@@ -4946,6 +4754,7 @@ fn packaged_saved_edited_load_self_test_at(store_path: &Path) -> Result<Value, S
 
 /// Run the native packaged-binary persistence proof in a unique, disposable
 /// file-backed SQLite store and remove that store before returning.
+/// Its solves run outside the memory pool: this is a separate self-test process mode, not an app job.
 pub fn run_packaged_saved_edited_load_self_test() -> Result<Value, String> {
     let nonce = SystemTime::now()
         .duration_since(UNIX_EPOCH)
@@ -4987,12 +4796,14 @@ macro_rules! app_invoke_handler {
             load_preview_model,
             load_design_knowledge,
             open_model_document_file,
-            run_preview_mechanics,
-            run_preview_mechanics_with_solver_mode,
             start_preview_mechanics_job,
-            start_preview_mechanics_job_with_solver_mode,
             poll_preview_mechanics_job,
+            take_preview_mechanics_job_result,
+            dispose_preview_mechanics_result,
+            dispose_all_preview_mechanics_results,
             cancel_preview_mechanics_job,
+            get_memory_pool_status,
+            configure_memory_pool,
             sample_agent_proposal,
             validate_model_operation,
             apply_model_operation,
@@ -5030,7 +4841,7 @@ macro_rules! app_invoke_handler {
 pub fn run() {
     let builder = tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
-        .manage(SolveJobRegistry::default())
+        .manage(SolveJobRegistry::new(memory_pool::MemoryPool::new(Arc::new(host_memory::MacHostMemory))))
         .manage(native_result_download::SaveAdmission::default())
         .menu(|handle| build_app_menu(handle))
         .on_menu_event(|app, event| {
@@ -5053,10 +4864,12 @@ pub fn run() {
         .expect("error while running SWBPIPE");
 }
 
-/// The solve command's bytes read as a value, for tests that inspect them.
+/// The ordinary solve's bytes for a supplied model, read as a value, for tests
+/// that inspect them (the job path publishes the same bytes).
 #[cfg(test)]
 fn run_preview_mechanics_value(model: Option<Value>) -> Result<Value, String> {
-    run_preview_mechanics(model).map(|bytes| serde_json::from_str(&bytes).expect("the producer's bytes are JSON"))
+    solve_preview_mechanics_with_mode(resolve_solve_model_payload(model)?, PreviewSolverMode::default())
+        .map(|bytes| serde_json::from_str(&bytes).expect("the producer's bytes are JSON"))
 }
 
 #[cfg(test)]
@@ -7133,14 +6946,13 @@ mod tests {
         ))
         .unwrap();
         for (mode, len, digest) in PINS {
-            let bytes = run_preview_mechanics_with_solver_mode(Some(model.clone()), Some(mode.into())).unwrap();
+            let bytes = solve_preview_mechanics_with_mode(model.clone(), PreviewSolverMode::from_wire(mode).unwrap()).unwrap();
             let sha = open_pipe_stress_operation_applier::sha256_hex(&bytes);
-            assert_eq!((bytes.len(), sha.as_str()), (len, digest), "{mode}: the command's bytes are the producer's");
-            // The job path publishes the same bytes.
-            let registry = SolveJobRegistry::default();
-            let receipt = start_solve_job(&registry.jobs).unwrap();
-            execute_solve_job(&registry.jobs, &receipt.job_id, Ok(model.clone()), PreviewSolverMode::from_wire(mode).unwrap());
-            assert_eq!(solve_job_status(&registry.jobs, &receipt.job_id).unwrap().result.as_deref(), Some(bytes.as_str()), "{mode}: the job's bytes");
+            assert_eq!((bytes.len(), sha.as_str()), (len, digest), "{mode}: the ordinary solve's bytes are the producer's");
+            // The job path (raw ingress, capped worker process, take) hands over the same bytes.
+            let (status, taken) = solve_jobs::test_support::run_job(&model, Some(mode));
+            assert_eq!(status.state, "completed", "{mode}");
+            assert_eq!(taken.as_deref(), Some(bytes.as_str()), "{mode}: the job's bytes");
             let copy = fixtures.join(format!("rf_skew_t_cant_off_122_r1e-04.desktop_result_{mode}.json"));
             if let Ok(dir) = std::env::var("G10_DESKTOP_RESULT_OUT") {
                 fs::write(std::path::Path::new(&dir).join(copy.file_name().unwrap()), &bytes).unwrap();
@@ -7168,42 +6980,20 @@ mod tests {
 
     #[test]
     fn solve_job_seam_completes_and_reports_result_without_cancellation() {
-        let registry = SolveJobRegistry::default();
-        let receipt = start_solve_job(&registry.jobs).expect("job starts");
-        assert_eq!(receipt.state, "queued");
-        assert!(receipt
-            .backend_cancellation_token
-            .starts_with("solve-cancel-token-"));
-        assert_eq!(
-            receipt.cancellation_scope,
-            "cooperative_checkpoints_not_preemptive"
-        );
-
-        execute_solve_job(
-            &registry.jobs,
-            &receipt.job_id,
-            Ok(derived_invented_model()),
-            PreviewSolverMode::default(),
-        );
+        let (status, taken) = solve_jobs::test_support::run_job(&derived_invented_model(), None);
+        assert_eq!(status.state, "completed");
+        assert!(!status.cancellation_requested);
+        assert_eq!(status.cancellation_status, "not_requested");
+        assert_eq!(status.cancellation_scope, "worker_process_terminated");
+        assert_eq!(status.resource.route_pricing, "ordinary_worker_capped");
+        let result: Value = serde_json::from_str(&taken.expect("completed job publishes a result")).unwrap();
+        assert!(!result["results"].as_array().expect("result rows present").is_empty());
+        assert_eq!(status.error_message, None);
         // The default payload is the bundled demo, which solves.
         assert_bundled_demo_solved(
             &solve_preview_mechanics(load_preview_model().expect("bundled demo loads"))
                 .expect("bundled demo solves"),
         );
-
-        let status = solve_job_status(&registry.jobs, &receipt.job_id).expect("status available");
-        assert_eq!(status.state, "completed");
-        assert!(!status.cancellation_requested);
-        assert_eq!(status.cancellation_status, "not_requested");
-        let result: Value = serde_json::from_str(&status.result.expect("completed job publishes a result")).unwrap();
-        assert!(
-            result["results"]
-                .as_array()
-                .expect("result rows present")
-                .len()
-                > 0
-        );
-        assert_eq!(status.error_message, None);
     }
 
     #[test]
@@ -7318,169 +7108,94 @@ mod tests {
 
     #[test]
     fn solve_job_seam_uses_supplied_model_payload() {
-        let registry = SolveJobRegistry::default();
-        let receipt = start_solve_job(&registry.jobs).expect("job starts");
         let mut model = derived_invented_model();
         model["project"]["id"] = json!("project:edited-solve-job");
         model["materials"][0]["elastic_modulus"]["value"] = json!(195000000000.0);
 
-        execute_solve_job(
-            &registry.jobs,
-            &receipt.job_id,
-            Ok(model),
-            PreviewSolverMode::default(),
-        );
-
-        let status = solve_job_status(&registry.jobs, &receipt.job_id).expect("status available");
+        let (status, taken) = solve_jobs::test_support::run_job(&model, None);
         assert_eq!(status.state, "completed");
-        let result: Value = serde_json::from_str(&status.result.expect("completed job publishes a result")).unwrap();
+        let result: Value = serde_json::from_str(&taken.expect("completed job publishes a result")).unwrap();
         assert_eq!(result["model_ref"], json!("project:edited-solve-job"));
         assert_eq!(result["status"]["mechanics"], json!("MECHANICS_SOLVED"));
-        assert!(
-            result["results"]
-                .as_array()
-                .expect("result rows present")
-                .len()
-                > 0
-        );
+        assert!(!result["results"].as_array().expect("result rows present").is_empty());
         assert_eq!(status.error_message, None);
     }
 
     #[test]
     fn solve_job_cancelled_before_execution_never_starts_the_solver() {
-        let registry = SolveJobRegistry::default();
-        let receipt = start_solve_job(&registry.jobs).expect("job starts");
+        let registry = solve_jobs::test_support::real_registry(memory_pool::test_host::ScriptedHost::normal());
+        // Other reservations fill the pool, so the job stays queued.
+        let held = hold_the_pool(&registry);
+        let body = serde_json::to_vec(&load_preview_model().expect("bundled demo loads")).unwrap();
+        let receipt = registry.start(&body, None).expect("job starts");
+        assert_eq!(receipt.state, "queued");
+        assert!(receipt.backend_cancellation_token.starts_with("solve-cancel-token-"));
 
-        let cancel = cancel_solve_job(
-            &registry.jobs,
-            &receipt.job_id,
-            &receipt.backend_cancellation_token,
-        )
-        .expect("cancel receipt");
+        let cancel = registry.cancel(&receipt.job_id, &receipt.backend_cancellation_token).expect("cancel receipt");
         assert!(cancel.accepted);
-        assert_eq!(
-            cancel.cancellation_status,
-            "cancellation_requested_awaiting_cooperative_checkpoint"
-        );
+        assert_eq!(cancel.cancellation_status, "cancellation_requested_awaiting_cooperative_checkpoint");
         assert!(!cancel.cancellation_success_claimed);
 
-        execute_solve_job(
-            &registry.jobs,
-            &receipt.job_id,
-            load_preview_model(),
-            PreviewSolverMode::default(),
-        );
-
-        let status = solve_job_status(&registry.jobs, &receipt.job_id).expect("status available");
+        let status = solve_jobs::test_support::wait_terminal(&registry, &receipt.job_id);
+        drop(held);
         assert_eq!(status.state, "cancelled");
         assert!(status.cancellation_requested);
         assert_eq!(status.cancellation_status, "cancelled_before_solver_start");
-        assert_eq!(status.result, None);
-    }
-
-    #[test]
-    fn solve_job_cancelled_mid_run_discards_result_at_publication_checkpoint() {
-        let registry = SolveJobRegistry::default();
-        let receipt = start_solve_job(&registry.jobs).expect("job starts");
-        {
-            let mut table = registry.jobs.lock().expect("registry lock");
-            table
-                .records
-                .get_mut(&receipt.job_id)
-                .expect("record present")
-                .state = "running".to_string();
-        }
-
-        let cancel = cancel_solve_job(
-            &registry.jobs,
-            &receipt.job_id,
-            &receipt.backend_cancellation_token,
-        )
-        .expect("cancel receipt");
-        assert!(cancel.accepted);
-        assert_eq!(cancel.job_state, "running");
-
-        publish_solve_outcome(
-            &registry.jobs,
-            &receipt.job_id,
-            solve_preview_mechanics_with_mode(load_preview_model().expect("bundled demo loads"), PreviewSolverMode::default()),
-        );
-
-        let status = solve_job_status(&registry.jobs, &receipt.job_id).expect("status available");
-        assert_eq!(status.state, "cancelled");
-        assert_eq!(
-            status.cancellation_status,
-            "cancelled_before_result_publication_result_discarded"
-        );
-        assert_eq!(status.result, None);
+        assert!(!status.result_available);
+        assert_eq!(registry.pool().reserved_total(), 0, "the input lease dropped with the worker");
     }
 
     #[test]
     fn solve_job_cancellation_after_completion_is_rejected_without_success_claim() {
-        let registry = SolveJobRegistry::default();
-        let receipt = start_solve_job(&registry.jobs).expect("job starts");
-        execute_solve_job(
-            &registry.jobs,
-            &receipt.job_id,
-            Ok(derived_invented_model()),
-            PreviewSolverMode::default(),
-        );
+        let registry = solve_jobs::test_support::real_registry(memory_pool::test_host::ScriptedHost::normal());
+        let receipt = registry.start(&serde_json::to_vec(&derived_invented_model()).unwrap(), None).expect("job starts");
+        assert_eq!(solve_jobs::test_support::wait_terminal(&registry, &receipt.job_id).state, "completed");
 
-        let cancel = cancel_solve_job(
-            &registry.jobs,
-            &receipt.job_id,
-            &receipt.backend_cancellation_token,
-        )
-        .expect("cancel receipt");
+        let cancel = registry.cancel(&receipt.job_id, &receipt.backend_cancellation_token).expect("cancel receipt");
         assert!(!cancel.accepted);
-        assert_eq!(
-            cancel.cancellation_status,
-            "request_after_terminal_state_completed_no_cancellation_performed"
-        );
+        assert_eq!(cancel.cancellation_status, "request_after_terminal_state_completed_no_cancellation_performed");
         assert_eq!(cancel.job_state, "completed");
         assert!(!cancel.cancellation_success_claimed);
 
-        let status = solve_job_status(&registry.jobs, &receipt.job_id).expect("status available");
+        let status = registry.status(&receipt.job_id).expect("status available");
         assert_eq!(status.state, "completed");
-        assert!(status.result.is_some());
+        assert!(status.result_available);
     }
 
     #[test]
     fn solve_job_cancellation_with_invalid_token_is_rejected_and_does_not_flag_the_job() {
-        let registry = SolveJobRegistry::default();
-        let receipt = start_solve_job(&registry.jobs).expect("job starts");
+        let registry = solve_jobs::test_support::real_registry(memory_pool::test_host::ScriptedHost::normal());
+        let held = hold_the_pool(&registry);
+        let receipt = registry.start(&serde_json::to_vec(&derived_invented_model()).unwrap(), None).expect("job starts");
 
-        let cancel = cancel_solve_job(&registry.jobs, &receipt.job_id, "wrong-token")
-            .expect("cancel receipt");
+        let cancel = registry.cancel(&receipt.job_id, "wrong-token").expect("cancel receipt");
         assert!(!cancel.accepted);
-        assert_eq!(
-            cancel.cancellation_status,
-            "rejected_invalid_cancellation_token"
-        );
+        assert_eq!(cancel.cancellation_status, "rejected_invalid_cancellation_token");
 
-        let status = solve_job_status(&registry.jobs, &receipt.job_id).expect("status available");
+        let status = registry.status(&receipt.job_id).expect("status available");
         assert!(!status.cancellation_requested);
         assert_eq!(status.cancellation_status, "not_requested");
 
-        assert!(solve_job_status(&registry.jobs, "backend-solve-job-missing").is_err());
-        assert!(cancel_solve_job(&registry.jobs, "backend-solve-job-missing", "token").is_err());
+        assert!(registry.status("backend-solve-job-missing").is_err());
+        assert!(registry.cancel("backend-solve-job-missing", "token").is_err());
+        drop(held);
+        assert_eq!(solve_jobs::test_support::wait_terminal(&registry, &receipt.job_id).state, "completed");
     }
 
     #[test]
     fn solve_job_with_invalid_model_payload_fails_with_recorded_error() {
-        let registry = SolveJobRegistry::default();
-        let receipt = start_solve_job(&registry.jobs).expect("job starts");
-        execute_solve_job(
-            &registry.jobs,
-            &receipt.job_id,
-            Ok(json!({"not_a_preview_model": true})),
-            PreviewSolverMode::default(),
-        );
-
-        let status = solve_job_status(&registry.jobs, &receipt.job_id).expect("status available");
+        let (status, taken) = solve_jobs::test_support::run_job(&json!({"not_a_preview_model": true}), None);
         assert_eq!(status.state, "failed");
-        assert_eq!(status.result, None);
+        assert_eq!(taken, None);
+        assert!(!status.result_available);
         assert!(status.error_message.is_some());
+    }
+
+    /// Reserves the pool but for room for a start's ingress lease (and not
+    /// for a worker grant), so a job stays queued until the lease drops.
+    fn hold_the_pool(registry: &solve_jobs::SolveJobRegistry) -> memory_pool::Lease {
+        let pool_bytes = registry.pool_status().pool_bytes;
+        registry.pool().acquire(pool_bytes - (1 << 20), memory_pool::LeasePurpose::Ingress).expect("the pool is free")
     }
 
     // PP's derived pressure-free, joint-free invented model. The bundled default
@@ -8117,8 +7832,7 @@ mod tests {
     fn run_rule_checks_command_passing_demo_reports_user_rule_checked() {
         let outcome = run_rule_checks_core(
             example_rule_pack_document(),
-            None,
-            Some(demo_solved_envelope(50.0)),
+            demo_solved_envelope(50.0),
             Some(demo_solver_selectors()),
             Some(demo_supplied_values()),
             None,
@@ -8134,8 +7848,7 @@ mod tests {
     fn run_rule_checks_command_normalizes_compatible_rule_check_units() {
         let outcome = run_rule_checks_core(
             example_rule_pack_with_stress_unit("Pa"),
-            None,
-            Some(demo_solved_envelope_with_unit(0.05, "MPa")),
+            demo_solved_envelope_with_unit(0.05, "MPa"),
             Some(demo_solver_selectors()),
             Some(demo_supplied_values_with_stress_unit(100.0, "kPa")),
             None,
@@ -8165,8 +7878,7 @@ mod tests {
     fn run_rule_checks_command_failing_case_reports_user_rule_failed() {
         let outcome = run_rule_checks_core(
             example_rule_pack_document(),
-            None,
-            Some(demo_solved_envelope(150.0)),
+            demo_solved_envelope(150.0),
             Some(demo_solver_selectors()),
             Some(demo_supplied_values()),
             None,
@@ -8181,8 +7893,7 @@ mod tests {
         // No solver selectors -> the solver_result input is unsupplied.
         let outcome = run_rule_checks_core(
             example_rule_pack_document(),
-            None,
-            Some(demo_solved_envelope(50.0)),
+            demo_solved_envelope(50.0),
             None,
             Some(demo_supplied_values()),
             None,
@@ -8196,8 +7907,7 @@ mod tests {
     fn run_rule_checks_command_rejects_blocking_invalid_pack() {
         let outcome = run_rule_checks_core(
             json!({ "not": "a valid rule pack" }),
-            None,
-            Some(demo_solved_envelope(50.0)),
+            demo_solved_envelope(50.0),
             Some(demo_solver_selectors()),
             Some(demo_supplied_values()),
             None,
@@ -8210,8 +7920,7 @@ mod tests {
     fn run_rule_checks_command_emits_only_status_vocabulary() {
         let outcome = run_rule_checks_core(
             example_rule_pack_document(),
-            None,
-            Some(demo_solved_envelope(50.0)),
+            demo_solved_envelope(50.0),
             Some(demo_solver_selectors()),
             Some(demo_supplied_values()),
             None,
@@ -8562,8 +8271,7 @@ mod tests {
         }]);
         let outcome = run_rule_checks_core(
             pack_with_library_ref(),
-            None,
-            Some(demo_solved_envelope(50.0)),
+            demo_solved_envelope(50.0),
             Some(demo_solver_selectors()),
             Some(demo_supplied_values()),
             Some(library_bindings),
@@ -8589,8 +8297,7 @@ mod tests {
         // a silent pass).
         let outcome = run_rule_checks_core(
             pack_with_library_ref(),
-            None,
-            Some(demo_solved_envelope(50.0)),
+            demo_solved_envelope(50.0),
             Some(demo_solver_selectors()),
             Some(demo_supplied_values()),
             None,
@@ -8607,8 +8314,7 @@ mod tests {
         // member retiring the caller-supplied solver binding.
         let outcome = run_rule_checks_core(
             pack_with_solver_result_ref("result:stress:demo"),
-            None,
-            Some(demo_solved_envelope(50.0)),
+            demo_solved_envelope(50.0),
             None,
             Some(demo_supplied_values()),
             None,
@@ -8636,8 +8342,7 @@ mod tests {
         // is a deferred non-goal). Never a silent pass.
         let outcome = run_rule_checks_core(
             pack_with_solver_result_ref("result:absent"),
-            None,
-            Some(demo_solved_envelope(50.0)),
+            demo_solved_envelope(50.0),
             Some(demo_solver_selectors()),
             Some(demo_supplied_values()),
             None,
@@ -8661,7 +8366,7 @@ mod tests {
             (pack_with_solver_result_ref("result:stress:demo"), None),
             (example_rule_pack_document(), Some(demo_solver_selectors())),
         ] {
-            let outcome = run_rule_checks_core(pack, None, Some(envelope.clone()), selectors, Some(demo_supplied_values()), None)
+            let outcome = run_rule_checks_core(pack, envelope.clone(), selectors, Some(demo_supplied_values()), None)
                 .expect("rule checks run");
             assert_eq!(outcome["aggregate_status"], json!("RULE_INPUTS_INCOMPLETE"));
             assert!(outcome["checks"][0]["completeness_findings"].as_array().unwrap().iter().any(|f| f["code"] == json!(reason)));
@@ -8670,7 +8375,7 @@ mod tests {
         assert!(resolve_solver_result_bindings(Some(&demo_solver_selectors()), &envelope, &mut refused).unwrap().is_empty());
         assert_eq!(refused.len(), 1);
         assert_eq!(refused[0].reason, reason);
-        let outcome = run_rule_checks_core(pack_with_solver_result_ref("result:force:demo"), None, Some(envelope), None, Some(demo_supplied_values()), None)
+        let outcome = run_rule_checks_core(pack_with_solver_result_ref("result:force:demo"), envelope, None, Some(demo_supplied_values()), None)
             .expect("rule checks run");
         assert_eq!(outcome["aggregate_status"], json!("USER_RULE_CHECKED"));
     }
