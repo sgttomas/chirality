@@ -502,3 +502,13 @@ inputs separately from frozen producer provenance. Their passing packet checks
 supply historical correspondence, not a current candidate or native witness.
 The owning receiving inputs bind the meaning tested without turning unrelated
 Design or Host edits into renewed qualification claims.
+
+The maintained distribution and terminal file receivers also offer the explicit
+`build-selection` profile for the byte-preserved b5 synthetic LT09 and LT09/LT23
+packets. Their default remains `stop-admission`. Fixed pin/predecessor mappings,
+complete reader receipts and crossed-cohort refusals are guarded by
+`group_b_distribution_receiving_test.py` and `group_b_terminal_receiving_test.py`.
+Current executable helpers and schemas are operational inputs; the original
+Host source map, producer executable and captured packets retain their
+historical identities. This additive replay supplies no candidate-pin SQ result
+or production/native witness.

@@ -1,5 +1,24 @@
 # B-S4-TERMINAL-RECEIVING-v1
 
+## Current named packet profiles
+
+The default is the existing `stop-admission` profile. Explicit
+`--cohort build-selection` receives the unchanged selected/unselected b5
+LT09/LT23 pairs in `app/tests/group_b_build_selection_terminal_fixtures`,
+through the fixed `pins.build-selection-terminal-v1.json`. Each profile checks
+its own immutable pin bytes, predecessor pin and complete reader receipt.
+Mixed packets refuse; rewriting the producer revision does not replace the
+reader identity. Neither profile is automatically detected, and callers cannot
+supply another pin path.
+
+Both use the current narrowed operational inputs from `receive.py`. The
+terminal helper guard binds the exact `receive.py` bytes it executes; the old
+helper digest inside the b5 pin stays historical producer provenance. Packet,
+producer executable/command and invented candidate identities remain unchanged.
+These historical file checks do not examine the reconciled S2 candidate.
+
+The original contract and preceding cohort account follow.
+
 Separate fixed file-consumer contract for actual synthetic completed LT09/LT23
 export pairs. Selected producer source is
 `9af67409ed0e625fcd8e0e9a0c59975fccfcae71`. It uses
@@ -12,6 +31,9 @@ python3 -B app/examination/distribution_receiving/terminal.py /physical/case/exc
   --selection /physical/records/selection.json \
   --selection-sha256 SELECTED_CANONICAL_SELECTION_SHA256
 ```
+
+Append `--cohort build-selection` for the preserved b5 pair; omitting it selects
+Stop-admission. Both retain the file-correspondence and authority limits below.
 
 The completed marker must be named exchange.json. Pending/queued/unavailable
 readback, diagnostic filenames/markers, unexpected case members and missing or

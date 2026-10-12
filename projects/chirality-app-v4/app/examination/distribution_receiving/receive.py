@@ -21,6 +21,13 @@ from referencing import Registry
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[2]
 PINS_SHA256 = 'd7e404a4820b69d55c6c3b58bc9f36c8860557414982f41b02cff5a4bec4b3d9'
+COHORTS = {
+    'stop-admission': ('pins.stop-admission-lt09-v1.json', PINS_SHA256,
+                       'pins.lt12-combined-lt09-v1.json'),
+    'build-selection': ('pins.build-selection-lt09-v1.json',
+                        '1cead3fe1e12259a2b11a0bddd71d407b40c9d85b02001609845a1aa4479ad71',
+                        'pins.stop-admission-lt09-v1.json'),
+}
 FORMAT = 'group-b-s1-reader-exchange.v1'
 MAX_BYTES = 32 * 1024 * 1024
 CURRENT_INPUTS = (
@@ -155,11 +162,13 @@ def current_inputs():
 
 
 class Receiver:
-    def __init__(self):
-        raw = read_file(HERE / 'pins.stop-admission-lt09-v1.json')
-        require(sha(raw) == PINS_SHA256, 'receiver pins changed')
+    def __init__(self, cohort='stop-admission'):
+        require(cohort in COHORTS, 'unsupported receiving cohort')
+        pins_name, pins_sha, predecessor_name = COHORTS[cohort]
+        raw = read_file(HERE / pins_name)
+        require(sha(raw) == pins_sha, 'receiver pins changed')
         self.pins = parse(raw)
-        require(sha(read_file(HERE / 'pins.lt12-combined-lt09-v1.json')) == self.pins['predecessor_pins_sha256'],
+        require(sha(read_file(HERE / predecessor_name)) == self.pins['predecessor_pins_sha256'],
                 'historical predecessor pins changed')
         require(self.pins['reader']['namespaceAuthoritySourceSha256'] ==
                 self.pins['sources']['app/src-tauri/src/attachment_custody.rs'],
@@ -329,9 +338,10 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('exchange'); parser.add_argument('--exchange-sha256', required=True)
     parser.add_argument('--selection', required=True); parser.add_argument('--selection-sha256', required=True)
+    parser.add_argument('--cohort', choices=tuple(COHORTS), default='stop-admission')
     args = parser.parse_args(argv)
     try:
-        report = Receiver().check(args.exchange, args.exchange_sha256, args.selection, args.selection_sha256)
+        report = Receiver(args.cohort).check(args.exchange, args.exchange_sha256, args.selection, args.selection_sha256)
         print(json.dumps(report, indent=2)); return 0
     except (OSError, ValueError, TypeError, KeyError, AttributeError, subprocess.TimeoutExpired) as error:
         print(json.dumps({'file_correspondence_passed': False, 'input_error': str(error),
