@@ -19,7 +19,12 @@
 //!   from the human-act and act-declined records in the project's record set
 //!   (RS §6, written by the App act control), each verified against the one
 //!   capture object it cites ([`project_act_records`]), with their CE-18 labels
-//!   (SP-1…SP-8, SP-6 earlier acts included; [`count_acts`]);
+//!   (SP-1…SP-8, SP-6 earlier acts included; [`count_acts`]); and, for an
+//!   arrival still *performed* whose referent lapsed after its resume point,
+//!   CE-5 with the next performance ordinal for an act of the required kind
+//!   on the content now current (RC-8, JA-1; §2.4.3), after which the first
+//!   run action started after both that act's capture and the lapse
+//!   observation it answers is a new resume point (CE-11, A-9);
 //! - CE-12 `continued_past` once per waiting arrival, for the first agent run
 //!   action (RC-9) the App received after the arrival, and CE-11
 //!   `run_resumed` for the first run action started after the act that made
@@ -36,6 +41,9 @@
 //!   no label written; and CE-14 `observation_recovered` once for a custody
 //!   recovery read *accessible* of that conversation after a recorded loss,
 //!   which recovers no item and so changes no label (RP-1);
+//! - RS R13 `tool_permission_settlement` once for each A14 request of the
+//!   run the register shows settled, and R11 "lost acknowledgement" for a
+//!   written reply DEL-01-02 reports never acknowledged ([`settlements`]);
 //! - the waiting arrivals listed by CE-17 `run_ended` (`waiting`).
 //!
 //! Recording is not a reaction (RC-4): nothing here sends, asks, opens,
@@ -491,6 +499,8 @@ impl CheckpointRecorder {
                 }
             }
         }
+        // RS R13 and R11 "lost acknowledgement" for this run's requests.
+        written.extend(settlements(view, scope, entries, &written, &in_run));
         // CE-10 after the received items for *performed* arrivals: the files are read
         // now, after every item this view delivered, so a resume point among them
         // precedes the lapse observation (RC-8, HD-5). Acts are then counted again against the content
@@ -520,17 +530,24 @@ impl CheckpointRecorder {
         outputs
     }
 
-    /// CE-5, CE-6, CE-8 for the arrivals still waiting, from the project's
-    /// act records (read once, lazily). A read that fails counts nothing and
-    /// is retried at the next observation; nothing is inferred (RC-2).
+    /// CE-5, CE-6, CE-8 for the arrivals still waiting, and CE-5 for those
+    /// performed with a referent lapsed after the resume point (RC-8), from
+    /// the project's act records (read once, lazily). A read that fails counts
+    /// nothing and is retried at the next observation; nothing is inferred
+    /// (RC-2). A new performance opens the way for its own resume point (CE-11).
     fn count(&mut self, entries: &[Value], written: &mut Vec<Output>, root: &Path, acts: &mut dyn FnMut() -> Result<ActRead, String>, records: &mut Option<ActRead>) {
         let all: Vec<Value> = entries.iter().cloned().chain(written.iter().map(|(k, b)| json!({"kind":k,"body":b}))).collect();
-        if waiting_arrivals(&all).is_empty() || !self.read_acts(acts, records) {
+        if !countable(&all) || !self.read_acts(acts, records) {
             return;
         }
-        if let Some(read) = records.as_ref() {
-            written.extend(count_acts(&all, read, root));
+        let Some(read) = records.as_ref() else { return };
+        let outputs = count_acts(&all, read, root);
+        for (_, body) in outputs.iter().filter(|(k, b)| *k == "disposition_change" && b["disposition"] == "performed") {
+            for arrival in self.arrivals.iter_mut().filter(|a| a.reference() == body["arrival"]) {
+                arrival.resumed = false;
+            }
         }
+        written.extend(outputs);
     }
 
     /// CE-10 for the arrivals with a performance, from the project's act
@@ -873,7 +890,12 @@ pub(crate) fn count_acts(entries: &[Value], read: &ActRead, root: &Path) -> Vec<
             subjects.as_array()?.iter().position(|s| s.as_str().is_some_and(|p| files.iter().any(|f| Path::new(p) == f)))
         };
         let pending = |out: &[Output]| -> Vec<Value> { out.iter().map(|(k, b)| json!({"kind":k,"body":b})).collect() };
-        if disposition(entries, &out, &arrival).as_deref() != Some("waiting") {
+        // RC-8, JA-1, §2.4.3 "performed, with lapsed referents | CE-5": a
+        // performed arrival whose referent lapsed after the resume point is
+        // answered again by an act on its current content; nothing else is
+        // recorded against it (it is not *waiting*).
+        let relapsed = disposition(entries, &out, &arrival).as_deref() == Some("performed") && lapsed_after_resume(entries, &arrival);
+        if disposition(entries, &out, &arrival).as_deref() != Some("waiting") && !relapsed {
             continue;
         }
         for unresolved in &read.unresolved {
@@ -916,6 +938,23 @@ pub(crate) fn count_acts(entries: &[Value], read: &ActRead, root: &Path) -> Vec<
             if entries.iter().chain(shown.iter()).any(|e| seen(e["kind"].as_str().unwrap_or_default(), &e["body"])) {
                 continue;
             }
+            // The next performance ordinal (RS L-12): a lapse label repeats the ordinal it lapses.
+            let next_ordinal = || 1 + entries.iter().chain(shown.iter())
+                .filter(|e| e["kind"] == "disposition_change" && e["body"]["arrival"] == arrival)
+                .filter_map(|e| e["body"]["performanceOrdinal"].as_u64()).max().unwrap_or(0);
+            if relapsed {
+                // Only an act of the required kind on the content now current answers
+                // (SP-1, SP-4; SP-6: its capture time does not decide). The single App
+                // referent is the whole bound scope, so the act answers alone (JA-1).
+                if record["kind"] == "act_declined" || kind != required || same(content) != Some(true) || !ACT_KINDS.contains(&kind) {
+                    continue;
+                }
+                let act = json!({"recordId":id,"actKind":kind,"capturedAt":time,"capturingSurface":"app_act_control"});
+                out.push(("act_counted", json!({"arrival":arrival,"act":act,"relation":if before {"earlier act"} else {"after arrival"},"referents":[subject]})));
+                let annotations = if before { json!([{"label":"by earlier act","actRef":id,"time":time,"referents":[subject]}]) } else { json!([]) };
+                out.push(("disposition_change", json!({"arrival":arrival,"disposition":"performed","performanceOrdinal":next_ordinal(),"answeredBy":[id],"annotations":annotations})));
+                break;
+            }
             if disposition(entries, &out, &arrival).as_deref() != Some("waiting") {
                 break;
             }
@@ -936,10 +975,7 @@ pub(crate) fn count_acts(entries: &[Value], read: &ActRead, root: &Path) -> Vec<
                 match same(content) {
                     None => continue, // incomparable methods (SB-1): neither counted nor said to differ
                     Some(true) => {
-                        // The next performance ordinal (RS L-12): a lapse label repeats the ordinal it lapses.
-                        let ordinal = 1 + entries.iter().chain(shown.iter())
-                            .filter(|e| e["kind"] == "disposition_change" && e["body"]["arrival"] == arrival)
-                            .filter_map(|e| e["body"]["performanceOrdinal"].as_u64()).max().unwrap_or(0);
+                        let ordinal = next_ordinal();
                         out.push(("act_counted", json!({"arrival":arrival,"act":act,"relation":if before {"earlier act"} else {"after arrival"},"referents":[subject]})));
                         let annotations = if before { json!([{"label":"by earlier act","actRef":id,"time":time,"referents":[subject]}]) } else { json!([]) };
                         out.push(("disposition_change", json!({"arrival":arrival,"disposition":"performed","performanceOrdinal":ordinal,"answeredBy":[id],"annotations":annotations})));
@@ -961,6 +997,28 @@ pub(crate) fn count_acts(entries: &[Value], read: &ActRead, root: &Path) -> Vec<
     out
 }
 
+/// RC-8: whether an arrival's latest performance has a referent lapsed after
+/// its resume point: the latest known lapse of an act it cites, recorded after
+/// it, is *lapsed* (not subject absent, not back at c0) *after resume*, and
+/// its label was written. Such an arrival stays *performed* and an act on the
+/// current content answers it again (§2.4.3).
+fn lapsed_after_resume(entries: &[Value], arrival: &Value) -> bool {
+    let Some((at, performance)) = latest_performance(entries, arrival) else { return false };
+    let cited = |id: &Value| performance["answeredBy"].as_array().is_some_and(|ids| ids.contains(id));
+    let lapses: Vec<(usize, &Value)> = entries.iter().enumerate().skip(at + 1)
+        .filter(|(_, e)| e["kind"] == "act_lapsed" && e["body"]["arrival"] == *arrival && cited(&e["body"]["act"]["recordId"]) && !unknown_state(&e["body"]["state"]))
+        .map(|(i, e)| (i, &e["body"])).collect();
+    lapses.last().is_some_and(|(i, b)| b["state"] == "lapsed" && b["when"] == "after resume"
+        && entries[i + 1..].iter().any(|e| e["kind"] == "disposition_change" && e["body"]["arrival"] == *arrival))
+}
+/// Whether acts are counted for any arrival of a run: one waits, or one is
+/// performed with a referent lapsed after its resume point (RC-8).
+pub(crate) fn countable(entries: &[Value]) -> bool {
+    !waiting_arrivals(entries).is_empty() || entries.iter().filter(|e| e["kind"] == "checkpoint_arrival").any(|e| {
+        let arrival = json!({"checkpoint":e["body"]["checkpoint"],"arrivalOrdinal":e["body"]["arrivalOrdinal"]});
+        disposition(entries, &[], &arrival).as_deref() == Some("performed") && lapsed_after_resume(entries, &arrival)
+    })
+}
 /// A lapse state that says nothing about the content (RS L-2, L-3).
 fn unknown_state(state: &Value) -> bool {
     state.as_str().is_some_and(|s| s.starts_with("unknown"))
@@ -1135,6 +1193,81 @@ pub(crate) fn end_observations(entries: &[Value], root: &Path) -> Vec<Output> {
     }
 }
 
+/// RS R13 `tool_permission_settlement` (RS §4 R13, §13.3; R2-8; NIR R-g) for
+/// each A14 tool-permission request of this run (the register's own *a14*
+/// origin class; person-input requests and named services are not A14), and
+/// RS R11 "lost acknowledgement" for any request of the run whose written
+/// reply DEL-01-02 reports was never acknowledged (RECOVERY §8.2
+/// `acknowledgment_not_observed`). A request is the run's when it is of this
+/// App session, names the run's conversation and a turn of the run, as for
+/// CE-4. Each is written once, when the register shows it settled:
+/// - *answered* or *declined* by the person through the card;
+/// - *declined* by an App named rule, with the rule's name (never answered by rule);
+/// - *errored* by an explicit error or a named rule;
+/// - *resolved by supplier* (`serverRequest/resolved` before any answer);
+/// - *ended unanswered (process exit)*, settled by no one, with its context and
+///   the custody event `request_ended_unanswered` that reports it (RQ-04).
+/// A settlement whose reply could not be written, or a request still open, is
+/// not yet written. The user's own Codex mode settles a request inside Codex,
+/// which never reaches the App, so that origin is never written here. An R13
+/// entry is never a human act (RS HA-1; R17-9).
+fn settlements(view: &Value, scope: &RunScope, entries: &[Value], written: &[Output], in_run: &impl Fn(&str) -> bool) -> Vec<Output> {
+    let mut out: Vec<Output> = Vec::new();
+    let session = &view["generation"]["appSession"];
+    let custody = |kind: &str, generation: &str, identity: &str| view["custodyEvents"].as_array().into_iter().flatten()
+        .find(|e| e["kind"] == kind && e["appSession"] == *session && e["entry"]["generation"] == generation && e["entry"]["requestIdentity"] == identity);
+    let recorded = |out: &[Output], kind: &str, field: &str, value: &str| entries.iter().map(|e| (e["kind"].as_str().unwrap_or_default(), &e["body"]))
+        .chain(written.iter().chain(out.iter()).map(|(k, b)| (*k, b)))
+        .any(|(k, b)| k == kind && b[field] == value && (kind != "evidence_limit" || b["label"] == "lost acknowledgement"));
+    for r in view["serverRequests"].as_array().into_iter().flatten() {
+        if r["generation"]["appSession"] != *session || r["nativeParameters"]["threadId"] != scope.conversation {
+            continue;
+        }
+        let (Some(turn), Some(spawn), Ok(generation), Ok(identity)) = (r["nativeParameters"]["turnId"].as_str(), r["generation"]["spawnCounter"].as_u64(),
+            crate::recovery::generation_ref(&r["generation"]), serde_json::to_string(&r["requestIdentity"])) else { continue };
+        if !in_run(turn) || spawn < scope.start_spawn {
+            continue;
+        }
+        let shown = match &r["requestIdentity"] { Value::String(s) => s.clone(), other => other.to_string() };
+        let reference = format!("server-request:{spawn}/{shown}");
+        if r["originClass"] == "a14" && !recorded(&out, "tool_permission_settlement", "request", &reference) {
+            let origin = &r["settlement"]["origin"];
+            let rule = origin["ruleName"].as_str().filter(|s| !s.is_empty());
+            let person = origin["class"] == "person-via-interaction";
+            let body = match r["state"].as_str() {
+                Some("answered") if person => Some(json!({"request":reference,"settledBy":"the person via interaction","settlement":"answered"})),
+                Some("declined") if person => Some(json!({"request":reference,"settledBy":"the person via interaction","settlement":"declined"})),
+                Some("declined") if origin["class"] == "app-rule" && rule.is_some() => Some(json!({"request":reference,"settledBy":"App named-rule decline","settlement":"declined","ruleName":rule})),
+                Some("errored") if origin["class"] == "app-explicit-error" => Some(json!({"request":reference,"settledBy":"explicit error","settlement":"errored"})),
+                Some("errored") if origin["class"] == "app-rule" && rule.is_some() => Some(json!({"request":reference,"settledBy":"explicit error","settlement":"errored","ruleName":rule})),
+                Some("resolved-by-supplier") => Some(json!({"request":reference,"settledBy":"the supplier","settlement":"resolved by supplier"})),
+                Some("ended-unanswered") => custody("request_ended_unanswered", &generation, &identity).and_then(|e| {
+                    let context = match e["context"].as_str()? {
+                        "supplier-exit" => "supplier exit",
+                        "supplier-stop" => "supplier stop",
+                        "app-quit" => "App quit",
+                        "system-termination" => "system termination",
+                        "app-ended-without-record" => "App ended without record",
+                        _ => return None,
+                    };
+                    Some(json!({"request":reference,"settledBy":"none — ended unanswered","settlement":"ended unanswered (process exit)","context":context,"custodyEventRef":e["eventId"]}))
+                }),
+                _ => None,
+            };
+            if let Some(body) = body {
+                out.push(("tool_permission_settlement", body));
+            }
+        }
+        if let Some(event) = custody("acknowledgment_not_observed", &generation, &identity) {
+            if !recorded(&out, "evidence_limit", "subjectRef", &reference) {
+                out.push(("evidence_limit", json!({"label":"lost acknowledgement","subjectRef":reference,
+                    "detail":format!("The reply written to Codex ({} by {}) was never acknowledged before its process ended ({}; custody event {}).",
+                        r["method"].as_str().unwrap_or("request"), event["settlementOrigin"].as_str().unwrap_or("not stated"), event["context"].as_str().unwrap_or("not stated"), event["eventId"].as_str().unwrap_or("not stated"))})));
+            }
+        }
+    }
+    out
+}
 /// Whether a CE-13 or CE-14 entry for the custody event `id` is already in the
 /// run's entries or this observation's outputs (each names its event).
 fn custody_recorded(entries: &[Value], written: &[Output], id: &str) -> bool {
@@ -1273,15 +1406,30 @@ fn disposition(entries: &[Value], pending: &[Output], arrival: &Value) -> Option
         .filter(|(k, b)| *k == "disposition_change" && b["arrival"] == *arrival)
         .last().and_then(|(_, b)| b["disposition"].as_str().map(str::to_owned))
 }
-/// When an arrival became *performed*: its arrival time, or the latest
-/// capture time of an act counted for it after the arrival.
+/// When an arrival became *performed* (HD-5, A-9: the resume point is the
+/// first run action started at or after it). The first performance: its
+/// arrival time, or the latest capture time of an act counted for it after
+/// the arrival. A later performance answers a lapse, so it cannot precede the
+/// lapse observation that made it possible: the later of the capture of each
+/// act it cites and the latest lapse observation recorded before it.
 fn performed_at(entries: &[Value], pending: &[Output], arrival: &Value) -> Option<String> {
-    let all = || entries.iter().map(|e| (e["kind"].as_str().unwrap_or_default(), &e["body"])).chain(pending.iter().map(|(k, b)| (*k, b)));
-    let arrived = all().find(|(k, b)| *k == "checkpoint_arrival" && b["checkpoint"] == arrival["checkpoint"] && b["arrivalOrdinal"] == arrival["arrivalOrdinal"])
+    let all: Vec<(&str, &Value)> = entries.iter().map(|e| (e["kind"].as_str().unwrap_or_default(), &e["body"])).chain(pending.iter().map(|(k, b)| (*k, b))).collect();
+    let arrived = all.iter().find(|(k, b)| *k == "checkpoint_arrival" && b["checkpoint"] == arrival["checkpoint"] && b["arrivalOrdinal"] == arrival["arrivalOrdinal"])
         .and_then(|(_, b)| b["event"]["evidencedTime"]["value"].as_str().map(str::to_owned))?;
-    let latest = all().filter(|(k, b)| *k == "act_counted" && b["arrival"] == *arrival && b["relation"] == "after arrival")
-        .filter_map(|(_, b)| b["act"]["capturedAt"].as_str().map(str::to_owned)).max();
-    Some(latest.map_or(arrived.clone(), |t| t.max(arrived)))
+    let labels = || all.iter().enumerate().filter(|(_, (k, b))| *k == "disposition_change" && b["arrival"] == *arrival && b["disposition"] == "performed");
+    let top = labels().filter_map(|(_, (_, b))| b["performanceOrdinal"].as_u64()).max().unwrap_or(1);
+    if top <= 1 {
+        let latest = all.iter().filter(|(k, b)| *k == "act_counted" && b["arrival"] == *arrival && b["relation"] == "after arrival")
+            .filter_map(|(_, b)| b["act"]["capturedAt"].as_str().map(str::to_owned)).max();
+        return Some(latest.map_or(arrived.clone(), |t| t.max(arrived)));
+    }
+    let (at, performance) = labels().find(|(_, (_, b))| b["performanceOrdinal"].as_u64() == Some(top)).map(|(i, (_, b))| (i, *b))?;
+    let cited = |id: &Value| performance["answeredBy"].as_array().is_some_and(|ids| ids.contains(id));
+    let captures = all[..at].iter().filter(|(k, b)| *k == "act_counted" && b["arrival"] == *arrival && cited(&b["act"]["recordId"]))
+        .filter_map(|(_, b)| b["act"]["capturedAt"].as_str().map(str::to_owned));
+    let lapses = all[..at].iter().filter(|(k, b)| *k == "act_lapsed" && b["arrival"] == *arrival)
+        .filter_map(|(_, b)| b["time"].as_str().filter(|t| comparable(t)).map(str::to_owned));
+    Some(std::iter::once(arrived).chain(captures).chain(lapses).max().unwrap_or_default())
 }
 /// CE-17 `waitingArrivals` from RS entries (`kind`, `body`) of one run, in
 /// arrival order: every arrival whose latest disposition is *waiting*.
@@ -1300,13 +1448,49 @@ pub(crate) fn waiting_arrivals(entries: &[Value]) -> Vec<Value> {
 /// corresponding in kind, choice, actor, subject, content, scope, purpose and
 /// time, and one record per capture (RS R-8). An incomplete record set is not
 /// read: nothing is counted from part of it.
+/// The last act read, kept while no act-relevant record (the index's act
+/// epoch), no capture file it read (stamp) and not the seal key basis
+/// (`capture_seal::verification_basis`) has changed.
+struct ActCache { root: std::path::PathBuf, epoch: u64, keys: String, captures: Vec<(std::path::PathBuf, Option<crate::records_index::Stamp>)>, read: ActRead }
+static ACT_CACHE: std::sync::Mutex<Option<ActCache>> = std::sync::Mutex::new(None);
+#[cfg(test)]
+pub(crate) fn forget_act_read_for_test() {
+    *ACT_CACHE.lock().unwrap_or_else(|p| p.into_inner()) = None;
+}
+fn capture_stamp(path: &Path) -> Option<crate::records_index::Stamp> {
+    std::fs::symlink_metadata(path).ok().map(|m| crate::records_index::Stamp::of(&m))
+}
 pub(crate) fn project_act_records(root: &Path) -> Result<ActRead, String> {
     let root = std::fs::canonicalize(root).map_err(|e| format!("project root not readable: {e}"))?;
-    let paths = crate::storage::discover(&root)?;
-    let projected = crate::decision_view::record_relations::read_logs(&paths);
-    if let Some(limits) = projected["readLimits"].as_array().filter(|l| !l.is_empty()) {
-        return Err(format!("the project's record set is incomplete: {limits:?}"));
-    }
+    // The record set through the bounded index (`records_index`), in one
+    // look: a log's torn final line is a partial, never an entry (RS §14.2
+    // R-2), so it leaves the set complete; any other limit makes the act
+    // records unread. Only the act records, corrections and entries sharing
+    // their identities are read again (each line re-validated), and only when
+    // one of them, a capture read or the seal key basis changed.
+    enum Look { Kept(ActRead), Fresh(Vec<Value>, std::collections::HashSet<String>, u64) }
+    let keys = crate::capture_seal::verification_basis(&root);
+    let look = crate::records_index::with_index(&root, |ix| -> Result<Look, String> {
+        let limits = ix.limits();
+        if !limits.is_empty() {
+            return Err(format!("the project's record set is incomplete: {limits:?}"));
+        }
+        let epoch = ix.act_epoch();
+        if let Some(cache) = ACT_CACHE.lock().unwrap_or_else(|p| p.into_inner()).as_ref() {
+            if cache.root == root && cache.epoch == epoch && cache.keys == keys
+                && cache.captures.iter().all(|(p, s)| capture_stamp(p) == *s) {
+                return Ok(Look::Kept(cache.read.clone()));
+            }
+        }
+        let claims = ix.act_claims().map_err(|e| format!("the project's record set is incomplete: [{e:?}]"))?;
+        Ok(Look::Fresh(claims, ix.paths().into_iter().map(|p| p.to_string_lossy().into_owned()).collect(), epoch))
+    })?;
+    let (claims, complete, epoch) = match look {
+        Look::Kept(read) => return Ok(read),
+        Look::Fresh(claims, complete, epoch) => (claims, complete, epoch),
+    };
+    let projected = crate::decision_view::record_relations::project_from_read_claims(&claims, &complete);
+    let mut captures = Vec::new();
     let nonconformant: BTreeSet<&str> = projected["diagnostics"].as_array().into_iter().flatten()
         .filter(|d| d["state"] == "nonconformant").filter_map(|d| d["recordId"].as_str()).collect();
     let mut read = ActRead::default();
@@ -1334,6 +1518,10 @@ pub(crate) fn project_act_records(root: &Path) -> Result<ActRead, String> {
         } else if record["recorder"]["role"] != crate::records::APP_INTERFACE.role || record["recorder"]["identity"] != crate::records::APP_INTERFACE.identity {
             Err("not written by the App's capturing surface (PH-4)".into())
         } else {
+            if let Some(capture_id) = b["captureEvidence"][0]["ref"].as_str() {
+                let path = crate::storage::capture_path(&root, capture_id);
+                captures.push((path.clone(), capture_stamp(&path)));
+            }
             match crate::file_act_view::capture(&root, b) {
                 Err(e) => Err(format!("capture evidence not resolved: {e}")),
                 Ok(capture) if !crate::file_act_view::corresponds(&capture, record) => Err("the record differs from the capture it cites".into()),
@@ -1355,6 +1543,7 @@ pub(crate) fn project_act_records(root: &Path) -> Result<ActRead, String> {
         read.acts = kept;
         read.unresolved.extend(refused.into_iter().map(|a| json!({"record":a["record"],"reason":"several records cite one capture (RS R-8)"})));
     }
+    *ACT_CACHE.lock().unwrap_or_else(|p| p.into_inner()) = Some(ActCache { root, epoch, keys, captures, read: read.clone() });
     Ok(read)
 }
 /// The limit written before `run_ended` when the person ends a run while an

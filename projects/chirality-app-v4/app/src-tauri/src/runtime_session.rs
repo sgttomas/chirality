@@ -547,7 +547,9 @@ impl RecoveryStartup {
         if !self.attempted {
             self.attempted = true;
             let observed = host.shared_recovery_observation();
-            self.status = json!({"state":if observed["configured"]==true{"shared-source-configured"}else{"shared-source-unavailable"},"sourceObservation":observed,"blocksSupplierStart":false,"standing":"same actual App custody; no new ledger/session or cold live reconstruction"});
+            // The shared ledger's history limits, shown as this home's own (App.tsx).
+            let limits = observed["recovery"]["historyLimits"].clone();
+            self.status = json!({"state":if observed["configured"]==true{"shared-source-configured"}else{"shared-source-unavailable"},"historyLimits":if limits.is_array(){limits}else{json!([])},"sourceObservation":observed,"blocksSupplierStart":false,"standing":"same actual App custody; no new ledger/session or cold live reconstruction"});
         }
         self.snapshot()
     }
@@ -635,7 +637,8 @@ impl RecoveryStartup {
                 }
             }
             // Reject redirection of the App-owned root/runtime/file, preserving it.
-            for target in [root.to_path_buf(), root.join("runtime"), path.clone()] {
+            let database = crate::recovery::database_path(&path);
+            for target in [root.to_path_buf(), root.join("runtime"), path.clone(), database.clone()] {
                 match std::fs::symlink_metadata(&target) {
                     Ok(meta) if meta.file_type().is_symlink() => {
                         return Err(format!(
@@ -643,7 +646,7 @@ impl RecoveryStartup {
                             target.display()
                         ))
                     }
-                    Ok(_) if target == path => existing = true,
+                    Ok(_) if target == path || target == database => existing = true,
                     Ok(_) => {}
                     Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
                     Err(e) => return Err(e.to_string()),
@@ -680,12 +683,17 @@ impl RecoveryStartup {
             }
             Ok(())
         })();
+        let database = selected_path.as_ref().map(|p| crate::recovery::database_path(p).to_string_lossy().into_owned());
         let path = selected_path.as_ref().map(|p|json!({"displayPath":p.to_string_lossy(),
             "nativePath":{"encoding":"native_encoded_bytes","platform":std::env::consts::OS,"bytes":p.as_os_str().as_encoded_bytes()},
             "pathDisplayLimit":if p.to_str().is_some(){None}else{Some("native path is not Unicode; display is lossy")}}));
         let succeeded = result.is_ok();
-        self.status = json!({"state":if succeeded{"configured"}else{"initialization-failed"},
-            "hostConfigured":configured,"path":path,"historyFile":if existing{"existing"}else if configured{"new"}else{"not-established"},
+        // The ledger's history limits (its import's) are shown with the
+        // initialization: configured, but not as complete history.
+        let limits = host.shared_recovery_observation()["recovery"]["historyLimits"].clone();
+        let limited = limits.as_array().is_some_and(|l| !l.is_empty());
+        self.status = json!({"state":if !succeeded{"initialization-failed"}else if limited{"configured-with-limits"}else{"configured"},"historyLimits":if limited{limits}else{json!([])},
+            "hostConfigured":configured,"path":path,"database":database,"historyFile":if existing{"existing"}else if configured{"new"}else{"not-established"},
             "configurationError":result.err(),"directoryPublication":if succeeded{"sync-calls-succeeded"}else{"not-confirmed"},
             "blocksSupplierStart":false,"standing":"App-observed recovery pointers; no native human-act proof"});
         self.snapshot()
@@ -4419,33 +4427,31 @@ impl WorkflowRootSession {
             .cloned()
             .ok_or("No actual native library context selected".into())
     }
-    pub fn select_hot_registered_copy(
-        &mut self,
-        review_ref: &str,
-        revision: &str,
-        path: std::path::PathBuf,
-    ) -> Result<Value, String> {
+    /// "Select revision ‹n›" on a retained review: the revision that review
+    /// registered or re-confirmed in this process (RC-2), resolved from its
+    /// revision store and verified there (SL-4), never from a published copy
+    /// or any other folder, through the path a list selection uses.
+    pub fn select_hot_registered_copy(&mut self, review_ref: &str, revision: &str) -> Result<Value, String> {
         let review = self
             .reviews
             .get(review_ref)
             .cloned()
             .ok_or("Original hot review not retained; ledger/JSON cannot select. If the revision is registered: registered — re-confirm to use in this App session (Review a draft with its bytes, or Refine to make one)")?;
-        let review = review.try_lock().map_err(|_| "Original review owner busy/unavailable; selection pending, no transfer")?;
-        let actual = review
-            .registered
-            .get(revision)
-            .ok_or("Actual hot registered revision unavailable in this review; registered — re-confirm to use in this App session")?;
-        let selection = actual.select();
-        selection.verify_store(&path)?;
-        self.selected = Some(WorkflowSelectionState {
-            reference: crate::util::opaque_id("workflow-selection:")?,
-            selection,
-            package: path,
-            selected_at: crate::util::now_rfc3339(),
-            replaces: self.replaced(),
-        });
-        drop(review);
-        Ok(self.snapshot())
+        let (held, library) = {
+            let review = review.try_lock().map_err(|_| "Original review owner busy/unavailable; selection pending, no transfer")?;
+            let held = review
+                .registered
+                .get(revision)
+                .cloned()
+                .ok_or("Actual hot registered revision unavailable in this review; registered — re-confirm to use in this App session")?;
+            (held, review.library.clone())
+        };
+        let store = library
+            .owner
+            .try_lock()
+            .map_err(|_| "Original library owner busy/unavailable; selection pending")?
+            .store_copy(held.identity());
+        self.choose_registered(&held, store)
     }
     /// WR SL-2 / §5.4: the registered selection in force, which a new
     /// selection by the person replaces and cites. A candidate selection that
@@ -4816,8 +4822,8 @@ impl WorkflowRootSession {
             ended_after_turn: None,
             finished_report: None,
             checkpoints: None,
-            act_cache: None,
             run_tag: Value::Null,
+            model_turns: Default::default(),
         };
         // EXEC §3.1 CK-1: the selection is now bound to this conversation for a run.
         workflow_run.evaluate_compatibility(crate::execution_compatibility::report::Occasion::Selection);
@@ -6229,12 +6235,11 @@ pub(crate) struct WorkflowRun {
     finished_report: Option<crate::run_offers::FinishedReport>,
     /// EXEC §2.4 checkpoint recorder, from the run's opening (CE-1) on.
     checkpoints: Option<crate::checkpoint_recorder::CheckpointRecorder>,
-    /// The project's verified act records with the fingerprint of the logs and
-    /// capture store they were read from; read again only when it changes.
-    act_cache: Option<(Vec<(String, u64, i64, i64)>, crate::checkpoint_recorder::ActRead)>,
     /// EXEC A-2 / RECOVERY §4.1: the REC run tag written at `run_opened` (durable,
     /// or held in this run's memory only, with the reason).
     run_tag: Value,
+    /// RS R5 / HOSTING §8.3: the run's `model_turn` entries (per turn, and thread reports).
+    model_turns: crate::model_turn_recorder::ModelTurnRecorder,
 }
 impl WorkflowReviewContext {
     pub fn accept_result(
@@ -6316,6 +6321,7 @@ impl WorkflowRun {
             "endNotice":self.notice.view(),"noticeRecordFailure":self.notice_record_failure,"noticeChecks":self.notice_checks.iter().map(WorkflowCheckSlot::view).collect::<Vec<_>>(),
             "compatibility":self.compatibility_view(),
             "checkpointRecorder":self.checkpoints.as_ref().map(crate::checkpoint_recorder::CheckpointRecorder::view),
+            "modelTurns":self.model_turns.view(),
             "workflow":{"origin":self.prepared().workflow().origin,"name":self.prepared().workflow().name,"revision":self.prepared().workflow().revision,"sourceRoot":self.prepared().workflow().source_root},
             "home":self.prepared().scope().home,"generation":self.prepared().scope().generation,
             "runTag":self.run_tag,
@@ -6759,6 +6765,23 @@ impl WorkflowRun {
             }
         }
     }
+    /// RS R5 (HOSTING §8.3): the `model_turn` entries this view shows are due,
+    /// queued in order; written with the run's other entries. Records only.
+    fn observe_model_turns(&mut self, view: &Value) {
+        let scope = self.prepared().scope().clone();
+        let start = self.start_in(view);
+        let bodies = self.model_turns.observe(view, &crate::model_turn_recorder::RunScope { home: &scope.home, conversation: &scope.conversation, start, start_spawn: scope.generation["spawnCounter"].as_u64().unwrap_or(0) });
+        let queued = !bodies.is_empty();
+        self.push_model_turns(bodies);
+        // With a checkpoint recorder the observation flushes them below.
+        if queued && self.checkpoints.is_none() {
+            self.flush_records();
+        }
+    }
+    fn push_model_turns(&mut self, bodies: Vec<Value>) {
+        let observed_at = crate::util::now_rfc3339();
+        self.push_recorder_outputs(bodies.into_iter().map(|body| ("model_turn", body)).collect(), &observed_at);
+    }
     /// The run's entries as the recorder reads them (`kind`, `body`).
     fn recorded_bodies(&self) -> Vec<Value> {
         self.entries.iter().map(|e| json!({"kind":e.kind,"body":e.body})).collect()
@@ -6769,23 +6792,15 @@ impl WorkflowRun {
         if self.lifecycle != RunLifecycle::Open {
             return;
         }
+        self.observe_model_turns(view);
         let Some(mut recorder) = self.checkpoints.take() else { return };
         let scope = self.prepared().scope().clone();
         let start = self.start_in(view);
         let entries = self.recorded_bodies();
         let root = self.project_root.clone();
-        let cache = &mut self.act_cache;
-        let mut acts = || {
-            let fingerprint = crate::checkpoint_recorder::act_records_fingerprint(&root);
-            if let (Some(now), Some((then, read))) = (&fingerprint, cache.as_ref()) {
-                if now == then {
-                    return Ok(read.clone());
-                }
-            }
-            let read = crate::checkpoint_recorder::project_act_records(&root)?;
-            *cache = fingerprint.map(|f| (f, read.clone()));
-            Ok(read)
-        };
+        // The act read keeps its own result while no act record, capture or
+        // seal key it depends on has changed (`project_act_records`).
+        let mut acts = || crate::checkpoint_recorder::project_act_records(&root);
         let outputs = recorder.observe(view, &crate::checkpoint_recorder::RunScope { home: &scope.home, conversation: &scope.conversation, start, project_root: &self.project_root, start_spawn: scope.generation["spawnCounter"].as_u64().unwrap_or(0) }, &entries, &mut acts);
         self.checkpoints = Some(recorder);
         let held = self.entries.iter().any(|e| e.pending());
@@ -6824,6 +6839,8 @@ impl WorkflowRun {
         // last observation, then CE-17: the arrivals whose recorded disposition is
         // still *waiting*. The person's end is never refused for unreadable act
         // records (A-11): a limit naming them and why is written before run_ended.
+        let ended_turns = self.model_turns.end();
+        self.push_model_turns(ended_turns);
         let outputs = crate::checkpoint_recorder::end_observations(&self.recorded_bodies(), &self.project_root);
         if !outputs.is_empty() {
             self.push_recorder_outputs(outputs, &crate::util::now_rfc3339());
@@ -7279,7 +7296,7 @@ mod workflow_root_tests {
                 let result=owner.confirm_a15_after_native_event(offer,event,&current).unwrap();drop(current);drop(owner_guard);
                 review.attempted_native=true;review.accept_result(result).unwrap();
                 review.registered.values().next().unwrap().identity().revision.clone()};
-            root.select_hot_registered_copy(&reference,&revision,self.root.join(".chirality/workflows/coordinated-knowledge-work")).unwrap();
+            root.select_hot_registered_copy(&reference,&revision).unwrap();
             assert_eq!(root.snapshot()["selection"]["standing"],"registered revision");
             root
         }
@@ -7307,12 +7324,12 @@ mod workflow_root_tests {
         review.attempted_native=true;review.accept_result(result).unwrap();
         let revision=review.registered.values().next().unwrap().identity().revision.clone();
         assert_eq!(review.status["entries"][0]["state"],"registered");drop(review);
-        root.select_hot_registered_copy(&reference,&revision,f.root.join(".chirality/workflows/coordinated-knowledge-work")).unwrap();
+        root.select_hot_registered_copy(&reference,&revision).unwrap();
         assert_eq!(root.snapshot()["selection"]["standing"],"registered revision");
         // PD-1: the run panel reads the selected revision's declared part from the host, as WD read it.
         let declaration=&root.snapshot()["selection"]["declaration"];
         assert!(declaration["reading"].is_string()&&declaration["categories"].is_object(),"{declaration}");
-        let mut cold=WorkflowRootSession::default();assert!(cold.select_hot_registered_copy(&reference,&revision,f.package.clone()).is_err(),"readable ledger/tuple cannot recreate hot registration authority");
+        let mut cold=WorkflowRootSession::default();assert!(cold.select_hot_registered_copy(&reference,&revision).is_err(),"readable ledger/tuple cannot recreate hot registration authority");
         assert!(cold.select_development_copy(f.root.join(".chirality/workflows/coordinated-knowledge-work")).is_ok(),"exact copy can separately retain development admission, not old A15");
     }
     #[test]
@@ -7375,6 +7392,17 @@ for line in sys.stdin:
    for n,item in enumerate([{'id':'start-user','type':'userMessage','content':[]},{'id':'m1','type':'agentMessage','text':'Spacing report'}]):
     emit({'method':'item/started','params':{'threadId':tid,'turnId':result['turn']['id'],'item':item}})
     emit({'method':'item/completed','params':{'threadId':tid,'turnId':result['turn']['id'],'item':item}})
+   continue
+  if mode('notify-mode') in ('reroute','ended'):
+   # HOSTING §8.3: the turn's user message, an optional model/rerouted naming the turn, then its end.
+   emit({'id':f['id'],'result':result})
+   tid=f['params']['threadId'];uid=result['turn']['id']
+   item={'id':uid+'-user','type':'userMessage','content':[]}
+   emit({'method':'item/started','params':{'threadId':tid,'turnId':uid,'item':item}})
+   emit({'method':'item/completed','params':{'threadId':tid,'turnId':uid,'item':item}})
+   if mode('notify-mode')=='reroute':
+    emit({'method':'model/rerouted','params':{'threadId':tid,'turnId':uid,'fromModel':'fixture-model','toModel':'fixture-safe-model','reason':'highRiskCyberActivity'}})
+   emit({'method':'turn/completed','params':{'threadId':tid,'turn':{'id':uid,'status':'completed','items':[],'error':None}}})
    continue
   if mode('notify-mode')=='spawn':
    emit({'id':f['id'],'result':result})
@@ -7693,6 +7721,41 @@ for line in sys.stdin:
         let results=trial_flows::perform_trial_reads(&peer.home,due);
         root.lock().unwrap().apply_trial_reads(results)
     }
+    // RS R5 / HOSTING §8.3 through the owned peer, the host's record tick and the
+    // run's RS writer: the run-start turn is rerouted (model/rerouted names it), a
+    // later turn has no report and reads unknown, the thread report sits beside
+    // them with scope thread, each is written once, all before run_ended.
+    #[test]
+    fn model_turn_entries_record_each_turn_and_the_reroute_through_the_record_tick(){
+        let peer=Peer::new();peer.set_mode("notify-mode","reroute");
+        let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
+        let workflows=Mutex::new(root);let homes=Mutex::new(HomeRouter::new(peer.home.clone()).unwrap());
+        let model_turns=||rs_for(&peer,&a).into_iter().filter(|e|e["kind"]=="model_turn").map(|e|e["body"].clone()).collect::<Vec<_>>();
+        let until=|count:usize|{let deadline=std::time::Instant::now()+Duration::from_secs(5);
+            while model_turns().len()<count&&std::time::Instant::now()<deadline{crate::host_tick::tick(&homes,&workflows);std::thread::sleep(Duration::from_millis(20));}};
+        until(2);
+        let first=model_turns();
+        assert_eq!(first.len(),2,"{first:?}");
+        assert_eq!(first[0]["scope"],"thread");assert!(first[0].get("turn").is_none());
+        assert_eq!(first[0]["requested"],first[0]["effective"],"the fixture reports the requested model for the thread: {}",first[0]);
+        assert_eq!(first[0]["requested"],"fixture-provider/fixture-model","the App's thread/start request: {}",first[0]);
+        assert_eq!(first[1],json!({"turn":1,"scope":"turn","requested":first[0]["requested"],"effective":"fixture-safe-model","reroute":true,"destinationClass":"unknown"}));
+        // A second turn of the run with no report.
+        peer.set_mode("notify-mode","ended");peer.set_mode("turn-id","turn-2");
+        peer.home.host.turn_start_text(&peer.generation,"thread","next").unwrap();
+        until(3);
+        let bodies=model_turns();
+        assert_eq!(bodies.len(),3,"{bodies:?}");
+        assert_eq!(bodies[2],json!({"turn":2,"scope":"turn","requested":first[0]["requested"],"effective":"unknown","destinationClass":"unknown"}),"never filled from the thread or an earlier turn; no reroute claimed");
+        for _ in 0..3{crate::host_tick::tick(&homes,&workflows);}
+        assert_eq!(model_turns().len(),3,"no duplicates on later ticks");
+        workflows.lock().unwrap().runs[&a].clone().lock().unwrap().end_run(None,None).unwrap();
+        let kinds=kinds_for(&peer,&a);
+        assert_eq!(kinds.last().map(String::as_str),Some("run_ended"));
+        assert_eq!(kinds.iter().filter(|k|*k=="model_turn").count(),3,"nothing added at the end: every turn already ended {kinds:?}");
+        // Every entry was validated by the RS writer (W-1); the log reads complete.
+        assert!(peer.fixture.rs_entries().iter().all(|e|e["formatVersion"].is_string()));
+    }
     // OI-008: observations are recorded by the host's own tick with no host_status
     // call, and host_status's workflow part records nothing.
     #[test]
@@ -7715,7 +7778,8 @@ for line in sys.stdin:
         let homes=Mutex::new(HomeRouter::new(peer.home.clone()).unwrap());
         crate::host_tick::tick(&homes,&workflows);
         let after=kinds_for(&peer,&a);
-        assert_eq!(&after[5..],["checkpoint_arrival","disposition_change"],"{after:?}");
+        // The same tick also records the conversation's thread-level model report (RS R5, scope thread).
+        assert_eq!(&after[5..],["model_turn","checkpoint_arrival","disposition_change"],"{after:?}");
         crate::host_tick::tick(&homes,&workflows);
         assert_eq!(kinds_for(&peer,&a).len(),after.len(),"recorded once");
         // host_status itself no longer drives the recorder.
@@ -9064,7 +9128,12 @@ for line in sys.stdin:
         let peer=Peer::new();let mut root=peer.fixture.registered();
         let a=root.prepare_run(peer.home.clone(),&peer.generation,"thread","person".into(),peer.project()).unwrap();
         let text=root.runs[&a].lock().unwrap().prepared().text().to_owned();
-        assert!(text.contains("[Chirality] Other files of this revision, in the folder \".chirality/workflows/coordinated-knowledge-work\": REVIEW-NOTES.md (sha256 "),"{text}");
+        // The holding folder is the revision store (SL-4), inside the project: the
+        // agent is pointed at the registered bytes, not the editable published copy.
+        let held_revision=root.runs[&a].lock().unwrap().prepared().workflow().revision.clone();
+        let store_label=format!(".chirality/workflow-revisions/coordinated-knowledge-work/{}/coordinated-knowledge-work",crate::storage::key(&held_revision));
+        assert!(text.contains(&format!("[Chirality] Other files of this revision, in the folder \"{store_label}\": REVIEW-NOTES.md (sha256 ")),"{text}");
+        assert!(!text.contains("\".chirality/workflows/coordinated-knowledge-work\""),"never the published copy");
         assert!(!text.contains("selected native workflow holding copy"));
         assert_eq!(root.runs[&a].lock().unwrap().status["otherFiles"]["basis"],"holding folder inside the project");
         // Another explicit project: the holding copy is outside it.
@@ -9330,6 +9399,38 @@ for line in sys.stdin:
         assert_eq!(end["body"]["waitingArrivals"],json!([{"checkpoint":"CP-rely","arrivalOrdinal":1}]),"waiting after the lapse before the resume point");
         assert!(crate::storage::read_all(&peer.fixture.root).1.is_empty(),"every entry is a conformant RS entry");
     }
+    // RC-8 / §2.4.3 "performed, with lapsed referents | CE-5" through the actual run and RS
+    // writer: after a lapse past the resume point, the person's act on the current content
+    // performs the arrival again (ordinal 2), a later agent action is its new resume point,
+    // nothing is sent, and the act records are not changed.
+    #[test]
+    fn checkpoint_lapse_then_act_on_current_content_performs_again_with_a_new_resume_point(){
+        let peer=Peer::new();let mut root=declared(&peer);let a=open_run(&peer,&mut root,"thread");let run=root.runs[&a].clone();
+        let file=peer.fixture.root.join("out/summary.md");std::fs::create_dir_all(file.parent().unwrap()).unwrap();std::fs::write(&file,b"v1").unwrap();
+        let command=|id:&str,ms:i64|{let mut v=recorder_view(&peer,&[summary_items()[1].clone(),json!({"id":id,"type":"commandExecution","source":"agent","command":"ls","status":"inProgress"})]);
+            v["items"][2]["sourceFrame"]=json!({"method":"item/started","params":{"startedAtMs":ms}});v};
+        run.lock().unwrap().observe_checkpoints(&recorder_view(&peer,&summary_items()[1..]));
+        record_file_act(&peer,"out/summary.md","A7",b"v1","2026-09-21T15:00:00.000Z");
+        run.lock().unwrap().observe_checkpoints(&recorder_view(&peer,&summary_items()[1..]));
+        run.lock().unwrap().observe_checkpoints(&command("c1",1_790_005_000_000)); // 15:36:40: the resume point
+        std::fs::write(&file,b"v2").unwrap();
+        run.lock().unwrap().observe_checkpoints(&command("c1",1_790_005_000_000));
+        let next=record_file_act(&peer,"out/summary.md","A7",b"v2","2026-09-21T16:00:00.000Z");
+        let acts_before=std::fs::read(peer.fixture.root.join(crate::recorder::LOG)).unwrap();
+        let (wire,requests)=(peer.wire().len(),peer.home.host.client_requests().len());
+        run.lock().unwrap().observe_checkpoints(&command("c1",1_790_005_000_000));
+        run.lock().unwrap().observe_checkpoints(&command("c2",std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_millis() as i64+60_000)); // after the new act and the lapse observed now
+        let log=rs_for(&peer,&a);let kinds:Vec<&str>=log.iter().map(|e|e["kind"].as_str().unwrap()).collect();
+        let tail:Vec<&str>=kinds.iter().copied().skip_while(|k|*k!="act_lapsed").collect();
+        assert_eq!(tail,["act_lapsed","disposition_change","act_counted","disposition_change","run_resumed"],"{kinds:?}");
+        let counted=log.iter().filter(|e|e["kind"]=="act_counted").last().unwrap();assert_eq!(counted["body"]["act"]["recordId"],next.as_str());
+        let label=log.iter().filter(|e|e["kind"]=="disposition_change").last().unwrap();
+        assert_eq!((label["body"]["disposition"].as_str(),label["body"]["performanceOrdinal"].as_u64()),(Some("performed"),Some(2)));
+        assert_eq!(log.last().unwrap()["body"]["firstActionRef"],"item:thread/turn/c2");
+        assert_eq!((peer.wire().len(),peer.home.host.client_requests().len()),(wire,requests),"recording sends nothing (RC-4)");
+        assert_eq!(std::fs::read(peer.fixture.root.join(crate::recorder::LOG)).unwrap(),acts_before,"act records are not changed");
+        assert!(crate::storage::read_all(&peer.fixture.root).1.is_empty());
+    }
     // B-1 through the person's End run: the end's own observation delivers the agent's first
     // action after the act while the file has also changed. The resume point is written first,
     // the lapse is *after resume* and the arrival stays performed, so run_ended lists nothing.
@@ -9346,7 +9447,9 @@ for line in sys.stdin:
         let mut view=recorder_view(&peer,&[summary_items()[1].clone(),json!({"id":"c1","type":"commandExecution","source":"agent","command":"ls","status":"inProgress"})]);
         view["items"][2]["sourceFrame"]=json!({"method":"item/started","params":{"startedAtMs":1_790_010_000_000i64}}); // 17:00, after the act
         root.end_plain(&a,&view).unwrap();
-        let log=rs_for(&peer,&a);let kinds:Vec<&str>=log.iter().map(|e|e["kind"].as_str().unwrap()).collect();
+        // The checkpoint entries' order; the run's live turn also gets its RS R5
+        // `model_turn` at the end, which is not a checkpoint entry.
+        let log:Vec<Value>=rs_for(&peer,&a).into_iter().filter(|e|e["kind"]!="model_turn").collect();let kinds:Vec<&str>=log.iter().map(|e|e["kind"].as_str().unwrap()).collect();
         assert_eq!(&kinds[kinds.len()-4..],["run_resumed","act_lapsed","disposition_change","run_ended"],"{kinds:?}");
         assert!(!kinds.contains(&"continued_past"));
         assert_eq!(log[kinds.len()-3]["body"]["when"],"after resume");assert_eq!(log[kinds.len()-2]["body"]["disposition"],"performed");
@@ -9432,11 +9535,14 @@ for line in sys.stdin:
         assert!(lapse["time"].as_str().unwrap()>=before.as_str(),"observed at the end, not back-dated");
         assert_eq!(log.last().unwrap()["body"]["waitingArrivals"],json!([{"checkpoint":"CP-rely","arrivalOrdinal":1}]));
     }
-    /// Appends a partial line to the act log; returns the log and its bytes before.
+    /// Appends an unreadable (terminated) line to the act log, which leaves the
+    /// record set incomplete; returns the log and its bytes before. (A torn
+    /// final line alone is a partial, never an entry, recovered by its own
+    /// writer's W-0; it leaves the set complete for other writers.)
     fn break_act_log(peer:&Peer)->(std::path::PathBuf,Vec<u8>){
         let log=peer.fixture.root.join(crate::recorder::LOG);std::fs::create_dir_all(log.parent().unwrap()).unwrap();
         let before=std::fs::read(&log).unwrap_or_default();
-        let mut f=std::fs::OpenOptions::new().create(true).append(true).open(&log).unwrap();std::io::Write::write_all(&mut f,b"{\"partial\":").unwrap();
+        let mut f=std::fs::OpenOptions::new().create(true).append(true).open(&log).unwrap();std::io::Write::write_all(&mut f,b"{\"partial\":\n").unwrap();
         (log,before)
     }
     // m-b (EXEC A-11): while an arrival waits and the act records cannot be read, the person's
@@ -9526,7 +9632,7 @@ for line in sys.stdin:
         let end=log.iter().position(|e|e["kind"]=="run_ended").expect("run_ended written");
         assert!(limit<end,"the limit precedes run_ended");
         let detail=log[limit]["body"]["detail"].as_str().unwrap();
-        assert!(detail.contains("could not be read")&&detail.contains("partial entry at end"),"{detail}");
+        assert!(detail.contains("could not be read")&&detail.contains("unreadable line"),"{detail}");
         assert!(detail.contains(&*act_log.file_name().unwrap().to_string_lossy()),"the unread log is named: {detail}");
         assert_eq!(log[end]["body"]["waitingArrivals"],json!([{"checkpoint":"CP-rely","arrivalOrdinal":1}]));
         std::fs::write(&act_log,before).unwrap();
@@ -9677,6 +9783,61 @@ for line in sys.stdin:
         assert_eq!(rs_for(&peer,&a).into_iter().find(|e|e["kind"]=="run_ended").unwrap()["body"]["cause"],"ended to start coordinated-knowledge-work");
     }
     /// The revision store copy of the fixture's selected revision.
+    /// The retained review the fixture registered from, and its registered revision.
+    fn review_of(root:&WorkflowRootSession)->(String,String){
+        let reference=root.active_review.clone().unwrap();
+        let revision=root.reviews[&reference].lock().unwrap().registered.keys().next().unwrap().clone();
+        (reference,revision)
+    }
+    fn fixture_store(f:&Fixture,root:&WorkflowRootSession)->std::path::PathBuf{
+        let id=root.selected.as_ref().unwrap().selection.identity().clone();
+        f.root.join(".chirality/workflow-revisions").join(&id.name).join(crate::storage::key(&id.revision)).join(&id.name)
+    }
+    // WR SL-4: "Select revision ‹n›" on a retained review resolves the revision
+    // store. Neither an edited published copy nor an unrelated identical copy
+    // elsewhere is used; each new selection reads the store again.
+    #[test]
+    fn workflow_reselection_review_select_resolves_the_store_only(){
+        let f=Fixture::new();let mut root=f.registered();let (reference,revision)=review_of(&root);
+        let store=fixture_store(&f,&root);
+        assert_eq!(root.selected.as_ref().unwrap().package,store,"the fixture's own review selection");
+        // An unrelated folder with identical bytes exists (the development holding copy).
+        assert_eq!(crate::workflow_workspace::Snapshot::capture(&f.package).unwrap().revision(),revision,"identical copy elsewhere");
+        let published=f.root.join(".chirality/workflows/coordinated-knowledge-work/WORKFLOW.md");
+        std::fs::write(&published,"---\nname: coordinated-knowledge-work\n---\nedited outside registration\n").unwrap();
+        let first=root.selected.as_ref().unwrap().reference.clone();
+        let selected=root.select_hot_registered_copy(&reference,&revision).unwrap();
+        assert_eq!(root.selected.as_ref().unwrap().package,store);
+        assert_ne!(root.selected.as_ref().unwrap().package,f.package);
+        assert_eq!(selected["selection"]["replaces"],first.as_str());
+        assert!(selected["selection"]["currentLimit"].is_null(),"the store verifies: {}",selected["selection"]);
+        assert_eq!(selected["selection"]["declaration"],root.snapshot()["selection"]["declaration"]);
+    }
+    // SL-4: a store that does not recompute is refused, with no fallback to the
+    // published copy or any other folder; the selection in force stays.
+    #[test]
+    fn workflow_reselection_review_select_refuses_a_tampered_store(){
+        let f=Fixture::new();let mut root=f.registered();let (reference,revision)=review_of(&root);
+        let store=fixture_store(&f,&root);let before=root.selected.as_ref().unwrap().reference.clone();
+        let file=store.join("WORKFLOW.md");let kept=std::fs::read(&file).unwrap();
+        std::fs::write(&file,b"tampered store").unwrap();
+        let refused=root.select_hot_registered_copy(&reference,&revision).unwrap_err();
+        assert!(refused.contains("revision not verified"),"{refused}");
+        assert_eq!(root.selected.as_ref().unwrap().reference,before,"selection unchanged");
+        std::fs::write(&file,kept).unwrap();
+        root.select_hot_registered_copy(&reference,&revision).expect("restored store resolves");
+    }
+    // RC-2: only a revision the named retained review holds is selected.
+    #[test]
+    fn workflow_reselection_review_select_refuses_stale_review_or_revision(){
+        let f=Fixture::new();let mut root=f.registered();let (reference,revision)=review_of(&root);
+        let before=root.selected.as_ref().unwrap().reference.clone();
+        let stale=root.select_hot_registered_copy("review:not-retained",&revision).unwrap_err();
+        assert!(stale.contains("not retained"),"{stale}");
+        let other=root.select_hot_registered_copy(&reference,&"f".repeat(64)).unwrap_err();
+        assert!(other.contains("unavailable in this review"),"{other}");
+        assert_eq!(root.selected.as_ref().unwrap().reference,before,"selection unchanged");
+    }
     fn store_of(peer:&Peer,root:&WorkflowRootSession)->std::path::PathBuf{
         let id=root.selected.as_ref().unwrap().selection.identity().clone();
         peer.fixture.root.join(".chirality/workflow-revisions").join(&id.name).join(crate::storage::key(&id.revision)).join(&id.name)
@@ -10039,7 +10200,9 @@ for line in sys.stdin:
     #[test]
     fn v10_g2_end_and_start_leaves_a_untouched_when_b_cannot_be_prepared(){
         let peer=Peer::new();let mut root=peer.fixture.registered();let a=open_run(&peer,&mut root,"thread");
-        let copy=peer.fixture.root.join(".chirality/workflows/coordinated-knowledge-work/WORKFLOW.md");
+        // B cannot be prepared: the selected revision's store no longer recomputes
+        // (the selection resolves from the store, SL-4, so an edited published copy would not do).
+        let copy=store_of(&peer,&root).join("WORKFLOW.md");
         let mut bytes=std::fs::read(&copy).unwrap();bytes.extend_from_slice(b"\nedited after selection\n");std::fs::write(&copy,bytes).unwrap();
         let refused=root.end_and_start(&a,peer.home.clone(),&peer.generation,"thread","B".into(),peer.project());
         assert!(refused.is_err(),"{refused:?}");
@@ -10316,14 +10479,16 @@ for line in sys.stdin:
     fn workflow_root_wrc1_busy_review_selection_refuses_without_global_wait(){
         let f=Fixture::new();let mut root=f.selected();let control=Arc::new(Mutex::new(Some(crate::act_control::ActControl::new(&f.root))));root.open_library(f.root.clone(),"project",Some(&f.root),control).unwrap();root.create_selected_draft("coordinated-knowledge-work").unwrap();
         let home=Arc::new(HomeSession::new(crate::home_resources::HomeClass::Account,Arc::new(crate::hosting::Host::new()),Err("offline fixture".into())).unwrap());root.begin_review(home,json!({"hostState":"absent"}),vec!["coordinated-knowledge-work".into()],false).unwrap();
-        let reference=root.active_review.clone().unwrap();let original=root.reviews[&reference].clone();let held=original.lock().unwrap();let root=Arc::new(Mutex::new(root));let shared=root.clone();let package=f.package.clone();
+        let reference=root.active_review.clone().unwrap();let original=root.reviews[&reference].clone();let held=original.lock().unwrap();let root=Arc::new(Mutex::new(root));let shared=root.clone();
         let(started_tx,started_rx)=std::sync::mpsc::channel();let(done_tx,done_rx)=std::sync::mpsc::channel();
-        let worker=std::thread::spawn(move||{let mut root=shared.lock().unwrap();started_tx.send(()).unwrap();let result=root.select_hot_registered_copy(&reference,"not-a-replayable-registered-identity",package);drop(root);done_tx.send(result.is_err()).unwrap();});
+        let worker=std::thread::spawn(move||{let mut root=shared.lock().unwrap();started_tx.send(()).unwrap();let result=root.select_hot_registered_copy(&reference,"not-a-replayable-registered-identity");drop(root);done_tx.send(result.is_err()).unwrap();});
         started_rx.recv_timeout(Duration::from_secs(2)).unwrap();let outcome=done_rx.recv_timeout(Duration::from_millis(200));let observer_root_available=root.try_lock().is_ok();drop(held);worker.join().unwrap();
         assert_eq!(outcome.ok(),Some(true),"busy original review must return pending, not block workflow root");assert!(observer_root_available);
     }
     // WR TX-5 / SQ-END, (d), (j): restart residuals.
     include!("run_restart_tests.rs");
+    // RS §14 / DEL-01-02 §7: multi-year scale measurement (ignored; run on request).
+    include!("records_scale_tests.rs");
 }
 #[cfg(test)] #[path = "workflow_journey_tests.rs"] mod workflow_journey_tests;
 

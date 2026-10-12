@@ -279,9 +279,9 @@ fn change_view(path: &str) -> Value {
 fn file_view() -> Value {
     change_view("out/summary.md")
 }
-/// Every output is a valid EXEC body (the RS-only limit kind aside) and a conformant RS run entry.
+/// Every output is a valid EXEC body (the RS-only kinds aside) and a conformant RS run entry.
 fn conformant(outputs: &[Output]) {
-    let exec: Vec<Output> = outputs.iter().filter(|(k, _)| *k != "evidence_limit").cloned().collect();
+    let exec: Vec<Output> = outputs.iter().filter(|(k, _)| !matches!(*k, "evidence_limit" | "tool_permission_settlement")).cloned().collect();
     valid(&exec);
     for (kind, body) in outputs {
         if let Some(why) = crate::records::nonconformance(kind, body, "rec:app:fixture", "run:workflow:fixture", "2026-10-10T00:00:00.000Z") {
@@ -847,6 +847,10 @@ fn again(recorder: &mut CheckpointRecorder, root: &std::path::Path, view: &Value
     outputs
 }
 /// The file view with an agent command started at 15:36:40, after the act at 15:00.
+/// A supplier start time a minute from now: after a lapse the App observes now.
+fn after_now() -> i64 {
+    std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_millis() as i64 + 60_000
+}
 fn resumed_view() -> Value {
     let mut items = file_view()["items"].as_array().unwrap().clone();
     let mut c = row("turn-1", command("c1", "agent"), 3, Some(30), None);
@@ -886,7 +890,7 @@ fn a_lapse_before_resume_makes_the_arrival_waiting_again() {
     // A new resume point follows the new performance (HD-5).
     let outputs = again(&mut recorder, &root, &{
         let mut v = resumed_view();
-        v["items"][2]["sourceFrame"]["params"]["startedAtMs"] = json!(1_790_010_000_000i64); // 17:00, after the act at 16:00
+        v["items"][2]["sourceFrame"]["params"]["startedAtMs"] = json!(after_now()); // after the act and after the lapse observed now
         v
     }, &mut all);
     assert_eq!(kinds(&outputs), ["run_resumed"], "{outputs:#?}");
@@ -895,7 +899,7 @@ fn a_lapse_before_resume_makes_the_arrival_waiting_again() {
 
 // After the resume point the lapse is recorded and nothing re-holds: the arrival stays
 // *performed* with "act lapsed at ‹t›", its ordinal and its act (RC-8, PH-8); a later
-// change is a new observation; a later act is not recorded against the performed arrival.
+// change is a new observation.
 #[test]
 fn a_lapse_after_resume_is_recorded_and_nothing_re_holds() {
     let root = project("v1");
@@ -910,12 +914,120 @@ fn a_lapse_after_resume_is_recorded_and_nothing_re_holds() {
         "annotations":[{"label":"act lapsed at","actRefs":[rely],"time":time,"referents":[RELY]}]}));
     assert!(waiting_arrivals(&all).is_empty(), "nothing says waiting after the resume point");
     assert!(again(&mut recorder, &root, &resumed_view(), &mut all).is_empty());
-    act(&root, "A7", &root.join("out/summary.md"), "v2", LATER);
-    assert!(again(&mut recorder, &root, &resumed_view(), &mut all).is_empty(), "later acts are not recorded against a performed arrival");
     std::fs::write(root.join("out/summary.md"), "v3").unwrap();
     let outputs = again(&mut recorder, &root, &resumed_view(), &mut all);
     assert_eq!(kinds(&outputs), ["act_lapsed", "disposition_change"]);
     assert_eq!((outputs[0].1["c1"].clone(), outputs[1].1["disposition"].as_str()), (digest("v3"), Some("performed")));
+    std::fs::remove_dir_all(root).unwrap();
+}
+
+/// The resumed view with a second agent command started at 17:00, after an act at 16:00.
+fn resumed_again_view() -> Value {
+    let mut items = resumed_view()["items"].as_array().unwrap().clone();
+    let mut c = row("turn-1", command("c2", "agent"), 4, Some(40), None);
+    c["sourceFrame"] = json!({"method":"item/started","params":{"startedAtMs":after_now()}});
+    items.push(c);
+    view(items)
+}
+
+// §2.4.3 "performed, with lapsed referents | CE-5 acts cover the lapsed referents | performed
+// (ordinal n+1)"; RC-8, JA-1: after a lapse past the resume point only an act of the required
+// kind on the content now current answers, whatever its capture time (SP-6); an act on other
+// or older content, of another kind, or a decline is not recorded against the performed
+// arrival. The single referent is the whole scope, so the act answers alone. A new resume
+// point follows, and a second lapse after it is recorded against the new act.
+#[test]
+fn an_act_on_lapsed_content_after_resume_performs_the_arrival_again() {
+    let root = project("v1");
+    let file = root.join("out/summary.md");
+    let (mut recorder, mut all, rely) = performed_run(&root);
+    assert_eq!(kinds(&again(&mut recorder, &root, &resumed_view(), &mut all)), ["run_resumed"]);
+    std::fs::write(&file, "v2").unwrap();
+    assert_eq!(kinds(&again(&mut recorder, &root, &resumed_view(), &mut all)), ["act_lapsed", "disposition_change"]);
+    // Not qualifying: the old content, another kind, other content, a decline.
+    act(&root, "A7", &file, "v1", "2026-09-21T15:30:00.000Z");
+    act(&root, "A4", &file, "v2", "2026-09-21T15:40:00.000Z");
+    act(&root, "A7", &file, "v9", "2026-09-21T15:45:00.000Z");
+    decline(&root, "A7", &file, "v2", "2026-09-21T15:50:00.000Z");
+    assert!(again(&mut recorder, &root, &resumed_view(), &mut all).is_empty(), "nothing recorded against the performed arrival");
+    assert!(waiting_arrivals(&all).is_empty());
+    // Qualifying: an A7 on the current content.
+    let next = act(&root, "A7", &file, "v2", LATER);
+    let outputs = again(&mut recorder, &root, &resumed_view(), &mut all);
+    assert_eq!(kinds(&outputs), ["act_counted", "disposition_change"], "{outputs:#?}");
+    assert_eq!(outputs[0].1, json!({"arrival":cp_rely(),"act":{"recordId":next,"actKind":"A7","capturedAt":LATER,"capturingSurface":"app_act_control"},"relation":"after arrival","referents":[RELY]}));
+    assert_eq!(outputs[1].1, json!({"arrival":cp_rely(),"disposition":"performed","performanceOrdinal":2,"answeredBy":[next],"annotations":[]}));
+    assert!(again(&mut recorder, &root, &resumed_view(), &mut all).is_empty(), "no duplicate; the earlier command is no new resume point");
+    // A new resume point: the first run action started after the new act.
+    let outputs = again(&mut recorder, &root, &resumed_again_view(), &mut all);
+    assert_eq!(kinds(&outputs), ["run_resumed"], "{outputs:#?}");
+    assert_eq!(outputs[0].1["firstActionRef"], "item:thread/turn-1/c2");
+    // A second lapse after the new resume point is recorded against the new act and keeps ordinal 2.
+    std::fs::write(&file, "v3").unwrap();
+    let outputs = again(&mut recorder, &root, &resumed_again_view(), &mut all);
+    assert_eq!(kinds(&outputs), ["act_lapsed", "disposition_change"], "{outputs:#?}");
+    assert_eq!((outputs[0].1["act"]["recordId"].as_str(), outputs[0].1["when"].as_str()), (Some(next.as_str()), Some("after resume")));
+    assert_eq!((outputs[1].1["performanceOrdinal"].as_u64(), &outputs[1].1["answeredBy"]), (Some(2), &json!([next])));
+    // An act on the content now current captured before the arrival also answers (SP-6), with "by earlier act".
+    let earlier = act(&root, "A7", &file, "v3", BEFORE);
+    let outputs = again(&mut recorder, &root, &resumed_again_view(), &mut all);
+    assert_eq!(kinds(&outputs), ["act_counted", "disposition_change"], "{outputs:#?}");
+    assert_eq!((outputs[0].1["relation"].as_str(), outputs[1].1["performanceOrdinal"].as_u64()), (Some("earlier act"), Some(3)));
+    assert_eq!(outputs[1].1["annotations"][0]["label"], "by earlier act");
+    assert_eq!(outputs[1].1["answeredBy"], json!([earlier]));
+    assert!(again(&mut recorder, &root, &resumed_again_view(), &mut all).is_empty());
+    let _ = rely;
+    std::fs::remove_dir_all(root).unwrap();
+}
+
+// A-9 / HD-5 for a performance after a lapse: its resume point is the first run action started
+// at or after both the capture of the act it cites and the lapse observation it answers. Here
+// an earlier act (captured before the arrival) performs the arrival again; a run action that
+// started between the original act and that performance, delivered only afterwards, is not
+// the new resume point; one started after the lapse observation is.
+#[test]
+fn a_re_performance_resumes_only_after_its_lapse_and_its_act() {
+    let root = project("v1");
+    let file = root.join("out/summary.md");
+    let (mut recorder, mut all, _) = performed_run(&root);
+    assert_eq!(kinds(&again(&mut recorder, &root, &resumed_view(), &mut all)), ["run_resumed"]);
+    std::fs::write(&file, "v2").unwrap();
+    assert_eq!(kinds(&again(&mut recorder, &root, &resumed_view(), &mut all)), ["act_lapsed", "disposition_change"]);
+    let earlier = act(&root, "A7", &file, "v2", BEFORE);
+    let outputs = again(&mut recorder, &root, &resumed_view(), &mut all);
+    assert_eq!(kinds(&outputs), ["act_counted", "disposition_change"], "{outputs:#?}");
+    assert_eq!((outputs[0].1["act"]["recordId"].as_str(), outputs[0].1["relation"].as_str(), outputs[1].1["performanceOrdinal"].as_u64()), (Some(earlier.as_str()), Some("earlier act"), Some(2)));
+    // Started at 16:30: after the original act (15:00), before the lapse observed now; delivered now.
+    let mut items = resumed_view()["items"].as_array().unwrap().clone();
+    let mut late = row("turn-1", command("c3", "agent"), 4, Some(40), None);
+    late["sourceFrame"] = json!({"method":"item/started","params":{"startedAtMs":1_790_008_000_000i64}});
+    items.push(late);
+    let outputs = again(&mut recorder, &root, &view(items.clone()), &mut all);
+    assert!(!kinds(&outputs).contains(&"run_resumed"), "an action started before the re-performance is not its resume point: {outputs:#?}");
+    let mut next = row("turn-1", command("c4", "agent"), 5, Some(50), None);
+    next["sourceFrame"] = json!({"method":"item/started","params":{"startedAtMs":after_now()}});
+    items.push(next);
+    let outputs = again(&mut recorder, &root, &view(items), &mut all);
+    assert_eq!(kinds(&outputs), ["run_resumed"], "{outputs:#?}");
+    assert_eq!(outputs[0].1["firstActionRef"], "item:thread/turn-1/c4");
+    std::fs::remove_dir_all(root).unwrap();
+}
+
+// The same through the end paths' counting (end_observations): a performed arrival lapsed
+// after its resume point and an act on its current content before the end are counted.
+#[test]
+fn the_end_counts_an_act_on_lapsed_content_after_resume() {
+    let root = project("v1");
+    let file = root.join("out/summary.md");
+    let (mut recorder, mut all, _) = performed_run(&root);
+    assert_eq!(kinds(&again(&mut recorder, &root, &resumed_view(), &mut all)), ["run_resumed"]);
+    std::fs::write(&file, "v2").unwrap();
+    assert_eq!(kinds(&again(&mut recorder, &root, &resumed_view(), &mut all)), ["act_lapsed", "disposition_change"]);
+    let next = act(&root, "A7", &file, "v2", LATER);
+    let outputs = end_observations(&all, &root);
+    conformant(&outputs);
+    assert_eq!(kinds(&outputs), ["act_counted", "disposition_change"], "{outputs:#?}");
+    assert_eq!((outputs[0].1["act"]["recordId"].as_str(), outputs[1].1["performanceOrdinal"].as_u64()), (Some(next.as_str()), Some(2)));
     std::fs::remove_dir_all(root).unwrap();
 }
 
@@ -1330,4 +1442,166 @@ fn a_settled_first_line_needs_its_line_break() {
     assert_eq!(settled_first_line("Spacing rep"), None);
     assert_eq!(settled_first_line("\n  \n Spacing report \nrest"), Some("Spacing report"));
     assert_eq!(settled_first_line("  \n"), None);
+}
+
+// ---- Tool-permission settlements (RS R13) and lost acknowledgements (R11) ----
+
+/// A register record (HOSTING server-request entry) of `thread` in generation `counter`.
+fn request(id: Value, counter: u64, turn: &str, method: &str, class: &str, state: &str, origin: Option<Value>) -> Value {
+    let mut r = json!({"recordKind":"server-request-entry","requestIdentity":id,"generation":g(counter),"method":method,"classification":"known-answerable","originClass":class,
+        "nativeParameters":{"threadId":"thread","turnId":turn,"itemId":"item-1"},"receiptPosition":9,"state":state,"replyWriteResult":null,"acknowledgmentObservation":{"status":"not-observed"}});
+    if let Some(origin) = origin {
+        r["settlement"] = json!({"kind":if state == "declined" {"decline"} else if state == "errored" {"error"} else {"answer"},"origin":origin,"nativeContent":null});
+        r["replyWriteResult"] = json!("written");
+    }
+    r
+}
+const APPROVAL: &str = "item/commandExecution/requestApproval";
+fn person() -> Option<Value> { Some(json!({"class":"person-via-interaction","actorRef":"person:p (identity not verified)"})) }
+fn rule(name: &str) -> Option<Value> { Some(json!({"class":"app-rule","ruleName":name})) }
+/// DEL-01-02's RQ-04 or RQ-05 custody event for request `id` of generation `counter`.
+fn request_event(kind: &str, id: &Value, counter: u64, context: &str) -> Value {
+    let identity = serde_json::to_string(id).unwrap();
+    let tag = if kind == "request_ended_unanswered" { "rq04" } else { "rq05" };
+    let mut e = json!({"kind":kind,"eventId":format!("cev:{tag}:{}:{identity}", gen_ref(counter)),"appSession":"session","at":"2026-09-21T16:00:00.000Z","standing":"App-observed",
+        "entry":{"generation":gen_ref(counter),"requestIdentity":identity,"method":APPROVAL,"subject":{"threadId":"thread","turnId":"turn-1","itemId":"item-1"}},"context":context});
+    if kind == "acknowledgment_not_observed" {
+        e["settlementOrigin"] = json!("person-via-interaction");
+    }
+    e
+}
+fn settlement_view(requests: Vec<Value>, events: Vec<Value>) -> Value {
+    let mut v = with_custody(view(vec![start_row(), row("turn-0", message("m0", "earlier"), 0, Some(0), Some(0))]), events);
+    v["serverRequests"] = json!(requests);
+    v
+}
+
+// R13: each A14 request of the run is written once with its settlement origin, when the
+// register shows it settled; never a human act; open, unwritten or non-A14 requests are not.
+#[test]
+fn tool_permission_settlements_are_written_once_with_their_origin() {
+    let root = std::path::PathBuf::from("/project/root");
+    let mut other = request(json!(20), 1, "turn-1", APPROVAL, "a14", "answered", person());
+    other["nativeParameters"]["threadId"] = json!("other-thread");
+    let mut foreign = request(json!(21), 1, "turn-1", APPROVAL, "a14", "answered", person());
+    foreign["generation"]["appSession"] = json!("earlier-session");
+    let requests = vec![
+        request(json!(1), 1, "turn-1", APPROVAL, "a14", "answered", person()),
+        request(json!(2), 1, "turn-1", "item/fileChange/requestApproval", "a14", "declined", person()),
+        request(json!(3), 1, "turn-1", "item/permissions/requestApproval", "a14", "declined", rule("deny-network")),
+        request(json!(4), 1, "turn-1", APPROVAL, "a14", "errored", rule("refuse-outside-project")),
+        request(json!(5), 1, "turn-1", "execCommandApproval", "a14", "errored", Some(json!({"class":"app-explicit-error"}))),
+        request(json!(6), 1, "turn-1", "applyPatchApproval", "a14", "resolved-by-supplier", None),
+        request(json!("seven"), 1, "turn-1", APPROVAL, "a14", "ended-unanswered", None),
+        // Not written: ended with no custody event yet, open, settling, write failed,
+        // person input, a turn before the run, another conversation, another App session.
+        request(json!(8), 1, "turn-1", APPROVAL, "a14", "ended-unanswered", None),
+        request(json!(9), 1, "turn-1", APPROVAL, "a14", "outstanding", None),
+        request(json!(10), 1, "turn-1", APPROVAL, "a14", "settling", person()),
+        request(json!(11), 1, "turn-1", APPROVAL, "a14", "settle-write-failed", person()),
+        request(json!(12), 1, "turn-1", "item/tool/requestUserInput", "person-input", "answered", person()),
+        request(json!(13), 1, "turn-0", APPROVAL, "a14", "answered", person()),
+        other, foreign,
+    ];
+    let v = settlement_view(requests, vec![request_event("request_ended_unanswered", &json!("seven"), 1, "supplier-exit")]);
+    let (mut recorder, listed) = CheckpointRecorder::start(Ok(declaration()));
+    let outputs = obs(&mut recorder, &v, &scope(&root), &entries(&listed));
+    conformant(&outputs);
+    assert!(outputs.iter().all(|(k, _)| *k == "tool_permission_settlement"), "never a human act: {outputs:#?}");
+    let bodies: Vec<&Value> = outputs.iter().map(|(_, b)| b).collect();
+    assert_eq!(bodies, [
+        &json!({"request":"server-request:1/1","settledBy":"the person via interaction","settlement":"answered"}),
+        &json!({"request":"server-request:1/2","settledBy":"the person via interaction","settlement":"declined"}),
+        &json!({"request":"server-request:1/3","settledBy":"App named-rule decline","settlement":"declined","ruleName":"deny-network"}),
+        &json!({"request":"server-request:1/4","settledBy":"explicit error","settlement":"errored","ruleName":"refuse-outside-project"}),
+        &json!({"request":"server-request:1/5","settledBy":"explicit error","settlement":"errored"}),
+        &json!({"request":"server-request:1/6","settledBy":"the supplier","settlement":"resolved by supplier"}),
+        &json!({"request":"server-request:1/seven","settledBy":"none — ended unanswered","settlement":"ended unanswered (process exit)","context":"supplier exit",
+            "custodyEventRef":format!("cev:rq04:{}:\"seven\"", gen_ref(1))}),
+    ]);
+    let mut all = entries(&listed);
+    all.extend(entries(&outputs));
+    assert!(obs(&mut recorder, &v, &scope(&root), &all).is_empty(), "each settlement is written once");
+    let (mut fresh, _) = CheckpointRecorder::start(Ok(declaration()));
+    assert!(obs(&mut fresh, &v, &scope(&root), &all).is_empty(), "a fresh recorder reads the run's entries");
+    // A later tick: request 8's custody event arrives, request 9 is answered.
+    let mut later = v.clone();
+    later["custodyEvents"].as_array_mut().unwrap().push(request_event("request_ended_unanswered", &json!(8), 1, "app-quit"));
+    later["serverRequests"][8] = request(json!(9), 1, "turn-1", APPROVAL, "a14", "answered", person());
+    let outputs = obs(&mut recorder, &later, &scope(&root), &all);
+    conformant(&outputs);
+    assert_eq!(outputs.iter().map(|(_, b)| (b["request"].as_str().unwrap(), b["settledBy"].as_str().unwrap(), b["context"].as_str())).collect::<Vec<_>>(),
+        [("server-request:1/8", "none — ended unanswered", Some("App quit")), ("server-request:1/9", "the person via interaction", None)]);
+    // A request of a generation before the run opened is not the run's.
+    let earlier = RunScope { start_spawn: 2, ..scope(&root) };
+    let (mut fresh, _) = CheckpointRecorder::start(Ok(declaration()));
+    assert!(obs(&mut fresh, &later, &earlier, &entries(&listed)).is_empty());
+}
+
+// RQ-04 context spellings become RS's; an unknown context writes nothing.
+#[test]
+fn an_ended_request_carries_its_context_and_custody_event() {
+    let root = std::path::PathBuf::from("/project/root");
+    for (context, written) in [("supplier-exit", Some("supplier exit")), ("supplier-stop", Some("supplier stop")), ("app-quit", Some("App quit")),
+        ("system-termination", Some("system termination")), ("app-ended-without-record", Some("App ended without record")), ("unknown", None)] {
+        let id = json!(1);
+        let event = request_event("request_ended_unanswered", &id, 1, context);
+        let v = settlement_view(vec![request(id, 1, "turn-1", APPROVAL, "a14", "ended-unanswered", None)], vec![event.clone()]);
+        let (mut recorder, _) = CheckpointRecorder::start(Ok(declaration()));
+        let outputs = obs(&mut recorder, &v, &scope(&root), &[]);
+        conformant(&outputs);
+        match written {
+            Some(spelling) => {
+                assert_eq!(outputs.len(), 1, "{context}");
+                assert_eq!((outputs[0].1["context"].as_str(), &outputs[0].1["custodyEventRef"]), (Some(spelling), &event["eventId"]), "{context}");
+            }
+            None => assert!(outputs.is_empty(), "{context}"),
+        }
+    }
+}
+
+// R11 "lost acknowledgement" from DEL-01-02's acknowledgment_not_observed (RQ-05), on the
+// run whose conversation the request names; written once, alongside the request's R13.
+#[test]
+fn a_reply_never_acknowledged_is_a_lost_acknowledgement() {
+    let root = std::path::PathBuf::from("/project/root");
+    let id = json!(1);
+    let v = settlement_view(vec![request(id.clone(), 1, "turn-1", APPROVAL, "a14", "answered", person())],
+        vec![request_event("acknowledgment_not_observed", &id, 1, "app-quit")]);
+    let (mut recorder, listed) = CheckpointRecorder::start(Ok(declaration()));
+    let outputs = obs(&mut recorder, &v, &scope(&root), &entries(&listed));
+    conformant(&outputs);
+    assert_eq!(kinds(&outputs), ["tool_permission_settlement", "evidence_limit"]);
+    let limit = &outputs[1].1;
+    assert_eq!((limit["label"].as_str(), limit["subjectRef"].as_str()), (Some("lost acknowledgement"), Some("server-request:1/1")));
+    assert!(limit["detail"].as_str().unwrap().contains(&format!("cev:rq05:{}:1", gen_ref(1))), "{limit}");
+    let mut all = entries(&listed);
+    all.extend(entries(&outputs));
+    let (mut fresh, _) = CheckpointRecorder::start(Ok(declaration()));
+    assert!(obs(&mut fresh, &v, &scope(&root), &all).is_empty(), "written once");
+}
+
+// The act read is kept while no act record and no capture it read has changed; then it
+// equals a fresh read. A new act, or a capture changed on disk, makes it read again.
+#[test]
+fn the_act_read_is_kept_only_while_its_records_and_captures_are_unchanged() {
+    let root = project("v1");
+    let file = root.join("out/summary.md");
+    act(&root, "A7", &file, "v1", "2026-09-21T14:13:21.000Z");
+    let fresh = |root: &std::path::Path| { forget_act_read_for_test(); project_act_records(root).unwrap() };
+    let first = project_act_records(&root).unwrap();
+    assert_eq!(first.acts.len(), 1);
+    crate::records::append_project(&root, Some("run:cache"), "app-writer:local", "evidence_limit", &crate::records::APP_WRITER, json!({"label":"unresolvable reference","subjectRef":"x"})).unwrap();
+    let kept = project_act_records(&root).unwrap();
+    assert_eq!(format!("{kept:?}"), format!("{:?}", fresh(&root)), "a run entry leaves the act read as a fresh read finds it");
+    act(&root, "A7", &file, "v1", "2026-09-21T14:13:22.000Z");
+    assert_eq!(project_act_records(&root).unwrap().acts.len(), 2, "a new act record is read");
+    let capture = crate::storage::capture_path(&root, first.acts[0]["capture"]["captureId"].as_str().unwrap());
+    let mut bytes: Value = serde_json::from_slice(&std::fs::read(&capture).unwrap()).unwrap();
+    bytes["purpose"] = json!("Another purpose.");
+    std::fs::write(&capture, serde_json::to_vec(&bytes).unwrap()).unwrap();
+    let changed = project_act_records(&root).unwrap();
+    assert_eq!((changed.acts.len(), changed.unresolved.len()), (1, 1), "a changed capture is verified again: {changed:?}");
+    assert_eq!(format!("{changed:?}"), format!("{:?}", fresh(&root)));
+    std::fs::remove_dir_all(root).unwrap();
 }

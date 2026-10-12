@@ -19,6 +19,32 @@ act. The web view presents, and sends only what the person initiates. It never
 writes records or operates the act control." `src-tauri/` holds that host;
 `src/` holds the web view.
 
+## Developer start
+
+This is the development App; the published fallback remains v3.0.1 in
+[chirality-app](https://github.com/sgttomas/chirality-app). Build commands below
+run from `projects/chirality-app-v4/app/` in the Chirality repository.
+
+Use Rust **1.97.1**, Node **24** and Python **3**. These Rust and Node versions
+match [App v4 CI](../../../.github/workflows/app-v4.yml). Install dependencies
+with `npm ci` when downloads are authorized, or use the prepared-cache route in
+[Offline build and checks](#offline-build-and-checks).
+
+```sh
+npm ci
+npm run build
+(cd src-tauri && cargo build --locked)
+(cd src-tauri && python3 schemas/sync.py)
+```
+
+Before running supplier-dependent checks, prepare the complete stock Codex
+0.160.0 platform package and set the binary path and expected hash as described
+in [Offline build and checks](#offline-build-and-checks). For a development
+launch, follow [Run the development App](#run-the-development-app), including
+its scratch workspace and Codex home. The offline stand-in does not run a model
+turn. [Storage and remaining work](#storage-and-remaining-work) states the
+implemented behavior and qualification limits.
+
 ## Current path
 
 1. The Rust host starts the stock App Server, completes its handshake and keeps
@@ -58,8 +84,23 @@ writes records or operates the act control." `src-tauri/` holds that host;
    explicit interrupt request. Native acknowledgment is separate from turn end or
    rollback. Contradictory late starts cannot revive a completed tuple.
 10. An App-owned pointer-only recovery ledger initializes before supplier startup
-   at the App user-data `runtime/recovery.ledger.jsonl` path. Initialization errors
-   remain visible without blocking native protocol processing or relocating data.
+   in a SQLite database at the App user-data `runtime/recovery.ledger.sqlite`
+   path (DEL-01-02 §7; PRD R-STORE). Entries are only inserted (the schema's
+   triggers refuse updates and deletes), batches that stand together are one
+   transaction. An entry is reported recorded only after its commit returned
+   (journal and database file synced with `F_FULLFSYNC`) and the App then
+   flushed the database's folder with `F_FULLFSYNC`, so the journal's removal
+   that makes the commit durable is on the device too. The JSON Lines ledger
+   earlier builds wrote at `runtime/recovery.ledger.jsonl` is imported once,
+   every complete valid line in order. Only a torn (not newline-closed) final
+   line is kept as a limit, shown with the recovery initialization. A complete
+   invalid line, a file changed since its import, or a file returned after the
+   App recorded without it fails initialization visibly and imports nothing;
+   no App recovery is recorded until the file is repaired or moved aside
+   (moving it aside gives up its entries). The file itself is never written. The host holds only the ledger's
+   current entries and shows a bounded snapshot of it, not its entries.
+   Initialization errors remain visible without blocking native protocol
+   processing or relocating data.
 
 11. Stored native history is read without making a thread operational. Explicit
     Continue uses the latest validated native response and current generation.
@@ -104,7 +145,15 @@ writes records or operates the act control." `src-tauri/` holds that host;
     so, LS-4); the press names its library, and a press after another library
     became active selects nothing. The host resolves the selection from the
     revision store, never the published copy, and verifies its bytes there
-    again (SL-1, SL-4). Other rows keep Refine and re-confirmation through a
+    again (SL-1, SL-4). Every registered selection resolves from the revision
+    store this way: from the list, from a retained review's **Select revision
+    ‹n›** (the revision that review registered or re-confirmed; no folder is
+    picked), from "newer revision ‹n› available", and from a confirmed agent
+    proposal (item 20). An edited published copy or an identical copy
+    elsewhere is never used, and a store that does not recompute refuses with
+    the selection unchanged. A run's files line (WR TX-7) therefore names the
+    revision's store folder, project- or `~`-relative, and the selection's
+    holding library is recorded as that folder's parent. Other rows keep Refine and re-confirmation through a
     draft; selecting one, a draft or an unregistered library entry is refused
     with its standing and route (SL-5). Beside a registered selection the view
     shows "newer revision ‹n› available" when the slot's ledger has a newer
@@ -130,8 +179,14 @@ writes records or operates the act control." `src-tauri/` holds that host;
     recovered-from-supplier rows, as are the pages the host's recovery reads
     return after a restart (item 22b); items are added only as their pages
     are read. Only a plan
-    observed live shows a revision number in this conversation. A row the view
-    cannot read shows its JSON instead of breaking the view.
+    observed live shows a revision number in this conversation; a later run
+    does not reset it. Each plan revision, checklist and tool row in a turn a
+    workflow run was in force at, as the App's run markers place it (from
+    its start turn to the turn it ended after), carries "During the run of
+    ‹workflow› ‹revision›" (NPTD §5.7). Messages carry none, and so does a row
+    outside any run, between runs, or past the start turn of a run whose end
+    this view cannot place; nothing says which run caused an item. A row the
+    view cannot read shows its JSON instead of breaking the view.
 18. Plan mode (experimental) is offered only when this Codex connection declared
     the experimental API and Codex lists a `plan` preset. Sending in plan or
     default mode puts `collaborationMode` on `turn/start` with the conversation's
@@ -220,8 +275,10 @@ writes records or operates the act control." `src-tauri/` holds that host;
     the person attaches are ordinary attachments.
     **Review for registration…** opens the existing review for the listed
     content, refused as DS-6 if the draft changed since listing.
-    Registration stays the person's A15 act at the native confirmation. A trial
-    is not a run, registration, checking or acceptance.
+    Registration stays the person's A15 act at the native confirmation; once
+    it registers or re-confirms, the review offers **Select revision ‹n›**,
+    resolved from the revision store like every registered selection (item 16).
+    A trial is not a run, registration, checking or acceptance.
 22. **Stop Codex…** and **Restart Codex…** always ask first (DEL-01-04 §5.2,
     C-12). A native question lists the live turns, waiting requests, delegated
     agents and workflow runs in force in that home, or says none were observed,
@@ -387,7 +444,12 @@ writes records or operates the act control." `src-tauri/` holds that host;
     lapsed at ‹t›" (and "subject absent"), and an act on the content now
     current performs it again with the next ordinal; after it, the arrival
     stays *performed* with "act lapsed at ‹t›" and nothing re-holds (RC-8,
-    PH-8). A file that cannot be read is *unknown (unavailable)*, and content
+    PH-8); then an act of the required kind on the content now current,
+    whatever its capture time (SP-6), performs it again with the next ordinal
+    and answers it alone (one referent, JA-1), and the first agent action
+    started after both that act's capture and the lapse observation is a new
+    resume point. Other acts and declines are
+    not recorded against the still *performed* arrival. A file that cannot be read is *unknown (unavailable)*, and content
     back at the acted content "matches c0 again after observed lapse"; both
     are written without changing the label (A-10; RS U-12). A repeated
     observation is not written again; a lapse whose label was not written
@@ -408,6 +470,24 @@ writes records or operates the act control." `src-tauri/` holds that host;
     so it recovers no item and changes no label (RP-1). An unavailable read
     writes nothing. A conversation with no App index gets no custody loss, so
     its run records none.
+    **Tool-permission settlements (RS R13, R11).** Each A14 request of the
+    run (an approval request in the register: the run's App session and
+    conversation, a turn of the run, from the generation it opened in) is
+    written once as `tool_permission_settlement` when the register shows it
+    settled: answered or declined by the person, declined by a named App
+    rule, errored explicitly or by a named rule, resolved by Codex, or ended
+    unanswered with the context its process ended in (supplier exit, supplier
+    stop, App quit, system termination) and DEL-01-02's
+    `request_ended_unanswered` event (RECOVERY RQ-04, written at the
+    generation's close). A reply written to Codex and never acknowledged
+    before the close is RS's "lost acknowledgement" limit, from
+    `acknowledgment_not_observed` (RQ-05). A request still open, or whose
+    reply could not be written, is not written; nor is a reply still being
+    written when the process ended, whose write result the host does not
+    record after the close (no transition is designed for it). A settlement inside Codex by
+    the user's own Codex mode never reaches the App and is not recorded. None
+    is a human act. The request card says "when you quit" for a request
+    ended at a quit (NIR CS-7).
     Recording never sends, opens, pauses or ends anything (RC-4). When the
     person ends the run, lapses since the last observation and then acts
     recorded since are written first, also for a run ended after a relaunch
@@ -423,8 +503,7 @@ writes records or operates the act control." `src-tauri/` holds that host;
     relaunch the custody events of the session that ended are gone, and the
     run gets RS's "App-restart interruption" limit instead) and, since it observes
     no run after its end, no after-end lapse or act (CE-10 *after run end*,
-    CE-16). An act on lapsed content after the resume point is not recorded
-    against the still *performed* arrival. A path is compared as text
+    CE-16). A path is compared as text
     (U-E26). Recording follows the active home's view while the App
     refreshes, and when the person ends the run. Each declared output shows its
     promise apart from its standing facets (AS §8), which come only from the
@@ -439,8 +518,14 @@ writes records or operates the act control." `src-tauri/` holds that host;
     lapse recorded it reads *not yet evaluated*, never *not lapsed*; a performed
     label without its counted act reads unknown. An output with no gating
     checkpoint reads acts unknown once an act entry concerns an arrival bound
-    to it. Other record entries this view does not read, an observation loss
-    or recovery among them, make the facets unknown. The
+    to it. A tool-permission settlement (R13) changes no facet: AS §8 names
+    no source for it and an A14 settlement is never an act (DS-3); nor does
+    a model turn (R5 `model_turn`), whose destination AS §2 shows in the
+    channel status, "not here". A "lost
+    acknowledgement" limit (R11) adds an *unknown* note to Evidence
+    completeness only, the facet AS §8 gives record-out evidence limits.
+    Other record entries this view does not read, other limits and an
+    observation loss or recovery among them, make the facets unknown. The
     advisory compatibility (DEL-02-03 CK-1/CK-2) is shown readably; a role
     outside the written-for roles names both and points to Continue as
     (U-R10, chosen display).
@@ -508,6 +593,7 @@ writes records or operates the act control." `src-tauri/` holds that host;
 |---|---|
 | `src-tauri/src/hosting.rs` | HOSTING/ACCESS lifecycle, generation, request correlation, ordered native journal, development verification and network disclosure; reviewed 0.160.0 protocol resources in `resources/supplier/` |
 | `native_requests.rs`, `recovery.rs`, `native_items.rs`, `access.rs` | Typed native request custody, pointer ledger, scoped live/ended activity and reported account/destination observations |
+| `src-tauri/src/recovery_store.rs`, `recovery_store_tests.rs` | The pointer ledger's SQLite store (DEL-01-02 §7): append-only triggers, one transaction per batch, synced commits, the held current entries' indexed query, the once-only JSON Lines import; tests include the flat cost from 1,000 to 100,000 rows |
 | `role_supply.rs`, `runtime_session.rs`, `resources/instructions/` | Reviewed v4 defaults, fixed composition bytes, seeding and generation-bound receiving/startup; supplier/model adoption remains a separate warrant |
 | `catalog.rs`, `proposal.rs`, `external_adapter.rs`, `receiving.rs`, `external_observation.rs` | Reviewed receiving contracts and exact person-selected observation custody; no external host dispatch or origin verification implied |
 | `src-tauri/src/schema_validation.rs`, `schemas/` | W-1 plus complete package/offer/capture checks; declared-ID registry with external retrieval disabled; embedded resources checked by `schemas/sync.py` |
@@ -527,6 +613,7 @@ writes records or operates the act control." `src-tauri/` holds that host;
 | `src-tauri/src/stop_records.rs`, `resources/runtime_core/recovery.stop-request.schema.json` | REC stop-request records (DEL-01-02 §3.4 SR-01…SR-12): validated transitions and outcome labels, the `codex_stop` ledger entry, and the read-back after a relaunch; the Host writes them through its recovery writer before each interrupt send |
 | `src-tauri/src/hosting_recovery_reads.rs`, `execution_custody.rs` | Recovery after a restart (DEL-01-02 §3.2 CV-11…CV-15, CV-19, CV-22; SR-09): the reads on the home's ready process, `observation_lost`/`observation_recovered`/`turn_outcome`, and the conversations' recovery states in the ledger; run on the host's trial tick or on the person's retry |
 | `src-tauri/src/checkpoint_recorder.rs` | EXEC §2.4 first slice: CE-1 listing, CE-3 arrivals from observed AW-6/AW-7 native items, CE-11/CE-12, CE-17 waiting arrivals; written through the run's RS writer with CE-19 late-write limits; never reacts (RC-4) |
+| `src-tauri/src/model_turn_recorder.rs` | RS R5 `model_turn` entries (HOSTING §8.3): thread-scope reports and one entry per run turn, effective only from a `model/rerouted` naming the turn; observes `native_items.rs`'s `modelReroutes` and the host's thread rows; never reacts |
 | `src-tauri/src/run_restart.rs`, `run_restart_tests.rs` | EXEC §2.7 / RECOVERY §4.1: the REC run tag at `run_opened` (owner `DEL-02-03`) and the host's startup writer of RS "App-restart interruption" limits; tests also cover WR TX-5 / SQ-END end notices after relaunch and (j) permanent refusals |
 | `src-tauri/src/run_offers.rs`, `src/RunOffers.tsx` | Exact run-offer line forms (WR §16.5 PR/FN), the finished-report proof for a *completed* end, and their presentation beneath the message |
 | `src-tauri/src/workflow_drafts.rs`, `src/WorkflowDrafts.tsx` | DEL-02-02 draft workspace in the Rust host (SQ-D D-2…D-4 observation, hygiene, §5.1 states) and its list presentation in NIR §7 words, with the two Try buttons and each draft's trial list; nothing here registers, reviews or runs |
@@ -540,9 +627,11 @@ writes records or operates the act control." `src-tauri/` holds that host;
 
 ## Offline build and checks
 
-Use Rust 1.92, Node 24 and prepared Cargo/npm caches. Set `CARGO_HOME` if the
-approved dependency cache is isolated; its machine-local recovery path is in
-this run's evidence. Package downloads require the owner's authorization.
+Use Rust 1.97.1, Node 24, Python 3 and prepared Cargo/npm caches. Set
+`CARGO_HOME` to the dependency cache you prepared if it is isolated. The offline
+commands require those caches to contain the locked dependencies; use the
+[developer start](#developer-start) to prepare dependencies when downloads are
+authorized.
 
 ```sh
 npm install --offline --no-audit --no-fund --ignore-scripts
@@ -718,7 +807,43 @@ replaced arrivals (CE-15, which follows only from A5
 items), anything after the run's end (CE-10 *after run end*, CE-16), or output
 records. An output gated by a checkpoint shows that checkpoint's recorded act
 standing, *lapsed* included; an observation loss or recovery still makes an
-output's facets unknown. Conversation roles (item 24)
+output's facets unknown.
+
+Each run also records RS R5 `model_turn` entries (HOSTING §8.3), through the
+same writer and the host's record tick. The host keeps `model/rerouted`
+notifications as observations; it changes nothing it sends. Every thread-level
+report of the run's conversation (thread start, resume or fork, from the run's
+generation on) is written with scope *thread* and no turn. Each turn of the
+run (the conversation's turns from the start turn on, observed live while the
+run is open) gets an entry with its ordinal in the run, written when the turn
+is observed to end, or at the run's end before `run_ended` for a turn still
+live. `requested` and `effective` are written as "‹provider›/‹model›",
+as "‹model›" when no provider is known, or as *unknown*. A turn's `requested`
+is the App's request in force for it, from the App's own `turn/start` as the
+host correlated the response. A plan- or default-mode turn carries
+`collaborationMode.settings.model` (the conversation's reported model) and
+asked for that. A plain text, run or attachment turn carries no model, so its
+`requested` is the latest request the App sent for this conversation in this
+Codex process: the latest mode's model, or else the provider and model the
+App asked for at thread start. That Codex keeps a mode for later turns is its
+documented behaviour (item 18); it has not been observed, and no witness has
+shown which model a later plain turn actually ran under. A mode turn's
+`requested`, and a plain turn's that inherits it, is "‹model›" with no
+provider, because the mode element carries only the conversation's reported
+model. A turn the App did not start, a plain turn after a mode sent in an
+earlier Codex process, and a conversation the App did not start in this
+session have *unknown*. `effective` comes only from a `model/rerouted`
+naming that turn, otherwise *unknown*, never from the thread or an earlier
+turn. Each re-route is recorded with its turn, `reroute` true: a turn
+re-routed twice gets two entries, and a re-route received after its turn's
+entry was written is a further entry for that turn. With no re-route observed
+`reroute` is omitted, since `model/rerouted` has not been observed live
+(HOSTING U-19) and its absence shows nothing. The destination class is DEL-01-05's mapping of the access entry,
+known only for the conversation the home last started (otherwise *unknown*).
+The re-route's reason and the native turn identity have no place in the entry
+body. Nothing is recorded after the run's end.
+
+Conversation roles (item 24)
 keep handoffs in process memory and write no persistent role-supply log;
 delete or archive beside Fork waits on U-R13.
 

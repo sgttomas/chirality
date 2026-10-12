@@ -12,7 +12,7 @@ import { RunPanel, SelectedWorkflow, runBringBackDefault } from "./RunPanel";
 import { FileActPanel } from "./FileActPanel";
 import { NativeActivityView } from "./NativeActivity";
 import { PlanModeControl } from "./PlanMode";
-import { NativeRequestCard, WaitingRequestsIndicator, answerable, requestThread } from "./RequestCards";
+import { NativeRequestCard, WaitingRequestsIndicator, answerable, hostRequests, requestThread } from "./RequestCards";
 import { RunOffer, type RunAct } from "./RunOffers";
 import { RecoveryCustodyPanel } from "./RecoveryCustodyPanel";
 import { LastCleanTrialLine, WorkflowDraftsView } from "./WorkflowDrafts";
@@ -84,7 +84,7 @@ export function ConversationPanel({ host, threadKey, setThreadKey, answer, runAc
     finally { setBusy(""); }
   };
   // NIR §4.1/§4.8: this conversation's request cards sit beside its activity, waiting ones first.
-  const requests: Json[] = (host?.serverRequests ?? []).filter((request: Json) => selected && requestThread(request) === selected.threadId);
+  const requests: Json[] = hostRequests(host).filter((request: Json) => selected && requestThread(request) === selected.threadId);
   const ordered = [...requests.filter(answerable), ...requests.filter((request: Json) => !answerable(request))];
   const offers: Json[] = (host?.workflowRoot?.offers ?? []).filter((offer: Json) => selected && offer?.message?.threadId === selected.threadId);
   const runs: Json[] = (host?.workflowRoot?.runs ?? []).filter((run: Json) => selected && run?.conversation === selected.threadId && run?.home === selected.generation?.home);
@@ -331,6 +331,20 @@ export function RegisteredRevisions({ library, rows, busy, act }:{ library: stri
     {" "}<button disabled={busy} onClick={()=>act("workflow_refine_registered",{name:row.name,revision:row.revision})}>Refine from the revision store…</button></li>)}</ul>;
 }
 
+/** "Select revision ‹n›" on a retained review, for each revision that review
+ * registered or re-confirmed in this App process (RC-2). The host resolves it
+ * from the revision store (SL-4); nothing here picks a folder. ‹n› is the
+ * revision's sequence as the library lists it, or its first 12 characters. */
+export function ReviewSelectButtons({ review, libraries, busy, act }:{ review: Json; libraries: Json[]; busy: boolean; act: (command:string,args:Record<string,unknown>)=>unknown }) {
+  // Only the library that holds this tuple (its origin and source root): the same
+  // content may be registered under another sequence in another library.
+  const listed=(id:Json)=>libraries.filter((l:Json)=>l.origin===id?.origin&&l.sourceRoot===id?.source_root)
+    .flatMap((l:Json)=>Array.isArray(l.registered)?l.registered:[])
+    .find((row:Json)=>row.name===id?.name&&row.revision===id?.revision)?.sequence;
+  return <>{(review?.status?.entries??[]).filter((entry:Json)=>entry.state==="registered"||entry.state==="re-confirmed").map((entry:Json)=>
+    <button key={entry.identity.revision} disabled={busy} onClick={()=>act("workflow_select_registered",{reviewRef:review.reference,revision:entry.identity.revision})}>Select revision {listed(entry.identity)??String(entry.identity.revision).slice(0,12)}</button>)}</>;
+}
+
 /** WR SL-2: "newer revision ‹n› available" beside the selection. The selection
  * stays on its revision; only the person's press selects the newer one, as a new
  * selection that cites the one it replaces. */
@@ -414,7 +428,7 @@ export function WorkflowRootPanel({ data, host, act }:{ data: Json; host: Json; 
       <LastCleanTrialLine line={review.lastCleanTrial} busy={busy} act={action}/>
       <button disabled={busy||review.reference!==data?.activeReview} onClick={()=>action("workflow_register_native",{reviewRef:review.reference})}>{review.status?.presentation?.entries?.[0]?.disposition==="re-confirmation"?"Re-confirm this revision for use in this App session through native A15 confirmation…":"Register this review through native A15 confirmation…"}</button>
       <button disabled={busy} onClick={()=>action("workflow_continue_registration",{reviewRef:review.reference})}>Continue original captured registration</button>
-      {(review.status?.entries??[]).filter((entry:Json)=>entry.state==="registered"||entry.state==="re-confirmed").map((entry:Json)=><button key={entry.identity.revision} disabled={busy} onClick={()=>action("workflow_select_registered",{reviewRef:review.reference,revision:entry.identity.revision})}>Select hot {entry.state} {entry.identity.name} holding copy…</button>)}
+      <ReviewSelectButtons review={review} libraries={data?.libraries??[]} busy={busy} act={action}/>
     </article>)}
     <h3>Send selected workflow text</h3>
     <label>Current native conversation <select value={thread} onChange={e=>setThread(e.target.value)} disabled={busy}><option value="">Select conversation</option>{(host?.threads??[]).filter((entry:Json)=>JSON.stringify(entry.generation)===JSON.stringify(host?.generation)).map((entry:Json)=><option key={entry.threadId} value={entry.threadId}>{entry.threadId} · {entry.modelProvider}/{entry.model}</option>)}</select></label>
@@ -747,7 +761,7 @@ export function App() {
   return (
     <main style={{ fontFamily: "system-ui, sans-serif", padding: 16 }}>
       <h1>Chirality App v4 — walking skeleton</h1>
-      <WaitingRequestsIndicator requests={host?.serverRequests ?? []} open={openRequests} />
+      <WaitingRequestsIndicator requests={hostRequests(host)} open={openRequests} />
       <NativeConfirmationContent />
       <ConnectorSourcePanel availability={host?.connectorRouteAvailability} command={(name,args)=>invoke(name,args)} />
       <ConnectorRoutePanel availability={host?.connectorRouteAvailability} state={routeRead} onRead={readRoutes} />
@@ -821,8 +835,9 @@ export function App() {
       <section>
         <h2>Native requests and execution</h2>
         <p>Recovery initialization: {host?.recoveryInitialization?.state ?? "not-initialized"} · host configured: {String(host?.recoveryInitialization?.hostConfigured ?? false)}</p>
+        {(host?.recoveryInitialization?.historyLimits ?? []).map((limit: string) => <p role="alert" key={limit}>App history limit: {limit}</p>)}
         <p>Ledger: {host?.recoveryInitialization?.path?.displayPath ?? "location not established"} {host?.recoveryInitialization?.path?.pathDisplayLimit}</p>
-        {host?.recoveryInitialization?.configurationError && <p role="alert">Ledger initialization failed: {host.recoveryInitialization.configurationError}. Ledger failure does not block native supplier processing; App recovery recording remains limited.</p>}
+        {host?.recoveryInitialization?.configurationError && <p role="alert">Ledger initialization failed: {host.recoveryInitialization.configurationError}. No App recovery recording happens until this is resolved (a JSON Lines ledger named here must be repaired or moved aside). Native supplier processing is not blocked.</p>}
         <p>Directory publication: {host?.recoveryInitialization?.directoryPublication ?? "not established"} · later persistence failure: {host?.recoveryPersistenceError ?? "none reported"}</p>
         <details><summary>Recovery initialization and historical pointer state</summary><pre>{JSON.stringify({ initialization: host?.recoveryInitialization, recovery: host?.recovery }, null, 2)}</pre></details>
         <p>Observer: {JSON.stringify(host?.observerCursor)} · gap: {String(host?.observerGap ?? true)}</p>
@@ -830,7 +845,7 @@ export function App() {
         <div id="other-requests">
           <h3>Requests outside the selected conversation</h3>
           <p>Requests of the selected conversation are shown beside it above. Select another conversation to answer its requests there.</p>
-          {(host?.serverRequests ?? []).filter((request: Json) => requestThread(request) === null || requestThread(request) !== selectedThread).map((request: Json) => <NativeRequestCard key={JSON.stringify([request.generation, request.requestIdentity])} request={request} view={host?.nativeView} answer={answerRequest} />)}
+          {hostRequests(host).filter((request: Json) => requestThread(request) === null || requestThread(request) !== selectedThread).map((request: Json) => <NativeRequestCard key={JSON.stringify([request.generation, request.requestIdentity])} request={request} view={host?.nativeView} answer={answerRequest} />)}
         </div>
         <a href="#file-acts">Act on a saved App-side output file (select it explicitly)</a>
         <details><summary>Native plans, tools, goals, turns and descendants as received (JSON)</summary><pre>{JSON.stringify({ current: host?.nativeView, observationEnded: host?.nativeViewObservationEnded, priorObservations: host?.priorNativeViews, recovery: host?.observerRecovery }, null, 2)}</pre></details>
